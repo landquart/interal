@@ -176,19 +176,19 @@ const assimilationOptions = [
   { value: 'h-to-ct', label: 'Замена -h на -ct', autoForm: '-ct' },
   { value: 'se-to-ct', label: '-s/e на -ct', autoForm: '-ct' },
   { value: 'xe-to-ct', label: '-x/e на -ct', autoForm: '-ct' },
-  { value: 'exc-seder', label: '1. seder — sess- (сидеть)', autoForm: 'sess-' },
-  { value: 'exc-mover', label: '2. mover — mot- (двигать)', autoForm: 'mot-' },
-  { value: 'exc-venir', label: '3. venir — vent- (приходить)', autoForm: 'vent-' },
-  { value: 'exc-sentir', label: '4. sentir — sens- (чувствовать)', autoForm: 'sens-' },
-  { value: 'exc-cognoscer', label: '5. cognoscer — cognit- (знать)', autoForm: 'cognit-' },
-  { value: 'exc-morir', label: '6. morir — mort- (умирать)', autoForm: 'mort-' },
-  { value: 'exc-aperir', label: '7. aperir — apert- (открывать)', autoForm: 'apert-' },
-  { value: 'exc-experir', label: '8. experir — expert- (испытывать, пробовать)', autoForm: 'expert-' },
-  { value: 'exc-coverir', label: '9. coverir — covert- (покрывать)', autoForm: 'covert-' },
-  { value: 'exc-presider', label: '10. presider — presiss- (быть президентом)', autoForm: 'presiss-' },
-  { value: 'exc-friger', label: '11. friger — fris- (быть холодным, мёрзлым)', autoForm: 'fris-' },
-  { value: 'exc-posseder', label: '12. posseder — possess- (владеть)', autoForm: 'possess-' },
- { value: 'exc-ceder', label: '13. -ceder — -cess- (часть корня)', autoForm: 'cess-' },
+ { value: 'exc-seder', label: '1. seder — sess- (сидеть)', autoForm: 'sess-', rootForm: 'seder', rootMeaning: 'сидеть' },
+  { value: 'exc-mover', label: '2. mover — mot- (двигать)', autoForm: 'mot-', rootForm: 'mover', rootMeaning: 'двигать' },
+  { value: 'exc-venir', label: '3. venir — vent- (приходить)', autoForm: 'vent-', rootForm: 'venir', rootMeaning: 'приходить' },
+  { value: 'exc-sentir', label: '4. sentir — sens- (чувствовать)', autoForm: 'sens-', rootForm: 'sentir', rootMeaning: 'чувствовать' },
+  { value: 'exc-cognoscer', label: '5. cognoscer — cognit- (знать)', autoForm: 'cognit-', rootForm: 'cognoscer', rootMeaning: 'знать' },
+  { value: 'exc-morir', label: '6. morir — mort- (умирать)', autoForm: 'mort-', rootForm: 'morir', rootMeaning: 'умирать' },
+  { value: 'exc-aperir', label: '7. aperir — apert- (открывать)', autoForm: 'apert-', rootForm: 'aperir', rootMeaning: 'открывать' },
+  { value: 'exc-experir', label: '8. experir — expert- (испытывать, пробовать)', autoForm: 'expert-', rootForm: 'experir', rootMeaning: 'испытывать, пробовать' },
+  { value: 'exc-coverir', label: '9. coverir — covert- (покрывать)', autoForm: 'covert-', rootForm: 'coverir', rootMeaning: 'покрывать' },
+  { value: 'exc-presider', label: '10. presider — presiss- (быть президентом)', autoForm: 'presiss-', rootForm: 'presider', rootMeaning: 'быть президентом' },
+  { value: 'exc-friger', label: '11. friger — fris- (быть холодным, мёрзлым)', autoForm: 'fris-', rootForm: 'friger', rootMeaning: 'быть холодным, мёрзлым' },
+  { value: 'exc-posseder', label: '12. posseder — possess- (владеть)', autoForm: 'possess-', rootForm: 'posseder', rootMeaning: 'владеть' },
+  { value: 'exc-ceder', label: '13. -ceder — -cess- (часть корня)', autoForm: 'cess-' },
   { value: 'exc-verter', label: '14. -verter — vers- (часть корня)', autoForm: 'vers-' },
   { value: 'exc-mitter', label: '15. -mitter — miss- (часть корня)', autoForm: 'miss-' }
 ];
@@ -352,14 +352,15 @@ function syncRootFormByAssimilation() {
   const selected = assimilationOptions.find((x) => x.value === els.assimilationSelect.value);
   const lockFormInput = fixedRootAssimilationValues.has(els.assimilationSelect.value);
 
-  if (selected?.autoForm) {
-    els.rootFormInput.value = selected.autoForm;
-  } else if (lockFormInput) {
-    els.rootFormInput.value = '';
+  if (lockFormInput) {
+    els.rootFormInput.value = selected?.rootForm || '';
+    els.rootMeaningInput.value = selected?.rootMeaning || '';
   }
 
   els.rootFormInput.readOnly = lockFormInput;
+  els.rootMeaningInput.readOnly = lockFormInput;
 }
+
 
 function syncBodyModalState() {
   const hasOpen = [els.chooserModal, els.rootModal, els.componentModal, els.prefixVariantModal].some((m) => !m.classList.contains('hidden'));
@@ -405,6 +406,7 @@ function addRootComponent() {
   els.rootMeaningInput.value = '';
   els.assimilationSelect.value = 'none';
   els.rootFormInput.readOnly = false;
+  els.rootMeaningInput.readOnly = false;
   renderComponents();
   closeAllModals();
 }
