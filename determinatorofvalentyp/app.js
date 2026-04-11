@@ -188,7 +188,9 @@ const assimilationOptions = [
   { value: 'exc-presider', label: '10. presider — presiss- (быть президентом)', autoForm: 'presiss-' },
   { value: 'exc-friger', label: '11. friger — fris- (быть холодным, мёрзлым)', autoForm: 'fris-' },
   { value: 'exc-posseder', label: '12. posseder — possess- (владеть)', autoForm: 'possess-' },
-  { value: 'exc-ceder', label: '13. -ceder — -cess- (часть корня)', autoForm: 'cess-' }
+ { value: 'exc-ceder', label: '13. -ceder — -cess- (часть корня)', autoForm: 'cess-' },
+  { value: 'exc-verter', label: '14. -verter — vers- (часть корня)', autoForm: 'vers-' },
+  { value: 'exc-mitter', label: '15. -mitter — miss- (часть корня)', autoForm: 'miss-' }
 ];
 
 const prefixAssimilationOptions = {
@@ -294,6 +296,21 @@ let state = {
 };
 
 let pendingPrefixItem = null;
+const fixedRootAssimilationValues = new Set([
+  'exc-seder',
+  'exc-mover',
+  'exc-venir',
+  'exc-sentir',
+  'exc-cognoscer',
+  'exc-morir',
+  'exc-aperir',
+  'exc-experir',
+  'exc-coverir',
+  'exc-presider',
+  'exc-friger',
+  'exc-posseder'
+]);
+
 
 function setupSelects() {
   assimilationOptions.forEach((opt) => {
@@ -329,6 +346,19 @@ function fillComponentSelect() {
 function updateComponentPreview() {
   const item = allComponents.find((x) => x.id === els.componentSelect.value);
   els.componentMeaningPreview.textContent = item ? `${item.form} — ${item.meaning}` : '—';
+}
+
+function syncRootFormByAssimilation() {
+  const selected = assimilationOptions.find((x) => x.value === els.assimilationSelect.value);
+  const lockFormInput = fixedRootAssimilationValues.has(els.assimilationSelect.value);
+
+  if (selected?.autoForm) {
+    els.rootFormInput.value = selected.autoForm;
+  } else if (lockFormInput) {
+    els.rootFormInput.value = '';
+  }
+
+  els.rootFormInput.readOnly = lockFormInput;
 }
 
 function syncBodyModalState() {
@@ -374,6 +404,7 @@ function addRootComponent() {
   els.rootFormInput.value = '';
   els.rootMeaningInput.value = '';
   els.assimilationSelect.value = 'none';
+  els.rootFormInput.readOnly = false;
   renderComponents();
   closeAllModals();
 }
@@ -729,6 +760,7 @@ function attachEvents() {
   els.backFromPrefixVariantBtn.addEventListener('click', () => { closeModal(els.prefixVariantModal); openModal(els.componentModal); pendingPrefixItem = null; });
   els.componentCategorySelect.addEventListener('change', fillComponentSelect);
   els.componentSelect.addEventListener('change', updateComponentPreview);
+   els.assimilationSelect.addEventListener('change', syncRootFormByAssimilation);
   els.prefixVariantSelect.addEventListener('change', updatePrefixVariantPreview);
   els.saveRootBtn.addEventListener('click', addRootComponent);
   els.saveComponentBtn.addEventListener('click', addSelectedComponent);
@@ -747,4 +779,5 @@ function attachEvents() {
 
 setupSelects();
 attachEvents();
+syncRootFormByAssimilation();
 renderComponents();
