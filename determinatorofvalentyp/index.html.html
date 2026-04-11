@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interal — Двойное значение в дериватах</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="header">
+      <h1>Interal</h1>
+      <p class="subtitle">§84. Двойное значение в дериватах</p>
+    </header>
+
+    <section class="panel">
+      <h2>Ввод</h2>
+
+      <label class="field">
+        <span>Первичное слово</span>
+        <input id="baseWord" type="text" placeholder="например: sess/ion" value="sess/ion" />
+      </label>
+
+      <label class="field">
+        <span>Логический анализ компонентов</span>
+        <textarea id="logicalMeaning" rows="2" placeholder="например: заседание"></textarea>
+      </label>
+
+      <label class="field">
+        <span>Правило деривации / изменения</span>
+        <input id="transformRule" type="text" placeholder="например: ob- + sess/ion" value="ob- + sess/ion" />
+      </label>
+
+      <label class="field">
+        <span>Слово по регулярной модели (с разделителями)</span>
+        <input id="regularWord" type="text" placeholder="например: ob/sess/ion" value="ob/sess/ion" />
+      </label>
+
+      <label class="field">
+        <span>Значение регулярной формы</span>
+        <textarea id="regularMeaning" rows="2" placeholder="например: заседание напротив кого-то/чего-то"></textarea>
+      </label>
+
+      <label class="field">
+        <span>Интернациональное значение эквивалентного деривата</span>
+        <textarea id="internationalMeaning" rows="2" placeholder="например: одержимость"></textarea>
+      </label>
+
+      <label class="field">
+        <span>Кандидат с модификацией (если есть)</span>
+        <input id="modifiedWord" type="text" placeholder="например: obsessionu" value="obsessionu" />
+      </label>
+
+      <details class="details">
+        <summary>Локальная нейросеть для спорных случаев</summary>
+        <label class="check-row">
+          <input id="useLlm" type="checkbox" />
+          <span>Использовать локальную модель только для спорных случаев</span>
+        </label>
+        <label class="field">
+          <span>Ollama URL</span>
+          <input id="ollamaUrl" type="text" value="http://localhost:11434/api/generate" />
+        </label>
+        <label class="field">
+          <span>Модель</span>
+          <input id="ollamaModel" type="text" value="llama3.2:3b" />
+        </label>
+      </details>
+
+      <div class="actions">
+        <button id="analyzeBtn">Анализировать</button>
+        <button id="loadExampleBtn" class="ghost">Загрузить пример из книги</button>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Результат</h2>
+      <div id="result" class="result empty">Заполните поля и нажмите «Анализировать».</div>
+    </section>
+
+    <section class="panel">
+      <h2>Основа классификации</h2>
+      <ul class="notes">
+        <li>Если значение выводится из логического анализа элементов, это регулярная форма.</li>
+        <li>Если значение эквивалентного интернационального деривата отличается от логического анализа, значения разграничиваются.</li>
+        <li>Разграничение может делаться добавлением <code>-u</code> для существительных, заменой суффикса, заменой приставки предлогом или окончанием с тем же значением, либо перефразированием.</li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
