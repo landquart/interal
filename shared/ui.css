@@ -100,3 +100,9 @@ body.menu-open .side-menu-overlay {
 .has-global-menu {
   padding-top: 64px !important;
 }
+
+body:not(.dark-theme) .menu-theme-btn {
+  background: #1a1a1a;
+  border-color: #1a1a1a;
+  color: #ffffff;
+}
