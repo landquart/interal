@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interal</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      color: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: #fff;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      text-align: center;
+      width: 300px;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+      font-weight: 500;
+    }
+
+    a {
+      display: block;
+      margin: 10px 0;
+      padding: 12px;
+      text-decoration: none;
+      color: #111;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      transition: 0.2s;
+    }
+
+    a:hover {
+      background: #111;
+      color: #fff;
+      border-color: #111;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Interal</h1>
+
+    <!-- Similaritá -->
+    <a href="similarita/index.html">Similarita</a>
+
+    <!-- Анализ значений -->
+    <a href="interal-gh-pages-v3/index.html">Derivates Analysis (§84)</a>
+  </div>
+
+</body>
+</html>
