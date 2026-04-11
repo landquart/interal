@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Similaritá</title>
+
+<style>
+
+:root {
+    --bg-base: #e6e6e6;
+    --line-color: rgba(0, 0, 0, 0.55);
+    --surface: #f4f4f4;
+    --surface-strong: #ffffff;
+    --text-main: #111111;
+    --text-muted: #2f2f2f;
+    --accent: #111111;
+    --accent-hover: #000000;
+    --accent-soft: rgba(17, 17, 17, 0.15);
+    --button-grad-start: #2d2d2d;
+    --button-grad-end: #111111;
+    --button-hover-glow: rgba(17, 17, 17, 0.2);
+    --radius-lg: 18px;
+    --radius-md: 12px;
+    --shadow-card: 0 12px 30px rgba(31, 41, 55, 0.12);
+    --shadow-soft: 0 6px 20px rgba(31, 41, 55, 0.08);
+}
+
+body {
+    margin: 0;
+    padding: 32px 16px;
+    background-color: var(--bg-base);
+    background-image: url("images/topography bg light.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    color: var(--text-main);
+    font-family: Montserrat, sans-serif;
+    line-height: 1.5;
+}
+
+body.dark-theme {
+    --bg-base: #000000;
+    --line-color: rgba(255, 255, 255, 0.65);
+    --surface: #111111;
+    --surface-strong: #191919;
+    --text-main: #f5f7ff;
+    --text-muted: #d2d9ec;
+    --accent: #f5f7ff;
+    --accent-hover: #ffffff;
+    --accent-soft: rgba(245, 247, 255, 0.3);
+    --button-grad-start: #f5f7ff;
+    --button-grad-end: #dfe6ff;
+    --button-hover-glow: rgba(245, 247, 255, 0.28);
+    --shadow-card: 0 12px 30px rgba(0, 0, 0, 0.6);
+    --shadow-soft: 0 6px 20px rgba(0, 0, 0, 0.45);
+    background-image: url("images/topography bg dark.svg");
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 24px 12px;
+    }
+}
+
+.card {
+    background: var(--surface);
+    border: 1px solid #cfcfcf;
+    max-width: 520px;
+    margin: 0 auto 18px auto;
+    padding: 22px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+}
+
+.card h2 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 14px;
+    letter-spacing: 0.2px;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+h2 {
+    font-size: 1.25rem;
+}
+
+label {
+    display: block;
+    margin-top: 14px;
+    font-size: 14px;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+input {
+    width: 100%;
+    padding: 11px 12px;
+    margin-top: 6px;
+    font-size: 16px;
+    box-sizing: border-box;
+    border: 2px solid #d0d0d0;
+    border-radius: var(--radius-md);
+    background: var(--surface-strong);
+    color: var(--text-main);
+}
+
+input::placeholder {
+    color: var(--text-muted);
+}
+
+input:focus-visible {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px var(--accent-soft);
+}
+
+button {
+    width: 100%;
+    margin-top: 16px;
+    padding: 12px;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    background: var(--accent);
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    color: var(--bg-base);
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    box-shadow: var(--shadow-soft);
+    transform: scale(1);
+    transition: transform 0.2s ease, box-shadow 0.25s ease, color 0.25s ease;
+}
+
+button::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: 0;
+    background: linear-gradient(120deg, var(--button-grad-start) 0%, var(--button-grad-end) 45%, var(--button-grad-start) 100%);
+    background-size: 200% 200%;
+    background-position: 0% 50%;
+    transition: opacity 0.25s ease, background-position 0.45s ease;
+}
+
+button:hover,
+button:focus-visible {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 18px var(--button-hover-glow);
+}
+
+button:hover::before,
+button:focus-visible::before {
+    opacity: 1;
+    background-position: 100% 50%;
+}
+
+
+button:active {
+    transform: scale(0.99);
+}
+
+body.dark-theme button:hover,
+body.dark-theme button:focus-visible {
+  color: #111111;
+
+}
+
+.theme-toggle {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    width: auto;
+    margin-top: 0;
+    padding: 8px 12px;
+    font-size: 12px;
+    z-index: 1100;
+}
+
+.result {
+    margin-top: 14px;
+    padding: 10px 12px;
+    font-size: 15px;
+    border-radius: 10px;
+    background: #efefef;
+    border: 1px solid #d5d5d5;
+}
+
+body.dark-theme .result {
+    background: #171717;
+    border-color: #3a3a3a;
+}
+
+body.dark-theme .card {
+    border-color: #3a3a3a;
+}
+
+body.dark-theme .info-card p,
+body.dark-theme .info-card li {
+    color: var(--text-muted);
+}
+
+ul {
+    padding-left: 18px;
+}
+
+#explainText {
+    font-family: "Inter", "Montserrat", sans-serif;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.explain-title {
+    margin: 0 0 14px;
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.explain-body {
+    margin: 0;
+    white-space: pre-wrap;
+}
+
+.modal-inner {
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    color: #1f2937;
+    border: 1px solid #d1d1d1;
+}
+
+body.dark-theme .modal-inner {
+    background: #111111;
+    color: #ffffff;
+    border-color: #3a3a3a;
+}
+
+body.dark-theme #explainText {
+    color: #ffffff;
+}
+
+#explainModal {
+    opacity: 0;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+#explainModal.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.info-card p,
+.info-card li {
+    color: #374151;
+    font-size: 14px;
+}
+
+.info-card a {
+    color: var(--accent);
+}
+
+</style>
+</head>
+
+<body>
+
+    <button id="themeToggle" class="theme-toggle" type="button" onclick="toggleTheme()">🌙 Obscur thema</button>
+
+<!-- 1. Graphic similaritá -->
+<div class="card">
+    <h2>Graphic similaritá</h2>
+
+    <label>Vord-hypothese</label>
+    <input id="g1" type="text">
+
+    <label>Vord in alter lingue</label>
+    <input id="g2" type="text">
+
+    <button onclick="calcGraphic()">Calcular</button>
+
+    <div id="graphicResult" class="result">—</div>
+
+<button id="graphicExplainBtn" style="display:none" onclick="showExplain('graphic')">
+    Explanar
+</button>
+
+</div>
+
+<!-- 2. Phonetic similaritá -->
+<div class="card">
+    <h2>Phonetic similaritá</h2>
+
+    <label>Vord-hypothese (IPA)</label>
+    <input id="p1" type="text">
+
+    <label>Vord in alter lingue (IPA)</label>
+    <input id="p2" type="text">
+
+    <button onclick="calcPhonetic()">Calcular</button>
+
+    <div id="phoneticResult" class="result">—</div>
+
+<button id="phoneticExplainBtn" style="display:none" onclick="showExplain('phonetic')">
+    Explanar
+</button>
+
+</div>
+
+<!-- 3. Calculation of phonetic similaritá -->
+<div class="card info-card">
+
+    <h2>Calculation of phonetic similaritá</h2>
+
+    <p>
+        Vu necessa pastan phonetic transcription of Interalen vord in
+        International Phonetic Alphabet (IPA) in linea
+        <b>"Vord-hypothese"</b>.
+        Com vord posse esser reducet intro phonetic scription,
+        Vu posse cognosceskan in libre
+        <i>"International auxiliari lingua INTERAL"</i>,
+        sectionus A) Alphabet (§3) e
+        10. Regules of lection (§42–58).
+    </p>
+
+    <p>
+        In linea <b>"Vord in alter lingue"</b> pasta se phonetic transcription
+        in IPA in alquel ethnic lingue.
+        Infra es indicat saytes por divers lingues, che quel Vu posse trovar
+        phonetic transcription of desirat vord.
+    </p>
+
+    <ul>
+        <li>
+            Anglese —
+            <a href="https://www.internationalphoneticalphabet.org/english-to-ipa-translator/"
+               target="_blank">
+                internationalphoneticalphabet.org
+            </a>
+        </li>
+        <li>
+            Germanian, hispanian, fransese, russian, grecian —
+            <a href="https://hellpanderrr.github.io/wiktionary_pron/index.html"
+               target="_blank">
+                wiktionary_pron
+            </a>
+        </li>
+        <li>
+            Italian —
+            <a href="https://easypronunciation.com/en/italian-phonetic-transcription-converter"
+               target="_blank">
+                easypronunciation.com
+            </a>
+        </li>
+    </ul>
+
+</div>
+
+  <div id="explainModal" style="
+    position:fixed;
+    inset:0;
+    background:rgba(25,30,45,.35);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    z-index:1000;
+">
+
+    <div class="modal-inner" style="
+        max-width:600px;
+        width:100%;
+        margin:0;
+        padding:24px;
+        border-radius:16px;
+        max-height:calc(100vh - 32px);
+        overflow:hidden;
+        display:flex;
+        flex-direction:column;
+        box-shadow: var(--shadow-card);
+">
+
+        <div id="explainText" style="overflow:auto; flex:1 1 auto; min-height:0;"></div>
+
+        <button onclick="closeExplain()" style="margin-top:10px">
+            Cluder
+        </button>
+    </div>
+</div>
+
+    <script>
+const g1 = document.getElementById("g1");
+const g2 = document.getElementById("g2");
+const p1 = document.getElementById("p1");
+const p2 = document.getElementById("p2");
+
+const graphicResult = document.getElementById("graphicResult");
+const phoneticResult = document.getElementById("phoneticResult");
+
+const graphicExplainBtn = document.getElementById("graphicExplainBtn");
+const phoneticExplainBtn = document.getElementById("phoneticExplainBtn");
+
+const explainModal = document.getElementById("explainModal");
+const explainText = document.getElementById("explainText");
+
+let graphicExplanation = "";
+let phoneticExplanation = "";
+
+const THEME_STORAGE_KEY = "similarita.theme";
+
+function applyTheme(isDark) {
+    document.body.classList.toggle("dark-theme", isDark);
+    document.getElementById("themeToggle").textContent = isDark
+        ? "☀️ Luminosi thema"
+        : "🌙 Obscur thema";
+}
+
+function loadThemePreference() {
+    const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+    if (savedTheme === "dark") applyTheme(true);
+}
+
+        function toggleTheme() {
+    const isDark = !document.body.classList.contains("dark-theme");
+    applyTheme(isDark);
+    localStorage.setItem(THEME_STORAGE_KEY, isDark ? "dark" : "light");
+}
+
+function normalize(text){
+    return text.trim().toLowerCase();
+}
+
+function levenshtein(a, b) {
+    const n = a.length, m = b.length;
+    const dp = Array.from({ length: n + 1 }, () => Array(m + 1).fill(0));
+
+    for (let i = 0; i <= n; i++) dp[i][0] = i;
+    for (let j = 0; j <= m; j++) dp[0][j] = j;
+
+    for (let i = 1; i <= n; i++) {
+        for (let j = 1; j <= m; j++) {
+            let cost;
+            if (a[i - 1] === b[j - 1]) {
+                cost = 0;
+            } else if (
+                (i > 1 && a[i - 1] === b[j - 2]) ||
+                (j > 1 && a[i - 2] === b[j - 1])
+            ) {
+                cost = 0.5;
+            } else {
+                cost = 1;
+            }
+
+            dp[i][j] = Math.min(
+                dp[i - 1][j] + 1,
+                dp[i][j - 1] + 1,
+                dp[i - 1][j - 1] + cost
+            );
+        }
+    }
+
+    return dp[n][m];
+}
+
+// фонетические пары
+const phoneticPairs = [
+    ["d", "t"],
+    ["k", "g"],
+    ["b", "p"],
+    ["v", "f"],
+    ["b", "v"],
+    ["p", "f"],
+    ["s", "z"],
+    ["n", "m"],
+    ["ɸ", "β"],
+    ["θ", "ð"],
+    ["ʃ", "ʒ"],
+    ["ʂ", "ʐ"],
+    ["x", "ɣ"],
+    ["h", "ɦ"],
+    ["i", "y"],
+    ["ɪ", "ʏ"],
+    ["ɨ", "ʉ"],
+    ["ɛ", "œ"],
+    ["a", "ä"],
+    ["ɑ", "ɒ"],
+    ["w", "u"],
+    ["t͡s", "d͡z"],
+    ["t͡ʃ", "d͡ʒ"],
+    ["l", "ɫ"],
+    ["r", "ɾ"],
+    ["e", "ø"],
+    ["ə", "ɐ"]
+];
+
+const phoneticPairSet = new Set(
+    phoneticPairs.flatMap(([x, y]) => [`${x}|${y}`, `${y}|${x}`])
+);
+
+function phoneticCost(a, b) {
+    if (a === b) return 0;
+    return phoneticPairSet.has(`${a}|${b}`) ? 0.5 : 1;
+}
+
+function tokenizePhonetic(text) {
+    const multiCharSymbols = Array.from(
+        new Set(phoneticPairs.flat().filter(symbol => symbol.length > 1))
+    ).sort((x, y) => y.length - x.length);
+
+    const tokens = [];
+    let index = 0;
+
+    while (index < text.length) {
+        const matched = multiCharSymbols.find(symbol => text.startsWith(symbol, index));
+        if (matched) {
+            tokens.push(matched);
+            index += matched.length;
+        } else {
+            tokens.push(text[index]);
+            index++;
+        }
+    }
+
+    return tokens;
+}
+
+function psychoLevenshtein(a, b) {
+    const n = a.length, m = b.length;
+    const dp = Array.from({ length: n + 1 }, () => Array(m + 1).fill(0));
+
+    for (let i = 0; i <= n; i++) dp[i][0] = i;
+    for (let j = 0; j <= m; j++) dp[0][j] = j;
+
+    for (let i = 1; i <= n; i++) {
+        for (let j = 1; j <= m; j++) {
+            dp[i][j] = Math.min(
+                dp[i-1][j-1] + phoneticCost(a[i-1], b[j-1]),
+                dp[i-1][j] + 1,
+                dp[i][j-1] + 1
+            );
+        }
+    }
+    return dp[n][m];
+}
+
+function shiftSimilarity(a,b){
+    const scores={0:1.0,1:0.5,2:0.4,3:0.3};
+    let best=0;
+
+    for(let shift=0;shift<=3;shift++){
+        for(const [x,y] of [[a,b],[b,a]]){
+            const subX = x.slice(shift);
+            const minLen = Math.min(subX.length, y.length);
+            let match=0;
+            for(let i=0;i<minLen;i++){
+                if(subX[i]===y[i]) match++;
+                else break;
+            }
+            if(match>=3){
+                best=Math.max(best,scores[shift]);
+            }
+        }
+    }
+    return best;
+}
+
+function calcGraphic() {
+    const a = normalize(g1.value);
+    const b = normalize(g2.value);
+    if (!a || !b) {
+        graphicResult.textContent = "Plis inscriber ambi vordes";
+        graphicExplainBtn.style.display = "none";
+        return;
+    }
+
+    const d = levenshtein(a, b);
+    const maxLen = Math.max(a.length, b.length);
+    const baseSim = 1 - d / maxLen;
+   const sim = baseSim;
+
+    graphicExplanation =
+`Graphic similaritá
+
+Formula:
+1 − (Levenshteinen distantia/Maximal vorden longituda)
+
+Vord A: ${a}
+Vord B: ${b}
+
+Levenshteinen distantia: ${d}
+Maximal longituda: ${maxLen}
+
+Resultate:
+${sim.toFixed(3)}
+`;
+
+    graphicExplainBtn.style.display = "block";
+    graphicResult.innerHTML = sim.toFixed(3);
+}
+
+function calcPhonetic() {
+    const a = normalize(p1.value);
+    const b = normalize(p2.value);
+    if (!a || !b) {
+        phoneticResult.textContent = "Plis inscriber ambi vordes in IPA";
+        phoneticExplainBtn.style.display = "none";
+        return;
+    }
+
+    const tokensA = tokenizePhonetic(a);
+    const tokensB = tokenizePhonetic(b);
+
+    const d = psychoLevenshtein(tokensA, tokensB);
+    const maxLen = Math.max(tokensA.length, tokensB.length);
+    const baseSim = 1 - d / maxLen;
+   const sim = baseSim;
+
+    phoneticExplanation =
+`Phonetic similaritá
+
+Formula:
+1 − (Psycolevenshtein/Maximal vorden longituda)
+
+IPA A: ${a}
+IPA B: ${b}
+Tókenes A: ${tokensA.join(" ")}
+Tókenes B: ${tokensB.join(" ")}
+
+Usat similari sones:
+${phoneticPairs.map(p => p[0] + " ↔ " + p[1]).join(", ")}
+
+Distantia: ${d}
+
+Resultate:
+${sim.toFixed(3)}
+`;
+
+    phoneticExplainBtn.style.display = "block";
+    phoneticResult.innerHTML = sim.toFixed(3);
+}
+
+loadThemePreference();
+
+function showExplain(type){
+    const fullText = type === "graphic" ? graphicExplanation : phoneticExplanation;
+    const [title, ...restLines] = fullText.split("\n");
+
+    explainText.innerHTML = "";
+
+    const titleElement = document.createElement("h3");
+    titleElement.className = "explain-title";
+    titleElement.textContent = title.trim();
+
+    const bodyElement = document.createElement("div");
+    bodyElement.className = "explain-body";
+    bodyElement.textContent = restLines.join("\n").trim();
+
+    explainText.append(titleElement, bodyElement);
+    explainModal.classList.add("show");
+}
+
+function closeExplain(){
+    explainModal.classList.remove("show");
+}
+
+// Закрытие модального при клике вне окна
+explainModal.onclick = function(e){
+    if(e.target === explainModal){
+        closeExplain();
+    }
+};
+</script>
+
+</body>
+</html>
