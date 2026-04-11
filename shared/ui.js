@@ -15,11 +15,10 @@
   const menu = document.createElement('aside');
   menu.className = 'side-menu';
   menu.innerHTML = `
-    <p class="menu-title">Меню</p>
     <nav class="menu-links">
       <a class="menu-link" href="${prefix}similarita/">Similaritá</a>
       <a class="menu-link" href="${prefix}determinatorofvalentyp/">Determinator of valen typ</a>
-      <a class="menu-link" href="${prefix}index.html">Главная</a>
+      <a class="menu-link" href="${prefix}index.html">General</a>
     </nav>
  <button class="menu-theme-btn" type="button"></button>
   `;
