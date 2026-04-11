@@ -4,48 +4,37 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Interal</title>
-
+<link rel="stylesheet" href="shared/ui.css" />
+  
   <style>
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: Montserrat, sans-serif;
-      background: #f5f5f5;
-      color: #111;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
+      display: grid;
+      place-items: center;
+      min-height: 100vh;
     }
 
     .container {
-      background: #fff;
-      padding: 40px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+     width: min(420px, calc(100vw - 32px));
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 24px;
       text-align: center;
-      width: 300px;
     }
 
-    h1 {
-      margin-bottom: 30px;
-      font-weight: 500;
-    }
-
-    a {
+    h1 { margin: 0 0 18px; font-weight: 600; }
+    .tool-link {
       display: block;
       margin: 10px 0;
       padding: 12px;
       text-decoration: none;
-      color: #111;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      transition: 0.2s;
-    }
-
-    a:hover {
-      background: #111;
-      color: #fff;
-      border-color: #111;
+     color: var(--text);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--surface-soft);
     }
   </style>
 </head>
@@ -54,12 +43,10 @@
   <div class="container">
     <h1>Interal</h1>
 
-    <!-- Similaritá -->
-<a href="similarita/">Similaritá</a>
-
-    <!-- Determinator of valen typ -->
-     <a href="determinatorofvalentyp/">Determinator of valen typ</a>
+    <a class="tool-link" href="similarita/">Similaritá</a>
+    <a class="tool-link" href="determinatorofvalentyp/">Determinator of valen typ</a>
   </div>
 
+  <script src="shared/ui.js"></script>
 </body>
 </html>
