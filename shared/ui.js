@@ -61,9 +61,5 @@
   overlay.addEventListener('click', closeMenu);
   menu.querySelector('.menu-theme-btn').addEventListener('click', function () {
     toggleTheme();
-    closeMenu();
-  });
-  menu.querySelectorAll('a').forEach(function (link) {
-    link.addEventListener('click', closeMenu);
   });
 })();
