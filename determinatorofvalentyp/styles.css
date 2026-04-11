@@ -1,8 +1,9 @@
 :root {
   --bg: #fff;
-  --card: #fff;
+ --card: #151515;
   --text: #000;
-  --muted: #555;
+ --card-text: #fff;
+  --muted: #b8b8b8;
   --line: #d8d8d8;
   --soft: #f6f6f6;
   --overlay: rgba(255,255,255,0.25);
@@ -44,6 +45,7 @@ body.modal-open {
   border-radius: var(--radius);
   padding: 24px;
   margin-bottom: 18px;
+  color: var(--card-text);
 }
 
 .panel h2 {
@@ -57,7 +59,7 @@ body.modal-open {
   display: block;
   margin-bottom: 8px;
   font-size: 0.95rem;
-  color: var(--text);
+ color: var(--card-text);
 }
 
 input, textarea, select, button { font: inherit; font-family: 'Montserrat', sans-serif; }
@@ -91,7 +93,8 @@ textarea { resize: vertical; }
   border: 1px solid var(--line);
   border-radius: 12px;
   padding: 10px 12px;
-  background: #fff;
+background: #1e1e1e;
+  color: var(--card-text);
 }
 .component-item + .component-item { margin-top: 10px; }
 .component-title { font-weight: 600; margin-bottom: 4px; }
@@ -175,10 +178,11 @@ button.ghost { background: #fff; color: #000; }
   margin-bottom: 12px;
 }
 .result-card {
-  background: #fff;
+  background: #1e1e1e;
   border: 1px solid var(--line);
   border-radius: 12px;
   padding: 12px;
+  color: var(--card-text);
 }
 .result-card h3 { margin: 0 0 8px; font-size: 0.95rem; font-weight: 600; }
 pre {
@@ -211,9 +215,10 @@ pre {
   width: min(100%, 560px);
   border: 1px solid var(--line);
   border-radius: 18px;
-  background: #fff;
+   background: #1a1a1a;
   padding: 18px;
   z-index: 1;
+  color: var(--card-text);
 }
 .chooser-card { width: min(100%, 520px); }
 .modal-header {
