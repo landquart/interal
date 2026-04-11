@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Similaritá</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/ui.css" />
 
 <style>
 
@@ -173,17 +177,6 @@ body.dark-theme button:focus-visible {
 
 }
 
-.theme-toggle {
-    position: fixed;
-    top: 12px;
-    right: 12px;
-    width: auto;
-    margin-top: 0;
-    padding: 8px 12px;
-    font-size: 12px;
-    z-index: 1100;
-}
-
 .result {
     margin-top: 14px;
     padding: 10px 12px;
@@ -277,8 +270,6 @@ body.dark-theme #explainText {
 </head>
 
 <body>
-
-    <button id="themeToggle" class="theme-toggle" type="button" onclick="toggleTheme()">🌙 Obscur thema</button>
 
 <!-- 1. Graphic similaritá -->
 <div class="card">
@@ -416,26 +407,6 @@ const explainText = document.getElementById("explainText");
 
 let graphicExplanation = "";
 let phoneticExplanation = "";
-
-const THEME_STORAGE_KEY = "similarita.theme";
-
-function applyTheme(isDark) {
-    document.body.classList.toggle("dark-theme", isDark);
-    document.getElementById("themeToggle").textContent = isDark
-        ? "☀️ Luminosi thema"
-        : "🌙 Obscur thema";
-}
-
-function loadThemePreference() {
-    const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
-    if (savedTheme === "dark") applyTheme(true);
-}
-
-        function toggleTheme() {
-    const isDark = !document.body.classList.contains("dark-theme");
-    applyTheme(isDark);
-    localStorage.setItem(THEME_STORAGE_KEY, isDark ? "dark" : "light");
-}
 
 function normalize(text){
     return text.trim().toLowerCase();
@@ -650,7 +621,6 @@ ${sim.toFixed(3)}
     phoneticResult.innerHTML = sim.toFixed(3);
 }
 
-loadThemePreference();
 
 function showExplain(type){
     const fullText = type === "graphic" ? graphicExplanation : phoneticExplanation;
@@ -681,6 +651,7 @@ explainModal.onclick = function(e){
     }
 };
 </script>
-
+<script src="../shared/ui.js"></script>
+    
 </body>
 </html>
