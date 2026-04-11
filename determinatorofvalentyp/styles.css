@@ -276,3 +276,40 @@ pre {
   .modal-card { padding: 16px; }
   .modal-header { grid-template-columns: auto 1fr auto; }
 }
+
+/* Unified minimalist theme */
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+input, textarea, select,
+.components-list,
+.component-item,
+.component-delete,
+.plus-btn,
+button.ghost,
+.badge,
+.result-card,
+.modal-card,
+.icon-btn,
+.back-btn {
+  background: var(--surface);
+  color: var(--text);
+  border-color: var(--line);
+}
+
+button,
+.chooser-option {
+  background: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
+}
+
+.modal-backdrop {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+body.has-global-menu .app-shell {
+  padding-top: 12px;
+}
