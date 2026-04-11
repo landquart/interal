@@ -21,7 +21,7 @@
       <a class="menu-link" href="${prefix}determinatorofvalentyp/">Determinator of valen typ</a>
       <a class="menu-link" href="${prefix}index.html">Главная</a>
     </nav>
-    <button class="menu-theme-btn" type="button">Сменить тему</button>
+ <button class="menu-theme-btn" type="button"></button>
   `;
 
   function closeMenu() {
@@ -30,6 +30,10 @@
 
   function applyTheme(theme) {
     document.body.classList.toggle('dark-theme', theme === 'dark');
+    const btn = menu.querySelector('.menu-theme-btn');
+    if (btn) {
+      btn.textContent = theme === 'dark' ? '☀️ Luminosi thema' : '🌙 Obscur thema';
+    }
   }
 
   function toggleTheme() {
