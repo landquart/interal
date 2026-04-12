@@ -824,19 +824,50 @@ function distanceMethodText(distanceResult) {
     return 'Дистанция не рассчитана.';
   }
 
-  if (distanceResult.method === 'rule_only') {
-    return 'Используется только rule-based расчёт: сравниваются наборы слов в логическом анализе и в интернациональном значении. Чем меньше общих слов, тем выше дистанция.';
+  const rule = distanceResult.rule;
+  const lines = [];
+
+  if (rule) {
+    lines.push('1) Rule-based часть (Jaccard по словам после нормализации):');
+    lines.push('   • Оба текста приводятся к нижнему регистру, «ё» заменяется на «е», удаляются знаки препинания, лишние пробелы сжимаются.');
+    lines.push('   • Каждый текст разбивается на множество уникальных слов.');
+    lines.push(`   • Пересечение (общие слова): ${rule.intersection}.`);
+    lines.push(`   • Объединение (все уникальные слова): ${rule.union}.`);
+    lines.push(`   • Similarity = intersection / union = ${rule.intersection} / ${rule.union} = ${rule.similarity.toFixed(2)}.`);
+    lines.push(`   • Rule-based distance = 1 - similarity = ${rule.distance.toFixed(2)}.`);
   }
+
+  if (distanceResult.method === 'rule_only') {
+   lines.push('2) Локальная embedding-модель выключена: итог = только rule-based distance.');
+    lines.push(`   • Итоговая дистанция: ${distanceResult.final.distance.toFixed(2)}.`);
+    return lines.join('\n');
+
 
   if (distanceResult.method === 'rule_plus_embedding') {
-    return 'Сначала считается rule-based дистанция по пересечению слов. Затем локальная embedding-модель оценивает смысловую близость двух значений. Итоговая дистанция = 0.7 × rule-based + 0.3 × embedding.';
-  }
+     const emb = distanceResult.embedding;
+    const w = distanceResult.final?.weights || { rule: 0.7, embedding: 0.3 };
+    lines.push('2) Embedding часть (локальная модель Ollama):');
+    lines.push(`   • Модель: ${emb.model}. Провайдер: ${emb.provider}.`);
+    lines.push('   • Для каждого текста берётся вектор embedding, затем считается cosine similarity.');
+    lines.push(`   • Cosine similarity (raw): ${emb.similarityRaw.toFixed(4)}.`);
+    lines.push(`   • Нормализованная similarity в диапазоне [0..1]: ${emb.similarity.toFixed(2)}.`);
+    lines.push(`   • Embedding distance = 1 - similarity = ${emb.distance.toFixed(2)}.`);
+    lines.push('3) Смешивание критериев:');
+    lines.push(`   • Вес rule-based: ${w.rule.toFixed(2)}.`);
+    lines.push(`   • Вес embedding: ${w.embedding.toFixed(2)}.`);
+    lines.push(`   • Итог = ${w.rule.toFixed(2)} × ${rule.distance.toFixed(2)} + ${w.embedding.toFixed(2)} × ${emb.distance.toFixed(2)} = ${distanceResult.final.distance.toFixed(2)}.`);
+    return lines.join('\n');
+
 
   if (distanceResult.method === 'rule_fallback') {
-    return 'Был запрошен embedding-расчёт, но локальная модель недоступна. Использован fallback на rule-based дистанцию.';
-  }
+   lines.push('2) Embedding был запрошен, но недоступен, поэтому применён fallback.');
+    lines.push('   • В итоге учитывается только rule-based distance.');
+    lines.push(`   • Итоговая дистанция: ${distanceResult.final.distance.toFixed(2)}.`);
+    return lines.join('\n');
+}
 
-  return 'Используется комбинированный расчёт дистанции.';
+  lines.push('2) Используется комбинированный расчёт дистанции.');
+  return lines.join('\n');
 }
 
 function badge(text, type = '') {
