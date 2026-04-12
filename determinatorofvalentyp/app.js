@@ -192,7 +192,9 @@ const assimilationOptions = [
   { value: 'exc-presider', label: '10. presider — presiss- (быть президентом)', autoForm: 'presiss-', rootForm: 'presider', rootMeaning: 'быть президентом' },
   { value: 'exc-friger', label: '11. friger — fris- (быть холодным, мёрзлым)', autoForm: 'fris-', rootForm: 'friger', rootMeaning: 'быть холодным, мёрзлым' },
   { value: 'exc-posseder', label: '12. posseder — possess- (владеть)', autoForm: 'possess-', rootForm: 'posseder', rootMeaning: 'владеть' },
-  { value: 'exc-ceder', label: '13. -ceder — -cess- (часть корня)', autoForm: 'cess-' }
+  { value: 'exc-ceder', label: '13. -ceder — -cess- (часть корня)', autoForm: 'cess-' },
+  { value: 'exc-verter', label: '14. -verter — -vers- (часть корня)', autoForm: 'vers-' },
+  { value: 'exc-mitter', label: '15. -mitter — -miss- (часть корня)', autoForm: 'miss-' }
 ];
 
 const prefixAssimilationOptions = {
@@ -289,6 +291,7 @@ let state = {
 };
 
 let pendingPrefixItem = null;
+const STORAGE_KEY = 'determinator-valentyp-state-v1';
 
 const fixedRootAssimilationValues = new Set([
   'exc-seder',
@@ -510,6 +513,7 @@ function renderComponents() {
     els.componentsList.className = 'components-list empty';
     els.componentsList.textContent = 'Компоненты не добавлены.';
     els.componentsSummary.textContent = '—';
+     saveState();
     return;
   }
 
@@ -533,6 +537,8 @@ function renderComponents() {
   els.componentsList.querySelectorAll('[data-delete-id]').forEach((btn) => {
     btn.addEventListener('click', () => removeComponent(btn.dataset.deleteId));
   });
+
+ saveState();
 }
 
 function normalizeText(value) {
@@ -824,17 +830,26 @@ function distanceMethodText(distanceResult) {
     return 'Дистанция не рассчитана.';
   }
 
-  return 'Семантическая дистанция считается так: программа берёт логическое и интернациональное значение, приводит их к одному виду (нижний регистр, без лишних символов) и разбивает на слова. Затем сравниваются два набора слов и считается, какая их часть совпадает относительно общего числа всех уникальных слов — это называется коэффициентом Жаккара (Jaccard). После этого результат переворачивается (1 − коэффициент), чтобы получить дистанцию: чем меньше совпадений, тем больше дистанция. При включении нейросети дополнительно отправляется запрос в локальную модель (через API, например Ollama), которая оценивает смысловую близость и помогает в спорных случаях, но основной расчёт остаётся таким же.';
- }
+   const lines = [
+    '1) Базовый расчёт: коэффициент Жаккара (Jaccard) по словам логического и интернационального значений.',
+    `   • Rule-based distance: ${distanceResult.rule.distance.toFixed(2)}.`
+  ];
+
 
   if (distanceResult.method === 'rule_fallback') {
    lines.push('2) Embedding был запрошен, но недоступен, поэтому применён fallback.');
-    lines.push('   • В итоге учитывается только rule-based distance.');
     lines.push(`   • Итоговая дистанция: ${distanceResult.final.distance.toFixed(2)}.`);
     return lines.join('\n');
 }
 
-  lines.push('2) Используется комбинированный расчёт дистанции.');
+   if (distanceResult.embedding) {
+    lines.push('2) Дополнительно учитывается embedding от локальной модели.');
+    lines.push(`   • Embedding distance: ${distanceResult.embedding.distance.toFixed(2)}.`);
+  } else {
+    lines.push('2) Используется только rule-based расчёт.');
+  }
+
+  lines.push(`3) Итоговая дистанция: ${distanceResult.final.distance.toFixed(2)}.`);
   return lines.join('\n');
 }
 
@@ -949,6 +964,49 @@ function clearAll() {
   renderComponents();
   els.result.classList.add('empty');
   els.result.textContent = 'Заполните поля и нажмите «Анализировать».';
+  saveState();
+}
+
+function saveState() {
+  const payload = {
+    regularWord: els.regularWord.value,
+    logicalMeaning: els.logicalMeaning.value,
+    internationalMeaning: els.internationalMeaning.value,
+    naturalisticWord: els.naturalisticWord.value,
+    components: state.components,
+    useLLM: els.useLlm.checked,
+    ollamaUrl: els.ollamaUrl ? els.ollamaUrl.value : '',
+    ollamaModel: els.ollamaModel ? els.ollamaModel.value : '',
+    resultHtml: els.result.innerHTML,
+    resultIsEmpty: els.result.classList.contains('empty')
+  };
+
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+}
+
+function restoreState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (!raw) return;
+
+  try {
+    const saved = JSON.parse(raw);
+    els.regularWord.value = saved.regularWord || '';
+    els.logicalMeaning.value = saved.logicalMeaning || '';
+    els.internationalMeaning.value = saved.internationalMeaning || '';
+    els.naturalisticWord.value = saved.naturalisticWord || '';
+    state.components = Array.isArray(saved.components) ? saved.components : [];
+    els.useLlm.checked = Boolean(saved.useLLM);
+    if (els.ollamaUrl) els.ollamaUrl.value = saved.ollamaUrl || 'http://localhost:11434';
+    if (els.ollamaModel) els.ollamaModel.value = saved.ollamaModel || 'qwen3-embedding';
+
+    if (saved.resultHtml) {
+      els.result.innerHTML = saved.resultHtml;
+      els.result.classList.toggle('empty', Boolean(saved.resultIsEmpty));
+    }
+  } catch (_error) {
+    localStorage.removeItem(STORAGE_KEY);
+  }
+
 }
 
 function escapeHtml(value) {
@@ -1003,14 +1061,23 @@ function attachEvents() {
     const input = getInput();
     const result = await analyzeByRules(input);
     renderResult(result, input);
+    saveState();
   });
 
   document.querySelectorAll('[data-close-modal]').forEach((el) => {
     el.addEventListener('click', closeAllModals);
   });
+
+ [els.regularWord, els.logicalMeaning, els.internationalMeaning, els.naturalisticWord, els.useLlm, els.ollamaUrl, els.ollamaModel]
+    .forEach((el) => {
+      if (!el) return;
+      el.addEventListener('input', saveState);
+      el.addEventListener('change', saveState);
+    });
 }
 
 setupSelects();
+restoreState();
 attachEvents();
 syncRootFormByAssimilation();
 renderComponents();
