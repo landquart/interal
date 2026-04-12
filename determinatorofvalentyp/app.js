@@ -174,9 +174,11 @@ const assimilationOptions = [
   { value: 'b-to-pt', label: 'Замена -b на -pt', autoForm: '-pt' },
   { value: 'vowel-g-to-ct', label: 'Гласная + -g на -ct', autoForm: '-ct' },
   { value: 'h-to-ct', label: 'Замена -h на -ct', autoForm: '-ct' },
+  { value: 'y-to-ct', label: 'Замена -y на -ct', autoForm: '-ct' },
   { value: 'se-to-ct', label: '-s/e на -ct', autoForm: '-ct' },
   { value: 'xe-to-ct', label: '-x/e на -ct', autoForm: '-ct' },
- { value: 'exc-seder', label: '1. seder — sess- (сидеть)', autoForm: 'sess-', rootForm: 'seder', rootMeaning: 'сидеть' },
+
+  { value: 'exc-seder', label: '1. seder — sess- (сидеть)', autoForm: 'sess-', rootForm: 'seder', rootMeaning: 'сидеть' },
   { value: 'exc-mover', label: '2. mover — mot- (двигать)', autoForm: 'mot-', rootForm: 'mover', rootMeaning: 'двигать' },
   { value: 'exc-venir', label: '3. venir — vent- (приходить)', autoForm: 'vent-', rootForm: 'venir', rootMeaning: 'приходить' },
   { value: 'exc-sentir', label: '4. sentir — sens- (чувствовать)', autoForm: 'sens-', rootForm: 'sentir', rootMeaning: 'чувствовать' },
@@ -188,9 +190,7 @@ const assimilationOptions = [
   { value: 'exc-presider', label: '10. presider — presiss- (быть президентом)', autoForm: 'presiss-', rootForm: 'presider', rootMeaning: 'быть президентом' },
   { value: 'exc-friger', label: '11. friger — fris- (быть холодным, мёрзлым)', autoForm: 'fris-', rootForm: 'friger', rootMeaning: 'быть холодным, мёрзлым' },
   { value: 'exc-posseder', label: '12. posseder — possess- (владеть)', autoForm: 'possess-', rootForm: 'posseder', rootMeaning: 'владеть' },
-  { value: 'exc-ceder', label: '13. -ceder — -cess- (часть корня)', autoForm: 'cess-' },
-  { value: 'exc-verter', label: '14. -verter — vers- (часть корня)', autoForm: 'vers-' },
-  { value: 'exc-mitter', label: '15. -mitter — miss- (часть корня)', autoForm: 'miss-' }
+  { value: 'exc-ceder', label: '13. -ceder — -cess- (часть корня)', autoForm: 'cess-' }
 ];
 
 const prefixAssimilationOptions = {
@@ -282,20 +282,12 @@ const els = {
   backFromPrefixVariantBtn: document.getElementById('backFromPrefixVariantBtn')
 };
 
-const bookRules = {
-  source: { title: 'INTERAL russ (2).pdf', sections: ['§84'] },
-  section84: {
-    coreRule: 'Если логическое значение, выведенное из элементов, отличается от интернационального значения эквивалентного деривата, значения нужно разграничивать.',
-    nounMarker: 'u',
-    methods: ['add_u_for_nouns', 'replace_suffix', 'replace_prefix_with_preposition_or_ending', 'paraphrase']
-  }
-};
-
 let state = {
   components: []
 };
 
 let pendingPrefixItem = null;
+
 const fixedRootAssimilationValues = new Set([
   'exc-seder',
   'exc-mover',
@@ -310,7 +302,6 @@ const fixedRootAssimilationValues = new Set([
   'exc-friger',
   'exc-posseder'
 ]);
-
 
 function setupSelects() {
   assimilationOptions.forEach((opt) => {
@@ -334,12 +325,14 @@ function fillComponentSelect() {
   const category = els.componentCategorySelect.value || Object.keys(byCategory)[0];
   const items = byCategory[category] || [];
   els.componentSelect.innerHTML = '';
+
   items.forEach((item) => {
     const option = document.createElement('option');
     option.value = item.id;
     option.textContent = `${item.form} — ${item.meaning}`;
     els.componentSelect.appendChild(option);
   });
+
   updateComponentPreview();
 }
 
@@ -355,15 +348,23 @@ function syncRootFormByAssimilation() {
   if (lockFormInput) {
     els.rootFormInput.value = selected?.rootForm || '';
     els.rootMeaningInput.value = selected?.rootMeaning || '';
+  } else {
+    if (els.rootFormInput.readOnly) els.rootFormInput.value = '';
+    if (els.rootMeaningInput.readOnly) els.rootMeaningInput.value = '';
   }
 
   els.rootFormInput.readOnly = lockFormInput;
   els.rootMeaningInput.readOnly = lockFormInput;
 }
 
-
 function syncBodyModalState() {
-  const hasOpen = [els.chooserModal, els.rootModal, els.componentModal, els.prefixVariantModal].some((m) => !m.classList.contains('hidden'));
+  const hasOpen = [
+    els.chooserModal,
+    els.rootModal,
+    els.componentModal,
+    els.prefixVariantModal
+  ].some((m) => !m.classList.contains('hidden'));
+
   document.body.classList.toggle('modal-open', hasOpen);
 }
 
@@ -407,6 +408,7 @@ function addRootComponent() {
   els.assimilationSelect.value = 'none';
   els.rootFormInput.readOnly = false;
   els.rootMeaningInput.readOnly = false;
+
   renderComponents();
   closeAllModals();
 }
@@ -414,6 +416,7 @@ function addRootComponent() {
 function openPrefixVariantStep(item) {
   pendingPrefixItem = item;
   els.prefixVariantSelect.innerHTML = '';
+
   const options = prefixAssimilationOptions[item.id] || [];
   options.forEach((opt) => {
     const option = document.createElement('option');
@@ -421,6 +424,7 @@ function openPrefixVariantStep(item) {
     option.textContent = `${opt.form} — ${opt.note}`;
     els.prefixVariantSelect.appendChild(option);
   });
+
   updatePrefixVariantPreview();
   closeModal(els.componentModal);
   openModal(els.prefixVariantModal);
@@ -432,6 +436,7 @@ function updatePrefixVariantPreview() {
     els.prefixVariantPreview.textContent = '—';
     return;
   }
+
   const form = els.prefixVariantSelect.value;
   const option = (prefixAssimilationOptions[item.id] || []).find((x) => x.form === form);
   els.prefixVariantPreview.textContent = option ? `${item.form} → ${option.form} (${option.note})` : '—';
@@ -439,6 +444,7 @@ function updatePrefixVariantPreview() {
 
 function savePrefixVariant() {
   if (!pendingPrefixItem) return;
+
   const option = (prefixAssimilationOptions[pendingPrefixItem.id] || []).find((x) => x.form === els.prefixVariantSelect.value);
   if (!option) return;
 
@@ -463,7 +469,7 @@ function addSelectedComponent() {
   const item = allComponents.find((x) => x.id === els.componentSelect.value);
   if (!item) return;
 
-  if (item.category === 'Приставки' && prefixAssimilationOptions[item.id]) {
+  if (item.category.startsWith('Приставки') && prefixAssimilationOptions[item.id]) {
     openPrefixVariantStep(item);
     return;
   }
@@ -471,7 +477,7 @@ function addSelectedComponent() {
   state.components.push({
     id: crypto.randomUUID(),
     type: 'component',
-    label: item.category.slice(0, -1) || item.category,
+    label: item.category.endsWith('ы') ? item.category.slice(0, -1) : item.category,
     form: item.form,
     meaning: item.meaning,
     sourceId: item.id,
@@ -492,6 +498,11 @@ function componentSummaryText() {
   return state.components.map((item) => item.form).join(' / ');
 }
 
+function renderAssimilationMeta(item) {
+  if (!item.assimilation || item.assimilation === 'none') return '';
+  return ` · Ассимиляция: ${item.assimilationLabel}`;
+}
+
 function renderComponents() {
   if (!state.components.length) {
     els.componentsList.className = 'components-list empty';
@@ -506,7 +517,10 @@ function renderComponents() {
       <div class="component-main">
         <div class="component-title">${escapeHtml(item.form)}</div>
         <div class="component-meta">${escapeHtml(item.label)}</div>
-        <div class="component-meaning">${escapeHtml(item.meaning)}${item.type === 'root' ? renderAssimilationMeta(item) : ''}</div>
+        <div class="component-meaning">
+          ${escapeHtml(item.meaning)}${item.type === 'root' ? escapeHtml(renderAssimilationMeta(item)) : ''}
+          ${item.assimilationNote ? ` · ${escapeHtml(item.assimilationNote)}` : ''}
+        </div>
       </div>
       <button class="component-delete" type="button" data-delete-id="${item.id}">×</button>
     </div>
@@ -519,11 +533,6 @@ function renderComponents() {
   });
 }
 
-function renderAssimilationMeta(item) {
-  if (!item.assimilation || item.assimilation === 'none') return '';
-  return ` · Ассимиляция: ${item.assimilationLabel}`;
-}
-
 function normalizeText(value) {
   return (value || '').trim().toLowerCase().replace(/ё/g, 'е').replace(/\s+/g, ' ');
 }
@@ -532,17 +541,219 @@ function hasValue(value) {
   return normalizeText(value).length > 0;
 }
 
+function normalizeSemanticText(text) {
+  return (text || '')
+    .toLowerCase()
+    .replaceAll('ё', 'е')
+    .replace(/[.,;:!?()[\]{}"']/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function computeDistanceRuleBased(a, b) {
+  const normA = normalizeSemanticText(a);
+  const normB = normalizeSemanticText(b);
+
+  const setA = new Set(normA.split(' ').filter(Boolean));
+  const setB = new Set(normB.split(' ').filter(Boolean));
+
+  const intersection = [...setA].filter((x) => setB.has(x)).length;
+  const union = new Set([...setA, ...setB]).size || 1;
+
+  const similarity = intersection / union;
+  const distance = 1 - similarity;
+
+  return {
+    method: 'rule_based_jaccard',
+    similarity,
+    distance,
+    intersection,
+    union
+  };
+}
+
+function clamp(value, min, max) {
+  return Math.min(Math.max(value, min), max);
+}
+
+function cosineSimilarity(vecA, vecB) {
+  if (!Array.isArray(vecA) || !Array.isArray(vecB)) {
+    throw new Error('Both embeddings must be arrays');
+  }
+
+  if (vecA.length !== vecB.length) {
+    throw new Error('Embedding vectors must have the same length');
+  }
+
+  let dot = 0;
+  let normA = 0;
+  let normB = 0;
+
+  for (let i = 0; i < vecA.length; i++) {
+    const a = vecA[i];
+    const b = vecB[i];
+
+    dot += a * b;
+    normA += a * a;
+    normB += b * b;
+  }
+
+  if (normA === 0 || normB === 0) {
+    return 0;
+  }
+
+  return dot / (Math.sqrt(normA) * Math.sqrt(normB));
+}
+
+async function getEmbedding(text, baseUrl, model) {
+  const cleanedBaseUrl = (baseUrl || 'http://localhost:11434').replace(/\/+$/, '');
+
+  const response = await fetch(`${cleanedBaseUrl}/api/embeddings`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      model,
+      prompt: text
+    })
+  });
+
+  if (!response.ok) {
+    throw new Error(`Embedding request failed: ${response.status} ${response.statusText}`);
+  }
+
+  const data = await response.json();
+
+  if (!data.embedding || !Array.isArray(data.embedding)) {
+    throw new Error('Invalid embedding response from Ollama');
+  }
+
+  return data.embedding;
+}
+
+async function computeDistanceWithEmbeddings(a, b, options = {}) {
+  const baseUrl = (options.baseUrl || 'http://localhost:11434').replace(/\/+$/, '');
+  const model = options.model || 'qwen3-embedding';
+
+  const [vecA, vecB] = await Promise.all([
+    getEmbedding(a, baseUrl, model),
+    getEmbedding(b, baseUrl, model)
+  ]);
+
+  const similarityRaw = cosineSimilarity(vecA, vecB);
+  const similarity = clamp((similarityRaw + 1) / 2, 0, 1);
+  const distance = clamp(1 - similarity, 0, 1);
+
+  return {
+    provider: 'ollama_embeddings',
+    model,
+    similarity,
+    distance,
+    similarityRaw
+  };
+}
+
+function combineDistances(rule, embedding, weights = {}) {
+  if (!embedding) {
+    return {
+      distance: rule.distance,
+      similarity: rule.similarity,
+      weights: {
+        rule: 1,
+        embedding: 0
+      }
+    };
+  }
+
+  const ruleWeight = typeof weights.rule === 'number' ? weights.rule : 0.7;
+  const embeddingWeight = typeof weights.embedding === 'number' ? weights.embedding : 0.3;
+
+  const totalWeight = ruleWeight + embeddingWeight;
+  const rw = ruleWeight / totalWeight;
+  const ew = embeddingWeight / totalWeight;
+
+  const distance = clamp(rw * rule.distance + ew * embedding.distance, 0, 1);
+  const similarity = clamp(1 - distance, 0, 1);
+
+  return {
+    distance,
+    similarity,
+    weights: {
+      rule: rw,
+      embedding: ew
+    }
+  };
+}
+
+async function computeSemanticDistance(a, b, useLLM = false, options = {}) {
+  const rule = computeDistanceRuleBased(a, b);
+
+  if (!useLLM) {
+    return {
+      method: 'rule_only',
+      rule,
+      embedding: null,
+      final: {
+        distance: rule.distance,
+        similarity: rule.similarity,
+        weights: {
+          rule: 1,
+          embedding: 0
+        }
+      }
+    };
+  }
+
+  try {
+    const embedding = await computeDistanceWithEmbeddings(a, b, {
+      baseUrl: options.baseUrl || 'http://localhost:11434',
+      model: options.model || 'qwen3-embedding'
+    });
+
+    const final = combineDistances(rule, embedding, {
+      rule: 0.7,
+      embedding: 0.3
+    });
+
+    return {
+      method: 'rule_plus_embedding',
+      rule,
+      embedding,
+      final
+    };
+  } catch (error) {
+    return {
+      method: 'rule_fallback',
+      rule,
+      embedding: null,
+      final: {
+        distance: rule.distance,
+        similarity: rule.similarity,
+        weights: {
+          rule: 1,
+          embedding: 0
+        }
+      },
+      error: String(error)
+    };
+  }
+}
+
 function getInput() {
   return {
     regularWord: els.regularWord.value.trim(),
     logicalMeaning: els.logicalMeaning.value.trim(),
     internationalMeaning: els.internationalMeaning.value.trim(),
     naturalisticWord: els.naturalisticWord.value.trim(),
-    components: [...state.components]
+    components: [...state.components],
+    useLLM: els.useLlm.checked,
+    ollamaUrl: els.ollamaUrl ? els.ollamaUrl.value.trim() : 'http://localhost:11434',
+    embeddingModel: els.ollamaModel ? els.ollamaModel.value.trim() : 'qwen3-embedding'
   };
 }
 
-function analyzeByRules(input) {
+async function analyzeByRules(input) {
   const reasons = [];
   let classification = 'undetermined';
   let confidence = 'low';
@@ -554,106 +765,76 @@ function analyzeByRules(input) {
   if (!input.components.length) reasons.push('Не добавлен анализ компонентов.');
 
   const enough = input.regularWord && input.logicalMeaning && input.internationalMeaning;
+
   if (!enough) {
-    return { classification: 'insufficient_data', confidence, reasons, semanticDistance: null, usedLlm: false, llm: null };
+    return {
+      classification: 'insufficient_data',
+      confidence,
+      reasons,
+      distanceResult: null
+    };
   }
 
+  const distanceResult = await computeSemanticDistance(
+    input.logicalMeaning,
+    input.internationalMeaning,
+    input.useLLM,
+    {
+      baseUrl: input.ollamaUrl || 'http://localhost:11434',
+      model: input.embeddingModel || 'qwen3-embedding'
+    }
+  );
+
+  const finalDistance = distanceResult.final.distance;
   const sameMeaning = normalizeText(input.logicalMeaning) === normalizeText(input.internationalMeaning);
+
   if (sameMeaning) {
     classification = 'regular_only';
     confidence = 'high';
     reasons.push('Логическое значение совпадает с интернациональным значением. Разграничение не требуется.');
   } else if (input.naturalisticWord) {
     classification = 'double_meaning_with_modification';
-    confidence = 'high';
-    reasons.push('Логическое значение отличается от интернационального значения. По §84 значения нужно разграничивать.');
+    confidence = finalDistance >= 0.5 ? 'high' : 'medium';
+    reasons.push('Логическое значение отличается от интернационального значения.');
     reasons.push('Слово по натуралистичной модели задано.');
   } else {
     classification = 'double_meaning_modification_missing';
-    confidence = 'medium';
+    confidence = finalDistance >= 0.5 ? 'medium' : 'low';
     reasons.push('Логическое значение отличается от интернационального значения, но натуралистичная форма не задана.');
   }
 
-  const semanticDistance = computeSemanticDistance(input.logicalMeaning, input.internationalMeaning);
-  reasons.push(`Семантическая дистанция: ${semanticDistance.toFixed(2)}`);
-
-  return { classification, confidence, reasons, semanticDistance, distanceMethod: 'Сравниваются наборы слов в логическом анализе и в интернациональном значении. Чем меньше общих слов, тем выше дистанция.', usedLlm: false, llm: null };
-}
-
-function computeSemanticDistance(logical, international) {
-  const a = normalizeText(logical).split(/[^\p{L}\p{N}]+/u).filter(Boolean);
-  const b = normalizeText(international).split(/[^\p{L}\p{N}]+/u).filter(Boolean);
-  const setA = new Set(a);
-  const setB = new Set(b);
-  const intersection = [...setA].filter((x) => setB.has(x)).length;
-  const union = new Set([...setA, ...setB]).size || 1;
-  return 1 - intersection / union;
-}
-
-async function maybeAskLocalLlm(input, rulesResult) {
-  if (!els.useLlm.checked) return rulesResult;
-
-  const borderline = rulesResult.classification === 'double_meaning_modification_missing'
-    || rulesResult.classification === 'insufficient_data'
-    || rulesResult.semanticDistance >= 0.8;
-
-  if (!borderline) return rulesResult;
-
-  try {
-    const response = await fetch(els.ollamaUrl.value.trim(), {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: els.ollamaModel.value.trim(),
-        prompt: buildPrompt(input),
-        stream: false,
-        format: {
-          type: 'object',
-          properties: {
-            recommendation: { type: 'string' },
-            semantic_distance: { type: 'number' },
-            short_reason: { type: 'string' }
-          },
-          required: ['recommendation', 'short_reason']
-        }
-      })
-    });
-    const data = await response.json();
-    let parsed;
-    try {
-      parsed = JSON.parse(data.response);
-    } catch {
-      parsed = { recommendation: 'no_parse', short_reason: String(data.response || '') };
-    }
-    return { ...rulesResult, usedLlm: true, llm: parsed };
-  } catch (error) {
-    return {
-      ...rulesResult,
-      usedLlm: true,
-      llm: { recommendation: 'error', short_reason: 'Локальная модель недоступна: ' + error.message }
-    };
+  reasons.push(`Rule-based дистанция: ${distanceResult.rule.distance.toFixed(2)}`);
+  if (distanceResult.embedding) {
+    reasons.push(`Embedding-дистанция: ${distanceResult.embedding.distance.toFixed(2)}`);
   }
+  reasons.push(`Итоговая дистанция: ${distanceResult.final.distance.toFixed(2)}`);
+
+  return {
+    classification,
+    confidence,
+    reasons,
+    distanceResult
+  };
 }
 
-function buildPrompt(input) {
-  const componentsText = input.components.map((item, index) => {
-    const extra = item.type === 'root' && item.assimilation && item.assimilation !== 'none'
-      ? `; ассимиляция: ${item.assimilationLabel}`
-      : '';
-    return `${index + 1}. ${item.form} — ${item.meaning}${extra}`;
-  }).join('\n');
+function distanceMethodText(distanceResult) {
+  if (!distanceResult) {
+    return 'Дистанция не рассчитана.';
+  }
 
-  return [
-    'Ты помогаешь только в спорных случаях и не должен придумывать новые значения.',
-    'Если логическое значение, выведенное из элементов, отличается от интернационального значения эквивалентного деривата, значения нужно разграничивать.',
-    'Верни JSON с полями recommendation, semantic_distance и short_reason.',
-    '',
-    `Слово по регулярной модели: ${input.regularWord}`,
-    `Анализ компонентов:\n${componentsText || 'нет данных'}`,
-    `Логический анализ: ${input.logicalMeaning}`,
-    `Интернациональное значение: ${input.internationalMeaning}`,
-    `Слово по натуралистичной модели: ${input.naturalisticWord || 'не задано'}`
-  ].join('\n');
+  if (distanceResult.method === 'rule_only') {
+    return 'Используется только rule-based расчёт: сравниваются наборы слов в логическом анализе и в интернациональном значении. Чем меньше общих слов, тем выше дистанция.';
+  }
+
+  if (distanceResult.method === 'rule_plus_embedding') {
+    return 'Сначала считается rule-based дистанция по пересечению слов. Затем локальная embedding-модель оценивает смысловую близость двух значений. Итоговая дистанция = 0.7 × rule-based + 0.3 × embedding.';
+  }
+
+  if (distanceResult.method === 'rule_fallback') {
+    return 'Был запрошен embedding-расчёт, но локальная модель недоступна. Использован fallback на rule-based дистанцию.';
+  }
+
+  return 'Используется комбинированный расчёт дистанции.';
 }
 
 function badge(text, type = '') {
@@ -677,12 +858,23 @@ function renderResult(result, input) {
     undetermined: 'no'
   };
 
+  const distanceResult = result.distanceResult;
+  const ruleDistance = distanceResult?.rule?.distance;
+  const embeddingDistance = distanceResult?.embedding?.distance;
+  const finalDistance = distanceResult?.final?.distance;
+
+  const confidenceRu = {
+    high: 'высокая',
+    medium: 'средняя',
+    low: 'низкая'
+  };
+
   els.result.classList.remove('empty');
   els.result.innerHTML = `
     <div class="badges">
       ${badge(labels[result.classification] || result.classification, types[result.classification] || 'no')}
-      ${badge('Уверенность: ' + ({high:'высокая', medium:'средняя', low:'низкая'}[result.confidence] || result.confidence), 'warn')}
-      ${result.semanticDistance !== null ? badge('Дистанция: ' + result.semanticDistance.toFixed(2), 'warn') : ''}
+      ${badge('Уверенность: ' + (confidenceRu[result.confidence] || result.confidence), 'warn')}
+      ${typeof finalDistance === 'number' ? badge('Дистанция: ' + finalDistance.toFixed(2), 'warn') : ''}
     </div>
 
     <div class="result-grid">
@@ -714,14 +906,34 @@ function renderResult(result, input) {
     </div>
 
     <div class="result-card" style="margin-top: 10px;">
-      <h3>Как считается дистанция</h3>
-      <pre>${escapeHtml(result.distanceMethod || 'Сравниваются слова из двух полей; чем меньше пересечение, тем выше дистанция.')}</pre>
+      <h3>Дистанция</h3>
+      <pre>${escapeHtml([
+        `Rule-based: ${typeof ruleDistance === 'number' ? ruleDistance.toFixed(2) : '—'}`,
+        `Embedding: ${typeof embeddingDistance === 'number' ? embeddingDistance.toFixed(2) : '—'}`,
+        `Итоговая: ${typeof finalDistance === 'number' ? finalDistance.toFixed(2) : '—'}`
+      ].join('\n'))}</pre>
     </div>
 
-    ${result.usedLlm ? `
+    <div class="result-card" style="margin-top: 10px;">
+      <h3>Как считается дистанция</h3>
+      <pre>${escapeHtml(distanceMethodText(distanceResult))}</pre>
+    </div>
+
+    ${distanceResult?.method === 'rule_fallback' && distanceResult?.error ? `
       <div class="result-card" style="margin-top: 10px;">
         <h3>Локальная модель</h3>
-        <pre>${escapeHtml(JSON.stringify(result.llm, null, 2))}</pre>
+        <pre>${escapeHtml('Fallback: ' + distanceResult.error)}</pre>
+      </div>
+    ` : ''}
+
+    ${distanceResult?.method === 'rule_plus_embedding' ? `
+      <div class="result-card" style="margin-top: 10px;">
+        <h3>Локальная модель</h3>
+        <pre>${escapeHtml(JSON.stringify({
+          provider: distanceResult.embedding.provider,
+          model: distanceResult.embedding.model,
+          weights: distanceResult.final.weights
+        }, null, 2))}</pre>
       </div>
     ` : ''}
   `;
@@ -749,31 +961,49 @@ function escapeHtml(value) {
 
 function attachEvents() {
   els.addComponentBtn.addEventListener('click', () => openModal(els.chooserModal));
+
   els.chooseRootBtn.addEventListener('click', () => {
     closeModal(els.chooserModal);
     openModal(els.rootModal);
   });
+
   els.chooseComponentBtn.addEventListener('click', () => {
     closeModal(els.chooserModal);
     openModal(els.componentModal);
   });
-  els.backFromRootBtn.addEventListener('click', () => { closeModal(els.rootModal); openModal(els.chooserModal); });
-  els.backFromComponentBtn.addEventListener('click', () => { closeModal(els.componentModal); openModal(els.chooserModal); });
-  els.backFromPrefixVariantBtn.addEventListener('click', () => { closeModal(els.prefixVariantModal); openModal(els.componentModal); pendingPrefixItem = null; });
+
+  els.backFromRootBtn.addEventListener('click', () => {
+    closeModal(els.rootModal);
+    openModal(els.chooserModal);
+  });
+
+  els.backFromComponentBtn.addEventListener('click', () => {
+    closeModal(els.componentModal);
+    openModal(els.chooserModal);
+  });
+
+  els.backFromPrefixVariantBtn.addEventListener('click', () => {
+    closeModal(els.prefixVariantModal);
+    openModal(els.componentModal);
+    pendingPrefixItem = null;
+  });
+
   els.componentCategorySelect.addEventListener('change', fillComponentSelect);
   els.componentSelect.addEventListener('change', updateComponentPreview);
-   els.assimilationSelect.addEventListener('change', syncRootFormByAssimilation);
+  els.assimilationSelect.addEventListener('change', syncRootFormByAssimilation);
   els.prefixVariantSelect.addEventListener('change', updatePrefixVariantPreview);
+
   els.saveRootBtn.addEventListener('click', addRootComponent);
   els.saveComponentBtn.addEventListener('click', addSelectedComponent);
   els.savePrefixVariantBtn.addEventListener('click', savePrefixVariant);
   els.clearBtn.addEventListener('click', clearAll);
+
   els.analyzeBtn.addEventListener('click', async () => {
     const input = getInput();
-    const rulesResult = analyzeByRules(input);
-    const finalResult = await maybeAskLocalLlm(input, rulesResult);
-    renderResult(finalResult, input);
+    const result = await analyzeByRules(input);
+    renderResult(result, input);
   });
+
   document.querySelectorAll('[data-close-modal]').forEach((el) => {
     el.addEventListener('click', closeAllModals);
   });
