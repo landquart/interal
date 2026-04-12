@@ -69,7 +69,9 @@ const nounSuffixes = [
   { id: 'suf-ema', category: 'Суффиксы научные', form: '-em/a', meaning: 'минимальная единица' },
   { id: 'suf-plic', category: 'Суффиксы числительных', form: '-plic', meaning: 'число, увеличенное в определённое число раз' },
   { id: 'suf-yem', category: 'Суффиксы числительных', form: '-yem', meaning: 'дробное числительное' },
-  { id: 'suf-op', category: 'Суффиксы числительных', form: '-op', meaning: 'собирательное числительное' }
+  { id: 'suf-op', category: 'Суффиксы числительных', form: '-op', meaning: 'собирательное числительное' },
+  { id: 'suf-anti', category: 'Суффиксы числительных', form: '-ant/i', meaning: 'образование десятков' },
+{ id: 'suf-esmi', category: 'Суффиксы числительных', form: '-esm/i', meaning: 'порядковое числительное' }
 ];
 
 const adjectiveSuffixes = [
@@ -152,10 +154,10 @@ const prefixes = [
   { id: 'pre-tetra', category: 'Приставки научные', form: 'tetra-', meaning: 'четыре' },
   { id: 'pre-iso', category: 'Приставки научные', form: 'iso-', meaning: 'изомер' },
   { id: 'pre-neo-science', category: 'Приставки научные', form: 'neo-', meaning: 'другой изомер, часто разветвлённый' },
-  { id: 'pre-kilo', category: 'Приставки научные', form: 'kilo-', meaning: 'приставка международной системы единиц' },
-  { id: 'pre-hecto', category: 'Приставки научные', form: 'hecto-', meaning: 'приставка международной системы единиц' },
-  { id: 'pre-nano', category: 'Приставки научные', form: 'nano-', meaning: 'приставка международной системы единиц' },
-  { id: 'pre-mega', category: 'Приставки научные', form: 'mega-', meaning: 'приставка международной системы единиц' }
+  { id: 'pre-kilo', category: 'Приставки научные', form: 'kilo-', meaning: 'кило-' },
+  { id: 'pre-hecto', category: 'Приставки научные', form: 'hecto-', meaning: 'гекто-' },
+  { id: 'pre-nano', category: 'Приставки научные', form: 'nano-', meaning: 'нано-' },
+  { id: 'pre-mega', category: 'Приставки научные', form: 'mega-', meaning: 'мега-' }
 ];
 
 const allComponents = [...prefixes, ...nounSuffixes, ...adjectiveSuffixes, ...verbSuffixes, ...endings];
