@@ -841,7 +841,7 @@ function distanceMethodText(distanceResult) {
    lines.push('2) Локальная embedding-модель выключена: итог = только rule-based distance.');
     lines.push(`   • Итоговая дистанция: ${distanceResult.final.distance.toFixed(2)}.`);
     return lines.join('\n');
-
+ }
 
   if (distanceResult.method === 'rule_plus_embedding') {
      const emb = distanceResult.embedding;
@@ -857,7 +857,7 @@ function distanceMethodText(distanceResult) {
     lines.push(`   • Вес embedding: ${w.embedding.toFixed(2)}.`);
     lines.push(`   • Итог = ${w.rule.toFixed(2)} × ${rule.distance.toFixed(2)} + ${w.embedding.toFixed(2)} × ${emb.distance.toFixed(2)} = ${distanceResult.final.distance.toFixed(2)}.`);
     return lines.join('\n');
-
+ }
 
   if (distanceResult.method === 'rule_fallback') {
    lines.push('2) Embedding был запрошен, но недоступен, поэтому применён fallback.');
