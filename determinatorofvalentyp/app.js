@@ -192,9 +192,10 @@ const assimilationOptions = [
   { value: 'exc-presider', label: '10. presider — presiss- (быть президентом)', autoForm: 'presiss-', rootForm: 'presider', rootMeaning: 'быть президентом' },
   { value: 'exc-friger', label: '11. friger — fris- (быть холодным, мёрзлым)', autoForm: 'fris-', rootForm: 'friger', rootMeaning: 'быть холодным, мёрзлым' },
   { value: 'exc-posseder', label: '12. posseder — possess- (владеть)', autoForm: 'possess-', rootForm: 'posseder', rootMeaning: 'владеть' },
-  { value: 'exc-ceder', label: '13. -ceder — -cess- (часть корня)', autoForm: 'cess-' },
-  { value: 'exc-verter', label: '14. -verter — -vers- (часть корня)', autoForm: 'vers-' },
-  { value: 'exc-mitter', label: '15. -mitter — -miss- (часть корня)', autoForm: 'miss-' }
+ { value: 'exc-merer', label: '13. merer — mens- (мерить)', autoForm: 'mens-', rootForm: 'merer', rootMeaning: 'мерить' },
+  { value: 'exc-ceder', label: '14. -ceder — -cess- (часть корня)', autoForm: 'cess-' },
+  { value: 'exc-verter', label: '15. -verter — -vers- (часть корня)', autoForm: 'vers-' },
+  { value: 'exc-mitter', label: '16. -mitter — -miss- (часть корня)', autoForm: 'miss-' }
 ];
 
 const prefixAssimilationOptions = {
@@ -305,7 +306,8 @@ const fixedRootAssimilationValues = new Set([
   'exc-coverir',
   'exc-presider',
   'exc-friger',
-  'exc-posseder'
+  'exc-posseder',
+  'exc-merer'
 ]);
 
 function setupSelects() {
