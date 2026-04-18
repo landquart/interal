@@ -617,8 +617,42 @@ function cosineSimilarity(vecA, vecB) {
 
 async function getEmbedding(text, baseUrl, model) {
   const cleanedBaseUrl = (baseUrl || 'http://localhost:11434').replace(/\/+$/, '');
+   const parseResponseError = async (response) => {
+    let details = '';
+    try {
+      const textBody = await response.text();
+      details = textBody ? ` — ${textBody.slice(0, 200)}` : '';
+    } catch (_error) {
+      details = '';
+    }
+    return `Embedding request failed: ${response.status} ${response.statusText}${details}`;
+  };
 
-  const response = await fetch(`${cleanedBaseUrl}/api/embeddings`, {
+  const response = await fetch(`${cleanedBaseUrl}/api/embed`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      model,
+       input: text
+    })
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    const vector = data?.embeddings?.[0];
+    if (!Array.isArray(vector)) {
+      throw new Error('Invalid embedding response from Ollama /api/embed');
+    }
+    return vector;
+  }
+
+  if (response.status !== 404) {
+    throw new Error(await parseResponseError(response));
+  }
+
+  const legacyResponse = await fetch(`${cleanedBaseUrl}/api/embeddings`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -629,17 +663,16 @@ async function getEmbedding(text, baseUrl, model) {
     })
   });
 
-  if (!response.ok) {
-    throw new Error(`Embedding request failed: ${response.status} ${response.statusText}`);
+
+ if (!legacyResponse.ok) {
+    throw new Error(await parseResponseError(legacyResponse));
   }
 
-  const data = await response.json();
-
-  if (!data.embedding || !Array.isArray(data.embedding)) {
-    throw new Error('Invalid embedding response from Ollama');
+  const legacyData = await legacyResponse.json();
+  if (!legacyData.embedding || !Array.isArray(legacyData.embedding)) {
+    throw new Error('Invalid embedding response from Ollama /api/embeddings');
   }
-
-  return data.embedding;
+  return legacyData.embedding;
 }
 
 async function computeDistanceWithEmbeddings(a, b, options = {}) {
