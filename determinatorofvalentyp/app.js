@@ -994,9 +994,14 @@ function distanceMethodText(distanceResult) {
     return 'Дистанция не рассчитана.';
   }
 
- const lines = [
-    '1) Rule-based: считаем пересечение слов двух значений по Жаккару.',
-    `   • Rule-based distance = ${distanceResult.rule.distance.toFixed(2)}.`
+  const lines = [
+    '1) Нормализуем оба значения: приводим к нижнему регистру, убираем знаки препинания и разбиваем на слова.',
+    '2) Считаем схожесть по Жаккару:',
+    '   • A — множество слов первого значения, B — второго.',
+    '   • Пересечение: A ∩ B (слова, которые есть в обоих множествах).',
+    '   • Объединение: A ∪ B (все уникальные слова из обоих множеств).',
+    '   • Jaccard similarity = |A ∩ B| / |A ∪ B|.',
+    '3) Переводим схожесть в дистанцию: Rule-based distance = 1 - Jaccard similarity.'
   ];
 
 
@@ -1004,16 +1009,14 @@ function distanceMethodText(distanceResult) {
     const source = distanceResult.method === 'rule_plus_manual_embedding'
       ? 'ручного Embedding'
       : 'Embedding локальной модели';
-    lines.push(`2) Добавляем оценку ${source}.`);
-    lines.push(`   • Embedding distance = ${distanceResult.embedding.distance.toFixed(2)}.`);
-    lines.push('3) Финальный счёт: 70% Rule-based + 30% Embedding.');
+     lines.push(`4) Добавляем оценку ${source} (семантическая близость фраз).`);
+    lines.push('5) Финальная дистанция считается как взвешенная сумма: 70% Rule-based + 30% Embedding.');
   } else if (distanceResult.method === 'rule_fallback') {
-    lines.push('2) Embedding недоступен, поэтому применён только Rule-based.');
+    lines.push('4) Embedding недоступен, поэтому финальная дистанция берётся из Rule-based.');
   } else {
-   lines.push('2) По умолчанию используется только Rule-based.');
+       lines.push('4) По умолчанию используется только Rule-based.');
   }
 
-  lines.push(`   • Итоговая дистанция = ${distanceResult.final.distance.toFixed(2)}.`);
   return lines.join('\n');
 }
 
