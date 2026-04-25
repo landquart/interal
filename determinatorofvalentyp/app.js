@@ -264,6 +264,9 @@ const els = {
   useLlm: document.getElementById('useLlm'),
   ollamaUrl: document.getElementById('ollamaUrl'),
   ollamaModel: document.getElementById('ollamaModel'),
+   manualPrompt: document.getElementById('manualPrompt'),
+  buildPromptBtn: document.getElementById('buildPromptBtn'),
+  manualEmbeddingResponse: document.getElementById('manualEmbeddingResponse'),
 
   chooserModal: document.getElementById('chooserModal'),
   rootModal: document.getElementById('rootModal'),
@@ -729,8 +732,125 @@ function combineDistances(rule, embedding, weights = {}) {
   };
 }
 
+function parseManualEmbeddingResponse(raw) {
+  const text = (raw || '').trim();
+  if (!text) return null;
+
+  const tryParseJson = () => {
+    try {
+      return JSON.parse(text);
+    } catch (_error) {
+      return null;
+    }
+  };
+
+  const parsed = tryParseJson();
+  let similarity;
+  let distance;
+  let reason = '';
+
+  if (parsed && typeof parsed === 'object') {
+    if (typeof parsed.similarity === 'number') similarity = parsed.similarity;
+    if (typeof parsed.distance === 'number') distance = parsed.distance;
+    if (typeof parsed.reason === 'string') reason = parsed.reason;
+  }
+
+  if (typeof similarity !== 'number') {
+    const similarityMatch = text.match(/similarity["'\s:=]+(-?\d+(?:\.\d+)?)/i)
+      || text.match(/схожесть["'\s:=]+(-?\d+(?:\.\d+)?)/i);
+    if (similarityMatch) similarity = Number(similarityMatch[1]);
+  }
+
+  if (typeof distance !== 'number') {
+    const distanceMatch = text.match(/distance["'\s:=]+(-?\d+(?:\.\d+)?)/i)
+      || text.match(/дистанц(?:ия|ию|ии)["'\s:=]+(-?\d+(?:\.\d+)?)/i);
+    if (distanceMatch) distance = Number(distanceMatch[1]);
+  }
+
+  if (typeof similarity !== 'number' && typeof distance !== 'number') {
+    const generic = text.match(/-?\d+(?:\.\d+)?/g) || [];
+    if (generic.length) {
+      const value = Number(generic[0]);
+      if (!Number.isNaN(value)) distance = value;
+    }
+  }
+
+  if (typeof similarity === 'number' && similarity > 1 && similarity <= 100) {
+    similarity /= 100;
+  }
+  if (typeof distance === 'number' && distance > 1 && distance <= 100) {
+    distance /= 100;
+  }
+
+  if (typeof distance === 'number' && typeof similarity !== 'number') {
+    similarity = 1 - distance;
+  }
+  if (typeof similarity === 'number' && typeof distance !== 'number') {
+    distance = 1 - similarity;
+  }
+
+  if (typeof similarity !== 'number' || typeof distance !== 'number') {
+    throw new Error('Не удалось извлечь distance/similarity из ответа нейросети.');
+  }
+
+  return {
+    provider: 'manual_embedding',
+    model: 'external_llm',
+    similarity: clamp(similarity, 0, 1),
+    distance: clamp(distance, 0, 1),
+    reason
+  };
+}
+
+function buildManualPrompt(input) {
+  return [
+    'Ты лингвистический ассистент. Оцени семантическую дистанцию между двумя формулировками значения.',
+    '',
+    'Контекст задачи:',
+    '- Нужно определить тип значения в Determinator of valen typ.',
+    '- Внутри приложения итог считается как объединение Rule-based и embedding-оценки.',
+    '- Твоя часть: дать embedding-подобную оценку близости смыслов от 0 до 1.',
+    '',
+    `Логический анализ: "${input.logicalMeaning || '—'}"`,
+    `Интернациональное значение: "${input.internationalMeaning || '—'}"`,
+    '',
+    'Требования к ответу:',
+    '1) Ответь строго одним JSON-объектом без Markdown.',
+    '2) Формат:',
+    '{"distance":0.00,"similarity":0.00,"reason":"краткое пояснение"}',
+    '3) distance = 0 означает почти одинаковое значение, distance = 1 означает максимально далёкое.',
+    '4) similarity = 1 - distance.',
+    '5) Используй десятичные числа с точностью до двух знаков.',
+    '',
+    'Верни только JSON.'
+  ].join('\n');
+}
+
 async function computeSemanticDistance(a, b, useLLM = false, options = {}) {
   const rule = computeDistanceRuleBased(a, b);
+
+  let manualEmbedding = null;
+  let manualEmbeddingError = '';
+  try {
+    manualEmbedding = parseManualEmbeddingResponse(options.manualEmbeddingResponse || '');
+  } catch (error) {
+    manualEmbeddingError = String(error);
+  }
+
+  if (manualEmbedding) {
+    const final = combineDistances(rule, manualEmbedding, {
+      rule: 0.7,
+      embedding: 0.3
+    });
+
+    return {
+      method: 'rule_plus_manual_embedding',
+      rule,
+      embedding: manualEmbedding,
+      final,
+      manualEmbeddingError: ''
+    };
+  }
 
   if (!useLLM) {
     return {
@@ -744,7 +864,8 @@ async function computeSemanticDistance(a, b, useLLM = false, options = {}) {
           rule: 1,
           embedding: 0
         }
-      }
+       },
+      manualEmbeddingError
     };
   }
 
@@ -778,7 +899,9 @@ async function computeSemanticDistance(a, b, useLLM = false, options = {}) {
           embedding: 0
         }
       },
-      error: String(error)
+       error: 'Локальная модель недоступна. Использован только Rule-based расчёт.',
+      debugError: String(error),
+      manualEmbeddingError
     };
   }
 }
@@ -792,7 +915,8 @@ function getInput() {
     components: [...state.components],
     useLLM: els.useLlm.checked,
     ollamaUrl: els.ollamaUrl ? els.ollamaUrl.value.trim() : 'http://localhost:11434',
-    embeddingModel: els.ollamaModel ? els.ollamaModel.value.trim() : 'qwen3-embedding'
+    embeddingModel: els.ollamaModel ? els.ollamaModel.value.trim() : 'qwen3-embedding',
+    manualEmbeddingResponse: els.manualEmbeddingResponse ? els.manualEmbeddingResponse.value.trim() : ''
   };
 }
 
@@ -824,7 +948,8 @@ async function analyzeByRules(input) {
     input.useLLM,
     {
       baseUrl: input.ollamaUrl || 'http://localhost:11434',
-      model: input.embeddingModel || 'qwen3-embedding'
+      model: input.embeddingModel || 'qwen3-embedding',
+      manualEmbeddingResponse: input.manualEmbeddingResponse || ''
     }
   );
 
@@ -850,6 +975,9 @@ async function analyzeByRules(input) {
   if (distanceResult.embedding) {
     reasons.push(`Embedding-дистанция: ${distanceResult.embedding.distance.toFixed(2)}`);
   }
+   if (distanceResult.manualEmbeddingError) {
+    reasons.push('Ручной Embedding не распознан; применён расчёт без него.');
+  }
   reasons.push(`Итоговая дистанция: ${distanceResult.final.distance.toFixed(2)}`);
 
   return {
@@ -865,26 +993,26 @@ function distanceMethodText(distanceResult) {
     return 'Дистанция не рассчитана.';
   }
 
-   const lines = [
-    '1) Базовый расчёт: коэффициент Жаккара (Jaccard) по словам логического и интернационального значений.',
-    `   • Rule-based distance: ${distanceResult.rule.distance.toFixed(2)}.`
+ const lines = [
+    '1) Rule-based: считаем пересечение слов двух значений по Жаккару.',
+    `   • Rule-based distance = ${distanceResult.rule.distance.toFixed(2)}.`
   ];
 
 
-  if (distanceResult.method === 'rule_fallback') {
-   lines.push('2) Embedding был запрошен, но недоступен, поэтому применён fallback.');
-    lines.push(`   • Итоговая дистанция: ${distanceResult.final.distance.toFixed(2)}.`);
-    return lines.join('\n');
-}
-
-   if (distanceResult.embedding) {
-    lines.push('2) Дополнительно учитывается embedding от локальной модели.');
-    lines.push(`   • Embedding distance: ${distanceResult.embedding.distance.toFixed(2)}.`);
+  if (distanceResult.embedding) {
+    const source = distanceResult.method === 'rule_plus_manual_embedding'
+      ? 'ручного Embedding'
+      : 'Embedding локальной модели';
+    lines.push(`2) Добавляем оценку ${source}.`);
+    lines.push(`   • Embedding distance = ${distanceResult.embedding.distance.toFixed(2)}.`);
+    lines.push('3) Финальный счёт: 70% Rule-based + 30% Embedding.');
+  } else if (distanceResult.method === 'rule_fallback') {
+    lines.push('2) Embedding недоступен, поэтому применён только Rule-based.');
   } else {
-    lines.push('2) Используется только rule-based расчёт.');
+   lines.push('2) По умолчанию используется только Rule-based.');
   }
 
-  lines.push(`3) Итоговая дистанция: ${distanceResult.final.distance.toFixed(2)}.`);
+  lines.push(`   • Итоговая дистанция = ${distanceResult.final.distance.toFixed(2)}.`);
   return lines.join('\n');
 }
 
@@ -972,17 +1100,25 @@ function renderResult(result, input) {
 
     ${distanceResult?.method === 'rule_fallback' && distanceResult?.error ? `
       <div class="result-card" style="margin-top: 10px;">
-        <h3>Локальная модель</h3>
-        <pre>${escapeHtml('Fallback: ' + distanceResult.error)}</pre>
+        <h3>Embedding</h3>
+        <pre>${escapeHtml(distanceResult.error)}</pre>
       </div>
     ` : ''}
 
-    ${distanceResult?.method === 'rule_plus_embedding' ? `
+    ${distanceResult?.manualEmbeddingError ? 
       <div class="result-card" style="margin-top: 10px;">
-        <h3>Локальная модель</h3>
-        <pre>${escapeHtml(JSON.stringify({
+<h3>Ручной Embedding</h3>
+        <pre>${escapeHtml('Ответ нейросети не удалось распознать. Ожидается JSON с полями distance/similarity.')}</pre>
+      </div>
+    ` : ''}
+
+    ${distanceResult?.embedding ? `
+      <div class="result-card" style="margin-top: 10px;">
+        <h3>Embedding</h3>
+<pre>${escapeHtml(JSON.stringify({
           provider: distanceResult.embedding.provider,
           model: distanceResult.embedding.model,
+  reason: distanceResult.embedding.reason || '',
           weights: distanceResult.final.weights
         }, null, 2))}</pre>
       </div>
@@ -995,6 +1131,8 @@ function clearAll() {
   els.logicalMeaning.value = '';
   els.internationalMeaning.value = '';
   els.naturalisticWord.value = '';
+  if (els.manualPrompt) els.manualPrompt.value = '';
+  if (els.manualEmbeddingResponse) els.manualEmbeddingResponse.value = '';
   state.components = [];
   renderComponents();
   els.result.classList.add('empty');
@@ -1012,6 +1150,8 @@ function saveState() {
     useLLM: els.useLlm.checked,
     ollamaUrl: els.ollamaUrl ? els.ollamaUrl.value : '',
     ollamaModel: els.ollamaModel ? els.ollamaModel.value : '',
+    manualPrompt: els.manualPrompt ? els.manualPrompt.value : '',
+    manualEmbeddingResponse: els.manualEmbeddingResponse ? els.manualEmbeddingResponse.value : '',
     resultHtml: els.result.innerHTML,
     resultIsEmpty: els.result.classList.contains('empty')
   };
@@ -1033,6 +1173,8 @@ function restoreState() {
     els.useLlm.checked = Boolean(saved.useLLM);
     if (els.ollamaUrl) els.ollamaUrl.value = saved.ollamaUrl || 'http://localhost:11434';
     if (els.ollamaModel) els.ollamaModel.value = saved.ollamaModel || 'qwen3-embedding';
+    if (els.manualPrompt) els.manualPrompt.value = saved.manualPrompt || '';
+    if (els.manualEmbeddingResponse) els.manualEmbeddingResponse.value = saved.manualEmbeddingResponse || '';
 
     if (saved.resultHtml) {
       els.result.innerHTML = saved.resultHtml;
@@ -1091,6 +1233,13 @@ function attachEvents() {
   els.saveComponentBtn.addEventListener('click', addSelectedComponent);
   els.savePrefixVariantBtn.addEventListener('click', savePrefixVariant);
   els.clearBtn.addEventListener('click', clearAll);
+  els.buildPromptBtn.addEventListener('click', () => {
+    const input = getInput();
+    if (els.manualPrompt) {
+      els.manualPrompt.value = buildManualPrompt(input);
+      saveState();
+    }
+  });
 
   els.analyzeBtn.addEventListener('click', async () => {
     const input = getInput();
@@ -1103,7 +1252,7 @@ function attachEvents() {
     el.addEventListener('click', closeAllModals);
   });
 
- [els.regularWord, els.logicalMeaning, els.internationalMeaning, els.naturalisticWord, els.useLlm, els.ollamaUrl, els.ollamaModel]
+ [els.regularWord, els.logicalMeaning, els.internationalMeaning, els.naturalisticWord, els.useLlm, els.ollamaUrl, els.ollamaModel, els.manualPrompt, els.manualEmbeddingResponse]
     .forEach((el) => {
       if (!el) return;
       el.addEventListener('input', saveState);
