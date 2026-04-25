@@ -330,6 +330,20 @@ button.ghost,
   color: var(--text-main);
 }
 
+.manual-embedding-box {
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-md);
+  background: var(--surface-strong);
+  padding: 12px;
+  margin-top: 12px;
+}
+
+.manual-hint {
+  margin: 4px 0 0;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+}
+
 .check-row {
   display: flex;
   align-items: center;
