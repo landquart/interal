@@ -1105,7 +1105,7 @@ function renderResult(result, input) {
       </div>
     ` : ''}
 
-    ${distanceResult?.manualEmbeddingError ? 
+    ${distanceResult?.manualEmbeddingError ? `
       <div class="result-card" style="margin-top: 10px;">
 <h3>Ручной Embedding</h3>
         <pre>${escapeHtml('Ответ нейросети не удалось распознать. Ожидается JSON с полями distance/similarity.')}</pre>
