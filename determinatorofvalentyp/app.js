@@ -1196,6 +1196,18 @@ function escapeHtml(value) {
     .replaceAll("'", '&#39;');
 }
 
+let copyPromptHighlightTimer;
+
+function flashCopiedPromptField() {
+  if (!els.manualPrompt) return;
+  els.manualPrompt.classList.add('copy-flash');
+  clearTimeout(copyPromptHighlightTimer);
+  copyPromptHighlightTimer = setTimeout(() => {
+    els.manualPrompt.classList.remove('copy-flash');
+  }, 900);
+}
+
+
 function attachEvents() {
   els.addComponentBtn.addEventListener('click', () => openModal(els.chooserModal));
 
@@ -1250,6 +1262,7 @@ function attachEvents() {
       try {
         await navigator.clipboard.writeText(promptText);
         els.copyPromptBtn.textContent = 'Скопировано';
+        flashCopiedPromptField();
       } catch (error) {
         els.copyPromptBtn.textContent = 'Не удалось скопировать';
       } finally {
