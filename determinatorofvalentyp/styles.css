@@ -348,6 +348,37 @@ button.ghost,
   margin-bottom: 14px;
 }
 
+.manual-embedding-box .prompt-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#buildPromptBtn {
+  transition: opacity 0.22s ease, transform 0.22s ease, max-width 0.22s ease, margin 0.22s ease, padding 0.22s ease, border-width 0.22s ease;
+  max-width: 240px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+#buildPromptBtn.is-hidden {
+  opacity: 0;
+  transform: translateX(-8px);
+  max-width: 0;
+  margin: 0;
+  padding-left: 0;
+  padding-right: 0;
+  border-width: 0;
+  pointer-events: none;
+}
+
+.embedding-meta {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 6px;
+}
+
 .manual-hint {
   margin: 4px 0 0;
   color: var(--text-muted);
