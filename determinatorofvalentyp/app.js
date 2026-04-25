@@ -1119,12 +1119,13 @@ function renderResult(result, input) {
     ${distanceResult?.embedding ? `
       <div class="result-card" style="margin-top: 10px;">
         <h3>Embedding</h3>
-<pre>${escapeHtml(JSON.stringify({
-          provider: distanceResult.embedding.provider,
-          model: distanceResult.embedding.model,
-  reason: distanceResult.embedding.reason || '',
-          weights: distanceResult.final.weights
-        }, null, 2))}</pre>
+  <ul class="embedding-meta">
+          <li><strong>Источник:</strong> ${escapeHtml(distanceResult.embedding.provider || '—')}</li>
+          <li><strong>Модель:</strong> ${escapeHtml(distanceResult.embedding.model || '—')}</li>
+          <li><strong>Дистанция:</strong> ${typeof distanceResult.embedding.distance === 'number' ? escapeHtml(distanceResult.embedding.distance.toFixed(2)) : '—'}</li>
+          <li><strong>Вес в финале:</strong> ${distanceResult?.final?.weights?.embedding ? escapeHtml((distanceResult.final.weights.embedding * 100).toFixed(0)) : '0'}%</li>
+          ${distanceResult.embedding.reason ? `<li><strong>Комментарий:</strong> ${escapeHtml(distanceResult.embedding.reason)}</li>` : ''}
+        </ul>
       </div>
     ` : ''}
   `;
@@ -1210,6 +1211,26 @@ function flashCopiedPromptField() {
   }, 900);
 }
 
+function hideBuildPromptButtonWithShift() {
+  if (!els.buildPromptBtn || !els.copyPromptBtn) return;
+  if (els.buildPromptBtn.classList.contains('is-hidden')) return;
+
+  const before = els.copyPromptBtn.getBoundingClientRect();
+  els.buildPromptBtn.classList.add('is-hidden');
+
+  requestAnimationFrame(() => {
+    const after = els.copyPromptBtn.getBoundingClientRect();
+    const deltaX = before.left - after.left;
+    if (!deltaX) return;
+    els.copyPromptBtn.animate(
+      [
+        { transform: `translateX(${deltaX}px)` },
+        { transform: 'translateX(0)' }
+      ],
+      { duration: 220, easing: 'ease-out' }
+    );
+  });
+}
 
 function attachEvents() {
   els.addComponentBtn.addEventListener('click', () => openModal(els.chooserModal));
@@ -1253,6 +1274,7 @@ function attachEvents() {
     const input = getInput();
     if (els.manualPrompt) {
       els.manualPrompt.value = buildManualPrompt(input);
+      hideBuildPromptButtonWithShift();
       saveState();
     }
   });
