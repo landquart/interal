@@ -3,11 +3,22 @@
   const inSubDir = /\/(similarita|determinatorofvalentyp)(\/|$)/.test(window.location.pathname);
   const prefix = inSubDir ? '../' : '';
 
+  const topNav = document.createElement('div');
+  topNav.className = 'top-nav';
+
   const menuButton = document.createElement('button');
   menuButton.className = 'top-menu-btn';
   menuButton.type = 'button';
   menuButton.setAttribute('aria-label', 'Открыть меню');
   menuButton.textContent = '☰';
+
+  const brandLink = document.createElement('a');
+  brandLink.className = 'top-brand';
+  brandLink.href = `${prefix}index.html`;
+  brandLink.innerHTML = `
+    <img class="top-brand-logo" src="${prefix}favicon/favicon%20interal%2064.png" alt="Interal logo" />
+    <span class="top-brand-text">Interal</span>
+  `;
 
   const overlay = document.createElement('div');
   overlay.className = 'side-menu-overlay';
@@ -15,6 +26,7 @@
   const menu = document.createElement('aside');
   menu.className = 'side-menu';
   menu.innerHTML = `
+  <h2 class="menu-title">Menú</h2>
     <nav class="menu-links">
       <a class="menu-link" href="${prefix}similarita/">Similaritá</a>
       <a class="menu-link" href="${prefix}determinatorofvalentyp/">Determinator of valen typ</a>
@@ -48,9 +60,10 @@
   }
 
   document.body.classList.add('has-global-menu');
+  topNav.append(menuButton, brandLink);
   document.body.prepend(overlay);
   document.body.prepend(menu);
-  document.body.prepend(menuButton);
+  document.body.prepend(topNav);
 
   initTheme();
 
