@@ -21,10 +21,18 @@ body {
   color: var(--text);
 }
 
-.top-menu-btn {
+.top-nav {
   position: fixed;
   top: 14px;
   left: 14px;
+  z-index: 1300;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.top-menu-btn {
+  position: relative;
   z-index: 1300;
   width: 44px;
   height: 44px;
@@ -41,6 +49,33 @@ body {
   padding: 0;
 }
 
+.top-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 12px 0 8px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text);
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+.top-brand-logo {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  display: block;
+}
+
+.top-brand-text {
+  line-height: 1;
+}
+
 .top-menu-btn {
   transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
@@ -51,6 +86,11 @@ body:not(.dark-theme) .top-menu-btn:hover {
   color: #ffffff;
 }
 
+body:not(.dark-theme) .top-brand:hover {
+  background: #111111;
+  border-color: #111111;
+  color: #ffffff;
+}
 
 .side-menu-overlay {
   position: fixed;
@@ -84,8 +124,10 @@ body.menu-open .side-menu-overlay {
 
 .menu-title {
   margin: 0 0 16px;
-  font-size: 0.95rem;
-  color: var(--muted);
+ font-size: 1.15rem;
+  color: var(--text);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
 }
 
 .menu-links {
