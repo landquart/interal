@@ -266,6 +266,7 @@ const els = {
   ollamaModel: document.getElementById('ollamaModel'),
    manualPrompt: document.getElementById('manualPrompt'),
   buildPromptBtn: document.getElementById('buildPromptBtn'),
+  copyPromptBtn: document.getElementById('copyPromptBtn'),
   manualEmbeddingResponse: document.getElementById('manualEmbeddingResponse'),
 
   chooserModal: document.getElementById('chooserModal'),
@@ -1240,6 +1241,24 @@ function attachEvents() {
       saveState();
     }
   });
+
+  if (els.copyPromptBtn) {
+    els.copyPromptBtn.addEventListener('click', async () => {
+      const promptText = els.manualPrompt ? els.manualPrompt.value.trim() : '';
+      if (!promptText) return;
+      const originalLabel = els.copyPromptBtn.textContent;
+      try {
+        await navigator.clipboard.writeText(promptText);
+        els.copyPromptBtn.textContent = 'Скопировано';
+      } catch (error) {
+        els.copyPromptBtn.textContent = 'Не удалось скопировать';
+      } finally {
+        setTimeout(() => {
+          els.copyPromptBtn.textContent = originalLabel;
+        }, 1200);
+      }
+    });
+  }
 
   els.analyzeBtn.addEventListener('click', async () => {
     const input = getInput();
