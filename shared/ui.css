@@ -222,3 +222,23 @@ body:not(.dark-theme) .menu-theme-btn:active {
 body, button, input, textarea, select {
   font-family: "Jost", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+
+
+.top-nav-link.is-active,
+.menu-link.is-active {
+  border-color: var(--line);
+  background: color-mix(in srgb, var(--surface-soft) 88%, transparent);
+  font-weight: 600;
+}
+
+.menu-link:hover,
+.menu-theme-btn:hover,
+.menu-link:focus-visible,
+.menu-theme-btn:focus-visible,
+.top-nav-link:focus-visible,
+.top-brand:focus-visible,
+.top-menu-btn:focus-visible {
+  outline: none;
+  border-color: var(--line);
+  background: color-mix(in srgb, var(--surface-soft) 90%, transparent);
+}

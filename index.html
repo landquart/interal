@@ -94,11 +94,20 @@
       border: 1px solid var(--line);
       border-radius: 12px;
       background: color-mix(in srgb, var(--surface-soft) 88%, transparent);
-      transition: color .2s ease;
+      transition: color .2s ease, border-color .2s ease, transform .2s ease, box-shadow .2s ease;
     }
 
     .tool-link:hover {
       color: color-mix(in srgb, var(--text) 78%, var(--surface));
+      border-color: color-mix(in srgb, var(--line) 70%, var(--text));
+      transform: translateY(-1px);
+      box-shadow: 0 10px 18px rgba(0,0,0,.12);
+    }
+
+    .tool-link:focus-visible {
+      outline: none;
+      border-color: var(--text);
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--line) 54%, transparent);
     }
 
     @keyframes logoFloat {
@@ -117,7 +126,7 @@
       </a>
 
     <a class="tool-link" href="similarita/">Similaritá</a>
-    <a class="tool-link" href="determinatorofvalentyp/">Determinator of valen typ</a>
+    <a class="tool-link" href="determinatorofvalentyp/">Determinator of Valentyp</a>
   </div>
 </div>
 

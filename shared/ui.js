@@ -10,6 +10,8 @@
   menuButton.className = 'top-menu-btn';
   menuButton.type = 'button';
   menuButton.setAttribute('aria-label', 'Открыть меню');
+  menuButton.setAttribute('aria-expanded', 'false');
+  menuButton.setAttribute('aria-controls', 'interal-side-menu');
   menuButton.textContent = '☰';
 
   const brandLink = document.createElement('a');
@@ -27,22 +29,29 @@
   topNavLinks.className = 'top-nav-links';
   topNavLinks.innerHTML = `
     <a class="top-nav-link" href="${prefix}similarita/">Similaritá</a>
-    <a class="top-nav-link" href="${prefix}determinatorofvalentyp/">Determinator of valen typ</a>
+    <a class="top-nav-link" href="${prefix}determinatorofvalentyp/">Determinator of Valentyp</a>
   `;
 
   const menu = document.createElement('aside');
   menu.className = 'side-menu';
+  menu.id = 'interal-side-menu';
   menu.innerHTML = `
   <h2 class="menu-title">Menú</h2>
     <nav class="menu-links">
       <a class="menu-link" href="${prefix}similarita/">Similaritá</a>
-      <a class="menu-link" href="${prefix}determinatorofvalentyp/">Determinator of valen typ</a>
+      <a class="menu-link" href="${prefix}determinatorofvalentyp/">Determinator of Valentyp</a>
     </nav>
  <button class="menu-theme-btn" type="button"></button>
   `;
 
   function closeMenu() {
     document.body.classList.remove('menu-open');
+    menuButton.setAttribute('aria-expanded', 'false');
+  }
+
+  function openMenu() {
+    document.body.classList.add('menu-open');
+    menuButton.setAttribute('aria-expanded', 'true');
   }
 
   function applyTheme(theme) {
@@ -65,6 +74,31 @@
     applyTheme(saved === 'dark' ? 'dark' : 'light');
   }
 
+  function pathToSegment(pathname) {
+    if (pathname.includes('/similarita')) return 'similarita';
+    if (pathname.includes('/determinatorofvalentyp')) return 'determinatorofvalentyp';
+    return 'home';
+  }
+
+  function markActiveLink() {
+    const activeSegment = pathToSegment(window.location.pathname);
+    const navLinks = [
+      ...topNavLinks.querySelectorAll('a.top-nav-link'),
+      ...menu.querySelectorAll('a.menu-link')
+    ];
+
+    navLinks.forEach((link) => {
+      const targetSegment = pathToSegment(new URL(link.href).pathname);
+      const isActive = targetSegment === activeSegment;
+      link.classList.toggle('is-active', isActive);
+      if (isActive) {
+        link.setAttribute('aria-current', 'page');
+      } else {
+        link.removeAttribute('aria-current');
+      }
+    });
+  }
+
   const topNavWindow = document.createElement('div');
   topNavWindow.className = 'top-nav-window';
   topNavWindow.append(menuButton, brandLink, topNavLinks);
@@ -76,11 +110,28 @@
   document.body.prepend(topNav);
 
   initTheme();
+  markActiveLink();
 
   menuButton.addEventListener('click', function () {
-    document.body.classList.toggle('menu-open');
+    if (document.body.classList.contains('menu-open')) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
   });
+
   overlay.addEventListener('click', closeMenu);
+
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape' && document.body.classList.contains('menu-open')) {
+      closeMenu();
+    }
+  });
+
+  menu.querySelectorAll('a.menu-link').forEach((link) => {
+    link.addEventListener('click', closeMenu);
+  });
+
   menu.querySelector('.menu-theme-btn').addEventListener('click', function () {
     toggleTheme();
   });
