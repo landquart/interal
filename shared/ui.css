@@ -58,7 +58,7 @@ body {
   padding: 10px 12px;
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  transition: transform 0.34s cubic-bezier(0.22, 1, 0.36, 1), font-weight 0.34s ease;
 }
 
 .top-menu-btn {
@@ -93,6 +93,7 @@ body {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
   letter-spacing: 0.2px;
+  transition: transform 0.34s cubic-bezier(0.22, 1, 0.36, 1), font-weight 0.34s ease;
 }
 
 .top-brand-logo {
@@ -110,16 +111,22 @@ body {
   transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 
-.top-menu-btn:hover,
-.top-brand:hover {
-  transform: scale(1.04);
-}
-
-.top-menu-btn:hover,
-.top-brand:hover,
-.top-nav-link:hover {
+.top-menu-btn:hover {
+  transform: scale(1.05);
   background: var(--surface-soft);
   border-color: var(--line);
+  color: var(--text);
+}
+
+.top-brand:hover {
+  transform: scale(1.08);
+  font-weight: 800;
+  color: var(--text);
+}
+
+.top-nav-link:hover {
+  transform: scale(1.08);
+  font-weight: 600;
   color: var(--text);
 }
 
