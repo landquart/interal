@@ -1,6 +1,5 @@
 :root {
   --bg-base: #f7d185;
-  --bg-image: url("../images/topography bg light.svg");
 
   --surface: #ffedbf;
   --surface-strong: #fff6df;
@@ -30,7 +29,6 @@
 
 body.dark-theme {
   --bg-base: #1c1711;
-  --bg-image: url("../images/topography bg dark.svg");
 
   --surface: #2a221a;
   --surface-strong: #342a20;
@@ -67,12 +65,7 @@ body {
 body {
   margin: 0;
   padding: 32px 16px;
-  background-color: var(--bg-base);
-  background-image: var(--bg-image);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-attachment: fixed;
+  background: var(--bg);
   color: var(--text-main);
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 1.5;
