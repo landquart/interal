@@ -8,26 +8,23 @@
   <link rel="icon" type="image/png" sizes="64x64" href="../favicon/favicon%20interal%2064.png" />
   <link rel="apple-touch-icon" sizes="512x512" href="../favicon/favicon%20interal%20512.png" />
   <title>Similaritá</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../shared/ui.css" />
+    <link rel="stylesheet" href="../shared/ui.css" />
 
 <style>
 
 :root {
-    --bg-base: #e6e6e6;
-    --line-color: rgba(0, 0, 0, 0.55);
-    --surface: #f4f4f4;
-    --surface-strong: #ffffff;
-    --text-main: #111111;
-    --text-muted: #2f2f2f;
-    --accent: #111111;
-    --accent-hover: #000000;
-    --accent-soft: rgba(17, 17, 17, 0.15);
-    --button-grad-start: #2d2d2d;
-    --button-grad-end: #111111;
-    --button-hover-glow: rgba(17, 17, 17, 0.2);
+    --bg-base: #f7d185;
+    --line-color: rgba(59, 43, 29, 0.55);
+    --surface: #ffedbf;
+    --surface-strong: #fff6df;
+    --text-main: #2b1f14;
+    --text-muted: #6b4d33;
+    --accent: #3b2b1d;
+    --accent-hover: #2e2115;
+    --accent-soft: rgba(59, 43, 29, 0.22);
+    --button-grad-start: #5a4330;
+    --button-grad-end: #3b2b1d;
+    --button-hover-glow: rgba(59, 43, 29, 0.28);
     --radius-lg: 18px;
     --radius-md: 12px;
     --shadow-card: 0 12px 30px rgba(31, 41, 55, 0.12);
@@ -45,23 +42,23 @@ body {
     background-attachment: fixed;
     min-height: 100vh;
     color: var(--text-main);
-    font-family: Montserrat, sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     line-height: 1.5;
 }
 
 body.dark-theme {
-    --bg-base: #000000;
-    --line-color: rgba(255, 255, 255, 0.65);
-    --surface: #111111;
-    --surface-strong: #191919;
-    --text-main: #f5f7ff;
-    --text-muted: #d2d9ec;
-    --accent: #f5f7ff;
-    --accent-hover: #ffffff;
-    --accent-soft: rgba(245, 247, 255, 0.3);
-    --button-grad-start: #f5f7ff;
-    --button-grad-end: #dfe6ff;
-    --button-hover-glow: rgba(245, 247, 255, 0.28);
+    --bg-base: #1c1711;
+    --line-color: rgba(247, 209, 133, 0.60);
+    --surface: #2a221a;
+    --surface-strong: #342a20;
+    --text-main: #f7d185;
+    --text-muted: #d8b983;
+    --accent: #f7d185;
+    --accent-hover: #ffdd98;
+    --accent-soft: rgba(247, 209, 133, 0.28);
+    --button-grad-start: #f7d185;
+    --button-grad-end: #c69f5d;
+    --button-hover-glow: rgba(247, 209, 133, 0.24);
     --shadow-card: 0 12px 30px rgba(0, 0, 0, 0.6);
     --shadow-soft: 0 6px 20px rgba(0, 0, 0, 0.45);
     background-image: url("../images/topography bg dark.svg");
@@ -75,7 +72,7 @@ body.dark-theme {
 
 .card {
     background: var(--surface);
-    border: 1px solid #cfcfcf;
+    border: 1px solid #d6b16e;
     max-width: 520px;
     margin: 0 auto 18px auto;
     padding: 22px;
@@ -110,7 +107,7 @@ input {
     margin-top: 6px;
     font-size: 16px;
     box-sizing: border-box;
-    border: 2px solid #d0d0d0;
+    border: 2px solid #d6b16e;
     border-radius: var(--radius-md);
     background: var(--surface-strong);
     color: var(--text-main);
@@ -162,7 +159,7 @@ button:not(.top-menu-btn):not(.menu-theme-btn):hover,
 button:not(.top-menu-btn):not(.menu-theme-btn):focus-visible {
     transform: translateY(-1px);
     box-shadow: 0 10px 18px var(--button-hover-glow);
-    color: #ffffff;
+    color: #f7d185;
 }
 
 button:not(.top-menu-btn):not(.menu-theme-btn):hover::before,
@@ -187,17 +184,17 @@ body.dark-theme button:not(.top-menu-btn):not(.menu-theme-btn):focus-visible {
     padding: 10px 12px;
     font-size: 15px;
     border-radius: 10px;
-    background: #efefef;
-    border: 1px solid #d5d5d5;
+    background: #fff2cf;
+    border: 1px solid #e1bf7e;
 }
 
 body.dark-theme .result {
-    background: #171717;
-    border-color: #3a3a3a;
+    background: #30261d;
+    border-color: #5e4930;
 }
 
 body.dark-theme .card {
-    border-color: #3a3a3a;
+    border-color: #5e4930;
 }
 
 body.dark-theme .info-card p,
@@ -210,7 +207,7 @@ ul {
 }
 
 #explainText {
-    font-family: "Inter", "Montserrat", sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 14px;
     margin-bottom: 20px;
 }
@@ -231,19 +228,19 @@ ul {
 .modal-inner {
     display: flex;
     flex-direction: column;
-    background: #ffffff;
-    color: #1f2937;
+    background: #fff6df;
+    color: #2b1f14;
     border: 1px solid #d1d1d1;
 }
 
 body.dark-theme .modal-inner {
-    background: #111111;
-    color: #ffffff;
-    border-color: #3a3a3a;
+    background: #2a221a;
+    color: #f7d185;
+    border-color: #5e4930;
 }
 
 body.dark-theme #explainText {
-    color: #ffffff;
+    color: #f7d185;
 }
 
 #explainModal {

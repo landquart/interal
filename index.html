@@ -14,22 +14,47 @@
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: Montserrat, sans-serif;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
       display: grid;
       place-items: center;
       min-height: 100vh;
+      padding: 16px;
+    }
+
+    .home-wrap {
+      display: grid;
+      gap: 18px;
+      place-items: center;
+    }
+
+    .home-logo {
+      width: 92px;
+      height: 92px;
+      border-radius: 24px;
+      padding: 12px;
+      background: color-mix(in srgb, var(--surface) 80%, transparent);
+      border: 1px solid var(--line);
+      box-shadow: 0 16px 34px rgba(0,0,0,.22);
+      animation: logoFloat 3.8s ease-in-out infinite;
+      transition: filter .3s ease, transform .3s ease;
+    }
+
+    .home-logo:hover {
+      filter: hue-rotate(12deg) saturate(1.15) brightness(1.06);
+      transform: translateY(-2px) scale(1.03);
     }
 
     .container {
-     width: min(420px, calc(100vw - 32px));
-      background: var(--surface);
+      width: min(460px, calc(100vw - 32px));
+      background: linear-gradient(170deg, color-mix(in srgb, var(--surface) 88%, transparent), var(--surface-soft));
       border: 1px solid var(--line);
-      border-radius: 14px;
+      border-radius: 18px;
       padding: 24px;
       text-align: center;
+      box-shadow: 0 22px 40px rgba(0,0,0,.20);
     }
 
-    h1 { margin: 0 0 18px; font-weight: 600; }
+    h1 { margin: 0 0 18px; font-weight: 700; letter-spacing: .4px; }
     .tool-link {
       display: block;
       margin: 10px 0;
@@ -37,12 +62,27 @@
       text-decoration: none;
      color: var(--text);
       border: 1px solid var(--line);
-      border-radius: 10px;
-      background: var(--surface-soft);
+      border-radius: 12px;
+      background: color-mix(in srgb, var(--surface-soft) 88%, transparent);
+      transition: transform .2s ease, background .2s ease, border-color .2s ease;
+    }
+
+    .tool-link:hover {
+      transform: translateY(-1px);
+      border-color: color-mix(in srgb, var(--line) 65%, var(--text));
+      background: color-mix(in srgb, var(--surface-soft) 70%, var(--surface));
+    }
+
+    @keyframes logoFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
     }
   </style>
 </head>
 <body>
+
+  <div class="home-wrap">
+    <img class="home-logo" src="favicon/favicon%20interal%20512.png" alt="Interal logo" />
 
   <div class="container">
     <h1>Interal</h1>
@@ -50,6 +90,7 @@
     <a class="tool-link" href="similarita/">Similaritá</a>
     <a class="tool-link" href="determinatorofvalentyp/">Determinator of valen typ</a>
   </div>
+</div>
 
   <script src="shared/ui.js"></script>
 </body>

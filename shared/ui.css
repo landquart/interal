@@ -1,19 +1,19 @@
 :root {
-  --bg: #f6f6f6;
-  --surface: #ffffff;
-  --surface-soft: #f2f2f2;
-  --text: #111111;
-  --muted: #5f5f5f;
-  --line: #dbdbdb;
+  --bg: #f7d185;
+  --surface: #fff1c8;
+  --surface-soft: #ffe7ad;
+  --text: #241a12;
+  --muted: #6b4f36;
+  --line: #d7b879;
 }
 
 body.dark-theme {
-  --bg: #0f0f0f;
-  --surface: #181818;
-  --surface-soft: #202020;
-  --text: #f2f2f2;
-  --muted: #b7b7b7;
-  --line: #343434;
+  --bg: #1c1711;
+  --surface: #2a221a;
+  --surface-soft: #3a2f24;
+  --text: #f7d185;
+  --muted: #d7b479;
+  --line: #5a4630;
 }
 
 body {
@@ -56,7 +56,7 @@ body {
   border: 1px solid transparent;
   border-radius: 10px;
   padding: 10px 12px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 500;
   transition: transform 0.34s cubic-bezier(0.22, 1, 0.36, 1), font-weight 0.34s ease;
 }
@@ -90,7 +90,7 @@ body {
   background: transparent;
   color: var(--text);
   text-decoration: none;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 700;
   letter-spacing: 0.2px;
   transition: transform 0.34s cubic-bezier(0.22, 1, 0.36, 1), font-weight 0.34s ease;
@@ -164,7 +164,7 @@ body.menu-open .side-menu-overlay {
   margin: 0 0 16px;
  font-size: 1.15rem;
   color: var(--text);
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 700;
 }
 
@@ -183,7 +183,7 @@ body.menu-open .side-menu-overlay {
   border-radius: 10px;
   padding: 10px 12px;
   font: inherit;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   cursor: pointer;
 }
 
@@ -206,4 +206,9 @@ body:not(.dark-theme) .menu-theme-btn {
   .top-nav-links {
     display: inline-flex;
   }
+}
+
+
+body, button, input, textarea, select {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
