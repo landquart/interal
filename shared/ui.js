@@ -30,7 +30,6 @@
     <nav class="menu-links">
       <a class="menu-link" href="${prefix}similarita/">Similaritá</a>
       <a class="menu-link" href="${prefix}determinatorofvalentyp/">Determinator of valen typ</a>
-      <a class="menu-link" href="${prefix}index.html">General</a>
     </nav>
  <button class="menu-theme-btn" type="button"></button>
   `;
@@ -59,8 +58,12 @@
     applyTheme(saved === 'dark' ? 'dark' : 'light');
   }
 
+  const topNavWindow = document.createElement('div');
+  topNavWindow.className = 'top-nav-window';
+  topNavWindow.append(brandLink, menuButton);
+
   document.body.classList.add('has-global-menu');
-  topNav.append(menuButton, brandLink);
+  topNav.append(topNavWindow);
   document.body.prepend(overlay);
   document.body.prepend(menu);
   document.body.prepend(topNav);
