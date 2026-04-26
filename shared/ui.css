@@ -192,23 +192,19 @@ body.menu-open .side-menu-overlay {
 }
 
 body:not(.dark-theme) .menu-theme-btn {
-  background: #1a1a1a;
-  border-color: #1a1a1a;
-  color: #ffffff;
+  background: color-mix(in srgb, var(--surface-soft) 84%, white);
+  border-color: var(--line);
+  color: var(--text);
 }
 
 body:not(.dark-theme) .menu-link:hover,
-body:not(.dark-theme) .menu-theme-btn:hover {
-  background-color: #1a1a1a;
-  background-image: repeating-linear-gradient(
-    -45deg,
-    rgba(255, 255, 255, 0.22) 0,
-    rgba(255, 255, 255, 0.22) 8px,
-    transparent 8px,
-    transparent 16px
-  );
-  border-color: #1a1a1a;
-  color: #fff5d9;
+body:not(.dark-theme) .menu-theme-btn:hover,
+body:not(.dark-theme) .menu-link:active,
+body:not(.dark-theme) .menu-theme-btn:active {
+  background-color: color-mix(in srgb, var(--surface-soft) 92%, white);
+  border-color: color-mix(in srgb, var(--line) 84%, var(--text));
+  color: color-mix(in srgb, var(--text) 82%, var(--surface));
+  background-image: none;
 }
 
 @media (min-width: 900px) {
