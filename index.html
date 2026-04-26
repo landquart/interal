@@ -23,25 +23,56 @@
 
     .home-wrap {
       display: grid;
-      gap: 18px;
       place-items: center;
     }
 
-    .home-logo {
-      width: 92px;
-      height: 92px;
-      border-radius: 24px;
-      padding: 12px;
-      background: color-mix(in srgb, var(--surface) 80%, transparent);
-      border: 1px solid var(--line);
-      box-shadow: 0 16px 34px rgba(0,0,0,.22);
-      animation: logoFloat 3.8s ease-in-out infinite;
-      transition: filter .3s ease, transform .3s ease;
+    .home-brand {
+      display: grid;
+      justify-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text);
+      margin-bottom: 14px;
+      transition: transform .28s ease;
     }
 
-    .home-logo:hover {
-      filter: hue-rotate(12deg) saturate(1.15) brightness(1.06);
-      transform: translateY(-2px) scale(1.03);
+    .home-brand:hover {
+      transform: scale(1.04);
+    }
+
+    .home-logo {
+      width: 132px;
+      height: 132px;
+      border-radius: 30px;
+      padding: 14px;
+      background: color-mix(in srgb, var(--surface) 74%, var(--bg));
+      border: 1px solid color-mix(in srgb, var(--line) 78%, var(--text));
+      box-shadow: 0 16px 34px rgba(0,0,0,.22);
+      animation: logoFloat 3.8s ease-in-out infinite;
+      transition: filter .28s ease;
+    }
+
+    .home-title {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 2.6rem);
+      letter-spacing: .5px;
+      transition: color .28s ease;
+    }
+
+    body.dark-theme .home-brand:hover .home-logo {
+      filter: brightness(1.18) saturate(1.08);
+    }
+
+    body:not(.dark-theme) .home-brand:hover .home-logo {
+      filter: brightness(.86) saturate(1.08);
+    }
+
+    body.dark-theme .home-brand:hover .home-title {
+      color: #ffe2a8;
+    }
+
+    body:not(.dark-theme) .home-brand:hover .home-title {
+      color: #5a3a1f;
     }
 
     .container {
@@ -54,23 +85,20 @@
       box-shadow: 0 22px 40px rgba(0,0,0,.20);
     }
 
-    h1 { margin: 0 0 18px; font-weight: 700; letter-spacing: .4px; }
     .tool-link {
       display: block;
       margin: 10px 0;
       padding: 12px;
       text-decoration: none;
-     color: var(--text);
+      color: var(--text);
       border: 1px solid var(--line);
       border-radius: 12px;
       background: color-mix(in srgb, var(--surface-soft) 88%, transparent);
-      transition: transform .2s ease, background .2s ease, border-color .2s ease;
+      transition: color .2s ease;
     }
 
     .tool-link:hover {
-      transform: translateY(-1px);
-      border-color: color-mix(in srgb, var(--line) 65%, var(--text));
-      background: color-mix(in srgb, var(--surface-soft) 70%, var(--surface));
+      color: color-mix(in srgb, var(--text) 78%, var(--surface));
     }
 
     @keyframes logoFloat {
@@ -82,10 +110,11 @@
 <body>
 
   <div class="home-wrap">
-    <img class="home-logo" src="favicon/favicon%20interal%20512.png" alt="Interal logo" />
-
-  <div class="container">
-    <h1>Interal</h1>
+    <div class="container">
+      <a class="home-brand" href="index.html" aria-label="Interal home">
+        <img class="home-logo" src="favicon/favicon%20interal%20512.png" alt="Interal logo" />
+        <h1 class="home-title">Interal</h1>
+      </a>
 
     <a class="tool-link" href="similarita/">Similaritá</a>
     <a class="tool-link" href="determinatorofvalentyp/">Determinator of valen typ</a>

@@ -58,7 +58,7 @@ body {
   padding: 10px 12px;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 500;
-  transition: transform 0.34s cubic-bezier(0.22, 1, 0.36, 1), font-weight 0.34s ease;
+  transition: color 0.28s ease;
 }
 
 .top-menu-btn {
@@ -125,9 +125,7 @@ body {
 }
 
 .top-nav-link:hover {
-  transform: scale(1.08);
-  font-weight: 600;
-  color: var(--text);
+  color: color-mix(in srgb, var(--text) 78%, var(--surface));
 }
 
 .side-menu-overlay {
