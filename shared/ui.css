@@ -35,6 +35,7 @@ body {
   min-height: 56px;
   border-bottom: 1px solid var(--line);
   background: var(--surface);
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -191,7 +192,7 @@ body:not(.dark-theme) .menu-theme-btn {
 
 @media (min-width: 900px) {
   .top-nav-window {
-    padding-left: 6px;
+    padding-left: 14px;
     padding-right: 16px;
   }
 
