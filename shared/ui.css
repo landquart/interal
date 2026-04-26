@@ -93,7 +93,7 @@ body {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 700;
   letter-spacing: 0.2px;
-  transition: transform 0.34s cubic-bezier(0.22, 1, 0.36, 1), font-weight 0.34s ease;
+  transition: transform 0.34s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .top-brand-logo {
@@ -120,7 +120,6 @@ body {
 
 .top-brand:hover {
   transform: scale(1.08);
-  font-weight: 800;
   color: var(--text);
 }
 
