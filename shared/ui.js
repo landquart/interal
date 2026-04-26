@@ -39,7 +39,7 @@
   <h2 class="menu-title">Menú</h2>
     <nav class="menu-links">
       <a class="menu-link" href="${prefix}similarita/">Similaritá</a>
-      <a class="menu-link" href="${prefix}determinatorofvalentyp/">Determinator of Valentyp</a>
+      <a class="menu-link" href="${prefix}determinatorofvalentyp/">Determinator of valen typ</a>
     </nav>
  <button class="menu-theme-btn" type="button"></button>
   `;
