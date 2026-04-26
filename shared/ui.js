@@ -29,7 +29,7 @@
   topNavLinks.className = 'top-nav-links';
   topNavLinks.innerHTML = `
     <a class="top-nav-link" href="${prefix}similarita/">Similaritá</a>
-    <a class="top-nav-link" href="${prefix}determinatorofvalentyp/">Determinator of Valentyp</a>
+    <a class="top-nav-link" href="${prefix}determinatorofvalentyp/">Determinator of valen typ</a>
   `;
 
   const menu = document.createElement('aside');
