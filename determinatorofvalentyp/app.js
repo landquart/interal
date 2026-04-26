@@ -1042,10 +1042,6 @@ function renderResult(result, input) {
   };
 
   const distanceResult = result.distanceResult;
-  const ruleDistance = distanceResult?.rule?.distance;
-  const embeddingDistance = distanceResult?.embedding?.distance;
-  const finalDistance = distanceResult?.final?.distance;
-
   const confidenceRu = {
     high: 'высокая',
     medium: 'средняя',
@@ -1057,7 +1053,6 @@ function renderResult(result, input) {
     <div class="badges">
       ${badge(labels[result.classification] || result.classification, types[result.classification] || 'no')}
       ${badge('Уверенность: ' + (confidenceRu[result.confidence] || result.confidence), 'warn')}
-      ${typeof finalDistance === 'number' ? badge('Дистанция: ' + finalDistance.toFixed(2), 'warn') : ''}
     </div>
 
     <div class="result-grid">
@@ -1088,14 +1083,6 @@ function renderResult(result, input) {
       <pre>${escapeHtml(result.reasons.join('\n'))}</pre>
     </div>
 
-    <div class="result-card" style="margin-top: 10px;">
-      <h3>Дистанция</h3>
-      <pre>${escapeHtml([
-        `Rule-based: ${typeof ruleDistance === 'number' ? ruleDistance.toFixed(2) : '—'}`,
-        `Embedding: ${typeof embeddingDistance === 'number' ? embeddingDistance.toFixed(2) : '—'}`,
-        `Итоговая: ${typeof finalDistance === 'number' ? finalDistance.toFixed(2) : '—'}`
-      ].join('\n'))}</pre>
-    </div>
 
     <div class="result-card" style="margin-top: 10px;">
       <h3>Как считается дистанция</h3>
@@ -1137,6 +1124,7 @@ function clearAll() {
   els.internationalMeaning.value = '';
   els.naturalisticWord.value = '';
   if (els.manualPrompt) els.manualPrompt.value = '';
+  syncPromptButtonsVisibility();
   if (els.manualEmbeddingResponse) els.manualEmbeddingResponse.value = '';
   state.components = [];
   renderComponents();
@@ -1179,6 +1167,7 @@ function restoreState() {
     if (els.ollamaUrl) els.ollamaUrl.value = saved.ollamaUrl || 'http://localhost:11434';
     if (els.ollamaModel) els.ollamaModel.value = saved.ollamaModel || 'qwen3-embedding';
     if (els.manualPrompt) els.manualPrompt.value = saved.manualPrompt || '';
+    syncPromptButtonsVisibility();
     if (els.manualEmbeddingResponse) els.manualEmbeddingResponse.value = saved.manualEmbeddingResponse || '';
 
     if (saved.resultHtml) {
@@ -1201,6 +1190,13 @@ function escapeHtml(value) {
 }
 
 let copyPromptHighlightTimer;
+
+
+function syncPromptButtonsVisibility() {
+  if (!els.buildPromptBtn || !els.manualPrompt) return;
+  const hasPrompt = Boolean(els.manualPrompt.value && els.manualPrompt.value.trim());
+  els.buildPromptBtn.classList.toggle('is-hidden', hasPrompt);
+}
 
 function flashCopiedPromptField() {
   if (!els.manualPrompt) return;
@@ -1287,6 +1283,7 @@ function attachEvents() {
       try {
         await navigator.clipboard.writeText(promptText);
         els.copyPromptBtn.textContent = 'Скопировано';
+        hideBuildPromptButtonWithShift();
         flashCopiedPromptField();
       } catch (error) {
         els.copyPromptBtn.textContent = 'Не удалось скопировать';
@@ -1322,3 +1319,4 @@ restoreState();
 attachEvents();
 syncRootFormByAssimilation();
 renderComponents();
+syncPromptButtonsVisibility();
