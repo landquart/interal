@@ -1,23 +1,23 @@
 :root {
-  --bg-base: #e6e6e6;
+  --bg-base: #f7d185;
   --bg-image: url("../images/topography bg light.svg");
 
-  --surface: #f4f4f4;
-  --surface-strong: #ffffff;
+  --surface: #ffedbf;
+  --surface-strong: #fff6df;
 
-  --text-main: #111111;
-  --text-muted: #2f2f2f;
+  --text-main: #2b1f14;
+  --text-muted: #6b4d33;
 
-  --line: #cfcfcf;
-  --line-soft: #d5d5d5;
-  --line-strong: #bdbdbd;
+  --line: #d6b16e;
+  --line-soft: #e0c690;
+  --line-strong: #c79c53;
 
-  --accent: #111111;
-  --accent-soft: rgba(17, 17, 17, 0.15);
+  --accent: #3b2b1d;
+  --accent-soft: rgba(59, 43, 29, 0.22);
 
-  --button-grad-start: #2d2d2d;
-  --button-grad-end: #111111;
-  --button-hover-glow: rgba(17, 17, 17, 0.2);
+  --button-grad-start: #5a4330;
+  --button-grad-end: #3b2b1d;
+  --button-hover-glow: rgba(59, 43, 29, 0.28);
 
   --shadow-card: 0 12px 30px rgba(31, 41, 55, 0.12);
   --shadow-soft: 0 6px 20px rgba(31, 41, 55, 0.08);
@@ -29,25 +29,25 @@
 }
 
 body.dark-theme {
-  --bg-base: #000000;
+  --bg-base: #1c1711;
   --bg-image: url("../images/topography bg dark.svg");
 
-  --surface: #111111;
-  --surface-strong: #191919;
+  --surface: #2a221a;
+  --surface-strong: #342a20;
 
-  --text-main: #f5f7ff;
-  --text-muted: #d2d9ec;
+  --text-main: #f7d185;
+  --text-muted: #d8b983;
 
-  --line: #3a3a3a;
-  --line-soft: #474747;
-  --line-strong: #6c6c6c;
+  --line: #5e4930;
+  --line-soft: #6b563d;
+  --line-strong: #7a6245;
 
-  --accent: #f5f7ff;
-  --accent-soft: rgba(245, 247, 255, 0.3);
+  --accent: #f7d185;
+  --accent-soft: rgba(247, 209, 133, 0.28);
 
-  --button-grad-start: #f5f7ff;
-  --button-grad-end: #dfe6ff;
-  --button-hover-glow: rgba(245, 247, 255, 0.28);
+  --button-grad-start: #f7d185;
+  --button-grad-end: #c69f5d;
+  --button-hover-glow: rgba(247, 209, 133, 0.24);
 
   --shadow-card: 0 12px 30px rgba(0, 0, 0, 0.6);
   --shadow-soft: 0 6px 20px rgba(0, 0, 0, 0.45);
@@ -74,7 +74,7 @@ body {
   background-position: center;
   background-attachment: fixed;
   color: var(--text-main);
-  font-family: "Montserrat", sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 1.5;
 }
 
@@ -133,7 +133,7 @@ textarea,
 select,
 button {
   font: inherit;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 input,
@@ -435,7 +435,7 @@ pre {
   white-space: pre-wrap;
   word-break: break-word;
   margin: 0;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 0.92rem;
 }
 
