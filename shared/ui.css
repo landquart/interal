@@ -37,9 +37,27 @@ body {
   background: var(--surface);
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 10px;
   padding: 6px 14px;
+}
+
+.top-nav-links {
+  display: none;
+  margin-left: auto;
+  align-items: center;
+  gap: 8px;
+}
+
+.top-nav-link {
+  color: var(--text);
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 .top-menu-btn {
@@ -88,19 +106,20 @@ body {
 }
 
 .top-menu-btn {
-  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 
-body:not(.dark-theme) .top-menu-btn:hover {
-  background: #111111;
-   border-color: transparent;
-  color: #ffffff;
+.top-menu-btn:hover,
+.top-brand:hover {
+  transform: scale(1.04);
 }
 
-body:not(.dark-theme) .top-brand:hover {
-  background: #111111;
-  border-color: transparent;
-  color: #ffffff;
+.top-menu-btn:hover,
+.top-brand:hover,
+.top-nav-link:hover {
+  background: var(--surface-soft);
+  border-color: var(--line);
+  color: var(--text);
 }
 
 .side-menu-overlay {
@@ -168,4 +187,15 @@ body:not(.dark-theme) .menu-theme-btn {
   background: #1a1a1a;
   border-color: #1a1a1a;
   color: #ffffff;
+}
+
+@media (min-width: 900px) {
+  .top-nav-window {
+    padding-left: 6px;
+    padding-right: 16px;
+  }
+
+  .top-nav-links {
+    display: inline-flex;
+  }
 }

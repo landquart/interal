@@ -23,6 +23,13 @@
   const overlay = document.createElement('div');
   overlay.className = 'side-menu-overlay';
 
+  const topNavLinks = document.createElement('nav');
+  topNavLinks.className = 'top-nav-links';
+  topNavLinks.innerHTML = `
+    <a class="top-nav-link" href="${prefix}similarita/">Similaritá</a>
+    <a class="top-nav-link" href="${prefix}determinatorofvalentyp/">Determinator of valen typ</a>
+  `;
+
   const menu = document.createElement('aside');
   menu.className = 'side-menu';
   menu.innerHTML = `
@@ -60,7 +67,7 @@
 
   const topNavWindow = document.createElement('div');
   topNavWindow.className = 'top-nav-window';
-  topNavWindow.append(brandLink, menuButton);
+  topNavWindow.append(menuButton, brandLink, topNavLinks);
 
   document.body.classList.add('has-global-menu');
   topNav.append(topNavWindow);
