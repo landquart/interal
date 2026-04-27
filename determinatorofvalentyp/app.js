@@ -1279,17 +1279,21 @@ function attachEvents() {
     els.copyPromptBtn.addEventListener('click', async () => {
       const promptText = els.manualPrompt ? els.manualPrompt.value.trim() : '';
       if (!promptText) return;
-      const originalLabel = els.copyPromptBtn.textContent;
+
+      els.copyPromptBtn.classList.remove('is-copied', 'is-failed');
       try {
         await navigator.clipboard.writeText(promptText);
-        els.copyPromptBtn.textContent = 'Copied';
+        els.copyPromptBtn.classList.add('is-copied');
+        els.copyPromptBtn.setAttribute('aria-label', 'Copied');
         hideBuildPromptButtonWithShift();
         flashCopiedPromptField();
       } catch (error) {
-        els.copyPromptBtn.textContent = 'Copy failed';
+        els.copyPromptBtn.classList.add('is-failed');
+        els.copyPromptBtn.setAttribute('aria-label', 'Copy failed');
       } finally {
         setTimeout(() => {
-          els.copyPromptBtn.textContent = originalLabel;
+          els.copyPromptBtn.classList.remove('is-copied', 'is-failed');
+          els.copyPromptBtn.setAttribute('aria-label', 'Copy prompt');
         }, 1200);
       }
     });

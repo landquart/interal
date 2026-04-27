@@ -71,6 +71,16 @@ body {
   color: var(--surface);
 }
 
+
+.top-menu-btn-icon {
+  line-height: 1;
+}
+
+.top-menu-btn-text {
+  display: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
 .top-brand {
   display: inline-flex;
   align-items: center;
@@ -165,9 +175,12 @@ body.menu-open .side-menu-overlay {
 .menu-nav-link:hover,
 .menu-nav-link:focus-visible {
   outline: none;
-  background: var(--text);
-  color: var(--surface);
-  border-color: var(--line);
+  color: var(--text);
+}
+
+.menu-nav-link:hover .menu-nav-main,
+.menu-nav-link:focus-visible .menu-nav-main {
+  text-decoration-color: var(--text);
 }
 
 .menu-theme-btn,
@@ -213,8 +226,8 @@ body.menu-open .side-menu-overlay {
 .menu-lang-btn {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 9px;
+  justify-content: flex-start;
+  gap: 8px;
 }
 
 .menu-lang-btn.is-active {
@@ -223,32 +236,22 @@ body.menu-open .side-menu-overlay {
 }
 
 .flag {
-  width: 18px;
-  height: 12px;
-  border-radius: 3px;
-  border: 1px solid rgba(0, 0, 0, 0.15);
+  width: 22px;
+  height: 14px;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
   display: inline-block;
+  object-fit: cover;
   overflow: hidden;
+  flex-shrink: 0;
 }
 
-.flag-ru {
-  background: linear-gradient(to bottom, #ffffff 0 33.333%, #0c47b7 33.333% 66.666%, #d52b1e 66.666% 100%);
-}
-
-.flag-en {
-  background:
-    linear-gradient(90deg, transparent 40%, #fff 40% 60%, transparent 60%),
-    linear-gradient(transparent 34%, #fff 34% 66%, transparent 66%),
-    linear-gradient(90deg, transparent 45%, #cf142b 45% 55%, transparent 55%),
-    linear-gradient(transparent 42%, #cf142b 42% 58%, transparent 58%),
-    linear-gradient(32deg, transparent 42%, #fff 42% 50%, transparent 50% 58%, #fff 58% 66%, transparent 66%),
-    linear-gradient(-32deg, transparent 42%, #fff 42% 50%, transparent 50% 58%, #fff 58% 66%, transparent 66%),
-    linear-gradient(32deg, transparent 45%, #cf142b 45% 48%, transparent 48% 52%, #cf142b 52% 55%, transparent 55%),
-    linear-gradient(-32deg, transparent 45%, #cf142b 45% 48%, transparent 48% 52%, #cf142b 52% 55%, transparent 55%),
-    #012169;
+.menu-lang-name {
+  text-align: left;
 }
 
 .has-global-menu {
+
   padding-top: 72px !important;
 }
 
@@ -272,35 +275,60 @@ body, button, input, textarea, select {
 
 .top-desktop-link {
   display: inline-flex;
-  flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   min-height: 44px;
-  padding: 6px 10px;
-  border: 1px solid var(--line);
-  border-radius: 10px;
+  padding: 6px 4px;
   text-decoration: none;
   color: var(--text);
-  background: color-mix(in srgb, var(--surface-soft) 90%, transparent);
-  border-bottom: 2px solid transparent;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
 }
 
-.top-desktop-link-main { font-size: .9rem; font-weight: 600; line-height: 1.1; }
-.top-desktop-link-sub { font-size: .74rem; opacity: .85; line-height: 1.1; }
+.top-desktop-link-main {
+  font-size: .95rem;
+  font-weight: 600;
+  line-height: 1.1;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
+}
 
-.top-desktop-link.is-active {
-  border-bottom-color: var(--text);
+.top-desktop-link.is-active .top-desktop-link-main {
+  text-decoration-color: var(--text);
 }
 
 .menu-nav-link {
-  display: grid;
-  gap: 2px;
+  display: block;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  padding: 10px 0;
 }
 
-.menu-nav-main { font-weight: 600; }
-.menu-nav-sub { font-size: .82rem; opacity: .85; }
+.menu-nav-main {
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
+}
+
+.menu-nav-link.is-active .menu-nav-main {
+  text-decoration-color: var(--text);
+}
 
 @media (min-width: 980px) {
   .top-desktop-controls { display: inline-flex; }
-  .side-menu .menu-nav { display: none; }
+  .side-menu .menu-nav { display: block; }
+  .top-menu-btn {
+    width: auto;
+    padding: 0 14px;
+    gap: 8px;
+    font-size: inherit;
+  }
+  .top-menu-btn-icon { display: none; }
+  .top-menu-btn-text { display: inline; }
 }
