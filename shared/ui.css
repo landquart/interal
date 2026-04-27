@@ -120,6 +120,12 @@ body {
   color: var(--text);
 }
 
+body:not(.dark-theme).menu-open .top-menu-btn {
+  background: color-mix(in srgb, var(--muted) 70%, var(--surface));
+  border-color: color-mix(in srgb, var(--line) 45%, var(--muted));
+  color: color-mix(in srgb, white 82%, var(--surface));
+}
+
 .top-brand:hover {
   transform: scale(1.08);
   color: var(--text);
