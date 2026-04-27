@@ -282,26 +282,15 @@ body, button, input, textarea, select {
   text-decoration: none;
   color: var(--text);
   background: color-mix(in srgb, var(--surface-soft) 90%, transparent);
+  border-bottom: 2px solid transparent;
 }
 
 .top-desktop-link-main { font-size: .9rem; font-weight: 600; line-height: 1.1; }
 .top-desktop-link-sub { font-size: .74rem; opacity: .85; line-height: 1.1; }
 
-.top-desktop-theme-btn,
-.top-desktop-lang-btn {
-  border: 1px solid var(--line);
-  background: var(--surface-soft);
-  color: var(--text);
-  border-radius: 10px;
-  height: 44px;
-  padding: 0 10px;
-  cursor: pointer;
-  font: inherit;
+.top-desktop-link.is-active {
+  border-bottom-color: var(--text);
 }
-
-.top-desktop-lang { display: inline-flex; gap: 6px; }
-.top-desktop-lang-btn { min-width: 48px; }
-.top-desktop-lang-btn.is-active { border-color: var(--text); font-weight: 700; }
 
 .menu-nav-link {
   display: grid;
@@ -313,5 +302,5 @@ body, button, input, textarea, select {
 
 @media (min-width: 980px) {
   .top-desktop-controls { display: inline-flex; }
-  .top-menu-btn { display: none; }
+  .side-menu .menu-nav { display: none; }
 }
