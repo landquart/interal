@@ -267,6 +267,12 @@ textarea.copy-flash {
   place-items: center;
 }
 
+.plus-btn-icon {
+  display: inline-block;
+  line-height: 1;
+  transform: translateY(-1px);
+}
+
 .actions {
   display: flex;
   gap: 10px;
