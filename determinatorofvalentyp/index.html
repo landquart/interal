@@ -19,75 +19,75 @@
 
     <section class="panel">
       <label class="field">
-        <span>1 — Слово по регулярной модели (с разделителями)</span>
+        <span>1 — Word by regular model (with separators)</span>
        <input id="regularWord" type="text" autocomplete="off" placeholder="re/vis/ion" />
       </label>
 
       <div class="field">
-        <span>2 — Анализ компонентов</span>
-        <div id="componentsList" class="components-list empty">Компоненты не добавлены.</div>
+        <span>2 — Component analysis</span>
+        <div id="componentsList" class="components-list empty">No components added.</div>
         <div id="componentsSummary" class="components-summary">—</div>
-        <button id="addComponentBtn" class="plus-btn" type="button" aria-label="Добавить компонент">
+        <button id="addComponentBtn" class="plus-btn" type="button" aria-label="Add component">
           <span class="plus-btn-icon" aria-hidden="true">+</span>
         </button>
       </div>
 
       <label class="field">
-        <span>3 — Логический анализ компонентов</span>
-         <textarea id="logicalMeaning" rows="3" placeholder="видение снова"></textarea>
+        <span>3 — Logical analysis of components</span>
+         <textarea id="logicalMeaning" rows="3" placeholder="vision again"></textarea>
       </label>
 
       <label class="field">
-        <span>4 — Интернациональное значение эквивалентного деривата</span>
-       <textarea id="internationalMeaning" rows="3" placeholder="пересмотр"></textarea>
+        <span>4 — International meaning of equivalent derivative</span>
+       <textarea id="internationalMeaning" rows="3" placeholder="revision"></textarea>
       </label>
 
       <label class="field">
-        <span>5 — Слово по натуралистичной модели (с разделителями)</span>
+        <span>5 — Word by naturalistic model (with separators)</span>
         <input id="naturalisticWord" type="text" autocomplete="off" placeholder="re/vis/ion/u" />
       </label>
 
       <details class="details-panel">
-        <summary>Локальная нейросеть для семантической дистанции</summary>
+        <summary>Local neural model for semantic distance</summary>
         <label class="check-row">
           <input id="useLlm" type="checkbox" />
-          <span>Использовать локальную модель</span>
+          <span>Use local model</span>
         </label>
         <label class="field compact-field">
           <span>Ollama URL</span>
            <input id="ollamaUrl" type="text" value="http://localhost:11434" />
         </label>
         <label class="field compact-field">
-          <span>Модель</span>
+          <span>Model</span>
            <input id="ollamaModel" type="text" value="qwen3-embedding" />
         </label>
 
         <div class="manual-embedding-box">
           <label class="field compact-field">
-            <span>Промт для внешней нейросети (ручной Embedding)</span>
-            <textarea id="manualPrompt" rows="8" readonly placeholder="Нажмите «Сформировать промт»"></textarea>
+            <span>Prompt for external neural model (manual embedding)</span>
+            <textarea id="manualPrompt" rows="8" readonly placeholder="Click “Build prompt”"></textarea>
           </label>
           <div class="actions prompt-actions">
-            <button id="buildPromptBtn" type="button" class="ghost">Сформировать промт</button>
-             <button id="copyPromptBtn" type="button" class="ghost">Скопировать промт</button>
+            <button id="buildPromptBtn" type="button" class="ghost">Build prompt</button>
+             <button id="copyPromptBtn" type="button" class="ghost">Copy prompt</button>
           </div>
           <label class="field compact-field">
-            <span>Ответ нейросети (вставьте сюда)</span>
-            <textarea id="manualEmbeddingResponse" rows="4" placeholder='Например: {"distance":0.38,"similarity":0.62,"reason":"..."}'></textarea>
+            <span>Neural model response (paste here)</span>
+            <textarea id="manualEmbeddingResponse" rows="4" placeholder='For example: {"distance":0.38,"similarity":0.62,"reason":"..."}'></textarea>
           </label>
-          <p class="manual-hint">Если ответ указан, дистанция считается как Rule-based + ручной Embedding (веса 70/30).</p>
+          <p class="manual-hint">If response is provided, distance is computed as Rule-based + manual embedding (70/30).</p>
         </div>
       </details>
 
       <div class="actions">
-        <button id="analyzeBtn" type="button">Анализировать</button>
-        <button id="clearBtn" type="button" class="ghost">Очистить</button>
+        <button id="analyzeBtn" type="button">Analyze</button>
+        <button id="clearBtn" type="button" class="ghost">Clear</button>
       </div>
     </section>
 
     <section class="panel">
-      <h2>Результат</h2>
-      <div id="result" class="result empty">Заполните поля и нажмите «Анализировать».</div>
+      <h2>Result</h2>
+      <div id="result" class="result empty">Fill in fields and click “Analyze”.</div>
     </section>
   </main>
 
@@ -95,12 +95,12 @@
     <div class="modal-backdrop" data-close-modal="true"></div>
     <div class="modal-card chooser-card" role="dialog" aria-modal="true" aria-labelledby="chooserTitle">
       <div class="modal-header center-header">
-        <h2 id="chooserTitle">Добавить элемент</h2>
+        <h2 id="chooserTitle">Add item</h2>
         <button class="icon-btn" type="button" data-close-modal="true">×</button>
       </div>
       <div class="chooser-grid">
-        <button id="chooseRootBtn" class="chooser-option" type="button">Первичное корневое слово</button>
-        <button id="chooseComponentBtn" class="chooser-option" type="button">Компонент (аффикс/окончание)</button>
+        <button id="chooseRootBtn" class="chooser-option" type="button">Primary root word</button>
+        <button id="chooseComponentBtn" class="chooser-option" type="button">Component (affix/ending)</button>
       </div>
     </div>
   </div>
@@ -109,28 +109,28 @@
     <div class="modal-backdrop" data-close-modal="true"></div>
     <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="rootTitle">
       <div class="modal-header">
-        <button id="backFromRootBtn" class="back-btn" type="button">Назад</button>
-        <h2 id="rootTitle">Первичное корневое слово</h2>
+        <button id="backFromRootBtn" class="back-btn" type="button">Back</button>
+        <h2 id="rootTitle">Primary root word</h2>
         <button class="icon-btn" type="button" data-close-modal="true">×</button>
       </div>
 
       <label class="field compact-field">
-        <span>Слово</span>
+        <span>Word</span>
        <input id="rootFormInput" type="text" autocomplete="off" placeholder="vid/er" />
       </label>
 
       <label class="field compact-field">
-        <span>Значение</span>
-         <input id="rootMeaningInput" type="text" autocomplete="off" placeholder="видеть" />
+        <span>Meaning</span>
+         <input id="rootMeaningInput" type="text" autocomplete="off" placeholder="see" />
       </label>
 
       <label class="field compact-field">
-        <span>Тип ассимиляции</span>
+        <span>Assimilation type</span>
         <select id="assimilationSelect"></select>
       </label>
 
       <div class="actions modal-actions">
-        <button id="saveRootBtn" type="button">Добавить</button>
+        <button id="saveRootBtn" type="button">Add</button>
       </div>
     </div>
   </div>
@@ -139,25 +139,25 @@
     <div class="modal-backdrop" data-close-modal="true"></div>
     <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="componentTitle">
       <div class="modal-header">
-        <button id="backFromComponentBtn" class="back-btn" type="button">Назад</button>
-        <h2 id="componentTitle">Компонент</h2>
+        <button id="backFromComponentBtn" class="back-btn" type="button">Back</button>
+        <h2 id="componentTitle">Component</h2>
         <button class="icon-btn" type="button" data-close-modal="true">×</button>
       </div>
 
       <label class="field compact-field">
-        <span>Категория</span>
+        <span>Category</span>
         <select id="componentCategorySelect"></select>
       </label>
 
       <label class="field compact-field">
-        <span>Элемент</span>
+        <span>Element</span>
         <select id="componentSelect"></select>
       </label>
 
       <div id="componentMeaningPreview" class="preview-box">—</div>
 
       <div class="actions modal-actions">
-        <button id="saveComponentBtn" type="button">Добавить</button>
+        <button id="saveComponentBtn" type="button">Add</button>
       </div>
     </div>
   </div>
@@ -166,20 +166,20 @@
     <div class="modal-backdrop" data-close-modal="true"></div>
     <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="prefixVariantTitle">
       <div class="modal-header">
-        <button id="backFromPrefixVariantBtn" class="back-btn" type="button">Назад</button>
-        <h2 id="prefixVariantTitle">Ассимиляция приставки</h2>
+        <button id="backFromPrefixVariantBtn" class="back-btn" type="button">Back</button>
+        <h2 id="prefixVariantTitle">Prefix assimilation</h2>
         <button class="icon-btn" type="button" data-close-modal="true">×</button>
       </div>
 
       <label class="field compact-field">
-        <span>Вариант приставки</span>
+        <span>Prefix variant</span>
         <select id="prefixVariantSelect"></select>
       </label>
 
       <div id="prefixVariantPreview" class="preview-box">—</div>
 
       <div class="actions modal-actions">
-        <button id="savePrefixVariantBtn" type="button">Добавить</button>
+        <button id="savePrefixVariantBtn" type="button">Add</button>
       </div>
     </div>
   </div>
@@ -190,10 +190,10 @@
       const tr = {
         ru: {
           title: 'Determinator of valen typ',
-          result: 'Результат'
+          result: 'Result'
         },
         en: {
-          title: 'Determinator of value type',
+          title: 'Determinator of valen typ',
           result: 'Result'
         }
       };
