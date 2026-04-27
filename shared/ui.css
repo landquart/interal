@@ -213,7 +213,7 @@ body:not(.dark-theme) .menu-link:active,
 body:not(.dark-theme) .menu-theme-btn:active {
   background-color: color-mix(in srgb, var(--surface-soft) 92%, white);
   border-color: color-mix(in srgb, var(--line) 84%, var(--text));
-  color: color-mix(in srgb, var(--text) 82%, var(--surface));
+  color: color-mix(in srgb, white 86%, var(--surface));
   background-image: none;
 }
 
