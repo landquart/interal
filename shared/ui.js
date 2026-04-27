@@ -62,11 +62,6 @@
       <span class="top-desktop-link-main"></span>
       <span class="top-desktop-link-sub"></span>
     </a>
-    <button class="top-desktop-theme-btn" type="button"></button>
-    <div class="top-desktop-lang" role="group" aria-label="Language switch">
-      <button class="top-desktop-lang-btn" type="button" data-lang="ru">RU</button>
-      <button class="top-desktop-lang-btn" type="button" data-lang="en">EN</button>
-    </div>
   `;
 
   const overlay = document.createElement('div');
@@ -109,11 +104,9 @@
   function applyTheme(theme) {
     document.body.classList.toggle('dark-theme', theme === 'dark');
     const btn = menu.querySelector('.menu-theme-btn');
-    const desktopBtn = desktopControls.querySelector('.top-desktop-theme-btn');
     const t = i18n[getLang()];
     const themeLabel = theme === 'dark' ? t.themeToLight : t.themeToDark;
     if (btn) btn.textContent = themeLabel;
-    if (desktopBtn) desktopBtn.textContent = themeLabel;
   }
 
   function toggleTheme() {
@@ -162,14 +155,23 @@
       btn.classList.toggle('is-active', code === nextLang);
     });
 
-    desktopControls.querySelectorAll('.top-desktop-lang-btn').forEach((btn) => {
-      btn.classList.toggle('is-active', btn.dataset.lang === nextLang);
-    });
-
     const currentTheme = document.body.classList.contains('dark-theme') ? 'dark' : 'light';
     applyTheme(currentTheme);
 
     document.dispatchEvent(new CustomEvent('interal:languagechange', { detail: { lang: nextLang } }));
+  }
+
+  function markCurrentPage() {
+    const path = window.location.pathname;
+    const currentNav = path.includes('/similarita/')
+      ? 'similarita'
+      : path.includes('/determinatorofvalentyp/')
+        ? 'determinator'
+        : '';
+
+    document.querySelectorAll('[data-nav]').forEach((link) => {
+      link.classList.toggle('is-active', !!currentNav && link.dataset.nav === currentNav);
+    });
   }
 
   const topNavWindow = document.createElement('div');
@@ -184,6 +186,7 @@
 
   initTheme();
   applyLanguage(getLang());
+  markCurrentPage();
 
   menuButton.addEventListener('click', function () {
     if (document.body.classList.contains('menu-open')) closeMenu();
@@ -197,15 +200,8 @@
   });
 
   menu.querySelector('.menu-theme-btn').addEventListener('click', toggleTheme);
-  desktopControls.querySelector('.top-desktop-theme-btn').addEventListener('click', toggleTheme);
 
   menu.querySelectorAll('.menu-lang-btn').forEach((btn) => {
-    btn.addEventListener('click', function () {
-      applyLanguage(btn.dataset.lang);
-    });
-  });
-
-  desktopControls.querySelectorAll('.top-desktop-lang-btn').forEach((btn) => {
     btn.addEventListener('click', function () {
       applyLanguage(btn.dataset.lang);
     });
