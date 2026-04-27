@@ -407,7 +407,7 @@ function addRootComponent() {
   state.components.push({
     id: crypto.randomUUID(),
     type: 'root',
-    label: 'Первичное корневое слово',
+    label: 'Primary root word',
     form,
     meaning,
     assimilation,
@@ -462,7 +462,7 @@ function savePrefixVariant() {
   state.components.push({
     id: crypto.randomUUID(),
     type: 'component',
-    label: 'Приставка',
+    label: 'Prefix',
     form: option.form,
     meaning: pendingPrefixItem.meaning,
     sourceId: pendingPrefixItem.id,
@@ -511,13 +511,13 @@ function componentSummaryText() {
 
 function renderAssimilationMeta(item) {
   if (!item.assimilation || item.assimilation === 'none') return '';
-  return ` · Ассимиляция: ${item.assimilationLabel}`;
+  return ` · Assimilation: ${item.assimilationLabel}`;
 }
 
 function renderComponents() {
   if (!state.components.length) {
     els.componentsList.className = 'components-list empty';
-    els.componentsList.textContent = 'Компоненты не добавлены.';
+    els.componentsList.textContent = 'No components added.';
     els.componentsSummary.textContent = '—';
      saveState();
     return;
@@ -791,7 +791,7 @@ function parseManualEmbeddingResponse(raw) {
   }
 
   if (typeof similarity !== 'number' || typeof distance !== 'number') {
-    throw new Error('Не удалось извлечь distance/similarity из ответа нейросети.');
+    throw new Error('Could not extract distance/similarity from neural model response.');
   }
 
   return {
@@ -805,25 +805,25 @@ function parseManualEmbeddingResponse(raw) {
 
 function buildManualPrompt(input) {
   return [
-    'Ты лингвистический ассистент. Оцени семантическую дистанцию между двумя формулировками значения.',
+    'You are a linguistic assistant. Estimate semantic distance between two meaning formulations.',
     '',
-    'Контекст задачи:',
-    '- Нужно определить тип значения в Determinator of valen typ.',
-    '- Внутри приложения итог считается как объединение Rule-based и embedding-оценки.',
-    '- Твоя часть: дать embedding-подобную оценку близости смыслов от 0 до 1.',
+    'Task context:',
+    '- Determine value type in Determinator of valen typ.',
+    '- The app computes final score as Rule-based + embedding estimate.',
+    '- Your part: provide embedding-like meaning similarity from 0 to 1.',
     '',
-    `Логический анализ: "${input.logicalMeaning || '—'}"`,
-    `Интернациональное значение: "${input.internationalMeaning || '—'}"`,
+    `Logical analysis: "${input.logicalMeaning || '—'}"`,
+    `International meaning: "${input.internationalMeaning || '—'}"`,
     '',
-    'Требования к ответу:',
-    '1) Ответь строго одним JSON-объектом без Markdown.',
-    '2) Формат:',
+    'Response requirements:',
+    '1) Respond with exactly one JSON object without Markdown.',
+    '2) Format:',
     '{"distance":0.00,"similarity":0.00,"reason":"краткое пояснение"}',
-    '3) distance = 0 означает почти одинаковое значение, distance = 1 означает максимально далёкое.',
+    '3) distance = 0 means almost same meaning, distance = 1 means very far.',
     '4) similarity = 1 - distance.',
-    '5) Используй десятичные числа с точностью до двух знаков.',
+    '5) Use decimal numbers with precision to two digits.',
     '',
-    'Верни только JSON.'
+    'Return JSON only.'
   ].join('\n');
 }
 
@@ -900,7 +900,7 @@ async function computeSemanticDistance(a, b, useLLM = false, options = {}) {
           embedding: 0
         }
       },
-       error: 'Локальная модель недоступна. Использован только Rule-based расчёт.',
+       error: 'Local model unavailable. Used only Rule-based calculation.',
       debugError: String(error),
       manualEmbeddingError
     };
@@ -926,11 +926,11 @@ async function analyzeByRules(input) {
   let classification = 'undetermined';
   let confidence = 'low';
 
-  if (!input.regularWord) reasons.push('Не задано слово по регулярной модели.');
-  if (!input.logicalMeaning) reasons.push('Не задан логический анализ компонентов.');
-  if (!input.internationalMeaning) reasons.push('Не задано интернациональное значение эквивалентного деривата.');
-  if (!input.naturalisticWord) reasons.push('Не задано слово по натуралистичной модели.');
-  if (!input.components.length) reasons.push('Не добавлен анализ компонентов.');
+  if (!input.regularWord) reasons.push('Regular-model word is missing.');
+  if (!input.logicalMeaning) reasons.push('Logical component analysis is missing.');
+  if (!input.internationalMeaning) reasons.push('International meaning of equivalent derivative is missing.');
+  if (!input.naturalisticWord) reasons.push('Naturalistic-model word is missing.');
+  if (!input.components.length) reasons.push('No component analysis added.');
 
   const enough = input.regularWord && input.logicalMeaning && input.internationalMeaning;
 
@@ -960,26 +960,26 @@ async function analyzeByRules(input) {
   if (sameMeaning) {
     classification = 'regular_only';
     confidence = 'high';
-    reasons.push('Логическое значение совпадает с интернациональным значением. Разграничение не требуется.');
+    reasons.push('Logical meaning matches international meaning. Distinction is not required.');
   } else if (input.naturalisticWord) {
     classification = 'double_meaning_with_modification';
     confidence = finalDistance >= 0.5 ? 'high' : 'medium';
-    reasons.push('Логическое значение отличается от интернационального значения.');
-    reasons.push('Слово по натуралистичной модели задано.');
+    reasons.push('Logical meaning differs from international meaning.');
+    reasons.push('Naturalistic model word is provided.');
   } else {
     classification = 'double_meaning_modification_missing';
     confidence = finalDistance >= 0.5 ? 'medium' : 'low';
-    reasons.push('Логическое значение отличается от интернационального значения, но натуралистичная форма не задана.');
+    reasons.push('Logical meaning differs from international meaning, but naturalistic form is missing.');
   }
 
-  reasons.push(`Rule-based дистанция: ${distanceResult.rule.distance.toFixed(2)}`);
+  reasons.push(`Rule-based distance: ${distanceResult.rule.distance.toFixed(2)}`);
   if (distanceResult.embedding) {
-    reasons.push(`Embedding-дистанция: ${distanceResult.embedding.distance.toFixed(2)}`);
+    reasons.push(`Embedding distance: ${distanceResult.embedding.distance.toFixed(2)}`);
   }
    if (distanceResult.manualEmbeddingError) {
-    reasons.push('Ручной Embedding не распознан; применён расчёт без него.');
+    reasons.push('Manual embedding was not parsed; calculation continued without it.');
   }
-  reasons.push(`Итоговая дистанция: ${distanceResult.final.distance.toFixed(2)}`);
+  reasons.push(`Final distance: ${distanceResult.final.distance.toFixed(2)}`);
 
   return {
     classification,
@@ -991,30 +991,30 @@ async function analyzeByRules(input) {
 
 function distanceMethodText(distanceResult) {
   if (!distanceResult) {
-    return 'Дистанция не рассчитана.';
+    return 'Distance is not calculated.';
   }
 
   const lines = [
-    '1) Нормализуем оба значения: приводим к нижнему регистру, убираем знаки препинания и разбиваем на слова.',
-    '2) Считаем схожесть по Жаккару:',
-    '   • A — множество слов первого значения, B — второго.',
-    '   • Пересечение: A ∩ B (слова, которые есть в обоих множествах).',
-    '   • Объединение: A ∪ B (все уникальные слова из обоих множеств).',
+    '1) Normalize both meanings: lowercase, remove punctuation, split into words.',
+    '2) Compute Jaccard similarity:',
+    '   • A — word set of first meaning, B — of second.',
+    '   • Intersection: A ∩ B (words present in both sets).',
+    '   • Union: A ∪ B (all unique words from both sets).',
     '   • Jaccard similarity = |A ∩ B| / |A ∪ B|.',
-    '3) Переводим схожесть в дистанцию: Rule-based distance = 1 - Jaccard similarity.'
+    '3) Convert similarity to distance: Rule-based distance = 1 - Jaccard similarity.'
   ];
 
 
   if (distanceResult.embedding) {
     const source = distanceResult.method === 'rule_plus_manual_embedding'
-      ? 'ручного Embedding'
-      : 'Embedding локальной модели';
-     lines.push(`4) Добавляем оценку ${source} (семантическая близость фраз).`);
-    lines.push('5) Финальная дистанция считается как взвешенная сумма: 70% Rule-based + 30% Embedding.');
+      ? 'manual embedding'
+      : 'local-model embedding';
+     lines.push(`4) Add ${source} score (semantic closeness of phrases).`);
+    lines.push('5) Final distance is weighted sum: 70% Rule-based + 30% embedding.');
   } else if (distanceResult.method === 'rule_fallback') {
-    lines.push('4) Embedding недоступен, поэтому финальная дистанция берётся из Rule-based.');
+    lines.push('4) Embedding is unavailable, so final distance uses Rule-based only.');
   } else {
-       lines.push('4) По умолчанию используется только Rule-based.');
+       lines.push('4) By default, only Rule-based is used.');
   }
 
   return lines.join('\n');
@@ -1026,11 +1026,11 @@ function badge(text, type = '') {
 
 function renderResult(result, input) {
   const labels = {
-    regular_only: 'Только регулярное значение',
-    double_meaning_with_modification: 'Разграничение нужно; натуралистичная форма задана',
-    double_meaning_modification_missing: 'Разграничение нужно; натуралистичная форма не задана',
-    insufficient_data: 'Недостаточно данных',
-    undetermined: 'Не определено'
+    regular_only: 'Regular value only',
+    double_meaning_with_modification: 'Distinction required; naturalistic form is set',
+    double_meaning_modification_missing: 'Distinction required; naturalistic form is missing',
+    insufficient_data: 'Insufficient data',
+    undetermined: 'Undetermined'
   };
 
   const types = {
@@ -1043,49 +1043,49 @@ function renderResult(result, input) {
 
   const distanceResult = result.distanceResult;
   const confidenceRu = {
-    high: 'высокая',
-    medium: 'средняя',
-    low: 'низкая'
+    high: 'high',
+    medium: 'medium',
+    low: 'low'
   };
 
   els.result.classList.remove('empty');
   els.result.innerHTML = `
     <div class="badges">
       ${badge(labels[result.classification] || result.classification, types[result.classification] || 'no')}
-      ${badge('Уверенность: ' + (confidenceRu[result.confidence] || result.confidence), 'warn')}
+      ${badge('Confidence: ' + (confidenceRu[result.confidence] || result.confidence), 'warn')}
     </div>
 
     <div class="result-grid">
       <div class="result-card">
-        <h3>Регулярная модель</h3>
+        <h3>Regular model</h3>
         <pre>${escapeHtml(input.regularWord || '—')}</pre>
       </div>
       <div class="result-card">
-        <h3>Натуралистичная модель</h3>
+        <h3>Naturalistic model</h3>
         <pre>${escapeHtml(input.naturalisticWord || '—')}</pre>
       </div>
       <div class="result-card">
-        <h3>Анализ компонентов</h3>
+        <h3>Component analysis</h3>
         <pre>${escapeHtml(componentSummaryText())}</pre>
       </div>
       <div class="result-card">
-        <h3>Логический анализ</h3>
+        <h3>Logical analysis</h3>
         <pre>${escapeHtml(input.logicalMeaning || '—')}</pre>
       </div>
       <div class="result-card">
-        <h3>Интернациональное значение</h3>
+        <h3>International meaning</h3>
         <pre>${escapeHtml(input.internationalMeaning || '—')}</pre>
       </div>
     </div>
 
     <div class="result-card">
-      <h3>Основания</h3>
+      <h3>Reasons</h3>
       <pre>${escapeHtml(result.reasons.join('\n'))}</pre>
     </div>
 
 
     <div class="result-card" style="margin-top: 10px;">
-      <h3>Как считается дистанция</h3>
+      <h3>How distance is computed</h3>
       <pre>${escapeHtml(distanceMethodText(distanceResult))}</pre>
     </div>
 
@@ -1098,8 +1098,8 @@ function renderResult(result, input) {
 
     ${distanceResult?.manualEmbeddingError ? `
       <div class="result-card" style="margin-top: 10px;">
-<h3>Ручной Embedding</h3>
-        <pre>${escapeHtml('Ответ нейросети не удалось распознать. Ожидается JSON с полями distance/similarity.')}</pre>
+<h3>Manual embedding</h3>
+        <pre>${escapeHtml('Neural model response could not be parsed. Expected JSON with distance/similarity fields.')}</pre>
       </div>
     ` : ''}
 
@@ -1107,11 +1107,11 @@ function renderResult(result, input) {
       <div class="result-card" style="margin-top: 10px;">
         <h3>Embedding</h3>
   <ul class="embedding-meta">
-          <li><strong>Источник:</strong> ${escapeHtml(distanceResult.embedding.provider || '—')}</li>
-          <li><strong>Модель:</strong> ${escapeHtml(distanceResult.embedding.model || '—')}</li>
-          <li><strong>Дистанция:</strong> ${typeof distanceResult.embedding.distance === 'number' ? escapeHtml(distanceResult.embedding.distance.toFixed(2)) : '—'}</li>
-          <li><strong>Вес в финале:</strong> ${distanceResult?.final?.weights?.embedding ? escapeHtml((distanceResult.final.weights.embedding * 100).toFixed(0)) : '0'}%</li>
-          ${distanceResult.embedding.reason ? `<li><strong>Комментарий:</strong> ${escapeHtml(distanceResult.embedding.reason)}</li>` : ''}
+          <li><strong>Source:</strong> ${escapeHtml(distanceResult.embedding.provider || '—')}</li>
+          <li><strong>Model:</strong> ${escapeHtml(distanceResult.embedding.model || '—')}</li>
+          <li><strong>Distance:</strong> ${typeof distanceResult.embedding.distance === 'number' ? escapeHtml(distanceResult.embedding.distance.toFixed(2)) : '—'}</li>
+          <li><strong>Final weight:</strong> ${distanceResult?.final?.weights?.embedding ? escapeHtml((distanceResult.final.weights.embedding * 100).toFixed(0)) : '0'}%</li>
+          ${distanceResult.embedding.reason ? `<li><strong>Comment:</strong> ${escapeHtml(distanceResult.embedding.reason)}</li>` : ''}
         </ul>
       </div>
     ` : ''}
@@ -1129,7 +1129,7 @@ function clearAll() {
   state.components = [];
   renderComponents();
   els.result.classList.add('empty');
-  els.result.textContent = 'Заполните поля и нажмите «Анализировать».';
+  els.result.textContent = 'Fill in fields and click “Analyze”.';
   saveState();
 }
 
@@ -1282,11 +1282,11 @@ function attachEvents() {
       const originalLabel = els.copyPromptBtn.textContent;
       try {
         await navigator.clipboard.writeText(promptText);
-        els.copyPromptBtn.textContent = 'Скопировано';
+        els.copyPromptBtn.textContent = 'Copied';
         hideBuildPromptButtonWithShift();
         flashCopiedPromptField();
       } catch (error) {
-        els.copyPromptBtn.textContent = 'Не удалось скопировать';
+        els.copyPromptBtn.textContent = 'Copy failed';
       } finally {
         setTimeout(() => {
           els.copyPromptBtn.textContent = originalLabel;

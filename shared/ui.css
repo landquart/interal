@@ -40,7 +40,7 @@ body {
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   gap: 10px;
   padding: 6px 14px;
 }
@@ -213,7 +213,7 @@ body.menu-open .side-menu-overlay {
 .menu-lang-btn {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   gap: 9px;
 }
 
@@ -261,4 +261,57 @@ body, button, input, textarea, select {
   outline: none;
   border-color: var(--line);
   background: color-mix(in srgb, var(--surface-soft) 90%, transparent);
+}
+
+.top-desktop-controls {
+  margin-left: auto;
+  display: none;
+  align-items: center;
+  gap: 8px;
+}
+
+.top-desktop-link {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  min-height: 44px;
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--text);
+  background: color-mix(in srgb, var(--surface-soft) 90%, transparent);
+}
+
+.top-desktop-link-main { font-size: .9rem; font-weight: 600; line-height: 1.1; }
+.top-desktop-link-sub { font-size: .74rem; opacity: .85; line-height: 1.1; }
+
+.top-desktop-theme-btn,
+.top-desktop-lang-btn {
+  border: 1px solid var(--line);
+  background: var(--surface-soft);
+  color: var(--text);
+  border-radius: 10px;
+  height: 44px;
+  padding: 0 10px;
+  cursor: pointer;
+  font: inherit;
+}
+
+.top-desktop-lang { display: inline-flex; gap: 6px; }
+.top-desktop-lang-btn { min-width: 48px; }
+.top-desktop-lang-btn.is-active { border-color: var(--text); font-weight: 700; }
+
+.menu-nav-link {
+  display: grid;
+  gap: 2px;
+}
+
+.menu-nav-main { font-weight: 600; }
+.menu-nav-sub { font-size: .82rem; opacity: .85; }
+
+@media (min-width: 980px) {
+  .top-desktop-controls { display: inline-flex; }
+  .top-menu-btn { display: none; }
 }
