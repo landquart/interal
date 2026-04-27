@@ -8,116 +8,25 @@
   <link rel="icon" type="image/png" sizes="64x64" href="favicon/favicon%20interal%2064.png" />
   <link rel="apple-touch-icon" sizes="512x512" href="favicon/favicon%20interal%20512.png" />
   <title>Interal</title>
-<link rel="stylesheet" href="shared/ui.css" />
-  
+  <link rel="stylesheet" href="shared/ui.css" />
+
   <style>
     * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: "Jost", "Helvetica Neue", Helvetica, Arial, sans-serif;
-      display: grid;
-      place-items: center;
-      min-height: 100vh;
-      padding: 16px;
-    }
-
-    .home-wrap {
-      display: grid;
-      place-items: center;
-    }
-
-    .home-brand {
-      display: grid;
-      justify-items: center;
-      gap: 12px;
-      text-decoration: none;
-      color: var(--text);
-      margin-bottom: 14px;
-      transition: transform .28s ease;
-    }
-
-    .home-brand:hover {
-      transform: scale(1.04);
-    }
-
-    .home-logo {
-      width: 132px;
-      height: 132px;
-      border-radius: 30px;
-      padding: 14px;
-      background: color-mix(in srgb, var(--surface) 74%, var(--bg));
-      border: 1px solid color-mix(in srgb, var(--line) 78%, var(--text));
-      box-shadow: 0 16px 34px rgba(0,0,0,.22);
-      animation: logoFloat 3.8s ease-in-out infinite;
-      transition: filter .28s ease;
-    }
-
-    .home-title {
-      margin: 0;
-      font-size: clamp(2rem, 4vw, 2.6rem);
-      letter-spacing: .5px;
-      transition: color .28s ease;
-    }
-
-    body.dark-theme .home-brand:hover .home-logo {
-      filter: brightness(1.18) saturate(1.08);
-    }
-
-    body:not(.dark-theme) .home-brand:hover .home-logo {
-      filter: brightness(.86) saturate(1.08);
-    }
-
-    body.dark-theme .home-brand:hover .home-title {
-      color: #ffe2a8;
-    }
-
-    body:not(.dark-theme) .home-brand:hover .home-title {
-      color: #5a3a1f;
-    }
-
-    .container {
-      width: min(460px, calc(100vw - 32px));
-      background: linear-gradient(170deg, color-mix(in srgb, var(--surface) 88%, transparent), var(--surface-soft));
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 24px;
-      text-align: center;
-      box-shadow: 0 22px 40px rgba(0,0,0,.20);
-    }
-
-    .tool-link {
-      display: block;
-      margin: 10px 0;
-      padding: 12px;
-      text-decoration: none;
-      color: var(--text);
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      background: color-mix(in srgb, var(--surface-soft) 88%, transparent);
-      transition: color .2s ease, border-color .2s ease, transform .2s ease, box-shadow .2s ease;
-    }
-
-    .tool-link:hover {
-      color: color-mix(in srgb, var(--text) 78%, var(--surface));
-      border-color: color-mix(in srgb, var(--line) 70%, var(--text));
-      transform: translateY(-1px);
-      box-shadow: 0 10px 18px rgba(0,0,0,.12);
-    }
-
-    .tool-link:focus-visible {
-      outline: none;
-      border-color: var(--text);
-      box-shadow: 0 0 0 4px color-mix(in srgb, var(--line) 54%, transparent);
-    }
-
-    @keyframes logoFloat {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-6px); }
-    }
+    body { margin: 0; font-family: "Jost", "Helvetica Neue", Helvetica, Arial, sans-serif; display: grid; place-items: center; min-height: 100vh; padding: 16px; }
+    .home-wrap { display: grid; place-items: center; }
+    .home-brand { display: grid; justify-items: center; gap: 12px; text-decoration: none; color: var(--text); margin-bottom: 14px; transition: transform .28s ease; }
+    .home-brand:hover { transform: scale(1.04); }
+    .home-logo { width: 132px; height: 132px; border-radius: 30px; padding: 14px; background: color-mix(in srgb, var(--surface) 74%, var(--bg)); border: 1px solid color-mix(in srgb, var(--line) 78%, var(--text)); box-shadow: 0 16px 34px rgba(0,0,0,.22); animation: logoFloat 3.8s ease-in-out infinite; transition: filter .28s ease; }
+    .home-title { margin: 0; font-size: clamp(2rem, 4vw, 2.6rem); letter-spacing: .5px; transition: color .28s ease; }
+    .container { width: min(460px, calc(100vw - 32px)); background: linear-gradient(170deg, color-mix(in srgb, var(--surface) 88%, transparent), var(--surface-soft)); border: 1px solid var(--line); border-radius: 18px; padding: 24px; text-align: center; box-shadow: 0 22px 40px rgba(0,0,0,.20); }
+    .tool-link { display: block; margin: 10px 0; padding: 12px; text-decoration: none; color: var(--text); border: 1px solid var(--line); border-radius: 12px; background: color-mix(in srgb, var(--surface-soft) 88%, transparent); transition: color .2s ease, border-color .2s ease, transform .2s ease, box-shadow .2s ease; }
+    .tool-link:hover { color: color-mix(in srgb, var(--text) 78%, var(--surface)); border-color: color-mix(in srgb, var(--line) 70%, var(--text)); transform: translateY(-1px); box-shadow: 0 10px 18px rgba(0,0,0,.12); }
+    .tool-link-main { display:block; font-weight:600; }
+    .tool-link-sub { display:block; font-size:.88rem; opacity:.85; margin-top:2px; }
+    @keyframes logoFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
   </style>
 </head>
 <body>
-
   <div class="home-wrap">
     <div class="container">
       <a class="home-brand" href="index.html" aria-label="Interal home">
@@ -125,11 +34,33 @@
         <h1 class="home-title">Interal</h1>
       </a>
 
-    <a class="tool-link" href="similarita/">Similaritá</a>
-    <a class="tool-link" href="determinatorofvalentyp/">Determinator of valen typ</a>
+      <a class="tool-link" href="similarita/">
+        <span class="tool-link-main">Similaritá</span>
+        <span class="tool-link-sub" data-i18n="home.similaritaSub">Похожесть</span>
+      </a>
+      <a class="tool-link" href="determinatorofvalentyp/">
+        <span class="tool-link-main">Determinator of valen typ</span>
+        <span class="tool-link-sub" data-i18n="home.determSub">Определитель типа значения</span>
+      </a>
+    </div>
   </div>
-</div>
 
   <script src="shared/ui.js"></script>
+  <script>
+    (function () {
+      const dict = {
+        ru: { 'home.similaritaSub': 'Похожесть', 'home.determSub': 'Определитель типа значения' },
+        en: { 'home.similaritaSub': 'Similarity', 'home.determSub': 'Value type determinator' }
+      };
+      function apply(lang) {
+        document.querySelectorAll('[data-i18n]').forEach((el) => {
+          const key = el.getAttribute('data-i18n');
+          el.textContent = (dict[lang] && dict[lang][key]) || (dict.ru[key] || el.textContent);
+        });
+      }
+      apply(localStorage.getItem('interal.lang') === 'en' ? 'en' : 'ru');
+      document.addEventListener('interal:languagechange', (e) => apply(e.detail.lang));
+    })();
+  </script>
 </body>
 </html>
