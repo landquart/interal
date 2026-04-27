@@ -269,88 +269,62 @@ body.dark-theme #explainText {
 
 <!-- 1. Graphic similaritá -->
 <div class="card">
-    <h2>Graphic similaritá</h2>
+    <h2 data-i18n="sim.graphicTitle">Graphic similaritá</h2>
 
-    <label>Vord-hypothese</label>
+    <label data-i18n="sim.wordHypothesis">Vord-hypothese</label>
     <input id="g1" type="text">
 
-    <label>Vord in alter lingue</label>
+    <label data-i18n="sim.wordOtherLanguage">Vord in alter lingue</label>
     <input id="g2" type="text">
 
-    <button onclick="calcGraphic()">Calcular</button>
+    <button id="calcGraphicBtn" onclick="calcGraphic()" data-i18n="sim.calculate">Calcular</button>
 
     <div id="graphicResult" class="result">—</div>
 
-<button id="graphicExplainBtn" style="display:none" onclick="showExplain('graphic')">
-    Explanar
-</button>
+<button id="graphicExplainBtn" style="display:none" onclick="showExplain('graphic')" data-i18n="sim.explain">Explanar</button>
 
 </div>
 
 <!-- 2. Phonetic similaritá -->
 <div class="card">
-    <h2>Phonetic similaritá</h2>
+    <h2 data-i18n="sim.phoneticTitle">Phonetic similaritá</h2>
 
-    <label>Vord-hypothese (IPA)</label>
+    <label data-i18n="sim.wordHypothesisIpa">Vord-hypothese (IPA)</label>
     <input id="p1" type="text">
 
-    <label>Vord in alter lingue (IPA)</label>
+    <label data-i18n="sim.wordOtherLanguageIpa">Vord in alter lingue (IPA)</label>
     <input id="p2" type="text">
 
-    <button onclick="calcPhonetic()">Calcular</button>
+    <button id="calcPhoneticBtn" onclick="calcPhonetic()" data-i18n="sim.calculate">Calcular</button>
 
     <div id="phoneticResult" class="result">—</div>
 
-<button id="phoneticExplainBtn" style="display:none" onclick="showExplain('phonetic')">
-    Explanar
-</button>
+<button id="phoneticExplainBtn" style="display:none" onclick="showExplain('phonetic')" data-i18n="sim.explain">Explanar</button>
 
 </div>
 
 <!-- 3. Calculation of phonetic similaritá -->
 <div class="card info-card">
 
-    <h2>Calculation of phonetic similaritá</h2>
+    <h2 data-i18n="sim.calcPhoneticTitle">Calculation of phonetic similaritá</h2>
 
-    <p>
-        Vu necessa pastan phonetic transcription of Interalen vord in
-        International Phonetic Alphabet (IPA) in linea
-        <b>"Vord-hypothese"</b>.
-        Com vord posse esser reducet intro phonetic scription,
-        Vu posse cognosceskan in libre
-        <i>"International auxiliari lingua INTERAL"</i>,
-        sectionus A) Alphabet (§3) e
-        10. Regules of lection (§42–58).
+    <p data-i18n="sim.infoP1">
+        Вам необходимо вставить фонетическую транскрипцию слова на Interal в Международном фонетическом алфавите (МФА) в строку «Гипотеза слова».
     </p>
 
-    <p>
-        In linea <b>"Vord in alter lingue"</b> pasta se phonetic transcription
-        in IPA in alquel ethnic lingue.
-        Infra es indicat saytes por divers lingues, che quel Vu posse trovar
-        phonetic transcription of desirat vord.
+    <p data-i18n="sim.infoP2">
+        В строку «Слово на другом языке» вставляется фонетическая транскрипция в IPA на соответствующем этническом языке. Ниже указаны сайты для разных языков, где Вы можете найти фонетическую транскрипцию нужного слова.
     </p>
 
     <ul>
-        <li>
-            Anglese —
-            <a href="https://www.internationalphoneticalphabet.org/english-to-ipa-translator/"
-               target="_blank">
-                internationalphoneticalphabet.org
-            </a>
+        <li><span data-i18n="sim.sourceEn">Английский</span> —
+            <a href="https://www.internationalphoneticalphabet.org/english-to-ipa-translator/" target="_blank">internationalphoneticalphabet.org</a>
         </li>
-        <li>
-            Germanian, hispanian, fransese, russian, grecian —
-            <a href="https://hellpanderrr.github.io/wiktionary_pron/index.html"
-               target="_blank">
-                wiktionary_pron
-            </a>
+        <li><span data-i18n="sim.sourceSet">Немецкий, испанский, французский, русский, греческий</span> —
+            <a href="https://hellpanderrr.github.io/wiktionary_pron/index.html" target="_blank">wiktionary_pron</a>
         </li>
-        <li>
-            Italian —
-            <a href="https://easypronunciation.com/en/italian-phonetic-transcription-converter"
-               target="_blank">
-                easypronunciation.com
-            </a>
+        <li><span data-i18n="sim.sourceIt">Итальянский</span> —
+            <a href="https://easypronunciation.com/en/italian-phonetic-transcription-converter" target="_blank">easypronunciation.com</a>
         </li>
     </ul>
 
@@ -380,9 +354,7 @@ body.dark-theme #explainText {
 
         <div id="explainText" style="overflow:auto; flex:1 1 auto; min-height:0;"></div>
 
-        <button onclick="closeExplain()" style="margin-top:10px">
-            Cluder
-        </button>
+        <button onclick="closeExplain()" style="margin-top:10px" data-i18n="sim.close">Cluder</button>
     </div>
 </div>
 
@@ -403,6 +375,66 @@ const explainText = document.getElementById("explainText");
 
 let graphicExplanation = "";
 let phoneticExplanation = "";
+
+
+const i18n = {
+  ru: {
+    "sim.graphicTitle": "Графическая похожесть",
+    "sim.wordHypothesis": "Гипотеза слова",
+    "sim.wordOtherLanguage": "Слово на другом языке",
+    "sim.calculate": "Рассчитать",
+    "sim.explain": "Пояснение",
+    "sim.phoneticTitle": "Фонетическая похожесть",
+    "sim.wordHypothesisIpa": "Гипотеза слова (IPA)",
+    "sim.wordOtherLanguageIpa": "Слово на другом языке (IPA)",
+    "sim.calcPhoneticTitle": "Расчёт фонетической похожести",
+    "sim.infoP1": "Вам необходимо вставить фонетическую транскрипцию слова на Interal в Международном фонетическом алфавите (МФА) в строку «Гипотеза слова».",
+    "sim.infoP2": "В строку «Слово на другом языке» вставляется фонетическая транскрипция в IPA на соответствующем этническом языке. Ниже указаны сайты для разных языков, где Вы можете найти фонетическую транскрипцию нужного слова.",
+    "sim.sourceEn": "Английский",
+    "sim.sourceSet": "Немецкий, испанский, французский, русский, греческий",
+    "sim.sourceIt": "Итальянский",
+    "sim.close": "Закрыть",
+    "sim.fillGraphic": "Пожалуйста, заполните оба слова",
+    "sim.fillPhonetic": "Пожалуйста, заполните оба слова в IPA",
+    "sim.formula": "Формула:",
+    "sim.result": "Результат"
+  },
+  en: {
+    "sim.graphicTitle": "Graphic similarity",
+    "sim.wordHypothesis": "Word hypothesis",
+    "sim.wordOtherLanguage": "Word in another language",
+    "sim.calculate": "Calculate",
+    "sim.explain": "Explain",
+    "sim.phoneticTitle": "Phonetic similarity",
+    "sim.wordHypothesisIpa": "Word hypothesis (IPA)",
+    "sim.wordOtherLanguageIpa": "Word in another language (IPA)",
+    "sim.calcPhoneticTitle": "Calculation of phonetic similarity",
+    "sim.infoP1": "You need to insert the IPA transcription of the Interal word into the \"Word hypothesis\" field.",
+    "sim.infoP2": "In the \"Word in another language\" field, insert the IPA transcription in the corresponding ethnic language. Use the websites below to find transcription.",
+    "sim.sourceEn": "English",
+    "sim.sourceSet": "German, Spanish, French, Russian, Greek",
+    "sim.sourceIt": "Italian",
+    "sim.close": "Close",
+    "sim.fillGraphic": "Please fill in both words",
+    "sim.fillPhonetic": "Please fill in both IPA words",
+    "sim.formula": "Formula:",
+    "sim.result": "Result"
+  }
+};
+
+function t(key) {
+  const lang = localStorage.getItem('interal.lang') === 'en' ? 'en' : 'ru';
+  return (i18n[lang] && i18n[lang][key]) || i18n.ru[key] || key;
+}
+
+function applyTranslations() {
+  const lang = localStorage.getItem('interal.lang') === 'en' ? 'en' : 'ru';
+  document.querySelectorAll('[data-i18n]').forEach((el) => {
+    const key = el.getAttribute('data-i18n');
+    el.textContent = (i18n[lang] && i18n[lang][key]) || i18n.ru[key] || el.textContent;
+  });
+}
+
 
 function normalize(text){
     return text.trim().toLowerCase();
@@ -546,7 +578,7 @@ function calcGraphic() {
     const a = normalize(g1.value);
     const b = normalize(g2.value);
     if (!a || !b) {
-        graphicResult.textContent = "Plis inscriber ambi vordes";
+        graphicResult.textContent = t("sim.fillGraphic");
         graphicExplainBtn.style.display = "none";
         return;
     }
@@ -557,18 +589,18 @@ function calcGraphic() {
    const sim = baseSim;
 
     graphicExplanation =
-`Graphic similaritá
+`${t("sim.graphicTitle")}
 
-Formula:
-1 − (Levenshteinen distantia/Maximal vorden longituda)
+${t("sim.formula")}
+1 − (Levenshtein distance / max length)
 
-Vord A: ${a}
-Vord B: ${b}
+Word A: ${a}
+Word B: ${b}
 
-Levenshteinen distantia: ${d}
-Maximal longituda: ${maxLen}
+Levenshtein distance: ${d}
+Max length: ${maxLen}
 
-Resultate:
+${t("sim.result")}:
 ${sim.toFixed(3)}
 `;
 
@@ -580,7 +612,7 @@ function calcPhonetic() {
     const a = normalize(p1.value);
     const b = normalize(p2.value);
     if (!a || !b) {
-        phoneticResult.textContent = "Plis inscriber ambi vordes in IPA";
+        phoneticResult.textContent = t("sim.fillPhonetic");
         phoneticExplainBtn.style.display = "none";
         return;
     }
@@ -594,22 +626,22 @@ function calcPhonetic() {
    const sim = baseSim;
 
     phoneticExplanation =
-`Phonetic similaritá
+`${t("sim.phoneticTitle")}
 
-Formula:
-1 − (Psycolevenshtein/Maximal vorden longituda)
+${t("sim.formula")}
+1 − (Psycho-Levenshtein / max token length)
 
 IPA A: ${a}
 IPA B: ${b}
-Tókenes A: ${tokensA.join(" ")}
-Tókenes B: ${tokensB.join(" ")}
+Tokens A: ${tokensA.join(" ")}
+Tokens B: ${tokensB.join(" ")}
 
-Usat similari sones:
+Similar sounds used:
 ${phoneticPairs.map(p => p[0] + " ↔ " + p[1]).join(", ")}
 
-Distantia: ${d}
+Distance: ${d}
 
-Resultate:
+${t("sim.result")}:
 ${sim.toFixed(3)}
 `;
 
@@ -646,6 +678,8 @@ explainModal.onclick = function(e){
         closeExplain();
     }
 };
+applyTranslations();
+document.addEventListener("interal:languagechange", applyTranslations);
 </script>
 <script src="../shared/ui.js"></script>
 

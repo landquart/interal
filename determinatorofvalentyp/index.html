@@ -184,6 +184,30 @@
     </div>
   </div>
 
+
+  <script>
+    (function () {
+      const tr = {
+        ru: {
+          title: 'Determinator of valen typ',
+          result: 'Результат'
+        },
+        en: {
+          title: 'Determinator of value type',
+          result: 'Result'
+        }
+      };
+      function apply(lang) {
+        const l = lang === 'en' ? 'en' : 'ru';
+        const h1 = document.querySelector('.hero h1');
+        if (h1) h1.textContent = tr[l].title;
+        const h2 = document.querySelector('.panel h2');
+        if (h2) h2.textContent = tr[l].result;
+      }
+      apply(localStorage.getItem('interal.lang') === 'en' ? 'en' : 'ru');
+      document.addEventListener('interal:languagechange', (e) => apply(e.detail.lang));
+    })();
+  </script>
   <script src="../shared/ui.js"></script>
   <script src="app.js"></script>
 </body>

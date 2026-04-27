@@ -1,7 +1,33 @@
 (function () {
   const THEME_KEY = 'interal.theme';
+  const LANG_KEY = 'interal.lang';
   const inSubDir = /\/(similarita|determinatorofvalentyp)(\/|$)/.test(window.location.pathname);
   const prefix = inSubDir ? '../' : '';
+
+  const i18n = {
+    ru: {
+      openMenu: 'Открыть настройки',
+      menuTitle: 'Parametres (Настройки)',
+      navSimilarita: 'Similaritá',
+      navDeterminator: 'Determinator of valen typ',
+      themeToLight: '☀️ Светлая тема',
+      themeToDark: '🌙 Тёмная тема',
+      langLabel: 'Язык',
+      ru: 'Русский',
+      en: 'English'
+    },
+    en: {
+      openMenu: 'Open settings',
+      menuTitle: 'Parametres (Settings)',
+      navSimilarita: 'Similaritá',
+      navDeterminator: 'Determinator of valen typ',
+      themeToLight: '☀️ Light theme',
+      themeToDark: '🌙 Dark theme',
+      langLabel: 'Language',
+      ru: 'Русский',
+      en: 'English'
+    }
+  };
 
   const topNav = document.createElement('div');
   topNav.className = 'top-nav';
@@ -9,7 +35,6 @@
   const menuButton = document.createElement('button');
   menuButton.className = 'top-menu-btn';
   menuButton.type = 'button';
-  menuButton.setAttribute('aria-label', 'Открыть меню');
   menuButton.setAttribute('aria-expanded', 'false');
   menuButton.setAttribute('aria-controls', 'interal-side-menu');
   menuButton.textContent = '☰';
@@ -25,24 +50,25 @@
   const overlay = document.createElement('div');
   overlay.className = 'side-menu-overlay';
 
-  const topNavLinks = document.createElement('nav');
-  topNavLinks.className = 'top-nav-links';
-  topNavLinks.innerHTML = `
-    <a class="top-nav-link" href="${prefix}similarita/">Similaritá</a>
-    <a class="top-nav-link" href="${prefix}determinatorofvalentyp/">Determinator of valen typ</a>
-  `;
-
   const menu = document.createElement('aside');
   menu.className = 'side-menu';
   menu.id = 'interal-side-menu';
   menu.innerHTML = `
-  <h2 class="menu-title">Menú</h2>
-    <nav class="menu-links">
-      <a class="menu-link" href="${prefix}similarita/">Similaritá</a>
-      <a class="menu-link" href="${prefix}determinatorofvalentyp/">Determinator of valen typ</a>
-    </nav>
- <button class="menu-theme-btn" type="button"></button>
+    <h2 class="menu-title"></h2>
+    <button class="menu-theme-btn" type="button"></button>
+    <div class="menu-lang-wrap">
+      <p class="menu-lang-title"></p>
+      <div class="menu-lang-buttons">
+        <button class="menu-lang-btn" type="button" data-lang="ru"><span class="flag flag-ru" aria-hidden="true"></span><span>Русский</span></button>
+        <button class="menu-lang-btn" type="button" data-lang="en"><span class="flag flag-en" aria-hidden="true"></span><span>English</span></button>
+      </div>
+    </div>
   `;
+
+  function getLang() {
+    const saved = localStorage.getItem(LANG_KEY);
+    return saved === 'en' ? 'en' : 'ru';
+  }
 
   function closeMenu() {
     document.body.classList.remove('menu-open');
@@ -58,7 +84,8 @@
     document.body.classList.toggle('dark-theme', theme === 'dark');
     const btn = menu.querySelector('.menu-theme-btn');
     if (btn) {
-      btn.textContent = theme === 'dark' ? '☀️ Luminosi thema' : '🌙 Obscur thema';
+      const t = i18n[getLang()];
+      btn.textContent = theme === 'dark' ? t.themeToLight : t.themeToDark;
     }
   }
 
@@ -74,34 +101,32 @@
     applyTheme(saved === 'dark' ? 'dark' : 'light');
   }
 
-  function pathToSegment(pathname) {
-    if (pathname.includes('/similarita')) return 'similarita';
-    if (pathname.includes('/determinatorofvalentyp')) return 'determinatorofvalentyp';
-    return 'home';
-  }
+  function applyLanguage(lang) {
+    const nextLang = lang === 'en' ? 'en' : 'ru';
+    localStorage.setItem(LANG_KEY, nextLang);
+    document.documentElement.lang = nextLang;
 
-  function markActiveLink() {
-    const activeSegment = pathToSegment(window.location.pathname);
-    const navLinks = [
-      ...topNavLinks.querySelectorAll('a.top-nav-link'),
-      ...menu.querySelectorAll('a.menu-link')
-    ];
+    const t = i18n[nextLang];
+    menuButton.setAttribute('aria-label', t.openMenu);
+    menu.querySelector('.menu-title').textContent = t.menuTitle;
+    menu.querySelector('.menu-lang-title').textContent = t.langLabel;
 
-    navLinks.forEach((link) => {
-      const targetSegment = pathToSegment(new URL(link.href).pathname);
-      const isActive = targetSegment === activeSegment;
-      link.classList.toggle('is-active', isActive);
-      if (isActive) {
-        link.setAttribute('aria-current', 'page');
-      } else {
-        link.removeAttribute('aria-current');
-      }
+    menu.querySelectorAll('.menu-lang-btn').forEach((btn) => {
+      const code = btn.dataset.lang;
+      const label = btn.querySelector('span:last-child');
+      label.textContent = t[code];
+      btn.classList.toggle('is-active', code === nextLang);
     });
+
+    const currentTheme = document.body.classList.contains('dark-theme') ? 'dark' : 'light';
+    applyTheme(currentTheme);
+
+    document.dispatchEvent(new CustomEvent('interal:languagechange', { detail: { lang: nextLang } }));
   }
 
   const topNavWindow = document.createElement('div');
   topNavWindow.className = 'top-nav-window';
-  topNavWindow.append(menuButton, brandLink, topNavLinks);
+  topNavWindow.append(menuButton, brandLink);
 
   document.body.classList.add('has-global-menu');
   topNav.append(topNavWindow);
@@ -110,7 +135,7 @@
   document.body.prepend(topNav);
 
   initTheme();
-  markActiveLink();
+  applyLanguage(getLang());
 
   menuButton.addEventListener('click', function () {
     if (document.body.classList.contains('menu-open')) {
@@ -128,11 +153,13 @@
     }
   });
 
-  menu.querySelectorAll('a.menu-link').forEach((link) => {
-    link.addEventListener('click', closeMenu);
-  });
-
   menu.querySelector('.menu-theme-btn').addEventListener('click', function () {
     toggleTheme();
+  });
+
+  menu.querySelectorAll('.menu-lang-btn').forEach((btn) => {
+    btn.addEventListener('click', function () {
+      applyLanguage(btn.dataset.lang);
+    });
   });
 })();
