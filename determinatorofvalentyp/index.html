@@ -69,7 +69,7 @@
           </label>
           <div class="actions prompt-actions">
             <button id="buildPromptBtn" type="button" class="ghost">Build prompt</button>
-             <button id="copyPromptBtn" type="button" class="ghost">Copy prompt</button>
+             <button id="copyPromptBtn" type="button" class="ghost icon-copy-btn" aria-label="Copy prompt" title="Copy prompt"><img src="https://design.duolingo.com/7934a3abbc6a00dd9de7.svg" alt="" aria-hidden="true" /></button>
           </div>
           <label class="field compact-field">
             <span>Neural model response (paste here)</span>
@@ -189,7 +189,7 @@
     (function () {
       const tr = {
         ru: {
-          title: 'Determinator of valen typ',
+          title: 'Определитель типа значения',
           result: 'Result'
         },
         en: {
@@ -201,6 +201,7 @@
         const l = lang === 'en' ? 'en' : 'ru';
         const h1 = document.querySelector('.hero h1');
         if (h1) h1.textContent = tr[l].title;
+        document.title = tr[l].title;
         const h2 = document.querySelector('.panel h2');
         if (h2) h2.textContent = tr[l].result;
       }

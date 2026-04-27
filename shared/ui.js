@@ -4,14 +4,15 @@
   const inSubDir = /\/(similarita|determinatorofvalentyp)(\/|$)/.test(window.location.pathname);
   const prefix = inSubDir ? '../' : '';
 
+  const navLabels = {
+    similarita: 'Similaritá',
+    determinator: 'Determinator of valen typ'
+  };
+
   const i18n = {
     ru: {
       openMenu: 'Открыть настройки',
-      menuTitle: 'Menú (Меню)',
-      navSimilarita: 'Similaritá',
-      navSimilaritaSub: 'Похожесть',
-      navDeterminator: 'Determinator of valen typ',
-      navDeterminatorSub: 'Определитель типа значения',
+      menuTitle: 'Parametres (Настройки)',
       themeToLight: '☀️ Светлая тема',
       themeToDark: '🌙 Тёмная тема',
       langLabel: 'Язык',
@@ -20,11 +21,7 @@
     },
     en: {
       openMenu: 'Open settings',
-      menuTitle: 'Menú (Menu)',
-      navSimilarita: 'Similaritá',
-      navSimilaritaSub: 'Similarity',
-      navDeterminator: 'Determinator of valen typ',
-      navDeterminatorSub: 'Value type determinator',
+      menuTitle: 'Parametres (Настройки)',
       themeToLight: '☀️ Light theme',
       themeToDark: '🌙 Dark theme',
       langLabel: 'Language',
@@ -41,7 +38,16 @@
   menuButton.type = 'button';
   menuButton.setAttribute('aria-expanded', 'false');
   menuButton.setAttribute('aria-controls', 'interal-side-menu');
-  menuButton.textContent = '☰';
+
+  const menuButtonIcon = document.createElement('span');
+  menuButtonIcon.className = 'top-menu-btn-icon';
+  menuButtonIcon.textContent = '☰';
+
+  const menuButtonText = document.createElement('span');
+  menuButtonText.className = 'top-menu-btn-text';
+  menuButtonText.textContent = 'Parametres (Настройки)';
+
+  menuButton.append(menuButtonIcon, menuButtonText);
 
   const brandLink = document.createElement('a');
   brandLink.className = 'top-brand';
@@ -54,14 +60,8 @@
   const desktopControls = document.createElement('div');
   desktopControls.className = 'top-desktop-controls';
   desktopControls.innerHTML = `
-    <a class="top-desktop-link" href="${prefix}similarita/" data-nav="similarita">
-      <span class="top-desktop-link-main"></span>
-      <span class="top-desktop-link-sub"></span>
-    </a>
-    <a class="top-desktop-link" href="${prefix}determinatorofvalentyp/" data-nav="determinator">
-      <span class="top-desktop-link-main"></span>
-      <span class="top-desktop-link-sub"></span>
-    </a>
+    <a class="top-desktop-link" href="${prefix}similarita/" data-nav="similarita"><span class="top-desktop-link-main"></span></a>
+    <a class="top-desktop-link" href="${prefix}determinatorofvalentyp/" data-nav="determinator"><span class="top-desktop-link-main"></span></a>
   `;
 
   const overlay = document.createElement('div');
@@ -73,15 +73,15 @@
   menu.innerHTML = `
     <h2 class="menu-title"></h2>
     <nav class="menu-nav" aria-label="Site sections">
-      <a class="menu-nav-link" href="${prefix}similarita/" data-nav="similarita"><span class="menu-nav-main"></span><span class="menu-nav-sub"></span></a>
-      <a class="menu-nav-link" href="${prefix}determinatorofvalentyp/" data-nav="determinator"><span class="menu-nav-main"></span><span class="menu-nav-sub"></span></a>
+      <a class="menu-nav-link" href="${prefix}similarita/" data-nav="similarita"><span class="menu-nav-main"></span></a>
+      <a class="menu-nav-link" href="${prefix}determinatorofvalentyp/" data-nav="determinator"><span class="menu-nav-main"></span></a>
     </nav>
     <button class="menu-theme-btn" type="button"></button>
     <div class="menu-lang-wrap">
       <p class="menu-lang-title"></p>
       <div class="menu-lang-buttons">
-        <button class="menu-lang-btn" type="button" data-lang="ru"><span class="flag flag-ru" aria-hidden="true"></span><span>Русский</span></button>
-        <button class="menu-lang-btn" type="button" data-lang="en"><span class="flag flag-en" aria-hidden="true"></span><span>English</span></button>
+        <button class="menu-lang-btn" type="button" data-lang="ru"><img class="flag" alt="" src="https://static.wikia.nocookie.net/duolingo/images/5/52/Flag-ru.svg/revision/latest?cb=20160603165913" aria-hidden="true" /><span class="menu-lang-name">Русский</span></button>
+        <button class="menu-lang-btn" type="button" data-lang="en"><img class="flag" alt="" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.freeimages.com%2Fimages%2Flarge-previews%2Ffb0%2Fuk-flag-1444045.jpg&f=1&nofb=1&ipt=3cdd1f6e844f7b48421dc4a3050f5189814bc6dcd9a19e84d6cb64abcea7cc26" aria-hidden="true" /><span class="menu-lang-name">English</span></button>
       </div>
     </div>
   `;
@@ -134,23 +134,20 @@
     const similaritaLink = menu.querySelector('[data-nav="similarita"]');
     const determinatorLink = menu.querySelector('[data-nav="determinator"]');
     if (similaritaLink) {
-      similaritaLink.querySelector('.menu-nav-main').textContent = t.navSimilarita;
-      similaritaLink.querySelector('.menu-nav-sub').textContent = t.navSimilaritaSub;
+      similaritaLink.querySelector('.menu-nav-main').textContent = navLabels.similarita;
     }
     if (determinatorLink) {
-      determinatorLink.querySelector('.menu-nav-main').textContent = t.navDeterminator;
-      determinatorLink.querySelector('.menu-nav-sub').textContent = t.navDeterminatorSub;
+      determinatorLink.querySelector('.menu-nav-main').textContent = navLabels.determinator;
     }
 
     desktopControls.querySelectorAll('.top-desktop-link').forEach((link) => {
       const isSim = link.dataset.nav === 'similarita';
-      link.querySelector('.top-desktop-link-main').textContent = isSim ? t.navSimilarita : t.navDeterminator;
-      link.querySelector('.top-desktop-link-sub').textContent = isSim ? t.navSimilaritaSub : t.navDeterminatorSub;
+      link.querySelector('.top-desktop-link-main').textContent = isSim ? navLabels.similarita : navLabels.determinator;
     });
 
     menu.querySelectorAll('.menu-lang-btn').forEach((btn) => {
       const code = btn.dataset.lang;
-      const label = btn.querySelector('span:last-child');
+      const label = btn.querySelector('.menu-lang-name');
       label.textContent = t[code];
       btn.classList.toggle('is-active', code === nextLang);
     });
