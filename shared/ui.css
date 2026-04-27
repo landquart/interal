@@ -241,6 +241,16 @@ body, button, input, textarea, select {
   font-weight: 600;
 }
 
+@media (min-width: 900px) {
+  .top-nav-link.is-active {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 2px;
+    border-color: transparent;
+    background: transparent;
+  }
+}
+
 .menu-link:hover,
 .menu-theme-btn:hover,
 .menu-link:focus-visible,
