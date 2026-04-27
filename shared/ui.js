@@ -7,7 +7,7 @@
   const i18n = {
     ru: {
       openMenu: 'Открыть настройки',
-      menuTitle: 'Parametres (Настройки)',
+      menuTitle: 'Menú (Меню)',
       navSimilarita: 'Similaritá',
       navDeterminator: 'Determinator of valen typ',
       themeToLight: '☀️ Светлая тема',
@@ -18,7 +18,7 @@
     },
     en: {
       openMenu: 'Open settings',
-      menuTitle: 'Parametres (Settings)',
+      menuTitle: 'Menú (Menu)',
       navSimilarita: 'Similaritá',
       navDeterminator: 'Determinator of valen typ',
       themeToLight: '☀️ Light theme',
@@ -55,6 +55,10 @@
   menu.id = 'interal-side-menu';
   menu.innerHTML = `
     <h2 class="menu-title"></h2>
+    <nav class="menu-nav" aria-label="Site sections">
+      <a class="menu-nav-link" href="${prefix}similarita/" data-nav="similarita"></a>
+      <a class="menu-nav-link" href="${prefix}determinatorofvalentyp/" data-nav="determinator"></a>
+    </nav>
     <button class="menu-theme-btn" type="button"></button>
     <div class="menu-lang-wrap">
       <p class="menu-lang-title"></p>
@@ -110,6 +114,10 @@
     menuButton.setAttribute('aria-label', t.openMenu);
     menu.querySelector('.menu-title').textContent = t.menuTitle;
     menu.querySelector('.menu-lang-title').textContent = t.langLabel;
+    const similaritaLink = menu.querySelector('[data-nav="similarita"]');
+    const determinatorLink = menu.querySelector('[data-nav="determinator"]');
+    if (similaritaLink) similaritaLink.textContent = t.navSimilarita;
+    if (determinatorLink) determinatorLink.textContent = t.navDeterminator;
 
     menu.querySelectorAll('.menu-lang-btn').forEach((btn) => {
       const code = btn.dataset.lang;

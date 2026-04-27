@@ -142,6 +142,34 @@ body.menu-open .side-menu-overlay {
   font-weight: 700;
 }
 
+
+.menu-nav {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.menu-nav-link {
+  display: block;
+  border: 1px solid var(--line);
+  background: var(--surface-soft);
+  color: var(--text);
+  text-decoration: none;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font: inherit;
+  font-family: "Jost", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.menu-nav-link:hover,
+.menu-nav-link:focus-visible {
+  outline: none;
+  background: var(--text);
+  color: var(--surface);
+  border-color: var(--line);
+}
+
 .menu-theme-btn,
 .menu-lang-btn {
   width: 100%;
@@ -200,19 +228,24 @@ body.menu-open .side-menu-overlay {
   border-radius: 3px;
   border: 1px solid rgba(0, 0, 0, 0.15);
   display: inline-block;
+  overflow: hidden;
 }
 
 .flag-ru {
-  background: linear-gradient(to bottom, #fff 0 33%, #1f6bff 33% 66%, #e53935 66% 100%);
+  background: linear-gradient(to bottom, #ffffff 0 33.333%, #0c47b7 33.333% 66.666%, #d52b1e 66.666% 100%);
 }
 
 .flag-en {
   background:
-    linear-gradient(90deg, transparent 42%, #fff 42% 58%, transparent 58%),
-    linear-gradient(transparent 38%, #fff 38% 62%, transparent 62%),
-    linear-gradient(90deg, transparent 46%, #d81b34 46% 54%, transparent 54%),
-    linear-gradient(transparent 44%, #d81b34 44% 56%, transparent 56%),
-    #20458f;
+    linear-gradient(90deg, transparent 40%, #fff 40% 60%, transparent 60%),
+    linear-gradient(transparent 34%, #fff 34% 66%, transparent 66%),
+    linear-gradient(90deg, transparent 45%, #cf142b 45% 55%, transparent 55%),
+    linear-gradient(transparent 42%, #cf142b 42% 58%, transparent 58%),
+    linear-gradient(32deg, transparent 42%, #fff 42% 50%, transparent 50% 58%, #fff 58% 66%, transparent 66%),
+    linear-gradient(-32deg, transparent 42%, #fff 42% 50%, transparent 50% 58%, #fff 58% 66%, transparent 66%),
+    linear-gradient(32deg, transparent 45%, #cf142b 45% 48%, transparent 48% 52%, #cf142b 52% 55%, transparent 55%),
+    linear-gradient(-32deg, transparent 45%, #cf142b 45% 48%, transparent 48% 52%, #cf142b 52% 55%, transparent 55%),
+    #012169;
 }
 
 .has-global-menu {
