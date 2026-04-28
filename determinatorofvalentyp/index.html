@@ -80,14 +80,14 @@
       </details>
 
       <div class="actions">
-        <button id="analyzeBtn" type="button">Analyze</button>
+        <button id="analyzeBtn" type="button">Analyse</button>
         <button id="clearBtn" type="button" class="ghost">Clear</button>
       </div>
     </section>
 
     <section class="panel">
       <h2>Result</h2>
-      <div id="result" class="result empty">Fill in fields and click “Analyze”.</div>
+      <div id="result" class="result empty">Fill in fields and click “Analyse”.</div>
     </section>
   </main>
 
@@ -190,20 +190,117 @@
       const tr = {
         ru: {
           title: 'Определитель типа значения',
-          result: 'Result'
+          labels: [
+            '1 — Слово по регулярной модели (с разделителями)',
+            '2 — Компонентный анализ',
+            '3 — Логический анализ компонентов',
+            '4 — Международное значение эквивалентного деривата',
+            '5 — Слово по натуралистической модели (с разделителями)'
+          ],
+          noComponents: 'Компоненты не добавлены.',
+          detailsSummary: 'Локальная нейросеть для семантической дистанции',
+          useLocalModel: 'Использовать локальную модель',
+          promptBuild: 'Собрать промпт',
+          promptCopy: 'Копировать промпт',
+          analyse: 'Анализировать',
+          clear: 'Очистить',
+          result: 'Результат',
+          fillAndAnalyse: 'Заполните поля и нажмите «Анализировать».',
+          addItem: 'Добавить элемент',
+          rootWord: 'Основной корень',
+          component: 'Компонент (аффикс/окончание)',
+          back: 'Назад',
+          word: 'Слово',
+          meaning: 'Значение',
+          assimilationType: 'Тип ассимиляции',
+          category: 'Категория',
+          element: 'Элемент',
+          prefixAssimilation: 'Ассимиляция приставки',
+          prefixVariant: 'Вариант приставки',
+          add: 'Добавить'
         },
         en: {
           title: 'Determinator of valen typ',
-          result: 'Result'
+          labels: [
+            '1 — Word by regular model (with separators)',
+            '2 — Component analysis',
+            '3 — Logical analysis of components',
+            '4 — International meaning of equivalent derivative',
+            '5 — Word by naturalistic model (with separators)'
+          ],
+          noComponents: 'No components added.',
+          detailsSummary: 'Local neural model for semantic distance',
+          useLocalModel: 'Use local model',
+          promptBuild: 'Build prompt',
+          promptCopy: 'Copy prompt',
+          analyse: 'Analyse',
+          clear: 'Clear',
+          result: 'Result',
+          fillAndAnalyse: 'Fill in fields and click “Analyse”.',
+          addItem: 'Add item',
+          rootWord: 'Primary root word',
+          component: 'Component (affix/ending)',
+          back: 'Back',
+          word: 'Word',
+          meaning: 'Meaning',
+          assimilationType: 'Assimilation type',
+          category: 'Category',
+          element: 'Element',
+          prefixAssimilation: 'Prefix assimilation',
+          prefixVariant: 'Prefix variant',
+          add: 'Add'
         }
       };
       function apply(lang) {
         const l = lang === 'en' ? 'en' : 'ru';
+        const s = tr[l];
         const h1 = document.querySelector('.hero h1');
-        if (h1) h1.textContent = tr[l].title;
-        document.title = tr[l].title;
-        const h2 = document.querySelector('.panel h2');
-        if (h2) h2.textContent = tr[l].result;
+        if (h1) h1.textContent = s.title;
+        document.title = s.title;
+        document.querySelectorAll('.panel .field > span').forEach((el, i) => {
+          if (s.labels[i]) el.textContent = s.labels[i];
+        });
+        const cList = document.getElementById('componentsList');
+        if (cList && cList.classList.contains('empty')) cList.textContent = s.noComponents;
+        const detailsSummary = document.querySelector('.details-panel summary');
+        if (detailsSummary) detailsSummary.textContent = s.detailsSummary;
+        const useLocalModel = document.querySelector('.check-row span');
+        if (useLocalModel) useLocalModel.textContent = s.useLocalModel;
+        const copyBtn = document.getElementById('copyPromptBtn');
+        if (copyBtn) {
+          copyBtn.setAttribute('aria-label', s.promptCopy);
+          copyBtn.setAttribute('title', s.promptCopy);
+        }
+        const buildBtn = document.getElementById('buildPromptBtn');
+        if (buildBtn) buildBtn.textContent = s.promptBuild;
+        const analyseBtn = document.getElementById('analyzeBtn');
+        if (analyseBtn) analyseBtn.textContent = s.analyse;
+        const clearBtn = document.getElementById('clearBtn');
+        if (clearBtn) clearBtn.textContent = s.clear;
+        const resultTitle = document.querySelectorAll('.panel h2')[0];
+        if (resultTitle) resultTitle.textContent = s.result;
+        const resultBody = document.getElementById('result');
+        if (resultBody && resultBody.classList.contains('empty')) resultBody.textContent = s.fillAndAnalyse;
+        const chooserTitle = document.getElementById('chooserTitle');
+        if (chooserTitle) chooserTitle.textContent = s.addItem;
+        const chooseRootBtn = document.getElementById('chooseRootBtn');
+        if (chooseRootBtn) chooseRootBtn.textContent = s.rootWord;
+        const chooseComponentBtn = document.getElementById('chooseComponentBtn');
+        if (chooseComponentBtn) chooseComponentBtn.textContent = s.component;
+        const rootTitle = document.getElementById('rootTitle');
+        if (rootTitle) rootTitle.textContent = s.rootWord;
+        const componentTitle = document.getElementById('componentTitle');
+        if (componentTitle) componentTitle.textContent = s.component;
+        const prefixVariantTitle = document.getElementById('prefixVariantTitle');
+        if (prefixVariantTitle) prefixVariantTitle.textContent = s.prefixAssimilation;
+        document.querySelectorAll('.back-btn').forEach((el) => { el.textContent = s.back; });
+        document.querySelectorAll('#rootModal .field > span')[0].textContent = s.word;
+        document.querySelectorAll('#rootModal .field > span')[1].textContent = s.meaning;
+        document.querySelectorAll('#rootModal .field > span')[2].textContent = s.assimilationType;
+        document.querySelectorAll('#componentModal .field > span')[0].textContent = s.category;
+        document.querySelectorAll('#componentModal .field > span')[1].textContent = s.element;
+        document.querySelectorAll('#prefixVariantModal .field > span')[0].textContent = s.prefixVariant;
+        document.querySelectorAll('.modal-actions button').forEach((el) => { el.textContent = s.add; });
       }
       apply(localStorage.getItem('interal.lang') === 'en' ? 'en' : 'ru');
       document.addEventListener('interal:languagechange', (e) => apply(e.detail.lang));

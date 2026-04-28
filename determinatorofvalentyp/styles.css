@@ -385,6 +385,22 @@ button.ghost,
   width: 20px;
   height: 20px;
   display: block;
+  filter: brightness(0) saturate(100%) invert(18%) sepia(19%) saturate(617%) hue-rotate(344deg) brightness(95%) contrast(90%);
+  transition: filter 0.22s ease;
+}
+
+.icon-copy-btn:hover img,
+.icon-copy-btn:focus-visible img {
+  filter: brightness(0) saturate(100%) invert(9%) sepia(20%) saturate(953%) hue-rotate(346deg) brightness(84%) contrast(93%);
+}
+
+body.dark-theme .icon-copy-btn img {
+  filter: brightness(0) saturate(100%) invert(83%) sepia(30%) saturate(536%) hue-rotate(332deg) brightness(100%) contrast(95%);
+}
+
+body.dark-theme .icon-copy-btn:hover img,
+body.dark-theme .icon-copy-btn:focus-visible img {
+  filter: brightness(0) saturate(100%) invert(95%) sepia(21%) saturate(456%) hue-rotate(316deg) brightness(105%) contrast(101%);
 }
 
 .icon-copy-btn.is-copied {
