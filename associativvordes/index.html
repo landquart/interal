@@ -41,7 +41,7 @@
     h1 { margin: 0 0 8px; font-size: 30px; }
     h2 { margin: 0 0 14px; font-size: 21px; }
     h3 { margin: 0 0 10px; font-size: 17px; }
-    p { color: var(--muted); margin: 0; }
+    p { color: color-mix(in srgb, var(--text) 78%, var(--muted)); margin: 0; }
 
     main {
       max-width: 1180px;
@@ -111,9 +111,10 @@
 
     .actions-row { display: flex; flex-wrap: wrap; gap: 10px; }
     .actions-row button { flex: 0 1 auto; width: auto; min-width: 150px; padding-inline: 18px; }
+    .fit.short { width: auto; min-width: 0; padding-inline: 12px; }
     .actions-row button#searchBtn { min-width: 230px; }
 
-    .muted { color: var(--muted); }
+    .muted { color: color-mix(in srgb, var(--text) 72%, var(--muted)); }
     .note { background: var(--accent-2); padding: 12px; border-radius: 14px; color: var(--text); }
 
     .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
@@ -456,7 +457,7 @@
             <h3>${lang.name}</h3>
             <p class="muted">Группа: ${lang.group}. Балл языка: <strong>${score.normalized.toFixed(3)}</strong>; сумма весов: <strong>${score.sum.toFixed(3)}</strong>.</p>
           </div>
-          <button class="secondary fit" onclick="addRow('${activeLang}')">Добавить слово</button>
+          <button class="secondary fit short" onclick="addRow('${activeLang}')">Добавить слово</button>
         </div>
         <table>
           <thead>
