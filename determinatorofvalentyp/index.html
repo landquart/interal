@@ -54,11 +54,11 @@
           <span>Use local model</span>
         </label>
         <label class="field compact-field">
-          <span>Ollama URL</span>
+          <span id="ollamaUrlLabel">Ollama URL</span>
            <input id="ollamaUrl" type="text" value="http://localhost:11434" />
         </label>
         <label class="field compact-field">
-          <span>Model</span>
+          <span id="ollamaModelLabel">Model</span>
            <input id="ollamaModel" type="text" value="qwen3-embedding" />
         </label>
 
@@ -86,7 +86,7 @@
     </section>
 
     <section class="panel">
-      <h2>Result</h2>
+      <h2 id="resultTitle">Result</h2>
       <div id="result" class="result empty">Fill in fields and click “Analyse”.</div>
     </section>
   </main>
@@ -226,7 +226,7 @@
           manualResponsePlaceholder: 'Например: {"distance":0.38,"similarity":0.62,"reason":"..."}',
           manualHint: 'Если ответ предоставлен, дистанция считается как Rule-based + manual embedding (70/30).',
           addComponentAria: 'Добавить компонент',
-          placeholders: ['re/vis/ion','vision again','revision','re/vis/ion/u','vid/er','see']
+          placeholders: ['re/vis/ion','видение снова','ревизия','re/vis/ion/u','vid/er','видеть']
         },
         en: {
           title: 'Determinator of valen typ',
@@ -260,7 +260,7 @@
           add: 'Add',
           ollamaUrl: 'Ollama URL',
           model: 'Model',
-          manualPromptLabel: 'Prompt for external neural model (manual embedding)',
+          manualPromptLabel: 'Prompt for external neural model (copy to AI and translate answer format)',
           manualPromptPlaceholder: 'Click “Build prompt”',
           manualResponseLabel: 'Neural model response (paste here)',
           manualResponsePlaceholder: 'For example: {"distance":0.38,"similarity":0.62,"reason":"..."}',
@@ -295,7 +295,7 @@
         if (analyseBtn) analyseBtn.textContent = s.analyse;
         const clearBtn = document.getElementById('clearBtn');
         if (clearBtn) clearBtn.textContent = s.clear;
-        const resultTitle = document.querySelectorAll('.panel h2')[0];
+        const resultTitle = document.getElementById('resultTitle');
         if (resultTitle) resultTitle.textContent = s.result;
         const resultBody = document.getElementById('result');
         if (resultBody && resultBody.classList.contains('empty')) resultBody.textContent = s.fillAndAnalyse;
@@ -323,9 +323,10 @@
         const manualLabels = document.querySelectorAll('.manual-embedding-box .field > span');
         if (manualLabels[0]) manualLabels[0].textContent = s.manualPromptLabel;
         if (manualLabels[1]) manualLabels[1].textContent = s.manualResponseLabel;
-        const compactLabels = document.querySelectorAll('.compact-field > span');
-        if (compactLabels[1]) compactLabels[1].textContent = s.ollamaUrl;
-        if (compactLabels[2]) compactLabels[2].textContent = s.model;
+        const ollamaUrlLabel = document.getElementById('ollamaUrlLabel');
+        if (ollamaUrlLabel) ollamaUrlLabel.textContent = s.ollamaUrl;
+        const ollamaModelLabel = document.getElementById('ollamaModelLabel');
+        if (ollamaModelLabel) ollamaModelLabel.textContent = s.model;
         const manualHint = document.querySelector('.manual-hint');
         if (manualHint) manualHint.textContent = s.manualHint;
         const addBtn = document.getElementById('addComponentBtn');
