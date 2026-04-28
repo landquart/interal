@@ -1,8 +1,10 @@
 (function () {
   const THEME_KEY = 'interal.theme';
   const LANG_KEY = 'interal.lang';
-  const inSubDir = /\/(similarita|determinatorofvalentyp|associativvordes)(\/|$)/.test(window.location.pathname);
-  const prefix = inSubDir ? '../' : '';
+  const currentScript = document.currentScript;
+  const sharedPath = currentScript ? new URL(currentScript.src, window.location.href).pathname : '/shared/ui.js';
+  const siteRoot = sharedPath.replace(/\/shared\/ui\.js$/, '/');
+  const joinUrl = (path) => new URL(path.replace(/^\//, ''), window.location.origin + siteRoot).pathname;
 
   const i18n = {
     ru: {
@@ -58,18 +60,18 @@
 
   const brandLink = document.createElement('a');
   brandLink.className = 'top-brand';
-  brandLink.href = `${prefix}index.html`;
+  brandLink.href = joinUrl('index.html');
   brandLink.innerHTML = `
-    <img class="top-brand-logo" src="${prefix}favicon/favicon%20interal%2064.png" alt="Interal logo" />
+    <img class="top-brand-logo" src="${joinUrl('favicon/favicon%20interal%2064.png')}" alt="Interal logo" />
     <span class="top-brand-text">Interal</span>
   `;
 
   const desktopControls = document.createElement('div');
   desktopControls.className = 'top-desktop-controls';
   desktopControls.innerHTML = `
-    <a class="top-desktop-link" href="${prefix}similarita/" data-nav="similarita"><span class="top-desktop-link-main"></span></a>
-    <a class="top-desktop-link" href="${prefix}associativvordes/" data-nav="associativ"><span class="top-desktop-link-main"></span></a>
-    <a class="top-desktop-link" href="${prefix}determinatorofvalentyp/" data-nav="determinator"><span class="top-desktop-link-main"></span></a>
+    <a class="top-desktop-link" href="${joinUrl('similarita/')}" data-nav="similarita"><span class="top-desktop-link-main"></span></a>
+    <a class="top-desktop-link" href="${joinUrl('associativvordes/')}" data-nav="associativ"><span class="top-desktop-link-main"></span></a>
+    <a class="top-desktop-link" href="${joinUrl('determinatorofvalentyp/')}" data-nav="determinator"><span class="top-desktop-link-main"></span></a>
   `;
 
   const overlay = document.createElement('div');
@@ -81,9 +83,9 @@
   menu.innerHTML = `
     <h2 class="menu-title"></h2>
     <nav class="menu-nav" aria-label="Site sections">
-      <a class="menu-nav-link" href="${prefix}similarita/" data-nav="similarita"><span class="menu-nav-main"></span></a>
-      <a class="menu-nav-link" href="${prefix}associativvordes/" data-nav="associativ"><span class="menu-nav-main"></span></a>
-      <a class="menu-nav-link" href="${prefix}determinatorofvalentyp/" data-nav="determinator"><span class="menu-nav-main"></span></a>
+      <a class="menu-nav-link" href="${joinUrl('similarita/')}" data-nav="similarita"><span class="menu-nav-main"></span></a>
+      <a class="menu-nav-link" href="${joinUrl('associativvordes/')}" data-nav="associativ"><span class="menu-nav-main"></span></a>
+      <a class="menu-nav-link" href="${joinUrl('determinatorofvalentyp/')}" data-nav="determinator"><span class="menu-nav-main"></span></a>
     </nav>
     <button class="menu-theme-btn" type="button"></button>
     <div class="menu-lang-wrap">

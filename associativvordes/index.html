@@ -106,6 +106,10 @@
     .row > * { flex: 1; }
     .row .fit { flex: 0 0 auto; }
 
+    .actions-row { display: flex; flex-wrap: wrap; gap: 10px; }
+    .actions-row button { flex: 0 1 auto; width: auto; min-width: 150px; padding-inline: 18px; }
+    .actions-row button#searchBtn { min-width: 230px; }
+
     .muted { color: var(--muted); }
     .note { background: var(--accent-2); padding: 12px; border-radius: 14px; color: #5b411d; }
 
@@ -187,7 +191,7 @@
         <label for="maxModels">Максимум моделей на язык</label>
         <input id="maxModels" type="number" min="1" max="20" value="5" />
       </div>
-      <div class="row" style="grid-column: 1 / -1;">
+      <div class="row actions-row" style="grid-column: 1 / -1;">
         <button id="searchBtn">Найти дериваты и посчитать</button>
         <button class="secondary" id="exportBtn">Экспорт JSON</button>
         <button class="secondary" id="importBtn">Импорт JSON</button>
