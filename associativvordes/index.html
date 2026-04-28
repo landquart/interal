@@ -10,13 +10,12 @@
   <link rel="stylesheet" href="../shared/ui.css" />
   <style>
     :root {
-      --bg: #f7d185;
-      --card: #ffedbf;
-      --text: #2b1f14;
-      --muted: #6b4d33;
-      --line: rgba(59, 43, 29, 0.35);
-      --accent: #3b2b1d;
-      --accent-2: #fff0c8;
+      --card: var(--surface);
+      --text: var(--text);
+      --muted: var(--muted);
+      --line: color-mix(in srgb, var(--text) 24%, transparent);
+      --accent: var(--text);
+      --accent-2: var(--surface-soft);
       --bad: #8b2f2f;
       --ok: #2f6534;
       --warn: #7c520d;
@@ -54,7 +53,7 @@
 
     .card {
       background: var(--card);
-      border: 1px solid #d6b16e;
+      border: 1px solid var(--line);
       border-radius: 18px;
       box-shadow: var(--shadow);
       padding: 18px;
@@ -68,10 +67,10 @@
     input, select, textarea, button {
       font: inherit;
       border-radius: 12px;
-      border: 1px solid #d6b16e;
+      border: 1px solid var(--line);
       padding: 10px 12px;
       width: 100%;
-      background: #fff6df;
+      background: color-mix(in srgb, var(--surface) 80%, white);
       color: var(--text);
     }
 
@@ -86,7 +85,7 @@
     }
 
     button.secondary {
-      background: #fff6df;
+      background: color-mix(in srgb, var(--surface) 80%, white);
       color: var(--text);
       border-color: var(--line);
     }
@@ -101,6 +100,10 @@
       border-radius: 10px;
       font-size: 13px;
     }
+    button:hover {
+      filter: brightness(1.07);
+      transform: translateY(-1px);
+    }
 
     .row { display: flex; gap: 10px; align-items: center; }
     .row > * { flex: 1; }
@@ -111,13 +114,13 @@
     .actions-row button#searchBtn { min-width: 230px; }
 
     .muted { color: var(--muted); }
-    .note { background: var(--accent-2); padding: 12px; border-radius: 14px; color: #5b411d; }
+    .note { background: var(--accent-2); padding: 12px; border-radius: 14px; color: var(--text); }
 
     .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
     .tab {
       width: auto;
       padding: 8px 11px;
-      background: #fff6df;
+      background: color-mix(in srgb, var(--surface) 80%, white);
       color: var(--text);
       border-color: var(--line);
     }
@@ -147,10 +150,10 @@
       gap: 12px;
     }
     .metric {
-      border: 1px solid #d6b16e;
+      border: 1px solid var(--line);
       border-radius: 16px;
       padding: 14px;
-      background: #fffdfa;
+      background: color-mix(in srgb, var(--surface) 84%, white);
     }
     .metric strong { font-size: 22px; display: block; }
     .metric span { color: var(--muted); font-size: 13px; }
@@ -162,6 +165,11 @@
       .row { flex-direction: column; align-items: stretch; }
       table { display: block; overflow-x: auto; white-space: nowrap; }
     }
+
+    body.dark-theme .status.ok { background: #243526; color: #8fd69a; }
+    body.dark-theme .status.bad { background: #442524; color: #f0aaaa; }
+    body.dark-theme .status.warn { background: #46351f; color: #ffd37d; }
+    body.dark-theme .metric strong { color: #fff1c8; }
   </style>
 </head>
 <body>
@@ -172,6 +180,10 @@
 
   <main>
     <section class="card grid grid-2">
+      <div style="grid-column: 1 / -1;">
+        <h2>1) Параметры поиска</h2>
+        <p class="muted">Сначала задайте корень и тип элемента, затем запустите расчёт.</p>
+      </div>
       <div>
         <label for="rootInput">Кандидатный корень / предлог</label>
         <input id="rootInput" value="ocul" placeholder="например: ocul, regul, inter" />
@@ -200,26 +212,26 @@
     </section>
 
     <section class="card">
-      <h2>Итог</h2>
+      <h2>2) Итог</h2>
       <div class="result-box" id="resultBox"></div>
       <div style="margin-top: 12px;" id="decisionBox"></div>
     </section>
 
     <section class="card">
-      <h2>Языки и дериваты</h2>
+      <h2>3) Языки и дериваты</h2>
       <div class="tabs" id="tabs"></div>
       <div id="languagePanel"></div>
     </section>
 
     <section class="card grid grid-2">
       <div>
-        <h2>Локальная база дериватов</h2>
+        <h2>4) Локальная база дериватов</h2>
         <p class="muted" style="margin-bottom:10px;">Можно заменить на реальные JSON-данные из Kaikki/Wiktionary. Формат: язык → массив слов.</p>
         <textarea id="derivativeDataInput"></textarea>
         <button class="secondary" id="loadDerivativeDataBtn" style="margin-top:10px;">Загрузить базу дериватов</button>
       </div>
       <div>
-        <h2>Локальная база частотных рангов</h2>
+        <h2>5) Локальная база частотных рангов</h2>
         <p class="muted" style="margin-bottom:10px;">Формат: язык → { слово: ранг }. Можно сгенерировать из wordfreq/top_n_list.</p>
         <textarea id="frequencyDataInput"></textarea>
         <button class="secondary" id="loadFrequencyDataBtn" style="margin-top:10px;">Загрузить частоты</button>
