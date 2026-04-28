@@ -324,9 +324,34 @@ const uiText = {
   }
 };
 
+const categoryNames = {
+  'Окончания': { ru: 'Окончания', en: 'Endings' },
+  'Суффиксы существительных': { ru: 'Суффиксы существительных', en: 'Noun suffixes' },
+  'Суффиксы научные': { ru: 'Суффиксы научные', en: 'Scientific suffixes' },
+  'Суффиксы числительных': { ru: 'Суффиксы числительных', en: 'Numeral suffixes' },
+  'Суффиксы прилагательных': { ru: 'Суффиксы прилагательных', en: 'Adjective suffixes' },
+  'Суффиксы глаголов': { ru: 'Суффиксы глаголов', en: 'Verb suffixes' },
+  'Приставки': { ru: 'Приставки', en: 'Prefixes' },
+  'Приставки научные': { ru: 'Приставки научные', en: 'Scientific prefixes' }
+};
+
 function t(key) {
   const lang = currentLang();
   return (uiText[lang] && uiText[lang][key]) || uiText.ru[key] || key;
+}
+
+function localizeCategory(category) {
+  const lang = currentLang();
+  return categoryNames[category]?.[lang] || category;
+}
+
+function localizeAssimilationLabel(option) {
+  if (!option) return '';
+  return currentLang() === 'en' ? option.value : option.label;
+}
+
+function localizeComponentText(item) {
+  return currentLang() === 'en' ? `${item.form}` : `${item.form} — ${item.meaning}`;
 }
 
 let pendingPrefixItem = null;
@@ -352,14 +377,14 @@ function setupSelects() {
   assimilationOptions.forEach((opt) => {
     const option = document.createElement('option');
     option.value = opt.value;
-    option.textContent = opt.label;
+    option.textContent = localizeAssimilationLabel(opt);
     els.assimilationSelect.appendChild(option);
   });
 
   Object.keys(byCategory).forEach((category) => {
     const option = document.createElement('option');
     option.value = category;
-    option.textContent = category;
+    option.textContent = localizeCategory(category);
     els.componentCategorySelect.appendChild(option);
   });
 
@@ -374,7 +399,7 @@ function fillComponentSelect() {
   items.forEach((item) => {
     const option = document.createElement('option');
     option.value = item.id;
-    option.textContent = `${item.form} — ${item.meaning}`;
+    option.textContent = localizeComponentText(item);
     els.componentSelect.appendChild(option);
   });
 
@@ -383,7 +408,7 @@ function fillComponentSelect() {
 
 function updateComponentPreview() {
   const item = allComponents.find((x) => x.id === els.componentSelect.value);
-  els.componentMeaningPreview.textContent = item ? `${item.form} — ${item.meaning}` : '—';
+  els.componentMeaningPreview.textContent = item ? localizeComponentText(item) : '—';
 }
 
 function syncRootFormByAssimilation() {
@@ -434,7 +459,8 @@ function addRootComponent() {
   const form = els.rootFormInput.value.trim();
   const meaning = els.rootMeaningInput.value.trim();
   const assimilation = els.assimilationSelect.value;
-  const assimilationLabel = assimilationOptions.find((x) => x.value === assimilation)?.label || '';
+  const assimilationOption = assimilationOptions.find((x) => x.value === assimilation);
+  const assimilationLabel = localizeAssimilationLabel(assimilationOption);
 
   if (!form || !meaning) return;
 
@@ -466,7 +492,7 @@ function openPrefixVariantStep(item) {
   options.forEach((opt) => {
     const option = document.createElement('option');
     option.value = opt.form;
-    option.textContent = `${opt.form} — ${opt.note}`;
+    option.textContent = currentLang() === 'en' ? `${opt.form}` : `${opt.form} — ${opt.note}`;
     els.prefixVariantSelect.appendChild(option);
   });
 
@@ -484,7 +510,9 @@ function updatePrefixVariantPreview() {
 
   const form = els.prefixVariantSelect.value;
   const option = (prefixAssimilationOptions[item.id] || []).find((x) => x.form === form);
-  els.prefixVariantPreview.textContent = option ? `${item.form} → ${option.form} (${option.note})` : '—';
+  els.prefixVariantPreview.textContent = option
+    ? (currentLang() === 'en' ? `${item.form} → ${option.form}` : `${item.form} → ${option.form} (${option.note})`)
+    : '—';
 }
 
 function savePrefixVariant() {
@@ -496,13 +524,13 @@ function savePrefixVariant() {
   state.components.push({
     id: crypto.randomUUID(),
     type: 'component',
-    label: 'Prefix',
+    label: currentLang() === 'en' ? 'Prefix' : 'Приставка',
     form: option.form,
     meaning: pendingPrefixItem.meaning,
     sourceId: pendingPrefixItem.id,
     category: pendingPrefixItem.category,
     baseForm: pendingPrefixItem.form,
-    assimilationNote: option.note
+    assimilationNote: currentLang() === 'en' ? '' : option.note
   });
 
   pendingPrefixItem = null;
@@ -522,7 +550,7 @@ function addSelectedComponent() {
   state.components.push({
     id: crypto.randomUUID(),
     type: 'component',
-    label: item.category.endsWith('ы') ? item.category.slice(0, -1) : item.category,
+    label: localizeCategory(item.category),
     form: item.form,
     meaning: item.meaning,
     sourceId: item.id,
@@ -551,7 +579,7 @@ function renderAssimilationMeta(item) {
 function renderComponents() {
   if (!state.components.length) {
     els.componentsList.className = 'components-list empty';
-    els.componentsList.textContent = 'No components added.';
+    els.componentsList.textContent = t('noComponents');
     els.componentsSummary.textContent = '—';
      saveState();
     return;
@@ -1222,6 +1250,21 @@ function hideBuildPromptButtonWithShift() {
   });
 }
 
+function refreshSelectLocalization() {
+  const assimilationValue = els.assimilationSelect.value;
+  els.assimilationSelect.querySelectorAll('option').forEach((optionEl) => {
+    const found = assimilationOptions.find((opt) => opt.value === optionEl.value);
+    optionEl.textContent = localizeAssimilationLabel(found);
+  });
+  els.assimilationSelect.value = assimilationValue;
+
+  els.componentCategorySelect.querySelectorAll('option').forEach((optionEl) => {
+    optionEl.textContent = localizeCategory(optionEl.value);
+  });
+
+  fillComponentSelect();
+}
+
 function attachEvents() {
   els.addComponentBtn.addEventListener('click', () => openModal(els.chooserModal));
 
@@ -1255,6 +1298,11 @@ function attachEvents() {
   els.componentSelect.addEventListener('change', updateComponentPreview);
   els.assimilationSelect.addEventListener('change', syncRootFormByAssimilation);
   els.prefixVariantSelect.addEventListener('change', updatePrefixVariantPreview);
+  document.addEventListener('interal:languagechange', () => {
+    refreshSelectLocalization();
+    syncRootFormByAssimilation();
+    renderComponents();
+  });
 
   els.saveRootBtn.addEventListener('click', addRootComponent);
   els.saveComponentBtn.addEventListener('click', addSelectedComponent);

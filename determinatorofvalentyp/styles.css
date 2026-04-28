@@ -268,9 +268,10 @@ textarea.copy-flash {
 }
 
 .plus-btn-icon {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   line-height: 1;
-  transform: translateY(-1px);
 }
 
 .actions {
@@ -379,6 +380,12 @@ button.ghost,
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  color: var(--text-main);
+}
+
+.icon-copy-btn:hover,
+.icon-copy-btn:focus-visible {
+  color: var(--bg-base);
 }
 
 .icon-copy-btn img {
@@ -400,7 +407,7 @@ body.dark-theme .icon-copy-btn img {
 
 body.dark-theme .icon-copy-btn:hover img,
 body.dark-theme .icon-copy-btn:focus-visible img {
-  filter: brightness(0) saturate(100%) invert(95%) sepia(21%) saturate(456%) hue-rotate(316deg) brightness(105%) contrast(101%);
+  filter: brightness(0) saturate(100%) invert(9%) sepia(20%) saturate(953%) hue-rotate(346deg) brightness(84%) contrast(93%);
 }
 
 .icon-copy-btn.is-copied {
@@ -564,8 +571,8 @@ pre {
 }
 
 .back-btn {
-  width: auto;
-  padding: 0 14px;
+  width: 42px;
+  padding: 0;
 }
 
 .chooser-grid {
