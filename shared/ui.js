@@ -1,7 +1,7 @@
 (function () {
   const THEME_KEY = 'interal.theme';
   const LANG_KEY = 'interal.lang';
-  const inSubDir = /\/(similarita|determinatorofvalentyp)(\/|$)/.test(window.location.pathname);
+  const inSubDir = /\/(similarita|determinatorofvalentyp|associativvordes)(\/|$)/.test(window.location.pathname);
   const prefix = inSubDir ? '../' : '';
 
   const i18n = {
@@ -14,6 +14,7 @@
       themeToDark: '🌙 Тёмная тема',
       langLabel: 'Язык',
       navSimilarita: 'Similaritá',
+      navAssociativ: 'Associativ vordes',
       navDeterminator: 'Determinator of valen typ',
       navAriaLabel: 'Разделы сайта',
       ru: 'Русский',
@@ -28,6 +29,7 @@
       themeToDark: '🌙 Dark theme',
       langLabel: 'Language',
       navSimilarita: 'Similaritá',
+      navAssociativ: 'Associativ vordes',
       navDeterminator: 'Determinator of valen typ',
       navAriaLabel: 'Site sections',
       ru: 'Русский',
@@ -66,6 +68,7 @@
   desktopControls.className = 'top-desktop-controls';
   desktopControls.innerHTML = `
     <a class="top-desktop-link" href="${prefix}similarita/" data-nav="similarita"><span class="top-desktop-link-main"></span></a>
+    <a class="top-desktop-link" href="${prefix}associativvordes/" data-nav="associativ"><span class="top-desktop-link-main"></span></a>
     <a class="top-desktop-link" href="${prefix}determinatorofvalentyp/" data-nav="determinator"><span class="top-desktop-link-main"></span></a>
   `;
 
@@ -79,6 +82,7 @@
     <h2 class="menu-title"></h2>
     <nav class="menu-nav" aria-label="Site sections">
       <a class="menu-nav-link" href="${prefix}similarita/" data-nav="similarita"><span class="menu-nav-main"></span></a>
+      <a class="menu-nav-link" href="${prefix}associativvordes/" data-nav="associativ"><span class="menu-nav-main"></span></a>
       <a class="menu-nav-link" href="${prefix}determinatorofvalentyp/" data-nav="determinator"><span class="menu-nav-main"></span></a>
     </nav>
     <button class="menu-theme-btn" type="button"></button>
@@ -141,17 +145,21 @@
     menuButtonText.textContent = isDesktop ? t.desktopMenuLabel : t.mobileMenuLabel;
 
     const similaritaLink = menu.querySelector('[data-nav="similarita"]');
+    const associativLink = menu.querySelector('[data-nav="associativ"]');
     const determinatorLink = menu.querySelector('[data-nav="determinator"]');
     if (similaritaLink) {
       similaritaLink.querySelector('.menu-nav-main').textContent = t.navSimilarita;
+    }
+    if (associativLink) {
+      associativLink.querySelector('.menu-nav-main').textContent = t.navAssociativ;
     }
     if (determinatorLink) {
       determinatorLink.querySelector('.menu-nav-main').textContent = t.navDeterminator;
     }
 
     desktopControls.querySelectorAll('.top-desktop-link').forEach((link) => {
-      const isSim = link.dataset.nav === 'similarita';
-      link.querySelector('.top-desktop-link-main').textContent = isSim ? t.navSimilarita : t.navDeterminator;
+      const labels = { similarita: t.navSimilarita, associativ: t.navAssociativ, determinator: t.navDeterminator };
+      link.querySelector('.top-desktop-link-main').textContent = labels[link.dataset.nav] || '';
     });
 
     menu.querySelectorAll('.menu-lang-btn').forEach((btn) => {
@@ -171,9 +179,11 @@
     const path = window.location.pathname;
     const currentNav = path.includes('/similarita/')
       ? 'similarita'
-      : path.includes('/determinatorofvalentyp/')
-        ? 'determinator'
-        : '';
+      : path.includes('/associativvordes/')
+        ? 'associativ'
+        : path.includes('/determinatorofvalentyp/')
+          ? 'determinator'
+          : '';
 
     document.querySelectorAll('[data-nav]').forEach((link) => {
       link.classList.toggle('is-active', !!currentNav && link.dataset.nav === currentNav);
