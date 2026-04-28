@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Associativ vordes</title>
+  <style>
+    :root {
+      --bg: #f6f3ee;
+      --card: #ffffff;
+      --text: #26231f;
+      --muted: #6f6a61;
+      --line: #ded8cf;
+      --accent: #b97918;
+      --accent-2: #f0dfc3;
+      --bad: #b94a48;
+      --ok: #4f7f54;
+      --warn: #b97918;
+      --shadow: 0 8px 24px rgba(0,0,0,.08);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.45;
+    }
+
+    header {
+      padding: 28px 18px 14px;
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    h1 { margin: 0 0 8px; font-size: 30px; }
+    h2 { margin: 0 0 14px; font-size: 21px; }
+    h3 { margin: 0 0 10px; font-size: 17px; }
+    p { color: var(--muted); margin: 0; }
+
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 14px 18px 48px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+
+    .grid { display: grid; gap: 14px; }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+    label { display: block; font-weight: 650; margin-bottom: 6px; }
+    input, select, textarea, button {
+      font: inherit;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      padding: 10px 12px;
+      width: 100%;
+      background: #fff;
+      color: var(--text);
+    }
+
+    textarea { min-height: 110px; resize: vertical; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+
+    button {
+      cursor: pointer;
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+      font-weight: 700;
+    }
+
+    button.secondary {
+      background: #fff;
+      color: var(--text);
+      border-color: var(--line);
+    }
+
+    button.danger {
+      background: var(--bad);
+      border-color: var(--bad);
+    }
+
+    button.small {
+      padding: 7px 9px;
+      border-radius: 10px;
+      font-size: 13px;
+    }
+
+    .row { display: flex; gap: 10px; align-items: center; }
+    .row > * { flex: 1; }
+    .row .fit { flex: 0 0 auto; }
+
+    .muted { color: var(--muted); }
+    .note { background: var(--accent-2); padding: 12px; border-radius: 14px; color: #5b411d; }
+
+    .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+    .tab {
+      width: auto;
+      padding: 8px 11px;
+      background: #fff;
+      color: var(--text);
+      border-color: var(--line);
+    }
+    .tab.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+    table { width: 100%; border-collapse: collapse; }
+    th, td { border-bottom: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; }
+    th { font-size: 13px; color: var(--muted); font-weight: 700; }
+    td input, td select { padding: 7px 8px; border-radius: 9px; }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 9px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      background: #eee;
+    }
+    .status.ok { background: #dcebdc; color: #2f6534; }
+    .status.bad { background: #f2d6d5; color: #863331; }
+    .status.warn { background: #f3e5c9; color: #7c520d; }
+
+    .result-box {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .metric {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+      background: #fffdfa;
+    }
+    .metric strong { font-size: 22px; display: block; }
+    .metric span { color: var(--muted); font-size: 13px; }
+
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+
+    @media (max-width: 850px) {
+      .grid-2, .grid-3, .result-box { grid-template-columns: 1fr; }
+      .row { flex-direction: column; align-items: stretch; }
+      table { display: block; overflow-x: auto; white-space: nowrap; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Interal — инструмент отбора ассоциативных слов</h1>
+    <p>Полуавтоматический калькулятор: поиск дериватов по локальной базе, группировка по моделям, частотные баллы и итоговый процент ассоциации.</p>
+  </header>
+
+  <main>
+    <section class="card grid grid-2">
+      <div>
+        <label for="rootInput">Кандидатный корень / предлог</label>
+        <input id="rootInput" value="ocul" placeholder="например: ocul, regul, inter" />
+      </div>
+      <div>
+        <label for="meaningInput">Перевод / значение</label>
+        <input id="meaningInput" value="глаз" placeholder="например: глаз, правило, между" />
+      </div>
+      <div>
+        <label for="elementType">Тип элемента</label>
+        <select id="elementType">
+          <option value="root">корень</option>
+          <option value="preposition">предлог / приставка</option>
+        </select>
+      </div>
+      <div>
+        <label for="maxModels">Максимум моделей на язык</label>
+        <input id="maxModels" type="number" min="1" max="20" value="5" />
+      </div>
+      <div class="row" style="grid-column: 1 / -1;">
+        <button id="searchBtn">Найти дериваты и посчитать</button>
+        <button class="secondary" id="exportBtn">Экспорт JSON</button>
+        <button class="secondary" id="importBtn">Импорт JSON</button>
+        <button class="danger" id="resetBtn">Сбросить</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Итог</h2>
+      <div class="result-box" id="resultBox"></div>
+      <div style="margin-top: 12px;" id="decisionBox"></div>
+    </section>
+
+    <section class="card">
+      <h2>Языки и дериваты</h2>
+      <div class="tabs" id="tabs"></div>
+      <div id="languagePanel"></div>
+    </section>
+
+    <section class="card grid grid-2">
+      <div>
+        <h2>Локальная база дериватов</h2>
+        <p class="muted" style="margin-bottom:10px;">Можно заменить на реальные JSON-данные из Kaikki/Wiktionary. Формат: язык → массив слов.</p>
+        <textarea id="derivativeDataInput"></textarea>
+        <button class="secondary" id="loadDerivativeDataBtn" style="margin-top:10px;">Загрузить базу дериватов</button>
+      </div>
+      <div>
+        <h2>Локальная база частотных рангов</h2>
+        <p class="muted" style="margin-bottom:10px;">Формат: язык → { слово: ранг }. Можно сгенерировать из wordfreq/top_n_list.</p>
+        <textarea id="frequencyDataInput"></textarea>
+        <button class="secondary" id="loadFrequencyDataBtn" style="margin-top:10px;">Загрузить частоты</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Как расширить инструмент</h2>
+      <div class="note">
+        Для качественной автоматизации лучше заранее подготовить JSON по каждому языку: слова из Kaikki/Wiktionary + частотные ранги из wordfreq. Этот файл уже содержит демо-базу, чтобы инструмент работал сразу. Нейросеть можно подключить позже только как помощника для классификации «первичная / вторичная / мусор».
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const LANGUAGES = [
+      { code: 'en', name: 'English', group: 'Germanic' },
+      { code: 'de', name: 'German', group: 'Germanic' },
+      { code: 'fr', name: 'French', group: 'Romance' },
+      { code: 'es', name: 'Spanish', group: 'Romance' },
+      { code: 'it', name: 'Italian', group: 'Romance' },
+      { code: 'ru', name: 'Russian', group: 'Slavic' },
+      { code: 'el', name: 'Greek', group: 'Greek' }
+    ];
+
+    const DEFAULT_DERIVATIVES = {
+      en: ['ocular', 'oculist', 'oculus', 'binocular', 'monocular', 'monocle', 'inoculate', 'regulate', 'regulation', 'regulatory', 'regular', 'international', 'internet', 'interaction', 'interactive', 'intercontinental', 'interface'],
+      de: ['okular', 'okulist', 'binokular', 'monokel', 'regulieren', 'regulation', 'regulatorisch', 'regel', 'international', 'internet', 'interaktion', 'interkulturell'],
+      fr: ['oculaire', 'oculiste', 'binoculaire', 'monocle', 'réguler', 'régulation', 'réglement', 'réglementaire', 'international', 'internet', 'interaction', 'intervenir'],
+      es: ['ocular', 'oculista', 'binocular', 'monóculo', 'regular', 'regulación', 'reglamento', 'reglamentario', 'internacional', 'internet', 'interacción'],
+      it: ['oculare', 'oculista', 'binoculare', 'monocolo', 'regolare', 'regolazione', 'regolamento', 'regolamentare', 'internazionale', 'internet', 'interazione'],
+      ru: ['окулист', 'окуляр', 'очки', 'бинокулярный', 'монокль', 'регулировать', 'регуляция', 'регламент', 'регламентарный', 'регулярный', 'интернациональный', 'интернет', 'интерактивный'],
+      el: ['τηλέφωνο', 'τηλεόραση', 'ίντερνετ', 'διεθνής']
+    };
+
+    const DEFAULT_FREQUENCIES = {
+      en: { ocular: 39497, oculist: 60000, oculus: 50000, binocular: 30000, monocular: 50000, monocle: 25000, inoculate: 18000, regulate: 6500, regulation: 2600, regulatory: 8400, regular: 850, international: 700, internet: 900, interaction: 4300, interactive: 5400, intercontinental: 21000, interface: 3800 },
+      de: { okular: 60000, okulist: 60000, binokular: 60000, monokel: 50000, regulieren: 9000, regulation: 11000, regulatorisch: 25000, regel: 900, international: 800, internet: 700, interaktion: 9000, interkulturell: 17000 },
+      fr: { oculaire: 14735, oculiste: 50000, binoculaire: 50000, monocle: 22000, réguler: 14000, régulation: 9000, réglement: 6000, réglementaire: 8500, international: 850, internet: 900, interaction: 5500, intervenir: 1800 },
+      es: { ocular: 20219, oculista: 45000, binocular: 35000, monóculo: 45000, regular: 1300, regulación: 7000, reglamento: 7500, reglamentario: 16000, internacional: 900, internet: 1000, interacción: 5800 },
+      it: { oculare: 38367, oculista: 50000, binoculare: 50000, monocolo: 45000, regolare: 2200, regolazione: 9500, regolamento: 6000, regolamentare: 12000, internazionale: 900, internet: 950, interazione: 7000 },
+      ru: { окулист: 50000, окуляр: 60000, очки: 1200, бинокулярный: 60000, монокль: 39000, регулировать: 5500, регуляция: 13000, регламент: 6500, регламентарный: 30000, регулярный: 2800, интернациональный: 18000, интернет: 600, интерактивный: 9000 },
+      el: { τηλέφωνο: 900, τηλεόραση: 950, ίντερνετ: 1000, διεθνής: 3500 }
+    };
+
+    let derivativeData = structuredClone(DEFAULT_DERIVATIVES);
+    let frequencyData = structuredClone(DEFAULT_FREQUENCIES);
+    let state = emptyState();
+    let activeLang = 'en';
+
+    function emptyState() {
+      const langs = {};
+      LANGUAGES.forEach(l => langs[l.code] = []);
+      return {
+        root: 'ocul',
+        meaning: 'глаз',
+        elementType: 'root',
+        maxModels: 5,
+        languages: langs
+      };
+    }
+
+    function normalizeText(s) {
+      return String(s || '').trim().toLowerCase().normalize('NFC');
+    }
+
+    function stripDiacritics(s) {
+      return normalizeText(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    }
+
+    function includesRoot(word, root) {
+      const w = stripDiacritics(word);
+      const r = stripDiacritics(root);
+      return r.length > 0 && w.includes(r);
+    }
+
+    function getFrequencyScore(rank) {
+      const r = Number(rank);
+      if (!Number.isFinite(r) || r <= 0) return 0.25;
+      if (r <= 500) return 1;
+      if (r <= 2000) return 0.75;
+      if (r <= 5000) return 0.5;
+      if (r <= 10000) return 0.35;
+      return 0.25;
+    }
+
+    function inferModel(word, root, elementType) {
+      const original = String(word || '').trim();
+      const w = stripDiacritics(original);
+      const r = stripDiacritics(root);
+      const idx = w.indexOf(r);
+      if (idx === -1) return 'manual';
+
+      const before = w.slice(0, idx);
+      const after = w.slice(idx + r.length);
+
+      if (elementType === 'preposition') {
+        const next = after.match(/^[a-zа-яёα-ωάέήίόύώϊϋΐΰ]+/i);
+        return next ? `${r}+${next[0].slice(0, 6)}` : `${r}+`;
+      }
+
+      if (before) return `${before}-`;
+      const suffixMatch = after.match(/^[a-zа-яёα-ωάέήίόύώϊϋΐΰ]{1,8}/i);
+      if (suffixMatch) return `-${suffixMatch[0]}`;
+      return `${r}`;
+    }
+
+    function inferAssociation(word, root, meaning) {
+      const w = stripDiacritics(word);
+      // Простая эвристика. В реальном инструменте это лучше заменить ручным выбором или классификатором.
+      const secondaryHints = ['mono', 'bin', 'bi', 'inoc', 'monocle', 'монок', 'бинок'];
+      if (secondaryHints.some(h => w.includes(stripDiacritics(h)))) return 0.5;
+      return 1;
+    }
+
+    function getRank(lang, word) {
+      const key = normalizeText(word);
+      const raw = frequencyData[lang] || {};
+      return raw[key] || raw[stripDiacritics(key)] || 50001;
+    }
+
+    function wordWeight(item) {
+      return Number(item.association) * getFrequencyScore(item.rank);
+    }
+
+    function groupByBestModel(items, maxModels) {
+      const byModel = new Map();
+      for (const item of items) {
+        const current = byModel.get(item.model);
+        if (!current || wordWeight(item) > wordWeight(current) || (wordWeight(item) === wordWeight(current) && Number(item.rank) < Number(current.rank))) {
+          byModel.set(item.model, item);
+        }
+      }
+      return Array.from(byModel.values())
+        .sort((a, b) => wordWeight(b) - wordWeight(a) || Number(a.rank) - Number(b.rank) || a.word.localeCompare(b.word))
+        .slice(0, maxModels)
+        .map(x => ({ ...x, selected: true }));
+    }
+
+    function searchDerivatives() {
+      state.root = normalizeText(document.getElementById('rootInput').value);
+      state.meaning = document.getElementById('meaningInput').value.trim();
+      state.elementType = document.getElementById('elementType').value;
+      state.maxModels = Math.max(1, Number(document.getElementById('maxModels').value) || 5);
+
+      const root = state.root;
+      const nextLangs = {};
+
+      for (const lang of LANGUAGES) {
+        const words = derivativeData[lang.code] || [];
+        const candidates = words
+          .filter(w => includesRoot(w, root) || specialRootMatch(lang.code, w, root))
+          .map(w => {
+            const rank = getRank(lang.code, w);
+            const association = inferAssociation(w, root, state.meaning);
+            return {
+              word: w,
+              model: inferModel(w, root, state.elementType),
+              association,
+              rank,
+              freqScore: getFrequencyScore(rank),
+              selected: false
+            };
+          });
+        nextLangs[lang.code] = groupByBestModel(candidates, state.maxModels);
+      }
+      state.languages = nextLangs;
+      renderAll();
+    }
+
+    function specialRootMatch(lang, word, root) {
+      // Небольшой демо-словарь для случаев, когда корень адаптирован графически.
+      const w = normalizeText(word);
+      if (root === 'inter') return w.includes('интер') || w.includes('ίντερ') || w.includes('inter');
+      if (root === 'ocul') return w.includes('окул') || w.includes('ocul') || w.includes('okul');
+      if (root === 'regul') return w.includes('регул') || w.includes('regul') || w.includes('régul') || w.includes('regol');
+      return false;
+    }
+
+    function calculateLanguage(langCode) {
+      const items = state.languages[langCode] || [];
+      const selected = items.filter(x => x.selected).slice(0, state.maxModels);
+      const sum = selected.reduce((acc, x) => acc + wordWeight(x), 0);
+      return {
+        sum,
+        normalized: sum / state.maxModels,
+        count: selected.length
+      };
+    }
+
+    function calculateFinal() {
+      const languageScores = LANGUAGES.map(l => ({ lang: l, ...calculateLanguage(l.code) }));
+      const totalAssociation = languageScores.reduce((acc, x) => acc + x.normalized, 0);
+      const finalAssociation = (totalAssociation / LANGUAGES.length) * 100;
+      const representedLangs = languageScores.filter(x => x.count > 0).length;
+      const groups = new Set(languageScores.filter(x => x.count > 0).map(x => x.lang.group));
+      const accepted = representedLangs >= 3 && groups.size >= 2 && finalAssociation >= 50;
+      return { languageScores, totalAssociation, finalAssociation, representedLangs, groups: groups.size, accepted };
+    }
+
+    function renderTabs() {
+      const tabs = document.getElementById('tabs');
+      tabs.innerHTML = '';
+      for (const lang of LANGUAGES) {
+        const score = calculateLanguage(lang.code);
+        const btn = document.createElement('button');
+        btn.className = `tab ${activeLang === lang.code ? 'active' : ''}`;
+        btn.textContent = `${lang.name} (${Math.round(score.normalized * 100)}%)`;
+        btn.onclick = () => { activeLang = lang.code; renderAll(); };
+        tabs.appendChild(btn);
+      }
+    }
+
+    function renderLanguagePanel() {
+      const lang = LANGUAGES.find(l => l.code === activeLang);
+      const panel = document.getElementById('languagePanel');
+      const items = state.languages[activeLang] || [];
+      const score = calculateLanguage(activeLang);
+      panel.innerHTML = `
+        <div class="row" style="margin-bottom:12px;">
+          <div>
+            <h3>${lang.name}</h3>
+            <p class="muted">Группа: ${lang.group}. Балл языка: <strong>${score.normalized.toFixed(3)}</strong>; сумма весов: <strong>${score.sum.toFixed(3)}</strong>.</p>
+          </div>
+          <button class="secondary fit" onclick="addRow('${activeLang}')">Добавить слово</button>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Учитывать</th>
+              <th>Слово</th>
+              <th>Модель</th>
+              <th>Ассоциация</th>
+              <th>Ранг</th>
+              <th>Частота</th>
+              <th>Вес P</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>${items.map((item, idx) => rowHtml(activeLang, item, idx)).join('')}</tbody>
+        </table>
+      `;
+    }
+
+    function rowHtml(lang, item, idx) {
+      return `
+        <tr>
+          <td><input type="checkbox" ${item.selected ? 'checked' : ''} onchange="updateItem('${lang}', ${idx}, 'selected', this.checked)"></td>
+          <td><input value="${escapeHtml(item.word)}" onchange="updateItem('${lang}', ${idx}, 'word', this.value)"></td>
+          <td><input value="${escapeHtml(item.model)}" onchange="updateItem('${lang}', ${idx}, 'model', this.value)"></td>
+          <td>
+            <select onchange="updateItem('${lang}', ${idx}, 'association', Number(this.value))">
+              <option value="1" ${Number(item.association) === 1 ? 'selected' : ''}>первичная — 1</option>
+              <option value="0.5" ${Number(item.association) === 0.5 ? 'selected' : ''}>вторичная — 0,5</option>
+              <option value="0" ${Number(item.association) === 0 ? 'selected' : ''}>мусор — 0</option>
+            </select>
+          </td>
+          <td><input type="number" value="${Number(item.rank) || 50001}" onchange="updateItem('${lang}', ${idx}, 'rank', Number(this.value))"></td>
+          <td>${getFrequencyScore(item.rank).toFixed(2)}</td>
+          <td><strong>${wordWeight(item).toFixed(3)}</strong></td>
+          <td><button class="danger small" onclick="deleteItem('${lang}', ${idx})">×</button></td>
+        </tr>
+      `;
+    }
+
+    function renderResults() {
+      const result = calculateFinal();
+      document.getElementById('resultBox').innerHTML = `
+        <div class="metric"><strong>${result.finalAssociation.toFixed(1)}%</strong><span>FA — конечная ассоциация</span></div>
+        <div class="metric"><strong>${result.totalAssociation.toFixed(3)}</strong><span>TA — вся ассоциация</span></div>
+        <div class="metric"><strong>${result.representedLangs}/7</strong><span>языков представлено</span></div>
+        <div class="metric"><strong>${result.groups}/4</strong><span>языковых групп</span></div>
+      `;
+
+      let statusClass = result.accepted ? 'ok' : (result.finalAssociation >= 40 ? 'warn' : 'bad');
+      let statusText = result.accepted ? 'ПРИНЯТЬ' : 'НЕ ПРИНИМАТЬ';
+      let reasons = [];
+      if (result.representedLangs < 3) reasons.push('меньше 3 языков');
+      if (result.groups < 2) reasons.push('меньше 2 языковых групп');
+      if (result.finalAssociation < 50) reasons.push('ниже порога 50%');
+
+      document.getElementById('decisionBox').innerHTML = `
+        <span class="status ${statusClass}">${statusText}</span>
+        <span class="muted" style="margin-left:8px;">${reasons.length ? 'Причины: ' + reasons.join(', ') : 'Все условия выполнены.'}</span>
+      `;
+    }
+
+    function renderDataEditors() {
+      document.getElementById('derivativeDataInput').value = JSON.stringify(derivativeData, null, 2);
+      document.getElementById('frequencyDataInput').value = JSON.stringify(frequencyData, null, 2);
+    }
+
+    function renderAll() {
+      renderTabs();
+      renderLanguagePanel();
+      renderResults();
+      saveLocal();
+    }
+
+    function updateItem(lang, idx, key, value) {
+      const item = state.languages[lang][idx];
+      item[key] = value;
+      if (key === 'word') {
+        item.rank = getRank(lang, value);
+        item.model = inferModel(value, state.root, state.elementType);
+      }
+      item.freqScore = getFrequencyScore(item.rank);
+      renderAll();
+    }
+
+    function deleteItem(lang, idx) {
+      state.languages[lang].splice(idx, 1);
+      renderAll();
+    }
+
+    function addRow(lang) {
+      state.languages[lang].push({ word: '', model: '', association: 1, rank: 50001, freqScore: 0.25, selected: true });
+      renderAll();
+    }
+
+    function loadDerivativeData() {
+      try {
+        derivativeData = JSON.parse(document.getElementById('derivativeDataInput').value);
+        alert('База дериватов загружена.');
+      } catch (e) {
+        alert('Ошибка JSON в базе дериватов: ' + e.message);
+      }
+    }
+
+    function loadFrequencyData() {
+      try {
+        frequencyData = JSON.parse(document.getElementById('frequencyDataInput').value);
+        alert('База частот загружена.');
+      } catch (e) {
+        alert('Ошибка JSON в базе частот: ' + e.message);
+      }
+    }
+
+    function exportState() {
+      const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `interal-association-${state.root || 'root'}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function importState() {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = 'application/json';
+      input.onchange = async () => {
+        const file = input.files[0];
+        if (!file) return;
+        try {
+          const text = await file.text();
+          const imported = JSON.parse(text);
+          state = imported;
+          document.getElementById('rootInput').value = state.root || '';
+          document.getElementById('meaningInput').value = state.meaning || '';
+          document.getElementById('elementType').value = state.elementType || 'root';
+          document.getElementById('maxModels').value = state.maxModels || 5;
+          renderAll();
+        } catch (e) {
+          alert('Ошибка импорта: ' + e.message);
+        }
+      };
+      input.click();
+    }
+
+    function resetAll() {
+      if (!confirm('Сбросить расчёт?')) return;
+      state = emptyState();
+      document.getElementById('rootInput').value = state.root;
+      document.getElementById('meaningInput').value = state.meaning;
+      document.getElementById('elementType').value = state.elementType;
+      document.getElementById('maxModels').value = state.maxModels;
+      searchDerivatives();
+    }
+
+    function saveLocal() {
+      try { localStorage.setItem('interal_associative_state', JSON.stringify(state)); } catch {}
+    }
+
+    function loadLocal() {
+      try {
+        const raw = localStorage.getItem('interal_associative_state');
+        if (raw) {
+          state = JSON.parse(raw);
+          document.getElementById('rootInput').value = state.root || 'ocul';
+          document.getElementById('meaningInput').value = state.meaning || 'глаз';
+          document.getElementById('elementType').value = state.elementType || 'root';
+          document.getElementById('maxModels').value = state.maxModels || 5;
+          return true;
+        }
+      } catch {}
+      return false;
+    }
+
+    function escapeHtml(s) {
+      return String(s || '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+    }
+
+    document.getElementById('searchBtn').addEventListener('click', searchDerivatives);
+    document.getElementById('exportBtn').addEventListener('click', exportState);
+    document.getElementById('importBtn').addEventListener('click', importState);
+    document.getElementById('resetBtn').addEventListener('click', resetAll);
+    document.getElementById('loadDerivativeDataBtn').addEventListener('click', loadDerivativeData);
+    document.getElementById('loadFrequencyDataBtn').addEventListener('click', loadFrequencyData);
+
+    window.updateItem = updateItem;
+    window.deleteItem = deleteItem;
+    window.addRow = addRow;
+
+    renderDataEditors();
+    if (!loadLocal()) searchDerivatives();
+    else renderAll();
+  </script>
+</body>
+</html>
