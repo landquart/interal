@@ -347,11 +347,68 @@ function localizeCategory(category) {
 
 function localizeAssimilationLabel(option) {
   if (!option) return '';
-  return currentLang() === 'en' ? option.value : option.label;
+  if (currentLang() !== 'en') return option.label;
+  const assimilationLabelsEn = {
+    none: 'No assimilation',
+    'add-t': 'Add -t',
+    'd-to-s': 'Replace -d with -s',
+    'r-to-s': 'Replace -r with -s',
+    'consonant-g-to-s': 'Consonant + -g to -s',
+    'b-to-pt': 'Replace -b with -pt',
+    'vowel-g-to-ct': 'Vowel + -g to -ct',
+    'h-to-ct': 'Replace -h with -ct',
+    'y-to-ct': 'Replace -y with -ct',
+    'se-to-ct': 'Replace -s/e with -ct',
+    'xe-to-ct': 'Replace -x/e with -ct',
+    'exc-seder': '1. seder — sess- (to sit)',
+    'exc-mover': '2. mover — mot- (to move)',
+    'exc-venir': '3. venir — vent- (to come)',
+    'exc-sentir': '4. sentir — sens- (to feel)',
+    'exc-cognoscer': '5. cognoscer — cognit- (to know)',
+    'exc-morir': '6. morir — mort- (to die)',
+    'exc-aperir': '7. aperir — apert- (to open)',
+    'exc-experir': '8. experir — expert- (to experience, to try)',
+    'exc-coverir': '9. coverir — covert- (to cover)',
+    'exc-presider': '10. presider — presiss- (to preside)',
+    'exc-friger': '11. friger — fris- (to be cold)',
+    'exc-posseder': '12. posseder — possess- (to possess)',
+    'exc-merer': '13. merer — mens- (to measure)',
+    'exc-ceder': '14. -ceder — -cess- (root part)',
+    'exc-verter': '15. -verter — -vers- (root part)',
+    'exc-mitter': '16. -mitter — -miss- (root part)'
+  };
+  return assimilationLabelsEn[option.value] || option.value;
 }
 
 function localizeComponentText(item) {
-  return currentLang() === 'en' ? `${item.form}` : `${item.form} — ${item.meaning}`;
+  return currentLang() === 'en' ? `${item.form} — ${localizeMeaning(item.meaning)}` : `${item.form} — ${item.meaning}`;
+}
+
+function localizeMeaning(meaning) {
+  if (currentLang() !== 'en') return meaning;
+  return /[А-Яа-яЁё]/.test(meaning) ? 'Meaning description (RU source)' : meaning;
+}
+
+function localizePrefixNote(note) {
+  if (currentLang() !== 'en') return note;
+  const prefixNotesEn = {
+    'перед l': 'before l',
+    'перед r': 'before r',
+    'перед p и m': 'before p and m',
+    'перед гласной и h': 'before vowel and h',
+    'без изменения': 'unchanged',
+    'перед m': 'before m',
+    'перед p': 'before p',
+    'перед s': 'before s',
+    'перед t': 'before t',
+    'перед c': 'before c',
+    'перед n': 'before n',
+    'перед g': 'before g',
+    'перед f': 'before f',
+    'перед g, l, m, r, v': 'before g, l, m, r, v',
+    'перед d и j': 'before d and j'
+  };
+  return prefixNotesEn[note] || note;
 }
 
 let pendingPrefixItem = null;
@@ -492,7 +549,8 @@ function openPrefixVariantStep(item) {
   options.forEach((opt) => {
     const option = document.createElement('option');
     option.value = opt.form;
-    option.textContent = currentLang() === 'en' ? `${opt.form}` : `${opt.form} — ${opt.note}`;
+    const note = localizePrefixNote(opt.note);
+    option.textContent = `${opt.form} — ${note}`;
     els.prefixVariantSelect.appendChild(option);
   });
 
@@ -510,8 +568,9 @@ function updatePrefixVariantPreview() {
 
   const form = els.prefixVariantSelect.value;
   const option = (prefixAssimilationOptions[item.id] || []).find((x) => x.form === form);
+  const note = option ? localizePrefixNote(option.note) : '';
   els.prefixVariantPreview.textContent = option
-    ? (currentLang() === 'en' ? `${item.form} → ${option.form}` : `${item.form} → ${option.form} (${option.note})`)
+    ? `${item.form} → ${option.form} (${note})`
     : '—';
 }
 
@@ -530,7 +589,7 @@ function savePrefixVariant() {
     sourceId: pendingPrefixItem.id,
     category: pendingPrefixItem.category,
     baseForm: pendingPrefixItem.form,
-    assimilationNote: currentLang() === 'en' ? '' : option.note
+    assimilationNote: localizePrefixNote(option.note)
   });
 
   pendingPrefixItem = null;
@@ -573,7 +632,9 @@ function componentSummaryText() {
 
 function renderAssimilationMeta(item) {
   if (!item.assimilation || item.assimilation === 'none') return '';
-  return ` · Assimilation: ${item.assimilationLabel}`;
+  return currentLang() === 'en'
+    ? ` · Assimilation: ${item.assimilationLabel}`
+    : ` · Ассимиляция: ${item.assimilationLabel}`;
 }
 
 function renderComponents() {
@@ -1078,13 +1139,22 @@ function badge(text, type = '') {
 }
 
 function renderResult(result, input) {
-  const labels = {
-    regular_only: 'Regular value only',
-    double_meaning_with_modification: 'Distinction required; naturalistic form is set',
-    double_meaning_modification_missing: 'Distinction required; naturalistic form is missing',
-    insufficient_data: 'Insufficient data',
-    undetermined: 'Undetermined'
-  };
+  const isEn = currentLang() === 'en';
+  const labels = isEn
+    ? {
+      regular_only: 'Regular value only',
+      double_meaning_with_modification: 'Distinction required; naturalistic form is set',
+      double_meaning_modification_missing: 'Distinction required; naturalistic form is missing',
+      insufficient_data: 'Insufficient data',
+      undetermined: 'Undetermined'
+    }
+    : {
+      regular_only: 'Только регулярное значение',
+      double_meaning_with_modification: 'Требуется различение; натуралистическая форма задана',
+      double_meaning_modification_missing: 'Требуется различение; натуралистическая форма отсутствует',
+      insufficient_data: 'Недостаточно данных',
+      undetermined: 'Не определено'
+    };
 
   const types = {
     regular_only: 'ok',
@@ -1095,44 +1165,44 @@ function renderResult(result, input) {
   };
 
   const distanceResult = result.distanceResult;
-  const confidenceRu = {
-    high: 'high',
-    medium: 'medium',
-    low: 'low'
+  const confidenceLabels = {
+    high: isEn ? 'high' : 'высокая',
+    medium: isEn ? 'medium' : 'средняя',
+    low: isEn ? 'low' : 'низкая'
   };
 
   els.result.classList.remove('empty');
   els.result.innerHTML = `
     <div class="badges">
       ${badge(labels[result.classification] || result.classification, types[result.classification] || 'no')}
-      ${badge('Confidence: ' + (confidenceRu[result.confidence] || result.confidence), 'warn')}
+      ${badge((isEn ? 'Confidence: ' : 'Уверенность: ') + (confidenceLabels[result.confidence] || result.confidence), 'warn')}
     </div>
 
     <div class="result-grid">
       <div class="result-card">
-        <h3>Regular model</h3>
+        <h3>${isEn ? 'Regular model' : 'Регулярная модель'}</h3>
         <pre>${escapeHtml(input.regularWord || '—')}</pre>
       </div>
       <div class="result-card">
-        <h3>Naturalistic model</h3>
+        <h3>${isEn ? 'Naturalistic model' : 'Натуралистическая модель'}</h3>
         <pre>${escapeHtml(input.naturalisticWord || '—')}</pre>
       </div>
       <div class="result-card">
-        <h3>Component analysis</h3>
+        <h3>${isEn ? 'Component analysis' : 'Компонентный анализ'}</h3>
         <pre>${escapeHtml(componentSummaryText())}</pre>
       </div>
       <div class="result-card">
-        <h3>Logical analysis</h3>
+        <h3>${isEn ? 'Logical analysis' : 'Логический анализ'}</h3>
         <pre>${escapeHtml(input.logicalMeaning || '—')}</pre>
       </div>
       <div class="result-card">
-        <h3>International meaning</h3>
+        <h3>${isEn ? 'International meaning' : 'Международное значение'}</h3>
         <pre>${escapeHtml(input.internationalMeaning || '—')}</pre>
       </div>
     </div>
 
     <div class="result-card">
-      <h3>Reasons</h3>
+      <h3>${isEn ? 'Reasons' : 'Обоснование'}</h3>
       <pre>${escapeHtml(result.reasons.join('\n'))}</pre>
     </div>
 
