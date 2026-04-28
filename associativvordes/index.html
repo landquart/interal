@@ -168,12 +168,18 @@
     }
 
     @media (max-width: 560px) {
+      header,
+      main {
+        width: 100%;
+        max-width: 100%;
+      }
+
       header {
-        padding: 22px 12px 10px;
+        padding: 22px 10px 10px;
       }
 
       main {
-        padding: 10px 12px 34px;
+        padding: 10px 10px 34px;
         gap: 12px;
       }
 
@@ -204,6 +210,10 @@
 
       input, select, textarea, button {
         font-size: 16px;
+      }
+
+      table {
+        white-space: normal;
       }
     }
 
