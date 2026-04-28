@@ -77,7 +77,7 @@ body {
 }
 
 .top-menu-btn-text {
-  display: none;
+  display: inline;
   font-size: 0.9rem;
   font-weight: 600;
 }
@@ -322,13 +322,12 @@ body, button, input, textarea, select {
 
 @media (min-width: 980px) {
   .top-desktop-controls { display: inline-flex; }
-  .side-menu .menu-nav { display: block; }
+  .side-menu .menu-nav { display: none; }
   .top-menu-btn {
     width: auto;
     padding: 0 14px;
     gap: 8px;
     font-size: inherit;
   }
-  .top-menu-btn-icon { display: none; }
-  .top-menu-btn-text { display: inline; }
+  .top-menu-btn-icon { display: inline; }
 }

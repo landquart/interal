@@ -295,6 +295,40 @@ let state = {
   components: []
 };
 
+function currentLang() {
+  return localStorage.getItem('interal.lang') === 'en' ? 'en' : 'ru';
+}
+
+const uiText = {
+  ru: {
+    missingRegular: 'Слово по регулярной модели не заполнено.',
+    missingLogical: 'Логический анализ компонентов не заполнен.',
+    missingInternational: 'Международное значение эквивалентного деривата не заполнено.',
+    missingNaturalistic: 'Слово по натуралистической модели не заполнено.',
+    noComponents: 'Компонентный анализ не добавлен.',
+    copied: 'Скопировано',
+    copyFailed: 'Ошибка копирования',
+    copyPrompt: 'Копировать промпт',
+    fillAndAnalyse: 'Заполните поля и нажмите «Анализировать».'
+  },
+  en: {
+    missingRegular: 'Regular-model word is missing.',
+    missingLogical: 'Logical component analysis is missing.',
+    missingInternational: 'International meaning of equivalent derivative is missing.',
+    missingNaturalistic: 'Naturalistic-model word is missing.',
+    noComponents: 'No component analysis added.',
+    copied: 'Copied',
+    copyFailed: 'Copy failed',
+    copyPrompt: 'Copy prompt',
+    fillAndAnalyse: 'Fill in fields and click “Analyse”.'
+  }
+};
+
+function t(key) {
+  const lang = currentLang();
+  return (uiText[lang] && uiText[lang][key]) || uiText.ru[key] || key;
+}
+
 let pendingPrefixItem = null;
 const STORAGE_KEY = 'determinator-valentyp-state-v1';
 
@@ -926,11 +960,11 @@ async function analyzeByRules(input) {
   let classification = 'undetermined';
   let confidence = 'low';
 
-  if (!input.regularWord) reasons.push('Regular-model word is missing.');
-  if (!input.logicalMeaning) reasons.push('Logical component analysis is missing.');
-  if (!input.internationalMeaning) reasons.push('International meaning of equivalent derivative is missing.');
-  if (!input.naturalisticWord) reasons.push('Naturalistic-model word is missing.');
-  if (!input.components.length) reasons.push('No component analysis added.');
+  if (!input.regularWord) reasons.push(t('missingRegular'));
+  if (!input.logicalMeaning) reasons.push(t('missingLogical'));
+  if (!input.internationalMeaning) reasons.push(t('missingInternational'));
+  if (!input.naturalisticWord) reasons.push(t('missingNaturalistic'));
+  if (!input.components.length) reasons.push(t('noComponents'));
 
   const enough = input.regularWord && input.logicalMeaning && input.internationalMeaning;
 
@@ -971,15 +1005,6 @@ async function analyzeByRules(input) {
     confidence = finalDistance >= 0.5 ? 'medium' : 'low';
     reasons.push('Logical meaning differs from international meaning, but naturalistic form is missing.');
   }
-
-  reasons.push(`Rule-based distance: ${distanceResult.rule.distance.toFixed(2)}`);
-  if (distanceResult.embedding) {
-    reasons.push(`Embedding distance: ${distanceResult.embedding.distance.toFixed(2)}`);
-  }
-   if (distanceResult.manualEmbeddingError) {
-    reasons.push('Manual embedding was not parsed; calculation continued without it.');
-  }
-  reasons.push(`Final distance: ${distanceResult.final.distance.toFixed(2)}`);
 
   return {
     classification,
@@ -1084,37 +1109,6 @@ function renderResult(result, input) {
     </div>
 
 
-    <div class="result-card" style="margin-top: 10px;">
-      <h3>How distance is computed</h3>
-      <pre>${escapeHtml(distanceMethodText(distanceResult))}</pre>
-    </div>
-
-    ${distanceResult?.method === 'rule_fallback' && distanceResult?.error ? `
-      <div class="result-card" style="margin-top: 10px;">
-        <h3>Embedding</h3>
-        <pre>${escapeHtml(distanceResult.error)}</pre>
-      </div>
-    ` : ''}
-
-    ${distanceResult?.manualEmbeddingError ? `
-      <div class="result-card" style="margin-top: 10px;">
-<h3>Manual embedding</h3>
-        <pre>${escapeHtml('Neural model response could not be parsed. Expected JSON with distance/similarity fields.')}</pre>
-      </div>
-    ` : ''}
-
-    ${distanceResult?.embedding ? `
-      <div class="result-card" style="margin-top: 10px;">
-        <h3>Embedding</h3>
-  <ul class="embedding-meta">
-          <li><strong>Source:</strong> ${escapeHtml(distanceResult.embedding.provider || '—')}</li>
-          <li><strong>Model:</strong> ${escapeHtml(distanceResult.embedding.model || '—')}</li>
-          <li><strong>Distance:</strong> ${typeof distanceResult.embedding.distance === 'number' ? escapeHtml(distanceResult.embedding.distance.toFixed(2)) : '—'}</li>
-          <li><strong>Final weight:</strong> ${distanceResult?.final?.weights?.embedding ? escapeHtml((distanceResult.final.weights.embedding * 100).toFixed(0)) : '0'}%</li>
-          ${distanceResult.embedding.reason ? `<li><strong>Comment:</strong> ${escapeHtml(distanceResult.embedding.reason)}</li>` : ''}
-        </ul>
-      </div>
-    ` : ''}
   `;
 }
 
@@ -1129,7 +1123,7 @@ function clearAll() {
   state.components = [];
   renderComponents();
   els.result.classList.add('empty');
-  els.result.textContent = 'Fill in fields and click “Analyze”.';
+  els.result.textContent = t('fillAndAnalyse');
   saveState();
 }
 
@@ -1284,16 +1278,16 @@ function attachEvents() {
       try {
         await navigator.clipboard.writeText(promptText);
         els.copyPromptBtn.classList.add('is-copied');
-        els.copyPromptBtn.setAttribute('aria-label', 'Copied');
+        els.copyPromptBtn.setAttribute('aria-label', t('copied'));
         hideBuildPromptButtonWithShift();
         flashCopiedPromptField();
       } catch (error) {
         els.copyPromptBtn.classList.add('is-failed');
-        els.copyPromptBtn.setAttribute('aria-label', 'Copy failed');
+        els.copyPromptBtn.setAttribute('aria-label', t('copyFailed'));
       } finally {
         setTimeout(() => {
           els.copyPromptBtn.classList.remove('is-copied', 'is-failed');
-          els.copyPromptBtn.setAttribute('aria-label', 'Copy prompt');
+          els.copyPromptBtn.setAttribute('aria-label', t('copyPrompt'));
         }, 1200);
       }
     });

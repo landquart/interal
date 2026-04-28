@@ -4,27 +4,30 @@
   const inSubDir = /\/(similarita|determinatorofvalentyp)(\/|$)/.test(window.location.pathname);
   const prefix = inSubDir ? '../' : '';
 
-  const navLabels = {
-    similarita: 'Similaritá',
-    determinator: 'Determinator of valen typ'
-  };
-
   const i18n = {
     ru: {
       openMenu: 'Открыть настройки',
-      menuTitle: 'Parametres (Настройки)',
+      menuTitle: 'Настройки',
+      mobileMenuLabel: 'Меню',
+      desktopMenuLabel: 'Настройки',
       themeToLight: '☀️ Светлая тема',
       themeToDark: '🌙 Тёмная тема',
       langLabel: 'Язык',
+      navSimilarita: 'Симиларита',
+      navDeterminator: 'Определитель типа значения',
       ru: 'Русский',
       en: 'English'
     },
     en: {
       openMenu: 'Open settings',
-      menuTitle: 'Parametres (Настройки)',
+      menuTitle: 'Settings',
+      mobileMenuLabel: 'Menu',
+      desktopMenuLabel: 'Settings',
       themeToLight: '☀️ Light theme',
       themeToDark: '🌙 Dark theme',
       langLabel: 'Language',
+      navSimilarita: 'Similaritá',
+      navDeterminator: 'Determinator of valen typ',
       ru: 'Русский',
       en: 'English'
     }
@@ -45,7 +48,7 @@
 
   const menuButtonText = document.createElement('span');
   menuButtonText.className = 'top-menu-btn-text';
-  menuButtonText.textContent = 'Parametres (Настройки)';
+  menuButtonText.textContent = 'Меню';
 
   menuButton.append(menuButtonIcon, menuButtonText);
 
@@ -130,19 +133,21 @@
     menuButton.setAttribute('aria-label', t.openMenu);
     menu.querySelector('.menu-title').textContent = t.menuTitle;
     menu.querySelector('.menu-lang-title').textContent = t.langLabel;
+    const isDesktop = window.matchMedia('(min-width: 980px)').matches;
+    menuButtonText.textContent = isDesktop ? t.desktopMenuLabel : t.mobileMenuLabel;
 
     const similaritaLink = menu.querySelector('[data-nav="similarita"]');
     const determinatorLink = menu.querySelector('[data-nav="determinator"]');
     if (similaritaLink) {
-      similaritaLink.querySelector('.menu-nav-main').textContent = navLabels.similarita;
+      similaritaLink.querySelector('.menu-nav-main').textContent = t.navSimilarita;
     }
     if (determinatorLink) {
-      determinatorLink.querySelector('.menu-nav-main').textContent = navLabels.determinator;
+      determinatorLink.querySelector('.menu-nav-main').textContent = t.navDeterminator;
     }
 
     desktopControls.querySelectorAll('.top-desktop-link').forEach((link) => {
       const isSim = link.dataset.nav === 'similarita';
-      link.querySelector('.top-desktop-link-main').textContent = isSim ? navLabels.similarita : navLabels.determinator;
+      link.querySelector('.top-desktop-link-main').textContent = isSim ? t.navSimilarita : t.navDeterminator;
     });
 
     menu.querySelectorAll('.menu-lang-btn').forEach((btn) => {
@@ -203,4 +208,6 @@
       applyLanguage(btn.dataset.lang);
     });
   });
+
+  window.addEventListener('resize', () => applyLanguage(getLang()));
 })();

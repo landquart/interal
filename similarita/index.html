@@ -433,6 +433,7 @@ function applyTranslations() {
     const key = el.getAttribute('data-i18n');
     el.textContent = (i18n[lang] && i18n[lang][key]) || i18n.ru[key] || el.textContent;
   });
+  document.title = lang === 'en' ? 'Similaritá' : 'Симиларита';
 }
 
 
