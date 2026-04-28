@@ -167,6 +167,46 @@
       table { display: block; overflow-x: auto; white-space: nowrap; }
     }
 
+    @media (max-width: 560px) {
+      header {
+        padding: 22px 12px 10px;
+      }
+
+      main {
+        padding: 10px 12px 34px;
+        gap: 12px;
+      }
+
+      .card {
+        padding: 14px;
+        border-radius: 14px;
+      }
+
+      h1 { font-size: 24px; }
+      h2 { font-size: 19px; }
+
+      .actions-row button,
+      .actions-row button#searchBtn,
+      .fit.short {
+        width: 100%;
+        min-width: 0;
+      }
+
+      .tabs {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .tab {
+        width: 100%;
+        text-align: left;
+      }
+
+      input, select, textarea, button {
+        font-size: 16px;
+      }
+    }
+
     body.dark-theme .status.ok { background: #243526; color: #8fd69a; }
     body.dark-theme .status.bad { background: #442524; color: #f0aaaa; }
     body.dark-theme .status.warn { background: #46351f; color: #ffd37d; }
