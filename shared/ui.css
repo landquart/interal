@@ -195,12 +195,14 @@ body.menu-open .side-menu-overlay {
 .menu-nav-link:hover,
 .menu-nav-link:focus-visible {
   outline: none;
-  color: var(--text);
+  background: var(--text);
+  color: var(--surface);
+  border-color: var(--line);
 }
 
 .menu-nav-link:hover .menu-nav-main,
 .menu-nav-link:focus-visible .menu-nav-main {
-  text-decoration-color: var(--text);
+  text-decoration-color: var(--surface);
 }
 
 .menu-theme-btn,
