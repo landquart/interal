@@ -16,8 +16,8 @@
     .home-wrap { display: grid; place-items: center; }
     .home-brand { display: grid; justify-items: center; gap: 12px; text-decoration: none; color: var(--text); margin-bottom: 14px; transition: transform .28s ease; }
     .home-brand:hover { transform: scale(1.04); }
-    .home-logo { width: 132px; height: 132px; border-radius: 30px; padding: 14px; background: color-mix(in srgb, var(--surface) 74%, var(--bg)); border: 1px solid color-mix(in srgb, var(--line) 78%, var(--text)); box-shadow: 0 16px 34px rgba(0,0,0,.22); animation: logoFloat 3.8s ease-in-out infinite; transition: filter .28s ease, box-shadow .28s ease; overflow: hidden; }
-    .home-brand:hover .home-logo { box-shadow: 0 16px 34px rgba(0,0,0,.22), inset 0 0 18px color-mix(in srgb, var(--text) 24%, white); }
+    .home-logo { width: 132px; height: 132px; border-radius: 30px; padding: 14px; background: color-mix(in srgb, var(--surface) 74%, var(--bg)); border: 1px solid color-mix(in srgb, var(--line) 78%, var(--text)); box-shadow: 0 16px 34px rgba(0,0,0,.22); animation: logoFloat 3.8s ease-in-out infinite; transition: filter .28s ease, box-shadow .28s ease, transform .28s ease; overflow: hidden; }
+    .home-brand:hover .home-logo { box-shadow: 0 16px 34px rgba(0,0,0,.22); filter: drop-shadow(0 0 8px color-mix(in srgb, var(--text) 14%, white)) brightness(1.04); transform: scale(1.015); }
     .home-title { margin: 0; font-size: clamp(2rem, 4vw, 2.6rem); letter-spacing: .5px; transition: color .28s ease; }
     .container { width: min(460px, calc(100vw - 32px)); background: linear-gradient(170deg, color-mix(in srgb, var(--surface) 88%, transparent), var(--surface-soft)); border: 1px solid var(--line); border-radius: 18px; padding: 24px; text-align: center; box-shadow: 0 22px 40px rgba(0,0,0,.20); }
     .tool-link { display: block; margin: 10px 0; padding: 12px; text-decoration: none; color: var(--text); border: 1px solid var(--line); border-radius: 12px; background: color-mix(in srgb, var(--surface-soft) 88%, transparent); transition: color .2s ease, border-color .2s ease, transform .2s ease, box-shadow .2s ease; }

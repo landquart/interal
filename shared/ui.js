@@ -13,8 +13,8 @@
       themeToLight: '☀️ Светлая тема',
       themeToDark: '🌙 Тёмная тема',
       langLabel: 'Язык',
-      navSimilarita: 'Similaritá',
-      navDeterminator: 'Determinator of valen typ',
+      navSimilarita: 'Похожесть',
+      navDeterminator: 'Определитель типа значения',
       ru: 'Русский',
       en: 'English'
     },
