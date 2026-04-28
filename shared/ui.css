@@ -48,7 +48,7 @@ body {
 .top-menu-btn {
   position: relative;
   z-index: 1300;
-  width: 44px;
+  min-width: 44px;
   height: 44px;
   border-radius: 10px;
   border: 1px solid transparent;
@@ -74,13 +74,33 @@ body {
 
 .top-menu-btn-icon {
   line-height: 1;
+  font-size: 1.15rem;
+  flex: 0 0 auto;
 }
 
 .top-menu-btn-text {
   display: inline;
   font-size: 0.9rem;
   font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
+
+@media (max-width: 640px) {
+  .top-menu-btn {
+    width: auto;
+    padding: 0 10px;
+    gap: 6px;
+    justify-content: flex-start;
+  }
+
+  .top-menu-btn-text {
+    font-size: 0.82rem;
+    max-width: 62px;
+  }
+}
+
 .top-brand {
   display: inline-flex;
   align-items: center;
