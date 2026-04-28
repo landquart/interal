@@ -217,7 +217,16 @@
           element: 'Элемент',
           prefixAssimilation: 'Ассимиляция приставки',
           prefixVariant: 'Вариант приставки',
-          add: 'Добавить'
+          add: 'Добавить',
+          ollamaUrl: 'URL Ollama',
+          model: 'Модель',
+          manualPromptLabel: 'Промпт для внешней нейросети (ручной embedding)',
+          manualPromptPlaceholder: 'Нажмите «Собрать промпт»',
+          manualResponseLabel: 'Ответ нейросети (вставьте сюда)',
+          manualResponsePlaceholder: 'Например: {"distance":0.38,"similarity":0.62,"reason":"..."}',
+          manualHint: 'Если ответ предоставлен, дистанция считается как Rule-based + manual embedding (70/30).',
+          addComponentAria: 'Добавить компонент',
+          placeholders: ['re/vis/ion','vision again','revision','re/vis/ion/u','vid/er','see']
         },
         en: {
           title: 'Determinator of valen typ',
@@ -248,7 +257,16 @@
           element: 'Element',
           prefixAssimilation: 'Prefix assimilation',
           prefixVariant: 'Prefix variant',
-          add: 'Add'
+          add: 'Add',
+          ollamaUrl: 'Ollama URL',
+          model: 'Model',
+          manualPromptLabel: 'Prompt for external neural model (manual embedding)',
+          manualPromptPlaceholder: 'Click “Build prompt”',
+          manualResponseLabel: 'Neural model response (paste here)',
+          manualResponsePlaceholder: 'For example: {"distance":0.38,"similarity":0.62,"reason":"..."}',
+          manualHint: 'If response is provided, distance is computed as Rule-based + manual embedding (70/30).',
+          addComponentAria: 'Add component',
+          placeholders: ['re/vis/ion','vision again','revision','re/vis/ion/u','vid/er','see']
         }
       };
       function apply(lang) {
@@ -301,6 +319,31 @@
         document.querySelectorAll('#componentModal .field > span')[1].textContent = s.element;
         document.querySelectorAll('#prefixVariantModal .field > span')[0].textContent = s.prefixVariant;
         document.querySelectorAll('.modal-actions button').forEach((el) => { el.textContent = s.add; });
+
+        const manualLabels = document.querySelectorAll('.manual-embedding-box .field > span');
+        if (manualLabels[0]) manualLabels[0].textContent = s.manualPromptLabel;
+        if (manualLabels[1]) manualLabels[1].textContent = s.manualResponseLabel;
+        const compactLabels = document.querySelectorAll('.compact-field > span');
+        if (compactLabels[1]) compactLabels[1].textContent = s.ollamaUrl;
+        if (compactLabels[2]) compactLabels[2].textContent = s.model;
+        const manualHint = document.querySelector('.manual-hint');
+        if (manualHint) manualHint.textContent = s.manualHint;
+        const addBtn = document.getElementById('addComponentBtn');
+        if (addBtn) addBtn.setAttribute('aria-label', s.addComponentAria);
+        const placeholders = [
+          document.getElementById('regularWord'),
+          document.getElementById('logicalMeaning'),
+          document.getElementById('internationalMeaning'),
+          document.getElementById('naturalisticWord'),
+          document.getElementById('rootFormInput'),
+          document.getElementById('rootMeaningInput')
+        ];
+        placeholders.forEach((el, i) => { if (el) el.setAttribute('placeholder', s.placeholders[i]); });
+        const manualPrompt = document.getElementById('manualPrompt');
+        if (manualPrompt) manualPrompt.setAttribute('placeholder', s.manualPromptPlaceholder);
+        const manualResponse = document.getElementById('manualEmbeddingResponse');
+        if (manualResponse) manualResponse.setAttribute('placeholder', s.manualResponsePlaceholder);
+
       }
       apply(localStorage.getItem('interal.lang') === 'en' ? 'en' : 'ru');
       document.addEventListener('interal:languagechange', (e) => apply(e.detail.lang));

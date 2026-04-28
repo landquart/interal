@@ -386,6 +386,7 @@ button.ghost,
 .icon-copy-btn:hover,
 .icon-copy-btn:focus-visible {
   color: var(--bg-base);
+  background: var(--accent);
 }
 
 .icon-copy-btn img {
@@ -398,7 +399,7 @@ button.ghost,
 
 .icon-copy-btn:hover img,
 .icon-copy-btn:focus-visible img {
-  filter: brightness(0) saturate(100%) invert(9%) sepia(20%) saturate(953%) hue-rotate(346deg) brightness(84%) contrast(93%);
+  filter: brightness(0) invert(95%);
 }
 
 body.dark-theme .icon-copy-btn img {
