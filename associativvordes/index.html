@@ -10,16 +10,16 @@
   <link rel="stylesheet" href="../shared/ui.css" />
   <style>
     :root {
-      --card: var(--surface);
+      --card: color-mix(in srgb, var(--surface) 94%, white);
       --text: var(--text);
-      --muted: var(--muted);
-      --line: color-mix(in srgb, var(--text) 24%, transparent);
-      --accent: var(--text);
-      --accent-2: var(--surface-soft);
+      --muted: color-mix(in srgb, var(--text) 70%, var(--muted));
+      --line: color-mix(in srgb, var(--text) 30%, transparent);
+      --accent: color-mix(in srgb, var(--text) 88%, #000 12%);
+      --accent-2: color-mix(in srgb, var(--surface-soft) 88%, white);
       --bad: #8b2f2f;
       --ok: #2f6534;
       --warn: #7c520d;
-      --shadow: 0 12px 30px rgba(31, 41, 55, 0.12);
+      --shadow: 0 12px 30px rgba(31, 41, 55, 0.1);
     }
 
     * { box-sizing: border-box; }
@@ -41,7 +41,7 @@
     h1 { margin: 0 0 8px; font-size: 30px; }
     h2 { margin: 0 0 14px; font-size: 21px; }
     h3 { margin: 0 0 10px; font-size: 17px; }
-    p { color: color-mix(in srgb, var(--text) 78%, var(--muted)); margin: 0; }
+    p { color: color-mix(in srgb, var(--text) 84%, var(--muted)); margin: 0; }
 
     main {
       max-width: 1180px;
@@ -70,7 +70,7 @@
       border: 1px solid var(--line);
       padding: 10px 12px;
       width: 100%;
-      background: color-mix(in srgb, var(--surface) 80%, white);
+      background: color-mix(in srgb, var(--surface) 92%, white);
       color: var(--text);
     }
 
@@ -85,7 +85,7 @@
     }
 
     button.secondary {
-      background: color-mix(in srgb, var(--surface) 80%, white);
+      background: color-mix(in srgb, var(--surface) 92%, white);
       color: var(--text);
       border-color: var(--line);
     }
@@ -114,14 +114,14 @@
     .fit.short { width: auto; min-width: 0; padding-inline: 12px; }
     .actions-row button#searchBtn { min-width: 230px; }
 
-    .muted { color: color-mix(in srgb, var(--text) 72%, var(--muted)); }
+    .muted { color: color-mix(in srgb, var(--text) 80%, var(--muted)); }
     .note { background: var(--accent-2); padding: 12px; border-radius: 14px; color: var(--text); }
 
     .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
     .tab {
       width: auto;
       padding: 8px 11px;
-      background: color-mix(in srgb, var(--surface) 80%, white);
+      background: color-mix(in srgb, var(--surface) 92%, white);
       color: var(--text);
       border-color: var(--line);
     }
@@ -154,7 +154,7 @@
       border: 1px solid var(--line);
       border-radius: 16px;
       padding: 14px;
-      background: color-mix(in srgb, var(--surface) 84%, white);
+      background: color-mix(in srgb, var(--surface) 95%, white);
     }
     .metric strong { font-size: 22px; display: block; }
     .metric span { color: var(--muted); font-size: 13px; }
@@ -207,6 +207,23 @@
       }
     }
 
+    body.dark-theme {
+      --card: color-mix(in srgb, var(--surface) 96%, #000 4%);
+      --muted: color-mix(in srgb, var(--text) 74%, #f7d185 26%);
+      --line: color-mix(in srgb, var(--text) 28%, transparent);
+      --accent: color-mix(in srgb, var(--text) 84%, #000 16%);
+      --accent-2: color-mix(in srgb, var(--surface-soft) 88%, #000 12%);
+      --shadow: 0 12px 28px rgba(0, 0, 0, 0.38);
+    }
+    body.dark-theme input,
+    body.dark-theme select,
+    body.dark-theme textarea,
+    body.dark-theme .tab,
+    body.dark-theme .secondary,
+    body.dark-theme .metric {
+      background: color-mix(in srgb, var(--surface) 90%, #000 10%);
+      color: var(--text);
+    }
     body.dark-theme .status.ok { background: #243526; color: #8fd69a; }
     body.dark-theme .status.bad { background: #442524; color: #f0aaaa; }
     body.dark-theme .status.warn { background: #46351f; color: #ffd37d; }
