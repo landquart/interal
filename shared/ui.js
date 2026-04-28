@@ -15,6 +15,7 @@
       langLabel: 'Язык',
       navSimilarita: 'Similaritá',
       navDeterminator: 'Determinator of valen typ',
+      navAriaLabel: 'Разделы сайта',
       ru: 'Русский',
       en: 'English'
     },
@@ -28,6 +29,7 @@
       langLabel: 'Language',
       navSimilarita: 'Similaritá',
       navDeterminator: 'Determinator of valen typ',
+      navAriaLabel: 'Site sections',
       ru: 'Русский',
       en: 'English'
     }
@@ -133,6 +135,8 @@
     menuButton.setAttribute('aria-label', t.openMenu);
     menu.querySelector('.menu-title').textContent = t.menuTitle;
     menu.querySelector('.menu-lang-title').textContent = t.langLabel;
+    const siteNav = menu.querySelector('.menu-nav');
+    if (siteNav) siteNav.setAttribute('aria-label', t.navAriaLabel);
     const isDesktop = window.matchMedia('(min-width: 980px)').matches;
     menuButtonText.textContent = isDesktop ? t.desktopMenuLabel : t.mobileMenuLabel;
 
@@ -210,4 +214,31 @@
   });
 
   window.addEventListener('resize', () => applyLanguage(getLang()));
+
+  let touchStartX = null;
+  let touchStartY = null;
+  menu.addEventListener('touchstart', function (event) {
+    if (!document.body.classList.contains('menu-open')) return;
+    const t = event.touches[0];
+    touchStartX = t.clientX;
+    touchStartY = t.clientY;
+  }, { passive: true });
+
+  menu.addEventListener('touchmove', function (event) {
+    if (!document.body.classList.contains('menu-open') || touchStartX === null || touchStartY === null) return;
+    const t = event.touches[0];
+    const dx = t.clientX - touchStartX;
+    const dy = t.clientY - touchStartY;
+    if (Math.abs(dx) > 48 && dx < 0 && Math.abs(dx) > Math.abs(dy)) {
+      closeMenu();
+      touchStartX = null;
+      touchStartY = null;
+    }
+  }, { passive: true });
+
+  menu.addEventListener('touchend', function () {
+    touchStartX = null;
+    touchStartY = null;
+  }, { passive: true });
+
 })();
