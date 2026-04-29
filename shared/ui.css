@@ -353,3 +353,63 @@ body, button, input, textarea, select {
   }
   .top-menu-btn-icon { display: inline; }
 }
+
+
+/* Global subtle motion improvements */
+.top-nav-window {
+  backdrop-filter: saturate(1.1) blur(5px);
+  animation: navDropIn .42s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.top-brand-logo {
+  transition: transform .32s ease, filter .32s ease;
+}
+.top-brand:hover .top-brand-logo {
+  transform: rotate(-6deg) scale(1.06);
+  filter: drop-shadow(0 3px 8px color-mix(in srgb, var(--text) 25%, transparent));
+}
+
+.side-menu {
+  box-shadow: 14px 0 28px rgba(0,0,0,.18);
+}
+
+@keyframes navDropIn {
+  from { transform: translateY(-8px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.interal-quick-tools {
+  margin-top: 14px;
+  border-top: 1px dashed var(--line);
+  padding-top: 12px;
+  display: grid;
+  gap: 8px;
+}
+
+.interal-quick-title {
+  margin: 0;
+  font-size: .95rem;
+  color: var(--muted);
+}
+
+.interal-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 18px;
+  transform: translate(-50%, 14px);
+  opacity: 0;
+  background: var(--text);
+  color: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: .86rem;
+  pointer-events: none;
+  z-index: 1400;
+  transition: transform .2s ease, opacity .2s ease;
+}
+
+.interal-toast.show {
+  transform: translate(-50%, 0);
+  opacity: 1;
+}
