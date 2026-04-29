@@ -24,7 +24,7 @@
       quickTitle: 'Быстрые действия',
       copyState: '📋 Скопировать ссылку с данными',
       shared: 'Ссылка скопирована',
-      sharedWarn: 'Не удалось скопировать ссылку'
+      sharedWarn: 'Не удалось сократить или скопировать ссылку'
     },
     en: {
       openMenu: 'Open settings',
@@ -43,7 +43,7 @@
       quickTitle: 'Quick actions',
       copyState: '📋 Copy link with data',
       shared: 'Link copied',
-      sharedWarn: 'Could not copy link'
+      sharedWarn: 'Could not shorten or copy link'
     }
   };
 
@@ -272,6 +272,17 @@
     });
   }
 
+
+
+  async function shortenLink(url) {
+    const endpoint = `https://tinyurl.com/api-create.php?url=${encodeURIComponent(url)}`;
+    const response = await fetch(endpoint, { method: 'GET', mode: 'cors', cache: 'no-store' });
+    if (!response.ok) throw new Error('Shortener unavailable');
+    const shortUrl = (await response.text()).trim();
+    if (!/^https?:\/\//i.test(shortUrl)) throw new Error('Invalid short URL response');
+    return shortUrl;
+  }
+
   function markCurrentPage() {
     const path = window.location.pathname;
     const currentNav = path.includes('/similarita/')
@@ -354,7 +365,8 @@
     const encoded = encodeState(collectPageState());
     const fullUrl = encoded ? `${url}#state=${encoded}` : url;
     try {
-      await navigator.clipboard.writeText(fullUrl);
+      const shortUrl = await shortenLink(fullUrl);
+      await navigator.clipboard.writeText(shortUrl);
       showToast(i18n[getLang()].shared);
     } catch (_) {
       showToast(i18n[getLang()].sharedWarn);
