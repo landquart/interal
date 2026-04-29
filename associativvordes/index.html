@@ -10,12 +10,12 @@
   <link rel="stylesheet" href="../shared/ui.css" />
   <style>
     :root {
-      --card: color-mix(in srgb, var(--surface) 94%, white);
+      --card: #fff8e2;
       --text: var(--text);
       --muted: color-mix(in srgb, var(--text) 70%, var(--muted));
-      --line: color-mix(in srgb, var(--text) 30%, transparent);
-      --accent: color-mix(in srgb, var(--text) 88%, #000 12%);
-      --accent-2: color-mix(in srgb, var(--surface-soft) 88%, white);
+      --line: #9a6f33;
+      --accent: #3d2a12;
+      --accent-2: #ffe1a2;
       --bad: #8b2f2f;
       --ok: #2f6534;
       --warn: #7c520d;
@@ -59,6 +59,16 @@
       padding: 18px;
     }
 
+
+    .card-scroll-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .card-scroll-content {
+      min-width: 100%;
+    }
+
     .grid { display: grid; gap: 14px; }
     .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -70,7 +80,7 @@
       border: 1px solid var(--line);
       padding: 10px 12px;
       width: 100%;
-      background: color-mix(in srgb, var(--surface) 92%, white);
+      background: #fffdf4;
       color: var(--text);
     }
 
@@ -85,7 +95,7 @@
     }
 
     button.secondary {
-      background: color-mix(in srgb, var(--surface) 92%, white);
+      background: #fff6dc;
       color: var(--text);
       border-color: var(--line);
     }
@@ -121,7 +131,7 @@
     .tab {
       width: auto;
       padding: 8px 11px;
-      background: color-mix(in srgb, var(--surface) 92%, white);
+      background: #fff6dc;
       color: var(--text);
       border-color: var(--line);
     }
@@ -154,7 +164,7 @@
       border: 1px solid var(--line);
       border-radius: 16px;
       padding: 14px;
-      background: color-mix(in srgb, var(--surface) 95%, white);
+      background: #fff8e8;
     }
     .metric strong { font-size: 22px; display: block; }
     .metric span { color: var(--muted); font-size: 13px; }
@@ -175,7 +185,7 @@
       }
 
       header {
-        padding: 22px 10px 10px;
+        padding: 16px 10px 10px;
       }
 
       main {
@@ -188,7 +198,7 @@
         border-radius: 14px;
       }
 
-      h1 { font-size: 24px; }
+      h1 { font-size: 22px; line-height: 1.2; word-break: break-word; }
       h2 { font-size: 19px; }
 
       .actions-row button,
@@ -212,8 +222,19 @@
         font-size: 16px;
       }
 
-      table {
-        white-space: normal;
+      .card-scroll-content {
+        min-width: 740px;
+      }
+
+      .card-scroll-wrap table {
+        white-space: nowrap;
+      }
+
+      input,
+      select,
+      textarea {
+        min-width: 0;
+        width: 100%;
       }
     }
 
@@ -279,16 +300,20 @@
       </div>
     </section>
 
-    <section class="card">
+    <section class="card card-scroll-wrap">
+      <div class="card-scroll-content">
       <h2>2) Итог</h2>
       <div class="result-box" id="resultBox"></div>
       <div style="margin-top: 12px;" id="decisionBox"></div>
+      </div>
     </section>
 
-    <section class="card">
+    <section class="card card-scroll-wrap">
+      <div class="card-scroll-content">
       <h2>3) Языки и дериваты</h2>
       <div class="tabs" id="tabs"></div>
       <div id="languagePanel"></div>
+      </div>
     </section>
 
     <section class="card grid grid-2">
