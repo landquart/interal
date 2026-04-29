@@ -20,7 +20,12 @@
       navDeterminator: 'Determinator of valen typ',
       navAriaLabel: 'Разделы сайта',
       ru: 'Русский',
-      en: 'English'
+      en: 'English',
+      quickTitle: 'Быстрые действия',
+      shareLink: '🔗 Поделиться страницей',
+      copyState: '📋 Скопировать ссылку с данными',
+      shared: 'Ссылка скопирована',
+      sharedWarn: 'Не удалось скопировать ссылку'
     },
     en: {
       openMenu: 'Open settings',
@@ -35,7 +40,12 @@
       navDeterminator: 'Determinator of valen typ',
       navAriaLabel: 'Site sections',
       ru: 'Русский',
-      en: 'English'
+      en: 'English',
+      quickTitle: 'Quick actions',
+      shareLink: '🔗 Share this page',
+      copyState: '📋 Copy link with data',
+      shared: 'Link copied',
+      sharedWarn: 'Could not copy link'
     }
   };
 
@@ -96,6 +106,15 @@
       </div>
     </div>
   `;
+
+  const quickTools = document.createElement('div');
+  quickTools.className = 'interal-quick-tools';
+  quickTools.innerHTML = `
+    <p class="interal-quick-title"></p>
+    <button class="menu-lang-btn" type="button" data-quick="share-link"></button>
+    <button class="menu-lang-btn" type="button" data-quick="copy-state"></button>
+  `;
+  menu.appendChild(quickTools);
 
   function getLang() {
     const saved = localStorage.getItem(LANG_KEY);
@@ -171,10 +190,80 @@
       btn.classList.toggle('is-active', code === nextLang);
     });
 
+    const quickTitle = menu.querySelector('.interal-quick-title');
+    if (quickTitle) quickTitle.textContent = t.quickTitle;
+    const shareBtn = menu.querySelector('[data-quick="share-link"]');
+    const shareStateBtn = menu.querySelector('[data-quick="copy-state"]');
+    if (shareBtn) shareBtn.textContent = t.shareLink;
+    if (shareStateBtn) shareStateBtn.textContent = t.copyState;
+
     const currentTheme = document.body.classList.contains('dark-theme') ? 'dark' : 'light';
     applyTheme(currentTheme);
 
     document.dispatchEvent(new CustomEvent('interal:languagechange', { detail: { lang: nextLang } }));
+  }
+
+
+  function showToast(message) {
+    let toast = document.querySelector('.interal-toast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.className = 'interal-toast';
+      document.body.appendChild(toast);
+    }
+    toast.textContent = message;
+    toast.classList.add('show');
+    clearTimeout(showToast._timer);
+    showToast._timer = setTimeout(() => toast.classList.remove('show'), 1800);
+  }
+
+  function encodeState(obj) {
+    try {
+      return btoa(unescape(encodeURIComponent(JSON.stringify(obj))));
+    } catch (_) {
+      return '';
+    }
+  }
+
+  function decodeState(encoded) {
+    try {
+      return JSON.parse(decodeURIComponent(escape(atob(encoded))));
+    } catch (_) {
+      return null;
+    }
+  }
+
+  function collectPageState() {
+    const state = {};
+    document.querySelectorAll('input, textarea, select').forEach((el) => {
+      if (!el.id && !el.name) return;
+      const key = el.id || el.name;
+      if (el.type === 'file') {
+        state[key] = { fileNames: Array.from(el.files || []).map((f) => f.name), type: 'file' };
+      } else if (el.type === 'checkbox' || el.type === 'radio') {
+        state[key] = { checked: !!el.checked, type: el.type };
+      } else {
+        state[key] = { value: el.value, type: el.type || el.tagName.toLowerCase() };
+      }
+    });
+    return state;
+  }
+
+  function applyPageState(state) {
+    if (!state || typeof state !== 'object') return;
+    Object.entries(state).forEach(([key, payload]) => {
+      const el = document.getElementById(key) || document.querySelector(`[name="${CSS.escape(key)}"]`);
+      if (!el || !payload) return;
+      if (payload.type === 'checkbox' || payload.type === 'radio') {
+        el.checked = !!payload.checked;
+      } else if (payload.type === 'file') {
+        return;
+      } else if (typeof payload.value === 'string') {
+        el.value = payload.value;
+      }
+      el.dispatchEvent(new Event('input', { bubbles: true }));
+      el.dispatchEvent(new Event('change', { bubbles: true }));
+    });
   }
 
   function markCurrentPage() {
@@ -252,5 +341,37 @@
     touchStartX = null;
     touchStartY = null;
   }, { passive: true });
+
+
+  menu.querySelector('[data-quick="share-link"]').addEventListener('click', async function () {
+    const url = window.location.href.split('#')[0];
+    try {
+      await navigator.clipboard.writeText(url);
+      showToast(i18n[getLang()].shared);
+    } catch (_) {
+      showToast(i18n[getLang()].sharedWarn);
+    }
+  });
+
+  menu.querySelector('[data-quick="copy-state"]').addEventListener('click', async function () {
+    const url = window.location.href.split('#')[0];
+    const encoded = encodeState(collectPageState());
+    const fullUrl = encoded ? `${url}#state=${encoded}` : url;
+    try {
+      await navigator.clipboard.writeText(fullUrl);
+      showToast(i18n[getLang()].shared);
+    } catch (_) {
+      showToast(i18n[getLang()].sharedWarn);
+    }
+  });
+
+  const hashMatch = window.location.hash.match(/state=([^&]+)/);
+  if (hashMatch && hashMatch[1]) {
+    const decoded = decodeState(hashMatch[1]);
+    if (decoded) {
+      window.addEventListener('load', () => applyPageState(decoded));
+      setTimeout(() => applyPageState(decoded), 80);
+    }
+  }
 
 })();
