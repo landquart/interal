@@ -183,10 +183,10 @@
       link.querySelector('.top-desktop-link-main').textContent = labels[link.dataset.nav] || '';
     });
 
-    menu.querySelectorAll('.menu-lang-btn').forEach((btn) => {
+    menu.querySelectorAll('.menu-lang-btn[data-lang]').forEach((btn) => {
       const code = btn.dataset.lang;
       const label = btn.querySelector('.menu-lang-name');
-      label.textContent = t[code];
+      if (label) label.textContent = t[code];
       btn.classList.toggle('is-active', code === nextLang);
     });
 
