@@ -22,7 +22,6 @@
       ru: 'Русский',
       en: 'English',
       quickTitle: 'Быстрые действия',
-      shareLink: '🔗 Поделиться страницей',
       copyState: '📋 Скопировать ссылку с данными',
       shared: 'Ссылка скопирована',
       sharedWarn: 'Не удалось скопировать ссылку'
@@ -42,7 +41,6 @@
       ru: 'Русский',
       en: 'English',
       quickTitle: 'Quick actions',
-      shareLink: '🔗 Share this page',
       copyState: '📋 Copy link with data',
       shared: 'Link copied',
       sharedWarn: 'Could not copy link'
@@ -111,7 +109,6 @@
   quickTools.className = 'interal-quick-tools';
   quickTools.innerHTML = `
     <p class="interal-quick-title"></p>
-    <button class="menu-lang-btn" type="button" data-quick="share-link"></button>
     <button class="menu-lang-btn" type="button" data-quick="copy-state"></button>
   `;
   menu.appendChild(quickTools);
@@ -192,9 +189,7 @@
 
     const quickTitle = menu.querySelector('.interal-quick-title');
     if (quickTitle) quickTitle.textContent = t.quickTitle;
-    const shareBtn = menu.querySelector('[data-quick="share-link"]');
     const shareStateBtn = menu.querySelector('[data-quick="copy-state"]');
-    if (shareBtn) shareBtn.textContent = t.shareLink;
     if (shareStateBtn) shareStateBtn.textContent = t.copyState;
 
     const currentTheme = document.body.classList.contains('dark-theme') ? 'dark' : 'light';
@@ -217,9 +212,20 @@
     showToast._timer = setTimeout(() => toast.classList.remove('show'), 1800);
   }
 
-  function encodeState(obj) {
+  function toBase64Url(input) {
+    return btoa(unescape(encodeURIComponent(input))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/g, '');
+  }
+
+  function fromBase64Url(input) {
+    const normalized = input.replace(/-/g, '+').replace(/_/g, '/');
+    const padLength = (4 - (normalized.length % 4)) % 4;
+    const padded = normalized + '='.repeat(padLength);
+    return decodeURIComponent(escape(atob(padded)));
+  }
+
+  function encodeState(entries) {
     try {
-      return btoa(unescape(encodeURIComponent(JSON.stringify(obj))));
+      return toBase64Url(JSON.stringify(entries));
     } catch (_) {
       return '';
     }
@@ -227,39 +233,39 @@
 
   function decodeState(encoded) {
     try {
-      return JSON.parse(decodeURIComponent(escape(atob(encoded))));
+      const decoded = JSON.parse(fromBase64Url(encoded));
+      return Array.isArray(decoded) ? decoded : [];
     } catch (_) {
-      return null;
+      return [];
     }
   }
 
   function collectPageState() {
-    const state = {};
+    const entries = [];
     document.querySelectorAll('input, textarea, select').forEach((el) => {
       if (!el.id && !el.name) return;
+      if (el.type === 'file') return;
       const key = el.id || el.name;
-      if (el.type === 'file') {
-        state[key] = { fileNames: Array.from(el.files || []).map((f) => f.name), type: 'file' };
-      } else if (el.type === 'checkbox' || el.type === 'radio') {
-        state[key] = { checked: !!el.checked, type: el.type };
-      } else {
-        state[key] = { value: el.value, type: el.type || el.tagName.toLowerCase() };
+      if (el.type === 'checkbox' || el.type === 'radio') {
+        if (el.checked) entries.push([key, 1]);
+      } else if (typeof el.value === 'string' && el.value !== '') {
+        entries.push([key, el.value]);
       }
     });
-    return state;
+    return entries;
   }
 
-  function applyPageState(state) {
-    if (!state || typeof state !== 'object') return;
-    Object.entries(state).forEach(([key, payload]) => {
+  function applyPageState(entries) {
+    if (!Array.isArray(entries)) return;
+    entries.forEach((entry) => {
+      if (!Array.isArray(entry) || entry.length < 2) return;
+      const [key, value] = entry;
       const el = document.getElementById(key) || document.querySelector(`[name="${CSS.escape(key)}"]`);
-      if (!el || !payload) return;
-      if (payload.type === 'checkbox' || payload.type === 'radio') {
-        el.checked = !!payload.checked;
-      } else if (payload.type === 'file') {
-        return;
-      } else if (typeof payload.value === 'string') {
-        el.value = payload.value;
+      if (!el) return;
+      if (el.type === 'checkbox' || el.type === 'radio') {
+        el.checked = value === 1 || value === true || value === '1';
+      } else if (typeof value === 'string') {
+        el.value = value;
       }
       el.dispatchEvent(new Event('input', { bubbles: true }));
       el.dispatchEvent(new Event('change', { bubbles: true }));
@@ -342,16 +348,6 @@
     touchStartY = null;
   }, { passive: true });
 
-
-  menu.querySelector('[data-quick="share-link"]').addEventListener('click', async function () {
-    const url = window.location.href.split('#')[0];
-    try {
-      await navigator.clipboard.writeText(url);
-      showToast(i18n[getLang()].shared);
-    } catch (_) {
-      showToast(i18n[getLang()].sharedWarn);
-    }
-  });
 
   menu.querySelector('[data-quick="copy-state"]').addEventListener('click', async function () {
     const url = window.location.href.split('#')[0];
