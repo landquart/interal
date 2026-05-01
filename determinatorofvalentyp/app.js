@@ -386,7 +386,64 @@ function localizeComponentText(item) {
 
 function localizeMeaning(meaning) {
   if (currentLang() !== 'en') return meaning;
-  return /[А-Яа-яЁё]/.test(meaning) ? 'Meaning description (RU source)' : meaning;
+  if (!/[А-Яа-яЁё]/.test(meaning)) return meaning;
+
+  const replacements = [
+    [' также ', ' also '],
+    [' и ', ' and '],
+    [' или ', ' or '],
+    [' у ', ' for '],
+    [' в ', ' in '],
+    [' на ', ' on '],
+    [' с ', ' with '],
+    ['без ', 'without '],
+    ['существительное', 'noun'],
+    ['прилагательное', 'adjective'],
+    ['глагол', 'verb'],
+    ['окончание', 'ending'],
+    ['суффикс', 'suffix'],
+    ['приставка', 'prefix'],
+    ['женский род', 'feminine gender'],
+    ['мужской род', 'masculine gender'],
+    ['ласкательная форма', 'diminutive form'],
+    ['уменьшительно-ласкательный', 'diminutive'],
+    ['пренебрежение', 'pejorative meaning'],
+    ['пренебрежительное отношение', 'pejorative attitude'],
+    ['результат действия', 'result of an action'],
+    ['процесс', 'process'],
+    ['действие', 'action'],
+    ['необходимость', 'necessity'],
+    ['обязательность', 'obligation'],
+    ['человек', 'person'],
+    ['профессия', 'profession'],
+    ['направление', 'movement'],
+    ['наука', 'science'],
+    ['язык', 'language'],
+    ['страны', 'countries'],
+    ['страны', 'country'],
+    ['большой', 'large'],
+    ['маленькое', 'small'],
+    ['много', 'many'],
+    ['новый', 'new'],
+    ['против', 'against'],
+    ['похожий на что-то', 'similar to something'],
+    ['дробное числительное', 'fractional numeral'],
+    ['порядковое числительное', 'ordinal numeral']
+  ];
+
+  let translated = ` ${meaning} `;
+  replacements.forEach(([ru, en]) => {
+    translated = translated.replaceAll(ru, en);
+  });
+
+  translated = translated
+    .replace(/[;]+/g, ';')
+    .replace(/\s{2,}/g, ' ')
+    .trim();
+
+  return /[А-Яа-яЁё]/.test(translated)
+    ? `${translated} (auto-translated from Russian)`
+    : translated;
 }
 
 function localizePrefixNote(note) {
