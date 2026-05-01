@@ -388,6 +388,48 @@
     let state = emptyState();
     let activeLang = 'en';
 
+    async function loadJsonFilesFromDirectory() {
+      const loadedFrequencies = {};
+      const loadedDerivatives = {};
+      const missing = [];
+
+      for (const lang of LANGUAGES) {
+        try {
+          const response = await fetch(`./${lang.code}.json`, { cache: 'no-store' });
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+          const json = await response.json();
+          if (!json || typeof json !== 'object' || Array.isArray(json)) {
+            throw new Error('JSON должен быть объектом формата { "word": rank }');
+          }
+
+          loadedFrequencies[lang.code] = json;
+          loadedDerivatives[lang.code] = Object.keys(json);
+        } catch (error) {
+          missing.push(`${lang.code}: ${error.message}`);
+        }
+      }
+
+      if (Object.keys(loadedFrequencies).length) {
+        frequencyData = {
+          ...frequencyData,
+          ...loadedFrequencies
+        };
+      }
+      if (Object.keys(loadedDerivatives).length) {
+        derivativeData = {
+          ...derivativeData,
+          ...loadedDerivatives
+        };
+      }
+
+      renderDataEditors();
+
+      if (missing.length) {
+        console.warn('Не все JSON-файлы удалось загрузить, использованы встроенные демо-данные:', missing.join('; '));
+      }
+    }
+
     function emptyState() {
       const langs = {};
       LANGUAGES.forEach(l => langs[l.code] = []);
@@ -753,9 +795,13 @@
     window.deleteItem = deleteItem;
     window.addRow = addRow;
 
-    renderDataEditors();
-    if (!loadLocal()) searchDerivatives();
-    else renderAll();
+    async function init() {
+      await loadJsonFilesFromDirectory();
+      if (!loadLocal()) searchDerivatives();
+      else renderAll();
+    }
+
+    init();
   </script>
   <script src="../shared/ui.js"></script>
 </body>
