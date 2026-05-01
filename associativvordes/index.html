@@ -115,6 +115,20 @@
       transform: translateY(-1px);
     }
 
+
+    .top-menu-btn:hover,
+    .top-menu-btn:focus-visible,
+    .menu-nav-link:hover,
+    .menu-nav-link:focus-visible {
+      background: var(--nav-hover-bg);
+      color: var(--nav-hover-text);
+    }
+
+    .menu-nav-link:hover .menu-nav-main,
+    .menu-nav-link:focus-visible .menu-nav-main {
+      text-decoration-color: var(--nav-hover-text);
+    }
+
     .row { display: flex; gap: 10px; align-items: center; }
     .row > * { flex: 1; }
     .row .fit { flex: 0 0 auto; }
