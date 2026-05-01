@@ -767,6 +767,21 @@
       return String(s || '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
     }
 
+    function showExample() {
+      const examples = [
+        { root: 'ocul', meaning: 'глаз', elementType: 'root' },
+        { root: 'inter', meaning: 'между', elementType: 'preposition' }
+      ];
+      const choice = examples[Math.floor(Math.random() * examples.length)];
+      state.root = choice.root;
+      state.meaning = choice.meaning;
+      state.elementType = choice.elementType;
+      document.getElementById('rootInput').value = state.root;
+      document.getElementById('meaningInput').value = state.meaning;
+      document.getElementById('elementType').value = state.elementType;
+      searchDerivatives();
+    }
+
     document.getElementById('searchBtn').addEventListener('click', searchDerivatives);
     document.getElementById('showExampleBtn').addEventListener('click', showExample);
     document.getElementById('exportBtn').addEventListener('click', exportState);
@@ -790,17 +805,3 @@
   <script src="../shared/ui.js"></script>
 </body>
 </html>
-    function showExample() {
-      const examples = [
-        { root: 'ocul', meaning: 'глаз', elementType: 'root' },
-        { root: 'inter', meaning: 'между', elementType: 'preposition' }
-      ];
-      const choice = examples[Math.floor(Math.random() * examples.length)];
-      state.root = choice.root;
-      state.meaning = choice.meaning;
-      state.elementType = choice.elementType;
-      document.getElementById('rootInput').value = state.root;
-      document.getElementById('meaningInput').value = state.meaning;
-      document.getElementById('elementType').value = state.elementType;
-      searchDerivatives();
-    }
