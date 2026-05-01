@@ -316,6 +316,7 @@ body, button, input, textarea, select {
   text-decoration-color: transparent;
   text-underline-offset: 4px;
   text-decoration-thickness: 2px;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
 }
 
 .top-desktop-link.is-active .top-desktop-link-main {
@@ -352,6 +353,12 @@ body, button, input, textarea, select {
     font-size: inherit;
   }
   .top-menu-btn-icon { display: inline; }
+
+  .top-desktop-link:hover .top-desktop-link-main,
+  .top-desktop-link:focus-visible .top-desktop-link-main {
+    color: color-mix(in srgb, var(--text) 82%, var(--surface) 18%);
+    text-decoration-color: currentColor;
+  }
 }
 
 
