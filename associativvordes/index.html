@@ -767,15 +767,22 @@
       return String(s || '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
     }
 
-    function showExample() {
-      const examples = [
-        { root: 'ocul', meaning: 'глаз', elementType: 'root' },
+    const examplesByType = {
+      root: [
+        { root: 'regul', meaning: 'правило', elementType: 'root' }
+      ],
+      preposition: [
         { root: 'inter', meaning: 'между', elementType: 'preposition' }
-      ];
+      ]
+    };
+
+    function showExample() {
+      const selectedType = document.getElementById('elementType').value || 'root';
+      const examples = examplesByType[selectedType] || examplesByType.root;
       const choice = examples[Math.floor(Math.random() * examples.length)];
       state.root = choice.root;
       state.meaning = choice.meaning;
-      state.elementType = choice.elementType;
+      state.elementType = selectedType;
       document.getElementById('rootInput').value = state.root;
       document.getElementById('meaningInput').value = state.meaning;
       document.getElementById('elementType').value = state.elementType;
@@ -784,6 +791,7 @@
 
     document.getElementById('searchBtn').addEventListener('click', searchDerivatives);
     document.getElementById('showExampleBtn').addEventListener('click', showExample);
+    document.getElementById('elementType').addEventListener('change', showExample);
     document.getElementById('exportBtn').addEventListener('click', exportState);
     document.getElementById('importBtn').addEventListener('click', importState);
     document.getElementById('resetBtn').addEventListener('click', resetAll);
