@@ -221,14 +221,9 @@
         min-width: 0;
       }
 
-      .tabs {
-        display: grid;
-        grid-template-columns: 1fr;
-      }
-
       .tab {
-        width: 100%;
-        text-align: left;
+        width: auto;
+        text-align: center;
       }
 
       input, select, textarea, button {
@@ -288,25 +283,22 @@
       </div>
       <div>
         <label for="rootInput">Кандидатный корень / предлог</label>
-        <input id="rootInput" value="ocul" placeholder="например: ocul, regul, inter" />
+        <input id="rootInput" value="" placeholder="например: ocul, regul, inter" />
       </div>
       <div>
         <label for="meaningInput">Перевод / значение</label>
-        <input id="meaningInput" value="глаз" placeholder="например: глаз, правило, между" />
+        <input id="meaningInput" value="" placeholder="например: глаз, правило, между" />
       </div>
-      <div>
+      <div style="grid-column: 1 / -1; max-width: 420px; margin: 0 auto; width: 100%;">
         <label for="elementType">Тип элемента</label>
         <select id="elementType">
           <option value="root">корень</option>
           <option value="preposition">предлог / приставка</option>
         </select>
       </div>
-      <div>
-        <label for="maxModels">Максимум моделей на язык</label>
-        <input id="maxModels" type="number" min="1" max="20" value="5" />
-      </div>
       <div class="row actions-row" style="grid-column: 1 / -1;">
         <button id="searchBtn">Найти дериваты и посчитать</button>
+        <button class="secondary" id="showExampleBtn">Показать пример</button>
         <button class="secondary" id="exportBtn">Экспорт JSON</button>
         <button class="secondary" id="importBtn">Импорт JSON</button>
         <button class="danger" id="resetBtn">Сбросить</button>
@@ -344,23 +336,17 @@
       </div>
     </section>
 
-    <section class="card">
-      <h2>Как расширить инструмент</h2>
-      <div class="note">
-        Для качественной автоматизации лучше заранее подготовить JSON по каждому языку: слова из Kaikki/Wiktionary + частотные ранги из wordfreq. Этот файл уже содержит демо-базу, чтобы инструмент работал сразу. Нейросеть можно подключить позже только как помощника для классификации «первичная / вторичная / мусор».
-      </div>
-    </section>
   </main>
 
   <script>
     const LANGUAGES = [
-      { code: 'en', name: 'English', group: 'Germanic' },
-      { code: 'de', name: 'German', group: 'Germanic' },
-      { code: 'fr', name: 'French', group: 'Romance' },
-      { code: 'es', name: 'Spanish', group: 'Romance' },
-      { code: 'it', name: 'Italian', group: 'Romance' },
-      { code: 'ru', name: 'Russian', group: 'Slavic' },
-      { code: 'el', name: 'Greek', group: 'Greek' }
+      { code: 'en', name: 'Английский', group: 'Germanic' },
+      { code: 'de', name: 'Немецкий', group: 'Germanic' },
+      { code: 'fr', name: 'Французский', group: 'Romance' },
+      { code: 'es', name: 'Испанский', group: 'Romance' },
+      { code: 'it', name: 'Итальянский', group: 'Romance' },
+      { code: 'ru', name: 'Русский', group: 'Slavic' },
+      { code: 'el', name: 'Греческий', group: 'Greek' }
     ];
 
     const DEFAULT_DERIVATIVES = {
@@ -434,8 +420,8 @@
       const langs = {};
       LANGUAGES.forEach(l => langs[l.code] = []);
       return {
-        root: 'ocul',
-        meaning: 'глаз',
+        root: '',
+        meaning: '',
         elementType: 'root',
         maxModels: 5,
         languages: langs
@@ -489,10 +475,8 @@
 
     function inferAssociation(word, root, meaning) {
       const w = stripDiacritics(word);
-      // Простая эвристика. В реальном инструменте это лучше заменить ручным выбором или классификатором.
-      const secondaryHints = ['mono', 'bin', 'bi', 'inoc', 'monocle', 'монок', 'бинок'];
-      if (secondaryHints.some(h => w.includes(stripDiacritics(h)))) return 0.5;
-      return 1;
+      if (!w || !root) return 0;
+      return includesRoot(w, root) || specialRootMatch('any', w, root) ? 1 : 0;
     }
 
     function getRank(lang, word) {
@@ -523,7 +507,7 @@
       state.root = normalizeText(document.getElementById('rootInput').value);
       state.meaning = document.getElementById('meaningInput').value.trim();
       state.elementType = document.getElementById('elementType').value;
-      state.maxModels = Math.max(1, Number(document.getElementById('maxModels').value) || 5);
+      state.maxModels = 5;
 
       const root = state.root;
       const nextLangs = {};
@@ -742,7 +726,7 @@
           document.getElementById('rootInput').value = state.root || '';
           document.getElementById('meaningInput').value = state.meaning || '';
           document.getElementById('elementType').value = state.elementType || 'root';
-          document.getElementById('maxModels').value = state.maxModels || 5;
+          state.maxModels = Number(state.maxModels) || 5;
           renderAll();
         } catch (e) {
           alert('Ошибка импорта: ' + e.message);
@@ -757,8 +741,7 @@
       document.getElementById('rootInput').value = state.root;
       document.getElementById('meaningInput').value = state.meaning;
       document.getElementById('elementType').value = state.elementType;
-      document.getElementById('maxModels').value = state.maxModels;
-      searchDerivatives();
+      renderAll();
     }
 
     function saveLocal() {
@@ -770,10 +753,10 @@
         const raw = localStorage.getItem('interal_associative_state');
         if (raw) {
           state = JSON.parse(raw);
-          document.getElementById('rootInput').value = state.root || 'ocul';
-          document.getElementById('meaningInput').value = state.meaning || 'глаз';
+          document.getElementById('rootInput').value = state.root || '';
+          document.getElementById('meaningInput').value = state.meaning || '';
           document.getElementById('elementType').value = state.elementType || 'root';
-          document.getElementById('maxModels').value = state.maxModels || 5;
+          state.maxModels = 5;
           return true;
         }
       } catch {}
@@ -785,6 +768,7 @@
     }
 
     document.getElementById('searchBtn').addEventListener('click', searchDerivatives);
+    document.getElementById('showExampleBtn').addEventListener('click', showExample);
     document.getElementById('exportBtn').addEventListener('click', exportState);
     document.getElementById('importBtn').addEventListener('click', importState);
     document.getElementById('resetBtn').addEventListener('click', resetAll);
@@ -797,8 +781,8 @@
 
     async function init() {
       await loadJsonFilesFromDirectory();
-      if (!loadLocal()) searchDerivatives();
-      else renderAll();
+      loadLocal();
+      renderAll();
     }
 
     init();
@@ -806,3 +790,17 @@
   <script src="../shared/ui.js"></script>
 </body>
 </html>
+    function showExample() {
+      const examples = [
+        { root: 'ocul', meaning: 'глаз', elementType: 'root' },
+        { root: 'inter', meaning: 'между', elementType: 'preposition' }
+      ];
+      const choice = examples[Math.floor(Math.random() * examples.length)];
+      state.root = choice.root;
+      state.meaning = choice.meaning;
+      state.elementType = choice.elementType;
+      document.getElementById('rootInput').value = state.root;
+      document.getElementById('meaningInput').value = state.meaning;
+      document.getElementById('elementType').value = state.elementType;
+      searchDerivatives();
+    }

@@ -198,6 +198,19 @@
     document.dispatchEvent(new CustomEvent('interal:languagechange', { detail: { lang: nextLang } }));
   }
 
+  function applyMobileBrandLogo() {
+    const logo = brandLink.querySelector('.top-brand-logo');
+    if (!logo) return;
+    const isMobile = window.matchMedia('(max-width: 640px)').matches;
+    if (isMobile) {
+      logo.src = 'https://upload.wikimedia.org/wikipedia/en/f/f3/Flag_of_Russia.svg';
+      logo.alt = 'Флаг России';
+    } else {
+      logo.src = joinUrl('favicon/favicon%20interal%2064.png');
+      logo.alt = 'Interal logo';
+    }
+  }
+
 
   function showToast(message) {
     let toast = document.querySelector('.interal-toast');
@@ -310,6 +323,8 @@
 
   initTheme();
   applyLanguage(getLang());
+  applyMobileBrandLogo();
+  window.addEventListener('resize', applyMobileBrandLogo);
   markCurrentPage();
 
   menuButton.addEventListener('click', function () {
