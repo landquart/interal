@@ -71,7 +71,7 @@ const nounSuffixes = [
   { id: 'suf-yem', category: 'Суффиксы числительных', form: '-yem', meaning: 'дробное числительное' },
   { id: 'suf-op', category: 'Суффиксы числительных', form: '-op', meaning: 'собирательное числительное' },
   { id: 'suf-anti', category: 'Суффиксы числительных', form: '-ant/i', meaning: 'образование десятков' },
-{ id: 'suf-esmi', category: 'Суффиксы числительных', form: '-esm/i', meaning: 'порядковое числительное' }
+  { id: 'suf-esmi', category: 'Суффиксы числительных', form: '-esm/i', meaning: 'порядковое числительное' }
 ];
 
 const adjectiveSuffixes = [
@@ -160,6 +160,172 @@ const prefixes = [
   { id: 'pre-mega', category: 'Приставки научные', form: 'mega-', meaning: 'мега-' }
 ];
 
+const componentMeaningsEn = {
+  'ending-e': 'neutral noun ending; also used in several form variants',
+  'ending-a': 'noun ending; also feminine gender for people and animals',
+  'ending-o': 'noun ending; also masculine gender for people and animals',
+  'ending-i': 'adjective ending; may replace adjective suffixes',
+  'suf-er': 'person with a certain quality or occupation; tool, object',
+  'suf-or': 'person with a certain quality or occupation; tool, object; after t and s in verbs ending in -er',
+  'suf-ilo': 'tool, object',
+  'suf-antia': 'noun derived from a verb; usually from verbs ending in -ar and -an',
+  'suf-entia': 'noun derived from a verb; from verbs ending in -er, -ir',
+  'suf-ari-noun': 'person engaged in or possessing something',
+  'suf-astr': 'pejorative attitude toward a person of a certain profession or occupation',
+  'suf-aj': 'something made of, consisting of, or having the character of something; collection of things; unit of measurement',
+  'suf-ist': 'profession, affiliation with a school, movement, or trend',
+  'suf-ism': 'movement in art, science, religion, or social activity, and other abstract concepts and their results',
+  'suf-eria': 'place where the given action takes place',
+  'suf-oria': 'variant after t and s for -ería in some words',
+  'suf-essa': 'feminine gender',
+  'suf-anda': 'necessity or obligation to be something; usually from verbs ending in -ar and -an',
+  'suf-enda': 'necessity or obligation to be something; after -er and -ir',
+  'suf-inda': 'worthiness or deservingness to be something',
+  'suf-ede': 'quantity with which something is filled',
+  'suf-ina-dim': 'diminutive-affectionate suffix',
+  'suf-ia-concept': 'abstract concept; ideology; science',
+  'suf-etta': 'diminution, weakening',
+  'suf-ona': 'augmentation, largeness',
+  'suf-ell': 'young animal, offspring of an animal',
+  'suf-ita': 'concrete manifestation of an object, concept, feature, or action',
+  'suf-ada': 'prolonged action; from verbs ending in -ar and -an',
+  'suf-ida-action': 'prolonged action; from verbs ending in -ir, -er',
+  'suf-ura': 'result of an action',
+  'suf-ic-person': 'person suffering from a disease or dependent on something',
+  'suf-ion': 'process, result of an action',
+  'suf-ica': 'body of knowledge, discipline, practice, or activity',
+  'suf-arium': 'collection, aggregate',
+  'suf-an': 'inhabitant of a city or country, member of a collective; also language name',
+  'suf-yer': 'container, receptacle',
+  'suf-ache': 'pejorative meaning',
+  'suf-id-desc': 'descendant',
+  'suf-ese': 'language',
+  'suf-ant': 'performer of an action; from verbs ending in -ar',
+  'suf-ent': 'performer of an action; from verbs ending in -er',
+  'suf-um': 'abstract noun',
+  'suf-ment': 'result of an action',
+  'suf-ia-country': 'name of a country or province associated with the main nation',
+  'suf-oid': 'similar to something',
+  'suf-meyt': 'person from the same collective or association',
+  'suf-ing': 'occupation, activity',
+  'suf-ite': 'group of people',
+  'suf-iat': 'social stratum',
+  'suf-illio': 'affectionate form, masculine gender',
+  'suf-innia': 'affectionate form, feminine gender',
+  'suf-esse': 'state, condition',
+  'suf-ituda': 'measurable quality',
+  'suf-on-particle': 'particle',
+  'suf-ane': 'single-chain hydrocarbon',
+  'suf-ene': 'hydrocarbon with a double bond',
+  'suf-yne': 'hydrocarbon with a triple bond',
+  'suf-ol': 'alcohol, phenol; contains an -OH group',
+  'suf-ale': 'aldehyde; contains a -CHO group',
+  'suf-one': 'ketone; contains a C=O group',
+  'suf-oic': 'carboxylic',
+  'suf-ide': 'anion, often monatomic',
+  'suf-ite-chem': 'anion with fewer oxygens',
+  'suf-ate-chem': 'anion with more oxygens',
+  'suf-ema': 'minimal unit',
+  'suf-plic': 'number multiplied by a certain number of times',
+  'suf-yem': 'fractional numeral',
+  'suf-op': 'collective numeral',
+  'suf-anti': 'formation of tens',
+  'suf-esmi': 'ordinal numeral',
+  'adj-al': 'relation',
+  'adj-ari': 'correspondence to something',
+  'adj-ic': 'character, nature',
+  'adj-osi': 'presence of something',
+  'adj-in': 'origin',
+  'adj-aci': 'inclination toward something',
+  'adj-esc': 'behavior, manner',
+  'adj-ori': 'purpose or mode of action',
+  'adj-id': 'possession of a property',
+  'adj-il': 'character, typicality, quality',
+  'adj-inal': 'adjective suffix',
+  'adj-bil': 'possibility; -ábil for words ending in -ar and -an',
+  'adj-issim': 'superlative degree',
+  'adj-atr': 'resemblance',
+  'adj-iv': 'having an ability or property',
+  'verb-isa': 'to make into something; to cause to be of a certain kind',
+  'verb-ifica': 'to make into something; to cause to be of a certain kind',
+  'verb-eskan': 'beginning of an action',
+  'pre-des': 'opposite meaning',
+  'pre-in': 'opposite meaning; also “in”',
+  'pre-re': 'again, anew, re-',
+  'pre-de': 'absence of a concept, negation, cancellation, removal',
+  'pre-mis': 'wrongly, incorrectly',
+  'pre-pre': 'before',
+  'pre-post': 'after',
+  'pre-ex': 'former; also “out of/from” without a hyphen',
+  'pre-dis': 'separation, disconnection; may also express opposite meaning',
+  'pre-pra': 'proto-, original, ancestral',
+  'pre-proto': 'proto-',
+  'pre-fin': 'end of an action',
+  'pre-bo': 'kinship resulting from marriage',
+  'pre-step': 'kinship resulting from a second marriage',
+  'pre-ho': 'at the same time',
+  'pre-hyper': 'hyper-, above normal',
+  'pre-hypo': 'hypo-, below normal',
+  'pre-retro': 'position behind, backward',
+  'pre-poly': 'many, much',
+  'pre-para': 'deviation from the norm',
+  'pre-peri': 'near, around',
+  'pre-semi': 'semi-, half-',
+  'pre-mi': 'half, semi-',
+  'pre-tele': 'at a distance, far',
+  'pre-paleo': 'ancient, prehistoric, primitive',
+  'pre-meso': 'intermediate, middle',
+  'pre-hetero': 'other, different',
+  'pre-melo': 'song-related, musical',
+  'pre-exo': 'outside, external',
+  'pre-atmo': 'vapor, steam',
+  'pre-hydro': 'related to water',
+  'pre-bi': 'two-, bi-',
+  'pre-pro': 'beyond; in favor of something',
+  'pre-ob': 'located opposite, against, or nearby',
+  'pre-par': 'clear or thorough action',
+  'pre-arc': 'arch-, chief-; before e becomes arki-',
+  'pre-pseudo': 'pseudo-',
+  'pre-pan': 'universal; including all members of a group or all elements',
+  'pre-dys': 'bad, painful, abnormal',
+  'pre-ab': 'away from',
+  'pre-anti': 'anti-, against',
+  'pre-auto': 'auto-, self-',
+  'pre-omni': 'all-embracing, omniscient',
+  'pre-a': 'without, absence; becomes an- before a vowel',
+  'pre-meta': 'higher than; surpassing; all-encompassing',
+  'pre-neo': 'new',
+  'pre-pyro': 'related to fire',
+  'pre-multi': 'many-, multi-',
+  'pre-mini': 'small, minimal',
+  'pre-macro': 'large, long-lasting',
+  'pre-mono': 'single, only',
+  'pre-di': 'two',
+  'pre-tetra': 'four',
+  'pre-iso': 'isomer',
+  'pre-neo-science': 'another isomer, often branched',
+  'pre-kilo': 'kilo-',
+  'pre-hecto': 'hecto-',
+  'pre-nano': 'nano-',
+  'pre-mega': 'mega-'
+};
+
+const assimilationRootMeaningsEn = {
+  'exc-seder': 'to sit',
+  'exc-mover': 'to move',
+  'exc-venir': 'to come',
+  'exc-sentir': 'to feel',
+  'exc-cognoscer': 'to know',
+  'exc-morir': 'to die',
+  'exc-aperir': 'to open',
+  'exc-experir': 'to experience, to try',
+  'exc-coverir': 'to cover',
+  'exc-presider': 'to preside',
+  'exc-friger': 'to be cold, frozen',
+  'exc-posseder': 'to possess',
+  'exc-merer': 'to measure'
+};
+
 const allComponents = [...prefixes, ...nounSuffixes, ...adjectiveSuffixes, ...verbSuffixes, ...endings];
 const byCategory = allComponents.reduce((acc, item) => {
   acc[item.category] ||= [];
@@ -179,7 +345,6 @@ const assimilationOptions = [
   { value: 'y-to-ct', label: 'Замена -y на -ct', autoForm: '-ct' },
   { value: 'se-to-ct', label: '-s/e на -ct', autoForm: '-ct' },
   { value: 'xe-to-ct', label: '-x/e на -ct', autoForm: '-ct' },
-
   { value: 'exc-seder', label: '1. seder — sess- (сидеть)', autoForm: 'sess-', rootForm: 'seder', rootMeaning: 'сидеть' },
   { value: 'exc-mover', label: '2. mover — mot- (двигать)', autoForm: 'mot-', rootForm: 'mover', rootMeaning: 'двигать' },
   { value: 'exc-venir', label: '3. venir — vent- (приходить)', autoForm: 'vent-', rootForm: 'venir', rootMeaning: 'приходить' },
@@ -192,7 +357,7 @@ const assimilationOptions = [
   { value: 'exc-presider', label: '10. presider — presiss- (быть президентом)', autoForm: 'presiss-', rootForm: 'presider', rootMeaning: 'быть президентом' },
   { value: 'exc-friger', label: '11. friger — fris- (быть холодным, мёрзлым)', autoForm: 'fris-', rootForm: 'friger', rootMeaning: 'быть холодным, мёрзлым' },
   { value: 'exc-posseder', label: '12. posseder — possess- (владеть)', autoForm: 'possess-', rootForm: 'posseder', rootMeaning: 'владеть' },
- { value: 'exc-merer', label: '13. merer — mens- (мерить)', autoForm: 'mens-', rootForm: 'merer', rootMeaning: 'мерить' },
+  { value: 'exc-merer', label: '13. merer — mens- (мерить)', autoForm: 'mens-', rootForm: 'merer', rootMeaning: 'мерить' },
   { value: 'exc-ceder', label: '14. -ceder — -cess- (часть корня)', autoForm: 'cess-' },
   { value: 'exc-verter', label: '15. -verter — -vers- (часть корня)', autoForm: 'vers-' },
   { value: 'exc-mitter', label: '16. -mitter — -miss- (часть корня)', autoForm: 'miss-' }
@@ -264,11 +429,10 @@ const els = {
   useLlm: document.getElementById('useLlm'),
   ollamaUrl: document.getElementById('ollamaUrl'),
   ollamaModel: document.getElementById('ollamaModel'),
-   manualPrompt: document.getElementById('manualPrompt'),
+  manualPrompt: document.getElementById('manualPrompt'),
   buildPromptBtn: document.getElementById('buildPromptBtn'),
   copyPromptBtn: document.getElementById('copyPromptBtn'),
   manualEmbeddingResponse: document.getElementById('manualEmbeddingResponse'),
-
   chooserModal: document.getElementById('chooserModal'),
   rootModal: document.getElementById('rootModal'),
   componentModal: document.getElementById('componentModal'),
@@ -291,9 +455,11 @@ const els = {
   backFromPrefixVariantBtn: document.getElementById('backFromPrefixVariantBtn')
 };
 
-let state = {
-  components: []
-};
+let state = { components: [] };
+let pendingPrefixItem = null;
+let copyPromptHighlightTimer;
+
+const STORAGE_KEY = 'determinator-valentyp-state-v1';
 
 function currentLang() {
   return localStorage.getItem('interal.lang') === 'en' ? 'en' : 'ru';
@@ -335,141 +501,53 @@ const categoryNames = {
   'Приставки научные': { ru: 'Приставки научные', en: 'Scientific prefixes' }
 };
 
-function t(key) {
-  const lang = currentLang();
-  return (uiText[lang] && uiText[lang][key]) || uiText.ru[key] || key;
-}
+const assimilationLabelsEn = {
+  none: 'No assimilation',
+  'add-t': 'Add -t',
+  'd-to-s': 'Replace -d with -s',
+  'r-to-s': 'Replace -r with -s',
+  'consonant-g-to-s': 'Consonant + -g to -s',
+  'b-to-pt': 'Replace -b with -pt',
+  'vowel-g-to-ct': 'Vowel + -g to -ct',
+  'h-to-ct': 'Replace -h with -ct',
+  'y-to-ct': 'Replace -y with -ct',
+  'se-to-ct': 'Replace -s/e with -ct',
+  'xe-to-ct': 'Replace -x/e with -ct',
+  'exc-seder': '1. seder — sess- (to sit)',
+  'exc-mover': '2. mover — mot- (to move)',
+  'exc-venir': '3. venir — vent- (to come)',
+  'exc-sentir': '4. sentir — sens- (to feel)',
+  'exc-cognoscer': '5. cognoscer — cognit- (to know)',
+  'exc-morir': '6. morir — mort- (to die)',
+  'exc-aperir': '7. aperir — apert- (to open)',
+  'exc-experir': '8. experir — expert- (to experience, to try)',
+  'exc-coverir': '9. coverir — covert- (to cover)',
+  'exc-presider': '10. presider — presiss- (to preside)',
+  'exc-friger': '11. friger — fris- (to be cold, frozen)',
+  'exc-posseder': '12. posseder — possess- (to possess)',
+  'exc-merer': '13. merer — mens- (to measure)',
+  'exc-ceder': '14. -ceder — -cess- (root part)',
+  'exc-verter': '15. -verter — -vers- (root part)',
+  'exc-mitter': '16. -mitter — -miss- (root part)'
+};
 
-function localizeCategory(category) {
-  const lang = currentLang();
-  return categoryNames[category]?.[lang] || category;
-}
-
-function localizeAssimilationLabel(option) {
-  if (!option) return '';
-  if (currentLang() !== 'en') return option.label;
-  const assimilationLabelsEn = {
-    none: 'No assimilation',
-    'add-t': 'Add -t',
-    'd-to-s': 'Replace -d with -s',
-    'r-to-s': 'Replace -r with -s',
-    'consonant-g-to-s': 'Consonant + -g to -s',
-    'b-to-pt': 'Replace -b with -pt',
-    'vowel-g-to-ct': 'Vowel + -g to -ct',
-    'h-to-ct': 'Replace -h with -ct',
-    'y-to-ct': 'Replace -y with -ct',
-    'se-to-ct': 'Replace -s/e with -ct',
-    'xe-to-ct': 'Replace -x/e with -ct',
-    'exc-seder': '1. seder — sess- (to sit)',
-    'exc-mover': '2. mover — mot- (to move)',
-    'exc-venir': '3. venir — vent- (to come)',
-    'exc-sentir': '4. sentir — sens- (to feel)',
-    'exc-cognoscer': '5. cognoscer — cognit- (to know)',
-    'exc-morir': '6. morir — mort- (to die)',
-    'exc-aperir': '7. aperir — apert- (to open)',
-    'exc-experir': '8. experir — expert- (to experience, to try)',
-    'exc-coverir': '9. coverir — covert- (to cover)',
-    'exc-presider': '10. presider — presiss- (to preside)',
-    'exc-friger': '11. friger — fris- (to be cold)',
-    'exc-posseder': '12. posseder — possess- (to possess)',
-    'exc-merer': '13. merer — mens- (to measure)',
-    'exc-ceder': '14. -ceder — -cess- (root part)',
-    'exc-verter': '15. -verter — -vers- (root part)',
-    'exc-mitter': '16. -mitter — -miss- (root part)'
-  };
-  return assimilationLabelsEn[option.value] || option.value;
-}
-
-function localizeComponentText(item) {
-  return currentLang() === 'en' ? `${item.form} — ${localizeMeaning(item.meaning)}` : `${item.form} — ${item.meaning}`;
-}
-
-function localizeMeaning(meaning) {
-  if (currentLang() !== 'en') return meaning;
-  if (!/[А-Яа-яЁё]/.test(meaning)) return meaning;
-
-  const replacements = [
-    [' также ', ' also '],
-    [' и ', ' and '],
-    [' или ', ' or '],
-    [' у ', ' for '],
-    [' в ', ' in '],
-    [' на ', ' on '],
-    [' с ', ' with '],
-    ['без ', 'without '],
-    ['существительное', 'noun'],
-    ['прилагательное', 'adjective'],
-    ['глагол', 'verb'],
-    ['окончание', 'ending'],
-    ['суффикс', 'suffix'],
-    ['приставка', 'prefix'],
-    ['женский род', 'feminine gender'],
-    ['мужской род', 'masculine gender'],
-    ['ласкательная форма', 'diminutive form'],
-    ['уменьшительно-ласкательный', 'diminutive'],
-    ['пренебрежение', 'pejorative meaning'],
-    ['пренебрежительное отношение', 'pejorative attitude'],
-    ['результат действия', 'result of an action'],
-    ['процесс', 'process'],
-    ['действие', 'action'],
-    ['необходимость', 'necessity'],
-    ['обязательность', 'obligation'],
-    ['человек', 'person'],
-    ['профессия', 'profession'],
-    ['направление', 'movement'],
-    ['наука', 'science'],
-    ['язык', 'language'],
-    ['страны', 'countries'],
-    ['страны', 'country'],
-    ['большой', 'large'],
-    ['маленькое', 'small'],
-    ['много', 'many'],
-    ['новый', 'new'],
-    ['против', 'against'],
-    ['похожий на что-то', 'similar to something'],
-    ['дробное числительное', 'fractional numeral'],
-    ['порядковое числительное', 'ordinal numeral']
-  ];
-
-  let translated = ` ${meaning} `;
-  replacements.forEach(([ru, en]) => {
-    translated = translated.replaceAll(ru, en);
-  });
-
-  translated = translated
-    .replace(/[;]+/g, ';')
-    .replace(/\s{2,}/g, ' ')
-    .trim();
-
-  return /[А-Яа-яЁё]/.test(translated)
-    ? `${translated} (auto-translated from Russian)`
-    : translated;
-}
-
-function localizePrefixNote(note) {
-  if (currentLang() !== 'en') return note;
-  const prefixNotesEn = {
-    'перед l': 'before l',
-    'перед r': 'before r',
-    'перед p и m': 'before p and m',
-    'перед гласной и h': 'before vowel and h',
-    'без изменения': 'unchanged',
-    'перед m': 'before m',
-    'перед p': 'before p',
-    'перед s': 'before s',
-    'перед t': 'before t',
-    'перед c': 'before c',
-    'перед n': 'before n',
-    'перед g': 'before g',
-    'перед f': 'before f',
-    'перед g, l, m, r, v': 'before g, l, m, r, v',
-    'перед d и j': 'before d and j'
-  };
-  return prefixNotesEn[note] || note;
-}
-
-let pendingPrefixItem = null;
-const STORAGE_KEY = 'determinator-valentyp-state-v1';
+const prefixNotesEn = {
+  'перед l': 'before l',
+  'перед r': 'before r',
+  'перед p и m': 'before p and m',
+  'перед гласной и h': 'before vowel and h',
+  'без изменения': 'unchanged',
+  'перед m': 'before m',
+  'перед p': 'before p',
+  'перед s': 'before s',
+  'перед t': 'before t',
+  'перед c': 'before c',
+  'перед n': 'before n',
+  'перед g': 'before g',
+  'перед f': 'before f',
+  'перед g, l, m, r, v': 'before g, l, m, r, v',
+  'перед d и j': 'before d and j'
+};
 
 const fixedRootAssimilationValues = new Set([
   'exc-seder',
@@ -486,6 +564,67 @@ const fixedRootAssimilationValues = new Set([
   'exc-posseder',
   'exc-merer'
 ]);
+
+function t(key) {
+  const lang = currentLang();
+  return (uiText[lang] && uiText[lang][key]) || uiText.ru[key] || key;
+}
+
+function localizeCategory(category) {
+  const lang = currentLang();
+  return categoryNames[category]?.[lang] || category;
+}
+
+function localizeAssimilationLabel(option) {
+  if (!option) return '';
+  return currentLang() === 'en' ? assimilationLabelsEn[option.value] || option.value : option.label;
+}
+
+function localizeRootMeaningByAssimilation(value, fallback) {
+  if (currentLang() !== 'en') return fallback || '';
+  return assimilationRootMeaningsEn[value] || fallback || '';
+}
+
+function localizeMeaningByItem(item) {
+  if (!item) return '';
+  return currentLang() === 'en' ? componentMeaningsEn[item.id] || item.meaning : item.meaning;
+}
+
+function localizeComponentText(item) {
+  return `${item.form} — ${localizeMeaningByItem(item)}`;
+}
+
+function localizePrefixNote(note) {
+  return currentLang() === 'en' ? prefixNotesEn[note] || note : note;
+}
+
+function getComponentSource(item) {
+  return allComponents.find((x) => x.id === item.sourceId) || allComponents.find((x) => x.id === item.id);
+}
+
+function getLocalizedComponentLabel(item) {
+  if (item.type === 'root') return currentLang() === 'en' ? 'Primary root word' : 'Основной корень';
+  const source = getComponentSource(item);
+  return localizeCategory(source?.category || item.category || item.label || '');
+}
+
+function getLocalizedComponentMeaning(item) {
+  if (item.type === 'root') {
+    return localizeRootMeaningByAssimilation(item.assimilation, item.meaning);
+  }
+  const source = getComponentSource(item);
+  return source ? localizeMeaningByItem(source) : item.meaning;
+}
+
+function getLocalizedAssimilationLabelByValue(value, fallback = '') {
+  const option = assimilationOptions.find((x) => x.value === value);
+  return option ? localizeAssimilationLabel(option) : fallback;
+}
+
+function getLocalizedAssimilationNote(item) {
+  if (!item.assimilationNoteRaw && !item.assimilationNote) return '';
+  return localizePrefixNote(item.assimilationNoteRaw || item.assimilationNote);
+}
 
 function setupSelects() {
   assimilationOptions.forEach((opt) => {
@@ -531,7 +670,7 @@ function syncRootFormByAssimilation() {
 
   if (lockFormInput) {
     els.rootFormInput.value = selected?.rootForm || '';
-    els.rootMeaningInput.value = selected?.rootMeaning || '';
+    els.rootMeaningInput.value = localizeRootMeaningByAssimilation(selected?.value, selected?.rootMeaning || '');
   } else {
     if (els.rootFormInput.readOnly) els.rootFormInput.value = '';
     if (els.rootMeaningInput.readOnly) els.rootMeaningInput.value = '';
@@ -542,13 +681,8 @@ function syncRootFormByAssimilation() {
 }
 
 function syncBodyModalState() {
-  const hasOpen = [
-    els.chooserModal,
-    els.rootModal,
-    els.componentModal,
-    els.prefixVariantModal
-  ].some((m) => !m.classList.contains('hidden'));
-
+  const hasOpen = [els.chooserModal, els.rootModal, els.componentModal, els.prefixVariantModal]
+    .some((m) => !m.classList.contains('hidden'));
   document.body.classList.toggle('modal-open', hasOpen);
 }
 
@@ -571,21 +705,21 @@ function closeAllModals() {
 
 function addRootComponent() {
   const form = els.rootFormInput.value.trim();
-  const meaning = els.rootMeaningInput.value.trim();
   const assimilation = els.assimilationSelect.value;
-  const assimilationOption = assimilationOptions.find((x) => x.value === assimilation);
-  const assimilationLabel = localizeAssimilationLabel(assimilationOption);
+  const selected = assimilationOptions.find((x) => x.value === assimilation);
+  const rawMeaning = fixedRootAssimilationValues.has(assimilation)
+    ? selected?.rootMeaning || ''
+    : els.rootMeaningInput.value.trim();
 
-  if (!form || !meaning) return;
+  if (!form || !rawMeaning) return;
 
   state.components.push({
     id: crypto.randomUUID(),
     type: 'root',
-    label: 'Primary root word',
+    label: 'root',
     form,
-    meaning,
-    assimilation,
-    assimilationLabel
+    meaning: rawMeaning,
+    assimilation
   });
 
   els.rootFormInput.value = '';
@@ -606,8 +740,7 @@ function openPrefixVariantStep(item) {
   options.forEach((opt) => {
     const option = document.createElement('option');
     option.value = opt.form;
-    const note = localizePrefixNote(opt.note);
-    option.textContent = `${opt.form} — ${note}`;
+    option.textContent = `${opt.form} — ${localizePrefixNote(opt.note)}`;
     els.prefixVariantSelect.appendChild(option);
   });
 
@@ -626,27 +759,26 @@ function updatePrefixVariantPreview() {
   const form = els.prefixVariantSelect.value;
   const option = (prefixAssimilationOptions[item.id] || []).find((x) => x.form === form);
   const note = option ? localizePrefixNote(option.note) : '';
-  els.prefixVariantPreview.textContent = option
-    ? `${item.form} → ${option.form} (${note})`
-    : '—';
+  els.prefixVariantPreview.textContent = option ? `${item.form} → ${option.form} (${note})` : '—';
 }
 
 function savePrefixVariant() {
   if (!pendingPrefixItem) return;
 
-  const option = (prefixAssimilationOptions[pendingPrefixItem.id] || []).find((x) => x.form === els.prefixVariantSelect.value);
+  const option = (prefixAssimilationOptions[pendingPrefixItem.id] || [])
+    .find((x) => x.form === els.prefixVariantSelect.value);
   if (!option) return;
 
   state.components.push({
     id: crypto.randomUUID(),
     type: 'component',
-    label: currentLang() === 'en' ? 'Prefix' : 'Приставка',
+    label: pendingPrefixItem.category,
     form: option.form,
     meaning: pendingPrefixItem.meaning,
     sourceId: pendingPrefixItem.id,
     category: pendingPrefixItem.category,
     baseForm: pendingPrefixItem.form,
-    assimilationNote: localizePrefixNote(option.note)
+    assimilationNoteRaw: option.note
   });
 
   pendingPrefixItem = null;
@@ -666,7 +798,7 @@ function addSelectedComponent() {
   state.components.push({
     id: crypto.randomUUID(),
     type: 'component',
-    label: localizeCategory(item.category),
+    label: item.category,
     form: item.form,
     meaning: item.meaning,
     sourceId: item.id,
@@ -689,9 +821,8 @@ function componentSummaryText() {
 
 function renderAssimilationMeta(item) {
   if (!item.assimilation || item.assimilation === 'none') return '';
-  return currentLang() === 'en'
-    ? ` · Assimilation: ${item.assimilationLabel}`
-    : ` · Ассимиляция: ${item.assimilationLabel}`;
+  const label = getLocalizedAssimilationLabelByValue(item.assimilation, item.assimilationLabel);
+  return currentLang() === 'en' ? ` · Assimilation: ${label}` : ` · Ассимиляция: ${label}`;
 }
 
 function renderComponents() {
@@ -699,24 +830,27 @@ function renderComponents() {
     els.componentsList.className = 'components-list empty';
     els.componentsList.textContent = t('noComponents');
     els.componentsSummary.textContent = '—';
-     saveState();
+    saveState();
     return;
   }
 
   els.componentsList.className = 'components-list';
-  els.componentsList.innerHTML = state.components.map((item) => `
-    <div class="component-item">
-      <div class="component-main">
-        <div class="component-title">${escapeHtml(item.form)}</div>
-        <div class="component-meta">${escapeHtml(item.label)}</div>
-        <div class="component-meaning">
-          ${escapeHtml(item.meaning)}${item.type === 'root' ? escapeHtml(renderAssimilationMeta(item)) : ''}
-          ${item.assimilationNote ? ` · ${escapeHtml(item.assimilationNote)}` : ''}
+  els.componentsList.innerHTML = state.components.map((item) => {
+    const note = getLocalizedAssimilationNote(item);
+    return `
+      <div class="component-item">
+        <div class="component-main">
+          <div class="component-title">${escapeHtml(item.form)}</div>
+          <div class="component-meta">${escapeHtml(getLocalizedComponentLabel(item))}</div>
+          <div class="component-meaning">
+            ${escapeHtml(getLocalizedComponentMeaning(item))}${item.type === 'root' ? escapeHtml(renderAssimilationMeta(item)) : ''}
+            ${note ? ` · ${escapeHtml(note)}` : ''}
+          </div>
         </div>
+        <button class="component-delete" type="button" data-delete-id="${item.id}">×</button>
       </div>
-      <button class="component-delete" type="button" data-delete-id="${item.id}">×</button>
-    </div>
-  `).join('');
+    `;
+  }).join('');
 
   els.componentsSummary.textContent = componentSummaryText();
 
@@ -724,7 +858,7 @@ function renderComponents() {
     btn.addEventListener('click', () => removeComponent(btn.dataset.deleteId));
   });
 
- saveState();
+  saveState();
 }
 
 function normalizeText(value) {
@@ -747,23 +881,13 @@ function normalizeSemanticText(text) {
 function computeDistanceRuleBased(a, b) {
   const normA = normalizeSemanticText(a);
   const normB = normalizeSemanticText(b);
-
   const setA = new Set(normA.split(' ').filter(Boolean));
   const setB = new Set(normB.split(' ').filter(Boolean));
-
   const intersection = [...setA].filter((x) => setB.has(x)).length;
   const union = new Set([...setA, ...setB]).size || 1;
-
   const similarity = intersection / union;
   const distance = 1 - similarity;
-
-  return {
-    method: 'rule_based_jaccard',
-    similarity,
-    distance,
-    intersection,
-    union
-  };
+  return { method: 'rule_based_jaccard', similarity, distance, intersection, union };
 }
 
 function clamp(value, min, max) {
@@ -771,13 +895,8 @@ function clamp(value, min, max) {
 }
 
 function cosineSimilarity(vecA, vecB) {
-  if (!Array.isArray(vecA) || !Array.isArray(vecB)) {
-    throw new Error('Both embeddings must be arrays');
-  }
-
-  if (vecA.length !== vecB.length) {
-    throw new Error('Embedding vectors must have the same length');
-  }
+  if (!Array.isArray(vecA) || !Array.isArray(vecB)) throw new Error('Both embeddings must be arrays');
+  if (vecA.length !== vecB.length) throw new Error('Embedding vectors must have the same length');
 
   let dot = 0;
   let normA = 0;
@@ -786,22 +905,18 @@ function cosineSimilarity(vecA, vecB) {
   for (let i = 0; i < vecA.length; i++) {
     const a = vecA[i];
     const b = vecB[i];
-
     dot += a * b;
     normA += a * a;
     normB += b * b;
   }
 
-  if (normA === 0 || normB === 0) {
-    return 0;
-  }
-
+  if (normA === 0 || normB === 0) return 0;
   return dot / (Math.sqrt(normA) * Math.sqrt(normB));
 }
 
 async function getEmbedding(text, baseUrl, model) {
   const cleanedBaseUrl = (baseUrl || 'http://localhost:11434').replace(/\/+$/, '');
-   const parseResponseError = async (response) => {
+  const parseResponseError = async (response) => {
     let details = '';
     try {
       const textBody = await response.text();
@@ -814,43 +929,26 @@ async function getEmbedding(text, baseUrl, model) {
 
   const response = await fetch(`${cleanedBaseUrl}/api/embed`, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      model,
-       input: text
-    })
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ model, input: text })
   });
 
   if (response.ok) {
     const data = await response.json();
     const vector = data?.embeddings?.[0];
-    if (!Array.isArray(vector)) {
-      throw new Error('Invalid embedding response from Ollama /api/embed');
-    }
+    if (!Array.isArray(vector)) throw new Error('Invalid embedding response from Ollama /api/embed');
     return vector;
   }
 
-  if (response.status !== 404) {
-    throw new Error(await parseResponseError(response));
-  }
+  if (response.status !== 404) throw new Error(await parseResponseError(response));
 
   const legacyResponse = await fetch(`${cleanedBaseUrl}/api/embeddings`, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      model,
-      prompt: text
-    })
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ model, prompt: text })
   });
 
-
- if (!legacyResponse.ok) {
-    throw new Error(await parseResponseError(legacyResponse));
-  }
+  if (!legacyResponse.ok) throw new Error(await parseResponseError(legacyResponse));
 
   const legacyData = await legacyResponse.json();
   if (!legacyData.embedding || !Array.isArray(legacyData.embedding)) {
@@ -871,46 +969,22 @@ async function computeDistanceWithEmbeddings(a, b, options = {}) {
   const similarityRaw = cosineSimilarity(vecA, vecB);
   const similarity = clamp((similarityRaw + 1) / 2, 0, 1);
   const distance = clamp(1 - similarity, 0, 1);
-
-  return {
-    provider: 'ollama_embeddings',
-    model,
-    similarity,
-    distance,
-    similarityRaw
-  };
+  return { provider: 'ollama_embeddings', model, similarity, distance, similarityRaw };
 }
 
 function combineDistances(rule, embedding, weights = {}) {
   if (!embedding) {
-    return {
-      distance: rule.distance,
-      similarity: rule.similarity,
-      weights: {
-        rule: 1,
-        embedding: 0
-      }
-    };
+    return { distance: rule.distance, similarity: rule.similarity, weights: { rule: 1, embedding: 0 } };
   }
 
   const ruleWeight = typeof weights.rule === 'number' ? weights.rule : 0.7;
   const embeddingWeight = typeof weights.embedding === 'number' ? weights.embedding : 0.3;
-
   const totalWeight = ruleWeight + embeddingWeight;
   const rw = ruleWeight / totalWeight;
   const ew = embeddingWeight / totalWeight;
-
   const distance = clamp(rw * rule.distance + ew * embedding.distance, 0, 1);
   const similarity = clamp(1 - distance, 0, 1);
-
-  return {
-    distance,
-    similarity,
-    weights: {
-      rule: rw,
-      embedding: ew
-    }
-  };
+  return { distance, similarity, weights: { rule: rw, embedding: ew } };
 }
 
 function parseManualEmbeddingResponse(raw) {
@@ -918,11 +992,7 @@ function parseManualEmbeddingResponse(raw) {
   if (!text) return null;
 
   const tryParseJson = () => {
-    try {
-      return JSON.parse(text);
-    } catch (_error) {
-      return null;
-    }
+    try { return JSON.parse(text); } catch (_error) { return null; }
   };
 
   const parsed = tryParseJson();
@@ -956,19 +1026,10 @@ function parseManualEmbeddingResponse(raw) {
     }
   }
 
-  if (typeof similarity === 'number' && similarity > 1 && similarity <= 100) {
-    similarity /= 100;
-  }
-  if (typeof distance === 'number' && distance > 1 && distance <= 100) {
-    distance /= 100;
-  }
-
-  if (typeof distance === 'number' && typeof similarity !== 'number') {
-    similarity = 1 - distance;
-  }
-  if (typeof similarity === 'number' && typeof distance !== 'number') {
-    distance = 1 - similarity;
-  }
+  if (typeof similarity === 'number' && similarity > 1 && similarity <= 100) similarity /= 100;
+  if (typeof distance === 'number' && distance > 1 && distance <= 100) distance /= 100;
+  if (typeof distance === 'number' && typeof similarity !== 'number') similarity = 1 - distance;
+  if (typeof similarity === 'number' && typeof distance !== 'number') distance = 1 - similarity;
 
   if (typeof similarity !== 'number' || typeof distance !== 'number') {
     throw new Error('Could not extract distance/similarity from neural model response.');
@@ -1009,9 +1070,9 @@ function buildManualPrompt(input) {
 
 async function computeSemanticDistance(a, b, useLLM = false, options = {}) {
   const rule = computeDistanceRuleBased(a, b);
-
   let manualEmbedding = null;
   let manualEmbeddingError = '';
+
   try {
     manualEmbedding = parseManualEmbeddingResponse(options.manualEmbeddingResponse || '');
   } catch (error) {
@@ -1019,18 +1080,8 @@ async function computeSemanticDistance(a, b, useLLM = false, options = {}) {
   }
 
   if (manualEmbedding) {
-    const final = combineDistances(rule, manualEmbedding, {
-      rule: 0.7,
-      embedding: 0.3
-    });
-
-    return {
-      method: 'rule_plus_manual_embedding',
-      rule,
-      embedding: manualEmbedding,
-      final,
-      manualEmbeddingError: ''
-    };
+    const final = combineDistances(rule, manualEmbedding, { rule: 0.7, embedding: 0.3 });
+    return { method: 'rule_plus_manual_embedding', rule, embedding: manualEmbedding, final, manualEmbeddingError: '' };
   }
 
   if (!useLLM) {
@@ -1038,14 +1089,7 @@ async function computeSemanticDistance(a, b, useLLM = false, options = {}) {
       method: 'rule_only',
       rule,
       embedding: null,
-      final: {
-        distance: rule.distance,
-        similarity: rule.similarity,
-        weights: {
-          rule: 1,
-          embedding: 0
-        }
-       },
+      final: { distance: rule.distance, similarity: rule.similarity, weights: { rule: 1, embedding: 0 } },
       manualEmbeddingError
     };
   }
@@ -1055,32 +1099,17 @@ async function computeSemanticDistance(a, b, useLLM = false, options = {}) {
       baseUrl: options.baseUrl || 'http://localhost:11434',
       model: options.model || 'qwen3-embedding'
     });
-
-    const final = combineDistances(rule, embedding, {
-      rule: 0.7,
-      embedding: 0.3
-    });
-
-    return {
-      method: 'rule_plus_embedding',
-      rule,
-      embedding,
-      final
-    };
+    const final = combineDistances(rule, embedding, { rule: 0.7, embedding: 0.3 });
+    return { method: 'rule_plus_embedding', rule, embedding, final };
   } catch (error) {
     return {
       method: 'rule_fallback',
       rule,
       embedding: null,
-      final: {
-        distance: rule.distance,
-        similarity: rule.similarity,
-        weights: {
-          rule: 1,
-          embedding: 0
-        }
-      },
-       error: 'Local model unavailable. Used only Rule-based calculation.',
+      final: { distance: rule.distance, similarity: rule.similarity, weights: { rule: 1, embedding: 0 } },
+      error: currentLang() === 'en'
+        ? 'Local model unavailable. Used only Rule-based calculation.'
+        : 'Локальная модель недоступна. Использован только расчёт по правилам.',
       debugError: String(error),
       manualEmbeddingError
     };
@@ -1115,12 +1144,7 @@ async function analyzeByRules(input) {
   const enough = input.regularWord && input.logicalMeaning && input.internationalMeaning;
 
   if (!enough) {
-    return {
-      classification: 'insufficient_data',
-      confidence,
-      reasons,
-      distanceResult: null
-    };
+    return { classification: 'insufficient_data', confidence, reasons, distanceResult: null };
   }
 
   const distanceResult = await computeSemanticDistance(
@@ -1136,59 +1160,32 @@ async function analyzeByRules(input) {
 
   const finalDistance = distanceResult.final.distance;
   const sameMeaning = normalizeText(input.logicalMeaning) === normalizeText(input.internationalMeaning);
+  const isEn = currentLang() === 'en';
 
   if (sameMeaning) {
     classification = 'regular_only';
     confidence = 'high';
-    reasons.push('Logical meaning matches international meaning. Distinction is not required.');
+    reasons.push(isEn
+      ? 'Logical meaning matches international meaning. Distinction is not required.'
+      : 'Логическое значение совпадает с международным значением. Различение не требуется.');
   } else if (input.naturalisticWord) {
     classification = 'double_meaning_with_modification';
     confidence = finalDistance >= 0.5 ? 'high' : 'medium';
-    reasons.push('Logical meaning differs from international meaning.');
-    reasons.push('Naturalistic model word is provided.');
+    reasons.push(isEn
+      ? 'Logical meaning differs from international meaning.'
+      : 'Логическое значение отличается от международного значения.');
+    reasons.push(isEn
+      ? 'Naturalistic model word is provided.'
+      : 'Слово по натуралистической модели задано.');
   } else {
     classification = 'double_meaning_modification_missing';
     confidence = finalDistance >= 0.5 ? 'medium' : 'low';
-    reasons.push('Logical meaning differs from international meaning, but naturalistic form is missing.');
+    reasons.push(isEn
+      ? 'Logical meaning differs from international meaning, but naturalistic form is missing.'
+      : 'Логическое значение отличается от международного значения, но натуралистическая форма отсутствует.');
   }
 
-  return {
-    classification,
-    confidence,
-    reasons,
-    distanceResult
-  };
-}
-
-function distanceMethodText(distanceResult) {
-  if (!distanceResult) {
-    return 'Distance is not calculated.';
-  }
-
-  const lines = [
-    '1) Normalize both meanings: lowercase, remove punctuation, split into words.',
-    '2) Compute Jaccard similarity:',
-    '   • A — word set of first meaning, B — of second.',
-    '   • Intersection: A ∩ B (words present in both sets).',
-    '   • Union: A ∪ B (all unique words from both sets).',
-    '   • Jaccard similarity = |A ∩ B| / |A ∪ B|.',
-    '3) Convert similarity to distance: Rule-based distance = 1 - Jaccard similarity.'
-  ];
-
-
-  if (distanceResult.embedding) {
-    const source = distanceResult.method === 'rule_plus_manual_embedding'
-      ? 'manual embedding'
-      : 'local-model embedding';
-     lines.push(`4) Add ${source} score (semantic closeness of phrases).`);
-    lines.push('5) Final distance is weighted sum: 70% Rule-based + 30% embedding.');
-  } else if (distanceResult.method === 'rule_fallback') {
-    lines.push('4) Embedding is unavailable, so final distance uses Rule-based only.');
-  } else {
-       lines.push('4) By default, only Rule-based is used.');
-  }
-
-  return lines.join('\n');
+  return { classification, confidence, reasons, distanceResult };
 }
 
 function badge(text, type = '') {
@@ -1221,7 +1218,6 @@ function renderResult(result, input) {
     undetermined: 'no'
   };
 
-  const distanceResult = result.distanceResult;
   const confidenceLabels = {
     high: isEn ? 'high' : 'высокая',
     medium: isEn ? 'medium' : 'средняя',
@@ -1262,8 +1258,6 @@ function renderResult(result, input) {
       <h3>${isEn ? 'Reasons' : 'Обоснование'}</h3>
       <pre>${escapeHtml(result.reasons.join('\n'))}</pre>
     </div>
-
-
   `;
 }
 
@@ -1301,6 +1295,14 @@ function saveState() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
 }
 
+function migrateSavedComponents(components) {
+  return components.map((item) => ({
+    ...item,
+    label: item.type === 'root' ? 'root' : item.category || item.label,
+    assimilationNoteRaw: item.assimilationNoteRaw || item.assimilationNote
+  }));
+}
+
 function restoreState() {
   const raw = localStorage.getItem(STORAGE_KEY);
   if (!raw) return;
@@ -1311,7 +1313,7 @@ function restoreState() {
     els.logicalMeaning.value = saved.logicalMeaning || '';
     els.internationalMeaning.value = saved.internationalMeaning || '';
     els.naturalisticWord.value = saved.naturalisticWord || '';
-    state.components = Array.isArray(saved.components) ? saved.components : [];
+    state.components = Array.isArray(saved.components) ? migrateSavedComponents(saved.components) : [];
     els.useLlm.checked = Boolean(saved.useLLM);
     if (els.ollamaUrl) els.ollamaUrl.value = saved.ollamaUrl || 'http://localhost:11434';
     if (els.ollamaModel) els.ollamaModel.value = saved.ollamaModel || 'qwen3-embedding';
@@ -1326,7 +1328,6 @@ function restoreState() {
   } catch (_error) {
     localStorage.removeItem(STORAGE_KEY);
   }
-
 }
 
 function escapeHtml(value) {
@@ -1337,9 +1338,6 @@ function escapeHtml(value) {
     .replaceAll('"', '&quot;')
     .replaceAll("'", '&#39;');
 }
-
-let copyPromptHighlightTimer;
-
 
 function syncPromptButtonsVisibility() {
   if (!els.buildPromptBtn || !els.manualPrompt) return;
@@ -1368,10 +1366,7 @@ function hideBuildPromptButtonWithShift() {
     const deltaX = before.left - after.left;
     if (!deltaX) return;
     els.copyPromptBtn.animate(
-      [
-        { transform: `translateX(${deltaX}px)` },
-        { transform: 'translateX(0)' }
-      ],
+      [{ transform: `translateX(${deltaX}px)` }, { transform: 'translateX(0)' }],
       { duration: 220, easing: 'ease-out' }
     );
   });
@@ -1394,27 +1389,22 @@ function refreshSelectLocalization() {
 
 function attachEvents() {
   els.addComponentBtn.addEventListener('click', () => openModal(els.chooserModal));
-
   els.chooseRootBtn.addEventListener('click', () => {
     closeModal(els.chooserModal);
     openModal(els.rootModal);
   });
-
   els.chooseComponentBtn.addEventListener('click', () => {
     closeModal(els.chooserModal);
     openModal(els.componentModal);
   });
-
   els.backFromRootBtn.addEventListener('click', () => {
     closeModal(els.rootModal);
     openModal(els.chooserModal);
   });
-
   els.backFromComponentBtn.addEventListener('click', () => {
     closeModal(els.componentModal);
     openModal(els.chooserModal);
   });
-
   els.backFromPrefixVariantBtn.addEventListener('click', () => {
     closeModal(els.prefixVariantModal);
     openModal(els.componentModal);
@@ -1425,16 +1415,21 @@ function attachEvents() {
   els.componentSelect.addEventListener('change', updateComponentPreview);
   els.assimilationSelect.addEventListener('change', syncRootFormByAssimilation);
   els.prefixVariantSelect.addEventListener('change', updatePrefixVariantPreview);
+
   document.addEventListener('interal:languagechange', () => {
     refreshSelectLocalization();
     syncRootFormByAssimilation();
     renderComponents();
+    els.result.classList.add('empty');
+    els.result.textContent = t('fillAndAnalyse');
+    saveState();
   });
 
   els.saveRootBtn.addEventListener('click', addRootComponent);
   els.saveComponentBtn.addEventListener('click', addSelectedComponent);
   els.savePrefixVariantBtn.addEventListener('click', savePrefixVariant);
   els.clearBtn.addEventListener('click', clearAll);
+
   els.buildPromptBtn.addEventListener('click', () => {
     const input = getInput();
     if (els.manualPrompt) {
@@ -1479,12 +1474,21 @@ function attachEvents() {
     el.addEventListener('click', closeAllModals);
   });
 
- [els.regularWord, els.logicalMeaning, els.internationalMeaning, els.naturalisticWord, els.useLlm, els.ollamaUrl, els.ollamaModel, els.manualPrompt, els.manualEmbeddingResponse]
-    .forEach((el) => {
-      if (!el) return;
-      el.addEventListener('input', saveState);
-      el.addEventListener('change', saveState);
-    });
+  [
+    els.regularWord,
+    els.logicalMeaning,
+    els.internationalMeaning,
+    els.naturalisticWord,
+    els.useLlm,
+    els.ollamaUrl,
+    els.ollamaModel,
+    els.manualPrompt,
+    els.manualEmbeddingResponse
+  ].forEach((el) => {
+    if (!el) return;
+    el.addEventListener('input', saveState);
+    el.addEventListener('change', saveState);
+  });
 }
 
 setupSelects();
