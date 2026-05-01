@@ -117,7 +117,7 @@ input:focus-visible {
     box-shadow: 0 0 0 4px var(--accent-soft);
 }
 
-button:not(.top-menu-btn):not(.menu-theme-btn) {
+button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-lang-btn) {
     width: 100%;
     margin-top: 16px;
     padding: 12px;
@@ -137,7 +137,7 @@ button:not(.top-menu-btn):not(.menu-theme-btn) {
     transition: transform 0.2s ease, box-shadow 0.25s ease, color 0.25s ease;
 }
 
-button:not(.top-menu-btn):not(.menu-theme-btn)::before {
+button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-lang-btn)::before {
     content: "";
     position: absolute;
     inset: 0;
@@ -149,26 +149,26 @@ button:not(.top-menu-btn):not(.menu-theme-btn)::before {
     transition: opacity 0.25s ease, background-position 0.45s ease;
 }
 
-button:not(.top-menu-btn):not(.menu-theme-btn):hover,
-button:not(.top-menu-btn):not(.menu-theme-btn):focus-visible {
+button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-lang-btn):hover,
+button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-lang-btn):focus-visible {
     transform: translateY(-1px);
     box-shadow: 0 10px 18px var(--button-hover-glow);
     color: #f7d185;
 }
 
-button:not(.top-menu-btn):not(.menu-theme-btn):hover::before,
-button:not(.top-menu-btn):not(.menu-theme-btn):focus-visible::before {
+button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-lang-btn):hover::before,
+button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-lang-btn):focus-visible::before {
     opacity: 1;
     background-position: 100% 50%;
 }
 
 
-button:not(.top-menu-btn):not(.menu-theme-btn):active {
+button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-lang-btn):active {
     transform: scale(0.99);
 }
 
-body.dark-theme button:not(.top-menu-btn):not(.menu-theme-btn):hover,
-body.dark-theme button:not(.top-menu-btn):not(.menu-theme-btn):focus-visible {
+body.dark-theme button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-lang-btn):hover,
+body.dark-theme button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-lang-btn):focus-visible {
   color: #111111;
 
 }
