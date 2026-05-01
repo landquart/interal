@@ -7,6 +7,8 @@
   --text: #241a12;
   --muted: #6b4f36;
   --line: #d7b879;
+  --nav-hover-bg: #241a12;
+  --nav-hover-text: #fff1c8;
 }
 
 body.dark-theme {
@@ -16,6 +18,8 @@ body.dark-theme {
   --text: #f7d185;
   --muted: #d7b479;
   --line: #5a4630;
+  --nav-hover-bg: #f7d185;
+  --nav-hover-text: #241a12;
 }
 
 body {
@@ -316,7 +320,7 @@ body, button, input, textarea, select {
   text-decoration-color: transparent;
   text-underline-offset: 4px;
   text-decoration-thickness: 2px;
-  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease, background-color 0.2s ease, border-radius 0.2s ease, padding 0.2s ease;
 }
 
 .top-desktop-link.is-active .top-desktop-link-main {
@@ -356,7 +360,10 @@ body, button, input, textarea, select {
 
   .top-desktop-link:hover .top-desktop-link-main,
   .top-desktop-link:focus-visible .top-desktop-link-main {
-    color: color-mix(in srgb, var(--text) 82%, var(--surface) 18%);
+    color: var(--nav-hover-text);
+    background: var(--nav-hover-bg);
+    border-radius: 8px;
+    padding: 6px 8px;
     text-decoration-color: currentColor;
   }
 }
