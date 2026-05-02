@@ -201,14 +201,8 @@
   function applyMobileBrandLogo() {
     const logo = brandLink.querySelector('.top-brand-logo');
     if (!logo) return;
-    const isMobile = window.matchMedia('(max-width: 640px)').matches;
-    if (isMobile) {
-      logo.src = 'https://upload.wikimedia.org/wikipedia/en/f/f3/Flag_of_Russia.svg';
-      logo.alt = 'Флаг России';
-    } else {
-      logo.src = joinUrl('favicon/favicon%20interal%2064.png');
-      logo.alt = 'Interal logo';
-    }
+    logo.src = joinUrl('favicon/favicon%20interal%2064.png');
+    logo.alt = 'Interal logo';
   }
 
 
