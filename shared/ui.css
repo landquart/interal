@@ -247,12 +247,16 @@ body.menu-open .side-menu-overlay {
 .menu-lang-buttons {
   display: grid;
   gap: 8px;
+  justify-items: start;
 }
 
 .menu-lang-btn {
-  display: flex;
+  width: auto;
+  max-width: 100%;
+  display: inline-flex;
   align-items: center;
   justify-content: flex-start;
+  text-align: left;
   gap: 8px;
 }
 
