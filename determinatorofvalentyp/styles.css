@@ -309,10 +309,23 @@ button::before {
   transition: opacity 0.25s ease, background-position 0.45s ease;
 }
 
+
 button:hover,
 button:focus-visible {
   transform: translateY(-1px);
   box-shadow: 0 10px 18px var(--button-hover-glow);
+}
+
+body:not(.dark-theme) button:hover,
+body:not(.dark-theme) button:focus-visible {
+  color: #fff;
+}
+
+body:not(.dark-theme) .plus-btn:hover,
+body:not(.dark-theme) .plus-btn:focus-visible,
+body:not(.dark-theme) .modal-actions button:hover,
+body:not(.dark-theme) .modal-actions button:focus-visible {
+  color: #fff;
 }
 
 button:hover::before,
