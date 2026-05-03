@@ -83,7 +83,7 @@ body {
 }
 
 .top-menu-btn-text {
-  display: inline;
+  display: none;
   font-size: 0.9rem;
   font-weight: 600;
   white-space: nowrap;
@@ -223,14 +223,6 @@ body.menu-open .side-menu-overlay {
   cursor: pointer;
   transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
-.menu-theme-btn {
-  width: 44px;
-  height: 44px;
-  padding: 0;
-  justify-content: center;
-  font-size: 1.2rem;
-}
-
 .menu-theme-btn:hover,
 .menu-lang-btn:hover,
 .menu-theme-btn:focus-visible,
@@ -244,8 +236,9 @@ body.menu-open .side-menu-overlay {
 .menu-controls-row {
   margin-top: 14px;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 .menu-lang-btn {
@@ -263,38 +256,12 @@ body.menu-open .side-menu-overlay {
   font-weight: 600;
 }
 
-.menu-lang-dropdown {
-  position: relative;
-}
-
 .menu-lang-trigger {
   width: 44px;
   height: 44px;
   padding: 0;
   justify-content: center;
   gap: 0;
-}
-
-.menu-lang-caret {
-  position: absolute;
-  right: 4px;
-  bottom: 3px;
-  font-size: .7rem;
-}
-
-.menu-lang-list {
-  position: absolute;
-  top: calc(100% + 8px);
-  left: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  min-width: 170px;
-  padding: 8px;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  background: var(--surface);
-  z-index: 20;
 }
 
 .flag-emoji {
@@ -305,6 +272,50 @@ body.menu-open .side-menu-overlay {
 .menu-lang-name {
   text-align: left;
 }
+.menu-copy-btn {
+  flex: 1 1 100%;
+  border: 1px solid var(--line);
+  background: var(--surface-soft);
+  color: var(--text);
+  border-radius: 10px;
+  min-height: 42px;
+}
+.menu-theme-toggle {
+  display: inline-flex;
+  gap: 6px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 6px;
+  background: #0b0e17;
+  color: #e8ecff;
+}
+.menu-theme-option {
+  padding: 8px 18px;
+  border-radius: 12px;
+  opacity: .7;
+}
+.menu-theme-option.is-active {
+  background: #1b2238;
+  opacity: 1;
+}
+.menu-lang-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+  display: grid;
+  place-items: center;
+  z-index: 1500;
+}
+.menu-lang-modal-content {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 10px;
+  display: grid;
+  gap: 8px;
+  min-width: 240px;
+}
+.menu-lang-icon-img { width: 22px; height: 22px; }
 .has-global-menu {
 
   padding-top: 72px !important;
