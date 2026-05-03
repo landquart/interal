@@ -103,8 +103,10 @@
       <a class="menu-nav-link" href="${joinUrl('associativvordes/')}" data-nav="associativ"><span class="menu-nav-main"></span></a>
       <a class="menu-nav-link" href="${joinUrl('determinatorofvalentyp/')}" data-nav="determinator"><span class="menu-nav-main"></span></a>
     </nav>
-    <div class="menu-controls-row">
+    <div class="menu-copy-row">
       <button class="menu-copy-btn" type="button" data-copy-state="true"></button>
+    </div>
+    <div class="menu-preferences-row">
       <button class="menu-lang-btn menu-lang-trigger" type="button" data-lang-trigger="true" aria-expanded="false">
         <img class="menu-lang-icon-img" src="${joinUrl('elements/lingue.svg')}" alt="" aria-hidden="true" />
       </button>
