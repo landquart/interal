@@ -109,8 +109,8 @@
         <img class="menu-lang-icon-img" src="${joinUrl('elements/lingue.svg')}" alt="" aria-hidden="true" />
       </button>
       <button class="menu-theme-toggle" type="button" aria-label="Theme toggle">
-        <span class="menu-theme-option menu-theme-option-light" data-theme-choice="light">☀ Day</span>
-        <span class="menu-theme-option menu-theme-option-dark" data-theme-choice="dark">🌙 Night</span>
+        <span class="menu-theme-option menu-theme-option-light" data-theme-choice="light" aria-hidden="true">☀️</span>
+        <span class="menu-theme-option menu-theme-option-dark" data-theme-choice="dark" aria-hidden="true">🌙</span>
       </button>
     </div>
     <div class="menu-lang-modal" hidden>
