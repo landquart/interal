@@ -14,7 +14,11 @@
       desktopMenuLabel: 'Настройки',
       themeToLight: '☀️ Светлая тема',
       themeToDark: '🌙 Тёмная тема',
+      themeLabel: 'Тема',
+      themeDark: 'Тёмная',
+      themeLight: 'Светлая',
       langLabel: 'Язык',
+      langChoose: 'Выбрать язык',
       navSimilarita: 'Similaritá',
       navAssociativ: 'Associativ vordes',
       navDeterminator: 'Determinator of valen typ',
@@ -33,7 +37,11 @@
       desktopMenuLabel: 'Settings',
       themeToLight: '☀️ Light theme',
       themeToDark: '🌙 Dark theme',
+      themeLabel: 'Theme',
+      themeDark: 'Dark',
+      themeLight: 'Light',
       langLabel: 'Language',
+      langChoose: 'Choose language',
       navSimilarita: 'Similaritá',
       navAssociativ: 'Associativ vordes',
       navDeterminator: 'Determinator of valen typ',
@@ -95,12 +103,22 @@
       <a class="menu-nav-link" href="${joinUrl('associativvordes/')}" data-nav="associativ"><span class="menu-nav-main"></span></a>
       <a class="menu-nav-link" href="${joinUrl('determinatorofvalentyp/')}" data-nav="determinator"><span class="menu-nav-main"></span></a>
     </nav>
-    <button class="menu-theme-btn" type="button"></button>
+    <button class="menu-theme-btn" type="button" aria-pressed="false">
+      <span class="menu-theme-text"></span>
+      <span class="menu-theme-switch"><span class="menu-theme-knob"></span></span>
+    </button>
     <div class="menu-lang-wrap">
       <p class="menu-lang-title"></p>
-      <div class="menu-lang-buttons">
-        <button class="menu-lang-btn" type="button" data-lang="ru"><img class="flag" alt="" src="https://static.wikia.nocookie.net/duolingo/images/5/52/Flag-ru.svg/revision/latest?cb=20160603165913" aria-hidden="true" /><span class="menu-lang-name">Русский</span></button>
-        <button class="menu-lang-btn" type="button" data-lang="en"><img class="flag" alt="" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.freeimages.com%2Fimages%2Flarge-previews%2Ffb0%2Fuk-flag-1444045.jpg&f=1&nofb=1&ipt=3cdd1f6e844f7b48421dc4a3050f5189814bc6dcd9a19e84d6cb64abcea7cc26" aria-hidden="true" /><span class="menu-lang-name">English</span></button>
+      <div class="menu-lang-dropdown">
+        <button class="menu-lang-btn menu-lang-trigger" type="button" data-lang-trigger="true" aria-expanded="false">
+          <span class="flag-emoji" aria-hidden="true">🇷🇺</span>
+          <span class="menu-lang-current"></span>
+          <span class="menu-lang-caret" aria-hidden="true">▾</span>
+        </button>
+        <div class="menu-lang-list" hidden>
+          <button class="menu-lang-btn" type="button" data-lang="ru"><span class="flag-emoji" aria-hidden="true">🇷🇺</span><span class="menu-lang-name">Русский</span></button>
+          <button class="menu-lang-btn" type="button" data-lang="en"><span class="flag-emoji" aria-hidden="true">🇬🇧</span><span class="menu-lang-name">English</span></button>
+        </div>
       </div>
     </div>
   `;
@@ -128,12 +146,23 @@
     menuButton.setAttribute('aria-expanded', 'true');
   }
 
+  function toggleLanguageList(force) {
+    const list = menu.querySelector('.menu-lang-list');
+    const trigger = menu.querySelector('[data-lang-trigger="true"]');
+    if (!list || !trigger) return;
+    const shouldOpen = typeof force === 'boolean' ? force : list.hidden;
+    list.hidden = !shouldOpen;
+    trigger.setAttribute('aria-expanded', String(shouldOpen));
+  }
+
   function applyTheme(theme) {
     document.body.classList.toggle('dark-theme', theme === 'dark');
     const btn = menu.querySelector('.menu-theme-btn');
+    const text = menu.querySelector('.menu-theme-text');
     const t = i18n[getLang()];
-    const themeLabel = theme === 'dark' ? t.themeToLight : t.themeToDark;
-    if (btn) btn.textContent = themeLabel;
+    const themeLabel = `${t.themeLabel}: ${theme === 'dark' ? t.themeDark : t.themeLight}`;
+    if (text) text.textContent = themeLabel;
+    if (btn) btn.setAttribute('aria-pressed', String(theme === 'dark'));
   }
 
   function toggleTheme() {
@@ -186,6 +215,10 @@
       if (label) label.textContent = t[code];
       btn.classList.toggle('is-active', code === nextLang);
     });
+    const langCurrent = menu.querySelector('.menu-lang-current');
+    if (langCurrent) langCurrent.textContent = t[nextLang];
+    const trigger = menu.querySelector('[data-lang-trigger="true"]');
+    if (trigger) trigger.setAttribute('aria-label', t.langChoose);
 
     const quickTitle = menu.querySelector('.interal-quick-title');
     if (quickTitle) quickTitle.textContent = t.quickTitle;
@@ -336,7 +369,12 @@
 
   menu.querySelectorAll('.menu-lang-btn').forEach((btn) => {
     btn.addEventListener('click', function () {
+      if (btn.dataset.langTrigger === 'true') {
+        toggleLanguageList();
+        return;
+      }
       applyLanguage(btn.dataset.lang);
+      toggleLanguageList(false);
     });
   });
 
