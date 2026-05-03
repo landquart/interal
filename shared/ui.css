@@ -9,9 +9,11 @@
   --line: #d7b879;
   --nav-hover-bg: #241a12;
   --nav-hover-text: #fff1c8;
-  --lang-btn-bg: #f4d899;
-  --lang-btn-fg: #241a12;
-  --lang-btn-border: #caa86a;
+  --lang-btn-bg: color-mix(in srgb, var(--surface) 82%, var(--bg));
+  --lang-btn-fg: var(--text);
+  --lang-btn-border: color-mix(in srgb, var(--line) 68%, var(--text));
+  --lang-btn-hover-bg: var(--text);
+  --lang-btn-hover-fg: var(--surface);
 }
 
 body.dark-theme {
@@ -23,9 +25,11 @@ body.dark-theme {
   --line: #5a4630;
   --nav-hover-bg: #f7d185;
   --nav-hover-text: #241a12;
-  --lang-btn-bg: #4a3a2b;
-  --lang-btn-fg: #f7d185;
-  --lang-btn-border: #6f573a;
+  --lang-btn-bg: color-mix(in srgb, var(--surface) 90%, var(--bg));
+  --lang-btn-fg: var(--text);
+  --lang-btn-border: color-mix(in srgb, var(--line) 72%, var(--text));
+  --lang-btn-hover-bg: var(--text);
+  --lang-btn-hover-fg: var(--surface);
 }
 
 body {
@@ -269,7 +273,19 @@ body.menu-open .side-menu-overlay {
   gap: 0;
   background: var(--lang-btn-bg);
   color: var(--lang-btn-fg);
-  border-color: var(--lang-btn-border);
+  border: 1px solid var(--lang-btn-border);
+  border-radius: 12px;
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--surface) 35%, transparent);
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.menu-lang-trigger:hover,
+.menu-lang-trigger:focus-visible,
+.menu-lang-trigger[aria-expanded="true"] {
+  background: var(--lang-btn-hover-bg);
+  color: var(--lang-btn-hover-fg);
+  border-color: color-mix(in srgb, var(--lang-btn-border) 55%, var(--text));
+  transform: translateY(-1px);
 }
 
 .flag-emoji {
@@ -328,12 +344,25 @@ body.menu-open .side-menu-overlay {
   min-width: 240px;
 }
 .menu-lang-icon-img {
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   filter: brightness(0);
+  opacity: .88;
+  transition: filter 0.2s ease, opacity 0.2s ease;
+}
+.menu-lang-trigger:hover .menu-lang-icon-img,
+.menu-lang-trigger:focus-visible .menu-lang-icon-img,
+.menu-lang-trigger[aria-expanded="true"] .menu-lang-icon-img {
+  filter: brightness(0) invert(1);
+  opacity: 1;
 }
 body.dark-theme .menu-lang-icon-img {
   filter: brightness(0) invert(1);
+}
+body.dark-theme .menu-lang-trigger:hover .menu-lang-icon-img,
+body.dark-theme .menu-lang-trigger:focus-visible .menu-lang-icon-img,
+body.dark-theme .menu-lang-trigger[aria-expanded="true"] .menu-lang-icon-img {
+  filter: brightness(0);
 }
 .has-global-menu {
 
