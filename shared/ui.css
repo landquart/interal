@@ -82,7 +82,6 @@ body {
 .top-menu-btn {
   margin-right: 6px;
   padding-right: 12px;
-  border-right-color: var(--line);
 }
 
 .top-menu-btn:hover {
@@ -131,7 +130,6 @@ body {
   margin-right: 6px;
   border-radius: 10px;
   border: 1px solid transparent;
-  border-right-color: var(--line);
   background: transparent;
   color: var(--text);
   text-decoration: none;
