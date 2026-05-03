@@ -583,6 +583,24 @@
       }
     }
 
+    function syncMobileTabWidths() {
+      const tabs = document.getElementById('tabs');
+      if (!tabs) return;
+      const tabButtons = Array.from(tabs.querySelectorAll('.tab'));
+      if (!tabButtons.length) return;
+
+      for (const btn of tabButtons) btn.style.width = '';
+      if (window.innerWidth > 560) return;
+
+      let maxWidth = 0;
+      for (const btn of tabButtons) {
+        maxWidth = Math.max(maxWidth, Math.ceil(btn.getBoundingClientRect().width));
+      }
+      for (const btn of tabButtons) {
+        btn.style.width = `${maxWidth}px`;
+      }
+    }
+
     function renderLanguagePanel() {
       const lang = LANGUAGES.find(l => l.code === activeLang);
       const panel = document.getElementById('languagePanel');
@@ -664,6 +682,7 @@
 
     function renderAll() {
       renderTabs();
+      syncMobileTabWidths();
       renderLanguagePanel();
       renderResults();
       saveLocal();
@@ -803,6 +822,7 @@
     document.getElementById('resetBtn').addEventListener('click', resetAll);
     document.getElementById('loadDerivativeDataBtn').addEventListener('click', loadDerivativeData);
     document.getElementById('loadFrequencyDataBtn').addEventListener('click', loadFrequencyData);
+    window.addEventListener('resize', syncMobileTabWidths);
 
     window.updateItem = updateItem;
     window.deleteItem = deleteItem;
