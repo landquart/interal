@@ -223,6 +223,35 @@ body.menu-open .side-menu-overlay {
   cursor: pointer;
   transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
+.menu-theme-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.menu-theme-switch {
+  width: 44px;
+  height: 24px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--line) 68%, var(--surface));
+  padding: 2px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.menu-theme-knob {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  transition: transform .2s ease;
+}
+
+.menu-theme-btn[aria-pressed="true"] .menu-theme-knob {
+  transform: translateX(20px);
+}
 
 .menu-theme-btn:hover,
 .menu-lang-btn:hover,
@@ -244,11 +273,6 @@ body.menu-open .side-menu-overlay {
   color: var(--muted);
 }
 
-.menu-lang-buttons {
-  display: grid;
-  gap: 8px;
-}
-
 .menu-lang-btn {
   width: 100%;
   max-width: 100%;
@@ -264,15 +288,27 @@ body.menu-open .side-menu-overlay {
   font-weight: 600;
 }
 
-.flag {
-  width: 22px;
-  height: 14px;
-  border-radius: 6px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  display: inline-block;
-  object-fit: cover;
-  overflow: hidden;
-  flex-shrink: 0;
+.menu-lang-dropdown {
+  display: grid;
+  gap: 8px;
+}
+
+.menu-lang-trigger {
+  justify-content: space-between;
+}
+
+.menu-lang-caret {
+  margin-left: auto;
+}
+
+.menu-lang-list {
+  display: grid;
+  gap: 8px;
+}
+
+.flag-emoji {
+  font-size: 1.1rem;
+  line-height: 1;
 }
 
 .menu-lang-name {
