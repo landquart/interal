@@ -9,6 +9,9 @@
   --line: #d7b879;
   --nav-hover-bg: #241a12;
   --nav-hover-text: #fff1c8;
+  --lang-btn-bg: #f4d899;
+  --lang-btn-fg: #241a12;
+  --lang-btn-border: #caa86a;
 }
 
 body.dark-theme {
@@ -20,6 +23,9 @@ body.dark-theme {
   --line: #5a4630;
   --nav-hover-bg: #f7d185;
   --nav-hover-text: #241a12;
+  --lang-btn-bg: #4a3a2b;
+  --lang-btn-fg: #f7d185;
+  --lang-btn-border: #6f573a;
 }
 
 body {
@@ -93,15 +99,13 @@ body {
 
 @media (max-width: 640px) {
   .top-menu-btn {
-    width: auto;
-    padding: 0 10px;
-    gap: 6px;
-    justify-content: flex-start;
+    width: 44px;
+    padding: 0;
+    justify-content: center;
   }
 
   .top-menu-btn-text {
-    font-size: 0.82rem;
-    max-width: 62px;
+    display: none;
   }
 }
 
@@ -166,6 +170,7 @@ body.menu-open .side-menu { transform: translateX(0); }
 body.menu-open .side-menu-overlay {
   opacity: 1;
   pointer-events: auto;
+  backdrop-filter: blur(5px);
 }
 
 .menu-title {
@@ -262,6 +267,9 @@ body.menu-open .side-menu-overlay {
   padding: 0;
   justify-content: center;
   gap: 0;
+  background: var(--lang-btn-bg);
+  color: var(--lang-btn-fg);
+  border-color: var(--lang-btn-border);
 }
 
 .flag-emoji {
@@ -302,6 +310,7 @@ body.menu-open .side-menu-overlay {
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,.45);
+  backdrop-filter: blur(6px);
   display: grid;
   place-items: center;
   z-index: 1500;
@@ -467,4 +476,10 @@ body, button, input, textarea, select {
 .interal-toast.show {
   transform: translate(-50%, 0);
   opacity: 1;
+}
+
+
+body.menu-open .top-nav-window,
+body.menu-modal-open .top-nav-window {
+  backdrop-filter: saturate(1.12) blur(10px);
 }
