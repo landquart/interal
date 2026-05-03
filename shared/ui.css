@@ -279,6 +279,18 @@ body.menu-open .side-menu-overlay {
   text-align: left;
 }
 
+
+@media (max-width: 640px) {
+  .menu-lang-buttons {
+    justify-items: stretch;
+  }
+
+  .menu-lang-btn {
+    width: 100%;
+    display: flex;
+  }
+}
+
 .has-global-menu {
 
   padding-top: 72px !important;
