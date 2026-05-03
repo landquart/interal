@@ -104,22 +104,20 @@
       <a class="menu-nav-link" href="${joinUrl('determinatorofvalentyp/')}" data-nav="determinator"><span class="menu-nav-main"></span></a>
     </nav>
     <div class="menu-controls-row">
-      <div class="menu-lang-dropdown">
-        <button class="menu-lang-btn menu-lang-trigger" type="button" data-lang-trigger="true" aria-expanded="false">
-          <span class="menu-lang-icon" aria-hidden="true">
-            <svg viewBox="0 0 64 64" width="22" height="22" role="presentation" focusable="false">
-              <path fill="currentColor" d="M8 12h40v8H33c-1 6-4 11-8 15 5 4 10 9 14 14l-6 6c-4-5-8-9-12-13-4 3-8 6-13 9l-4-7c4-2 8-5 12-8-4-4-8-9-11-14h9c2 4 4 7 7 10 3-3 5-7 6-10H8z"/>
-              <path fill="currentColor" d="M42 56l10-28h8l10 28h-9l-2-6H51l-2 6zm12-13h5l-2-8z"/>
-            </svg>
-          </span>
-          <span class="menu-lang-caret" aria-hidden="true">▾</span>
-        </button>
-        <div class="menu-lang-list" hidden>
-          <button class="menu-lang-btn" type="button" data-lang="ru"><span class="flag-emoji" aria-hidden="true">🇷🇺</span><span class="menu-lang-name">Русский</span></button>
-          <button class="menu-lang-btn" type="button" data-lang="en"><span class="flag-emoji" aria-hidden="true">🇺🇸</span><span class="menu-lang-name">English</span></button>
-        </div>
+      <button class="menu-copy-btn" type="button" data-copy-state="true"></button>
+      <button class="menu-lang-btn menu-lang-trigger" type="button" data-lang-trigger="true" aria-expanded="false">
+        <img class="menu-lang-icon-img" src="${joinUrl('elements/lingue.svg')}" alt="" aria-hidden="true" />
+      </button>
+      <button class="menu-theme-toggle" type="button" aria-label="Theme toggle">
+        <span class="menu-theme-option menu-theme-option-light" data-theme-choice="light">☀ Day</span>
+        <span class="menu-theme-option menu-theme-option-dark" data-theme-choice="dark">🌙 Night</span>
+      </button>
+    </div>
+    <div class="menu-lang-modal" hidden>
+      <div class="menu-lang-modal-content">
+        <button class="menu-lang-btn" type="button" data-lang="ru"><span class="flag-emoji" aria-hidden="true">🇷🇺</span><span class="menu-lang-name">Русский</span></button>
+        <button class="menu-lang-btn" type="button" data-lang="en"><span class="flag-emoji" aria-hidden="true">🇬🇧</span><span class="menu-lang-name">English</span></button>
       </div>
-      <button class="menu-theme-btn" type="button" aria-pressed="false"></button>
     </div>
   `;
 
@@ -139,7 +137,7 @@
   }
 
   function toggleLanguageList(force) {
-    const list = menu.querySelector('.menu-lang-list');
+    const list = menu.querySelector('.menu-lang-modal');
     const trigger = menu.querySelector('[data-lang-trigger="true"]');
     if (!list || !trigger) return;
     const shouldOpen = typeof force === 'boolean' ? force : list.hidden;
@@ -149,12 +147,12 @@
 
   function applyTheme(theme) {
     document.body.classList.toggle('dark-theme', theme === 'dark');
-    const btn = menu.querySelector('.menu-theme-btn');
+    const btn = menu.querySelector('.menu-theme-toggle');
     const t = i18n[getLang()];
-    const themeEmoji = theme === 'dark' ? '🌙' : '🔆';
-    if (btn) btn.textContent = themeEmoji;
-    if (btn) btn.setAttribute('aria-pressed', String(theme === 'dark'));
     if (btn) btn.setAttribute('aria-label', theme === 'dark' ? t.themeToLight : t.themeToDark);
+    btn?.querySelectorAll('.menu-theme-option').forEach((option) => {
+      option.classList.toggle('is-active', option.dataset.themeChoice === theme);
+    });
   }
 
   function toggleTheme() {
@@ -208,6 +206,8 @@
     });
     const trigger = menu.querySelector('[data-lang-trigger="true"]');
     if (trigger) trigger.setAttribute('aria-label', t.langChoose);
+    const copyBtn = menu.querySelector('[data-copy-state="true"]');
+    if (copyBtn) copyBtn.textContent = t.copyState;
 
     const currentTheme = document.body.classList.contains('dark-theme') ? 'dark' : 'light';
     applyTheme(currentTheme);
@@ -349,7 +349,7 @@
     if (event.key === 'Escape' && document.body.classList.contains('menu-open')) closeMenu();
   });
 
-  menu.querySelector('.menu-theme-btn').addEventListener('click', toggleTheme);
+  menu.querySelector('.menu-theme-toggle').addEventListener('click', toggleTheme);
 
   menu.querySelectorAll('.menu-lang-btn').forEach((btn) => {
     btn.addEventListener('click', function () {
@@ -360,6 +360,31 @@
       applyLanguage(btn.dataset.lang);
       toggleLanguageList(false);
     });
+  });
+  document.addEventListener('click', (event) => {
+    const langModal = menu.querySelector('.menu-lang-modal');
+    const trigger = menu.querySelector('[data-lang-trigger="true"]');
+    if (!langModal || !trigger) return;
+    if (langModal.hidden) return;
+    if (trigger.contains(event.target) || langModal.querySelector('.menu-lang-modal-content')?.contains(event.target)) return;
+    toggleLanguageList(false);
+  });
+
+  const copyButton = menu.querySelector('[data-copy-state="true"]');
+  copyButton?.addEventListener('click', async () => {
+    const t = i18n[getLang()];
+    try {
+      const entries = collectPageState();
+      const url = new URL(window.location.href);
+      if (entries.length) {
+        url.hash = `state=${encodeState(entries)}`;
+      }
+      const short = await shortenLink(url.toString());
+      await navigator.clipboard.writeText(short);
+      showToast(t.shared);
+    } catch (_) {
+      showToast(t.sharedWarn);
+    }
   });
 
   window.addEventListener('resize', () => applyLanguage(getLang()));
