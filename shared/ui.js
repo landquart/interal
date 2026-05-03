@@ -12,8 +12,8 @@
       menuTitle: 'Настройки',
       mobileMenuLabel: 'Меню',
       desktopMenuLabel: 'Настройки',
-      themeToLight: '☀️ Светлая тема',
-      themeToDark: '🌙 Тёмная тема',
+      themeToLight: 'Светлая тема',
+      themeToDark: 'Тёмная тема',
       themeLabel: 'Тема',
       themeDark: 'Тёмная',
       themeLight: 'Светлая',
@@ -35,8 +35,8 @@
       menuTitle: 'Settings',
       mobileMenuLabel: 'Menu',
       desktopMenuLabel: 'Settings',
-      themeToLight: '☀️ Light theme',
-      themeToDark: '🌙 Dark theme',
+      themeToLight: 'Light theme',
+      themeToDark: 'Dark theme',
       themeLabel: 'Theme',
       themeDark: 'Dark',
       themeLight: 'Light',
@@ -103,33 +103,25 @@
       <a class="menu-nav-link" href="${joinUrl('associativvordes/')}" data-nav="associativ"><span class="menu-nav-main"></span></a>
       <a class="menu-nav-link" href="${joinUrl('determinatorofvalentyp/')}" data-nav="determinator"><span class="menu-nav-main"></span></a>
     </nav>
-    <button class="menu-theme-btn" type="button" aria-pressed="false">
-      <span class="menu-theme-text"></span>
-      <span class="menu-theme-switch"><span class="menu-theme-knob"></span></span>
-    </button>
-    <div class="menu-lang-wrap">
-      <p class="menu-lang-title"></p>
+    <div class="menu-controls-row">
       <div class="menu-lang-dropdown">
         <button class="menu-lang-btn menu-lang-trigger" type="button" data-lang-trigger="true" aria-expanded="false">
-          <span class="flag-emoji" aria-hidden="true">🇷🇺</span>
-          <span class="menu-lang-current"></span>
+          <span class="menu-lang-icon" aria-hidden="true">
+            <svg viewBox="0 0 64 64" width="22" height="22" role="presentation" focusable="false">
+              <path fill="currentColor" d="M8 12h40v8H33c-1 6-4 11-8 15 5 4 10 9 14 14l-6 6c-4-5-8-9-12-13-4 3-8 6-13 9l-4-7c4-2 8-5 12-8-4-4-8-9-11-14h9c2 4 4 7 7 10 3-3 5-7 6-10H8z"/>
+              <path fill="currentColor" d="M42 56l10-28h8l10 28h-9l-2-6H51l-2 6zm12-13h5l-2-8z"/>
+            </svg>
+          </span>
           <span class="menu-lang-caret" aria-hidden="true">▾</span>
         </button>
         <div class="menu-lang-list" hidden>
           <button class="menu-lang-btn" type="button" data-lang="ru"><span class="flag-emoji" aria-hidden="true">🇷🇺</span><span class="menu-lang-name">Русский</span></button>
-          <button class="menu-lang-btn" type="button" data-lang="en"><span class="flag-emoji" aria-hidden="true">🇬🇧</span><span class="menu-lang-name">English</span></button>
+          <button class="menu-lang-btn" type="button" data-lang="en"><span class="flag-emoji" aria-hidden="true">🇺🇸</span><span class="menu-lang-name">English</span></button>
         </div>
       </div>
+      <button class="menu-theme-btn" type="button" aria-pressed="false"></button>
     </div>
   `;
-
-  const quickTools = document.createElement('div');
-  quickTools.className = 'interal-quick-tools';
-  quickTools.innerHTML = `
-    <p class="interal-quick-title"></p>
-    <button class="menu-lang-btn" type="button" data-quick="copy-state"></button>
-  `;
-  menu.appendChild(quickTools);
 
   function getLang() {
     const saved = localStorage.getItem(LANG_KEY);
@@ -158,11 +150,11 @@
   function applyTheme(theme) {
     document.body.classList.toggle('dark-theme', theme === 'dark');
     const btn = menu.querySelector('.menu-theme-btn');
-    const text = menu.querySelector('.menu-theme-text');
     const t = i18n[getLang()];
-    const themeLabel = `${t.themeLabel}: ${theme === 'dark' ? t.themeDark : t.themeLight}`;
-    if (text) text.textContent = themeLabel;
+    const themeEmoji = theme === 'dark' ? '🌙' : '🔆';
+    if (btn) btn.textContent = themeEmoji;
     if (btn) btn.setAttribute('aria-pressed', String(theme === 'dark'));
+    if (btn) btn.setAttribute('aria-label', theme === 'dark' ? t.themeToLight : t.themeToDark);
   }
 
   function toggleTheme() {
@@ -185,7 +177,6 @@
     const t = i18n[nextLang];
     menuButton.setAttribute('aria-label', t.openMenu);
     menu.querySelector('.menu-title').textContent = t.menuTitle;
-    menu.querySelector('.menu-lang-title').textContent = t.langLabel;
     const siteNav = menu.querySelector('.menu-nav');
     if (siteNav) siteNav.setAttribute('aria-label', t.navAriaLabel);
     const isDesktop = window.matchMedia('(min-width: 980px)').matches;
@@ -215,15 +206,8 @@
       if (label) label.textContent = t[code];
       btn.classList.toggle('is-active', code === nextLang);
     });
-    const langCurrent = menu.querySelector('.menu-lang-current');
-    if (langCurrent) langCurrent.textContent = t[nextLang];
     const trigger = menu.querySelector('[data-lang-trigger="true"]');
     if (trigger) trigger.setAttribute('aria-label', t.langChoose);
-
-    const quickTitle = menu.querySelector('.interal-quick-title');
-    if (quickTitle) quickTitle.textContent = t.quickTitle;
-    const shareStateBtn = menu.querySelector('[data-quick="copy-state"]');
-    if (shareStateBtn) shareStateBtn.textContent = t.copyState;
 
     const currentTheme = document.body.classList.contains('dark-theme') ? 'dark' : 'light';
     applyTheme(currentTheme);
@@ -405,21 +389,6 @@
     touchStartX = null;
     touchStartY = null;
   }, { passive: true });
-
-
-  menu.querySelector('[data-quick="copy-state"]').addEventListener('click', async function () {
-    const url = window.location.href.split('#')[0];
-    const encoded = encodeState(collectPageState());
-    const fullUrl = encoded ? `${url}#state=${encoded}` : url;
-    try {
-      const shortUrl = await shortenLink(fullUrl);
-      await navigator.clipboard.writeText(shortUrl);
-      showToast(i18n[getLang()].shared);
-    } catch (_) {
-      showToast(i18n[getLang()].sharedWarn);
-    }
-  });
-
   const hashMatch = window.location.hash.match(/state=([^&]+)/);
   if (hashMatch && hashMatch[1]) {
     const decoded = decodeState(hashMatch[1]);

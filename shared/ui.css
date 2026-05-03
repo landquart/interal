@@ -224,33 +224,11 @@ body.menu-open .side-menu-overlay {
   transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 .menu-theme-btn {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.menu-theme-switch {
   width: 44px;
-  height: 24px;
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--line) 68%, var(--surface));
-  padding: 2px;
-  display: inline-flex;
-  align-items: center;
-}
-
-.menu-theme-knob {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  transition: transform .2s ease;
-}
-
-.menu-theme-btn[aria-pressed="true"] .menu-theme-knob {
-  transform: translateX(20px);
+  height: 44px;
+  padding: 0;
+  justify-content: center;
+  font-size: 1.2rem;
 }
 
 .menu-theme-btn:hover,
@@ -263,14 +241,11 @@ body.menu-open .side-menu-overlay {
   border-color: var(--line);
 }
 
-.menu-lang-wrap {
+.menu-controls-row {
   margin-top: 14px;
-}
-
-.menu-lang-title {
-  margin: 0 0 10px;
-  font-size: 0.95rem;
-  color: var(--muted);
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
 }
 
 .menu-lang-btn {
@@ -289,21 +264,37 @@ body.menu-open .side-menu-overlay {
 }
 
 .menu-lang-dropdown {
-  display: grid;
-  gap: 8px;
+  position: relative;
 }
 
 .menu-lang-trigger {
-  justify-content: space-between;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  justify-content: center;
+  gap: 0;
 }
 
 .menu-lang-caret {
-  margin-left: auto;
+  position: absolute;
+  right: 4px;
+  bottom: 3px;
+  font-size: .7rem;
 }
 
 .menu-lang-list {
-  display: grid;
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  display: flex;
+  flex-direction: column;
   gap: 8px;
+  min-width: 170px;
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  z-index: 20;
 }
 
 .flag-emoji {
@@ -314,7 +305,6 @@ body.menu-open .side-menu-overlay {
 .menu-lang-name {
   text-align: left;
 }
-
 .has-global-menu {
 
   padding-top: 72px !important;
@@ -431,18 +421,9 @@ body, button, input, textarea, select {
   to { transform: translateY(0); opacity: 1; }
 }
 
-.interal-quick-tools {
-  margin-top: 14px;
-  border-top: 1px dashed var(--line);
-  padding-top: 12px;
-  display: grid;
-  gap: 8px;
-}
-
-.interal-quick-title {
-  margin: 0;
-  font-size: .95rem;
-  color: var(--muted);
+.menu-lang-icon {
+  display: inline-flex;
+  line-height: 0;
 }
 
 .interal-toast {
