@@ -306,6 +306,9 @@ body.menu-open .side-menu-overlay {
   place-items: center;
   z-index: 1500;
 }
+.menu-lang-modal[hidden] {
+  display: none;
+}
 .menu-lang-modal-content {
   background: var(--surface);
   border: 1px solid var(--line);
