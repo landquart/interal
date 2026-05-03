@@ -128,6 +128,7 @@
 
   function closeMenu() {
     document.body.classList.remove('menu-open');
+    toggleLanguageList(false);
     menuButton.setAttribute('aria-expanded', 'false');
   }
 
@@ -143,6 +144,7 @@
     const shouldOpen = typeof force === 'boolean' ? force : list.hidden;
     list.hidden = !shouldOpen;
     trigger.setAttribute('aria-expanded', String(shouldOpen));
+    document.body.classList.toggle('menu-modal-open', shouldOpen);
   }
 
   function applyTheme(theme) {
