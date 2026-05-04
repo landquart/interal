@@ -9,11 +9,11 @@
   --line: #d7b879;
   --nav-hover-bg: #241a12;
   --nav-hover-text: #fff1c8;
-  --lang-btn-bg: color-mix(in srgb, var(--surface) 82%, var(--bg));
-  --lang-btn-fg: var(--text);
-  --lang-btn-border: color-mix(in srgb, var(--line) 68%, var(--text));
-  --lang-btn-hover-bg: var(--text);
-  --lang-btn-hover-fg: var(--surface);
+  --lang-btn-bg: #f4e3b7;
+  --lang-btn-fg: #241a12;
+  --lang-btn-border: #8f6f44;
+  --lang-btn-hover-bg: #241a12;
+  --lang-btn-hover-fg: #fff1c8;
 }
 
 body.dark-theme {
@@ -25,11 +25,11 @@ body.dark-theme {
   --line: #5a4630;
   --nav-hover-bg: #f7d185;
   --nav-hover-text: #241a12;
-  --lang-btn-bg: color-mix(in srgb, var(--surface) 90%, var(--bg));
-  --lang-btn-fg: var(--text);
-  --lang-btn-border: color-mix(in srgb, var(--line) 72%, var(--text));
-  --lang-btn-hover-bg: var(--text);
-  --lang-btn-hover-fg: var(--surface);
+  --lang-btn-bg: #342a20;
+  --lang-btn-fg: #f7d185;
+  --lang-btn-border: #7a6245;
+  --lang-btn-hover-bg: #f7d185;
+  --lang-btn-hover-fg: #241a12;
 }
 
 body {
