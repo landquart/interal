@@ -281,7 +281,8 @@ body.menu-open .side-menu-overlay {
   display: flex;
   align-items: center;
   gap: 10px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
 }
 
 .menu-lang-btn {
@@ -340,6 +341,9 @@ body.menu-open .side-menu-overlay {
 }
 .menu-theme-toggle {
   display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+  width: auto;
   gap: 6px;
   border: 1px solid var(--line);
   border-radius: 16px;
