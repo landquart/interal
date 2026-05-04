@@ -9,9 +9,9 @@
   --line: #d7b879;
   --nav-hover-bg: #241a12;
   --nav-hover-text: #fff1c8;
-  --lang-btn-bg: var(--surface-soft);
+  --lang-btn-bg: #fff6de;
   --lang-btn-fg: var(--text);
-  --lang-btn-border: var(--line);
+  --lang-btn-border: #d8b16d;
   --lang-btn-hover-bg: var(--nav-hover-bg);
   --lang-btn-hover-fg: var(--nav-hover-text);
 }
@@ -25,9 +25,9 @@ body.dark-theme {
   --line: #5a4630;
   --nav-hover-bg: #f7d185;
   --nav-hover-text: #241a12;
-  --lang-btn-bg: var(--surface-soft);
+  --lang-btn-bg: #241d16;
   --lang-btn-fg: var(--text);
-  --lang-btn-border: var(--line);
+  --lang-btn-border: #6a5339;
   --lang-btn-hover-bg: var(--nav-hover-bg);
   --lang-btn-hover-fg: var(--nav-hover-text);
 }
