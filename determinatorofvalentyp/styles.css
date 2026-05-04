@@ -120,7 +120,7 @@ body {
 input,
 textarea,
 select,
-button:not(.menu-copy-btn) {
+button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn) {
   font: inherit;
   font-family: "Jost", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
@@ -164,7 +164,7 @@ textarea::placeholder {
 input:focus-visible,
 textarea:focus-visible,
 select:focus-visible,
-button:not(.menu-copy-btn):focus-visible {
+button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn):focus-visible {
   outline: none;
   border-color: var(--accent);
   box-shadow: 0 0 0 4px var(--accent-soft);
@@ -277,7 +277,7 @@ textarea.copy-flash {
   margin-top: 8px;
 }
 
-button:not(.menu-copy-btn) {
+button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn) {
   position: relative;
   overflow: hidden;
   isolation: isolate;
@@ -292,7 +292,7 @@ button:not(.menu-copy-btn) {
   transition: transform 0.2s ease, box-shadow 0.25s ease, color 0.25s ease;
 }
 
-button:not(.menu-copy-btn)::before {
+button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn)::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -310,40 +310,40 @@ button:not(.menu-copy-btn)::before {
 }
 
 
-button:not(.menu-copy-btn):hover,
-button:not(.menu-copy-btn):focus-visible {
+button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn):hover,
+button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn):focus-visible {
   transform: translateY(-1px);
   box-shadow: 0 10px 18px var(--button-hover-glow);
 }
 
-body:not(.dark-theme) button:not(.menu-copy-btn):hover,
-body:not(.dark-theme) button:not(.menu-copy-btn):focus-visible {
+body:not(.dark-theme) button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn):hover,
+body:not(.dark-theme) button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn):focus-visible {
   color: #fff;
 }
 
 body:not(.dark-theme) .plus-btn:hover,
 body:not(.dark-theme) .plus-btn:focus-visible,
-body:not(.dark-theme) .modal-actions button:not(.menu-copy-btn):hover,
-body:not(.dark-theme) .modal-actions button:not(.menu-copy-btn):focus-visible {
+body:not(.dark-theme) .modal-actions button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn):hover,
+body:not(.dark-theme) .modal-actions button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn):focus-visible {
   color: #fff;
 }
 
-button:not(.menu-copy-btn):hover::before,
-button:not(.menu-copy-btn):focus-visible::before {
+button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn):hover::before,
+button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn):focus-visible::before {
   opacity: 1;
   background-position: 100% 50%;
 }
 
-button:not(.menu-copy-btn):active {
+button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn):active {
   transform: scale(0.99);
 }
 
-body.dark-theme button:not(.menu-copy-btn):hover,
-body.dark-theme button:not(.menu-copy-btn):focus-visible {
+body.dark-theme button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn):hover,
+body.dark-theme button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn):focus-visible {
   color: #111111;
 }
 
-button:not(.menu-copy-btn).ghost,
+button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn).ghost,
 .component-delete,
 .icon-btn,
 .back-btn {
