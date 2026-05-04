@@ -9,11 +9,11 @@
   --line: #d7b879;
   --nav-hover-bg: #241a12;
   --nav-hover-text: #fff1c8;
-  --lang-btn-bg: #fff6de;
-  --lang-btn-fg: var(--text);
-  --lang-btn-border: #d8b16d;
-  --lang-btn-hover-bg: var(--nav-hover-bg);
-  --lang-btn-hover-fg: var(--nav-hover-text);
+  --lang-btn-bg: #f4e1b6;
+  --lang-btn-fg: #2a1e12;
+  --lang-btn-border: #b88a42;
+  --lang-btn-hover-bg: #2a1e12;
+  --lang-btn-hover-fg: #fff2cf;
 }
 
 body.dark-theme {
@@ -25,11 +25,11 @@ body.dark-theme {
   --line: #5a4630;
   --nav-hover-bg: #f7d185;
   --nav-hover-text: #241a12;
-  --lang-btn-bg: #241d16;
-  --lang-btn-fg: var(--text);
-  --lang-btn-border: #6a5339;
-  --lang-btn-hover-bg: var(--nav-hover-bg);
-  --lang-btn-hover-fg: var(--nav-hover-text);
+  --lang-btn-bg: #4a331d;
+  --lang-btn-fg: #ffe3b0;
+  --lang-btn-border: #b48543;
+  --lang-btn-hover-bg: #f2c678;
+  --lang-btn-hover-fg: #2b1c10;
 }
 
 body {
@@ -293,6 +293,20 @@ body.menu-open .side-menu-overlay {
   justify-content: flex-start;
   text-align: left;
   gap: 8px;
+  background: color-mix(in srgb, var(--surface-soft) 88%, transparent);
+}
+
+.menu-lang-modal .menu-lang-btn {
+  background: var(--lang-btn-bg);
+  color: var(--lang-btn-fg);
+  border-color: var(--lang-btn-border);
+}
+
+.menu-lang-modal .menu-lang-btn:hover,
+.menu-lang-modal .menu-lang-btn:focus-visible {
+  background: var(--lang-btn-hover-bg);
+  color: var(--lang-btn-hover-fg);
+  border-color: var(--lang-btn-border);
 }
 
 .menu-lang-btn.is-active {
@@ -325,6 +339,7 @@ body.menu-open .side-menu-overlay {
 .flag-emoji {
   font-size: 1.1rem;
   line-height: 1;
+  filter: saturate(1.15) contrast(1.1);
 }
 
 .menu-lang-name {
