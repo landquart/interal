@@ -9,11 +9,11 @@
   --line: #d7b879;
   --nav-hover-bg: #241a12;
   --nav-hover-text: #fff1c8;
-  --lang-btn-bg: #f4e3b7;
-  --lang-btn-fg: #241a12;
-  --lang-btn-border: #8f6f44;
-  --lang-btn-hover-bg: #241a12;
-  --lang-btn-hover-fg: #fff1c8;
+  --lang-btn-bg: var(--surface-soft);
+  --lang-btn-fg: var(--text);
+  --lang-btn-border: var(--line);
+  --lang-btn-hover-bg: var(--nav-hover-bg);
+  --lang-btn-hover-fg: var(--nav-hover-text);
 }
 
 body.dark-theme {
@@ -25,11 +25,11 @@ body.dark-theme {
   --line: #5a4630;
   --nav-hover-bg: #f7d185;
   --nav-hover-text: #241a12;
-  --lang-btn-bg: #342a20;
-  --lang-btn-fg: #f7d185;
-  --lang-btn-border: #7a6245;
-  --lang-btn-hover-bg: #f7d185;
-  --lang-btn-hover-fg: #241a12;
+  --lang-btn-bg: var(--surface-soft);
+  --lang-btn-fg: var(--text);
+  --lang-btn-border: var(--line);
+  --lang-btn-hover-bg: var(--nav-hover-bg);
+  --lang-btn-hover-fg: var(--nav-hover-text);
 }
 
 body {
@@ -309,8 +309,7 @@ body.menu-open .side-menu-overlay {
   background: var(--lang-btn-bg);
   color: var(--lang-btn-fg);
   border: 1px solid var(--lang-btn-border);
-  border-radius: 12px;
-  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--surface) 35%, transparent);
+  border-radius: 10px;
   transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 
@@ -319,8 +318,8 @@ body.menu-open .side-menu-overlay {
 .menu-lang-trigger[aria-expanded="true"] {
   background: var(--lang-btn-hover-bg);
   color: var(--lang-btn-hover-fg);
-  border-color: color-mix(in srgb, var(--lang-btn-border) 55%, var(--text));
-  transform: translateY(-1px);
+  border-color: var(--line);
+  transform: scale(1.05);
 }
 
 .flag-emoji {
