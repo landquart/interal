@@ -73,7 +73,7 @@
     .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
     label { display: block; font-weight: 650; margin-bottom: 6px; }
-    input, select, textarea, button {
+    input, select, textarea, button:not(.menu-copy-btn) {
       font: inherit;
       border-radius: 12px;
       border: 1px solid var(--line);
@@ -85,7 +85,7 @@
 
     textarea { min-height: 110px; resize: vertical; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
 
-    button {
+    button:not(.menu-copy-btn) {
       cursor: pointer;
       background: var(--accent);
       color: #fff;
@@ -109,7 +109,7 @@
       border-radius: 10px;
       font-size: 13px;
     }
-    button:hover {
+    button:not(.menu-copy-btn):hover {
       filter: brightness(1.07);
       transform: translateY(-1px);
     }
@@ -232,7 +232,7 @@
         text-align: left;
       }
 
-      input, select, textarea, button {
+      input, select, textarea, button:not(.menu-copy-btn) {
         font-size: 16px;
       }
 
