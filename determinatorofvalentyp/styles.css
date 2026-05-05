@@ -629,3 +629,7 @@ body.has-global-menu .app-shell {
     padding: 16px;
   }
 }
+.panel{background:#cfcfcf;border:0;box-shadow:none;border-radius:18px}
+body.dark-theme .panel{background:#2a2a2a}
+.components-list,.components-summary,.result,.preview-box,.component-item{border:0;box-shadow:none;background:#2b2b2b;color:#cfcfcf}
+body.dark-theme .components-list,body.dark-theme .components-summary,body.dark-theme .result,body.dark-theme .preview-box,body.dark-theme .component-item{background:#595959;color:#fff}
