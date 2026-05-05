@@ -111,8 +111,7 @@
         <img class="menu-lang-icon-img" src="${joinUrl('elements/lingue.svg')}" alt="" aria-hidden="true" />
       </button>
       <button class="menu-theme-toggle" type="button" aria-label="Theme toggle">
-        <span class="menu-theme-option menu-theme-option-light" data-theme-choice="light" aria-hidden="true">☀️</span>
-        <span class="menu-theme-option menu-theme-option-dark" data-theme-choice="dark" aria-hidden="true">🌙</span>
+      <img class="menu-theme-icon" src="${joinUrl('elements/moon.svg')}" alt="" aria-hidden="true" />
       </button>
     </div>
     <div class="menu-lang-modal" hidden>
@@ -149,12 +148,18 @@
     document.body.classList.toggle('menu-modal-open', shouldOpen);
   }
 
+  function updateThemeIcon(theme) {
+    const icon = menu.querySelector('.menu-theme-icon');
+    if (!icon) return;
+    icon.src = theme === 'dark' ? joinUrl('elements/sun.svg') : joinUrl('elements/moon.svg');
+  }
+
   function applyTheme(theme) {
     document.body.classList.toggle('dark-theme', theme === 'dark');
     const btn = menu.querySelector('.menu-theme-toggle');
     const t = i18n[getLang()];
     if (btn) btn.setAttribute('aria-label', theme === 'dark' ? t.themeToLight : t.themeToDark);
-    btn?.querySelectorAll('.menu-theme-option').forEach((option) => {
+    updateThemeIcon(theme);
       option.classList.toggle('is-active', option.dataset.themeChoice === theme);
     });
   }
