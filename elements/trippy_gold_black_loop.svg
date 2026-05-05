@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+  <title>Seamless trippy black and gold gradient loop</title>
+  <defs>
+    <radialGradient id="goldCore" cx="50%" cy="50%" r="72%">
+      <stop offset="0%" stop-color="#ffd36a"/>
+      <stop offset="28%" stop-color="#c99528"/>
+      <stop offset="58%" stop-color="#3a2708"/>
+      <stop offset="100%" stop-color="#000000"/>
+      <animate attributeName="cx" dur="10s" values="42%;58%;42%" repeatCount="indefinite"/>
+      <animate attributeName="cy" dur="10s" values="48%;54%;48%" repeatCount="indefinite"/>
+      <animate attributeName="r" dur="10s" values="64%;78%;64%" repeatCount="indefinite"/>
+    </radialGradient>
+
+    <linearGradient id="goldSweep" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#000000"/>
+      <stop offset="35%" stop-color="#8a6417"/>
+      <stop offset="53%" stop-color="#ffd56f"/>
+      <stop offset="70%" stop-color="#4a3208"/>
+      <stop offset="100%" stop-color="#000000"/>
+      <animateTransform attributeName="gradientTransform" type="rotate" from="0 0.5 0.5" to="360 0.5 0.5" dur="14s" repeatCount="indefinite"/>
+    </linearGradient>
+
+    <filter id="trippyFlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.006 0.011" numOctaves="3" seed="9" result="noise">
+        <animate attributeName="baseFrequency" dur="10s"
+          values="0.006 0.011;0.012 0.006;0.006 0.011"
+          repeatCount="indefinite"/>
+      </feTurbulence>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="95" xChannelSelector="R" yChannelSelector="G">
+        <animate attributeName="scale" dur="10s" values="70;125;70" repeatCount="indefinite"/>
+      </feDisplacementMap>
+      <feGaussianBlur stdDeviation="1.2"/>
+    </filter>
+
+    <filter id="softGlow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="28" result="blur"/>
+      <feColorMatrix in="blur" type="matrix"
+        values="1.3 0 0 0 0
+                0 1.05 0 0 0
+                0 0 0.35 0 0
+                0 0 0 0.85 0" result="glow"/>
+      <feMerge>
+        <feMergeNode in="glow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <mask id="waveMask">
+      <rect width="100%" height="100%" fill="black"/>
+      <g filter="url(#trippyFlow)">
+        <path d="M-180 420 C 190 110, 450 780, 820 410 S 1390 60, 2100 430 L2100 720 C1500 930, 1160 440, 810 760 S180 910,-180 650 Z" fill="white" opacity=".92">
+          <animateTransform attributeName="transform" type="translate" dur="10s" values="-80 0;80 20;-80 0" repeatCount="indefinite"/>
+        </path>
+        <path d="M-170 760 C 240 450, 530 1010, 940 675 S 1460 330, 2100 640 L2100 1160 L-170 1160 Z" fill="white" opacity=".72">
+          <animateTransform attributeName="transform" type="translate" dur="10s" values="90 0;-90 -20;90 0" repeatCount="indefinite"/>
+        </path>
+        <path d="M-120 250 C 280 70, 600 480, 1030 260 S 1500 40, 2060 220 L2060 430 C1460 610, 1210 250, 870 460 S210 620,-120 420 Z" fill="white" opacity=".55">
+          <animateTransform attributeName="transform" type="translate" dur="10s" values="0 35;0 -35;0 35" repeatCount="indefinite"/>
+        </path>
+      </g>
+    </mask>
+  </defs>
+
+  <rect width="1920" height="1080" fill="#000000"/>
+  <rect width="1920" height="1080" fill="url(#goldCore)"/>
+
+  <g filter="url(#softGlow)">
+    <rect width="1920" height="1080" fill="url(#goldSweep)" mask="url(#waveMask)" opacity=".92"/>
+  </g>
+
+  <g opacity=".45" filter="url(#trippyFlow)">
+    <ellipse cx="380" cy="250" rx="520" ry="230" fill="#f5bc42" opacity=".28">
+      <animate attributeName="cx" dur="10s" values="330;520;330" repeatCount="indefinite"/>
+      <animate attributeName="cy" dur="10s" values="230;310;230" repeatCount="indefinite"/>
+    </ellipse>
+    <ellipse cx="1500" cy="750" rx="620" ry="300" fill="#d39a22" opacity=".32">
+      <animate attributeName="cx" dur="10s" values="1540;1370;1540" repeatCount="indefinite"/>
+      <animate attributeName="cy" dur="10s" values="750;690;750" repeatCount="indefinite"/>
+    </ellipse>
+    <ellipse cx="980" cy="520" rx="720" ry="230" fill="#fff0a0" opacity=".18">
+      <animateTransform attributeName="transform" type="rotate" dur="10s" values="0 960 540;14 960 540;0 960 540" repeatCount="indefinite"/>
+    </ellipse>
+  </g>
+
+  <rect width="1920" height="1080" fill="#000000" opacity=".08"/>
+</svg>
