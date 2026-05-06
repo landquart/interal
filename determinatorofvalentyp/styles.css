@@ -90,11 +90,11 @@ body {
 
 .panel {
   background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
+  border: 1px solid color-mix(in srgb,var(--text-main) 18%, transparent);
+  border-radius: 18px;
   padding: 22px;
   margin-bottom: 18px;
-  box-shadow: var(--shadow-card);
+  box-shadow: 0 12px 30px rgba(31,41,55,.12);
 }
 
 .panel h2 {
