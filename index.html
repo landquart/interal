@@ -13,13 +13,10 @@
   <style>
     * { box-sizing: border-box; }
     body { margin: 0; font-family: "Jost", "Helvetica Neue", Helvetica, Arial, sans-serif; min-height: 100vh; padding: 12px; }
-    body.homepage.has-global-menu { padding-top: 12px !important; }
-    body.homepage .top-nav,
-    body.homepage .side-menu,
-    body.homepage .side-menu-overlay { display: none !important; }
+    body.homepage.has-global-menu { padding-top: 72px !important; }
    .home-wrap { width:min(1200px,100%); margin: 0 auto; }
-    .hero { width:100%; border-radius:28px; overflow:hidden; margin-bottom:18px; position:relative; min-height: calc(100vh - 130px); }
-    .hero-bg { width:100%; height:100%; object-fit:cover; display:block; }
+    .hero { width:100%; border-radius:28px; overflow:hidden; margin-bottom:18px; position:relative; min-height: calc((100vh - 130px) * 0.7); }
+    .hero-bg { width:100%; height:100%; object-fit:cover; display:block; border-radius:inherit; }
     .home-brand { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:center; align-items:center; text-decoration:none; color:#fff; gap:4px; text-align:center; }
     .home-logo { width:160px; height:160px; filter: brightness(0) invert(1); }
     .home-title { margin: 0; font-size: clamp(2rem, 4vw, 2.6rem); letter-spacing: .5px; color:#fff; text-shadow: 0 2px 8px rgba(0,0,0,.5); }
@@ -29,7 +26,10 @@
     @media (max-width: 860px) {
       .container { flex-direction: column; }
       .tool-link { width: 100%; }
-      .hero { min-height: 46vh; }
+      .hero { min-height: 46vh; border-radius:22px; }
+      .home-brand { padding: 18px 12px; justify-content:flex-start; }
+      .home-logo { width: clamp(84px, 26vw, 128px); height: clamp(84px, 26vw, 128px); }
+      .home-title { font-size: clamp(1.4rem, 7vw, 2.1rem); max-width: 100%; word-break: break-word; }
     }
     @keyframes logoFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
   </style>
