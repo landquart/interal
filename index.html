@@ -21,8 +21,60 @@
     .home-logo { width:160px; height:160px; filter: brightness(0) invert(1); }
     .home-title { margin: 0; font-size: clamp(2rem, 4vw, 2.6rem); letter-spacing: .5px; color:#fff; text-shadow: none; }
     .container { width: 100%; text-align: center; display:flex; gap:18px; justify-content:space-between; flex-wrap:nowrap; }
-    .tool-link { display: grid; width:33.33%; padding: 18px 14px 14px; text-decoration: none; color: #fff; border-radius: 18px; background: var(--surface); justify-items:center; border:1px solid color-mix(in srgb,var(--text) 24%, transparent);} .tool-icon-wrap{width:94px;height:94px;border-radius:14px;background:var(--surface-soft);display:grid;place-items:center;margin-bottom:10px}.tool-icon{width:58px;height:58px} .tool-link-main{font-weight:700;text-decoration:none;font-size:1rem;color:#fff;text-shadow:none}
-    .tool-link-sub { display:block; font-size:.88rem; opacity:1; margin-top:2px; color:#f0f0f0; text-shadow:0 1px 4px rgba(0,0,0,.45); }
+    .tool-link {
+      position: relative;
+      isolation: isolate;
+      display: grid;
+      width: 33.33%;
+      padding: 20px 16px 16px;
+      text-decoration: none;
+      border-radius: 22px;
+      background: linear-gradient(180deg, color-mix(in srgb, var(--surface-soft) 72%, #fff 28%), var(--surface));
+      border: 1px solid color-mix(in srgb, var(--text) 18%, transparent);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, .14);
+      justify-items: center;
+      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+    }
+    .tool-link::before {
+      content: "";
+      position: absolute;
+      inset: 1px;
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,0));
+      z-index: -1;
+    }
+    .tool-link:hover,
+    .tool-link:focus-visible {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 34px rgba(0, 0, 0, .2);
+      border-color: color-mix(in srgb, #caa64f 40%, var(--text) 30%);
+    }
+    .tool-icon-wrap {
+      width: 96px;
+      height: 96px;
+      border-radius: 16px;
+      background: color-mix(in srgb, var(--surface-soft) 70%, #000 30%);
+      border: 1px solid color-mix(in srgb, var(--text) 22%, transparent);
+      display: grid;
+      place-items: center;
+      margin-bottom: 12px;
+    }
+    .tool-icon { width: 58px; height: 58px; }
+    .tool-link-main {
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 1rem;
+      color: #ffffff;
+      text-shadow: none;
+      letter-spacing: .2px;
+    }
+    .tool-link-sub {
+      display: block;
+      font-size: .9rem;
+      margin-top: 4px;
+      color: color-mix(in srgb, #ffffff 90%, #d4d4d4 10%);
+      text-shadow: none;
+    }
     @media (max-width: 860px) {
       .container { flex-direction: column; }
       .tool-link { width: 100%; }
