@@ -690,3 +690,12 @@ document.addEventListener("interal:languagechange", applyTranslations);
 
 </body>
 </html>
+
+<style>
+.card,.info-card,.modal-inner{background:var(--surface)!important;border-radius:18px!important;border:1px solid color-mix(in srgb,var(--text-main) 24%, transparent)!important;color:var(--text-main)!important;}
+input,textarea,select{background:var(--surface-strong)!important;border-radius:14px!important;}
+button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn){background:#fff!important;color:#111!important;border-radius:18px!important;border:1px solid #fff!important;}
+body.dark-theme button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn){color:#111!important;}
+body.dark-theme{--surface:#595959!important;--surface-strong:#666!important;--text-main:#fff!important;}
+body:not(.dark-theme){--surface:#2B2B2B!important;--surface-strong:#383838!important;--text-main:#fff!important;--text-muted:#e4e4e4!important;}
+</style>
