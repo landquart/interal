@@ -12,16 +12,21 @@
 
   <style>
     * { box-sizing: border-box; }
-    body { margin: 0; font-family: "Jost", "Helvetica Neue", Helvetica, Arial, sans-serif; display: grid; place-items: center; min-height: 100vh; padding: 16px; }
-   .home-wrap { display: grid; place-items: center; width:min(760px,100%); }
-    .hero { width:min(760px,100%); border-radius:28px; overflow:hidden; margin-bottom:16px; position:relative; }
-    .hero-bg { width:100%; display:block; }
+    body { margin: 0; font-family: "Jost", "Helvetica Neue", Helvetica, Arial, sans-serif; min-height: 100vh; padding: 12px; }
+   .home-wrap { width:min(1200px,100%); margin: 0 auto; }
+    .hero { width:100%; border-radius:28px; overflow:hidden; margin-bottom:18px; position:relative; min-height: calc(100vh - 130px); }
+    .hero-bg { width:100%; height:100%; object-fit:cover; display:block; }
     .home-brand { position:absolute; inset:0; display:grid; place-items:center; text-decoration:none; color:#fff; gap:10px; }
-    .home-logo { width:120px; height:120px; filter: brightness(0) invert(1); }
+    .home-logo { width:160px; height:160px; filter: brightness(0) invert(1); }
     .home-title { margin: 0; font-size: clamp(2rem, 4vw, 2.6rem); letter-spacing: .5px; color:#fff; }
-    .container { width: min(760px, 100%); background: var(--surface-soft); border-radius: 24px; padding: 18px; text-align: center; display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
-    .tool-link { display: grid; width:min(190px,31%); padding: 10px 10px 8px; text-decoration: none; color: var(--text); border-radius: 12px; background: var(--surface); justify-items:center; border:1px solid rgba(0,0,0,.05);} .tool-icon-wrap{width:84px;height:84px;border-radius:12px;background:#2b2b2b;display:grid;place-items:center;margin-bottom:8px}.tool-icon{width:52px;height:52px} .tool-link-main{font-weight:700;text-decoration:underline;font-size:.92rem;}
+    .container { width: 100%; text-align: center; display:flex; gap:18px; justify-content:space-between; flex-wrap:nowrap; }
+    .tool-link { display: grid; width:33.33%; padding: 18px 14px 14px; text-decoration: none; color: #fff; border-radius: 16px; background: var(--surface); justify-items:center; border:1px solid var(--card-border);} .tool-icon-wrap{width:94px;height:94px;border-radius:14px;background:var(--card-border);display:grid;place-items:center;margin-bottom:10px}.tool-icon{width:58px;height:58px} .tool-link-main{font-weight:700;text-decoration:underline;font-size:1rem;color:#fff}
     .tool-link-sub { display:block; font-size:.88rem; opacity:.85; margin-top:2px; }
+    @media (max-width: 860px) {
+      .container { flex-direction: column; }
+      .tool-link { width: 100%; }
+      .hero { min-height: 46vh; }
+    }
     @keyframes logoFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
   </style>
 </head>

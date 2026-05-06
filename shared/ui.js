@@ -160,8 +160,6 @@
     const t = i18n[getLang()];
     if (btn) btn.setAttribute('aria-label', theme === 'dark' ? t.themeToLight : t.themeToDark);
     updateThemeIcon(theme);
-      option.classList.toggle('is-active', option.dataset.themeChoice === theme);
-    });
   }
 
   function toggleTheme() {
