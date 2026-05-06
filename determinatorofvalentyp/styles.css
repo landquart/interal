@@ -633,3 +633,10 @@ body.has-global-menu .app-shell {
 body.dark-theme .panel{background:#2a2a2a}
 .components-list,.components-summary,.result,.preview-box,.component-item{border:0;box-shadow:none;background:#2b2b2b;color:#cfcfcf}
 body.dark-theme .components-list,body.dark-theme .components-summary,body.dark-theme .result,body.dark-theme .preview-box,body.dark-theme .component-item{background:#595959;color:#fff}
+
+/* unified theme */
+body:not(.dark-theme){--surface:#2B2B2B;--surface-strong:#383838;--text-main:#fff;--text-muted:#e4e4e4;}
+body.dark-theme{--surface:#595959;--surface-strong:#666;--text-main:#fff;--text-muted:#efefef;}
+.panel,.result-card,.modal-card,.chooser-card,.component-item{border-radius:18px!important;border:1px solid color-mix(in srgb,var(--text-main) 24%, transparent)!important;background:var(--surface)!important;}
+input,textarea,select{background:var(--surface-strong)!important;color:var(--text-main)!important;border-radius:14px!important;}
+button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn){background:#fff!important;color:#111!important;border:1px solid #fff!important;border-radius:18px!important;}
