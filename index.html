@@ -15,18 +15,19 @@
     body { margin: 0; font-family: "Jost", "Helvetica Neue", Helvetica, Arial, sans-serif; min-height: 100vh; padding: 12px; }
     body.homepage.has-global-menu { padding-top: 72px !important; }
    .home-wrap { width:min(1200px,100%); margin: 0 auto; }
-    .hero { width:100%; border-radius:28px; overflow:hidden; margin-bottom:18px; position:relative; min-height: calc((100vh - 130px) * 0.343); }
-    .hero-bg { width:100%; height:100%; object-fit:cover; display:block; border-radius:inherit; }
+    .hero { width:100%; border-radius:28px; overflow:hidden; margin-bottom:18px; position:relative; min-height: calc((100vh - 130px) * 0.343); display:grid; place-items:center; background:#000; }
+    .hero-bg { width:70%; height:70%; object-fit:contain; display:block; border-radius:inherit; }
     .home-brand { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:center; align-items:center; text-decoration:none; color:#fff; gap:4px; text-align:center; }
     .home-logo { width:160px; height:160px; filter: brightness(0) invert(1); }
-    .home-title { margin: 0; font-size: clamp(2rem, 4vw, 2.6rem); letter-spacing: .5px; color:#fff; text-shadow: 0 2px 8px rgba(0,0,0,.5); }
+    .home-title { margin: 0; font-size: clamp(2rem, 4vw, 2.6rem); letter-spacing: .5px; color:#fff; text-shadow: none; }
     .container { width: 100%; text-align: center; display:flex; gap:18px; justify-content:space-between; flex-wrap:nowrap; }
-    .tool-link { display: grid; width:33.33%; padding: 18px 14px 14px; text-decoration: none; color: #fff; border-radius: 18px; background: #2B2B2B; justify-items:center; border:1px solid #1f1f1f;} .tool-icon-wrap{width:94px;height:94px;border-radius:14px;background:#1f1f1f;display:grid;place-items:center;margin-bottom:10px}.tool-icon{width:58px;height:58px} .tool-link-main{font-weight:700;text-decoration:underline;font-size:1rem;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.45)}
+    .tool-link { display: grid; width:33.33%; padding: 18px 14px 14px; text-decoration: none; color: #fff; border-radius: 18px; background: #2B2B2B; justify-items:center; border:1px solid #1f1f1f;} .tool-icon-wrap{width:94px;height:94px;border-radius:14px;background:#1f1f1f;display:grid;place-items:center;margin-bottom:10px}.tool-icon{width:58px;height:58px} .tool-link-main{font-weight:700;text-decoration:none;font-size:1rem;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.45)}
     .tool-link-sub { display:block; font-size:.88rem; opacity:1; margin-top:2px; color:#f0f0f0; text-shadow:0 1px 4px rgba(0,0,0,.45); }
     @media (max-width: 860px) {
       .container { flex-direction: column; }
       .tool-link { width: 100%; }
       .hero { min-height: clamp(220px, 34vh, 320px); border-radius:22px; margin-bottom: 10px; }
+      .hero-bg { width:100%; height:100%; object-fit:cover; }
       .home-brand { padding: 18px 12px; justify-content:center; }
       .home-logo { width: clamp(84px, 26vw, 128px); height: clamp(84px, 26vw, 128px); }
       .home-title { font-size: clamp(1.4rem, 7vw, 2.1rem); max-width: 100%; word-break: break-word; }

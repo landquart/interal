@@ -8,8 +8,8 @@
 
   const i18n = {
     ru: {
-      openMenu: 'Открыть настройки',
-      menuTitle: 'Настройки',
+      openMenu: 'Открыть меню',
+      menuTitle: 'Меню',
       mobileMenuLabel: 'Меню',
       desktopMenuLabel: 'Настройки',
       themeToLight: 'Светлая тема',
@@ -31,8 +31,8 @@
       sharedWarn: 'Не удалось сократить или скопировать ссылку'
     },
     en: {
-      openMenu: 'Open settings',
-      menuTitle: 'Settings',
+      openMenu: 'Open menu',
+      menuTitle: 'Menu',
       mobileMenuLabel: 'Menu',
       desktopMenuLabel: 'Settings',
       themeToLight: 'Light theme',
@@ -180,11 +180,12 @@
     document.documentElement.lang = nextLang;
 
     const t = i18n[nextLang];
+    const isDesktop = window.matchMedia('(min-width: 980px)').matches;
     menuButton.setAttribute('aria-label', t.openMenu);
-    menu.querySelector('.menu-title').textContent = t.menuTitle;
+    const menuTitle = menu.querySelector('.menu-title');
+    if (menuTitle) menuTitle.textContent = isDesktop ? t.desktopMenuLabel : t.mobileMenuLabel;
     const siteNav = menu.querySelector('.menu-nav');
     if (siteNav) siteNav.setAttribute('aria-label', t.navAriaLabel);
-    const isDesktop = window.matchMedia('(min-width: 980px)').matches;
     menuButtonText.textContent = isDesktop ? t.desktopMenuLabel : t.mobileMenuLabel;
 
     const similaritaLink = menu.querySelector('[data-nav="similarita"]');
