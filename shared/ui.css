@@ -2,28 +2,28 @@
 
 :root {
  --bg: #ffffff;
-  --surface: #2B2B2B;
-  --surface-soft: #353535;
+  --surface: #f4f4f4;
+  --surface-soft: #ffffff;
   --nav-bg:#f3f3f3;
   --text: #111111;
-  --muted: #4a4a4a;
+  --muted: #3a3a3a;
   --line: transparent;
   --nav-hover-bg: #e8e8e8;
   --nav-hover-text: #111111;
-  --card-border: #1f1f1f;
+  --card-border: #cfcfcf;
 }
 
 body.dark-theme {
   --bg: #0f0f0f;
-  --surface: #595959;
-  --surface-soft: #666666;
+  --surface: #1a1a1a;
+  --surface-soft: #242424;
   --text: #ffffff;
   --muted: #ededed;
   --line: transparent;
   --nav-hover-bg: #1f1f1f;
   --nav-hover-text: #cfcfcf;
   --nav-bg:#161616;
-  --card-border: #6a6a6a;
+  --card-border: #3d3d3d;
 }
 body{background:var(--bg);color:var(--text)}
 .top-nav{position:fixed;top:0;left:0;right:0;z-index:1300}
