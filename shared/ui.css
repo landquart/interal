@@ -51,8 +51,8 @@ body.menu-open .side-menu-overlay{opacity:1;pointer-events:auto}
 .menu-lang-icon-img{width:30px;height:30px;filter:none;opacity:1}
 .menu-lang-modal{position:fixed;inset:0;background:rgba(0,0,0,.45);display:grid;place-items:center;z-index:1500}
 .menu-lang-modal[hidden]{display:none!important}
-.menu-lang-modal-content{background:var(--bg);border-radius:18px;padding:10px;display:grid;gap:8px;min-width:240px}
-.menu-lang-modal .menu-lang-btn{background:var(--surface-soft);color:var(--text);border-radius:14px;border:1px solid color-mix(in srgb,var(--text) 24%, transparent);display:flex;align-items:center;justify-content:flex-start;gap:8px}
+.menu-lang-modal-content{background:var(--bg);border-radius:22px;padding:16px;display:grid;gap:12px;min-width:320px;max-width:min(92vw,420px)}
+.menu-lang-modal .menu-lang-btn{background:var(--surface-soft);color:var(--text);border-radius:16px;border:1px solid color-mix(in srgb,var(--text) 24%, transparent);display:flex;align-items:center;justify-content:flex-start;gap:10px;padding:14px 16px;font-size:1rem}
 .menu-lang-modal .menu-lang-btn.is-active{background:#ffffff;color:#111}
 .has-global-menu{padding-top:72px!important}
 .top-desktop-controls{margin-left:auto;display:none;align-items:center;gap:8px}
