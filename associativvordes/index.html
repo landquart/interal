@@ -127,9 +127,10 @@
     .muted { color: color-mix(in srgb, var(--text) 80%, var(--muted)); }
     .note { background: var(--accent-2); padding: 12px; border-radius: 14px; color: var(--text); }
 
-    .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+    .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; align-items: flex-start; }
     .tab {
       width: auto;
+      flex: 0 0 auto;
       padding: 8px 11px;
       background: #fff6dc;
       color: var(--text);
@@ -224,7 +225,7 @@
       }
 
       .card-scroll-content {
-        min-width: 740px;
+        min-width: 100%;
       }
 
       .card-scroll-wrap table {
@@ -578,14 +579,13 @@ body.dark-theme .metric,body.dark-theme .note{background:#595959 !important;colo
       }
     }
 
-    function syncMobileTabWidths() {
+    function syncTabWidths() {
       const tabs = document.getElementById('tabs');
       if (!tabs) return;
       const tabButtons = Array.from(tabs.querySelectorAll('.tab'));
       if (!tabButtons.length) return;
 
-      for (const btn of tabButtons) btn.style.width = '';
-      if (window.innerWidth > 560) return;
+      for (const btn of tabButtons) btn.style.width = "";
 
       let maxWidth = 0;
       for (const btn of tabButtons) {
@@ -677,7 +677,7 @@ body.dark-theme .metric,body.dark-theme .note{background:#595959 !important;colo
 
     function renderAll() {
       renderTabs();
-      syncMobileTabWidths();
+      syncTabWidths();
       renderLanguagePanel();
       renderResults();
       saveLocal();
@@ -817,7 +817,7 @@ body.dark-theme .metric,body.dark-theme .note{background:#595959 !important;colo
     document.getElementById('resetBtn').addEventListener('click', resetAll);
     document.getElementById('loadDerivativeDataBtn').addEventListener('click', loadDerivativeData);
     document.getElementById('loadFrequencyDataBtn').addEventListener('click', loadFrequencyData);
-    window.addEventListener('resize', syncMobileTabWidths);
+    window.addEventListener('resize', syncTabWidths);
 
     window.updateItem = updateItem;
     window.deleteItem = deleteItem;
