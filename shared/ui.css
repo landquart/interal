@@ -35,7 +35,7 @@ body{background:var(--bg);color:var(--text)}
 .top-nav{position:fixed;top:0;left:0;right:0;z-index:1300}
 .top-nav-window{width:100%;min-height:56px;background:var(--nav-bg);display:flex;align-items:center;justify-content:space-between;gap:10px;padding:6px 14px;border-bottom:1px solid color-mix(in srgb,var(--text) 18%, transparent);overflow:hidden;backdrop-filter:blur(8px);position:relative}
 .top-menu-btn,.top-brand,.top-desktop-link,.menu-nav-link,.menu-copy-btn,.menu-lang-trigger,.menu-theme-toggle,.menu-lang-modal-content,.side-menu{border:0;box-shadow:none}
-.top-menu-btn{min-width:44px;height:44px;border-radius:18px;background:transparent;color:var(--text);border:1px solid color-mix(in srgb,var(--text) 34%, transparent);cursor:pointer;display:flex;align-items:center;justify-content:center}.top-menu-btn-text{display:none}.top-menu-btn-icon{font-size:28px;line-height:1}
+.top-menu-btn{min-width:44px;height:44px;border-radius:18px;background:transparent;color:var(--text);border:0;cursor:pointer;display:flex;align-items:center;justify-content:center}.top-menu-btn-text{display:none}.top-menu-btn-icon{font-size:28px;line-height:1}
 .top-brand{display:inline-flex;align-items:center;gap:6px;height:44px;padding:0 16px 0 8px;color:var(--text);text-decoration:none;font-weight:700;min-width:0;position:absolute;left:50%;transform:translateX(-50%)}
 .top-brand-logo{width:32px;height:32px}
 .top-brand-text{font-size:1.18rem;white-space:nowrap}
