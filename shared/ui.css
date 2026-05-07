@@ -4,7 +4,10 @@
  --bg: #ffffff;
   --surface: #f4f4f4;
   --surface-soft: #ffffff;
-  --nav-bg:#f3f3f3;
+  --nav-bg:#f7f7f7;
+  --interactive: #202020;
+  --interactive-contrast:#ffffff;
+  --focus-ring: color-mix(in srgb, var(--text) 30%, transparent);
   --text: #111111;
   --muted: #3a3a3a;
   --line: transparent;
@@ -22,12 +25,15 @@ body.dark-theme {
   --line: transparent;
   --nav-hover-bg: #1f1f1f;
   --nav-hover-text: #cfcfcf;
-  --nav-bg:#161616;
+  --nav-bg:#141414;
+  --interactive: #f0f0f0;
+  --interactive-contrast:#141414;
+  --focus-ring: color-mix(in srgb, var(--text) 40%, transparent);
   --card-border: #3d3d3d;
 }
 body{background:var(--bg);color:var(--text)}
 .top-nav{position:fixed;top:0;left:0;right:0;z-index:1300}
-.top-nav-window{width:100%;min-height:56px;background:var(--nav-bg);display:flex;align-items:center;justify-content:space-between;gap:10px;padding:6px 14px;border-bottom:1px solid color-mix(in srgb,var(--text) 18%, transparent);overflow:hidden}
+.top-nav-window{width:100%;min-height:56px;background:var(--nav-bg);display:flex;align-items:center;justify-content:space-between;gap:10px;padding:6px 14px;border-bottom:1px solid color-mix(in srgb,var(--text) 18%, transparent);overflow:hidden;backdrop-filter:blur(8px)}
 .top-menu-btn,.top-brand,.top-desktop-link,.menu-nav-link,.menu-copy-btn,.menu-lang-trigger,.menu-theme-toggle,.menu-lang-modal-content,.side-menu{border:0;box-shadow:none}
 .top-menu-btn{min-width:44px;height:44px;border-radius:18px;background:transparent;color:var(--text);border:1px solid color-mix(in srgb,var(--text) 34%, transparent);cursor:pointer;display:flex;align-items:center;justify-content:center}.top-menu-btn-text{display:none}.top-menu-btn-icon{font-size:28px;line-height:1}
 .top-brand{display:inline-flex;align-items:center;gap:6px;height:44px;padding:0 16px 0 8px;color:var(--text);text-decoration:none;font-weight:700;min-width:0}
@@ -59,3 +65,12 @@ body.menu-open .side-menu-overlay{opacity:1;pointer-events:auto}
 
 .top-nav-window,.top-nav-window *,.side-menu,.side-menu *{font-family:"Jost","Helvetica Neue",Helvetica,Arial,sans-serif}
 body.dark-theme .menu-lang-icon-img{filter:brightness(0) invert(1)}
+
+
+.top-menu-btn,.menu-theme-toggle,.menu-lang-trigger,.menu-nav-link,.menu-copy-btn,.top-desktop-link{transition:transform .14s ease,background-color .2s ease,color .2s ease,border-color .2s ease,box-shadow .2s ease}
+.top-menu-btn:hover,.menu-theme-toggle:hover,.menu-lang-trigger:hover,.menu-nav-link:hover,.menu-copy-btn:hover,.top-desktop-link:hover{transform:translateY(-1px)}
+.top-menu-btn:active,.menu-theme-toggle:active,.menu-lang-trigger:active,.menu-nav-link:active,.menu-copy-btn:active,.top-desktop-link:active{transform:scale(.98)}
+.top-menu-btn:focus-visible,.menu-theme-toggle:focus-visible,.menu-lang-trigger:focus-visible,.menu-nav-link:focus-visible,.menu-copy-btn:focus-visible,.top-desktop-link:focus-visible{outline:none;box-shadow:0 0 0 3px var(--focus-ring)}
+.menu-nav-link,.menu-copy-btn,.top-desktop-link{background:var(--surface-soft)!important;color:var(--text)!important;border:1px solid color-mix(in srgb,var(--text) 18%, transparent)!important}
+.menu-lang-modal-content{border:1px solid color-mix(in srgb,var(--text) 18%, transparent);box-shadow:0 14px 34px rgba(0,0,0,.22)}
+.interal-card{background:var(--surface);border:1px solid color-mix(in srgb,var(--text) 18%, transparent);border-radius:18px;box-shadow:0 10px 24px rgba(17,24,39,.12)}
