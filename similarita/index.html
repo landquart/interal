@@ -13,18 +13,18 @@
 <style>
 
 :root {
-    --bg-base: #f7d185;
-    --line-color: rgba(59, 43, 29, 0.55);
-    --surface: #ffedbf;
-    --surface-strong: #fff6df;
-    --text-main: #2b1f14;
-    --text-muted: #6b4d33;
-    --accent: #3b2b1d;
-    --accent-hover: #2e2115;
-    --accent-soft: rgba(59, 43, 29, 0.22);
-    --button-grad-start: #5a4330;
-    --button-grad-end: #3b2b1d;
-    --button-hover-glow: rgba(59, 43, 29, 0.28);
+    --bg-base: #ffffff;
+    --line-color: rgba(0, 0, 0, 0.35);
+    --surface: #f4f4f4;
+    --surface-strong: #ffffff;
+    --text-main: #000000;
+    --text-muted: #222222;
+    --accent: #000000;
+    --accent-hover: #111111;
+    --accent-soft: rgba(0, 0, 0, 0.22);
+    --button-grad-start: #1f1f1f;
+    --button-grad-end: #000000;
+    --button-hover-glow: rgba(0, 0, 0, 0.28);
     --radius-lg: 18px;
     --radius-md: 12px;
     --shadow-card: 0 12px 30px rgba(31, 41, 55, 0.12);
@@ -42,18 +42,18 @@ body {
 }
 
 body.dark-theme {
-    --bg-base: #1c1711;
-    --line-color: rgba(247, 209, 133, 0.60);
-    --surface: #2a221a;
-    --surface-strong: #342a20;
-    --text-main: #f7d185;
-    --text-muted: #d8b983;
-    --accent: #f7d185;
-    --accent-hover: #ffdd98;
-    --accent-soft: rgba(247, 209, 133, 0.28);
-    --button-grad-start: #f7d185;
-    --button-grad-end: #c69f5d;
-    --button-hover-glow: rgba(247, 209, 133, 0.24);
+    --bg-base: #000000;
+    --line-color: rgba(255, 255, 255, 0.60);
+    --surface: #1a1a1a;
+    --surface-strong: #232323;
+    --text-main: #ffffff;
+    --text-muted: #f0f0f0;
+    --accent: #ffffff;
+    --accent-hover: #efefef;
+    --accent-soft: rgba(255, 255, 255, 0.28);
+    --button-grad-start: #ffffff;
+    --button-grad-end: #d9d9d9;
+    --button-hover-glow: rgba(255, 255, 255, 0.24);
     --shadow-card: 0 12px 30px rgba(0, 0, 0, 0.6);
     --shadow-soft: 0 6px 20px rgba(0, 0, 0, 0.45);
 }
@@ -98,7 +98,7 @@ input {
     margin-top: 6px;
     font-size: 16px;
     box-sizing: border-box;
-    border: 2px solid #d6b16e;
+    border: 2px solid color-mix(in srgb, var(--text-main) 28%, transparent);
     border-radius: var(--radius-md);
     background: var(--surface-strong);
     color: var(--text-main);
@@ -175,13 +175,13 @@ body.dark-theme button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-t
     padding: 10px 12px;
     font-size: 15px;
     border-radius: 10px;
-    background: #fff2cf;
-    border: 1px solid #e1bf7e;
+    background: var(--surface-strong);
+    border: 1px solid color-mix(in srgb, var(--text-main) 24%, transparent);
 }
 
 body.dark-theme .result {
-    background: #30261d;
-    border-color: #5e4930;
+    background: var(--surface-strong);
+    border-color: color-mix(in srgb, var(--text-main) 24%, transparent);
 }
 
 body.dark-theme .card {
@@ -219,19 +219,19 @@ ul {
 .modal-inner {
     display: flex;
     flex-direction: column;
-    background: #fff6df;
-    color: #2b1f14;
-    border: 1px solid #d1d1d1;
+    background: var(--surface-strong);
+    color: var(--text-main);
+    border: 1px solid color-mix(in srgb, var(--text-main) 24%, transparent);
 }
 
 body.dark-theme .modal-inner {
-    background: #2a221a;
-    color: #f7d185;
-    border-color: #5e4930;
+    background: var(--surface-strong);
+    color: var(--text-main);
+    border-color: color-mix(in srgb, var(--text-main) 24%, transparent);
 }
 
 body.dark-theme #explainText {
-    color: #f7d185;
+    color: var(--text-main);
 }
 
 #explainModal {
@@ -251,7 +251,7 @@ body.dark-theme #explainText {
 
 .info-card p,
 .info-card li {
-    color: #374151;
+    color: var(--text-main);
     font-size: 14px;
 }
 
@@ -262,10 +262,10 @@ body.dark-theme #explainText {
   </style>
 
 <style>
-.card{background:#cfcfcf !important;border:0 !important;box-shadow:none !important;border-radius:18px !important}
-body.dark-theme .card{background:#2a2a2a !important}
-.metric,.note{background:#2b2b2b !important;color:#cfcfcf !important;border:0 !important;box-shadow:none !important}
-body.dark-theme .metric,body.dark-theme .note{background:#595959 !important;color:#fff !important}
+.card{background:var(--surface) !important;border:1px solid color-mix(in srgb,var(--text-main) 18%, transparent) !important;box-shadow:none !important;border-radius:18px !important}
+body.dark-theme .card{background:var(--surface) !important}
+.metric,.note{background:var(--surface-strong) !important;color:var(--text-main) !important;border:1px solid color-mix(in srgb,var(--text-main) 18%, transparent) !important;box-shadow:none !important}
+body.dark-theme .metric,body.dark-theme .note{background:var(--surface-strong) !important;color:var(--text-main) !important}
 </style>
 </head>
 
