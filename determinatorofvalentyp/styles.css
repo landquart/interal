@@ -249,11 +249,11 @@ textarea.copy-flash {
 
 .plus-btn {
   margin: 14px auto 0;
-  width: 52px;
-  height: 52px;
+  width: 58px;
+  height: 58px;
   padding: 0;
   border-radius: 50%;
-  border: 2px solid var(--line-strong);
+  border: 0;
   background: var(--surface-strong);
   color: var(--text-main);
   font-size: 2rem;
@@ -261,11 +261,12 @@ textarea.copy-flash {
   cursor: pointer;
   display: grid;
   place-items: center;
+  box-shadow: none !important;
 }
 
 .plus-btn-icon {
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   display: block;
 }
 
