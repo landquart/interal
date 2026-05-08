@@ -33,24 +33,31 @@
       border: 1px solid color-mix(in srgb,var(--text) 18%, transparent);
       box-shadow: 0 10px 24px rgba(17,24,39,.12);
       justify-items: center;
-      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+      transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease, border-color .35s ease, background-color .35s ease, color .35s ease;
     }
         .tool-link:hover,
     .tool-link:focus-visible {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 30px rgba(17,24,39,.18);
-      border-color: color-mix(in srgb, #caa64f 40%, var(--text) 30%);
+      transform: translateY(-6px) scale(1.015);
+      box-shadow: 0 20px 38px rgba(17,24,39,.24);
+      border-color: color-mix(in srgb, var(--text) 28%, transparent);
+      background: var(--text);
+      color: var(--bg);
     }
+    .tool-link:hover .tool-link-main,
+    .tool-link:hover .tool-link-sub { color: var(--bg); }
     .tool-icon-wrap {
       width: 96px;
       height: 96px;
       border-radius: 16px;
-      background: #666;
+      background: color-mix(in srgb, var(--text) 74%, #000);
       border: 1px solid color-mix(in srgb, var(--text) 22%, transparent);
       display: grid;
       place-items: center;
       margin-bottom: 12px;
+      transition: background-color .35s ease, transform .35s cubic-bezier(.2,.8,.2,1);
     }
+    .tool-link:hover .tool-icon-wrap { background: var(--bg); transform: scale(1.06); }
+    .tool-link:hover .tool-icon { filter: invert(1); }
     .tool-icon { width: 58px; height: 58px; }
     .tool-link-main {
       font-weight: 700;

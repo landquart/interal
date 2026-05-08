@@ -31,6 +31,7 @@ body.dark-theme {
   --focus-ring: color-mix(in srgb, var(--text) 40%, transparent);
   --card-border: #3d3d3d;
 }
+html,body,body *{transition:background-color .35s ease,color .35s ease,border-color .35s ease,box-shadow .35s ease,fill .35s ease,stroke .35s ease}
 html{scrollbar-gutter:stable;}
 body{background:var(--bg);color:var(--text)}
 body.menu-open{overflow:hidden;}
@@ -57,11 +58,11 @@ body.menu-open .side-menu-overlay{opacity:1;pointer-events:auto}
 .menu-lang-modal .menu-lang-btn{background:var(--surface-soft);color:var(--text);border-radius:16px;border:1px solid color-mix(in srgb,var(--text) 24%, transparent);display:flex;align-items:center;justify-content:flex-start;gap:10px;padding:14px 16px;font-size:1rem}
 .menu-lang-modal .menu-lang-btn.is-active{background:#ffffff;color:#111}
 .has-global-menu{padding-top:72px!important}
-.top-desktop-controls{margin-left:auto;display:none;align-items:center;gap:8px}
-.top-desktop-link{color:#111;text-decoration:none;padding:9px 14px;border-radius:18px;background:#fff;border:1px solid #fff;font-weight:600}
-.top-desktop-link:hover{background:var(--nav-hover-bg);color:var(--nav-hover-text)}
+.top-desktop-controls{margin-left:auto;display:none;align-items:center;gap:6px}
+.top-desktop-link{color:var(--text);text-decoration:none;padding:8px 12px;border-radius:14px;background:transparent;border:0;font-weight:600}
+.top-desktop-link:hover{background:var(--text);color:var(--bg)}
 .top-desktop-link-main,.menu-nav-main{text-decoration:none;font-weight:600}
-@media (min-width:980px){.top-desktop-controls{display:flex}.top-nav-window{justify-content:flex-start}.top-brand{position:static;left:auto;transform:none;padding:0 12px 0 8px}}
+@media (min-width:980px){.top-desktop-controls{display:none}.top-nav-window{justify-content:flex-start}.top-brand{position:static;left:auto;transform:none;padding:0 12px 0 8px}.menu-preferences-row{display:flex;gap:8px}.menu-theme-toggle,.menu-lang-trigger{width:42px;height:42px;border-radius:12px}}
 
 .interal-card{background:var(--surface);border:1px solid var(--card-border);border-radius:18px;box-shadow:0 12px 30px rgba(31,41,55,.12);}
 
@@ -69,11 +70,15 @@ body.menu-open .side-menu-overlay{opacity:1;pointer-events:auto}
 body.dark-theme .menu-lang-icon-img{filter:brightness(0) invert(1)}
 
 
-.top-menu-btn,.menu-theme-toggle,.menu-lang-trigger,.menu-nav-link,.menu-copy-btn,.top-desktop-link{transition:transform .14s ease,background-color .2s ease,color .2s ease,border-color .2s ease,box-shadow .2s ease}
-.top-menu-btn:hover,.menu-theme-toggle:hover,.menu-lang-trigger:hover,.menu-nav-link:hover,.menu-copy-btn:hover,.top-desktop-link:hover{transform:translateY(-1px)}
+.top-menu-btn,.menu-theme-toggle,.menu-lang-trigger,.menu-nav-link,.menu-copy-btn,.top-desktop-link{transition:transform .3s cubic-bezier(.2,.8,.2,1),background-color .3s ease,color .3s ease,border-color .3s ease,box-shadow .3s ease,filter .3s ease}
+.top-menu-btn:hover,.menu-theme-toggle:hover,.menu-lang-trigger:hover,.menu-nav-link:hover,.menu-copy-btn:hover,.top-desktop-link:hover{transform:translateY(-2px) scale(1.01)}
 .top-menu-btn:active,.menu-theme-toggle:active,.menu-lang-trigger:active,.menu-nav-link:active,.menu-copy-btn:active,.top-desktop-link:active{transform:scale(.98)}
 .top-menu-btn:focus-visible,.menu-theme-toggle:focus-visible,.menu-lang-trigger:focus-visible,.menu-nav-link:focus-visible,.menu-copy-btn:focus-visible,.top-desktop-link:focus-visible{outline:none;box-shadow:0 0 0 3px var(--focus-ring)}
-.menu-nav-link,.menu-copy-btn,.top-desktop-link{background:var(--surface-soft)!important;color:var(--text)!important;border:1px solid color-mix(in srgb,var(--text) 18%, transparent)!important}
+.menu-nav-link,.menu-copy-btn,.top-desktop-link{background:transparent!important;color:var(--text)!important;border:0!important}
+.menu-nav-link:hover,.menu-copy-btn:hover{background:var(--text)!important;color:var(--bg)!important}
+.menu-theme-toggle:hover,.menu-lang-trigger:hover{background:var(--text);color:var(--bg)}
+.menu-theme-toggle:hover .menu-theme-icon,.menu-lang-trigger:hover .menu-lang-icon-img{filter:brightness(0) invert(1)}
+.menu-lang-modal .menu-lang-btn:hover{background:var(--text);color:var(--bg)}
 .menu-lang-modal-content{border:1px solid color-mix(in srgb,var(--text) 18%, transparent);box-shadow:0 14px 34px rgba(0,0,0,.22)}
 .interal-card{background:var(--surface);border:1px solid color-mix(in srgb,var(--text) 18%, transparent);border-radius:18px;box-shadow:0 10px 24px rgba(17,24,39,.12)}
 
