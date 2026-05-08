@@ -31,7 +31,9 @@ body.dark-theme {
   --focus-ring: color-mix(in srgb, var(--text) 40%, transparent);
   --card-border: #3d3d3d;
 }
+html{scrollbar-gutter:stable;}
 body{background:var(--bg);color:var(--text)}
+body.menu-open{overflow:hidden;}
 .top-nav{position:fixed;top:0;left:0;right:0;z-index:1300}
 .top-nav-window{width:100%;min-height:56px;background:var(--nav-bg);display:flex;align-items:center;justify-content:space-between;gap:10px;padding:6px 14px;border-bottom:1px solid color-mix(in srgb,var(--text) 18%, transparent);overflow:hidden;backdrop-filter:blur(8px);position:relative}
 .top-menu-btn,.top-brand,.top-desktop-link,.menu-nav-link,.menu-copy-btn,.menu-lang-trigger,.menu-theme-toggle,.menu-lang-modal-content,.side-menu{border:0;box-shadow:none}
@@ -59,7 +61,7 @@ body.menu-open .side-menu-overlay{opacity:1;pointer-events:auto}
 .top-desktop-link{color:#111;text-decoration:none;padding:9px 14px;border-radius:18px;background:#fff;border:1px solid #fff;font-weight:600}
 .top-desktop-link:hover{background:var(--nav-hover-bg);color:var(--nav-hover-text)}
 .top-desktop-link-main,.menu-nav-main{text-decoration:none;font-weight:600}
-@media (min-width:980px){.top-desktop-controls{display:flex}}
+@media (min-width:980px){.top-desktop-controls{display:flex}.top-nav-window{justify-content:flex-start}.top-brand{position:static;left:auto;transform:none;padding:0 12px 0 8px}}
 
 .interal-card{background:var(--surface);border:1px solid var(--card-border);border-radius:18px;box-shadow:0 12px 30px rgba(31,41,55,.12);}
 
