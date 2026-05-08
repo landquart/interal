@@ -76,3 +76,8 @@ body.dark-theme .menu-lang-icon-img{filter:brightness(0) invert(1)}
 .menu-nav-link,.menu-copy-btn,.top-desktop-link{background:var(--surface-soft)!important;color:var(--text)!important;border:1px solid color-mix(in srgb,var(--text) 18%, transparent)!important}
 .menu-lang-modal-content{border:1px solid color-mix(in srgb,var(--text) 18%, transparent);box-shadow:0 14px 34px rgba(0,0,0,.22)}
 .interal-card{background:var(--surface);border:1px solid color-mix(in srgb,var(--text) 18%, transparent);border-radius:18px;box-shadow:0 10px 24px rgba(17,24,39,.12)}
+
+.top-menu-btn-icon img{width:24px;height:24px;display:block;filter:var(--menu-icon-filter, none)}
+.menu-copy-btn{display:flex;align-items:center;gap:10px}
+.menu-copy-icon{width:20px;height:20px;display:block;flex:0 0 auto;filter:var(--menu-icon-filter, none)}
+body.dark-theme{--menu-icon-filter:brightness(0) invert(1)}
