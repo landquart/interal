@@ -28,7 +28,7 @@
         <div id="componentsList" class="components-list empty">No components added.</div>
         <div id="componentsSummary" class="components-summary">—</div>
         <button id="addComponentBtn" class="plus-btn" type="button" aria-label="Add component">
-          <span class="plus-btn-icon" aria-hidden="true">+</span>
+          <img class="plus-btn-icon" src="../elements/Add%20Circle.svg" alt="" aria-hidden="true" />
         </button>
       </div>
 
@@ -69,7 +69,7 @@
           </label>
           <div class="actions prompt-actions">
             <button id="buildPromptBtn" type="button" class="ghost">Build prompt</button>
-             <button id="copyPromptBtn" type="button" class="ghost icon-copy-btn" aria-label="Copy prompt" title="Copy prompt"><img src="https://design.duolingo.com/7934a3abbc6a00dd9de7.svg" alt="" aria-hidden="true" /></button>
+             <button id="copyPromptBtn" type="button" class="ghost icon-copy-btn" aria-label="Copy prompt" title="Copy prompt"><img src="../elements/Copy.svg" alt="" aria-hidden="true" /></button>
           </div>
           <label class="field compact-field">
             <span>Neural model response (paste here)</span>
@@ -96,7 +96,7 @@
     <div class="modal-card chooser-card" role="dialog" aria-modal="true" aria-labelledby="chooserTitle">
       <div class="modal-header center-header">
         <h2 id="chooserTitle">Add item</h2>
-        <button class="icon-btn" type="button" data-close-modal="true">×</button>
+        <button class="icon-btn" type="button" data-close-modal="true"><img src="../elements/Eraser%20Square.svg" alt="" aria-hidden="true" /></button>
       </div>
       <div class="chooser-grid">
         <button id="chooseRootBtn" class="chooser-option" type="button">Primary root word</button>
@@ -109,9 +109,9 @@
     <div class="modal-backdrop" data-close-modal="true"></div>
     <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="rootTitle">
       <div class="modal-header">
-        <button id="backFromRootBtn" class="back-btn" type="button">&lt;</button>
+        <button id="backFromRootBtn" class="back-btn" type="button"><img src="../elements/Undo%20Left%20Round%20Square.svg" alt="" aria-hidden="true" /></button>
         <h2 id="rootTitle">Primary root word</h2>
-        <button class="icon-btn" type="button" data-close-modal="true">×</button>
+        <button class="icon-btn" type="button" data-close-modal="true"><img src="../elements/Eraser%20Square.svg" alt="" aria-hidden="true" /></button>
       </div>
 
       <label class="field compact-field">
@@ -139,9 +139,9 @@
     <div class="modal-backdrop" data-close-modal="true"></div>
     <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="componentTitle">
       <div class="modal-header">
-        <button id="backFromComponentBtn" class="back-btn" type="button">&lt;</button>
+        <button id="backFromComponentBtn" class="back-btn" type="button"><img src="../elements/Undo%20Left%20Round%20Square.svg" alt="" aria-hidden="true" /></button>
         <h2 id="componentTitle">Component</h2>
-        <button class="icon-btn" type="button" data-close-modal="true">×</button>
+        <button class="icon-btn" type="button" data-close-modal="true"><img src="../elements/Eraser%20Square.svg" alt="" aria-hidden="true" /></button>
       </div>
 
       <label class="field compact-field">
@@ -166,9 +166,9 @@
     <div class="modal-backdrop" data-close-modal="true"></div>
     <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="prefixVariantTitle">
       <div class="modal-header">
-        <button id="backFromPrefixVariantBtn" class="back-btn" type="button">&lt;</button>
+        <button id="backFromPrefixVariantBtn" class="back-btn" type="button"><img src="../elements/Undo%20Left%20Round%20Square.svg" alt="" aria-hidden="true" /></button>
         <h2 id="prefixVariantTitle">Prefix assimilation</h2>
-        <button class="icon-btn" type="button" data-close-modal="true">×</button>
+        <button class="icon-btn" type="button" data-close-modal="true"><img src="../elements/Eraser%20Square.svg" alt="" aria-hidden="true" /></button>
       </div>
 
       <label class="field compact-field">
@@ -311,7 +311,7 @@
         if (componentTitle) componentTitle.textContent = s.component;
         const prefixVariantTitle = document.getElementById('prefixVariantTitle');
         if (prefixVariantTitle) prefixVariantTitle.textContent = s.prefixAssimilation;
-        document.querySelectorAll('.back-btn').forEach((el) => { el.textContent = s.back; });
+        document.querySelectorAll('.back-btn').forEach((el) => { el.setAttribute('aria-label', s.back === '<' ? 'Back' : s.back); });
         document.querySelectorAll('#rootModal .field > span')[0].textContent = s.word;
         document.querySelectorAll('#rootModal .field > span')[1].textContent = s.meaning;
         document.querySelectorAll('#rootModal .field > span')[2].textContent = s.assimilationType;

@@ -26,7 +26,7 @@
       ru: 'Русский',
       en: 'English',
       quickTitle: 'Быстрые действия',
-      copyState: '📋 Скопировать ссылку с данными',
+      copyState: 'Скопировать ссылку с данными',
       shared: 'Ссылка скопирована',
       sharedWarn: 'Не удалось сократить или скопировать ссылку'
     },
@@ -49,7 +49,7 @@
       ru: 'Русский',
       en: 'English',
       quickTitle: 'Quick actions',
-      copyState: '📋 Copy link with data',
+      copyState: 'Copy link with data',
       shared: 'Link copied',
       sharedWarn: 'Could not shorten or copy link'
     }
@@ -66,7 +66,7 @@
 
   const menuButtonIcon = document.createElement('span');
   menuButtonIcon.className = 'top-menu-btn-icon';
-  menuButtonIcon.textContent = '☰';
+  menuButtonIcon.innerHTML = `<img src="${joinUrl('elements/Hamburger%20Menu.svg')}" alt="" aria-hidden="true" />`; 
 
   const menuButtonText = document.createElement('span');
   menuButtonText.className = 'top-menu-btn-text';
@@ -104,7 +104,7 @@
       <a class="menu-nav-link" href="${joinUrl('determinatorofvalentyp/')}" data-nav="determinator"><span class="menu-nav-main"></span></a>
     </nav>
     <div class="menu-copy-row">
-      <button class="menu-copy-btn" type="button" data-copy-state="true"></button>
+      <button class="menu-copy-btn" type="button" data-copy-state="true"><img class="menu-copy-icon" src="${joinUrl('elements/Link%20Round%20Angle.svg')}" alt="" aria-hidden="true" /><span class="menu-copy-label"></span></button>
     </div>
     <div class="menu-preferences-row">
       <button class="menu-lang-btn menu-lang-trigger" type="button" data-lang-trigger="true" aria-expanded="false">
@@ -215,7 +215,10 @@
     const trigger = menu.querySelector('[data-lang-trigger="true"]');
     if (trigger) trigger.setAttribute('aria-label', t.langChoose);
     const copyBtn = menu.querySelector('[data-copy-state="true"]');
-    if (copyBtn) copyBtn.textContent = t.copyState;
+    if (copyBtn) {
+      const label = copyBtn.querySelector('.menu-copy-label');
+      if (label) label.textContent = t.copyState;
+    }
 
     const currentTheme = document.body.classList.contains('dark-theme') ? 'dark' : 'light';
     applyTheme(currentTheme);
