@@ -153,7 +153,7 @@ body {
 .preview-box,
 .interal-card {
   background: var(--surface) !important;
-  color: var(--text-invert) !important;
+  color: var(--text) !important;
   border: 0 !important;
   border-radius: var(--radius-lg) !important;
   box-shadow: none !important;
@@ -171,12 +171,12 @@ h1,h2,h3 {
 }
 
 p,label,li,.muted,.tool-link-sub,.field > span {
-  color: color-mix(in srgb, currentColor 68%, transparent) !important;
+  color: var(--text) !important;
 }
 
 input,textarea,select,.interal-input,.interal-select,.interal-textarea {
   background: var(--surface-soft) !important;
-  color: var(--text-invert) !important;
+  color: var(--text) !important;
   border: 0 !important;
   border-radius: var(--radius-sm) !important;
   padding: 15px 18px !important;
@@ -184,19 +184,13 @@ input,textarea,select,.interal-input,.interal-select,.interal-textarea {
 
 button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn),
 .interal-btn {
-  background: var(--text) !important;
-  color: var(--bg) !important;
-  border: 0 !important;
+  background: transparent !important;
+  color: var(--text) !important;
+  border: 1.5px solid var(--line) !important;
   border-radius: 999px !important;
   padding: 15px 24px !important;
   font-weight: 700 !important;
   box-shadow: none !important;
-}
-
-body:not(.dark-theme) button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn),
-body:not(.dark-theme) .interal-btn {
-  background: #000 !important;
-  color: #fff !important;
 }
 
 button.secondary,button.ghost,.tab,.chooser-option,.interal-btn--ghost {
@@ -234,7 +228,7 @@ body:not(.dark-theme) {
 }
 
 p,label,li,.muted,.tool-link-sub,.field > span {
-  color: color-mix(in srgb, currentColor 82%, transparent) !important;
+  color: var(--text) !important;
 }
 
 .card,.panel,.tool-link,.metric,.note,.result,.modal-card,.modal-inner,.result-card,.chooser-card,.component-item,.components-list,.components-summary,.preview-box,.interal-card {
