@@ -223,3 +223,43 @@ button.secondary,button.ghost,.tab,.chooser-option,.interal-btn--ghost {
   .container { grid-template-columns: 1fr !important; }
   .tool-link { min-height: 180px; }
 }
+
+
+/* contrast accessibility overrides */
+:root {
+  --line: rgba(255,255,255,.36);
+}
+body:not(.dark-theme) {
+  --line: rgba(0,0,0,.32);
+}
+
+p,label,li,.muted,.tool-link-sub,.field > span {
+  color: color-mix(in srgb, currentColor 82%, transparent) !important;
+}
+
+.card,.panel,.tool-link,.metric,.note,.result,.modal-card,.modal-inner,.result-card,.chooser-card,.component-item,.components-list,.components-summary,.preview-box,.interal-card {
+  border: 1px solid var(--line) !important;
+}
+
+input,textarea,select,.interal-input,.interal-select,.interal-textarea {
+  border: 1px solid var(--line) !important;
+}
+
+button.secondary,button.ghost,.tab,.chooser-option,.interal-btn--ghost {
+  border: 1.5px solid var(--line) !important;
+}
+
+/* ensure monochrome SVG icons remain visible in both themes */
+img[src$=".svg"]:not(.hero-bg):not(.menu-theme-icon):not(.menu-lang-icon-img):not(.top-brand-logo) {
+  filter: var(--content-icon-filter, none);
+}
+body.dark-theme {
+  --content-icon-filter: brightness(0) invert(1);
+}
+body:not(.dark-theme) {
+  --content-icon-filter: none;
+}
+
+.tool-icon-wrap {
+  border-color: var(--line) !important;
+}
