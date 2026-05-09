@@ -14,6 +14,10 @@
   --nav-hover-bg: #e8e8e8;
   --nav-hover-text: #111111;
   --card-border: #cfcfcf;
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 20px;
+  --shadow-soft: 0 8px 20px rgba(17,24,39,.08);
 }
 
 body.dark-theme {
@@ -81,6 +85,12 @@ body.dark-theme .menu-lang-icon-img{filter:brightness(0) invert(1)}
 .menu-lang-modal .menu-lang-btn:hover{background:var(--text);color:var(--bg)}
 .menu-lang-modal-content{border:1px solid color-mix(in srgb,var(--text) 18%, transparent);box-shadow:0 14px 34px rgba(0,0,0,.22)}
 .interal-card{background:var(--surface);border:1px solid color-mix(in srgb,var(--text) 18%, transparent);border-radius:18px;box-shadow:0 10px 24px rgba(17,24,39,.12)}
+
+.interal-input,.interal-select,.interal-textarea{width:100%;padding:11px 12px;border:1px solid color-mix(in srgb,var(--text) 22%, transparent);border-radius:var(--radius-sm);background:var(--surface-soft);color:var(--text);font:inherit}
+.interal-input:focus-visible,.interal-select:focus-visible,.interal-textarea:focus-visible{outline:none;border-color:var(--text);box-shadow:0 0 0 3px var(--focus-ring)}
+.interal-btn{border:1px solid color-mix(in srgb,var(--text) 18%, transparent);border-radius:var(--radius-sm);background:var(--text);color:var(--bg);padding:11px 16px;font:600 0.95rem "Jost","Helvetica Neue",Helvetica,Arial,sans-serif;cursor:pointer;box-shadow:var(--shadow-soft)}
+.interal-btn:hover{transform:translateY(-1px)}
+.interal-btn--ghost{background:transparent;color:var(--text)}
 
 .top-menu-btn-icon img{width:24px;height:24px;display:block;filter:var(--menu-icon-filter, none)}
 .menu-copy-btn{display:flex;align-items:center;gap:10px}
