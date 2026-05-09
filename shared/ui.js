@@ -88,7 +88,6 @@
     <a class="top-desktop-link" href="${joinUrl('similarita/')}" data-nav="similarita"><span class="top-desktop-link-main"></span></a>
     <a class="top-desktop-link" href="${joinUrl('associativvordes/')}" data-nav="associativ"><span class="top-desktop-link-main"></span></a>
     <a class="top-desktop-link" href="${joinUrl('determinatorofvalentyp/')}" data-nav="determinator"><span class="top-desktop-link-main"></span></a>
-    <button class="top-desktop-copy-btn" type="button" data-copy-state="true"><img class="menu-copy-icon" src="${joinUrl('elements/Link%20Round%20Angle.svg')}" alt="" aria-hidden="true" /><span class="top-desktop-copy-label"></span></button>
   `;
 
   const overlay = document.createElement('div');
@@ -103,10 +102,8 @@
       <a class="menu-nav-link" href="${joinUrl('similarita/')}" data-nav="similarita"><span class="menu-nav-main"></span></a>
       <a class="menu-nav-link" href="${joinUrl('associativvordes/')}" data-nav="associativ"><span class="menu-nav-main"></span></a>
       <a class="menu-nav-link" href="${joinUrl('determinatorofvalentyp/')}" data-nav="determinator"><span class="menu-nav-main"></span></a>
-    </nav>
-    <div class="menu-copy-row">
       <button class="menu-copy-btn" type="button" data-copy-state="true"><img class="menu-copy-icon" src="${joinUrl('elements/Link%20Round%20Angle.svg')}" alt="" aria-hidden="true" /><span class="menu-copy-label"></span></button>
-    </div>
+    </nav>
     <div class="menu-preferences-row">
       <button class="menu-lang-btn menu-lang-trigger" type="button" data-lang-trigger="true" aria-expanded="false">
         <img class="menu-lang-icon-img" src="${joinUrl('elements/lingue.svg')}" alt="" aria-hidden="true" />
@@ -168,11 +165,17 @@
     const x = rect ? `${rect.left + rect.width / 2}px` : `${window.innerWidth / 2}px`;
     const y = rect ? `${rect.top + rect.height / 2}px` : `0px`;
     const layer = document.createElement('div');
+    const previousTheme = document.body.classList.contains('dark-theme') ? 'dark' : 'light';
     const toDark = nextTheme === 'dark';
     layer.className = `theme-reveal-layer is-animating ${toDark ? 'is-out' : 'is-in'}`;
     layer.style.setProperty('--reveal-x', x);
     layer.style.setProperty('--reveal-y', y);
-    layer.style.setProperty('--reveal-color', toDark ? '#0f0f0f' : '#0f0f0f');
+    const snapshot = document.body.cloneNode(true);
+    snapshot.classList.add('theme-reveal-snapshot');
+    snapshot.classList.toggle('dark-theme', previousTheme === 'dark');
+    snapshot.classList.toggle('light-theme', previousTheme !== 'dark');
+    snapshot.querySelectorAll('script').forEach((node) => node.remove());
+    layer.appendChild(snapshot);
     document.body.appendChild(layer);
     layer.addEventListener('animationend', () => layer.remove(), { once: true });
   }
