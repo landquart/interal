@@ -320,6 +320,12 @@
 
   function markCurrentPage() {
     const path = window.location.pathname;
+    if (path.includes('/similarita/')) {
+      document.querySelectorAll('[data-nav]').forEach((link) => {
+        link.classList.remove('is-active');
+      });
+      return;
+    }
     const currentNav = path.includes('/similarita/')
       ? 'similarita'
       : path.includes('/associativvordes/')
