@@ -20,19 +20,28 @@
     .home-brand { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:center; align-items:center; text-decoration:none; color:#fff; gap:4px; text-align:center; }
     .home-logo { width:160px; height:160px; filter: brightness(0) invert(1); }
     .home-title { margin: 0; font-size: clamp(2rem, 4vw, 2.6rem); letter-spacing: .5px; color:#fff; text-shadow: none; }
-    .container { width: 100%; text-align: center; display:flex; gap:18px; justify-content:space-between; flex-wrap:nowrap; }
+    .homepage .container {
+      width: 100%;
+      text-align: center;
+      display: grid !important;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      align-items: stretch;
+    }
     .tool-link {
       position: relative;
       isolation: isolate;
       display: grid;
-      width: 33.33%;
+      width: 100%;
+      min-height: 236px;
       padding: 20px 16px 16px;
       text-decoration: none;
       border-radius: var(--radius-md);
       background: var(--surface);
       border: 1px solid color-mix(in srgb,var(--text) 18%, transparent);
       box-shadow: var(--shadow-soft);
-      justify-items: center;
+      justify-items: center !important;
+      align-content: center;
       transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease, border-color .35s ease, background-color .35s ease, color .35s ease;
     }
     .tool-icon-wrap {
@@ -72,8 +81,8 @@
       .hero-bg { border-radius: 48px; }
     }
     @media (max-width: 860px) {
-      .container { flex-direction: column; }
-      .tool-link { width: 100%; }
+      .homepage .container { grid-template-columns: 1fr !important; }
+      .tool-link { width: 100%; min-height: 180px; }
       .hero { min-height: clamp(220px, 34vh, 320px); border-radius:22px; margin-bottom: 10px; }
       .hero-bg { width:100%; height:100%; object-fit:cover; }
       .home-brand { padding: 18px 12px; justify-content:center; }
