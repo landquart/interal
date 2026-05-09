@@ -130,8 +130,8 @@ body.dark-theme .menu-copy-btn:focus-visible .menu-copy-icon{filter:brightness(0
 
 body:not(.dark-theme) {
   --bg: #fff;
-  --surface: #000;
-  --surface-soft: #151515;
+  --surface: #fff;
+  --surface-soft: #f2f2f2;
   --text: #000;
   --text-invert: #fff;
   --muted: #555;
