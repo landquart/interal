@@ -10,7 +10,10 @@
   <link rel="stylesheet" href="../shared/ui.css" />
   <style>
     :root {
-      --card: #fff8e2;
+      --card: #ffedbf;
+      --surface-strong: #fff6df;
+      --text-main: #2b1f14;
+      --text-muted: #6b4d33;
       --muted: color-mix(in srgb, var(--text) 70%, var(--muted));
       --line: #9a6f33;
       --accent: #3d2a12;
@@ -26,7 +29,7 @@
       margin: 0;
       background: var(--bg);
       min-height: 100vh;
-      color: var(--text);
+      color: #2b1f14;
       font-family: "Jost", "Helvetica Neue", Helvetica, Arial, sans-serif;
       line-height: 1.45;
     }
@@ -52,10 +55,10 @@
 
     .card {
       position: relative;
-      background: var(--surface);
-      border: 1px solid color-mix(in srgb,var(--text) 18%, transparent);
-      border-radius: 18px;
-      box-shadow: 0 12px 30px rgba(31, 41, 55, 0.12);
+      background: #ffedbf !important;
+      border: 1px solid #d6b16e !important;
+      border-radius: 18px !important;
+      box-shadow: 0 12px 30px rgba(31, 41, 55, 0.12) !important;
       padding: 18px;
     }
 
@@ -80,8 +83,8 @@
       border: 1px solid var(--line);
       padding: 10px 12px;
       width: 100%;
-      background: #fffdf4;
-      color: var(--text);
+      background: #fff6df;
+      color: #2b1f14;
     }
 
     textarea { min-height: 110px; resize: vertical; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
@@ -96,7 +99,7 @@
 
     button.secondary {
       background: #fff6dc;
-      color: var(--text);
+      color: #2b1f14;
       border-color: var(--line);
     }
 
@@ -154,7 +157,7 @@
     }
 
     .muted { color: color-mix(in srgb, var(--text) 80%, var(--muted)); }
-    .note { background: var(--accent-2); padding: 12px; border-radius: 14px; color: var(--text); }
+    .note { background: var(--accent-2); padding: 12px; border-radius: 14px; color: #2b1f14; }
 
     .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; align-items: flex-start; }
     .tab {
@@ -162,7 +165,7 @@
       flex: 0 0 auto;
       padding: 8px 11px;
       background: #fff6dc;
-      color: var(--text);
+      color: #2b1f14;
       border-color: var(--line);
     }
     .tab.active { background: var(--accent); color: #fff; border-color: var(--accent); }
@@ -295,7 +298,7 @@
     body.dark-theme .secondary,
     body.dark-theme .metric {
       background: color-mix(in srgb, var(--surface) 90%, #000 10%);
-      color: var(--text);
+      color: #2b1f14;
     }
     body.dark-theme .status.ok { background: #243526; color: #8fd69a; }
     body.dark-theme .status.bad { background: #442524; color: #f0aaaa; }
