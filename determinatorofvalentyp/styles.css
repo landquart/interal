@@ -585,6 +585,18 @@ pre {
   padding: 0;
 }
 
+
+.close-btn {
+  font-size: 1.6rem;
+  line-height: 1;
+  font-weight: 500;
+}
+
+.component-delete img {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
 .chooser-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -640,4 +652,4 @@ input,textarea,select{background:var(--surface-strong)!important;color:var(--tex
 button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn){background:var(--surface-strong)!important;color:var(--text-main)!important;border:1px solid color-mix(in srgb,var(--text-main) 22%, transparent)!important;border-radius:18px!important;}
 
 .icon-btn img,.back-btn img{width:22px;height:22px;display:block}
-body.dark-theme .icon-btn img,body.dark-theme .back-btn img,body.dark-theme .plus-btn-icon,body.dark-theme .icon-copy-btn img{filter:brightness(0) invert(1)}
+body.dark-theme .icon-btn img,body.dark-theme .back-btn img,body.dark-theme .plus-btn-icon,body.dark-theme .icon-copy-btn img,body.dark-theme .component-delete img{filter:brightness(0) invert(1)}
