@@ -69,7 +69,7 @@ body.dark-theme {
     margin: 0 auto 18px auto;
     padding: 22px;
 }
-.card{background:var(--sim-surface);border:1px solid color-mix(in srgb,var(--sim-text-main) 18%, transparent);border-radius:18px;box-shadow:0 12px 30px rgba(31,41,55,.12);}
+.card{background:var(--sim-surface)!important;border:1px solid var(--sim-line-color)!important;border-radius:18px!important;box-shadow:0 12px 30px rgba(31,41,55,.12)!important;}
 
 .card h2 {
     text-align: center;
@@ -98,7 +98,7 @@ input {
     margin-top: 6px;
     font-size: 16px;
     box-sizing: border-box;
-    border: 2px solid color-mix(in srgb, var(--sim-text-main) 28%, transparent);
+    border: 2px solid var(--sim-line-color);
     border-radius: var(--sim-radius-md);
     background: var(--sim-surface-strong);
     color: var(--sim-text-main);
@@ -121,7 +121,7 @@ button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu
     font-size: 15px;
     font-weight: 700;
     letter-spacing: 0.2px;
-    background: var(--sim-accent);
+    background: var(--sim-accent)!important;
     position: relative;
     overflow: hidden;
     isolation: isolate;
