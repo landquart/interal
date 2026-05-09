@@ -68,6 +68,13 @@ body.menu-open .side-menu-overlay{opacity:1;pointer-events:auto}
 .top-desktop-link-main,.menu-nav-main{text-decoration:none;font-weight:600}
 @media (min-width:980px){.top-desktop-controls{display:flex}.top-nav-window{justify-content:flex-start}.top-brand{position:static;left:auto;transform:none;padding:0 12px 0 8px}.menu-preferences-row{display:flex;gap:8px}.menu-theme-toggle,.menu-lang-trigger{width:42px;height:42px;border-radius:12px}}
 
+@media (min-width:980px){
+  .side-menu .menu-nav-link{display:none;}
+  .side-menu .menu-nav{margin-top:0;padding-top:0;}
+  .top-desktop-link + .top-desktop-link{position:relative;padding-left:18px;margin-left:6px;}
+  .top-desktop-link + .top-desktop-link::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:1px;height:18px;background:color-mix(in srgb,var(--text) 32%, transparent);}
+}
+
 .interal-card{background:var(--surface);border:1px solid var(--card-border);border-radius:18px;box-shadow:0 12px 30px rgba(31,41,55,.12);}
 
 .top-nav-window,.top-nav-window *,.side-menu,.side-menu *{font-family:"Jost","Helvetica Neue",Helvetica,Arial,sans-serif}
