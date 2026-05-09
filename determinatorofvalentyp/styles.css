@@ -653,3 +653,9 @@ button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu
 
 .icon-btn img,.back-btn img{width:22px;height:22px;display:block}
 body.dark-theme .icon-btn img,body.dark-theme .back-btn img,body.dark-theme .plus-btn-icon,body.dark-theme .icon-copy-btn img,body.dark-theme .component-delete img{filter:brightness(0) invert(1)}
+
+
+/* minimalist unification */
+.panel,.component-item,.modal-card,.result,.preview-box{border-radius:var(--radius-md)!important;box-shadow:var(--shadow-soft)!important}
+input,textarea,select{border-width:1px!important;background:var(--surface-soft)!important}
+button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn){border:1px solid color-mix(in srgb,var(--text-main) 18%, transparent)!important}

@@ -885,4 +885,12 @@ input,textarea,select{background:var(--surface-soft)!important;border-radius:14p
 button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn){background:var(--surface-soft)!important;color:var(--text)!important;border-radius:18px!important;border:1px solid color-mix(in srgb,var(--text) 22%, transparent)!important;}
 body:not(.dark-theme){--surface:#ffffff!important;--surface-soft:#f4f4f4!important;--text:#111111!important;--muted:#4a4a4a!important;}
 body.dark-theme{--surface:#595959!important;--surface-soft:#666!important;--text:#fff!important;}
+
+    .card, .metric { border-radius: var(--radius-md); box-shadow: var(--shadow-soft); }
+    input, select, textarea { border-width: 1px; background: var(--surface-soft); }
+    button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn) {
+      border: 1px solid color-mix(in srgb,var(--text) 18%, transparent);
+      background: var(--text);
+      color: var(--bg);
+    }
 </style>
