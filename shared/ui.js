@@ -162,9 +162,23 @@
     updateThemeIcon(theme);
   }
 
-  function toggleTheme() {
+  function animateThemeReveal(originEl, nextTheme) {
+    const rect = originEl?.getBoundingClientRect?.();
+    const x = rect ? `${rect.left + rect.width / 2}px` : `${window.innerWidth / 2}px`;
+    const y = rect ? `${rect.top + rect.height / 2}px` : `0px`;
+    const layer = document.createElement('div');
+    layer.className = 'theme-reveal-layer is-animating';
+    layer.style.setProperty('--reveal-x', x);
+    layer.style.setProperty('--reveal-y', y);
+    layer.style.setProperty('--reveal-color', nextTheme === 'dark' ? '#0f0f0f' : '#ffffff');
+    document.body.appendChild(layer);
+    layer.addEventListener('animationend', () => layer.remove(), { once: true });
+  }
+
+  function toggleTheme(event) {
     const dark = !document.body.classList.contains('dark-theme');
     const theme = dark ? 'dark' : 'light';
+    animateThemeReveal(event?.currentTarget, theme);
     localStorage.setItem(THEME_KEY, theme);
     applyTheme(theme);
   }
