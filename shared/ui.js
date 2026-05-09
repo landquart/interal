@@ -88,6 +88,7 @@
     <a class="top-desktop-link" href="${joinUrl('similarita/')}" data-nav="similarita"><span class="top-desktop-link-main"></span></a>
     <a class="top-desktop-link" href="${joinUrl('associativvordes/')}" data-nav="associativ"><span class="top-desktop-link-main"></span></a>
     <a class="top-desktop-link" href="${joinUrl('determinatorofvalentyp/')}" data-nav="determinator"><span class="top-desktop-link-main"></span></a>
+    <button class="top-desktop-copy-btn" type="button" data-copy-state="true"><img class="menu-copy-icon" src="${joinUrl('elements/Link%20Round%20Angle.svg')}" alt="" aria-hidden="true" /><span class="top-desktop-copy-label"></span></button>
   `;
 
   const overlay = document.createElement('div');
@@ -167,10 +168,11 @@
     const x = rect ? `${rect.left + rect.width / 2}px` : `${window.innerWidth / 2}px`;
     const y = rect ? `${rect.top + rect.height / 2}px` : `0px`;
     const layer = document.createElement('div');
-    layer.className = 'theme-reveal-layer is-animating';
+    const toDark = nextTheme === 'dark';
+    layer.className = `theme-reveal-layer is-animating ${toDark ? 'is-out' : 'is-in'}`;
     layer.style.setProperty('--reveal-x', x);
     layer.style.setProperty('--reveal-y', y);
-    layer.style.setProperty('--reveal-color', nextTheme === 'dark' ? '#0f0f0f' : '#ffffff');
+    layer.style.setProperty('--reveal-color', toDark ? '#0f0f0f' : '#0f0f0f');
     document.body.appendChild(layer);
     layer.addEventListener('animationend', () => layer.remove(), { once: true });
   }
@@ -178,9 +180,15 @@
   function toggleTheme(event) {
     const dark = !document.body.classList.contains('dark-theme');
     const theme = dark ? 'dark' : 'light';
-    animateThemeReveal(event?.currentTarget, theme);
+    if (theme === 'dark') {
+      animateThemeReveal(event?.currentTarget, theme);
+      localStorage.setItem(THEME_KEY, theme);
+      applyTheme(theme);
+      return;
+    }
     localStorage.setItem(THEME_KEY, theme);
     applyTheme(theme);
+    animateThemeReveal(event?.currentTarget, theme);
   }
 
   function initTheme() {
@@ -228,11 +236,10 @@
     });
     const trigger = menu.querySelector('[data-lang-trigger="true"]');
     if (trigger) trigger.setAttribute('aria-label', t.langChoose);
-    const copyBtn = menu.querySelector('[data-copy-state="true"]');
-    if (copyBtn) {
-      const label = copyBtn.querySelector('.menu-copy-label');
+    document.querySelectorAll('[data-copy-state="true"]').forEach((copyBtn) => {
+      const label = copyBtn.querySelector('.menu-copy-label, .top-desktop-copy-label');
       if (label) label.textContent = t.copyState;
-    }
+    });
 
     const currentTheme = document.body.classList.contains('dark-theme') ? 'dark' : 'light';
     applyTheme(currentTheme);
@@ -401,8 +408,7 @@
     toggleLanguageList(false);
   });
 
-  const copyButton = menu.querySelector('[data-copy-state="true"]');
-  copyButton?.addEventListener('click', async () => {
+  document.querySelectorAll('[data-copy-state="true"]').forEach((copyButton) => copyButton.addEventListener('click', async () => {
     const t = i18n[getLang()];
     try {
       const entries = collectPageState();
@@ -416,7 +422,7 @@
     } catch (_) {
       showToast(t.sharedWarn);
     }
-  });
+  }));
 
   window.addEventListener('resize', () => applyLanguage(getLang()));
 
