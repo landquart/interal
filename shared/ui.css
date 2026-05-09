@@ -86,6 +86,8 @@ body.dark-theme .menu-lang-icon-img{filter:brightness(0) invert(1)}
 .menu-copy-btn{display:flex;align-items:center;gap:10px}
 .menu-copy-icon{width:20px;height:20px;display:block;flex:0 0 auto;filter:var(--menu-icon-filter, none)}
 body.dark-theme{--menu-icon-filter:brightness(0) invert(1)}
+body.dark-theme .menu-copy-btn:hover .menu-copy-icon,
+body.dark-theme .menu-copy-btn:focus-visible .menu-copy-icon{filter:brightness(0)}
 
 .theme-reveal-layer{position:fixed;inset:0;pointer-events:none;z-index:2000;background:var(--reveal-color);}
 .theme-reveal-layer.is-out{clip-path:circle(0 at var(--reveal-x) var(--reveal-y))}
