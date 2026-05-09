@@ -106,14 +106,16 @@ body.dark-theme{--menu-icon-filter:brightness(0) invert(1)}
 body.dark-theme .menu-copy-btn:hover .menu-copy-icon,
 body.dark-theme .menu-copy-btn:focus-visible .menu-copy-icon{filter:brightness(0)}
 
-.theme-reveal-layer{position:fixed;inset:0;pointer-events:none;z-index:2000;background:var(--reveal-color);}
-.theme-reveal-layer.is-out{clip-path:circle(0 at var(--reveal-x) var(--reveal-y))}
-.theme-reveal-layer.is-in{clip-path:circle(150vmax at var(--reveal-x) var(--reveal-y))}
-.theme-reveal-layer.is-out.is-animating{animation:themeRevealOut .55s ease-out forwards;}
-.theme-reveal-layer.is-in.is-animating{animation:themeRevealIn .55s ease-out forwards;}
-.theme-reveal-snapshot{position:fixed;inset:0;margin:0;overflow:hidden}
-@keyframes themeRevealOut{to{clip-path:circle(150vmax at var(--reveal-x) var(--reveal-y));}}
-@keyframes themeRevealIn{to{clip-path:circle(0 at var(--reveal-x) var(--reveal-y));}}
+::view-transition-old(root),
+::view-transition-new(root){animation:none;mix-blend-mode:normal}
+::view-transition-image-pair(root){isolation:auto}
+::view-transition-new(root){
+  clip-path:circle(0 at var(--reveal-x, 50%) var(--reveal-y, 0));
+  animation:themeReveal .55s cubic-bezier(.22,.61,.36,1) forwards;
+}
+
+.theme-reveal-fallback{position:fixed;inset:0;pointer-events:none;z-index:2000;background:var(--reveal-color,#fff);clip-path:circle(0 at var(--reveal-x) var(--reveal-y));animation:themeReveal .55s cubic-bezier(.22,.61,.36,1) forwards}
+@keyframes themeReveal{to{clip-path:circle(var(--reveal-end-radius,150vmax) at var(--reveal-x,50%) var(--reveal-y,0));}}
 /* global monochrome design system */
 :root {
   --bg: #000;

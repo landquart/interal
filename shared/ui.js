@@ -200,38 +200,45 @@
     requestAnimationFrame(applyAdaptiveTextContrast);
   }
 
-  function animateThemeReveal(originEl, nextTheme) {
+  function getRevealOrigin(originEl) {
     const rect = originEl?.getBoundingClientRect?.();
-    const x = rect ? `${rect.left + rect.width / 2}px` : `${window.innerWidth / 2}px`;
-    const y = rect ? `${rect.top + rect.height / 2}px` : `0px`;
-    const layer = document.createElement('div');
-    const previousTheme = document.body.classList.contains('dark-theme') ? 'dark' : 'light';
-    const toDark = nextTheme === 'dark';
-    layer.className = `theme-reveal-layer is-animating ${toDark ? 'is-out' : 'is-in'}`;
-    layer.style.setProperty('--reveal-x', x);
-    layer.style.setProperty('--reveal-y', y);
-    const snapshot = document.body.cloneNode(true);
-    snapshot.classList.add('theme-reveal-snapshot');
-    snapshot.classList.toggle('dark-theme', previousTheme === 'dark');
-    snapshot.classList.toggle('light-theme', previousTheme !== 'dark');
-    snapshot.querySelectorAll('script').forEach((node) => node.remove());
-    layer.appendChild(snapshot);
-    document.body.appendChild(layer);
-    layer.addEventListener('animationend', () => layer.remove(), { once: true });
+    return {
+      x: rect ? rect.left + rect.width / 2 : window.innerWidth / 2,
+      y: rect ? rect.top + rect.height / 2 : 0
+    };
   }
 
   function toggleTheme(event) {
-    const dark = !document.body.classList.contains('dark-theme');
-    const theme = dark ? 'dark' : 'light';
-    if (theme === 'dark') {
-      animateThemeReveal(event?.currentTarget, theme);
-      localStorage.setItem(THEME_KEY, theme);
-      applyTheme(theme);
+    const theme = document.body.classList.contains('dark-theme') ? 'light' : 'dark';
+    const { x, y } = getRevealOrigin(event?.currentTarget);
+    const endRadius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
+
+    if (document.startViewTransition) {
+      document.documentElement.style.setProperty('--reveal-x', `${x}px`);
+      document.documentElement.style.setProperty('--reveal-y', `${y}px`);
+      document.documentElement.style.setProperty('--reveal-end-radius', `${endRadius}px`);
+      const transition = document.startViewTransition(() => {
+        localStorage.setItem(THEME_KEY, theme);
+        applyTheme(theme);
+      });
+      transition.finished.finally(() => {
+        document.documentElement.style.removeProperty('--reveal-x');
+        document.documentElement.style.removeProperty('--reveal-y');
+        document.documentElement.style.removeProperty('--reveal-end-radius');
+      });
       return;
     }
+
+    const layer = document.createElement('div');
+    layer.className = 'theme-reveal-fallback';
+    layer.style.setProperty('--reveal-x', `${x}px`);
+    layer.style.setProperty('--reveal-y', `${y}px`);
+    layer.style.setProperty('--reveal-end-radius', `${endRadius}px`);
+    layer.style.setProperty('--reveal-color', getComputedStyle(document.body).getPropertyValue('--bg').trim() || '#fff');
     localStorage.setItem(THEME_KEY, theme);
     applyTheme(theme);
-    animateThemeReveal(event?.currentTarget, theme);
+    document.body.appendChild(layer);
+    layer.addEventListener('animationend', () => layer.remove(), { once: true });
   }
 
   function initTheme() {
