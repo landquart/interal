@@ -84,9 +84,15 @@ body.dark-theme .menu-lang-icon-img{filter:brightness(0) invert(1)}
 
 .top-menu-btn-icon img{width:24px;height:24px;display:block;filter:var(--menu-icon-filter, none)}
 .menu-copy-btn{display:flex;align-items:center;gap:10px}
+.top-desktop-copy-btn{display:none;align-items:center;gap:8px;background:transparent;color:var(--text);border:0;border-radius:12px;padding:8px 10px;font-weight:600;cursor:pointer}
+@media (min-width:980px){.top-desktop-copy-btn{display:inline-flex}}
 .menu-copy-icon{width:20px;height:20px;display:block;flex:0 0 auto;filter:var(--menu-icon-filter, none)}
 body.dark-theme{--menu-icon-filter:brightness(0) invert(1)}
 
-.theme-reveal-layer{position:fixed;inset:0;pointer-events:none;z-index:2000;opacity:1;clip-path:circle(0 at var(--reveal-x) var(--reveal-y));background:var(--reveal-color);}
-.theme-reveal-layer.is-animating{animation:themeReveal .55s ease-out forwards;}
-@keyframes themeReveal{to{clip-path:circle(150vmax at var(--reveal-x) var(--reveal-y));opacity:0}}
+.theme-reveal-layer{position:fixed;inset:0;pointer-events:none;z-index:2000;background:var(--reveal-color);}
+.theme-reveal-layer.is-out{clip-path:circle(0 at var(--reveal-x) var(--reveal-y))}
+.theme-reveal-layer.is-in{clip-path:circle(150vmax at var(--reveal-x) var(--reveal-y))}
+.theme-reveal-layer.is-out.is-animating{animation:themeRevealOut .55s ease-out forwards;}
+.theme-reveal-layer.is-in.is-animating{animation:themeRevealIn .55s ease-out forwards;}
+@keyframes themeRevealOut{to{clip-path:circle(150vmax at var(--reveal-x) var(--reveal-y));}}
+@keyframes themeRevealIn{to{clip-path:circle(0 at var(--reveal-x) var(--reveal-y));}}
