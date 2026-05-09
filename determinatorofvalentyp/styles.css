@@ -252,11 +252,9 @@ textarea.copy-flash {
   width: 58px;
   height: 58px;
   padding: 0;
-  border-radius: 50%;
   border: 0;
-  background: var(--surface-strong);
+  background: transparent;
   color: var(--text-main);
-  font-size: 2rem;
   line-height: 1;
   cursor: pointer;
   display: grid;
