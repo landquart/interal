@@ -453,6 +453,8 @@
       }
       const short = await shortenLink(url.toString());
       await navigator.clipboard.writeText(short);
+      showToast(t.shared);
+      closeMenu();
     } catch (_) {
       showToast(t.sharedWarn);
     }

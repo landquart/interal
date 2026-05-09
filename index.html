@@ -12,11 +12,11 @@
 
   <style>
     * { box-sizing: border-box; }
-    body { margin: 0; font-family: "Jost", "Helvetica Neue", Helvetica, Arial, sans-serif; min-height: 100vh; padding: 12px; }
+    body { margin: 0; font-family: "Jost", "Helvetica Neue", Helvetica, Arial, sans-serif; min-height: 100vh; padding: 16px; line-height:1.5; }
     body.homepage.has-global-menu { padding-top: 72px !important; }
-   .home-wrap { width:min(1200px,100%); margin: 0 auto; }
-    .hero { width:100%; border-radius:36px; overflow:hidden; margin-bottom:18px; position:relative; min-height: calc((100vh - 130px) * 0.343); display:grid; place-items:center; background:transparent; }
-    .hero-bg { width:80.5%; height:80.5%; object-fit:cover; display:block; border-radius:42px; }
+   .home-wrap { width:min(1080px,100%); margin: 0 auto; }
+    .hero { width:100%; border-radius:24px; overflow:hidden; margin-bottom:20px; position:relative; min-height: clamp(220px, 38vh, 380px); display:grid; place-items:center; background:#0f0f0f; }
+    .hero-bg { width:100%; height:100%; object-fit:cover; display:block; opacity:.78; }
     .home-brand { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:center; align-items:center; text-decoration:none; color:#fff; gap:4px; text-align:center; }
     .home-logo { width:160px; height:160px; filter: brightness(0) invert(1); }
     .home-title { margin: 0; font-size: clamp(2rem, 4vw, 2.6rem); letter-spacing: .5px; color:#fff; text-shadow: none; }
@@ -25,6 +25,8 @@
       text-align: center;
       display: grid !important;
       grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin:0;
+      padding:0;
       gap: 18px;
       align-items: stretch;
     }
@@ -33,20 +35,20 @@
       isolation: isolate;
       display: grid;
       width: 100%;
-      min-height: 236px;
-      padding: 20px 16px 16px;
+      min-height: 212px;
+      padding: 20px;
       text-decoration: none;
-      border-radius: var(--radius-md);
+      border-radius: 20px;
       background: var(--surface);
       border: 1px solid color-mix(in srgb,var(--text) 18%, transparent);
-      box-shadow: var(--shadow-soft);
+      box-shadow: none;
       justify-items: center !important;
       align-content: center;
-      transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease, border-color .35s ease, background-color .35s ease, color .35s ease;
+      transition: transform .2s ease, border-color .2s ease, background-color .2s ease;
     }
     .tool-icon-wrap {
-      width: 96px;
-      height: 96px;
+      width: 72px;
+      height: 72px;
       border-radius: var(--radius-sm);
       background: #0d0d0d;
       border: 1px solid #242424;
@@ -55,8 +57,9 @@
       margin-bottom: 12px;
       transition: background-color .35s ease, transform .35s cubic-bezier(.2,.8,.2,1);
     }
-    .tool-icon { width: 58px; height: 58px; }
+    .tool-icon { width: 42px; height: 42px; }
     .tool-link-main {
+      line-height:1.3;
       font-weight: 700;
       text-decoration: none;
       font-size: 1rem;
@@ -89,7 +92,8 @@
       .home-logo { width: clamp(84px, 26vw, 128px); height: clamp(84px, 26vw, 128px); }
       .home-title { font-size: clamp(1.4rem, 7vw, 2.1rem); max-width: 100%; word-break: break-word; }
     }
-    @keyframes logoFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+     .tool-link:hover, .tool-link:focus-visible { transform: translateY(-2px); border-color: color-mix(in srgb,var(--text) 40%, transparent); }
+    .tool-link:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
   </style>
 </head>
 <body class="homepage">
