@@ -257,3 +257,5 @@ body:not(.dark-theme) {
 .tool-icon-wrap {
   border-color: var(--line) !important;
 }
+
+.auto-contrast-text{color:var(--auto-contrast-color, var(--text)) !important;}

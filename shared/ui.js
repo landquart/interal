@@ -146,6 +146,37 @@
     document.body.classList.toggle('menu-modal-open', shouldOpen);
   }
 
+
+  function parseColor(color) {
+    const value = (color || '').trim();
+    if (!value) return null;
+    if (value.startsWith('rgb')) {
+      const nums = value.match(/[\d.]+/g);
+      if (!nums || nums.length < 3) return null;
+      return { r: Number(nums[0]), g: Number(nums[1]), b: Number(nums[2]) };
+    }
+    return null;
+  }
+
+  function getContrastColorForBackground(bgColor) {
+    const rgb = parseColor(bgColor);
+    if (!rgb) return '';
+    const luminance = (0.299 * rgb.r + 0.587 * rgb.g + 0.114 * rgb.b) / 255;
+    return luminance > 0.6 ? '#111111' : '#ffffff';
+  }
+
+  function applyAdaptiveTextContrast() {
+    const targets = document.querySelectorAll('.menu-nav-link, .menu-copy-btn, .top-desktop-link, .menu-lang-modal .menu-lang-btn');
+    targets.forEach((el) => {
+      const bg = getComputedStyle(el).backgroundColor;
+      const color = getContrastColorForBackground(bg);
+      if (color) {
+        el.style.setProperty('--auto-contrast-color', color);
+        el.classList.add('auto-contrast-text');
+      }
+    });
+  }
+
   function updateThemeIcon(theme) {
     const icon = menu.querySelector('.menu-theme-icon');
     if (!icon) return;
@@ -158,6 +189,7 @@
     const t = i18n[getLang()];
     if (btn) btn.setAttribute('aria-label', theme === 'dark' ? t.themeToLight : t.themeToDark);
     updateThemeIcon(theme);
+    requestAnimationFrame(applyAdaptiveTextContrast);
   }
 
   function animateThemeReveal(originEl, nextTheme) {
@@ -197,6 +229,7 @@
   function initTheme() {
     const saved = localStorage.getItem(THEME_KEY);
     applyTheme(saved === 'dark' ? 'dark' : 'light');
+    requestAnimationFrame(applyAdaptiveTextContrast);
   }
 
   function applyLanguage(lang) {
@@ -366,6 +399,11 @@
   document.body.prepend(overlay);
   document.body.prepend(menu);
   document.body.prepend(topNav);
+
+  document.addEventListener('mouseover', (event) => {
+    const target = event.target.closest?.('.menu-nav-link, .menu-copy-btn, .top-desktop-link, .menu-lang-modal .menu-lang-btn');
+    if (target) requestAnimationFrame(applyAdaptiveTextContrast);
+  });
 
   initTheme();
   applyLanguage(getLang());
