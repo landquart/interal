@@ -153,14 +153,19 @@
     if (value.startsWith('rgb')) {
       const nums = value.match(/[\d.]+/g);
       if (!nums || nums.length < 3) return null;
-      return { r: Number(nums[0]), g: Number(nums[1]), b: Number(nums[2]) };
+      return {
+        r: Number(nums[0]),
+        g: Number(nums[1]),
+        b: Number(nums[2]),
+        a: nums.length > 3 ? Number(nums[3]) : 1
+      };
     }
     return null;
   }
 
   function getContrastColorForBackground(bgColor) {
     const rgb = parseColor(bgColor);
-    if (!rgb) return '';
+    if (!rgb || rgb.a === 0) return '';
     const luminance = (0.299 * rgb.r + 0.587 * rgb.g + 0.114 * rgb.b) / 255;
     return luminance > 0.6 ? '#111111' : '#ffffff';
   }
@@ -173,6 +178,9 @@
       if (color) {
         el.style.setProperty('--auto-contrast-color', color);
         el.classList.add('auto-contrast-text');
+      } else {
+        el.style.removeProperty('--auto-contrast-color');
+        el.classList.remove('auto-contrast-text');
       }
     });
   }
