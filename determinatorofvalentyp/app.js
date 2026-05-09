@@ -847,7 +847,7 @@ function renderComponents() {
             ${note ? ` · ${escapeHtml(note)}` : ''}
           </div>
         </div>
-        <button class="component-delete" type="button" data-delete-id="${item.id}">×</button>
+        <button class="component-delete" type="button" data-delete-id="${item.id}" aria-label="Delete component"><img src="../elements/Eraser%20Square.svg" alt="" aria-hidden="true" /></button>
       </div>
     `;
   }).join('');
@@ -1428,7 +1428,7 @@ function attachEvents() {
   els.saveRootBtn.addEventListener('click', addRootComponent);
   els.saveComponentBtn.addEventListener('click', addSelectedComponent);
   els.savePrefixVariantBtn.addEventListener('click', savePrefixVariant);
-  els.clearBtn.addEventListener('click', clearAll);
+  if (els.clearBtn) els.clearBtn.addEventListener('click', clearAll);
 
   els.buildPromptBtn.addEventListener('click', () => {
     const input = getInput();
