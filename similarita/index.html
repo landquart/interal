@@ -13,18 +13,18 @@
 <style>
 
 :root {
-    --sim-bg-base: #f7d185;
-    --sim-line-color: #d6b16e;
-    --sim-surface: #ffedbf;
-    --sim-surface-strong: #fff6df;
-    --sim-text-main: #2b1f14;
-    --sim-text-muted: #6b4d33;
-    --sim-accent: #3b2b1d;
-    --sim-accent-hover: #4a3525;
-    --sim-accent-soft: rgba(59, 43, 29, 0.22);
-    --sim-button-grad-start: #5a4330;
-    --sim-button-grad-end: #3b2b1d;
-    --sim-button-hover-glow: rgba(59, 43, 29, 0.28);
+    --sim-bg-base: #e6e6e6;
+    --sim-line-color: rgba(0, 0, 0, 0.55);
+    --sim-surface: #f4f4f4;
+    --sim-surface-strong: #ffffff;
+    --sim-text-main: #111111;
+    --sim-text-muted: #2f2f2f;
+    --sim-accent: #111111;
+    --sim-accent-hover: #000000;
+    --sim-accent-soft: rgba(17, 17, 17, 0.15);
+    --sim-button-grad-start: #2d2d2d;
+    --sim-button-grad-end: #111111;
+    --sim-button-hover-glow: rgba(17, 17, 17, 0.2);
     --sim-radius-lg: 18px;
     --sim-radius-md: 12px;
     --sim-shadow-card: 0 12px 30px rgba(31, 41, 55, 0.12);
@@ -34,7 +34,7 @@
 body {
     margin: 0;
     padding: 0 16px 32px;
-    background: var(--bg);
+    background-color: var(--bg);
     min-height: 100vh;
     color: var(--sim-text-main);
     font-family: "Jost", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -42,34 +42,35 @@ body {
 }
 
 body.dark-theme {
-    --sim-bg-base: #1c1711;
-    --sim-line-color: #5e4930;
-    --sim-surface: #2a221a;
-    --sim-surface-strong: #342a20;
-    --sim-text-main: #f7d185;
-    --sim-text-muted: #d8b983;
-    --sim-accent: #f7d185;
-    --sim-accent-hover: #f3c96f;
-    --sim-accent-soft: rgba(247, 209, 133, 0.28);
-    --sim-button-grad-start: #f7d185;
-    --sim-button-grad-end: #c69f5d;
-    --sim-button-hover-glow: rgba(247, 209, 133, 0.24);
+    --sim-bg-base: #000000;
+    --sim-line-color: rgba(255, 255, 255, 0.65);
+    --sim-surface: #111111;
+    --sim-surface-strong: #191919;
+    --sim-text-main: #f5f7ff;
+    --sim-text-muted: #d2d9ec;
+    --sim-accent: #f5f7ff;
+    --sim-accent-hover: #ffffff;
+    --sim-accent-soft: rgba(245, 247, 255, 0.3);
+    --sim-button-grad-start: #f5f7ff;
+    --sim-button-grad-end: #dfe6ff;
+    --sim-button-hover-glow: rgba(245, 247, 255, 0.28);
     --sim-shadow-card: 0 12px 30px rgba(0, 0, 0, 0.6);
     --sim-shadow-soft: 0 6px 20px rgba(0, 0, 0, 0.45);
 }
 
 @media (max-width: 768px) {
-    body {
-        padding: 0 12px 24px;
-    }
+    body { padding: 0 12px 24px; }
 }
 
 .card {
+    background: var(--sim-surface);
+    border: 1px solid color-mix(in srgb, var(--sim-text-main) 22%, transparent);
     max-width: 520px;
     margin: 0 auto 18px auto;
     padding: 22px;
+    border-radius: var(--sim-radius-lg);
+    box-shadow: var(--sim-shadow-card);
 }
-.card{background:var(--sim-surface)!important;border:1px solid var(--sim-line-color)!important;border-radius:18px!important;box-shadow:0 12px 30px rgba(31,41,55,.12)!important;}
 
 .card h2 {
     text-align: center;
@@ -80,9 +81,7 @@ body.dark-theme {
     color: var(--sim-text-main);
 }
 
-h2 {
-    font-size: 1.25rem;
-}
+h2 { font-size: 1.25rem; }
 
 label {
     display: block;
@@ -98,16 +97,12 @@ input {
     margin-top: 6px;
     font-size: 16px;
     box-sizing: border-box;
-    border: 2px solid var(--sim-line-color);
+    border: 2px solid color-mix(in srgb, var(--sim-text-main) 24%, transparent);
     border-radius: var(--sim-radius-md);
     background: var(--sim-surface-strong);
     color: var(--sim-text-main);
 }
-
-input::placeholder {
-    color: var(--sim-text-muted);
-}
-
+input::placeholder { color: var(--sim-text-muted); }
 input:focus-visible {
     outline: none;
     border-color: var(--sim-accent);
@@ -121,7 +116,7 @@ button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu
     font-size: 15px;
     font-weight: 700;
     letter-spacing: 0.2px;
-    background: var(--sim-accent)!important;
+    background: var(--sim-accent);
     position: relative;
     overflow: hidden;
     isolation: isolate;
@@ -133,7 +128,6 @@ button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu
     transform: scale(1);
     transition: transform 0.2s ease, box-shadow 0.25s ease, color 0.25s ease;
 }
-
 button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn)::before {
     content: "";
     position: absolute;
@@ -145,30 +139,19 @@ button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu
     background-position: 0% 50%;
     transition: opacity 0.25s ease, background-position 0.45s ease;
 }
-
 button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn):hover,
 button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn):focus-visible {
     transform: translateY(-1px);
     box-shadow: 0 10px 18px var(--sim-button-hover-glow);
-    color: #f7d185;
 }
-
 button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn):hover::before,
 button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn):focus-visible::before {
     opacity: 1;
     background-position: 100% 50%;
 }
-
-
-button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn):active {
-    transform: scale(0.99);
-}
-
+button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn):active { transform: scale(0.99); }
 body.dark-theme button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn):hover,
-body.dark-theme button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn):focus-visible {
-  color: #111111;
-
-}
+body.dark-theme button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn):focus-visible { color: #111111; }
 
 .result {
     margin-top: 14px;
@@ -179,43 +162,10 @@ body.dark-theme button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-t
     border: 1px solid color-mix(in srgb, var(--sim-text-main) 24%, transparent);
 }
 
-body.dark-theme .result {
-    background: var(--sim-surface-strong);
-    border-color: color-mix(in srgb, var(--sim-text-main) 24%, transparent);
-}
-
-body.dark-theme .card {
-    border-color: #5e4930;
-}
-
-body.dark-theme .info-card p,
-body.dark-theme .info-card li {
-    color: var(--sim-text-muted);
-}
-
-ul {
-    padding-left: 18px;
-}
-
-#explainText {
-    font-family: "Jost", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    margin-bottom: 20px;
-}
-
-.explain-title {
-    margin: 0 0 14px;
-    text-align: center;
-    font-size: 1.6rem;
-    font-weight: 800;
-    line-height: 1.2;
-}
-
-.explain-body {
-    margin: 0;
-    white-space: pre-wrap;
-}
-
+ul { padding-left: 18px; }
+#explainText { font-family: "Jost", "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 14px; margin-bottom: 20px; }
+.explain-title { margin: 0 0 14px; text-align: center; font-size: 1.6rem; font-weight: 800; line-height: 1.2; }
+.explain-body { margin: 0; white-space: pre-wrap; }
 .modal-inner {
     display: flex;
     flex-direction: column;
@@ -223,50 +173,13 @@ ul {
     color: var(--sim-text-main);
     border: 1px solid color-mix(in srgb, var(--sim-text-main) 24%, transparent);
 }
+#explainModal { opacity: 0; pointer-events: none; display: flex; align-items: center; justify-content: center; padding: 16px; box-sizing: border-box; }
+#explainModal.show { opacity: 1; pointer-events: auto; }
+.info-card p, .info-card li { color: var(--sim-text-main); font-size: 14px; }
+.info-card a { color: var(--sim-accent); }
 
-body.dark-theme .modal-inner {
-    background: var(--sim-surface-strong);
-    color: var(--sim-text-main);
-    border-color: color-mix(in srgb, var(--sim-text-main) 24%, transparent);
-}
-
-body.dark-theme #explainText {
-    color: var(--sim-text-main);
-}
-
-#explainModal {
-    opacity: 0;
-    pointer-events: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 16px;
-    box-sizing: border-box;
-}
-
-#explainModal.show {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.info-card p,
-.info-card li {
-    color: var(--sim-text-main);
-    font-size: 14px;
-}
-
-.info-card a {
-    color: var(--sim-accent);
-}
-
-  </style>
-
-<style>
-.card{background:var(--sim-surface) !important;border:1px solid color-mix(in srgb,var(--sim-text-main) 18%, transparent) !important;box-shadow:none !important;border-radius:18px !important}
-body.dark-theme .card{background:var(--sim-surface) !important}
-.metric,.note{background:var(--sim-surface-strong) !important;color:var(--sim-text-main) !important;border:1px solid color-mix(in srgb,var(--sim-text-main) 18%, transparent) !important;box-shadow:none !important}
-body.dark-theme .metric,body.dark-theme .note{background:var(--sim-surface-strong) !important;color:var(--sim-text-main) !important}
 </style>
+
 </head>
 
 <body>
