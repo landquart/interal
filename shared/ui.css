@@ -21,7 +21,7 @@
   --focus-ring: rgba(227, 177, 18, .38);
   --nav-bg: color-mix(in srgb, var(--surface-elevated) 86%, transparent);
   --sidebar-bg: var(--surface-elevated);
-  --sidebar-item-bg: var(--surface-soft);
+  --sidebar-item-bg: transparent;
   --sidebar-item-hover: var(--text);
   --sidebar-item-text: var(--text);
   --sidebar-item-hover-text: var(--bg);
@@ -56,7 +56,7 @@ body.dark-theme {
   --focus-ring: rgba(227, 177, 18, .45);
   --nav-bg: color-mix(in srgb, var(--surface-elevated) 88%, transparent);
   --sidebar-bg: #141517;
-  --sidebar-item-bg: #202124;
+  --sidebar-item-bg: transparent;
   --sidebar-item-hover: #2d2f33;
   --sidebar-item-text: #f4f4f5;
   --sidebar-item-hover-text: #f4f4f5;
