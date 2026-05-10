@@ -1,7 +1,7 @@
 :root {
   --bg-base: #e6e6e6;
 
-  --surface: #f4f4f4;
+  --surface: #dcdcdc;
   --surface-strong: #ffffff;
 
   --text-main: #111111;
@@ -11,7 +11,7 @@
   --line-soft: rgba(0, 0, 0, 0.2);
   --line-strong: rgba(0, 0, 0, 0.5);
 
-  --accent: #111111;
+  --accent: #000000;
   --accent-soft: rgba(17, 17, 17, 0.15);
 
   --button-grad-start: #2d2d2d;
@@ -30,7 +30,7 @@
 body.dark-theme {
   --bg-base: #000000;
 
-  --surface: #111111;
+  --surface: #1b1b1b;
   --surface-strong: #191919;
 
   --text-main: #f5f7ff;
@@ -40,7 +40,7 @@ body.dark-theme {
   --line-soft: rgba(255, 255, 255, 0.22);
   --line-strong: rgba(255, 255, 255, 0.58);
 
-  --accent: #f5f7ff;
+  --accent: #ffffff;
   --accent-soft: rgba(245, 247, 255, 0.3);
 
   --button-grad-start: #f5f7ff;
@@ -284,7 +284,7 @@ button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu
   padding: 11px 16px;
   cursor: pointer;
   background: var(--accent);
-  color: var(--bg-base);
+  color: #ffffff;
   box-shadow: var(--shadow-soft);
   transform: scale(1);
   transition: transform 0.2s ease, box-shadow 0.25s ease, color 0.25s ease;
@@ -392,7 +392,7 @@ button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu
 
 .icon-copy-btn:hover,
 .icon-copy-btn:focus-visible {
-  color: var(--bg-base);
+  color: #ffffff;
   background: var(--accent);
 }
 

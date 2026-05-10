@@ -15,11 +15,11 @@
 :root {
     --sim-bg-base: #e6e6e6;
     --sim-line-color: rgba(0, 0, 0, 0.55);
-    --sim-surface: #f4f4f4;
+    --sim-surface: #dcdcdc;
     --sim-surface-strong: #ffffff;
     --sim-text-main: #111111;
     --sim-text-muted: #2f2f2f;
-    --sim-accent: #111111;
+    --sim-accent: #000000;
     --sim-accent-hover: #000000;
     --sim-accent-soft: rgba(17, 17, 17, 0.15);
     --sim-button-grad-start: #2d2d2d;
@@ -44,11 +44,11 @@ body {
 body.dark-theme {
     --sim-bg-base: #000000;
     --sim-line-color: rgba(255, 255, 255, 0.65);
-    --sim-surface: #111111;
+    --sim-surface: #1b1b1b;
     --sim-surface-strong: #191919;
     --sim-text-main: #f5f7ff;
     --sim-text-muted: #d2d9ec;
-    --sim-accent: #f5f7ff;
+    --sim-accent: #ffffff;
     --sim-accent-hover: #ffffff;
     --sim-accent-soft: rgba(245, 247, 255, 0.3);
     --sim-button-grad-start: #f5f7ff;
@@ -120,7 +120,7 @@ button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu
     position: relative;
     overflow: hidden;
     isolation: isolate;
-    color: var(--sim-bg-base);
+    color: #ffffff;
     border: none;
     border-radius: var(--sim-radius-md);
     cursor: pointer;
@@ -150,8 +150,7 @@ button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu
     background-position: 100% 50%;
 }
 button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn):active { transform: scale(0.99); }
-body.dark-theme button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn):hover,
-body.dark-theme button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn):focus-visible { color: #111111; }
+body.dark-theme button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn) { color: #111111; }
 
 .result {
     margin-top: 14px;

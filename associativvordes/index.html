@@ -10,13 +10,13 @@
   <link rel="stylesheet" href="../shared/ui.css" />
   <style>
     :root {
-      --card: #f4f4f4;
+      --card: #dcdcdc;
       --surface-strong: #ffffff;
       --text-main: #111111;
       --text-muted: #2f2f2f;
       --muted: #555b66;
       --line: rgba(0, 0, 0, 0.35);
-      --accent: #111111;
+      --accent: #000000;
       --accent-2: #f0f0f0;
       --bad: #8b2f2f;
       --ok: #2f6534;
@@ -92,7 +92,7 @@
     button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn) {
       cursor: pointer;
       background: var(--accent);
-      color: var(--bg-base);
+      color: #ffffff;
       border-color: var(--accent);
       font-weight: 700;
     }
@@ -146,7 +146,7 @@
       border: 0 !important;
       border-radius: 12px;
       background: transparent !important;
-      color: var(--bg-base);
+      color: #ffffff;
       box-shadow: none !important;
       padding: 0;
     }
@@ -168,7 +168,7 @@
       color: var(--text-main);
       border-color: var(--line);
     }
-    .tab.active { background: var(--accent); color: var(--bg-base); border-color: var(--accent); }
+    .tab.active { background: var(--accent); color: #ffffff; border-color: var(--accent); }
 
     table { width: 100%; border-collapse: collapse; }
     th, td { border-bottom: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; }
@@ -312,7 +312,7 @@
     body.dark-theme .secondary,
     body.dark-theme .metric {
       background: color-mix(in srgb, var(--surface) 90%, #000 10%);
-      color: var(--bg-base);
+      color: #ffffff;
     }
     body.dark-theme .card-reset-btn img {
       filter: brightness(0) invert(1);
