@@ -14,7 +14,7 @@
       --surface-strong: #ffffff;
       --text-main: #111111;
       --text-muted: #2f2f2f;
-      --muted: color-mix(in srgb, var(--text) 70%, var(--muted));
+      --muted: #555b66;
       --line: rgba(0, 0, 0, 0.35);
       --accent: #111111;
       --accent-2: #f0f0f0;
@@ -43,7 +43,7 @@
     h1 { margin: 0 0 8px; font-size: 38px; text-align: center; }
     h2 { margin: 0 0 14px; font-size: 21px; }
     h3 { margin: 0 0 10px; font-size: 17px; }
-    p { color: color-mix(in srgb, var(--text) 84%, var(--muted)); margin: 0; }
+    p { color: var(--text-muted); margin: 0; }
 
     main {
       max-width: 1180px;
@@ -156,7 +156,7 @@
       transform: translateY(-1px);
     }
 
-    .muted { color: color-mix(in srgb, var(--text) 80%, var(--muted)); }
+    .muted { color: var(--text-muted); }
     .note { background: var(--accent-2); padding: 12px; border-radius: 14px; color: var(--text-main); }
 
     .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; align-items: flex-start; }
@@ -172,7 +172,7 @@
 
     table { width: 100%; border-collapse: collapse; }
     th, td { border-bottom: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; }
-    th { font-size: 13px; color: var(--muted); font-weight: 700; }
+    th { font-size: 13px; color: var(--text-muted); font-weight: 700; }
     td input, td select { padding: 7px 8px; border-radius: 9px; }
 
     .status {
@@ -184,9 +184,9 @@
       font-weight: 700;
       background: #eee;
     }
-    .status.ok { background: #dcebdc; color: #2f6534; }
-    .status.bad { background: #f2d6d5; color: #863331; }
-    .status.warn { background: #f3e5c9; color: #7c520d; }
+    .status.ok { background: #dcebdc; color: #1f4f29; }
+    .status.bad { background: #f2d6d5; color: #6b2220; }
+    .status.warn { background: #f3e5c9; color: #5f3e08; }
 
     .result-box {
       display: grid;
@@ -200,7 +200,7 @@
       background: var(--surface-strong);
     }
     .metric strong { font-size: 22px; display: block; }
-    .metric span { color: var(--muted); font-size: 13px; }
+    .metric span { color: var(--text-muted); font-size: 13px; }
 
     .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
 
