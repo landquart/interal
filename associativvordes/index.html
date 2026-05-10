@@ -291,6 +291,20 @@
       --accent-2: color-mix(in srgb, var(--surface-soft) 88%, #000 12%);
       --shadow: 0 12px 28px rgba(0, 0, 0, 0.38);
     }
+    body.dark-theme,
+    body.dark-theme h1,
+    body.dark-theme h2,
+    body.dark-theme h3,
+    body.dark-theme label,
+    body.dark-theme p,
+    body.dark-theme .muted,
+    body.dark-theme th,
+    body.dark-theme td,
+    body.dark-theme .note,
+    body.dark-theme .metric span,
+    body.dark-theme .metric strong {
+      color: #fff !important;
+    }
     body.dark-theme input,
     body.dark-theme select,
     body.dark-theme textarea,
@@ -298,7 +312,10 @@
     body.dark-theme .secondary,
     body.dark-theme .metric {
       background: color-mix(in srgb, var(--surface) 90%, #000 10%);
-      color: #2b1f14;
+      color: #fff;
+    }
+    body.dark-theme .card-reset-btn img {
+      filter: brightness(0) invert(1);
     }
     body.dark-theme .status.ok { background: #243526; color: #8fd69a; }
     body.dark-theme .status.bad { background: #442524; color: #f0aaaa; }
