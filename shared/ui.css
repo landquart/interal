@@ -20,6 +20,12 @@
   --focus-outline: #111113;
   --focus-ring: rgba(227, 177, 18, .38);
   --nav-bg: color-mix(in srgb, var(--surface-elevated) 86%, transparent);
+  --sidebar-bg: var(--surface-elevated);
+  --sidebar-item-bg: var(--surface-soft);
+  --sidebar-item-hover: var(--text);
+  --sidebar-item-text: var(--text);
+  --sidebar-item-hover-text: var(--bg);
+  --sidebar-border: var(--border-subtle);
   --radius-sm: 16px;
   --radius-md: 24px;
   --radius-lg: 28px;
@@ -49,6 +55,12 @@ body.dark-theme {
   --focus-outline: #f4f4f5;
   --focus-ring: rgba(227, 177, 18, .45);
   --nav-bg: color-mix(in srgb, var(--surface-elevated) 88%, transparent);
+  --sidebar-bg: #141517;
+  --sidebar-item-bg: #202124;
+  --sidebar-item-hover: #f4f4f5;
+  --sidebar-item-text: #f4f4f5;
+  --sidebar-item-hover-text: #111113;
+  --sidebar-border: #34363a;
 }
 
 html{scrollbar-gutter:stable;}
@@ -62,13 +74,13 @@ body.menu-open{overflow:hidden;}
 .top-brand-logo{width:32px;height:32px}
 .top-brand-text{font-size:1.18rem;white-space:nowrap}
 .side-menu-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:opacity .2s;z-index:1190}
-.side-menu{position:fixed;top:0;left:0;height:100vh;width:min(320px,86vw);background:var(--bg);transform:translateX(-100%);transition:transform .22s;z-index:1200;padding:72px 16px 20px}
+.side-menu{position:fixed;top:0;left:0;height:100vh;width:min(320px,86vw);background:var(--sidebar-bg);border-right:1px solid var(--sidebar-border);transform:translateX(-100%);transition:transform .22s;z-index:1200;padding:72px 16px 20px}
 body.menu-open .side-menu{transform:translateX(0)}
 body.menu-open .side-menu-overlay{opacity:1;pointer-events:auto}
 .menu-nav,.menu-preferences-row{margin-top:12px;padding-top:14px}
-.menu-nav-link,.menu-copy-btn{display:block;background:transparent;color:var(--text);border-radius:18px;padding:12px;border:0;text-decoration:none}
-.menu-theme-toggle{width:52px;height:52px;border-radius:16px;background:transparent;border:0;display:inline-flex;align-items:center;justify-content:center}
-.menu-lang-trigger{width:52px;height:52px;border-radius:16px;background:transparent;border:0;display:inline-flex;align-items:center;justify-content:center}
+.menu-nav-link,.menu-copy-btn{display:block;background:var(--sidebar-item-bg);color:var(--sidebar-item-text);border-radius:18px;padding:12px;border:1px solid var(--sidebar-border);text-decoration:none}
+.menu-theme-toggle{width:52px;height:52px;border-radius:16px;background:var(--sidebar-item-bg);border:1px solid var(--sidebar-border);display:inline-flex;align-items:center;justify-content:center}
+.menu-lang-trigger{width:52px;height:52px;border-radius:16px;background:var(--sidebar-item-bg);border:1px solid var(--sidebar-border);display:inline-flex;align-items:center;justify-content:center}
 .menu-theme-icon{width:28px;height:28px;filter:none;opacity:1}
 .menu-lang-icon-img{width:30px;height:30px;filter:none;opacity:1}
 .menu-lang-modal{position:fixed;inset:0;background:rgba(0,0,0,.45);display:grid;place-items:center;z-index:1500}
@@ -100,8 +112,8 @@ body.dark-theme .menu-lang-icon-img{filter:brightness(0) invert(1)}
 .top-menu-btn:hover,.menu-theme-toggle:hover,.menu-lang-trigger:hover,.menu-nav-link:hover,.menu-copy-btn:hover,.top-desktop-link:hover{transform:translateY(-2px) scale(1.01)}
 .top-menu-btn:active,.menu-theme-toggle:active,.menu-lang-trigger:active,.menu-nav-link:active,.menu-copy-btn:active,.top-desktop-link:active{transform:scale(.98)}
 .top-menu-btn:focus-visible,.menu-theme-toggle:focus-visible,.menu-lang-trigger:focus-visible,.menu-nav-link:focus-visible,.menu-copy-btn:focus-visible,.top-desktop-link:focus-visible{outline:2px solid var(--focus-outline);outline-offset:2px;box-shadow:0 0 0 5px var(--focus-ring)}
-.menu-nav-link,.menu-copy-btn,.top-desktop-link{background:transparent;color:var(--text);border:0}
-.menu-nav-link:hover,.menu-copy-btn:hover{background:var(--text);color:var(--bg)}
+.menu-nav-link,.menu-copy-btn,.top-desktop-link{color:var(--text)}
+.menu-nav-link:hover,.menu-copy-btn:hover{background:var(--sidebar-item-hover);color:var(--sidebar-item-hover-text)}
 .menu-theme-toggle:hover,.menu-lang-trigger:hover{transform:scale(1.12)}
 .menu-theme-toggle:hover .menu-theme-icon,.menu-lang-trigger:hover .menu-lang-icon-img{filter:none}
 .menu-lang-modal .menu-lang-btn:hover{background:var(--text);color:var(--bg)}

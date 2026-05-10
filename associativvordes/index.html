@@ -10,14 +10,15 @@
   <link rel="stylesheet" href="../shared/ui.css" />
   <style>
     :root {
-      --card: #dcdcdc;
-      --surface-strong: #ffffff;
-      --text-main: #111111;
-      --text-muted: #2f2f2f;
-      --muted: #555b66;
-      --line: rgba(0, 0, 0, 0.35);
-      --accent: #000000;
-      --accent-2: #f0f0f0;
+      --card: var(--surface-soft);
+      --surface-strong: var(--surface-elevated);
+      --text-main: var(--text);
+      --text-muted: var(--text-muted);
+      --muted: var(--text-muted);
+      --line: var(--border-control);
+      --accent: var(--text);
+      --accent-2: var(--accent-soft);
+      --button-text: var(--bg);
       --bad: #8b2f2f;
       --ok: #2f6534;
       --warn: #7c520d;
@@ -92,7 +93,7 @@
     button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn) {
       cursor: pointer;
       background: var(--accent);
-      color: #ffffff;
+      color: var(--button-text);
       border-color: var(--accent);
       font-weight: 700;
     }
@@ -168,7 +169,7 @@
       color: var(--text-main);
       border-color: var(--line);
     }
-    .tab.active { background: var(--accent); color: #ffffff; border-color: var(--accent); }
+    .tab.active { background: var(--accent-soft); color: var(--accent-text); border-color: var(--accent); }
 
     table { width: 100%; border-collapse: collapse; }
     th, td { border-bottom: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; }
@@ -284,26 +285,12 @@
     }
 
     body.dark-theme {
-      --card: #111111;
-      --muted: #d2d9ec;
-      --line: rgba(255, 255, 255, 0.35);
-      --accent: #f5f7ff;
-      --accent-2: #191919;
+      --card: var(--surface);
+      --muted: var(--text-muted);
+      --line: var(--border-control);
+      --accent-2: var(--accent-soft);
+      --button-text: var(--accent-contrast);
       --shadow: 0 12px 28px rgba(0, 0, 0, 0.38);
-    }
-    body.dark-theme,
-    body.dark-theme h1,
-    body.dark-theme h2,
-    body.dark-theme h3,
-    body.dark-theme label,
-    body.dark-theme p,
-    body.dark-theme .muted,
-    body.dark-theme th,
-    body.dark-theme td,
-    body.dark-theme .note,
-    body.dark-theme .metric span,
-    body.dark-theme .metric strong {
-      color: var(--bg-base) !important;
     }
     body.dark-theme input,
     body.dark-theme select,
@@ -890,4 +877,3 @@
   <script src="../shared/ui.js"></script>
 </body>
 </html>
-
