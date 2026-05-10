@@ -18,7 +18,7 @@
       --line: var(--border-control);
       --accent: var(--text);
       --accent-2: var(--accent-soft);
-      --button-text: #ffffff;
+      --button-text: #111111;
       --bad: #8b2f2f;
       --ok: #2f6534;
       --warn: #7c520d;
@@ -205,6 +205,13 @@
 
     .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
 
+
+    body.dark-theme {
+      --button-text: #111111;
+      --accent: #ffffff;
+      --accent-2: color-mix(in srgb, #ffffff 18%, transparent);
+    }
+
     @media (max-width: 850px) {
       .grid-2, .grid-3, .result-box { grid-template-columns: 1fr; }
       .row { flex-direction: column; align-items: stretch; }
@@ -289,7 +296,7 @@
       --muted: var(--text-muted);
       --line: var(--border-control);
       --accent-2: var(--accent-soft);
-      --button-text: #ffffff;
+      --button-text: #111111;
       --shadow: 0 12px 28px rgba(0, 0, 0, 0.38);
     }
     body.dark-theme input,
