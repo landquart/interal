@@ -16,6 +16,7 @@
     body.homepage.has-global-menu { padding-top: 72px !important; }
    .home-wrap { width:min(1240px,100%); margin: 0 auto; }
     .hero { width:100%; border-radius:24px; overflow:hidden; margin-bottom:12px; position:relative; min-height: clamp(170px, 30vh, 280px); display:grid; place-items:center; background: var(--surface-soft); }
+    .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(0,0,0,.36),rgba(0,0,0,.36));z-index:0;}
     .hero-bg {
       width: 100%;
       height: 100%;
@@ -25,7 +26,7 @@
       justify-self: center;
       align-self: center;
     }
-    .home-brand { position:absolute; inset:0; z-index:1; display:flex; flex-direction:column; justify-content:center; align-items:center; text-decoration:none; color:#fff; gap:4px; text-align:center; padding: 24px; }
+    .home-brand { position:absolute; inset:0; z-index:2; display:flex; flex-direction:column; justify-content:center; align-items:center; text-decoration:none; color:#fff; gap:4px; text-align:center; padding: 24px; }
     .home-logo { width:160px; height:160px; filter: brightness(0) invert(1); }
     .home-title { margin: 0; font-size: clamp(2rem, 4vw, 2.6rem); letter-spacing: .5px; color:#fff; text-shadow: none; }
     .homepage .container {

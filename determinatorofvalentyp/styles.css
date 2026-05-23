@@ -1,55 +1,36 @@
 :root {
-  --bg-base: #e6e6e6;
-
-  --surface: #dcdcdc;
-  --surface-strong: #ffffff;
-
-  --text-main: #111111;
-  --text-muted: #2f2f2f;
-
-  --line: rgba(0, 0, 0, 0.35);
-  --line-soft: rgba(0, 0, 0, 0.2);
-  --line-strong: rgba(0, 0, 0, 0.5);
-
-  --accent: #000000;
-  --accent-soft: rgba(17, 17, 17, 0.15);
-
-  --button-grad-start: #2d2d2d;
-  --button-grad-end: #111111;
-  --button-hover-glow: rgba(17, 17, 17, 0.2);
-
-  --shadow-card: 0 12px 30px rgba(31, 41, 55, 0.12);
-  --shadow-soft: 0 6px 20px rgba(31, 41, 55, 0.08);
-
-  --radius-lg: 18px;
-  --radius-md: 12px;
-
+  --bg-base: var(--bg);
+  --surface: var(--surface);
+  --surface-strong: var(--surface-elevated);
+  --text-main: var(--text);
+  --text-muted: var(--text-muted);
+  --line: var(--border-control);
+  --line-soft: var(--border-subtle);
+  --line-strong: var(--border-strong);
+  --accent: var(--accent);
+  --accent-soft: var(--focus-ring);
+  --button-text-on-accent: var(--accent-contrast);
+  --shadow-card: var(--shadow-sm);
+  --shadow-soft: var(--shadow-sm);
+  --radius-lg: 24px;
+  --radius-md: 14px;
   --overlay: rgba(255, 255, 255, 0.35);
 }
 
 body.dark-theme {
-  --bg-base: #000000;
-
-  --surface: #1b1b1b;
-  --surface-strong: #191919;
-
-  --text-main: #f5f7ff;
-  --text-muted: #d2d9ec;
-
-  --line: rgba(255, 255, 255, 0.4);
-  --line-soft: rgba(255, 255, 255, 0.22);
-  --line-strong: rgba(255, 255, 255, 0.58);
-
-  --accent: #ffffff;
-  --accent-soft: rgba(245, 247, 255, 0.3);
-
-  --button-grad-start: #f5f7ff;
-  --button-grad-end: #dfe6ff;
-  --button-hover-glow: rgba(245, 247, 255, 0.28);
-
-  --shadow-card: 0 12px 30px rgba(0, 0, 0, 0.6);
-  --shadow-soft: 0 6px 20px rgba(0, 0, 0, 0.45);
-
+  --bg-base: var(--bg);
+  --surface: var(--surface);
+  --surface-strong: var(--surface-elevated);
+  --text-main: var(--text);
+  --text-muted: var(--text-muted);
+  --line: var(--border-control);
+  --line-soft: var(--border-subtle);
+  --line-strong: var(--border-strong);
+  --accent: var(--accent);
+  --accent-soft: var(--focus-ring);
+  --button-text-on-accent: var(--accent-contrast);
+  --shadow-card: var(--shadow-sm);
+  --shadow-soft: var(--shadow-sm);
   --overlay: rgba(0, 0, 0, 0.72);
 }
 
@@ -157,7 +138,7 @@ option {
 
 input::placeholder,
 textarea::placeholder {
-  color: #8e8e8e;
+  color: var(--placeholder);
   user-select: none;
 }
 
@@ -284,7 +265,7 @@ button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu
   padding: 11px 16px;
   cursor: pointer;
   background: var(--accent);
-  color: #ffffff;
+  color: var(--button-text-on-accent);
   box-shadow: var(--shadow-soft);
   transform: scale(1);
   transition: transform 0.2s ease, box-shadow 0.25s ease, color 0.25s ease;
@@ -392,7 +373,7 @@ button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu
 
 .icon-copy-btn:hover,
 .icon-copy-btn:focus-visible {
-  color: #ffffff;
+  color: var(--button-text-on-accent);
   background: var(--accent);
 }
 
@@ -515,7 +496,7 @@ pre {
   align-items: center;
   justify-content: center;
   padding: 20px;
-  z-index: 1000;
+  z-index: 1700;
 }
 
 .modal.hidden {
