@@ -90,8 +90,8 @@ body.menu-open .side-menu-overlay{opacity:1;pointer-events:auto}
 .menu-lang-modal .menu-lang-btn.is-active{background:#ffffff;color:#111}
 .has-global-menu{padding-top:72px!important}
 .top-desktop-controls{margin-left:auto;display:none;align-items:center;gap:6px}
-.top-desktop-link{color:var(--text);text-decoration:none;padding:8px 12px;border-radius:0;background:transparent;border:0;font-weight:600}
-.top-desktop-link:hover{background:var(--text);color:var(--bg);border-radius:0}
+.top-desktop-link{color:var(--text);text-decoration:none;padding:8px 12px;border-radius:12px;background:transparent;border:1px solid transparent;font-weight:600}
+.top-desktop-link:hover{background:var(--surface-hover);color:var(--text);border-color:var(--border-subtle)}
 .top-desktop-link-main,.menu-nav-main{text-decoration:none;font-weight:600}
 @media (min-width:980px){.top-desktop-controls{display:flex}.top-nav-window{justify-content:flex-start}.top-brand{position:static;left:auto;transform:none;padding:0 12px 0 8px}.menu-preferences-row{display:flex;gap:8px}.menu-theme-toggle,.menu-lang-trigger{width:42px;height:42px;border-radius:12px}}
 
@@ -113,8 +113,8 @@ body.dark-theme .menu-lang-icon-img{filter:brightness(0) invert(1)}
 .top-menu-btn:active,.menu-theme-toggle:active,.menu-lang-trigger:active,.menu-nav-link:active,.menu-copy-btn:active,.top-desktop-link:active{transform:scale(.98)}
 .top-menu-btn:focus-visible,.menu-theme-toggle:focus-visible,.menu-lang-trigger:focus-visible,.menu-nav-link:focus-visible,.menu-copy-btn:focus-visible,.top-desktop-link:focus-visible{outline:2px solid var(--focus-outline);outline-offset:2px;box-shadow:0 0 0 5px var(--focus-ring)}
 .menu-nav-link,.menu-copy-btn,.top-desktop-link{color:var(--text)}
-.menu-nav-link:hover,.menu-copy-btn:hover{background:var(--sidebar-item-hover);color:var(--sidebar-item-hover-text)}
-.menu-theme-toggle:hover,.menu-lang-trigger:hover{transform:scale(1.12)}
+.menu-nav-link:hover,.menu-copy-btn:hover{background:var(--surface-hover);color:var(--text)}
+.menu-theme-toggle:hover,.menu-lang-trigger:hover{transform:translateY(-1px);background:var(--surface-hover)}
 .menu-theme-toggle:hover .menu-theme-icon,.menu-lang-trigger:hover .menu-lang-icon-img{filter:none}
 .menu-lang-modal .menu-lang-btn:hover{background:var(--text);color:var(--bg)}
 .menu-lang-modal-content{border:1px solid color-mix(in srgb,var(--text) 18%, transparent);box-shadow:0 14px 34px rgba(0,0,0,.22)}
