@@ -18,7 +18,7 @@
       --line: var(--border-control);
       --accent: var(--text);
       --accent-2: var(--accent-soft);
-      --button-text: #111111;
+      --button-text: var(--bg);
       --bad: #8b2f2f;
       --ok: #2f6534;
       --warn: #7c520d;
@@ -115,8 +115,9 @@
       font-size: 13px;
     }
     button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn):hover {
-      filter: brightness(1.07);
+      filter: none;
       transform: translateY(-1px);
+      box-shadow: 0 8px 18px color-mix(in srgb, var(--accent) 28%, transparent);
     }
 
 
@@ -144,10 +145,10 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      border: 0 !important;
+      border: 1px solid var(--line) !important;
       border-radius: 12px;
-      background: transparent !important;
-      color: #ffffff;
+      background: var(--surface-strong) !important;
+      color: var(--text-main);
       box-shadow: none !important;
       padding: 0;
     }
@@ -183,11 +184,13 @@
       border-radius: 999px;
       font-size: 13px;
       font-weight: 700;
-      background: #eee;
+      border: 1px solid color-mix(in srgb, var(--text-main) 20%, transparent);
+      background: color-mix(in srgb, var(--surface-strong) 88%, var(--accent-soft));
+      color: var(--text-main);
     }
-    .status.ok { background: #dcebdc; color: #1f4f29; }
-    .status.bad { background: #f2d6d5; color: #6b2220; }
-    .status.warn { background: #f3e5c9; color: #5f3e08; }
+    .status.ok { background: color-mix(in srgb, #2f6534 22%, var(--surface-strong)); color: color-mix(in srgb, #2f6534 82%, var(--text-main)); }
+    .status.bad { background: color-mix(in srgb, #8b2f2f 24%, var(--surface-strong)); color: color-mix(in srgb, #8b2f2f 84%, var(--text-main)); }
+    .status.warn { background: color-mix(in srgb, #7c520d 24%, var(--surface-strong)); color: color-mix(in srgb, #7c520d 84%, var(--text-main)); }
 
     .result-box {
       display: grid;
@@ -296,7 +299,7 @@
       --muted: var(--text-muted);
       --line: var(--border-control);
       --accent-2: var(--accent-soft);
-      --button-text: #111111;
+      --button-text: var(--bg);
       --shadow: 0 12px 28px rgba(0, 0, 0, 0.38);
     }
     body.dark-theme input,

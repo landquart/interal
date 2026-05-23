@@ -19,8 +19,8 @@
     --sim-surface-strong: #ffffff;
     --sim-text-main: #111111;
     --sim-text-muted: #2f2f2f;
-    --sim-accent: #000000;
-    --sim-accent-hover: #000000;
+    --sim-accent: var(--text);
+    --sim-accent-hover: var(--text);
     --sim-accent-soft: rgba(17, 17, 17, 0.15);
     --sim-button-grad-start: #2d2d2d;
     --sim-button-grad-end: #111111;
@@ -120,7 +120,7 @@ button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu
     position: relative;
     overflow: hidden;
     isolation: isolate;
-    color: #ffffff;
+    color: var(--bg);
     border: none;
     border-radius: var(--sim-radius-md);
     cursor: pointer;
@@ -150,7 +150,11 @@ button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu
     background-position: 100% 50%;
 }
 button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn):active { transform: scale(0.99); }
-body.dark-theme button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn) { color: #111111; }
+button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn):focus-visible {
+    outline: 2px solid var(--sim-accent);
+    outline-offset: 2px;
+}
+body.dark-theme button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn) { color: var(--bg); }
 
 .result {
     margin-top: 14px;
