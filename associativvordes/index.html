@@ -77,8 +77,8 @@
     .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
-    label { display: block; font-weight: 650; margin-bottom: 6px; }
-    input, select, textarea, button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn) {
+    .associativ-page label { display: block; font-weight: 650; margin-bottom: 6px; }
+    .associativ-page input, .associativ-page select, .associativ-page textarea, .associativ-page .tool-btn {
       font: inherit;
       border-radius: 14px;
       border: 1px solid var(--line);
@@ -88,9 +88,9 @@
       color: var(--text-main);
     }
 
-    textarea { min-height: 110px; resize: vertical; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .associativ-page textarea { min-height: 110px; resize: vertical; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
 
-    button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn) {
+     .associativ-page .tool-btn {
       cursor: pointer;
       background: var(--accent);
       color: var(--button-text);
@@ -114,7 +114,7 @@
       border-radius: 10px;
       font-size: 13px;
     }
-    button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn):hover {
+     .associativ-page .tool-btn:hover {
       filter: none;
       transform: translateY(-1px);
       box-shadow: 0 8px 18px color-mix(in srgb, var(--accent) 28%, transparent);
@@ -274,7 +274,7 @@
         height: 34px;
       }
 
-      input, select, textarea, button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn) {
+      .associativ-page input, .associativ-page select, .associativ-page textarea, .associativ-page .tool-btn {
         font-size: 16px;
       }
 
@@ -288,7 +288,7 @@
 
       input,
       select,
-      textarea {
+      .associativ-page textarea {
         min-width: 0;
         width: 100%;
       }
@@ -317,7 +317,7 @@
     body.dark-theme .metric strong { color: #fff1c8; }
   </style>
 </head>
-<body>
+<body class="associativ-page">
   <header>
     <h1>Associativ vordes</h1>
     <p>Инструмент отбора ассоциативных слов: поиск дериватов по локальной базе, группировка по моделям, частотные баллы и итоговый процент ассоциации.</p>
@@ -326,7 +326,7 @@
   <main>
     <section class="card grid grid-2">
       <div class="card-tools">
-        <button class="danger card-reset-btn" id="resetBtn" aria-label="Сбросить" title="Сбросить">
+        <button class="tool-btn danger card-reset-btn" id="resetBtn" aria-label="Сбросить" title="Сбросить">
           <img src="../elements/Eraser%20Square.svg" alt="" aria-hidden="true" style="width:20px;height:20px;display:block;" />
         </button>
       </div>
@@ -350,10 +350,10 @@
         </select>
       </div>
       <div class="row actions-row" style="grid-column: 1 / -1;">
-        <button id="searchBtn">Найти дериваты и посчитать</button>
-        <button class="secondary" id="showExampleBtn">Показать пример</button>
-        <button class="secondary" id="exportBtn">Экспорт JSON</button>
-        <button class="secondary" id="importBtn">Импорт JSON</button>
+        <button class="tool-btn" id="searchBtn">Найти дериваты и посчитать</button>
+        <button class="tool-btn secondary" id="showExampleBtn">Показать пример</button>
+        <button class="tool-btn secondary" id="exportBtn">Экспорт JSON</button>
+        <button class="tool-btn secondary" id="importBtn">Импорт JSON</button>
       </div>
     </section>
 
@@ -378,13 +378,13 @@
         <h2>4) Локальная база дериватов</h2>
         <p class="muted" style="margin-bottom:10px;">Можно заменить на реальные JSON-данные из Kaikki/Wiktionary. Формат: язык → массив слов.</p>
         <textarea id="derivativeDataInput"></textarea>
-        <button class="secondary" id="loadDerivativeDataBtn" style="margin-top:10px;">Загрузить базу дериватов</button>
+        <button class="tool-btn secondary" id="loadDerivativeDataBtn" style="margin-top:10px;">Загрузить базу дериватов</button>
       </div>
       <div>
         <h2>5) Локальная база частотных рангов</h2>
         <p class="muted" style="margin-bottom:10px;">Формат: язык → { слово: ранг }. Можно сгенерировать из wordfreq/top_n_list.</p>
         <textarea id="frequencyDataInput"></textarea>
-        <button class="secondary" id="loadFrequencyDataBtn" style="margin-top:10px;">Загрузить частоты</button>
+        <button class="tool-btn secondary" id="loadFrequencyDataBtn" style="margin-top:10px;">Загрузить частоты</button>
       </div>
     </section>
 
@@ -657,7 +657,7 @@
             <h3>${lang.name}</h3>
             <p class="muted">Группа: ${lang.group}. Балл языка: <strong>${score.normalized.toFixed(3)}</strong>; сумма весов: <strong>${score.sum.toFixed(3)}</strong>.</p>
           </div>
-          <button class="secondary fit short" onclick="addRow('${activeLang}')">Добавить слово</button>
+          <button class="tool-btn secondary fit short" onclick="addRow('${activeLang}')">Добавить слово</button>
         </div>
         <table>
           <thead>
@@ -693,7 +693,7 @@
           <td><input type="number" value="${Number(item.rank) || 50001}" onchange="updateItem('${lang}', ${idx}, 'rank', Number(this.value))"></td>
           <td>${getFrequencyScore(item.rank).toFixed(2)}</td>
           <td><strong>${wordWeight(item).toFixed(3)}</strong></td>
-          <td><button class="danger small" onclick="deleteItem('${lang}', ${idx})">×</button></td>
+          <td><button class="tool-btn danger small" onclick="deleteItem('${lang}', ${idx})">×</button></td>
         </tr>
       `;
     }

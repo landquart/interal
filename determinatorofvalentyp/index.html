@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="../shared/ui.css" />
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
+<body class="determinator-page">
   <main class="app-shell">
     <header class="hero">
       <h1>Determinator of valen typ</h1>
@@ -68,8 +68,8 @@
             <textarea id="manualPrompt" rows="8" readonly placeholder="Click “Build prompt”"></textarea>
           </label>
           <div class="actions prompt-actions">
-            <button id="buildPromptBtn" type="button" class="ghost">Build prompt</button>
-             <button id="copyPromptBtn" type="button" class="ghost icon-copy-btn" aria-label="Copy prompt" title="Copy prompt"><img src="../elements/Copy.svg" alt="" aria-hidden="true" /></button>
+            <button class="tool-btn" id="buildPromptBtn" type="button" class="ghost">Build prompt</button>
+             <button class="tool-btn" id="copyPromptBtn" type="button" class="ghost icon-copy-btn" aria-label="Copy prompt" title="Copy prompt"><img src="../elements/Copy.svg" alt="" aria-hidden="true" /></button>
           </div>
           <label class="field compact-field">
             <span>Neural model response (paste here)</span>
@@ -80,7 +80,7 @@
       </details>
 
       <div class="actions">
-        <button id="analyzeBtn" type="button">Analyse</button>
+        <button class="tool-btn" id="analyzeBtn" type="button">Analyse</button>
               </div>
     </section>
 
@@ -98,8 +98,8 @@
         <button class="icon-btn close-btn" type="button" data-close-modal="true" aria-label="Close">&times;</button>
       </div>
       <div class="chooser-grid">
-        <button id="chooseRootBtn" class="chooser-option" type="button">Primary root word</button>
-        <button id="chooseComponentBtn" class="chooser-option" type="button">Component (affix/ending)</button>
+        <button class="tool-btn" id="chooseRootBtn" class="chooser-option" type="button">Primary root word</button>
+        <button class="tool-btn" id="chooseComponentBtn" class="chooser-option" type="button">Component (affix/ending)</button>
       </div>
     </div>
   </div>
@@ -129,7 +129,7 @@
       </label>
 
       <div class="actions modal-actions">
-        <button id="saveRootBtn" type="button">Add</button>
+        <button class="tool-btn" id="saveRootBtn" type="button">Add</button>
       </div>
     </div>
   </div>
@@ -156,7 +156,7 @@
       <div id="componentMeaningPreview" class="preview-box">—</div>
 
       <div class="actions modal-actions">
-        <button id="saveComponentBtn" type="button">Add</button>
+        <button class="tool-btn" id="saveComponentBtn" type="button">Add</button>
       </div>
     </div>
   </div>
@@ -178,7 +178,7 @@
       <div id="prefixVariantPreview" class="preview-box">—</div>
 
       <div class="actions modal-actions">
-        <button id="savePrefixVariantBtn" type="button">Add</button>
+        <button class="tool-btn" id="savePrefixVariantBtn" type="button">Add</button>
       </div>
     </div>
   </div>

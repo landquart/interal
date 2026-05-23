@@ -31,7 +31,7 @@
     --sim-shadow-soft: var(--shadow-sm);
 }
 
-body {
+.similarita-page {
     margin: 0;
     padding: 0 16px 32px;
     background-color: var(--bg);
@@ -41,7 +41,7 @@ body {
     line-height: 1.5;
 }
 
-body.dark-theme {
+body.dark-theme.similarita-page {
     --sim-bg-base: var(--bg);
     --sim-line-color: var(--border-control);
     --sim-surface: var(--surface);
@@ -59,10 +59,10 @@ body.dark-theme {
 }
 
 @media (max-width: 768px) {
-    body { padding: 0 12px 24px; }
+    .similarita-page { padding: 0 12px 24px; }
 }
 
-.card {
+.similarita-page .card {
     background: var(--sim-surface);
     border: 1px solid color-mix(in srgb, var(--sim-text-main) 22%, transparent);
     max-width: 520px;
@@ -72,7 +72,7 @@ body.dark-theme {
     box-shadow: var(--sim-shadow-card);
 }
 
-.card h2 {
+.similarita-page .card h2 {
     text-align: center;
     margin-top: 0;
     margin-bottom: 14px;
@@ -83,7 +83,7 @@ body.dark-theme {
 
 h2 { font-size: 1.25rem; }
 
-label {
+.similarita-page label {
     display: block;
     margin-top: 14px;
     font-size: 14px;
@@ -91,7 +91,7 @@ label {
     font-weight: 600;
 }
 
-input {
+.similarita-page input {
     width: 100%;
     padding: 11px 12px;
     margin-top: 6px;
@@ -102,14 +102,14 @@ input {
     background: var(--sim-surface-strong);
     color: var(--sim-text-main);
 }
-input::placeholder { color: var(--sim-text-muted); }
-input:focus-visible {
+.similarita-page input::placeholder { color: var(--sim-text-muted); }
+.similarita-page input:focus-visible {
     outline: none;
     border-color: var(--sim-accent);
     box-shadow: 0 0 0 4px var(--sim-accent-soft);
 }
 
-button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn) {
+.similarita-page .tool-btn {
     width: 100%;
     margin-top: 16px;
     padding: 12px;
@@ -128,7 +128,7 @@ button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu
     transform: scale(1);
     transition: transform 0.2s ease, box-shadow 0.25s ease, color 0.25s ease;
 }
-button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn)::before {
+.similarita-page .tool-btn::before {
     content: "";
     position: absolute;
     inset: 0;
@@ -139,22 +139,22 @@ button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu
     background-position: 0% 50%;
     transition: opacity 0.25s ease, background-position 0.45s ease;
 }
-button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn):hover,
-button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn):focus-visible {
+.similarita-page .tool-btn:hover,
+.similarita-page .tool-btn:focus-visible {
     transform: translateY(-1px);
     box-shadow: 0 10px 18px var(--sim-button-hover-glow);
 }
-button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn):hover::before,
-button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn):focus-visible::before {
+.similarita-page .tool-btn:hover::before,
+.similarita-page .tool-btn:focus-visible::before {
     opacity: 1;
     background-position: 100% 50%;
 }
-button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn):active { transform: scale(0.99); }
-button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn):focus-visible {
+.similarita-page .tool-btn:active { transform: scale(0.99); }
+.similarita-page .tool-btn:focus-visible {
     outline: 2px solid var(--sim-accent);
     outline-offset: 2px;
 }
-body.dark-theme button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn) { color: var(--bg); }
+body.dark-theme .similarita-page .tool-btn { color: var(--bg); }
 
 .result {
     margin-top: 14px;
@@ -165,27 +165,27 @@ body.dark-theme button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-t
     border: 1px solid color-mix(in srgb, var(--sim-text-main) 24%, transparent);
 }
 
-ul { padding-left: 18px; }
-#explainText { font-family: "Jost", "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 14px; margin-bottom: 20px; }
-.explain-title { margin: 0 0 14px; text-align: center; font-size: 1.6rem; font-weight: 800; line-height: 1.2; }
-.explain-body { margin: 0; white-space: pre-wrap; }
-.modal-inner {
+.similarita-page ul { padding-left: 18px; }
+.similarita-page #explainText { font-family: "Jost", "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 14px; margin-bottom: 20px; }
+.similarita-page .explain-title { margin: 0 0 14px; text-align: center; font-size: 1.6rem; font-weight: 800; line-height: 1.2; }
+.similarita-page .explain-body { margin: 0; white-space: pre-wrap; }
+.similarita-page .modal-inner {
     display: flex;
     flex-direction: column;
     background: var(--sim-surface-strong);
     color: var(--sim-text-main);
     border: 1px solid color-mix(in srgb, var(--sim-text-main) 24%, transparent);
 }
-#explainModal { opacity: 0; pointer-events: none; display: flex; align-items: center; justify-content: center; padding: 16px; box-sizing: border-box; }
-#explainModal.show { opacity: 1; pointer-events: auto; }
-.info-card p, .info-card li { color: var(--sim-text-main); font-size: 14px; }
-.info-card a { color: var(--sim-accent); }
+.similarita-page #explainModal { opacity: 0; pointer-events: none; display: flex; align-items: center; justify-content: center; padding: 16px; box-sizing: border-box; }
+.similarita-page #explainModal.show { opacity: 1; pointer-events: auto; }
+.similarita-page .info-card p, .similarita-page .info-card li { color: var(--sim-text-main); font-size: 14px; }
+.similarita-page .info-card a { color: var(--sim-accent); }
 
 </style>
 
 </head>
 
-<body>
+<body class="similarita-page">
 
 <!-- 1. Graphic similaritá -->
 <div class="card">
@@ -197,11 +197,11 @@ ul { padding-left: 18px; }
     <label data-i18n="sim.wordOtherLanguage">Vord in alter lingue</label>
     <input id="g2" type="text">
 
-    <button id="calcGraphicBtn" onclick="calcGraphic()" data-i18n="sim.calculate">Calcular</button>
+    <button id="calcGraphicBtn" class="tool-btn"  data-i18n="sim.calculate">Calcular</button>
 
     <div id="graphicResult" class="result">—</div>
 
-<button id="graphicExplainBtn" style="display:none" onclick="showExplain('graphic')" data-i18n="sim.explain">Explanar</button>
+<button id="graphicExplainBtn" class="tool-btn" style="display:none"  data-i18n="sim.explain">Explanar</button>
 
 </div>
 
@@ -215,11 +215,11 @@ ul { padding-left: 18px; }
     <label data-i18n="sim.wordOtherLanguageIpa">Vord in alter lingue (МФА)</label>
     <input id="p2" type="text">
 
-    <button id="calcPhoneticBtn" onclick="calcPhonetic()" data-i18n="sim.calculate">Calcular</button>
+    <button id="calcPhoneticBtn" class="tool-btn"  data-i18n="sim.calculate">Calcular</button>
 
     <div id="phoneticResult" class="result">—</div>
 
-<button id="phoneticExplainBtn" style="display:none" onclick="showExplain('phonetic')" data-i18n="sim.explain">Explanar</button>
+<button id="phoneticExplainBtn" class="tool-btn" style="display:none"  data-i18n="sim.explain">Explanar</button>
 
 </div>
 
@@ -274,7 +274,7 @@ ul { padding-left: 18px; }
 
         <div id="explainText" style="overflow:auto; flex:1 1 auto; min-height:0;"></div>
 
-        <button onclick="closeExplain()" style="margin-top:10px" data-i18n="sim.close">Cluder</button>
+        <button  id="closeExplainBtn" class="tool-btn" style="margin-top:10px" data-i18n="sim.close">Cluder</button>
     </div>
 </div>
 
@@ -600,22 +600,16 @@ explainModal.onclick = function(e){
     }
 };
 applyTranslations();
+
+
+document.getElementById("calcGraphicBtn").addEventListener("click", calcGraphic);
+document.getElementById("calcPhoneticBtn").addEventListener("click", calcPhonetic);
+document.getElementById("graphicExplainBtn").addEventListener("click", () => showExplain("graphic"));
+document.getElementById("phoneticExplainBtn").addEventListener("click", () => showExplain("phonetic"));
+document.getElementById("closeExplainBtn").addEventListener("click", closeExplain);
 document.addEventListener("interal:languagechange", applyTranslations);
 </script>
 <script src="../shared/ui.js"></script>
 
 </body>
 </html>
-
-<style>
-.card,.info-card,.modal-inner{background:var(--sim-surface)!important;border-radius:18px!important;border:1px solid color-mix(in srgb,var(--sim-text-main) 24%, transparent)!important;color:var(--sim-text-main)!important;}
-input,textarea,select{background:var(--sim-surface-strong)!important;border-radius:14px!important;}
-button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn){background:var(--sim-surface-strong)!important;color:var(--sim-text-main)!important;border-radius:18px!important;border:1px solid color-mix(in srgb,var(--sim-text-main) 22%, transparent)!important;}
-body.dark-theme{--sim-surface:#202124!important;--sim-surface-strong:#2a2c30!important;--sim-text-main:#fff!important;--sim-text-muted:#d2d9ec!important;}
-body:not(.dark-theme){--sim-surface:#ffffff!important;--sim-surface-strong:#f4f4f4!important;--sim-text-main:#111111!important;--sim-text-muted:#4a4a4a!important;}
-
-/* minimalist unification */
-.card,.modal-inner,.result{border-radius:var(--radius-md);box-shadow:var(--shadow-soft)}
-input{border-width:1px;background:var(--surface-soft)}
-button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn){border:1px solid color-mix(in srgb,var(--sim-text-main) 18%, transparent);background:var(--sim-text-main);color:var(--bg)}
-</style>
