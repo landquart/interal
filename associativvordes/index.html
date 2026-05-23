@@ -18,7 +18,7 @@
       --line: var(--border-control);
       --accent: var(--text);
       --accent-2: var(--accent-soft);
-      --button-text: var(--bg);
+      --button-text: var(--accent-contrast);
       --bad: #8b2f2f;
       --ok: #2f6534;
       --warn: #7c520d;
@@ -58,7 +58,7 @@
       position: relative;
       background: var(--card);
       border: 1px solid color-mix(in srgb, var(--text-main) 22%, transparent);
-      border-radius: 18px;
+      border-radius: 24px;
       box-shadow: 0 12px 30px rgba(31, 41, 55, 0.12);
       padding: 18px;
     }
@@ -80,7 +80,7 @@
     label { display: block; font-weight: 650; margin-bottom: 6px; }
     input, select, textarea, button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn) {
       font: inherit;
-      border-radius: 12px;
+      border-radius: 14px;
       border: 1px solid var(--line);
       padding: 10px 12px;
       width: 100%;
@@ -146,7 +146,7 @@
       align-items: center;
       justify-content: center;
       border: 1px solid var(--line) !important;
-      border-radius: 12px;
+      border-radius: 14px;
       background: var(--surface-strong) !important;
       color: var(--text-main);
       box-shadow: none !important;
@@ -299,7 +299,7 @@
       --muted: var(--text-muted);
       --line: var(--border-control);
       --accent-2: var(--accent-soft);
-      --button-text: var(--bg);
+      --button-text: var(--accent-contrast);
       --shadow: 0 12px 28px rgba(0, 0, 0, 0.38);
     }
     body.dark-theme input,
@@ -311,10 +311,7 @@
       background: color-mix(in srgb, var(--surface) 90%, #000 10%);
       color: #ffffff;
     }
-    body.dark-theme .card-reset-btn img {
-      filter: brightness(0) invert(1);
-    }
-    body.dark-theme .status.ok { background: #243526; color: #8fd69a; }
+        body.dark-theme .status.ok { background: #243526; color: #8fd69a; }
     body.dark-theme .status.bad { background: #442524; color: #f0aaaa; }
     body.dark-theme .status.warn { background: #46351f; color: #ffd37d; }
     body.dark-theme .metric strong { color: #fff1c8; }

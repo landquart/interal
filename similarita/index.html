@@ -13,22 +13,22 @@
 <style>
 
 :root {
-    --sim-bg-base: #e6e6e6;
-    --sim-line-color: rgba(0, 0, 0, 0.55);
-    --sim-surface: #dcdcdc;
-    --sim-surface-strong: #ffffff;
-    --sim-text-main: #111111;
-    --sim-text-muted: #2f2f2f;
+    --sim-bg-base: var(--bg);
+    --sim-line-color: var(--border-control);
+    --sim-surface: var(--surface);
+    --sim-surface-strong: var(--surface-elevated);
+    --sim-text-main: var(--text);
+    --sim-text-muted: var(--text-muted);
     --sim-accent: var(--text);
     --sim-accent-hover: var(--text);
-    --sim-accent-soft: rgba(17, 17, 17, 0.15);
+    --sim-accent-soft: var(--focus-ring);
     --sim-button-grad-start: #2d2d2d;
     --sim-button-grad-end: #111111;
     --sim-button-hover-glow: rgba(17, 17, 17, 0.2);
-    --sim-radius-lg: 18px;
-    --sim-radius-md: 12px;
-    --sim-shadow-card: 0 12px 30px rgba(31, 41, 55, 0.12);
-    --sim-shadow-soft: 0 6px 20px rgba(31, 41, 55, 0.08);
+    --sim-radius-lg: 24px;
+    --sim-radius-md: 14px;
+    --sim-shadow-card: var(--shadow-sm);
+    --sim-shadow-soft: var(--shadow-sm);
 }
 
 body {
@@ -42,12 +42,12 @@ body {
 }
 
 body.dark-theme {
-    --sim-bg-base: #000000;
-    --sim-line-color: rgba(255, 255, 255, 0.65);
-    --sim-surface: #1b1b1b;
-    --sim-surface-strong: #191919;
-    --sim-text-main: #f5f7ff;
-    --sim-text-muted: #d2d9ec;
+    --sim-bg-base: var(--bg);
+    --sim-line-color: var(--border-control);
+    --sim-surface: var(--surface);
+    --sim-surface-strong: var(--surface-elevated);
+    --sim-text-main: var(--text);
+    --sim-text-muted: var(--text-muted);
     --sim-accent: #ffffff;
     --sim-accent-hover: #ffffff;
     --sim-accent-soft: rgba(245, 247, 255, 0.3);
@@ -256,7 +256,7 @@ ul { padding-left: 18px; }
     background:rgba(25,30,45,.35);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
-    z-index:1000;
+    z-index:1700;
 ">
 
     <div class="modal-inner" style="
