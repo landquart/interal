@@ -7,7 +7,7 @@
   --line: var(--border-control);
   --line-soft: var(--border-subtle);
   --line-strong: var(--border-strong);
-  --accent: var(--accent);
+  --det-accent: var(--brand-accent, var(--accent));
   --accent-soft: var(--focus-ring);
   --button-text-on-accent: var(--accent-contrast);
   --shadow-card: var(--shadow-sm);
@@ -26,7 +26,7 @@ body.dark-theme {
   --line: var(--border-control);
   --line-soft: var(--border-subtle);
   --line-strong: var(--border-strong);
-  --accent: var(--accent);
+  --det-accent: var(--brand-accent, var(--accent));
   --accent-soft: var(--focus-ring);
   --button-text-on-accent: var(--accent-contrast);
   --shadow-card: var(--shadow-sm);
@@ -43,7 +43,7 @@ body {
   min-height: 100%;
 }
 
-body {
+.determinator-page {
   margin: 0;
   padding: 32px 16px;
   background: var(--bg);
@@ -101,7 +101,7 @@ body {
 input,
 textarea,
 select,
-button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn) {
+.determinator-page .tool-btn {
   font: inherit;
   font-family: "Jost", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
@@ -145,7 +145,7 @@ textarea::placeholder {
 input:focus-visible,
 textarea:focus-visible,
 select:focus-visible,
-button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn):focus-visible {
+.determinator-page .tool-btn:focus-visible {
   outline: none;
   border-color: var(--accent);
   box-shadow: 0 0 0 4px var(--accent-soft);
@@ -256,7 +256,7 @@ textarea.copy-flash {
   margin-top: 8px;
 }
 
-button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn) {
+.determinator-page .tool-btn {
   position: relative;
   overflow: hidden;
   isolation: isolate;
@@ -271,7 +271,7 @@ button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu
   transition: transform 0.2s ease, box-shadow 0.25s ease, color 0.25s ease;
 }
 
-button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn)::before {
+.determinator-page .tool-btn::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -289,40 +289,40 @@ button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu
 }
 
 
-button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn):hover,
-button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn):focus-visible {
+.determinator-page .tool-btn:hover,
+.determinator-page .tool-btn:focus-visible {
   transform: translateY(-1px);
   box-shadow: 0 10px 18px var(--button-hover-glow);
 }
 
-body:not(.dark-theme) button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn):hover,
-body:not(.dark-theme) button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn):focus-visible {
+body:not(.dark-theme) .determinator-page .tool-btn:hover,
+body:not(.dark-theme) .determinator-page .tool-btn:focus-visible {
   color: #fff;
 }
 
 body:not(.dark-theme) .plus-btn:hover,
 body:not(.dark-theme) .plus-btn:focus-visible,
-body:not(.dark-theme) .modal-actions button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn):hover,
-body:not(.dark-theme) .modal-actions button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn):focus-visible {
+body:not(.dark-theme) .modal-actions .determinator-page .tool-btn:hover,
+body:not(.dark-theme) .modal-actions .determinator-page .tool-btn:focus-visible {
   color: #fff;
 }
 
-button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn):hover::before,
-button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn):focus-visible::before {
+.determinator-page .tool-btn:hover::before,
+.determinator-page .tool-btn:focus-visible::before {
   opacity: 1;
   background-position: 100% 50%;
 }
 
-button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn):active {
+.determinator-page .tool-btn:active {
   transform: scale(0.99);
 }
 
-body.dark-theme button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn):hover,
-body.dark-theme button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn):focus-visible {
+body.dark-theme .determinator-page .tool-btn:hover,
+body.dark-theme .determinator-page .tool-btn:focus-visible {
   color: #111111;
 }
 
-button:not(.top-menu-btn):not(.menu-theme-btn):not(.menu-theme-toggle):not(.menu-lang-btn):not(.menu-lang-trigger):not(.menu-copy-btn).ghost,
+.determinator-page .tool-btn.ghost,
 .component-delete,
 .icon-btn,
 .back-btn {
