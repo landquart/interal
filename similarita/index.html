@@ -13,20 +13,13 @@
 <style>
 
 :root {
-    --sim-bg-base: var(--bg);
-    --sim-line-color: var(--border-control);
     --sim-surface: var(--surface);
     --sim-surface-strong: var(--surface-elevated);
     --sim-text-main: var(--text);
     --sim-text-muted: var(--text-muted);
-    --sim-accent: var(--text);
-    --sim-accent-hover: var(--text);
-    --sim-accent-soft: var(--focus-ring);
-    --sim-button-grad-start: #2d2d2d;
-    --sim-button-grad-end: #111111;
-    --sim-button-hover-glow: rgba(17, 17, 17, 0.2);
-    --sim-radius-lg: 24px;
-    --sim-radius-md: 14px;
+    --sim-accent: var(--button-primary-bg);
+    --sim-radius-lg: var(--radius-lg);
+    --sim-radius-md: var(--radius-sm);
     --sim-shadow-card: var(--shadow-sm);
     --sim-shadow-soft: var(--shadow-sm);
 }
@@ -41,33 +34,16 @@
     line-height: 1.5;
 }
 
-body.dark-theme.similarita-page {
-    --sim-bg-base: var(--bg);
-    --sim-line-color: var(--border-control);
-    --sim-surface: var(--surface);
-    --sim-surface-strong: var(--surface-elevated);
-    --sim-text-main: var(--text);
-    --sim-text-muted: var(--text-muted);
-    --sim-accent: #ffffff;
-    --sim-accent-hover: #ffffff;
-    --sim-accent-soft: rgba(245, 247, 255, 0.3);
-    --sim-button-grad-start: #f5f7ff;
-    --sim-button-grad-end: #dfe6ff;
-    --sim-button-hover-glow: rgba(245, 247, 255, 0.28);
-    --sim-shadow-card: 0 12px 30px rgba(0, 0, 0, 0.6);
-    --sim-shadow-soft: 0 6px 20px rgba(0, 0, 0, 0.45);
-}
-
 @media (max-width: 768px) {
     .similarita-page { padding: 0 12px 24px; }
 }
 
 .similarita-page .card {
     background: var(--sim-surface);
-    border: 1px solid color-mix(in srgb, var(--sim-text-main) 22%, transparent);
+    border: 1px solid var(--border-subtle);
     max-width: 520px;
-    margin: 0 auto 18px auto;
-    padding: 22px;
+    margin: 0 auto 20px auto;
+    padding: 24px;
     border-radius: var(--sim-radius-lg);
     box-shadow: var(--sim-shadow-card);
 }
@@ -97,16 +73,16 @@ body.dark-theme.similarita-page {
     margin-top: 6px;
     font-size: 16px;
     box-sizing: border-box;
-    border: 2px solid color-mix(in srgb, var(--sim-text-main) 24%, transparent);
+    border: 1px solid var(--border-control);
     border-radius: var(--sim-radius-md);
     background: var(--sim-surface-strong);
     color: var(--sim-text-main);
 }
-.similarita-page input::placeholder { color: var(--sim-text-muted); }
+.similarita-page input::placeholder { color: var(--placeholder); }
 .similarita-page input:focus-visible {
     outline: none;
-    border-color: var(--sim-accent);
-    box-shadow: 0 0 0 4px var(--sim-accent-soft);
+    border-color: var(--border-control-strong);
+    box-shadow: 0 0 0 3px var(--focus-ring);
 }
 
 .similarita-page .tool-btn {
@@ -116,53 +92,32 @@ body.dark-theme.similarita-page {
     font-size: 15px;
     font-weight: 700;
     letter-spacing: 0.2px;
-    background: var(--sim-accent);
-    position: relative;
-    overflow: hidden;
-    isolation: isolate;
-    color: var(--bg);
+    background: var(--button-primary-bg);
+    color: var(--button-primary-text);
     border: none;
-    border-radius: var(--sim-radius-md);
+    border-radius: var(--radius-pill);
     cursor: pointer;
-    box-shadow: var(--sim-shadow-soft);
-    transform: scale(1);
-    transition: transform 0.2s ease, box-shadow 0.25s ease, color 0.25s ease;
-}
-.similarita-page .tool-btn::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    opacity: 0;
-    background: linear-gradient(120deg, var(--sim-button-grad-start) 0%, var(--sim-button-grad-end) 45%, var(--sim-button-grad-start) 100%);
-    background-size: 200% 200%;
-    background-position: 0% 50%;
-    transition: opacity 0.25s ease, background-position 0.45s ease;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .similarita-page .tool-btn:hover,
 .similarita-page .tool-btn:focus-visible {
     transform: translateY(-1px);
-    box-shadow: 0 10px 18px var(--sim-button-hover-glow);
+    box-shadow: var(--shadow-md);
 }
-.similarita-page .tool-btn:hover::before,
-.similarita-page .tool-btn:focus-visible::before {
-    opacity: 1;
-    background-position: 100% 50%;
-}
-.similarita-page .tool-btn:active { transform: scale(0.99); }
 .similarita-page .tool-btn:focus-visible {
-    outline: 2px solid var(--sim-accent);
+    outline: 2px solid var(--focus-ring);
     outline-offset: 2px;
 }
-body.dark-theme.similarita-page .tool-btn { color: var(--bg); }
 
 .similarita-page .result {
     margin-top: 14px;
     padding: 10px 12px;
     font-size: 15px;
-    border-radius: 10px;
-    background: var(--sim-surface-strong);
-    border: 1px solid color-mix(in srgb, var(--sim-text-main) 24%, transparent);
+    border-radius: var(--radius-sm);
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-subtle);
+    color: var(--text);
 }
 
 .similarita-page ul { padding-left: 18px; }
@@ -172,11 +127,27 @@ body.dark-theme.similarita-page .tool-btn { color: var(--bg); }
 .similarita-page .modal-inner {
     display: flex;
     flex-direction: column;
-    background: var(--sim-surface-strong);
-    color: var(--sim-text-main);
-    border: 1px solid color-mix(in srgb, var(--sim-text-main) 24%, transparent);
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
 }
-.similarita-page #explainModal { opacity: 0; pointer-events: none; display: flex; align-items: center; justify-content: center; padding: 16px; box-sizing: border-box; }
+.similarita-page #explainModal {
+    position: fixed;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    box-sizing: border-box;
+    background: color-mix(in srgb, var(--bg) 60%, transparent);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: var(--z-page-modal);
+}
 .similarita-page #explainModal.show { opacity: 1; pointer-events: auto; }
 .similarita-page .info-card p, .similarita-page .info-card li { color: var(--sim-text-main); font-size: 14px; }
 .similarita-page .info-card a { color: var(--sim-accent); }
@@ -250,27 +221,9 @@ body.dark-theme.similarita-page .tool-btn { color: var(--bg); }
 
 </div>
 
-  <div id="explainModal" style="
-    position:fixed;
-    inset:0;
-    background:rgba(25,30,45,.35);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    z-index:1700;
-">
+  <div id="explainModal">
 
-    <div class="modal-inner" style="
-        max-width:600px;
-        width:100%;
-        margin:0;
-        padding:24px;
-        border-radius:16px;
-        max-height:calc(100vh - 32px);
-        overflow:hidden;
-        display:flex;
-        flex-direction:column;
-        box-shadow: var(--sim-shadow-card);
-">
+    <div class="modal-inner" style="max-width:600px; width:100%; margin:0; padding:24px; max-height:calc(100vh - 32px); overflow:hidden;">
 
         <div id="explainText" style="overflow:auto; flex:1 1 auto; min-height:0;"></div>
 
