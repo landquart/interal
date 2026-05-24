@@ -203,7 +203,7 @@ textarea.copy-flash {
   font-size: 0.92rem;
 }
 
-.component-delete {
+.determinator-page .component-delete {
   border: 1px solid var(--line);
   background: var(--surface-strong);
   color: var(--text-main);
@@ -224,7 +224,7 @@ textarea.copy-flash {
   word-break: break-word;
 }
 
-.plus-btn {
+.determinator-page .plus-btn {
   margin: 14px auto 0;
   width: 58px;
   height: 58px;
@@ -239,7 +239,7 @@ textarea.copy-flash {
   box-shadow: none;
 }
 
-.plus-btn-icon {
+.determinator-page .plus-btn-icon {
   width: 32px;
   height: 32px;
   display: block;
@@ -278,11 +278,11 @@ textarea.copy-flash {
 }
 
 .determinator-page .tool-btn.ghost,
-.component-delete,
-.icon-btn,
-.back-btn,
-.close-btn,
-.icon-copy-btn {
+.determinator-page .component-delete,
+.determinator-page .icon-btn,
+.determinator-page .back-btn,
+.determinator-page .close-btn,
+.determinator-page .icon-copy-btn {
   border: 1px solid var(--border-control);
   background: var(--surface-elevated);
   color: var(--text);
@@ -317,7 +317,7 @@ textarea.copy-flash {
   gap: 10px;
 }
 
-.icon-copy-btn {
+.determinator-page .icon-copy-btn {
   width: 48px;
   min-width: 48px;
   padding: 10px;
@@ -326,12 +326,12 @@ textarea.copy-flash {
   justify-content: center;
 }
 
-.icon-copy-btn:hover,
-.icon-copy-btn:focus-visible {
+.determinator-page .icon-copy-btn:hover,
+.determinator-page .icon-copy-btn:focus-visible {
   background: var(--surface);
 }
 
-.icon-copy-btn img {
+.determinator-page .icon-copy-btn img {
   width: 20px;
   height: 20px;
   display: block;
@@ -339,12 +339,12 @@ textarea.copy-flash {
   transition: filter 0.22s ease;
 }
 
-.icon-copy-btn.is-copied {
+.determinator-page .icon-copy-btn.is-copied {
   border-color: var(--button-primary-bg);
   box-shadow: 0 0 0 3px var(--focus-ring);
 }
 
-.icon-copy-btn.is-failed {
+.determinator-page .icon-copy-btn.is-failed {
   border-color: #d9534f;
 }
 
@@ -488,8 +488,8 @@ pre {
   font-weight: 600;
 }
 
-.icon-btn,
-.back-btn {
+.determinator-page .icon-btn,
+.determinator-page .back-btn {
   width: 42px;
   height: 42px;
   border-radius: 12px;
@@ -499,18 +499,18 @@ pre {
   justify-content: center;
 }
 
-.back-btn {
+.determinator-page .back-btn {
   width: 42px;
   padding: 0;
 }
 
-.close-btn {
+.determinator-page .close-btn {
   font-size: 1.6rem;
   line-height: 1;
   font-weight: 500;
 }
 
-.component-delete img {
+.determinator-page .component-delete img {
   width: 20px;
   height: 20px;
   display: block;
@@ -526,7 +526,7 @@ pre {
   min-height: 58px;
 }
 
-.modal-actions {
+.determinator-page .modal-actions {
   justify-content: flex-end;
 }
 
@@ -561,17 +561,17 @@ body.has-global-menu .app-shell {
   }
 }
 
-.icon-btn img,
-.back-btn img {
+.determinator-page .icon-btn img,
+.determinator-page .back-btn img {
   width: 22px;
   height: 22px;
   display: block;
 }
 
-body.dark-theme .icon-btn img,
-body.dark-theme .back-btn img,
-body.dark-theme .plus-btn-icon,
-body.dark-theme .icon-copy-btn img,
-body.dark-theme .component-delete img {
+body.dark-theme .determinator-page .icon-btn img,
+body.dark-theme .determinator-page .back-btn img,
+body.dark-theme .determinator-page .plus-btn-icon,
+body.dark-theme .determinator-page .icon-copy-btn img,
+body.dark-theme .determinator-page .component-delete img {
   filter: brightness(0) invert(1);
 }

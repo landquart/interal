@@ -96,19 +96,19 @@
       font-weight: 700;
     }
 
-    .associativ-page button.secondary {
+    .associativ-page .interal-btn--secondary {
       background: var(--surface-strong);
       color: var(--text-main);
       border-color: var(--line);
     }
 
-    .associativ-page button.danger {
+    .associativ-page .danger {
       background: var(--bad);
       border-color: var(--bad);
       color: #ffffff;
     }
 
-    .associativ-page button.small {
+    .associativ-page .interal-btn--small {
       padding: 7px 9px;
       border-radius: 10px;
       font-size: 13px;
@@ -125,9 +125,9 @@
     .row .fit { flex: 0 0 auto; }
 
     .actions-row { display: flex; flex-wrap: wrap; gap: 10px; }
-    .actions-row button { flex: 0 1 auto; width: auto; min-width: 150px; padding-inline: 18px; }
+    .associativ-page .actions-row .interal-btn { flex: 0 1 auto; width: auto; min-width: 150px; padding-inline: 18px; }
     .fit.short { width: auto; min-width: 0; padding-inline: 12px; }
-    .actions-row button#searchBtn { min-width: 230px; }
+    .associativ-page .actions-row #searchBtn { min-width: 230px; }
 
     .card-tools {
       position: absolute;
@@ -244,8 +244,8 @@
       h1 { font-size: 28px; line-height: 1.2; word-break: break-word; }
       h2 { font-size: 19px; }
 
-      .actions-row button,
-      .actions-row button#searchBtn,
+      .associativ-page .actions-row .interal-btn,
+      .associativ-page .actions-row #searchBtn,
       .fit.short {
         width: 100%;
         min-width: 0;
@@ -323,7 +323,7 @@
   <main>
     <section class="card grid grid-2">
       <div class="card-tools">
-        <button class="tool-btn danger card-reset-btn" id="resetBtn" aria-label="Сбросить" title="Сбросить">
+        <button class="tool-btn interal-btn danger card-reset-btn icon-btn" id="resetBtn" aria-label="Сбросить" title="Сбросить">
           <img src="../elements/Eraser%20Square.svg" alt="" aria-hidden="true" style="width:20px;height:20px;display:block;" />
         </button>
       </div>
@@ -347,10 +347,10 @@
         </select>
       </div>
       <div class="row actions-row" style="grid-column: 1 / -1;">
-        <button class="tool-btn" id="searchBtn">Найти дериваты и посчитать</button>
-        <button class="tool-btn secondary" id="showExampleBtn">Показать пример</button>
-        <button class="tool-btn secondary" id="exportBtn">Экспорт JSON</button>
-        <button class="tool-btn secondary" id="importBtn">Импорт JSON</button>
+        <button class="tool-btn interal-btn interal-btn--primary" id="searchBtn">Найти дериваты и посчитать</button>
+        <button class="tool-btn interal-btn interal-btn--secondary" id="showExampleBtn">Показать пример</button>
+        <button class="tool-btn interal-btn interal-btn--secondary" id="exportBtn">Экспорт JSON</button>
+        <button class="tool-btn interal-btn interal-btn--secondary" id="importBtn">Импорт JSON</button>
       </div>
     </section>
 
@@ -375,13 +375,13 @@
         <h2>4) Локальная база дериватов</h2>
         <p class="muted" style="margin-bottom:10px;">Можно заменить на реальные JSON-данные из Kaikki/Wiktionary. Формат: язык → массив слов.</p>
         <textarea id="derivativeDataInput"></textarea>
-        <button class="tool-btn secondary" id="loadDerivativeDataBtn" style="margin-top:10px;">Загрузить базу дериватов</button>
+        <button class="tool-btn interal-btn interal-btn--secondary" id="loadDerivativeDataBtn" style="margin-top:10px;">Загрузить базу дериватов</button>
       </div>
       <div>
         <h2>5) Локальная база частотных рангов</h2>
         <p class="muted" style="margin-bottom:10px;">Формат: язык → { слово: ранг }. Можно сгенерировать из wordfreq/top_n_list.</p>
         <textarea id="frequencyDataInput"></textarea>
-        <button class="tool-btn secondary" id="loadFrequencyDataBtn" style="margin-top:10px;">Загрузить частоты</button>
+        <button class="tool-btn interal-btn interal-btn--secondary" id="loadFrequencyDataBtn" style="margin-top:10px;">Загрузить частоты</button>
       </div>
     </section>
 
