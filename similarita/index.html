@@ -294,6 +294,13 @@ const i18n = {
     "sim.close": "Закрыть",
     "sim.fillWord": "Введите слово",
     "sim.searching": "Поиск переводов и IPA в Wiktionary...",
+    "sim.status.transliterating": "Транслитерация и нормализация входного слова...",
+    "sim.status.lookupSourceIpa": "Поиск IPA исходного слова...",
+    "sim.status.lookupEnglish": "Поиск английской леммы...",
+    "sim.status.lookupTranslationsPie": "Поиск переводов в pie_vordes...",
+    "sim.status.lookupTranslationsWiktionary": "Поиск переводов в Wiktionary...",
+    "sim.status.calculating": "Расчёт похожести по языкам...",
+    "sim.status.done": "Готово.",
     "sim.alineMissing": "Файл aline.js не подключён или не загрузился",
     "sim.translationNotFound": "перевод не найден",
     "sim.ipaNotFound": "IPA не найдено",
@@ -320,6 +327,13 @@ const i18n = {
     "sim.close": "Close",
     "sim.fillWord": "Enter a word",
     "sim.searching": "Searching translations and IPA in Wiktionary...",
+    "sim.status.transliterating": "Transliterating and normalizing input...",
+    "sim.status.lookupSourceIpa": "Looking up source IPA...",
+    "sim.status.lookupEnglish": "Looking up English lemma...",
+    "sim.status.lookupTranslationsPie": "Looking up translations in pie_vordes...",
+    "sim.status.lookupTranslationsWiktionary": "Looking up translations in Wiktionary...",
+    "sim.status.calculating": "Calculating similarities across languages...",
+    "sim.status.done": "Done.",
     "sim.alineMissing": "aline.js is not connected or has not loaded",
     "sim.translationNotFound": "translation not found",
     "sim.ipaNotFound": "IPA not found",
@@ -448,7 +462,7 @@ const RU_TO_LATIN = {
   "ч": "ch",
   "ш": "sh",
   "щ": "shch",
-  "ъ": "",
+  "ъ": "-",
   "ы": "y",
   "ь": "'",
   "э": "e",
@@ -565,6 +579,56 @@ const ipaCache = new Map();
 const htmlCache = new Map();
 const searchCache = new Map();
 const translationCache = new Map();
+let pieVordesDataPromise = null;
+
+function setProgressStatus(key) {
+  multiResult.style.display = "block";
+  multiResult.textContent = t(key);
+}
+
+async function loadPieVordesData() {
+  if (!pieVordesDataPromise) {
+    pieVordesDataPromise = fetch("./pie_vordes")
+      .then((response) => (response.ok ? response.json() : { items: [] }))
+      .catch(() => ({ items: [] }));
+  }
+
+  return pieVordesDataPromise;
+}
+
+function tokenizeCandidateForms(value) {
+  return String(value || "")
+    .split(/[\/,;]| or | and /i)
+    .map((part) => normalize(part))
+    .filter(Boolean);
+}
+
+function pickPreferredForm(value) {
+  const forms = tokenizeCandidateForms(value);
+  return forms[0] || "";
+}
+
+async function findTranslationsInPieVordes(sourceWord, sourceLang) {
+  const data = await loadPieVordesData();
+  const normalizedSource = normalize(sourceWord);
+  const items = Array.isArray(data.items) ? data.items : [];
+
+  for (const item of items) {
+    const forms = tokenizeCandidateForms(item[sourceLang] || "");
+    if (!forms.includes(normalizedSource)) continue;
+
+    const translations = {};
+    for (const lang of LANGS) {
+      const candidate = pickPreferredForm(item[lang.code]);
+      if (candidate) translations[lang.code] = candidate;
+    }
+
+    const route = [`pie_vordes:item#${item.id || "?"}:${sourceLang}`];
+    return { translations, source: "local:similarita/pie_vordes", route };
+  }
+
+  return null;
+}
 
 async function fetchWiktionaryHTMLFrom(apiUrl, title) {
   const key = `${apiUrl}:${title}`;
@@ -1295,9 +1359,11 @@ async function calcAllLanguages() {
     return;
   }
 
-  multiResult.textContent = t("sim.searching");
+  setProgressStatus("sim.status.transliterating");
 
+  setProgressStatus("sim.status.lookupSourceIpa");
   const sourceIPAResult = await getOnlineIPA(rawWord, sourceLang);
+  setProgressStatus("sim.status.lookupEnglish");
   const englishLemma = await getEnglishLemma(rawWord, sourceLang);
 
   if (runId !== currentRunId) return;
@@ -1329,10 +1395,17 @@ English equivalent was not found, therefore translations to the other six langua
     return;
   }
 
-  const translationPack = await getTranslationsFromEnglishLemma(englishLemma.word);
+  setProgressStatus("sim.status.lookupTranslationsPie");
+  let translationPack = await findTranslationsInPieVordes(rawWord, sourceLang);
+
+  if (!translationPack) {
+    setProgressStatus("sim.status.lookupTranslationsWiktionary");
+    translationPack = await getTranslationsFromEnglishLemma(englishLemma.word);
+  }
 
   if (runId !== currentRunId) return;
 
+  setProgressStatus("sim.status.calculating");
   const sourceGraphic = normalizeGraphicInput(rawWord, sourceLang);
   const sourceIPA = sourceIPAResult.ipa || "";
   const rows = [];
