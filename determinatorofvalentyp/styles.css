@@ -9,7 +9,6 @@
   --line-strong: var(--border-strong);
   --accent: var(--button-primary-bg);
   --accent-soft: var(--focus-ring);
-  --overlay: rgba(0, 0, 0, 0.45);
   --radius-lg: var(--radius-lg);
   --radius-md: var(--radius-sm);
   --shadow-card: var(--shadow-sm);
@@ -27,7 +26,6 @@ body.dark-theme {
   --line-strong: var(--border-strong);
   --accent: var(--button-primary-bg);
   --accent-soft: var(--focus-ring);
-  --overlay: rgba(0, 0, 0, 0.45);
 }
 
 * {
@@ -450,8 +448,13 @@ pre {
 .modal-backdrop {
   position: absolute;
   inset: 0;
-  background: var(--overlay);
-  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+body.dark-theme .modal-backdrop {
+  background: rgba(0, 0, 0, 0.62);
 }
 
 .modal-card {
@@ -460,7 +463,7 @@ pre {
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
   background: var(--surface);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-md);
   padding: 18px;
   z-index: 1;
 }

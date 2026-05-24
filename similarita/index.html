@@ -131,7 +131,7 @@
     color: var(--text);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--shadow-md);
 }
 .similarita-page #explainModal {
     position: fixed;
@@ -143,12 +143,16 @@
     justify-content: center;
     padding: 16px;
     box-sizing: border-box;
-    background: color-mix(in srgb, var(--bg) 60%, transparent);
+    background: rgba(0, 0, 0, 0.35);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     z-index: var(--z-page-modal);
 }
 .similarita-page #explainModal.show { opacity: 1; pointer-events: auto; }
+
+body.dark-theme .similarita-page #explainModal {
+    background: rgba(0, 0, 0, 0.62);
+}
 .similarita-page .info-card p, .similarita-page .info-card li { color: var(--sim-text-main); font-size: 14px; }
 .similarita-page .info-card a { color: var(--sim-accent); }
 
@@ -227,7 +231,7 @@
 
         <div id="explainText" style="overflow:auto; flex:1 1 auto; min-height:0;"></div>
 
-        <button  id="closeExplainBtn" class="tool-btn interal-btn interal-btn--primary" style="margin-top:10px" data-i18n="sim.close">Cluder</button>
+        <button  id="closeExplainBtn" class="tool-btn interal-btn interal-btn--secondary" style="margin-top:10px" data-i18n="sim.close">Cluder</button>
     </div>
 </div>
 
