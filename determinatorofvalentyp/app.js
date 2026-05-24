@@ -425,6 +425,7 @@ const els = {
   addComponentBtn: document.getElementById('addComponentBtn'),
   analyzeBtn: document.getElementById('analyzeBtn'),
   clearBtn: document.getElementById('clearBtn'),
+  resultPanel: document.getElementById('resultPanel'),
   result: document.getElementById('result'),
   useLlm: document.getElementById('useLlm'),
   ollamaUrl: document.getElementById('ollamaUrl'),
@@ -444,11 +445,9 @@ const els = {
   saveRootBtn: document.getElementById('saveRootBtn'),
   componentCategorySelect: document.getElementById('componentCategorySelect'),
   componentSelect: document.getElementById('componentSelect'),
-  componentMeaningPreview: document.getElementById('componentMeaningPreview'),
   saveComponentBtn: document.getElementById('saveComponentBtn'),
   prefixVariantModal: document.getElementById('prefixVariantModal'),
   prefixVariantSelect: document.getElementById('prefixVariantSelect'),
-  prefixVariantPreview: document.getElementById('prefixVariantPreview'),
   savePrefixVariantBtn: document.getElementById('savePrefixVariantBtn'),
   backFromRootBtn: document.getElementById('backFromRootBtn'),
   backFromComponentBtn: document.getElementById('backFromComponentBtn'),
@@ -663,8 +662,7 @@ function fillComponentSelect() {
 }
 
 function updateComponentPreview() {
-  const item = allComponents.find((x) => x.id === els.componentSelect.value);
-  els.componentMeaningPreview.textContent = item ? localizeComponentText(item) : '—';
+  // Preview removed: select option already includes full component text.
 }
 
 function syncRootFormByAssimilation() {
@@ -756,14 +754,12 @@ function openPrefixVariantStep(item) {
 function updatePrefixVariantPreview() {
   const item = pendingPrefixItem;
   if (!item) {
-    els.prefixVariantPreview.textContent = '—';
     return;
   }
 
   const form = els.prefixVariantSelect.value;
   const option = (prefixAssimilationOptions[item.id] || []).find((x) => x.form === form);
   const note = option ? localizePrefixNote(option.note) : '';
-  els.prefixVariantPreview.textContent = option ? `${item.form} → ${option.form} (${note})` : '—';
 }
 
 function savePrefixVariant() {
@@ -1197,6 +1193,7 @@ function badge(text, type = '') {
 }
 
 function renderResult(result, input) {
+  els.resultPanel.hidden = false;
   const isEn = currentLang() === 'en';
   const labels = isEn
     ? {
@@ -1275,6 +1272,7 @@ function clearAll() {
   if (els.manualEmbeddingResponse) els.manualEmbeddingResponse.value = '';
   state.components = [];
   renderComponents();
+  els.resultPanel.hidden = true;
   els.result.classList.add('empty');
   els.result.textContent = t('fillAndAnalyse');
   saveState();
@@ -1328,6 +1326,7 @@ function restoreState() {
     if (saved.resultHtml) {
       els.result.innerHTML = saved.resultHtml;
       els.result.classList.toggle('empty', Boolean(saved.resultIsEmpty));
+      els.resultPanel.hidden = Boolean(saved.resultIsEmpty);
     }
   } catch (_error) {
     localStorage.removeItem(STORAGE_KEY);
