@@ -1,6 +1,4 @@
-from pathlib import Path
-
-code = r'''<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
@@ -1412,8 +1410,3 @@ document.addEventListener("interal:languagechange", applyTranslations);
 
 </body>
 </html>
-'''
-
-path = Path("/mnt/data/similarita_index_updated_full.html")
-path.write_text(code, encoding="utf-8")
-print(f"Saved: {path} ({path.stat().st_size} bytes)")
