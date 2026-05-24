@@ -535,10 +535,10 @@ body.has-global-menu .app-shell {
   display: block;
 }
 
-body.dark-theme .determinator-page .icon-btn img,
-body.dark-theme .determinator-page .back-btn img,
-body.dark-theme .determinator-page .plus-btn-icon,
-body.dark-theme .determinator-page .icon-copy-btn img,
-body.dark-theme .determinator-page .component-delete img {
-  filter: brightness(0) invert(1);
+.determinator-page .icon-btn img,
+.determinator-page .back-btn img,
+.determinator-page .plus-btn-icon,
+.determinator-page .icon-copy-btn img,
+.determinator-page .component-delete img {
+  filter: var(--icon-filter, none);
 }
