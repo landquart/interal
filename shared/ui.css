@@ -135,7 +135,7 @@ body.menu-open .side-menu-overlay{opacity:1;pointer-events:auto}
 .menu-nav-link,.menu-copy-btn,.top-desktop-link{color:var(--text)}
 .menu-nav-link:hover,.menu-copy-btn:hover{background:var(--surface-hover);color:var(--text)}
 .menu-theme-toggle:hover,.menu-lang-trigger:hover{transform:translateY(-1px);background:var(--surface-hover)}
-.menu-theme-toggle:hover .menu-theme-icon,.menu-lang-trigger:hover .menu-lang-icon-img,.menu-copy-btn:hover .menu-copy-icon,.menu-copy-btn:focus-visible .menu-copy-icon{filter:var(--menu-icon-filter, none)}
+.menu-lang-trigger:hover .menu-lang-icon-img,.menu-copy-btn:hover .menu-copy-icon,.menu-copy-btn:focus-visible .menu-copy-icon{filter:var(--menu-icon-filter, none)}
 .menu-lang-modal .menu-lang-btn:hover{background:var(--text);color:var(--bg)}
 .menu-lang-modal-content{border:1px solid color-mix(in srgb,var(--text) 18%, transparent);box-shadow:0 14px 34px rgba(0,0,0,.22)}
 .menu-modal-open .top-menu-btn{background:transparent;border-radius:0;box-shadow:none;}
