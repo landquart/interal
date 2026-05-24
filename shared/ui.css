@@ -261,11 +261,8 @@ a{color:var(--text);text-decoration:none;}
 }
 
 .custom-select-menu {
-  position: absolute;
+  position: fixed;
   z-index: var(--z-page-modal);
-  top: calc(100% + 6px);
-  left: 0;
-  right: 0;
   display: grid;
   gap: 4px;
   padding: 6px;
@@ -273,7 +270,7 @@ a{color:var(--text);text-decoration:none;}
   border: 1px solid var(--border-subtle);
   background: var(--surface-elevated);
   box-shadow: var(--shadow-md);
-  max-height: 240px;
+  max-height: 260px;
   overflow: auto;
 }
 
@@ -299,11 +296,6 @@ a{color:var(--text);text-decoration:none;}
 }
 
 .custom-select-option[aria-selected="true"] {
-  background: var(--text);
-  color: var(--bg);
-}
-
-body.dark-theme .custom-select-option[aria-selected="true"] {
   background: var(--button-primary-bg);
   color: var(--button-primary-text);
 }

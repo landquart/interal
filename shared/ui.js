@@ -601,10 +601,38 @@ function initCustomSelects(root = document) {
       syncFromSelect();
     }
 
+    function positionCustomSelectMenu() {
+      const rect = trigger.getBoundingClientRect();
+      const gap = 6;
+      const viewportPadding = 12;
+      const preferredMaxHeight = 260;
+
+      const spaceBelow = window.innerHeight - rect.bottom - viewportPadding;
+      const spaceAbove = rect.top - viewportPadding;
+      const openUp = spaceBelow < 180 && spaceAbove > spaceBelow;
+
+      const availableHeight = openUp
+        ? Math.max(120, spaceAbove - gap)
+        : Math.max(120, spaceBelow - gap);
+
+      menu.style.left = `${rect.left}px`;
+      menu.style.width = `${rect.width}px`;
+      menu.style.maxHeight = `${Math.min(preferredMaxHeight, availableHeight)}px`;
+
+      if (openUp) {
+        menu.style.top = 'auto';
+        menu.style.bottom = `${window.innerHeight - rect.top + gap}px`;
+      } else {
+        menu.style.bottom = 'auto';
+        menu.style.top = `${rect.bottom + gap}px`;
+      }
+    }
+
     function openMenu() {
       wrapper.classList.add('is-open');
       menu.hidden = false;
       trigger.setAttribute('aria-expanded', 'true');
+      positionCustomSelectMenu();
 
       const active = menu.querySelector('[aria-selected="true"]');
       if (active) active.scrollIntoView({ block: 'nearest' });
@@ -614,6 +642,13 @@ function initCustomSelects(root = document) {
       if (menu.hidden) openMenu();
       else closeMenu();
     }
+
+    function updatePositionIfOpen() {
+      if (!menu.hidden) positionCustomSelectMenu();
+    }
+
+    window.addEventListener('resize', updatePositionIfOpen);
+    window.addEventListener('scroll', updatePositionIfOpen, true);
 
     trigger.addEventListener('click', toggleMenu);
 
