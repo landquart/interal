@@ -100,6 +100,9 @@
     outline: 2px solid var(--focus-outline);
     outline-offset: 2px;
 }
+.similarita-page .actions-row { display:flex; gap:10px; margin-top:16px; }
+.similarita-page .actions-row .tool-btn { margin-top:0; }
+.similarita-page .icon-btn-square { width:48px; min-width:48px; padding:0; display:inline-flex; align-items:center; justify-content:center; }
 
 .similarita-page .result {
     margin-top: 14px;
@@ -196,7 +199,12 @@ body.dark-theme .similarita-page #explainModal {
         <option value="el" data-i18n="sim.langGreek">Greek</option>
     </select>
 
-    <button id="calcCombinedBtn" class="tool-btn interal-btn interal-btn--primary" data-i18n="sim.calculate">Calcular</button>
+    <div class="actions-row">
+      <button id="calcCombinedBtn" class="tool-btn interal-btn interal-btn--primary" data-i18n="sim.calculate">Calcular</button>
+      <button id="resetBtn" class="tool-btn interal-btn interal-btn--secondary icon-btn-square" type="button" aria-label="Сбросить" title="Сбросить">
+        <img src="../elements/Eraser%20Square.svg" alt="" aria-hidden="true" style="width:20px;height:20px;display:block;filter:var(--icon-filter, none);" />
+      </button>
+    </div>
 
     <div id="combinedResult" class="result" style="display:none"></div>
 
@@ -218,6 +226,7 @@ const otherLanguage = document.getElementById("otherLanguage");
 
 const combinedResult = document.getElementById("combinedResult");
 const combinedExplainBtn = document.getElementById("combinedExplainBtn");
+const resetBtn = document.getElementById("resetBtn");
 
 const explainModal = document.getElementById("explainModal");
 const explainText = document.getElementById("explainText");
@@ -231,6 +240,7 @@ const i18n = {
     "sim.wordOtherLanguage": "Слово на другом языке",
     "sim.languageOther": "Язык другого слова",
     "sim.calculate": "Рассчитать",
+    "sim.reset": "Сбросить",
     "sim.explain": "Пояснение",
     "sim.close": "Закрыть",
     "sim.fillWords": "Пожалуйста, заполните оба слова",
@@ -268,6 +278,7 @@ const i18n = {
     "sim.wordOtherLanguage": "Word in another language",
     "sim.languageOther": "Language of the other word",
     "sim.calculate": "Calculate",
+    "sim.reset": "Reset",
     "sim.explain": "Explain",
     "sim.close": "Close",
     "sim.fillWords": "Please fill in both words",
@@ -313,6 +324,21 @@ function applyTranslations() {
     el.textContent = (i18n[lang] && i18n[lang][key]) || i18n.ru[key] || el.textContent;
   });
   document.title = "Similaritá";
+  if (resetBtn) {
+    const resetText = t("sim.reset");
+    resetBtn.setAttribute("aria-label", resetText);
+    resetBtn.setAttribute("title", resetText);
+  }
+}
+
+function resetAll() {
+  wordInteral.value = "";
+  wordOther.value = "";
+  otherLanguage.value = "en";
+  combinedResult.style.display = "none";
+  combinedResult.innerHTML = "";
+  combinedExplainBtn.style.display = "none";
+  combinedExplanation = "";
 }
 
 function normalize(text){
@@ -1402,6 +1428,7 @@ document.getElementById("calcCombinedBtn").addEventListener("click", () => {
     combinedExplainBtn.style.display = "none";
   });
 });
+resetBtn.addEventListener("click", resetAll);
 document.getElementById("combinedExplainBtn").addEventListener("click", showExplain);
 document.getElementById("closeExplainBtn").addEventListener("click", closeExplain);
 document.addEventListener("interal:languagechange", applyTranslations);
