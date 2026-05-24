@@ -830,6 +830,7 @@ function renderComponents() {
     els.componentsList.className = 'components-list empty';
     els.componentsList.textContent = t('noComponents');
     els.componentsSummary.textContent = '—';
+    syncClearButtonVisibility();
     saveState();
     return;
   }
@@ -858,6 +859,7 @@ function renderComponents() {
     btn.addEventListener('click', () => removeComponent(btn.dataset.deleteId));
   });
 
+  syncClearButtonVisibility();
   saveState();
 }
 
@@ -1262,6 +1264,26 @@ function renderResult(result, input) {
   `;
 }
 
+
+function hasUserInputForClear() {
+  const fields = [
+    els.regularWord,
+    els.logicalMeaning,
+    els.internationalMeaning,
+    els.naturalisticWord,
+    els.manualPrompt,
+    els.manualEmbeddingResponse
+  ];
+
+  const hasTypedText = fields.some((field) => field && field.value && field.value.trim().length > 0);
+  return hasTypedText || state.components.length > 0;
+}
+
+function syncClearButtonVisibility() {
+  if (!els.clearBtn) return;
+  els.clearBtn.classList.toggle('is-hidden', !hasUserInputForClear());
+}
+
 function clearAll() {
   els.regularWord.value = '';
   els.logicalMeaning.value = '';
@@ -1275,6 +1297,7 @@ function clearAll() {
   els.resultPanel.hidden = true;
   els.result.classList.add('empty');
   els.result.textContent = t('fillAndAnalyse');
+  syncClearButtonVisibility();
   saveState();
 }
 
@@ -1328,6 +1351,8 @@ function restoreState() {
       els.result.classList.toggle('empty', Boolean(saved.resultIsEmpty));
       els.resultPanel.hidden = Boolean(saved.resultIsEmpty);
     }
+
+    syncClearButtonVisibility();
   } catch (_error) {
     localStorage.removeItem(STORAGE_KEY);
   }
@@ -1490,7 +1515,10 @@ function attachEvents() {
     els.manualEmbeddingResponse
   ].forEach((el) => {
     if (!el) return;
-    el.addEventListener('input', saveState);
+    el.addEventListener('input', () => {
+      syncClearButtonVisibility();
+      saveState();
+    });
     el.addEventListener('change', saveState);
   });
 }
@@ -1502,3 +1530,4 @@ attachEvents();
 syncRootFormByAssimilation();
 renderComponents();
 syncPromptButtonsVisibility();
+syncClearButtonVisibility();
