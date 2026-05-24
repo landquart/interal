@@ -230,8 +230,11 @@ body.dark-theme .similarita-page #explainModal {
 <div class="card">
     <h2 data-i18n="sim.combinedTitle">Similaritá</h2>
 
-    <label data-i18n="sim.sourceWord">Vord</label>
+    <label data-i18n="sim.sourceWord">Vord in Interal</label>
     <input id="sourceWord" type="text" autocomplete="off">
+
+    <label data-i18n="sim.targetWord">Vord in another language</label>
+    <input id="targetWord" type="text" autocomplete="off">
 
     <label data-i18n="sim.sourceLanguage">Lingue del vord</label>
     <select id="sourceLanguage">
@@ -268,6 +271,7 @@ body.dark-theme .similarita-page #explainModal {
 <script>
 const sourceWordInput = document.getElementById("sourceWord");
 const sourceLanguageSelect = document.getElementById("sourceLanguage");
+const targetWordInput = document.getElementById("targetWord");
 const calcAllBtn = document.getElementById("calcAllBtn");
 const resetBtn = document.getElementById("resetBtn");
 const multiResult = document.getElementById("multiResult");
@@ -291,7 +295,8 @@ const LANGS = [
 const i18n = {
   ru: {
     "sim.combinedTitle": "Похожесть",
-    "sim.sourceWord": "Слово",
+    "sim.sourceWord": "Слово на Interal",
+    "sim.targetWord": "Слово на другом языке",
     "sim.sourceLanguage": "Язык слова",
     "sim.calculate": "Рассчитать",
     "sim.reset": "Сбросить",
@@ -329,7 +334,8 @@ const i18n = {
   },
   en: {
     "sim.combinedTitle": "Similarity",
-    "sim.sourceWord": "Word",
+    "sim.sourceWord": "Interal word",
+    "sim.targetWord": "Word in another language",
     "sim.sourceLanguage": "Word language",
     "sim.calculate": "Calculate",
     "sim.reset": "Reset",
@@ -390,6 +396,7 @@ function applyTranslations() {
 
 function resetAll() {
   sourceWordInput.value = "";
+  targetWordInput.value = "";
   sourceLanguageSelect.value = "en";
   multiResult.style.display = "none";
   multiResult.innerHTML = "";
