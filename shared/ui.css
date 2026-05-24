@@ -97,7 +97,7 @@ body.menu-open .side-menu-overlay{opacity:1;pointer-events:auto}
 .menu-nav-link,.menu-copy-btn{display:block;background:var(--sidebar-item-bg);color:var(--sidebar-item-text);border-radius:18px;padding:12px;border:0;text-decoration:none}
 .menu-theme-toggle{width:52px;height:52px;border-radius:16px;background:var(--sidebar-item-bg);border:0;display:inline-flex;align-items:center;justify-content:center}
 .menu-lang-trigger{width:52px;height:52px;border-radius:16px;background:var(--sidebar-item-bg);border:0;display:inline-flex;align-items:center;justify-content:center}
-.menu-theme-icon{width:28px;height:28px;opacity:1}
+.menu-theme-icon{width:28px;height:28px;opacity:1;filter:none;}
 .menu-lang-icon-img{width:30px;height:30px;opacity:1}
 .menu-lang-modal{position:fixed;inset:0;background:rgba(0,0,0,.45);display:grid;place-items:center;z-index:calc(var(--z-page-modal) - 100)}
 .menu-lang-modal[hidden]{display:none}
