@@ -55,16 +55,14 @@
     .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
     .associativ-page label { display: block; font-weight: 650; margin-bottom: 6px; }
-    .associativ-page input, .associativ-page select, .associativ-page textarea, .associativ-page .tool-btn { font: inherit; padding: 10px 12px; width: 100%; }
+    .associativ-page input, .associativ-page select, .associativ-page textarea, .associativ-page .tool-btn { font: inherit; width: 100%; }
 
     .associativ-page textarea { min-height: 110px; resize: vertical; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
 
      .associativ-page .tool-btn {
       cursor: pointer;
-      background: var(--button-primary-bg);
-      color: var(--button-primary-text);
-      border-color: var(--button-primary-bg);
-      font-weight: 700;
+      font-family: "Jost", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-weight: 600;
     }
 
     .associativ-page .interal-btn--secondary {
@@ -134,12 +132,13 @@
     .associativ-page .tab {
       width: auto;
       flex: 0 0 auto;
-      padding: 8px 11px;
-      background: var(--surface-elevated);
-      color: var(--text);
-      border-color: var(--border-control);
+      border-radius: var(--radius-pill);
+      font: 600 0.95rem "Jost", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      background: var(--button-secondary-bg);
+      color: var(--button-secondary-text);
+      border-color: var(--button-secondary-border);
     }
-    .associativ-page .tab.active { background: var(--surface-hover); color: var(--text); border-color: var(--border-strong); }
+    .associativ-page .tab.active { background: var(--button-primary-bg); color: var(--button-primary-text); border-color: transparent; }
 
     .associativ-page table { width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid var(--border-subtle); border-radius: var(--radius-md); background: var(--surface); overflow: hidden; }
     .associativ-page th, .associativ-page td { border-bottom: 1px solid var(--border-control); padding: 8px; text-align: left; vertical-align: top; color: var(--text); }
@@ -280,15 +279,15 @@
       </div>
       <div>
         <label for="rootInput">Кандидатный корень / предлог</label>
-        <input id="rootInput" value="" placeholder="например: ocul, regul, inter" />
+        <input class="interal-input" id="rootInput" value="" placeholder="например: ocul, regul, inter" />
       </div>
       <div>
         <label for="meaningInput">Перевод / значение</label>
-        <input id="meaningInput" value="" placeholder="например: глаз, правило, между" />
+        <input class="interal-input" id="meaningInput" value="" placeholder="например: глаз, правило, между" />
       </div>
       <div style="grid-column: 1 / -1; max-width: 420px; margin: 0 auto; width: 100%;">
         <label for="elementType">Тип элемента</label>
-        <select id="elementType">
+        <select class="interal-select" id="elementType">
           <option value="root">корень</option>
           <option value="preposition">предлог / приставка</option>
         </select>
@@ -321,13 +320,13 @@
       <div>
         <h2>4) Локальная база дериватов</h2>
         <p class="muted" style="margin-bottom:10px;">Можно заменить на реальные JSON-данные из Kaikki/Wiktionary. Формат: язык → массив слов.</p>
-        <textarea id="derivativeDataInput"></textarea>
+        <textarea class="interal-textarea" id="derivativeDataInput"></textarea>
         <button class="tool-btn interal-btn interal-btn--secondary" id="loadDerivativeDataBtn" style="margin-top:10px;">Загрузить базу дериватов</button>
       </div>
       <div>
         <h2>5) Локальная база частотных рангов</h2>
         <p class="muted" style="margin-bottom:10px;">Формат: язык → { слово: ранг }. Можно сгенерировать из wordfreq/top_n_list.</p>
-        <textarea id="frequencyDataInput"></textarea>
+        <textarea class="interal-textarea" id="frequencyDataInput"></textarea>
         <button class="tool-btn interal-btn interal-btn--secondary" id="loadFrequencyDataBtn" style="margin-top:10px;">Загрузить частоты</button>
       </div>
     </section>
@@ -601,7 +600,7 @@
             <h3>${lang.name}</h3>
             <p class="muted">Группа: ${lang.group}. Балл языка: <strong>${score.normalized.toFixed(3)}</strong>; сумма весов: <strong>${score.sum.toFixed(3)}</strong>.</p>
           </div>
-          <button class="tool-btn secondary fit short" onclick="addRow('${activeLang}')">Добавить слово</button>
+          <button class="tool-btn interal-btn interal-btn--secondary fit short" onclick="addRow('${activeLang}')">Добавить слово</button>
         </div>
         <table>
           <thead>
@@ -624,20 +623,20 @@
     function rowHtml(lang, item, idx) {
       return `
         <tr>
-          <td><input type="checkbox" ${item.selected ? 'checked' : ''} onchange="updateItem('${lang}', ${idx}, 'selected', this.checked)"></td>
-          <td><input value="${escapeHtml(item.word)}" onchange="updateItem('${lang}', ${idx}, 'word', this.value)"></td>
-          <td><input value="${escapeHtml(item.model)}" onchange="updateItem('${lang}', ${idx}, 'model', this.value)"></td>
+          <td><input class="interal-checkbox" type="checkbox" ${item.selected ? 'checked' : ''} onchange="updateItem('${lang}', ${idx}, 'selected', this.checked)"></td>
+          <td><input class="interal-input" value="${escapeHtml(item.word)}" onchange="updateItem('${lang}', ${idx}, 'word', this.value)"></td>
+          <td><input class="interal-input" value="${escapeHtml(item.model)}" onchange="updateItem('${lang}', ${idx}, 'model', this.value)"></td>
           <td>
-            <select onchange="updateItem('${lang}', ${idx}, 'association', Number(this.value))">
+            <select class="interal-select" onchange="updateItem('${lang}', ${idx}, 'association', Number(this.value))">
               <option value="1" ${Number(item.association) === 1 ? 'selected' : ''}>первичная — 1</option>
               <option value="0.5" ${Number(item.association) === 0.5 ? 'selected' : ''}>вторичная — 0,5</option>
               <option value="0" ${Number(item.association) === 0 ? 'selected' : ''}>мусор — 0</option>
             </select>
           </td>
-          <td><input type="number" value="${Number(item.rank) || 50001}" onchange="updateItem('${lang}', ${idx}, 'rank', Number(this.value))"></td>
+          <td><input class="interal-input" type="number" value="${Number(item.rank) || 50001}" onchange="updateItem('${lang}', ${idx}, 'rank', Number(this.value))"></td>
           <td>${getFrequencyScore(item.rank).toFixed(2)}</td>
           <td><strong>${wordWeight(item).toFixed(3)}</strong></td>
-          <td><button class="tool-btn danger small" onclick="deleteItem('${lang}', ${idx})">×</button></td>
+          <td><button class="tool-btn interal-btn interal-btn--secondary interal-btn--small" onclick="deleteItem('${lang}', ${idx})">×</button></td>
         </tr>
       `;
     }
