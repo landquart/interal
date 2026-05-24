@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon%20interal%2032.png" />
-  <link rel="icon" type="image/png" sizes="64x64" href="../favicon/favicon%20interal%2064.png" />
-  <link rel="apple-touch-icon" sizes="512x512" href="../favicon/favicon%20interal%20512.png" />
-  <title>Similaritá</title>
-    <link rel="stylesheet" href="../shared/ui.css" />
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon%20interal%2032.png" />
+<link rel="icon" type="image/png" sizes="64x64" href="../favicon/favicon%20interal%2064.png" />
+<link rel="apple-touch-icon" sizes="512x512" href="../favicon/favicon%20interal%20512.png" />
+
+<title>Similaritá</title>
+<link rel="stylesheet" href="../shared/ui.css" />
 
 <style>
-
 .similarita-page {
     margin: 0;
     padding: 0 16px 32px;
@@ -36,7 +36,7 @@
 .similarita-page .card {
     background: var(--surface);
     border: 1px solid var(--border-subtle);
-    max-width: 520px;
+    max-width: 720px;
     margin: 0 auto 20px auto;
     padding: 24px;
     border-radius: var(--radius-lg);
@@ -73,7 +73,9 @@
     background: var(--surface-elevated);
     color: var(--text);
 }
+
 .similarita-page input::placeholder { color: var(--placeholder); }
+
 .similarita-page input:focus-visible,
 .similarita-page select:focus-visible {
     border-color: var(--border-strong);
@@ -92,17 +94,33 @@
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
+
 .similarita-page .tool-btn:hover,
 .similarita-page .tool-btn:focus-visible {
     transform: translateY(-1px);
 }
+
 .similarita-page .tool-btn:focus-visible {
     outline: 2px solid var(--focus-outline);
     outline-offset: 2px;
 }
-.similarita-page .actions-row { display:flex; gap:10px; margin-top:16px; }
-.similarita-page .actions-row .tool-btn { margin-top:0; }
-.similarita-page .icon-btn-square { width:48px; min-width:48px; padding:0; display:inline-flex; align-items:center; justify-content:center; }
+
+.similarita-page .actions-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.similarita-page .actions-row .tool-btn { margin-top: 0; }
+
+.similarita-page .icon-btn-square {
+    width: 48px;
+    min-width: 48px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
 
 .similarita-page .result {
     margin-top: 14px;
@@ -114,33 +132,63 @@
     color: var(--text);
 }
 
-.similarita-page .result-row {
-    display: flex;
-    justify-content: space-between;
-    gap: 14px;
-    padding: 4px 0;
-}
-
-.similarita-page .result-row span:first-child {
-    color: var(--text-muted);
-    font-weight: 600;
-}
-
-.similarita-page .result-row span:last-child {
-    text-align: right;
-    overflow-wrap: anywhere;
-}
-
 .similarita-page .result-warning {
     margin-top: 8px;
     color: var(--text-muted);
     font-size: 14px;
 }
 
-.similarita-page ul { padding-left: 18px; }
-.similarita-page #explainText { font-family: "Jost", "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 14px; margin-bottom: 20px; }
-.similarita-page .explain-title { margin: 0 0 14px; text-align: center; font-size: 1.6rem; font-weight: 800; line-height: 1.2; }
-.similarita-page .explain-body { margin: 0; white-space: pre-wrap; }
+.similarita-page .result-table-wrap {
+    overflow: auto;
+}
+
+.similarita-page .result-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.similarita-page .result-table th,
+.similarita-page .result-table td {
+    padding: 7px 6px;
+    border-bottom: 1px solid var(--border-subtle);
+    vertical-align: top;
+}
+
+.similarita-page .result-table th {
+    color: var(--text-muted);
+    font-weight: 700;
+    text-align: left;
+}
+
+.similarita-page .result-table td.num,
+.similarita-page .result-table th.num {
+    text-align: right;
+}
+
+.similarita-page .result-table td {
+    overflow-wrap: anywhere;
+}
+
+.similarita-page #explainText {
+    font-family: "Jost", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.similarita-page .explain-title {
+    margin: 0 0 14px;
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.similarita-page .explain-body {
+    margin: 0;
+    white-space: pre-wrap;
+}
+
 .similarita-page .modal-inner {
     display: flex;
     flex-direction: column;
@@ -149,6 +197,7 @@
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-lg);
 }
+
 .similarita-page #explainModal {
     position: fixed;
     inset: 0;
@@ -164,151 +213,128 @@
     -webkit-backdrop-filter: blur(4px);
     z-index: var(--z-page-modal);
 }
-.similarita-page #explainModal.show { opacity: 1; pointer-events: auto; }
+
+.similarita-page #explainModal.show {
+    opacity: 1;
+    pointer-events: auto;
+}
 
 body.dark-theme .similarita-page #explainModal {
     background: rgba(0, 0, 0, 0.62);
 }
-.similarita-page .info-card p, .similarita-page .info-card li { color: var(--text); font-size: 14px; }
-.similarita-page .info-card a { color: var(--text); }
-
 </style>
-
 </head>
 
 <body class="similarita-page">
 
-<!-- Similaritá -->
 <div class="card">
     <h2 data-i18n="sim.combinedTitle">Similaritá</h2>
 
-    <label data-i18n="sim.wordInteral">Vord in Interal</label>
-    <input id="wordInteral" type="text" autocomplete="off">
+    <label data-i18n="sim.sourceWord">Vord</label>
+    <input id="sourceWord" type="text" autocomplete="off">
 
-    <label data-i18n="sim.wordOtherLanguage">Vord in alter lingue</label>
-    <input id="wordOther" type="text" autocomplete="off">
-
-    <label data-i18n="sim.languageOther">Lingue del alter vord</label>
-    <select id="otherLanguage">
+    <label data-i18n="sim.sourceLanguage">Lingue del vord</label>
+    <select id="sourceLanguage">
         <option value="en" data-i18n="sim.langEnglish">English</option>
-        <option value="de" data-i18n="sim.langGerman">German</option>
-        <option value="fr" data-i18n="sim.langFrench">French</option>
-        <option value="es" data-i18n="sim.langSpanish">Spanish</option>
-        <option value="it" data-i18n="sim.langItalian">Italian</option>
         <option value="ru" data-i18n="sim.langRussian">Russian</option>
-        <option value="el" data-i18n="sim.langGreek">Greek</option>
     </select>
 
     <div class="actions-row">
-      <button id="calcCombinedBtn" class="tool-btn interal-btn interal-btn--primary" data-i18n="sim.calculate">Calcular</button>
-      <button id="resetBtn" class="tool-btn interal-btn interal-btn--secondary icon-btn-square" type="button" aria-label="Сбросить" title="Сбросить">
-        <img src="../elements/Eraser%20Square.svg" alt="" aria-hidden="true" style="width:20px;height:20px;display:block;filter:var(--icon-filter, none);" />
-      </button>
+        <button id="calcAllBtn" class="tool-btn interal-btn interal-btn--primary" data-i18n="sim.calculate">Calcular</button>
+        <button id="resetBtn" class="tool-btn interal-btn interal-btn--secondary icon-btn-square" type="button" aria-label="Сбросить" title="Сбросить">
+            <img src="../elements/Eraser%20Square.svg" alt="" aria-hidden="true" style="width:20px;height:20px;display:block;filter:var(--icon-filter, none);" />
+        </button>
     </div>
 
-    <div id="combinedResult" class="result" style="display:none"></div>
+    <div id="multiResult" class="result" style="display:none"></div>
 
     <button id="combinedExplainBtn" class="tool-btn interal-btn interal-btn--primary" style="display:none" data-i18n="sim.explain">Explanar</button>
 </div>
 
 <div id="explainModal">
-    <div class="modal-inner" style="max-width:600px; width:100%; margin:0; padding:24px; max-height:calc(100vh - 32px); overflow:hidden;">
+    <div class="modal-inner" style="max-width:720px; width:100%; margin:0; padding:24px; max-height:calc(100vh - 32px); overflow:hidden;">
         <div id="explainText" style="overflow:auto; flex:1 1 auto; min-height:0;"></div>
         <button id="closeExplainBtn" class="tool-btn interal-btn interal-btn--secondary" style="margin-top:10px" data-i18n="sim.close">Cluder</button>
     </div>
 </div>
 
 <script src="./aline.js"></script>
+
 <script>
-const wordInteral = document.getElementById("wordInteral");
-const wordOther = document.getElementById("wordOther");
-const otherLanguage = document.getElementById("otherLanguage");
-
-const combinedResult = document.getElementById("combinedResult");
-const combinedExplainBtn = document.getElementById("combinedExplainBtn");
+const sourceWordInput = document.getElementById("sourceWord");
+const sourceLanguageSelect = document.getElementById("sourceLanguage");
+const calcAllBtn = document.getElementById("calcAllBtn");
 const resetBtn = document.getElementById("resetBtn");
-
+const multiResult = document.getElementById("multiResult");
+const combinedExplainBtn = document.getElementById("combinedExplainBtn");
 const explainModal = document.getElementById("explainModal");
 const explainText = document.getElementById("explainText");
 
 let combinedExplanation = "";
+let currentRunId = 0;
+
+const LANGS = [
+  { code: "en", name: "English" },
+  { code: "de", name: "German" },
+  { code: "fr", name: "French" },
+  { code: "es", name: "Spanish" },
+  { code: "it", name: "Italian" },
+  { code: "ru", name: "Russian" },
+  { code: "el", name: "Greek" }
+];
 
 const i18n = {
   ru: {
     "sim.combinedTitle": "Похожесть",
-    "sim.wordInteral": "Слово на Interal",
-    "sim.wordOtherLanguage": "Слово на другом языке",
-    "sim.languageOther": "Язык другого слова",
+    "sim.sourceWord": "Слово",
+    "sim.sourceLanguage": "Язык слова",
     "sim.calculate": "Рассчитать",
     "sim.reset": "Сбросить",
     "sim.explain": "Пояснение",
     "sim.close": "Закрыть",
-    "sim.fillWords": "Пожалуйста, заполните оба слова",
-    "sim.searchingIpa": "Поиск транскрипции IPA в Wiktionary...",
+    "sim.fillWord": "Введите слово",
+    "sim.searching": "Поиск переводов и IPA в Wiktionary...",
     "sim.alineMissing": "Файл aline.js не подключён или не загрузился",
-    "sim.wiktionaryNotFound": "IPA-транскрипция не найдена в Wiktionary",
+    "sim.translationNotFound": "перевод не найден",
+    "sim.ipaNotFound": "IPA не найдено",
     "sim.graphicTitle": "Графическая похожесть",
     "sim.phoneticTitle": "Фонетическая похожесть",
     "sim.generalTitle": "Общая похожесть",
-    "sim.interalIpa": "IPA Interal",
-    "sim.otherIpa": "IPA другого языка",
-    "sim.graphicInteral": "Графическая форма Interal",
-    "sim.graphicOther": "Графическая форма другого слова",
-    "sim.language": "Язык",
+    "sim.langEnglish": "Английский",
+    "sim.langRussian": "Русский",
     "sim.source": "Источник",
+    "sim.lookupRoute": "Маршрут поиска",
     "sim.formula": "Формула",
-    "sim.result": "Результат",
     "sim.tokens": "Токены",
     "sim.alignment": "Выравнивание",
     "sim.unknownSegments": "Неизвестные сегменты",
-    "sim.lookupRoute": "Маршрут поиска",
-    "sim.lookupWarning": "Предупреждение поиска",
-    "sim.none": "нет",
-    "sim.langEnglish": "Английский",
-    "sim.langGerman": "Немецкий",
-    "sim.langFrench": "Французский",
-    "sim.langSpanish": "Испанский",
-    "sim.langItalian": "Итальянский",
-    "sim.langRussian": "Русский",
-    "sim.langGreek": "Греческий"
+    "sim.none": "нет"
   },
   en: {
     "sim.combinedTitle": "Similarity",
-    "sim.wordInteral": "Word in Interal",
-    "sim.wordOtherLanguage": "Word in another language",
-    "sim.languageOther": "Language of the other word",
+    "sim.sourceWord": "Word",
+    "sim.sourceLanguage": "Word language",
     "sim.calculate": "Calculate",
     "sim.reset": "Reset",
     "sim.explain": "Explain",
     "sim.close": "Close",
-    "sim.fillWords": "Please fill in both words",
-    "sim.searchingIpa": "Searching for IPA transcription in Wiktionary...",
+    "sim.fillWord": "Enter a word",
+    "sim.searching": "Searching translations and IPA in Wiktionary...",
     "sim.alineMissing": "aline.js is not connected or has not loaded",
-    "sim.wiktionaryNotFound": "IPA transcription was not found in Wiktionary",
+    "sim.translationNotFound": "translation not found",
+    "sim.ipaNotFound": "IPA not found",
     "sim.graphicTitle": "Graphic similarity",
     "sim.phoneticTitle": "Phonetic similarity",
     "sim.generalTitle": "General similarity",
-    "sim.interalIpa": "Interal IPA",
-    "sim.otherIpa": "Other language IPA",
-    "sim.graphicInteral": "Interal graphic form",
-    "sim.graphicOther": "Other word graphic form",
-    "sim.language": "Language",
+    "sim.langEnglish": "English",
+    "sim.langRussian": "Russian",
     "sim.source": "Source",
+    "sim.lookupRoute": "Lookup route",
     "sim.formula": "Formula",
-    "sim.result": "Result",
     "sim.tokens": "Tokens",
     "sim.alignment": "Alignment",
     "sim.unknownSegments": "Unknown segments",
-    "sim.lookupRoute": "Lookup route",
-    "sim.lookupWarning": "Lookup warning",
-    "sim.none": "none",
-    "sim.langEnglish": "English",
-    "sim.langGerman": "German",
-    "sim.langFrench": "French",
-    "sim.langSpanish": "Spanish",
-    "sim.langItalian": "Italian",
-    "sim.langRussian": "Russian",
-    "sim.langGreek": "Greek"
+    "sim.none": "none"
   }
 };
 
@@ -323,7 +349,9 @@ function applyTranslations() {
     const key = el.getAttribute("data-i18n");
     el.textContent = (i18n[lang] && i18n[lang][key]) || i18n.ru[key] || el.textContent;
   });
+
   document.title = "Similaritá";
+
   if (resetBtn) {
     const resetText = t("sim.reset");
     resetBtn.setAttribute("aria-label", resetText);
@@ -332,17 +360,16 @@ function applyTranslations() {
 }
 
 function resetAll() {
-  wordInteral.value = "";
-  wordOther.value = "";
-  otherLanguage.value = "en";
-  combinedResult.style.display = "none";
-  combinedResult.innerHTML = "";
+  sourceWordInput.value = "";
+  sourceLanguageSelect.value = "en";
+  multiResult.style.display = "none";
+  multiResult.innerHTML = "";
   combinedExplainBtn.style.display = "none";
   combinedExplanation = "";
 }
 
-function normalize(text){
-    return String(text || "").trim().toLowerCase().normalize("NFC");
+function normalize(text) {
+  return String(text || "").trim().toLowerCase().normalize("NFC");
 }
 
 function stripDiacritics(text) {
@@ -353,49 +380,46 @@ function stripDiacritics(text) {
 }
 
 function levenshtein(a, b) {
-    const n = a.length, m = b.length;
-    const dp = Array.from({ length: n + 1 }, () => Array(m + 1).fill(0));
+  const n = a.length;
+  const m = b.length;
+  const dp = Array.from({ length: n + 1 }, () => Array(m + 1).fill(0));
 
-    for (let i = 0; i <= n; i++) dp[i][0] = i;
-    for (let j = 0; j <= m; j++) dp[0][j] = j;
+  for (let i = 0; i <= n; i++) dp[i][0] = i;
+  for (let j = 0; j <= m; j++) dp[0][j] = j;
 
-    for (let i = 1; i <= n; i++) {
-        for (let j = 1; j <= m; j++) {
-            let cost;
-            if (a[i - 1] === b[j - 1]) {
-                cost = 0;
-            } else if (
-                (i > 1 && a[i - 1] === b[j - 2]) ||
-                (j > 1 && a[i - 2] === b[j - 1])
-            ) {
-                cost = 0.5;
-            } else {
-                cost = 1;
-            }
+  for (let i = 1; i <= n; i++) {
+    for (let j = 1; j <= m; j++) {
+      let cost;
 
-            dp[i][j] = Math.min(
-                dp[i - 1][j] + 1,
-                dp[i][j - 1] + 1,
-                dp[i - 1][j - 1] + cost
-            );
-        }
+      if (a[i - 1] === b[j - 1]) {
+        cost = 0;
+      } else if (
+        (i > 1 && a[i - 1] === b[j - 2]) ||
+        (j > 1 && a[i - 2] === b[j - 1])
+      ) {
+        cost = 0.5;
+      } else {
+        cost = 1;
+      }
+
+      dp[i][j] = Math.min(
+        dp[i - 1][j] + 1,
+        dp[i][j - 1] + 1,
+        dp[i - 1][j - 1] + cost
+      );
     }
+  }
 
-    return dp[n][m];
+  return dp[n][m];
 }
 
 function graphicSimilarity(a, b) {
-    const d = levenshtein(a, b);
-    const maxLen = Math.max(a.length, b.length);
-    if (maxLen === 0) return 0;
-    return clamp01(1 - d / maxLen);
+  const d = levenshtein(a, b);
+  const maxLen = Math.max(a.length, b.length);
+  if (maxLen === 0) return 0;
+  return clamp01(1 - d / maxLen);
 }
 
-/*
- * Graphic transliteration for Russian and Greek.
- * This is used only for graphic similarity, not for Wiktionary IPA lookup.
- * IPA lookup should use the original spelling where possible.
- */
 const RU_TO_LATIN = {
   "а": "a",
   "б": "b",
@@ -445,11 +469,6 @@ function transliterateGreek(text) {
   let s = stripDiacritics(String(text || "").toLowerCase())
     .replace(/ς/g, "σ");
 
-  /*
-   * Frequent Modern Greek digraphs.
-   * This is graphic transliteration for comparison with Latin forms,
-   * not strict phonetic transcription.
-   */
   s = s
     .replace(/αι/g, "e")
     .replace(/ει/g, "i")
@@ -512,321 +531,6 @@ function normalizeGraphicInput(word, langCode) {
     .replace(/ł/g, "l");
 }
 
-function hasCyrillic(text) {
-  return /[а-яё]/i.test(text);
-}
-
-function hasGreek(text) {
-  return /[\u0370-\u03ff]/.test(text);
-}
-
-function lookupWarningForInput(word, langCode) {
-  if (langCode === "ru" && !hasCyrillic(word)) {
-    return "Для более точного поиска IPA русского слова в Wiktionary лучше вводить слово кириллицей.";
-  }
-
-  if (langCode === "el" && !hasGreek(word)) {
-    return "Для более точного поиска IPA греческого слова в Wiktionary лучше вводить слово греческим письмом.";
-  }
-
-  return "";
-}
-
-const INTERAL_U_EXCEPTIONS = new Set([
-  "authentic", "pausa", "haus", "audir", "aura", "fauna",
-  "sauna", "caus", "applaudir", "laudar"
-]);
-
-const OPTIONAL_SILENT_INITIAL_H = new Set([
-  "historia", "halleluya", "haver", "havet", "hallo", "halló",
-  "hazard", "hysteria", "hystéria", "hotel", "honest", "homonym"
-]);
-
-const X_KZ_WORDS = new Set([
-  "examen", "exámen", "exemple", "exercise", "exister"
-]);
-
-const INTERAL_VOWELS = new Set(["a", "e", "i", "o", "u", "y"]);
-
-function stripInteralStressMarks(word) {
-  return String(word || "")
-    .normalize("NFC")
-    .replace(/[áà]/g, "a")
-    .replace(/[éè]/g, "e")
-    .replace(/[íì]/g, "i")
-    .replace(/[óò]/g, "o")
-    .replace(/[úù]/g, "u");
-}
-
-function findExplicitInteralStressIndex(word) {
-  const normalized = String(word || "").normalize("NFC");
-  const stressChars = new Set(["á", "à", "é", "è", "í", "ì", "ó", "ò", "ú", "ù"]);
-
-  for (let i = 0; i < normalized.length; i++) {
-    if (stressChars.has(normalized[i])) return i;
-  }
-
-  return -1;
-}
-
-function isInteralVowel(ch) {
-  return INTERAL_VOWELS.has(ch);
-}
-
-function isInteralConsonant(ch) {
-  return /^[a-z]$/.test(ch) && !isInteralVowel(ch);
-}
-
-function lastVowelBefore(word, index) {
-  for (let i = Math.min(index - 1, word.length - 1); i >= 0; i--) {
-    if (isInteralVowel(word[i])) return i;
-  }
-  return -1;
-}
-
-function lastVowelIndex(word) {
-  for (let i = word.length - 1; i >= 0; i--) {
-    if (isInteralVowel(word[i])) return i;
-  }
-  return -1;
-}
-
-function calculateInteralStressIndex(input) {
-  const raw = normalize(input);
-  const explicit = findExplicitInteralStressIndex(raw);
-  const word = stripInteralStressMarks(raw);
-
-  if (explicit >= 0) return explicit;
-  if (!word) return -1;
-
-  if (word.endsWith("abil")) return word.lastIndexOf("abil");
-  if (word.endsWith("ibil")) return word.lastIndexOf("ibil");
-
-  if (word.endsWith("ita") || word.endsWith("ite")) return lastVowelIndex(word);
-  if (word.endsWith("yer")) return word.length - 2;
-  if (word.endsWith("eria")) return word.length - 2;
-
-  const finalStressSuffixes = ["ic", "er", "or", "ing", "im", "um", "us", "is", "ul", "ix"];
-  for (const suffix of finalStressSuffixes) {
-    if (word.endsWith(suffix) && word.length > suffix.length + 1) {
-      const index = lastVowelBefore(word, word.length - suffix.length);
-      if (index >= 0) return index;
-    }
-  }
-
-  const lastConsonant = [...word].map((ch, i) => isInteralConsonant(ch) ? i : -1).filter(i => i >= 0).pop();
-
-  if (
-    Number.isInteger(lastConsonant) &&
-    lastConsonant > 1 &&
-    word[lastConsonant - 1] === "u" &&
-    isInteralVowel(word[lastConsonant - 2])
-  ) {
-    return lastConsonant - 2;
-  }
-
-  const consonantIndexes = [...word].map((ch, i) => isInteralConsonant(ch) ? i : -1).filter(i => i >= 0);
-  if (consonantIndexes.length === 1) {
-    const after = word.slice(consonantIndexes[0] + 1).split("").filter(isInteralVowel);
-    if (after.length >= 2) {
-      const vowelIndexes = [...word].map((ch, i) => isInteralVowel(ch) ? i : -1).filter(i => i >= 0);
-      return vowelIndexes[vowelIndexes.length - 2] ?? -1;
-    }
-  }
-
-  let stressBase = word;
-
-  stressBase = stressBase
-    .replace(/(es|im|en|em)$/u, "")
-    .replace(/s$/u, "");
-
-  const lastCons = [...stressBase].map((ch, i) => isInteralConsonant(ch) ? i : -1).filter(i => i >= 0).pop();
-
-  if (Number.isInteger(lastCons)) {
-    const index = lastVowelBefore(stressBase, lastCons);
-    if (index >= 0) return index;
-  }
-
-  return lastVowelIndex(word);
-}
-
-function interalToIPA(input, options = {}) {
-  const opts = {
-    softC: "t͡s",
-    hVariant: "x",
-    jVariant: "ʒ",
-    silentInitialH: true,
-    silentUInQue: true,
-    includeStress: false,
-    ...options
-  };
-
-  const original = normalize(input);
-  const word = stripInteralStressMarks(original);
-  const stressIndex = opts.includeStress ? calculateInteralStressIndex(original) : -1;
-
-  if (!word) return "";
-
-  let ipa = "";
-  let i = 0;
-
-  function addIPA(sourceIndex, value) {
-    if (sourceIndex === stressIndex && value && !ipa.endsWith("ˈ")) {
-      ipa += "ˈ";
-    }
-    ipa += value;
-  }
-
-  while (i < word.length) {
-    const rest = word.slice(i);
-    const ch = word[i];
-    const prev = word[i - 1] || "";
-    const next = word[i + 1] || "";
-    const next2 = word[i + 2] || "";
-
-    if (
-      i === 0 &&
-      ch === "h" &&
-      opts.silentInitialH &&
-      isInteralVowel(next) &&
-      OPTIONAL_SILENT_INITIAL_H.has(word)
-    ) {
-      i += 1;
-      continue;
-    }
-
-    if (
-      opts.silentUInQue &&
-      ch === "q" &&
-      (word === "que" || word === "quel" || word === "quelc")
-    ) {
-      addIPA(i, "k");
-      i += 2;
-      continue;
-    }
-
-    if (ch === "x" && X_KZ_WORDS.has(word)) {
-      addIPA(i, "kz");
-      i += 1;
-      continue;
-    }
-
-    if (rest.startsWith("ch")) {
-      addIPA(i, "t͡ɕ");
-      i += 2;
-      continue;
-    }
-
-    if (rest.startsWith("sh")) {
-      addIPA(i, "ʂ");
-      i += 2;
-      continue;
-    }
-
-    if (rest.startsWith("ph")) {
-      addIPA(i, "f");
-      i += 2;
-      continue;
-    }
-
-    if (rest.startsWith("rh")) {
-      addIPA(i, "r");
-      i += 2;
-      continue;
-    }
-
-    if (rest.startsWith("th")) {
-      addIPA(i, "t");
-      i += 2;
-      continue;
-    }
-
-    if (rest.startsWith("zz")) {
-      addIPA(i, "t͡s");
-      i += 2;
-      continue;
-    }
-
-    if (rest.startsWith("qu")) {
-      addIPA(i, "kw");
-      i += 2;
-      continue;
-    }
-
-    if (rest.startsWith("gu") && isInteralVowel(next2)) {
-      addIPA(i, "gw");
-      i += 2;
-      continue;
-    }
-
-    if (ch === "t" && next === "i" && ["a", "e", "o", "u"].includes(next2)) {
-      addIPA(i, "t͡s");
-      i += 1;
-      continue;
-    }
-
-    if (ch === "c") {
-      addIPA(i, ["i", "e", "y"].includes(next) ? opts.softC : "k");
-      i += 1;
-      continue;
-    }
-
-    if (ch === "s" && isInteralVowel(prev) && isInteralVowel(next)) {
-      addIPA(i, "z");
-      i += 1;
-      continue;
-    }
-
-    if (
-      ch === "u" &&
-      (prev === "a" || prev === "e") &&
-      !INTERAL_U_EXCEPTIONS.has(word)
-    ) {
-      addIPA(i, "w");
-      i += 1;
-      continue;
-    }
-
-    if (ch === "y") {
-      addIPA(i, (isInteralVowel(prev) || isInteralVowel(next)) ? "j" : "i");
-      i += 1;
-      continue;
-    }
-
-    switch (ch) {
-      case "a": addIPA(i, "a"); break;
-      case "b": addIPA(i, "b"); break;
-      case "d": addIPA(i, "d"); break;
-      case "e": addIPA(i, "e"); break;
-      case "f": addIPA(i, "f"); break;
-      case "g": addIPA(i, "g"); break;
-      case "h": addIPA(i, opts.hVariant); break;
-      case "i": addIPA(i, "i"); break;
-      case "j": addIPA(i, opts.jVariant); break;
-      case "k": addIPA(i, "k"); break;
-      case "l": addIPA(i, "l"); break;
-      case "m": addIPA(i, "m"); break;
-      case "n": addIPA(i, "n"); break;
-      case "o": addIPA(i, "o"); break;
-      case "p": addIPA(i, "p"); break;
-      case "q": addIPA(i, "k"); break;
-      case "r": addIPA(i, "r"); break;
-      case "s": addIPA(i, "s"); break;
-      case "t": addIPA(i, "t"); break;
-      case "u": addIPA(i, "u"); break;
-      case "v": addIPA(i, "v"); break;
-      case "w": addIPA(i, "w"); break;
-      case "x": addIPA(i, "ks"); break;
-      case "z": addIPA(i, "z"); break;
-      default: addIPA(i, ch); break;
-    }
-
-    i += 1;
-  }
-
-  return ipa;
-}
-
 const WIKTIONARY_APIS = {
   en: "https://en.wiktionary.org/w/api.php",
   de: "https://de.wiktionary.org/w/api.php",
@@ -839,15 +543,15 @@ const WIKTIONARY_APIS = {
 
 const WIKTIONARY_LANG_LABELS = {
   en: ["English"],
-  de: ["German"],
-  fr: ["French"],
-  es: ["Spanish"],
-  it: ["Italian"],
-  ru: ["Russian"],
-  el: ["Greek", "Modern Greek"]
+  de: ["German", "Deutsch"],
+  fr: ["French", "Français"],
+  es: ["Spanish", "Español"],
+  it: ["Italian", "Italiano"],
+  ru: ["Russian", "Русский"],
+  el: ["Greek", "Modern Greek", "Ελληνικά"]
 };
 
-const WIKTIONARY_LANG_NAMES = {
+const LANG_NAMES = {
   en: "English",
   de: "German",
   fr: "French",
@@ -858,124 +562,14 @@ const WIKTIONARY_LANG_NAMES = {
 };
 
 const ipaCache = new Map();
-
-function wiktionaryCandidates(word, langCode) {
-  const raw = String(word || "").trim();
-  const lower = raw.toLowerCase();
-  const noDiacritics = stripDiacritics(raw);
-  const candidates = [raw, lower, noDiacritics, stripDiacritics(lower)];
-
-  if (langCode === "de" && lower) {
-    candidates.push(lower.charAt(0).toUpperCase() + lower.slice(1));
-    candidates.push(noDiacritics.charAt(0).toUpperCase() + noDiacritics.slice(1));
-  }
-
-  if (langCode === "ru") {
-    const ruMap = {
-      "e": ["е", "э"],
-      "je": ["е"],
-      "jo": ["ё"],
-      "ju": ["ю"],
-      "ja": ["я"],
-      "zh": ["ж"],
-      "shch": ["щ"],
-      "sh": ["ш"],
-      "ch": ["ч"],
-      "c": ["ц"],
-      "h": ["х"],
-      "j": ["й"]
-    };
-    candidates.push(...reverseApproximateTransliteration(raw, ruMap));
-  }
-
-  if (langCode === "el") {
-    const elMap = {
-      "th": ["θ"],
-      "ch": ["χ"],
-      "ps": ["ψ"],
-      "av": ["αυ"],
-      "ev": ["ευ"],
-      "iv": ["ηυ"],
-      "ou": ["ου"],
-      "u": ["ου"],
-      "i": ["ι", "η", "υ", "ει", "οι"],
-      "e": ["ε", "αι"],
-      "o": ["ο", "ω"],
-      "x": ["ξ"],
-      "v": ["β"],
-      "g": ["γ"],
-      "d": ["δ", "ντ"],
-      "b": ["μπ"]
-    };
-    candidates.push(...reverseApproximateTransliteration(raw, elMap));
-  }
-
-  return [...new Set(candidates.filter(Boolean))];
-}
-
-/*
- * Very small fallback for users who type Russian/Greek words in Latin letters.
- * It is not meant to be linguistically complete; it only increases the chance
- * of finding a Wiktionary page before the code reports failure.
- */
-function reverseApproximateTransliteration(text, multiMap) {
-  const base = String(text || "").trim().toLowerCase();
-  if (!base || /[а-яё\u0370-\u03ff]/i.test(base)) return [];
-
-  const singleRu = {
-    a: "а", b: "б", v: "в", g: "г", d: "д", z: "з", i: "и", k: "к",
-    l: "л", m: "м", n: "н", o: "о", p: "п", r: "р", s: "с", t: "т",
-    u: "у", f: "ф", y: "ы"
-  };
-
-  const singleEl = {
-    a: "α", v: "β", g: "γ", d: "δ", e: "ε", z: "ζ", i: "ι", k: "κ",
-    l: "λ", m: "μ", n: "ν", o: "ο", p: "π", r: "ρ", s: "σ", t: "τ",
-    y: "υ", f: "φ"
-  };
-
-  const singleMap = Object.values(multiMap).some((arr) => arr.some((x) => /[а-яё]/i.test(x))) ? singleRu : singleEl;
-  const keys = Object.keys(multiMap).sort((a, b) => b.length - a.length);
-  let results = [""];
-
-  for (let i = 0; i < base.length;) {
-    let matched = "";
-    let values = [];
-
-    for (const key of keys) {
-      if (base.startsWith(key, i)) {
-        matched = key;
-        values = multiMap[key];
-        break;
-      }
-    }
-
-    if (matched) {
-      results = expandCandidateList(results, values, 24);
-      i += matched.length;
-      continue;
-    }
-
-    const ch = base[i];
-    results = expandCandidateList(results, [singleMap[ch] || ch], 24);
-    i += 1;
-  }
-
-  return results;
-}
-
-function expandCandidateList(prefixes, additions, limit) {
-  const out = [];
-  for (const prefix of prefixes) {
-    for (const addition of additions) {
-      out.push(prefix + addition);
-      if (out.length >= limit) return out;
-    }
-  }
-  return out;
-}
+const htmlCache = new Map();
+const searchCache = new Map();
+const translationCache = new Map();
 
 async function fetchWiktionaryHTMLFrom(apiUrl, title) {
+  const key = `${apiUrl}:${title}`;
+  if (htmlCache.has(key)) return htmlCache.get(key);
+
   const url =
     apiUrl + "?" +
     new URLSearchParams({
@@ -993,10 +587,16 @@ async function fetchWiktionaryHTMLFrom(apiUrl, title) {
   const data = await response.json();
   if (data.error) return "";
 
-  return data.parse && data.parse.text ? data.parse.text["*"] : "";
+  const html = data.parse && data.parse.text ? data.parse.text["*"] : "";
+  htmlCache.set(key, html);
+
+  return html;
 }
 
 async function searchWiktionaryTitles(apiUrl, word) {
+  const key = `open:${apiUrl}:${word}`;
+  if (searchCache.has(key)) return searchCache.get(key);
+
   const url =
     apiUrl + "?" +
     new URLSearchParams({
@@ -1012,10 +612,16 @@ async function searchWiktionaryTitles(apiUrl, word) {
   if (!response.ok) return [];
 
   const data = await response.json();
-  return Array.isArray(data[1]) ? data[1] : [];
+  const titles = Array.isArray(data[1]) ? data[1] : [];
+  searchCache.set(key, titles);
+
+  return titles;
 }
 
 async function fullTextWiktionarySearch(apiUrl, word) {
+  const key = `full:${apiUrl}:${word}`;
+  if (searchCache.has(key)) return searchCache.get(key);
+
   const url =
     apiUrl + "?" +
     new URLSearchParams({
@@ -1033,7 +639,169 @@ async function fullTextWiktionarySearch(apiUrl, word) {
 
   const data = await response.json();
   const items = data.query && Array.isArray(data.query.search) ? data.query.search : [];
-  return items.map((item) => item.title).filter(Boolean);
+  const titles = items.map((item) => item.title).filter(Boolean);
+
+  searchCache.set(key, titles);
+
+  return titles;
+}
+
+function wiktionaryCandidates(word, langCode) {
+  const raw = String(word || "").trim();
+  const lower = raw.toLowerCase();
+  const noDiacritics = stripDiacritics(raw);
+  const candidates = [raw, lower, noDiacritics, stripDiacritics(lower)];
+
+  if (langCode === "de" && lower) {
+    candidates.push(lower.charAt(0).toUpperCase() + lower.slice(1));
+    candidates.push(noDiacritics.charAt(0).toUpperCase() + noDiacritics.slice(1));
+  }
+
+  if (langCode === "ru") {
+    candidates.push(...reverseApproximateRussian(raw));
+  }
+
+  if (langCode === "el") {
+    candidates.push(...reverseApproximateGreek(raw));
+  }
+
+  return [...new Set(candidates.filter(Boolean))];
+}
+
+function reverseApproximateRussian(text) {
+  const base = String(text || "").trim().toLowerCase();
+  if (!base || /[а-яё]/i.test(base)) return [];
+
+  const multi = {
+    "shch": ["щ"],
+    "zh": ["ж"],
+    "ch": ["ч"],
+    "sh": ["ш"],
+    "je": ["е"],
+    "jo": ["ё"],
+    "ju": ["ю"],
+    "ja": ["я"],
+    "c": ["ц"],
+    "h": ["х"],
+    "j": ["й"]
+  };
+
+  const single = {
+    a: "а",
+    b: "б",
+    v: "в",
+    g: "г",
+    d: "д",
+    e: "э",
+    z: "з",
+    i: "и",
+    k: "к",
+    l: "л",
+    m: "м",
+    n: "н",
+    o: "о",
+    p: "п",
+    r: "р",
+    s: "с",
+    t: "т",
+    u: "у",
+    f: "ф",
+    y: "ы",
+    "'": "ь"
+  };
+
+  return reverseApproximateTransliteration(base, multi, single, 32);
+}
+
+function reverseApproximateGreek(text) {
+  const base = String(text || "").trim().toLowerCase();
+  if (!base || /[\u0370-\u03ff]/.test(base)) return [];
+
+  const multi = {
+    "th": ["θ"],
+    "ch": ["χ"],
+    "ps": ["ψ"],
+    "av": ["αυ"],
+    "ev": ["ευ"],
+    "iv": ["ηυ"],
+    "ou": ["ου"],
+    "u": ["ου"],
+    "i": ["ι", "η", "υ", "ει", "οι"],
+    "e": ["ε", "αι"],
+    "o": ["ο", "ω"],
+    "x": ["ξ"],
+    "b": ["μπ"],
+    "d": ["δ", "ντ"],
+    "g": ["γ", "γκ"]
+  };
+
+  const single = {
+    a: "α",
+    v: "β",
+    z: "ζ",
+    k: "κ",
+    l: "λ",
+    m: "μ",
+    n: "ν",
+    p: "π",
+    r: "ρ",
+    s: "σ",
+    t: "τ",
+    f: "φ"
+  };
+
+  return reverseApproximateTransliteration(base, multi, single, 32);
+}
+
+function reverseApproximateTransliteration(base, multi, single, limit) {
+  const keys = Object.keys(multi).sort((a, b) => b.length - a.length);
+  let results = [""];
+
+  for (let i = 0; i < base.length;) {
+    let matched = "";
+    let values = [];
+
+    for (const key of keys) {
+      if (base.startsWith(key, i)) {
+        matched = key;
+        values = multi[key];
+        break;
+      }
+    }
+
+    if (matched) {
+      results = expandCandidateList(results, values, limit);
+      i += matched.length;
+      continue;
+    }
+
+    const ch = base[i];
+    results = expandCandidateList(results, [single[ch] || ch], limit);
+    i += 1;
+  }
+
+  return results;
+}
+
+function expandCandidateList(prefixes, additions, limit) {
+  const out = [];
+
+  for (const prefix of prefixes) {
+    for (const addition of additions) {
+      out.push(prefix + addition);
+      if (out.length >= limit) return out;
+    }
+  }
+
+  return out;
+}
+
+async function gatherWiktionaryCandidates(apiUrl, word, langCode) {
+  const exact = wiktionaryCandidates(word, langCode);
+  const open = await searchWiktionaryTitles(apiUrl, word);
+  const full = await fullTextWiktionarySearch(apiUrl, word);
+
+  return [...new Set([...exact, ...open, ...full].filter(Boolean))].slice(0, 40);
 }
 
 function normalizeHeadingText(text) {
@@ -1096,9 +864,7 @@ function extractIPAFromLocalWiktionaryHTML(html, langCode) {
 function extractFirstIPAFromElement(root) {
   if (!root) return "";
 
-  const ipaElements = [
-    ...root.querySelectorAll(".IPA, [class~='IPA'], [class*='IPA']")
-  ];
+  const ipaElements = [...root.querySelectorAll(".IPA, [class~='IPA'], [class*='IPA']")];
 
   for (const element of ipaElements) {
     const ipa = cleanIPA(element.textContent);
@@ -1131,8 +897,8 @@ function extractFirstIPAFromElement(root) {
 
 function normalizeWiktionaryText(text) {
   return String(text || "")
-    .replace(/\s+/g, " ")
     .replace(/\u00a0/g, " ")
+    .replace(/\s+/g, " ")
     .trim();
 }
 
@@ -1160,14 +926,6 @@ function cleanIPA(text) {
     .trim();
 
   return s;
-}
-
-async function gatherWiktionaryCandidates(apiUrl, word, langCode) {
-  const exact = wiktionaryCandidates(word, langCode);
-  const open = await searchWiktionaryTitles(apiUrl, word);
-  const full = await fullTextWiktionarySearch(apiUrl, word);
-
-  return [...new Set([...exact, ...open, ...full].filter(Boolean))].slice(0, 36);
 }
 
 async function getOnlineIPA(word, langCode) {
@@ -1229,6 +987,283 @@ async function getOnlineIPA(word, langCode) {
   return { ipa: "", title: "", source: "", route };
 }
 
+const TRANSLATION_LANG_NAMES = {
+  de: ["German", "Deutsch"],
+  fr: ["French", "Français"],
+  es: ["Spanish", "Español"],
+  it: ["Italian", "Italiano"],
+  ru: ["Russian", "Русский"],
+  el: ["Greek", "Modern Greek", "Ελληνικά"]
+};
+
+async function getEnglishLemma(sourceWord, sourceLang) {
+  const raw = String(sourceWord || "").trim();
+
+  if (sourceLang === "en") {
+    return {
+      word: raw,
+      source: "input",
+      route: ["input:English"]
+    };
+  }
+
+  const cacheKey = `english:${sourceLang}:${raw}`;
+  if (translationCache.has(cacheKey)) return translationCache.get(cacheKey);
+
+  const enApi = WIKTIONARY_APIS.en;
+  const localApi = WIKTIONARY_APIS[sourceLang];
+  const route = [];
+
+  const enCandidates = await gatherWiktionaryCandidates(enApi, raw, sourceLang);
+
+  for (const title of enCandidates) {
+    route.push(`en:${title}`);
+    const html = await fetchWiktionaryHTMLFrom(enApi, title);
+    if (!html) continue;
+
+    const english = extractEnglishGlossFromEnglishWiktionary(html, sourceLang);
+    if (english) {
+      const result = {
+        word: english,
+        source: `en.wiktionary.org/wiki/${encodeURIComponent(title)}`,
+        route
+      };
+
+      translationCache.set(cacheKey, result);
+      return result;
+    }
+  }
+
+  if (localApi && localApi !== enApi) {
+    const localCandidates = await gatherWiktionaryCandidates(localApi, raw, sourceLang);
+
+    for (const title of localCandidates) {
+      route.push(`${sourceLang}:${title}`);
+      const html = await fetchWiktionaryHTMLFrom(localApi, title);
+      if (!html) continue;
+
+      const english = extractEnglishTranslationFromLocalWiktionary(html);
+      if (english) {
+        const result = {
+          word: english,
+          source: `${sourceLang}.wiktionary.org/wiki/${encodeURIComponent(title)}`,
+          route
+        };
+
+        translationCache.set(cacheKey, result);
+        return result;
+      }
+    }
+  }
+
+  const result = { word: "", source: "", route };
+  translationCache.set(cacheKey, result);
+
+  return result;
+}
+
+function extractEnglishGlossFromEnglishWiktionary(html, sourceLang) {
+  const doc = new DOMParser().parseFromString(html, "text/html");
+  const section = getLanguageSection(doc, sourceLang);
+  if (!section) return "";
+
+  const definitionItems = [...section.querySelectorAll("ol > li")];
+
+  for (const li of definitionItems) {
+    const anchors = [...li.querySelectorAll("a")];
+
+    for (const a of anchors) {
+      const term = cleanTranslationTerm(a.textContent);
+      if (isGoodEnglishLemma(term)) return term;
+    }
+
+    const fromText = extractEnglishLemmaFromText(li.textContent);
+    if (fromText) return fromText;
+  }
+
+  return "";
+}
+
+function extractEnglishTranslationFromLocalWiktionary(html) {
+  const doc = new DOMParser().parseFromString(html, "text/html");
+  const text = normalizeWiktionaryText(doc.body ? doc.body.textContent : doc.textContent);
+
+  const patterns = [
+    /English\s*[:—-]\s*([A-Za-z][A-Za-z' -]{1,40})/i,
+    /Английский\s*[:—-]\s*([A-Za-z][A-Za-z' -]{1,40})/i,
+    /англ\.\s*([A-Za-z][A-Za-z' -]{1,40})/i
+  ];
+
+  for (const pattern of patterns) {
+    const match = text.match(pattern);
+    if (match) {
+      const term = cleanTranslationTerm(match[1]);
+      if (isGoodEnglishLemma(term)) return term;
+    }
+  }
+
+  return "";
+}
+
+function extractEnglishLemmaFromText(text) {
+  const cleaned = normalizeWiktionaryText(text)
+    .replace(/\([^)]*\)/g, "")
+    .replace(/\[[^\]]*\]/g, "");
+
+  const firstPart = cleaned
+    .split(/[.;:]/)[0]
+    .replace(/^(a|an|the|to)\s+/i, "")
+    .trim();
+
+  const candidates = firstPart
+    .split(/[,/]| or | and /i)
+    .map(cleanTranslationTerm)
+    .filter(isGoodEnglishLemma);
+
+  return candidates[0] || "";
+}
+
+function isGoodEnglishLemma(term) {
+  if (!term) return false;
+  if (!/^[A-Za-z][A-Za-z' -]{0,40}$/.test(term)) return false;
+
+  const banned = new Set([
+    "IPA",
+    "audio",
+    "file",
+    "appendix",
+    "category",
+    "wikipedia",
+    "wiktionary",
+    "edit",
+    "citation"
+  ]);
+
+  return !banned.has(term.toLowerCase());
+}
+
+async function getTranslationsFromEnglishLemma(englishWord) {
+  const key = `translations:en:${englishWord}`;
+  if (translationCache.has(key)) return translationCache.get(key);
+
+  const enApi = WIKTIONARY_APIS.en;
+  const route = [];
+  const result = {};
+
+  const candidates = await gatherWiktionaryCandidates(enApi, englishWord, "en");
+
+  for (const title of candidates) {
+    route.push(`en:${title}`);
+    const html = await fetchWiktionaryHTMLFrom(enApi, title);
+    if (!html) continue;
+
+    const extracted = extractTranslationsFromEnglishWiktionary(html);
+
+    if (Object.keys(extracted).length > 0) {
+      Object.assign(result, extracted);
+      result.en = englishWord;
+
+      const packed = { translations: result, source: `en.wiktionary.org/wiki/${encodeURIComponent(title)}`, route };
+      translationCache.set(key, packed);
+
+      return packed;
+    }
+  }
+
+  result.en = englishWord;
+
+  const packed = { translations: result, source: "", route };
+  translationCache.set(key, packed);
+
+  return packed;
+}
+
+function extractTranslationsFromEnglishWiktionary(html) {
+  const doc = new DOMParser().parseFromString(html, "text/html");
+  const section = getLanguageSection(doc, "en");
+  if (!section) return {};
+
+  const result = {};
+
+  for (const lang of LANGS) {
+    if (lang.code === "en") continue;
+
+    const term = extractTranslationByLangAttribute(section, lang.code) ||
+                 extractTranslationByLanguageLine(section, lang.code);
+
+    if (term) result[lang.code] = term;
+  }
+
+  return result;
+}
+
+function extractTranslationByLangAttribute(section, langCode) {
+  const roots = [
+    ...section.querySelectorAll(".translations, .NavContent, table, ul, li")
+  ];
+
+  const searchRoots = roots.length ? roots : [section];
+
+  for (const root of searchRoots) {
+    const nodes = [
+      ...root.querySelectorAll(`[lang|="${langCode}"], [xml\\:lang|="${langCode}"]`)
+    ];
+
+    for (const node of nodes) {
+      const term = cleanTranslationTerm(node.textContent);
+      if (isValidWordForLanguage(term, langCode)) return term;
+    }
+  }
+
+  return "";
+}
+
+function extractTranslationByLanguageLine(section, langCode) {
+  const names = TRANSLATION_LANG_NAMES[langCode] || [];
+  const text = normalizeWiktionaryText(section.textContent || "");
+
+  for (const name of names) {
+    const pattern = new RegExp(`${escapeRegExp(name)}\\\\s*[:：]\\\\s*([^;\\\\n•]+)`, "i");
+    const match = text.match(pattern);
+
+    if (match) {
+      const parts = match[1]
+        .split(/[,;]/)
+        .map(cleanTranslationTerm)
+        .filter((term) => isValidWordForLanguage(term, langCode));
+
+      if (parts[0]) return parts[0];
+    }
+  }
+
+  return "";
+}
+
+function cleanTranslationTerm(text) {
+  return String(text || "")
+    .normalize("NFC")
+    .replace(/\[[^\]]*\]/g, "")
+    .replace(/\([^)]*\)/g, "")
+    .replace(/[;:]/g, " ")
+    .replace(/[“”"«»]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function isValidWordForLanguage(term, langCode) {
+  if (!term) return false;
+
+  const s = term.trim();
+
+  if (s.length > 60) return false;
+  if (/^(translation|translations|edit|show|hide)$/i.test(s)) return false;
+
+  if (langCode === "ru") return /[а-яё]/i.test(s);
+  if (langCode === "el") return /[\u0370-\u03ff]/.test(s);
+
+  return /[A-Za-zÀ-ž]/.test(s);
+}
+
 const ALINE_OPTIONS = {
   mergePlainAffricates: true,
   mergeDiphthongs: false,
@@ -1246,136 +1281,195 @@ function calcAlineSimilarity(ipaA, ipaB) {
   return ALINE.explain(ipaA, ipaB, ALINE_OPTIONS);
 }
 
-function formatScore(value) {
-  return clamp01(value).toFixed(3);
-}
+async function calcAllLanguages() {
+  const runId = ++currentRunId;
+  const rawWord = String(sourceWordInput.value || "").trim();
+  const sourceLang = sourceLanguageSelect.value;
 
-function renderResult(rows, warning = "") {
-  combinedResult.innerHTML = rows.map(([label, value]) => `
-    <div class="result-row">
-      <span>${escapeHTML(label)}</span>
-      <span>${escapeHTML(value)}</span>
-    </div>
-  `).join("") + (warning ? `<div class="result-warning">${escapeHTML(warning)}</div>` : "");
-}
-
-function buildAlignmentText(alignment) {
-  if (!alignment || !alignment.length) return t("sim.none");
-  return alignment.map((pair) => `${pair[0]} ↔ ${pair[1]}`).join("\n");
-}
-
-async function calcCombined() {
-  const interalWord = normalize(wordInteral.value);
-  const otherWordRaw = String(wordOther.value || "").trim();
-  const otherWord = normalize(otherWordRaw);
-  const langCode = otherLanguage.value;
-  const langName = WIKTIONARY_LANG_NAMES[langCode] || langCode;
-  const lookupWarning = lookupWarningForInput(otherWordRaw, langCode);
-
-  combinedResult.style.display = "block";
+  multiResult.style.display = "block";
   combinedExplainBtn.style.display = "none";
+  combinedExplanation = "";
 
-  if (!interalWord || !otherWord) {
-    combinedResult.textContent = t("sim.fillWords");
-    combinedExplanation = "";
+  if (!rawWord) {
+    multiResult.textContent = t("sim.fillWord");
     return;
   }
 
-  combinedResult.textContent = t("sim.searchingIpa");
+  multiResult.textContent = t("sim.searching");
 
-  const graphicInteral = normalizeGraphicInput(interalWord, "interal");
-  const graphicOther = normalizeGraphicInput(otherWord, langCode);
-  const graphic = graphicSimilarity(graphicInteral, graphicOther);
+  const sourceIPAResult = await getOnlineIPA(rawWord, sourceLang);
+  const englishLemma = await getEnglishLemma(rawWord, sourceLang);
 
-  const interalIPA = interalToIPA(interalWord, { includeStress: false });
-  const onlineIPA = await getOnlineIPA(otherWordRaw, langCode);
+  if (runId !== currentRunId) return;
 
-  if (!onlineIPA.ipa) {
-    renderResult([
-      [t("sim.graphicTitle"), formatScore(graphic)],
-      [t("sim.graphicInteral"), graphicInteral],
-      [t("sim.graphicOther"), graphicOther],
-      [t("sim.interalIpa"), `/${interalIPA}/`],
-      [t("sim.otherIpa"), t("sim.wiktionaryNotFound")],
-      [t("sim.language"), langName]
-    ], lookupWarning || t("sim.wiktionaryNotFound"));
+  if (!englishLemma.word) {
+    renderMultiResult([{
+      langCode: sourceLang,
+      langName: LANG_NAMES[sourceLang],
+      word: rawWord,
+      ipa: sourceIPAResult.ipa || "",
+      graphic: null,
+      phonetic: null,
+      general: null,
+      status: "English lemma not found",
+      source: sourceIPAResult.source || "",
+      route: sourceIPAResult.route || []
+    }]);
 
     combinedExplanation =
-`${t("sim.combinedTitle")}
+`Similaritá
 
-${t("sim.graphicTitle")}
-${t("sim.formula")}: 1 − (Levenshtein distance / max length)
-${t("sim.graphicInteral")}: ${graphicInteral}
-${t("sim.graphicOther")}: ${graphicOther}
-${t("sim.result")}: ${formatScore(graphic)}
+Source word: ${rawWord}
+Source language: ${LANG_NAMES[sourceLang]}
+IPA: ${sourceIPAResult.ipa || t("sim.ipaNotFound")}
 
-${t("sim.interalIpa")}: /${interalIPA}/
-${t("sim.otherIpa")}: ${t("sim.wiktionaryNotFound")}
-${t("sim.language")}: ${langName}
-${t("sim.lookupRoute")}: ${onlineIPA.route && onlineIPA.route.length ? onlineIPA.route.join(" → ") : t("sim.none")}
-${lookupWarning ? `${t("sim.lookupWarning")}: ${lookupWarning}` : ""}
+English equivalent was not found, therefore translations to the other six languages could not be extracted.`;
 
-${t("sim.generalTitle")} не рассчитана, потому что Wiktionary не вернул IPA для второго слова.`;
     combinedExplainBtn.style.display = "block";
     return;
   }
 
-  const aline = calcAlineSimilarity(interalIPA, onlineIPA.ipa);
-  const phonetic = aline.normalized;
-  const general = (graphic + phonetic) / 2;
+  const translationPack = await getTranslationsFromEnglishLemma(englishLemma.word);
 
-  renderResult([
-    [t("sim.graphicTitle"), formatScore(graphic)],
-    [t("sim.interalIpa"), `/${interalIPA}/`],
-    [t("sim.otherIpa"), `/${onlineIPA.ipa}/`],
-    [t("sim.phoneticTitle"), formatScore(phonetic)],
-    [t("sim.generalTitle"), formatScore(general)]
-  ], lookupWarning);
+  if (runId !== currentRunId) return;
 
-  const alignment = aline.alignments && aline.alignments[0] ? aline.alignments[0] : [];
+  const sourceGraphic = normalizeGraphicInput(rawWord, sourceLang);
+  const sourceIPA = sourceIPAResult.ipa || "";
+  const rows = [];
 
-  combinedExplanation =
-`${t("sim.combinedTitle")}
+  for (const lang of LANGS) {
+    let targetWord = "";
 
-${t("sim.graphicTitle")}
-${t("sim.formula")}: 1 − (Levenshtein distance / max length)
-Interal: ${interalWord}
-${langName}: ${otherWordRaw}
-${t("sim.graphicInteral")}: ${graphicInteral}
-${t("sim.graphicOther")}: ${graphicOther}
-${t("sim.result")}: ${formatScore(graphic)}
+    if (lang.code === sourceLang) {
+      targetWord = rawWord;
+    } else if (lang.code === "en") {
+      targetWord = englishLemma.word;
+    } else {
+      targetWord = translationPack.translations[lang.code] || "";
+    }
 
-${t("sim.interalIpa")}
-Interal → IPA по правилам чтения Interal (§42–58): /${interalIPA}/
+    if (!targetWord) {
+      rows.push({
+        langCode: lang.code,
+        langName: lang.name,
+        word: t("sim.translationNotFound"),
+        ipa: "",
+        graphic: null,
+        phonetic: null,
+        general: null,
+        status: t("sim.translationNotFound"),
+        source: "",
+        route: []
+      });
+      continue;
+    }
 
-${t("sim.otherIpa")}
-${langName} → IPA из Wiktionary: /${onlineIPA.ipa}/
-${t("sim.source")}: ${onlineIPA.source}
-${t("sim.lookupRoute")}: ${onlineIPA.route && onlineIPA.route.length ? onlineIPA.route.join(" → ") : t("sim.none")}
-${lookupWarning ? `${t("sim.lookupWarning")}: ${lookupWarning}` : ""}
+    const targetIPAResult = lang.code === sourceLang
+      ? sourceIPAResult
+      : await getOnlineIPA(targetWord, lang.code);
 
-${t("sim.phoneticTitle")}
-Метод: ALINE
-${t("sim.tokens")} Interal: ${aline.tokensA.join(" ")}
-${t("sim.tokens")} ${langName}: ${aline.tokensB.join(" ")}
+    if (runId !== currentRunId) return;
 
-${t("sim.alignment")}:
-${buildAlignmentText(alignment)}
+    const targetIPA = targetIPAResult.ipa || "";
+    const targetGraphic = normalizeGraphicInput(targetWord, lang.code);
 
-${t("sim.unknownSegments")} Interal: ${aline.unknownA.length ? aline.unknownA.join(", ") : t("sim.none")}
-${t("sim.unknownSegments")} ${langName}: ${aline.unknownB.length ? aline.unknownB.join(", ") : t("sim.none")}
+    let graphic = graphicSimilarity(sourceGraphic, targetGraphic);
+    let phonetic = null;
+    let general = null;
+    let status = "";
 
-${t("sim.result")}: ${formatScore(phonetic)}
+    if (sourceIPA && targetIPA) {
+      if (lang.code === sourceLang && normalize(targetWord) === normalize(rawWord)) {
+        phonetic = 1;
+      } else {
+        const aline = calcAlineSimilarity(sourceIPA, targetIPA);
+        phonetic = aline.normalized;
+      }
 
-${t("sim.generalTitle")}
-${t("sim.formula")}: (${t("sim.graphicTitle")} + ${t("sim.phoneticTitle")}) / 2
-(${formatScore(graphic)} + ${formatScore(phonetic)}) / 2 = ${formatScore(general)}
-`;
+      general = (graphic + phonetic) / 2;
+    } else {
+      status = t("sim.ipaNotFound");
+    }
 
+    rows.push({
+      langCode: lang.code,
+      langName: lang.name,
+      word: targetWord,
+      ipa: targetIPA,
+      graphic,
+      phonetic,
+      general,
+      status,
+      source: targetIPAResult.source || "",
+      route: targetIPAResult.route || []
+    });
+  }
+
+  renderMultiResult(rows);
+  buildExplanation(rawWord, sourceLang, sourceIPAResult, englishLemma, translationPack, rows);
   combinedExplainBtn.style.display = "block";
 }
 
-function showExplain(){
+function renderMultiResult(rows) {
+  multiResult.innerHTML = `
+    <div class="result-table-wrap">
+      <table class="result-table">
+        <thead>
+          <tr>
+            <th>Language</th>
+            <th>Word</th>
+            <th>IPA</th>
+            <th class="num">G</th>
+            <th class="num">P</th>
+            <th class="num">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rows.map((row) => `
+            <tr>
+              <td>${escapeHTML(row.langName)}</td>
+              <td>${escapeHTML(row.word || "—")}</td>
+              <td>${escapeHTML(row.ipa ? `/${row.ipa}/` : "—")}</td>
+              <td class="num">${row.graphic === null ? "—" : formatScore(row.graphic)}</td>
+              <td class="num">${row.phonetic === null ? "—" : formatScore(row.phonetic)}</td>
+              <td class="num">${row.general === null ? "—" : formatScore(row.general)}</td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
+function buildExplanation(sourceWord, sourceLang, sourceIPAResult, englishLemma, translationPack, rows) {
+  const rowText = rows.map((row) => {
+    return `${row.langName}
+Word: ${row.word || "—"}
+IPA: ${row.ipa ? `/${row.ipa}/` : "—"}
+Graphic: ${row.graphic === null ? "—" : formatScore(row.graphic)}
+Phonetic: ${row.phonetic === null ? "—" : formatScore(row.phonetic)}
+General: ${row.general === null ? "—" : formatScore(row.general)}
+Source: ${row.source || "—"}
+Route: ${row.route && row.route.length ? row.route.join(" → ") : "—"}`;
+  }).join("\n\n");
+
+  combinedExplanation =
+`Similaritá
+
+Source word: ${sourceWord}
+Source language: ${LANG_NAMES[sourceLang]}
+Source IPA: ${sourceIPAResult.ipa ? `/${sourceIPAResult.ipa}/` : t("sim.ipaNotFound")}
+English lemma: ${englishLemma.word || "—"}
+English lemma source: ${englishLemma.source || "—"}
+Translation source: ${translationPack.source || "—"}
+
+Formula:
+general = (graphic similarity + phonetic similarity) / 2
+
+${rowText}`;
+}
+
+function showExplain() {
   if (!combinedExplanation) return;
 
   const [title, ...restLines] = combinedExplanation.split("\n");
@@ -1394,8 +1488,21 @@ function showExplain(){
   explainModal.classList.add("show");
 }
 
-function closeExplain(){
-    explainModal.classList.remove("show");
+function closeExplain() {
+  explainModal.classList.remove("show");
+}
+
+function debounce(fn, delay = 900) {
+  let timer = null;
+
+  return function (...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => fn.apply(this, args), delay);
+  };
+}
+
+function formatScore(value) {
+  return clamp01(value).toFixed(3);
 }
 
 function clamp01(x) {
@@ -1412,27 +1519,46 @@ function escapeHTML(value) {
     .replace(/'/g, "&#039;");
 }
 
-// Закрытие модального при клике вне окна
-explainModal.onclick = function(e){
-    if(e.target === explainModal){
-        closeExplain();
-    }
+function escapeRegExp(value) {
+  return String(value || "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+const calcAllDebounced = debounce(() => {
+  const word = String(sourceWordInput.value || "").trim();
+
+  if (word.length >= 2) {
+    calcAllLanguages().catch((error) => {
+      multiResult.style.display = "block";
+      multiResult.textContent = error.message || String(error);
+      combinedExplainBtn.style.display = "none";
+    });
+  }
+}, 900);
+
+explainModal.onclick = function(e) {
+  if (e.target === explainModal) {
+    closeExplain();
+  }
 };
 
 applyTranslations();
 
-document.getElementById("calcCombinedBtn").addEventListener("click", () => {
-  calcCombined().catch((error) => {
-    combinedResult.style.display = "block";
-    combinedResult.textContent = error.message || String(error);
+calcAllBtn.addEventListener("click", () => {
+  calcAllLanguages().catch((error) => {
+    multiResult.style.display = "block";
+    multiResult.textContent = error.message || String(error);
     combinedExplainBtn.style.display = "none";
   });
 });
-resetBtn.addEventListener("click", resetAll);
-document.getElementById("combinedExplainBtn").addEventListener("click", showExplain);
+
+sourceWordInput.addEventListener("input", calcAllDebounced);
+sourceLanguageSelect.addEventListener("change", calcAllDebounced);
+combinedExplainBtn.addEventListener("click", showExplain);
 document.getElementById("closeExplainBtn").addEventListener("click", closeExplain);
+resetBtn.addEventListener("click", resetAll);
 document.addEventListener("interal:languagechange", applyTranslations);
 </script>
+
 <script src="../shared/ui.js"></script>
 
 </body>
