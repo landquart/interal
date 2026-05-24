@@ -511,4 +511,162 @@
     }
   }
 
+
+function initCustomSelects(root = document) {
+  const selects = root.querySelectorAll('select.js-custom-select');
+
+  selects.forEach((select) => {
+    if (select.dataset.customSelectReady === 'true') {
+      if (typeof select._customSelectRefresh === 'function') {
+        select._customSelectRefresh();
+      }
+      return;
+    }
+    select.dataset.customSelectReady = 'true';
+
+    const wrapper = document.createElement('div');
+    wrapper.className = 'custom-select';
+
+    select.parentNode.insertBefore(wrapper, select);
+    wrapper.appendChild(select);
+
+    select.classList.add('custom-select-native');
+
+    const trigger = document.createElement('button');
+    trigger.type = 'button';
+    trigger.className = 'custom-select-trigger';
+    trigger.setAttribute('aria-haspopup', 'listbox');
+    trigger.setAttribute('aria-expanded', 'false');
+
+    const value = document.createElement('span');
+    value.className = 'custom-select-value';
+
+    const arrow = document.createElement('span');
+    arrow.className = 'custom-select-arrow';
+    arrow.setAttribute('aria-hidden', 'true');
+    arrow.textContent = '⌄';
+
+    trigger.append(value, arrow);
+
+    const menu = document.createElement('div');
+    menu.className = 'custom-select-menu';
+    menu.setAttribute('role', 'listbox');
+    menu.hidden = true;
+
+    wrapper.append(trigger, menu);
+
+    function getSelectedOption() {
+      return select.options[select.selectedIndex];
+    }
+
+    function syncFromSelect() {
+      const selected = getSelectedOption();
+      value.textContent = selected ? selected.textContent : '';
+
+      menu.querySelectorAll('.custom-select-option').forEach((btn) => {
+        const isSelected = btn.dataset.value === select.value;
+        btn.setAttribute('aria-selected', String(isSelected));
+        btn.classList.toggle('is-active', isSelected);
+      });
+    }
+
+    function closeMenu() {
+      wrapper.classList.remove('is-open');
+      menu.hidden = true;
+      trigger.setAttribute('aria-expanded', 'false');
+    }
+
+    function buildOptions() {
+      menu.innerHTML = '';
+
+      Array.from(select.options).forEach((option) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'custom-select-option';
+        btn.setAttribute('role', 'option');
+        btn.dataset.value = option.value;
+        btn.textContent = option.textContent;
+
+        btn.addEventListener('click', () => {
+          select.value = option.value;
+          select.dispatchEvent(new Event('change', { bubbles: true }));
+          closeMenu();
+          syncFromSelect();
+          trigger.focus();
+        });
+
+        menu.appendChild(btn);
+      });
+
+      syncFromSelect();
+    }
+
+    function openMenu() {
+      wrapper.classList.add('is-open');
+      menu.hidden = false;
+      trigger.setAttribute('aria-expanded', 'true');
+
+      const active = menu.querySelector('[aria-selected="true"]');
+      if (active) active.scrollIntoView({ block: 'nearest' });
+    }
+
+    function toggleMenu() {
+      if (menu.hidden) openMenu();
+      else closeMenu();
+    }
+
+    trigger.addEventListener('click', toggleMenu);
+
+    trigger.addEventListener('keydown', (event) => {
+      const options = Array.from(menu.querySelectorAll('.custom-select-option'));
+      const currentIndex = options.findIndex((btn) => btn.dataset.value === select.value);
+
+      if (event.key === 'Escape') {
+        closeMenu();
+        return;
+      }
+
+      if (event.key === 'ArrowDown') {
+        event.preventDefault();
+        if (menu.hidden) openMenu();
+
+        const next = options[Math.min(currentIndex + 1, options.length - 1)] || options[0];
+        if (next) {
+          select.value = next.dataset.value;
+          select.dispatchEvent(new Event('change', { bubbles: true }));
+          syncFromSelect();
+        }
+      }
+
+      if (event.key === 'ArrowUp') {
+        event.preventDefault();
+        if (menu.hidden) openMenu();
+
+        const prev = options[Math.max(currentIndex - 1, 0)] || options[0];
+        if (prev) {
+          select.value = prev.dataset.value;
+          select.dispatchEvent(new Event('change', { bubbles: true }));
+          syncFromSelect();
+        }
+      }
+
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        toggleMenu();
+      }
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!wrapper.contains(event.target)) closeMenu();
+    });
+
+    select.addEventListener('change', syncFromSelect);
+
+    buildOptions();
+    select._customSelectRefresh = buildOptions;
+  });
+}
+
+window.initCustomSelects = initCustomSelects;
+
 })();
