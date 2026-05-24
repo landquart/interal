@@ -162,7 +162,7 @@ body.dark-theme .similarita-page #explainModal {
 
     <button id="calcGraphicBtn" class="tool-btn interal-btn interal-btn--primary"  data-i18n="sim.calculate">Calcular</button>
 
-    <div id="graphicResult" class="result"></div>
+    <div id="graphicResult" class="result" style="display:none"></div>
 
 <button id="graphicExplainBtn" class="tool-btn interal-btn interal-btn--primary" style="display:none"  data-i18n="sim.explain">Explanar</button>
 
@@ -180,7 +180,7 @@ body.dark-theme .similarita-page #explainModal {
 
     <button id="calcPhoneticBtn" class="tool-btn interal-btn interal-btn--primary"  data-i18n="sim.calculate">Calcular</button>
 
-    <div id="phoneticResult" class="result"></div>
+    <div id="phoneticResult" class="result" style="display:none"></div>
 
 <button id="phoneticExplainBtn" class="tool-btn interal-btn interal-btn--primary" style="display:none"  data-i18n="sim.explain">Explanar</button>
 
@@ -443,6 +443,7 @@ function shiftSimilarity(a,b){
 function calcGraphic() {
     const a = normalize(g1.value);
     const b = normalize(g2.value);
+    graphicResult.style.display = "block";
     if (!a || !b) {
         graphicResult.textContent = t("sim.fillGraphic");
         graphicExplainBtn.style.display = "none";
@@ -477,6 +478,7 @@ ${sim.toFixed(3)}
 function calcPhonetic() {
     const a = normalize(p1.value);
     const b = normalize(p2.value);
+    phoneticResult.style.display = "block";
     if (!a || !b) {
         phoneticResult.textContent = t("sim.fillPhonetic");
         phoneticExplainBtn.style.display = "none";
