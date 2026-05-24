@@ -98,10 +98,12 @@
   menu.id = 'interal-side-menu';
   menu.innerHTML = `
     <h2 class="menu-title"></h2>
+    <div class="menu-divider menu-divider--mobile" aria-hidden="true"></div>
     <nav class="menu-nav" aria-label="Site sections">
       <a class="menu-nav-link" href="${joinUrl('similarita/')}" data-nav="similarita"><span class="menu-nav-main"></span></a>
       <a class="menu-nav-link" href="${joinUrl('associativvordes/')}" data-nav="associativ"><span class="menu-nav-main"></span></a>
       <a class="menu-nav-link" href="${joinUrl('determinatorofvalentyp/')}" data-nav="determinator"><span class="menu-nav-main"></span></a>
+      <div class="menu-divider menu-divider--mobile" aria-hidden="true"></div>
       <button class="menu-copy-btn" type="button" data-copy-state="true"><img class="menu-copy-icon" src="${joinUrl('elements/Link%20Round%20Angle.svg')}" alt="" aria-hidden="true" /><span class="menu-copy-label"></span></button>
     </nav>
     <div class="menu-preferences-row">

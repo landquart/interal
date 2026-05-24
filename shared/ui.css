@@ -224,6 +224,7 @@ body.menu-open .side-menu{transform:translateX(0)}
 body.menu-open .side-menu-overlay{opacity:1;pointer-events:auto}
 .menu-nav,.menu-preferences-row{margin-top:12px;padding-top:14px}
 .menu-nav-link,.menu-copy-btn{display:block;background:var(--sidebar-item-bg);color:var(--sidebar-item-text);border-radius:18px;padding:12px;border:0;text-decoration:none}
+.menu-divider{height:1px;background:color-mix(in srgb,var(--text) 18%, transparent);margin:8px 4px;display:none}
 .menu-theme-toggle{width:52px;height:52px;border-radius:999px;background:transparent;border:1px solid transparent;display:inline-flex;align-items:center;justify-content:center}
 .menu-lang-trigger{width:52px;height:52px;border-radius:999px;background:transparent;border:1px solid transparent;display:inline-flex;align-items:center;justify-content:center}
 .menu-theme-icon{width:28px;height:28px;opacity:1;filter:none;}
@@ -281,7 +282,14 @@ body.dark-theme .top-menu-btn:hover,body.dark-theme .top-desktop-link:hover,body
 body.dark-theme .menu-theme-icon{filter:none}
 .top-menu-btn-icon img{width:24px;height:24px;display:block}
 .menu-copy-btn{display:flex;align-items:center;gap:10px}
+.menu-copy-btn{background:color-mix(in srgb, #67b3ff 24%, var(--surface-elevated));border:1px solid color-mix(in srgb, #67b3ff 45%, transparent)}
+.menu-copy-btn:hover{background:color-mix(in srgb, #67b3ff 34%, var(--surface-hover));}
 .menu-copy-icon{width:20px;height:20px;display:block;flex:0 0 auto}
+body.dark-theme .menu-copy-btn{background:color-mix(in srgb, #3f8ed8 34%, var(--surface-elevated));border-color:color-mix(in srgb, #8bc7ff 44%, transparent)}
+
+@media (max-width:979px){
+  .menu-divider--mobile{display:block}
+}
 
 ::view-transition-old(root),
 ::view-transition-new(root){animation:none;mix-blend-mode:normal}
