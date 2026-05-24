@@ -311,6 +311,23 @@ textarea.copy-flash {
 
 .determinator-page .icon-copy-btn.is-failed { border-color: var(--border-strong); }
 
+
+.determinator-page #copyPromptBtn {
+  background: #000;
+  border-color: #000;
+  color: #fff;
+}
+
+.determinator-page #copyPromptBtn img {
+  filter: brightness(0) invert(1);
+}
+
+.determinator-page #copyPromptBtn:hover,
+.determinator-page #copyPromptBtn:focus-visible {
+  background: #111;
+  border-color: #111;
+}
+
 #buildPromptBtn {
   transition: opacity 0.22s ease, transform 0.22s ease, max-width 0.22s ease, margin 0.22s ease, padding 0.22s ease, border-width 0.22s ease;
   max-width: 240px;
@@ -459,7 +476,7 @@ body.dark-theme .modal-backdrop {
 .determinator-page .back-btn {
   width: 42px;
   height: 42px;
-  border-radius: var(--radius-md);
+  border-radius: 10px;
   padding: 0;
   display: flex;
   align-items: center;
