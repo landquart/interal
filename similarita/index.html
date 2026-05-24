@@ -12,24 +12,12 @@
 
 <style>
 
-:root {
-    --sim-surface: var(--surface);
-    --sim-surface-strong: var(--surface-elevated);
-    --sim-text-main: var(--text);
-    --sim-text-muted: var(--text-muted);
-    --sim-accent: var(--button-primary-bg);
-    --sim-radius-lg: var(--radius-lg);
-    --sim-radius-md: var(--radius-sm);
-    --sim-shadow-card: var(--shadow-sm);
-    --sim-shadow-soft: var(--shadow-sm);
-}
-
 .similarita-page {
     margin: 0;
     padding: 0 16px 32px;
     background-color: var(--bg);
     min-height: 100vh;
-    color: var(--sim-text-main);
+    color: var(--text);
     font-family: "Jost", "Helvetica Neue", Helvetica, Arial, sans-serif;
     line-height: 1.5;
 }
@@ -39,13 +27,13 @@
 }
 
 .similarita-page .card {
-    background: var(--sim-surface);
+    background: var(--surface);
     border: 1px solid var(--border-subtle);
     max-width: 520px;
     margin: 0 auto 20px auto;
     padding: 24px;
-    border-radius: var(--sim-radius-lg);
-    box-shadow: var(--sim-shadow-card);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
 }
 
 .similarita-page .card h2 {
@@ -54,7 +42,7 @@
     margin-bottom: 14px;
     letter-spacing: 0.2px;
     font-weight: 600;
-    color: var(--sim-text-main);
+    color: var(--text);
 }
 
 .similarita-page h2 { font-size: 1.25rem; }
@@ -63,7 +51,7 @@
     display: block;
     margin-top: 14px;
     font-size: 14px;
-    color: var(--sim-text-muted);
+    color: var(--text-muted);
     font-weight: 600;
 }
 
@@ -74,14 +62,14 @@
     font-size: 16px;
     box-sizing: border-box;
     border: 1px solid var(--border-control);
-    border-radius: var(--sim-radius-md);
-    background: var(--sim-surface-strong);
-    color: var(--sim-text-main);
+    border-radius: var(--radius-sm);
+    background: var(--surface-elevated);
+    color: var(--text);
 }
 .similarita-page input::placeholder { color: var(--placeholder); }
 .similarita-page input:focus-visible {
     outline: none;
-    border-color: var(--border-control-strong);
+    border-color: var(--border-strong);
     box-shadow: 0 0 0 3px var(--focus-ring);
 }
 
@@ -106,7 +94,7 @@
     box-shadow: var(--shadow-md);
 }
 .similarita-page .tool-btn:focus-visible {
-    outline: 2px solid var(--focus-ring);
+    outline: 2px solid var(--focus-outline);
     outline-offset: 2px;
 }
 
@@ -153,8 +141,8 @@
 body.dark-theme .similarita-page #explainModal {
     background: rgba(0, 0, 0, 0.62);
 }
-.similarita-page .info-card p, .similarita-page .info-card li { color: var(--sim-text-main); font-size: 14px; }
-.similarita-page .info-card a { color: var(--sim-accent); }
+.similarita-page .info-card p, .similarita-page .info-card li { color: var(--text); font-size: 14px; }
+.similarita-page .info-card a { color: var(--text); }
 
 </style>
 

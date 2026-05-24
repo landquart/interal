@@ -9,26 +9,12 @@
   <title>Associativ vordes</title>
   <link rel="stylesheet" href="../shared/ui.css" />
   <style>
-    :root {
-      --card: var(--surface);
-      --surface-strong: var(--surface-elevated);
-      --text-main: var(--text);
-      --muted: var(--text-muted);
-      --line: var(--border-control);
-      --accent: var(--button-primary-bg);
-      --button-text: var(--button-primary-text);
-      --bad: #8b2f2f;
-      --ok: #2f6534;
-      --warn: #7c520d;
-      --shadow: var(--shadow-sm);
-    }
-
     * { box-sizing: border-box; }
     body {
       margin: 0;
       background: var(--bg);
       min-height: 100vh;
-      color: var(--text-main);
+      color: var(--text);
       font-family: "Jost", "Helvetica Neue", Helvetica, Arial, sans-serif;
       line-height: 1.45;
     }
@@ -54,10 +40,10 @@
 
     .associativ-page .card {
       position: relative;
-      background: var(--card);
+      background: var(--surface);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-lg);
-      box-shadow: var(--shadow);
+      box-shadow: var(--shadow-sm);
       padding: 18px;
     }
 
@@ -79,33 +65,33 @@
     .associativ-page input, .associativ-page select, .associativ-page textarea, .associativ-page .tool-btn {
       font: inherit;
       border-radius: 14px;
-      border: 1px solid var(--line);
+      border: 1px solid var(--border-control);
       padding: 10px 12px;
       width: 100%;
-      background: var(--surface-strong);
-      color: var(--text-main);
+      background: var(--surface-elevated);
+      color: var(--text);
     }
 
     .associativ-page textarea { min-height: 110px; resize: vertical; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
 
      .associativ-page .tool-btn {
       cursor: pointer;
-      background: var(--accent);
-      color: var(--button-text);
-      border-color: var(--accent);
+      background: var(--button-primary-bg);
+      color: var(--button-primary-text);
+      border-color: var(--button-primary-bg);
       font-weight: 700;
     }
 
     .associativ-page .interal-btn--secondary {
-      background: var(--surface-strong);
-      color: var(--text-main);
-      border-color: var(--line);
+      background: var(--surface-elevated);
+      color: var(--text);
+      border-color: var(--border-control);
     }
 
     .associativ-page .danger {
-      background: var(--bad);
-      border-color: var(--bad);
-      color: #ffffff;
+      background: var(--surface-elevated);
+      border-color: var(--border-control);
+      color: var(--text);
     }
 
     .associativ-page .interal-btn--small {
@@ -116,7 +102,7 @@
      .associativ-page .tool-btn:hover {
       filter: none;
       transform: translateY(-1px);
-      box-shadow: 0 8px 18px color-mix(in srgb, var(--accent) 28%, transparent);
+      box-shadow: var(--shadow-md);
     }
 
 
@@ -144,10 +130,10 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid var(--line);
+      border: 1px solid var(--border-control);
       border-radius: 14px;
-      background: var(--surface-strong);
-      color: var(--text-main);
+      background: var(--surface-elevated);
+      color: var(--text);
       box-shadow: none;
       padding: 0;
     }
@@ -158,22 +144,22 @@
     }
 
     .muted { color: var(--text-muted); }
-    .note { background: var(--accent-2); padding: 12px; border-radius: 14px; color: var(--text-main); }
+    .note { background: var(--surface); padding: 12px; border-radius: 14px; color: var(--text); border: 1px solid var(--border-subtle); }
 
     .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; align-items: flex-start; }
     .associativ-page .tab {
       width: auto;
       flex: 0 0 auto;
       padding: 8px 11px;
-      background: var(--surface-strong);
-      color: var(--text-main);
-      border-color: var(--line);
+      background: var(--surface-elevated);
+      color: var(--text);
+      border-color: var(--border-control);
     }
-    .associativ-page .tab.active { background: var(--accent-soft); color: var(--accent-text); border-color: var(--accent); }
+    .associativ-page .tab.active { background: var(--surface-hover); color: var(--text); border-color: var(--border-strong); }
 
     .associativ-page table { width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid var(--border-subtle); border-radius: var(--radius-md); background: var(--surface); overflow: hidden; }
-    .associativ-page th, .associativ-page td { border-bottom: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; color: var(--text-main); }
-    .associativ-page th { font-size: 13px; color: var(--muted); font-weight: 700; background: var(--surface-strong); }
+    .associativ-page th, .associativ-page td { border-bottom: 1px solid var(--border-control); padding: 8px; text-align: left; vertical-align: top; color: var(--text); }
+    .associativ-page th { font-size: 13px; color: var(--text-muted); font-weight: 700; background: var(--surface-elevated); }
     .associativ-page td input, .associativ-page td select { padding: 7px 8px; border-radius: 9px; }
     .associativ-page tbody tr:last-child td { border-bottom: none; }
 
@@ -184,13 +170,13 @@
       border-radius: 999px;
       font-size: 13px;
       font-weight: 700;
-      border: 1px solid color-mix(in srgb, var(--text-main) 20%, transparent);
-      background: color-mix(in srgb, var(--surface-strong) 88%, var(--accent-soft));
-      color: var(--text-main);
+      border: 1px solid var(--border-subtle);
+      background: var(--surface-elevated);
+      color: var(--text);
     }
-    .associativ-page .status.ok { background: color-mix(in srgb, #2f6534 22%, var(--surface-strong)); color: color-mix(in srgb, #2f6534 82%, var(--text-main)); }
-    .associativ-page .status.bad { background: color-mix(in srgb, #8b2f2f 24%, var(--surface-strong)); color: color-mix(in srgb, #8b2f2f 84%, var(--text-main)); }
-    .associativ-page .status.warn { background: color-mix(in srgb, #37506f 24%, var(--surface-strong)); color: color-mix(in srgb, #37506f 84%, var(--text-main)); }
+    .associativ-page .status.ok,
+    .associativ-page .status.bad,
+    .associativ-page .status.warn { background: var(--surface-elevated); color: var(--text); border-color: var(--border-control); }
 
     .result-box {
       display: grid;
@@ -198,21 +184,17 @@
       gap: 12px;
     }
     .associativ-page .metric {
-      border: 1px solid var(--line);
+      border: 1px solid var(--border-control);
       border-radius: 16px;
       padding: 14px;
       background: var(--surface);
     }
     .associativ-page .metric strong { font-size: 22px; display: block; }
-    .associativ-page .metric span { color: var(--muted); font-size: 13px; }
+    .associativ-page .metric span { color: var(--text-muted); font-size: 13px; }
 
     .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
 
 
-    body.dark-theme.associativ-page {
-      --accent: #ffffff;
-      --button-text: #111111;
-    }
 
     @media (max-width: 850px) {
       .grid-2, .grid-3, .result-box { grid-template-columns: 1fr; }
@@ -293,25 +275,6 @@
       }
     }
 
-    body.dark-theme.associativ-page {
-      --card: var(--surface);
-      --muted: var(--text-muted);
-      --line: var(--border-control);
-      --shadow: var(--shadow-sm);
-    }
-    body.dark-theme.associativ-page input,
-    body.dark-theme.associativ-page select,
-    body.dark-theme.associativ-page textarea,
-    body.dark-theme.associativ-page .tab,
-    body.dark-theme.associativ-page .secondary,
-    body.dark-theme.associativ-page .metric {
-      background: color-mix(in srgb, var(--surface) 90%, #000 10%);
-      color: #ffffff;
-    }
-    body.dark-theme.associativ-page .status.ok { background: #243526; color: #8fd69a; }
-    body.dark-theme.associativ-page .status.bad { background: #442524; color: #f0aaaa; }
-    body.dark-theme.associativ-page .status.warn { background: #3d2b28; color: #f0aaaa; }
-    body.dark-theme.associativ-page .metric strong { color: #ffffff; }
   </style>
 </head>
 <body class="associativ-page">
