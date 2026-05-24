@@ -38,14 +38,7 @@
       gap: 18px;
     }
 
-    .associativ-page .card {
-      position: relative;
-      background: var(--surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-md);
-      padding: 18px;
-    }
+    .associativ-page .card { position: relative; padding: 18px; }
 
 
     .card-scroll-wrap {
@@ -62,15 +55,7 @@
     .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
     .associativ-page label { display: block; font-weight: 650; margin-bottom: 6px; }
-    .associativ-page input, .associativ-page select, .associativ-page textarea, .associativ-page .tool-btn {
-      font: inherit;
-      border-radius: var(--radius-md);
-      border: 1px solid var(--border-control);
-      padding: 10px 12px;
-      width: 100%;
-      background: var(--surface-elevated);
-      color: var(--text);
-    }
+    .associativ-page input, .associativ-page select, .associativ-page textarea, .associativ-page .tool-btn { font: inherit; padding: 10px 12px; width: 100%; }
 
     .associativ-page textarea { min-height: 110px; resize: vertical; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
 
@@ -102,7 +87,6 @@
      .associativ-page .tool-btn:hover {
       filter: none;
       transform: translateY(-1px);
-      box-shadow: var(--shadow-md);
     }
 
 
@@ -160,7 +144,7 @@
     .associativ-page table { width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid var(--border-subtle); border-radius: var(--radius-md); background: var(--surface); overflow: hidden; }
     .associativ-page th, .associativ-page td { border-bottom: 1px solid var(--border-control); padding: 8px; text-align: left; vertical-align: top; color: var(--text); }
     .associativ-page th { font-size: 13px; color: var(--text-muted); font-weight: 700; background: var(--surface-elevated); }
-    .associativ-page td input, .associativ-page td select { padding: 7px 8px; border-radius: 9px; }
+    .associativ-page td input, .associativ-page td select { padding: 7px 8px; border-radius: var(--radius-sm); }
     .associativ-page tbody tr:last-child td { border-bottom: none; }
 
     .associativ-page .status {
