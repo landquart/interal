@@ -31,77 +31,92 @@
     .home-title { margin: 0; font-size: clamp(2rem, 4vw, 2.6rem); letter-spacing: .5px; color:#fff; text-shadow: none; }
     .homepage .container {
       width: 100%;
-      text-align: center;
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      margin:0;
-      padding:0;
-      gap: 10px;
+      margin: 0;
+      padding: 0;
+      gap: 12px;
       align-items: stretch;
     }
     .tool-link {
       position: relative;
       isolation: isolate;
       display: grid;
-      grid-template-columns: 78px minmax(0, 1fr);
+      grid-template-columns: 64px minmax(0, 1fr);
+      grid-template-areas:
+        "icon title"
+        "icon subtitle";
+      grid-template-rows: min-content min-content;
+      align-content: center;
+      align-items: center;
+      column-gap: 14px;
+      row-gap: 3px;
       width: 100%;
       min-height: 92px;
-      padding: 10px 12px;
+      padding: 14px;
       text-decoration: none;
+      text-align: left;
       border-radius: var(--radius-lg);
       background: var(--surface);
       border: 1px solid var(--border-subtle);
-      box-shadow: var(--shadow-md);
-      justify-items: stretch;
-      align-content: center;
-      align-items: center;
-      grid-template-rows: auto auto;
-      transition: transform .2s ease, border-color .2s ease, background-color .2s ease;
-      column-gap: 12px;
-      row-gap: 4px;
+      box-shadow: var(--shadow-sm);
+      transition:
+        transform .18s ease,
+        background-color .18s ease,
+        border-color .18s ease,
+        box-shadow .18s ease;
     }
     .tool-icon-wrap {
-      width: 100%;
-      height: 100%;
+      grid-area: icon;
+      width: 64px;
+      height: 64px;
+      min-width: 64px;
+      min-height: 64px;
+      display: grid;
+      place-items: center;
+      align-self: center;
+      justify-self: center;
       border-radius: var(--radius-md);
       background: var(--surface-elevated);
       border: 1px solid var(--border-subtle);
-      display: grid;
-      place-items: center;
-      margin-bottom: 0;
-      transition: background-color .35s ease, transform .35s cubic-bezier(.2,.8,.2,1);
-      grid-row: 1 / span 2;
-      align-self: stretch;
+      transition:
+        background-color .18s ease,
+        border-color .18s ease,
+        transform .18s ease;
     }
-    .tool-icon { width: 72%; height: 72%; max-width: 64px; max-height: 64px; }
+    .tool-icon {
+      width: 34px;
+      height: 34px;
+      max-width: none;
+      max-height: none;
+      object-fit: contain;
+    }
     .tool-link-main {
-      line-height:1.3;
+      grid-area: title;
+      min-width: 0;
+      align-self: end;
+      line-height: 1.18;
       font-weight: 700;
       text-decoration: none;
       font-size: 1.02rem;
       color: var(--text);
       text-shadow: none;
-      letter-spacing: .2px;
-    }
-    body.homepage .tool-link {
-      justify-items: stretch;
-      align-content: stretch;
-      text-align: left;
-      gap: 0;
+      letter-spacing: .1px;
+      overflow-wrap: anywhere;
     }
     .tool-link-sub {
+      grid-area: subtitle;
+      min-width: 0;
+      align-self: start;
       display: block;
-      font-size: .9rem;
-      margin-top: 0;
+      margin: 0;
       color: var(--text-muted);
+      font-size: .9rem;
       text-shadow: none;
-      line-height: 1.2;
+      line-height: 1.22;
+      font-weight: 500;
+      overflow-wrap: anywhere;
     }
-    .tool-link-main, .tool-link-sub {
-      align-self: center;
-    }
-    .tool-link-main { margin-top: 2px; }
-    .tool-link-sub { margin-bottom: 2px; }
 
     @media (min-width: 980px) {
       body.homepage .top-desktop-controls { display: none; }
@@ -124,19 +139,45 @@
       .home-brand { align-items: center; text-align: center; justify-content: center; padding-left: 24px; padding-right: 24px; }
       .homepage .container {
         grid-template-columns: 1fr;
-        gap: 8px;
+        gap: 10px;
         align-self: stretch;
       }
       .tool-link {
-        min-height: 92px;
+        min-height: 96px;
       }
     }
     @media (min-width: 861px) {
       .hero-bg { border-radius: inherit; }
     }
     @media (max-width: 860px) {
-      .homepage .container { grid-template-columns: 1fr; }
-      .tool-link { width: 100%; min-height: 90px; grid-template-columns: 76px minmax(0, 1fr); }
+      .homepage .container {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      .tool-link {
+        width: 100%;
+        min-height: 88px;
+        grid-template-columns: 58px minmax(0, 1fr);
+        padding: 12px;
+        column-gap: 12px;
+      }
+      .tool-icon-wrap {
+        width: 58px;
+        height: 58px;
+        min-width: 58px;
+        min-height: 58px;
+        border-radius: 18px;
+      }
+      .tool-icon {
+        width: 31px;
+        height: 31px;
+      }
+      .tool-link-main {
+        font-size: .98rem;
+      }
+      .tool-link-sub {
+        font-size: .86rem;
+      }
       .hero { min-height: clamp(150px, 24vh, 230px); border-radius:22px; margin-bottom: 8px; }
       .hero-bg { width:100%; height:100%; object-fit:cover; border-radius: inherit; }
       .home-brand { padding: 18px 12px; justify-content:center; }
@@ -144,8 +185,22 @@
       .home-title { font-size: clamp(1.2rem, 5.5vw, 1.8rem); max-width: 100%; word-break: break-word; }
     }
     body.homepage:not(.dark-theme) .hero-bg { opacity: 1; object-position: center; }
-     .tool-link:hover, .tool-link:focus-visible { transform: translateY(-2px); background: var(--surface-hover); border-color: var(--border-subtle); }
-    .tool-link:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
+    .tool-link:hover {
+      transform: translateY(-2px);
+      background: var(--surface-hover);
+      border-color: var(--border-control);
+      box-shadow: var(--shadow-sm);
+    }
+    .tool-link:hover .tool-icon-wrap {
+      background: var(--surface-elevated);
+      border-color: var(--border-control);
+      transform: scale(1.02);
+    }
+    .tool-link:focus-visible {
+      outline: 2px solid var(--focus-outline);
+      outline-offset: 3px;
+      box-shadow: 0 0 0 5px var(--focus-ring);
+    }
   </style>
 </head>
 <body class="homepage">
