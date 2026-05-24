@@ -146,7 +146,11 @@ body.menu-open .side-menu-overlay{opacity:1;pointer-events:auto}
 .interal-btn:hover{transform:translateY(-1px)}
 .interal-btn--ghost{background:transparent;color:var(--text-muted)}
 
-.top-menu-btn-icon img,.menu-copy-icon,.menu-lang-icon-img,.menu-theme-icon{filter:var(--menu-icon-filter, none)}
+.top-menu-btn-icon img,.menu-copy-icon,.menu-lang-icon-img{filter:var(--menu-icon-filter, none)}
+
+.menu-theme-icon{filter:none}
+
+body.dark-theme .menu-theme-icon{filter:none}
 .top-menu-btn-icon img{width:24px;height:24px;display:block}
 .menu-copy-btn{display:flex;align-items:center;gap:10px}
 .menu-copy-icon{width:20px;height:20px;display:block;flex:0 0 auto}
