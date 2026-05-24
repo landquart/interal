@@ -642,6 +642,7 @@ function setupSelects() {
   });
 
   fillComponentSelect();
+  window.initCustomSelects?.();
 }
 
 function fillComponentSelect() {
@@ -657,6 +658,8 @@ function fillComponentSelect() {
   });
 
   updateComponentPreview();
+  els.componentSelect.dispatchEvent(new Event('change', { bubbles: true }));
+  window.initCustomSelects?.();
 }
 
 function updateComponentPreview() {
@@ -745,6 +748,7 @@ function openPrefixVariantStep(item) {
   });
 
   updatePrefixVariantPreview();
+  window.initCustomSelects?.();
   closeModal(els.componentModal);
   openModal(els.prefixVariantModal);
 }
@@ -1385,6 +1389,7 @@ function refreshSelectLocalization() {
   });
 
   fillComponentSelect();
+  window.initCustomSelects?.();
 }
 
 function attachEvents() {
@@ -1492,6 +1497,7 @@ function attachEvents() {
 }
 
 setupSelects();
+window.initCustomSelects?.();
 restoreState();
 attachEvents();
 syncRootFormByAssimilation();
