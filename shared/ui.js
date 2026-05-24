@@ -1,6 +1,9 @@
 (function () {
   const THEME_KEY = 'interal.theme';
   const LANG_KEY = 'interal.lang';
+
+  const PAGE_STATE_PREFIX = 'interal.pageState:';
+
   const currentScript = document.currentScript;
   const sharedPath = currentScript ? new URL(currentScript.src, window.location.href).pathname : '/shared/ui.js';
   const siteRoot = sharedPath.replace(/\/shared\/ui\.js$/, '/');
@@ -381,6 +384,35 @@
     });
   }
 
+  function getPageStateStorageKey() {
+    return `${PAGE_STATE_PREFIX}${window.location.pathname}`;
+  }
+
+  function saveCurrentPageState() {
+    try {
+      const entries = collectPageState();
+      const key = getPageStateStorageKey();
+      if (!entries.length) {
+        localStorage.removeItem(key);
+        return;
+      }
+      localStorage.setItem(key, JSON.stringify(entries));
+    } catch (_) {
+      // ignore storage errors
+    }
+  }
+
+  function loadSavedPageState() {
+    try {
+      const raw = localStorage.getItem(getPageStateStorageKey());
+      if (!raw) return [];
+      const parsed = JSON.parse(raw);
+      return Array.isArray(parsed) ? parsed : [];
+    } catch (_) {
+      return [];
+    }
+  }
+
 
 
   async function shortenLink(url) {
@@ -505,13 +537,35 @@
     touchStartY = null;
   }, { passive: true });
   const hashMatch = window.location.hash.match(/state=([^&]+)/);
-  if (hashMatch && hashMatch[1]) {
-    const decoded = decodeState(hashMatch[1]);
-    if (decoded) {
-      window.addEventListener('load', () => applyPageState(decoded));
-      setTimeout(() => applyPageState(decoded), 80);
-    }
+  const hashState = hashMatch && hashMatch[1] ? decodeState(hashMatch[1]) : [];
+  const fallbackSavedState = hashState.length ? [] : loadSavedPageState();
+  const stateToApply = hashState.length ? hashState : fallbackSavedState;
+  if (stateToApply.length) {
+    window.addEventListener('load', () => applyPageState(stateToApply));
+    setTimeout(() => applyPageState(stateToApply), 80);
   }
+
+  const debouncedSaveState = (() => {
+    let timer = null;
+    return () => {
+      clearTimeout(timer);
+      timer = setTimeout(saveCurrentPageState, 120);
+    };
+  })();
+
+  document.addEventListener('input', (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLElement)) return;
+    if (!target.matches('input, textarea, select')) return;
+    debouncedSaveState();
+  }, true);
+
+  document.addEventListener('change', (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLElement)) return;
+    if (!target.matches('input, textarea, select')) return;
+    debouncedSaveState();
+  }, true);
 
 
 function initCustomSelects(root = document) {
