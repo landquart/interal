@@ -61,7 +61,8 @@
     font-weight: 600;
 }
 
-.similarita-page input {
+.similarita-page input,
+.similarita-page select {
     width: 100%;
     padding: 11px 12px;
     margin-top: 6px;
@@ -73,7 +74,8 @@
     color: var(--text);
 }
 .similarita-page input::placeholder { color: var(--placeholder); }
-.similarita-page input:focus-visible {
+.similarita-page input:focus-visible,
+.similarita-page select:focus-visible {
     border-color: var(--border-strong);
 }
 
@@ -107,6 +109,29 @@
     background: var(--surface-elevated);
     border: 1px solid var(--border-subtle);
     color: var(--text);
+}
+
+.similarita-page .result-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 4px 0;
+}
+
+.similarita-page .result-row span:first-child {
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.similarita-page .result-row span:last-child {
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+
+.similarita-page .result-warning {
+    margin-top: 8px;
+    color: var(--text-muted);
+    font-size: 14px;
 }
 
 .similarita-page ul { padding-left: 18px; }
@@ -150,140 +175,121 @@ body.dark-theme .similarita-page #explainModal {
 
 <body class="similarita-page">
 
-<!-- 1. Graphic similaritá -->
+<!-- Similaritá -->
 <div class="card">
-    <h2 data-i18n="sim.graphicTitle">Graphic similaritá</h2>
+    <h2 data-i18n="sim.combinedTitle">Similaritá</h2>
 
-    <label data-i18n="sim.wordHypothesis">Vord-hypothese</label>
-    <input id="g1" type="text">
+    <label data-i18n="sim.wordInteral">Vord in Interal</label>
+    <input id="wordInteral" type="text" autocomplete="off">
 
     <label data-i18n="sim.wordOtherLanguage">Vord in alter lingue</label>
-    <input id="g2" type="text">
+    <input id="wordOther" type="text" autocomplete="off">
 
-    <button id="calcGraphicBtn" class="tool-btn interal-btn interal-btn--primary"  data-i18n="sim.calculate">Calcular</button>
+    <label data-i18n="sim.languageOther">Lingue del alter vord</label>
+    <select id="otherLanguage">
+        <option value="en" data-i18n="sim.langEnglish">English</option>
+        <option value="de" data-i18n="sim.langGerman">German</option>
+        <option value="fr" data-i18n="sim.langFrench">French</option>
+        <option value="es" data-i18n="sim.langSpanish">Spanish</option>
+        <option value="it" data-i18n="sim.langItalian">Italian</option>
+        <option value="ru" data-i18n="sim.langRussian">Russian</option>
+        <option value="el" data-i18n="sim.langGreek">Greek</option>
+    </select>
 
-    <div id="graphicResult" class="result" style="display:none"></div>
+    <button id="calcCombinedBtn" class="tool-btn interal-btn interal-btn--primary" data-i18n="sim.calculate">Calcular</button>
 
-<button id="graphicExplainBtn" class="tool-btn interal-btn interal-btn--primary" style="display:none"  data-i18n="sim.explain">Explanar</button>
+    <div id="combinedResult" class="result" style="display:none"></div>
 
+    <button id="combinedExplainBtn" class="tool-btn interal-btn interal-btn--primary" style="display:none" data-i18n="sim.explain">Explanar</button>
 </div>
 
-<!-- 2. Phonetic similaritá -->
-<div class="card">
-    <h2 data-i18n="sim.phoneticTitle">Phonetic similaritá</h2>
-
-    <label data-i18n="sim.wordHypothesisIpa">Vord-hypothese (МФА)</label>
-    <input id="p1" type="text">
-
-    <label data-i18n="sim.wordOtherLanguageIpa">Vord in alter lingue (МФА)</label>
-    <input id="p2" type="text">
-
-    <button id="calcPhoneticBtn" class="tool-btn interal-btn interal-btn--primary"  data-i18n="sim.calculate">Calcular</button>
-
-    <div id="phoneticResult" class="result" style="display:none"></div>
-
-<button id="phoneticExplainBtn" class="tool-btn interal-btn interal-btn--primary" style="display:none"  data-i18n="sim.explain">Explanar</button>
-
-</div>
-
-<!-- 3. Calculation of phonetic similaritá -->
-<div class="card info-card">
-
-    <h2 data-i18n="sim.calcPhoneticTitle">Calculation of phonetic similaritá</h2>
-
-    <p data-i18n="sim.infoP1">
-        Вам необходимо вставить фонетическую транскрипцию слова на Interal в Международном фонетическом алфавите (МФА) в строку «Гипотеза слова».
-    </p>
-
-    <p data-i18n="sim.infoP2">
-        В строку «Слово на другом языке» вставляется фонетическая транскрипция в IPA на соответствующем этническом языке. Ниже указаны сайты для разных языков, где Вы можете найти фонетическую транскрипцию нужного слова.
-    </p>
-
-    <ul>
-        <li><span data-i18n="sim.sourceEn">Английский</span> —
-            <a href="https://www.internationalphoneticalphabet.org/english-to-ipa-translator/" target="_blank">internationalphoneticalphabet.org</a>
-        </li>
-        <li><span data-i18n="sim.sourceSet">Немецкий, испанский, французский, русский, греческий</span> —
-            <a href="https://hellpanderrr.github.io/wiktionary_pron/index.html" target="_blank">wiktionary_pron</a>
-        </li>
-        <li><span data-i18n="sim.sourceIt">Итальянский</span> —
-            <a href="https://easypronunciation.com/en/italian-phonetic-transcription-converter" target="_blank">easypronunciation.com</a>
-        </li>
-    </ul>
-
-</div>
-
-  <div id="explainModal">
-
+<div id="explainModal">
     <div class="modal-inner" style="max-width:600px; width:100%; margin:0; padding:24px; max-height:calc(100vh - 32px); overflow:hidden;">
-
         <div id="explainText" style="overflow:auto; flex:1 1 auto; min-height:0;"></div>
-
-        <button  id="closeExplainBtn" class="tool-btn interal-btn interal-btn--secondary" style="margin-top:10px" data-i18n="sim.close">Cluder</button>
+        <button id="closeExplainBtn" class="tool-btn interal-btn interal-btn--secondary" style="margin-top:10px" data-i18n="sim.close">Cluder</button>
     </div>
 </div>
 
-    <script>
-const g1 = document.getElementById("g1");
-const g2 = document.getElementById("g2");
-const p1 = document.getElementById("p1");
-const p2 = document.getElementById("p2");
+<script src="./aline.js"></script>
+<script>
+const wordInteral = document.getElementById("wordInteral");
+const wordOther = document.getElementById("wordOther");
+const otherLanguage = document.getElementById("otherLanguage");
 
-const graphicResult = document.getElementById("graphicResult");
-const phoneticResult = document.getElementById("phoneticResult");
-
-const graphicExplainBtn = document.getElementById("graphicExplainBtn");
-const phoneticExplainBtn = document.getElementById("phoneticExplainBtn");
+const combinedResult = document.getElementById("combinedResult");
+const combinedExplainBtn = document.getElementById("combinedExplainBtn");
 
 const explainModal = document.getElementById("explainModal");
 const explainText = document.getElementById("explainText");
 
-let graphicExplanation = "";
-let phoneticExplanation = "";
-
+let combinedExplanation = "";
 
 const i18n = {
   ru: {
-    "sim.graphicTitle": "Графическая похожесть",
-    "sim.wordHypothesis": "Гипотеза слова",
+    "sim.combinedTitle": "Похожесть",
+    "sim.wordInteral": "Слово на Interal",
     "sim.wordOtherLanguage": "Слово на другом языке",
+    "sim.languageOther": "Язык другого слова",
     "sim.calculate": "Рассчитать",
     "sim.explain": "Пояснение",
-    "sim.phoneticTitle": "Фонетическая похожесть",
-    "sim.wordHypothesisIpa": "Гипотеза слова (МФА)",
-    "sim.wordOtherLanguageIpa": "Слово на другом языке (МФА)",
-    "sim.calcPhoneticTitle": "Расчёт фонетической похожести",
-    "sim.infoP1": "Вам необходимо вставить фонетическую транскрипцию слова на Interal в Международном фонетическом алфавите (МФА) в строку «Гипотеза слова».",
-    "sim.infoP2": "В строку «Слово на другом языке» вставляется фонетическая транскрипция в IPA на соответствующем этническом языке. Ниже указаны сайты для разных языков, где Вы можете найти фонетическую транскрипцию нужного слова.",
-    "sim.sourceEn": "Английский",
-    "sim.sourceSet": "Немецкий, испанский, французский, русский, греческий",
-    "sim.sourceIt": "Итальянский",
     "sim.close": "Закрыть",
-    "sim.fillGraphic": "Пожалуйста, заполните оба слова",
-    "sim.fillPhonetic": "Пожалуйста, заполните оба слова в МФА",
-    "sim.formula": "Формула:",
-    "sim.result": "Результат"
+    "sim.fillWords": "Пожалуйста, заполните оба слова",
+    "sim.searchingIpa": "Поиск транскрипции IPA в Wiktionary...",
+    "sim.alineMissing": "Файл aline.js не подключён или не загрузился",
+    "sim.wiktionaryNotFound": "IPA-транскрипция не найдена в Wiktionary",
+    "sim.graphicTitle": "Графическая похожесть",
+    "sim.phoneticTitle": "Фонетическая похожесть",
+    "sim.generalTitle": "Общая похожесть",
+    "sim.interalIpa": "IPA Interal",
+    "sim.otherIpa": "IPA другого языка",
+    "sim.language": "Язык",
+    "sim.source": "Источник",
+    "sim.formula": "Формула",
+    "sim.result": "Результат",
+    "sim.tokens": "Токены",
+    "sim.alignment": "Выравнивание",
+    "sim.unknownSegments": "Неизвестные сегменты",
+    "sim.none": "нет",
+    "sim.langEnglish": "Английский",
+    "sim.langGerman": "Немецкий",
+    "sim.langFrench": "Французский",
+    "sim.langSpanish": "Испанский",
+    "sim.langItalian": "Итальянский",
+    "sim.langRussian": "Русский",
+    "sim.langGreek": "Греческий"
   },
   en: {
-    "sim.graphicTitle": "Graphic similarity",
-    "sim.wordHypothesis": "Word hypothesis",
+    "sim.combinedTitle": "Similarity",
+    "sim.wordInteral": "Word in Interal",
     "sim.wordOtherLanguage": "Word in another language",
+    "sim.languageOther": "Language of the other word",
     "sim.calculate": "Calculate",
     "sim.explain": "Explain",
-    "sim.phoneticTitle": "Phonetic similarity",
-    "sim.wordHypothesisIpa": "Word hypothesis (IPA)",
-    "sim.wordOtherLanguageIpa": "Word in another language (IPA)",
-    "sim.calcPhoneticTitle": "Calculation of phonetic similarity",
-    "sim.infoP1": "You need to insert the IPA transcription of the Interal word into the \"Word hypothesis\" field.",
-    "sim.infoP2": "In the \"Word in another language\" field, insert the IPA transcription in the corresponding ethnic language. Use the websites below to find transcription.",
-    "sim.sourceEn": "English",
-    "sim.sourceSet": "German, Spanish, French, Russian, Greek",
-    "sim.sourceIt": "Italian",
     "sim.close": "Close",
-    "sim.fillGraphic": "Please fill in both words",
-    "sim.fillPhonetic": "Please fill in both IPA words",
-    "sim.formula": "Formula:",
-    "sim.result": "Result"
+    "sim.fillWords": "Please fill in both words",
+    "sim.searchingIpa": "Searching for IPA transcription in Wiktionary...",
+    "sim.alineMissing": "aline.js is not connected or has not loaded",
+    "sim.wiktionaryNotFound": "IPA transcription was not found in Wiktionary",
+    "sim.graphicTitle": "Graphic similarity",
+    "sim.phoneticTitle": "Phonetic similarity",
+    "sim.generalTitle": "General similarity",
+    "sim.interalIpa": "Interal IPA",
+    "sim.otherIpa": "Other language IPA",
+    "sim.language": "Language",
+    "sim.source": "Source",
+    "sim.formula": "Formula",
+    "sim.result": "Result",
+    "sim.tokens": "Tokens",
+    "sim.alignment": "Alignment",
+    "sim.unknownSegments": "Unknown segments",
+    "sim.none": "none",
+    "sim.langEnglish": "English",
+    "sim.langGerman": "German",
+    "sim.langFrench": "French",
+    "sim.langSpanish": "Spanish",
+    "sim.langItalian": "Italian",
+    "sim.langRussian": "Russian",
+    "sim.langGreek": "Greek"
   }
 };
 
@@ -301,9 +307,8 @@ function applyTranslations() {
   document.title = 'Similaritá';
 }
 
-
 function normalize(text){
-    return text.trim().toLowerCase();
+    return String(text || "").trim().toLowerCase().normalize("NFC");
 }
 
 function levenshtein(a, b) {
@@ -338,206 +343,620 @@ function levenshtein(a, b) {
     return dp[n][m];
 }
 
-// фонетические пары
-const phoneticPairs = [
-    ["d", "t"],
-    ["k", "g"],
-    ["b", "p"],
-    ["v", "f"],
-    ["b", "v"],
-    ["p", "f"],
-    ["s", "z"],
-    ["n", "m"],
-    ["ɸ", "β"],
-    ["θ", "ð"],
-    ["ʃ", "ʒ"],
-    ["ʂ", "ʐ"],
-    ["x", "ɣ"],
-    ["h", "ɦ"],
-    ["i", "y"],
-    ["ɪ", "ʏ"],
-    ["ɨ", "ʉ"],
-    ["ɛ", "œ"],
-    ["a", "ä"],
-    ["ɑ", "ɒ"],
-    ["w", "u"],
-    ["t͡s", "d͡z"],
-    ["t͡ʃ", "d͡ʒ"],
-    ["l", "ɫ"],
-    ["r", "ɾ"],
-    ["e", "ø"],
-    ["ə", "ɐ"]
-];
-
-const phoneticPairSet = new Set(
-    phoneticPairs.flatMap(([x, y]) => [`${x}|${y}`, `${y}|${x}`])
-);
-
-function phoneticCost(a, b) {
-    if (a === b) return 0;
-    return phoneticPairSet.has(`${a}|${b}`) ? 0.5 : 1;
-}
-
-function tokenizePhonetic(text) {
-    const multiCharSymbols = Array.from(
-        new Set(phoneticPairs.flat().filter(symbol => symbol.length > 1))
-    ).sort((x, y) => y.length - x.length);
-
-    const tokens = [];
-    let index = 0;
-
-    while (index < text.length) {
-        const matched = multiCharSymbols.find(symbol => text.startsWith(symbol, index));
-        if (matched) {
-            tokens.push(matched);
-            index += matched.length;
-        } else {
-            tokens.push(text[index]);
-            index++;
-        }
-    }
-
-    return tokens;
-}
-
-function psychoLevenshtein(a, b) {
-    const n = a.length, m = b.length;
-    const dp = Array.from({ length: n + 1 }, () => Array(m + 1).fill(0));
-
-    for (let i = 0; i <= n; i++) dp[i][0] = i;
-    for (let j = 0; j <= m; j++) dp[0][j] = j;
-
-    for (let i = 1; i <= n; i++) {
-        for (let j = 1; j <= m; j++) {
-            dp[i][j] = Math.min(
-                dp[i-1][j-1] + phoneticCost(a[i-1], b[j-1]),
-                dp[i-1][j] + 1,
-                dp[i][j-1] + 1
-            );
-        }
-    }
-    return dp[n][m];
-}
-
-function shiftSimilarity(a,b){
-    const scores={0:1.0,1:0.5,2:0.4,3:0.3};
-    let best=0;
-
-    for(let shift=0;shift<=3;shift++){
-        for(const [x,y] of [[a,b],[b,a]]){
-            const subX = x.slice(shift);
-            const minLen = Math.min(subX.length, y.length);
-            let match=0;
-            for(let i=0;i<minLen;i++){
-                if(subX[i]===y[i]) match++;
-                else break;
-            }
-            if(match>=3){
-                best=Math.max(best,scores[shift]);
-            }
-        }
-    }
-    return best;
-}
-
-function calcGraphic() {
-    const a = normalize(g1.value);
-    const b = normalize(g2.value);
-    graphicResult.style.display = "block";
-    if (!a || !b) {
-        graphicResult.textContent = t("sim.fillGraphic");
-        graphicExplainBtn.style.display = "none";
-        return;
-    }
-
+function graphicSimilarity(a, b) {
     const d = levenshtein(a, b);
     const maxLen = Math.max(a.length, b.length);
-    const baseSim = 1 - d / maxLen;
-   const sim = baseSim;
-
-    graphicExplanation =
-`${t("sim.graphicTitle")}
-
-${t("sim.formula")}
-1 − (Levenshtein distance / max length)
-
-Word A: ${a}
-Word B: ${b}
-
-Levenshtein distance: ${d}
-Max length: ${maxLen}
-
-${t("sim.result")}:
-${sim.toFixed(3)}
-`;
-
-    graphicExplainBtn.style.display = "block";
-    graphicResult.innerHTML = sim.toFixed(3);
+    if (maxLen === 0) return 0;
+    return clamp01(1 - d / maxLen);
 }
 
-function calcPhonetic() {
-    const a = normalize(p1.value);
-    const b = normalize(p2.value);
-    phoneticResult.style.display = "block";
-    if (!a || !b) {
-        phoneticResult.textContent = t("sim.fillPhonetic");
-        phoneticExplainBtn.style.display = "none";
-        return;
+const INTERAL_U_EXCEPTIONS = new Set([
+  "authentic", "pausa", "haus", "audir", "aura", "fauna",
+  "sauna", "caus", "applaudir", "laudar"
+]);
+
+const OPTIONAL_SILENT_INITIAL_H = new Set([
+  "historia", "halleluya", "haver", "havet", "hallo", "halló",
+  "hazard", "hysteria", "hystéria", "hotel", "honest", "homonym"
+]);
+
+const X_KZ_WORDS = new Set([
+  "examen", "exámen", "exemple", "exercise", "exister"
+]);
+
+const INTERAL_VOWELS = new Set(["a", "e", "i", "o", "u", "y"]);
+
+function stripInteralStressMarks(word) {
+  return String(word || "")
+    .normalize("NFC")
+    .replace(/[áà]/g, "a")
+    .replace(/[éè]/g, "e")
+    .replace(/[íì]/g, "i")
+    .replace(/[óò]/g, "o")
+    .replace(/[úù]/g, "u");
+}
+
+function findExplicitInteralStressIndex(word) {
+  const normalized = String(word || "").normalize("NFC");
+  const stressChars = new Set(["á", "à", "é", "è", "í", "ì", "ó", "ò", "ú", "ù"]);
+
+  for (let i = 0; i < normalized.length; i++) {
+    if (stressChars.has(normalized[i])) return i;
+  }
+
+  return -1;
+}
+
+function isInteralVowel(ch) {
+  return INTERAL_VOWELS.has(ch);
+}
+
+function isInteralConsonant(ch) {
+  return /^[a-z]$/.test(ch) && !isInteralVowel(ch);
+}
+
+function lastVowelBefore(word, index) {
+  for (let i = Math.min(index - 1, word.length - 1); i >= 0; i--) {
+    if (isInteralVowel(word[i])) return i;
+  }
+  return -1;
+}
+
+function lastVowelIndex(word) {
+  for (let i = word.length - 1; i >= 0; i--) {
+    if (isInteralVowel(word[i])) return i;
+  }
+  return -1;
+}
+
+function calculateInteralStressIndex(input) {
+  const raw = normalize(input);
+  const explicit = findExplicitInteralStressIndex(raw);
+  const word = stripInteralStressMarks(raw);
+
+  if (explicit >= 0) return explicit;
+  if (!word) return -1;
+
+  if (word.endsWith("abil")) return word.lastIndexOf("abil");
+  if (word.endsWith("ibil")) return word.lastIndexOf("ibil");
+
+  if (word.endsWith("ita") || word.endsWith("ite")) return lastVowelIndex(word);
+  if (word.endsWith("yer")) return word.length - 2;
+  if (word.endsWith("eria")) return word.length - 2;
+
+  const finalStressSuffixes = ["ic", "er", "or", "ing", "im", "um", "us", "is", "ul", "ix"];
+  for (const suffix of finalStressSuffixes) {
+    if (word.endsWith(suffix) && word.length > suffix.length + 1) {
+      const index = lastVowelBefore(word, word.length - suffix.length);
+      if (index >= 0) return index;
+    }
+  }
+
+  const lastConsonant = [...word].map((ch, i) => isInteralConsonant(ch) ? i : -1).filter(i => i >= 0).pop();
+
+  if (
+    Number.isInteger(lastConsonant) &&
+    lastConsonant > 1 &&
+    word[lastConsonant - 1] === "u" &&
+    isInteralVowel(word[lastConsonant - 2])
+  ) {
+    return lastConsonant - 2;
+  }
+
+  const consonantIndexes = [...word].map((ch, i) => isInteralConsonant(ch) ? i : -1).filter(i => i >= 0);
+  if (consonantIndexes.length === 1) {
+    const after = word.slice(consonantIndexes[0] + 1).split("").filter(isInteralVowel);
+    if (after.length >= 2) {
+      const vowelIndexes = [...word].map((ch, i) => isInteralVowel(ch) ? i : -1).filter(i => i >= 0);
+      return vowelIndexes[vowelIndexes.length - 2] ?? -1;
+    }
+  }
+
+  let stressBase = word;
+
+  stressBase = stressBase
+    .replace(/(es|im|en|em)$/u, "")
+    .replace(/s$/u, "");
+
+  const lastCons = [...stressBase].map((ch, i) => isInteralConsonant(ch) ? i : -1).filter(i => i >= 0).pop();
+
+  if (Number.isInteger(lastCons)) {
+    const index = lastVowelBefore(stressBase, lastCons);
+    if (index >= 0) return index;
+  }
+
+  return lastVowelIndex(word);
+}
+
+function interalToIPA(input, options = {}) {
+  const opts = {
+    softC: "t͡s",
+    hVariant: "x",
+    jVariant: "ʒ",
+    silentInitialH: true,
+    silentUInQue: true,
+    includeStress: false,
+    ...options
+  };
+
+  const original = normalize(input);
+  const word = stripInteralStressMarks(original);
+  const stressIndex = opts.includeStress ? calculateInteralStressIndex(original) : -1;
+
+  if (!word) return "";
+
+  let ipa = "";
+  let i = 0;
+
+  function addIPA(sourceIndex, value) {
+    if (sourceIndex === stressIndex && value && !ipa.endsWith("ˈ")) {
+      ipa += "ˈ";
+    }
+    ipa += value;
+  }
+
+  while (i < word.length) {
+    const rest = word.slice(i);
+    const ch = word[i];
+    const prev = word[i - 1] || "";
+    const next = word[i + 1] || "";
+    const next2 = word[i + 2] || "";
+
+    if (
+      i === 0 &&
+      ch === "h" &&
+      opts.silentInitialH &&
+      isInteralVowel(next) &&
+      OPTIONAL_SILENT_INITIAL_H.has(word)
+    ) {
+      i += 1;
+      continue;
     }
 
-    const tokensA = tokenizePhonetic(a);
-    const tokensB = tokenizePhonetic(b);
+    if (
+      opts.silentUInQue &&
+      ch === "q" &&
+      (word === "que" || word === "quel" || word === "quelc")
+    ) {
+      addIPA(i, "k");
+      i += 2;
+      continue;
+    }
 
-    const d = psychoLevenshtein(tokensA, tokensB);
-    const maxLen = Math.max(tokensA.length, tokensB.length);
-    const baseSim = 1 - d / maxLen;
-   const sim = baseSim;
+    if (ch === "x" && X_KZ_WORDS.has(word)) {
+      addIPA(i, "kz");
+      i += 1;
+      continue;
+    }
 
-    phoneticExplanation =
-`${t("sim.phoneticTitle")}
+    if (rest.startsWith("ch")) {
+      addIPA(i, "t͡ɕ");
+      i += 2;
+      continue;
+    }
 
-${t("sim.formula")}
-1 − (Psycho-Levenshtein / max token length)
+    if (rest.startsWith("sh")) {
+      addIPA(i, "ʂ");
+      i += 2;
+      continue;
+    }
 
-IPA A: ${a}
-IPA B: ${b}
-Tokens A: ${tokensA.join(" ")}
-Tokens B: ${tokensB.join(" ")}
+    if (rest.startsWith("ph")) {
+      addIPA(i, "f");
+      i += 2;
+      continue;
+    }
 
-Similar sounds used:
-${phoneticPairs.map(p => p[0] + " ↔ " + p[1]).join(", ")}
+    if (rest.startsWith("rh")) {
+      addIPA(i, "r");
+      i += 2;
+      continue;
+    }
 
-Distance: ${d}
+    if (rest.startsWith("th")) {
+      addIPA(i, "t");
+      i += 2;
+      continue;
+    }
 
-${t("sim.result")}:
-${sim.toFixed(3)}
-`;
+    if (rest.startsWith("zz")) {
+      addIPA(i, "t͡s");
+      i += 2;
+      continue;
+    }
 
-    phoneticExplainBtn.style.display = "block";
-    phoneticResult.innerHTML = sim.toFixed(3);
+    if (rest.startsWith("qu")) {
+      addIPA(i, "kw");
+      i += 2;
+      continue;
+    }
+
+    if (rest.startsWith("gu") && isInteralVowel(next2)) {
+      addIPA(i, "gw");
+      i += 2;
+      continue;
+    }
+
+    if (ch === "t" && next === "i" && ["a", "e", "o", "u"].includes(next2)) {
+      addIPA(i, "t͡s");
+      i += 1;
+      continue;
+    }
+
+    if (ch === "c") {
+      addIPA(i, ["i", "e", "y"].includes(next) ? opts.softC : "k");
+      i += 1;
+      continue;
+    }
+
+    if (ch === "s" && isInteralVowel(prev) && isInteralVowel(next)) {
+      addIPA(i, "z");
+      i += 1;
+      continue;
+    }
+
+    if (
+      ch === "u" &&
+      (prev === "a" || prev === "e") &&
+      !INTERAL_U_EXCEPTIONS.has(word)
+    ) {
+      addIPA(i, "w");
+      i += 1;
+      continue;
+    }
+
+    if (ch === "y") {
+      addIPA(i, (isInteralVowel(prev) || isInteralVowel(next)) ? "j" : "i");
+      i += 1;
+      continue;
+    }
+
+    switch (ch) {
+      case "a": addIPA(i, "a"); break;
+      case "b": addIPA(i, "b"); break;
+      case "d": addIPA(i, "d"); break;
+      case "e": addIPA(i, "e"); break;
+      case "f": addIPA(i, "f"); break;
+      case "g": addIPA(i, "g"); break;
+      case "h": addIPA(i, opts.hVariant); break;
+      case "i": addIPA(i, "i"); break;
+      case "j": addIPA(i, opts.jVariant); break;
+      case "k": addIPA(i, "k"); break;
+      case "l": addIPA(i, "l"); break;
+      case "m": addIPA(i, "m"); break;
+      case "n": addIPA(i, "n"); break;
+      case "o": addIPA(i, "o"); break;
+      case "p": addIPA(i, "p"); break;
+      case "q": addIPA(i, "k"); break;
+      case "r": addIPA(i, "r"); break;
+      case "s": addIPA(i, "s"); break;
+      case "t": addIPA(i, "t"); break;
+      case "u": addIPA(i, "u"); break;
+      case "v": addIPA(i, "v"); break;
+      case "w": addIPA(i, "w"); break;
+      case "x": addIPA(i, "ks"); break;
+      case "z": addIPA(i, "z"); break;
+      default: addIPA(i, ch); break;
+    }
+
+    i += 1;
+  }
+
+  return ipa;
 }
 
+const WIKTIONARY_LANG_LABELS = {
+  en: ["English"],
+  de: ["German"],
+  fr: ["French"],
+  es: ["Spanish"],
+  it: ["Italian"],
+  ru: ["Russian"],
+  el: ["Greek", "Modern Greek"]
+};
 
-function showExplain(type){
-    const fullText = type === "graphic" ? graphicExplanation : phoneticExplanation;
-    const [title, ...restLines] = fullText.split("\n");
+const WIKTIONARY_LANG_NAMES = {
+  en: "English",
+  de: "German",
+  fr: "French",
+  es: "Spanish",
+  it: "Italian",
+  ru: "Russian",
+  el: "Greek"
+};
 
-    explainText.innerHTML = "";
+const ipaCache = new Map();
 
-    const titleElement = document.createElement("h3");
-    titleElement.className = "explain-title";
-    titleElement.textContent = title.trim();
+function wiktionaryCandidates(word, langCode) {
+  const raw = String(word || "").trim();
+  const lower = raw.toLowerCase();
+  const candidates = [raw, lower];
 
-    const bodyElement = document.createElement("div");
-    bodyElement.className = "explain-body";
-    bodyElement.textContent = restLines.join("\n").trim();
+  if (langCode === "de" && lower) {
+    candidates.push(lower.charAt(0).toUpperCase() + lower.slice(1));
+  }
 
-    explainText.append(titleElement, bodyElement);
-    explainModal.classList.add("show");
+  return [...new Set(candidates.filter(Boolean))];
+}
+
+async function fetchWiktionaryHTML(title) {
+  const url =
+    "https://en.wiktionary.org/w/api.php?" +
+    new URLSearchParams({
+      action: "parse",
+      page: title,
+      prop: "text",
+      format: "json",
+      origin: "*"
+    });
+
+  const response = await fetch(url);
+  if (!response.ok) throw new Error("Wiktionary request failed");
+
+  const data = await response.json();
+  if (data.error) return "";
+
+  return data.parse && data.parse.text ? data.parse.text["*"] : "";
+}
+
+function normalizeHeadingText(text) {
+  return String(text || "")
+    .replace(/\[edit\]/gi, "")
+    .trim();
+}
+
+function extractIPAFromWiktionaryHTML(html, langCode) {
+  const labels = WIKTIONARY_LANG_LABELS[langCode] || [];
+  const doc = new DOMParser().parseFromString(html, "text/html");
+  const headings = [...doc.querySelectorAll("h2")];
+
+  const languageHeading = headings.find((h2) => {
+    const headline = h2.querySelector(".mw-headline");
+    const headingText = normalizeHeadingText(headline ? headline.textContent : h2.textContent);
+    const headingId = (headline && headline.id) || h2.id || "";
+
+    return labels.some((label) => {
+      const normalizedId = label.replace(/\s+/g, "_");
+      return headingText === label || headingId === normalizedId;
+    });
+  });
+
+  if (!languageHeading) return "";
+
+  const section = document.createElement("div");
+  let node = languageHeading.nextElementSibling;
+
+  while (node && node.tagName !== "H2") {
+    section.appendChild(node.cloneNode(true));
+    node = node.nextElementSibling;
+  }
+
+  const ipaElements = [...section.querySelectorAll(".IPA")];
+  if (!ipaElements.length) return "";
+
+  for (const element of ipaElements) {
+    const ipa = cleanIPA(element.textContent);
+    if (ipa) return ipa;
+  }
+
+  return "";
+}
+
+function cleanIPA(text) {
+  let s = String(text || "")
+    .trim()
+    .normalize("NFC")
+    .replace(/\s+/g, " ")
+    .replace(/ɡ/g, "g")
+    .replace(/:/g, "ː");
+
+  const bracketed = s.match(/[\/\[]([^\/\]\[]+)[\/\]]/);
+  if (bracketed) {
+    s = bracketed[1];
+  } else {
+    s = s.replace(/^[\/\[]/, "").replace(/[\/\]]$/, "");
+  }
+
+  s = s
+    .split(/[;,]/)[0]
+    .replace(/^\s*IPA\s*:?\s*/i, "")
+    .replace(/[()]/g, "")
+    .trim();
+
+  return s;
+}
+
+async function getOnlineIPA(word, langCode) {
+  const key = `${langCode}:${String(word || "").trim()}`;
+  if (ipaCache.has(key)) return ipaCache.get(key);
+
+  for (const candidate of wiktionaryCandidates(word, langCode)) {
+    const html = await fetchWiktionaryHTML(candidate);
+    if (!html) continue;
+
+    const ipa = extractIPAFromWiktionaryHTML(html, langCode);
+    if (ipa) {
+      const result = {
+        ipa,
+        title: candidate,
+        source: `en.wiktionary.org/wiki/${encodeURIComponent(candidate)}`
+      };
+      ipaCache.set(key, result);
+      return result;
+    }
+  }
+
+  const result = { ipa: "", title: "", source: "" };
+  ipaCache.set(key, result);
+  return result;
+}
+
+const ALINE_OPTIONS = {
+  mergePlainAffricates: true,
+  mergeDiphthongs: false,
+  gapPenalty: -0.65,
+  expansionPenalty: -0.18,
+  returnGapsInAlignment: true,
+  maxAlignments: 1
+};
+
+function calcAlineSimilarity(ipaA, ipaB) {
+  if (!window.ALINE) {
+    throw new Error(t("sim.alineMissing"));
+  }
+
+  return ALINE.explain(ipaA, ipaB, ALINE_OPTIONS);
+}
+
+function formatScore(value) {
+  return clamp01(value).toFixed(3);
+}
+
+function renderResult(rows, warning = "") {
+  combinedResult.innerHTML = rows.map(([label, value]) => `
+    <div class="result-row">
+      <span>${escapeHTML(label)}</span>
+      <span>${escapeHTML(value)}</span>
+    </div>
+  `).join("") + (warning ? `<div class="result-warning">${escapeHTML(warning)}</div>` : "");
+}
+
+function buildAlignmentText(alignment) {
+  if (!alignment || !alignment.length) return t("sim.none");
+  return alignment.map((pair) => `${pair[0]} ↔ ${pair[1]}`).join("\n");
+}
+
+async function calcCombined() {
+  const interalWord = normalize(wordInteral.value);
+  const otherWord = normalize(wordOther.value);
+  const langCode = otherLanguage.value;
+  const langName = WIKTIONARY_LANG_NAMES[langCode] || langCode;
+
+  combinedResult.style.display = "block";
+  combinedExplainBtn.style.display = "none";
+
+  if (!interalWord || !otherWord) {
+    combinedResult.textContent = t("sim.fillWords");
+    combinedExplanation = "";
+    return;
+  }
+
+  combinedResult.textContent = t("sim.searchingIpa");
+
+  const graphic = graphicSimilarity(interalWord, otherWord);
+  const interalIPA = interalToIPA(interalWord, { includeStress: false });
+  const onlineIPA = await getOnlineIPA(otherWord, langCode);
+
+  if (!onlineIPA.ipa) {
+    renderResult([
+      [t("sim.graphicTitle"), formatScore(graphic)],
+      [t("sim.interalIpa"), `/${interalIPA}/`],
+      [t("sim.otherIpa"), t("sim.wiktionaryNotFound")],
+      [t("sim.language"), langName]
+    ], t("sim.wiktionaryNotFound"));
+
+    combinedExplanation =
+`${t("sim.combinedTitle")}
+
+${t("sim.graphicTitle")}
+${t("sim.formula")}: 1 − (Levenshtein distance / max length)
+${t("sim.result")}: ${formatScore(graphic)}
+
+${t("sim.interalIpa")}: /${interalIPA}/
+${t("sim.otherIpa")}: ${t("sim.wiktionaryNotFound")}
+${t("sim.language")}: ${langName}
+
+${t("sim.generalTitle")} не рассчитана, потому что Wiktionary не вернул IPA для второго слова.`;
+    combinedExplainBtn.style.display = "block";
+    return;
+  }
+
+  const aline = calcAlineSimilarity(interalIPA, onlineIPA.ipa);
+  const phonetic = aline.normalized;
+  const general = (graphic + phonetic) / 2;
+
+  renderResult([
+    [t("sim.graphicTitle"), formatScore(graphic)],
+    [t("sim.interalIpa"), `/${interalIPA}/`],
+    [t("sim.otherIpa"), `/${onlineIPA.ipa}/`],
+    [t("sim.phoneticTitle"), formatScore(phonetic)],
+    [t("sim.generalTitle"), formatScore(general)]
+  ]);
+
+  const alignment = aline.alignments && aline.alignments[0] ? aline.alignments[0] : [];
+
+  combinedExplanation =
+`${t("sim.combinedTitle")}
+
+${t("sim.graphicTitle")}
+${t("sim.formula")}: 1 − (Levenshtein distance / max length)
+Interal: ${interalWord}
+${langName}: ${otherWord}
+${t("sim.result")}: ${formatScore(graphic)}
+
+${t("sim.interalIpa")}
+Interal → IPA по правилам чтения Interal (§42–58): /${interalIPA}/
+
+${t("sim.otherIpa")}
+${langName} → IPA из Wiktionary: /${onlineIPA.ipa}/
+${t("sim.source")}: ${onlineIPA.source}
+
+${t("sim.phoneticTitle")}
+Метод: ALINE
+${t("sim.tokens")} Interal: ${aline.tokensA.join(" ")}
+${t("sim.tokens")} ${langName}: ${aline.tokensB.join(" ")}
+
+${t("sim.alignment")}:
+${buildAlignmentText(alignment)}
+
+${t("sim.unknownSegments")} Interal: ${aline.unknownA.length ? aline.unknownA.join(", ") : t("sim.none")}
+${t("sim.unknownSegments")} ${langName}: ${aline.unknownB.length ? aline.unknownB.join(", ") : t("sim.none")}
+
+${t("sim.result")}: ${formatScore(phonetic)}
+
+${t("sim.generalTitle")}
+${t("sim.formula")}: (${t("sim.graphicTitle")} + ${t("sim.phoneticTitle")}) / 2
+(${formatScore(graphic)} + ${formatScore(phonetic)}) / 2 = ${formatScore(general)}
+`;
+
+  combinedExplainBtn.style.display = "block";
+}
+
+function showExplain(){
+  if (!combinedExplanation) return;
+
+  const [title, ...restLines] = combinedExplanation.split("\n");
+
+  explainText.innerHTML = "";
+
+  const titleElement = document.createElement("h3");
+  titleElement.className = "explain-title";
+  titleElement.textContent = title.trim();
+
+  const bodyElement = document.createElement("div");
+  bodyElement.className = "explain-body";
+  bodyElement.textContent = restLines.join("\n").trim();
+
+  explainText.append(titleElement, bodyElement);
+  explainModal.classList.add("show");
 }
 
 function closeExplain(){
     explainModal.classList.remove("show");
+}
+
+function clamp01(x) {
+  if (!Number.isFinite(x)) return 0;
+  return Math.max(0, Math.min(1, x));
+}
+
+function escapeHTML(value) {
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 }
 
 // Закрытие модального при клике вне окна
@@ -546,13 +965,17 @@ explainModal.onclick = function(e){
         closeExplain();
     }
 };
+
 applyTranslations();
 
-
-document.getElementById("calcGraphicBtn").addEventListener("click", calcGraphic);
-document.getElementById("calcPhoneticBtn").addEventListener("click", calcPhonetic);
-document.getElementById("graphicExplainBtn").addEventListener("click", () => showExplain("graphic"));
-document.getElementById("phoneticExplainBtn").addEventListener("click", () => showExplain("phonetic"));
+document.getElementById("calcCombinedBtn").addEventListener("click", () => {
+  calcCombined().catch((error) => {
+    combinedResult.style.display = "block";
+    combinedResult.textContent = error.message || String(error);
+    combinedExplainBtn.style.display = "none";
+  });
+});
+document.getElementById("combinedExplainBtn").addEventListener("click", showExplain);
 document.getElementById("closeExplainBtn").addEventListener("click", closeExplain);
 document.addEventListener("interal:languagechange", applyTranslations);
 </script>
