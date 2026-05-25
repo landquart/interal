@@ -447,6 +447,8 @@ a{color:var(--text);text-decoration:none;}
   color: #fff;
   box-shadow: none;
   padding: 0;
+  transform: scale(1);
+  transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
 .interal-reset-btn img {
@@ -470,4 +472,8 @@ body.dark-theme .interal-reset-btn img {
 .interal-reset-btn:focus-visible {
   transform: translateY(-1px);
   filter: none;
+}
+
+.interal-reset-btn:active {
+  transform: scale(0.99);
 }
