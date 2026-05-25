@@ -349,7 +349,20 @@ const i18n = {
     "sim.langSpanish": "Испанский",
     "sim.langItalian": "Итальянский",
     "sim.langRussian": "Русский",
-    "sim.langGreek": "Греческий"
+    "sim.langGreek": "Греческий",
+    "sim.tableLanguage": "Язык",
+    "sim.tableWord": "Слово",
+    "sim.rowFound": "найдено",
+    "sim.rowNotFound": "строка не найдена",
+    "sim.explainHeader": "Похожесть",
+    "sim.explainInteral": "Interal",
+    "sim.explainInteralIpa": "IPA Interal",
+    "sim.ipaInteral": "IPA Interal",
+    "sim.explainPieFound": "Строка PIE найдена",
+    "sim.yes": "да",
+    "sim.no": "нет",
+    "sim.explainSource": "источник",
+    "sim.explainRoute": "маршрут"
   },
   en: {
     "sim.combinedTitle": "Similarity",
@@ -388,7 +401,20 @@ const i18n = {
     "sim.langSpanish": "Spanish",
     "sim.langItalian": "Italian",
     "sim.langRussian": "Russian",
-    "sim.langGreek": "Greek"
+    "sim.langGreek": "Greek",
+    "sim.tableLanguage": "Language",
+    "sim.tableWord": "Word",
+    "sim.rowFound": "found",
+    "sim.rowNotFound": "row not found",
+    "sim.explainHeader": "Similarity",
+    "sim.explainInteral": "Interal",
+    "sim.explainInteralIpa": "IPA Interal",
+    "sim.ipaInteral": "IPA Interal",
+    "sim.explainPieFound": "PIE row found",
+    "sim.yes": "yes",
+    "sim.no": "no",
+    "sim.explainSource": "source",
+    "sim.explainRoute": "route"
   }
 };
 
@@ -1891,7 +1917,7 @@ async function calculateSimilarity() {
 function renderResultTable(data) {
   resultBox.innerHTML = `
     <div class="result-row">
-      <span>IPA Interal</span>
+      <span>${escapeHTML(t("sim.ipaInteral"))}</span>
       <span>${escapeHTML(data.interalIPA ? `/${data.interalIPA}/` : "—")}</span>
     </div>
 
@@ -1899,8 +1925,8 @@ function renderResultTable(data) {
       <table style="width:100%; border-collapse:collapse; font-size:14px;">
         <thead>
           <tr>
-            <th style="text-align:left; padding:6px;">Language</th>
-            <th style="text-align:left; padding:6px;">Word</th>
+            <th style="text-align:left; padding:6px;">${escapeHTML(t("sim.tableLanguage"))}</th>
+            <th style="text-align:left; padding:6px;">${escapeHTML(t("sim.tableWord"))}</th>
             <th style="text-align:left; padding:6px;">IPA</th>
             <th style="text-align:right; padding:6px;">G</th>
             <th style="text-align:right; padding:6px;">P</th>
@@ -1925,14 +1951,14 @@ function renderResultTable(data) {
 
   if (data.rowMatch && data.rowMatch.item) {
     resultBox.innerHTML += `
-      <div class="result-warning">
-        pie_vordes: найдено id ${escapeHTML(data.rowMatch.item.id || "—")}; PIE ${escapeHTML(data.rowMatch.item.pie || "—")}; status ${escapeHTML(data.rowMatch.item.status || "—")}
+        <div class="result-warning">
+        pie_vordes: ${escapeHTML(t("sim.rowFound"))} id ${escapeHTML(data.rowMatch.item.id || "—")}; PIE ${escapeHTML(data.rowMatch.item.pie || "—")}; status ${escapeHTML(data.rowMatch.item.status || "—")}
       </div>
     `;
   } else {
     resultBox.innerHTML += `
-      <div class="result-warning">
-        pie_vordes: строка не найдена. Показан только выбранный язык, потому что без строки в pie_vordes нет данных для остальных 6 языков.
+        <div class="result-warning">
+        pie_vordes: ${escapeHTML(t("sim.rowNotFound"))}. ${localStorage.getItem("interal.lang") === "en" ? "Only the selected language is shown, because without a pie_vordes row there is no data for the other 6 languages." : "Показан только выбранный язык, потому что без строки в pie_vordes нет данных для остальных 6 языков."}
       </div>
     `;
   }
@@ -1940,17 +1966,17 @@ function renderResultTable(data) {
 
 function buildExplanationTable(data) {
   const lines = [];
-  lines.push('Similaritá');
+  lines.push(t("sim.explainHeader"));
   lines.push('');
-  lines.push(`Interal: ${data.interalWord}`);
-  lines.push(`IPA Interal: ${data.interalIPA ? `/${data.interalIPA}/` : '—'}`);
-  lines.push(`PIE row found: ${data.rowMatch && data.rowMatch.item ? 'yes' : 'no'}`);
+  lines.push(`${t("sim.explainInteral")}: ${data.interalWord}`);
+  lines.push(`${t("sim.explainInteralIpa")}: ${data.interalIPA ? `/${data.interalIPA}/` : '—'}`);
+  lines.push(`${t("sim.explainPieFound")}: ${data.rowMatch && data.rowMatch.item ? t("sim.yes") : t("sim.no")}`);
   lines.push('');
 
   for (const row of data.tableRows) {
     lines.push(`${row.langName || row.lang}: word=${row.word || '—'}; ipa=${row.ipa ? `/${row.ipa}/` : '—'}; G=${row.graphic === null ? '—' : formatScore(row.graphic)}; P=${row.phonetic === null ? '—' : formatScore(row.phonetic)}; Total=${row.general === null ? '—' : formatScore(row.general)}`);
-    lines.push(`  source: ${row.source || '—'}`);
-    lines.push(`  route: ${row.route && row.route.length ? row.route.join(' → ') : '—'}`);
+    lines.push(`  ${t("sim.explainSource")}: ${row.source || '—'}`);
+    lines.push(`  ${t("sim.explainRoute")}: ${row.route && row.route.length ? row.route.join(' → ') : '—'}`);
   }
 
   explanationText = lines.join('\n');
