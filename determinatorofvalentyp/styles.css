@@ -34,6 +34,7 @@ body {
 }
 
 .panel {
+  position: relative;
   background: var(--surface);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
@@ -210,6 +211,15 @@ textarea.copy-flash {
   width: 32px;
   height: 32px;
   display: block;
+}
+
+.panel-tools {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  justify-content: flex-end;
+  z-index: 2;
 }
 
 .actions {

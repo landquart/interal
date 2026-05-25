@@ -35,6 +35,7 @@
 }
 
 .similarita-page .card {
+  position: relative;
   background: var(--surface);
   border: 1px solid var(--border-subtle);
   max-width: 640px;
@@ -88,6 +89,42 @@
   border-color: var(--border-strong);
 }
 
+
+.similarita-page .card-tools {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  justify-content: flex-end;
+  z-index: 2;
+}
+
+.similarita-page .card-reset-btn {
+  width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-control);
+  border-radius: var(--radius-md);
+  background: var(--surface-elevated);
+  color: var(--text);
+  box-shadow: none;
+  padding: 0;
+}
+
+.similarita-page .card-reset-btn:hover,
+.similarita-page .card-reset-btn:focus-visible {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+.similarita-page .card-reset-btn.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
 .similarita-page .tool-btn {
   width: 100%;
   margin-top: 16px;
@@ -110,43 +147,6 @@
 .similarita-page .tool-btn:focus-visible {
   outline: 2px solid var(--focus-outline);
   outline-offset: 2px;
-}
-
-.similarita-page .actions-row {
-  display: flex;
-  gap: 10px;
-  margin-top: 16px;
-}
-
-.similarita-page .actions-row .tool-btn {
-  margin-top: 0;
-}
-
-.similarita-page .icon-btn-square {
-  width: 48px;
-  min-width: 48px;
-  padding: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.similarita-page #resetBtn {
-  background: #111;
-  border-color: #111;
-  color: #fff;
-}
-
-.similarita-page #resetBtn:hover,
-.similarita-page #resetBtn:focus-visible {
-  background: #000;
-  border-color: #000;
-}
-
-.similarita-page #resetBtn.is-hidden {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
 }
 
 .similarita-page .result {
@@ -242,6 +242,12 @@ body.dark-theme .similarita-page #explainModal {
 <div class="card">
   <h2 data-i18n="sim.combinedTitle">Similaritá</h2>
 
+  <div class="card-tools">
+    <button class="tool-btn interal-btn interal-btn--secondary card-reset-btn icon-btn is-hidden" id="resetBtn" type="button" aria-label="Сбросить" title="Сбросить">
+      <img src="../elements/Eraser%20Square.svg" alt="" aria-hidden="true" style="width:20px;height:20px;display:block;filter:var(--icon-filter, none);" />
+    </button>
+  </div>
+
   <label data-i18n="sim.wordInteral">Vord in Interal</label>
   <input id="wordInteral" type="text" autocomplete="off">
 
@@ -259,12 +265,7 @@ body.dark-theme .similarita-page #explainModal {
     <option value="el" data-i18n="sim.langGreek">Greek</option>
   </select>
 
-  <div class="actions-row">
-    <button id="calcBtn" class="tool-btn interal-btn interal-btn--primary" data-i18n="sim.calculate">Calcular</button>
-    <button id="resetBtn" class="tool-btn interal-btn interal-btn--secondary icon-btn-square" type="button" aria-label="Сбросить" title="Сбросить">
-      <img src="../elements/Eraser%20Square.svg" alt="" aria-hidden="true" style="width:20px;height:20px;display:block;filter:var(--icon-filter, none);" />
-    </button>
-  </div>
+  <button id="calcBtn" class="tool-btn interal-btn interal-btn--primary" data-i18n="sim.calculate">Calcular</button>
 
   <div id="resultBox" class="result" style="display:none"></div>
 
@@ -637,6 +638,17 @@ function applyTranslations() {
   resetBtn.setAttribute("title", resetText);
 }
 
+function hasUserInputForReset() {
+  const interalWord = String(wordInteralInput.value || "").trim();
+  const nationalWord = String(wordOtherInput.value || "").trim();
+  const hasSelectedLanguage = otherLanguageSelect.value !== "en";
+  return interalWord.length > 0 || nationalWord.length > 0 || hasSelectedLanguage;
+}
+
+function syncResetButtonVisibility() {
+  resetBtn.classList.toggle("is-hidden", !hasUserInputForReset());
+}
+
 function resetAll() {
   const shouldReset = window.confirm(t("sim.resetWarning"));
   if (!shouldReset) return;
@@ -655,16 +667,6 @@ function resetAll() {
   syncResetButtonVisibility();
 }
 
-function hasUserInputForReset() {
-  const interalWord = String(wordInteralInput.value || "").trim();
-  const nationalWord = String(wordOtherInput.value || "").trim();
-  const hasSelectedLanguage = otherLanguageSelect.value !== "en";
-  return interalWord.length > 0 || nationalWord.length > 0 || hasSelectedLanguage;
-}
-
-function syncResetButtonVisibility() {
-  resetBtn.classList.toggle("is-hidden", !hasUserInputForReset());
-}
 
 function abortActiveRun() {
   if (activeController) {
@@ -2055,13 +2057,13 @@ applyTranslations();
 syncResetButtonVisibility();
 
 calcBtn.addEventListener("click", calculateSimilarity);
+resetBtn.addEventListener("click", resetAll);
 wordInteralInput.addEventListener("input", calculateDebounced);
 wordInteralInput.addEventListener("input", syncResetButtonVisibility);
 wordOtherInput.addEventListener("input", calculateDebounced);
 wordOtherInput.addEventListener("input", syncResetButtonVisibility);
 otherLanguageSelect.addEventListener("change", calculateSimilarity);
 otherLanguageSelect.addEventListener("change", syncResetButtonVisibility);
-resetBtn.addEventListener("click", resetAll);
 explainBtn.addEventListener("click", showExplain);
 document.getElementById("closeExplainBtn").addEventListener("click", closeExplain);
 document.addEventListener("interal:languagechange", applyTranslations);
