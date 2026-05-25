@@ -571,21 +571,6 @@ body.has-global-menu .app-shell {
 }
 
 
-.determinator-page #clearBtn {
-  background: #000;
-  border-color: #000;
-  color: #fff;
-}
-
-.determinator-page #clearBtn img {
-  filter: brightness(0) invert(1);
-}
-
-.determinator-page #clearBtn:hover,
-.determinator-page #clearBtn:focus-visible {
-  background: #111;
-  border-color: #111;
-}
 
 .determinator-page #clearBtn.is-hidden {
   opacity: 0;

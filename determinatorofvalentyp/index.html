@@ -80,7 +80,7 @@
       </details>
 
       <div class="panel-tools">
-        <button class="tool-btn icon-copy-btn is-hidden" id="clearBtn" type="button" aria-label="Clear" title="Clear">
+        <button class="tool-btn icon-copy-btn interal-reset-btn is-hidden" id="clearBtn" type="button" aria-label="Clear" title="Clear">
           <img src="../elements/Eraser%20Square.svg" alt="" aria-hidden="true" />
         </button>
       </div>
@@ -297,7 +297,7 @@
         const analyseBtn = document.getElementById('analyzeBtn');
         if (analyseBtn) analyseBtn.textContent = s.analyse;
         const clearBtn = document.getElementById('clearBtn');
-        if (clearBtn) clearBtn.textContent = s.clear;
+        if (clearBtn) { clearBtn.setAttribute('aria-label', s.clear); clearBtn.setAttribute('title', s.clear); }
         const resultTitle = document.getElementById('resultTitle');
         if (resultTitle) resultTitle.textContent = s.result;
         const resultBody = document.getElementById('result');
