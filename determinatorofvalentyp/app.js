@@ -1276,7 +1276,13 @@ function hasUserInputForClear() {
   ];
 
   const hasTypedText = fields.some((field) => field && field.value && field.value.trim().length > 0);
-  return hasTypedText || state.components.length > 0;
+  const selectorChanged = [
+    els.assimilationSelect,
+    els.componentCategorySelect,
+    els.componentSelect,
+    els.prefixVariantSelect
+  ].some((select) => select && select.selectedIndex > 0);
+  return hasTypedText || selectorChanged || state.components.length > 0;
 }
 
 function syncClearButtonVisibility() {
@@ -1444,6 +1450,8 @@ function attachEvents() {
   els.componentSelect.addEventListener('change', updateComponentPreview);
   els.assimilationSelect.addEventListener('change', syncRootFormByAssimilation);
   els.prefixVariantSelect.addEventListener('change', updatePrefixVariantPreview);
+  [els.componentCategorySelect, els.componentSelect, els.assimilationSelect, els.prefixVariantSelect]
+    .forEach((el) => el && el.addEventListener('change', syncClearButtonVisibility));
 
   document.addEventListener('interal:languagechange', () => {
     refreshSelectLocalization();
