@@ -1991,6 +1991,51 @@ function escapeHTML(value) {
     .replace(/'/g, "&#039;");
 }
 
+function showExplain() {
+  if (!explanationText) return;
+
+  const [title, ...restLines] = explanationText.split("\n");
+
+  explainText.innerHTML = "";
+
+  const titleElement = document.createElement("h3");
+  titleElement.className = "explain-title";
+  titleElement.textContent = title.trim();
+
+  const bodyElement = document.createElement("div");
+  bodyElement.className = "explain-body";
+  bodyElement.textContent = restLines.join("\n").trim();
+
+  explainText.append(titleElement, bodyElement);
+  explainModal.classList.add("show");
+}
+
+function closeExplain() {
+  explainModal.classList.remove("show");
+}
+
+function debounce(fn, delay = 1200) {
+  let timer = null;
+
+  return function (...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => fn.apply(this, args), delay);
+  };
+}
+
+function formatScore(value) {
+  return clamp01(value).toFixed(3);
+}
+
+function clamp01(x) {
+  if (!Number.isFinite(x)) return 0;
+  return Math.max(0, Math.min(1, x));
+}
+
+function onlyUnique(value, index, array) {
+  return value && array.indexOf(value) === index;
+}
+
 const calculateDebounced = debounce(() => {
   const interalWord = String(wordInteralInput.value || "").trim();
   const nationalWord = String(wordOtherInput.value || "").trim();
