@@ -275,8 +275,8 @@
   <main>
     <section class="card grid grid-2">
       <div class="card-tools">
-        <button class="tool-btn interal-btn danger card-reset-btn icon-btn is-hidden" id="resetBtn" aria-label="Сбросить" title="Сбросить">
-          <img src="../elements/Eraser%20Square.svg" alt="" aria-hidden="true" style="width:20px;height:20px;display:block;filter:var(--icon-filter, none);" />
+        <button class="tool-btn interal-btn danger card-reset-btn interal-reset-btn icon-btn is-hidden" id="resetBtn" aria-label="Сбросить" title="Сбросить">
+          <img src="../elements/Eraser%20Square.svg" alt="" aria-hidden="true"  />
         </button>
       </div>
       <div style="grid-column: 1 / -1;">
@@ -827,8 +827,7 @@
     document.getElementById('elementType').addEventListener('change', syncResetButtonVisibility);
     document.getElementById('searchBtn').addEventListener('click', searchDerivatives);
     document.getElementById('showExampleBtn').addEventListener('click', showExample);
-    document.getElementById('elementType').addEventListener('change', showExample);
-    document.getElementById('exportBtn').addEventListener('click', exportState);
+        document.getElementById('exportBtn').addEventListener('click', exportState);
     document.getElementById('importBtn').addEventListener('click', importState);
     document.getElementById('resetBtn').addEventListener('click', resetAll);
     document.getElementById('loadDerivativeDataBtn').addEventListener('click', loadDerivativeData);

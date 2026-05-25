@@ -433,3 +433,41 @@ a{color:var(--text);text-decoration:none;}
   background: var(--button-primary-bg);
   color: var(--button-primary-text);
 }
+
+
+.interal-reset-btn {
+  width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #000;
+  border-radius: var(--radius-md);
+  background: #000;
+  color: #fff;
+  box-shadow: none;
+  padding: 0;
+}
+
+.interal-reset-btn img {
+  width: 20px;
+  height: 20px;
+  display: block;
+  filter: brightness(0) invert(1);
+}
+
+body.dark-theme .interal-reset-btn {
+  background: #fff;
+  border-color: #fff;
+  color: #111;
+}
+
+body.dark-theme .interal-reset-btn img {
+  filter: brightness(0) invert(0);
+}
+
+.interal-reset-btn:hover,
+.interal-reset-btn:focus-visible {
+  transform: translateY(-1px);
+  filter: none;
+}
