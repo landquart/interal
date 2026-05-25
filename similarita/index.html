@@ -226,7 +226,7 @@ body.dark-theme .similarita-page #explainModal {
   <input id="wordInteral" type="text" autocomplete="off">
 
   <label data-i18n="sim.wordOther">Vord in alter lingue</label>
-  <input id="wordOther" type="text" autocomplete="off" placeholder="Можно оставить пустым: перевод будет найден автоматически">
+  <input id="wordOther" type="text" autocomplete="off" placeholder="Введите слово на выбранном национальном языке">
 
   <label data-i18n="sim.otherLanguage">Lingue del alter vord</label>
   <select id="otherLanguage">
@@ -278,6 +278,8 @@ let activeController = null;
 let runId = 0;
 let pieVordesPromise = null;
 
+const LANG_CODES = ["en", "de", "fr", "es", "it", "ru", "el"];
+
 const LANG_NAMES = {
   en: "English",
   de: "German",
@@ -287,8 +289,6 @@ const LANG_NAMES = {
   ru: "Russian",
   el: "Greek"
 };
-
-const LANG_CODES = ["en", "de", "fr", "es", "it", "ru", "el"];
 
 const i18n = {
   ru: {
@@ -301,8 +301,8 @@ const i18n = {
     "sim.explain": "Пояснение",
     "sim.close": "Закрыть",
     "sim.fillInteral": "Введите слово на Interal",
-    "sim.searching": "Поиск перевода и IPA...",
-    "sim.translationNotFound": "перевод не найден",
+    "sim.fillNational": "Введите слово на выбранном национальном языке",
+    "sim.searching": "Поиск в pie_vordes и Wiktionary...",
     "sim.alineMissing": "Файл aline.js не подключён или не загрузился",
     "sim.ipaNotFound": "IPA не найдено",
     "sim.graphicTitle": "Графическая похожесть",
@@ -314,7 +314,7 @@ const i18n = {
     "sim.ipa": "IPA",
     "sim.source": "Источник",
     "sim.lookupRoute": "Маршрут поиска",
-    "sim.translationSource": "Источник перевода",
+    "sim.pieRow": "Строка pie_vordes",
     "sim.formula": "Формула",
     "sim.result": "Результат",
     "sim.tokens": "Токены",
@@ -339,8 +339,8 @@ const i18n = {
     "sim.explain": "Explain",
     "sim.close": "Close",
     "sim.fillInteral": "Enter a word in Interal",
-    "sim.searching": "Searching translation and IPA...",
-    "sim.translationNotFound": "translation not found",
+    "sim.fillNational": "Enter a word in the selected national language",
+    "sim.searching": "Searching pie_vordes and Wiktionary...",
     "sim.alineMissing": "aline.js is not connected or has not loaded",
     "sim.ipaNotFound": "IPA not found",
     "sim.graphicTitle": "Graphic similarity",
@@ -352,7 +352,7 @@ const i18n = {
     "sim.ipa": "IPA",
     "sim.source": "Source",
     "sim.lookupRoute": "Lookup route",
-    "sim.translationSource": "Translation source",
+    "sim.pieRow": "pie_vordes row",
     "sim.formula": "Formula",
     "sim.result": "Result",
     "sim.tokens": "Tokens",
@@ -425,19 +425,9 @@ const WIKTIONARY_LANG_LABELS = {
   el: ["Greek", "Modern Greek", "Ελληνικά"]
 };
 
-const TRANSLATION_LANG_LABELS = {
-  de: ["German", "Deutsch"],
-  fr: ["French", "Français"],
-  es: ["Spanish", "Español"],
-  it: ["Italian", "Italiano"],
-  ru: ["Russian", "Русский"],
-  el: ["Greek", "Modern Greek", "Ελληνικά"]
-};
-
 const ipaCache = new Map();
 const htmlCache = new Map();
 const searchCache = new Map();
-const translationCache = new Map();
 
 const ALINE_OPTIONS = {
   mergePlainAffricates: true,
@@ -959,28 +949,32 @@ function graphicSimilarity(a, b) {
   return clamp01(1 - d / maxLen);
 }
 
-async function safeFetchJSON(url, signal) {
+async function safeFetchJSON(url) {
   try {
-    const response = await fetch(url, { signal, cache: "no-cache" });
+    const response = await fetch(url, { cache: "no-cache" });
     if (!response.ok) return null;
     return await response.json();
   } catch (error) {
-    if (error && error.name === "AbortError") throw error;
+    console.warn("Cannot load JSON:", url, error);
     return null;
   }
 }
 
-async function loadPieVordes(signal) {
+async function loadPieVordes() {
   if (!pieVordesPromise) {
     pieVordesPromise = (async () => {
-      const direct = await safeFetchJSON("./pie_vordes", signal);
+      const direct = await safeFetchJSON("./pie_vordes");
       if (direct && Array.isArray(direct.items)) return direct;
 
-      const json = await safeFetchJSON("./pie_vordes.json", signal);
+      const json = await safeFetchJSON("./pie_vordes.json");
       if (json && Array.isArray(json.items)) return json;
 
-      return { items: [] };
-    })();
+      return { languages: LANG_CODES, items: [] };
+    })().catch((error) => {
+      console.warn("pie_vordes failed:", error);
+      pieVordesPromise = null;
+      return { languages: LANG_CODES, items: [] };
+    });
   }
 
   return pieVordesPromise;
@@ -993,85 +987,139 @@ function splitVariants(value) {
     return value.flatMap(splitVariants);
   }
 
+  if (typeof value === "object") {
+    return splitVariants(value.word || value.words || value.form || value.forms || "");
+  }
+
   return String(value)
     .split(/\s*\/\s*|,\s*|;\s*|\s+\|\s+/)
     .map((x) => x.trim())
     .filter(Boolean);
 }
 
-function getPieForms(item, langCode) {
-  if (!item) return [];
+function getPieCell(item, langCode) {
+  const cell = item && item[langCode];
 
-  const direct = item[langCode];
-  const nested = item.forms && item.forms[langCode];
+  if (!cell) {
+    return { words: [], ipa: "" };
+  }
 
-  return [...new Set([...splitVariants(direct), ...splitVariants(nested)])];
+  if (typeof cell === "string") {
+    return {
+      words: splitVariants(cell),
+      ipa: item.ipa && item.ipa[langCode] ? String(item.ipa[langCode]) : ""
+    };
+  }
+
+  if (Array.isArray(cell)) {
+    return {
+      words: splitVariants(cell),
+      ipa: item.ipa && item.ipa[langCode] ? String(item.ipa[langCode]) : ""
+    };
+  }
+
+  if (typeof cell === "object") {
+    return {
+      words: splitVariants(cell.word || cell.words || cell.form || cell.forms || ""),
+      ipa: String(cell.ipa || "")
+    };
+  }
+
+  return { words: [], ipa: "" };
 }
 
-function getPieIPA(item, langCode, form) {
-  if (!item || !item.ipa) return "";
+function getPieForms(item, langCode) {
+  return getPieCell(item, langCode).words;
+}
 
-  const raw = item.ipa[langCode];
-  if (!raw) return "";
+function getPieIPA(item, langCode) {
+  const cell = getPieCell(item, langCode);
+  if (cell.ipa) return cell.ipa;
 
-  if (typeof raw === "string") return raw;
-
-  if (Array.isArray(raw)) return raw[0] || "";
-
-  if (typeof raw === "object") {
-    const key = normalize(form);
-    return raw[key] || raw.default || Object.values(raw)[0] || "";
+  if (item && item.ipa && item.ipa[langCode]) {
+    return String(item.ipa[langCode]);
   }
 
   return "";
 }
 
-function getItemSearchValues(item) {
-  const values = [];
+function findPieRowByNationalWord(data, nationalWord, selectedLang) {
+  const querySelected = normalizeGraphicInput(nationalWord, selectedLang);
 
-  for (const key of ["interal", "interal_word", "int", "meaning_en", "meaning_ru"]) {
-    if (item[key]) values.push({ value: item[key], lang: key === "meaning_ru" ? "ru" : "interal" });
-  }
+  for (const item of data.items || []) {
+    const forms = getPieForms(item, selectedLang);
 
-  for (const lang of LANG_CODES) {
-    for (const form of getPieForms(item, lang)) {
-      values.push({ value: form, lang });
+    for (const form of forms) {
+      const normalizedForm = normalizeGraphicInput(form, selectedLang);
+
+      if (normalizedForm && normalizedForm === querySelected) {
+        return {
+          item,
+          matchedWord: form,
+          matchedLang: selectedLang,
+          method: "exact_selected_language",
+          score: 1
+        };
+      }
     }
   }
 
-  return values;
-}
-
-function findPieRowByInteralWord(data, interalWord) {
-  const query = normalizeGraphicInput(interalWord, "interal");
-  let best = null;
+  let bestInSelected = null;
 
   for (const item of data.items || []) {
-    const values = getItemSearchValues(item);
+    const forms = getPieForms(item, selectedLang);
 
-    for (const entry of values) {
-      const variants = splitVariants(entry.value);
+    for (const form of forms) {
+      const normalizedForm = normalizeGraphicInput(form, selectedLang);
+      if (!normalizedForm) continue;
 
-      for (const variant of variants) {
-        const form = normalizeGraphicInput(variant, entry.lang || "interal");
+      const score = graphicSimilarity(querySelected, normalizedForm);
 
-        if (!form) continue;
+      if (!bestInSelected || score > bestInSelected.score) {
+        bestInSelected = {
+          item,
+          matchedWord: form,
+          matchedLang: selectedLang,
+          method: "similar_selected_language",
+          score
+        };
+      }
+    }
+  }
 
-        if (form === query) {
+  if (bestInSelected && bestInSelected.score >= 0.86) {
+    return bestInSelected;
+  }
+
+  let bestInAll = null;
+
+  for (const item of data.items || []) {
+    for (const lang of LANG_CODES) {
+      const queryForLang = normalizeGraphicInput(nationalWord, lang);
+      const forms = getPieForms(item, lang);
+
+      for (const form of forms) {
+        const normalizedForm = normalizeGraphicInput(form, lang);
+        if (!normalizedForm) continue;
+
+        if (normalizedForm === queryForLang) {
           return {
             item,
-            matched: variant,
-            method: "exact"
+            matchedWord: form,
+            matchedLang: lang,
+            method: "exact_other_language",
+            score: 1
           };
         }
 
-        const score = graphicSimilarity(query, form);
+        const score = graphicSimilarity(queryForLang, normalizedForm);
 
-        if (!best || score > best.score) {
-          best = {
+        if (!bestInAll || score > bestInAll.score) {
+          bestInAll = {
             item,
-            matched: variant,
-            method: "similar",
+            matchedWord: form,
+            matchedLang: lang,
+            method: "similar_other_language",
             score
           };
         }
@@ -1079,65 +1127,55 @@ function findPieRowByInteralWord(data, interalWord) {
     }
   }
 
-  if (best && best.score >= 0.62) return best;
+  if (bestInAll && bestInAll.score >= 0.9) {
+    return bestInAll;
+  }
 
   return null;
 }
 
-async function findTranslationInPieVordes(interalWord, targetLang, signal) {
-  const data = await loadPieVordes(signal);
-  const row = findPieRowByInteralWord(data, interalWord);
+async function resolveNationalWordData(nationalWord, selectedLang) {
+  const data = await loadPieVordes();
+  const rowMatch = findPieRowByNationalWord(data, nationalWord, selectedLang);
 
-  if (!row || !row.item) {
+  if (!rowMatch) {
     return {
-      word: "",
-      source: "similarita/pie_vordes",
-      route: ["pie_vordes:not_found"],
-      row: null
+      wordForComparison: nationalWord,
+      wordForIPA: nationalWord,
+      row: null,
+      pieWord: "",
+      pieIPA: "",
+      pie: "",
+      status: "",
+      note: "",
+      source: "manual input; pie_vordes not found",
+      route: [`pie_vordes:not_found:${selectedLang}:${nationalWord}`]
     };
   }
 
-  const forms = getPieForms(row.item, targetLang);
-  const word = forms[0] || "";
+  const selectedForms = getPieForms(rowMatch.item, selectedLang);
+  const selectedCellWord = selectedForms[0] || nationalWord;
+  const selectedIPA = getPieIPA(rowMatch.item, selectedLang);
+
+  const matchedSelectedLanguage = rowMatch.matchedLang === selectedLang;
+  const wordForComparison = matchedSelectedLanguage ? nationalWord : selectedCellWord;
+  const wordForIPA = matchedSelectedLanguage ? nationalWord : selectedCellWord;
 
   return {
-    word,
+    wordForComparison,
+    wordForIPA,
+    row: rowMatch.item,
+    pieWord: selectedCellWord,
+    pieIPA: selectedIPA,
+    pie: rowMatch.item.pie || "",
+    status: rowMatch.item.status || "",
+    note: rowMatch.item.note || "",
     source: "similarita/pie_vordes",
     route: [
-      `pie_vordes:matched:${row.matched}`,
-      `method:${row.method}${row.score ? `:${row.score.toFixed(3)}` : ""}`,
-      `target:${targetLang}:${word || "not_found"}`
-    ],
-    row: row.item
-  };
-}
-
-async function getLocalIPAFromPieVordes(word, langCode, signal) {
-  const data = await loadPieVordes(signal);
-  const query = normalizeGraphicInput(word, langCode);
-
-  for (const item of data.items || []) {
-    const forms = getPieForms(item, langCode);
-
-    for (const form of forms) {
-      if (normalizeGraphicInput(form, langCode) === query) {
-        const ipa = getPieIPA(item, langCode, form);
-
-        if (ipa) {
-          return {
-            ipa,
-            source: "similarita/pie_vordes",
-            route: [`pie_vordes:ipa:${langCode}:${form}`]
-          };
-        }
-      }
-    }
-  }
-
-  return {
-    ipa: "",
-    source: "",
-    route: []
+      `pie_vordes:matched:${rowMatch.matchedLang}:${rowMatch.matchedWord}`,
+      `method:${rowMatch.method}:${Number(rowMatch.score || 0).toFixed(3)}`,
+      `selected:${selectedLang}:${selectedCellWord}`
+    ]
   };
 }
 
@@ -1158,11 +1196,9 @@ async function fetchWiktionaryHTMLFrom(apiUrl, title, signal) {
       });
 
     const response = await fetch(url, { signal });
-
     if (!response.ok) return "";
 
     const data = await response.json();
-
     if (data.error) return "";
 
     const html = data.parse && data.parse.text ? data.parse.text["*"] : "";
@@ -1193,7 +1229,6 @@ async function searchWiktionaryTitles(apiUrl, word, signal) {
       });
 
     const response = await fetch(url, { signal });
-
     if (!response.ok) return [];
 
     const data = await response.json();
@@ -1526,24 +1561,22 @@ function normalizeIPAForAline(ipa) {
     .trim();
 }
 
-async function getOnlineIPA(word, langCode, signal) {
+async function getNationalIPA(word, langCode, nationalData, signal) {
   const raw = String(word || "").trim();
-  const key = `${langCode}:${raw}`;
+  const cacheKey = `${langCode}:${raw}`;
 
-  if (ipaCache.has(key)) return ipaCache.get(key);
+  if (ipaCache.has(cacheKey)) return ipaCache.get(cacheKey);
 
-  const localPie = await getLocalIPAFromPieVordes(raw, langCode, signal);
-
-  if (localPie.ipa) {
+  if (nationalData && nationalData.pieIPA) {
     const result = {
-      ipa: localPie.ipa,
-      variants: [localPie.ipa],
+      ipa: nationalData.pieIPA,
+      variants: [nationalData.pieIPA],
       title: raw,
-      source: localPie.source,
-      route: localPie.route
+      source: "similarita/pie_vordes",
+      route: [...(nationalData.route || []), `pie_vordes:ipa:${langCode}`]
     };
 
-    ipaCache.set(key, result);
+    ipaCache.set(cacheKey, result);
     return result;
   }
 
@@ -1558,10 +1591,18 @@ async function getOnlineIPA(word, langCode, signal) {
       route: [`fallback:${langCode}:${raw}`]
     };
 
-    ipaCache.set(key, result);
+    ipaCache.set(cacheKey, result);
     return result;
   }
 
+  const wiki = await getWiktionaryIPA(raw, langCode, signal);
+
+  ipaCache.set(cacheKey, wiki);
+  return wiki;
+}
+
+async function getWiktionaryIPA(word, langCode, signal) {
+  const raw = String(word || "").trim();
   const route = [];
   const enApi = WIKTIONARY_APIS.en;
   const localApi = WIKTIONARY_APIS[langCode];
@@ -1577,16 +1618,13 @@ async function getOnlineIPA(word, langCode, signal) {
     const variants = extractIPAsFromEnglishWiktionaryHTML(html, langCode);
 
     if (variants.length) {
-      const result = {
+      return {
         ipa: variants[0],
         variants,
         title,
         source: `en.wiktionary.org/wiki/${encodeURIComponent(title)}`,
         route
       };
-
-      ipaCache.set(key, result);
-      return result;
     }
   }
 
@@ -1602,16 +1640,13 @@ async function getOnlineIPA(word, langCode, signal) {
       const variants = extractIPAsFromLocalWiktionaryHTML(html, langCode);
 
       if (variants.length) {
-        const result = {
+        return {
           ipa: variants[0],
           variants,
           title,
           source: `${langCode}.wiktionary.org/wiki/${encodeURIComponent(title)}`,
           route
         };
-
-        ipaCache.set(key, result);
-        return result;
       }
     }
   }
@@ -1622,155 +1657,6 @@ async function getOnlineIPA(word, langCode, signal) {
     title: "",
     source: "",
     route
-  };
-}
-
-async function findTranslationInWiktionary(interalWord, targetLang, signal) {
-  const key = `translation:${interalWord}:${targetLang}`;
-  if (translationCache.has(key)) return translationCache.get(key);
-
-  if (targetLang === "en") {
-    const result = {
-      word: interalWord,
-      source: "input as English-like form",
-      route: ["wiktionary_translation:target_en"]
-    };
-
-    translationCache.set(key, result);
-    return result;
-  }
-
-  const enApi = WIKTIONARY_APIS.en;
-  const candidates = await gatherWiktionaryCandidates(enApi, interalWord, "en", signal);
-  const route = [];
-
-  for (const title of candidates) {
-    route.push(`en:${title}`);
-
-    const html = await fetchWiktionaryHTMLFrom(enApi, title, signal);
-    if (!html) continue;
-
-    const word = extractTranslationFromEnglishWiktionaryHTML(html, targetLang);
-
-    if (word) {
-      const result = {
-        word,
-        source: `en.wiktionary.org/wiki/${encodeURIComponent(title)}`,
-        route
-      };
-
-      translationCache.set(key, result);
-      return result;
-    }
-  }
-
-  const result = {
-    word: "",
-    source: "",
-    route
-  };
-
-  translationCache.set(key, result);
-  return result;
-}
-
-function extractTranslationFromEnglishWiktionaryHTML(html, targetLang) {
-  const doc = new DOMParser().parseFromString(html, "text/html");
-  const section = getLanguageSection(doc, "en");
-
-  if (!section) return "";
-
-  return extractTranslationByLangAttribute(section, targetLang) ||
-         extractTranslationByLanguageLine(section, targetLang);
-}
-
-function extractTranslationByLangAttribute(section, targetLang) {
-  const nodes = [
-    ...section.querySelectorAll(`[lang|="${targetLang}"], [xml\\:lang|="${targetLang}"]`)
-  ];
-
-  for (const node of nodes) {
-    const term = cleanTranslationTerm(node.textContent);
-
-    if (isValidWordForLanguage(term, targetLang)) return term;
-  }
-
-  return "";
-}
-
-function extractTranslationByLanguageLine(section, targetLang) {
-  const labels = TRANSLATION_LANG_LABELS[targetLang] || [];
-  const text = normalizeWiktionaryText(section.textContent || "");
-
-  for (const label of labels) {
-    const pattern = new RegExp(`${escapeRegExp(label)}\\s*[:：]\\s*([^;\\n•]+)`, "i");
-    const match = text.match(pattern);
-
-    if (!match) continue;
-
-    const parts = match[1]
-      .split(/[,;]/)
-      .map(cleanTranslationTerm)
-      .filter((term) => isValidWordForLanguage(term, targetLang));
-
-    if (parts[0]) return parts[0];
-  }
-
-  return "";
-}
-
-function cleanTranslationTerm(text) {
-  return String(text || "")
-    .normalize("NFC")
-    .replace(/\[[^\]]*\]/g, "")
-    .replace(/\([^)]*\)/g, "")
-    .replace(/[“”"«»]/g, "")
-    .replace(/\s+/g, " ")
-    .trim();
-}
-
-function isValidWordForLanguage(term, langCode) {
-  if (!term) return false;
-  if (term.length > 60) return false;
-
-  if (/^(translation|translations|edit|show|hide)$/i.test(term)) return false;
-
-  if (langCode === "ru") return /[а-яё]/i.test(term);
-  if (langCode === "el") return /[\u0370-\u03ff]/.test(term);
-
-  return /[A-Za-zÀ-ž]/.test(term);
-}
-
-async function resolveOtherWord(interalWord, manualOtherWord, targetLang, signal) {
-  const manual = String(manualOtherWord || "").trim();
-
-  if (manual) {
-    return {
-      word: manual,
-      source: "manual input",
-      route: ["manual_input"],
-      row: null
-    };
-  }
-
-  const pie = await findTranslationInPieVordes(interalWord, targetLang, signal);
-
-  if (pie.word) return pie;
-
-  const wiki = await findTranslationInWiktionary(interalWord, targetLang, signal);
-
-  if (wiki.word) {
-    return {
-      ...wiki,
-      route: ["pie_vordes:not_found", ...wiki.route]
-    };
-  }
-
-  return {
-    word: "",
-    source: "",
-    route: ["pie_vordes:not_found", "wiktionary_translation:not_found"],
-    row: null
   };
 }
 
@@ -1849,8 +1735,8 @@ async function calculateSimilarity() {
   const signal = createRunSignal();
 
   const interalWord = String(wordInteralInput.value || "").trim();
-  const manualOtherWord = String(wordOtherInput.value || "").trim();
-  const otherLang = otherLanguageSelect.value;
+  const nationalInputWord = String(wordOtherInput.value || "").trim();
+  const nationalLang = otherLanguageSelect.value;
 
   resultBox.style.display = "block";
   explainBtn.style.display = "none";
@@ -1861,27 +1747,29 @@ async function calculateSimilarity() {
     return;
   }
 
+  if (!nationalInputWord) {
+    resultBox.textContent = t("sim.fillNational");
+    return;
+  }
+
   resultBox.textContent = t("sim.searching");
 
   try {
-    const translation = await resolveOtherWord(interalWord, manualOtherWord, otherLang, signal);
+    const nationalData = await resolveNationalWordData(nationalInputWord, nationalLang);
 
     if (currentRun !== runId) return;
 
-    if (!translation.word) {
-      renderTranslationNotFound(interalWord, otherLang, translation);
-      return;
-    }
-
-    const otherWord = translation.word;
+    const nationalWordForComparison = nationalData.wordForComparison || nationalInputWord;
+    const nationalWordForIPA = nationalData.wordForIPA || nationalInputWord;
 
     const graphicInteral = normalizeGraphicInput(interalWord, "interal");
-    const graphicOther = normalizeGraphicInput(otherWord, otherLang);
-    const graphic = graphicSimilarity(graphicInteral, graphicOther);
+    const graphicNational = normalizeGraphicInput(nationalWordForComparison, nationalLang);
+    const graphic = graphicSimilarity(graphicInteral, graphicNational);
 
     const interalIPA = interalToIPA(interalWord);
     const interalIPAComparable = interalIPAForAline(interalWord);
-    const otherIPAResult = await getOnlineIPA(otherWord, otherLang, signal);
+
+    const nationalIPAResult = await getNationalIPA(nationalWordForIPA, nationalLang, nationalData, signal);
 
     if (currentRun !== runId) return;
 
@@ -1889,11 +1777,11 @@ async function calculateSimilarity() {
     let general = null;
     let aline = null;
 
-    if (interalIPAComparable && otherIPAResult.ipa) {
-      const best = chooseBestIPAForAline(interalIPAComparable, otherIPAResult);
+    if (interalIPAComparable && nationalIPAResult.ipa) {
+      const best = chooseBestIPAForAline(interalIPAComparable, nationalIPAResult);
 
       if (best) {
-        otherIPAResult.ipa = best.ipa;
+        nationalIPAResult.ipa = best.ipa;
         phonetic = best.score;
         aline = best.aline;
         general = (graphic + phonetic) / 2;
@@ -1902,16 +1790,17 @@ async function calculateSimilarity() {
 
     const payload = {
       interalWord,
-      otherWord,
-      manualOtherWord,
-      otherLang,
-      translation,
+      nationalInputWord,
+      nationalWordForComparison,
+      nationalWordForIPA,
+      nationalLang,
+      nationalData,
       graphicInteral,
-      graphicOther,
+      graphicNational,
       graphic,
       interalIPA,
       interalIPAComparable,
-      otherIPAResult,
+      nationalIPAResult,
       phonetic,
       general,
       aline
@@ -1930,39 +1819,13 @@ async function calculateSimilarity() {
   }
 }
 
-function renderTranslationNotFound(interalWord, otherLang, translation) {
-  resultBox.innerHTML = `
-    <div class="result-warning">
-      ${escapeHTML(t("sim.translationNotFound"))}<br>
-      Interal: ${escapeHTML(interalWord)}<br>
-      Target language: ${escapeHTML(LANG_NAMES[otherLang])}<br>
-      Route: ${escapeHTML(translation.route.join(" → "))}
-    </div>
-  `;
-
-  explanationText =
-`Similaritá
-
-Interal word: ${interalWord}
-Target language: ${LANG_NAMES[otherLang]}
-
-Translation was not found.
-
-Translation route:
-${translation.route.join(" → ")}
-
-The calculator first checks similarita/pie_vordes. If no row is found there, it tries Wiktionary translation blocks.`;
-
-  explainBtn.style.display = "block";
-}
-
 function renderResult(data) {
   const rows = [
     [t("sim.graphicTitle"), formatScore(data.graphic)],
     [`${t("sim.graphicForm")} Interal`, data.graphicInteral],
-    [`${t("sim.graphicForm")} ${LANG_NAMES[data.otherLang]}`, data.graphicOther],
+    [`${t("sim.graphicForm")} ${LANG_NAMES[data.nationalLang]}`, data.graphicNational],
     [`${t("sim.ipa")} Interal`, data.interalIPA ? `/${data.interalIPA}/` : t("sim.ipaNotFound")],
-    [`${t("sim.ipa")} ${LANG_NAMES[data.otherLang]}`, data.otherIPAResult.ipa ? `/${data.otherIPAResult.ipa}/` : t("sim.ipaNotFound")],
+    [`${t("sim.ipa")} ${LANG_NAMES[data.nationalLang]}`, data.nationalIPAResult.ipa ? `/${data.nationalIPAResult.ipa}/` : t("sim.ipaNotFound")],
     [t("sim.phoneticTitle"), data.phonetic === null ? "—" : formatScore(data.phonetic)],
     [t("sim.generalTitle"), data.general === null ? "—" : formatScore(data.general)]
   ];
@@ -1974,11 +1837,24 @@ function renderResult(data) {
     </div>
   `).join("");
 
-  if (!data.otherIPAResult.ipa) {
+  if (data.nationalData && data.nationalData.row) {
     resultBox.innerHTML += `
       <div class="result-warning">
-        ${escapeHTML(t("sim.ipaNotFound"))}. 
-        Route: ${escapeHTML(data.otherIPAResult.route && data.otherIPAResult.route.length ? data.otherIPAResult.route.join(" → ") : "—")}
+        ${escapeHTML(t("sim.pieRow"))}: id ${escapeHTML(data.nationalData.row.id || "—")}; PIE ${escapeHTML(data.nationalData.pie || "—")}; status ${escapeHTML(data.nationalData.status || "—")}
+      </div>
+    `;
+  } else {
+    resultBox.innerHTML += `
+      <div class="result-warning">
+        pie_vordes: строка не найдена; национальное слово использовано напрямую, IPA искалось в fallback/Wiktionary.
+      </div>
+    `;
+  }
+
+  if (!data.nationalIPAResult.ipa) {
+    resultBox.innerHTML += `
+      <div class="result-warning">
+        ${escapeHTML(t("sim.ipaNotFound"))}. Route: ${escapeHTML(data.nationalIPAResult.route && data.nationalIPAResult.route.length ? data.nationalIPAResult.route.join(" → ") : "—")}
       </div>
     `;
   }
@@ -1988,15 +1864,7 @@ function renderResult(data) {
       <div class="result-warning">
         Unknown IPA segments:
         Interal: ${escapeHTML((data.aline.unknownA || []).join(", ") || "none")};
-        ${escapeHTML(LANG_NAMES[data.otherLang])}: ${escapeHTML((data.aline.unknownB || []).join(", ") || "none")}
-      </div>
-    `;
-  }
-
-  if (!data.manualOtherWord && data.translation.word) {
-    resultBox.innerHTML += `
-      <div class="result-warning">
-        ${escapeHTML(t("sim.translationSource"))}: ${escapeHTML(data.translation.source || "—")}
+        ${escapeHTML(LANG_NAMES[data.nationalLang])}: ${escapeHTML((data.aline.unknownB || []).join(", ") || "none")}
       </div>
     `;
   }
@@ -2018,6 +1886,8 @@ function buildExplanation(data) {
     ? data.aline.unknownB.join(", ")
     : t("sim.none");
 
+  const row = data.nationalData && data.nationalData.row ? data.nationalData.row : null;
+
   explanationText =
 `Similaritá
 
@@ -2026,15 +1896,22 @@ ${t("sim.graphicForm")} Interal: ${data.graphicInteral}
 ${t("sim.ipa")} Interal: ${data.interalIPA ? `/${data.interalIPA}/` : t("sim.ipaNotFound")}
 IPA for ALINE Interal: /${data.interalIPAComparable}/
 
-${t("sim.word")} ${LANG_NAMES[data.otherLang]}: ${data.otherWord}
-${t("sim.language")}: ${LANG_NAMES[data.otherLang]}
-${t("sim.graphicForm")} ${LANG_NAMES[data.otherLang]}: ${data.graphicOther}
-${t("sim.ipa")} ${LANG_NAMES[data.otherLang]}: ${data.otherIPAResult.ipa ? `/${data.otherIPAResult.ipa}/` : t("sim.ipaNotFound")}
-${t("sim.source")}: ${data.otherIPAResult.source || "—"}
-${t("sim.lookupRoute")}: ${data.otherIPAResult.route && data.otherIPAResult.route.length ? data.otherIPAResult.route.join(" → ") : "—"}
+${t("sim.word")} ${LANG_NAMES[data.nationalLang]} input: ${data.nationalInputWord}
+${t("sim.word")} ${LANG_NAMES[data.nationalLang]} used for comparison: ${data.nationalWordForComparison}
+${t("sim.word")} ${LANG_NAMES[data.nationalLang]} used for IPA: ${data.nationalWordForIPA}
+${t("sim.language")}: ${LANG_NAMES[data.nationalLang]}
+${t("sim.graphicForm")} ${LANG_NAMES[data.nationalLang]}: ${data.graphicNational}
+${t("sim.ipa")} ${LANG_NAMES[data.nationalLang]}: ${data.nationalIPAResult.ipa ? `/${data.nationalIPAResult.ipa}/` : t("sim.ipaNotFound")}
+${t("sim.source")}: ${data.nationalIPAResult.source || "—"}
+${t("sim.lookupRoute")}: ${data.nationalIPAResult.route && data.nationalIPAResult.route.length ? data.nationalIPAResult.route.join(" → ") : "—"}
 
-${t("sim.translationSource")}: ${data.translation.source || "—"}
-Translation route: ${data.translation.route && data.translation.route.length ? data.translation.route.join(" → ") : "—"}
+pie_vordes:
+Found: ${row ? "yes" : "no"}
+${row ? `ID: ${row.id || "—"}
+PIE: ${data.nationalData.pie || "—"}
+Status: ${data.nationalData.status || "—"}
+Note: ${data.nationalData.note || "—"}` : "The national word was not found in pie_vordes. The calculator used the entered national word directly and searched IPA in fallback/Wiktionary."}
+Route: ${data.nationalData.route && data.nationalData.route.length ? data.nationalData.route.join(" → ") : "—"}
 
 ${t("sim.graphicTitle")}
 ${t("sim.formula")}: 1 − (Levenshtein distance / max length)
@@ -2043,13 +1920,13 @@ ${t("sim.result")}: ${formatScore(data.graphic)}
 ${t("sim.phoneticTitle")}
 Method: ALINE
 ${t("sim.tokens")} Interal: ${tokensA}
-${t("sim.tokens")} ${LANG_NAMES[data.otherLang]}: ${tokensB}
+${t("sim.tokens")} ${LANG_NAMES[data.nationalLang]}: ${tokensB}
 
 ${t("sim.alignment")}:
-${alignment.length ? alignment.map((pair) => `${pair[0]} ↔ ${pair[1]}`).join("\n") : "—"}
+${alignment.length ? alignment.map((pair) => Array.isArray(pair) ? `${pair[0]} ↔ ${pair[1]}` : String(pair)).join("\n") : "—"}
 
 ${t("sim.unknownSegments")} Interal: ${unknownA}
-${t("sim.unknownSegments")} ${LANG_NAMES[data.otherLang]}: ${unknownB}
+${t("sim.unknownSegments")} ${LANG_NAMES[data.nationalLang]}: ${unknownB}
 
 ${t("sim.result")}: ${data.phonetic === null ? "—" : formatScore(data.phonetic)}
 
@@ -2058,11 +1935,14 @@ ${t("sim.formula")}: (${t("sim.graphicTitle")} + ${t("sim.phoneticTitle")}) / 2
 ${data.general === null ? "—" : `(${formatScore(data.graphic)} + ${formatScore(data.phonetic)}) / 2 = ${formatScore(data.general)}`}
 
 Process:
-1. If the second word is manually entered, it is used directly.
-2. If the second word is empty, translation is searched first in similarita/pie_vordes.
-3. If no translation is found in pie_vordes, translation is searched in Wiktionary.
-4. IPA is searched first in pie_vordes/local fallback, then in Wiktionary.
-5. General result is calculated only when graphic and phonetic similarity are both available.`;
+1. Interal candidate is entered manually.
+2. National word is entered manually.
+3. The selected national language determines graphic normalization and the primary pie_vordes lookup.
+4. The calculator searches the national word in pie_vordes among en/de/fr/es/it/ru/el.
+5. If a row is found, its selected-language form and IPA are used where available.
+6. If IPA is absent in pie_vordes, local fallback and Wiktionary are used.
+7. Interal IPA is generated locally.
+8. Graphic, phonetic and general similarity are calculated.`;
 }
 
 function showExplain() {
@@ -2119,14 +1999,11 @@ function escapeHTML(value) {
     .replace(/'/g, "&#039;");
 }
 
-function escapeRegExp(value) {
-  return String(value || "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-}
-
 const calculateDebounced = debounce(() => {
   const interalWord = String(wordInteralInput.value || "").trim();
+  const nationalWord = String(wordOtherInput.value || "").trim();
 
-  if (interalWord.length >= 2) {
+  if (interalWord.length >= 2 && nationalWord.length >= 1) {
     calculateSimilarity();
   }
 }, 1200);
