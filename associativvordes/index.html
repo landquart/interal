@@ -125,6 +125,12 @@
       transform: translateY(-1px);
     }
 
+    .card-reset-btn.is-hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
     .muted { color: var(--text-muted); }
     .note { background: var(--surface); padding: 12px; border-radius: var(--radius-md); color: var(--text); border: 1px solid var(--border-subtle); }
 
@@ -269,7 +275,7 @@
   <main>
     <section class="card grid grid-2">
       <div class="card-tools">
-        <button class="tool-btn interal-btn danger card-reset-btn icon-btn" id="resetBtn" aria-label="Сбросить" title="Сбросить">
+        <button class="tool-btn interal-btn danger card-reset-btn icon-btn is-hidden" id="resetBtn" aria-label="Сбросить" title="Сбросить">
           <img src="../elements/Eraser%20Square.svg" alt="" aria-hidden="true" style="width:20px;height:20px;display:block;filter:var(--icon-filter, none);" />
         </button>
       </div>
@@ -673,6 +679,7 @@
       syncTabWidths();
       renderLanguagePanel();
       renderResults();
+      syncResetButtonVisibility();
       saveLocal();
     }
 
@@ -748,6 +755,19 @@
       input.click();
     }
 
+
+    function hasUserInputForReset() {
+      const hasRoot = normalizeText(document.getElementById('rootInput').value).length > 0;
+      const hasMeaning = String(document.getElementById('meaningInput').value || '').trim().length > 0;
+      const hasTypeChange = document.getElementById('elementType').value !== 'root';
+      const hasLanguageRows = Object.values(state.languages || {}).some((items) => Array.isArray(items) && items.length > 0);
+      return hasRoot || hasMeaning || hasTypeChange || hasLanguageRows;
+    }
+
+    function syncResetButtonVisibility() {
+      document.getElementById('resetBtn').classList.toggle('is-hidden', !hasUserInputForReset());
+    }
+
     function resetAll() {
       if (!confirm('Сбросить расчёт?')) return;
       state = emptyState();
@@ -802,6 +822,9 @@
       searchDerivatives();
     }
 
+    document.getElementById('rootInput').addEventListener('input', syncResetButtonVisibility);
+    document.getElementById('meaningInput').addEventListener('input', syncResetButtonVisibility);
+    document.getElementById('elementType').addEventListener('change', syncResetButtonVisibility);
     document.getElementById('searchBtn').addEventListener('click', searchDerivatives);
     document.getElementById('showExampleBtn').addEventListener('click', showExample);
     document.getElementById('elementType').addEventListener('change', showExample);
