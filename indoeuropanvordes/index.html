@@ -47,6 +47,26 @@
   padding: 24px;
   border-radius: var(--radius-lg);
 }
+.internationalita-page .card-tools {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+.internationalita-page .card-reset-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 1px solid var(--border-control);
+  background: var(--surface-elevated);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+.internationalita-page .card-reset-btn img {
+  width: 18px;
+  height: 18px;
+  filter: var(--menu-icon-filter);
+}
 
 .internationalita-page .card h2 {
   text-align: center;
@@ -372,13 +392,13 @@ body.dark-theme .internationalita-page #explainModal {
     PI = Σ(N × S) / ΣN × 100, где S = (графическая похожесть + фонетическая похожесть) / 2.
   </p>
 
-  <label for="interalWord">Vord-hypothese in Interal</label>
-  <input id="interalWord" type="text" autocomplete="off" placeholder="например: matre">
+  <label for="interalWord">Слово-гипотеза на Интерале / Word-hypothesis in Interal</label>
+  <input id="interalWord" type="text" autocomplete="off">
 
   <div class="grid-2">
     <div>
-      <label for="lookupWord">Слово для поиска строки в pie_vordes</label>
-      <input id="lookupWord" type="text" autocomplete="off" placeholder="например: mother / Mutter / madre / мать">
+      <label for="lookupWord">Слово на другом языке</label>
+      <input id="lookupWord" type="text" autocomplete="off">
     </div>
 
     <div>
@@ -395,34 +415,7 @@ body.dark-theme .internationalita-page #explainModal {
     </div>
   </div>
 
-  <button id="fillFromPieBtn" class="tool-btn secondary-btn" type="button">Найти и заполнить из pie_vordes</button>
-
-  <div class="grid-3">
-    <div>
-      <label for="supportThreshold">Порог поддержки языковой группы</label>
-      <input id="supportThreshold" type="number" min="0" max="1" step="0.01" value="0.40">
-    </div>
-
-    <div>
-      <label for="minPercent">Минимальный порог международности, %</label>
-      <input id="minPercent" type="number" min="0" max="100" step="1" value="40">
-    </div>
-
-    <div>
-      <label for="autoIpa">МФА</label>
-      <select id="autoIpa">
-        <option value="yes">Автоматически искать, если поле пустое</option>
-        <option value="no">Использовать только введённые МФА</option>
-      </select>
-    </div>
-  </div>
-
-  <label class="checkbox-line">
-    <input id="semanticOk" type="checkbox" checked>
-    <span>Семантическое соответствие словам контрольных языков подтверждено</span>
-  </label>
-
-  <div class="table-wrap">
+  <div class="table-wrap" id="tableWrap" style="display:none">
     <table>
       <thead>
         <tr>
@@ -441,8 +434,12 @@ body.dark-theme .internationalita-page #explainModal {
     </table>
   </div>
 
+  <div class="card-tools">
+    <button id="resetBtn" class="card-reset-btn" type="button" aria-label="Сбросить">
+      <img src="../elements/eraser.svg" alt="" aria-hidden="true">
+    </button>
+  </div>
   <button id="calcBtn" class="tool-btn" type="button">Рассчитать международность</button>
-  <button id="resetBtn" class="tool-btn secondary-btn" type="button">Сбросить</button>
 
   <div id="resultBox" class="result" style="display:none"></div>
 
@@ -477,12 +474,8 @@ const TOTAL_SPEAKERS = CONTROL_LANGUAGES.reduce((sum, lang) => sum + lang.speake
 const wordInput = document.getElementById("interalWord");
 const lookupWordInput = document.getElementById("lookupWord");
 const lookupLangSelect = document.getElementById("lookupLang");
-const fillFromPieBtn = document.getElementById("fillFromPieBtn");
-const supportThresholdInput = document.getElementById("supportThreshold");
-const minPercentInput = document.getElementById("minPercent");
-const autoIpaSelect = document.getElementById("autoIpa");
-const semanticOkInput = document.getElementById("semanticOk");
 const languageRows = document.getElementById("languageRows");
+const tableWrap = document.getElementById("tableWrap");
 const calcBtn = document.getElementById("calcBtn");
 const resetBtn = document.getElementById("resetBtn");
 const resultBox = document.getElementById("resultBox");
@@ -606,7 +599,7 @@ function initRows() {
         <input class="table-input word-national" data-lang="${escapeHTML(lang.code)}" type="text" autocomplete="off">
       </td>
       <td class="ipa-cell">
-        <input class="table-input ipa-national" data-lang="${escapeHTML(lang.code)}" type="text" autocomplete="off" placeholder="IPA">
+        <input class="table-input ipa-national" data-lang="${escapeHTML(lang.code)}" type="text" autocomplete="off">
       </td>
       <td class="num score-g">—</td>
       <td class="num score-ph">—</td>
@@ -627,10 +620,6 @@ function resetAll() {
   wordInput.value = "";
   lookupWordInput.value = "";
   lookupLangSelect.value = "en";
-  supportThresholdInput.value = "0.40";
-  minPercentInput.value = "40";
-  semanticOkInput.checked = true;
-  autoIpaSelect.value = "yes";
 
   for (const lang of CONTROL_LANGUAGES) {
     const inputs = getRowInputs(lang.code);
@@ -639,6 +628,7 @@ function resetAll() {
   }
 
   clearScores();
+  tableWrap.style.display = "none";
   resultBox.style.display = "none";
   resultBox.innerHTML = "";
   explainBtn.style.display = "none";
@@ -1104,37 +1094,6 @@ function findPieRowByNationalWord(data, nationalWord, selectedLang) {
   return null;
 }
 
-async function fillFromPieVordes() {
-  const lookupWord = lookupWordInput.value.trim();
-  const lookupLang = lookupLangSelect.value;
-
-  if (!lookupWord) {
-    showMessage("Введите слово для поиска строки в pie_vordes.");
-    return;
-  }
-
-  showMessage("Поиск строки в pie_vordes...");
-
-  const data = await loadPieVordes();
-  const rowMatch = findPieRowByNationalWord(data, lookupWord, lookupLang);
-
-  if (!rowMatch || !rowMatch.item) {
-    showMessage("Строка в pie_vordes не найдена. Можно заполнить таблицу вручную.");
-    return;
-  }
-
-  for (const lang of CONTROL_LANGUAGES) {
-    const forms = getPieForms(rowMatch.item, lang.code);
-    const ipa = getPieIPA(rowMatch.item, lang.code);
-    const inputs = getRowInputs(lang.code);
-
-    inputs.word.value = forms[0] || "";
-    inputs.ipa.value = ipa || "";
-  }
-
-  showMessage(`Строка найдена: id ${escapeHTML(rowMatch.item.id || "—")}; PIE ${escapeHTML(rowMatch.item.pie || "—")}. Проверь формы и нажми «Рассчитать международность».`);
-}
-
 function showMessage(html) {
   resultBox.style.display = "block";
   resultBox.innerHTML = html;
@@ -1156,10 +1115,10 @@ function createRunSignal() {
 
 async function calculateInternationality() {
   const interalWord = wordInput.value.trim();
-  const semanticOk = semanticOkInput.checked;
-  const autoIpa = autoIpaSelect.value === "yes";
-  const supportThreshold = clamp01(Number(supportThresholdInput.value || 0.4));
-  const minPercent = clamp(Number(minPercentInput.value || 40), 0, 100);
+  const semanticOk = true;
+  const autoIpa = true;
+  const supportThreshold = 0.4;
+  const minPercent = 40;
 
   if (!interalWord) {
     showMessage("Введите гипотезу слова на Интерале.");
@@ -1169,6 +1128,7 @@ async function calculateInternationality() {
   const signal = createRunSignal();
   clearScores();
   showMessage("Расчёт...");
+  tableWrap.style.display = "none";
 
   try {
     const interalGraphic = normalizeGraphicInput(interalWord, "interal");
@@ -1730,7 +1690,6 @@ explainModal.addEventListener("click", (event) => {
   if (event.target === explainModal) closeExplain();
 });
 
-fillFromPieBtn.addEventListener("click", fillFromPieVordes);
 calcBtn.addEventListener("click", calculateInternationality);
 resetBtn.addEventListener("click", resetAll);
 explainBtn.addEventListener("click", showExplain);

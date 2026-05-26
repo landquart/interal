@@ -22,7 +22,7 @@
       themeLight: 'Светлая',
       langLabel: 'Язык',
       langChoose: 'Выбрать язык',
-      navSimilarita: 'Similaritá',
+      navSimilarita: 'Indoeuropan vordes',
       navAssociativ: 'Associativ vordes',
       navDeterminator: 'Determinator of valen typ',
       navAriaLabel: 'Разделы сайта',
@@ -45,7 +45,7 @@
       themeLight: 'Light',
       langLabel: 'Language',
       langChoose: 'Choose language',
-      navSimilarita: 'Similaritá',
+      navSimilarita: 'Indoeuropan vordes',
       navAssociativ: 'Associativ vordes',
       navDeterminator: 'Determinator of valen typ',
       navAriaLabel: 'Site sections',
@@ -88,7 +88,7 @@
   const desktopControls = document.createElement('div');
   desktopControls.className = 'top-desktop-controls';
   desktopControls.innerHTML = `
-    <a class="top-desktop-link" href="${joinUrl('similarita/')}" data-nav="similarita"><span class="top-desktop-link-main"></span></a>
+    <a class="top-desktop-link" href="${joinUrl('indoeuropanvordes/')}" data-nav="similarita"><span class="top-desktop-link-main"></span></a>
     <a class="top-desktop-link" href="${joinUrl('associativvordes/')}" data-nav="associativ"><span class="top-desktop-link-main"></span></a>
     <a class="top-desktop-link" href="${joinUrl('determinatorofvalentyp/')}" data-nav="determinator"><span class="top-desktop-link-main"></span></a>
   `;
@@ -103,7 +103,7 @@
     <h2 class="menu-title"></h2>
     <div class="menu-divider menu-divider--mobile" aria-hidden="true"></div>
     <nav class="menu-nav" aria-label="Site sections">
-      <a class="menu-nav-link" href="${joinUrl('similarita/')}" data-nav="similarita"><span class="menu-nav-main"></span></a>
+      <a class="menu-nav-link" href="${joinUrl('indoeuropanvordes/')}" data-nav="similarita"><span class="menu-nav-main"></span></a>
       <a class="menu-nav-link" href="${joinUrl('associativvordes/')}" data-nav="associativ"><span class="menu-nav-main"></span></a>
       <a class="menu-nav-link" href="${joinUrl('determinatorofvalentyp/')}" data-nav="determinator"><span class="menu-nav-main"></span></a>
       <div class="menu-divider menu-divider--mobile" aria-hidden="true"></div>
