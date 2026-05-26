@@ -429,12 +429,16 @@
       return 0.25;
     }
 
+    function getManualModelLabel() {
+      return localStorage.getItem('interal.lang') === 'en' ? 'manual' : 'ручная';
+    }
+
     function inferModel(word, root, elementType) {
       const original = String(word || '').trim();
       const w = stripDiacritics(original);
       const r = stripDiacritics(root);
       const idx = w.indexOf(r);
-      if (idx === -1) return 'manual';
+      if (idx === -1) return getManualModelLabel();
 
       const before = w.slice(0, idx);
       const after = w.slice(idx + r.length);

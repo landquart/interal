@@ -7,51 +7,51 @@
    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon%20interal%2032.png" />
   <link rel="icon" type="image/png" sizes="64x64" href="../favicon/favicon%20interal%2064.png" />
   <link rel="apple-touch-icon" sizes="512x512" href="../favicon/favicon%20interal%20512.png" />
-  <title>Determinator of valen typ</title>
+  <title>Определитель типа значения</title>
   <link rel="stylesheet" href="../shared/ui.css" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body class="determinator-page">
   <main class="app-shell">
     <header class="hero">
-      <h1>Determinator of valen typ</h1>
+      <h1>Определитель типа значения</h1>
     </header>
 
     <section class="panel">
       <label class="field">
-        <span>1 — Word by regular model (with separators)</span>
+        <span>1 — Слово по регулярной модели (с разделителями)</span>
        <input id="regularWord" type="text" autocomplete="off" placeholder="re/vis/ion" />
       </label>
 
       <div class="field">
-        <span>2 — Component analysis</span>
-        <div id="componentsList" class="components-list empty">No components added.</div>
+        <span>2 — Компонентный анализ</span>
+        <div id="componentsList" class="components-list empty">Компоненты не добавлены.</div>
         <div id="componentsSummary" class="components-summary">—</div>
-        <button id="addComponentBtn" class="plus-btn" type="button" aria-label="Add component">
+        <button id="addComponentBtn" class="plus-btn" type="button" aria-label="Добавить компонент">
           <img class="plus-btn-icon" src="../elements/Add%20Circle.svg" alt="" aria-hidden="true" />
         </button>
       </div>
 
       <label class="field">
-        <span>3 — Logical analysis of components</span>
+        <span>3 — Логический анализ компонентов</span>
          <textarea id="logicalMeaning" rows="3" placeholder="vision again"></textarea>
       </label>
 
       <label class="field">
-        <span>4 — International meaning of equivalent derivative</span>
+        <span>4 — Международное значение эквивалентного деривата</span>
        <textarea id="internationalMeaning" rows="3" placeholder="revision"></textarea>
       </label>
 
       <label class="field">
-        <span>5 — Word by naturalistic model (with separators)</span>
+        <span>5 — Слово по натуралистической модели (с разделителями)</span>
         <input id="naturalisticWord" type="text" autocomplete="off" placeholder="re/vis/ion/u" />
       </label>
 
       <details class="details-panel">
-        <summary>Local neural model for semantic distance</summary>
+        <summary>Локальная нейросеть для семантической дистанции</summary>
         <label class="check-row">
           <input id="useLlm" type="checkbox" />
-          <span>Use local model</span>
+          <span>Использовать локальную модель</span>
         </label>
         <label class="field compact-field">
           <span id="ollamaUrlLabel">Ollama URL</span>
@@ -64,34 +64,34 @@
 
         <div class="manual-embedding-box">
           <label class="field compact-field">
-            <span>Prompt for external neural model (manual embedding)</span>
-            <textarea id="manualPrompt" rows="8" readonly placeholder="Click “Build prompt”"></textarea>
+            <span>Промпт для внешней нейросети (ручное эмбеддинг-сравнение)</span>
+            <textarea id="manualPrompt" rows="8" readonly placeholder="Нажмите «Собрать промпт»"></textarea>
           </label>
           <div class="actions prompt-actions">
-            <button class="tool-btn" id="buildPromptBtn" type="button" class="ghost">Build prompt</button>
-             <button class="tool-btn" id="copyPromptBtn" type="button" class="ghost icon-copy-btn" aria-label="Copy prompt" title="Copy prompt"><img src="../elements/Copy.svg" alt="" aria-hidden="true" /></button>
+            <button class="tool-btn" id="buildPromptBtn" type="button" class="ghost">Собрать промпт</button>
+             <button class="tool-btn" id="copyPromptBtn" type="button" class="ghost icon-copy-btn" aria-label="Копировать промпт" title="Копировать промпт"><img src="../elements/Copy.svg" alt="" aria-hidden="true" /></button>
           </div>
           <label class="field compact-field">
-            <span>Neural model response (paste here)</span>
-            <textarea id="manualEmbeddingResponse" rows="4" placeholder='For example: {"distance":0.38,"similarity":0.62,"reason":"..."}'></textarea>
+            <span>Ответ нейросети (вставьте сюда)</span>
+            <textarea id="manualEmbeddingResponse" rows="4" placeholder='Например: {"distance":0.38,"similarity":0.62,"reason":"..."}'></textarea>
           </label>
-          <p class="manual-hint">If response is provided, distance is computed as Rule-based + manual embedding (70/30).</p>
+          <p class="manual-hint">Если ответ предоставлен, дистанция считается как правило-ориентированная оценка + ручное эмбеддинг-сравнение (70/30).</p>
         </div>
       </details>
 
       <div class="panel-tools">
-        <button class="tool-btn icon-copy-btn interal-reset-btn is-hidden" id="clearBtn" type="button" aria-label="Clear" title="Clear">
+        <button class="tool-btn icon-copy-btn interal-reset-btn is-hidden" id="clearBtn" type="button" aria-label="Очистить" title="Очистить">
           <img src="../elements/Eraser%20Square.svg" alt="" aria-hidden="true" />
         </button>
       </div>
 
       <div class="actions">
-        <button class="tool-btn" id="analyzeBtn" type="button">Analyse</button>
+        <button class="tool-btn" id="analyzeBtn" type="button">Анализировать</button>
       </div>
     </section>
 
     <section class="panel" id="resultPanel" hidden>
-      <h2 id="resultTitle">Result</h2>
+      <h2 id="resultTitle">Результат</h2>
       <div id="result" class="result empty">Заполните поля и нажмите «Анализировать».</div>
     </section>
   </main>
@@ -223,11 +223,11 @@
           add: 'Добавить',
           ollamaUrl: 'URL Ollama',
           model: 'Модель',
-          manualPromptLabel: 'Промпт для внешней нейросети (ручной embedding)',
+          manualPromptLabel: 'Промпт для внешней нейросети (ручное эмбеддинг-сравнение)',
           manualPromptPlaceholder: 'Нажмите «Собрать промпт»',
           manualResponseLabel: 'Ответ нейросети (вставьте сюда)',
           manualResponsePlaceholder: 'Например: {"distance":0.38,"similarity":0.62,"reason":"..."}',
-          manualHint: 'Если ответ предоставлен, дистанция считается как Rule-based + manual embedding (70/30).',
+          manualHint: 'Если ответ предоставлен, дистанция считается как правило-ориентированная оценка + ручное эмбеддинг-сравнение (70/30).',
           addComponentAria: 'Добавить компонент',
           placeholders: ['re/vis/ion','видение снова','ревизия','re/vis/ion/u','vid/er','видеть']
         },
