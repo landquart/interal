@@ -415,7 +415,17 @@ let pieVordesPromise = null;
 
 const LANG_CODES = ["en", "de", "fr", "es", "it", "ru", "el"];
 
-const LANG_NAMES = {
+const LANG_NAMES_RU = {
+  en: "Английский",
+  de: "Немецкий",
+  fr: "Французский",
+  es: "Испанский",
+  it: "Итальянский",
+  ru: "Русский",
+  el: "Греческий"
+};
+
+const LANG_NAMES_EN = {
   en: "English",
   de: "German",
   fr: "French",
@@ -424,6 +434,11 @@ const LANG_NAMES = {
   ru: "Russian",
   el: "Greek"
 };
+
+function getLangName(code) {
+  const lang = localStorage.getItem("interal.lang") === "en" ? "en" : "ru";
+  return (lang === "en" ? LANG_NAMES_EN : LANG_NAMES_RU)[code] || code;
+}
 
 const i18n = {
   ru: {
@@ -466,6 +481,10 @@ const i18n = {
     "sim.langGreek": "Греческий",
     "sim.tableLanguage": "Язык",
     "sim.tableWord": "Слово",
+    "sim.tableIpa": "МФА",
+    "sim.tableGraphic": "Граф.",
+    "sim.tablePhonetic": "Фон.",
+    "sim.tableTotal": "Итог",
     "sim.rowFound": "найдено",
     "sim.rowNotFound": "строка не найдена",
     "sim.explainHeader": "Похожесть",
@@ -476,7 +495,27 @@ const i18n = {
     "sim.yes": "да",
     "sim.no": "нет",
     "sim.explainSource": "источник",
-    "sim.explainRoute": "маршрут"
+    "sim.explainRoute": "маршрут",
+    "sim.bestResult": "Лучший результат",
+    "sim.pieRowTitle": "Строка PIE",
+    "sim.formulaTitle": "Формула",
+    "sim.resultsByLanguage": "Результаты по языкам",
+    "sim.details": "Детали",
+    "sim.ipaSource": "Источник МФА",
+    "sim.sourceLower": "источник",
+    "sim.routeLower": "маршрут",
+    "sim.tokensInteral": "токены Interal",
+    "sim.alignmentLower": "выравнивание",
+    "sim.unknownInteral": "неизвестные сегменты Interal",
+    "sim.wordLower": "слово",
+    "sim.pieRowNotFoundLong": "Строка в pie_vordes не найдена. Калькулятор использовал только введённое национальное слово и попытался найти МФА через fallback/Wiktionary.",
+    "sim.formulaGraphic": "Графическая похожесть = 1 − расстояние Левенштейна / максимальная длина",
+    "sim.formulaPhonetic": "Фонетическая похожесть = ALINE(нормализованная МФА Interal, нормализованная МФА национального слова)",
+    "sim.formulaTotal": "Итог = (графическая похожесть + фонетическая похожесть) / 2",
+    "sim.onlySelectedLanguageShown": "Показан только выбранный язык, потому что без строки в pie_vordes нет данных для остальных 6 языков.",
+    "sim.pieNoWord": "в pie_vordes нет слова",
+    "sim.fallbackWiktionary": "fallback/Wiktionary",
+    "sim.localIpaFallback": "локальный запасной МФА-словарь"
   },
   en: {
     "sim.combinedTitle": "Similarity",
@@ -518,6 +557,10 @@ const i18n = {
     "sim.langGreek": "Greek",
     "sim.tableLanguage": "Language",
     "sim.tableWord": "Word",
+    "sim.tableIpa": "IPA",
+    "sim.tableGraphic": "G",
+    "sim.tablePhonetic": "P",
+    "sim.tableTotal": "Total",
     "sim.rowFound": "found",
     "sim.rowNotFound": "row not found",
     "sim.explainHeader": "Similarity",
@@ -528,7 +571,27 @@ const i18n = {
     "sim.yes": "yes",
     "sim.no": "no",
     "sim.explainSource": "source",
-    "sim.explainRoute": "route"
+    "sim.explainRoute": "route",
+    "sim.bestResult": "Best result",
+    "sim.pieRowTitle": "PIE row",
+    "sim.formulaTitle": "Formula",
+    "sim.resultsByLanguage": "Results by language",
+    "sim.details": "Details",
+    "sim.ipaSource": "IPA source",
+    "sim.sourceLower": "source",
+    "sim.routeLower": "route",
+    "sim.tokensInteral": "tokens Interal",
+    "sim.alignmentLower": "alignment",
+    "sim.unknownInteral": "unknown Interal",
+    "sim.wordLower": "word",
+    "sim.pieRowNotFoundLong": "PIE row in pie_vordes not found. The calculator used only the input national word and tried to find IPA via fallback/Wiktionary.",
+    "sim.formulaGraphic": "Graphic similarity = 1 − Levenshtein distance / max length",
+    "sim.formulaPhonetic": "Phonetic similarity = ALINE(normalized Interal IPA, normalized national word IPA)",
+    "sim.formulaTotal": "Total = (graphic similarity + phonetic similarity) / 2",
+    "sim.onlySelectedLanguageShown": "Only the selected language is shown because without a pie_vordes row there is no data for the other 6 languages.",
+    "sim.pieNoWord": "no word in pie_vordes",
+    "sim.fallbackWiktionary": "fallback/Wiktionary",
+    "sim.localIpaFallback": "local IPA fallback"
   }
 };
 
@@ -1957,7 +2020,7 @@ async function calculateSimilarity() {
         const pieIPA = getPieIPA(rowMatch.item, lang);
 
         if (!word) {
-          tableRows.push({ lang, langName: LANG_NAMES[lang], word: "", ipa: "", graphic: null, phonetic: null, general: null, source: "pie_vordes: no word", route: [] });
+          tableRows.push({ lang, langName: getLangName(lang), word: "", ipa: "", graphic: null, phonetic: null, general: null, source: "pie_vordes: no word", route: [] });
           continue;
         }
 
@@ -1990,7 +2053,7 @@ async function calculateSimilarity() {
           }
         }
 
-        tableRows.push({ lang, langName: LANG_NAMES[lang], word, ipa: ipaResult.ipa || "", graphic, phonetic, general, source: ipaResult.source || "similarita/pie_vordes", route: ipaResult.route || [], aline });
+        tableRows.push({ lang, langName: getLangName(lang), word, ipa: ipaResult.ipa || "", graphic, phonetic, general, source: ipaResult.source || "similarita/pie_vordes", route: ipaResult.route || [], aline });
       }
     } else {
       const nationalData = { pieIPA: "", route: [`pie_vordes:not_found:${nationalLang}:${nationalInputWord}`] };
@@ -2012,7 +2075,7 @@ async function calculateSimilarity() {
         }
       }
 
-      tableRows.push({ lang: nationalLang, langName: LANG_NAMES[nationalLang], word: nationalInputWord, ipa: ipaResult.ipa || "", graphic, phonetic, general, source: ipaResult.source || "fallback/Wiktionary", route: ipaResult.route || [], aline });
+      tableRows.push({ lang: nationalLang, langName: getLangName(nationalLang), word: nationalInputWord, ipa: ipaResult.ipa || "", graphic, phonetic, general, source: ipaResult.source || t("sim.fallbackWiktionary"), route: ipaResult.route || [], aline });
     }
 
     const payload = { interalWord, nationalInputWord, nationalLang, rowMatch, interalGraphic, interalIPA, interalIPAComparable, tableRows };
@@ -2041,16 +2104,16 @@ function renderResultTable(data) {
           <tr>
             <th style="text-align:left; padding:6px;">${escapeHTML(t("sim.tableLanguage"))}</th>
             <th style="text-align:left; padding:6px;">${escapeHTML(t("sim.tableWord"))}</th>
-            <th style="text-align:left; padding:6px;">IPA</th>
-            <th style="text-align:right; padding:6px;">G</th>
-            <th style="text-align:right; padding:6px;">P</th>
-            <th style="text-align:right; padding:6px;">Total</th>
+            <th style="text-align:left; padding:6px;">${escapeHTML(t("sim.tableIpa"))}</th>
+            <th style="text-align:right; padding:6px;">${escapeHTML(t("sim.tableGraphic"))}</th>
+            <th style="text-align:right; padding:6px;">${escapeHTML(t("sim.tablePhonetic"))}</th>
+            <th style="text-align:right; padding:6px;">${escapeHTML(t("sim.tableTotal"))}</th>
           </tr>
         </thead>
         <tbody>
           ${data.tableRows.map((row) => `
             <tr>
-              <td style="padding:6px; border-top:1px solid var(--border-subtle);">${escapeHTML(row.langName || LANG_NAMES[row.lang] || row.lang)}</td>
+              <td style="padding:6px; border-top:1px solid var(--border-subtle);">${escapeHTML(row.langName || getLangName(row.lang))}</td>
               <td style="padding:6px; border-top:1px solid var(--border-subtle);">${escapeHTML(row.word || "—")}</td>
               <td style="padding:6px; border-top:1px solid var(--border-subtle);">${escapeHTML(row.ipa ? `/${row.ipa}/` : "—")}</td>
               <td style="padding:6px; border-top:1px solid var(--border-subtle); text-align:right;">${row.graphic === null ? "—" : formatScore(row.graphic)}</td>
@@ -2072,7 +2135,7 @@ function renderResultTable(data) {
   } else {
     resultBox.innerHTML += `
         <div class="result-warning">
-        pie_vordes: ${escapeHTML(t("sim.rowNotFound"))}. ${localStorage.getItem("interal.lang") === "en" ? "Only the selected language is shown, because without a pie_vordes row there is no data for the other 6 languages." : "Показан только выбранный язык, потому что без строки в pie_vordes нет данных для остальных 6 языков."}
+        pie_vordes: ${escapeHTML(t("sim.rowNotFound"))}. ${escapeHTML(t("sim.onlySelectedLanguageShown"))}
       </div>
     `;
   }
@@ -2124,7 +2187,7 @@ function renderExplanationHTML(data) {
       </div>
 
       <div class="explain-chip">
-        <span class="explain-chip-label">Best result</span>
+        <span class="explain-chip-label">${escapeHTML(t("sim.bestResult"))}</span>
         <span class="explain-chip-value">
           ${bestRow ? `${escapeHTML(bestRow.langName || bestRow.lang)} — ${formatScore(bestRow.general)}` : "—"}
         </span>
@@ -2133,7 +2196,7 @@ function renderExplanationHTML(data) {
 
     ${row ? `
       <div class="explain-section">
-        <h4>PIE row</h4>
+        <h4>${escapeHTML(t("sim.pieRowTitle"))}</h4>
         <div class="explain-code">id: ${escapeHTML(row.id || "—")}
 pie: ${escapeHTML(row.pie || "—")}
 status: ${escapeHTML(row.status || "—")}
@@ -2141,26 +2204,25 @@ note: ${escapeHTML(row.note || "—")}</div>
       </div>
     ` : `
       <div class="explain-section">
-        <h4>PIE row</h4>
-        <div class="explain-code">pie_vordes: row not found.
-The calculator used only the entered national word and tried fallback/Wiktionary for IPA.</div>
+        <h4>${escapeHTML(t("sim.pieRowTitle"))}</h4>
+        <div class="explain-code">${escapeHTML(t("sim.pieRowNotFoundLong"))}</div>
       </div>
     `}
 
     <div class="explain-section">
-      <h4>Formula</h4>
-      <div class="explain-code">Graphic similarity = 1 − Levenshtein distance / max length
-Phonetic similarity = ALINE(normalized IPA Interal, normalized IPA national word)
-Total = (Graphic similarity + Phonetic similarity) / 2</div>
+      <h4>${escapeHTML(t("sim.formulaTitle"))}</h4>
+      <div class="explain-code">${escapeHTML(t("sim.formulaGraphic"))}
+${escapeHTML(t("sim.formulaPhonetic"))}
+${escapeHTML(t("sim.formulaTotal"))}</div>
     </div>
 
     <div class="explain-section">
-      <h4>Results by language</h4>
+      <h4>${escapeHTML(t("sim.resultsByLanguage"))}</h4>
       ${renderExplanationResultTable(data.tableRows)}
     </div>
 
     <div class="explain-section">
-      <h4>Details</h4>
+      <h4>${escapeHTML(t("sim.details"))}</h4>
       ${renderLanguageDetails(data.tableRows)}
     </div>
   `;
@@ -2172,19 +2234,19 @@ function renderExplanationResultTable(rows) {
       <table class="explain-table">
         <thead>
           <tr>
-            <th>Language</th>
-            <th>Word</th>
-            <th>IPA</th>
-            <th class="score-cell">G</th>
-            <th class="score-cell">P</th>
-            <th class="score-cell">Total</th>
-            <th>IPA source</th>
+            <th>${escapeHTML(t("sim.tableLanguage"))}</th>
+            <th>${escapeHTML(t("sim.tableWord"))}</th>
+            <th>${escapeHTML(t("sim.tableIpa"))}</th>
+            <th class="score-cell">${escapeHTML(t("sim.tableGraphic"))}</th>
+            <th class="score-cell">${escapeHTML(t("sim.tablePhonetic"))}</th>
+            <th class="score-cell">${escapeHTML(t("sim.tableTotal"))}</th>
+            <th>${escapeHTML(t("sim.ipaSource"))}</th>
           </tr>
         </thead>
         <tbody>
           ${(rows || []).map((row) => `
             <tr>
-              <td>${escapeHTML(row.langName || LANG_NAMES[row.lang] || row.lang)}</td>
+              <td>${escapeHTML(row.langName || getLangName(row.lang))}</td>
               <td>${escapeHTML(row.word || "—")}</td>
               <td>${escapeHTML(row.ipa ? "/" + row.ipa + "/" : "—")}</td>
               <td class="score-cell">${renderScore(row.graphic)}</td>
@@ -2215,20 +2277,20 @@ function renderLanguageDetails(rows) {
 
     return `
       <details class="explain-detail">
-        <summary>${escapeHTML(row.langName || LANG_NAMES[row.lang] || row.lang)} — ${escapeHTML(row.word || "—")} — Total: ${row.general === null ? "—" : formatScore(row.general)}</summary>
-        <div class="explain-code">word: ${escapeHTML(row.word || "—")}
+        <summary>${escapeHTML(row.langName || getLangName(row.lang))} — ${escapeHTML(row.word || "—")} — ${escapeHTML(t("sim.tableTotal"))}: ${row.general === null ? "—" : formatScore(row.general)}</summary>
+        <div class="explain-code">${escapeHTML(t("sim.wordLower"))}: ${escapeHTML(row.word || "—")}
 ipa: ${escapeHTML(row.ipa ? "/" + row.ipa + "/" : "—")}
-source: ${escapeHTML(row.source || "—")}
-route: ${escapeHTML(row.route && row.route.length ? row.route.join(" → ") : "—")}
+${escapeHTML(t("sim.sourceLower"))}: ${escapeHTML(row.source || "—")}
+${escapeHTML(t("sim.routeLower"))}: ${escapeHTML(row.route && row.route.length ? row.route.join(" → ") : "—")}
 
-tokens Interal: ${escapeHTML(tokensA)}
-tokens ${escapeHTML(row.langName || row.lang)}: ${escapeHTML(tokensB)}
+${escapeHTML(t("sim.tokensInteral"))}: ${escapeHTML(tokensA)}
+tokens ${escapeHTML(row.langName || getLangName(row.lang))}: ${escapeHTML(tokensB)}
 
-alignment:
+${escapeHTML(t("sim.alignmentLower"))}:
 ${escapeHTML(alignment)}
 
-unknown Interal: ${escapeHTML(unknownA)}
-unknown ${escapeHTML(row.langName || row.lang)}: ${escapeHTML(unknownB)}</div>
+${escapeHTML(t("sim.unknownInteral"))}: ${escapeHTML(unknownA)}
+unknown ${escapeHTML(row.langName || getLangName(row.lang))}: ${escapeHTML(unknownB)}</div>
       </details>
     `;
   }).join("");
@@ -2245,7 +2307,9 @@ function renderScore(value) {
 function shortSource(source) {
   if (!source) return "—";
   if (source === "similarita/pie_vordes") return "pie_vordes";
-  if (source === "local IPA fallback") return "fallback";
+  if (source === "pie_vordes: no word") return t("sim.pieNoWord");
+  if (source === "local IPA fallback") return t("sim.localIpaFallback");
+  if (source === "fallback/Wiktionary") return t("sim.fallbackWiktionary");
   if (source.includes("wiktionary.org")) return "Wiktionary";
   return source;
 }
