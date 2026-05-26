@@ -671,8 +671,8 @@ const ALINE_OPTIONS = {
   keepVoicingDiacritics: false,
   keepPlaceDiacritics: false,
 
-  gapPenalty: -0.45,
-  expansionPenalty: -0.08,
+  gapPenalty: -0.55,
+  expansionPenalty: -0.12,
 
   returnGapsInAlignment: true,
   maxAlignments: 1
@@ -1804,7 +1804,6 @@ function normalizeIPAForAline(ipa) {
     .replace(/[̥̬̪̺̻̩̯̝̞̟̠̹̜̈̃̚]/g, "")
     .replace(/ɡ/g, "g")
     .replace(/ɫ/g, "l")
-    .replace(/ɐ|ə/g, "a")
     .trim();
 }
 
