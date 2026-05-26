@@ -1,0 +1,1745 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon%20interal%2032.png" />
+<link rel="icon" type="image/png" sizes="64x64" href="../favicon/favicon%20interal%2064.png" />
+<link rel="apple-touch-icon" sizes="512x512" href="../favicon/favicon%20interal%20512.png" />
+
+<title>Internationalitá</title>
+<link rel="stylesheet" href="../shared/ui.css" />
+
+<style>
+.internationalita-page {
+  margin: 0;
+  padding: 0 16px 32px;
+  background-color: var(--bg);
+  min-height: 100vh;
+  color: var(--text);
+  font-family: "Jost", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+}
+
+.internationalita-page.has-global-menu {
+  padding-top: 86px;
+}
+
+@media (max-width: 768px) {
+  .internationalita-page {
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-bottom: 24px;
+  }
+
+  .internationalita-page.has-global-menu {
+    padding-top: 86px;
+  }
+}
+
+.internationalita-page .card {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border-subtle);
+  max-width: 1120px;
+  margin: 0 auto 20px auto;
+  padding: 24px;
+  border-radius: var(--radius-lg);
+}
+
+.internationalita-page .card h2 {
+  text-align: center;
+  margin: 0 0 10px;
+  font-size: 1.35rem;
+  letter-spacing: 0.2px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.internationalita-page .lead {
+  max-width: 820px;
+  margin: 0 auto 18px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.internationalita-page label {
+  display: block;
+  margin-top: 14px;
+  font-size: 14px;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.internationalita-page input,
+.internationalita-page select {
+  width: 100%;
+  padding: 11px 12px;
+  margin-top: 6px;
+  font-size: 16px;
+  box-sizing: border-box;
+  border: 1px solid var(--border-control);
+  border-radius: var(--radius-md);
+  background: var(--surface-elevated);
+  color: var(--text);
+  font-family: "Jost", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.internationalita-page input::placeholder {
+  color: var(--placeholder);
+}
+
+.internationalita-page input:focus-visible,
+.internationalita-page select:focus-visible {
+  border-color: var(--border-strong);
+  outline: 2px solid var(--focus-outline);
+  outline-offset: 2px;
+}
+
+.internationalita-page .grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  gap: 12px;
+}
+
+.internationalita-page .grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 760px) {
+  .internationalita-page .grid-2,
+  .internationalita-page .grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.internationalita-page .tool-btn {
+  width: 100%;
+  margin-top: 16px;
+  padding: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  background: var(--button-primary-bg);
+  color: var(--button-primary-text);
+  border: 1px solid var(--button-primary-bg);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.internationalita-page .tool-btn:hover,
+.internationalita-page .tool-btn:focus-visible {
+  transform: translateY(-1px);
+}
+
+.internationalita-page .secondary-btn {
+  background: var(--surface-elevated);
+  color: var(--text);
+  border: 1px solid var(--border-control);
+}
+
+.internationalita-page .result {
+  margin-top: 18px;
+  padding: 14px;
+  font-size: 15px;
+  border-radius: var(--radius-md);
+  background: var(--surface-elevated);
+  border: 1px solid var(--border-subtle);
+  color: var(--text);
+}
+
+.internationalita-page .result-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+@media (max-width: 900px) {
+  .internationalita-page .result-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .internationalita-page .result-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.internationalita-page .metric {
+  padding: 12px;
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  border: 1px solid var(--border-subtle);
+}
+
+.internationalita-page .metric-label {
+  display: block;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.internationalita-page .metric-value {
+  display: block;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.internationalita-page .small-note {
+  margin-top: 10px;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.internationalita-page .table-wrap {
+  margin-top: 16px;
+  overflow-x: auto;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+}
+
+.internationalita-page table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.internationalita-page th,
+.internationalita-page td {
+  padding: 8px;
+  border-top: 1px solid var(--border-subtle);
+  text-align: left;
+  vertical-align: top;
+}
+
+.internationalita-page thead th {
+  border-top: 0;
+  color: var(--text-muted);
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.internationalita-page td.num,
+.internationalita-page th.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.internationalita-page .language-cell {
+  min-width: 120px;
+}
+
+.internationalita-page .word-cell,
+.internationalita-page .ipa-cell {
+  min-width: 150px;
+}
+
+.internationalita-page .table-input {
+  min-width: 130px;
+  margin-top: 0;
+  padding: 8px 9px;
+  font-size: 14px;
+}
+
+.internationalita-page .checkbox-line {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 14px;
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.internationalita-page .checkbox-line input {
+  width: auto;
+  margin-top: 3px;
+}
+
+.internationalita-page .status-ok {
+  color: #1f7a3a;
+  font-weight: 800;
+}
+
+.internationalita-page .status-warn {
+  color: #9a6a00;
+  font-weight: 800;
+}
+
+.internationalita-page .status-bad {
+  color: #a33;
+  font-weight: 800;
+}
+
+.internationalita-page .explain-title {
+  margin: 0 0 14px;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.internationalita-page .explain-section {
+  margin-top: 16px;
+}
+
+.internationalita-page .explain-section h4 {
+  margin: 0 0 8px;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.internationalita-page .explain-code {
+  margin-top: 8px;
+  padding: 10px;
+  border-radius: var(--radius-md);
+  background: var(--bg);
+  overflow-x: auto;
+  white-space: pre-wrap;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12px;
+}
+
+.internationalita-page #explainModal {
+  position: fixed;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: var(--z-page-modal);
+}
+
+.internationalita-page #explainModal.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+body.dark-theme .internationalita-page #explainModal {
+  background: rgba(0, 0, 0, 0.62);
+}
+
+.internationalita-page .modal-inner {
+  display: flex;
+  flex-direction: column;
+  max-width: 860px;
+  width: 100%;
+  margin: 0;
+  padding: 24px;
+  max-height: calc(100vh - 32px);
+  overflow: hidden;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+}
+
+.internationalita-page #explainText {
+  overflow: auto;
+  flex: 1 1 auto;
+  min-height: 0;
+  font-size: 14px;
+}
+
+@media (max-width: 640px) {
+  .internationalita-page .modal-inner {
+    padding: 18px;
+  }
+}
+</style>
+</head>
+
+<body class="internationalita-page">
+
+<div class="card">
+  <h2>Internationalitá de indo-european vordes</h2>
+  <p class="lead">
+    Система считает процент международности общей индоевропейской гипотезы по формуле:
+    PI = Σ(N × S) / ΣN × 100, где S = (графическая похожесть + фонетическая похожесть) / 2.
+  </p>
+
+  <label for="interalWord">Vord-hypothese in Interal</label>
+  <input id="interalWord" type="text" autocomplete="off" placeholder="например: matre">
+
+  <div class="grid-2">
+    <div>
+      <label for="lookupWord">Слово для поиска строки в pie_vordes</label>
+      <input id="lookupWord" type="text" autocomplete="off" placeholder="например: mother / Mutter / madre / мать">
+    </div>
+
+    <div>
+      <label for="lookupLang">Язык поиска</label>
+      <select id="lookupLang">
+        <option value="en">Английский</option>
+        <option value="de">Немецкий</option>
+        <option value="fr">Французский</option>
+        <option value="es">Испанский</option>
+        <option value="it">Итальянский</option>
+        <option value="ru">Русский</option>
+        <option value="el">Греческий</option>
+      </select>
+    </div>
+  </div>
+
+  <button id="fillFromPieBtn" class="tool-btn secondary-btn" type="button">Найти и заполнить из pie_vordes</button>
+
+  <div class="grid-3">
+    <div>
+      <label for="supportThreshold">Порог поддержки языковой группы</label>
+      <input id="supportThreshold" type="number" min="0" max="1" step="0.01" value="0.40">
+    </div>
+
+    <div>
+      <label for="minPercent">Минимальный порог международности, %</label>
+      <input id="minPercent" type="number" min="0" max="100" step="1" value="40">
+    </div>
+
+    <div>
+      <label for="autoIpa">МФА</label>
+      <select id="autoIpa">
+        <option value="yes">Автоматически искать, если поле пустое</option>
+        <option value="no">Использовать только введённые МФА</option>
+      </select>
+    </div>
+  </div>
+
+  <label class="checkbox-line">
+    <input id="semanticOk" type="checkbox" checked>
+    <span>Семантическое соответствие словам контрольных языков подтверждено</span>
+  </label>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th class="language-cell">Язык</th>
+          <th>Группа</th>
+          <th class="num">Говорящие, тыс.</th>
+          <th class="word-cell">Слово</th>
+          <th class="ipa-cell">МФА</th>
+          <th class="num">G</th>
+          <th class="num">PH</th>
+          <th class="num">S</th>
+          <th class="num">N × S</th>
+        </tr>
+      </thead>
+      <tbody id="languageRows"></tbody>
+    </table>
+  </div>
+
+  <button id="calcBtn" class="tool-btn" type="button">Рассчитать международность</button>
+  <button id="resetBtn" class="tool-btn secondary-btn" type="button">Сбросить</button>
+
+  <div id="resultBox" class="result" style="display:none"></div>
+
+  <button id="explainBtn" class="tool-btn secondary-btn" type="button" style="display:none">Пояснение</button>
+</div>
+
+<div id="explainModal">
+  <div class="modal-inner">
+    <div id="explainText"></div>
+    <button id="closeExplainBtn" class="tool-btn secondary-btn" type="button">Закрыть</button>
+  </div>
+</div>
+
+<script src="./aline.js"></script>
+
+<script>
+"use strict";
+
+const CONTROL_LANGUAGES = [
+  { code: "en", name: "Английский", englishName: "English", group: "Germanic", speakers: 1493000 },
+  { code: "de", name: "Немецкий", englishName: "German", group: "Germanic", speakers: 133000 },
+  { code: "fr", name: "Французский", englishName: "French", group: "Romance", speakers: 334000 },
+  { code: "es", name: "Испанский", englishName: "Spanish", group: "Romance", speakers: 561000 },
+  { code: "it", name: "Итальянский", englishName: "Italian", group: "Romance", speakers: 66000 },
+  { code: "ru", name: "Русский", englishName: "Russian", group: "Slavic", speakers: 210000 },
+  { code: "el", name: "Греческий", englishName: "Greek", group: "Hellenic", speakers: 13500 }
+];
+
+const LANG_CODES = CONTROL_LANGUAGES.map((x) => x.code);
+const TOTAL_SPEAKERS = CONTROL_LANGUAGES.reduce((sum, lang) => sum + lang.speakers, 0);
+
+const wordInput = document.getElementById("interalWord");
+const lookupWordInput = document.getElementById("lookupWord");
+const lookupLangSelect = document.getElementById("lookupLang");
+const fillFromPieBtn = document.getElementById("fillFromPieBtn");
+const supportThresholdInput = document.getElementById("supportThreshold");
+const minPercentInput = document.getElementById("minPercent");
+const autoIpaSelect = document.getElementById("autoIpa");
+const semanticOkInput = document.getElementById("semanticOk");
+const languageRows = document.getElementById("languageRows");
+const calcBtn = document.getElementById("calcBtn");
+const resetBtn = document.getElementById("resetBtn");
+const resultBox = document.getElementById("resultBox");
+const explainBtn = document.getElementById("explainBtn");
+const explainModal = document.getElementById("explainModal");
+const explainText = document.getElementById("explainText");
+const closeExplainBtn = document.getElementById("closeExplainBtn");
+
+let explanationHTML = "";
+let pieVordesPromise = null;
+let activeController = null;
+
+const RU_TO_LATIN = {
+  "а": "a", "б": "b", "в": "v", "г": "g", "д": "d", "е": "je", "ё": "jo",
+  "ж": "zh", "з": "z", "и": "i", "й": "j", "к": "k", "л": "l", "м": "m",
+  "н": "n", "о": "o", "п": "p", "р": "r", "с": "s", "т": "t", "у": "u",
+  "ф": "f", "х": "h", "ц": "c", "ч": "ch", "ш": "sh", "щ": "shch",
+  "ъ": "-", "ы": "y", "ь": "'", "э": "e", "ю": "ju", "я": "ja"
+};
+
+const WIKTIONARY_APIS = {
+  en: "https://en.wiktionary.org/w/api.php",
+  de: "https://de.wiktionary.org/w/api.php",
+  fr: "https://fr.wiktionary.org/w/api.php",
+  es: "https://es.wiktionary.org/w/api.php",
+  it: "https://it.wiktionary.org/w/api.php",
+  ru: "https://ru.wiktionary.org/w/api.php",
+  el: "https://el.wiktionary.org/w/api.php"
+};
+
+const WIKTIONARY_LANG_LABELS = {
+  en: ["English"],
+  de: ["German", "Deutsch"],
+  fr: ["French", "Français"],
+  es: ["Spanish", "Español"],
+  it: ["Italian", "Italiano"],
+  ru: ["Russian", "Русский"],
+  el: ["Greek", "Modern Greek", "Ελληνικά"]
+};
+
+const IPA_FALLBACKS = {
+  en: {
+    mother: "mʌðə", father: "fɑðə", night: "naɪt", new: "nju", two: "tu",
+    three: "θri", six: "sɪks", seven: "sɛvən", ten: "tɛn", name: "neɪm",
+    wolf: "wʊlf", salt: "sɔlt", heart: "hɑrt"
+  },
+  de: {
+    mutter: "mʊtɐ", vater: "faːtɐ", nacht: "naxt", neu: "nɔʏ", zwei: "tsvaɪ",
+    drei: "dʁaɪ", sechs: "zɛks", sieben: "ziːbən", zehn: "tseːn", name: "naːmə",
+    wolf: "vɔlf", salz: "zalts", herz: "hɛrts"
+  },
+  fr: {
+    mère: "mɛʁ", nuit: "nɥi", nouveau: "nuvo", neuf: "nœf", deux: "dø",
+    trois: "tʁwa", six: "sis", sept: "sɛt", dix: "dis", nom: "nɔ̃",
+    loup: "lu", sel: "sɛl", cœur: "kœʁ"
+  },
+  es: {
+    madre: "maðɾe", padre: "paðɾe", noche: "not͡ʃe", nuevo: "nweβo",
+    dos: "dos", tres: "tɾes", seis: "seis", siete: "sjete", diez: "djes",
+    nombre: "nombɾe", lobo: "lobo", sal: "sal", corazón: "koɾaθon"
+  },
+  it: {
+    madre: "madre", padre: "padre", notte: "notte", nuovo: "nwɔvo",
+    due: "due", tre: "tre", sei: "sei", sette: "sɛtte", dieci: "djɛt͡ʃi",
+    nome: "nome", lupo: "lupo", sale: "sale", cuore: "kwɔre"
+  },
+  ru: {
+    мать: "matʲ", матерь: "matʲerʲ", ночь: "not͡ɕ", новый: "novɨj",
+    два: "dva", три: "trʲi", шесть: "ʂestʲ", семь: "sʲemʲ",
+    десять: "dʲesʲatʲ", имя: "imʲa", волк: "volk", соль: "solʲ",
+    сердце: "sʲert͡sə"
+  },
+  el: {
+    μητέρα: "miˈtera", πατέρας: "paˈteras", νύχτα: "ˈnixta", νέος: "ˈneos",
+    δύο: "ˈðio", τρία: "ˈtria", έξι: "ˈeksi", επτά: "eˈpta",
+    δέκα: "ˈðeka", όνομα: "ˈonoma", λύκος: "ˈlikos",
+    αλάτι: "aˈlati", καρδιά: "karˈðʝa"
+  }
+};
+
+const ALINE_OPTIONS = {
+  mergePlainAffricates: true,
+  mergeDiphthongs: true,
+  keepLength: false,
+  keepAspiration: false,
+  keepPalatalization: false,
+  keepLabialization: false,
+  keepVelarization: false,
+  keepPharyngealization: false,
+  keepNasalization: false,
+  keepRhoticity: false,
+  keepSyllabicity: false,
+  keepVoicingDiacritics: false,
+  keepPlaceDiacritics: false,
+  gapPenalty: -0.55,
+  expansionPenalty: -0.12,
+  returnGapsInAlignment: true,
+  maxAlignments: 1
+};
+
+const INTERAL_U_EXCEPTIONS = new Set([
+  "authentic", "pausa", "haus", "audir", "aura", "fauna", "sauna",
+  "caus", "applaudir", "laudar"
+]);
+
+const OPTIONAL_SILENT_INITIAL_H = new Set([
+  "historia", "halleluya", "haver", "havet", "hallo", "hazard",
+  "hysteria", "hotel", "honest", "homonym"
+]);
+
+const X_KZ_WORDS = new Set(["examen", "exemple", "exercise", "exister"]);
+const INTERAL_VOWELS = new Set(["a", "e", "i", "o", "u", "y"]);
+
+function initRows() {
+  languageRows.innerHTML = CONTROL_LANGUAGES.map((lang) => `
+    <tr data-lang="${escapeHTML(lang.code)}">
+      <td class="language-cell"><strong>${escapeHTML(lang.name)}</strong></td>
+      <td>${escapeHTML(lang.group)}</td>
+      <td class="num">${formatInteger(lang.speakers)}</td>
+      <td class="word-cell">
+        <input class="table-input word-national" data-lang="${escapeHTML(lang.code)}" type="text" autocomplete="off">
+      </td>
+      <td class="ipa-cell">
+        <input class="table-input ipa-national" data-lang="${escapeHTML(lang.code)}" type="text" autocomplete="off" placeholder="IPA">
+      </td>
+      <td class="num score-g">—</td>
+      <td class="num score-ph">—</td>
+      <td class="num score-s">—</td>
+      <td class="num score-contribution">—</td>
+    </tr>
+  `).join("");
+}
+
+function getRowInputs(langCode) {
+  return {
+    word: document.querySelector(`.word-national[data-lang="${CSS.escape(langCode)}"]`),
+    ipa: document.querySelector(`.ipa-national[data-lang="${CSS.escape(langCode)}"]`)
+  };
+}
+
+function resetAll() {
+  wordInput.value = "";
+  lookupWordInput.value = "";
+  lookupLangSelect.value = "en";
+  supportThresholdInput.value = "0.40";
+  minPercentInput.value = "40";
+  semanticOkInput.checked = true;
+  autoIpaSelect.value = "yes";
+
+  for (const lang of CONTROL_LANGUAGES) {
+    const inputs = getRowInputs(lang.code);
+    inputs.word.value = "";
+    inputs.ipa.value = "";
+  }
+
+  clearScores();
+  resultBox.style.display = "none";
+  resultBox.innerHTML = "";
+  explainBtn.style.display = "none";
+  explanationHTML = "";
+}
+
+function clearScores() {
+  document.querySelectorAll("#languageRows tr").forEach((tr) => {
+    tr.querySelector(".score-g").textContent = "—";
+    tr.querySelector(".score-ph").textContent = "—";
+    tr.querySelector(".score-s").textContent = "—";
+    tr.querySelector(".score-contribution").textContent = "—";
+  });
+}
+
+function normalize(text) {
+  return String(text || "").trim().toLowerCase().normalize("NFC");
+}
+
+function stripDiacritics(text) {
+  return String(text || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .normalize("NFC");
+}
+
+function stripInteralStressMarks(word) {
+  return String(word || "")
+    .normalize("NFC")
+    .replace(/[áà]/g, "a")
+    .replace(/[éè]/g, "e")
+    .replace(/[íì]/g, "i")
+    .replace(/[óò]/g, "o")
+    .replace(/[úù]/g, "u");
+}
+
+function transliterateRussian(text) {
+  return String(text || "")
+    .toLowerCase()
+    .normalize("NFC")
+    .split("")
+    .map((ch) => RU_TO_LATIN[ch] ?? ch)
+    .join("");
+}
+
+function transliterateGreek(text) {
+  let s = stripDiacritics(String(text || "").toLowerCase()).replace(/ς/g, "σ");
+
+  s = s
+    .replace(/αι/g, "e")
+    .replace(/ει/g, "i")
+    .replace(/οι/g, "i")
+    .replace(/υι/g, "i")
+    .replace(/ου/g, "u")
+    .replace(/αυ/g, "av")
+    .replace(/ευ/g, "ev")
+    .replace(/ηυ/g, "iv")
+    .replace(/μπ/g, "b")
+    .replace(/ντ/g, "d")
+    .replace(/γκ/g, "g")
+    .replace(/γγ/g, "ng")
+    .replace(/γχ/g, "nch")
+    .replace(/γξ/g, "nx");
+
+  const map = {
+    "α": "a", "β": "v", "γ": "g", "δ": "d", "ε": "e", "ζ": "z",
+    "η": "i", "θ": "th", "ι": "i", "κ": "k", "λ": "l", "μ": "m",
+    "ν": "n", "ξ": "x", "ο": "o", "π": "p", "ρ": "r", "σ": "s",
+    "τ": "t", "υ": "y", "φ": "f", "χ": "ch", "ψ": "ps", "ω": "o"
+  };
+
+  return s.split("").map((ch) => map[ch] ?? ch).join("");
+}
+
+function normalizeGraphicInput(word, langCode) {
+  const normalized = normalize(word);
+
+  if (langCode === "interal") return stripInteralStressMarks(normalized);
+  if (langCode === "ru") return transliterateRussian(normalized);
+  if (langCode === "el") return transliterateGreek(normalized);
+
+  return stripDiacritics(normalized)
+    .replace(/ß/g, "ss")
+    .replace(/æ/g, "ae")
+    .replace(/œ/g, "oe")
+    .replace(/ø/g, "o")
+    .replace(/ð/g, "d")
+    .replace(/þ/g, "th")
+    .replace(/ł/g, "l");
+}
+
+function isInteralVowel(ch) {
+  return INTERAL_VOWELS.has(ch);
+}
+
+function interalToIPA(input) {
+  const original = normalize(input);
+  const word = stripInteralStressMarks(original);
+
+  if (!word) return "";
+
+  let ipa = "";
+  let i = 0;
+
+  while (i < word.length) {
+    const rest = word.slice(i);
+    const ch = word[i];
+    const prev = word[i - 1] || "";
+    const next = word[i + 1] || "";
+    const next2 = word[i + 2] || "";
+
+    if (i === 0 && ch === "h" && isInteralVowel(next) && OPTIONAL_SILENT_INITIAL_H.has(word)) {
+      i += 1;
+      continue;
+    }
+
+    if (ch === "q" && (word === "que" || word === "quel" || word === "quelc")) {
+      ipa += "k";
+      i += 2;
+      continue;
+    }
+
+    if (ch === "x" && X_KZ_WORDS.has(word)) {
+      ipa += "kz";
+      i += 1;
+      continue;
+    }
+
+    if (rest.startsWith("ch")) {
+      ipa += "t͡ɕ";
+      i += 2;
+      continue;
+    }
+
+    if (rest.startsWith("sh")) {
+      ipa += "ʂ";
+      i += 2;
+      continue;
+    }
+
+    if (rest.startsWith("ph")) {
+      ipa += "f";
+      i += 2;
+      continue;
+    }
+
+    if (rest.startsWith("rh")) {
+      ipa += "r";
+      i += 2;
+      continue;
+    }
+
+    if (rest.startsWith("th")) {
+      ipa += "t";
+      i += 2;
+      continue;
+    }
+
+    if (rest.startsWith("zz")) {
+      ipa += "t͡s";
+      i += 2;
+      continue;
+    }
+
+    if (rest.startsWith("qu")) {
+      ipa += "kw";
+      i += 2;
+      continue;
+    }
+
+    if (rest.startsWith("gu") && isInteralVowel(next2)) {
+      ipa += "gw";
+      i += 2;
+      continue;
+    }
+
+    if (ch === "t" && next === "i" && ["a", "e", "o", "u"].includes(next2)) {
+      ipa += "t͡s";
+      i += 1;
+      continue;
+    }
+
+    if (ch === "c") {
+      ipa += ["i", "e", "y"].includes(next) ? "t͡s" : "k";
+      i += 1;
+      continue;
+    }
+
+    if (ch === "s" && isInteralVowel(prev) && isInteralVowel(next)) {
+      ipa += "z";
+      i += 1;
+      continue;
+    }
+
+    if (ch === "u" && (prev === "a" || prev === "e") && !INTERAL_U_EXCEPTIONS.has(word)) {
+      ipa += "w";
+      i += 1;
+      continue;
+    }
+
+    if (ch === "y") {
+      ipa += (isInteralVowel(prev) || isInteralVowel(next)) ? "j" : "i";
+      i += 1;
+      continue;
+    }
+
+    switch (ch) {
+      case "a": ipa += "a"; break;
+      case "b": ipa += "b"; break;
+      case "d": ipa += "d"; break;
+      case "e": ipa += "e"; break;
+      case "f": ipa += "f"; break;
+      case "g": ipa += "g"; break;
+      case "h": ipa += "x"; break;
+      case "i": ipa += "i"; break;
+      case "j": ipa += "ʒ"; break;
+      case "k": ipa += "k"; break;
+      case "l": ipa += "l"; break;
+      case "m": ipa += "m"; break;
+      case "n": ipa += "n"; break;
+      case "o": ipa += "o"; break;
+      case "p": ipa += "p"; break;
+      case "q": ipa += "k"; break;
+      case "r": ipa += "r"; break;
+      case "s": ipa += "s"; break;
+      case "t": ipa += "t"; break;
+      case "u": ipa += "u"; break;
+      case "v": ipa += "v"; break;
+      case "w": ipa += "w"; break;
+      case "x": ipa += "ks"; break;
+      case "z": ipa += "z"; break;
+      default: ipa += ch; break;
+    }
+
+    i += 1;
+  }
+
+  return ipa;
+}
+
+function interalIPAForAline(word) {
+  return interalToIPA(word)
+    .replace(/t͡ɕ/g, "t͡ʃ")
+    .replace(/ʂ/g, "ʃ")
+    .replace(/x/g, "h");
+}
+
+function levenshtein(a, b) {
+  const left = Array.from(String(a || ""));
+  const right = Array.from(String(b || ""));
+  const n = left.length;
+  const m = right.length;
+
+  const dp = Array.from({ length: n + 1 }, () => Array(m + 1).fill(0));
+
+  for (let i = 0; i <= n; i++) dp[i][0] = i;
+  for (let j = 0; j <= m; j++) dp[0][j] = j;
+
+  for (let i = 1; i <= n; i++) {
+    for (let j = 1; j <= m; j++) {
+      const cost = left[i - 1] === right[j - 1] ? 0 : 1;
+
+      dp[i][j] = Math.min(
+        dp[i - 1][j] + 1,
+        dp[i][j - 1] + 1,
+        dp[i - 1][j - 1] + cost
+      );
+    }
+  }
+
+  return dp[n][m];
+}
+
+function graphicSimilarity(a, b) {
+  const maxLen = Math.max(Array.from(a || "").length, Array.from(b || "").length);
+  if (maxLen === 0) return null;
+
+  const d = levenshtein(a, b);
+  return clamp01(1 - d / maxLen);
+}
+
+function normalizeIPAForAline(ipa) {
+  return String(ipa || "")
+    .normalize("NFC")
+    .replace(/[\/\[\]()]/g, "")
+    .replace(/[ˈˌ.]/g, "")
+    .replace(/[ːˑ]/g, "")
+    .replace(/[ʰʱʲˠʷˤ˞]/g, "")
+    .replace(/[̥̬̪̺̻̩̯̝̞̟̠̹̜̈̃̚]/g, "")
+    .replace(/ɡ/g, "g")
+    .replace(/ɫ/g, "l")
+    .trim();
+}
+
+function calcAlineSimilarity(ipaA, ipaB) {
+  if (!window.ALINE) {
+    throw new Error("Файл aline.js не подключён или не загрузился.");
+  }
+
+  const cleanA = normalizeIPAForAline(ipaA);
+  const cleanB = normalizeIPAForAline(ipaB);
+
+  if (!cleanA || !cleanB) return null;
+
+  if (window.ALINE.explain) {
+    const explanation = window.ALINE.explain(cleanA, cleanB, ALINE_OPTIONS);
+    return {
+      score: clamp01(explanation.normalized ?? explanation.similarity ?? 0),
+      explanation
+    };
+  }
+
+  if (window.ALINE.normalizedSimilarity) {
+    return {
+      score: clamp01(window.ALINE.normalizedSimilarity(cleanA, cleanB, ALINE_OPTIONS)),
+      explanation: null
+    };
+  }
+
+  throw new Error("Файл aline.js не содержит функции ALINE.normalizedSimilarity.");
+}
+
+async function safeFetchJSON(url) {
+  try {
+    const response = await fetch(url, { cache: "no-cache" });
+    if (!response.ok) return null;
+    return await response.json();
+  } catch (error) {
+    console.warn("JSON load error:", url, error);
+    return null;
+  }
+}
+
+async function loadPieVordes() {
+  if (!pieVordesPromise) {
+    pieVordesPromise = (async () => {
+      const direct = await safeFetchJSON("./pie_vordes");
+      if (direct && Array.isArray(direct.items)) return direct;
+
+      const json = await safeFetchJSON("./pie_vordes.json");
+      if (json && Array.isArray(json.items)) return json;
+
+      return { languages: LANG_CODES, items: [] };
+    })();
+  }
+
+  return pieVordesPromise;
+}
+
+function splitVariants(value) {
+  if (!value) return [];
+
+  if (Array.isArray(value)) {
+    return value.flatMap(splitVariants);
+  }
+
+  if (typeof value === "object") {
+    return splitVariants(value.word || value.words || value.form || value.forms || "");
+  }
+
+  return String(value)
+    .split(/\s*\/\s*|,\s*|;\s*|\s+\|\s+/)
+    .map((x) => x.trim())
+    .filter(Boolean);
+}
+
+function getPieCell(item, langCode) {
+  const cell = item && item[langCode];
+
+  if (!cell) {
+    return { words: [], ipa: "" };
+  }
+
+  if (typeof cell === "string") {
+    return {
+      words: splitVariants(cell),
+      ipa: item.ipa && item.ipa[langCode] ? String(item.ipa[langCode]) : ""
+    };
+  }
+
+  if (Array.isArray(cell)) {
+    return {
+      words: splitVariants(cell),
+      ipa: item.ipa && item.ipa[langCode] ? String(item.ipa[langCode]) : ""
+    };
+  }
+
+  if (typeof cell === "object") {
+    return {
+      words: splitVariants(cell.word || cell.words || cell.form || cell.forms || ""),
+      ipa: String(cell.ipa || "")
+    };
+  }
+
+  return { words: [], ipa: "" };
+}
+
+function getPieForms(item, langCode) {
+  return getPieCell(item, langCode).words;
+}
+
+function getPieIPA(item, langCode) {
+  const cell = getPieCell(item, langCode);
+  if (cell.ipa) return cell.ipa;
+
+  if (item && item.ipa && item.ipa[langCode]) {
+    return String(item.ipa[langCode]);
+  }
+
+  return "";
+}
+
+function findPieRowByNationalWord(data, nationalWord, selectedLang) {
+  const querySelected = normalizeGraphicInput(nationalWord, selectedLang);
+
+  if (!querySelected) return null;
+
+  for (const item of data.items || []) {
+    const forms = getPieForms(item, selectedLang);
+
+    for (const form of forms) {
+      const normalizedForm = normalizeGraphicInput(form, selectedLang);
+
+      if (normalizedForm && normalizedForm === querySelected) {
+        return {
+          item,
+          matchedWord: form,
+          matchedLang: selectedLang,
+          method: "exact_selected_language",
+          score: 1
+        };
+      }
+    }
+  }
+
+  let bestInSelected = null;
+
+  for (const item of data.items || []) {
+    const forms = getPieForms(item, selectedLang);
+
+    for (const form of forms) {
+      const normalizedForm = normalizeGraphicInput(form, selectedLang);
+      if (!normalizedForm) continue;
+
+      const score = graphicSimilarity(querySelected, normalizedForm);
+
+      if (!bestInSelected || score > bestInSelected.score) {
+        bestInSelected = {
+          item,
+          matchedWord: form,
+          matchedLang: selectedLang,
+          method: "similar_selected_language",
+          score
+        };
+      }
+    }
+  }
+
+  if (bestInSelected && bestInSelected.score >= 0.86) {
+    return bestInSelected;
+  }
+
+  return null;
+}
+
+async function fillFromPieVordes() {
+  const lookupWord = lookupWordInput.value.trim();
+  const lookupLang = lookupLangSelect.value;
+
+  if (!lookupWord) {
+    showMessage("Введите слово для поиска строки в pie_vordes.");
+    return;
+  }
+
+  showMessage("Поиск строки в pie_vordes...");
+
+  const data = await loadPieVordes();
+  const rowMatch = findPieRowByNationalWord(data, lookupWord, lookupLang);
+
+  if (!rowMatch || !rowMatch.item) {
+    showMessage("Строка в pie_vordes не найдена. Можно заполнить таблицу вручную.");
+    return;
+  }
+
+  for (const lang of CONTROL_LANGUAGES) {
+    const forms = getPieForms(rowMatch.item, lang.code);
+    const ipa = getPieIPA(rowMatch.item, lang.code);
+    const inputs = getRowInputs(lang.code);
+
+    inputs.word.value = forms[0] || "";
+    inputs.ipa.value = ipa || "";
+  }
+
+  showMessage(`Строка найдена: id ${escapeHTML(rowMatch.item.id || "—")}; PIE ${escapeHTML(rowMatch.item.pie || "—")}. Проверь формы и нажми «Рассчитать международность».`);
+}
+
+function showMessage(html) {
+  resultBox.style.display = "block";
+  resultBox.innerHTML = html;
+  explainBtn.style.display = "none";
+}
+
+function abortActiveRun() {
+  if (activeController) {
+    activeController.abort();
+    activeController = null;
+  }
+}
+
+function createRunSignal() {
+  abortActiveRun();
+  activeController = new AbortController();
+  return activeController.signal;
+}
+
+async function calculateInternationality() {
+  const interalWord = wordInput.value.trim();
+  const semanticOk = semanticOkInput.checked;
+  const autoIpa = autoIpaSelect.value === "yes";
+  const supportThreshold = clamp01(Number(supportThresholdInput.value || 0.4));
+  const minPercent = clamp(Number(minPercentInput.value || 40), 0, 100);
+
+  if (!interalWord) {
+    showMessage("Введите гипотезу слова на Интерале.");
+    return;
+  }
+
+  const signal = createRunSignal();
+  clearScores();
+  showMessage("Расчёт...");
+
+  try {
+    const interalGraphic = normalizeGraphicInput(interalWord, "interal");
+    const interalIPA = interalToIPA(interalWord);
+    const interalIPAComparable = interalIPAForAline(interalWord);
+
+    const rows = [];
+
+    for (const lang of CONTROL_LANGUAGES) {
+      const inputs = getRowInputs(lang.code);
+      const word = inputs.word.value.trim();
+      let ipa = inputs.ipa.value.trim();
+
+      if (word && !ipa && autoIpa) {
+        const found = await resolveIPA(word, lang.code, signal);
+        ipa = found.ipa || "";
+        if (ipa) inputs.ipa.value = ipa;
+      }
+
+      const nationalGraphic = normalizeGraphicInput(word, lang.code);
+      const graphic = word ? graphicSimilarity(interalGraphic, nationalGraphic) : null;
+
+      let phonetic = null;
+      let general = null;
+      let contribution = null;
+      let aline = null;
+
+      if (word && ipa && interalIPAComparable) {
+        const result = calcAlineSimilarity(interalIPAComparable, ipa);
+
+        if (result) {
+          phonetic = result.score;
+          aline = result.explanation;
+        }
+      }
+
+      if (typeof graphic === "number" && typeof phonetic === "number") {
+        general = (graphic + phonetic) / 2;
+        contribution = lang.speakers * general;
+      }
+
+      rows.push({
+        ...lang,
+        word,
+        ipa,
+        graphic,
+        phonetic,
+        general,
+        contribution,
+        aline
+      });
+
+      renderScoreIntoRow(lang.code, { graphic, phonetic, general, contribution });
+    }
+
+    const validRows = rows.filter((row) => typeof row.general === "number");
+    const weightedSum = validRows.reduce((sum, row) => sum + row.contribution, 0);
+    const availableSpeakers = validRows.reduce((sum, row) => sum + row.speakers, 0);
+    const formalComplete = validRows.length === CONTROL_LANGUAGES.length;
+
+    const formalPI = formalComplete ? (weightedSum / TOTAL_SPEAKERS) * 100 : null;
+    const availablePI = availableSpeakers > 0 ? (weightedSum / availableSpeakers) * 100 : null;
+    const lowerBoundPI = (weightedSum / TOTAL_SPEAKERS) * 100;
+
+    const supportedGroups = [...new Set(
+      rows
+        .filter((row) => typeof row.general === "number" && row.general >= supportThreshold)
+        .map((row) => row.group)
+    )];
+
+    const twoGroupsOk = supportedGroups.length >= 2;
+    const thresholdOk = formalComplete ? formalPI >= minPercent : false;
+    const accepted = formalComplete && thresholdOk && twoGroupsOk && semanticOk;
+
+    const payload = {
+      interalWord,
+      interalGraphic,
+      interalIPA,
+      interalIPAComparable,
+      rows,
+      validRows,
+      weightedSum,
+      totalSpeakers: TOTAL_SPEAKERS,
+      availableSpeakers,
+      formalComplete,
+      formalPI,
+      availablePI,
+      lowerBoundPI,
+      supportedGroups,
+      supportThreshold,
+      minPercent,
+      semanticOk,
+      twoGroupsOk,
+      thresholdOk,
+      accepted
+    };
+
+    renderResult(payload);
+    buildExplanation(payload);
+    explainBtn.style.display = "block";
+  } catch (error) {
+    if (error && error.name === "AbortError") return;
+    showMessage(escapeHTML(error.message || String(error)));
+  }
+}
+
+function renderScoreIntoRow(langCode, data) {
+  const tr = document.querySelector(`#languageRows tr[data-lang="${CSS.escape(langCode)}"]`);
+  if (!tr) return;
+
+  tr.querySelector(".score-g").textContent = formatScoreOrDash(data.graphic);
+  tr.querySelector(".score-ph").textContent = formatScoreOrDash(data.phonetic);
+  tr.querySelector(".score-s").textContent = formatScoreOrDash(data.general);
+  tr.querySelector(".score-contribution").textContent =
+    typeof data.contribution === "number" ? formatInteger(Math.round(data.contribution)) : "—";
+}
+
+async function resolveIPA(word, langCode, signal) {
+  const fallback = IPA_FALLBACKS[langCode]?.[normalize(word)];
+
+  if (fallback) {
+    return {
+      ipa: fallback,
+      source: "local fallback"
+    };
+  }
+
+  return getWiktionaryIPA(word, langCode, signal);
+}
+
+async function getWiktionaryIPA(word, langCode, signal) {
+  const api = WIKTIONARY_APIS[langCode] || WIKTIONARY_APIS.en;
+  const englishApi = WIKTIONARY_APIS.en;
+  const candidates = [...new Set([
+    ...wiktionaryCandidates(word, langCode),
+    ...(await searchWiktionaryTitles(englishApi, word, signal)),
+    ...(api !== englishApi ? await searchWiktionaryTitles(api, word, signal) : [])
+  ])].slice(0, 28);
+
+  for (const title of candidates) {
+    const html = await fetchWiktionaryHTMLFrom(englishApi, title, signal);
+    const variants = extractIPAsFromHTML(html, langCode);
+
+    if (variants.length) {
+      return {
+        ipa: variants[0],
+        source: `en.wiktionary.org/wiki/${encodeURIComponent(title)}`
+      };
+    }
+  }
+
+  if (api !== englishApi) {
+    for (const title of candidates) {
+      const html = await fetchWiktionaryHTMLFrom(api, title, signal);
+      const variants = extractIPAsFromHTML(html, langCode);
+
+      if (variants.length) {
+        return {
+          ipa: variants[0],
+          source: `${langCode}.wiktionary.org/wiki/${encodeURIComponent(title)}`
+        };
+      }
+    }
+  }
+
+  return {
+    ipa: "",
+    source: ""
+  };
+}
+
+function wiktionaryCandidates(word, langCode) {
+  const raw = String(word || "").trim();
+  const lower = raw.toLowerCase();
+  const noDiacritics = stripDiacritics(raw);
+
+  const candidates = [raw, lower, noDiacritics, stripDiacritics(lower)];
+
+  if (langCode === "de" && lower) {
+    candidates.push(lower.charAt(0).toUpperCase() + lower.slice(1));
+    candidates.push(noDiacritics.charAt(0).toUpperCase() + noDiacritics.slice(1));
+  }
+
+  return [...new Set(candidates.filter(Boolean))].slice(0, 20);
+}
+
+async function searchWiktionaryTitles(apiUrl, word, signal) {
+  try {
+    const url =
+      apiUrl + "?" +
+      new URLSearchParams({
+        action: "opensearch",
+        search: word,
+        limit: "7",
+        namespace: "0",
+        format: "json",
+        origin: "*"
+      });
+
+    const response = await fetch(url, { signal });
+    if (!response.ok) return [];
+
+    const data = await response.json();
+    return Array.isArray(data[1]) ? data[1] : [];
+  } catch (error) {
+    if (error && error.name === "AbortError") throw error;
+    return [];
+  }
+}
+
+async function fetchWiktionaryHTMLFrom(apiUrl, title, signal) {
+  try {
+    const url =
+      apiUrl + "?" +
+      new URLSearchParams({
+        action: "parse",
+        page: title,
+        prop: "text",
+        format: "json",
+        origin: "*",
+        redirects: "1"
+      });
+
+    const response = await fetch(url, { signal });
+    if (!response.ok) return "";
+
+    const data = await response.json();
+    if (data.error) return "";
+
+    return data.parse && data.parse.text ? data.parse.text["*"] : "";
+  } catch (error) {
+    if (error && error.name === "AbortError") throw error;
+    return "";
+  }
+}
+
+function extractIPAsFromHTML(html, langCode) {
+  if (!html) return [];
+
+  const doc = new DOMParser().parseFromString(html, "text/html");
+  const section = getLanguageSection(doc, langCode);
+
+  return [
+    ...extractIPAsFromElement(section),
+    ...extractIPAsFromElement(doc)
+  ].filter(onlyUnique);
+}
+
+function getLanguageSection(doc, langCode) {
+  const labels = WIKTIONARY_LANG_LABELS[langCode] || [];
+  const headings = [...doc.querySelectorAll("h2, .mw-heading2")];
+
+  const heading = headings.find((el) => {
+    const headline = el.querySelector(".mw-headline");
+    const headingText = normalizeHeadingText(headline ? headline.textContent : el.textContent);
+    const headingId = (headline && headline.id) || el.id || "";
+
+    return labels.some((label) => {
+      const normalizedId = label.replace(/\s+/g, "_");
+      return headingText === label || headingId === normalizedId;
+    });
+  });
+
+  if (!heading) return null;
+
+  const sectionWrapper = heading.closest("section");
+  if (sectionWrapper) return sectionWrapper;
+
+  const section = document.createElement("div");
+  let node = heading.nextElementSibling;
+
+  while (node) {
+    const isNextLanguageHeading =
+      node.tagName === "H2" ||
+      node.classList.contains("mw-heading2") ||
+      !!node.querySelector(":scope > h2");
+
+    if (isNextLanguageHeading) break;
+
+    section.appendChild(node.cloneNode(true));
+    node = node.nextElementSibling;
+  }
+
+  return section;
+}
+
+function normalizeHeadingText(text) {
+  return String(text || "")
+    .replace(/\[edit\]/gi, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function extractIPAsFromElement(root) {
+  if (!root) return [];
+
+  const result = [];
+  const ipaElements = [...root.querySelectorAll(".IPA, [class~='IPA'], [class*='IPA']")];
+
+  for (const element of ipaElements) {
+    const ipa = cleanIPA(element.textContent);
+    if (ipa) result.push(ipa);
+  }
+
+  const text = normalizeWiktionaryText(root.textContent || "");
+
+  const patterns = [
+    /IPA[^/\[]*([/\[][^/\]\[]+[/\]])/gi,
+    /МФА[^/\[]*([/\[][^/\]\[]+[/\]])/gi,
+    /Aussprache[^/\[]*([/\[][^/\]\[]+[/\]])/gi,
+    /Prononciation[^/\[]*([/\[][^/\]\[]+[/\]])/gi,
+    /Pronunciaci[oó]n[^/\[]*([/\[][^/\]\[]+[/\]])/gi,
+    /Pronuncia[^/\[]*([/\[][^/\]\[]+[/\]])/gi,
+    /Προφορά[^/\[]*([/\[][^/\]\[]+[/\]])/gi
+  ];
+
+  for (const pattern of patterns) {
+    const matches = [...text.matchAll(pattern)];
+
+    for (const match of matches) {
+      const ipa = cleanIPA(match[1]);
+      if (ipa) result.push(ipa);
+    }
+  }
+
+  return [...new Set(result)];
+}
+
+function cleanIPA(text) {
+  let s = String(text || "")
+    .trim()
+    .normalize("NFC")
+    .replace(/\s+/g, " ")
+    .replace(/ɡ/g, "g")
+    .replace(/:/g, "ː");
+
+  const bracketed = s.match(/[\/\[]([^\/\]\[]+)[\/\]]/);
+
+  if (bracketed) {
+    s = bracketed[1];
+  } else {
+    s = s.replace(/^[\/\[]/, "").replace(/[\/\]]$/, "");
+  }
+
+  s = s
+    .split(/[;,]/)[0]
+    .replace(/\([^)]*\)/g, "")
+    .replace(/^\s*IPA\s*:?\s*/i, "")
+    .replace(/^\s*МФА\s*:?\s*/i, "")
+    .replace(/^\s*[-–—]\s*/, "")
+    .trim();
+
+  return s;
+}
+
+function normalizeWiktionaryText(text) {
+  return String(text || "")
+    .replace(/\u00a0/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function renderResult(data) {
+  const piMain = data.formalComplete ? data.formalPI : data.availablePI;
+  const piLabel = data.formalComplete ? "Формальный PI" : "Предварительный PI по заполненным языкам";
+  const decision = getDecisionText(data);
+  const decisionClass = data.accepted ? "status-ok" : data.formalComplete ? "status-warn" : "status-bad";
+
+  resultBox.style.display = "block";
+  resultBox.innerHTML = `
+    <div class="result-grid">
+      <div class="metric">
+        <span class="metric-label">${escapeHTML(piLabel)}</span>
+        <span class="metric-value">${piMain === null ? "—" : formatPercent(piMain)}</span>
+      </div>
+
+      <div class="metric">
+        <span class="metric-label">Σ(N × S)</span>
+        <span class="metric-value">${formatInteger(Math.round(data.weightedSum))}</span>
+      </div>
+
+      <div class="metric">
+        <span class="metric-label">ΣN</span>
+        <span class="metric-value">${formatInteger(data.totalSpeakers)}</span>
+      </div>
+
+      <div class="metric">
+        <span class="metric-label">Языковые группы</span>
+        <span class="metric-value">${data.supportedGroups.length}/4</span>
+      </div>
+    </div>
+
+    <div class="small-note">
+      МФА Интераля: <strong>/${escapeHTML(data.interalIPA || "—")}/</strong>.
+      Заполнено языков: <strong>${data.validRows.length}/${CONTROL_LANGUAGES.length}</strong>.
+      Поддержка групп считается при S ≥ ${formatScore(data.supportThreshold)}.
+    </div>
+
+    ${
+      data.formalComplete
+        ? `<div class="small-note">Формула: PI = ${formatInteger(Math.round(data.weightedSum))} / ${formatInteger(data.totalSpeakers)} × 100 = <strong>${formatPercent(data.formalPI)}</strong>.</div>`
+        : `<div class="small-note">Формальный PI по документу требует заполнения всех 7 контрольных языков. Нижняя граница при незаполненных языках как 0: <strong>${formatPercent(data.lowerBoundPI)}</strong>.</div>`
+    }
+
+    <div class="small-note ${decisionClass}">
+      ${escapeHTML(decision)}
+    </div>
+  `;
+}
+
+function getDecisionText(data) {
+  if (!data.formalComplete) {
+    return "Решение не финальное: заполнены не все контрольные языки или не все МФА.";
+  }
+
+  if (!data.semanticOk) {
+    return "Не принято: семантическое соответствие не подтверждено.";
+  }
+
+  if (!data.twoGroupsOk) {
+    return "Не принято: поддержка есть менее чем в двух языковых группах.";
+  }
+
+  if (!data.thresholdOk) {
+    return `Не принято: процент международности ниже заданного порога ${formatPercent(data.minPercent)}.`;
+  }
+
+  return "Принято как кандидат общего индоевропейского слова: порог, языковые группы и семантика пройдены.";
+}
+
+function buildExplanation(data) {
+  explanationHTML = `
+    <h3 class="explain-title">Пояснение расчёта</h3>
+
+    <div class="explain-section">
+      <h4>Основная формула</h4>
+      <div class="explain-code">PI = Σ(N × S) / ΣN × 100
+S = (G + PH) / 2
+
+N — число людей, говорящих на контрольном языке, в тысячах.
+G — графическая похожесть по расстоянию Левенштейна.
+PH — фонетическая похожесть через ALINE.
+S — итоговая похожесть кандидатной формы со словом в контрольном языке.</div>
+    </div>
+
+    <div class="explain-section">
+      <h4>Гипотеза</h4>
+      <div class="explain-code">Interal: ${escapeHTML(data.interalWord)}
+graphic form: ${escapeHTML(data.interalGraphic)}
+IPA: /${escapeHTML(data.interalIPA || "—")}/
+IPA for ALINE: /${escapeHTML(data.interalIPAComparable || "—")}/</div>
+    </div>
+
+    <div class="explain-section">
+      <h4>Результаты по языкам</h4>
+      ${renderExplanationTable(data.rows)}
+    </div>
+
+    <div class="explain-section">
+      <h4>Проверочные условия</h4>
+      <div class="explain-code">Минимальный процент: ${formatPercent(data.minPercent)}
+Формальный расчёт полный: ${data.formalComplete ? "да" : "нет"}
+Семантика подтверждена: ${data.semanticOk ? "да" : "нет"}
+Поддержанные группы: ${data.supportedGroups.length ? data.supportedGroups.join(", ") : "—"}
+Две языковые группы или больше: ${data.twoGroupsOk ? "да" : "нет"}</div>
+    </div>
+  `;
+}
+
+function renderExplanationTable(rows) {
+  return `
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Язык</th>
+            <th>Группа</th>
+            <th class="num">N</th>
+            <th>Слово</th>
+            <th>МФА</th>
+            <th class="num">G</th>
+            <th class="num">PH</th>
+            <th class="num">S</th>
+            <th class="num">N × S</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rows.map((row) => `
+            <tr>
+              <td>${escapeHTML(row.name)}</td>
+              <td>${escapeHTML(row.group)}</td>
+              <td class="num">${formatInteger(row.speakers)}</td>
+              <td>${escapeHTML(row.word || "—")}</td>
+              <td>${escapeHTML(row.ipa ? "/" + row.ipa + "/" : "—")}</td>
+              <td class="num">${formatScoreOrDash(row.graphic)}</td>
+              <td class="num">${formatScoreOrDash(row.phonetic)}</td>
+              <td class="num">${formatScoreOrDash(row.general)}</td>
+              <td class="num">${typeof row.contribution === "number" ? formatInteger(Math.round(row.contribution)) : "—"}</td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
+function showExplain() {
+  if (!explanationHTML) return;
+  explainText.innerHTML = explanationHTML;
+  explainModal.classList.add("show");
+}
+
+function closeExplain() {
+  explainModal.classList.remove("show");
+}
+
+function formatScore(value) {
+  if (!Number.isFinite(value)) return "0.000";
+  return clamp01(value).toFixed(3);
+}
+
+function formatScoreOrDash(value) {
+  return Number.isFinite(value) ? formatScore(value) : "—";
+}
+
+function formatPercent(value) {
+  if (!Number.isFinite(value)) return "—";
+  return `${value.toFixed(2)}%`;
+}
+
+function formatInteger(value) {
+  if (!Number.isFinite(value)) return "—";
+  return new Intl.NumberFormat("ru-RU").format(value);
+}
+
+function clamp01(x) {
+  return clamp(x, 0, 1);
+}
+
+function clamp(x, min, max) {
+  if (!Number.isFinite(x)) return min;
+  return Math.max(min, Math.min(max, x));
+}
+
+function escapeHTML(value) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+function onlyUnique(value, index, array) {
+  return value && array.indexOf(value) === index;
+}
+
+explainModal.addEventListener("click", (event) => {
+  if (event.target === explainModal) closeExplain();
+});
+
+fillFromPieBtn.addEventListener("click", fillFromPieVordes);
+calcBtn.addEventListener("click", calculateInternationality);
+resetBtn.addEventListener("click", resetAll);
+explainBtn.addEventListener("click", showExplain);
+closeExplainBtn.addEventListener("click", closeExplain);
+
+initRows();
+</script>
+
+<script src="../shared/ui.js"></script>
+
+</body>
+</html>
