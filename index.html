@@ -213,8 +213,8 @@
 
       <a class="tool-link" href="indoeuropanvordes/">
         <span class="tool-icon-wrap"><img class="tool-icon" src="elements/indoeuropanvordes.svg" alt="" aria-hidden="true" /></span>
-        <span class="tool-link-main" data-i18n="home.similaritaMain">Indoeuropan vordes</span>
-        <span class="tool-link-sub" data-i18n="home.similaritaSub">Похожесть</span>
+        <span class="tool-link-main" data-i18n="home.indoeuropanMain">Indoeuropan vordes</span>
+        <span class="tool-link-sub" data-i18n="home.indoeuropanSub">индоевропейские слова</span>
       </a>
       <a class="tool-link" href="associativvordes/">
         <span class="tool-icon-wrap"><img class="tool-icon" src="elements/associativ%20vordes.svg" alt="" aria-hidden="true" /></span>
@@ -234,30 +234,30 @@
     (function () {
       const dict = {
         ru: {
-          'home.similaritaMain': 'Indoeuropan vordes',
+          'home.indoeuropanMain': 'Indoeuropan vordes',
           'home.assocMain': 'Associativ vordes',
           'home.determMain': 'Determinator of valen typ',
-          'home.similaritaSub': 'Похожесть',
+          'home.indoeuropanSub': 'индоевропейские слова',
           'home.assocSub': 'Ассоциативные слова',
           'home.determSub': 'Определитель типа значения'
         },
         en: {
-          'home.similaritaMain': 'Indoeuropan vordes',
+          'home.indoeuropanMain': 'Indoeuropan vordes',
           'home.assocMain': 'Associativ vordes',
           'home.determMain': 'Determinator of valen typ',
-          'home.similaritaSub': 'Similarity',
+          'home.indoeuropanSub': 'Indo-European words',
           'home.assocSub': 'Associative words',
           'home.determSub': 'Value type determinator'
         }
       };
-      function apply(lang) {
+      function applyHomeI18n(lang) {
         document.querySelectorAll('[data-i18n]').forEach((el) => {
           const key = el.getAttribute('data-i18n');
           el.textContent = (dict[lang] && dict[lang][key]) || (dict.ru[key] || el.textContent);
         });
       }
-      apply(localStorage.getItem('interal.lang') === 'en' ? 'en' : 'ru');
-      document.addEventListener('interal:languagechange', (e) => apply(e.detail.lang));
+      applyHomeI18n(localStorage.getItem('interal.lang') === 'en' ? 'en' : 'ru');
+      document.addEventListener('interal:languagechange', (e) => applyHomeI18n(e.detail.lang));
     })();
   </script>
 </body>
