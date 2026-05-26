@@ -201,6 +201,120 @@
   white-space: pre-wrap;
 }
 
+.similarita-page .explain-summary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.similarita-page .explain-chip {
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  background: var(--surface-elevated);
+  border: 1px solid var(--border-subtle);
+}
+
+.similarita-page .explain-chip-label {
+  display: block;
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+
+.similarita-page .explain-chip-value {
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+.similarita-page .explain-section {
+  margin-top: 16px;
+}
+
+.similarita-page .explain-section h4 {
+  margin: 0 0 8px;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.similarita-page .explain-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+}
+
+.similarita-page .explain-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.similarita-page .explain-table th,
+.similarita-page .explain-table td {
+  padding: 8px;
+  border-top: 1px solid var(--border-subtle);
+  text-align: left;
+  vertical-align: top;
+}
+
+.similarita-page .explain-table thead th {
+  border-top: 0;
+  color: var(--text-muted);
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.similarita-page .score-cell {
+  text-align: right !important;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.similarita-page .score-badge {
+  display: inline-block;
+  min-width: 44px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: var(--surface-elevated);
+  border: 1px solid var(--border-subtle);
+  text-align: center;
+}
+
+.similarita-page details.explain-detail {
+  margin-top: 8px;
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  background: var(--surface-elevated);
+  border: 1px solid var(--border-subtle);
+}
+
+.similarita-page details.explain-detail summary {
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.similarita-page .explain-code {
+  margin-top: 8px;
+  padding: 8px;
+  border-radius: var(--radius-md);
+  background: var(--bg);
+  overflow-x: auto;
+  white-space: pre-wrap;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12px;
+}
+
+@media (max-width: 640px) {
+  .similarita-page .explain-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .similarita-page .modal-inner {
+    padding: 18px !important;
+  }
+}
+
 .similarita-page .modal-inner {
   display: flex;
   flex-direction: column;
@@ -1965,21 +2079,183 @@ function renderResultTable(data) {
 }
 
 function buildExplanationTable(data) {
-  const lines = [];
-  lines.push(t("sim.explainHeader"));
-  lines.push('');
-  lines.push(`${t("sim.explainInteral")}: ${data.interalWord}`);
-  lines.push(`${t("sim.explainInteralIpa")}: ${data.interalIPA ? `/${data.interalIPA}/` : '—'}`);
-  lines.push(`${t("sim.explainPieFound")}: ${data.rowMatch && data.rowMatch.item ? t("sim.yes") : t("sim.no")}`);
-  lines.push('');
+  const row = data.rowMatch && data.rowMatch.item ? data.rowMatch.item : null;
+  const bestRow = getBestResultRow(data.tableRows);
 
-  for (const row of data.tableRows) {
-    lines.push(`${row.langName || row.lang}: word=${row.word || '—'}; ipa=${row.ipa ? `/${row.ipa}/` : '—'}; G=${row.graphic === null ? '—' : formatScore(row.graphic)}; P=${row.phonetic === null ? '—' : formatScore(row.phonetic)}; Total=${row.general === null ? '—' : formatScore(row.general)}`);
-    lines.push(`  ${t("sim.explainSource")}: ${row.source || '—'}`);
-    lines.push(`  ${t("sim.explainRoute")}: ${row.route && row.route.length ? row.route.join(' → ') : '—'}`);
+  explanationText = renderExplanationHTML({
+    ...data,
+    row,
+    bestRow
+  });
+}
+
+function getBestResultRow(rows) {
+  const valid = (rows || []).filter((row) => typeof row.general === "number");
+  if (!valid.length) return null;
+
+  return valid.reduce((best, row) => {
+    return row.general > best.general ? row : best;
+  }, valid[0]);
+}
+
+function renderExplanationHTML(data) {
+  const row = data.row;
+  const bestRow = data.bestRow;
+
+  return `
+    <h3 class="explain-title">${escapeHTML(t("sim.explainHeader"))}</h3>
+
+    <div class="explain-summary">
+      <div class="explain-chip">
+        <span class="explain-chip-label">Interal</span>
+        <span class="explain-chip-value">${escapeHTML(data.interalWord)}</span>
+      </div>
+
+      <div class="explain-chip">
+        <span class="explain-chip-label">IPA Interal</span>
+        <span class="explain-chip-value">${escapeHTML(data.interalIPA ? "/" + data.interalIPA + "/" : "—")}</span>
+      </div>
+
+      <div class="explain-chip">
+        <span class="explain-chip-label">pie_vordes</span>
+        <span class="explain-chip-value">
+          ${row ? `id ${escapeHTML(row.id || "—")}; ${escapeHTML(row.pie || "—")}` : "—"}
+        </span>
+      </div>
+
+      <div class="explain-chip">
+        <span class="explain-chip-label">Best result</span>
+        <span class="explain-chip-value">
+          ${bestRow ? `${escapeHTML(bestRow.langName || bestRow.lang)} — ${formatScore(bestRow.general)}` : "—"}
+        </span>
+      </div>
+    </div>
+
+    ${row ? `
+      <div class="explain-section">
+        <h4>PIE row</h4>
+        <div class="explain-code">id: ${escapeHTML(row.id || "—")}
+pie: ${escapeHTML(row.pie || "—")}
+status: ${escapeHTML(row.status || "—")}
+note: ${escapeHTML(row.note || "—")}</div>
+      </div>
+    ` : `
+      <div class="explain-section">
+        <h4>PIE row</h4>
+        <div class="explain-code">pie_vordes: row not found.
+The calculator used only the entered national word and tried fallback/Wiktionary for IPA.</div>
+      </div>
+    `}
+
+    <div class="explain-section">
+      <h4>Formula</h4>
+      <div class="explain-code">Graphic similarity = 1 − Levenshtein distance / max length
+Phonetic similarity = ALINE(normalized IPA Interal, normalized IPA national word)
+Total = (Graphic similarity + Phonetic similarity) / 2</div>
+    </div>
+
+    <div class="explain-section">
+      <h4>Results by language</h4>
+      ${renderExplanationResultTable(data.tableRows)}
+    </div>
+
+    <div class="explain-section">
+      <h4>Details</h4>
+      ${renderLanguageDetails(data.tableRows)}
+    </div>
+  `;
+}
+
+function renderExplanationResultTable(rows) {
+  return `
+    <div class="explain-table-wrap">
+      <table class="explain-table">
+        <thead>
+          <tr>
+            <th>Language</th>
+            <th>Word</th>
+            <th>IPA</th>
+            <th class="score-cell">G</th>
+            <th class="score-cell">P</th>
+            <th class="score-cell">Total</th>
+            <th>IPA source</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${(rows || []).map((row) => `
+            <tr>
+              <td>${escapeHTML(row.langName || LANG_NAMES[row.lang] || row.lang)}</td>
+              <td>${escapeHTML(row.word || "—")}</td>
+              <td>${escapeHTML(row.ipa ? "/" + row.ipa + "/" : "—")}</td>
+              <td class="score-cell">${renderScore(row.graphic)}</td>
+              <td class="score-cell">${renderScore(row.phonetic)}</td>
+              <td class="score-cell">${renderScore(row.general)}</td>
+              <td>${escapeHTML(shortSource(row.source))}</td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
+function renderLanguageDetails(rows) {
+  return (rows || []).map((row) => {
+    const unknownA = row.aline && row.aline.unknownA && row.aline.unknownA.length
+      ? row.aline.unknownA.join(", ")
+      : "none";
+
+    const unknownB = row.aline && row.aline.unknownB && row.aline.unknownB.length
+      ? row.aline.unknownB.join(", ")
+      : "none";
+
+    const tokensA = row.aline && row.aline.tokensA ? row.aline.tokensA.join(" ") : "—";
+    const tokensB = row.aline && row.aline.tokensB ? row.aline.tokensB.join(" ") : "—";
+    const alignment = formatAlignment(row.aline);
+
+    return `
+      <details class="explain-detail">
+        <summary>${escapeHTML(row.langName || LANG_NAMES[row.lang] || row.lang)} — ${escapeHTML(row.word || "—")} — Total: ${row.general === null ? "—" : formatScore(row.general)}</summary>
+        <div class="explain-code">word: ${escapeHTML(row.word || "—")}
+ipa: ${escapeHTML(row.ipa ? "/" + row.ipa + "/" : "—")}
+source: ${escapeHTML(row.source || "—")}
+route: ${escapeHTML(row.route && row.route.length ? row.route.join(" → ") : "—")}
+
+tokens Interal: ${escapeHTML(tokensA)}
+tokens ${escapeHTML(row.langName || row.lang)}: ${escapeHTML(tokensB)}
+
+alignment:
+${escapeHTML(alignment)}
+
+unknown Interal: ${escapeHTML(unknownA)}
+unknown ${escapeHTML(row.langName || row.lang)}: ${escapeHTML(unknownB)}</div>
+      </details>
+    `;
+  }).join("");
+}
+
+function renderScore(value) {
+  if (value === null || value === undefined || !Number.isFinite(value)) {
+    return "—";
   }
 
-  explanationText = lines.join('\n');
+  return `<span class="score-badge">${formatScore(value)}</span>`;
+}
+
+function shortSource(source) {
+  if (!source) return "—";
+  if (source === "similarita/pie_vordes") return "pie_vordes";
+  if (source === "local IPA fallback") return "fallback";
+  if (source.includes("wiktionary.org")) return "Wiktionary";
+  return source;
+}
+
+function formatAlignment(aline) {
+  if (!aline || !aline.alignments || !aline.alignments[0]) return "—";
+
+  return aline.alignments[0]
+    .map((pair) => Array.isArray(pair) ? `${pair[0]} ↔ ${pair[1]}` : String(pair))
+    .join("\n");
 }
 
 function escapeHTML(value) {
@@ -1994,19 +2270,7 @@ function escapeHTML(value) {
 function showExplain() {
   if (!explanationText) return;
 
-  const [title, ...restLines] = explanationText.split("\n");
-
-  explainText.innerHTML = "";
-
-  const titleElement = document.createElement("h3");
-  titleElement.className = "explain-title";
-  titleElement.textContent = title.trim();
-
-  const bodyElement = document.createElement("div");
-  bodyElement.className = "explain-body";
-  bodyElement.textContent = restLines.join("\n").trim();
-
-  explainText.append(titleElement, bodyElement);
+  explainText.innerHTML = explanationText;
   explainModal.classList.add("show");
 }
 
