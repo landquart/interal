@@ -443,7 +443,7 @@ function getLangName(code) {
 const i18n = {
   ru: {
     "sim.combinedTitle": "Похожесть",
-    "sim.wordInteral": "Слово на Interal",
+    "sim.wordInteral": "Слово на Интерале",
     "sim.wordOther": "Слово на другом языке",
     "sim.otherLanguage": "Язык другого слова",
     "sim.calculate": "Рассчитать",
@@ -453,7 +453,7 @@ const i18n = {
     "sim.close": "Закрыть",
     "sim.fillInteral": "Введите слово на Interal",
     "sim.fillNational": "Введите слово на выбранном национальном языке",
-    "sim.searching": "Поиск в pie_vordes и Wiktionary...",
+    "sim.searching": "Поиск в pie_vordes и Викисловарь...",
     "sim.alineMissing": "Файл aline.js не подключён или не загрузился",
     "sim.ipaNotFound": "IPA не найдено",
     "sim.graphicTitle": "Графическая похожесть",
@@ -488,9 +488,9 @@ const i18n = {
     "sim.rowFound": "найдено",
     "sim.rowNotFound": "строка не найдена",
     "sim.explainHeader": "Похожесть",
-    "sim.explainInteral": "Interal",
-    "sim.explainInteralIpa": "IPA Interal",
-    "sim.ipaInteral": "IPA Interal",
+    "sim.explainInteral": "Интераль",
+    "sim.explainInteralIpa": "МФА Интераль",
+    "sim.ipaInteral": "МФА Интераль",
     "sim.explainPieFound": "Строка PIE найдена",
     "sim.yes": "да",
     "sim.no": "нет",
@@ -504,17 +504,17 @@ const i18n = {
     "sim.ipaSource": "Источник МФА",
     "sim.sourceLower": "источник",
     "sim.routeLower": "маршрут",
-    "sim.tokensInteral": "токены Interal",
+    "sim.tokensInteral": "токены Интераля",
     "sim.alignmentLower": "выравнивание",
-    "sim.unknownInteral": "неизвестные сегменты Interal",
+    "sim.unknownInteral": "неизвестные сегменты Интераля",
     "sim.wordLower": "слово",
-    "sim.pieRowNotFoundLong": "Строка в pie_vordes не найдена. Калькулятор использовал только введённое национальное слово и попытался найти МФА через fallback/Wiktionary.",
+    "sim.pieRowNotFoundLong": "Строка в pie_vordes не найдена. Калькулятор использовал только введённое национальное слово и попытался найти МФА через fallback/Викисловарь.",
     "sim.formulaGraphic": "Графическая похожесть = 1 − расстояние Левенштейна / максимальная длина",
-    "sim.formulaPhonetic": "Фонетическая похожесть = ALINE(нормализованная МФА Interal, нормализованная МФА национального слова)",
+    "sim.formulaPhonetic": "Фонетическая похожесть = ALINE(нормализованный МФА Интераля, нормализованная МФА национального слова)",
     "sim.formulaTotal": "Итог = (графическая похожесть + фонетическая похожесть) / 2",
     "sim.onlySelectedLanguageShown": "Показан только выбранный язык, потому что без строки в pie_vordes нет данных для остальных 6 языков.",
     "sim.pieNoWord": "в pie_vordes нет слова",
-    "sim.fallbackWiktionary": "fallback/Wiktionary",
+    "sim.fallbackWiktionary": "fallback/Викисловарь",
     "sim.localIpaFallback": "локальный запасной МФА-словарь"
   },
   en: {
@@ -2170,12 +2170,12 @@ function renderExplanationHTML(data) {
 
     <div class="explain-summary">
       <div class="explain-chip">
-        <span class="explain-chip-label">Interal</span>
+        <span class="explain-chip-label">${escapeHTML(t("sim.explainInteral"))}</span>
         <span class="explain-chip-value">${escapeHTML(data.interalWord)}</span>
       </div>
 
       <div class="explain-chip">
-        <span class="explain-chip-label">IPA Interal</span>
+        <span class="explain-chip-label">${escapeHTML(t("sim.explainInteralIpa"))}</span>
         <span class="explain-chip-value">${escapeHTML(data.interalIPA ? "/" + data.interalIPA + "/" : "—")}</span>
       </div>
 
@@ -2199,7 +2199,7 @@ function renderExplanationHTML(data) {
         <h4>${escapeHTML(t("sim.pieRowTitle"))}</h4>
         <div class="explain-code">id: ${escapeHTML(row.id || "—")}
 pie: ${escapeHTML(row.pie || "—")}
-status: ${escapeHTML(row.status || "—")}
+status: ${escapeHTML(localizeStatus(row.status))}
 note: ${escapeHTML(row.note || "—")}</div>
       </div>
     ` : `
@@ -2279,21 +2279,57 @@ function renderLanguageDetails(rows) {
       <details class="explain-detail">
         <summary>${escapeHTML(row.langName || getLangName(row.lang))} — ${escapeHTML(row.word || "—")} — ${escapeHTML(t("sim.tableTotal"))}: ${row.general === null ? "—" : formatScore(row.general)}</summary>
         <div class="explain-code">${escapeHTML(t("sim.wordLower"))}: ${escapeHTML(row.word || "—")}
-ipa: ${escapeHTML(row.ipa ? "/" + row.ipa + "/" : "—")}
+${escapeHTML(t("sim.ipa").toLowerCase())}: ${escapeHTML(row.ipa ? "/" + row.ipa + "/" : "—")}
 ${escapeHTML(t("sim.sourceLower"))}: ${escapeHTML(row.source || "—")}
-${escapeHTML(t("sim.routeLower"))}: ${escapeHTML(row.route && row.route.length ? row.route.join(" → ") : "—")}
+${escapeHTML(t("sim.routeLower"))}: ${escapeHTML(formatRoute(row.route))}
 
 ${escapeHTML(t("sim.tokensInteral"))}: ${escapeHTML(tokensA)}
-tokens ${escapeHTML(row.langName || getLangName(row.lang))}: ${escapeHTML(tokensB)}
+${escapeHTML(t("sim.tokens").toLowerCase())} ${escapeHTML(row.langName || getLangName(row.lang))}: ${escapeHTML(tokensB)}
 
 ${escapeHTML(t("sim.alignmentLower"))}:
 ${escapeHTML(alignment)}
 
 ${escapeHTML(t("sim.unknownInteral"))}: ${escapeHTML(unknownA)}
-unknown ${escapeHTML(row.langName || getLangName(row.lang))}: ${escapeHTML(unknownB)}</div>
+${escapeHTML(t("sim.unknownSegments").toLowerCase())} ${escapeHTML(row.langName || getLangName(row.lang))}: ${escapeHTML(unknownB)}</div>
       </details>
     `;
   }).join("");
+}
+
+function localizeStatus(status) {
+  if (!status) return "—";
+  const raw = String(status).trim();
+  if (!raw) return "—";
+  const lang = localStorage.getItem("interal.lang") === "en" ? "en" : "ru";
+  if (lang === "en") return raw;
+
+  const map = {
+    strong: "сильный",
+    medium: "средний",
+    weak: "слабый",
+    draft: "черновик",
+    final: "финальный",
+    obsolete: "устаревший"
+  };
+  return map[raw.toLowerCase()] || raw;
+}
+
+function formatRoute(route) {
+  if (!route || !route.length) return "—";
+  return route.map((step) => localizeRouteStep(step)).join(" → ");
+}
+
+function localizeRouteStep(step) {
+  const raw = String(step || "");
+  const lang = localStorage.getItem("interal.lang") === "en" ? "en" : "ru";
+  if (lang === "en") return raw;
+
+  return raw
+    .replaceAll("matched", "совпадение")
+    .replaceAll("lang", "язык")
+    .replaceAll("tokens", "токены")
+    .replaceAll("ipa", "мфа")
+    .replaceAll("unknown", "неизвестно");
 }
 
 function renderScore(value) {
@@ -2306,11 +2342,12 @@ function renderScore(value) {
 
 function shortSource(source) {
   if (!source) return "—";
+  const lang = localStorage.getItem("interal.lang") === "en" ? "en" : "ru";
   if (source === "similarita/pie_vordes") return "pie_vordes";
   if (source === "pie_vordes: no word") return t("sim.pieNoWord");
   if (source === "local IPA fallback") return t("sim.localIpaFallback");
   if (source === "fallback/Wiktionary") return t("sim.fallbackWiktionary");
-  if (source.includes("wiktionary.org")) return "Wiktionary";
+  if (source.includes("wiktionary.org")) return lang === "ru" ? "Викисловарь" : "Wiktionary";
   return source;
 }
 
