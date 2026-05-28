@@ -493,6 +493,7 @@ const TEXT_I18N = {
 let explanationHTML = "";
 let pieVordesPromise = null;
 let activeController = null;
+let lastCalculationPayload = null;
 
 const RU_TO_LATIN = {
   "а": "a", "б": "b", "в": "v", "г": "g", "д": "d", "е": "je", "ё": "jo",
@@ -658,6 +659,7 @@ function resetAll() {
   tableWrap.style.display = "none";
   resultBox.style.display = "none";
   resultBox.innerHTML = "";
+  lastCalculationPayload = null;
   explainBtn.style.display = "none";
   explanationHTML = "";
   updateResetButtonVisibility();
@@ -906,7 +908,7 @@ function interalIPAForAline(word) {
 const SIMILAR_GRAPHIC_COST = 0.5;
 
 function pairKey(a, b) {
-  return `${a} ${b}`;
+  return `${a}\u0000${b}`;
 }
 
 function makeSymmetricPairs(pairs) {
@@ -1258,6 +1260,7 @@ function createRunSignal() {
 }
 
 async function calculateInternationality() {
+  lastCalculationPayload = null;
   const interalWord = wordInput.value.trim();
   const semanticOk = true;
   const autoIpa = true;
@@ -1388,6 +1391,7 @@ async function calculateInternationality() {
       accepted
     };
 
+    lastCalculationPayload = payload;
     renderResult(payload);
     buildExplanation(payload);
     explainBtn.style.display = "block";
@@ -1807,9 +1811,18 @@ function closeExplain() {
   explainModal.classList.remove("show");
 }
 
+function currentLocale() {
+  return getCurrentLanguage() === "en" ? "en-US" : "ru-RU";
+}
+
+function formatLocalizedNumber(value, options = {}) {
+  if (!Number.isFinite(value)) return "—";
+  return new Intl.NumberFormat(currentLocale(), options).format(value);
+}
+
 function formatScore(value) {
   if (!Number.isFinite(value)) return "0";
-  return Number(clamp01(value).toFixed(6)).toString();
+  return formatLocalizedNumber(clamp01(value), { maximumFractionDigits: 6 });
 }
 
 function formatScoreOrDash(value) {
@@ -1818,19 +1831,15 @@ function formatScoreOrDash(value) {
 
 function formatPercent(value) {
   if (!Number.isFinite(value)) return "—";
-  return `${Number(value.toFixed(6)).toString()}%`;
+  return `${formatLocalizedNumber(value, { maximumFractionDigits: 6 })}%`;
 }
 
 function formatNumber(value) {
-  if (!Number.isFinite(value)) return "—";
-  return new Intl.NumberFormat("ru-RU", {
-    maximumFractionDigits: 6
-  }).format(value);
+  return formatLocalizedNumber(value, { maximumFractionDigits: 6 });
 }
 
 function formatInteger(value) {
-  if (!Number.isFinite(value)) return "—";
-  return new Intl.NumberFormat("ru-RU").format(value);
+  return formatLocalizedNumber(value, { maximumFractionDigits: 0 });
 }
 
 function clamp01(x) {
@@ -1872,6 +1881,12 @@ languageRows.addEventListener("change", updateResetButtonVisibility);
 
 document.addEventListener("interal:languagechange", (event) => {
   applyLocalizedTexts(event.detail?.lang);
+  if (lastCalculationPayload) {
+    lastCalculationPayload.rows.forEach((row) => renderScoreIntoRow(row.code, row));
+    renderResult(lastCalculationPayload);
+    buildExplanation(lastCalculationPayload);
+    if (explainModal.classList.contains("show")) explainText.innerHTML = explanationHTML;
+  }
 });
 explainBtn.addEventListener("click", showExplain);
 closeExplainBtn.addEventListener("click", closeExplain);

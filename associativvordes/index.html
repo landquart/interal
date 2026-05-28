@@ -429,6 +429,22 @@
       return 0.25;
     }
 
+    function currentLocale() {
+      return localStorage.getItem('interal.lang') === 'en' ? 'en-US' : 'ru-RU';
+    }
+
+    function formatFixed(value, digits) {
+      if (!Number.isFinite(value)) return '—';
+      return new Intl.NumberFormat(currentLocale(), {
+        minimumFractionDigits: digits,
+        maximumFractionDigits: digits
+      }).format(value);
+    }
+
+    function formatPercent(value, digits = 0) {
+      return `${formatFixed(value, digits)}%`;
+    }
+
     function getManualModelLabel() {
       return localStorage.getItem('interal.lang') === 'en' ? 'manual' : 'ручная';
     }
@@ -552,7 +568,7 @@
         const score = calculateLanguage(lang.code);
         const btn = document.createElement('button');
         btn.className = `tab ${activeLang === lang.code ? 'active' : ''}`;
-        btn.textContent = `${lang.name} (${Math.round(score.normalized * 100)}%)`;
+        btn.textContent = `${lang.name} (${formatPercent(Math.round(score.normalized * 100))})`;
         btn.onclick = () => { activeLang = lang.code; renderAll(); };
         tabs.appendChild(btn);
       }
@@ -584,7 +600,7 @@
         <div class="row" style="margin-bottom:12px;">
           <div>
             <h3>${lang.name}</h3>
-            <p class="muted">Группа: ${lang.group}. Балл языка: <strong>${score.normalized.toFixed(3)}</strong>; сумма весов: <strong>${score.sum.toFixed(3)}</strong>.</p>
+            <p class="muted">Группа: ${lang.group}. Балл языка: <strong>${formatFixed(score.normalized, 3)}</strong>; сумма весов: <strong>${formatFixed(score.sum, 3)}</strong>.</p>
           </div>
           <button class="tool-btn interal-btn interal-btn--secondary fit short" onclick="addRow('${activeLang}')">Добавить слово</button>
         </div>
@@ -615,13 +631,13 @@
           <td>
             <select class="interal-select" onchange="updateItem('${lang}', ${idx}, 'association', Number(this.value))">
               <option value="1" ${Number(item.association) === 1 ? 'selected' : ''}>первичная — 1</option>
-              <option value="0.5" ${Number(item.association) === 0.5 ? 'selected' : ''}>вторичная — 0,5</option>
+              <option value="0.5" ${Number(item.association) === 0.5 ? 'selected' : ''}>вторичная — ${formatFixed(0.5, 1)}</option>
               <option value="0" ${Number(item.association) === 0 ? 'selected' : ''}>мусор — 0</option>
             </select>
           </td>
           <td><input class="interal-input" type="number" value="${Number(item.rank) || 50001}" onchange="updateItem('${lang}', ${idx}, 'rank', Number(this.value))"></td>
-          <td>${getFrequencyScore(item.rank).toFixed(2)}</td>
-          <td><strong>${wordWeight(item).toFixed(3)}</strong></td>
+          <td>${formatFixed(getFrequencyScore(item.rank), 2)}</td>
+          <td><strong>${formatFixed(wordWeight(item), 3)}</strong></td>
           <td><button class="tool-btn interal-btn interal-btn--secondary interal-btn--small" onclick="deleteItem('${lang}', ${idx})">×</button></td>
         </tr>
       `;
@@ -630,8 +646,8 @@
     function renderResults() {
       const result = calculateFinal();
       document.getElementById('resultBox').innerHTML = `
-        <div class="metric"><strong>${result.finalAssociation.toFixed(1)}%</strong><span>FA — конечная ассоциация</span></div>
-        <div class="metric"><strong>${result.totalAssociation.toFixed(3)}</strong><span>TA — вся ассоциация</span></div>
+        <div class="metric"><strong>${formatPercent(result.finalAssociation, 1)}</strong><span>FA — конечная ассоциация</span></div>
+        <div class="metric"><strong>${formatFixed(result.totalAssociation, 3)}</strong><span>TA — вся ассоциация</span></div>
         <div class="metric"><strong>${result.representedLangs}/7</strong><span>языков представлено</span></div>
         <div class="metric"><strong>${result.groups}/4</strong><span>языковых групп</span></div>
       `;
@@ -812,6 +828,7 @@
     document.getElementById('resetBtn').addEventListener('click', resetAll);
     document.getElementById('loadDerivativeDataBtn').addEventListener('click', loadDerivativeData);
     document.getElementById('loadFrequencyDataBtn').addEventListener('click', loadFrequencyData);
+    document.addEventListener('interal:languagechange', renderAll);
     window.addEventListener('resize', syncTabWidths);
 
     window.updateItem = updateItem;
