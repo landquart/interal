@@ -738,11 +738,10 @@ function normalizeGraphicInput(word, langCode) {
   if (langCode === "ru") return transliterateRussian(normalized);
   if (langCode === "el") return transliterateGreek(normalized);
 
-  return stripDiacritics(normalized)
+  return normalized
     .replace(/ß/g, "ss")
     .replace(/æ/g, "ae")
     .replace(/œ/g, "oe")
-    .replace(/ø/g, "o")
     .replace(/ð/g, "d")
     .replace(/þ/g, "th")
     .replace(/ł/g, "l");
@@ -904,26 +903,130 @@ function interalIPAForAline(word) {
     .replace(/x/g, "h");
 }
 
-function levenshtein(a, b) {
+const SIMILAR_GRAPHIC_COST = 0.5;
+
+function pairKey(a, b) {
+  return `${a} ${b}`;
+}
+
+function makeSymmetricPairs(pairs) {
+  const set = new Set();
+
+  for (const [a, b] of pairs) {
+    set.add(pairKey(a, b));
+    set.add(pairKey(b, a));
+  }
+
+  return set;
+}
+
+const SIMILAR_GRAPHIC_PAIRS = makeSymmetricPairs([
+  // Диакритические варианты в немецком, французском, испанском, итальянском
+  ["a", "á"], ["a", "à"], ["a", "â"], ["a", "ä"],
+  ["e", "é"], ["e", "è"], ["e", "ê"], ["e", "ë"],
+  ["i", "í"], ["i", "ì"], ["i", "î"], ["i", "ï"],
+  ["o", "ó"], ["o", "ò"], ["o", "ô"], ["o", "ö"],
+  ["u", "ú"], ["u", "ù"], ["u", "û"], ["u", "ü"],
+  ["y", "ý"], ["y", "ÿ"],
+  ["n", "ñ"],
+  ["c", "ç"],
+]);
+
+function baseLetter(ch) {
+  return String(ch || "")
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")
+    .normalize("NFC");
+}
+
+function hasDiacritic(ch) {
+  return String(ch || "").normalize("NFD") !== String(ch || "").normalize("NFC");
+}
+
+function graphicSubstitutionCost(aChar, bChar) {
+  if (aChar === bChar) return 0;
+
+  const aBase = baseLetter(aChar);
+  const bBase = baseLetter(bChar);
+
+  // u ~ ü, e ~ é, n ~ ñ и т. д.
+  if (aBase && aBase === bBase && (hasDiacritic(aChar) || hasDiacritic(bChar))) {
+    return SIMILAR_GRAPHIC_COST;
+  }
+
+
+  return 1;
+}
+
+function psychologicalLevenshtein(a, b) {
   const left = Array.from(String(a || ""));
   const right = Array.from(String(b || ""));
   const n = left.length;
   const m = right.length;
 
+  const DELETE_COST = 1;
+  const INSERT_COST = 1;
+  const SUBSTITUTE_COST = 1;
+
+  // Психологические поправки
+  const SHIFTED_GAP_COST = 0.5;
+  const TRANSPOSITION_COST = 0.5;
+
   const dp = Array.from({ length: n + 1 }, () => Array(m + 1).fill(0));
 
-  for (let i = 0; i <= n; i++) dp[i][0] = i;
-  for (let j = 0; j <= m; j++) dp[0][j] = j;
+  for (let i = 0; i <= n; i++) dp[i][0] = i * DELETE_COST;
+  for (let j = 0; j <= m; j++) dp[0][j] = j * INSERT_COST;
 
   for (let i = 1; i <= n; i++) {
     for (let j = 1; j <= m; j++) {
-      const cost = left[i - 1] === right[j - 1] ? 0 : 1;
+      const aChar = left[i - 1];
+      const bChar = right[j - 1];
 
+      const substitutionCost = graphicSubstitutionCost(aChar, bChar);
+
+      // Обычный Левенштейн
       dp[i][j] = Math.min(
-        dp[i - 1][j] + 1,
-        dp[i][j - 1] + 1,
-        dp[i - 1][j - 1] + cost
+        dp[i - 1][j] + DELETE_COST,
+        dp[i][j - 1] + INSERT_COST,
+        dp[i - 1][j - 1] + substitutionCost
       );
+
+      // Соседняя перестановка: ab ~ ba
+      if (
+        i > 1 &&
+        j > 1 &&
+        left[i - 1] === right[j - 2] &&
+        left[i - 2] === right[j - 1]
+      ) {
+        dp[i][j] = Math.min(
+          dp[i][j],
+          dp[i - 2][j - 2] + TRANSPOSITION_COST
+        );
+      }
+
+      // Лишняя буква в первом слове, которая сдвигает совпадение.
+      // Например: aabc ~ abc.
+      if (
+        i > 1 &&
+        left[i - 1] === right[j - 1]
+      ) {
+        dp[i][j] = Math.min(
+          dp[i][j],
+          dp[i - 2][j - 1] + SHIFTED_GAP_COST
+        );
+      }
+
+      // Лишняя буква во втором слове, которая сдвигает совпадение.
+      // Например: abc ~ aabc.
+      if (
+        j > 1 &&
+        left[i - 1] === right[j - 1]
+      ) {
+        dp[i][j] = Math.min(
+          dp[i][j],
+          dp[i - 1][j - 2] + SHIFTED_GAP_COST
+        );
+      }
     }
   }
 
@@ -934,7 +1037,7 @@ function graphicSimilarity(a, b) {
   const maxLen = Math.max(Array.from(a || "").length, Array.from(b || "").length);
   if (maxLen === 0) return null;
 
-  const d = levenshtein(a, b);
+  const d = psychologicalLevenshtein(a, b);
   return clamp01(1 - d / maxLen);
 }
 
