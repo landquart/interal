@@ -1405,7 +1405,7 @@ function renderScoreIntoRow(langCode, data) {
   tr.querySelector(".score-ph").textContent = formatScoreOrDash(data.phonetic);
   tr.querySelector(".score-s").textContent = formatScoreOrDash(data.general);
   tr.querySelector(".score-contribution").textContent =
-    typeof data.contribution === "number" ? formatInteger(Math.round(data.contribution)) : "—";
+    typeof data.contribution === "number" ? formatNumber(data.contribution) : "—";
 }
 
 async function resolveIPA(word, langCode, signal) {
@@ -1669,7 +1669,7 @@ function renderResult(data) {
 
       <div class="metric">
         <span class="metric-label">Σ(N × S)</span>
-        <span class="metric-value">${formatInteger(Math.round(data.weightedSum))}</span>
+        <span class="metric-value">${formatNumber(data.weightedSum)}</span>
       </div>
 
       <div class="metric">
@@ -1691,7 +1691,7 @@ function renderResult(data) {
 
     ${
       data.formalComplete
-        ? `<div class="small-note">Формула: PI = ${formatInteger(Math.round(data.weightedSum))} / ${formatInteger(data.totalSpeakers)} × 100 = <strong>${formatPercent(data.formalPI)}</strong>.</div>`
+        ? `<div class="small-note">Формула: PI = ${formatNumber(data.weightedSum)} / ${formatInteger(data.totalSpeakers)} × 100 = <strong>${formatPercent(data.formalPI)}</strong>.</div>`
         : `<div class="small-note">Формальный PI по документу требует заполнения всех 7 контрольных языков. Нижняя граница при незаполненных языках как 0: <strong>${formatPercent(data.lowerBoundPI)}</strong>.</div>`
     }
 
@@ -1788,7 +1788,7 @@ function renderExplanationTable(rows) {
               <td class="num">${formatScoreOrDash(row.graphic)}</td>
               <td class="num">${formatScoreOrDash(row.phonetic)}</td>
               <td class="num">${formatScoreOrDash(row.general)}</td>
-              <td class="num">${typeof row.contribution === "number" ? formatInteger(Math.round(row.contribution)) : "—"}</td>
+              <td class="num">${typeof row.contribution === "number" ? formatNumber(row.contribution) : "—"}</td>
             </tr>
           `).join("")}
         </tbody>
@@ -1808,8 +1808,8 @@ function closeExplain() {
 }
 
 function formatScore(value) {
-  if (!Number.isFinite(value)) return "0.000";
-  return clamp01(value).toFixed(3);
+  if (!Number.isFinite(value)) return "0";
+  return Number(clamp01(value).toFixed(6)).toString();
 }
 
 function formatScoreOrDash(value) {
@@ -1818,7 +1818,14 @@ function formatScoreOrDash(value) {
 
 function formatPercent(value) {
   if (!Number.isFinite(value)) return "—";
-  return `${value.toFixed(2)}%`;
+  return `${Number(value.toFixed(6)).toString()}%`;
+}
+
+function formatNumber(value) {
+  if (!Number.isFinite(value)) return "—";
+  return new Intl.NumberFormat("ru-RU", {
+    maximumFractionDigits: 6
+  }).format(value);
 }
 
 function formatInteger(value) {
