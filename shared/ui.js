@@ -88,7 +88,7 @@
   const desktopControls = document.createElement('div');
   desktopControls.className = 'top-desktop-controls';
   desktopControls.innerHTML = `
-    <a class="top-desktop-link" href="${joinUrl('indoeuropanvordes/')}" data-nav="similarita"><span class="top-desktop-link-main"></span></a>
+    <a class="top-desktop-link" href="${joinUrl('indoeuropanvordes/')}" data-nav="indoeuropanvordes"><span class="top-desktop-link-main"></span></a>
     <a class="top-desktop-link" href="${joinUrl('associativvordes/')}" data-nav="associativ"><span class="top-desktop-link-main"></span></a>
     <a class="top-desktop-link" href="${joinUrl('determinatorofvalentyp/')}" data-nav="determinator"><span class="top-desktop-link-main"></span></a>
   `;
@@ -103,7 +103,7 @@
     <h2 class="menu-title"></h2>
     <div class="menu-divider menu-divider--mobile" aria-hidden="true"></div>
     <nav class="menu-nav" aria-label="Site sections">
-      <a class="menu-nav-link" href="${joinUrl('indoeuropanvordes/')}" data-nav="similarita"><span class="menu-nav-main"></span></a>
+      <a class="menu-nav-link" href="${joinUrl('indoeuropanvordes/')}" data-nav="indoeuropanvordes"><span class="menu-nav-main"></span></a>
       <a class="menu-nav-link" href="${joinUrl('associativvordes/')}" data-nav="associativ"><span class="menu-nav-main"></span></a>
       <a class="menu-nav-link" href="${joinUrl('determinatorofvalentyp/')}" data-nav="determinator"><span class="menu-nav-main"></span></a>
       <div class="menu-divider menu-divider--mobile" aria-hidden="true"></div>
@@ -266,11 +266,11 @@
     if (siteNav) siteNav.setAttribute('aria-label', t.navAriaLabel);
     menuButtonText.textContent = isDesktop ? t.desktopMenuLabel : t.mobileMenuLabel;
 
-    const similaritaLink = menu.querySelector('[data-nav="similarita"]');
+    const indoeuropanvordesLink = menu.querySelector('[data-nav="indoeuropanvordes"]');
     const associativLink = menu.querySelector('[data-nav="associativ"]');
     const determinatorLink = menu.querySelector('[data-nav="determinator"]');
-    if (similaritaLink) {
-      similaritaLink.querySelector('.menu-nav-main').textContent = t.navSimilarita;
+    if (indoeuropanvordesLink) {
+      indoeuropanvordesLink.querySelector('.menu-nav-main').textContent = t.navSimilarita;
     }
     if (associativLink) {
       associativLink.querySelector('.menu-nav-main').textContent = t.navAssociativ;
@@ -280,7 +280,7 @@
     }
 
     desktopControls.querySelectorAll('.top-desktop-link').forEach((link) => {
-      const labels = { similarita: t.navSimilarita, associativ: t.navAssociativ, determinator: t.navDeterminator };
+      const labels = { indoeuropanvordes: t.navSimilarita, associativ: t.navAssociativ, determinator: t.navDeterminator };
       link.querySelector('.top-desktop-link-main').textContent = labels[link.dataset.nav] || '';
     });
 
@@ -426,8 +426,8 @@
 
   function markCurrentPage() {
     const path = window.location.pathname;
-    const currentNav = path.includes('/similarita/')
-      ? 'similarita'
+    const currentNav = path.includes('/indoeuropanvordes/')
+      ? 'indoeuropanvordes'
       : path.includes('/associativvordes/')
         ? 'associativ'
         : path.includes('/determinatorofvalentyp/')
