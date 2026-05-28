@@ -125,6 +125,23 @@
   }
 
   function V(height, back, round, extra = {}) {
+    return {
+      syllabic: 1,
+      sonorant: 1,
+      place: 0,
+      manner: 0,
+      voice: 1,
+      nasal: 0,
+      lateral: 0,
+      rhotic: 0,
+      retroflex: 0,
+      aspirated: 0,
+      long: 0,
+      height,
+      back,
+      round,
+      ...extra
+    };
   }
 
   /*
