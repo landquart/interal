@@ -214,18 +214,33 @@
     requestAnimationFrame(applyAdaptiveTextContrast);
   }
 
-  function getRevealOrigin() {
+  function getRevealOrigin(trigger) {
+    const icon = trigger?.querySelector('.menu-theme-icon');
+    const originElement = icon || trigger || menu.querySelector('.menu-theme-icon');
+
+    if (originElement) {
+      const rect = originElement.getBoundingClientRect();
+      const isVisible = rect.width > 0 && rect.height > 0;
+
+      if (isVisible) {
+        return {
+          x: rect.left + rect.width / 2,
+          y: rect.top + rect.height / 2
+        };
+      }
+    }
+
     return {
       x: window.innerWidth / 2,
       y: 0
     };
   }
 
-  function toggleTheme() {
+  function toggleTheme(event) {
     const isDarkTheme = document.body.classList.contains('dark-theme');
     const theme = isDarkTheme ? 'light' : 'dark';
     const shouldContractToButton = isDarkTheme && theme === 'light';
-    const { x, y } = getRevealOrigin();
+    const { x, y } = getRevealOrigin(event?.currentTarget);
     const endRadius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
 
     if (document.startViewTransition) {
