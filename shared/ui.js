@@ -223,7 +223,9 @@
   }
 
   function toggleTheme(event) {
-    const theme = document.body.classList.contains('dark-theme') ? 'light' : 'dark';
+    const isDarkTheme = document.body.classList.contains('dark-theme');
+    const theme = isDarkTheme ? 'light' : 'dark';
+    const shouldContractToButton = isDarkTheme && theme === 'light';
     const { x, y } = getRevealOrigin(event?.currentTarget);
     const endRadius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
 
@@ -231,6 +233,7 @@
       document.documentElement.style.setProperty('--reveal-x', `${x}px`);
       document.documentElement.style.setProperty('--reveal-y', `${y}px`);
       document.documentElement.style.setProperty('--reveal-end-radius', `${endRadius}px`);
+      document.documentElement.classList.toggle('theme-transition-contract', shouldContractToButton);
       const transition = document.startViewTransition(() => {
         localStorage.setItem(THEME_KEY, theme);
         applyTheme(theme);
@@ -239,20 +242,39 @@
         document.documentElement.style.removeProperty('--reveal-x');
         document.documentElement.style.removeProperty('--reveal-y');
         document.documentElement.style.removeProperty('--reveal-end-radius');
+        document.documentElement.classList.remove('theme-transition-contract');
       });
       return;
     }
 
     const layer = document.createElement('div');
-    layer.className = 'theme-reveal-fallback';
+    const currentThemeColor = getComputedStyle(document.body).getPropertyValue('--bg').trim() || '#fff';
+    layer.className = shouldContractToButton ? 'theme-reveal-fallback theme-reveal-fallback--contract' : 'theme-reveal-fallback';
     layer.style.setProperty('--reveal-x', `${x}px`);
     layer.style.setProperty('--reveal-y', `${y}px`);
     layer.style.setProperty('--reveal-end-radius', `${endRadius}px`);
-    layer.style.setProperty('--reveal-color', getComputedStyle(document.body).getPropertyValue('--bg').trim() || '#fff');
+
     localStorage.setItem(THEME_KEY, theme);
-    applyTheme(theme);
+
+    if (shouldContractToButton) {
+      layer.style.setProperty('--reveal-color', currentThemeColor);
+      applyTheme(theme);
+      document.body.appendChild(layer);
+      layer.addEventListener('animationend', () => layer.remove(), { once: true });
+      return;
+    }
+
+    const wasDarkTheme = document.body.classList.contains('dark-theme');
+    document.body.classList.toggle('dark-theme', theme === 'dark');
+    const nextThemeColor = getComputedStyle(document.body).getPropertyValue('--bg').trim() || '#fff';
+    document.body.classList.toggle('dark-theme', wasDarkTheme);
+
+    layer.style.setProperty('--reveal-color', nextThemeColor);
     document.body.appendChild(layer);
-    layer.addEventListener('animationend', () => layer.remove(), { once: true });
+    layer.addEventListener('animationend', () => {
+      applyTheme(theme);
+      layer.remove();
+    }, { once: true });
   }
 
   function initTheme() {

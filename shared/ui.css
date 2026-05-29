@@ -307,9 +307,21 @@ body.dark-theme .menu-copy-btn.is-copied{background:color-mix(in srgb, #4fe28b 2
   clip-path:circle(0 at var(--reveal-x, 50%) var(--reveal-y, 0));
   animation:themeReveal .55s cubic-bezier(.22,.61,.36,1) forwards;
 }
+html.theme-transition-contract::view-transition-new(root){
+  z-index:0;
+  clip-path:none;
+  animation:none;
+}
+html.theme-transition-contract::view-transition-old(root){
+  z-index:1;
+  clip-path:circle(var(--reveal-end-radius,150vmax) at var(--reveal-x,50%) var(--reveal-y,0));
+  animation:themeRevealContract .55s cubic-bezier(.22,.61,.36,1) forwards;
+}
 
 .theme-reveal-fallback{position:fixed;inset:0;pointer-events:none;z-index:2000;background:var(--reveal-color,#fff);clip-path:circle(0 at var(--reveal-x) var(--reveal-y));animation:themeReveal .55s cubic-bezier(.22,.61,.36,1) forwards}
+.theme-reveal-fallback--contract{clip-path:circle(var(--reveal-end-radius,150vmax) at var(--reveal-x,50%) var(--reveal-y,0));animation-name:themeRevealContract}
 @keyframes themeReveal{to{clip-path:circle(var(--reveal-end-radius,150vmax) at var(--reveal-x,50%) var(--reveal-y,0));}}
+@keyframes themeRevealContract{to{clip-path:circle(0 at var(--reveal-x,50%) var(--reveal-y,0));}}
 
 
 body,
