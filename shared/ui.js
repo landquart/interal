@@ -128,8 +128,8 @@
     </div>
     <div class="menu-lang-modal" hidden>
       <div class="menu-lang-modal-content">
-        <button class="menu-lang-btn" type="button" data-lang="ru"><span class="flag-emoji" aria-hidden="true">🇷🇺</span><span class="menu-lang-name">Русский</span></button>
-        <button class="menu-lang-btn" type="button" data-lang="en"><span class="flag-emoji" aria-hidden="true">🇬🇧</span><span class="menu-lang-name">English</span></button>
+        <button class="menu-lang-btn" type="button" data-lang="ru"><img class="menu-lang-flag" src="${joinUrl('elements/russia_flag_duolingo_minimal.svg')}" alt="" aria-hidden="true" /><span class="menu-lang-name">Русский</span></button>
+        <button class="menu-lang-btn" type="button" data-lang="en"><img class="menu-lang-flag" src="${joinUrl('elements/uk_flag_duolingo_minimal.svg')}" alt="" aria-hidden="true" /><span class="menu-lang-name">English</span></button>
       </div>
     </div>
   `;
