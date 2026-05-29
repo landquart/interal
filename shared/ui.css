@@ -264,6 +264,9 @@ body.dark-theme .top-menu-btn:hover,body.dark-theme .top-desktop-link:hover,body
 .menu-nav-link:hover,.menu-copy-btn:hover{background:var(--surface-hover);color:var(--text)}
 .menu-theme-toggle:hover,.menu-lang-trigger:hover{transform:translateY(-1px)}
 .menu-lang-trigger:hover .menu-lang-icon-img,.menu-copy-btn:hover .menu-copy-icon-link,.menu-copy-btn:focus-visible .menu-copy-icon-link{filter:var(--menu-icon-filter, none)}
+.menu-theme-toggle{-webkit-tap-highlight-color:transparent;}
+.menu-theme-toggle:hover,body.dark-theme .menu-theme-toggle:hover{background:transparent;border-color:transparent;box-shadow:none}
+.menu-theme-toggle:active{background:transparent;border-color:transparent;box-shadow:none}
 .menu-lang-modal .menu-lang-btn:hover{background:var(--text);color:var(--bg)}
 .menu-lang-modal-content{border:1px solid color-mix(in srgb,var(--text) 18%, transparent);box-shadow:0 14px 34px rgba(0,0,0,.22)}
 .menu-modal-open .top-menu-btn{background:transparent;border-radius:0;box-shadow:none;}

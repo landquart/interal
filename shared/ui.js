@@ -214,19 +214,18 @@
     requestAnimationFrame(applyAdaptiveTextContrast);
   }
 
-  function getRevealOrigin(originEl) {
-    const rect = originEl?.getBoundingClientRect?.();
+  function getRevealOrigin() {
     return {
-      x: rect ? rect.left + rect.width / 2 : window.innerWidth / 2,
-      y: rect ? rect.top + rect.height / 2 : 0
+      x: window.innerWidth / 2,
+      y: 0
     };
   }
 
-  function toggleTheme(event) {
+  function toggleTheme() {
     const isDarkTheme = document.body.classList.contains('dark-theme');
     const theme = isDarkTheme ? 'light' : 'dark';
     const shouldContractToButton = isDarkTheme && theme === 'light';
-    const { x, y } = getRevealOrigin(event?.currentTarget);
+    const { x, y } = getRevealOrigin();
     const endRadius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
 
     if (document.startViewTransition) {
