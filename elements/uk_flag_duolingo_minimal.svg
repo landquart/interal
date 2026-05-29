@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800" role="img" aria-label="Minimalist Duolingo-style flag of the United Kingdom">
   <defs>
-    <clipPath id="clip">
-      <rect x="20" y="20" width="1160" height="760" rx="90" ry="90"/>
+    <clipPath id="roundedFlag">
+      <rect x="0" y="0" width="1200" height="800" rx="96" ry="96"/>
     </clipPath>
   </defs>
 
-  <g clip-path="url(#clip)">
+  <g clip-path="url(#roundedFlag)">
     <rect width="1200" height="800" fill="#2F7CF6"/>
 
     <!-- White diagonals -->
