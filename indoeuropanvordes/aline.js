@@ -64,20 +64,20 @@
    */
 
   const FEATURE_WEIGHTS = {
-    syllabic: 55,
-    sonorant: 10,
-    place: 38,
-    manner: 42,
-    voice: 12,
-    nasal: 16,
-    lateral: 10,
-    rhotic: 8,
-    retroflex: 8,
-    aspirated: 5,
-    long: 3,
-    height: 30,
-    back: 24,
-    round: 10
+    syllabic: 18,
+    sonorant: 5,
+    place: 17,
+    manner: 16,
+    voice: 6,
+    nasal: 5,
+    lateral: 3,
+    rhotic: 3,
+    retroflex: 2,
+    aspirated: 2,
+    long: 1,
+    height: 10,
+    back: 8,
+    round: 4
   };
 
   const FEATURE_RANGES = {
