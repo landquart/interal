@@ -1,6 +1,7 @@
 (function () {
   const THEME_KEY = 'interal.theme';
   const LANG_KEY = 'interal.lang';
+  const COPY_FEEDBACK_TIMEOUT = 3200;
 
   const PAGE_STATE_PREFIX = 'interal.pageState:';
 
@@ -107,7 +108,15 @@
       <a class="menu-nav-link" href="${joinUrl('associativvordes/')}" data-nav="associativ"><span class="menu-nav-main"></span></a>
       <a class="menu-nav-link" href="${joinUrl('determinatorofvalentyp/')}" data-nav="determinator"><span class="menu-nav-main"></span></a>
       <div class="menu-divider menu-divider--mobile" aria-hidden="true"></div>
-      <button class="menu-copy-btn" type="button" data-copy-state="true"><img class="menu-copy-icon" src="${joinUrl('elements/Link%20Round%20Angle.svg')}" alt="" aria-hidden="true" /><span class="menu-copy-label"></span></button>
+      <button class="menu-copy-btn" type="button" data-copy-state="true">
+        <span class="menu-copy-icon-stack" aria-hidden="true">
+          <img class="menu-copy-icon menu-copy-icon-link" src="${joinUrl('elements/Link%20Round%20Angle.svg')}" alt="" />
+          <svg class="menu-copy-icon menu-copy-icon-check" viewBox="0 0 24 24" focusable="false">
+            <path d="M5 12.5l4.2 4.2L19 7" />
+          </svg>
+        </span>
+        <span class="menu-copy-label"></span>
+      </button>
     </nav>
     <div class="menu-preferences-row">
       <button class="menu-lang-btn menu-lang-trigger" type="button" data-lang-trigger="true" aria-expanded="false">
@@ -294,7 +303,9 @@
     if (trigger) trigger.setAttribute('aria-label', t.langChoose);
     document.querySelectorAll('[data-copy-state="true"]').forEach((copyBtn) => {
       const label = copyBtn.querySelector('.menu-copy-label, .top-desktop-copy-label');
+      const isCopied = copyBtn.classList.contains('is-copied');
       if (label) label.textContent = t.copyState;
+      copyBtn.setAttribute('aria-label', isCopied ? t.shared : t.copyState);
     });
 
     const currentTheme = document.body.classList.contains('dark-theme') ? 'dark' : 'light';
@@ -414,6 +425,18 @@
   }
 
 
+  function setCopyButtonCopied(copyButton, copied) {
+    const t = i18n[getLang()];
+    clearTimeout(copyButton._copyStateTimer);
+    copyButton.classList.toggle('is-copied', copied);
+    copyButton.setAttribute('aria-label', copied ? t.shared : t.copyState);
+    if (copied) {
+      copyButton._copyStateTimer = setTimeout(() => {
+        copyButton.classList.remove('is-copied');
+        copyButton.setAttribute('aria-label', i18n[getLang()].copyState);
+      }, COPY_FEEDBACK_TIMEOUT);
+    }
+  }
 
   async function shortenLink(url) {
     const endpoint = `https://tinyurl.com/api-create.php?url=${encodeURIComponent(url)}`;
@@ -502,8 +525,8 @@
       }
       const short = await shortenLink(url.toString());
       await navigator.clipboard.writeText(short);
+      setCopyButtonCopied(copyButton, true);
       showToast(t.shared);
-      closeMenu();
     } catch (_) {
       showToast(t.sharedWarn);
     }
