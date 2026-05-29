@@ -449,6 +449,12 @@
       return localStorage.getItem('interal.lang') === 'en' ? 'manual' : 'ручная';
     }
 
+    function getResetConfirmMessage() {
+      return localStorage.getItem('interal.lang') === 'en'
+        ? 'Reset entered data? This action cannot be undone.'
+        : 'Сбросить введённые данные? Это действие нельзя отменить.';
+    }
+
     function inferModel(word, root, elementType) {
       const original = String(word || '').trim();
       const w = stripDiacritics(original);
@@ -765,7 +771,7 @@
     }
 
     function resetAll() {
-      if (!confirm('Сбросить расчёт?')) return;
+      if (!window.confirm(getResetConfirmMessage())) return;
       state = emptyState();
       document.getElementById('rootInput').value = state.root;
       document.getElementById('meaningInput').value = state.meaning;
