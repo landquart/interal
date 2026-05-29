@@ -474,6 +474,7 @@ const uiText = {
     copied: 'Скопировано',
     copyFailed: 'Ошибка копирования',
     copyPrompt: 'Копировать промпт',
+    resetConfirm: 'Сбросить введённые данные? Это действие нельзя отменить.',
     fillAndAnalyse: 'Заполните поля и нажмите «Анализировать».'
   },
   en: {
@@ -485,6 +486,7 @@ const uiText = {
     copied: 'Copied',
     copyFailed: 'Copy failed',
     copyPrompt: 'Copy prompt',
+    resetConfirm: 'Reset entered data? This action cannot be undone.',
     fillAndAnalyse: 'Fill in fields and click “Analyse”.'
   }
 };
@@ -1291,6 +1293,8 @@ function syncClearButtonVisibility() {
 }
 
 function clearAll() {
+  if (!window.confirm(t('resetConfirm'))) return;
+
   els.regularWord.value = '';
   els.logicalMeaning.value = '';
   els.internationalMeaning.value = '';
