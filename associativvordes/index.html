@@ -245,7 +245,7 @@
 <body class="associativ-page">
   <header>
     <h1>Associativ vordes</h1>
-    <p>Инструмент отбора ассоциативных слов: поиск дериватов по локальной базе, группировка по моделям, частотные баллы и итоговый процент ассоциации.</p>
+    <p id="headerLead">Инструмент отбора ассоциативных слов: поиск дериватов по локальной базе, группировка по моделям, частотные баллы и итоговый процент ассоциации.</p>
   </header>
 
   <main>
@@ -256,22 +256,22 @@
         </button>
       </div>
       <div style="grid-column: 1 / -1;">
-        <h2>1) Параметры поиска</h2>
-        <p class="muted">Сначала задайте корень и тип элемента, затем запустите расчёт.</p>
+        <h2 id="searchTitle">1) Параметры поиска</h2>
+        <p class="muted" id="searchNote">Сначала задайте корень и тип элемента, затем запустите расчёт.</p>
       </div>
       <div>
-        <label for="rootInput">Кандидатный корень / предлог</label>
+        <label for="rootInput" id="rootLabel">Кандидатный корень / предлог</label>
         <input class="interal-input" id="rootInput" value="" placeholder="например: ocul, regul, inter" />
       </div>
       <div>
-        <label for="meaningInput">Перевод / значение</label>
+        <label for="meaningInput" id="meaningLabel">Перевод / значение</label>
         <input class="interal-input" id="meaningInput" value="" placeholder="например: глаз, правило, между" />
       </div>
       <div style="grid-column: 1 / -1; max-width: 420px; margin: 0 auto; width: 100%;">
-        <label for="elementType">Тип элемента</label>
+        <label for="elementType" id="elementTypeLabel">Тип элемента</label>
         <select class="interal-select js-custom-select" id="elementType">
-          <option value="root">корень</option>
-          <option value="preposition">предлог / приставка</option>
+          <option value="root" id="rootOption">корень</option>
+          <option value="preposition" id="prepositionOption">предлог / приставка</option>
         </select>
       </div>
       <div class="row actions-row" style="grid-column: 1 / -1;">
@@ -284,7 +284,7 @@
 
     <section class="card card-scroll-wrap">
       <div class="card-scroll-content">
-      <h2>2) Итог</h2>
+      <h2 id="resultTitle">2) Итог</h2>
       <div class="result-box" id="resultBox"></div>
       <div style="margin-top: 12px;" id="decisionBox"></div>
       </div>
@@ -292,7 +292,7 @@
 
     <section class="card card-scroll-wrap">
       <div class="card-scroll-content">
-      <h2>3) Языки и дериваты</h2>
+      <h2 id="languagesTitle">3) Языки и дериваты</h2>
       <div class="tabs" id="tabs"></div>
       <div id="languagePanel"></div>
       </div>
@@ -300,14 +300,14 @@
 
     <section class="card grid grid-2">
       <div>
-        <h2>4) Локальная база дериватов</h2>
-        <p class="muted" style="margin-bottom:10px;">Можно заменить на реальные JSON-данные из Kaikki/Wiktionary. Формат: язык → массив слов.</p>
+        <h2 id="derivativeDbTitle">4) Локальная база дериватов</h2>
+        <p class="muted" id="derivativeDbNote" style="margin-bottom:10px;">Можно заменить на реальные JSON-данные из Kaikki/Wiktionary. Формат: язык → массив слов.</p>
         <textarea class="interal-textarea" id="derivativeDataInput"></textarea>
         <button class="tool-btn interal-btn interal-btn--secondary" id="loadDerivativeDataBtn" style="margin-top:10px;">Загрузить базу дериватов</button>
       </div>
       <div>
-        <h2>5) Локальная база частотных рангов</h2>
-        <p class="muted" style="margin-bottom:10px;">Формат: язык → { слово: ранг }. Можно сгенерировать из wordfreq/top_n_list.</p>
+        <h2 id="frequencyDbTitle">5) Локальная база частотных рангов</h2>
+        <p class="muted" id="frequencyDbNote" style="margin-bottom:10px;">Формат: язык → { слово: ранг }. Можно сгенерировать из wordfreq/top_n_list.</p>
         <textarea class="interal-textarea" id="frequencyDataInput"></textarea>
         <button class="tool-btn interal-btn interal-btn--secondary" id="loadFrequencyDataBtn" style="margin-top:10px;">Загрузить частоты</button>
       </div>
@@ -316,14 +316,114 @@
   </main>
 
   <script>
+
+    const TEXT_I18N = {
+      ru: {
+        headerLead: 'Инструмент отбора ассоциативных слов: поиск дериватов по локальной базе, группировка по моделям, частотные баллы и итоговый процент ассоциации.',
+        searchTitle: '1) Параметры поиска',
+        searchNote: 'Сначала задайте корень и тип элемента, затем запустите расчёт.',
+        rootLabel: 'Кандидатный корень / предлог',
+        rootPlaceholder: 'например: ocul, regul, inter',
+        meaningLabel: 'Перевод / значение',
+        meaningPlaceholder: 'например: глаз, правило, между',
+        elementTypeLabel: 'Тип элемента',
+        rootOption: 'корень',
+        prepositionOption: 'предлог / приставка',
+        searchBtn: 'Найти дериваты и посчитать',
+        showExampleBtn: 'Показать пример',
+        exportBtn: 'Экспорт JSON',
+        importBtn: 'Импорт JSON',
+        resultTitle: '2) Итог',
+        languagesTitle: '3) Языки и дериваты',
+        derivativeDbTitle: '4) Локальная база дериватов',
+        derivativeDbNote: 'Можно заменить на реальные JSON-данные из Kaikki/Wiktionary. Формат: язык → массив слов.',
+        loadDerivativeDataBtn: 'Загрузить базу дериватов',
+        frequencyDbTitle: '5) Локальная база частотных рангов',
+        frequencyDbNote: 'Формат: язык → { слово: ранг }. Можно сгенерировать из wordfreq/top_n_list.',
+        loadFrequencyDataBtn: 'Загрузить частоты',
+        reset: 'Сбросить',
+        resetConfirm: 'Сбросить введённые данные? Это действие нельзя отменить.',
+        manual: 'ручная',
+        languages: {
+          en: 'Английский', de: 'Немецкий', fr: 'Французский', es: 'Испанский', it: 'Итальянский', ru: 'Русский', el: 'Греческий'
+        },
+        groups: {
+          Germanic: 'Германская', Romance: 'Романская', Slavic: 'Славянская', Hellenic: 'Греческая'
+        },
+        panel: {
+          group: 'Группа', languageScore: 'Балл языка', weightSum: 'сумма весов', addWord: 'Добавить слово', use: 'Учитывать', word: 'Слово', model: 'Модель', association: 'Ассоциация', rank: 'Ранг', frequency: 'Частота', weightP: 'Вес P', primary: 'первичная — 1', secondary: 'вторичная — {value}', noise: 'мусор — 0'
+        },
+        results: {
+          finalAssociation: 'FA — конечная ассоциация', totalAssociation: 'TA — вся ассоциация', languagesRepresented: 'языков представлено', languageGroups: 'языковых групп', accept: 'ПРИНЯТЬ', reject: 'НЕ ПРИНИМАТЬ', fewerLanguages: 'меньше 3 языков', fewerGroups: 'меньше 2 языковых групп', belowThreshold: 'ниже порога 50%', reasons: 'Причины', allMet: 'Все условия выполнены.'
+        },
+        alerts: {
+          derivativeLoaded: 'База дериватов загружена.', derivativeJsonError: 'Ошибка JSON в базе дериватов: ', frequencyLoaded: 'База частот загружена.', frequencyJsonError: 'Ошибка JSON в базе частот: ', importError: 'Ошибка импорта: '
+        }
+      },
+      en: {
+        headerLead: 'Tool for selecting associative words: derivative search in a local database, grouping by models, frequency scores, and final association percentage.',
+        searchTitle: '1) Search parameters',
+        searchNote: 'First enter the root and element type, then run the calculation.',
+        rootLabel: 'Candidate root / preposition',
+        rootPlaceholder: 'for example: ocul, regul, inter',
+        meaningLabel: 'Translation / meaning',
+        meaningPlaceholder: 'for example: eye, rule, between',
+        elementTypeLabel: 'Element type',
+        rootOption: 'root',
+        prepositionOption: 'preposition / prefix',
+        searchBtn: 'Find derivatives and calculate',
+        showExampleBtn: 'Show example',
+        exportBtn: 'Export JSON',
+        importBtn: 'Import JSON',
+        resultTitle: '2) Result',
+        languagesTitle: '3) Languages and derivatives',
+        derivativeDbTitle: '4) Local derivative database',
+        derivativeDbNote: 'Can be replaced with real JSON data from Kaikki/Wiktionary. Format: language → array of words.',
+        loadDerivativeDataBtn: 'Load derivative database',
+        frequencyDbTitle: '5) Local frequency-rank database',
+        frequencyDbNote: 'Format: language → { word: rank }. Can be generated from wordfreq/top_n_list.',
+        loadFrequencyDataBtn: 'Load frequencies',
+        reset: 'Reset',
+        resetConfirm: 'Reset entered data? This action cannot be undone.',
+        manual: 'manual',
+        languages: {
+          en: 'English', de: 'German', fr: 'French', es: 'Spanish', it: 'Italian', ru: 'Russian', el: 'Greek'
+        },
+        groups: {
+          Germanic: 'Germanic', Romance: 'Romance', Slavic: 'Slavic', Hellenic: 'Hellenic'
+        },
+        panel: {
+          group: 'Group', languageScore: 'Language score', weightSum: 'weight sum', addWord: 'Add word', use: 'Use', word: 'Word', model: 'Model', association: 'Association', rank: 'Rank', frequency: 'Frequency', weightP: 'Weight P', primary: 'primary — 1', secondary: 'secondary — {value}', noise: 'noise — 0'
+        },
+        results: {
+          finalAssociation: 'FA — final association', totalAssociation: 'TA — total association', languagesRepresented: 'languages represented', languageGroups: 'language groups', accept: 'ACCEPT', reject: 'DO NOT ACCEPT', fewerLanguages: 'fewer than 3 languages', fewerGroups: 'fewer than 2 language groups', belowThreshold: 'below the 50% threshold', reasons: 'Reasons', allMet: 'All conditions are met.'
+        },
+        alerts: {
+          derivativeLoaded: 'Derivative database loaded.', derivativeJsonError: 'JSON error in derivative database: ', frequencyLoaded: 'Frequency database loaded.', frequencyJsonError: 'JSON error in frequency database: ', importError: 'Import error: '
+        }
+      }
+    };
+
+    function currentLang() {
+      return localStorage.getItem('interal.lang') === 'en' ? 'en' : 'ru';
+    }
+
+    function textGroup(group) {
+      return TEXT_I18N[currentLang()][group] || TEXT_I18N.ru[group] || {};
+    }
+
+    function textValue(key) {
+      return TEXT_I18N[currentLang()][key] || TEXT_I18N.ru[key] || key;
+    }
+
     const LANGUAGES = [
-      { code: 'en', name: 'Английский', group: 'Германская' },
-      { code: 'de', name: 'Немецкий', group: 'Германская' },
-      { code: 'fr', name: 'Французский', group: 'Романская' },
-      { code: 'es', name: 'Испанский', group: 'Романская' },
-      { code: 'it', name: 'Итальянский', group: 'Романская' },
-      { code: 'ru', name: 'Русский', group: 'Славянская' },
-      { code: 'el', name: 'Греческий', group: 'Греческая' }
+      { code: 'en', name: 'Английский', group: 'Germanic' },
+      { code: 'de', name: 'Немецкий', group: 'Germanic' },
+      { code: 'fr', name: 'Французский', group: 'Romance' },
+      { code: 'es', name: 'Испанский', group: 'Romance' },
+      { code: 'it', name: 'Итальянский', group: 'Romance' },
+      { code: 'ru', name: 'Русский', group: 'Slavic' },
+      { code: 'el', name: 'Греческий', group: 'Hellenic' }
     ];
 
     const DEFAULT_DERIVATIVES = {
@@ -389,7 +489,7 @@
       renderDataEditors();
 
       if (missing.length) {
-        console.warn('Не все JSON-файлы удалось загрузить, использованы встроенные демо-данные:', missing.join('; '));
+        console.warn(currentLang() === 'en' ? 'Not all JSON files could be loaded; built-in demo data was used:' : 'Не все JSON-файлы удалось загрузить, использованы встроенные демо-данные:', missing.join('; '));
       }
     }
 
@@ -430,7 +530,7 @@
     }
 
     function currentLocale() {
-      return localStorage.getItem('interal.lang') === 'en' ? 'en-US' : 'ru-RU';
+      return currentLang() === 'en' ? 'en-US' : 'ru-RU';
     }
 
     function formatFixed(value, digits) {
@@ -446,13 +546,11 @@
     }
 
     function getManualModelLabel() {
-      return localStorage.getItem('interal.lang') === 'en' ? 'manual' : 'ручная';
+      return textValue('manual');
     }
 
     function getResetConfirmMessage() {
-      return localStorage.getItem('interal.lang') === 'en'
-        ? 'Reset entered data? This action cannot be undone.'
-        : 'Сбросить введённые данные? Это действие нельзя отменить.';
+      return textValue('resetConfirm');
     }
 
     function inferModel(word, root, elementType) {
@@ -574,7 +672,7 @@
         const score = calculateLanguage(lang.code);
         const btn = document.createElement('button');
         btn.className = `tab ${activeLang === lang.code ? 'active' : ''}`;
-        btn.textContent = `${lang.name} (${formatPercent(Math.round(score.normalized * 100))})`;
+        btn.textContent = `${textGroup('languages')[lang.code] || lang.name} (${formatPercent(Math.round(score.normalized * 100))})`;
         btn.onclick = () => { activeLang = lang.code; renderAll(); };
         tabs.appendChild(btn);
       }
@@ -602,24 +700,25 @@
       const panel = document.getElementById('languagePanel');
       const items = state.languages[activeLang] || [];
       const score = calculateLanguage(activeLang);
+      const labels = textGroup('panel');
       panel.innerHTML = `
         <div class="row" style="margin-bottom:12px;">
           <div>
-            <h3>${lang.name}</h3>
-            <p class="muted">Группа: ${lang.group}. Балл языка: <strong>${formatFixed(score.normalized, 3)}</strong>; сумма весов: <strong>${formatFixed(score.sum, 3)}</strong>.</p>
+            <h3>${textGroup('languages')[lang.code] || lang.name}</h3>
+            <p class="muted">${labels.group}: ${textGroup('groups')[lang.group] || lang.group}. ${labels.languageScore}: <strong>${formatFixed(score.normalized, 3)}</strong>; ${labels.weightSum}: <strong>${formatFixed(score.sum, 3)}</strong>.</p>
           </div>
-          <button class="tool-btn interal-btn interal-btn--secondary fit short" onclick="addRow('${activeLang}')">Добавить слово</button>
+          <button class="tool-btn interal-btn interal-btn--secondary fit short" onclick="addRow('${activeLang}')">${labels.addWord}</button>
         </div>
         <table>
           <thead>
             <tr>
-              <th>Учитывать</th>
-              <th>Слово</th>
-              <th>Модель</th>
-              <th>Ассоциация</th>
-              <th>Ранг</th>
-              <th>Частота</th>
-              <th>Вес P</th>
+              <th>${labels.use}</th>
+              <th>${labels.word}</th>
+              <th>${labels.model}</th>
+              <th>${labels.association}</th>
+              <th>${labels.rank}</th>
+              <th>${labels.frequency}</th>
+              <th>${labels.weightP}</th>
               <th></th>
             </tr>
           </thead>
@@ -636,9 +735,9 @@
           <td><input class="interal-input" value="${escapeHtml(item.model)}" onchange="updateItem('${lang}', ${idx}, 'model', this.value)"></td>
           <td>
             <select class="interal-select" onchange="updateItem('${lang}', ${idx}, 'association', Number(this.value))">
-              <option value="1" ${Number(item.association) === 1 ? 'selected' : ''}>первичная — 1</option>
-              <option value="0.5" ${Number(item.association) === 0.5 ? 'selected' : ''}>вторичная — ${formatFixed(0.5, 1)}</option>
-              <option value="0" ${Number(item.association) === 0 ? 'selected' : ''}>мусор — 0</option>
+              <option value="1" ${Number(item.association) === 1 ? 'selected' : ''}>${textGroup('panel').primary}</option>
+              <option value="0.5" ${Number(item.association) === 0.5 ? 'selected' : ''}>${textGroup('panel').secondary.replace('{value}', formatFixed(0.5, 1))}</option>
+              <option value="0" ${Number(item.association) === 0 ? 'selected' : ''}>${textGroup('panel').noise}</option>
             </select>
           </td>
           <td><input class="interal-input" type="number" value="${Number(item.rank) || 50001}" onchange="updateItem('${lang}', ${idx}, 'rank', Number(this.value))"></td>
@@ -651,23 +750,24 @@
 
     function renderResults() {
       const result = calculateFinal();
+      const labels = textGroup('results');
       document.getElementById('resultBox').innerHTML = `
-        <div class="metric"><strong>${formatPercent(result.finalAssociation, 1)}</strong><span>FA — конечная ассоциация</span></div>
-        <div class="metric"><strong>${formatFixed(result.totalAssociation, 3)}</strong><span>TA — вся ассоциация</span></div>
-        <div class="metric"><strong>${result.representedLangs}/7</strong><span>языков представлено</span></div>
-        <div class="metric"><strong>${result.groups}/4</strong><span>языковых групп</span></div>
+        <div class="metric"><strong>${formatPercent(result.finalAssociation, 1)}</strong><span>${labels.finalAssociation}</span></div>
+        <div class="metric"><strong>${formatFixed(result.totalAssociation, 3)}</strong><span>${labels.totalAssociation}</span></div>
+        <div class="metric"><strong>${result.representedLangs}/7</strong><span>${labels.languagesRepresented}</span></div>
+        <div class="metric"><strong>${result.groups}/4</strong><span>${labels.languageGroups}</span></div>
       `;
 
       let statusClass = result.accepted ? 'ok' : (result.finalAssociation >= 40 ? 'warn' : 'bad');
-      let statusText = result.accepted ? 'ПРИНЯТЬ' : 'НЕ ПРИНИМАТЬ';
+      let statusText = result.accepted ? labels.accept : labels.reject;
       let reasons = [];
-      if (result.representedLangs < 3) reasons.push('меньше 3 языков');
-      if (result.groups < 2) reasons.push('меньше 2 языковых групп');
-      if (result.finalAssociation < 50) reasons.push('ниже порога 50%');
+      if (result.representedLangs < 3) reasons.push(labels.fewerLanguages);
+      if (result.groups < 2) reasons.push(labels.fewerGroups);
+      if (result.finalAssociation < 50) reasons.push(labels.belowThreshold);
 
       document.getElementById('decisionBox').innerHTML = `
         <span class="status ${statusClass}">${statusText}</span>
-        <span class="muted" style="margin-left:8px;">${reasons.length ? 'Причины: ' + reasons.join(', ') : 'Все условия выполнены.'}</span>
+        <span class="muted" style="margin-left:8px;">${reasons.length ? labels.reasons + ': ' + reasons.join(', ') : labels.allMet}</span>
       `;
     }
 
@@ -676,7 +776,43 @@
       document.getElementById('frequencyDataInput').value = JSON.stringify(frequencyData, null, 2);
     }
 
+
+    function applyLocalizedTexts() {
+      const mappings = {
+        headerLead: textValue('headerLead'),
+        searchTitle: textValue('searchTitle'),
+        searchNote: textValue('searchNote'),
+        rootLabel: textValue('rootLabel'),
+        meaningLabel: textValue('meaningLabel'),
+        elementTypeLabel: textValue('elementTypeLabel'),
+        rootOption: textValue('rootOption'),
+        prepositionOption: textValue('prepositionOption'),
+        searchBtn: textValue('searchBtn'),
+        showExampleBtn: textValue('showExampleBtn'),
+        exportBtn: textValue('exportBtn'),
+        importBtn: textValue('importBtn'),
+        resultTitle: textValue('resultTitle'),
+        languagesTitle: textValue('languagesTitle'),
+        derivativeDbTitle: textValue('derivativeDbTitle'),
+        derivativeDbNote: textValue('derivativeDbNote'),
+        loadDerivativeDataBtn: textValue('loadDerivativeDataBtn'),
+        frequencyDbTitle: textValue('frequencyDbTitle'),
+        frequencyDbNote: textValue('frequencyDbNote'),
+        loadFrequencyDataBtn: textValue('loadFrequencyDataBtn')
+      };
+      Object.entries(mappings).forEach(([id, value]) => {
+        const element = document.getElementById(id);
+        if (element) element.textContent = value;
+      });
+      document.getElementById('rootInput').setAttribute('placeholder', textValue('rootPlaceholder'));
+      document.getElementById('meaningInput').setAttribute('placeholder', textValue('meaningPlaceholder'));
+      const resetBtn = document.getElementById('resetBtn');
+      resetBtn.setAttribute('aria-label', textValue('reset'));
+      resetBtn.setAttribute('title', textValue('reset'));
+    }
+
     function renderAll() {
+      applyLocalizedTexts();
       renderTabs();
       syncTabWidths();
       renderLanguagePanel();
@@ -709,18 +845,18 @@
     function loadDerivativeData() {
       try {
         derivativeData = JSON.parse(document.getElementById('derivativeDataInput').value);
-        alert('База дериватов загружена.');
+        alert(textGroup('alerts').derivativeLoaded);
       } catch (e) {
-        alert('Ошибка JSON в базе дериватов: ' + e.message);
+        alert(textGroup('alerts').derivativeJsonError + e.message);
       }
     }
 
     function loadFrequencyData() {
       try {
         frequencyData = JSON.parse(document.getElementById('frequencyDataInput').value);
-        alert('База частот загружена.');
+        alert(textGroup('alerts').frequencyLoaded);
       } catch (e) {
-        alert('Ошибка JSON в базе частот: ' + e.message);
+        alert(textGroup('alerts').frequencyJsonError + e.message);
       }
     }
 
@@ -751,7 +887,7 @@
           state.maxModels = Number(state.maxModels) || 5;
           renderAll();
         } catch (e) {
-          alert('Ошибка импорта: ' + e.message);
+          alert(textGroup('alerts').importError + e.message);
         }
       };
       input.click();

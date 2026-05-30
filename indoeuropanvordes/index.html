@@ -556,7 +556,7 @@ body.dark-theme .internationalita-page .json-card-icon-btn.is-copied {
 
 <div class="card">
   <h2>Indoeuropan vordes</h2>
-  <p class="lead">
+  <p class="lead" id="leadText">
     Система считает процент международности гипотезы по формуле:
     PI = Σ(N × S) / ΣN × 100, где S = (графическая похожесть + фонетическая похожесть) / 2.
   </p>
@@ -566,12 +566,12 @@ body.dark-theme .internationalita-page .json-card-icon-btn.is-copied {
 
   <div class="grid-2">
     <div>
-      <label for="lookupWord">Слово на другом языке</label>
+      <label for="lookupWord" id="lookupWordLabel">Слово на другом языке</label>
       <input id="lookupWord" type="text" autocomplete="off">
     </div>
 
     <div>
-      <label for="lookupLang">Язык поиска</label>
+      <label for="lookupLang" id="lookupLangLabel">Язык поиска</label>
       <select id="lookupLang">
         <option value="en">Английский</option>
         <option value="de">Немецкий</option>
@@ -588,11 +588,11 @@ body.dark-theme .internationalita-page .json-card-icon-btn.is-copied {
     <table>
       <thead>
         <tr>
-          <th class="language-cell">Язык</th>
-          <th>Группа</th>
-          <th class="num">Говорящие, тыс.</th>
-          <th class="word-cell">Слово</th>
-          <th class="ipa-cell">МФА</th>
+          <th class="language-cell" data-i18n="tableLanguage">Язык</th>
+          <th data-i18n="tableGroup">Группа</th>
+          <th class="num" data-i18n="tableSpeakers">Говорящие, тыс.</th>
+          <th class="word-cell" data-i18n="tableWord">Слово</th>
+          <th class="ipa-cell" data-i18n="tableIpa">МФА</th>
           <th class="num">G</th>
           <th class="num">PH</th>
           <th class="num">S</th>
@@ -630,31 +630,31 @@ body.dark-theme .internationalita-page .json-card-icon-btn.is-copied {
         <path d="M6 6l12 12M18 6L6 18" fill="none" stroke-width="2.4" stroke-linecap="round" />
       </svg>
     </button>
-    <h3 class="json-card-title">JSON-карточка</h3>
+    <h3 class="json-card-title" id="jsonCardTitle">JSON-карточка</h3>
     <div class="json-card-form">
       <label class="checkbox-line" for="useAuthorBlock">
         <input id="useAuthorBlock" type="checkbox">
-        <span>Указать авторство</span>
+        <span id="useAuthorBlockLabel">Указать авторство</span>
       </label>
 
       <div id="jsonAuthorFields" class="json-author-fields" style="display:none">
-        <label for="authorDisplayName">Имя или ник</label>
+        <label for="authorDisplayName" id="authorDisplayNameLabel">Имя или ник</label>
         <input id="authorDisplayName" type="text" autocomplete="name">
 
-        <label for="authorContactType">Тип контакта</label>
+        <label for="authorContactType" id="authorContactTypeLabel">Тип контакта</label>
         <select id="authorContactType">
           <option value="telegram">telegram</option>
           <option value="matrix">matrix</option>
           <option value="email">email</option>
         </select>
 
-        <label for="authorContactValue">Контакт</label>
+        <label for="authorContactValue" id="authorContactValueLabel">Контакт</label>
         <input id="authorContactValue" type="text" autocomplete="off">
       </div>
 
       <button id="generateJsonCardBtn" class="tool-btn" type="button">Сгенерировать карточку</button>
 
-      <label for="jsonCardOutput">Готовый JSON</label>
+      <label for="jsonCardOutput" id="jsonCardOutputLabel">Готовый JSON</label>
       <textarea id="jsonCardOutput" class="json-card-output" readonly></textarea>
     </div>
 
@@ -718,8 +718,82 @@ const interalWordLabel = document.getElementById("interalWordLabel");
 
 const TEXT_I18N = {
   ru: {
+    lead: "Система считает процент международности гипотезы по формуле: PI = Σ(N × S) / ΣN × 100, где S = (графическая похожесть + фонетическая похожесть) / 2.",
     interalWordLabel: "Слово-гипотеза на Интерале",
+    lookupWordLabel: "Слово на другом языке",
+    lookupLangLabel: "Язык поиска",
+    calcBtn: "Рассчитать международность",
+    explainBtn: "Пояснение",
+    jsonCardBtn: "Сформировать JSON-карточку",
+    closeExplainBtn: "Закрыть",
+    resetAria: "Сбросить",
     resetConfirm: "Сбросить введённые данные? Это действие нельзя отменить.",
+    table: {
+      language: "Язык",
+      group: "Группа",
+      speakers: "Говорящие, тыс.",
+      word: "Слово",
+      ipa: "МФА"
+    },
+    jsonCard: {
+      close: "Закрыть JSON-карточку",
+      title: "JSON-карточка",
+      useAuthor: "Указать авторство",
+      authorName: "Имя или ник",
+      contactType: "Тип контакта",
+      contact: "Контакт",
+      generate: "Сгенерировать карточку",
+      output: "Готовый JSON",
+      copy: "Скопировать JSON-карточку",
+      copied: "JSON-карточка скопирована",
+      copiedTitle: "Скопировано",
+      unavailable: "JSON-карточка доступна только для принятого расчёта.",
+      generating: "Генерация..."
+    },
+    result: {
+      formalPI: "Формальный PI",
+      preliminaryPI: "Предварительный PI по заполненным языкам",
+      languageGroups: "Языковые группы",
+      interalIPA: "МФА Интераля",
+      completedLanguages: "Заполнено языков",
+      groupSupport: "Поддержка групп считается при S ≥ {threshold}.",
+      formula: "Формула",
+      formalFormula: "Формула: PI = {weightedSum} / {totalSpeakers} × 100 = <strong>{formalPI}</strong>.",
+      formalRequires: "Формальный PI по документу требует заполнения всех 7 контрольных языков. Нижняя граница при незаполненных языках как 0: <strong>{lowerBoundPI}</strong>."
+    },
+    decision: {
+      incomplete: "Решение не финальное: заполнены не все контрольные языки или не все МФА.",
+      semantic: "Не принято: семантическое соответствие не подтверждено.",
+      groups: "Не принято: поддержка есть менее чем в двух языковых группах.",
+      threshold: "Не принято: процент международности ниже заданного порога {minPercent}.",
+      accepted: "Принято как кандидат общего индоевропейского слова: порог, языковые группы и семантика пройдены."
+    },
+    explanation: {
+      title: "Пояснение расчёта",
+      mainFormula: "Основная формула",
+      formulaBody: "N — число людей, говорящих на контрольном языке, в тысячах.\nG — графическая похожесть по расстоянию Левенштейна.\nPH — фонетическая похожесть через ALINE.\nS — итоговая похожесть кандидатной формы со словом в контрольном языке.",
+      hypothesis: "Гипотеза",
+      graphicForm: "graphic form",
+      ipaForAline: "IPA for ALINE",
+      languageResults: "Результаты по языкам",
+      validation: "Проверочные условия",
+      minPercent: "Минимальный процент",
+      formalComplete: "Формальный расчёт полный",
+      semanticConfirmed: "Семантика подтверждена",
+      supportedGroups: "Поддержанные группы",
+      twoGroups: "Две языковые группы или больше",
+      yes: "да",
+      no: "нет"
+    },
+    languageNames: {
+      en: "Английский",
+      de: "Немецкий",
+      fr: "Французский",
+      es: "Испанский",
+      it: "Итальянский",
+      ru: "Русский",
+      el: "Греческий"
+    },
     languageGroups: {
       Germanic: "Германская",
       Romance: "Романская",
@@ -745,8 +819,82 @@ const TEXT_I18N = {
     }
   },
   en: {
+    lead: "The system calculates the internationality percentage of a hypothesis using the formula: PI = Σ(N × S) / ΣN × 100, where S = (graphic similarity + phonetic similarity) / 2.",
     interalWordLabel: "Word-hypothesis in Interal",
+    lookupWordLabel: "Word in another language",
+    lookupLangLabel: "Search language",
+    calcBtn: "Calculate internationality",
+    explainBtn: "Explanation",
+    jsonCardBtn: "Generate JSON card",
+    closeExplainBtn: "Close",
+    resetAria: "Reset",
     resetConfirm: "Reset entered data? This action cannot be undone.",
+    table: {
+      language: "Language",
+      group: "Group",
+      speakers: "Speakers, thousands",
+      word: "Word",
+      ipa: "IPA"
+    },
+    jsonCard: {
+      close: "Close JSON card",
+      title: "JSON card",
+      useAuthor: "Add authorship",
+      authorName: "Name or nickname",
+      contactType: "Contact type",
+      contact: "Contact",
+      generate: "Generate card",
+      output: "Generated JSON",
+      copy: "Copy JSON card",
+      copied: "JSON card copied",
+      copiedTitle: "Copied",
+      unavailable: "The JSON card is available only for an accepted calculation.",
+      generating: "Generating..."
+    },
+    result: {
+      formalPI: "Formal PI",
+      preliminaryPI: "Preliminary PI for completed languages",
+      languageGroups: "Language groups",
+      interalIPA: "Interal IPA",
+      completedLanguages: "Completed languages",
+      groupSupport: "Group support is counted when S ≥ {threshold}.",
+      formula: "Formula",
+      formalFormula: "Formula: PI = {weightedSum} / {totalSpeakers} × 100 = <strong>{formalPI}</strong>.",
+      formalRequires: "Formal PI requires all 7 control languages to be completed. Lower bound with empty languages counted as 0: <strong>{lowerBoundPI}</strong>."
+    },
+    decision: {
+      incomplete: "The decision is not final: not all control languages or IPA fields are completed.",
+      semantic: "Not accepted: semantic correspondence is not confirmed.",
+      groups: "Not accepted: support is present in fewer than two language groups.",
+      threshold: "Not accepted: the internationality percentage is below the required threshold {minPercent}.",
+      accepted: "Accepted as a candidate for a common Indo-European word: threshold, language groups, and semantics are passed."
+    },
+    explanation: {
+      title: "Calculation explanation",
+      mainFormula: "Main formula",
+      formulaBody: "N — number of people who speak the control language, in thousands.\nG — graphic similarity by Levenshtein distance.\nPH — phonetic similarity via ALINE.\nS — final similarity of the candidate form to the word in the control language.",
+      hypothesis: "Hypothesis",
+      graphicForm: "graphic form",
+      ipaForAline: "IPA for ALINE",
+      languageResults: "Results by language",
+      validation: "Validation conditions",
+      minPercent: "Minimum percentage",
+      formalComplete: "Formal calculation complete",
+      semanticConfirmed: "Semantics confirmed",
+      supportedGroups: "Supported groups",
+      twoGroups: "Two language groups or more",
+      yes: "yes",
+      no: "no"
+    },
+    languageNames: {
+      en: "English",
+      de: "German",
+      fr: "French",
+      es: "Spanish",
+      it: "Italian",
+      ru: "Russian",
+      el: "Greek"
+    },
     languageGroups: {
       Germanic: "Germanic",
       Romance: "Romance",
@@ -882,7 +1030,7 @@ const INTERAL_VOWELS = new Set(["a", "e", "i", "o", "u", "y"]);
 function initRows() {
   languageRows.innerHTML = CONTROL_LANGUAGES.map((lang) => `
     <tr data-lang="${escapeHTML(lang.code)}">
-      <td class="language-cell"><strong>${escapeHTML(lang.name)}</strong></td>
+      <td class="language-cell"><strong>${escapeHTML(getLocalizedLanguageName(lang.code))}</strong></td>
       <td class="group-cell">${escapeHTML(getLocalizedLanguageGroup(lang.group))}</td>
       <td class="num">${formatInteger(lang.speakers)}</td>
       <td class="word-cell">
@@ -926,9 +1074,19 @@ function getSelectedLanguage(lang = getCurrentLanguage()) {
   return lang === "en" ? "en" : "ru";
 }
 
+function getLocalizedLanguageName(code, lang = getCurrentLanguage()) {
+  const selectedLang = getSelectedLanguage(lang);
+  return TEXT_I18N[selectedLang].languageNames[code] || code;
+}
+
 function getLocalizedLanguageGroup(group, lang = getCurrentLanguage()) {
   const selectedLang = getSelectedLanguage(lang);
   return TEXT_I18N[selectedLang].languageGroups[group] || group;
+}
+
+function getTextGroup(group, lang = getCurrentLanguage()) {
+  const selectedLang = getSelectedLanguage(lang);
+  return TEXT_I18N[selectedLang][group] || TEXT_I18N.ru[group] || {};
 }
 
 function getCalcDetailText(key, lang = getCurrentLanguage()) {
@@ -940,13 +1098,51 @@ function updateLanguageGroupCells(lang = getCurrentLanguage()) {
   CONTROL_LANGUAGES.forEach((language) => {
     const row = languageRows.querySelector(`tr[data-lang="${CSS.escape(language.code)}"]`);
     const groupCell = row?.querySelector(".group-cell");
+    const nameCell = row?.querySelector(".language-cell strong");
+    if (nameCell) nameCell.textContent = getLocalizedLanguageName(language.code, lang);
     if (groupCell) groupCell.textContent = getLocalizedLanguageGroup(language.group, lang);
   });
 }
 
+function updateLookupLanguageOptions(lang = getCurrentLanguage()) {
+  Array.from(lookupLangSelect.options).forEach((option) => {
+    option.textContent = getLocalizedLanguageName(option.value, lang);
+  });
+}
+
 function applyLocalizedTexts(lang = getCurrentLanguage()) {
-  const selectedLang = lang === "en" ? "en" : "ru";
-  interalWordLabel.textContent = TEXT_I18N[selectedLang].interalWordLabel;
+  const selectedLang = getSelectedLanguage(lang);
+  const text = TEXT_I18N[selectedLang];
+  const setText = (selector, value) => {
+    const element = document.querySelector(selector);
+    if (element) element.textContent = value;
+  };
+
+  setText("#leadText", text.lead);
+  setText("#interalWordLabel", text.interalWordLabel);
+  setText("#lookupWordLabel", text.lookupWordLabel);
+  setText("#lookupLangLabel", text.lookupLangLabel);
+  setText("#calcBtn", text.calcBtn);
+  setText("#explainBtn", text.explainBtn);
+  setText("#jsonCardBtn", text.jsonCardBtn);
+  setText("#closeExplainBtn", text.closeExplainBtn);
+  resetBtn.setAttribute("aria-label", text.resetAria);
+  document.querySelector('[data-i18n="tableLanguage"]').textContent = text.table.language;
+  document.querySelector('[data-i18n="tableGroup"]').textContent = text.table.group;
+  document.querySelector('[data-i18n="tableSpeakers"]').textContent = text.table.speakers;
+  document.querySelector('[data-i18n="tableWord"]').textContent = text.table.word;
+  document.querySelector('[data-i18n="tableIpa"]').textContent = text.table.ipa;
+  closeJsonCardBtn.setAttribute("aria-label", text.jsonCard.close);
+  setText("#jsonCardTitle", text.jsonCard.title);
+  setText("#useAuthorBlockLabel", text.jsonCard.useAuthor);
+  setText("#authorDisplayNameLabel", text.jsonCard.authorName);
+  setText("#authorContactTypeLabel", text.jsonCard.contactType);
+  setText("#authorContactValueLabel", text.jsonCard.contact);
+  setText("#generateJsonCardBtn", text.jsonCard.generate);
+  setText("#jsonCardOutputLabel", text.jsonCard.output);
+  copyJsonCardBtn.setAttribute("aria-label", text.jsonCard.copy);
+  copyJsonCardBtn.setAttribute("title", text.jsonCard.copy);
+  updateLookupLanguageOptions(selectedLang);
   updateLanguageGroupCells(selectedLang);
 }
 
@@ -2164,10 +2360,18 @@ function normalizeWiktionaryText(text) {
 }
 
 function renderResult(data) {
+  const text = getTextGroup("result");
   const piMain = data.formalComplete ? data.formalPI : data.availablePI;
-  const piLabel = data.formalComplete ? "Формальный PI" : "Предварительный PI по заполненным языкам";
+  const piLabel = data.formalComplete ? text.formalPI : text.preliminaryPI;
   const decision = getDecisionText(data);
   const decisionClass = data.accepted ? "status-ok" : data.formalComplete ? "status-warn" : "status-bad";
+  const supportText = text.groupSupport.replace("{threshold}", formatScore(data.supportThreshold));
+  const formulaText = data.formalComplete
+    ? text.formalFormula
+      .replace("{weightedSum}", escapeHTML(formatNumber(data.weightedSum)))
+      .replace("{totalSpeakers}", escapeHTML(formatInteger(data.totalSpeakers)))
+      .replace("{formalPI}", escapeHTML(formatPercent(data.formalPI)))
+    : text.formalRequires.replace("{lowerBoundPI}", escapeHTML(formatPercent(data.lowerBoundPI)));
 
   resultBox.style.display = "block";
   resultBox.innerHTML = `
@@ -2188,22 +2392,18 @@ function renderResult(data) {
       </div>
 
       <div class="metric">
-        <span class="metric-label">Языковые группы</span>
+        <span class="metric-label">${escapeHTML(text.languageGroups)}</span>
         <span class="metric-value">${data.supportedGroups.length}/4</span>
       </div>
     </div>
 
     <div class="small-note">
-      МФА Интераля: <strong>/${escapeHTML(data.interalIPA || "—")}/</strong>.
-      Заполнено языков: <strong>${data.validRows.length}/${CONTROL_LANGUAGES.length}</strong>.
-      Поддержка групп считается при S ≥ ${formatScore(data.supportThreshold)}.
+      ${escapeHTML(text.interalIPA)}: <strong>/${escapeHTML(data.interalIPA || "—")}/</strong>.
+      ${escapeHTML(text.completedLanguages)}: <strong>${data.validRows.length}/${CONTROL_LANGUAGES.length}</strong>.
+      ${escapeHTML(supportText)}
     </div>
 
-    ${
-      data.formalComplete
-        ? `<div class="small-note">Формула: PI = ${formatNumber(data.weightedSum)} / ${formatInteger(data.totalSpeakers)} × 100 = <strong>${formatPercent(data.formalPI)}</strong>.</div>`
-        : `<div class="small-note">Формальный PI по документу требует заполнения всех 7 контрольных языков. Нижняя граница при незаполненных языках как 0: <strong>${formatPercent(data.lowerBoundPI)}</strong>.</div>`
-    }
+    <div class="small-note">${formulaText}</div>
 
     <div class="small-note ${decisionClass}">
       ${escapeHTML(decision)}
@@ -2212,60 +2412,60 @@ function renderResult(data) {
 }
 
 function getDecisionText(data) {
+  const text = getTextGroup("decision");
   if (!data.formalComplete) {
-    return "Решение не финальное: заполнены не все контрольные языки или не все МФА.";
+    return text.incomplete;
   }
 
   if (!data.semanticOk) {
-    return "Не принято: семантическое соответствие не подтверждено.";
+    return text.semantic;
   }
 
   if (!data.twoGroupsOk) {
-    return "Не принято: поддержка есть менее чем в двух языковых группах.";
+    return text.groups;
   }
 
   if (!data.thresholdOk) {
-    return `Не принято: процент международности ниже заданного порога ${formatPercent(data.minPercent)}.`;
+    return text.threshold.replace("{minPercent}", formatPercent(data.minPercent));
   }
 
-  return "Принято как кандидат общего индоевропейского слова: порог, языковые группы и семантика пройдены.";
+  return text.accepted;
 }
 
 function buildExplanation(data) {
+  const text = getTextGroup("explanation");
+  const yesNo = (value) => value ? text.yes : text.no;
   explanationHTML = `
-    <h3 class="explain-title">Пояснение расчёта</h3>
+    <h3 class="explain-title">${escapeHTML(text.title)}</h3>
 
     <div class="explain-section">
-      <h4>Основная формула</h4>
+      <h4>${escapeHTML(text.mainFormula)}</h4>
       <div class="explain-code">PI = Σ(N × S) / ΣN × 100
 S = (G + PH) / 2
 
-N — число людей, говорящих на контрольном языке, в тысячах.
-G — графическая похожесть по расстоянию Левенштейна.
-PH — фонетическая похожесть через ALINE.
-S — итоговая похожесть кандидатной формы со словом в контрольном языке.</div>
+${escapeHTML(text.formulaBody)}</div>
     </div>
 
     <div class="explain-section">
-      <h4>Гипотеза</h4>
+      <h4>${escapeHTML(text.hypothesis)}</h4>
       <div class="explain-code">Interal: ${escapeHTML(data.interalWord)}
-graphic form: ${escapeHTML(data.interalGraphic)}
+${escapeHTML(text.graphicForm)}: ${escapeHTML(data.interalGraphic)}
 IPA: /${escapeHTML(data.interalIPA || "—")}/
-IPA for ALINE: /${escapeHTML(data.interalIPAComparable || "—")}/</div>
+${escapeHTML(text.ipaForAline)}: /${escapeHTML(data.interalIPAComparable || "—")}/</div>
     </div>
 
     <div class="explain-section">
-      <h4>Результаты по языкам</h4>
+      <h4>${escapeHTML(text.languageResults)}</h4>
       ${renderExplanationTable(data.rows)}
     </div>
 
     <div class="explain-section">
-      <h4>Проверочные условия</h4>
-      <div class="explain-code">Минимальный процент: ${formatPercent(data.minPercent)}
-Формальный расчёт полный: ${data.formalComplete ? "да" : "нет"}
-Семантика подтверждена: ${data.semanticOk ? "да" : "нет"}
-Поддержанные группы: ${data.supportedGroups.length ? data.supportedGroups.join(", ") : "—"}
-Две языковые группы или больше: ${data.twoGroupsOk ? "да" : "нет"}</div>
+      <h4>${escapeHTML(text.validation)}</h4>
+      <div class="explain-code">${escapeHTML(text.minPercent)}: ${formatPercent(data.minPercent)}
+${escapeHTML(text.formalComplete)}: ${escapeHTML(yesNo(data.formalComplete))}
+${escapeHTML(text.semanticConfirmed)}: ${escapeHTML(yesNo(data.semanticOk))}
+${escapeHTML(text.supportedGroups)}: ${data.supportedGroups.length ? escapeHTML(data.supportedGroups.map((group) => getLocalizedLanguageGroup(group)).join(", ")) : "—"}
+${escapeHTML(text.twoGroups)}: ${escapeHTML(yesNo(data.twoGroupsOk))}</div>
     </div>
   `;
 }
@@ -2362,16 +2562,17 @@ function renderAlineAlignment(row) {
 }
 
 function renderExplanationTable(rows) {
+  const table = getTextGroup("table");
   return `
     <div class="table-wrap">
       <table>
         <thead>
           <tr>
-            <th>Язык</th>
-            <th>Группа</th>
+            <th>${escapeHTML(table.language)}</th>
+            <th>${escapeHTML(table.group)}</th>
             <th class="num">N</th>
-            <th>Слово</th>
-            <th>МФА</th>
+            <th>${escapeHTML(table.word)}</th>
+            <th>${escapeHTML(table.ipa)}</th>
             <th class="num">G</th>
             <th class="num">PH</th>
             <th class="num">S</th>
@@ -2381,7 +2582,7 @@ function renderExplanationTable(rows) {
         <tbody>
           ${rows.map((row) => `
             <tr>
-              <td>${escapeHTML(row.name)}</td>
+              <td>${escapeHTML(getLocalizedLanguageName(row.code))}</td>
               <td>${escapeHTML(getLocalizedLanguageGroup(row.group))}</td>
               <td class="num">${formatInteger(row.speakers)}</td>
               <td>${escapeHTML(row.word || "—")}</td>
@@ -2494,13 +2695,13 @@ useAuthorBlock.addEventListener("change", () => {
 });
 generateJsonCardBtn.addEventListener("click", async () => {
   if (!lastCalculationPayload?.accepted) {
-    alert("JSON-карточка доступна только для принятого расчёта.");
+    alert(TEXT_I18N[getCurrentLanguage()].jsonCard.unavailable);
     return;
   }
 
   try {
     generateJsonCardBtn.disabled = true;
-    generateJsonCardBtn.textContent = "Генерация...";
+    generateJsonCardBtn.textContent = TEXT_I18N[getCurrentLanguage()].jsonCard.generating;
 
     const author = getAuthorBlock();
     const timeMeta = await getCreatedAt();
@@ -2510,7 +2711,7 @@ generateJsonCardBtn.addEventListener("click", async () => {
     alert(error.message || String(error));
   } finally {
     generateJsonCardBtn.disabled = false;
-    generateJsonCardBtn.textContent = "Сгенерировать карточку";
+    generateJsonCardBtn.textContent = TEXT_I18N[getCurrentLanguage()].jsonCard.generate;
   }
 });
 function setJsonCardCopyState(copied) {
@@ -2518,14 +2719,14 @@ function setJsonCardCopyState(copied) {
   copyJsonCardBtn.classList.toggle("is-copied", copied);
   copyJsonCardBtn.setAttribute(
     "aria-label",
-    copied ? "JSON-карточка скопирована" : "Скопировать JSON-карточку"
+    copied ? TEXT_I18N[getCurrentLanguage()].jsonCard.copied : TEXT_I18N[getCurrentLanguage()].jsonCard.copy
   );
-  copyJsonCardBtn.title = copied ? "Скопировано" : "Скопировать JSON-карточку";
+  copyJsonCardBtn.title = copied ? TEXT_I18N[getCurrentLanguage()].jsonCard.copiedTitle : TEXT_I18N[getCurrentLanguage()].jsonCard.copy;
   if (copied) {
     copyJsonCardBtn._copyStateTimer = window.setTimeout(() => {
       copyJsonCardBtn.classList.remove("is-copied");
-      copyJsonCardBtn.setAttribute("aria-label", "Скопировать JSON-карточку");
-      copyJsonCardBtn.title = "Скопировать JSON-карточку";
+      copyJsonCardBtn.setAttribute("aria-label", TEXT_I18N[getCurrentLanguage()].jsonCard.copy);
+      copyJsonCardBtn.title = TEXT_I18N[getCurrentLanguage()].jsonCard.copy;
     }, 1500);
   }
 }

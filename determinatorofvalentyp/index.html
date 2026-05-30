@@ -192,7 +192,8 @@
     (function () {
       const tr = {
         ru: {
-          title: 'Determinator of valen typ',
+          title: 'Определитель типа значения',
+          close: 'Закрыть',
           labels: [
             '1 — Слово по регулярной модели (с разделителями)',
             '2 — Компонентный анализ',
@@ -233,6 +234,7 @@
         },
         en: {
           title: 'Determinator of valen typ',
+          close: 'Close',
           labels: [
             '1 — Word by regular model (with separators)',
             '2 — Component analysis',
@@ -277,6 +279,9 @@
         const s = tr[l];
         const h1 = document.querySelector('.hero h1');
         if (h1) h1.textContent = s.title;
+        document.querySelectorAll('.close-btn').forEach((btn) => {
+          btn.setAttribute('aria-label', s.close);
+        });
         document.title = s.title;
         document.querySelectorAll('.panel .field > span').forEach((el, i) => {
           if (s.labels[i]) el.textContent = s.labels[i];
