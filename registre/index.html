@@ -130,7 +130,6 @@
       <textarea class="registry-json-view" id="json-view" readonly spellcheck="false"></textarea>
       <div class="registry-modal-actions">
         <button class="registry-btn registry-btn--primary" type="button" id="modal-copy-json" data-i18n="copyJson">Скопировать JSON</button>
-        <button class="registry-btn" type="button" id="modal-close" data-i18n="close">Закрыть</button>
       </div>
     </div>
   </div>
@@ -171,7 +170,7 @@
       const SORTS = [['word', 'sortWord'], ['accepted', 'sortAccepted'], ['created', 'sortCreated'], ['pi', 'sortPi'], ['type', 'sortType']];
       const state = { lang: localStorage.getItem('interal.lang') === 'en' ? 'en' : 'ru', registry: null, cards: [], fullJsonCache: new Map(), lastFocused: null, messageKey: '' };
       const els = {
-        search: document.getElementById('registry-search'), type: document.getElementById('registry-type'), pos: document.getElementById('registry-pos'), group: document.getElementById('registry-group'), author: document.getElementById('registry-author'), minPi: document.getElementById('registry-min-pi'), sort: document.getElementById('registry-sort'), reset: document.getElementById('registry-reset'), summary: document.getElementById('registry-summary'), message: document.getElementById('registry-message'), list: document.getElementById('registry-list'), modal: document.getElementById('json-modal'), jsonView: document.getElementById('json-view'), modalCopy: document.getElementById('modal-copy-json'), modalClose: document.getElementById('modal-close'), modalX: document.getElementById('json-modal-x'), toast: document.getElementById('registry-toast')
+        search: document.getElementById('registry-search'), type: document.getElementById('registry-type'), pos: document.getElementById('registry-pos'), group: document.getElementById('registry-group'), author: document.getElementById('registry-author'), minPi: document.getElementById('registry-min-pi'), sort: document.getElementById('registry-sort'), reset: document.getElementById('registry-reset'), summary: document.getElementById('registry-summary'), message: document.getElementById('registry-message'), list: document.getElementById('registry-list'), modal: document.getElementById('json-modal'), jsonView: document.getElementById('json-view'), modalCopy: document.getElementById('modal-copy-json'), modalX: document.getElementById('json-modal-x'), toast: document.getElementById('registry-toast')
       };
       function t(key) { return TEXT_I18N[state.lang][key] || TEXT_I18N.ru[key] || key; }
       function normalize(value) { return String(value || '').toLowerCase().replace(/ё/g, 'е').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, ' ').trim(); }
@@ -282,7 +281,7 @@
       }
       [els.search, els.type, els.pos, els.group, els.author, els.minPi, els.sort].forEach((el) => { el.addEventListener('input', render); el.addEventListener('change', render); });
       els.reset.addEventListener('click', () => { els.search.value = ''; els.type.value = ''; els.pos.value = ''; els.group.value = ''; els.author.value = ''; els.minPi.value = ''; els.sort.value = 'word'; render(); });
-      els.modalClose.addEventListener('click', closeModal); els.modalX.addEventListener('click', closeModal); els.modal.addEventListener('click', (event) => { if (event.target.dataset.modalClose === 'true') closeModal(); });
+      els.modalX.addEventListener('click', closeModal); els.modal.addEventListener('click', (event) => { if (event.target.dataset.modalClose === 'true') closeModal(); });
       els.modalCopy.addEventListener('click', () => copyText(els.jsonView.value, t('jsonCopied'), t('jsonCopyFailed')));
       document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && els.modal.classList.contains('is-open')) closeModal(); });
       document.addEventListener('interal:languagechange', (event) => { state.lang = event.detail && event.detail.lang === 'en' ? 'en' : 'ru'; render(); });
