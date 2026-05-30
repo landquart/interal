@@ -94,7 +94,8 @@
 }
 
 .internationalita-page input,
-.internationalita-page select {
+.internationalita-page select,
+.internationalita-page textarea {
   width: 100%;
   padding: 11px 12px;
   margin-top: 6px;
@@ -107,12 +108,14 @@
   font-family: "Jost", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-.internationalita-page input::placeholder {
+.internationalita-page input::placeholder,
+.internationalita-page textarea::placeholder {
   color: var(--placeholder);
 }
 
 .internationalita-page input:focus-visible,
-.internationalita-page select:focus-visible {
+.internationalita-page select:focus-visible,
+.internationalita-page textarea:focus-visible {
   border-color: var(--border-strong);
   outline: 2px solid var(--focus-outline);
   outline-offset: 2px;
@@ -328,7 +331,8 @@
   font-size: 12px;
 }
 
-.internationalita-page #explainModal {
+.internationalita-page #explainModal,
+.internationalita-page #jsonCardModal {
   position: fixed;
   inset: 0;
   opacity: 0;
@@ -344,12 +348,14 @@
   z-index: var(--z-page-modal);
 }
 
-.internationalita-page #explainModal.show {
+.internationalita-page #explainModal.show,
+.internationalita-page #jsonCardModal.show {
   opacity: 1;
   pointer-events: auto;
 }
 
-body.dark-theme .internationalita-page #explainModal {
+body.dark-theme .internationalita-page #explainModal,
+body.dark-theme .internationalita-page #jsonCardModal {
   background: rgba(0, 0, 0, 0.62);
 }
 
@@ -417,6 +423,55 @@ body.dark-theme .internationalita-page #explainModal {
   padding: 5px;
   border-top: 1px solid var(--border-subtle);
   text-align: left;
+}
+
+
+.internationalita-page .json-card-title {
+  margin: 0 0 14px;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.internationalita-page .json-card-form {
+  overflow: auto;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.internationalita-page .json-author-fields {
+  margin-top: 12px;
+  padding: 14px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--surface-elevated);
+}
+
+.internationalita-page .json-card-output {
+  min-height: 260px;
+  resize: vertical;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 13px;
+  line-height: 1.45;
+  white-space: pre;
+}
+
+.internationalita-page .json-card-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.internationalita-page .json-card-actions .tool-btn {
+  margin-top: 12px;
+}
+
+@media (max-width: 640px) {
+  .internationalita-page .json-card-actions {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
 }
 
 @media (max-width: 640px) {
@@ -488,6 +543,7 @@ body.dark-theme .internationalita-page #explainModal {
   <div id="resultBox" class="result" style="display:none"></div>
 
   <button id="explainBtn" class="tool-btn secondary-btn" type="button" style="display:none">Пояснение</button>
+  <button id="jsonCardBtn" class="tool-btn secondary-btn" type="button" style="display:none">Сформировать JSON-карточку</button>
 </div>
 
 <div id="explainModal">
@@ -496,6 +552,44 @@ body.dark-theme .internationalita-page #explainModal {
     <button id="closeExplainBtn" class="tool-btn secondary-btn" type="button">Закрыть</button>
   </div>
 </div>
+
+<div id="jsonCardModal">
+  <div class="modal-inner">
+    <h3 class="json-card-title">JSON-карточка</h3>
+    <div class="json-card-form">
+      <label class="checkbox-line" for="useAuthorBlock">
+        <input id="useAuthorBlock" type="checkbox">
+        <span>Указать авторство</span>
+      </label>
+
+      <div id="jsonAuthorFields" class="json-author-fields" style="display:none">
+        <label for="authorDisplayName">Имя или ник</label>
+        <input id="authorDisplayName" type="text" autocomplete="name">
+
+        <label for="authorContactType">Тип контакта</label>
+        <select id="authorContactType">
+          <option value="telegram">telegram</option>
+          <option value="matrix">matrix</option>
+          <option value="email">email</option>
+        </select>
+
+        <label for="authorContactValue">Контакт</label>
+        <input id="authorContactValue" type="text" autocomplete="off">
+      </div>
+
+      <button id="generateJsonCardBtn" class="tool-btn" type="button">Сгенерировать карточку</button>
+
+      <label for="jsonCardOutput">Готовый JSON</label>
+      <textarea id="jsonCardOutput" class="json-card-output" readonly></textarea>
+    </div>
+
+    <div class="json-card-actions">
+      <button id="copyJsonCardBtn" class="tool-btn secondary-btn" type="button">Скопировать</button>
+      <button id="closeJsonCardBtn" class="tool-btn secondary-btn" type="button">Закрыть</button>
+    </div>
+  </div>
+</div>
+
 
 <script src="./aline.js"></script>
 
@@ -514,6 +608,7 @@ const CONTROL_LANGUAGES = [
 
 const LANG_CODES = CONTROL_LANGUAGES.map((x) => x.code);
 const TOTAL_SPEAKERS = CONTROL_LANGUAGES.reduce((sum, lang) => sum + lang.speakers, 0);
+const CREATED_AT_ENDPOINT = "https://interal.vercel.app/api/created_at";
 
 const wordInput = document.getElementById("interalWord");
 const lookupWordInput = document.getElementById("lookupWord");
@@ -524,9 +619,20 @@ const calcBtn = document.getElementById("calcBtn");
 const resetBtn = document.getElementById("resetBtn");
 const resultBox = document.getElementById("resultBox");
 const explainBtn = document.getElementById("explainBtn");
+const jsonCardBtn = document.getElementById("jsonCardBtn");
 const explainModal = document.getElementById("explainModal");
 const explainText = document.getElementById("explainText");
 const closeExplainBtn = document.getElementById("closeExplainBtn");
+const jsonCardModal = document.getElementById("jsonCardModal");
+const useAuthorBlock = document.getElementById("useAuthorBlock");
+const jsonAuthorFields = document.getElementById("jsonAuthorFields");
+const authorDisplayName = document.getElementById("authorDisplayName");
+const authorContactType = document.getElementById("authorContactType");
+const authorContactValue = document.getElementById("authorContactValue");
+const generateJsonCardBtn = document.getElementById("generateJsonCardBtn");
+const jsonCardOutput = document.getElementById("jsonCardOutput");
+const copyJsonCardBtn = document.getElementById("copyJsonCardBtn");
+const closeJsonCardBtn = document.getElementById("closeJsonCardBtn");
 const interalWordLabel = document.getElementById("interalWordLabel");
 
 const TEXT_I18N = {
@@ -782,8 +888,179 @@ function resetAll() {
   resultBox.innerHTML = "";
   lastCalculationPayload = null;
   explainBtn.style.display = "none";
+  jsonCardBtn.style.display = "none";
+  jsonCardOutput.value = "";
   explanationHTML = "";
   updateResetButtonVisibility();
+}
+
+function createCardId(prefix = "ie") {
+  return `${prefix}_${crypto.randomUUID().replaceAll("-", "")}`;
+}
+
+async function getCreatedAt() {
+  try {
+    const response = await fetch(CREATED_AT_ENDPOINT, { cache: "no-cache" });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+    const data = await response.json();
+    const value = typeof data === "string"
+      ? data
+      : data?.created_at || data?.createdAt || data?.now || data?.timestamp;
+    const date = new Date(value);
+
+    if (!value || Number.isNaN(date.getTime())) {
+      throw new Error("Invalid server timestamp");
+    }
+
+    return {
+      created_at: String(value),
+      created_at_source: "server"
+    };
+  } catch (error) {
+    console.warn("created_at server fallback:", error);
+    return {
+      created_at: new Date().toISOString(),
+      created_at_source: "device"
+    };
+  }
+}
+
+function normalizeTelegramContact(value) {
+  const raw = String(value || "").trim();
+  if (!raw) return "";
+
+  const noProtocol = raw
+    .replace(/^https?:\/\//i, "")
+    .replace(/^t\.me\//i, "")
+    .replace(/^@/, "")
+    .replace(/\/$/, "");
+
+  return `https://t.me/${noProtocol}`;
+}
+
+function normalizeEmailContact(value) {
+  const raw = String(value || "").trim();
+  if (!raw) return "";
+  return raw.toLowerCase().startsWith("mailto:") ? raw : `mailto:${raw}`;
+}
+
+function getAuthorBlock() {
+  if (!useAuthorBlock.checked) return null;
+
+  const displayName = authorDisplayName.value.trim();
+  const contact = authorContactValue.value.trim();
+
+  if (!displayName && !contact) {
+    throw new Error("Укажите имя/ник или контакт, либо отключите авторство.");
+  }
+
+  const author = {};
+  if (displayName) author.display_name = displayName;
+
+  if (contact) {
+    let url = contact;
+    if (authorContactType.value === "telegram") url = normalizeTelegramContact(contact);
+    if (authorContactType.value === "email") url = normalizeEmailContact(contact);
+
+    author.contacts = [
+      {
+        type: authorContactType.value,
+        url
+      }
+    ];
+  }
+
+  return author;
+}
+
+function finiteOrNull(value) {
+  return Number.isFinite(value) ? value : null;
+}
+
+function makePhoneticBlock(row) {
+  const phonetic = {
+    score: finiteOrNull(row.phonetic)
+  };
+
+  if (row.aline) {
+    const tokensA = Array.isArray(row.aline.tokensA) ? row.aline.tokensA : [];
+    const tokensB = Array.isArray(row.aline.tokensB) ? row.aline.tokensB : [];
+
+    if (Number.isFinite(row.aline.score)) {
+      phonetic.raw_score = row.aline.score;
+    }
+
+    phonetic.max_length = Math.max(tokensA.length, tokensB.length);
+    phonetic.tokens_interal = tokensA;
+    phonetic.tokens_language = tokensB;
+  }
+
+  return phonetic;
+}
+
+function makeIndoeuropanCard(payload, timeMeta, author = null) {
+  const card = {
+    id: createCardId("ie"),
+    version: "1.0",
+    card_type: "indoeuropan_word",
+    status: "draft",
+    created_at: timeMeta.created_at,
+    created_at_source: timeMeta.created_at_source,
+    interal: {
+      word: payload.interalWord || "",
+      ipa: payload.interalIPA || "",
+      meaning: {
+        ru: "",
+        en: ""
+      },
+      part_of_speech: ""
+    },
+    ...(author ? { author } : {}),
+    supported_groups: Array.isArray(payload.supportedGroups) ? payload.supportedGroups : [],
+    calculation: {
+      pi_percent: finiteOrNull(payload.formalPI),
+      weighted_sum: finiteOrNull(payload.weightedSum),
+      total_speakers_thousands: finiteOrNull(payload.totalSpeakers)
+    },
+    language_results: (Array.isArray(payload.rows) ? payload.rows : []).map((row) => {
+      const graphic = {
+        score: finiteOrNull(row.graphic)
+      };
+
+      if (row.graphicDetails) {
+        graphic.distance_d = finiteOrNull(row.graphicDetails.distance);
+        graphic.max_length_l = finiteOrNull(row.graphicDetails.maxLen);
+      }
+
+      return {
+        code: row.code || "",
+        name: row.englishName || row.name || "",
+        group: row.group || "",
+        speakers_thousands: finiteOrNull(row.speakers),
+        word: row.word || "",
+        normalized_graphic: row.nationalGraphic || "",
+        ipa: row.ipa || "",
+        graphic,
+        phonetic: makePhoneticBlock(row),
+        final_similarity_s: finiteOrNull(row.general),
+        speaker_contribution: finiteOrNull(row.contribution),
+        supports_group: Number.isFinite(row.general) && row.general >= payload.supportThreshold
+      };
+    })
+  };
+
+  return card;
+}
+
+function openJsonCardModal() {
+  if (!lastCalculationPayload?.accepted) return;
+  jsonCardOutput.value = "";
+  jsonCardModal.classList.add("show");
+}
+
+function closeJsonCardModal() {
+  jsonCardModal.classList.remove("show");
 }
 
 function clearScores() {
@@ -1383,6 +1660,7 @@ function showMessage(html) {
   resultBox.style.display = "block";
   resultBox.innerHTML = html;
   explainBtn.style.display = "none";
+  jsonCardBtn.style.display = "none";
 }
 
 function abortActiveRun() {
@@ -1400,6 +1678,8 @@ function createRunSignal() {
 
 async function calculateInternationality() {
   lastCalculationPayload = null;
+  jsonCardBtn.style.display = "none";
+  jsonCardOutput.value = "";
   const interalWord = wordInput.value.trim();
   const semanticOk = true;
   const autoIpa = true;
@@ -1537,6 +1817,7 @@ async function calculateInternationality() {
     renderResult(payload);
     buildExplanation(payload);
     explainBtn.style.display = "block";
+    jsonCardBtn.style.display = payload.accepted === true ? "block" : "none";
   } catch (error) {
     if (error && error.name === "AbortError") return;
     showMessage(escapeHTML(error.message || String(error)));
@@ -2123,6 +2404,48 @@ document.addEventListener("interal:languagechange", (event) => {
 });
 explainBtn.addEventListener("click", showExplain);
 closeExplainBtn.addEventListener("click", closeExplain);
+
+jsonCardBtn.addEventListener("click", openJsonCardModal);
+useAuthorBlock.addEventListener("change", () => {
+  jsonAuthorFields.style.display = useAuthorBlock.checked ? "block" : "none";
+});
+generateJsonCardBtn.addEventListener("click", async () => {
+  if (!lastCalculationPayload?.accepted) {
+    alert("JSON-карточка доступна только для принятого расчёта.");
+    return;
+  }
+
+  try {
+    generateJsonCardBtn.disabled = true;
+    generateJsonCardBtn.textContent = "Генерация...";
+
+    const author = getAuthorBlock();
+    const timeMeta = await getCreatedAt();
+    const card = makeIndoeuropanCard(lastCalculationPayload, timeMeta, author);
+    jsonCardOutput.value = JSON.stringify(card, null, 2);
+  } catch (error) {
+    alert(error.message || String(error));
+  } finally {
+    generateJsonCardBtn.disabled = false;
+    generateJsonCardBtn.textContent = "Сгенерировать карточку";
+  }
+});
+copyJsonCardBtn.addEventListener("click", async () => {
+  if (!jsonCardOutput.value.trim()) {
+    alert("Сначала сгенерируйте JSON-карточку.");
+    return;
+  }
+
+  await navigator.clipboard.writeText(jsonCardOutput.value);
+  copyJsonCardBtn.textContent = "Скопировано";
+  window.setTimeout(() => {
+    copyJsonCardBtn.textContent = "Скопировать";
+  }, 1500);
+});
+closeJsonCardBtn.addEventListener("click", closeJsonCardModal);
+jsonCardModal.addEventListener("click", (event) => {
+  if (event.target === jsonCardModal) closeJsonCardModal();
+});
 
 initRows();
 applyLocalizedTexts();
