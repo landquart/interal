@@ -1,5 +1,5 @@
-export default function handler(request) {
-  const origin = request.headers.origin || "";
+export default function handler(req, res) {
+  const origin = req.headers.origin || "";
 
   const allowedOrigins = new Set([
     "https://landquart.github.io",
@@ -7,28 +7,19 @@ export default function handler(request) {
     "http://localhost:5173"
   ]);
 
-  const headers = {
-    "Access-Control-Allow-Origin": allowedOrigins.has(origin)
-      ? origin
-      : "https://landquart.github.io",
-    "Access-Control-Allow-Methods": "GET, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type",
-    "Cache-Control": "no-store"
-  };
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    allowedOrigins.has(origin) ? origin : "https://landquart.github.io"
+  );
+  res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.setHeader("Cache-Control", "no-store");
 
-  if (request.method === "OPTIONS") {
-    return new Response(null, {
-      status: 204,
-      headers
-    });
+  if (req.method === "OPTIONS") {
+    return res.status(204).end();
   }
 
-  return Response.json(
-    {
-      created_at: new Date().toISOString()
-    },
-    {
-      headers
-    }
-  );
+  return res.status(200).json({
+    created_at: new Date().toISOString()
+  });
 }
