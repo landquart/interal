@@ -13,7 +13,6 @@
     body { margin: 0; min-height: 100vh; font-family: "Jost", "Helvetica Neue", Helvetica, Arial, sans-serif; line-height: 1.5; }
     body.has-global-menu { padding-top: 94px; }
     .registry-page { width: min(1180px, calc(100% - 28px)); margin: 0 auto; padding: 18px 0 46px; }
-    .registry-hero,
     .registry-panel,
     .registry-card,
     .registry-modal-card {
@@ -22,11 +21,8 @@
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow-sm);
     }
-    .registry-hero { padding: clamp(20px, 4vw, 34px); margin-bottom: 14px; display: grid; gap: 10px; }
-    .registry-eyebrow { margin: 0; color: var(--text-muted); font-size: .9rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
-    .registry-title { margin: 0; color: var(--text); font-size: clamp(2rem, 5vw, 3.8rem); line-height: 1.05; letter-spacing: -.04em; }
-    .registry-subtitle { margin: 0; color: var(--text-muted); font-size: clamp(1rem, 2.2vw, 1.2rem); }
-    .registry-panel { padding: 16px; margin-bottom: 14px; }
+    .registry-panel { padding: 18px; margin-bottom: 14px; display: grid; gap: 18px; }
+    .registry-title { margin: 0; color: var(--text); font-size: clamp(2rem, 4vw, 38px); line-height: 1.15; text-align: center; letter-spacing: -.02em; }
     .registry-controls { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 12px; align-items: end; }
     .field { display: grid; gap: 6px; min-width: 0; }
     .field--search { grid-column: span 6; }
@@ -77,18 +73,13 @@
     .registry-toast { position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%) translateY(18px); z-index: var(--z-toast); opacity: 0; pointer-events: none; border-radius: var(--radius-pill); background: var(--button-primary-bg); color: var(--button-primary-text); padding: 10px 14px; font-weight: 800; transition: opacity .18s ease, transform .18s ease; }
     .registry-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
     @media (max-width: 900px) { .field--search, .field--type, .field--pos, .field--group, .field--author, .field--pi, .field--sort, .field--reset { grid-column: 1 / -1; } .card-grid { grid-template-columns: 1fr; } }
-    @media (max-width: 560px) { body.has-global-menu { padding-top: 84px; } .registry-page { width: min(100% - 20px, 1180px); padding-top: 10px; } .registry-hero, .registry-panel, .registry-card { border-radius: 22px; } .card-actions .registry-btn { width: 100%; } }
+    @media (max-width: 560px) { body.has-global-menu { padding-top: 84px; } .registry-page { width: min(100% - 20px, 1180px); padding-top: 10px; } .registry-panel, .registry-card { border-radius: 22px; } .card-actions .registry-btn { width: 100%; } }
   </style>
 </head>
 <body>
   <main class="registry-page">
-    <section class="registry-hero" aria-labelledby="registry-title">
-      <p class="registry-eyebrow" data-i18n="eyebrow">Interal</p>
+    <section class="registry-panel" aria-labelledby="registry-title" data-i18n-attr="aria-label:filtersAria">
       <h1 class="registry-title" id="registry-title" data-i18n="title">Registre of vordesen cartes</h1>
-      <p class="registry-subtitle" data-i18n="subtitle">Реестр карточек слов</p>
-    </section>
-
-    <section class="registry-panel" aria-label="Registry filters" data-i18n-attr="aria-label:filtersAria">
       <div class="registry-controls">
         <div class="field field--search">
           <label for="registry-search" data-i18n="searchLabel">Поиск</label>
@@ -151,7 +142,7 @@
     (function () {
       const TEXT_I18N = {
         ru: {
-          eyebrow: 'Interal', title: 'Registre of vordesen cartes', subtitle: 'Реестр карточек слов', filtersAria: 'Фильтры реестра',
+          title: 'Registre of vordesen cartes', filtersAria: 'Фильтры реестра',
           searchLabel: 'Поиск', searchPlaceholder: 'Поиск по слову, значению, ID, автору, группе...', typeLabel: 'Тип слова', allTypes: 'Все типы',
           posLabel: 'Часть речи', allParts: 'Все части речи', groupLabel: 'Языковая группа', allGroups: 'Все группы', authorLabel: 'Автор', authorPlaceholder: 'Автор',
           minPiLabel: 'Минимальный PI', sortLabel: 'Сортировка', resetFilters: 'Сбросить фильтры',
@@ -162,7 +153,7 @@
           noValue: '—', openJson: 'Открыть JSON', copyId: 'Скопировать ID', copyJson: 'Скопировать JSON', fullJsonTitle: 'Полная JSON-карточка', close: 'Закрыть', jsonCopied: 'JSON скопирован', jsonCopyFailed: 'Не удалось скопировать JSON', idCopied: 'ID скопирован', idCopyFailed: 'Не удалось скопировать ID', jsonLoadFailed: 'Не удалось загрузить полную JSON-карточку.'
         },
         en: {
-          eyebrow: 'Interal', title: 'Registre of vordesen cartes', subtitle: 'Registry of word cards', filtersAria: 'Registry filters',
+          title: 'Registre of vordesen cartes', filtersAria: 'Registry filters',
           searchLabel: 'Search', searchPlaceholder: 'Search by word, meaning, ID, author, group...', typeLabel: 'Word type', allTypes: 'All types',
           posLabel: 'Part of speech', allParts: 'All parts of speech', groupLabel: 'Language group', allGroups: 'All groups', authorLabel: 'Author', authorPlaceholder: 'Author',
           minPiLabel: 'Minimum PI', sortLabel: 'Sort', resetFilters: 'Reset filters',
