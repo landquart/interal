@@ -375,6 +375,50 @@ body.dark-theme .internationalita-page #explainModal {
   font-size: 14px;
 }
 
+.internationalita-page .calc-details {
+  min-width: 120px;
+}
+
+.internationalita-page .calc-details summary {
+  cursor: pointer;
+  font-weight: 700;
+  list-style-position: inside;
+}
+
+.internationalita-page .calc-detail-box {
+  margin-top: 8px;
+  padding: 10px;
+  min-width: 280px;
+  max-width: 520px;
+  border-radius: var(--radius-md);
+  background: var(--surface-elevated);
+  border: 1px solid var(--border-subtle);
+  text-align: left;
+  font-size: 12px;
+  line-height: 1.45;
+  white-space: normal;
+}
+
+.internationalita-page .mini-title {
+  margin-top: 8px;
+  margin-bottom: 4px;
+  font-weight: 800;
+}
+
+.internationalita-page .mini-calc-table {
+  margin-top: 4px;
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.internationalita-page .mini-calc-table th,
+.internationalita-page .mini-calc-table td {
+  padding: 5px;
+  border-top: 1px solid var(--border-subtle);
+  text-align: left;
+}
+
 @media (max-width: 640px) {
   .internationalita-page .modal-inner {
     padding: 18px;
@@ -1069,12 +1113,30 @@ function psychologicalLevenshtein(a, b) {
   return dp[n][m];
 }
 
-function graphicSimilarity(a, b) {
-  const maxLen = Math.max(Array.from(a || "").length, Array.from(b || "").length);
-  if (maxLen === 0) return null;
+function graphicSimilarityDetails(a, b) {
+  const source = String(a || "");
+  const target = String(b || "");
+  const maxLen = Math.max(Array.from(source).length, Array.from(target).length);
 
-  const d = psychologicalLevenshtein(a, b);
-  return clamp01(1 - d / maxLen);
+  if (maxLen === 0) {
+    return null;
+  }
+
+  const d = psychologicalLevenshtein(source, target);
+  const score = clamp01(1 - d / maxLen);
+
+  return {
+    source,
+    target,
+    distance: d,
+    maxLen,
+    score
+  };
+}
+
+function graphicSimilarity(a, b) {
+  const details = graphicSimilarityDetails(a, b);
+  return details ? details.score : null;
 }
 
 function normalizeIPAForAline(ipa) {
@@ -1348,7 +1410,8 @@ async function calculateInternationality() {
       }
 
       const nationalGraphic = normalizeGraphicInput(word, lang.code);
-      const graphic = word ? graphicSimilarity(interalGraphic, nationalGraphic) : null;
+      const graphicDetails = word ? graphicSimilarityDetails(interalGraphic, nationalGraphic) : null;
+      const graphic = graphicDetails ? graphicDetails.score : null;
 
       let phonetic = null;
       let general = null;
@@ -1373,7 +1436,9 @@ async function calculateInternationality() {
         ...lang,
         word,
         ipa,
+        nationalGraphic,
         graphic,
+        graphicDetails,
         phonetic,
         general,
         contribution,
@@ -1798,6 +1863,93 @@ IPA for ALINE: /${escapeHTML(data.interalIPAComparable || "—")}/</div>
   `;
 }
 
+
+function renderGraphicDetails(row) {
+  if (!row.graphicDetails) {
+    return "—";
+  }
+
+  const d = row.graphicDetails.distance;
+  const l = row.graphicDetails.maxLen;
+  const g = row.graphicDetails.score;
+
+  return `
+    <details class="calc-details">
+      <summary>${formatScore(g)}</summary>
+      <div class="calc-detail-box">
+        <div><strong>Graphic forms:</strong> ${escapeHTML(row.graphicDetails.source)} ~ ${escapeHTML(row.graphicDetails.target)}</div>
+        <div><strong>D:</strong> ${formatNumber(d)}</div>
+        <div><strong>L:</strong> ${formatInteger(l)}</div>
+        <div><strong>Formula:</strong> G = 1 − D/L</div>
+        <div><strong>Calculation:</strong> G = 1 − ${formatNumber(d)}/${formatInteger(l)} = ${formatScore(g)}</div>
+      </div>
+    </details>
+  `;
+}
+
+function renderPhoneticDetails(row) {
+  if (!row.aline || !Number.isFinite(row.phonetic)) {
+    return "—";
+  }
+
+  const tokensA = Array.isArray(row.aline.tokensA) ? row.aline.tokensA : [];
+  const tokensB = Array.isArray(row.aline.tokensB) ? row.aline.tokensB : [];
+  const raw = Number.isFinite(row.aline.score) ? row.aline.score : null;
+  const maxLon = Math.max(tokensA.length, tokensB.length);
+  const ph = row.phonetic;
+
+  return `
+    <details class="calc-details">
+      <summary>${formatScore(ph)}</summary>
+      <div class="calc-detail-box">
+        <div><strong>IPA Interal:</strong> /${escapeHTML(tokensA.join(" · "))}/</div>
+        <div><strong>IPA language:</strong> /${escapeHTML(tokensB.join(" · "))}/</div>
+        <div><strong>crud calcul:</strong> ${Number.isFinite(raw) ? formatNumber(raw) : "—"}</div>
+        <div><strong>maxLon:</strong> ${formatInteger(maxLon)}</div>
+        <div><strong>Formula:</strong> PH = (crud + maxLon) / (2 × maxLon)</div>
+        <div><strong>Calculation:</strong> ${
+          Number.isFinite(raw) && maxLon > 0
+            ? `PH = (${formatNumber(raw)} + ${formatInteger(maxLon)}) / (2 × ${formatInteger(maxLon)}) = ${formatScore(ph)}`
+            : "—"
+        }</div>
+        ${renderAlineAlignment(row)}
+      </div>
+    </details>
+  `;
+}
+
+function renderAlineAlignment(row) {
+  if (!row.aline || !Array.isArray(row.aline.pairs) || !row.aline.pairs.length) {
+    return "";
+  }
+
+  return `
+    <div class="mini-title">Alignment</div>
+    <table class="mini-calc-table">
+      <thead>
+        <tr>
+          <th>Interal</th>
+          <th>Language</th>
+          <th>Similarity</th>
+          <th>Distance</th>
+          <th>Note</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${row.aline.pairs.map((pair) => `
+          <tr>
+            <td>${escapeHTML(pair.a)}</td>
+            <td>${escapeHTML(pair.b)}</td>
+            <td>${Number.isFinite(pair.similarity) ? formatScore(pair.similarity) : "—"}</td>
+            <td>${Number.isFinite(pair.distance) ? formatScore(pair.distance) : "—"}</td>
+            <td>${escapeHTML(pair.note || "")}</td>
+          </tr>
+        `).join("")}
+      </tbody>
+    </table>
+  `;
+}
+
 function renderExplanationTable(rows) {
   return `
     <div class="table-wrap">
@@ -1823,8 +1975,8 @@ function renderExplanationTable(rows) {
               <td class="num">${formatInteger(row.speakers)}</td>
               <td>${escapeHTML(row.word || "—")}</td>
               <td>${escapeHTML(row.ipa ? "/" + row.ipa + "/" : "—")}</td>
-              <td class="num">${formatScoreOrDash(row.graphic)}</td>
-              <td class="num">${formatScoreOrDash(row.phonetic)}</td>
+              <td class="num">${renderGraphicDetails(row)}</td>
+              <td class="num">${renderPhoneticDetails(row)}</td>
               <td class="num">${formatScoreOrDash(row.general)}</td>
               <td class="num">${typeof row.contribution === "number" ? formatNumber(row.contribution) : "—"}</td>
             </tr>
