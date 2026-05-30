@@ -488,11 +488,23 @@ const interalWordLabel = document.getElementById("interalWordLabel");
 const TEXT_I18N = {
   ru: {
     interalWordLabel: "Слово-гипотеза на Интерале",
-    resetConfirm: "Сбросить введённые данные? Это действие нельзя отменить."
+    resetConfirm: "Сбросить введённые данные? Это действие нельзя отменить.",
+    languageGroups: {
+      Germanic: "Германская",
+      Romance: "Романская",
+      Slavic: "Славянская",
+      Hellenic: "Эллинская"
+    }
   },
   en: {
     interalWordLabel: "Word-hypothesis in Interal",
-    resetConfirm: "Reset entered data? This action cannot be undone."
+    resetConfirm: "Reset entered data? This action cannot be undone.",
+    languageGroups: {
+      Germanic: "Germanic",
+      Romance: "Romance",
+      Slavic: "Slavic",
+      Hellenic: "Hellenic"
+    }
   }
 };
 
@@ -606,7 +618,7 @@ function initRows() {
   languageRows.innerHTML = CONTROL_LANGUAGES.map((lang) => `
     <tr data-lang="${escapeHTML(lang.code)}">
       <td class="language-cell"><strong>${escapeHTML(lang.name)}</strong></td>
-      <td>${escapeHTML(lang.group)}</td>
+      <td class="group-cell">${escapeHTML(getLocalizedLanguageGroup(lang.group))}</td>
       <td class="num">${formatInteger(lang.speakers)}</td>
       <td class="word-cell">
         <input class="table-input word-national" data-lang="${escapeHTML(lang.code)}" type="text" autocomplete="off">
@@ -645,9 +657,23 @@ function getCurrentLanguage() {
   return localStorage.getItem("interal.lang") === "en" ? "en" : "ru";
 }
 
+function getLocalizedLanguageGroup(group, lang = getCurrentLanguage()) {
+  const selectedLang = lang === "en" ? "en" : "ru";
+  return TEXT_I18N[selectedLang].languageGroups[group] || group;
+}
+
+function updateLanguageGroupCells(lang = getCurrentLanguage()) {
+  CONTROL_LANGUAGES.forEach((language) => {
+    const row = languageRows.querySelector(`tr[data-lang="${CSS.escape(language.code)}"]`);
+    const groupCell = row?.querySelector(".group-cell");
+    if (groupCell) groupCell.textContent = getLocalizedLanguageGroup(language.group, lang);
+  });
+}
+
 function applyLocalizedTexts(lang = getCurrentLanguage()) {
   const selectedLang = lang === "en" ? "en" : "ru";
   interalWordLabel.textContent = TEXT_I18N[selectedLang].interalWordLabel;
+  updateLanguageGroupCells(selectedLang);
 }
 
 function resetAll() {
@@ -1793,7 +1819,7 @@ function renderExplanationTable(rows) {
           ${rows.map((row) => `
             <tr>
               <td>${escapeHTML(row.name)}</td>
-              <td>${escapeHTML(row.group)}</td>
+              <td>${escapeHTML(getLocalizedLanguageGroup(row.group))}</td>
               <td class="num">${formatInteger(row.speakers)}</td>
               <td>${escapeHTML(row.word || "—")}</td>
               <td>${escapeHTML(row.ipa ? "/" + row.ipa + "/" : "—")}</td>
