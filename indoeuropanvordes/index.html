@@ -538,6 +538,23 @@ const TEXT_I18N = {
       Romance: "Романская",
       Slavic: "Славянская",
       Hellenic: "Эллинская"
+    },
+    calcDetails: {
+      graphicForms: "Графические формы",
+      distanceShort: "D",
+      lengthShort: "L",
+      formula: "Формула",
+      calculation: "Расчёт",
+      ipaInteral: "МФА Интераля",
+      ipaLanguage: "МФА языка",
+      rawCalculation: "Сырой расчёт",
+      maxLength: "Макс. длина",
+      alignment: "Выравнивание",
+      interal: "Интерал",
+      language: "Язык",
+      similarity: "Сходство",
+      distance: "Расстояние",
+      note: "Примечание"
     }
   },
   en: {
@@ -548,6 +565,23 @@ const TEXT_I18N = {
       Romance: "Romance",
       Slavic: "Slavic",
       Hellenic: "Hellenic"
+    },
+    calcDetails: {
+      graphicForms: "Graphic forms",
+      distanceShort: "D",
+      lengthShort: "L",
+      formula: "Formula",
+      calculation: "Calculation",
+      ipaInteral: "IPA Interal",
+      ipaLanguage: "IPA language",
+      rawCalculation: "Raw calculation",
+      maxLength: "Max length",
+      alignment: "Alignment",
+      interal: "Interal",
+      language: "Language",
+      similarity: "Similarity",
+      distance: "Distance",
+      note: "Note"
     }
   }
 };
@@ -701,9 +735,18 @@ function getCurrentLanguage() {
   return localStorage.getItem("interal.lang") === "en" ? "en" : "ru";
 }
 
+function getSelectedLanguage(lang = getCurrentLanguage()) {
+  return lang === "en" ? "en" : "ru";
+}
+
 function getLocalizedLanguageGroup(group, lang = getCurrentLanguage()) {
-  const selectedLang = lang === "en" ? "en" : "ru";
+  const selectedLang = getSelectedLanguage(lang);
   return TEXT_I18N[selectedLang].languageGroups[group] || group;
+}
+
+function getCalcDetailText(key, lang = getCurrentLanguage()) {
+  const selectedLang = getSelectedLanguage(lang);
+  return TEXT_I18N[selectedLang].calcDetails[key] || key;
 }
 
 function updateLanguageGroupCells(lang = getCurrentLanguage()) {
@@ -1872,16 +1915,17 @@ function renderGraphicDetails(row) {
   const d = row.graphicDetails.distance;
   const l = row.graphicDetails.maxLen;
   const g = row.graphicDetails.score;
+  const t = getCalcDetailText;
 
   return `
     <details class="calc-details">
       <summary>${formatScore(g)}</summary>
       <div class="calc-detail-box">
-        <div><strong>Graphic forms:</strong> ${escapeHTML(row.graphicDetails.source)} ~ ${escapeHTML(row.graphicDetails.target)}</div>
-        <div><strong>D:</strong> ${formatNumber(d)}</div>
-        <div><strong>L:</strong> ${formatInteger(l)}</div>
-        <div><strong>Formula:</strong> G = 1 − D/L</div>
-        <div><strong>Calculation:</strong> G = 1 − ${formatNumber(d)}/${formatInteger(l)} = ${formatScore(g)}</div>
+        <div><strong>${escapeHTML(t("graphicForms"))}:</strong> ${escapeHTML(row.graphicDetails.source)} ~ ${escapeHTML(row.graphicDetails.target)}</div>
+        <div><strong>${escapeHTML(t("distanceShort"))}:</strong> ${formatNumber(d)}</div>
+        <div><strong>${escapeHTML(t("lengthShort"))}:</strong> ${formatInteger(l)}</div>
+        <div><strong>${escapeHTML(t("formula"))}:</strong> G = 1 − D/L</div>
+        <div><strong>${escapeHTML(t("calculation"))}:</strong> G = 1 − ${formatNumber(d)}/${formatInteger(l)} = ${formatScore(g)}</div>
       </div>
     </details>
   `;
@@ -1897,17 +1941,18 @@ function renderPhoneticDetails(row) {
   const raw = Number.isFinite(row.aline.score) ? row.aline.score : null;
   const maxLon = Math.max(tokensA.length, tokensB.length);
   const ph = row.phonetic;
+  const t = getCalcDetailText;
 
   return `
     <details class="calc-details">
       <summary>${formatScore(ph)}</summary>
       <div class="calc-detail-box">
-        <div><strong>IPA Interal:</strong> /${escapeHTML(tokensA.join(" · "))}/</div>
-        <div><strong>IPA language:</strong> /${escapeHTML(tokensB.join(" · "))}/</div>
-        <div><strong>crud calcul:</strong> ${Number.isFinite(raw) ? formatNumber(raw) : "—"}</div>
-        <div><strong>maxLon:</strong> ${formatInteger(maxLon)}</div>
-        <div><strong>Formula:</strong> PH = (crud + maxLon) / (2 × maxLon)</div>
-        <div><strong>Calculation:</strong> ${
+        <div><strong>${escapeHTML(t("ipaInteral"))}:</strong> /${escapeHTML(tokensA.join(" · "))}/</div>
+        <div><strong>${escapeHTML(t("ipaLanguage"))}:</strong> /${escapeHTML(tokensB.join(" · "))}/</div>
+        <div><strong>${escapeHTML(t("rawCalculation"))}:</strong> ${Number.isFinite(raw) ? formatNumber(raw) : "—"}</div>
+        <div><strong>${escapeHTML(t("maxLength"))}:</strong> ${formatInteger(maxLon)}</div>
+        <div><strong>${escapeHTML(t("formula"))}:</strong> PH = (crud + maxLon) / (2 × maxLon)</div>
+        <div><strong>${escapeHTML(t("calculation"))}:</strong> ${
           Number.isFinite(raw) && maxLon > 0
             ? `PH = (${formatNumber(raw)} + ${formatInteger(maxLon)}) / (2 × ${formatInteger(maxLon)}) = ${formatScore(ph)}`
             : "—"
@@ -1923,16 +1968,18 @@ function renderAlineAlignment(row) {
     return "";
   }
 
+  const t = getCalcDetailText;
+
   return `
-    <div class="mini-title">Alignment</div>
+    <div class="mini-title">${escapeHTML(t("alignment"))}</div>
     <table class="mini-calc-table">
       <thead>
         <tr>
-          <th>Interal</th>
-          <th>Language</th>
-          <th>Similarity</th>
-          <th>Distance</th>
-          <th>Note</th>
+          <th>${escapeHTML(t("interal"))}</th>
+          <th>${escapeHTML(t("language"))}</th>
+          <th>${escapeHTML(t("similarity"))}</th>
+          <th>${escapeHTML(t("distance"))}</th>
+          <th>${escapeHTML(t("note"))}</th>
         </tr>
       </thead>
       <tbody>
