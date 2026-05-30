@@ -26,6 +26,7 @@
       navSimilarita: 'Indoeuropan vordes',
       navAssociativ: 'Associativ vordes',
       navDeterminator: 'Determinator of valen typ',
+      navRegistry: 'Registre of vordesen cartes',
       navAriaLabel: 'Разделы сайта',
       ru: 'Русский',
       en: 'English',
@@ -49,6 +50,7 @@
       navSimilarita: 'Indoeuropan vordes',
       navAssociativ: 'Associativ vordes',
       navDeterminator: 'Determinator of valen typ',
+      navRegistry: 'Registre of vordesen cartes',
       navAriaLabel: 'Site sections',
       ru: 'Русский',
       en: 'English',
@@ -92,6 +94,7 @@
     <a class="top-desktop-link" href="${joinUrl('indoeuropanvordes/')}" data-nav="indoeuropanvordes"><span class="top-desktop-link-main"></span></a>
     <a class="top-desktop-link" href="${joinUrl('associativvordes/')}" data-nav="associativ"><span class="top-desktop-link-main"></span></a>
     <a class="top-desktop-link" href="${joinUrl('determinatorofvalentyp/')}" data-nav="determinator"><span class="top-desktop-link-main"></span></a>
+    <a class="top-desktop-link" href="${joinUrl('registre/')}" data-nav="registry"><span class="top-desktop-link-main"></span></a>
   `;
 
   const overlay = document.createElement('div');
@@ -107,6 +110,7 @@
       <a class="menu-nav-link" href="${joinUrl('indoeuropanvordes/')}" data-nav="indoeuropanvordes"><span class="menu-nav-main"></span></a>
       <a class="menu-nav-link" href="${joinUrl('associativvordes/')}" data-nav="associativ"><span class="menu-nav-main"></span></a>
       <a class="menu-nav-link" href="${joinUrl('determinatorofvalentyp/')}" data-nav="determinator"><span class="menu-nav-main"></span></a>
+      <a class="menu-nav-link" href="${joinUrl('registre/')}" data-nav="registry"><span class="menu-nav-main"></span></a>
       <div class="menu-divider menu-divider--mobile" aria-hidden="true"></div>
       <button class="menu-copy-btn" type="button" data-copy-state="true">
         <span class="menu-copy-icon-stack" aria-hidden="true">
@@ -314,6 +318,7 @@
     const indoeuropanvordesLink = menu.querySelector('[data-nav="indoeuropanvordes"]');
     const associativLink = menu.querySelector('[data-nav="associativ"]');
     const determinatorLink = menu.querySelector('[data-nav="determinator"]');
+    const registryLink = menu.querySelector('[data-nav="registry"]');
     if (indoeuropanvordesLink) {
       indoeuropanvordesLink.querySelector('.menu-nav-main').textContent = t.navSimilarita;
     }
@@ -323,9 +328,12 @@
     if (determinatorLink) {
       determinatorLink.querySelector('.menu-nav-main').textContent = t.navDeterminator;
     }
+    if (registryLink) {
+      registryLink.querySelector('.menu-nav-main').textContent = t.navRegistry;
+    }
 
     desktopControls.querySelectorAll('.top-desktop-link').forEach((link) => {
-      const labels = { indoeuropanvordes: t.navSimilarita, associativ: t.navAssociativ, determinator: t.navDeterminator };
+      const labels = { indoeuropanvordes: t.navSimilarita, associativ: t.navAssociativ, determinator: t.navDeterminator, registry: t.navRegistry };
       link.querySelector('.top-desktop-link-main').textContent = labels[link.dataset.nav] || '';
     });
 
@@ -491,7 +499,9 @@
         ? 'associativ'
         : path.includes('/determinatorofvalentyp/')
           ? 'determinator'
-          : '';
+          : path.includes('/registre/')
+            ? 'registry'
+            : '';
 
     document.querySelectorAll('[data-nav]').forEach((link) => {
       link.classList.toggle('is-active', !!currentNav && link.dataset.nav === currentNav);

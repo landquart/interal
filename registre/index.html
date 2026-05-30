@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon%20interal%2032.png" />
+  <link rel="icon" type="image/png" sizes="64x64" href="../favicon/favicon%20interal%2064.png" />
+  <link rel="apple-touch-icon" sizes="512x512" href="../favicon/favicon%20interal%20512.png" />
+  <title>Registre of vordesen cartes</title>
+  <link rel="stylesheet" href="../shared/ui.css" />
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; font-family: "Jost", "Helvetica Neue", Helvetica, Arial, sans-serif; line-height: 1.5; }
+    body.has-global-menu { padding-top: 94px; }
+    .registry-page { width: min(1180px, calc(100% - 28px)); margin: 0 auto; padding: 18px 0 46px; }
+    .registry-hero,
+    .registry-panel,
+    .registry-card,
+    .registry-modal-card {
+      background: var(--surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+    }
+    .registry-hero { padding: clamp(20px, 4vw, 34px); margin-bottom: 14px; display: grid; gap: 10px; }
+    .registry-eyebrow { margin: 0; color: var(--text-muted); font-size: .9rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .registry-title { margin: 0; color: var(--text); font-size: clamp(2rem, 5vw, 3.8rem); line-height: 1.05; letter-spacing: -.04em; }
+    .registry-subtitle { margin: 0; color: var(--text-muted); font-size: clamp(1rem, 2.2vw, 1.2rem); }
+    .registry-panel { padding: 16px; margin-bottom: 14px; }
+    .registry-controls { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 12px; align-items: end; }
+    .field { display: grid; gap: 6px; min-width: 0; }
+    .field--search { grid-column: span 6; }
+    .field--type, .field--pos, .field--group { grid-column: span 3; }
+    .field--author, .field--pi, .field--sort { grid-column: span 3; }
+    .field--reset { grid-column: span 3; }
+    .field label { color: var(--text-muted); font-size: .85rem; font-weight: 700; }
+    .field input,
+    .field select {
+      width: 100%; min-height: 44px; border-radius: var(--radius-sm); border: 1px solid var(--control-border);
+      background: var(--control-bg); color: var(--control-text); padding: 0 12px; font: inherit; outline: none;
+    }
+    .field input::placeholder { color: var(--placeholder); }
+    .field input:focus-visible,
+    .field select:focus-visible,
+    .registry-btn:focus-visible {
+      outline: 2px solid var(--focus-outline); outline-offset: 2px; box-shadow: 0 0 0 5px var(--focus-ring);
+    }
+    .registry-btn {
+      min-height: 44px; border-radius: var(--radius-sm); border: 1px solid var(--button-secondary-border);
+      background: var(--button-secondary-bg); color: var(--button-secondary-text); padding: 0 14px; font: inherit; font-weight: 700;
+      cursor: pointer; transition: transform .18s ease, background-color .18s ease, border-color .18s ease;
+    }
+    .registry-btn:hover { transform: translateY(-1px); background: var(--surface-hover); border-color: var(--border-strong); }
+    .registry-btn--primary { background: var(--button-primary-bg); color: var(--button-primary-text); border-color: transparent; }
+    .registry-summary { margin: 14px 0; color: var(--text-muted); font-weight: 700; }
+    .registry-message { margin: 14px 0; padding: 16px; border-radius: var(--radius-md); background: var(--surface-soft); color: var(--text); border: 1px solid var(--border-subtle); }
+    .registry-list { display: grid; gap: 12px; }
+    .registry-card { padding: 16px; display: grid; gap: 12px; }
+    .card-head { display: flex; gap: 12px; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; }
+    .card-word { margin: 0; color: var(--text); font-size: clamp(1.3rem, 3vw, 2rem); line-height: 1.1; overflow-wrap: anywhere; }
+    .card-ipa { color: var(--text-muted); font-weight: 600; overflow-wrap: anywhere; }
+    .card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .card-tag { display: inline-flex; align-items: center; min-height: 28px; border-radius: var(--radius-pill); padding: 3px 10px; background: var(--surface-soft); border: 1px solid var(--border-subtle); color: var(--text); font-size: .86rem; font-weight: 700; }
+    .card-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .card-row { min-width: 0; padding: 10px; border-radius: var(--radius-sm); background: var(--surface-elevated); border: 1px solid var(--border-subtle); }
+    .card-label { display: block; color: var(--text-muted); font-size: .78rem; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; }
+    .card-value { display: block; color: var(--text); overflow-wrap: anywhere; white-space: pre-wrap; }
+    .card-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .registry-modal { position: fixed; inset: 0; z-index: var(--z-page-modal); display: none; place-items: center; padding: 18px; }
+    .registry-modal.is-open { display: grid; }
+    .registry-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,.52); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+    .registry-modal-card { position: relative; z-index: 1; width: min(900px, 100%); max-height: min(82vh, 760px); padding: 16px; display: grid; grid-template-rows: auto minmax(220px, 1fr) auto; gap: 12px; }
+    .registry-modal-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+    .registry-modal-title { margin: 0; font-size: 1.25rem; color: var(--text); }
+    .registry-json-view { width: 100%; min-height: 260px; resize: vertical; border-radius: var(--radius-md); border: 1px solid var(--control-border); background: var(--control-bg); color: var(--control-text); padding: 12px; font: 0.9rem/1.45 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; white-space: pre; overflow: auto; }
+    .registry-modal-actions { display: flex; gap: 8px; justify-content: flex-end; flex-wrap: wrap; }
+    .registry-toast { position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%) translateY(18px); z-index: var(--z-toast); opacity: 0; pointer-events: none; border-radius: var(--radius-pill); background: var(--button-primary-bg); color: var(--button-primary-text); padding: 10px 14px; font-weight: 800; transition: opacity .18s ease, transform .18s ease; }
+    .registry-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    @media (max-width: 900px) { .field--search, .field--type, .field--pos, .field--group, .field--author, .field--pi, .field--sort, .field--reset { grid-column: 1 / -1; } .card-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 560px) { body.has-global-menu { padding-top: 84px; } .registry-page { width: min(100% - 20px, 1180px); padding-top: 10px; } .registry-hero, .registry-panel, .registry-card { border-radius: 22px; } .card-actions .registry-btn { width: 100%; } }
+  </style>
+</head>
+<body>
+  <main class="registry-page">
+    <section class="registry-hero" aria-labelledby="registry-title">
+      <p class="registry-eyebrow" data-i18n="eyebrow">Interal</p>
+      <h1 class="registry-title" id="registry-title" data-i18n="title">Registre of vordesen cartes</h1>
+      <p class="registry-subtitle" data-i18n="subtitle">Реестр карточек слов</p>
+    </section>
+
+    <section class="registry-panel" aria-label="Registry filters" data-i18n-attr="aria-label:filtersAria">
+      <div class="registry-controls">
+        <div class="field field--search">
+          <label for="registry-search" data-i18n="searchLabel">Поиск</label>
+          <input id="registry-search" type="search" autocomplete="off" />
+        </div>
+        <div class="field field--type">
+          <label for="registry-type" data-i18n="typeLabel">Тип слова</label>
+          <select id="registry-type"></select>
+        </div>
+        <div class="field field--pos">
+          <label for="registry-pos" data-i18n="posLabel">Часть речи</label>
+          <select id="registry-pos"></select>
+        </div>
+        <div class="field field--group">
+          <label for="registry-group" data-i18n="groupLabel">Группа</label>
+          <select id="registry-group"></select>
+        </div>
+        <div class="field field--author">
+          <label for="registry-author" data-i18n="authorLabel">Автор</label>
+          <input id="registry-author" type="search" autocomplete="off" />
+        </div>
+        <div class="field field--pi">
+          <label for="registry-min-pi" data-i18n="minPiLabel">Минимальный PI</label>
+          <input id="registry-min-pi" type="number" step="0.000001" min="0" />
+        </div>
+        <div class="field field--sort">
+          <label for="registry-sort" data-i18n="sortLabel">Сортировка</label>
+          <select id="registry-sort"></select>
+        </div>
+        <div class="field field--reset">
+          <button class="registry-btn" id="registry-reset" type="button" data-i18n="resetFilters">Сбросить фильтры</button>
+        </div>
+      </div>
+    </section>
+
+    <p class="registry-summary" id="registry-summary" aria-live="polite"></p>
+    <div class="registry-message" id="registry-message" hidden></div>
+    <section class="registry-list" id="registry-list" aria-live="polite"></section>
+  </main>
+
+  <div class="registry-modal" id="json-modal" aria-hidden="true">
+    <div class="registry-backdrop" data-modal-close="true"></div>
+    <div class="registry-modal-card" role="dialog" aria-modal="true" aria-labelledby="json-modal-title">
+      <div class="registry-modal-head">
+        <h2 class="registry-modal-title" id="json-modal-title" data-i18n="fullJsonTitle">Полная JSON-карточка</h2>
+        <button class="registry-btn" type="button" id="json-modal-x" aria-label="Закрыть" data-i18n-attr="aria-label:close">×</button>
+      </div>
+      <textarea class="registry-json-view" id="json-view" readonly spellcheck="false"></textarea>
+      <div class="registry-modal-actions">
+        <button class="registry-btn registry-btn--primary" type="button" id="modal-copy-json" data-i18n="copyJson">Скопировать JSON</button>
+        <button class="registry-btn" type="button" id="modal-close" data-i18n="close">Закрыть</button>
+      </div>
+    </div>
+  </div>
+  <div class="registry-toast" id="registry-toast" role="status" aria-live="polite"></div>
+
+  <script src="../shared/copy-plain.js"></script>
+  <script src="../shared/ui.js"></script>
+  <script>
+    (function () {
+      const TEXT_I18N = {
+        ru: {
+          eyebrow: 'Interal', title: 'Registre of vordesen cartes', subtitle: 'Реестр карточек слов', filtersAria: 'Фильтры реестра',
+          searchLabel: 'Поиск', searchPlaceholder: 'Поиск по слову, значению, ID, автору, группе...', typeLabel: 'Тип слова', allTypes: 'Все типы',
+          posLabel: 'Часть речи', allParts: 'Все части речи', groupLabel: 'Языковая группа', allGroups: 'Все группы', authorLabel: 'Автор', authorPlaceholder: 'Автор',
+          minPiLabel: 'Минимальный PI', sortLabel: 'Сортировка', resetFilters: 'Сбросить фильтры',
+          sortWord: 'По слову', sortAccepted: 'Новые принятые', sortCreated: 'Новые созданные', sortPi: 'PI по убыванию', sortType: 'Тип слова',
+          found: (shown, total) => `Найдено карточек: ${shown} из ${total}`, nothingFound: 'Ничего не найдено.', emptyRegistry: 'В реестре пока нет карточек.',
+          loadError: 'Не удалось загрузить registry.json. Реестр пока недоступен или файл не найден.', invalidRegistry: 'registry.json имеет неверный формат.',
+          word: 'Слово', ipa: 'IPA', type: 'Тип слова', partOfSpeech: 'Часть речи', meaning: 'Значение RU/EN', pi: 'PI', groups: 'Группы', author: 'Автор', createdAt: 'Создано', acceptedAt: 'Принято', id: 'ID',
+          noValue: '—', openJson: 'Открыть JSON', copyId: 'Скопировать ID', copyJson: 'Скопировать JSON', fullJsonTitle: 'Полная JSON-карточка', close: 'Закрыть', jsonCopied: 'JSON скопирован', jsonCopyFailed: 'Не удалось скопировать JSON', idCopied: 'ID скопирован', idCopyFailed: 'Не удалось скопировать ID', jsonLoadFailed: 'Не удалось загрузить полную JSON-карточку.'
+        },
+        en: {
+          eyebrow: 'Interal', title: 'Registre of vordesen cartes', subtitle: 'Registry of word cards', filtersAria: 'Registry filters',
+          searchLabel: 'Search', searchPlaceholder: 'Search by word, meaning, ID, author, group...', typeLabel: 'Word type', allTypes: 'All types',
+          posLabel: 'Part of speech', allParts: 'All parts of speech', groupLabel: 'Language group', allGroups: 'All groups', authorLabel: 'Author', authorPlaceholder: 'Author',
+          minPiLabel: 'Minimum PI', sortLabel: 'Sort', resetFilters: 'Reset filters',
+          sortWord: 'By word', sortAccepted: 'New accepted first', sortCreated: 'New created first', sortPi: 'PI descending', sortType: 'Word type',
+          found: (shown, total) => `Cards found: ${shown} of ${total}`, nothingFound: 'Nothing found.', emptyRegistry: 'There are no cards in the registry yet.',
+          loadError: 'Could not load registry.json. The registry is unavailable or the file was not found.', invalidRegistry: 'registry.json has an invalid format.',
+          word: 'Word', ipa: 'IPA', type: 'Word type', partOfSpeech: 'Part of speech', meaning: 'Meaning RU/EN', pi: 'PI', groups: 'Groups', author: 'Author', createdAt: 'Created at', acceptedAt: 'Accepted at', id: 'ID',
+          noValue: '—', openJson: 'Open JSON', copyId: 'Copy ID', copyJson: 'Copy JSON', fullJsonTitle: 'Full JSON card', close: 'Close', jsonCopied: 'JSON copied', jsonCopyFailed: 'Could not copy JSON', idCopied: 'ID copied', idCopyFailed: 'Could not copy ID', jsonLoadFailed: 'Could not load the full JSON card.'
+        }
+      };
+      const TYPE_LABELS = { iv: 'indoeropan vordes', av: 'associativ vordes', in: 'internationalismes', vc: 'vordes of communités', gv: 'grammatic vordes' };
+      const TYPE_CODES = ['iv', 'av', 'in', 'vc', 'gv'];
+      const POS_VALUES = ['noun', 'verb', 'adjective', 'adverb', 'pronoun', 'preposition', 'conjunction', 'particle', 'numeral', 'other'];
+      const BASE_GROUPS = ['Germanic', 'Romance', 'Slavic', 'Hellenic'];
+      const SORTS = [['word', 'sortWord'], ['accepted', 'sortAccepted'], ['created', 'sortCreated'], ['pi', 'sortPi'], ['type', 'sortType']];
+      const state = { lang: localStorage.getItem('interal.lang') === 'en' ? 'en' : 'ru', registry: null, cards: [], fullJsonCache: new Map(), lastFocused: null, messageKey: '' };
+      const els = {
+        search: document.getElementById('registry-search'), type: document.getElementById('registry-type'), pos: document.getElementById('registry-pos'), group: document.getElementById('registry-group'), author: document.getElementById('registry-author'), minPi: document.getElementById('registry-min-pi'), sort: document.getElementById('registry-sort'), reset: document.getElementById('registry-reset'), summary: document.getElementById('registry-summary'), message: document.getElementById('registry-message'), list: document.getElementById('registry-list'), modal: document.getElementById('json-modal'), jsonView: document.getElementById('json-view'), modalCopy: document.getElementById('modal-copy-json'), modalClose: document.getElementById('modal-close'), modalX: document.getElementById('json-modal-x'), toast: document.getElementById('registry-toast')
+      };
+      function t(key) { return TEXT_I18N[state.lang][key] || TEXT_I18N.ru[key] || key; }
+      function normalize(value) { return String(value || '').toLowerCase().replace(/ё/g, 'е').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, ' ').trim(); }
+      function codeOf(card) { return card.vord_type_code || TYPE_CODES.find((code) => card.id && card.id.startsWith(`${code}_`)) || ''; }
+      function typeLabel(card) { const code = codeOf(card); return code ? `${code} — ${TYPE_LABELS[code] || card.vord_type || ''}` : (card.vord_type || ''); }
+      function formatDate(value) { if (!value) return t('noValue'); const date = new Date(value); if (Number.isNaN(date.getTime())) return value; return new Intl.DateTimeFormat(state.lang === 'en' ? 'en-US' : 'ru-RU', { dateStyle: 'medium', timeStyle: 'short' }).format(date); }
+      function formatNumber(value) { return typeof value === 'number' && Number.isFinite(value) ? new Intl.NumberFormat(state.lang === 'en' ? 'en-US' : 'ru-RU', { maximumFractionDigits: 6 }).format(value) : t('noValue'); }
+      function showToast(message) { els.toast.textContent = message; els.toast.classList.add('show'); clearTimeout(showToast.timer); showToast.timer = setTimeout(() => els.toast.classList.remove('show'), 1800); }
+      async function copyText(text, ok, fail) { try { await navigator.clipboard.writeText(text); showToast(ok); } catch (_) { showToast(fail); } }
+      function setOptions(select, options) { select.replaceChildren(...options.map(([value, label]) => { const option = document.createElement('option'); option.value = value; option.textContent = label; return option; })); }
+      function updateStaticI18n() {
+        document.documentElement.lang = state.lang;
+        document.title = t('title');
+        document.querySelectorAll('[data-i18n]').forEach((el) => { el.textContent = t(el.dataset.i18n); });
+        document.querySelectorAll('[data-i18n-attr]').forEach((el) => {
+          el.dataset.i18nAttr.split(',').forEach((pair) => { const [attr, key] = pair.split(':'); if (attr && key) el.setAttribute(attr.trim(), t(key.trim())); });
+        });
+        els.search.placeholder = t('searchPlaceholder');
+        els.author.placeholder = t('authorPlaceholder');
+        const current = { type: els.type.value, pos: els.pos.value, group: els.group.value, sort: els.sort.value || 'word' };
+        setOptions(els.type, [['', t('allTypes')], ...TYPE_CODES.map((code) => [code, `${code} — ${TYPE_LABELS[code]}`])]);
+        setOptions(els.pos, [['', t('allParts')], ...POS_VALUES.map((pos) => [pos, pos])]);
+        const extraGroups = Array.from(new Set(state.cards.flatMap((card) => Array.isArray(card.supported_groups) ? card.supported_groups : []))).filter((group) => !BASE_GROUPS.includes(group)).sort((a, b) => a.localeCompare(b));
+        setOptions(els.group, [['', t('allGroups')], ...BASE_GROUPS.map((group) => [group, group]), ...extraGroups.map((group) => [group, group])]);
+        setOptions(els.sort, SORTS.map(([value, key]) => [value, t(key)]));
+        els.type.value = current.type; els.pos.value = current.pos; els.group.value = current.group; els.sort.value = current.sort;
+      }
+      function cardMatches(card) {
+        const query = normalize(els.search.value);
+        const author = normalize(els.author.value);
+        const minPi = els.minPi.value === '' ? null : Number(els.minPi.value);
+        const haystack = normalize(`${card.search_blob || ''} ${codeOf(card)} ${card.vord_type || ''} ${typeLabel(card)}`);
+        if (query && !haystack.includes(query)) return false;
+        if (els.type.value && codeOf(card) !== els.type.value) return false;
+        if (els.pos.value && card.part_of_speech !== els.pos.value) return false;
+        if (els.group.value && !(Array.isArray(card.supported_groups) && card.supported_groups.includes(els.group.value))) return false;
+        if (author && !normalize(card.author).includes(author)) return false;
+        if (minPi !== null && Number.isFinite(minPi) && (!(typeof card.pi_percent === 'number') || card.pi_percent < minPi)) return false;
+        return true;
+      }
+      function sortedCards(cards) {
+        return [...cards].sort((a, b) => {
+          if (els.sort.value === 'accepted') return Date.parse(b.accepted_at || 0) - Date.parse(a.accepted_at || 0) || a.word.localeCompare(b.word);
+          if (els.sort.value === 'created') return Date.parse(b.created_at || 0) - Date.parse(a.created_at || 0) || a.word.localeCompare(b.word);
+          if (els.sort.value === 'pi') return (b.pi_percent ?? -Infinity) - (a.pi_percent ?? -Infinity) || a.word.localeCompare(b.word);
+          if (els.sort.value === 'type') return codeOf(a).localeCompare(codeOf(b)) || a.word.localeCompare(b.word);
+          return (a.word || '').localeCompare(b.word || '', state.lang === 'en' ? 'en' : 'ru');
+        });
+      }
+      function row(label, value) { const wrap = document.createElement('div'); wrap.className = 'card-row'; const l = document.createElement('span'); l.className = 'card-label'; l.textContent = label; const v = document.createElement('span'); v.className = 'card-value'; v.textContent = value || t('noValue'); wrap.append(l, v); return wrap; }
+      function renderCard(card) {
+        const article = document.createElement('article'); article.className = 'registry-card';
+        const head = document.createElement('div'); head.className = 'card-head';
+        const titleWrap = document.createElement('div'); const title = document.createElement('h2'); title.className = 'card-word'; title.textContent = card.word || t('noValue'); const ipa = document.createElement('div'); ipa.className = 'card-ipa'; ipa.textContent = card.ipa ? `/${card.ipa}/` : t('noValue'); titleWrap.append(title, ipa);
+        const tags = document.createElement('div'); tags.className = 'card-tags'; [typeLabel(card), card.part_of_speech, typeof card.pi_percent === 'number' ? `PI ${formatNumber(card.pi_percent)}` : ''].filter(Boolean).forEach((item) => { const tag = document.createElement('span'); tag.className = 'card-tag'; tag.textContent = item; tags.append(tag); });
+        head.append(titleWrap, tags);
+        const grid = document.createElement('div'); grid.className = 'card-grid';
+        grid.append(row(t('type'), typeLabel(card)), row(t('partOfSpeech'), card.part_of_speech), row(t('meaning'), [card.meaning_ru, card.meaning_en].filter(Boolean).join(' / ')), row(t('pi'), formatNumber(card.pi_percent)), row(t('groups'), Array.isArray(card.supported_groups) && card.supported_groups.length ? card.supported_groups.join(', ') : ''), row(t('author'), card.author), row(t('createdAt'), formatDate(card.created_at)), row(t('acceptedAt'), formatDate(card.accepted_at)), row(t('id'), card.id));
+        const actions = document.createElement('div'); actions.className = 'card-actions';
+        const open = document.createElement('button'); open.type = 'button'; open.className = 'registry-btn registry-btn--primary'; open.textContent = t('openJson'); open.addEventListener('click', () => openJson(card, open));
+        const copyId = document.createElement('button'); copyId.type = 'button'; copyId.className = 'registry-btn'; copyId.textContent = t('copyId'); copyId.addEventListener('click', () => copyText(card.id || '', t('idCopied'), t('idCopyFailed')));
+        const copyJson = document.createElement('button'); copyJson.type = 'button'; copyJson.className = 'registry-btn'; copyJson.textContent = t('copyJson'); copyJson.addEventListener('click', async () => { try { await copyText(await loadFullJson(card), t('jsonCopied'), t('jsonCopyFailed')); } catch (_) { showToast(t('jsonLoadFailed')); } });
+        actions.append(open, copyId, copyJson); article.append(head, grid, actions); return article;
+      }
+      function render() {
+        updateStaticI18n();
+        if (!state.registry) {
+          if (state.messageKey) {
+            els.message.hidden = false;
+            els.message.textContent = t(state.messageKey);
+          }
+          return;
+        }
+        state.messageKey = '';
+        const filtered = sortedCards(state.cards.filter(cardMatches));
+        els.summary.textContent = t('found')(filtered.length, state.cards.length);
+        els.message.hidden = true; els.message.textContent = '';
+        els.list.replaceChildren(...filtered.map(renderCard));
+        if (!state.cards.length) { els.message.hidden = false; els.message.textContent = t('emptyRegistry'); }
+        else if (!filtered.length) { els.message.hidden = false; els.message.textContent = t('nothingFound'); }
+      }
+      async function loadFullJson(card) {
+        if (!card.detail_path) throw new Error('Missing detail_path');
+        if (state.fullJsonCache.has(card.detail_path)) return state.fullJsonCache.get(card.detail_path);
+        const response = await fetch(`../${card.detail_path}`, { cache: 'no-store' });
+        if (!response.ok) throw new Error('Could not load JSON');
+        const json = JSON.stringify(await response.json(), null, 2);
+        state.fullJsonCache.set(card.detail_path, json); return json;
+      }
+      async function openJson(card, trigger) {
+        state.lastFocused = trigger || document.activeElement;
+        try { els.jsonView.value = await loadFullJson(card); openModal(); } catch (_) { showToast(t('jsonLoadFailed')); }
+      }
+      function openModal() { els.modal.classList.add('is-open'); els.modal.setAttribute('aria-hidden', 'false'); els.jsonView.focus(); }
+      function closeModal() { els.modal.classList.remove('is-open'); els.modal.setAttribute('aria-hidden', 'true'); els.jsonView.value = ''; if (state.lastFocused) state.lastFocused.focus(); }
+      async function loadRegistry() {
+        updateStaticI18n();
+        try {
+          const response = await fetch('../cards/registry.json', { cache: 'no-store' });
+          if (!response.ok) throw new Error('Registry not found');
+          const registry = await response.json();
+          if (!registry || !Array.isArray(registry.cards)) throw new Error('Invalid registry');
+          state.registry = registry; state.cards = registry.cards;
+          render();
+        } catch (error) {
+          els.summary.textContent = ''; els.list.replaceChildren(); state.messageKey = error.message === 'Invalid registry' ? 'invalidRegistry' : 'loadError'; els.message.hidden = false; els.message.textContent = t(state.messageKey);
+        }
+      }
+      [els.search, els.type, els.pos, els.group, els.author, els.minPi, els.sort].forEach((el) => { el.addEventListener('input', render); el.addEventListener('change', render); });
+      els.reset.addEventListener('click', () => { els.search.value = ''; els.type.value = ''; els.pos.value = ''; els.group.value = ''; els.author.value = ''; els.minPi.value = ''; els.sort.value = 'word'; render(); });
+      els.modalClose.addEventListener('click', closeModal); els.modalX.addEventListener('click', closeModal); els.modal.addEventListener('click', (event) => { if (event.target.dataset.modalClose === 'true') closeModal(); });
+      els.modalCopy.addEventListener('click', () => copyText(els.jsonView.value, t('jsonCopied'), t('jsonCopyFailed')));
+      document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && els.modal.classList.contains('is-open')) closeModal(); });
+      document.addEventListener('interal:languagechange', (event) => { state.lang = event.detail && event.detail.lang === 'en' ? 'en' : 'ru'; render(); });
+      loadRegistry();
+    })();
+  </script>
+</body>
+</html>
