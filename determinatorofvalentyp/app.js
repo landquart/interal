@@ -475,7 +475,8 @@ const uiText = {
     copyFailed: 'Ошибка копирования',
     copyPrompt: 'Копировать промпт',
     resetConfirm: 'Сбросить введённые данные? Это действие нельзя отменить.',
-    fillAndAnalyse: 'Заполните поля и нажмите «Анализировать».'
+    fillAndAnalyse: 'Заполните поля и нажмите «Анализировать».',
+    deleteComponent: 'Удалить компонент'
   },
   en: {
     missingRegular: 'Regular-model word is missing.',
@@ -487,7 +488,8 @@ const uiText = {
     copyFailed: 'Copy failed',
     copyPrompt: 'Copy prompt',
     resetConfirm: 'Reset entered data? This action cannot be undone.',
-    fillAndAnalyse: 'Fill in fields and click “Analyse”.'
+    fillAndAnalyse: 'Fill in fields and click “Analyse”.',
+    deleteComponent: 'Delete component'
   }
 };
 
@@ -840,6 +842,7 @@ function renderComponents() {
   els.componentsList.className = 'components-list';
   els.componentsList.innerHTML = state.components.map((item) => {
     const note = getLocalizedAssimilationNote(item);
+    const deleteLabel = t('deleteComponent');
     return `
       <div class="component-item">
         <div class="component-main">
@@ -850,7 +853,7 @@ function renderComponents() {
             ${note ? ` · ${escapeHtml(note)}` : ''}
           </div>
         </div>
-        <button class="component-delete" type="button" data-delete-id="${item.id}" aria-label="Delete component"><img src="../elements/Eraser%20Square.svg" alt="" aria-hidden="true" /></button>
+        <button class="component-delete" type="button" data-delete-id="${item.id}" aria-label="${escapeHtml(deleteLabel)}"><img src="../elements/Eraser%20Square.svg" alt="" aria-hidden="true" /></button>
       </div>
     `;
   }).join('');
