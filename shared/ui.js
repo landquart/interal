@@ -4,6 +4,7 @@
   const COPY_FEEDBACK_TIMEOUT = 3200;
 
   const PAGE_STATE_PREFIX = 'interal.pageState:';
+  let lockedScrollY = 0;
 
   const currentScript = document.currentScript;
   const sharedPath = currentScript ? new URL(currentScript.src, window.location.href).pathname : '/shared/ui.js';
@@ -143,13 +144,26 @@
     return saved === 'en' ? 'en' : 'ru';
   }
 
+  function lockPageScroll() {
+    lockedScrollY = window.scrollY || document.documentElement.scrollTop || 0;
+    document.body.style.setProperty('--menu-scroll-y', `-${lockedScrollY}px`);
+  }
+
+  function unlockPageScroll() {
+    document.body.style.removeProperty('--menu-scroll-y');
+    window.scrollTo(0, lockedScrollY);
+  }
+
   function closeMenu() {
+    const wasOpen = document.body.classList.contains('menu-open');
     document.body.classList.remove('menu-open');
     toggleLanguageList(false);
+    if (wasOpen) unlockPageScroll();
     menuButton.setAttribute('aria-expanded', 'false');
   }
 
   function openMenu() {
+    if (!document.body.classList.contains('menu-open')) lockPageScroll();
     document.body.classList.add('menu-open');
     menuButton.setAttribute('aria-expanded', 'true');
   }

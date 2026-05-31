@@ -148,7 +148,7 @@
           sortWord: 'По слову', sortAccepted: 'Новые принятые', sortCreated: 'Новые созданные', sortPi: 'PI по убыванию', sortType: 'Тип слова',
           found: (shown, total) => `Найдено карточек: ${shown} из ${total}`, nothingFound: 'Ничего не найдено.', emptyRegistry: 'В реестре пока нет карточек.',
           loadError: 'Не удалось загрузить registry.json. Реестр пока недоступен или файл не найден.', invalidRegistry: 'registry.json имеет неверный формат.',
-          word: 'Слово', ipa: 'IPA', type: 'Тип слова', partOfSpeech: 'Часть речи', meaning: 'Значение RU/EN', pi: 'PI', groups: 'Группы', author: 'Автор', createdAt: 'Создано', acceptedAt: 'Принято', id: 'ID',
+          word: 'Слово', ipa: 'IPA', type: 'Тип слова', partOfSpeech: 'Часть речи', meaning: 'Значение RU/EN', pi: 'PI', groups: 'Языковые группы', author: 'Автор', createdAt: 'Создано', acceptedAt: 'Принято', id: 'ID',
           noValue: '—', openJson: 'Открыть JSON', copyId: 'Скопировать ID', copyJson: 'Скопировать JSON', fullJsonTitle: 'Полная JSON-карточка', close: 'Закрыть', jsonCopied: 'JSON скопирован', jsonCopyFailed: 'Не удалось скопировать JSON', idCopied: 'ID скопирован', idCopyFailed: 'Не удалось скопировать ID', jsonLoadFailed: 'Не удалось загрузить полную JSON-карточку.'
         },
         en: {
@@ -166,7 +166,15 @@
       const TYPE_LABELS = { iv: 'indoeropan vordes', av: 'associativ vordes', in: 'internationalismes', vc: 'vordes of communités', gv: 'grammatic vordes' };
       const TYPE_CODES = ['iv', 'av', 'in', 'vc', 'gv'];
       const POS_VALUES = ['noun', 'verb', 'adjective', 'adverb', 'pronoun', 'preposition', 'conjunction', 'particle', 'numeral', 'other'];
+      const POS_LABELS = {
+        ru: { noun: 'существительное', verb: 'глагол', adjective: 'прилагательное', adverb: 'наречие', pronoun: 'местоимение', preposition: 'предлог', conjunction: 'союз', particle: 'частица', numeral: 'числительное', other: 'другое' },
+        en: { noun: 'noun', verb: 'verb', adjective: 'adjective', adverb: 'adverb', pronoun: 'pronoun', preposition: 'preposition', conjunction: 'conjunction', particle: 'particle', numeral: 'numeral', other: 'other' }
+      };
       const BASE_GROUPS = ['Germanic', 'Romance', 'Slavic', 'Hellenic'];
+      const GROUP_LABELS = {
+        ru: { Germanic: 'германская', Romance: 'романская', Slavic: 'славянская', Hellenic: 'греческая' },
+        en: { Germanic: 'Germanic', Romance: 'Romance', Slavic: 'Slavic', Hellenic: 'Hellenic' }
+      };
       const SORTS = [['word', 'sortWord'], ['accepted', 'sortAccepted'], ['created', 'sortCreated'], ['pi', 'sortPi'], ['type', 'sortType']];
       const state = { lang: localStorage.getItem('interal.lang') === 'en' ? 'en' : 'ru', registry: null, cards: [], fullJsonCache: new Map(), lastFocused: null, messageKey: '' };
       const els = {
@@ -175,7 +183,10 @@
       function t(key) { return TEXT_I18N[state.lang][key] || TEXT_I18N.ru[key] || key; }
       function normalize(value) { return String(value || '').toLowerCase().replace(/ё/g, 'е').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, ' ').trim(); }
       function codeOf(card) { return card.vord_type_code || TYPE_CODES.find((code) => card.id && card.id.startsWith(`${code}_`)) || ''; }
-      function typeLabel(card) { const code = codeOf(card); return code ? `${code} — ${TYPE_LABELS[code] || card.vord_type || ''}` : (card.vord_type || ''); }
+      function typeLabel(card) { const code = codeOf(card); return code ? (TYPE_LABELS[code] || card.vord_type || '') : (card.vord_type || ''); }
+      function posLabel(value) { return (POS_LABELS[state.lang] && POS_LABELS[state.lang][value]) || value || ''; }
+      function groupLabel(value) { return (GROUP_LABELS[state.lang] && GROUP_LABELS[state.lang][value]) || value || ''; }
+      function groupListLabel(values) { return Array.isArray(values) && values.length ? values.map(groupLabel).join(', ') : ''; }
       function formatDate(value) { if (!value) return t('noValue'); const date = new Date(value); if (Number.isNaN(date.getTime())) return value; return new Intl.DateTimeFormat(state.lang === 'en' ? 'en-US' : 'ru-RU', { dateStyle: 'medium', timeStyle: 'short' }).format(date); }
       function formatNumber(value) { return typeof value === 'number' && Number.isFinite(value) ? new Intl.NumberFormat(state.lang === 'en' ? 'en-US' : 'ru-RU', { maximumFractionDigits: 6 }).format(value) : t('noValue'); }
       function showToast(message) { els.toast.textContent = message; els.toast.classList.add('show'); clearTimeout(showToast.timer); showToast.timer = setTimeout(() => els.toast.classList.remove('show'), 1800); }
@@ -191,10 +202,10 @@
         els.search.placeholder = t('searchPlaceholder');
         els.author.placeholder = t('authorPlaceholder');
         const current = { type: els.type.value, pos: els.pos.value, group: els.group.value, sort: els.sort.value || 'word' };
-        setOptions(els.type, [['', t('allTypes')], ...TYPE_CODES.map((code) => [code, `${code} — ${TYPE_LABELS[code]}`])]);
-        setOptions(els.pos, [['', t('allParts')], ...POS_VALUES.map((pos) => [pos, pos])]);
+        setOptions(els.type, [['', t('allTypes')], ...TYPE_CODES.map((code) => [code, TYPE_LABELS[code]])]);
+        setOptions(els.pos, [['', t('allParts')], ...POS_VALUES.map((pos) => [pos, posLabel(pos)])]);
         const extraGroups = Array.from(new Set(state.cards.flatMap((card) => Array.isArray(card.supported_groups) ? card.supported_groups : []))).filter((group) => !BASE_GROUPS.includes(group)).sort((a, b) => a.localeCompare(b));
-        setOptions(els.group, [['', t('allGroups')], ...BASE_GROUPS.map((group) => [group, group]), ...extraGroups.map((group) => [group, group])]);
+        setOptions(els.group, [['', t('allGroups')], ...BASE_GROUPS.map((group) => [group, groupLabel(group)]), ...extraGroups.map((group) => [group, groupLabel(group)])]);
         setOptions(els.sort, SORTS.map(([value, key]) => [value, t(key)]));
         els.type.value = current.type; els.pos.value = current.pos; els.group.value = current.group; els.sort.value = current.sort;
       }
@@ -225,10 +236,10 @@
         const article = document.createElement('article'); article.className = 'registry-card';
         const head = document.createElement('div'); head.className = 'card-head';
         const titleWrap = document.createElement('div'); const title = document.createElement('h2'); title.className = 'card-word'; title.textContent = card.word || t('noValue'); const ipa = document.createElement('div'); ipa.className = 'card-ipa'; ipa.textContent = card.ipa ? `/${card.ipa}/` : t('noValue'); titleWrap.append(title, ipa);
-        const tags = document.createElement('div'); tags.className = 'card-tags'; [typeLabel(card), card.part_of_speech, typeof card.pi_percent === 'number' ? `PI ${formatNumber(card.pi_percent)}` : ''].filter(Boolean).forEach((item) => { const tag = document.createElement('span'); tag.className = 'card-tag'; tag.textContent = item; tags.append(tag); });
+        const tags = document.createElement('div'); tags.className = 'card-tags'; [typeLabel(card), posLabel(card.part_of_speech), typeof card.pi_percent === 'number' ? `PI ${formatNumber(card.pi_percent)}` : ''].filter(Boolean).forEach((item) => { const tag = document.createElement('span'); tag.className = 'card-tag'; tag.textContent = item; tags.append(tag); });
         head.append(titleWrap, tags);
         const grid = document.createElement('div'); grid.className = 'card-grid';
-        grid.append(row(t('type'), typeLabel(card)), row(t('partOfSpeech'), card.part_of_speech), row(t('meaning'), [card.meaning_ru, card.meaning_en].filter(Boolean).join(' / ')), row(t('pi'), formatNumber(card.pi_percent)), row(t('groups'), Array.isArray(card.supported_groups) && card.supported_groups.length ? card.supported_groups.join(', ') : ''), row(t('author'), card.author), row(t('createdAt'), formatDate(card.created_at)), row(t('acceptedAt'), formatDate(card.accepted_at)), row(t('id'), card.id));
+        grid.append(row(t('type'), typeLabel(card)), row(t('partOfSpeech'), posLabel(card.part_of_speech)), row(t('meaning'), [card.meaning_ru, card.meaning_en].filter(Boolean).join(' / ')), row(t('pi'), formatNumber(card.pi_percent)), row(t('groups'), groupListLabel(card.supported_groups)), row(t('author'), card.author), row(t('createdAt'), formatDate(card.created_at)), row(t('acceptedAt'), formatDate(card.accepted_at)), row(t('id'), card.id));
         const actions = document.createElement('div'); actions.className = 'card-actions';
         const open = document.createElement('button'); open.type = 'button'; open.className = 'registry-btn registry-btn--primary'; open.textContent = t('openJson'); open.addEventListener('click', () => openJson(card, open));
         const copyId = document.createElement('button'); copyId.type = 'button'; copyId.className = 'registry-btn'; copyId.textContent = t('copyId'); copyId.addEventListener('click', () => copyText(card.id || '', t('idCopied'), t('idCopyFailed')));

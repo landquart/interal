@@ -98,7 +98,7 @@ html{scrollbar-gutter:stable;}
 *::before,
 *::after{box-sizing:border-box;}
 body{background:var(--bg);color:var(--text)}
-body.menu-open{overflow:hidden;}
+body.menu-open{overflow:hidden;position:fixed;top:var(--menu-scroll-y, 0);left:0;right:0;width:100%;}
 .top-nav {
   position: fixed;
   top: 12px;
