@@ -70,6 +70,7 @@
     .registry-modal-title { margin: 0; font-size: 1.25rem; color: var(--text); }
     .registry-json-view { width: 100%; min-height: 260px; resize: vertical; border-radius: var(--radius-md); border: 1px solid var(--control-border); background: var(--control-bg); color: var(--control-text); padding: 12px; font: 0.9rem/1.45 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; white-space: pre; overflow: auto; }
     .registry-modal-actions { display: flex; gap: 8px; justify-content: flex-end; flex-wrap: wrap; }
+    .registry-copy-icon-btn { width: 46px; min-height: 46px; padding: 0; justify-content: center; }
     .registry-toast { position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%) translateY(18px); z-index: var(--z-toast); opacity: 0; pointer-events: none; border-radius: var(--radius-pill); background: var(--button-primary-bg); color: var(--button-primary-text); padding: 10px 14px; font-weight: 800; transition: opacity .18s ease, transform .18s ease; }
     .registry-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
     @media (max-width: 900px) { .field--search, .field--type, .field--pos, .field--group, .field--author, .field--pi, .field--sort, .field--reset { grid-column: 1 / -1; } .card-grid { grid-template-columns: 1fr; } }
@@ -129,7 +130,14 @@
       </div>
       <textarea class="registry-json-view" id="json-view" readonly spellcheck="false"></textarea>
       <div class="registry-modal-actions">
-        <button class="registry-btn registry-btn--primary" type="button" id="modal-copy-json" data-i18n="copyJson">Скопировать JSON</button>
+        <button class="registry-btn registry-copy-icon-btn menu-copy-btn" type="button" id="modal-copy-json" aria-label="Скопировать JSON" title="Скопировать JSON" data-i18n-attr="aria-label:copyJson,title:copyJson">
+          <span class="menu-copy-icon-stack" aria-hidden="true">
+            <img class="menu-copy-icon menu-copy-icon-link" src="../elements/Copy.svg" alt="">
+            <svg class="menu-copy-icon menu-copy-icon-check" viewBox="0 0 24 24" focusable="false">
+              <path d="M5 12.5l4.2 4.2L19 7" />
+            </svg>
+          </span>
+        </button>
       </div>
     </div>
   </div>
@@ -190,7 +198,12 @@
       function formatDate(value) { if (!value) return t('noValue'); const date = new Date(value); if (Number.isNaN(date.getTime())) return value; return new Intl.DateTimeFormat(state.lang === 'en' ? 'en-US' : 'ru-RU', { dateStyle: 'medium', timeStyle: 'short' }).format(date); }
       function formatNumber(value) { return typeof value === 'number' && Number.isFinite(value) ? new Intl.NumberFormat(state.lang === 'en' ? 'en-US' : 'ru-RU', { maximumFractionDigits: 6 }).format(value) : t('noValue'); }
       function showToast(message) { els.toast.textContent = message; els.toast.classList.add('show'); clearTimeout(showToast.timer); showToast.timer = setTimeout(() => els.toast.classList.remove('show'), 1800); }
-      async function copyText(text, ok, fail) { try { await navigator.clipboard.writeText(text); showToast(ok); } catch (_) { showToast(fail); } }
+      function setCopyButtonCopied(button, copied) {
+        clearTimeout(button._copyStateTimer);
+        button.classList.toggle('is-copied', copied);
+        if (copied) button._copyStateTimer = setTimeout(() => button.classList.remove('is-copied'), 1800);
+      }
+      async function copyText(text, ok, fail) { try { await navigator.clipboard.writeText(text); showToast(ok); return true; } catch (_) { showToast(fail); return false; } }
       function setOptions(select, options) { select.replaceChildren(...options.map(([value, label]) => { const option = document.createElement('option'); option.value = value; option.textContent = label; return option; })); }
       function updateStaticI18n() {
         document.documentElement.lang = state.lang;
@@ -243,8 +256,7 @@
         const actions = document.createElement('div'); actions.className = 'card-actions';
         const open = document.createElement('button'); open.type = 'button'; open.className = 'registry-btn registry-btn--primary'; open.textContent = t('openJson'); open.addEventListener('click', () => openJson(card, open));
         const copyId = document.createElement('button'); copyId.type = 'button'; copyId.className = 'registry-btn'; copyId.textContent = t('copyId'); copyId.addEventListener('click', () => copyText(card.id || '', t('idCopied'), t('idCopyFailed')));
-        const copyJson = document.createElement('button'); copyJson.type = 'button'; copyJson.className = 'registry-btn'; copyJson.textContent = t('copyJson'); copyJson.addEventListener('click', async () => { try { await copyText(await loadFullJson(card), t('jsonCopied'), t('jsonCopyFailed')); } catch (_) { showToast(t('jsonLoadFailed')); } });
-        actions.append(open, copyId, copyJson); article.append(head, grid, actions); return article;
+        actions.append(open, copyId); article.append(head, grid, actions); return article;
       }
       function render() {
         updateStaticI18n();
@@ -293,7 +305,7 @@
       [els.search, els.type, els.pos, els.group, els.author, els.minPi, els.sort].forEach((el) => { el.addEventListener('input', render); el.addEventListener('change', render); });
       els.reset.addEventListener('click', () => { els.search.value = ''; els.type.value = ''; els.pos.value = ''; els.group.value = ''; els.author.value = ''; els.minPi.value = ''; els.sort.value = 'word'; render(); });
       els.modalX.addEventListener('click', closeModal); els.modal.addEventListener('click', (event) => { if (event.target.dataset.modalClose === 'true') closeModal(); });
-      els.modalCopy.addEventListener('click', () => copyText(els.jsonView.value, t('jsonCopied'), t('jsonCopyFailed')));
+      els.modalCopy.addEventListener('click', async () => { if (await copyText(els.jsonView.value, t('jsonCopied'), t('jsonCopyFailed'))) setCopyButtonCopied(els.modalCopy, true); });
       document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && els.modal.classList.contains('is-open')) closeModal(); });
       document.addEventListener('interal:languagechange', (event) => { state.lang = event.detail && event.detail.lang === 'en' ? 'en' : 'ru'; render(); });
       loadRegistry();
