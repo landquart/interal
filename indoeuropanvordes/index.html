@@ -1277,21 +1277,26 @@ function makePhoneticBlock(row) {
 }
 
 function makeIndoeuropanCard(payload, timeMeta, author = null) {
+  const partOfSpeech = payload.matchedPieItem?.part_of_speech || "";
+  const translationLanguage = payload.lookupLang || "";
+  const translationWord = payload.lookupWord || "";
+
   const card = {
     id: createCardId("iv"),
     version: "1.0",
-    word_type: "indoeuropan vordes",
+    card_type: "vord_card",
+    vord_type: "iv",
     status: "draft",
     created_at: timeMeta.created_at,
     created_at_source: timeMeta.created_at_source,
     interal: {
       word: payload.interalWord || "",
       ipa: payload.interalIPA || "",
-      meaning: {
-        ru: "",
-        en: ""
-      },
-      part_of_speech: ""
+      part_of_speech: partOfSpeech
+    },
+    translation: {
+      language: translationLanguage,
+      word: translationWord
     },
     ...(author ? { author } : {}),
     supported_groups: Array.isArray(payload.supportedGroups) ? payload.supportedGroups : [],
@@ -1972,12 +1977,14 @@ async function calculateInternationality() {
 
   const lookupWord = lookupWordInput.value.trim();
   const lookupLang = lookupLangSelect.value;
+  let matchedPieItem = null;
 
   if (lookupWord) {
     const data = await loadPieVordes();
     const rowMatch = findPieRowByNationalWord(data, lookupWord, lookupLang);
 
     if (rowMatch && rowMatch.item) {
+      matchedPieItem = rowMatch.item;
       await fillRowsFromPieItem(rowMatch.item);
     } else {
       tableWrap.style.display = "block";
@@ -2074,6 +2081,9 @@ async function calculateInternationality() {
       interalGraphic,
       interalIPA,
       interalIPAComparable,
+      lookupWord,
+      lookupLang,
+      matchedPieItem,
       rows,
       validRows,
       weightedSum,
