@@ -58,6 +58,24 @@ function stringArray(value) {
   return Array.isArray(value) ? value.filter((item) => typeof item === 'string') : [];
 }
 
+function languageTranslations(card) {
+  const translations = {};
+  if (card.translation && typeof card.translation === 'object') {
+    const code = text(card.translation.language);
+    const word = text(card.translation.word);
+    if (code && word) translations[code] = word;
+  }
+  if (Array.isArray(card.language_results)) {
+    for (const result of card.language_results) {
+      if (!result || typeof result !== 'object') continue;
+      const code = text(result.code);
+      const word = text(result.word);
+      if (code && word && !translations[code]) translations[code] = word;
+    }
+  }
+  return translations;
+}
+
 function normalizeSearch(value) {
   return String(value)
     .toLowerCase()
@@ -156,6 +174,7 @@ for (const filePath of files) {
     ipa: text(card.interal?.ipa),
     translation_language: text(card.translation?.language),
     translation_word: text(card.translation?.word),
+    translations: languageTranslations(card),
     part_of_speech: text(card.interal?.part_of_speech),
     created_at: text(card.created_at),
     created_at_source: text(card.created_at_source),
