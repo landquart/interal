@@ -1190,6 +1190,15 @@ function applyLocalizedTexts(lang = getCurrentLanguage()) {
   updateLanguageGroupCells(selectedLang);
 }
 
+
+function scheduleStickyXUpdate() {
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      window.InteralStickyXScrollbars?.update();
+    });
+  });
+}
+
 function resetAll() {
   if (!window.confirm(TEXT_I18N[getCurrentLanguage()].resetConfirm)) return;
 
@@ -1205,7 +1214,7 @@ function resetAll() {
 
   clearScores();
   tableWrap.style.display = "none";
-  window.InteralStickyXScrollbars?.update();
+  scheduleStickyXUpdate();
   resultBox.style.display = "none";
   resultBox.innerHTML = "";
   lastCalculationPayload = null;
@@ -1983,7 +1992,7 @@ async function fillRowsFromPieItem(item) {
   }
 
   tableWrap.style.display = "block";
-  window.InteralStickyXScrollbars?.update();
+  scheduleStickyXUpdate();
 }
 
 function showMessage(html) {
@@ -2034,20 +2043,20 @@ async function calculateInternationality() {
       await fillRowsFromPieItem(rowMatch.item);
     } else {
       tableWrap.style.display = "block";
-      window.InteralStickyXScrollbars?.update();
+      scheduleStickyXUpdate();
       showMessage("Строка в pie_vordes не найдена. Заполните таблицу вручную.");
       return;
     }
   } else {
     tableWrap.style.display = "block";
-    window.InteralStickyXScrollbars?.update();
+    scheduleStickyXUpdate();
   }
 
   const signal = createRunSignal();
   clearScores();
   showMessage("Расчёт...");
   tableWrap.style.display = "block";
-  window.InteralStickyXScrollbars?.update();
+  scheduleStickyXUpdate();
 
   try {
     const interalGraphic = normalizeGraphicInput(interalWord, "interal");
@@ -2805,6 +2814,8 @@ jsonCardModal.addEventListener("click", (event) => {
   if (event.target === jsonCardModal) closeJsonCardModal();
 });
 
+initRows();
+
 (function setupStickyHorizontalScrollbars() {
   const states = [];
 
@@ -2917,9 +2928,9 @@ jsonCardModal.addEventListener("click", (event) => {
   }
 })();
 
-initRows();
 applyLocalizedTexts();
 updateResetButtonVisibility();
+scheduleStickyXUpdate();
 </script>
 
 <script src="../shared/copy-plain.js"></script>
