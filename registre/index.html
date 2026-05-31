@@ -150,24 +150,24 @@
       const TEXT_I18N = {
         ru: {
           title: 'Registre of vordesen cartes', filtersAria: 'Фильтры реестра',
-          searchLabel: 'Поиск', searchPlaceholder: 'Поиск по слову, значению, ID, автору, группе...', typeLabel: 'Тип слова', allTypes: 'Все типы',
+          searchLabel: 'Поиск', searchPlaceholder: 'Поиск по слову, переводу, ID, автору, группе...', typeLabel: 'Тип слова', allTypes: 'Все типы',
           posLabel: 'Часть речи', allParts: 'Все части речи', groupLabel: 'Языковая группа', allGroups: 'Все группы', authorLabel: 'Автор', authorPlaceholder: 'Автор',
           minPiLabel: 'Минимальный PI', sortLabel: 'Сортировка', resetFilters: 'Сбросить фильтры',
           sortWord: 'По слову', sortAccepted: 'Новые принятые', sortCreated: 'Новые созданные', sortPi: 'PI по убыванию', sortType: 'Тип слова',
           found: (shown, total) => `Найдено карточек: ${shown} из ${total}`, nothingFound: 'Ничего не найдено.', emptyRegistry: 'В реестре пока нет карточек.',
           loadError: 'Не удалось загрузить registry.json. Реестр пока недоступен или файл не найден.', invalidRegistry: 'registry.json имеет неверный формат.',
-          word: 'Слово', ipa: 'IPA', type: 'Тип слова', partOfSpeech: 'Часть речи', meaning: 'Значение RU/EN', pi: 'PI', groups: 'Языковые группы', author: 'Автор', createdAt: 'Создано', acceptedAt: 'Принято', id: 'ID',
+          word: 'Слово', ipa: 'IPA', type: 'Тип слова', partOfSpeech: 'Часть речи', translation: 'Перевод', authorContact: 'Контакт автора', pi: 'PI', groups: 'Языковые группы', author: 'Автор', createdAt: 'Создано', acceptedAt: 'Принято', id: 'ID',
           noValue: '—', openJson: 'Открыть JSON', copyId: 'Скопировать ID', copyJson: 'Скопировать JSON', fullJsonTitle: 'Полная JSON-карточка', close: 'Закрыть', jsonCopied: 'JSON скопирован', jsonCopyFailed: 'Не удалось скопировать JSON', idCopied: 'ID скопирован', idCopyFailed: 'Не удалось скопировать ID', jsonLoadFailed: 'Не удалось загрузить полную JSON-карточку.'
         },
         en: {
           title: 'Registre of vordesen cartes', filtersAria: 'Registry filters',
-          searchLabel: 'Search', searchPlaceholder: 'Search by word, meaning, ID, author, group...', typeLabel: 'Word type', allTypes: 'All types',
+          searchLabel: 'Search', searchPlaceholder: 'Search by word, translation, ID, author, group...', typeLabel: 'Word type', allTypes: 'All types',
           posLabel: 'Part of speech', allParts: 'All parts of speech', groupLabel: 'Language group', allGroups: 'All groups', authorLabel: 'Author', authorPlaceholder: 'Author',
           minPiLabel: 'Minimum PI', sortLabel: 'Sort', resetFilters: 'Reset filters',
           sortWord: 'By word', sortAccepted: 'New accepted first', sortCreated: 'New created first', sortPi: 'PI descending', sortType: 'Word type',
           found: (shown, total) => `Cards found: ${shown} of ${total}`, nothingFound: 'Nothing found.', emptyRegistry: 'There are no cards in the registry yet.',
           loadError: 'Could not load registry.json. The registry is unavailable or the file was not found.', invalidRegistry: 'registry.json has an invalid format.',
-          word: 'Word', ipa: 'IPA', type: 'Word type', partOfSpeech: 'Part of speech', meaning: 'Meaning RU/EN', pi: 'PI', groups: 'Groups', author: 'Author', createdAt: 'Created at', acceptedAt: 'Accepted at', id: 'ID',
+          word: 'Word', ipa: 'IPA', type: 'Word type', partOfSpeech: 'Part of speech', translation: 'Translation', authorContact: 'Author contact', pi: 'PI', groups: 'Groups', author: 'Author', createdAt: 'Created at', acceptedAt: 'Accepted at', id: 'ID',
           noValue: '—', openJson: 'Open JSON', copyId: 'Copy ID', copyJson: 'Copy JSON', fullJsonTitle: 'Full JSON card', close: 'Close', jsonCopied: 'JSON copied', jsonCopyFailed: 'Could not copy JSON', idCopied: 'ID copied', idCopyFailed: 'Could not copy ID', jsonLoadFailed: 'Could not load the full JSON card.'
         }
       };
@@ -252,7 +252,7 @@
         const tags = document.createElement('div'); tags.className = 'card-tags'; [typeLabel(card), posLabel(card.part_of_speech), typeof card.pi_percent === 'number' ? `PI ${formatNumber(card.pi_percent)}` : ''].filter(Boolean).forEach((item) => { const tag = document.createElement('span'); tag.className = 'card-tag'; tag.textContent = item; tags.append(tag); });
         head.append(titleWrap, tags);
         const grid = document.createElement('div'); grid.className = 'card-grid';
-        grid.append(row(t('type'), typeLabel(card)), row(t('partOfSpeech'), posLabel(card.part_of_speech)), row(t('meaning'), [card.meaning_ru, card.meaning_en].filter(Boolean).join(' / ')), row(t('pi'), formatNumber(card.pi_percent)), row(t('groups'), groupListLabel(card.supported_groups)), row(t('author'), card.author), row(t('createdAt'), formatDate(card.created_at)), row(t('acceptedAt'), formatDate(card.accepted_at)), row(t('id'), card.id));
+        grid.append(row(t('type'), typeLabel(card)), row(t('partOfSpeech'), posLabel(card.part_of_speech)), row(t('translation'), card.translation_word ? `${card.translation_language} — ${card.translation_word}` : ''), row(t('pi'), formatNumber(card.pi_percent)), row(t('groups'), groupListLabel(card.supported_groups)), row(t('author'), card.author), row(t('authorContact'), card.author_contact_url ? `${card.author_contact_type} — ${card.author_contact_url}` : ''), row(t('createdAt'), formatDate(card.created_at)), row(t('acceptedAt'), formatDate(card.accepted_at)), row(t('id'), card.id));
         const actions = document.createElement('div'); actions.className = 'card-actions';
         const open = document.createElement('button'); open.type = 'button'; open.className = 'registry-btn registry-btn--primary'; open.textContent = t('openJson'); open.addEventListener('click', () => openJson(card, open));
         const copyId = document.createElement('button'); copyId.type = 'button'; copyId.className = 'registry-btn'; copyId.textContent = t('copyId'); copyId.addEventListener('click', () => copyText(card.id || '', t('idCopied'), t('idCopyFailed')));

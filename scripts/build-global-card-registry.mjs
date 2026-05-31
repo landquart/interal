@@ -86,12 +86,12 @@ function collectStrings(value, output, seen = new WeakSet()) {
 export function makeSearchBlob(card) {
   const chunks = [];
   chunks.push(card.id, card.vord_type, VORD_TYPE_LABELS[card.vord_type]);
-  chunks.push(card.interal?.word, card.interal?.ipa, card.interal?.meaning?.ru, card.interal?.meaning?.en, card.interal?.part_of_speech);
+  chunks.push(card.interal?.word, card.interal?.ipa, card.translation?.language, card.translation?.word, card.interal?.part_of_speech);
   chunks.push(card.author?.display_name);
   chunks.push(...stringArray(card.supported_groups));
   if (card.language_results) collectStrings(card.language_results, chunks);
 
-  const reserved = new Set(['id', 'version', 'vord_type', 'word_type', 'status', 'created_at', 'created_at_source', 'accepted_at', 'interal', 'author', 'supported_groups', 'calculation', 'language_results']);
+  const reserved = new Set(['id', 'version', 'card_type', 'vord_type', 'word_type', 'status', 'created_at', 'created_at_source', 'accepted_at', 'interal', 'translation', 'author', 'supported_groups', 'calculation', 'language_results']);
   for (const [key, value] of Object.entries(card)) {
     if (!reserved.has(key)) collectStrings(value, chunks);
   }
@@ -154,13 +154,15 @@ for (const filePath of files) {
     status: text(card.status),
     word: text(card.interal?.word),
     ipa: text(card.interal?.ipa),
-    meaning_ru: text(card.interal?.meaning?.ru),
-    meaning_en: text(card.interal?.meaning?.en),
+    translation_language: text(card.translation?.language),
+    translation_word: text(card.translation?.word),
     part_of_speech: text(card.interal?.part_of_speech),
     created_at: text(card.created_at),
     created_at_source: text(card.created_at_source),
     accepted_at: text(card.accepted_at),
     author: text(card.author?.display_name),
+    author_contact_type: text(card.author?.contacts?.[0]?.type),
+    author_contact_url: text(card.author?.contacts?.[0]?.url),
     pi_percent: finiteNumber(card.calculation?.pi_percent),
     supported_groups: stringArray(card.supported_groups),
     detail_path: path.relative(ROOT, filePath).split(path.sep).join('/'),
