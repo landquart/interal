@@ -223,53 +223,28 @@
 
 .internationalita-page .table-wrap {
   margin-top: 16px;
-  overflow-x: auto;
+  overflow: auto;
+  max-height: calc(100svh - 180px);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
+  scrollbar-gutter: stable both-edges;
+  -webkit-overflow-scrolling: touch;
 }
 
-.sticky-x-scrollbar {
-  position: fixed;
-  left: 16px;
-  right: 16px;
-  bottom: max(10px, env(safe-area-inset-bottom));
-  height: 18px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  z-index: calc(var(--z-nav) - 1);
-
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(8px);
-  transition: opacity 0.18s ease, transform 0.18s ease;
-
-  border-radius: 999px;
-  border: 1px solid color-mix(in srgb, var(--text) 14%, transparent);
-  background: color-mix(in srgb, var(--surface-elevated) 78%, transparent);
-  box-shadow:
-    0 10px 28px rgba(0, 0, 0, 0.14),
-    inset 0 1px 0 rgba(255, 255, 255, 0.18);
-
-  backdrop-filter: blur(18px) saturate(1.25);
-  -webkit-backdrop-filter: blur(18px) saturate(1.25);
+.internationalita-page .table-wrap table {
+  width: max-content;
+  min-width: 100%;
 }
 
-.sticky-x-scrollbar.is-visible {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(0);
+.internationalita-page .table-wrap thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--surface);
 }
 
-.sticky-x-scrollbar__spacer {
-  height: 1px;
-}
-
-body.dark-theme .sticky-x-scrollbar {
-  background: color-mix(in srgb, var(--surface-elevated) 72%, transparent);
-  border-color: color-mix(in srgb, #ffffff 14%, transparent);
-  box-shadow:
-    0 12px 30px rgba(0, 0, 0, 0.44),
-    inset 0 1px 0 rgba(255, 255, 255, 0.10);
+body.dark-theme .internationalita-page .table-wrap thead th {
+  background: var(--surface);
 }
 
 .internationalita-page table {
@@ -1191,14 +1166,6 @@ function applyLocalizedTexts(lang = getCurrentLanguage()) {
 }
 
 
-function scheduleStickyXUpdate() {
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      window.InteralStickyXScrollbars?.update();
-    });
-  });
-}
-
 function resetAll() {
   if (!window.confirm(TEXT_I18N[getCurrentLanguage()].resetConfirm)) return;
 
@@ -1214,7 +1181,6 @@ function resetAll() {
 
   clearScores();
   tableWrap.style.display = "none";
-  scheduleStickyXUpdate();
   resultBox.style.display = "none";
   resultBox.innerHTML = "";
   lastCalculationPayload = null;
@@ -1992,7 +1958,6 @@ async function fillRowsFromPieItem(item) {
   }
 
   tableWrap.style.display = "block";
-  scheduleStickyXUpdate();
 }
 
 function showMessage(html) {
@@ -2043,20 +2008,17 @@ async function calculateInternationality() {
       await fillRowsFromPieItem(rowMatch.item);
     } else {
       tableWrap.style.display = "block";
-      scheduleStickyXUpdate();
       showMessage("Строка в pie_vordes не найдена. Заполните таблицу вручную.");
       return;
     }
   } else {
     tableWrap.style.display = "block";
-    scheduleStickyXUpdate();
   }
 
   const signal = createRunSignal();
   clearScores();
   showMessage("Расчёт...");
   tableWrap.style.display = "block";
-  scheduleStickyXUpdate();
 
   try {
     const interalGraphic = normalizeGraphicInput(interalWord, "interal");
@@ -2671,7 +2633,6 @@ function showExplain() {
   if (!explanationHTML) return;
   explainText.innerHTML = explanationHTML;
   explainModal.classList.add("show");
-  window.InteralStickyXScrollbars?.init();
 }
 
 function closeExplain() {
@@ -2816,121 +2777,9 @@ jsonCardModal.addEventListener("click", (event) => {
 
 initRows();
 
-(function setupStickyHorizontalScrollbars() {
-  const states = [];
-
-  function initStickyScrollbarFor(wrap) {
-    if (!wrap || wrap.dataset.stickyXReady === "true") return;
-
-    wrap.dataset.stickyXReady = "true";
-
-    const bar = document.createElement("div");
-    bar.className = "sticky-x-scrollbar";
-    bar.setAttribute("aria-hidden", "true");
-
-    const spacer = document.createElement("div");
-    spacer.className = "sticky-x-scrollbar__spacer";
-
-    bar.appendChild(spacer);
-    document.body.appendChild(bar);
-
-    let syncing = false;
-
-    function hasHorizontalOverflow() {
-      return wrap.scrollWidth > wrap.clientWidth + 1;
-    }
-
-    function nativeScrollbarIsVisible(rect) {
-      return rect.bottom <= window.innerHeight - 24 && rect.bottom >= 0;
-    }
-
-    function tableAreaIsVisible(rect) {
-      return rect.top < window.innerHeight && rect.bottom > 0;
-    }
-
-    function updatePositionAndSize() {
-      const rect = wrap.getBoundingClientRect();
-      const left = Math.max(12, rect.left);
-      const right = Math.max(12, window.innerWidth - rect.right);
-      const width = Math.max(0, window.innerWidth - left - right);
-
-      bar.style.left = `${left}px`;
-      bar.style.right = `${right}px`;
-      bar.style.width = `${width}px`;
-
-      spacer.style.width = `${wrap.scrollWidth}px`;
-
-      if (!syncing) {
-        bar.scrollLeft = wrap.scrollLeft;
-      }
-    }
-
-    function updateVisibility() {
-      const rect = wrap.getBoundingClientRect();
-
-      const shouldShow =
-        hasHorizontalOverflow() &&
-        tableAreaIsVisible(rect) &&
-        !nativeScrollbarIsVisible(rect);
-
-      bar.classList.toggle("is-visible", shouldShow);
-    }
-
-    function update() {
-      updatePositionAndSize();
-      updateVisibility();
-    }
-
-    wrap.addEventListener("scroll", () => {
-      if (syncing) return;
-      syncing = true;
-      bar.scrollLeft = wrap.scrollLeft;
-      syncing = false;
-    }, { passive: true });
-
-    bar.addEventListener("scroll", () => {
-      if (syncing) return;
-      syncing = true;
-      wrap.scrollLeft = bar.scrollLeft;
-      syncing = false;
-    }, { passive: true });
-
-    window.addEventListener("scroll", update, { passive: true });
-    window.addEventListener("resize", update);
-
-    const resizeObserver = new ResizeObserver(update);
-    resizeObserver.observe(wrap);
-
-    if (wrap.firstElementChild) {
-      resizeObserver.observe(wrap.firstElementChild);
-    }
-
-    states.push({ wrap, bar, update });
-    update();
-  }
-
-  function initAll() {
-    document.querySelectorAll(".table-wrap").forEach(initStickyScrollbarFor);
-    states.forEach((state) => state.update());
-  }
-
-  window.InteralStickyXScrollbars = {
-    init: initAll,
-    update() {
-      states.forEach((state) => state.update());
-    }
-  };
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initAll);
-  } else {
-    initAll();
-  }
-})();
 
 applyLocalizedTexts();
 updateResetButtonVisibility();
-scheduleStickyXUpdate();
 </script>
 
 <script src="../shared/copy-plain.js"></script>
