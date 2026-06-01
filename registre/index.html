@@ -71,6 +71,54 @@
     .registry-json-view { width: 100%; min-height: 260px; resize: vertical; border-radius: var(--radius-md); border: 1px solid var(--control-border); background: var(--control-bg); color: var(--control-text); padding: 12px; font: 0.9rem/1.45 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; white-space: pre; overflow: auto; }
     .registry-modal-actions { display: flex; gap: 8px; justify-content: flex-end; flex-wrap: wrap; }
     .registry-copy-icon-btn { width: 46px; min-height: 46px; padding: 0; justify-content: center; }
+    .start-discussion-button {
+      margin-top: 16px;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 999px;
+      background: #000;
+      color: #fff;
+      font: inherit;
+      cursor: pointer;
+    }
+    .giscus-modal[hidden] {
+      display: none;
+    }
+    .giscus-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+    }
+    .giscus-modal__overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(8px);
+    }
+    .giscus-modal__window {
+      position: relative;
+      max-width: 760px;
+      max-height: 86vh;
+      overflow: auto;
+      margin: 7vh auto;
+      padding: 24px;
+      border-radius: 28px;
+      background: var(--card-bg, #fff);
+      color: var(--text, #111);
+    }
+    .giscus-modal__close {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      width: 36px;
+      height: 36px;
+      border: none;
+      border-radius: 999px;
+      background: #000;
+      color: #fff;
+      font-size: 24px;
+      cursor: pointer;
+    }
     .registry-toast { position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%) translateY(18px); z-index: var(--z-toast); opacity: 0; pointer-events: none; border-radius: var(--radius-pill); background: var(--button-primary-bg); color: var(--button-primary-text); padding: 10px 14px; font-weight: 800; transition: opacity .18s ease, transform .18s ease; }
     .registry-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
     @media (max-width: 900px) { .field--search, .field--type, .field--pos, .field--group, .field--author, .field--pi, .field--sort, .field--reset { grid-column: 1 / -1; } .card-grid { grid-template-columns: 1fr; } }
@@ -250,7 +298,7 @@
       }
       function row(label, value) { const wrap = document.createElement('div'); wrap.className = 'card-row'; const l = document.createElement('span'); l.className = 'card-label'; l.textContent = label; const v = document.createElement('span'); v.className = 'card-value'; v.textContent = value || t('noValue'); wrap.append(l, v); return wrap; }
       function renderCard(card) {
-        const article = document.createElement('article'); article.className = 'registry-card';
+        const article = document.createElement('article'); article.className = 'registry-card registre-card';
         const head = document.createElement('div'); head.className = 'card-head';
         const titleWrap = document.createElement('div'); const title = document.createElement('h2'); title.className = 'card-word'; title.textContent = card.word || t('noValue'); const ipa = document.createElement('div'); ipa.className = 'card-ipa'; ipa.textContent = card.ipa ? `/${card.ipa}/` : t('noValue'); titleWrap.append(title, ipa);
         const tags = document.createElement('div'); tags.className = 'card-tags'; [typeLabel(card), posLabel(card.part_of_speech), typeof card.pi_percent === 'number' ? `PI ${formatNumber(card.pi_percent)}` : ''].filter(Boolean).forEach((item) => { const tag = document.createElement('span'); tag.className = 'card-tag'; tag.textContent = item; tags.append(tag); });
@@ -315,5 +363,137 @@
       loadRegistry();
     })();
   </script>
+
+  <div id="giscus-modal" class="giscus-modal" hidden>
+    <div class="giscus-modal__overlay" data-giscus-close></div>
+
+    <div class="giscus-modal__window">
+      <button class="giscus-modal__close" type="button" data-giscus-close>
+        ×
+      </button>
+
+      <h2 id="giscus-modal-title">Обсуждение</h2>
+
+      <div id="giscus-container"></div>
+    </div>
+  </div>
+
+  <script>
+    const GISCUS_CONFIG = {
+      repo: "landquart/interal",
+      repoId: "R_kgDOR_zU5g",
+      category: "Announcements",
+      categoryId: "DIC_kwDOR_zU5s4C-Th7"
+    };
+
+    const modal = document.getElementById("giscus-modal");
+    const modalTitle = document.getElementById("giscus-modal-title");
+    const giscusContainer = document.getElementById("giscus-container");
+
+    function makeSlug(text) {
+      return text
+        .toLowerCase()
+        .trim()
+        .replace(/[^\p{L}\p{N}]+/gu, "-")
+        .replace(/^-+|-+$/g, "");
+    }
+
+    function getCardTitle(card) {
+      return card.querySelector("h1, h2, h3, .card-title, .registre-title")?.textContent.trim() || "card";
+    }
+
+    function getCardTerm(card) {
+      if (card.dataset.giscusTerm) {
+        return card.dataset.giscusTerm;
+      }
+
+      const title = getCardTitle(card);
+      return "registre:" + makeSlug(title);
+    }
+
+    function addDiscussionButtons() {
+      document.querySelectorAll(".registre-card").forEach((card) => {
+        if (card.querySelector(".start-discussion-button")) {
+          return;
+        }
+
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "start-discussion-button";
+        button.textContent = "Начать обсуждение";
+
+        card.appendChild(button);
+      });
+    }
+
+    function loadGiscus(term) {
+      giscusContainer.innerHTML = "";
+
+      const script = document.createElement("script");
+
+      script.src = "https://giscus.app/client.js";
+      script.setAttribute("data-repo", GISCUS_CONFIG.repo);
+      script.setAttribute("data-repo-id", GISCUS_CONFIG.repoId);
+      script.setAttribute("data-category", GISCUS_CONFIG.category);
+      script.setAttribute("data-category-id", GISCUS_CONFIG.categoryId);
+      script.setAttribute("data-mapping", "specific");
+      script.setAttribute("data-term", term);
+      script.setAttribute("data-strict", "1");
+      script.setAttribute("data-reactions-enabled", "1");
+      script.setAttribute("data-emit-metadata", "0");
+      script.setAttribute("data-input-position", "top");
+      script.setAttribute("data-theme", "preferred_color_scheme");
+      script.setAttribute("data-lang", "ru");
+      script.setAttribute("crossorigin", "anonymous");
+      script.async = true;
+
+      giscusContainer.appendChild(script);
+    }
+
+    function openDiscussion(card) {
+      const title = getCardTitle(card);
+      const term = getCardTerm(card);
+
+      modalTitle.textContent = "Обсуждение: " + title;
+      modal.hidden = false;
+
+      loadGiscus(term);
+    }
+
+    function closeDiscussion() {
+      modal.hidden = true;
+      giscusContainer.innerHTML = "";
+    }
+
+    document.addEventListener("click", (event) => {
+      const button = event.target.closest(".start-discussion-button");
+
+      if (button) {
+        const card = button.closest(".registre-card");
+        if (card) {
+          openDiscussion(card);
+        }
+      }
+
+      if (event.target.closest("[data-giscus-close]")) {
+        closeDiscussion();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeDiscussion();
+      }
+    });
+
+    addDiscussionButtons();
+
+    const observer = new MutationObserver(addDiscussionButtons);
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+  </script>
+
 </body>
 </html>
