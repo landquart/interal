@@ -73,6 +73,58 @@
     .registry-copy-icon-btn { width: 46px; min-height: 46px; padding: 0; justify-content: center; }
     .registry-toast { position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%) translateY(18px); z-index: var(--z-toast); opacity: 0; pointer-events: none; border-radius: var(--radius-pill); background: var(--button-primary-bg); color: var(--button-primary-text); padding: 10px 14px; font-weight: 800; transition: opacity .18s ease, transform .18s ease; }
     .registry-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    .giscus-modal {
+      position: fixed;
+      inset: 0;
+      z-index: var(--z-page-modal);
+      display: none;
+      place-items: center;
+      padding: 18px;
+    }
+
+    .giscus-modal.is-open {
+      display: grid;
+    }
+
+    .giscus-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, .52);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .giscus-modal-card {
+      position: relative;
+      z-index: 1;
+      width: min(900px, 100%);
+      max-height: min(82vh, 760px);
+      overflow: auto;
+      padding: 16px;
+      display: grid;
+      gap: 12px;
+      background: var(--surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .giscus-modal-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .giscus-modal-title {
+      margin: 0;
+      font-size: 1.25rem;
+      color: var(--text);
+    }
+
+    .giscus-container {
+      min-height: 260px;
+    }
     @media (max-width: 900px) { .field--search, .field--type, .field--pos, .field--group, .field--author, .field--pi, .field--sort, .field--reset { grid-column: 1 / -1; } .card-grid { grid-template-columns: 1fr; } }
     @media (max-width: 560px) { body.has-global-menu { padding-top: 84px; } .registry-page { width: min(100% - 20px, 1180px); padding-top: 10px; } .registry-panel, .registry-card { border-radius: 22px; } .card-actions .registry-btn { width: 100%; } }
   </style>
@@ -141,6 +193,19 @@
       </div>
     </div>
   </div>
+  <div class="giscus-modal" id="giscus-modal" aria-hidden="true">
+    <div class="giscus-backdrop" data-giscus-close="true"></div>
+
+    <div class="giscus-modal-card" role="dialog" aria-modal="true" aria-labelledby="giscus-modal-title">
+      <div class="giscus-modal-head">
+        <h2 class="giscus-modal-title" id="giscus-modal-title">Обсуждение</h2>
+        <button class="registry-btn" type="button" id="giscus-modal-x" aria-label="Закрыть">×</button>
+      </div>
+
+      <div class="giscus-container" id="giscus-container"></div>
+    </div>
+  </div>
+
   <div class="registry-toast" id="registry-toast" role="status" aria-live="polite"></div>
 
   <script src="../shared/copy-plain.js"></script>
@@ -157,7 +222,7 @@
           found: (shown, total) => `Найдено карточек: ${shown} из ${total}`, nothingFound: 'Ничего не найдено.', emptyRegistry: 'В реестре пока нет карточек.',
           loadError: 'Не удалось загрузить registry.json. Реестр пока недоступен или файл не найден.', invalidRegistry: 'registry.json имеет неверный формат.',
           word: 'Слово', ipa: 'IPA', type: 'Тип слова', partOfSpeech: 'Часть речи', translation: 'Перевод', authorContact: 'Контакт автора', pi: 'PI', groups: 'Языковые группы', author: 'Автор', createdAt: 'Создано', acceptedAt: 'Принято', id: 'ID',
-          noValue: '—', openJson: 'Открыть JSON', copyId: 'Скопировать ID', copyJson: 'Скопировать JSON', fullJsonTitle: 'Полная JSON-карточка', close: 'Закрыть', jsonCopied: 'JSON скопирован', jsonCopyFailed: 'Не удалось скопировать JSON', idCopied: 'ID скопирован', idCopyFailed: 'Не удалось скопировать ID', jsonLoadFailed: 'Не удалось загрузить полную JSON-карточку.'
+          noValue: '—', openJson: 'Открыть JSON', copyId: 'Скопировать ID', copyJson: 'Скопировать JSON', startDiscussion: 'Начать обсуждение', discussionTitle: 'Обсуждение', fullJsonTitle: 'Полная JSON-карточка', close: 'Закрыть', jsonCopied: 'JSON скопирован', jsonCopyFailed: 'Не удалось скопировать JSON', idCopied: 'ID скопирован', idCopyFailed: 'Не удалось скопировать ID', jsonLoadFailed: 'Не удалось загрузить полную JSON-карточку.'
         },
         en: {
           title: 'Registre of vordesen cartes', filtersAria: 'Registry filters',
@@ -168,7 +233,7 @@
           found: (shown, total) => `Cards found: ${shown} of ${total}`, nothingFound: 'Nothing found.', emptyRegistry: 'There are no cards in the registry yet.',
           loadError: 'Could not load registry.json. The registry is unavailable or the file was not found.', invalidRegistry: 'registry.json has an invalid format.',
           word: 'Word', ipa: 'IPA', type: 'Word type', partOfSpeech: 'Part of speech', translation: 'Translation', authorContact: 'Author contact', pi: 'PI', groups: 'Groups', author: 'Author', createdAt: 'Created at', acceptedAt: 'Accepted at', id: 'ID',
-          noValue: '—', openJson: 'Open JSON', copyId: 'Copy ID', copyJson: 'Copy JSON', fullJsonTitle: 'Full JSON card', close: 'Close', jsonCopied: 'JSON copied', jsonCopyFailed: 'Could not copy JSON', idCopied: 'ID copied', idCopyFailed: 'Could not copy ID', jsonLoadFailed: 'Could not load the full JSON card.'
+          noValue: '—', openJson: 'Open JSON', copyId: 'Copy ID', copyJson: 'Copy JSON', startDiscussion: 'Start discussion', discussionTitle: 'Discussion', fullJsonTitle: 'Full JSON card', close: 'Close', jsonCopied: 'JSON copied', jsonCopyFailed: 'Could not copy JSON', idCopied: 'ID copied', idCopyFailed: 'Could not copy ID', jsonLoadFailed: 'Could not load the full JSON card.'
         }
       };
       const TYPE_LABELS = { iv: 'indoeropan vordes', av: 'associativ vordes', in: 'internationalismes', vc: 'vordes of communités', gv: 'grammatic vordes' };
@@ -184,9 +249,36 @@
         en: { Germanic: 'Germanic', Romance: 'Romance', Slavic: 'Slavic', Hellenic: 'Hellenic' }
       };
       const SORTS = [['word', 'sortWord'], ['accepted', 'sortAccepted'], ['created', 'sortCreated'], ['pi', 'sortPi']];
-      const state = { lang: localStorage.getItem('interal.lang') === 'en' ? 'en' : 'ru', registry: null, cards: [], fullJsonCache: new Map(), lastFocused: null, messageKey: '' };
+      const state = {
+        lang: localStorage.getItem('interal.lang') === 'en' ? 'en' : 'ru',
+        registry: null,
+        cards: [],
+        fullJsonCache: new Map(),
+        lastFocused: null,
+        lastDiscussionFocused: null,
+        messageKey: ''
+      };
       const els = {
-        search: document.getElementById('registry-search'), type: document.getElementById('registry-type'), pos: document.getElementById('registry-pos'), group: document.getElementById('registry-group'), author: document.getElementById('registry-author'), minPi: document.getElementById('registry-min-pi'), sort: document.getElementById('registry-sort'), reset: document.getElementById('registry-reset'), summary: document.getElementById('registry-summary'), message: document.getElementById('registry-message'), list: document.getElementById('registry-list'), modal: document.getElementById('json-modal'), jsonView: document.getElementById('json-view'), modalCopy: document.getElementById('modal-copy-json'), modalX: document.getElementById('json-modal-x'), toast: document.getElementById('registry-toast')
+        search: document.getElementById('registry-search'),
+        type: document.getElementById('registry-type'),
+        pos: document.getElementById('registry-pos'),
+        group: document.getElementById('registry-group'),
+        author: document.getElementById('registry-author'),
+        minPi: document.getElementById('registry-min-pi'),
+        sort: document.getElementById('registry-sort'),
+        reset: document.getElementById('registry-reset'),
+        summary: document.getElementById('registry-summary'),
+        message: document.getElementById('registry-message'),
+        list: document.getElementById('registry-list'),
+        modal: document.getElementById('json-modal'),
+        jsonView: document.getElementById('json-view'),
+        modalCopy: document.getElementById('modal-copy-json'),
+        modalX: document.getElementById('json-modal-x'),
+        giscusModal: document.getElementById('giscus-modal'),
+        giscusTitle: document.getElementById('giscus-modal-title'),
+        giscusContainer: document.getElementById('giscus-container'),
+        giscusX: document.getElementById('giscus-modal-x'),
+        toast: document.getElementById('registry-toast')
       };
       function t(key) { return TEXT_I18N[state.lang][key] || TEXT_I18N.ru[key] || key; }
       function normalize(value) { return String(value || '').toLowerCase().replace(/ё/g, 'е').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, ' ').trim(); }
@@ -249,6 +341,68 @@
         });
       }
       function row(label, value) { const wrap = document.createElement('div'); wrap.className = 'card-row'; const l = document.createElement('span'); l.className = 'card-label'; l.textContent = label; const v = document.createElement('span'); v.className = 'card-value'; v.textContent = value || t('noValue'); wrap.append(l, v); return wrap; }
+
+      function slugify(value) {
+        return String(value || '')
+          .toLowerCase()
+          .trim()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .replace(/[^\p{L}\p{N}]+/gu, '-')
+          .replace(/^-+|-+$/g, '');
+      }
+
+      function discussionTerm(card) {
+        if (card.id) return card.id;
+        return `registre-${slugify(card.word || 'card')}`;
+      }
+
+      function loadGiscus(card) {
+        els.giscusContainer.replaceChildren();
+
+        const script = document.createElement('script');
+
+        script.src = 'https://giscus.app/client.js';
+        script.setAttribute('data-repo', 'landquart/interal');
+        script.setAttribute('data-repo-id', 'R_kgDOR_zU5g');
+        script.setAttribute('data-category', 'Announcements');
+        script.setAttribute('data-category-id', 'DIC_kwDOR_zU5s4C-Th7');
+        script.setAttribute('data-mapping', 'specific');
+        script.setAttribute('data-term', discussionTerm(card));
+        script.setAttribute('data-strict', '1');
+        script.setAttribute('data-reactions-enabled', '1');
+        script.setAttribute('data-emit-metadata', '0');
+        script.setAttribute('data-input-position', 'top');
+        script.setAttribute('data-theme', 'preferred_color_scheme');
+        script.setAttribute('data-lang', state.lang);
+        script.setAttribute('crossorigin', 'anonymous');
+        script.async = true;
+
+        els.giscusContainer.appendChild(script);
+      }
+
+      function openDiscussion(card, trigger) {
+        state.lastDiscussionFocused = trigger || document.activeElement;
+
+        const word = card.word || card.id || t('noValue');
+        els.giscusTitle.textContent = `${t('discussionTitle')}: ${word}`;
+
+        els.giscusModal.classList.add('is-open');
+        els.giscusModal.setAttribute('aria-hidden', 'false');
+
+        loadGiscus(card);
+        els.giscusX.focus();
+      }
+
+      function closeDiscussion() {
+        els.giscusModal.classList.remove('is-open');
+        els.giscusModal.setAttribute('aria-hidden', 'true');
+        els.giscusContainer.replaceChildren();
+
+        if (state.lastDiscussionFocused) {
+          state.lastDiscussionFocused.focus();
+        }
+      }
       function renderCard(card) {
         const article = document.createElement('article'); article.className = 'registry-card';
         const head = document.createElement('div'); head.className = 'card-head';
@@ -257,10 +411,31 @@
         head.append(titleWrap, tags);
         const grid = document.createElement('div'); grid.className = 'card-grid';
         grid.append(row(t('type'), typeLabel(card)), row(t('partOfSpeech'), posLabel(card.part_of_speech)), row(t('translation'), translationForSiteLanguage(card)), row(t('pi'), formatNumber(card.pi_percent)), row(t('groups'), groupListLabel(card.supported_groups)), row(t('author'), card.author), row(t('authorContact'), card.author_contact_url ? `${card.author_contact_type} — ${card.author_contact_url}` : ''), row(t('createdAt'), formatDate(card.created_at)), row(t('acceptedAt'), formatDate(card.accepted_at)), row(t('id'), card.id));
-        const actions = document.createElement('div'); actions.className = 'card-actions';
-        const open = document.createElement('button'); open.type = 'button'; open.className = 'registry-btn registry-btn--primary'; open.textContent = t('openJson'); open.addEventListener('click', () => openJson(card, open));
-        const copyId = document.createElement('button'); copyId.type = 'button'; copyId.className = 'registry-btn'; copyId.textContent = t('copyId'); copyId.addEventListener('click', () => copyText(card.id || '', t('idCopied'), t('idCopyFailed')));
-        actions.append(open, copyId); article.append(head, grid, actions); return article;
+        const actions = document.createElement('div');
+        actions.className = 'card-actions';
+
+        const open = document.createElement('button');
+        open.type = 'button';
+        open.className = 'registry-btn registry-btn--primary';
+        open.textContent = t('openJson');
+        open.addEventListener('click', () => openJson(card, open));
+
+        const copyId = document.createElement('button');
+        copyId.type = 'button';
+        copyId.className = 'registry-btn';
+        copyId.textContent = t('copyId');
+        copyId.addEventListener('click', () => copyText(card.id || '', t('idCopied'), t('idCopyFailed')));
+
+        const discussion = document.createElement('button');
+        discussion.type = 'button';
+        discussion.className = 'registry-btn';
+        discussion.textContent = t('startDiscussion');
+        discussion.addEventListener('click', () => openDiscussion(card, discussion));
+
+        actions.append(open, copyId, discussion);
+        article.append(head, grid, actions);
+
+        return article;
       }
       function render() {
         updateStaticI18n();
@@ -308,10 +483,40 @@
       }
       [els.search, els.type, els.pos, els.group, els.author, els.minPi, els.sort].forEach((el) => { el.addEventListener('input', render); el.addEventListener('change', render); });
       els.reset.addEventListener('click', () => { els.search.value = ''; els.type.value = ''; els.pos.value = ''; els.group.value = ''; els.author.value = ''; els.minPi.value = ''; els.sort.value = 'word'; render(); });
-      els.modalX.addEventListener('click', closeModal); els.modal.addEventListener('click', (event) => { if (event.target.dataset.modalClose === 'true') closeModal(); });
-      els.modalCopy.addEventListener('click', async () => { if (await copyText(els.jsonView.value, t('jsonCopied'), t('jsonCopyFailed'))) setCopyButtonCopied(els.modalCopy, true); });
-      document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && els.modal.classList.contains('is-open')) closeModal(); });
-      document.addEventListener('interal:languagechange', (event) => { state.lang = event.detail && event.detail.lang === 'en' ? 'en' : 'ru'; render(); });
+      els.modalX.addEventListener('click', closeModal);
+      els.modal.addEventListener('click', (event) => {
+        if (event.target.dataset.modalClose === 'true') closeModal();
+      });
+
+      els.giscusX.addEventListener('click', closeDiscussion);
+      els.giscusModal.addEventListener('click', (event) => {
+        if (event.target.dataset.giscusClose === 'true') closeDiscussion();
+      });
+
+      els.modalCopy.addEventListener('click', async () => {
+        if (await copyText(els.jsonView.value, t('jsonCopied'), t('jsonCopyFailed'))) {
+          setCopyButtonCopied(els.modalCopy, true);
+        }
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key !== 'Escape') return;
+
+        if (els.giscusModal.classList.contains('is-open')) {
+          closeDiscussion();
+          return;
+        }
+
+        if (els.modal.classList.contains('is-open')) {
+          closeModal();
+        }
+      });
+
+      document.addEventListener('interal:languagechange', (event) => {
+        state.lang = event.detail && event.detail.lang === 'en' ? 'en' : 'ru';
+        render();
+      });
+
       loadRegistry();
     })();
   </script>
