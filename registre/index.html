@@ -126,14 +126,6 @@
       min-height: 260px;
     }
 
-    .giscus-metadata-cache {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      overflow: hidden;
-      clip-path: inset(50%);
-      white-space: nowrap;
-    }
     @media (max-width: 900px) { .field--search, .field--type, .field--pos, .field--group, .field--author, .field--pi, .field--sort, .field--reset { grid-column: 1 / -1; } .card-grid { grid-template-columns: 1fr; } }
     @media (max-width: 560px) { body.has-global-menu { padding-top: 84px; } .registry-page { width: min(100% - 20px, 1180px); padding-top: 10px; } .registry-panel, .registry-card { border-radius: 22px; } .card-actions .registry-btn { width: 100%; } }
   </style>
@@ -265,9 +257,6 @@
         fullJsonCache: new Map(),
         lastFocused: null,
         lastDiscussionFocused: null,
-        commentCounts: new Map(),
-        currentDiscussionTerm: '',
-        metadataTerms: new Set(),
         messageKey: ''
       };
       const els = {
@@ -381,7 +370,7 @@
         script.setAttribute('data-term', discussionTerm(card));
         script.setAttribute('data-strict', '1');
         script.setAttribute('data-reactions-enabled', '1');
-        script.setAttribute('data-emit-metadata', '1');
+        script.setAttribute('data-emit-metadata', '0');
         script.setAttribute('data-input-position', 'top');
         script.setAttribute('data-theme', 'preferred_color_scheme');
         script.setAttribute('data-lang', state.lang);
@@ -396,63 +385,8 @@
         els.giscusContainer.appendChild(createGiscusScript(card));
       }
 
-      function discussionButtonText(card) {
-        const count = state.commentCounts.get(discussionTerm(card));
-        return Number.isFinite(count) && count > 0 ? t('viewComments')(count) : t('startDiscussion');
-      }
-
-      function updateDiscussionButtons(term) {
-        document.querySelectorAll('[data-discussion-term]').forEach((button) => {
-          if (button.dataset.discussionTerm !== term) return;
-          const count = state.commentCounts.get(term);
-          button.textContent = Number.isFinite(count) && count > 0 ? t('viewComments')(count) : t('startDiscussion');
-        });
-      }
-
-      function termForGiscusSource(source) {
-        if (!source) return '';
-        if (state.currentDiscussionTerm) {
-          const modalFrame = els.giscusContainer.querySelector('iframe');
-          if (modalFrame && modalFrame.contentWindow === source) return state.currentDiscussionTerm;
-        }
-
-        const frames = document.querySelectorAll('[data-giscus-metadata-term] iframe');
-        for (const frame of frames) {
-          if (frame.contentWindow === source) return frame.parentElement.dataset.giscusMetadataTerm || '';
-        }
-
-        return '';
-      }
-
-      function handleGiscusMetadata(event) {
-        if (event.origin !== 'https://giscus.app') return;
-        const discussion = event.data && event.data.giscus && event.data.giscus.discussion;
-        if (!discussion || typeof discussion.totalCommentCount !== 'number') return;
-
-        const term = termForGiscusSource(event.source) || (discussion.title ? String(discussion.title) : '');
-        if (!term) return;
-
-        state.commentCounts.set(term, discussion.totalCommentCount);
-        updateDiscussionButtons(term);
-      }
-
-      function ensureCommentMetadata(card) {
-        const term = discussionTerm(card);
-        if (state.metadataTerms.has(term)) return;
-        state.metadataTerms.add(term);
-
-        const container = document.createElement('div');
-        container.className = 'giscus-metadata-cache';
-        container.dataset.giscusMetadataTerm = term;
-        container.setAttribute('aria-hidden', 'true');
-        container.appendChild(createGiscusScript(card));
-        document.body.appendChild(container);
-      }
-
       function openDiscussion(card, trigger) {
         state.lastDiscussionFocused = trigger || document.activeElement;
-        state.currentDiscussionTerm = discussionTerm(card);
-
         const word = card.word || card.id || t('noValue');
         els.giscusTitle.textContent = `${t('discussionTitle')}: ${word}`;
 
@@ -467,8 +401,6 @@
         els.giscusModal.classList.remove('is-open');
         els.giscusModal.setAttribute('aria-hidden', 'true');
         els.giscusContainer.replaceChildren();
-        state.currentDiscussionTerm = '';
-
         if (state.lastDiscussionFocused) {
           state.lastDiscussionFocused.focus();
         }
@@ -500,13 +432,11 @@
         discussion.type = 'button';
         discussion.className = 'registry-btn';
         discussion.dataset.discussionTerm = discussionTerm(card);
-        discussion.textContent = discussionButtonText(card);
+        discussion.textContent = t('startDiscussion');
         discussion.addEventListener('click', () => openDiscussion(card, discussion));
 
         actions.append(open, copyId, discussion);
         article.append(head, grid, actions);
-        ensureCommentMetadata(card);
-
         return article;
       }
       function render() {
@@ -561,8 +491,6 @@
       });
 
       els.giscusX.addEventListener('click', closeDiscussion);
-      window.addEventListener('message', handleGiscusMetadata);
-
       els.giscusModal.addEventListener('click', (event) => {
         if (event.target.dataset.giscusClose === 'true') closeDiscussion();
       });
