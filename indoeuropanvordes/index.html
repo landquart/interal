@@ -1296,6 +1296,16 @@ function makePhoneticBlock(row) {
   return phonetic;
 }
 
+const JSON_CARD_WRAPPER_LIMIT = 4096;
+const JSON_CARD_START_MARKER = "/card";
+const JSON_CARD_END_MARKER = "/done";
+
+function formatGeneratedJsonCard(card) {
+  const json = JSON.stringify(card, null, 2);
+  if (json.length <= JSON_CARD_WRAPPER_LIMIT) return json;
+  return `${JSON_CARD_START_MARKER}\n${json}\n${JSON_CARD_END_MARKER}`;
+}
+
 function makeIndoeuropanCard(payload, timeMeta, author = null) {
   const partOfSpeech = payload.matchedPieItem?.part_of_speech || "";
   const translationLanguage = payload.lookupLang || "";
@@ -2736,7 +2746,7 @@ generateJsonCardBtn.addEventListener("click", async () => {
     const author = getAuthorBlock();
     const timeMeta = await getCreatedAt();
     const card = makeIndoeuropanCard(lastCalculationPayload, timeMeta, author);
-    jsonCardOutput.value = JSON.stringify(card, null, 2);
+    jsonCardOutput.value = formatGeneratedJsonCard(card);
   } catch (error) {
     alert(error.message || String(error));
   } finally {
