@@ -13,6 +13,20 @@ const ZONES = [
   { id: 'lexicalization', ru: 'Лексикализованность', en: 'Lexicalization', range: { P: [0, 0], R: [0, 1], C: [5, 5], E: null } }
 ];
 
+function setCors(req, res) {
+  const origin = req.headers.origin || '';
+  const allowed = origin === 'https://landquart.github.io'
+    || origin === 'http://localhost:3000'
+    || origin === 'http://localhost:5173'
+    || /^https:\/\/[-a-z0-9]+\.vercel\.app$/i.test(origin);
+
+  if (allowed) res.setHeader('Access-Control-Allow-Origin', origin);
+  res.setHeader('Vary', 'Origin');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Max-Age', '86400');
+}
+
 function sendJson(res, status, payload) {
   res.statusCode = status;
   res.setHeader('Content-Type', 'application/json; charset=utf-8');
@@ -33,6 +47,13 @@ async function readRawBody(req) {
     chunks.push(buffer);
   }
   return Buffer.concat(chunks).toString('utf8');
+}
+
+async function getRequestBody(req) {
+  if (req.body && typeof req.body === 'object') return req.body;
+  if (typeof req.body === 'string') return JSON.parse(req.body || '{}');
+  const raw = await readRawBody(req);
+  return raw ? JSON.parse(raw) : {};
 }
 
 function clampScore(value, min, max) {
@@ -103,17 +124,23 @@ function getBorderlineZones(scores) {
 }
 
 function classifyByPRECE(scores) {
-  const exact = ZONES.find((zone) => distanceToZone(scores, zone) === 0);
-  const distances = ZONES.map((zone) => ({ zone, distance: distanceToZone(scores, zone) })).sort((a, b) => a.distance - b.distance);
+  const normalizedScores = {
+    P: clampScore(scores.P, 0, 4),
+    R: clampScore(scores.R, 0, 4),
+    C: clampScore(scores.C, 0, 5),
+    E: scores.E === null ? null : clampScore(scores.E, 0, 4)
+  };
+  const exact = ZONES.find((zone) => distanceToZone(normalizedScores, zone) === 0);
+  const distances = ZONES.map((zone) => ({ zone, distance: distanceToZone(normalizedScores, zone) })).sort((a, b) => a.distance - b.distance);
   const selected = exact || distances[0].zone;
   const selectedDistance = exact ? 0 : distances[0].distance;
-  const borderline_zones = getBorderlineZones(scores).filter((item) => item.zone_id !== selected.id);
+  const borderline_zones = getBorderlineZones(normalizedScores).filter((item) => item.zone_id !== selected.id);
   const confidence = selectedDistance === 0 && borderline_zones.length === 0 ? 'high' : selectedDistance <= 1 ? 'medium' : 'low';
   return {
     zone_id: selected.id,
     zone_ru: selected.ru,
     zone_en: selected.en,
-    scores: { P: scores.P, R: scores.R, C: scores.C, E: scores.E },
+    scores: normalizedScores,
     confidence,
     borderline_zones,
     warnings: []
@@ -149,7 +176,12 @@ function buildFormRecommendation(zone, input) {
 }
 
 function normalizeText(value) {
-  return String(value || '').toLowerCase().replaceAll('ё', 'е').replace(/[\p{P}\p{S}]+/gu, ' ').replace(/\s+/g, ' ').trim();
+  return String(value || '')
+    .toLowerCase()
+    .replaceAll('ё', 'е')
+    .replace(/[\p{P}\p{S}]+/gu, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
 }
 
 function tokenize(value) {
@@ -178,12 +210,17 @@ function getExampleForms(example) {
   return forms.filter(Boolean).join(' ');
 }
 
+function getExampleChain(example) {
+  const chain = example.chain || example.draft_explanatory_chain_ru || [];
+  return Array.isArray(chain) ? chain.join(' ') : String(chain || '');
+}
+
 function scoreExampleSimilarity(input, example) {
   const forms = getExampleForms(example);
   const logical = (example.logical_entries || []).map((entry) => entry.meaning_ru || entry.meaning || '').join(' ');
   const international = (example.international_entries || []).map((entry) => entry.meaning_ru || entry.meaning || '').join(' ');
   const components = (input.components || []).map((item) => `${item.form || ''} ${item.meaning || ''}`).join(' ');
-  const exampleChain = [example.chain_type, ...(example.chain || [])].join(' ');
+  const exampleChain = `${example.chain_type || ''} ${getExampleChain(example)}`;
 
   let score = 0;
   score += 4 * tokenOverlapScore(`${input.regularWord} ${input.naturalisticWord}`, forms);
@@ -264,15 +301,17 @@ function parseExamplesFromPython(text) {
     }
     const args = splitTopLevelArgs(text.slice(start + 3, i));
     if (args.length >= 7) {
+      const zoneId = safeParsePythonString(args[2]);
       examples.push({
+        id: safeParsePythonString(args[0]),
         word: safeParsePythonString(args[0]),
         number: safeParsePythonString(args[1]),
-        zone_id: safeParsePythonString(args[2]),
+        zone_id: zoneId,
         logical_entries: parseEntries(args[3]),
         international_entries: parseEntries(args[4]),
         chain: parseStringList(args[5]),
         chain_type: safeParsePythonString(args[6]),
-        scores: (ZONES.find((zone) => zone.id === safeParsePythonString(args[2])) || {}).range || null
+        scores: null
       });
     }
     index = i + 1;
@@ -297,11 +336,12 @@ function pickExamples(input, examples) {
     .sort((a, b) => b.similarity_score - a.similarity_score)
     .slice(0, 8)
     .map((example) => ({
-      word: example.word,
+      word: example.word || example.id,
+      id: example.id || example.word,
       zone_id: example.zone_id,
       logical_entries: example.logical_entries,
       international_entries: example.international_entries,
-      chain: example.chain,
+      chain: example.chain || example.draft_explanatory_chain_ru || [],
       chain_type: example.chain_type,
       similarity_score: Number(example.similarity_score.toFixed(3))
     }));
@@ -313,6 +353,15 @@ function buildPrompt(input, examplesUsed) {
   return { system, user };
 }
 
+function getAiText(responseJson, fallbackText) {
+  const message = responseJson?.choices?.[0]?.message?.content;
+  if (typeof message === 'string') return message;
+  if (Array.isArray(message)) {
+    return message.map((part) => part?.text || part?.content || '').join('\n').trim();
+  }
+  return fallbackText;
+}
+
 async function callYandex(modelUri, apiKey, messages, withResponseFormat = true) {
   const body = {
     model: modelUri,
@@ -321,6 +370,7 @@ async function callYandex(modelUri, apiKey, messages, withResponseFormat = true)
     max_tokens: 800
   };
   if (withResponseFormat) body.response_format = { type: 'json_object' };
+
   const response = await fetch('https://ai.api.cloud.yandex.net/v1/chat/completions', {
     method: 'POST',
     headers: {
@@ -329,6 +379,7 @@ async function callYandex(modelUri, apiKey, messages, withResponseFormat = true)
     },
     body: JSON.stringify(body)
   });
+
   const text = await response.text();
   if (!response.ok) {
     const error = new Error(`Yandex AI Studio error: ${response.status} ${response.statusText}`);
@@ -340,13 +391,18 @@ async function callYandex(modelUri, apiKey, messages, withResponseFormat = true)
 }
 
 module.exports = async function handler(req, res) {
+  setCors(req, res);
+  if (req.method === 'OPTIONS') {
+    res.statusCode = 204;
+    return res.end();
+  }
+
   try {
     if (req.method !== 'POST') return sendJson(res, 405, { ok: false, error: 'Method not allowed', details: 'Use POST.' });
     if (!process.env.Qwen3_6_35B_Yandex) return sendJson(res, 500, { ok: false, error: 'Missing Yandex API key', details: 'Set Qwen3_6_35B_Yandex in Vercel Environment Variables.' });
     if (!process.env.yandex_folder_Qwen3_6_35B) return sendJson(res, 500, { ok: false, error: 'Missing Yandex folder id', details: 'Set yandex_folder_Qwen3_6_35B in Vercel Environment Variables.' });
 
-    const rawBody = req.body && typeof req.body === 'object' ? JSON.stringify(req.body) : await readRawBody(req);
-    const input = typeof req.body === 'object' && req.body ? req.body : JSON.parse(rawBody || '{}');
+    const input = await getRequestBody(req);
     const safeInput = {
       regularWord: String(input.regularWord || '').slice(0, 300),
       naturalisticWord: String(input.naturalisticWord || '').slice(0, 300),
@@ -375,10 +431,9 @@ module.exports = async function handler(req, res) {
     }
 
     const responseJson = JSON.parse(responseText);
-    const aiText = responseJson?.choices?.[0]?.message?.content || responseText;
+    const aiText = getAiText(responseJson, responseText);
     const ai = normalizeAiResult(extractJsonFromText(aiText));
-    const scores = { P: ai.P, R: ai.R, C: ai.C, E: ai.E };
-    const computed = classifyByPRECE(scores);
+    const computed = classifyByPRECE({ P: ai.P, R: ai.R, C: ai.C, E: ai.E });
     const result = { ok: true, model: modelUri, ai, computed, retrieval: { examples_used: examplesUsed } };
     computed.warnings = shouldWarn(result);
     computed.formRecommendation = buildFormRecommendation(computed, safeInput);
@@ -389,4 +444,16 @@ module.exports = async function handler(req, res) {
   }
 };
 
-module.exports._private = { clampScore, normalizeAiResult, extractJsonFromText, classifyByPRECE, distanceToRange, distanceToZone, getBorderlineZones, buildFormRecommendation, shouldWarn, scoreExampleSimilarity, parseExamplesFromPython };
+module.exports._private = {
+  clampScore,
+  normalizeAiResult,
+  extractJsonFromText,
+  classifyByPRECE,
+  distanceToRange,
+  distanceToZone,
+  getBorderlineZones,
+  buildFormRecommendation,
+  shouldWarn,
+  scoreExampleSimilarity,
+  parseExamplesFromPython
+};
