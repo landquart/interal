@@ -47,6 +47,11 @@
         <input id="naturalisticWord" type="text" autocomplete="off" placeholder="re/vis/ion/u" />
       </label>
 
+      <label class="field">
+        <span>6 — Объяснительная цепочка</span>
+        <textarea id="explanationChain" rows="3" placeholder="например: соль → историческая связь с оплатой → зарплата"></textarea>
+      </label>
+
       <details class="details-panel">
         <summary>Локальная нейросеть для семантической дистанции</summary>
         <label class="check-row">
@@ -199,7 +204,8 @@
             '2 — Компонентный анализ',
             '3 — Логический анализ компонентов',
             '4 — Международное значение эквивалентного деривата',
-            '5 — Слово по натуралистической модели (с разделителями)'
+            '5 — Слово по натуралистической модели (с разделителями)',
+            '6 — Объяснительная цепочка'
           ],
           noComponents: 'Компоненты не добавлены.',
           detailsSummary: 'Локальная нейросеть для семантической дистанции',
@@ -230,7 +236,7 @@
           manualResponsePlaceholder: 'Например: {"distance":0.38,"similarity":0.62,"reason":"..."}',
           manualHint: 'Если ответ предоставлен, дистанция считается как правило-ориентированная оценка + ручное эмбеддинг-сравнение (70/30).',
           addComponentAria: 'Добавить компонент',
-          placeholders: ['re/vis/ion','видение снова','ревизия','re/vis/ion/u','vid/er','видеть']
+          placeholders: ['re/vis/ion','видение снова','ревизия','re/vis/ion/u','например: соль → историческая связь с оплатой → зарплата','vid/er','видеть']
         },
         en: {
           title: 'Determinator of valen typ',
@@ -240,7 +246,8 @@
             '2 — Component analysis',
             '3 — Logical analysis of components',
             '4 — International meaning of equivalent derivative',
-            '5 — Word by naturalistic model (with separators)'
+            '5 — Word by naturalistic model (with separators)',
+            '6 — Explanatory chain'
           ],
           noComponents: 'No components added.',
           detailsSummary: 'Local neural model for semantic distance',
@@ -271,7 +278,7 @@
           manualResponsePlaceholder: 'For example: {"distance":0.38,"similarity":0.62,"reason":"..."}',
           manualHint: 'If response is provided, distance is computed as Rule-based + manual embedding (70/30).',
           addComponentAria: 'Add component',
-          placeholders: ['re/vis/ion','vision again','revision','re/vis/ion/u','vid/er','see']
+          placeholders: ['re/vis/ion','vision again','revision','re/vis/ion/u','for example: salt → historical link with payment → salary','vid/er','see']
         }
       };
       function apply(lang) {
@@ -344,6 +351,7 @@
           document.getElementById('logicalMeaning'),
           document.getElementById('internationalMeaning'),
           document.getElementById('naturalisticWord'),
+          document.getElementById('explanationChain'),
           document.getElementById('rootFormInput'),
           document.getElementById('rootMeaningInput')
         ];

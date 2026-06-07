@@ -420,6 +420,7 @@ const els = {
   logicalMeaning: document.getElementById('logicalMeaning'),
   internationalMeaning: document.getElementById('internationalMeaning'),
   naturalisticWord: document.getElementById('naturalisticWord'),
+  explanationChain: document.getElementById('explanationChain'),
   componentsList: document.getElementById('componentsList'),
   componentsSummary: document.getElementById('componentsSummary'),
   addComponentBtn: document.getElementById('addComponentBtn'),
@@ -454,7 +455,7 @@ const els = {
   backFromPrefixVariantBtn: document.getElementById('backFromPrefixVariantBtn')
 };
 
-let state = { components: [] };
+let state = { components: [], lastAnalysis: null };
 let pendingPrefixItem = null;
 let copyPromptHighlightTimer;
 
@@ -901,6 +902,140 @@ function clamp(value, min, max) {
   return Math.min(Math.max(value, min), max);
 }
 
+
+const preceZones = [
+  { id: 'full_compositionality', ru: 'Полная композиционность', en: 'Full compositionality', range: { P: [4, 4], R: [4, 4], C: [0, 0], E: [0, 0] } },
+  { id: 'partial_compositionality', ru: 'Частичная композиционность', en: 'Partial compositionality', range: { P: [3, 4], R: [4, 4], C: [1, 1], E: [0, 1] } },
+  { id: 'semantic_extension', ru: 'Семантическое расширение', en: 'Semantic extension', range: { P: [2, 3], R: [3, 4], C: [1, 2], E: [0, 2] } },
+  { id: 'transfer', ru: 'Перенос', en: 'Transfer', range: { P: [1, 2], R: [2, 4], C: [2, 3], E: [0, 2] } },
+  { id: 'semantic_conventionalization', ru: 'Семантическая конвенционализация', en: 'Semantic conventionalization', range: { P: [0, 1], R: [1, 3], C: [3, 4], E: [3, 4] } },
+  { id: 'lexicalization', ru: 'Лексикализованность', en: 'Lexicalization', range: { P: [0, 0], R: [0, 1], C: [5, 5], E: null } }
+];
+
+function clampScore(value, min, max) {
+  const n = Number(value);
+  if (!Number.isFinite(n)) return min;
+  return Math.min(Math.max(Math.round(n), min), max);
+}
+
+function extractJsonFromText(text) {
+  const source = String(text || '').trim();
+  if (!source) throw new Error('Empty response');
+  try { return JSON.parse(source); } catch (_error) {}
+  const fenced = source.match(/```(?:json)?\s*([\s\S]*?)```/i);
+  if (fenced) {
+    try { return JSON.parse(fenced[1].trim()); } catch (_error) {}
+  }
+  const first = source.indexOf('{');
+  const last = source.lastIndexOf('}');
+  if (first >= 0 && last > first) return JSON.parse(source.slice(first, last + 1));
+  throw new Error('Could not extract JSON');
+}
+
+function normalizeAiResult(raw) {
+  const data = raw && typeof raw === 'object' ? raw : {};
+  return {
+    chain: Array.isArray(data.chain) ? data.chain.map(String).filter(Boolean) : [],
+    chain_type: String(data.chain_type || 'semantic_extension'),
+    P: clampScore(data.P, 0, 4),
+    R: clampScore(data.R, 0, 4),
+    C: clampScore(data.C, 0, 5),
+    E: data.E === null ? null : clampScore(data.E, 0, 4),
+    zone_hint: String(data.zone_hint || ''),
+    confidence: clamp(Number(data.confidence) || 0.5, 0, 1),
+    explanation: String(data.explanation || ''),
+    analogies_used: Array.isArray(data.analogies_used) ? data.analogies_used.map(String).filter(Boolean) : []
+  };
+}
+
+function distanceToRange(value, range) {
+  if (range === null) return 0;
+  if (value === null || value === undefined || Number.isNaN(Number(value))) return 1;
+  if (value < range[0]) return range[0] - value;
+  if (value > range[1]) return value - range[1];
+  return 0;
+}
+
+function distanceToZone(scores, zone) {
+  return ['P', 'R', 'C', 'E'].reduce((sum, key) => sum + distanceToRange(scores[key], zone.range[key]), 0);
+}
+
+function getBorderlineZones(scores) {
+  const distances = preceZones.map((zone) => ({ zone, distance: distanceToZone(scores, zone) })).sort((a, b) => a.distance - b.distance);
+  const best = distances[0]?.distance ?? 0;
+  return distances
+    .filter((item) => item.distance > best && item.distance <= best + 1)
+    .slice(0, 3)
+    .map((item) => ({ zone_id: item.zone.id, zone_ru: item.zone.ru, zone_en: item.zone.en, distance: item.distance }));
+}
+
+function classifyByPRECE(scores) {
+  const normalizedScores = {
+    P: clampScore(scores.P, 0, 4),
+    R: clampScore(scores.R, 0, 4),
+    C: clampScore(scores.C, 0, 5),
+    E: scores.E === null ? null : clampScore(scores.E, 0, 4)
+  };
+  const exact = preceZones.find((zone) => distanceToZone(normalizedScores, zone) === 0);
+  const distances = preceZones.map((zone) => ({ zone, distance: distanceToZone(normalizedScores, zone) })).sort((a, b) => a.distance - b.distance);
+  const selected = exact || distances[0].zone;
+  const selectedDistance = exact ? 0 : distances[0].distance;
+  const borderline_zones = getBorderlineZones(normalizedScores).filter((item) => item.zone_id !== selected.id);
+  const confidence = selectedDistance === 0 && borderline_zones.length === 0 ? 'high' : selectedDistance <= 1 ? 'medium' : 'low';
+  return {
+    zone_id: selected.id,
+    zone_ru: selected.ru,
+    zone_en: selected.en,
+    scores: normalizedScores,
+    confidence,
+    borderline_zones,
+    warnings: []
+  };
+}
+
+function buildFormRecommendation(zone, input) {
+  const separate = !['full_compositionality', 'partial_compositionality'].includes(zone.zone_id);
+  const natural = input.naturalisticWord || 'натуралистическая форма';
+  const regular = input.regularWord || 'регулярная форма';
+  if (!separate) {
+    return {
+      strategy: 'regular_form_usually_enough',
+      text: `Обычно достаточно логической/регулярной формы: ${regular}. Отдельная интернациональная маркировка не обязательна.`
+    };
+  }
+  return {
+    strategy: 'separate_international_marking_recommended',
+    text: `Рекомендуется отдельная интернациональная маркировка: для существительного — -u (${natural}), для интернациональных прилагательных — -al/-ari/-ic, для логических прилагательных — -i; глаголы с интернациональным значением сохраняют консервативный корень, а логические — изменённую корневую основу, если она есть.`
+  };
+}
+
+function shouldWarn(result) {
+  const warnings = [];
+  if (!result?.ai?.chain?.length) warnings.push('Модель не вернула объяснительную цепочку. Можно выставить P/R/C/E вручную.');
+  if (result?.ai?.zone_hint && result?.computed?.zone_ru && !result.ai.zone_hint.toLowerCase().includes(result.computed.zone_ru.toLowerCase())) {
+    warnings.push('Подсказка модели по зоне отличается от расчёта P/R/C/E; итоговая зона пересчитана кодом.');
+  }
+  if (result?.ai?.chain_type === 'lexicalized_no_working_chain' && result?.computed?.zone_id !== 'lexicalization') {
+    warnings.push('Тип цепочки похож на лексикализацию, но оценки P/R/C/E попали в другую зону.');
+  }
+  return warnings;
+}
+
+function recomputeResultFromManualScores(scores) {
+  if (!state.lastAnalysis) return;
+  const computed = classifyByPRECE(scores);
+  computed.formRecommendation = buildFormRecommendation(computed, getInput());
+  const next = {
+    ...state.lastAnalysis,
+    ai: { ...state.lastAnalysis.ai, ...computed.scores },
+    computed
+  };
+  next.computed.warnings = shouldWarn(next);
+  state.lastAnalysis = next;
+  renderResult(next, getInput());
+  saveState();
+}
+
 function cosineSimilarity(vecA, vecB) {
   if (!Array.isArray(vecA) || !Array.isArray(vecB)) throw new Error('Both embeddings must be arrays');
   if (vecA.length !== vecB.length) throw new Error('Embedding vectors must have the same length');
@@ -1129,6 +1264,7 @@ function getInput() {
     logicalMeaning: els.logicalMeaning.value.trim(),
     internationalMeaning: els.internationalMeaning.value.trim(),
     naturalisticWord: els.naturalisticWord.value.trim(),
+    explanationChain: els.explanationChain ? els.explanationChain.value.trim() : '',
     components: [...state.components],
     useLLM: els.useLlm.checked,
     ollamaUrl: els.ollamaUrl ? els.ollamaUrl.value.trim() : 'http://localhost:11434',
@@ -1137,136 +1273,157 @@ function getInput() {
   };
 }
 
+
 async function analyzeByRules(input) {
-  const reasons = [];
-  let classification = 'undetermined';
-  let confidence = 'low';
-
-  if (!input.regularWord) reasons.push(t('missingRegular'));
-  if (!input.logicalMeaning) reasons.push(t('missingLogical'));
-  if (!input.internationalMeaning) reasons.push(t('missingInternational'));
-  if (!input.naturalisticWord) reasons.push(t('missingNaturalistic'));
-  if (!input.components.length) reasons.push(t('noComponents'));
-
-  const enough = input.regularWord && input.logicalMeaning && input.internationalMeaning;
-
-  if (!enough) {
-    return { classification: 'insufficient_data', confidence, reasons, distanceResult: null };
+  if (!input.logicalMeaning || !input.internationalMeaning) {
+    return {
+      ok: false,
+      error: 'insufficient_data',
+      details: 'Заполните логическое и международное значение. Ручной блок P/R/C/E доступен ниже.',
+      computed: classifyByPRECE({ P: 2, R: 3, C: 2, E: 1 }),
+      ai: normalizeAiResult({ chain: [], P: 2, R: 3, C: 2, E: 1, confidence: 0.3 }),
+      retrieval: { examples_used: [] }
+    };
   }
 
-  const distanceResult = await computeSemanticDistance(
-    input.logicalMeaning,
-    input.internationalMeaning,
-    input.useLLM,
-    {
-      baseUrl: input.ollamaUrl || 'http://localhost:11434',
-      model: input.embeddingModel || 'qwen3-embedding',
-      manualEmbeddingResponse: input.manualEmbeddingResponse || ''
-    }
-  );
+  const response = await fetch('/api/determine-valen-type', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      regularWord: input.regularWord,
+      naturalisticWord: input.naturalisticWord,
+      logicalMeaning: input.logicalMeaning,
+      internationalMeaning: input.internationalMeaning,
+      explanationChain: input.explanationChain,
+      components: input.components,
+      manualScores: null
+    })
+  });
 
-  const finalDistance = distanceResult.final.distance;
-  const sameMeaning = normalizeText(input.logicalMeaning) === normalizeText(input.internationalMeaning);
-  const isEn = currentLang() === 'en';
-
-  if (sameMeaning) {
-    classification = 'regular_only';
-    confidence = 'high';
-    reasons.push(isEn
-      ? 'Logical meaning matches international meaning. Distinction is not required.'
-      : 'Логическое значение совпадает с международным значением. Различение не требуется.');
-  } else if (input.naturalisticWord) {
-    classification = 'double_meaning_with_modification';
-    confidence = finalDistance >= 0.5 ? 'high' : 'medium';
-    reasons.push(isEn
-      ? 'Logical meaning differs from international meaning.'
-      : 'Логическое значение отличается от международного значения.');
-    reasons.push(isEn
-      ? 'Naturalistic model word is provided.'
-      : 'Слово по натуралистической модели задано.');
-  } else {
-    classification = 'double_meaning_modification_missing';
-    confidence = finalDistance >= 0.5 ? 'medium' : 'low';
-    reasons.push(isEn
-      ? 'Logical meaning differs from international meaning, but naturalistic form is missing.'
-      : 'Логическое значение отличается от международного значения, но натуралистическая форма отсутствует.');
+  let data;
+  const text = await response.text();
+  try {
+    data = extractJsonFromText(text);
+  } catch (_error) {
+    data = { ok: false, error: 'invalid_response', details: text.slice(0, 500) };
   }
 
-  return { classification, confidence, reasons, distanceResult };
+  if (!response.ok || data.ok === false) {
+    const fallbackScores = state.lastAnalysis?.computed?.scores || { P: 2, R: 3, C: 2, E: 1 };
+    const computed = classifyByPRECE(fallbackScores);
+    computed.formRecommendation = buildFormRecommendation(computed, input);
+    computed.warnings = [
+      'API недоступен или вернул ошибку. Можно вручную выставить P/R/C/E ниже — зона пересчитается локально без нового запроса.',
+      String(data.details || data.error || response.statusText || 'Unknown error')
+    ];
+    return {
+      ok: false,
+      error: data.error || 'api_error',
+      details: data.details || response.statusText,
+      ai: normalizeAiResult({ ...fallbackScores, chain: [], confidence: 0.2 }),
+      computed,
+      retrieval: { examples_used: [] }
+    };
+  }
+
+  if (!data.computed.formRecommendation) data.computed.formRecommendation = buildFormRecommendation(data.computed, input);
+  data.computed.warnings = Array.isArray(data.computed.warnings) ? data.computed.warnings : shouldWarn(data);
+  return data;
 }
 
 function badge(text, type = '') {
   return `<span class="badge ${type}">${escapeHtml(text)}</span>`;
 }
 
+
 function renderResult(result, input) {
   els.resultPanel.hidden = false;
   const isEn = currentLang() === 'en';
-  const labels = isEn
-    ? {
-      regular_only: 'Regular value only',
-      double_meaning_with_modification: 'Distinction required; naturalistic form is set',
-      double_meaning_modification_missing: 'Distinction required; naturalistic form is missing',
-      insufficient_data: 'Insufficient data',
-      undetermined: 'Undetermined'
-    }
-    : {
-      regular_only: 'Только регулярное значение',
-      double_meaning_with_modification: 'Требуется различение; натуралистическая форма задана',
-      double_meaning_modification_missing: 'Требуется различение; натуралистическая форма отсутствует',
-      insufficient_data: 'Недостаточно данных',
-      undetermined: 'Не определено'
-    };
+  const computed = result.computed || classifyByPRECE(result.ai || { P: 2, R: 3, C: 2, E: 1 });
+  const ai = normalizeAiResult(result.ai || computed.scores || {});
+  const confidenceLabels = { high: isEn ? 'high' : 'высокая', medium: isEn ? 'medium' : 'средняя', low: isEn ? 'low' : 'низкая' };
+  const zoneName = isEn ? computed.zone_en : computed.zone_ru;
+  const formRecommendation = computed.formRecommendation || buildFormRecommendation(computed, input);
+  const warnings = Array.isArray(computed.warnings) ? computed.warnings : [];
+  const examples = result.retrieval?.examples_used || [];
+  const chain = ai.chain.length ? ai.chain : (input.explanationChain ? input.explanationChain.split(/\s*→\s*/).filter(Boolean) : []);
 
-  const types = {
-    regular_only: 'ok',
-    double_meaning_with_modification: 'ok',
-    double_meaning_modification_missing: 'warn',
-    insufficient_data: 'no',
-    undetermined: 'no'
-  };
-
-  const confidenceLabels = {
-    high: isEn ? 'high' : 'высокая',
-    medium: isEn ? 'medium' : 'средняя',
-    low: isEn ? 'low' : 'низкая'
-  };
-
+  state.lastAnalysis = result;
   els.result.classList.remove('empty');
   els.result.innerHTML = `
     <div class="badges">
-      ${badge(labels[result.classification] || result.classification, types[result.classification] || 'no')}
-      ${badge((isEn ? 'Confidence: ' : 'Уверенность: ') + (confidenceLabels[result.confidence] || result.confidence), 'warn')}
+      ${badge(zoneName, computed.zone_id === 'semantic_conventionalization' || computed.zone_id === 'lexicalization' ? 'warn' : 'ok')}
+      ${badge((isEn ? 'Confidence: ' : 'Уверенность: ') + (confidenceLabels[computed.confidence] || computed.confidence), 'warn')}
+      ${result.ok === false ? badge(isEn ? 'API error / manual mode' : 'Ошибка API / ручной режим', 'no') : ''}
     </div>
 
     <div class="result-grid">
       <div class="result-card">
-        <h3>${isEn ? 'Regular model' : 'Регулярная модель'}</h3>
-        <pre>${escapeHtml(input.regularWord || '—')}</pre>
+        <h3>${isEn ? 'Spectrum zone' : 'Зона спектра'}</h3>
+        <pre>${escapeHtml(zoneName)}\n${escapeHtml(computed.zone_id)}</pre>
       </div>
       <div class="result-card">
-        <h3>${isEn ? 'Naturalistic model' : 'Натуралистическая модель'}</h3>
-        <pre>${escapeHtml(input.naturalisticWord || '—')}</pre>
+        <h3>P/R/C/E</h3>
+        <div class="score-grid" data-score-editor="true">
+          ${['P', 'R', 'C', 'E'].map((key) => `
+            <label class="score-field">
+              <span>${key}</span>
+              <input type="number" min="0" max="${key === 'C' ? 5 : 4}" step="1" value="${escapeHtml(computed.scores[key] ?? '')}" data-score-key="${key}" />
+            </label>
+          `).join('')}
+        </div>
+        <p class="result-hint">${isEn ? 'Edit scores to recalculate the zone locally.' : 'Измените оценки, чтобы пересчитать зону локально без API.'}</p>
       </div>
       <div class="result-card">
-        <h3>${isEn ? 'Component analysis' : 'Компонентный анализ'}</h3>
-        <pre>${escapeHtml(componentSummaryText())}</pre>
+        <h3>${isEn ? 'Chain type' : 'Тип цепочки'}</h3>
+        <pre>${escapeHtml(ai.chain_type || '—')}</pre>
       </div>
       <div class="result-card">
-        <h3>${isEn ? 'Logical analysis' : 'Логический анализ'}</h3>
-        <pre>${escapeHtml(input.logicalMeaning || '—')}</pre>
-      </div>
-      <div class="result-card">
-        <h3>${isEn ? 'International meaning' : 'Международное значение'}</h3>
-        <pre>${escapeHtml(input.internationalMeaning || '—')}</pre>
+        <h3>${isEn ? 'AI confidence' : 'Уверенность модели'}</h3>
+        <pre>${escapeHtml(Math.round((ai.confidence || 0) * 100))}%</pre>
       </div>
     </div>
 
     <div class="result-card">
-      <h3>${isEn ? 'Reasons' : 'Обоснование'}</h3>
-      <pre>${escapeHtml(result.reasons.join('\n'))}</pre>
+      <h3>${isEn ? 'Explanatory chain' : 'Объяснительная цепочка'}</h3>
+      <ol class="chain-list">${chain.length ? chain.map((step) => `<li>${escapeHtml(step)}</li>`).join('') : '<li>—</li>'}</ol>
+    </div>
+
+    <div class="result-card">
+      <h3>${isEn ? 'Explanation' : 'Обоснование'}</h3>
+      <pre>${escapeHtml(ai.explanation || result.details || '—')}</pre>
+    </div>
+
+    <div class="result-grid">
+      <div class="result-card">
+        <h3>${isEn ? 'Analogies used' : 'Использованные аналогии'}</h3>
+        <pre>${escapeHtml((ai.analogies_used && ai.analogies_used.length ? ai.analogies_used : examples.map((ex) => ex.word)).join('\n') || '—')}</pre>
+      </div>
+      <div class="result-card">
+        <h3>${isEn ? 'Borderline zones' : 'Граничные зоны'}</h3>
+        <pre>${escapeHtml((computed.borderline_zones || []).map((zone) => `${isEn ? zone.zone_en : zone.zone_ru} (${zone.zone_id})`).join('\n') || '—')}</pre>
+      </div>
+      <div class="result-card">
+        <h3>${isEn ? 'Warnings' : 'Предупреждения'}</h3>
+        <pre>${escapeHtml(warnings.join('\n') || '—')}</pre>
+      </div>
+      <div class="result-card">
+        <h3>${isEn ? 'Form recommendation' : 'Рекомендация формы'}</h3>
+        <pre>${escapeHtml(formRecommendation.text || '—')}</pre>
+      </div>
     </div>
   `;
+
+  els.result.querySelectorAll('[data-score-key]').forEach((inputEl) => {
+    inputEl.addEventListener('change', () => {
+      const scores = { ...computed.scores };
+      els.result.querySelectorAll('[data-score-key]').forEach((field) => {
+        const key = field.dataset.scoreKey;
+        scores[key] = field.value === '' && key === 'E' ? null : Number(field.value);
+      });
+      recomputeResultFromManualScores(scores);
+    });
+  });
 }
 
 
@@ -1276,6 +1433,7 @@ function hasUserInputForClear() {
     els.logicalMeaning,
     els.internationalMeaning,
     els.naturalisticWord,
+    els.explanationChain,
     els.manualPrompt,
     els.manualEmbeddingResponse
   ];
@@ -1302,6 +1460,7 @@ function clearAll() {
   els.logicalMeaning.value = '';
   els.internationalMeaning.value = '';
   els.naturalisticWord.value = '';
+  if (els.explanationChain) els.explanationChain.value = '';
   if (els.manualPrompt) els.manualPrompt.value = '';
   syncPromptButtonsVisibility();
   if (els.manualEmbeddingResponse) els.manualEmbeddingResponse.value = '';
@@ -1320,6 +1479,7 @@ function saveState() {
     logicalMeaning: els.logicalMeaning.value,
     internationalMeaning: els.internationalMeaning.value,
     naturalisticWord: els.naturalisticWord.value,
+    explanationChain: els.explanationChain ? els.explanationChain.value : '',
     components: state.components,
     useLLM: els.useLlm.checked,
     ollamaUrl: els.ollamaUrl ? els.ollamaUrl.value : '',
@@ -1327,7 +1487,8 @@ function saveState() {
     manualPrompt: els.manualPrompt ? els.manualPrompt.value : '',
     manualEmbeddingResponse: els.manualEmbeddingResponse ? els.manualEmbeddingResponse.value : '',
     resultHtml: els.result.innerHTML,
-    resultIsEmpty: els.result.classList.contains('empty')
+    resultIsEmpty: els.result.classList.contains('empty'),
+    lastAnalysis: state.lastAnalysis
   };
 
   localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
@@ -1351,7 +1512,9 @@ function restoreState() {
     els.logicalMeaning.value = saved.logicalMeaning || '';
     els.internationalMeaning.value = saved.internationalMeaning || '';
     els.naturalisticWord.value = saved.naturalisticWord || '';
+    if (els.explanationChain) els.explanationChain.value = saved.explanationChain || '';
     state.components = Array.isArray(saved.components) ? migrateSavedComponents(saved.components) : [];
+    state.lastAnalysis = saved.lastAnalysis || null;
     els.useLlm.checked = Boolean(saved.useLLM);
     if (els.ollamaUrl) els.ollamaUrl.value = saved.ollamaUrl || 'http://localhost:11434';
     if (els.ollamaModel) els.ollamaModel.value = saved.ollamaModel || 'qwen3-embedding';
@@ -1359,7 +1522,9 @@ function restoreState() {
     syncPromptButtonsVisibility();
     if (els.manualEmbeddingResponse) els.manualEmbeddingResponse.value = saved.manualEmbeddingResponse || '';
 
-    if (saved.resultHtml) {
+    if (saved.lastAnalysis && !saved.resultIsEmpty) {
+      renderResult(saved.lastAnalysis, getInput());
+    } else if (saved.resultHtml) {
       els.result.innerHTML = saved.resultHtml;
       els.result.classList.toggle('empty', Boolean(saved.resultIsEmpty));
       els.resultPanel.hidden = Boolean(saved.resultIsEmpty);
@@ -1509,9 +1674,21 @@ function attachEvents() {
 
   els.analyzeBtn.addEventListener('click', async () => {
     const input = getInput();
-    const result = await analyzeByRules(input);
-    renderResult(result, input);
-    saveState();
+    els.analyzeBtn.disabled = true;
+    els.analyzeBtn.textContent = currentLang() === 'en' ? 'Analysing…' : 'Анализируем…';
+    try {
+      const result = await analyzeByRules(input);
+      renderResult(result, input);
+      saveState();
+    } catch (error) {
+      const computed = classifyByPRECE({ P: 2, R: 3, C: 2, E: 1 });
+      computed.formRecommendation = buildFormRecommendation(computed, input);
+      computed.warnings = ['API недоступен. Выставьте P/R/C/E вручную — зона пересчитается локально.', String(error.message || error)];
+      renderResult({ ok: false, error: 'frontend_error', details: String(error.message || error), ai: normalizeAiResult({ P: 2, R: 3, C: 2, E: 1, confidence: 0.2 }), computed, retrieval: { examples_used: [] } }, input);
+    } finally {
+      els.analyzeBtn.disabled = false;
+      els.analyzeBtn.textContent = t('analyse');
+    }
   });
 
   document.querySelectorAll('[data-close-modal]').forEach((el) => {
@@ -1523,6 +1700,7 @@ function attachEvents() {
     els.logicalMeaning,
     els.internationalMeaning,
     els.naturalisticWord,
+    els.explanationChain,
     els.useLlm,
     els.ollamaUrl,
     els.ollamaModel,
