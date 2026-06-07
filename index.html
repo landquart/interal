@@ -85,13 +85,19 @@
         transform .18s ease;
     }
     .tool-icon {
-      width: 34px;
-      height: 34px;
+      width: var(--tool-icon-size, 42px);
+      height: var(--tool-icon-size, 42px);
       max-width: none;
       max-height: none;
       object-fit: contain;
       filter: var(--icon-filter, none);
+      transform: scale(var(--tool-icon-scale, 1));
+      transform-origin: center;
     }
+    .tool-link[data-tool="indoeuropan"] { --tool-icon-size: 44px; --tool-icon-scale: 1.04; }
+    .tool-link[data-tool="associativ"] { --tool-icon-size: 46px; --tool-icon-scale: 1.02; }
+    .tool-link[data-tool="determinator"] { --tool-icon-size: 45px; --tool-icon-scale: 1.06; }
+    .tool-link[data-tool="registre"] { --tool-icon-size: 46px; --tool-icon-scale: 1.03; }
     .tool-link-main {
       grid-area: title;
       min-width: 0;
@@ -170,9 +176,13 @@
         border-radius: 18px;
       }
       .tool-icon {
-        width: 31px;
-        height: 31px;
+        width: var(--tool-icon-mobile-size, 38px);
+        height: var(--tool-icon-mobile-size, 38px);
       }
+      .tool-link[data-tool="indoeuropan"] { --tool-icon-mobile-size: 39px; }
+      .tool-link[data-tool="associativ"] { --tool-icon-mobile-size: 40px; }
+      .tool-link[data-tool="determinator"] { --tool-icon-mobile-size: 39px; }
+      .tool-link[data-tool="registre"] { --tool-icon-mobile-size: 40px; }
       .tool-link-main {
         font-size: .98rem;
       }
@@ -202,8 +212,11 @@
       outline-offset: 3px;
       box-shadow: 0 0 0 5px var(--focus-ring);
     }
-    body:not(.dark-theme) .tool-link[href="indoeuropanvordes/"] .tool-icon {
+    body:not(.dark-theme) .tool-icon {
       filter: brightness(0);
+    }
+    body.dark-theme .tool-icon {
+      filter: brightness(0) invert(1);
     }
   </style>
 </head>
@@ -214,22 +227,22 @@
         <h1 class="home-title">Interal</h1>
     </a></div><div class="container">
 
-      <a class="tool-link" href="indoeuropanvordes/">
-        <span class="tool-icon-wrap"><img class="tool-icon" src="elements/indoeuropanvordes.svg" alt="" aria-hidden="true" /></span>
+      <a class="tool-link" href="indoeuropanvordes/" data-tool="indoeuropan">
+        <span class="tool-icon-wrap"><img class="tool-icon" src="elements/indoeuropan%20vordes.svg" alt="" aria-hidden="true" /></span>
         <span class="tool-link-main" data-i18n="home.indoeuropanMain">Indoeuropan vordes</span>
         <span class="tool-link-sub" data-i18n="home.indoeuropanSub">индоевропейские слова</span>
       </a>
-      <a class="tool-link" href="associativvordes/">
+      <a class="tool-link" href="associativvordes/" data-tool="associativ">
         <span class="tool-icon-wrap"><img class="tool-icon" src="elements/associativ%20vordes.svg" alt="" aria-hidden="true" /></span>
         <span class="tool-link-main" data-i18n="home.assocMain">Associativ vordes</span>
         <span class="tool-link-sub" data-i18n="home.assocSub">Ассоциативные слова</span>
       </a>
-      <a class="tool-link" href="determinatorofvalentyp/">
+      <a class="tool-link" href="determinatorofvalentyp/" data-tool="determinator">
         <span class="tool-icon-wrap"><img class="tool-icon" src="elements/determinator%20of%20valen%20typ.svg" alt="" aria-hidden="true" /></span>
         <span class="tool-link-main" data-i18n="home.determMain">Determinator of valen typ</span>
         <span class="tool-link-sub" data-i18n="home.determSub">Определитель типа значения</span>
       </a>
-      <a class="tool-link" href="registre/">
+      <a class="tool-link" href="registre/" data-tool="registre">
         <span class="tool-icon-wrap"><img class="tool-icon" src="elements/registre.svg" alt="" aria-hidden="true" /></span>
         <span class="tool-link-main" data-i18n="home.registryMain">Registre of vordesen cartes</span>
         <span class="tool-link-sub" data-i18n="home.registrySub">Реестр карточек слов</span>
