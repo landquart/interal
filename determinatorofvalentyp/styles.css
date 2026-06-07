@@ -577,3 +577,44 @@ body.has-global-menu .app-shell {
   visibility: hidden;
   pointer-events: none;
 }
+
+.score-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(70px, 1fr));
+  gap: 10px;
+}
+
+.score-field {
+  display: grid;
+  gap: 5px;
+}
+
+.score-field span {
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.score-field input {
+  text-align: center;
+}
+
+.result-hint {
+  margin: 10px 0 0;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+}
+
+.chain-list {
+  margin: 0;
+  padding-left: 22px;
+}
+
+.chain-list li + li {
+  margin-top: 6px;
+}
+
+@media (max-width: 640px) {
+  .score-grid {
+    grid-template-columns: repeat(2, minmax(70px, 1fr));
+  }
+}
