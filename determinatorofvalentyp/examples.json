@@ -1,0 +1,428 @@
+import json
+from pathlib import Path
+
+zone_definitions = {
+    "full_compositionality": {
+        "label_ru": "Полная композиционность",
+        "label_en": "Full compositionality",
+        "range": {"P": [4, 4], "R": [4, 4], "C": [0, 0], "E": [0, 0]},
+        "prototype_scores": {"P": 4, "R": 4, "C": 0, "E": 0}
+    },
+    "partial_compositionality": {
+        "label_ru": "Частичная композиционность",
+        "label_en": "Partial compositionality",
+        "range": {"P": [3, 4], "R": [4, 4], "C": [1, 1], "E": [0, 1]},
+        "prototype_scores": {"P": 3, "R": 4, "C": 1, "E": 0}
+    },
+    "semantic_extension": {
+        "label_ru": "Семантическое расширение",
+        "label_en": "Semantic extension",
+        "range": {"P": [2, 3], "R": [3, 4], "C": [1, 2], "E": [0, 2]},
+        "prototype_scores": {"P": 2, "R": 3, "C": 2, "E": 1}
+    },
+    "transfer": {
+        "label_ru": "Перенос",
+        "label_en": "Transfer",
+        "range": {"P": [1, 2], "R": [2, 4], "C": [2, 3], "E": [0, 2]},
+        "prototype_scores": {"P": 1, "R": 3, "C": 3, "E": 1}
+    },
+    "semantic_conventionalization": {
+        "label_ru": "Семантическая конвенционализация",
+        "label_en": "Semantic conventionalization",
+        "range": {"P": [0, 1], "R": [1, 3], "C": [3, 4], "E": [3, 4]},
+        "prototype_scores": {"P": 0, "R": 2, "C": 4, "E": 4}
+    },
+    "lexicalization": {
+        "label_ru": "Лексикализованность",
+        "label_en": "Lexicalization",
+        "range": {"P": [0, 0], "R": [0, 1], "C": [5, 5], "E": None},
+        "prototype_scores": {"P": 0, "R": 1, "C": 5, "E": None},
+        "external_knowledge_note": "Внешнее знание не помогает вывести значение продуктивно."
+    }
+}
+
+def entry(form, meaning):
+    return {"form": form, "meaning_ru": meaning}
+
+def ex(
+    id_, number, zone, logical, international, chain=None,
+    chain_type=None, source="catalog_table", notes=None, source_mentions=None
+):
+    return {
+        "id": id_,
+        "number": number,
+        "source": source,
+        "source_mentions": source_mentions or [source],
+        "logical_entries": logical,
+        "international_entries": international,
+        "zone_id": zone,
+        "zone_ru": zone_definitions[zone]["label_ru"],
+        "scores": zone_definitions[zone]["prototype_scores"],
+        "scores_note": "Prototype P/R/C/E values inferred from the document's zone label. They may be manually corrected for borderline cases.",
+        "chain_type": chain_type,
+        "draft_explanatory_chain_ru": chain or [],
+        "notes_ru": notes or ""
+    }
+
+examples = [
+    # Definition-only examples from the theoretical part
+    ex(
+        "rescriber", "definition-1", "full_compositionality",
+        [entry("re/scrib/er", "писать снова")],
+        [entry("rescriber", "переписывать")],
+        ["писать", "писать снова", "переписывать"],
+        "direct_composition",
+        source="definition_example"
+    ),
+    ex(
+        "connection_relation", "definition-2", "partial_compositionality",
+        [entry("connect/er", "соединять"), entry("connect/ion", "соединение")],
+        [entry("connection", "связь")],
+        ["соединять", "соединение", "результат соединения отдельных сущностей", "связь как сеть отношений"],
+        "slight_focus_shift",
+        source="definition_example"
+    ),
+
+    # Catalog/table examples
+    ex(
+        "obsessionu", "1", "transfer",
+        [entry("Obsession", "заседание напротив"), entry("obsesser", "сидеть напротив")],
+        [entry("Obsessionu", "одержимость"), entry("obseder", "быть одержанным")],
+        ["сидеть напротив чего-то", "постоянно находиться напротив объекта", "как бы осаждать объект", "психическая фиксация на объекте", "одержимость"],
+        "metaphorical_transfer",
+        source_mentions=["definition_example", "catalog_table"]
+    ),
+    ex(
+        "repetitionu", "2", "semantic_extension",
+        [entry("Repetition", "повторный запрос"), entry("repetir", "запрашивать снова, репетировать")],
+        [entry("Repetitionu", "репетиция"), entry("repetitionar", "репетировать")],
+        ["повторный запрос или повторное действие", "повторное выполнение", "тренировочное повторение", "репетиция"],
+        "semantic_extension"
+    ),
+    ex(
+        "radical", "3", "transfer",
+        [entry("Radici", "корневой")],
+        [entry("Radical", "радикальный, принципиальный")],
+        ["корень", "относящийся к корню/основе", "затрагивающий основу", "принципиальный или радикальный"],
+        "abstract_transfer"
+    ),
+    ex(
+        "ideal", "4", "semantic_extension",
+        [entry("Idei", "идейный")],
+        [entry("Ideal", "идеальный")],
+        ["идея", "относящийся к идее", "относящийся к высшей/совершенной идее", "идеальный"],
+        "semantic_extension",
+        source_mentions=["definition_example", "catalog_table"]
+    ),
+    ex(
+        "subjectu", "5", "lexicalization",
+        [entry("Subject", "бросок под чем-то")],
+        [entry("Subjectu", "субъект"), entry("subyect", "субъект")],
+        ["бросок под чем-то", "субъект"],
+        "lexicalized_no_working_chain"
+    ),
+    ex(
+        "objectu", "6", "lexicalization",
+        [entry("Object", "бросок напротив чего-то")],
+        [entry("Objectu", "объект"), entry("obyect", "объект")],
+        ["бросок напротив чего-то", "объект"],
+        "lexicalized_no_working_chain"
+    ),
+    ex(
+        "projectu", "7.1", "transfer",
+        [entry("Project", "бросок за пределы чего-то"), entry("projecter", "бросать за пределы")],
+        [entry("Projectu", "проект"), entry("proyect", "проект"), entry("projecer", "проектировать"), entry("proyecer", "проектировать"), entry("proyecter", "проектировать")],
+        ["бросать за пределы", "направлять вперёд/наружу", "выносить замысел вперёд", "планировать", "проект"],
+        "abstract_transfer"
+    ),
+    ex(
+        "projection", "7.2", "semantic_extension",
+        [entry("Projection", "процесс бросания за пределы чего-то")],
+        [entry("Projection", "проекция"), entry("proyection", "проекция")],
+        ["бросание за пределы", "выведение/направление образа наружу", "отображение на поверхность", "проекция"],
+        "semantic_extension"
+    ),
+    ex(
+        "trajectoriu", "8", "semantic_extension",
+        [entry("Trajectoria", "место, где бросают через")],
+        [entry("Trajectoriu", "траектория"), entry("trayectoria", "траектория")],
+        ["место/путь бросания через", "путь движения через пространство", "траектория"],
+        "semantic_extension"
+    ),
+    ex(
+        "conjecturu", "9", "transfer",
+        [entry("Conjectura", "результат совместного броска")],
+        [entry("Conjecturu", "предположение")],
+        ["совместный бросок", "сведение нескольких элементов вместе", "мысленное соединение данных", "предположение"],
+        "abstract_transfer"
+    ),
+    ex(
+        "rejecer", "10.1", "transfer",
+        [entry("Rejecter", "бросать заново")],
+        [entry("Rejecer", "отвергнуть, отклонить")],
+        ["бросать заново/обратно", "отбрасывать", "не принимать", "отвергнуть"],
+        "metaphorical_transfer"
+    ),
+    ex(
+        "rejectionu", "10.2", "transfer",
+        [entry("Rejection", "повторный бросок")],
+        [entry("Rejectionu", "отвержение, отклонение")],
+        ["повторный/обратный бросок", "отбрасывание", "акт непринятия", "отвержение"],
+        "metaphorical_transfer"
+    ),
+    ex(
+        "injecer", "11.1", "semantic_extension",
+        [entry("Injecter", "вбрасывать")],
+        [entry("Injecer", "впрыскивать, вливать"), entry("inyecer", "впрыскивать, вливать"), entry("inyecter", "впрыскивать, вливать")],
+        ["вбрасывать", "вводить внутрь", "впрыскивать/вливать"],
+        "semantic_extension"
+    ),
+    ex(
+        "injectionu", "11.2", "semantic_extension",
+        [entry("Injection", "вбрасывание")],
+        [entry("Injectionu", "инъекция, впрыскивание, вливание")],
+        ["вбрасывание", "введение внутрь", "впрыскивание", "инъекция"],
+        "semantic_extension"
+    ),
+    ex(
+        "texturu", "12", "semantic_conventionalization",
+        [entry("Textura", "пошивка")],
+        [entry("Texturu", "текстура")],
+        ["пошивка/тканая структура", "устройство поверхности или материала", "текстура"],
+        "historical_or_traditional_conventionalization"
+    ),
+    ex(
+        "receptu", "13", "semantic_conventionalization",
+        [entry("Recept", "получение")],
+        [entry("Receptu", "рецепт")],
+        ["получение", "полученное предписание/запись", "медицинское или кулинарное предписание", "рецепт"],
+        "historical_or_traditional_conventionalization"
+    ),
+    ex(
+        "cursu", "14", "semantic_extension",
+        [entry("Curs", "бег")],
+        [entry("Cursu", "курс (учебный, направление)")],
+        ["бег/движение", "направленное движение", "направление движения или обучения", "курс"],
+        "semantic_extension"
+    ),
+    ex(
+        "cursivu", "15", "transfer",
+        [entry("Cursive", "способность бега"), entry("cursivi", "обладающий способностью бега")],
+        [entry("Cursivu", "курсив"), entry("cursiv", "курсивный")],
+        ["способность бега/движения", "беглый способ письма", "наклонное связное письмо", "курсив"],
+        "metaphorical_transfer"
+    ),
+    ex(
+        "concursu", "16", "transfer",
+        [entry("Concurs", "совместный бег")],
+        [entry("Concursu", "конкурс")],
+        ["совместный бег", "совместное движение к цели", "состязание", "конкурс"],
+        "abstract_transfer"
+    ),
+    ex(
+        "concurrer", "17", "transfer",
+        [entry("Concurser", "бежать вместе")],
+        [entry("Concurrer", "конкурировать")],
+        ["бежать вместе", "двигаться к одной цели одновременно", "соревноваться", "конкурировать"],
+        "abstract_transfer"
+    ),
+    ex(
+        "discursu", "18", "lexicalization",
+        [entry("Discurs", "разбегание")],
+        [entry("Discursu", "дискурс")],
+        ["разбегание", "дискурс"],
+        "lexicalized_no_working_chain"
+    ),
+    ex(
+        "liberal", "19", "semantic_extension",
+        [entry("Liberi", "свободный")],
+        [entry("Liberal", "либеральный")],
+        ["свободный", "относящийся к свободе", "политико-идеологически связанный со свободой", "либеральный"],
+        "semantic_extension"
+    ),
+    ex(
+        "classic", "20", "lexicalization",
+        [entry("Classi", "классовый")],
+        [entry("Classic", "классический"), entry("classicu", "классика")],
+        ["классовый", "классический/классика"],
+        "lexicalized_no_working_chain"
+    ),
+    ex(
+        "agenda", "21", "semantic_extension",
+        [entry("Actenda", "что-то достойное действия")],
+        [entry("Agenda", "повестка дня")],
+        ["то, что должно/достойно быть сделано", "то, что подлежит действию", "список дел", "повестка дня"],
+        "semantic_extension"
+    ),
+    ex(
+        "factu", "22", "semantic_extension",
+        [entry("Fact", "что-то сделанное"), entry("facti", "сделанный")],
+        [entry("Factu", "факт"), entry("factic", "фактический")],
+        ["что-то сделанное", "совершённое/имеющее место", "данность", "факт"],
+        "semantic_extension"
+    ),
+    ex(
+        "positiv", "23", "transfer",
+        [entry("Positivi", "лежащий, положительный")],
+        [entry("Positiv", "позитивный, весёлый")],
+        ["положительный", "утвердительный/благоприятный", "хороший эмоциональный тон", "позитивный, весёлый"],
+        "abstract_transfer"
+    ),
+    ex(
+        "revisionu", "24", "semantic_extension",
+        [entry("Revision", "повторный просмотр"), entry("revisioni", "повторно просмотренный")],
+        [entry("Revisionu", "проверка"), entry("revisional", "проверочный, ревизионный")],
+        ["повторный просмотр", "просмотр с целью контроля", "проверка", "ревизия"],
+        "semantic_extension"
+    ),
+    ex(
+        "sectionu", "25.1", "semantic_extension",
+        [entry("Section", "сечение")],
+        [entry("Sectionu", "секция")],
+        ["сечение", "отделённая/выделенная часть", "секция"],
+        "semantic_extension"
+    ),
+    ex(
+        "sectoru", "25.2", "semantic_extension",
+        [entry("Sector", "режущий инструмент")],
+        [entry("Sectoru", "сектор")],
+        ["режущий инструмент", "то, чем производится деление/сечение", "выделенная часть", "сектор"],
+        "semantic_extension"
+    ),
+    ex(
+        "sectu", "25.3", "semantic_conventionalization",
+        [entry("Secte", "порезанное, посечённое")],
+        [entry("Sectu", "секта")],
+        ["посечённое/отделённое", "отделившаяся группа", "устойчивое название религиозной или идеологической группы", "секта"],
+        "historical_or_traditional_conventionalization"
+    ),
+    ex(
+        "recordu", "26", "semantic_conventionalization",
+        [entry("Record", "запись"), entry("recordi", "записной")],
+        [entry("Recordu", "рекорд"), entry("recordal", "рекордный")],
+        ["запись", "зафиксированный результат", "выдающийся зафиксированный результат", "рекорд"],
+        "historical_or_traditional_conventionalization"
+    ),
+    ex(
+        "rotationu", "27.1", "semantic_extension",
+        [entry("Rotation", "поворот, вращение"), entry("rotationi", "поворотный, вращательный")],
+        [entry("Rotationu", "ротация"), entry("rotari", "ротационный")],
+        ["поворот/вращение", "циклическое перемещение или смена", "ротация"],
+        "semantic_extension"
+    ),
+    ex(
+        "rotatoru", "27.2", "semantic_extension",
+        [entry("Rotator", "вращатель")],
+        [entry("Rotatoru", "ротатор (в технике, физике, интернете)")],
+        ["вращатель", "устройство или элемент, выполняющий вращение", "ротатор"],
+        "semantic_extension"
+    ),
+    ex(
+        "infinitivu", "28", "lexicalization",
+        [entry("Infinitive", "бесконечность"), entry("infinitivi", "бесконечный")],
+        [entry("Infinitivu", "инфинитив"), entry("infinitiv", "инфинитивный")],
+        ["бесконечность/бесконечный", "грамматическая форма глагола", "инфинитив"],
+        "lexicalized_no_working_chain",
+        source_mentions=["definition_example", "catalog_table"]
+    ),
+    ex(
+        "excursionu", "29.1", "transfer",
+        [entry("Excursion", "выбегание"), entry("excursioni", "выбегающий")],
+        [entry("Excursionu", "экскурсия"), entry("excursional", "экскурсионный")],
+        ["выбегание", "выход/выезд наружу", "поездка/выход с целью посещения", "экскурсия"],
+        "metaphorical_transfer"
+    ),
+    ex(
+        "excursu", "29.2", "semantic_extension",
+        [entry("Excurs", "выбегание")],
+        [entry("Excursu", "экскурс")],
+        ["выбегание", "отступление/выход за пределы основной линии", "экскурс"],
+        "semantic_extension"
+    ),
+    ex(
+        "culturu", "30", "semantic_extension",
+        [entry("Cultivar", "возделывать"), entry("cultivation", "возделывание"), entry("cultu", "культ")],
+        [entry("Culturu", "культура"), entry("cultural", "культурный")],
+        ["возделывание", "развитие/обработка среды или человека", "совокупность развитых практик и ценностей", "культура"],
+        "semantic_extension"
+    ),
+    ex(
+        "probabil", "31", "semantic_extension",
+        [entry("Probabili", "возможный к пробе")],
+        [entry("Probabil", "вероятный")],
+        ["возможный к пробе/проверке", "допускающий оценку возможности", "вероятный"],
+        "semantic_extension"
+    ),
+    ex(
+        "parlamentu", "32", "semantic_conventionalization",
+        [entry("Parlament", "говорение")],
+        [entry("Parlamentu", "парламент")],
+        ["говорение", "место/институт обсуждения", "законодательное собрание", "парламент"],
+        "historical_or_traditional_conventionalization"
+    ),
+    ex(
+        "creditu", "33", "transfer",
+        [entry("Credite", "вера, мнение")],
+        [entry("Creditu", "кредит")],
+        ["вера/доверие", "доверие к способности вернуть", "финансовое предоставление под доверие", "кредит"],
+        "metonymic_or_abstract_transfer"
+    ),
+    ex(
+        "nationu", "34.1", "transfer",
+        [entry("Nation", "рождение")],
+        [entry("Nationu", "нация, народ"), entry("national", "национальный, народный")],
+        ["рождение", "происхождение", "общность происхождения", "народ/нация"],
+        "abstract_transfer"
+    ),
+    ex(
+        "naturu", "34.2", "transfer",
+        [entry("Natura", "рождение, нарождение")],
+        [entry("Naturu", "природа"), entry("natural", "натуральный, природный")],
+        ["рождение/нарождение", "данное от рождения", "естественное состояние", "природа"],
+        "abstract_transfer"
+    ),
+    ex(
+        "salariu", "35", "semantic_conventionalization",
+        [entry("Salarie", "человек, связанный с солью")],
+        [entry("Salariu", "зарплата")],
+        ["соль", "человек/выплата, связанная с солью", "историческая связь salarium с оплатой", "зарплата"],
+        "historical_or_traditional_conventionalization",
+        source_mentions=["definition_example", "catalog_table"]
+    )
+]
+
+data = {
+    "schema_version": "1.0.0",
+    "purpose": "Reference examples for Determinator of valen typ: semantic transparency spectrum of Interal derivatives.",
+    "source_document": "Спектр семантической прозрачности дериватов(3).docx",
+    "scales": {
+        "P": {
+            "name": "Predictabilitá",
+            "range": [0, 4],
+            "meaning": "Can the accepted meaning be predicted from components and Interal rules?"
+        },
+        "R": {
+            "name": "Relationalitá",
+            "range": [0, 4],
+            "meaning": "How strong is the semantic relation between logical and international meanings?"
+        },
+        "C": {
+            "name": "Complexitá of cheyn",
+            "range": [0, 5],
+            "meaning": "How many explanatory steps are needed from logical to international meaning?"
+        },
+        "E": {
+            "name": "External cognoscentian dependentia",
+            "range": [0, 4],
+            "meaning": "How much external, historical, idiomatic, or terminological knowledge is needed?"
+        }
+    },
+    "zone_definitions": zone_definitions,
+    "examples": examples
+}
+
+out = Path("/mnt/data/examples.json")
+out.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+print(f"Created {out}")
+print(f"Examples: {len(examples)}")
+print(f"Size: {out.stat().st_size} bytes")
