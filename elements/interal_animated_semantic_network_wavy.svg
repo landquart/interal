@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+  <title>Interal animated semantic network waves background</title>
+  <desc>Dark animated background with distributed semantic networks whose links gently undulate, plus soft contour waves. No rotating sweep.</desc>
+
+  <defs>
+    <radialGradient id="coreGlow" cx="50%" cy="49%" r="86%">
+      <stop offset="0%" stop-color="#2b2314"/>
+      <stop offset="42%" stop-color="#101010"/>
+      <stop offset="100%" stop-color="#040404"/>
+      <animate attributeName="cx" dur="30s" values="48%;52%;48%" repeatCount="indefinite"/>
+      <animate attributeName="cy" dur="30s" values="47%;51%;47%" repeatCount="indefinite"/>
+    </radialGradient>
+
+    <radialGradient id="goldMistA" cx="27%" cy="27%" r="48%">
+      <stop offset="0%" stop-color="#d8b65f" stop-opacity=".24"/>
+      <stop offset="48%" stop-color="#9c6f18" stop-opacity=".075"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="goldMistB" cx="75%" cy="69%" r="52%">
+      <stop offset="0%" stop-color="#e0c06b" stop-opacity=".20"/>
+      <stop offset="54%" stop-color="#8d6418" stop-opacity=".060"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="lineGold" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8a6b32" stop-opacity=".08"/>
+      <stop offset="45%" stop-color="#e2bf67" stop-opacity=".48"/>
+      <stop offset="100%" stop-color="#8a6b32" stop-opacity=".08"/>
+    </linearGradient>
+
+    <filter id="softLineGlow" x="-8%" y="-20%" width="116%" height="140%">
+      <feGaussianBlur stdDeviation="2.0" result="blur"/>
+      <feColorMatrix in="blur" type="matrix"
+        values="1.00 0    0    0 0
+                0    0.76 0    0 0
+                0    0    0.30 0 0
+                0    0    0    .42 0" result="warmBlur"/>
+      <feMerge>
+        <feMergeNode in="warmBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="networkGlow" x="-18%" y="-18%" width="136%" height="136%">
+      <feGaussianBlur stdDeviation="3.8" result="blur"/>
+      <feColorMatrix in="blur" type="matrix"
+        values="1.15 0    0    0 0
+                0    0.88 0    0 0
+                0    0    0.36 0 0
+                0    0    0    .60 0" result="warmGlow"/>
+      <feMerge>
+        <feMergeNode in="warmGlow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="2" seed="17" result="noise"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="table" tableValues="0 .025"/>
+      </feComponentTransfer>
+    </filter>
+
+    <style>
+      .contour {
+        fill: none;
+        stroke: url(#lineGold);
+        stroke-width: 2.05;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        filter: url(#softLineGlow);
+      }
+
+      .contour-thin {
+        fill: none;
+        stroke: rgba(255,255,255,.18);
+        stroke-width: 1.05;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .network-line {
+        fill: none;
+        stroke: rgba(226,191,103,.44);
+        stroke-width: 1.6;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        filter: url(#networkGlow);
+      }
+
+      .network-line-soft {
+        fill: none;
+        stroke: rgba(255,255,255,.18);
+        stroke-width: 1.08;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .network-node {
+        fill: #d8b65f;
+        opacity: .76;
+        filter: url(#networkGlow);
+      }
+
+      .network-node-soft {
+        fill: rgba(255,255,255,.76);
+        opacity: .38;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        animate, animateTransform {
+          display: none;
+        }
+      }
+    </style>
+  </defs>
+
+  <rect width="1920" height="1080" fill="url(#coreGlow)"/>
+
+  <rect width="1920" height="1080" fill="url(#goldMistA)">
+    <animate attributeName="opacity" dur="26s" values=".70;.90;.70" repeatCount="indefinite"/>
+  </rect>
+
+  <rect width="1920" height="1080" fill="url(#goldMistB)">
+    <animate attributeName="opacity" dur="32s" values=".60;.82;.60" repeatCount="indefinite"/>
+  </rect>
+
+  <g opacity=".18">
+    <rect width="1920" height="1080" filter="url(#grain)"/>
+  </g>
+
+  <!-- Calm contour waves -->
+  <g opacity=".78">
+    <g>
+      <animateTransform attributeName="transform" type="translate" dur="26s" values="-24 0; 24 10; -24 0" repeatCount="indefinite"/>
+      <path class="contour" d="M-150 250 C 236 88, 468 410, 780 248 S 1324 100, 2070 304"/>
+      <path class="contour" d="M-150 405 C 272 222, 540 552, 910 372 S 1450 232, 2070 470"/>
+      <path class="contour" d="M-150 562 C 248 404, 632 706, 1000 542 S 1538 402, 2070 632"/>
+      <path class="contour" d="M-150 736 C 316 598, 632 900, 1066 704 S 1566 572, 2070 814"/>
+    </g>
+
+    <g opacity=".52">
+      <animateTransform attributeName="transform" type="translate" dur="33s" values="16 14; -16 -10; 16 14" repeatCount="indefinite"/>
+      <path class="contour-thin" d="M-110 326 C 318 188, 620 478, 948 318 S 1442 196, 2030 354"/>
+      <path class="contour-thin" d="M-110 486 C 340 330, 612 640, 1016 458 S 1518 328, 2030 520"/>
+      <path class="contour-thin" d="M-110 670 C 326 510, 708 818, 1086 636 S 1536 512, 2030 696"/>
+    </g>
+  </g>
+
+  <!-- Distributed semantic network field -->
+  <g opacity=".84">
+
+    <!-- Global soft connections between clusters -->
+    <path class="network-line-soft" d="M250 326 C 420 234, 590 330, 760 270 S 1030 202, 1210 284 S 1450 422, 1665 345">
+      <animate attributeName="d" dur="12s" repeatCount="indefinite"
+        values="
+        M250 326 C 420 234, 590 330, 760 270 S 1030 202, 1210 284 S 1450 422, 1665 345;
+        M250 326 C 410 254, 584 306, 760 292 S 1028 184, 1210 304 S 1444 400, 1665 345;
+        M250 326 C 426 220, 602 348, 760 260 S 1036 216, 1210 272 S 1464 432, 1665 345;
+        M250 326 C 420 234, 590 330, 760 270 S 1030 202, 1210 284 S 1450 422, 1665 345"/>
+    </path>
+    <path class="network-line-soft" d="M238 585 C 470 492, 700 622, 930 545 S 1288 440, 1690 594">
+      <animate attributeName="d" dur="13s" repeatCount="indefinite"
+        values="
+        M238 585 C 470 492, 700 622, 930 545 S 1288 440, 1690 594;
+        M238 585 C 454 520, 694 604, 930 564 S 1286 418, 1690 594;
+        M238 585 C 486 470, 712 638, 930 532 S 1298 458, 1690 594;
+        M238 585 C 470 492, 700 622, 930 545 S 1288 440, 1690 594"/>
+    </path>
+    <path class="network-line-soft" d="M390 770 C 650 650, 865 790, 1110 704 S 1395 650, 1638 762">
+      <animate attributeName="d" dur="14s" repeatCount="indefinite"
+        values="
+        M390 770 C 650 650, 865 790, 1110 704 S 1395 650, 1638 762;
+        M390 770 C 630 676, 852 772, 1110 726 S 1398 632, 1638 762;
+        M390 770 C 664 636, 878 808, 1110 694 S 1388 666, 1638 762;
+        M390 770 C 650 650, 865 790, 1110 704 S 1395 650, 1638 762"/>
+    </path>
+
+    <!-- Upper-left cluster -->
+    <g>
+      <animateTransform attributeName="transform" type="translate" dur="11s" values="0 0; 10 8; -6 -5; 0 0" repeatCount="indefinite"/>
+      <path class="network-line" d="M250 326 C 280 302, 314 284, 346 276 C 384 266, 420 294, 455 326 C 486 352, 524 312, 562 286 C 598 260, 640 300, 676 344">
+        <animate attributeName="d" dur="7.2s" repeatCount="indefinite"
+          values="
+          M250 326 C 280 302, 314 284, 346 276 C 384 266, 420 294, 455 326 C 486 352, 524 312, 562 286 C 598 260, 640 300, 676 344;
+          M250 326 C 284 294, 316 300, 346 276 C 386 252, 418 314, 455 326 C 492 338, 530 294, 562 286 C 602 276, 638 316, 676 344;
+          M250 326 C 276 314, 314 268, 346 276 C 382 286, 426 280, 455 326 C 486 372, 520 330, 562 286 C 594 252, 646 286, 676 344;
+          M250 326 C 280 302, 314 284, 346 276 C 384 266, 420 294, 455 326 C 486 352, 524 312, 562 286 C 598 260, 640 300, 676 344"/>
+      </path>
+      <path class="network-line" d="M346 276 C 360 320, 386 370, 420 420 C 456 374, 506 330, 562 286">
+        <animate attributeName="d" dur="6.6s" repeatCount="indefinite"
+          values="
+          M346 276 C 360 320, 386 370, 420 420 C 456 374, 506 330, 562 286;
+          M346 276 C 372 330, 398 386, 420 420 C 450 388, 500 316, 562 286;
+          M346 276 C 354 304, 380 354, 420 420 C 470 392, 518 344, 562 286;
+          M346 276 C 360 320, 386 370, 420 420 C 456 374, 506 330, 562 286"/>
+      </path>
+      <path class="network-line" d="M250 326 C 282 376, 304 428, 332 484 C 362 454, 390 434, 420 420 C 462 406, 502 446, 536 482 C 574 434, 620 388, 676 344">
+        <animate attributeName="d" dur="8.2s" repeatCount="indefinite"
+          values="
+          M250 326 C 282 376, 304 428, 332 484 C 362 454, 390 434, 420 420 C 462 406, 502 446, 536 482 C 574 434, 620 388, 676 344;
+          M250 326 C 296 386, 306 444, 332 484 C 356 466, 390 418, 420 420 C 460 422, 500 458, 536 482 C 582 454, 630 396, 676 344;
+          M250 326 C 274 368, 298 412, 332 484 C 378 448, 396 448, 420 420 C 454 394, 506 434, 536 482 C 566 428, 612 378, 676 344;
+          M250 326 C 282 376, 304 428, 332 484 C 362 454, 390 434, 420 420 C 462 406, 502 446, 536 482 C 574 434, 620 388, 676 344"/>
+      </path>
+      <path class="network-line-soft" d="M455 326 C 438 362, 424 392, 420 420 C 456 430, 494 454, 536 482">
+        <animate attributeName="d" dur="7.8s" repeatCount="indefinite"
+          values="
+          M455 326 C 438 362, 424 392, 420 420 C 456 430, 494 454, 536 482;
+          M455 326 C 432 350, 426 398, 420 420 C 462 420, 500 440, 536 482;
+          M455 326 C 446 376, 430 404, 420 420 C 450 440, 490 468, 536 482;
+          M455 326 C 438 362, 424 392, 420 420 C 456 430, 494 454, 536 482"/>
+      </path>
+      <circle class="network-node" cx="250" cy="326" r="4.8"/>
+      <circle class="network-node-soft" cx="346" cy="276" r="3.5"/>
+      <circle class="network-node" cx="455" cy="326" r="5.2">
+        <animate attributeName="r" dur="4.8s" values="5.2;6.6;5.2" repeatCount="indefinite"/>
+      </circle>
+      <circle class="network-node-soft" cx="562" cy="286" r="3.4"/>
+      <circle class="network-node" cx="676" cy="344" r="4.6"/>
+      <circle class="network-node-soft" cx="332" cy="484" r="3.3"/>
+      <circle class="network-node" cx="420" cy="420" r="4.8"/>
+      <circle class="network-node-soft" cx="536" cy="482" r="3.2"/>
+    </g>
+
+    <!-- Upper-right cluster -->
+    <g>
+      <animateTransform attributeName="transform" type="translate" dur="12s" values="0 0; -9 7; 8 -6; 0 0" repeatCount="indefinite"/>
+      <path class="network-line" d="M1190 300 C 1220 274, 1252 258, 1296 248 C 1332 240, 1364 276, 1402 305 C 1440 334, 1482 286, 1518 260 C 1560 236, 1612 288, 1665 345">
+        <animate attributeName="d" dur="7.4s" repeatCount="indefinite"
+          values="
+          M1190 300 C 1220 274, 1252 258, 1296 248 C 1332 240, 1364 276, 1402 305 C 1440 334, 1482 286, 1518 260 C 1560 236, 1612 288, 1665 345;
+          M1190 300 C 1214 286, 1262 240, 1296 248 C 1338 258, 1360 290, 1402 305 C 1448 320, 1484 272, 1518 260 C 1564 252, 1614 302, 1665 345;
+          M1190 300 C 1230 266, 1252 274, 1296 248 C 1330 232, 1368 264, 1402 305 C 1442 350, 1478 300, 1518 260 C 1552 228, 1608 274, 1665 345;
+          M1190 300 C 1220 274, 1252 258, 1296 248 C 1332 240, 1364 276, 1402 305 C 1440 334, 1482 286, 1518 260 C 1560 236, 1612 288, 1665 345"/>
+      </path>
+      <path class="network-line" d="M1296 248 C 1310 308, 1336 370, 1365 430 C 1400 372, 1450 316, 1518 260">
+        <animate attributeName="d" dur="6.8s" repeatCount="indefinite"
+          values="
+          M1296 248 C 1310 308, 1336 370, 1365 430 C 1400 372, 1450 316, 1518 260;
+          M1296 248 C 1320 320, 1340 388, 1365 430 C 1406 388, 1460 304, 1518 260;
+          M1296 248 C 1304 292, 1332 350, 1365 430 C 1418 388, 1462 332, 1518 260;
+          M1296 248 C 1310 308, 1336 370, 1365 430 C 1400 372, 1450 316, 1518 260"/>
+      </path>
+      <path class="network-line" d="M1190 300 C 1212 350, 1230 396, 1255 452 C 1286 438, 1322 434, 1365 430 C 1412 424, 1458 456, 1492 486 C 1542 442, 1598 392, 1665 345">
+        <animate attributeName="d" dur="8.4s" repeatCount="indefinite"
+          values="
+          M1190 300 C 1212 350, 1230 396, 1255 452 C 1286 438, 1322 434, 1365 430 C 1412 424, 1458 456, 1492 486 C 1542 442, 1598 392, 1665 345;
+          M1190 300 C 1222 360, 1236 412, 1255 452 C 1284 452, 1316 420, 1365 430 C 1414 440, 1456 470, 1492 486 C 1548 460, 1602 396, 1665 345;
+          M1190 300 C 1208 338, 1226 388, 1255 452 C 1296 434, 1336 446, 1365 430 C 1402 410, 1446 440, 1492 486 C 1536 438, 1588 384, 1665 345;
+          M1190 300 C 1212 350, 1230 396, 1255 452 C 1286 438, 1322 434, 1365 430 C 1412 424, 1458 456, 1492 486 C 1542 442, 1598 392, 1665 345"/>
+      </path>
+      <path class="network-line-soft" d="M1402 305 C 1382 348, 1368 390, 1365 430 C 1404 430, 1446 448, 1492 486">
+        <animate attributeName="d" dur="7.6s" repeatCount="indefinite"
+          values="
+          M1402 305 C 1382 348, 1368 390, 1365 430 C 1404 430, 1446 448, 1492 486;
+          M1402 305 C 1388 334, 1372 402, 1365 430 C 1410 420, 1450 434, 1492 486;
+          M1402 305 C 1396 362, 1374 406, 1365 430 C 1400 438, 1436 462, 1492 486;
+          M1402 305 C 1382 348, 1368 390, 1365 430 C 1404 430, 1446 448, 1492 486"/>
+      </path>
+      <circle class="network-node-soft" cx="1190" cy="300" r="3.4"/>
+      <circle class="network-node" cx="1296" cy="248" r="4.8"/>
+      <circle class="network-node-soft" cx="1402" cy="305" r="3.4"/>
+      <circle class="network-node" cx="1518" cy="260" r="5.0">
+        <animate attributeName="opacity" dur="5.0s" values=".54;.86;.54" repeatCount="indefinite"/>
+      </circle>
+      <circle class="network-node" cx="1665" cy="345" r="4.7"/>
+      <circle class="network-node-soft" cx="1255" cy="452" r="3.3"/>
+      <circle class="network-node" cx="1365" cy="430" r="4.8"/>
+      <circle class="network-node-soft" cx="1492" cy="486" r="3.2"/>
+    </g>
+
+    <!-- Center cluster -->
+    <g>
+      <animateTransform attributeName="transform" type="translate" dur="10s" values="0 0; 8 6; -10 -7; 0 0" repeatCount="indefinite"/>
+      <path class="network-line" d="M760 270 C 798 250, 834 232, 882 218 C 932 206, 970 246, 1016 288 C 1058 326, 1098 268, 1135 244">
+        <animate attributeName="d" dur="7.0s" repeatCount="indefinite"
+          values="
+          M760 270 C 798 250, 834 232, 882 218 C 932 206, 970 246, 1016 288 C 1058 326, 1098 268, 1135 244;
+          M760 270 C 804 238, 844 240, 882 218 C 934 192, 972 266, 1016 288 C 1068 310, 1100 254, 1135 244;
+          M760 270 C 792 264, 836 220, 882 218 C 922 216, 980 230, 1016 288 C 1050 344, 1090 282, 1135 244;
+          M760 270 C 798 250, 834 232, 882 218 C 932 206, 970 246, 1016 288 C 1058 326, 1098 268, 1135 244"/>
+      </path>
+      <path class="network-line" d="M760 270 C 780 330, 800 390, 820 454 C 848 502, 890 532, 930 545 C 978 554, 1016 516, 1056 472 C 1092 420, 1112 334, 1135 244">
+        <animate attributeName="d" dur="8.6s" repeatCount="indefinite"
+          values="
+          M760 270 C 780 330, 800 390, 820 454 C 848 502, 890 532, 930 545 C 978 554, 1016 516, 1056 472 C 1092 420, 1112 334, 1135 244;
+          M760 270 C 786 346, 798 404, 820 454 C 860 520, 886 548, 930 545 C 984 540, 1026 532, 1056 472 C 1086 402, 1102 316, 1135 244;
+          M760 270 C 772 314, 794 372, 820 454 C 840 486, 894 520, 930 545 C 968 568, 1006 498, 1056 472 C 1110 444, 1124 350, 1135 244;
+          M760 270 C 780 330, 800 390, 820 454 C 848 502, 890 532, 930 545 C 978 554, 1016 516, 1056 472 C 1092 420, 1112 334, 1135 244"/>
+      </path>
+      <path class="network-line" d="M882 218 C 898 314, 914 424, 930 545 C 960 460, 990 376, 1016 288">
+        <animate attributeName="d" dur="6.9s" repeatCount="indefinite"
+          values="
+          M882 218 C 898 314, 914 424, 930 545 C 960 460, 990 376, 1016 288;
+          M882 218 C 906 330, 912 438, 930 545 C 954 450, 984 360, 1016 288;
+          M882 218 C 892 298, 908 408, 930 545 C 970 478, 998 386, 1016 288;
+          M882 218 C 898 314, 914 424, 930 545 C 960 460, 990 376, 1016 288"/>
+      </path>
+      <path class="network-line-soft" d="M820 454 C 892 454, 970 464, 1056 472 C 1040 408, 1030 350, 1016 288">
+        <animate attributeName="d" dur="7.7s" repeatCount="indefinite"
+          values="
+          M820 454 C 892 454, 970 464, 1056 472 C 1040 408, 1030 350, 1016 288;
+          M820 454 C 888 468, 980 454, 1056 472 C 1032 394, 1028 338, 1016 288;
+          M820 454 C 900 438, 968 480, 1056 472 C 1050 420, 1034 366, 1016 288;
+          M820 454 C 892 454, 970 464, 1056 472 C 1040 408, 1030 350, 1016 288"/>
+      </path>
+      <circle class="network-node" cx="760" cy="270" r="4.6"/>
+      <circle class="network-node-soft" cx="882" cy="218" r="3.2"/>
+      <circle class="network-node" cx="1016" cy="288" r="5.2">
+        <animate attributeName="r" dur="4.6s" values="5.2;6.8;5.2" repeatCount="indefinite"/>
+      </circle>
+      <circle class="network-node-soft" cx="1135" cy="244" r="3.2"/>
+      <circle class="network-node-soft" cx="820" cy="454" r="3.2"/>
+      <circle class="network-node" cx="930" cy="545" r="4.8"/>
+      <circle class="network-node-soft" cx="1056" cy="472" r="3.2"/>
+    </g>
+
+    <!-- Middle-left small cluster -->
+    <g opacity=".88">
+      <animateTransform attributeName="transform" type="translate" dur="10.5s" values="0 0; 7 5; -6 -4; 0 0" repeatCount="indefinite"/>
+      <path class="network-line" d="M238 585 C 274 560, 310 548, 350 540 C 390 536, 428 576, 462 604 C 492 626, 530 578, 572 554">
+        <animate attributeName="d" dur="6.8s" repeatCount="indefinite"
+          values="
+          M238 585 C 274 560, 310 548, 350 540 C 390 536, 428 576, 462 604 C 492 626, 530 578, 572 554;
+          M238 585 C 280 552, 312 560, 350 540 C 394 520, 428 590, 462 604 C 500 614, 532 566, 572 554;
+          M238 585 C 268 572, 308 532, 350 540 C 384 548, 434 566, 462 604 C 492 636, 526 590, 572 554;
+          M238 585 C 274 560, 310 548, 350 540 C 390 536, 428 576, 462 604 C 492 626, 530 578, 572 554"/>
+      </path>
+      <path class="network-line" d="M350 540 C 370 588, 388 634, 410 680 C 424 646, 440 620, 462 604">
+        <animate attributeName="d" dur="6.2s" repeatCount="indefinite"
+          values="
+          M350 540 C 370 588, 388 634, 410 680 C 424 646, 440 620, 462 604;
+          M350 540 C 376 600, 394 648, 410 680 C 426 654, 444 616, 462 604;
+          M350 540 C 362 574, 384 620, 410 680 C 432 654, 448 628, 462 604;
+          M350 540 C 370 588, 388 634, 410 680 C 424 646, 440 620, 462 604"/>
+      </path>
+      <path class="network-line-soft" d="M238 585 C 302 622, 354 650, 410 680 C 456 652, 516 606, 572 554">
+        <animate attributeName="d" dur="7.0s" repeatCount="indefinite"
+          values="
+          M238 585 C 302 622, 354 650, 410 680 C 456 652, 516 606, 572 554;
+          M238 585 C 314 636, 352 666, 410 680 C 470 642, 526 600, 572 554;
+          M238 585 C 292 612, 348 636, 410 680 C 444 664, 510 618, 572 554;
+          M238 585 C 302 622, 354 650, 410 680 C 456 652, 516 606, 572 554"/>
+      </path>
+      <circle class="network-node" cx="238" cy="585" r="4.2"/>
+      <circle class="network-node-soft" cx="350" cy="540" r="3.2"/>
+      <circle class="network-node" cx="462" cy="604" r="4.6"/>
+      <circle class="network-node-soft" cx="572" cy="554" r="3.1"/>
+      <circle class="network-node" cx="410" cy="680" r="4.4"/>
+    </g>
+
+    <!-- Middle-right small cluster -->
+    <g opacity=".88">
+      <animateTransform attributeName="transform" type="translate" dur="11.4s" values="0 0; -8 5; 7 -6; 0 0" repeatCount="indefinite"/>
+      <path class="network-line" d="M1288 590 C 1324 564, 1358 544, 1395 532 C 1432 526, 1474 572, 1510 596 C 1566 600, 1622 598, 1690 594">
+        <animate attributeName="d" dur="7.0s" repeatCount="indefinite"
+          values="
+          M1288 590 C 1324 564, 1358 544, 1395 532 C 1432 526, 1474 572, 1510 596 C 1566 600, 1622 598, 1690 594;
+          M1288 590 C 1332 554, 1360 552, 1395 532 C 1440 518, 1476 586, 1510 596 C 1562 608, 1620 586, 1690 594;
+          M1288 590 C 1318 578, 1354 534, 1395 532 C 1430 544, 1478 560, 1510 596 C 1570 592, 1626 604, 1690 594;
+          M1288 590 C 1324 564, 1358 544, 1395 532 C 1432 526, 1474 572, 1510 596 C 1566 600, 1622 598, 1690 594"/>
+      </path>
+      <path class="network-line" d="M1395 532 C 1416 586, 1432 642, 1458 704 C 1474 660, 1494 624, 1510 596">
+        <animate attributeName="d" dur="6.4s" repeatCount="indefinite"
+          values="
+          M1395 532 C 1416 586, 1432 642, 1458 704 C 1474 660, 1494 624, 1510 596;
+          M1395 532 C 1420 596, 1438 654, 1458 704 C 1478 668, 1498 616, 1510 596;
+          M1395 532 C 1408 570, 1430 626, 1458 704 C 1482 666, 1498 634, 1510 596;
+          M1395 532 C 1416 586, 1432 642, 1458 704 C 1474 660, 1494 624, 1510 596"/>
+      </path>
+      <path class="network-line-soft" d="M1288 590 C 1360 626, 1410 658, 1458 704 C 1526 676, 1596 642, 1690 594">
+        <animate attributeName="d" dur="7.2s" repeatCount="indefinite"
+          values="
+          M1288 590 C 1360 626, 1410 658, 1458 704 C 1526 676, 1596 642, 1690 594;
+          M1288 590 C 1344 640, 1402 668, 1458 704 C 1536 668, 1608 626, 1690 594;
+          M1288 590 C 1374 614, 1418 644, 1458 704 C 1518 688, 1588 650, 1690 594;
+          M1288 590 C 1360 626, 1410 658, 1458 704 C 1526 676, 1596 642, 1690 594"/>
+      </path>
+      <circle class="network-node-soft" cx="1288" cy="590" r="3.2"/>
+      <circle class="network-node" cx="1395" cy="532" r="4.5"/>
+      <circle class="network-node-soft" cx="1510" cy="596" r="3.2"/>
+      <circle class="network-node" cx="1690" cy="594" r="4.3"/>
+      <circle class="network-node" cx="1458" cy="704" r="4.4"/>
+    </g>
+
+    <!-- Lower distributed chain -->
+    <g opacity=".82">
+      <animateTransform attributeName="transform" type="translate" dur="13s" values="0 0; 10 7; -10 -7; 0 0" repeatCount="indefinite"/>
+      <path class="network-line" d="M390 770 C 438 744, 486 720, 548 706 C 602 692, 650 750, 708 790 C 758 824, 814 744, 865 724 C 920 708, 974 770, 1030 798 C 1088 814, 1142 734, 1205 716 C 1270 704, 1338 760, 1405 782 C 1486 794, 1560 780, 1638 762">
+        <animate attributeName="d" dur="8.8s" repeatCount="indefinite"
+          values="
+          M390 770 C 438 744, 486 720, 548 706 C 602 692, 650 750, 708 790 C 758 824, 814 744, 865 724 C 920 708, 974 770, 1030 798 C 1088 814, 1142 734, 1205 716 C 1270 704, 1338 760, 1405 782 C 1486 794, 1560 780, 1638 762;
+          M390 770 C 444 730, 492 736, 548 706 C 610 680, 658 766, 708 790 C 768 804, 820 728, 865 724 C 928 724, 982 784, 1030 798 C 1096 796, 1148 718, 1205 716 C 1278 718, 1344 774, 1405 782 C 1492 782, 1564 794, 1638 762;
+          M390 770 C 430 760, 484 706, 548 706 C 592 710, 656 734, 708 790 C 748 836, 808 760, 865 724 C 910 694, 968 748, 1030 798 C 1078 826, 1138 750, 1205 716 C 1260 692, 1330 744, 1405 782 C 1474 806, 1552 766, 1638 762;
+          M390 770 C 438 744, 486 720, 548 706 C 602 692, 650 750, 708 790 C 758 824, 814 744, 865 724 C 920 708, 974 770, 1030 798 C 1088 814, 1142 734, 1205 716 C 1270 704, 1338 760, 1405 782 C 1486 794, 1560 780, 1638 762"/>
+      </path>
+      <path class="network-line-soft" d="M548 706 C 578 754, 610 804, 642 850 C 714 792, 786 752, 865 724 C 904 786, 930 840, 960 890 C 1032 822, 1114 758, 1205 716 C 1240 776, 1284 822, 1320 858 C 1354 830, 1384 804, 1405 782">
+        <animate attributeName="d" dur="8.2s" repeatCount="indefinite"
+          values="
+          M548 706 C 578 754, 610 804, 642 850 C 714 792, 786 752, 865 724 C 904 786, 930 840, 960 890 C 1032 822, 1114 758, 1205 716 C 1240 776, 1284 822, 1320 858 C 1354 830, 1384 804, 1405 782;
+          M548 706 C 588 764, 618 812, 642 850 C 722 804, 794 742, 865 724 C 896 796, 926 852, 960 890 C 1044 834, 1120 748, 1205 716 C 1248 786, 1288 830, 1320 858 C 1364 822, 1390 796, 1405 782;
+          M548 706 C 570 744, 606 792, 642 850 C 706 782, 780 764, 865 724 C 914 774, 936 830, 960 890 C 1022 810, 1110 770, 1205 716 C 1232 768, 1276 812, 1320 858 C 1340 840, 1378 812, 1405 782;
+          M548 706 C 578 754, 610 804, 642 850 C 714 792, 786 752, 865 724 C 904 786, 930 840, 960 890 C 1032 822, 1114 758, 1205 716 C 1240 776, 1284 822, 1320 858 C 1354 830, 1384 804, 1405 782"/>
+      </path>
+      <circle class="network-node" cx="390" cy="770" r="4.2"/>
+      <circle class="network-node-soft" cx="548" cy="706" r="3.0"/>
+      <circle class="network-node" cx="708" cy="790" r="4.4"/>
+      <circle class="network-node-soft" cx="865" cy="724" r="3.0"/>
+      <circle class="network-node" cx="1030" cy="798" r="4.6">
+        <animate attributeName="opacity" dur="5.2s" values=".52;.80;.52" repeatCount="indefinite"/>
+      </circle>
+      <circle class="network-node-soft" cx="1205" cy="716" r="3.0"/>
+      <circle class="network-node" cx="1405" cy="782" r="4.3"/>
+      <circle class="network-node-soft" cx="1638" cy="762" r="3.0"/>
+      <circle class="network-node-soft" cx="642" cy="850" r="2.8"/>
+      <circle class="network-node-soft" cx="960" cy="890" r="2.8"/>
+      <circle class="network-node-soft" cx="1320" cy="858" r="2.8"/>
+    </g>
+  </g>
+
+  <g opacity=".11" filter="url(#softLineGlow)">
+    <ellipse cx="958" cy="540" rx="622" ry="210" fill="none" stroke="#d8b65f" stroke-width="1.0">
+      <animate attributeName="rx" dur="30s" values="604;644;604" repeatCount="indefinite"/>
+      <animate attributeName="ry" dur="30s" values="198;224;198" repeatCount="indefinite"/>
+    </ellipse>
+    <ellipse cx="958" cy="540" rx="760" ry="282" fill="none" stroke="#ffffff" stroke-width=".7" opacity=".40">
+      <animate attributeName="rx" dur="38s" values="742;778;742" repeatCount="indefinite"/>
+      <animate attributeName="ry" dur="38s" values="268;294;268" repeatCount="indefinite"/>
+    </ellipse>
+  </g>
+
+  <rect width="1920" height="1080" fill="#000000" opacity=".14"/>
+  <rect width="1920" height="1080" fill="none" stroke="rgba(255,255,255,.055)" stroke-width="2"/>
+</svg>
