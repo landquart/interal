@@ -11,6 +11,8 @@
   const siteRoot = sharedPath.replace(/\/shared\/ui\.js$/, '/');
   const joinUrl = (path) => new URL(path.replace(/^\//, ''), window.location.origin + siteRoot).pathname;
 
+  const canCopyPageState = /\/(indoeuropanvordes|associativvordes|determinatorofvalentyp)(\/|$)/.test(window.location.pathname);
+
   const i18n = {
     ru: {
       openMenu: 'Открыть меню',
@@ -112,6 +114,7 @@
       <a class="menu-nav-link" href="${joinUrl('associativvordes/')}" data-nav="associativ"><span class="menu-nav-main"></span></a>
       <a class="menu-nav-link" href="${joinUrl('determinatorofvalentyp/')}" data-nav="determinator"><span class="menu-nav-main"></span></a>
       <a class="menu-nav-link" href="${joinUrl('registre/')}" data-nav="registry"><span class="menu-nav-main"></span></a>
+      ${canCopyPageState ? `
       <div class="menu-divider menu-divider--mobile" aria-hidden="true"></div>
       <button class="menu-copy-btn" type="button" data-copy-state="true">
         <span class="menu-copy-icon-stack" aria-hidden="true">
@@ -122,6 +125,7 @@
         </span>
         <span class="menu-copy-label"></span>
       </button>
+      ` : ''}
     </nav>
     <div class="menu-preferences-row">
       <button class="menu-lang-btn menu-lang-trigger" type="button" data-lang-trigger="true" aria-expanded="false">
