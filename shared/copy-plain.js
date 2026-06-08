@@ -10,3 +10,14 @@ document.addEventListener("copy", function (event) {
   event.preventDefault();
   event.clipboardData.setData("text/plain", plainText);
 });
+
+(function loadDeterminatorPageFixes() {
+  if (!/\/determinatorofvalentyp\//.test(window.location.pathname)) return;
+  if (document.querySelector('script[data-determinator-page-fixes]')) return;
+
+  const script = document.createElement('script');
+  script.src = 'page-fixes.js?v=3';
+  script.defer = true;
+  script.dataset.determinatorPageFixes = 'true';
+  document.head.appendChild(script);
+})();
