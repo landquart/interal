@@ -553,6 +553,29 @@ const prefixNotesEn = {
   'перед d и j': 'before d and j'
 };
 
+const chainTypeLabels = {
+  direct_composition: { ru: 'Прямая композиция', en: 'Direct composition' },
+  slight_focus_shift: { ru: 'Небольшой сдвиг фокуса', en: 'Slight focus shift' },
+  semantic_extension: { ru: 'Семантическое расширение', en: 'Semantic extension' },
+  metaphorical_transfer: { ru: 'Метафорический перенос', en: 'Metaphorical transfer' },
+  metonymic_transfer: { ru: 'Метонимический перенос', en: 'Metonymic transfer' },
+  abstract_transfer: { ru: 'Абстрактный перенос', en: 'Abstract transfer' },
+  historical_conventionalization: { ru: 'Историческая конвенционализация', en: 'Historical conventionalization' },
+  historical_or_traditional_conventionalization: { ru: 'Историческая или традиционная конвенционализация', en: 'Historical or traditional conventionalization' },
+  lexicalized_no_working_chain: { ru: 'Лексикализовано, рабочей цепочки нет', en: 'Lexicalized, no working chain' }
+};
+
+function formatChainType(value, isEn) {
+  const key = String(value || '').trim();
+  if (!key) return '—';
+  const label = chainTypeLabels[key];
+  if (label) return isEn ? label.en : label.ru;
+  return key
+    .split(/[_-]+/)
+    .filter(Boolean)
+    .join(' ');
+}
+
 const fixedRootAssimilationValues = new Set([
   'exc-seder',
   'exc-mover',
@@ -1345,7 +1368,6 @@ function renderResult(result, input) {
   const zoneName = isEn ? computed.zone_en : computed.zone_ru;
   const formRecommendation = computed.formRecommendation || buildFormRecommendation(computed, input);
   const warnings = Array.isArray(computed.warnings) ? computed.warnings : [];
-  const examples = result.retrieval?.examples_used || [];
   const chain = ai.chain.length ? ai.chain : (input.explanationChain ? input.explanationChain.split(/\s*→\s*/).filter(Boolean) : []);
 
   state.lastAnalysis = result;
@@ -1360,7 +1382,7 @@ function renderResult(result, input) {
     <div class="result-grid">
       <div class="result-card">
         <h3>${isEn ? 'Spectrum zone' : 'Зона спектра'}</h3>
-        <pre>${escapeHtml(zoneName)}\n${escapeHtml(computed.zone_id)}</pre>
+        <pre>${escapeHtml(zoneName)}</pre>
       </div>
       <div class="result-card">
         <h3>P/R/C/E</h3>
@@ -1376,7 +1398,7 @@ function renderResult(result, input) {
       </div>
       <div class="result-card">
         <h3>${isEn ? 'Chain type' : 'Тип цепочки'}</h3>
-        <pre>${escapeHtml(ai.chain_type || '—')}</pre>
+        <pre>${escapeHtml(formatChainType(ai.chain_type, isEn))}</pre>
       </div>
       <div class="result-card">
         <h3>${isEn ? 'AI confidence' : 'Уверенность модели'}</h3>
@@ -1395,14 +1417,6 @@ function renderResult(result, input) {
     </div>
 
     <div class="result-grid">
-      <div class="result-card">
-        <h3>${isEn ? 'Analogies used' : 'Использованные аналогии'}</h3>
-        <pre>${escapeHtml((ai.analogies_used && ai.analogies_used.length ? ai.analogies_used : examples.map((ex) => ex.word)).join('\n') || '—')}</pre>
-      </div>
-      <div class="result-card">
-        <h3>${isEn ? 'Borderline zones' : 'Граничные зоны'}</h3>
-        <pre>${escapeHtml((computed.borderline_zones || []).map((zone) => `${isEn ? zone.zone_en : zone.zone_ru} (${zone.zone_id})`).join('\n') || '—')}</pre>
-      </div>
       <div class="result-card">
         <h3>${isEn ? 'Warnings' : 'Предупреждения'}</h3>
         <pre>${escapeHtml(warnings.join('\n') || '—')}</pre>
@@ -1486,8 +1500,6 @@ function saveState() {
     ollamaModel: els.ollamaModel ? els.ollamaModel.value : '',
     manualPrompt: els.manualPrompt ? els.manualPrompt.value : '',
     manualEmbeddingResponse: els.manualEmbeddingResponse ? els.manualEmbeddingResponse.value : '',
-    resultHtml: els.result.innerHTML,
-    resultIsEmpty: els.result.classList.contains('empty'),
     lastAnalysis: state.lastAnalysis
   };
 
@@ -1522,12 +1534,8 @@ function restoreState() {
     syncPromptButtonsVisibility();
     if (els.manualEmbeddingResponse) els.manualEmbeddingResponse.value = saved.manualEmbeddingResponse || '';
 
-    if (saved.lastAnalysis && !saved.resultIsEmpty) {
+    if (saved.lastAnalysis) {
       renderResult(saved.lastAnalysis, getInput());
-    } else if (saved.resultHtml) {
-      els.result.innerHTML = saved.resultHtml;
-      els.result.classList.toggle('empty', Boolean(saved.resultIsEmpty));
-      els.resultPanel.hidden = Boolean(saved.resultIsEmpty);
     }
 
     syncClearButtonVisibility();
