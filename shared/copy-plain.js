@@ -12,4 +12,4 @@ document.addEventListener("copy", function (event) {
 });
 
 (function loadIndoeuropanJsonDownloadHelper() {
-  if (!/\/indoeuropanvordes\/?$/.test(window.location.pathname)) return;
+  if (!/\/indoeuropanvordes\/?$/.
