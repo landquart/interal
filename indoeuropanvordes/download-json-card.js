@@ -46,6 +46,19 @@
     return "indoeuropan-card.json";
   }
 
+  function normalizeJsonCardText(value) {
+    const text = String(value || "").trim();
+
+    if (text.startsWith("/card") && text.endsWith("/done")) {
+      return text
+        .replace(/^\/card\s*/, "")
+        .replace(/\s*\/done$/, "")
+        .trim();
+    }
+
+    return text;
+  }
+
   function makeDownloadButton() {
     const button = document.createElement("button");
     button.id = DOWNLOAD_BUTTON_ID;
@@ -54,13 +67,17 @@
     button.setAttribute("aria-label", getText("download"));
     button.title = getText("download");
 
+    const iconStack = document.createElement("span");
+    iconStack.className = "json-card-download-icon-stack";
+    iconStack.setAttribute("aria-hidden", "true");
+
     const icon = document.createElement("img");
-    icon.className = "menu-copy-icon";
+    icon.className = "json-card-download-icon";
     icon.src = "../elements/Download.svg";
     icon.alt = "";
-    icon.setAttribute("aria-hidden", "true");
 
-    button.appendChild(icon);
+    iconStack.appendChild(icon);
+    button.appendChild(iconStack);
     return button;
   }
 
@@ -99,8 +116,10 @@
       copyButton.insertAdjacentElement("afterend", button);
     }
 
+    document.addEventListener("interal:languagechange", () => updateButtonText(button));
+
     button.addEventListener("click", () => {
-      const jsonText = output.value.trim();
+      const jsonText = normalizeJsonCardText(output.value);
 
       if (!jsonText) {
         alert(getText("empty"));
@@ -115,7 +134,7 @@
         return;
       }
 
-      downloadTextFile(jsonText, getCardFileName(parsed));
+      downloadTextFile(JSON.stringify(parsed, null, 2), getCardFileName(parsed));
       button.setAttribute("aria-label", getText("success"));
       button.title = getText("success");
       window.setTimeout(() => updateButtonText(button), 1500);
