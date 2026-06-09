@@ -1,13 +1,1 @@
-(() => {
-  "use strict";
-
-  function getText(key) {
-    const isEn = localStorage.getItem("interal.lang") === "en";
-    const ru = {
-      download: "Скачать JSON-карточку",
-      empty: "Сначала сгенерируйте JSON-карточку.",
-      invalid: "JSON-карточка содержит ошибку и не может быть скачана как корректный JSON.",
-      done: "JSON-карточка скачана"
-    };
-    const en = {
-      download:
+(()=>{function L(){return localStorage.getItem('interal.lang')==='en'}function T(k){const r={d:'Скачать JSON-карточку',e:'Сначала сгенерируйте JSON-карточку.',i:'JSON-карточка содержит ошибку и не может быть скачана как корректный JSON.',x:'JSON-карточка скачана'},n={d:'Download JSON card',e:'Generate the JSON card first.',i:'The JSON card contains invalid JSON and cannot be downloaded.',x:'JSON card downloaded'};return(L()?n
