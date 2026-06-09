@@ -13,6 +13,38 @@
 
   const canCopyPageState = /\/(indoeuropanvordes|associativvordes|determinatorofvalentyp)(\/|$)/.test(window.location.pathname);
 
+  const pageNavItems = {
+    indoeuropanvordes: {
+      path: 'indoeuropanvordes/',
+      icon: 'elements/indoeuropan%20vordes.svg',
+      labelKey: 'navSimilarita'
+    },
+    associativ: {
+      path: 'associativvordes/',
+      icon: 'elements/associativ%20vordes.svg',
+      labelKey: 'navAssociativ'
+    },
+    determinator: {
+      path: 'determinatorofvalentyp/',
+      icon: 'elements/determinator%20of%20valen%20typ.svg',
+      labelKey: 'navDeterminator'
+    },
+    registry: {
+      path: 'registre/',
+      icon: 'elements/registre.svg',
+      labelKey: 'navRegistry'
+    }
+  };
+
+  function getCurrentPageNav() {
+    const path = window.location.pathname;
+    if (path.includes('/indoeuropanvordes/')) return 'indoeuropanvordes';
+    if (path.includes('/associativvordes/')) return 'associativ';
+    if (path.includes('/determinatorofvalentyp/')) return 'determinator';
+    if (path.includes('/registre/')) return 'registry';
+    return '';
+  }
+
   const i18n = {
     ru: {
       openMenu: 'Открыть меню',
@@ -93,12 +125,14 @@
 
   const desktopControls = document.createElement('div');
   desktopControls.className = 'top-desktop-controls';
-  desktopControls.innerHTML = `
-    <a class="top-desktop-link" href="${joinUrl('indoeuropanvordes/')}" data-nav="indoeuropanvordes"><span class="top-desktop-link-main"></span></a>
-    <a class="top-desktop-link" href="${joinUrl('associativvordes/')}" data-nav="associativ"><span class="top-desktop-link-main"></span></a>
-    <a class="top-desktop-link" href="${joinUrl('determinatorofvalentyp/')}" data-nav="determinator"><span class="top-desktop-link-main"></span></a>
-    <a class="top-desktop-link" href="${joinUrl('registre/')}" data-nav="registry"><span class="top-desktop-link-main"></span></a>
-  `;
+  desktopControls.innerHTML = Object.entries(pageNavItems).map(([key, item]) => `
+    <a class="top-desktop-link" href="${joinUrl(item.path)}" data-nav="${key}"><span class="top-desktop-link-main"></span></a>
+  `).join('');
+
+  const mobileCurrentPageLink = document.createElement('a');
+  mobileCurrentPageLink.className = 'top-current-page-link';
+  mobileCurrentPageLink.setAttribute('aria-current', 'page');
+  mobileCurrentPageLink.innerHTML = '<img class="top-current-page-icon" alt="" aria-hidden="true" />';
 
   const overlay = document.createElement('div');
   overlay.className = 'side-menu-overlay';
@@ -110,10 +144,7 @@
     <h2 class="menu-title"></h2>
     <div class="menu-divider menu-divider--mobile" aria-hidden="true"></div>
     <nav class="menu-nav" aria-label="Site sections">
-      <a class="menu-nav-link" href="${joinUrl('indoeuropanvordes/')}" data-nav="indoeuropanvordes"><span class="menu-nav-main"></span></a>
-      <a class="menu-nav-link" href="${joinUrl('associativvordes/')}" data-nav="associativ"><span class="menu-nav-main"></span></a>
-      <a class="menu-nav-link" href="${joinUrl('determinatorofvalentyp/')}" data-nav="determinator"><span class="menu-nav-main"></span></a>
-      <a class="menu-nav-link" href="${joinUrl('registre/')}" data-nav="registry"><span class="menu-nav-main"></span></a>
+      ${Object.entries(pageNavItems).map(([key, item]) => `<a class="menu-nav-link" href="${joinUrl(item.path)}" data-nav="${key}"><span class="menu-nav-main"></span></a>`).join('')}
       ${canCopyPageState ? `
       <div class="menu-divider menu-divider--mobile" aria-hidden="true"></div>
       <button class="menu-copy-btn" type="button" data-copy-state="true">
@@ -350,10 +381,15 @@
       registryLink.querySelector('.menu-nav-main').textContent = t.navRegistry;
     }
 
+    const labels = Object.fromEntries(Object.entries(pageNavItems).map(([key, item]) => [key, t[item.labelKey]]));
     desktopControls.querySelectorAll('.top-desktop-link').forEach((link) => {
-      const labels = { indoeuropanvordes: t.navSimilarita, associativ: t.navAssociativ, determinator: t.navDeterminator, registry: t.navRegistry };
       link.querySelector('.top-desktop-link-main').textContent = labels[link.dataset.nav] || '';
     });
+    const currentMobileNav = getCurrentPageNav();
+    if (currentMobileNav && labels[currentMobileNav]) {
+      mobileCurrentPageLink.setAttribute('aria-label', labels[currentMobileNav]);
+      mobileCurrentPageLink.setAttribute('title', labels[currentMobileNav]);
+    }
 
     menu.querySelectorAll('.menu-lang-btn[data-lang]').forEach((btn) => {
       const code = btn.dataset.lang;
@@ -510,25 +546,28 @@
   }
 
   function markCurrentPage() {
-    const path = window.location.pathname;
-    const currentNav = path.includes('/indoeuropanvordes/')
-      ? 'indoeuropanvordes'
-      : path.includes('/associativvordes/')
-        ? 'associativ'
-        : path.includes('/determinatorofvalentyp/')
-          ? 'determinator'
-          : path.includes('/registre/')
-            ? 'registry'
-            : '';
+    const currentNav = getCurrentPageNav();
 
     document.querySelectorAll('[data-nav]').forEach((link) => {
       link.classList.toggle('is-active', !!currentNav && link.dataset.nav === currentNav);
     });
+
+    const currentItem = currentNav ? pageNavItems[currentNav] : null;
+    mobileCurrentPageLink.hidden = !currentItem;
+    if (currentItem) {
+      const t = i18n[getLang()];
+      const label = t[currentItem.labelKey];
+      const icon = mobileCurrentPageLink.querySelector('.top-current-page-icon');
+      mobileCurrentPageLink.href = joinUrl(currentItem.path);
+      mobileCurrentPageLink.setAttribute('aria-label', label);
+      mobileCurrentPageLink.setAttribute('title', label);
+      if (icon) icon.src = joinUrl(currentItem.icon);
+    }
   }
 
   const topNavWindow = document.createElement('div');
   topNavWindow.className = 'top-nav-window';
-  topNavWindow.append(menuButton, brandLink, desktopControls);
+  topNavWindow.append(menuButton, brandLink, desktopControls, mobileCurrentPageLink);
 
   document.body.classList.add('has-global-menu');
   topNav.append(topNavWindow);
