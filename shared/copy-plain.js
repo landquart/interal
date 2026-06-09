@@ -10,3 +10,6 @@ document.addEventListener("copy", function (event) {
   event.preventDefault();
   event.clipboardData.setData("text/plain", plainText);
 });
+
+(function loadIndoeuropanJsonDownloadHelper() {
+  if (!/\/indoeuropanvordes\/?$/.test(window.location.pathname)) return;
