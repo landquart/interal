@@ -480,6 +480,7 @@ body.dark-theme .internationalita-page #jsonCardModal {
 .internationalita-page .json-card-actions {
   display: flex;
   justify-content: flex-end;
+  gap: 8px;
   margin-top: 12px;
 }
 
@@ -514,8 +515,24 @@ body.dark-theme .internationalita-page #jsonCardModal {
   box-shadow: inset 0 0 0 1px color-mix(in srgb, #48d17f 26%, transparent), 0 10px 22px color-mix(in srgb, #48d17f 18%, transparent);
 }
 
-.internationalita-page .json-card-icon-btn .menu-copy-icon-link {
+.internationalita-page .json-card-icon-btn .menu-copy-icon-link,
+.internationalita-page .json-card-download-icon {
   filter: var(--menu-icon-filter, none);
+}
+
+.internationalita-page .json-card-download-icon-stack {
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  line-height: 0;
+}
+
+.internationalita-page .json-card-download-icon {
+  width: 20px;
+  height: 20px;
+  display: block;
+  object-fit: contain;
 }
 
 body.dark-theme .internationalita-page .json-card-icon-btn {
@@ -2792,7 +2809,7 @@ applyLocalizedTexts();
 updateResetButtonVisibility();
 </script>
 
-<script src="./download-json-card.js?v=1"></script>
+<script src="./download-json-card.js?v=2"></script>
 <script src="../shared/copy-plain.js"></script>
 <script src="../shared/ui.js"></script>
 
