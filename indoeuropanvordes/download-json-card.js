@@ -1,12 +1,17 @@
 (() => {
   "use strict";
 
-  const OUTPUT_ID = "jsonCardOutput";
-  const COPY_BUTTON_ID = "copyJsonCardBtn";
-  const DOWNLOAD_BUTTON_ID = "downloadJsonCardBtn";
+  const outputId = "jsonCardOutput";
+  const copyButtonId = "copyJsonCardBtn";
+  const downloadButtonId = "downloadJsonCardBtn";
 
-  function currentLanguage() {
-    const stored = localStorage.getItem("interal.lang");
-    if (stored === "en" || stored === "ru") return stored;
-    return document.documentElement.lang === "en" ? "en" : "ru";
- 
+  function lang() {
+    const saved = localStorage.getItem("interal.lang");
+    return saved === "en" ? "en" : "ru";
+  }
+
+  function text(key) {
+    const dict = {
+      ru: {
+        download: "Скачать JSON-карточку",
+        empty: "Сначала сгенерируйте JSON-карточку.",
