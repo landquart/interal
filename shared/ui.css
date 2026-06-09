@@ -213,11 +213,14 @@ body.dark-theme .top-nav-window::after {
   z-index: 1;
 }
 .top-nav,.top-nav *,.side-menu,.side-menu *{box-sizing:border-box}
-.top-menu-btn,.top-brand,.top-desktop-link,.menu-nav-link,.menu-copy-btn,.menu-lang-trigger,.menu-theme-toggle,.menu-lang-modal-content,.side-menu{border:0;box-shadow:none}
+.top-menu-btn,.top-brand,.top-current-page-link,.top-desktop-link,.menu-nav-link,.menu-copy-btn,.menu-lang-trigger,.menu-theme-toggle,.menu-lang-modal-content,.side-menu{border:0;box-shadow:none}
 .top-menu-btn{min-width:44px;height:44px;border-radius:999px;background:transparent;color:var(--text);border:1px solid transparent;cursor:pointer;display:flex;align-items:center;justify-content:center}.top-menu-btn-text{display:none}.top-menu-btn-icon{font-size:28px;line-height:1}
 .top-brand{display:inline-flex;align-items:center;gap:6px;height:44px;padding:0 16px 0 8px;color:var(--text);text-decoration:none;font-weight:700;min-width:0;position:absolute;left:50%;transform:translateX(-50%)}
 .top-brand-logo{width:32px;height:32px}
 .top-brand-text{font-size:1.18rem;white-space:nowrap}
+.top-current-page-link{margin-left:auto;width:44px;height:44px;border-radius:999px;background:transparent;color:var(--text);border:1px solid transparent;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;cursor:pointer}
+.top-current-page-link[hidden]{display:none}
+.top-current-page-icon{width:28px;height:28px;display:block;object-fit:contain;filter:var(--menu-icon-filter, none)}
 .side-menu-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:opacity .2s;z-index:1190}
 .side-menu{position:fixed;top:0;left:0;height:100vh;width:min(320px,86vw);background:var(--sidebar-bg);border-right:1px solid var(--sidebar-border);transform:translateX(-100%);transition:transform .22s;z-index:var(--z-sidebar);padding:72px 16px 20px}
 body.menu-open .side-menu{transform:translateX(0)}
@@ -248,7 +251,7 @@ body.dark-theme .top-desktop-link.is-active::before{background:linear-gradient(1
 .menu-nav-link.is-active{background:var(--surface-hover);color:var(--text);box-shadow:inset 0 0 0 1px var(--border-subtle)}
 .auto-contrast-text{color:var(--auto-contrast-color);}
 .top-desktop-link-main,.menu-nav-main{text-decoration:none;font-weight:600}
-@media (min-width:980px){.top-desktop-controls{display:flex}.top-nav-window{justify-content:flex-start}.top-brand{position:static;left:auto;transform:none;padding:0 12px 0 8px}.menu-preferences-row{display:flex;gap:8px}.menu-theme-toggle,.menu-lang-trigger{width:42px;height:42px;border-radius:999px}}
+@media (min-width:980px){.top-desktop-controls{display:flex}.top-current-page-link{display:none}.top-nav-window{justify-content:flex-start}.top-brand{position:static;left:auto;transform:none;padding:0 12px 0 8px}.menu-preferences-row{display:flex;gap:8px}.menu-theme-toggle,.menu-lang-trigger{width:42px;height:42px;border-radius:999px}}
 
 @media (min-width:980px){
   .side-menu .menu-nav-link{display:none;}
@@ -261,12 +264,12 @@ body.dark-theme .top-desktop-link.is-active::before{background:linear-gradient(1
 .top-nav-window,.top-nav-window *,.side-menu,.side-menu *{font-family:"Jost","Helvetica Neue",Helvetica,Arial,sans-serif}
 
 
-.top-menu-btn,.menu-theme-toggle,.menu-lang-trigger,.menu-nav-link,.menu-copy-btn,.top-desktop-link{transition:transform .22s ease,background-color .22s ease,color .22s ease,border-color .22s ease,box-shadow .22s ease,filter .22s ease}
-.top-menu-btn:hover,.menu-theme-toggle:hover,.menu-lang-trigger:hover{transform:translateY(-1px);background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.18);box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 8px 18px rgba(0,0,0,.08)}
-body.dark-theme .top-menu-btn:hover,body.dark-theme .menu-theme-toggle:hover,body.dark-theme .menu-lang-trigger:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.12);box-shadow:inset 0 1px 0 rgba(255,255,255,.10),0 8px 18px rgba(0,0,0,.22)}
+.top-menu-btn,.top-current-page-link,.menu-theme-toggle,.menu-lang-trigger,.menu-nav-link,.menu-copy-btn,.top-desktop-link{transition:transform .22s ease,background-color .22s ease,color .22s ease,border-color .22s ease,box-shadow .22s ease,filter .22s ease}
+.top-menu-btn:hover,.top-current-page-link:hover,.menu-theme-toggle:hover,.menu-lang-trigger:hover{transform:translateY(-1px);background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.18);box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 8px 18px rgba(0,0,0,.08)}
+body.dark-theme .top-menu-btn:hover,body.dark-theme .top-current-page-link:hover,body.dark-theme .menu-theme-toggle:hover,body.dark-theme .menu-lang-trigger:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.12);box-shadow:inset 0 1px 0 rgba(255,255,255,.10),0 8px 18px rgba(0,0,0,.22)}
 .menu-nav-link:hover,.menu-copy-btn:hover{transform:translateY(-2px) scale(1.01)}
-.top-menu-btn:active,.menu-theme-toggle:active,.menu-lang-trigger:active,.menu-nav-link:active,.menu-copy-btn:active,.top-desktop-link:active{transform:scale(.98)}
-.top-menu-btn:focus-visible,.menu-theme-toggle:focus-visible,.menu-lang-trigger:focus-visible,.menu-nav-link:focus-visible,.menu-copy-btn:focus-visible,.top-desktop-link:focus-visible{outline:2px solid var(--focus-outline);outline-offset:2px;box-shadow:0 0 0 5px var(--focus-ring)}
+.top-menu-btn:active,.top-current-page-link:active,.menu-theme-toggle:active,.menu-lang-trigger:active,.menu-nav-link:active,.menu-copy-btn:active,.top-desktop-link:active{transform:scale(.98)}
+.top-menu-btn:focus-visible,.top-current-page-link:focus-visible,.menu-theme-toggle:focus-visible,.menu-lang-trigger:focus-visible,.menu-nav-link:focus-visible,.menu-copy-btn:focus-visible,.top-desktop-link:focus-visible{outline:2px solid var(--focus-outline);outline-offset:2px;box-shadow:0 0 0 5px var(--focus-ring)}
 .menu-nav-link,.menu-copy-btn,.top-desktop-link{color:var(--text)}
 .menu-nav-link:hover,.menu-copy-btn:hover{background:var(--surface-hover);color:var(--text)}
 .menu-theme-toggle:hover,.menu-lang-trigger:hover{transform:translateY(-1px)}
@@ -286,7 +289,7 @@ body.dark-theme .top-menu-btn:hover,body.dark-theme .menu-theme-toggle:hover,bod
 .interal-btn:hover{transform:translateY(-1px)}
 .interal-btn--ghost{background:transparent;color:var(--text-muted)}
 
-.top-menu-btn-icon img,.menu-copy-icon-link,.menu-lang-icon-img{filter:var(--menu-icon-filter, none)}
+.top-menu-btn-icon img,.top-current-page-icon,.menu-copy-icon-link,.menu-lang-icon-img{filter:var(--menu-icon-filter, none)}
 
 .menu-theme-icon{filter:none}
 
