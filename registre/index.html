@@ -36,6 +36,9 @@
       background: var(--control-bg); color: var(--control-text); padding: 0 12px; font: inherit; outline: none;
     }
     .field input::placeholder { color: var(--placeholder); }
+    .registry-search-control { position: relative; display: grid; align-items: center; }
+    .registry-search-control input { padding-left: 42px; }
+    .registry-search-icon { position: absolute; left: 12px; width: 18px; height: 18px; pointer-events: none; filter: var(--menu-icon-filter, none); opacity: .72; }
     .field input:focus-visible,
     .field select:focus-visible,
     .registry-btn:focus-visible {
@@ -137,7 +140,10 @@
       <div class="registry-controls">
         <div class="field field--search">
           <label for="registry-search" data-i18n="searchLabel">Поиск</label>
-          <input id="registry-search" type="search" autocomplete="off" />
+          <div class="registry-search-control">
+            <img class="registry-search-icon" src="../elements/Magnifer.svg" alt="" aria-hidden="true" />
+            <input id="registry-search" type="search" autocomplete="off" />
+          </div>
         </div>
         <div class="field field--type">
           <label for="registry-type" data-i18n="typeLabel">Тип слова</label>
