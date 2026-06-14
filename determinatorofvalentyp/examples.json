@@ -1,1 +1,340 @@
-{"schema_version":"1.0.0","purpose":"Reference examples for Determinator of valen typ: semantic transparency spectrum of Interal derivatives.","source_document":"Спектр семантической прозрачности дериватов(3).docx","scales":{"P":{"name":"Predictabilitá","range":[0,4],"meaning":"Can the accepted meaning be predicted from components and Interal rules?"},"R":{"name":"Relationalitá","range":[0,4],"meaning":"How strong is the semantic relation between logical and international meanings?"},"C":{"name":"Complexitá of cheyn","range":[0,5],"meaning":"How many explanatory steps are needed from logical to international meaning?"},"E":{"name":"External cognoscentian dependentia","range":[0,4],"meaning":"How much external, historical, idiomatic, or terminological knowledge is needed?"}},"zone_definitions":{"full_compositionality":{"label_ru":"Полная композиционность","label_en":"Full compositionality","range":{"P":[4,4],"R":[4,4],"C":[0,0],"E":[0,0]},"prototype_scores":{"P":4,"R":4,"C":0,"E":0}},"partial_compositionality":{"label_ru":"Частичная композиционность","label_en":"Partial compositionality","range":{"P":[3,4],"R":[4,4],"C":[1,1],"E":[0,1]},"prototype_scores":{"P":3,"R":4,"C":1,"E":0}},"semantic_extension":{"label_ru":"Семантическое расширение","label_en":"Semantic extension","range":{"P":[2,3],"R":[3,4],"C":[1,2],"E":[0,2]},"prototype_scores":{"P":2,"R":3,"C":2,"E":1}},"transfer":{"label_ru":"Перенос","label_en":"Transfer","range":{"P":[1,2],"R":[2,4],"C":[2,3],"E":[0,2]},"prototype_scores":{"P":1,"R":3,"C":3,"E":1}},"semantic_conventionalization":{"label_ru":"Семантическая конвенционализация","label_en":"Semantic conventionalization","range":{"P":[0,1],"R":[1,3],"C":[3,4],"E":[3,4]},"prototype_scores":{"P":0,"R":2,"C":4,"E":4}},"lexicalization":{"label_ru":"Лексикализованность","label_en":"Lexicalization","range":{"P":[0,0],"R":[0,1],"C":[5,5],"E":null},"prototype_scores":{"P":0,"R":1,"C":5,"E":null},"external_knowledge_note":"Внешнее знание не помогает вывести значение продуктивно."}},"examples":[{"id":"rescriber","number":"definition-1","source":"definition_example","source_mentions":["definition_example"],"logical_entries":[{"form":"re/scrib/er","meaning_ru":"писать снова"}],"international_entries":[{"form":"rescriber","meaning_ru":"переписывать"}],"zone_id":"full_compositionality","zone_ru":"Полная композиционность","scores":{"P":4,"R":4,"C":0,"E":0},"scores_note":"Prototype P/R/C/E values inferred from the document's zone label. They may be manually corrected for borderline cases.","chain_type":"direct_composition","draft_explanatory_chain_ru":["писать","писать снова","переписывать"],"notes_ru":""},{"id":"connection_relation","number":"definition-2","source":"definition_example","source_mentions":["definition_example"],"logical_entries":[{"form":"connect/er","meaning_ru":"соединять"},{"form":"connect/ion","meaning_ru":"соединение"}],"international_entries":[{"form":"connection","meaning_ru":"связь"}],"zone_id":"partial_compositionality","zone_ru":"Частичная композиционность","scores":{"P":3,"R":4,"C":1,"E":0},"scores_note":"Prototype P/R/C/E values inferred from the document's zone label. They may be manually corrected for borderline cases.","chain_type":"slight_focus_shift","draft_explanatory_chain_ru":["соединять","соединение","результат соединения отдельных сущностей","связь как сеть отношений"],"notes_ru":""},{"id":"obsessionu","number":"1","source":"catalog_table","source_mentions":["definition_example","catalog_table"],"logical_entries":[{"form":"Obsession","meaning_ru":"заседание напротив"},{"form":"obsesser","meaning_ru":"сидеть напротив"}],"international_entries":[{"form":"Obsessionu","meaning_ru":"одержимость"},{"form":"obseder","meaning_ru":"быть одержанным"}],"zone_id":"transfer","zone_ru":"Перенос","scores":{"P":1,"R":3,"C":3,"E":1},"scores_note":"Prototype P/R/C/E values inferred from the document's zone label. They may be manually corrected for borderline cases.","chain_type":"metaphorical_transfer","draft_explanatory_chain_ru":["сидеть напротив чего-то","постоянно находиться напротив объекта","как бы осаждать объект","психическая фиксация на объекте","одержимость"],"notes_ru":""},{"id":"repetitionu","number":"2","source":"catalog_table","source_mentions":["catalog_table"],"logical_entries":[{"form":"Repetition","meaning_ru":"повторный запрос"},{"form":"repetir","meaning_ru":"запрашивать снова, репетировать"}],"international_entries":[{"form":"Repetitionu","meaning_ru":"репетиция"},{"form":"repetitionar","meaning_ru":"репетировать"}],"zone_id":"semantic_extension","zone_ru":"Семантическое расширение","scores":{"P":2,"R":3,"C":2,"E":1},"scores_note":"Prototype P/R/C/E values inferred from the document's zone label. They may be manually corrected for borderline cases.","chain_type":"semantic_extension","draft_explanatory_chain_ru":["повторный запрос или повторное действие","повторное выполнение","тренировочное повторение","репетиция"],"notes_ru":""},{"id":"radical","number":"3","source":"catalog_table","source_mentions":["catalog_table"],"logical_entries":[{"form":"Radici","meaning_ru":"корневой"}],"international_entries":[{"form":"Radical","meaning_ru":"радикальный, принципиальный"}],"zone_id":"transfer","zone_ru":"Перенос","scores":{"P":1,"R":3,"C":3,"E":1},"scores_note":"Prototype P/R/C/E values inferred from the document's zone label. They may be manually corrected for borderline cases.","chain_type":"abstract_transfer","draft_explanatory_chain_ru":["корень","относящийся к корню/основе","затрагивающий основу","принципиальный или радикальный"],"notes_ru":""},{"id":"ideal","number":"4","source":"catalog_table","source_mentions":["definition_example","catalog_table"],"logical_entries":[{"form":"Idei","meaning_ru":"идейный"}],"international_entries":[{"form":"Ideal","meaning_ru":"идеальный"}],"zone_id":"semantic_extension","zone_ru":"Семантическое расширение","scores":{"P":2,"R":3,"C":2,"E":1},"scores_note":"Prototype P/R/C/E values inferred from the document's zone label. They may be manually corrected for borderline cases.","chain_type":"semantic_extension","draft_explanatory_chain_ru":["идея","относящийся к идее","относящийся к высшей/совершенной идее","идеальный"],"notes_ru":""},{"id":"subjectu","number":"5","source":"catalog_table","source_mentions":["catalog_table"],"logical_entries":[{"form":"Subject","meaning_ru":"бросок под чем-то"}],"international_entries":[{"form":"Subjectu","meaning_ru":"субъект"},{"form":"subyect","meaning_ru":"субъект"}],"zone_id":"lexicalization","zone_ru":"Лексикализованность","scores":{"P":0,"R":1,"C":5,"E":null},"scores_note":"Prototype P/R/C/E values inferred from the document's zone label. They may be manually corrected for borderline cases.","chain_type":"lexicalized_no_working_chain","draft_explanatory_chain_ru":["бросок под чем-то","субъект"],"notes_ru":""},{"id":"objectu","number":"6","source":"catalog_table","source_mentions":["catalog_table"],"logical_entries":[{"form":"Object","meaning_ru":"бросок напротив чего-то"}],"international_entries":[{"form":"Objectu","meaning_ru":"объект"},{"form":"obyect","meaning_ru":"объект"}],"zone_id":"lexicalization","zone_ru":"Лексикализованность","scores":{"P":0,"R":1,"C":5,"E":null},"scores_note":"Prototype P/R/C/E values inferred from the document's zone label. They may be manually corrected for borderline cases.","chain_type":"lexicalized_no_working_chain","draft_explanatory_chain_ru":["бросок напротив чего-то","объект"],"notes_ru":""},{"id":"projectu","number":"7.1","source":"catalog_table","source_mentions":["catalog_table"],"logical_entries":[{"form":"Project","meaning_ru":"бросок за пределы чего-то"},{"form":"projecter","meaning_ru":"бросать за пределы"}],"international_entries":[{"form":"Projectu","meaning_ru":"проект"},{"form":"proyect","meaning_ru":"проект"},{"form":"projecer","meaning_ru":"проектировать"},{"form":"proyecer","meaning_ru":"проектировать"},{"form":"proyecter","meaning_ru":"проектировать"}],"zone_id":"transfer","zone_ru":"Перенос","scores":{"P":1,"R":3,"C":3,"E":1},"scores_note":"Prototype P/R/C/E values inferred from the document's zone label. They may be manually corrected for borderline cases.","chain_type":"abstract_transfer","draft_explanatory_chain_ru":["бросать за пределы","направлять вперёд/наружу","выносить замысел вперёд","планировать","проект"],"notes_ru":""},{"id":"revisionu","number":"24","source":"catalog_table","source_mentions":["catalog_table"],"logical_entries":[{"form":"Revision","meaning_ru":"повторный просмотр"},{"form":"revisioni","meaning_ru":"повторно просмотренный"}],"international_entries":[{"form":"Revisionu","meaning_ru":"проверка"},{"form":"revisional","meaning_ru":"проверочный, ревизионный"}],"zone_id":"semantic_extension","zone_ru":"Семантическое расширение","scores":{"P":2,"R":3,"C":2,"E":1},"scores_note":"Prototype P/R/C/E values inferred from the document's zone label. They may be manually corrected for borderline cases.","chain_type":"semantic_extension","draft_explanatory_chain_ru":["повторный просмотр","просмотр с целью контроля","проверка","ревизия"],"notes_ru":""},{"id":"salariu","number":"35","source":"catalog_table","source_mentions":["definition_example","catalog_table"],"logical_entries":[{"form":"Salarie","meaning_ru":"человек, связанный с солью"}],"international_entries":[{"form":"Salariu","meaning_ru":"зарплата"}],"zone_id":"semantic_conventionalization","zone_ru":"Семантическая конвенционализация","scores":{"P":0,"R":2,"C":4,"E":4},"scores_note":"Prototype P/R/C/E values inferred from the document's zone label. They may be manually corrected for borderline cases.","chain_type":"historical_or_traditional_conventionalization","draft_explanatory_chain_ru":["соль","человек/выплата, связанная с солью","историческая связь salarium с оплатой","зарплата"],"notes_ru":""}]}
+{
+  "examples": [
+    {
+      "id": 1,
+      "logicalForm": "Position — положение, позиция",
+      "internationalForm": "Positionu — позиция, точка зрения",
+      "zone": "Частичная композиционность — семантическое расширение для «позиция», семантическое расширение для «точка зрения»"
+    },
+    {
+      "id": 2,
+      "logicalForm": "Repetition — повторный запрос; repetir — запрашивать снова, репетировать",
+      "internationalForm": "Repetitionu — репетиция; repetitionar — репетировать",
+      "zone": "Семантическое расширение"
+    },
+    {
+      "id": 3,
+      "logicalForm": "Idei — идейный",
+      "internationalForm": "Ideal — идеальный",
+      "zone": "Семантическое расширение"
+    },
+    {
+      "id": 4,
+      "logicalForm": "Trajectoria — место, где бросают через",
+      "internationalForm": "Trajectoriu (trayectoria) — траектория",
+      "zone": "Семантическое расширение"
+    },
+    {
+      "id": 5,
+      "logicalForm": "Injecter — вбрасывать",
+      "internationalForm": "Injecer (inyecer, inyecter) — впрыскивать, вливать",
+      "zone": "Семантическое расширение"
+    },
+    {
+      "id": 6,
+      "logicalForm": "Injection — вбрасывание",
+      "internationalForm": "Injectionu — инъекция, впрыскивание, вливание",
+      "zone": "Семантическое расширение"
+    },
+    {
+      "id": 7,
+      "logicalForm": "Liberi — свободный",
+      "internationalForm": "Liberal — либеральный",
+      "zone": "Семантическое расширение"
+    },
+    {
+      "id": 8,
+      "logicalForm": "Actenda — что-то достойное действия",
+      "internationalForm": "Agenda — повестка дня",
+      "zone": "Семантическое расширение"
+    },
+    {
+      "id": 9,
+      "logicalForm": "Fact — что-то сделанное; facti — сделанный",
+      "internationalForm": "Factu — факт; factic — фактический",
+      "zone": "Семантическое расширение"
+    },
+    {
+      "id": 10,
+      "logicalForm": "Revision — повторный просмотр; revisioni — повторно просмотренный",
+      "internationalForm": "Revisionu — проверка; revisional — проверочный, ревизионный",
+      "zone": "Семантическое расширение"
+    },
+    {
+      "id": 11,
+      "logicalForm": "Section — сечение",
+      "internationalForm": "Sectionu — секция",
+      "zone": "Семантическое расширение"
+    },
+    {
+      "id": 12,
+      "logicalForm": "Rotation — поворот, вращение; rotationi — поворотный, вращательный",
+      "internationalForm": "Rotationu — ротация; rotari — ротационный",
+      "zone": "Семантическое расширение"
+    },
+    {
+      "id": 13,
+      "logicalForm": "Rotator — вращатель",
+      "internationalForm": "Rotatoru — ротатор (в технике, физике, интернете)",
+      "zone": "Семантическое расширение"
+    },
+    {
+      "id": 14,
+      "logicalForm": "Cultivar — возделывать; cultivation — возделывание",
+      "internationalForm": "Culturu — культура; cultural — культурный; cultu — культ",
+      "zone": "Семантическое расширение"
+    },
+    {
+      "id": 15,
+      "logicalForm": "Probabili — возможный к пробе",
+      "internationalForm": "Probabil — вероятный",
+      "zone": "Семантическое расширение"
+    },
+    {
+      "id": 16,
+      "logicalForm": "Production — выведение за пределы чего-то",
+      "internationalForm": "Productionu — производство, продукция",
+      "zone": "Семантическое расширение"
+    },
+    {
+      "id": 17,
+      "logicalForm": "Repositoria — место повторного положения",
+      "internationalForm": "Repositoriu — репозиторий, хранилище данных",
+      "zone": "Семантическое расширение"
+    },
+    {
+      "id": 18,
+      "logicalForm": "Composition — совместное положение, соположение",
+      "internationalForm": "Compositionu — композиция, произведение",
+      "zone": "Семантическое расширение"
+    },
+    {
+      "id": 19,
+      "logicalForm": "Animation — одушевление",
+      "internationalForm": "Animationu — анимация",
+      "zone": "Семантическое расширение"
+    },
+    {
+      "id": 20,
+      "logicalForm": "Radici — корневой",
+      "internationalForm": "Radical — радикальный, принципиальный",
+      "zone": "Семантическое расширение — перенос"
+    },
+    {
+      "id": 21,
+      "logicalForm": "Projection — процесс бросания за пределы чего-то",
+      "internationalForm": "Projectionu (proyection) — проекция",
+      "zone": "Семантическое расширение — перенос"
+    },
+    {
+      "id": 22,
+      "logicalForm": "Curs — бег",
+      "internationalForm": "Cursu — курс (учебный, направление)",
+      "zone": "Семантическое расширение — перенос для учебного курса, семантическое расширение для направления"
+    },
+    {
+      "id": 23,
+      "logicalForm": "Sector — режущий инструмент",
+      "internationalForm": "Sectoru — сектор",
+      "zone": "Семантическое расширение — перенос"
+    },
+    {
+      "id": 24,
+      "logicalForm": "Excurs — выбегание",
+      "internationalForm": "Excursu — экскурс",
+      "zone": "Семантическое расширение — перенос"
+    },
+    {
+      "id": 25,
+      "logicalForm": "Convention — схождение вместе",
+      "internationalForm": "Conventionu — конвенция, соглашение",
+      "zone": "Семантическое расширение — перенос"
+    },
+    {
+      "id": 26,
+      "logicalForm": "Disposition — расположение",
+      "internationalForm": "Dispositionu — склонность, предрасположение",
+      "zone": "Семантическое расширение — перенос"
+    },
+    {
+      "id": 27,
+      "logicalForm": "Obsession — заседание напротив; obsesser — сидеть напротив",
+      "internationalForm": "Obsessionu — одержимость; obseder — быть одержанным",
+      "zone": "Перенос"
+    },
+    {
+      "id": 28,
+      "logicalForm": "Project — бросок за пределы чего-то; projecter — бросать за пределы",
+      "internationalForm": "Projectu (proyect) — проект; projecer (proyecer, proyecter) — проектировать",
+      "zone": "Перенос"
+    },
+    {
+      "id": 29,
+      "logicalForm": "Conjectura — результат совместного броска",
+      "internationalForm": "Conjecturu — предположение",
+      "zone": "Перенос"
+    },
+    {
+      "id": 30,
+      "logicalForm": "Rejecter — бросать заново",
+      "internationalForm": "Rejecer — отвергнуть, отклонить",
+      "zone": "Перенос"
+    },
+    {
+      "id": 31,
+      "logicalForm": "Rejection — повторный бросок",
+      "internationalForm": "Rejectionu — отвержение, отклонение",
+      "zone": "Перенос"
+    },
+    {
+      "id": 32,
+      "logicalForm": "Cursive — способность бега; cursivi — обладающий способностью бега",
+      "internationalForm": "Cursivu — курсив; cursiv — курсивный",
+      "zone": "Перенос"
+    },
+    {
+      "id": 33,
+      "logicalForm": "Concurs — совместный бег",
+      "internationalForm": "Concursu — конкурс",
+      "zone": "Перенос"
+    },
+    {
+      "id": 34,
+      "logicalForm": "Concurser — бежать вместе",
+      "internationalForm": "Concurrer — конкурировать",
+      "zone": "Перенос"
+    },
+    {
+      "id": 35,
+      "logicalForm": "Positivi — лежащий, положительный",
+      "internationalForm": "Positiv — позитивный, весёлый",
+      "zone": "Перенос"
+    },
+    {
+      "id": 36,
+      "logicalForm": "Excursion — выбегание; excursioni — выбегающий",
+      "internationalForm": "Excursionu — экскурсия; excursional — экскурсионный",
+      "zone": "Перенос"
+    },
+    {
+      "id": 37,
+      "logicalForm": "Credite — вера, мнение",
+      "internationalForm": "Creditu — кредит",
+      "zone": "Перенос"
+    },
+    {
+      "id": 38,
+      "logicalForm": "Nation — рождение",
+      "internationalForm": "Nationu — нация, народ; national — национальный, народный",
+      "zone": "Перенос"
+    },
+    {
+      "id": 39,
+      "logicalForm": "Natura — рождение, нарождение",
+      "internationalForm": "Naturu — природа; natural — натуральный, природный",
+      "zone": "Перенос"
+    },
+    {
+      "id": 40,
+      "logicalForm": "Impression — вдавливание",
+      "internationalForm": "Impressionu — впечатление",
+      "zone": "Перенос"
+    },
+    {
+      "id": 41,
+      "logicalForm": "Expression — выдавливание",
+      "internationalForm": "Expressionu — выражение",
+      "zone": "Перенос"
+    },
+    {
+      "id": 42,
+      "logicalForm": "Depression — давление вниз",
+      "internationalForm": "Depressionu — депрессия",
+      "zone": "Перенос"
+    },
+    {
+      "id": 43,
+      "logicalForm": "Secte — порезанное, посечённое",
+      "internationalForm": "Sectu — секта",
+      "zone": "Перенос — семантическая конвенционализация"
+    },
+    {
+      "id": 44,
+      "logicalForm": "Textura — пошивка",
+      "internationalForm": "Texturu — текстура",
+      "zone": "Семантическая конвенционализация"
+    },
+    {
+      "id": 45,
+      "logicalForm": "Recept — получение",
+      "internationalForm": "Receptu — рецепт",
+      "zone": "Семантическая конвенционализация"
+    },
+    {
+      "id": 46,
+      "logicalForm": "Record — запись; recordi — записной",
+      "internationalForm": "Recordu — рекорд; recordal — рекордный",
+      "zone": "Семантическая конвенционализация"
+    },
+    {
+      "id": 47,
+      "logicalForm": "Parlament — говорение",
+      "internationalForm": "Parlamentu — парламент",
+      "zone": "Семантическая конвенционализация"
+    },
+    {
+      "id": 48,
+      "logicalForm": "Salarie — человек, связанный с солью",
+      "internationalForm": "Salariu — зарплата",
+      "zone": "Семантическая конвенционализация"
+    },
+    {
+      "id": 49,
+      "logicalForm": "Invention — приход в",
+      "internationalForm": "Inventionu — изобретение",
+      "zone": "Семантическая конвенционализация"
+    },
+    {
+      "id": 50,
+      "logicalForm": "Advent — пришествие",
+      "internationalForm": "Adventu — адвент",
+      "zone": "Семантическая конвенционализация"
+    },
+    {
+      "id": 51,
+      "logicalForm": "Information — формирование в",
+      "internationalForm": "Informationu — информация",
+      "zone": "Семантическая конвенционализация"
+    },
+    {
+      "id": 52,
+      "logicalForm": "Subject — бросок под чем-то",
+      "internationalForm": "Subjectu (subyect) — субъект",
+      "zone": "Лексикализованность"
+    },
+    {
+      "id": 53,
+      "logicalForm": "Object — бросок напротив чего-то",
+      "internationalForm": "Objectu (obyect) — объект",
+      "zone": "Лексикализованность"
+    },
+    {
+      "id": 54,
+      "logicalForm": "Discurs — разбегание",
+      "internationalForm": "Discursu — дискурс",
+      "zone": "Лексикализованность"
+    },
+    {
+      "id": 55,
+      "logicalForm": "Classi — классовый",
+      "internationalForm": "Classic — классический; classicu — классика",
+      "zone": "Лексикализованность"
+    },
+    {
+      "id": 56,
+      "logicalForm": "Infinitive — бесконечность; infinitivi — бесконечный",
+      "internationalForm": "Infinitivu — инфинитив; infinitiv — инфинитивный",
+      "zone": "Лексикализованность"
+    }
+  ]
+}
