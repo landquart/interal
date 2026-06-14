@@ -171,6 +171,62 @@ textarea.copy-flash {
   font-size: 0.92rem;
 }
 
+
+.component-search-results {
+  display: none;
+  max-height: 240px;
+  overflow-y: auto;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--surface-elevated);
+  padding: 6px;
+}
+
+.component-search-results.has-results {
+  display: grid;
+  gap: 6px;
+}
+
+.component-search-option {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2px 8px;
+  width: 100%;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text);
+  padding: 8px 10px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.component-search-option:hover,
+.component-search-option:focus-visible {
+  border-color: var(--border-control);
+  background: var(--surface);
+  outline: none;
+}
+
+.component-search-form {
+  font-weight: 700;
+}
+
+.component-search-category,
+.component-search-meaning,
+.component-search-empty {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.component-search-meaning {
+  grid-column: 1 / -1;
+}
+
+.component-search-empty {
+  padding: 8px 10px;
+}
+
 .determinator-page .component-delete {
   border: 1px solid var(--border-control);
   background: var(--surface-elevated);
