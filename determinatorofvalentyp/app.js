@@ -811,7 +811,6 @@ function renderComponentSearchResults() {
       <span class="component-search-form">${escapeHtml(item.form)}</span>
       <span class="component-search-category">${escapeHtml(localizeCategory(item.category))}</span>
       <span class="component-search-meaning">${escapeHtml(localizeMeaningByItem(item))}</span>
-      <span class="component-search-action">${escapeHtml(currentLang() === 'en' ? 'Add' : 'Добавить')}</span>
     `;
 
     els.componentSearchResults.appendChild(button);
