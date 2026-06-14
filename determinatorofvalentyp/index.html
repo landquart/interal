@@ -119,7 +119,7 @@
     <div class="modal-backdrop" data-close-modal="true"></div>
     <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="rootTitle">
       <div class="modal-header">
-        <button id="backFromRootBtn" class="back-btn" type="button"><img src="../elements/Undo%20Left%20Round%20Square.svg" alt="" aria-hidden="true" /></button>
+        <button id="backFromRootBtn" class="back-btn" type="button"><img src="../elements/Arrow%20Left.svg" alt="" aria-hidden="true" /></button>
         <h2 id="rootTitle">Primary root word</h2>
         <button class="icon-btn close-btn" type="button" data-close-modal="true" aria-label="Close">&times;</button>
       </div>
@@ -149,10 +149,16 @@
     <div class="modal-backdrop" data-close-modal="true"></div>
     <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="componentTitle">
       <div class="modal-header">
-        <button id="backFromComponentBtn" class="back-btn" type="button"><img src="../elements/Undo%20Left%20Round%20Square.svg" alt="" aria-hidden="true" /></button>
+        <button id="backFromComponentBtn" class="back-btn" type="button"><img src="../elements/Arrow%20Left.svg" alt="" aria-hidden="true" /></button>
         <h2 id="componentTitle">Component</h2>
         <button class="icon-btn close-btn" type="button" data-close-modal="true" aria-label="Close">&times;</button>
       </div>
+
+      <label class="field compact-field">
+        <span>Search</span>
+        <input id="componentSearchInput" type="search" autocomplete="off" placeholder="-or, action, prefix" />
+      </label>
+      <div id="componentSearchResults" class="component-search-results" role="listbox" aria-label="Component search results"></div>
 
       <label class="field compact-field">
         <span>Category</span>
@@ -175,7 +181,7 @@
     <div class="modal-backdrop" data-close-modal="true"></div>
     <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="prefixVariantTitle">
       <div class="modal-header">
-        <button id="backFromPrefixVariantBtn" class="back-btn" type="button"><img src="../elements/Undo%20Left%20Round%20Square.svg" alt="" aria-hidden="true" /></button>
+        <button id="backFromPrefixVariantBtn" class="back-btn" type="button"><img src="../elements/Arrow%20Left.svg" alt="" aria-hidden="true" /></button>
         <h2 id="prefixVariantTitle">Prefix assimilation</h2>
         <button class="icon-btn close-btn" type="button" data-close-modal="true" aria-label="Close">&times;</button>
       </div>
@@ -225,6 +231,8 @@
           assimilationType: 'Тип ассимиляции',
           category: 'Категория',
           element: 'Элемент',
+          search: 'Поиск',
+          searchPlaceholder: '-or, действие, приставка',
           prefixAssimilation: 'Ассимиляция приставки',
           prefixVariant: 'Вариант приставки',
           add: 'Добавить',
@@ -267,6 +275,8 @@
           assimilationType: 'Assimilation type',
           category: 'Category',
           element: 'Element',
+          search: 'Search',
+          searchPlaceholder: '-or, action, prefix',
           prefixAssimilation: 'Prefix assimilation',
           prefixVariant: 'Prefix variant',
           add: 'Add',
@@ -330,8 +340,12 @@
         document.querySelectorAll('#rootModal .field > span')[0].textContent = s.word;
         document.querySelectorAll('#rootModal .field > span')[1].textContent = s.meaning;
         document.querySelectorAll('#rootModal .field > span')[2].textContent = s.assimilationType;
-        document.querySelectorAll('#componentModal .field > span')[0].textContent = s.category;
-        document.querySelectorAll('#componentModal .field > span')[1].textContent = s.element;
+        const componentLabels = document.querySelectorAll('#componentModal .field > span');
+        if (componentLabels[0]) componentLabels[0].textContent = s.search;
+        if (componentLabels[1]) componentLabels[1].textContent = s.category;
+        if (componentLabels[2]) componentLabels[2].textContent = s.element;
+        const componentSearchInput = document.getElementById('componentSearchInput');
+        if (componentSearchInput) componentSearchInput.placeholder = s.searchPlaceholder;
         document.querySelectorAll('#prefixVariantModal .field > span')[0].textContent = s.prefixVariant;
         document.querySelectorAll('.modal-actions button').forEach((el) => { el.textContent = s.add; });
 

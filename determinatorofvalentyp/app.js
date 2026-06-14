@@ -444,6 +444,8 @@ const els = {
   rootMeaningInput: document.getElementById('rootMeaningInput'),
   assimilationSelect: document.getElementById('assimilationSelect'),
   saveRootBtn: document.getElementById('saveRootBtn'),
+  componentSearchInput: document.getElementById('componentSearchInput'),
+  componentSearchResults: document.getElementById('componentSearchResults'),
   componentCategorySelect: document.getElementById('componentCategorySelect'),
   componentSelect: document.getElementById('componentSelect'),
   saveComponentBtn: document.getElementById('saveComponentBtn'),
@@ -649,7 +651,74 @@ function setupSelects() {
   window.initCustomSelects?.();
 }
 
-function fillComponentSelect() {
+function normalizeSearchText(value) {
+  return String(value || '').toLowerCase().replace(/^[-–—]+/, '').trim();
+}
+
+function componentSearchText(item) {
+  return [
+    item.form,
+    item.form && item.form.replace(/^[-–—]+/, ''),
+    item.meaning,
+    componentMeaningsEn[item.id],
+    item.category,
+    localizeCategory(item.category)
+  ].filter(Boolean).join(' ').toLowerCase();
+}
+
+function selectComponentById(componentId) {
+  const item = allComponents.find((x) => x.id === componentId);
+  if (!item) return;
+
+  els.componentCategorySelect.value = item.category;
+  fillComponentSelect({ keepSearch: true, selectedId: item.id });
+  els.componentSelect.value = item.id;
+  els.componentSelect.dispatchEvent(new Event('change', { bubbles: true }));
+  window.initCustomSelects?.();
+}
+
+function renderComponentSearchResults() {
+  if (!els.componentSearchInput || !els.componentSearchResults) return;
+
+  const query = normalizeSearchText(els.componentSearchInput.value);
+  els.componentSearchResults.innerHTML = '';
+
+  if (!query) {
+    els.componentSearchResults.classList.remove('has-results');
+    return;
+  }
+
+  const matches = allComponents
+    .filter((item) => componentSearchText(item).includes(query))
+    .slice(0, 40);
+
+  els.componentSearchResults.classList.add('has-results');
+
+  if (!matches.length) {
+    const empty = document.createElement('div');
+    empty.className = 'component-search-empty';
+    empty.textContent = currentLang() === 'en' ? 'No components found' : 'Компоненты не найдены';
+    els.componentSearchResults.appendChild(empty);
+    return;
+  }
+
+  matches.forEach((item) => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'component-search-option';
+    button.setAttribute('role', 'option');
+    button.dataset.componentId = item.id;
+    button.innerHTML = `
+      <span class="component-search-form">${escapeHtml(item.form)}</span>
+      <span class="component-search-category">${escapeHtml(localizeCategory(item.category))}</span>
+      <span class="component-search-meaning">${escapeHtml(localizeMeaningByItem(item))}</span>
+    `;
+    els.componentSearchResults.appendChild(button);
+  });
+}
+
+function fillComponentSelect(options = {}) {
+  const { keepSearch = false, selectedId = '' } = options;
   const category = els.componentCategorySelect.value || Object.keys(byCategory)[0];
   const items = byCategory[category] || [];
   els.componentSelect.innerHTML = '';
@@ -661,8 +730,10 @@ function fillComponentSelect() {
     els.componentSelect.appendChild(option);
   });
 
+  if (selectedId) els.componentSelect.value = selectedId;
   updateComponentPreview();
   els.componentSelect.dispatchEvent(new Event('change', { bubbles: true }));
+  if (!keepSearch) renderComponentSearchResults();
   window.initCustomSelects?.();
 }
 
@@ -1678,7 +1749,8 @@ function refreshSelectLocalization() {
     optionEl.textContent = localizeCategory(optionEl.value);
   });
 
-  fillComponentSelect();
+  fillComponentSelect({ keepSearch: true });
+  renderComponentSearchResults();
   window.initCustomSelects?.();
 }
 
@@ -1691,6 +1763,7 @@ function attachEvents() {
   els.chooseComponentBtn.addEventListener('click', () => {
     closeModal(els.chooserModal);
     openModal(els.componentModal);
+    renderComponentSearchResults();
   });
   els.backFromRootBtn.addEventListener('click', () => {
     closeModal(els.rootModal);
@@ -1706,8 +1779,14 @@ function attachEvents() {
     pendingPrefixItem = null;
   });
 
-  els.componentCategorySelect.addEventListener('change', fillComponentSelect);
+  els.componentCategorySelect.addEventListener('change', () => fillComponentSelect());
   els.componentSelect.addEventListener('change', updateComponentPreview);
+  els.componentSearchInput?.addEventListener('input', renderComponentSearchResults);
+  els.componentSearchResults?.addEventListener('click', (event) => {
+    const option = event.target.closest('[data-component-id]');
+    if (!option) return;
+    selectComponentById(option.dataset.componentId);
+  });
   els.assimilationSelect.addEventListener('change', syncRootFormByAssimilation);
   els.prefixVariantSelect.addEventListener('change', updatePrefixVariantPreview);
   [els.componentCategorySelect, els.componentSelect, els.assimilationSelect, els.prefixVariantSelect]
