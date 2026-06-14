@@ -652,21 +652,101 @@ function setupSelects() {
 }
 
 function normalizeSearchText(value) {
-  return String(value || '').toLowerCase().replace(/^[-–—]+/, '').trim();
+  return String(value || '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replaceAll('ё', 'е')
+    .replace(/[‐-‒–—−]/g, '-')
+    .replace(/[«»"']/g, '')
+    .replace(/[.,;:!?()[\]{}]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
 }
 
-function componentSearchText(item) {
-  return [
-    item.form,
-    item.form && item.form.replace(/^[-–—]+/, ''),
-    item.meaning,
-    componentMeaningsEn[item.id],
-    item.category,
-    localizeCategory(item.category)
-  ].filter(Boolean).join(' ').toLowerCase();
+function compactAffixText(value) {
+  return normalizeSearchText(value)
+    .replace(/^[-]+/, '')
+    .replace(/[\/\\\s._-]+/g, '');
 }
 
-function selectComponentById(componentId) {
+function componentSearchFields(item) {
+  const localizedMeaning = localizeMeaningByItem(item);
+  const englishMeaning = componentMeaningsEn[item.id] || '';
+  const categoryRu = item.category || '';
+  const categoryLocalized = localizeCategory(item.category);
+  const form = item.form || '';
+
+  return {
+    form,
+    formNoDash: form.replace(/^[-–—]+/, ''),
+    formCompact: compactAffixText(form),
+    categoryRu,
+    categoryLocalized,
+    localizedMeaning,
+    englishMeaning,
+    id: item.id
+  };
+}
+
+function scoreComponentSearch(item, rawQuery) {
+  const query = normalizeSearchText(rawQuery);
+  const queryCompact = compactAffixText(rawQuery);
+
+  if (!query && !queryCompact) return 0;
+
+  const f = componentSearchFields(item);
+
+  const formNorm = normalizeSearchText(f.form);
+  const formNoDashNorm = normalizeSearchText(f.formNoDash);
+  const formCompact = f.formCompact;
+
+  const text = normalizeSearchText([
+    f.form,
+    f.formNoDash,
+    f.formCompact,
+    f.localizedMeaning,
+    f.englishMeaning,
+    f.categoryRu,
+    f.categoryLocalized,
+    f.id
+  ].filter(Boolean).join(' '));
+
+  const compactText = compactAffixText([
+    f.form,
+    f.formNoDash,
+    f.formCompact
+  ].filter(Boolean).join(' '));
+
+  const tokens = query.split(' ').filter(Boolean);
+
+  let score = 0;
+
+  if (formNorm === query) score += 120;
+  if (formNoDashNorm === query) score += 110;
+  if (formCompact === queryCompact) score += 105;
+
+  if (formNorm.startsWith(query)) score += 80;
+  if (formNoDashNorm.startsWith(query)) score += 75;
+  if (formCompact.startsWith(queryCompact)) score += 70;
+
+  if (text.includes(query)) score += 40;
+  if (queryCompact && compactText.includes(queryCompact)) score += 38;
+
+  if (tokens.length) {
+    const allTokensMatch = tokens.every((token) => text.includes(token) || compactText.includes(token));
+    const tokenMatches = tokens.filter((token) => text.includes(token) || compactText.includes(token)).length;
+
+    if (!allTokensMatch && score === 0) return 0;
+
+    score += tokenMatches * 12;
+    if (allTokensMatch) score += 20;
+  }
+
+  return score;
+}
+
+function selectComponentById(componentId, options = {}) {
   const item = allComponents.find((x) => x.id === componentId);
   if (!item) return;
 
@@ -674,13 +754,21 @@ function selectComponentById(componentId) {
   fillComponentSelect({ keepSearch: true, selectedId: item.id });
   els.componentSelect.value = item.id;
   els.componentSelect.dispatchEvent(new Event('change', { bubbles: true }));
+
+  if (options.clearSearch && els.componentSearchInput) {
+    els.componentSearchInput.value = '';
+    renderComponentSearchResults();
+  } else {
+    renderComponentSearchResults();
+  }
+
   window.initCustomSelects?.();
 }
 
 function renderComponentSearchResults() {
   if (!els.componentSearchInput || !els.componentSearchResults) return;
 
-  const query = normalizeSearchText(els.componentSearchInput.value);
+  const query = els.componentSearchInput.value.trim();
   els.componentSearchResults.innerHTML = '';
 
   if (!query) {
@@ -689,7 +777,12 @@ function renderComponentSearchResults() {
   }
 
   const matches = allComponents
-    .filter((item) => componentSearchText(item).includes(query))
+    .map((item) => ({
+      item,
+      score: scoreComponentSearch(item, query)
+    }))
+    .filter((entry) => entry.score > 0)
+    .sort((a, b) => b.score - a.score)
     .slice(0, 40);
 
   els.componentSearchResults.classList.add('has-results');
@@ -697,22 +790,30 @@ function renderComponentSearchResults() {
   if (!matches.length) {
     const empty = document.createElement('div');
     empty.className = 'component-search-empty';
-    empty.textContent = currentLang() === 'en' ? 'No components found' : 'Компоненты не найдены';
+    empty.textContent = currentLang() === 'en'
+      ? 'No components found. Try without hyphen, slash or by meaning.'
+      : 'Компоненты не найдены. Попробуйте без дефиса, без / или по значению.';
     els.componentSearchResults.appendChild(empty);
     return;
   }
 
-  matches.forEach((item) => {
+  matches.forEach(({ item }) => {
+    const isSelected = els.componentSelect.value === item.id;
+
     const button = document.createElement('button');
     button.type = 'button';
-    button.className = 'component-search-option';
+    button.className = `component-search-option${isSelected ? ' is-selected' : ''}`;
     button.setAttribute('role', 'option');
+    button.setAttribute('aria-selected', String(isSelected));
     button.dataset.componentId = item.id;
+
     button.innerHTML = `
       <span class="component-search-form">${escapeHtml(item.form)}</span>
       <span class="component-search-category">${escapeHtml(localizeCategory(item.category))}</span>
       <span class="component-search-meaning">${escapeHtml(localizeMeaningByItem(item))}</span>
+      <span class="component-search-action">${escapeHtml(currentLang() === 'en' ? 'Add' : 'Добавить')}</span>
     `;
+
     els.componentSearchResults.appendChild(button);
   });
 }
@@ -1785,7 +1886,21 @@ function attachEvents() {
   els.componentSearchResults?.addEventListener('click', (event) => {
     const option = event.target.closest('[data-component-id]');
     if (!option) return;
+
     selectComponentById(option.dataset.componentId);
+
+    const item = allComponents.find((x) => x.id === option.dataset.componentId);
+    if (!item) return;
+
+    if (item.category.startsWith('Приставки') && prefixAssimilationOptions[item.id]) {
+      openPrefixVariantStep(item);
+      return;
+    }
+
+    addSelectedComponent();
+
+    if (els.componentSearchInput) els.componentSearchInput.value = '';
+    renderComponentSearchResults();
   });
   els.assimilationSelect.addEventListener('change', syncRootFormByAssimilation);
   els.prefixVariantSelect.addEventListener('change', updatePrefixVariantPreview);
