@@ -5,12 +5,72 @@ const MODEL_NAME = 'qwen3.6-35b-a3b/latest';
 const MAX_BODY_BYTES = 1024 * 1024;
 
 const ZONES = [
-  { id: 'full_compositionality', ru: 'Полная композиционность', en: 'Full compositionality', range: { P: [4, 4], R: [4, 4], C: [0, 0], E: [0, 0] } },
-  { id: 'partial_compositionality', ru: 'Частичная композиционность', en: 'Partial compositionality', range: { P: [3, 4], R: [4, 4], C: [1, 1], E: [0, 1] } },
-  { id: 'semantic_extension', ru: 'Семантическое расширение', en: 'Semantic extension', range: { P: [2, 3], R: [3, 4], C: [1, 2], E: [0, 2] } },
-  { id: 'transfer', ru: 'Перенос', en: 'Transfer', range: { P: [1, 2], R: [2, 4], C: [2, 3], E: [0, 2] } },
-  { id: 'semantic_conventionalization', ru: 'Семантическая конвенционализация', en: 'Semantic conventionalization', range: { P: [0, 1], R: [1, 3], C: [3, 4], E: [3, 4] } },
-  { id: 'lexicalization', ru: 'Лексикализованность', en: 'Lexicalization', range: { P: [0, 0], R: [0, 1], C: [5, 5], E: null } }
+  {
+    id: 'full_compositionality',
+    ru: 'Полная композиционность',
+    en: 'Full compositionality',
+    range: { P: [4, 4], R: [4, 4], C: [0, 0], E: [0, 0] }
+  },
+  {
+    id: 'full_partial_compositionality',
+    ru: 'Полная — частичная композиционность',
+    en: 'Full — partial compositionality',
+    range: { P: [4, 4], R: [4, 4], C: [0, 1], E: [0, 0] }
+  },
+  {
+    id: 'partial_compositionality',
+    ru: 'Частичная композиционность',
+    en: 'Partial compositionality',
+    range: { P: [3, 4], R: [4, 4], C: [1, 1], E: [0, 1] }
+  },
+  {
+    id: 'partial_semantic_extension',
+    ru: 'Частичная композиционность — семантическое расширение',
+    en: 'Partial compositionality — semantic extension',
+    range: { P: [3, 3], R: [3, 4], C: [1, 2], E: [0, 1] }
+  },
+  {
+    id: 'semantic_extension',
+    ru: 'Семантическое расширение',
+    en: 'Semantic extension',
+    range: { P: [2, 3], R: [3, 4], C: [1, 2], E: [0, 2] }
+  },
+  {
+    id: 'semantic_extension_transfer',
+    ru: 'Семантическое расширение — перенос',
+    en: 'Semantic extension — transfer',
+    range: { P: [2, 2], R: [3, 3], C: [2, 2], E: [1, 2] }
+  },
+  {
+    id: 'transfer',
+    ru: 'Перенос',
+    en: 'Transfer',
+    range: { P: [1, 2], R: [2, 4], C: [2, 3], E: [0, 2] }
+  },
+  {
+    id: 'transfer_semantic_conventionalization',
+    ru: 'Перенос — семантическая конвенционализация',
+    en: 'Transfer — semantic conventionalization',
+    range: { P: [1, 1], R: [2, 3], C: [3, 3], E: [2, 3] }
+  },
+  {
+    id: 'semantic_conventionalization',
+    ru: 'Семантическая конвенционализация',
+    en: 'Semantic conventionalization',
+    range: { P: [0, 1], R: [1, 3], C: [3, 4], E: [3, 4] }
+  },
+  {
+    id: 'semantic_conventionalization_lexicalization',
+    ru: 'Семантическая конвенционализация — лексикализованность',
+    en: 'Semantic conventionalization — lexicalization',
+    range: { P: [0, 0], R: [1, 1], C: [4, 5], E: [4, 4] }
+  },
+  {
+    id: 'lexicalization',
+    ru: 'Лексикализованность',
+    en: 'Lexicalization',
+    range: { P: [0, 0], R: [0, 1], C: [5, 5], E: null }
+  }
 ];
 
 function setCors(req, res) {
@@ -114,8 +174,17 @@ function distanceToZone(scores, zone) {
   return ['P', 'R', 'C', 'E'].reduce((sum, key) => sum + distanceToRange(scores[key], zone.range[key]), 0);
 }
 
+function zoneSpecificity(zone) {
+  return ['P', 'R', 'C', 'E'].reduce((sum, key) => {
+    const range = zone.range[key];
+    return sum + (range === null ? 10 : range[1] - range[0]);
+  }, 0);
+}
+
 function getBorderlineZones(scores) {
-  const distances = ZONES.map((zone) => ({ zone, distance: distanceToZone(scores, zone) })).sort((a, b) => a.distance - b.distance);
+  const distances = ZONES
+    .map((zone) => ({ zone, distance: distanceToZone(scores, zone) }))
+    .sort((a, b) => a.distance - b.distance || zoneSpecificity(a.zone) - zoneSpecificity(b.zone));
   const best = distances[0]?.distance ?? 0;
   return distances
     .filter((item) => item.distance > best && item.distance <= best + 1)
@@ -130,10 +199,11 @@ function classifyByPRECE(scores) {
     C: clampScore(scores.C, 0, 5),
     E: scores.E === null ? null : clampScore(scores.E, 0, 4)
   };
-  const exact = ZONES.find((zone) => distanceToZone(normalizedScores, zone) === 0);
-  const distances = ZONES.map((zone) => ({ zone, distance: distanceToZone(normalizedScores, zone) })).sort((a, b) => a.distance - b.distance);
-  const selected = exact || distances[0].zone;
-  const selectedDistance = exact ? 0 : distances[0].distance;
+  const distances = ZONES
+    .map((zone) => ({ zone, distance: distanceToZone(normalizedScores, zone) }))
+    .sort((a, b) => a.distance - b.distance || zoneSpecificity(a.zone) - zoneSpecificity(b.zone));
+  const selected = distances[0].zone;
+  const selectedDistance = distances[0].distance;
   const borderline_zones = getBorderlineZones(normalizedScores).filter((item) => item.zone_id !== selected.id);
   const confidence = selectedDistance === 0 && borderline_zones.length === 0 ? 'high' : selectedDistance <= 1 ? 'medium' : 'low';
   return {
@@ -160,15 +230,33 @@ function shouldWarn(result) {
 }
 
 function buildFormRecommendation(zone, input) {
-  const separate = !['full_compositionality', 'partial_compositionality'].includes(zone.zone_id);
+  const noSeparateMarking = [
+    'full_compositionality',
+    'full_partial_compositionality',
+    'partial_compositionality'
+  ];
+
+  const optionalMarking = [
+    'partial_semantic_extension'
+  ];
+
   const natural = input.naturalisticWord || 'натуралистическая форма';
   const regular = input.regularWord || 'регулярная форма';
-  if (!separate) {
+
+  if (noSeparateMarking.includes(zone.zone_id)) {
     return {
       strategy: 'regular_form_usually_enough',
       text: `Обычно достаточно логической/регулярной формы: ${regular}. Отдельная интернациональная маркировка не обязательна.`
     };
   }
+
+  if (optionalMarking.includes(zone.zone_id)) {
+    return {
+      strategy: 'borderline_marking_optional',
+      text: `Случай пограничный. Можно оставить логическую/регулярную форму: ${regular}, но если интернациональное значение закреплено отдельно, допустима отдельная маркировка: ${natural}.`
+    };
+  }
+
   return {
     strategy: 'separate_international_marking_recommended',
     text: `Рекомендуется отдельная интернациональная маркировка: для существительного — -u (${natural}), для интернациональных прилагательных — -al/-ari/-ic, для логических прилагательных — -i; глаголы с интернациональным значением сохраняют консервативный корень, а логические — изменённую корневую основу, если она есть.`
@@ -319,12 +407,109 @@ function parseExamplesFromPython(text) {
   return { examples };
 }
 
+const ZONE_NAME_TO_ID = {
+  'Полная композиционность': 'full_compositionality',
+  'Полная — частичная композиционность': 'full_partial_compositionality',
+  'Частичная композиционность': 'partial_compositionality',
+  'Частичная композиционность — семантическое расширение': 'partial_semantic_extension',
+  'Семантическое расширение': 'semantic_extension',
+  'Семантическое расширение — перенос': 'semantic_extension_transfer',
+  'Перенос': 'transfer',
+  'Перенос — семантическая конвенционализация': 'transfer_semantic_conventionalization',
+  'Семантическая конвенционализация': 'semantic_conventionalization',
+  'Семантическая конвенционализация — лексикализованность': 'semantic_conventionalization_lexicalization',
+  'Лексикализованность': 'lexicalization'
+};
+
+function normalizeDash(value) {
+  return String(value || '')
+    .replace(/–/g, '—')
+    .replace(/\s+—\s+/g, ' — ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function zoneNameToId(zoneName) {
+  const clean = normalizeDash(zoneName);
+
+  if (ZONE_NAME_TO_ID[clean]) return ZONE_NAME_TO_ID[clean];
+
+  if (clean.includes('Частичная композиционность') && clean.includes('семантическое расширение')) {
+    return 'partial_semantic_extension';
+  }
+  if (clean.includes('Семантическое расширение') && clean.includes('перенос')) {
+    return 'semantic_extension_transfer';
+  }
+  if (clean.includes('Перенос') && clean.includes('семантическая конвенционализация')) {
+    return 'transfer_semantic_conventionalization';
+  }
+  if (clean.includes('Семантическая конвенционализация') && clean.includes('лексикализованность')) {
+    return 'semantic_conventionalization_lexicalization';
+  }
+
+  return ZONES.find((zone) => zone.ru === clean)?.id || 'semantic_extension';
+}
+
+function zoneIdToChainType(zoneId) {
+  const map = {
+    full_compositionality: 'direct_composition',
+    full_partial_compositionality: 'slight_focus_shift',
+    partial_compositionality: 'slight_focus_shift',
+    partial_semantic_extension: 'semantic_extension',
+    semantic_extension: 'semantic_extension',
+    semantic_extension_transfer: 'metaphorical_transfer',
+    transfer: 'metaphorical_transfer',
+    transfer_semantic_conventionalization: 'historical_conventionalization',
+    semantic_conventionalization: 'historical_conventionalization',
+    semantic_conventionalization_lexicalization: 'lexicalized_no_working_chain',
+    lexicalization: 'lexicalized_no_working_chain'
+  };
+
+  return map[zoneId] || 'semantic_extension';
+}
+
+function splitFormMeaning(value) {
+  const source = String(value || '').trim();
+  const [formPart, ...meaningParts] = source.split('—');
+  return {
+    form: (formPart || '').trim(),
+    meaning_ru: meaningParts.join('—').trim()
+  };
+}
+
+function normalizeExample(example) {
+  const zoneId = example.zone_id || zoneNameToId(example.zone);
+  const logicalEntry = splitFormMeaning(example.logicalForm || '');
+  const internationalEntry = splitFormMeaning(example.internationalForm || '');
+
+  return {
+    id: String(example.id ?? example.word ?? logicalEntry.form ?? ''),
+    word: String(example.word || internationalEntry.form || logicalEntry.form || example.id || ''),
+    number: String(example.number || example.id || ''),
+    zone_id: zoneId,
+    zone_ru: example.zone || ZONES.find((zone) => zone.id === zoneId)?.ru || '',
+    logical_entries: Array.isArray(example.logical_entries) && example.logical_entries.length
+      ? example.logical_entries
+      : [logicalEntry].filter((entry) => entry.form || entry.meaning_ru),
+    international_entries: Array.isArray(example.international_entries) && example.international_entries.length
+      ? example.international_entries
+      : [internationalEntry].filter((entry) => entry.form || entry.meaning_ru),
+    chain: Array.isArray(example.chain) ? example.chain : [],
+    chain_type: example.chain_type || zoneIdToChainType(zoneId),
+    scores: example.scores || null
+  };
+}
+
 async function loadExamples() {
   const filePath = path.join(process.cwd(), 'determinatorofvalentyp', 'examples.json');
   const text = await fs.readFile(filePath, 'utf8');
   try {
     const parsed = JSON.parse(text);
-    return Array.isArray(parsed) ? { examples: parsed } : parsed;
+    const data = Array.isArray(parsed) ? { examples: parsed } : parsed;
+    return {
+      ...data,
+      examples: (data.examples || []).map(normalizeExample)
+    };
   } catch (_error) {
     return parseExamplesFromPython(text);
   }
@@ -348,8 +533,35 @@ function pickExamples(input, examples) {
 }
 
 function buildPrompt(input, examplesUsed) {
-  const system = `Ты классифицируешь дериваты Интераля по спектру семантической прозрачности P/R/C/E.\nОцени P Predictabilitá 0–4, R Relationalitá 0–4, C Complexitá of cheyn 0–5, E External cognoscentian dependentia 0–4 или null для полной лексикализации.\nПредложи объяснительную цепочку, но не придумывай искусственную цепочку: если рабочей цепочки нет, выбери lexicalized_no_working_chain. Если связь требует исторического/этимологического знания, повышай E. Если цепочка не помогает обычному человеку понять слово, выбирай lexicalized_no_working_chain. zone_hint — только подсказка: окончательную зону считает код.\nВерни только JSON без Markdown в формате {"chain":["шаг 1"],"chain_type":"direct_composition | slight_focus_shift | semantic_extension | metaphorical_transfer | metonymic_transfer | historical_conventionalization | lexicalized_no_working_chain","P":0,"R":0,"C":0,"E":0,"zone_hint":"","confidence":0.0,"explanation":"","analogies_used":[]}.`;
-  const user = JSON.stringify({ task: 'Классифицируй входной дериват по P/R/C/E.', input, reference_examples: examplesUsed }, null, 2);
+  const zonesForPrompt = ZONES.map((zone) => `${zone.id}: ${zone.ru}`).join('\n');
+
+  const system = `Ты классифицируешь дериваты Интераля по спектру семантической прозрачности P/R/C/E.
+
+Оцени:
+P Predictabilitá 0–4,
+R Relationalitá 0–4,
+C Complexitá of cheyn 0–5,
+E External cognoscentian dependentia 0–4 или null для полной лексикализации.
+
+Допустимые зоны:
+${zonesForPrompt}
+
+Главное правило:
+логическое значение определяется механическим сложением компонентов, без подгонки под интернациональное значение. Если приставка многозначна, выбирай наиболее буквальное значение, совместимое с корнем.
+
+Предложи объяснительную цепочку, но не придумывай искусственную цепочку. Если рабочей цепочки нет, выбери lexicalized_no_working_chain. Если связь требует исторического/этимологического знания, повышай E. Если цепочка не помогает обычному человеку понять слово, выбирай lexicalized_no_working_chain.
+
+zone_hint — только подсказка: окончательную зону считает код по P/R/C/E.
+
+Верни только JSON без Markdown в формате:
+{"chain":["шаг 1"],"chain_type":"direct_composition | slight_focus_shift | semantic_extension | metaphorical_transfer | metonymic_transfer | historical_conventionalization | lexicalized_no_working_chain","P":0,"R":0,"C":0,"E":0,"zone_hint":"","confidence":0.0,"explanation":"","analogies_used":[]}.`;
+
+  const user = JSON.stringify({
+    task: 'Классифицируй входной дериват по P/R/C/E.',
+    input,
+    reference_examples: examplesUsed
+  }, null, 2);
+
   return { system, user };
 }
 

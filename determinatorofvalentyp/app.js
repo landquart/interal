@@ -904,12 +904,72 @@ function clamp(value, min, max) {
 
 
 const preceZones = [
-  { id: 'full_compositionality', ru: 'Полная композиционность', en: 'Full compositionality', range: { P: [4, 4], R: [4, 4], C: [0, 0], E: [0, 0] } },
-  { id: 'partial_compositionality', ru: 'Частичная композиционность', en: 'Partial compositionality', range: { P: [3, 4], R: [4, 4], C: [1, 1], E: [0, 1] } },
-  { id: 'semantic_extension', ru: 'Семантическое расширение', en: 'Semantic extension', range: { P: [2, 3], R: [3, 4], C: [1, 2], E: [0, 2] } },
-  { id: 'transfer', ru: 'Перенос', en: 'Transfer', range: { P: [1, 2], R: [2, 4], C: [2, 3], E: [0, 2] } },
-  { id: 'semantic_conventionalization', ru: 'Семантическая конвенционализация', en: 'Semantic conventionalization', range: { P: [0, 1], R: [1, 3], C: [3, 4], E: [3, 4] } },
-  { id: 'lexicalization', ru: 'Лексикализованность', en: 'Lexicalization', range: { P: [0, 0], R: [0, 1], C: [5, 5], E: null } }
+  {
+    id: 'full_compositionality',
+    ru: 'Полная композиционность',
+    en: 'Full compositionality',
+    range: { P: [4, 4], R: [4, 4], C: [0, 0], E: [0, 0] }
+  },
+  {
+    id: 'full_partial_compositionality',
+    ru: 'Полная — частичная композиционность',
+    en: 'Full — partial compositionality',
+    range: { P: [4, 4], R: [4, 4], C: [0, 1], E: [0, 0] }
+  },
+  {
+    id: 'partial_compositionality',
+    ru: 'Частичная композиционность',
+    en: 'Partial compositionality',
+    range: { P: [3, 4], R: [4, 4], C: [1, 1], E: [0, 1] }
+  },
+  {
+    id: 'partial_semantic_extension',
+    ru: 'Частичная композиционность — семантическое расширение',
+    en: 'Partial compositionality — semantic extension',
+    range: { P: [3, 3], R: [3, 4], C: [1, 2], E: [0, 1] }
+  },
+  {
+    id: 'semantic_extension',
+    ru: 'Семантическое расширение',
+    en: 'Semantic extension',
+    range: { P: [2, 3], R: [3, 4], C: [1, 2], E: [0, 2] }
+  },
+  {
+    id: 'semantic_extension_transfer',
+    ru: 'Семантическое расширение — перенос',
+    en: 'Semantic extension — transfer',
+    range: { P: [2, 2], R: [3, 3], C: [2, 2], E: [1, 2] }
+  },
+  {
+    id: 'transfer',
+    ru: 'Перенос',
+    en: 'Transfer',
+    range: { P: [1, 2], R: [2, 4], C: [2, 3], E: [0, 2] }
+  },
+  {
+    id: 'transfer_semantic_conventionalization',
+    ru: 'Перенос — семантическая конвенционализация',
+    en: 'Transfer — semantic conventionalization',
+    range: { P: [1, 1], R: [2, 3], C: [3, 3], E: [2, 3] }
+  },
+  {
+    id: 'semantic_conventionalization',
+    ru: 'Семантическая конвенционализация',
+    en: 'Semantic conventionalization',
+    range: { P: [0, 1], R: [1, 3], C: [3, 4], E: [3, 4] }
+  },
+  {
+    id: 'semantic_conventionalization_lexicalization',
+    ru: 'Семантическая конвенционализация — лексикализованность',
+    en: 'Semantic conventionalization — lexicalization',
+    range: { P: [0, 0], R: [1, 1], C: [4, 5], E: [4, 4] }
+  },
+  {
+    id: 'lexicalization',
+    ru: 'Лексикализованность',
+    en: 'Lexicalization',
+    range: { P: [0, 0], R: [0, 1], C: [5, 5], E: null }
+  }
 ];
 
 function clampScore(value, min, max) {
@@ -960,8 +1020,17 @@ function distanceToZone(scores, zone) {
   return ['P', 'R', 'C', 'E'].reduce((sum, key) => sum + distanceToRange(scores[key], zone.range[key]), 0);
 }
 
+function zoneSpecificity(zone) {
+  return ['P', 'R', 'C', 'E'].reduce((sum, key) => {
+    const range = zone.range[key];
+    return sum + (range === null ? 10 : range[1] - range[0]);
+  }, 0);
+}
+
 function getBorderlineZones(scores) {
-  const distances = preceZones.map((zone) => ({ zone, distance: distanceToZone(scores, zone) })).sort((a, b) => a.distance - b.distance);
+  const distances = preceZones
+    .map((zone) => ({ zone, distance: distanceToZone(scores, zone) }))
+    .sort((a, b) => a.distance - b.distance || zoneSpecificity(a.zone) - zoneSpecificity(b.zone));
   const best = distances[0]?.distance ?? 0;
   return distances
     .filter((item) => item.distance > best && item.distance <= best + 1)
@@ -976,10 +1045,11 @@ function classifyByPRECE(scores) {
     C: clampScore(scores.C, 0, 5),
     E: scores.E === null ? null : clampScore(scores.E, 0, 4)
   };
-  const exact = preceZones.find((zone) => distanceToZone(normalizedScores, zone) === 0);
-  const distances = preceZones.map((zone) => ({ zone, distance: distanceToZone(normalizedScores, zone) })).sort((a, b) => a.distance - b.distance);
-  const selected = exact || distances[0].zone;
-  const selectedDistance = exact ? 0 : distances[0].distance;
+  const distances = preceZones
+    .map((zone) => ({ zone, distance: distanceToZone(normalizedScores, zone) }))
+    .sort((a, b) => a.distance - b.distance || zoneSpecificity(a.zone) - zoneSpecificity(b.zone));
+  const selected = distances[0].zone;
+  const selectedDistance = distances[0].distance;
   const borderline_zones = getBorderlineZones(normalizedScores).filter((item) => item.zone_id !== selected.id);
   const confidence = selectedDistance === 0 && borderline_zones.length === 0 ? 'high' : selectedDistance <= 1 ? 'medium' : 'low';
   return {
@@ -994,15 +1064,33 @@ function classifyByPRECE(scores) {
 }
 
 function buildFormRecommendation(zone, input) {
-  const separate = !['full_compositionality', 'partial_compositionality'].includes(zone.zone_id);
+  const noSeparateMarking = [
+    'full_compositionality',
+    'full_partial_compositionality',
+    'partial_compositionality'
+  ];
+
+  const optionalMarking = [
+    'partial_semantic_extension'
+  ];
+
   const natural = input.naturalisticWord || 'натуралистическая форма';
   const regular = input.regularWord || 'регулярная форма';
-  if (!separate) {
+
+  if (noSeparateMarking.includes(zone.zone_id)) {
     return {
       strategy: 'regular_form_usually_enough',
       text: `Обычно достаточно логической/регулярной формы: ${regular}. Отдельная интернациональная маркировка не обязательна.`
     };
   }
+
+  if (optionalMarking.includes(zone.zone_id)) {
+    return {
+      strategy: 'borderline_marking_optional',
+      text: `Случай пограничный. Можно оставить логическую/регулярную форму: ${regular}, но если интернациональное значение закреплено отдельно, допустима отдельная маркировка: ${natural}.`
+    };
+  }
+
   return {
     strategy: 'separate_international_marking_recommended',
     text: `Рекомендуется отдельная интернациональная маркировка: для существительного — -u (${natural}), для интернациональных прилагательных — -al/-ari/-ic, для логических прилагательных — -i; глаголы с интернациональным значением сохраняют консервативный корень, а логические — изменённую корневую основу, если она есть.`
