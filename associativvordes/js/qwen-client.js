@@ -11,6 +11,14 @@ export const FINAL_SCORE_WEIGHTS = {
   association_score: 0.55
 };
 
+export const QWEN_RUNTIME_CONFIG = {
+  enableCandidateGeneration: true,
+  enableReviewModel: false,
+  maxCandidatesPerLanguage: 8,
+  maxConcurrentQwenRequests: 2,
+  maxReviewRequestsPerSearch: 3
+};
+
 export function qwenFallback() {
   return {
     directness: null,
@@ -45,7 +53,12 @@ function extractJsonText(raw) {
 
 function parseQwenPayload(payload) {
   const raw = payload?.choices?.[0]?.message?.content ?? payload?.content ?? payload?.text ?? payload;
-  const object = typeof raw === 'string' ? JSON.parse(extractJsonText(raw)) : raw;
+  let object;
+  try {
+    object = typeof raw === 'string' ? JSON.parse(extractJsonText(raw)) : raw;
+  } catch (_error) {
+    throw new Error(`Could not parse Qwen JSON: ${String(raw).slice(0, 500)}`);
+  }
   return {
     word: object.word,
     target_meaning: object.target_meaning,
@@ -78,9 +91,12 @@ async function callQwen(prompt, { model, review = false } = {}) {
     })
   });
   if (!res.ok) {
-    let message = `Qwen HTTP ${res.status}`;
-    try { message += `: ${(await res.json()).error || ''}`; } catch {}
-    throw new Error(message.trim());
+    let details = '';
+    try {
+      const errorPayload = await res.json();
+      details = errorPayload.details || errorPayload.error || JSON.stringify(errorPayload);
+    } catch {}
+    throw new Error(`Qwen HTTP ${res.status}: ${details}`);
   }
   return res.json();
 }
