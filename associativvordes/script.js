@@ -1,5 +1,5 @@
 import { analyzeAssociativeWord } from './js/association-analyzer.js';
-import { QWEN_RUNTIME_CONFIG, getQwenAssociativeCandidates } from './js/qwen-client.js';
+import { QWEN_RUNTIME_CONFIG } from './js/qwen-client.js';
 import { formatMetric, resultRowClasses, swowLabel } from './js/render-results.js';
 
 const TEXT_I18N = {
@@ -367,20 +367,6 @@ const TEXT_I18N = {
         .filter(w => includesRoot(w, root) || specialRootMatch(langCode, w, root))
         .slice(0, 30)
         .forEach(word => add(word));
-
-      if (QWEN_RUNTIME_CONFIG.enableCandidateGeneration) {
-        try {
-          const generated = await getQwenAssociativeCandidates({
-            language: langCode,
-            targetMeaning: state.meaning || root,
-            root,
-            max: QWEN_RUNTIME_CONFIG.maxCandidatesPerLanguage
-          });
-          generated.forEach(candidate => add(candidate.word, { qwen_reason: candidate.reason }));
-        } catch (error) {
-          console.warn(`Qwen candidate generation unavailable for ${langCode}:`, error.message);
-        }
-      }
 
       return Array.from(byWord.values()).slice(0, QWEN_RUNTIME_CONFIG.maxCandidatesPerLanguage);
     }
@@ -786,7 +772,7 @@ const TEXT_I18N = {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           system: 'Return only JSON.',
-          user: 'Return {"directness":80,"field_relatedness":90,"domain_shift":10,"short_explanation":"test"}',
+          user: 'Return {"word":"test","target_meaning":"test","directness":80,"field_relatedness":90,"domain_shift":10,"short_explanation":"test"}',
           model: 'qwen3.6-35b-a3b/latest',
           review: false
         })

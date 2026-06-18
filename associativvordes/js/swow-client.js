@@ -7,6 +7,15 @@ export const API_CONFIG = {
   qwenReviewModel: 'qwen3-235b-a22b-fp8/latest'
 };
 
+const SWOW_LANGUAGE_MAP = {
+  en: 'en',
+  de: 'de',
+  es: 'es-rp',
+  fr: null,
+  it: null,
+  ru: null
+};
+
 function numberOrZero(value) {
   const number = Number(value);
   return Number.isFinite(number) ? number : 0;
@@ -26,8 +35,11 @@ export function parseSwowAssociation(payload) {
 }
 
 export async function getSwowAssociation(language, cue, response) {
+  const swowLanguage = SWOW_LANGUAGE_MAP[normalizeWord(language)];
+  if (!swowLanguage) return null;
+
   const params = new URLSearchParams({
-    language: normalizeWord(language),
+    language: swowLanguage,
     cue: normalizeWord(cue),
     response: normalizeWord(response)
   });
