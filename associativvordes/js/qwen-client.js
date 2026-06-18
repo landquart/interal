@@ -33,33 +33,70 @@ function clampIntegerOrNull(value) {
   return Math.max(0, Math.min(100, Math.round(number)));
 }
 
+function extractJsonText(raw) {
+  if (typeof raw !== 'string') return raw;
+  const fenced = raw.match(/```(?:json)?\s*([\s\S]*?)\s*```/i);
+  if (fenced) return fenced[1].trim();
+  const start = raw.indexOf('{');
+  const end = raw.lastIndexOf('}');
+  if (start !== -1 && end > start) return raw.slice(start, end + 1);
+  return raw.trim();
+}
+
 function parseQwenPayload(payload) {
   const raw = payload?.choices?.[0]?.message?.content ?? payload?.content ?? payload?.text ?? payload;
-  const object = typeof raw === 'string' ? JSON.parse(raw.replace(/^```json\s*|\s*```$/g, '')) : raw;
+  const object = typeof raw === 'string' ? JSON.parse(extractJsonText(raw)) : raw;
   return {
     word: object.word,
     target_meaning: object.target_meaning,
     directness: clampIntegerOrNull(object.directness),
     field_relatedness: clampIntegerOrNull(object.field_relatedness),
     domain_shift: clampIntegerOrNull(object.domain_shift),
-    short_explanation: object.short_explanation || ''
+    short_explanation: object.short_explanation || object.explanation || ''
   };
 }
 
-export async function getQwenAssociationScores({ language, targetMeaning, word, swow, review = false }) {
-  const prompt = buildQwenAssociationPrompt({ language, targetMeaning, word, swow });
+function parseCandidatesPayload(payload) {
+  const raw = payload?.content ?? payload;
+  const object = typeof raw === 'string' ? JSON.parse(extractJsonText(raw)) : raw;
+  const candidates = Array.isArray(object) ? object : object?.candidates;
+  if (!Array.isArray(candidates)) return [];
+  return candidates
+    .map(candidate => ({ word: String(candidate.word || '').trim(), reason: String(candidate.reason || '').trim() }))
+    .filter(candidate => candidate.word);
+}
+
+async function callQwen(prompt, { model, review = false } = {}) {
   const res = await fetch(API_CONFIG.qwenAssociationUrl, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      ...prompt,
-      model: review ? API_CONFIG.qwenReviewModel : API_CONFIG.qwenPrimaryModel,
-      primaryEnv: 'Qwen3_6_35B_Yandex',
-      primaryFolderEnv: 'yandex_folder_Qwen3_6_35B',
-      reviewEnv: 'Qwen3_235B_A22B_Instruct_2507_FP8_Yandex',
-      reviewFolderEnv: 'yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8'
+      system: prompt.system,
+      user: prompt.user,
+      model: model || API_CONFIG.qwenPrimaryModel,
+      review
     })
   });
-  if (!res.ok) throw new Error(`Qwen HTTP ${res.status}`);
-  return parseQwenPayload(await res.json());
+  if (!res.ok) {
+    let message = `Qwen HTTP ${res.status}`;
+    try { message += `: ${(await res.json()).error || ''}`; } catch {}
+    throw new Error(message.trim());
+  }
+  return res.json();
+}
+
+export async function getQwenAssociationScores({ language, targetMeaning, word, swow, review = false }) {
+  const prompt = buildQwenAssociationPrompt({ language, targetMeaning, word, swow });
+  return parseQwenPayload(await callQwen(prompt, {
+    model: review ? API_CONFIG.qwenReviewModel : API_CONFIG.qwenPrimaryModel,
+    review
+  }));
+}
+
+export async function getQwenAssociativeCandidates({ language, targetMeaning, root, max = 20 }) {
+  const prompt = {
+    system: 'You generate candidate associative words for an international auxiliary language project. Return only valid JSON. Do not invent constructed Interal forms. Return real words in the specified natural language. Words should be associated with the target meaning and, when possible, connected to the candidate root graphically/morphologically/etymologically. Return an array.',
+    user: `Language: ${language}\nTarget meaning: ${targetMeaning}\nCandidate root: ${root}\nMaximum candidates: ${max}\n\nReturn JSON:\n{\n  "candidates": [\n    {"word": "...", "reason": "..."}\n  ]\n}`
+  };
+  return parseCandidatesPayload(await callQwen(prompt, { model: API_CONFIG.qwenPrimaryModel, review: false })).slice(0, max);
 }

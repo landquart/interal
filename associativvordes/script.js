@@ -1,4 +1,5 @@
 import { analyzeAssociativeWord } from './js/association-analyzer.js';
+import { getQwenAssociativeCandidates } from './js/qwen-client.js';
 import { formatMetric, resultRowClasses, swowLabel } from './js/render-results.js';
 
 const TEXT_I18N = {
@@ -29,10 +30,10 @@ const TEXT_I18N = {
         resetConfirm: 'Сбросить введённые данные? Это действие нельзя отменить.',
         manual: 'ручная',
         languages: {
-          en: 'Английский', de: 'Немецкий', fr: 'Французский', es: 'Испанский', it: 'Итальянский', ru: 'Русский', el: 'Греческий'
+          en: 'Английский', de: 'Немецкий', fr: 'Французский', es: 'Испанский', it: 'Итальянский', ru: 'Русский'
         },
         groups: {
-          Germanic: 'Германская', Romance: 'Романская', Slavic: 'Славянская', Hellenic: 'Греческая'
+          Germanic: 'Германская', Romance: 'Романская', Slavic: 'Славянская'
         },
         panel: {
           group: 'Группа', languageScore: 'Балл языка', weightSum: 'сумма весов', addWord: 'Добавить слово', use: 'Учитывать', word: 'Слово', model: 'Модель', association: 'Ассоциация', rank: 'Ранг', frequency: 'Частота', weightP: 'Вес P', primary: 'первичная — 1', secondary: 'вторичная — {value}', noise: 'мусор — 0'
@@ -71,10 +72,10 @@ const TEXT_I18N = {
         resetConfirm: 'Reset entered data? This action cannot be undone.',
         manual: 'manual',
         languages: {
-          en: 'English', de: 'German', fr: 'French', es: 'Spanish', it: 'Italian', ru: 'Russian', el: 'Greek'
+          en: 'English', de: 'German', fr: 'French', es: 'Spanish', it: 'Italian', ru: 'Russian'
         },
         groups: {
-          Germanic: 'Germanic', Romance: 'Romance', Slavic: 'Slavic', Hellenic: 'Hellenic'
+          Germanic: 'Germanic', Romance: 'Romance', Slavic: 'Slavic'
         },
         panel: {
           group: 'Group', languageScore: 'Language score', weightSum: 'weight sum', addWord: 'Add word', use: 'Use', word: 'Word', model: 'Model', association: 'Association', rank: 'Rank', frequency: 'Frequency', weightP: 'Weight P', primary: 'primary — 1', secondary: 'secondary — {value}', noise: 'noise — 0'
@@ -106,8 +107,7 @@ const TEXT_I18N = {
       { code: 'fr', name: 'Французский', group: 'Romance' },
       { code: 'es', name: 'Испанский', group: 'Romance' },
       { code: 'it', name: 'Итальянский', group: 'Romance' },
-      { code: 'ru', name: 'Русский', group: 'Slavic' },
-      { code: 'el', name: 'Греческий', group: 'Hellenic' }
+      { code: 'ru', name: 'Русский', group: 'Slavic' }
     ];
 
     const DEFAULT_DERIVATIVES = {
@@ -116,8 +116,7 @@ const TEXT_I18N = {
       fr: ['oculaire', 'oculiste', 'binoculaire', 'monocle', 'réguler', 'régulation', 'réglement', 'réglementaire', 'international', 'internet', 'interaction', 'intervenir'],
       es: ['ocular', 'oculista', 'binocular', 'monóculo', 'regular', 'regulación', 'reglamento', 'reglamentario', 'internacional', 'internet', 'interacción'],
       it: ['oculare', 'oculista', 'binoculare', 'monocolo', 'regolare', 'regolazione', 'regolamento', 'regolamentare', 'internazionale', 'internet', 'interazione'],
-      ru: ['окулист', 'окуляр', 'очки', 'бинокулярный', 'монокль', 'регулировать', 'регуляция', 'регламент', 'регламентарный', 'регулярный', 'интернациональный', 'интернет', 'интерактивный'],
-      el: ['τηλέφωνο', 'τηλεόραση', 'ίντερνετ', 'διεθνής']
+      ru: ['окулист', 'окуляр', 'очки', 'бинокулярный', 'монокль', 'регулировать', 'регуляция', 'регламент', 'регламентарный', 'регулярный', 'интернациональный', 'интернет', 'интерактивный']
     };
 
     const DEFAULT_FREQUENCIES = {
@@ -126,8 +125,7 @@ const TEXT_I18N = {
       fr: { oculaire: 14735, oculiste: 50000, binoculaire: 50000, monocle: 22000, réguler: 14000, régulation: 9000, réglement: 6000, réglementaire: 8500, international: 850, internet: 900, interaction: 5500, intervenir: 1800 },
       es: { ocular: 20219, oculista: 45000, binocular: 35000, monóculo: 45000, regular: 1300, regulación: 7000, reglamento: 7500, reglamentario: 16000, internacional: 900, internet: 1000, interacción: 5800 },
       it: { oculare: 38367, oculista: 50000, binoculare: 50000, monocolo: 45000, regolare: 2200, regolazione: 9500, regolamento: 6000, regolamentare: 12000, internazionale: 900, internet: 950, interazione: 7000 },
-      ru: { окулист: 50000, окуляр: 60000, очки: 1200, бинокулярный: 60000, монокль: 39000, регулировать: 5500, регуляция: 13000, регламент: 6500, регламентарный: 30000, регулярный: 2800, интернациональный: 18000, интернет: 600, интерактивный: 9000 },
-      el: { τηλέφωνο: 900, τηλεόραση: 950, ίντερνετ: 1000, διεθνής: 3500 }
+      ru: { окулист: 50000, окуляр: 60000, очки: 1200, бинокулярный: 60000, монокль: 39000, регулировать: 5500, регуляция: 13000, регламент: 6500, регламентарный: 30000, регулярный: 2800, интернациональный: 18000, интернет: 600, интерактивный: 9000 }
     };
 
     let derivativeData = structuredClone(DEFAULT_DERIVATIVES);
@@ -283,6 +281,56 @@ const TEXT_I18N = {
         .map(x => ({ ...x, selected: true }));
     }
 
+    async function analyzeCandidateItem(langCode, item) {
+      const analysis = await analyzeAssociativeWord({
+        language: langCode,
+        targetMeaning: state.meaning || state.root,
+        word: item.word
+      });
+      return {
+        ...item,
+        analysis,
+        frequency_score: analysis.frequency.frequency_score,
+        association_score: analysis.association.association_score,
+        final_score: analysis.final_score,
+        selected: false
+      };
+    }
+
+    async function getLanguageCandidates(langCode, root) {
+      const localWords = derivativeData[langCode] || [];
+      const byWord = new Map();
+      const add = (word, extra = {}) => {
+        const key = normalizeText(word);
+        if (!key || byWord.has(key)) return;
+        byWord.set(key, {
+          word,
+          model: inferModel(word, root, state.elementType),
+          selected: false,
+          ...extra
+        });
+      };
+
+      localWords
+        .filter(w => includesRoot(w, root) || specialRootMatch(langCode, w, root))
+        .slice(0, 30)
+        .forEach(word => add(word));
+
+      try {
+        const generated = await getQwenAssociativeCandidates({
+          language: langCode,
+          targetMeaning: state.meaning || root,
+          root,
+          max: 20
+        });
+        generated.forEach(candidate => add(candidate.word, { qwen_reason: candidate.reason }));
+      } catch (error) {
+        console.warn(`Qwen candidate generation unavailable for ${langCode}:`, error.message);
+      }
+
+      return Array.from(byWord.values()).slice(0, 40);
+    }
+
     async function searchDerivatives() {
       state.root = normalizeText(document.getElementById('rootInput').value);
       state.meaning = document.getElementById('meaningInput').value.trim();
@@ -298,31 +346,8 @@ const TEXT_I18N = {
 
       try {
         for (const lang of LANGUAGES) {
-          const words = derivativeData[lang.code] || [];
-          const candidates = words
-            .filter(w => includesRoot(w, root) || specialRootMatch(lang.code, w, root))
-            .slice(0, 30)
-            .map(w => ({
-              word: w,
-              model: inferModel(w, root, state.elementType),
-              selected: false
-            }));
-
-          const analyzed = await Promise.all(candidates.map(async (item) => {
-            const analysis = await analyzeAssociativeWord({
-              language: lang.code,
-              targetMeaning: state.meaning || root,
-              word: item.word
-            });
-            return {
-              ...item,
-              analysis,
-              frequency_score: analysis.frequency.frequency_score,
-              association_score: analysis.association.association_score,
-              final_score: analysis.final_score,
-              selected: false
-            };
-          }));
+          const candidates = await getLanguageCandidates(lang.code, root);
+          const analyzed = await Promise.all(candidates.map(item => analyzeCandidateItem(lang.code, item)));
 
           nextLangs[lang.code] = groupByBestModel(analyzed, state.maxModels);
         }
@@ -448,7 +473,7 @@ const TEXT_I18N = {
           <td><strong>${formatMetric(analysis.final_score ?? item.final_score, 2)}</strong></td>
           <td>${escapeHtml(swowLabel(analysis.swow))}</td>
           <td>${escapeHtml(assoc.explanation || warnings || '—')}</td>
-          <td><button class="tool-btn interal-btn interal-btn--secondary interal-btn--small" onclick="deleteItem('${lang}', ${idx})">×</button></td>
+          <td><button class="tool-btn interal-btn interal-btn--secondary interal-btn--small" onclick="analyzeItem('${lang}', ${idx})">Analyze</button><button class="tool-btn interal-btn interal-btn--secondary interal-btn--small" onclick="deleteItem('${lang}', ${idx})">×</button></td>
         </tr>
       `;
     }
@@ -459,8 +484,8 @@ const TEXT_I18N = {
       document.getElementById('resultBox').innerHTML = `
         <div class="metric"><strong>${formatPercent(result.finalAssociation, 1)}</strong><span>${labels.finalAssociation}</span></div>
         <div class="metric"><strong>${formatFixed(result.totalAssociation, 3)}</strong><span>${labels.totalAssociation}</span></div>
-        <div class="metric"><strong>${result.representedLangs}/7</strong><span>${labels.languagesRepresented}</span></div>
-        <div class="metric"><strong>${result.groups}/4</strong><span>${labels.languageGroups}</span></div>
+        <div class="metric"><strong>${result.representedLangs}/${LANGUAGES.length}</strong><span>${labels.languagesRepresented}</span></div>
+        <div class="metric"><strong>${result.groups}/${new Set(LANGUAGES.map(l => l.group)).size}</strong><span>${labels.languageGroups}</span></div>
       `;
 
       let statusClass = result.accepted ? 'ok' : (result.finalAssociation >= 40 ? 'warn' : 'bad');
@@ -533,6 +558,21 @@ const TEXT_I18N = {
         item.model = inferModel(value, state.root, state.elementType);
       }
       
+      renderAll();
+    }
+
+    async function analyzeItem(lang, idx) {
+      const item = state.languages[lang][idx];
+      if (!item || !normalizeText(item.word)) return;
+      item.model = item.model || inferModel(item.word, state.root, state.elementType);
+      item.analysis = await analyzeAssociativeWord({
+        language: lang,
+        targetMeaning: state.meaning || state.root,
+        word: item.word
+      });
+      item.frequency_score = item.analysis.frequency.frequency_score;
+      item.association_score = item.analysis.association.association_score;
+      item.final_score = item.analysis.final_score;
       renderAll();
     }
 
@@ -680,6 +720,7 @@ const TEXT_I18N = {
     window.updateItem = updateItem;
     window.deleteItem = deleteItem;
     window.addRow = addRow;
+    window.analyzeItem = analyzeItem;
 
     async function init() {
       await loadJsonFilesFromDirectory();

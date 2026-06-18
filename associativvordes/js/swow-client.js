@@ -31,9 +31,13 @@ export async function getSwowAssociation(language, cue, response) {
     cue: normalizeWord(cue),
     response: normalizeWord(response)
   });
-  const res = await fetch(`${API_CONFIG.swowBaseUrl}?${params}`);
-  if (!res.ok) return null;
-  return parseSwowAssociation(await res.json());
+  try {
+    const res = await fetch(`${API_CONFIG.swowBaseUrl}?${params}`);
+    if (!res.ok) return null;
+    return parseSwowAssociation(await res.json());
+  } catch {
+    return null;
+  }
 }
 
 export async function getBidirectionalSwow(language, target, word) {
