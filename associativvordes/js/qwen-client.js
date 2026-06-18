@@ -12,11 +12,11 @@ export const FINAL_SCORE_WEIGHTS = {
 };
 
 export const QWEN_RUNTIME_CONFIG = {
-  enableCandidateGeneration: true,
+  enableCandidateGeneration: false,
   enableReviewModel: false,
-  maxCandidatesPerLanguage: 8,
-  maxConcurrentQwenRequests: 2,
-  maxReviewRequestsPerSearch: 3
+  maxCandidatesPerLanguage: 5,
+  maxConcurrentQwenRequests: 1,
+  maxReviewRequestsPerSearch: 0
 };
 
 export function qwenFallback() {
