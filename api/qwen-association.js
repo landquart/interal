@@ -126,7 +126,15 @@ module.exports = async function handler(req, res) {
   try {
     if (req.method !== 'POST') return sendJson(res, 405, { error: 'Method not allowed', details: 'Use POST.' });
 
-    const body = await getRequestBody(req);
+    let body;
+    try {
+      body = await getRequestBody(req);
+    } catch (error) {
+      return sendJson(res, 400, {
+        error: 'Invalid request body',
+        details: String(error.message || error).slice(0, 1200)
+      });
+    }
     const system = String(body.system || '');
     const user = String(body.user || '');
     const model = body.model || PRIMARY_MODEL;

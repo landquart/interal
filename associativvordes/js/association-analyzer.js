@@ -1,6 +1,6 @@
 import { getFrequencyProfile } from './frequency-loader.js';
 import { getBidirectionalSwow } from './swow-client.js';
-import { ASSOCIATION_SCORE_WEIGHTS, FINAL_SCORE_WEIGHTS, getQwenAssociationScores, qwenFallback } from './qwen-client.js';
+import { ASSOCIATION_SCORE_WEIGHTS, FINAL_SCORE_WEIGHTS, QWEN_RUNTIME_CONFIG, getQwenAssociationScores, qwenFallback } from './qwen-client.js';
 
 export function clamp(value, min = 0, max = 100) {
   return Math.max(min, Math.min(max, value));
@@ -43,7 +43,8 @@ async function getReviewedQwen({ language, targetMeaning, word, swow, warnings }
   const primaryAssociation = calculateAssociationScore(primary);
   const result = { primary, review: null, used_review: false, final: primary };
 
-  if (!isControversial(primary, primaryAssociation)) return result;
+  const hasValidPrimaryScores = primary.directness != null && primary.field_relatedness != null && primary.domain_shift != null;
+  if (!QWEN_RUNTIME_CONFIG.enableReviewModel || !hasValidPrimaryScores || !isControversial(primary, primaryAssociation)) return result;
 
   try {
     const review = await getQwenAssociationScores({ language, targetMeaning, word, swow, review: true });
@@ -52,8 +53,8 @@ async function getReviewedQwen({ language, targetMeaning, word, swow, warnings }
     result.used_review = true;
     result.final = averageQwen(primary, review);
     return result;
-  } catch {
-    warnings.push('Review Qwen unavailable');
+  } catch (error) {
+    warnings.push(`Review Qwen unavailable: ${error.message}`);
     return result;
   }
 }
@@ -84,8 +85,8 @@ export async function analyzeAssociativeWord({ language, targetMeaning, word }) 
   });
   if (!swow.target_to_word && !swow.word_to_target) warnings.push('No direct SWOW pair');
 
-  const qwenResult = await getReviewedQwen({ language, targetMeaning, word, swow, warnings }).catch(() => {
-    warnings.push('Qwen evaluation unavailable');
+  const qwenResult = await getReviewedQwen({ language, targetMeaning, word, swow, warnings }).catch((error) => {
+    warnings.push(`Qwen evaluation unavailable: ${error.message}`);
     return { primary: null, review: null, used_review: false, final: qwenFallback() };
   });
   const qwen = qwenResult.final;

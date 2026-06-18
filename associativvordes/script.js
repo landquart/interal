@@ -1,5 +1,5 @@
 import { analyzeAssociativeWord } from './js/association-analyzer.js';
-import { getQwenAssociativeCandidates } from './js/qwen-client.js';
+import { QWEN_RUNTIME_CONFIG, getQwenAssociativeCandidates } from './js/qwen-client.js';
 import { formatMetric, resultRowClasses, swowLabel } from './js/render-results.js';
 
 const TEXT_I18N = {
@@ -281,20 +281,72 @@ const TEXT_I18N = {
         .map(x => ({ ...x, selected: true }));
     }
 
-    async function analyzeCandidateItem(langCode, item) {
-      const analysis = await analyzeAssociativeWord({
-        language: langCode,
-        targetMeaning: state.meaning || state.root,
-        word: item.word
-      });
+    function failedAnalysis(langCode, item, error) {
+      const message = `Analysis failed: ${error.message}`;
       return {
         ...item,
-        analysis,
-        frequency_score: analysis.frequency.frequency_score,
-        association_score: analysis.association.association_score,
-        final_score: analysis.final_score,
+        analysis: {
+          language: langCode,
+          target_meaning: state.meaning || state.root,
+          word: item.word,
+          frequency: { frequency_score: null, category_breakdown: {}, warnings: [] },
+          swow: { target_to_word: null, word_to_target: null },
+          association: {
+            directness: null,
+            field_relatedness: null,
+            domain_shift: null,
+            association_score: null,
+            explanation: message
+          },
+          final_score: null,
+          warnings: [message]
+        },
+        frequency_score: null,
+        association_score: null,
+        final_score: null,
         selected: false
       };
+    }
+
+    async function analyzeCandidateItem(langCode, item) {
+      try {
+        const analysis = await analyzeAssociativeWord({
+          language: langCode,
+          targetMeaning: state.meaning || state.root,
+          word: item.word
+        });
+        return {
+          ...item,
+          analysis,
+          frequency_score: analysis.frequency.frequency_score,
+          association_score: analysis.association.association_score,
+          final_score: analysis.final_score,
+          selected: false
+        };
+      } catch (error) {
+        return failedAnalysis(langCode, item, error);
+      }
+    }
+
+    async function mapWithConcurrency(items, limit, mapper) {
+      const results = [];
+      let index = 0;
+      const safeLimit = Math.max(1, Number(limit) || 1);
+
+      async function worker() {
+        while (index < items.length) {
+          const currentIndex = index++;
+          results[currentIndex] = await mapper(items[currentIndex], currentIndex);
+        }
+      }
+
+      const workers = Array.from(
+        { length: Math.min(safeLimit, items.length) },
+        () => worker()
+      );
+
+      await Promise.all(workers);
+      return results;
     }
 
     async function getLanguageCandidates(langCode, root) {
@@ -316,19 +368,21 @@ const TEXT_I18N = {
         .slice(0, 30)
         .forEach(word => add(word));
 
-      try {
-        const generated = await getQwenAssociativeCandidates({
-          language: langCode,
-          targetMeaning: state.meaning || root,
-          root,
-          max: 20
-        });
-        generated.forEach(candidate => add(candidate.word, { qwen_reason: candidate.reason }));
-      } catch (error) {
-        console.warn(`Qwen candidate generation unavailable for ${langCode}:`, error.message);
+      if (QWEN_RUNTIME_CONFIG.enableCandidateGeneration) {
+        try {
+          const generated = await getQwenAssociativeCandidates({
+            language: langCode,
+            targetMeaning: state.meaning || root,
+            root,
+            max: QWEN_RUNTIME_CONFIG.maxCandidatesPerLanguage
+          });
+          generated.forEach(candidate => add(candidate.word, { qwen_reason: candidate.reason }));
+        } catch (error) {
+          console.warn(`Qwen candidate generation unavailable for ${langCode}:`, error.message);
+        }
       }
 
-      return Array.from(byWord.values()).slice(0, 40);
+      return Array.from(byWord.values()).slice(0, QWEN_RUNTIME_CONFIG.maxCandidatesPerLanguage);
     }
 
     async function searchDerivatives() {
@@ -347,7 +401,11 @@ const TEXT_I18N = {
       try {
         for (const lang of LANGUAGES) {
           const candidates = await getLanguageCandidates(lang.code, root);
-          const analyzed = await Promise.all(candidates.map(item => analyzeCandidateItem(lang.code, item)));
+          const analyzed = await mapWithConcurrency(
+            candidates,
+            QWEN_RUNTIME_CONFIG.maxConcurrentQwenRequests,
+            item => analyzeCandidateItem(lang.code, item)
+          );
 
           nextLangs[lang.code] = groupByBestModel(analyzed, state.maxModels);
         }
@@ -721,6 +779,19 @@ const TEXT_I18N = {
     window.deleteItem = deleteItem;
     window.addRow = addRow;
     window.analyzeItem = analyzeItem;
+    window.QWEN_RUNTIME_CONFIG = QWEN_RUNTIME_CONFIG;
+    window.testQwenAssociation = async function () {
+      return await fetch('/api/qwen-association', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          system: 'Return only JSON.',
+          user: 'Return {"directness":80,"field_relatedness":90,"domain_shift":10,"short_explanation":"test"}',
+          model: 'qwen3.6-35b-a3b/latest',
+          review: false
+        })
+      }).then(r => r.json());
+    };
 
     async function init() {
       await loadJsonFilesFromDirectory();
