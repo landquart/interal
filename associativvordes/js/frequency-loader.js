@@ -22,6 +22,50 @@ function sourceUrl(language, fileName) {
   return `${FREQUENCY_LIST_BASE_PATH}/${encodeURIComponent(language)}/${encodeURIComponent(fileName)}`;
 }
 
+
+function addIpm(map, word, value) {
+  const key = normalizeWord(word);
+  const number = Number(value);
+  if (key && Number.isFinite(number) && number > 0) map.set(key, number);
+}
+
+export function normalizeFrequencyData(data) {
+  const map = new Map();
+  if (!data || typeof data !== 'object') return map;
+
+  if (Array.isArray(data)) {
+    for (const record of data) {
+      if (!record || typeof record !== 'object') continue;
+      addIpm(map, record.word ?? record.lemma ?? record.form, record.ipm ?? record.IPM ?? record.frequency ?? record.freq);
+    }
+    return map;
+  }
+
+  for (const [key, record] of Object.entries(data)) {
+    if (typeof record === 'number') {
+      addIpm(map, key, record);
+      continue;
+    }
+    if (!record || typeof record !== 'object') continue;
+
+    const explicitWord = record.word ?? record.lemma ?? record.form;
+    const explicitValue = record.ipm ?? record.IPM ?? record.frequency ?? record.freq;
+    if (explicitValue != null) {
+      addIpm(map, explicitWord || key, explicitValue);
+      continue;
+    }
+
+    for (const [nestedWord, nestedValue] of Object.entries(record)) {
+      if (typeof nestedValue === 'number') addIpm(map, nestedWord, nestedValue);
+      else if (nestedValue && typeof nestedValue === 'object') {
+        addIpm(map, nestedWord, nestedValue.ipm ?? nestedValue.IPM ?? nestedValue.frequency ?? nestedValue.freq);
+      }
+    }
+  }
+
+  return map;
+}
+
 async function loadFrequencyFile(language, fileName) {
   const key = `${language}/${fileName}`;
   if (frequencyCache.has(key)) return frequencyCache.get(key);
@@ -30,22 +74,19 @@ async function loadFrequencyFile(language, fileName) {
     .then(res => {
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       return res.json();
-    });
+    })
+    .then(normalizeFrequencyData);
   frequencyCache.set(key, promise);
   return promise;
 }
 
 function extractIpm(data, word) {
-  if (!data || typeof data !== 'object') return 0;
+  if (!data) return 0;
   const key = normalizeWord(word);
-  const record = data[key] ?? data[String(word || '').trim()] ?? data[key.normalize('NFD').replace(/[\u0300-\u036f]/g, '')];
-  if (typeof record === 'number') return Number.isFinite(record) ? record : 0;
-  if (record && typeof record === 'object') {
-    const value = record.ipm ?? record.IPM ?? record.frequency ?? record.freq;
-    const number = Number(value);
-    return Number.isFinite(number) && number > 0 ? number : 0;
+  if (data instanceof Map) {
+    return data.get(key) ?? data.get(key.normalize('NFD').replace(/[\u0300-\u036f]/g, '')) ?? 0;
   }
-  return 0;
+  return normalizeFrequencyData(data).get(key) || 0;
 }
 
 export function getLanguageCategoryWeights(language) {

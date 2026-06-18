@@ -17,6 +17,47 @@ export function calculateAssociationScore({ directness, field_relatedness, domai
   );
 }
 
+
+function isControversial(qwen, association_score) {
+  const inRange = (value, min, max) => value != null && value >= min && value <= max;
+  return inRange(qwen.directness, 35, 70) ||
+    inRange(qwen.field_relatedness, 35, 70) ||
+    inRange(qwen.domain_shift, 35, 75) ||
+    inRange(association_score, 45, 75) ||
+    !String(qwen.short_explanation || '').trim() ||
+    qwen.important === true;
+}
+
+function averageQwen(primary, review) {
+  return {
+    ...primary,
+    directness: Math.round((primary.directness + review.directness) / 2),
+    field_relatedness: Math.round((primary.field_relatedness + review.field_relatedness) / 2),
+    domain_shift: Math.round((primary.domain_shift + review.domain_shift) / 2),
+    short_explanation: review.short_explanation || primary.short_explanation || ''
+  };
+}
+
+async function getReviewedQwen({ language, targetMeaning, word, swow, warnings }) {
+  const primary = await getQwenAssociationScores({ language, targetMeaning, word, swow });
+  const primaryAssociation = calculateAssociationScore(primary);
+  const result = { primary, review: null, used_review: false, final: primary };
+
+  if (!isControversial(primary, primaryAssociation)) return result;
+
+  try {
+    const review = await getQwenAssociationScores({ language, targetMeaning, word, swow, review: true });
+    if (review.directness == null || review.field_relatedness == null || review.domain_shift == null) throw new Error('Incomplete review scores');
+    result.review = review;
+    result.used_review = true;
+    result.final = averageQwen(primary, review);
+    return result;
+  } catch {
+    warnings.push('Review Qwen unavailable');
+    return result;
+  }
+}
+
 export function calculateFinalScore({ frequency_score, association_score }) {
   if (frequency_score == null && association_score == null) return null;
   if (frequency_score == null) return association_score;
@@ -43,12 +84,15 @@ export async function analyzeAssociativeWord({ language, targetMeaning, word }) 
   });
   if (!swow.target_to_word && !swow.word_to_target) warnings.push('No direct SWOW pair');
 
-  const qwen = await getQwenAssociationScores({ language, targetMeaning, word, swow }).catch(() => {
+  const qwenResult = await getReviewedQwen({ language, targetMeaning, word, swow, warnings }).catch(() => {
     warnings.push('Qwen evaluation unavailable');
-    return qwenFallback();
+    return { primary: null, review: null, used_review: false, final: qwenFallback() };
   });
+  const qwen = qwenResult.final;
 
   const association_score = calculateAssociationScore(qwen);
+  if (association_score == null) warnings.push('Association score unavailable');
+  if (frequency.frequency_score == null) warnings.push('Frequency score unavailable');
   const final_score = calculateFinalScore({
     frequency_score: frequency.frequency_score,
     association_score
@@ -65,7 +109,10 @@ export async function analyzeAssociativeWord({ language, targetMeaning, word }) 
       field_relatedness: qwen.field_relatedness,
       domain_shift: qwen.domain_shift,
       association_score,
-      explanation: qwen.short_explanation
+      explanation: qwen.short_explanation,
+      primary: qwenResult.primary,
+      review: qwenResult.review,
+      used_review: qwenResult.used_review
     },
     final_score,
     warnings
