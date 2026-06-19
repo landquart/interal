@@ -36,7 +36,7 @@ const TEXT_I18N = {
           Germanic: 'Германская', Romance: 'Романская', Slavic: 'Славянская'
         },
         panel: {
-          group: 'Группа', languageScore: 'Балл языка', weightSum: 'сумма весов', addWord: 'Добавить слово', use: 'Учитывать', word: 'Слово', model: 'Модель', association: 'Ассоциация', rank: 'Ранг', frequency: 'Частота', weightP: 'Вес P'
+          group: 'Группа', languageScore: 'Балл языка', weightSum: 'сумма весов', addWord: 'Добавить слово', use: 'Учитывать', word: 'Слово', model: 'Модель', frequencyPercent: 'Частотность %', directness: 'Прямота связи', fieldRelatedness: 'Близость поля', domainShift: 'Сдвиг домена', swowBonus: 'Бонус SWOW', associationPercent: 'Ассоциация %', finalPercent: 'Итог %', status: 'Статус', explanation: 'Объяснение', warnings: 'Предупреждения', details: 'Детали', analyze: 'Анализировать', delete: 'Удалить', association: 'Ассоциация', rank: 'Ранг', frequency: 'Частота', weightP: 'Вес P'
         },
         results: {
           finalAssociation: 'FA — конечная ассоциация', totalAssociation: 'TA — вся ассоциация', languagesRepresented: 'языков представлено', languageGroups: 'языковых групп', accept: 'ПРИНЯТЬ', reject: 'НЕ ПРИНИМАТЬ', fewerLanguages: 'меньше 3 языков', fewerGroups: 'меньше 2 языковых групп', belowThreshold: 'ниже главного порога', reasons: 'Причины', allMet: 'Все условия выполнены.'
@@ -78,7 +78,7 @@ const TEXT_I18N = {
           Germanic: 'Germanic', Romance: 'Romance', Slavic: 'Slavic'
         },
         panel: {
-          group: 'Group', languageScore: 'Language score', weightSum: 'weight sum', addWord: 'Add word', use: 'Use', word: 'Word', model: 'Model', association: 'Association', rank: 'Rank', frequency: 'Frequency', weightP: 'Weight P'
+          group: 'Group', languageScore: 'Language score', weightSum: 'weight sum', addWord: 'Add word', use: 'Use', word: 'Word', model: 'Model', frequencyPercent: 'Frequency %', directness: 'Directness', fieldRelatedness: 'Field relatedness', domainShift: 'Domain shift', swowBonus: 'SWOW bonus', associationPercent: 'Association %', finalPercent: 'Final %', status: 'Status', explanation: 'Explanation', warnings: 'Warnings', details: 'Details', analyze: 'Analyze', delete: 'Delete', association: 'Association', rank: 'Rank', frequency: 'Frequency', weightP: 'Weight P'
         },
         results: {
           finalAssociation: 'FA — final association', totalAssociation: 'TA — total association', languagesRepresented: 'languages represented', languageGroups: 'language groups', accept: 'ACCEPT', reject: 'DO NOT ACCEPT', fewerLanguages: 'fewer than 3 languages', fewerGroups: 'fewer than 2 language groups', belowThreshold: 'below the main threshold', reasons: 'Reasons', allMet: 'All conditions are met.'
@@ -571,48 +571,72 @@ const TEXT_I18N = {
           </div>
           <button class="tool-btn interal-btn interal-btn--secondary fit short" onclick="addRow('${activeLang}')">${labels.addWord}</button>
         </div>
-        <table>
-          <thead>
-            <tr>
-              <th>${labels.use}</th>
-              <th>Word</th>
-              <th>${labels.model}</th>
-              <th>Frequency %</th>
-              <th>Directness</th>
-              <th>Field relatedness</th>
-              <th>Domain shift</th>
-              <th>SWOW bonus</th>
-              <th>Association %</th>
-              <th>Final %</th>
-              <th>Status</th>
-              <th>Explanation</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>${items.map((item, idx) => rowHtml(activeLang, item, idx)).join('')}</tbody>
-        </table>
+        <div class="derivatives-table-wrap">
+          <table class="derivatives-table">
+            <thead>
+              <tr>
+                <th>${labels.use}</th>
+                <th class="col-word sticky-word">${labels.word}</th>
+                <th>${labels.model}</th>
+                <th class="col-score">${labels.finalPercent}</th>
+                <th class="col-status">${labels.status}</th>
+                <th class="col-score">${labels.associationPercent}</th>
+                <th class="col-score">${labels.frequencyPercent}</th>
+                <th class="col-score">SWOW</th>
+                <th>${labels.details}</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>${items.map((item, idx) => rowHtml(activeLang, item, idx)).join('')}</tbody>
+          </table>
+        </div>
       `;
+    }
+
+    function statusLabel(status) {
+      const labels = currentLang() === 'ru' ? {
+        accepted: 'принято',
+        strong: 'сильный',
+        needs_review: 'нужна проверка',
+        rejected: 'отклонено',
+        accepted_after_review: 'принято после проверки',
+        rejected_after_review: 'отклонено после проверки',
+        unavailable: 'нет данных'
+      } : {};
+      return labels[status] || status || (currentLang() === 'ru' ? 'нет данных' : 'unavailable');
     }
 
     function rowHtml(lang, item, idx) {
       const analysis = item.analysis || {};
       const assoc = analysis.review || analysis.association || {};
-      const warnings = (analysis.warnings || []).join('; ');
+      const labels = textGroup('panel');
+      const warningList = analysis.warnings || [];
+      const warnings = warningList.join('; ');
+      const classification = analysis.classification || 'unavailable';
       return `
         <tr class="${resultRowClasses(analysis)}" title="${escapeHtml(warnings)}">
           <td><input class="interal-checkbox" type="checkbox" ${item.selected ? 'checked' : ''} onchange="updateItem('${lang}', ${idx}, 'selected', this.checked)"></td>
-          <td><input class="interal-input" value="${escapeHtml(item.word)}" onchange="updateItem('${lang}', ${idx}, 'word', this.value)"></td>
+          <td class="col-word sticky-word"><input class="interal-input derivative-word-input" value="${escapeHtml(item.word)}" onchange="updateItem('${lang}', ${idx}, 'word', this.value)"></td>
           <td><input class="interal-input" value="${escapeHtml(item.model)}" onchange="updateItem('${lang}', ${idx}, 'model', this.value)"></td>
-          <td>${formatMetric(analysis.frequency?.frequency_score ?? item.frequency_score, 2)}</td>
-          <td>${formatMetric(assoc.directness, 0)}</td>
-          <td>${formatMetric(assoc.field_relatedness, 0)}</td>
-          <td>${formatMetric(assoc.domain_shift, 0)}</td>
-          <td>${formatMetric(analysis.swow?.bonus, 1)}</td>
-          <td>${formatMetric(assoc.association_score ?? item.association_score, 1)}</td>
-          <td><strong>${formatMetric(analysis.final_score ?? item.final_score, 2)}</strong></td>
-          <td><span class="status">${escapeHtml(analysis.classification || 'unavailable')}</span></td>
-          <td>${escapeHtml(assoc.explanation || warnings || '—')}</td>
-          <td><button class="tool-btn interal-btn interal-btn--secondary interal-btn--small" onclick="analyzeItem('${lang}', ${idx})">Analyze</button><button class="tool-btn interal-btn interal-btn--secondary interal-btn--small" onclick="deleteItem('${lang}', ${idx})">×</button></td>
+          <td class="col-score"><strong>${formatMetric(analysis.final_score ?? item.final_score, 2)}</strong></td>
+          <td class="col-status"><span class="status">${escapeHtml(statusLabel(classification))}</span></td>
+          <td class="col-score">${formatMetric(assoc.association_score ?? item.association_score, 1)}</td>
+          <td class="col-score">${formatMetric(analysis.frequency?.frequency_score ?? item.frequency_score, 2)}</td>
+          <td class="col-score">${formatMetric(analysis.swow?.bonus, 1)}</td>
+          <td>
+            <details class="derivative-details">
+              <summary>${labels.details}</summary>
+              <dl>
+                <dt>${labels.directness}</dt><dd>${formatMetric(assoc.directness, 0)}</dd>
+                <dt>${labels.fieldRelatedness}</dt><dd>${formatMetric(assoc.field_relatedness, 0)}</dd>
+                <dt>${labels.domainShift}</dt><dd>${formatMetric(assoc.domain_shift, 0)}</dd>
+                <dt>${labels.swowBonus}</dt><dd>${formatMetric(analysis.swow?.bonus, 1)}</dd>
+                <dt>${labels.explanation}</dt><dd>${escapeHtml(assoc.explanation || '—')}</dd>
+                <dt>${labels.warnings}</dt><dd>${escapeHtml(warnings || '—')}</dd>
+              </dl>
+            </details>
+          </td>
+          <td><button class="tool-btn interal-btn interal-btn--secondary interal-btn--small" onclick="analyzeItem('${lang}', ${idx})">${labels.analyze}</button><button class="tool-btn interal-btn interal-btn--secondary interal-btn--small" aria-label="${labels.delete}" onclick="deleteItem('${lang}', ${idx})">×</button></td>
         </tr>
       `;
     }
