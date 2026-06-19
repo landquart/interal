@@ -68,7 +68,7 @@
       quickTitle: 'Быстрые действия',
       copyState: 'Скопировать ссылку с данными',
       shared: 'Ссылка скопирована',
-      sharedWarn: 'Не удалось сократить или скопировать ссылку'
+      sharedWarn: 'Не удалось создать или скопировать ссылку'
     },
     en: {
       openMenu: 'Open menu',
@@ -92,7 +92,7 @@
       quickTitle: 'Quick actions',
       copyState: 'Copy link with data',
       shared: 'Link copied',
-      sharedWarn: 'Could not shorten or copy link'
+      sharedWarn: 'Could not create or copy link'
     }
   };
 
@@ -536,13 +536,35 @@
     }
   }
 
-  async function shortenLink(url) {
-    const endpoint = `https://tinyurl.com/api-create.php?url=${encodeURIComponent(url)}`;
-    const response = await fetch(endpoint, { method: 'GET', mode: 'cors', cache: 'no-store' });
-    if (!response.ok) throw new Error('Shortener unavailable');
-    const shortUrl = (await response.text()).trim();
-    if (!/^https?:\/\//i.test(shortUrl)) throw new Error('Invalid short URL response');
-    return shortUrl;
+  function shareStateApiUrl(code) {
+    const apiPath = joinUrl('api/share-state');
+    const url = new URL(apiPath, window.location.origin);
+    if (code) url.searchParams.set('code', code);
+    return url;
+  }
+
+  async function createShareCode(entries) {
+    const response = await fetch(shareStateApiUrl().toString(), {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      cache: 'no-store',
+      body: JSON.stringify({ entries })
+    });
+    if (!response.ok) throw new Error('Share state API unavailable');
+    const payload = await response.json();
+    if (!payload || !/^[0-9A-Za-z]{12}$/.test(payload.code)) throw new Error('Invalid share code response');
+    return payload.code;
+  }
+
+  async function loadSharedState(code) {
+    try {
+      const response = await fetch(shareStateApiUrl(code).toString(), { method: 'GET', cache: 'no-store' });
+      if (!response.ok) return [];
+      const payload = await response.json();
+      return Array.isArray(payload.entries) ? payload.entries : [];
+    } catch (_) {
+      return [];
+    }
   }
 
   function markCurrentPage() {
@@ -623,11 +645,14 @@
     try {
       const entries = collectPageState();
       const url = new URL(window.location.href);
+      url.hash = '';
+      url.searchParams.delete('state');
+      url.searchParams.delete('s');
       if (entries.length) {
-        url.hash = `state=${encodeState(entries)}`;
+        const code = await createShareCode(entries);
+        url.searchParams.set('s', code);
       }
-      const short = await shortenLink(url.toString());
-      await navigator.clipboard.writeText(short);
+      await navigator.clipboard.writeText(url.toString());
       setCopyButtonCopied(copyButton, true);
       showToast(t.shared);
     } catch (_) {
@@ -662,14 +687,27 @@
     touchStartX = null;
     touchStartY = null;
   }, { passive: true });
-  const hashMatch = window.location.hash.match(/state=([^&]+)/);
-  const hashState = hashMatch && hashMatch[1] ? decodeState(hashMatch[1]) : [];
-  const fallbackSavedState = hashState.length ? [] : loadSavedPageState();
-  const stateToApply = hashState.length ? hashState : fallbackSavedState;
-  if (stateToApply.length) {
-    window.addEventListener('load', () => applyPageState(stateToApply));
-    setTimeout(() => applyPageState(stateToApply), 80);
+  function scheduleApplyPageState(entries) {
+    if (!entries.length) return;
+    window.addEventListener('load', () => applyPageState(entries));
+    setTimeout(() => applyPageState(entries), 80);
   }
+
+  async function restoreInitialPageState() {
+    const params = new URLSearchParams(window.location.search);
+    const shareCode = params.get('s') || '';
+    const sharedState = /^[0-9A-Za-z]{12}$/.test(shareCode) ? await loadSharedState(shareCode) : [];
+    if (sharedState.length) {
+      scheduleApplyPageState(sharedState);
+      return;
+    }
+    const hashMatch = window.location.hash.match(/state=([^&]+)/);
+    const hashState = hashMatch && hashMatch[1] ? decodeState(hashMatch[1]) : [];
+    const fallbackSavedState = hashState.length ? [] : loadSavedPageState();
+    scheduleApplyPageState(hashState.length ? hashState : fallbackSavedState);
+  }
+
+  restoreInitialPageState();
 
   const debouncedSaveState = (() => {
     let timer = null;
