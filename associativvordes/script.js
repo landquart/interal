@@ -1,4 +1,4 @@
-import { analyzeAssociativeWord } from './js/association-analyzer.js';
+import { analyzeAssociativeWord, THRESHOLDS } from './js/association-analyzer.js';
 import { QWEN_RUNTIME_CONFIG } from './js/qwen-client.js';
 import { formatMetric, resultRowClasses, swowLabel } from './js/render-results.js';
 
@@ -39,7 +39,7 @@ const TEXT_I18N = {
           group: 'Группа', languageScore: 'Балл языка', weightSum: 'сумма весов', addWord: 'Добавить слово', use: 'Учитывать', word: 'Слово', model: 'Модель', association: 'Ассоциация', rank: 'Ранг', frequency: 'Частота', weightP: 'Вес P'
         },
         results: {
-          finalAssociation: 'FA — конечная ассоциация', totalAssociation: 'TA — вся ассоциация', languagesRepresented: 'языков представлено', languageGroups: 'языковых групп', accept: 'ПРИНЯТЬ', reject: 'НЕ ПРИНИМАТЬ', fewerLanguages: 'меньше 3 языков', fewerGroups: 'меньше 2 языковых групп', belowThreshold: 'ниже порога 50%', reasons: 'Причины', allMet: 'Все условия выполнены.'
+          finalAssociation: 'FA — конечная ассоциация', totalAssociation: 'TA — вся ассоциация', languagesRepresented: 'языков представлено', languageGroups: 'языковых групп', accept: 'ПРИНЯТЬ', reject: 'НЕ ПРИНИМАТЬ', fewerLanguages: 'меньше 3 языков', fewerGroups: 'меньше 2 языковых групп', belowThreshold: 'ниже главного порога', reasons: 'Причины', allMet: 'Все условия выполнены.'
         },
         alerts: {
           derivativeLoaded: 'База дериватов загружена.', derivativeJsonError: 'Ошибка JSON в базе дериватов: ', frequencyLoaded: 'База частот загружена.', frequencyJsonError: 'Ошибка JSON в базе частот: ', importError: 'Ошибка импорта: '
@@ -81,7 +81,7 @@ const TEXT_I18N = {
           group: 'Group', languageScore: 'Language score', weightSum: 'weight sum', addWord: 'Add word', use: 'Use', word: 'Word', model: 'Model', association: 'Association', rank: 'Rank', frequency: 'Frequency', weightP: 'Weight P'
         },
         results: {
-          finalAssociation: 'FA — final association', totalAssociation: 'TA — total association', languagesRepresented: 'languages represented', languageGroups: 'language groups', accept: 'ACCEPT', reject: 'DO NOT ACCEPT', fewerLanguages: 'fewer than 3 languages', fewerGroups: 'fewer than 2 language groups', belowThreshold: 'below the 50% threshold', reasons: 'Reasons', allMet: 'All conditions are met.'
+          finalAssociation: 'FA — final association', totalAssociation: 'TA — total association', languagesRepresented: 'languages represented', languageGroups: 'language groups', accept: 'ACCEPT', reject: 'DO NOT ACCEPT', fewerLanguages: 'fewer than 3 languages', fewerGroups: 'fewer than 2 language groups', belowThreshold: 'below the main threshold', reasons: 'Reasons', allMet: 'All conditions are met.'
         },
         alerts: {
           derivativeLoaded: 'Derivative database loaded.', derivativeJsonError: 'JSON error in derivative database: ', frequencyLoaded: 'Frequency database loaded.', frequencyJsonError: 'JSON error in frequency database: ', importError: 'Import error: '
@@ -264,7 +264,13 @@ const TEXT_I18N = {
     }
 
     function wordWeight(item) {
-      return Number.isFinite(Number(item.final_score)) ? Number(item.final_score) : getFrequencyScore(item);
+      const final = Number(item.final_score);
+      if (Number.isFinite(final)) return final;
+
+      const analysisFinal = Number(item.analysis?.final_score);
+      if (Number.isFinite(analysisFinal)) return analysisFinal;
+
+      return -1;
     }
 
     function groupByBestModel(items, maxModels) {
@@ -278,7 +284,10 @@ const TEXT_I18N = {
       return Array.from(byModel.values())
         .sort((a, b) => wordWeight(b) - wordWeight(a) || a.word.localeCompare(b.word))
         .slice(0, maxModels)
-        .map(x => ({ ...x, selected: true }));
+        .map(x => ({
+          ...x,
+          selected: ['accepted', 'accepted_after_review'].includes(x.analysis?.classification)
+        }));
     }
 
     function failedAnalysis(langCode, item, error) {
@@ -431,7 +440,10 @@ const TEXT_I18N = {
       const finalAssociation = totalAssociation / LANGUAGES.length;
       const representedLangs = languageScores.filter(x => x.count > 0).length;
       const groups = new Set(languageScores.filter(x => x.count > 0).map(x => x.lang.group));
-      const accepted = representedLangs >= 3 && groups.size >= 2 && finalAssociation >= 50;
+      const accepted =
+        representedLangs >= 3 &&
+        groups.size >= 2 &&
+        finalAssociation >= THRESHOLDS.main;
       return { languageScores, totalAssociation, finalAssociation, representedLangs, groups: groups.size, accepted };
     }
 
@@ -535,12 +547,14 @@ const TEXT_I18N = {
         <div class="metric"><strong>${result.groups}/${new Set(LANGUAGES.map(l => l.group)).size}</strong><span>${labels.languageGroups}</span></div>
       `;
 
-      let statusClass = result.accepted ? 'ok' : (result.finalAssociation >= 40 ? 'warn' : 'bad');
+      let statusClass = result.accepted ? 'ok' : (result.finalAssociation >= THRESHOLDS.main ? 'warn' : 'bad');
       let statusText = result.accepted ? labels.accept : labels.reject;
       let reasons = [];
       if (result.representedLangs < 3) reasons.push(labels.fewerLanguages);
       if (result.groups < 2) reasons.push(labels.fewerGroups);
-      if (result.finalAssociation < 50) reasons.push(labels.belowThreshold);
+      if (result.finalAssociation < THRESHOLDS.main) {
+        reasons.push(labels.belowThreshold);
+      }
 
       document.getElementById('decisionBox').innerHTML = `
         <span class="status ${statusClass}">${statusText}</span>
@@ -629,7 +643,7 @@ const TEXT_I18N = {
     }
 
     function addRow(lang) {
-      state.languages[lang].push({ word: '', model: '', analysis: null, frequency_score: null, association_score: null, final_score: null, selected: true });
+      state.languages[lang].push({ word: '', model: '', analysis: null, frequency_score: null, association_score: null, final_score: null, selected: false });
       renderAll();
     }
 

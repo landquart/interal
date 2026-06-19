@@ -21,7 +21,17 @@ export function clamp(value, min = 0, max = 100) {
 export async function getTargetMeaningForLanguage(targetMeaning, language) {
   const key = normalizeSwowWord(targetMeaning);
   const lang = normalizeSwowWord(language);
-  return TARGET_MEANING_TRANSLATIONS[key]?.[lang] || targetMeaning;
+  const translated = TARGET_MEANING_TRANSLATIONS[key]?.[lang];
+
+  if (translated) return translated;
+
+  return targetMeaning;
+}
+
+function hasTargetMeaningTranslation(targetMeaning, language) {
+  const key = normalizeSwowWord(targetMeaning);
+  const lang = normalizeSwowWord(language);
+  return Boolean(TARGET_MEANING_TRANSLATIONS[key]?.[lang]);
 }
 
 export function calculateAssociationScore({ directness, field_relatedness, domain_shift }) {
@@ -99,6 +109,9 @@ export async function analyzeAssociativeWord({ language, targetMeaning, word }) 
     warnings.push('Target meaning translation unavailable');
     return targetMeaning;
   });
+  if (!hasTargetMeaningTranslation(targetMeaning, language)) {
+    warnings.push(`No target meaning translation for ${language}; using original targetMeaning`);
+  }
 
   const bidirectionalSwow = await getBidirectionalSwow(language, swowTargetMeaning, word).catch(error => {
     warnings.push(`SWOW unavailable: ${error.message}`);
@@ -137,8 +150,12 @@ export async function analyzeAssociativeWord({ language, targetMeaning, word }) 
     try {
       const reviewQwen = await getQwenAssociationScores({ language, targetMeaning, word, swow, review: true });
       review = buildEvaluation(reviewQwen, frequency.frequency_score, swow_bonus);
-      classification = review.final_score >= THRESHOLDS.main ? 'accepted_after_review' : 'rejected_after_review';
-      final_score = review.final_score;
+      if (review.final_score == null) {
+        warnings.push('Review Qwen final score unavailable');
+      } else {
+        classification = review.final_score >= THRESHOLDS.main ? 'accepted_after_review' : 'rejected_after_review';
+        final_score = review.final_score;
+      }
     } catch (error) {
       warnings.push(`Review Qwen unavailable: ${error.message}`);
     }
