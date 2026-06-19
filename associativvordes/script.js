@@ -575,16 +575,14 @@ const TEXT_I18N = {
           <table class="derivatives-table">
             <thead>
               <tr>
-                <th>${labels.use}</th>
                 <th class="col-word sticky-word">${labels.word}</th>
-                <th>${labels.model}</th>
                 <th class="col-score">${labels.finalPercent}</th>
                 <th class="col-status">${labels.status}</th>
                 <th class="col-score">${labels.associationPercent}</th>
                 <th class="col-score">${labels.frequencyPercent}</th>
                 <th class="col-score">SWOW</th>
-                <th>${labels.details}</th>
-                <th></th>
+                <th class="col-details">${labels.details}</th>
+                <th class="col-actions"></th>
               </tr>
             </thead>
             <tbody>${items.map((item, idx) => rowHtml(activeLang, item, idx)).join('')}</tbody>
@@ -601,8 +599,13 @@ const TEXT_I18N = {
         rejected: 'отклонено',
         accepted_after_review: 'принято после проверки',
         rejected_after_review: 'отклонено после проверки',
-        unavailable: 'нет данных'
-      } : {};
+        unavailable: 'нет данных',
+        analyzing: 'анализируется...',
+        error: 'ошибка'
+      } : {
+        analyzing: 'analyzing...',
+        error: 'error'
+      };
       return labels[status] || status || (currentLang() === 'ru' ? 'нет данных' : 'unavailable');
     }
 
@@ -612,21 +615,21 @@ const TEXT_I18N = {
       const labels = textGroup('panel');
       const warningList = analysis.warnings || [];
       const warnings = warningList.join('; ');
-      const classification = analysis.classification || 'unavailable';
+      const classification = item.analysisStatus || analysis.classification || 'unavailable';
       return `
         <tr class="${resultRowClasses(analysis)}" title="${escapeHtml(warnings)}">
-          <td><input class="interal-checkbox" type="checkbox" ${item.selected ? 'checked' : ''} onchange="updateItem('${lang}', ${idx}, 'selected', this.checked)"></td>
           <td class="col-word sticky-word"><input class="interal-input derivative-word-input" value="${escapeHtml(item.word)}" onchange="updateItem('${lang}', ${idx}, 'word', this.value)"></td>
-          <td><input class="interal-input" value="${escapeHtml(item.model)}" onchange="updateItem('${lang}', ${idx}, 'model', this.value)"></td>
           <td class="col-score"><strong>${formatMetric(analysis.final_score ?? item.final_score, 2)}</strong></td>
           <td class="col-status"><span class="status">${escapeHtml(statusLabel(classification))}</span></td>
           <td class="col-score">${formatMetric(assoc.association_score ?? item.association_score, 1)}</td>
           <td class="col-score">${formatMetric(analysis.frequency?.frequency_score ?? item.frequency_score, 2)}</td>
           <td class="col-score">${formatMetric(analysis.swow?.bonus, 1)}</td>
-          <td>
+          <td class="col-details">
             <details class="derivative-details">
               <summary>${labels.details}</summary>
               <dl>
+                <dt>${labels.use}</dt><dd><input class="interal-checkbox" type="checkbox" ${item.selected ? 'checked' : ''} onchange="updateItem('${lang}', ${idx}, 'selected', this.checked)"></dd>
+                <dt>${labels.model}</dt><dd><input class="interal-input derivative-model-input" value="${escapeHtml(item.model)}" onchange="updateItem('${lang}', ${idx}, 'model', this.value)"></dd>
                 <dt>${labels.directness}</dt><dd>${formatMetric(assoc.directness, 0)}</dd>
                 <dt>${labels.fieldRelatedness}</dt><dd>${formatMetric(assoc.field_relatedness, 0)}</dd>
                 <dt>${labels.domainShift}</dt><dd>${formatMetric(assoc.domain_shift, 0)}</dd>
@@ -636,7 +639,7 @@ const TEXT_I18N = {
               </dl>
             </details>
           </td>
-          <td><button class="tool-btn interal-btn interal-btn--secondary interal-btn--small" onclick="analyzeItem('${lang}', ${idx})">${labels.analyze}</button><button class="tool-btn interal-btn interal-btn--secondary interal-btn--small" aria-label="${labels.delete}" onclick="deleteItem('${lang}', ${idx})">×</button></td>
+          <td class="col-actions"><button class="word-remove-btn" title="${labels.delete}" aria-label="${labels.delete}" onclick="deleteItem('${lang}', ${idx})">×</button></td>
         </tr>
       `;
     }
@@ -721,8 +724,16 @@ const TEXT_I18N = {
       item[key] = value;
       if (key === 'word') {
         item.model = inferModel(value, state.root, state.elementType);
+        item.analysisStatus = normalizeText(value) ? 'analyzing' : 'unavailable';
+        item.analysis = null;
+        item.frequency_score = null;
+        item.association_score = null;
+        item.final_score = null;
+        renderAll();
+        if (normalizeText(value)) analyzeItem(lang, idx);
+        return;
       }
-      
+
       renderAll();
     }
 
@@ -730,14 +741,22 @@ const TEXT_I18N = {
       const item = state.languages[lang][idx];
       if (!item || !normalizeText(item.word)) return;
       item.model = item.model || inferModel(item.word, state.root, state.elementType);
-      item.analysis = await analyzeAssociativeWord({
-        language: lang,
-        targetMeaning: state.meaning || state.root,
-        word: item.word
-      });
-      item.frequency_score = item.analysis.frequency.frequency_score;
-      item.association_score = item.analysis.association.association_score;
-      item.final_score = item.analysis.final_score;
+      item.analysisStatus = 'analyzing';
+      renderAll();
+      try {
+        item.analysis = await analyzeAssociativeWord({
+          language: lang,
+          targetMeaning: state.meaning || state.root,
+          word: item.word
+        });
+        item.frequency_score = item.analysis.frequency.frequency_score;
+        item.association_score = item.analysis.association.association_score;
+        item.final_score = item.analysis.final_score;
+        item.analysisStatus = null;
+      } catch (error) {
+        const failed = failedAnalysis(lang, item, error);
+        Object.assign(item, failed, { analysisStatus: 'error' });
+      }
       renderAll();
     }
 
