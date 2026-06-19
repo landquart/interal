@@ -39,7 +39,8 @@ const TEXT_I18N = {
           jsonCardCopied: 'JSON-карточка скопирована',
           jsonCardCopiedTitle: 'Скопировано',
           jsonCardEmpty: 'Сначала сгенерируйте JSON-карточку.',
-          jsonCardGenerating: 'Генерация...'
+          jsonCardGenerating: 'Генерация...',
+          jsonCardThresholdUnavailable: 'JSON-карточку можно сформировать только после прохождения главного порога.'
         },
         jsonCard: {
           close: 'Закрыть JSON-карточку', title: 'JSON-карточка', useAuthor: 'Указать авторство', authorName: 'Имя или ник', contactType: 'Тип контакта', contact: 'Контакт', generate: 'Сгенерировать карточку', output: 'Готовый JSON', copy: 'Скопировать JSON-карточку', download: 'Скачать JSON-карточку'
@@ -81,7 +82,8 @@ const TEXT_I18N = {
           jsonCardCopied: 'JSON card copied',
           jsonCardCopiedTitle: 'Copied',
           jsonCardEmpty: 'Generate the JSON card first.',
-          jsonCardGenerating: 'Generating...'
+          jsonCardGenerating: 'Generating...',
+          jsonCardThresholdUnavailable: 'The JSON card can be generated only after passing the main threshold.'
         },
         jsonCard: {
           close: 'Close JSON card', title: 'JSON card', useAuthor: 'Add authorship', authorName: 'Name or nickname', contactType: 'Contact type', contact: 'Contact', generate: 'Generate card', output: 'Generated JSON', copy: 'Copy JSON card', download: 'Download JSON card'
@@ -722,6 +724,7 @@ const TEXT_I18N = {
       renderLanguagePanel();
       renderResults();
       syncResetButtonVisibility();
+      syncJsonCardButtonVisibility();
       saveLocal();
     }
 
@@ -891,6 +894,10 @@ const TEXT_I18N = {
     }
 
     function openJsonCardModal() {
+      if (!hasPassedJsonCardThreshold()) {
+        alert(textGroup('alerts').jsonCardThresholdUnavailable);
+        return;
+      }
       if (!Object.values(state.languages || {}).some((items) => items.some((item) => item.selected))) {
         alert(textGroup('alerts').jsonCardUnavailable);
         return;
@@ -909,6 +916,15 @@ const TEXT_I18N = {
       const hasTypeChange = document.getElementById('elementType').value !== 'root';
       const hasLanguageRows = Object.values(state.languages || {}).some((items) => Array.isArray(items) && items.length > 0);
       return hasRoot || hasMeaning || hasTypeChange || hasLanguageRows;
+    }
+
+    function hasPassedJsonCardThreshold() {
+      return calculateFinal().finalAssociation >= THRESHOLDS.main;
+    }
+
+    function syncJsonCardButtonVisibility() {
+      const jsonCardBtn = document.getElementById('jsonCardBtn');
+      if (jsonCardBtn) jsonCardBtn.hidden = !hasPassedJsonCardThreshold();
     }
 
     function syncResetButtonVisibility() {
