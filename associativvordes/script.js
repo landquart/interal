@@ -201,6 +201,74 @@ const TEXT_I18N = {
       return r.length > 0 && w.includes(r);
     }
 
+    function levenshtein(a, b) {
+      const left = String(a || '');
+      const right = String(b || '');
+
+      const dp = Array.from({ length: left.length + 1 }, () =>
+        Array(right.length + 1).fill(0)
+      );
+
+      for (let i = 0; i <= left.length; i++) dp[i][0] = i;
+      for (let j = 0; j <= right.length; j++) dp[0][j] = j;
+
+      for (let i = 1; i <= left.length; i++) {
+        for (let j = 1; j <= right.length; j++) {
+          const cost = left[i - 1] === right[j - 1] ? 0 : 1;
+          dp[i][j] = Math.min(
+            dp[i - 1][j] + 1,
+            dp[i][j - 1] + 1,
+            dp[i - 1][j - 1] + cost
+          );
+        }
+      }
+
+      return dp[left.length][right.length];
+    }
+
+    function allowedRootDistance(root) {
+      const len = stripDiacritics(root).length;
+      if (len <= 3) return 1;
+      return 2;
+    }
+
+    function fuzzyRootMatch(word, root) {
+      const w = stripDiacritics(word);
+      const r = stripDiacritics(root);
+
+      if (!w || !r || r.length < 4) return null;
+
+      const exactIndex = w.indexOf(r);
+      if (exactIndex !== -1) {
+        return { type: 'exact', distance: 0, fragment: r, index: exactIndex };
+      }
+
+      const maxDistance = allowedRootDistance(r);
+      const minLen = Math.max(3, r.length - maxDistance);
+      const maxLen = r.length + maxDistance;
+      const maxStart = Math.min(w.length - 1, 3);
+      let best = null;
+
+      for (let i = 0; i <= maxStart; i++) {
+        for (let len = minLen; len <= maxLen; len++) {
+          const part = w.slice(i, i + len);
+          if (part.length < minLen) continue;
+
+          const distance = levenshtein(part, r);
+          if (distance <= maxDistance && (!best || distance < best.distance)) {
+            best = { type: 'fuzzy', distance, fragment: part, index: i };
+            if (distance === 1) return best;
+          }
+        }
+      }
+
+      return best;
+    }
+
+    function fuzzyIncludesRoot(word, root) {
+      return Boolean(fuzzyRootMatch(word, root));
+    }
+
     function getFrequencyScore(item) {
       const score = typeof item === 'object' ? item?.analysis?.frequency?.frequency_score : item;
       return Number.isFinite(Number(score)) ? Number(score) : 0;
@@ -254,7 +322,7 @@ const TEXT_I18N = {
     function inferAssociation(word, root, meaning) {
       const w = stripDiacritics(word);
       if (!w || !root) return 0;
-      return includesRoot(w, root) || specialRootMatch('any', w, root) ? 1 : 0;
+      return includesRoot(w, root) || fuzzyIncludesRoot(w, root) || specialRootMatch('any', w, root) ? 1 : 0;
     }
 
     function getRank(lang, word) {
@@ -374,9 +442,17 @@ const TEXT_I18N = {
       };
 
       localWords
-        .filter(w => includesRoot(w, root) || specialRootMatch(langCode, w, root))
+        .map(word => {
+          const fuzzyMatch = fuzzyRootMatch(word, root);
+          if (fuzzyMatch) return { word, match: fuzzyMatch };
+          if (specialRootMatch(langCode, word, root)) {
+            return { word, match: { type: 'special', distance: null, fragment: stripDiacritics(root), index: null } };
+          }
+          return null;
+        })
+        .filter(Boolean)
         .slice(0, 30)
-        .forEach(word => add(word));
+        .forEach(({ word, match }) => add(word, { match }));
 
       return Array.from(byWord.values()).slice(0, QWEN_RUNTIME_CONFIG.maxCandidatesPerLanguage);
     }
