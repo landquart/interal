@@ -203,6 +203,36 @@
       word-break: normal;
     }
 
+    .word-cell {
+      min-width: 230px;
+    }
+
+    .word-with-check {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+    }
+
+    .word-select {
+      width: 16px;
+      height: 16px;
+      flex: 0 0 auto;
+      accent-color: #8fb8ff;
+      cursor: pointer;
+    }
+
+    .word-input {
+      flex: 1;
+      min-width: 0;
+      width: 100%;
+    }
+
+    .word-text {
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
     .associativ-page .derivatives-table .col-status {
       min-width: 112px;
     }
@@ -237,7 +267,7 @@
     }
 
     .derivative-word-input {
-      min-width: 160px;
+      min-width: 0;
       white-space: normal;
       overflow-wrap: anywhere;
       word-break: normal;

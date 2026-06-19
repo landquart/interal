@@ -618,7 +618,20 @@ const TEXT_I18N = {
       const classification = item.analysisStatus || analysis.classification || 'unavailable';
       return `
         <tr class="${resultRowClasses(analysis)}" title="${escapeHtml(warnings)}">
-          <td class="col-word sticky-word"><input class="interal-input derivative-word-input" value="${escapeHtml(item.word)}" onchange="updateItem('${lang}', ${idx}, 'word', this.value)"></td>
+          <td class="col-word word-cell sticky-word">
+            <label class="word-with-check">
+              <input
+                type="checkbox"
+                class="word-select"
+                data-action="toggle-word"
+                data-lang="${escapeHtml(lang)}"
+                data-index="${idx}"
+                ${item.selected ? 'checked' : ''}
+                onchange="updateItem('${lang}', ${idx}, 'selected', this.checked)"
+              >
+              <input class="interal-input derivative-word-input word-input" value="${escapeHtml(item.word)}" onchange="updateItem('${lang}', ${idx}, 'word', this.value)">
+            </label>
+          </td>
           <td class="col-score"><strong>${formatMetric(analysis.final_score ?? item.final_score, 2)}</strong></td>
           <td class="col-status"><span class="status">${escapeHtml(statusLabel(classification))}</span></td>
           <td class="col-score">${formatMetric(assoc.association_score ?? item.association_score, 1)}</td>
@@ -628,7 +641,6 @@ const TEXT_I18N = {
             <details class="derivative-details">
               <summary>${labels.details}</summary>
               <dl>
-                <dt>${labels.use}</dt><dd><input class="interal-checkbox" type="checkbox" ${item.selected ? 'checked' : ''} onchange="updateItem('${lang}', ${idx}, 'selected', this.checked)"></dd>
                 <dt>${labels.model}</dt><dd><input class="interal-input derivative-model-input" value="${escapeHtml(item.model)}" onchange="updateItem('${lang}', ${idx}, 'model', this.value)"></dd>
                 <dt>${labels.directness}</dt><dd>${formatMetric(assoc.directness, 0)}</dd>
                 <dt>${labels.fieldRelatedness}</dt><dd>${formatMetric(assoc.field_relatedness, 0)}</dd>
