@@ -3,10 +3,10 @@ import { getBidirectionalSwow, normalizeSwowWord } from './swow-client.js';
 import { ASSOCIATION_SCORE_WEIGHTS, FINAL_SCORE_WEIGHTS, QWEN_RUNTIME_CONFIG, getQwenAssociationScores, qwenFallback } from './qwen-client.js';
 
 export const THRESHOLDS = {
-  main: 40,
-  reviewMin: 30,
-  reviewMax: 40,
-  rejectBelow: 30
+  main: 35,
+  reviewMin: 25,
+  reviewMax: 35,
+  rejectBelow: 25
 };
 
 const TARGET_MEANING_TRANSLATIONS = {
