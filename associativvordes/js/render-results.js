@@ -4,7 +4,7 @@ export function formatMetric(value, digits = 1) {
 }
 
 export function swowLabel(swow) {
-  if (swow?.target_to_word || swow?.word_to_target) return 'SWOW direct';
+  if (swow?.target_to_word?.found || swow?.word_to_target?.found) return 'SWOW direct';
   return 'no direct SWOW';
 }
 
@@ -13,6 +13,6 @@ export function resultRowClasses(result) {
     Number(result.final_score) >= 70 ? 'is-high-final' : '',
     Number(result.association?.domain_shift) >= 65 ? 'is-high-domain-shift' : '',
     result.association?.directness == null ? 'is-qwen-missing' : '',
-    (!result.swow?.target_to_word && !result.swow?.word_to_target) ? 'is-swow-missing' : ''
+    (!result.swow?.target_to_word?.found && !result.swow?.word_to_target?.found) ? 'is-swow-missing' : ''
   ].filter(Boolean).join(' ');
 }
