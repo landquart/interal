@@ -207,23 +207,25 @@
       min-width: 230px;
     }
 
-    .word-with-check {
-      display: flex;
+    .associativ-page .word-with-check {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
       align-items: center;
       gap: 10px;
       width: 100%;
+      margin-bottom: 0;
     }
 
-    .word-select {
+    .associativ-page .word-select {
       width: 16px;
       height: 16px;
-      flex: 0 0 auto;
+      min-width: 16px;
+      margin: 0;
       accent-color: #8fb8ff;
       cursor: pointer;
     }
 
-    .word-input {
-      flex: 1;
+    .associativ-page .word-input {
       min-width: 0;
       width: 100%;
     }
