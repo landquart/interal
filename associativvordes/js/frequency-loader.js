@@ -1,7 +1,9 @@
 import { BASE_CATEGORY_WEIGHTS, CATEGORY_ORDER, FREQUENCY_LIST_BASE_PATH, LANGUAGE_SOURCES } from './config-frequency-sources.js';
 
 const frequencyCache = new Map();
-const IPM_REF = 1000;
+export const SCORE_CONFIG = {
+  ipmRef: 300
+};
 
 export function meanNonZero(values) {
   const valid = values.filter(v => typeof v === 'number' && v > 0);
@@ -11,7 +13,7 @@ export function meanNonZero(values) {
 
 export function ipmToScore(ipm) {
   if (!ipm || ipm <= 0) return 0;
-  return Math.min(100, (Math.log10(1 + ipm) / Math.log10(1 + IPM_REF)) * 100);
+  return Math.min(100, (Math.log10(1 + ipm) / Math.log10(1 + SCORE_CONFIG.ipmRef)) * 100);
 }
 
 export function normalizeWord(value) {

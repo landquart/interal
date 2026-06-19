@@ -36,7 +36,7 @@ const TEXT_I18N = {
           Germanic: 'Германская', Romance: 'Романская', Slavic: 'Славянская'
         },
         panel: {
-          group: 'Группа', languageScore: 'Балл языка', weightSum: 'сумма весов', addWord: 'Добавить слово', use: 'Учитывать', word: 'Слово', model: 'Модель', association: 'Ассоциация', rank: 'Ранг', frequency: 'Частота', weightP: 'Вес P', primary: 'первичная — 1', secondary: 'вторичная — {value}', noise: 'мусор — 0'
+          group: 'Группа', languageScore: 'Балл языка', weightSum: 'сумма весов', addWord: 'Добавить слово', use: 'Учитывать', word: 'Слово', model: 'Модель', association: 'Ассоциация', rank: 'Ранг', frequency: 'Частота', weightP: 'Вес P'
         },
         results: {
           finalAssociation: 'FA — конечная ассоциация', totalAssociation: 'TA — вся ассоциация', languagesRepresented: 'языков представлено', languageGroups: 'языковых групп', accept: 'ПРИНЯТЬ', reject: 'НЕ ПРИНИМАТЬ', fewerLanguages: 'меньше 3 языков', fewerGroups: 'меньше 2 языковых групп', belowThreshold: 'ниже порога 50%', reasons: 'Причины', allMet: 'Все условия выполнены.'
@@ -78,7 +78,7 @@ const TEXT_I18N = {
           Germanic: 'Germanic', Romance: 'Romance', Slavic: 'Slavic'
         },
         panel: {
-          group: 'Group', languageScore: 'Language score', weightSum: 'weight sum', addWord: 'Add word', use: 'Use', word: 'Word', model: 'Model', association: 'Association', rank: 'Rank', frequency: 'Frequency', weightP: 'Weight P', primary: 'primary — 1', secondary: 'secondary — {value}', noise: 'noise — 0'
+          group: 'Group', languageScore: 'Language score', weightSum: 'weight sum', addWord: 'Add word', use: 'Use', word: 'Word', model: 'Model', association: 'Association', rank: 'Rank', frequency: 'Frequency', weightP: 'Weight P'
         },
         results: {
           finalAssociation: 'FA — final association', totalAssociation: 'TA — total association', languagesRepresented: 'languages represented', languageGroups: 'language groups', accept: 'ACCEPT', reject: 'DO NOT ACCEPT', fewerLanguages: 'fewer than 3 languages', fewerGroups: 'fewer than 2 language groups', belowThreshold: 'below the 50% threshold', reasons: 'Reasons', allMet: 'All conditions are met.'
@@ -290,11 +290,12 @@ const TEXT_I18N = {
           target_meaning: state.meaning || state.root,
           word: item.word,
           frequency: { frequency_score: null, category_breakdown: {}, warnings: [] },
-          swow: { target_to_word: null, word_to_target: null },
+          swow: { target_to_word: null, word_to_target: null, bonus: 0, source: 'local_swow' },
           association: {
             directness: null,
             field_relatedness: null,
             domain_shift: null,
+            association_score_base: null,
             association_score: null,
             explanation: message
           },
@@ -488,9 +489,10 @@ const TEXT_I18N = {
               <th>Directness</th>
               <th>Field relatedness</th>
               <th>Domain shift</th>
+              <th>SWOW bonus</th>
               <th>Association %</th>
               <th>Final %</th>
-              <th>SWOW</th>
+              <th>Status</th>
               <th>Explanation</th>
               <th></th>
             </tr>
@@ -502,7 +504,7 @@ const TEXT_I18N = {
 
     function rowHtml(lang, item, idx) {
       const analysis = item.analysis || {};
-      const assoc = analysis.association || {};
+      const assoc = analysis.review || analysis.association || {};
       const warnings = (analysis.warnings || []).join('; ');
       return `
         <tr class="${resultRowClasses(analysis)}" title="${escapeHtml(warnings)}">
@@ -513,9 +515,10 @@ const TEXT_I18N = {
           <td>${formatMetric(assoc.directness, 0)}</td>
           <td>${formatMetric(assoc.field_relatedness, 0)}</td>
           <td>${formatMetric(assoc.domain_shift, 0)}</td>
+          <td>${formatMetric(analysis.swow?.bonus, 1)}</td>
           <td>${formatMetric(assoc.association_score ?? item.association_score, 1)}</td>
           <td><strong>${formatMetric(analysis.final_score ?? item.final_score, 2)}</strong></td>
-          <td>${escapeHtml(swowLabel(analysis.swow))}</td>
+          <td><span class="status">${escapeHtml(analysis.classification || 'unavailable')}</span></td>
           <td>${escapeHtml(assoc.explanation || warnings || '—')}</td>
           <td><button class="tool-btn interal-btn interal-btn--secondary interal-btn--small" onclick="analyzeItem('${lang}', ${idx})">Analyze</button><button class="tool-btn interal-btn interal-btn--secondary interal-btn--small" onclick="deleteItem('${lang}', ${idx})">×</button></td>
         </tr>
