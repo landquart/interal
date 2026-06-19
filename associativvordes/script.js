@@ -16,16 +16,9 @@ const TEXT_I18N = {
         prepositionOption: 'предлог / приставка',
         searchBtn: 'Найти дериваты и посчитать',
         showExampleBtn: 'Показать пример',
-        exportBtn: 'Экспорт JSON',
-        importBtn: 'Импорт JSON',
+        jsonCardBtn: 'Сформировать JSON-карточку',
         resultTitle: '2) Итог',
         languagesTitle: '3) Языки и дериваты',
-        derivativeDbTitle: '4) Локальная база дериватов',
-        derivativeDbNote: 'Можно заменить на реальные JSON-данные из Kaikki/Wiktionary. Формат: язык → массив слов.',
-        loadDerivativeDataBtn: 'Загрузить базу дериватов',
-        frequencyDbTitle: '5) Локальная база частотных рангов',
-        frequencyDbNote: 'Формат: язык → { слово: ранг }. Можно сгенерировать из wordfreq/top_n_list.',
-        loadFrequencyDataBtn: 'Загрузить частоты',
         reset: 'Сбросить',
         resetConfirm: 'Сбросить введённые данные? Это действие нельзя отменить.',
         manual: 'ручная',
@@ -42,7 +35,14 @@ const TEXT_I18N = {
           finalAssociation: 'FA — конечная ассоциация', totalAssociation: 'TA — вся ассоциация', languagesRepresented: 'языков представлено', languageGroups: 'языковых групп', accept: 'ПРИНЯТЬ', reject: 'НЕ ПРИНИМАТЬ', fewerLanguages: 'меньше 3 языков', fewerGroups: 'меньше 2 языковых групп', belowThreshold: 'ниже главного порога', reasons: 'Причины', allMet: 'Все условия выполнены.'
         },
         alerts: {
-          derivativeLoaded: 'База дериватов загружена.', derivativeJsonError: 'Ошибка JSON в базе дериватов: ', frequencyLoaded: 'База частот загружена.', frequencyJsonError: 'Ошибка JSON в базе частот: ', importError: 'Ошибка импорта: '
+          jsonCardUnavailable: 'Сначала выполните расчёт.',
+          jsonCardCopied: 'JSON-карточка скопирована',
+          jsonCardCopiedTitle: 'Скопировано',
+          jsonCardEmpty: 'Сначала сгенерируйте JSON-карточку.',
+          jsonCardGenerating: 'Генерация...'
+        },
+        jsonCard: {
+          close: 'Закрыть JSON-карточку', title: 'JSON-карточка', useAuthor: 'Указать авторство', authorName: 'Имя или ник', contactType: 'Тип контакта', contact: 'Контакт', generate: 'Сгенерировать карточку', output: 'Готовый JSON', copy: 'Скопировать JSON-карточку', download: 'Скачать JSON-карточку'
         }
       },
       en: {
@@ -58,16 +58,9 @@ const TEXT_I18N = {
         prepositionOption: 'preposition / prefix',
         searchBtn: 'Find derivatives and calculate',
         showExampleBtn: 'Show example',
-        exportBtn: 'Export JSON',
-        importBtn: 'Import JSON',
+        jsonCardBtn: 'Generate JSON card',
         resultTitle: '2) Result',
         languagesTitle: '3) Languages and derivatives',
-        derivativeDbTitle: '4) Local derivative database',
-        derivativeDbNote: 'Can be replaced with real JSON data from Kaikki/Wiktionary. Format: language → array of words.',
-        loadDerivativeDataBtn: 'Load derivative database',
-        frequencyDbTitle: '5) Local frequency-rank database',
-        frequencyDbNote: 'Format: language → { word: rank }. Can be generated from wordfreq/top_n_list.',
-        loadFrequencyDataBtn: 'Load frequencies',
         reset: 'Reset',
         resetConfirm: 'Reset entered data? This action cannot be undone.',
         manual: 'manual',
@@ -84,7 +77,14 @@ const TEXT_I18N = {
           finalAssociation: 'FA — final association', totalAssociation: 'TA — total association', languagesRepresented: 'languages represented', languageGroups: 'language groups', accept: 'ACCEPT', reject: 'DO NOT ACCEPT', fewerLanguages: 'fewer than 3 languages', fewerGroups: 'fewer than 2 language groups', belowThreshold: 'below the main threshold', reasons: 'Reasons', allMet: 'All conditions are met.'
         },
         alerts: {
-          derivativeLoaded: 'Derivative database loaded.', derivativeJsonError: 'JSON error in derivative database: ', frequencyLoaded: 'Frequency database loaded.', frequencyJsonError: 'JSON error in frequency database: ', importError: 'Import error: '
+          jsonCardUnavailable: 'Run a calculation first.',
+          jsonCardCopied: 'JSON card copied',
+          jsonCardCopiedTitle: 'Copied',
+          jsonCardEmpty: 'Generate the JSON card first.',
+          jsonCardGenerating: 'Generating...'
+        },
+        jsonCard: {
+          close: 'Close JSON card', title: 'JSON card', useAuthor: 'Add authorship', authorName: 'Name or nickname', contactType: 'Contact type', contact: 'Contact', generate: 'Generate card', output: 'Generated JSON', copy: 'Copy JSON card', download: 'Download JSON card'
         }
       }
     };
@@ -102,12 +102,12 @@ const TEXT_I18N = {
     }
 
     const LANGUAGES = [
-      { code: 'en', name: 'Английский', group: 'Germanic' },
-      { code: 'de', name: 'Немецкий', group: 'Germanic' },
-      { code: 'fr', name: 'Французский', group: 'Romance' },
-      { code: 'es', name: 'Испанский', group: 'Romance' },
-      { code: 'it', name: 'Итальянский', group: 'Romance' },
-      { code: 'ru', name: 'Русский', group: 'Slavic' }
+      { code: 'en', name: 'English', group: 'Germanic', speakers: 1493000 },
+      { code: 'de', name: 'German', group: 'Germanic', speakers: 133000 },
+      { code: 'fr', name: 'French', group: 'Romance', speakers: 334000 },
+      { code: 'es', name: 'Spanish', group: 'Romance', speakers: 561000 },
+      { code: 'it', name: 'Italian', group: 'Romance', speakers: 66000 },
+      { code: 'ru', name: 'Russian', group: 'Slavic', speakers: 210000 }
     ];
 
     const DEFAULT_DERIVATIVES = {
@@ -167,8 +167,6 @@ const TEXT_I18N = {
           ...loadedDerivatives
         };
       }
-
-      renderDataEditors();
 
       if (missing.length) {
         console.warn(currentLang() === 'en' ? 'Not all JSON files could be loaded; built-in demo data was used:' : 'Не все JSON-файлы удалось загрузить, использованы встроенные демо-данные:', missing.join('; '));
@@ -681,10 +679,6 @@ const TEXT_I18N = {
       `;
     }
 
-    function renderDataEditors() {
-      document.getElementById('derivativeDataInput').value = JSON.stringify(derivativeData, null, 2);
-      document.getElementById('frequencyDataInput').value = JSON.stringify(frequencyData, null, 2);
-    }
 
 
     function applyLocalizedTexts() {
@@ -699,16 +693,9 @@ const TEXT_I18N = {
         prepositionOption: textValue('prepositionOption'),
         searchBtn: textValue('searchBtn'),
         showExampleBtn: textValue('showExampleBtn'),
-        exportBtn: textValue('exportBtn'),
-        importBtn: textValue('importBtn'),
+        jsonCardBtn: textValue('jsonCardBtn'),
         resultTitle: textValue('resultTitle'),
-        languagesTitle: textValue('languagesTitle'),
-        derivativeDbTitle: textValue('derivativeDbTitle'),
-        derivativeDbNote: textValue('derivativeDbNote'),
-        loadDerivativeDataBtn: textValue('loadDerivativeDataBtn'),
-        frequencyDbTitle: textValue('frequencyDbTitle'),
-        frequencyDbNote: textValue('frequencyDbNote'),
-        loadFrequencyDataBtn: textValue('loadFrequencyDataBtn')
+        languagesTitle: textValue('languagesTitle')
       };
       Object.entries(mappings).forEach(([id, value]) => {
         const element = document.getElementById(id);
@@ -716,6 +703,13 @@ const TEXT_I18N = {
       });
       document.getElementById('rootInput').setAttribute('placeholder', textValue('rootPlaceholder'));
       document.getElementById('meaningInput').setAttribute('placeholder', textValue('meaningPlaceholder'));
+      const jsonCardText = textGroup('jsonCard');
+      Object.entries({ jsonCardTitle: jsonCardText.title, useAuthorBlockLabel: jsonCardText.useAuthor, authorDisplayNameLabel: jsonCardText.authorName, authorContactTypeLabel: jsonCardText.contactType, authorContactValueLabel: jsonCardText.contact, generateJsonCardBtn: jsonCardText.generate, jsonCardOutputLabel: jsonCardText.output }).forEach(([id, value]) => { const element = document.getElementById(id); if (element) element.textContent = value; });
+      document.getElementById('closeJsonCardBtn')?.setAttribute('aria-label', jsonCardText.close);
+      document.getElementById('copyJsonCardBtn')?.setAttribute('aria-label', jsonCardText.copy);
+      document.getElementById('copyJsonCardBtn')?.setAttribute('title', jsonCardText.copy);
+      document.getElementById('downloadJsonCardBtn')?.setAttribute('aria-label', jsonCardText.download);
+      document.getElementById('downloadJsonCardBtn')?.setAttribute('title', jsonCardText.download);
       const resetBtn = document.getElementById('resetBtn');
       resetBtn.setAttribute('aria-label', textValue('reset'));
       resetBtn.setAttribute('title', textValue('reset'));
@@ -782,57 +776,132 @@ const TEXT_I18N = {
       renderAll();
     }
 
-    function loadDerivativeData() {
+
+
+
+    const JSON_CARD_WRAPPER_LIMIT = 4096;
+    const JSON_CARD_START_MARKER = "/card";
+    const JSON_CARD_END_MARKER = "/done";
+    const CREATED_AT_ENDPOINT = "/api/created-at";
+
+    function finiteOrNull(value) {
+      const number = Number(value);
+      return Number.isFinite(number) ? number : null;
+    }
+
+    function createCardId(prefix = 'av') {
+      return `${prefix}_${crypto.randomUUID().replaceAll('-', '')}`;
+    }
+
+    async function getCreatedAt() {
       try {
-        derivativeData = JSON.parse(document.getElementById('derivativeDataInput').value);
-        alert(textGroup('alerts').derivativeLoaded);
-      } catch (e) {
-        alert(textGroup('alerts').derivativeJsonError + e.message);
+        const response = await fetch(CREATED_AT_ENDPOINT, { cache: 'no-cache' });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const data = await response.json();
+        const value = typeof data === 'string' ? data : data?.created_at || data?.createdAt || data?.now || data?.timestamp;
+        const date = new Date(value);
+        if (!value || Number.isNaN(date.getTime())) throw new Error('Invalid server timestamp');
+        return { created_at: String(value), created_at_source: 'server' };
+      } catch (error) {
+        console.warn('created_at server fallback:', error);
+        return { created_at: new Date().toISOString(), created_at_source: 'device' };
       }
     }
 
-    function loadFrequencyData() {
-      try {
-        frequencyData = JSON.parse(document.getElementById('frequencyDataInput').value);
-        alert(textGroup('alerts').frequencyLoaded);
-      } catch (e) {
-        alert(textGroup('alerts').frequencyJsonError + e.message);
-      }
+    function normalizeTelegramContact(value) {
+      const raw = String(value || '').trim();
+      if (!raw) return '';
+      const noProtocol = raw.replace(/^https?:\/\//i, '').replace(/^t\.me\//i, '').replace(/^@/, '').replace(/\/$/, '');
+      return `https://t.me/${noProtocol}`;
     }
 
-    function exportState() {
-      const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `interal-association-${state.root || 'root'}.json`;
-      a.click();
-      URL.revokeObjectURL(url);
+    function normalizeEmailContact(value) {
+      const raw = String(value || '').trim();
+      if (!raw) return '';
+      return raw.toLowerCase().startsWith('mailto:') ? raw : `mailto:${raw}`;
     }
 
-    function importState() {
-      const input = document.createElement('input');
-      input.type = 'file';
-      input.accept = 'application/json';
-      input.onchange = async () => {
-        const file = input.files[0];
-        if (!file) return;
-        try {
-          const text = await file.text();
-          const imported = JSON.parse(text);
-          state = imported;
-          document.getElementById('rootInput').value = state.root || '';
-          document.getElementById('meaningInput').value = state.meaning || '';
-          document.getElementById('elementType').value = state.elementType || 'root';
-          state.maxModels = Number(state.maxModels) || 5;
-          renderAll();
-        } catch (e) {
-          alert(textGroup('alerts').importError + e.message);
-        }
+    function getAuthorBlock() {
+      if (!document.getElementById('useAuthorBlock').checked) return null;
+      const displayName = document.getElementById('authorDisplayName').value.trim();
+      const contactType = document.getElementById('authorContactType').value;
+      const rawContact = document.getElementById('authorContactValue').value.trim();
+      const url = contactType === 'telegram' ? normalizeTelegramContact(rawContact) : contactType === 'email' ? normalizeEmailContact(rawContact) : rawContact;
+      return {
+        ...(displayName ? { display_name: displayName } : {}),
+        contacts: url ? [{ type: contactType, url }] : []
       };
-      input.click();
     }
 
+    function formatGeneratedJsonCard(card) {
+      const json = JSON.stringify(card, null, 2);
+      return json.length <= JSON_CARD_WRAPPER_LIMIT ? json : `${JSON_CARD_START_MARKER}\n${json}\n${JSON_CARD_END_MARKER}`;
+    }
+
+    function makeAssociativeCard(timeMeta, author = null) {
+      const result = calculateFinal();
+      const supportedGroups = [...new Set(result.languageScores.filter((x) => Number.isFinite(Number(x.normalized))).map((x) => x.lang.group))];
+      return {
+        id: createCardId('av'),
+        version: '1.0',
+        card_type: 'vord_card',
+        vord_type: 'av',
+        status: 'draft',
+        created_at: timeMeta.created_at,
+        created_at_source: timeMeta.created_at_source,
+        interal: { word: state.root || '', part_of_speech: state.elementType || 'root' },
+        translation: { language: 'ru', word: state.meaning || '' },
+        ...(author ? { author } : {}),
+        supported_groups: supportedGroups,
+        calculation: {
+          association_percent: finiteOrNull(result.finalAssociation),
+          weighted_sum: finiteOrNull(result.totalAssociation),
+          total_speakers_thousands: LANGUAGES.reduce((sum, lang) => sum + (Number(lang.speakers) || 0), 0),
+          represented_languages: result.representedLangs,
+          represented_groups: result.groups,
+          thresholds: { strong: 55, accept: THRESHOLDS.main, review_min: THRESHOLDS.reviewMin, review_max: THRESHOLDS.reviewMax, reject_below: THRESHOLDS.rejectBelow },
+          weights: { association_score: 0.65, frequency_score: 0.35 }
+        },
+        language_results: LANGUAGES.map((lang) => {
+          const selected = (state.languages[lang.code] || []).filter((item) => item.selected);
+          const best = selected.sort((a, b) => (wordWeight(b) || -1) - (wordWeight(a) || -1))[0];
+          if (!best) {
+            return { code: lang.code, name: lang.name, group: lang.group, speakers_thousands: finiteOrNull(lang.speakers), word: '', normalized_graphic: '', selected: false, match: null, frequency: { score: null, ipm: null, category_breakdown: {} }, association: null, swow: null, final_score: null, status: 'unavailable', supports_group: false };
+          }
+          const analysis = best.analysis || {};
+          const association = analysis.review || analysis.association || {};
+          return {
+            code: lang.code,
+            name: lang.name,
+            group: lang.group,
+            speakers_thousands: finiteOrNull(lang.speakers),
+            word: best.word || '',
+            normalized_graphic: stripDiacritics(best.word || ''),
+            selected: true,
+            match: best.match ? { type: best.match.type, root: state.root || '', fragment: best.match.fragment || '', distance: finiteOrNull(best.match.distance) } : null,
+            frequency: { score: finiteOrNull(analysis.frequency?.frequency_score ?? best.frequency_score), ipm: null, category_breakdown: analysis.frequency?.category_breakdown || {} },
+            association: { directness: finiteOrNull(association.directness), field_relatedness: finiteOrNull(association.field_relatedness), domain_shift: finiteOrNull(association.domain_shift), swow_bonus: finiteOrNull(analysis.swow?.bonus || 0), score_base: finiteOrNull(association.association_score_base), score: finiteOrNull(association.association_score), explanation: association.explanation || '' },
+            swow: { found: Boolean(analysis.swow?.bonus), bonus: finiteOrNull(analysis.swow?.bonus || 0), target_to_word: analysis.swow?.target_to_word || null, word_to_target: analysis.swow?.word_to_target || null },
+            final_score: finiteOrNull(analysis.final_score ?? best.final_score),
+            status: analysis.classification || 'accepted',
+            supports_group: Number(analysis.final_score ?? best.final_score) >= THRESHOLDS.main
+          };
+        })
+      };
+    }
+
+    function openJsonCardModal() {
+      if (!Object.values(state.languages || {}).some((items) => items.some((item) => item.selected))) {
+        alert(textGroup('alerts').jsonCardUnavailable);
+        return;
+      }
+      document.getElementById('jsonCardOutput').value = '';
+      document.getElementById('jsonCardModal').classList.add('show');
+    }
+
+    function closeJsonCardModal() {
+      document.getElementById('jsonCardModal').classList.remove('show');
+    }
 
     function hasUserInputForReset() {
       const hasRoot = normalizeText(document.getElementById('rootInput').value).length > 0;
@@ -905,11 +974,8 @@ const TEXT_I18N = {
     document.getElementById('elementType').addEventListener('change', syncResetButtonVisibility);
     document.getElementById('searchBtn').addEventListener('click', () => searchDerivatives());
     document.getElementById('showExampleBtn').addEventListener('click', showExample);
-        document.getElementById('exportBtn').addEventListener('click', exportState);
-    document.getElementById('importBtn').addEventListener('click', importState);
+    document.getElementById('jsonCardBtn').addEventListener('click', openJsonCardModal);
     document.getElementById('resetBtn').addEventListener('click', resetAll);
-    document.getElementById('loadDerivativeDataBtn').addEventListener('click', loadDerivativeData);
-    document.getElementById('loadFrequencyDataBtn').addEventListener('click', loadFrequencyData);
     document.addEventListener('interal:languagechange', renderAll);
     window.addEventListener('resize', syncTabWidths);
 
@@ -918,6 +984,47 @@ const TEXT_I18N = {
     window.addRow = addRow;
     window.analyzeItem = analyzeItem;
     window.QWEN_RUNTIME_CONFIG = QWEN_RUNTIME_CONFIG;
+
+    document.getElementById('closeJsonCardBtn').addEventListener('click', closeJsonCardModal);
+    document.getElementById('jsonCardModal').addEventListener('click', (event) => {
+      if (event.target === document.getElementById('jsonCardModal')) closeJsonCardModal();
+    });
+    document.getElementById('useAuthorBlock').addEventListener('change', (event) => {
+      document.getElementById('jsonAuthorFields').style.display = event.target.checked ? 'block' : 'none';
+    });
+    document.getElementById('generateJsonCardBtn').addEventListener('click', async () => {
+      const btn = document.getElementById('generateJsonCardBtn');
+      const original = textGroup('jsonCard').generate;
+      try {
+        btn.disabled = true;
+        btn.textContent = textGroup('alerts').jsonCardGenerating;
+        document.getElementById('jsonCardOutput').value = formatGeneratedJsonCard(makeAssociativeCard(await getCreatedAt(), getAuthorBlock()));
+      } finally {
+        btn.disabled = false;
+        btn.textContent = original;
+      }
+    });
+    document.getElementById('copyJsonCardBtn').addEventListener('click', async () => {
+      const output = document.getElementById('jsonCardOutput');
+      if (!output.value.trim()) { alert(textGroup('alerts').jsonCardEmpty); return; }
+      await navigator.clipboard.writeText(output.value);
+      const btn = document.getElementById('copyJsonCardBtn');
+      btn.classList.add('is-copied');
+      btn.title = textGroup('alerts').jsonCardCopiedTitle;
+      window.setTimeout(() => { btn.classList.remove('is-copied'); btn.title = textGroup('jsonCard').copy; }, 1500);
+    });
+    document.getElementById('downloadJsonCardBtn').addEventListener('click', () => {
+      const output = document.getElementById('jsonCardOutput');
+      if (!output.value.trim()) { alert(textGroup('alerts').jsonCardEmpty); return; }
+      const blob = new Blob([output.value], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${state.root || 'associativ'}-vord-card.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+
     window.testQwenAssociation = async function () {
       return await fetch('/api/qwen-association', {
         method: 'POST',
