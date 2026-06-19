@@ -411,6 +411,23 @@
       }
     }
 
+    .associativ-page #jsonCardModal { position: fixed; inset: 0; opacity: 0; pointer-events: none; display: flex; align-items: center; justify-content: center; padding: 16px; box-sizing: border-box; background: rgba(0,0,0,.35); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); z-index: var(--z-page-modal); }
+    .associativ-page #jsonCardModal.show { opacity: 1; pointer-events: auto; }
+    body.dark-theme .associativ-page #jsonCardModal { background: rgba(0,0,0,.62); }
+    .associativ-page .modal-inner { position: relative; display: flex; flex-direction: column; max-width: 860px; width: 100%; margin: 0; padding: 24px; max-height: calc(100vh - 32px); overflow: hidden; background: var(--surface); color: var(--text); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); }
+    .associativ-page .json-card-title { margin: 0 42px 14px; text-align: center; font-size: 1.5rem; font-weight: 800; line-height: 1.2; }
+    .associativ-page .json-card-form { overflow: auto; flex: 1 1 auto; min-height: 0; }
+    .associativ-page .json-author-fields { margin-top: 12px; padding: 14px; border: 1px solid var(--border-subtle); border-radius: var(--radius-md); background: var(--surface-elevated); }
+    .associativ-page .json-card-output { min-height: 260px; resize: vertical; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13px; line-height: 1.45; white-space: pre; }
+    .associativ-page .json-card-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 12px; }
+    .associativ-page .json-card-icon-btn { width: 44px; height: 44px; padding: 0; margin-top: 0; display: inline-grid; place-items: center; border-radius: 999px; background: color-mix(in srgb, #67b3ff 24%, var(--surface-elevated)); border: 1px solid color-mix(in srgb, #67b3ff 45%, transparent); color: var(--text); cursor: pointer; transition: transform .22s ease, background-color .22s ease, color .22s ease, border-color .22s ease, box-shadow .22s ease, filter .22s ease; }
+    .associativ-page .json-card-icon-btn:hover, .associativ-page .json-card-icon-btn:focus-visible { background: color-mix(in srgb, #67b3ff 34%, var(--surface-hover)); transform: translateY(-2px) scale(1.01); }
+    .associativ-page .json-card-icon-btn.is-copied { background: color-mix(in srgb, #48d17f 30%, var(--surface-elevated)); border-color: color-mix(in srgb, #48d17f 58%, transparent); }
+    .associativ-page .json-card-download-icon-stack, .associativ-page .json-card-download-icon { width: 20px; height: 20px; display: grid; place-items: center; }
+    .associativ-page .json-card-close-btn { position: absolute; top: 14px; right: 14px; width: 38px; height: 38px; padding: 0; margin: 0; display: inline-grid; place-items: center; border-radius: 999px; border: 1px solid transparent; background: transparent; color: var(--text); cursor: pointer; transition: transform .22s ease, background-color .22s ease, border-color .22s ease; }
+    .associativ-page .json-card-close-btn:hover, .associativ-page .json-card-close-btn:focus-visible { background: var(--surface-hover); border-color: var(--border-control); transform: translateY(-1px); }
+    .associativ-page .json-card-close-btn svg { width: 18px; height: 18px; stroke: currentColor; }
+
   </style>
 </head>
 <body class="associativ-page">
@@ -448,8 +465,7 @@
       <div class="row actions-row" style="grid-column: 1 / -1;">
         <button class="tool-btn interal-btn interal-btn--primary" id="searchBtn">Найти дериваты и посчитать</button>
         <button class="tool-btn interal-btn interal-btn--secondary" id="showExampleBtn">Показать пример</button>
-        <button class="tool-btn interal-btn interal-btn--secondary" id="exportBtn">Экспорт JSON</button>
-        <button class="tool-btn interal-btn interal-btn--secondary" id="importBtn">Импорт JSON</button>
+        <button class="tool-btn interal-btn interal-btn--secondary" id="jsonCardBtn">Сформировать JSON-карточку</button>
       </div>
     </section>
 
@@ -469,20 +485,28 @@
       </div>
     </section>
 
-    <section class="card grid grid-2">
-      <div>
-        <h2 id="derivativeDbTitle">4) Локальная база дериватов</h2>
-        <p class="muted" id="derivativeDbNote" style="margin-bottom:10px;">Можно заменить на реальные JSON-данные из Kaikki/Wiktionary. Формат: язык → массив слов.</p>
-        <textarea class="interal-textarea" id="derivativeDataInput"></textarea>
-        <button class="tool-btn interal-btn interal-btn--secondary" id="loadDerivativeDataBtn" style="margin-top:10px;">Загрузить базу дериватов</button>
+
+
+  <div id="jsonCardModal">
+    <div class="modal-inner">
+      <button id="closeJsonCardBtn" class="json-card-close-btn" type="button" aria-label="Закрыть JSON-карточку"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke-width="2.4" stroke-linecap="round" /></svg></button>
+      <h3 class="json-card-title" id="jsonCardTitle">JSON-карточка</h3>
+      <div class="json-card-form">
+        <label class="checkbox-line" for="useAuthorBlock"><input id="useAuthorBlock" type="checkbox"><span id="useAuthorBlockLabel">Указать авторство</span></label>
+        <div id="jsonAuthorFields" class="json-author-fields" style="display:none">
+          <label for="authorDisplayName" id="authorDisplayNameLabel">Имя или ник</label><input class="interal-input" id="authorDisplayName" type="text" autocomplete="name">
+          <label for="authorContactType" id="authorContactTypeLabel">Тип контакта</label><select class="interal-select" id="authorContactType"><option value="telegram">telegram</option><option value="matrix">matrix</option><option value="email">email</option></select>
+          <label for="authorContactValue" id="authorContactValueLabel">Контакт</label><input class="interal-input" id="authorContactValue" type="text" autocomplete="off">
+        </div>
+        <button id="generateJsonCardBtn" class="tool-btn interal-btn interal-btn--primary" type="button">Сгенерировать карточку</button>
+        <label for="jsonCardOutput" id="jsonCardOutputLabel">Готовый JSON</label><textarea id="jsonCardOutput" class="interal-textarea json-card-output" readonly></textarea>
       </div>
-      <div>
-        <h2 id="frequencyDbTitle">5) Локальная база частотных рангов</h2>
-        <p class="muted" id="frequencyDbNote" style="margin-bottom:10px;">Формат: язык → { слово: ранг }. Можно сгенерировать из wordfreq/top_n_list.</p>
-        <textarea class="interal-textarea" id="frequencyDataInput"></textarea>
-        <button class="tool-btn interal-btn interal-btn--secondary" id="loadFrequencyDataBtn" style="margin-top:10px;">Загрузить частоты</button>
+      <div class="json-card-actions">
+        <button id="copyJsonCardBtn" class="json-card-icon-btn menu-copy-btn" type="button" aria-label="Скопировать JSON-карточку" title="Скопировать JSON-карточку"><span class="menu-copy-icon-stack" aria-hidden="true"><img class="menu-copy-icon menu-copy-icon-link" src="../elements/Copy.svg" alt=""><svg class="menu-copy-icon menu-copy-icon-check" viewBox="0 0 24 24" focusable="false"><path d="M5 12.5l4.2 4.2L19 7" /></svg></span></button>
+        <button id="downloadJsonCardBtn" class="json-card-icon-btn" type="button" aria-label="Скачать JSON-карточку" title="Скачать JSON-карточку"><span class="json-card-download-icon-stack" aria-hidden="true"><img class="json-card-download-icon" src="../elements/Download.svg" alt=""></span></button>
       </div>
-    </section>
+    </div>
+  </div>
 
   </main>
 
