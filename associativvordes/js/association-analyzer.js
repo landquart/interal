@@ -97,8 +97,9 @@ function buildEvaluation(qwen, frequencyScore, swowBonus) {
   };
 }
 
-export async function analyzeAssociativeWord({ language, targetMeaning, word }) {
+export async function analyzeAssociativeWord({ language, targetMeaning, word, onProgress } = {}) {
   const warnings = [];
+  onProgress?.('Загрузка частотных списков...');
   const frequency = await getFrequencyProfile(language, word).catch(error => {
     warnings.push(`Frequency unavailable: ${error.message}`);
     return { frequency_score: null, category_breakdown: {}, warnings: ['Frequency unavailable'] };
@@ -113,6 +114,7 @@ export async function analyzeAssociativeWord({ language, targetMeaning, word }) 
     warnings.push(`No target meaning translation for ${language}; using original targetMeaning`);
   }
 
+  onProgress?.(`SWOW: ${language} — ${word}`);
   const bidirectionalSwow = await getBidirectionalSwow(language, swowTargetMeaning, word).catch(error => {
     warnings.push(`SWOW unavailable: ${error.message}`);
     return { target_to_word: null, word_to_target: null };
@@ -132,6 +134,7 @@ export async function analyzeAssociativeWord({ language, targetMeaning, word }) 
 
   let primaryQwen;
   try {
+    onProgress?.(`Qwen3.6: ${language} — ${word}`);
     primaryQwen = await getQwenAssociationScores({ language, targetMeaning, word, swow, review: false });
   } catch (error) {
     warnings.push(`Qwen evaluation unavailable: ${error.message}`);
@@ -148,6 +151,7 @@ export async function analyzeAssociativeWord({ language, targetMeaning, word }) 
 
   if (QWEN_RUNTIME_CONFIG.enableReviewModel && primary.classification === 'needs_review') {
     try {
+      onProgress?.(`Qwen3 235B: ${language} — ${word}`);
       const reviewQwen = await getQwenAssociationScores({ language, targetMeaning, word, swow, review: true });
       review = buildEvaluation(reviewQwen, frequency.frequency_score, swow_bonus);
       if (review.final_score == null) {

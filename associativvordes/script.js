@@ -103,6 +103,22 @@ const TEXT_I18N = {
       return TEXT_I18N[currentLang()][key] || TEXT_I18N.ru[key] || key;
     }
 
+
+    function setCalculateButtonStatus(text, disabled = true) {
+      const button = document.querySelector('#calculateBtn');
+      if (!button) return;
+
+      const textEl = button.querySelector('.btn-text') || button;
+
+      textEl.textContent = text;
+      button.disabled = disabled;
+      button.classList.toggle('is-loading', disabled);
+    }
+
+    function defaultCalculateButtonText() {
+      return textValue('searchBtn');
+    }
+
     const LANGUAGES = [
       { code: 'en', name: 'English', group: 'Germanic', speakers: 1493000 },
       { code: 'de', name: 'German', group: 'Germanic', speakers: 133000 },
@@ -386,12 +402,15 @@ const TEXT_I18N = {
       };
     }
 
-    async function analyzeCandidateItem(langCode, item) {
+    async function analyzeCandidateItem(langCode, item, onProgress) {
       try {
+        const languageName = textGroup('languages')[langCode] || langCode;
+        onProgress?.(`SWOW: ${languageName} — ${item.word}`);
         const analysis = await analyzeAssociativeWord({
           language: langCode,
           targetMeaning: state.meaning || state.root,
-          word: item.word
+          word: item.word,
+          onProgress: text => onProgress?.(text.replace(`${langCode} —`, `${languageName} —`))
         });
         return {
           ...item,
@@ -457,37 +476,53 @@ const TEXT_I18N = {
       return Array.from(byWord.values()).slice(0, QWEN_RUNTIME_CONFIG.maxCandidatesPerLanguage);
     }
 
-    async function searchDerivatives() {
+    async function runCalculation({ onProgress } = {}) {
+      onProgress?.('Подготовка...');
       state.root = normalizeText(document.getElementById('rootInput').value);
       state.meaning = document.getElementById('meaningInput').value.trim();
       state.elementType = document.getElementById('elementType').value;
       state.maxModels = 5;
 
-      const searchBtn = document.getElementById('searchBtn');
-      searchBtn.disabled = true;
-      searchBtn.textContent = currentLang() === 'en' ? 'Calculating…' : 'Расчёт…';
-
       const root = state.root;
       const nextLangs = {};
 
-      try {
-        for (const lang of LANGUAGES) {
-          const candidates = await getLanguageCandidates(lang.code, root);
-          const analyzed = await mapWithConcurrency(
-            candidates,
-            QWEN_RUNTIME_CONFIG.maxConcurrentQwenRequests,
-            item => analyzeCandidateItem(lang.code, item)
-          );
+      onProgress?.('Загрузка частотных списков...');
+      for (const lang of LANGUAGES) {
+        const languageName = textGroup('languages')[lang.code] || lang.name;
+        onProgress?.(`Поиск похожих корней: ${languageName}`);
+        const candidates = await getLanguageCandidates(lang.code, root);
+        onProgress?.(`Qwen3.6: оценка слов — ${languageName}`);
+        const analyzed = await mapWithConcurrency(
+          candidates,
+          QWEN_RUNTIME_CONFIG.maxConcurrentQwenRequests,
+          item => analyzeCandidateItem(lang.code, item, onProgress)
+        );
 
-          nextLangs[lang.code] = groupByBestModel(analyzed, state.maxModels);
-        }
-        state.languages = nextLangs;
-      } finally {
-        searchBtn.disabled = false;
-        applyLocalizedTexts();
+        onProgress?.(`Расчёт языковых баллов: ${languageName}`);
+        nextLangs[lang.code] = groupByBestModel(analyzed, state.maxModels);
       }
+      onProgress?.('Расчёт итогового процента...');
+      state.languages = nextLangs;
+      calculateFinal();
+    }
 
-      renderAll();
+    async function searchDerivatives() {
+      try {
+        setCalculateButtonStatus('Подготовка...', true);
+        await runCalculation({
+          onProgress: text => setCalculateButtonStatus(text, true)
+        });
+        renderAll();
+        setCalculateButtonStatus('Готово', true);
+        setTimeout(() => {
+          setCalculateButtonStatus(defaultCalculateButtonText(), false);
+        }, 800);
+      } catch (error) {
+        console.error(error);
+        setCalculateButtonStatus('Ошибка расчёта', false);
+      } finally {
+        renderAll();
+      }
     }
 
     function specialRootMatch(lang, word, root) {
@@ -693,7 +728,6 @@ const TEXT_I18N = {
         elementTypeLabel: textValue('elementTypeLabel'),
         rootOption: textValue('rootOption'),
         prepositionOption: textValue('prepositionOption'),
-        searchBtn: textValue('searchBtn'),
         showExampleBtn: textValue('showExampleBtn'),
         jsonCardBtn: textValue('jsonCardBtn'),
         resultTitle: textValue('resultTitle'),
@@ -703,6 +737,9 @@ const TEXT_I18N = {
         const element = document.getElementById(id);
         if (element) element.textContent = value;
       });
+      if (!document.getElementById('calculateBtn')?.disabled) {
+        setCalculateButtonStatus(defaultCalculateButtonText(), false);
+      }
       document.getElementById('rootInput').setAttribute('placeholder', textValue('rootPlaceholder'));
       document.getElementById('meaningInput').setAttribute('placeholder', textValue('meaningPlaceholder'));
       const jsonCardText = textGroup('jsonCard');
@@ -988,7 +1025,7 @@ const TEXT_I18N = {
     document.getElementById('rootInput').addEventListener('input', syncResetButtonVisibility);
     document.getElementById('meaningInput').addEventListener('input', syncResetButtonVisibility);
     document.getElementById('elementType').addEventListener('change', syncResetButtonVisibility);
-    document.getElementById('searchBtn').addEventListener('click', () => searchDerivatives());
+    document.getElementById('calculateBtn').addEventListener('click', () => searchDerivatives());
     document.getElementById('showExampleBtn').addEventListener('click', showExample);
     document.getElementById('jsonCardBtn').addEventListener('click', openJsonCardModal);
     document.getElementById('resetBtn').addEventListener('click', resetAll);

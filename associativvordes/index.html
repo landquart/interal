@@ -95,7 +95,12 @@
     .actions-row { display: flex; flex-wrap: wrap; gap: 10px; }
     .associativ-page .actions-row .interal-btn { flex: 0 1 auto; width: auto; min-width: 150px; padding-inline: 18px; }
     .fit.short { width: auto; min-width: 0; padding-inline: 12px; }
-    .associativ-page .actions-row #searchBtn { min-width: 230px; }
+    .associativ-page .actions-row #calculateBtn { min-width: 230px; }
+    .associativ-page #calculateBtn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+    .associativ-page #calculateBtn .btn-text { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .associativ-page .btn-spinner { width: 14px; height: 14px; border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: spin 0.75s linear infinite; display: none; flex: 0 0 auto; }
+    .associativ-page .is-loading .btn-spinner { display: inline-block; }
+    @keyframes spin { to { transform: rotate(360deg); } }
     .json-card-bottom-actions { max-width: 828px; margin: -8px auto 20px; justify-content: flex-end; padding: 0 18px; box-sizing: border-box; }
 
     .card-tools {
@@ -369,7 +374,7 @@
       h2 { font-size: 19px; }
 
       .associativ-page .actions-row .interal-btn,
-      .associativ-page .actions-row #searchBtn,
+      .associativ-page .actions-row #calculateBtn,
       .fit.short {
         width: 100%;
         min-width: 0;
@@ -473,7 +478,7 @@
         </select>
       </div>
       <div class="row actions-row" style="grid-column: 1 / -1;">
-        <button class="tool-btn interal-btn interal-btn--primary" id="searchBtn">Найти дериваты и посчитать</button>
+        <button class="tool-btn interal-btn interal-btn--primary" id="calculateBtn" type="button"><span class="btn-spinner" aria-hidden="true"></span><span class="btn-text" id="searchBtn">Найти дериваты и посчитать</span></button>
         <button class="tool-btn interal-btn interal-btn--secondary" id="showExampleBtn">Показать пример</button>
       </div>
     </section>
