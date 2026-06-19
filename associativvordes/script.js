@@ -270,7 +270,7 @@ const TEXT_I18N = {
       const analysisFinal = Number(item.analysis?.final_score);
       if (Number.isFinite(analysisFinal)) return analysisFinal;
 
-      return -1;
+      return null;
     }
 
     function groupByBestModel(items, maxModels) {
@@ -426,20 +426,24 @@ const TEXT_I18N = {
     function calculateLanguage(langCode) {
       const items = state.languages[langCode] || [];
       const selected = items.filter(x => x.selected).slice(0, state.maxModels);
-      const sum = selected.reduce((acc, x) => acc + wordWeight(x), 0);
+      const scores = selected
+        .map(wordWeight)
+        .filter(score => Number.isFinite(Number(score)));
+      const sum = scores.reduce((acc, x) => acc + x, 0);
       return {
         sum,
-        normalized: sum / Math.max(1, state.maxModels),
-        count: selected.length
+        normalized: scores.length ? sum / scores.length : null,
+        count: scores.length
       };
     }
 
     function calculateFinal() {
       const languageScores = LANGUAGES.map(l => ({ lang: l, ...calculateLanguage(l.code) }));
-      const totalAssociation = languageScores.reduce((acc, x) => acc + x.normalized, 0);
-      const finalAssociation = totalAssociation / LANGUAGES.length;
-      const representedLangs = languageScores.filter(x => x.count > 0).length;
-      const groups = new Set(languageScores.filter(x => x.count > 0).map(x => x.lang.group));
+      const represented = languageScores.filter(x => Number.isFinite(Number(x.normalized)));
+      const totalAssociation = represented.reduce((acc, x) => acc + x.normalized, 0);
+      const finalAssociation = represented.length ? totalAssociation / represented.length : 0;
+      const representedLangs = represented.length;
+      const groups = new Set(represented.map(x => x.lang.group));
       const accepted =
         representedLangs >= 3 &&
         groups.size >= 2 &&
