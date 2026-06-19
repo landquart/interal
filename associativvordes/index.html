@@ -96,6 +96,7 @@
     .associativ-page .actions-row .interal-btn { flex: 0 1 auto; width: auto; min-width: 150px; padding-inline: 18px; }
     .fit.short { width: auto; min-width: 0; padding-inline: 12px; }
     .associativ-page .actions-row #searchBtn { min-width: 230px; }
+    .json-card-bottom-actions { max-width: 828px; margin: -8px auto 20px; justify-content: flex-end; padding: 0 18px; box-sizing: border-box; }
 
     .card-tools {
       position: absolute;
@@ -465,7 +466,6 @@
       <div class="row actions-row" style="grid-column: 1 / -1;">
         <button class="tool-btn interal-btn interal-btn--primary" id="searchBtn">Найти дериваты и посчитать</button>
         <button class="tool-btn interal-btn interal-btn--secondary" id="showExampleBtn">Показать пример</button>
-        <button class="tool-btn interal-btn interal-btn--secondary" id="jsonCardBtn">Сформировать JSON-карточку</button>
       </div>
     </section>
 
@@ -485,7 +485,9 @@
       </div>
     </section>
 
-
+    <div class="row actions-row json-card-bottom-actions">
+      <button class="tool-btn interal-btn interal-btn--secondary" id="jsonCardBtn">Сформировать JSON-карточку</button>
+    </div>
 
   <div id="jsonCardModal">
     <div class="modal-inner">
