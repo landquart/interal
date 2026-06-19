@@ -70,16 +70,6 @@ function parseQwenPayload(payload) {
   };
 }
 
-function parseCandidatesPayload(payload) {
-  const raw = payload?.content ?? payload;
-  const object = typeof raw === 'string' ? JSON.parse(extractJsonText(raw)) : raw;
-  const candidates = Array.isArray(object) ? object : object?.candidates;
-  if (!Array.isArray(candidates)) return [];
-  return candidates
-    .map(candidate => ({ word: String(candidate.word || '').trim(), reason: String(candidate.reason || '').trim() }))
-    .filter(candidate => candidate.word);
-}
-
 async function callQwen(prompt, { model, review = false } = {}) {
   const res = await fetch(API_CONFIG.qwenAssociationUrl, {
     method: 'POST',
@@ -110,12 +100,4 @@ export async function getQwenAssociationScores({ language, targetMeaning, word, 
     review
   }));
   return { ...parsed, model: requestedModel };
-}
-
-export async function getQwenAssociativeCandidates({ language, targetMeaning, root, max = 20 }) {
-  const prompt = {
-    system: 'You generate candidate associative words for an international auxiliary language project. Return only valid JSON. Do not invent constructed Interal forms. Return real words in the specified natural language. Words should be associated with the target meaning and, when possible, connected to the candidate root graphically/morphologically/etymologically. Return an array.',
-    user: `Language: ${language}\nTarget meaning: ${targetMeaning}\nCandidate root: ${root}\nMaximum candidates: ${max}\n\nReturn JSON:\n{\n  "candidates": [\n    {"word": "...", "reason": "..."}\n  ]\n}`
-  };
-  return parseCandidatesPayload(await callQwen(prompt, { model: API_CONFIG.qwenPrimaryModel, review: false })).slice(0, max);
 }
