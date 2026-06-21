@@ -8,22 +8,44 @@ const LANGUAGES = [
 ];
 
 const FREQUENCY_SOURCES = {
-  en: ['../associativvordes/frequency%20lists/en/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json'],
-  de: ['../associativvordes/frequency%20lists/de/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json'],
-  fr: ['../associativvordes/frequency%20lists/fr/sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json'],
-  es: ['../associativvordes/frequency%20lists/es/es_wordlist.lemmatized_stanza_ipm6.json'],
-  it: ['../associativvordes/frequency%20lists/it/sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json'],
-  ru: ['../associativvordes/frequency%20lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json']
+  en: [
+    '../associativvordes/frequency%20lists/en/bnc-clean2.lemmatized_spacy_ipm6.json',
+    '../associativvordes/frequency%20lists/en/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json',
+    '../associativvordes/frequency%20lists/en/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json'
+  ],
+  de: [
+    '../associativvordes/frequency%20lists/de/deu_lemma_rank_word_ipm_corrected.json',
+    '../associativvordes/frequency%20lists/de/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json',
+    '../associativvordes/frequency%20lists/de/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json'
+  ],
+  fr: [
+    '../associativvordes/frequency%20lists/fr/hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json',
+    '../associativvordes/frequency%20lists/fr/sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json'
+  ],
+  es: [
+    '../associativvordes/frequency%20lists/es/es_wordlist.lemmatized_stanza_ipm6.json',
+    '../associativvordes/frequency%20lists/es/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json'
+  ],
+  it: [
+    '../associativvordes/frequency%20lists/it/hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json',
+    '../associativvordes/frequency%20lists/it/sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json'
+  ],
+  ru: [
+    '../associativvordes/frequency%20lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json',
+    '../associativvordes/frequency%20lists/ru/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json',
+    '../associativvordes/frequency%20lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json'
+  ]
 };
 
 const frequencyCache = new Map();
+const MAX_FREQUENCY_ENTRIES_PER_SOURCE = 100000;
 const I18N = {
   ru: {
     title: 'Internationalismes', lead: '', params: 'Параметры слова', word: 'Слово в Интерaле', pos: 'Часть речи', noun: 'существительное', adjective: 'прилагательное', verb: 'глагол', adverb: 'наречие',
     evidence: 'Языковое покрытие', result: 'Итог', card: 'JSON-карточка', check: 'Проверить', json: 'Сформировать JSON-карточку', copy: 'Скопировать', download: 'Скачать',
     table: { language: 'Язык', form: 'Форма', distance: 'Дистанция', passed: 'Проходит', translation: 'Перевод', source: 'Источник', match: 'Тип' },
     coverage: 'Покрытие', required: 'Минимум', decision: 'Решение', accept: 'ПРИНЯТО', reject: 'НЕ ПРИНЯТО', reasonOk: 'Критерий 5/6 выполнен.', reasonBad: 'Недостаточное покрытие контрольных языков.',
-    loadingLists: 'Loading frequency lists...', searching: 'Searching forms...', frequencySource: 'frequency list', manualSource: 'manual', noForm: 'not found', loadError: 'Не удалось загрузить частотные списки. Формы можно ввести вручную.', manualMode: 'ручное переопределение', autoMode: 'авто', resetAria: 'Сбросить', resetConfirm: 'Сбросить введённые данные? Это действие нельзя отменить.',
+    loadingLists: 'Загрузка частотных списков...', searching: 'Поиск форм...', frequencySource: 'frequency list', manualSource: 'manual', noForm: 'not found', searchError: 'Не удалось загрузить частотные списки. Формы можно ввести вручную.', manualMode: 'ручное переопределение', autoMode: 'авто', resetAria: 'Сбросить', resetConfirm: 'Сбросить введённые данные? Это действие нельзя отменить.',
     jsonCard: { close: 'Закрыть JSON-карточку', title: 'JSON-карточка', useAuthor: 'Указать авторство', authorName: 'Имя или ник', contactType: 'Тип контакта', contact: 'Контакт', generate: 'Сгенерировать карточку', output: 'Готовый JSON', copy: 'Скопировать JSON-карточку', copied: 'JSON-карточка скопирована', download: 'Скачать JSON-карточку' }
   },
   en: {
@@ -31,12 +53,12 @@ const I18N = {
     evidence: 'Language coverage', result: 'Decision', card: 'JSON card', check: 'Check', json: 'Generate JSON card', copy: 'Copy', download: 'Download',
     table: { language: 'Language', form: 'Form', distance: 'Distance', passed: 'Passes', translation: 'Translation', source: 'Source', match: 'Match' },
     coverage: 'Coverage', required: 'Required', decision: 'Decision', accept: 'ACCEPTED', reject: 'NOT ACCEPTED', reasonOk: 'The 5/6 criterion is met.', reasonBad: 'Insufficient control-language coverage.',
-    loadingLists: 'Loading frequency lists...', searching: 'Searching forms...', frequencySource: 'frequency list', manualSource: 'manual', noForm: 'not found', loadError: 'Could not load frequency lists. Forms can be entered manually.', manualMode: 'manual override', autoMode: 'auto', resetAria: 'Reset', resetConfirm: 'Reset entered data? This action cannot be undone.',
+    loadingLists: 'Loading frequency lists...', searching: 'Searching forms...', frequencySource: 'frequency list', manualSource: 'manual', noForm: 'not found', searchError: 'Could not load frequency lists. Forms can be entered manually.', manualMode: 'manual override', autoMode: 'auto', resetAria: 'Reset', resetConfirm: 'Reset entered data? This action cannot be undone.',
     jsonCard: { close: 'Close JSON card', title: 'JSON card', useAuthor: 'Add authorship', authorName: 'Name or nickname', contactType: 'Contact type', contact: 'Contact', generate: 'Generate card', output: 'Generated JSON', copy: 'Copy JSON card', copied: 'JSON card copied', download: 'Download JSON card' }
   }
 };
 
-let state = { word: '', part_of_speech: 'noun', evidence: {}, autoPassed: {}, manualOverride: {}, matches: {}, loadingMessage: '', loadError: '' };
+let state = { word: '', part_of_speech: 'noun', evidence: {}, autoPassed: {}, manualOverride: {}, matchMeta: {}, isSearching: false, searchError: '' };
 function currentLang() { return localStorage.getItem('interal.lang') === 'en' ? 'en' : 'ru'; }
 function setLang(lang) { localStorage.setItem('interal.lang', lang); render(); }
 function currentTheme() { return localStorage.getItem('interal.theme') === 'dark' ? 'dark' : 'light'; }
@@ -73,58 +95,198 @@ function latinToRuCandidates(value) {
   }
   const out = new Set(); build(0, '', out); return [...out];
 }
-function scoreFromValue(value) { if (typeof value === 'number') return value; if (value && typeof value === 'object') return Math.max(...Object.values(value).filter(v => typeof v === 'number'), 0); return 0; }
-function pushWord(target, word, score = 0) { const clean = String(word || '').trim(); if (!clean || /^\d+$/.test(clean)) return; target.push({ word: clean, score: Number.isFinite(score) ? score : 0 }); }
-function extractWordsFromFrequencyJson(json) {
-  const words = [];
-  if (Array.isArray(json)) json.forEach(item => { if (typeof item === 'string') pushWord(words, item); else if (item && typeof item === 'object') { const key = ['word', 'lemma', 'form', 'token', 'vord'].find(k => item[k]); pushWord(words, item[key], scoreFromValue(item)); } });
-  else if (json && typeof json === 'object') Object.entries(json).forEach(([key, value]) => { if (/^\d+$/.test(key) && value && typeof value === 'object' && !Array.isArray(value)) Object.entries(value).forEach(([word, score]) => pushWord(words, word, scoreFromValue(score))); else pushWord(words, key, scoreFromValue(value)); });
-  return words;
+function frequencyFromValue(value) {
+  if (typeof value === 'number') return value;
+  if (value && typeof value === 'object') {
+    const key = ['ipm', 'frequency', 'freq', 'count', 'value'].find(field => Number.isFinite(Number(value[field])));
+    return key ? Number(value[key]) : 0;
+  }
+  return Number.isFinite(Number(value)) ? Number(value) : 0;
+}
+function pushFrequencyEntry(target, word, frequency = 0) {
+  const clean = String(word || '').trim();
+  if (!clean || /^\d+$/.test(clean)) return;
+  target.push({ word: clean, frequency: Number.isFinite(Number(frequency)) ? Number(frequency) : 0 });
+}
+function extractFrequencyEntries(json) {
+  const entries = [];
+  if (Array.isArray(json)) {
+    json.forEach(item => {
+      if (typeof item === 'string') pushFrequencyEntry(entries, item);
+      else if (item && typeof item === 'object') {
+        const wordKey = ['word', 'lemma', 'form', 'token', 'vord'].find(key => item[key]);
+        pushFrequencyEntry(entries, item[wordKey], frequencyFromValue(item));
+      }
+    });
+  } else if (json && typeof json === 'object') {
+    Object.entries(json).forEach(([key, value]) => {
+      if (/^\d+$/.test(key) && value && typeof value === 'object' && !Array.isArray(value)) {
+        Object.entries(value).forEach(([word, nestedValue]) => pushFrequencyEntry(entries, word, frequencyFromValue(nestedValue)));
+      } else {
+        pushFrequencyEntry(entries, key, frequencyFromValue(value));
+      }
+    });
+  }
+  return entries;
+}
+function normalizeForLanguage(value, langCode) { return langCode === 'ru' ? String(value || '').toLowerCase().replace(/[^а-яё]/g, '') : normalizeLatin(value); }
+function betterEntry(current, next) {
+  if (!current) return next;
+  if (next.frequency !== current.frequency) return next.frequency > current.frequency ? next : current;
+  if (next.word.length !== current.word.length) return next.word.length < current.word.length ? next : current;
+  return next.word.localeCompare(current.word) < 0 ? next : current;
+}
+function buildFrequencyIndex(entries, langCode) {
+  const exact = new Map();
+  const lengthBuckets = new Map();
+  const indexed = [];
+  entries.forEach(entry => {
+    const word = String(entry.word || '').trim();
+    const frequency = Number.isFinite(Number(entry.frequency)) ? Number(entry.frequency) : 0;
+    const normalized = normalizeForLanguage(word, langCode);
+    const latinNormalized = normalizeLatin(word);
+    if (!word || (!normalized && !latinNormalized)) return;
+    const item = { word, frequency, normalized, latinNormalized };
+    indexed.push(item);
+    const length = latinNormalized.length;
+    if (length) {
+      if (!lengthBuckets.has(length)) lengthBuckets.set(length, []);
+      lengthBuckets.get(length).push(item);
+    }
+    if (normalized) exact.set(normalized, betterEntry(exact.get(normalized), item));
+    if (langCode === 'ru' && latinNormalized) exact.set(latinNormalized, betterEntry(exact.get(latinNormalized), item));
+  });
+  return { entries: indexed, exact, lengthBuckets };
 }
 async function loadLanguageFrequency(langCode) {
   if (frequencyCache.has(langCode)) return frequencyCache.get(langCode);
   const entries = [];
   for (const source of FREQUENCY_SOURCES[langCode] || []) {
-    const response = await fetch(source); if (!response.ok) throw new Error(`${langCode}: ${response.status}`);
-    entries.push(...extractWordsFromFrequencyJson(await response.json()).map(item => ({ ...item, source })));
+    const response = await fetch(source);
+    if (!response.ok) throw new Error(`${langCode}: ${response.status}`);
+    extractFrequencyEntries(await response.json()).slice(0, MAX_FREQUENCY_ENTRIES_PER_SOURCE).forEach(item => entries.push({ ...item, source }));
   }
-  const byNorm = new Map();
-  entries.forEach(item => { const norm = normalizeLatin(item.word); if (!norm) return; const previous = byNorm.get(norm); if (!previous || item.score > previous.score || (item.score === previous.score && item.word.length < previous.word.length)) byNorm.set(norm, item); });
-  const data = { entries, byNorm };
-  frequencyCache.set(langCode, data); return data;
+  const index = buildFrequencyIndex(entries, langCode);
+  frequencyCache.set(langCode, index);
+  return index;
 }
-async function loadFrequencySources() { await Promise.all(LANGUAGES.map(lang => loadLanguageFrequency(lang.code))); }
-function betterMatch(current, next) { if (!current) return next; if (next.distance !== current.distance) return next.distance < current.distance ? next : current; if (next.score !== current.score) return next.score > current.score ? next : current; if (next.form.length !== current.form.length) return next.form.length < current.form.length ? next : current; return next.form.localeCompare(current.form) < 0 ? next : current; }
-async function findBestInternationalismMatch(langCode, interalWord) {
-  const data = await loadLanguageFrequency(langCode); const base = normalizeLatin(interalWord); if (!base) return null;
-  const searchCandidates = langCode === 'ru' ? [...new Set([interalWord, ...latinToRuCandidates(interalWord)])] : [interalWord];
+function matchDistanceLimit(value) { return normalizeLatin(value).length >= 4 ? 2 : 0; }
+function emptyMatch(langCode) { return { language: langCode, form: '', distance: null, source: 'frequency_list', match_type: 'not_found', frequency: 0, passed: false }; }
+function betterMatch(current, next) {
+  if (!current) return next;
+  if (next.match_type !== current.match_type) return next.match_type === 'exact' ? next : current;
+  if (next.distance !== current.distance) return next.distance < current.distance ? next : current;
+  if (next.frequency !== current.frequency) return next.frequency > current.frequency ? next : current;
+  if (next.form.length !== current.form.length) return next.form.length < current.form.length ? next : current;
+  return next.form.localeCompare(current.form) < 0 ? next : current;
+}
+function findBestInternationalismMatch(langCode, interalWord, index) {
+  const base = normalizeLatin(interalWord);
+  if (!base) return emptyMatch(langCode);
+  const searchForms = langCode === 'ru' ? [...new Set([interalWord, ...latinToRuCandidates(interalWord)])] : [interalWord];
   let best = null;
-  for (const candidate of searchCandidates) {
-    const norm = normalizeLatin(candidate); const exact = data.byNorm.get(norm);
-    if (exact) best = betterMatch(best, { language: langCode, form: exact.word, distance: formDistance(interalWord, exact.word), source: 'frequency_list', match_type: 'exact', score: exact.score });
+  for (const searchForm of searchForms) {
+    const keys = langCode === 'ru' ? [normalizeForLanguage(searchForm, 'ru'), normalizeLatin(searchForm)].filter(Boolean) : [normalizeLatin(searchForm)];
+    for (const key of keys) {
+      const exact = index.exact.get(key);
+      if (exact) best = betterMatch(best, { language: langCode, form: exact.word, distance: formDistance(interalWord, exact.word), source: 'frequency_list', match_type: 'exact', frequency: exact.frequency, passed: true });
+    }
   }
-  if (best?.distance === 0) return best;
-  if (base.length < 4) return best;
-  for (const item of data.entries) {
-    const norm = normalizeLatin(item.word); if (Math.abs(norm.length - base.length) > 2) continue;
-    const distance = levenshtein(base, norm); if (distance <= 2) best = betterMatch(best, { language: langCode, form: item.word, distance, source: 'frequency_list', match_type: 'fuzzy', score: item.score });
+  if (best?.match_type === 'exact') return best;
+  if (base.length < 4) return best || emptyMatch(langCode);
+  for (let length = base.length - 2; length <= base.length + 2; length += 1) {
+    for (const entry of index.lengthBuckets.get(length) || []) {
+      const distance = levenshtein(base, entry.latinNormalized);
+      if (distance <= 2) best = betterMatch(best, { language: langCode, form: entry.word, distance, source: 'frequency_list', match_type: 'fuzzy', frequency: entry.frequency, passed: true });
+    }
   }
-  return best;
+  return best || emptyMatch(langCode);
+}
+async function searchAllLanguages() {
+  const word = state.word.trim();
+  for (const lang of LANGUAGES) {
+    const index = await loadLanguageFrequency(lang.code);
+    const match = findBestInternationalismMatch(lang.code, word, index);
+    state.evidence[lang.code] = match.form || '';
+    state.autoPassed[lang.code] = Boolean(match.passed);
+    state.manualOverride[lang.code] = null;
+    state.matchMeta[lang.code] = { distance: match.distance, source: match.source, match_type: match.match_type, frequency: match.frequency || 0 };
+  }
 }
 function effectivePassed(langCode) { if (state.manualOverride[langCode] === true) return true; if (state.manualOverride[langCode] === false) return false; return Boolean(state.autoPassed[langCode]); }
-function readEvidence() { for (const lang of LANGUAGES) { const code = lang.code; const old = state.evidence[code] || ''; const value = byId(`form_${code}`)?.value.trim() || ''; if (value !== old) { state.matches[code] = { ...(state.matches[code] || {}), source: old ? 'frequency_list/manual_corrected' : 'manual', match_type: 'manual' }; } state.evidence[code] = value; const pass = byId(`pass_${code}`); state.manualOverride[code] = pass ? (pass.indeterminate ? null : Boolean(pass.checked)) : (state.manualOverride[code] ?? null); const distance = value ? formDistance(state.word, value) : null; if (distance !== null) { state.autoPassed[code] = distance <= (normalizeLatin(state.word).length >= 4 ? 2 : 0); state.matches[code] = { language: code, form: value, distance, source: state.matches[code]?.source || 'manual', match_type: state.matches[code]?.match_type || 'manual' }; } else if (value === '') { state.autoPassed[code] = false; } } }
+function readEvidence() {
+  for (const lang of LANGUAGES) {
+    const code = lang.code;
+    const old = state.evidence[code] || '';
+    const value = byId(`form_${code}`)?.value.trim() || '';
+    const pass = byId(`pass_${code}`);
+    if (pass) state.manualOverride[code] = pass.indeterminate ? null : Boolean(pass.checked);
+    else state.manualOverride[code] = state.manualOverride[code] ?? null;
+    state.evidence[code] = value;
+    const distance = value ? formDistance(state.word, value) : null;
+    if (value !== old) {
+      state.autoPassed[code] = distance !== null && distance <= matchDistanceLimit(state.word);
+      state.matchMeta[code] = { distance, source: 'manual', match_type: value ? 'manual' : 'not_found', frequency: 0 };
+    } else if (!value) {
+      state.autoPassed[code] = false;
+      state.matchMeta[code] = state.matchMeta[code] || { distance: null, source: 'frequency_list', match_type: 'not_found', frequency: 0 };
+    }
+  }
+}
 function readState() { state.word = byId('wordInput')?.value.trim() || ''; state.part_of_speech = byId('posInput')?.value || state.part_of_speech; readEvidence(); }
-async function analyze() { readState(); state.loadError = ''; state.loadingMessage = t('loadingLists'); render(); try { await loadFrequencySources(); state.loadingMessage = t('searching'); render(); const matches = await Promise.all(LANGUAGES.map(lang => findBestInternationalismMatch(lang.code, state.word))); matches.forEach((match, index) => { const code = LANGUAGES[index].code; if (match) { state.evidence[code] = match.form; state.matches[code] = match; state.autoPassed[code] = match.distance <= (normalizeLatin(state.word).length >= 4 ? 2 : 0); if (state.manualOverride[code] === undefined) state.manualOverride[code] = null; } else { state.evidence[code] = ''; state.matches[code] = { language: code, form: '', distance: null, source: 'frequency_list', match_type: 'not_found' }; state.autoPassed[code] = false; } }); } catch (error) { console.error(error); state.loadError = t('loadError'); } finally { state.loadingMessage = ''; render(); } }
+async function analyze() {
+  readState();
+  if (!state.word.trim()) { render(); return; }
+  state.isSearching = true;
+  state.searchError = '';
+  render();
+  try {
+    await searchAllLanguages();
+  } catch (error) {
+    console.error(error);
+    state.searchError = t('searchError');
+  } finally {
+    state.isSearching = false;
+    render();
+  }
+}
 function hasUserInputForReset() { return Boolean(state.word.trim() || Object.values(state.evidence).some(value => String(value || '').trim()) || Object.values(state.manualOverride).some(value => value !== null && value !== undefined) || state.part_of_speech !== 'noun'); }
 function updateResetButtonVisibility() { const resetBtn = byId('resetBtn'); if (resetBtn) resetBtn.style.display = hasUserInputForReset() ? 'grid' : 'none'; }
-function resetAll() { if (!window.confirm(t('resetConfirm'))) return; state = { word: '', part_of_speech: 'noun', evidence: {}, autoPassed: {}, manualOverride: {}, matches: {}, loadingMessage: '', loadError: '' }; render(); }
+function resetAll() { if (!window.confirm(t('resetConfirm'))) return; state = { word: '', part_of_speech: 'noun', evidence: {}, autoPassed: {}, manualOverride: {}, matchMeta: {}, isSearching: false, searchError: '' }; render(); }
 function result() { const passed = LANGUAGES.filter(lang => effectivePassed(lang.code)).length; return { passed, total: 6, accepted: passed >= 5 }; }
 function getAuthorBlock() { if (!byId('useAuthorBlock')?.checked) return null; const displayName = byId('authorDisplayName')?.value.trim() || ''; const contactType = byId('authorContactType')?.value || 'telegram'; const contactValue = byId('authorContactValue')?.value.trim() || ''; const author = {}; if (displayName) author.display_name = displayName; if (contactValue) author.contacts = [{ type: contactType, url: contactValue }]; return Object.keys(author).length ? author : null; }
-function evidenceForCard(lang) { const code = lang.code; const form = state.evidence[code] || ''; const match = state.matches[code] || {}; return { language: code, form, distance: form ? formDistance(state.word, form) : null, source: match.source || (form ? 'manual' : 'frequency_list'), match_type: match.match_type || (form ? 'manual' : 'not_found'), passed: effectivePassed(code) }; }
+function evidenceForCard(lang) { const code = lang.code; const form = state.evidence[code] || ''; const meta = state.matchMeta[code] || {}; return { language: code, form, distance: Number.isFinite(Number(meta.distance)) ? Number(meta.distance) : null, source: meta.source || (form ? 'manual' : 'frequency_list'), match_type: meta.match_type || (form ? 'manual' : 'not_found'), frequency: Number.isFinite(Number(meta.frequency)) ? Number(meta.frequency) : null, passed: effectivePassed(code) }; }
 function makeCard() { const r = result(); const card = { id: createId('in'), version: '1.0', card_type: 'vord_card', vord_type: 'internationalism', status: 'draft', interal: { word: byId('wordInput')?.value.trim() || state.word, part_of_speech: byId('posInput')?.value || state.part_of_speech }, criteria: { required_languages: 5, total_languages: 6, passed_languages: r.passed, max_levenshtein_distance: 2, minimum_word_length_for_fuzzy_match: 4, sources: 'frequency_lists' }, language_evidence: LANGUAGES.map(evidenceForCard), decision: { accepted: r.accepted } }; const author = getAuthorBlock(); if (author) card.author = author; return card; }
 function generateJson() { if (result().accepted) openJsonModal(); }
-function renderEvidenceRows() { return LANGUAGES.map(lang => { const code = lang.code; const form = state.evidence[code] || ''; const distance = form ? formDistance(state.word, form) : null; const passed = effectivePassed(code); const match = state.matches[code] || {}; const override = state.manualOverride[code]; return `<article class="language-card"><div class="language-card__top"><span class="language-code">${code.toUpperCase()}</span><span class="status-mark ${passed ? 'ok' : 'bad'}">${passed ? '✓' : '×'}</span></div><label class="sr-only" for="form_${code}">${langName(code)}</label><input class="interal-input" id="form_${code}" value="${escapeHtml(form)}"><div class="language-card__meta"><span>${t('table.distance')}: ${distance ?? '—'}</span><span>${escapeHtml(match.match_type || t('noForm'))}</span></div><div class="language-card__source">${t('table.source')}: ${escapeHtml(match.source === 'frequency_list' ? t('frequencySource') : (match.source || t('manualSource')))}</div><label class="language-card__check"><input id="pass_${code}" type="checkbox" data-override="${override === null || override === undefined ? 'auto' : 'manual'}" ${passed ? 'checked' : ''}> ${t('table.passed')} <span class="muted">(${override === null || override === undefined ? t('autoMode') : t('manualMode')})</span></label></article>`; }).join(''); }
-function render() { renderChrome(); applyJsonModalTexts(); document.title = t('title'); byId('pageTitle').textContent = t('title'); byId('pageLead').textContent = t('lead'); const r = result(); byId('app').innerHTML = `<div class="vord-grid"><section class="card vord-panel"><h2>${t('params')}</h2><div class="compact-fields"><div class="field"><label for="wordInput">${t('word')}</label><input class="interal-input" id="wordInput" value="${escapeHtml(state.word)}"></div><div class="field"><label for="posInput">${t('pos')}</label><select class="interal-select" id="posInput"><option value="noun">${t('noun')}</option><option value="adjective">${t('adjective')}</option><option value="verb">${t('verb')}</option><option value="adverb">${t('adverb')}</option></select></div></div><div class="actions"><button class="interal-btn interal-btn--primary" id="checkBtn" type="button">${t('check')}</button></div><div class="card-tools"><button id="resetBtn" class="card-reset-btn" type="button" aria-label="${escapeHtml(t('resetAria'))}" style="display:none"><img src="../elements/Eraser%20Square.svg" alt="" aria-hidden="true"></button></div></section><section class="card vord-panel decision-summary"><h2>${t('decision')}</h2><span class="status-pill ${r.accepted ? 'ok' : 'bad'}">${r.accepted ? t('accept') : t('reject')}</span><dl><div><dt>${t('coverage')}</dt><dd>${r.passed}/${r.total}</dd></div><div><dt>${t('required')}</dt><dd>5/6</dd></div></dl></section></div>${state.loadingMessage ? `<div class="notice">${escapeHtml(state.loadingMessage)}</div>` : ''}${state.loadError ? `<div class="notice notice--warning">${escapeHtml(state.loadError)}</div>` : ''}<section class="card vord-panel"><h2>${t('evidence')}</h2><div class="language-grid">${renderEvidenceRows()}</div></section>${r.accepted ? `<div class="actions json-card-bottom-actions"><button class="interal-btn interal-btn--secondary" id="jsonBtn" type="button">${t('json')}</button></div>` : ''}`; if (byId('posInput')) byId('posInput').value = state.part_of_speech; LANGUAGES.forEach(lang => { const pass = byId(`pass_${lang.code}`); if (pass && (state.manualOverride[lang.code] === null || state.manualOverride[lang.code] === undefined)) pass.indeterminate = true; }); updateResetButtonVisibility(); }
+function renderEvidenceRows() {
+  return LANGUAGES.map(lang => {
+    const code = lang.code;
+    const form = state.evidence[code] || '';
+    const meta = state.matchMeta[code] || {};
+    const distance = Number.isFinite(Number(meta.distance)) ? Number(meta.distance) : (form ? formDistance(state.word, form) : null);
+    const frequency = Number.isFinite(Number(meta.frequency)) && Number(meta.frequency) > 0 ? Number(meta.frequency) : null;
+    const passed = effectivePassed(code);
+    const override = state.manualOverride[code];
+    const source = meta.source === 'frequency_list' ? t('frequencySource') : (meta.source || (form ? t('manualSource') : t('frequencySource')));
+    const matchType = meta.match_type || (form ? 'manual' : t('noForm'));
+    const details = [`${t('table.distance')}: ${distance ?? '—'}`, matchType, source];
+    if (frequency !== null) details.push(`freq: ${frequency.toLocaleString(currentLang())}`);
+    return `<article class="language-card"><div class="language-card__top"><span class="language-code">${code.toUpperCase()}</span><span class="status-mark ${passed ? 'ok' : 'bad'}">${passed ? '✓' : '×'}</span></div><label class="sr-only" for="form_${code}">${langName(code)}</label><input class="interal-input" id="form_${code}" value="${escapeHtml(form)}" placeholder="—"><div class="language-card__meta language-card__meta--stack">${details.map(item => `<span>${escapeHtml(item)}</span>`).join('')}</div><label class="language-card__check"><input id="pass_${code}" type="checkbox" data-override="${override === null || override === undefined ? 'auto' : 'manual'}" ${passed ? 'checked' : ''}> ${t('table.passed')} <span class="muted">(${override === null || override === undefined ? t('autoMode') : t('manualMode')})</span></label></article>`;
+  }).join('');
+}
+function render() {
+  renderChrome();
+  applyJsonModalTexts();
+  document.title = t('title');
+  byId('pageTitle').textContent = t('title');
+  byId('pageLead').textContent = t('lead');
+  const r = result();
+  const checkingLabel = currentLang() === 'en' ? 'Searching...' : 'Поиск...';
+  byId('app').innerHTML = `<div class="vord-grid"><section class="card vord-panel"><h2>${t('params')}</h2><div class="compact-fields"><div class="field"><label for="wordInput">${t('word')}</label><input class="interal-input" id="wordInput" value="${escapeHtml(state.word)}"></div><div class="field"><label for="posInput">${t('pos')}</label><select class="interal-select" id="posInput"><option value="noun">${t('noun')}</option><option value="adjective">${t('adjective')}</option><option value="verb">${t('verb')}</option><option value="adverb">${t('adverb')}</option></select></div></div><div class="actions"><button class="interal-btn interal-btn--primary" id="checkBtn" type="button" ${state.isSearching ? 'disabled' : ''}>${state.isSearching ? checkingLabel : t('check')}</button></div><div class="card-tools"><button id="resetBtn" class="card-reset-btn" type="button" aria-label="${escapeHtml(t('resetAria'))}" style="display:none"><img src="../elements/Eraser%20Square.svg" alt="" aria-hidden="true"></button></div></section><section class="card vord-panel decision-summary"><h2>${t('decision')}</h2><span class="status-pill ${r.accepted ? 'ok' : 'bad'}">${r.accepted ? t('accept') : t('reject')}</span><dl><div><dt>${t('coverage')}</dt><dd>${r.passed}/${r.total}</dd></div><div><dt>${t('required')}</dt><dd>5/6</dd></div></dl></section></div>${state.isSearching ? `<div class="notice">${escapeHtml(t('searching'))}</div>` : ''}${state.searchError ? `<div class="notice notice--warning">${escapeHtml(state.searchError)}</div>` : ''}<section class="card vord-panel"><h2>${t('evidence')}</h2><div class="language-grid">${renderEvidenceRows()}</div></section>${r.accepted ? `<div class="actions json-card-bottom-actions"><button class="interal-btn interal-btn--secondary" id="jsonBtn" type="button">${t('json')}</button></div>` : ''}`;
+  if (byId('posInput')) byId('posInput').value = state.part_of_speech;
+  LANGUAGES.forEach(lang => { const pass = byId(`pass_${lang.code}`); if (pass && (state.manualOverride[lang.code] === null || state.manualOverride[lang.code] === undefined)) pass.indeterminate = true; });
+  updateResetButtonVisibility();
+}
 const jsonFilename = 'internationalism-card.json';
 function currentJsonText() { const existing = byId('jsonCardOutput')?.value; return existing || JSON.stringify(makeCard(), null, 2); }
 function openJsonModal() { readState(); const output = byId('jsonCardOutput'); if (output) output.value = JSON.stringify(makeCard(), null, 2); const modal = byId('jsonCardModal'); modal?.classList.add('show'); modal?.setAttribute('aria-hidden', 'false'); }
