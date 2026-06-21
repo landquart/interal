@@ -68,11 +68,11 @@ function renderTranslations(defaults = {}) {
 const I18N = {
   ru: {
     title: 'Internationalismes',
-    lead: 'Проверка интернационализмов: близкая форма должна быть представлена минимум в 5 из 6 контрольных языков.',
+    lead: '',
     params: 'Параметры слова', word: 'Слово в Интерaле', pos: 'Часть речи', noun: 'существительное', adjective: 'прилагательное', verb: 'глагол', adverb: 'наречие',
     evidence: 'Языковое покрытие', result: 'Итог', card: 'JSON-карточка',
     table: { language: 'Язык', form: 'Форма', distance: 'Дистанция', passed: 'Проходит', translation: 'Перевод' },
-    check: 'Проверить', example: 'Пример', json: 'Сформировать JSON', copy: 'Скопировать', download: 'Скачать',
+    check: 'Проверить', json: 'Сформировать JSON', copy: 'Скопировать', download: 'Скачать',
     coverage: 'Покрытие', required: 'Минимум', decision: 'Решение', accept: 'ПРИНЯТО', reject: 'НЕ ПРИНЯТО', reasonOk: 'Критерий 5/6 выполнен.', reasonBad: 'Недостаточное покрытие контрольных языков.'
   },
   en: {
@@ -81,15 +81,15 @@ const I18N = {
     params: 'Word parameters', word: 'Interal word', pos: 'Part of speech', noun: 'noun', adjective: 'adjective', verb: 'verb', adverb: 'adverb',
     evidence: 'Language coverage', result: 'Decision', card: 'JSON card',
     table: { language: 'Language', form: 'Form', distance: 'Distance', passed: 'Passes', translation: 'Translation' },
-    check: 'Check', example: 'Example', json: 'Generate JSON', copy: 'Copy', download: 'Download',
+    check: 'Check', json: 'Generate JSON', copy: 'Copy', download: 'Download',
     coverage: 'Coverage', required: 'Required', decision: 'Decision', accept: 'ACCEPTED', reject: 'NOT ACCEPTED', reasonOk: 'The 5/6 criterion is met.', reasonBad: 'Insufficient control-language coverage.'
   }
 };
 
 let state = {
-  word: 'radio',
+  word: '',
   part_of_speech: 'noun',
-  evidence: { en: 'radio', de: 'Radio', fr: 'radio', es: 'radio', it: 'radio', ru: 'радио' },
+  evidence: {},
   manualPassed: {}
 };
 
@@ -114,10 +114,6 @@ function readEvidence() {
 }
 function analyze() {
   readEvidence();
-  render();
-}
-function fillExample() {
-  state = { word: 'radio', part_of_speech: 'noun', evidence: { en: 'radio', de: 'Radio', fr: 'radio', es: 'radio', it: 'radio', ru: 'радио' }, manualPassed: {} };
   render();
 }
 function result() {
@@ -157,7 +153,7 @@ function render() {
       <section class="card vord-panel"><h2>${t('params')}</h2><div class="compact-fields">
         <div class="field"><label>${t('word')}</label><input class="interal-input" id="wordInput" value="${escapeHtml(state.word)}" oninput="state.word=this.value"></div>
         <div class="field"><label>${t('pos')}</label><select class="interal-select" id="posInput" onchange="state.part_of_speech=this.value"><option value="noun">${t('noun')}</option><option value="adjective">${t('adjective')}</option><option value="verb">${t('verb')}</option><option value="adverb">${t('adverb')}</option></select></div></div>
-        <div class="actions"><button class="interal-btn interal-btn--primary" onclick="analyze()">${t('check')}</button><button class="interal-btn interal-btn--secondary" onclick="fillExample()">${t('example')}</button></div>
+        <div class="actions"><button class="interal-btn interal-btn--primary" onclick="analyze()">${t('check')}</button></div>
       </section>
       <section class="card vord-panel decision-summary"><h2>${t('decision')}</h2><span class="status-pill ${r.accepted ? 'ok' : 'bad'}">${r.accepted ? t('accept') : t('reject')}</span><dl><div><dt>${t('coverage')}</dt><dd>${r.passed}/${r.total}</dd></div><div><dt>${t('required')}</dt><dd>5/6</dd></div></dl></section>
     </div>
