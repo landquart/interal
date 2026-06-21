@@ -96,6 +96,9 @@
     .tool-link[data-tool="indoeuropan"] { --tool-icon-size: 44px; --tool-icon-scale: 1.04; }
     .tool-link[data-tool="associativ"] { --tool-icon-size: 46px; --tool-icon-scale: 1.02; }
     .tool-link[data-tool="determinator"] { --tool-icon-size: 45px; --tool-icon-scale: 1.06; }
+    .tool-link[data-tool="internationalismes"] { --tool-icon-size: 45px; --tool-icon-scale: 1.04; }
+    .tool-link[data-tool="communities"] { --tool-icon-size: 45px; --tool-icon-scale: 1.04; }
+    .tool-link[data-tool="grammar"] { --tool-icon-size: 45px; --tool-icon-scale: 1.04; }
     .tool-link[data-tool="registre"] { --tool-icon-size: 46px; --tool-icon-scale: 1.03; }
     .tool-link-main {
       grid-area: title;
@@ -125,7 +128,6 @@
     }
 
     @media (min-width: 980px) {
-      body.homepage .top-desktop-controls { display: none; }
       .home-wrap {
         display: grid;
         grid-template-columns: minmax(560px, 1.25fr) minmax(320px, 0.75fr);
@@ -181,6 +183,9 @@
       .tool-link[data-tool="indoeuropan"] { --tool-icon-mobile-size: 39px; }
       .tool-link[data-tool="associativ"] { --tool-icon-mobile-size: 40px; }
       .tool-link[data-tool="determinator"] { --tool-icon-mobile-size: 39px; }
+      .tool-link[data-tool="internationalismes"] { --tool-icon-mobile-size: 39px; }
+      .tool-link[data-tool="communities"] { --tool-icon-mobile-size: 39px; }
+      .tool-link[data-tool="grammar"] { --tool-icon-mobile-size: 39px; }
       .tool-link[data-tool="registre"] { --tool-icon-mobile-size: 40px; }
       .tool-link-main {
         font-size: .98rem;
@@ -241,6 +246,21 @@
         <span class="tool-link-main" data-i18n="home.determMain">Determinator of valen typ</span>
         <span class="tool-link-sub" data-i18n="home.determSub">Определитель типа значения</span>
       </a>
+      <a class="tool-link" href="internationalismes/" data-tool="internationalismes">
+        <span class="tool-icon-wrap"><img class="tool-icon" src="elements/internationalismes.svg" alt="" aria-hidden="true" /></span>
+        <span class="tool-link-main" data-i18n="home.internationalismesMain">Internationalismes</span>
+        <span class="tool-link-sub" data-i18n="home.internationalismesSub">Интернационализмы</span>
+      </a>
+      <a class="tool-link" href="vordesofcommunites/" data-tool="communities">
+        <span class="tool-icon-wrap"><img class="tool-icon" src="elements/vordesofcommunites.svg" alt="" aria-hidden="true" /></span>
+        <span class="tool-link-main" data-i18n="home.communitiesMain">Vordes of communités</span>
+        <span class="tool-link-sub" data-i18n="home.communitiesSub">Слова сообществ</span>
+      </a>
+      <a class="tool-link" href="grammaticebrevvordes/" data-tool="grammar">
+        <span class="tool-icon-wrap"><img class="tool-icon" src="elements/grammaticebrevvordes.svg" alt="" aria-hidden="true" /></span>
+        <span class="tool-link-main" data-i18n="home.grammarMain">Grammatic e brev vordes</span>
+        <span class="tool-link-sub" data-i18n="home.grammarSub">Грамматические и краткие слова</span>
+      </a>
       <a class="tool-link" href="registre/" data-tool="registre">
         <span class="tool-icon-wrap"><img class="tool-icon" src="elements/registre.svg" alt="" aria-hidden="true" /></span>
         <span class="tool-link-main" data-i18n="home.registryMain">Registre of vordesen cartes</span>
@@ -259,9 +279,15 @@
           'home.assocMain': 'Associativ vordes',
           'home.determMain': 'Determinator of valen typ',
           'home.registryMain': 'Registre of vordesen cartes',
+          'home.internationalismesMain': 'Internationalismes',
+          'home.communitiesMain': 'Vordes of communités',
+          'home.grammarMain': 'Grammatic e brev vordes',
           'home.indoeuropanSub': 'Индоевропейские слова',
           'home.assocSub': 'Ассоциативные слова',
           'home.determSub': 'Определитель типа значения',
+          'home.internationalismesSub': 'Интернационализмы',
+          'home.communitiesSub': 'Слова сообществ',
+          'home.grammarSub': 'Грамматические и краткие слова',
           'home.registrySub': 'Реестр карточек слов'
         },
         en: {
@@ -269,9 +295,15 @@
           'home.assocMain': 'Associativ vordes',
           'home.determMain': 'Determinator of valen typ',
           'home.registryMain': 'Registre of vordesen cartes',
+          'home.internationalismesMain': 'Internationalismes',
+          'home.communitiesMain': 'Vordes of communités',
+          'home.grammarMain': 'Grammatic e brev vordes',
           'home.indoeuropanSub': 'Indo-European words',
           'home.assocSub': 'Associative words',
           'home.determSub': 'Value type determinator',
+          'home.internationalismesSub': 'Internationalisms',
+          'home.communitiesSub': 'Words of communities',
+          'home.grammarSub': 'Grammatic and short words',
           'home.registrySub': 'Registry of word cards'
         }
       };
