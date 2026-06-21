@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vordes of communités</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <div>
+        <h1 id="pageTitle"></h1>
+        <p id="pageLead"></p>
+      </div>
+      <div class="toolbar">
+        <button class="pill" id="langRu" onclick="setLang('ru')">RU</button>
+        <button class="pill" id="langEn" onclick="setLang('en')">EN</button>
+        <button class="pill" id="themeBtn" onclick="toggleTheme()">Dark</button>
+      </div>
+    </header>
+    <div id="app"></div>
+  </main>
+  <script src="./script.js"></script>
+</body>
+</html>
