@@ -264,7 +264,8 @@ function renderEvidenceRows() {
     const form = state.evidence[code] || '';
     const passed = effectivePassed(code);
     const override = state.manualOverride[code];
-    return `<article class="language-card"><div class="language-card__top"><span class="language-code">${code.toUpperCase()}</span><span class="status-mark ${passed ? 'ok' : 'bad'}">${passed ? '✓' : '×'}</span></div><label class="sr-only" for="form_${code}">${langName(code)}</label><input class="interal-input" id="form_${code}" value="${escapeHtml(form)}" placeholder="—"><label class="language-card__check"><input id="pass_${code}" type="checkbox" aria-label="${escapeHtml(t('table.passed'))}" data-override="${override === null || override === undefined ? 'auto' : 'manual'}" ${passed ? 'checked' : ''}></label></article>`;
+    const name = langName(code);
+    return `<article class="language-card"><div class="language-card__top"><span class="language-code">${escapeHtml(name)}</span><span class="status-mark ${passed ? 'ok' : 'bad'}">${passed ? '✓' : '×'}</span></div><label class="sr-only" for="form_${code}">${escapeHtml(name)}</label><input class="interal-input" id="form_${code}" value="${escapeHtml(form)}" placeholder="—"><label class="language-card__check"><input id="pass_${code}" type="checkbox" aria-label="${escapeHtml(t('table.passed'))}" data-override="${override === null || override === undefined ? 'auto' : 'manual'}" ${passed ? 'checked' : ''}></label></article>`;
   }).join('');
 }
 function render() {
