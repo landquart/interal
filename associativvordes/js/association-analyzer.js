@@ -1,6 +1,6 @@
 import { getFrequencyProfile } from './frequency-loader.js';
 import { getBidirectionalSwow, normalizeSwowWord } from './swow-client.js';
-import { ASSOCIATION_SCORE_WEIGHTS, FINAL_SCORE_WEIGHTS, QWEN_RUNTIME_CONFIG, getQwenAssociationScores, qwenFallback } from './qwen-client.js';
+import { ASSOCIATION_SCORE_WEIGHTS, FINAL_SCORE_WEIGHTS, getQwenAssociationScores, qwenFallback } from './qwen-client.js';
 
 export const THRESHOLDS = {
   main: 35,
@@ -75,9 +75,7 @@ export function calculateFinalScore({ frequency_score, association_score }) {
 
 export function classifyScore(final_score) {
   if (final_score == null) return 'unavailable';
-  if (final_score >= THRESHOLDS.main) return 'accepted';
-  if (final_score >= THRESHOLDS.reviewMin && final_score < THRESHOLDS.reviewMax) return 'needs_review';
-  return 'rejected';
+  return 'scored';
 }
 
 function buildEvaluation(qwen, frequencyScore, swowBonus) {
@@ -145,25 +143,9 @@ export async function analyzeAssociativeWord({ language, targetMeaning, word, on
   if (primary.association_score == null) warnings.push('Association score unavailable');
   if (frequency.frequency_score == null) warnings.push('Frequency score unavailable');
 
-  let review = null;
-  let classification = primary.classification;
-  let final_score = primary.final_score;
-
-  if (QWEN_RUNTIME_CONFIG.enableReviewModel && primary.classification === 'needs_review') {
-    try {
-      onProgress?.(`Qwen3 235B: ${language} — ${word}`);
-      const reviewQwen = await getQwenAssociationScores({ language, targetMeaning, word, swow, review: true });
-      review = buildEvaluation(reviewQwen, frequency.frequency_score, swow_bonus);
-      if (review.final_score == null) {
-        warnings.push('Review Qwen final score unavailable');
-      } else {
-        classification = review.final_score >= THRESHOLDS.main ? 'accepted_after_review' : 'rejected_after_review';
-        final_score = review.final_score;
-      }
-    } catch (error) {
-      warnings.push(`Review Qwen unavailable: ${error.message}`);
-    }
-  }
+  const review = null;
+  const classification = primary.classification;
+  const final_score = primary.final_score;
 
   const diagnostics = {
     swowPath: swow.target_to_word?.diagnostic?.swowPath || swow.word_to_target?.diagnostic?.swowPath || null,
