@@ -69,20 +69,20 @@ const I18N = {
   ru: {
     title: 'Internationalismes',
     lead: 'Проверка интернационализмов: близкая форма должна быть представлена минимум в 5 из 6 контрольных языков.',
-    params: '1) Параметры слова', word: 'Слово в Интерaле', pos: 'Часть речи', noun: 'существительное', adjective: 'прилагательное', verb: 'глагол', adverb: 'наречие',
-    evidence: '2) Языковое покрытие', result: '3) Итог', card: '4) JSON-карточка',
+    params: 'Параметры слова', word: 'Слово в Интерaле', pos: 'Часть речи', noun: 'существительное', adjective: 'прилагательное', verb: 'глагол', adverb: 'наречие',
+    evidence: 'Языковое покрытие', result: 'Итог', card: 'JSON-карточка',
     table: { language: 'Язык', form: 'Форма', distance: 'Дистанция', passed: 'Проходит', translation: 'Перевод' },
     check: 'Проверить', example: 'Пример', json: 'Сформировать JSON', copy: 'Скопировать', download: 'Скачать',
-    coverage: 'Покрытие', required: 'Минимум', decision: 'Решение', accept: 'ПРИНЯТЬ', reject: 'НЕ ПРИНИМАТЬ', reasonOk: 'Критерий 5/6 выполнен.', reasonBad: 'Недостаточное покрытие контрольных языков.'
+    coverage: 'Покрытие', required: 'Минимум', decision: 'Решение', accept: 'ПРИНЯТО', reject: 'НЕ ПРИНЯТО', reasonOk: 'Критерий 5/6 выполнен.', reasonBad: 'Недостаточное покрытие контрольных языков.'
   },
   en: {
     title: 'Internationalismes',
     lead: 'Internationalism check: a close form must be present in at least 5 of 6 control languages.',
-    params: '1) Word parameters', word: 'Interal word', pos: 'Part of speech', noun: 'noun', adjective: 'adjective', verb: 'verb', adverb: 'adverb',
-    evidence: '2) Language coverage', result: '3) Result', card: '4) JSON card',
+    params: 'Word parameters', word: 'Interal word', pos: 'Part of speech', noun: 'noun', adjective: 'adjective', verb: 'verb', adverb: 'adverb',
+    evidence: 'Language coverage', result: 'Decision', card: 'JSON card',
     table: { language: 'Language', form: 'Form', distance: 'Distance', passed: 'Passes', translation: 'Translation' },
     check: 'Check', example: 'Example', json: 'Generate JSON', copy: 'Copy', download: 'Download',
-    coverage: 'Coverage', required: 'Required', decision: 'Decision', accept: 'ACCEPT', reject: 'DO NOT ACCEPT', reasonOk: 'The 5/6 criterion is met.', reasonBad: 'Insufficient control-language coverage.'
+    coverage: 'Coverage', required: 'Required', decision: 'Decision', accept: 'ACCEPTED', reject: 'NOT ACCEPTED', reasonOk: 'The 5/6 criterion is met.', reasonBad: 'Insufficient control-language coverage.'
   }
 };
 
@@ -145,7 +145,7 @@ function renderEvidenceRows() {
     const form = state.evidence[lang.code] || '';
     const distance = form ? formDistance(word, form) : null;
     const passed = state.manualPassed[lang.code] ?? getPassedFor(lang.code, form);
-    return `<tr><td>${langName(lang.code)}</td><td><input class="interal-input" id="form_${lang.code}" value="${escapeHtml(form)}"></td><td>${distance ?? '—'}</td><td class="check-cell"><input id="pass_${lang.code}" type="checkbox" ${passed ? 'checked' : ''}></td></tr>`;
+    return `<article class="language-card"><div class="language-card__top"><span class="language-code">${lang.code.toUpperCase()}</span><span class="status-mark ${passed ? 'ok' : 'bad'}">${passed ? '✓' : '×'}</span></div><label class="sr-only" for="form_${lang.code}">${langName(lang.code)}</label><input class="interal-input" id="form_${lang.code}" value="${escapeHtml(form)}"><div class="language-card__meta">${t('table.distance')}: ${distance ?? '—'}<label class="language-card__check"><input id="pass_${lang.code}" type="checkbox" ${passed ? 'checked' : ''}> ${t('table.passed')}</label></div></article>`;
   }).join('');
 }
 function render() {
@@ -154,14 +154,14 @@ function render() {
   const r = result();
   byId('app').innerHTML = `
     <div class="vord-grid">
-      <section class="card vord-panel"><h2>${t('params')}</h2>
+      <section class="card vord-panel"><h2>${t('params')}</h2><div class="compact-fields">
         <div class="field"><label>${t('word')}</label><input class="interal-input" id="wordInput" value="${escapeHtml(state.word)}" oninput="state.word=this.value"></div>
-        <div class="field"><label>${t('pos')}</label><select class="interal-select" id="posInput" onchange="state.part_of_speech=this.value"><option value="noun">${t('noun')}</option><option value="adjective">${t('adjective')}</option><option value="verb">${t('verb')}</option><option value="adverb">${t('adverb')}</option></select></div>
+        <div class="field"><label>${t('pos')}</label><select class="interal-select" id="posInput" onchange="state.part_of_speech=this.value"><option value="noun">${t('noun')}</option><option value="adjective">${t('adjective')}</option><option value="verb">${t('verb')}</option><option value="adverb">${t('adverb')}</option></select></div></div>
         <div class="actions"><button class="interal-btn interal-btn--primary" onclick="analyze()">${t('check')}</button><button class="interal-btn interal-btn--secondary" onclick="fillExample()">${t('example')}</button></div>
       </section>
-      <section class="card vord-panel"><h2>${t('result')}</h2><div class="metrics"><div class="metric"><strong>${r.passed}/${r.total}</strong><span>${t('coverage')}</span></div><div class="metric"><strong>5/6</strong><span>${t('required')}</span></div><div class="metric"><strong class="status ${r.accepted ? 'ok' : 'bad'}">${r.accepted ? t('accept') : t('reject')}</strong><span>${t('decision')}</span></div></div><div class="decision"><span class="status ${r.accepted ? 'ok' : 'bad'}">${r.accepted ? t('reasonOk') : t('reasonBad')}</span></div></section>
+      <section class="card vord-panel decision-summary"><h2>${t('decision')}</h2><span class="status-pill ${r.accepted ? 'ok' : 'bad'}">${r.accepted ? t('accept') : t('reject')}</span><dl><div><dt>${t('coverage')}</dt><dd>${r.passed}/${r.total}</dd></div><div><dt>${t('required')}</dt><dd>5/6</dd></div></dl></section>
     </div>
-    <section class="card vord-panel"><h2>${t('evidence')}</h2><div class="table-wrap"><table><thead><tr><th>${t('table.language')}</th><th>${t('table.form')}</th><th>${t('table.distance')}</th><th>${t('table.passed')}</th></tr></thead><tbody>${renderEvidenceRows()}</tbody></table></div></section>
+    <section class="card vord-panel"><h2>${t('evidence')}</h2><div class="language-grid">${renderEvidenceRows()}</div></section>
     <div class="actions json-card-bottom-actions"><button class="interal-btn interal-btn--secondary" onclick="generateJson()">${t('json')}</button></div>`;
   if (byId('posInput')) byId('posInput').value = state.part_of_speech;
 }
