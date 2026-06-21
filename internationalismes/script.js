@@ -262,16 +262,9 @@ function renderEvidenceRows() {
   return LANGUAGES.map(lang => {
     const code = lang.code;
     const form = state.evidence[code] || '';
-    const meta = state.matchMeta[code] || {};
-    const distance = Number.isFinite(Number(meta.distance)) ? Number(meta.distance) : (form ? formDistance(state.word, form) : null);
-    const frequency = Number.isFinite(Number(meta.frequency)) && Number(meta.frequency) > 0 ? Number(meta.frequency) : null;
     const passed = effectivePassed(code);
     const override = state.manualOverride[code];
-    const source = meta.source === 'frequency_list' ? t('frequencySource') : (meta.source || (form ? t('manualSource') : t('frequencySource')));
-    const matchType = meta.match_type || (form ? 'manual' : t('noForm'));
-    const details = [`${t('table.distance')}: ${distance ?? '—'}`, matchType, source];
-    if (frequency !== null) details.push(`freq: ${frequency.toLocaleString(currentLang())}`);
-    return `<article class="language-card"><div class="language-card__top"><span class="language-code">${code.toUpperCase()}</span><span class="status-mark ${passed ? 'ok' : 'bad'}">${passed ? '✓' : '×'}</span></div><label class="sr-only" for="form_${code}">${langName(code)}</label><input class="interal-input" id="form_${code}" value="${escapeHtml(form)}" placeholder="—"><div class="language-card__meta language-card__meta--stack">${details.map(item => `<span>${escapeHtml(item)}</span>`).join('')}</div><label class="language-card__check"><input id="pass_${code}" type="checkbox" data-override="${override === null || override === undefined ? 'auto' : 'manual'}" ${passed ? 'checked' : ''}> ${t('table.passed')} <span class="muted">(${override === null || override === undefined ? t('autoMode') : t('manualMode')})</span></label></article>`;
+    return `<article class="language-card"><div class="language-card__top"><span class="language-code">${code.toUpperCase()}</span><span class="status-mark ${passed ? 'ok' : 'bad'}">${passed ? '✓' : '×'}</span></div><label class="sr-only" for="form_${code}">${langName(code)}</label><input class="interal-input" id="form_${code}" value="${escapeHtml(form)}" placeholder="—"><label class="language-card__check"><input id="pass_${code}" type="checkbox" aria-label="${escapeHtml(t('table.passed'))}" data-override="${override === null || override === undefined ? 'auto' : 'manual'}" ${passed ? 'checked' : ''}></label></article>`;
   }).join('');
 }
 function render() {
