@@ -427,7 +427,7 @@
     const menuHeading = menu.querySelector('.menu-nav-heading');
     if (menuHeading) menuHeading.textContent = t.instrumentsLabel;
     const instrumentsLabel = desktopControls.querySelector('[data-instruments-label]');
-    if (instrumentsLabel) instrumentsLabel.textContent = isDesktop ? '' : t.instrumentsLabel;
+    if (instrumentsLabel) instrumentsLabel.textContent = t.instrumentsLabel;
     const instrumentsTrigger = desktopControls.querySelector('.top-desktop-dropdown-trigger');
     if (instrumentsTrigger) instrumentsTrigger.setAttribute('aria-label', t.instrumentsLabel);
     desktopControls.querySelectorAll('[data-nav]').forEach((link) => {
