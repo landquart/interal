@@ -1,4 +1,4 @@
-import { analyzeAssociativeWord } from './js/association-analyzer.js';
+import { analyzeAssociativeWord, THRESHOLDS } from './js/association-analyzer.js';
 import { QWEN_RUNTIME_CONFIG } from './js/qwen-client.js';
 import { formatMetric, resultRowClasses, swowLabel } from './js/render-results.js';
 
@@ -16,16 +16,9 @@ const TEXT_I18N = {
         prepositionOption: 'предлог / приставка',
         searchBtn: 'Найти дериваты и посчитать',
         showExampleBtn: 'Показать пример',
-        exportBtn: 'Экспорт JSON',
-        importBtn: 'Импорт JSON',
+        jsonCardBtn: 'Сформировать JSON-карточку',
         resultTitle: '2) Итог',
         languagesTitle: '3) Языки и дериваты',
-        derivativeDbTitle: '4) Локальная база дериватов',
-        derivativeDbNote: 'Можно заменить на реальные JSON-данные из Kaikki/Wiktionary. Формат: язык → массив слов.',
-        loadDerivativeDataBtn: 'Загрузить базу дериватов',
-        frequencyDbTitle: '5) Локальная база частотных рангов',
-        frequencyDbNote: 'Формат: язык → { слово: ранг }. Можно сгенерировать из wordfreq/top_n_list.',
-        loadFrequencyDataBtn: 'Загрузить частоты',
         reset: 'Сбросить',
         resetConfirm: 'Сбросить введённые данные? Это действие нельзя отменить.',
         manual: 'ручная',
@@ -36,13 +29,21 @@ const TEXT_I18N = {
           Germanic: 'Германская', Romance: 'Романская', Slavic: 'Славянская'
         },
         panel: {
-          group: 'Группа', languageScore: 'Балл языка', weightSum: 'сумма весов', addWord: 'Добавить слово', use: 'Учитывать', word: 'Слово', model: 'Модель', association: 'Ассоциация', rank: 'Ранг', frequency: 'Частота', weightP: 'Вес P', primary: 'первичная — 1', secondary: 'вторичная — {value}', noise: 'мусор — 0'
+          group: 'Группа', languageScore: 'Балл языка', weightSum: 'сумма весов', addWord: 'Добавить слово', use: 'Учитывать', word: 'Слово', model: 'Модель', frequencyPercent: 'Частотность %', directness: 'Прямота связи', fieldRelatedness: 'Близость поля', domainShift: 'Сдвиг области', swowBonus: 'Бонус SWOW', associationPercent: 'Ассоциация %', finalPercent: 'Итог %', status: 'Статус', explanation: 'Объяснение', warnings: 'Предупреждения', details: 'Детали', analyze: 'Анализировать', delete: 'Удалить', association: 'Ассоциация', rank: 'Ранг', frequency: 'Частота', weightP: 'Вес P'
         },
         results: {
-          finalAssociation: 'FA — конечная ассоциация', totalAssociation: 'TA — вся ассоциация', languagesRepresented: 'языков представлено', languageGroups: 'языковых групп', accept: 'ПРИНЯТЬ', reject: 'НЕ ПРИНИМАТЬ', fewerLanguages: 'меньше 3 языков', fewerGroups: 'меньше 2 языковых групп', belowThreshold: 'ниже порога 50%', reasons: 'Причины', allMet: 'Все условия выполнены.'
+          finalAssociation: 'FA — конечная ассоциация', totalAssociation: 'TA — вся ассоциация', languagesRepresented: 'языков представлено', languageGroups: 'языковых групп', accept: 'ПРИНЯТЬ', reject: 'НЕ ПРИНИМАТЬ', fewerLanguages: 'меньше 3 языков', fewerGroups: 'меньше 2 языковых групп', belowThreshold: 'ниже главного порога', reasons: 'Причины', allMet: 'Все условия выполнены.'
         },
         alerts: {
-          derivativeLoaded: 'База дериватов загружена.', derivativeJsonError: 'Ошибка JSON в базе дериватов: ', frequencyLoaded: 'База частот загружена.', frequencyJsonError: 'Ошибка JSON в базе частот: ', importError: 'Ошибка импорта: '
+          jsonCardUnavailable: 'Сначала выполните расчёт.',
+          jsonCardCopied: 'JSON-карточка скопирована',
+          jsonCardCopiedTitle: 'Скопировано',
+          jsonCardEmpty: 'Сначала сгенерируйте JSON-карточку.',
+          jsonCardGenerating: 'Генерация...',
+          jsonCardThresholdUnavailable: 'JSON-карточку можно сформировать только после прохождения главного порога.'
+        },
+        jsonCard: {
+          close: 'Закрыть JSON-карточку', title: 'JSON-карточка', useAuthor: 'Указать авторство', authorName: 'Имя или ник', contactType: 'Тип контакта', contact: 'Контакт', generate: 'Сгенерировать карточку', output: 'Готовый JSON', copy: 'Скопировать JSON-карточку', download: 'Скачать JSON-карточку'
         }
       },
       en: {
@@ -58,16 +59,9 @@ const TEXT_I18N = {
         prepositionOption: 'preposition / prefix',
         searchBtn: 'Find derivatives and calculate',
         showExampleBtn: 'Show example',
-        exportBtn: 'Export JSON',
-        importBtn: 'Import JSON',
+        jsonCardBtn: 'Generate JSON card',
         resultTitle: '2) Result',
         languagesTitle: '3) Languages and derivatives',
-        derivativeDbTitle: '4) Local derivative database',
-        derivativeDbNote: 'Can be replaced with real JSON data from Kaikki/Wiktionary. Format: language → array of words.',
-        loadDerivativeDataBtn: 'Load derivative database',
-        frequencyDbTitle: '5) Local frequency-rank database',
-        frequencyDbNote: 'Format: language → { word: rank }. Can be generated from wordfreq/top_n_list.',
-        loadFrequencyDataBtn: 'Load frequencies',
         reset: 'Reset',
         resetConfirm: 'Reset entered data? This action cannot be undone.',
         manual: 'manual',
@@ -78,13 +72,21 @@ const TEXT_I18N = {
           Germanic: 'Germanic', Romance: 'Romance', Slavic: 'Slavic'
         },
         panel: {
-          group: 'Group', languageScore: 'Language score', weightSum: 'weight sum', addWord: 'Add word', use: 'Use', word: 'Word', model: 'Model', association: 'Association', rank: 'Rank', frequency: 'Frequency', weightP: 'Weight P', primary: 'primary — 1', secondary: 'secondary — {value}', noise: 'noise — 0'
+          group: 'Group', languageScore: 'Language score', weightSum: 'weight sum', addWord: 'Add word', use: 'Use', word: 'Word', model: 'Model', frequencyPercent: 'Frequency %', directness: 'Directness', fieldRelatedness: 'Field relatedness', domainShift: 'Domain shift', swowBonus: 'SWOW bonus', associationPercent: 'Association %', finalPercent: 'Final %', status: 'Status', explanation: 'Explanation', warnings: 'Warnings', details: 'Details', analyze: 'Analyze', delete: 'Delete', association: 'Association', rank: 'Rank', frequency: 'Frequency', weightP: 'Weight P'
         },
         results: {
-          finalAssociation: 'FA — final association', totalAssociation: 'TA — total association', languagesRepresented: 'languages represented', languageGroups: 'language groups', accept: 'ACCEPT', reject: 'DO NOT ACCEPT', fewerLanguages: 'fewer than 3 languages', fewerGroups: 'fewer than 2 language groups', belowThreshold: 'below the 50% threshold', reasons: 'Reasons', allMet: 'All conditions are met.'
+          finalAssociation: 'FA — final association', totalAssociation: 'TA — total association', languagesRepresented: 'languages represented', languageGroups: 'language groups', accept: 'ACCEPT', reject: 'DO NOT ACCEPT', fewerLanguages: 'fewer than 3 languages', fewerGroups: 'fewer than 2 language groups', belowThreshold: 'below the main threshold', reasons: 'Reasons', allMet: 'All conditions are met.'
         },
         alerts: {
-          derivativeLoaded: 'Derivative database loaded.', derivativeJsonError: 'JSON error in derivative database: ', frequencyLoaded: 'Frequency database loaded.', frequencyJsonError: 'JSON error in frequency database: ', importError: 'Import error: '
+          jsonCardUnavailable: 'Run a calculation first.',
+          jsonCardCopied: 'JSON card copied',
+          jsonCardCopiedTitle: 'Copied',
+          jsonCardEmpty: 'Generate the JSON card first.',
+          jsonCardGenerating: 'Generating...',
+          jsonCardThresholdUnavailable: 'The JSON card can be generated only after passing the main threshold.'
+        },
+        jsonCard: {
+          close: 'Close JSON card', title: 'JSON card', useAuthor: 'Add authorship', authorName: 'Name or nickname', contactType: 'Contact type', contact: 'Contact', generate: 'Generate card', output: 'Generated JSON', copy: 'Copy JSON card', download: 'Download JSON card'
         }
       }
     };
@@ -101,13 +103,29 @@ const TEXT_I18N = {
       return TEXT_I18N[currentLang()][key] || TEXT_I18N.ru[key] || key;
     }
 
+
+    function setCalculateButtonStatus(text, disabled = true) {
+      const button = document.querySelector('#calculateBtn');
+      if (!button) return;
+
+      const textEl = button.querySelector('.btn-text') || button;
+
+      textEl.textContent = text;
+      button.disabled = disabled;
+      button.classList.toggle('is-loading', disabled);
+    }
+
+    function defaultCalculateButtonText() {
+      return textValue('searchBtn');
+    }
+
     const LANGUAGES = [
-      { code: 'en', name: 'Английский', group: 'Germanic' },
-      { code: 'de', name: 'Немецкий', group: 'Germanic' },
-      { code: 'fr', name: 'Французский', group: 'Romance' },
-      { code: 'es', name: 'Испанский', group: 'Romance' },
-      { code: 'it', name: 'Итальянский', group: 'Romance' },
-      { code: 'ru', name: 'Русский', group: 'Slavic' }
+      { code: 'en', name: 'English', group: 'Germanic', speakers: 1493000 },
+      { code: 'de', name: 'German', group: 'Germanic', speakers: 133000 },
+      { code: 'fr', name: 'French', group: 'Romance', speakers: 334000 },
+      { code: 'es', name: 'Spanish', group: 'Romance', speakers: 561000 },
+      { code: 'it', name: 'Italian', group: 'Romance', speakers: 66000 },
+      { code: 'ru', name: 'Russian', group: 'Slavic', speakers: 210000 }
     ];
 
     const DEFAULT_DERIVATIVES = {
@@ -168,8 +186,6 @@ const TEXT_I18N = {
         };
       }
 
-      renderDataEditors();
-
       if (missing.length) {
         console.warn(currentLang() === 'en' ? 'Not all JSON files could be loaded; built-in demo data was used:' : 'Не все JSON-файлы удалось загрузить, использованы встроенные демо-данные:', missing.join('; '));
       }
@@ -199,6 +215,74 @@ const TEXT_I18N = {
       const w = stripDiacritics(word);
       const r = stripDiacritics(root);
       return r.length > 0 && w.includes(r);
+    }
+
+    function levenshtein(a, b) {
+      const left = String(a || '');
+      const right = String(b || '');
+
+      const dp = Array.from({ length: left.length + 1 }, () =>
+        Array(right.length + 1).fill(0)
+      );
+
+      for (let i = 0; i <= left.length; i++) dp[i][0] = i;
+      for (let j = 0; j <= right.length; j++) dp[0][j] = j;
+
+      for (let i = 1; i <= left.length; i++) {
+        for (let j = 1; j <= right.length; j++) {
+          const cost = left[i - 1] === right[j - 1] ? 0 : 1;
+          dp[i][j] = Math.min(
+            dp[i - 1][j] + 1,
+            dp[i][j - 1] + 1,
+            dp[i - 1][j - 1] + cost
+          );
+        }
+      }
+
+      return dp[left.length][right.length];
+    }
+
+    function allowedRootDistance(root) {
+      const len = stripDiacritics(root).length;
+      if (len <= 3) return 1;
+      return 2;
+    }
+
+    function fuzzyRootMatch(word, root) {
+      const w = stripDiacritics(word);
+      const r = stripDiacritics(root);
+
+      if (!w || !r || r.length < 4) return null;
+
+      const exactIndex = w.indexOf(r);
+      if (exactIndex !== -1) {
+        return { type: 'exact', distance: 0, fragment: r, index: exactIndex };
+      }
+
+      const maxDistance = allowedRootDistance(r);
+      const minLen = Math.max(3, r.length - maxDistance);
+      const maxLen = r.length + maxDistance;
+      const maxStart = Math.min(w.length - 1, 3);
+      let best = null;
+
+      for (let i = 0; i <= maxStart; i++) {
+        for (let len = minLen; len <= maxLen; len++) {
+          const part = w.slice(i, i + len);
+          if (part.length < minLen) continue;
+
+          const distance = levenshtein(part, r);
+          if (distance <= maxDistance && (!best || distance < best.distance)) {
+            best = { type: 'fuzzy', distance, fragment: part, index: i };
+            if (distance === 1) return best;
+          }
+        }
+      }
+
+      return best;
+    }
+
+    function fuzzyIncludesRoot(word, root) {
+      return Boolean(fuzzyRootMatch(word, root));
     }
 
     function getFrequencyScore(item) {
@@ -254,7 +338,7 @@ const TEXT_I18N = {
     function inferAssociation(word, root, meaning) {
       const w = stripDiacritics(word);
       if (!w || !root) return 0;
-      return includesRoot(w, root) || specialRootMatch('any', w, root) ? 1 : 0;
+      return includesRoot(w, root) || fuzzyIncludesRoot(w, root) || specialRootMatch('any', w, root) ? 1 : 0;
     }
 
     function getRank(lang, word) {
@@ -264,21 +348,41 @@ const TEXT_I18N = {
     }
 
     function wordWeight(item) {
-      return Number.isFinite(Number(item.final_score)) ? Number(item.final_score) : getFrequencyScore(item);
+      const final = Number(item.final_score);
+      if (Number.isFinite(final)) return final;
+
+      const analysisFinal = Number(item.analysis?.final_score);
+      if (Number.isFinite(analysisFinal)) return analysisFinal;
+
+      return null;
     }
 
     function groupByBestModel(items, maxModels) {
       const byModel = new Map();
+
       for (const item of items) {
+        const itemScore = wordWeight(item);
+        if (!Number.isFinite(itemScore)) continue;
+
         const current = byModel.get(item.model);
-        if (!current || wordWeight(item) > wordWeight(current) || (wordWeight(item) === wordWeight(current) && Number(item.rank) < Number(current.rank))) {
+        const currentScore = current ? wordWeight(current) : null;
+
+        if (
+          !current ||
+          itemScore > currentScore ||
+          (itemScore === currentScore && Number(item.rank) < Number(current.rank))
+        ) {
           byModel.set(item.model, item);
         }
       }
+
       return Array.from(byModel.values())
         .sort((a, b) => wordWeight(b) - wordWeight(a) || a.word.localeCompare(b.word))
         .slice(0, maxModels)
-        .map(x => ({ ...x, selected: true }));
+        .map(x => ({
+          ...x,
+          selected: true
+        }));
     }
 
     function failedAnalysis(langCode, item, error) {
@@ -290,11 +394,12 @@ const TEXT_I18N = {
           target_meaning: state.meaning || state.root,
           word: item.word,
           frequency: { frequency_score: null, category_breakdown: {}, warnings: [] },
-          swow: { target_to_word: null, word_to_target: null },
+          swow: { target_to_word: null, word_to_target: null, bonus: 0, source: 'local_swow' },
           association: {
             directness: null,
             field_relatedness: null,
             domain_shift: null,
+            association_score_base: null,
             association_score: null,
             explanation: message
           },
@@ -308,12 +413,15 @@ const TEXT_I18N = {
       };
     }
 
-    async function analyzeCandidateItem(langCode, item) {
+    async function analyzeCandidateItem(langCode, item, onProgress) {
       try {
+        const languageName = textGroup('languages')[langCode] || langCode;
+        onProgress?.(`SWOW: ${languageName} — ${item.word}`);
         const analysis = await analyzeAssociativeWord({
           language: langCode,
           targetMeaning: state.meaning || state.root,
-          word: item.word
+          word: item.word,
+          onProgress: text => onProgress?.(text.replace(`${langCode} —`, `${languageName} —`))
         });
         return {
           ...item,
@@ -321,7 +429,7 @@ const TEXT_I18N = {
           frequency_score: analysis.frequency.frequency_score,
           association_score: analysis.association.association_score,
           final_score: analysis.final_score,
-          selected: false
+          selected: true
         };
       } catch (error) {
         return failedAnalysis(langCode, item, error);
@@ -364,44 +472,68 @@ const TEXT_I18N = {
       };
 
       localWords
-        .filter(w => includesRoot(w, root) || specialRootMatch(langCode, w, root))
+        .map(word => {
+          const fuzzyMatch = fuzzyRootMatch(word, root);
+          if (fuzzyMatch) return { word, match: fuzzyMatch };
+          if (specialRootMatch(langCode, word, root)) {
+            return { word, match: { type: 'special', distance: null, fragment: stripDiacritics(root), index: null } };
+          }
+          return null;
+        })
+        .filter(Boolean)
         .slice(0, 30)
-        .forEach(word => add(word));
+        .forEach(({ word, match }) => add(word, { match }));
 
       return Array.from(byWord.values()).slice(0, QWEN_RUNTIME_CONFIG.maxCandidatesPerLanguage);
     }
 
-    async function searchDerivatives() {
+    async function runCalculation({ onProgress } = {}) {
+      onProgress?.('Подготовка...');
       state.root = normalizeText(document.getElementById('rootInput').value);
       state.meaning = document.getElementById('meaningInput').value.trim();
       state.elementType = document.getElementById('elementType').value;
       state.maxModels = 5;
 
-      const searchBtn = document.getElementById('searchBtn');
-      searchBtn.disabled = true;
-      searchBtn.textContent = currentLang() === 'en' ? 'Calculating…' : 'Расчёт…';
-
       const root = state.root;
       const nextLangs = {};
 
-      try {
-        for (const lang of LANGUAGES) {
-          const candidates = await getLanguageCandidates(lang.code, root);
-          const analyzed = await mapWithConcurrency(
-            candidates,
-            QWEN_RUNTIME_CONFIG.maxConcurrentQwenRequests,
-            item => analyzeCandidateItem(lang.code, item)
-          );
+      onProgress?.('Загрузка частотных списков...');
+      for (const lang of LANGUAGES) {
+        const languageName = textGroup('languages')[lang.code] || lang.name;
+        onProgress?.(`Поиск похожих корней: ${languageName}`);
+        const candidates = await getLanguageCandidates(lang.code, root);
+        onProgress?.(`Qwen3.6: оценка слов — ${languageName}`);
+        const analyzed = await mapWithConcurrency(
+          candidates,
+          QWEN_RUNTIME_CONFIG.maxConcurrentQwenRequests,
+          item => analyzeCandidateItem(lang.code, item, onProgress)
+        );
 
-          nextLangs[lang.code] = groupByBestModel(analyzed, state.maxModels);
-        }
-        state.languages = nextLangs;
-      } finally {
-        searchBtn.disabled = false;
-        applyLocalizedTexts();
+        onProgress?.(`Расчёт языковых баллов: ${languageName}`);
+        nextLangs[lang.code] = groupByBestModel(analyzed, state.maxModels);
       }
+      onProgress?.('Расчёт итогового процента...');
+      state.languages = nextLangs;
+      calculateFinal();
+    }
 
-      renderAll();
+    async function searchDerivatives() {
+      try {
+        setCalculateButtonStatus('Подготовка...', true);
+        await runCalculation({
+          onProgress: text => setCalculateButtonStatus(text, true)
+        });
+        renderAll();
+        setCalculateButtonStatus('Готово', true);
+        setTimeout(() => {
+          setCalculateButtonStatus(defaultCalculateButtonText(), false);
+        }, 800);
+      } catch (error) {
+        console.error(error);
+        setCalculateButtonStatus('Ошибка расчёта', false);
+      } finally {
+        renderAll();
+      }
     }
 
     function specialRootMatch(lang, word, root) {
@@ -416,21 +548,28 @@ const TEXT_I18N = {
     function calculateLanguage(langCode) {
       const items = state.languages[langCode] || [];
       const selected = items.filter(x => x.selected).slice(0, state.maxModels);
-      const sum = selected.reduce((acc, x) => acc + wordWeight(x), 0);
+      const scores = selected
+        .map(wordWeight)
+        .filter(score => Number.isFinite(Number(score)));
+      const sum = scores.reduce((acc, x) => acc + x, 0);
       return {
         sum,
-        normalized: sum / Math.max(1, state.maxModels),
-        count: selected.length
+        normalized: scores.length ? sum / scores.length : null,
+        count: scores.length
       };
     }
 
     function calculateFinal() {
       const languageScores = LANGUAGES.map(l => ({ lang: l, ...calculateLanguage(l.code) }));
-      const totalAssociation = languageScores.reduce((acc, x) => acc + x.normalized, 0);
-      const finalAssociation = totalAssociation / LANGUAGES.length;
-      const representedLangs = languageScores.filter(x => x.count > 0).length;
-      const groups = new Set(languageScores.filter(x => x.count > 0).map(x => x.lang.group));
-      const accepted = representedLangs >= 3 && groups.size >= 2 && finalAssociation >= 50;
+      const represented = languageScores.filter(x => Number.isFinite(Number(x.normalized)));
+      const totalAssociation = represented.reduce((acc, x) => acc + x.normalized, 0);
+      const finalAssociation = represented.length ? totalAssociation / represented.length : 0;
+      const representedLangs = represented.length;
+      const groups = new Set(represented.map(x => x.lang.group));
+      const accepted =
+        representedLangs >= 3 &&
+        groups.size >= 2 &&
+        finalAssociation >= THRESHOLDS.main;
       return { languageScores, totalAssociation, finalAssociation, representedLangs, groups: groups.size, accepted };
     }
 
@@ -478,46 +617,84 @@ const TEXT_I18N = {
           </div>
           <button class="tool-btn interal-btn interal-btn--secondary fit short" onclick="addRow('${activeLang}')">${labels.addWord}</button>
         </div>
-        <table>
-          <thead>
-            <tr>
-              <th>${labels.use}</th>
-              <th>Word</th>
-              <th>${labels.model}</th>
-              <th>Frequency %</th>
-              <th>Directness</th>
-              <th>Field relatedness</th>
-              <th>Domain shift</th>
-              <th>Association %</th>
-              <th>Final %</th>
-              <th>SWOW</th>
-              <th>Explanation</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>${items.map((item, idx) => rowHtml(activeLang, item, idx)).join('')}</tbody>
-        </table>
+        <div class="derivatives-table-wrap">
+          <table class="derivatives-table">
+            <thead>
+              <tr>
+                <th class="col-word sticky-word">${labels.word}</th>
+                <th class="col-score">${labels.finalPercent}</th>
+                <th class="col-score">${labels.associationPercent}</th>
+                <th class="col-score">${labels.frequencyPercent}</th>
+                <th class="col-score">SWOW</th>
+                <th class="col-details">${labels.details}</th>
+                <th class="col-actions"></th>
+              </tr>
+            </thead>
+            <tbody>${items.map((item, idx) => rowHtml(activeLang, item, idx)).join('')}</tbody>
+          </table>
+        </div>
       `;
+    }
+
+    function statusLabel(status) {
+      const labels = currentLang() === 'ru' ? {
+        accepted: 'принято',
+        strong: 'сильный',
+        needs_review: 'нужна проверка',
+        rejected: 'отклонено',
+        accepted_after_review: 'принято после проверки',
+        rejected_after_review: 'отклонено после проверки',
+        unavailable: 'нет данных',
+        analyzing: 'анализируется...',
+        error: 'ошибка'
+      } : {
+        analyzing: 'analyzing...',
+        error: 'error'
+      };
+      return labels[status] || status || (currentLang() === 'ru' ? 'нет данных' : 'unavailable');
     }
 
     function rowHtml(lang, item, idx) {
       const analysis = item.analysis || {};
-      const assoc = analysis.association || {};
-      const warnings = (analysis.warnings || []).join('; ');
+      const assoc = analysis.review || analysis.association || {};
+      const labels = textGroup('panel');
+      const warningList = analysis.warnings || [];
+      const warnings = warningList.join('; ');
       return `
         <tr class="${resultRowClasses(analysis)}" title="${escapeHtml(warnings)}">
-          <td><input class="interal-checkbox" type="checkbox" ${item.selected ? 'checked' : ''} onchange="updateItem('${lang}', ${idx}, 'selected', this.checked)"></td>
-          <td><input class="interal-input" value="${escapeHtml(item.word)}" onchange="updateItem('${lang}', ${idx}, 'word', this.value)"></td>
-          <td><input class="interal-input" value="${escapeHtml(item.model)}" onchange="updateItem('${lang}', ${idx}, 'model', this.value)"></td>
-          <td>${formatMetric(analysis.frequency?.frequency_score ?? item.frequency_score, 2)}</td>
-          <td>${formatMetric(assoc.directness, 0)}</td>
-          <td>${formatMetric(assoc.field_relatedness, 0)}</td>
-          <td>${formatMetric(assoc.domain_shift, 0)}</td>
-          <td>${formatMetric(assoc.association_score ?? item.association_score, 1)}</td>
-          <td><strong>${formatMetric(analysis.final_score ?? item.final_score, 2)}</strong></td>
-          <td>${escapeHtml(swowLabel(analysis.swow))}</td>
-          <td>${escapeHtml(assoc.explanation || warnings || '—')}</td>
-          <td><button class="tool-btn interal-btn interal-btn--secondary interal-btn--small" onclick="analyzeItem('${lang}', ${idx})">Analyze</button><button class="tool-btn interal-btn interal-btn--secondary interal-btn--small" onclick="deleteItem('${lang}', ${idx})">×</button></td>
+          <td class="col-word word-cell sticky-word">
+            <label class="word-with-check">
+              <input
+                type="checkbox"
+                class="word-select"
+                data-action="toggle-word"
+                data-lang="${escapeHtml(lang)}"
+                data-index="${idx}"
+                ${item.selected ? 'checked' : ''}
+                onchange="updateItem('${lang}', ${idx}, 'selected', this.checked)"
+              >
+              <input class="interal-input derivative-word-input word-input" value="${escapeHtml(item.word)}" onchange="updateItem('${lang}', ${idx}, 'word', this.value)">
+            </label>
+          </td>
+          <td class="col-score"><strong>${formatMetric(analysis.final_score ?? item.final_score, 2)}</strong></td>
+          <td class="col-score">${formatMetric(assoc.association_score ?? item.association_score, 1)}</td>
+          <td class="col-score">${formatMetric(analysis.frequency?.frequency_score ?? item.frequency_score, 2)}</td>
+          <td class="col-score">${formatMetric(analysis.swow?.bonus, 1)}</td>
+          <td class="col-details">
+            <details class="derivative-details">
+              <summary>${labels.details}</summary>
+              <dl>
+                <dt>${labels.model}</dt><dd><input class="interal-input derivative-model-input" value="${escapeHtml(item.model)}" onchange="updateItem('${lang}', ${idx}, 'model', this.value)"></dd>
+                <dt>${labels.directness}</dt><dd>${formatMetric(assoc.directness, 0)}</dd>
+                <dt>${labels.fieldRelatedness}</dt><dd>${formatMetric(assoc.field_relatedness, 0)}</dd>
+                <dt>${labels.domainShift}</dt><dd>${formatMetric(assoc.domain_shift, 0)}</dd>
+                <dt>${labels.swowBonus}</dt><dd>${formatMetric(analysis.swow?.bonus, 1)}</dd>
+                <dt>${labels.explanation}</dt><dd>${escapeHtml(assoc.explanation || '—')}</dd>
+                <dt>${labels.warnings}</dt><dd>${escapeHtml(warnings || '—')}</dd>
+              </dl>
+            </details>
+          </td>
+          <td class="col-actions"><button class="word-remove-btn" title="${labels.delete}" aria-label="${labels.delete}" onclick="deleteItem('${lang}', ${idx})">×</button></td>
         </tr>
       `;
     }
@@ -532,12 +709,14 @@ const TEXT_I18N = {
         <div class="metric"><strong>${result.groups}/${new Set(LANGUAGES.map(l => l.group)).size}</strong><span>${labels.languageGroups}</span></div>
       `;
 
-      let statusClass = result.accepted ? 'ok' : (result.finalAssociation >= 40 ? 'warn' : 'bad');
+      let statusClass = result.accepted ? 'ok' : (result.finalAssociation >= THRESHOLDS.main ? 'warn' : 'bad');
       let statusText = result.accepted ? labels.accept : labels.reject;
       let reasons = [];
       if (result.representedLangs < 3) reasons.push(labels.fewerLanguages);
       if (result.groups < 2) reasons.push(labels.fewerGroups);
-      if (result.finalAssociation < 50) reasons.push(labels.belowThreshold);
+      if (result.finalAssociation < THRESHOLDS.main) {
+        reasons.push(labels.belowThreshold);
+      }
 
       document.getElementById('decisionBox').innerHTML = `
         <span class="status ${statusClass}">${statusText}</span>
@@ -545,10 +724,6 @@ const TEXT_I18N = {
       `;
     }
 
-    function renderDataEditors() {
-      document.getElementById('derivativeDataInput').value = JSON.stringify(derivativeData, null, 2);
-      document.getElementById('frequencyDataInput').value = JSON.stringify(frequencyData, null, 2);
-    }
 
 
     function applyLocalizedTexts() {
@@ -561,25 +736,27 @@ const TEXT_I18N = {
         elementTypeLabel: textValue('elementTypeLabel'),
         rootOption: textValue('rootOption'),
         prepositionOption: textValue('prepositionOption'),
-        searchBtn: textValue('searchBtn'),
         showExampleBtn: textValue('showExampleBtn'),
-        exportBtn: textValue('exportBtn'),
-        importBtn: textValue('importBtn'),
+        jsonCardBtn: textValue('jsonCardBtn'),
         resultTitle: textValue('resultTitle'),
-        languagesTitle: textValue('languagesTitle'),
-        derivativeDbTitle: textValue('derivativeDbTitle'),
-        derivativeDbNote: textValue('derivativeDbNote'),
-        loadDerivativeDataBtn: textValue('loadDerivativeDataBtn'),
-        frequencyDbTitle: textValue('frequencyDbTitle'),
-        frequencyDbNote: textValue('frequencyDbNote'),
-        loadFrequencyDataBtn: textValue('loadFrequencyDataBtn')
+        languagesTitle: textValue('languagesTitle')
       };
       Object.entries(mappings).forEach(([id, value]) => {
         const element = document.getElementById(id);
         if (element) element.textContent = value;
       });
+      if (!document.getElementById('calculateBtn')?.disabled) {
+        setCalculateButtonStatus(defaultCalculateButtonText(), false);
+      }
       document.getElementById('rootInput').setAttribute('placeholder', textValue('rootPlaceholder'));
       document.getElementById('meaningInput').setAttribute('placeholder', textValue('meaningPlaceholder'));
+      const jsonCardText = textGroup('jsonCard');
+      Object.entries({ jsonCardTitle: jsonCardText.title, useAuthorBlockLabel: jsonCardText.useAuthor, authorDisplayNameLabel: jsonCardText.authorName, authorContactTypeLabel: jsonCardText.contactType, authorContactValueLabel: jsonCardText.contact, generateJsonCardBtn: jsonCardText.generate, jsonCardOutputLabel: jsonCardText.output }).forEach(([id, value]) => { const element = document.getElementById(id); if (element) element.textContent = value; });
+      document.getElementById('closeJsonCardBtn')?.setAttribute('aria-label', jsonCardText.close);
+      document.getElementById('copyJsonCardBtn')?.setAttribute('aria-label', jsonCardText.copy);
+      document.getElementById('copyJsonCardBtn')?.setAttribute('title', jsonCardText.copy);
+      document.getElementById('downloadJsonCardBtn')?.setAttribute('aria-label', jsonCardText.download);
+      document.getElementById('downloadJsonCardBtn')?.setAttribute('title', jsonCardText.download);
       const resetBtn = document.getElementById('resetBtn');
       resetBtn.setAttribute('aria-label', textValue('reset'));
       resetBtn.setAttribute('title', textValue('reset'));
@@ -592,6 +769,7 @@ const TEXT_I18N = {
       renderLanguagePanel();
       renderResults();
       syncResetButtonVisibility();
+      syncJsonCardButtonVisibility();
       saveLocal();
     }
 
@@ -600,8 +778,16 @@ const TEXT_I18N = {
       item[key] = value;
       if (key === 'word') {
         item.model = inferModel(value, state.root, state.elementType);
+        item.analysisStatus = normalizeText(value) ? 'analyzing' : 'unavailable';
+        item.analysis = null;
+        item.frequency_score = null;
+        item.association_score = null;
+        item.final_score = null;
+        renderAll();
+        if (normalizeText(value)) analyzeItem(lang, idx);
+        return;
       }
-      
+
       renderAll();
     }
 
@@ -609,14 +795,23 @@ const TEXT_I18N = {
       const item = state.languages[lang][idx];
       if (!item || !normalizeText(item.word)) return;
       item.model = item.model || inferModel(item.word, state.root, state.elementType);
-      item.analysis = await analyzeAssociativeWord({
-        language: lang,
-        targetMeaning: state.meaning || state.root,
-        word: item.word
-      });
-      item.frequency_score = item.analysis.frequency.frequency_score;
-      item.association_score = item.analysis.association.association_score;
-      item.final_score = item.analysis.final_score;
+      item.analysisStatus = 'analyzing';
+      renderAll();
+      try {
+        item.analysis = await analyzeAssociativeWord({
+          language: lang,
+          targetMeaning: state.meaning || state.root,
+          word: item.word
+        });
+        item.frequency_score = item.analysis.frequency.frequency_score;
+        item.association_score = item.analysis.association.association_score;
+        item.final_score = item.analysis.final_score;
+        item.selected = true;
+        item.analysisStatus = null;
+      } catch (error) {
+        const failed = failedAnalysis(lang, item, error);
+        Object.assign(item, failed, { analysisStatus: 'error' });
+      }
       renderAll();
     }
 
@@ -630,57 +825,136 @@ const TEXT_I18N = {
       renderAll();
     }
 
-    function loadDerivativeData() {
+
+
+
+    const JSON_CARD_WRAPPER_LIMIT = 4096;
+    const JSON_CARD_START_MARKER = "/card";
+    const JSON_CARD_END_MARKER = "/done";
+    const CREATED_AT_ENDPOINT = "/api/created-at";
+
+    function finiteOrNull(value) {
+      const number = Number(value);
+      return Number.isFinite(number) ? number : null;
+    }
+
+    function createCardId(prefix = 'av') {
+      return `${prefix}_${crypto.randomUUID().replaceAll('-', '')}`;
+    }
+
+    async function getCreatedAt() {
       try {
-        derivativeData = JSON.parse(document.getElementById('derivativeDataInput').value);
-        alert(textGroup('alerts').derivativeLoaded);
-      } catch (e) {
-        alert(textGroup('alerts').derivativeJsonError + e.message);
+        const response = await fetch(CREATED_AT_ENDPOINT, { cache: 'no-cache' });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const data = await response.json();
+        const value = typeof data === 'string' ? data : data?.created_at || data?.createdAt || data?.now || data?.timestamp;
+        const date = new Date(value);
+        if (!value || Number.isNaN(date.getTime())) throw new Error('Invalid server timestamp');
+        return { created_at: String(value), created_at_source: 'server' };
+      } catch (error) {
+        console.warn('created_at server fallback:', error);
+        return { created_at: new Date().toISOString(), created_at_source: 'device' };
       }
     }
 
-    function loadFrequencyData() {
-      try {
-        frequencyData = JSON.parse(document.getElementById('frequencyDataInput').value);
-        alert(textGroup('alerts').frequencyLoaded);
-      } catch (e) {
-        alert(textGroup('alerts').frequencyJsonError + e.message);
-      }
+    function normalizeTelegramContact(value) {
+      const raw = String(value || '').trim();
+      if (!raw) return '';
+      const noProtocol = raw.replace(/^https?:\/\//i, '').replace(/^t\.me\//i, '').replace(/^@/, '').replace(/\/$/, '');
+      return `https://t.me/${noProtocol}`;
     }
 
-    function exportState() {
-      const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `interal-association-${state.root || 'root'}.json`;
-      a.click();
-      URL.revokeObjectURL(url);
+    function normalizeEmailContact(value) {
+      const raw = String(value || '').trim();
+      if (!raw) return '';
+      return raw.toLowerCase().startsWith('mailto:') ? raw : `mailto:${raw}`;
     }
 
-    function importState() {
-      const input = document.createElement('input');
-      input.type = 'file';
-      input.accept = 'application/json';
-      input.onchange = async () => {
-        const file = input.files[0];
-        if (!file) return;
-        try {
-          const text = await file.text();
-          const imported = JSON.parse(text);
-          state = imported;
-          document.getElementById('rootInput').value = state.root || '';
-          document.getElementById('meaningInput').value = state.meaning || '';
-          document.getElementById('elementType').value = state.elementType || 'root';
-          state.maxModels = Number(state.maxModels) || 5;
-          renderAll();
-        } catch (e) {
-          alert(textGroup('alerts').importError + e.message);
-        }
+    function getAuthorBlock() {
+      if (!document.getElementById('useAuthorBlock').checked) return null;
+      const displayName = document.getElementById('authorDisplayName').value.trim();
+      const contactType = document.getElementById('authorContactType').value;
+      const rawContact = document.getElementById('authorContactValue').value.trim();
+      const url = contactType === 'telegram' ? normalizeTelegramContact(rawContact) : contactType === 'email' ? normalizeEmailContact(rawContact) : rawContact;
+      return {
+        ...(displayName ? { display_name: displayName } : {}),
+        contacts: url ? [{ type: contactType, url }] : []
       };
-      input.click();
     }
 
+    function formatGeneratedJsonCard(card) {
+      const json = JSON.stringify(card, null, 2);
+      return json.length <= JSON_CARD_WRAPPER_LIMIT ? json : `${JSON_CARD_START_MARKER}\n${json}\n${JSON_CARD_END_MARKER}`;
+    }
+
+    function makeAssociativeCard(timeMeta, author = null) {
+      const result = calculateFinal();
+      const supportedGroups = [...new Set(result.languageScores.filter((x) => Number.isFinite(Number(x.normalized))).map((x) => x.lang.group))];
+      return {
+        id: createCardId('av'),
+        version: '1.0',
+        card_type: 'vord_card',
+        vord_type: 'av',
+        status: 'draft',
+        created_at: timeMeta.created_at,
+        created_at_source: timeMeta.created_at_source,
+        interal: { word: state.root || '', part_of_speech: state.elementType || 'root' },
+        translation: { language: 'ru', word: state.meaning || '' },
+        ...(author ? { author } : {}),
+        supported_groups: supportedGroups,
+        calculation: {
+          association_percent: finiteOrNull(result.finalAssociation),
+          weighted_sum: finiteOrNull(result.totalAssociation),
+          total_speakers_thousands: LANGUAGES.reduce((sum, lang) => sum + (Number(lang.speakers) || 0), 0),
+          represented_languages: result.representedLangs,
+          represented_groups: result.groups,
+          thresholds: { strong: 55, accept: THRESHOLDS.main, review_min: THRESHOLDS.reviewMin, review_max: THRESHOLDS.reviewMax, reject_below: THRESHOLDS.rejectBelow },
+          weights: { association_score: 0.65, frequency_score: 0.35 }
+        },
+        language_results: LANGUAGES.map((lang) => {
+          const selected = (state.languages[lang.code] || []).filter((item) => item.selected);
+          const best = selected.sort((a, b) => (wordWeight(b) || -1) - (wordWeight(a) || -1))[0];
+          if (!best) {
+            return { code: lang.code, name: lang.name, group: lang.group, speakers_thousands: finiteOrNull(lang.speakers), word: '', normalized_graphic: '', selected: false, match: null, frequency: { score: null, ipm: null, category_breakdown: {} }, association: null, swow: null, final_score: null, status: 'unavailable', supports_group: false };
+          }
+          const analysis = best.analysis || {};
+          const association = analysis.review || analysis.association || {};
+          return {
+            code: lang.code,
+            name: lang.name,
+            group: lang.group,
+            speakers_thousands: finiteOrNull(lang.speakers),
+            word: best.word || '',
+            normalized_graphic: stripDiacritics(best.word || ''),
+            selected: true,
+            match: best.match ? { type: best.match.type, root: state.root || '', fragment: best.match.fragment || '', distance: finiteOrNull(best.match.distance) } : null,
+            frequency: { score: finiteOrNull(analysis.frequency?.frequency_score ?? best.frequency_score), ipm: null, category_breakdown: analysis.frequency?.category_breakdown || {} },
+            association: { directness: finiteOrNull(association.directness), field_relatedness: finiteOrNull(association.field_relatedness), domain_shift: finiteOrNull(association.domain_shift), swow_bonus: finiteOrNull(analysis.swow?.bonus || 0), score_base: finiteOrNull(association.association_score_base), score: finiteOrNull(association.association_score), explanation: association.explanation || '' },
+            swow: { found: Boolean(analysis.swow?.bonus), bonus: finiteOrNull(analysis.swow?.bonus || 0), target_to_word: analysis.swow?.target_to_word || null, word_to_target: analysis.swow?.word_to_target || null },
+            final_score: finiteOrNull(analysis.final_score ?? best.final_score),
+            status: Number.isFinite(Number(analysis.final_score ?? best.final_score)) ? 'scored' : 'unavailable',
+            supports_group: Number.isFinite(Number(analysis.final_score ?? best.final_score))
+          };
+        })
+      };
+    }
+
+    function openJsonCardModal() {
+      if (!hasPassedJsonCardThreshold()) {
+        alert(textGroup('alerts').jsonCardThresholdUnavailable);
+        return;
+      }
+      if (!Object.values(state.languages || {}).some((items) => items.some((item) => item.selected))) {
+        alert(textGroup('alerts').jsonCardUnavailable);
+        return;
+      }
+      document.getElementById('jsonCardOutput').value = '';
+      document.getElementById('jsonCardModal').classList.add('show');
+    }
+
+    function closeJsonCardModal() {
+      document.getElementById('jsonCardModal').classList.remove('show');
+    }
 
     function hasUserInputForReset() {
       const hasRoot = normalizeText(document.getElementById('rootInput').value).length > 0;
@@ -688,6 +962,15 @@ const TEXT_I18N = {
       const hasTypeChange = document.getElementById('elementType').value !== 'root';
       const hasLanguageRows = Object.values(state.languages || {}).some((items) => Array.isArray(items) && items.length > 0);
       return hasRoot || hasMeaning || hasTypeChange || hasLanguageRows;
+    }
+
+    function hasPassedJsonCardThreshold() {
+      return calculateFinal().finalAssociation >= THRESHOLDS.main;
+    }
+
+    function syncJsonCardButtonVisibility() {
+      const jsonCardBtn = document.getElementById('jsonCardBtn');
+      if (jsonCardBtn) jsonCardBtn.hidden = !hasPassedJsonCardThreshold();
     }
 
     function syncResetButtonVisibility() {
@@ -751,13 +1034,10 @@ const TEXT_I18N = {
     document.getElementById('rootInput').addEventListener('input', syncResetButtonVisibility);
     document.getElementById('meaningInput').addEventListener('input', syncResetButtonVisibility);
     document.getElementById('elementType').addEventListener('change', syncResetButtonVisibility);
-    document.getElementById('searchBtn').addEventListener('click', () => searchDerivatives());
+    document.getElementById('calculateBtn').addEventListener('click', () => searchDerivatives());
     document.getElementById('showExampleBtn').addEventListener('click', showExample);
-        document.getElementById('exportBtn').addEventListener('click', exportState);
-    document.getElementById('importBtn').addEventListener('click', importState);
+    document.getElementById('jsonCardBtn').addEventListener('click', openJsonCardModal);
     document.getElementById('resetBtn').addEventListener('click', resetAll);
-    document.getElementById('loadDerivativeDataBtn').addEventListener('click', loadDerivativeData);
-    document.getElementById('loadFrequencyDataBtn').addEventListener('click', loadFrequencyData);
     document.addEventListener('interal:languagechange', renderAll);
     window.addEventListener('resize', syncTabWidths);
 
@@ -766,6 +1046,47 @@ const TEXT_I18N = {
     window.addRow = addRow;
     window.analyzeItem = analyzeItem;
     window.QWEN_RUNTIME_CONFIG = QWEN_RUNTIME_CONFIG;
+
+    document.getElementById('closeJsonCardBtn').addEventListener('click', closeJsonCardModal);
+    document.getElementById('jsonCardModal').addEventListener('click', (event) => {
+      if (event.target === document.getElementById('jsonCardModal')) closeJsonCardModal();
+    });
+    document.getElementById('useAuthorBlock').addEventListener('change', (event) => {
+      document.getElementById('jsonAuthorFields').style.display = event.target.checked ? 'block' : 'none';
+    });
+    document.getElementById('generateJsonCardBtn').addEventListener('click', async () => {
+      const btn = document.getElementById('generateJsonCardBtn');
+      const original = textGroup('jsonCard').generate;
+      try {
+        btn.disabled = true;
+        btn.textContent = textGroup('alerts').jsonCardGenerating;
+        document.getElementById('jsonCardOutput').value = formatGeneratedJsonCard(makeAssociativeCard(await getCreatedAt(), getAuthorBlock()));
+      } finally {
+        btn.disabled = false;
+        btn.textContent = original;
+      }
+    });
+    document.getElementById('copyJsonCardBtn').addEventListener('click', async () => {
+      const output = document.getElementById('jsonCardOutput');
+      if (!output.value.trim()) { alert(textGroup('alerts').jsonCardEmpty); return; }
+      await navigator.clipboard.writeText(output.value);
+      const btn = document.getElementById('copyJsonCardBtn');
+      btn.classList.add('is-copied');
+      btn.title = textGroup('alerts').jsonCardCopiedTitle;
+      window.setTimeout(() => { btn.classList.remove('is-copied'); btn.title = textGroup('jsonCard').copy; }, 1500);
+    });
+    document.getElementById('downloadJsonCardBtn').addEventListener('click', () => {
+      const output = document.getElementById('jsonCardOutput');
+      if (!output.value.trim()) { alert(textGroup('alerts').jsonCardEmpty); return; }
+      const blob = new Blob([output.value], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${state.root || 'associativ'}-vord-card.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+
     window.testQwenAssociation = async function () {
       return await fetch('/api/qwen-association', {
         method: 'POST',

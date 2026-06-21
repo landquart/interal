@@ -1,22 +1,22 @@
 import { API_CONFIG } from './swow-client.js';
 
 export const ASSOCIATION_SCORE_WEIGHTS = {
-  directness: 0.50,
+  directness: 0.45,
   field_relatedness: 0.35,
-  inverse_domain_shift: 0.15
+  inverse_domain_shift: 0.20
 };
 
 export const FINAL_SCORE_WEIGHTS = {
-  frequency_score: 0.45,
-  association_score: 0.55
+  frequency_score: 0.35,
+  association_score: 0.65
 };
 
 export const QWEN_RUNTIME_CONFIG = {
   enableCandidateGeneration: false,
-  enableReviewModel: false,
+  enableReviewModel: true,
   maxCandidatesPerLanguage: 5,
   maxConcurrentQwenRequests: 1,
-  maxReviewRequestsPerSearch: 0
+  maxReviewRequestsPerSearch: 5
 };
 
 export function qwenFallback() {
@@ -30,7 +30,7 @@ export function qwenFallback() {
 
 export function buildQwenAssociationPrompt({ language, targetMeaning, word, swow }) {
   return {
-    system: 'You are a lexical association evaluator for an international auxiliary language project. Evaluate the semantic association between an existing word in a natural language and a target meaning. Do not evaluate the constructed Interal candidate form. Return only valid JSON. Use 0–100 integer scores. directness = how directly the word points to the target meaning. field_relatedness = how strongly the word belongs to the same semantic field as the target meaning. domain_shift = how strongly the word\'s modern meaning belongs to a different competing domain.',
+    system: 'You are a lexical association evaluator for an international auxiliary language project. Evaluate semantic association between target meaning and associative word. Do not generate candidate words. Do not evaluate the constructed Interal candidate form. Return only valid JSON. Use 0–100 integer scores. directness = how directly the word points to the target meaning. field_relatedness = how strongly the word belongs to the same semantic field as the target meaning. domain_shift = how strongly the word\'s modern meaning belongs to a different competing domain.',
     user: `Language: ${language}\nTarget meaning: ${targetMeaning}\nAssociative word: ${word}\nSWOW evidence: ${JSON.stringify(swow || {})}\n\nReturn JSON:\n{\n  "word": "...",\n  "target_meaning": "...",\n  "directness": 0-100,\n  "field_relatedness": 0-100,\n  "domain_shift": 0-100,\n  "short_explanation": "..."\n}`
   };
 }
@@ -65,18 +65,9 @@ function parseQwenPayload(payload) {
     directness: clampIntegerOrNull(object.directness),
     field_relatedness: clampIntegerOrNull(object.field_relatedness),
     domain_shift: clampIntegerOrNull(object.domain_shift),
-    short_explanation: object.short_explanation || object.explanation || ''
+    short_explanation: object.short_explanation || object.explanation || '',
+    model: payload?.model || payload?.kind || ''
   };
-}
-
-function parseCandidatesPayload(payload) {
-  const raw = payload?.content ?? payload;
-  const object = typeof raw === 'string' ? JSON.parse(extractJsonText(raw)) : raw;
-  const candidates = Array.isArray(object) ? object : object?.candidates;
-  if (!Array.isArray(candidates)) return [];
-  return candidates
-    .map(candidate => ({ word: String(candidate.word || '').trim(), reason: String(candidate.reason || '').trim() }))
-    .filter(candidate => candidate.word);
 }
 
 async function callQwen(prompt, { model, review = false } = {}) {
@@ -103,16 +94,10 @@ async function callQwen(prompt, { model, review = false } = {}) {
 
 export async function getQwenAssociationScores({ language, targetMeaning, word, swow, review = false }) {
   const prompt = buildQwenAssociationPrompt({ language, targetMeaning, word, swow });
-  return parseQwenPayload(await callQwen(prompt, {
-    model: review ? API_CONFIG.qwenReviewModel : API_CONFIG.qwenPrimaryModel,
+  const requestedModel = review ? API_CONFIG.qwenReviewModel : API_CONFIG.qwenPrimaryModel;
+  const parsed = parseQwenPayload(await callQwen(prompt, {
+    model: requestedModel,
     review
   }));
-}
-
-export async function getQwenAssociativeCandidates({ language, targetMeaning, root, max = 20 }) {
-  const prompt = {
-    system: 'You generate candidate associative words for an international auxiliary language project. Return only valid JSON. Do not invent constructed Interal forms. Return real words in the specified natural language. Words should be associated with the target meaning and, when possible, connected to the candidate root graphically/morphologically/etymologically. Return an array.',
-    user: `Language: ${language}\nTarget meaning: ${targetMeaning}\nCandidate root: ${root}\nMaximum candidates: ${max}\n\nReturn JSON:\n{\n  "candidates": [\n    {"word": "...", "reason": "..."}\n  ]\n}`
-  };
-  return parseCandidatesPayload(await callQwen(prompt, { model: API_CONFIG.qwenPrimaryModel, review: false })).slice(0, max);
+  return { ...parsed, model: requestedModel };
 }
