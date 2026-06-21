@@ -17,30 +17,57 @@
     indoeuropanvordes: {
       path: 'indoeuropanvordes/',
       icon: 'elements/indoeuropan%20vordes.svg',
-      labelKey: 'navSimilarita'
+      labelKey: 'navSimilarita',
+      group: 'instruments'
     },
     associativ: {
       path: 'associativvordes/',
       icon: 'elements/associativ%20vordes.svg',
-      labelKey: 'navAssociativ'
+      labelKey: 'navAssociativ',
+      group: 'instruments'
     },
     determinator: {
       path: 'determinatorofvalentyp/',
       icon: 'elements/determinator%20of%20valen%20typ.svg',
-      labelKey: 'navDeterminator'
+      labelKey: 'navDeterminator',
+      group: 'instruments'
+    },
+    internationalismes: {
+      path: 'internationalismes/',
+      icon: 'elements/internationalismes.svg',
+      labelKey: 'navInternationalismes',
+      group: 'instruments'
+    },
+    communities: {
+      path: 'vordesofcommunites/',
+      icon: 'elements/vordesofcommunites.svg',
+      labelKey: 'navCommunities',
+      group: 'instruments'
+    },
+    grammar: {
+      path: 'grammaticebrevvordes/',
+      icon: 'elements/grammaticebrevvordes.svg',
+      labelKey: 'navGrammar',
+      group: 'instruments'
     },
     registry: {
       path: 'registre/',
       icon: 'elements/registre.svg',
-      labelKey: 'navRegistry'
+      labelKey: 'navRegistry',
+      group: 'registry'
     }
   };
+
+  const instrumentNavKeys = Object.keys(pageNavItems).filter((key) => pageNavItems[key].group === 'instruments');
 
   function getCurrentPageNav() {
     const path = window.location.pathname;
     if (path.includes('/indoeuropanvordes/')) return 'indoeuropanvordes';
     if (path.includes('/associativvordes/')) return 'associativ';
     if (path.includes('/determinatorofvalentyp/')) return 'determinator';
+    if (path.includes('/internationalismes/')) return 'internationalismes';
+    if (path.includes('/vordesofcommunites/')) return 'communities';
+    if (path.includes('/grammaticebrevvordes/')) return 'grammar';
     if (path.includes('/registre/')) return 'registry';
     return '';
   }
@@ -62,6 +89,10 @@
       navAssociativ: 'Associativ vordes',
       navDeterminator: 'Determinator of valen typ',
       navRegistry: 'Registre of vordesen cartes',
+      navInternationalismes: 'Internationalismes',
+      navCommunities: 'Vordes of communités',
+      navGrammar: 'Grammatic e brev vordes',
+      instrumentsLabel: 'Инструменты',
       navAriaLabel: 'Разделы сайта',
       ru: 'Русский',
       en: 'English',
@@ -86,6 +117,10 @@
       navAssociativ: 'Associativ vordes',
       navDeterminator: 'Determinator of valen typ',
       navRegistry: 'Registre of vordesen cartes',
+      navInternationalismes: 'Internationalismes',
+      navCommunities: 'Vordes of communités',
+      navGrammar: 'Grammatic e brev vordes',
+      instrumentsLabel: 'Instruments',
       navAriaLabel: 'Site sections',
       ru: 'Русский',
       en: 'English',
@@ -125,9 +160,20 @@
 
   const desktopControls = document.createElement('div');
   desktopControls.className = 'top-desktop-controls';
-  desktopControls.innerHTML = Object.entries(pageNavItems).map(([key, item]) => `
-    <a class="top-desktop-link" href="${joinUrl(item.path)}" data-nav="${key}"><span class="top-desktop-link-main"></span></a>
-  `).join('');
+  desktopControls.innerHTML = `
+    <div class="top-desktop-dropdown" data-instruments-menu>
+      <button class="top-desktop-link top-desktop-dropdown-trigger" type="button" aria-expanded="false" aria-haspopup="true">
+        <span class="top-desktop-link-main" data-instruments-label></span>
+      </button>
+      <div class="top-desktop-dropdown-menu" role="menu">
+        ${instrumentNavKeys.map((key) => {
+          const item = pageNavItems[key];
+          return `<a class="top-desktop-dropdown-link" href="${joinUrl(item.path)}" data-nav="${key}" role="menuitem"><img class="top-desktop-dropdown-icon" src="${joinUrl(item.icon)}" alt="" aria-hidden="true" /><span class="top-desktop-link-main"></span></a>`;
+        }).join('')}
+      </div>
+    </div>
+    <a class="top-desktop-link" href="${joinUrl(pageNavItems.registry.path)}" data-nav="registry"><span class="top-desktop-link-main"></span></a>
+  `;
 
   const mobileCurrentPageLink = document.createElement('a');
   mobileCurrentPageLink.className = 'top-current-page-link';
@@ -144,7 +190,15 @@
     <h2 class="menu-title"></h2>
     <div class="menu-divider menu-divider--mobile" aria-hidden="true"></div>
     <nav class="menu-nav" aria-label="Site sections">
-      ${Object.entries(pageNavItems).map(([key, item]) => `<a class="menu-nav-link" href="${joinUrl(item.path)}" data-nav="${key}"><span class="menu-nav-main"></span></a>`).join('')}
+      <div class="menu-nav-section" data-menu-section="instruments">
+        <div class="menu-nav-heading"></div>
+        ${instrumentNavKeys.map((key) => {
+          const item = pageNavItems[key];
+          return `<a class="menu-nav-link" href="${joinUrl(item.path)}" data-nav="${key}"><img class="menu-nav-icon" src="${joinUrl(item.icon)}" alt="" aria-hidden="true" /><span class="menu-nav-main"></span></a>`;
+        }).join('')}
+      </div>
+      <div class="menu-divider menu-divider--mobile" aria-hidden="true"></div>
+      <a class="menu-nav-link" href="${joinUrl(pageNavItems.registry.path)}" data-nav="registry"><img class="menu-nav-icon" src="${joinUrl(pageNavItems.registry.icon)}" alt="" aria-hidden="true" /><span class="menu-nav-main"></span></a>
       ${canCopyPageState ? `
       <div class="menu-divider menu-divider--mobile" aria-hidden="true"></div>
       <button class="menu-copy-btn" type="button" data-copy-state="true">
@@ -238,7 +292,7 @@
   }
 
   function applyAdaptiveTextContrast() {
-    const targets = document.querySelectorAll('.menu-nav-link, .menu-copy-btn, .top-desktop-link, .menu-lang-modal .menu-lang-btn');
+    const targets = document.querySelectorAll('.menu-nav-link, .menu-copy-btn, .top-desktop-link, .top-desktop-dropdown-link, .menu-lang-modal .menu-lang-btn');
     targets.forEach((el) => {
       const bg = getComputedStyle(el).backgroundColor;
       const color = getContrastColorForBackground(bg);
@@ -364,26 +418,21 @@
     if (siteNav) siteNav.setAttribute('aria-label', t.navAriaLabel);
     menuButtonText.textContent = isDesktop ? t.desktopMenuLabel : t.mobileMenuLabel;
 
-    const indoeuropanvordesLink = menu.querySelector('[data-nav="indoeuropanvordes"]');
-    const associativLink = menu.querySelector('[data-nav="associativ"]');
-    const determinatorLink = menu.querySelector('[data-nav="determinator"]');
-    const registryLink = menu.querySelector('[data-nav="registry"]');
-    if (indoeuropanvordesLink) {
-      indoeuropanvordesLink.querySelector('.menu-nav-main').textContent = t.navSimilarita;
-    }
-    if (associativLink) {
-      associativLink.querySelector('.menu-nav-main').textContent = t.navAssociativ;
-    }
-    if (determinatorLink) {
-      determinatorLink.querySelector('.menu-nav-main').textContent = t.navDeterminator;
-    }
-    if (registryLink) {
-      registryLink.querySelector('.menu-nav-main').textContent = t.navRegistry;
-    }
-
     const labels = Object.fromEntries(Object.entries(pageNavItems).map(([key, item]) => [key, t[item.labelKey]]));
-    desktopControls.querySelectorAll('.top-desktop-link').forEach((link) => {
-      link.querySelector('.top-desktop-link-main').textContent = labels[link.dataset.nav] || '';
+    menu.querySelectorAll('[data-nav]').forEach((link) => {
+      const label = labels[link.dataset.nav] || '';
+      const main = link.querySelector('.menu-nav-main, .top-desktop-link-main');
+      if (main) main.textContent = label;
+    });
+    const menuHeading = menu.querySelector('.menu-nav-heading');
+    if (menuHeading) menuHeading.textContent = t.instrumentsLabel;
+    const instrumentsLabel = desktopControls.querySelector('[data-instruments-label]');
+    if (instrumentsLabel) instrumentsLabel.textContent = t.instrumentsLabel;
+    const instrumentsTrigger = desktopControls.querySelector('.top-desktop-dropdown-trigger');
+    if (instrumentsTrigger) instrumentsTrigger.setAttribute('aria-label', t.instrumentsLabel);
+    desktopControls.querySelectorAll('[data-nav]').forEach((link) => {
+      const main = link.querySelector('.top-desktop-link-main');
+      if (main) main.textContent = labels[link.dataset.nav] || '';
     });
     const currentMobileNav = getCurrentPageNav();
     if (currentMobileNav && labels[currentMobileNav]) {
@@ -598,7 +647,7 @@
   document.body.prepend(topNav);
 
   document.addEventListener('mouseover', (event) => {
-    const target = event.target.closest?.('.menu-nav-link, .menu-copy-btn, .top-desktop-link, .menu-lang-modal .menu-lang-btn');
+    const target = event.target.closest?.('.menu-nav-link, .menu-copy-btn, .top-desktop-link, .top-desktop-dropdown-link, .menu-lang-modal .menu-lang-btn');
     if (target) requestAnimationFrame(applyAdaptiveTextContrast);
   });
 
@@ -607,6 +656,18 @@
   applyMobileBrandLogo();
   window.addEventListener('resize', applyMobileBrandLogo);
   markCurrentPage();
+
+
+  const instrumentsMenu = desktopControls.querySelector('[data-instruments-menu]');
+  const instrumentsTrigger = desktopControls.querySelector('.top-desktop-dropdown-trigger');
+  if (instrumentsMenu && instrumentsTrigger) {
+    instrumentsMenu.addEventListener('mouseenter', () => instrumentsTrigger.setAttribute('aria-expanded', 'true'));
+    instrumentsMenu.addEventListener('mouseleave', () => instrumentsTrigger.setAttribute('aria-expanded', 'false'));
+    instrumentsMenu.addEventListener('focusin', () => instrumentsTrigger.setAttribute('aria-expanded', 'true'));
+    instrumentsMenu.addEventListener('focusout', (event) => {
+      if (!instrumentsMenu.contains(event.relatedTarget)) instrumentsTrigger.setAttribute('aria-expanded', 'false');
+    });
+  }
 
   menuButton.addEventListener('click', function () {
     if (document.body.classList.contains('menu-open')) closeMenu();

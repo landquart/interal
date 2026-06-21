@@ -213,7 +213,7 @@ body.dark-theme .top-nav-window::after {
   z-index: 1;
 }
 .top-nav,.top-nav *,.side-menu,.side-menu *{box-sizing:border-box}
-.top-menu-btn,.top-brand,.top-current-page-link,.top-desktop-link,.menu-nav-link,.menu-copy-btn,.menu-lang-trigger,.menu-theme-toggle,.menu-lang-modal-content,.side-menu{border:0;box-shadow:none}
+.top-menu-btn,.top-brand,.top-current-page-link,.top-desktop-link,.top-desktop-dropdown-link,.menu-nav-link,.menu-copy-btn,.menu-lang-trigger,.menu-theme-toggle,.menu-lang-modal-content,.side-menu{border:0;box-shadow:none}
 .top-menu-btn{min-width:44px;height:44px;border-radius:999px;background:transparent;color:var(--text);border:1px solid transparent;cursor:pointer;display:flex;align-items:center;justify-content:center}.top-menu-btn-text{display:none}.top-menu-btn-icon{font-size:28px;line-height:1}
 .top-brand{display:inline-flex;align-items:center;gap:6px;height:44px;padding:0 16px 0 8px;color:var(--text);text-decoration:none;font-weight:700;min-width:0;position:absolute;left:50%;transform:translateX(-50%)}
 .top-brand-logo{width:32px;height:32px}
@@ -240,7 +240,22 @@ body.menu-open .side-menu-overlay{opacity:1;pointer-events:auto}
 .menu-lang-modal .menu-lang-btn.is-active{background:var(--surface-elevated);color:var(--text)}
 .has-global-menu{padding-top:86px}
 .top-desktop-controls{margin-left:auto;display:none;align-items:center;gap:6px}
-.top-desktop-link{color:var(--text);text-decoration:none;padding:8px 12px;border-radius:999px;background:transparent;border:1px solid transparent;font-weight:600;position:relative;overflow:hidden;isolation:isolate}
+.top-desktop-link{color:var(--text);text-decoration:none;padding:8px 12px;border-radius:999px;background:transparent;border:1px solid transparent;font-weight:600;position:relative;overflow:hidden;isolation:isolate;display:inline-flex;align-items:center;gap:6px;font:600 .95rem "Jost","Helvetica Neue",Helvetica,Arial,sans-serif;cursor:pointer}
+
+.top-desktop-dropdown{position:relative;display:inline-flex;}
+.top-desktop-dropdown-trigger::after{content:"⌄";font-size:.82em;line-height:1;transform:translateY(-1px);}
+.top-desktop-dropdown-menu{position:absolute;top:calc(100% + 10px);left:50%;min-width:260px;padding:8px;display:grid;gap:4px;transform:translate(-50%, -6px);opacity:0;pointer-events:none;border-radius:22px;background:var(--nav-bg);border:1px solid var(--nav-pill-border);box-shadow:var(--shadow-md);backdrop-filter:blur(24px) saturate(1.6);-webkit-backdrop-filter:blur(24px) saturate(1.6);transition:opacity .18s ease,transform .18s ease;}
+.top-desktop-dropdown:hover .top-desktop-dropdown-menu,.top-desktop-dropdown:focus-within .top-desktop-dropdown-menu{opacity:1;pointer-events:auto;transform:translate(-50%, 0);}
+.top-desktop-dropdown-link{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:16px;color:var(--text);text-decoration:none;font-weight:600;white-space:nowrap;background:transparent;border:1px solid transparent;transition:transform .18s ease,background-color .18s ease,border-color .18s ease;}
+.top-desktop-dropdown-link:hover{transform:translateY(-1px);background:var(--surface-hover);border-color:var(--border-subtle);}
+.top-desktop-dropdown-link.is-active{background:var(--surface-hover);border-color:var(--border-subtle);}
+.top-desktop-dropdown-icon{width:22px;height:22px;object-fit:contain;filter:var(--menu-icon-filter, none);}
+.top-desktop-dropdown:has(.top-desktop-dropdown-link.is-active) > .top-desktop-dropdown-trigger{color:var(--text);transform:translateY(1px);background:linear-gradient(180deg,rgba(0,0,0,.08) 0%,rgba(255,255,255,.06) 45%,rgba(255,255,255,.16) 100%);border:1px solid rgba(255,255,255,.30);box-shadow:inset 0 3px 10px rgba(0,0,0,.24),inset 0 -1px 0 rgba(255,255,255,.42),inset 0 0 0 1px rgba(255,255,255,.08),0 1px 0 rgba(255,255,255,.16);}
+body.dark-theme .top-desktop-dropdown:has(.top-desktop-dropdown-link.is-active) > .top-desktop-dropdown-trigger{background:linear-gradient(180deg,rgba(0,0,0,.40) 0%,rgba(255,255,255,.035) 48%,rgba(255,255,255,.075) 100%);border:1px solid rgba(255,255,255,.16);box-shadow:inset 0 3px 11px rgba(0,0,0,.62),inset 0 -1px 0 rgba(255,255,255,.13),inset 0 0 0 1px rgba(255,255,255,.045),0 1px 0 rgba(255,255,255,.06);}
+.menu-nav-heading{padding:2px 12px 8px;color:var(--text-muted);font-size:.82rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;}
+.menu-nav-link{display:flex;align-items:center;gap:10px;}
+.menu-nav-icon{width:22px;height:22px;object-fit:contain;filter:var(--menu-icon-filter, none);flex:0 0 auto;}
+
 .top-desktop-link:not(.is-active):hover{transform:translateY(-1px);background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.18);box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 8px 18px rgba(0,0,0,.08)}
 .top-desktop-link.is-active{color:var(--text);transform:translateY(1px);background:linear-gradient(180deg,rgba(0,0,0,.08) 0%,rgba(255,255,255,.06) 45%,rgba(255,255,255,.16) 100%);border:1px solid rgba(255,255,255,.30);box-shadow:inset 0 3px 10px rgba(0,0,0,.24),inset 0 -1px 0 rgba(255,255,255,.42),inset 0 0 0 1px rgba(255,255,255,.08),0 1px 0 rgba(255,255,255,.16)}
 .top-desktop-link.is-active::before{content:"";position:absolute;inset:2px;border-radius:inherit;pointer-events:none;z-index:-1;background:linear-gradient(180deg,rgba(255,255,255,.16) 0%,rgba(255,255,255,.04) 38%,rgba(0,0,0,.10) 100%);opacity:.95}
@@ -264,13 +279,13 @@ body.dark-theme .top-desktop-link.is-active::before{background:linear-gradient(1
 .top-nav-window,.top-nav-window *,.side-menu,.side-menu *{font-family:"Jost","Helvetica Neue",Helvetica,Arial,sans-serif}
 
 
-.top-menu-btn,.top-current-page-link,.menu-theme-toggle,.menu-lang-trigger,.menu-nav-link,.menu-copy-btn,.top-desktop-link{transition:transform .22s ease,background-color .22s ease,color .22s ease,border-color .22s ease,box-shadow .22s ease,filter .22s ease}
+.top-menu-btn,.top-current-page-link,.menu-theme-toggle,.menu-lang-trigger,.menu-nav-link,.menu-copy-btn,.top-desktop-link,.top-desktop-dropdown-link{transition:transform .22s ease,background-color .22s ease,color .22s ease,border-color .22s ease,box-shadow .22s ease,filter .22s ease}
 .top-menu-btn:hover,.top-current-page-link:hover,.menu-theme-toggle:hover,.menu-lang-trigger:hover{transform:translateY(-1px);background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.18);box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 8px 18px rgba(0,0,0,.08)}
 body.dark-theme .top-menu-btn:hover,body.dark-theme .top-current-page-link:hover,body.dark-theme .menu-theme-toggle:hover,body.dark-theme .menu-lang-trigger:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.12);box-shadow:inset 0 1px 0 rgba(255,255,255,.10),0 8px 18px rgba(0,0,0,.22)}
 .menu-nav-link:hover,.menu-copy-btn:hover{transform:translateY(-2px) scale(1.01)}
-.top-menu-btn:active,.top-current-page-link:active,.menu-theme-toggle:active,.menu-lang-trigger:active,.menu-nav-link:active,.menu-copy-btn:active,.top-desktop-link:active{transform:scale(.98)}
-.top-menu-btn:focus-visible,.top-current-page-link:focus-visible,.menu-theme-toggle:focus-visible,.menu-lang-trigger:focus-visible,.menu-nav-link:focus-visible,.menu-copy-btn:focus-visible,.top-desktop-link:focus-visible{outline:2px solid var(--focus-outline);outline-offset:2px;box-shadow:0 0 0 5px var(--focus-ring)}
-.menu-nav-link,.menu-copy-btn,.top-desktop-link{color:var(--text)}
+.top-menu-btn:active,.top-current-page-link:active,.menu-theme-toggle:active,.menu-lang-trigger:active,.menu-nav-link:active,.menu-copy-btn:active,.top-desktop-link:active,.top-desktop-dropdown-link:active{transform:scale(.98)}
+.top-menu-btn:focus-visible,.top-current-page-link:focus-visible,.menu-theme-toggle:focus-visible,.menu-lang-trigger:focus-visible,.menu-nav-link:focus-visible,.menu-copy-btn:focus-visible,.top-desktop-link:focus-visible,.top-desktop-dropdown-link:focus-visible{outline:2px solid var(--focus-outline);outline-offset:2px;box-shadow:0 0 0 5px var(--focus-ring)}
+.menu-nav-link,.menu-copy-btn,.top-desktop-link,.top-desktop-dropdown-link{color:var(--text)}
 .menu-nav-link:hover,.menu-copy-btn:hover{background:var(--surface-hover);color:var(--text)}
 .menu-theme-toggle:hover,.menu-lang-trigger:hover{transform:translateY(-1px)}
 .menu-lang-trigger:hover .menu-lang-icon-img,.menu-copy-btn:hover .menu-copy-icon-link,.menu-copy-btn:focus-visible .menu-copy-icon-link{filter:var(--menu-icon-filter, none)}
