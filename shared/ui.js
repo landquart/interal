@@ -11,7 +11,7 @@
   const siteRoot = sharedPath.replace(/\/shared\/ui\.js$/, '/');
   const joinUrl = (path) => new URL(path.replace(/^\//, ''), window.location.origin + siteRoot).pathname;
 
-  const canCopyPageState = /\/(indoeuropanvordes|associativvordes|determinatorofvalentyp)(\/|$)/.test(window.location.pathname);
+  const canCopyPageState = /\/(indoeuropanvordes|associativvordes|determinatorofvalentyp|internationalismes|vordesofcommunites|grammaticebrevvordes)(\/|$)/.test(window.location.pathname);
 
   const pageNavItems = {
     indoeuropanvordes: {
@@ -427,7 +427,7 @@
     const menuHeading = menu.querySelector('.menu-nav-heading');
     if (menuHeading) menuHeading.textContent = t.instrumentsLabel;
     const instrumentsLabel = desktopControls.querySelector('[data-instruments-label]');
-    if (instrumentsLabel) instrumentsLabel.textContent = t.instrumentsLabel;
+    if (instrumentsLabel) instrumentsLabel.textContent = isDesktop ? '' : t.instrumentsLabel;
     const instrumentsTrigger = desktopControls.querySelector('.top-desktop-dropdown-trigger');
     if (instrumentsTrigger) instrumentsTrigger.setAttribute('aria-label', t.instrumentsLabel);
     desktopControls.querySelectorAll('[data-nav]').forEach((link) => {

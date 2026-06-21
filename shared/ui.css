@@ -270,6 +270,7 @@ body.dark-theme .top-desktop-link.is-active::before{background:linear-gradient(1
 
 @media (min-width:980px){
   .side-menu .menu-nav-link{display:none;}
+  .side-menu .menu-nav-heading{display:none;}
   .side-menu .menu-nav{margin-top:0;padding-top:0;}
   .top-desktop-link + .top-desktop-link{position:relative;padding-left:18px;margin-left:6px;}
   .top-desktop-link + .top-desktop-link::after{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:1px;height:18px;background:color-mix(in srgb,var(--text) 32%, transparent);}
