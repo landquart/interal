@@ -359,18 +359,29 @@ const TEXT_I18N = {
 
     function groupByBestModel(items, maxModels) {
       const byModel = new Map();
+
       for (const item of items) {
+        const itemScore = wordWeight(item);
+        if (!Number.isFinite(itemScore)) continue;
+
         const current = byModel.get(item.model);
-        if (!current || wordWeight(item) > wordWeight(current) || (wordWeight(item) === wordWeight(current) && Number(item.rank) < Number(current.rank))) {
+        const currentScore = current ? wordWeight(current) : null;
+
+        if (
+          !current ||
+          itemScore > currentScore ||
+          (itemScore === currentScore && Number(item.rank) < Number(current.rank))
+        ) {
           byModel.set(item.model, item);
         }
       }
+
       return Array.from(byModel.values())
         .sort((a, b) => wordWeight(b) - wordWeight(a) || a.word.localeCompare(b.word))
         .slice(0, maxModels)
         .map(x => ({
           ...x,
-          selected: ['accepted', 'accepted_after_review'].includes(x.analysis?.classification)
+          selected: true
         }));
     }
 
@@ -418,7 +429,7 @@ const TEXT_I18N = {
           frequency_score: analysis.frequency.frequency_score,
           association_score: analysis.association.association_score,
           final_score: analysis.final_score,
-          selected: false
+          selected: true
         };
       } catch (error) {
         return failedAnalysis(langCode, item, error);
@@ -612,7 +623,6 @@ const TEXT_I18N = {
               <tr>
                 <th class="col-word sticky-word">${labels.word}</th>
                 <th class="col-score">${labels.finalPercent}</th>
-                <th class="col-status">${labels.status}</th>
                 <th class="col-score">${labels.associationPercent}</th>
                 <th class="col-score">${labels.frequencyPercent}</th>
                 <th class="col-score">SWOW</th>
@@ -650,7 +660,6 @@ const TEXT_I18N = {
       const labels = textGroup('panel');
       const warningList = analysis.warnings || [];
       const warnings = warningList.join('; ');
-      const classification = item.analysisStatus || analysis.classification || 'unavailable';
       return `
         <tr class="${resultRowClasses(analysis)}" title="${escapeHtml(warnings)}">
           <td class="col-word word-cell sticky-word">
@@ -668,7 +677,6 @@ const TEXT_I18N = {
             </label>
           </td>
           <td class="col-score"><strong>${formatMetric(analysis.final_score ?? item.final_score, 2)}</strong></td>
-          <td class="col-status"><span class="status">${escapeHtml(statusLabel(classification))}</span></td>
           <td class="col-score">${formatMetric(assoc.association_score ?? item.association_score, 1)}</td>
           <td class="col-score">${formatMetric(analysis.frequency?.frequency_score ?? item.frequency_score, 2)}</td>
           <td class="col-score">${formatMetric(analysis.swow?.bonus, 1)}</td>
@@ -798,6 +806,7 @@ const TEXT_I18N = {
         item.frequency_score = item.analysis.frequency.frequency_score;
         item.association_score = item.analysis.association.association_score;
         item.final_score = item.analysis.final_score;
+        item.selected = true;
         item.analysisStatus = null;
       } catch (error) {
         const failed = failedAnalysis(lang, item, error);
@@ -812,7 +821,7 @@ const TEXT_I18N = {
     }
 
     function addRow(lang) {
-      state.languages[lang].push({ word: '', model: '', analysis: null, frequency_score: null, association_score: null, final_score: null, selected: false });
+      state.languages[lang].push({ word: '', model: '', analysis: null, frequency_score: null, association_score: null, final_score: null, selected: true });
       renderAll();
     }
 
@@ -923,8 +932,8 @@ const TEXT_I18N = {
             association: { directness: finiteOrNull(association.directness), field_relatedness: finiteOrNull(association.field_relatedness), domain_shift: finiteOrNull(association.domain_shift), swow_bonus: finiteOrNull(analysis.swow?.bonus || 0), score_base: finiteOrNull(association.association_score_base), score: finiteOrNull(association.association_score), explanation: association.explanation || '' },
             swow: { found: Boolean(analysis.swow?.bonus), bonus: finiteOrNull(analysis.swow?.bonus || 0), target_to_word: analysis.swow?.target_to_word || null, word_to_target: analysis.swow?.word_to_target || null },
             final_score: finiteOrNull(analysis.final_score ?? best.final_score),
-            status: analysis.classification || 'accepted',
-            supports_group: Number(analysis.final_score ?? best.final_score) >= THRESHOLDS.main
+            status: Number.isFinite(Number(analysis.final_score ?? best.final_score)) ? 'scored' : 'unavailable',
+            supports_group: Number.isFinite(Number(analysis.final_score ?? best.final_score))
           };
         })
       };
