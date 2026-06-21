@@ -29,7 +29,7 @@ const TEXT_I18N = {
           Germanic: 'Германская', Romance: 'Романская', Slavic: 'Славянская'
         },
         panel: {
-          group: 'Группа', languageScore: 'Балл языка', weightSum: 'сумма весов', addWord: 'Добавить слово', use: 'Учитывать', word: 'Слово', model: 'Модель', frequencyPercent: 'Частотность %', directness: 'Прямота связи', fieldRelatedness: 'Близость поля', domainShift: 'Сдвиг домена', swowBonus: 'Бонус SWOW', associationPercent: 'Ассоциация %', finalPercent: 'Итог %', status: 'Статус', explanation: 'Объяснение', warnings: 'Предупреждения', details: 'Детали', analyze: 'Анализировать', delete: 'Удалить', association: 'Ассоциация', rank: 'Ранг', frequency: 'Частота', weightP: 'Вес P'
+          group: 'Группа', languageScore: 'Балл языка', weightSum: 'сумма весов', addWord: 'Добавить слово', use: 'Учитывать', word: 'Слово', model: 'Модель', frequencyPercent: 'Частотность %', directness: 'Прямота связи', fieldRelatedness: 'Близость поля', domainShift: 'Сдвиг области', swowBonus: 'Бонус SWOW', associationPercent: 'Ассоциация %', finalPercent: 'Итог %', status: 'Статус', explanation: 'Объяснение', warnings: 'Предупреждения', details: 'Детали', analyze: 'Анализировать', delete: 'Удалить', association: 'Ассоциация', rank: 'Ранг', frequency: 'Частота', weightP: 'Вес P'
         },
         results: {
           finalAssociation: 'FA — конечная ассоциация', totalAssociation: 'TA — вся ассоциация', languagesRepresented: 'языков представлено', languageGroups: 'языковых групп', accept: 'ПРИНЯТЬ', reject: 'НЕ ПРИНИМАТЬ', fewerLanguages: 'меньше 3 языков', fewerGroups: 'меньше 2 языковых групп', belowThreshold: 'ниже главного порога', reasons: 'Причины', allMet: 'Все условия выполнены.'
