@@ -4,23 +4,30 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Grammatic e brev vordes</title>
-  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="../shared/ui.css" />
+  <link rel="stylesheet" href="./styles.css" />
 </head>
-<body>
-  <main class="page">
-    <header class="hero">
-      <div>
-        <h1 id="pageTitle"></h1>
-        <p id="pageLead"></p>
-      </div>
-      <div class="toolbar">
-        <button class="pill" id="langRu" onclick="setLang('ru')">RU</button>
-        <button class="pill" id="langEn" onclick="setLang('en')">EN</button>
-        <button class="pill" id="themeBtn" onclick="toggleTheme()">Dark</button>
-      </div>
+<body class="grammar-page">
+  <main class="vord-page-shell">
+    <header class="vord-page-hero">
+      <h1 id="pageTitle">Grammatic e brev vordes</h1>
+      <p id="pageLead"></p>
     </header>
     <div id="app"></div>
   </main>
+  <div id="jsonCardModal" aria-hidden="true">
+    <div class="modal-inner" role="dialog" aria-modal="true" aria-labelledby="jsonCardTitle">
+      <button id="closeJsonCardBtn" class="json-card-close-btn" type="button" aria-label="Закрыть JSON-карточку"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke-width="2.4" stroke-linecap="round" /></svg></button>
+      <h3 class="json-card-title" id="jsonCardTitle">JSON-карточка</h3>
+      <textarea id="jsonOutput" class="interal-textarea json-card-output" spellcheck="false" readonly></textarea>
+      <div class="json-card-actions">
+        <button id="copyJsonCardBtn" class="interal-btn interal-btn--secondary" type="button">Скопировать</button>
+        <button id="downloadJsonCardBtn" class="interal-btn interal-btn--secondary" type="button">Скачать</button>
+      </div>
+    </div>
+  </div>
+  <script src="../shared/copy-plain.js"></script>
+  <script src="../shared/ui.js"></script>
   <script src="./script.js"></script>
 </body>
 </html>

@@ -38,12 +38,7 @@ function downloadJson(filename, text) {
 function copyText(text) {
   navigator.clipboard?.writeText(text).catch(() => {});
 }
-function renderChrome() {
-  document.documentElement.dataset.theme = currentTheme();
-  byId('langRu')?.classList.toggle('active', currentLang() === 'ru');
-  byId('langEn')?.classList.toggle('active', currentLang() === 'en');
-  if (byId('themeBtn')) byId('themeBtn').textContent = currentTheme() === 'dark' ? 'Light' : 'Dark';
-}
+function renderChrome() {}
 function levenshtein(a, b) {
   a = String(a || '').toLowerCase();
   b = String(b || '').toLowerCase();
@@ -67,7 +62,7 @@ function readTranslations() {
   return LANGUAGES.map(lang => ({ language: lang.code, word: byId(`tr_${lang.code}`)?.value.trim() || '' }));
 }
 function renderTranslations(defaults = {}) {
-  return `<div class="table-wrap"><table><thead><tr><th>${t('table.language')}</th><th>${t('table.translation')}</th></tr></thead><tbody>${LANGUAGES.map(lang => `<tr><td>${langName(lang.code)}</td><td><input id="tr_${lang.code}" value="${escapeHtml(defaults[lang.code] || '')}"></td></tr>`).join('')}</tbody></table></div>`;
+  return `<div class="table-wrap"><table><thead><tr><th>${t('table.language')}</th><th>${t('table.translation')}</th></tr></thead><tbody>${LANGUAGES.map(lang => `<tr><td>${langName(lang.code)}</td><td><input class="interal-input" id="tr_${lang.code}" value="${escapeHtml(defaults[lang.code] || '')}"></td></tr>`).join('')}</tbody></table></div>`;
 }
 
 const I18N = {
@@ -81,7 +76,36 @@ function result(){ const n=state.criteria.filter(Boolean).length; return {passed
 function fillExample(){ state={ word:'in', part_of_speech:'preposition', meaning:'location inside', translations:{en:'in',de:'in',fr:'en',es:'en',it:'in',ru:'в'}, arguments:'Форма короткая, легко произносится и связана с международными словами типа in-, intra-, internal.', criteria:[true,true,true,true], comments:['Слово состоит из двух букв.','Форма не содержит трудных сочетаний.','Форма связана с международными словами и предлогами типа in-, intra-, internal.','Форма не конфликтует с уже принятыми базовыми словами.']}; render(); }
 async function qwenAnalyze(){ readState(); try { const res=await fetch('/api/qwen-criteria',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({type:'grammar_short_word', model:'qwen3-235b-a22b-fp8/latest', word:state.word, meaning:state.meaning, arguments:state.arguments, translations:readTranslations(), criteria:CRITERIA_NAMES})}); if(!res.ok) throw new Error('HTTP '+res.status); const data=await res.json(); if(Array.isArray(data.criteria)){ data.criteria.slice(0,4).forEach((c,i)=>{ state.criteria[i]=Boolean(c.value ?? c.passed); state.comments[i]=c.comment || state.comments[i]; }); } render(); } catch(e){ alert(t('qwenUnavailable')); } }
 function makeCard(){ const r=result(); return { id:createId('gr'), version:'1.0', card_type:'vord_card', vord_type:'grammar_short_word', status:'draft', interal:{word:state.word, part_of_speech:state.part_of_speech}, translations:LANGUAGES.map(lang=>({language:lang.code, word:state.translations[lang.code]||''})), function:{meaning:state.meaning}, criteria:CRITERIA_NAMES.map((name,i)=>({name, value:Boolean(state.criteria[i]), comment:state.comments[i]||''})), decision:{accepted:r.accepted} }; }
-function generateJson(){ readState(); byId('jsonOutput').value=JSON.stringify(makeCard(),null,2); }
-function renderCriteria(){ return `<div class="criteria-list">${CRITERIA_NAMES.map((name,i)=>`<div class="criterion"><p><strong>${escapeHtml(name)}</strong><br><input id="comment_${i}" value="${escapeHtml(state.comments[i])}" aria-label="${t('comment')}"></p><select disabled><option>${state.criteria[i]?'true':'false'}</option></select><input id="crit_${i}" type="checkbox" ${state.criteria[i]?'checked':''}></div>`).join('')}</div>`; }
-function render(){ renderChrome(); document.title=t('title'); byId('pageTitle').textContent=t('title'); byId('pageLead').textContent=t('lead'); const r=result(); byId('app').innerHTML=`<div class="grid"><section class="card"><h2 class="section-title">${t('params')}</h2><div class="field"><label>${t('word')}</label><input id="wordInput" value="${escapeHtml(state.word)}"></div><div class="field"><label>${t('pos')}</label><select id="posInput"><option value="preposition">${t('preposition')}</option><option value="conjunction">${t('conjunction')}</option><option value="particle">${t('particle')}</option><option value="adverb">${t('adverb')}</option></select></div><div class="field"><label>${t('meaning')}</label><input id="meaningInput" value="${escapeHtml(state.meaning)}"></div><div class="field"><label>${t('arguments')}</label><textarea id="argumentsInput">${escapeHtml(state.arguments)}</textarea></div><div class="actions"><button class="tool-btn primary" onclick="readState();render()">${t('check')}</button><button class="tool-btn" onclick="qwenAnalyze()">${t('qwen')}</button><button class="tool-btn" onclick="fillExample()">${t('example')}</button></div></section><section class="card"><h2 class="section-title">${t('result')}</h2><div class="metrics"><div class="metric"><strong>${r.passed}/${r.total}</strong><span>${t('passed')}</span></div><div class="metric"><strong class="status ${r.accepted?'ok':'bad'}">${r.accepted?t('accept'):t('reject')}</strong><span>${t('decision')}</span></div></div></section></div><section class="card"><h2 class="section-title">${t('translations')}</h2>${renderTranslations(state.translations)}</section><section class="card"><h2 class="section-title">${t('criteria')}</h2>${renderCriteria()}</section><section class="card"><h2 class="section-title">${t('card')}</h2><div class="actions"><button class="tool-btn primary" onclick="generateJson()">${t('json')}</button><button class="tool-btn" onclick="copyText(byId('jsonOutput').value)">${t('copy')}</button><button class="tool-btn" onclick="downloadJson('grammar-short-word-card.json', byId('jsonOutput').value || JSON.stringify(makeCard(), null, 2))">${t('download')}</button></div><textarea id="jsonOutput" class="output" spellcheck="false"></textarea></section>`; byId('posInput').value=state.part_of_speech; }
+function generateJson(){ openJsonModal(); }
+function renderCriteria(){ return `<div class="criteria-list">${CRITERIA_NAMES.map((name,i)=>`<div class="criterion"><p><strong>${escapeHtml(name)}</strong><br><input class="interal-input" id="comment_${i}" value="${escapeHtml(state.comments[i])}" aria-label="${t('comment')}"></p><select class="interal-select" disabled><option>${state.criteria[i]?'true':'false'}</option></select><input id="crit_${i}" type="checkbox" ${state.criteria[i]?'checked':''}></div>`).join('')}</div>`; }
+function render(){ renderChrome(); document.title=t('title'); byId('pageTitle').textContent=t('title'); byId('pageLead').textContent=t('lead'); const r=result(); byId('app').innerHTML=`<div class="vord-grid"><section class="card vord-panel"><h2>${t('params')}</h2><div class="field"><label>${t('word')}</label><input class="interal-input" id="wordInput" value="${escapeHtml(state.word)}"></div><div class="field"><label>${t('pos')}</label><select class="interal-select" id="posInput"><option value="preposition">${t('preposition')}</option><option value="conjunction">${t('conjunction')}</option><option value="particle">${t('particle')}</option><option value="adverb">${t('adverb')}</option></select></div><div class="field"><label>${t('meaning')}</label><input class="interal-input" id="meaningInput" value="${escapeHtml(state.meaning)}"></div><div class="field"><label>${t('arguments')}</label><textarea class="interal-textarea" id="argumentsInput">${escapeHtml(state.arguments)}</textarea></div><div class="actions"><button class="interal-btn interal-btn--primary" onclick="readState();render()">${t('check')}</button><button class="interal-btn interal-btn--secondary" onclick="qwenAnalyze()">${t('qwen')}</button><button class="interal-btn interal-btn--secondary" onclick="fillExample()">${t('example')}</button></div></section><section class="card vord-panel"><h2>${t('result')}</h2><div class="metrics"><div class="metric"><strong>${r.passed}/${r.total}</strong><span>${t('passed')}</span></div><div class="metric"><strong class="status ${r.accepted?'ok':'bad'}">${r.accepted?t('accept'):t('reject')}</strong><span>${t('decision')}</span></div></div></section></div><section class="card vord-panel"><h2>${t('translations')}</h2>${renderTranslations(state.translations)}</section><section class="card vord-panel"><h2>${t('criteria')}</h2>${renderCriteria()}</section><div class="actions json-card-bottom-actions"><button class="interal-btn interal-btn--secondary" onclick="generateJson()">${t('json')}</button></div>`; byId('posInput').value=state.part_of_speech; }
+
+const jsonFilename = 'grammar-short-word-card.json';
+function currentJsonText() {
+  const existing = byId('jsonOutput')?.value;
+  return existing || JSON.stringify(makeCard(), null, 2);
+}
+function openJsonModal() {
+  if (typeof readState === 'function') readState();
+  if (typeof readEvidence === 'function') readEvidence();
+  const output = byId('jsonOutput');
+  if (output) output.value = JSON.stringify(makeCard(), null, 2);
+  const modal = byId('jsonCardModal');
+  modal?.classList.add('show');
+  modal?.setAttribute('aria-hidden', 'false');
+}
+function closeJsonModal() {
+  const modal = byId('jsonCardModal');
+  modal?.classList.remove('show');
+  modal?.setAttribute('aria-hidden', 'true');
+}
+function bindJsonModal() {
+  byId('closeJsonCardBtn')?.addEventListener('click', closeJsonModal);
+  byId('jsonCardModal')?.addEventListener('click', (event) => { if (event.target === byId('jsonCardModal')) closeJsonModal(); });
+  byId('copyJsonCardBtn')?.addEventListener('click', () => copyText(currentJsonText()));
+  byId('downloadJsonCardBtn')?.addEventListener('click', () => downloadJson(jsonFilename, currentJsonText()));
+  document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeJsonModal(); });
+  document.addEventListener('interal:languagechange', render);
+}
+bindJsonModal();
 render();

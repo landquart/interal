@@ -38,12 +38,7 @@ function downloadJson(filename, text) {
 function copyText(text) {
   navigator.clipboard?.writeText(text).catch(() => {});
 }
-function renderChrome() {
-  document.documentElement.dataset.theme = currentTheme();
-  byId('langRu')?.classList.toggle('active', currentLang() === 'ru');
-  byId('langEn')?.classList.toggle('active', currentLang() === 'en');
-  if (byId('themeBtn')) byId('themeBtn').textContent = currentTheme() === 'dark' ? 'Light' : 'Dark';
-}
+function renderChrome() {}
 function levenshtein(a, b) {
   a = String(a || '').toLowerCase();
   b = String(b || '').toLowerCase();
@@ -67,7 +62,7 @@ function readTranslations() {
   return LANGUAGES.map(lang => ({ language: lang.code, word: byId(`tr_${lang.code}`)?.value.trim() || '' }));
 }
 function renderTranslations(defaults = {}) {
-  return `<div class="table-wrap"><table><thead><tr><th>${t('table.language')}</th><th>${t('table.translation')}</th></tr></thead><tbody>${LANGUAGES.map(lang => `<tr><td>${langName(lang.code)}</td><td><input id="tr_${lang.code}" value="${escapeHtml(defaults[lang.code] || '')}"></td></tr>`).join('')}</tbody></table></div>`;
+  return `<div class="table-wrap"><table><thead><tr><th>${t('table.language')}</th><th>${t('table.translation')}</th></tr></thead><tbody>${LANGUAGES.map(lang => `<tr><td>${langName(lang.code)}</td><td><input class="interal-input" id="tr_${lang.code}" value="${escapeHtml(defaults[lang.code] || '')}"></td></tr>`).join('')}</tbody></table></div>`;
 }
 
 const I18N = {
@@ -143,18 +138,14 @@ function makeCard() {
     decision: { accepted: r.accepted }
   };
 }
-function generateJson() {
-  readEvidence();
-  const text = JSON.stringify(makeCard(), null, 2);
-  byId('jsonOutput').value = text;
-}
+function generateJson() { openJsonModal(); }
 function renderEvidenceRows() {
   const word = byId('wordInput')?.value.trim() || state.word;
   return LANGUAGES.map(lang => {
     const form = state.evidence[lang.code] || '';
     const distance = form ? formDistance(word, form) : null;
     const passed = state.manualPassed[lang.code] ?? getPassedFor(lang.code, form);
-    return `<tr><td>${langName(lang.code)}</td><td><input id="form_${lang.code}" value="${escapeHtml(form)}"></td><td>${distance ?? '—'}</td><td class="check-cell"><input id="pass_${lang.code}" type="checkbox" ${passed ? 'checked' : ''}></td></tr>`;
+    return `<tr><td>${langName(lang.code)}</td><td><input class="interal-input" id="form_${lang.code}" value="${escapeHtml(form)}"></td><td>${distance ?? '—'}</td><td class="check-cell"><input id="pass_${lang.code}" type="checkbox" ${passed ? 'checked' : ''}></td></tr>`;
   }).join('');
 }
 function render() {
@@ -162,16 +153,45 @@ function render() {
   document.title = t('title'); byId('pageTitle').textContent = t('title'); byId('pageLead').textContent = t('lead');
   const r = result();
   byId('app').innerHTML = `
-    <div class="grid">
-      <section class="card"><h2 class="section-title">${t('params')}</h2>
-        <div class="field"><label>${t('word')}</label><input id="wordInput" value="${escapeHtml(state.word)}" oninput="state.word=this.value"></div>
-        <div class="field"><label>${t('pos')}</label><select id="posInput" onchange="state.part_of_speech=this.value"><option value="noun">${t('noun')}</option><option value="adjective">${t('adjective')}</option><option value="verb">${t('verb')}</option><option value="adverb">${t('adverb')}</option></select></div>
-        <div class="actions"><button class="tool-btn primary" onclick="analyze()">${t('check')}</button><button class="tool-btn" onclick="fillExample()">${t('example')}</button></div>
+    <div class="vord-grid">
+      <section class="card vord-panel"><h2>${t('params')}</h2>
+        <div class="field"><label>${t('word')}</label><input class="interal-input" id="wordInput" value="${escapeHtml(state.word)}" oninput="state.word=this.value"></div>
+        <div class="field"><label>${t('pos')}</label><select class="interal-select" id="posInput" onchange="state.part_of_speech=this.value"><option value="noun">${t('noun')}</option><option value="adjective">${t('adjective')}</option><option value="verb">${t('verb')}</option><option value="adverb">${t('adverb')}</option></select></div>
+        <div class="actions"><button class="interal-btn interal-btn--primary" onclick="analyze()">${t('check')}</button><button class="interal-btn interal-btn--secondary" onclick="fillExample()">${t('example')}</button></div>
       </section>
-      <section class="card"><h2 class="section-title">${t('result')}</h2><div class="metrics"><div class="metric"><strong>${r.passed}/${r.total}</strong><span>${t('coverage')}</span></div><div class="metric"><strong>5/6</strong><span>${t('required')}</span></div><div class="metric"><strong class="status ${r.accepted ? 'ok' : 'bad'}">${r.accepted ? t('accept') : t('reject')}</strong><span>${t('decision')}</span></div></div><div class="decision"><span class="status ${r.accepted ? 'ok' : 'bad'}">${r.accepted ? t('reasonOk') : t('reasonBad')}</span></div></section>
+      <section class="card vord-panel"><h2>${t('result')}</h2><div class="metrics"><div class="metric"><strong>${r.passed}/${r.total}</strong><span>${t('coverage')}</span></div><div class="metric"><strong>5/6</strong><span>${t('required')}</span></div><div class="metric"><strong class="status ${r.accepted ? 'ok' : 'bad'}">${r.accepted ? t('accept') : t('reject')}</strong><span>${t('decision')}</span></div></div><div class="decision"><span class="status ${r.accepted ? 'ok' : 'bad'}">${r.accepted ? t('reasonOk') : t('reasonBad')}</span></div></section>
     </div>
-    <section class="card"><h2 class="section-title">${t('evidence')}</h2><div class="table-wrap"><table><thead><tr><th>${t('table.language')}</th><th>${t('table.form')}</th><th>${t('table.distance')}</th><th>${t('table.passed')}</th></tr></thead><tbody>${renderEvidenceRows()}</tbody></table></div></section>
-    <section class="card"><h2 class="section-title">${t('card')}</h2><div class="actions"><button class="tool-btn primary" onclick="generateJson()">${t('json')}</button><button class="tool-btn" onclick="copyText(byId('jsonOutput').value)">${t('copy')}</button><button class="tool-btn" onclick="downloadJson('internationalism-card.json', byId('jsonOutput').value || JSON.stringify(makeCard(), null, 2))">${t('download')}</button></div><textarea id="jsonOutput" class="output" spellcheck="false"></textarea></section>`;
+    <section class="card vord-panel"><h2>${t('evidence')}</h2><div class="table-wrap"><table><thead><tr><th>${t('table.language')}</th><th>${t('table.form')}</th><th>${t('table.distance')}</th><th>${t('table.passed')}</th></tr></thead><tbody>${renderEvidenceRows()}</tbody></table></div></section>
+    <div class="actions json-card-bottom-actions"><button class="interal-btn interal-btn--secondary" onclick="generateJson()">${t('json')}</button></div>`;
   if (byId('posInput')) byId('posInput').value = state.part_of_speech;
 }
+
+const jsonFilename = 'internationalism-card.json';
+function currentJsonText() {
+  const existing = byId('jsonOutput')?.value;
+  return existing || JSON.stringify(makeCard(), null, 2);
+}
+function openJsonModal() {
+  if (typeof readState === 'function') readState();
+  if (typeof readEvidence === 'function') readEvidence();
+  const output = byId('jsonOutput');
+  if (output) output.value = JSON.stringify(makeCard(), null, 2);
+  const modal = byId('jsonCardModal');
+  modal?.classList.add('show');
+  modal?.setAttribute('aria-hidden', 'false');
+}
+function closeJsonModal() {
+  const modal = byId('jsonCardModal');
+  modal?.classList.remove('show');
+  modal?.setAttribute('aria-hidden', 'true');
+}
+function bindJsonModal() {
+  byId('closeJsonCardBtn')?.addEventListener('click', closeJsonModal);
+  byId('jsonCardModal')?.addEventListener('click', (event) => { if (event.target === byId('jsonCardModal')) closeJsonModal(); });
+  byId('copyJsonCardBtn')?.addEventListener('click', () => copyText(currentJsonText()));
+  byId('downloadJsonCardBtn')?.addEventListener('click', () => downloadJson(jsonFilename, currentJsonText()));
+  document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeJsonModal(); });
+  document.addEventListener('interal:languagechange', render);
+}
+bindJsonModal();
 render();
