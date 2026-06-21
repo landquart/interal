@@ -72,8 +72,8 @@ const I18N = {
     params: 'Параметры слова', word: 'Слово в Интерaле', pos: 'Часть речи', noun: 'существительное', adjective: 'прилагательное', verb: 'глагол', adverb: 'наречие',
     evidence: 'Языковое покрытие', result: 'Итог', card: 'JSON-карточка',
     table: { language: 'Язык', form: 'Форма', distance: 'Дистанция', passed: 'Проходит', translation: 'Перевод' },
-    check: 'Проверить', json: 'Сформировать JSON', copy: 'Скопировать', download: 'Скачать',
-    coverage: 'Покрытие', required: 'Минимум', decision: 'Решение', accept: 'ПРИНЯТО', reject: 'НЕ ПРИНЯТО', reasonOk: 'Критерий 5/6 выполнен.', reasonBad: 'Недостаточное покрытие контрольных языков.'
+    check: 'Проверить', json: 'Сформировать JSON-карточку', copy: 'Скопировать', download: 'Скачать',
+    coverage: 'Покрытие', required: 'Минимум', decision: 'Решение', accept: 'ПРИНЯТО', reject: 'НЕ ПРИНЯТО', reasonOk: 'Критерий 5/6 выполнен.', reasonBad: 'Недостаточное покрытие контрольных языков.', jsonCard: { close: 'Закрыть JSON-карточку', title: 'JSON-карточка', useAuthor: 'Указать авторство', authorName: 'Имя или ник', contactType: 'Тип контакта', contact: 'Контакт', generate: 'Сгенерировать карточку', output: 'Готовый JSON', copy: 'Скопировать JSON-карточку', copied: 'JSON-карточка скопирована', download: 'Скачать JSON-карточку' }
   },
   en: {
     title: 'Internationalismes',
@@ -81,8 +81,8 @@ const I18N = {
     params: 'Word parameters', word: 'Interal word', pos: 'Part of speech', noun: 'noun', adjective: 'adjective', verb: 'verb', adverb: 'adverb',
     evidence: 'Language coverage', result: 'Decision', card: 'JSON card',
     table: { language: 'Language', form: 'Form', distance: 'Distance', passed: 'Passes', translation: 'Translation' },
-    check: 'Check', json: 'Generate JSON', copy: 'Copy', download: 'Download', resetAria: 'Reset', resetConfirm: 'Reset entered data? This action cannot be undone.',
-    coverage: 'Coverage', required: 'Required', decision: 'Decision', accept: 'ACCEPTED', reject: 'NOT ACCEPTED', reasonOk: 'The 5/6 criterion is met.', reasonBad: 'Insufficient control-language coverage.'
+    check: 'Check', json: 'Generate JSON card', copy: 'Copy', download: 'Download', resetAria: 'Reset', resetConfirm: 'Reset entered data? This action cannot be undone.',
+    coverage: 'Coverage', required: 'Required', decision: 'Decision', accept: 'ACCEPTED', reject: 'NOT ACCEPTED', reasonOk: 'The 5/6 criterion is met.', reasonBad: 'Insufficient control-language coverage.', jsonCard: { close: 'Close JSON card', title: 'JSON card', useAuthor: 'Add authorship', authorName: 'Name or nickname', contactType: 'Contact type', contact: 'Contact', generate: 'Generate card', output: 'Generated JSON', copy: 'Copy JSON card', copied: 'JSON card copied', download: 'Download JSON card' }
   }
 };
 I18N.ru.resetAria = 'Сбросить';
@@ -149,9 +149,19 @@ function result() {
   const passed = LANGUAGES.filter(lang => state.manualPassed[lang.code] ?? getPassedFor(lang.code, state.evidence[lang.code])).length;
   return { passed, total: 6, accepted: passed >= 5 };
 }
+function getAuthorBlock() {
+  if (!byId('useAuthorBlock')?.checked) return null;
+  const displayName = byId('authorDisplayName')?.value.trim() || '';
+  const contactType = byId('authorContactType')?.value || 'telegram';
+  const contactValue = byId('authorContactValue')?.value.trim() || '';
+  const author = {};
+  if (displayName) author.display_name = displayName;
+  if (contactValue) author.contacts = [{ type: contactType, url: contactValue }];
+  return Object.keys(author).length ? author : null;
+}
 function makeCard() {
   const r = result();
-  return {
+  const card = {
     id: createId('in'),
     version: '1.0',
     card_type: 'vord_card',
@@ -162,8 +172,11 @@ function makeCard() {
     language_evidence: LANGUAGES.map(lang => ({ language: lang.code, form: state.evidence[lang.code] || '', passed: Boolean(state.manualPassed[lang.code] ?? getPassedFor(lang.code, state.evidence[lang.code])) })),
     decision: { accepted: r.accepted }
   };
+  const author = getAuthorBlock();
+  if (author) card.author = author;
+  return card;
 }
-function generateJson() { openJsonModal(); }
+function generateJson() { if (result().accepted) openJsonModal(); }
 function renderEvidenceRows() {
   const word = byId('wordInput')?.value.trim() || state.word;
   return LANGUAGES.map(lang => {
@@ -175,6 +188,7 @@ function renderEvidenceRows() {
 }
 function render() {
   renderChrome();
+  applyJsonModalTexts();
   document.title = t('title'); byId('pageTitle').textContent = t('title'); byId('pageLead').textContent = t('lead');
   const r = result();
   byId('app').innerHTML = `
@@ -188,20 +202,20 @@ function render() {
       <section class="card vord-panel decision-summary"><h2>${t('decision')}</h2><span class="status-pill ${r.accepted ? 'ok' : 'bad'}">${r.accepted ? t('accept') : t('reject')}</span><dl><div><dt>${t('coverage')}</dt><dd>${r.passed}/${r.total}</dd></div><div><dt>${t('required')}</dt><dd>5/6</dd></div></dl></section>
     </div>
     <section class="card vord-panel"><h2>${t('evidence')}</h2><div class="language-grid">${renderEvidenceRows()}</div></section>
-    <div class="actions json-card-bottom-actions"><button class="interal-btn interal-btn--secondary" onclick="generateJson()">${t('json')}</button></div>`;
+    ${r.accepted ? `<div class="actions json-card-bottom-actions"><button class="interal-btn interal-btn--secondary" onclick="generateJson()">${t('json')}</button></div>` : ''}`;
   if (byId('posInput')) byId('posInput').value = state.part_of_speech;
   updateResetButtonVisibility();
 }
 
 const jsonFilename = 'internationalism-card.json';
 function currentJsonText() {
-  const existing = byId('jsonOutput')?.value;
+  const existing = byId('jsonCardOutput')?.value;
   return existing || JSON.stringify(makeCard(), null, 2);
 }
 function openJsonModal() {
   if (typeof readState === 'function') readState();
   if (typeof readEvidence === 'function') readEvidence();
-  const output = byId('jsonOutput');
+  const output = byId('jsonCardOutput');
   if (output) output.value = JSON.stringify(makeCard(), null, 2);
   const modal = byId('jsonCardModal');
   modal?.classList.add('show');
@@ -212,10 +226,29 @@ function closeJsonModal() {
   modal?.classList.remove('show');
   modal?.setAttribute('aria-hidden', 'true');
 }
+function applyJsonModalTexts() {
+  const text = t('jsonCard');
+  const values = { jsonCardTitle: text.title, useAuthorBlockLabel: text.useAuthor, authorDisplayNameLabel: text.authorName, authorContactTypeLabel: text.contactType, authorContactValueLabel: text.contact, generateJsonCardBtn: text.generate, jsonCardOutputLabel: text.output };
+  Object.entries(values).forEach(([id, value]) => { const element = byId(id); if (element) element.textContent = value; });
+  byId('closeJsonCardBtn')?.setAttribute('aria-label', text.close);
+  byId('copyJsonCardBtn')?.setAttribute('aria-label', text.copy);
+  byId('copyJsonCardBtn')?.setAttribute('title', text.copy);
+  byId('downloadJsonCardBtn')?.setAttribute('aria-label', text.download);
+  byId('downloadJsonCardBtn')?.setAttribute('title', text.download);
+}
+function setCopyButtonCopied(copied) {
+  const btn = byId('copyJsonCardBtn');
+  if (!btn) return;
+  btn.classList.toggle('is-copied', copied);
+  btn.title = copied ? t('jsonCard.copied') : t('jsonCard.copy');
+  btn.setAttribute('aria-label', btn.title);
+}
 function bindJsonModal() {
   byId('closeJsonCardBtn')?.addEventListener('click', closeJsonModal);
   byId('jsonCardModal')?.addEventListener('click', (event) => { if (event.target === byId('jsonCardModal')) closeJsonModal(); });
-  byId('copyJsonCardBtn')?.addEventListener('click', () => copyText(currentJsonText()));
+  byId('useAuthorBlock')?.addEventListener('change', (event) => { byId('jsonAuthorFields').style.display = event.target.checked ? 'block' : 'none'; });
+  byId('generateJsonCardBtn')?.addEventListener('click', () => { const output = byId('jsonCardOutput'); if (output) output.value = JSON.stringify(makeCard(), null, 2); });
+  byId('copyJsonCardBtn')?.addEventListener('click', () => { copyText(currentJsonText()); setCopyButtonCopied(true); window.setTimeout(() => setCopyButtonCopied(false), 1500); });
   byId('downloadJsonCardBtn')?.addEventListener('click', () => downloadJson(jsonFilename, currentJsonText()));
   document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeJsonModal(); });
   document.addEventListener('interal:languagechange', render);
@@ -232,4 +265,5 @@ function bindJsonModal() {
   });
 }
 bindJsonModal();
+applyJsonModalTexts();
 render();
