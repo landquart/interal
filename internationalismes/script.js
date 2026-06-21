@@ -77,14 +77,16 @@ const I18N = {
   },
   en: {
     title: 'Internationalismes',
-    lead: 'Internationalism check: a close form must be present in at least 5 of 6 control languages.',
+    lead: '',
     params: 'Word parameters', word: 'Interal word', pos: 'Part of speech', noun: 'noun', adjective: 'adjective', verb: 'verb', adverb: 'adverb',
     evidence: 'Language coverage', result: 'Decision', card: 'JSON card',
     table: { language: 'Language', form: 'Form', distance: 'Distance', passed: 'Passes', translation: 'Translation' },
-    check: 'Check', json: 'Generate JSON', copy: 'Copy', download: 'Download',
+    check: 'Check', json: 'Generate JSON', copy: 'Copy', download: 'Download', resetAria: 'Reset', resetConfirm: 'Reset entered data? This action cannot be undone.',
     coverage: 'Coverage', required: 'Required', decision: 'Decision', accept: 'ACCEPTED', reject: 'NOT ACCEPTED', reasonOk: 'The 5/6 criterion is met.', reasonBad: 'Insufficient control-language coverage.'
   }
 };
+I18N.ru.resetAria = 'Сбросить';
+I18N.ru.resetConfirm = 'Сбросить введённые данные? Это действие нельзя отменить.';
 
 let state = {
   word: '',
@@ -112,8 +114,35 @@ function readEvidence() {
   state.evidence = evidence;
   state.manualPassed = manualPassed;
 }
+function readState() {
+  state.word = byId('wordInput')?.value.trim() || '';
+  state.part_of_speech = byId('posInput')?.value || state.part_of_speech;
+  readEvidence();
+}
 function analyze() {
   readEvidence();
+  render();
+}
+function hasUserInputForReset() {
+  return Boolean(
+    state.word.trim()
+    || Object.values(state.evidence).some(value => String(value || '').trim())
+    || Object.values(state.manualPassed).some(Boolean)
+    || state.part_of_speech !== 'noun'
+  );
+}
+function updateResetButtonVisibility() {
+  const resetBtn = byId('resetBtn');
+  if (resetBtn) resetBtn.style.display = hasUserInputForReset() ? 'grid' : 'none';
+}
+function resetAll() {
+  if (!window.confirm(t('resetConfirm'))) return;
+  state = {
+    word: '',
+    part_of_speech: 'noun',
+    evidence: {},
+    manualPassed: {}
+  };
   render();
 }
 function result() {
@@ -154,12 +183,14 @@ function render() {
         <div class="field"><label>${t('word')}</label><input class="interal-input" id="wordInput" value="${escapeHtml(state.word)}" oninput="state.word=this.value"></div>
         <div class="field"><label>${t('pos')}</label><select class="interal-select" id="posInput" onchange="state.part_of_speech=this.value"><option value="noun">${t('noun')}</option><option value="adjective">${t('adjective')}</option><option value="verb">${t('verb')}</option><option value="adverb">${t('adverb')}</option></select></div></div>
         <div class="actions"><button class="interal-btn interal-btn--primary" onclick="analyze()">${t('check')}</button></div>
+        <div class="card-tools"><button id="resetBtn" class="card-reset-btn" type="button" aria-label="${escapeHtml(t('resetAria'))}" style="display:none"><img src="../elements/Eraser%20Square.svg" alt="" aria-hidden="true"></button></div>
       </section>
       <section class="card vord-panel decision-summary"><h2>${t('decision')}</h2><span class="status-pill ${r.accepted ? 'ok' : 'bad'}">${r.accepted ? t('accept') : t('reject')}</span><dl><div><dt>${t('coverage')}</dt><dd>${r.passed}/${r.total}</dd></div><div><dt>${t('required')}</dt><dd>5/6</dd></div></dl></section>
     </div>
     <section class="card vord-panel"><h2>${t('evidence')}</h2><div class="language-grid">${renderEvidenceRows()}</div></section>
     <div class="actions json-card-bottom-actions"><button class="interal-btn interal-btn--secondary" onclick="generateJson()">${t('json')}</button></div>`;
   if (byId('posInput')) byId('posInput').value = state.part_of_speech;
+  updateResetButtonVisibility();
 }
 
 const jsonFilename = 'internationalism-card.json';
@@ -188,6 +219,17 @@ function bindJsonModal() {
   byId('downloadJsonCardBtn')?.addEventListener('click', () => downloadJson(jsonFilename, currentJsonText()));
   document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeJsonModal(); });
   document.addEventListener('interal:languagechange', render);
+  byId('app')?.addEventListener('input', () => {
+    readState();
+    updateResetButtonVisibility();
+  });
+  byId('app')?.addEventListener('change', () => {
+    readState();
+    updateResetButtonVisibility();
+  });
+  byId('app')?.addEventListener('click', (event) => {
+    if (event.target.closest('#resetBtn')) resetAll();
+  });
 }
 bindJsonModal();
 render();
