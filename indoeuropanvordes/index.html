@@ -56,8 +56,8 @@
   width: 36px;
   height: 36px;
   border-radius: 999px;
-  border: 1px solid var(--border-control);
-  background: var(--surface-elevated);
+  border: 1px solid #000;
+  background: #000;
   display: grid;
   place-items: center;
   cursor: pointer;
@@ -65,24 +65,27 @@
 .internationalita-page .card-reset-btn img {
   width: 18px;
   height: 18px;
-  filter: var(--menu-icon-filter);
+  filter: brightness(0) invert(1);
 }
 
-.internationalita-page .card h2 {
-  text-align: center;
-  margin: 0 0 10px;
-  font-size: 1.35rem;
-  letter-spacing: 0.2px;
-  font-weight: 700;
-  color: var(--text);
+body.dark-theme .internationalita-page .card-reset-btn {
+  background: #fff;
+  border-color: #fff;
 }
 
-.internationalita-page .lead {
-  max-width: 820px;
+body.dark-theme .internationalita-page .card-reset-btn img {
+  filter: brightness(0) invert(0);
+}
+
+.internationalita-page .page-title {
+  max-width: 828px;
   margin: 0 auto 18px;
   text-align: center;
-  color: var(--text-muted);
-  font-size: 14px;
+  font-size: clamp(2rem, 5vw, 2.7rem);
+  line-height: 1.12;
+  letter-spacing: 0.2px;
+  font-weight: 800;
+  color: var(--text);
 }
 
 .internationalita-page label {
@@ -590,13 +593,9 @@ body.dark-theme .internationalita-page .json-card-icon-btn.is-copied {
 
 <body class="internationalita-page">
 
-<div class="card">
-  <h2>Indoeuropan vordes</h2>
-  <p class="lead" id="leadText">
-    Система считает процент международности гипотезы по формуле:
-    PI = Σ(N × S) / ΣN × 100, где S = (графическая похожесть + фонетическая похожесть) / 2.
-  </p>
+<h1 class="page-title">Indoeuropan vordes</h1>
 
+<div class="card">
   <label for="interalWord" id="interalWordLabel">Слово-гипотеза на Интерале</label>
   <input id="interalWord" type="text" autocomplete="off">
 
@@ -640,7 +639,7 @@ body.dark-theme .internationalita-page .json-card-icon-btn.is-copied {
   </div>
 
   <div class="card-tools">
-    <button id="resetBtn" class="card-reset-btn" type="button" aria-label="Сбросить" style="display:none">
+    <button id="resetBtn" class="card-reset-btn interal-reset-btn" type="button" aria-label="Сбросить" style="display:none">
       <img src="../elements/Eraser%20Square.svg" alt="" aria-hidden="true">
     </button>
   </div>
