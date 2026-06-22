@@ -231,6 +231,7 @@ body.menu-open .side-menu-overlay{opacity:1;pointer-events:auto}
 .menu-theme-toggle{width:52px;height:52px;border-radius:999px;background:transparent;border:1px solid transparent;display:inline-flex;align-items:center;justify-content:center}
 .menu-lang-trigger{width:52px;height:52px;border-radius:999px;background:transparent;border:1px solid transparent;display:inline-flex;align-items:center;justify-content:center}
 .menu-theme-icon{width:28px;height:28px;opacity:1;filter:none;}
+
 .menu-lang-icon-img{width:30px;height:30px;opacity:1}
 .menu-lang-modal{position:fixed;inset:0;background:rgba(0,0,0,.45);display:grid;place-items:center;z-index:calc(var(--z-page-modal) - 100)}
 .menu-lang-modal[hidden]{display:none}
@@ -310,7 +311,7 @@ body.dark-theme .top-menu-btn:hover,body.dark-theme .top-current-page-link:hover
 .top-menu-btn-icon img,.top-current-page-icon,.menu-copy-icon-link,.menu-lang-icon-img{filter:var(--menu-icon-filter, none)}
 
 .menu-theme-icon{filter:none}
-
+body:not(.dark-theme) .menu-theme-icon{filter:contrast(1.18) saturate(1.08)}
 body.dark-theme .menu-theme-icon{filter:none}
 .top-menu-btn-icon img{width:24px;height:24px;display:block}
 .menu-copy-btn{display:flex;align-items:center;gap:10px}
