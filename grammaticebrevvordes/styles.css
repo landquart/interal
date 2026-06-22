@@ -74,3 +74,35 @@ body.dark-theme #jsonCardModal { background: rgba(0,0,0,.62); }
 .json-card-close-btn svg { width: 18px; height: 18px; stroke: currentColor; }
 @media (max-width: 880px) { .vord-grid, .criterion, .metrics, .compact-fields { grid-template-columns: 1fr; } .language-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .vord-page-shell { width: min(100% - 24px, 980px); } }
 @media (max-width: 560px) { .language-grid { grid-template-columns: 1fr; } }
+
+.grammar-criterion {
+  grid-template-columns: minmax(180px, 0.8fr) minmax(170px, auto) minmax(340px, 1.4fr);
+  align-items: start;
+}
+
+.grammar-criterion .criterion-head strong {
+  color: var(--text);
+  font-size: 1rem;
+}
+
+.criterion-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  margin: 0;
+  color: var(--text);
+}
+
+.criterion-comment {
+  margin-bottom: 0;
+}
+
+.criterion-comment textarea {
+  min-height: 96px;
+  width: 100%;
+}
+
+@media (max-width: 880px) {
+  .grammar-criterion { grid-template-columns: 1fr; }
+}
