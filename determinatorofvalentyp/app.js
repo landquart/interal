@@ -1712,6 +1712,28 @@ function syncClearButtonVisibility() {
   els.clearBtn.classList.toggle('is-hidden', !hasUserInputForClear());
 }
 
+function resetComponentDraftControls() {
+  if (els.rootFormInput) {
+    els.rootFormInput.value = '';
+    els.rootFormInput.readOnly = false;
+  }
+  if (els.rootMeaningInput) {
+    els.rootMeaningInput.value = '';
+    els.rootMeaningInput.readOnly = false;
+  }
+  if (els.assimilationSelect) els.assimilationSelect.value = 'none';
+  if (els.componentSearchInput) els.componentSearchInput.value = '';
+  if (els.componentCategorySelect) {
+    els.componentCategorySelect.selectedIndex = 0;
+    fillComponentSelect();
+  }
+  if (els.componentSelect) els.componentSelect.selectedIndex = 0;
+  if (els.prefixVariantSelect) els.prefixVariantSelect.selectedIndex = 0;
+  pendingPrefixItem = null;
+  renderComponentSearchResults();
+  window.initCustomSelects?.();
+}
+
 async function clearAll() {
   if (!(await (window.InteralUI?.confirmReset?.({ message: t('resetConfirm') }) ?? Promise.resolve(window.confirm(t('resetConfirm')))))) return;
 
@@ -1723,8 +1745,11 @@ async function clearAll() {
   if (els.manualPrompt) els.manualPrompt.value = '';
   syncPromptButtonsVisibility();
   if (els.manualEmbeddingResponse) els.manualEmbeddingResponse.value = '';
+  resetComponentDraftControls();
   state.components = [];
+  state.lastAnalysis = null;
   renderComponents();
+  closeAllModals();
   els.resultPanel.hidden = true;
   els.result.classList.add('empty');
   els.result.textContent = t('fillAndAnalyse');
