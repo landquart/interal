@@ -130,3 +130,8 @@ body.dark-theme .json-card-icon-btn.is-copied { background: color-mix(in srgb, #
   color: var(--text-muted);
   font-size: 13px;
 }
+.internationalismes-page .params-panel h2,
+.internationalismes-page .params-panel .actions {
+  justify-content: center;
+  text-align: center;
+}
