@@ -526,3 +526,66 @@ body.dark-theme .interal-reset-btn img {
 .interal-reset-btn:active {
   transform: scale(0.99);
 }
+
+
+.interal-confirm-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(15, 23, 42, 0.55);
+  opacity: 0;
+  transition: opacity 0.18s ease;
+}
+
+.interal-confirm-overlay[hidden] {
+  display: none;
+}
+
+.interal-confirm-overlay.show {
+  opacity: 1;
+}
+
+.interal-confirm-dialog {
+  width: min(100%, 420px);
+  display: grid;
+  gap: 18px;
+  padding: 24px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: var(--surface-elevated);
+  color: var(--text);
+  box-shadow: var(--shadow-lg);
+}
+
+.interal-confirm-icon {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(245, 158, 11, 0.16);
+  color: #b45309;
+  font-weight: 800;
+  font-size: 24px;
+}
+
+.interal-confirm-title {
+  margin: 0 0 8px;
+  font-size: 1.25rem;
+}
+
+.interal-confirm-message {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.interal-confirm-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}

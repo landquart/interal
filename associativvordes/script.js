@@ -977,8 +977,8 @@ const TEXT_I18N = {
       document.getElementById('resetBtn').classList.toggle('is-hidden', !hasUserInputForReset());
     }
 
-    function resetAll() {
-      if (!window.confirm(getResetConfirmMessage())) return;
+    async function resetAll() {
+      if (!(await (window.InteralUI?.confirmReset?.({ message: getResetConfirmMessage() }) ?? Promise.resolve(window.confirm(getResetConfirmMessage()))))) return;
       state = emptyState();
       document.getElementById('rootInput').value = state.root;
       document.getElementById('meaningInput').value = state.meaning;
