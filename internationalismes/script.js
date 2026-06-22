@@ -50,7 +50,7 @@ const I18N = {
   },
   en: {
     title: 'Internationalismes', lead: '', params: 'Word parameters', word: 'Interal word', pos: 'Part of speech', noun: 'noun', adjective: 'adjective', verb: 'verb', adverb: 'adverb',
-    evidence: 'Language coverage', result: 'Decision', card: 'JSON card', check: 'Check', json: 'Сформировать JSON-карточку', copy: 'Copy', download: 'Download',
+    evidence: 'Language coverage', result: 'Decision', card: 'JSON card', check: 'Check', json: 'Generate JSON card', copy: 'Copy', download: 'Download',
     table: { language: 'Language', form: 'Form', distance: 'Distance', passed: 'Passes', translation: 'Translation', source: 'Source', match: 'Match' },
     coverage: 'Coverage', required: 'Required', decision: 'Decision', accept: 'ACCEPTED', reject: 'NOT ACCEPTED', reasonOk: 'The 5/6 criterion is met.', reasonBad: 'Insufficient control-language coverage.',
     loadingLists: 'Loading frequency lists...', searching: 'Searching forms...', frequencySource: 'frequency list', manualSource: 'manual', noForm: 'not found', searchError: 'Could not load frequency lists. Forms can be entered manually.', manualMode: 'manual override', autoMode: 'auto', resetAria: 'Reset', resetConfirm: 'Reset entered data? This action cannot be undone.',
