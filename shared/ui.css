@@ -243,7 +243,8 @@ body.menu-open .side-menu-overlay{opacity:1;pointer-events:auto}
 .top-desktop-link{color:var(--text);text-decoration:none;padding:8px 12px;border-radius:999px;background:transparent;border:1px solid transparent;font-weight:600;position:relative;overflow:hidden;isolation:isolate;display:inline-flex;align-items:center;gap:6px;font:600 .95rem "Jost","Helvetica Neue",Helvetica,Arial,sans-serif;cursor:pointer}
 
 .top-desktop-dropdown{position:relative;display:inline-flex;}
-.top-desktop-dropdown-trigger::after{content:"⌄";display:inline-flex;align-items:center;justify-content:center;align-self:center;font-size:.82em;line-height:1;transform:none;}
+.top-desktop-dropdown-trigger::after{content:"";display:inline-flex;align-items:center;justify-content:center;align-self:center;width:16px;height:16px;flex:0 0 16px;background:currentColor;mask:url("../elements/Alt Arrow Down.svg") center/contain no-repeat;-webkit-mask:url("../elements/Alt Arrow Down.svg") center/contain no-repeat;transform:none;}
+.top-desktop-dropdown:hover .top-desktop-dropdown-trigger::after,.top-desktop-dropdown:focus-within .top-desktop-dropdown-trigger::after,.top-desktop-dropdown-trigger[aria-expanded="true"]::after{mask-image:url("../elements/Alt Arrow Up.svg");-webkit-mask-image:url("../elements/Alt Arrow Up.svg");}
 .top-desktop-dropdown-menu{position:absolute;top:calc(100% + 10px);left:50%;min-width:260px;padding:8px;display:grid;gap:4px;transform:translate(-50%, -6px);opacity:0;pointer-events:none;border-radius:22px;background:var(--nav-bg);border:1px solid var(--nav-pill-border);box-shadow:var(--shadow-md);backdrop-filter:blur(24px) saturate(1.6);-webkit-backdrop-filter:blur(24px) saturate(1.6);transition:opacity .18s ease,transform .18s ease;}
 .top-desktop-dropdown:hover .top-desktop-dropdown-menu,.top-desktop-dropdown:focus-within .top-desktop-dropdown-menu{opacity:1;pointer-events:auto;transform:translate(-50%, 0);}
 .top-desktop-dropdown-link{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:16px;color:var(--text);text-decoration:none;font-weight:600;white-space:nowrap;background:transparent;border:1px solid transparent;transition:transform .18s ease,background-color .18s ease,border-color .18s ease;}
@@ -434,14 +435,10 @@ a{color:var(--text);text-decoration:none;}
 
 .custom-select-arrow {
   flex: 0 0 auto;
-  color: var(--text-muted);
-  font-size: 1rem;
-  line-height: 1;
-  transition: transform .18s ease;
-}
-
-.custom-select.is-open .custom-select-arrow {
-  transform: rotate(180deg);
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  filter: var(--menu-icon-filter, none);
 }
 
 .custom-select-menu {

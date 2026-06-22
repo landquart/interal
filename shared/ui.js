@@ -822,10 +822,11 @@ function initCustomSelects(root = document) {
     const value = document.createElement('span');
     value.className = 'custom-select-value';
 
-    const arrow = document.createElement('span');
+    const arrow = document.createElement('img');
     arrow.className = 'custom-select-arrow';
+    arrow.src = joinUrl('elements/Alt Arrow Down.svg');
+    arrow.alt = '';
     arrow.setAttribute('aria-hidden', 'true');
-    arrow.textContent = '⌄';
 
     trigger.append(value, arrow);
 
@@ -855,6 +856,7 @@ function initCustomSelects(root = document) {
       wrapper.classList.remove('is-open');
       menu.hidden = true;
       trigger.setAttribute('aria-expanded', 'false');
+      arrow.src = joinUrl('elements/Alt Arrow Down.svg');
     }
 
     function buildOptions() {
@@ -913,6 +915,7 @@ function initCustomSelects(root = document) {
       wrapper.classList.add('is-open');
       menu.hidden = false;
       trigger.setAttribute('aria-expanded', 'true');
+      arrow.src = joinUrl('elements/Alt Arrow Up.svg');
       positionCustomSelectMenu();
 
       const active = menu.querySelector('[aria-selected="true"]');
