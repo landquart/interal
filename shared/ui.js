@@ -99,7 +99,11 @@
       quickTitle: 'Быстрые действия',
       copyState: 'Скопировать ссылку с данными',
       shared: 'Ссылка скопирована',
-      sharedWarn: 'Не удалось создать или скопировать ссылку'
+      sharedWarn: 'Не удалось создать или скопировать ссылку',
+      resetWarningTitle: 'Сбросить данные?',
+      resetWarningMessage: 'Введённые данные будут удалены. Это действие нельзя отменить.',
+      resetWarningConfirm: 'Сбросить',
+      resetWarningCancel: 'Отмена'
     },
     en: {
       openMenu: 'Open menu',
@@ -127,7 +131,11 @@
       quickTitle: 'Quick actions',
       copyState: 'Copy link with data',
       shared: 'Link copied',
-      sharedWarn: 'Could not create or copy link'
+      sharedWarn: 'Could not create or copy link',
+      resetWarningTitle: 'Reset data?',
+      resetWarningMessage: 'Entered data will be deleted. This action cannot be undone.',
+      resetWarningConfirm: 'Reset',
+      resetWarningCancel: 'Cancel'
     }
   };
 
@@ -468,6 +476,83 @@
     logo.alt = 'Interal logo';
   }
 
+
+
+  function getUiText(key) {
+    const lang = getCurrentLanguage();
+    return (i18n[lang] && i18n[lang][key]) || i18n.ru[key] || key;
+  }
+
+  function getOrCreateResetConfirmDialog() {
+    let dialog = document.querySelector('.interal-confirm-overlay[data-confirm="reset"]');
+    if (dialog) return dialog;
+
+    dialog = document.createElement('div');
+    dialog.className = 'interal-confirm-overlay';
+    dialog.dataset.confirm = 'reset';
+    dialog.hidden = true;
+    dialog.innerHTML = `
+      <div class="interal-confirm-dialog" role="dialog" aria-modal="true" aria-labelledby="interal-reset-confirm-title" aria-describedby="interal-reset-confirm-message">
+        <div class="interal-confirm-icon" aria-hidden="true">!</div>
+        <div class="interal-confirm-content">
+          <h2 class="interal-confirm-title" id="interal-reset-confirm-title"></h2>
+          <p class="interal-confirm-message" id="interal-reset-confirm-message"></p>
+        </div>
+        <div class="interal-confirm-actions">
+          <button class="interal-btn interal-btn--secondary" type="button" data-confirm-cancel></button>
+          <button class="interal-btn interal-btn--primary" type="button" data-confirm-ok></button>
+        </div>
+      </div>`;
+    document.body.appendChild(dialog);
+    return dialog;
+  }
+
+  function confirmReset(options = {}) {
+    const dialog = getOrCreateResetConfirmDialog();
+    const title = dialog.querySelector('#interal-reset-confirm-title');
+    const message = dialog.querySelector('#interal-reset-confirm-message');
+    const cancelBtn = dialog.querySelector('[data-confirm-cancel]');
+    const okBtn = dialog.querySelector('[data-confirm-ok]');
+    title.textContent = options.title || getUiText('resetWarningTitle');
+    message.textContent = options.message || getUiText('resetWarningMessage');
+    cancelBtn.textContent = options.cancelLabel || getUiText('resetWarningCancel');
+    okBtn.textContent = options.confirmLabel || getUiText('resetWarningConfirm');
+
+    return new Promise((resolve) => {
+      const previousFocus = document.activeElement;
+      const finish = (value) => {
+        dialog.hidden = true;
+        dialog.classList.remove('show');
+        document.removeEventListener('keydown', onKeydown);
+        cancelBtn.removeEventListener('click', onCancel);
+        okBtn.removeEventListener('click', onOk);
+        dialog.removeEventListener('click', onOverlayClick);
+        if (previousFocus && typeof previousFocus.focus === 'function') previousFocus.focus();
+        resolve(value);
+      };
+      const onCancel = () => finish(false);
+      const onOk = () => finish(true);
+      const onOverlayClick = (event) => { if (event.target === dialog) finish(false); };
+      const onKeydown = (event) => {
+        if (event.key === 'Escape') finish(false);
+        if (event.key === 'Tab') {
+          const focusable = [cancelBtn, okBtn];
+          const current = focusable.indexOf(document.activeElement);
+          if (event.shiftKey && (current <= 0)) { event.preventDefault(); okBtn.focus(); }
+          else if (!event.shiftKey && current === focusable.length - 1) { event.preventDefault(); cancelBtn.focus(); }
+        }
+      };
+      cancelBtn.addEventListener('click', onCancel);
+      okBtn.addEventListener('click', onOk);
+      dialog.addEventListener('click', onOverlayClick);
+      document.addEventListener('keydown', onKeydown);
+      dialog.hidden = false;
+      requestAnimationFrame(() => dialog.classList.add('show'));
+      cancelBtn.focus();
+    });
+  }
+
+  window.InteralUI = Object.assign(window.InteralUI || {}, { confirmReset });
 
   function showToast(message) {
     let toast = document.querySelector('.interal-toast');

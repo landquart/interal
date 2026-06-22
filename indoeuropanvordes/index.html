@@ -1187,8 +1187,10 @@ function applyLocalizedTexts(lang = getCurrentLanguage()) {
 }
 
 
-function resetAll() {
-  if (!window.confirm(TEXT_I18N[getCurrentLanguage()].resetConfirm)) return;
+async function resetAll() {
+  const resetMessage = TEXT_I18N[getCurrentLanguage()].resetConfirm;
+  const shouldReset = await (window.InteralUI?.confirmReset?.({ message: resetMessage }) ?? Promise.resolve(window.confirm(resetMessage)));
+  if (!shouldReset) return;
 
   wordInput.value = "";
   lookupWordInput.value = "";

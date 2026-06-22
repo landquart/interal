@@ -1712,8 +1712,8 @@ function syncClearButtonVisibility() {
   els.clearBtn.classList.toggle('is-hidden', !hasUserInputForClear());
 }
 
-function clearAll() {
-  if (!window.confirm(t('resetConfirm'))) return;
+async function clearAll() {
+  if (!(await (window.InteralUI?.confirmReset?.({ message: t('resetConfirm') }) ?? Promise.resolve(window.confirm(t('resetConfirm')))))) return;
 
   els.regularWord.value = '';
   els.logicalMeaning.value = '';
