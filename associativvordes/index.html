@@ -103,20 +103,6 @@
     @keyframes spin { to { transform: rotate(360deg); } }
     .json-card-bottom-actions { max-width: 828px; margin: -8px auto 20px; justify-content: flex-end; padding: 0 18px; box-sizing: border-box; }
 
-    .card-tools {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      display: flex;
-      justify-content: flex-end;
-      z-index: 2;
-    }
-
-    .card-reset-btn.is-hidden {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-    }
 
     .muted { color: var(--text-muted); }
     .note { background: var(--surface); padding: 12px; border-radius: var(--radius-md); color: var(--text); border: 1px solid var(--border-subtle); }
@@ -391,11 +377,6 @@
         text-align: left;
       }
 
-
-      .card-tools {
-        top: 10px;
-        right: 10px;
-      }
 
       .associativ-page input, .associativ-page select, .associativ-page textarea, .associativ-page .tool-btn {
         font-size: 16px;
