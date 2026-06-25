@@ -22,23 +22,16 @@ body.has-global-menu { padding-top: 86px; }
 .vord-panel h2 { margin: 0 0 12px; text-align: left; font-size: 1.12rem; font-weight: 750; color: var(--text); }
 .internationalismes-page .card-tools {
   position: absolute;
-  top: 16px;
-  right: 16px;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  justify-content: flex-end;
+  z-index: 2;
 }
-.internationalismes-page .card-reset-btn {
-  width: 36px;
-  height: 36px;
-  border-radius: 999px;
-  border: 1px solid var(--border-control);
-  background: var(--surface-elevated);
-  display: grid;
-  place-items: center;
-  cursor: pointer;
-}
-.internationalismes-page .card-reset-btn img {
-  width: 18px;
-  height: 18px;
-  filter: var(--menu-icon-filter);
+.internationalismes-page .card-reset-btn.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 .vord-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(260px, .85fr); gap: 14px; align-items: stretch; }
 .field { display: grid; gap: 6px; margin-bottom: 12px; }

@@ -978,7 +978,20 @@ const TEXT_I18N = {
     }
 
     async function resetAll() {
-      if (!(await (window.InteralUI?.confirmReset?.({ message: getResetConfirmMessage() }) ?? Promise.resolve(window.confirm(getResetConfirmMessage()))))) return;
+      const confirmed = await (
+        window.InteralUI?.confirmReset?.({ message: getResetConfirmMessage() })
+        ?? Promise.resolve(window.confirm(getResetConfirmMessage()))
+      );
+
+      if (!confirmed) return;
+
+      window.InteralUI?.clearCurrentPageState?.();
+      document.dispatchEvent(new CustomEvent('interal:page-reset'));
+
+      try {
+        localStorage.removeItem('interal_associative_state');
+      } catch (_) {}
+
       state = emptyState();
       document.getElementById('rootInput').value = state.root;
       document.getElementById('meaningInput').value = state.meaning;
