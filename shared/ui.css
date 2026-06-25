@@ -483,6 +483,21 @@ a{color:var(--text);text-decoration:none;}
   color: var(--button-primary-text);
 }
 
+.card-tools {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  justify-content: flex-end;
+  z-index: 2;
+}
+
+.card-reset-btn.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
 
 .interal-reset-btn {
   width: 38px;
