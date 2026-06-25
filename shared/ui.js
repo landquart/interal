@@ -552,7 +552,10 @@
     });
   }
 
-  window.InteralUI = Object.assign(window.InteralUI || {}, { confirmReset });
+  window.InteralUI = Object.assign(window.InteralUI || {}, {
+    confirmReset,
+    clearCurrentPageState
+  });
 
   function showToast(message) {
     let toast = document.querySelector('.interal-toast');
@@ -630,6 +633,16 @@
   function getPageStateStorageKey() {
     return `${PAGE_STATE_PREFIX}${window.location.pathname}`;
   }
+
+  function clearCurrentPageState() {
+    try {
+      localStorage.removeItem(getPageStateStorageKey());
+    } catch (_) {
+      // ignore storage errors
+    }
+  }
+
+  document.addEventListener('interal:page-reset', clearCurrentPageState);
 
   function saveCurrentPageState() {
     try {
