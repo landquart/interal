@@ -465,7 +465,6 @@ function isCurrentRun(runId) { return runId === activeRunId; }
 let pendingPrefixItem = null;
 let copyPromptHighlightTimer;
 
-const STORAGE_KEY = 'determinator-valentyp-state-v1';
 
 function currentLang() {
   return localStorage.getItem('interal.lang') === 'en' ? 'en' : 'ru';
@@ -1740,20 +1739,8 @@ function resetComponentDraftControls() {
 
 async function clearAll() {
   await window.InteralUI.resetPageState({
-    message: t('resetConfirm'),
-    storageKeys: [STORAGE_KEY]
+    message: t('resetConfirm')
   });
-}
-
-
-
-
-function migrateSavedComponents(components) {
-  return components.map((item) => ({
-    ...item,
-    label: item.type === 'root' ? 'root' : item.category || item.label,
-    assimilationNoteRaw: item.assimilationNoteRaw || item.assimilationNote
-  }));
 }
 
 function attachEvents() {

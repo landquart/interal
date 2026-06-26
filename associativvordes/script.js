@@ -1000,8 +1000,7 @@ const TEXT_I18N = {
 
     async function resetAll() {
       await window.InteralUI.resetPageState({
-        message: getResetConfirmMessage(),
-        storageKeys: ['interal_associative_state']
+        message: getResetConfirmMessage()
       });
     }
 

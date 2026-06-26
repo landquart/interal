@@ -101,14 +101,6 @@ function hasUserInputForReset() {
   const hasCriteria = QUESTIONS[currentLang()].some((_, i) => Boolean(byId(`crit_${i}`)?.checked) || Boolean(byId(`ans_${i}`)?.value && byId(`ans_${i}`)?.value !== 'yes'));
   return hasText || hasCriteria || (byId('posInput')?.value || 'adverb') !== 'adverb';
 }
-function clearDomFields() {
-  byId('wordInput').value = '';
-  byId('posInput').value = 'adverb';
-  byId('domainInput').value = '';
-  LANGUAGES.forEach(lang => { const input = byId(`tr_${lang.code}`); if (input) input.value = ''; });
-  QUESTIONS[currentLang()].forEach((_, i) => { const checkbox = byId(`crit_${i}`); const answer = byId(`ans_${i}`); if (checkbox) checkbox.checked = false; if (answer) answer.value = 'yes'; });
-  const output = byId('jsonOutput'); if (output) output.value = '';
-}
 function updateResetButtonVisibility() { const resetBtn = byId('resetBtn'); if (resetBtn) resetBtn.classList.toggle('is-hidden', !hasUserInputForReset()); }
 async function resetState() {
   await window.InteralUI.resetPageState({
