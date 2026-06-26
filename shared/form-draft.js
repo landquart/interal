@@ -1,6 +1,6 @@
 (function () {
   const DRAFT_PREFIX = 'interal.explicitPageState:';
-  const SAVE_DELAY = 150;
+  const SAVE_DELAY = 80;
   const RESTORE_DELAYS = [0, 80, 250, 600];
 
   let saveTimer = null;
@@ -132,6 +132,10 @@
   }
 
   function clearCurrentDraft() {
+    clearTimeout(saveTimer);
+    saveTimer = null;
+    lastSerialized = '';
+
     try {
       localStorage.removeItem(storageKey());
     } catch (_) {}
@@ -152,7 +156,7 @@
     if (!target.matches('input, textarea, select')) return;
     if (shouldSkipElement(target)) return;
 
-    scheduleSaveDraft();
+    saveDraftNow();
   }, true);
 
   RESTORE_DELAYS.forEach((delay) => setTimeout(restoreDraft, delay));
@@ -161,8 +165,6 @@
     restoreDraft();
     setTimeout(restoreDraft, 250);
   });
-
-  window.addEventListener('beforeunload', saveDraftNow);
 
   window.InteralFormDraft = Object.assign(window.InteralFormDraft || {}, {
     save: saveDraftNow,
