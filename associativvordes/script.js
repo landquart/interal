@@ -1006,41 +1006,6 @@ const TEXT_I18N = {
     }
 
 
-    window.InteralPageState = {
-      pageId: 'associativvordes',
-      collect() {
-        state.root = document.getElementById('rootInput')?.value || state.root || '';
-        state.meaning = document.getElementById('meaningInput')?.value || state.meaning || '';
-        state.elementType = document.getElementById('elementType')?.value || state.elementType || 'root';
-
-        return {
-          root: state.root,
-          meaning: state.meaning,
-          elementType: state.elementType,
-          languages: state.languages
-        };
-      },
-
-      apply(data) {
-        state = {
-          ...emptyState(),
-          ...data
-        };
-
-        document.getElementById('rootInput').value = state.root || '';
-        document.getElementById('meaningInput').value = state.meaning || '';
-        document.getElementById('elementType').value = state.elementType || 'root';
-
-        renderAll();
-      },
-
-      clearStorageKeys: [
-        'interal_associative_state'
-      ]
-    };
-
-    window.InteralUI?.registerPageState?.(window.InteralPageState);
-    window.dispatchEvent(new Event('interal:page-state-ready'));
 
     function escapeHtml(s) {
       return String(s || '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));

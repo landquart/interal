@@ -9,7 +9,7 @@
 <link rel="apple-touch-icon" sizes="512x512" href="../favicon/favicon%20interal%20512.png" />
 
 <title>Indoeuropan vordes</title>
-<link rel="stylesheet" href="../shared/ui.css?v=reset-share-compatible-20260626" />
+<link rel="stylesheet" href="../shared/ui.css?v=reset-simple-20260626" />
 
 <style>
 .internationalita-page {
@@ -1095,45 +1095,6 @@ function getRowInputs(langCode) {
 }
 
 
-window.InteralPageState = {
-  pageId: 'indoeuropanvordes',
-  collect() {
-    return {
-      interalWord: wordInput?.value || '',
-      lookupWord: lookupWordInput?.value || '',
-      lookupLang: lookupLangSelect?.value || 'en',
-      rows: CONTROL_LANGUAGES.map(lang => {
-        const inputs = getRowInputs(lang.code);
-        return {
-          code: lang.code,
-          word: inputs.word?.value || '',
-          ipa: inputs.ipa?.value || ''
-        };
-      })
-    };
-  },
-
-  apply(data) {
-    if (wordInput) wordInput.value = data.interalWord || '';
-    if (lookupWordInput) lookupWordInput.value = data.lookupWord || '';
-    if (lookupLangSelect) lookupLangSelect.value = data.lookupLang || 'en';
-
-    if (Array.isArray(data.rows)) {
-      data.rows.forEach(row => {
-        const inputs = getRowInputs(row.code);
-        if (inputs.word) inputs.word.value = row.word || '';
-        if (inputs.ipa) inputs.ipa.value = row.ipa || '';
-      });
-    }
-
-    updateResetButtonVisibility();
-  },
-
-  clearStorageKeys: []
-};
-
-window.InteralUI?.registerPageState?.(window.InteralPageState);
-window.dispatchEvent(new Event('interal:page-state-ready'));
 
 function hasUserInputForReset() {
   return [
@@ -2840,7 +2801,7 @@ updateResetButtonVisibility();
 
 <script src="./download-json-card.js?v=2"></script>
 <script src="../shared/copy-plain.js"></script>
-<script src="../shared/ui.js?v=reset-share-compatible-20260626"></script>
+<script src="../shared/ui.js?v=reset-simple-20260626"></script>
 
 </body>
 </html>

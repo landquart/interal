@@ -1011,7 +1011,6 @@ function renderComponents() {
     els.componentsList.textContent = t('noComponents');
     els.componentsSummary.textContent = '—';
     syncClearButtonVisibility();
-    window.InteralUI.savePageState();
     return;
   }
 
@@ -1041,7 +1040,6 @@ function renderComponents() {
   });
 
   syncClearButtonVisibility();
-  window.InteralUI.savePageState();
 }
 
 function normalizeText(value) {
@@ -1296,7 +1294,6 @@ function recomputeResultFromManualScores(scores) {
   next.computed.warnings = shouldWarn(next);
   state.lastAnalysis = next;
   renderResult(next, getInput());
-  window.InteralUI.savePageState();
 }
 
 function cosineSimilarity(vecA, vecB) {
@@ -1750,58 +1747,6 @@ async function clearAll() {
 
 
 
-window.InteralPageState = {
-  pageId: 'determinatorofvalentyp',
-  collect() {
-    return {
-      regularWord: els.regularWord?.value || '',
-      logicalMeaning: els.logicalMeaning?.value || '',
-      internationalMeaning: els.internationalMeaning?.value || '',
-      naturalisticWord: els.naturalisticWord?.value || '',
-      explanationChain: els.explanationChain?.value || '',
-      components: state.components || [],
-      lastAnalysis: state.lastAnalysis || null,
-      manualPrompt: els.manualPrompt?.value || '',
-      manualEmbeddingResponse: els.manualEmbeddingResponse?.value || '',
-      useLLM: Boolean(els.useLlm?.checked),
-      ollamaUrl: els.ollamaUrl?.value || '',
-      ollamaModel: els.ollamaModel?.value || '',
-      resultHtml: els.result?.innerHTML || '',
-      resultIsEmpty: els.result?.classList.contains('empty') ?? true
-    };
-  },
-
-  apply(data) {
-    if (els.regularWord) els.regularWord.value = data.regularWord || '';
-    if (els.logicalMeaning) els.logicalMeaning.value = data.logicalMeaning || '';
-    if (els.internationalMeaning) els.internationalMeaning.value = data.internationalMeaning || '';
-    if (els.naturalisticWord) els.naturalisticWord.value = data.naturalisticWord || '';
-    if (els.explanationChain) els.explanationChain.value = data.explanationChain || '';
-    if (els.manualPrompt) els.manualPrompt.value = data.manualPrompt || '';
-    if (els.manualEmbeddingResponse) els.manualEmbeddingResponse.value = data.manualEmbeddingResponse || '';
-    if (els.useLlm) els.useLlm.checked = Boolean(data.useLLM);
-    if (els.ollamaUrl) els.ollamaUrl.value = data.ollamaUrl || 'http://localhost:11434';
-    if (els.ollamaModel) els.ollamaModel.value = data.ollamaModel || 'qwen3-embedding';
-    if (els.result) {
-      els.result.innerHTML = data.resultHtml || t('fillAndAnalyse');
-      els.result.classList.toggle('empty', data.resultIsEmpty !== false);
-    }
-
-    state.components = Array.isArray(data.components) ? data.components : [];
-    state.lastAnalysis = data.lastAnalysis || null;
-
-    renderComponents();
-    syncPromptButtonsVisibility();
-    syncClearButtonVisibility();
-  },
-
-  clearStorageKeys: [
-    STORAGE_KEY
-  ]
-};
-
-window.InteralUI?.registerPageState?.(window.InteralPageState);
-window.dispatchEvent(new Event('interal:page-state-ready'));
 
 function migrateSavedComponents(components) {
   return components.map((item) => ({
@@ -1869,7 +1814,6 @@ function attachEvents() {
     renderComponents();
     els.result.classList.add('empty');
     els.result.textContent = t('fillAndAnalyse');
-    window.InteralUI.savePageState();
   });
 
   els.saveRootBtn.addEventListener('click', addRootComponent);
@@ -1882,8 +1826,7 @@ function attachEvents() {
     if (els.manualPrompt) {
       els.manualPrompt.value = buildManualPrompt(input);
       hideBuildPromptButtonWithShift();
-      window.InteralUI.savePageState();
-    }
+      }
   });
 
   if (els.copyPromptBtn) {
@@ -1920,8 +1863,7 @@ function attachEvents() {
       if (!isCurrentRun(runId) || !result) return;
       renderResult(result, input);
       if (!isCurrentRun(runId)) return;
-      window.InteralUI.savePageState();
-    } catch (error) {
+      } catch (error) {
       if (!isCurrentRun(runId)) return;
       const computed = classifyByPRECE({ P: 2, R: 3, C: 2, E: 1 });
       computed.formRecommendation = buildFormRecommendation(computed, input);
@@ -1954,9 +1896,7 @@ function attachEvents() {
     if (!el) return;
     el.addEventListener('input', () => {
       syncClearButtonVisibility();
-      window.InteralUI.savePageState();
-    });
-    el.addEventListener('change', window.InteralUI.savePageState);
+      });
   });
 }
 
