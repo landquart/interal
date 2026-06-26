@@ -4,6 +4,9 @@
   const COPY_FEEDBACK_TIMEOUT = 3200;
 
   const PAGE_STATE_PREFIX = 'interal.pageState:';
+  let isPageResetting = false;
+  let restoreGeneration = 0;
+  const restoreTimers = new Set();
   let lockedScrollY = 0;
 
   const currentScript = document.currentScript;
@@ -554,7 +557,13 @@
 
   window.InteralUI = Object.assign(window.InteralUI || {}, {
     confirmReset,
-    clearCurrentPageState
+    clearCurrentPageState,
+    beginPageReset,
+    endPageReset,
+    hardResetPageState,
+    runPageReset,
+    getIsPageResetting,
+    debugPageState
   });
 
   function showToast(message) {
@@ -614,6 +623,7 @@
   }
 
   function applyPageState(entries) {
+    if (isPageResetting) return;
     if (!Array.isArray(entries)) return;
     entries.forEach((entry) => {
       if (!Array.isArray(entry) || entry.length < 2) return;
@@ -634,15 +644,19 @@
     return `${PAGE_STATE_PREFIX}${window.location.pathname}`;
   }
 
-  function clearCurrentPageState(options = {}) {
-    try {
-      localStorage.removeItem(getPageStateStorageKey());
-    } catch (_) {
-      // ignore storage errors
-    }
+  function cancelScheduledPageStateRestore() {
+    restoreGeneration += 1;
 
-    if (options.clearUrlState === false) return;
+    restoreTimers.forEach((timer) => {
+      try {
+        clearTimeout(timer);
+      } catch (_) {}
+    });
 
+    restoreTimers.clear();
+  }
+
+  function clearPageStateFromUrl() {
     try {
       const url = new URL(window.location.href);
       let changed = false;
@@ -663,28 +677,87 @@
       }
 
       if (changed) {
-        const nextUrl = `${url.pathname}${url.search}${url.hash}`;
-        window.history.replaceState(null, '', nextUrl);
+        window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
       }
-    } catch (_) {
-      // ignore URL cleanup errors
+    } catch (_) {}
+  }
+
+  function clearCurrentPageState(options = {}) {
+    cancelScheduledPageStateRestore();
+
+    try {
+      localStorage.removeItem(getPageStateStorageKey());
+    } catch (_) {}
+
+    if (options.clearUrlState !== false) {
+      clearPageStateFromUrl();
     }
   }
 
-  document.addEventListener('interal:page-reset', clearCurrentPageState);
+  function beginPageReset(options = {}) {
+    isPageResetting = true;
+    clearCurrentPageState(options);
+  }
+
+  function endPageReset() {
+    requestAnimationFrame(() => {
+      isPageResetting = false;
+      saveCurrentPageState();
+      clearCurrentPageState({ clearUrlState: false });
+    });
+  }
+
+  function hardResetPageState(options = {}) {
+    beginPageReset(options);
+  }
+
+  async function runPageReset(resetFn, options = {}) {
+    beginPageReset({ clearUrlState: true, ...options });
+
+    try {
+      if (typeof resetFn === 'function') {
+        await resetFn();
+      }
+    } finally {
+      endPageReset();
+    }
+  }
+
+  function getIsPageResetting() {
+    return isPageResetting;
+  }
+
+  function debugPageState() {
+    return {
+      key: getPageStateStorageKey(),
+      saved: (() => {
+        try { return localStorage.getItem(getPageStateStorageKey()); } catch (_) { return null; }
+      })(),
+      url: window.location.href,
+      isPageResetting,
+      restoreGeneration,
+      restoreTimers: restoreTimers.size
+    };
+  }
+
+  document.addEventListener('interal:page-reset', () => {
+    clearCurrentPageState({ clearUrlState: true });
+  });
 
   function saveCurrentPageState() {
+    if (isPageResetting) return;
+
     try {
       const entries = collectPageState();
       const key = getPageStateStorageKey();
+
       if (!entries.length) {
         localStorage.removeItem(key);
         return;
       }
+
       localStorage.setItem(key, JSON.stringify(entries));
-    } catch (_) {
-      // ignore storage errors
-    }
+    } catch (_) {}
   }
 
   function loadSavedPageState() {
@@ -877,8 +950,28 @@
   }, { passive: true });
   function scheduleApplyPageState(entries) {
     if (!entries.length) return;
-    window.addEventListener('load', () => applyPageState(entries));
-    setTimeout(() => applyPageState(entries), 80);
+
+    const generation = restoreGeneration;
+
+    const applyIfCurrent = () => {
+      if (isPageResetting) return;
+      if (generation !== restoreGeneration) return;
+      applyPageState(entries);
+    };
+
+    const onLoad = () => {
+      window.removeEventListener('load', onLoad);
+      applyIfCurrent();
+    };
+
+    window.addEventListener('load', onLoad);
+
+    const timer = setTimeout(() => {
+      restoreTimers.delete(timer);
+      applyIfCurrent();
+    }, 80);
+
+    restoreTimers.add(timer);
   }
 
   async function restoreInitialPageState() {

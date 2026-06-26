@@ -252,7 +252,42 @@ async function analyze() {
 }
 function hasUserInputForReset() { return Boolean(state.word.trim() || Object.values(state.evidence).some(value => String(value || '').trim()) || Object.values(state.manualOverride).some(value => value !== null && value !== undefined) || state.part_of_speech !== 'noun'); }
 function updateResetButtonVisibility() { const resetBtn = byId('resetBtn'); if (resetBtn) resetBtn.classList.toggle('is-hidden', !hasUserInputForReset()); }
-async function resetAll() { if (!(await (window.InteralUI?.confirmReset?.({ message: t('resetConfirm') }) ?? Promise.resolve(window.confirm(t('resetConfirm')))))) return; window.InteralUI?.clearCurrentPageState?.({ clearUrlState: true }); document.dispatchEvent(new CustomEvent('interal:page-reset')); state = { word: '', part_of_speech: 'noun', evidence: {}, autoPassed: {}, manualOverride: {}, matchMeta: {}, isSearching: false, searchError: '' }; render(); }
+async function resetAll() {
+  const confirmed = await (
+    window.InteralUI?.confirmReset?.({ message: t('resetConfirm') })
+    ?? Promise.resolve(window.confirm(t('resetConfirm')))
+  );
+
+  if (!confirmed) return;
+
+  const resetBody = () => {
+    state = {
+      word: '',
+      part_of_speech: 'noun',
+      evidence: {},
+      autoPassed: {},
+      manualOverride: {},
+      matchMeta: {},
+      isSearching: false,
+      searchError: ''
+    };
+
+    closeJsonModal();
+    render();
+    updateResetButtonVisibility();
+  };
+
+  if (window.InteralUI?.runPageReset) {
+    await window.InteralUI.runPageReset(resetBody, { clearUrlState: true });
+  } else {
+    window.InteralUI?.beginPageReset?.({ clearUrlState: true });
+    try {
+      resetBody();
+    } finally {
+      window.InteralUI?.endPageReset?.();
+    }
+  }
+}
 function result() { const passed = LANGUAGES.filter(lang => effectivePassed(lang.code)).length; return { passed, total: 6, accepted: passed >= 5 }; }
 function getAuthorBlock() { if (!byId('useAuthorBlock')?.checked) return null; const displayName = byId('authorDisplayName')?.value.trim() || ''; const contactType = byId('authorContactType')?.value || 'telegram'; const contactValue = byId('authorContactValue')?.value.trim() || ''; const author = {}; if (displayName) author.display_name = displayName; if (contactValue) author.contacts = [{ type: contactType, url: contactValue }]; return Object.keys(author).length ? author : null; }
 function evidenceForCard(lang) { const code = lang.code; const form = state.evidence[code] || ''; const meta = state.matchMeta[code] || {}; return { language: code, form, distance: Number.isFinite(Number(meta.distance)) ? Number(meta.distance) : null, source: meta.source || (form ? 'manual' : 'frequency_list'), match_type: meta.match_type || (form ? 'manual' : 'not_found'), frequency: Number.isFinite(Number(meta.frequency)) ? Number(meta.frequency) : null, passed: effectivePassed(code) }; }
