@@ -315,54 +315,7 @@ const TEXT_I18N = {
     }
 
 
-    async function performHardReset(message, storageKeys = []) {
-      if (window.InteralUI?.hardReloadReset) {
-        await window.InteralUI.hardReloadReset({ message, storageKeys });
-        return;
-      }
-
-      const confirmed = window.confirm(message || 'Сбросить данные?');
-      if (!confirmed) return;
-
-      try {
-        for (let i = localStorage.length - 1; i >= 0; i -= 1) {
-          const key = localStorage.key(i);
-          if (!key) continue;
-
-          if (
-            key.startsWith('interal.pageState:') ||
-            key.startsWith('interal.explicitPageState:') ||
-            storageKeys.includes(key) ||
-            key === 'interal_associative_state' ||
-            key === 'determinator-valentyp-state-v1'
-          ) {
-            localStorage.removeItem(key);
-          }
-        }
-      } catch (_) {}
-
-      const url = new URL(window.location.href);
-      url.searchParams.delete('s');
-      url.searchParams.delete('state');
-
-      if (/state=/.test(url.hash)) {
-        url.hash = '';
-      }
-
-      const cleanUrl = `${url.pathname}${url.search}${url.hash}`;
-
-      try {
-        window.history.replaceState(null, '', cleanUrl);
-      } catch (_) {}
-
-      window.location.replace(cleanUrl);
-
-      setTimeout(() => {
-        window.location.href = cleanUrl;
-      }, 100);
-    }
-
-    function getResetConfirmMessage() {
+        function getResetConfirmMessage() {
       return textValue('resetConfirm');
     }
 
@@ -839,7 +792,6 @@ const TEXT_I18N = {
       renderResults();
       syncResetButtonVisibility();
       syncJsonCardButtonVisibility();
-      saveLocal();
     }
 
     function updateItem(lang, idx, key, value) {
@@ -1047,13 +999,15 @@ const TEXT_I18N = {
     }
 
     async function resetAll() {
-      await performHardReset(getResetConfirmMessage(), [
-        'interal_associative_state'
-      ]);
+      await window.InteralUI.resetPageState({
+        message: getResetConfirmMessage(),
+        storageKeys: ['interal_associative_state']
+      });
     }
 
 
     window.InteralPageState = {
+      pageId: 'associativvordes',
       collect() {
         state.root = document.getElementById('rootInput')?.value || state.root || '';
         state.meaning = document.getElementById('meaningInput')?.value || state.meaning || '';
@@ -1085,24 +1039,8 @@ const TEXT_I18N = {
       ]
     };
 
-    function saveLocal() {
-      try { localStorage.setItem('interal_associative_state', JSON.stringify(state)); } catch {}
-    }
-
-    function loadLocal() {
-      try {
-        const raw = localStorage.getItem('interal_associative_state');
-        if (raw) {
-          state = JSON.parse(raw);
-          document.getElementById('rootInput').value = state.root || '';
-          document.getElementById('meaningInput').value = state.meaning || '';
-          document.getElementById('elementType').value = state.elementType || 'root';
-          state.maxModels = 5;
-          return true;
-        }
-      } catch {}
-      return false;
-    }
+    window.InteralUI?.registerPageState?.(window.InteralPageState);
+    window.dispatchEvent(new Event('interal:page-state-ready'));
 
     function escapeHtml(s) {
       return String(s || '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -1201,7 +1139,6 @@ const TEXT_I18N = {
 
     async function init() {
       await loadJsonFilesFromDirectory();
-      loadLocal();
       renderAll();
     }
 
