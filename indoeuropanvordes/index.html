@@ -639,7 +639,7 @@ body.dark-theme .internationalita-page .json-card-icon-btn.is-copied {
   </div>
 
   <div class="card-tools">
-    <button id="resetBtn" class="card-reset-btn interal-reset-btn" type="button" aria-label="Сбросить" style="display:none">
+    <button id="resetBtn" class="card-reset-btn interal-reset-btn is-hidden" type="button" aria-label="Сбросить">
       <img src="../elements/Eraser%20Square.svg" alt="" aria-hidden="true">
     </button>
   </div>
@@ -1103,7 +1103,7 @@ function hasUserInputForReset() {
 }
 
 function updateResetButtonVisibility() {
-  resetBtn.style.display = hasUserInputForReset() ? "grid" : "none";
+  resetBtn.classList.toggle("is-hidden", !hasUserInputForReset());
 }
 
 function getCurrentLanguage() {
@@ -1191,6 +1191,9 @@ async function resetAll() {
   const resetMessage = TEXT_I18N[getCurrentLanguage()].resetConfirm;
   const shouldReset = await (window.InteralUI?.confirmReset?.({ message: resetMessage }) ?? Promise.resolve(window.confirm(resetMessage)));
   if (!shouldReset) return;
+
+  window.InteralUI?.clearCurrentPageState?.({ clearUrlState: true });
+  document.dispatchEvent(new CustomEvent('interal:page-reset'));
 
   wordInput.value = "";
   lookupWordInput.value = "";
