@@ -60,6 +60,10 @@ const I18N = {
 
 function getDefaultState() { return { word: '', part_of_speech: 'noun', evidence: {}, autoPassed: {}, manualOverride: {}, matchMeta: {}, isSearching: false, searchError: '' }; }
 let state = getDefaultState();
+let activeRunId = 0;
+function nextRunId() { activeRunId += 1; return activeRunId; }
+function invalidateActiveRuns() { activeRunId += 1; }
+function isCurrentRun(runId) { return runId === activeRunId; }
 function currentLang() { return localStorage.getItem('interal.lang') === 'en' ? 'en' : 'ru'; }
 function setLang(lang) { localStorage.setItem('interal.lang', lang); render(); }
 function currentTheme() { return localStorage.getItem('interal.theme') === 'dark' ? 'dark' : 'light'; }
@@ -203,11 +207,13 @@ function findBestInternationalismMatch(langCode, interalWord, index) {
   }
   return best || emptyMatch(langCode);
 }
-async function searchAllLanguages() {
+async function searchAllLanguages(runId) {
   const word = state.word.trim();
   for (const lang of LANGUAGES) {
     const index = await loadLanguageFrequency(lang.code);
+    if (!isCurrentRun(runId)) return;
     const match = findBestInternationalismMatch(lang.code, word, index);
+    if (!isCurrentRun(runId)) return;
     state.evidence[lang.code] = match.form || '';
     state.autoPassed[lang.code] = Boolean(match.passed);
     state.manualOverride[lang.code] = null;
@@ -238,15 +244,19 @@ function readState() { state.word = byId('wordInput')?.value.trim() || ''; state
 async function analyze() {
   readState();
   if (!state.word.trim()) { render(); return; }
+  const runId = nextRunId();
   state.isSearching = true;
   state.searchError = '';
   render();
   try {
-    await searchAllLanguages();
+    await searchAllLanguages(runId);
+    if (!isCurrentRun(runId)) return;
   } catch (error) {
+    if (!isCurrentRun(runId)) return;
     console.error(error);
     state.searchError = t('searchError');
   } finally {
+    if (!isCurrentRun(runId)) return;
     state.isSearching = false;
     render();
   }
@@ -265,10 +275,11 @@ function updateResetButtonVisibility() { const resetBtn = byId('resetBtn'); if (
 async function resetAll() {
   const confirmed = await (window.InteralUI?.confirmReset?.({ message: t('resetConfirm') }) ?? Promise.resolve(window.confirm(t('resetConfirm'))));
   if (!confirmed) return;
+  invalidateActiveRuns();
   state = getDefaultState();
   clearDomFields();
   closeJsonModal();
-  renderResult();
+  render();
   updateResetButtonVisibility();
 }
 function result() { const passed = LANGUAGES.filter(lang => effectivePassed(lang.code)).length; return { passed, total: 6, accepted: passed >= 5 }; }

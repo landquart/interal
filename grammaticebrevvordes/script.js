@@ -102,7 +102,7 @@ async function resetState() {
   state = getDefaultState();
   clearDomFields();
   closeJsonModal();
-  renderResult();
+  render();
   updateResetButtonVisibility();
 }
 function countPassedCriteria() { return state.criteria.filter(Boolean).length; }
