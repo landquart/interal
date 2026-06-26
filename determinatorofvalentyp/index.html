@@ -52,37 +52,15 @@
         <textarea id="explanationChain" rows="3" placeholder="например: повторный просмотр → просмотр с целью контроля → проверка → ревизия"></textarea>
       </label>
 
-      <details class="details-panel">
-        <summary>Локальная нейросеть для семантической дистанции</summary>
-        <label class="check-row">
-          <input id="useLlm" type="checkbox" />
-          <span>Использовать локальную модель</span>
-        </label>
-        <label class="field compact-field">
-          <span id="ollamaUrlLabel">Ollama URL</span>
-           <input id="ollamaUrl" type="text" value="http://localhost:11434" />
-        </label>
-        <label class="field compact-field">
-          <span id="ollamaModelLabel">Model</span>
-           <input id="ollamaModel" type="text" value="qwen3-embedding" />
-        </label>
-
-        <div class="manual-embedding-box">
-          <label class="field compact-field">
-            <span>Промпт для внешней нейросети (ручное эмбеддинг-сравнение)</span>
-            <textarea id="manualPrompt" rows="8" readonly placeholder="Нажмите «Собрать промпт»"></textarea>
-          </label>
-          <div class="actions prompt-actions">
-            <button class="tool-btn" id="buildPromptBtn" type="button" class="ghost">Собрать промпт</button>
-             <button class="tool-btn" id="copyPromptBtn" type="button" class="ghost icon-copy-btn" aria-label="Копировать промпт" title="Копировать промпт"><img src="../elements/Copy.svg" alt="" aria-hidden="true" /></button>
-          </div>
-          <label class="field compact-field">
-            <span>Ответ нейросети (вставьте сюда)</span>
-            <textarea id="manualEmbeddingResponse" rows="4" placeholder='Например: {"distance":0.38,"similarity":0.62,"reason":"..."}'></textarea>
-          </label>
-          <p class="manual-hint">Если ответ предоставлен, дистанция считается как правило-ориентированная оценка + ручное эмбеддинг-сравнение (70/30).</p>
-        </div>
-      </details>
+      <div class="semantic-distance-settings" hidden aria-hidden="true">
+        <input id="useLlm" type="checkbox" />
+        <input id="ollamaUrl" type="text" value="http://localhost:11434" />
+        <input id="ollamaModel" type="text" value="qwen3-embedding" />
+        <textarea id="manualPrompt" readonly></textarea>
+        <button id="buildPromptBtn" type="button"></button>
+        <button id="copyPromptBtn" type="button"></button>
+        <textarea id="manualEmbeddingResponse"></textarea>
+      </div>
 
       <div class="panel-tools card-tools">
         <button
