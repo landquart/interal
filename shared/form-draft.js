@@ -1,10 +1,13 @@
 (function () {
   const DRAFT_PREFIX = 'interal.explicitPageState:';
+  const RESET_PREFIX = 'interal.resetPage:';
   const SAVE_DELAY = 80;
   const RESTORE_DELAYS = [0, 80, 250, 600];
+  const RESET_CLEAR_DELAYS = [0, 80, 250, 600, 1000];
 
   let saveTimer = null;
   let isRestoring = false;
+  let isResetting = false;
   let lastSerialized = '';
 
   function isInstrumentPage() {
@@ -15,6 +18,30 @@
 
   function storageKey() {
     return `${DRAFT_PREFIX}${window.location.pathname}`;
+  }
+
+  function resetKey() {
+    return `${RESET_PREFIX}${window.location.pathname}`;
+  }
+
+  function setResetFlag() {
+    try {
+      sessionStorage.setItem(resetKey(), '1');
+    } catch (_) {}
+  }
+
+  function hasResetFlag() {
+    try {
+      return sessionStorage.getItem(resetKey()) === '1';
+    } catch (_) {
+      return false;
+    }
+  }
+
+  function clearResetFlag() {
+    try {
+      sessionStorage.removeItem(resetKey());
+    } catch (_) {}
   }
 
   function shouldSkipElement(element) {
@@ -44,6 +71,20 @@
     element.value = value == null ? '' : String(value);
   }
 
+  function resetElementValue(element) {
+    if (element.type === 'checkbox' || element.type === 'radio') {
+      element.checked = false;
+      return;
+    }
+
+    if (element.tagName === 'SELECT') {
+      element.selectedIndex = 0;
+      return;
+    }
+
+    element.value = '';
+  }
+
   function collectDraft() {
     const fields = {};
 
@@ -59,7 +100,7 @@
   }
 
   function saveDraftNow() {
-    if (isRestoring) return;
+    if (isRestoring || isResetting || hasResetFlag()) return;
 
     try {
       const payload = collectDraft();
@@ -75,7 +116,7 @@
   }
 
   function scheduleSaveDraft() {
-    if (isRestoring) return;
+    if (isRestoring || isResetting || hasResetFlag()) return;
 
     clearTimeout(saveTimer);
     saveTimer = setTimeout(() => {
@@ -89,7 +130,113 @@
     element.dispatchEvent(new Event('change', { bubbles: true }));
   }
 
+  function clearCurrentDraft() {
+    clearTimeout(saveTimer);
+    saveTimer = null;
+    lastSerialized = '';
+
+    try {
+      localStorage.removeItem(storageKey());
+    } catch (_) {}
+  }
+
+  function clearAllResetStorage() {
+    try {
+      for (let i = localStorage.length - 1; i >= 0; i -= 1) {
+        const key = localStorage.key(i);
+        if (!key) continue;
+
+        if (
+          key.startsWith(DRAFT_PREFIX) ||
+          key.startsWith('interal.pageState:') ||
+          key === 'interal_associative_state' ||
+          key === 'determinator-valentyp-state-v1'
+        ) {
+          localStorage.removeItem(key);
+        }
+      }
+    } catch (_) {}
+  }
+
+  function clearDraftFields() {
+    isRestoring = true;
+
+    try {
+      getDraftFields().forEach((element) => {
+        resetElementValue(element);
+        dispatchFieldEvents(element);
+      });
+    } finally {
+      isRestoring = false;
+    }
+
+    if (typeof window.initCustomSelects === 'function') window.initCustomSelects();
+  }
+
+  function cleanResetUrl() {
+    const url = new URL(window.location.href);
+
+    url.searchParams.delete('s');
+    url.searchParams.delete('state');
+
+    if (/state=/.test(url.hash)) {
+      url.hash = '';
+    }
+
+    return `${url.pathname}${url.search}${url.hash}`;
+  }
+
+  function resetConfirmMessage(button) {
+    const lang = localStorage.getItem('interal.lang') === 'en' ? 'en' : 'ru';
+    const fallback = lang === 'en'
+      ? 'Reset entered data? This action cannot be undone.'
+      : 'Сбросить введённые данные? Это действие нельзя отменить.';
+
+    return button?.dataset?.resetMessage || button?.getAttribute('data-reset-message') || fallback;
+  }
+
+  function performDirectReset(button) {
+    const message = resetConfirmMessage(button);
+    const confirmed = window.confirm(message);
+
+    if (!confirmed) return false;
+
+    isResetting = true;
+    setResetFlag();
+    clearCurrentDraft();
+    clearAllResetStorage();
+    clearDraftFields();
+
+    const cleanUrl = cleanResetUrl();
+    const currentUrl = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+
+    try {
+      window.history.replaceState(null, '', cleanUrl);
+    } catch (_) {}
+
+    if (currentUrl === cleanUrl) {
+      window.location.reload();
+    } else {
+      window.location.replace(cleanUrl);
+    }
+
+    setTimeout(() => {
+      window.location.href = cleanUrl;
+    }, 150);
+
+    return true;
+  }
+
   function restoreDraft() {
+    if (isResetting) return false;
+
+    if (hasResetFlag()) {
+      clearCurrentDraft();
+      clearAllResetStorage();
+      clearDraftFields();
+      return false;
+    }
+
     let payload = null;
 
     try {
@@ -131,15 +278,30 @@
     return restored;
   }
 
-  function clearCurrentDraft() {
-    clearTimeout(saveTimer);
-    saveTimer = null;
-    lastSerialized = '';
+  function clearResetStateAfterLoad() {
+    if (!hasResetFlag()) return;
 
-    try {
-      localStorage.removeItem(storageKey());
-    } catch (_) {}
+    RESET_CLEAR_DELAYS.forEach((delay) => {
+      setTimeout(() => {
+        clearCurrentDraft();
+        clearAllResetStorage();
+        clearDraftFields();
+      }, delay);
+    });
+
+    setTimeout(clearResetFlag, RESET_CLEAR_DELAYS[RESET_CLEAR_DELAYS.length - 1] + 150);
   }
+
+  document.addEventListener('click', (event) => {
+    const button = event.target.closest?.('#resetBtn, .interal-reset-btn');
+    if (!button) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+    event.stopImmediatePropagation();
+
+    performDirectReset(button);
+  }, true);
 
   document.addEventListener('input', (event) => {
     const target = event.target;
@@ -159,9 +321,11 @@
     saveDraftNow();
   }, true);
 
+  clearResetStateAfterLoad();
   RESTORE_DELAYS.forEach((delay) => setTimeout(restoreDraft, delay));
 
   window.addEventListener('load', () => {
+    clearResetStateAfterLoad();
     restoreDraft();
     setTimeout(restoreDraft, 250);
   });
@@ -170,6 +334,7 @@
     save: saveDraftNow,
     restore: restoreDraft,
     clear: clearCurrentDraft,
+    reset: performDirectReset,
     key: storageKey
   });
 })();
