@@ -1736,55 +1736,73 @@ function resetComponentDraftControls() {
 }
 
 async function clearAll() {
-  if (!(await (window.InteralUI?.confirmReset?.({ message: t('resetConfirm') }) ?? Promise.resolve(window.confirm(t('resetConfirm')))))) return;
+  const confirmed = await (
+    window.InteralUI?.confirmReset?.({ message: t('resetConfirm') })
+    ?? Promise.resolve(window.confirm(t('resetConfirm')))
+  );
 
-  isResetting = true;
-  window.InteralUI?.clearCurrentPageState?.({ clearUrlState: true });
-  document.dispatchEvent(new CustomEvent('interal:page-reset'));
+  if (!confirmed) return;
 
-  try {
-    localStorage.removeItem(STORAGE_KEY);
-  } catch (_) {
-    // ignore storage errors
-  }
+  const resetBody = () => {
+    isResetting = true;
 
-  els.regularWord.value = '';
-  els.logicalMeaning.value = '';
-  els.internationalMeaning.value = '';
-  els.naturalisticWord.value = '';
-  if (els.explanationChain) els.explanationChain.value = '';
-  if (els.manualPrompt) els.manualPrompt.value = '';
-  if (els.manualEmbeddingResponse) els.manualEmbeddingResponse.value = '';
-  if (els.useLlm) els.useLlm.checked = false;
-  if (els.ollamaUrl) els.ollamaUrl.value = 'http://localhost:11434';
-  if (els.ollamaModel) els.ollamaModel.value = 'qwen3-embedding';
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+    } catch (_) {}
 
-  resetComponentDraftControls();
-  state.components = [];
-  state.lastAnalysis = null;
-  closeAllModals();
+    els.regularWord.value = '';
+    els.logicalMeaning.value = '';
+    els.internationalMeaning.value = '';
+    els.naturalisticWord.value = '';
 
-  els.componentsList.className = 'components-list empty';
-  els.componentsList.textContent = t('noComponents');
-  els.componentsSummary.textContent = '—';
+    if (els.explanationChain) els.explanationChain.value = '';
+    if (els.manualPrompt) els.manualPrompt.value = '';
+    if (els.manualEmbeddingResponse) els.manualEmbeddingResponse.value = '';
 
-  els.resultPanel.hidden = true;
-  els.result.classList.add('empty');
-  els.result.textContent = t('fillAndAnalyse');
+    if (els.useLlm) els.useLlm.checked = false;
+    if (els.ollamaUrl) els.ollamaUrl.value = 'http://localhost:11434';
+    if (els.ollamaModel) els.ollamaModel.value = 'qwen3-embedding';
 
-  syncPromptButtonsVisibility();
-  syncClearButtonVisibility();
+    state.components = [];
+    state.lastAnalysis = null;
+    pendingPrefixItem = null;
 
-  isResetting = false;
-  try {
-    localStorage.removeItem(STORAGE_KEY);
-  } catch (_) {
-    // ignore storage errors
+    resetComponentDraftControls();
+    closeAllModals();
+
+    els.componentsList.className = 'components-list empty';
+    els.componentsList.textContent = t('noComponents');
+    els.componentsSummary.textContent = '—';
+
+    els.resultPanel.hidden = true;
+    els.result.classList.add('empty');
+    els.result.textContent = t('fillAndAnalyse');
+
+    syncPromptButtonsVisibility();
+    syncClearButtonVisibility();
+
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+    } catch (_) {}
+
+    isResetting = false;
+  };
+
+  if (window.InteralUI?.runPageReset) {
+    await window.InteralUI.runPageReset(resetBody, { clearUrlState: true });
+  } else {
+    window.InteralUI?.beginPageReset?.({ clearUrlState: true });
+    try {
+      resetBody();
+    } finally {
+      window.InteralUI?.endPageReset?.();
+    }
   }
 }
 
 function saveState() {
   if (isResetting) return;
+  if (window.InteralUI?.getIsPageResetting?.()) return;
   const payload = {
     regularWord: els.regularWord.value,
     logicalMeaning: els.logicalMeaning.value,

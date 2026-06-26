@@ -92,12 +92,49 @@ let state = {
 function readState() { state.word=byId('wordInput')?.value.trim()||''; state.part_of_speech=byId('posInput')?.value||'adverb'; state.domain=byId('domainInput')?.value.trim()||''; for(const lang of LANGUAGES) state.translations[lang.code]=byId(`tr_${lang.code}`)?.value.trim()||''; const questions = QUESTIONS[currentLang()]; state.criteria = questions.map((_,i)=>Boolean(byId(`crit_${i}`)?.checked)); state.answers = questions.map((_,i)=>byId(`ans_${i}`)?.value||'yes'); }
 function hasUserInputForReset() { return ['wordInput', 'domainInput', ...LANGUAGES.map(lang => `tr_${lang.code}`)].some(id => byId(id)?.value.trim()) || QUESTIONS[currentLang()].some((_, i) => Boolean(byId(`crit_${i}`)?.checked)); }
 function updateResetButtonVisibility() { const resetBtn = byId('resetBtn'); if (resetBtn) resetBtn.classList.toggle('is-hidden', !hasUserInputForReset()); }
-async function resetState(){ if (!(await (window.InteralUI?.confirmReset?.() ?? Promise.resolve(window.confirm(t('reset')))))) return; window.InteralUI?.clearCurrentPageState?.({ clearUrlState: true }); document.dispatchEvent(new CustomEvent('interal:page-reset')); state = { word: '', part_of_speech: 'adverb', domain: '', translations: { en:'', de:'', fr:'', es:'', it:'', ru:'' }, criteria: [false, false, false], answers: ['', '', ''] }; closeJsonModal(); render(); updateResetButtonVisibility(); }
+async function resetState() {
+  const confirmed = await (
+    window.InteralUI?.confirmReset?.()
+    ?? Promise.resolve(window.confirm(t('reset')))
+  );
+
+  if (!confirmed) return;
+
+  const resetBody = () => {
+    state = {
+      word: '',
+      part_of_speech: 'adverb',
+      domain: '',
+      translations: { en:'', de:'', fr:'', es:'', it:'', ru:'' },
+      criteria: [false, false, false],
+      answers: ['', '', '']
+    };
+
+    closeJsonModal();
+
+    const output = byId('jsonOutput');
+    if (output) output.value = '';
+
+    render();
+    updateResetButtonVisibility();
+  };
+
+  if (window.InteralUI?.runPageReset) {
+    await window.InteralUI.runPageReset(resetBody, { clearUrlState: true });
+  } else {
+    window.InteralUI?.beginPageReset?.({ clearUrlState: true });
+    try {
+      resetBody();
+    } finally {
+      window.InteralUI?.endPageReset?.();
+    }
+  }
+}
 function result(){ const n=state.criteria.filter(Boolean).length; return { passed:n, total:3, accepted:n===3 }; }
 function makeCard(){ const r=result(); return { id:createId('vc'), version:'1.0', card_type:'vord_card', vord_type:'community_word', status:'draft', interal:{word:state.word, part_of_speech:state.part_of_speech}, translations: LANGUAGES.map(lang=>({language:lang.code, word:state.translations[lang.code]||''})), domain:state.domain, criteria: QUESTIONS[currentLang()].map((q,i)=>({id:`question_${i+1}`, question:q, answer:state.answers[i]||'yes', passed:Boolean(state.criteria[i])})), decision:{accepted:r.accepted} }; }
 function generateJson(){ openJsonModal(); }
 function renderCriteria(){ const questions = QUESTIONS[currentLang()]; return `<div class="criteria-list">${questions.map((q,i)=>`<div class="criterion"><p>${escapeHtml(q)}</p><select class="interal-select" id="ans_${i}"><option value="yes">${t('answerYes')}</option><option value="partially">${t('answerPartially')}</option><option value="no">${t('answerNo')}</option></select><input id="crit_${i}" type="checkbox" ${state.criteria[i]?'checked':''}></div>`).join('')}</div>`; }
-function render(){ renderChrome(); document.title=t('title'); byId('pageTitle').textContent=t('title'); byId('pageLead').textContent=t('lead'); const r=result(); byId('app').innerHTML=`<section class="card vord-panel params-panel"><h2>${t('params')}</h2><div class="field"><label>${t('word')}</label><input class="interal-input" id="wordInput" value="${escapeHtml(state.word)}"></div><div class="field"><label>${t('pos')}</label><select class="interal-select" id="posInput"><option value="adverb">${t('adverb')}</option><option value="noun">${t('noun')}</option><option value="adjective">${t('adjective')}</option><option value="expression">${t('expression')}</option></select></div><div class="field"><label>${t('domain')}</label><input class="interal-input" id="domainInput" value="${escapeHtml(state.domain)}"></div><div class="actions"><button class="interal-btn interal-btn--primary" onclick="readState();render()">${t('check')}</button></div><div class="card-tools"><button id="resetBtn" class="card-reset-btn interal-reset-btn is-hidden" type="button" onclick="resetState()" title="${escapeHtml(t('reset'))}" aria-label="${escapeHtml(t('reset'))}"><img src="../elements/Eraser%20Square.svg" alt="" aria-hidden="true"></button></div></section><section class="card vord-panel"><h2>${t('translations')}</h2>${renderTranslations(state.translations)}</section><section class="card vord-panel"><h2>${t('criteria')}</h2>${renderCriteria()}</section><section class="card vord-panel decision-summary"><h2>${t('decision')}</h2><span class="status-pill ${r.accepted?'ok':'bad'}">${r.accepted?t('accept'):t('reject')}</span><dl><div><dt>${t('passed')}</dt><dd>${r.passed}/${r.total}</dd></div></dl></section><div class="actions json-card-bottom-actions"><button class="interal-btn interal-btn--secondary" onclick="generateJson()">${t('json')}</button></div>`; byId('posInput').value=state.part_of_speech; state.answers.forEach((ans,i)=>{ if(byId(`ans_${i}`)) byId(`ans_${i}`).value=ans; }); updateResetButtonVisibility(); }
+function render(){ renderChrome(); document.title=t('title'); byId('pageTitle').textContent=t('title'); byId('pageLead').textContent=t('lead'); const r=result(); byId('app').innerHTML=`<section class="card vord-panel params-panel"><h2>${t('params')}</h2><div class="field"><label>${t('word')}</label><input class="interal-input" id="wordInput" value="${escapeHtml(state.word)}"></div><div class="field"><label>${t('pos')}</label><select class="interal-select" id="posInput"><option value="adverb">${t('adverb')}</option><option value="noun">${t('noun')}</option><option value="adjective">${t('adjective')}</option><option value="expression">${t('expression')}</option></select></div><div class="field"><label>${t('domain')}</label><input class="interal-input" id="domainInput" value="${escapeHtml(state.domain)}"></div><div class="actions"><button class="interal-btn interal-btn--primary" onclick="readState();render()">${t('check')}</button></div><div class="card-tools"><button id="resetBtn" class="card-reset-btn interal-reset-btn is-hidden" type="button" title="${escapeHtml(t('reset'))}" aria-label="${escapeHtml(t('reset'))}"><img src="../elements/Eraser%20Square.svg" alt="" aria-hidden="true"></button></div></section><section class="card vord-panel"><h2>${t('translations')}</h2>${renderTranslations(state.translations)}</section><section class="card vord-panel"><h2>${t('criteria')}</h2>${renderCriteria()}</section><section class="card vord-panel decision-summary"><h2>${t('decision')}</h2><span class="status-pill ${r.accepted?'ok':'bad'}">${r.accepted?t('accept'):t('reject')}</span><dl><div><dt>${t('passed')}</dt><dd>${r.passed}/${r.total}</dd></div></dl></section><div class="actions json-card-bottom-actions"><button class="interal-btn interal-btn--secondary" onclick="generateJson()">${t('json')}</button></div>`; byId('posInput').value=state.part_of_speech; state.answers.forEach((ans,i)=>{ if(byId(`ans_${i}`)) byId(`ans_${i}`).value=ans; }); updateResetButtonVisibility(); }
 
 const jsonFilename = 'community-word-card.json';
 function currentJsonText() {
@@ -127,6 +164,9 @@ function bindJsonModal() {
   document.addEventListener('interal:languagechange', render);
   byId('app')?.addEventListener('input', updateResetButtonVisibility);
   byId('app')?.addEventListener('change', updateResetButtonVisibility);
+  byId('app')?.addEventListener('click', (event) => {
+    if (event.target.closest('#resetBtn')) resetState();
+  });
 }
 bindJsonModal();
 render();

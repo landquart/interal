@@ -985,22 +985,41 @@ const TEXT_I18N = {
 
       if (!confirmed) return;
 
-      window.InteralUI?.clearCurrentPageState?.({ clearUrlState: true });
-      document.dispatchEvent(new CustomEvent('interal:page-reset'));
+      const resetBody = () => {
+        try {
+          localStorage.removeItem('interal_associative_state');
+        } catch (_) {}
 
-      try {
-        localStorage.removeItem('interal_associative_state');
-      } catch (_) {}
+        state = emptyState();
 
-      state = emptyState();
-      document.getElementById('rootInput').value = state.root;
-      document.getElementById('meaningInput').value = state.meaning;
-      document.getElementById('elementType').value = state.elementType;
-      renderAll();
-      syncResetButtonVisibility?.();
+        document.getElementById('rootInput').value = state.root;
+        document.getElementById('meaningInput').value = state.meaning;
+        document.getElementById('elementType').value = state.elementType;
+
+        const jsonOutput = document.getElementById('jsonCardOutput');
+        if (jsonOutput) jsonOutput.value = '';
+
+        const jsonModal = document.getElementById('jsonCardModal');
+        if (jsonModal) jsonModal.classList.remove('show');
+
+        renderAll();
+        syncResetButtonVisibility();
+      };
+
+      if (window.InteralUI?.runPageReset) {
+        await window.InteralUI.runPageReset(resetBody, { clearUrlState: true });
+      } else {
+        window.InteralUI?.beginPageReset?.({ clearUrlState: true });
+        try {
+          resetBody();
+        } finally {
+          window.InteralUI?.endPageReset?.();
+        }
+      }
     }
 
     function saveLocal() {
+      if (window.InteralUI?.getIsPageResetting?.()) return;
       try { localStorage.setItem('interal_associative_state', JSON.stringify(state)); } catch {}
     }
 
