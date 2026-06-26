@@ -4,9 +4,6 @@
   const COPY_FEEDBACK_TIMEOUT = 3200;
 
   let lockedScrollY = 0;
-  let explicitPageStateSaveTimer = null;
-  let isHardResetting = false;
-  let didRestorePageState = false;
 
   const currentScript = document.currentScript;
   const sharedPath = currentScript ? new URL(currentScript.src, window.location.href).pathname : '/shared/ui.js';
@@ -554,143 +551,225 @@
     });
   }
 
-  function getExplicitPageStateKey() {
-    return `interal.explicitPageState:${window.location.pathname}`;
-  }
+  const PageStateManager = (() => {
+    let api = null;
+    let didRestore = false;
+    let isApplying = false;
+    let isResetting = false;
+    let saveTimer = null;
 
-  function cleanCurrentUrl() {
-    const url = new URL(window.location.href);
-
-    url.searchParams.delete('s');
-    url.searchParams.delete('state');
-
-    if (/state=/.test(url.hash)) {
-      url.hash = '';
+    function getPathKey() {
+      return window.location.pathname;
     }
 
-    return `${url.pathname}${url.search}${url.hash}`;
-  }
-
-  function clearResetStorage(extraKeys = []) {
-    const keys = new Set(extraKeys);
-
-    keys.add('interal_associative_state');
-    keys.add('determinator-valentyp-state-v1');
-    keys.add(getExplicitPageStateKey());
-
-    try {
-      for (let i = localStorage.length - 1; i >= 0; i -= 1) {
-        const key = localStorage.key(i);
-        if (!key) continue;
-
-        if (
-          key.startsWith('interal.pageState:') ||
-          key.startsWith('interal.explicitPageState:') ||
-          keys.has(key)
-        ) {
-          localStorage.removeItem(key);
-        }
-      }
-    } catch (_) {}
-
-    for (const key of keys) {
-      try {
-        localStorage.removeItem(key);
-      } catch (_) {}
+    function getStorageKey() {
+      return `interal.explicitPageState:${getPathKey()}`;
     }
-  }
 
-  function getPageStateApi() {
-    const api = window.InteralPageState;
-    if (!api || typeof api !== 'object') return null;
-    if (typeof api.collect !== 'function') return null;
-    if (typeof api.apply !== 'function') return null;
-    return api;
-  }
+    function normalizeApi(candidate) {
+      if (!candidate || typeof candidate !== 'object') return null;
+      if (typeof candidate.collect !== 'function') return null;
+      if (typeof candidate.apply !== 'function') return null;
 
-  function saveExplicitPageState() {
-    if (isHardResetting) return;
-
-    const api = getPageStateApi();
-    if (!api) return;
-
-    try {
-      const data = api.collect();
-
-      const payload = {
-        version: 1,
-        page: getCurrentPageNav(),
-        data
+      return {
+        pageId: candidate.pageId || getCurrentPageNav() || getPathKey(),
+        collect: candidate.collect,
+        apply: candidate.apply,
+        clearStorageKeys: Array.isArray(candidate.clearStorageKeys) ? candidate.clearStorageKeys : []
       };
-
-      localStorage.setItem(getExplicitPageStateKey(), JSON.stringify(payload));
-    } catch (error) {
-      console.warn('Could not save explicit page state:', error);
-    }
-  }
-
-  function scheduleExplicitPageStateSave() {
-    if (isHardResetting) return;
-
-    clearTimeout(explicitPageStateSaveTimer);
-    explicitPageStateSaveTimer = setTimeout(() => {
-      explicitPageStateSaveTimer = null;
-      saveExplicitPageState();
-    }, 150);
-  }
-
-  function cancelExplicitPageStateSave() {
-    clearTimeout(explicitPageStateSaveTimer);
-    explicitPageStateSaveTimer = null;
-  }
-
-  async function hardReloadReset(options = {}) {
-    const message = options.message || 'Сбросить данные?';
-
-    const confirmed = options.skipConfirm
-      ? true
-      : await (
-          window.InteralUI?.confirmReset?.({
-            title: options.title,
-            message,
-            confirmLabel: options.confirmLabel,
-            cancelLabel: options.cancelLabel
-          })
-          ?? Promise.resolve(window.confirm(message))
-        );
-
-    if (!confirmed) return false;
-
-    isHardResetting = true;
-    cancelExplicitPageStateSave();
-
-    clearResetStorage(options.storageKeys || []);
-
-    const api = getPageStateApi();
-
-    if (api && Array.isArray(api.clearStorageKeys)) {
-      clearResetStorage(api.clearStorageKeys);
     }
 
-    const cleanUrl = cleanCurrentUrl();
+    function register(candidate) {
+      const normalized = normalizeApi(candidate);
+      if (!normalized) return false;
 
-    try {
-      window.history.replaceState(null, '', cleanUrl);
-    } catch (_) {}
+      api = normalized;
+      updateCopyStateButtonVisibility();
+      setTimeout(restoreInitial, 0);
+      return true;
+    }
 
-    window.location.replace(cleanUrl);
+    function getApi() {
+      return api;
+    }
 
-    setTimeout(() => {
-      window.location.href = cleanUrl;
-    }, 100);
+    function getPayload() {
+      if (!api) return null;
+      return {
+        version: 1,
+        page: api.pageId,
+        path: getPathKey(),
+        data: api.collect()
+      };
+    }
 
-    return true;
-  }
+    function saveNow() {
+      if (isResetting || isApplying || !api) return false;
+      try {
+        const payload = getPayload();
+        if (!payload) return false;
+        localStorage.setItem(getStorageKey(), JSON.stringify(payload));
+        return true;
+      } catch (error) {
+        console.warn('Could not save explicit page state:', error);
+        return false;
+      }
+    }
+
+    function scheduleSave() {
+      if (isResetting || isApplying || !api) return;
+      clearTimeout(saveTimer);
+      saveTimer = setTimeout(() => {
+        saveTimer = null;
+        saveNow();
+      }, 150);
+    }
+
+    function cancelSave() {
+      clearTimeout(saveTimer);
+      saveTimer = null;
+    }
+
+    function decodeUrlPayload() {
+      const params = new URLSearchParams(window.location.search);
+      const encoded = params.get('state');
+      if (!encoded) return null;
+      try {
+        return decodePageData(encoded);
+      } catch (_) {
+        return null;
+      }
+    }
+
+    function applyPayload(payload, source) {
+      if (didRestore || isResetting || !api) return false;
+      if (!payload || typeof payload !== 'object') return false;
+      isApplying = true;
+      try {
+        api.apply(payload.data || {});
+        didRestore = true;
+        if (source === 'url') {
+          try {
+            localStorage.setItem(getStorageKey(), JSON.stringify({
+              version: 1,
+              page: payload.page || api.pageId,
+              path: payload.path || getPathKey(),
+              data: payload.data || {}
+            }));
+          } catch (_) {}
+        }
+        return true;
+      } catch (error) {
+        console.warn('Could not apply page state:', error);
+        return false;
+      } finally {
+        isApplying = false;
+      }
+    }
+
+    function restoreFromUrl() {
+      const payload = decodeUrlPayload();
+      if (!payload) return false;
+      return applyPayload(payload, 'url');
+    }
+
+    function restoreFromStorage() {
+      if (didRestore || isResetting || !api) return false;
+      const params = new URLSearchParams(window.location.search);
+      if (params.has('state')) return false;
+      try {
+        const raw = localStorage.getItem(getStorageKey());
+        if (!raw) return false;
+        const payload = JSON.parse(raw);
+        return applyPayload(payload, 'storage');
+      } catch (error) {
+        console.warn('Could not restore explicit page state:', error);
+        return false;
+      }
+    }
+
+    function restoreInitial() {
+      if (!api || didRestore || isResetting) return false;
+      const restoredFromUrl = restoreFromUrl();
+      if (!restoredFromUrl) return restoreFromStorage();
+      return true;
+    }
+
+    function cleanCurrentUrl() {
+      const url = new URL(window.location.href);
+      url.searchParams.delete('s');
+      url.searchParams.delete('state');
+      if (/state=/.test(url.hash)) url.hash = '';
+      return `${url.pathname}${url.search}${url.hash}`;
+    }
+
+    function clearStorage(extraKeys = []) {
+      const keys = new Set(extraKeys);
+      keys.add(getStorageKey());
+      keys.add('interal_associative_state');
+      keys.add('determinator-valentyp-state-v1');
+      if (api && Array.isArray(api.clearStorageKeys)) api.clearStorageKeys.forEach((key) => keys.add(key));
+      try {
+        for (let i = localStorage.length - 1; i >= 0; i -= 1) {
+          const key = localStorage.key(i);
+          if (!key) continue;
+          if (key.startsWith('interal.pageState:') || key.startsWith('interal.explicitPageState:') || keys.has(key)) {
+            localStorage.removeItem(key);
+          }
+        }
+      } catch (_) {}
+      for (const key of keys) {
+        try { localStorage.removeItem(key); } catch (_) {}
+      }
+    }
+
+    async function reset(options = {}) {
+      const message = options.message || 'Сбросить данные?';
+      const confirmed = options.skipConfirm
+        ? true
+        : await (
+            window.InteralUI?.confirmReset?.({
+              title: options.title,
+              message,
+              confirmLabel: options.confirmLabel,
+              cancelLabel: options.cancelLabel
+            })
+            ?? Promise.resolve(window.confirm(message))
+          );
+      if (!confirmed) return false;
+      isResetting = true;
+      cancelSave();
+      clearStorage(options.storageKeys || []);
+      const cleanUrl = cleanCurrentUrl();
+      const currentUrl = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+      try { window.history.replaceState(null, '', cleanUrl); } catch (_) {}
+      if (currentUrl === cleanUrl) window.location.reload();
+      else window.location.replace(cleanUrl);
+      setTimeout(() => { window.location.href = cleanUrl; }, 150);
+      return true;
+    }
+
+    function copyStateLink() {
+      if (!api) return null;
+      const payload = getPayload();
+      if (!payload) return null;
+      const url = new URL(window.location.href);
+      url.hash = '';
+      url.searchParams.delete('s');
+      url.searchParams.delete('state');
+      url.searchParams.set('state', encodePageData(payload));
+      return url.toString();
+    }
+
+    return { register, getApi, saveNow, scheduleSave, restoreInitial, reset, copyStateLink, clearStorage, getStorageKey };
+  })();
 
   window.InteralUI = Object.assign(window.InteralUI || {}, {
     confirmReset,
-    hardReloadReset,
-    clearResetStorage
+    registerPageState: PageStateManager.register,
+    resetPageState: PageStateManager.reset,
+    savePageState: PageStateManager.saveNow,
+    clearPageStateStorage: PageStateManager.clearStorage
   });
 
   function showToast(message) {
@@ -734,78 +813,8 @@
 
   function updateCopyStateButtonVisibility() {
     document.querySelectorAll('[data-copy-state="true"]').forEach((button) => {
-      button.hidden = !getPageStateApi();
+      button.hidden = !PageStateManager.getApi();
     });
-  }
-
-  function restoreExplicitPageStateFromStorage() {
-    if (didRestorePageState) return;
-
-    const params = new URLSearchParams(window.location.search);
-
-    // Если открыта share-ссылка, приоритет у ?state=...
-    if (params.has('state')) return;
-
-    const api = getPageStateApi();
-    if (!api) return;
-
-    try {
-      const raw = localStorage.getItem(getExplicitPageStateKey());
-      if (!raw) return;
-
-      const payload = JSON.parse(raw);
-      if (!payload || typeof payload !== 'object') return;
-
-      api.apply(payload.data || {});
-      didRestorePageState = true;
-    } catch (error) {
-      console.warn('Could not restore explicit page state:', error);
-    }
-  }
-
-  function restorePageStateFromUrl() {
-    if (didRestorePageState) return false;
-
-    const params = new URLSearchParams(window.location.search);
-    const encoded = params.get('state');
-
-    if (!encoded) return false;
-
-    const payload = decodePageData(encoded);
-    if (!payload || typeof payload !== 'object') return false;
-
-    const api = getPageStateApi();
-    if (!api) return false;
-
-    try {
-      api.apply(payload.data || {});
-      didRestorePageState = true;
-
-      // После открытия share-ссылки сохранить данные в localStorage,
-      // чтобы обычное обновление страницы тоже сохраняло их.
-      try {
-        localStorage.setItem(getExplicitPageStateKey(), JSON.stringify({
-          version: 1,
-          page: payload.page || getCurrentPageNav(),
-          data: payload.data || {}
-        }));
-      } catch (_) {}
-
-      return true;
-    } catch (error) {
-      console.warn('Could not apply page state:', error);
-      return false;
-    }
-  }
-
-  function restoreInitialExplicitPageState() {
-    const restoredFromUrl = restorePageStateFromUrl();
-
-    if (!restoredFromUrl) {
-      restoreExplicitPageStateFromStorage();
-    }
-
-    updateCopyStateButtonVisibility();
   }
 
   function setCopyButtonCopied(copyButton, copied) {
@@ -914,7 +923,7 @@
     if (!(target instanceof HTMLElement)) return;
     if (!target.matches('input, textarea, select')) return;
     if (!target.closest('main')) return;
-    scheduleExplicitPageStateSave();
+    PageStateManager.scheduleSave();
   }, true);
 
   document.addEventListener('change', (event) => {
@@ -922,7 +931,7 @@
     if (!(target instanceof HTMLElement)) return;
     if (!target.matches('input, textarea, select')) return;
     if (!target.closest('main')) return;
-    scheduleExplicitPageStateSave();
+    PageStateManager.scheduleSave();
   }, true);
 
   document.querySelectorAll('[data-copy-state="true"]').forEach((copyButton) => {
@@ -930,29 +939,14 @@
       const t = i18n[getLang()];
 
       try {
-        const api = getPageStateApi();
+        const url = PageStateManager.copyStateLink();
 
-        if (!api) {
+        if (!url) {
           showToast(t.sharedWarn);
           return;
         }
 
-        const data = api.collect();
-
-        const url = new URL(window.location.href);
-        url.hash = '';
-        url.searchParams.delete('state');
-        url.searchParams.delete('s');
-
-        const encoded = encodePageData({
-          version: 1,
-          page: getCurrentPageNav(),
-          data
-        });
-
-        url.searchParams.set('state', encoded);
-
-        await navigator.clipboard.writeText(url.toString());
+        await navigator.clipboard.writeText(url);
         setCopyButtonCopied(copyButton, true);
         showToast(t.shared);
       } catch (_) {
@@ -961,11 +955,19 @@
     });
   });
 
-  window.addEventListener('load', updateCopyStateButtonVisibility);
+  function tryRegisterExistingPageState() {
+    if (window.InteralPageState && !PageStateManager.getApi()) {
+      PageStateManager.register(window.InteralPageState);
+    }
+  }
+
+  setTimeout(tryRegisterExistingPageState, 0);
+  setTimeout(tryRegisterExistingPageState, 100);
+  window.addEventListener('load', tryRegisterExistingPageState);
+  window.addEventListener('interal:page-state-ready', tryRegisterExistingPageState);
   setTimeout(updateCopyStateButtonVisibility, 0);
   setTimeout(updateCopyStateButtonVisibility, 100);
-  window.addEventListener('load', restoreInitialExplicitPageState);
-  setTimeout(restoreInitialExplicitPageState, 100);
+
 
   window.addEventListener('resize', () => applyLanguage(getLang()));
 

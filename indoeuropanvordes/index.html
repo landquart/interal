@@ -1096,6 +1096,7 @@ function getRowInputs(langCode) {
 
 
 window.InteralPageState = {
+  pageId: 'indoeuropanvordes',
   collect() {
     return {
       interalWord: wordInput?.value || '',
@@ -1131,6 +1132,9 @@ window.InteralPageState = {
   clearStorageKeys: []
 };
 
+window.InteralUI?.registerPageState?.(window.InteralPageState);
+window.dispatchEvent(new Event('interal:page-state-ready'));
+
 function hasUserInputForReset() {
   return [
     wordInput.value,
@@ -1143,53 +1147,6 @@ function updateResetButtonVisibility() {
   resetBtn.classList.toggle("is-hidden", !hasUserInputForReset());
 }
 
-
-async function performHardReset(message, storageKeys = []) {
-  if (window.InteralUI?.hardReloadReset) {
-    await window.InteralUI.hardReloadReset({ message, storageKeys });
-    return;
-  }
-
-  const confirmed = window.confirm(message || 'Сбросить данные?');
-  if (!confirmed) return;
-
-  try {
-    for (let i = localStorage.length - 1; i >= 0; i -= 1) {
-      const key = localStorage.key(i);
-      if (!key) continue;
-
-      if (
-        key.startsWith('interal.pageState:') ||
-        key.startsWith('interal.explicitPageState:') ||
-        storageKeys.includes(key) ||
-        key === 'interal_associative_state' ||
-        key === 'determinator-valentyp-state-v1'
-      ) {
-        localStorage.removeItem(key);
-      }
-    }
-  } catch (_) {}
-
-  const url = new URL(window.location.href);
-  url.searchParams.delete('s');
-  url.searchParams.delete('state');
-
-  if (/state=/.test(url.hash)) {
-    url.hash = '';
-  }
-
-  const cleanUrl = `${url.pathname}${url.search}${url.hash}`;
-
-  try {
-    window.history.replaceState(null, '', cleanUrl);
-  } catch (_) {}
-
-  window.location.replace(cleanUrl);
-
-  setTimeout(() => {
-    window.location.href = cleanUrl;
-  }, 100);
-}
 
 function getCurrentLanguage() {
   return localStorage.getItem("interal.lang") === "en" ? "en" : "ru";
@@ -1274,7 +1231,9 @@ function applyLocalizedTexts(lang = getCurrentLanguage()) {
 
 async function resetAll() {
   const resetMessage = TEXT_I18N[getCurrentLanguage()].resetConfirm;
-  await performHardReset(resetMessage, []);
+  await window.InteralUI.resetPageState({
+    message: resetMessage
+  });
 }
 
 

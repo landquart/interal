@@ -467,54 +467,6 @@ let copyPromptHighlightTimer;
 
 const STORAGE_KEY = 'determinator-valentyp-state-v1';
 
-async function performHardReset(message, storageKeys = []) {
-  if (window.InteralUI?.hardReloadReset) {
-    await window.InteralUI.hardReloadReset({ message, storageKeys });
-    return;
-  }
-
-  const confirmed = window.confirm(message || 'Сбросить данные?');
-  if (!confirmed) return;
-
-  try {
-    for (let i = localStorage.length - 1; i >= 0; i -= 1) {
-      const key = localStorage.key(i);
-      if (!key) continue;
-
-      if (
-        key.startsWith('interal.pageState:') ||
-        key.startsWith('interal.explicitPageState:') ||
-        storageKeys.includes(key) ||
-        key === 'interal_associative_state' ||
-        key === 'determinator-valentyp-state-v1'
-      ) {
-        localStorage.removeItem(key);
-      }
-    }
-  } catch (_) {}
-
-  const url = new URL(window.location.href);
-  url.searchParams.delete('s');
-  url.searchParams.delete('state');
-
-  if (/state=/.test(url.hash)) {
-    url.hash = '';
-  }
-
-  const cleanUrl = `${url.pathname}${url.search}${url.hash}`;
-
-  try {
-    window.history.replaceState(null, '', cleanUrl);
-  } catch (_) {}
-
-  window.location.replace(cleanUrl);
-
-  setTimeout(() => {
-    window.location.href = cleanUrl;
-  }, 100);
-}
-
-
 function currentLang() {
   return localStorage.getItem('interal.lang') === 'en' ? 'en' : 'ru';
 }
@@ -1059,7 +1011,7 @@ function renderComponents() {
     els.componentsList.textContent = t('noComponents');
     els.componentsSummary.textContent = '—';
     syncClearButtonVisibility();
-    saveState();
+    window.InteralUI.savePageState();
     return;
   }
 
@@ -1089,7 +1041,7 @@ function renderComponents() {
   });
 
   syncClearButtonVisibility();
-  saveState();
+  window.InteralUI.savePageState();
 }
 
 function normalizeText(value) {
@@ -1344,7 +1296,7 @@ function recomputeResultFromManualScores(scores) {
   next.computed.warnings = shouldWarn(next);
   state.lastAnalysis = next;
   renderResult(next, getInput());
-  saveState();
+  window.InteralUI.savePageState();
 }
 
 function cosineSimilarity(vecA, vecB) {
@@ -1790,14 +1742,16 @@ function resetComponentDraftControls() {
 }
 
 async function clearAll() {
-  await performHardReset(t('resetConfirm'), [
-    STORAGE_KEY
-  ]);
+  await window.InteralUI.resetPageState({
+    message: t('resetConfirm'),
+    storageKeys: [STORAGE_KEY]
+  });
 }
 
 
 
 window.InteralPageState = {
+  pageId: 'determinatorofvalentyp',
   collect() {
     return {
       regularWord: els.regularWord?.value || '',
@@ -1808,7 +1762,12 @@ window.InteralPageState = {
       components: state.components || [],
       lastAnalysis: state.lastAnalysis || null,
       manualPrompt: els.manualPrompt?.value || '',
-      manualEmbeddingResponse: els.manualEmbeddingResponse?.value || ''
+      manualEmbeddingResponse: els.manualEmbeddingResponse?.value || '',
+      useLLM: Boolean(els.useLlm?.checked),
+      ollamaUrl: els.ollamaUrl?.value || '',
+      ollamaModel: els.ollamaModel?.value || '',
+      resultHtml: els.result?.innerHTML || '',
+      resultIsEmpty: els.result?.classList.contains('empty') ?? true
     };
   },
 
@@ -1820,6 +1779,13 @@ window.InteralPageState = {
     if (els.explanationChain) els.explanationChain.value = data.explanationChain || '';
     if (els.manualPrompt) els.manualPrompt.value = data.manualPrompt || '';
     if (els.manualEmbeddingResponse) els.manualEmbeddingResponse.value = data.manualEmbeddingResponse || '';
+    if (els.useLlm) els.useLlm.checked = Boolean(data.useLLM);
+    if (els.ollamaUrl) els.ollamaUrl.value = data.ollamaUrl || 'http://localhost:11434';
+    if (els.ollamaModel) els.ollamaModel.value = data.ollamaModel || 'qwen3-embedding';
+    if (els.result) {
+      els.result.innerHTML = data.resultHtml || t('fillAndAnalyse');
+      els.result.classList.toggle('empty', data.resultIsEmpty !== false);
+    }
 
     state.components = Array.isArray(data.components) ? data.components : [];
     state.lastAnalysis = data.lastAnalysis || null;
@@ -1834,26 +1800,8 @@ window.InteralPageState = {
   ]
 };
 
-function saveState() {
-  const payload = {
-    regularWord: els.regularWord.value,
-    logicalMeaning: els.logicalMeaning.value,
-    internationalMeaning: els.internationalMeaning.value,
-    naturalisticWord: els.naturalisticWord.value,
-    explanationChain: els.explanationChain ? els.explanationChain.value : '',
-    components: state.components,
-    useLLM: els.useLlm.checked,
-    ollamaUrl: els.ollamaUrl ? els.ollamaUrl.value : '',
-    ollamaModel: els.ollamaModel ? els.ollamaModel.value : '',
-    manualPrompt: els.manualPrompt ? els.manualPrompt.value : '',
-    manualEmbeddingResponse: els.manualEmbeddingResponse ? els.manualEmbeddingResponse.value : '',
-    resultHtml: els.result.innerHTML,
-    resultIsEmpty: els.result.classList.contains('empty'),
-    lastAnalysis: state.lastAnalysis
-  };
-
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
-}
+window.InteralUI?.registerPageState?.(window.InteralPageState);
+window.dispatchEvent(new Event('interal:page-state-ready'));
 
 function migrateSavedComponents(components) {
   return components.map((item) => ({
@@ -1861,99 +1809,6 @@ function migrateSavedComponents(components) {
     label: item.type === 'root' ? 'root' : item.category || item.label,
     assimilationNoteRaw: item.assimilationNoteRaw || item.assimilationNote
   }));
-}
-
-function restoreState() {
-  const raw = localStorage.getItem(STORAGE_KEY);
-  if (!raw) return;
-
-  try {
-    const saved = JSON.parse(raw);
-    els.regularWord.value = saved.regularWord || '';
-    els.logicalMeaning.value = saved.logicalMeaning || '';
-    els.internationalMeaning.value = saved.internationalMeaning || '';
-    els.naturalisticWord.value = saved.naturalisticWord || '';
-    if (els.explanationChain) els.explanationChain.value = saved.explanationChain || '';
-    state.components = Array.isArray(saved.components) ? migrateSavedComponents(saved.components) : [];
-    state.lastAnalysis = saved.lastAnalysis || null;
-    els.useLlm.checked = Boolean(saved.useLLM);
-    if (els.ollamaUrl) els.ollamaUrl.value = saved.ollamaUrl || 'http://localhost:11434';
-    if (els.ollamaModel) els.ollamaModel.value = saved.ollamaModel || 'qwen3-embedding';
-    if (els.manualPrompt) els.manualPrompt.value = saved.manualPrompt || '';
-    syncPromptButtonsVisibility();
-    if (els.manualEmbeddingResponse) els.manualEmbeddingResponse.value = saved.manualEmbeddingResponse || '';
-
-    if (saved.lastAnalysis && !saved.resultIsEmpty) {
-      renderResult(saved.lastAnalysis, getInput());
-    } else if (saved.resultHtml) {
-      els.result.innerHTML = saved.resultHtml;
-      els.result.classList.toggle('empty', Boolean(saved.resultIsEmpty));
-      els.resultPanel.hidden = Boolean(saved.resultIsEmpty);
-    }
-
-    syncClearButtonVisibility();
-  } catch (_error) {
-    localStorage.removeItem(STORAGE_KEY);
-  }
-}
-
-function escapeHtml(value) {
-  return String(value)
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;')
-    .replaceAll("'", '&#39;');
-}
-
-function syncPromptButtonsVisibility() {
-  if (!els.buildPromptBtn || !els.manualPrompt) return;
-  const hasPrompt = Boolean(els.manualPrompt.value && els.manualPrompt.value.trim());
-  els.buildPromptBtn.classList.toggle('is-hidden', hasPrompt);
-}
-
-function flashCopiedPromptField() {
-  if (!els.manualPrompt) return;
-  els.manualPrompt.classList.add('copy-flash');
-  clearTimeout(copyPromptHighlightTimer);
-  copyPromptHighlightTimer = setTimeout(() => {
-    els.manualPrompt.classList.remove('copy-flash');
-  }, 900);
-}
-
-function hideBuildPromptButtonWithShift() {
-  if (!els.buildPromptBtn || !els.copyPromptBtn) return;
-  if (els.buildPromptBtn.classList.contains('is-hidden')) return;
-
-  const before = els.copyPromptBtn.getBoundingClientRect();
-  els.buildPromptBtn.classList.add('is-hidden');
-
-  requestAnimationFrame(() => {
-    const after = els.copyPromptBtn.getBoundingClientRect();
-    const deltaX = before.left - after.left;
-    if (!deltaX) return;
-    els.copyPromptBtn.animate(
-      [{ transform: `translateX(${deltaX}px)` }, { transform: 'translateX(0)' }],
-      { duration: 220, easing: 'ease-out' }
-    );
-  });
-}
-
-function refreshSelectLocalization() {
-  const assimilationValue = els.assimilationSelect.value;
-  els.assimilationSelect.querySelectorAll('option').forEach((optionEl) => {
-    const found = assimilationOptions.find((opt) => opt.value === optionEl.value);
-    optionEl.textContent = localizeAssimilationLabel(found);
-  });
-  els.assimilationSelect.value = assimilationValue;
-
-  els.componentCategorySelect.querySelectorAll('option').forEach((optionEl) => {
-    optionEl.textContent = localizeCategory(optionEl.value);
-  });
-
-  fillComponentSelect({ keepSearch: true });
-  renderComponentSearchResults();
-  window.initCustomSelects?.();
 }
 
 function attachEvents() {
@@ -2014,7 +1869,7 @@ function attachEvents() {
     renderComponents();
     els.result.classList.add('empty');
     els.result.textContent = t('fillAndAnalyse');
-    saveState();
+    window.InteralUI.savePageState();
   });
 
   els.saveRootBtn.addEventListener('click', addRootComponent);
@@ -2027,7 +1882,7 @@ function attachEvents() {
     if (els.manualPrompt) {
       els.manualPrompt.value = buildManualPrompt(input);
       hideBuildPromptButtonWithShift();
-      saveState();
+      window.InteralUI.savePageState();
     }
   });
 
@@ -2065,7 +1920,7 @@ function attachEvents() {
       if (!isCurrentRun(runId) || !result) return;
       renderResult(result, input);
       if (!isCurrentRun(runId)) return;
-      saveState();
+      window.InteralUI.savePageState();
     } catch (error) {
       if (!isCurrentRun(runId)) return;
       const computed = classifyByPRECE({ P: 2, R: 3, C: 2, E: 1 });
@@ -2099,15 +1954,14 @@ function attachEvents() {
     if (!el) return;
     el.addEventListener('input', () => {
       syncClearButtonVisibility();
-      saveState();
+      window.InteralUI.savePageState();
     });
-    el.addEventListener('change', saveState);
+    el.addEventListener('change', window.InteralUI.savePageState);
   });
 }
 
 setupSelects();
 window.initCustomSelects?.();
-restoreState();
 attachEvents();
 syncRootFormByAssimilation();
 renderComponents();
