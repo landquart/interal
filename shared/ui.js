@@ -4,6 +4,9 @@
   const COPY_FEEDBACK_TIMEOUT = 3200;
 
   let lockedScrollY = 0;
+  let explicitPageStateSaveTimer = null;
+  let isHardResetting = false;
+  let didRestorePageState = false;
 
   const currentScript = document.currentScript;
   const sharedPath = currentScript ? new URL(currentScript.src, window.location.href).pathname : '/shared/ui.js';
@@ -551,6 +554,10 @@
     });
   }
 
+  function getExplicitPageStateKey() {
+    return `interal.explicitPageState:${window.location.pathname}`;
+  }
+
   function cleanCurrentUrl() {
     const url = new URL(window.location.href);
 
@@ -569,6 +576,7 @@
 
     keys.add('interal_associative_state');
     keys.add('determinator-valentyp-state-v1');
+    keys.add(getExplicitPageStateKey());
 
     try {
       for (let i = localStorage.length - 1; i >= 0; i -= 1) {
@@ -577,6 +585,7 @@
 
         if (
           key.startsWith('interal.pageState:') ||
+          key.startsWith('interal.explicitPageState:') ||
           keys.has(key)
         ) {
           localStorage.removeItem(key);
@@ -599,6 +608,42 @@
     return api;
   }
 
+  function saveExplicitPageState() {
+    if (isHardResetting) return;
+
+    const api = getPageStateApi();
+    if (!api) return;
+
+    try {
+      const data = api.collect();
+
+      const payload = {
+        version: 1,
+        page: getCurrentPageNav(),
+        data
+      };
+
+      localStorage.setItem(getExplicitPageStateKey(), JSON.stringify(payload));
+    } catch (error) {
+      console.warn('Could not save explicit page state:', error);
+    }
+  }
+
+  function scheduleExplicitPageStateSave() {
+    if (isHardResetting) return;
+
+    clearTimeout(explicitPageStateSaveTimer);
+    explicitPageStateSaveTimer = setTimeout(() => {
+      explicitPageStateSaveTimer = null;
+      saveExplicitPageState();
+    }, 150);
+  }
+
+  function cancelExplicitPageStateSave() {
+    clearTimeout(explicitPageStateSaveTimer);
+    explicitPageStateSaveTimer = null;
+  }
+
   async function hardReloadReset(options = {}) {
     const message = options.message || 'Сбросить данные?';
 
@@ -615,6 +660,9 @@
         );
 
     if (!confirmed) return false;
+
+    isHardResetting = true;
+    cancelExplicitPageStateSave();
 
     clearResetStorage(options.storageKeys || []);
 
@@ -690,23 +738,74 @@
     });
   }
 
-  function restorePageStateFromUrl() {
+  function restoreExplicitPageStateFromStorage() {
+    if (didRestorePageState) return;
+
     const params = new URLSearchParams(window.location.search);
-    const encoded = params.get('state');
 
-    if (!encoded) return;
-
-    const payload = decodePageData(encoded);
-    if (!payload || typeof payload !== 'object') return;
+    // Если открыта share-ссылка, приоритет у ?state=...
+    if (params.has('state')) return;
 
     const api = getPageStateApi();
     if (!api) return;
 
     try {
+      const raw = localStorage.getItem(getExplicitPageStateKey());
+      if (!raw) return;
+
+      const payload = JSON.parse(raw);
+      if (!payload || typeof payload !== 'object') return;
+
       api.apply(payload.data || {});
+      didRestorePageState = true;
+    } catch (error) {
+      console.warn('Could not restore explicit page state:', error);
+    }
+  }
+
+  function restorePageStateFromUrl() {
+    if (didRestorePageState) return false;
+
+    const params = new URLSearchParams(window.location.search);
+    const encoded = params.get('state');
+
+    if (!encoded) return false;
+
+    const payload = decodePageData(encoded);
+    if (!payload || typeof payload !== 'object') return false;
+
+    const api = getPageStateApi();
+    if (!api) return false;
+
+    try {
+      api.apply(payload.data || {});
+      didRestorePageState = true;
+
+      // После открытия share-ссылки сохранить данные в localStorage,
+      // чтобы обычное обновление страницы тоже сохраняло их.
+      try {
+        localStorage.setItem(getExplicitPageStateKey(), JSON.stringify({
+          version: 1,
+          page: payload.page || getCurrentPageNav(),
+          data: payload.data || {}
+        }));
+      } catch (_) {}
+
+      return true;
     } catch (error) {
       console.warn('Could not apply page state:', error);
+      return false;
     }
+  }
+
+  function restoreInitialExplicitPageState() {
+    const restoredFromUrl = restorePageStateFromUrl();
+
+    if (!restoredFromUrl) {
+      restoreExplicitPageStateFromStorage();
+    }
+
+    updateCopyStateButtonVisibility();
   }
 
   function setCopyButtonCopied(copyButton, copied) {
@@ -810,6 +909,22 @@
 
 
 
+  document.addEventListener('input', (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLElement)) return;
+    if (!target.matches('input, textarea, select')) return;
+    if (!target.closest('main')) return;
+    scheduleExplicitPageStateSave();
+  }, true);
+
+  document.addEventListener('change', (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLElement)) return;
+    if (!target.matches('input, textarea, select')) return;
+    if (!target.closest('main')) return;
+    scheduleExplicitPageStateSave();
+  }, true);
+
   document.querySelectorAll('[data-copy-state="true"]').forEach((copyButton) => {
     copyButton.addEventListener('click', async () => {
       const t = i18n[getLang()];
@@ -849,8 +964,8 @@
   window.addEventListener('load', updateCopyStateButtonVisibility);
   setTimeout(updateCopyStateButtonVisibility, 0);
   setTimeout(updateCopyStateButtonVisibility, 100);
-  window.addEventListener('load', restorePageStateFromUrl);
-  setTimeout(restorePageStateFromUrl, 100);
+  window.addEventListener('load', restoreInitialExplicitPageState);
+  setTimeout(restoreInitialExplicitPageState, 100);
 
   window.addEventListener('resize', () => applyLanguage(getLang()));
 
