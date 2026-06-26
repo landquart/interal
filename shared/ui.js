@@ -7,6 +7,7 @@
   let isPageResetting = false;
   let restoreGeneration = 0;
   const restoreTimers = new Set();
+  let saveStateTimer = null;
   let lockedScrollY = 0;
 
   const currentScript = document.currentScript;
@@ -682,8 +683,16 @@
     } catch (_) {}
   }
 
+  function cancelPendingPageStateSave() {
+    if (saveStateTimer) {
+      clearTimeout(saveStateTimer);
+      saveStateTimer = null;
+    }
+  }
+
   function clearCurrentPageState(options = {}) {
     cancelScheduledPageStateRestore();
+    cancelPendingPageStateSave();
 
     try {
       localStorage.removeItem(getPageStateStorageKey());
@@ -701,9 +710,9 @@
 
   function endPageReset() {
     requestAnimationFrame(() => {
-      isPageResetting = false;
-      saveCurrentPageState();
+      cancelPendingPageStateSave();
       clearCurrentPageState({ clearUrlState: false });
+      isPageResetting = false;
     });
   }
 
@@ -948,10 +957,20 @@
     touchStartX = null;
     touchStartY = null;
   }, { passive: true });
-  function scheduleApplyPageState(entries) {
-    if (!entries.length) return;
+  function isRestoreStillCurrent(generation, expectedShareCode = '') {
+    if (isPageResetting) return false;
+    if (generation !== restoreGeneration) return false;
 
-    const generation = restoreGeneration;
+    if (expectedShareCode) {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('s') === expectedShareCode;
+    }
+
+    return true;
+  }
+
+  function scheduleApplyPageState(entries, generation = restoreGeneration) {
+    if (!entries.length) return;
 
     const applyIfCurrent = () => {
       if (isPageResetting) return;
@@ -975,28 +994,45 @@
   }
 
   async function restoreInitialPageState() {
+    const generation = restoreGeneration;
     const params = new URLSearchParams(window.location.search);
     const shareCode = params.get('s') || '';
-    const sharedState = /^[0-9A-Za-z]{12}$/.test(shareCode) ? await loadSharedState(shareCode) : [];
-    if (sharedState.length) {
-      scheduleApplyPageState(sharedState);
-      return;
+
+    if (/^[0-9A-Za-z]{12}$/.test(shareCode)) {
+      const sharedState = await loadSharedState(shareCode);
+
+      if (!isRestoreStillCurrent(generation, shareCode)) return;
+
+      if (sharedState.length) {
+        scheduleApplyPageState(sharedState, generation);
+        return;
+      }
     }
+
+    if (!isRestoreStillCurrent(generation)) return;
+
     const hashMatch = window.location.hash.match(/state=([^&]+)/);
     const hashState = hashMatch && hashMatch[1] ? decodeState(hashMatch[1]) : [];
+
+    if (!isRestoreStillCurrent(generation)) return;
+
     const fallbackSavedState = hashState.length ? [] : loadSavedPageState();
-    scheduleApplyPageState(hashState.length ? hashState : fallbackSavedState);
+
+    if (!isRestoreStillCurrent(generation)) return;
+
+    scheduleApplyPageState(hashState.length ? hashState : fallbackSavedState, generation);
   }
 
   restoreInitialPageState();
 
-  const debouncedSaveState = (() => {
-    let timer = null;
-    return () => {
-      clearTimeout(timer);
-      timer = setTimeout(saveCurrentPageState, 120);
-    };
-  })();
+  function debouncedSaveState() {
+    if (isPageResetting) return;
+    clearTimeout(saveStateTimer);
+    saveStateTimer = setTimeout(() => {
+      saveStateTimer = null;
+      saveCurrentPageState();
+    }, 120);
+  }
 
   document.addEventListener('input', (event) => {
     const target = event.target;
