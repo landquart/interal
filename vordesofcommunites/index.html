@@ -7,13 +7,49 @@
   <link rel="stylesheet" href="../shared/ui.css" />
   <link rel="stylesheet" href="./styles.css" />
 </head>
-<body class="communities-page">
+<body class="communities-page" data-page-state="off">
   <main class="vord-page-shell">
     <header class="vord-page-hero">
       <h1 id="pageTitle">Vordes of communités</h1>
       <p id="pageLead"></p>
     </header>
-    <div id="app"></div>
+    <div id="app">
+    <section class="card vord-panel params-panel">
+          <div class="card-tools">
+            <button id="resetBtn" class="card-reset-btn interal-reset-btn is-hidden" type="button" aria-label="Сбросить" title="Сбросить">
+              <img src="../elements/Eraser%20Square.svg" alt="" aria-hidden="true">
+            </button>
+          </div>
+          <h2 id="paramsTitle">Параметры слова</h2>
+          <div class="field">
+            <label id="wordLabel" for="wordInput">Слово в Интерaле</label>
+            <input class="interal-input" id="wordInput" autocomplete="off">
+          </div>
+          <div class="field">
+            <label id="posLabel" for="posInput">Часть речи</label>
+            <select class="interal-select" id="posInput"></select>
+          </div>
+          <div class="field">
+            <label id="domainLabel" for="domainInput">Область / сообщество</label>
+            <input class="interal-input" id="domainInput" autocomplete="off">
+          </div>
+          <div class="actions"><button class="interal-btn interal-btn--primary" id="checkBtn" type="button">Проверить</button></div>
+        </section>
+        <div id="noticeBox"></div>
+        <section class="card vord-panel" id="evidenceSection">
+          <h2 id="translationsTitle">Переводы</h2>
+          <div id="translationsBox"></div>
+        </section>
+        <section class="card vord-panel" id="criteriaSection">
+          <h2 id="criteriaTitle">Критерии</h2>
+          <div id="criteriaBox"></div>
+        </section>
+        <section class="card vord-panel decision-summary" id="resultSection">
+          <h2 id="decisionTitle">Решение</h2>
+          <div id="resultBox"></div>
+        </section>
+        <div class="actions json-card-bottom-actions"><button class="interal-btn interal-btn--secondary" id="jsonBtn" type="button">Сформировать JSON-карточку</button></div>
+    </div>
   </main>
   <div id="jsonCardModal" aria-hidden="true">
     <div class="modal-inner" role="dialog" aria-modal="true" aria-labelledby="jsonCardTitle">

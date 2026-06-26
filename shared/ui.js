@@ -16,6 +16,7 @@
   const joinUrl = (path) => new URL(path.replace(/^\//, ''), window.location.origin + siteRoot).pathname;
 
   const canCopyPageState = /\/(indoeuropanvordes|associativvordes|determinatorofvalentyp|internationalismes|vordesofcommunites|grammaticebrevvordes)(\/|$)/.test(window.location.pathname);
+  const pageStateDisabled = document.body?.dataset.pageState === 'off';
 
   const pageNavItems = {
     indoeuropanvordes: {
@@ -609,6 +610,8 @@
   }
 
   function collectPageState() {
+    if (pageStateDisabled) return [];
+
     const entries = [];
     document.querySelectorAll('input, textarea, select').forEach((el) => {
       if (!el.id && !el.name) return;
@@ -754,6 +757,7 @@
   });
 
   function saveCurrentPageState() {
+    if (pageStateDisabled) return;
     if (isPageResetting) return;
 
     try {
@@ -994,6 +998,8 @@
   }
 
   async function restoreInitialPageState() {
+    if (pageStateDisabled) return;
+
     const generation = restoreGeneration;
     const params = new URLSearchParams(window.location.search);
     const shareCode = params.get('s') || '';
