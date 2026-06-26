@@ -9,7 +9,7 @@ body {
 
 .determinator-page {
   margin: 0;
-  padding: 104px 16px 32px;
+  padding: 86px 0 0;
   background: var(--bg);
   color: var(--text);
   font-family: "Jost", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -18,18 +18,19 @@ body {
 
 .app-shell {
   width: 100%;
-  max-width: 980px;
+  max-width: 1180px;
   margin: 0 auto;
+  padding: 14px 18px 48px;
 }
 
 .hero {
-  margin-bottom: 18px;
+  padding: 28px 18px 14px;
 }
 
 .hero h1 {
-  margin: 0;
+  margin: 0 0 8px;
   text-align: center;
-  font-size: 1.9rem;
+  font-size: 38px;
   font-weight: 700;
 }
 

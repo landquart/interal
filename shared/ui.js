@@ -179,8 +179,13 @@
         }).join('')}
       </div>
     </div>
-    <a class="top-desktop-link" href="${joinUrl(pageNavItems.registry.path)}" data-nav="registry"><span class="top-desktop-link-main"></span></a>
   `;
+
+  const desktopRegistryLink = document.createElement('a');
+  desktopRegistryLink.className = 'top-desktop-link top-registry-outside-link';
+  desktopRegistryLink.href = joinUrl(pageNavItems.registry.path);
+  desktopRegistryLink.dataset.nav = 'registry';
+  desktopRegistryLink.innerHTML = '<span class="top-desktop-link-main"></span>';
 
   const mobileCurrentPageLink = document.createElement('a');
   mobileCurrentPageLink.className = 'top-current-page-link';
@@ -441,6 +446,8 @@
       const main = link.querySelector('.top-desktop-link-main');
       if (main) main.textContent = labels[link.dataset.nav] || '';
     });
+    const registryMain = desktopRegistryLink.querySelector('.top-desktop-link-main');
+    if (registryMain) registryMain.textContent = labels.registry || '';
     const currentMobileNav = getCurrentPageNav();
     if (currentMobileNav && labels[currentMobileNav]) {
       mobileCurrentPageLink.setAttribute('aria-label', labels[currentMobileNav]);
@@ -661,7 +668,7 @@
   topNavWindow.append(menuButton, brandLink, desktopControls, mobileCurrentPageLink);
 
   document.body.classList.add('has-global-menu');
-  topNav.append(topNavWindow);
+  topNav.append(topNavWindow, desktopRegistryLink);
   document.body.prepend(overlay);
   document.body.prepend(menu);
   document.body.prepend(topNav);
