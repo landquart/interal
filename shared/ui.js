@@ -3,11 +3,6 @@
   const LANG_KEY = 'interal.lang';
   const COPY_FEEDBACK_TIMEOUT = 3200;
 
-  const PAGE_STATE_PREFIX = 'interal.pageState:';
-  let isPageResetting = false;
-  let restoreGeneration = 0;
-  const restoreTimers = new Set();
-  let saveStateTimer = null;
   let lockedScrollY = 0;
 
   const currentScript = document.currentScript;
@@ -15,8 +10,7 @@
   const siteRoot = sharedPath.replace(/\/shared\/ui\.js$/, '/');
   const joinUrl = (path) => new URL(path.replace(/^\//, ''), window.location.origin + siteRoot).pathname;
 
-  const canCopyPageState = /\/(indoeuropanvordes|associativvordes|determinatorofvalentyp|internationalismes|vordesofcommunites|grammaticebrevvordes)(\/|$)/.test(window.location.pathname);
-  const pageStateDisabled = document.body?.dataset.pageState === 'off';
+  const canCopyPageState = false;
 
   const pageNavItems = {
     indoeuropanvordes: {
@@ -557,15 +551,78 @@
     });
   }
 
+  function cleanCurrentUrl() {
+    const url = new URL(window.location.href);
+
+    url.searchParams.delete('s');
+    url.searchParams.delete('state');
+
+    if (/state=/.test(url.hash)) {
+      url.hash = '';
+    }
+
+    return `${url.pathname}${url.search}${url.hash}`;
+  }
+
+  function clearStorageForCurrentPage(extraKeys = []) {
+    const pathname = window.location.pathname;
+    const keysToRemove = new Set(extraKeys);
+
+    keysToRemove.add(`interal.pageState:${pathname}`);
+
+    try {
+      for (let i = localStorage.length - 1; i >= 0; i -= 1) {
+        const key = localStorage.key(i);
+        if (!key) continue;
+
+        if (
+          key === `interal.pageState:${pathname}` ||
+          key.startsWith('interal.pageState:') ||
+          extraKeys.includes(key)
+        ) {
+          localStorage.removeItem(key);
+        }
+      }
+    } catch (_) {}
+
+    for (const key of keysToRemove) {
+      try {
+        localStorage.removeItem(key);
+      } catch (_) {}
+    }
+  }
+
+  async function hardReloadReset(options = {}) {
+    const confirmed = options.skipConfirm
+      ? true
+      : await (
+          window.InteralUI?.confirmReset?.({
+            title: options.title,
+            message: options.message,
+            confirmLabel: options.confirmLabel,
+            cancelLabel: options.cancelLabel
+          })
+          ?? Promise.resolve(window.confirm(options.message || 'Сбросить данные?'))
+        );
+
+    if (!confirmed) return false;
+
+    clearStorageForCurrentPage(options.storageKeys || []);
+
+    const cleanUrl = cleanCurrentUrl();
+
+    try {
+      window.history.replaceState(null, '', cleanUrl);
+    } catch (_) {}
+
+    window.location.replace(cleanUrl);
+    return true;
+  }
+
   window.InteralUI = Object.assign(window.InteralUI || {}, {
     confirmReset,
-    clearCurrentPageState,
-    beginPageReset,
-    endPageReset,
-    hardResetPageState,
-    runPageReset,
-    getIsPageResetting,
-    debugPageState
+    hardReloadReset,
+    clearStorageForCurrentPage
   });
 
   function showToast(message) {
@@ -579,254 +636,6 @@
     toast.classList.add('show');
     clearTimeout(showToast._timer);
     showToast._timer = setTimeout(() => toast.classList.remove('show'), 1800);
-  }
-
-  function toBase64Url(input) {
-    return btoa(unescape(encodeURIComponent(input))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/g, '');
-  }
-
-  function fromBase64Url(input) {
-    const normalized = input.replace(/-/g, '+').replace(/_/g, '/');
-    const padLength = (4 - (normalized.length % 4)) % 4;
-    const padded = normalized + '='.repeat(padLength);
-    return decodeURIComponent(escape(atob(padded)));
-  }
-
-  function encodeState(entries) {
-    try {
-      return toBase64Url(JSON.stringify(entries));
-    } catch (_) {
-      return '';
-    }
-  }
-
-  function decodeState(encoded) {
-    try {
-      const decoded = JSON.parse(fromBase64Url(encoded));
-      return Array.isArray(decoded) ? decoded : [];
-    } catch (_) {
-      return [];
-    }
-  }
-
-  function collectPageState() {
-    if (pageStateDisabled) return [];
-
-    const entries = [];
-    document.querySelectorAll('input, textarea, select').forEach((el) => {
-      if (!el.id && !el.name) return;
-      if (el.type === 'file') return;
-      const key = el.id || el.name;
-      if (el.type === 'checkbox' || el.type === 'radio') {
-        if (el.checked) entries.push([key, 1]);
-      } else if (typeof el.value === 'string' && el.value !== '') {
-        entries.push([key, el.value]);
-      }
-    });
-    return entries;
-  }
-
-  function applyPageState(entries) {
-    if (isPageResetting) return;
-    if (!Array.isArray(entries)) return;
-    entries.forEach((entry) => {
-      if (!Array.isArray(entry) || entry.length < 2) return;
-      const [key, value] = entry;
-      const el = document.getElementById(key) || document.querySelector(`[name="${CSS.escape(key)}"]`);
-      if (!el) return;
-      if (el.type === 'checkbox' || el.type === 'radio') {
-        el.checked = value === 1 || value === true || value === '1';
-      } else if (typeof value === 'string') {
-        el.value = value;
-      }
-      el.dispatchEvent(new Event('input', { bubbles: true }));
-      el.dispatchEvent(new Event('change', { bubbles: true }));
-    });
-  }
-
-  function getPageStateStorageKey() {
-    return `${PAGE_STATE_PREFIX}${window.location.pathname}`;
-  }
-
-  function cancelScheduledPageStateRestore() {
-    restoreGeneration += 1;
-
-    restoreTimers.forEach((timer) => {
-      try {
-        clearTimeout(timer);
-      } catch (_) {}
-    });
-
-    restoreTimers.clear();
-  }
-
-  function clearPageStateFromUrl() {
-    try {
-      const url = new URL(window.location.href);
-      let changed = false;
-
-      if (url.searchParams.has('s')) {
-        url.searchParams.delete('s');
-        changed = true;
-      }
-
-      if (url.searchParams.has('state')) {
-        url.searchParams.delete('state');
-        changed = true;
-      }
-
-      if (/state=/.test(url.hash)) {
-        url.hash = '';
-        changed = true;
-      }
-
-      if (changed) {
-        window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
-      }
-    } catch (_) {}
-  }
-
-  function cancelPendingPageStateSave() {
-    if (saveStateTimer) {
-      clearTimeout(saveStateTimer);
-      saveStateTimer = null;
-    }
-  }
-
-  function clearCurrentPageState(options = {}) {
-    cancelScheduledPageStateRestore();
-    cancelPendingPageStateSave();
-
-    try {
-      localStorage.removeItem(getPageStateStorageKey());
-    } catch (_) {}
-
-    if (options.clearUrlState !== false) {
-      clearPageStateFromUrl();
-    }
-  }
-
-  function beginPageReset(options = {}) {
-    isPageResetting = true;
-    clearCurrentPageState(options);
-  }
-
-  function endPageReset() {
-    requestAnimationFrame(() => {
-      cancelPendingPageStateSave();
-      clearCurrentPageState({ clearUrlState: false });
-      isPageResetting = false;
-    });
-  }
-
-  function hardResetPageState(options = {}) {
-    beginPageReset(options);
-  }
-
-  async function runPageReset(resetFn, options = {}) {
-    beginPageReset({ clearUrlState: true, ...options });
-
-    try {
-      if (typeof resetFn === 'function') {
-        await resetFn();
-      }
-    } finally {
-      endPageReset();
-    }
-  }
-
-  function getIsPageResetting() {
-    return isPageResetting;
-  }
-
-  function debugPageState() {
-    return {
-      key: getPageStateStorageKey(),
-      saved: (() => {
-        try { return localStorage.getItem(getPageStateStorageKey()); } catch (_) { return null; }
-      })(),
-      url: window.location.href,
-      isPageResetting,
-      restoreGeneration,
-      restoreTimers: restoreTimers.size
-    };
-  }
-
-  document.addEventListener('interal:page-reset', () => {
-    clearCurrentPageState({ clearUrlState: true });
-  });
-
-  function saveCurrentPageState() {
-    if (pageStateDisabled) return;
-    if (isPageResetting) return;
-
-    try {
-      const entries = collectPageState();
-      const key = getPageStateStorageKey();
-
-      if (!entries.length) {
-        localStorage.removeItem(key);
-        return;
-      }
-
-      localStorage.setItem(key, JSON.stringify(entries));
-    } catch (_) {}
-  }
-
-  function loadSavedPageState() {
-    try {
-      const raw = localStorage.getItem(getPageStateStorageKey());
-      if (!raw) return [];
-      const parsed = JSON.parse(raw);
-      return Array.isArray(parsed) ? parsed : [];
-    } catch (_) {
-      return [];
-    }
-  }
-
-
-  function setCopyButtonCopied(copyButton, copied) {
-    const t = i18n[getLang()];
-    clearTimeout(copyButton._copyStateTimer);
-    copyButton.classList.toggle('is-copied', copied);
-    copyButton.setAttribute('aria-label', copied ? t.shared : t.copyState);
-    if (copied) {
-      copyButton._copyStateTimer = setTimeout(() => {
-        copyButton.classList.remove('is-copied');
-        copyButton.setAttribute('aria-label', i18n[getLang()].copyState);
-      }, COPY_FEEDBACK_TIMEOUT);
-    }
-  }
-
-  function shareStateApiUrl(code) {
-    const apiPath = joinUrl('api/share-state');
-    const url = new URL(apiPath, window.location.origin);
-    if (code) url.searchParams.set('code', code);
-    return url;
-  }
-
-  async function createShareCode(entries) {
-    const response = await fetch(shareStateApiUrl().toString(), {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      cache: 'no-store',
-      body: JSON.stringify({ entries })
-    });
-    if (!response.ok) throw new Error('Share state API unavailable');
-    const payload = await response.json();
-    if (!payload || !/^[0-9A-Za-z]{12}$/.test(payload.code)) throw new Error('Invalid share code response');
-    return payload.code;
-  }
-
-  async function loadSharedState(code) {
-    try {
-      const response = await fetch(shareStateApiUrl(code).toString(), { method: 'GET', cache: 'no-store' });
-      if (!response.ok) return [];
-      const payload = await response.json();
-      return Array.isArray(payload.entries) ? payload.entries : [];
-    } catch (_) {
-      return [];
-    }
   }
 
   function markCurrentPage() {
@@ -914,25 +723,6 @@
     toggleLanguageList(false);
   });
 
-  document.querySelectorAll('[data-copy-state="true"]').forEach((copyButton) => copyButton.addEventListener('click', async () => {
-    const t = i18n[getLang()];
-    try {
-      const entries = collectPageState();
-      const url = new URL(window.location.href);
-      url.hash = '';
-      url.searchParams.delete('state');
-      url.searchParams.delete('s');
-      if (entries.length) {
-        const code = await createShareCode(entries);
-        url.searchParams.set('s', code);
-      }
-      await navigator.clipboard.writeText(url.toString());
-      setCopyButtonCopied(copyButton, true);
-      showToast(t.shared);
-    } catch (_) {
-      showToast(t.sharedWarn);
-    }
-  }));
 
   window.addEventListener('resize', () => applyLanguage(getLang()));
 
@@ -961,98 +751,6 @@
     touchStartX = null;
     touchStartY = null;
   }, { passive: true });
-  function isRestoreStillCurrent(generation, expectedShareCode = '') {
-    if (isPageResetting) return false;
-    if (generation !== restoreGeneration) return false;
-
-    if (expectedShareCode) {
-      const params = new URLSearchParams(window.location.search);
-      return params.get('s') === expectedShareCode;
-    }
-
-    return true;
-  }
-
-  function scheduleApplyPageState(entries, generation = restoreGeneration) {
-    if (!entries.length) return;
-
-    const applyIfCurrent = () => {
-      if (isPageResetting) return;
-      if (generation !== restoreGeneration) return;
-      applyPageState(entries);
-    };
-
-    const onLoad = () => {
-      window.removeEventListener('load', onLoad);
-      applyIfCurrent();
-    };
-
-    window.addEventListener('load', onLoad);
-
-    const timer = setTimeout(() => {
-      restoreTimers.delete(timer);
-      applyIfCurrent();
-    }, 80);
-
-    restoreTimers.add(timer);
-  }
-
-  async function restoreInitialPageState() {
-    if (pageStateDisabled) return;
-
-    const generation = restoreGeneration;
-    const params = new URLSearchParams(window.location.search);
-    const shareCode = params.get('s') || '';
-
-    if (/^[0-9A-Za-z]{12}$/.test(shareCode)) {
-      const sharedState = await loadSharedState(shareCode);
-
-      if (!isRestoreStillCurrent(generation, shareCode)) return;
-
-      if (sharedState.length) {
-        scheduleApplyPageState(sharedState, generation);
-        return;
-      }
-    }
-
-    if (!isRestoreStillCurrent(generation)) return;
-
-    const hashMatch = window.location.hash.match(/state=([^&]+)/);
-    const hashState = hashMatch && hashMatch[1] ? decodeState(hashMatch[1]) : [];
-
-    if (!isRestoreStillCurrent(generation)) return;
-
-    const fallbackSavedState = hashState.length ? [] : loadSavedPageState();
-
-    if (!isRestoreStillCurrent(generation)) return;
-
-    scheduleApplyPageState(hashState.length ? hashState : fallbackSavedState, generation);
-  }
-
-  restoreInitialPageState();
-
-  function debouncedSaveState() {
-    if (isPageResetting) return;
-    clearTimeout(saveStateTimer);
-    saveStateTimer = setTimeout(() => {
-      saveStateTimer = null;
-      saveCurrentPageState();
-    }, 120);
-  }
-
-  document.addEventListener('input', (event) => {
-    const target = event.target;
-    if (!(target instanceof HTMLElement)) return;
-    if (!target.matches('input, textarea, select')) return;
-    debouncedSaveState();
-  }, true);
-
-  document.addEventListener('change', (event) => {
-    const target = event.target;
-    if (!(target instanceof HTMLElement)) return;
-    if (!target.matches('input, textarea, select')) return;
-    debouncedSaveState();
-  }, true);
 
 
 function initCustomSelects(root = document) {
