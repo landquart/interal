@@ -10,7 +10,7 @@
   const siteRoot = sharedPath.replace(/\/shared\/ui\.js$/, '/');
   const joinUrl = (path) => new URL(path.replace(/^\//, ''), window.location.origin + siteRoot).pathname;
 
-  const canCopyPageState = false;
+  const canCopyPageState = /\/(indoeuropanvordes|associativvordes|determinatorofvalentyp|internationalismes|vordesofcommunites|grammaticebrevvordes)(\/|$)/.test(window.location.pathname);
 
   const pageNavItems = {
     indoeuropanvordes: {
@@ -638,6 +638,129 @@
     showToast._timer = setTimeout(() => toast.classList.remove('show'), 1800);
   }
 
+  function toBase64Url(input) {
+    return btoa(unescape(encodeURIComponent(input))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/g, '');
+  }
+
+  function fromBase64Url(input) {
+    const normalized = input.replace(/-/g, '+').replace(/_/g, '/');
+    const padLength = (4 - (normalized.length % 4)) % 4;
+    const padded = normalized + '='.repeat(padLength);
+    return decodeURIComponent(escape(atob(padded)));
+  }
+
+  function decodeState(encoded) {
+    try {
+      const decoded = JSON.parse(fromBase64Url(encoded));
+      return Array.isArray(decoded) ? decoded : [];
+    } catch (_) {
+      return [];
+    }
+  }
+
+  function collectPageState() {
+    const entries = [];
+    document.querySelectorAll('input, textarea, select').forEach((el) => {
+      if (!el.id && !el.name) return;
+      if (el.type === 'file') return;
+      const key = el.id || el.name;
+      if (el.type === 'checkbox' || el.type === 'radio') {
+        if (el.checked) entries.push([key, 1]);
+      } else if (typeof el.value === 'string' && el.value !== '') {
+        entries.push([key, el.value]);
+      }
+    });
+    return entries;
+  }
+
+  function applyPageState(entries) {
+    if (!Array.isArray(entries)) return;
+    entries.forEach((entry) => {
+      if (!Array.isArray(entry) || entry.length < 2) return;
+      const [key, value] = entry;
+      const el = document.getElementById(key) || document.querySelector(`[name="${CSS.escape(key)}"]`);
+      if (!el) return;
+      if (el.type === 'checkbox' || el.type === 'radio') {
+        el.checked = value === 1 || value === true || value === '1';
+      } else if (typeof value === 'string') {
+        el.value = value;
+      }
+      el.dispatchEvent(new Event('input', { bubbles: true }));
+      el.dispatchEvent(new Event('change', { bubbles: true }));
+    });
+  }
+
+  function setCopyButtonCopied(copyButton, copied) {
+    const t = i18n[getLang()];
+    clearTimeout(copyButton._copyStateTimer);
+    copyButton.classList.toggle('is-copied', copied);
+    copyButton.setAttribute('aria-label', copied ? t.shared : t.copyState);
+    if (copied) {
+      copyButton._copyStateTimer = setTimeout(() => {
+        copyButton.classList.remove('is-copied');
+        copyButton.setAttribute('aria-label', i18n[getLang()].copyState);
+      }, COPY_FEEDBACK_TIMEOUT);
+    }
+  }
+
+  function shareStateApiUrl(code) {
+    const apiPath = joinUrl('api/share-state');
+    const url = new URL(apiPath, window.location.origin);
+    if (code) url.searchParams.set('code', code);
+    return url;
+  }
+
+  async function createShareCode(entries) {
+    const response = await fetch(shareStateApiUrl().toString(), {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      cache: 'no-store',
+      body: JSON.stringify({ entries })
+    });
+    if (!response.ok) throw new Error('Share state API unavailable');
+    const payload = await response.json();
+    if (!payload || !/^[0-9A-Za-z]{12}$/.test(payload.code)) throw new Error('Invalid share code response');
+    return payload.code;
+  }
+
+  async function loadSharedState(code) {
+    try {
+      const response = await fetch(shareStateApiUrl(code).toString(), { method: 'GET', cache: 'no-store' });
+      if (!response.ok) return [];
+      const payload = await response.json();
+      return Array.isArray(payload.entries) ? payload.entries : [];
+    } catch (_) {
+      return [];
+    }
+  }
+
+  function scheduleApplySharedState(entries) {
+    if (!entries.length) return;
+
+    const apply = () => applyPageState(entries);
+    const onLoad = () => {
+      window.removeEventListener('load', onLoad);
+      apply();
+    };
+
+    window.addEventListener('load', onLoad);
+    setTimeout(apply, 80);
+  }
+
+  async function restoreSharedPageState() {
+    const params = new URLSearchParams(window.location.search);
+    const shareCode = params.get('s') || '';
+
+    if (/^[0-9A-Za-z]{12}$/.test(shareCode)) {
+      scheduleApplySharedState(await loadSharedState(shareCode));
+      return;
+    }
+
+    const hashMatch = window.location.hash.match(/state=([^&]+)/);
+    const hashState = hashMatch && hashMatch[1] ? decodeState(hashMatch[1]) : [];
+    scheduleApplySharedState(hashState);
+  }
+
   function markCurrentPage() {
     const currentNav = getCurrentPageNav();
 
@@ -678,6 +801,7 @@
   applyMobileBrandLogo();
   window.addEventListener('resize', applyMobileBrandLogo);
   markCurrentPage();
+  restoreSharedPageState();
 
 
   const instrumentsMenu = desktopControls.querySelector('[data-instruments-menu]');
@@ -723,6 +847,27 @@
     toggleLanguageList(false);
   });
 
+
+
+  document.querySelectorAll('[data-copy-state="true"]').forEach((copyButton) => copyButton.addEventListener('click', async () => {
+    const t = i18n[getLang()];
+    try {
+      const entries = collectPageState();
+      const url = new URL(window.location.href);
+      url.hash = '';
+      url.searchParams.delete('state');
+      url.searchParams.delete('s');
+      if (entries.length) {
+        const code = await createShareCode(entries);
+        url.searchParams.set('s', code);
+      }
+      await navigator.clipboard.writeText(url.toString());
+      setCopyButtonCopied(copyButton, true);
+      showToast(t.shared);
+    } catch (_) {
+      showToast(t.sharedWarn);
+    }
+  }));
 
   window.addEventListener('resize', () => applyLanguage(getLang()));
 
