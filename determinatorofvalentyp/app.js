@@ -460,6 +460,7 @@ const els = {
 let state = { components: [], lastAnalysis: null };
 let pendingPrefixItem = null;
 let copyPromptHighlightTimer;
+let isResetting = false;
 
 const STORAGE_KEY = 'determinator-valentyp-state-v1';
 
@@ -1737,27 +1738,53 @@ function resetComponentDraftControls() {
 async function clearAll() {
   if (!(await (window.InteralUI?.confirmReset?.({ message: t('resetConfirm') }) ?? Promise.resolve(window.confirm(t('resetConfirm')))))) return;
 
+  isResetting = true;
+  window.InteralUI?.clearCurrentPageState?.({ clearUrlState: true });
+  document.dispatchEvent(new CustomEvent('interal:page-reset'));
+
+  try {
+    localStorage.removeItem(STORAGE_KEY);
+  } catch (_) {
+    // ignore storage errors
+  }
+
   els.regularWord.value = '';
   els.logicalMeaning.value = '';
   els.internationalMeaning.value = '';
   els.naturalisticWord.value = '';
   if (els.explanationChain) els.explanationChain.value = '';
   if (els.manualPrompt) els.manualPrompt.value = '';
-  syncPromptButtonsVisibility();
   if (els.manualEmbeddingResponse) els.manualEmbeddingResponse.value = '';
+  if (els.useLlm) els.useLlm.checked = false;
+  if (els.ollamaUrl) els.ollamaUrl.value = 'http://localhost:11434';
+  if (els.ollamaModel) els.ollamaModel.value = 'qwen3-embedding';
+
   resetComponentDraftControls();
   state.components = [];
   state.lastAnalysis = null;
-  renderComponents();
   closeAllModals();
+
+  els.componentsList.className = 'components-list empty';
+  els.componentsList.textContent = t('noComponents');
+  els.componentsSummary.textContent = '—';
+
   els.resultPanel.hidden = true;
   els.result.classList.add('empty');
   els.result.textContent = t('fillAndAnalyse');
+
+  syncPromptButtonsVisibility();
   syncClearButtonVisibility();
-  saveState();
+
+  isResetting = false;
+  try {
+    localStorage.removeItem(STORAGE_KEY);
+  } catch (_) {
+    // ignore storage errors
+  }
 }
 
 function saveState() {
+  if (isResetting) return;
   const payload = {
     regularWord: els.regularWord.value,
     logicalMeaning: els.logicalMeaning.value,

@@ -634,11 +634,39 @@
     return `${PAGE_STATE_PREFIX}${window.location.pathname}`;
   }
 
-  function clearCurrentPageState() {
+  function clearCurrentPageState(options = {}) {
     try {
       localStorage.removeItem(getPageStateStorageKey());
     } catch (_) {
       // ignore storage errors
+    }
+
+    if (options && options.clearUrlState === false) return;
+
+    try {
+      const url = new URL(window.location.href);
+      let changed = false;
+
+      if (url.searchParams.has('s')) {
+        url.searchParams.delete('s');
+        changed = true;
+      }
+
+      if (url.searchParams.has('state')) {
+        url.searchParams.delete('state');
+        changed = true;
+      }
+
+      if (/state=/.test(url.hash)) {
+        url.hash = '';
+        changed = true;
+      }
+
+      if (changed) {
+        window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
+      }
+    } catch (_) {
+      // ignore URL cleanup errors
     }
   }
 
