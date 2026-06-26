@@ -546,33 +546,39 @@ body.dark-theme .interal-reset-btn img {
 .interal-confirm-overlay {
   position: fixed;
   inset: 0;
-  z-index: 1000;
+  z-index: 10000;
   display: grid;
   place-items: center;
-  padding: 20px;
-  background: rgba(15, 23, 42, 0.55);
+  padding: 24px;
+  background: rgba(10, 10, 12, 0.42);
+  backdrop-filter: blur(14px);
   opacity: 0;
-  transition: opacity 0.18s ease;
+  pointer-events: none;
+  transition: opacity 180ms ease;
+}
+
+.interal-confirm-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .interal-confirm-overlay[hidden] {
   display: none;
 }
 
-.interal-confirm-overlay.show {
-  opacity: 1;
+.interal-confirm-dialog {
+  width: min(420px, 100%);
+  border-radius: 28px;
+  padding: 24px;
+  background: var(--card-bg, #ffffff);
+  color: var(--text, #151515);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.24);
+  transform: translateY(10px) scale(0.98);
+  transition: transform 180ms ease;
 }
 
-.interal-confirm-dialog {
-  width: min(100%, 420px);
-  display: grid;
-  gap: 18px;
-  padding: 24px;
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  background: var(--surface-elevated);
-  color: var(--text);
-  box-shadow: var(--shadow-lg);
+.interal-confirm-overlay.show .interal-confirm-dialog {
+  transform: translateY(0) scale(1);
 }
 
 .interal-confirm-icon {
@@ -580,21 +586,21 @@ body.dark-theme .interal-reset-btn img {
   height: 44px;
   display: grid;
   place-items: center;
-  border-radius: 50%;
-  background: rgba(245, 158, 11, 0.16);
-  color: #b45309;
+  border-radius: 16px;
+  margin-bottom: 16px;
   font-weight: 800;
-  font-size: 24px;
+  background: rgba(0, 0, 0, 0.08);
 }
 
 .interal-confirm-title {
   margin: 0 0 8px;
   font-size: 1.25rem;
+  line-height: 1.2;
 }
 
 .interal-confirm-message {
   margin: 0;
-  color: var(--muted);
+  color: var(--muted-text, #666);
   line-height: 1.5;
 }
 
@@ -602,5 +608,25 @@ body.dark-theme .interal-reset-btn img {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
-  flex-wrap: wrap;
+  margin-top: 22px;
+}
+
+.interal-confirm-actions .interal-btn {
+  border-radius: 999px;
+  min-height: 42px;
+  padding-inline: 18px;
+}
+
+body.dark-theme .interal-confirm-dialog {
+  background: #171717;
+  color: #f4f4f4;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-theme .interal-confirm-message {
+  color: rgba(255, 255, 255, 0.68);
+}
+
+body.dark-theme .interal-confirm-icon {
+  background: rgba(255, 255, 255, 0.08);
 }

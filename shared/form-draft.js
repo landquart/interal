@@ -186,18 +186,73 @@
     return `${url.pathname}${url.search}${url.hash}`;
   }
 
+  function currentLang() {
+    return localStorage.getItem('interal.lang') === 'en' ? 'en' : 'ru';
+  }
+
+  function resetConfirmTitle() {
+    return currentLang() === 'en'
+      ? 'Reset data?'
+      : 'Сбросить данные?';
+  }
+
+  function resetConfirmOkLabel() {
+    return currentLang() === 'en'
+      ? 'Reset'
+      : 'Сбросить';
+  }
+
+  function resetConfirmCancelLabel() {
+    return currentLang() === 'en'
+      ? 'Cancel'
+      : 'Отмена';
+  }
+
   function resetConfirmMessage(button) {
-    const lang = localStorage.getItem('interal.lang') === 'en' ? 'en' : 'ru';
-    const fallback = lang === 'en'
+    const fallback = currentLang() === 'en'
       ? 'Reset entered data? This action cannot be undone.'
       : 'Сбросить введённые данные? Это действие нельзя отменить.';
 
     return button?.dataset?.resetMessage || button?.getAttribute('data-reset-message') || fallback;
   }
 
-  function performDirectReset(button) {
+  function waitForConfirmReset(timeout = 600) {
+    if (window.InteralUI?.confirmReset) {
+      return Promise.resolve(window.InteralUI.confirmReset);
+    }
+
+    return new Promise((resolve) => {
+      const startedAt = Date.now();
+
+      const check = () => {
+        if (window.InteralUI?.confirmReset) {
+          resolve(window.InteralUI.confirmReset);
+          return;
+        }
+
+        if (Date.now() - startedAt >= timeout) {
+          resolve(null);
+          return;
+        }
+
+        setTimeout(check, 40);
+      };
+
+      check();
+    });
+  }
+
+  async function performDirectReset(button) {
     const message = resetConfirmMessage(button);
-    const confirmed = window.confirm(message);
+    const confirmReset = await waitForConfirmReset();
+    const confirmed = confirmReset
+      ? await confirmReset({
+        title: resetConfirmTitle(),
+        message,
+        confirmLabel: resetConfirmOkLabel(),
+        cancelLabel: resetConfirmCancelLabel()
+      })
+      : window.confirm(message);
 
     if (!confirmed) return false;
 
@@ -300,7 +355,9 @@
     event.stopPropagation();
     event.stopImmediatePropagation();
 
-    performDirectReset(button);
+    performDirectReset(button).catch((error) => {
+      console.error('Reset failed:', error);
+    });
   }, true);
 
   document.addEventListener('input', (event) => {
