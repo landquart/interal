@@ -149,6 +149,10 @@ const TEXT_I18N = {
     let derivativeData = structuredClone(DEFAULT_DERIVATIVES);
     let frequencyData = structuredClone(DEFAULT_FREQUENCIES);
     let state = emptyState();
+    let activeRunId = 0;
+    function nextRunId() { activeRunId += 1; return activeRunId; }
+    function invalidateActiveRuns() { activeRunId += 1; }
+    function isCurrentRun(runId) { return runId === activeRunId; }
     let activeLang = 'en';
 
     async function loadJsonFilesFromDirectory() {
@@ -413,7 +417,8 @@ const TEXT_I18N = {
       };
     }
 
-    async function analyzeCandidateItem(langCode, item, onProgress) {
+    async function analyzeCandidateItem(langCode, item, onProgress, runId) {
+      if (!isCurrentRun(runId)) return item;
       try {
         const languageName = textGroup('languages')[langCode] || langCode;
         onProgress?.(`SWOW: ${languageName} — ${item.word}`);
@@ -421,8 +426,9 @@ const TEXT_I18N = {
           language: langCode,
           targetMeaning: state.meaning || state.root,
           word: item.word,
-          onProgress: text => onProgress?.(text.replace(`${langCode} —`, `${languageName} —`))
+          onProgress: text => { if (isCurrentRun(runId)) onProgress?.(text.replace(`${langCode} —`, `${languageName} —`)); }
         });
+        if (!isCurrentRun(runId)) return item;
         return {
           ...item,
           analysis,
@@ -432,6 +438,7 @@ const TEXT_I18N = {
           selected: true
         };
       } catch (error) {
+        if (!isCurrentRun(runId)) return item;
         return failedAnalysis(langCode, item, error);
       }
     }
@@ -487,52 +494,66 @@ const TEXT_I18N = {
       return Array.from(byWord.values()).slice(0, QWEN_RUNTIME_CONFIG.maxCandidatesPerLanguage);
     }
 
-    async function runCalculation({ onProgress } = {}) {
-      onProgress?.('Подготовка...');
-      state.root = normalizeText(document.getElementById('rootInput').value);
-      state.meaning = document.getElementById('meaningInput').value.trim();
-      state.elementType = document.getElementById('elementType').value;
-      state.maxModels = 5;
+    async function runCalculation({ runId, onProgress } = {}) {
+      const root = normalizeText(document.getElementById('rootInput').value);
+      const meaning = document.getElementById('meaningInput').value.trim();
+      const elementType = document.getElementById('elementType').value;
 
-      const root = state.root;
+      if (!root) {
+        alert(textGroup('alerts').rootRequired);
+        return;
+      }
+
+      state.root = root;
+      state.meaning = meaning;
+      state.elementType = elementType;
+      state.maxModels = 5;
       const nextLangs = {};
 
       onProgress?.('Загрузка частотных списков...');
       for (const lang of LANGUAGES) {
+        if (!isCurrentRun(runId)) return;
         const languageName = textGroup('languages')[lang.code] || lang.name;
         onProgress?.(`Поиск похожих корней: ${languageName}`);
         const candidates = await getLanguageCandidates(lang.code, root);
+        if (!isCurrentRun(runId)) return;
         onProgress?.(`Qwen3.6: оценка слов — ${languageName}`);
         const analyzed = await mapWithConcurrency(
           candidates,
           QWEN_RUNTIME_CONFIG.maxConcurrentQwenRequests,
-          item => analyzeCandidateItem(lang.code, item, onProgress)
+          item => analyzeCandidateItem(lang.code, item, onProgress, runId)
         );
 
+        if (!isCurrentRun(runId)) return;
         onProgress?.(`Расчёт языковых баллов: ${languageName}`);
         nextLangs[lang.code] = groupByBestModel(analyzed, state.maxModels);
       }
+      if (!isCurrentRun(runId)) return;
       onProgress?.('Расчёт итогового процента...');
       state.languages = nextLangs;
       calculateFinal();
     }
 
     async function searchDerivatives() {
+      const runId = nextRunId();
       try {
         setCalculateButtonStatus('Подготовка...', true);
         await runCalculation({
-          onProgress: text => setCalculateButtonStatus(text, true)
+          runId,
+          onProgress: text => { if (isCurrentRun(runId)) setCalculateButtonStatus(text, true); }
         });
+        if (!isCurrentRun(runId)) return;
         renderAll();
         setCalculateButtonStatus('Готово', true);
         setTimeout(() => {
-          setCalculateButtonStatus(defaultCalculateButtonText(), false);
+          if (isCurrentRun(runId)) setCalculateButtonStatus(defaultCalculateButtonText(), false);
         }, 800);
       } catch (error) {
+        if (!isCurrentRun(runId)) return;
         console.error(error);
         setCalculateButtonStatus('Ошибка расчёта', false);
       } finally {
-        renderAll();
+        if (isCurrentRun(runId)) renderAll();
       }
     }
 
@@ -985,6 +1006,8 @@ const TEXT_I18N = {
 
       if (!confirmed) return;
 
+      invalidateActiveRuns();
+
       const resetBody = () => {
         try {
           localStorage.removeItem('interal_associative_state');
@@ -1001,6 +1024,8 @@ const TEXT_I18N = {
 
         const jsonModal = document.getElementById('jsonCardModal');
         if (jsonModal) jsonModal.classList.remove('show');
+
+        setCalculateButtonStatus(defaultCalculateButtonText(), false);
 
         renderAll();
         syncResetButtonVisibility();

@@ -113,7 +113,7 @@ async function resetState() {
   state = getDefaultState();
   clearDomFields();
   closeJsonModal();
-  renderResult();
+  render();
   updateResetButtonVisibility();
 }
 function result(){ const n=state.criteria.filter(Boolean).length; return { passed:n, total:3, accepted:n===3 }; }

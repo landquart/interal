@@ -458,6 +458,10 @@ const els = {
 };
 
 let state = { components: [], lastAnalysis: null };
+let activeRunId = 0;
+function nextRunId() { activeRunId += 1; return activeRunId; }
+function invalidateActiveRuns() { activeRunId += 1; }
+function isCurrentRun(runId) { return runId === activeRunId; }
 let pendingPrefixItem = null;
 let copyPromptHighlightTimer;
 let isResetting = false;
@@ -1534,7 +1538,7 @@ function getInput() {
 }
 
 
-async function analyzeByRules(input) {
+async function analyzeByRules(input, runId) {
   if (!input.logicalMeaning || !input.internationalMeaning) {
     return {
       ok: false,
@@ -1560,8 +1564,11 @@ async function analyzeByRules(input) {
     })
   });
 
+  if (!isCurrentRun(runId)) return null;
+
   let data;
   const text = await response.text();
+  if (!isCurrentRun(runId)) return null;
   try {
     data = extractJsonFromText(text);
   } catch (_error) {
@@ -1743,6 +1750,8 @@ async function clearAll() {
 
   if (!confirmed) return;
 
+  invalidateActiveRuns();
+
   const resetBody = () => {
     isResetting = true;
 
@@ -1762,6 +1771,10 @@ async function clearAll() {
     if (els.useLlm) els.useLlm.checked = false;
     if (els.ollamaUrl) els.ollamaUrl.value = 'http://localhost:11434';
     if (els.ollamaModel) els.ollamaModel.value = 'qwen3-embedding';
+    if (els.analyzeBtn) {
+      els.analyzeBtn.disabled = false;
+      els.analyzeBtn.textContent = t('analyse');
+    }
 
     state.components = [];
     state.lastAnalysis = null;
@@ -2024,19 +2037,25 @@ function attachEvents() {
   }
 
   els.analyzeBtn.addEventListener('click', async () => {
+    const runId = nextRunId();
     const input = getInput();
     els.analyzeBtn.disabled = true;
     els.analyzeBtn.textContent = currentLang() === 'en' ? 'Analysing…' : 'Анализируем…';
     try {
-      const result = await analyzeByRules(input);
+      const result = await analyzeByRules(input, runId);
+      if (!isCurrentRun(runId) || !result) return;
       renderResult(result, input);
+      if (!isCurrentRun(runId)) return;
       saveState();
     } catch (error) {
+      if (!isCurrentRun(runId)) return;
       const computed = classifyByPRECE({ P: 2, R: 3, C: 2, E: 1 });
       computed.formRecommendation = buildFormRecommendation(computed, input);
       computed.warnings = ['API недоступен. Выставьте P/R/C/E вручную — зона пересчитается локально.', String(error.message || error)];
+      if (!isCurrentRun(runId)) return;
       renderResult({ ok: false, error: 'frontend_error', details: String(error.message || error), ai: normalizeAiResult({ P: 2, R: 3, C: 2, E: 1, confidence: 0.2 }), computed, retrieval: { examples_used: [] } }, input);
     } finally {
+      if (!isCurrentRun(runId)) return;
       els.analyzeBtn.disabled = false;
       els.analyzeBtn.textContent = t('analyse');
     }
