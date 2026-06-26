@@ -591,7 +591,7 @@ body.dark-theme .internationalita-page .json-card-icon-btn.is-copied {
 </style>
 </head>
 
-<body class="internationalita-page">
+<body class="internationalita-page" data-page-state="off">
 
 <h1 class="page-title">Indoeuropan vordes</h1>
 
@@ -1189,47 +1189,13 @@ function applyLocalizedTexts(lang = getCurrentLanguage()) {
 
 async function resetAll() {
   const resetMessage = TEXT_I18N[getCurrentLanguage()].resetConfirm;
-  const shouldReset = await (
-    window.InteralUI?.confirmReset?.({ message: resetMessage })
-    ?? Promise.resolve(window.confirm(resetMessage))
-  );
 
-  if (!shouldReset) return;
-
-  const resetBody = () => {
-    wordInput.value = "";
-    lookupWordInput.value = "";
-    lookupLangSelect.value = "en";
-
-    for (const lang of CONTROL_LANGUAGES) {
-      const inputs = getRowInputs(lang.code);
-      inputs.word.value = "";
-      inputs.ipa.value = "";
-    }
-
-    clearScores();
-    tableWrap.style.display = "none";
-    resultBox.style.display = "none";
-    resultBox.innerHTML = "";
-    lastCalculationPayload = null;
-    explainBtn.style.display = "none";
-    jsonCardBtn.style.display = "none";
-    jsonCardOutput.value = "";
-    explanationHTML = "";
-    updateResetButtonVisibility();
-  };
-
-  if (window.InteralUI?.runPageReset) {
-    await window.InteralUI.runPageReset(resetBody, { clearUrlState: true });
-  } else {
-    window.InteralUI?.beginPageReset?.({ clearUrlState: true });
-    try {
-      resetBody();
-    } finally {
-      window.InteralUI?.endPageReset?.();
-    }
-  }
+  await window.InteralUI?.hardReloadReset?.({
+    message: resetMessage,
+    storageKeys: []
+  });
 }
+
 
 function createCardId(prefix = "ie") {
   return `${prefix}_${crypto.randomUUID().replaceAll("-", "")}`;

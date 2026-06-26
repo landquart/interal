@@ -464,7 +464,6 @@ function invalidateActiveRuns() { activeRunId += 1; }
 function isCurrentRun(runId) { return runId === activeRunId; }
 let pendingPrefixItem = null;
 let copyPromptHighlightTimer;
-let isResetting = false;
 
 const STORAGE_KEY = 'determinator-valentyp-state-v1';
 
@@ -1743,79 +1742,16 @@ function resetComponentDraftControls() {
 }
 
 async function clearAll() {
-  const confirmed = await (
-    window.InteralUI?.confirmReset?.({ message: t('resetConfirm') })
-    ?? Promise.resolve(window.confirm(t('resetConfirm')))
-  );
-
-  if (!confirmed) return;
-
-  invalidateActiveRuns();
-
-  const resetBody = () => {
-    isResetting = true;
-
-    try {
-      localStorage.removeItem(STORAGE_KEY);
-    } catch (_) {}
-
-    els.regularWord.value = '';
-    els.logicalMeaning.value = '';
-    els.internationalMeaning.value = '';
-    els.naturalisticWord.value = '';
-
-    if (els.explanationChain) els.explanationChain.value = '';
-    if (els.manualPrompt) els.manualPrompt.value = '';
-    if (els.manualEmbeddingResponse) els.manualEmbeddingResponse.value = '';
-
-    if (els.useLlm) els.useLlm.checked = false;
-    if (els.ollamaUrl) els.ollamaUrl.value = 'http://localhost:11434';
-    if (els.ollamaModel) els.ollamaModel.value = 'qwen3-embedding';
-    if (els.analyzeBtn) {
-      els.analyzeBtn.disabled = false;
-      els.analyzeBtn.textContent = t('analyse');
-    }
-
-    state.components = [];
-    state.lastAnalysis = null;
-    pendingPrefixItem = null;
-
-    resetComponentDraftControls();
-    closeAllModals();
-
-    els.componentsList.className = 'components-list empty';
-    els.componentsList.textContent = t('noComponents');
-    els.componentsSummary.textContent = '—';
-
-    els.resultPanel.hidden = true;
-    els.result.classList.add('empty');
-    els.result.textContent = t('fillAndAnalyse');
-
-    syncPromptButtonsVisibility();
-    syncClearButtonVisibility();
-
-    try {
-      localStorage.removeItem(STORAGE_KEY);
-    } catch (_) {}
-
-    isResetting = false;
-  };
-
-  if (window.InteralUI?.runPageReset) {
-    await window.InteralUI.runPageReset(resetBody, { clearUrlState: true });
-  } else {
-    window.InteralUI?.beginPageReset?.({ clearUrlState: true });
-    try {
-      resetBody();
-    } finally {
-      window.InteralUI?.endPageReset?.();
-    }
-  }
+  await window.InteralUI?.hardReloadReset?.({
+    message: t('resetConfirm'),
+    storageKeys: [
+      STORAGE_KEY
+    ]
+  });
 }
 
+
 function saveState() {
-  if (isResetting) return;
-  if (window.InteralUI?.getIsPageResetting?.()) return;
   const payload = {
     regularWord: els.regularWord.value,
     logicalMeaning: els.logicalMeaning.value,

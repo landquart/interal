@@ -97,14 +97,12 @@ function clearDomFields() {
 }
 function updateResetButtonVisibility() { const resetBtn = byId('resetBtn'); if (resetBtn) resetBtn.classList.toggle('is-hidden', !hasUserInputForReset()); }
 async function resetState() {
-  const confirmed = await (window.InteralUI?.confirmReset?.() ?? Promise.resolve(window.confirm(t('reset'))));
-  if (!confirmed) return;
-  state = getDefaultState();
-  clearDomFields();
-  closeJsonModal();
-  render();
-  updateResetButtonVisibility();
+  await window.InteralUI?.hardReloadReset?.({
+    message: t('reset'),
+    storageKeys: []
+  });
 }
+
 function countPassedCriteria() { return state.criteria.filter(Boolean).length; }
 function isGrammarShortWordAccepted() { return countPassedCriteria() >= REQUIRED_CRITERIA_COUNT; }
 function result(){ const n=countPassedCriteria(); return {passed:n,total:CRITERIA_NAMES.length,required:REQUIRED_CRITERIA_COUNT,accepted:isGrammarShortWordAccepted()}; }

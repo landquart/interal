@@ -108,14 +108,12 @@ function clearDomFields() {
 }
 function updateResetButtonVisibility() { const resetBtn = byId('resetBtn'); if (resetBtn) resetBtn.classList.toggle('is-hidden', !hasUserInputForReset()); }
 async function resetState() {
-  const confirmed = await (window.InteralUI?.confirmReset?.() ?? Promise.resolve(window.confirm(t('reset'))));
-  if (!confirmed) return;
-  state = getDefaultState();
-  clearDomFields();
-  closeJsonModal();
-  render();
-  updateResetButtonVisibility();
+  await window.InteralUI?.hardReloadReset?.({
+    message: t('reset'),
+    storageKeys: []
+  });
 }
+
 function result(){ const n=state.criteria.filter(Boolean).length; return { passed:n, total:3, accepted:n===3 }; }
 function makeCard(){ const r=result(); return { id:createId('vc'), version:'1.0', card_type:'vord_card', vord_type:'community_word', status:'draft', interal:{word:state.word, part_of_speech:state.part_of_speech}, translations: LANGUAGES.map(lang=>({language:lang.code, word:state.translations[lang.code]||''})), domain:state.domain, criteria: QUESTIONS[currentLang()].map((q,i)=>({id:`question_${i+1}`, question:q, answer:state.answers[i]||'yes', passed:Boolean(state.criteria[i])})), decision:{accepted:r.accepted} }; }
 function generateJson(){ openJsonModal(); }

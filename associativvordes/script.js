@@ -999,52 +999,15 @@ const TEXT_I18N = {
     }
 
     async function resetAll() {
-      const confirmed = await (
-        window.InteralUI?.confirmReset?.({ message: getResetConfirmMessage() })
-        ?? Promise.resolve(window.confirm(getResetConfirmMessage()))
-      );
-
-      if (!confirmed) return;
-
-      invalidateActiveRuns();
-
-      const resetBody = () => {
-        try {
-          localStorage.removeItem('interal_associative_state');
-        } catch (_) {}
-
-        state = emptyState();
-
-        document.getElementById('rootInput').value = state.root;
-        document.getElementById('meaningInput').value = state.meaning;
-        document.getElementById('elementType').value = state.elementType;
-
-        const jsonOutput = document.getElementById('jsonCardOutput');
-        if (jsonOutput) jsonOutput.value = '';
-
-        const jsonModal = document.getElementById('jsonCardModal');
-        if (jsonModal) jsonModal.classList.remove('show');
-
-        setCalculateButtonStatus(defaultCalculateButtonText(), false);
-
-        renderAll();
-        syncResetButtonVisibility();
-      };
-
-      if (window.InteralUI?.runPageReset) {
-        await window.InteralUI.runPageReset(resetBody, { clearUrlState: true });
-      } else {
-        window.InteralUI?.beginPageReset?.({ clearUrlState: true });
-        try {
-          resetBody();
-        } finally {
-          window.InteralUI?.endPageReset?.();
-        }
-      }
+      await window.InteralUI?.hardReloadReset?.({
+        message: getResetConfirmMessage(),
+        storageKeys: [
+          'interal_associative_state'
+        ]
+      });
     }
 
     function saveLocal() {
-      if (window.InteralUI?.getIsPageResetting?.()) return;
       try { localStorage.setItem('interal_associative_state', JSON.stringify(state)); } catch {}
     }
 
