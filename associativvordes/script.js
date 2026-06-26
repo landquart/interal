@@ -985,7 +985,7 @@ const TEXT_I18N = {
 
       if (!confirmed) return;
 
-      window.InteralUI?.clearCurrentPageState?.();
+      window.InteralUI?.clearCurrentPageState?.({ clearUrlState: true });
       document.dispatchEvent(new CustomEvent('interal:page-reset'));
 
       try {
@@ -997,6 +997,7 @@ const TEXT_I18N = {
       document.getElementById('meaningInput').value = state.meaning;
       document.getElementById('elementType').value = state.elementType;
       renderAll();
+      syncResetButtonVisibility?.();
     }
 
     function saveLocal() {

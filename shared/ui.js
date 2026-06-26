@@ -641,7 +641,7 @@
       // ignore storage errors
     }
 
-    if (options && options.clearUrlState === false) return;
+    if (options.clearUrlState === false) return;
 
     try {
       const url = new URL(window.location.href);
@@ -663,7 +663,8 @@
       }
 
       if (changed) {
-        window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
+        const nextUrl = `${url.pathname}${url.search}${url.hash}`;
+        window.history.replaceState(null, '', nextUrl);
       }
     } catch (_) {
       // ignore URL cleanup errors
