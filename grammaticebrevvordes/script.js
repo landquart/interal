@@ -86,36 +86,6 @@ function getDefaultState() {
 let state = getDefaultState();
 function readState(){ state.word=byId('wordInput')?.value.trim()||''; state.part_of_speech=byId('posInput')?.value||'preposition'; state.meaning=byId('meaningInput')?.value.trim()||''; state.arguments=byId('argumentsInput')?.value.trim()||''; for(const lang of LANGUAGES) state.translations[lang.code]=byId(`tr_${lang.code}`)?.value.trim()||''; state.criteria=CRITERIA_NAMES.map((_,i)=>Boolean(byId(`crit_${i}`)?.checked)); state.comments=CRITERIA_NAMES.map((_,i)=>i === 2 ? (byId(`comment_${i}`)?.value.trim()||'') : ''); }
 
-window.InteralPageState = {
-  pageId: 'grammaticebrevvordes',
-  collect() {
-    readState();
-
-    return {
-      word: state.word,
-      part_of_speech: state.part_of_speech,
-      meaning: state.meaning,
-      translations: state.translations,
-      arguments: state.arguments,
-      criteria: state.criteria,
-      comments: state.comments
-    };
-  },
-
-  apply(data) {
-    state = {
-      ...getDefaultState(),
-      ...data
-    };
-
-    render();
-  },
-
-  clearStorageKeys: []
-};
-
-window.InteralUI?.registerPageState?.(window.InteralPageState);
-window.dispatchEvent(new Event('interal:page-state-ready'));
 
 function hasUserInputForReset() {
   const hasText = ['wordInput', 'meaningInput', 'argumentsInput', 'comment_2', ...LANGUAGES.map(lang => `tr_${lang.code}`)].some(id => byId(id)?.value.trim());

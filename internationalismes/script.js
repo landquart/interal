@@ -263,37 +263,6 @@ async function analyze() {
   }
 }
 
-window.InteralPageState = {
-  pageId: 'internationalismes',
-  collect() {
-    readState();
-
-    return {
-      word: state.word,
-      part_of_speech: state.part_of_speech,
-      evidence: state.evidence,
-      autoPassed: state.autoPassed,
-      manualOverride: state.manualOverride,
-      matchMeta: state.matchMeta
-    };
-  },
-
-  apply(data) {
-    state = {
-      ...getDefaultState(),
-      ...data,
-      isSearching: false,
-      searchError: ''
-    };
-
-    render();
-  },
-
-  clearStorageKeys: []
-};
-
-window.InteralUI?.registerPageState?.(window.InteralPageState);
-window.dispatchEvent(new Event('interal:page-state-ready'));
 
 function hasUserInputForReset() {
   const hasText = Boolean(byId('wordInput')?.value.trim() || LANGUAGES.some(lang => byId(`form_${lang.code}`)?.value.trim()));

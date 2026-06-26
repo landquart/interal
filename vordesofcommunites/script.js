@@ -95,35 +95,6 @@ function getDefaultState() {
 let state = getDefaultState();
 function readState() { state.word=byId('wordInput')?.value.trim()||''; state.part_of_speech=byId('posInput')?.value||'adverb'; state.domain=byId('domainInput')?.value.trim()||''; for(const lang of LANGUAGES) state.translations[lang.code]=byId(`tr_${lang.code}`)?.value.trim()||''; const questions = QUESTIONS[currentLang()]; state.criteria = questions.map((_,i)=>Boolean(byId(`crit_${i}`)?.checked)); state.answers = questions.map((_,i)=>byId(`ans_${i}`)?.value||'yes'); }
 
-window.InteralPageState = {
-  pageId: 'vordesofcommunites',
-  collect() {
-    readState();
-
-    return {
-      word: state.word,
-      part_of_speech: state.part_of_speech,
-      domain: state.domain,
-      translations: state.translations,
-      criteria: state.criteria,
-      answers: state.answers
-    };
-  },
-
-  apply(data) {
-    state = {
-      ...getDefaultState(),
-      ...data
-    };
-
-    render();
-  },
-
-  clearStorageKeys: []
-};
-
-window.InteralUI?.registerPageState?.(window.InteralPageState);
-window.dispatchEvent(new Event('interal:page-state-ready'));
 
 function hasUserInputForReset() {
   const hasText = ['wordInput', 'domainInput', ...LANGUAGES.map(lang => `tr_${lang.code}`)].some(id => byId(id)?.value.trim());
