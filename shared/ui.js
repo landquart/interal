@@ -44,8 +44,8 @@
       group: 'instruments'
     },
     grammar: {
-      path: 'grammaticebrevvordes/',
-      icon: 'elements/grammaticebrevvordes.svg',
+      path: 'grammaticebrevivordes/',
+      icon: 'elements/grammaticebrevivordes.svg',
       labelKey: 'navGrammar',
       group: 'instruments'
     },
@@ -66,7 +66,7 @@
     if (path.includes('/determinatorofvalentyp/')) return 'determinator';
     if (path.includes('/internationalismes/')) return 'internationalismes';
     if (path.includes('/vordesofcommunites/')) return 'communities';
-    if (path.includes('/grammaticebrevvordes/')) return 'grammar';
+    if (path.includes('/grammaticebrevivordes/')) return 'grammar';
     if (path.includes('/registre/')) return 'registry';
     return '';
   }
@@ -90,7 +90,7 @@
       navRegistry: 'Registre of vordesen cartes',
       navInternationalismes: 'Internationalismes',
       navCommunities: 'Vordes of communités',
-      navGrammar: 'Grammatic e brev vordes',
+      navGrammar: 'Grammatic e brevi vordes',
       instrumentsLabel: 'Инструменты',
       navAriaLabel: 'Разделы сайта',
       ru: 'Русский',
@@ -122,7 +122,7 @@
       navRegistry: 'Registre of vordesen cartes',
       navInternationalismes: 'Internationalismes',
       navCommunities: 'Vordes of communités',
-      navGrammar: 'Grammatic e brev vordes',
+      navGrammar: 'Grammatic e brevi vordes',
       instrumentsLabel: 'Instruments',
       navAriaLabel: 'Site sections',
       ru: 'Русский',
@@ -179,13 +179,10 @@
         }).join('')}
       </div>
     </div>
+    <a class="top-desktop-link" href="${joinUrl(pageNavItems.registry.path)}" data-nav="registry">
+      <span class="top-desktop-link-main"></span>
+    </a>
   `;
-
-  const desktopRegistryLink = document.createElement('a');
-  desktopRegistryLink.className = 'top-desktop-link top-registry-outside-link';
-  desktopRegistryLink.href = joinUrl(pageNavItems.registry.path);
-  desktopRegistryLink.dataset.nav = 'registry';
-  desktopRegistryLink.innerHTML = '<span class="top-desktop-link-main"></span>';
 
   const mobileCurrentPageLink = document.createElement('a');
   mobileCurrentPageLink.className = 'top-current-page-link';
@@ -446,8 +443,6 @@
       const main = link.querySelector('.top-desktop-link-main');
       if (main) main.textContent = labels[link.dataset.nav] || '';
     });
-    const registryMain = desktopRegistryLink.querySelector('.top-desktop-link-main');
-    if (registryMain) registryMain.textContent = labels.registry || '';
     const currentMobileNav = getCurrentPageNav();
     if (currentMobileNav && labels[currentMobileNav]) {
       mobileCurrentPageLink.setAttribute('aria-label', labels[currentMobileNav]);
@@ -668,7 +663,7 @@
   topNavWindow.append(menuButton, brandLink, desktopControls, mobileCurrentPageLink);
 
   document.body.classList.add('has-global-menu');
-  topNav.append(topNavWindow, desktopRegistryLink);
+  topNav.append(topNavWindow);
   document.body.prepend(overlay);
   document.body.prepend(menu);
   document.body.prepend(topNav);

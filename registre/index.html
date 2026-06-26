@@ -22,7 +22,7 @@
       box-shadow: var(--shadow-sm);
     }
     .registry-panel { padding: 18px; margin-bottom: 14px; display: grid; gap: 18px; }
-    .registry-title { margin: 0; color: var(--text); font-size: clamp(2rem, 4vw, 38px); line-height: 1.15; text-align: center; letter-spacing: -.02em; }
+    .registry-title { margin: 0 0 18px; color: var(--text); font-size: clamp(2rem, 4vw, 38px); line-height: 1.15; text-align: center; letter-spacing: -.02em; }
     .registry-controls { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 12px; align-items: end; }
     .field { display: grid; gap: 6px; min-width: 0; }
     .field--search { grid-column: span 6; }
@@ -135,8 +135,8 @@
 </head>
 <body>
   <main class="registry-page">
-    <section class="registry-panel" aria-labelledby="registry-title" data-i18n-attr="aria-label:filtersAria">
-      <h1 class="registry-title" id="registry-title" data-i18n="title">Registre of vordesen cartes</h1>
+    <h1 class="registry-title" id="registry-title" data-i18n="title">Registre of vordesen cartes</h1>
+    <section class="registry-panel" data-i18n-attr="aria-label:filtersAria">
       <div class="registry-controls">
         <div class="field field--search">
           <label for="registry-search" data-i18n="searchLabel">Поиск</label>
