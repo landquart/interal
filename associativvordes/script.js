@@ -314,6 +314,53 @@ const TEXT_I18N = {
       return textValue('manual');
     }
 
+
+    async function performHardReset(message, storageKeys = []) {
+      if (window.InteralUI?.hardReloadReset) {
+        await window.InteralUI.hardReloadReset({ message, storageKeys });
+        return;
+      }
+
+      const confirmed = window.confirm(message || 'Сбросить данные?');
+      if (!confirmed) return;
+
+      try {
+        for (let i = localStorage.length - 1; i >= 0; i -= 1) {
+          const key = localStorage.key(i);
+          if (!key) continue;
+
+          if (
+            key.startsWith('interal.pageState:') ||
+            storageKeys.includes(key) ||
+            key === 'interal_associative_state' ||
+            key === 'determinator-valentyp-state-v1'
+          ) {
+            localStorage.removeItem(key);
+          }
+        }
+      } catch (_) {}
+
+      const url = new URL(window.location.href);
+      url.searchParams.delete('s');
+      url.searchParams.delete('state');
+
+      if (/state=/.test(url.hash)) {
+        url.hash = '';
+      }
+
+      const cleanUrl = `${url.pathname}${url.search}${url.hash}`;
+
+      try {
+        window.history.replaceState(null, '', cleanUrl);
+      } catch (_) {}
+
+      window.location.replace(cleanUrl);
+
+      setTimeout(() => {
+        window.location.href = cleanUrl;
+      }, 100);
+    }
+
     function getResetConfirmMessage() {
       return textValue('resetConfirm');
     }
@@ -999,24 +1046,43 @@ const TEXT_I18N = {
     }
 
     async function resetAll() {
-      const message = getResetConfirmMessage();
-
-      if (window.InteralUI?.hardReloadReset) {
-        await window.InteralUI.hardReloadReset({
-          message,
-          storageKeys: [
-            'interal_associative_state'
-          ]
-        });
-        return;
-      }
-
-      const confirmed = window.confirm(message);
-      if (!confirmed) return;
-
-      try { localStorage.removeItem('interal_associative_state'); } catch (_) {}
-      window.location.replace(window.location.pathname);
+      await performHardReset(getResetConfirmMessage(), [
+        'interal_associative_state'
+      ]);
     }
+
+
+    window.InteralPageState = {
+      collect() {
+        state.root = document.getElementById('rootInput')?.value || state.root || '';
+        state.meaning = document.getElementById('meaningInput')?.value || state.meaning || '';
+        state.elementType = document.getElementById('elementType')?.value || state.elementType || 'root';
+
+        return {
+          root: state.root,
+          meaning: state.meaning,
+          elementType: state.elementType,
+          languages: state.languages
+        };
+      },
+
+      apply(data) {
+        state = {
+          ...emptyState(),
+          ...data
+        };
+
+        document.getElementById('rootInput').value = state.root || '';
+        document.getElementById('meaningInput').value = state.meaning || '';
+        document.getElementById('elementType').value = state.elementType || 'root';
+
+        renderAll();
+      },
+
+      clearStorageKeys: [
+        'interal_associative_state'
+      ]
+    };
 
     function saveLocal() {
       try { localStorage.setItem('interal_associative_state', JSON.stringify(state)); } catch {}
