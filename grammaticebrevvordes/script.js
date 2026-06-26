@@ -55,6 +55,7 @@ async function performHardReset(message, storageKeys = []) {
 
       if (
         key.startsWith('interal.pageState:') ||
+        key.startsWith('interal.explicitPageState:') ||
         storageKeys.includes(key) ||
         key === 'interal_associative_state' ||
         key === 'determinator-valentyp-state-v1'
