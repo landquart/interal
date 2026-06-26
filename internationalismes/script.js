@@ -273,10 +273,20 @@ function clearDomFields() {
 }
 function updateResetButtonVisibility() { const resetBtn = byId('resetBtn'); if (resetBtn) resetBtn.classList.toggle('is-hidden', !hasUserInputForReset()); }
 async function resetAll() {
-  await window.InteralUI?.hardReloadReset?.({
-    message: t('resetConfirm'),
-    storageKeys: []
-  });
+  const message = t('resetConfirm');
+
+  if (window.InteralUI?.hardReloadReset) {
+    await window.InteralUI.hardReloadReset({
+      message,
+      storageKeys: []
+    });
+    return;
+  }
+
+  const confirmed = window.confirm(message);
+  if (!confirmed) return;
+
+  window.location.replace(window.location.pathname);
 }
 
 function result() { const passed = LANGUAGES.filter(lang => effectivePassed(lang.code)).length; return { passed, total: 6, accepted: passed >= 5 }; }

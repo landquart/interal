@@ -1742,12 +1742,23 @@ function resetComponentDraftControls() {
 }
 
 async function clearAll() {
-  await window.InteralUI?.hardReloadReset?.({
-    message: t('resetConfirm'),
-    storageKeys: [
-      STORAGE_KEY
-    ]
-  });
+  const message = t('resetConfirm');
+
+  if (window.InteralUI?.hardReloadReset) {
+    await window.InteralUI.hardReloadReset({
+      message,
+      storageKeys: [
+        STORAGE_KEY
+      ]
+    });
+    return;
+  }
+
+  const confirmed = window.confirm(message);
+  if (!confirmed) return;
+
+  try { localStorage.removeItem(STORAGE_KEY); } catch (_) {}
+  window.location.replace(window.location.pathname);
 }
 
 
