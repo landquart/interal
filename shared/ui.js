@@ -4,6 +4,8 @@
   const COPY_FEEDBACK_TIMEOUT = 3200;
 
   let lockedScrollY = 0;
+  let explicitPageStateSaveTimer = null;
+  let isHardResetting = false;
 
   const currentScript = document.currentScript;
   const sharedPath = currentScript ? new URL(currentScript.src, window.location.href).pathname : '/shared/ui.js';
@@ -564,11 +566,16 @@
     return `${url.pathname}${url.search}${url.hash}`;
   }
 
+  function getExplicitPageStateKey() {
+    return `interal.explicitPageState:${window.location.pathname}`;
+  }
+
   function clearResetStorage(extraKeys = []) {
     const keys = new Set(extraKeys);
 
     keys.add('interal_associative_state');
     keys.add('determinator-valentyp-state-v1');
+    keys.add(getExplicitPageStateKey());
 
     try {
       for (let i = localStorage.length - 1; i >= 0; i -= 1) {
@@ -577,6 +584,7 @@
 
         if (
           key.startsWith('interal.pageState:') ||
+          key.startsWith('interal.explicitPageState:') ||
           keys.has(key)
         ) {
           localStorage.removeItem(key);
@@ -615,6 +623,9 @@
         );
 
     if (!confirmed) return false;
+
+    isHardResetting = true;
+    cancelExplicitPageStateSave();
 
     clearResetStorage(options.storageKeys || []);
 
@@ -690,22 +701,90 @@
     });
   }
 
-  function restorePageStateFromUrl() {
-    const params = new URLSearchParams(window.location.search);
-    const encoded = params.get('state');
-
-    if (!encoded) return;
-
-    const payload = decodePageData(encoded);
-    if (!payload || typeof payload !== 'object') return;
+  function saveExplicitPageState() {
+    if (isHardResetting) return;
 
     const api = getPageStateApi();
     if (!api) return;
 
     try {
+      const data = api.collect();
+
+      const payload = {
+        version: 1,
+        page: getCurrentPageNav(),
+        data
+      };
+
+      localStorage.setItem(getExplicitPageStateKey(), JSON.stringify(payload));
+    } catch (error) {
+      console.warn('Could not save explicit page state:', error);
+    }
+  }
+
+  function scheduleExplicitPageStateSave() {
+    if (isHardResetting) return;
+
+    clearTimeout(explicitPageStateSaveTimer);
+    explicitPageStateSaveTimer = setTimeout(() => {
+      explicitPageStateSaveTimer = null;
+      saveExplicitPageState();
+    }, 150);
+  }
+
+  function cancelExplicitPageStateSave() {
+    clearTimeout(explicitPageStateSaveTimer);
+    explicitPageStateSaveTimer = null;
+  }
+
+  function restoreExplicitPageStateFromStorage() {
+    const params = new URLSearchParams(window.location.search);
+
+    if (params.has('state')) return;
+
+    const api = getPageStateApi();
+    if (!api) return;
+
+    try {
+      const raw = localStorage.getItem(getExplicitPageStateKey());
+      if (!raw) return;
+
+      const payload = JSON.parse(raw);
+      if (!payload || typeof payload !== 'object') return;
+
       api.apply(payload.data || {});
     } catch (error) {
+      console.warn('Could not restore explicit page state:', error);
+    }
+  }
+
+  function restorePageStateFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    const encoded = params.get('state');
+
+    if (!encoded) return false;
+
+    const payload = decodePageData(encoded);
+    if (!payload || typeof payload !== 'object') return false;
+
+    const api = getPageStateApi();
+    if (!api) return false;
+
+    try {
+      api.apply(payload.data || {});
+
+      try {
+        localStorage.setItem(getExplicitPageStateKey(), JSON.stringify({
+          version: 1,
+          page: payload.page || getCurrentPageNav(),
+          data: payload.data || {}
+        }));
+      } catch (_) {}
+
+      return true;
+    } catch (error) {
       console.warn('Could not apply page state:', error);
+      return false;
     }
   }
 
@@ -846,11 +925,33 @@
     });
   });
 
-  window.addEventListener('load', updateCopyStateButtonVisibility);
+  document.addEventListener('input', (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLElement)) return;
+    if (!target.matches('input, textarea, select')) return;
+    if (!target.closest('main')) return;
+    scheduleExplicitPageStateSave();
+  }, true);
+
+  document.addEventListener('change', (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLElement)) return;
+    if (!target.matches('input, textarea, select')) return;
+    if (!target.closest('main')) return;
+    scheduleExplicitPageStateSave();
+  }, true);
+
+  window.addEventListener('load', () => {
+    restorePageStateFromUrl();
+    restoreExplicitPageStateFromStorage();
+    updateCopyStateButtonVisibility();
+  });
   setTimeout(updateCopyStateButtonVisibility, 0);
-  setTimeout(updateCopyStateButtonVisibility, 100);
-  window.addEventListener('load', restorePageStateFromUrl);
-  setTimeout(restorePageStateFromUrl, 100);
+  setTimeout(() => {
+    restorePageStateFromUrl();
+    restoreExplicitPageStateFromStorage();
+    updateCopyStateButtonVisibility();
+  }, 100);
 
   window.addEventListener('resize', () => applyLanguage(getLang()));
 
