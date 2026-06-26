@@ -467,6 +467,53 @@ let copyPromptHighlightTimer;
 
 const STORAGE_KEY = 'determinator-valentyp-state-v1';
 
+async function performHardReset(message, storageKeys = []) {
+  if (window.InteralUI?.hardReloadReset) {
+    await window.InteralUI.hardReloadReset({ message, storageKeys });
+    return;
+  }
+
+  const confirmed = window.confirm(message || 'Сбросить данные?');
+  if (!confirmed) return;
+
+  try {
+    for (let i = localStorage.length - 1; i >= 0; i -= 1) {
+      const key = localStorage.key(i);
+      if (!key) continue;
+
+      if (
+        key.startsWith('interal.pageState:') ||
+        storageKeys.includes(key) ||
+        key === 'interal_associative_state' ||
+        key === 'determinator-valentyp-state-v1'
+      ) {
+        localStorage.removeItem(key);
+      }
+    }
+  } catch (_) {}
+
+  const url = new URL(window.location.href);
+  url.searchParams.delete('s');
+  url.searchParams.delete('state');
+
+  if (/state=/.test(url.hash)) {
+    url.hash = '';
+  }
+
+  const cleanUrl = `${url.pathname}${url.search}${url.hash}`;
+
+  try {
+    window.history.replaceState(null, '', cleanUrl);
+  } catch (_) {}
+
+  window.location.replace(cleanUrl);
+
+  setTimeout(() => {
+    window.location.href = cleanUrl;
+  }, 100);
+}
+
+
 function currentLang() {
   return localStorage.getItem('interal.lang') === 'en' ? 'en' : 'ru';
 }
@@ -1742,25 +1789,49 @@ function resetComponentDraftControls() {
 }
 
 async function clearAll() {
-  const message = t('resetConfirm');
-
-  if (window.InteralUI?.hardReloadReset) {
-    await window.InteralUI.hardReloadReset({
-      message,
-      storageKeys: [
-        STORAGE_KEY
-      ]
-    });
-    return;
-  }
-
-  const confirmed = window.confirm(message);
-  if (!confirmed) return;
-
-  try { localStorage.removeItem(STORAGE_KEY); } catch (_) {}
-  window.location.replace(window.location.pathname);
+  await performHardReset(t('resetConfirm'), [
+    STORAGE_KEY
+  ]);
 }
 
+
+
+window.InteralPageState = {
+  collect() {
+    return {
+      regularWord: els.regularWord?.value || '',
+      logicalMeaning: els.logicalMeaning?.value || '',
+      internationalMeaning: els.internationalMeaning?.value || '',
+      naturalisticWord: els.naturalisticWord?.value || '',
+      explanationChain: els.explanationChain?.value || '',
+      components: state.components || [],
+      lastAnalysis: state.lastAnalysis || null,
+      manualPrompt: els.manualPrompt?.value || '',
+      manualEmbeddingResponse: els.manualEmbeddingResponse?.value || ''
+    };
+  },
+
+  apply(data) {
+    if (els.regularWord) els.regularWord.value = data.regularWord || '';
+    if (els.logicalMeaning) els.logicalMeaning.value = data.logicalMeaning || '';
+    if (els.internationalMeaning) els.internationalMeaning.value = data.internationalMeaning || '';
+    if (els.naturalisticWord) els.naturalisticWord.value = data.naturalisticWord || '';
+    if (els.explanationChain) els.explanationChain.value = data.explanationChain || '';
+    if (els.manualPrompt) els.manualPrompt.value = data.manualPrompt || '';
+    if (els.manualEmbeddingResponse) els.manualEmbeddingResponse.value = data.manualEmbeddingResponse || '';
+
+    state.components = Array.isArray(data.components) ? data.components : [];
+    state.lastAnalysis = data.lastAnalysis || null;
+
+    renderComponents();
+    syncPromptButtonsVisibility();
+    syncClearButtonVisibility();
+  },
+
+  clearStorageKeys: [
+    STORAGE_KEY
+  ]
+};
 
 function saveState() {
   const payload = {

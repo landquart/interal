@@ -75,6 +75,53 @@ function escapeHtml(value) { return String(value ?? '').replace(/[&<>"]/g, ch =>
 function createId(prefix) { return `${prefix}_${crypto.randomUUID().replaceAll('-', '')}`; }
 function downloadJson(filename, text) { const blob = new Blob([text], { type: 'application/json;charset=utf-8' }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = filename; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url); }
 function copyText(text) { navigator.clipboard?.writeText(text).catch(() => {}); }
+
+async function performHardReset(message, storageKeys = []) {
+  if (window.InteralUI?.hardReloadReset) {
+    await window.InteralUI.hardReloadReset({ message, storageKeys });
+    return;
+  }
+
+  const confirmed = window.confirm(message || 'Сбросить данные?');
+  if (!confirmed) return;
+
+  try {
+    for (let i = localStorage.length - 1; i >= 0; i -= 1) {
+      const key = localStorage.key(i);
+      if (!key) continue;
+
+      if (
+        key.startsWith('interal.pageState:') ||
+        storageKeys.includes(key) ||
+        key === 'interal_associative_state' ||
+        key === 'determinator-valentyp-state-v1'
+      ) {
+        localStorage.removeItem(key);
+      }
+    }
+  } catch (_) {}
+
+  const url = new URL(window.location.href);
+  url.searchParams.delete('s');
+  url.searchParams.delete('state');
+
+  if (/state=/.test(url.hash)) {
+    url.hash = '';
+  }
+
+  const cleanUrl = `${url.pathname}${url.search}${url.hash}`;
+
+  try {
+    window.history.replaceState(null, '', cleanUrl);
+  } catch (_) {}
+
+  window.location.replace(cleanUrl);
+
+  setTimeout(() => {
+    window.location.href = cleanUrl;
+  }, 100);
+}
+
 function renderChrome() {}
 function levenshtein(a, b) { a = String(a || '').toLowerCase(); b = String(b || '').toLowerCase(); const dp = Array.from({ length: a.length + 1 }, (_, i) => [i]); for (let j = 1; j <= b.length; j++) dp[0][j] = j; for (let i = 1; i <= a.length; i++) for (let j = 1; j <= b.length; j++) { const cost = a[i - 1] === b[j - 1] ? 0 : 1; dp[i][j] = Math.min(dp[i - 1][j] + 1, dp[i][j - 1] + 1, dp[i - 1][j - 1] + cost); } return dp[a.length][b.length]; }
 function translitRu(value) { const map = { а:'a', б:'b', в:'v', г:'g', д:'d', е:'e', ё:'e', ж:'zh', з:'z', и:'i', й:'j', к:'k', л:'l', м:'m', н:'n', о:'o', п:'p', р:'r', с:'s', т:'t', у:'u', ф:'f', х:'h', ц:'c', ч:'ch', ш:'sh', щ:'shch', ъ:'', ы:'y', ь:'', э:'e', ю:'yu', я:'ya' }; return String(value || '').toLowerCase().split('').map(ch => map[ch] ?? ch).join('').normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
@@ -261,6 +308,35 @@ async function analyze() {
     render();
   }
 }
+
+window.InteralPageState = {
+  collect() {
+    readState();
+
+    return {
+      word: state.word,
+      part_of_speech: state.part_of_speech,
+      evidence: state.evidence,
+      autoPassed: state.autoPassed,
+      manualOverride: state.manualOverride,
+      matchMeta: state.matchMeta
+    };
+  },
+
+  apply(data) {
+    state = {
+      ...getDefaultState(),
+      ...data,
+      isSearching: false,
+      searchError: ''
+    };
+
+    render();
+  },
+
+  clearStorageKeys: []
+};
+
 function hasUserInputForReset() {
   const hasText = Boolean(byId('wordInput')?.value.trim() || LANGUAGES.some(lang => byId(`form_${lang.code}`)?.value.trim()));
   const hasOverride = LANGUAGES.some(lang => { const pass = byId(`pass_${lang.code}`); return pass && !pass.indeterminate; });
@@ -273,20 +349,7 @@ function clearDomFields() {
 }
 function updateResetButtonVisibility() { const resetBtn = byId('resetBtn'); if (resetBtn) resetBtn.classList.toggle('is-hidden', !hasUserInputForReset()); }
 async function resetAll() {
-  const message = t('resetConfirm');
-
-  if (window.InteralUI?.hardReloadReset) {
-    await window.InteralUI.hardReloadReset({
-      message,
-      storageKeys: []
-    });
-    return;
-  }
-
-  const confirmed = window.confirm(message);
-  if (!confirmed) return;
-
-  window.location.replace(window.location.pathname);
+  await performHardReset(t('resetConfirm'), []);
 }
 
 function result() { const passed = LANGUAGES.filter(lang => effectivePassed(lang.code)).length; return { passed, total: 6, accepted: passed >= 5 }; }

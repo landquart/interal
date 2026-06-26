@@ -38,6 +38,52 @@ function downloadJson(filename, text) {
 function copyText(text) {
   navigator.clipboard?.writeText(text).catch(() => {});
 }
+
+async function performHardReset(message, storageKeys = []) {
+  if (window.InteralUI?.hardReloadReset) {
+    await window.InteralUI.hardReloadReset({ message, storageKeys });
+    return;
+  }
+
+  const confirmed = window.confirm(message || 'Сбросить данные?');
+  if (!confirmed) return;
+
+  try {
+    for (let i = localStorage.length - 1; i >= 0; i -= 1) {
+      const key = localStorage.key(i);
+      if (!key) continue;
+
+      if (
+        key.startsWith('interal.pageState:') ||
+        storageKeys.includes(key) ||
+        key === 'interal_associative_state' ||
+        key === 'determinator-valentyp-state-v1'
+      ) {
+        localStorage.removeItem(key);
+      }
+    }
+  } catch (_) {}
+
+  const url = new URL(window.location.href);
+  url.searchParams.delete('s');
+  url.searchParams.delete('state');
+
+  if (/state=/.test(url.hash)) {
+    url.hash = '';
+  }
+
+  const cleanUrl = `${url.pathname}${url.search}${url.hash}`;
+
+  try {
+    window.history.replaceState(null, '', cleanUrl);
+  } catch (_) {}
+
+  window.location.replace(cleanUrl);
+
+  setTimeout(() => {
+    window.location.href = cleanUrl;
+  }, 100);
+}
 function renderChrome() {}
 function levenshtein(a, b) {
   a = String(a || '').toLowerCase();
@@ -84,6 +130,34 @@ function getDefaultState() {
 }
 let state = getDefaultState();
 function readState(){ state.word=byId('wordInput')?.value.trim()||''; state.part_of_speech=byId('posInput')?.value||'preposition'; state.meaning=byId('meaningInput')?.value.trim()||''; state.arguments=byId('argumentsInput')?.value.trim()||''; for(const lang of LANGUAGES) state.translations[lang.code]=byId(`tr_${lang.code}`)?.value.trim()||''; state.criteria=CRITERIA_NAMES.map((_,i)=>Boolean(byId(`crit_${i}`)?.checked)); state.comments=CRITERIA_NAMES.map((_,i)=>i === 2 ? (byId(`comment_${i}`)?.value.trim()||'') : ''); }
+
+window.InteralPageState = {
+  collect() {
+    readState();
+
+    return {
+      word: state.word,
+      part_of_speech: state.part_of_speech,
+      meaning: state.meaning,
+      translations: state.translations,
+      arguments: state.arguments,
+      criteria: state.criteria,
+      comments: state.comments
+    };
+  },
+
+  apply(data) {
+    state = {
+      ...getDefaultState(),
+      ...data
+    };
+
+    render();
+  },
+
+  clearStorageKeys: []
+};
+
 function hasUserInputForReset() {
   const hasText = ['wordInput', 'meaningInput', 'argumentsInput', 'comment_2', ...LANGUAGES.map(lang => `tr_${lang.code}`)].some(id => byId(id)?.value.trim());
   const hasCriteria = CRITERIA_NAMES.some((_, i) => Boolean(byId(`crit_${i}`)?.checked));
@@ -97,20 +171,7 @@ function clearDomFields() {
 }
 function updateResetButtonVisibility() { const resetBtn = byId('resetBtn'); if (resetBtn) resetBtn.classList.toggle('is-hidden', !hasUserInputForReset()); }
 async function resetState() {
-  const message = t('reset');
-
-  if (window.InteralUI?.hardReloadReset) {
-    await window.InteralUI.hardReloadReset({
-      message,
-      storageKeys: []
-    });
-    return;
-  }
-
-  const confirmed = window.confirm(message);
-  if (!confirmed) return;
-
-  window.location.replace(window.location.pathname);
+  await performHardReset(t('reset'), []);
 }
 
 function countPassedCriteria() { return state.criteria.filter(Boolean).length; }

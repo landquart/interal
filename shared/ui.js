@@ -10,7 +10,7 @@
   const siteRoot = sharedPath.replace(/\/shared\/ui\.js$/, '/');
   const joinUrl = (path) => new URL(path.replace(/^\//, ''), window.location.origin + siteRoot).pathname;
 
-  const canCopyPageState = false;
+  const canCopyPageState = true;
 
   const pageNavItems = {
     indoeuropanvordes: {
@@ -208,7 +208,7 @@
       <a class="menu-nav-link" href="${joinUrl(pageNavItems.registry.path)}" data-nav="registry"><img class="menu-nav-icon" src="${joinUrl(pageNavItems.registry.icon)}" alt="" aria-hidden="true" /><span class="menu-nav-main"></span></a>
       ${canCopyPageState ? `
       <div class="menu-divider menu-divider--mobile" aria-hidden="true"></div>
-      <button class="menu-copy-btn" type="button" data-copy-state="true">
+      <button class="menu-copy-btn" type="button" data-copy-state="true" hidden>
         <span class="menu-copy-icon-stack" aria-hidden="true">
           <img class="menu-copy-icon menu-copy-icon-link" src="${joinUrl('elements/Link%20Round%20Angle.svg')}" alt="" />
           <svg class="menu-copy-icon menu-copy-icon-check" viewBox="0 0 24 24" focusable="false">
@@ -564,11 +564,11 @@
     return `${url.pathname}${url.search}${url.hash}`;
   }
 
-  function clearStorageForCurrentPage(extraKeys = []) {
-    const pathname = window.location.pathname;
-    const keysToRemove = new Set(extraKeys);
+  function clearResetStorage(extraKeys = []) {
+    const keys = new Set(extraKeys);
 
-    keysToRemove.add(`interal.pageState:${pathname}`);
+    keys.add('interal_associative_state');
+    keys.add('determinator-valentyp-state-v1');
 
     try {
       for (let i = localStorage.length - 1; i >= 0; i -= 1) {
@@ -576,38 +576,53 @@
         if (!key) continue;
 
         if (
-          key === `interal.pageState:${pathname}` ||
           key.startsWith('interal.pageState:') ||
-          extraKeys.includes(key)
+          keys.has(key)
         ) {
           localStorage.removeItem(key);
         }
       }
     } catch (_) {}
 
-    for (const key of keysToRemove) {
+    for (const key of keys) {
       try {
         localStorage.removeItem(key);
       } catch (_) {}
     }
   }
 
+  function getPageStateApi() {
+    const api = window.InteralPageState;
+    if (!api || typeof api !== 'object') return null;
+    if (typeof api.collect !== 'function') return null;
+    if (typeof api.apply !== 'function') return null;
+    return api;
+  }
+
   async function hardReloadReset(options = {}) {
+    const message = options.message || 'Сбросить данные?';
+
     const confirmed = options.skipConfirm
       ? true
       : await (
           window.InteralUI?.confirmReset?.({
             title: options.title,
-            message: options.message,
+            message,
             confirmLabel: options.confirmLabel,
             cancelLabel: options.cancelLabel
           })
-          ?? Promise.resolve(window.confirm(options.message || 'Сбросить данные?'))
+          ?? Promise.resolve(window.confirm(message))
         );
 
     if (!confirmed) return false;
 
-    clearStorageForCurrentPage(options.storageKeys || []);
+    clearResetStorage(options.storageKeys || []);
+
+    const api = getPageStateApi();
+
+    if (api && Array.isArray(api.clearStorageKeys)) {
+      clearResetStorage(api.clearStorageKeys);
+    }
 
     const cleanUrl = cleanCurrentUrl();
 
@@ -616,13 +631,18 @@
     } catch (_) {}
 
     window.location.replace(cleanUrl);
+
+    setTimeout(() => {
+      window.location.href = cleanUrl;
+    }, 100);
+
     return true;
   }
 
   window.InteralUI = Object.assign(window.InteralUI || {}, {
     confirmReset,
     hardReloadReset,
-    clearStorageForCurrentPage
+    clearResetStorage
   });
 
   function showToast(message) {
@@ -639,7 +659,10 @@
   }
 
   function toBase64Url(input) {
-    return btoa(unescape(encodeURIComponent(input))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/g, '');
+    return btoa(unescape(encodeURIComponent(input)))
+      .replace(/\+/g, '-')
+      .replace(/\//g, '_')
+      .replace(/=+$/g, '');
   }
 
   function fromBase64Url(input) {
@@ -649,45 +672,41 @@
     return decodeURIComponent(escape(atob(padded)));
   }
 
-  function decodeState(encoded) {
+  function encodePageData(data) {
+    return toBase64Url(JSON.stringify(data));
+  }
+
+  function decodePageData(encoded) {
     try {
-      const decoded = JSON.parse(fromBase64Url(encoded));
-      return Array.isArray(decoded) ? decoded : [];
+      return JSON.parse(fromBase64Url(encoded));
     } catch (_) {
-      return [];
+      return null;
     }
   }
 
-  function collectPageState() {
-    const entries = [];
-    document.querySelectorAll('input, textarea, select').forEach((el) => {
-      if (!el.id && !el.name) return;
-      if (el.type === 'file') return;
-      const key = el.id || el.name;
-      if (el.type === 'checkbox' || el.type === 'radio') {
-        if (el.checked) entries.push([key, 1]);
-      } else if (typeof el.value === 'string' && el.value !== '') {
-        entries.push([key, el.value]);
-      }
+  function updateCopyStateButtonVisibility() {
+    document.querySelectorAll('[data-copy-state="true"]').forEach((button) => {
+      button.hidden = !getPageStateApi();
     });
-    return entries;
   }
 
-  function applyPageState(entries) {
-    if (!Array.isArray(entries)) return;
-    entries.forEach((entry) => {
-      if (!Array.isArray(entry) || entry.length < 2) return;
-      const [key, value] = entry;
-      const el = document.getElementById(key) || document.querySelector(`[name="${CSS.escape(key)}"]`);
-      if (!el) return;
-      if (el.type === 'checkbox' || el.type === 'radio') {
-        el.checked = value === 1 || value === true || value === '1';
-      } else if (typeof value === 'string') {
-        el.value = value;
-      }
-      el.dispatchEvent(new Event('input', { bubbles: true }));
-      el.dispatchEvent(new Event('change', { bubbles: true }));
-    });
+  function restorePageStateFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    const encoded = params.get('state');
+
+    if (!encoded) return;
+
+    const payload = decodePageData(encoded);
+    if (!payload || typeof payload !== 'object') return;
+
+    const api = getPageStateApi();
+    if (!api) return;
+
+    try {
+      api.apply(payload.data || {});
+    } catch (error) {
+      console.warn('Could not apply page state:', error);
+    }
   }
 
   function setCopyButtonCopied(copyButton, copied) {
@@ -701,64 +720,6 @@
         copyButton.setAttribute('aria-label', i18n[getLang()].copyState);
       }, COPY_FEEDBACK_TIMEOUT);
     }
-  }
-
-  function shareStateApiUrl(code) {
-    const apiPath = joinUrl('api/share-state');
-    const url = new URL(apiPath, window.location.origin);
-    if (code) url.searchParams.set('code', code);
-    return url;
-  }
-
-  async function createShareCode(entries) {
-    const response = await fetch(shareStateApiUrl().toString(), {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      cache: 'no-store',
-      body: JSON.stringify({ entries })
-    });
-    if (!response.ok) throw new Error('Share state API unavailable');
-    const payload = await response.json();
-    if (!payload || !/^[0-9A-Za-z]{12}$/.test(payload.code)) throw new Error('Invalid share code response');
-    return payload.code;
-  }
-
-  async function loadSharedState(code) {
-    try {
-      const response = await fetch(shareStateApiUrl(code).toString(), { method: 'GET', cache: 'no-store' });
-      if (!response.ok) return [];
-      const payload = await response.json();
-      return Array.isArray(payload.entries) ? payload.entries : [];
-    } catch (_) {
-      return [];
-    }
-  }
-
-  function scheduleApplySharedState(entries) {
-    if (!entries.length) return;
-
-    const apply = () => applyPageState(entries);
-    const onLoad = () => {
-      window.removeEventListener('load', onLoad);
-      apply();
-    };
-
-    window.addEventListener('load', onLoad);
-    setTimeout(apply, 80);
-  }
-
-  async function restoreSharedPageState() {
-    const params = new URLSearchParams(window.location.search);
-    const shareCode = params.get('s') || '';
-
-    if (/^[0-9A-Za-z]{12}$/.test(shareCode)) {
-      scheduleApplySharedState(await loadSharedState(shareCode));
-      return;
-    }
-
-    const hashMatch = window.location.hash.match(/state=([^&]+)/);
-    const hashState = hashMatch && hashMatch[1] ? decodeState(hashMatch[1]) : [];
-    scheduleApplySharedState(hashState);
   }
 
   function markCurrentPage() {
@@ -849,25 +810,47 @@
 
 
 
-  document.querySelectorAll('[data-copy-state="true"]').forEach((copyButton) => copyButton.addEventListener('click', async () => {
-    const t = i18n[getLang()];
-    try {
-      const entries = collectPageState();
-      const url = new URL(window.location.href);
-      url.hash = '';
-      url.searchParams.delete('state');
-      url.searchParams.delete('s');
-      if (entries.length) {
-        const code = await createShareCode(entries);
-        url.searchParams.set('s', code);
+  document.querySelectorAll('[data-copy-state="true"]').forEach((copyButton) => {
+    copyButton.addEventListener('click', async () => {
+      const t = i18n[getLang()];
+
+      try {
+        const api = getPageStateApi();
+
+        if (!api) {
+          showToast(t.sharedWarn);
+          return;
+        }
+
+        const data = api.collect();
+
+        const url = new URL(window.location.href);
+        url.hash = '';
+        url.searchParams.delete('state');
+        url.searchParams.delete('s');
+
+        const encoded = encodePageData({
+          version: 1,
+          page: getCurrentPageNav(),
+          data
+        });
+
+        url.searchParams.set('state', encoded);
+
+        await navigator.clipboard.writeText(url.toString());
+        setCopyButtonCopied(copyButton, true);
+        showToast(t.shared);
+      } catch (_) {
+        showToast(t.sharedWarn);
       }
-      await navigator.clipboard.writeText(url.toString());
-      setCopyButtonCopied(copyButton, true);
-      showToast(t.shared);
-    } catch (_) {
-      showToast(t.sharedWarn);
-    }
-  }));
+    });
+  });
+
+  window.addEventListener('load', updateCopyStateButtonVisibility);
+  setTimeout(updateCopyStateButtonVisibility, 0);
+  setTimeout(updateCopyStateButtonVisibility, 100);
+  window.addEventListener('load', restorePageStateFromUrl);
+  setTimeout(restorePageStateFromUrl, 100);
 
   window.addEventListener('resize', () => applyLanguage(getLang()));
 
