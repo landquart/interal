@@ -10,7 +10,7 @@
   const siteRoot = sharedPath.replace(/\/shared\/ui\.js$/, '/');
   const joinUrl = (path) => new URL(path.replace(/^\//, ''), window.location.origin + siteRoot).pathname;
 
-  const canCopyPageState = /\/(indoeuropanvordes|associativvordes|determinatorofvalentyp|internationalismes|vordesofcommunites|grammaticebrevvordes)(\/|$)/.test(window.location.pathname);
+  const canCopyPageState = false;
 
   const pageNavItems = {
     indoeuropanvordes: {
@@ -801,7 +801,7 @@
   applyMobileBrandLogo();
   window.addEventListener('resize', applyMobileBrandLogo);
   markCurrentPage();
-  restoreSharedPageState();
+  // Shared page-state restore is intentionally disabled: reset must not reapply URL/hash state.
 
 
   const instrumentsMenu = desktopControls.querySelector('[data-instruments-menu]');

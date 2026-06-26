@@ -999,12 +999,23 @@ const TEXT_I18N = {
     }
 
     async function resetAll() {
-      await window.InteralUI?.hardReloadReset?.({
-        message: getResetConfirmMessage(),
-        storageKeys: [
-          'interal_associative_state'
-        ]
-      });
+      const message = getResetConfirmMessage();
+
+      if (window.InteralUI?.hardReloadReset) {
+        await window.InteralUI.hardReloadReset({
+          message,
+          storageKeys: [
+            'interal_associative_state'
+          ]
+        });
+        return;
+      }
+
+      const confirmed = window.confirm(message);
+      if (!confirmed) return;
+
+      try { localStorage.removeItem('interal_associative_state'); } catch (_) {}
+      window.location.replace(window.location.pathname);
     }
 
     function saveLocal() {

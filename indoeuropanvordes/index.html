@@ -1190,10 +1190,18 @@ function applyLocalizedTexts(lang = getCurrentLanguage()) {
 async function resetAll() {
   const resetMessage = TEXT_I18N[getCurrentLanguage()].resetConfirm;
 
-  await window.InteralUI?.hardReloadReset?.({
-    message: resetMessage,
-    storageKeys: []
-  });
+  if (window.InteralUI?.hardReloadReset) {
+    await window.InteralUI.hardReloadReset({
+      message: resetMessage,
+      storageKeys: []
+    });
+    return;
+  }
+
+  const confirmed = window.confirm(resetMessage);
+  if (!confirmed) return;
+
+  window.location.replace(window.location.pathname);
 }
 
 
