@@ -58,7 +58,8 @@ const I18N = {
   }
 };
 
-let state = { word: '', part_of_speech: 'noun', evidence: {}, autoPassed: {}, manualOverride: {}, matchMeta: {}, isSearching: false, searchError: '' };
+function getDefaultState() { return { word: '', part_of_speech: 'noun', evidence: {}, autoPassed: {}, manualOverride: {}, matchMeta: {}, isSearching: false, searchError: '' }; }
+let state = getDefaultState();
 function currentLang() { return localStorage.getItem('interal.lang') === 'en' ? 'en' : 'ru'; }
 function setLang(lang) { localStorage.setItem('interal.lang', lang); render(); }
 function currentTheme() { return localStorage.getItem('interal.theme') === 'dark' ? 'dark' : 'light'; }
@@ -250,43 +251,25 @@ async function analyze() {
     render();
   }
 }
-function hasUserInputForReset() { return Boolean(state.word.trim() || Object.values(state.evidence).some(value => String(value || '').trim()) || Object.values(state.manualOverride).some(value => value !== null && value !== undefined) || state.part_of_speech !== 'noun'); }
+function hasUserInputForReset() {
+  const hasText = Boolean(byId('wordInput')?.value.trim() || LANGUAGES.some(lang => byId(`form_${lang.code}`)?.value.trim()));
+  const hasOverride = LANGUAGES.some(lang => { const pass = byId(`pass_${lang.code}`); return pass && !pass.indeterminate; });
+  return hasText || hasOverride || (byId('posInput')?.value || 'noun') !== 'noun';
+}
+function clearDomFields() {
+  byId('wordInput').value = ''; byId('posInput').value = 'noun';
+  LANGUAGES.forEach(lang => { const input = byId(`form_${lang.code}`); if (input) input.value = ''; const pass = byId(`pass_${lang.code}`); if (pass) { pass.checked = false; pass.indeterminate = true; } });
+  const output = byId('jsonCardOutput'); if (output) output.value = '';
+}
 function updateResetButtonVisibility() { const resetBtn = byId('resetBtn'); if (resetBtn) resetBtn.classList.toggle('is-hidden', !hasUserInputForReset()); }
 async function resetAll() {
-  const confirmed = await (
-    window.InteralUI?.confirmReset?.({ message: t('resetConfirm') })
-    ?? Promise.resolve(window.confirm(t('resetConfirm')))
-  );
-
+  const confirmed = await (window.InteralUI?.confirmReset?.({ message: t('resetConfirm') }) ?? Promise.resolve(window.confirm(t('resetConfirm'))));
   if (!confirmed) return;
-
-  const resetBody = () => {
-    state = {
-      word: '',
-      part_of_speech: 'noun',
-      evidence: {},
-      autoPassed: {},
-      manualOverride: {},
-      matchMeta: {},
-      isSearching: false,
-      searchError: ''
-    };
-
-    closeJsonModal();
-    render();
-    updateResetButtonVisibility();
-  };
-
-  if (window.InteralUI?.runPageReset) {
-    await window.InteralUI.runPageReset(resetBody, { clearUrlState: true });
-  } else {
-    window.InteralUI?.beginPageReset?.({ clearUrlState: true });
-    try {
-      resetBody();
-    } finally {
-      window.InteralUI?.endPageReset?.();
-    }
-  }
+  state = getDefaultState();
+  clearDomFields();
+  closeJsonModal();
+  renderResult();
+  updateResetButtonVisibility();
 }
 function result() { const passed = LANGUAGES.filter(lang => effectivePassed(lang.code)).length; return { passed, total: 6, accepted: passed >= 5 }; }
 function getAuthorBlock() { if (!byId('useAuthorBlock')?.checked) return null; const displayName = byId('authorDisplayName')?.value.trim() || ''; const contactType = byId('authorContactType')?.value || 'telegram'; const contactValue = byId('authorContactValue')?.value.trim() || ''; const author = {}; if (displayName) author.display_name = displayName; if (contactValue) author.contacts = [{ type: contactType, url: contactValue }]; return Object.keys(author).length ? author : null; }
@@ -303,18 +286,14 @@ function renderEvidenceRows() {
     return `<article class="language-card"><div class="language-card__top"><span class="language-code">${escapeHtml(name)}</span><span class="status-mark ${passed ? 'ok' : 'bad'}">${passed ? '✓' : '×'}</span></div><label class="sr-only" for="form_${code}">${escapeHtml(name)}</label><input class="interal-input" id="form_${code}" value="${escapeHtml(form)}" placeholder="—"><label class="language-card__check"><input id="pass_${code}" type="checkbox" aria-label="${escapeHtml(t('table.passed'))}" data-override="${override === null || override === undefined ? 'auto' : 'manual'}" ${passed ? 'checked' : ''}></label></article>`;
   }).join('');
 }
+function renderResult() { const r = result(); byId('resultBox').innerHTML = `<span class="status-pill ${r.accepted ? 'ok' : 'bad'}">${r.accepted ? t('accept') : t('reject')}</span><dl><div><dt>${t('coverage')}</dt><dd>${r.passed}/${r.total}</dd></div><div><dt>${t('required')}</dt><dd>5/6</dd></div></dl>`; byId('jsonBtn').hidden = !r.accepted; }
 function render() {
-  renderChrome();
-  applyJsonModalTexts();
-  document.title = t('title');
-  byId('pageTitle').textContent = t('title');
-  byId('pageLead').textContent = t('lead');
-  const r = result();
-  const checkingLabel = currentLang() === 'en' ? 'Searching...' : 'Поиск...';
-  byId('app').innerHTML = `<section class="card vord-panel params-panel"><h2>${t('params')}</h2><div class="compact-fields"><div class="field"><label for="wordInput">${t('word')}</label><input class="interal-input" id="wordInput" value="${escapeHtml(state.word)}"></div><div class="field"><label for="posInput">${t('pos')}</label><select class="interal-select" id="posInput"><option value="noun">${t('noun')}</option><option value="adjective">${t('adjective')}</option><option value="verb">${t('verb')}</option><option value="adverb">${t('adverb')}</option></select></div></div><div class="actions"><button class="interal-btn interal-btn--primary" id="checkBtn" type="button" ${state.isSearching ? 'disabled' : ''}>${state.isSearching ? checkingLabel : t('check')}</button></div><div class="card-tools"><button id="resetBtn" class="card-reset-btn interal-reset-btn is-hidden" type="button" aria-label="${escapeHtml(t('resetAria'))}" title="${escapeHtml(t('resetAria'))}"><img src="../elements/Eraser%20Square.svg" alt="" aria-hidden="true"></button></div></section>${state.isSearching ? `<div class="notice">${escapeHtml(t('searching'))}</div>` : ''}${state.searchError ? `<div class="notice notice--warning">${escapeHtml(state.searchError)}</div>` : ''}<section class="card vord-panel"><h2>${t('evidence')}</h2><div class="language-grid">${renderEvidenceRows()}</div></section><section class="card vord-panel decision-summary"><h2>${t('decision')}</h2><span class="status-pill ${r.accepted ? 'ok' : 'bad'}">${r.accepted ? t('accept') : t('reject')}</span><dl><div><dt>${t('coverage')}</dt><dd>${r.passed}/${r.total}</dd></div><div><dt>${t('required')}</dt><dd>5/6</dd></div></dl></section>${r.accepted ? `<div class="actions json-card-bottom-actions"><button class="interal-btn interal-btn--secondary" id="jsonBtn" type="button">${t('json')}</button></div>` : ''}`;
-  if (byId('posInput')) byId('posInput').value = state.part_of_speech;
-  LANGUAGES.forEach(lang => { const pass = byId(`pass_${lang.code}`); if (pass && (state.manualOverride[lang.code] === null || state.manualOverride[lang.code] === undefined)) pass.indeterminate = true; });
-  updateResetButtonVisibility();
+  renderChrome(); applyJsonModalTexts(); document.title = t('title'); byId('pageTitle').textContent = t('title'); byId('pageLead').textContent = t('lead');
+  byId('paramsTitle').textContent = t('params'); byId('wordLabel').textContent = t('word'); byId('posLabel').textContent = t('pos'); byId('checkBtn').textContent = state.isSearching ? (currentLang() === 'en' ? 'Searching...' : 'Поиск...') : t('check'); byId('checkBtn').disabled = state.isSearching; byId('evidenceTitle').textContent = t('evidence'); byId('decisionTitle').textContent = t('decision'); byId('jsonBtn').textContent = t('json'); byId('resetBtn').title = t('resetAria'); byId('resetBtn').setAttribute('aria-label', t('resetAria'));
+  byId('posInput').innerHTML = `<option value="noun">${t('noun')}</option><option value="adjective">${t('adjective')}</option><option value="verb">${t('verb')}</option><option value="adverb">${t('adverb')}</option>`; byId('posInput').value = state.part_of_speech;
+  byId('noticeBox').innerHTML = `${state.isSearching ? `<div class="notice">${escapeHtml(t('searching'))}</div>` : ''}${state.searchError ? `<div class="notice notice--warning">${escapeHtml(state.searchError)}</div>` : ''}`;
+  byId('evidenceBox').innerHTML = `<div class="language-grid">${renderEvidenceRows()}</div>`; LANGUAGES.forEach(lang => { const pass = byId(`pass_${lang.code}`); if (pass && (state.manualOverride[lang.code] === null || state.manualOverride[lang.code] === undefined)) pass.indeterminate = true; });
+  renderResult(); updateResetButtonVisibility();
 }
 const jsonFilename = 'internationalism-card.json';
 function currentJsonText() { const existing = byId('jsonCardOutput')?.value; return existing || JSON.stringify(makeCard(), null, 2); }
@@ -322,5 +301,5 @@ function openJsonModal() { readState(); const output = byId('jsonCardOutput'); i
 function closeJsonModal() { const modal = byId('jsonCardModal'); modal?.classList.remove('show'); modal?.setAttribute('aria-hidden', 'true'); }
 function applyJsonModalTexts() { const text = t('jsonCard'); const values = { jsonCardTitle: text.title, useAuthorBlockLabel: text.useAuthor, authorDisplayNameLabel: text.authorName, authorContactTypeLabel: text.contactType, authorContactValueLabel: text.contact, generateJsonCardBtn: text.generate, jsonCardOutputLabel: text.output }; Object.entries(values).forEach(([id, value]) => { const element = byId(id); if (element) element.textContent = value; }); byId('closeJsonCardBtn')?.setAttribute('aria-label', text.close); byId('copyJsonCardBtn')?.setAttribute('aria-label', text.copy); byId('copyJsonCardBtn')?.setAttribute('title', text.copy); byId('downloadJsonCardBtn')?.setAttribute('aria-label', text.download); byId('downloadJsonCardBtn')?.setAttribute('title', text.download); }
 function setCopyButtonCopied(copied) { const btn = byId('copyJsonCardBtn'); if (!btn) return; btn.classList.toggle('is-copied', copied); btn.title = copied ? t('jsonCard.copied') : t('jsonCard.copy'); btn.setAttribute('aria-label', btn.title); }
-function bindJsonModal() { byId('closeJsonCardBtn')?.addEventListener('click', closeJsonModal); byId('jsonCardModal')?.addEventListener('click', event => { if (event.target === byId('jsonCardModal')) closeJsonModal(); }); byId('useAuthorBlock')?.addEventListener('change', event => { byId('jsonAuthorFields').style.display = event.target.checked ? 'grid' : 'none'; }); byId('generateJsonCardBtn')?.addEventListener('click', () => { const output = byId('jsonCardOutput'); if (output) output.value = JSON.stringify(makeCard(), null, 2); }); byId('copyJsonCardBtn')?.addEventListener('click', () => { copyText(currentJsonText()); setCopyButtonCopied(true); window.setTimeout(() => setCopyButtonCopied(false), 1500); }); byId('downloadJsonCardBtn')?.addEventListener('click', () => downloadJson(jsonFilename, currentJsonText())); document.addEventListener('keydown', event => { if (event.key === 'Escape') closeJsonModal(); }); document.addEventListener('interal:languagechange', render); byId('app')?.addEventListener('input', event => { const target = event.target; if (target?.id === 'wordInput') state.word = target.value; else if (target?.id === 'posInput') state.part_of_speech = target.value; else if (target?.id?.startsWith('form_')) { readState(); updateResetButtonVisibility(); return; } updateResetButtonVisibility(); }); byId('app')?.addEventListener('change', event => { const target = event.target; if (target?.id?.startsWith('pass_')) { const code = target.id.replace('pass_', ''); state.manualOverride[code] = Boolean(target.checked); render(); return; } readState(); render(); }); byId('app')?.addEventListener('click', event => { if (event.target.closest('#resetBtn')) resetAll(); if (event.target.closest('#checkBtn')) analyze(); if (event.target.closest('#jsonBtn')) generateJson(); }); }
+function bindJsonModal() { byId('closeJsonCardBtn')?.addEventListener('click', closeJsonModal); byId('jsonCardModal')?.addEventListener('click', event => { if (event.target === byId('jsonCardModal')) closeJsonModal(); }); byId('useAuthorBlock')?.addEventListener('change', event => { byId('jsonAuthorFields').style.display = event.target.checked ? 'grid' : 'none'; }); byId('generateJsonCardBtn')?.addEventListener('click', () => { const output = byId('jsonCardOutput'); if (output) output.value = JSON.stringify(makeCard(), null, 2); }); byId('copyJsonCardBtn')?.addEventListener('click', () => { copyText(currentJsonText()); setCopyButtonCopied(true); window.setTimeout(() => setCopyButtonCopied(false), 1500); }); byId('downloadJsonCardBtn')?.addEventListener('click', () => downloadJson(jsonFilename, currentJsonText())); document.addEventListener('keydown', event => { if (event.key === 'Escape') closeJsonModal(); }); document.addEventListener('interal:languagechange', () => { readState(); render(); }); byId('resetBtn')?.addEventListener('click', resetAll); byId('checkBtn')?.addEventListener('click', analyze); byId('jsonBtn')?.addEventListener('click', generateJson); byId('app')?.addEventListener('input', event => { const target = event.target; if (target?.id === 'wordInput') state.word = target.value; else if (target?.id === 'posInput') state.part_of_speech = target.value; else if (target?.id?.startsWith('form_')) { readState(); updateResetButtonVisibility(); return; } updateResetButtonVisibility(); }); byId('app')?.addEventListener('change', event => { const target = event.target; if (target?.id?.startsWith('pass_')) { const code = target.id.replace('pass_', ''); state.manualOverride[code] = Boolean(target.checked); render(); return; } readState(); render(); }); }
 bindJsonModal(); applyJsonModalTexts(); render();
