@@ -11,7 +11,7 @@
   let lastSerialized = '';
 
   function isInstrumentPage() {
-    return /\/(indoeuropanvordes|associativvordes|determinatorofvalentyp|internationalismes|vordesofcommunites|grammaticebrevivordes)\//.test(window.location.pathname);
+    return /\/(indoeuropanvordes|associativvordes|determinatorofvalentyp|internationalismes|vordesofcommunites|grammaticebrevvordes)\//.test(window.location.pathname);
   }
 
   if (!isInstrumentPage()) return;
@@ -71,6 +71,33 @@
     element.value = value == null ? '' : String(value);
   }
 
+  function encodeBase64Url(value) {
+    const json = JSON.stringify(value);
+    const bytes = new TextEncoder().encode(json);
+    let binary = '';
+
+    bytes.forEach((byte) => {
+      binary += String.fromCharCode(byte);
+    });
+
+    return btoa(binary)
+      .replace(/\+/g, '-')
+      .replace(/\//g, '_')
+      .replace(/=+$/g, '');
+  }
+
+  function decodeBase64Url(value) {
+    const normalized = String(value || '')
+      .replace(/-/g, '+')
+      .replace(/_/g, '/');
+
+    const padded = normalized.padEnd(normalized.length + ((4 - normalized.length % 4) % 4), '=');
+    const binary = atob(padded);
+    const bytes = Uint8Array.from(binary, (char) => char.charCodeAt(0));
+
+    return JSON.parse(new TextDecoder().decode(bytes));
+  }
+
   function resetElementValue(element) {
     if (element.type === 'checkbox' || element.type === 'radio') {
       element.checked = false;
@@ -97,6 +124,126 @@
       path: window.location.pathname,
       fields
     };
+  }
+
+  function createSharePayload() {
+    const draft = collectDraft();
+
+    return {
+      version: 1,
+      source: 'interal-form-draft',
+      path: window.location.pathname,
+      fields: draft.fields
+    };
+  }
+
+  function createShareUrl() {
+    const payload = createSharePayload();
+    const encoded = encodeBase64Url(payload);
+    const url = new URL(window.location.href);
+
+    url.searchParams.delete('s');
+    url.searchParams.delete('state');
+    url.searchParams.set('state', encoded);
+
+    if (/state=/.test(url.hash)) {
+      url.hash = '';
+    }
+
+    return url.toString();
+  }
+
+  async function writeClipboard(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(text);
+      return true;
+    }
+
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.setAttribute('readonly', '');
+    textarea.style.position = 'fixed';
+    textarea.style.left = '-9999px';
+    textarea.style.top = '0';
+
+    document.body.appendChild(textarea);
+    textarea.focus();
+    textarea.select();
+
+    let copied = false;
+
+    try {
+      copied = document.execCommand('copy');
+    } finally {
+      textarea.remove();
+    }
+
+    if (!copied) {
+      throw new Error('Clipboard copy failed');
+    }
+
+    return true;
+  }
+
+  function getCopyTexts() {
+    const lang = localStorage.getItem('interal.lang') === 'en' ? 'en' : 'ru';
+
+    return lang === 'en'
+      ? {
+          copy: 'Copy link with data',
+          copied: 'Link copied',
+          failed: 'Could not copy link'
+        }
+      : {
+          copy: 'Скопировать ссылку с данными',
+          copied: 'Ссылка скопирована',
+          failed: 'Не удалось скопировать ссылку'
+        };
+  }
+
+  function setCopyButtonState(button, state) {
+    const texts = getCopyTexts();
+    const label = button.querySelector('.menu-copy-label, .top-desktop-copy-label');
+    const text = state === 'copied'
+      ? texts.copied
+      : state === 'failed'
+        ? texts.failed
+        : texts.copy;
+
+    button.classList.toggle('is-copied', state === 'copied');
+    button.classList.toggle('is-failed', state === 'failed');
+
+    if (label) {
+      label.textContent = text;
+    }
+
+    button.setAttribute('aria-label', text);
+  }
+
+  async function copyShareUrl(button) {
+    const url = createShareUrl();
+
+    try {
+      await writeClipboard(url);
+      setCopyButtonState(button, 'copied');
+
+      clearTimeout(button._interalCopyStateTimer);
+      button._interalCopyStateTimer = setTimeout(() => {
+        setCopyButtonState(button, 'idle');
+      }, 1600);
+
+      return true;
+    } catch (error) {
+      console.warn('Could not copy share URL:', error);
+      setCopyButtonState(button, 'failed');
+
+      clearTimeout(button._interalCopyStateTimer);
+      button._interalCopyStateTimer = setTimeout(() => {
+        setCopyButtonState(button, 'idle');
+      }, 1800);
+
+      return false;
+    }
   }
 
   function saveDraftNow() {
@@ -184,6 +331,90 @@
     }
 
     return `${url.pathname}${url.search}${url.hash}`;
+  }
+
+  function getSharePayloadFromUrl() {
+    const url = new URL(window.location.href);
+    const encoded = url.searchParams.get('state');
+
+    if (!encoded) return null;
+
+    try {
+      const payload = decodeBase64Url(encoded);
+
+      if (!payload || typeof payload !== 'object') return null;
+      if (payload.source !== 'interal-form-draft') return null;
+      if (!payload.fields || typeof payload.fields !== 'object') return null;
+
+      return payload;
+    } catch (error) {
+      console.warn('Could not decode shared form state:', error);
+      return null;
+    }
+  }
+
+  function removeShareStateFromUrl() {
+    const url = new URL(window.location.href);
+
+    url.searchParams.delete('s');
+    url.searchParams.delete('state');
+
+    if (/state=/.test(url.hash)) {
+      url.hash = '';
+    }
+
+    const cleanUrl = `${url.pathname}${url.search}${url.hash}`;
+
+    try {
+      window.history.replaceState(null, '', cleanUrl);
+    } catch (_) {}
+  }
+
+  function applyFields(fields) {
+    let applied = false;
+
+    isRestoring = true;
+
+    try {
+      Object.entries(fields).forEach(([id, value]) => {
+        const element = document.getElementById(id);
+        if (!element || shouldSkipElement(element)) return;
+
+        writeElementValue(element, value);
+        dispatchFieldEvents(element);
+        applied = true;
+      });
+    } finally {
+      isRestoring = false;
+    }
+
+    if (applied) {
+      if (typeof window.initCustomSelects === 'function') {
+        window.initCustomSelects();
+      }
+
+      lastSerialized = JSON.stringify(collectDraft());
+      localStorage.setItem(storageKey(), lastSerialized);
+      window.dispatchEvent(new CustomEvent('interal:formdraftrestore', { detail: { key: storageKey() } }));
+    }
+
+    return applied;
+  }
+
+  function restoreSharedStateFromUrl() {
+    if (isResetting || hasResetFlag()) return false;
+
+    const payload = getSharePayloadFromUrl();
+
+    if (!payload) return false;
+
+    const applied = applyFields(payload.fields);
+
+    if (applied) {
+      removeShareStateFromUrl();
+    }
+
+    return applied;
   }
 
   function currentLang() {
@@ -308,29 +539,7 @@
       return false;
     }
 
-    let restored = false;
-    isRestoring = true;
-
-    try {
-      Object.entries(payload.fields).forEach(([id, value]) => {
-        const element = document.getElementById(id);
-        if (!element || shouldSkipElement(element)) return;
-
-        writeElementValue(element, value);
-        dispatchFieldEvents(element);
-        restored = true;
-      });
-    } finally {
-      isRestoring = false;
-    }
-
-    if (restored) {
-      if (typeof window.initCustomSelects === 'function') window.initCustomSelects();
-      window.dispatchEvent(new CustomEvent('interal:formdraftrestore', { detail: { key: storageKey() } }));
-      lastSerialized = JSON.stringify(collectDraft());
-    }
-
-    return restored;
+    return applyFields(payload.fields);
   }
 
   function clearResetStateAfterLoad() {
@@ -347,6 +556,19 @@
     setTimeout(clearResetFlag, RESET_CLEAR_DELAYS[RESET_CLEAR_DELAYS.length - 1] + 150);
   }
 
+  function restoreInitialState() {
+    if (hasResetFlag()) {
+      clearResetStateAfterLoad();
+      return false;
+    }
+
+    if (restoreSharedStateFromUrl()) {
+      return true;
+    }
+
+    return restoreDraft();
+  }
+
   document.addEventListener('click', (event) => {
     const button = event.target.closest?.('#resetBtn, .interal-reset-btn');
     if (!button) return;
@@ -358,6 +580,16 @@
     performDirectReset(button).catch((error) => {
       console.error('Reset failed:', error);
     });
+  }, true);
+
+  document.addEventListener('click', (event) => {
+    const button = event.target.closest?.('[data-copy-state="true"]');
+    if (!button) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    copyShareUrl(button);
   }, true);
 
   document.addEventListener('input', (event) => {
@@ -379,19 +611,21 @@
   }, true);
 
   clearResetStateAfterLoad();
-  RESTORE_DELAYS.forEach((delay) => setTimeout(restoreDraft, delay));
+  RESTORE_DELAYS.forEach((delay) => setTimeout(restoreInitialState, delay));
 
   window.addEventListener('load', () => {
     clearResetStateAfterLoad();
-    restoreDraft();
-    setTimeout(restoreDraft, 250);
+    restoreInitialState();
+    setTimeout(restoreInitialState, 250);
   });
 
   window.InteralFormDraft = Object.assign(window.InteralFormDraft || {}, {
     save: saveDraftNow,
     restore: restoreDraft,
+    restoreInitial: restoreInitialState,
     clear: clearCurrentDraft,
     reset: performDirectReset,
+    createShareUrl,
     key: storageKey
   });
 })();

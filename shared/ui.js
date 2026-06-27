@@ -10,7 +10,7 @@
   const siteRoot = sharedPath.replace(/\/shared\/ui\.js$/, '/');
   const joinUrl = (path) => new URL(path.replace(/^\//, ''), window.location.origin + siteRoot).pathname;
 
-  const canCopyPageState = false;
+  const canCopyPageState = /\/(indoeuropanvordes|associativvordes|determinatorofvalentyp|internationalismes|vordesofcommunites|grammaticebrevvordes)\//.test(window.location.pathname);
 
   const pageNavItems = {
     indoeuropanvordes: {
@@ -44,8 +44,8 @@
       group: 'instruments'
     },
     grammar: {
-      path: 'grammaticebrevivordes/',
-      icon: 'elements/grammaticebrevivordes.svg',
+      path: 'grammaticebrevvordes/',
+      icon: 'elements/grammaticebrevvordes.svg',
       labelKey: 'navGrammar',
       group: 'instruments'
     },
@@ -66,7 +66,7 @@
     if (path.includes('/determinatorofvalentyp/')) return 'determinator';
     if (path.includes('/internationalismes/')) return 'internationalismes';
     if (path.includes('/vordesofcommunites/')) return 'communities';
-    if (path.includes('/grammaticebrevivordes/')) return 'grammar';
+    if (path.includes('/grammaticebrevvordes/')) return 'grammar';
     if (path.includes('/registre/')) return 'registry';
     return '';
   }
@@ -210,7 +210,7 @@
       <a class="menu-nav-link" href="${joinUrl(pageNavItems.registry.path)}" data-nav="registry"><img class="menu-nav-icon" src="${joinUrl(pageNavItems.registry.icon)}" alt="" aria-hidden="true" /><span class="menu-nav-main"></span></a>
       ${canCopyPageState ? `
       <div class="menu-divider menu-divider--mobile" aria-hidden="true"></div>
-      <button class="menu-copy-btn" type="button" data-copy-state="true" hidden>
+      <button class="menu-copy-btn" type="button" data-copy-state="true">
         <span class="menu-copy-icon-stack" aria-hidden="true">
           <img class="menu-copy-icon menu-copy-icon-link" src="${joinUrl('elements/Link%20Round%20Angle.svg')}" alt="" />
           <svg class="menu-copy-icon menu-copy-icon-check" viewBox="0 0 24 24" focusable="false">
