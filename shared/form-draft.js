@@ -113,6 +113,16 @@
     element.value = '';
   }
 
+  function getSharePath() {
+    const path = window.location.pathname;
+
+    if (path.startsWith('/interal/')) {
+      return path;
+    }
+
+    return `/interal${path.startsWith('/') ? path : `/${path}`}`;
+  }
+
   function collectDraft() {
     const fields = {};
 
@@ -122,7 +132,7 @@
 
     return {
       version: 1,
-      path: window.location.pathname,
+      path: getSharePath(),
       fields
     };
   }
@@ -133,7 +143,7 @@
     return {
       version: 1,
       source: 'interal-form-draft',
-      path: window.location.pathname,
+      path: getSharePath(),
       fields: draft.fields
     };
   }
@@ -163,7 +173,7 @@
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        path: window.location.pathname,
+        path: getSharePath(),
         payload
       })
     });
@@ -178,13 +188,11 @@
       throw new Error('Invalid share id');
     }
 
-    const url = new URL(window.location.href);
+    if (typeof data.url !== 'string' || !data.url) {
+      throw new Error('Invalid share URL');
+    }
 
-    url.searchParams.delete('state');
-    url.searchParams.delete('s');
-    url.searchParams.set('s', data.id);
-
-    return url.toString();
+    return data.url;
   }
 
   async function writeClipboard(text) {
@@ -480,7 +488,7 @@
         return false;
       }
 
-      if (data.path !== window.location.pathname) {
+      if (data.path !== getSharePath()) {
         return false;
       }
 
@@ -628,7 +636,7 @@
       return false;
     }
 
-    if (!payload || payload.path !== window.location.pathname || !payload.fields || typeof payload.fields !== 'object') {
+    if (!payload || payload.path !== getSharePath() || !payload.fields || typeof payload.fields !== 'object') {
       return false;
     }
 
@@ -728,6 +736,7 @@
     reset: performDirectReset,
     createShareUrl,
     createShortShareUrl,
+    getSharePath,
     key: storageKey
   });
 })();

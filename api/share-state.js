@@ -27,20 +27,28 @@ const ALPHABET = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
 const ID_LENGTH = 12;
 const MAX_PAYLOAD_BYTES = 50_000;
 
-if (!SUPABASE_URL) {
-  throw new Error('Missing SUPABASE_URL environment variable');
-}
+let supabase = null;
 
-if (!SUPABASE_SERVICE_ROLE_KEY) {
-  throw new Error('Missing supabase / SUPABASE_SERVICE_ROLE_KEY environment variable');
-}
-
-const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, {
-  auth: {
-    persistSession: false,
-    autoRefreshToken: false
+function getSupabaseClient() {
+  if (!SUPABASE_URL) {
+    throw new Error('Missing SUPABASE_URL environment variable');
   }
-});
+
+  if (!SUPABASE_SERVICE_ROLE_KEY) {
+    throw new Error('Missing supabase / SUPABASE_SERVICE_ROLE_KEY environment variable');
+  }
+
+  if (!supabase) {
+    supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, {
+      auth: {
+        persistSession: false,
+        autoRefreshToken: false
+      }
+    });
+  }
+
+  return supabase;
+}
 
 class ValidationError extends Error {
   constructor(message, status = 400) {
@@ -99,12 +107,13 @@ function isValidId(id) {
 
 function normalizePath(path) {
   const value = String(path || '').trim();
+  const prefixed = value.startsWith('/') ? value : `/${value}`;
 
-  if (!value.startsWith('/')) {
-    return `/${value}`;
+  if (prefixed.startsWith('/interal/')) {
+    return prefixed;
   }
 
-  return value;
+  return `/interal${prefixed}`;
 }
 
 function isAllowedPath(path) {
@@ -186,10 +195,12 @@ async function createShareState(req, res) {
   const body = getRequestBody(req);
   const { path, payload } = validateCreateBody(body);
 
+  const client = getSupabaseClient();
+
   for (let attempt = 0; attempt < 10; attempt += 1) {
     const id = createBase62Id();
 
-    const { error } = await supabase
+    const { error } = await client
       .from('share_states')
       .insert({
         id,
@@ -220,13 +231,15 @@ async function createShareState(req, res) {
 }
 
 async function readShareState(req, res) {
-  const id = String(req.query.id || '');
+  const id = String(req.query?.id || '');
 
   if (!isValidId(id)) {
     throw new ValidationError('Invalid id');
   }
 
-  const { data, error } = await supabase
+  const client = getSupabaseClient();
+
+  const { data, error } = await client
     .from('share_states')
     .select('id, path, payload, expires_at')
     .eq('id', id)
@@ -254,7 +267,7 @@ async function readShareState(req, res) {
     return;
   }
 
-  const { error: touchError } = await supabase.rpc('touch_share_state', {
+  const { error: touchError } = await client.rpc('touch_share_state', {
     p_id: id
   });
 
@@ -278,6 +291,16 @@ export default async function handler(req, res) {
   }
 
   try {
+    if (req.method === 'GET' && req.query?.health === '1') {
+      sendJson(req, res, 200, {
+        ok: true,
+        hasSupabaseUrl: Boolean(SUPABASE_URL),
+        hasSupabaseKey: Boolean(SUPABASE_SERVICE_ROLE_KEY),
+        allowedOrigins: EFFECTIVE_ALLOWED_ORIGINS
+      });
+      return;
+    }
+
     if (req.method === 'POST') {
       await createShareState(req, res);
       return;

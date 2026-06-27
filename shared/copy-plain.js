@@ -17,8 +17,8 @@ document.addEventListener("copy", function (event) {
 
   const currentScript = document.currentScript;
   const scriptUrl = currentScript
-    ? new URL('form-draft.js?v=share-state-grammaticebrevivordes-20260628', currentScript.src).toString()
-    : '../shared/form-draft.js?v=share-state-grammaticebrevivordes-20260628';
+    ? new URL('form-draft.js?v=share-state-fix-20260628', currentScript.src).toString()
+    : '../shared/form-draft.js?v=share-state-fix-20260628';
 
   const script = document.createElement('script');
   script.src = scriptUrl;
