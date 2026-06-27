@@ -4,6 +4,7 @@
   const SAVE_DELAY = 80;
   const RESTORE_DELAYS = [0, 80, 250, 600];
   const RESET_CLEAR_DELAYS = [0, 80, 250, 600, 1000];
+  const SHARE_API_URL = 'https://interal.vercel.app/api/share-state';
 
   let saveTimer = null;
   let isRestoring = false;
@@ -153,6 +154,39 @@
     return url.toString();
   }
 
+  async function createShortShareUrl() {
+    const payload = createSharePayload();
+
+    const response = await fetch(SHARE_API_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        path: window.location.pathname,
+        payload
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error('Could not create short share link');
+    }
+
+    const data = await response.json();
+
+    if (!data || !data.ok || !data.id || !/^[0-9a-zA-Z]{12}$/.test(data.id)) {
+      throw new Error('Invalid share id');
+    }
+
+    const url = new URL(window.location.href);
+
+    url.searchParams.delete('state');
+    url.searchParams.delete('s');
+    url.searchParams.set('s', data.id);
+
+    return url.toString();
+  }
+
   async function writeClipboard(text) {
     if (navigator.clipboard && window.isSecureContext) {
       await navigator.clipboard.writeText(text);
@@ -221,9 +255,9 @@
   }
 
   async function copyShareUrl(button) {
-    const url = createShareUrl();
-
     try {
+      const url = await createShortShareUrl();
+
       await writeClipboard(url);
       setCopyButtonState(button, 'copied');
 
@@ -234,15 +268,31 @@
 
       return true;
     } catch (error) {
-      console.warn('Could not copy share URL:', error);
-      setCopyButtonState(button, 'failed');
+      console.warn('Could not copy short share URL:', error);
 
-      clearTimeout(button._interalCopyStateTimer);
-      button._interalCopyStateTimer = setTimeout(() => {
-        setCopyButtonState(button, 'idle');
-      }, 1800);
+      try {
+        const fallbackUrl = createShareUrl();
+        await writeClipboard(fallbackUrl);
+        setCopyButtonState(button, 'copied');
 
-      return false;
+        clearTimeout(button._interalCopyStateTimer);
+        button._interalCopyStateTimer = setTimeout(() => {
+          setCopyButtonState(button, 'idle');
+        }, 1600);
+
+        return true;
+      } catch (fallbackError) {
+        console.warn('Could not copy fallback share URL:', fallbackError);
+
+        setCopyButtonState(button, 'failed');
+
+        clearTimeout(button._interalCopyStateTimer);
+        button._interalCopyStateTimer = setTimeout(() => {
+          setCopyButtonState(button, 'idle');
+        }, 1800);
+
+        return false;
+      }
     }
   }
 
@@ -417,6 +467,64 @@
     return applied;
   }
 
+  async function restoreShortStateFromUrl() {
+    if (isResetting || hasResetFlag()) return false;
+
+    const url = new URL(window.location.href);
+    const id = url.searchParams.get('s');
+
+    if (!id) return false;
+
+    if (!/^[0-9a-zA-Z]{12}$/.test(id)) {
+      return false;
+    }
+
+    try {
+      const response = await fetch(`${SHARE_API_URL}?id=${encodeURIComponent(id)}`, {
+        method: 'GET'
+      });
+
+      if (!response.ok) {
+        console.warn('Could not load short shared state:', response.status);
+        return false;
+      }
+
+      const data = await response.json();
+
+      if (!data || !data.ok || !data.payload) {
+        return false;
+      }
+
+      if (data.path !== window.location.pathname) {
+        return false;
+      }
+
+      if (data.payload.source !== 'interal-form-draft') {
+        return false;
+      }
+
+      if (!data.payload.fields || typeof data.payload.fields !== 'object') {
+        return false;
+      }
+
+      const applied = applyFields(data.payload.fields);
+
+      if (applied) {
+        url.searchParams.delete('s');
+        url.searchParams.delete('state');
+
+        try {
+          window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
+        } catch (_) {}
+      }
+
+      return applied;
+    } catch (error) {
+      console.warn('Could not restore short shared state:', error);
+      return false;
+    }
+  }
+
   function currentLang() {
     return localStorage.getItem('interal.lang') === 'en' ? 'en' : 'ru';
   }
@@ -556,10 +664,14 @@
     setTimeout(clearResetFlag, RESET_CLEAR_DELAYS[RESET_CLEAR_DELAYS.length - 1] + 150);
   }
 
-  function restoreInitialState() {
+  async function restoreInitialState() {
     if (hasResetFlag()) {
       clearResetStateAfterLoad();
       return false;
+    }
+
+    if (await restoreShortStateFromUrl()) {
+      return true;
     }
 
     if (restoreSharedStateFromUrl()) {
@@ -611,7 +723,11 @@
   }, true);
 
   clearResetStateAfterLoad();
-  RESTORE_DELAYS.forEach((delay) => setTimeout(restoreInitialState, delay));
+  RESTORE_DELAYS.forEach((delay) => {
+    setTimeout(() => {
+      restoreInitialState();
+    }, delay);
+  });
 
   window.addEventListener('load', () => {
     clearResetStateAfterLoad();
@@ -626,6 +742,7 @@
     clear: clearCurrentDraft,
     reset: performDirectReset,
     createShareUrl,
+    createShortShareUrl,
     key: storageKey
   });
 })();
