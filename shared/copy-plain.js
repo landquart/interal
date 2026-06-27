@@ -17,8 +17,8 @@ document.addEventListener("copy", function (event) {
 
   const currentScript = document.currentScript;
   const scriptUrl = currentScript
-    ? new URL('form-draft.js?v=reset-simple-20260626', currentScript.src).toString()
-    : '../shared/form-draft.js?v=reset-simple-20260626';
+    ? new URL('form-draft.js?v=copy-link-data-20260626', currentScript.src).toString()
+    : '../shared/form-draft.js?v=copy-link-data-20260626';
 
   const script = document.createElement('script');
   script.src = scriptUrl;
