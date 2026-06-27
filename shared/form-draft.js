@@ -270,29 +270,14 @@
     } catch (error) {
       console.warn('Could not copy short share URL:', error);
 
-      try {
-        const fallbackUrl = createShareUrl();
-        await writeClipboard(fallbackUrl);
-        setCopyButtonState(button, 'copied');
+      setCopyButtonState(button, 'failed');
 
-        clearTimeout(button._interalCopyStateTimer);
-        button._interalCopyStateTimer = setTimeout(() => {
-          setCopyButtonState(button, 'idle');
-        }, 1600);
+      clearTimeout(button._interalCopyStateTimer);
+      button._interalCopyStateTimer = setTimeout(() => {
+        setCopyButtonState(button, 'idle');
+      }, 1800);
 
-        return true;
-      } catch (fallbackError) {
-        console.warn('Could not copy fallback share URL:', fallbackError);
-
-        setCopyButtonState(button, 'failed');
-
-        clearTimeout(button._interalCopyStateTimer);
-        button._interalCopyStateTimer = setTimeout(() => {
-          setCopyButtonState(button, 'idle');
-        }, 1800);
-
-        return false;
-      }
+      return false;
     }
   }
 
