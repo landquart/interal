@@ -1,128 +1,307 @@
-const crypto = require('crypto');
+import { createClient } from '@supabase/supabase-js';
+import { randomBytes } from 'node:crypto';
 
-const BASE62 = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-const CODE_LENGTH = 12;
-const MAX_BODY_BYTES = 64 * 1024;
-const MAX_RECORDS = 1000;
-const TTL_MS = 1000 * 60 * 60 * 24 * 30;
+const SUPABASE_URL = process.env.SUPABASE_URL;
+const SUPABASE_SERVICE_ROLE_KEY =
+  process.env.supabase ||
+  process.env.SUPABASE_SERVICE_ROLE_KEY ||
+  process.env.SUPABASE_SECRET_KEY;
 
-const store = globalThis.__interalShareStateStore || new Map();
-globalThis.__interalShareStateStore = store;
+const PUBLIC_SITE_URL = process.env.PUBLIC_SITE_URL || 'https://landquart.github.io';
 
-function send(res, status, payload) {
-  res.statusCode = status;
-  res.setHeader('Content-Type', 'application/json; charset=utf-8');
-  res.setHeader('Cache-Control', 'no-store');
-  res.end(JSON.stringify(payload));
+const DEFAULT_ALLOWED_ORIGINS = [
+  'https://landquart.github.io',
+  'https://interal.vercel.app'
+];
+
+const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS || '')
+  .split(',')
+  .map((origin) => origin.trim())
+  .filter(Boolean);
+
+const EFFECTIVE_ALLOWED_ORIGINS = ALLOWED_ORIGINS.length
+  ? ALLOWED_ORIGINS
+  : DEFAULT_ALLOWED_ORIGINS;
+
+const ALPHABET = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const ID_LENGTH = 12;
+const MAX_PAYLOAD_BYTES = 50_000;
+
+if (!SUPABASE_URL) {
+  throw new Error('Missing SUPABASE_URL environment variable');
 }
 
-function methodNotAllowed(res) {
-  res.setHeader('Allow', 'GET, POST, OPTIONS');
-  send(res, 405, { error: 'Method not allowed' });
+if (!SUPABASE_SERVICE_ROLE_KEY) {
+  throw new Error('Missing supabase / SUPABASE_SERVICE_ROLE_KEY environment variable');
 }
 
-function cleanup(now = Date.now()) {
-  for (const [code, record] of store) {
-    if (!record || record.expiresAt <= now) store.delete(code);
+const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, {
+  auth: {
+    persistSession: false,
+    autoRefreshToken: false
   }
-  while (store.size > MAX_RECORDS) {
-    const oldest = store.keys().next().value;
-    if (!oldest) break;
-    store.delete(oldest);
+});
+
+class ValidationError extends Error {
+  constructor(message, status = 400) {
+    super(message);
+    this.name = 'ValidationError';
+    this.status = status;
   }
 }
 
-function randomBase62(length = CODE_LENGTH) {
-  let code = '';
-  const limit = Math.floor(256 / BASE62.length) * BASE62.length;
-  while (code.length < length) {
-    const byte = crypto.randomBytes(1)[0];
-    if (byte < limit) code += BASE62[byte % BASE62.length];
+function getAllowedOrigin(req) {
+  const origin = req.headers.origin;
+
+  if (origin && EFFECTIVE_ALLOWED_ORIGINS.includes(origin)) {
+    return origin;
   }
-  return code;
+
+  return EFFECTIVE_ALLOWED_ORIGINS[0] || 'https://landquart.github.io';
 }
 
-function createCode() {
-  for (let i = 0; i < 10; i += 1) {
-    const code = randomBase62();
-    if (!store.has(code)) return code;
-  }
-  throw new Error('Could not create unique code');
+function getCorsHeaders(req) {
+  return {
+    'Access-Control-Allow-Origin': getAllowedOrigin(req),
+    'Access-Control-Allow-Methods': 'GET,POST,OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Content-Type': 'application/json; charset=utf-8',
+    'Cache-Control': 'no-store'
+  };
 }
 
-function readBody(req) {
-  return new Promise((resolve, reject) => {
-    let size = 0;
-    let body = '';
-    req.on('data', (chunk) => {
-      size += chunk.length;
-      if (size > MAX_BODY_BYTES) {
-        reject(new Error('Request body is too large'));
-        req.destroy();
-        return;
-      }
-      body += chunk;
+function sendJson(req, res, status, data) {
+  res.writeHead(status, getCorsHeaders(req));
+  res.end(JSON.stringify(data));
+}
+
+function createBase62Id(length = ID_LENGTH) {
+  let id = '';
+
+  while (id.length < length) {
+    const bytes = randomBytes(length);
+    const maxValidByte = Math.floor(256 / ALPHABET.length) * ALPHABET.length;
+
+    for (const byte of bytes) {
+      if (id.length >= length) break;
+      if (byte >= maxValidByte) continue;
+
+      id += ALPHABET[byte % ALPHABET.length];
+    }
+  }
+
+  return id;
+}
+
+function isValidId(id) {
+  return /^[0-9a-zA-Z]{12}$/.test(id);
+}
+
+function normalizePath(path) {
+  const value = String(path || '').trim();
+
+  if (!value.startsWith('/')) {
+    return `/${value}`;
+  }
+
+  return value;
+}
+
+function isAllowedPath(path) {
+  return /^\/interal\/(indoeuropanvordes|associativvordes|determinatorofvalentyp|internationalismes|vordesofcommunites|grammaticebrevvordes)\/?$/.test(path);
+}
+
+function getRequestBody(req) {
+  if (req.body && typeof req.body === 'object') {
+    return req.body;
+  }
+
+  if (typeof req.body === 'string' && req.body.trim()) {
+    return JSON.parse(req.body);
+  }
+
+  return null;
+}
+
+function getPayloadSizeBytes(payload) {
+  return new TextEncoder().encode(JSON.stringify(payload)).length;
+}
+
+function validateCreateBody(body) {
+  if (!body || typeof body !== 'object' || Array.isArray(body)) {
+    throw new ValidationError('Invalid request body');
+  }
+
+  const path = normalizePath(body.path);
+  const payload = body.payload;
+
+  if (!isAllowedPath(path)) {
+    throw new ValidationError('Invalid path');
+  }
+
+  if (!payload || typeof payload !== 'object' || Array.isArray(payload)) {
+    throw new ValidationError('Invalid payload');
+  }
+
+  if (payload.source !== 'interal-form-draft') {
+    throw new ValidationError('Invalid payload source');
+  }
+
+  if (!payload.fields || typeof payload.fields !== 'object' || Array.isArray(payload.fields)) {
+    throw new ValidationError('Invalid payload fields');
+  }
+
+  if (payload.path && normalizePath(payload.path) !== path) {
+    throw new ValidationError('Payload path does not match request path');
+  }
+
+  const normalizedPayload = {
+    ...payload,
+    version: payload.version || 1,
+    source: 'interal-form-draft',
+    path
+  };
+
+  if (getPayloadSizeBytes(normalizedPayload) > MAX_PAYLOAD_BYTES) {
+    throw new ValidationError('Payload too large', 413);
+  }
+
+  return {
+    path,
+    payload: normalizedPayload
+  };
+}
+
+function createPublicShareUrl(path, id) {
+  const url = new URL(path, PUBLIC_SITE_URL);
+
+  url.searchParams.delete('state');
+  url.searchParams.delete('s');
+  url.searchParams.set('s', id);
+
+  return url.toString();
+}
+
+async function createShareState(req, res) {
+  const body = getRequestBody(req);
+  const { path, payload } = validateCreateBody(body);
+
+  for (let attempt = 0; attempt < 10; attempt += 1) {
+    const id = createBase62Id();
+
+    const { error } = await supabase
+      .from('share_states')
+      .insert({
+        id,
+        path,
+        payload,
+        expires_at: null
+      });
+
+    if (!error) {
+      sendJson(req, res, 200, {
+        ok: true,
+        id,
+        path,
+        url: createPublicShareUrl(path, id)
+      });
+
+      return;
+    }
+
+    if (error.code === '23505') {
+      continue;
+    }
+
+    throw error;
+  }
+
+  throw new Error('Could not generate unique share id');
+}
+
+async function readShareState(req, res) {
+  const id = String(req.query.id || '');
+
+  if (!isValidId(id)) {
+    throw new ValidationError('Invalid id');
+  }
+
+  const { data, error } = await supabase
+    .from('share_states')
+    .select('id, path, payload, expires_at')
+    .eq('id', id)
+    .maybeSingle();
+
+  if (error) {
+    throw error;
+  }
+
+  if (!data) {
+    sendJson(req, res, 404, {
+      ok: false,
+      error: 'Share state not found'
     });
-    req.on('end', () => resolve(body));
-    req.on('error', reject);
+
+    return;
+  }
+
+  if (data.expires_at && Date.now() > Date.parse(data.expires_at)) {
+    sendJson(req, res, 410, {
+      ok: false,
+      error: 'Share state expired'
+    });
+
+    return;
+  }
+
+  const { error: touchError } = await supabase.rpc('touch_share_state', {
+    p_id: id
+  });
+
+  if (touchError) {
+    console.warn('Could not update share state stats:', touchError);
+  }
+
+  sendJson(req, res, 200, {
+    ok: true,
+    id: data.id,
+    path: data.path,
+    payload: data.payload
   });
 }
 
-function isValidEntries(entries) {
-  return Array.isArray(entries) && entries.every((entry) => (
-    Array.isArray(entry) &&
-    entry.length === 2 &&
-    typeof entry[0] === 'string' &&
-    (entry[1] === 1 || typeof entry[1] === 'string')
-  ));
-}
-
-module.exports = async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
+export default async function handler(req, res) {
   if (req.method === 'OPTIONS') {
-    res.statusCode = 204;
+    res.writeHead(204, getCorsHeaders(req));
     res.end();
     return;
   }
 
-  cleanup();
-
-  if (req.method === 'POST') {
-    try {
-      const body = await readBody(req);
-      const parsed = JSON.parse(body || '{}');
-      if (!isValidEntries(parsed.entries)) {
-        send(res, 400, { error: 'Invalid state entries' });
-        return;
-      }
-      const code = createCode();
-      store.set(code, { entries: parsed.entries, expiresAt: Date.now() + TTL_MS });
-      send(res, 201, { code });
-    } catch (error) {
-      send(res, error.message === 'Request body is too large' ? 413 : 400, { error: error.message || 'Bad request' });
-    }
-    return;
-  }
-
-  if (req.method === 'GET') {
-    const requestUrl = new URL(req.url, `https://${req.headers.host || 'localhost'}`);
-    const code = requestUrl.searchParams.get('code') || '';
-    if (!/^[0-9A-Za-z]{12}$/.test(code)) {
-      send(res, 400, { error: 'Invalid code' });
+  try {
+    if (req.method === 'POST') {
+      await createShareState(req, res);
       return;
     }
-    const record = store.get(code);
-    if (!record || record.expiresAt <= Date.now()) {
-      store.delete(code);
-      send(res, 404, { error: 'State not found' });
+
+    if (req.method === 'GET') {
+      await readShareState(req, res);
       return;
     }
-    send(res, 200, { entries: record.entries });
-    return;
-  }
 
-  methodNotAllowed(res);
-};
+    sendJson(req, res, 405, {
+      ok: false,
+      error: 'Method not allowed'
+    });
+  } catch (error) {
+    console.error('share-state error:', error);
+
+    const status = error instanceof ValidationError
+      ? error.status
+      : 500;
+
+    sendJson(req, res, status, {
+      ok: false,
+      error: error.message || 'Internal server error'
+    });
+  }
+}
