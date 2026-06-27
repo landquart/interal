@@ -10,7 +10,7 @@
   const siteRoot = sharedPath.replace(/\/shared\/ui\.js$/, '/');
   const joinUrl = (path) => new URL(path.replace(/^\//, ''), window.location.origin + siteRoot).pathname;
 
-  const canCopyPageState = /\/(indoeuropanvordes|associativvordes|determinatorofvalentyp|internationalismes|vordesofcommunites|grammaticebrevvordes)\//.test(window.location.pathname);
+  const canCopyPageState = /\/(indoeuropanvordes|associativvordes|determinatorofvalentyp|internationalismes|vordesofcommunites|grammaticebrevivordes)\//.test(window.location.pathname);
 
   const pageNavItems = {
     indoeuropanvordes: {
@@ -44,8 +44,8 @@
       group: 'instruments'
     },
     grammar: {
-      path: 'grammaticebrevvordes/',
-      icon: 'elements/grammaticebrevvordes.svg',
+      path: 'grammaticebrevivordes/',
+      icon: 'elements/grammaticebrevivordes.svg',
       labelKey: 'navGrammar',
       group: 'instruments'
     },
@@ -66,7 +66,7 @@
     if (path.includes('/determinatorofvalentyp/')) return 'determinator';
     if (path.includes('/internationalismes/')) return 'internationalismes';
     if (path.includes('/vordesofcommunites/')) return 'communities';
-    if (path.includes('/grammaticebrevvordes/')) return 'grammar';
+    if (path.includes('/grammaticebrevivordes/')) return 'grammar';
     if (path.includes('/registre/')) return 'registry';
     return '';
   }

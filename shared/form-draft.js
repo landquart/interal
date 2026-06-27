@@ -11,7 +11,7 @@
   let lastSerialized = '';
 
   function isInstrumentPage() {
-    return /\/(indoeuropanvordes|associativvordes|determinatorofvalentyp|internationalismes|vordesofcommunites|grammaticebrevvordes)\//.test(window.location.pathname);
+    return /\/(indoeuropanvordes|associativvordes|determinatorofvalentyp|internationalismes|vordesofcommunites|grammaticebrevivordes)\//.test(window.location.pathname);
   }
 
   if (!isInstrumentPage()) return;
