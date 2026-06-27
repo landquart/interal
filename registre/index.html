@@ -256,6 +256,15 @@
         en: { Germanic: 'Germanic', Romance: 'Romance', Slavic: 'Slavic', Hellenic: 'Hellenic' }
       };
       const SORTS = [['word', 'sortWord'], ['accepted', 'sortAccepted'], ['created', 'sortCreated'], ['pi', 'sortPi']];
+      const DEFAULT_FILTERS = {
+        search: '',
+        type: '',
+        pos: '',
+        group: '',
+        author: '',
+        minPi: '',
+        sort: 'word'
+      };
       const state = {
         lang: localStorage.getItem('interal.lang') === 'en' ? 'en' : 'ru',
         registry: null,
@@ -263,7 +272,8 @@
         fullJsonCache: new Map(),
         lastFocused: null,
         lastDiscussionFocused: null,
-        messageKey: ''
+        messageKey: '',
+        filters: { ...DEFAULT_FILTERS }
       };
       const els = {
         search: document.getElementById('registry-search'),
@@ -309,6 +319,30 @@
       }
       async function copyText(text, ok, fail) { try { await navigator.clipboard.writeText(text); showToast(ok); return true; } catch (_) { showToast(fail); return false; } }
       function setOptions(select, options) { select.replaceChildren(...options.map(([value, label]) => { const option = document.createElement('option'); option.value = value; option.textContent = label; return option; })); }
+      function readFiltersFromDom() {
+        state.filters.search = els.search.value || '';
+        state.filters.type = els.type.value || '';
+        state.filters.pos = els.pos.value || '';
+        state.filters.group = els.group.value || '';
+        state.filters.author = els.author.value || '';
+        state.filters.minPi = els.minPi.value || '';
+        state.filters.sort = els.sort.value || 'word';
+      }
+      function applyFiltersToDom() {
+        els.search.value = state.filters.search;
+        els.type.value = state.filters.type;
+        els.pos.value = state.filters.pos;
+        els.group.value = state.filters.group;
+        els.author.value = state.filters.author;
+        els.minPi.value = state.filters.minPi;
+        els.sort.value = state.filters.sort || 'word';
+
+        window.initCustomSelects?.(document.querySelector('.registry-controls'));
+      }
+      function resetFiltersState() {
+        state.filters = { ...DEFAULT_FILTERS };
+        applyFiltersToDom();
+      }
       function updateStaticI18n() {
         document.documentElement.lang = state.lang;
         document.title = t('title');
@@ -318,32 +352,40 @@
         });
         els.search.placeholder = t('searchPlaceholder');
         els.author.placeholder = t('authorPlaceholder');
-        const current = { type: els.type.value, pos: els.pos.value, group: els.group.value, sort: els.sort.value || 'word' };
         setOptions(els.type, [['', t('allTypes')], ...TYPE_CODES.map((code) => [code, TYPE_LABELS[code]])]);
         setOptions(els.pos, [['', t('allParts')], ...POS_VALUES.map((pos) => [pos, posLabel(pos)])]);
         const extraGroups = Array.from(new Set(state.cards.flatMap((card) => Array.isArray(card.supported_groups) ? card.supported_groups : []))).filter((group) => !BASE_GROUPS.includes(group)).sort((a, b) => a.localeCompare(b));
         setOptions(els.group, [['', t('allGroups')], ...BASE_GROUPS.map((group) => [group, groupLabel(group)]), ...extraGroups.map((group) => [group, groupLabel(group)])]);
         setOptions(els.sort, SORTS.map(([value, key]) => [value, t(key)]));
-        els.type.value = current.type; els.pos.value = current.pos; els.group.value = current.group; els.sort.value = SORTS.some(([value]) => value === current.sort) ? current.sort : 'word';
+        els.type.value = state.filters.type;
+        els.pos.value = state.filters.pos;
+        els.group.value = state.filters.group;
+        els.sort.value = SORTS.some(([value]) => value === state.filters.sort) ? state.filters.sort : 'word';
+
+        window.initCustomSelects?.(document.querySelector('.registry-controls'));
       }
       function cardMatches(card) {
-        const query = normalize(els.search.value);
-        const author = normalize(els.author.value);
-        const minPi = els.minPi.value === '' ? null : Number(els.minPi.value);
+        const filters = state.filters;
+
+        const query = normalize(filters.search);
+        const author = normalize(filters.author);
+        const minPi = filters.minPi === '' ? null : Number(filters.minPi);
         const haystack = normalize(`${card.search_blob || ''} ${codeOf(card)} ${card.vord_type || ''} ${typeLabel(card)}`);
         if (query && !haystack.includes(query)) return false;
-        if (els.type.value && codeOf(card) !== els.type.value) return false;
-        if (els.pos.value && card.part_of_speech !== els.pos.value) return false;
-        if (els.group.value && !(Array.isArray(card.supported_groups) && card.supported_groups.includes(els.group.value))) return false;
+        if (filters.type && codeOf(card) !== filters.type) return false;
+        if (filters.pos && card.part_of_speech !== filters.pos) return false;
+        if (filters.group && !(Array.isArray(card.supported_groups) && card.supported_groups.includes(filters.group))) return false;
         if (author && !normalize(card.author).includes(author)) return false;
         if (minPi !== null && Number.isFinite(minPi) && (!(typeof card.pi_percent === 'number') || card.pi_percent < minPi)) return false;
         return true;
       }
       function sortedCards(cards) {
+        const sort = state.filters.sort || 'word';
+
         return [...cards].sort((a, b) => {
-          if (els.sort.value === 'accepted') return Date.parse(b.accepted_at || 0) - Date.parse(a.accepted_at || 0) || a.word.localeCompare(b.word);
-          if (els.sort.value === 'created') return Date.parse(b.created_at || 0) - Date.parse(a.created_at || 0) || a.word.localeCompare(b.word);
-          if (els.sort.value === 'pi') return (b.pi_percent ?? -Infinity) - (a.pi_percent ?? -Infinity) || a.word.localeCompare(b.word);
+          if (sort === 'accepted') return Date.parse(b.accepted_at || 0) - Date.parse(a.accepted_at || 0) || a.word.localeCompare(b.word);
+          if (sort === 'created') return Date.parse(b.created_at || 0) - Date.parse(a.created_at || 0) || a.word.localeCompare(b.word);
+          if (sort === 'pi') return (b.pi_percent ?? -Infinity) - (a.pi_percent ?? -Infinity) || a.word.localeCompare(b.word);
           return (a.word || '').localeCompare(b.word || '', state.lang === 'en' ? 'en' : 'ru');
         });
       }
@@ -489,8 +531,33 @@
           els.summary.textContent = ''; els.list.replaceChildren(); state.messageKey = error.message === 'Invalid registry' ? 'invalidRegistry' : 'loadError'; els.message.hidden = false; els.message.textContent = t(state.messageKey);
         }
       }
-      [els.search, els.type, els.pos, els.group, els.author, els.minPi, els.sort].forEach((el) => { el.addEventListener('input', render); el.addEventListener('change', render); });
-      els.reset.addEventListener('click', async () => { const shouldReset = await (window.InteralUI?.confirmReset?.({ message: t('resetConfirm') }) ?? Promise.resolve(window.confirm(t('resetConfirm')))); if (!shouldReset) return; els.search.value = ''; els.type.value = ''; els.pos.value = ''; els.group.value = ''; els.author.value = ''; els.minPi.value = ''; els.sort.value = 'word'; render(); });
+      [els.search, els.type, els.pos, els.group, els.author, els.minPi, els.sort].forEach((el) => {
+        el.addEventListener('input', () => {
+          readFiltersFromDom();
+          render();
+        });
+
+        el.addEventListener('change', () => {
+          readFiltersFromDom();
+          render();
+        });
+      });
+      els.reset.addEventListener('click', async () => {
+        const shouldReset = await (
+          window.InteralUI?.confirmReset?.({
+            title: state.lang === 'en' ? 'Reset filters?' : 'Сбросить фильтры?',
+            message: t('resetConfirm'),
+            confirmLabel: state.lang === 'en' ? 'Reset' : 'Сбросить',
+            cancelLabel: state.lang === 'en' ? 'Cancel' : 'Отмена'
+          })
+          ?? Promise.resolve(window.confirm(t('resetConfirm')))
+        );
+
+        if (!shouldReset) return;
+
+        resetFiltersState();
+        render();
+      });
       els.modalX.addEventListener('click', closeModal);
       els.modal.addEventListener('click', (event) => {
         if (event.target.dataset.modalClose === 'true') closeModal();
@@ -525,6 +592,7 @@
         render();
       });
 
+      applyFiltersToDom();
       loadRegistry();
     })();
   </script>
