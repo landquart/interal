@@ -27,11 +27,11 @@ async function createCardOnServer(card) {
   const response = await fetch(CARDS_API_ENDPOINT, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ title, category: card?.vord_type || 'grammar_short_word', payload: card })
+    body: JSON.stringify({ section: 'grammaticebrevivordes', title, category: card?.vord_type || 'grammar_short_word', payload: card })
   });
   const data = await response.json().catch(() => null);
   if (!response.ok || !data?.ok) throw new Error(data?.error || `HTTP ${response.status}`);
-  return data.card?.payload || { ...card, id: data.id, discussionId: data.id };
+  return data.card?.payload || { ...card, id: data.id, discussionId: data.discussionId || `card-${data.id}` };
 }
 function downloadJson(filename, text) {
   const blob = new Blob([text], { type: 'application/json;charset=utf-8' });
