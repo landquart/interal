@@ -99,6 +99,7 @@
     .tool-link[data-tool="internationalismes"] { --tool-icon-size: 45px; --tool-icon-scale: 1.04; }
     .tool-link[data-tool="communities"] { --tool-icon-size: 45px; --tool-icon-scale: 1.04; }
     .tool-link[data-tool="grammar"] { --tool-icon-size: 45px; --tool-icon-scale: 1.04; }
+    .tool-link[data-tool="altervordes"] { --tool-icon-size: 45px; --tool-icon-scale: 1.04; }
     .tool-link[data-tool="registre"] { --tool-icon-size: 46px; --tool-icon-scale: 1.03; }
     .tool-link-main {
       grid-area: title;
@@ -186,6 +187,7 @@
       .tool-link[data-tool="internationalismes"] { --tool-icon-mobile-size: 39px; }
       .tool-link[data-tool="communities"] { --tool-icon-mobile-size: 39px; }
       .tool-link[data-tool="grammar"] { --tool-icon-mobile-size: 39px; }
+      .tool-link[data-tool="altervordes"] { --tool-icon-mobile-size: 39px; }
       .tool-link[data-tool="registre"] { --tool-icon-mobile-size: 40px; }
       .tool-link-main {
         font-size: .98rem;
@@ -261,6 +263,12 @@
         <span class="tool-link-main" data-i18n="home.grammarMain">Grammatic e brevi vordes</span>
         <span class="tool-link-sub" data-i18n="home.grammarSub">Грамматические и краткие слова</span>
       </a>
+
+      <a class="tool-link" href="altervordes/" data-tool="altervordes">
+        <span class="tool-icon-wrap"><img class="tool-icon" src="elements/altervordes.svg" alt="" aria-hidden="true" /></span>
+        <span class="tool-link-main" data-i18n="home.altervordesMain">Alter vordes</span>
+        <span class="tool-link-sub" data-i18n="home.altervordesSub">Иные слова</span>
+      </a>
       <a class="tool-link" href="registre/" data-tool="registre">
         <span class="tool-icon-wrap"><img class="tool-icon" src="elements/registre.svg" alt="" aria-hidden="true" /></span>
         <span class="tool-link-main" data-i18n="home.registryMain">Registre of vordesen cartes</span>
@@ -282,12 +290,14 @@
           'home.internationalismesMain': 'Internationalismes',
           'home.communitiesMain': 'Vordes of communités',
           'home.grammarMain': 'Grammatic e brevi vordes',
+          'home.altervordesMain': 'Alter vordes',
           'home.indoeuropanSub': 'Индоевропейские слова',
           'home.assocSub': 'Ассоциативные слова',
           'home.determSub': 'Определитель типа значения',
           'home.internationalismesSub': 'Интернационализмы',
           'home.communitiesSub': 'Слова сообществ',
           'home.grammarSub': 'Грамматические и краткие слова',
+          'home.altervordesSub': 'Иные слова',
           'home.registrySub': 'Реестр карточек слов'
         },
         en: {
@@ -298,12 +308,14 @@
           'home.internationalismesMain': 'Internationalismes',
           'home.communitiesMain': 'Vordes of communités',
           'home.grammarMain': 'Grammatic e brevi vordes',
+          'home.altervordesMain': 'Alter vordes',
           'home.indoeuropanSub': 'Indo-European words',
           'home.assocSub': 'Associative words',
           'home.determSub': 'Value type determinator',
           'home.internationalismesSub': 'Internationalisms',
           'home.communitiesSub': 'Words of communities',
           'home.grammarSub': 'Grammatic and brief words',
+          'home.altervordesSub': 'Other words',
           'home.registrySub': 'Registry of word cards'
         }
       };

@@ -10,7 +10,7 @@
   const siteRoot = sharedPath.replace(/\/shared\/ui\.js$/, '/');
   const joinUrl = (path) => new URL(path.replace(/^\//, ''), window.location.origin + siteRoot).pathname;
 
-  const canCopyPageState = /\/(indoeuropanvordes|associativvordes|determinatorofvalentyp|internationalismes|vordesofcommunites|grammaticebrevivordes)\//.test(window.location.pathname);
+  const canCopyPageState = /\/(indoeuropanvordes|associativvordes|determinatorofvalentyp|internationalismes|vordesofcommunites|grammaticebrevivordes|altervordes)\//.test(window.location.pathname);
 
   const pageNavItems = {
     indoeuropanvordes: {
@@ -49,6 +49,12 @@
       labelKey: 'navGrammar',
       group: 'instruments'
     },
+    altervordes: {
+      path: 'altervordes/',
+      icon: 'elements/altervordes.svg',
+      labelKey: 'navAltervordes',
+      group: 'instruments'
+    },
     registry: {
       path: 'registre/',
       icon: 'elements/registre.svg',
@@ -67,6 +73,7 @@
     if (path.includes('/internationalismes/')) return 'internationalismes';
     if (path.includes('/vordesofcommunites/')) return 'communities';
     if (path.includes('/grammaticebrevivordes/')) return 'grammar';
+    if (path.includes('/altervordes/')) return 'altervordes';
     if (path.includes('/registre/')) return 'registry';
     return '';
   }
@@ -91,6 +98,7 @@
       navInternationalismes: 'Internationalismes',
       navCommunities: 'Vordes of communités',
       navGrammar: 'Grammatic e brevi vordes',
+      navAltervordes: 'Alter vordes',
       instrumentsLabel: 'Инструменты',
       navAriaLabel: 'Разделы сайта',
       ru: 'Русский',
@@ -123,6 +131,7 @@
       navInternationalismes: 'Internationalismes',
       navCommunities: 'Vordes of communités',
       navGrammar: 'Grammatic e brevi vordes',
+      navAltervordes: 'Alter vordes',
       instrumentsLabel: 'Instruments',
       navAriaLabel: 'Site sections',
       ru: 'Русский',
