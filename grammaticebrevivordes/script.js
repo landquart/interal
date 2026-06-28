@@ -21,8 +21,17 @@ function byId(id) { return document.getElementById(id); }
 function escapeHtml(value) {
   return String(value ?? '').replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
 }
-function createId(prefix) {
-  return `${prefix}_${crypto.randomUUID().replaceAll('-', '')}`;
+const CARDS_API_ENDPOINT = location.hostname === 'landquart.github.io' ? 'https://interal.vercel.app/api/cards' : '/api/cards';
+async function createCardOnServer(card) {
+  const title = card?.interal?.word || card?.title || 'Untitled card';
+  const response = await fetch(CARDS_API_ENDPOINT, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ title, category: card?.vord_type || 'grammar_short_word', payload: card })
+  });
+  const data = await response.json().catch(() => null);
+  if (!response.ok || !data?.ok) throw new Error(data?.error || `HTTP ${response.status}`);
+  return data.card?.payload || { ...card, id: data.id, discussionId: data.id };
 }
 function downloadJson(filename, text) {
   const blob = new Blob([text], { type: 'application/json;charset=utf-8' });
@@ -108,7 +117,8 @@ async function resetState() {
 function countPassedCriteria() { return state.criteria.filter(Boolean).length; }
 function isGrammarShortWordAccepted() { return countPassedCriteria() >= REQUIRED_CRITERIA_COUNT; }
 function result(){ const n=countPassedCriteria(); return {passed:n,total:CRITERIA_NAMES.length,required:REQUIRED_CRITERIA_COUNT,accepted:isGrammarShortWordAccepted()}; }
-function makeCard(){ const r=result(); return { id:createId('gr'), version:'1.0', card_type:'vord_card', vord_type:'grammar_short_word', status:'draft', interal:{word:state.word, part_of_speech:state.part_of_speech}, translations:LANGUAGES.map(lang=>({language:lang.code, word:state.translations[lang.code]||''})), function:{meaning:state.meaning}, criteria:CRITERIA_NAMES.map((name,i)=>({name, value:Boolean(state.criteria[i]), comment:state.comments[i]||''})), decision:{accepted:r.accepted, required_criteria:r.required, passed_criteria:r.passed} }; }
+function makeCardDraft(){ const r=result(); return { version:'1.0', card_type:'vord_card', vord_type:'grammar_short_word', status:'draft', interal:{word:state.word, part_of_speech:state.part_of_speech}, translations:LANGUAGES.map(lang=>({language:lang.code, word:state.translations[lang.code]||''})), function:{meaning:state.meaning}, criteria:CRITERIA_NAMES.map((name,i)=>({name, value:Boolean(state.criteria[i]), comment:state.comments[i]||''})), decision:{accepted:r.accepted, required_criteria:r.required, passed_criteria:r.passed} }; }
+async function makeCard(){ return createCardOnServer(makeCardDraft()); }
 function generateJson(){ openJsonModal(); }
 function renderCriteria(){ return `<div class="criteria-list grammar-criteria-list">${CRITERIA_NAMES.map((name,i)=>`<div class="criterion grammar-criterion"><div class="criterion-head"><strong>${escapeHtml(name)}</strong></div><label class="criterion-check"><input id="crit_${i}" type="checkbox" ${state.criteria[i] ? 'checked' : ''}><span>${t('criterionPass')}</span></label>${i === 2 ? `<label class="field criterion-comment"><span>${t('comment')}</span><textarea class="interal-textarea" id="comment_${i}">${escapeHtml(state.comments[i])}</textarea></label>` : ''}</div>`).join('')}</div>`; }
 function renderResult() { const r = result(); byId('resultBox').innerHTML = `<span class="status-pill ${r.accepted?'ok':'bad'}">${r.accepted?t('accept'):t('reject')}</span><dl><div><dt>${t('passed')}</dt><dd>${r.passed}/${r.total} (${r.required}+)</dd></div></dl>`; }
@@ -118,13 +128,13 @@ function render(){ renderChrome(); document.title=t('title'); byId('pageTitle').
 const jsonFilename = 'grammar-short-word-card.json';
 function currentJsonText() {
   const existing = byId('jsonOutput')?.value;
-  return existing || JSON.stringify(makeCard(), null, 2);
+  return existing || '';
 }
-function openJsonModal() {
+async function openJsonModal() {
   if (typeof readState === 'function') readState();
   if (typeof readEvidence === 'function') readEvidence();
   const output = byId('jsonOutput');
-  if (output) output.value = JSON.stringify(makeCard(), null, 2);
+  if (output) output.value = JSON.stringify(await makeCard(), null, 2);
   const modal = byId('jsonCardModal');
   modal?.classList.add('show');
   modal?.setAttribute('aria-hidden', 'false');

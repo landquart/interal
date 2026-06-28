@@ -402,7 +402,7 @@
       }
 
       function discussionTerm(card) {
-        if (card.id) return card.id;
+        if (card.id) return `card-${card.id}`;
         return `registre-${slugify(card.word || 'card')}`;
       }
 

@@ -1,0 +1,243 @@
+import { createClient } from '@supabase/supabase-js';
+import { randomBytes } from 'node:crypto';
+
+const SUPABASE_URL = (process.env.SUPABASE_URL || '').trim();
+const SUPABASE_SERVICE_ROLE_KEY = (process.env.SUPABASE_SERVICE_ROLE_KEY || '').trim();
+
+const DEFAULT_ALLOWED_ORIGINS = [
+  'https://landquart.github.io',
+  'https://interal.vercel.app'
+];
+
+const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS || '')
+  .split(',')
+  .map((origin) => origin.trim())
+  .filter(Boolean);
+
+const EFFECTIVE_ALLOWED_ORIGINS = ALLOWED_ORIGINS.length
+  ? ALLOWED_ORIGINS
+  : DEFAULT_ALLOWED_ORIGINS;
+
+const ALPHABET = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const ID_LENGTH = 12;
+const MAX_PAYLOAD_BYTES = 50_000;
+const MAX_ID_ATTEMPTS = 10;
+
+let supabaseClient = null;
+let supportsDiscussionIdColumn = true;
+
+class ValidationError extends Error {
+  constructor(message, status = 400) {
+    super(message);
+    this.name = 'ValidationError';
+    this.status = status;
+  }
+}
+
+function validateEnvironment() {
+  if (!SUPABASE_URL) throw new Error('Missing SUPABASE_URL environment variable');
+  if (!SUPABASE_SERVICE_ROLE_KEY) throw new Error('Missing SUPABASE_SERVICE_ROLE_KEY environment variable');
+}
+
+function getSupabaseClient() {
+  validateEnvironment();
+
+  if (!supabaseClient) {
+    supabaseClient = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, {
+      auth: {
+        persistSession: false,
+        autoRefreshToken: false
+      },
+      global: {
+        headers: {
+          apikey: SUPABASE_SERVICE_ROLE_KEY,
+          Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`
+        }
+      }
+    });
+  }
+
+  return supabaseClient;
+}
+
+function getAllowedOrigin(req) {
+  const origin = req.headers.origin;
+
+  if (origin && EFFECTIVE_ALLOWED_ORIGINS.includes(origin)) return origin;
+
+  return EFFECTIVE_ALLOWED_ORIGINS[0] || 'https://landquart.github.io';
+}
+
+function getCorsHeaders(req) {
+  return {
+    'Access-Control-Allow-Origin': getAllowedOrigin(req),
+    'Access-Control-Allow-Methods': 'GET,POST,OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Content-Type': 'application/json; charset=utf-8',
+    'Cache-Control': 'no-store'
+  };
+}
+
+function sendJson(req, res, status, data) {
+  res.writeHead(status, getCorsHeaders(req));
+  res.end(JSON.stringify(data));
+}
+
+function createBase62Id(length = ID_LENGTH) {
+  let id = '';
+
+  while (id.length < length) {
+    const bytes = randomBytes(length);
+    const maxValidByte = Math.floor(256 / ALPHABET.length) * ALPHABET.length;
+
+    for (const byte of bytes) {
+      if (id.length >= length) break;
+      if (byte >= maxValidByte) continue;
+
+      id += ALPHABET[byte % ALPHABET.length];
+    }
+  }
+
+  return id;
+}
+
+function getRequestBody(req) {
+  if (req.body && typeof req.body === 'object') return req.body;
+  if (typeof req.body === 'string' && req.body.trim()) return JSON.parse(req.body);
+  return null;
+}
+
+function getPayloadSizeBytes(payload) {
+  return Buffer.byteLength(JSON.stringify(payload), 'utf8');
+}
+
+function validateCreateBody(body) {
+  if (!body || typeof body !== 'object' || Array.isArray(body)) {
+    throw new ValidationError('Invalid request body');
+  }
+
+  const title = body.title;
+  const category = typeof body.category === 'string' ? body.category.trim() : null;
+  const payload = body.payload;
+
+  if (typeof title !== 'string' || !title.trim()) {
+    throw new ValidationError('Invalid title');
+  }
+
+  if (!payload || typeof payload !== 'object' || Array.isArray(payload)) {
+    throw new ValidationError('Invalid payload');
+  }
+
+  if (getPayloadSizeBytes(payload) > MAX_PAYLOAD_BYTES) {
+    throw new ValidationError('Payload too large', 413);
+  }
+
+  return {
+    title: title.trim(),
+    category,
+    payload
+  };
+}
+
+function isMissingDiscussionIdColumn(error) {
+  const text = `${error?.code || ''} ${error?.message || ''} ${error?.details || ''}`.toLowerCase();
+  return text.includes('discussion_id') && (text.includes('column') || text.includes('schema cache'));
+}
+
+async function insertCard(client, row) {
+  if (!supportsDiscussionIdColumn) {
+    const { discussion_id: _discussionId, ...rowWithoutDiscussionId } = row;
+    return client.from('cards').insert(rowWithoutDiscussionId).select('*').single();
+  }
+
+  const result = await client.from('cards').insert(row).select('*').single();
+
+  if (result.error && isMissingDiscussionIdColumn(result.error)) {
+    supportsDiscussionIdColumn = false;
+    const { discussion_id: _discussionId, ...rowWithoutDiscussionId } = row;
+    return client.from('cards').insert(rowWithoutDiscussionId).select('*').single();
+  }
+
+  return result;
+}
+
+async function createCard(req, res) {
+  const { title, category, payload } = validateCreateBody(getRequestBody(req));
+  const client = getSupabaseClient();
+
+  for (let attempt = 0; attempt < MAX_ID_ATTEMPTS; attempt += 1) {
+    const id = createBase62Id();
+    const cardPayload = {
+      ...payload,
+      id,
+      discussionId: id
+    };
+    const row = {
+      id,
+      status: 'pending',
+      title,
+      category,
+      payload: cardPayload,
+      discussion_id: id
+    };
+
+    const { data, error } = await insertCard(client, row);
+
+    if (!error) {
+      sendJson(req, res, 200, {
+        ok: true,
+        id,
+        status: 'pending',
+        card: data || { ...row, payload: cardPayload }
+      });
+      return;
+    }
+
+    if (error.code === '23505') continue;
+
+    throw error;
+  }
+
+  throw new Error('Could not generate unique card id');
+}
+
+function sendHealthCheck(req, res) {
+  sendJson(req, res, 200, {
+    ok: true,
+    hasSupabaseUrl: Boolean(SUPABASE_URL),
+    hasSupabaseKey: Boolean(SUPABASE_SERVICE_ROLE_KEY)
+  });
+}
+
+export default async function handler(req, res) {
+  if (req.method === 'OPTIONS') {
+    res.writeHead(204, getCorsHeaders(req));
+    res.end();
+    return;
+  }
+
+  try {
+    if (req.method === 'GET' && req.query?.health === '1') {
+      sendHealthCheck(req, res);
+      return;
+    }
+
+    if (req.method === 'POST') {
+      await createCard(req, res);
+      return;
+    }
+
+    sendJson(req, res, 405, {
+      ok: false,
+      error: 'Method not allowed'
+    });
+  } catch (error) {
+    console.error('cards error:', error);
+
+    const status = error instanceof ValidationError ? error.status : 500;
+    sendJson(req, res, status, {
+      ok: false,
+      error: error.message || 'Internal server error'
+    });
+  }
+}
