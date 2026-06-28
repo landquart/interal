@@ -1,12 +1,15 @@
 import { createClient } from '@supabase/supabase-js';
 import { randomBytes } from 'node:crypto';
 
-const SUPABASE_URL = process.env.SUPABASE_URL;
-const SUPABASE_SERVICE_ROLE_KEY =
-  process.env.SUPABASE_SERVICE_ROLE_KEY ||
-  process.env.SUPABASE_SECRET_KEY;
+const SUPABASE_URL = (process.env.SUPABASE_URL || '').trim();
 
-const PUBLIC_SITE_URL = process.env.PUBLIC_SITE_URL || 'https://landquart.github.io';
+const SUPABASE_SERVICE_ROLE_KEY = (
+  process.env.SUPABASE_SERVICE_ROLE_KEY || ''
+).trim();
+
+const PUBLIC_SITE_URL = (
+  process.env.PUBLIC_SITE_URL || 'https://landquart.github.io'
+).trim();
 
 const DEFAULT_ALLOWED_ORIGINS = [
   'https://landquart.github.io',
@@ -26,28 +29,7 @@ const ALPHABET = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
 const ID_LENGTH = 12;
 const MAX_PAYLOAD_BYTES = 50_000;
 
-let supabase = null;
-
-function getSupabaseClient() {
-  if (!SUPABASE_URL) {
-    throw new Error('Missing SUPABASE_URL environment variable');
-  }
-
-  if (!SUPABASE_SERVICE_ROLE_KEY) {
-    throw new Error('Missing supabase / SUPABASE_SERVICE_ROLE_KEY environment variable');
-  }
-
-  if (!supabase) {
-    supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, {
-      auth: {
-        persistSession: false,
-        autoRefreshToken: false
-      }
-    });
-  }
-
-  return supabase;
-}
+let supabaseClient = null;
 
 class ValidationError extends Error {
   constructor(message, status = 400) {
@@ -55,6 +37,56 @@ class ValidationError extends Error {
     this.name = 'ValidationError';
     this.status = status;
   }
+}
+
+function getSupabaseKeyInfo() {
+  return {
+    exists: Boolean(SUPABASE_SERVICE_ROLE_KEY),
+    length: SUPABASE_SERVICE_ROLE_KEY.length,
+    looksLikeLegacyJwt: SUPABASE_SERVICE_ROLE_KEY.startsWith('eyJ'),
+    looksLikeSecretKey: SUPABASE_SERVICE_ROLE_KEY.startsWith('sb_secret_')
+  };
+}
+
+function validateEnvironment() {
+  if (!SUPABASE_URL) {
+    throw new Error('Missing SUPABASE_URL environment variable');
+  }
+
+  if (!SUPABASE_SERVICE_ROLE_KEY) {
+    throw new Error('Missing SUPABASE_SERVICE_ROLE_KEY environment variable');
+  }
+
+  if (!SUPABASE_URL.startsWith('https://') || !SUPABASE_URL.includes('.supabase.co')) {
+    throw new Error('Invalid SUPABASE_URL');
+  }
+
+  if (!SUPABASE_SERVICE_ROLE_KEY.startsWith('eyJ')) {
+    throw new Error(
+      'Invalid SUPABASE_SERVICE_ROLE_KEY: use legacy service_role JWT key that starts with eyJ, not sb_secret or publishable key'
+    );
+  }
+}
+
+function getSupabaseClient() {
+  validateEnvironment();
+
+  if (!supabaseClient) {
+    supabaseClient = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, {
+      auth: {
+        persistSession: false,
+        autoRefreshToken: false
+      },
+      global: {
+        headers: {
+          apikey: SUPABASE_SERVICE_ROLE_KEY,
+          Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`
+        }
+      }
+    });
+  }
+
+  return supabaseClient;
 }
 
 function getAllowedOrigin(req) {
@@ -101,7 +133,7 @@ function createBase62Id(length = ID_LENGTH) {
 }
 
 function isValidId(id) {
-  return /^[0-9a-zA-Z]{12}$/.test(id);
+  return /^[0-9A-Za-z]{12}$/.test(id);
 }
 
 function normalizePath(path) {
@@ -132,7 +164,7 @@ function getRequestBody(req) {
 }
 
 function getPayloadSizeBytes(payload) {
-  return new TextEncoder().encode(JSON.stringify(payload)).length;
+  return Buffer.byteLength(JSON.stringify(payload), 'utf8');
 }
 
 function validateCreateBody(body) {
@@ -193,7 +225,6 @@ function createPublicShareUrl(path, id) {
 async function createShareState(req, res) {
   const body = getRequestBody(req);
   const { path, payload } = validateCreateBody(body);
-
   const client = getSupabaseClient();
 
   for (let attempt = 0; attempt < 10; attempt += 1) {
@@ -282,6 +313,22 @@ async function readShareState(req, res) {
   });
 }
 
+function sendHealthCheck(req, res) {
+  const keyInfo = getSupabaseKeyInfo();
+
+  sendJson(req, res, 200, {
+    ok: true,
+    supabaseUrl: SUPABASE_URL || null,
+    hasSupabaseUrl: Boolean(SUPABASE_URL),
+    hasSupabaseKey: keyInfo.exists,
+    keyLength: keyInfo.length,
+    keyLooksLikeLegacyJwt: keyInfo.looksLikeLegacyJwt,
+    keyLooksLikeSecretKey: keyInfo.looksLikeSecretKey,
+    expectedKeyType: 'legacy service_role JWT starting with eyJ',
+    allowedOrigins: EFFECTIVE_ALLOWED_ORIGINS
+  });
+}
+
 export default async function handler(req, res) {
   if (req.method === 'OPTIONS') {
     res.writeHead(204, getCorsHeaders(req));
@@ -291,12 +338,7 @@ export default async function handler(req, res) {
 
   try {
     if (req.method === 'GET' && req.query?.health === '1') {
-      sendJson(req, res, 200, {
-        ok: true,
-        hasSupabaseUrl: Boolean(SUPABASE_URL),
-        hasSupabaseKey: Boolean(SUPABASE_SERVICE_ROLE_KEY),
-        allowedOrigins: EFFECTIVE_ALLOWED_ORIGINS
-      });
+      sendHealthCheck(req, res);
       return;
     }
 
