@@ -5,51 +5,78 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Alter vordes</title>
   <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon%20interal%2032.png" />
-  <link rel="stylesheet" href="../shared/ui.css?v=altervordes-20260628" />
+  <link rel="stylesheet" href="../shared/ui.css?v=altervordes-simple-20260628" />
   <link rel="stylesheet" href="./style.css" />
 </head>
-<body class="alter-page" data-page-state="off">
-  <main class="alter-shell">
-    <header class="alter-hero card">
-      <img src="../elements/altervordes.svg" alt="" aria-hidden="true" class="alter-hero-icon">
-      <div>
-        <p class="eyebrow">Иные слова</p>
-        <h1>Alter vordes</h1>
-        <p>Alter vordes — инструмент для слов, которые не проходят ни одну из пяти основных процедур отбора. В этом случае форма выбирается вручную по дополнительным критериям: краткости, произносимости, отсутствию конфликтов и возможности будущей деривации.</p>
-      </div>
+<body class="altervordes-page" data-page-state="off">
+  <main class="vord-page-shell">
+    <header class="vord-page-hero">
+      <h1 id="pageTitle">Alter vordes</h1>
     </header>
-    <section class="notice card">Эта процедура применяется только тогда, когда слово не проходит пять основных типов. Результат является формализованным ручным выбором, а не автоматическим доказательством международности.</section>
 
-    <section class="card panel"><h2>Основные данные</h2><div class="grid two">
-      <label class="field">Кандидатная форма Интераля<input id="candidate" class="interal-input" autocomplete="off"></label>
-      <label class="field">Значение слова<input id="meaning" class="interal-input" autocomplete="off"></label>
-      <label class="field">Русский перевод<input id="russian" class="interal-input" autocomplete="off"></label>
-      <label class="field">Часть речи<input id="partOfSpeech" class="interal-input" autocomplete="off"></label>
-      <label class="field wide">Комментарий/пояснение<textarea id="comment" class="interal-textarea"></textarea></label>
-    </div></section>
+    <div id="app">
+      <section class="card vord-panel params-panel">
+        <div class="card-tools">
+          <button id="resetBtn" class="card-reset-btn interal-reset-btn is-hidden" type="button" aria-label="Сбросить" title="Сбросить">
+            <img src="../elements/Eraser%20Square.svg" alt="" aria-hidden="true">
+          </button>
+        </div>
 
-    <section class="card panel"><h2>Проверка провала пяти процедур</h2><div id="failedBox" class="checks"></div><p id="procedureWarning" class="warning">Alter vordes применяется только после проверки пяти основных процедур.</p></section>
-    <section class="card panel"><h2>Контрольные языки</h2><div id="controlBox" class="lang-grid"></div></section>
-    <section class="card panel"><h2>Вспомогательные языки</h2><div id="auxBox" class="lang-grid"></div></section>
-    <section class="card panel"><h2>Справочные языки</h2><div id="refBox" class="lang-grid"></div></section>
+        <h2 id="paramsTitle">Параметры слова</h2>
 
-    <section class="card panel"><h2>Альтернативные формы</h2><p class="muted">Manual selection score: MS = 0.15B + 0.20P + 0.25C + 0.20D + 0.10N + 0.10R</p><div id="altsBox" class="alts"></div><button id="addAlt" class="interal-btn interal-btn--secondary" type="button">Добавить форму</button></section>
-    <section class="card panel"><h2>Возможные дериваты</h2><textarea id="derivatives" class="interal-textarea" placeholder="mankar, manketa, mankal"></textarea></section>
+        <div class="field">
+          <label id="translationLabel" for="translationInput">Перевод</label>
+          <input class="interal-input" id="translationInput" autocomplete="off">
+        </div>
 
-    <section class="actions card panel">
-      <button id="calculateBtn" class="interal-btn interal-btn--primary" type="button">Calcular</button>
-      <button id="aiBtn" class="interal-btn interal-btn--secondary" type="button">AI evaluation</button>
-      <button id="jsonBtn" class="interal-btn interal-btn--secondary" type="button">Crear JSON</button>
-      <button id="copyJsonBtn" class="interal-btn interal-btn--secondary" type="button">Copiar JSON</button>
-      <button id="downloadJsonBtn" class="interal-btn interal-btn--secondary" type="button">Descargar JSON</button>
-      <button id="linkBtn" class="interal-btn interal-btn--secondary" type="button">Copiar link</button>
-    </section>
+        <div class="field">
+          <label id="candidateLabel" for="candidateInput">Форма в Интерaле</label>
+          <input class="interal-input" id="candidateInput" autocomplete="off">
+        </div>
 
-    <section class="card panel result" id="resultPanel" hidden><h2>Результат</h2><div id="resultBox"></div><p class="warning">Финальное решение принимает человек.</p></section>
-    <section class="card panel"><h2>JSON-карточка</h2><textarea id="jsonOutput" class="interal-textarea json-output" readonly spellcheck="false"></textarea></section>
+        <div class="field">
+          <label id="posLabel" for="posInput">Часть речи</label>
+          <select class="interal-select" id="posInput"></select>
+        </div>
+
+        <div class="field">
+          <label id="commentLabel" for="commentInput">Комментарий</label>
+          <textarea class="interal-textarea" id="commentInput"></textarea>
+        </div>
+
+        <div class="actions">
+          <button class="interal-btn interal-btn--primary" id="checkBtn" type="button">Проверить</button>
+        </div>
+      </section>
+
+      <section class="card vord-panel decision-summary" id="resultSection" hidden>
+        <h2 id="decisionTitle">Решение</h2>
+        <div id="resultBox"></div>
+      </section>
+
+      <div class="actions json-card-bottom-actions">
+        <button class="interal-btn interal-btn--secondary" id="jsonBtn" type="button" hidden disabled>Сформировать JSON-карточку</button>
+        <button class="interal-btn interal-btn--secondary" id="linkBtn" type="button">Скопировать ссылку</button>
+      </div>
+    </div>
   </main>
+
+  <div id="jsonCardModal" aria-hidden="true">
+    <div class="modal-inner" role="dialog" aria-modal="true" aria-labelledby="jsonCardTitle">
+      <button id="closeJsonCardBtn" class="json-card-close-btn" type="button" aria-label="Закрыть JSON-карточку">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke-width="2.4" stroke-linecap="round" /></svg>
+      </button>
+      <h3 class="json-card-title" id="jsonCardTitle">JSON-карточка</h3>
+      <textarea id="jsonCardOutput" class="interal-textarea json-card-output" spellcheck="false" readonly></textarea>
+      <div class="json-card-actions">
+        <button id="copyJsonCardBtn" class="interal-btn interal-btn--secondary" type="button">Скопировать JSON</button>
+        <button id="downloadJsonCardBtn" class="interal-btn interal-btn--secondary" type="button">Скачать JSON</button>
+      </div>
+    </div>
+  </div>
+
   <script src="../shared/copy-plain.js"></script>
-  <script src="../shared/ui.js?v=altervordes-20260628"></script>
+  <script src="../shared/ui.js?v=altervordes-simple-20260628"></script>
   <script src="./script.js"></script>
 </body>
 </html>
