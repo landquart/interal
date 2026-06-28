@@ -21,8 +21,17 @@ function byId(id) { return document.getElementById(id); }
 function escapeHtml(value) {
   return String(value ?? '').replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
 }
-function createId(prefix) {
-  return `${prefix}_${crypto.randomUUID().replaceAll('-', '')}`;
+const CARDS_API_ENDPOINT = location.hostname === 'landquart.github.io' ? 'https://interal.vercel.app/api/cards' : '/api/cards';
+async function createCardOnServer(card) {
+  const title = card?.interal?.word || card?.title || 'Untitled card';
+  const response = await fetch(CARDS_API_ENDPOINT, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ title, category: card?.vord_type || 'community_word', payload: card })
+  });
+  const data = await response.json().catch(() => null);
+  if (!response.ok || !data?.ok) throw new Error(data?.error || `HTTP ${response.status}`);
+  return data.card?.payload || { ...card, id: data.id, discussionId: data.id };
 }
 function downloadJson(filename, text) {
   const blob = new Blob([text], { type: 'application/json;charset=utf-8' });
@@ -109,7 +118,8 @@ async function resetState() {
 }
 
 function result(){ const n=state.criteria.filter(Boolean).length; return { passed:n, total:3, accepted:n===3 }; }
-function makeCard(){ const r=result(); return { id:createId('vc'), version:'1.0', card_type:'vord_card', vord_type:'community_word', status:'draft', interal:{word:state.word, part_of_speech:state.part_of_speech}, translations: LANGUAGES.map(lang=>({language:lang.code, word:state.translations[lang.code]||''})), domain:state.domain, criteria: QUESTIONS[currentLang()].map((q,i)=>({id:`question_${i+1}`, question:q, answer:state.answers[i]||'yes', passed:Boolean(state.criteria[i])})), decision:{accepted:r.accepted} }; }
+function makeCardDraft(){ const r=result(); return { version:'1.0', card_type:'vord_card', vord_type:'community_word', status:'draft', interal:{word:state.word, part_of_speech:state.part_of_speech}, translations: LANGUAGES.map(lang=>({language:lang.code, word:state.translations[lang.code]||''})), domain:state.domain, criteria: QUESTIONS[currentLang()].map((q,i)=>({id:`question_${i+1}`, question:q, answer:state.answers[i]||'yes', passed:Boolean(state.criteria[i])})), decision:{accepted:r.accepted} }; }
+async function makeCard(){ return createCardOnServer(makeCardDraft()); }
 function generateJson(){ openJsonModal(); }
 function renderCriteria(){ const questions = QUESTIONS[currentLang()]; return `<div class="criteria-list">${questions.map((q,i)=>`<div class="criterion"><p>${escapeHtml(q)}</p><select class="interal-select" id="ans_${i}"><option value="yes">${t('answerYes')}</option><option value="partially">${t('answerPartially')}</option><option value="no">${t('answerNo')}</option></select><input id="crit_${i}" type="checkbox" ${state.criteria[i]?'checked':''}></div>`).join('')}</div>`; }
 function renderResult() { const r = result(); byId('resultBox').innerHTML = `<span class="status-pill ${r.accepted?'ok':'bad'}">${r.accepted?t('accept'):t('reject')}</span><dl><div><dt>${t('passed')}</dt><dd>${r.passed}/${r.total}</dd></div></dl>`; }
@@ -118,13 +128,13 @@ function render(){ renderChrome(); document.title=t('title'); byId('pageTitle').
 const jsonFilename = 'community-word-card.json';
 function currentJsonText() {
   const existing = byId('jsonOutput')?.value;
-  return existing || JSON.stringify(makeCard(), null, 2);
+  return existing || '';
 }
-function openJsonModal() {
+async function openJsonModal() {
   if (typeof readState === 'function') readState();
   if (typeof readEvidence === 'function') readEvidence();
   const output = byId('jsonOutput');
-  if (output) output.value = JSON.stringify(makeCard(), null, 2);
+  if (output) output.value = JSON.stringify(await makeCard(), null, 2);
   const modal = byId('jsonCardModal');
   modal?.classList.add('show');
   modal?.setAttribute('aria-hidden', 'false');
