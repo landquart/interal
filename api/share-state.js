@@ -365,7 +365,7 @@ export default async function handler(req, res) {
 
     sendJson(req, res, status, {
       ok: false,
-      error: error.message || 'Internal server error'
+      error: error instanceof ValidationError ? error.message : 'Internal server error'
     });
   }
 }

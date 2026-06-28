@@ -73,7 +73,26 @@ function langName(code) { return LANGUAGES.find(l => l.code === code)?.name[curr
 function byId(id) { return document.getElementById(id); }
 function escapeHtml(value) { return String(value ?? '').replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch])); }
 const CARDS_API_ENDPOINT = location.hostname === 'landquart.github.io' ? 'https://interal.vercel.app/api/cards' : '/api/cards';
-async function createCardOnServer(card) { const title = card?.interal?.word || card?.title || 'Untitled card'; const response = await fetch(CARDS_API_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ section: 'internationalismes', title, category: card?.vord_type || 'internationalism', payload: card }) }); const data = await response.json().catch(() => null); if (!response.ok || !data?.ok) throw new Error(data?.error || `HTTP ${response.status}`); return data.card?.payload || { ...card, id: data.id, discussionId: data.discussionId || `card-${data.id}` }; }
+const CARDS_NEXT_ID_ENDPOINT = location.hostname === 'landquart.github.io' ? 'https://interal.vercel.app/api/cards-next-id' : '/api/cards-next-id';
+function isDatabaseLimitError(error) { const message = String(error?.message || error?.error || '').toLowerCase(); if (/invalid|validation|payload too large|path|section|title/.test(message)) return false; return message.includes('quota') || message.includes('storage') || message.includes('database size') || message.includes('disk') || message.includes('no space') || message.includes('insert') || message.includes('could not generate unique card id') || message.includes('write'); }
+async function createFallbackCard(card, section) { const response = await fetch(`${CARDS_NEXT_ID_ENDPOINT}?section=${encodeURIComponent(section)}`, { cache: 'no-store' }); const data = await response.json().catch(() => null); if (!response.ok || !data?.ok || !data.id) throw new Error(data?.error || `HTTP ${response.status}`); return { ...card, id: data.id, section: data.section || section, discussionId: `card-${data.id}`, fallbackMode: 'fallback-sequential', persistenceRequired: 'Save this card to the GitHub JSON registry or another durable registry; fallback IDs are best-effort read-check-only and are not reserved in Supabase.' }; }
+async function createCardOnServer(card) {
+  const title = card?.interal?.word || card?.title || 'Untitled card';
+  try {
+    const response = await fetch(CARDS_API_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ section: 'internationalismes', title, category: card?.vord_type || 'internationalism', payload: card })
+    });
+    const data = await response.json().catch(() => null);
+    if (!response.ok || !data?.ok) throw new Error(data?.error || `HTTP ${response.status}`);
+    return data.card?.payload || { ...card, id: data.id, discussionId: data.discussionId || `card-${data.id}` };
+  } catch (error) {
+    if (!isDatabaseLimitError(error)) throw error;
+    console.warn('Supabase insert failed; using fallback sequential card id');
+    return createFallbackCard(card, 'internationalismes');
+  }
+}
 function downloadJson(filename, text) { const blob = new Blob([text], { type: 'application/json;charset=utf-8' }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = filename; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url); }
 function copyText(text) { navigator.clipboard?.writeText(text).catch(() => {}); }
 

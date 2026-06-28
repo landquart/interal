@@ -5,6 +5,8 @@
   const RESTORE_DELAYS = [0, 80, 250, 600];
   const RESET_CLEAR_DELAYS = [0, 80, 250, 600, 1000];
   const SHARE_API_URL = 'https://interal.vercel.app/api/share-state';
+  const SEQUENCE_ALPHABET = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const FALLBACK_SID_KEY = 'interal.fallbackShareSid';
 
   let saveTimer = null;
   let isRestoring = false;
@@ -148,13 +150,52 @@
     };
   }
 
+  function encodeBase62Padded(value, length = 12) {
+    let number = BigInt(value);
+    const base = BigInt(SEQUENCE_ALPHABET.length);
+    let encoded = '';
+    do {
+      encoded = SEQUENCE_ALPHABET[Number(number % base)] + encoded;
+      number /= base;
+    } while (number > 0n);
+    return encoded.padStart(length, '0');
+  }
+
+  function decodeBase62(value) {
+    return String(value || '').split('').reduce((total, char) => {
+      const index = SEQUENCE_ALPHABET.indexOf(char);
+      if (index < 0) throw new Error('Invalid sequence');
+      return total * 62n + BigInt(index);
+    }, 0n);
+  }
+
+  function nextFallbackSid() {
+    try {
+      const current = localStorage.getItem(FALLBACK_SID_KEY);
+      const next = current && /^[0-9A-Za-z]{12}$/.test(current) ? decodeBase62(current) + 1n : 1n;
+      const sid = encodeBase62Padded(next);
+      localStorage.setItem(FALLBACK_SID_KEY, sid);
+      return sid;
+    } catch (_) {
+      return encodeBase62Padded(BigInt(Date.now()));
+    }
+  }
+
+  function isDatabaseLimitError(error) {
+    const message = String(error?.message || error?.error || '').toLowerCase();
+    if (/invalid|validation|payload too large|path|section/.test(message)) return false;
+    return message.includes('quota') || message.includes('storage') || message.includes('database size') || message.includes('disk') || message.includes('no space') || message.includes('insert') || message.includes('could not create share state') || message.includes('write');
+  }
+
   function createShareUrl() {
     const payload = createSharePayload();
     const encoded = encodeBase64Url(payload);
     const url = new URL(window.location.href);
 
     url.searchParams.delete('s');
+    url.searchParams.delete('sid');
     url.searchParams.delete('state');
+    url.searchParams.set('sid', nextFallbackSid());
     url.searchParams.set('state', encoded);
 
     if (/state=/.test(url.hash)) {
@@ -178,11 +219,13 @@
       })
     });
 
-    if (!response.ok) {
-      throw new Error('Could not create short share link');
-    }
+    const data = await response.json().catch(() => null);
 
-    const data = await response.json();
+    if (!response.ok) {
+      const error = new Error(data?.error || 'Could not create short share link');
+      error.status = response.status;
+      throw error;
+    }
 
     if (!data || !data.ok || !data.id || !/^[0-9a-zA-Z]{12}$/.test(data.id)) {
       throw new Error('Invalid share id');
@@ -276,6 +319,18 @@
 
       return true;
     } catch (error) {
+      if (isDatabaseLimitError(error)) {
+        console.warn('Supabase insert failed; using fallback self-contained link');
+        const url = createShareUrl();
+        await writeClipboard(url);
+        setCopyButtonState(button, 'copied');
+        clearTimeout(button._interalCopyStateTimer);
+        button._interalCopyStateTimer = setTimeout(() => {
+          setCopyButtonState(button, 'idle');
+        }, 1600);
+        return true;
+      }
+
       console.warn('Could not copy short share URL:', error);
 
       setCopyButtonState(button, 'failed');
@@ -368,6 +423,7 @@
 
     url.searchParams.delete('s');
     url.searchParams.delete('state');
+    url.searchParams.delete('sid');
 
     if (/state=/.test(url.hash)) {
       url.hash = '';
@@ -505,6 +561,7 @@
       if (applied) {
         url.searchParams.delete('s');
         url.searchParams.delete('state');
+        url.searchParams.delete('sid');
 
         try {
           window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
