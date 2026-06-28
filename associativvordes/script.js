@@ -859,8 +859,18 @@ const TEXT_I18N = {
       return Number.isFinite(number) ? number : null;
     }
 
-    function createCardId(prefix = 'av') {
-      return `${prefix}_${crypto.randomUUID().replaceAll('-', '')}`;
+    const CARDS_API_ENDPOINT = location.hostname === 'landquart.github.io' ? 'https://interal.vercel.app/api/cards' : '/api/cards';
+
+    async function createCardOnServer(card) {
+      const title = card?.interal?.word || card?.title || 'Untitled card';
+      const response = await fetch(CARDS_API_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ section: 'associativvordes', title, category: card?.vord_type || 'av', payload: card })
+      });
+      const data = await response.json().catch(() => null);
+      if (!response.ok || !data?.ok) throw new Error(data?.error || `HTTP ${response.status}`);
+      return data.card?.payload || { ...card, id: data.id, section: data.section, discussionId: data.discussionId || `card-${data.id}` };
     }
 
     async function getCreatedAt() {
@@ -912,7 +922,6 @@ const TEXT_I18N = {
       const result = calculateFinal();
       const supportedGroups = [...new Set(result.languageScores.filter((x) => Number.isFinite(Number(x.normalized))).map((x) => x.lang.group))];
       return {
-        id: createCardId('av'),
         version: '1.0',
         card_type: 'vord_card',
         vord_type: 'av',
@@ -1061,7 +1070,7 @@ const TEXT_I18N = {
       try {
         btn.disabled = true;
         btn.textContent = textGroup('alerts').jsonCardGenerating;
-        document.getElementById('jsonCardOutput').value = formatGeneratedJsonCard(makeAssociativeCard(await getCreatedAt(), getAuthorBlock()));
+        document.getElementById('jsonCardOutput').value = formatGeneratedJsonCard(await createCardOnServer(makeAssociativeCard(await getCreatedAt(), getAuthorBlock())));
       } finally {
         btn.disabled = false;
         btn.textContent = original;

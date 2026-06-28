@@ -18,13 +18,20 @@ const EFFECTIVE_ALLOWED_ORIGINS = ALLOWED_ORIGINS.length
   ? ALLOWED_ORIGINS
   : DEFAULT_ALLOWED_ORIGINS;
 
+const CARD_PREFIXES = {
+  internationalismes: 'iv',
+  associativvordes: 'av',
+  indoeuropanvordes: 'iev',
+  vordesofcommunites: 'vc',
+  grammaticebrevivordes: 'gbv'
+};
+
 const ALPHABET = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-const ID_LENGTH = 12;
+const RANDOM_ID_LENGTH = 12;
 const MAX_PAYLOAD_BYTES = 50_000;
 const MAX_ID_ATTEMPTS = 10;
 
 let supabaseClient = null;
-let supportsDiscussionIdColumn = true;
 
 class ValidationError extends Error {
   constructor(message, status = 400) {
@@ -83,7 +90,7 @@ function sendJson(req, res, status, data) {
   res.end(JSON.stringify(data));
 }
 
-function createBase62Id(length = ID_LENGTH) {
+function createBase62Id(length = RANDOM_ID_LENGTH) {
   let id = '';
 
   while (id.length < length) {
@@ -101,9 +108,25 @@ function createBase62Id(length = ID_LENGTH) {
   return id;
 }
 
+function createCardId(section) {
+  const prefix = CARD_PREFIXES[section];
+
+  if (!prefix) {
+    throw new ValidationError('Invalid card section');
+  }
+
+  return `${prefix}_${createBase62Id(RANDOM_ID_LENGTH)}`;
+}
+
 function getRequestBody(req) {
   if (req.body && typeof req.body === 'object') return req.body;
-  if (typeof req.body === 'string' && req.body.trim()) return JSON.parse(req.body);
+  if (typeof req.body === 'string' && req.body.trim()) {
+    try {
+      return JSON.parse(req.body);
+    } catch {
+      throw new ValidationError('Invalid request body');
+    }
+  }
   return null;
 }
 
@@ -116,9 +139,15 @@ function validateCreateBody(body) {
     throw new ValidationError('Invalid request body');
   }
 
+  const section = typeof body.section === 'string' ? body.section.trim() : '';
   const title = body.title;
-  const category = typeof body.category === 'string' ? body.category.trim() : null;
+  const category = typeof body.category === 'string' && body.category.trim() ? body.category.trim() : null;
+  const slug = typeof body.slug === 'string' && body.slug.trim() ? body.slug.trim() : null;
   const payload = body.payload;
+
+  if (!CARD_PREFIXES[section]) {
+    throw new ValidationError('Invalid card section');
+  }
 
   if (typeof title !== 'string' || !title.trim()) {
     throw new ValidationError('Invalid title');
@@ -129,66 +158,52 @@ function validateCreateBody(body) {
   }
 
   if (getPayloadSizeBytes(payload) > MAX_PAYLOAD_BYTES) {
-    throw new ValidationError('Payload too large', 413);
+    throw new ValidationError('Payload too large');
   }
 
   return {
+    section,
     title: title.trim(),
     category,
+    slug,
     payload
   };
 }
 
-function isMissingDiscussionIdColumn(error) {
-  const text = `${error?.code || ''} ${error?.message || ''} ${error?.details || ''}`.toLowerCase();
-  return text.includes('discussion_id') && (text.includes('column') || text.includes('schema cache'));
-}
-
-async function insertCard(client, row) {
-  if (!supportsDiscussionIdColumn) {
-    const { discussion_id: _discussionId, ...rowWithoutDiscussionId } = row;
-    return client.from('cards').insert(rowWithoutDiscussionId).select('*').single();
-  }
-
-  const result = await client.from('cards').insert(row).select('*').single();
-
-  if (result.error && isMissingDiscussionIdColumn(result.error)) {
-    supportsDiscussionIdColumn = false;
-    const { discussion_id: _discussionId, ...rowWithoutDiscussionId } = row;
-    return client.from('cards').insert(rowWithoutDiscussionId).select('*').single();
-  }
-
-  return result;
-}
-
 async function createCard(req, res) {
-  const { title, category, payload } = validateCreateBody(getRequestBody(req));
+  const { section, title, category, slug, payload } = validateCreateBody(getRequestBody(req));
   const client = getSupabaseClient();
 
   for (let attempt = 0; attempt < MAX_ID_ATTEMPTS; attempt += 1) {
-    const id = createBase62Id();
+    const id = createCardId(section);
+    const discussionId = `card-${id}`;
     const cardPayload = {
       ...payload,
       id,
-      discussionId: id
+      section,
+      discussionId
     };
     const row = {
       id,
+      section,
       status: 'pending',
       title,
-      category,
-      payload: cardPayload,
-      discussion_id: id
+      category: category || null,
+      slug: slug || null,
+      discussion_id: discussionId,
+      payload: cardPayload
     };
 
-    const { data, error } = await insertCard(client, row);
+    const { data, error } = await client.from('cards').insert(row).select('*').single();
 
     if (!error) {
       sendJson(req, res, 200, {
         ok: true,
         id,
+        section,
         status: 'pending',
-        card: data || { ...row, payload: cardPayload }
+        discussionId,
+        card: data || row
       });
       return;
     }
@@ -205,7 +220,8 @@ function sendHealthCheck(req, res) {
   sendJson(req, res, 200, {
     ok: true,
     hasSupabaseUrl: Boolean(SUPABASE_URL),
-    hasSupabaseKey: Boolean(SUPABASE_SERVICE_ROLE_KEY)
+    hasSupabaseKey: Boolean(SUPABASE_SERVICE_ROLE_KEY),
+    allowedSections: Object.keys(CARD_PREFIXES)
   });
 }
 
