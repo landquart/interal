@@ -23,7 +23,8 @@ const CARD_PREFIXES = {
   associativvordes: 'av',
   indoeuropanvordes: 'iev',
   vordesofcommunites: 'vc',
-  grammaticebrevivordes: 'gbv'
+  grammaticebrevivordes: 'gbv',
+  altervordes: 'al'
 };
 
 const ALPHABET = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';

@@ -7,12 +7,13 @@ export const CARD_PREFIXES = {
   associativvordes: 'av',
   indoeuropanvordes: 'iev',
   vordesofcommunites: 'vc',
-  grammaticebrevivordes: 'gbv'
+  grammaticebrevivordes: 'gbv',
+  altervordes: 'al'
 };
 
 export const SEQUENCE_ALPHABET = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 export const SEQUENCE_LENGTH = 12;
-export const FALLBACK_ID_RE = /^(iv|av|iev|vc|gbv)_[0-9A-Za-z]{12}$/;
+export const FALLBACK_ID_RE = /^(iv|av|iev|vc|gbv|al)_[0-9A-Za-z]{12}$/;
 const SUPABASE_URL = (process.env.SUPABASE_URL || '').trim();
 const SUPABASE_SERVICE_ROLE_KEY = (process.env.SUPABASE_SERVICE_ROLE_KEY || '').trim();
 const GITHUB_CARD_REGISTRY_URL = (process.env.GITHUB_CARD_REGISTRY_URL || '').trim();

@@ -148,7 +148,7 @@ function normalizePath(path) {
 }
 
 function isAllowedPath(path) {
-  return /^\/interal\/(indoeuropanvordes|associativvordes|determinatorofvalentyp|internationalismes|vordesofcommunites|grammaticebrevivordes)\/?$/.test(path);
+  return /^\/interal\/(indoeuropanvordes|associativvordes|determinatorofvalentyp|internationalismes|vordesofcommunites|grammaticebrevivordes|altervordes)\/?$/.test(path);
 }
 
 function getRequestBody(req) {

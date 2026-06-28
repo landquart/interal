@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Alter vordes</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon%20interal%2032.png" />
+  <link rel="stylesheet" href="../shared/ui.css?v=altervordes-20260628" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body class="alter-page" data-page-state="off">
+  <main class="alter-shell">
+    <header class="alter-hero card">
+      <img src="../elements/altervordes.svg" alt="" aria-hidden="true" class="alter-hero-icon">
+      <div>
+        <p class="eyebrow">Иные слова</p>
+        <h1>Alter vordes</h1>
+        <p>Alter vordes — инструмент для слов, которые не проходят ни одну из пяти основных процедур отбора. В этом случае форма выбирается вручную по дополнительным критериям: краткости, произносимости, отсутствию конфликтов и возможности будущей деривации.</p>
+      </div>
+    </header>
+    <section class="notice card">Эта процедура применяется только тогда, когда слово не проходит пять основных типов. Результат является формализованным ручным выбором, а не автоматическим доказательством международности.</section>
+
+    <section class="card panel"><h2>Основные данные</h2><div class="grid two">
+      <label class="field">Кандидатная форма Интераля<input id="candidate" class="interal-input" autocomplete="off"></label>
+      <label class="field">Значение слова<input id="meaning" class="interal-input" autocomplete="off"></label>
+      <label class="field">Русский перевод<input id="russian" class="interal-input" autocomplete="off"></label>
+      <label class="field">Часть речи<input id="partOfSpeech" class="interal-input" autocomplete="off"></label>
+      <label class="field wide">Комментарий/пояснение<textarea id="comment" class="interal-textarea"></textarea></label>
+    </div></section>
+
+    <section class="card panel"><h2>Проверка провала пяти процедур</h2><div id="failedBox" class="checks"></div><p id="procedureWarning" class="warning">Alter vordes применяется только после проверки пяти основных процедур.</p></section>
+    <section class="card panel"><h2>Контрольные языки</h2><div id="controlBox" class="lang-grid"></div></section>
+    <section class="card panel"><h2>Вспомогательные языки</h2><div id="auxBox" class="lang-grid"></div></section>
+    <section class="card panel"><h2>Справочные языки</h2><div id="refBox" class="lang-grid"></div></section>
+
+    <section class="card panel"><h2>Альтернативные формы</h2><p class="muted">Manual selection score: MS = 0.15B + 0.20P + 0.25C + 0.20D + 0.10N + 0.10R</p><div id="altsBox" class="alts"></div><button id="addAlt" class="interal-btn interal-btn--secondary" type="button">Добавить форму</button></section>
+    <section class="card panel"><h2>Возможные дериваты</h2><textarea id="derivatives" class="interal-textarea" placeholder="mankar, manketa, mankal"></textarea></section>
+
+    <section class="actions card panel">
+      <button id="calculateBtn" class="interal-btn interal-btn--primary" type="button">Calcular</button>
+      <button id="aiBtn" class="interal-btn interal-btn--secondary" type="button">AI evaluation</button>
+      <button id="jsonBtn" class="interal-btn interal-btn--secondary" type="button">Crear JSON</button>
+      <button id="copyJsonBtn" class="interal-btn interal-btn--secondary" type="button">Copiar JSON</button>
+      <button id="downloadJsonBtn" class="interal-btn interal-btn--secondary" type="button">Descargar JSON</button>
+      <button id="linkBtn" class="interal-btn interal-btn--secondary" type="button">Copiar link</button>
+    </section>
+
+    <section class="card panel result" id="resultPanel" hidden><h2>Результат</h2><div id="resultBox"></div><p class="warning">Финальное решение принимает человек.</p></section>
+    <section class="card panel"><h2>JSON-карточка</h2><textarea id="jsonOutput" class="interal-textarea json-output" readonly spellcheck="false"></textarea></section>
+  </main>
+  <script src="../shared/copy-plain.js"></script>
+  <script src="../shared/ui.js?v=altervordes-20260628"></script>
+  <script src="./script.js"></script>
+</body>
+</html>
