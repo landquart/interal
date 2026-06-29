@@ -1,7 +1,7 @@
 const fs = require('fs/promises');
 const path = require('path');
 
-const { getQwenLanguageInstruction, normalizeInterfaceLanguage } = require('./lib/interface-language.cjs');
+const { getQwenLanguageInstruction, normalizeInterfaceLanguage } = require('./lib/interface-language-common.cjs');
 
 const MODEL_NAME = 'qwen3.6-35b-a3b/latest';
 const MAX_BODY_BYTES = 1024 * 1024;

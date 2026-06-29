@@ -1,4 +1,4 @@
-const { getQwenLanguageInstruction, normalizeInterfaceLanguage } = require('./lib/interface-language.cjs');
+const { getQwenLanguageInstruction, normalizeInterfaceLanguage } = require('./lib/interface-language-common.cjs');
 
 const MODEL_NAME = 'qwen3-235b-a22b-fp8/latest';
 const YANDEX_CHAT_COMPLETIONS_URL = 'https://ai.api.cloud.yandex.net/v1/chat/completions';

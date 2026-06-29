@@ -1,4 +1,4 @@
-const { getQwenLanguageInstruction, normalizeInterfaceLanguage } = require('./lib/interface-language.cjs');
+const { getQwenLanguageInstruction, normalizeInterfaceLanguage } = require('./lib/interface-language-common.cjs');
 
 const PRIMARY_MODEL = 'qwen3.6-35b-a3b/latest';
 const REVIEW_MODEL = 'qwen3-235b-a22b-fp8/latest';
