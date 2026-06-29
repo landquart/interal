@@ -5,6 +5,7 @@
   const RESTORE_DELAYS = [0, 80, 250, 600];
   const RESET_CLEAR_DELAYS = [0, 80, 250, 600, 1000];
   const SHARE_API_URL = 'https://interal.vercel.app/api/share-state';
+  const PUBLIC_SHARE_ORIGIN = 'https://interal.vercel.app';
   const SEQUENCE_ALPHABET = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
   const FALLBACK_SID_KEY = 'interal.fallbackShareSid';
 
@@ -125,6 +126,28 @@
     return `/interal${path.startsWith('/') ? path : `/${path}`}`;
   }
 
+  function getPublicSharePath() {
+    const path = window.location.pathname;
+
+    if (path.startsWith('/interal/')) {
+      return path.replace(/^\/interal/, '') || '/';
+    }
+
+    return path || '/';
+  }
+
+  function buildPublicShareUrl(params = {}) {
+    const url = new URL(getPublicSharePath(), PUBLIC_SHARE_ORIGIN);
+
+    Object.entries(params).forEach(([key, value]) => {
+      if (value !== undefined && value !== null && value !== '') {
+        url.searchParams.set(key, String(value));
+      }
+    });
+
+    return url;
+  }
+
   function collectDraft() {
     const fields = {};
 
@@ -217,17 +240,11 @@
   function createShareUrl() {
     const payload = createSharePayload();
     const encoded = encodeBase64Url(payload);
-    const url = new URL(window.location.href);
 
-    url.searchParams.delete('s');
-    url.searchParams.delete('sid');
-    url.searchParams.delete('state');
-    url.searchParams.set('sid', nextFallbackSid());
-    url.searchParams.set('state', encoded);
-
-    if (/state=/.test(url.hash)) {
-      url.hash = '';
-    }
+    const url = buildPublicShareUrl({
+      sid: nextFallbackSid(),
+      state: encoded
+    });
 
     return url.toString();
   }
@@ -258,11 +275,9 @@
       throw new Error('Invalid share id');
     }
 
-    if (typeof data.url !== 'string' || !data.url) {
-      throw new Error('Invalid share URL');
-    }
-
-    return data.url;
+    return buildPublicShareUrl({
+      s: data.id
+    }).toString();
   }
 
   async function writeClipboard(text) {

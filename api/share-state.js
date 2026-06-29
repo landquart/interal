@@ -7,9 +7,7 @@ const SUPABASE_SERVICE_ROLE_KEY = (
   process.env.SUPABASE_SERVICE_ROLE_KEY || ''
 ).trim();
 
-const PUBLIC_SITE_URL = (
-  process.env.PUBLIC_SITE_URL || 'https://landquart.github.io'
-).trim();
+const PUBLIC_SHARE_ORIGIN = 'https://interal.vercel.app';
 
 const DEFAULT_ALLOWED_ORIGINS = [
   'https://landquart.github.io',
@@ -212,14 +210,15 @@ function validateCreateBody(body) {
   };
 }
 
+function toPublicPath(path) {
+  return String(path || '/').replace(/^\/interal/, '') || '/';
+}
+
 function createPublicShareUrl(path, id) {
-  const url = new URL(path, PUBLIC_SITE_URL);
+  const publicUrl = new URL(toPublicPath(path), PUBLIC_SHARE_ORIGIN);
+  publicUrl.searchParams.set('s', id);
 
-  url.searchParams.delete('state');
-  url.searchParams.delete('s');
-  url.searchParams.set('s', id);
-
-  return url.toString();
+  return publicUrl.toString();
 }
 
 async function createShareState(req, res) {
