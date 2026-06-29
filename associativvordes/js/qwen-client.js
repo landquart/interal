@@ -28,10 +28,14 @@ export function qwenFallback() {
   };
 }
 
+export function getInterfaceLanguage() {
+  return document.documentElement.lang?.startsWith('en') ? 'en' : 'ru';
+}
+
 export function buildQwenAssociationPrompt({ language, targetMeaning, word, swow }) {
   return {
     system: 'You are a lexical association evaluator for an international auxiliary language project. Evaluate semantic association between target meaning and associative word. Do not generate candidate words. Do not evaluate the constructed Interal candidate form. Return only valid JSON. Use 0–100 integer scores. directness = how directly the word points to the target meaning. field_relatedness = how strongly the word belongs to the same semantic field as the target meaning. domain_shift = how strongly the word\'s modern meaning belongs to a different competing domain.',
-    user: `Language: ${language}\nTarget meaning: ${targetMeaning}\nAssociative word: ${word}\nSWOW evidence: ${JSON.stringify(swow || {})}\n\nReturn JSON:\n{\n  "word": "...",\n  "target_meaning": "...",\n  "directness": 0-100,\n  "field_relatedness": 0-100,\n  "domain_shift": 0-100,\n  "short_explanation": "..."\n}`
+    user: `Language: ${language}\nTarget meaning: ${targetMeaning}\nAssociative word: ${word}\nSWOW evidence: ${JSON.stringify(swow || {})}\n\nReturn JSON:\n{\n  "word": "...",\n  "target_meaning": "...",\n  "directness": 0-100,\n  "field_relatedness": 0-100,\n  "domain_shift": 0-100,\n  "responseLanguage": "...",\n  "short_explanation": "..."\n}`
   };
 }
 
@@ -65,6 +69,7 @@ function parseQwenPayload(payload) {
     directness: clampIntegerOrNull(object.directness),
     field_relatedness: clampIntegerOrNull(object.field_relatedness),
     domain_shift: clampIntegerOrNull(object.domain_shift),
+    responseLanguage: object.responseLanguage || '',
     short_explanation: object.short_explanation || object.explanation || '',
     model: payload?.model || payload?.kind || ''
   };
@@ -78,7 +83,8 @@ async function callQwen(prompt, { model, review = false } = {}) {
       system: prompt.system,
       user: prompt.user,
       model: model || API_CONFIG.qwenPrimaryModel,
-      review
+      review,
+      interfaceLanguage: getInterfaceLanguage()
     })
   });
   if (!res.ok) {

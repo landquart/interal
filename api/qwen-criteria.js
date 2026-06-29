@@ -1,3 +1,5 @@
+const { getQwenLanguageInstruction, normalizeInterfaceLanguage } = require('./lib/interface-language-common.cjs');
+
 const MODEL_NAME = 'qwen3-235b-a22b-fp8/latest';
 const YANDEX_CHAT_COMPLETIONS_URL = 'https://ai.api.cloud.yandex.net/v1/chat/completions';
 const MAX_BODY_BYTES = 1024 * 1024;
@@ -77,14 +79,15 @@ function normalizeCriteria(data, limit) {
 }
 
 function buildPrompt(input) {
+  const interfaceLanguage = normalizeInterfaceLanguage(input.interfaceLanguage);
   const type = String(input.type || '');
   const isGrammar = type === 'grammar_short_word';
   const system = isGrammar
-    ? 'Ты оцениваешь кандидата на грамматическое/краткое слово Интерaла. Верни только JSON без Markdown.'
-    : 'Ты оцениваешь кандидата на слово области/сообщества Интерaла. Верни только JSON без Markdown.';
+    ? `You evaluate a candidate Interal grammar/short word.\n${getQwenLanguageInstruction(interfaceLanguage)}\nReturn only JSON without Markdown.`
+    : `You evaluate a candidate Interal domain/community word.\n${getQwenLanguageInstruction(interfaceLanguage)}\nReturn only JSON without Markdown.`;
   const schema = isGrammar
-    ? { criteria: [{ name: 'criterion name', value: true, passed: true, comment: 'short justification' }] }
-    : { criteria: [{ question: 'question text', answer: 'yes | partially | no', passed: true, comment: 'short justification' }] };
+    ? { responseLanguage: interfaceLanguage, criteria: [{ name: 'criterion name', value: true, passed: true, comment: 'short justification' }] }
+    : { responseLanguage: interfaceLanguage, criteria: [{ question: 'question text', answer: 'yes | partially | no', passed: true, comment: 'short justification' }] };
 
   const user = JSON.stringify({
     task: isGrammar ? 'Evaluate each criterion for a grammar_short_word card.' : 'Answer each question for a community_word card.',

@@ -1,6 +1,8 @@
 const fs = require('fs/promises');
 const path = require('path');
 
+const { getQwenLanguageInstruction, normalizeInterfaceLanguage } = require('./lib/interface-language-common.cjs');
+
 const MODEL_NAME = 'qwen3.6-35b-a3b/latest';
 const MAX_BODY_BYTES = 1024 * 1024;
 
@@ -149,6 +151,7 @@ function normalizeAiResult(raw) {
   const chain = Array.isArray(data.chain) ? data.chain.map((item) => String(item)).filter(Boolean).slice(0, 8) : [];
   const analogies = Array.isArray(data.analogies_used) ? data.analogies_used.map((item) => String(item)).filter(Boolean).slice(0, 8) : [];
   return {
+    responseLanguage: normalizeInterfaceLanguage(data.responseLanguage || 'ru'),
     chain,
     chain_type: String(data.chain_type || 'semantic_extension'),
     P: clampScore(data.P, 0, 4),
@@ -533,9 +536,14 @@ function pickExamples(input, examples) {
 }
 
 function buildPrompt(input, examplesUsed) {
+  const interfaceLanguage = normalizeInterfaceLanguage(input.interfaceLanguage);
   const zonesForPrompt = ZONES.map((zone) => `${zone.id}: ${zone.ru}`).join('\n');
 
-  const system = `Ты классифицируешь дериваты Интераля по спектру семантической прозрачности P/R/C/E.
+  const system = `You classify Interal derivatives by the P/R/C/E semantic transparency spectrum.
+
+${getQwenLanguageInstruction(interfaceLanguage)}
+
+Ты классифицируешь дериваты Интераля по спектру семантической прозрачности P/R/C/E.
 
 Оцени:
 P Predictabilitá 0–4,
@@ -554,7 +562,7 @@ ${zonesForPrompt}
 zone_hint — только подсказка: окончательную зону считает код по P/R/C/E.
 
 Верни только JSON без Markdown в формате:
-{"chain":["шаг 1"],"chain_type":"direct_composition | slight_focus_shift | semantic_extension | metaphorical_transfer | metonymic_transfer | historical_conventionalization | lexicalized_no_working_chain","P":0,"R":0,"C":0,"E":0,"zone_hint":"","confidence":0.0,"explanation":"","analogies_used":[]}.`;
+{"responseLanguage":"ru | en","chain":["шаг 1"],"chain_type":"direct_composition | slight_focus_shift | semantic_extension | metaphorical_transfer | metonymic_transfer | historical_conventionalization | lexicalized_no_working_chain","P":0,"R":0,"C":0,"E":0,"zone_hint":"","confidence":0.0,"explanation":"","analogies_used":[]}.`;
 
   const user = JSON.stringify({
     task: 'Классифицируй входной дериват по P/R/C/E.',
@@ -622,7 +630,8 @@ module.exports = async function handler(req, res) {
       internationalMeaning: String(input.internationalMeaning || '').slice(0, 1000),
       explanationChain: String(input.explanationChain || '').slice(0, 1000),
       components: Array.isArray(input.components) ? input.components.slice(0, 30).map((item) => ({ form: String(item.form || '').slice(0, 100), meaning: String(item.meaning || '').slice(0, 300), category: String(item.category || item.label || '').slice(0, 100) })) : [],
-      manualScores: input.manualScores || null
+      manualScores: input.manualScores || null,
+      interfaceLanguage: normalizeInterfaceLanguage(input.interfaceLanguage)
     };
 
     const modelUri = `gpt://${process.env.yandex_folder_Qwen3_6_35B}/${MODEL_NAME}`;
