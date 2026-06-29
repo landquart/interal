@@ -40,16 +40,28 @@ function showNotice(message, type = 'info') { const box = $('noticeBox'); if (!b
 function hideNotice(){ const box=$('noticeBox'); if(box) box.hidden=true; }
 function hasUserInputForReset() { return Boolean($('translationInput').value.trim() || $('candidateInput').value.trim() || $('commentInput').value.trim() || lastAnalysis || $('jsonCardOutput').value.trim()); }
 function updateResetVisibility() { $('resetBtn').classList.toggle('is-hidden', !hasUserInputForReset()); }
-function clearDomState() { $('translationInput').value=''; $('candidateInput').value=''; $('posInput').value='noun'; $('commentInput').value=''; lastAnalysis=null; lastCard=null; $('resultSection').hidden=true; $('resultBox').innerHTML=''; $('jsonCardOutput').value=''; setJsonEnabled(false); hideNotice(); updateResetVisibility(); }
 async function resetState() {
-  const message = lang()==='ru' ? 'Сбросить введённые данные? Это действие нельзя отменить.' : 'Reset entered data? This action cannot be undone.';
-  if (window.InteralUI?.resetPageState) {
-    await window.InteralUI.resetPageState({ message });
+  const message = lang() === 'ru'
+    ? 'Сбросить введённые данные? Это действие нельзя отменить.'
+    : 'Reset entered data? This action cannot be undone.';
+
+  if (!window.InteralUI?.resetPageState) {
+    showNotice(
+      lang() === 'ru'
+        ? 'Глобальный сброс недоступен. Перезагрузите страницу.'
+        : 'Global reset is unavailable. Reload the page.',
+      'error'
+    );
     return;
   }
-  const confirmed = await (window.InteralUI?.confirmReset?.({ message }) ?? Promise.resolve(window.confirm(message)));
-  if (!confirmed) return;
-  clearDomState();
+
+  await window.InteralUI.resetPageState({
+    message,
+    storageKeys: [
+      'altervordes-state-v1',
+      'interal_altervordes_state'
+    ]
+  });
 }
 async function evaluateAlterWord(){ const state=collectState(); validateState(state); const btn=$('checkBtn'); btn.disabled=true; btn.textContent=t().checking; showNotice(t().loading,'info'); setJsonEnabled(false); try { const { lastAnalysis: _omit, ...payload } = state; const res=await fetch(`${API_BASE}/api/alter-word-evaluate`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}); const data=await res.json().catch(()=>null); if(!res.ok || !data?.ok) throw Error(data?.error || t().apiError); lastAnalysis=data.analysis || data.result; renderAnalysis(lastAnalysis); setJsonEnabled(canCreateCard(lastAnalysis)); hideNotice(); updateResetVisibility(); } finally { btn.disabled=false; btn.textContent=t().check; } }
 function statusText(r){ if(r?.eligible) return ['ok',t().eligible]; if(r?.decision==='needs_manual_review') return ['review',t().review]; return ['bad',t().rejected]; }
