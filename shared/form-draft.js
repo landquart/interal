@@ -139,15 +139,34 @@
     };
   }
 
+  function collectPageStateExport() {
+    if (typeof window.InteralPageStateExport !== 'function') return null;
+
+    try {
+      const state = window.InteralPageStateExport();
+      if (!state || typeof state !== 'object' || Array.isArray(state)) return null;
+      return state;
+    } catch (error) {
+      console.warn('Could not export page-specific share state:', error);
+      return null;
+    }
+  }
+
   function createSharePayload() {
     const draft = collectDraft();
-
-    return {
+    const payload = {
       version: 1,
       source: 'interal-form-draft',
       path: getSharePath(),
       fields: draft.fields
     };
+    const pageState = collectPageStateExport();
+
+    if (pageState) {
+      payload.pageState = pageState;
+    }
+
+    return payload;
   }
 
   function encodeBase62Padded(value, length = 12) {
@@ -319,28 +338,32 @@
 
       return true;
     } catch (error) {
-      if (isDatabaseLimitError(error)) {
-        console.warn('Supabase insert failed; using fallback self-contained link');
+      console.warn('Could not create short share URL; using fallback self-contained link:', error);
+
+      try {
         const url = createShareUrl();
         await writeClipboard(url);
+
         setCopyButtonState(button, 'copied');
+
         clearTimeout(button._interalCopyStateTimer);
         button._interalCopyStateTimer = setTimeout(() => {
           setCopyButtonState(button, 'idle');
         }, 1600);
+
         return true;
+      } catch (fallbackError) {
+        console.warn('Could not copy fallback share URL:', fallbackError);
+
+        setCopyButtonState(button, 'failed');
+
+        clearTimeout(button._interalCopyStateTimer);
+        button._interalCopyStateTimer = setTimeout(() => {
+          setCopyButtonState(button, 'idle');
+        }, 1800);
+
+        return false;
       }
-
-      console.warn('Could not copy short share URL:', error);
-
-      setCopyButtonState(button, 'failed');
-
-      clearTimeout(button._interalCopyStateTimer);
-      button._interalCopyStateTimer = setTimeout(() => {
-        setCopyButtonState(button, 'idle');
-      }, 1800);
-
-      return false;
     }
   }
 
@@ -471,6 +494,27 @@
     } catch (_) {}
   }
 
+  function applyPageState(pageState) {
+    if (!pageState || typeof pageState !== 'object') return false;
+    if (typeof window.InteralPageStateImport !== 'function') return false;
+
+    try {
+      return window.InteralPageStateImport(pageState) !== false;
+    } catch (error) {
+      console.warn('Could not import page-specific share state:', error);
+      return false;
+    }
+  }
+
+  function applySharedPayload(payload) {
+    const fieldsApplied = payload?.fields && typeof payload.fields === 'object'
+      ? applyFields(payload.fields)
+      : false;
+    const pageStateApplied = applyPageState(payload?.pageState);
+
+    return fieldsApplied || pageStateApplied;
+  }
+
   function applyFields(fields) {
     let applied = false;
 
@@ -509,7 +553,7 @@
 
     if (!payload) return false;
 
-    const applied = applyFields(payload.fields);
+    const applied = applySharedPayload(payload);
 
     if (applied) {
       removeShareStateFromUrl();
@@ -558,7 +602,7 @@
         return false;
       }
 
-      const applied = applyFields(data.payload.fields);
+      const applied = applySharedPayload(data.payload);
 
       if (applied) {
         url.searchParams.delete('s');
