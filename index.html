@@ -14,8 +14,32 @@
     * { box-sizing: border-box; }
     body { margin: 0; font-family: "Jost", "Helvetica Neue", Helvetica, Arial, sans-serif; min-height: 100vh; padding: 16px; line-height:1.5; }
     body.homepage.has-global-menu { padding-top: 86px; }
-   .home-wrap { width:min(1240px,100%); margin: 0 auto; }
-    .hero { width:100%; border-radius:24px; overflow:hidden; margin-bottom:12px; position:relative; min-height: clamp(170px, 30vh, 280px); display:grid; place-items:center; background: var(--surface-soft); }
+   .home-wrap { width:min(1240px,100%); margin: 0 auto; display: grid; gap: 14px; }
+    .home-top { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; align-items: stretch; }
+    .hero { width:100%; border-radius:24px; overflow:hidden; position:relative; min-height: clamp(240px, 52vh, 520px); display:grid; place-items:center; background: var(--surface-soft); }
+    .home-conversation-card {
+      min-height: clamp(180px, 32vh, 360px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(24px, 4vw, 42px);
+      border-radius: var(--radius-lg);
+      background: #E7D187;
+      color: #111;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+    .home-conversation-text {
+      margin: 0;
+      font-size: clamp(1.15rem, 2vw, 1.75rem);
+      line-height: 1.34;
+      font-weight: 800;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+      white-space: pre-line;
+    }
+    .home-section { display: grid; gap: 10px; }
+    .home-section-title { margin: 2px 2px 0; color: var(--text); font-size: clamp(1.15rem, 2vw, 1.45rem); line-height: 1.2; font-weight: 800; }
     .hero-bg {
       width: 100%;
       height: 100%;
@@ -26,7 +50,7 @@
       align-self: center;
     }
     .home-brand { position:absolute; inset:0; z-index:2; display:flex; flex-direction:column; justify-content:center; align-items:center; text-decoration:none; color:#fff; gap:4px; text-align:center; padding: 24px; }
-    .home-logo { width:160px; height:160px; filter: brightness(0) invert(1); }
+    .home-logo { width: clamp(150px, 18vw, 220px); height: clamp(150px, 18vw, 220px); filter: brightness(0) invert(1); }
     .home-title { margin: 0; font-size: clamp(2rem, 4vw, 2.6rem); letter-spacing: .5px; color:#fff; text-shadow: none; }
     .homepage .container {
       width: 100%;
@@ -37,6 +61,7 @@
       gap: 12px;
       align-items: stretch;
     }
+    .homepage .registry-container { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .tool-link {
       position: relative;
       isolation: isolate;
@@ -129,28 +154,18 @@
     }
 
     @media (min-width: 980px) {
-      .home-wrap {
-        display: grid;
-        grid-template-columns: minmax(560px, 1.25fr) minmax(320px, 0.75fr);
-        gap: 14px;
-        align-items: stretch;
+      .home-top {
+        grid-template-columns: minmax(620px, 1.35fr) minmax(320px, 0.65fr);
       }
       .hero {
-        margin-bottom: 0;
-        min-height: clamp(220px, 46vh, 360px);
-        place-items: center;
+        min-height: clamp(360px, 62vh, 620px);
       }
       .hero-bg {
         justify-self: stretch;
         align-self: stretch;
-        object-position: left center;
+        object-position: center;
       }
       .home-brand { align-items: center; text-align: center; justify-content: center; padding-left: 24px; padding-right: 24px; }
-      .homepage .container {
-        grid-template-columns: 1fr;
-        gap: 10px;
-        align-self: stretch;
-      }
       .tool-link {
         min-height: 96px;
       }
@@ -195,11 +210,13 @@
       .tool-link-sub {
         font-size: .86rem;
       }
-      .hero { min-height: clamp(150px, 24vh, 230px); border-radius:22px; margin-bottom: 8px; }
+      .homepage .registry-container { grid-template-columns: 1fr; }
+      .hero { min-height: clamp(260px, 48vh, 420px); border-radius:22px; }
+      .home-conversation-card { min-height: 170px; border-radius: 22px; }
       .hero-bg { width:100%; height:100%; object-fit:cover; border-radius: inherit; }
       .home-brand { padding: 18px 12px; justify-content:center; }
-      .home-logo { width: clamp(64px, 18vw, 96px); height: clamp(64px, 18vw, 96px); }
-      .home-title { font-size: clamp(1.2rem, 5.5vw, 1.8rem); max-width: 100%; word-break: break-word; }
+      .home-logo { width: clamp(120px, 34vw, 170px); height: clamp(120px, 34vw, 170px); }
+      .home-title { font-size: clamp(1.8rem, 8vw, 2.6rem); max-width: 100%; word-break: break-word; }
     }
     body.homepage:not(.dark-theme) .hero-bg { opacity: 1; object-position: center; }
     .tool-link:hover {
@@ -228,10 +245,21 @@
 </head>
 <body class="homepage">
   <div class="home-wrap">
-     <div class="hero"><img class="hero-bg" src="elements/interal_animated_semantic_network_wavy.svg" alt="" /><a class="home-brand" href="index.html" aria-label="Interal home">
-        <img class="home-logo" src="favicon/favicon%20interal%20512.png" alt="Interal logo" />
-        <h1 class="home-title">Interal</h1>
-    </a></div><div class="container">
+    <div class="home-top">
+      <div class="hero"><img class="hero-bg" src="elements/interal_animated_semantic_network_wavy.svg" alt="" /><a class="home-brand" href="index.html" aria-label="Interal home">
+          <img class="home-logo" src="favicon/favicon%20interal%20512.png" alt="Interal logo" />
+          <h1 class="home-title">Interal</h1>
+      </a></div>
+      <div class="home-conversation-card" aria-label="National and international conversation">
+        <p class="home-conversation-text" data-i18n="home.conversationText">НАЦИОНАЛЬНАЯ БЕСЕДА
+НА НАЦИОНАЛЬНОМ ЯЗЫКЕ
+МЕЖДУНАРОДНАЯ БЕСЕДА
+НА МЕЖДУНАРОДНОМ ЯЗЫКЕ</p>
+      </div>
+    </div>
+    <section class="home-section" aria-labelledby="home-tools-title">
+      <h2 class="home-section-title" id="home-tools-title" data-i18n="home.toolsTitle">Инструменты</h2>
+      <div class="container">
 
       <a class="tool-link" href="indoeuropanvordes/" data-tool="indoeuropan">
         <span class="tool-icon-wrap"><img class="tool-icon" src="elements/indoeuropan%20vordes.svg" alt="" aria-hidden="true" /></span>
@@ -269,12 +297,18 @@
         <span class="tool-link-main" data-i18n="home.altervordesMain">Alter vordes</span>
         <span class="tool-link-sub" data-i18n="home.altervordesSub">Иные слова</span>
       </a>
+    </div>
+    </section>
+    <section class="home-section" aria-labelledby="home-registry-title">
+      <h2 class="home-section-title" id="home-registry-title" data-i18n="home.registryTitle">Реестр</h2>
+      <div class="container registry-container">
       <a class="tool-link" href="registre/" data-tool="registre">
         <span class="tool-icon-wrap"><img class="tool-icon" src="elements/registre.svg" alt="" aria-hidden="true" /></span>
         <span class="tool-link-main" data-i18n="home.registryMain">Registre of vordesen cartes</span>
         <span class="tool-link-sub" data-i18n="home.registrySub">Реестр карточек слов</span>
       </a>
-    </div>
+      </div>
+    </section>
   </div>
 
   <script src="./shared/copy-plain.js"></script>
@@ -298,7 +332,10 @@
           'home.communitiesSub': 'Слова сообществ',
           'home.grammarSub': 'Грамматические и краткие слова',
           'home.altervordesSub': 'Иные слова',
-          'home.registrySub': 'Реестр карточек слов'
+          'home.registrySub': 'Реестр карточек слов',
+          'home.toolsTitle': 'Инструменты',
+          'home.registryTitle': 'Реестр',
+          'home.conversationText': 'НАЦИОНАЛЬНАЯ БЕСЕДА\nНА НАЦИОНАЛЬНОМ ЯЗЫКЕ\nМЕЖДУНАРОДНАЯ БЕСЕДА\nНА МЕЖДУНАРОДНОМ ЯЗЫКЕ'
         },
         en: {
           'home.indoeuropanMain': 'Indoeuropan vordes',
@@ -316,7 +353,10 @@
           'home.communitiesSub': 'Words of communities',
           'home.grammarSub': 'Grammatic and brief words',
           'home.altervordesSub': 'Other words',
-          'home.registrySub': 'Registry of word cards'
+          'home.registrySub': 'Registry of word cards',
+          'home.toolsTitle': 'Tools',
+          'home.registryTitle': 'Registry',
+          'home.conversationText': 'NATIONAL CONVERSATION\nIN A NATIONAL LANGUAGE\nINTERNATIONAL CONVERSATION\nIN AN INTERNATIONAL LANGUAGE'
         }
       };
       function applyHomeI18n(lang) {
