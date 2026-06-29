@@ -132,11 +132,19 @@
       fields[element.id] = readElementValue(element);
     });
 
-    return {
+    const draft = {
       version: 1,
       path: getSharePath(),
       fields
     };
+
+    const pageState = collectPageStateExport();
+
+    if (pageState) {
+      draft.pageState = pageState;
+    }
+
+    return draft;
   }
 
   function collectPageStateExport() {
@@ -512,6 +520,15 @@
       : false;
     const pageStateApplied = applyPageState(payload?.pageState);
 
+    if (pageStateApplied) {
+      try {
+        lastSerialized = JSON.stringify(collectDraft());
+        localStorage.setItem(storageKey(), lastSerialized);
+      } catch (error) {
+        console.warn('Could not save restored page-specific state:', error);
+      }
+    }
+
     return fieldsApplied || pageStateApplied;
   }
 
@@ -598,7 +615,10 @@
         return false;
       }
 
-      if (!data.payload.fields || typeof data.payload.fields !== 'object') {
+      const hasFields = data.payload.fields && typeof data.payload.fields === 'object';
+      const hasPageState = data.payload.pageState && typeof data.payload.pageState === 'object';
+
+      if (!hasFields && !hasPageState) {
         return false;
       }
 
@@ -739,11 +759,14 @@
       return false;
     }
 
-    if (!payload || payload.path !== getSharePath() || !payload.fields || typeof payload.fields !== 'object') {
+    const hasFields = payload?.fields && typeof payload.fields === 'object';
+    const hasPageState = payload?.pageState && typeof payload.pageState === 'object';
+
+    if (!payload || payload.path !== getSharePath() || (!hasFields && !hasPageState)) {
       return false;
     }
 
-    return applyFields(payload.fields);
+    return applySharedPayload(payload);
   }
 
   function clearResetStateAfterLoad() {
