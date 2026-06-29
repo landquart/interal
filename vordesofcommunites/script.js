@@ -107,7 +107,8 @@ function getDefaultState() {
     domain: '',
     translations: { en:'', de:'', fr:'', es:'', it:'', ru:'' },
     criteria: [false, false, false],
-    answers: ['', '', '']
+    answers: ['', '', ''],
+    checked: false
   };
 }
 let state = getDefaultState();
@@ -132,7 +133,8 @@ async function makeCard(){ return createCardOnServer(makeCardDraft()); }
 function generateJson(){ openJsonModal(); }
 function renderCriteria(){ const questions = QUESTIONS[currentLang()]; return `<div class="criteria-list">${questions.map((q,i)=>`<div class="criterion"><p>${escapeHtml(q)}</p><select class="interal-select" id="ans_${i}"><option value="yes">${t('answerYes')}</option><option value="partially">${t('answerPartially')}</option><option value="no">${t('answerNo')}</option></select><input id="crit_${i}" type="checkbox" ${state.criteria[i]?'checked':''}></div>`).join('')}</div>`; }
 function renderResult() { const r = result(); byId('resultBox').innerHTML = `<span class="status-pill ${r.accepted?'ok':'bad'}">${r.accepted?t('accept'):t('reject')}</span><dl><div><dt>${t('passed')}</dt><dd>${r.passed}/${r.total}</dd></div></dl>`; }
-function render(){ renderChrome(); document.title=t('title'); byId('pageTitle').textContent=t('title'); byId('pageLead').textContent=t('lead'); byId('paramsTitle').textContent=t('params'); byId('wordLabel').textContent=t('word'); byId('posLabel').textContent=t('pos'); byId('domainLabel').textContent=t('domain'); byId('checkBtn').textContent=t('check'); byId('translationsTitle').textContent=t('translations'); byId('criteriaTitle').textContent=t('criteria'); byId('decisionTitle').textContent=t('decision'); byId('jsonBtn').textContent=t('json'); byId('resetBtn').title=t('reset'); byId('resetBtn').setAttribute('aria-label', t('reset')); byId('posInput').innerHTML=`<option value="adverb">${t('adverb')}</option><option value="noun">${t('noun')}</option><option value="adjective">${t('adjective')}</option><option value="expression">${t('expression')}</option>`; byId('posInput').value=state.part_of_speech; byId('translationsBox').innerHTML=renderTranslations(state.translations); byId('criteriaBox').innerHTML=renderCriteria(); state.answers.forEach((ans,i)=>{ if(byId(`ans_${i}`)) byId(`ans_${i}`).value=ans; }); renderResult(); updateResetButtonVisibility(); }
+function updateCheckedVisibility() { const checked = Boolean(state.checked); const accepted = checked && result().accepted; ['evidenceSection', 'criteriaSection', 'resultSection'].forEach(id => { const element = byId(id); if (element) element.hidden = !checked; }); const jsonActions = byId('jsonActions'); if (jsonActions) jsonActions.hidden = !accepted; const jsonBtn = byId('jsonBtn'); if (jsonBtn) { jsonBtn.hidden = !accepted; jsonBtn.disabled = !accepted; } }
+function render(){ renderChrome(); document.title=t('title'); byId('pageTitle').textContent=t('title'); byId('pageLead').textContent=t('lead'); byId('paramsTitle').textContent=t('params'); byId('wordLabel').textContent=t('word'); byId('posLabel').textContent=t('pos'); byId('domainLabel').textContent=t('domain'); byId('checkBtn').textContent=t('check'); byId('translationsTitle').textContent=t('translations'); byId('criteriaTitle').textContent=t('criteria'); byId('decisionTitle').textContent=t('decision'); byId('jsonBtn').textContent=t('json'); byId('resetBtn').title=t('reset'); byId('resetBtn').setAttribute('aria-label', t('reset')); byId('posInput').innerHTML=`<option value="adverb">${t('adverb')}</option><option value="noun">${t('noun')}</option><option value="adjective">${t('adjective')}</option><option value="expression">${t('expression')}</option>`; byId('posInput').value=state.part_of_speech; byId('translationsBox').innerHTML=renderTranslations(state.translations); byId('criteriaBox').innerHTML=renderCriteria(); state.answers.forEach((ans,i)=>{ if(byId(`ans_${i}`)) byId(`ans_${i}`).value=ans; }); renderResult(); updateCheckedVisibility(); updateResetButtonVisibility(); }
 
 const jsonFilename = 'community-word-card.json';
 function currentJsonText() {
@@ -161,10 +163,10 @@ function bindJsonModal() {
   document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeJsonModal(); });
   document.addEventListener('interal:languagechange', () => { readState(); render(); });
   byId('resetBtn')?.addEventListener('click', resetState);
-  byId('checkBtn')?.addEventListener('click', () => { readState(); renderResult(); updateResetButtonVisibility(); });
+  byId('checkBtn')?.addEventListener('click', () => { readState(); state.checked = true; renderResult(); updateCheckedVisibility(); updateResetButtonVisibility(); });
   byId('jsonBtn')?.addEventListener('click', generateJson);
-  byId('app')?.addEventListener('input', updateResetButtonVisibility);
-  byId('app')?.addEventListener('change', updateResetButtonVisibility);
+  byId('app')?.addEventListener('input', () => { updateResetButtonVisibility(); if (state.checked) { readState(); renderResult(); updateCheckedVisibility(); } });
+  byId('app')?.addEventListener('change', () => { updateResetButtonVisibility(); if (state.checked) { readState(); renderResult(); updateCheckedVisibility(); } });
 }
 bindJsonModal();
 render();
