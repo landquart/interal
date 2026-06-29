@@ -269,6 +269,71 @@
     body.dark-theme .tool-icon {
       filter: brightness(0) invert(1);
     }
+
+    .home-footer {
+      width: min(1240px, 100%);
+      margin: 4px auto 0;
+      padding: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      border-radius: var(--radius-lg);
+      background: color-mix(in srgb, var(--bg) 92%, var(--text) 8%);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      font-size: .92rem;
+      box-shadow: var(--shadow-sm);
+    }
+    body.dark-theme .home-footer {
+      background: color-mix(in srgb, var(--bg) 78%, #000 22%);
+    }
+    .home-footer-info {
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+    }
+    .home-footer a {
+      color: var(--text);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+    }
+    .home-footer a:hover {
+      color: var(--text-muted);
+    }
+    .home-footer-github {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      background: var(--surface-elevated);
+      border: 1px solid var(--border-subtle);
+      transition: background-color .18s ease, border-color .18s ease, transform .18s ease;
+    }
+    .home-footer-github:hover {
+      transform: translateY(-1px);
+      border-color: var(--border-control);
+      background: var(--surface-hover);
+    }
+    .home-footer-github:focus-visible {
+      outline: 2px solid var(--focus-outline);
+      outline-offset: 3px;
+      box-shadow: 0 0 0 5px var(--focus-ring);
+    }
+    .home-footer-github img {
+      width: 24px;
+      height: 24px;
+      filter: brightness(0);
+    }
+    body.dark-theme .home-footer-github img {
+      filter: brightness(0) invert(1);
+    }
   </style>
 </head>
 <body class="homepage">
@@ -346,6 +411,16 @@
       </a>
       </div>
     </section>
+    <footer class="home-footer" aria-label="Техническая информация">
+      <p class="home-footer-info">
+        <span>Иконки —</span>
+        <a href="https://www.figma.com/community/file/1166831539721848736" target="_blank" rel="noopener noreferrer">Solar Icons Set</a>
+        <span>(</span><a href="https://t.me/Design480" target="_blank" rel="noopener noreferrer">480 Design</a><span>)</span>
+      </p>
+      <a class="home-footer-github" href="https://github.com/landquart/interal" target="_blank" rel="noopener noreferrer" aria-label="GitHub repository">
+        <img src="elements/github-logo-transparent.svg" alt="GitHub" />
+      </a>
+    </footer>
   </div>
 
   <script src="./shared/copy-plain.js"></script>
