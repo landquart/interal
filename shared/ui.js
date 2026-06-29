@@ -170,7 +170,7 @@
   brandLink.className = 'top-brand';
   brandLink.href = joinUrl('index.html');
   brandLink.innerHTML = `
-    <img class="top-brand-logo" src="${joinUrl('favicon/favicon%20interal%2064.png')}" alt="Interal logo" />
+    <img class="top-brand-logo" src="${joinUrl('elements/interalen%20logo.svg')}" alt="Interal logo" />
     <span class="top-brand-text">Interal</span>
   `;
 
@@ -482,7 +482,7 @@
   function applyMobileBrandLogo() {
     const logo = brandLink.querySelector('.top-brand-logo');
     if (!logo) return;
-    logo.src = joinUrl('favicon/favicon%20interal%2064.png');
+    logo.src = joinUrl('elements/interalen%20logo.svg');
     logo.alt = 'Interal logo';
   }
 
