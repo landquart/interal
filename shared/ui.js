@@ -567,6 +567,7 @@
 
     url.searchParams.delete('s');
     url.searchParams.delete('state');
+    url.searchParams.delete('sid');
 
     if (/state=/.test(url.hash)) {
       url.hash = '';
