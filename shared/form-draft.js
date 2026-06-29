@@ -14,7 +14,7 @@
   let lastSerialized = '';
 
   function isInstrumentPage() {
-    return /\/(indoeuropanvordes|associativvordes|determinatorofvalentyp|internationalismes|vordesofcommunites|grammaticebrevivordes)\//.test(window.location.pathname);
+    return /\/(indoeuropanvordes|associativvordes|determinatorofvalentyp|internationalismes|vordesofcommunites|grammaticebrevivordes|altervordes)\//.test(window.location.pathname);
   }
 
   if (!isInstrumentPage()) return;
@@ -395,7 +395,9 @@
           key.startsWith(DRAFT_PREFIX) ||
           key.startsWith('interal.pageState:') ||
           key === 'interal_associative_state' ||
-          key === 'determinator-valentyp-state-v1'
+          key === 'determinator-valentyp-state-v1' ||
+          key === 'altervordes-state-v1' ||
+          key === 'interal_altervordes_state'
         ) {
           localStorage.removeItem(key);
         }
