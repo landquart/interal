@@ -2,7 +2,15 @@
   "id": "interal-derivation-context",
   "version": "2026-06-29",
   "language": "en",
+  "sourceDocuments": [
+    {
+      "title": "Interal grammar",
+      "scope": "word formation, endings, suffixes, prefixes, and modified de Wahl rule"
     },
+    {
+      "title": "Interal semantic transparency document",
+      "scope": "logical vs international derivative meanings and lexicalization risks"
+    }
   ],
   "purpose": {
     "tool": "Alter vordes",
@@ -52,6 +60,7 @@
     }
   },
   "modifiedDeWahlRule": {
+    "warning": "The modified de Wahl rule must not be applied as blind string replacement only. The evaluator must check the natural derivative theme, consonant compatibility, and whether a conservative or modified root is required for logical vs international meaning.",
     "scope": [
       "Use for deriving nouns/adjectives and suffixal derivatives from verbs, especially with suffixes -ion, -iv, -or, -oria, -ori, -ura, -al and some noun/adjective formations.",
       "Use for Alter vordes when checking whether a candidate can function as a verb or generate a derivational family."
@@ -1444,6 +1453,7 @@
       "derivation.appliedRules",
       "derivation.deWahlRuleNotes",
       "derivation.suffixAndEndingNotes",
+      "derivation.ruleSourceVersion",
       "analysis.derivationalPotential",
       "analysis.interalRuleCompatibility"
     ]

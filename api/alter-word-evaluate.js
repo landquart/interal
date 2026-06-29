@@ -1,3 +1,9 @@
+import { readFileSync } from 'node:fs';
+
+const DERIVATION_CONTEXT = JSON.parse(
+  readFileSync(new URL('./interal-derivation-context.json', import.meta.url), 'utf8')
+);
+
 const MAX_BODY_BYTES = 50_000;
 const MODEL_NAME = 'qwen3-235b-a22b-fp8/latest';
 const YANDEX_CHAT_COMPLETIONS_URL = 'https://ai.api.cloud.yandex.net/v1/chat/completions';
@@ -19,15 +25,45 @@ function normalize(r,input,model){const decision=DECISIONS.has(r?.decision)?r.de
   recommendedForm:String(r?.recommendedForm||input.candidate), partOfSpeech:POS_VALUES.has(r?.partOfSpeech)?r.partOfSpeech:input.partOfSpeech, inputTranslation:String(r?.inputTranslation||input.translation),
   translations:{ controlLanguages:stringMap(r?.translations?.controlLanguages,CONTROL_CODES), auxiliaryLanguages:stringMap(r?.translations?.auxiliaryLanguages,AUX_CODES) },
   analysis:{ brevity:String(r?.analysis?.brevity||''), pronounceability:String(r?.analysis?.pronounceability||''), conflicts:String(r?.analysis?.conflicts||''), neutrality:String(r?.analysis?.neutrality||''), controlAndAuxiliaryEvidence:String(r?.analysis?.controlAndAuxiliaryEvidence||''), partOfSpeechSuitability:String(r?.analysis?.partOfSpeechSuitability||''), derivationalPotential:String(r?.analysis?.derivationalPotential||''), interalRuleCompatibility:String(r?.analysis?.interalRuleCompatibility||'') },
-  derivation:{ canFormVerb:Boolean(r?.derivation?.canFormVerb), canFormNoun:Boolean(r?.derivation?.canFormNoun), canFormAdjective:Boolean(r?.derivation?.canFormAdjective), possibleDerivations:Array.isArray(r?.derivation?.possibleDerivations)?r.derivation.possibleDerivations.map(String).slice(0,24):[], deWahlRuleNotes:String(r?.derivation?.deWahlRuleNotes||''), suffixAndEndingNotes:String(r?.derivation?.suffixAndEndingNotes||'') },
+  derivation:{
+    canFormVerb:Boolean(r?.derivation?.canFormVerb),
+    canFormNoun:Boolean(r?.derivation?.canFormNoun),
+    canFormAdjective:Boolean(r?.derivation?.canFormAdjective),
+    possibleDerivations:Array.isArray(r?.derivation?.possibleDerivations)?r.derivation.possibleDerivations.map(String).slice(0,24):[],
+    appliedRules:Array.isArray(r?.derivation?.appliedRules)?r.derivation.appliedRules.map(String).slice(0,20):[],
+    deWahlRuleNotes:String(r?.derivation?.deWahlRuleNotes||''),
+    suffixAndEndingNotes:String(r?.derivation?.suffixAndEndingNotes||''),
+    ruleSourceVersion:String(r?.derivation?.ruleSourceVersion||DERIVATION_CONTEXT.version||'')
+  },
   risks:Array.isArray(r?.risks)?r.risks.map(String).slice(0,12):[], suggestedSaferForms:Array.isArray(r?.suggestedSaferForms)?r.suggestedSaferForms.map(String).slice(0,2):[], shortConclusion:String(r?.shortConclusion||'').slice(0,1600), finalDecisionByHuman:true,
   model:{ name:model, role:'advisory evaluator', finalDecisionByHuman:true }
 };}
-const SYSTEM_PROMPT = `You are an expert evaluator for the Interal auxiliary language. You analyze only Alter vordes: words that failed the five main lexical selection procedures and therefore require an additional qualitative evaluation. You must not calculate percentages or numeric scores. You must perform a qualitative analysis based on brevity, pronounceability, absence of conflicts, neutral form, control-language and auxiliary-language evidence, and derivational potential according to Interal word-formation rules.
+const SYSTEM_PROMPT = `You are an expert evaluator for the Interal auxiliary language.
 
-You must translate the user's single input meaning into the control languages and auxiliary languages. You must evaluate the candidate Interal form as a possible final form. The final decision is advisory, but the UI may allow JSON card creation only if your answer marks the word as eligible.
+You analyze only Alter vordes: words that failed the five main lexical selection procedures and therefore require an additional qualitative evaluation.
 
-You must pay special attention to Interal grammar: modified de Wahl rule, word formation, endings, suffixes, prefixes, derivation from verbs, possible nouns/adjectives/verbs, and conflicts with existing Interal derivational logic. Do not invent unsupported rules. If something is uncertain, mark it as uncertain.
+You must not calculate percentages or numeric scores.
+
+You must use the following Interal derivation context as binding rules. This context is extracted from the Interal grammar and the semantic transparency document. Do not ignore it. Do not invent rules that contradict it.
+
+INTERAL_DERIVATION_CONTEXT:
+${JSON.stringify(DERIVATION_CONTEXT, null, 2)}
+
+Core obligations:
+1. Translate the user's single input meaning into control languages and auxiliary languages.
+2. Evaluate the candidate Interal form qualitatively.
+3. Pay special attention to future derivation.
+4. Check compatibility with:
+   - modified de Wahl rule;
+   - Interal endings;
+   - suffixes and prefixes;
+   - logical vs international derivative meanings;
+   - possible need for -u, -i, -al, -ari, -ic;
+   - semantic transparency and lexicalization risks.
+5. If the candidate form cannot support a stable derivative family, mark it as rejected or needs_manual_review.
+6. If the candidate form creates unresolved logical vs international ambiguity, mark it as rejected or needs_manual_review.
+7. If the derivational risk is serious, eligible must be false.
+8. The final decision is advisory and finalDecisionByHuman must be true.
 
 Return only valid JSON. No markdown. No explanations outside JSON.`;
 function userPrompt(input){return `Evaluate this candidate word for Interal Alter vordes.
@@ -49,8 +85,50 @@ Tasks:
 2. Translate the input meaning into all auxiliary languages: Polish, Swedish, Catalan, Occitan, Romanian.
 3. Analyze whether the candidate Interal form can be accepted as an Alter vordes form.
 4. Evaluate the form qualitatively by brevity, pronounceability, semantic and phonetic/graphic conflicts, neutrality, part of speech, future derivational potential, Interal endings, suffixes and prefixes, modified de Wahl rule if relevant, and whether the root allows natural derivations without excessive distortion.
-5. Do not create alternative forms unless the candidate is clearly unsuitable. If unsuitable, suggest at most 2 safer forms.
-6. Return whether JSON card creation should be allowed.
+5. Use INTERAL_DERIVATION_CONTEXT from the system prompt as binding context.
+6. In derivation.appliedRules, explicitly list which Interal rules were relevant.
+7. In derivation.deWahlRuleNotes, explain whether the candidate is compatible with the modified de Wahl rule.
+8. In derivation.suffixAndEndingNotes, explain relevant suffix/ending behavior.
+9. If the form has serious derivational risk, unresolved ambiguity, or rule conflict, set eligible false.
+10. Do not create alternative forms unless the candidate is clearly unsuitable. If unsuitable, suggest at most 2 safer forms.
+11. Return whether JSON card creation should be allowed.
 
-Output only valid JSON using the requested schema with decision accepted, rejected, or needs_manual_review. eligible must be true only for accepted forms. Do not output numeric scores or markdown.`;}
+Output only valid JSON using this schema shape:
+{
+  "decision": "accepted | rejected | needs_manual_review",
+  "eligible": false,
+  "recommendedForm": "",
+  "partOfSpeech": "",
+  "inputTranslation": "",
+  "translations": {
+    "controlLanguages": { "en": "", "de": "", "fr": "", "es": "", "it": "", "ru": "", "el": "" },
+    "auxiliaryLanguages": { "pl": "", "sv": "", "ca": "", "oc": "", "ro": "" }
+  },
+  "analysis": {
+    "brevity": "",
+    "pronounceability": "",
+    "conflicts": "",
+    "neutrality": "",
+    "controlAndAuxiliaryEvidence": "",
+    "partOfSpeechSuitability": "",
+    "derivationalPotential": "",
+    "interalRuleCompatibility": ""
+  },
+  "derivation": {
+    "canFormVerb": true,
+    "canFormNoun": true,
+    "canFormAdjective": true,
+    "possibleDerivations": [],
+    "appliedRules": [],
+    "deWahlRuleNotes": "",
+    "suffixAndEndingNotes": "",
+    "ruleSourceVersion": ""
+  },
+  "risks": [],
+  "suggestedSaferForms": [],
+  "shortConclusion": "",
+  "finalDecisionByHuman": true
+}
+
+Decision must be accepted, rejected, or needs_manual_review. eligible must be true only for accepted forms. Do not output numeric scores or markdown.`;}
 export default async function handler(req,res){cors(req,res); if(req.method==='OPTIONS'){res.statusCode=204;return res.end();} try{if(req.method!=='POST')return send(res,405,{ok:false,error:'Method not allowed'}); if(!process.env.Qwen3_235B_A22B_Instruct_2507_FP8_Yandex)return send(res,500,{ok:false,error:'Missing Yandex API key',details:'Set Qwen3_235B_A22B_Instruct_2507_FP8_Yandex in Vercel Environment Variables.'}); if(!process.env.yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8)return send(res,500,{ok:false,error:'Missing Yandex folder id',details:'Set yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8 in Vercel Environment Variables.'}); const input=validate(await body(req)); const messages=[{role:'system',content:SYSTEM_PROMPT},{role:'user',content:userPrompt(input)}]; let result; try{result=await callYandex(messages,true);}catch(error){if(error.status&&error.status>=400&&error.status<500)result=await callYandex(messages,false); else throw error;} return send(res,200,{ok:true,analysis:normalize(extract(result.content),input,result.model)});}catch(e){const status=e.status&&e.status>=400&&e.status<600?e.status:500; return send(res,status,{ok:false,error:status<500?e.message:'alter_word_evaluate_failed',details:String(e.details||e.message||e).slice(0,1200)});} }
