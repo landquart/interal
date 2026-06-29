@@ -33,13 +33,30 @@
 }
 
 .altervordes-page .params-panel {
-  padding-top: 58px;
+  padding-top: 18px;
 }
 
 .altervordes-page .params-panel,
 .altervordes-page .decision-summary {
   display: grid;
   gap: 14px;
+}
+
+
+.altervordes-page .params-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.altervordes-page .params-header h2 {
+  margin: 0;
+}
+
+.altervordes-page .params-header .card-tools {
+  position: static;
+  flex: 0 0 auto;
 }
 
 .altervordes-page .params-grid {
