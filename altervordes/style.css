@@ -27,8 +27,13 @@
 }
 
 .altervordes-page .vord-panel {
+  position: relative;
   width: 100%;
   padding: 18px;
+}
+
+.altervordes-page .params-panel {
+  padding-top: 58px;
 }
 
 .altervordes-page .params-panel,
