@@ -1,0 +1,1451 @@
+{
+  "id": "interal-derivation-context",
+  "version": "2026-06-29",
+  "language": "en",
+    },
+  ],
+  "purpose": {
+    "tool": "Alter vordes",
+    "task": "Evaluate whether an Interal candidate form can be accepted for a word that failed the five main lexical selection procedures.",
+    "important": [
+      "Do not calculate numeric scores or percentages in the UI.",
+      "Use these rules as binding background for qualitative analysis.",
+      "Focus on future derivational potential, compatibility with Interal morphology, and risks of semantic opacity or conflict."
+    ]
+  },
+  "coreEvaluationQuestions": [
+    "Can the candidate form generate useful nouns, adjectives, verbs, and abstract/action/result derivatives without excessive distortion?",
+    "Does the candidate form fit Interal word endings and ordinary spelling/phonological patterns?",
+    "If the form is or can become a verb, does it fit the modified de Wahl derivation logic?",
+    "Does the candidate create ambiguous or conflicting logical vs international meanings?",
+    "Does the form require marking with -u or a special adjective suffix to separate international meaning from logical meaning?",
+    "Can the candidate support derivatives by regular suffixes/prefixes without producing unnatural, misleading, or hard-to-learn forms?",
+    "Does the form avoid collisions with existing Interal forms or predictable forms created by regular rules?"
+  ],
+  "partOfSpeechBasics": {
+    "nouns": {
+      "defaultEnding": "-e is optional and neutral",
+      "notes": [
+        "A noun can be formed from a verb in several equal ways, e.g. nomin(ar) -> nomina, nomin, nomine.",
+        "The ending -u is not a normal replaceable noun ending; it marks international meaning in certain double-meaning derivatives and must not be dropped when adding suffixes.",
+        "For living beings: -o masculine, -a feminine, -e neutral; a form without ending may also be neutral.",
+        "Plural is -(e)s: -es after consonants; -s after vowels and final c."
+      ]
+    },
+    "adjectives": {
+      "defaultFormation": "Adjectives can be formed with suffixes -al, -ari, -ic, -osi, -in, -aci, -esc, -ori, -id, -il, -inal, or by adding -i / no ending when suffix choice is uncertain.",
+      "notes": [
+        "-al expresses relation.",
+        "-ari expresses correspondence/relevance to something.",
+        "-ic expresses character/type.",
+        "-osi expresses having/containing something.",
+        "Because adjective suffix meanings overlap, -i or zero ending may replace a suffix if the naturalized suffix would be uncertain.",
+        "International adjective meanings often keep natural suffixes such as -al, -ari, -ic; logical adjective meanings can use -i."
+      ]
+    },
+    "verbs": {
+      "infinitive": "Infinitive adds -r; before -r the stem normally has -a, -e, or -i: crear, comprender, audir. Some roots use -n plus -a: printan, manajan, drinkan.",
+      "present": "Present tense removes -r or -n from infinitive.",
+      "past": "Past adds -t to present or uses did.",
+      "future": "Future uses vill + infinitive.",
+      "conditional": "Conditional uses vud + infinitive."
+    }
+  },
+  "modifiedDeWahlRule": {
+    "scope": [
+      "Use for deriving nouns/adjectives and suffixal derivatives from verbs, especially with suffixes -ion, -iv, -or, -oria, -ori, -ura, -al and some noun/adjective formations.",
+      "Use for Alter vordes when checking whether a candidate can function as a verb or generate a derivational family."
+    ],
+    "baseRules": [
+      {
+        "condition": "Infinitive ends in -er",
+        "operation": "remove -er and add the required suffix; then apply final-root transformations below if relevant",
+        "examples": [
+          "opiner -> opinion",
+          "rebeller -> rebellion, rebellere",
+          "graver -> gravura, gravere",
+          "obliver -> oblivion"
+        ]
+      },
+      {
+        "condition": "Infinitive ends in -an",
+        "operation": "remove -an and add the required suffix",
+        "examples": [
+          "flexan -> flexion",
+          "printan -> printer"
+        ]
+      },
+      {
+        "condition": "After removing -er the root ends in a vowel",
+        "operation": "add -t before the derivational suffix",
+        "examples": [
+          "diluer -> dilut- -> dilution"
+        ]
+      },
+      {
+        "condition": "After removing -er the root ends in c or x or p",
+        "operation": "keep the consonant and add -t before the suffix",
+        "examples": [
+          "ducer -> duct- -> duction, conductor",
+          "secer -> sect- -> section, sector",
+          "texer -> text- -> textura",
+          "mixer -> mixt- -> mixtura",
+          "interruper -> interrupt- -> interruption, interruptor",
+          "receper -> recept- -> reception, receptor"
+        ]
+      },
+      {
+        "condition": "After removing -er the root ends in d",
+        "operation": "replace d with s",
+        "examples": [
+          "decider -> decis- -> decision"
+        ]
+      },
+      {
+        "condition": "After removing -er the root ends in r",
+        "operation": "replace r with s",
+        "examples": [
+          "adherer -> adhes- -> adhesion",
+          "currer -> curs- -> cursor, cursiv"
+        ]
+      },
+      {
+        "condition": "After removing -er the root ends in consonant + g",
+        "operation": "replace g with s",
+        "examples": [
+          "emulger -> emuls- -> emulsion",
+          "merger -> mers- -> mersion"
+        ]
+      },
+      {
+        "condition": "After removing -er the root ends in b",
+        "operation": "replace b with pt",
+        "examples": [
+          "scriber -> script- -> scription, scriptor",
+          "absorber -> absorpt- -> absorption"
+        ]
+      },
+      {
+        "condition": "After removing -er the root ends in vowel + g, or h, or y",
+        "operation": "replace final segment with ct",
+        "examples": [
+          "ager -> act- -> action, actor",
+          "traher -> tract- -> tractor, attraction, contract",
+          "abstraher -> abstract- -> abstraction",
+          "distinyer -> distinct- -> distinction"
+        ]
+      },
+      {
+        "condition": "Infinitive ends in -ar or -ir",
+        "operation": "remove final -r and replace it with -t",
+        "examples": [
+          "observar -> observat- -> observator, observatoria, observation",
+          "dictar -> dictat- -> dictator, dictatura, diction",
+          "audir -> audit- -> auditor, auditoria",
+          "expedir -> expedit- -> expedition, expeditor"
+        ]
+      }
+    ],
+    "exceptions": [
+      {
+        "infinitive": "seder",
+        "perfectTheme": "sess-",
+        "meaning": "sit",
+        "alternative": "sesser"
+      },
+      {
+        "infinitive": "mover",
+        "perfectTheme": "mot-",
+        "meaning": "move",
+        "alternative": "moter"
+      },
+      {
+        "infinitive": "venir",
+        "perfectTheme": "vent-",
+        "meaning": "come",
+        "alternative": "venter"
+      },
+      {
+        "infinitive": "sentir",
+        "perfectTheme": "sens-",
+        "meaning": "feel",
+        "alternative": "senser"
+      },
+      {
+        "infinitive": "cognoscer",
+        "perfectTheme": "cognit-",
+        "meaning": "know",
+        "alternative": "cogniter"
+      },
+      {
+        "infinitive": "morir",
+        "perfectTheme": "mort-",
+        "meaning": "die",
+        "alternative": "morter"
+      },
+      {
+        "infinitive": "aperir",
+        "perfectTheme": "apert-",
+        "meaning": "open",
+        "alternative": "aperter"
+      },
+      {
+        "infinitive": "experir",
+        "perfectTheme": "expert-",
+        "meaning": "experience/try",
+        "alternative": "experter"
+      },
+      {
+        "infinitive": "coverir",
+        "perfectTheme": "covert-",
+        "meaning": "cover",
+        "alternative": "coverter"
+      },
+      {
+        "infinitive": "presider",
+        "perfectTheme": "presiss-",
+        "meaning": "be president",
+        "alternative": "presisser"
+      },
+      {
+        "infinitive": "friger",
+        "perfectTheme": "fris-",
+        "meaning": "be cold/freeze",
+        "alternative": "friser"
+      },
+      {
+        "infinitive": "posseder",
+        "perfectTheme": "possess-",
+        "meaning": "possess",
+        "alternative": "possesser"
+      },
+      {
+        "infinitive": "merer",
+        "perfectTheme": "mens-",
+        "meaning": "measure",
+        "alternative": "menser"
+      },
+      {
+        "infinitive": "-ceder",
+        "perfectTheme": "-cess-",
+        "meaning": "root component",
+        "alternative": "-cesser"
+      },
+      {
+        "infinitive": "-verter",
+        "perfectTheme": "-vers-",
+        "meaning": "root component",
+        "alternative": "-verser"
+      },
+      {
+        "infinitive": "-mitter",
+        "perfectTheme": "-miss-",
+        "meaning": "root component",
+        "alternative": "-misser"
+      }
+    ],
+    "alternativeForms": {
+      "principle": "Root-changing rules may be avoided in practice by using alternative forms based on the derived/perfect theme. Exceptions and alternative forms are equivalent.",
+      "examples": [
+        "deciser instead of decider",
+        "adheser instead of adherer",
+        "emulser instead of emulger",
+        "ducter instead of ducer",
+        "texter instead of texer",
+        "interrupter instead of interruper",
+        "scripter instead of scriber",
+        "acter instead of ager",
+        "tracter instead of traher",
+        "distincter instead of distinyer"
+      ]
+    },
+    "notes": [
+      "Root change or -t insertion applies only with suffixes -ion, -iv, -or, -oria, -ori, -ura, -al.",
+      "Root change or -t insertion also applies when forming a noun by adding -e or zero ending, or an adjective without suffix: morir -> mort(e), dictar -> dictate/dicta/dict(e), formar -> formate/forma/form(e), sentir -> sens(e), reger -> rect(i).",
+      "If an -er verb has a vowel-final root, the noun is formed by removing -er and adding -t: instituer -> institut.",
+      "If an infinitive ends in -an, noun formation replaces -an by -e or removes it; final -n is not simply removed: printan -> printe/print, flexan -> flexe/flex.",
+      "Nouns from verbs whose roots end in d or r preferably use the present theme, but the perfect theme is allowed: responder -> respond(e)/respons(e), seder -> sede, referer -> refer, transferer -> transfer.",
+      "-t and -an may be added to verbs ending in -ar and -ir: moderar -> moderatan, finir -> finitan.",
+      "Avoid forms that create confusion, e.g. dicta from dicter can be confused with dictar -> dicta.",
+      "Prefixed verbs derived from exception verbs inherit the exception."
+    ],
+    "verbTypes": {
+      "byRoot": [
+        "One-root verbs: end in -ar, -ir, or -er when the root ends in t or s, except -mitter and sentir; examples: combinar -> combinat-, audir -> audit-, posser -> poss-, constructer -> construct-.",
+        "Two-root verbs: -er verbs with present theme ending in c, g, b, p, d, r plus -mitter and sentir; examples: ducer -> duct-, ager -> act-, scriber -> script-, receper -> recept-, responder -> respons-, adherer -> adhes-, -mitter -> miss-, sentir -> sens-."
+      ],
+      "byForm": [
+        "Two forms for one-root verbs: calcular -> calculatan, finir -> finitan, posser -> possan.",
+        "Three forms for two-root verbs: facer -> facter -> factan, reger -> recter -> rectan, absorber -> absorpter -> absorptan, caper -> capter -> captan, tender -> tenser -> tensan, currer -> curser -> cursan."
+      ],
+      "specialExamples": [
+        "formater/formatan from formar",
+        "repetiter/repetitan from repetir",
+        "cultivater/cultivatan from cultivar"
+      ]
+    }
+  },
+  "generalWordFormation": {
+    "aprioriDerivatives": "Words are formed by Interal rules, so apriori derivatives created inside word formation are allowed.",
+    "adjectiveSuffixWarning": "When adjective suffixes such as -al, -ic, -ari are used, the specific suffix often must be learned; if uncertain, use -i instead.",
+    "compounds": {
+      "rule": "Compound words are formed by simple fusion of words; the head is at the end.",
+      "linkingVowels": [
+        "-o may be inserted for euphony",
+        "-i may be inserted if the first root adds -ir to form a verb; otherwise use -o"
+      ],
+      "hyphen": "A hyphen may be used between words.",
+      "examples": [
+        "Scrib-table",
+        "Aeroplan / Aer-o-plan",
+        "Uniforma / Un-i-forma from unir"
+      ]
+    }
+  },
+  "doubleMeaningAndSemanticTransparency": {
+    "principle": "Derivatives can have both a logical/compositional meaning and an international/naturalized meaning. These must be separated when ambiguity is significant.",
+    "spectrum": [
+      "full compositionality",
+      "partial compositionality",
+      "semantic extension",
+      "transfer",
+      "semantic conventionalization",
+      "lexicalization"
+    ],
+    "diagnostics": {
+      "predictability": "Can the accepted meaning be inferred from components and Interal rules without prior knowledge?",
+      "relationality": "Is there a semantic relation between the logical component meaning and the international meaning?",
+      "chainComplexity": "How many semantic steps are needed from logical meaning to accepted/international meaning?",
+      "externalKnowledgeDependence": "Does comprehension require history, idiom, traditional usage, or field-specific knowledge?"
+    },
+    "markingRules": [
+      "Nouns with international meaning receive -u.",
+      "Adjectives with international meaning receive a natural suffix such as -al, -ari, -ic; adjectives with logical meaning use -i.",
+      "Verbs and some nouns with international meaning keep the conservative root without adding/changing final root letters, e.g. obseder, projecer.",
+      "Verbs with logical meaning use the modified root basis, e.g. obsesser, projecter.",
+      "If there is no double root basis, one verb may carry both meanings, or the international verb can use suffix + -ar, e.g. repetitionar.",
+      "Endings used to distinguish meanings cannot be replaced by -e: projectu cannot become projecte, while project can.",
+      "When affixes are added to irregular derivatives, the meaning is the sum of the affix and the irregular derivative, unless an exception is specified."
+    ],
+    "examples": [
+      {
+        "logical": "obsession = sitting/opposite session; obsesser = sit opposite",
+        "international": "obsessionu = obsession; obseder = be obsessed",
+        "zone": "transfer"
+      },
+      {
+        "logical": "repetition = repeated request; repetir = request again/rehearse",
+        "international": "repetitionu = rehearsal; repetitionar = rehearse",
+        "zone": "semantic extension"
+      },
+      {
+        "logical": "radici = root-related",
+        "international": "radical = radical/principled",
+        "zone": "semantic extension/transfer"
+      },
+      {
+        "logical": "idei = idea-related",
+        "international": "ideal = ideal",
+        "zone": "semantic extension"
+      },
+      {
+        "logical": "project = throw beyond",
+        "international": "projectu = project",
+        "zone": "semantic conventionalization/lexicalization risk"
+      }
+    ],
+    "alterVordesUse": [
+      "For Alter vordes, do not introduce a form that will create unresolved logical vs international ambiguity.",
+      "If a candidate naturally invites a logical derivative but the target meaning is internationalized, use the appropriate marking strategy or require manual review.",
+      "Prefer a form whose future derivative family remains interpretable or whose opacity is explicitly manageable."
+    ]
+  },
+  "suffixInventory": {
+    "selectionRule": "If a suffix varies by Romance infinitive endings (-ar, -er, -ir), forms beginning with a are used for -an infinitives: -antia, -anda, -ada, -ant, -abil.",
+    "nounSuffixes": [
+      {
+        "suffix": "-er, -or",
+        "meaning": "person with quality/occupation; instrument/object",
+        "notes": "After t or s use -or with -er verbs.",
+        "examples": [
+          "older",
+          "accumulator",
+          "calculator",
+          "actor",
+          "creator"
+        ]
+      },
+      {
+        "suffix": "-ilo",
+        "meaning": "instrument/object",
+        "examples": [
+          "scribilo"
+        ]
+      },
+      {
+        "suffix": "-antia, -entia",
+        "meaning": "noun from verb",
+        "notes": "-entia after -er and -ir; with -ir remove only -r.",
+        "examples": [
+          "cognosser -> cognossentia",
+          "dissonar -> dissonantia",
+          "audir -> audientia"
+        ]
+      },
+      {
+        "suffix": "-ari",
+        "meaning": "person occupied with or possessing something",
+        "examples": [
+          "millionarie",
+          "bibliotecarie"
+        ]
+      },
+      {
+        "suffix": "-astr",
+        "meaning": "pejorative person/profession suffix",
+        "examples": [
+          "poetastre",
+          "medicastre"
+        ]
+      },
+      {
+        "suffix": "-aj",
+        "meaning": "made of/consisting of/having character; collection; unit of measurement",
+        "examples": [
+          "plumaj",
+          "voltaj"
+        ]
+      },
+      {
+        "suffix": "-ist",
+        "meaning": "profession or adherence to movement/direction",
+        "notes": "After i changes to -ast.",
+        "examples": [
+          "traktorist",
+          "programmist",
+          "enthusiast"
+        ]
+      },
+      {
+        "suffix": "-ism",
+        "meaning": "movement, doctrine, religion, abstract concept or result",
+        "notes": "After i changes to -asm.",
+        "examples": [
+          "communism",
+          "atheism",
+          "enthusiasm"
+        ]
+      },
+      {
+        "suffix": "-eria",
+        "meaning": "place where an action/activity happens",
+        "notes": "After t and s use -oria, except -an verbs.",
+        "examples": [
+          "pizzeria",
+          "libreria",
+          "observatoria",
+          "decisoria",
+          "printan -> printeria"
+        ]
+      },
+      {
+        "suffix": "-essa",
+        "meaning": "female gender",
+        "examples": [
+          "prinsessa",
+          "poetessa"
+        ]
+      },
+      {
+        "suffix": "-anda, -enda",
+        "meaning": "necessity/obligation to be or undergo something",
+        "notes": "-end after -er and -ir; i remains in -ir.",
+        "examples": [
+          "leyenda",
+          "dividendi",
+          "propaganda",
+          "audir -> audiend"
+        ]
+      },
+      {
+        "suffix": "-inda",
+        "meaning": "worthy/deserving to be",
+        "examples": [
+          "lectindi",
+          "amindi"
+        ]
+      },
+      {
+        "suffix": "-ede",
+        "meaning": "quantity filling something",
+        "examples": [
+          "manuede",
+          "bokede"
+        ]
+      },
+      {
+        "suffix": "-ina",
+        "meaning": "diminutive/affectionate",
+        "examples": [
+          "katina"
+        ]
+      },
+      {
+        "suffix": "-ia",
+        "meaning": "abstract concept, ideology, science",
+        "examples": [
+          "geographia",
+          "demokratia"
+        ]
+      },
+      {
+        "suffix": "-etta",
+        "meaning": "diminution/weakening",
+        "examples": [
+          "statuetta",
+          "cigaretta"
+        ]
+      },
+      {
+        "suffix": "-ona",
+        "meaning": "augmentative/large",
+        "examples": [
+          "haussona",
+          "pluvona"
+        ]
+      },
+      {
+        "suffix": "-ell",
+        "meaning": "young animal/offspring",
+        "examples": [
+          "catelle",
+          "leonelle"
+        ]
+      },
+      {
+        "suffix": "-it/á",
+        "meaning": "concrete manifestation of object/concept/quality/action",
+        "notes": "i -> e if root ends in i before suffix; if root ends in -er, add only -ta; adjective suffixes may optionally be retained before -ita.",
+        "examples": [
+          "interessitá",
+          "possibilitá",
+          "anxieta",
+          "liberta",
+          "poverta"
+        ]
+      },
+      {
+        "suffix": "-ada, -ida",
+        "meaning": "continuous action",
+        "notes": "-ada for -ar verbs; -ida for -ir and -er verbs.",
+        "examples": [
+          "promenada",
+          "babillar -> babillada",
+          "audir -> audida",
+          "currer -> currida"
+        ]
+      },
+      {
+        "suffix": "-ura",
+        "meaning": "result of action",
+        "examples": [
+          "dictatura",
+          "piktura"
+        ]
+      },
+      {
+        "suffix": "-ic",
+        "meaning": "person with disease/dependence",
+        "notes": "Prefer with -o or -a to avoid confusion with adjective.",
+        "examples": [
+          "alcoholico",
+          "skizophrenica"
+        ]
+      },
+      {
+        "suffix": "-ion",
+        "meaning": "process/result of action",
+        "examples": [
+          "kombination",
+          "diction"
+        ]
+      },
+      {
+        "suffix": "-ica",
+        "meaning": "knowledge, discipline, practice or activity",
+        "examples": [
+          "physica",
+          "critica"
+        ]
+      },
+      {
+        "suffix": "-arium",
+        "meaning": "collection/aggregate",
+        "examples": [
+          "poemarium",
+          "aquarium"
+        ]
+      },
+      {
+        "suffix": "-an",
+        "meaning": "inhabitant/member; also language name",
+        "examples": [
+          "africane",
+          "europane",
+          "italian = Italian language; italan = inhabitant of Italy"
+        ]
+      },
+      {
+        "suffix": "-yer",
+        "meaning": "container/receptacle",
+        "examples": [
+          "supyer",
+          "paperyer"
+        ]
+      },
+      {
+        "suffix": "-ache",
+        "meaning": "pejorative",
+        "examples": [
+          "cavallache",
+          "haussache"
+        ]
+      },
+      {
+        "suffix": "-id",
+        "meaning": "descendant",
+        "examples": [
+          "regid",
+          "napoleonid"
+        ]
+      },
+      {
+        "suffix": "-ese",
+        "meaning": "language",
+        "examples": [
+          "china -> chinese"
+        ]
+      },
+      {
+        "suffix": "-ant, -ent",
+        "meaning": "agent/doer",
+        "notes": "-ant with -ar verbs; -ent with -er verbs.",
+        "examples": [
+          "occupant",
+          "respondent"
+        ]
+      },
+      {
+        "suffix": "-um",
+        "meaning": "abstract noun",
+        "examples": [
+          "novum",
+          "bellum"
+        ]
+      },
+      {
+        "suffix": "-ment",
+        "meaning": "result of action",
+        "notes": "Remove only -r or -n; if two vowels remain after removing -r, drop the last one.",
+        "examples": [
+          "guvernar -> guvernament",
+          "mover -> movement",
+          "experir -> experiment",
+          "arguer -> argument",
+          "compleer -> complement"
+        ]
+      },
+      {
+        "suffix": "-ia",
+        "meaning": "country/province with main nation",
+        "notes": "When the same spelling has multiple suffix meanings, -e may distinguish one meaning.",
+        "examples": [
+          "francia",
+          "germania",
+          "teoria -> teorie"
+        ]
+      },
+      {
+        "suffix": "-oid",
+        "meaning": "similar to",
+        "examples": [
+          "negroid",
+          "elypsoid"
+        ]
+      },
+      {
+        "suffix": "-meyt",
+        "meaning": "person in same collective/group",
+        "examples": [
+          "rummeyt",
+          "classmeyt"
+        ]
+      },
+      {
+        "suffix": "-ing",
+        "meaning": "activity/occupation",
+        "examples": [
+          "marketing",
+          "shoping"
+        ]
+      },
+      {
+        "suffix": "-it/é",
+        "meaning": "aggregate of people",
+        "notes": "i -> e if root ends in i before suffix.",
+        "examples": [
+          "homanité",
+          "yunité",
+          "societé"
+        ]
+      },
+      {
+        "suffix": "-iat",
+        "meaning": "social stratum",
+        "examples": [
+          "proletariat",
+          "secretariat"
+        ]
+      },
+      {
+        "suffix": "-illio",
+        "meaning": "affectionate masculine form",
+        "examples": [
+          "bratillio"
+        ]
+      },
+      {
+        "suffix": "-innia",
+        "meaning": "affectionate feminine form",
+        "examples": [
+          "matrinnia"
+        ]
+      },
+      {
+        "suffix": "-esse",
+        "meaning": "state",
+        "examples": [
+          "yunesse"
+        ]
+      },
+      {
+        "suffix": "-ituda",
+        "meaning": "measurable quality",
+        "examples": [
+          "longituda",
+          "altituda"
+        ]
+      }
+    ],
+    "adjectiveSuffixes": [
+      {
+        "suffix": "-ibil, -abil",
+        "meaning": "possibility/ability",
+        "notes": "-abil with -ar verbs.",
+        "examples": [
+          "possibil",
+          "audibil",
+          "spectibil"
+        ]
+      },
+      {
+        "suffix": "-aci",
+        "meaning": "inclination/tendency",
+        "examples": [
+          "vivaci",
+          "tenaci"
+        ]
+      },
+      {
+        "suffix": "-issim",
+        "meaning": "superlative/intensifying",
+        "examples": [
+          "grandissim",
+          "bonissim"
+        ]
+      },
+      {
+        "suffix": "-atr",
+        "meaning": "resemblance/approximation",
+        "examples": [
+          "dolchatri",
+          "bluatri"
+        ]
+      },
+      {
+        "suffix": "-iv",
+        "meaning": "having ability/property",
+        "examples": [
+          "creativ",
+          "destructiv"
+        ]
+      }
+    ],
+    "verbSuffixes": [
+      {
+        "suffix": "-isar, -ificar",
+        "meaning": "make/render into",
+        "notes": "Both suffixes may be used equivalently with the same root.",
+        "examples": [
+          "activisar",
+          "pacificar",
+          "novisar/novificar"
+        ]
+      },
+      {
+        "suffix": "-eskan",
+        "meaning": "beginning/inchoative action",
+        "examples": [
+          "ameskan",
+          "canteskan"
+        ]
+      }
+    ],
+    "scientificSuffixes": [
+      {
+        "suffix": "-on",
+        "meaning": "particle",
+        "examples": [
+          "electron",
+          "proton"
+        ]
+      },
+      {
+        "suffix": "-ane",
+        "meaning": "single-chain hydrocarbon",
+        "examples": [
+          "methane",
+          "ethane"
+        ]
+      },
+      {
+        "suffix": "-ene",
+        "meaning": "hydrocarbon with double bond",
+        "examples": [
+          "ethene"
+        ]
+      },
+      {
+        "suffix": "-yne",
+        "meaning": "hydrocarbon with triple bond",
+        "examples": [
+          "ethyne"
+        ]
+      },
+      {
+        "suffix": "-ol",
+        "meaning": "alcohol/phenol group -OH",
+        "examples": [
+          "ethanol"
+        ]
+      },
+      {
+        "suffix": "-ale",
+        "meaning": "aldehyde -CHO",
+        "examples": [
+          "ethanale"
+        ]
+      },
+      {
+        "suffix": "-one",
+        "meaning": "ketone C=O",
+        "examples": [
+          "propanone"
+        ]
+      },
+      {
+        "suffix": "-oic",
+        "meaning": "carboxylic",
+        "examples": [
+          "ethanoic"
+        ]
+      },
+      {
+        "suffix": "-ide",
+        "meaning": "anion, often monoatomic",
+        "examples": [
+          "cloride",
+          "oxide"
+        ]
+      },
+      {
+        "suffix": "-ite",
+        "meaning": "anion with fewer oxygens",
+        "examples": [
+          "sulfite"
+        ]
+      },
+      {
+        "suffix": "-ate",
+        "meaning": "anion with more oxygens",
+        "examples": [
+          "sulfate"
+        ]
+      },
+      {
+        "suffix": "-ema",
+        "meaning": "minimal unit",
+        "examples": [
+          "phonema",
+          "graphema"
+        ]
+      }
+    ],
+    "numeralSuffixes": [
+      {
+        "suffix": "-plic",
+        "meaning": "multiplied by a number",
+        "examples": [
+          "triplic",
+          "duplic"
+        ]
+      },
+      {
+        "suffix": "-yem",
+        "meaning": "fractional numeral",
+        "examples": [
+          "triyem",
+          "quaryem"
+        ]
+      },
+      {
+        "suffix": "-op",
+        "meaning": "collective numeral",
+        "examples": [
+          "triop",
+          "duop"
+        ]
+      }
+    ]
+  },
+  "prefixInventory": {
+    "generalNotes": [
+      "A hyphen after a prefix is optional unless needed to separate meanings, e.g. ex- as former.",
+      "Prepositions may also be used as prefixes.",
+      "Check semantic scope carefully: some prefixes have multiple meanings and can create double meanings."
+    ],
+    "prefixes": [
+      {
+        "prefix": "des-, in-",
+        "meaning": "opposite meaning",
+        "notes": "Do not use in- as opposite if it can be understood as 'in'; use des- instead.",
+        "examples": [
+          "desamic/inamic",
+          "inscriber = write in",
+          "desscriber = not write"
+        ]
+      },
+      {
+        "prefix": "re-",
+        "meaning": "again, anew, re-",
+        "examples": [
+          "respecer"
+        ]
+      },
+      {
+        "prefix": "de-",
+        "meaning": "absence/opposite/negation/cancellation/out/down",
+        "examples": [
+          "destructiv",
+          "demilitarisation",
+          "deducer"
+        ]
+      },
+      {
+        "prefix": "mis-",
+        "meaning": "wrongly/erroneously",
+        "examples": [
+          "miscalcular",
+          "miscomprender"
+        ]
+      },
+      {
+        "prefix": "pre-",
+        "meaning": "before",
+        "examples": [
+          "premilitari",
+          "pre-revolutionari"
+        ]
+      },
+      {
+        "prefix": "post-",
+        "meaning": "after",
+        "examples": [
+          "postvesperi",
+          "postmodernism"
+        ]
+      },
+      {
+        "prefix": "ex-",
+        "meaning": "former when hyphenated; out/from when unhyphenated",
+        "examples": [
+          "ex-president"
+        ]
+      },
+      {
+        "prefix": "dis-",
+        "meaning": "separation/disconnection; can also be opposite meaning",
+        "examples": [
+          "divader",
+          "disdar",
+          "discomfort"
+        ]
+      },
+      {
+        "prefix": "pra-",
+        "meaning": "proto-/ancestral/original",
+        "examples": [
+          "pragrandpatre"
+        ]
+      },
+      {
+        "prefix": "proto-",
+        "meaning": "proto-",
+        "examples": [
+          "prototyp"
+        ]
+      },
+      {
+        "prefix": "fin-",
+        "meaning": "end/completion of action",
+        "examples": [
+          "finscriber",
+          "finapprender"
+        ]
+      },
+      {
+        "prefix": "bo-",
+        "meaning": "in-law relation by marriage",
+        "examples": [
+          "bopatre",
+          "bofilio"
+        ]
+      },
+      {
+        "prefix": "step-",
+        "meaning": "step-family relation by second marriage",
+        "examples": [
+          "stepmatre",
+          "stepfilio"
+        ]
+      },
+      {
+        "prefix": "ho-",
+        "meaning": "at the same time/current",
+        "examples": [
+          "hodia",
+          "ho-anne",
+          "hosemane"
+        ]
+      },
+      {
+        "prefix": "hyper-",
+        "meaning": "above norm",
+        "examples": [
+          "hyperactivitá"
+        ]
+      },
+      {
+        "prefix": "hypo-",
+        "meaning": "below norm",
+        "examples": [
+          "hypoactivitá"
+        ]
+      },
+      {
+        "prefix": "retro-",
+        "meaning": "behind/backwards",
+        "examples": [
+          "retroactiv",
+          "retro-rotation"
+        ]
+      },
+      {
+        "prefix": "poly-, poli-",
+        "meaning": "many",
+        "notes": "poly- becomes poli- before vowels.",
+        "examples": [
+          "poliamoria",
+          "polycentric"
+        ]
+      },
+      {
+        "prefix": "para-",
+        "meaning": "deviation from norm",
+        "examples": [
+          "paranormal"
+        ]
+      },
+      {
+        "prefix": "peri-",
+        "meaning": "around/about",
+        "examples": [
+          "pericordial"
+        ]
+      },
+      {
+        "prefix": "semi-",
+        "meaning": "semi-/half",
+        "examples": [
+          "semi-circulari"
+        ]
+      },
+      {
+        "prefix": "mi-",
+        "meaning": "half/semi",
+        "examples": [
+          "minocte",
+          "mihor",
+          "mibrat"
+        ]
+      },
+      {
+        "prefix": "tele-",
+        "meaning": "distant/at a distance",
+        "examples": [
+          "television",
+          "teleportation"
+        ]
+      },
+      {
+        "prefix": "paleo-",
+        "meaning": "ancient/prehistoric/primitive",
+        "examples": [
+          "paleolithic"
+        ]
+      },
+      {
+        "prefix": "meso-",
+        "meaning": "middle/intermediate",
+        "examples": [
+          "mesozoic"
+        ]
+      },
+      {
+        "prefix": "hetero-",
+        "meaning": "other/different",
+        "examples": [
+          "heterosexualitá"
+        ]
+      },
+      {
+        "prefix": "melo-",
+        "meaning": "song/music",
+        "examples": [
+          "melodrama"
+        ]
+      },
+      {
+        "prefix": "exo-",
+        "meaning": "outside/external",
+        "examples": [
+          "exoskelet"
+        ]
+      },
+      {
+        "prefix": "atmo-",
+        "meaning": "vapor/air",
+        "examples": [
+          "atmosphera"
+        ]
+      },
+      {
+        "prefix": "hydro-",
+        "meaning": "water-related",
+        "examples": [
+          "hydroelectric"
+        ]
+      },
+      {
+        "prefix": "bi-",
+        "meaning": "two-/bi-",
+        "examples": [
+          "biangulari",
+          "biaxial"
+        ]
+      },
+      {
+        "prefix": "pro-",
+        "meaning": "beyond/forward/in favor of",
+        "examples": [
+          "progression",
+          "producer",
+          "pro-revolutionari"
+        ]
+      },
+      {
+        "prefix": "ob-",
+        "meaning": "opposite, in front of, against, near",
+        "examples": [
+          "obambulation",
+          "obseder"
+        ]
+      },
+      {
+        "prefix": "par-",
+        "meaning": "clear/thorough action",
+        "examples": [
+          "parapprender",
+          "parleyer"
+        ]
+      },
+      {
+        "prefix": "arc-, arki-",
+        "meaning": "arch-/chief",
+        "notes": "arc- before e becomes arki-.",
+        "examples": [
+          "arkiepiscop",
+          "arcangel"
+        ]
+      },
+      {
+        "prefix": "pseudo-",
+        "meaning": "pseudo-",
+        "examples": [
+          "pseudoscientic"
+        ]
+      },
+      {
+        "prefix": "pan-",
+        "meaning": "all/general/includes all group members/elements",
+        "examples": [
+          "paneuropan",
+          "pantheism",
+          "panarkia"
+        ]
+      },
+      {
+        "prefix": "dys-",
+        "meaning": "bad/painful/abnormal",
+        "examples": [
+          "dysfunction",
+          "dyslexia"
+        ]
+      },
+      {
+        "prefix": "ab-",
+        "meaning": "away",
+        "examples": [
+          "abducer"
+        ]
+      },
+      {
+        "prefix": "anti-",
+        "meaning": "against/anti-",
+        "examples": [
+          "antisocial",
+          "antivirus"
+        ]
+      },
+      {
+        "prefix": "auto-",
+        "meaning": "self/auto-",
+        "examples": [
+          "automotiv",
+          "autobiographia"
+        ]
+      },
+      {
+        "prefix": "omni-",
+        "meaning": "all-/omni-/all-encompassing",
+        "examples": [
+          "omnicanal",
+          "omnifunctional"
+        ]
+      },
+      {
+        "prefix": "a-, an-",
+        "meaning": "without/absence",
+        "notes": "a- becomes an- before vowel.",
+        "examples": [
+          "atheism",
+          "amoral",
+          "anarkia"
+        ]
+      },
+      {
+        "prefix": "meta-",
+        "meaning": "above/beyond/superior/all-encompassing",
+        "examples": [
+          "metamodernism",
+          "metaphysica"
+        ]
+      },
+      {
+        "prefix": "neo-",
+        "meaning": "new",
+        "examples": [
+          "neofeudalism",
+          "neoclassic"
+        ]
+      },
+      {
+        "prefix": "pyro-",
+        "meaning": "fire-related",
+        "examples": [
+          "pyrotechnica"
+        ]
+      },
+      {
+        "prefix": "multi-",
+        "meaning": "many/multi-",
+        "examples": [
+          "multilingual"
+        ]
+      },
+      {
+        "prefix": "mini-",
+        "meaning": "small/minimal",
+        "examples": [
+          "minipark"
+        ]
+      },
+      {
+        "prefix": "macro-",
+        "meaning": "large/long-duration",
+        "examples": [
+          "macro-economica"
+        ]
+      },
+      {
+        "prefix": "mono-",
+        "meaning": "single/one",
+        "examples": [
+          "monotoni"
+        ]
+      }
+    ],
+    "scientificPrefixes": [
+      {
+        "prefix": "di-",
+        "meaning": "two",
+        "examples": [
+          "dioxide"
+        ]
+      },
+      {
+        "prefix": "tetra-",
+        "meaning": "four",
+        "examples": [
+          "tetracloride"
+        ]
+      },
+      {
+        "prefix": "iso-",
+        "meaning": "isomer",
+        "examples": [
+          "isobutane"
+        ]
+      },
+      {
+        "prefix": "neo-",
+        "meaning": "another isomer, often branched",
+        "examples": [
+          "neopentane"
+        ]
+      },
+      {
+        "prefix": "SI-prefixes",
+        "meaning": "International System prefixes such as kilo-, hecto-, nano-, mega-"
+      }
+    ]
+  },
+  "morphophonology": {
+    "doubleConsonants": {
+      "rule": "Double consonants may be shortened in writing, e.g. grammatica -> gramatica.",
+      "doNotShortenIf": [
+        "proper names",
+        "words differ only by doubled consonant and have different meanings, e.g. coma vs comma",
+        "double ss between vowels",
+        "the two letters are pronounced differently, e.g. success"
+      ]
+    },
+    "rootReduction": {
+      "rule": "In many international word formations, two similar adjacent sounds or sound groups may reduce to one.",
+      "examples": [
+        "mineralologia -> mineralogia",
+        "pacificism -> pacifism",
+        "ambitionosi -> ambitiosi",
+        "taxiist -> taxist",
+        "mumificar"
+      ],
+      "choice": "Both reduced and unreduced forms may be used."
+    },
+    "prefixAssimilation": {
+      "naturalisticAssimilation": [
+        "con/in: col-/il- before l; cor-/ir- before r; com-/im- before p or m; co- before vowel and h.",
+        "ex: em- before m; el- before l.",
+        "sub: sup- before p; su- before s.",
+        "ad: at- before t; ac- before c; an- before n; ag- before g; al- before l; af- before f; as- before s; ar- before r.",
+        "ob: op- before p; of- before f.",
+        "dis: dif- before f; di- before g, l, m, r, v.",
+        "trans: tra- before d and j; tran- before s."
+      ],
+      "regularAlternatives": [
+        "non- = negation",
+        "in- = in/inside",
+        "ad- = to/toward",
+        "a(n)- = absence/without",
+        "co- = with",
+        "de- = reverse/opposite",
+        "dis- = separation/disconnection",
+        "e(x)- = out/from",
+        "o(b)- = opposite/in front of/near",
+        "su(b)- = under",
+        "trans- = across/through"
+      ],
+      "note": "Regular alternatives may be used alongside more naturalistic assimilated forms."
+    }
+  },
+  "alterVordesDecisionPolicy": {
+    "eligibleTrueWhen": [
+      "The candidate is reasonably pronounceable and graphically compatible with Interal.",
+      "The candidate can form the relevant part-of-speech derivatives without severe ambiguity.",
+      "Future derivations by Interal suffixes/prefixes remain learnable and not misleading.",
+      "The candidate does not create serious unresolved logical vs international meaning conflict.",
+      "If a conflict exists, there is a clear Interal marking strategy such as -u, -i, or a natural adjective suffix."
+    ],
+    "eligibleFalseWhen": [
+      "The candidate cannot support expected derivatives for its intended lexical family.",
+      "The candidate violates or strongly conflicts with modified de Wahl logic when used as or derived from a verb.",
+      "The candidate creates serious homonymy or semantic opacity without a marking strategy.",
+      "The candidate requires excessive historical/etymological knowledge for ordinary interpretation.",
+      "The candidate is too short or unstable to accept suffixes/prefixes clearly.",
+      "The candidate would collide with an existing or predictable Interal form."
+    ],
+    "needsManualReviewWhen": [
+      "The candidate is usable only under a specific interpretation.",
+      "The candidate may require a double-form strategy but the correct distinction is unclear.",
+      "Qwen cannot determine whether the international or logical meaning should dominate.",
+      "There is insufficient information about existing Interal roots or expected derivative family."
+    ]
+  },
+  "modelOutputRequirements": {
+    "do": [
+      "Return qualitative analysis, not numeric scoring.",
+      "Mention which derivation rules were relevant.",
+      "Explain whether the candidate can form noun/adjective/verb derivatives.",
+      "Explain any modified de Wahl compatibility issue.",
+      "Explain if -u, -i, -al, -ari, -ic or another marking is needed.",
+      "Mark eligible false if derivational risks are serious."
+    ],
+    "doNot": [
+      "Do not invent new Interal rules.",
+      "Do not output percentages.",
+      "Do not treat Qwen's recommendation as final human decision.",
+      "Do not accept a form only because it is short; derivative compatibility is required.",
+      "Do not ignore logical vs international meaning conflicts."
+    ],
+    "suggestedJsonFields": [
+      "derivation.canFormVerb",
+      "derivation.canFormNoun",
+      "derivation.canFormAdjective",
+      "derivation.possibleDerivations",
+      "derivation.appliedRules",
+      "derivation.deWahlRuleNotes",
+      "derivation.suffixAndEndingNotes",
+      "analysis.derivationalPotential",
+      "analysis.interalRuleCompatibility"
+    ]
+  }
+}
