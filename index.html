@@ -30,13 +30,41 @@
       box-shadow: var(--shadow-sm);
     }
     .home-conversation-text {
+      width: min(100%, 380px);
       margin: 0;
-      font-size: clamp(1.15rem, 2vw, 1.75rem);
-      line-height: 1.34;
-      font-weight: 800;
-      letter-spacing: .03em;
+      display: grid;
+      gap: clamp(14px, 2.4vw, 22px);
+    }
+    .home-conversation-part {
+      margin: 0;
+      display: grid;
+      gap: 5px;
+      padding: clamp(16px, 2.6vw, 24px);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(17, 17, 17, 0.10);
+    }
+    .home-conversation-title {
+      display: block;
+      font-size: clamp(1.08rem, 1.8vw, 1.55rem);
+      line-height: 1.12;
+      font-weight: 850;
+      letter-spacing: .025em;
       text-transform: uppercase;
-      white-space: pre-line;
+    }
+    .home-conversation-sub {
+      display: block;
+      font-size: clamp(.9rem, 1.12vw, 1.05rem);
+      line-height: 1.25;
+      font-weight: 600;
+      letter-spacing: .01em;
+      opacity: .72;
+    }
+    .home-conversation-divider {
+      width: min(150px, 52%);
+      height: 1px;
+      justify-self: center;
+      background: rgba(17, 17, 17, 0.22);
     }
     .home-section { display: grid; gap: 10px; }
     .home-section-title { margin: 2px 2px 0; color: var(--text); font-size: clamp(1.15rem, 2vw, 1.45rem); line-height: 1.2; font-weight: 800; }
@@ -251,10 +279,19 @@
           <h1 class="home-title">Interal</h1>
       </a></div>
       <div class="home-conversation-card" aria-label="National and international conversation">
-        <p class="home-conversation-text" data-i18n="home.conversationText">НАЦИОНАЛЬНАЯ БЕСЕДА
-НА НАЦИОНАЛЬНОМ ЯЗЫКЕ
-МЕЖДУНАРОДНАЯ БЕСЕДА
-НА МЕЖДУНАРОДНОМ ЯЗЫКЕ</p>
+        <div class="home-conversation-text">
+          <section class="home-conversation-part">
+            <span class="home-conversation-title" data-i18n="home.conversationNationalTitle">Национальная беседа</span>
+            <span class="home-conversation-sub" data-i18n="home.conversationNationalSub">на национальном языке</span>
+          </section>
+
+          <span class="home-conversation-divider" aria-hidden="true"></span>
+
+          <section class="home-conversation-part">
+            <span class="home-conversation-title" data-i18n="home.conversationInternationalTitle">Международная беседа</span>
+            <span class="home-conversation-sub" data-i18n="home.conversationInternationalSub">на международном языке</span>
+          </section>
+        </div>
       </div>
     </div>
     <section class="home-section" aria-labelledby="home-tools-title">
@@ -335,6 +372,10 @@
           'home.registrySub': 'Реестр карточек слов',
           'home.toolsTitle': 'Инструменты',
           'home.registryTitle': 'Реестр',
+          'home.conversationNationalTitle': 'Национальная беседа',
+          'home.conversationNationalSub': 'на национальном языке',
+          'home.conversationInternationalTitle': 'Международная беседа',
+          'home.conversationInternationalSub': 'на международном языке',
           'home.conversationText': 'НАЦИОНАЛЬНАЯ БЕСЕДА\nНА НАЦИОНАЛЬНОМ ЯЗЫКЕ\nМЕЖДУНАРОДНАЯ БЕСЕДА\nНА МЕЖДУНАРОДНОМ ЯЗЫКЕ'
         },
         en: {
@@ -356,6 +397,10 @@
           'home.registrySub': 'Registry of word cards',
           'home.toolsTitle': 'Tools',
           'home.registryTitle': 'Registry',
+          'home.conversationNationalTitle': 'National conversation',
+          'home.conversationNationalSub': 'in a national language',
+          'home.conversationInternationalTitle': 'International conversation',
+          'home.conversationInternationalSub': 'in an international language',
           'home.conversationText': 'NATIONAL CONVERSATION\nIN A NATIONAL LANGUAGE\nINTERNATIONAL CONVERSATION\nIN AN INTERNATIONAL LANGUAGE'
         }
       };
