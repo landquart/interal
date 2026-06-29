@@ -1,3 +1,5 @@
+const { getQwenLanguageInstruction, normalizeInterfaceLanguage } = require('./lib/interface-language.cjs');
+
 const PRIMARY_MODEL = 'qwen3.6-35b-a3b/latest';
 const REVIEW_MODEL = 'qwen3-235b-a22b-fp8/latest';
 const YANDEX_CHAT_COMPLETIONS_URL = 'https://ai.api.cloud.yandex.net/v1/chat/completions';
@@ -135,7 +137,8 @@ module.exports = async function handler(req, res) {
         details: String(error.message || error).slice(0, 1200)
       });
     }
-    const system = String(body.system || '');
+    const interfaceLanguage = normalizeInterfaceLanguage(body.interfaceLanguage);
+    const system = `${getQwenLanguageInstruction(interfaceLanguage)}\n${String(body.system || '')}`;
     const user = String(body.user || '');
     const model = body.model || PRIMARY_MODEL;
     const review = body.review === true;

@@ -1460,10 +1460,11 @@ function buildManualPrompt(input) {
     'Response requirements:',
     '1) Respond with exactly one JSON object without Markdown.',
     '2) Format:',
-    '{"distance":0.00,"similarity":0.00,"reason":"краткое пояснение"}',
-    '3) distance = 0 means almost same meaning, distance = 1 means very far.',
-    '4) similarity = 1 - distance.',
-    '5) Use decimal numbers with precision to two digits.',
+    `{"responseLanguage":"${getInterfaceLanguage()}","distance":0.00,"similarity":0.00,"reason":"short explanation in the interface language"}`,
+    `3) Write the reason in ${getInterfaceLanguage() === 'en' ? 'English' : 'Russian'} and keep JSON keys in English.`,
+    '4) distance = 0 means almost same meaning, distance = 1 means very far.',
+    '5) similarity = 1 - distance.',
+    '6) Use decimal numbers with precision to two digits.',
     '',
     'Return JSON only.'
   ].join('\n');
@@ -1533,6 +1534,11 @@ function getInput() {
 }
 
 
+
+function getInterfaceLanguage() {
+  return document.documentElement.lang?.startsWith('en') ? 'en' : 'ru';
+}
+
 async function analyzeByRules(input, runId) {
   if (!input.logicalMeaning || !input.internationalMeaning) {
     return {
@@ -1555,7 +1561,8 @@ async function analyzeByRules(input, runId) {
       internationalMeaning: input.internationalMeaning,
       explanationChain: input.explanationChain,
       components: input.components,
-      manualScores: null
+      manualScores: null,
+      interfaceLanguage: getInterfaceLanguage()
     })
   });
 

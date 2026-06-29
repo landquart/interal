@@ -1114,7 +1114,8 @@ async function createFallbackCard(card, section) { const response = await fetch(
           system: 'Return only JSON.',
           user: 'Return {"word":"test","target_meaning":"test","directness":80,"field_relatedness":90,"domain_shift":10,"short_explanation":"test"}',
           model: 'qwen3.6-35b-a3b/latest',
-          review: false
+          review: false,
+          interfaceLanguage: document.documentElement.lang?.startsWith('en') ? 'en' : 'ru'
         })
       }).then(r => r.json());
     };
