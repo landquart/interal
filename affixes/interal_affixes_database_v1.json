@@ -1,9 +1,9 @@
 {
   "schema_version": "interal_affixes_database_v1",
-  "status": "methodological_seed_not_final_exhaustive_list",
+  "status": "methodological_candidate_database",
   "scope": {
-    "ru": "Подробная стартовая JSON-база аффиксов, постфиксов и интерфиксов для инструментов Interal. Она покрывает наиболее важные международные и методологически полезные элементы в контрольных и вспомогательных языках, но не претендует на полный академический список всех существующих аффиксов каждого языка.",
-    "en": "Detailed starter JSON database of affixes, postfixes and interfixes for Interal tools. It covers the most important international and methodologically useful elements in the control and auxiliary languages, but it is not a complete academic inventory of every affix in every language."
+    "ru": "Очищенная методологическая база морфем-кандидатов Interal: префиксы, деривационные суффиксы, интерфиксы и связанные лексические комбинируемые формы. База предназначена для оценки международности, деривационной прозрачности и риска ложной морфемизации; она не является полным академическим перечнем аффиксов.",
+    "en": "Clean methodological database of Interal morpheme candidates: prefixes, derivational suffixes, interfixes, and bound lexical combining forms. It supports internationality checks, derivational transparency, and false-positive risk assessment; it is not a complete academic affix inventory."
   },
   "languages": {
     "control": {
@@ -13,7 +13,7 @@
       "es": "Spanish",
       "it": "Italian",
       "ru": "Russian",
-      "el": "Modern Greek"
+      "el": "Greek"
     },
     "auxiliary": {
       "pl": "Polish",
@@ -24,11 +24,19 @@
     }
   },
   "types": {
-    "prefix": "before the stem",
-    "suffix": "after the stem",
-    "postfix": "post-stem clitic-like or grammatical element; often not derivational",
-    "interfix": "linking element inside compounds or between stem and formant"
+    "prefix": "before the stem with stable derivational or semantic function",
+    "suffix": "after the stem with derivational function",
+    "postfix": "post-stem grammatical/clitic-like element; usually non-candidate for Interal",
+    "interfix": "linking element between stems, not a derivational suffix",
+    "combining_form": "bound lexical morpheme used in international compounds; not an ordinary suffix"
   },
+  "originTypes": [
+    "borrowed_international",
+    "inherited_indoeuropean",
+    "mixed",
+    "uncertain",
+    "non_candidate"
+  ],
   "recommended_scoring": {
     "internationalEvidence": 0.35,
     "semanticStability": 0.25,
@@ -36,17 +44,29 @@
     "formalStability": 0.1,
     "interalCompatibility": 0.1
   },
+  "methodology": {
+    "ru": [
+      "Не выделять аффикс только по совпадению букв.",
+      "Связанные греко-латинские элементы вроде -логия, -скопия, -кратия хранятся как combining_form, а не suffix.",
+      "Пустые массивы означают отсутствие полезной формы в данном языке."
+    ],
+    "en": [
+      "Do not segment an affix from letter overlap alone.",
+      "Bound Greek-Latin elements such as -logy, -scopy, and -cracy are stored as combining_form, not suffix.",
+      "Empty arrays mean no useful form is recorded for that language."
+    ]
+  },
   "entries": [
     {
-      "id": "prefix_anti",
+      "id": "prefix-anti-opposition",
       "type": "prefix",
-      "function": "opposition_against",
-      "interal_candidates": [
-        "anti"
-      ],
+      "subtype": "derivational",
+      "originType": "borrowed_international",
+      "interalCandidate": "anti-",
+      "function": "opposition",
       "meaning": {
-        "ru": "против, анти-, противопоставление",
-        "en": "against, anti-, opposition"
+        "ru": "противопоставление, противодействие",
+        "en": "opposition, counteraction"
       },
       "forms": {
         "control": {
@@ -54,7 +74,7 @@
             "anti-"
           ],
           "de": [
-            "anti-"
+            "Anti-"
           ],
           "fr": [
             "anti-"
@@ -90,38 +110,45 @@
           ]
         }
       },
-      "caution": ""
+      "falsePositiveRisk": "low",
+      "priority": "core",
+      "falsePositiveComment": {
+        "ru": "Проверять границу морфемы и значение: совпадение букв не доказывает наличие префикса.",
+        "en": "Check morpheme boundary and meaning: letter overlap alone does not prove a prefix."
+      }
     },
     {
-      "id": "prefix_pro",
+      "id": "prefix-pre-before",
       "type": "prefix",
-      "function": "support_forward_before",
-      "interal_candidates": [
-        "pro"
-      ],
+      "subtype": "derivational",
+      "originType": "borrowed_international",
+      "interalCandidate": "pre-",
+      "function": "before_prior",
       "meaning": {
-        "ru": "за, в пользу; вперёд; перед",
-        "en": "for, in favor of; forward; before"
+        "ru": "предшествование, положение до чего-либо",
+        "en": "before, prior to"
       },
       "forms": {
         "control": {
           "en": [
-            "pro-"
+            "pre-"
           ],
           "de": [
-            "pro-"
+            "prä-",
+            "pre-"
           ],
           "fr": [
-            "pro-"
+            "pré-"
           ],
           "es": [
-            "pro-"
+            "pre-"
           ],
           "it": [
-            "pro-"
+            "pre-"
           ],
           "ru": [
-            "про-"
+            "пре-",
+            "пред-"
           ],
           "el": [
             "προ-"
@@ -129,95 +156,357 @@
         },
         "auxiliary": {
           "pl": [
-            "pro-"
+            "pre-"
           ],
           "sv": [
-            "pro-"
+            "pre-"
           ],
           "ca": [
-            "pro-"
+            "pre-"
           ],
           "oc": [
-            "pro-"
+            "pre-"
           ],
           "ro": [
-            "pro-"
+            "pre-"
           ]
         }
       },
-      "caution": "needs_semantic_disambiguation"
+      "falsePositiveRisk": "medium",
+      "priority": "core",
+      "falsePositiveComment": {
+        "ru": "Проверять границу морфемы и значение: совпадение букв не доказывает наличие префикса.",
+        "en": "Check morpheme boundary and meaning: letter overlap alone does not prove a prefix."
+      }
     },
     {
-      "id": "prefix_contra",
+      "id": "prefix-post-after",
       "type": "prefix",
-      "function": "opposition_counter",
-      "interal_candidates": [
-        "contra"
-      ],
+      "subtype": "derivational",
+      "originType": "borrowed_international",
+      "interalCandidate": "post-",
+      "function": "after_later",
       "meaning": {
-        "ru": "против, контр-, напротив",
-        "en": "against, counter-, opposite"
+        "ru": "последование, положение после чего-либо",
+        "en": "after, later than"
       },
       "forms": {
         "control": {
           "en": [
-            "contra-",
-            "counter-"
+            "post-"
           ],
           "de": [
-            "kontra-"
+            "post-"
           ],
           "fr": [
-            "contre-",
-            "contra-"
+            "post-"
           ],
           "es": [
-            "contra-"
+            "post-"
           ],
           "it": [
-            "contro-",
-            "contra-"
+            "post-"
           ],
           "ru": [
-            "контр-",
-            "контра-"
+            "пост-"
           ],
           "el": [
-            "αντι-",
-            "κοντρα-"
+            "μετα-"
           ]
         },
         "auxiliary": {
           "pl": [
-            "kontr-",
-            "kontra-"
+            "post-"
           ],
           "sv": [
-            "kontra-"
+            "post-"
           ],
           "ca": [
-            "contra-"
+            "post-"
           ],
           "oc": [
-            "contra-"
+            "post-"
           ],
           "ro": [
-            "contra-"
+            "post-"
           ]
         }
       },
-      "caution": ""
+      "falsePositiveRisk": "low",
+      "priority": "core",
+      "falsePositiveComment": {
+        "ru": "Проверять границу морфемы и значение: совпадение букв не доказывает наличие префикса.",
+        "en": "Check morpheme boundary and meaning: letter overlap alone does not prove a prefix."
+      }
     },
     {
-      "id": "prefix_re",
+      "id": "prefix-inter-between",
       "type": "prefix",
-      "function": "again_back_repetition",
-      "interal_candidates": [
-        "re"
-      ],
+      "subtype": "derivational",
+      "originType": "borrowed_international",
+      "interalCandidate": "inter-",
+      "function": "between_among",
       "meaning": {
-        "ru": "повтор, возвращение, действие заново",
-        "en": "again, back, repetition"
+        "ru": "между, среди; международная связь",
+        "en": "between, among; international relation"
+      },
+      "forms": {
+        "control": {
+          "en": [
+            "inter-"
+          ],
+          "de": [
+            "inter-"
+          ],
+          "fr": [
+            "inter-"
+          ],
+          "es": [
+            "inter-"
+          ],
+          "it": [
+            "inter-"
+          ],
+          "ru": [
+            "интер-",
+            "меж-"
+          ],
+          "el": [
+            "δια-",
+            "ιντερ-"
+          ]
+        },
+        "auxiliary": {
+          "pl": [
+            "inter-"
+          ],
+          "sv": [
+            "inter-"
+          ],
+          "ca": [
+            "inter-"
+          ],
+          "oc": [
+            "inter-"
+          ],
+          "ro": [
+            "inter-"
+          ]
+        }
+      },
+      "falsePositiveRisk": "medium",
+      "priority": "core",
+      "falsePositiveComment": {
+        "ru": "Проверять границу морфемы и значение: совпадение букв не доказывает наличие префикса.",
+        "en": "Check morpheme boundary and meaning: letter overlap alone does not prove a prefix."
+      }
+    },
+    {
+      "id": "prefix-trans-across",
+      "type": "prefix",
+      "subtype": "derivational",
+      "originType": "borrowed_international",
+      "interalCandidate": "trans-",
+      "function": "across_beyond",
+      "meaning": {
+        "ru": "через, за пределы, по ту сторону",
+        "en": "across, beyond, on the other side"
+      },
+      "forms": {
+        "control": {
+          "en": [
+            "trans-"
+          ],
+          "de": [
+            "trans-"
+          ],
+          "fr": [
+            "trans-"
+          ],
+          "es": [
+            "trans-"
+          ],
+          "it": [
+            "trans-"
+          ],
+          "ru": [
+            "транс-"
+          ],
+          "el": [
+            "δια-",
+            "τρανς-"
+          ]
+        },
+        "auxiliary": {
+          "pl": [
+            "trans-"
+          ],
+          "sv": [
+            "trans-"
+          ],
+          "ca": [
+            "trans-"
+          ],
+          "oc": [
+            "trans-"
+          ],
+          "ro": [
+            "trans-"
+          ]
+        }
+      },
+      "falsePositiveRisk": "medium",
+      "priority": "core",
+      "falsePositiveComment": {
+        "ru": "Проверять границу морфемы и значение: совпадение букв не доказывает наличие префикса.",
+        "en": "Check morpheme boundary and meaning: letter overlap alone does not prove a prefix."
+      }
+    },
+    {
+      "id": "prefix-super-supra-above",
+      "type": "prefix",
+      "subtype": "derivational",
+      "originType": "borrowed_international",
+      "interalCandidate": "super-/supra-",
+      "function": "above_higher",
+      "meaning": {
+        "ru": "над, выше, сверх",
+        "en": "above, higher, over"
+      },
+      "forms": {
+        "control": {
+          "en": [
+            "super-",
+            "supra-"
+          ],
+          "de": [
+            "super-",
+            "supra-"
+          ],
+          "fr": [
+            "super-",
+            "supra-"
+          ],
+          "es": [
+            "super-",
+            "supra-"
+          ],
+          "it": [
+            "super-",
+            "sopra-",
+            "supra-"
+          ],
+          "ru": [
+            "супер-",
+            "супра-",
+            "над-"
+          ],
+          "el": [
+            "υπερ-"
+          ]
+        },
+        "auxiliary": {
+          "pl": [
+            "super-",
+            "supra-"
+          ],
+          "sv": [
+            "super-"
+          ],
+          "ca": [
+            "super-",
+            "supra-"
+          ],
+          "oc": [
+            "super-"
+          ],
+          "ro": [
+            "super-",
+            "supra-"
+          ]
+        }
+      },
+      "falsePositiveRisk": "medium",
+      "priority": "core",
+      "falsePositiveComment": {
+        "ru": "Проверять границу морфемы и значение: совпадение букв не доказывает наличие префикса.",
+        "en": "Check morpheme boundary and meaning: letter overlap alone does not prove a prefix."
+      }
+    },
+    {
+      "id": "prefix-sub-under",
+      "type": "prefix",
+      "subtype": "derivational",
+      "originType": "borrowed_international",
+      "interalCandidate": "sub-",
+      "function": "under_lower",
+      "meaning": {
+        "ru": "под, ниже, вторичный уровень",
+        "en": "under, lower, subordinate level"
+      },
+      "forms": {
+        "control": {
+          "en": [
+            "sub-"
+          ],
+          "de": [
+            "sub-"
+          ],
+          "fr": [
+            "sub-",
+            "sous-"
+          ],
+          "es": [
+            "sub-"
+          ],
+          "it": [
+            "sub-",
+            "sotto-"
+          ],
+          "ru": [
+            "суб-",
+            "под-"
+          ],
+          "el": [
+            "υπο-"
+          ]
+        },
+        "auxiliary": {
+          "pl": [
+            "sub-"
+          ],
+          "sv": [
+            "sub-"
+          ],
+          "ca": [
+            "sub-",
+            "sots-"
+          ],
+          "oc": [
+            "sub-"
+          ],
+          "ro": [
+            "sub-"
+          ]
+        }
+      },
+      "falsePositiveRisk": "medium",
+      "priority": "core",
+      "falsePositiveComment": {
+        "ru": "Проверять границу морфемы и значение: совпадение букв не доказывает наличие префикса.",
+        "en": "Check morpheme boundary and meaning: letter overlap alone does not prove a prefix."
+      }
+    },
+    {
+      "id": "prefix-re-repetition-return",
+      "type": "prefix",
+      "subtype": "derivational",
+      "originType": "borrowed_international",
+      "interalCandidate": "re-",
+      "function": "repetition_return",
+      "meaning": {
+        "ru": "повторность или возвращение",
+        "en": "repetition or return"
       },
       "forms": {
         "control": {
@@ -235,14 +524,15 @@
             "re-"
           ],
           "it": [
-            "ri-",
-            "re-"
+            "re-",
+            "ri-"
           ],
           "ru": [
-            "ре-"
+            "ре-",
+            "пере-"
           ],
           "el": [
-            "ρε-"
+            "ανα-"
           ]
         },
         "auxiliary": {
@@ -263,19 +553,23 @@
           ]
         }
       },
-      "caution": "check_if_re_is_not_part_of_root"
+      "falsePositiveRisk": "high",
+      "priority": "core",
+      "falsePositiveComment": {
+        "ru": "Проверять границу морфемы и значение: совпадение букв не доказывает наличие префикса.",
+        "en": "Check morpheme boundary and meaning: letter overlap alone does not prove a prefix."
+      }
     },
     {
-      "id": "prefix_de_des",
+      "id": "prefix-de-reversal-removal",
       "type": "prefix",
-      "function": "removal_reversal_separation",
-      "interal_candidates": [
-        "de",
-        "des"
-      ],
+      "subtype": "derivational",
+      "originType": "borrowed_international",
+      "interalCandidate": "de-",
+      "function": "reversal_removal_down",
       "meaning": {
-        "ru": "удаление, отделение, обратное действие",
-        "en": "removal, separation, reversal"
+        "ru": "обратное действие, удаление или снижение",
+        "en": "reversal, removal, or downward movement"
       },
       "forms": {
         "control": {
@@ -288,7 +582,7 @@
           ],
           "fr": [
             "dé-",
-            "dés-"
+            "de-"
           ],
           "es": [
             "de-",
@@ -296,16 +590,14 @@
           ],
           "it": [
             "de-",
-            "dis-",
-            "s-"
+            "dis-"
           ],
           "ru": [
             "де-",
             "дез-"
           ],
           "el": [
-            "απο-",
-            "δε-"
+            "απο-"
           ]
         },
         "auxiliary": {
@@ -321,7 +613,8 @@
             "de-"
           ],
           "oc": [
-            "des-"
+            "des-",
+            "de-"
           ],
           "ro": [
             "de-",
@@ -329,87 +622,23 @@
           ]
         }
       },
-      "caution": ""
+      "falsePositiveRisk": "high",
+      "priority": "core",
+      "falsePositiveComment": {
+        "ru": "Проверять границу морфемы и значение: совпадение букв не доказывает наличие префикса.",
+        "en": "Check morpheme boundary and meaning: letter overlap alone does not prove a prefix."
+      }
     },
     {
-      "id": "prefix_dis_dys",
+      "id": "prefix-in-negative",
       "type": "prefix",
-      "function": "disorder_bad_reversal",
-      "interal_candidates": [
-        "dis",
-        "dys"
-      ],
+      "subtype": "derivational",
+      "originType": "borrowed_international",
+      "interalCandidate": "in-/im-/il-/ir-",
+      "function": "negation",
       "meaning": {
-        "ru": "нарушение, плохое состояние, обратность",
-        "en": "disorder, bad condition, reversal"
-      },
-      "forms": {
-        "control": {
-          "en": [
-            "dis-",
-            "dys-"
-          ],
-          "de": [
-            "dis-",
-            "dys-"
-          ],
-          "fr": [
-            "dis-",
-            "dys-",
-            "dés-"
-          ],
-          "es": [
-            "dis-",
-            "des-"
-          ],
-          "it": [
-            "dis-",
-            "s-"
-          ],
-          "ru": [
-            "дис-",
-            "диз-"
-          ],
-          "el": [
-            "δυσ-",
-            "δια-"
-          ]
-        },
-        "auxiliary": {
-          "pl": [
-            "dys-",
-            "dez-"
-          ],
-          "sv": [
-            "dis-",
-            "dys-"
-          ],
-          "ca": [
-            "dis-",
-            "des-"
-          ],
-          "oc": [
-            "dis-",
-            "des-"
-          ],
-          "ro": [
-            "dis-",
-            "dez-"
-          ]
-        }
-      },
-      "caution": "high_overlap_with_de_des_in"
-    },
-    {
-      "id": "prefix_in_negative",
-      "type": "prefix",
-      "function": "negation_absence",
-      "interal_candidates": [
-        "in"
-      ],
-      "meaning": {
-        "ru": "не-, отсутствие признака",
-        "en": "in-, not, lack of property"
+        "ru": "отрицание или отсутствие",
+        "en": "negation or absence"
       },
       "forms": {
         "control": {
@@ -439,32 +668,27 @@
           "it": [
             "in-",
             "im-",
-            "ir-",
-            "il-"
+            "il-",
+            "ir-"
           ],
           "ru": [
             "ин-",
             "им-",
-            "ил-",
-            "ир-",
-            "не-"
+            "ир-"
           ],
           "el": [
             "α-",
-            "αν-",
-            "ιν-"
+            "αν-"
           ]
         },
         "auxiliary": {
           "pl": [
             "in-",
-            "im-",
-            "nie-"
+            "im-"
           ],
           "sv": [
             "in-",
-            "im-",
-            "o-"
+            "im-"
           ],
           "ca": [
             "in-",
@@ -482,18 +706,83 @@
           ]
         }
       },
-      "caution": ""
+      "falsePositiveRisk": "high",
+      "priority": "core",
+      "falsePositiveComment": {
+        "ru": "Проверять границу морфемы и значение: совпадение букв не доказывает наличие префикса.",
+        "en": "Check morpheme boundary and meaning: letter overlap alone does not prove a prefix."
+      }
     },
     {
-      "id": "prefix_a_an_negative",
+      "id": "prefix-in-direction",
       "type": "prefix",
-      "function": "absence_without",
-      "interal_candidates": [
-        "a"
-      ],
+      "subtype": "derivational",
+      "originType": "borrowed_international",
+      "interalCandidate": "in-",
+      "function": "direction_in",
       "meaning": {
-        "ru": "без-, отсутствие",
-        "en": "without, absence"
+        "ru": "движение внутрь или положение внутри",
+        "en": "movement into or position inside"
+      },
+      "forms": {
+        "control": {
+          "en": [
+            "in-"
+          ],
+          "de": [
+            "in-"
+          ],
+          "fr": [
+            "in-"
+          ],
+          "es": [
+            "in-"
+          ],
+          "it": [
+            "in-"
+          ],
+          "ru": [
+            "ин-"
+          ],
+          "el": [
+            "εν-"
+          ]
+        },
+        "auxiliary": {
+          "pl": [
+            "in-"
+          ],
+          "sv": [
+            "in-"
+          ],
+          "ca": [
+            "in-"
+          ],
+          "oc": [
+            "in-"
+          ],
+          "ro": [
+            "in-"
+          ]
+        }
+      },
+      "falsePositiveRisk": "high",
+      "priority": "core",
+      "falsePositiveComment": {
+        "ru": "Проверять границу морфемы и значение: совпадение букв не доказывает наличие префикса.",
+        "en": "Check morpheme boundary and meaning: letter overlap alone does not prove a prefix."
+      }
+    },
+    {
+      "id": "prefix-a-an-negative",
+      "type": "prefix",
+      "subtype": "derivational",
+      "originType": "borrowed_international",
+      "interalCandidate": "a-/an-",
+      "function": "negation_absence_greek",
+      "meaning": {
+        "ru": "отрицание или отсутствие в греко-латинских словах",
+        "en": "negation or absence in Greek-Latin words"
       },
       "forms": {
         "control": {
@@ -549,1109 +838,23 @@
           ]
         }
       },
-      "caution": "not_general_negative_prefix"
+      "falsePositiveRisk": "high",
+      "priority": "core",
+      "falsePositiveComment": {
+        "ru": "Проверять границу морфемы и значение: совпадение букв не доказывает наличие префикса.",
+        "en": "Check morpheme boundary and meaning: letter overlap alone does not prove a prefix."
+      }
     },
     {
-      "id": "prefix_non",
-      "type": "prefix",
-      "function": "logical_negation",
-      "interal_candidates": [
-        "non"
-      ],
-      "meaning": {
-        "ru": "логическое отрицание",
-        "en": "logical non-, not"
-      },
-      "forms": {
-        "control": {
-          "en": [
-            "non-"
-          ],
-          "de": [
-            "non-",
-            "nicht-"
-          ],
-          "fr": [
-            "non-"
-          ],
-          "es": [
-            "no-",
-            "non-"
-          ],
-          "it": [
-            "non-"
-          ],
-          "ru": [
-            "нон-",
-            "не-"
-          ],
-          "el": [
-            "μη-",
-            "non-"
-          ]
-        },
-        "auxiliary": {
-          "pl": [
-            "non-",
-            "nie-"
-          ],
-          "sv": [
-            "non-",
-            "icke-"
-          ],
-          "ca": [
-            "no-",
-            "non-"
-          ],
-          "oc": [
-            "non-"
-          ],
-          "ro": [
-            "non-",
-            "ne-"
-          ]
-        }
-      },
-      "caution": ""
-    },
-    {
-      "id": "prefix_pre",
-      "type": "prefix",
-      "function": "before_prior",
-      "interal_candidates": [
-        "pre"
-      ],
-      "meaning": {
-        "ru": "до, перед, предварительно",
-        "en": "before, prior, pre-"
-      },
-      "forms": {
-        "control": {
-          "en": [
-            "pre-"
-          ],
-          "de": [
-            "prä-",
-            "pre-"
-          ],
-          "fr": [
-            "pré-"
-          ],
-          "es": [
-            "pre-"
-          ],
-          "it": [
-            "pre-"
-          ],
-          "ru": [
-            "пре-",
-            "пред-"
-          ],
-          "el": [
-            "προ-"
-          ]
-        },
-        "auxiliary": {
-          "pl": [
-            "pre-",
-            "przed-"
-          ],
-          "sv": [
-            "pre-"
-          ],
-          "ca": [
-            "pre-"
-          ],
-          "oc": [
-            "pre-"
-          ],
-          "ro": [
-            "pre-"
-          ]
-        }
-      },
-      "caution": ""
-    },
-    {
-      "id": "prefix_post",
-      "type": "prefix",
-      "function": "after_later",
-      "interal_candidates": [
-        "post"
-      ],
-      "meaning": {
-        "ru": "после, позднее",
-        "en": "after, later"
-      },
-      "forms": {
-        "control": {
-          "en": [
-            "post-"
-          ],
-          "de": [
-            "post-"
-          ],
-          "fr": [
-            "post-"
-          ],
-          "es": [
-            "post-",
-            "pos-"
-          ],
-          "it": [
-            "post-"
-          ],
-          "ru": [
-            "пост-"
-          ],
-          "el": [
-            "μετα-",
-            "ποστ-"
-          ]
-        },
-        "auxiliary": {
-          "pl": [
-            "post-"
-          ],
-          "sv": [
-            "post-"
-          ],
-          "ca": [
-            "post-"
-          ],
-          "oc": [
-            "post-"
-          ],
-          "ro": [
-            "post-"
-          ]
-        }
-      },
-      "caution": ""
-    },
-    {
-      "id": "prefix_inter",
-      "type": "prefix",
-      "function": "between_among_mutual",
-      "interal_candidates": [
-        "inter"
-      ],
-      "meaning": {
-        "ru": "между, среди, взаимно",
-        "en": "between, among, mutually"
-      },
-      "forms": {
-        "control": {
-          "en": [
-            "inter-"
-          ],
-          "de": [
-            "inter-"
-          ],
-          "fr": [
-            "inter-"
-          ],
-          "es": [
-            "inter-"
-          ],
-          "it": [
-            "inter-"
-          ],
-          "ru": [
-            "интер-",
-            "меж-"
-          ],
-          "el": [
-            "ιντερ-",
-            "δια-"
-          ]
-        },
-        "auxiliary": {
-          "pl": [
-            "inter-",
-            "między-"
-          ],
-          "sv": [
-            "inter-"
-          ],
-          "ca": [
-            "inter-"
-          ],
-          "oc": [
-            "inter-"
-          ],
-          "ro": [
-            "inter-"
-          ]
-        }
-      },
-      "caution": ""
-    },
-    {
-      "id": "prefix_intra",
-      "type": "prefix",
-      "function": "inside_within",
-      "interal_candidates": [
-        "intra"
-      ],
-      "meaning": {
-        "ru": "внутри, внутрисистемно",
-        "en": "inside, within"
-      },
-      "forms": {
-        "control": {
-          "en": [
-            "intra-"
-          ],
-          "de": [
-            "intra-"
-          ],
-          "fr": [
-            "intra-"
-          ],
-          "es": [
-            "intra-"
-          ],
-          "it": [
-            "intra-"
-          ],
-          "ru": [
-            "интра-",
-            "внутри-"
-          ],
-          "el": [
-            "ενδο-",
-            "ιντρα-"
-          ]
-        },
-        "auxiliary": {
-          "pl": [
-            "intra-"
-          ],
-          "sv": [
-            "intra-"
-          ],
-          "ca": [
-            "intra-"
-          ],
-          "oc": [
-            "intra-"
-          ],
-          "ro": [
-            "intra-"
-          ]
-        }
-      },
-      "caution": ""
-    },
-    {
-      "id": "prefix_extra",
-      "type": "prefix",
-      "function": "outside_beyond_extra",
-      "interal_candidates": [
-        "extra"
-      ],
-      "meaning": {
-        "ru": "вне, сверх, дополнительно",
-        "en": "outside, beyond, additional"
-      },
-      "forms": {
-        "control": {
-          "en": [
-            "extra-"
-          ],
-          "de": [
-            "extra-"
-          ],
-          "fr": [
-            "extra-"
-          ],
-          "es": [
-            "extra-"
-          ],
-          "it": [
-            "extra-"
-          ],
-          "ru": [
-            "экстра-",
-            "вне-"
-          ],
-          "el": [
-            "εξτρα-",
-            "εκτος-"
-          ]
-        },
-        "auxiliary": {
-          "pl": [
-            "ekstra-"
-          ],
-          "sv": [
-            "extra-"
-          ],
-          "ca": [
-            "extra-"
-          ],
-          "oc": [
-            "extra-"
-          ],
-          "ro": [
-            "extra-"
-          ]
-        }
-      },
-      "caution": ""
-    },
-    {
-      "id": "prefix_trans",
-      "type": "prefix",
-      "function": "across_through_beyond",
-      "interal_candidates": [
-        "trans"
-      ],
-      "meaning": {
-        "ru": "через, сквозь, за пределы",
-        "en": "across, through, beyond"
-      },
-      "forms": {
-        "control": {
-          "en": [
-            "trans-"
-          ],
-          "de": [
-            "trans-"
-          ],
-          "fr": [
-            "trans-"
-          ],
-          "es": [
-            "trans-"
-          ],
-          "it": [
-            "trans-",
-            "tras-"
-          ],
-          "ru": [
-            "транс-"
-          ],
-          "el": [
-            "τρανς-",
-            "δια-"
-          ]
-        },
-        "auxiliary": {
-          "pl": [
-            "trans-"
-          ],
-          "sv": [
-            "trans-"
-          ],
-          "ca": [
-            "trans-"
-          ],
-          "oc": [
-            "trans-"
-          ],
-          "ro": [
-            "trans-"
-          ]
-        }
-      },
-      "caution": ""
-    },
-    {
-      "id": "prefix_sub",
-      "type": "prefix",
-      "function": "under_below_secondary",
-      "interal_candidates": [
-        "sub"
-      ],
-      "meaning": {
-        "ru": "под, ниже, вторичный",
-        "en": "under, below, secondary"
-      },
-      "forms": {
-        "control": {
-          "en": [
-            "sub-"
-          ],
-          "de": [
-            "sub-"
-          ],
-          "fr": [
-            "sub-",
-            "sous-"
-          ],
-          "es": [
-            "sub-"
-          ],
-          "it": [
-            "sub-",
-            "sotto-"
-          ],
-          "ru": [
-            "суб-",
-            "под-"
-          ],
-          "el": [
-            "υπο-"
-          ]
-        },
-        "auxiliary": {
-          "pl": [
-            "sub-",
-            "pod-"
-          ],
-          "sv": [
-            "sub-",
-            "under-"
-          ],
-          "ca": [
-            "sub-"
-          ],
-          "oc": [
-            "sub-"
-          ],
-          "ro": [
-            "sub-"
-          ]
-        }
-      },
-      "caution": ""
-    },
-    {
-      "id": "prefix_super_hyper",
-      "type": "prefix",
-      "function": "above_excess",
-      "interal_candidates": [
-        "super",
-        "hyper"
-      ],
-      "meaning": {
-        "ru": "над, выше, чрезмерно",
-        "en": "above, over, excessive"
-      },
-      "forms": {
-        "control": {
-          "en": [
-            "super-",
-            "hyper-"
-          ],
-          "de": [
-            "super-",
-            "hyper-",
-            "über-"
-          ],
-          "fr": [
-            "super-",
-            "hyper-",
-            "sur-"
-          ],
-          "es": [
-            "super-",
-            "hiper-"
-          ],
-          "it": [
-            "super-",
-            "iper-"
-          ],
-          "ru": [
-            "супер-",
-            "гипер-",
-            "сверх-"
-          ],
-          "el": [
-            "υπερ-"
-          ]
-        },
-        "auxiliary": {
-          "pl": [
-            "super-",
-            "hiper-"
-          ],
-          "sv": [
-            "super-",
-            "hyper-"
-          ],
-          "ca": [
-            "super-",
-            "hiper-"
-          ],
-          "oc": [
-            "super-",
-            "iper-"
-          ],
-          "ro": [
-            "super-",
-            "hiper-"
-          ]
-        }
-      },
-      "caution": ""
-    },
-    {
-      "id": "prefix_hypo",
-      "type": "prefix",
-      "function": "under_deficient",
-      "interal_candidates": [
-        "hypo"
-      ],
-      "meaning": {
-        "ru": "под-, недостаточный",
-        "en": "under, deficient, hypo-"
-      },
-      "forms": {
-        "control": {
-          "en": [
-            "hypo-"
-          ],
-          "de": [
-            "hypo-"
-          ],
-          "fr": [
-            "hypo-"
-          ],
-          "es": [
-            "hipo-"
-          ],
-          "it": [
-            "ipo-"
-          ],
-          "ru": [
-            "гипо-"
-          ],
-          "el": [
-            "υπο-"
-          ]
-        },
-        "auxiliary": {
-          "pl": [
-            "hipo-"
-          ],
-          "sv": [
-            "hypo-"
-          ],
-          "ca": [
-            "hipo-"
-          ],
-          "oc": [
-            "ipo-"
-          ],
-          "ro": [
-            "hipo-"
-          ]
-        }
-      },
-      "caution": ""
-    },
-    {
-      "id": "prefix_micro_macro",
-      "type": "prefix",
-      "function": "size_scale",
-      "interal_candidates": [
-        "micro",
-        "macro"
-      ],
-      "meaning": {
-        "ru": "малый/крупный масштаб",
-        "en": "small/large scale"
-      },
-      "forms": {
-        "control": {
-          "en": [
-            "micro-",
-            "macro-"
-          ],
-          "de": [
-            "mikro-",
-            "makro-"
-          ],
-          "fr": [
-            "micro-",
-            "macro-"
-          ],
-          "es": [
-            "micro-",
-            "macro-"
-          ],
-          "it": [
-            "micro-",
-            "macro-"
-          ],
-          "ru": [
-            "микро-",
-            "макро-"
-          ],
-          "el": [
-            "μικρο-",
-            "μακρο-"
-          ]
-        },
-        "auxiliary": {
-          "pl": [
-            "mikro-",
-            "makro-"
-          ],
-          "sv": [
-            "mikro-",
-            "makro-"
-          ],
-          "ca": [
-            "micro-",
-            "macro-"
-          ],
-          "oc": [
-            "micro-",
-            "macro-"
-          ],
-          "ro": [
-            "micro-",
-            "macro-"
-          ]
-        }
-      },
-      "caution": ""
-    },
-    {
-      "id": "prefix_auto",
-      "type": "prefix",
-      "function": "self_auto",
-      "interal_candidates": [
-        "auto"
-      ],
-      "meaning": {
-        "ru": "сам, само-, автоматический",
-        "en": "self, auto-, automatic"
-      },
-      "forms": {
-        "control": {
-          "en": [
-            "auto-"
-          ],
-          "de": [
-            "auto-"
-          ],
-          "fr": [
-            "auto-"
-          ],
-          "es": [
-            "auto-"
-          ],
-          "it": [
-            "auto-"
-          ],
-          "ru": [
-            "авто-"
-          ],
-          "el": [
-            "αυτο-"
-          ]
-        },
-        "auxiliary": {
-          "pl": [
-            "auto-"
-          ],
-          "sv": [
-            "auto-"
-          ],
-          "ca": [
-            "auto-"
-          ],
-          "oc": [
-            "auto-"
-          ],
-          "ro": [
-            "auto-"
-          ]
-        }
-      },
-      "caution": "polysemy"
-    },
-    {
-      "id": "prefix_bio_geo_tele_eco",
-      "type": "prefix",
-      "function": "learned_combining_forms",
-      "interal_candidates": [
-        "bio",
-        "geo",
-        "tele",
-        "eco"
-      ],
-      "meaning": {
-        "ru": "жизнь, земля, дальность, среда/экономия",
-        "en": "life, earth, distance, environment/economy"
-      },
-      "forms": {
-        "control": {
-          "en": [
-            "bio-",
-            "geo-",
-            "tele-",
-            "eco-"
-          ],
-          "de": [
-            "bio-",
-            "geo-",
-            "tele-",
-            "öko-/eco-"
-          ],
-          "fr": [
-            "bio-",
-            "géo-",
-            "télé-",
-            "éco-"
-          ],
-          "es": [
-            "bio-",
-            "geo-",
-            "tele-",
-            "eco-"
-          ],
-          "it": [
-            "bio-",
-            "geo-",
-            "tele-",
-            "eco-"
-          ],
-          "ru": [
-            "био-",
-            "гео-",
-            "теле-",
-            "эко-"
-          ],
-          "el": [
-            "βιο-",
-            "γεω-",
-            "τηλε-",
-            "οικο-"
-          ]
-        },
-        "auxiliary": {
-          "pl": [
-            "bio-",
-            "geo-",
-            "tele-",
-            "eko-"
-          ],
-          "sv": [
-            "bio-",
-            "geo-",
-            "tele-",
-            "eko-"
-          ],
-          "ca": [
-            "bio-",
-            "geo-",
-            "tele-",
-            "eco-"
-          ],
-          "oc": [
-            "bio-",
-            "geo-",
-            "tele-",
-            "eco-"
-          ],
-          "ro": [
-            "bio-",
-            "geo-",
-            "tele-",
-            "eco-"
-          ]
-        }
-      },
-      "caution": ""
-    },
-    {
-      "id": "prefix_mono_poly_multi",
-      "type": "prefix",
-      "function": "number_quantity",
-      "interal_candidates": [
-        "mono",
-        "poly",
-        "multi"
-      ],
-      "meaning": {
-        "ru": "один, много, множественный",
-        "en": "one, many, multiple"
-      },
-      "forms": {
-        "control": {
-          "en": [
-            "mono-",
-            "poly-",
-            "multi-"
-          ],
-          "de": [
-            "mono-",
-            "poly-",
-            "multi-"
-          ],
-          "fr": [
-            "mono-",
-            "poly-",
-            "multi-"
-          ],
-          "es": [
-            "mono-",
-            "poli-",
-            "multi-"
-          ],
-          "it": [
-            "mono-",
-            "poli-",
-            "multi-"
-          ],
-          "ru": [
-            "моно-",
-            "поли-",
-            "мульти-"
-          ],
-          "el": [
-            "μονο-",
-            "πολυ-"
-          ]
-        },
-        "auxiliary": {
-          "pl": [
-            "mono-",
-            "poli-",
-            "multi-"
-          ],
-          "sv": [
-            "mono-",
-            "poly-",
-            "multi-"
-          ],
-          "ca": [
-            "mono-",
-            "poli-",
-            "multi-"
-          ],
-          "oc": [
-            "mono-",
-            "poli-",
-            "multi-"
-          ],
-          "ro": [
-            "mono-",
-            "poli-",
-            "multi-"
-          ]
-        }
-      },
-      "caution": ""
-    },
-    {
-      "id": "prefix_neo_paleo_pseudo_meta",
-      "type": "prefix",
-      "function": "temporal_false_meta",
-      "interal_candidates": [
-        "neo",
-        "paleo",
-        "pseudo",
-        "meta"
-      ],
-      "meaning": {
-        "ru": "новый, древний, ложный, надуровневый",
-        "en": "new, ancient, false, meta-level"
-      },
-      "forms": {
-        "control": {
-          "en": [
-            "neo-",
-            "paleo-/palaeo-",
-            "pseudo-",
-            "meta-"
-          ],
-          "de": [
-            "neo-",
-            "paläo-",
-            "pseudo-",
-            "meta-"
-          ],
-          "fr": [
-            "néo-",
-            "paléo-",
-            "pseudo-",
-            "méta-"
-          ],
-          "es": [
-            "neo-",
-            "paleo-",
-            "pseudo-/seudo-",
-            "meta-"
-          ],
-          "it": [
-            "neo-",
-            "paleo-",
-            "pseudo-",
-            "meta-"
-          ],
-          "ru": [
-            "нео-",
-            "палео-",
-            "псевдо-",
-            "мета-"
-          ],
-          "el": [
-            "νεο-",
-            "παλαιο-",
-            "ψευδο-",
-            "μετα-"
-          ]
-        },
-        "auxiliary": {
-          "pl": [
-            "neo-",
-            "paleo-",
-            "pseudo-",
-            "meta-"
-          ],
-          "sv": [
-            "neo-",
-            "paleo-",
-            "pseudo-",
-            "meta-"
-          ],
-          "ca": [
-            "neo-",
-            "paleo-",
-            "pseudo-",
-            "meta-"
-          ],
-          "oc": [
-            "neo-",
-            "paleo-",
-            "pseudo-",
-            "meta-"
-          ],
-          "ro": [
-            "neo-",
-            "paleo-",
-            "pseudo-",
-            "meta-"
-          ]
-        }
-      },
-      "caution": ""
-    },
-    {
-      "id": "prefix_pan_semi_iso_hetero_homo",
-      "type": "prefix",
-      "function": "logical_relation_quantity",
-      "interal_candidates": [
-        "pan",
-        "semi",
-        "iso",
-        "hetero",
-        "homo"
-      ],
-      "meaning": {
-        "ru": "все, половина, равный, другой, одинаковый",
-        "en": "all, half, equal, other, same"
-      },
-      "forms": {
-        "control": {
-          "en": [
-            "pan-",
-            "semi-/hemi-/demi-",
-            "iso-",
-            "hetero-",
-            "homo-"
-          ],
-          "de": [
-            "pan-",
-            "semi-/hemi-",
-            "iso-",
-            "hetero-",
-            "homo-"
-          ],
-          "fr": [
-            "pan-",
-            "semi-/hémi-/demi-",
-            "iso-",
-            "hétéro-",
-            "homo-"
-          ],
-          "es": [
-            "pan-",
-            "semi-/hemi-",
-            "iso-",
-            "hetero-",
-            "homo-"
-          ],
-          "it": [
-            "pan-",
-            "semi-/emi-",
-            "iso-",
-            "etero-",
-            "omo-"
-          ],
-          "ru": [
-            "пан-",
-            "полу-/семи-/геми-",
-            "изо-",
-            "гетеро-",
-            "гомо-"
-          ],
-          "el": [
-            "παν-",
-            "ημι-",
-            "ισο-",
-            "ετερο-",
-            "ομο-"
-          ]
-        },
-        "auxiliary": {
-          "pl": [
-            "pan-",
-            "pół-/semi-",
-            "izo-",
-            "hetero-",
-            "homo-"
-          ],
-          "sv": [
-            "pan-",
-            "semi-/halv-",
-            "iso-",
-            "hetero-",
-            "homo-"
-          ],
-          "ca": [
-            "pan-",
-            "semi-",
-            "iso-",
-            "hetero-",
-            "homo-"
-          ],
-          "oc": [
-            "pan-",
-            "semi-",
-            "iso-",
-            "etero-",
-            "omo-"
-          ],
-          "ro": [
-            "pan-",
-            "semi-",
-            "izo-/iso-",
-            "hetero-",
-            "homo-"
-          ]
-        }
-      },
-      "caution": ""
-    },
-    {
-      "id": "suffix_tion_sion_ion",
+      "id": "suffix-tion-action-result",
       "type": "suffix",
+      "subtype": "derivational",
+      "originType": "borrowed_international",
+      "interalCandidate": "-tion",
       "function": "action_result_noun",
-      "interal_candidates": [
-        "tion",
-        "ion"
-      ],
       "meaning": {
-        "ru": "действие, процесс или результат действия",
-        "en": "action, process, or result"
+        "ru": "существительное действия, процесса или результата",
+        "en": "action, process, or result noun"
       },
       "forms": {
         "control": {
@@ -1676,8 +879,7 @@
           ],
           "it": [
             "-zione",
-            "-sione",
-            "-ione"
+            "-sione"
           ],
           "ru": [
             "-ция",
@@ -1708,146 +910,24 @@
           ],
           "ro": [
             "-ție",
-            "-țiune",
             "-siune"
           ]
         }
       },
-      "caution": "avoid_false_final_ion"
+      "falsePositiveRisk": "high",
+      "priority": "core",
+      "falsePositiveComment": {
+        "ru": "-ion/-tion может быть частью исторически слитой основы; требуются семантическая прозрачность и межъязыковые параллели.",
+        "en": "-ion/-tion may be part of a historically fused stem; require semantic transparency and cross-language parallels."
+      }
     },
     {
-      "id": "suffix_ment",
+      "id": "suffix-ity-abstract",
       "type": "suffix",
-      "function": "action_result_instrument",
-      "interal_candidates": [
-        "ment"
-      ],
-      "meaning": {
-        "ru": "действие, результат или средство",
-        "en": "action, result, or instrument"
-      },
-      "forms": {
-        "control": {
-          "en": [
-            "-ment"
-          ],
-          "de": [
-            "-ment"
-          ],
-          "fr": [
-            "-ment"
-          ],
-          "es": [
-            "-miento",
-            "-mento"
-          ],
-          "it": [
-            "-mento"
-          ],
-          "ru": [
-            "-мент"
-          ],
-          "el": [
-            "-μα",
-            "-μεντ"
-          ]
-        },
-        "auxiliary": {
-          "pl": [
-            "-ment"
-          ],
-          "sv": [
-            "-ment"
-          ],
-          "ca": [
-            "-ment"
-          ],
-          "oc": [
-            "-ment"
-          ],
-          "ro": [
-            "-ment"
-          ]
-        }
-      },
-      "caution": ""
-    },
-    {
-      "id": "suffix_ance_ence",
-      "type": "suffix",
-      "function": "state_quality_action",
-      "interal_candidates": [
-        "ance",
-        "ence"
-      ],
-      "meaning": {
-        "ru": "состояние, качество, действие",
-        "en": "state, quality, action"
-      },
-      "forms": {
-        "control": {
-          "en": [
-            "-ance",
-            "-ence"
-          ],
-          "de": [
-            "-anz",
-            "-enz"
-          ],
-          "fr": [
-            "-ance",
-            "-ence"
-          ],
-          "es": [
-            "-ancia",
-            "-encia"
-          ],
-          "it": [
-            "-anza",
-            "-enza"
-          ],
-          "ru": [
-            "-анция",
-            "-енция"
-          ],
-          "el": [
-            "-εια",
-            "-ανση"
-          ]
-        },
-        "auxiliary": {
-          "pl": [
-            "-ancja",
-            "-encja"
-          ],
-          "sv": [
-            "-ans",
-            "-ens"
-          ],
-          "ca": [
-            "-ança",
-            "-ència"
-          ],
-          "oc": [
-            "-ança",
-            "-éncia"
-          ],
-          "ro": [
-            "-anță",
-            "-ență"
-          ]
-        }
-      },
-      "caution": ""
-    },
-    {
-      "id": "suffix_ity_tude",
-      "type": "suffix",
-      "function": "abstract_quality",
-      "interal_candidates": [
-        "itá",
-        "tud"
-      ],
+      "subtype": "derivational",
+      "originType": "mixed",
+      "interalCandidate": "-ity",
+      "function": "abstract_quality_state",
       "meaning": {
         "ru": "абстрактное качество или состояние",
         "en": "abstract quality or state"
@@ -1855,33 +935,27 @@
       "forms": {
         "control": {
           "en": [
-            "-ity",
-            "-ty",
-            "-tude"
+            "-ity"
           ],
           "de": [
             "-ität"
           ],
           "fr": [
-            "-ité",
-            "-itude"
+            "-ité"
           ],
           "es": [
             "-idad",
-            "-tud"
+            "-dad"
           ],
           "it": [
-            "-ità",
-            "-tudine"
+            "-ità"
           ],
           "ru": [
             "-ость",
-            "-итет",
-            "-ность"
+            "-итет"
           ],
           "el": [
-            "-τητα",
-            "-σύνη"
+            "-ότητα"
           ]
         },
         "auxiliary": {
@@ -1890,35 +964,166 @@
             "-itet"
           ],
           "sv": [
-            "-itet",
-            "-het"
+            "-itet"
           ],
           "ca": [
-            "-itat",
-            "-tud"
+            "-itat"
           ],
           "oc": [
-            "-itat",
-            "-tud"
+            "-itat"
           ],
           "ro": [
-            "-itate",
-            "-tudine"
+            "-itate"
           ]
         }
       },
-      "caution": ""
+      "falsePositiveRisk": "medium",
+      "priority": "core"
     },
     {
-      "id": "suffix_ism",
+      "id": "suffix-er-or-agent",
       "type": "suffix",
-      "function": "doctrine_system_movement",
-      "interal_candidates": [
-        "ism"
-      ],
+      "subtype": "derivational",
+      "originType": "mixed",
+      "interalCandidate": "-or",
+      "function": "agent_person",
       "meaning": {
-        "ru": "учение, система, направление, идеология",
-        "en": "doctrine, system, movement, ideology"
+        "ru": "лицо, деятель, носитель признака или сторонник",
+        "en": "person, agent, bearer of a feature, or adherent"
+      },
+      "forms": {
+        "control": {
+          "en": [
+            "-er",
+            "-or",
+            "-tor"
+          ],
+          "de": [
+            "-er",
+            "-or",
+            "-tor"
+          ],
+          "fr": [
+            "-eur",
+            "-ateur"
+          ],
+          "es": [
+            "-dor",
+            "-or",
+            "-tor"
+          ],
+          "it": [
+            "-tore",
+            "-ore"
+          ],
+          "ru": [
+            "-ер",
+            "-ор",
+            "-тор",
+            "-ист"
+          ],
+          "el": [
+            "-τής",
+            "-τορας"
+          ]
+        },
+        "auxiliary": {
+          "pl": [
+            "-er",
+            "-or",
+            "-tor"
+          ],
+          "sv": [
+            "-are",
+            "-or"
+          ],
+          "ca": [
+            "-dor",
+            "-or"
+          ],
+          "oc": [
+            "-dor",
+            "-or"
+          ],
+          "ro": [
+            "-tor",
+            "-or"
+          ]
+        }
+      },
+      "falsePositiveRisk": "high",
+      "priority": "core",
+      "falsePositiveComment": {
+        "ru": "-er может быть агентным суффиксом, сравнительной степенью или частью корня.",
+        "en": "-er may be an agent suffix, comparative marker, or part of a root."
+      }
+    },
+    {
+      "id": "suffix-ist-person",
+      "type": "suffix",
+      "subtype": "derivational",
+      "originType": "borrowed_international",
+      "interalCandidate": "-ist",
+      "function": "person_adherent_specialist",
+      "meaning": {
+        "ru": "сторонник, специалист или лицо, связанное с практикой",
+        "en": "adherent, specialist, or person associated with a practice"
+      },
+      "forms": {
+        "control": {
+          "en": [
+            "-ist"
+          ],
+          "de": [
+            "-ist"
+          ],
+          "fr": [
+            "-iste"
+          ],
+          "es": [
+            "-ista"
+          ],
+          "it": [
+            "-ista"
+          ],
+          "ru": [
+            "-ист"
+          ],
+          "el": [
+            "-ιστής"
+          ]
+        },
+        "auxiliary": {
+          "pl": [
+            "-ista"
+          ],
+          "sv": [
+            "-ist"
+          ],
+          "ca": [
+            "-ista"
+          ],
+          "oc": [
+            "-ista"
+          ],
+          "ro": [
+            "-ist"
+          ]
+        }
+      },
+      "falsePositiveRisk": "low",
+      "priority": "core"
+    },
+    {
+      "id": "suffix-ism-doctrine",
+      "type": "suffix",
+      "subtype": "derivational",
+      "originType": "borrowed_international",
+      "interalCandidate": "-ism",
+      "function": "doctrine_system",
+      "meaning": {
+        "ru": "учение, система, направление или практика",
+        "en": "doctrine, system, movement, or practice"
       },
       "forms": {
         "control": {
@@ -1962,152 +1167,19 @@
           ]
         }
       },
-      "caution": ""
+      "falsePositiveRisk": "low",
+      "priority": "core"
     },
     {
-      "id": "suffix_ist",
+      "id": "suffix-al-relational-adjective",
       "type": "suffix",
-      "function": "person_follower_specialist",
-      "interal_candidates": [
-        "ist"
-      ],
-      "meaning": {
-        "ru": "сторонник, специалист, представитель",
-        "en": "follower, specialist, representative"
-      },
-      "forms": {
-        "control": {
-          "en": [
-            "-ist"
-          ],
-          "de": [
-            "-ist"
-          ],
-          "fr": [
-            "-iste"
-          ],
-          "es": [
-            "-ista"
-          ],
-          "it": [
-            "-ista"
-          ],
-          "ru": [
-            "-ист"
-          ],
-          "el": [
-            "-ιστής"
-          ]
-        },
-        "auxiliary": {
-          "pl": [
-            "-ista",
-            "-yst"
-          ],
-          "sv": [
-            "-ist"
-          ],
-          "ca": [
-            "-ista"
-          ],
-          "oc": [
-            "-ista"
-          ],
-          "ro": [
-            "-ist"
-          ]
-        }
-      },
-      "caution": ""
-    },
-    {
-      "id": "suffix_er_or_tor",
-      "type": "suffix",
-      "function": "agent_person_instrument",
-      "interal_candidates": [
-        "er",
-        "or",
-        "tor"
-      ],
-      "meaning": {
-        "ru": "деятель, исполнитель, инструмент",
-        "en": "agent, doer, instrument"
-      },
-      "forms": {
-        "control": {
-          "en": [
-            "-er",
-            "-or",
-            "-tor"
-          ],
-          "de": [
-            "-er",
-            "-or",
-            "-tor"
-          ],
-          "fr": [
-            "-eur",
-            "-ateur",
-            "-teur"
-          ],
-          "es": [
-            "-dor",
-            "-tor",
-            "-or"
-          ],
-          "it": [
-            "-tore",
-            "-ore"
-          ],
-          "ru": [
-            "-ер",
-            "-ор",
-            "-тор",
-            "-тель"
-          ],
-          "el": [
-            "-της",
-            "-τορας"
-          ]
-        },
-        "auxiliary": {
-          "pl": [
-            "-er",
-            "-or",
-            "-tor",
-            "-arz"
-          ],
-          "sv": [
-            "-are",
-            "-ör",
-            "-or"
-          ],
-          "ca": [
-            "-dor",
-            "-tor"
-          ],
-          "oc": [
-            "-dor",
-            "-tor"
-          ],
-          "ro": [
-            "-tor",
-            "-or"
-          ]
-        }
-      },
-      "caution": ""
-    },
-    {
-      "id": "suffix_al",
-      "type": "suffix",
+      "subtype": "derivational",
+      "originType": "borrowed_international",
+      "interalCandidate": "-al",
       "function": "relational_adjective",
-      "interal_candidates": [
-        "al"
-      ],
       "meaning": {
-        "ru": "относящийся к основе",
-        "en": "relating to the stem"
+        "ru": "прилагательное отношения",
+        "en": "adjective of relation"
       },
       "forms": {
         "control": {
@@ -2133,14 +1205,12 @@
             "-ал"
           ],
           "el": [
-            "-ικός",
-            "-αλ"
+            "-ικός"
           ]
         },
         "auxiliary": {
           "pl": [
-            "-alny",
-            "-al"
+            "-alny"
           ],
           "sv": [
             "-al"
@@ -2156,19 +1226,23 @@
           ]
         }
       },
-      "caution": ""
+      "falsePositiveRisk": "high",
+      "priority": "core",
+      "falsePositiveComment": {
+        "ru": "-al часто является частью основы; не выделять без деривационной функции.",
+        "en": "-al is often part of a stem; do not segment it without derivational function."
+      }
     },
     {
-      "id": "suffix_ic_ical",
+      "id": "suffix-ic-adjective",
       "type": "suffix",
-      "function": "scientific_relational_adjective",
-      "interal_candidates": [
-        "ic",
-        "ical"
-      ],
+      "subtype": "derivational",
+      "originType": "borrowed_international",
+      "interalCandidate": "-ic",
+      "function": "relational_qualitative_adjective",
       "meaning": {
-        "ru": "относящийся к области, классу или свойству",
-        "en": "pertaining to a field, class, or property"
+        "ru": "относительное или качественное прилагательное",
+        "en": "relational or qualitative adjective"
       },
       "forms": {
         "control": {
@@ -2177,8 +1251,7 @@
             "-ical"
           ],
           "de": [
-            "-isch",
-            "-ik"
+            "-isch"
           ],
           "fr": [
             "-ique"
@@ -2193,17 +1266,15 @@
           ],
           "ru": [
             "-ический",
-            "-ик"
+            "-ичный"
           ],
           "el": [
-            "-ικός",
-            "-ική"
+            "-ικός"
           ]
         },
         "auxiliary": {
           "pl": [
-            "-iczny",
-            "-yka"
+            "-iczny"
           ],
           "sv": [
             "-isk"
@@ -2222,18 +1293,19 @@
           ]
         }
       },
-      "caution": ""
+      "falsePositiveRisk": "medium",
+      "priority": "core"
     },
     {
-      "id": "suffix_iv",
+      "id": "suffix-ive-adjective",
       "type": "suffix",
-      "function": "active_tending_quality",
-      "interal_candidates": [
-        "iv"
-      ],
+      "subtype": "derivational",
+      "originType": "borrowed_international",
+      "interalCandidate": "-ive",
+      "function": "active_tendency_adjective",
       "meaning": {
-        "ru": "склонный к действию, обладающий активным свойством",
-        "en": "active, tending to, having an active quality"
+        "ru": "прилагательное способности, склонности или активного отношения",
+        "en": "adjective of capacity, tendency, or active relation"
       },
       "forms": {
         "control": {
@@ -2283,85 +1355,19 @@
           ]
         }
       },
-      "caution": ""
+      "falsePositiveRisk": "medium",
+      "priority": "core"
     },
     {
-      "id": "suffix_os_ous",
+      "id": "suffix-able-ible-adjective",
       "type": "suffix",
-      "function": "full_of_quality",
-      "interal_candidates": [
-        "os"
-      ],
+      "subtype": "derivational",
+      "originType": "borrowed_international",
+      "interalCandidate": "-able",
+      "function": "capability_passive_possibility",
       "meaning": {
-        "ru": "обладающий качеством, полный чего-либо",
-        "en": "having a quality, full of"
-      },
-      "forms": {
-        "control": {
-          "en": [
-            "-ous"
-          ],
-          "de": [
-            "-ös",
-            "-os"
-          ],
-          "fr": [
-            "-eux",
-            "-ose"
-          ],
-          "es": [
-            "-oso",
-            "-osa"
-          ],
-          "it": [
-            "-oso",
-            "-osa"
-          ],
-          "ru": [
-            "-озный",
-            "-оз"
-          ],
-          "el": [
-            "-ώδης",
-            "-ος"
-          ]
-        },
-        "auxiliary": {
-          "pl": [
-            "-owy",
-            "-ozny"
-          ],
-          "sv": [
-            "-ös",
-            "-os"
-          ],
-          "ca": [
-            "-ós",
-            "-osa"
-          ],
-          "oc": [
-            "-ós",
-            "-osa"
-          ],
-          "ro": [
-            "-os",
-            "-oasă"
-          ]
-        }
-      },
-      "caution": ""
-    },
-    {
-      "id": "suffix_able_ible",
-      "type": "suffix",
-      "function": "capability_possibility",
-      "interal_candidates": [
-        "abil",
-        "ibil"
-      ],
-      "meaning": {
-        "ru": "способный быть сделанным, пригодный к действию",
-        "en": "capable of being done, fit for action"
+        "ru": "способность, пригодность или возможность пассивного действия",
+        "en": "capability, suitability, or passive possibility"
       },
       "forms": {
         "control": {
@@ -2371,8 +1377,7 @@
           ],
           "de": [
             "-abel",
-            "-ibel",
-            "-bar"
+            "-ibel"
           ],
           "fr": [
             "-able",
@@ -2388,22 +1393,20 @@
           ],
           "ru": [
             "-абельный",
-            "-ибельный",
-            "-имый"
+            "-ибельный"
           ],
           "el": [
-            "-σιμος",
-            "-τός"
+            "-σιμος"
           ]
         },
         "auxiliary": {
           "pl": [
             "-alny",
-            "-bilny"
+            "-abilny"
           ],
           "sv": [
-            "-bar",
-            "-abel"
+            "-abel",
+            "-ibel"
           ],
           "ca": [
             "-able",
@@ -2419,431 +1422,19 @@
           ]
         }
       },
-      "caution": ""
+      "falsePositiveRisk": "medium",
+      "priority": "core"
     },
     {
-      "id": "suffix_ant_ent",
-      "type": "suffix",
-      "function": "participle_agent_quality",
-      "interal_candidates": [
-        "ant",
-        "ent"
-      ],
+      "id": "combining-form-cracy",
+      "type": "combining_form",
+      "subtype": "bound_lexical_morpheme",
+      "originType": "borrowed_international",
+      "interalCandidate": "-cratia",
+      "function": "government_power_system",
       "meaning": {
-        "ru": "действующий, носитель действия или признака",
-        "en": "acting, bearing an action or quality"
-      },
-      "forms": {
-        "control": {
-          "en": [
-            "-ant",
-            "-ent"
-          ],
-          "de": [
-            "-ant",
-            "-ent"
-          ],
-          "fr": [
-            "-ant",
-            "-ent"
-          ],
-          "es": [
-            "-ante",
-            "-ente"
-          ],
-          "it": [
-            "-ante",
-            "-ente"
-          ],
-          "ru": [
-            "-ант",
-            "-ент",
-            "-ущий"
-          ],
-          "el": [
-            "-ων",
-            "-οντας"
-          ]
-        },
-        "auxiliary": {
-          "pl": [
-            "-ant",
-            "-ent"
-          ],
-          "sv": [
-            "-ant",
-            "-ent"
-          ],
-          "ca": [
-            "-ant",
-            "-ent"
-          ],
-          "oc": [
-            "-ant",
-            "-ent"
-          ],
-          "ro": [
-            "-ant",
-            "-ent"
-          ]
-        }
-      },
-      "caution": ""
-    },
-    {
-      "id": "suffix_ary_ari",
-      "type": "suffix",
-      "function": "relational_field_person_place",
-      "interal_candidates": [
-        "ari"
-      ],
-      "meaning": {
-        "ru": "связанный со сферой, местом или лицом",
-        "en": "related to a field, place, or person"
-      },
-      "forms": {
-        "control": {
-          "en": [
-            "-ary"
-          ],
-          "de": [
-            "-är"
-          ],
-          "fr": [
-            "-aire"
-          ],
-          "es": [
-            "-ario",
-            "-aria"
-          ],
-          "it": [
-            "-ario",
-            "-aria"
-          ],
-          "ru": [
-            "-арий",
-            "-арный"
-          ],
-          "el": [
-            "-άριος"
-          ]
-        },
-        "auxiliary": {
-          "pl": [
-            "-arny",
-            "-ariusz"
-          ],
-          "sv": [
-            "-är"
-          ],
-          "ca": [
-            "-ari",
-            "-ària"
-          ],
-          "oc": [
-            "-ari",
-            "-ària"
-          ],
-          "ro": [
-            "-ar",
-            "-ară"
-          ]
-        }
-      },
-      "caution": ""
-    },
-    {
-      "id": "suffix_izar",
-      "type": "suffix",
-      "function": "make_become_verb",
-      "interal_candidates": [
-        "izar",
-        "isar"
-      ],
-      "meaning": {
-        "ru": "делать, превращать в, придавать свойство",
-        "en": "make, become, turn into"
-      },
-      "forms": {
-        "control": {
-          "en": [
-            "-ize",
-            "-ise"
-          ],
-          "de": [
-            "-isieren"
-          ],
-          "fr": [
-            "-iser"
-          ],
-          "es": [
-            "-izar"
-          ],
-          "it": [
-            "-izzare"
-          ],
-          "ru": [
-            "-изировать"
-          ],
-          "el": [
-            "-ίζω"
-          ]
-        },
-        "auxiliary": {
-          "pl": [
-            "-izować"
-          ],
-          "sv": [
-            "-isera"
-          ],
-          "ca": [
-            "-itzar"
-          ],
-          "oc": [
-            "-izar"
-          ],
-          "ro": [
-            "-iza"
-          ]
-        }
-      },
-      "caution": ""
-    },
-    {
-      "id": "suffix_ficar",
-      "type": "suffix",
-      "function": "make_cause",
-      "interal_candidates": [
-        "ficar"
-      ],
-      "meaning": {
-        "ru": "делать, создавать, превращать",
-        "en": "make, cause, turn into"
-      },
-      "forms": {
-        "control": {
-          "en": [
-            "-fy",
-            "-ify",
-            "-fic"
-          ],
-          "de": [
-            "-fizieren"
-          ],
-          "fr": [
-            "-fier"
-          ],
-          "es": [
-            "-ficar",
-            "-ificar"
-          ],
-          "it": [
-            "-ficare",
-            "-ificare"
-          ],
-          "ru": [
-            "-фицировать"
-          ],
-          "el": [
-            "-ποιώ"
-          ]
-        },
-        "auxiliary": {
-          "pl": [
-            "-fikować"
-          ],
-          "sv": [
-            "-fiera"
-          ],
-          "ca": [
-            "-ficar"
-          ],
-          "oc": [
-            "-ficar"
-          ],
-          "ro": [
-            "-fica"
-          ]
-        }
-      },
-      "caution": ""
-    },
-    {
-      "id": "suffix_logia",
-      "type": "suffix",
-      "function": "science_field_study",
-      "interal_candidates": [
-        "logia"
-      ],
-      "meaning": {
-        "ru": "наука, учение, область изучения",
-        "en": "science, study, field of knowledge"
-      },
-      "forms": {
-        "control": {
-          "en": [
-            "-logy"
-          ],
-          "de": [
-            "-logie"
-          ],
-          "fr": [
-            "-logie"
-          ],
-          "es": [
-            "-logía"
-          ],
-          "it": [
-            "-logia"
-          ],
-          "ru": [
-            "-логия"
-          ],
-          "el": [
-            "-λογία"
-          ]
-        },
-        "auxiliary": {
-          "pl": [
-            "-logia"
-          ],
-          "sv": [
-            "-logi"
-          ],
-          "ca": [
-            "-logia"
-          ],
-          "oc": [
-            "-logia"
-          ],
-          "ro": [
-            "-logie"
-          ]
-        }
-      },
-      "caution": ""
-    },
-    {
-      "id": "suffix_grafia",
-      "type": "suffix",
-      "function": "writing_description_recording",
-      "interal_candidates": [
-        "grafia"
-      ],
-      "meaning": {
-        "ru": "письмо, описание, запись",
-        "en": "writing, description, recording"
-      },
-      "forms": {
-        "control": {
-          "en": [
-            "-graphy"
-          ],
-          "de": [
-            "-graphie",
-            "-grafie"
-          ],
-          "fr": [
-            "-graphie"
-          ],
-          "es": [
-            "-grafía"
-          ],
-          "it": [
-            "-grafia"
-          ],
-          "ru": [
-            "-графия"
-          ],
-          "el": [
-            "-γραφία"
-          ]
-        },
-        "auxiliary": {
-          "pl": [
-            "-grafia"
-          ],
-          "sv": [
-            "-grafi"
-          ],
-          "ca": [
-            "-grafia"
-          ],
-          "oc": [
-            "-grafia"
-          ],
-          "ro": [
-            "-grafie"
-          ]
-        }
-      },
-      "caution": ""
-    },
-    {
-      "id": "suffix_metria",
-      "type": "suffix",
-      "function": "measurement_field",
-      "interal_candidates": [
-        "metria"
-      ],
-      "meaning": {
-        "ru": "измерение, метод измерения",
-        "en": "measurement, measuring method"
-      },
-      "forms": {
-        "control": {
-          "en": [
-            "-metry"
-          ],
-          "de": [
-            "-metrie"
-          ],
-          "fr": [
-            "-métrie"
-          ],
-          "es": [
-            "-metría"
-          ],
-          "it": [
-            "-metria"
-          ],
-          "ru": [
-            "-метрия"
-          ],
-          "el": [
-            "-μετρία"
-          ]
-        },
-        "auxiliary": {
-          "pl": [
-            "-metria"
-          ],
-          "sv": [
-            "-metri"
-          ],
-          "ca": [
-            "-metria"
-          ],
-          "oc": [
-            "-metria"
-          ],
-          "ro": [
-            "-metrie"
-          ]
-        }
-      },
-      "caution": ""
-    },
-    {
-      "id": "suffix_cratia",
-      "type": "suffix",
-      "function": "rule_power_system",
-      "interal_candidates": [
-        "cratia"
-      ],
-      "meaning": {
-        "ru": "власть, правление, политическая система",
-        "en": "rule, power, political system"
+        "ru": "власть, форма правления, система управления",
+        "en": "rule, power, form of government"
       },
       "forms": {
         "control": {
@@ -2887,593 +1478,154 @@
           ]
         }
       },
-      "caution": ""
+      "falsePositiveRisk": "medium",
+      "priority": "reference",
+      "falsePositiveComment": {
+        "ru": "Это связанная лексическая морфема, а не обычный деривационный суффикс.",
+        "en": "This is a bound lexical morpheme, not an ordinary derivational suffix."
+      }
     },
     {
-      "id": "suffix_phobia_philia",
-      "type": "suffix",
-      "function": "fear_love_affinity",
-      "interal_candidates": [
-        "phobia",
-        "philia"
-      ],
+      "id": "combining-form-logy",
+      "type": "combining_form",
+      "subtype": "bound_lexical_morpheme",
+      "originType": "borrowed_international",
+      "interalCandidate": "-logia",
+      "function": "field_of_study",
       "meaning": {
-        "ru": "страх/отвращение; любовь/склонность",
-        "en": "fear/aversion; love/affinity"
+        "ru": "область знания или учение",
+        "en": "field of study or discourse"
       },
       "forms": {
         "control": {
           "en": [
-            "-phobia",
-            "-philia",
-            "-phile"
+            "-logy"
           ],
           "de": [
-            "-phobie",
-            "-philie",
-            "-phil"
+            "-logie"
           ],
           "fr": [
-            "-phobie",
-            "-philie",
-            "-phile"
+            "-logie"
           ],
           "es": [
-            "-fobia",
-            "-filia",
-            "-filo"
+            "-logía"
           ],
           "it": [
-            "-fobia",
-            "-filia",
-            "-filo"
+            "-logia"
           ],
           "ru": [
-            "-фобия",
-            "-филия",
-            "-фил"
+            "-логия"
           ],
           "el": [
-            "-φοβία",
-            "-φιλία",
-            "-φιλος"
+            "-λογία"
           ]
         },
         "auxiliary": {
           "pl": [
-            "-fobia",
-            "-filia",
-            "-fil"
+            "-logia"
           ],
           "sv": [
-            "-fobi",
-            "-fili",
-            "-fil"
+            "-logi"
           ],
           "ca": [
-            "-fòbia",
-            "-fília",
-            "-fil"
+            "-logia"
           ],
           "oc": [
-            "-fobia",
-            "-filia"
+            "-logia"
           ],
           "ro": [
-            "-fobie",
-            "-filie",
-            "-fil"
+            "-logie"
           ]
         }
       },
-      "caution": ""
+      "falsePositiveRisk": "medium",
+      "priority": "reference",
+      "falsePositiveComment": {
+        "ru": "Это связанная лексическая морфема, а не обычный деривационный суффикс.",
+        "en": "This is a bound lexical morpheme, not an ordinary derivational suffix."
+      }
     },
     {
-      "id": "suffix_scop_scopia",
-      "type": "suffix",
-      "function": "viewing_instrument_method",
-      "interal_candidates": [
-        "scop",
-        "scopia"
-      ],
+      "id": "combining-form-scopy",
+      "type": "combining_form",
+      "subtype": "bound_lexical_morpheme",
+      "originType": "borrowed_international",
+      "interalCandidate": "-scopia",
+      "function": "visual_examination",
       "meaning": {
-        "ru": "прибор или метод наблюдения",
-        "en": "viewing instrument or method"
+        "ru": "наблюдение или инструментальное исследование",
+        "en": "visual examination or instrumental inspection"
       },
       "forms": {
         "control": {
           "en": [
-            "-scope",
-            "-scopy"
+            "-scopy",
+            "-scope"
           ],
           "de": [
-            "-skop",
-            "-skopie"
+            "-skopie",
+            "-skop"
           ],
           "fr": [
-            "-scope",
-            "-scopie"
+            "-scopie",
+            "-scope"
           ],
           "es": [
-            "-scopio",
-            "-scopia"
+            "-scopia",
+            "-scopio"
           ],
           "it": [
-            "-scopio",
-            "-scopia"
+            "-scopia",
+            "-scopio"
           ],
           "ru": [
-            "-скоп",
-            "-скопия"
+            "-скопия",
+            "-скоп"
           ],
           "el": [
-            "-σκόπιο",
-            "-σκοπία"
+            "-σκοπία",
+            "-σκόπιο"
           ]
         },
         "auxiliary": {
           "pl": [
-            "-skop",
-            "-skopia"
+            "-skopia",
+            "-skop"
           ],
           "sv": [
-            "-skop",
-            "-skopi"
+            "-skopi",
+            "-skop"
           ],
           "ca": [
-            "-scopi",
-            "-scòpia"
+            "-scòpia",
+            "-scopi"
           ],
           "oc": [
-            "-scòpi",
             "-scopia"
           ],
           "ro": [
-            "-scop",
-            "-scopie"
+            "-scopie",
+            "-scop"
           ]
         }
       },
-      "caution": ""
+      "falsePositiveRisk": "medium",
+      "priority": "reference",
+      "falsePositiveComment": {
+        "ru": "Это связанная лексическая морфема, а не обычный деривационный суффикс.",
+        "en": "This is a bound lexical morpheme, not an ordinary derivational suffix."
+      }
     },
     {
-      "id": "suffix_metr_gram",
-      "type": "suffix",
-      "function": "instrument_record",
-      "interal_candidates": [
-        "metr",
-        "gram"
-      ],
-      "meaning": {
-        "ru": "измерительный прибор; запись/результат записи",
-        "en": "measuring instrument; written/recorded result"
-      },
-      "forms": {
-        "control": {
-          "en": [
-            "-meter",
-            "-gram"
-          ],
-          "de": [
-            "-meter",
-            "-gramm"
-          ],
-          "fr": [
-            "-mètre",
-            "-gramme"
-          ],
-          "es": [
-            "-metro",
-            "-grama"
-          ],
-          "it": [
-            "-metro",
-            "-gramma"
-          ],
-          "ru": [
-            "-метр",
-            "-грамма"
-          ],
-          "el": [
-            "-μετρο",
-            "-γραμμα"
-          ]
-        },
-        "auxiliary": {
-          "pl": [
-            "-metr",
-            "-gram"
-          ],
-          "sv": [
-            "-meter",
-            "-gram"
-          ],
-          "ca": [
-            "-metre",
-            "-grama"
-          ],
-          "oc": [
-            "-mètre",
-            "-grama"
-          ],
-          "ro": [
-            "-metru",
-            "-gramă"
-          ]
-        }
-      },
-      "caution": ""
-    },
-    {
-      "id": "suffix_oid_form_gen",
-      "type": "suffix",
-      "function": "similarity_shape_origin",
-      "interal_candidates": [
-        "oid",
-        "form",
-        "gen"
-      ],
-      "meaning": {
-        "ru": "подобный, имеющий форму, порождающий/происходящий",
-        "en": "similar, shaped, producing/originating"
-      },
-      "forms": {
-        "control": {
-          "en": [
-            "-oid",
-            "-form",
-            "-gen",
-            "-genic"
-          ],
-          "de": [
-            "-oid",
-            "-form",
-            "-gen",
-            "-genisch"
-          ],
-          "fr": [
-            "-oïde",
-            "-forme",
-            "-gène",
-            "-génique"
-          ],
-          "es": [
-            "-oide",
-            "-forme",
-            "-geno",
-            "-génico"
-          ],
-          "it": [
-            "-oide",
-            "-forme",
-            "-geno",
-            "-genico"
-          ],
-          "ru": [
-            "-оид",
-            "-формный",
-            "-ген",
-            "-генный"
-          ],
-          "el": [
-            "-οειδής",
-            "-μορφος",
-            "-γενής"
-          ]
-        },
-        "auxiliary": {
-          "pl": [
-            "-oid",
-            "-genny"
-          ],
-          "sv": [
-            "-oid",
-            "-formig",
-            "-gen"
-          ],
-          "ca": [
-            "-oide",
-            "-forme",
-            "-gènic"
-          ],
-          "oc": [
-            "-oïde",
-            "-forme"
-          ],
-          "ro": [
-            "-oid",
-            "-form",
-            "-genic"
-          ]
-        }
-      },
-      "caution": ""
-    },
-    {
-      "id": "suffix_medical_itis_osis_ectomy",
-      "type": "suffix",
-      "function": "medical_condition_operation",
-      "interal_candidates": [
-        "itis",
-        "osis",
-        "ectomia"
-      ],
-      "meaning": {
-        "ru": "воспаление, патологическое состояние, удаление",
-        "en": "inflammation, pathological condition, removal"
-      },
-      "forms": {
-        "control": {
-          "en": [
-            "-itis",
-            "-osis",
-            "-ectomy"
-          ],
-          "de": [
-            "-itis",
-            "-ose",
-            "-ektomie"
-          ],
-          "fr": [
-            "-ite",
-            "-ose",
-            "-ectomie"
-          ],
-          "es": [
-            "-itis",
-            "-osis",
-            "-ectomía"
-          ],
-          "it": [
-            "-ite",
-            "-osi",
-            "-ectomia"
-          ],
-          "ru": [
-            "-ит",
-            "-оз",
-            "-эктомия"
-          ],
-          "el": [
-            "-ίτιδα",
-            "-ωση",
-            "-εκτομή"
-          ]
-        },
-        "auxiliary": {
-          "pl": [
-            "-it",
-            "-oza",
-            "-ektomia"
-          ],
-          "sv": [
-            "-it",
-            "-os",
-            "-ektomi"
-          ],
-          "ca": [
-            "-itis",
-            "-osi",
-            "-ectomia"
-          ],
-          "oc": [
-            "-itis",
-            "-òsi",
-            "-ectomia"
-          ],
-          "ro": [
-            "-ită",
-            "-oză",
-            "-ectomie"
-          ]
-        }
-      },
-      "caution": ""
-    },
-    {
-      "id": "suffix_diminutive_ette_ino",
-      "type": "suffix",
-      "function": "diminutive_small_object",
-      "interal_candidates": [
-        "ette",
-        "in"
-      ],
-      "meaning": {
-        "ru": "уменьшительность, малый объект",
-        "en": "diminutive, small object"
-      },
-      "forms": {
-        "control": {
-          "en": [
-            "-ette",
-            "-let",
-            "-ling"
-          ],
-          "de": [
-            "-chen",
-            "-lein"
-          ],
-          "fr": [
-            "-ette",
-            "-et"
-          ],
-          "es": [
-            "-ito",
-            "-ita",
-            "-illo",
-            "-illa"
-          ],
-          "it": [
-            "-ino",
-            "-ina",
-            "-etto",
-            "-etta"
-          ],
-          "ru": [
-            "-ик",
-            "-к-",
-            "-очк-",
-            "-еньк-"
-          ],
-          "el": [
-            "-άκι"
-          ]
-        },
-        "auxiliary": {
-          "pl": [
-            "-ek",
-            "-ka",
-            "-ko"
-          ],
-          "sv": [
-            "-is",
-            "-ing"
-          ],
-          "ca": [
-            "-et",
-            "-eta",
-            "-ó"
-          ],
-          "oc": [
-            "-et",
-            "-eta"
-          ],
-          "ro": [
-            "-el",
-            "-ică",
-            "-uț"
-          ]
-        }
-      },
-      "caution": "not_core_international_affix"
-    },
-    {
-      "id": "postfix_reflexive",
-      "type": "postfix",
-      "function": "reflexive_middle",
-      "interal_candidates": [
-        "se"
-      ],
-      "meaning": {
-        "ru": "возвратность, средний залог, действие на себя",
-        "en": "reflexive, middle voice, action on oneself"
-      },
-      "forms": {
-        "control": {
-          "en": [
-            "oneself/self, not suffix"
-          ],
-          "de": [
-            "sich, clitic/pronoun"
-          ],
-          "fr": [
-            "se"
-          ],
-          "es": [
-            "se"
-          ],
-          "it": [
-            "si"
-          ],
-          "ru": [
-            "-ся",
-            "-сь"
-          ],
-          "el": [
-            "middle/passive endings, not direct postfix"
-          ]
-        },
-        "auxiliary": {
-          "pl": [
-            "się"
-          ],
-          "sv": [
-            "-s passive/deponent"
-          ],
-          "ca": [
-            "se",
-            "-se"
-          ],
-          "oc": [
-            "se"
-          ],
-          "ro": [
-            "se"
-          ]
-        }
-      },
-      "caution": "mostly_not_derivational"
-    },
-    {
-      "id": "postfix_indefinite",
-      "type": "postfix",
-      "function": "indefinite_pronominal",
-      "interal_candidates": [
-        "-to",
-        "-ever"
-      ],
-      "meaning": {
-        "ru": "неопределённость: кто-то, что-либо, whenever",
-        "en": "indefiniteness: someone, anything, whenever"
-      },
-      "forms": {
-        "control": {
-          "en": [
-            "-ever"
-          ],
-          "de": [
-            "irgend-, not postfix"
-          ],
-          "fr": [
-            "quelque, n'importe"
-          ],
-          "es": [
-            "-quiera in cualquiera"
-          ],
-          "it": [
-            "qualche"
-          ],
-          "ru": [
-            "-то",
-            "-либо",
-            "-нибудь"
-          ],
-          "el": [
-            "-δήποτε"
-          ]
-        },
-        "auxiliary": {
-          "pl": [
-            "-ś",
-            "-kolwiek"
-          ],
-          "sv": [
-            "någon, -somhelst"
-          ],
-          "ca": [
-            "qualsevol"
-          ],
-          "oc": [
-            "que que siá"
-          ],
-          "ro": [
-            "ori-",
-            "-va"
-          ]
-        }
-      },
-      "caution": "do_not_use_as_word_derivation"
-    },
-    {
-      "id": "interfix_o",
+      "id": "interfix-o-greco-latin",
       "type": "interfix",
-      "function": "compound_linking_vowel",
-      "interal_candidates": [
-        "o"
-      ],
+      "subtype": "linking_vowel",
+      "originType": "borrowed_international",
+      "interalCandidate": "-o-",
+      "function": "compound_linking",
       "meaning": {
-        "ru": "соединительная гласная в сложных словах и греко-латинских формантах",
-        "en": "linking vowel in compounds and Greco-Latin combining forms"
+        "ru": "соединительный элемент между основами в греко-латинских сложениях",
+        "en": "linking element between stems in Greek-Latin compounds"
       },
       "forms": {
         "control": {
@@ -3517,18 +1669,23 @@
           ]
         }
       },
-      "caution": ""
+      "falsePositiveRisk": "high",
+      "priority": "core",
+      "falsePositiveComment": {
+        "ru": "-o- соединяет основы и не является самостоятельным суффиксом.",
+        "en": "-o- links stems and is not an independent suffix."
+      }
     },
     {
-      "id": "interfix_i",
+      "id": "interfix-i-latin-romance",
       "type": "interfix",
-      "function": "transitional_linking_i",
-      "interal_candidates": [
-        "i"
-      ],
+      "subtype": "linking_vowel",
+      "originType": "borrowed_international",
+      "interalCandidate": "-i-",
+      "function": "limited_compound_linking",
       "meaning": {
-        "ru": "переходная/соединительная гласная",
-        "en": "transitional/linking vowel"
+        "ru": "ограниченный соединительный элемент в отдельных латинских и романских структурах",
+        "en": "limited linking element in some Latin and Romance structures"
       },
       "forms": {
         "control": {
@@ -3547,21 +1704,12 @@
           "it": [
             "-i-"
           ],
-          "ru": [
-            "-и-"
-          ],
-          "el": [
-            "-ι-"
-          ]
+          "ru": [],
+          "el": []
         },
         "auxiliary": {
-          "pl": [
-            "-i-",
-            "-y-"
-          ],
-          "sv": [
-            "-i-"
-          ],
+          "pl": [],
+          "sv": [],
           "ca": [
             "-i-"
           ],
@@ -3573,138 +1721,62 @@
           ]
         }
       },
-      "caution": "needs_manual_review"
+      "falsePositiveRisk": "medium",
+      "priority": "core"
     },
     {
-      "id": "interfix_s",
-      "type": "interfix",
-      "function": "germanic_compound_linker",
-      "interal_candidates": [
-        "s"
-      ],
+      "id": "non-candidate-postfix-reflexive",
+      "type": "postfix",
+      "subtype": "reflexive_clitic_like",
+      "originType": "non_candidate",
+      "interalCandidate": null,
+      "function": "reflexive_marker",
       "meaning": {
-        "ru": "соединительный элемент в сложных словах",
-        "en": "compound linking element"
-      },
-      "forms": {
-        "control": {
-          "en": [
-            "-s-, rare/lexical"
-          ],
-          "de": [
-            "-s-",
-            "-es-"
-          ],
-          "fr": [],
-          "es": [],
-          "it": [],
-          "ru": [],
-          "el": []
-        },
-        "auxiliary": {
-          "pl": [],
-          "sv": [
-            "-s-"
-          ],
-          "ca": [],
-          "oc": [],
-          "ro": []
-        }
-      },
-      "caution": "low_internationality"
-    },
-    {
-      "id": "interfix_e",
-      "type": "interfix",
-      "function": "compound_linking_e",
-      "interal_candidates": [
-        "e"
-      ],
-      "meaning": {
-        "ru": "соединительная гласная в отдельных образованиях",
-        "en": "linking vowel in some formations"
+        "ru": "возвратный показатель; описывается как предупреждение, не как международный кандидат Interal",
+        "en": "reflexive marker; documented as a warning, not as an international Interal candidate"
       },
       "forms": {
         "control": {
           "en": [],
-          "de": [
-            "-e-"
-          ],
+          "de": [],
           "fr": [
-            "-e-"
+            "se"
           ],
           "es": [
-            "-e-"
+            "se"
           ],
           "it": [
-            "-e-"
+            "si"
           ],
           "ru": [
-            "-е-"
+            "-ся",
+            "-сь"
           ],
-          "el": [
-            "-ε-"
-          ]
-        },
-        "auxiliary": {
-          "pl": [
-            "-e-"
-          ],
-          "sv": [
-            "-e-"
-          ],
-          "ca": [
-            "-e-"
-          ],
-          "oc": [
-            "-e-"
-          ],
-          "ro": [
-            "-e-"
-          ]
-        }
-      },
-      "caution": "high_false_positive_risk"
-    },
-    {
-      "id": "interfix_n_en",
-      "type": "interfix",
-      "function": "linking_n_en",
-      "interal_candidates": [
-        "n",
-        "en"
-      ],
-      "meaning": {
-        "ru": "соединительный n/en",
-        "en": "linking n/en"
-      },
-      "forms": {
-        "control": {
-          "en": [
-            "-n-, rare"
-          ],
-          "de": [
-            "-n-",
-            "-en-"
-          ],
-          "fr": [
-            "rare"
-          ],
-          "es": [],
-          "it": [],
-          "ru": [],
           "el": []
         },
         "auxiliary": {
-          "pl": [],
-          "sv": [
-            "-n-"
+          "pl": [
+            "się"
           ],
-          "ca": [],
-          "oc": [],
-          "ro": []
+          "sv": [],
+          "ca": [
+            "es",
+            "se"
+          ],
+          "oc": [
+            "se"
+          ],
+          "ro": [
+            "se"
+          ]
         }
       },
-      "caution": "negative_control"
+      "falsePositiveRisk": "high",
+      "priority": "excluded",
+      "falsePositiveComment": {
+        "ru": "Русское -ся/-сь постфиксально, но западноевропейские соответствия обычно являются отдельными клитиками или местоимениями.",
+        "en": "Russian -ся/-сь is postfixal, but Western European counterparts are usually separate clitics or pronouns."
+      }
     }
-   
+  ]
+}
