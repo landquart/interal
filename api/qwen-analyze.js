@@ -178,7 +178,8 @@ function validateAffixesCheckPayload(input) {
   if (!form) throw Object.assign(Error('form is required'), { status: 400 });
   if (!meaningInput) throw Object.assign(Error('meaningInput is required'), { status: 400 });
   if (!['suffix', 'prefix'].includes(morphemeType)) throw Object.assign(Error('Invalid morphemeType'), { status: 400 });
-  return { form, meaningInput, morphemeType, interfaceLanguage };
+  const comment = normalizeString(input?.comment);
+  return { form, meaningInput, morphemeType, comment, interfaceLanguage };
 }
 function normalizeAffixesCheckCard(generated, input) {
   const card = generated && typeof generated === 'object' ? generated : {};
@@ -210,6 +211,7 @@ Methodology for affixes:
 - associativ_affix: present in at least 3 control languages and 2 language groups; borrowings are fewer; recognition is associative and analogical, not immediate; consider 1–5 frequent words and ipm where relevant.
 - alter_affix: needed when affixes for the required meaning differ significantly across control languages, or when a more widespread affix has several morphological forms because of derivation and/or several meanings.
 - Standardization: consider both ordinary forms in individual words and forms in derived words; do not automatically transfer source-language endings; choose the more widespread, prototypical, or derivationally convenient form.
+- If the optional input comment is present, use it only as analyst context for interpreting the candidate affix; do not copy the comment into the output JSON and do not add explanatory fields.
 
 Input:
 ${JSON.stringify(input, null, 2)}
