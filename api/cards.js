@@ -24,7 +24,8 @@ const CARD_PREFIXES = {
   indoeuropanvordes: 'iev',
   vordesofcommunites: 'vc',
   grammaticebrevivordes: 'gbv',
-  altervordes: 'al'
+  altervordes: 'al',
+  affixes: 'af'
 };
 
 const ALPHABET = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';

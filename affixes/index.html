@@ -50,6 +50,14 @@
       </form>
     </section>
 
+    <section class="card vord-panel result-section decision-summary" id="resultSection" hidden>
+      <h2 id="decisionTitle">Решение</h2>
+      <div id="resultBox"></div>
+      <div class="actions json-card-bottom-actions" id="jsonActions" hidden>
+        <button class="interal-btn interal-btn--secondary" id="jsonBtn" type="button" hidden disabled>Сформировать JSON-карточку</button>
+      </div>
+    </section>
+
     <div id="noticeBox" class="notice-box" hidden aria-live="polite"></div>
   </main>
 
@@ -61,6 +69,7 @@
       <pre class="json-card-output"><code id="jsonCardOutput"></code></pre>
       <div class="json-card-actions">
         <button id="copyJsonCardBtn" class="json-card-icon-btn menu-copy-btn" type="button" aria-label="Копировать JSON" title="Копировать JSON"><span class="menu-copy-icon-stack" aria-hidden="true"><img class="menu-copy-icon menu-copy-icon-link" src="../elements/Copy.svg" alt=""><svg class="menu-copy-icon menu-copy-icon-check" viewBox="0 0 24 24" focusable="false"><path d="M5 12.5l4.2 4.2L19 7" /></svg></span></button>
+        <button id="downloadJsonCardBtn" class="json-card-icon-btn" type="button" aria-label="Скачать JSON" title="Скачать JSON">↓</button>
         <button id="closeJsonCardTextBtn" class="interal-btn interal-btn--secondary" type="button">Закрыть</button>
       </div>
     </div>

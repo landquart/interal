@@ -188,3 +188,98 @@ body.json-card-modal-open { overflow: hidden; }
   .affixes-page .json-card-actions { justify-content: stretch; }
   .affixes-page .json-card-actions .interal-btn { flex: 1; }
 }
+
+.affixes-page .result-section {
+  padding: clamp(20px, 4vw, 32px);
+  display: grid;
+  gap: 14px;
+}
+.affixes-page .result-section[hidden] { display: none; }
+.affixes-page .result-section h2 { margin: 0; text-align: center; }
+.affixes-page .json-card-bottom-actions { display: flex; justify-content: center; }
+.affixes-page .decision-card { display: grid; gap: 16px; }
+.affixes-page .status {
+  display: flex;
+  align-items: center;
+  min-height: 42px;
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  border: 1px solid var(--border-subtle);
+  background: var(--surface-elevated);
+}
+.affixes-page .status.ok { color: var(--text); border-color: color-mix(in srgb, #22c55e 34%, var(--border-subtle)); }
+.affixes-page .status.bad { color: var(--text); border-color: color-mix(in srgb, #ef4444 34%, var(--border-subtle)); }
+.affixes-page .status.review { color: var(--text); border-color: color-mix(in srgb, #f59e0b 34%, var(--border-subtle)); }
+.affixes-page .decision-main {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.affixes-page .decision-main-item,
+.affixes-page details {
+  padding: 12px;
+  border-radius: var(--radius-md);
+  background: var(--surface-elevated);
+  border: 1px solid var(--border-subtle);
+}
+.affixes-page .decision-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+.affixes-page .decision-form { font-size: 1.25rem; }
+.affixes-page .decision-main-item p { margin: 0; }
+.affixes-page summary { cursor: pointer; font-weight: 800; }
+.affixes-page details > *:not(summary) { margin-top: 10px; }
+.affixes-page .analysis-list,
+.affixes-page .risk-list {
+  display: grid;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.affixes-page .analysis-list li,
+.affixes-page .risk-list li {
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  border: 1px solid var(--border-subtle);
+}
+.affixes-page .language-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.affixes-page table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  overflow: hidden;
+}
+.affixes-page th,
+.affixes-page td {
+  border-bottom: 1px solid var(--control-border);
+  padding: 8px 10px;
+  text-align: left;
+  vertical-align: top;
+  color: var(--text);
+}
+.affixes-page th {
+  width: 34%;
+  font-size: 13px;
+  color: var(--text-muted);
+  font-weight: 700;
+  background: var(--surface-elevated);
+}
+.affixes-page tr:last-child th,
+.affixes-page tr:last-child td { border-bottom: none; }
+
+@media (max-width: 640px) {
+  .affixes-page .decision-main { grid-template-columns: 1fr; }
+}

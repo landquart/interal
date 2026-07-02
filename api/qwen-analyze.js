@@ -297,7 +297,8 @@ async function runAffixesCheck(payload, interfaceLanguage) {
   }
 
   const generated = extract(result.content);
-  return { card: normalizeAffixesCheckCard(generated, input) };
+  const card = normalizeAffixesCheckCard(generated, input);
+  return { ok: true, analysis: { eligible: true, decision: 'accepted', recommendedForm: card.form, form: card.form, morphemeType: card.morphemeType, procedure: card.procedure, meaning: card.meaning, criteria: card.criteria, forms: card.forms, shortConclusion: interfaceLanguage === 'en' ? 'The affix can be saved as a candidate card.' : 'Аффикс можно сохранить как карточку-кандидат.', risks: [] }, card };
 }
 
 async function runAffixesAlterCard(payload) {

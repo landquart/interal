@@ -1,282 +1,84 @@
 const API_BASE = location.hostname === 'landquart.github.io' ? 'https://interal.vercel.app' : '';
 const MORPHEME_TYPES = ['suffix', 'prefix'];
+const CARD_SECTION = 'affixes';
+const CARD_PREFIX = 'af_';
+const AFFIX_PROCEDURES = ['international_affix', 'associativ_affix', 'alter_affix'];
+const CONTROL_LANGUAGES = ['en', 'de', 'fr', 'es', 'it', 'ru'];
+const AUXILIARY_LANGUAGES = ['pl', 'sv', 'ca', 'oc', 'ro'];
 const AFFIXES_SHARE_PATH = '/interal/affixes/';
 const AFFIXES_STORAGE_KEYS = ['affixes-state-v1', 'interal_affixes_state'];
 const hadShortShareParamOnLoad = new URLSearchParams(location.search).has('s');
 
 const UI_TEXT = {
   ru: {
-    pageTitle: 'Affixes',
-    formTitle: 'Анализ аффиксов',
-    formLabel: 'Аффикс',
-    meaningLabel: 'Значение',
-    typeLabel: 'Тип аффикса',
-    commentLabel: 'Комментарий (необязательно)',
-    suffix: 'Суффикс',
-    prefix: 'Префикс',
-    check: 'Проверить',
-    checking: 'Проверка…',
-    affixPlaceholder: 'Например: -ion, re-, -ilo',
-    meaningPlaceholder: 'Например: действие, результат действия',
-    modalTitle: 'Карточка аффикса',
-    completed: 'Проверка выполнена',
-    copyJson: 'Копировать JSON',
-    copiedJson: 'JSON скопирован',
-    close: 'Закрыть',
-    required: 'Введите аффикс и значение.',
-    apiError: 'Не удалось проверить аффикс.',
-    reset: 'Сбросить',
-    resetConfirm: 'Сбросить введённые данные? Это действие нельзя отменить.',
-    restoreSuccess: 'Данные восстановлены из ссылки.',
-    restoreError: 'Не удалось восстановить данные из ссылки.'
+    pageTitle: 'Affixes', formLabel: 'Аффикс', meaningLabel: 'Значение', typeLabel: 'Тип аффикса', commentLabel: 'Комментарий (необязательно)', suffix: 'Суффикс', prefix: 'Префикс', check: 'Проверить', checking: 'Проверка…', affixPlaceholder: 'Например: -ion, re-, -ilo', meaningPlaceholder: 'Например: действие, результат действия', close: 'Закрыть', required: 'Введите аффикс и значение.', apiError: 'Не удалось проверить аффикс.', reset: 'Сбросить', resetConfirm: 'Сбросить введённые данные? Это действие нельзя отменить.', restoreSuccess: 'Данные восстановлены из ссылки.', restoreError: 'Не удалось восстановить данные из ссылки.',
+    decisionTitle: 'Решение', eligible: 'Аффикс соответствует критериям. Можно сформировать JSON-карточку.', rejected: 'Аффикс не соответствует критериям. JSON-карточку сформировать нельзя.', review: 'Требуется ручная проверка. JSON-карточку пока нельзя сформировать.', recommendedForm: 'Рекомендуемая форма', procedure: 'Процедура', criteria: 'Критерии', controlLanguages: 'Контрольные языки', auxiliaryLanguages: 'Вспомогательные языки', conclusion: 'Вывод', createJson: 'Сформировать JSON-карточку', creatingJson: 'Формирование…', cardBlocked: 'JSON-карточку можно сформировать только после положительной проверки.', jsonTitle: 'JSON-карточка', copyJson: 'Скопировать JSON-карточку', copiedJson: 'JSON-карточка скопирована.', downloadJson: 'Скачать JSON-карточку', jsonError: 'Не удалось сформировать JSON-карточку.', completed: 'Карточка сформирована'
   },
   en: {
-    pageTitle: 'Affixes',
-    formTitle: 'Affix analysis',
-    formLabel: 'Affix',
-    meaningLabel: 'Meaning',
-    typeLabel: 'Affix type',
-    commentLabel: 'Comment (optional)',
-    suffix: 'Suffix',
-    prefix: 'Prefix',
-    check: 'Check',
-    checking: 'Checking…',
-    affixPlaceholder: 'For example: -ion, re-, -ilo',
-    meaningPlaceholder: 'For example: action, result of an action',
-    modalTitle: 'Affix card',
-    completed: 'Check completed',
-    copyJson: 'Copy JSON',
-    copiedJson: 'JSON copied',
-    close: 'Close',
-    required: 'Enter an affix and a meaning.',
-    apiError: 'Could not check the affix.',
-    reset: 'Reset',
-    resetConfirm: 'Reset entered data? This action cannot be undone.',
-    restoreSuccess: 'Data restored from link.',
-    restoreError: 'Could not restore data from link.'
+    pageTitle: 'Affixes', formLabel: 'Affix', meaningLabel: 'Meaning', typeLabel: 'Affix type', commentLabel: 'Comment (optional)', suffix: 'Suffix', prefix: 'Prefix', check: 'Check', checking: 'Checking…', affixPlaceholder: 'For example: -ion, re-, -ilo', meaningPlaceholder: 'For example: action, result of an action', close: 'Close', required: 'Enter an affix and a meaning.', apiError: 'Could not check the affix.', reset: 'Reset', resetConfirm: 'Reset entered data? This action cannot be undone.', restoreSuccess: 'Data restored from link.', restoreError: 'Could not restore data from link.',
+    decisionTitle: 'Decision', eligible: 'The affix meets the criteria. A JSON card can be created.', rejected: 'The affix does not meet the criteria. A JSON card cannot be created.', review: 'Manual review is required. A JSON card cannot be created yet.', recommendedForm: 'Recommended form', procedure: 'Procedure', criteria: 'Criteria', controlLanguages: 'Control languages', auxiliaryLanguages: 'Auxiliary languages', conclusion: 'Conclusion', createJson: 'Create JSON card', creatingJson: 'Creating…', cardBlocked: 'A JSON card can be created only after a positive check.', jsonTitle: 'JSON card', copyJson: 'Copy JSON card', copiedJson: 'JSON card copied.', downloadJson: 'Download JSON card', jsonError: 'Could not create JSON card.', completed: 'Card created'
   }
 };
 
 const $ = (id) => document.getElementById(id);
 const lang = () => document.documentElement.lang?.startsWith('en') ? 'en' : 'ru';
 const t = () => UI_TEXT[lang()];
+let lastAnalysis = null;
 let lastCard = null;
 let modalOpener = null;
 
-function showNotice(message, type = 'error') {
-  const box = $('noticeBox');
-  box.textContent = message;
-  box.className = `notice-box ${type}`;
-  box.hidden = false;
-  clearTimeout(showNotice._timer);
-  showNotice._timer = setTimeout(() => { box.hidden = true; }, 3600);
-}
+function escapeHtml(value) { return String(value ?? '').replace(/[&<>'"]/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[ch])); }
+function isObject(value) { return value && typeof value === 'object' && !Array.isArray(value); }
+function uuid12() { const alphabet = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'; const bytes = new Uint8Array(12); crypto.getRandomValues(bytes); return Array.from(bytes, b => alphabet[b % alphabet.length]).join(''); }
+function canCreateCard(result) { return result?.eligible === true || result?.decision === 'accepted'; }
+function statusText(result) { if (canCreateCard(result)) return ['ok', t().eligible]; if (result?.decision === 'needs_manual_review') return ['review', t().review]; return ['bad', t().rejected]; }
+
+function showNotice(message, type = 'error') { const box = $('noticeBox'); box.textContent = message; box.className = `notice-box ${type}`; box.hidden = false; clearTimeout(showNotice._timer); showNotice._timer = setTimeout(() => { box.hidden = true; }, 3600); }
+function setJsonEnabled(enabled) { $('jsonActions').hidden = !enabled; $('jsonBtn').hidden = !enabled; $('jsonBtn').disabled = !enabled; }
 
 function applyI18n() {
   const u = t();
   document.title = `${u.pageTitle} — Interal`;
-  $('pageTitle').textContent = u.pageTitle;
-  $('formLabel').textContent = u.formLabel;
-  $('meaningLabel').textContent = u.meaningLabel;
-  $('typeLabel').textContent = u.typeLabel;
-  $('commentLabel').textContent = u.commentLabel;
-  $('checkButton').textContent = u.check;
-  $('formInput').placeholder = u.affixPlaceholder;
-  $('meaningInput').placeholder = u.meaningPlaceholder;
-  $('commentInput').removeAttribute('placeholder');
-  const current = $('morphemeTypeInput').value || 'suffix';
-  $('morphemeTypeInput').innerHTML = MORPHEME_TYPES.map((value) => `<option value="${value}">${u[value]}</option>`).join('');
-  $('morphemeTypeInput').value = MORPHEME_TYPES.includes(current) ? current : 'suffix';
-  $('jsonCardTitle').textContent = u.modalTitle;
-  $('jsonCardStatus').textContent = u.completed;
-  $('copyJsonCardBtn').setAttribute('aria-label', u.copyJson);
-  $('copyJsonCardBtn').setAttribute('title', u.copyJson);
-  $('closeJsonCardBtn').setAttribute('aria-label', u.close);
-  $('closeJsonCardTextBtn').textContent = u.close;
-  $('resetBtn')?.setAttribute('aria-label', u.reset);
-  $('resetBtn')?.setAttribute('title', u.reset);
+  $('pageTitle').textContent = u.pageTitle; $('formLabel').textContent = u.formLabel; $('meaningLabel').textContent = u.meaningLabel; $('typeLabel').textContent = u.typeLabel; $('commentLabel').textContent = u.commentLabel; $('checkButton').textContent = u.check; $('decisionTitle').textContent = u.decisionTitle; $('jsonBtn').textContent = u.createJson;
+  $('formInput').placeholder = u.affixPlaceholder; $('meaningInput').placeholder = u.meaningPlaceholder; $('commentInput').removeAttribute('placeholder');
+  const current = $('morphemeTypeInput').value || 'suffix'; $('morphemeTypeInput').innerHTML = MORPHEME_TYPES.map((value) => `<option value="${value}">${u[value]}</option>`).join(''); $('morphemeTypeInput').value = MORPHEME_TYPES.includes(current) ? current : 'suffix';
+  $('jsonCardTitle').textContent = u.jsonTitle; $('jsonCardStatus').textContent = u.completed; $('copyJsonCardBtn').setAttribute('aria-label', u.copyJson); $('copyJsonCardBtn').setAttribute('title', u.copyJson); $('downloadJsonCardBtn').setAttribute('aria-label', u.downloadJson); $('downloadJsonCardBtn').setAttribute('title', u.downloadJson); $('closeJsonCardBtn').setAttribute('aria-label', u.close); $('closeJsonCardTextBtn').textContent = u.close; $('resetBtn')?.setAttribute('aria-label', u.reset); $('resetBtn')?.setAttribute('title', u.reset);
+  if (lastAnalysis) renderAnalysis(lastAnalysis);
 }
 
-function sanitizeLastCard(card) {
-  if (!card || typeof card !== 'object' || Array.isArray(card)) return null;
-  if (card.card_type !== 'affix_card') return null;
-  const allowedKeys = ['id', 'status', 'form', 'morphemeType', 'procedure', 'version', 'card_type', 'vord_type', 'created_at', 'meaning', 'criteria', 'forms'];
-  return allowedKeys.reduce((result, key) => {
-    if (Object.prototype.hasOwnProperty.call(card, key)) result[key] = card[key];
-    return result;
-  }, {});
-}
-
-function collectShareFields() {
-  return {
-    formInput: $('formInput').value,
-    meaningInput: $('meaningInput').value,
-    morphemeTypeInput: $('morphemeTypeInput').value,
-    commentInput: $('commentInput').value
-  };
-}
-
-function collectAffixesState() {
-  return {
-    form: $('formInput').value.trim(),
-    meaningInput: $('meaningInput').value.trim(),
-    morphemeType: $('morphemeTypeInput').value,
-    comment: $('commentInput').value.trim(),
-    lastCard: sanitizeLastCard(lastCard)
-  };
-}
-
-function saveAffixesDraft() {
-  const payload = {
-    version: 1,
-    source: 'interal-form-draft',
-    path: AFFIXES_SHARE_PATH,
-    fields: collectShareFields(),
-    pageState: collectAffixesState()
-  };
-  try {
-    AFFIXES_STORAGE_KEYS.forEach((key) => localStorage.setItem(key, JSON.stringify(payload)));
-  } catch (error) {
-    console.warn('Could not save Affixes draft:', error);
-  }
-}
-
-function hasShareableState() {
-  return Boolean(
-    $('formInput').value.trim() ||
-    $('meaningInput').value.trim() ||
-    $('commentInput').value.trim() ||
-    $('morphemeTypeInput').value === 'prefix' ||
-    lastCard
-  );
-}
-
-function updateStateControls() {
-  const hasState = hasShareableState();
-  $('resetBtn')?.classList.toggle('is-hidden', !hasState);
-  document.querySelectorAll('[data-copy-state="true"]').forEach((button) => {
-    button.disabled = !hasState;
-    button.classList.toggle('is-hidden', !hasState);
-  });
-}
-
-function applyAffixesState(state = {}) {
-  if (!state || typeof state !== 'object') return false;
-  $('formInput').value = state.form ?? state.formInput ?? '';
-  $('meaningInput').value = state.meaningInput ?? '';
-  $('morphemeTypeInput').value = MORPHEME_TYPES.includes(state.morphemeType || state.morphemeTypeInput) ? (state.morphemeType || state.morphemeTypeInput) : 'suffix';
-  $('commentInput').value = state.comment ?? state.commentInput ?? '';
-  lastCard = sanitizeLastCard(state.lastCard);
-  if (lastCard) $('jsonCardOutput').textContent = JSON.stringify(lastCard, null, 2);
-  saveAffixesDraft();
-  updateStateControls();
-  return true;
-}
-
+function sanitizeLastCard(card) { if (!isObject(card) || card.card_type !== 'affix_card') return null; const allowedKeys = ['id', 'section', 'discussionId', 'status', 'form', 'morphemeType', 'procedure', 'version', 'card_type', 'vord_type', 'created_at', 'meaning', 'criteria', 'forms']; return allowedKeys.reduce((result, key) => { if (Object.prototype.hasOwnProperty.call(card, key)) result[key] = card[key]; return result; }, {}); }
+function sanitizeAnalysis(analysis) { if (!isObject(analysis)) return null; return analysis; }
+function collectShareFields() { return { formInput: $('formInput').value, meaningInput: $('meaningInput').value, morphemeTypeInput: $('morphemeTypeInput').value, commentInput: $('commentInput').value }; }
+function collectAffixesState() { return { form: $('formInput').value.trim(), meaningInput: $('meaningInput').value.trim(), morphemeType: $('morphemeTypeInput').value, comment: $('commentInput').value.trim(), lastAnalysis: sanitizeAnalysis(lastAnalysis), lastCard: sanitizeLastCard(lastCard) }; }
+function saveAffixesDraft() { const payload = { version: 2, source: 'interal-form-draft', path: AFFIXES_SHARE_PATH, fields: collectShareFields(), pageState: collectAffixesState() }; try { AFFIXES_STORAGE_KEYS.forEach((key) => localStorage.setItem(key, JSON.stringify(payload))); } catch (error) { console.warn('Could not save Affixes draft:', error); } }
+function hasShareableState() { return Boolean($('formInput').value.trim() || $('meaningInput').value.trim() || $('commentInput').value.trim() || $('morphemeTypeInput').value === 'prefix' || lastAnalysis || lastCard); }
+function updateStateControls() { const hasState = hasShareableState(); $('resetBtn')?.classList.toggle('is-hidden', !hasState); document.querySelectorAll('[data-copy-state="true"]').forEach((button) => { button.disabled = !hasState; button.classList.toggle('is-hidden', !hasState); }); }
+function applyAffixesState(state = {}) { if (!isObject(state)) return false; $('formInput').value = state.form ?? state.formInput ?? ''; $('meaningInput').value = state.meaningInput ?? ''; $('morphemeTypeInput').value = MORPHEME_TYPES.includes(state.morphemeType || state.morphemeTypeInput) ? (state.morphemeType || state.morphemeTypeInput) : 'suffix'; $('commentInput').value = state.comment ?? state.commentInput ?? ''; lastCard = sanitizeLastCard(state.lastCard); if (lastCard) $('jsonCardOutput').textContent = JSON.stringify(lastCard, null, 2); if (state.lastAnalysis) renderAnalysis(state.lastAnalysis); else { lastAnalysis = null; $('resultSection').hidden = true; $('resultBox').innerHTML = ''; setJsonEnabled(false); } saveAffixesDraft(); updateStateControls(); return true; }
 window.InteralPageStateExport = collectAffixesState;
 window.InteralPageStateImport = applyAffixesState;
 
-function collectPayload() {
-  return {
-    form: $('formInput').value.trim(),
-    meaningInput: $('meaningInput').value.trim(),
-    morphemeType: $('morphemeTypeInput').value,
-    comment: $('commentInput').value.trim()
-  };
+function collectPayload() { return { form: $('formInput').value.trim(), meaningInput: $('meaningInput').value.trim(), morphemeType: $('morphemeTypeInput').value, comment: $('commentInput').value.trim() }; }
+function validatePayload(payload) { if (!payload.form || !payload.meaningInput || !MORPHEME_TYPES.includes(payload.morphemeType)) throw new Error(t().required); }
+function validAffixCard(card) { return isObject(card) && card.form && MORPHEME_TYPES.includes(card.morphemeType) && AFFIX_PROCEDURES.includes(card.procedure) && isObject(card.meaning) && isObject(card.criteria) && isObject(card.forms); }
+function normalizeAnalysis(data, payload) { const source = isObject(data?.analysis) ? data.analysis : (isObject(data?.result) ? data.result : null); if (source) return { ...source, recommendedForm: source.recommendedForm || source.form || payload.form, morphemeType: MORPHEME_TYPES.includes(source.morphemeType) ? source.morphemeType : payload.morphemeType };
+  const card = data?.card; const accepted = validAffixCard(card); return { eligible: accepted, decision: accepted ? 'accepted' : 'needs_manual_review', recommendedForm: card?.form || payload.form, form: card?.form || payload.form, morphemeType: MORPHEME_TYPES.includes(card?.morphemeType) ? card.morphemeType : payload.morphemeType, procedure: AFFIX_PROCEDURES.includes(card?.procedure) ? card.procedure : '', meaning: isObject(card?.meaning) ? card.meaning : {}, criteria: isObject(card?.criteria) ? card.criteria : {}, forms: isObject(card?.forms) ? card.forms : {}, shortConclusion: accepted ? t().eligible : t().review };
 }
+function langRows(codes, values = {}) { return `<div class="language-table-wrap"><table><tbody>${codes.map(code => `<tr><th>${escapeHtml(code.toUpperCase())}</th><td>${escapeHtml((Array.isArray(values?.[code]) ? values[code].join(', ') : values?.[code]) || '—')}</td></tr>`).join('')}</tbody></table></div>`; }
+function renderObjectList(object) { if (!isObject(object)) return '<li>—</li>'; const entries = Object.entries(object); if (!entries.length) return '<li>—</li>'; return entries.map(([key, value]) => `<li><b>${escapeHtml(key)}:</b> ${escapeHtml(isObject(value) ? JSON.stringify(value) : value)}</li>`).join(''); }
+function renderAnalysis(result) { lastAnalysis = result; $('resultSection').hidden = false; const [cls, message] = statusText(result); const form = result?.recommendedForm || result?.form || $('formInput').value.trim() || '—'; const conclusion = result?.shortConclusion || message; $('resultBox').innerHTML = `<div class="decision-card"><div class="status ${cls}">${escapeHtml(message)}</div><div class="decision-main"><div class="decision-main-item"><span class="decision-label">${escapeHtml(t().recommendedForm)}</span><strong class="decision-form">${escapeHtml(form)}</strong></div><div class="decision-main-item"><span class="decision-label">${escapeHtml(t().procedure)}</span><strong>${escapeHtml(result?.procedure || '—')}</strong></div><div class="decision-main-item"><span class="decision-label">${escapeHtml(t().conclusion)}</span><p>${escapeHtml(conclusion)}</p></div></div><details open><summary>${escapeHtml(t().criteria)}</summary><ul class="analysis-list">${renderObjectList(result?.criteria)}</ul></details><details open><summary>${escapeHtml(t().controlLanguages)}</summary>${langRows(CONTROL_LANGUAGES, result?.forms?.controlLanguages)}</details><details open><summary>${escapeHtml(t().auxiliaryLanguages)}</summary>${langRows(AUXILIARY_LANGUAGES, result?.forms?.auxiliaryLanguages)}</details></div>`; setJsonEnabled(canCreateCard(result)); }
 
-function validatePayload(payload) {
-  if (!payload.form || !payload.meaningInput || !MORPHEME_TYPES.includes(payload.morphemeType)) {
-    throw new Error(t().required);
-  }
-}
-
-function openModal(card) {
-  lastCard = card;
-  modalOpener = document.activeElement;
-  $('jsonCardOutput').textContent = JSON.stringify(card, null, 2);
-  const modal = $('jsonCardModal');
-  modal.classList.add('show');
-  modal.setAttribute('aria-hidden', 'false');
-  document.body.classList.add('json-card-modal-open');
-  $('copyJsonCardBtn').focus();
-}
-
-function closeModal() {
-  const modal = $('jsonCardModal');
-  modal.classList.remove('show');
-  modal.setAttribute('aria-hidden', 'true');
-  document.body.classList.remove('json-card-modal-open');
-  if (modalOpener?.focus) modalOpener.focus();
-}
-
-async function checkAffix(event) {
-  event.preventDefault();
-  const payload = collectPayload();
-  saveAffixesDraft();
-  try {
-    validatePayload(payload);
-  } catch (error) {
-    showNotice(error.message, 'error');
-    return;
-  }
-
-  const button = $('checkButton');
-  button.disabled = true;
-  button.textContent = t().checking;
-  $('noticeBox').hidden = true;
-
-  try {
-    const response = await fetch(`${API_BASE}/api/qwen-analyze`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ task: 'affixes_check', payload, interfaceLanguage: lang() })
-    });
-    const data = await response.json().catch(() => null);
-    if (!response.ok || !data?.card) throw new Error(data?.error || t().apiError);
-    openModal(data.card);
-    saveAffixesDraft();
-    updateStateControls();
-  } catch (error) {
-    console.error(error);
-    showNotice(t().apiError, 'error');
-  } finally {
-    button.disabled = false;
-    button.textContent = t().check;
-  }
-}
-
-async function copyJson() {
-  if (!lastCard) return;
-  await navigator.clipboard.writeText(JSON.stringify(lastCard, null, 2));
-  const button = $('copyJsonCardBtn');
-  button.classList.add('is-copied');
-  button.setAttribute('title', t().copiedJson);
-  setTimeout(() => {
-    button.classList.remove('is-copied');
-    button.setAttribute('title', t().copyJson);
-  }, 1500);
-}
+async function checkAffix(event) { event.preventDefault(); const payload = collectPayload(); saveAffixesDraft(); try { validatePayload(payload); } catch (error) { showNotice(error.message, 'error'); return; } const button = $('checkButton'); button.disabled = true; button.textContent = t().checking; $('noticeBox').hidden = true; setJsonEnabled(false); try { const response = await fetch(`${API_BASE}/api/qwen-analyze`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ task: 'affixes_check', payload, interfaceLanguage: lang() }) }); const data = await response.json().catch(() => null); if (!response.ok || (!data?.ok && !data?.card && !data?.analysis)) throw new Error(data?.error || t().apiError); lastAnalysis = normalizeAnalysis(data, payload); lastCard = null; $('jsonCardOutput').textContent = ''; renderAnalysis(lastAnalysis); saveAffixesDraft(); updateStateControls(); } catch (error) { console.error(error); showNotice(t().apiError, 'error'); } finally { button.disabled = false; button.textContent = t().check; } }
+function buildAffixCard() { if (!canCreateCard(lastAnalysis)) throw new Error(t().cardBlocked); const now = new Date().toISOString(); const id = CARD_PREFIX + uuid12(); return { id, section: CARD_SECTION, discussionId: `card-${id}`, status: 'draft', form: lastAnalysis.recommendedForm || lastAnalysis.form || $('formInput').value.trim(), morphemeType: MORPHEME_TYPES.includes(lastAnalysis.morphemeType) ? lastAnalysis.morphemeType : $('morphemeTypeInput').value, procedure: AFFIX_PROCEDURES.includes(lastAnalysis.procedure) ? lastAnalysis.procedure : 'alter_affix', version: '1.0', card_type: 'affix_card', vord_type: 'af', created_at: now, meaning: isObject(lastAnalysis.meaning) ? lastAnalysis.meaning : {}, criteria: isObject(lastAnalysis.criteria) ? lastAnalysis.criteria : {}, forms: isObject(lastAnalysis.forms) ? lastAnalysis.forms : { controlLanguages: {}, auxiliaryLanguages: {} } }; }
+async function createJsonCard() { const button = $('jsonBtn'); button.disabled = true; button.textContent = t().creatingJson; try { const card = buildAffixCard(); const response = await fetch(`${API_BASE}/api/cards`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ section: CARD_SECTION, title: card.form, category: 'affix-card', payload: card }) }); const data = await response.json().catch(() => null); if (!response.ok || !data?.ok) throw new Error(data?.error || t().jsonError); lastCard = data.card?.payload || { ...card, id: data.id || card.id, section: data.section || CARD_SECTION, discussionId: data.discussionId || `card-${data.id || card.id}` }; if (!/^af_[0-9A-Za-z]{12}$/.test(lastCard.id) || lastCard.discussionId !== `card-${lastCard.id}`) throw new Error(t().jsonError); openModal(lastCard); saveAffixesDraft(); updateStateControls(); } finally { button.disabled = false; button.textContent = t().createJson; } }
+function openModal(card) { modalOpener = document.activeElement; $('jsonCardOutput').textContent = JSON.stringify(card, null, 2); const modal = $('jsonCardModal'); modal.classList.add('show'); modal.setAttribute('aria-hidden', 'false'); document.body.classList.add('json-card-modal-open'); $('copyJsonCardBtn').focus(); }
+function closeModal() { const modal = $('jsonCardModal'); modal.classList.remove('show'); modal.setAttribute('aria-hidden', 'true'); document.body.classList.remove('json-card-modal-open'); if (modalOpener?.focus) modalOpener.focus(); }
+async function copyJson() { if (!lastCard) return; await navigator.clipboard.writeText(JSON.stringify(lastCard, null, 2)); const button = $('copyJsonCardBtn'); button.classList.add('is-copied'); button.setAttribute('title', t().copiedJson); setTimeout(() => { button.classList.remove('is-copied'); button.setAttribute('title', t().copyJson); }, 1500); }
+function downloadJson() { if (!lastCard) return; const href = URL.createObjectURL(new Blob([JSON.stringify(lastCard, null, 2)], { type: 'application/json' })); const a = document.createElement('a'); a.href = href; a.download = `${lastCard.id || 'affixes'}.json`; a.click(); URL.revokeObjectURL(href); }
+function resetLocalState() { $('formInput').value = ''; $('meaningInput').value = ''; $('morphemeTypeInput').value = 'suffix'; $('commentInput').value = ''; $('resultSection').hidden = true; $('resultBox').innerHTML = ''; setJsonEnabled(false); lastAnalysis = null; lastCard = null; $('jsonCardOutput').textContent = ''; closeModal(); try { AFFIXES_STORAGE_KEYS.forEach((key) => localStorage.removeItem(key)); } catch {} updateStateControls(); }
 
 document.addEventListener('DOMContentLoaded', () => {
-  applyI18n();
-  updateStateControls();
-  $('affixForm').addEventListener('submit', checkAffix);
-  $('closeJsonCardBtn').addEventListener('click', closeModal);
-  $('closeJsonCardTextBtn').addEventListener('click', closeModal);
-  $('jsonCardModal').addEventListener('click', (event) => { if (event.target === $('jsonCardModal')) closeModal(); });
-  $('copyJsonCardBtn').addEventListener('click', () => copyJson().catch(() => showNotice(t().apiError, 'error')));
-  $('resetBtn')?.addEventListener('click', () => window.InteralUI?.resetPageState?.({ message: t().resetConfirm }));
-  ['formInput', 'meaningInput', 'commentInput'].forEach((id) => $(id).addEventListener('input', () => { saveAffixesDraft(); updateStateControls(); }));
-  $('morphemeTypeInput').addEventListener('change', () => { saveAffixesDraft(); updateStateControls(); });
-  document.addEventListener('interal:formdraftrestore', () => {
-    updateStateControls();
-    if (hadShortShareParamOnLoad) showNotice(t().restoreSuccess, 'success');
-  });
-  setTimeout(() => {
-    if (hadShortShareParamOnLoad && new URLSearchParams(location.search).has('s')) showNotice(t().restoreError, 'error');
-    updateStateControls();
-  }, 1800);
-  document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeModal(); });
-  document.addEventListener('interal:languagechange', () => { applyI18n(); updateStateControls(); });
+  applyI18n(); setJsonEnabled(false); updateStateControls();
+  $('affixForm').addEventListener('submit', checkAffix); $('jsonBtn').addEventListener('click', () => createJsonCard().catch((error) => showNotice(error.message || t().jsonError, 'error'))); $('closeJsonCardBtn').addEventListener('click', closeModal); $('closeJsonCardTextBtn').addEventListener('click', closeModal); $('jsonCardModal').addEventListener('click', (event) => { if (event.target === $('jsonCardModal')) closeModal(); }); $('copyJsonCardBtn').addEventListener('click', () => copyJson().catch(() => showNotice(t().jsonError, 'error'))); $('downloadJsonCardBtn').addEventListener('click', downloadJson); $('resetBtn')?.addEventListener('click', async () => { const confirmed = await (window.InteralUI?.confirmReset?.({ message: t().resetConfirm }) ?? Promise.resolve(window.confirm(t().resetConfirm))); if (!confirmed) return; resetLocalState(); window.InteralUI?.resetPageState?.({ message: t().resetConfirm, skipConfirm: true, storageKeys: AFFIXES_STORAGE_KEYS }); });
+  ['formInput', 'meaningInput', 'commentInput'].forEach((id) => $(id).addEventListener('input', () => { saveAffixesDraft(); updateStateControls(); })); $('morphemeTypeInput').addEventListener('change', () => { saveAffixesDraft(); updateStateControls(); });
+  document.addEventListener('interal:formdraftrestore', () => { updateStateControls(); if (lastAnalysis) renderAnalysis(lastAnalysis); if (hadShortShareParamOnLoad) showNotice(t().restoreSuccess, 'success'); }); setTimeout(() => { if (hadShortShareParamOnLoad && new URLSearchParams(location.search).has('s')) showNotice(t().restoreError, 'error'); updateStateControls(); }, 1800); document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeModal(); }); document.addEventListener('interal:languagechange', () => { applyI18n(); updateStateControls(); });
 });
