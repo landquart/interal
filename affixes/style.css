@@ -103,90 +103,10 @@
 .affixes-page .notice-box.error { border-color: color-mix(in srgb, #ef4444 45%, var(--border-subtle)); }
 .affixes-page .notice-box.success { border-color: color-mix(in srgb, #22c55e 45%, var(--border-subtle)); }
 
-.affixes-page #jsonCardModal {
-  position: fixed;
-  inset: 0;
-  opacity: 0;
-  pointer-events: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
-  background: rgba(0,0,0,.35);
-  backdrop-filter: blur(4px);
-  z-index: var(--z-page-modal, 1500);
-  transition: opacity .2s ease;
-}
-.affixes-page #jsonCardModal.show { opacity: 1; pointer-events: auto; }
-body.dark-theme.affixes-page #jsonCardModal { background: rgba(0,0,0,.62); }
-.affixes-page .modal-inner {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  max-width: 860px;
-  width: 100%;
-  padding: 24px;
-  max-height: calc(100vh - 32px);
-  overflow: hidden;
-  background: var(--surface-elevated);
-  color: var(--text);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-}
-.affixes-page .json-card-title { margin: 0 42px 8px; text-align: center; font-size: 1.5rem; font-weight: 800; }
-.affixes-page .json-card-status { margin: 0 0 14px; text-align: center; color: var(--text-muted); font-weight: 700; }
-.affixes-page .json-card-output {
-  margin: 0;
-  min-height: 280px;
-  overflow: auto;
-  padding: 14px;
-  border: 1px solid var(--control-border);
-  border-radius: 16px;
-  background: var(--control-bg);
-  color: var(--control-text);
-  font: 13px/1.45 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  white-space: pre;
-}
-.affixes-page .json-card-actions { display: flex; justify-content: flex-end; align-items: center; gap: 8px; margin-top: 12px; }
-.affixes-page .json-card-icon-btn {
-  width: 44px;
-  height: 44px;
-  padding: 0;
-  display: inline-grid;
-  place-items: center;
-  border-radius: 999px;
-  background: color-mix(in srgb, #67b3ff 24%, var(--surface-elevated));
-  border: 1px solid color-mix(in srgb, #67b3ff 45%, transparent);
-  color: var(--text);
-  cursor: pointer;
-}
-.affixes-page .json-card-icon-btn.is-copied { background: color-mix(in srgb, #48d17f 30%, var(--surface-elevated)); border-color: color-mix(in srgb, #48d17f 58%, transparent); }
-.affixes-page .json-card-icon-btn .menu-copy-icon-link { filter: var(--menu-icon-filter, none); }
-.affixes-page .json-card-close-btn {
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  width: 38px;
-  height: 38px;
-  padding: 0;
-  display: inline-grid;
-  place-items: center;
-  border-radius: 999px;
-  border: 1px solid transparent;
-  background: transparent;
-  color: var(--text);
-  cursor: pointer;
-}
-.affixes-page .json-card-close-btn svg { width: 20px; height: 20px; stroke: currentColor; }
-.affixes-page .json-card-close-btn:hover,
-.affixes-page .json-card-close-btn:focus-visible { background: var(--surface-hover); }
 body.json-card-modal-open { overflow: hidden; }
 
 @media (max-width: 640px) {
   .affixes-page .vord-page-shell { width: min(100% - 20px, 900px); padding-top: 16px; }
-  .affixes-page .modal-inner { padding: 20px; }
-  .affixes-page .json-card-actions { justify-content: stretch; }
-  .affixes-page .json-card-actions .interal-btn { flex: 1; }
 }
 
 .affixes-page .result-section {

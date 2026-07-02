@@ -114,7 +114,7 @@ function clearDomFields() {
   byId('wordInput').value = ''; byId('posInput').value = 'preposition'; byId('meaningInput').value = ''; byId('argumentsInput').value = '';
   LANGUAGES.forEach(lang => { const input = byId(`tr_${lang.code}`); if (input) input.value = ''; });
   CRITERIA_NAMES.forEach((_, i) => { const checkbox = byId(`crit_${i}`); const comment = byId(`comment_${i}`); if (checkbox) checkbox.checked = false; if (comment) comment.value = ''; });
-  const output = byId('jsonOutput'); if (output) output.value = '';
+  const output = byId('jsonCardOutput'); if (output) output.value = '';
 }
 function updateResetButtonVisibility() { const resetBtn = byId('resetBtn'); if (resetBtn) resetBtn.classList.toggle('is-hidden', !hasUserInputForReset()); }
 async function resetState() {
@@ -126,8 +126,8 @@ async function resetState() {
 function countPassedCriteria() { return state.criteria.filter(Boolean).length; }
 function isGrammarShortWordAccepted() { return countPassedCriteria() >= REQUIRED_CRITERIA_COUNT; }
 function result(){ const n=countPassedCriteria(); return {passed:n,total:CRITERIA_NAMES.length,required:REQUIRED_CRITERIA_COUNT,accepted:isGrammarShortWordAccepted()}; }
-function makeCardDraft(){ const r=result(); return { version:'1.0', card_type:'vord_card', vord_type:'grammar_short_word', status:'draft', interal:{word:state.word, part_of_speech:state.part_of_speech}, translations:LANGUAGES.map(lang=>({language:lang.code, word:state.translations[lang.code]||''})), function:{meaning:state.meaning}, criteria:CRITERIA_NAMES.map((name,i)=>({name, value:Boolean(state.criteria[i]), comment:state.comments[i]||''})), decision:{accepted:r.accepted, required_criteria:r.required, passed_criteria:r.passed} }; }
-async function makeCard(){ return createCardOnServer(makeCardDraft()); }
+function makeCardDraft(author = null){ const r=result(); const card = { version:'1.0', card_type:'vord_card', vord_type:'grammar_short_word', status:'draft', interal:{word:state.word, part_of_speech:state.part_of_speech}, translations:LANGUAGES.map(lang=>({language:lang.code, word:state.translations[lang.code]||''})), function:{meaning:state.meaning}, criteria:CRITERIA_NAMES.map((name,i)=>({name, value:Boolean(state.criteria[i]), comment:state.comments[i]||''})), decision:{accepted:r.accepted, required_criteria:r.required, passed_criteria:r.passed} }; if (author) card.author = author; return card; }
+async function makeCard(author){ return createCardOnServer(makeCardDraft(author)); }
 function generateJson(){ openJsonModal(); }
 function renderCriteria(){ return `<div class="criteria-list grammar-criteria-list">${CRITERIA_NAMES.map((name,i)=>`<div class="criterion grammar-criterion"><div class="criterion-head"><strong>${escapeHtml(name)}</strong></div><label class="criterion-check"><input id="crit_${i}" type="checkbox" ${state.criteria[i] ? 'checked' : ''}><span>${t('criterionPass')}</span></label>${i === 2 ? `<label class="field criterion-comment"><span>${t('comment')}</span><textarea class="interal-textarea" id="comment_${i}">${escapeHtml(state.comments[i])}</textarea></label>` : ''}</div>`).join('')}</div>`; }
 function renderResult() { const r = result(); byId('resultBox').innerHTML = `<span class="status-pill ${r.accepted?'ok':'bad'}">${r.accepted?t('accept'):t('reject')}</span><dl><div><dt>${t('passed')}</dt><dd>${r.passed}/${r.total} (${r.required}+)</dd></div></dl>`; }
@@ -135,36 +135,22 @@ function render(){ renderChrome(); document.title=t('title'); byId('pageTitle').
 
 
 const jsonFilename = 'grammar-short-word-card.json';
-function currentJsonText() {
-  const existing = byId('jsonOutput')?.value;
-  return existing || '';
-}
-async function openJsonModal() {
-  if (typeof readState === 'function') readState();
-  if (typeof readEvidence === 'function') readEvidence();
-  const output = byId('jsonOutput');
-  if (output) output.value = JSON.stringify(await makeCard(), null, 2);
-  const modal = byId('jsonCardModal');
-  modal?.classList.add('show');
-  modal?.setAttribute('aria-hidden', 'false');
-}
-function closeJsonModal() {
-  const modal = byId('jsonCardModal');
-  modal?.classList.remove('show');
-  modal?.setAttribute('aria-hidden', 'true');
+function getJsonCardTexts() {
+  return { close: currentLang() === 'en' ? 'Close JSON card' : 'Закрыть JSON-карточку', title: t('card'), useAuthor: currentLang() === 'en' ? 'Add authorship' : 'Указать авторство', authorName: currentLang() === 'en' ? 'Name or nickname' : 'Имя или ник', contactType: currentLang() === 'en' ? 'Contact type' : 'Тип контакта', contact: currentLang() === 'en' ? 'Contact' : 'Контакт', generate: currentLang() === 'en' ? 'Generate card' : 'Сгенерировать карточку', generating: currentLang() === 'en' ? 'Generating...' : 'Генерация...', output: currentLang() === 'en' ? 'Generated JSON' : 'Готовый JSON', copy: currentLang() === 'en' ? 'Copy JSON card' : 'Скопировать JSON-карточку', copied: currentLang() === 'en' ? 'JSON card copied' : 'JSON-карточка скопирована', copiedTitle: currentLang() === 'en' ? 'Copied' : 'Скопировано', download: currentLang() === 'en' ? 'Download JSON card' : 'Скачать JSON-карточку', empty: currentLang() === 'en' ? 'Generate the JSON card first.' : 'Сначала сгенерируйте JSON-карточку.', unavailable: currentLang() === 'en' ? 'The JSON card is available only after a successful check.' : 'JSON-карточка доступна только после успешной проверки.' };
 }
 function bindJsonModal() {
-  byId('closeJsonCardBtn')?.addEventListener('click', closeJsonModal);
-  byId('jsonCardModal')?.addEventListener('click', (event) => { if (event.target === byId('jsonCardModal')) closeJsonModal(); });
-  byId('copyJsonCardBtn')?.addEventListener('click', () => copyText(currentJsonText()));
-  byId('downloadJsonCardBtn')?.addEventListener('click', () => downloadJson(jsonFilename, currentJsonText()));
-  document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeJsonModal(); });
+  window.InteralJsonCardModal?.init({
+    getLanguage: currentLang,
+    getTexts: getJsonCardTexts,
+    buildCard: async ({ author }) => { readState(); return makeCard(author); },
+    formatCard: (card) => JSON.stringify(card, null, 2),
+    getFilename: () => jsonFilename
+  });
   document.addEventListener('interal:languagechange', () => { readState(); render(); });
   byId('resetBtn')?.addEventListener('click', resetState);
-  byId('checkBtn')?.addEventListener('click', () => { readState(); renderResult(); updateResetButtonVisibility(); });
-  byId('jsonBtn')?.addEventListener('click', generateJson);
-  byId('app')?.addEventListener('input', updateResetButtonVisibility);
-  byId('app')?.addEventListener('change', updateResetButtonVisibility);
+  byId('checkBtn')?.addEventListener('click', () => { readState();  renderResult();  updateResetButtonVisibility(); });
+  byId('app')?.addEventListener('input', () => { updateResetButtonVisibility();  });
+  byId('app')?.addEventListener('change', () => { updateResetButtonVisibility();  });
 }
 bindJsonModal();
 render();

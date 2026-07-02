@@ -59,13 +59,24 @@
     <div class="modal-inner" role="dialog" aria-modal="true" aria-labelledby="jsonCardTitle">
       <button id="closeJsonCardBtn" class="json-card-close-btn" type="button" aria-label="Закрыть JSON-карточку"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke-width="2.4" stroke-linecap="round" /></svg></button>
       <h3 class="json-card-title" id="jsonCardTitle">JSON-карточка</h3>
-      <textarea id="jsonOutput" class="interal-textarea json-card-output" spellcheck="false" readonly></textarea>
+      <div class="json-card-form">
+        <label class="checkbox-line" for="useAuthorBlock"><input id="useAuthorBlock" type="checkbox"><span id="useAuthorBlockLabel">Указать авторство</span></label>
+        <div id="jsonAuthorFields" class="json-author-fields" style="display:none">
+          <label for="authorDisplayName" id="authorDisplayNameLabel">Имя или ник</label><input class="interal-input" id="authorDisplayName" type="text" autocomplete="name">
+          <label for="authorContactType" id="authorContactTypeLabel">Тип контакта</label><select class="interal-select" id="authorContactType"><option value="telegram">telegram</option><option value="matrix">matrix</option><option value="email">email</option></select>
+          <label for="authorContactValue" id="authorContactValueLabel">Контакт</label><input class="interal-input" id="authorContactValue" type="text" autocomplete="off">
+        </div>
+        <button id="generateJsonCardBtn" class="tool-btn interal-btn interal-btn--primary" type="button">Сгенерировать карточку</button>
+        <label for="jsonCardOutput" id="jsonCardOutputLabel">Готовый JSON</label>
+        <textarea id="jsonCardOutput" class="interal-textarea json-card-output" spellcheck="false" readonly></textarea>
+      </div>
       <div class="json-card-actions">
-        <button id="copyJsonCardBtn" class="interal-btn interal-btn--secondary" type="button">Скопировать</button>
-        <button id="downloadJsonCardBtn" class="interal-btn interal-btn--secondary" type="button">Скачать</button>
+        <button id="copyJsonCardBtn" class="json-card-icon-btn menu-copy-btn" type="button" aria-label="Скопировать JSON-карточку" title="Скопировать JSON-карточку"><span class="menu-copy-icon-stack" aria-hidden="true"><img class="menu-copy-icon menu-copy-icon-link" src="../elements/Copy.svg" alt=""><svg class="menu-copy-icon menu-copy-icon-check" viewBox="0 0 24 24" focusable="false"><path d="M5 12.5l4.2 4.2L19 7" /></svg></span></button>
+        <button id="downloadJsonCardBtn" class="json-card-icon-btn" type="button" aria-label="Скачать JSON-карточку" title="Скачать JSON-карточку"><span class="json-card-download-icon-stack" aria-hidden="true"><img class="json-card-download-icon" src="../elements/Download.svg" alt=""></span></button>
       </div>
     </div>
   </div>
+
   <script src="../shared/copy-plain.js"></script>
   <script src="../shared/ui.js?v=share-state-fix-20260628"></script>
   <script src="./script.js"></script>

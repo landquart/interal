@@ -128,8 +128,8 @@ async function resetState() {
 }
 
 function result(){ const n=state.criteria.filter(Boolean).length; return { passed:n, total:3, accepted:n===3 }; }
-function makeCardDraft(){ const r=result(); return { version:'1.0', card_type:'vord_card', vord_type:'community_word', status:'draft', interal:{word:state.word, part_of_speech:state.part_of_speech}, translations: LANGUAGES.map(lang=>({language:lang.code, word:state.translations[lang.code]||''})), domain:state.domain, criteria: QUESTIONS[currentLang()].map((q,i)=>({id:`question_${i+1}`, question:q, answer:state.answers[i]||'yes', passed:Boolean(state.criteria[i])})), decision:{accepted:r.accepted} }; }
-async function makeCard(){ return createCardOnServer(makeCardDraft()); }
+function makeCardDraft(author = null){ const r=result(); const card = { version:'1.0', card_type:'vord_card', vord_type:'community_word', status:'draft', interal:{word:state.word, part_of_speech:state.part_of_speech}, translations: LANGUAGES.map(lang=>({language:lang.code, word:state.translations[lang.code]||''})), domain:state.domain, criteria: QUESTIONS[currentLang()].map((q,i)=>({id:`question_${i+1}`, question:q, answer:state.answers[i]||'yes', passed:Boolean(state.criteria[i])})), decision:{accepted:r.accepted} }; if (author) card.author = author; return card; }
+async function makeCard(author){ return createCardOnServer(makeCardDraft(author)); }
 function generateJson(){ openJsonModal(); }
 function renderCriteria(){ const questions = QUESTIONS[currentLang()]; return `<div class="criteria-list">${questions.map((q,i)=>`<div class="criterion"><p>${escapeHtml(q)}</p><select class="interal-select" id="ans_${i}"><option value="yes">${t('answerYes')}</option><option value="partially">${t('answerPartially')}</option><option value="no">${t('answerNo')}</option></select><input id="crit_${i}" type="checkbox" ${state.criteria[i]?'checked':''}></div>`).join('')}</div>`; }
 function renderResult() { const r = result(); byId('resultBox').innerHTML = `<span class="status-pill ${r.accepted?'ok':'bad'}">${r.accepted?t('accept'):t('reject')}</span><dl><div><dt>${t('passed')}</dt><dd>${r.passed}/${r.total}</dd></div></dl>`; }
@@ -137,34 +137,20 @@ function updateCheckedVisibility() { const checked = Boolean(state.checked); con
 function render(){ renderChrome(); document.title=t('title'); byId('pageTitle').textContent=t('title'); byId('pageLead').textContent=t('lead'); byId('paramsTitle').textContent=t('params'); byId('wordLabel').textContent=t('word'); byId('posLabel').textContent=t('pos'); byId('domainLabel').textContent=t('domain'); byId('checkBtn').textContent=t('check'); byId('translationsTitle').textContent=t('translations'); byId('criteriaTitle').textContent=t('criteria'); byId('decisionTitle').textContent=t('decision'); byId('jsonBtn').textContent=t('json'); byId('resetBtn').title=t('reset'); byId('resetBtn').setAttribute('aria-label', t('reset')); byId('posInput').innerHTML=`<option value="adverb">${t('adverb')}</option><option value="noun">${t('noun')}</option><option value="adjective">${t('adjective')}</option><option value="expression">${t('expression')}</option>`; byId('posInput').value=state.part_of_speech; byId('translationsBox').innerHTML=renderTranslations(state.translations); byId('criteriaBox').innerHTML=renderCriteria(); state.answers.forEach((ans,i)=>{ if(byId(`ans_${i}`)) byId(`ans_${i}`).value=ans; }); renderResult(); updateCheckedVisibility(); updateResetButtonVisibility(); }
 
 const jsonFilename = 'community-word-card.json';
-function currentJsonText() {
-  const existing = byId('jsonOutput')?.value;
-  return existing || '';
-}
-async function openJsonModal() {
-  if (typeof readState === 'function') readState();
-  if (typeof readEvidence === 'function') readEvidence();
-  const output = byId('jsonOutput');
-  if (output) output.value = JSON.stringify(await makeCard(), null, 2);
-  const modal = byId('jsonCardModal');
-  modal?.classList.add('show');
-  modal?.setAttribute('aria-hidden', 'false');
-}
-function closeJsonModal() {
-  const modal = byId('jsonCardModal');
-  modal?.classList.remove('show');
-  modal?.setAttribute('aria-hidden', 'true');
+function getJsonCardTexts() {
+  return { close: currentLang() === 'en' ? 'Close JSON card' : 'Закрыть JSON-карточку', title: t('card'), useAuthor: currentLang() === 'en' ? 'Add authorship' : 'Указать авторство', authorName: currentLang() === 'en' ? 'Name or nickname' : 'Имя или ник', contactType: currentLang() === 'en' ? 'Contact type' : 'Тип контакта', contact: currentLang() === 'en' ? 'Contact' : 'Контакт', generate: currentLang() === 'en' ? 'Generate card' : 'Сгенерировать карточку', generating: currentLang() === 'en' ? 'Generating...' : 'Генерация...', output: currentLang() === 'en' ? 'Generated JSON' : 'Готовый JSON', copy: currentLang() === 'en' ? 'Copy JSON card' : 'Скопировать JSON-карточку', copied: currentLang() === 'en' ? 'JSON card copied' : 'JSON-карточка скопирована', copiedTitle: currentLang() === 'en' ? 'Copied' : 'Скопировано', download: currentLang() === 'en' ? 'Download JSON card' : 'Скачать JSON-карточку', empty: currentLang() === 'en' ? 'Generate the JSON card first.' : 'Сначала сгенерируйте JSON-карточку.', unavailable: currentLang() === 'en' ? 'The JSON card is available only after a successful check.' : 'JSON-карточка доступна только после успешной проверки.' };
 }
 function bindJsonModal() {
-  byId('closeJsonCardBtn')?.addEventListener('click', closeJsonModal);
-  byId('jsonCardModal')?.addEventListener('click', (event) => { if (event.target === byId('jsonCardModal')) closeJsonModal(); });
-  byId('copyJsonCardBtn')?.addEventListener('click', () => copyText(currentJsonText()));
-  byId('downloadJsonCardBtn')?.addEventListener('click', () => downloadJson(jsonFilename, currentJsonText()));
-  document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeJsonModal(); });
+  window.InteralJsonCardModal?.init({
+    getLanguage: currentLang,
+    getTexts: getJsonCardTexts,
+    buildCard: async ({ author }) => { readState(); return makeCard(author); },
+    formatCard: (card) => JSON.stringify(card, null, 2),
+    getFilename: () => jsonFilename
+  });
   document.addEventListener('interal:languagechange', () => { readState(); render(); });
   byId('resetBtn')?.addEventListener('click', resetState);
   byId('checkBtn')?.addEventListener('click', () => { readState(); state.checked = true; renderResult(); updateCheckedVisibility(); updateResetButtonVisibility(); });
-  byId('jsonBtn')?.addEventListener('click', generateJson);
   byId('app')?.addEventListener('input', () => { updateResetButtonVisibility(); if (state.checked) { readState(); renderResult(); updateCheckedVisibility(); } });
   byId('app')?.addEventListener('change', () => { updateResetButtonVisibility(); if (state.checked) { readState(); renderResult(); updateCheckedVisibility(); } });
 }

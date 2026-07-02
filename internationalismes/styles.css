@@ -62,37 +62,9 @@ td .interal-input, td .interal-select { min-width: 120px; padding: 10px 12px; }
 .criterion p { margin: 0; line-height: 1.45; }
 .criterion .badge { justify-self: start; padding: 5px 10px; border-radius: var(--radius-pill); background: var(--surface); border: 1px solid var(--border-control); color: var(--text-muted); font-size: 13px; font-weight: 700; }
 .json-card-bottom-actions { justify-content: center; margin-top: 0; }
-#jsonCardModal { position: fixed; inset: 0; opacity: 0; pointer-events: none; display: flex; align-items: center; justify-content: center; padding: 16px; background: rgba(0,0,0,.35); backdrop-filter: blur(4px); z-index: var(--z-page-modal, 1500); transition: opacity .2s ease; }
-#jsonCardModal.show { opacity: 1; pointer-events: auto; }
-body.dark-theme #jsonCardModal { background: rgba(0,0,0,.62); }
-.modal-inner { position: relative; display: flex; flex-direction: column; max-width: 860px; width: 100%; margin: 0; padding: 24px; max-height: calc(100vh - 32px); overflow: hidden; background: var(--surface); color: var(--text); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); }
-.json-card-title { margin: 0 42px 14px; text-align: center; font-size: 1.5rem; font-weight: 800; line-height: 1.2; }
-.json-card-form { display: grid; gap: 12px; overflow: auto; flex: 1 1 auto; min-height: 0; padding-right: 2px; }
-.json-card-form > label:not(.checkbox-line),
-.json-author-fields label { display: block; margin: 0 0 6px; }
-.json-card-form .checkbox-line { display: flex; align-items: flex-start; gap: 8px; margin: 0; color: var(--text-muted); font-size: 14px; font-weight: 600; }
-.json-card-form .checkbox-line input { flex: 0 0 auto; width: auto; margin-top: 3px; }
-.json-card-form .checkbox-line span { flex: 1 1 auto; }
-.json-author-fields { display: grid; gap: 10px; margin: 0; padding: 14px; border: 1px solid var(--border-subtle); border-radius: var(--radius-md); background: var(--surface-elevated); }
-.json-author-fields label { margin-bottom: -4px; }
-.json-card-form .tool-btn { justify-self: start; }
-.json-card-output { display: block; width: 100%; min-height: 260px; resize: vertical; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13px; line-height: 1.45; white-space: pre; }
-.json-card-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 12px; }
-.json-card-icon-btn { width: 44px; height: 44px; padding: 0; margin-top: 0; display: inline-grid; place-items: center; border-radius: 999px; background: color-mix(in srgb, #67b3ff 24%, var(--surface-elevated)); border: 1px solid color-mix(in srgb, #67b3ff 45%, transparent); color: var(--text); cursor: pointer; transition: transform .22s ease, background-color .22s ease, color .22s ease, border-color .22s ease, box-shadow .22s ease, filter .22s ease; }
-.json-card-icon-btn:hover, .json-card-icon-btn:focus-visible { background: color-mix(in srgb, #67b3ff 34%, var(--surface-hover)); transform: translateY(-2px) scale(1.01); }
-.json-card-icon-btn:active { transform: scale(.98); }
-.json-card-icon-btn.is-copied { background: color-mix(in srgb, #48d17f 30%, var(--surface-elevated)); border-color: color-mix(in srgb, #48d17f 58%, transparent); box-shadow: inset 0 0 0 1px color-mix(in srgb, #48d17f 26%, transparent), 0 10px 22px color-mix(in srgb, #48d17f 18%, transparent); }
-.json-card-icon-btn .menu-copy-icon-link, .json-card-download-icon { filter: var(--menu-icon-filter, none); }
 .json-card-download-icon-stack { width: 20px; height: 20px; display: grid; place-items: center; line-height: 0; }
 .json-card-download-icon { width: 20px; height: 20px; display: block; object-fit: contain; }
-body.dark-theme .json-card-icon-btn { background: color-mix(in srgb, #3f8ed8 34%, var(--surface-elevated)); border-color: color-mix(in srgb, #8bc7ff 44%, transparent); }
-body.dark-theme .json-card-icon-btn.is-copied { background: color-mix(in srgb, #4fe28b 24%, var(--surface-elevated)); border-color: color-mix(in srgb, #8dffba 48%, transparent); }
-.json-card-close-btn { position: absolute; top: 14px; right: 14px; width: 38px; height: 38px; padding: 0; margin: 0; display: inline-grid; place-items: center; border-radius: 999px; border: 1px solid transparent; background: transparent; color: var(--text); cursor: pointer; }
-.json-card-close-btn:hover, .json-card-close-btn:focus-visible { background: var(--surface-hover); border-color: var(--border-control); transform: translateY(-1px); }
-.json-card-close-btn:active { transform: scale(.98); }
-.json-card-close-btn svg { width: 18px; height: 18px; stroke: currentColor; }
 @media (max-width: 880px) { .vord-grid, .criterion, .metrics, .compact-fields { grid-template-columns: 1fr; } .language-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .vord-page-shell { width: min(100% - 24px, 980px); } }
-@media (max-width: 560px) { .language-grid { grid-template-columns: 1fr; } .modal-inner { padding: 20px; } .json-card-form .tool-btn { width: 100%; } .json-card-actions { justify-content: stretch; } .json-card-icon-btn { flex: 1 1 0; border-radius: var(--radius-md); } }
 .notice {
   margin: 0 auto 14px;
   padding: 10px 14px;

@@ -658,8 +658,8 @@ body.dark-theme .internationalita-page .json-card-icon-btn.is-copied {
   </div>
 </div>
 
-<div id="jsonCardModal">
-  <div class="modal-inner">
+<div id="jsonCardModal" aria-hidden="true">
+  <div class="modal-inner" role="dialog" aria-modal="true" aria-labelledby="jsonCardTitle">
     <button id="closeJsonCardBtn" class="json-card-close-btn" type="button" aria-label="Закрыть JSON-карточку">
       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
         <path d="M6 6l12 12M18 6L6 18" fill="none" stroke-width="2.4" stroke-linecap="round" />
@@ -674,23 +674,23 @@ body.dark-theme .internationalita-page .json-card-icon-btn.is-copied {
 
       <div id="jsonAuthorFields" class="json-author-fields" style="display:none">
         <label for="authorDisplayName" id="authorDisplayNameLabel">Имя или ник</label>
-        <input id="authorDisplayName" type="text" autocomplete="name">
+        <input class="interal-input" id="authorDisplayName" type="text" autocomplete="name">
 
         <label for="authorContactType" id="authorContactTypeLabel">Тип контакта</label>
-        <select id="authorContactType">
+        <select class="interal-select" id="authorContactType">
           <option value="telegram">telegram</option>
           <option value="matrix">matrix</option>
           <option value="email">email</option>
         </select>
 
         <label for="authorContactValue" id="authorContactValueLabel">Контакт</label>
-        <input id="authorContactValue" type="text" autocomplete="off">
+        <input class="interal-input" id="authorContactValue" type="text" autocomplete="off">
       </div>
 
-      <button id="generateJsonCardBtn" class="tool-btn" type="button">Сгенерировать карточку</button>
+      <button id="generateJsonCardBtn" class="tool-btn interal-btn interal-btn--primary" type="button">Сгенерировать карточку</button>
 
       <label for="jsonCardOutput" id="jsonCardOutputLabel">Готовый JSON</label>
-      <textarea id="jsonCardOutput" class="json-card-output" readonly></textarea>
+      <textarea id="jsonCardOutput" class="interal-textarea json-card-output" spellcheck="false" readonly></textarea>
     </div>
 
     <div class="json-card-actions">
@@ -787,8 +787,10 @@ const TEXT_I18N = {
       copy: "Скопировать JSON-карточку",
       copied: "JSON-карточка скопирована",
       copiedTitle: "Скопировано",
-      unavailable: "JSON-карточка доступна только для принятого расчёта.",
-      generating: "Генерация..."
+      unavailable: "JSON-карточка доступна только после успешной проверки.",
+      generating: "Генерация...",
+      download: "Скачать JSON-карточку",
+      empty: "Сначала сгенерируйте JSON-карточку."
     },
     result: {
       formalPI: "Формальный PI",
@@ -888,8 +890,10 @@ const TEXT_I18N = {
       copy: "Copy JSON card",
       copied: "JSON card copied",
       copiedTitle: "Copied",
-      unavailable: "The JSON card is available only for an accepted calculation.",
-      generating: "Generating..."
+      unavailable: "The JSON card is available only after a successful check.",
+      generating: "Generating...",
+      download: "Download JSON card",
+      empty: "Generate the JSON card first."
     },
     result: {
       formalPI: "Formal PI",
@@ -1395,11 +1399,14 @@ function openJsonCardModal() {
   jsonCardOutput.value = "";
   setJsonCardCopyState(false);
   jsonCardModal.classList.add("show");
+  jsonCardModal.setAttribute("aria-hidden", "false");
+  generateJsonCardBtn.focus();
 }
 
 function closeJsonCardModal() {
   setJsonCardCopyState(false);
   jsonCardModal.classList.remove("show");
+  jsonCardModal.setAttribute("aria-hidden", "true");
 }
 
 function clearScores() {
@@ -2798,7 +2805,7 @@ function setJsonCardCopyState(copied) {
 
 copyJsonCardBtn.addEventListener("click", async () => {
   if (!jsonCardOutput.value.trim()) {
-    alert("Сначала сгенерируйте JSON-карточку.");
+    alert(TEXT_I18N[getCurrentLanguage()].jsonCard.empty);
     return;
   }
 
