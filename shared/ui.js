@@ -55,6 +55,12 @@
       labelKey: 'navAltervordes',
       group: 'instruments'
     },
+    affixes: {
+      path: 'affixes/',
+      icon: 'elements/affixes.svg',
+      labelKey: 'navAffixes',
+      group: 'instruments'
+    },
     registry: {
       path: 'registre/',
       icon: 'elements/registre.svg',
@@ -74,6 +80,7 @@
     if (path.includes('/vordesofcommunites/')) return 'communities';
     if (path.includes('/grammaticebrevivordes/')) return 'grammar';
     if (path.includes('/altervordes/')) return 'altervordes';
+    if (path.includes('/affixes/')) return 'affixes';
     if (path.includes('/registre/')) return 'registry';
     return '';
   }
@@ -99,6 +106,7 @@
       navCommunities: 'Vordes of communités',
       navGrammar: 'Grammatic e brevi vordes',
       navAltervordes: 'Alter vordes',
+      navAffixes: 'Affixes',
       instrumentsLabel: 'Инструменты',
       navAriaLabel: 'Разделы сайта',
       ru: 'Русский',
@@ -132,6 +140,7 @@
       navCommunities: 'Vordes of communités',
       navGrammar: 'Grammatic e brevi vordes',
       navAltervordes: 'Alter vordes',
+      navAffixes: 'Affixes',
       instrumentsLabel: 'Instruments',
       navAriaLabel: 'Site sections',
       ru: 'Русский',
