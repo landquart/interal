@@ -14,7 +14,10 @@
   gap: 18px;
 }
 
-.affixes-page .vord-page-hero { text-align: center; }
+.affixes-page .vord-page-hero { position: relative; text-align: center; }
+.affixes-page .card-reset-btn { position: absolute; top: 0; right: 0; }
+.affixes-page .card-reset-btn.is-hidden { display: none; }
+.affixes-page .card-reset-btn img { width: 20px; height: 20px; }
 .affixes-page .vord-page-hero h1 {
   margin: 0;
   font-size: clamp(2.5rem, 7vw, 5rem);
@@ -91,6 +94,7 @@
   text-align: center;
 }
 .affixes-page .notice-box.error { border-color: color-mix(in srgb, #ef4444 45%, var(--border-subtle)); }
+.affixes-page .notice-box.success { border-color: color-mix(in srgb, #22c55e 45%, var(--border-subtle)); }
 
 .affixes-page #jsonCardModal {
   position: fixed;
