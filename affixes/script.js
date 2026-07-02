@@ -8,6 +8,7 @@ const UI_TEXT = {
     formLabel: 'Аффикс',
     meaningLabel: 'Значение',
     typeLabel: 'Тип аффикса',
+    commentLabel: 'Комментарий (необязательно)',
     suffix: 'Суффикс',
     prefix: 'Префикс',
     check: 'Проверить',
@@ -28,6 +29,7 @@ const UI_TEXT = {
     formLabel: 'Affix',
     meaningLabel: 'Meaning',
     typeLabel: 'Affix type',
+    commentLabel: 'Comment (optional)',
     suffix: 'Suffix',
     prefix: 'Prefix',
     check: 'Check',
@@ -63,13 +65,14 @@ function applyI18n() {
   const u = t();
   document.title = `${u.pageTitle} — Interal`;
   $('pageTitle').textContent = u.pageTitle;
-  $('formTitle').textContent = u.formTitle;
   $('formLabel').textContent = u.formLabel;
   $('meaningLabel').textContent = u.meaningLabel;
   $('typeLabel').textContent = u.typeLabel;
+  $('commentLabel').textContent = u.commentLabel;
   $('checkButton').textContent = u.check;
   $('formInput').placeholder = u.affixPlaceholder;
   $('meaningInput').placeholder = u.meaningPlaceholder;
+  $('commentInput').removeAttribute('placeholder');
   const current = $('morphemeTypeInput').value || 'suffix';
   $('morphemeTypeInput').innerHTML = MORPHEME_TYPES.map((value) => `<option value="${value}">${u[value]}</option>`).join('');
   $('morphemeTypeInput').value = MORPHEME_TYPES.includes(current) ? current : 'suffix';
@@ -85,7 +88,8 @@ function collectPayload() {
   return {
     form: $('formInput').value.trim(),
     meaningInput: $('meaningInput').value.trim(),
-    morphemeType: $('morphemeTypeInput').value
+    morphemeType: $('morphemeTypeInput').value,
+    comment: $('commentInput').value.trim()
   };
 }
 

@@ -14,8 +14,7 @@
       <h1 id="pageTitle">Affixes</h1>
     </header>
 
-    <section class="card vord-panel form-card" aria-labelledby="formTitle">
-      <h2 id="formTitle">Анализ аффиксов</h2>
+    <section class="card vord-panel form-card">
       <form id="affixForm" class="affix-form" autocomplete="off">
         <div class="field">
           <label id="formLabel" for="formInput">Аффикс</label>
@@ -33,6 +32,11 @@
             <option value="suffix">Суффикс</option>
             <option value="prefix">Префикс</option>
           </select>
+        </div>
+
+        <div class="field">
+          <label id="commentLabel" for="commentInput">Комментарий (необязательно)</label>
+          <textarea class="interal-textarea" id="commentInput"></textarea>
         </div>
 
         <div class="form-actions">
