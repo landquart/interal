@@ -15,7 +15,7 @@
   let lastSerialized = '';
 
   function isInstrumentPage() {
-    return /\/(indoeuropanvordes|associativvordes|determinatorofvalentyp|internationalismes|vordesofcommunites|grammaticebrevivordes|altervordes)\//.test(window.location.pathname);
+    return /\/(indoeuropanvordes|associativvordes|determinatorofvalentyp|internationalismes|vordesofcommunites|grammaticebrevivordes|altervordes|affixes)\//.test(window.location.pathname);
   }
 
   if (!isInstrumentPage()) return;
@@ -317,14 +317,14 @@
 
     return lang === 'en'
       ? {
-          copy: 'Copy link with data',
-          copied: 'Link copied',
-          failed: 'Could not copy link'
+          copy: 'Create link',
+          copied: 'Link copied.',
+          failed: 'Could not create link.'
         }
       : {
-          copy: 'Скопировать ссылку с данными',
-          copied: 'Ссылка скопирована',
-          failed: 'Не удалось скопировать ссылку'
+          copy: 'Создать ссылку',
+          copied: 'Ссылка скопирована.',
+          failed: 'Не удалось создать ссылку.'
         };
   }
 
@@ -443,7 +443,9 @@
           key === 'interal_associative_state' ||
           key === 'determinator-valentyp-state-v1' ||
           key === 'altervordes-state-v1' ||
-          key === 'interal_altervordes_state'
+          key === 'interal_altervordes_state' ||
+          key === 'affixes-state-v1' ||
+          key === 'interal_affixes_state'
         ) {
           localStorage.removeItem(key);
         }

@@ -10,7 +10,7 @@
   const siteRoot = sharedPath.replace(/\/shared\/ui\.js$/, '/');
   const joinUrl = (path) => new URL(path.replace(/^\//, ''), window.location.origin + siteRoot).pathname;
 
-  const canCopyPageState = /\/(indoeuropanvordes|associativvordes|determinatorofvalentyp|internationalismes|vordesofcommunites|grammaticebrevivordes|altervordes)\//.test(window.location.pathname);
+  const canCopyPageState = /\/(indoeuropanvordes|associativvordes|determinatorofvalentyp|internationalismes|vordesofcommunites|grammaticebrevivordes|altervordes|affixes)\//.test(window.location.pathname);
 
   const pageNavItems = {
     indoeuropanvordes: {
@@ -112,9 +112,9 @@
       ru: 'Русский',
       en: 'English',
       quickTitle: 'Быстрые действия',
-      copyState: 'Скопировать ссылку с данными',
-      shared: 'Ссылка скопирована',
-      sharedWarn: 'Не удалось создать или скопировать ссылку',
+      copyState: 'Создать ссылку',
+      shared: 'Ссылка скопирована.',
+      sharedWarn: 'Не удалось создать ссылку.',
       resetWarningTitle: 'Сбросить данные?',
       resetWarningMessage: 'Введённые данные будут удалены. Это действие нельзя отменить.',
       resetWarningConfirm: 'Сбросить',
@@ -146,9 +146,9 @@
       ru: 'Русский',
       en: 'English',
       quickTitle: 'Quick actions',
-      copyState: 'Copy link with data',
-      shared: 'Link copied',
-      sharedWarn: 'Could not create or copy link',
+      copyState: 'Create link',
+      shared: 'Link copied.',
+      sharedWarn: 'Could not create link.',
       resetWarningTitle: 'Reset data?',
       resetWarningMessage: 'Entered data will be deleted. This action cannot be undone.',
       resetWarningConfirm: 'Reset',
