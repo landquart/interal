@@ -1,0 +1,128 @@
+[
+  {
+    "id": "af_2vfwODldoZ3e",
+    "status": "draft",
+    "form": "-ion",
+    "morphemeType": "suffix",
+    "procedure": "international_affix",
+    "version": "1.0",
+    "card_type": "affix_card",
+    "vord_type": "af",
+    "created_at": "2026-06-30T20:10:14.490Z",
+    "meaning": {
+      "en": "action, process, or result of an action",
+      "de": "Handlung, Prozess oder Ergebnis einer Handlung",
+      "fr": "action, processus ou résultat d'une action",
+      "es": "acción, proceso o resultado de una acción",
+      "it": "azione, processo o risultato di un'azione",
+      "ru": "действие, процесс или результат действия"
+    },
+    "criteria": {
+      "controlLanguagePresence": {
+        "required": "at_least_5_of_6",
+        "actual": "strong"
+      }
+    },
+    "forms": {
+      "controlLanguages": {
+        "en": ["-ion", "-tion", "-sion"],
+        "de": ["-ion", "-tion", "-sion"],
+        "fr": ["-ion", "-tion", "-sion"],
+        "es": ["-ión", "-ción", "-sión"],
+        "it": ["-ione", "-zione", "-sione"],
+        "ru": ["-ия", "-ция", "-сия"]
+      },
+      "auxiliaryLanguages": {
+        "pl": ["-ion", "-cja", "-sja"],
+        "sv": ["-ion", "-tion"],
+        "ca": ["-ió", "-ció", "-sió"],
+        "oc": ["-ion", "-cion"],
+        "ro": ["-ion", "-ție", "-siune"]
+      }
+    }
+  },
+  {
+    "id": "af_7kQmR2xNdP9s",
+    "status": "draft",
+    "form": "-etta",
+    "morphemeType": "suffix",
+    "procedure": "associativ_affix",
+    "version": "1.0",
+    "card_type": "affix_card",
+    "vord_type": "af",
+    "created_at": "2026-06-30T20:10:14.490Z",
+    "meaning": {
+      "en": "small object, diminutive form, or derived object-related variant",
+      "de": "kleiner Gegenstand, Diminutivform oder abgeleitete gegenständliche Variante",
+      "fr": "petit objet, forme diminutive ou variante objectale dérivée",
+      "es": "objeto pequeño, forma diminutiva o variante objetual derivada",
+      "it": "piccolo oggetto, forma diminutiva o variante oggettuale derivata",
+      "ru": "малый предмет, уменьшенная форма или производный предметный вариант"
+    },
+    "criteria": {
+      "controlLanguagePresence": {
+        "required": "at_least_3_of_6",
+        "actual": "requires_check"
+      }
+    },
+    "forms": {
+      "controlLanguages": {
+        "en": ["-ette"],
+        "de": ["-ette"],
+        "fr": ["-ette"],
+        "es": ["-eta"],
+        "it": ["-etto", "-etta"],
+        "ru": ["-етка"]
+      },
+      "auxiliaryLanguages": {
+        "pl": ["-etka"],
+        "sv": ["-ett"],
+        "ca": ["-et", "-eta"],
+        "oc": ["-et", "-eta"],
+        "ro": ["-etă"]
+      }
+    }
+  },
+  {
+    "id": "af_N5pQw8rXsT2a",
+    "status": "draft",
+    "form": "-ilo",
+    "morphemeType": "suffix",
+    "procedure": "alter_affix",
+    "version": "1.0",
+    "card_type": "affix_card",
+    "vord_type": "af",
+    "created_at": "2026-06-30T20:10:14.490Z",
+    "meaning": {
+      "en": "instrument, means, or device for an action",
+      "de": "Instrument, Mittel oder Gerät für eine Handlung",
+      "fr": "instrument, moyen ou dispositif pour une action",
+      "es": "instrumento, medio o dispositivo para una acción",
+      "it": "strumento, mezzo o dispositivo per un'azione",
+      "ru": "инструмент, средство или приспособление для действия"
+    },
+    "criteria": {
+      "controlLanguagePresence": {
+        "required": "partial_presence_or_alternative_need",
+        "actual": "weak_or_partial"
+      }
+    },
+    "forms": {
+      "controlLanguages": {
+        "en": ["-er", "-or"],
+        "de": ["-er"],
+        "fr": ["-eur", "-oir"],
+        "es": ["-dor"],
+        "it": ["-tore"],
+        "ru": ["-ло", "-тель"]
+      },
+      "auxiliaryLanguages": {
+        "pl": ["-ło", "-nik"],
+        "sv": ["-are"],
+        "ca": ["-dor"],
+        "oc": ["-dor"],
+        "ro": ["-tor"]
+      }
+    }
+  }
+]
