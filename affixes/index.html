@@ -4,135 +4,61 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Affixes — Interal</title>
-  <link rel="stylesheet" href="./style.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon%20interal%2032.png" />
+  <link rel="stylesheet" href="../shared/ui.css?v=affixes-20260702" />
+  <link rel="stylesheet" href="./style.css" />
 </head>
-<body>
-  <main class="page-shell">
-    <header class="hero-card">
-      <p class="eyebrow">Interal tools</p>
-      <h1>Affixes</h1>
-      <p class="lead">Анализ и создание карточек аффиксов по трём процедурам: международные, ассоциативные и иные аффиксы.</p>
+<body class="affixes-page">
+  <main class="vord-page-shell">
+    <header class="vord-page-hero">
+      <h1 id="pageTitle">Affixes</h1>
     </header>
 
-    <section class="method-card">
-      <h2>Методология</h2>
-      <div class="method-grid">
-        <article>
-          <h3>Международные аффиксы</h3>
-          <p>Представлены минимум в 5 из 6 контрольных языков. Форма и произношение могут различаться, если это не мешает немедленному распознаванию.</p>
-        </article>
-        <article>
-          <h3>Ассоциативные аффиксы</h3>
-          <p>Представлены минимум в 3 контрольных языках и 2 языковых группах. Распознавание не немедленное, а основано на ассоциациях и аналогиях.</p>
-        </article>
-        <article>
-          <h3>Иные аффиксы</h3>
-          <p>Используются как единственный или альтернативный вариант, когда формы в контрольных языках значительно различаются или основной вариант конфликтен.</p>
-        </article>
-      </div>
-    </section>
+    <section class="card vord-panel form-card" aria-labelledby="formTitle">
+      <h2 id="formTitle">Анализ аффиксов</h2>
+      <form id="affixForm" class="affix-form" autocomplete="off">
+        <div class="field">
+          <label id="formLabel" for="formInput">Аффикс</label>
+          <input class="interal-input" id="formInput" type="text" autocomplete="off" placeholder="Например: -ion, re-, -ilo">
+        </div>
 
-    <section class="panel">
-      <div class="panel-head">
-        <h2>Создание карточки</h2>
-        <p>Структура JSON сохраняется строго как в примерах: без дополнительных полей.</p>
-      </div>
+        <div class="field">
+          <label id="meaningLabel" for="meaningInput">Значение</label>
+          <textarea class="interal-textarea" id="meaningInput" placeholder="Например: действие, результат действия"></textarea>
+        </div>
 
-      <form id="affixForm" class="form-grid" autocomplete="off">
-        <label><span>ID</span><input id="idInput" type="text" value="af_2vfwODldoZ3e"></label>
-        <label><span>Status</span><input id="statusInput" type="text" value="draft"></label>
-        <label><span>Form</span><input id="formInput" type="text" value="-ion"></label>
-
-        <label>
-          <span>Morpheme type</span>
-          <select id="morphemeTypeInput">
-            <option value="suffix" selected>suffix</option>
-            <option value="prefix">prefix</option>
-            <option value="postfix">postfix</option>
-            <option value="interfix">interfix</option>
+        <div class="field">
+          <label id="typeLabel" for="morphemeTypeInput">Тип аффикса</label>
+          <select class="interal-select" id="morphemeTypeInput">
+            <option value="suffix">Суффикс</option>
+            <option value="prefix">Префикс</option>
           </select>
-        </label>
+        </div>
 
-        <label>
-          <span>Procedure</span>
-          <select id="procedureInput">
-            <option value="international_affix" selected>international_affix</option>
-            <option value="associativ_affix">associativ_affix</option>
-            <option value="alter_affix">alter_affix</option>
-          </select>
-        </label>
-
-        <label><span>Version</span><input id="versionInput" type="text" value="1.0"></label>
-        <label><span>Card type</span><input id="cardTypeInput" type="text" value="affix_card"></label>
-        <label><span>Vord type</span><input id="vordTypeInput" type="text" value="af"></label>
-        <label class="wide"><span>Created at</span><input id="createdAtInput" type="text" value="2026-06-30T20:10:14.490Z"></label>
+        <div class="form-actions">
+          <button class="interal-btn interal-btn--primary" id="checkButton" type="submit">Проверить</button>
+        </div>
       </form>
     </section>
 
-    <section class="panel">
-      <div class="panel-head">
-        <h2>Meaning</h2>
-        <p>Значение указывается на всех контрольных языках.</p>
-      </div>
-
-      <div class="language-grid" id="meaningInputs">
-        <label><span>en</span><textarea data-lang="en">action, process, or result of an action</textarea></label>
-        <label><span>de</span><textarea data-lang="de">Handlung, Prozess oder Ergebnis einer Handlung</textarea></label>
-        <label><span>fr</span><textarea data-lang="fr">action, processus ou résultat d'une action</textarea></label>
-        <label><span>es</span><textarea data-lang="es">acción, proceso o resultado de una acción</textarea></label>
-        <label><span>it</span><textarea data-lang="it">azione, processo o risultato di un'azione</textarea></label>
-        <label><span>ru</span><textarea data-lang="ru">действие, процесс или результат действия</textarea></label>
-      </div>
-    </section>
-
-    <section class="panel">
-      <div class="panel-head"><h2>Criteria</h2></div>
-      <div class="form-grid">
-        <label><span>Required</span><input id="criteriaRequiredInput" type="text" value="at_least_5_of_6"></label>
-        <label><span>Actual</span><input id="criteriaActualInput" type="text" value="strong"></label>
-      </div>
-    </section>
-
-    <section class="panel">
-      <div class="panel-head">
-        <h2>Forms</h2>
-        <p>Значения вводятся через запятую.</p>
-      </div>
-
-      <h3 class="subhead">Control languages</h3>
-      <div class="language-grid" id="controlFormsInputs">
-        <label><span>en</span><textarea data-lang="en">-ion, -tion, -sion</textarea></label>
-        <label><span>de</span><textarea data-lang="de">-ion, -tion, -sion</textarea></label>
-        <label><span>fr</span><textarea data-lang="fr">-ion, -tion, -sion</textarea></label>
-        <label><span>es</span><textarea data-lang="es">-ión, -ción, -sión</textarea></label>
-        <label><span>it</span><textarea data-lang="it">-ione, -zione, -sione</textarea></label>
-        <label><span>ru</span><textarea data-lang="ru">-ия, -ция, -сия</textarea></label>
-      </div>
-
-      <h3 class="subhead">Auxiliary languages</h3>
-      <div class="language-grid" id="auxiliaryFormsInputs">
-        <label><span>pl</span><textarea data-lang="pl">-ion, -cja, -sja</textarea></label>
-        <label><span>sv</span><textarea data-lang="sv">-ion, -tion</textarea></label>
-        <label><span>ca</span><textarea data-lang="ca">-ió, -ció, -sió</textarea></label>
-        <label><span>oc</span><textarea data-lang="oc">-ion, -cion</textarea></label>
-        <label><span>ro</span><textarea data-lang="ro">-ion, -ție, -siune</textarea></label>
-      </div>
-    </section>
-
-    <section class="actions">
-      <button id="buildButton" type="button">Создать JSON</button>
-      <button id="qwenButton" type="button">Заполнить иной аффикс через Qwen</button>
-      <button id="copyButton" type="button">Копировать JSON</button>
-      <button id="downloadButton" type="button">Скачать JSON</button>
-      <span id="notice" role="status" aria-live="polite"></span>
-    </section>
-
-    <section class="panel output-panel">
-      <div class="panel-head"><h2>JSON card</h2></div>
-      <pre id="jsonOutput"></pre>
-    </section>
+    <div id="noticeBox" class="notice-box" hidden aria-live="polite"></div>
   </main>
 
+  <div id="jsonCardModal" aria-hidden="true">
+    <div class="modal-inner" role="dialog" aria-modal="true" aria-labelledby="jsonCardTitle">
+      <button id="closeJsonCardBtn" class="json-card-close-btn" type="button" aria-label="Закрыть"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke-width="2.4" stroke-linecap="round" /></svg></button>
+      <h3 class="json-card-title" id="jsonCardTitle">Карточка аффикса</h3>
+      <p class="json-card-status" id="jsonCardStatus">Проверка выполнена</p>
+      <pre class="json-card-output"><code id="jsonCardOutput"></code></pre>
+      <div class="json-card-actions">
+        <button id="copyJsonCardBtn" class="json-card-icon-btn menu-copy-btn" type="button" aria-label="Копировать JSON" title="Копировать JSON"><span class="menu-copy-icon-stack" aria-hidden="true"><img class="menu-copy-icon menu-copy-icon-link" src="../elements/Copy.svg" alt=""><svg class="menu-copy-icon menu-copy-icon-check" viewBox="0 0 24 24" focusable="false"><path d="M5 12.5l4.2 4.2L19 7" /></svg></span></button>
+        <button id="closeJsonCardTextBtn" class="interal-btn interal-btn--secondary" type="button">Закрыть</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../shared/copy-plain.js"></script>
+  <script src="../shared/ui.js?v=affixes-20260702"></script>
   <script src="./script.js"></script>
 </body>
 </html>

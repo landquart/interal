@@ -158,6 +158,66 @@ function normalizeLanguageArrayMap(value, languages) {
   languages.forEach((lang) => { result[lang] = normalizeArray(source[lang]); });
   return result;
 }
+
+const AFFIX_PROCEDURE_CRITERIA = {
+  international_affix: { required: 'at_least_5_of_6', actual: 'strong' },
+  associativ_affix: { required: 'at_least_3_of_6', actual: 'requires_check' },
+  alter_affix: { required: 'partial_presence_or_alternative_need', actual: 'weak_or_partial' }
+};
+const AFFIX_PROCEDURES = new Set(Object.keys(AFFIX_PROCEDURE_CRITERIA));
+function randomAffixId() {
+  const alphabet = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const bytes = crypto.getRandomValues(new Uint8Array(12));
+  return `af_${Array.from(bytes, (byte) => alphabet[byte % alphabet.length]).join('')}`;
+}
+function validateAffixesCheckPayload(input) {
+  const interfaceLanguage = normalizeInterfaceLanguage(input?.interfaceLanguage);
+  const form = normalizeString(input?.form);
+  const meaningInput = normalizeString(input?.meaningInput);
+  const morphemeType = normalizeString(input?.morphemeType, 'suffix');
+  if (!form) throw Object.assign(Error('form is required'), { status: 400 });
+  if (!meaningInput) throw Object.assign(Error('meaningInput is required'), { status: 400 });
+  if (!['suffix', 'prefix'].includes(morphemeType)) throw Object.assign(Error('Invalid morphemeType'), { status: 400 });
+  return { form, meaningInput, morphemeType, interfaceLanguage };
+}
+function normalizeAffixesCheckCard(generated, input) {
+  const card = generated && typeof generated === 'object' ? generated : {};
+  const procedure = AFFIX_PROCEDURES.has(card.procedure) ? card.procedure : 'alter_affix';
+  const criteria = AFFIX_PROCEDURE_CRITERIA[procedure];
+  const meaningFallback = input.meaningInput;
+  return {
+    id: /^af_[0-9A-Za-z_-]+$/.test(normalizeString(card.id)) ? normalizeString(card.id) : randomAffixId(),
+    status: 'draft',
+    form: normalizeString(card.form, input.form),
+    morphemeType: ['suffix', 'prefix'].includes(card.morphemeType) ? card.morphemeType : input.morphemeType,
+    procedure,
+    version: '1.0',
+    card_type: 'affix_card',
+    vord_type: 'af',
+    created_at: normalizeString(card.created_at, new Date().toISOString()),
+    meaning: normalizeLanguageMap(card.meaning, CONTROL_LANGUAGES, meaningFallback),
+    criteria: { controlLanguagePresence: { required: criteria.required, actual: criteria.actual } },
+    forms: {
+      controlLanguages: normalizeLanguageArrayMap(card.forms?.controlLanguages, CONTROL_LANGUAGES),
+      auxiliaryLanguages: normalizeLanguageArrayMap(card.forms?.auxiliaryLanguages, AUXILIARY_LANGUAGES)
+    }
+  };
+}
+function buildAffixesCheckPrompt(input) { return `You check an Interal affix and create exactly one strict JSON card.
+
+Methodology for affixes:
+- international_affix: present in many widespread borrowings and/or stable common Indo-European correspondences; at least 5 of 6 control languages; form/pronunciation may differ if immediate recognition remains possible.
+- associativ_affix: present in at least 3 control languages and 2 language groups; borrowings are fewer; recognition is associative and analogical, not immediate; consider 1–5 frequent words and ipm where relevant.
+- alter_affix: needed when affixes for the required meaning differ significantly across control languages, or when a more widespread affix has several morphological forms because of derivation and/or several meanings.
+- Standardization: consider both ordinary forms in individual words and forms in derived words; do not automatically transfer source-language endings; choose the more widespread, prototypical, or derivationally convenient form.
+
+Input:
+${JSON.stringify(input, null, 2)}
+
+Select procedure as one of: international_affix, associativ_affix, alter_affix.
+Return only valid JSON. Do not add markdown or any fields outside this structure:
+{"id":"af_string","status":"draft","form":"string","morphemeType":"suffix or prefix","procedure":"international_affix or associativ_affix or alter_affix","version":"1.0","card_type":"affix_card","vord_type":"af","created_at":"ISO datetime string","meaning":{"en":"string","de":"string","fr":"string","es":"string","it":"string","ru":"string"},"criteria":{"controlLanguagePresence":{"required":"string","actual":"string"}},"forms":{"controlLanguages":{"en":[],"de":[],"fr":[],"es":[],"it":[],"ru":[]},"auxiliaryLanguages":{"pl":[],"sv":[],"ca":[],"oc":[],"ro":[]}}}`; }
+
 function normalizeAffixesAlterCard(generated, input) {
   const now = new Date().toISOString();
   const card = generated && typeof generated === 'object' ? generated : {};
@@ -208,6 +268,7 @@ async function callYandexFoundation(taskConfig, input) {
 }
 
 const TASKS = {
+  affixes_check: { modelEnv: 'Qwen3_235B_A22B_Instruct_2507_FP8_Yandex', folderEnv: 'yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8', modelName: QWEN_235_FOUNDATION_MODEL, buildPrompt: buildAffixesCheckPrompt, normalize: normalizeAffixesCheckCard },
   affixes_alter_card: { modelEnv: 'Qwen3_235B_A22B_Instruct_2507_FP8_Yandex', folderEnv: 'yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8', modelName: QWEN_235_FOUNDATION_MODEL, buildPrompt: buildAffixesAlterPrompt, normalize: normalizeAffixesAlterCard },
   altervordes: { modelEnv: 'Qwen3_235B_A22B_Instruct_2507_FP8_Yandex', folderEnv: 'yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8' }
 };
@@ -222,6 +283,12 @@ async function runAltervordes(payload, interfaceLanguage) {
   catch (error) { if (error.status && error.status >= 400 && error.status < 500) result = await callYandex(messages, false); else throw error; }
   return { ok: true, analysis: normalizeAltervordesResult(extract(result.content), input, result.model) };
 }
+async function runAffixesCheck(payload, interfaceLanguage) {
+  const input = validateAffixesCheckPayload({ ...payload, interfaceLanguage });
+  const generated = await callYandexFoundation(TASKS.affixes_check, input);
+  return { card: TASKS.affixes_check.normalize(generated, input) };
+}
+
 async function runAffixesAlterCard(payload) {
   if (payload?.procedure !== 'alter_affix') throw Object.assign(Error('This task is only for alter_affix cards.'), { status: 400 });
   const generated = await callYandexFoundation(TASKS.affixes_alter_card, payload);
@@ -238,6 +305,7 @@ export default async function handler(req, res) {
     const payload = request?.payload && typeof request.payload === 'object' ? request.payload : {};
     const interfaceLanguage = normalizeInterfaceLanguage(request?.interfaceLanguage || payload.interfaceLanguage);
     if (!TASKS[task]) return send(res, 400, { ok: false, error: 'Unknown Qwen task' });
+    if (task === 'affixes_check') return send(res, 200, await runAffixesCheck(payload, interfaceLanguage));
     if (task === 'affixes_alter_card') return send(res, 200, await runAffixesAlterCard(payload));
     if (task === 'altervordes') return send(res, 200, await runAltervordes(payload, interfaceLanguage));
     return send(res, 400, { ok: false, error: 'Unsupported Qwen task' });
