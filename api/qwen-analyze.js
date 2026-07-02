@@ -7,9 +7,7 @@ const DERIVATION_CONTEXT = JSON.parse(
 
 const MAX_BODY_BYTES = 50_000;
 const YANDEX_CHAT_COMPLETIONS_URL = 'https://ai.api.cloud.yandex.net/v1/chat/completions';
-const YANDEX_FOUNDATION_MODELS_URL = 'https://llm.api.cloud.yandex.net/foundationModels/v1/completion';
 const QWEN_235_MODEL = 'qwen3-235b-a22b-fp8/latest';
-const QWEN_235_FOUNDATION_MODEL = 'qwen3-235b-a22b-instruct-2507-fp8/latest';
 const CONTROL_LANGUAGES = ['en', 'de', 'fr', 'es', 'it', 'ru'];
 const AUXILIARY_LANGUAGES = ['pl', 'sv', 'ca', 'oc', 'ro'];
 
@@ -258,20 +256,9 @@ function buildAffixesAlterPrompt(input) { return `Ты создаёшь JSON-к�
 
 Входная карточка:
 ${JSON.stringify(input, null, 2)}`; }
-async function callYandexFoundation(taskConfig, input) {
-  const apiKey = process.env[taskConfig.modelEnv];
-  const folderId = process.env[taskConfig.folderEnv];
-  if (!apiKey) throw Object.assign(Error(`Missing Yandex API key: ${taskConfig.modelEnv}`), { status: 500 });
-  if (!folderId) throw Object.assign(Error(`Missing Yandex folder id: ${taskConfig.folderEnv}`), { status: 500 });
-  const response = await fetch(YANDEX_FOUNDATION_MODELS_URL, { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Api-Key ${apiKey}`, 'x-folder-id': folderId }, body: JSON.stringify({ modelUri: `gpt://${folderId}/${taskConfig.modelName}`, completionOptions: { stream: false, temperature: 0.1, maxTokens: 2200 }, messages: [{ role: 'system', text: 'You return only valid JSON. Do not add explanations.' }, { role: 'user', text: taskConfig.buildPrompt(input) }] }) });
-  const data = await response.json();
-  if (!response.ok) throw Object.assign(Error(data?.error?.message || data?.message || 'Yandex Qwen request failed.'), { status: response.status });
-  return extract(data?.result?.alternatives?.[0]?.message?.text);
-}
-
 const TASKS = {
-  affixes_check: { modelEnv: 'Qwen3_235B_A22B_Instruct_2507_FP8_Yandex', folderEnv: 'yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8', modelName: QWEN_235_FOUNDATION_MODEL, buildPrompt: buildAffixesCheckPrompt, normalize: normalizeAffixesCheckCard },
-  affixes_alter_card: { modelEnv: 'Qwen3_235B_A22B_Instruct_2507_FP8_Yandex', folderEnv: 'yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8', modelName: QWEN_235_FOUNDATION_MODEL, buildPrompt: buildAffixesAlterPrompt, normalize: normalizeAffixesAlterCard },
+  affixes_check: { modelEnv: 'Qwen3_235B_A22B_Instruct_2507_FP8_Yandex', folderEnv: 'yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8', buildPrompt: buildAffixesCheckPrompt, normalize: normalizeAffixesCheckCard },
+  affixes_alter_card: { modelEnv: 'Qwen3_235B_A22B_Instruct_2507_FP8_Yandex', folderEnv: 'yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8', buildPrompt: buildAffixesAlterPrompt, normalize: normalizeAffixesAlterCard },
   altervordes: { modelEnv: 'Qwen3_235B_A22B_Instruct_2507_FP8_Yandex', folderEnv: 'yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8' }
 };
 
@@ -287,14 +274,43 @@ async function runAltervordes(payload, interfaceLanguage) {
 }
 async function runAffixesCheck(payload, interfaceLanguage) {
   const input = validateAffixesCheckPayload({ ...payload, interfaceLanguage });
-  const generated = await callYandexFoundation(TASKS.affixes_check, input);
-  return { card: TASKS.affixes_check.normalize(generated, input) };
+  const messages = [
+    {
+      role: 'system',
+      content: 'You return only valid JSON. Do not add explanations.'
+    },
+    {
+      role: 'user',
+      content: buildAffixesCheckPrompt(input)
+    }
+  ];
+
+  let result;
+  try {
+    result = await callYandex(messages, true);
+  } catch (error) {
+    if (error.status && error.status >= 400 && error.status < 500) {
+      result = await callYandex(messages, false);
+    } else {
+      throw error;
+    }
+  }
+
+  const generated = extract(result.content);
+  return { card: normalizeAffixesCheckCard(generated, input) };
 }
 
 async function runAffixesAlterCard(payload) {
   if (payload?.procedure !== 'alter_affix') throw Object.assign(Error('This task is only for alter_affix cards.'), { status: 400 });
-  const generated = await callYandexFoundation(TASKS.affixes_alter_card, payload);
-  return { card: TASKS.affixes_alter_card.normalize(generated, payload) };
+  const messages = [
+    { role: 'system', content: 'You return only valid JSON. Do not add explanations.' },
+    { role: 'user', content: buildAffixesAlterPrompt(payload) }
+  ];
+  let result;
+  try { result = await callYandex(messages, true); }
+  catch (error) { if (error.status && error.status >= 400 && error.status < 500) result = await callYandex(messages, false); else throw error; }
+  const generated = extract(result.content);
+  return { card: normalizeAffixesAlterCard(generated, payload) };
 }
 
 export default async function handler(req, res) {
