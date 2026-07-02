@@ -398,31 +398,6 @@
       }
     }
 
-    .associativ-page #jsonCardModal { position: fixed; inset: 0; opacity: 0; pointer-events: none; display: flex; align-items: center; justify-content: center; padding: 16px; box-sizing: border-box; background: rgba(0,0,0,.35); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); z-index: var(--z-page-modal); }
-    .associativ-page #jsonCardModal.show { opacity: 1; pointer-events: auto; }
-    body.dark-theme .associativ-page #jsonCardModal { background: rgba(0,0,0,.62); }
-    .associativ-page .modal-inner { position: relative; display: flex; flex-direction: column; max-width: 860px; width: 100%; margin: 0; padding: 24px; max-height: calc(100vh - 32px); overflow: hidden; background: var(--surface); color: var(--text); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); }
-    .associativ-page .json-card-title { margin: 0 42px 14px; text-align: center; font-size: 1.5rem; font-weight: 800; line-height: 1.2; }
-    .associativ-page .json-card-form { overflow: auto; flex: 1 1 auto; min-height: 0; }
-    .associativ-page .json-card-form .checkbox-line { display: flex; align-items: flex-start; gap: 8px; margin-top: 14px; color: var(--text-muted); font-size: 14px; font-weight: 600; }
-    .associativ-page .json-card-form .checkbox-line input { flex: 0 0 auto; width: auto; margin-top: 3px; }
-    .associativ-page .json-card-form .checkbox-line span { flex: 1 1 auto; }
-    .associativ-page .json-author-fields { margin-top: 12px; padding: 14px; border: 1px solid var(--border-subtle); border-radius: var(--radius-md); background: var(--surface-elevated); }
-    .associativ-page .json-card-output { min-height: 260px; resize: vertical; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13px; line-height: 1.45; white-space: pre; }
-    .associativ-page .json-card-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 12px; }
-    .associativ-page .json-card-icon-btn { width: 44px; height: 44px; padding: 0; margin-top: 0; display: inline-grid; place-items: center; border-radius: 999px; background: color-mix(in srgb, #67b3ff 24%, var(--surface-elevated)); border: 1px solid color-mix(in srgb, #67b3ff 45%, transparent); color: var(--text); cursor: pointer; transition: transform .22s ease, background-color .22s ease, color .22s ease, border-color .22s ease, box-shadow .22s ease, filter .22s ease; }
-    .associativ-page .json-card-icon-btn:hover, .associativ-page .json-card-icon-btn:focus-visible { background: color-mix(in srgb, #67b3ff 34%, var(--surface-hover)); transform: translateY(-2px) scale(1.01); }
-    .associativ-page .json-card-icon-btn:active { transform: scale(.98); }
-    .associativ-page .json-card-icon-btn.is-copied { background: color-mix(in srgb, #48d17f 30%, var(--surface-elevated)); border-color: color-mix(in srgb, #48d17f 58%, transparent); box-shadow: inset 0 0 0 1px color-mix(in srgb, #48d17f 26%, transparent), 0 10px 22px color-mix(in srgb, #48d17f 18%, transparent); }
-    .associativ-page .json-card-icon-btn .menu-copy-icon-link, .associativ-page .json-card-download-icon { filter: var(--menu-icon-filter, none); }
-    .associativ-page .json-card-download-icon-stack { width: 20px; height: 20px; display: grid; place-items: center; line-height: 0; }
-    .associativ-page .json-card-download-icon { width: 20px; height: 20px; display: block; object-fit: contain; }
-    body.dark-theme .associativ-page .json-card-icon-btn { background: color-mix(in srgb, #3f8ed8 34%, var(--surface-elevated)); border-color: color-mix(in srgb, #8bc7ff 44%, transparent); }
-    body.dark-theme .associativ-page .json-card-icon-btn.is-copied { background: color-mix(in srgb, #4fe28b 24%, var(--surface-elevated)); border-color: color-mix(in srgb, #8dffba 48%, transparent); }
-    .associativ-page .json-card-close-btn { position: absolute; top: 14px; right: 14px; width: 38px; height: 38px; padding: 0; margin: 0; display: inline-grid; place-items: center; border-radius: 999px; border: 1px solid transparent; background: transparent; color: var(--text); cursor: pointer; transition: transform .22s ease, background-color .22s ease, border-color .22s ease; }
-    .associativ-page .json-card-close-btn:hover, .associativ-page .json-card-close-btn:focus-visible { background: var(--surface-hover); border-color: var(--border-control); transform: translateY(-1px); }
-    .associativ-page .json-card-close-btn:active { transform: scale(.98); }
-    .associativ-page .json-card-close-btn svg { width: 18px; height: 18px; stroke: currentColor; }
 
   </style>
 </head>
@@ -483,8 +458,8 @@
       <button class="tool-btn interal-btn interal-btn--secondary" id="jsonCardBtn" hidden>Сформировать JSON-карточку</button>
     </div>
 
-  <div id="jsonCardModal">
-    <div class="modal-inner">
+  <div id="jsonCardModal" aria-hidden="true">
+    <div class="modal-inner" role="dialog" aria-modal="true" aria-labelledby="jsonCardTitle">
       <button id="closeJsonCardBtn" class="json-card-close-btn" type="button" aria-label="Закрыть JSON-карточку"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke-width="2.4" stroke-linecap="round" /></svg></button>
       <h3 class="json-card-title" id="jsonCardTitle">JSON-карточка</h3>
       <div class="json-card-form">
@@ -495,7 +470,7 @@
           <label for="authorContactValue" id="authorContactValueLabel">Контакт</label><input class="interal-input" id="authorContactValue" type="text" autocomplete="off">
         </div>
         <button id="generateJsonCardBtn" class="tool-btn interal-btn interal-btn--primary" type="button">Сгенерировать карточку</button>
-        <label for="jsonCardOutput" id="jsonCardOutputLabel">Готовый JSON</label><textarea id="jsonCardOutput" class="interal-textarea json-card-output" readonly></textarea>
+        <label for="jsonCardOutput" id="jsonCardOutputLabel">Готовый JSON</label><textarea id="jsonCardOutput" class="interal-textarea json-card-output" spellcheck="false" readonly></textarea>
       </div>
       <div class="json-card-actions">
         <button id="copyJsonCardBtn" class="json-card-icon-btn menu-copy-btn" type="button" aria-label="Скопировать JSON-карточку" title="Скопировать JSON-карточку"><span class="menu-copy-icon-stack" aria-hidden="true"><img class="menu-copy-icon menu-copy-icon-link" src="../elements/Copy.svg" alt=""><svg class="menu-copy-icon menu-copy-icon-check" viewBox="0 0 24 24" focusable="false"><path d="M5 12.5l4.2 4.2L19 7" /></svg></span></button>
