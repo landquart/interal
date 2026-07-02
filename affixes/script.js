@@ -188,10 +188,14 @@ async function analyzeAlterAffix() {
   setNotice('Qwen анализирует иной аффикс...');
   elements.qwenButton.disabled = true;
   try {
-    const response = await fetch('/api/affixes-analyze', {
+    const response = await fetch('/api/qwen-analyze', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(buildStrictCard())
+      body: JSON.stringify({
+        task: 'affixes_alter_card',
+        payload: buildStrictCard(),
+        interfaceLanguage: document.documentElement.lang?.startsWith('en') ? 'en' : 'ru'
+      })
     });
     const data = await response.json();
     if (!response.ok) throw new Error(data?.error || 'Qwen request failed.');
