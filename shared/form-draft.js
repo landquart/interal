@@ -317,14 +317,14 @@
 
     return lang === 'en'
       ? {
-          copy: 'Create link',
-          copied: 'Link copied.',
-          failed: 'Could not create link.'
+          copy: 'Copy link with data',
+          copied: 'Link copied',
+          failed: 'Could not copy link'
         }
       : {
-          copy: 'Создать ссылку',
-          copied: 'Ссылка скопирована.',
-          failed: 'Не удалось создать ссылку.'
+          copy: 'Скопировать ссылку с данными',
+          copied: 'Ссылка скопирована',
+          failed: 'Не удалось скопировать ссылку'
         };
   }
 
