@@ -470,34 +470,43 @@ function currentLang() {
   return localStorage.getItem('interal.lang') === 'en' ? 'en' : 'ru';
 }
 
-const uiText = {
+const i18n = {
   ru: {
-    missingRegular: 'Слово по регулярной модели не заполнено.',
-    missingLogical: 'Логический анализ компонентов не заполнен.',
-    missingInternational: 'Международное значение эквивалентного деривата не заполнено.',
-    missingNaturalistic: 'Слово по натуралистической модели не заполнено.',
-    noComponents: 'Компонентный анализ не добавлен.',
-    copied: 'Скопировано',
-    copyFailed: 'Ошибка копирования',
-    copyPrompt: 'Копировать промпт',
-    resetConfirm: 'Сбросить введённые данные? Это действие нельзя отменить.',
-    fillAndAnalyse: 'Заполните поля и нажмите «Анализировать».',
-    deleteComponent: 'Удалить компонент'
+    title: 'Determinator of valen typ', close: 'Закрыть', back: 'Назад', chooseOption: 'Выберите вариант',
+    regularWordLabel: '1 — Слово по регулярной модели (с разделителями)', componentAnalysisLabel: '2 — Компонентный анализ', logicalMeaningLabel: '3 — Логический анализ компонентов', internationalMeaningLabel: '4 — Международное значение эквивалентного деривата', naturalisticWordLabel: '5 — Слово по натуралистической модели (с разделителями)', explanationChainLabel: '6 — Объяснительная цепочка',
+    noComponents: 'Компоненты не добавлены.', missingRegular: 'Слово по регулярной модели не заполнено.', missingLogical: 'Логический анализ компонентов не заполнен.', missingInternational: 'Международное значение эквивалентного деривата не заполнено.', missingNaturalistic: 'Слово по натуралистической модели не заполнено.', noComponentsAnalysis: 'Компонентный анализ не добавлен.',
+    addItem: 'Добавить элемент', primaryRoot: 'Основной корень', component: 'Компонент (аффикс/окончание)', word: 'Слово', meaning: 'Значение', assimilationType: 'Тип ассимиляции', search: 'Поиск', category: 'Категория', element: 'Элемент', prefixAssimilation: 'Ассимиляция приставки', prefixVariant: 'Вариант приставки', add: 'Добавить', analyse: 'Анализировать', analysing: 'Анализируем…', clear: 'Очистить', result: 'Результат', fillAndAnalyse: 'Заполните поля и нажмите «Анализировать».',
+    spectrumZone: 'Зона спектра', confidence: 'Уверенность', chainType: 'Тип цепочки', aiConfidence: 'Уверенность модели', explanatoryChain: 'Объяснительная цепочка', explanation: 'Обоснование', analogiesUsed: 'Использованные аналогии', borderlineZones: 'Граничные зоны', warnings: 'Предупреждения', formRecommendation: 'Рекомендация формы', apiErrorManualMode: 'Ошибка API / ручной режим', editScoresHint: 'Измените оценки, чтобы пересчитать зону локально без API.',
+    high: 'высокая', medium: 'средняя', low: 'низкая', assimilation: 'Ассимиляция', copied: 'Скопировано', copyFailed: 'Ошибка копирования', copyPrompt: 'Копировать промпт', buildPrompt: 'Собрать промпт', resetConfirm: 'Сбросить введённые данные? Это действие нельзя отменить.', deleteComponent: 'Удалить компонент', addComponentAria: 'Добавить компонент', componentSearchResults: 'Результаты поиска компонентов',
+    apiErrorWarning: 'API недоступен или вернул ошибку. Можно вручную выставить P/R/C/E ниже — зона пересчитается локально без нового запроса.', apiUnavailableManual: 'API недоступен. Выставьте P/R/C/E вручную — зона пересчитается локально.', insufficientData: 'Заполните логическое и международное значение. Ручной блок P/R/C/E доступен ниже.', noComponentsFound: 'Компоненты не найдены. Попробуйте без дефиса, без / или по значению.', localModelUnavailable: 'Локальная модель недоступна. Использован только расчёт по правилам.', unknownError: 'Неизвестная ошибка', manualParseError: 'Не удалось извлечь distance/similarity из ответа нейросети.',
+    noChainWarning: 'Модель не вернула объяснительную цепочку. Можно выставить P/R/C/E вручную.', zoneMismatchWarning: 'Подсказка модели по зоне отличается от расчёта P/R/C/E; итоговая зона пересчитана кодом.', lexicalizationWarning: 'Тип цепочки похож на лексикализацию, но оценки P/R/C/E попали в другую зону.',
+    regularFormFallback: 'регулярная форма', naturalisticFormFallback: 'натуралистическая форма', recRegularEnough: 'Обычно достаточно логической/регулярной формы: {regular}. Отдельная интернациональная маркировка не обязательна.', recOptional: 'Случай пограничный. Можно оставить логическую/регулярную форму: {regular}, но если интернациональное значение закреплено отдельно, допустима отдельная маркировка: {natural}.', recSeparate: 'Рекомендуется отдельная интернациональная маркировка: для существительного — -u ({natural}), для интернациональных прилагательных — -al/-ari/-ic, для логических прилагательных — -i; глаголы с интернациональным значением сохраняют консервативный корень, а логические — изменённую корневую основу, если она есть.',
+    manualPromptLabel: 'Промпт для внешней нейросети (ручное эмбеддинг-сравнение)', manualPromptPlaceholder: 'Нажмите «Собрать промпт»', manualResponseLabel: 'Ответ нейросети (вставьте сюда)', manualResponsePlaceholder: 'Например: {"distance":0.38,"similarity":0.62,"reason":"..."}', manualHint: 'Если ответ предоставлен, дистанция считается как правило-ориентированная оценка + ручное эмбеддинг-сравнение (70/30).',
+    placeholders: { regularWord: 're/vis/ion', logicalMeaning: 'видение снова', internationalMeaning: 'ревизия', naturalisticWord: 're/vis/ion/u', explanationChain: 'например: повторный просмотр → просмотр с целью контроля → проверка → ревизия', rootForm: 'vid/er', rootMeaning: 'видеть', componentSearch: '-or, действие, приставка' }
   },
   en: {
-    missingRegular: 'Regular-model word is missing.',
-    missingLogical: 'Logical component analysis is missing.',
-    missingInternational: 'International meaning of equivalent derivative is missing.',
-    missingNaturalistic: 'Naturalistic-model word is missing.',
-    noComponents: 'No component analysis added.',
-    copied: 'Copied',
-    copyFailed: 'Copy failed',
-    copyPrompt: 'Copy prompt',
-    resetConfirm: 'Reset entered data? This action cannot be undone.',
-    fillAndAnalyse: 'Fill in fields and click “Analyse”.',
-    deleteComponent: 'Delete component'
+    title: 'Determinator of valen typ', close: 'Close', back: 'Back', chooseOption: 'Choose option',
+    regularWordLabel: '1 — Word by regular model (with separators)', componentAnalysisLabel: '2 — Component analysis', logicalMeaningLabel: '3 — Logical analysis of components', internationalMeaningLabel: '4 — International meaning of equivalent derivative', naturalisticWordLabel: '5 — Word by naturalistic model (with separators)', explanationChainLabel: '6 — Explanatory chain',
+    noComponents: 'No components added.', missingRegular: 'Regular-model word is missing.', missingLogical: 'Logical component analysis is missing.', missingInternational: 'International meaning of equivalent derivative is missing.', missingNaturalistic: 'Naturalistic-model word is missing.', noComponentsAnalysis: 'No component analysis added.',
+    addItem: 'Add item', primaryRoot: 'Primary root', component: 'Component (affix/ending)', word: 'Word', meaning: 'Meaning', assimilationType: 'Assimilation type', search: 'Search', category: 'Category', element: 'Element', prefixAssimilation: 'Prefix assimilation', prefixVariant: 'Prefix variant', add: 'Add', analyse: 'Analyse', analysing: 'Analysing…', clear: 'Clear', result: 'Result', fillAndAnalyse: 'Fill in fields and click “Analyse”.',
+    spectrumZone: 'Spectrum zone', confidence: 'Confidence', chainType: 'Chain type', aiConfidence: 'AI confidence', explanatoryChain: 'Explanatory chain', explanation: 'Explanation', analogiesUsed: 'Analogies used', borderlineZones: 'Borderline zones', warnings: 'Warnings', formRecommendation: 'Form recommendation', apiErrorManualMode: 'API error / manual mode', editScoresHint: 'Edit scores to recalculate the zone locally.',
+    high: 'high', medium: 'medium', low: 'low', assimilation: 'Assimilation', copied: 'Copied', copyFailed: 'Copy failed', copyPrompt: 'Copy prompt', buildPrompt: 'Build prompt', resetConfirm: 'Reset entered data? This action cannot be undone.', deleteComponent: 'Delete component', addComponentAria: 'Add component', componentSearchResults: 'Component search results',
+    apiErrorWarning: 'API unavailable or returned an error. You can set P/R/C/E manually below — the zone will be recalculated locally without a new request.', apiUnavailableManual: 'API unavailable. Set P/R/C/E manually — the zone will be recalculated locally.', insufficientData: 'Fill in logical and international meaning. The manual P/R/C/E block is available below.', noComponentsFound: 'No components found. Try without hyphen, without /, or by meaning.', localModelUnavailable: 'Local model unavailable. Used only rule-based calculation.', unknownError: 'Unknown error', manualParseError: 'Could not extract distance/similarity from neural model response.',
+    noChainWarning: 'The model did not return an explanatory chain. You can set P/R/C/E manually.', zoneMismatchWarning: 'The model zone hint differs from the P/R/C/E calculation; the final zone was recalculated by code.', lexicalizationWarning: 'The chain type looks like lexicalization, but P/R/C/E scores landed in another zone.',
+    regularFormFallback: 'regular form', naturalisticFormFallback: 'naturalistic form', recRegularEnough: 'The logical/regular form is usually enough: {regular}. Separate international marking is not required.', recOptional: 'This is a borderline case. You may keep the logical/regular form: {regular}, but if the international meaning is fixed separately, separate marking is acceptable: {natural}.', recSeparate: 'Separate international marking is recommended: for nouns — -u ({natural}); for international adjectives — -al/-ari/-ic; for logical adjectives — -i. Verbs with international meaning keep the conservative root, while logical verbs use the changed root stem when available.',
+    manualPromptLabel: 'Prompt for external neural model (manual embedding comparison)', manualPromptPlaceholder: 'Click “Build prompt”', manualResponseLabel: 'Neural model response (paste here)', manualResponsePlaceholder: 'For example: {"distance":0.38,"similarity":0.62,"reason":"..."}', manualHint: 'If response is provided, distance is computed as rule-oriented estimate + manual embedding comparison (70/30).',
+    placeholders: { regularWord: 're/vis/ion', logicalMeaning: 'vision again', internationalMeaning: 'revision', naturalisticWord: 're/vis/ion/u', explanationChain: 'for example: repeated viewing → control-focused review → inspection → revision', rootForm: 'vid/er', rootMeaning: 'see', componentSearch: '-or, action, prefix' }
   }
 };
+
+function getText(path) {
+  const lang = currentLang();
+  const read = (obj) => path.split('.').reduce((acc, key) => acc?.[key], obj);
+  return read(i18n[lang]) ?? read(i18n.ru) ?? path;
+}
+
+function txt(key) { return getText(key); }
+function t(key) { return txt(key); }
 
 const categoryNames = {
   'Окончания': { ru: 'Окончания', en: 'Endings' },
@@ -574,14 +583,10 @@ const fixedRootAssimilationValues = new Set([
   'exc-merer'
 ]);
 
-function t(key) {
-  const lang = currentLang();
-  return (uiText[lang] && uiText[lang][key]) || uiText.ru[key] || key;
-}
-
 function localizeCategory(category) {
   const lang = currentLang();
-  return categoryNames[category]?.[lang] || category;
+  if (!categoryNames[category]) { console.warn('Missing category translation:', category); return lang === 'en' ? 'Translation missing' : category; }
+  return categoryNames[category][lang] || categoryNames[category].ru || category;
 }
 
 function localizeAssimilationLabel(option) {
@@ -596,7 +601,9 @@ function localizeRootMeaningByAssimilation(value, fallback) {
 
 function localizeMeaningByItem(item) {
   if (!item) return '';
-  return currentLang() === 'en' ? componentMeaningsEn[item.id] || item.meaning : item.meaning;
+  if (currentLang() !== 'en') return item.meaning;
+  if (!componentMeaningsEn[item.id]) { console.warn('Missing component translation:', item.id); return 'Translation missing'; }
+  return componentMeaningsEn[item.id];
 }
 
 function localizeComponentText(item) {
@@ -604,7 +611,9 @@ function localizeComponentText(item) {
 }
 
 function localizePrefixNote(note) {
-  return currentLang() === 'en' ? prefixNotesEn[note] || note : note;
+  if (currentLang() !== 'en') return note;
+  if (!prefixNotesEn[note]) { console.warn('Missing prefix note translation:', note); return 'Translation missing'; }
+  return prefixNotesEn[note];
 }
 
 function getComponentSource(item) {
@@ -612,7 +621,7 @@ function getComponentSource(item) {
 }
 
 function getLocalizedComponentLabel(item) {
-  if (item.type === 'root') return currentLang() === 'en' ? 'Primary root word' : 'Основной корень';
+  if (item.type === 'root') return txt('primaryRoot');
   const source = getComponentSource(item);
   return localizeCategory(source?.category || item.category || item.label || '');
 }
@@ -635,24 +644,130 @@ function getLocalizedAssimilationNote(item) {
   return localizePrefixNote(item.assimilationNoteRaw || item.assimilationNote);
 }
 
-function setupSelects() {
+function setText(id, value) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = value;
+}
+
+function setPlaceholder(id, value) {
+  const el = document.getElementById(id);
+  if (el) el.setAttribute('placeholder', value);
+}
+
+function applyI18n() {
+  document.documentElement.lang = currentLang();
+  document.title = txt('title');
+  const h1 = document.querySelector('.hero h1');
+  if (h1) h1.textContent = txt('title');
+
+  ['regularWordLabel', 'componentAnalysisLabel', 'logicalMeaningLabel', 'internationalMeaningLabel', 'naturalisticWordLabel', 'explanationChainLabel'].forEach((id) => setText(id, txt(id)));
+  setText('chooserTitle', txt('addItem'));
+  setText('chooseRootBtn', txt('primaryRoot'));
+  setText('chooseComponentBtn', txt('component'));
+  setText('rootTitle', txt('primaryRoot'));
+  setText('componentTitle', txt('component'));
+  setText('prefixVariantTitle', txt('prefixAssimilation'));
+  setText('rootFormLabel', txt('word'));
+  setText('rootMeaningLabel', txt('meaning'));
+  setText('assimilationLabel', txt('assimilationType'));
+  setText('componentSearchLabel', txt('search'));
+  setText('componentCategoryLabel', txt('category'));
+  setText('componentSelectLabel', txt('element'));
+  setText('prefixVariantLabel', txt('prefixVariant'));
+  setText('saveRootBtn', txt('add'));
+  setText('saveComponentBtn', txt('add'));
+  setText('savePrefixVariantBtn', txt('add'));
+  setText('analyzeBtn', txt('analyse'));
+  setText('resultTitle', txt('result'));
+  if (els.componentsList?.classList.contains('empty')) els.componentsList.textContent = txt('noComponents');
+  if (els.result?.classList.contains('empty')) els.result.textContent = txt('fillAndAnalyse');
+
+  document.querySelectorAll('.close-btn').forEach((btn) => btn.setAttribute('aria-label', txt('close')));
+  document.querySelectorAll('.back-btn').forEach((btn) => btn.setAttribute('aria-label', txt('back')));
+  els.addComponentBtn?.setAttribute('aria-label', txt('addComponentAria'));
+  els.clearBtn?.setAttribute('aria-label', txt('clear'));
+  els.clearBtn?.setAttribute('title', txt('clear'));
+  els.copyPromptBtn?.setAttribute('aria-label', txt('copyPrompt'));
+  els.copyPromptBtn?.setAttribute('title', txt('copyPrompt'));
+  if (els.buildPromptBtn) els.buildPromptBtn.textContent = txt('buildPrompt');
+  els.componentSearchResults?.setAttribute('aria-label', txt('componentSearchResults'));
+
+  setPlaceholder('regularWord', txt('placeholders.regularWord'));
+  setPlaceholder('logicalMeaning', txt('placeholders.logicalMeaning'));
+  setPlaceholder('internationalMeaning', txt('placeholders.internationalMeaning'));
+  setPlaceholder('naturalisticWord', txt('placeholders.naturalisticWord'));
+  setPlaceholder('explanationChain', txt('placeholders.explanationChain'));
+  setPlaceholder('rootFormInput', txt('placeholders.rootForm'));
+  setPlaceholder('rootMeaningInput', txt('placeholders.rootMeaning'));
+  setPlaceholder('componentSearchInput', txt('placeholders.componentSearch'));
+  setPlaceholder('manualPrompt', txt('manualPromptPlaceholder'));
+  setPlaceholder('manualEmbeddingResponse', txt('manualResponsePlaceholder'));
+}
+
+function rebuildAssimilationSelect() {
+  const selected = els.assimilationSelect.value;
+  els.assimilationSelect.innerHTML = '';
   assimilationOptions.forEach((opt) => {
     const option = document.createElement('option');
     option.value = opt.value;
     option.textContent = localizeAssimilationLabel(opt);
     els.assimilationSelect.appendChild(option);
   });
+  els.assimilationSelect.value = selected || 'none';
+}
 
+function rebuildCategorySelect() {
+  const selected = els.componentCategorySelect.value;
+  els.componentCategorySelect.innerHTML = '';
   Object.keys(byCategory).forEach((category) => {
     const option = document.createElement('option');
     option.value = category;
     option.textContent = localizeCategory(category);
     els.componentCategorySelect.appendChild(option);
   });
+  if (selected) els.componentCategorySelect.value = selected;
+}
 
+function rebuildPrefixVariantSelectIfOpenOrPending() {
+  if (!pendingPrefixItem) return;
+  const selected = els.prefixVariantSelect.value;
+  els.prefixVariantSelect.innerHTML = '';
+  (prefixAssimilationOptions[pendingPrefixItem.id] || []).forEach((opt) => {
+    const option = document.createElement('option');
+    option.value = opt.form;
+    option.textContent = `${opt.form} — ${localizePrefixNote(opt.note)}`;
+    els.prefixVariantSelect.appendChild(option);
+  });
+  if (selected) els.prefixVariantSelect.value = selected;
+}
+
+function refreshSelectLocalization() {
+  const saved = {
+    assimilation: els.assimilationSelect.value,
+    category: els.componentCategorySelect.value,
+    component: els.componentSelect.value,
+    prefixVariant: els.prefixVariantSelect.value
+  };
+  rebuildAssimilationSelect();
+  rebuildCategorySelect();
+  if (saved.category) els.componentCategorySelect.value = saved.category;
+  fillComponentSelect({ selectedId: saved.component, keepSearch: true });
+  rebuildPrefixVariantSelectIfOpenOrPending();
+  els.assimilationSelect.value = saved.assimilation || 'none';
+  if (saved.category) els.componentCategorySelect.value = saved.category;
+  if (saved.component) els.componentSelect.value = saved.component;
+  if (saved.prefixVariant) els.prefixVariantSelect.value = saved.prefixVariant;
+  [els.assimilationSelect, els.componentCategorySelect, els.componentSelect, els.prefixVariantSelect].forEach((select) => select?._customSelectRefresh?.());
+}
+
+function setupSelects() {
+  rebuildAssimilationSelect();
+  rebuildCategorySelect();
   fillComponentSelect();
-  els.componentSelect._customSelectRefresh?.();
-  window.initCustomSelects?.(els.componentSelect);
+  [els.assimilationSelect, els.componentCategorySelect, els.componentSelect, els.prefixVariantSelect].forEach((select) => {
+    select?._customSelectRefresh?.();
+    if (select) window.initCustomSelects?.(select);
+  });
 }
 
 function normalizeSearchText(value) {
@@ -794,9 +909,7 @@ function renderComponentSearchResults() {
   if (!matches.length) {
     const empty = document.createElement('div');
     empty.className = 'component-search-empty';
-    empty.textContent = currentLang() === 'en'
-      ? 'No components found. Try without hyphen, slash or by meaning.'
-      : 'Компоненты не найдены. Попробуйте без дефиса, без / или по значению.';
+    empty.textContent = txt('noComponentsFound');
     els.componentSearchResults.appendChild(empty);
     return;
   }
@@ -1003,7 +1116,7 @@ function componentSummaryText() {
 function renderAssimilationMeta(item) {
   if (!item.assimilation || item.assimilation === 'none') return '';
   const label = getLocalizedAssimilationLabelByValue(item.assimilation, item.assimilationLabel);
-  return currentLang() === 'en' ? ` · Assimilation: ${label}` : ` · Ассимиляция: ${label}`;
+  return ` · ${txt('assimilation')}: ${label}`;
 }
 
 function renderComponents() {
@@ -1248,37 +1361,37 @@ function buildFormRecommendation(zone, input) {
     'partial_semantic_extension'
   ];
 
-  const natural = input.naturalisticWord || 'натуралистическая форма';
-  const regular = input.regularWord || 'регулярная форма';
+  const natural = input.naturalisticWord || txt('naturalisticFormFallback');
+  const regular = input.regularWord || txt('regularFormFallback');
 
   if (noSeparateMarking.includes(zone.zone_id)) {
     return {
       strategy: 'regular_form_usually_enough',
-      text: `Обычно достаточно логической/регулярной формы: ${regular}. Отдельная интернациональная маркировка не обязательна.`
+      text: txt('recRegularEnough').replace('{regular}', regular)
     };
   }
 
   if (optionalMarking.includes(zone.zone_id)) {
     return {
       strategy: 'borderline_marking_optional',
-      text: `Случай пограничный. Можно оставить логическую/регулярную форму: ${regular}, но если интернациональное значение закреплено отдельно, допустима отдельная маркировка: ${natural}.`
+      text: txt('recOptional').replace('{regular}', regular).replace('{natural}', natural)
     };
   }
 
   return {
     strategy: 'separate_international_marking_recommended',
-    text: `Рекомендуется отдельная интернациональная маркировка: для существительного — -u (${natural}), для интернациональных прилагательных — -al/-ari/-ic, для логических прилагательных — -i; глаголы с интернациональным значением сохраняют консервативный корень, а логические — изменённую корневую основу, если она есть.`
+    text: txt('recSeparate').replace('{natural}', natural)
   };
 }
 
 function shouldWarn(result) {
   const warnings = [];
-  if (!result?.ai?.chain?.length) warnings.push('Модель не вернула объяснительную цепочку. Можно выставить P/R/C/E вручную.');
+  if (!result?.ai?.chain?.length) warnings.push(txt('noChainWarning'));
   if (result?.ai?.zone_hint && result?.computed?.zone_ru && !result.ai.zone_hint.toLowerCase().includes(result.computed.zone_ru.toLowerCase())) {
-    warnings.push('Подсказка модели по зоне отличается от расчёта P/R/C/E; итоговая зона пересчитана кодом.');
+    warnings.push(txt('zoneMismatchWarning'));
   }
   if (result?.ai?.chain_type === 'lexicalized_no_working_chain' && result?.computed?.zone_id !== 'lexicalization') {
-    warnings.push('Тип цепочки похож на лексикализацию, но оценки P/R/C/E попали в другую зону.');
+    warnings.push(txt('lexicalizationWarning'));
   }
   return warnings;
 }
@@ -1435,7 +1548,7 @@ function parseManualEmbeddingResponse(raw) {
   if (typeof similarity === 'number' && typeof distance !== 'number') distance = 1 - similarity;
 
   if (typeof similarity !== 'number' || typeof distance !== 'number') {
-    throw new Error('Could not extract distance/similarity from neural model response.');
+    throw new Error(txt('manualParseError'));
   }
 
   return {
@@ -1448,12 +1561,16 @@ function parseManualEmbeddingResponse(raw) {
 }
 
 function buildManualPrompt(input) {
+  return currentLang() === 'en' ? buildManualPromptEn(input) : buildManualPromptRu(input);
+}
+
+function buildManualPromptEn(input) {
   return [
     'You are a linguistic assistant. Estimate semantic distance between two meaning formulations.',
     '',
     'Task context:',
     '- Determine value type in Determinator of valen typ.',
-    '- The app computes final score as Rule-based + embedding estimate.',
+    '- The app computes final score as rule-based estimate + embedding estimate.',
     '- Your part: provide embedding-like meaning similarity from 0 to 1.',
     '',
     `Logical analysis: "${input.logicalMeaning || '—'}"`,
@@ -1462,13 +1579,38 @@ function buildManualPrompt(input) {
     'Response requirements:',
     '1) Respond with exactly one JSON object without Markdown.',
     '2) Format:',
-    `{"responseLanguage":"${getInterfaceLanguage()}","distance":0.00,"similarity":0.00,"reason":"short explanation in the interface language"}`,
-    `3) Write the reason in ${getInterfaceLanguage() === 'en' ? 'English' : 'Russian'} and keep JSON keys in English.`,
+    '{"responseLanguage":"en","distance":0.00,"similarity":0.00,"reason":"short explanation in English"}',
+    '3) Keep JSON keys in English.',
     '4) distance = 0 means almost same meaning, distance = 1 means very far.',
     '5) similarity = 1 - distance.',
     '6) Use decimal numbers with precision to two digits.',
     '',
     'Return JSON only.'
+  ].join('\n');
+}
+
+function buildManualPromptRu(input) {
+  return [
+    'Ты лингвистический ассистент. Оцени семантическую дистанцию между двумя формулировками значения.',
+    '',
+    'Контекст задачи:',
+    '- Нужно определить тип значения в Determinator of valen typ.',
+    '- Приложение считает итоговую оценку как правило-ориентированную оценку + эмбеддинг-оценку.',
+    '- Твоя часть: дать похожую на эмбеддинг оценку смысловой близости от 0 до 1.',
+    '',
+    `Логический анализ: "${input.logicalMeaning || '—'}"`,
+    `Международное значение: "${input.internationalMeaning || '—'}"`,
+    '',
+    'Требования к ответу:',
+    '1) Ответь ровно одним JSON-объектом без Markdown.',
+    '2) Формат:',
+    '{"responseLanguage":"ru","distance":0.00,"similarity":0.00,"reason":"краткое объяснение на русском"}',
+    '3) JSON keys оставь на английском.',
+    '4) distance = 0 означает почти одинаковое значение, distance = 1 означает очень далёкое значение.',
+    '5) similarity = 1 - distance.',
+    '6) Используй десятичные числа с точностью до двух знаков.',
+    '',
+    'Верни только JSON.'
   ].join('\n');
 }
 
@@ -1511,9 +1653,7 @@ async function computeSemanticDistance(a, b, useLLM = false, options = {}) {
       rule,
       embedding: null,
       final: { distance: rule.distance, similarity: rule.similarity, weights: { rule: 1, embedding: 0 } },
-      error: currentLang() === 'en'
-        ? 'Local model unavailable. Used only Rule-based calculation.'
-        : 'Локальная модель недоступна. Использован только расчёт по правилам.',
+      error: txt('localModelUnavailable'),
       debugError: String(error),
       manualEmbeddingError
     };
@@ -1538,7 +1678,7 @@ function getInput() {
 
 
 function getInterfaceLanguage() {
-  return document.documentElement.lang?.startsWith('en') ? 'en' : 'ru';
+  return currentLang();
 }
 
 async function analyzeByRules(input, runId) {
@@ -1546,7 +1686,7 @@ async function analyzeByRules(input, runId) {
     return {
       ok: false,
       error: 'insufficient_data',
-      details: 'Заполните логическое и международное значение. Ручной блок P/R/C/E доступен ниже.',
+      details: txt('insufficientData'),
       computed: classifyByPRECE({ P: 2, R: 3, C: 2, E: 1 }),
       ai: normalizeAiResult({ chain: [], P: 2, R: 3, C: 2, E: 1, confidence: 0.3 }),
       retrieval: { examples_used: [] }
@@ -1564,7 +1704,7 @@ async function analyzeByRules(input, runId) {
       explanationChain: input.explanationChain,
       components: input.components,
       manualScores: null,
-      interfaceLanguage: getInterfaceLanguage()
+      interfaceLanguage: currentLang()
     })
   });
 
@@ -1584,8 +1724,8 @@ async function analyzeByRules(input, runId) {
     const computed = classifyByPRECE(fallbackScores);
     computed.formRecommendation = buildFormRecommendation(computed, input);
     computed.warnings = [
-      'API недоступен или вернул ошибку. Можно вручную выставить P/R/C/E ниже — зона пересчитается локально без нового запроса.',
-      String(data.details || data.error || response.statusText || 'Unknown error')
+      txt('apiErrorWarning'),
+      String(data.details || data.error || response.statusText || txt('unknownError'))
     ];
     return {
       ok: false,
@@ -1612,7 +1752,7 @@ function renderResult(result, input) {
   const isEn = currentLang() === 'en';
   const computed = result.computed || classifyByPRECE(result.ai || { P: 2, R: 3, C: 2, E: 1 });
   const ai = normalizeAiResult(result.ai || computed.scores || {});
-  const confidenceLabels = { high: isEn ? 'high' : 'высокая', medium: isEn ? 'medium' : 'средняя', low: isEn ? 'low' : 'низкая' };
+  const confidenceLabels = { high: txt('high'), medium: txt('medium'), low: txt('low') };
   const zoneName = isEn ? computed.zone_en : computed.zone_ru;
   const formRecommendation = computed.formRecommendation || buildFormRecommendation(computed, input);
   const warnings = Array.isArray(computed.warnings) ? computed.warnings : [];
@@ -1624,13 +1764,13 @@ function renderResult(result, input) {
   els.result.innerHTML = `
     <div class="badges">
       ${badge(zoneName, computed.zone_id === 'semantic_conventionalization' || computed.zone_id === 'lexicalization' ? 'warn' : 'ok')}
-      ${badge((isEn ? 'Confidence: ' : 'Уверенность: ') + (confidenceLabels[computed.confidence] || computed.confidence), 'warn')}
-      ${result.ok === false ? badge(isEn ? 'API error / manual mode' : 'Ошибка API / ручной режим', 'no') : ''}
+      ${badge(`${txt('confidence')}: ${confidenceLabels[computed.confidence] || computed.confidence}`, 'warn')}
+      ${result.ok === false ? badge(txt('apiErrorManualMode'), 'no') : ''}
     </div>
 
     <div class="result-grid">
       <div class="result-card">
-        <h3>${isEn ? 'Spectrum zone' : 'Зона спектра'}</h3>
+        <h3>${txt('spectrumZone')}</h3>
         <pre>${escapeHtml(zoneName)}\n${escapeHtml(computed.zone_id)}</pre>
       </div>
       <div class="result-card">
@@ -1643,43 +1783,43 @@ function renderResult(result, input) {
             </label>
           `).join('')}
         </div>
-        <p class="result-hint">${isEn ? 'Edit scores to recalculate the zone locally.' : 'Измените оценки, чтобы пересчитать зону локально без API.'}</p>
+        <p class="result-hint">${txt('editScoresHint')}</p>
       </div>
       <div class="result-card">
-        <h3>${isEn ? 'Chain type' : 'Тип цепочки'}</h3>
+        <h3>${txt('chainType')}</h3>
         <pre>${escapeHtml(ai.chain_type || '—')}</pre>
       </div>
       <div class="result-card">
-        <h3>${isEn ? 'AI confidence' : 'Уверенность модели'}</h3>
+        <h3>${txt('aiConfidence')}</h3>
         <pre>${escapeHtml(Math.round((ai.confidence || 0) * 100))}%</pre>
       </div>
     </div>
 
     <div class="result-card">
-      <h3>${isEn ? 'Explanatory chain' : 'Объяснительная цепочка'}</h3>
+      <h3>${txt('explanatoryChain')}</h3>
       <ol class="chain-list">${chain.length ? chain.map((step) => `<li>${escapeHtml(step)}</li>`).join('') : '<li>—</li>'}</ol>
     </div>
 
     <div class="result-card">
-      <h3>${isEn ? 'Explanation' : 'Обоснование'}</h3>
+      <h3>${txt('explanation')}</h3>
       <pre>${escapeHtml(ai.explanation || result.details || '—')}</pre>
     </div>
 
     <div class="result-grid">
       <div class="result-card">
-        <h3>${isEn ? 'Analogies used' : 'Использованные аналогии'}</h3>
+        <h3>${txt('analogiesUsed')}</h3>
         <pre>${escapeHtml((ai.analogies_used && ai.analogies_used.length ? ai.analogies_used : examples.map((ex) => ex.word)).join('\n') || '—')}</pre>
       </div>
       <div class="result-card">
-        <h3>${isEn ? 'Borderline zones' : 'Граничные зоны'}</h3>
+        <h3>${txt('borderlineZones')}</h3>
         <pre>${escapeHtml((computed.borderline_zones || []).map((zone) => `${isEn ? zone.zone_en : zone.zone_ru} (${zone.zone_id})`).join('\n') || '—')}</pre>
       </div>
       <div class="result-card">
-        <h3>${isEn ? 'Warnings' : 'Предупреждения'}</h3>
+        <h3>${txt('warnings')}</h3>
         <pre>${escapeHtml(warnings.join('\n') || '—')}</pre>
       </div>
       <div class="result-card">
-        <h3>${isEn ? 'Form recommendation' : 'Рекомендация формы'}</h3>
+        <h3>${txt('formRecommendation')}</h3>
         <pre>${escapeHtml(formRecommendation.text || '—')}</pre>
       </div>
     </div>
@@ -1805,11 +1945,17 @@ function attachEvents() {
     .forEach((el) => el && el.addEventListener('change', syncClearButtonVisibility));
 
   document.addEventListener('interal:languagechange', () => {
+    document.documentElement.lang = currentLang();
+    applyI18n();
     refreshSelectLocalization();
     syncRootFormByAssimilation();
+    renderComponentSearchResults();
     renderComponents();
-    els.result.classList.add('empty');
-    els.result.textContent = t('fillAndAnalyse');
+    if (state.lastAnalysis) {
+      renderResult(state.lastAnalysis, getInput());
+    } else if (els.result.classList.contains('empty')) {
+      els.result.textContent = txt('fillAndAnalyse');
+    }
   });
 
   els.saveRootBtn.addEventListener('click', addRootComponent);
@@ -1853,7 +1999,7 @@ function attachEvents() {
     const runId = nextRunId();
     const input = getInput();
     els.analyzeBtn.disabled = true;
-    els.analyzeBtn.textContent = currentLang() === 'en' ? 'Analysing…' : 'Анализируем…';
+    els.analyzeBtn.textContent = txt('analysing');
     try {
       const result = await analyzeByRules(input, runId);
       if (!isCurrentRun(runId) || !result) return;
@@ -1863,7 +2009,7 @@ function attachEvents() {
       if (!isCurrentRun(runId)) return;
       const computed = classifyByPRECE({ P: 2, R: 3, C: 2, E: 1 });
       computed.formRecommendation = buildFormRecommendation(computed, input);
-      computed.warnings = ['API недоступен. Выставьте P/R/C/E вручную — зона пересчитается локально.', String(error.message || error)];
+      computed.warnings = [txt('apiUnavailableManual'), String(error.message || error)];
       if (!isCurrentRun(runId)) return;
       renderResult({ ok: false, error: 'frontend_error', details: String(error.message || error), ai: normalizeAiResult({ P: 2, R: 3, C: 2, E: 1, confidence: 0.2 }), computed, retrieval: { examples_used: [] } }, input);
     } finally {
@@ -1896,6 +2042,7 @@ function attachEvents() {
   });
 }
 
+applyI18n();
 setupSelects();
 window.initCustomSelects?.();
 attachEvents();
