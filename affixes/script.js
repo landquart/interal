@@ -41,7 +41,7 @@ function applyI18n() {
   document.title = `${u.pageTitle} — Interal`;
   $('pageTitle').textContent = u.pageTitle; $('formLabel').textContent = u.formLabel; $('meaningLabel').textContent = u.meaningLabel; $('typeLabel').textContent = u.typeLabel; $('commentLabel').textContent = u.commentLabel; setButtonStatus('#checkButton', u.check, false); $('decisionTitle').textContent = u.decisionTitle; $('jsonBtn').textContent = u.createJson;
   $('formInput').placeholder = u.affixPlaceholder; $('meaningInput').placeholder = u.meaningPlaceholder; $('commentInput').removeAttribute('placeholder');
-  const current = $('morphemeTypeInput').value || 'suffix'; $('morphemeTypeInput').innerHTML = MORPHEME_TYPES.map((value) => `<option value="${value}">${u[value]}</option>`).join(''); $('morphemeTypeInput').value = MORPHEME_TYPES.includes(current) ? current : 'suffix';
+  const current = $('morphemeTypeInput').value || 'suffix'; $('morphemeTypeInput').innerHTML = MORPHEME_TYPES.map((value) => `<option value="${value}">${u[value]}</option>`).join(''); $('morphemeTypeInput').value = MORPHEME_TYPES.includes(current) ? current : 'suffix'; $('morphemeTypeInput')._customSelectRefresh?.();
   window.affixesJsonModal?.applyTexts?.(); $('resetBtn')?.setAttribute('aria-label', u.reset); $('resetBtn')?.setAttribute('title', u.reset);
   if (lastAnalysis) renderAnalysis(lastAnalysis);
 }

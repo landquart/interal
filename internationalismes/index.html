@@ -27,7 +27,7 @@
           </div>
           <div class="field">
             <label id="posLabel" for="posInput">Часть речи</label>
-            <select class="interal-select" id="posInput"></select>
+            <select class="interal-select js-custom-select" id="posInput"></select>
           </div>
           <div class="actions"><button class="interal-btn interal-btn--primary gradient-hover" id="checkBtn" type="button"><img class="btn-loader" src="../elements/loader_video_fitted_0_1s_triangle_fixed_centered.svg" alt="" aria-hidden="true" /><span class="btn-text">Проверить</span></button></div>
         </section>
@@ -51,7 +51,7 @@
         <label class="checkbox-line" for="useAuthorBlock"><input id="useAuthorBlock" type="checkbox"><span id="useAuthorBlockLabel">Указать авторство</span></label>
         <div id="jsonAuthorFields" class="json-author-fields" style="display:none">
           <label for="authorDisplayName" id="authorDisplayNameLabel">Имя или ник</label><input class="interal-input" id="authorDisplayName" type="text" autocomplete="name">
-          <label for="authorContactType" id="authorContactTypeLabel">Тип контакта</label><select class="interal-select" id="authorContactType"><option value="telegram">telegram</option><option value="matrix">matrix</option><option value="email">email</option></select>
+          <label for="authorContactType" id="authorContactTypeLabel">Тип контакта</label><select class="interal-select js-custom-select" id="authorContactType"><option value="telegram">telegram</option><option value="matrix">matrix</option><option value="email">email</option></select>
           <label for="authorContactValue" id="authorContactValueLabel">Контакт</label><input class="interal-input" id="authorContactValue" type="text" autocomplete="off">
         </div>
         <button id="generateJsonCardBtn" class="tool-btn interal-btn interal-btn--primary gradient-hover" type="button"><img class="btn-loader" src="../elements/loader_video_fitted_0_1s_triangle_fixed_centered.svg" alt="" aria-hidden="true" /><span class="btn-text">Сгенерировать карточку</span></button>
@@ -64,7 +64,7 @@
     </div>
   </div>
   <script src="../shared/copy-plain.js"></script>
-  <script src="../shared/ui.js?v=share-state-fix-20260628"></script>
-  <script src="./script.js"></script>
+  <script src="../shared/ui.js?v=share-state-fix-20260628" defer></script>
+  <script src="./script.js" defer></script>
 </body>
 </html>
