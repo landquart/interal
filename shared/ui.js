@@ -255,6 +255,60 @@
     </div>
   `;
 
+
+  function injectLiquidGlassFilter() {
+    if (document.getElementById('liquid-glass-filter')) return;
+
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('class', 'liquid-glass-defs');
+    svg.setAttribute('aria-hidden', 'true');
+    svg.setAttribute('focusable', 'false');
+
+    svg.innerHTML = `
+      <filter id="liquid-glass-filter" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+        <feTurbulence
+          type="fractalNoise"
+          baseFrequency="0.012 0.018"
+          numOctaves="2"
+          seed="8"
+          result="noise"
+        />
+        <feGaussianBlur in="noise" stdDeviation="1.2" result="softNoise" />
+        <feDisplacementMap
+          in="SourceGraphic"
+          in2="softNoise"
+          scale="10"
+          xChannelSelector="R"
+          yChannelSelector="G"
+        />
+      </filter>
+    `;
+
+    document.body.prepend(svg);
+  }
+
+  function setupLiquidGlassTopbar() {
+    const nav = document.querySelector('.top-nav-window');
+    if (!nav) return;
+
+    const canTrackPointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    if (!canTrackPointer) return;
+
+    nav.addEventListener('pointermove', (event) => {
+      const rect = nav.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+
+      nav.style.setProperty('--glass-x', `${x}px`);
+      nav.style.setProperty('--glass-y', `${y}px`);
+    });
+
+    nav.addEventListener('pointerleave', () => {
+      nav.style.setProperty('--glass-x', '72%');
+      nav.style.setProperty('--glass-y', '44%');
+    });
+  }
+
   function getLang() {
     const saved = localStorage.getItem(LANG_KEY);
     return saved === 'en' ? 'en' : 'ru';
@@ -681,6 +735,8 @@
   topNavWindow.className = 'top-nav-window';
   topNavWindow.append(menuButton, brandLink, desktopControls, mobileCurrentPageLink);
 
+  injectLiquidGlassFilter();
+
   document.body.classList.add('has-global-menu');
   topNav.append(topNavWindow);
   document.body.prepend(overlay);
@@ -697,6 +753,7 @@
   applyMobileBrandLogo();
   window.addEventListener('resize', applyMobileBrandLogo);
   markCurrentPage();
+  setupLiquidGlassTopbar();
   // Shared page-state restore is intentionally disabled: reset must not reapply URL/hash state.
 
 
