@@ -52,7 +52,6 @@ function setJsonEnabled(enabled){
 function showNotice(message, type = 'info') { const box = $('noticeBox'); if (!box) return; box.textContent = message; box.className = `notice-box ${type}`; box.hidden = false; clearTimeout(showNotice._timer); if (type !== 'info') showNotice._timer = setTimeout(() => { box.hidden = true; }, 3200); }
 function hideNotice(){ const box=$('noticeBox'); if(box) box.hidden=true; }
 function invalidateAnalysis(){
-  if (!lastAnalysis && !lastCard && !$('jsonCardOutput')?.value.trim()) return;
   lastAnalysis = null;
   lastCard = null;
   hasSuccessfulCheck = false;
