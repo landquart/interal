@@ -744,19 +744,19 @@ body.dark-theme .interal-btn--primary .btn-loader {
 body.dark-theme .interal-btn--primary.gradient-hover::before {
   background:
     radial-gradient(
-      180px circle at var(--btn-x) var(--btn-y),
-      rgba(168, 85, 247, .32),
-      rgba(59, 130, 246, .22) 32%,
-      rgba(34, 211, 238, .16) 48%,
-      transparent 72%
+      220px circle at var(--btn-x) var(--btn-y),
+      rgba(168, 85, 247, .46),
+      rgba(59, 130, 246, .34) 32%,
+      rgba(34, 211, 238, .24) 50%,
+      transparent 76%
     ),
     conic-gradient(
       from 180deg at var(--btn-x) var(--btn-y),
-      rgba(168, 85, 247, .18),
-      rgba(236, 72, 153, .16),
-      rgba(59, 130, 246, .16),
-      rgba(34, 211, 238, .14),
-      rgba(168, 85, 247, .18)
+      rgba(168, 85, 247, .26),
+      rgba(236, 72, 153, .24),
+      rgba(59, 130, 246, .25),
+      rgba(34, 211, 238, .22),
+      rgba(168, 85, 247, .26)
     );
 }
 
@@ -769,11 +769,11 @@ body.dark-theme .interal-btn--primary.gradient-hover:hover:not(:disabled)::befor
 .interal-btn--secondary.gradient-hover:hover:not(:disabled),
 .secondary-btn.gradient-hover:hover:not(:disabled),
 body.dark-theme .interal-btn--primary.gradient-hover:hover:not(:disabled) {
-  border-color: rgba(168, 85, 247, .45);
+  border-color: rgba(168, 85, 247, .62);
   box-shadow:
-    0 12px 28px rgba(168, 85, 247, .16),
-    0 6px 18px rgba(59, 130, 246, .10),
-    inset 0 1px 0 rgba(255,255,255,.45);
+    0 14px 30px rgba(168, 85, 247, .22),
+    0 8px 20px rgba(59, 130, 246, .16),
+    inset 0 1px 0 rgba(255,255,255,.55);
 }
 
 .interal-btn--primary.gradient-hover::before,
@@ -782,11 +782,18 @@ body.dark-theme .interal-btn--secondary.gradient-hover::before,
 body.dark-theme .secondary-btn.gradient-hover::before {
   background:
     radial-gradient(
-      190px circle at var(--btn-x) var(--btn-y),
-      rgba(255, 255, 255, .38),
-      rgba(191, 219, 254, .24) 34%,
-      rgba(125, 211, 252, .14) 52%,
-      transparent 74%
+      220px circle at var(--btn-x) var(--btn-y),
+      rgba(255, 255, 255, .52),
+      rgba(191, 219, 254, .36) 34%,
+      rgba(125, 211, 252, .24) 52%,
+      transparent 76%
+    ),
+    conic-gradient(
+      from 180deg at var(--btn-x) var(--btn-y),
+      rgba(255, 255, 255, .20),
+      rgba(191, 219, 254, .18),
+      rgba(125, 211, 252, .16),
+      rgba(255, 255, 255, .20)
     );
 }
 
@@ -803,8 +810,8 @@ body.dark-theme .interal-btn--secondary.gradient-hover:hover:not(:disabled),
 body.dark-theme .secondary-btn.gradient-hover:hover:not(:disabled) {
   box-shadow:
     0 14px 30px rgba(0, 0, 0, .18),
-    0 0 22px rgba(191, 219, 254, .14),
-    inset 0 1px 0 rgba(255,255,255,.34);
+    0 0 24px rgba(191, 219, 254, .22),
+    inset 0 1px 0 rgba(255,255,255,.44);
 }
 
 @media (hover: none) {
