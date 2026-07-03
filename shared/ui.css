@@ -423,6 +423,19 @@ a{color:var(--text);text-decoration:none;}
 .interal-select-modal-field {
   position: relative;
   width: 100%;
+  min-width: 0;
+}
+
+.field .interal-select-modal-field,
+.compact-field .interal-select-modal-field,
+td .interal-select-modal-field {
+  width: 100%;
+}
+
+td .interal-select-trigger {
+  min-height: 38px;
+  padding: 7px 8px;
+  border-radius: var(--radius-sm);
 }
 
 .interal-select-modal-field > select {
@@ -435,6 +448,9 @@ a{color:var(--text);text-decoration:none;}
 
 .interal-select-trigger {
   width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  text-align: left;
   min-height: 48px;
   padding: 12px 14px;
   border-radius: var(--radius-md);
@@ -498,7 +514,7 @@ a{color:var(--text);text-decoration:none;}
 .interal-select-modal {
   position: fixed;
   inset: 0;
-  z-index: var(--z-page-modal);
+  z-index: calc(var(--z-page-modal) + 40);
   display: grid;
   place-items: center;
   padding: 18px;

@@ -55,7 +55,8 @@ body {
   margin-bottom: 16px;
 }
 
-.field > span {
+.field > span,
+.field > label {
   display: block;
   margin-bottom: 8px;
   font-size: 14px;
@@ -66,6 +67,7 @@ body {
 input,
 textarea,
 select,
+.interal-select-trigger,
 .determinator-page .tool-btn {
   font: inherit;
   font-family: "Jost", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -73,7 +75,8 @@ select,
 
 input,
 textarea,
-select {
+select,
+.interal-select-trigger {
   width: 100%;
   border: 1px solid var(--border-control);
   border-radius: var(--radius-md);
@@ -110,6 +113,7 @@ textarea::placeholder {
 input:focus-visible,
 textarea:focus-visible,
 select:focus-visible,
+.interal-select-trigger:focus-visible,
 .determinator-page .tool-btn:focus-visible {
   outline: none;
   border-color: var(--button-primary-bg);
