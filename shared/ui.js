@@ -287,27 +287,6 @@
     document.body.prepend(svg);
   }
 
-  function setupLiquidGlassTopbar() {
-    const nav = document.querySelector('.top-nav-window');
-    if (!nav) return;
-
-    const canTrackPointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-    if (!canTrackPointer) return;
-
-    nav.addEventListener('pointermove', (event) => {
-      const rect = nav.getBoundingClientRect();
-      const x = event.clientX - rect.left;
-      const y = event.clientY - rect.top;
-
-      nav.style.setProperty('--glass-x', `${x}px`);
-      nav.style.setProperty('--glass-y', `${y}px`);
-    });
-
-    nav.addEventListener('pointerleave', () => {
-      nav.style.setProperty('--glass-x', '72%');
-      nav.style.setProperty('--glass-y', '44%');
-    });
-  }
 
   function getLang() {
     const saved = localStorage.getItem(LANG_KEY);
@@ -753,7 +732,6 @@
   applyMobileBrandLogo();
   window.addEventListener('resize', applyMobileBrandLogo);
   markCurrentPage();
-  setupLiquidGlassTopbar();
   // Shared page-state restore is intentionally disabled: reset must not reapply URL/hash state.
 
 
