@@ -330,9 +330,9 @@ body.dark-theme .top-menu-btn:hover,body.dark-theme .top-current-page-link:hover
 .menu-modal-open .top-menu-btn{background:transparent;border-radius:0;box-shadow:none;}
 
 
-.interal-input,.interal-select,.interal-textarea{width:100%;padding:12px 14px;border:1px solid var(--border-control);border-radius:var(--radius-md);background:var(--surface-elevated);color:var(--text);font:inherit}
+.interal-input,.interal-select,.interal-textarea,.interal-select-trigger{width:100%;padding:12px 14px;border:1px solid var(--border-control);border-radius:var(--radius-md);background:var(--surface-elevated);color:var(--text);font:inherit}
 .interal-input::placeholder,.interal-textarea::placeholder{color:var(--placeholder)}
-.interal-input:focus-visible,.interal-select:focus-visible,.interal-textarea:focus-visible{outline:2px solid var(--focus-outline);outline-offset:2px;border-color:var(--border-strong);box-shadow:0 0 0 5px var(--focus-ring)}
+.interal-input:focus-visible,.interal-select:focus-visible,.interal-textarea:focus-visible,.interal-select-trigger:focus-visible{outline:2px solid var(--focus-outline);outline-offset:2px;border-color:var(--border-strong);box-shadow:0 0 0 5px var(--focus-ring)}
 .interal-btn{border:1px solid var(--button-secondary-border);border-radius:var(--radius-pill);background:var(--button-primary-bg);color:var(--button-primary-text);padding:11px 18px;font:600 0.95rem "Jost","Helvetica Neue",Helvetica,Arial,sans-serif;cursor:pointer;box-shadow:var(--shadow-sm)}
 .interal-btn:hover{transform:translateY(-1px)}
 .interal-btn--ghost{background:transparent;color:var(--text-muted)}
@@ -423,6 +423,19 @@ a{color:var(--text);text-decoration:none;}
 .interal-select-modal-field {
   position: relative;
   width: 100%;
+  min-width: 0;
+}
+
+.field .interal-select-modal-field,
+.compact-field .interal-select-modal-field,
+td .interal-select-modal-field {
+  width: 100%;
+}
+
+td .interal-select-trigger {
+  min-height: 38px;
+  padding: 7px 8px;
+  border-radius: var(--radius-sm);
 }
 
 .interal-select-modal-field > select {
@@ -435,6 +448,9 @@ a{color:var(--text);text-decoration:none;}
 
 .interal-select-trigger {
   width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  text-align: left;
   min-height: 48px;
   padding: 12px 14px;
   border-radius: var(--radius-md);
@@ -498,7 +514,7 @@ a{color:var(--text);text-decoration:none;}
 .interal-select-modal {
   position: fixed;
   inset: 0;
-  z-index: var(--z-page-modal);
+  z-index: calc(var(--z-page-modal) + 40);
   display: grid;
   place-items: center;
   padding: 18px;

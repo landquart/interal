@@ -936,10 +936,14 @@ function setupModalSelects(root = document) {
 
   selects.forEach((select) => {
     if (select.dataset.modalSelectReady === 'true') {
+      select.tabIndex = -1;
+      select.setAttribute('aria-hidden', 'true');
       select._modalSelectRefresh?.();
       return;
     }
     select.dataset.modalSelectReady = 'true';
+    select.tabIndex = -1;
+    select.setAttribute('aria-hidden', 'true');
 
     let wrapper = select.closest('.interal-select-modal-field');
 
@@ -986,6 +990,35 @@ if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => setupModalSelects());
 } else {
   setupModalSelects();
+}
+
+if (window.MutationObserver) {
+  const customSelectObserver = new MutationObserver((mutations) => {
+    const roots = new Set();
+
+    mutations.forEach((mutation) => {
+      mutation.addedNodes.forEach((node) => {
+        if (node.nodeType !== Node.ELEMENT_NODE) return;
+        if (node.matches?.('select.js-custom-select') || node.querySelector?.('select.js-custom-select')) {
+          roots.add(node);
+        }
+      });
+    });
+
+    roots.forEach((root) => setupModalSelects(root));
+  });
+
+  const observeCustomSelects = () => {
+    if (!document.body || document.body.dataset.customSelectObserver === 'true') return;
+    document.body.dataset.customSelectObserver = 'true';
+    customSelectObserver.observe(document.body, { childList: true, subtree: true });
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', observeCustomSelects);
+  } else {
+    observeCustomSelects();
+  }
 }
 
 

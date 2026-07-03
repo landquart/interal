@@ -80,6 +80,16 @@
   grid-column: 1 / -1;
 }
 
+.altervordes-page .interal-select-modal-field,
+.altervordes-page .interal-select-trigger {
+  width: 100%;
+  min-width: 0;
+}
+
+.altervordes-page .json-author-fields .interal-select-modal-field {
+  width: 100%;
+}
+
 .altervordes-page #commentInput {
   min-height: 84px;
 }

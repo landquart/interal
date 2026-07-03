@@ -55,7 +55,7 @@
     .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
     .associativ-page label { display: block; font-weight: 650; margin-bottom: 6px; }
-    .associativ-page input, .associativ-page select, .associativ-page textarea, .associativ-page .tool-btn { font: inherit; width: 100%; }
+    .associativ-page input, .associativ-page select, .associativ-page textarea, .associativ-page .tool-btn, .associativ-page .interal-select-trigger { font: inherit; width: 100%; }
 
     .associativ-page textarea { min-height: 110px; resize: vertical; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
 
@@ -123,7 +123,7 @@
     .associativ-page table { width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid var(--border-subtle); border-radius: var(--radius-md); background: var(--surface); overflow: hidden; }
     .associativ-page th, .associativ-page td { border-bottom: 1px solid var(--border-control); padding: 8px; text-align: left; vertical-align: top; color: var(--text); }
     .associativ-page th { font-size: 13px; color: var(--text-muted); font-weight: 700; background: var(--surface-elevated); }
-    .associativ-page td input, .associativ-page td select { padding: 7px 8px; border-radius: var(--radius-sm); }
+    .associativ-page td input, .associativ-page td select, .associativ-page td .interal-select-trigger { padding: 7px 8px; border-radius: var(--radius-sm); }
     .associativ-page tbody tr:last-child td { border-bottom: none; }
 
     .associativ-page .status {
@@ -399,7 +399,7 @@
       }
 
 
-      .associativ-page input, .associativ-page select, .associativ-page textarea, .associativ-page .tool-btn {
+      .associativ-page input, .associativ-page select, .associativ-page textarea, .associativ-page .tool-btn, .associativ-page .interal-select-trigger {
         font-size: 16px;
       }
 
@@ -413,7 +413,8 @@
 
       .associativ-page input,
       .associativ-page select,
-      .associativ-page textarea {
+      .associativ-page textarea,
+      .associativ-page .interal-select-trigger {
         min-width: 0;
         width: 100%;
       }
