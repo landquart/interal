@@ -51,6 +51,24 @@
     }
     .registry-btn:hover { transform: translateY(-1px); background: var(--surface-hover); border-color: var(--border-strong); }
     .registry-btn--primary { background: var(--button-primary-bg); color: var(--button-primary-text); border-color: transparent; }
+    .registry-btn--primary:hover {
+      background:
+        linear-gradient(
+          180deg,
+          color-mix(in srgb, var(--button-primary-bg) 88%, #ffffff 12%),
+          var(--button-primary-bg)
+        );
+      border-color: transparent;
+      color: var(--button-primary-text);
+    }
+    body.dark-theme .registry-btn--primary:hover {
+      background:
+        linear-gradient(
+          180deg,
+          color-mix(in srgb, var(--button-primary-bg) 84%, #ffffff 16%),
+          var(--button-primary-bg)
+        );
+    }
     .registry-summary { margin: 14px 0; color: var(--text-muted); font-weight: 700; }
     .registry-message { margin: 14px 0; padding: 16px; border-radius: var(--radius-md); background: var(--surface-soft); color: var(--text); border: 1px solid var(--border-subtle); }
     .registry-list { display: grid; gap: 12px; }
