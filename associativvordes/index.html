@@ -151,6 +151,16 @@
       border-radius: var(--radius-md);
       padding: 14px;
       background: var(--surface);
+      transform-origin: center;
+    }
+    .result-box.is-updated .metric,
+    .associativ-page .metric.is-updated {
+      animation: resultPop .42s cubic-bezier(.16, 1, .3, 1);
+    }
+    @keyframes resultPop {
+      0% { transform: scale(.985); opacity: .72; }
+      58% { transform: scale(1.018); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
     }
     .associativ-page .metric strong { font-size: 22px; display: block; }
     .associativ-page .metric span { color: var(--text-muted); font-size: 13px; }
@@ -186,6 +196,13 @@
       padding: 8px 10px;
       vertical-align: top;
       white-space: nowrap;
+      transition: background-color .16s ease, box-shadow .16s ease;
+    }
+    .associativ-page .derivatives-table tbody tr {
+      transition: background-color .16s ease, box-shadow .16s ease;
+    }
+    .associativ-page .derivatives-table tbody tr:hover td {
+      background: color-mix(in srgb, var(--surface-hover) 72%, transparent);
     }
 
     .associativ-page .derivatives-table .col-word {
@@ -254,6 +271,9 @@
       z-index: 2;
       background: var(--card-bg, var(--surface));
       box-shadow: 1px 0 0 var(--border-control);
+    }
+    .associativ-page .derivatives-table tbody tr:hover .sticky-word {
+      box-shadow: 2px 0 0 color-mix(in srgb, var(--text) 22%, transparent), 1px 0 0 var(--border-control);
     }
 
     .associativ-page .derivatives-table thead .sticky-word {

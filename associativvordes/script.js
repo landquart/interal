@@ -737,12 +737,16 @@ const TEXT_I18N = {
     function renderResults() {
       const result = calculateFinal();
       const labels = textGroup('results');
-      document.getElementById('resultBox').innerHTML = `
-        <div class="metric"><strong>${formatPercent(result.finalAssociation, 1)}</strong><span>${labels.finalAssociation}</span></div>
+      const resultBox = document.getElementById('resultBox');
+      resultBox.classList.remove('is-updated');
+      void resultBox.offsetWidth;
+      resultBox.innerHTML = `
+        <div class="metric is-updated"><strong>${formatPercent(result.finalAssociation, 1)}</strong><span>${labels.finalAssociation}</span></div>
         <div class="metric"><strong>${formatFixed(result.totalAssociation, 3)}</strong><span>${labels.totalAssociation}</span></div>
         <div class="metric"><strong>${result.representedLangs}/${LANGUAGES.length}</strong><span>${labels.languagesRepresented}</span></div>
         <div class="metric"><strong>${result.groups}/${new Set(LANGUAGES.map(l => l.group)).size}</strong><span>${labels.languageGroups}</span></div>
       `;
+      resultBox.classList.add('is-updated');
 
       let statusClass = result.accepted ? 'ok' : (result.finalAssociation >= THRESHOLDS.main ? 'warn' : 'bad');
       let statusText = result.accepted ? labels.accept : labels.reject;
