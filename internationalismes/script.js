@@ -310,11 +310,39 @@ async function resetAll() {
 }
 
 function result() { const passed = LANGUAGES.filter(lang => effectivePassed(lang.code)).length; return { passed, total: 6, accepted: passed >= 5 }; }
+function canCreateCard() {
+  return Boolean(state.checked && result().accepted);
+}
+function setJsonEnabled(enabled) {
+  const allowed = enabled === true && canCreateCard();
+
+  const jsonActions = byId('jsonActions');
+  const jsonBtn = byId('jsonBtn');
+  const generateBtn = byId('generateJsonCardBtn');
+
+  if (jsonActions) jsonActions.hidden = !allowed;
+
+  if (jsonBtn) {
+    jsonBtn.hidden = !allowed;
+    jsonBtn.disabled = !allowed;
+  }
+
+  if (generateBtn) {
+    generateBtn.hidden = !allowed;
+    generateBtn.disabled = !allowed;
+  }
+}
+function resetSuccessfulCheck() {
+  state.checked = false;
+  setJsonEnabled(false);
+  const resultSection = byId('resultSection');
+  if (resultSection) resultSection.hidden = true;
+}
 function getAuthorBlock() { if (!byId('useAuthorBlock')?.checked) return null; const displayName = byId('authorDisplayName')?.value.trim() || ''; const contactType = byId('authorContactType')?.value || 'telegram'; const contactValue = byId('authorContactValue')?.value.trim() || ''; const author = {}; if (displayName) author.display_name = displayName; if (contactValue) author.contacts = [{ type: contactType, url: window.InteralJsonCardModal?.normalizeContact?.(contactType, contactValue) || contactValue }]; return Object.keys(author).length ? author : null; }
 function evidenceForCard(lang) { const code = lang.code; const form = state.evidence[code] || ''; const meta = state.matchMeta[code] || {}; return { language: code, form, distance: Number.isFinite(Number(meta.distance)) ? Number(meta.distance) : null, source: meta.source || (form ? 'manual' : 'frequency_list'), match_type: meta.match_type || (form ? 'manual' : 'not_found'), frequency: Number.isFinite(Number(meta.frequency)) ? Number(meta.frequency) : null, passed: effectivePassed(code) }; }
 function makeCardDraft() { const r = result(); const card = { version: '1.0', card_type: 'vord_card', vord_type: 'internationalism', status: 'draft', interal: { word: byId('wordInput')?.value.trim() || state.word, part_of_speech: byId('posInput')?.value || state.part_of_speech }, criteria: { required_languages: 5, total_languages: 6, passed_languages: r.passed, max_levenshtein_distance: 2, minimum_word_length_for_fuzzy_match: 4, sources: 'frequency_lists' }, language_evidence: LANGUAGES.map(evidenceForCard), decision: { accepted: r.accepted } }; const author = getAuthorBlock(); if (author) card.author = author; return card; }
 async function makeCard() { return createCardOnServer(makeCardDraft()); }
-function generateJson() { if (result().accepted) openJsonModal(); }
+function generateJson() { if (canCreateCard()) openJsonModal(); }
 function renderEvidenceRows() {
   return LANGUAGES.map(lang => {
     const code = lang.code;
@@ -325,7 +353,17 @@ function renderEvidenceRows() {
     return `<article class="language-card"><div class="language-card__top"><span class="language-code">${escapeHtml(name)}</span><span class="status-mark ${passed ? 'ok' : 'bad'}">${passed ? '✓' : '×'}</span></div><label class="sr-only" for="form_${code}">${escapeHtml(name)}</label><input class="interal-input" id="form_${code}" value="${escapeHtml(form)}" placeholder="—"><label class="language-card__check"><input id="pass_${code}" type="checkbox" aria-label="${escapeHtml(t('table.passed'))}" data-override="${override === null || override === undefined ? 'auto' : 'manual'}" ${passed ? 'checked' : ''}></label></article>`;
   }).join('');
 }
-function renderResult() { const r = result(); const checked = Boolean(state.checked); const accepted = checked && r.accepted; byId('resultBox').innerHTML = `<span class="status-pill ${r.accepted ? 'ok' : 'bad'}">${r.accepted ? t('accept') : t('reject')}</span><dl><div><dt>${t('coverage')}</dt><dd>${r.passed}/${r.total}</dd></div><div><dt>${t('required')}</dt><dd>5/6</dd></div></dl>`; ['evidenceSection', 'resultSection'].forEach(id => { const element = byId(id); if (element) element.hidden = !checked; }); const jsonBtn = byId('jsonBtn'); if (jsonBtn) { jsonBtn.hidden = !accepted; jsonBtn.disabled = !accepted; } }
+function renderResult() {
+  const r = result();
+  const checked = Boolean(state.checked);
+  const accepted = checked && r.accepted;
+  byId('resultBox').innerHTML = `<span class="status-pill ${r.accepted ? 'ok' : 'bad'}">${r.accepted ? t('accept') : t('reject')}</span><dl><div><dt>${t('coverage')}</dt><dd>${r.passed}/${r.total}</dd></div><div><dt>${t('required')}</dt><dd>5/6</dd></div></dl>`;
+  const evidenceSection = byId('evidenceSection');
+  if (evidenceSection) evidenceSection.hidden = !checked;
+  const resultSection = byId('resultSection');
+  if (resultSection) resultSection.hidden = !accepted;
+  setJsonEnabled(accepted);
+}
 function render() {
   renderChrome(); applyJsonModalTexts(); document.title = t('title'); byId('pageTitle').textContent = t('title'); byId('pageLead').textContent = t('lead');
   byId('paramsTitle').textContent = t('params'); byId('wordLabel').textContent = t('word'); byId('posLabel').textContent = t('pos'); setButtonStatus('#checkBtn', state.isSearching ? (currentLang() === 'en' ? 'Searching...' : 'Поиск...') : t('check'), state.isSearching); byId('evidenceTitle').textContent = t('evidence'); byId('decisionTitle').textContent = t('decision'); byId('jsonBtn').textContent = t('json'); byId('resetBtn').title = t('resetAria'); byId('resetBtn').setAttribute('aria-label', t('resetAria'));
@@ -335,5 +373,24 @@ function render() {
   renderResult(); updateResetButtonVisibility();
 }
 const jsonFilename = 'internationalism-card.json';
-function bindJsonModal() { window.InteralJsonCardModal?.init({ getLanguage: currentLang, getTexts: () => t('jsonCard'), buildCard: async ({ onProgress } = {}) => { readState(); if (!state.checked || !result().accepted) throw new Error(t('jsonCard.unavailable')); onProgress?.(currentLang() === 'en' ? 'Building card...' : 'Сборка карточки...'); return makeCard(); }, formatCard: (card) => JSON.stringify(card, null, 2), getFilename: () => jsonFilename }); document.addEventListener('interal:languagechange', () => { readState(); render(); }); byId('resetBtn')?.addEventListener('click', resetAll); byId('checkBtn')?.addEventListener('click', analyze); byId('app')?.addEventListener('input', event => { const target = event.target; if (target?.id === 'wordInput') { state.word = target.value; state.checked = false; render(); return; } else if (target?.id === 'posInput') { state.part_of_speech = target.value; state.checked = false; render(); return; } else if (target?.id?.startsWith('form_')) { readState(); updateResetButtonVisibility(); return; } updateResetButtonVisibility(); }); byId('app')?.addEventListener('change', event => { const target = event.target; if (target?.id?.startsWith('pass_')) { const code = target.id.replace('pass_', ''); state.manualOverride[code] = Boolean(target.checked); render(); return; } if (target?.id === 'posInput') state.checked = false; readState(); render(); }); }
- applyJsonModalTexts(); render();
+function bindJsonModal() {
+  window.InteralJsonCardModal?.init({ getLanguage: currentLang, getTexts: () => t('jsonCard'), buildCard: async ({ onProgress } = {}) => { readState(); if (!canCreateCard()) throw new Error(t('jsonCard.unavailable')); onProgress?.(currentLang() === 'en' ? 'Building card...' : 'Сборка карточки...'); return makeCard(); }, formatCard: (card) => JSON.stringify(card, null, 2), getFilename: () => jsonFilename });
+  document.addEventListener('interal:languagechange', () => { readState(); render(); });
+  byId('resetBtn')?.addEventListener('click', resetAll);
+  byId('checkBtn')?.addEventListener('click', analyze);
+  byId('app')?.addEventListener('input', event => {
+    const target = event.target;
+    if (target?.id === 'wordInput') { state.word = target.value; resetSuccessfulCheck(); render(); return; }
+    if (target?.id === 'posInput') { state.part_of_speech = target.value; resetSuccessfulCheck(); render(); return; }
+    if (target?.id?.startsWith('form_')) { readState(); resetSuccessfulCheck(); render(); return; }
+    updateResetButtonVisibility();
+  });
+  byId('app')?.addEventListener('change', event => {
+    const target = event.target;
+    if (target?.id?.startsWith('pass_')) { const code = target.id.replace('pass_', ''); state.manualOverride[code] = Boolean(target.checked); resetSuccessfulCheck(); render(); return; }
+    if (target?.id === 'posInput') { readState(); resetSuccessfulCheck(); render(); return; }
+    readState(); render();
+  });
+}
+bindJsonModal();
+applyJsonModalTexts(); render();
