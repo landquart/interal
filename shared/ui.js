@@ -810,197 +810,184 @@
 
 
 function initCustomSelects(root = document) {
-  const selects = root.querySelectorAll('select.js-custom-select');
+  setupModalSelects(root);
+}
+
+function setupModalSelects(root = document) {
+  const selectRoot = root && root.matches?.('select.js-custom-select') ? root.parentNode || document : root;
+  const selects = root && root.matches?.('select.js-custom-select')
+    ? [root]
+    : Array.from((selectRoot || document).querySelectorAll('select.js-custom-select'));
+
+  if (!selects.length) return;
+
+  let modal = document.querySelector('.interal-select-modal');
+
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.className = 'interal-select-modal';
+    modal.hidden = true;
+    modal.innerHTML = `
+      <div class="interal-select-modal-backdrop" data-select-close></div>
+      <div class="interal-select-modal-panel" role="dialog" aria-modal="true" tabindex="-1">
+        <div class="interal-select-modal-head">
+          <strong class="interal-select-modal-title">Выберите вариант</strong>
+          <button class="interal-select-modal-close" type="button" data-select-close aria-label="Закрыть">×</button>
+        </div>
+        <div class="interal-select-modal-options"></div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+  }
+
+  const title = modal.querySelector('.interal-select-modal-title');
+  const optionsBox = modal.querySelector('.interal-select-modal-options');
+
+  if (modal.dataset.modalSelectListeners !== 'true') {
+    modal.dataset.modalSelectListeners = 'true';
+    modal._modalSelectState = { activeSelect: null, activeTrigger: null };
+
+    modal._closeModalSelect = function closeModal() {
+      const state = modal._modalSelectState;
+      modal.hidden = true;
+      optionsBox.innerHTML = '';
+
+      if (state.activeTrigger) {
+        state.activeTrigger.setAttribute('aria-expanded', 'false');
+        state.activeTrigger.focus();
+      }
+
+      state.activeSelect = null;
+      state.activeTrigger = null;
+    };
+
+    modal.addEventListener('click', (event) => {
+      if (event.target.closest('[data-select-close]')) {
+        modal._closeModalSelect();
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (modal.hidden || event.key !== 'Escape') return;
+      modal._closeModalSelect();
+    });
+  }
+
+  function cssEscape(value) {
+    if (window.CSS && typeof window.CSS.escape === 'function') return window.CSS.escape(value);
+    return String(value).replace(/["\\]/g, '\\$&');
+  }
+
+  function getSelectedText(select) {
+    const selected = select.options[select.selectedIndex];
+    return selected ? selected.textContent : '';
+  }
+
+  function openModal(select, trigger) {
+    if (select.disabled) return;
+
+    const state = modal._modalSelectState;
+    state.activeSelect = select;
+    state.activeTrigger = trigger;
+
+    const label = select.id ? document.querySelector(`label[for="${cssEscape(select.id)}"]`) : null;
+    title.textContent = label?.textContent?.trim() || 'Выберите вариант';
+    optionsBox.innerHTML = '';
+
+    Array.from(select.options).forEach((option) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'interal-select-option';
+      btn.dataset.value = option.value;
+      btn.disabled = option.disabled;
+      btn.setAttribute('role', 'option');
+      btn.setAttribute('aria-selected', String(option.selected));
+
+      const labelText = document.createElement('span');
+      labelText.textContent = option.textContent;
+
+      const check = document.createElement('span');
+      check.className = 'interal-select-option-check';
+      check.setAttribute('aria-hidden', 'true');
+      check.textContent = '✓';
+
+      btn.append(labelText, check);
+
+      if (option.selected) {
+        btn.classList.add('is-selected');
+      }
+
+      btn.addEventListener('click', () => {
+        if (option.disabled) return;
+        select.value = option.value;
+        select.dispatchEvent(new Event('change', { bubbles: true }));
+        modal._closeModalSelect();
+      });
+
+      optionsBox.appendChild(btn);
+    });
+
+    modal.hidden = false;
+    trigger.setAttribute('aria-expanded', 'true');
+
+    const selectedButton = optionsBox.querySelector('.is-selected:not(:disabled)') || optionsBox.querySelector('.interal-select-option:not(:disabled)');
+    selectedButton?.focus();
+  }
 
   selects.forEach((select) => {
-    if (select.dataset.customSelectReady === 'true') {
-      if (typeof select._customSelectRefresh === 'function') {
-        select._customSelectRefresh();
-      }
+    if (select.dataset.modalSelectReady === 'true') {
+      select._modalSelectRefresh?.();
       return;
     }
-    select.dataset.customSelectReady = 'true';
+    select.dataset.modalSelectReady = 'true';
 
-    const wrapper = document.createElement('div');
-    wrapper.className = 'custom-select';
+    let wrapper = select.closest('.interal-select-modal-field');
 
-    select.parentNode.insertBefore(wrapper, select);
-    wrapper.appendChild(select);
-
-    select.classList.add('custom-select-native');
+    if (!wrapper) {
+      wrapper = document.createElement('div');
+      wrapper.className = 'interal-select-modal-field';
+      wrapper.dataset.modalSelect = 'true';
+      select.parentNode.insertBefore(wrapper, select);
+      wrapper.appendChild(select);
+    }
 
     const trigger = document.createElement('button');
+    trigger.className = 'interal-select-trigger';
     trigger.type = 'button';
-    trigger.className = 'custom-select-trigger';
-    trigger.setAttribute('aria-haspopup', 'listbox');
+    trigger.setAttribute('aria-haspopup', 'dialog');
     trigger.setAttribute('aria-expanded', 'false');
 
-    const value = document.createElement('span');
-    value.className = 'custom-select-value';
+    const text = document.createElement('span');
+    text.className = 'interal-select-trigger-text';
 
-    const arrow = document.createElement('img');
-    arrow.className = 'custom-select-arrow';
-    arrow.src = joinUrl('elements/Alt Arrow Down.svg');
-    arrow.alt = '';
-    arrow.setAttribute('aria-hidden', 'true');
+    const icon = document.createElement('span');
+    icon.className = 'interal-select-trigger-icon';
+    icon.setAttribute('aria-hidden', 'true');
 
-    trigger.append(value, arrow);
-
-    const menu = document.createElement('div');
-    menu.className = 'custom-select-menu';
-    menu.setAttribute('role', 'listbox');
-    menu.hidden = true;
-
-    wrapper.append(trigger, menu);
-
-    function getSelectedOption() {
-      return select.options[select.selectedIndex];
-    }
+    trigger.append(text, icon);
+    wrapper.appendChild(trigger);
 
     function syncFromSelect() {
-      const selected = getSelectedOption();
-      value.textContent = selected ? selected.textContent : '';
-
-      menu.querySelectorAll('.custom-select-option').forEach((btn) => {
-        const isSelected = btn.dataset.value === select.value;
-        btn.setAttribute('aria-selected', String(isSelected));
-        btn.classList.toggle('is-active', isSelected);
-      });
+      text.textContent = getSelectedText(select);
+      trigger.disabled = select.disabled;
+      trigger.setAttribute('aria-disabled', String(select.disabled));
     }
 
-    function closeMenu() {
-      wrapper.classList.remove('is-open');
-      menu.hidden = true;
-      trigger.setAttribute('aria-expanded', 'false');
-      arrow.src = joinUrl('elements/Alt Arrow Down.svg');
-    }
-
-    function buildOptions() {
-      menu.innerHTML = '';
-
-      Array.from(select.options).forEach((option) => {
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'custom-select-option';
-        btn.setAttribute('role', 'option');
-        btn.dataset.value = option.value;
-        btn.textContent = option.textContent;
-
-        btn.addEventListener('click', () => {
-          select.value = option.value;
-          select.dispatchEvent(new Event('change', { bubbles: true }));
-          closeMenu();
-          syncFromSelect();
-          trigger.focus();
-        });
-
-        menu.appendChild(btn);
-      });
-
-      syncFromSelect();
-    }
-
-    function positionCustomSelectMenu() {
-      const rect = trigger.getBoundingClientRect();
-      const gap = 6;
-      const viewportPadding = 12;
-      const preferredMaxHeight = 260;
-
-      const spaceBelow = window.innerHeight - rect.bottom - viewportPadding;
-      const spaceAbove = rect.top - viewportPadding;
-      const openUp = spaceBelow < 180 && spaceAbove > spaceBelow;
-
-      const availableHeight = openUp
-        ? Math.max(120, spaceAbove - gap)
-        : Math.max(120, spaceBelow - gap);
-
-      menu.style.left = `${rect.left}px`;
-      menu.style.width = `${rect.width}px`;
-      menu.style.maxHeight = `${Math.min(preferredMaxHeight, availableHeight)}px`;
-
-      if (openUp) {
-        menu.style.top = 'auto';
-        menu.style.bottom = `${window.innerHeight - rect.top + gap}px`;
-      } else {
-        menu.style.bottom = 'auto';
-        menu.style.top = `${rect.bottom + gap}px`;
-      }
-    }
-
-    function openMenu() {
-      wrapper.classList.add('is-open');
-      menu.hidden = false;
-      trigger.setAttribute('aria-expanded', 'true');
-      arrow.src = joinUrl('elements/Alt Arrow Up.svg');
-      positionCustomSelectMenu();
-
-      const active = menu.querySelector('[aria-selected="true"]');
-      if (active) active.scrollIntoView({ block: 'nearest' });
-    }
-
-    function toggleMenu() {
-      if (menu.hidden) openMenu();
-      else closeMenu();
-    }
-
-    function updatePositionIfOpen() {
-      if (!menu.hidden) positionCustomSelectMenu();
-    }
-
-    window.addEventListener('resize', updatePositionIfOpen);
-    window.addEventListener('scroll', updatePositionIfOpen, true);
-
-    trigger.addEventListener('click', toggleMenu);
-
-    trigger.addEventListener('keydown', (event) => {
-      const options = Array.from(menu.querySelectorAll('.custom-select-option'));
-      const currentIndex = options.findIndex((btn) => btn.dataset.value === select.value);
-
-      if (event.key === 'Escape') {
-        closeMenu();
-        return;
-      }
-
-      if (event.key === 'ArrowDown') {
-        event.preventDefault();
-        if (menu.hidden) openMenu();
-
-        const next = options[Math.min(currentIndex + 1, options.length - 1)] || options[0];
-        if (next) {
-          select.value = next.dataset.value;
-          select.dispatchEvent(new Event('change', { bubbles: true }));
-          syncFromSelect();
-        }
-      }
-
-      if (event.key === 'ArrowUp') {
-        event.preventDefault();
-        if (menu.hidden) openMenu();
-
-        const prev = options[Math.max(currentIndex - 1, 0)] || options[0];
-        if (prev) {
-          select.value = prev.dataset.value;
-          select.dispatchEvent(new Event('change', { bubbles: true }));
-          syncFromSelect();
-        }
-      }
-
-      if (event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault();
-        toggleMenu();
-      }
-    });
-
-    document.addEventListener('click', (event) => {
-      if (!wrapper.contains(event.target)) closeMenu();
-    });
-
+    trigger.addEventListener('click', () => openModal(select, trigger));
     select.addEventListener('change', syncFromSelect);
 
-    buildOptions();
-    select._customSelectRefresh = buildOptions;
+    syncFromSelect();
+    select._modalSelectRefresh = syncFromSelect;
+    select._customSelectRefresh = syncFromSelect;
   });
 }
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => setupModalSelects());
+} else {
+  setupModalSelects();
+}
+
 
 
   function setupButtonGradientHover() {
