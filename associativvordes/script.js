@@ -104,6 +104,8 @@ const TEXT_I18N = {
     }
 
 
+    let calculateLoaderTimer = null;
+
     function setCalculateButtonStatus(text, disabled = true) {
       const button = document.querySelector('#calculateBtn');
       if (!button) return;
@@ -112,7 +114,16 @@ const TEXT_I18N = {
 
       textEl.textContent = text;
       button.disabled = disabled;
-      button.classList.toggle('is-loading', disabled);
+
+      clearTimeout(calculateLoaderTimer);
+
+      if (disabled) {
+        calculateLoaderTimer = setTimeout(() => {
+          button.classList.add('is-loading');
+        }, 700);
+      } else {
+        button.classList.remove('is-loading');
+      }
     }
 
     function defaultCalculateButtonText() {
