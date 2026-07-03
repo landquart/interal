@@ -5,7 +5,7 @@ import { formatMetric, resultRowClasses, swowLabel } from './js/render-results.j
 const TEXT_I18N = {
       ru: {
         headerLead: 'Инструмент отбора ассоциативных слов: поиск дериватов по локальной базе, группировка по моделям, частотные баллы и итоговый процент ассоциации.',
-        searchTitle: '1) Параметры поиска',
+        searchTitle: 'Параметры поиска',
         searchNote: 'Сначала задайте корень и тип элемента, затем запустите расчёт.',
         rootLabel: 'Кандидатный корень / предлог',
         rootPlaceholder: 'например: ocul, regul, inter',
@@ -17,8 +17,8 @@ const TEXT_I18N = {
         searchBtn: 'Найти дериваты и посчитать',
         showExampleBtn: 'Показать пример',
         jsonCardBtn: 'Сформировать JSON-карточку',
-        resultTitle: '2) Итог',
-        languagesTitle: '3) Языки и дериваты',
+        resultTitle: 'Итог',
+        languagesTitle: 'Языки и дериваты',
         reset: 'Сбросить',
         resetConfirm: 'Сбросить введённые данные? Это действие нельзя отменить.',
         manual: 'ручная',
@@ -48,7 +48,7 @@ const TEXT_I18N = {
       },
       en: {
         headerLead: 'Tool for selecting associative words: derivative search in a local database, grouping by models, frequency scores, and final association percentage.',
-        searchTitle: '1) Search parameters',
+        searchTitle: 'Search parameters',
         searchNote: 'First enter the root and element type, then run the calculation.',
         rootLabel: 'Candidate root / preposition',
         rootPlaceholder: 'for example: ocul, regul, inter',
@@ -60,8 +60,8 @@ const TEXT_I18N = {
         searchBtn: 'Find derivatives and calculate',
         showExampleBtn: 'Show example',
         jsonCardBtn: 'Generate JSON card',
-        resultTitle: '2) Result',
-        languagesTitle: '3) Languages and derivatives',
+        resultTitle: 'Result',
+        languagesTitle: 'Languages and derivatives',
         reset: 'Reset',
         resetConfirm: 'Reset entered data? This action cannot be undone.',
         manual: 'manual',
@@ -214,7 +214,8 @@ const TEXT_I18N = {
         meaning: '',
         elementType: 'root',
         maxModels: 5,
-        languages: langs
+        languages: langs,
+        checked: false
       };
     }
 
@@ -555,6 +556,7 @@ const TEXT_I18N = {
           onProgress: text => { if (isCurrentRun(runId)) setCalculateButtonStatus(text, true); }
         });
         if (!isCurrentRun(runId)) return;
+        state.checked = true;
         renderAll();
         setCalculateButtonStatus('Готово', true);
         setTimeout(() => {
@@ -1018,9 +1020,18 @@ async function createFallbackCard(card, section) { const response = await fetch(
       return calculateFinal().finalAssociation >= THRESHOLDS.main;
     }
 
+    function syncCheckedVisibility() {
+      const checked = Boolean(state.checked);
+      ['resultSection', 'languagesSection'].forEach(id => {
+        const element = document.getElementById(id);
+        if (element) element.hidden = !checked;
+      });
+    }
+
     function syncJsonCardButtonVisibility() {
+      syncCheckedVisibility();
       const jsonCardBtn = document.getElementById('jsonCardBtn');
-      if (jsonCardBtn) jsonCardBtn.hidden = !hasPassedJsonCardThreshold();
+      if (jsonCardBtn) jsonCardBtn.hidden = !state.checked || !hasPassedJsonCardThreshold();
     }
 
     function syncResetButtonVisibility() {
@@ -1061,9 +1072,9 @@ async function createFallbackCard(card, section) { const response = await fetch(
       searchDerivatives();
     }
 
-    document.getElementById('rootInput').addEventListener('input', syncResetButtonVisibility);
-    document.getElementById('meaningInput').addEventListener('input', syncResetButtonVisibility);
-    document.getElementById('elementType').addEventListener('change', syncResetButtonVisibility);
+    document.getElementById('rootInput').addEventListener('input', () => { state.checked = false; renderAll(); });
+    document.getElementById('meaningInput').addEventListener('input', () => { state.checked = false; renderAll(); });
+    document.getElementById('elementType').addEventListener('change', () => { state.checked = false; renderAll(); });
     document.getElementById('calculateBtn').addEventListener('click', () => searchDerivatives());
     document.getElementById('showExampleBtn').addEventListener('click', showExample);
     document.getElementById('jsonCardBtn').addEventListener('click', openJsonCardModal);

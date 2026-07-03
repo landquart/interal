@@ -98,7 +98,8 @@ function getDefaultState() {
     translations: { en:'', de:'', fr:'', es:'', it:'', ru:'' },
     arguments: '',
     criteria: [false, false, false, false],
-    comments: ['', '', '', '']
+    comments: ['', '', '', ''],
+    checked: false
   };
 }
 let state = getDefaultState();
@@ -130,7 +131,7 @@ function makeCardDraft(author = null){ const r=result(); const card = { version:
 async function makeCard(author){ return createCardOnServer(makeCardDraft(author)); }
 function generateJson(){ openJsonModal(); }
 function renderCriteria(){ return `<div class="criteria-list grammar-criteria-list">${CRITERIA_NAMES.map((name,i)=>`<div class="criterion grammar-criterion"><div class="criterion-head"><strong>${escapeHtml(name)}</strong></div><label class="criterion-check"><input id="crit_${i}" type="checkbox" ${state.criteria[i] ? 'checked' : ''}><span>${t('criterionPass')}</span></label>${i === 2 ? `<label class="field criterion-comment"><span>${t('comment')}</span><textarea class="interal-textarea" id="comment_${i}">${escapeHtml(state.comments[i])}</textarea></label>` : ''}</div>`).join('')}</div>`; }
-function renderResult() { const r = result(); byId('resultBox').innerHTML = `<span class="status-pill ${r.accepted?'ok':'bad'}">${r.accepted?t('accept'):t('reject')}</span><dl><div><dt>${t('passed')}</dt><dd>${r.passed}/${r.total} (${r.required}+)</dd></div></dl>`; }
+function renderResult() { const r = result(); const checked = Boolean(state.checked); const accepted = checked && r.accepted; byId('resultBox').innerHTML = `<span class="status-pill ${r.accepted?'ok':'bad'}">${r.accepted?t('accept'):t('reject')}</span><dl><div><dt>${t('passed')}</dt><dd>${r.passed}/${r.total} (${r.required}+)</dd></div></dl>`; ['evidenceSection', 'criteriaSection', 'resultSection'].forEach(id => { const element = byId(id); if (element) element.hidden = !checked; }); const jsonBtn = byId('jsonBtn'); if (jsonBtn) { jsonBtn.hidden = !accepted; jsonBtn.disabled = !accepted; } }
 function render(){ renderChrome(); document.title=t('title'); byId('pageTitle').textContent=t('title'); byId('pageLead').textContent=t('lead'); byId('paramsTitle').textContent=t('params'); byId('wordLabel').textContent=t('word'); byId('posLabel').textContent=t('pos'); byId('meaningLabel').textContent=t('meaning'); byId('argumentsLabel').textContent=t('arguments'); byId('checkBtn').textContent=t('check'); byId('translationsTitle').textContent=t('translations'); byId('criteriaTitle').textContent=t('criteria'); byId('decisionTitle').textContent=t('decision'); byId('jsonBtn').textContent=t('json'); byId('resetBtn').title=t('reset'); byId('resetBtn').setAttribute('aria-label', t('reset')); byId('posInput').innerHTML=`<option value="preposition">${t('preposition')}</option><option value="conjunction">${t('conjunction')}</option><option value="particle">${t('particle')}</option><option value="adverb">${t('adverb')}</option>`; byId('posInput').value=state.part_of_speech; byId('translationsBox').innerHTML=renderTranslations(state.translations); byId('criteriaBox').innerHTML=renderCriteria(); renderResult(); updateResetButtonVisibility(); }
 
 
@@ -142,15 +143,15 @@ function bindJsonModal() {
   window.InteralJsonCardModal?.init({
     getLanguage: currentLang,
     getTexts: getJsonCardTexts,
-    buildCard: async ({ author }) => { readState(); return makeCard(author); },
+    buildCard: async ({ author }) => { readState(); if (!state.checked || !result().accepted) throw new Error(getJsonCardTexts().unavailable); return makeCard(author); },
     formatCard: (card) => JSON.stringify(card, null, 2),
     getFilename: () => jsonFilename
   });
   document.addEventListener('interal:languagechange', () => { readState(); render(); });
   byId('resetBtn')?.addEventListener('click', resetState);
-  byId('checkBtn')?.addEventListener('click', () => { readState();  renderResult();  updateResetButtonVisibility(); });
-  byId('app')?.addEventListener('input', () => { updateResetButtonVisibility();  });
-  byId('app')?.addEventListener('change', () => { updateResetButtonVisibility();  });
+  byId('checkBtn')?.addEventListener('click', () => { readState(); state.checked = true; render(); updateResetButtonVisibility(); });
+  byId('app')?.addEventListener('input', () => { state.checked = false; renderResult(); updateResetButtonVisibility();  });
+  byId('app')?.addEventListener('change', () => { state.checked = false; renderResult(); updateResetButtonVisibility();  });
 }
 bindJsonModal();
 render();
