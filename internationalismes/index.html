@@ -29,7 +29,7 @@
             <label id="posLabel" for="posInput">Часть речи</label>
             <select class="interal-select" id="posInput"></select>
           </div>
-          <div class="actions"><button class="interal-btn interal-btn--primary" id="checkBtn" type="button"><img class="btn-loader" src="../elements/loader_video_fitted_0_1s_triangle_fixed_centered.svg" alt="" aria-hidden="true" /><span class="btn-text">Проверить</span></button></div>
+          <div class="actions"><button class="interal-btn interal-btn--primary gradient-hover" id="checkBtn" type="button"><img class="btn-loader" src="../elements/loader_video_fitted_0_1s_triangle_fixed_centered.svg" alt="" aria-hidden="true" /><span class="btn-text">Проверить</span></button></div>
         </section>
         <div id="noticeBox"></div>
         <section class="card vord-panel" id="evidenceSection" hidden>
@@ -40,7 +40,7 @@
           <h2 id="decisionTitle">Решение</h2>
           <div id="resultBox"></div>
         </section>
-        <div class="actions json-card-bottom-actions"><button class="interal-btn interal-btn--secondary" id="jsonBtn" type="button" hidden disabled>Сформировать JSON-карточку</button></div>
+        <div class="actions json-card-bottom-actions"><button class="interal-btn interal-btn--secondary gradient-hover" id="jsonBtn" type="button" hidden disabled>Сформировать JSON-карточку</button></div>
     </div>
   </main>
   <div id="jsonCardModal" aria-hidden="true">
@@ -54,7 +54,7 @@
           <label for="authorContactType" id="authorContactTypeLabel">Тип контакта</label><select class="interal-select" id="authorContactType"><option value="telegram">telegram</option><option value="matrix">matrix</option><option value="email">email</option></select>
           <label for="authorContactValue" id="authorContactValueLabel">Контакт</label><input class="interal-input" id="authorContactValue" type="text" autocomplete="off">
         </div>
-        <button id="generateJsonCardBtn" class="tool-btn interal-btn interal-btn--primary" type="button"><img class="btn-loader" src="../elements/loader_video_fitted_0_1s_triangle_fixed_centered.svg" alt="" aria-hidden="true" /><span class="btn-text">Сгенерировать карточку</span></button>
+        <button id="generateJsonCardBtn" class="tool-btn interal-btn interal-btn--primary gradient-hover" type="button"><img class="btn-loader" src="../elements/loader_video_fitted_0_1s_triangle_fixed_centered.svg" alt="" aria-hidden="true" /><span class="btn-text">Сгенерировать карточку</span></button>
         <label for="jsonCardOutput" id="jsonCardOutputLabel">Готовый JSON</label><textarea id="jsonCardOutput" class="interal-textarea json-card-output" spellcheck="false" readonly></textarea>
       </div>
       <div class="json-card-actions">

@@ -967,7 +967,36 @@ function initCustomSelects(root = document) {
   });
 }
 
+
+  function setupButtonGradientHover() {
+    const buttonSelector = '.gradient-hover';
+
+    document.addEventListener('pointermove', (event) => {
+      const button = event.target.closest(buttonSelector);
+      if (!button || button.disabled) return;
+
+      const rect = button.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+
+      button.style.setProperty('--btn-x', `${x}px`);
+      button.style.setProperty('--btn-y', `${y}px`);
+    });
+
+    document.addEventListener('pointerout', (event) => {
+      const button = event.target.closest(buttonSelector);
+      if (!button) return;
+
+      const next = event.relatedTarget;
+      if (next && button.contains(next)) return;
+
+      button.style.setProperty('--btn-x', '50%');
+      button.style.setProperty('--btn-y', '50%');
+    });
+  }
+
 window.initCustomSelects = initCustomSelects;
+setupButtonGradientHover();
 
 })();
 
