@@ -96,6 +96,8 @@
       themeLabel: 'Тема',
       themeDark: 'Тёмная',
       themeLight: 'Светлая',
+      selectChoose: 'Выберите вариант',
+      close: 'Закрыть',
       langLabel: 'Язык',
       langChoose: 'Выбрать язык',
       navSimilarita: 'Indoeuropan vordes',
@@ -130,6 +132,8 @@
       themeLabel: 'Theme',
       themeDark: 'Dark',
       themeLight: 'Light',
+      selectChoose: 'Choose option',
+      close: 'Close',
       langLabel: 'Language',
       langChoose: 'Choose language',
       navSimilarita: 'Indoeuropan vordes',
@@ -531,7 +535,7 @@
 
 
   function getUiText(key) {
-    const lang = getCurrentLanguage();
+    const lang = getLang();
     return (i18n[lang] && i18n[lang][key]) || i18n.ru[key] || key;
   }
 
@@ -831,8 +835,8 @@ function setupModalSelects(root = document) {
       <div class="interal-select-modal-backdrop" data-select-close></div>
       <div class="interal-select-modal-panel" role="dialog" aria-modal="true" tabindex="-1">
         <div class="interal-select-modal-head">
-          <strong class="interal-select-modal-title">Выберите вариант</strong>
-          <button class="interal-select-modal-close" type="button" data-select-close aria-label="Закрыть">×</button>
+          <strong class="interal-select-modal-title"></strong>
+          <button class="interal-select-modal-close" type="button" data-select-close>×</button>
         </div>
         <div class="interal-select-modal-options"></div>
       </div>
@@ -841,6 +845,7 @@ function setupModalSelects(root = document) {
   }
 
   const title = modal.querySelector('.interal-select-modal-title');
+  const closeButton = modal.querySelector('.interal-select-modal-close');
   const optionsBox = modal.querySelector('.interal-select-modal-options');
 
   if (modal.dataset.modalSelectListeners !== 'true') {
@@ -891,7 +896,8 @@ function setupModalSelects(root = document) {
     state.activeTrigger = trigger;
 
     const label = select.id ? document.querySelector(`label[for="${cssEscape(select.id)}"]`) : null;
-    title.textContent = label?.textContent?.trim() || 'Выберите вариант';
+    title.textContent = label?.textContent?.trim() || getUiText('selectChoose');
+    closeButton?.setAttribute('aria-label', getUiText('close'));
     optionsBox.innerHTML = '';
 
     Array.from(select.options).forEach((option) => {
