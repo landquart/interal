@@ -651,7 +651,8 @@ function setupSelects() {
   });
 
   fillComponentSelect();
-  window.initCustomSelects?.();
+  els.componentSelect._customSelectRefresh?.();
+  window.initCustomSelects?.(els.componentSelect);
 }
 
 function normalizeSearchText(value) {
@@ -925,7 +926,8 @@ function openPrefixVariantStep(item) {
   });
 
   updatePrefixVariantPreview();
-  window.initCustomSelects?.();
+  els.prefixVariantSelect._customSelectRefresh?.();
+  window.initCustomSelects?.(els.prefixVariantSelect);
   closeModal(els.componentModal);
   openModal(els.prefixVariantModal);
 }

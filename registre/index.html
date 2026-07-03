@@ -165,15 +165,15 @@
         </div>
         <div class="field field--type">
           <label for="registry-type" data-i18n="typeLabel">Тип слова</label>
-          <select id="registry-type"></select>
+          <select class="js-custom-select" id="registry-type"></select>
         </div>
         <div class="field field--pos">
           <label for="registry-pos" data-i18n="posLabel">Часть речи</label>
-          <select id="registry-pos"></select>
+          <select class="js-custom-select" id="registry-pos"></select>
         </div>
         <div class="field field--group">
           <label for="registry-group" data-i18n="groupLabel">Группа</label>
-          <select id="registry-group"></select>
+          <select class="js-custom-select" id="registry-group"></select>
         </div>
         <div class="field field--author">
           <label for="registry-author" data-i18n="authorLabel">Автор</label>
@@ -185,7 +185,7 @@
         </div>
         <div class="field field--sort">
           <label for="registry-sort" data-i18n="sortLabel">Сортировка</label>
-          <select id="registry-sort"></select>
+          <select class="js-custom-select" id="registry-sort"></select>
         </div>
         <div class="field field--reset">
           <button class="registry-btn" id="registry-reset" type="button" data-i18n="resetFilters">Сбросить фильтры</button>
@@ -234,7 +234,7 @@
   <div class="registry-toast" id="registry-toast" role="status" aria-live="polite"></div>
 
   <script src="../shared/copy-plain.js"></script>
-  <script src="../shared/ui.js?v=share-state-fix-20260628"></script>
+  <script src="../shared/ui.js?v=share-state-fix-20260628" defer></script>
   <script>
     (function () {
       const TEXT_I18N = {
@@ -336,7 +336,7 @@
         if (copied) button._copyStateTimer = setTimeout(() => button.classList.remove('is-copied'), 1800);
       }
       async function copyText(text, ok, fail) { try { await navigator.clipboard.writeText(text); showToast(ok); return true; } catch (_) { showToast(fail); return false; } }
-      function setOptions(select, options) { select.replaceChildren(...options.map(([value, label]) => { const option = document.createElement('option'); option.value = value; option.textContent = label; return option; })); }
+      function setOptions(select, options) { select.replaceChildren(...options.map(([value, label]) => { const option = document.createElement('option'); option.value = value; option.textContent = label; return option; })); select._customSelectRefresh?.(); select.dispatchEvent(new Event('change', { bubbles: true })); }
       function readFiltersFromDom() {
         state.filters.search = els.search.value || '';
         state.filters.type = els.type.value || '';

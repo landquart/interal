@@ -607,7 +607,7 @@ body.dark-theme .internationalita-page .json-card-icon-btn.is-copied {
 
     <div>
       <label for="lookupLang" id="lookupLangLabel">Язык поиска</label>
-      <select id="lookupLang">
+      <select class="js-custom-select" id="lookupLang">
         <option value="en">Английский</option>
         <option value="de">Немецкий</option>
         <option value="fr">Французский</option>
@@ -677,7 +677,7 @@ body.dark-theme .internationalita-page .json-card-icon-btn.is-copied {
         <input class="interal-input" id="authorDisplayName" type="text" autocomplete="name">
 
         <label for="authorContactType" id="authorContactTypeLabel">Тип контакта</label>
-        <select class="interal-select" id="authorContactType">
+        <select class="interal-select js-custom-select" id="authorContactType">
           <option value="telegram">telegram</option>
           <option value="matrix">matrix</option>
           <option value="email">email</option>
@@ -2826,7 +2826,7 @@ updateResetButtonVisibility();
 
 <script src="./download-json-card.js?v=2"></script>
 <script src="../shared/copy-plain.js"></script>
-<script src="../shared/ui.js?v=share-state-fix-20260628"></script>
+<script src="../shared/ui.js?v=share-state-fix-20260628" defer></script>
 
 </body>
 </html>
