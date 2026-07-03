@@ -700,61 +700,129 @@ body.dark-theme .interal-btn--primary .btn-loader {
   }
 }
 
-.interal-btn {
+
+.gradient-hover {
+  --btn-x: 50%;
+  --btn-y: 50%;
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  transition: background .25s ease, background-color .25s ease, color .25s ease, border-color .25s ease, box-shadow .25s ease, transform .18s ease;
+  transition:
+    transform .22s cubic-bezier(.16, 1, .3, 1),
+    box-shadow .22s ease,
+    border-color .22s ease,
+    background-color .22s ease,
+    color .22s ease;
 }
 
-.interal-btn::before {
+.gradient-hover::before {
   content: "";
   position: absolute;
-  inset: -45% -80%;
-  background: linear-gradient(110deg, transparent 35%, rgba(255,255,255,.30) 50%, transparent 65%);
-  transform: translateX(-70%);
-  opacity: 0;
+  inset: -1px;
+  z-index: 0;
+  border-radius: inherit;
   pointer-events: none;
-  transition: opacity .18s ease;
-  z-index: -1;
+  opacity: 0;
+  transition: opacity .22s ease;
 }
 
-.interal-btn--secondary::before,
-.interal-btn--ghost::before {
-  background: linear-gradient(110deg, transparent 35%, color-mix(in srgb, var(--text) 10%, transparent) 50%, transparent 65%);
+.gradient-hover > * {
+  position: relative;
+  z-index: 1;
 }
 
-.interal-btn:hover::before {
-  opacity: 1;
-  animation: buttonSheen .85s cubic-bezier(.16, 1, .3, 1);
+.gradient-hover:hover:not(:disabled):not(.is-loading) {
+  transform: translateY(-2px) scale(1.012);
 }
 
-.interal-btn--primary:hover {
-  background:
-    linear-gradient(
-      180deg,
-      color-mix(in srgb, var(--button-primary-bg) 88%, #ffffff 12%),
-      var(--button-primary-bg)
-    );
-}
-
-body.dark-theme .interal-btn--primary:hover {
-  background:
-    linear-gradient(
-      180deg,
-      color-mix(in srgb, var(--button-primary-bg) 84%, #ffffff 16%),
-      var(--button-primary-bg)
-    );
-}
-
-.interal-btn:active {
+.gradient-hover:active:not(:disabled) {
   transform: translateY(1px) scale(.985);
-  box-shadow: inset 0 3px 8px rgba(0,0,0,.20), inset 0 -1px 0 rgba(255,255,255,.20);
 }
 
-@keyframes buttonSheen {
-  from { transform: translateX(-70%); }
-  to { transform: translateX(70%); }
+.interal-btn--secondary.gradient-hover::before,
+.secondary-btn.gradient-hover::before,
+body.dark-theme .interal-btn--primary.gradient-hover::before {
+  background:
+    radial-gradient(
+      180px circle at var(--btn-x) var(--btn-y),
+      rgba(168, 85, 247, .32),
+      rgba(59, 130, 246, .22) 32%,
+      rgba(34, 211, 238, .16) 48%,
+      transparent 72%
+    ),
+    conic-gradient(
+      from 180deg at var(--btn-x) var(--btn-y),
+      rgba(168, 85, 247, .18),
+      rgba(236, 72, 153, .16),
+      rgba(59, 130, 246, .16),
+      rgba(34, 211, 238, .14),
+      rgba(168, 85, 247, .18)
+    );
+}
+
+.interal-btn--secondary.gradient-hover:hover:not(:disabled)::before,
+.secondary-btn.gradient-hover:hover:not(:disabled)::before,
+body.dark-theme .interal-btn--primary.gradient-hover:hover:not(:disabled)::before {
+  opacity: 1;
+}
+
+.interal-btn--secondary.gradient-hover:hover:not(:disabled),
+.secondary-btn.gradient-hover:hover:not(:disabled),
+body.dark-theme .interal-btn--primary.gradient-hover:hover:not(:disabled) {
+  border-color: rgba(168, 85, 247, .45);
+  box-shadow:
+    0 12px 28px rgba(168, 85, 247, .16),
+    0 6px 18px rgba(59, 130, 246, .10),
+    inset 0 1px 0 rgba(255,255,255,.45);
+}
+
+.interal-btn--primary.gradient-hover::before,
+.tool-btn.gradient-hover:not(.secondary-btn)::before,
+body.dark-theme .interal-btn--secondary.gradient-hover::before,
+body.dark-theme .secondary-btn.gradient-hover::before {
+  background:
+    radial-gradient(
+      190px circle at var(--btn-x) var(--btn-y),
+      rgba(255, 255, 255, .38),
+      rgba(191, 219, 254, .24) 34%,
+      rgba(125, 211, 252, .14) 52%,
+      transparent 74%
+    );
+}
+
+.interal-btn--primary.gradient-hover:hover:not(:disabled)::before,
+.tool-btn.gradient-hover:not(.secondary-btn):hover:not(:disabled)::before,
+body.dark-theme .interal-btn--secondary.gradient-hover:hover:not(:disabled)::before,
+body.dark-theme .secondary-btn.gradient-hover:hover:not(:disabled)::before {
+  opacity: 1;
+}
+
+.interal-btn--primary.gradient-hover:hover:not(:disabled),
+.tool-btn.gradient-hover:not(.secondary-btn):hover:not(:disabled),
+body.dark-theme .interal-btn--secondary.gradient-hover:hover:not(:disabled),
+body.dark-theme .secondary-btn.gradient-hover:hover:not(:disabled) {
+  box-shadow:
+    0 14px 30px rgba(0, 0, 0, .18),
+    0 0 22px rgba(191, 219, 254, .14),
+    inset 0 1px 0 rgba(255,255,255,.34);
+}
+
+@media (hover: none) {
+  .gradient-hover::before {
+    display: none;
+  }
+
+  .gradient-hover:hover {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gradient-hover,
+  .gradient-hover::before {
+    transition: none !important;
+    animation: none !important;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
