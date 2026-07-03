@@ -977,6 +977,27 @@ window.initCustomSelects = initCustomSelects;
     en: { close: 'Close JSON card', title: 'JSON card', useAuthor: 'Add authorship', authorName: 'Name or nickname', contactType: 'Contact type', contact: 'Contact', generate: 'Generate card', generating: 'Generating...', output: 'Generated JSON', copy: 'Copy JSON card', copied: 'JSON card copied', copiedTitle: 'Copied', download: 'Download JSON card', empty: 'Generate the JSON card first.', unavailable: 'The JSON card is available only after a successful check.' }
   };
   const $ = (id) => document.getElementById(id);
+
+  const buttonLoaderTimers = new Map();
+  function setButtonStatus(buttonSelector, text, disabled = true, options = {}) {
+    const button = typeof buttonSelector === 'string' ? document.querySelector(buttonSelector) : buttonSelector;
+    if (!button) return;
+    const timerKey = typeof buttonSelector === 'string' ? buttonSelector : button;
+    const textEl = button.querySelector('.btn-text') || button;
+    const delay = options.delay ?? 700;
+    textEl.textContent = text;
+    button.disabled = disabled;
+    const previousTimer = buttonLoaderTimers.get(timerKey);
+    if (previousTimer) clearTimeout(previousTimer);
+    if (disabled) {
+      const timer = setTimeout(() => button.classList.add('is-loading'), delay);
+      buttonLoaderTimers.set(timerKey, timer);
+    } else {
+      button.classList.remove('is-loading');
+      buttonLoaderTimers.delete(timerKey);
+    }
+  }
+
   function normalizeContact(type, value) {
     const raw = String(value || '').trim();
     if (!raw) return '';
@@ -994,15 +1015,16 @@ window.initCustomSelects = initCustomSelects;
     const output = () => $(ids.outputId);
     let opener = null;
     let timer = 0;
-    function applyTexts(){ const t=texts(); const map={jsonCardTitle:t.title,useAuthorBlockLabel:t.useAuthor,authorDisplayNameLabel:t.authorName,authorContactTypeLabel:t.contactType,authorContactValueLabel:t.contact,jsonCardOutputLabel:t.output}; Object.entries(map).forEach(([id,v])=>{ if($(id)) $(id).textContent=v; }); if($(ids.generateButtonId)) $(ids.generateButtonId).textContent=t.generate; if($(ids.closeButtonId)) $(ids.closeButtonId).setAttribute('aria-label',t.close); [ids.copyButtonId,ids.downloadButtonId].forEach((id)=>{ const b=$(id); if(!b) return; const v=id===ids.copyButtonId?t.copy:t.download; b.setAttribute('aria-label',v); b.title=v; }); }
+    function applyTexts(){ const t=texts(); const map={jsonCardTitle:t.title,useAuthorBlockLabel:t.useAuthor,authorDisplayNameLabel:t.authorName,authorContactTypeLabel:t.contactType,authorContactValueLabel:t.contact,jsonCardOutputLabel:t.output}; Object.entries(map).forEach(([id,v])=>{ if($(id)) $(id).textContent=v; }); if($(ids.generateButtonId)) setButtonStatus($(ids.generateButtonId), t.generate, false); if($(ids.closeButtonId)) $(ids.closeButtonId).setAttribute('aria-label',t.close); [ids.copyButtonId,ids.downloadButtonId].forEach((id)=>{ const b=$(id); if(!b) return; const v=id===ids.copyButtonId?t.copy:t.download; b.setAttribute('aria-label',v); b.title=v; }); }
     function resetCopy(){ const b=$(ids.copyButtonId); clearTimeout(timer); if(b){ b.classList.remove('is-copied'); b.title=texts().copy; b.setAttribute('aria-label',texts().copy); } }
     function open(){ opener=document.activeElement; if(output()) output().value=''; resetCopy(); const m=$(ids.modalId); if(m){ m.classList.add('show'); m.setAttribute('aria-hidden','false'); } setTimeout(()=>$(ids.generateButtonId)?.focus(),0); }
     function close(){ const m=$(ids.modalId); resetCopy(); if(m){ m.classList.remove('show'); m.setAttribute('aria-hidden','true'); } if(opener?.focus) opener.focus(); }
     function getAuthor(){ if(!$(ids.useAuthorBlockId)?.checked) return null; const name=$(ids.authorDisplayNameId)?.value.trim()||''; const type=$(ids.authorContactTypeId)?.value||'telegram'; const contact=normalizeContact(type,$(ids.authorContactValueId)?.value||''); if(!name && !contact) throw new Error(lang()==='en'?'Add a name or contact for authorship.':'Укажите имя или контакт для авторства.'); const author={}; if(name) author.display_name=name; if(contact) author.contacts=[{type,url:contact}]; return author; }
-    async function generate(){ const btn=$(ids.generateButtonId); const t=texts(); try{ if(btn){ btn.disabled=true; btn.textContent=t.generating; } const author=getAuthor(); let card=await options.buildCard?.({author}); if(options.createCardOnServer) card=await options.createCardOnServer(card); const formatted=options.formatCard?options.formatCard(card):JSON.stringify(card,null,2); if(output()) output().value=formatted; }catch(e){ alert(e.message||String(e)); }finally{ if(btn){ btn.disabled=false; btn.textContent=texts().generate; } } }
+    async function generate(){ const btn=$(ids.generateButtonId); const t=texts(); try{ if(btn) setButtonStatus(btn, t.generating, true); const author=getAuthor(); if(btn) setButtonStatus(btn, lang()==='en'?'Generating JSON...':'Генерация JSON...', true); let card=await options.buildCard?.({author, onProgress: text => btn && setButtonStatus(btn, text, true)}); if(options.createCardOnServer){ if(btn) setButtonStatus(btn, lang()==='en'?'Saving card...':'Сохранение карточки...', true); card=await options.createCardOnServer(card); } if(btn) setButtonStatus(btn, lang()==='en'?'Formatting JSON...':'Форматирование JSON...', true); const formatted=options.formatCard?options.formatCard(card):JSON.stringify(card,null,2); if(output()) output().value=formatted; if(btn) setButtonStatus(btn, lang()==='en'?'Done':'Готово', true); }catch(e){ if(btn) setButtonStatus(btn, lang()==='en'?'Error':'Ошибка', false); alert(e.message||String(e)); return; }finally{ if(btn) setTimeout(()=>setButtonStatus(btn, texts().generate, false), 800); } }
     async function copy(){ const text=output()?.value||''; if(!text.trim()) return alert(texts().empty); await (window.copyText ? window.copyText(text) : navigator.clipboard.writeText(text)); const b=$(ids.copyButtonId); if(b){ b.classList.add('is-copied'); b.title=texts().copiedTitle; b.setAttribute('aria-label',texts().copied); timer=setTimeout(resetCopy,1500); } }
     function download(){ const text=output()?.value||''; if(!text.trim()) return alert(texts().empty); let filename=options.getFilename?.(text)||'json-card.json'; try{ const id=JSON.parse(text)?.id; if(id) filename=`${id}.json`; }catch{} const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([text],{type:'application/json;charset=utf-8'})); a.download=filename; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(a.href); }
     applyTexts(); $(ids.openButtonId)?.addEventListener('click', open); $(ids.closeButtonId)?.addEventListener('click', close); $(ids.modalId)?.addEventListener('click', e=>{ if(e.target===$(ids.modalId)) close(); }); $(ids.useAuthorBlockId)?.addEventListener('change', e=>{ if($(ids.authorFieldsId)) $(ids.authorFieldsId).style.display=e.target.checked?'grid':'none'; }); $(ids.generateButtonId)?.addEventListener('click', generate); $(ids.copyButtonId)?.addEventListener('click', copy); $(ids.downloadButtonId)?.addEventListener('click', download); document.addEventListener('keydown', e=>{ if(e.key==='Escape' && $(ids.modalId)?.classList.contains('show')) close(); }); document.addEventListener('interal:languagechange', applyTexts); return { open, close, generate, getAuthor, applyTexts };
   }
   window.InteralJsonCardModal = { init, normalizeContact };
+  window.InteralButtonStatus = { setButtonStatus };
 })();
