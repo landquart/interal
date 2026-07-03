@@ -656,3 +656,46 @@ body.dark-theme #jsonCardModal{background:rgba(0,0,0,.62);}
 .json-card-close-btn:focus-visible{outline:2px solid var(--focus-outline);outline-offset:3px;box-shadow:0 0 0 5px var(--focus-ring);}
 .json-card-close-btn svg{width:20px;height:20px;stroke:currentColor;}
 @media (max-width:560px){#jsonCardModal .modal-inner{padding:20px;}.json-card-form .tool-btn{width:100%;}.json-card-actions{justify-content:stretch;}.json-card-icon-btn{flex:1 1 0;border-radius:var(--radius-md);}}
+
+
+.tool-btn,
+.interal-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-loader {
+  width: 22px;
+  height: 22px;
+  display: none;
+  flex: 0 0 auto;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.interal-btn--primary .btn-loader {
+  filter: invert(1);
+}
+
+body.dark-theme .interal-btn--primary .btn-loader {
+  filter: none;
+}
+
+.is-loading .btn-loader {
+  display: inline-block;
+}
+
+.btn-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .btn-loader {
+    width: 20px;
+    height: 20px;
+  }
+}

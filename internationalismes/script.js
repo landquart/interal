@@ -61,6 +61,7 @@ const I18N = {
 function getDefaultState() { return { word: '', part_of_speech: 'noun', evidence: {}, autoPassed: {}, manualOverride: {}, matchMeta: {}, isSearching: false, searchError: '', checked: false }; }
 let state = getDefaultState();
 let activeRunId = 0;
+function setButtonStatus(selector, text, disabled = true, options = {}) { window.InteralButtonStatus?.setButtonStatus(selector, text, disabled, options); }
 function nextRunId() { activeRunId += 1; return activeRunId; }
 function invalidateActiveRuns() { activeRunId += 1; }
 function isCurrentRun(runId) { return runId === activeRunId; }
@@ -228,11 +229,13 @@ function findBestInternationalismMatch(langCode, interalWord, index) {
   }
   return best || emptyMatch(langCode);
 }
-async function searchAllLanguages(runId) {
+async function searchAllLanguages(runId, { onProgress } = {}) {
   const word = state.word.trim();
   for (const lang of LANGUAGES) {
+    onProgress?.(`${currentLang() === 'en' ? 'Loading' : 'Загрузка'}: ${langName(lang.code)}`);
     const index = await loadLanguageFrequency(lang.code);
     if (!isCurrentRun(runId)) return;
+    onProgress?.(`${currentLang() === 'en' ? 'Checking' : 'Проверка'}: ${langName(lang.code)}`);
     const match = findBestInternationalismMatch(lang.code, word, index);
     if (!isCurrentRun(runId)) return;
     state.evidence[lang.code] = match.form || '';
@@ -269,18 +272,22 @@ async function analyze() {
   state.isSearching = true;
   state.searchError = '';
   render();
+  setButtonStatus('#checkBtn', currentLang() === 'en' ? 'Preparing...' : 'Подготовка...', true);
   try {
-    await searchAllLanguages(runId);
+    await searchAllLanguages(runId, { onProgress: text => setButtonStatus('#checkBtn', text, true) });
     if (!isCurrentRun(runId)) return;
   } catch (error) {
     if (!isCurrentRun(runId)) return;
     console.error(error);
     state.searchError = t('searchError');
+    setButtonStatus('#checkBtn', currentLang() === 'en' ? 'Error' : 'Ошибка', false);
   } finally {
     if (!isCurrentRun(runId)) return;
     state.isSearching = false;
     state.checked = true;
+    setButtonStatus('#checkBtn', currentLang() === 'en' ? 'Calculating result...' : 'Расчёт результата...', true);
     render();
+    setTimeout(() => setButtonStatus('#checkBtn', t('check'), false), 800);
   }
 }
 
@@ -321,12 +328,12 @@ function renderEvidenceRows() {
 function renderResult() { const r = result(); const checked = Boolean(state.checked); const accepted = checked && r.accepted; byId('resultBox').innerHTML = `<span class="status-pill ${r.accepted ? 'ok' : 'bad'}">${r.accepted ? t('accept') : t('reject')}</span><dl><div><dt>${t('coverage')}</dt><dd>${r.passed}/${r.total}</dd></div><div><dt>${t('required')}</dt><dd>5/6</dd></div></dl>`; ['evidenceSection', 'resultSection'].forEach(id => { const element = byId(id); if (element) element.hidden = !checked; }); const jsonBtn = byId('jsonBtn'); if (jsonBtn) { jsonBtn.hidden = !accepted; jsonBtn.disabled = !accepted; } }
 function render() {
   renderChrome(); applyJsonModalTexts(); document.title = t('title'); byId('pageTitle').textContent = t('title'); byId('pageLead').textContent = t('lead');
-  byId('paramsTitle').textContent = t('params'); byId('wordLabel').textContent = t('word'); byId('posLabel').textContent = t('pos'); byId('checkBtn').textContent = state.isSearching ? (currentLang() === 'en' ? 'Searching...' : 'Поиск...') : t('check'); byId('checkBtn').disabled = state.isSearching; byId('evidenceTitle').textContent = t('evidence'); byId('decisionTitle').textContent = t('decision'); byId('jsonBtn').textContent = t('json'); byId('resetBtn').title = t('resetAria'); byId('resetBtn').setAttribute('aria-label', t('resetAria'));
+  byId('paramsTitle').textContent = t('params'); byId('wordLabel').textContent = t('word'); byId('posLabel').textContent = t('pos'); setButtonStatus('#checkBtn', state.isSearching ? (currentLang() === 'en' ? 'Searching...' : 'Поиск...') : t('check'), state.isSearching); byId('evidenceTitle').textContent = t('evidence'); byId('decisionTitle').textContent = t('decision'); byId('jsonBtn').textContent = t('json'); byId('resetBtn').title = t('resetAria'); byId('resetBtn').setAttribute('aria-label', t('resetAria'));
   byId('posInput').innerHTML = `<option value="noun">${t('noun')}</option><option value="adjective">${t('adjective')}</option><option value="verb">${t('verb')}</option><option value="adverb">${t('adverb')}</option>`; byId('posInput').value = state.part_of_speech;
   byId('noticeBox').innerHTML = `${state.isSearching ? `<div class="notice">${escapeHtml(t('searching'))}</div>` : ''}${state.searchError ? `<div class="notice notice--warning">${escapeHtml(state.searchError)}</div>` : ''}`;
   byId('evidenceBox').innerHTML = `<div class="language-grid">${renderEvidenceRows()}</div>`; LANGUAGES.forEach(lang => { const pass = byId(`pass_${lang.code}`); if (pass && (state.manualOverride[lang.code] === null || state.manualOverride[lang.code] === undefined)) pass.indeterminate = true; });
   renderResult(); updateResetButtonVisibility();
 }
 const jsonFilename = 'internationalism-card.json';
-function bindJsonModal() { window.InteralJsonCardModal?.init({ getLanguage: currentLang, getTexts: () => t('jsonCard'), buildCard: async () => { readState(); if (!state.checked || !result().accepted) throw new Error(t('jsonCard.unavailable')); return makeCard(); }, formatCard: (card) => JSON.stringify(card, null, 2), getFilename: () => jsonFilename }); document.addEventListener('interal:languagechange', () => { readState(); render(); }); byId('resetBtn')?.addEventListener('click', resetAll); byId('checkBtn')?.addEventListener('click', analyze); byId('app')?.addEventListener('input', event => { const target = event.target; if (target?.id === 'wordInput') { state.word = target.value; state.checked = false; render(); return; } else if (target?.id === 'posInput') { state.part_of_speech = target.value; state.checked = false; render(); return; } else if (target?.id?.startsWith('form_')) { readState(); updateResetButtonVisibility(); return; } updateResetButtonVisibility(); }); byId('app')?.addEventListener('change', event => { const target = event.target; if (target?.id?.startsWith('pass_')) { const code = target.id.replace('pass_', ''); state.manualOverride[code] = Boolean(target.checked); render(); return; } if (target?.id === 'posInput') state.checked = false; readState(); render(); }); }
+function bindJsonModal() { window.InteralJsonCardModal?.init({ getLanguage: currentLang, getTexts: () => t('jsonCard'), buildCard: async ({ onProgress } = {}) => { readState(); if (!state.checked || !result().accepted) throw new Error(t('jsonCard.unavailable')); onProgress?.(currentLang() === 'en' ? 'Building card...' : 'Сборка карточки...'); return makeCard(); }, formatCard: (card) => JSON.stringify(card, null, 2), getFilename: () => jsonFilename }); document.addEventListener('interal:languagechange', () => { readState(); render(); }); byId('resetBtn')?.addEventListener('click', resetAll); byId('checkBtn')?.addEventListener('click', analyze); byId('app')?.addEventListener('input', event => { const target = event.target; if (target?.id === 'wordInput') { state.word = target.value; state.checked = false; render(); return; } else if (target?.id === 'posInput') { state.part_of_speech = target.value; state.checked = false; render(); return; } else if (target?.id?.startsWith('form_')) { readState(); updateResetButtonVisibility(); return; } updateResetButtonVisibility(); }); byId('app')?.addEventListener('change', event => { const target = event.target; if (target?.id?.startsWith('pass_')) { const code = target.id.replace('pass_', ''); state.manualOverride[code] = Boolean(target.checked); render(); return; } if (target?.id === 'posInput') state.checked = false; readState(); render(); }); }
  applyJsonModalTexts(); render();
