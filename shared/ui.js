@@ -900,6 +900,10 @@ function setupModalSelects(root = document) {
     return Array.from(select.options).filter((option) => !option.hidden);
   }
 
+  function getSelectTrigger(select) {
+    return select.closest('.interal-select-modal-field')?.querySelector(':scope > .interal-select-trigger');
+  }
+
   function ensureSelectHasValidSelection(select) {
     const options = getVisibleOptions(select);
     if (!options.length) return;
@@ -985,13 +989,18 @@ function setupModalSelects(root = document) {
   selects.forEach((select) => {
     if (select.dataset.modalSelectReady === 'true') {
       select.tabIndex = -1;
-      select.setAttribute('aria-hidden', 'true');
-      select._modalSelectRefresh?.();
-      return;
+      if (select.getAttribute('aria-hidden') !== 'true') select.setAttribute('aria-hidden', 'true');
+      const existingTrigger = getSelectTrigger(select);
+      if (existingTrigger) {
+        select._modalSelectRefresh?.();
+        return;
+      }
+
+      select.dataset.modalSelectReady = 'false';
     }
     select.dataset.modalSelectReady = 'true';
     select.tabIndex = -1;
-    select.setAttribute('aria-hidden', 'true');
+    if (select.getAttribute('aria-hidden') !== 'true') select.setAttribute('aria-hidden', 'true');
 
     let wrapper = select.closest('.interal-select-modal-field');
 
@@ -1027,6 +1036,11 @@ function setupModalSelects(root = document) {
 
       trigger.disabled = select.disabled;
       trigger.setAttribute('aria-disabled', String(select.disabled));
+
+      const state = modal._modalSelectState;
+      if (!modal.hidden && state?.activeSelect === select) {
+        buildModalOptions(select, trigger);
+      }
     }
 
     trigger.addEventListener('click', () => openModal(select, trigger));
@@ -1072,6 +1086,20 @@ if (window.MutationObserver) {
             selectsToRefresh.add(node.parentElement);
           }
         });
+
+        if (mutation.target instanceof HTMLOptionElement && mutation.target.parentElement?.matches?.('select.js-custom-select')) {
+          selectsToRefresh.add(mutation.target.parentElement);
+        }
+      }
+
+      if (mutation.type === 'attributes') {
+        const target = mutation.target;
+        if (target instanceof HTMLSelectElement && target.matches('select.js-custom-select')) {
+          selectsToRefresh.add(target);
+        }
+        if (target instanceof HTMLOptionElement && target.parentElement?.matches?.('select.js-custom-select')) {
+          selectsToRefresh.add(target.parentElement);
+        }
       }
 
       if (mutation.type === 'characterData') {
@@ -1093,7 +1121,9 @@ if (window.MutationObserver) {
     customSelectObserver.observe(document.body, {
       childList: true,
       subtree: true,
-      characterData: true
+      characterData: true,
+      attributes: true,
+      attributeFilter: ['disabled', 'hidden', 'label', 'value', 'selected', 'class', 'aria-hidden']
     });
   };
 
