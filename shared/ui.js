@@ -714,7 +714,13 @@
     const currentNav = getCurrentPageNav();
 
     document.querySelectorAll('[data-nav]').forEach((link) => {
-      link.classList.toggle('is-active', !!currentNav && link.dataset.nav === currentNav);
+      const isCurrent = !!currentNav && link.dataset.nav === currentNav;
+      link.classList.toggle('is-active', isCurrent);
+      if (isCurrent) {
+        link.setAttribute('aria-current', 'page');
+      } else {
+        link.removeAttribute('aria-current');
+      }
     });
 
     const currentItem = currentNav ? pageNavItems[currentNav] : null;
