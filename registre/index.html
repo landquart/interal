@@ -195,7 +195,7 @@
           <select class="js-custom-select" id="registry-sort"></select>
         </div>
         <div class="field field--reset">
-          <button class="registry-btn" id="registry-reset" type="button" data-i18n="resetFilters">Сбросить фильтры</button>
+          <button class="registry-btn" id="registry-reset" type="button" data-i18n="resetFilters">Сбросить</button>
         </div>
       </div>
     </section>
@@ -214,7 +214,7 @@
       </div>
       <textarea class="registry-json-view" id="json-view" readonly spellcheck="false"></textarea>
       <div class="registry-modal-actions">
-        <button class="registry-btn registry-copy-icon-btn menu-copy-btn" type="button" id="modal-copy-json" aria-label="Скопировать JSON" title="Скопировать JSON" data-i18n-attr="aria-label:copyJson,title:copyJson">
+        <button class="registry-btn registry-copy-icon-btn menu-copy-btn" type="button" id="modal-copy-json" aria-label="Скопировать JSON-карточку" title="Скопировать JSON-карточку" data-i18n-attr="aria-label:copyJson,title:copyJson">
           <span class="menu-copy-icon-stack" aria-hidden="true">
             <img class="menu-copy-icon menu-copy-icon-link" src="../elements/Copy.svg" alt="">
             <svg class="menu-copy-icon menu-copy-icon-check" viewBox="0 0 24 24" focusable="false">
@@ -249,23 +249,23 @@
           title: 'Registre of vordesen cartes', filtersAria: 'Фильтры реестра',
           searchLabel: 'Поиск', searchPlaceholder: 'Поиск по слову, переводу, ID, автору, группе...', typeLabel: 'Тип слова', allTypes: 'Все типы',
           posLabel: 'Часть речи', allParts: 'Все части речи', groupLabel: 'Языковая группа', allGroups: 'Все группы', authorLabel: 'Автор', authorPlaceholder: 'Автор',
-          minPiLabel: 'Минимальный PI', sortLabel: 'Сортировка', resetFilters: 'Сбросить фильтры', resetConfirm: 'Сбросить фильтры? Это действие нельзя отменить.',
+          minPiLabel: 'Минимальный PI', sortLabel: 'Сортировка', resetFilters: 'Сбросить', resetConfirm: 'Сбросить введённые данные? Это действие нельзя отменить.',
           sortWord: 'По слову', sortAccepted: 'Новые принятые', sortCreated: 'Новые созданные', sortPi: 'PI по убыванию',
           found: (shown, total) => `Найдено карточек: ${shown} из ${total}`, nothingFound: 'Ничего не найдено.', emptyRegistry: 'В реестре пока нет карточек.',
           loadError: 'Не удалось загрузить registry.json. Реестр пока недоступен или файл не найден.', invalidRegistry: 'registry.json имеет неверный формат.',
           word: 'Слово', ipa: 'IPA', type: 'Тип слова', partOfSpeech: 'Часть речи', translation: 'Перевод', authorContact: 'Контакт автора', pi: 'PI', groups: 'Языковые группы', author: 'Автор', createdAt: 'Создано', acceptedAt: 'Принято', id: 'ID',
-          noValue: '—', openJson: 'Открыть JSON', copyId: 'Скопировать ID', copyJson: 'Скопировать JSON', startDiscussion: 'Начать обсуждение', viewComments: (count) => `Смотреть комментарии (${count})`, discussionTitle: 'Обсуждение', fullJsonTitle: 'Полная JSON-карточка', close: 'Закрыть', jsonCopied: 'JSON скопирован', jsonCopyFailed: 'Не удалось скопировать JSON', idCopied: 'ID скопирован', idCopyFailed: 'Не удалось скопировать ID', jsonLoadFailed: 'Не удалось загрузить полную JSON-карточку.'
+          noValue: '—', openJson: 'Открыть JSON', copyId: 'Скопировать ID', copyJson: 'Скопировать JSON-карточку', startDiscussion: 'Начать обсуждение', viewComments: (count) => `Смотреть комментарии (${count})`, discussionTitle: 'Обсуждение', fullJsonTitle: 'Полная JSON-карточка', close: 'Закрыть', jsonCopied: 'JSON-карточка скопирована', jsonCopyFailed: 'Не удалось скопировать JSON-карточку', idCopied: 'ID скопирован', idCopyFailed: 'Не удалось скопировать ID', jsonLoadFailed: 'Не удалось загрузить полную JSON-карточку.'
         },
         en: {
           title: 'Registre of vordesen cartes', filtersAria: 'Registry filters',
           searchLabel: 'Search', searchPlaceholder: 'Search by word, translation, ID, author, group...', typeLabel: 'Word type', allTypes: 'All types',
           posLabel: 'Part of speech', allParts: 'All parts of speech', groupLabel: 'Language group', allGroups: 'All groups', authorLabel: 'Author', authorPlaceholder: 'Author',
-          minPiLabel: 'Minimum PI', sortLabel: 'Sort', resetFilters: 'Reset filters', resetConfirm: 'Reset filters? This action cannot be undone.',
+          minPiLabel: 'Minimum PI', sortLabel: 'Sort', resetFilters: 'Reset', resetConfirm: 'Reset entered data? This action cannot be undone.',
           sortWord: 'By word', sortAccepted: 'New accepted first', sortCreated: 'New created first', sortPi: 'PI descending',
           found: (shown, total) => `Cards found: ${shown} of ${total}`, nothingFound: 'Nothing found.', emptyRegistry: 'There are no cards in the registry yet.',
           loadError: 'Could not load registry.json. The registry is unavailable or the file was not found.', invalidRegistry: 'registry.json has an invalid format.',
           word: 'Word', ipa: 'IPA', type: 'Word type', partOfSpeech: 'Part of speech', translation: 'Translation', authorContact: 'Author contact', pi: 'PI', groups: 'Groups', author: 'Author', createdAt: 'Created at', acceptedAt: 'Accepted at', id: 'ID',
-          noValue: '—', openJson: 'Open JSON', copyId: 'Copy ID', copyJson: 'Copy JSON', startDiscussion: 'Start discussion', viewComments: (count) => `View comments (${count})`, discussionTitle: 'Discussion', fullJsonTitle: 'Full JSON card', close: 'Close', jsonCopied: 'JSON copied', jsonCopyFailed: 'Could not copy JSON', idCopied: 'ID copied', idCopyFailed: 'Could not copy ID', jsonLoadFailed: 'Could not load the full JSON card.'
+          noValue: '—', openJson: 'Open JSON', copyId: 'Copy ID', copyJson: 'Copy JSON card', startDiscussion: 'Start discussion', viewComments: (count) => `View comments (${count})`, discussionTitle: 'Discussion', fullJsonTitle: 'Full JSON card', close: 'Close', jsonCopied: 'JSON card copied', jsonCopyFailed: 'Could not copy JSON card', idCopied: 'ID copied', idCopyFailed: 'Could not copy ID', jsonLoadFailed: 'Could not load the full JSON card.'
         }
       };
       const TYPE_LABELS = { iv: 'indoeropan vordes', av: 'associativ vordes', in: 'internationalismes', vc: 'vordes of communités', gv: 'grammatic vordes', al: 'alter vordes' };
@@ -570,7 +570,7 @@
       els.reset.addEventListener('click', async () => {
         const shouldReset = await (
           window.InteralUI?.confirmReset?.({
-            title: state.lang === 'en' ? 'Reset filters?' : 'Сбросить фильтры?',
+            title: state.lang === 'en' ? 'Reset?' : 'Сбросить?',
             message: t('resetConfirm'),
             confirmLabel: state.lang === 'en' ? 'Reset' : 'Сбросить',
             cancelLabel: state.lang === 'en' ? 'Cancel' : 'Отмена'
