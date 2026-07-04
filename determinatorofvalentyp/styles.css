@@ -102,6 +102,17 @@ body {
   display: grid;
   place-items: center;
   box-shadow: none;
+  transform: scale(1);
+  transition: transform 0.22s ease;
+}
+
+.determinator-page .plus-btn:hover,
+.determinator-page .plus-btn:focus-visible {
+  transform: scale(1.08);
+}
+
+.determinator-page .plus-btn:active {
+  transform: scale(1.03);
 }
 
 .determinator-page .plus-btn-icon {
