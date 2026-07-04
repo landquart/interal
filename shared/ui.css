@@ -148,6 +148,18 @@ body.has-global-menu .interal-tool-page {
   padding-top: 86px;
 }
 
+.interal-tool-page button,
+.interal-tool-page input,
+.interal-tool-page select,
+.interal-tool-page textarea {
+  font: inherit;
+}
+
+.interal-tool-page .modal-card,
+.interal-tool-page .interal-select-modal {
+  font-family: "Jost", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
 .interal-page-shell {
   width: min(var(--page-width, 980px), calc(100% - 32px));
   margin: 0 auto;
