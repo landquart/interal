@@ -55,7 +55,8 @@
     .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
     .associativ-page label { display: block; font-weight: 650; margin-bottom: 6px; }
-    .associativ-page input, .associativ-page select, .associativ-page textarea, .associativ-page .tool-btn, .associativ-page .interal-select-trigger { font: inherit; width: 100%; }
+    .associativ-page input, .associativ-page select, .associativ-page textarea, .associativ-page .interal-select-trigger { font: inherit; width: 100%; }
+    .associativ-page .tool-btn { font: inherit; }
 
     .associativ-page textarea { min-height: 110px; resize: vertical; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
 
@@ -93,9 +94,8 @@
     .row .fit { flex: 0 0 auto; }
 
     .actions-row { display: flex; flex-wrap: wrap; gap: 10px; }
-    .associativ-page .actions-row .interal-btn { flex: 0 1 auto; width: auto; min-width: 150px; padding-inline: 18px; }
+    .associativ-page .actions-row .interal-btn { flex: 0 1 auto; width: auto; min-width: 0; padding-inline: 18px; }
     .fit.short { width: auto; min-width: 0; padding-inline: 12px; }
-    .associativ-page .actions-row #calculateBtn { min-width: 230px; }
     .associativ-page #calculateBtn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
     .associativ-page #calculateBtn .btn-text { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .associativ-page .btn-loader { width: 22px; height: 22px; display: none; flex: 0 0 auto; object-fit: contain; pointer-events: none; }
@@ -443,7 +443,7 @@
           <img src="../elements/Eraser%20Square.svg" alt="" aria-hidden="true"  />
         </button>
       </div>
-      <div style="grid-column: 1 / -1;">
+      <div class="visually-removed" style="grid-column: 1 / -1;">
         <h2 id="searchTitle">Параметры поиска</h2>
         <p class="muted" id="searchNote">Сначала задайте корень и тип элемента, затем запустите расчёт.</p>
       </div>

@@ -24,7 +24,7 @@ body.has-global-menu { padding-top: 86px; }
 .field { display: grid; gap: 6px; margin-bottom: 12px; }
 .compact-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
 label { color: var(--text-muted); font-size: 14px; font-weight: 600; }
-.actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-start; margin-top: 14px; }
+.actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 14px; }
 
 .internationalismes-page .interal-select-modal-field,
 .internationalismes-page .interal-select-trigger {
