@@ -318,6 +318,11 @@ pre {
   z-index: var(--z-page-modal);
 }
 
+.determinator-page .modal,
+.determinator-page .modal * {
+  font-family: "Jost", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
 .modal.hidden {
   display: none;
 }
