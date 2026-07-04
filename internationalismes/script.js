@@ -265,6 +265,29 @@ function readEvidence() {
   }
 }
 function readState() { state.word = byId('wordInput')?.value.trim() || ''; state.part_of_speech = byId('posInput')?.value || state.part_of_speech; readEvidence(); }
+function syncPosSelectOptions() {
+  const select = byId('posInput');
+  if (!select) return;
+
+  const allowedValues = ['noun', 'adjective', 'verb', 'adverb'];
+  const currentValue = allowedValues.includes(state.part_of_speech)
+    ? state.part_of_speech
+    : allowedValues.includes(select.value)
+      ? select.value
+      : 'noun';
+
+  select.innerHTML = `
+    <option value="noun">${t('noun')}</option>
+    <option value="adjective">${t('adjective')}</option>
+    <option value="verb">${t('verb')}</option>
+    <option value="adverb">${t('adverb')}</option>
+  `;
+
+  select.value = currentValue;
+  state.part_of_speech = currentValue;
+
+  window.refreshCustomSelect?.(select);
+}
 async function analyze() {
   readState();
   if (!state.word.trim()) { render(); return; }
@@ -367,7 +390,11 @@ function renderResult() {
 function render() {
   renderChrome(); applyJsonModalTexts(); document.title = t('title'); byId('pageTitle').textContent = t('title'); byId('pageLead').textContent = t('lead');
   byId('paramsTitle').textContent = t('params'); byId('wordLabel').textContent = t('word'); byId('posLabel').textContent = t('pos'); setButtonStatus('#checkBtn', state.isSearching ? (currentLang() === 'en' ? 'Searching...' : 'Поиск...') : t('check'), state.isSearching); byId('evidenceTitle').textContent = t('evidence'); byId('decisionTitle').textContent = t('decision'); byId('jsonBtn').textContent = t('json'); byId('resetBtn').title = t('resetAria'); byId('resetBtn').setAttribute('aria-label', t('resetAria'));
-  byId('posInput').innerHTML = `<option value="noun">${t('noun')}</option><option value="adjective">${t('adjective')}</option><option value="verb">${t('verb')}</option><option value="adverb">${t('adverb')}</option>`; byId('posInput').value = state.part_of_speech; byId('posInput').dispatchEvent(new Event('change', { bubbles: true })); window.refreshCustomSelect?.(byId('posInput'));
+  const posInput = byId('posInput');
+  if (posInput && posInput.value !== state.part_of_speech) {
+    posInput.value = state.part_of_speech || 'noun';
+    window.refreshCustomSelect?.(posInput);
+  }
   byId('noticeBox').innerHTML = `${state.isSearching ? `<div class="notice">${escapeHtml(t('searching'))}</div>` : ''}${state.searchError ? `<div class="notice notice--warning">${escapeHtml(state.searchError)}</div>` : ''}`;
   byId('evidenceBox').innerHTML = `<div class="language-grid">${renderEvidenceRows()}</div>`; LANGUAGES.forEach(lang => { const pass = byId(`pass_${lang.code}`); if (pass && (state.manualOverride[lang.code] === null || state.manualOverride[lang.code] === undefined)) pass.indeterminate = true; });
   renderResult(); updateResetButtonVisibility();
@@ -375,22 +402,23 @@ function render() {
 const jsonFilename = 'internationalism-card.json';
 function bindJsonModal() {
   window.InteralJsonCardModal?.init({ getLanguage: currentLang, getTexts: () => t('jsonCard'), buildCard: async ({ onProgress } = {}) => { readState(); if (!canCreateCard()) throw new Error(t('jsonCard.unavailable')); onProgress?.(currentLang() === 'en' ? 'Building card...' : 'Сборка карточки...'); return makeCard(); }, formatCard: (card) => JSON.stringify(card, null, 2), getFilename: () => jsonFilename });
-  document.addEventListener('interal:languagechange', () => { readState(); render(); });
+  document.addEventListener('interal:languagechange', () => { readState(); syncPosSelectOptions(); render(); });
   byId('resetBtn')?.addEventListener('click', resetAll);
   byId('checkBtn')?.addEventListener('click', analyze);
   byId('app')?.addEventListener('input', event => {
     const target = event.target;
     if (target?.id === 'wordInput') { state.word = target.value; resetSuccessfulCheck(); render(); return; }
-    if (target?.id === 'posInput') { state.part_of_speech = target.value; resetSuccessfulCheck(); render(); return; }
+    if (target?.id === 'posInput') return;
     if (target?.id?.startsWith('form_')) { readState(); resetSuccessfulCheck(); render(); return; }
     updateResetButtonVisibility();
   });
   byId('app')?.addEventListener('change', event => {
     const target = event.target;
     if (target?.id?.startsWith('pass_')) { const code = target.id.replace('pass_', ''); state.manualOverride[code] = Boolean(target.checked); resetSuccessfulCheck(); render(); return; }
-    if (target?.id === 'posInput') { readState(); resetSuccessfulCheck(); render(); return; }
+    if (target?.id === 'posInput') { state.part_of_speech = target.value || 'noun'; resetSuccessfulCheck(); updateResetButtonVisibility(); window.refreshCustomSelect?.(target); return; }
     readState(); render();
   });
 }
 bindJsonModal();
+syncPosSelectOptions();
 applyJsonModalTexts(); render();
