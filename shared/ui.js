@@ -108,6 +108,7 @@
       themeDark: 'Тёмная',
       themeLight: 'Светлая',
       selectChoose: 'Выберите вариант',
+      selectEmpty: 'Нет вариантов',
       close: 'Закрыть',
       langLabel: 'Язык',
       langChoose: 'Выбрать язык',
@@ -144,6 +145,7 @@
       themeDark: 'Dark',
       themeLight: 'Light',
       selectChoose: 'Choose option',
+      selectEmpty: 'No options',
       close: 'Close',
       langLabel: 'Language',
       langChoose: 'Choose language',
@@ -894,24 +896,36 @@ function setupModalSelects(root = document) {
     return String(value).replace(/["\\]/g, '\\$&');
   }
 
-  function getSelectedText(select) {
-    const selected = select.options[select.selectedIndex];
-    return selected ? selected.textContent : '';
+  function getVisibleOptions(select) {
+    return Array.from(select.options).filter((option) => !option.hidden);
   }
 
-  function openModal(select, trigger) {
-    if (select.disabled) return;
+  function ensureSelectHasValidSelection(select) {
+    const options = getVisibleOptions(select);
+    if (!options.length) return;
 
-    const state = modal._modalSelectState;
-    state.activeSelect = select;
-    state.activeTrigger = trigger;
+    const selected = select.options[select.selectedIndex];
+    if (!selected || selected.hidden || selected.disabled) {
+      const firstAvailable = options.find((option) => !option.disabled) || options[0];
+      if (firstAvailable) select.value = firstAvailable.value;
+    }
+  }
 
-    const label = select.id ? document.querySelector(`label[for="${cssEscape(select.id)}"]`) : null;
-    title.textContent = label?.textContent?.trim() || getUiText('selectChoose');
-    closeButton?.setAttribute('aria-label', getUiText('close'));
-    optionsBox.innerHTML = '';
+  function buildModalOptions(select, trigger) {
+    optionsBox.replaceChildren();
+    ensureSelectHasValidSelection(select);
 
-    Array.from(select.options).forEach((option) => {
+    const options = getVisibleOptions(select);
+
+    if (!options.length) {
+      const empty = document.createElement('div');
+      empty.className = 'interal-select-empty';
+      empty.textContent = getUiText('selectEmpty') || 'Нет вариантов';
+      optionsBox.appendChild(empty);
+      return;
+    }
+
+    options.forEach((option) => {
       const btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'interal-select-option';
@@ -921,7 +935,8 @@ function setupModalSelects(root = document) {
       btn.setAttribute('aria-selected', String(option.selected));
 
       const labelText = document.createElement('span');
-      labelText.textContent = option.textContent;
+      labelText.className = 'interal-select-option-text';
+      labelText.textContent = option.textContent || option.label || option.value;
 
       const check = document.createElement('span');
       check.className = 'interal-select-option-check';
@@ -936,13 +951,29 @@ function setupModalSelects(root = document) {
 
       btn.addEventListener('click', () => {
         if (option.disabled) return;
+
         select.value = option.value;
         select.dispatchEvent(new Event('change', { bubbles: true }));
+        select._customSelectRefresh?.();
+
         modal._closeModalSelect();
       });
 
       optionsBox.appendChild(btn);
     });
+  }
+
+  function openModal(select, trigger) {
+    if (select.disabled) return;
+
+    const state = modal._modalSelectState;
+    state.activeSelect = select;
+    state.activeTrigger = trigger;
+
+    const label = select.id ? document.querySelector(`label[for="${cssEscape(select.id)}"]`) : null;
+    title.textContent = label?.textContent?.trim() || getUiText('selectChoose');
+    closeButton?.setAttribute('aria-label', getUiText('close'));
+    buildModalOptions(select, trigger);
 
     modal.hidden = false;
     trigger.setAttribute('aria-expanded', 'true');
@@ -989,7 +1020,11 @@ function setupModalSelects(root = document) {
     wrapper.appendChild(trigger);
 
     function syncFromSelect() {
-      text.textContent = getSelectedText(select);
+      ensureSelectHasValidSelection(select);
+
+      const selected = select.options[select.selectedIndex];
+      text.textContent = selected ? selected.textContent : '';
+
       trigger.disabled = select.disabled;
       trigger.setAttribute('aria-disabled', String(select.disabled));
     }
@@ -1011,24 +1046,55 @@ if (document.readyState === 'loading') {
 
 if (window.MutationObserver) {
   const customSelectObserver = new MutationObserver((mutations) => {
-    const roots = new Set();
+    const selectsToRefresh = new Set();
+    const rootsToInit = new Set();
 
     mutations.forEach((mutation) => {
-      mutation.addedNodes.forEach((node) => {
-        if (node.nodeType !== Node.ELEMENT_NODE) return;
-        if (node.matches?.('select.js-custom-select') || node.querySelector?.('select.js-custom-select')) {
-          roots.add(node);
+      if (mutation.type === 'childList') {
+        if (mutation.target instanceof HTMLSelectElement && mutation.target.matches('select.js-custom-select')) {
+          selectsToRefresh.add(mutation.target);
         }
-      });
+
+        mutation.addedNodes.forEach((node) => {
+          if (node.nodeType !== Node.ELEMENT_NODE) return;
+
+          if (node.matches?.('select.js-custom-select')) {
+            rootsToInit.add(node);
+            selectsToRefresh.add(node);
+          }
+
+          node.querySelectorAll?.('select.js-custom-select').forEach((select) => {
+            rootsToInit.add(select);
+            selectsToRefresh.add(select);
+          });
+
+          if (node.tagName === 'OPTION' && node.parentElement?.matches?.('select.js-custom-select')) {
+            selectsToRefresh.add(node.parentElement);
+          }
+        });
+      }
+
+      if (mutation.type === 'characterData') {
+        const option = mutation.target.parentElement?.closest?.('option');
+        const select = option?.parentElement;
+        if (select?.matches?.('select.js-custom-select')) {
+          selectsToRefresh.add(select);
+        }
+      }
     });
 
-    roots.forEach((root) => setupModalSelects(root));
+    rootsToInit.forEach((root) => setupModalSelects(root));
+    selectsToRefresh.forEach((select) => select._customSelectRefresh?.());
   });
 
   const observeCustomSelects = () => {
     if (!document.body || document.body.dataset.customSelectObserver === 'true') return;
     document.body.dataset.customSelectObserver = 'true';
-    customSelectObserver.observe(document.body, { childList: true, subtree: true });
+    customSelectObserver.observe(document.body, {
+      childList: true,
+      subtree: true,
+      characterData: true
+    });
   };
 
   if (document.readyState === 'loading') {
@@ -1039,37 +1105,17 @@ if (window.MutationObserver) {
 }
 
 
-
-  function setupButtonGradientHover() {
-    const buttonSelector = '.gradient-hover';
-
-    document.addEventListener('pointermove', (event) => {
-      const button = event.target.closest(buttonSelector);
-      if (!button || button.disabled) return;
-
-      const rect = button.getBoundingClientRect();
-      const x = event.clientX - rect.left;
-      const y = event.clientY - rect.top;
-
-      button.style.setProperty('--btn-x', `${x}px`);
-      button.style.setProperty('--btn-y', `${y}px`);
-    });
-
-    document.addEventListener('pointerout', (event) => {
-      const button = event.target.closest(buttonSelector);
-      if (!button) return;
-
-      const next = event.relatedTarget;
-      if (next && button.contains(next)) return;
-
-      button.style.setProperty('--btn-x', '50%');
-      button.style.setProperty('--btn-y', '50%');
-    });
-  }
-
 window.initCustomSelects = initCustomSelects;
-setupButtonGradientHover();
+window.refreshCustomSelect = function refreshCustomSelect(selectOrId) {
+  const select = typeof selectOrId === 'string'
+    ? document.getElementById(selectOrId)
+    : selectOrId;
 
+  if (!select || !select.matches?.('select.js-custom-select')) return;
+
+  setupModalSelects(select);
+  select._customSelectRefresh?.();
+};
 })();
 
 (function () {

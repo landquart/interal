@@ -765,8 +765,7 @@ function setupSelects() {
   rebuildCategorySelect();
   fillComponentSelect();
   [els.assimilationSelect, els.componentCategorySelect, els.componentSelect, els.prefixVariantSelect].forEach((select) => {
-    select?._customSelectRefresh?.();
-    if (select) window.initCustomSelects?.(select);
+    if (select) window.refreshCustomSelect?.(select);
   });
 }
 
@@ -1039,8 +1038,7 @@ function openPrefixVariantStep(item) {
   });
 
   updatePrefixVariantPreview();
-  els.prefixVariantSelect._customSelectRefresh?.();
-  window.initCustomSelects?.(els.prefixVariantSelect);
+  window.refreshCustomSelect?.(els.prefixVariantSelect);
   closeModal(els.componentModal);
   openModal(els.prefixVariantModal);
 }
