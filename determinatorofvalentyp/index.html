@@ -57,8 +57,8 @@
         <input id="ollamaUrl" type="text" value="http://localhost:11434" />
         <input id="ollamaModel" type="text" value="qwen3-embedding" />
         <textarea id="manualPrompt" readonly></textarea>
-        <button id="buildPromptBtn" type="button"></button>
-        <button id="copyPromptBtn" type="button"></button>
+        <button id="buildPromptBtn" type="button" aria-label="Собрать промпт"></button>
+        <button id="copyPromptBtn" type="button" aria-label="Копировать промпт"></button>
         <textarea id="manualEmbeddingResponse"></textarea>
       </div>
 
@@ -103,7 +103,7 @@
     <div class="modal-backdrop" data-close-modal="true"></div>
     <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="rootTitle">
       <div class="modal-header">
-        <button id="backFromRootBtn" class="back-btn" type="button"><img src="../elements/Arrow%20Left.svg" alt="" aria-hidden="true" /></button>
+        <button id="backFromRootBtn" class="back-btn" type="button" aria-label="Назад"><img src="../elements/Arrow%20Left.svg" alt="" aria-hidden="true" /></button>
         <h2 id="rootTitle">Основной корень</h2>
         <button class="icon-btn close-btn" type="button" data-close-modal="true" aria-label="Закрыть">&times;</button>
       </div>
@@ -133,7 +133,7 @@
     <div class="modal-backdrop" data-close-modal="true"></div>
     <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="componentTitle">
       <div class="modal-header">
-        <button id="backFromComponentBtn" class="back-btn" type="button"><img src="../elements/Arrow%20Left.svg" alt="" aria-hidden="true" /></button>
+        <button id="backFromComponentBtn" class="back-btn" type="button" aria-label="Назад"><img src="../elements/Arrow%20Left.svg" alt="" aria-hidden="true" /></button>
         <h2 id="componentTitle">Компонент (аффикс/окончание)</h2>
         <button class="icon-btn close-btn" type="button" data-close-modal="true" aria-label="Закрыть">&times;</button>
       </div>
@@ -141,6 +141,7 @@
       <div class="interal-field field compact-field">
         <label id="componentSearchLabel" for="componentSearchInput">Поиск</label>
         <input class="interal-input" id="componentSearchInput" type="search" autocomplete="off" placeholder="-or, действие, приставка" />
+        <div id="componentSearchResults" class="component-search-results" role="listbox" aria-label="Результаты поиска компонентов"></div>
       </div>
 
       <div class="interal-field field compact-field">
@@ -164,7 +165,7 @@
     <div class="modal-backdrop" data-close-modal="true"></div>
     <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="prefixVariantTitle">
       <div class="modal-header">
-        <button id="backFromPrefixVariantBtn" class="back-btn" type="button"><img src="../elements/Arrow%20Left.svg" alt="" aria-hidden="true" /></button>
+        <button id="backFromPrefixVariantBtn" class="back-btn" type="button" aria-label="Назад"><img src="../elements/Arrow%20Left.svg" alt="" aria-hidden="true" /></button>
         <h2 id="prefixVariantTitle">Ассимиляция приставки</h2>
         <button class="icon-btn close-btn" type="button" data-close-modal="true" aria-label="Закрыть">&times;</button>
       </div>
