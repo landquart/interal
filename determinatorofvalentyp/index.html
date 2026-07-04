@@ -11,13 +11,13 @@
   <link rel="stylesheet" href="../shared/ui.css?v=share-state-fix-20260628" />
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body class="determinator-page" data-page-state="off">
-  <main class="app-shell">
-    <header class="hero">
-      <h1>Determinator of valen typ</h1>
+<body class="interal-tool-page determinator-page" data-page-state="off">
+  <main class="interal-page-shell interal-page-shell--wide app-shell">
+    <header class="interal-page-hero hero">
+      <h1 class="interal-page-title">Determinator of valen typ</h1>
     </header>
 
-    <section class="panel">
+    <section class="interal-panel panel">
       <div class="field">
         <label id="regularWordLabel" for="regularWord">Слово по регулярной модели (с разделителями)</label>
        <input id="regularWord" type="text" autocomplete="off" placeholder="re/vis/ion" />
@@ -67,19 +67,19 @@
           class="card-reset-btn interal-reset-btn is-hidden"
           id="clearBtn"
           type="button"
-          aria-label="Очистить"
-          title="Очистить"
+          aria-label="Сбросить"
+          title="Сбросить"
         >
           <img src="../elements/Eraser%20Square.svg" alt="" aria-hidden="true" />
         </button>
       </div>
 
-      <div class="actions">
-        <button class="tool-btn gradient-hover" id="analyzeBtn" type="button">Анализировать</button>
+      <div class="interal-actions actions">
+        <button class="tool-btn interal-btn interal-btn--primary gradient-hover" id="analyzeBtn" type="button">Анализировать</button>
       </div>
     </section>
 
-    <section class="panel" id="resultPanel" hidden>
+    <section class="interal-panel panel" id="resultPanel" hidden>
       <h2 id="resultTitle">Результат</h2>
       <div id="result" class="result empty">Заполните поля и нажмите «Анализировать».</div>
     </section>

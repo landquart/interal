@@ -98,3 +98,12 @@ td .interal-input, td .interal-select, td .interal-select-trigger { min-width: 1
   justify-content: center;
   text-align: center;
 }
+
+/* Shared layout normalization */
+.vord-page-shell.interal-page-shell { width: min(var(--page-width, 980px), calc(100% - 32px)); padding: 14px 0 48px; display: grid; gap: var(--page-section-gap, 18px); }
+.vord-page-hero.interal-page-hero { padding: 0; }
+.vord-page-hero .interal-page-title { margin: 0; font-size: clamp(1.7rem, 4vw, 2.8rem); font-weight: 800; }
+.vord-panel.interal-panel { width: 100%; margin: 0; padding: var(--panel-padding, 18px); border-radius: var(--radius-lg); background: var(--surface); border: 1px solid var(--border-subtle); box-shadow: var(--shadow-md); }
+.actions.interal-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+.json-card-bottom-actions.interal-actions { justify-content: center; margin-top: 0; }
+@media (max-width: 640px) { .vord-page-shell.interal-page-shell { width: min(100% - 24px, var(--page-width, 980px)); padding: 10px 0 34px; gap: 12px; } .vord-panel.interal-panel { padding: 14px; border-radius: var(--radius-md); } }

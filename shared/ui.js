@@ -69,7 +69,18 @@
     }
   };
 
-  const instrumentNavKeys = Object.keys(pageNavItems).filter((key) => pageNavItems[key].group === 'instruments');
+  const instrumentNavOrder = [
+    'indoeuropanvordes',
+    'associativ',
+    'internationalismes',
+    'communities',
+    'grammar',
+    'altervordes',
+    'affixes',
+    'determinator'
+  ];
+
+  const instrumentNavKeys = instrumentNavOrder.filter((key) => pageNavItems[key]?.group === 'instruments');
 
   function getCurrentPageNav() {
     const path = window.location.pathname;

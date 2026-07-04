@@ -7,14 +7,14 @@
   <link rel="stylesheet" href="../shared/ui.css?v=share-state-fix-20260628" />
   <link rel="stylesheet" href="./styles.css?v=json-gate-20260703" />
 </head>
-<body class="internationalismes-page" data-page-state="off">
-  <main class="vord-page-shell">
-    <header class="vord-page-hero">
-      <h1 id="pageTitle">Internationalismes</h1>
+<body class="interal-tool-page internationalismes-page" data-page-state="off">
+  <main class="interal-page-shell interal-page-shell--medium vord-page-shell">
+    <header class="interal-page-hero vord-page-hero">
+      <h1 class="interal-page-title" id="pageTitle">Internationalismes</h1>
       <p id="pageLead"></p>
     </header>
     <div id="app">
-    <section class="card vord-panel params-panel">
+    <section class="interal-panel card vord-panel params-panel">
           <div class="card-tools">
             <button id="resetBtn" class="card-reset-btn interal-reset-btn is-hidden" type="button" aria-label="Сбросить" title="Сбросить">
               <img src="../elements/Eraser%20Square.svg" alt="" aria-hidden="true">
@@ -29,18 +29,18 @@
             <label id="posLabel" for="posInput">Часть речи</label>
             <select class="interal-select js-custom-select" id="posInput"></select>
           </div>
-          <div class="actions"><button class="interal-btn interal-btn--primary gradient-hover" id="checkBtn" type="button"><img class="btn-loader" src="../elements/loader_video_fitted_0_1s_triangle_fixed_centered.svg" alt="" aria-hidden="true" /><span class="btn-text">Проверить</span></button></div>
+          <div class="interal-actions actions"><button class="interal-btn interal-btn--primary gradient-hover" id="checkBtn" type="button"><img class="btn-loader" src="../elements/loader_video_fitted_0_1s_triangle_fixed_centered.svg" alt="" aria-hidden="true" /><span class="btn-text">Проверить</span></button></div>
         </section>
         <div id="noticeBox"></div>
-        <section class="card vord-panel" id="evidenceSection" hidden>
+        <section class="interal-panel card vord-panel" id="evidenceSection" hidden>
           <h2 id="evidenceTitle">Языковое покрытие</h2>
           <div id="evidenceBox"></div>
         </section>
-        <section class="card vord-panel decision-summary" id="resultSection" hidden>
+        <section class="interal-panel card vord-panel decision-summary" id="resultSection" hidden>
           <h2 id="decisionTitle">Решение</h2>
           <div id="resultBox"></div>
         </section>
-        <div class="actions json-card-bottom-actions" id="jsonActions" hidden><button class="interal-btn interal-btn--secondary gradient-hover" id="jsonBtn" type="button" hidden disabled>Сформировать JSON-карточку</button></div>
+        <div class="interal-actions interal-actions--center actions json-card-bottom-actions" id="jsonActions" hidden><button class="interal-btn interal-btn--secondary gradient-hover" id="jsonBtn" type="button" hidden disabled>Сформировать JSON-карточку</button></div>
     </div>
   </main>
   <div id="jsonCardModal" aria-hidden="true">

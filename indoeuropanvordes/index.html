@@ -588,14 +588,21 @@ body.dark-theme .internationalita-page .json-card-icon-btn.is-copied {
     padding: 18px;
   }
 }
+
+.internationalita-page .internationalita-shell { display: grid; gap: var(--page-section-gap, 18px); }
+.internationalita-page .interal-panel.card { width: 100%; max-width: none; margin: 0; padding: var(--panel-padding, 18px); border-radius: var(--radius-lg); background: var(--surface); border: 1px solid var(--border-subtle); box-shadow: var(--shadow-md); }
+.internationalita-page .interal-page-title.page-title { margin: 0; font-size: clamp(1.7rem, 4vw, 2.8rem); line-height: 1; letter-spacing: -0.05em; font-weight: 800; }
+.internationalita-page .json-card-bottom-actions { margin-top: 14px; }
+@media (max-width: 640px) { .internationalita-page .interal-panel.card { padding: 14px; border-radius: var(--radius-md); } }
 </style>
 </head>
 
-<body class="internationalita-page" data-page-state="off">
+<body class="interal-tool-page internationalita-page" data-page-state="off">
 
-<h1 class="page-title">Indoeuropan vordes</h1>
+<main class="interal-page-shell interal-page-shell--medium internationalita-shell">
+<header class="interal-page-hero"><h1 class="interal-page-title page-title">Indoeuropan vordes</h1></header>
 
-<div class="card">
+<section class="interal-panel card">
   <label for="interalWord" id="interalWordLabel">Слово-гипотеза на Интерале</label>
   <input id="interalWord" type="text" autocomplete="off">
 
@@ -643,13 +650,18 @@ body.dark-theme .internationalita-page .json-card-icon-btn.is-copied {
       <img src="../elements/Eraser%20Square.svg" alt="" aria-hidden="true">
     </button>
   </div>
-  <button id="calcBtn" class="tool-btn gradient-hover" type="button">Рассчитать международность</button>
+  <div class="interal-actions">
+    <button id="calcBtn" class="tool-btn interal-btn interal-btn--primary gradient-hover" type="button">Рассчитать</button>
+  </div>
 
   <div id="resultBox" class="result" style="display:none"></div>
 
-  <button id="explainBtn" class="tool-btn secondary-btn" type="button" style="display:none">Пояснение</button>
-  <button id="jsonCardBtn" class="tool-btn secondary-btn gradient-hover" type="button" style="display:none">Сформировать JSON-карточку</button>
-</div>
+  <div class="interal-actions interal-actions--center json-card-bottom-actions">
+    <button id="explainBtn" class="tool-btn interal-btn interal-btn--secondary secondary-btn" type="button" style="display:none">Пояснение</button>
+    <button id="jsonCardBtn" class="tool-btn interal-btn interal-btn--secondary secondary-btn gradient-hover" type="button" style="display:none">Сформировать JSON-карточку</button>
+  </div>
+</section>
+</main>
 
 <div id="explainModal">
   <div class="modal-inner">
@@ -762,7 +774,7 @@ const TEXT_I18N = {
     interalWordLabel: "Слово-гипотеза на Интерале",
     lookupWordLabel: "Слово на другом языке",
     lookupLangLabel: "Язык поиска",
-    calcBtn: "Рассчитать международность",
+    calcBtn: "Рассчитать",
     explainBtn: "Пояснение",
     jsonCardBtn: "Сформировать JSON-карточку",
     closeExplainBtn: "Закрыть",
@@ -865,7 +877,7 @@ const TEXT_I18N = {
     interalWordLabel: "Word-hypothesis in Interal",
     lookupWordLabel: "Word in another language",
     lookupLangLabel: "Search language",
-    calcBtn: "Calculate internationality",
+    calcBtn: "Calculate",
     explainBtn: "Explanation",
     jsonCardBtn: "Generate JSON card",
     closeExplainBtn: "Close",

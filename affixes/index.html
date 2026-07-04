@@ -8,13 +8,13 @@
   <link rel="stylesheet" href="../shared/ui.css?v=affixes-20260702" />
   <link rel="stylesheet" href="./style.css" />
 </head>
-<body class="affixes-page">
-  <main class="vord-page-shell">
-    <header class="vord-page-hero">
-      <h1 id="pageTitle">Affixes</h1>
+<body class="interal-tool-page affixes-page">
+  <main class="interal-page-shell interal-page-shell--narrow vord-page-shell">
+    <header class="interal-page-hero vord-page-hero">
+      <h1 class="interal-page-title" id="pageTitle">Affixes</h1>
     </header>
 
-    <section class="card vord-panel form-card">
+    <section class="interal-panel card vord-panel form-card">
       <form id="affixForm" class="affix-form" autocomplete="off">
         <div class="field">
           <div class="field-label-row">
@@ -44,16 +44,16 @@
           <textarea class="interal-textarea" id="commentInput"></textarea>
         </div>
 
-        <div class="form-actions">
+        <div class="interal-actions form-actions">
           <button class="interal-btn interal-btn--primary gradient-hover" id="checkButton" type="submit"><img class="btn-loader" src="../elements/loader_video_fitted_0_1s_triangle_fixed_centered.svg" alt="" aria-hidden="true" /><span class="btn-text">Проверить</span></button>
         </div>
       </form>
     </section>
 
-    <section class="card vord-panel result-section decision-summary" id="resultSection" hidden>
+    <section class="interal-panel card vord-panel result-section decision-summary" id="resultSection" hidden>
       <h2 id="decisionTitle">Решение</h2>
       <div id="resultBox"></div>
-      <div class="actions json-card-bottom-actions" id="jsonActions" hidden>
+      <div class="interal-actions interal-actions--center actions json-card-bottom-actions" id="jsonActions" hidden>
         <button class="interal-btn interal-btn--secondary gradient-hover" id="jsonBtn" type="button" hidden disabled>Сформировать JSON-карточку</button>
       </div>
     </section>
