@@ -1083,7 +1083,7 @@ async function createFallbackCard(card, section) { const response = await fetch(
     document.getElementById('showExampleBtn').addEventListener('click', showExample);
     document.getElementById('jsonCardBtn').addEventListener('click', openJsonCardModal);
     document.getElementById('resetBtn').addEventListener('click', resetAll);
-    document.addEventListener('interal:languagechange', renderAll);
+    document.addEventListener('interal:languagechange', () => { document.documentElement.lang = currentLang(); renderAll(); });
     window.addEventListener('resize', syncTabWidths);
 
     window.updateItem = updateItem;
@@ -1141,7 +1141,7 @@ async function createFallbackCard(card, section) { const response = await fetch(
           user: 'Return {"word":"test","target_meaning":"test","directness":80,"field_relatedness":90,"domain_shift":10,"short_explanation":"test"}',
           model: 'qwen3.6-35b-a3b/latest',
           review: false,
-          interfaceLanguage: document.documentElement.lang?.startsWith('en') ? 'en' : 'ru'
+          interfaceLanguage: currentLang()
         })
       }).then(r => r.json());
     };
@@ -1151,4 +1151,5 @@ async function createFallbackCard(card, section) { const response = await fetch(
       renderAll();
     }
 
+    document.documentElement.lang = currentLang();
     init();

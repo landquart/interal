@@ -148,7 +148,7 @@ function bindJsonModal() {
     formatCard: (card) => JSON.stringify(card, null, 2),
     getFilename: () => jsonFilename
   });
-  document.addEventListener('interal:languagechange', () => { readState(); render(); });
+  document.addEventListener('interal:languagechange', () => { document.documentElement.lang = currentLang(); readState(); render(); });
   byId('resetBtn')?.addEventListener('click', resetState);
   byId('checkBtn')?.addEventListener('click', () => { readState(); state.checked = true; render(); updateResetButtonVisibility(); });
   byId('app')?.addEventListener('input', () => { state.checked = false; renderResult(); updateResetButtonVisibility();  });

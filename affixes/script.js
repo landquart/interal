@@ -21,7 +21,8 @@ const UI_TEXT = {
 };
 
 const $ = (id) => document.getElementById(id);
-const lang = () => document.documentElement.lang?.startsWith('en') ? 'en' : 'ru';
+function currentLang() { return localStorage.getItem('interal.lang') === 'en' ? 'en' : 'ru'; }
+const lang = () => currentLang();
 const t = () => UI_TEXT[lang()];
 let lastAnalysis = null;
 let lastCard = null;
@@ -41,7 +42,7 @@ function applyI18n() {
   document.title = `${u.pageTitle} — Interal`;
   $('pageTitle').textContent = u.pageTitle; $('formLabel').textContent = u.formLabel; $('meaningLabel').textContent = u.meaningLabel; $('typeLabel').textContent = u.typeLabel; $('commentLabel').textContent = u.commentLabel; setButtonStatus('#checkButton', u.check, false); $('decisionTitle').textContent = u.decisionTitle; $('jsonBtn').textContent = u.createJson;
   $('formInput').placeholder = u.affixPlaceholder; $('meaningInput').placeholder = u.meaningPlaceholder; $('commentInput').removeAttribute('placeholder');
-  const current = $('morphemeTypeInput').value || 'suffix'; $('morphemeTypeInput').innerHTML = MORPHEME_TYPES.map((value) => `<option value="${value}">${u[value]}</option>`).join(''); $('morphemeTypeInput').value = MORPHEME_TYPES.includes(current) ? current : 'suffix'; $('morphemeTypeInput')._customSelectRefresh?.();
+  const current = $('morphemeTypeInput').value || 'suffix'; $('morphemeTypeInput').innerHTML = MORPHEME_TYPES.map((value) => `<option value="${value}">${u[value]}</option>`).join(''); $('morphemeTypeInput').value = MORPHEME_TYPES.includes(current) ? current : 'suffix'; window.refreshCustomSelect?.($('morphemeTypeInput'));
   window.affixesJsonModal?.applyTexts?.(); $('resetBtn')?.setAttribute('aria-label', u.reset); $('resetBtn')?.setAttribute('title', u.reset);
   if (lastAnalysis) renderAnalysis(lastAnalysis);
 }
@@ -74,9 +75,9 @@ async function createJsonCard({ author, onProgress } = {}) { onProgress?.(lang()
 function getJsonCardTexts() { return { close: t().close, title: t().jsonTitle, useAuthor: lang() === 'en' ? 'Add authorship' : 'Указать авторство', authorName: lang() === 'en' ? 'Name or nickname' : 'Имя или ник', contactType: lang() === 'en' ? 'Contact type' : 'Тип контакта', contact: lang() === 'en' ? 'Contact' : 'Контакт', generate: lang() === 'en' ? 'Generate card' : 'Сгенерировать карточку', generating: lang() === 'en' ? 'Generating...' : 'Генерация...', output: lang() === 'en' ? 'Generated JSON' : 'Готовый JSON', copy: t().copyJson, copied: t().copiedJson, copiedTitle: lang() === 'en' ? 'Copied' : 'Скопировано', download: t().downloadJson, empty: lang() === 'en' ? 'Generate the JSON card first.' : 'Сначала сгенерируйте JSON-карточку.', unavailable: lang() === 'en' ? 'The JSON card is available only after a successful check.' : 'JSON-карточка доступна только после успешной проверки.' }; }
 function resetLocalState() { $('formInput').value = ''; $('meaningInput').value = ''; $('morphemeTypeInput').value = 'suffix'; $('commentInput').value = ''; $('resultSection').hidden = true; $('resultBox').innerHTML = ''; setJsonEnabled(false); lastAnalysis = null; lastCard = null; $('jsonCardOutput').value = ''; closeModal(); try { AFFIXES_STORAGE_KEYS.forEach((key) => localStorage.removeItem(key)); } catch {} updateStateControls(); }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => { document.documentElement.lang = currentLang();
   applyI18n(); setJsonEnabled(false); updateStateControls();
   $('affixForm').addEventListener('submit', checkAffix); window.affixesJsonModal = window.InteralJsonCardModal?.init({ getLanguage: lang, getTexts: getJsonCardTexts, buildCard: ({ author, onProgress } = {}) => createJsonCard({ author, onProgress }), formatCard: (card) => JSON.stringify(card, null, 2), getFilename: () => 'affix-card.json' }); $('resetBtn')?.addEventListener('click', async () => { const confirmed = await (window.InteralUI?.confirmReset?.({ message: t().resetConfirm }) ?? Promise.resolve(window.confirm(t().resetConfirm))); if (!confirmed) return; resetLocalState(); window.InteralUI?.resetPageState?.({ message: t().resetConfirm, skipConfirm: true, storageKeys: AFFIXES_STORAGE_KEYS }); });
   ['formInput', 'meaningInput', 'commentInput'].forEach((id) => $(id).addEventListener('input', () => { saveAffixesDraft(); updateStateControls(); })); $('morphemeTypeInput').addEventListener('change', () => { saveAffixesDraft(); updateStateControls(); });
-  document.addEventListener('interal:formdraftrestore', () => { updateStateControls(); if (lastAnalysis) renderAnalysis(lastAnalysis); if (hadShortShareParamOnLoad) showNotice(t().restoreSuccess, 'success'); }); setTimeout(() => { if (hadShortShareParamOnLoad && new URLSearchParams(location.search).has('s')) showNotice(t().restoreError, 'error'); updateStateControls(); }, 1800); document.addEventListener('interal:languagechange', () => { applyI18n(); updateStateControls(); });
+  document.addEventListener('interal:formdraftrestore', () => { updateStateControls(); if (lastAnalysis) renderAnalysis(lastAnalysis); if (hadShortShareParamOnLoad) showNotice(t().restoreSuccess, 'success'); }); setTimeout(() => { if (hadShortShareParamOnLoad && new URLSearchParams(location.search).has('s')) showNotice(t().restoreError, 'error'); updateStateControls(); }, 1800); document.addEventListener('interal:languagechange', () => { document.documentElement.lang = currentLang(); applyI18n(); updateStateControls(); });
 });

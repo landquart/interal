@@ -559,14 +559,18 @@
           'home.footerIcons': 'Icons —'
         }
       };
-      function applyHomeI18n(lang) {
+      function currentLang() {
+        return localStorage.getItem('interal.lang') === 'en' ? 'en' : 'ru';
+      }
+      function applyHomeI18n(lang = currentLang()) {
+        document.documentElement.lang = currentLang();
         document.querySelectorAll('[data-i18n]').forEach((el) => {
           const key = el.getAttribute('data-i18n');
           el.textContent = (dict[lang] && dict[lang][key]) || (dict.ru[key] || el.textContent);
         });
       }
-      applyHomeI18n(localStorage.getItem('interal.lang') === 'en' ? 'en' : 'ru');
-      document.addEventListener('interal:languagechange', (e) => applyHomeI18n(e.detail.lang));
+      applyHomeI18n(currentLang());
+      document.addEventListener('interal:languagechange', () => applyHomeI18n(currentLang()));
 
       const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

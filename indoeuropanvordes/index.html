@@ -1125,8 +1125,12 @@ function updateResetButtonVisibility() {
 }
 
 
-function getCurrentLanguage() {
+function currentLang() {
   return localStorage.getItem("interal.lang") === "en" ? "en" : "ru";
+}
+
+function getCurrentLanguage() {
+  return currentLang();
 }
 
 function getSelectedLanguage(lang = getCurrentLanguage()) {
@@ -1163,13 +1167,15 @@ function updateLanguageGroupCells(lang = getCurrentLanguage()) {
   });
 }
 
-function updateLookupLanguageOptions(lang = getCurrentLanguage()) {
+function updateLookupLanguageOptions(lang = currentLang()) {
   Array.from(lookupLangSelect.options).forEach((option) => {
     option.textContent = getLocalizedLanguageName(option.value, lang);
   });
+  window.refreshCustomSelect?.(lookupLangSelect);
 }
 
-function applyLocalizedTexts(lang = getCurrentLanguage()) {
+function applyLocalizedTexts(lang = currentLang()) {
+  document.documentElement.lang = currentLang();
   const selectedLang = getSelectedLanguage(lang);
   const text = TEXT_I18N[selectedLang];
   const setText = (selector, value) => {
@@ -2761,8 +2767,9 @@ resetBtn.addEventListener("click", resetAll);
 languageRows.addEventListener("input", updateResetButtonVisibility);
 languageRows.addEventListener("change", updateResetButtonVisibility);
 
-document.addEventListener("interal:languagechange", (event) => {
-  applyLocalizedTexts(event.detail?.lang);
+document.addEventListener("interal:languagechange", () => {
+  document.documentElement.lang = currentLang();
+  applyLocalizedTexts(currentLang());
   if (lastCalculationPayload) {
     lastCalculationPayload.rows.forEach((row) => renderScoreIntoRow(row.code, row));
     renderResult(lastCalculationPayload);
