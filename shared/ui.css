@@ -142,15 +142,15 @@ body.has-global-menu .interal-tool-page {
 }
 
 .interal-page-shell {
-  width: min(var(--page-width, 900px), calc(100% - 32px));
+  width: min(var(--page-width, 828px), calc(100% - 32px));
   margin: 0 auto;
   padding: 14px 0 48px;
   display: grid;
   gap: var(--page-section-gap, 18px);
 }
 
-.interal-page-shell--wide { --page-width: 1180px; }
-.interal-page-shell--medium { --page-width: 980px; }
+.interal-page-shell--wide { --page-width: 828px; }
+.interal-page-shell--medium { --page-width: 828px; }
 .interal-page-shell--narrow { --page-width: 828px; }
 
 .interal-page-hero {
@@ -229,7 +229,7 @@ body.has-global-menu .interal-tool-page {
 
 @media (max-width: 640px) {
   .interal-page-shell {
-    width: min(100% - 24px, var(--page-width, 900px));
+    width: min(100% - 24px, var(--page-width, 828px));
     padding: 10px 0 34px;
     gap: 12px;
   }
