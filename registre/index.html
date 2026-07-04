@@ -281,6 +281,9 @@
         en: { Germanic: 'Germanic', Romance: 'Romance', Slavic: 'Slavic', Hellenic: 'Hellenic' }
       };
       const SORTS = [['word', 'sortWord'], ['accepted', 'sortAccepted'], ['created', 'sortCreated'], ['pi', 'sortPi']];
+      function currentLang() {
+        return localStorage.getItem('interal.lang') === 'en' ? 'en' : 'ru';
+      }
       const DEFAULT_FILTERS = {
         search: '',
         type: '',
@@ -291,7 +294,7 @@
         sort: 'word'
       };
       const state = {
-        lang: localStorage.getItem('interal.lang') === 'en' ? 'en' : 'ru',
+        lang: currentLang(),
         registry: null,
         cards: [],
         fullJsonCache: new Map(),
@@ -343,7 +346,7 @@
         if (copied) button._copyStateTimer = setTimeout(() => button.classList.remove('is-copied'), 1800);
       }
       async function copyText(text, ok, fail) { try { await navigator.clipboard.writeText(text); showToast(ok); return true; } catch (_) { showToast(fail); return false; } }
-      function setOptions(select, options) { select.replaceChildren(...options.map(([value, label]) => { const option = document.createElement('option'); option.value = value; option.textContent = label; return option; })); select._customSelectRefresh?.(); select.dispatchEvent(new Event('change', { bubbles: true })); }
+      function setOptions(select, options) { select.replaceChildren(...options.map(([value, label]) => { const option = document.createElement('option'); option.value = value; option.textContent = label; return option; })); window.refreshCustomSelect?.(select); select.dispatchEvent(new Event('change', { bubbles: true })); }
       function readFiltersFromDom() {
         state.filters.search = els.search.value || '';
         state.filters.type = els.type.value || '';
@@ -369,7 +372,8 @@
         applyFiltersToDom();
       }
       function updateStaticI18n() {
-        document.documentElement.lang = state.lang;
+        document.documentElement.lang = currentLang();
+        state.lang = currentLang();
         document.title = t('title');
         document.querySelectorAll('[data-i18n]').forEach((el) => { el.textContent = t(el.dataset.i18n); });
         document.querySelectorAll('[data-i18n-attr]').forEach((el) => {
@@ -613,7 +617,8 @@
       });
 
       document.addEventListener('interal:languagechange', (event) => {
-        state.lang = event.detail && event.detail.lang === 'en' ? 'en' : 'ru';
+        state.lang = currentLang();
+        document.documentElement.lang = currentLang();
         render();
       });
 

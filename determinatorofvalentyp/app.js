@@ -757,7 +757,7 @@ function refreshSelectLocalization() {
   if (saved.category) els.componentCategorySelect.value = saved.category;
   if (saved.component) els.componentSelect.value = saved.component;
   if (saved.prefixVariant) els.prefixVariantSelect.value = saved.prefixVariant;
-  [els.assimilationSelect, els.componentCategorySelect, els.componentSelect, els.prefixVariantSelect].forEach((select) => select?._customSelectRefresh?.());
+  [els.assimilationSelect, els.componentCategorySelect, els.componentSelect, els.prefixVariantSelect].forEach((select) => window.refreshCustomSelect?.(select));
 }
 
 function setupSelects() {

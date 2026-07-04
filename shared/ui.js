@@ -305,9 +305,12 @@
   }
 
 
+  function currentLang() {
+    return localStorage.getItem('interal.lang') === 'en' ? 'en' : 'ru';
+  }
+
   function getLang() {
-    const saved = localStorage.getItem(LANG_KEY);
-    return saved === 'en' ? 'en' : 'ru';
+    return currentLang();
   }
 
   function lockPageScroll() {
@@ -484,7 +487,7 @@
   function applyLanguage(lang) {
     const nextLang = lang === 'en' ? 'en' : 'ru';
     localStorage.setItem(LANG_KEY, nextLang);
-    document.documentElement.lang = nextLang;
+    document.documentElement.lang = currentLang();
 
     const t = i18n[nextLang];
     const isDesktop = window.matchMedia('(min-width: 980px)').matches;

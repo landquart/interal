@@ -45,7 +45,7 @@ const I18N = {
     evidence: 'Языковое покрытие', result: 'Итог', card: 'JSON-карточка', check: 'Проверить', json: 'Сформировать JSON-карточку', copy: 'Скопировать', download: 'Скачать',
     table: { language: 'Язык', form: 'Форма', distance: 'Дистанция', passed: 'Проходит', translation: 'Перевод', source: 'Источник', match: 'Тип' },
     coverage: 'Покрытие', required: 'Минимум', decision: 'Решение', accept: 'ПРИНЯТО', reject: 'НЕ ПРИНЯТО', reasonOk: 'Критерий 5/6 выполнен.', reasonBad: 'Недостаточное покрытие контрольных языков.',
-    loadingLists: 'Загрузка частотных списков...', searching: 'Поиск форм...', frequencySource: 'frequency list', manualSource: 'manual', noForm: 'not found', searchError: 'Не удалось загрузить частотные списки. Формы можно ввести вручную.', manualMode: 'ручное переопределение', autoMode: 'авто', resetAria: 'Сбросить', resetConfirm: 'Сбросить введённые данные? Это действие нельзя отменить.',
+    loadingLists: 'Загрузка частотных списков...', searching: 'Поиск форм...', frequencySource: 'частотный список', manualSource: 'вручную', noForm: 'не найдено', searchError: 'Не удалось загрузить частотные списки. Формы можно ввести вручную.', manualMode: 'ручное переопределение', autoMode: 'авто', resetAria: 'Сбросить', resetConfirm: 'Сбросить введённые данные? Это действие нельзя отменить.',
     jsonCard: { close: 'Закрыть JSON-карточку', title: 'JSON-карточка', useAuthor: 'Указать авторство', authorName: 'Имя или ник', contactType: 'Тип контакта', contact: 'Контакт', generate: 'Сгенерировать карточку', generating: 'Генерация...', output: 'Готовый JSON', copy: 'Скопировать JSON-карточку', copied: 'JSON-карточка скопирована', copiedTitle: 'Скопировано', download: 'Скачать JSON-карточку', empty: 'Сначала сгенерируйте JSON-карточку.', unavailable: 'JSON-карточка доступна только после успешной проверки.' }
   },
   en: {
@@ -66,7 +66,7 @@ function nextRunId() { activeRunId += 1; return activeRunId; }
 function invalidateActiveRuns() { activeRunId += 1; }
 function isCurrentRun(runId) { return runId === activeRunId; }
 function currentLang() { return localStorage.getItem('interal.lang') === 'en' ? 'en' : 'ru'; }
-function setLang(lang) { localStorage.setItem('interal.lang', lang); render(); }
+function setLang(lang) { localStorage.setItem('interal.lang', lang); document.documentElement.lang = currentLang(); render(); }
 function currentTheme() { return localStorage.getItem('interal.theme') === 'dark' ? 'dark' : 'light'; }
 function toggleTheme() { localStorage.setItem('interal.theme', currentTheme() === 'dark' ? 'light' : 'dark'); render(); }
 function t(path) { return path.split('.').reduce((obj, key) => obj?.[key], I18N[currentLang()]) ?? path; }
@@ -402,7 +402,7 @@ function render() {
 const jsonFilename = 'internationalism-card.json';
 function bindJsonModal() {
   window.InteralJsonCardModal?.init({ getLanguage: currentLang, getTexts: () => t('jsonCard'), buildCard: async ({ onProgress } = {}) => { readState(); if (!canCreateCard()) throw new Error(t('jsonCard.unavailable')); onProgress?.(currentLang() === 'en' ? 'Building card...' : 'Сборка карточки...'); return makeCard(); }, formatCard: (card) => JSON.stringify(card, null, 2), getFilename: () => jsonFilename });
-  document.addEventListener('interal:languagechange', () => { readState(); syncPosSelectOptions(); render(); });
+  document.addEventListener('interal:languagechange', () => { document.documentElement.lang = currentLang(); if (state.searchError) state.searchError = t('searchError'); readState(); syncPosSelectOptions(); render(); });
   byId('resetBtn')?.addEventListener('click', resetAll);
   byId('checkBtn')?.addEventListener('click', analyze);
   byId('app')?.addEventListener('input', event => {
@@ -419,6 +419,7 @@ function bindJsonModal() {
     readState(); render();
   });
 }
+document.documentElement.lang = currentLang();
 bindJsonModal();
 syncPosSelectOptions();
 applyJsonModalTexts(); render();
