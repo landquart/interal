@@ -477,7 +477,7 @@ const i18n = {
     noComponents: 'Компоненты не добавлены.', missingRegular: 'Слово по регулярной модели не заполнено.', missingLogical: 'Логический анализ компонентов не заполнен.', missingInternational: 'Международное значение эквивалентного деривата не заполнено.', missingNaturalistic: 'Слово по натуралистической модели не заполнено.', noComponentsAnalysis: 'Компонентный анализ не добавлен.',
     addItem: 'Добавить элемент', primaryRoot: 'Основной корень', component: 'Компонент (аффикс/окончание)', word: 'Слово', meaning: 'Значение', assimilationType: 'Тип ассимиляции', search: 'Поиск', category: 'Категория', element: 'Элемент', prefixAssimilation: 'Ассимиляция приставки', prefixVariant: 'Вариант приставки', add: 'Добавить', analyse: 'Анализировать', analysing: 'Анализируем…', clear: 'Сбросить', result: 'Результат', fillAndAnalyse: 'Заполните поля и нажмите «Анализировать».',
     spectrumZone: 'Зона спектра', confidence: 'Уверенность', chainType: 'Тип цепочки', aiConfidence: 'Уверенность модели', explanatoryChain: 'Объяснительная цепочка', explanation: 'Обоснование', analogiesUsed: 'Использованные аналогии', borderlineZones: 'Граничные зоны', warnings: 'Предупреждения', formRecommendation: 'Рекомендация формы', apiErrorManualMode: 'Ошибка API / ручной режим', editScoresHint: 'Измените оценки, чтобы пересчитать зону локально без API.',
-    high: 'высокая', medium: 'средняя', low: 'низкая', assimilation: 'Ассимиляция', copied: 'Скопировано', copyFailed: 'Ошибка копирования', copyPrompt: 'Копировать промпт', buildPrompt: 'Собрать промпт', resetConfirm: 'Сбросить введённые данные? Это действие нельзя отменить.', deleteComponent: 'Удалить компонент', addComponentAria: 'Добавить компонент', componentSearchResults: 'Результаты поиска компонентов',
+    high: 'высокая', medium: 'средняя', low: 'низкая', assimilation: 'Ассимиляция', copied: 'Скопировано', copyFailed: 'Ошибка копирования', copyPrompt: 'Копировать промпт', buildPrompt: 'Собрать промпт', resetConfirm: 'Сбросить введённые данные? Это действие нельзя отменить.', deleteComponent: 'Удалить компонент', addComponentAria: 'Добавить компонент', componentSearchResults: 'Результаты поиска компонентов', componentSearchSelect: 'Выбрать',
     apiErrorWarning: 'API недоступен или вернул ошибку. Можно вручную выставить P/R/C/E ниже — зона пересчитается локально без нового запроса.', apiUnavailableManual: 'API недоступен. Выставьте P/R/C/E вручную — зона пересчитается локально.', insufficientData: 'Заполните логическое и международное значение. Ручной блок P/R/C/E доступен ниже.', noComponentsFound: 'Компоненты не найдены. Попробуйте без дефиса, без / или по значению.', localModelUnavailable: 'Локальная модель недоступна. Использован только расчёт по правилам.', unknownError: 'Неизвестная ошибка', manualParseError: 'Не удалось извлечь distance/similarity из ответа нейросети.',
     noChainWarning: 'Модель не вернула объяснительную цепочку. Можно выставить P/R/C/E вручную.', zoneMismatchWarning: 'Подсказка модели по зоне отличается от расчёта P/R/C/E; итоговая зона пересчитана кодом.', lexicalizationWarning: 'Тип цепочки похож на лексикализацию, но оценки P/R/C/E попали в другую зону.',
     regularFormFallback: 'регулярная форма', naturalisticFormFallback: 'натуралистическая форма', recRegularEnough: 'Обычно достаточно логической/регулярной формы: {regular}. Отдельная интернациональная маркировка не обязательна.', recOptional: 'Случай пограничный. Можно оставить логическую/регулярную форму: {regular}, но если интернациональное значение закреплено отдельно, допустима отдельная маркировка: {natural}.', recSeparate: 'Рекомендуется отдельная интернациональная маркировка: для существительного — -u ({natural}), для интернациональных прилагательных — -al/-ari/-ic, для логических прилагательных — -i; глаголы с интернациональным значением сохраняют консервативный корень, а логические — изменённую корневую основу, если она есть.',
@@ -490,7 +490,7 @@ const i18n = {
     noComponents: 'No components added.', missingRegular: 'Regular-model word is missing.', missingLogical: 'Logical component analysis is missing.', missingInternational: 'International meaning of equivalent derivative is missing.', missingNaturalistic: 'Naturalistic-model word is missing.', noComponentsAnalysis: 'No component analysis added.',
     addItem: 'Add item', primaryRoot: 'Primary root', component: 'Component (affix/ending)', word: 'Word', meaning: 'Meaning', assimilationType: 'Assimilation type', search: 'Search', category: 'Category', element: 'Element', prefixAssimilation: 'Prefix assimilation', prefixVariant: 'Prefix variant', add: 'Add', analyse: 'Analyse', analysing: 'Analysing…', clear: 'Reset', result: 'Result', fillAndAnalyse: 'Fill in fields and click “Analyse”.',
     spectrumZone: 'Spectrum zone', confidence: 'Confidence', chainType: 'Chain type', aiConfidence: 'AI confidence', explanatoryChain: 'Explanatory chain', explanation: 'Explanation', analogiesUsed: 'Analogies used', borderlineZones: 'Borderline zones', warnings: 'Warnings', formRecommendation: 'Form recommendation', apiErrorManualMode: 'API error / manual mode', editScoresHint: 'Edit scores to recalculate the zone locally.',
-    high: 'high', medium: 'medium', low: 'low', assimilation: 'Assimilation', copied: 'Copied', copyFailed: 'Copy failed', copyPrompt: 'Copy prompt', buildPrompt: 'Build prompt', resetConfirm: 'Reset entered data? This action cannot be undone.', deleteComponent: 'Delete component', addComponentAria: 'Add component', componentSearchResults: 'Component search results',
+    high: 'high', medium: 'medium', low: 'low', assimilation: 'Assimilation', copied: 'Copied', copyFailed: 'Copy failed', copyPrompt: 'Copy prompt', buildPrompt: 'Build prompt', resetConfirm: 'Reset entered data? This action cannot be undone.', deleteComponent: 'Delete component', addComponentAria: 'Add component', componentSearchResults: 'Component search results', componentSearchSelect: 'Select',
     apiErrorWarning: 'API unavailable or returned an error. You can set P/R/C/E manually below — the zone will be recalculated locally without a new request.', apiUnavailableManual: 'API unavailable. Set P/R/C/E manually — the zone will be recalculated locally.', insufficientData: 'Fill in logical and international meaning. The manual P/R/C/E block is available below.', noComponentsFound: 'No components found. Try without hyphen, without /, or by meaning.', localModelUnavailable: 'Local model unavailable. Used only rule-based calculation.', unknownError: 'Unknown error', manualParseError: 'Could not extract distance/similarity from neural model response.',
     noChainWarning: 'The model did not return an explanatory chain. You can set P/R/C/E manually.', zoneMismatchWarning: 'The model zone hint differs from the P/R/C/E calculation; the final zone was recalculated by code.', lexicalizationWarning: 'The chain type looks like lexicalization, but P/R/C/E scores landed in another zone.',
     regularFormFallback: 'regular form', naturalisticFormFallback: 'naturalistic form', recRegularEnough: 'The logical/regular form is usually enough: {regular}. Separate international marking is not required.', recOptional: 'This is a borderline case. You may keep the logical/regular form: {regular}, but if the international meaning is fixed separately, separate marking is acceptable: {natural}.', recSeparate: 'Separate international marking is recommended: for nouns — -u ({natural}); for international adjectives — -al/-ari/-ic; for logical adjectives — -i. Verbs with international meaning keep the conservative root, while logical verbs use the changed root stem when available.',
@@ -866,21 +866,26 @@ function scoreComponentSearch(item, rawQuery) {
 
 function selectComponentById(componentId, options = {}) {
   const item = allComponents.find((x) => x.id === componentId);
-  if (!item) return;
+  if (!item) return null;
 
   els.componentCategorySelect.value = item.category;
   fillComponentSelect({ keepSearch: true, selectedId: item.id });
+
   els.componentSelect.value = item.id;
+
+  window.refreshCustomSelect?.(els.componentCategorySelect);
+  window.refreshCustomSelect?.(els.componentSelect);
+
   els.componentSelect.dispatchEvent(new Event('change', { bubbles: true }));
 
   if (options.clearSearch && els.componentSearchInput) {
     els.componentSearchInput.value = '';
-    renderComponentSearchResults();
-  } else {
-    renderComponentSearchResults();
   }
 
-  window.initCustomSelects?.();
+  renderComponentSearchResults();
+  syncClearButtonVisibility();
+
+  return item;
 }
 
 function renderComponentSearchResults() {
@@ -927,6 +932,7 @@ function renderComponentSearchResults() {
       <span class="component-search-form">${escapeHtml(item.form)}</span>
       <span class="component-search-category">${escapeHtml(localizeCategory(item.category))}</span>
       <span class="component-search-meaning">${escapeHtml(localizeMeaningByItem(item))}</span>
+      <span class="component-search-action">${escapeHtml(txt('componentSearchSelect'))}</span>
     `;
 
     els.componentSearchResults.appendChild(button);
@@ -950,7 +956,7 @@ function fillComponentSelect(options = {}) {
   updateComponentPreview();
   els.componentSelect.dispatchEvent(new Event('change', { bubbles: true }));
   if (!keepSearch) renderComponentSearchResults();
-  window.initCustomSelects?.();
+  window.refreshCustomSelect?.(els.componentSelect);
 }
 
 function updateComponentPreview() {
@@ -1915,26 +1921,26 @@ function attachEvents() {
     pendingPrefixItem = null;
   });
 
-  els.componentCategorySelect.addEventListener('change', () => fillComponentSelect());
+  els.componentCategorySelect.addEventListener('change', () => {
+    fillComponentSelect();
+    window.refreshCustomSelect?.(els.componentCategorySelect);
+    window.refreshCustomSelect?.(els.componentSelect);
+    renderComponentSearchResults();
+  });
   els.componentSelect.addEventListener('change', updateComponentPreview);
   els.componentSearchInput?.addEventListener('input', renderComponentSearchResults);
   els.componentSearchResults?.addEventListener('click', (event) => {
     const option = event.target.closest('[data-component-id]');
     if (!option) return;
 
-    selectComponentById(option.dataset.componentId);
-
-    const item = allComponents.find((x) => x.id === option.dataset.componentId);
+    const item = selectComponentById(option.dataset.componentId, { clearSearch: false });
     if (!item) return;
 
-    if (item.category.startsWith('Приставки') && prefixAssimilationOptions[item.id]) {
-      openPrefixVariantStep(item);
-      return;
-    }
+    /*
+      Search only selects the element.
+      Adding remains controlled by the "Add" button.
+    */
 
-    addSelectedComponent();
-
-    if (els.componentSearchInput) els.componentSearchInput.value = '';
     renderComponentSearchResults();
   });
   els.assimilationSelect.addEventListener('change', syncRootFormByAssimilation);
