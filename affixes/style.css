@@ -7,7 +7,7 @@
 }
 
 .affixes-page .vord-page-shell {
-  width: min(900px, calc(100% - 32px));
+  width: min(828px, calc(100% - 32px));
   margin: 0 auto;
   padding: 24px 0 54px;
   display: grid;
@@ -106,7 +106,7 @@
 body.json-card-modal-open { overflow: hidden; }
 
 @media (max-width: 640px) {
-  .affixes-page .vord-page-shell { width: min(100% - 20px, 900px); padding-top: 16px; }
+  .affixes-page .vord-page-shell { width: min(100% - 20px, 828px); padding-top: 16px; }
 }
 
 .affixes-page .result-section {
