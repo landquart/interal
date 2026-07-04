@@ -188,6 +188,8 @@ textarea.copy-flash {
   background: var(--surface-elevated);
   margin-top: 8px;
   padding: 6px;
+  position: relative;
+  z-index: 2;
 }
 
 .component-search-results.has-results {
@@ -221,8 +223,14 @@ textarea.copy-flash {
 }
 
 .component-search-option.is-selected {
-  border-color: var(--text);
-  background: var(--surface);
+  border-color: var(--border-strong);
+  background: color-mix(in srgb, var(--surface-hover) 82%, var(--text) 10%);
+  color: var(--text);
+}
+
+body.dark-theme .component-search-option.is-selected {
+  background: color-mix(in srgb, var(--surface-hover) 86%, #ffffff 8%);
+  color: var(--text);
 }
 
 .component-search-form {
