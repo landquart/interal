@@ -421,15 +421,23 @@
     }
 
 
+
+    /* Shared layout normalization */
+    .associativ-page .interal-page-shell { width: min(var(--page-width, 980px), calc(100% - 32px)); max-width: none; padding: 14px 0 48px; }
+    .associativ-page .interal-page-hero { padding: 0; max-width: 820px; }
+    .associativ-page .interal-page-title { margin: 0; font-size: clamp(1.7rem, 4vw, 2.8rem); line-height: 1; letter-spacing: -0.05em; font-weight: 800; }
+    .associativ-page .interal-panel.card { width: 100%; padding: var(--panel-padding, 18px); border-radius: var(--radius-lg); background: var(--surface); border: 1px solid var(--border-subtle); box-shadow: var(--shadow-md); }
+    .associativ-page .interal-actions.actions-row { margin-top: 14px; }
+    .associativ-page .json-card-bottom-actions.interal-actions { max-width: none; margin: 0; justify-content: center; padding: 0; }
+    @media (max-width: 640px) { .associativ-page .interal-page-shell { width: min(100% - 24px, var(--page-width, 980px)); padding: 10px 0 34px; gap: 12px; } .associativ-page .interal-panel.card { padding: 14px; border-radius: var(--radius-md); } }
   </style>
 </head>
-<body class="associativ-page" data-page-state="off">
-  <header>
-    <h1>Associativ vordes</h1>
+<body class="interal-tool-page associativ-page" data-page-state="off">
+  <main class="interal-page-shell interal-page-shell--medium">
+  <header class="interal-page-hero">
+    <h1 class="interal-page-title">Associativ vordes</h1>
   </header>
-
-  <main>
-    <section class="card grid grid-2">
+    <section class="interal-panel card grid grid-2">
       <div class="card-tools">
         <button class="card-reset-btn interal-reset-btn is-hidden" id="resetBtn" aria-label="Сбросить" title="Сбросить">
           <img src="../elements/Eraser%20Square.svg" alt="" aria-hidden="true"  />
@@ -454,7 +462,7 @@
           <option value="preposition" id="prepositionOption">предлог</option>
         </select>
       </div>
-      <div class="row actions-row" style="grid-column: 1 / -1;">
+      <div class="interal-actions row actions-row" style="grid-column: 1 / -1;">
         <button class="tool-btn interal-btn interal-btn--primary gradient-hover" id="calculateBtn" type="button">
           <img
             class="btn-loader"
@@ -462,13 +470,13 @@
             alt=""
             aria-hidden="true"
           />
-          <span class="btn-text" id="searchBtn">Найти дериваты и посчитать</span>
+          <span class="btn-text" id="searchBtn">Рассчитать</span>
         </button>
         <button class="tool-btn interal-btn interal-btn--secondary" id="showExampleBtn">Показать пример</button>
       </div>
     </section>
 
-    <section class="card card-scroll-wrap" id="resultSection" hidden>
+    <section class="interal-panel card card-scroll-wrap" id="resultSection" hidden>
       <div class="card-scroll-content">
       <h2 id="resultTitle">Итог</h2>
       <div class="result-box" id="resultBox"></div>
@@ -476,7 +484,7 @@
       </div>
     </section>
 
-    <section class="card card-scroll-wrap" id="languagesSection" hidden>
+    <section class="interal-panel card card-scroll-wrap" id="languagesSection" hidden>
       <div class="card-scroll-content">
       <h2 id="languagesTitle">Языки и дериваты</h2>
       <div class="tabs" id="tabs"></div>
@@ -484,7 +492,7 @@
       </div>
     </section>
 
-    <div class="row actions-row json-card-bottom-actions">
+    <div class="interal-actions interal-actions--center row actions-row json-card-bottom-actions">
       <button class="tool-btn interal-btn interal-btn--secondary gradient-hover" id="jsonCardBtn" hidden>Сформировать JSON-карточку</button>
     </div>
 
