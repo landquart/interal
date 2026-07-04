@@ -864,12 +864,69 @@ function scoreComponentSearch(item, rawQuery) {
   return score;
 }
 
+function getFilteredComponentsForSearch(query) {
+  const raw = String(query || '').trim();
+
+  if (!raw) {
+    const category = els.componentCategorySelect.value || Object.keys(byCategory)[0];
+    return byCategory[category] || [];
+  }
+
+  return allComponents
+    .map((item) => ({
+      item,
+      score: scoreComponentSearch(item, raw)
+    }))
+    .filter((entry) => entry.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 80)
+    .map((entry) => entry.item);
+}
+
+function fillComponentSelectFromSearch(options = {}) {
+  const { selectedId = '' } = options;
+  const query = els.componentSearchInput?.value || '';
+  const items = getFilteredComponentsForSearch(query);
+
+  els.componentSelect.innerHTML = '';
+
+  items.forEach((item) => {
+    const option = document.createElement('option');
+    option.value = item.id;
+    option.textContent = `${item.form} — ${localizeCategory(item.category)} — ${localizeMeaningByItem(item)}`;
+    els.componentSelect.appendChild(option);
+  });
+
+  if (!items.length) {
+    const option = document.createElement('option');
+    option.value = '';
+    option.textContent = txt('noComponentsFound');
+    option.disabled = true;
+    option.selected = true;
+    els.componentSelect.appendChild(option);
+  } else if (selectedId && items.some((item) => item.id === selectedId)) {
+    els.componentSelect.value = selectedId;
+  } else if (items.length) {
+    els.componentSelect.value = items[0].id;
+  }
+
+  updateComponentPreview();
+  window.refreshCustomSelect?.(els.componentSelect);
+
+  return items;
+}
+
 function selectComponentById(componentId, options = {}) {
   const item = allComponents.find((x) => x.id === componentId);
   if (!item) return null;
 
   els.componentCategorySelect.value = item.category;
-  fillComponentSelect({ keepSearch: true, selectedId: item.id });
+
+  if (els.componentSearchInput?.value.trim()) {
+    fillComponentSelectFromSearch({ selectedId: item.id });
+  } else {
+    fillComponentSelect({ keepSearch: true, selectedId: item.id });
+  }
 
   els.componentSelect.value = item.id;
 
@@ -880,6 +937,7 @@ function selectComponentById(componentId, options = {}) {
 
   if (options.clearSearch && els.componentSearchInput) {
     els.componentSearchInput.value = '';
+    fillComponentSelect({ selectedId: item.id });
   }
 
   renderComponentSearchResults();
@@ -941,8 +999,15 @@ function renderComponentSearchResults() {
 
 function fillComponentSelect(options = {}) {
   const { keepSearch = false, selectedId = '' } = options;
+
+  if (keepSearch && els.componentSearchInput?.value.trim()) {
+    fillComponentSelectFromSearch({ selectedId });
+    return;
+  }
+
   const category = els.componentCategorySelect.value || Object.keys(byCategory)[0];
   const items = byCategory[category] || [];
+
   els.componentSelect.innerHTML = '';
 
   items.forEach((item) => {
@@ -952,9 +1017,14 @@ function fillComponentSelect(options = {}) {
     els.componentSelect.appendChild(option);
   });
 
-  if (selectedId) els.componentSelect.value = selectedId;
+  if (selectedId && items.some((item) => item.id === selectedId)) {
+    els.componentSelect.value = selectedId;
+  }
+
   updateComponentPreview();
+
   if (!keepSearch) renderComponentSearchResults();
+
   window.refreshCustomSelect?.(els.componentSelect);
   syncClearButtonVisibility();
 }
@@ -1922,26 +1992,28 @@ function attachEvents() {
   });
 
   els.componentCategorySelect.addEventListener('change', () => {
-    fillComponentSelect();
+    if (els.componentSearchInput?.value.trim()) {
+      fillComponentSelectFromSearch();
+    } else {
+      fillComponentSelect();
+    }
+
     window.refreshCustomSelect?.(els.componentCategorySelect);
     window.refreshCustomSelect?.(els.componentSelect);
     renderComponentSearchResults();
+    syncClearButtonVisibility();
   });
   els.componentSelect.addEventListener('change', updateComponentPreview);
-  els.componentSearchInput?.addEventListener('input', renderComponentSearchResults);
+  els.componentSearchInput?.addEventListener('input', () => {
+    fillComponentSelectFromSearch();
+    renderComponentSearchResults();
+    syncClearButtonVisibility();
+  });
   els.componentSearchResults?.addEventListener('click', (event) => {
     const option = event.target.closest('[data-component-id]');
     if (!option) return;
 
-    const item = selectComponentById(option.dataset.componentId, { clearSearch: false });
-    if (!item) return;
-
-    /*
-      Search only selects the element.
-      Adding remains controlled by the "Add" button.
-    */
-
-    renderComponentSearchResults();
+    selectComponentById(option.dataset.componentId, { clearSearch: false });
   });
   els.assimilationSelect.addEventListener('change', syncRootFormByAssimilation);
   els.prefixVariantSelect.addEventListener('change', updatePrefixVariantPreview);
