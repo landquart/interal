@@ -873,10 +873,10 @@ function selectComponentById(componentId, options = {}) {
 
   els.componentSelect.value = item.id;
 
+  updateComponentPreview();
+
   window.refreshCustomSelect?.(els.componentCategorySelect);
   window.refreshCustomSelect?.(els.componentSelect);
-
-  els.componentSelect.dispatchEvent(new Event('change', { bubbles: true }));
 
   if (options.clearSearch && els.componentSearchInput) {
     els.componentSearchInput.value = '';
@@ -954,9 +954,9 @@ function fillComponentSelect(options = {}) {
 
   if (selectedId) els.componentSelect.value = selectedId;
   updateComponentPreview();
-  els.componentSelect.dispatchEvent(new Event('change', { bubbles: true }));
   if (!keepSearch) renderComponentSearchResults();
   window.refreshCustomSelect?.(els.componentSelect);
+  syncClearButtonVisibility();
 }
 
 function updateComponentPreview() {
