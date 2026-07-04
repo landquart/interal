@@ -66,6 +66,10 @@
   display: none !important;
 }
 
+.visually-removed {
+  display: none !important;
+}
+
 
 body.dark-theme {
   color-scheme: dark;
@@ -209,6 +213,7 @@ body.has-global-menu .interal-tool-page {
 .interal-actions {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 10px;
   margin-top: 14px;
 }
@@ -217,7 +222,7 @@ body.has-global-menu .interal-tool-page {
 .interal-actions--end { justify-content: flex-end; }
 
 .interal-actions .interal-btn,
-.interal-actions .tool-btn { min-width: 150px; }
+.interal-actions .tool-btn { min-width: 0; }
 
 .result-grid { gap: 12px; }
 .result-card {
@@ -246,12 +251,13 @@ body.has-global-menu .interal-tool-page {
 
   .interal-actions {
     flex-direction: column;
-    align-items: stretch;
+    align-items: center;
   }
 
   .interal-actions .interal-btn,
   .interal-actions .tool-btn {
-    width: 100%;
+    width: auto;
+    max-width: 100%;
     min-width: 0;
   }
 }
