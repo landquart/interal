@@ -496,3 +496,70 @@ body.dark-theme .modal-backdrop {
     grid-template-columns: repeat(2, minmax(70px, 1fr));
   }
 }
+
+/* Page modal alignment with shared JSON-card modals. */
+.determinator-page .modal {
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.determinator-page .modal-backdrop {
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+body.dark-theme.determinator-page .modal-backdrop {
+  background: rgba(0, 0, 0, 0.62);
+}
+
+.determinator-page .modal-card,
+.determinator-page .chooser-card {
+  width: min(100%, 680px);
+  max-height: min(88vh, 760px);
+  overflow: auto;
+  border-radius: var(--radius-lg);
+  background: var(--surface-elevated);
+  color: var(--text);
+  box-shadow: var(--shadow-md);
+  padding: 28px;
+}
+
+.determinator-page .modal-header {
+  min-width: 0;
+}
+
+.determinator-page .back-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  border: 1px solid var(--button-secondary-border);
+  background: var(--button-secondary-bg);
+  color: var(--button-secondary-text);
+  flex: 0 0 42px;
+}
+
+.determinator-page .back-btn:hover {
+  background: var(--surface-hover);
+}
+
+.determinator-page .back-btn:focus-visible {
+  outline: 2px solid var(--focus-outline);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px var(--focus-ring);
+}
+
+@media (max-width: 560px) {
+  .determinator-page .modal {
+    padding: 16px;
+  }
+
+  .determinator-page .modal-card,
+  .determinator-page .chooser-card {
+    width: 100%;
+    max-height: calc(100dvh - 32px);
+    padding: 20px;
+  }
+}

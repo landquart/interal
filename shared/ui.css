@@ -1253,3 +1253,41 @@ body.dark-theme .secondary-btn.gradient-hover:hover:not(:disabled) {
   border: 1px solid var(--border-subtle);
   text-align: center;
 }
+
+/* Final custom select safeguards: keep the modal above page modals and options readable in all page contexts. */
+.interal-select-modal {
+  z-index: calc(var(--z-page-modal) + 40);
+}
+
+.interal-select-modal-panel {
+  max-height: min(82dvh, 520px);
+}
+
+.interal-select-modal-options {
+  max-height: calc(min(82dvh, 520px) - 62px);
+}
+
+.interal-select-modal .interal-select-option:disabled {
+  opacity: .64;
+  color: color-mix(in srgb, var(--select-option-text) 72%, transparent);
+}
+
+.interal-select-modal .interal-select-option.is-selected:hover {
+  background: var(--select-option-selected-bg);
+  color: var(--select-option-selected-text);
+}
+
+@media (max-width: 560px) {
+  .interal-select-modal-panel {
+    max-height: min(82dvh, 620px);
+  }
+
+  .interal-select-modal-options {
+    max-height: calc(min(82dvh, 620px) - 62px);
+  }
+
+  #jsonCardModal .modal-inner {
+    width: 100%;
+    max-height: calc(100dvh - 32px);
+  }
+}
