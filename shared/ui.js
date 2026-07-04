@@ -257,7 +257,7 @@
       ` : ''}
     </nav>
     <div class="menu-preferences-row">
-      <button class="menu-lang-btn menu-lang-trigger" type="button" data-lang-trigger="true" aria-expanded="false">
+      <button class="menu-lang-btn menu-lang-trigger" type="button" data-lang-trigger="true" aria-label="Language" aria-expanded="false">
         <img class="menu-lang-icon-img" src="${joinUrl('elements/lingue.svg')}" alt="" aria-hidden="true" />
       </button>
       <button class="menu-theme-toggle" type="button" aria-label="Theme toggle">
@@ -855,12 +855,12 @@ function setupModalSelects(root = document) {
     modal.hidden = true;
     modal.innerHTML = `
       <div class="interal-select-modal-backdrop" data-select-close></div>
-      <div class="interal-select-modal-panel" role="dialog" aria-modal="true" tabindex="-1">
+      <div class="interal-select-modal-panel" role="dialog" aria-modal="true" aria-labelledby="interalSelectModalTitle" tabindex="-1">
         <div class="interal-select-modal-head">
-          <strong class="interal-select-modal-title"></strong>
-          <button class="interal-select-modal-close" type="button" data-select-close>×</button>
+          <strong class="interal-select-modal-title" id="interalSelectModalTitle"></strong>
+          <button class="interal-select-modal-close" type="button" data-select-close aria-label="Закрыть">×</button>
         </div>
-        <div class="interal-select-modal-options"></div>
+        <div class="interal-select-modal-options" role="listbox"></div>
       </div>
     `;
     document.body.appendChild(modal);

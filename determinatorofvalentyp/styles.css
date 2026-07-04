@@ -563,3 +563,63 @@ body.dark-theme.determinator-page .modal-backdrop {
     padding: 20px;
   }
 }
+
+.determinator-page .component-search-results {
+  display: none;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.determinator-page .component-search-results.has-results {
+  display: grid;
+}
+
+.determinator-page .component-search-option,
+.determinator-page .component-search-empty {
+  width: 100%;
+  border: 1px solid var(--border-control);
+  border-radius: var(--radius-md);
+  background: var(--surface-elevated);
+  color: var(--text);
+  padding: 10px 12px;
+  text-align: left;
+}
+
+.determinator-page .component-search-option {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 6px 10px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.determinator-page .component-search-option:hover,
+.determinator-page .component-search-option:focus-visible {
+  background: var(--surface-hover);
+}
+
+.determinator-page .component-search-option.is-selected {
+  border-color: var(--border-strong);
+  background: var(--select-option-selected-bg);
+  color: var(--select-option-selected-text);
+}
+
+.determinator-page .component-search-form {
+  font-weight: 750;
+}
+
+.determinator-page .component-search-category,
+.determinator-page .component-search-meaning {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.determinator-page .component-search-meaning {
+  grid-column: 1 / -1;
+}
+
+.determinator-page .component-search-action {
+  justify-self: end;
+  font-size: 0.86rem;
+  font-weight: 700;
+}
