@@ -1,132 +1,21 @@
-* {
-  box-sizing: border-box;
-}
-
 html,
 body {
   min-height: 100%;
 }
 
-.determinator-page {
-  margin: 0;
-  padding: 86px 0 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: "Jost", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-}
-
-.app-shell {
-  width: 100%;
-  max-width: 1180px;
-  margin: 0 auto;
-  padding: 14px 18px 48px;
-}
-
-.hero {
-  padding: 28px 18px 14px;
-}
-
-.hero h1 {
-  margin: 0 0 8px;
-  text-align: center;
-  font-size: 38px;
-  font-weight: 700;
-}
-
-.panel {
-  position: relative;
-  background: var(--surface);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  padding: 22px;
-  margin-bottom: 18px;
-}
-
-.panel h2 {
-  margin: 0 0 14px;
-  text-align: center;
-  font-size: 1.25rem;
-  font-weight: 600;
-}
-
-.field {
-  display: block;
-  margin-bottom: 16px;
-}
-
-.field > span,
-.field > label,
-.field > .field-heading {
+.determinator-page .field-heading {
   display: block;
   margin-bottom: 8px;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 1.5;
   color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 650;
 }
 
-input,
-textarea,
-select,
-.interal-select-trigger,
-.determinator-page .tool-btn {
-  font: inherit;
-  font-family: "Jost", "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
-input,
-textarea,
-select,
-.interal-select-trigger {
-  width: 100%;
-  border: 1px solid var(--border-control);
-  border-radius: var(--radius-md);
-  background: var(--surface-elevated);
-  color: var(--text);
-  padding: 11px 12px;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-}
-
-select {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background-image: linear-gradient(45deg, transparent 50%, var(--text-muted) 50%),
-    linear-gradient(135deg, var(--text-muted) 50%, transparent 50%);
-  background-position: calc(100% - 18px) calc(50% - 2px), calc(100% - 12px) calc(50% - 2px);
-  background-size: 6px 6px, 6px 6px;
-  background-repeat: no-repeat;
-  padding-right: 34px;
-  cursor: pointer;
-}
-
-option {
-  background: var(--surface);
-  color: var(--text);
-}
-
-input::placeholder,
-textarea::placeholder {
-  color: var(--placeholder);
-  user-select: none;
-}
-
-input:focus-visible,
-textarea:focus-visible,
-select:focus-visible,
-.interal-select-trigger:focus-visible,
-.determinator-page .tool-btn:focus-visible {
-  outline: none;
-  border-color: var(--button-primary-bg);
-  box-shadow: 0 0 0 4px var(--focus-ring);
-}
-
-textarea {
+.determinator-page textarea {
   resize: vertical;
 }
 
-textarea.copy-flash {
+.determinator-page textarea.copy-flash {
   border-color: var(--button-primary-bg);
   box-shadow: 0 0 0 4px var(--focus-ring);
 }
@@ -230,10 +119,7 @@ textarea.copy-flash {
   z-index: 2;
 }
 
-.actions {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
+.determinator-page .actions {
   margin-top: 8px;
 }
 
@@ -405,17 +291,8 @@ textarea.copy-flash {
 }
 
 .result-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 10px;
   margin-bottom: 12px;
-}
-
-.result-card {
-  background: var(--surface-elevated);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  padding: 12px;
 }
 
 .result-card h3 {
@@ -539,25 +416,7 @@ body.dark-theme .modal-backdrop {
   align-items: center;
 }
 
-body.has-global-menu .app-shell {
-  padding-top: 12px;
-}
-
-@media (max-width: 768px) {
-  body {
-    padding: 24px 12px;
-  }
-}
-
 @media (max-width: 640px) {
-  .panel {
-    padding: 18px;
-  }
-
-  .hero h1 {
-    font-size: 1.45rem;
-  }
-
   .modal-card {
     padding: 16px;
   }

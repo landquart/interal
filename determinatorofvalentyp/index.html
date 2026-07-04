@@ -18,12 +18,12 @@
     </header>
 
     <section class="interal-panel panel">
-      <div class="field">
+      <div class="interal-field field">
         <label id="regularWordLabel" for="regularWord">Слово по регулярной модели (с разделителями)</label>
-       <input id="regularWord" type="text" autocomplete="off" placeholder="re/vis/ion" />
+       <input class="interal-input" id="regularWord" type="text" autocomplete="off" placeholder="re/vis/ion" />
       </div>
 
-      <div class="field">
+      <div class="interal-field field">
         <div id="componentAnalysisLabel" class="field-heading">Компонентный анализ</div>
         <div id="componentsList" class="components-list empty">Компоненты не добавлены.</div>
         <div id="componentsSummary" class="components-summary">—</div>
@@ -32,24 +32,24 @@
         </button>
       </div>
 
-      <div class="field">
+      <div class="interal-field field">
         <label id="logicalMeaningLabel" for="logicalMeaning">Логический анализ компонентов</label>
-         <textarea id="logicalMeaning" rows="3" placeholder="видение снова"></textarea>
+         <textarea class="interal-textarea" id="logicalMeaning" rows="3" placeholder="видение снова"></textarea>
       </div>
 
-      <div class="field">
+      <div class="interal-field field">
         <label id="internationalMeaningLabel" for="internationalMeaning">Международное значение эквивалентного деривата</label>
-       <textarea id="internationalMeaning" rows="3" placeholder="ревизия"></textarea>
+       <textarea class="interal-textarea" id="internationalMeaning" rows="3" placeholder="ревизия"></textarea>
       </div>
 
-      <div class="field">
+      <div class="interal-field field">
         <label id="naturalisticWordLabel" for="naturalisticWord">Слово по натуралистической модели (с разделителями)</label>
-        <input id="naturalisticWord" type="text" autocomplete="off" placeholder="re/vis/ion/u" />
+        <input class="interal-input" id="naturalisticWord" type="text" autocomplete="off" placeholder="re/vis/ion/u" />
       </div>
 
-      <div class="field">
+      <div class="interal-field field">
         <label id="explanationChainLabel" for="explanationChain">Объяснительная цепочка</label>
-        <textarea id="explanationChain" rows="3" placeholder="например: повторный просмотр → просмотр с целью контроля → проверка → ревизия"></textarea>
+        <textarea class="interal-textarea" id="explanationChain" rows="3" placeholder="например: повторный просмотр → просмотр с целью контроля → проверка → ревизия"></textarea>
       </div>
 
       <div class="semantic-distance-settings" hidden aria-hidden="true">
@@ -108,22 +108,22 @@
         <button class="icon-btn close-btn" type="button" data-close-modal="true" aria-label="Закрыть">&times;</button>
       </div>
 
-      <div class="field compact-field">
+      <div class="interal-field field compact-field">
         <label id="rootFormLabel" for="rootFormInput">Слово</label>
-       <input id="rootFormInput" type="text" autocomplete="off" placeholder="vid/er" />
+       <input class="interal-input" id="rootFormInput" type="text" autocomplete="off" placeholder="vid/er" />
       </div>
 
-      <div class="field compact-field">
+      <div class="interal-field field compact-field">
         <label id="rootMeaningLabel" for="rootMeaningInput">Значение</label>
-         <input id="rootMeaningInput" type="text" autocomplete="off" placeholder="видеть" />
+         <input class="interal-input" id="rootMeaningInput" type="text" autocomplete="off" placeholder="видеть" />
       </div>
 
-      <div class="field compact-field">
+      <div class="interal-field field compact-field">
         <label id="assimilationLabel" for="assimilationSelect">Тип ассимиляции</label>
         <select class="interal-select js-custom-select" id="assimilationSelect"></select>
       </div>
 
-      <div class="actions modal-actions">
+      <div class="interal-actions actions modal-actions">
         <button class="tool-btn" id="saveRootBtn" type="button">Добавить</button>
       </div>
     </div>
@@ -138,23 +138,23 @@
         <button class="icon-btn close-btn" type="button" data-close-modal="true" aria-label="Закрыть">&times;</button>
       </div>
 
-      <div class="field compact-field">
+      <div class="interal-field field compact-field">
         <label id="componentSearchLabel" for="componentSearchInput">Поиск</label>
-        <input id="componentSearchInput" type="search" autocomplete="off" placeholder="-or, действие, приставка" />
+        <input class="interal-input" id="componentSearchInput" type="search" autocomplete="off" placeholder="-or, действие, приставка" />
       </div>
 
-      <div class="field compact-field">
+      <div class="interal-field field compact-field">
         <label id="componentCategoryLabel" for="componentCategorySelect">Категория</label>
         <select class="interal-select js-custom-select" id="componentCategorySelect"></select>
       </div>
 
-      <div class="field compact-field">
+      <div class="interal-field field compact-field">
         <label id="componentSelectLabel" for="componentSelect">Элемент</label>
         <select class="interal-select js-custom-select" id="componentSelect"></select>
       </div>
 
 
-      <div class="actions modal-actions">
+      <div class="interal-actions actions modal-actions">
         <button class="tool-btn" id="saveComponentBtn" type="button">Добавить</button>
       </div>
     </div>
@@ -169,13 +169,13 @@
         <button class="icon-btn close-btn" type="button" data-close-modal="true" aria-label="Закрыть">&times;</button>
       </div>
 
-      <div class="field compact-field">
+      <div class="interal-field field compact-field">
         <label id="prefixVariantLabel" for="prefixVariantSelect">Вариант приставки</label>
         <select class="interal-select js-custom-select" id="prefixVariantSelect"></select>
       </div>
 
 
-      <div class="actions modal-actions">
+      <div class="interal-actions actions modal-actions">
         <button class="tool-btn" id="savePrefixVariantBtn" type="button">Добавить</button>
       </div>
     </div>

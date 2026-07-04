@@ -1853,7 +1853,7 @@ function renderResult(result, input) {
           ${['P', 'R', 'C', 'E'].map((key) => `
             <label class="score-field">
               <span>${key}</span>
-              <input type="number" min="0" max="${key === 'C' ? 5 : 4}" step="1" value="${escapeHtml(computed.scores[key] ?? '')}" data-score-key="${key}" />
+              <input class="interal-input" type="number" min="0" max="${key === 'C' ? 5 : 4}" step="1" value="${escapeHtml(computed.scores[key] ?? '')}" data-score-key="${key}" />
             </label>
           `).join('')}
         </div>
