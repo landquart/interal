@@ -17,8 +17,8 @@ document.addEventListener("copy", function (event) {
 
   const currentScript = document.currentScript;
   const scriptUrl = currentScript
-    ? new URL('form-draft.js?v=vercel-share-links-20260629', currentScript.src).toString()
-    : '../shared/form-draft.js?v=vercel-share-links-20260629';
+    ? new URL('form-draft.js?v=ui-polish-20260704', currentScript.src).toString()
+    : '../shared/form-draft.js?v=ui-polish-20260704';
 
   const script = document.createElement('script');
   script.src = scriptUrl;

@@ -134,29 +134,6 @@ body {
   margin-top: 8px;
 }
 
-.determinator-page .tool-btn {
-  position: relative;
-  overflow: hidden;
-  isolation: isolate;
-  border: 1px solid var(--button-primary-bg);
-  border-radius: var(--radius-md);
-  padding: 11px 16px;
-  cursor: pointer;
-  background: var(--button-primary-bg);
-  color: var(--button-primary-text);
-  transform: scale(1);
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.determinator-page .tool-btn:hover,
-.determinator-page .tool-btn:focus-visible {
-  transform: translateY(-1px);
-}
-
-.determinator-page .tool-btn:active {
-  transform: scale(0.99);
-}
-
 .determinator-page .tool-btn.ghost,
 .determinator-page .component-delete,
 .determinator-page .icon-btn,
@@ -226,22 +203,6 @@ body {
 
 .determinator-page .icon-copy-btn.is-failed { border-color: var(--border-strong); }
 
-
-.determinator-page #copyPromptBtn {
-  background: #000;
-  border-color: #000;
-  color: #fff;
-}
-
-.determinator-page #copyPromptBtn img {
-  filter: brightness(0) invert(1);
-}
-
-.determinator-page #copyPromptBtn:hover,
-.determinator-page #copyPromptBtn:focus-visible {
-  background: #111;
-  border-color: #111;
-}
 
 #buildPromptBtn {
   transition: opacity 0.22s ease, transform 0.22s ease, max-width 0.22s ease, margin 0.22s ease, padding 0.22s ease, border-width 0.22s ease;
@@ -638,4 +599,10 @@ body.dark-theme.determinator-page .modal-backdrop {
   justify-self: end;
   font-size: 0.86rem;
   font-weight: 700;
+}
+
+.determinator-page .component-search-option.is-selected .component-search-category,
+.determinator-page .component-search-option.is-selected .component-search-meaning,
+.determinator-page .component-search-option.is-selected .component-search-action {
+  color: var(--select-option-selected-text);
 }
