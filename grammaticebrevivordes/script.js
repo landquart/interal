@@ -35,7 +35,7 @@ async function createCardOnServer(card) {
     });
     const data = await response.json().catch(() => null);
     if (!response.ok || !data?.ok) throw new Error(data?.error || `HTTP ${response.status}`);
-    return data.card?.payload || { ...card, id: data.id, discussionId: data.discussionId || `card-${data.id}` };
+    return window.InteralJsonCardModal?.parseCardsApiResponse?.(data, card) || (data?.card?.payload ?? data?.payload ?? { ...card, id: data.id, section: data.section, discussionId: data.discussionId || `card-${data.id}`, status: data.status || 'pending' });
   } catch (error) {
     if (!isDatabaseLimitError(error)) throw error;
     console.warn('Supabase insert failed; using fallback sequential card id');
@@ -100,7 +100,7 @@ function getDefaultState() {
     arguments: '',
     criteria: [false, false, false, false],
     comments: ['', '', '', ''],
-    checked: false
+    checked: false, aiChecked: false, manuallyEdited: false, finalized: false
   };
 }
 function setButtonStatus(selector, text, disabled = true, options = {}) { window.InteralButtonStatus?.setButtonStatus(selector, text, disabled, options); }
@@ -134,7 +134,9 @@ async function makeCard(author){ return createCardOnServer(makeCardDraft(author)
 function generateJson(){ openJsonModal(); }
 function renderCriteria(){ return `<div class="criteria-list grammar-criteria-list">${CRITERIA.map((criterion,i)=>`<div class="criterion grammar-criterion"><div class="criterion-head"><strong>${escapeHtml(criterion[currentLang()])}</strong></div><label class="criterion-check"><input id="crit_${i}" type="checkbox" ${state.criteria[i] ? 'checked' : ''}><span>${t('criterionPass')}</span></label><label class="field criterion-comment"><span>${t('comment')}</span><textarea class="interal-textarea" id="comment_${i}">${escapeHtml(state.comments[i])}</textarea></label></div>`).join('')}</div>`; }
 
+function validateGrammarInput(){ if(!state.word) throw new Error(currentLang()==='en'?'Enter the word.':'Введите слово.'); if(!state.meaning) throw new Error(currentLang()==='en'?'Enter the meaning.':'Введите значение.'); }
 async function autoCheckWithQwen() {
+  validateGrammarInput();
   try {
     const response = await fetch('/api/qwen-analyze', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ task:'grammar_short_word_check', interfaceLanguage: currentLang(), payload:{ candidate:state.word, meaning:state.meaning, partOfSpeech:state.part_of_speech, translations:state.translations, criteria:CRITERIA, comment:state.arguments, explanations:state.comments } }) });
     const data = await response.json().catch(()=>null);
@@ -157,15 +159,15 @@ function bindJsonModal() {
   window.InteralJsonCardModal?.init({
     getLanguage: currentLang,
     getTexts: getJsonCardTexts,
-    buildCard: async ({ author, onProgress } = {}) => { onProgress?.(currentLang() === 'en' ? 'Reading data...' : 'Чтение данных...'); readState(); if (!state.checked || !result().accepted) throw new Error(getJsonCardTexts().unavailable); onProgress?.(currentLang() === 'en' ? 'Saving card...' : 'Сохранение карточки...'); return makeCard(author); },
+    buildCard: async ({ author, onProgress } = {}) => { onProgress?.(currentLang() === 'en' ? 'Reading data...' : 'Чтение данных...'); readState(); if (!state.finalized || !result().accepted) throw new Error(getJsonCardTexts().unavailable); onProgress?.(currentLang() === 'en' ? 'Saving card...' : 'Сохранение карточки...'); return makeCard(author); },
     formatCard: (card) => JSON.stringify(card, null, 2),
     getFilename: () => jsonFilename
   });
   document.addEventListener('interal:languagechange', () => { document.documentElement.lang = currentLang(); readState(); render(); });
   byId('resetBtn')?.addEventListener('click', resetState);
-  byId('checkBtn')?.addEventListener('click', async () => { readState(); await autoCheckWithQwen(); state.checked = true; render(); updateResetButtonVisibility(); });
-  byId('app')?.addEventListener('input', () => { state.checked = false; renderResult(); updateResetButtonVisibility();  });
-  byId('app')?.addEventListener('change', () => { state.checked = false; renderResult(); updateResetButtonVisibility();  });
+  byId('checkBtn')?.addEventListener('click', async () => { readState(); try { await autoCheckWithQwen(); state.aiChecked = true; state.finalized = true; state.checked = true; } catch(error) { alert(error.message || (currentLang()==='en'?'Automatic check unavailable.':'Автоматическая проверка недоступна.')); } render(); updateResetButtonVisibility(); });
+  byId('app')?.addEventListener('input', () => { readState(); state.manuallyEdited = true; state.finalized = true; state.checked = true; renderResult(); updateResetButtonVisibility();  });
+  byId('app')?.addEventListener('change', () => { readState(); state.manuallyEdited = true; state.finalized = true; state.checked = true; renderResult(); updateResetButtonVisibility();  });
 }
 bindJsonModal();
 render();

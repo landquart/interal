@@ -35,7 +35,7 @@ async function createCardOnServer(card) {
     });
     const data = await response.json().catch(() => null);
     if (!response.ok || !data?.ok) throw new Error(data?.error || `HTTP ${response.status}`);
-    return data.card?.payload || { ...card, id: data.id, discussionId: data.discussionId || `card-${data.id}` };
+    return window.InteralJsonCardModal?.parseCardsApiResponse?.(data, card) || (data?.card?.payload ?? data?.payload ?? { ...card, id: data.id, section: data.section, discussionId: data.discussionId || `card-${data.id}`, status: data.status || 'pending' });
   } catch (error) {
     if (!isDatabaseLimitError(error)) throw error;
     console.warn('Supabase insert failed; using fallback sequential card id');
@@ -113,12 +113,12 @@ function getDefaultState() {
 }
 function setButtonStatus(selector, text, disabled = true, options = {}) { window.InteralButtonStatus?.setButtonStatus(selector, text, disabled, options); }
 let state = getDefaultState();
-function readState() { state.word=byId('wordInput')?.value.trim()||''; state.part_of_speech=byId('posInput')?.value||'adverb'; state.domain=byId('domainInput')?.value.trim()||''; for(const lang of LANGUAGES) state.translations[lang.code]=byId(`tr_${lang.code}`)?.value.trim()||''; const questions = QUESTIONS[currentLang()]; state.answers = questions.map((_,i)=>byId(`ans_${i}`)?.value||'yes'); state.criteria = state.answers.map((answer,i)=> i === 0 ? answer === 'yes' : i === 1 ? answer === 'yes' : answer === 'yes' || answer === 'partially'); }
+function readState() { state.word=byId('wordInput')?.value.trim()||''; state.part_of_speech=byId('posInput')?.value||'adverb'; state.domain=byId('domainInput')?.value.trim()||''; for(const lang of LANGUAGES) state.translations[lang.code]=byId(`tr_${lang.code}`)?.value.trim()||''; const questions = QUESTIONS[currentLang()]; state.answers = questions.map((_,i)=>byId(`ans_${i}`)?.value||''); state.criteria = state.answers.map((answer,i)=> i === 0 ? answer === 'yes' : i === 1 ? answer === 'yes' : answer === 'yes' || answer === 'partially'); }
 
 
 function hasUserInputForReset() {
   const hasText = ['wordInput', 'domainInput', ...LANGUAGES.map(lang => `tr_${lang.code}`)].some(id => byId(id)?.value.trim());
-  const hasCriteria = QUESTIONS[currentLang()].some((_, i) => Boolean(byId(`crit_${i}`)?.checked) || Boolean(byId(`ans_${i}`)?.value && byId(`ans_${i}`)?.value !== 'yes'));
+  const hasCriteria = QUESTIONS[currentLang()].some((_, i) => Boolean(byId(`ans_${i}`)?.value && byId(`ans_${i}`)?.value !== 'yes'));
   return hasText || hasCriteria || (byId('posInput')?.value || 'adverb') !== 'adverb';
 }
 function updateResetButtonVisibility() { const resetBtn = byId('resetBtn'); if (resetBtn) resetBtn.classList.toggle('is-hidden', !hasUserInputForReset()); }
@@ -128,16 +128,18 @@ async function resetState() {
   });
 }
 
-function getFormRecommendation(){ const answer = state.answers[2] || 'yes'; if (answer === 'yes') return 'keep_unchanged'; if (answer === 'partially') return 'light_adaptation'; return 'not_applicable'; }
+function getFormRecommendation(){ const answer = state.answers[2] || 'no'; if (answer === 'yes') return 'keep_unchanged'; if (answer === 'partially') return 'light_adaptation'; return 'not_applicable'; }
 function recommendationLabel(value){ return value === 'keep_unchanged' ? t('keepUnchanged') : value === 'light_adaptation' ? t('lightAdaptation') : t('notCommunityWord'); }
 function result(){ const criteria=[state.answers[0] === 'yes', state.answers[1] === 'yes', state.answers[2] === 'yes' || state.answers[2] === 'partially']; const n=criteria.filter(Boolean).length; return { passed:n, total:3, criteria, formRecommendation:getFormRecommendation(), accepted:criteria[0]&&criteria[1]&&criteria[2] }; }
-function makeCardDraft(author = null){ const r=result(); const card = { version:'1.0', card_type:'vord_card', vord_type:'vc', procedure:'community_word', status:'draft', interal:{word:state.word, part_of_speech:state.part_of_speech}, translations: LANGUAGES.map(lang=>({language:lang.code, word:state.translations[lang.code]||''})), domain:state.domain, criteria: QUESTIONS[currentLang()].map((q,i)=>({id:['domain_specificity','international_use_in_community','recognizability_loss_after_adaptation'][i], question:q, answer:state.answers[i]||'yes', passed:Boolean(r.criteria[i]), explanation:''})), form_recommendation:r.formRecommendation, decision:{accepted:r.accepted} }; if (author) card.author = author; return card; }
+function makeCardDraft(author = null){ const r=result(); const card = { version:'1.0', card_type:'vord_card', vord_type:'vc', procedure:'community_word', status:'draft', interal:{word:state.word, part_of_speech:state.part_of_speech}, translations: LANGUAGES.map(lang=>({language:lang.code, word:state.translations[lang.code]||''})), domain:state.domain, criteria: QUESTIONS[currentLang()].map((q,i)=>({id:['domain_specificity','international_use_in_community','recognizability_loss_after_adaptation'][i], question:q, answer:state.answers[i]||'no', passed:Boolean(r.criteria[i]), explanation:''})), form_recommendation:r.formRecommendation, decision:{accepted:r.accepted} }; if (author) card.author = author; return card; }
 async function makeCard(author){ return createCardOnServer(makeCardDraft(author)); }
 function generateJson(){ openJsonModal(); }
-function renderCriteria(){ const questions = QUESTIONS[currentLang()]; return `<div class="criteria-list">${questions.map((q,i)=>`<div class="criterion"><p>${escapeHtml(q)}</p><select class="interal-select js-custom-select" id="ans_${i}"><option value="yes">${t('answerYes')}</option>${i===2?`<option value="partially">${t('answerPartially')}</option>`:''}<option value="no">${t('answerNo')}</option></select></div>`).join('')}</div>`; }
+function renderCriteria(){ const questions = QUESTIONS[currentLang()]; return `<div class="criteria-list">${questions.map((q,i)=>`<div class="criterion"><p>${escapeHtml(q)}</p><select class="interal-select js-custom-select" id="ans_${i}"><option value="">—</option><option value="yes">${t('answerYes')}</option>${i===2?`<option value="partially">${t('answerPartially')}</option>`:''}<option value="no">${t('answerNo')}</option></select></div>`).join('')}</div>`; }
 
+function validateCommunityInput(){ if(!state.word) throw new Error(currentLang()==='en'?'Enter the word.':'Введите слово.'); if(!state.domain) throw new Error(currentLang()==='en'?'Enter the domain/community.':'Введите область или сообщество.'); if(!Object.values(state.translations).some(Boolean)) throw new Error(currentLang()==='en'?'Enter at least one translation.':'Введите хотя бы один перевод.'); }
 async function autoCheckWithQwen() {
   try {
+    validateCommunityInput();
     const response = await fetch('/api/qwen-analyze', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ task:'community_word_check', interfaceLanguage: currentLang(), payload:{ candidate:state.word, domain:state.domain, partOfSpeech:state.part_of_speech, translations:state.translations, questions:QUESTIONS[currentLang()] } }) });
     const data = await response.json().catch(()=>null);
     const answers = data?.analysis?.answers;
@@ -145,7 +147,7 @@ async function autoCheckWithQwen() {
       answers.slice(0,3).forEach((entry,i)=>{ if (['yes','partially','no'].includes(entry.answer)) state.answers[i]=entry.answer; });
       state.criteria = state.answers.map((answer,i)=> i === 0 ? answer === 'yes' : i === 1 ? answer === 'yes' : answer === 'yes' || answer === 'partially');
     }
-  } catch (error) { console.warn('community_word_check unavailable; manual mode remains active', error); }
+  } catch (error) { console.warn('community_word_check unavailable; manual mode remains active', error); throw error; }
 }
 
 function renderResult() { const r = result(); byId('resultBox').innerHTML = `<span class="status-pill ${r.accepted?'ok':'bad'}">${r.accepted?t('accept'):t('reject')}</span><dl>${r.criteria.map((passed,i)=>`<div><dt>${t('criterion')} ${i+1}</dt><dd>${passed?t('passedOne'):t('failedOne')}</dd></div>`).join('')}<div><dt>${t('formRecommendation')}</dt><dd>${recommendationLabel(r.formRecommendation)}</dd></div><div><dt>${t('final')}</dt><dd>${r.accepted?t('accept'):t('reject')}</dd></div></dl>`; }
@@ -160,13 +162,13 @@ function bindJsonModal() {
   window.InteralJsonCardModal?.init({
     getLanguage: currentLang,
     getTexts: getJsonCardTexts,
-    buildCard: async ({ author, onProgress } = {}) => { onProgress?.(currentLang() === 'en' ? 'Reading data...' : 'Чтение данных...'); readState(); onProgress?.(currentLang() === 'en' ? 'Saving card...' : 'Сохранение карточки...'); return makeCard(author); },
+    buildCard: async ({ author, onProgress } = {}) => { onProgress?.(currentLang() === 'en' ? 'Reading data...' : 'Чтение данных...'); readState(); if (!state.checked || !result().accepted) throw new Error(getJsonCardTexts().unavailable); onProgress?.(currentLang() === 'en' ? 'Saving card...' : 'Сохранение карточки...'); return makeCard(author); },
     formatCard: (card) => JSON.stringify(card, null, 2),
     getFilename: () => jsonFilename
   });
   document.addEventListener('interal:languagechange', () => { document.documentElement.lang = currentLang(); readState(); render(); });
   byId('resetBtn')?.addEventListener('click', resetState);
-  byId('checkBtn')?.addEventListener('click', async () => { readState(); await autoCheckWithQwen(); state.checked = true; render(); updateCheckedVisibility(); updateResetButtonVisibility(); });
+  byId('checkBtn')?.addEventListener('click', async () => { readState(); try { await autoCheckWithQwen(); state.checked = true; } catch(error) { state.checked = false; alert(error.message || (currentLang()==='en'?'Automatic check unavailable; fill criteria manually.':'Автоматическая проверка недоступна; заполните критерии вручную.')); } render(); updateCheckedVisibility(); updateResetButtonVisibility(); });
   byId('app')?.addEventListener('input', () => { updateResetButtonVisibility(); if (state.checked) { readState(); renderResult(); updateCheckedVisibility(); } });
   byId('app')?.addEventListener('change', () => { updateResetButtonVisibility(); if (state.checked) { readState(); renderResult(); updateCheckedVisibility(); } });
 }

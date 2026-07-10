@@ -62,9 +62,7 @@ export function calculateSwowBonus(swow) {
 }
 
 export function calculateFinalScore({ frequency_score, association_score }) {
-  if (frequency_score == null && association_score == null) return null;
-  if (frequency_score == null) return association_score;
-  if (association_score == null) return frequency_score;
+  if (frequency_score == null || association_score == null) return null;
   return clamp(
     FINAL_SCORE_WEIGHTS.association_score * association_score +
     FINAL_SCORE_WEIGHTS.frequency_score * frequency_score,

@@ -1765,8 +1765,8 @@ async function analyzeByRules(input, runId) {
       ok: false,
       error: 'insufficient_data',
       details: txt('insufficientData'),
-      computed: classifyByPRECE({ P: 2, R: 3, C: 2, E: 1 }),
-      ai: normalizeAiResult({ chain: [], P: 2, R: 3, C: 2, E: 1, confidence: 0.3 }),
+      computed: { warnings: [txt('insufficientData')], scores: { P: null, R: null, C: null, E: null }, zone_ru: txt('apiUnavailableManual'), zone_en: txt('apiUnavailableManual') },
+      ai: normalizeAiResult({ chain: [], P: null, R: null, C: null, E: null, confidence: 0 }),
       retrieval: { examples_used: [] }
     };
   }
@@ -1800,8 +1800,8 @@ async function analyzeByRules(input, runId) {
   }
 
   if (!response.ok || data.ok === false) {
-    const fallbackScores = state.lastAnalysis?.computed?.scores || { P: 2, R: 3, C: 2, E: 1 };
-    const computed = classifyByPRECE(fallbackScores);
+    const fallbackScores = state.lastAnalysis?.computed?.scores || { P: null, R: null, C: null, E: null };
+    const computed = Number.isFinite(Number(fallbackScores.P)) && Number.isFinite(Number(fallbackScores.R)) && Number.isFinite(Number(fallbackScores.C)) ? classifyByPRECE(fallbackScores) : { scores: fallbackScores, zone_ru: txt('apiUnavailableManual'), zone_en: txt('apiUnavailableManual'), warnings: [] };
     computed.formRecommendation = buildFormRecommendation(computed, input);
     computed.warnings = [
       txt('apiErrorWarning'),
@@ -1830,7 +1830,7 @@ function badge(text, type = '') {
 function renderResult(result, input) {
   els.resultPanel.hidden = false;
   const isEn = currentLang() === 'en';
-  const computed = result.computed || classifyByPRECE(result.ai || { P: 2, R: 3, C: 2, E: 1 });
+  const computed = result.computed || (Number.isFinite(Number(result.ai?.P)) ? classifyByPRECE(result.ai) : { scores: { P:null,R:null,C:null,E:null }, zone_ru: txt('apiUnavailableManual'), zone_en: txt('apiUnavailableManual'), warnings: [] });
   const ai = normalizeAiResult(result.ai || computed.scores || {});
   const confidenceLabels = { high: txt('high'), medium: txt('medium'), low: txt('low') };
   const zoneName = isEn ? computed.zone_en : computed.zone_ru;
@@ -2096,11 +2096,9 @@ function attachEvents() {
       if (!isCurrentRun(runId)) return;
       } catch (error) {
       if (!isCurrentRun(runId)) return;
-      const computed = classifyByPRECE({ P: 2, R: 3, C: 2, E: 1 });
-      computed.formRecommendation = buildFormRecommendation(computed, input);
-      computed.warnings = [txt('apiUnavailableManual'), String(error.message || error)];
+      const computed = { scores: { P: null, R: null, C: null, E: null }, zone_ru: txt('apiUnavailableManual'), zone_en: txt('apiUnavailableManual'), warnings: [txt('apiUnavailableManual'), String(error.message || error)] };
       if (!isCurrentRun(runId)) return;
-      renderResult({ ok: false, error: 'frontend_error', details: String(error.message || error), ai: normalizeAiResult({ P: 2, R: 3, C: 2, E: 1, confidence: 0.2 }), computed, retrieval: { examples_used: [] } }, input);
+      renderResult({ ok: false, error: 'frontend_error', details: String(error.message || error), ai: normalizeAiResult({ P: null, R: null, C: null, E: null, confidence: 0 }), computed, retrieval: { examples_used: [] } }, input);
     } finally {
       if (!isCurrentRun(runId)) return;
       els.analyzeBtn.disabled = false;
