@@ -1442,5 +1442,6 @@ body.dark-theme .secondary-btn.gradient-hover:hover:not(:disabled) {
   }
 }
 
-/* Disable decorative yellow/name underlines in navigation and page cards. */
+/* Disable decorative yellow/name underlines in navigation, page headers, and page cards. */
 .top-brand,.top-brand *, .top-desktop-link,.top-desktop-link *, .top-desktop-dropdown-link,.top-desktop-dropdown-link *, .menu-nav-link,.menu-nav-link *, .tool-link,.tool-link *{text-decoration:none!important;text-decoration-color:transparent!important;}
+.interal-page-hero::after,.top-desktop-link.is-active::before,.top-desktop-dropdown:has(.top-desktop-dropdown-link.is-active) > .top-desktop-dropdown-trigger::before{content:none!important;display:none!important;background:transparent!important;}
