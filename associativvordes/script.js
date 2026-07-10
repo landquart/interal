@@ -696,7 +696,7 @@ const TEXT_I18N = {
       const warningList = analysis.warnings || [];
       const warnings = warningList.join('; ');
       return `
-        <tr class="${resultRowClasses(analysis)}" title="${escapeHtml(warnings)}">
+        <tr class="${[resultRowClasses(analysis), item.selected ? 'is-selected' : ''].filter(Boolean).join(' ')}" title="${escapeHtml(warnings)}">
           <td class="col-word word-cell sticky-word">
             <label class="word-with-check">
               <input

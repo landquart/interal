@@ -212,6 +212,11 @@ body.dark-theme .internationalita-page .card-reset-btn img {
   margin-bottom: 4px;
 }
 
+.internationalita-page .metric--primary { border-color: var(--brand-gold-border); box-shadow: inset 0 3px 0 var(--brand-gold), var(--shadow-sm); }
+.internationalita-page .metric--primary .metric-value { color: var(--brand-gold-text); }
+.internationalita-page .group-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.internationalita-page .group-pill { display: inline-flex; align-items: center; gap: 5px; padding: 2px 8px; border-radius: var(--radius-pill); border: 1px solid var(--border-subtle); background: var(--surface-elevated); color: var(--text); font-size: .78rem; font-weight: 700; }
+.internationalita-page .group-pill::before { content: ""; width: 6px; height: 6px; border-radius: 999px; background: var(--brand-gold); }
 .internationalita-page .metric-value {
   display: block;
   font-size: 18px;
@@ -2466,7 +2471,7 @@ function renderResult(data) {
   resultBox.style.display = "block";
   resultBox.innerHTML = `
     <div class="result-grid">
-      <div class="metric">
+      <div class="metric metric--primary">
         <span class="metric-label">${escapeHTML(piLabel)}</span>
         <span class="metric-value">${piMain === null ? "—" : formatPercent(piMain)}</span>
       </div>
@@ -2484,6 +2489,7 @@ function renderResult(data) {
       <div class="metric">
         <span class="metric-label">${escapeHTML(text.languageGroups)}</span>
         <span class="metric-value">${data.supportedGroups.length}/4</span>
+        <span class="group-pills">${data.supportedGroups.map((group) => `<span class="group-pill">${escapeHTML(getLocalizedLanguageGroup(group))}</span>`).join("")}</span>
       </div>
     </div>
 
