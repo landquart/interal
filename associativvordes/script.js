@@ -29,10 +29,10 @@ const TEXT_I18N = {
           Germanic: 'Германская', Romance: 'Романская', Slavic: 'Славянская'
         },
         panel: {
-          group: 'Группа', languageScore: 'Балл языка', weightSum: 'сумма весов', addWord: 'Добавить слово', use: 'Учитывать', word: 'Слово', model: 'Модель', frequencyPercent: 'Частотность %', directness: 'Прямота связи', fieldRelatedness: 'Близость поля', domainShift: 'Сдвиг области', swowBonus: 'Бонус SWOW', associationPercent: 'Ассоциация %', finalPercent: 'Итог %', status: 'Статус', explanation: 'Объяснение', warnings: 'Предупреждения', details: 'Детали', analyze: 'Анализировать', delete: 'Удалить', association: 'Ассоциация', rank: 'Ранг', frequency: 'Частота', weightP: 'Вес P'
+          group: 'Группа', languageScore: 'Балл языка', weightSum: 'сумма весов', addWord: 'Добавить слово', use: 'Учитывать', word: 'Слово', model: 'Модель', frequencyPercent: 'F — частотность', directness: 'Di — прямота связи', fieldRelatedness: 'Pr — близость поля', domainShift: 'Sh — сдвиг области', swowBonus: 'Бонус SWOW, 0–15', associationPercent: 'A — ассоциация', finalPercent: 'P — вес деривата', status: 'Статус', explanation: 'Объяснение', warnings: 'Предупреждения', details: 'Детали', analyze: 'Анализировать', delete: 'Удалить', association: 'Ассоциация', rank: 'Ранг', frequency: 'Частота', weightP: 'Вес P'
         },
         results: {
-          finalAssociation: 'FA — конечная ассоциация', totalAssociation: 'TA — вся ассоциация', languagesRepresented: 'языков представлено', languageGroups: 'языковых групп', accept: 'ПРИНЯТЬ', reject: 'НЕ ПРИНИМАТЬ', fewerLanguages: 'меньше 3 языков', fewerGroups: 'меньше 2 языковых групп', belowThreshold: 'ниже главного порога', reasons: 'Причины', allMet: 'Все условия выполнены.'
+          finalAssociation: 'FA — конечная ассоциация', totalAssociation: 'TA — общая сумма баллов языков', languagesRepresented: 'языков представлено', languageGroups: 'языковых групп', accept: 'ПРИНЯТЬ', reject: 'НЕ ПРИНИМАТЬ', fewerLanguages: 'меньше 3 языков', fewerGroups: 'меньше 2 языковых групп', belowThreshold: 'ниже главного порога', reasons: 'Причины', allMet: 'Все условия выполнены.'
         },
         alerts: {
           jsonCardUnavailable: 'Сначала выполните расчёт.',
@@ -72,10 +72,10 @@ const TEXT_I18N = {
           Germanic: 'Germanic', Romance: 'Romance', Slavic: 'Slavic'
         },
         panel: {
-          group: 'Group', languageScore: 'Language score', weightSum: 'weight sum', addWord: 'Add word', use: 'Use', word: 'Word', model: 'Model', frequencyPercent: 'Frequency %', directness: 'Directness', fieldRelatedness: 'Field relatedness', domainShift: 'Domain shift', swowBonus: 'SWOW bonus', associationPercent: 'Association %', finalPercent: 'Final %', status: 'Status', explanation: 'Explanation', warnings: 'Warnings', details: 'Details', analyze: 'Analyze', delete: 'Delete', association: 'Association', rank: 'Rank', frequency: 'Frequency', weightP: 'Weight P'
+          group: 'Group', languageScore: 'Language score', weightSum: 'weight sum', addWord: 'Add word', use: 'Use', word: 'Word', model: 'Model', frequencyPercent: 'F — frequency', directness: 'Di — directness', fieldRelatedness: 'Pr — field proximity', domainShift: 'Sh — domain shift', swowBonus: 'SWOW bonus — 0–15', associationPercent: 'A — association', finalPercent: 'P — derivative weight', status: 'Status', explanation: 'Explanation', warnings: 'Warnings', details: 'Details', analyze: 'Analyze', delete: 'Delete', association: 'Association', rank: 'Rank', frequency: 'Frequency', weightP: 'Weight P'
         },
         results: {
-          finalAssociation: 'FA — final association', totalAssociation: 'TA — total association', languagesRepresented: 'languages represented', languageGroups: 'language groups', accept: 'ACCEPT', reject: 'DO NOT ACCEPT', fewerLanguages: 'fewer than 3 languages', fewerGroups: 'fewer than 2 language groups', belowThreshold: 'below the main threshold', reasons: 'Reasons', allMet: 'All conditions are met.'
+          finalAssociation: 'FA — final association', totalAssociation: 'TA — total language score', languagesRepresented: 'languages represented', languageGroups: 'language groups', accept: 'ACCEPT', reject: 'DO NOT ACCEPT', fewerLanguages: 'fewer than 3 languages', fewerGroups: 'fewer than 2 language groups', belowThreshold: 'below the main threshold', reasons: 'Reasons', allMet: 'All conditions are met.'
         },
         alerts: {
           jsonCardUnavailable: 'Run a calculation first.',
@@ -601,11 +601,13 @@ const TEXT_I18N = {
       const finalAssociation = represented.length ? totalAssociation / represented.length : 0;
       const representedLangs = represented.length;
       const groups = new Set(represented.map(x => x.lang.group));
+      const semanticConfirmed = represented.some(x => Number.isFinite(Number(x.normalized)));
       const accepted =
         representedLangs >= 3 &&
         groups.size >= 2 &&
-        finalAssociation >= THRESHOLDS.main;
-      return { languageScores, totalAssociation, finalAssociation, representedLangs, groups: groups.size, accepted };
+        finalAssociation >= THRESHOLDS.main &&
+        semanticConfirmed;
+      return { languageScores, totalAssociation, finalAssociation, representedLangs, groups: groups.size, semanticConfirmed, accepted };
     }
 
     function renderTabs() {
@@ -756,6 +758,7 @@ const TEXT_I18N = {
       if (result.finalAssociation < THRESHOLDS.main) {
         reasons.push(labels.belowThreshold);
       }
+      if (!result.semanticConfirmed) reasons.push(currentLang() === 'en' ? 'semantic correspondence not confirmed' : 'семантическое соответствие не подтверждено');
 
       document.getElementById('decisionBox').innerHTML = `
         <span class="status ${statusClass}">${statusText}</span>
@@ -960,10 +963,14 @@ async function createFallbackCard(card, section) { const response = await fetch(
         supported_groups: supportedGroups,
         calculation: {
           association_percent: finiteOrNull(result.finalAssociation),
+          TA: finiteOrNull(result.totalAssociation),
+          FA: finiteOrNull(result.finalAssociation),
           weighted_sum: finiteOrNull(result.totalAssociation),
           total_speakers_thousands: LANGUAGES.reduce((sum, lang) => sum + (Number(lang.speakers) || 0), 0),
           represented_languages: result.representedLangs,
           represented_groups: result.groups,
+          semantic_confirmed: result.semanticConfirmed,
+          accepted: result.accepted,
           thresholds: { strong: 55, accept: THRESHOLDS.main, review_min: THRESHOLDS.reviewMin, review_max: THRESHOLDS.reviewMax, reject_below: THRESHOLDS.rejectBelow },
           weights: { association_score: 0.65, frequency_score: 0.35 }
         },
@@ -985,7 +992,8 @@ async function createFallbackCard(card, section) { const response = await fetch(
             selected: true,
             match: best.match ? { type: best.match.type, root: state.root || '', fragment: best.match.fragment || '', distance: finiteOrNull(best.match.distance) } : null,
             frequency: { score: finiteOrNull(analysis.frequency?.frequency_score ?? best.frequency_score), ipm: null, category_breakdown: analysis.frequency?.category_breakdown || {} },
-            association: { directness: finiteOrNull(association.directness), field_relatedness: finiteOrNull(association.field_relatedness), domain_shift: finiteOrNull(association.domain_shift), swow_bonus: finiteOrNull(analysis.swow?.bonus || 0), score_base: finiteOrNull(association.association_score_base), score: finiteOrNull(association.association_score), explanation: association.explanation || '' },
+            association: { Di: finiteOrNull(association.directness), Pr: finiteOrNull(association.field_relatedness), Sh: finiteOrNull(association.domain_shift), A_base: finiteOrNull(association.association_score_base), swow_bonus: finiteOrNull(analysis.swow?.bonus || 0), A_final: finiteOrNull(association.association_score), F: finiteOrNull(analysis.frequency?.frequency_score ?? best.frequency_score), P: finiteOrNull(analysis.final_score ?? best.final_score), directness: finiteOrNull(association.directness), field_relatedness: finiteOrNull(association.field_relatedness), domain_shift: finiteOrNull(association.domain_shift), score_base: finiteOrNull(association.association_score_base), score: finiteOrNull(association.association_score), explanation: association.explanation || '' },
+            models: { primary: analysis.primary || null, review: analysis.review || null, combination_method: analysis.review && analysis.review.status !== 'review_unavailable' ? 'arithmetic_mean' : 'primary_only' },
             swow: { found: Boolean(analysis.swow?.bonus), bonus: finiteOrNull(analysis.swow?.bonus || 0), target_to_word: analysis.swow?.target_to_word || null, word_to_target: analysis.swow?.word_to_target || null },
             final_score: finiteOrNull(analysis.final_score ?? best.final_score),
             status: Number.isFinite(Number(analysis.final_score ?? best.final_score)) ? 'scored' : 'unavailable',

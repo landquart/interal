@@ -31,7 +31,7 @@ async function createCardOnServer(card) {
     const response = await fetch(CARDS_API_ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ section: 'grammaticebrevivordes', title, category: card?.vord_type || 'grammar_short_word', payload: card })
+      body: JSON.stringify({ section: 'grammaticebrevivordes', title, category: card?.vord_type || 'gv', payload: card })
     });
     const data = await response.json().catch(() => null);
     if (!response.ok || !data?.ok) throw new Error(data?.error || `HTTP ${response.status}`);
@@ -85,10 +85,11 @@ function renderTranslations(defaults = {}) {
 }
 
 const I18N = {
-  ru: { title:'Grammatic e brevi vordes', lead:'', params:'Параметры слова', word:'Слово в Интерaле', pos:'Часть речи', meaning:'Значение', translations:'Переводы', criteria:'Критерии', arguments:'Обоснование', result:'Итог', card:'JSON-карточка', preposition:'предлог', conjunction:'союз', particle:'частица', adverb:'наречие', check:'Проверить', json:'Сформировать JSON-карточку', copy:'Скопировать', download:'Скачать', passed:'Пройдено', decision:'Решение', accept:'ПРИНЯТО', reject:'НЕ ПРИНЯТО', table:{language:'Язык', translation:'Перевод'}, comment:'Комментарий', criterionDecision:'Оценка', criterionPass:'Соответствует', criterionFail:'Не соответствует', reset:'Сбросить' },
-  en: { title:'Grammatic e brevi vordes', lead:'', params:'Word parameters', word:'Interal word', pos:'Part of speech', meaning:'Meaning', translations:'Translations', criteria:'Criteria', arguments:'Justification', result:'Decision', card:'JSON card', preposition:'preposition', conjunction:'conjunction', particle:'particle', adverb:'adverb', check:'Check', json:'Generate JSON card', copy:'Copy', download:'Download', passed:'Passed', decision:'Decision', accept:'ACCEPTED', reject:'NOT ACCEPTED', table:{language:'Language', translation:'Translation'}, comment:'Comment', criterionDecision:'Evaluation', criterionPass:'Passes', criterionFail:'Does not pass', reset:'Reset' }
+  ru: { title:'Grammatic e brevi vordes', lead:'', params:'Параметры слова', word:'Слово в Интерaле', pos:'Часть речи', meaning:'Значение', translations:'Переводы', criteria:'Критерии', arguments:'Обоснование', result:'Итог', card:'JSON-карточка', preposition:'предлог', conjunction:'союз', particle:'частица', adverb:'наречие', check:'Проверить', json:'Сформировать JSON-карточку', copy:'Скопировать', download:'Скачать', passed:'Пройдено', decision:'Решение', accept:'ПРИНЯТО', reject:'НЕ ПРИНЯТО', table:{language:'Язык', translation:'Перевод'}, comment:'Комментарий', criterionDecision:'Оценка', criterionPass:'Соответствует', criterionFail:'Не соответствует', requiredForAcceptance:'Минимум для принятия', recogNote:'Распознаваемость/когнативность может отсутствовать, если выполнены остальные три критерия.', reset:'Сбросить' },
+  en: { title:'Grammatic e brevi vordes', lead:'', params:'Word parameters', word:'Interal word', pos:'Part of speech', meaning:'Meaning', translations:'Translations', criteria:'Criteria', arguments:'Justification', result:'Decision', card:'JSON card', preposition:'preposition', conjunction:'conjunction', particle:'particle', adverb:'adverb', check:'Check', json:'Generate JSON card', copy:'Copy', download:'Download', passed:'Passed', decision:'Decision', accept:'ACCEPTED', reject:'NOT ACCEPTED', table:{language:'Language', translation:'Translation'}, comment:'Comment', criterionDecision:'Evaluation', criterionPass:'Passes', criterionFail:'Does not pass', requiredForAcceptance:'Required for acceptance', recogNote:'Recognizability/cognateness may be absent if the other three criteria are satisfied.', reset:'Reset' }
 };
-const CRITERIA_NAMES = ['Краткость','Легкопроизносимость','Распознаваемость/когнативность','Отсутствие конфликта'];
+const CRITERIA = [{ id: 'brevity', ru: 'Краткость', en: 'Brevity' }, { id: 'pronounceability', ru: 'Легкопроизносимость', en: 'Pronounceability' }, { id: 'recognizability', ru: 'Распознаваемость / когнативность', en: 'Recognizability / cognateness' }, { id: 'no_conflict', ru: 'Отсутствие конфликта', en: 'Absence of conflict' }];
+const CRITERIA_NAMES = CRITERIA.map(item => item.ru);
 const REQUIRED_CRITERIA_COUNT = 3;
 function getDefaultState() {
   return {
@@ -104,7 +105,7 @@ function getDefaultState() {
 }
 function setButtonStatus(selector, text, disabled = true, options = {}) { window.InteralButtonStatus?.setButtonStatus(selector, text, disabled, options); }
 let state = getDefaultState();
-function readState(){ state.word=byId('wordInput')?.value.trim()||''; state.part_of_speech=byId('posInput')?.value||'preposition'; state.meaning=byId('meaningInput')?.value.trim()||''; state.arguments=byId('argumentsInput')?.value.trim()||''; for(const lang of LANGUAGES) state.translations[lang.code]=byId(`tr_${lang.code}`)?.value.trim()||''; state.criteria=CRITERIA_NAMES.map((_,i)=>Boolean(byId(`crit_${i}`)?.checked)); state.comments=CRITERIA_NAMES.map((_,i)=>i === 2 ? (byId(`comment_${i}`)?.value.trim()||'') : ''); }
+function readState(){ state.word=byId('wordInput')?.value.trim()||''; state.part_of_speech=byId('posInput')?.value||'preposition'; state.meaning=byId('meaningInput')?.value.trim()||''; state.arguments=byId('argumentsInput')?.value.trim()||''; for(const lang of LANGUAGES) state.translations[lang.code]=byId(`tr_${lang.code}`)?.value.trim()||''; state.criteria=CRITERIA.map((_,i)=>Boolean(byId(`crit_${i}`)?.checked)); state.comments=CRITERIA.map((_,i)=>(byId(`comment_${i}`)?.value.trim()||'')); }
 
 
 function hasUserInputForReset() {
@@ -128,11 +129,23 @@ async function resetState() {
 function countPassedCriteria() { return state.criteria.filter(Boolean).length; }
 function isGrammarShortWordAccepted() { return countPassedCriteria() >= REQUIRED_CRITERIA_COUNT; }
 function result(){ const n=countPassedCriteria(); return {passed:n,total:CRITERIA_NAMES.length,required:REQUIRED_CRITERIA_COUNT,accepted:isGrammarShortWordAccepted()}; }
-function makeCardDraft(author = null){ const r=result(); const card = { version:'1.0', card_type:'vord_card', vord_type:'grammar_short_word', status:'draft', interal:{word:state.word, part_of_speech:state.part_of_speech}, translations:LANGUAGES.map(lang=>({language:lang.code, word:state.translations[lang.code]||''})), function:{meaning:state.meaning}, criteria:CRITERIA_NAMES.map((name,i)=>({name, value:Boolean(state.criteria[i]), comment:state.comments[i]||''})), decision:{accepted:r.accepted, required_criteria:r.required, passed_criteria:r.passed} }; if (author) card.author = author; return card; }
+function makeCardDraft(author = null){ const r=result(); const card = { version:'1.0', card_type:'vord_card', vord_type:'gv', procedure:'grammar_short_word', status:'draft', interal:{word:state.word, part_of_speech:state.part_of_speech}, translations:LANGUAGES.map(lang=>({language:lang.code, word:state.translations[lang.code]||''})), function:{meaning:state.meaning}, criteria:CRITERIA.map((criterion,i)=>({id:criterion.id, passed:Boolean(state.criteria[i]), explanation:state.comments[i]||''})), decision:{accepted:r.accepted, required_criteria:r.required, passed_criteria:r.passed, total_criteria:r.total} }; if (author) card.author = author; return card; }
 async function makeCard(author){ return createCardOnServer(makeCardDraft(author)); }
 function generateJson(){ openJsonModal(); }
-function renderCriteria(){ return `<div class="criteria-list grammar-criteria-list">${CRITERIA_NAMES.map((name,i)=>`<div class="criterion grammar-criterion"><div class="criterion-head"><strong>${escapeHtml(name)}</strong></div><label class="criterion-check"><input id="crit_${i}" type="checkbox" ${state.criteria[i] ? 'checked' : ''}><span>${t('criterionPass')}</span></label>${i === 2 ? `<label class="field criterion-comment"><span>${t('comment')}</span><textarea class="interal-textarea" id="comment_${i}">${escapeHtml(state.comments[i])}</textarea></label>` : ''}</div>`).join('')}</div>`; }
-function renderResult() { const r = result(); const checked = Boolean(state.checked); const accepted = checked && r.accepted; byId('resultBox').innerHTML = `<span class="status-pill ${r.accepted?'ok':'bad'}">${r.accepted?t('accept'):t('reject')}</span><dl><div><dt>${t('passed')}</dt><dd>${r.passed}/${r.total} (${r.required}+)</dd></div></dl>`; ['evidenceSection', 'criteriaSection', 'resultSection'].forEach(id => { const element = byId(id); if (element) element.hidden = !checked; }); const jsonBtn = byId('jsonBtn'); if (jsonBtn) { jsonBtn.hidden = !accepted; jsonBtn.disabled = !accepted; } }
+function renderCriteria(){ return `<div class="criteria-list grammar-criteria-list">${CRITERIA.map((criterion,i)=>`<div class="criterion grammar-criterion"><div class="criterion-head"><strong>${escapeHtml(criterion[currentLang()])}</strong></div><label class="criterion-check"><input id="crit_${i}" type="checkbox" ${state.criteria[i] ? 'checked' : ''}><span>${t('criterionPass')}</span></label><label class="field criterion-comment"><span>${t('comment')}</span><textarea class="interal-textarea" id="comment_${i}">${escapeHtml(state.comments[i])}</textarea></label></div>`).join('')}</div>`; }
+
+async function autoCheckWithQwen() {
+  try {
+    const response = await fetch('/api/qwen-analyze', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ task:'grammar_short_word_check', interfaceLanguage: currentLang(), payload:{ candidate:state.word, meaning:state.meaning, partOfSpeech:state.part_of_speech, translations:state.translations, criteria:CRITERIA, comment:state.arguments, explanations:state.comments } }) });
+    const data = await response.json().catch(()=>null);
+    const criteria = data?.analysis?.criteria;
+    if (response.ok && criteria && typeof criteria === 'object') {
+      CRITERIA.forEach((criterion,i)=>{ const item=criteria[criterion.id]; if (item && typeof item.passed === 'boolean') { state.criteria[i]=item.passed; state.comments[i]=String(item.explanation||state.comments[i]||''); } });
+    }
+  } catch (error) { console.warn('grammar_short_word_check unavailable; manual mode remains active', error); }
+}
+
+function renderResult() { const r = result(); const checked = Boolean(state.checked); const accepted = checked && r.accepted; byId('resultBox').innerHTML = `<span class="status-pill ${r.accepted?'ok':'bad'}">${r.accepted?t('accept'):t('reject')}</span><dl><div><dt>${t('passed')}</dt><dd>${r.passed} ${currentLang()==='en'?'of':'из'} ${r.total}</dd></div><div><dt>${t('requiredForAcceptance')}</dt><dd>${r.required}</dd></div></dl><p class="muted">${t('recogNote')}</p>`; ['evidenceSection', 'criteriaSection', 'resultSection'].forEach(id => { const element = byId(id); if (element) element.hidden = !checked; }); const jsonBtn = byId('jsonBtn'); if (jsonBtn) { jsonBtn.hidden = !accepted; jsonBtn.disabled = !accepted; } }
 function render(){ renderChrome(); document.title=t('title'); byId('pageTitle').textContent=t('title'); byId('pageLead').textContent=t('lead'); byId('paramsTitle').textContent=t('params'); byId('wordLabel').textContent=t('word'); byId('posLabel').textContent=t('pos'); byId('meaningLabel').textContent=t('meaning'); byId('argumentsLabel').textContent=t('arguments'); setButtonStatus('#checkBtn', t('check'), false); byId('translationsTitle').textContent=t('translations'); byId('criteriaTitle').textContent=t('criteria'); byId('decisionTitle').textContent=t('decision'); byId('jsonBtn').textContent=t('json'); byId('resetBtn').title=t('reset'); byId('resetBtn').setAttribute('aria-label', t('reset')); byId('posInput').innerHTML=`<option value="preposition">${t('preposition')}</option><option value="conjunction">${t('conjunction')}</option><option value="particle">${t('particle')}</option><option value="adverb">${t('adverb')}</option>`; byId('posInput').value=state.part_of_speech; byId('posInput')._customSelectRefresh?.(); byId('translationsBox').innerHTML=renderTranslations(state.translations); byId('criteriaBox').innerHTML=renderCriteria(); renderResult(); updateResetButtonVisibility(); }
 
 
@@ -150,7 +163,7 @@ function bindJsonModal() {
   });
   document.addEventListener('interal:languagechange', () => { document.documentElement.lang = currentLang(); readState(); render(); });
   byId('resetBtn')?.addEventListener('click', resetState);
-  byId('checkBtn')?.addEventListener('click', () => { readState(); state.checked = true; render(); updateResetButtonVisibility(); });
+  byId('checkBtn')?.addEventListener('click', async () => { readState(); await autoCheckWithQwen(); state.checked = true; render(); updateResetButtonVisibility(); });
   byId('app')?.addEventListener('input', () => { state.checked = false; renderResult(); updateResetButtonVisibility();  });
   byId('app')?.addEventListener('change', () => { state.checked = false; renderResult(); updateResetButtonVisibility();  });
 }

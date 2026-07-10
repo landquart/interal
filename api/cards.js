@@ -19,11 +19,11 @@ const EFFECTIVE_ALLOWED_ORIGINS = ALLOWED_ORIGINS.length
   : DEFAULT_ALLOWED_ORIGINS;
 
 const CARD_PREFIXES = {
-  internationalismes: 'iv',
+  internationalismes: 'in',
   associativvordes: 'av',
-  indoeuropanvordes: 'iev',
+  indoeuropanvordes: 'iv',
   vordesofcommunites: 'vc',
-  grammaticebrevivordes: 'gbv',
+  grammaticebrevivordes: 'gv',
   altervordes: 'al',
   affixes: 'af'
 };

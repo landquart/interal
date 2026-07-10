@@ -163,6 +163,42 @@ const AFFIX_PROCEDURE_CRITERIA = {
   alter_affix: { required: 'partial_presence_or_alternative_need', actual: 'weak_or_partial' }
 };
 const AFFIX_PROCEDURES = new Set(Object.keys(AFFIX_PROCEDURE_CRITERIA));
+const AFFIX_GROUPS = { en: 'Germanic', de: 'Germanic', fr: 'Romance', es: 'Romance', it: 'Romance', ru: 'Slavic' };
+function countCoveredLanguageArrays(map = {}) { return CONTROL_LANGUAGES.filter(lang => Array.isArray(map?.[lang]) && map[lang].length > 0).length; }
+function evaluateAffixDecision(card) {
+  const procedure = card.procedure;
+  const evidence = card.evidence || {};
+  const controlLanguages = evidence.controlLanguages || card.forms?.controlLanguages || {};
+  const coveredLanguages = countCoveredLanguageArrays(controlLanguages);
+  const coveredGroups = new Set(CONTROL_LANGUAGES.filter(lang => Array.isArray(controlLanguages?.[lang]) && controlLanguages[lang].length > 0).map(lang => AFFIX_GROUPS[lang])).size;
+  let accepted = false;
+  let needsManualReview = false;
+  const criteria = { covered_languages: coveredLanguages, covered_groups: coveredGroups };
+  if (procedure === 'international_affix') {
+    criteria.required_languages = 5;
+    criteria.immediate_recognition = evidence.immediateRecognition === true;
+    criteria.stable_international_presence = evidence.stableInternationalPresence === true;
+    accepted = coveredLanguages >= 5 && criteria.immediate_recognition && criteria.stable_international_presence;
+  } else if (procedure === 'associativ_affix') {
+    const words = card.evidence?.frequencyWords || card.frequencyWords || {};
+    const represented = CONTROL_LANGUAGES.filter(lang => Array.isArray(words?.[lang]) && words[lang].length > 0);
+    criteria.required_languages = 3;
+    criteria.required_groups = 2;
+    criteria.ipm_threshold = 3;
+    criteria.ipm_passed = represented.every(lang => words[lang].every(item => Number(item.ipm) >= 3));
+    criteria.word_count_passed = represented.every(lang => words[lang].length >= 1 && words[lang].length <= 5);
+    criteria.recognition_type = card.recognitionType || card.criteria?.recognition_type || 'associative';
+    accepted = coveredLanguages >= 3 && coveredGroups >= 2 && criteria.ipm_passed && criteria.word_count_passed && criteria.recognition_type === 'associative';
+  } else {
+    const c = card.criteria || {};
+    const keys = ['necessityConfirmed','noSeriousConflicts','shortestSuitableAlternative','partialInternationalPresence','derivationallyViable','meaningClear','noBetterStandardProcedure'];
+    needsManualReview = keys.some(key => typeof c[key] !== 'boolean');
+    accepted = !needsManualReview && keys.every(key => c[key] === true);
+    Object.assign(criteria, Object.fromEntries(keys.map(key => [key, c[key] === true])));
+  }
+  return { criteria, decision: { accepted, needs_manual_review: needsManualReview || !accepted }, eligible: accepted, decisionText: accepted ? 'accepted' : (needsManualReview ? 'needs_manual_review' : 'rejected') };
+}
+
 function randomAffixId() {
   const alphabet = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
   const bytes = crypto.getRandomValues(new Uint8Array(12));
@@ -184,7 +220,7 @@ function normalizeAffixesCheckCard(generated, input) {
   const procedure = AFFIX_PROCEDURES.has(card.procedure) ? card.procedure : 'alter_affix';
   const criteria = AFFIX_PROCEDURE_CRITERIA[procedure];
   const meaningFallback = input.meaningInput;
-  return {
+  const normalized = {
     id: /^af_[0-9A-Za-z_-]+$/.test(normalizeString(card.id)) ? normalizeString(card.id) : randomAffixId(),
     status: 'draft',
     form: normalizeString(card.form, input.form),
@@ -195,12 +231,21 @@ function normalizeAffixesCheckCard(generated, input) {
     vord_type: 'af',
     created_at: normalizeString(card.created_at, new Date().toISOString()),
     meaning: normalizeLanguageMap(card.meaning, CONTROL_LANGUAGES, meaningFallback),
-    criteria: { controlLanguagePresence: { required: criteria.required, actual: criteria.actual } },
+    criteria: card.criteria && typeof card.criteria === 'object' ? card.criteria : { controlLanguagePresence: { required: criteria.required, actual: criteria.actual } },
+    evidence: card.evidence && typeof card.evidence === 'object' ? card.evidence : { controlLanguages: normalizeLanguageArrayMap(card.forms?.controlLanguages, CONTROL_LANGUAGES), immediateRecognition: false, stableInternationalPresence: false },
     forms: {
-      controlLanguages: normalizeLanguageArrayMap(card.forms?.controlLanguages, CONTROL_LANGUAGES),
+      controlLanguages: normalizeLanguageArrayMap(card.forms?.controlLanguages || card.evidence?.controlLanguages, CONTROL_LANGUAGES),
       auxiliaryLanguages: normalizeLanguageArrayMap(card.forms?.auxiliaryLanguages, AUXILIARY_LANGUAGES)
-    }
+    },
+    risks: normalizeArray(card.risks),
+    recommendedForm: normalizeString(card.recommendedForm, normalizeString(card.form, input.form))
   };
+  const evaluation = evaluateAffixDecision(normalized);
+  normalized.criteria = { ...normalized.criteria, ...evaluation.criteria };
+  normalized.decision = evaluation.decision;
+  normalized.eligible = evaluation.eligible;
+  normalized.decisionText = evaluation.decisionText;
+  return normalized;
 }
 function buildAffixesCheckPrompt(input) { return `You check an Interal affix and create exactly one strict JSON card.
 
@@ -215,8 +260,8 @@ Input:
 ${JSON.stringify(input, null, 2)}
 
 Select procedure as one of: international_affix, associativ_affix, alter_affix.
-Return only valid JSON. Do not add markdown or any fields outside this structure:
-{"id":"af_string","status":"draft","form":"string","morphemeType":"suffix or prefix","procedure":"international_affix or associativ_affix or alter_affix","version":"1.0","card_type":"affix_card","vord_type":"af","created_at":"ISO datetime string","meaning":{"en":"string","de":"string","fr":"string","es":"string","it":"string","ru":"string"},"criteria":{"controlLanguagePresence":{"required":"string","actual":"string"}},"forms":{"controlLanguages":{"en":[],"de":[],"fr":[],"es":[],"it":[],"ru":[]},"auxiliaryLanguages":{"pl":[],"sv":[],"ca":[],"oc":[],"ro":[]}}}`; }
+Return checkable data, not a declaration of acceptance. Include evidence, risks, recommendedForm and separate boolean criteria. Return only valid JSON. Do not add markdown. Schema:
+{"id":"af_string","status":"draft","form":"string","morphemeType":"suffix or prefix","procedure":"international_affix or associativ_affix or alter_affix","version":"1.0","card_type":"affix_card","vord_type":"af","created_at":"ISO datetime string","meaning":{"en":"string","de":"string","fr":"string","es":"string","it":"string","ru":"string"},"criteria":{"necessityConfirmed":true,"noSeriousConflicts":true,"shortestSuitableAlternative":true,"partialInternationalPresence":true,"derivationallyViable":true,"meaningClear":true,"noBetterStandardProcedure":true,"recognition_type":"associative"},"evidence":{"controlLanguages":{"en":[],"de":[],"fr":[],"es":[],"it":[],"ru":[]},"immediateRecognition":true,"stableInternationalPresence":true,"frequencyWords":{"en":[{"word":"string","ipm":3}]}},"forms":{"controlLanguages":{"en":[],"de":[],"fr":[],"es":[],"it":[],"ru":[]},"auxiliaryLanguages":{"pl":[],"sv":[],"ca":[],"oc":[],"ro":[]}}}`; }
 
 function normalizeAffixesAlterCard(generated, input) {
   const now = new Date().toISOString();
@@ -259,7 +304,9 @@ ${JSON.stringify(input, null, 2)}`; }
 const TASKS = {
   affixes_check: { modelEnv: 'Qwen3_235B_A22B_Instruct_2507_FP8_Yandex', folderEnv: 'yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8', buildPrompt: buildAffixesCheckPrompt, normalize: normalizeAffixesCheckCard },
   affixes_alter_card: { modelEnv: 'Qwen3_235B_A22B_Instruct_2507_FP8_Yandex', folderEnv: 'yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8', buildPrompt: buildAffixesAlterPrompt, normalize: normalizeAffixesAlterCard },
-  altervordes: { modelEnv: 'Qwen3_235B_A22B_Instruct_2507_FP8_Yandex', folderEnv: 'yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8' }
+  altervordes: { modelEnv: 'Qwen3_235B_A22B_Instruct_2507_FP8_Yandex', folderEnv: 'yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8' },
+  community_word_check: { modelEnv: 'Qwen3_235B_A22B_Instruct_2507_FP8_Yandex', folderEnv: 'yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8' },
+  grammar_short_word_check: { modelEnv: 'Qwen3_235B_A22B_Instruct_2507_FP8_Yandex', folderEnv: 'yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8' }
 };
 
 async function runAltervordes(payload, interfaceLanguage) {
@@ -298,7 +345,16 @@ async function runAffixesCheck(payload, interfaceLanguage) {
 
   const generated = extract(result.content);
   const card = normalizeAffixesCheckCard(generated, input);
-  return { ok: true, analysis: { eligible: true, decision: 'accepted', recommendedForm: card.form, form: card.form, morphemeType: card.morphemeType, procedure: card.procedure, meaning: card.meaning, criteria: card.criteria, forms: card.forms, shortConclusion: interfaceLanguage === 'en' ? 'The affix can be saved as a candidate card.' : 'Аффикс можно сохранить как карточку-кандидат.', risks: [] }, card };
+  return { ok: true, analysis: { eligible: card.eligible === true, decision: card.decisionText, recommendedForm: card.recommendedForm || card.form, form: card.form, morphemeType: card.morphemeType, procedure: card.procedure, meaning: card.meaning, criteria: card.criteria, evidence: card.evidence, forms: card.forms, decision_object: card.decision, decision: card.decisionText, shortConclusion: card.eligible ? (interfaceLanguage === 'en' ? 'The affix can be saved as a candidate card.' : 'Аффикс можно сохранить как карточку-кандидат.') : (interfaceLanguage === 'en' ? 'The affix did not pass deterministic criteria or needs manual review.' : 'Аффикс не прошёл детерминированные критерии или требует ручной проверки.'), risks: card.risks || [] }, card };
+}
+
+
+function buildCommunityWordPrompt(input, interfaceLanguage) { return `Consultatively evaluate a community word. Return strict JSON only. Interface language: ${interfaceLanguage}. Input: ${JSON.stringify(input,null,2)}. Return {"responseLanguage":"${interfaceLanguage}","answers":[{"criterion":1,"answer":"yes|partially|no","explanation":""},{"criterion":2,"answer":"yes|partially|no","explanation":""},{"criterion":3,"answer":"yes|partially|no","explanation":""}],"formRecommendation":"keep_unchanged|light_adaptation|not_applicable","decision":"accepted|rejected","confidence":0.8}.`; }
+function buildGrammarShortWordPrompt(input, interfaceLanguage) { return `Consultatively evaluate a grammar/short word. Return strict JSON only. Interface language: ${interfaceLanguage}. Input: ${JSON.stringify(input,null,2)}. Return {"responseLanguage":"${interfaceLanguage}","criteria":{"brevity":{"passed":true,"explanation":""},"pronounceability":{"passed":true,"explanation":""},"recognizability":{"passed":false,"explanation":""},"no_conflict":{"passed":true,"explanation":""}},"confidence":0.8}.`; }
+async function runSimpleConsultativeTask(payload, interfaceLanguage, kind) {
+  const prompt = kind === 'community_word_check' ? buildCommunityWordPrompt(payload, interfaceLanguage) : buildGrammarShortWordPrompt(payload, interfaceLanguage);
+  const result = await callYandex([{ role: 'system', content: 'Return only valid JSON. The final decision is advisory; client code applies deterministic criteria.' }, { role: 'user', content: prompt }], true);
+  return { ok: true, analysis: extract(result.content), model: result.model };
 }
 
 async function runAffixesAlterCard(payload) {
@@ -327,6 +383,7 @@ export default async function handler(req, res) {
     if (task === 'affixes_check') return send(res, 200, await runAffixesCheck(payload, interfaceLanguage));
     if (task === 'affixes_alter_card') return send(res, 200, await runAffixesAlterCard(payload));
     if (task === 'altervordes') return send(res, 200, await runAltervordes(payload, interfaceLanguage));
+    if (task === 'community_word_check' || task === 'grammar_short_word_check') return send(res, 200, await runSimpleConsultativeTask(payload, interfaceLanguage, task));
     return send(res, 400, { ok: false, error: 'Unsupported Qwen task' });
   } catch (e) {
     const status = e.status && e.status >= 400 && e.status < 600 ? e.status : 500;

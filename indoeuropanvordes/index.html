@@ -810,7 +810,7 @@ const TEXT_I18N = {
       empty: "Сначала сгенерируйте JSON-карточку."
     },
     result: {
-      formalPI: "Формальный PI",
+      formalPI: "PI — процент международности",
       preliminaryPI: "Предварительный PI по заполненным языкам",
       languageGroups: "Языковые группы",
       interalIPA: "МФА Интераля",
@@ -818,7 +818,7 @@ const TEXT_I18N = {
       groupSupport: "Поддержка групп считается при S ≥ {threshold}.",
       formula: "Формула",
       formalFormula: "Формула: PI = {weightedSum} / {totalSpeakers} × 100 = <strong>{formalPI}</strong>.",
-      formalRequires: "Формальный PI по документу требует заполнения всех 7 контрольных языков. Нижняя граница при незаполненных языках как 0: <strong>{lowerBoundPI}</strong>."
+      formalRequires: "Для финального PI нужно заполнить все 7 контрольных языков. Нижняя граница PI: <strong>{lowerBoundPI}</strong>."
     },
     decision: {
       incomplete: "Решение не финальное: заполнены не все контрольные языки или не все МФА.",
@@ -830,7 +830,7 @@ const TEXT_I18N = {
     explanation: {
       title: "Пояснение расчёта",
       mainFormula: "Основная формула",
-      formulaBody: "N — число людей, говорящих на контрольном языке, в тысячах.\nG — графическая похожесть по расстоянию Левенштейна.\nPH — фонетическая похожесть через ALINE.\nS — итоговая похожесть кандидатной формы со словом в контрольном языке.",
+      formulaBody: "G — graphic similaritá, графическая похожесть;\nD — distantia, стоимость редактирования;\nL — longituda, максимальная длина сравниваемых форм;\nPH — phonetic similaritá, фонетическая похожесть;\nS — similaritá, итоговая похожесть для языка;\nN — numer, число говорящих;\nPI — procent of internationalitá, процент международности.",
       hypothesis: "Гипотеза",
       graphicForm: "graphic form",
       ipaForAline: "IPA for ALINE",
@@ -867,8 +867,8 @@ const TEXT_I18N = {
       calculation: "Расчёт",
       ipaInteral: "МФА Интераля",
       ipaLanguage: "МФА языка",
-      rawCalculation: "Сырой расчёт",
-      maxLength: "Макс. длина",
+      rawCalculation: "необработанный балл raw",
+      maxLength: "максимальная длина maxLen",
       alignment: "Выравнивание",
       interal: "Интерал",
       language: "Язык",
@@ -913,7 +913,7 @@ const TEXT_I18N = {
       empty: "Generate the JSON card first."
     },
     result: {
-      formalPI: "Formal PI",
+      formalPI: "PI — internationality percentage",
       preliminaryPI: "Preliminary PI for completed languages",
       languageGroups: "Language groups",
       interalIPA: "Interal IPA",
@@ -921,7 +921,7 @@ const TEXT_I18N = {
       groupSupport: "Group support is counted when S ≥ {threshold}.",
       formula: "Formula",
       formalFormula: "Formula: PI = {weightedSum} / {totalSpeakers} × 100 = <strong>{formalPI}</strong>.",
-      formalRequires: "Formal PI requires all 7 control languages to be completed. Lower bound with empty languages counted as 0: <strong>{lowerBoundPI}</strong>."
+      formalRequires: "Final PI requires all 7 control languages to be completed. Lower bound of PI: <strong>{lowerBoundPI}</strong>."
     },
     decision: {
       incomplete: "The decision is not final: not all control languages or IPA fields are completed.",
@@ -933,7 +933,7 @@ const TEXT_I18N = {
     explanation: {
       title: "Calculation explanation",
       mainFormula: "Main formula",
-      formulaBody: "N — number of people who speak the control language, in thousands.\nG — graphic similarity by Levenshtein distance.\nPH — phonetic similarity via ALINE.\nS — final similarity of the candidate form to the word in the control language.",
+      formulaBody: "G — graphic similarity;\nD — edit distance/cost;\nL — maximum length of the compared forms;\nPH — phonetic similarity;\nS — final similarity for one language;\nN — number of speakers;\nPI — internationality percentage.",
       hypothesis: "Hypothesis",
       graphicForm: "graphic form",
       ipaForAline: "IPA for ALINE",
@@ -970,7 +970,7 @@ const TEXT_I18N = {
       calculation: "Calculation",
       ipaInteral: "IPA Interal",
       ipaLanguage: "IPA language",
-      rawCalculation: "Raw calculation",
+      rawCalculation: "raw score",
       maxLength: "Max length",
       alignment: "Alignment",
       interal: "Interal",
@@ -1833,9 +1833,6 @@ function normalizeIPAForAline(ipa) {
     .normalize("NFC")
     .replace(/[\/\[\]()]/g, "")
     .replace(/[ˈˌ.]/g, "")
-    .replace(/[ːˑ]/g, "")
-    .replace(/[ʰʱʲˠʷˤ˞]/g, "")
-    .replace(/[̥̬̪̺̻̩̯̝̞̟̠̹̜̈̃̚]/g, "")
     .replace(/ɡ/g, "g")
     .replace(/ɫ/g, "l")
     .trim();
@@ -2599,7 +2596,7 @@ function renderPhoneticDetails(row) {
   const tokensA = Array.isArray(row.aline.tokensA) ? row.aline.tokensA : [];
   const tokensB = Array.isArray(row.aline.tokensB) ? row.aline.tokensB : [];
   const raw = Number.isFinite(row.aline.score) ? row.aline.score : null;
-  const maxLon = Math.max(tokensA.length, tokensB.length);
+  const maxLen = Math.max(tokensA.length, tokensB.length);
   const ph = row.phonetic;
   const t = getCalcDetailText;
 
@@ -2610,11 +2607,11 @@ function renderPhoneticDetails(row) {
         <div><strong>${escapeHTML(t("ipaInteral"))}:</strong> /${escapeHTML(tokensA.join(" · "))}/</div>
         <div><strong>${escapeHTML(t("ipaLanguage"))}:</strong> /${escapeHTML(tokensB.join(" · "))}/</div>
         <div><strong>${escapeHTML(t("rawCalculation"))}:</strong> ${Number.isFinite(raw) ? formatNumber(raw) : "—"}</div>
-        <div><strong>${escapeHTML(t("maxLength"))}:</strong> ${formatInteger(maxLon)}</div>
-        <div><strong>${escapeHTML(t("formula"))}:</strong> PH = (crud + maxLon) / (2 × maxLon)</div>
+        <div><strong>${escapeHTML(t("maxLength"))}:</strong> ${formatInteger(maxLen)}</div>
+        <div><strong>${escapeHTML(t("formula"))}:</strong> pairScore = 2 × segmentSimilarity − 1<br>PH = (raw + maxLen) / (2 × maxLen)</div>
         <div><strong>${escapeHTML(t("calculation"))}:</strong> ${
-          Number.isFinite(raw) && maxLon > 0
-            ? `PH = (${formatNumber(raw)} + ${formatInteger(maxLon)}) / (2 × ${formatInteger(maxLon)}) = ${formatScore(ph)}`
+          Number.isFinite(raw) && maxLen > 0
+            ? `PH = (${formatNumber(raw)} + ${formatInteger(maxLen)}) / (2 × ${formatInteger(maxLen)}) = ${formatScore(ph)}`
             : "—"
         }</div>
         ${renderAlineAlignment(row)}

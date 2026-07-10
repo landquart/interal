@@ -7,35 +7,18 @@ const LANGUAGES = [
   { code: 'ru', name: { ru: 'Русский', en: 'Russian' }, group: 'Slavic' }
 ];
 
-const FREQUENCY_SOURCES = {
-  en: [
-    '../associativvordes/frequency%20lists/en/bnc-clean2.lemmatized_spacy_ipm6.json',
-    '../associativvordes/frequency%20lists/en/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json',
-    '../associativvordes/frequency%20lists/en/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json'
-  ],
-  de: [
-    '../associativvordes/frequency%20lists/de/deu_lemma_rank_word_ipm_corrected.json',
-    '../associativvordes/frequency%20lists/de/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json',
-    '../associativvordes/frequency%20lists/de/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json'
-  ],
-  fr: [
-    '../associativvordes/frequency%20lists/fr/hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json',
-    '../associativvordes/frequency%20lists/fr/sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json'
-  ],
-  es: [
-    '../associativvordes/frequency%20lists/es/es_wordlist.lemmatized_stanza_ipm6.json',
-    '../associativvordes/frequency%20lists/es/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json'
-  ],
-  it: [
-    '../associativvordes/frequency%20lists/it/hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json',
-    '../associativvordes/frequency%20lists/it/sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json'
-  ],
-  ru: [
-    '../associativvordes/frequency%20lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json',
-    '../associativvordes/frequency%20lists/ru/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json',
-    '../associativvordes/frequency%20lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json'
-  ]
-};
+function buildFrequencySources() {
+  const shared = window.InteralFrequencySources;
+  if (shared?.LANGUAGE_SOURCES) {
+    const base = '../associativvordes/frequency%20lists';
+    return Object.fromEntries(Object.entries(shared.LANGUAGE_SOURCES).map(([lang, categories]) => [
+      lang,
+      (shared.CATEGORY_ORDER || Object.keys(categories)).flatMap(category => (categories[category] || []).map(file => `${base}/${lang}/${file}`))
+    ]));
+  }
+  return {};
+}
+const FREQUENCY_SOURCES = buildFrequencySources();
 
 const frequencyCache = new Map();
 const MAX_FREQUENCY_ENTRIES_PER_SOURCE = 100000;
@@ -43,16 +26,16 @@ const I18N = {
   ru: {
     title: 'Internationalismes', lead: '', params: 'Параметры слова', word: 'Слово в Интерaле', pos: 'Часть речи', noun: 'существительное', adjective: 'прилагательное', verb: 'глагол', adverb: 'наречие',
     evidence: 'Языковое покрытие', result: 'Итог', card: 'JSON-карточка', check: 'Проверить', json: 'Сформировать JSON-карточку', copy: 'Скопировать', download: 'Скачать',
-    table: { language: 'Язык', form: 'Форма', distance: 'Дистанция', passed: 'Проходит', translation: 'Перевод', source: 'Источник', match: 'Тип' },
-    coverage: 'Покрытие', required: 'Минимум', decision: 'Решение', accept: 'ПРИНЯТО', reject: 'НЕ ПРИНЯТО', reasonOk: 'Критерий 5/6 выполнен.', reasonBad: 'Недостаточное покрытие контрольных языков.',
+    table: { language: 'Язык', form: 'Форма', distance: 'D — расстояние Левенштейна', passed: 'Проходит', translation: 'Перевод', source: 'Источник', match: 'Тип' },
+    coverage: 'Покрытие', required: 'Минимум', decision: 'Решение', accept: 'ПРИНЯТО', reject: 'НЕ ПРИНЯТО', reasonOk: 'Критерий 5/6 выполнен. Для формы длиной до 3 символов требуется точное совпадение: D = 0. Для формы длиной от 4 символов допускается D ≤ 2.', reasonBad: 'Недостаточное покрытие контрольных языков.',
     loadingLists: 'Загрузка частотных списков...', searching: 'Поиск форм...', frequencySource: 'частотный список', manualSource: 'вручную', noForm: 'не найдено', searchError: 'Не удалось загрузить частотные списки. Формы можно ввести вручную.', manualMode: 'ручное переопределение', autoMode: 'авто', resetAria: 'Сбросить', resetConfirm: 'Сбросить введённые данные? Это действие нельзя отменить.',
     jsonCard: { close: 'Закрыть JSON-карточку', title: 'JSON-карточка', useAuthor: 'Указать авторство', authorName: 'Имя или ник', contactType: 'Тип контакта', contact: 'Контакт', generate: 'Сгенерировать карточку', generating: 'Генерация...', output: 'Готовый JSON', copy: 'Скопировать JSON-карточку', copied: 'JSON-карточка скопирована', copiedTitle: 'Скопировано', download: 'Скачать JSON-карточку', empty: 'Сначала сгенерируйте JSON-карточку.', unavailable: 'JSON-карточка доступна только после успешной проверки.' }
   },
   en: {
     title: 'Internationalismes', lead: '', params: 'Word parameters', word: 'Interal word', pos: 'Part of speech', noun: 'noun', adjective: 'adjective', verb: 'verb', adverb: 'adverb',
     evidence: 'Language coverage', result: 'Decision', card: 'JSON card', check: 'Check', json: 'Generate JSON card', copy: 'Copy', download: 'Download',
-    table: { language: 'Language', form: 'Form', distance: 'Distance', passed: 'Passes', translation: 'Translation', source: 'Source', match: 'Match' },
-    coverage: 'Coverage', required: 'Required', decision: 'Decision', accept: 'ACCEPTED', reject: 'NOT ACCEPTED', reasonOk: 'The 5/6 criterion is met.', reasonBad: 'Insufficient control-language coverage.',
+    table: { language: 'Language', form: 'Form', distance: 'D — Levenshtein distance', passed: 'Passes', translation: 'Translation', source: 'Source', match: 'Match' },
+    coverage: 'Coverage', required: 'Required', decision: 'Decision', accept: 'ACCEPTED', reject: 'NOT ACCEPTED', reasonOk: 'The 5/6 criterion is met. Forms up to 3 characters require an exact match: D = 0. Forms of 4 or more characters may pass with D ≤ 2.', reasonBad: 'Insufficient control-language coverage.',
     loadingLists: 'Loading frequency lists...', searching: 'Searching forms...', frequencySource: 'frequency list', manualSource: 'manual', noForm: 'not found', searchError: 'Could not load frequency lists. Forms can be entered manually.', manualMode: 'manual override', autoMode: 'auto', resetAria: 'Reset', resetConfirm: 'Reset entered data? This action cannot be undone.',
     jsonCard: { close: 'Close JSON card', title: 'JSON card', useAuthor: 'Add authorship', authorName: 'Name or nickname', contactType: 'Contact type', contact: 'Contact', generate: 'Generate card', generating: 'Generating...', output: 'Generated JSON', copy: 'Copy JSON card', copied: 'JSON card copied', copiedTitle: 'Copied', download: 'Download JSON card', empty: 'Generate the JSON card first.', unavailable: 'The JSON card is available only after a successful check.' }
   }
@@ -83,7 +66,7 @@ async function createCardOnServer(card) {
     const response = await fetch(CARDS_API_ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ section: 'internationalismes', title, category: card?.vord_type || 'internationalism', payload: card })
+      body: JSON.stringify({ section: 'internationalismes', title, category: card?.vord_type || 'in', payload: card })
     });
     const data = await response.json().catch(() => null);
     if (!response.ok || !data?.ok) throw new Error(data?.error || `HTTP ${response.status}`);
@@ -362,8 +345,8 @@ function resetSuccessfulCheck() {
   if (resultSection) resultSection.hidden = true;
 }
 function getAuthorBlock() { if (!byId('useAuthorBlock')?.checked) return null; const displayName = byId('authorDisplayName')?.value.trim() || ''; const contactType = byId('authorContactType')?.value || 'telegram'; const contactValue = byId('authorContactValue')?.value.trim() || ''; const author = {}; if (displayName) author.display_name = displayName; if (contactValue) author.contacts = [{ type: contactType, url: window.InteralJsonCardModal?.normalizeContact?.(contactType, contactValue) || contactValue }]; return Object.keys(author).length ? author : null; }
-function evidenceForCard(lang) { const code = lang.code; const form = state.evidence[code] || ''; const meta = state.matchMeta[code] || {}; return { language: code, form, distance: Number.isFinite(Number(meta.distance)) ? Number(meta.distance) : null, source: meta.source || (form ? 'manual' : 'frequency_list'), match_type: meta.match_type || (form ? 'manual' : 'not_found'), frequency: Number.isFinite(Number(meta.frequency)) ? Number(meta.frequency) : null, passed: effectivePassed(code) }; }
-function makeCardDraft() { const r = result(); const card = { version: '1.0', card_type: 'vord_card', vord_type: 'internationalism', status: 'draft', interal: { word: byId('wordInput')?.value.trim() || state.word, part_of_speech: byId('posInput')?.value || state.part_of_speech }, criteria: { required_languages: 5, total_languages: 6, passed_languages: r.passed, max_levenshtein_distance: 2, minimum_word_length_for_fuzzy_match: 4, sources: 'frequency_lists' }, language_evidence: LANGUAGES.map(evidenceForCard), decision: { accepted: r.accepted } }; const author = getAuthorBlock(); if (author) card.author = author; return card; }
+function evidenceForCard(lang) { const code = lang.code; const form = state.evidence[code] || ''; const meta = state.matchMeta[code] || {}; return { language: code, form, distance_d: Number.isFinite(Number(meta.distance)) ? Number(meta.distance) : null, distance: Number.isFinite(Number(meta.distance)) ? Number(meta.distance) : null, source: meta.source || (form ? 'manual' : 'frequency_list'), match_type: meta.match_type || (form ? 'manual' : 'not_found'), frequency: Number.isFinite(Number(meta.frequency)) ? Number(meta.frequency) : null, passed: effectivePassed(code) }; }
+function makeCardDraft() { const r = result(); const card = { version: '1.0', card_type: 'vord_card', vord_type: 'in', procedure: 'internationalism', status: 'draft', interal: { word: byId('wordInput')?.value.trim() || state.word, part_of_speech: byId('posInput')?.value || state.part_of_speech }, coverage: { passed_languages: r.passed, total_languages: 6, required_languages: 5, accepted: r.accepted }, criteria: { required_languages: 5, total_languages: 6, passed_languages: r.passed, max_levenshtein_distance: 2, minimum_word_length_for_fuzzy_match: 4, sources: 'frequency_lists' }, language_evidence: LANGUAGES.map(evidenceForCard), decision: { accepted: r.accepted } }; const author = getAuthorBlock(); if (author) card.author = author; return card; }
 async function makeCard() { return createCardOnServer(makeCardDraft()); }
 function generateJson() { if (canCreateCard()) openJsonModal(); }
 function renderEvidenceRows() {

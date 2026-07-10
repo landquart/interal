@@ -32,10 +32,10 @@ export function getInterfaceLanguage() {
   return document.documentElement.lang?.startsWith('en') ? 'en' : 'ru';
 }
 
-export function buildQwenAssociationPrompt({ language, targetMeaning, word, swow }) {
+export function buildQwenAssociationPrompt({ language, targetMeaning, word, swow, primary, review = false }) {
   return {
     system: 'You are a lexical association evaluator for an international auxiliary language project. Evaluate semantic association between target meaning and associative word. Do not generate candidate words. Do not evaluate the constructed Interal candidate form. Return only valid JSON. Use 0–100 integer scores. directness = how directly the word points to the target meaning. field_relatedness = how strongly the word belongs to the same semantic field as the target meaning. domain_shift = how strongly the word\'s modern meaning belongs to a different competing domain.',
-    user: `Language: ${language}\nTarget meaning: ${targetMeaning}\nAssociative word: ${word}\nSWOW evidence: ${JSON.stringify(swow || {})}\n\nReturn JSON:\n{\n  "word": "...",\n  "target_meaning": "...",\n  "directness": 0-100,\n  "field_relatedness": 0-100,\n  "domain_shift": 0-100,\n  "responseLanguage": "...",\n  "short_explanation": "..."\n}`
+    user: `Language: ${language}\nTarget meaning: ${targetMeaning}\nAssociative word: ${word}\nSWOW evidence: ${JSON.stringify(swow || {})}\nReview mode: ${review ? 'true' : 'false'}\nPrimary evaluation: ${JSON.stringify(primary || null)}\n\nReturn JSON:\n{\n  "word": "...",\n  "target_meaning": "...",\n  "directness": 0-100,\n  "field_relatedness": 0-100,\n  "domain_shift": 0-100,\n  "responseLanguage": "...",\n  "short_explanation": "..."\n}`
   };
 }
 
@@ -98,8 +98,8 @@ async function callQwen(prompt, { model, review = false } = {}) {
   return res.json();
 }
 
-export async function getQwenAssociationScores({ language, targetMeaning, word, swow, review = false }) {
-  const prompt = buildQwenAssociationPrompt({ language, targetMeaning, word, swow });
+export async function getQwenAssociationScores({ language, targetMeaning, word, swow, review = false, primary = null }) {
+  const prompt = buildQwenAssociationPrompt({ language, targetMeaning, word, swow, primary, review });
   const requestedModel = review ? API_CONFIG.qwenReviewModel : API_CONFIG.qwenPrimaryModel;
   const parsed = parseQwenPayload(await callQwen(prompt, {
     model: requestedModel,

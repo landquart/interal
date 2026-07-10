@@ -31,7 +31,7 @@ async function createCardOnServer(card) {
     const response = await fetch(CARDS_API_ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ section: 'vordesofcommunites', title, category: card?.vord_type || 'community_word', payload: card })
+      body: JSON.stringify({ section: 'vordesofcommunites', title, category: card?.vord_type || 'vc', payload: card })
     });
     const data = await response.json().catch(() => null);
     if (!response.ok || !data?.ok) throw new Error(data?.error || `HTTP ${response.status}`);
@@ -97,8 +97,8 @@ const QUESTIONS = {
   ]
 };
 const I18N = {
-  ru: { title:'Vordes of communités', lead:'', params:'Параметры слова', word:'Слово в Интерaле', pos:'Часть речи', domain:'Область / сообщество', translations:'Переводы', criteria:'Критерии', result:'Итог', card:'JSON-карточка', adverb:'наречие', noun:'существительное', adjective:'прилагательное', expression:'выражение', check:'Проверить', json:'Сформировать JSON-карточку', copy:'Скопировать', download:'Скачать', passed:'Пройдено', decision:'Решение', accept:'ПРИНЯТО', reject:'НЕ ПРИНЯТО', table:{language:'Язык', translation:'Перевод'}, answer:'Ответ', passes:'Проходит', answerYes:'да', answerPartially:'частично', answerNo:'нет', reset:'Сбросить' },
-  en: { title:'Vordes of communités', lead:'', params:'Word parameters', word:'Interal word', pos:'Part of speech', domain:'Domain / community', translations:'Translations', criteria:'Criteria', result:'Decision', card:'JSON card', adverb:'adverb', noun:'noun', adjective:'adjective', expression:'expression', check:'Check', json:'Generate JSON card', copy:'Copy', download:'Download', passed:'Passed', decision:'Decision', accept:'ACCEPTED', reject:'NOT ACCEPTED', table:{language:'Language', translation:'Translation'}, answer:'Answer', passes:'Passes', answerYes:'yes', answerPartially:'partially', answerNo:'no', reset:'Reset' }
+  ru: { title:'Vordes of communités', lead:'', params:'Параметры слова', word:'Слово в Интерaле', pos:'Часть речи', domain:'Область / сообщество', translations:'Переводы', criteria:'Критерии', result:'Итог', card:'JSON-карточка', adverb:'наречие', noun:'существительное', adjective:'прилагательное', expression:'выражение', check:'Проверить', json:'Сформировать JSON-карточку', copy:'Скопировать', download:'Скачать', passed:'Пройдено', decision:'Решение', accept:'ПРИНЯТО', reject:'НЕ ПРИНЯТО', table:{language:'Язык', translation:'Перевод'}, answer:'Ответ', passes:'Проходит', criterion:'Критерий', passedOne:'пройден', failedOne:'не пройден', formRecommendation:'Рекомендация формы', keepUnchanged:'Сохранить без изменений', lightAdaptation:'Лёгкая адаптация', notCommunityWord:'Не относится к словам сообществ', final:'Итог', answerYes:'да', answerPartially:'частично', answerNo:'нет', reset:'Сбросить' },
+  en: { title:'Vordes of communités', lead:'', params:'Word parameters', word:'Interal word', pos:'Part of speech', domain:'Domain / community', translations:'Translations', criteria:'Criteria', result:'Decision', card:'JSON card', adverb:'adverb', noun:'noun', adjective:'adjective', expression:'expression', check:'Check', json:'Generate JSON card', copy:'Copy', download:'Download', passed:'Passed', decision:'Decision', accept:'ACCEPTED', reject:'NOT ACCEPTED', table:{language:'Language', translation:'Translation'}, answer:'Answer', passes:'Passes', criterion:'Criterion', passedOne:'passed', failedOne:'not passed', formRecommendation:'Form recommendation', keepUnchanged:'Keep unchanged', lightAdaptation:'Light adaptation', notCommunityWord:'Not a community word', final:'Result', answerYes:'yes', answerPartially:'partially', answerNo:'no', reset:'Reset' }
 };
 function getDefaultState() {
   return {
@@ -113,7 +113,7 @@ function getDefaultState() {
 }
 function setButtonStatus(selector, text, disabled = true, options = {}) { window.InteralButtonStatus?.setButtonStatus(selector, text, disabled, options); }
 let state = getDefaultState();
-function readState() { state.word=byId('wordInput')?.value.trim()||''; state.part_of_speech=byId('posInput')?.value||'adverb'; state.domain=byId('domainInput')?.value.trim()||''; for(const lang of LANGUAGES) state.translations[lang.code]=byId(`tr_${lang.code}`)?.value.trim()||''; const questions = QUESTIONS[currentLang()]; state.criteria = questions.map((_,i)=>Boolean(byId(`crit_${i}`)?.checked)); state.answers = questions.map((_,i)=>byId(`ans_${i}`)?.value||'yes'); }
+function readState() { state.word=byId('wordInput')?.value.trim()||''; state.part_of_speech=byId('posInput')?.value||'adverb'; state.domain=byId('domainInput')?.value.trim()||''; for(const lang of LANGUAGES) state.translations[lang.code]=byId(`tr_${lang.code}`)?.value.trim()||''; const questions = QUESTIONS[currentLang()]; state.answers = questions.map((_,i)=>byId(`ans_${i}`)?.value||'yes'); state.criteria = state.answers.map((answer,i)=> i === 0 ? answer === 'yes' : i === 1 ? answer === 'yes' : answer === 'yes' || answer === 'partially'); }
 
 
 function hasUserInputForReset() {
@@ -128,12 +128,27 @@ async function resetState() {
   });
 }
 
-function result(){ const n=state.criteria.filter(Boolean).length; return { passed:n, total:3, accepted:n===3 }; }
-function makeCardDraft(author = null){ const r=result(); const card = { version:'1.0', card_type:'vord_card', vord_type:'community_word', status:'draft', interal:{word:state.word, part_of_speech:state.part_of_speech}, translations: LANGUAGES.map(lang=>({language:lang.code, word:state.translations[lang.code]||''})), domain:state.domain, criteria: QUESTIONS[currentLang()].map((q,i)=>({id:`question_${i+1}`, question:q, answer:state.answers[i]||'yes', passed:Boolean(state.criteria[i])})), decision:{accepted:r.accepted} }; if (author) card.author = author; return card; }
+function getFormRecommendation(){ const answer = state.answers[2] || 'yes'; if (answer === 'yes') return 'keep_unchanged'; if (answer === 'partially') return 'light_adaptation'; return 'not_applicable'; }
+function recommendationLabel(value){ return value === 'keep_unchanged' ? t('keepUnchanged') : value === 'light_adaptation' ? t('lightAdaptation') : t('notCommunityWord'); }
+function result(){ const criteria=[state.answers[0] === 'yes', state.answers[1] === 'yes', state.answers[2] === 'yes' || state.answers[2] === 'partially']; const n=criteria.filter(Boolean).length; return { passed:n, total:3, criteria, formRecommendation:getFormRecommendation(), accepted:criteria[0]&&criteria[1]&&criteria[2] }; }
+function makeCardDraft(author = null){ const r=result(); const card = { version:'1.0', card_type:'vord_card', vord_type:'vc', procedure:'community_word', status:'draft', interal:{word:state.word, part_of_speech:state.part_of_speech}, translations: LANGUAGES.map(lang=>({language:lang.code, word:state.translations[lang.code]||''})), domain:state.domain, criteria: QUESTIONS[currentLang()].map((q,i)=>({id:['domain_specificity','international_use_in_community','recognizability_loss_after_adaptation'][i], question:q, answer:state.answers[i]||'yes', passed:Boolean(r.criteria[i]), explanation:''})), form_recommendation:r.formRecommendation, decision:{accepted:r.accepted} }; if (author) card.author = author; return card; }
 async function makeCard(author){ return createCardOnServer(makeCardDraft(author)); }
 function generateJson(){ openJsonModal(); }
-function renderCriteria(){ const questions = QUESTIONS[currentLang()]; return `<div class="criteria-list">${questions.map((q,i)=>`<div class="criterion"><p>${escapeHtml(q)}</p><select class="interal-select js-custom-select" id="ans_${i}"><option value="yes">${t('answerYes')}</option><option value="partially">${t('answerPartially')}</option><option value="no">${t('answerNo')}</option></select><input id="crit_${i}" type="checkbox" ${state.criteria[i]?'checked':''}></div>`).join('')}</div>`; }
-function renderResult() { const r = result(); byId('resultBox').innerHTML = `<span class="status-pill ${r.accepted?'ok':'bad'}">${r.accepted?t('accept'):t('reject')}</span><dl><div><dt>${t('passed')}</dt><dd>${r.passed}/${r.total}</dd></div></dl>`; }
+function renderCriteria(){ const questions = QUESTIONS[currentLang()]; return `<div class="criteria-list">${questions.map((q,i)=>`<div class="criterion"><p>${escapeHtml(q)}</p><select class="interal-select js-custom-select" id="ans_${i}"><option value="yes">${t('answerYes')}</option>${i===2?`<option value="partially">${t('answerPartially')}</option>`:''}<option value="no">${t('answerNo')}</option></select></div>`).join('')}</div>`; }
+
+async function autoCheckWithQwen() {
+  try {
+    const response = await fetch('/api/qwen-analyze', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ task:'community_word_check', interfaceLanguage: currentLang(), payload:{ candidate:state.word, domain:state.domain, partOfSpeech:state.part_of_speech, translations:state.translations, questions:QUESTIONS[currentLang()] } }) });
+    const data = await response.json().catch(()=>null);
+    const answers = data?.analysis?.answers;
+    if (response.ok && Array.isArray(answers)) {
+      answers.slice(0,3).forEach((entry,i)=>{ if (['yes','partially','no'].includes(entry.answer)) state.answers[i]=entry.answer; });
+      state.criteria = state.answers.map((answer,i)=> i === 0 ? answer === 'yes' : i === 1 ? answer === 'yes' : answer === 'yes' || answer === 'partially');
+    }
+  } catch (error) { console.warn('community_word_check unavailable; manual mode remains active', error); }
+}
+
+function renderResult() { const r = result(); byId('resultBox').innerHTML = `<span class="status-pill ${r.accepted?'ok':'bad'}">${r.accepted?t('accept'):t('reject')}</span><dl>${r.criteria.map((passed,i)=>`<div><dt>${t('criterion')} ${i+1}</dt><dd>${passed?t('passedOne'):t('failedOne')}</dd></div>`).join('')}<div><dt>${t('formRecommendation')}</dt><dd>${recommendationLabel(r.formRecommendation)}</dd></div><div><dt>${t('final')}</dt><dd>${r.accepted?t('accept'):t('reject')}</dd></div></dl>`; }
 function updateCheckedVisibility() { const checked = Boolean(state.checked); const accepted = checked && result().accepted; ['evidenceSection', 'criteriaSection', 'resultSection'].forEach(id => { const element = byId(id); if (element) element.hidden = !checked; }); const jsonActions = byId('jsonActions'); if (jsonActions) jsonActions.hidden = !accepted; const jsonBtn = byId('jsonBtn'); if (jsonBtn) { jsonBtn.hidden = !accepted; jsonBtn.disabled = !accepted; } }
 function render(){ renderChrome(); document.title=t('title'); byId('pageTitle').textContent=t('title'); byId('pageLead').textContent=t('lead'); byId('paramsTitle').textContent=t('params'); byId('wordLabel').textContent=t('word'); byId('posLabel').textContent=t('pos'); byId('domainLabel').textContent=t('domain'); setButtonStatus('#checkBtn', t('check'), false); byId('translationsTitle').textContent=t('translations'); byId('criteriaTitle').textContent=t('criteria'); byId('decisionTitle').textContent=t('decision'); byId('jsonBtn').textContent=t('json'); byId('resetBtn').title=t('reset'); byId('resetBtn').setAttribute('aria-label', t('reset')); byId('posInput').innerHTML=`<option value="adverb">${t('adverb')}</option><option value="noun">${t('noun')}</option><option value="adjective">${t('adjective')}</option><option value="expression">${t('expression')}</option>`; byId('posInput').value=state.part_of_speech; byId('posInput')._customSelectRefresh?.(); byId('translationsBox').innerHTML=renderTranslations(state.translations); byId('criteriaBox').innerHTML=renderCriteria(); window.initCustomSelects?.(byId('criteriaBox')); state.answers.forEach((ans,i)=>{ if(byId(`ans_${i}`)) byId(`ans_${i}`).value=ans; }); renderResult(); updateCheckedVisibility(); updateResetButtonVisibility(); }
 
@@ -151,7 +166,7 @@ function bindJsonModal() {
   });
   document.addEventListener('interal:languagechange', () => { document.documentElement.lang = currentLang(); readState(); render(); });
   byId('resetBtn')?.addEventListener('click', resetState);
-  byId('checkBtn')?.addEventListener('click', () => { readState(); state.checked = true; renderResult(); updateCheckedVisibility(); updateResetButtonVisibility(); });
+  byId('checkBtn')?.addEventListener('click', async () => { readState(); await autoCheckWithQwen(); state.checked = true; render(); updateCheckedVisibility(); updateResetButtonVisibility(); });
   byId('app')?.addEventListener('input', () => { updateResetButtonVisibility(); if (state.checked) { readState(); renderResult(); updateCheckedVisibility(); } });
   byId('app')?.addEventListener('change', () => { updateResetButtonVisibility(); if (state.checked) { readState(); renderResult(); updateCheckedVisibility(); } });
 }

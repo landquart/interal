@@ -56,3 +56,8 @@ export const LANGUAGE_SOURCES = {
 };
 
 export const CATEGORY_ORDER = ['subtitles', 'normative', 'web', 'mixed'];
+
+
+if (typeof window !== 'undefined') {
+  window.InteralFrequencySources = { FREQUENCY_LIST_BASE_PATH, BASE_CATEGORY_WEIGHTS, LANGUAGE_SOURCES, CATEGORY_ORDER };
+}
