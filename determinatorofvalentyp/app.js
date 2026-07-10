@@ -473,28 +473,28 @@ function currentLang() {
 const i18n = {
   ru: {
     title: 'Determinator of valen typ', close: 'Закрыть', back: 'Назад', chooseOption: 'Выберите вариант',
-    regularWordLabel: 'Слово по регулярной модели (с разделителями)', componentAnalysisLabel: 'Компонентный анализ', logicalMeaningLabel: 'Логический анализ компонентов', internationalMeaningLabel: 'Международное значение эквивалентного деривата', naturalisticWordLabel: 'Слово по натуралистической модели (с разделителями)', explanationChainLabel: 'Объяснительная цепочка',
-    noComponents: 'Компоненты не добавлены.', missingRegular: 'Слово по регулярной модели не заполнено.', missingLogical: 'Логический анализ компонентов не заполнен.', missingInternational: 'Международное значение эквивалентного деривата не заполнено.', missingNaturalistic: 'Слово по натуралистической модели не заполнено.', noComponentsAnalysis: 'Компонентный анализ не добавлен.',
+    regularWordLabel: 'Логическая форма деривата (с разделителями)', componentAnalysisLabel: 'Компонентный анализ', logicalMeaningLabel: 'Логическое значение', internationalMeaningLabel: 'Интернациональное значение', naturalisticWordLabel: 'Интернациональная форма деривата (с разделителями)', explanationChainLabel: 'Объяснительная цепочка',
+    noComponents: 'Компоненты не добавлены.', missingRegular: 'Слово по регулярной модели не заполнено.', missingLogical: 'Логическое значение не заполнен.', missingInternational: 'Интернациональное значение не заполнено.', missingNaturalistic: 'Слово по натуралистической модели не заполнено.', noComponentsAnalysis: 'Компонентный анализ не добавлен.',
     addItem: 'Добавить элемент', primaryRoot: 'Основной корень', component: 'Компонент (аффикс/окончание)', word: 'Слово', meaning: 'Значение', assimilationType: 'Тип ассимиляции', search: 'Поиск', category: 'Категория', element: 'Элемент', prefixAssimilation: 'Ассимиляция приставки', prefixVariant: 'Вариант приставки', add: 'Добавить', analyse: 'Анализировать', analysing: 'Анализируем…', clear: 'Сбросить', result: 'Результат', fillAndAnalyse: 'Заполните поля и нажмите «Анализировать».',
     spectrumZone: 'Зона спектра', confidence: 'Уверенность', chainType: 'Тип цепочки', aiConfidence: 'Уверенность модели', explanatoryChain: 'Объяснительная цепочка', explanation: 'Обоснование', analogiesUsed: 'Использованные аналогии', borderlineZones: 'Граничные зоны', warnings: 'Предупреждения', formRecommendation: 'Рекомендация формы', apiErrorManualMode: 'Ошибка API / ручной режим', editScoresHint: 'Измените оценки, чтобы пересчитать зону локально без API.',
     high: 'высокая', medium: 'средняя', low: 'низкая', assimilation: 'Ассимиляция', copied: 'Скопировано', copyFailed: 'Ошибка копирования', copyPrompt: 'Копировать промпт', buildPrompt: 'Собрать промпт', resetConfirm: 'Сбросить введённые данные? Это действие нельзя отменить.', deleteComponent: 'Удалить компонент', addComponentAria: 'Добавить компонент', componentSearchResults: 'Результаты поиска компонентов', componentSearchSelect: 'Выбрать',
     apiErrorWarning: 'API недоступен или вернул ошибку. Можно вручную выставить P/R/C/E ниже — зона пересчитается локально без нового запроса.', apiUnavailableManual: 'API недоступен. Выставьте P/R/C/E вручную — зона пересчитается локально.', insufficientData: 'Заполните логическое и международное значение. Ручной блок P/R/C/E доступен ниже.', noComponentsFound: 'Компоненты не найдены. Попробуйте без дефиса, без / или по значению.', localModelUnavailable: 'Локальная модель недоступна. Использован только расчёт по правилам.', unknownError: 'Неизвестная ошибка', manualParseError: 'Не удалось извлечь distance/similarity из ответа нейросети.',
     noChainWarning: 'Модель не вернула объяснительную цепочку. Можно выставить P/R/C/E вручную.', zoneMismatchWarning: 'Подсказка модели по зоне отличается от расчёта P/R/C/E; итоговая зона пересчитана кодом.', lexicalizationWarning: 'Тип цепочки похож на лексикализацию, но оценки P/R/C/E попали в другую зону.',
     regularFormFallback: 'регулярная форма', naturalisticFormFallback: 'натуралистическая форма', recRegularEnough: 'Обычно достаточно логической/регулярной формы: {regular}. Отдельная интернациональная маркировка не обязательна.', recOptional: 'Случай пограничный. Можно оставить логическую/регулярную форму: {regular}, но если интернациональное значение закреплено отдельно, допустима отдельная маркировка: {natural}.', recSeparate: 'Рекомендуется отдельная интернациональная маркировка: для существительного — -u ({natural}), для интернациональных прилагательных — -al/-ari/-ic, для логических прилагательных — -i; глаголы с интернациональным значением сохраняют консервативный корень, а логические — изменённую корневую основу, если она есть.',
-    manualPromptLabel: 'Промпт для внешней нейросети (ручное эмбеддинг-сравнение)', manualPromptPlaceholder: 'Нажмите «Собрать промпт»', manualResponseLabel: 'Ответ нейросети (вставьте сюда)', manualResponsePlaceholder: 'Например: {"distance":0.38,"similarity":0.62,"reason":"..."}', manualHint: 'Если ответ предоставлен, дистанция считается как правило-ориентированная оценка + ручное эмбеддинг-сравнение (70/30).',
+    manualPromptLabel: 'Промпт для внешней нейросети (вспомогательная оценка семантической дистанции)', manualPromptPlaceholder: 'Нажмите «Собрать промпт»', manualResponseLabel: 'Ответ нейросети (вставьте сюда)', manualResponsePlaceholder: 'Например: {"distance":0.38,"similarity":0.62,"reason":"..."}', manualHint: 'Вспомогательная машинная оценка семантической дистанции. Она не является показателем P, R, C или E и не заменяет классификацию по семантическому спектру. Если ответ предоставлен, дистанция считается как правило-ориентированная оценка + вспомогательная оценка семантической дистанции (70/30).', preceLegend: 'P — Predictabilitá, предсказуемость; R — Relationalitá, смысловая связанность; C — Complexitá of cheyn, сложность объяснительной цепочки; E — External cognoscentian dependentia, зависимость от внешнего знания. Диапазоны: P 0–4, R 0–4, C 0–5, E 0–4 или «не помогает».', eDoesNotHelp: 'Не помогает',
     placeholders: { regularWord: 're/vis/ion', logicalMeaning: 'видение снова', internationalMeaning: 'ревизия', naturalisticWord: 're/vis/ion/u', explanationChain: 'например: повторный просмотр → просмотр с целью контроля → проверка → ревизия', rootForm: 'vid/er', rootMeaning: 'видеть', componentSearch: '-or, действие, приставка' }
   },
   en: {
     title: 'Determinator of valen typ', close: 'Close', back: 'Back', chooseOption: 'Choose option',
-    regularWordLabel: 'Word by regular model (with separators)', componentAnalysisLabel: 'Component analysis', logicalMeaningLabel: 'Logical analysis of components', internationalMeaningLabel: 'International meaning of equivalent derivative', naturalisticWordLabel: 'Word by naturalistic model (with separators)', explanationChainLabel: 'Explanatory chain',
-    noComponents: 'No components added.', missingRegular: 'Regular-model word is missing.', missingLogical: 'Logical component analysis is missing.', missingInternational: 'International meaning of equivalent derivative is missing.', missingNaturalistic: 'Naturalistic-model word is missing.', noComponentsAnalysis: 'No component analysis added.',
+    regularWordLabel: 'Logical derivative form (with separators)', componentAnalysisLabel: 'Component analysis', logicalMeaningLabel: 'Logical meaning', internationalMeaningLabel: 'International meaning', naturalisticWordLabel: 'International derivative form (with separators)', explanationChainLabel: 'Explanatory chain',
+    noComponents: 'No components added.', missingRegular: 'Regular-model word is missing.', missingLogical: 'Logical component analysis is missing.', missingInternational: 'International meaning is missing.', missingNaturalistic: 'Naturalistic-model word is missing.', noComponentsAnalysis: 'No component analysis added.',
     addItem: 'Add item', primaryRoot: 'Primary root', component: 'Component (affix/ending)', word: 'Word', meaning: 'Meaning', assimilationType: 'Assimilation type', search: 'Search', category: 'Category', element: 'Element', prefixAssimilation: 'Prefix assimilation', prefixVariant: 'Prefix variant', add: 'Add', analyse: 'Analyse', analysing: 'Analysing…', clear: 'Reset', result: 'Result', fillAndAnalyse: 'Fill in fields and click “Analyse”.',
     spectrumZone: 'Spectrum zone', confidence: 'Confidence', chainType: 'Chain type', aiConfidence: 'AI confidence', explanatoryChain: 'Explanatory chain', explanation: 'Explanation', analogiesUsed: 'Analogies used', borderlineZones: 'Borderline zones', warnings: 'Warnings', formRecommendation: 'Form recommendation', apiErrorManualMode: 'API error / manual mode', editScoresHint: 'Edit scores to recalculate the zone locally.',
     high: 'high', medium: 'medium', low: 'low', assimilation: 'Assimilation', copied: 'Copied', copyFailed: 'Copy failed', copyPrompt: 'Copy prompt', buildPrompt: 'Build prompt', resetConfirm: 'Reset entered data? This action cannot be undone.', deleteComponent: 'Delete component', addComponentAria: 'Add component', componentSearchResults: 'Component search results', componentSearchSelect: 'Select',
     apiErrorWarning: 'API unavailable or returned an error. You can set P/R/C/E manually below — the zone will be recalculated locally without a new request.', apiUnavailableManual: 'API unavailable. Set P/R/C/E manually — the zone will be recalculated locally.', insufficientData: 'Fill in logical and international meaning. The manual P/R/C/E block is available below.', noComponentsFound: 'No components found. Try without hyphen, without /, or by meaning.', localModelUnavailable: 'Local model unavailable. Used only rule-based calculation.', unknownError: 'Unknown error', manualParseError: 'Could not extract distance/similarity from neural model response.',
     noChainWarning: 'The model did not return an explanatory chain. You can set P/R/C/E manually.', zoneMismatchWarning: 'The model zone hint differs from the P/R/C/E calculation; the final zone was recalculated by code.', lexicalizationWarning: 'The chain type looks like lexicalization, but P/R/C/E scores landed in another zone.',
     regularFormFallback: 'regular form', naturalisticFormFallback: 'naturalistic form', recRegularEnough: 'The logical/regular form is usually enough: {regular}. Separate international marking is not required.', recOptional: 'This is a borderline case. You may keep the logical/regular form: {regular}, but if the international meaning is fixed separately, separate marking is acceptable: {natural}.', recSeparate: 'Separate international marking is recommended: for nouns — -u ({natural}); for international adjectives — -al/-ari/-ic; for logical adjectives — -i. Verbs with international meaning keep the conservative root, while logical verbs use the changed root stem when available.',
-    manualPromptLabel: 'Prompt for external neural model (manual embedding comparison)', manualPromptPlaceholder: 'Click “Build prompt”', manualResponseLabel: 'Neural model response (paste here)', manualResponsePlaceholder: 'For example: {"distance":0.38,"similarity":0.62,"reason":"..."}', manualHint: 'If response is provided, distance is computed as rule-oriented estimate + manual embedding comparison (70/30).',
+    manualPromptLabel: 'Prompt for external neural model (auxiliary semantic-distance estimate)', manualPromptPlaceholder: 'Click “Build prompt”', manualResponseLabel: 'Neural model response (paste here)', manualResponsePlaceholder: 'For example: {"distance":0.38,"similarity":0.62,"reason":"..."}', manualHint: 'Auxiliary machine estimate of semantic distance. It is not a P, R, C, or E score and does not replace classification on the semantic spectrum. If response is provided, distance is computed as rule-oriented estimate + auxiliary semantic-distance estimate (70/30).', preceLegend: 'P — Predictability; R — Semantic relatedness; C — Explanatory-chain complexity; E — Dependence on external knowledge. Ranges: P 0–4, R 0–4, C 0–5, E 0–4 or “does not help”.', eDoesNotHelp: 'Does not help',
     placeholders: { regularWord: 're/vis/ion', logicalMeaning: 'vision again', internationalMeaning: 'revision', naturalisticWord: 're/vis/ion/u', explanationChain: 'for example: repeated viewing → control-focused review → inspection → revision', rootForm: 'vid/er', rootMeaning: 'see', componentSearch: '-or, action, prefix' }
   }
 };
@@ -1323,13 +1323,13 @@ const preceZones = [
     id: 'semantic_conventionalization_lexicalization',
     ru: 'Семантическая конвенционализация — лексикализованность',
     en: 'Semantic conventionalization — lexicalization',
-    range: { P: [0, 0], R: [1, 1], C: [4, 5], E: [4, 4] }
+    range: { P: [0, 0], R: [1, 1], C: [4, 5], E: [4, 4] }, externalKnowledgeMode: 'maximum_or_non_explanatory'
   },
   {
     id: 'lexicalization',
     ru: 'Лексикализованность',
     en: 'Lexicalization',
-    range: { P: [0, 0], R: [0, 1], C: [5, 5], E: null }
+    range: { P: [0, 0], R: [0, 1], C: [5, 5], E: null }, externalKnowledgeMode: 'non_explanatory'
   }
 ];
 
@@ -1361,7 +1361,8 @@ function normalizeAiResult(raw) {
     P: clampScore(data.P, 0, 4),
     R: clampScore(data.R, 0, 4),
     C: clampScore(data.C, 0, 5),
-    E: data.E === null ? null : clampScore(data.E, 0, 4),
+    E: data.E === null || data.externalKnowledgeMode === 'non_explanatory' ? null : clampScore(data.E, 0, 4),
+    externalKnowledgeMode: data.externalKnowledgeMode === 'non_explanatory' || data.E === null ? 'non_explanatory' : 'numeric',
     zone_hint: String(data.zone_hint || ''),
     confidence: clamp(Number(data.confidence) || 0.5, 0, 1),
     explanation: String(data.explanation || ''),
@@ -1404,7 +1405,8 @@ function classifyByPRECE(scores) {
     P: clampScore(scores.P, 0, 4),
     R: clampScore(scores.R, 0, 4),
     C: clampScore(scores.C, 0, 5),
-    E: scores.E === null ? null : clampScore(scores.E, 0, 4)
+    E: scores.externalKnowledgeMode === 'non_explanatory' || scores.E === null ? null : clampScore(scores.E, 0, 4),
+    externalKnowledgeMode: scores.externalKnowledgeMode === 'non_explanatory' || scores.E === null ? 'non_explanatory' : 'numeric'
   };
   const distances = preceZones
     .map((zone) => ({ zone, distance: distanceToZone(normalizedScores, zone) }))
@@ -1736,9 +1738,11 @@ async function computeSemanticDistance(a, b, useLLM = false, options = {}) {
 
 function getInput() {
   return {
+    logicalForm: els.regularWord.value.trim(),
     regularWord: els.regularWord.value.trim(),
     logicalMeaning: els.logicalMeaning.value.trim(),
     internationalMeaning: els.internationalMeaning.value.trim(),
+    internationalForm: els.naturalisticWord.value.trim(),
     naturalisticWord: els.naturalisticWord.value.trim(),
     explanationChain: els.explanationChain ? els.explanationChain.value.trim() : '',
     components: [...state.components],
@@ -1771,6 +1775,8 @@ async function analyzeByRules(input, runId) {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
+      logicalForm: input.logicalForm ?? input.regularWord,
+      internationalForm: input.internationalForm ?? input.naturalisticWord,
       regularWord: input.regularWord,
       naturalisticWord: input.naturalisticWord,
       logicalMeaning: input.logicalMeaning,
@@ -1848,14 +1854,21 @@ function renderResult(result, input) {
         <pre>${escapeHtml(zoneName)}\n${escapeHtml(computed.zone_id)}</pre>
       </div>
       <div class="result-card">
-        <h3>P/R/C/E</h3>
+        <h3>P/R/C/E</h3><p class="result-hint">${txt('preceLegend')}</p>
         <div class="score-grid" data-score-editor="true">
-          ${['P', 'R', 'C', 'E'].map((key) => `
+          ${['P', 'R', 'C'].map((key) => `
             <label class="score-field">
               <span>${key}</span>
               <input class="interal-input" type="number" min="0" max="${key === 'C' ? 5 : 4}" step="1" value="${escapeHtml(computed.scores[key] ?? '')}" data-score-key="${key}" />
             </label>
           `).join('')}
+            <label class="score-field">
+              <span>E</span>
+              <select class="interal-select" data-score-key="E">
+                ${[0,1,2,3,4].map((value) => `<option value="${value}" ${computed.scores.E === value ? 'selected' : ''}>${value}</option>`).join('')}
+                <option value="non_explanatory" ${computed.scores.externalKnowledgeMode === 'non_explanatory' ? 'selected' : ''}>${txt('eDoesNotHelp')}</option>
+              </select>
+            </label>
         </div>
         <p class="result-hint">${txt('editScoresHint')}</p>
       </div>
@@ -1904,7 +1917,7 @@ function renderResult(result, input) {
       const scores = { ...computed.scores };
       els.result.querySelectorAll('[data-score-key]').forEach((field) => {
         const key = field.dataset.scoreKey;
-        scores[key] = field.value === '' && key === 'E' ? null : Number(field.value);
+        if (key === 'E' && field.value === 'non_explanatory') { scores.E = null; scores.externalKnowledgeMode = 'non_explanatory'; } else { scores[key] = Number(field.value); if (key === 'E') scores.externalKnowledgeMode = 'numeric'; }
       });
       recomputeResultFromManualScores(scores);
     });

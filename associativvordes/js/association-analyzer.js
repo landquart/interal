@@ -143,9 +143,29 @@ export async function analyzeAssociativeWord({ language, targetMeaning, word, on
   if (primary.association_score == null) warnings.push('Association score unavailable');
   if (frequency.frequency_score == null) warnings.push('Frequency score unavailable');
 
-  const review = null;
-  const classification = primary.classification;
-  const final_score = primary.final_score;
+  let review = null;
+  let finalEvaluation = primary;
+  if (Number.isFinite(Number(primary.final_score)) && primary.final_score >= THRESHOLDS.reviewMin && primary.final_score <= THRESHOLDS.reviewMax) {
+    try {
+      onProgress?.(`Qwen review: ${language} — ${word}`);
+      const reviewQwen = await getQwenAssociationScores({ language, targetMeaning, word, swow, review: true, primary });
+      const averagedQwen = {
+        ...reviewQwen,
+        directness: (Number(primary.directness) + Number(reviewQwen.directness)) / 2,
+        field_relatedness: (Number(primary.field_relatedness) + Number(reviewQwen.field_relatedness)) / 2,
+        domain_shift: (Number(primary.domain_shift) + Number(reviewQwen.domain_shift)) / 2,
+        short_explanation: reviewQwen.short_explanation || primary.explanation
+      };
+      review = buildEvaluation(reviewQwen, frequency.frequency_score, swow_bonus);
+      finalEvaluation = buildEvaluation(averagedQwen, frequency.frequency_score, swow_bonus);
+      finalEvaluation.combination_method = 'arithmetic_mean';
+    } catch (error) {
+      warnings.push(`Review model unavailable: ${error.message}`);
+      review = { status: 'review_unavailable', error: error.message };
+    }
+  }
+  const classification = finalEvaluation.classification;
+  const final_score = finalEvaluation.final_score;
 
   const diagnostics = {
     swowPath: swow.target_to_word?.diagnostic?.swowPath || swow.word_to_target?.diagnostic?.swowPath || null,
@@ -168,12 +188,20 @@ export async function analyzeAssociativeWord({ language, targetMeaning, word, on
     },
     swow,
     association: {
-      directness: primary.directness,
-      field_relatedness: primary.field_relatedness,
-      domain_shift: primary.domain_shift,
-      association_score_base: primary.association_score_base,
-      association_score: primary.association_score,
-      explanation: primary.explanation
+      Di: finalEvaluation.directness,
+      Pr: finalEvaluation.field_relatedness,
+      Sh: finalEvaluation.domain_shift,
+      A_base: finalEvaluation.association_score_base,
+      swow_bonus,
+      A_final: finalEvaluation.association_score,
+      F: frequency.frequency_score,
+      P: final_score,
+      directness: finalEvaluation.directness,
+      field_relatedness: finalEvaluation.field_relatedness,
+      domain_shift: finalEvaluation.domain_shift,
+      association_score_base: finalEvaluation.association_score_base,
+      association_score: finalEvaluation.association_score,
+      explanation: finalEvaluation.explanation
     },
     primary,
     final_score,
