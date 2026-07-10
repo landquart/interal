@@ -273,38 +273,6 @@
   `;
 
 
-  function injectLiquidGlassFilter() {
-    if (document.getElementById('liquid-glass-filter')) return;
-
-    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    svg.setAttribute('class', 'liquid-glass-defs');
-    svg.setAttribute('aria-hidden', 'true');
-    svg.setAttribute('focusable', 'false');
-
-    svg.innerHTML = `
-      <filter id="liquid-glass-filter" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
-        <feTurbulence
-          type="fractalNoise"
-          baseFrequency="0.012 0.018"
-          numOctaves="2"
-          seed="8"
-          result="noise"
-        />
-        <feGaussianBlur in="noise" stdDeviation="1.2" result="softNoise" />
-        <feDisplacementMap
-          in="SourceGraphic"
-          in2="softNoise"
-          scale="10"
-          xChannelSelector="R"
-          yChannelSelector="G"
-        />
-      </filter>
-    `;
-
-    document.body.prepend(svg);
-  }
-
-
   function currentLang() {
     return localStorage.getItem('interal.lang') === 'en' ? 'en' : 'ru';
   }
@@ -740,13 +708,58 @@
   topNavWindow.className = 'top-nav-window';
   topNavWindow.append(menuButton, brandLink, desktopControls, mobileCurrentPageLink);
 
-  injectLiquidGlassFilter();
-
   document.body.classList.add('has-global-menu');
   topNav.append(topNavWindow);
   document.body.prepend(overlay);
   document.body.prepend(menu);
   document.body.prepend(topNav);
+
+
+  function syncTopbarScrollState() {
+    document.body.classList.toggle(
+      'nav-scrolled',
+      window.scrollY > 16
+    );
+  }
+
+  syncTopbarScrollState();
+
+  window.addEventListener(
+    'scroll',
+    syncTopbarScrollState,
+    { passive: true }
+  );
+
+  const glassTopbar = document.querySelector('.top-nav-window');
+
+  const precisePointer = window.matchMedia(
+    '(hover: hover) and (pointer: fine)'
+  ).matches;
+
+  const reducedMotion = window.matchMedia(
+    '(prefers-reduced-motion: reduce)'
+  ).matches;
+
+  if (glassTopbar && precisePointer && !reducedMotion) {
+    glassTopbar.addEventListener('pointermove', (event) => {
+      const rect = glassTopbar.getBoundingClientRect();
+
+      const x =
+        ((event.clientX - rect.left) / rect.width) * 100;
+
+      glassTopbar.style.setProperty(
+        '--glass-highlight-x',
+        `${Math.max(8, Math.min(92, x))}%`
+      );
+    });
+
+    glassTopbar.addEventListener('pointerleave', () => {
+      glassTopbar.style.setProperty(
+        '--glass-highlight-x',
+        '28%'
+      );
+    });
+  }
 
   document.addEventListener('mouseover', (event) => {
     const target = event.target.closest?.('.menu-nav-link, .menu-copy-btn, .top-desktop-link, .top-desktop-dropdown-link, .menu-lang-modal .menu-lang-btn');
