@@ -219,3 +219,12 @@
 
 @media (max-width: 560px) {
 }
+
+/* Brand-gold result focus for the candidate form only. */
+.altervordes-page .decision-card { box-shadow: inset 0 3px 0 var(--brand-gold), var(--shadow-sm); }
+.altervordes-page .decision-main-item:first-child {
+  border-color: var(--brand-gold-border);
+  background: color-mix(in srgb, var(--brand-gold) 8%, var(--surface-elevated));
+}
+.altervordes-page .decision-main-item:first-child p,
+.altervordes-page .decision-form { color: var(--brand-gold-text); font-weight: 800; }

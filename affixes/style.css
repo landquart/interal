@@ -212,3 +212,17 @@ body.json-card-modal-open { overflow: hidden; }
 .affixes-page .form-actions.interal-actions, .affixes-page .actions.interal-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
 .affixes-page .json-card-bottom-actions.interal-actions { justify-content: center; margin-top: 0; }
 @media (max-width: 640px) { .affixes-page .vord-page-shell.interal-page-shell { width: min(100% - 24px, var(--page-width, 828px)); padding: 10px 0 34px; gap: 12px; } .affixes-page .vord-panel.interal-panel { padding: 14px; border-radius: var(--radius-md); } }
+
+/* Brand-gold affix-object accents: the affix is the selected research object. */
+.affixes-page .decision-card { box-shadow: inset 0 3px 0 var(--brand-gold), var(--shadow-sm); }
+.affixes-page .decision-form {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--brand-gold) 14%, var(--surface-elevated));
+  border: 1px solid var(--brand-gold-border);
+  color: var(--brand-gold-text);
+  font-weight: 800;
+}
+.affixes-page .decision-main-item:first-child { border-color: var(--brand-gold-border); }

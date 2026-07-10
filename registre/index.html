@@ -73,11 +73,15 @@
     .registry-message { margin: 14px 0; padding: 16px; border-radius: var(--radius-md); background: var(--surface-soft); color: var(--text); border: 1px solid var(--border-subtle); }
     .registry-list { display: grid; gap: 12px; }
     .registry-card { padding: 16px; display: grid; gap: 12px; }
+    .registry-card.is-accepted { border-left: 3px solid var(--brand-gold); }
+    .registry-card:hover { border-color: color-mix(in srgb, var(--brand-gold) 46%, var(--border-subtle)); }
     .card-head { display: flex; gap: 12px; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; }
     .card-word { margin: 0; color: var(--text); font-size: clamp(1.3rem, 3vw, 2rem); line-height: 1.1; overflow-wrap: anywhere; }
     .card-ipa { color: var(--text-muted); font-weight: 600; overflow-wrap: anywhere; }
     .card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
     .card-tag { display: inline-flex; align-items: center; min-height: 28px; border-radius: var(--radius-pill); padding: 3px 10px; background: var(--surface-soft); border: 1px solid var(--border-subtle); color: var(--text); font-size: .86rem; font-weight: 700; }
+    .card-tag--type { background: color-mix(in srgb, var(--brand-gold) 14%, var(--surface-elevated)); border-color: var(--brand-gold-border); color: var(--brand-gold-text); }
+    .card-row--pi .card-value { color: var(--brand-gold-text); font-size: 1.15rem; font-weight: 800; }
     .card-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
     .card-row { min-width: 0; padding: 10px; border-radius: var(--radius-sm); background: var(--surface-elevated); border: 1px solid var(--border-subtle); }
     .card-label { display: block; color: var(--text-muted); font-size: .78rem; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; }
@@ -418,7 +422,7 @@
           return (a.word || '').localeCompare(b.word || '', state.lang === 'en' ? 'en' : 'ru');
         });
       }
-      function row(label, value) { const wrap = document.createElement('div'); wrap.className = 'card-row'; const l = document.createElement('span'); l.className = 'card-label'; l.textContent = label; const v = document.createElement('span'); v.className = 'card-value'; v.textContent = value || t('noValue'); wrap.append(l, v); return wrap; }
+      function row(label, value, modifier = '') { const wrap = document.createElement('div'); wrap.className = `card-row${modifier ? ` card-row--${modifier}` : ''}`; const l = document.createElement('span'); l.className = 'card-label'; l.textContent = label; const v = document.createElement('span'); v.className = 'card-value'; v.textContent = value || t('noValue'); wrap.append(l, v); return wrap; }
 
       function slugify(value) {
         return String(value || '')
@@ -483,13 +487,13 @@
         }
       }
       function renderCard(card) {
-        const article = document.createElement('article'); article.className = 'registry-card';
+        const article = document.createElement('article'); article.className = `registry-card${card.accepted_at ? ' is-accepted' : ''}`;
         const head = document.createElement('div'); head.className = 'card-head';
         const titleWrap = document.createElement('div'); const title = document.createElement('h2'); title.className = 'card-word'; title.textContent = card.word || t('noValue'); const ipa = document.createElement('div'); ipa.className = 'card-ipa'; ipa.textContent = card.ipa ? `/${card.ipa}/` : t('noValue'); titleWrap.append(title, ipa);
-        const tags = document.createElement('div'); tags.className = 'card-tags'; [typeLabel(card), posLabel(card.part_of_speech), typeof card.pi_percent === 'number' ? `PI ${formatNumber(card.pi_percent)}` : ''].filter(Boolean).forEach((item) => { const tag = document.createElement('span'); tag.className = 'card-tag'; tag.textContent = item; tags.append(tag); });
+        const tags = document.createElement('div'); tags.className = 'card-tags'; [typeLabel(card), posLabel(card.part_of_speech), typeof card.pi_percent === 'number' ? `PI ${formatNumber(card.pi_percent)}` : ''].filter(Boolean).forEach((item, index) => { const tag = document.createElement('span'); tag.className = `card-tag${index === 0 ? ' card-tag--type' : ''}`; tag.textContent = item; tags.append(tag); });
         head.append(titleWrap, tags);
         const grid = document.createElement('div'); grid.className = 'card-grid';
-        grid.append(row(t('type'), typeLabel(card)), row(t('partOfSpeech'), posLabel(card.part_of_speech)), row(t('translation'), translationForSiteLanguage(card)), row(t('pi'), formatNumber(card.pi_percent)), row(t('groups'), groupListLabel(card.supported_groups)), row(t('author'), card.author), row(t('authorContact'), card.author_contact_url ? `${card.author_contact_type} — ${card.author_contact_url}` : ''), row(t('createdAt'), formatDate(card.created_at)), row(t('acceptedAt'), formatDate(card.accepted_at)), row(t('id'), card.id));
+        grid.append(row(t('type'), typeLabel(card)), row(t('partOfSpeech'), posLabel(card.part_of_speech)), row(t('translation'), translationForSiteLanguage(card)), row(t('pi'), formatNumber(card.pi_percent), 'pi'), row(t('groups'), groupListLabel(card.supported_groups)), row(t('author'), card.author), row(t('authorContact'), card.author_contact_url ? `${card.author_contact_type} — ${card.author_contact_url}` : ''), row(t('createdAt'), formatDate(card.created_at)), row(t('acceptedAt'), formatDate(card.accepted_at)), row(t('id'), card.id));
         const actions = document.createElement('div');
         actions.className = 'card-actions';
 

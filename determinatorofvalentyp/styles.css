@@ -606,3 +606,25 @@ body.dark-theme.determinator-page .modal-backdrop {
 .determinator-page .component-search-option.is-selected .component-search-action {
   color: var(--select-option-selected-text);
 }
+
+/* Brand-gold component-chain accents. */
+.component-item { position: relative; }
+.component-item + .component-item::before {
+  content: "";
+  position: absolute;
+  left: 22px;
+  top: -11px;
+  width: 2px;
+  height: 10px;
+  background: var(--brand-gold);
+  opacity: .62;
+}
+.determinator-page .plus-btn {
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--brand-gold) 12%, var(--surface-elevated));
+  box-shadow: inset 0 0 0 1px var(--brand-gold-border);
+}
+.determinator-page .plus-btn:hover,
+.determinator-page .plus-btn:focus-visible {
+  background: color-mix(in srgb, var(--brand-gold) 20%, var(--surface-elevated));
+}

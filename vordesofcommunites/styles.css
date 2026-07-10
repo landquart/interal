@@ -65,3 +65,29 @@ td .interal-input, td .interal-select { min-width: 120px; padding: 10px 12px; }
 .json-card-bottom-actions { justify-content: center; margin-top: 0; }
 @media (max-width: 880px) { .vord-grid, .criterion, .metrics, .compact-fields { grid-template-columns: 1fr; } .language-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .vord-page-shell { width: min(100% - 24px, 828px); } }
 @media (max-width: 560px) { .language-grid { grid-template-columns: 1fr; } }
+
+/* Brand-gold accents for the selected community and evidence counts. */
+.metric:first-child {
+  border-color: var(--brand-gold-border);
+  box-shadow: inset 0 3px 0 var(--brand-gold), var(--shadow-sm);
+}
+.metric:first-child strong { color: var(--brand-gold-text); }
+.language-card:has(.language-card__check input:checked) { border-color: var(--brand-gold-border); }
+.language-card:has(.language-card__check input:checked) .language-code::before {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 7px;
+  border-radius: 50%;
+  background: var(--brand-gold);
+}
+.community-chip {
+  display: inline-flex;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--brand-gold) 14%, var(--surface-elevated));
+  border: 1px solid var(--brand-gold-border);
+  color: var(--brand-gold-text);
+  font-weight: 700;
+}

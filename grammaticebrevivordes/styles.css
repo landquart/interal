@@ -97,3 +97,11 @@ td .interal-input, td .interal-select { min-width: 120px; padding: 10px 12px; }
 @media (max-width: 880px) {
   .grammar-criterion { grid-template-columns: 1fr; }
 }
+
+/* Brand-gold accents for the key grammatical-word metric without changing verdict colors. */
+.metric:first-child {
+  border-color: var(--brand-gold-border);
+  box-shadow: inset 0 3px 0 var(--brand-gold), var(--shadow-sm);
+}
+.metric:first-child strong { color: var(--brand-gold-text); }
+.criterion:first-child { border-left: 3px solid var(--brand-gold); }

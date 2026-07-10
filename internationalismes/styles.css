@@ -68,3 +68,22 @@ td .interal-input, td .interal-select, td .interal-select-trigger { min-width: 1
   justify-content: center;
   text-align: center;
 }
+
+/* Brand-gold evidence accents: keep status colors green/red. */
+.metric:first-child {
+  border-color: var(--brand-gold-border);
+  box-shadow: inset 0 3px 0 var(--brand-gold), var(--shadow-sm);
+}
+.metric:first-child strong { color: var(--brand-gold-text); }
+.language-card.has-evidence,
+.language-card:has(.language-card__check input:checked) { border-color: var(--brand-gold-border); }
+.language-card.has-evidence .language-code::before,
+.language-card:has(.language-card__check input:checked) .language-code::before {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 7px;
+  border-radius: 50%;
+  background: var(--brand-gold);
+}
