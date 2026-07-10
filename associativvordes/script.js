@@ -601,7 +601,7 @@ const TEXT_I18N = {
       const finalAssociation = represented.length ? totalAssociation / represented.length : 0;
       const representedLangs = represented.length;
       const groups = new Set(represented.map(x => x.lang.group));
-      const semanticConfirmed = represented.some(x => Number.isFinite(Number(x.normalized)));
+      const semanticConfirmed = LANGUAGES.some(l => (state.languages[l.code] || []).some(item => item.selected && item.analysis?.association && ['Di','Pr','Sh'].every(key => Number.isFinite(Number(item.analysis.association[key])))));
       const accepted =
         representedLangs >= 3 &&
         groups.size >= 2 &&
@@ -693,7 +693,7 @@ const TEXT_I18N = {
 
     function rowHtml(lang, item, idx) {
       const analysis = item.analysis || {};
-      const assoc = analysis.review || analysis.association || {};
+      const assoc = analysis.association || {};
       const labels = textGroup('panel');
       const warningList = analysis.warnings || [];
       const warnings = warningList.join('; ');
@@ -894,7 +894,7 @@ async function createFallbackCard(card, section) { const response = await fetch(
     });
     const data = await response.json().catch(() => null);
     if (!response.ok || !data?.ok) throw new Error(data?.error || `HTTP ${response.status}`);
-    return data.card?.payload || { ...card, id: data.id, section: data.section, discussionId: data.discussionId || `card-${data.id}` };
+    return window.InteralJsonCardModal?.parseCardsApiResponse?.(data, card) || (data?.card?.payload ?? data?.payload ?? { ...card, id: data.id, section: data.section, discussionId: data.discussionId || `card-${data.id}`, status: data.status || 'pending' });
   } catch (error) {
     if (!isDatabaseLimitError(error)) throw error;
     console.warn('Supabase insert failed; using fallback sequential card id');
@@ -981,7 +981,7 @@ async function createFallbackCard(card, section) { const response = await fetch(
             return { code: lang.code, name: lang.name, group: lang.group, speakers_thousands: finiteOrNull(lang.speakers), word: '', normalized_graphic: '', selected: false, match: null, frequency: { score: null, ipm: null, category_breakdown: {} }, association: null, swow: null, final_score: null, status: 'unavailable', supports_group: false };
           }
           const analysis = best.analysis || {};
-          const association = analysis.review || analysis.association || {};
+          const association = analysis.association || {};
           return {
             code: lang.code,
             name: lang.name,
@@ -1141,16 +1141,10 @@ async function createFallbackCard(card, section) { const response = await fetch(
     });
 
     window.testQwenAssociation = async function () {
-      return await fetch('/api/qwen-association', {
+      return await fetch('/api/qwen-analyze', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          system: 'Return only JSON.',
-          user: 'Return {"word":"test","target_meaning":"test","directness":80,"field_relatedness":90,"domain_shift":10,"short_explanation":"test"}',
-          model: 'qwen3.6-35b-a3b/latest',
-          review: false,
-          interfaceLanguage: currentLang()
-        })
+        body: JSON.stringify({ task: 'associative_word_score', interfaceLanguage: currentLang(), payload: { language: 'en', targetMeaning: 'test', word: 'test', swow: null, review: false } })
       }).then(r => r.json());
     };
 

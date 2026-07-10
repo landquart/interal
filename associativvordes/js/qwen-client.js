@@ -33,7 +33,7 @@ export function getInterfaceLanguage() {
 }
 
 export function buildQwenAssociationPrompt({ language, targetMeaning, word, swow, primary, review = false }) {
-  return {
+  return { language, targetMeaning, word, swow, primary, review,
     system: 'You are a lexical association evaluator for an international auxiliary language project. Evaluate semantic association between target meaning and associative word. Do not generate candidate words. Do not evaluate the constructed Interal candidate form. Return only valid JSON. Use 0–100 integer scores. directness = how directly the word points to the target meaning. field_relatedness = how strongly the word belongs to the same semantic field as the target meaning. domain_shift = how strongly the word\'s modern meaning belongs to a different competing domain.',
     user: `Language: ${language}\nTarget meaning: ${targetMeaning}\nAssociative word: ${word}\nSWOW evidence: ${JSON.stringify(swow || {})}\nReview mode: ${review ? 'true' : 'false'}\nPrimary evaluation: ${JSON.stringify(primary || null)}\n\nReturn JSON:\n{\n  "word": "...",\n  "target_meaning": "...",\n  "directness": 0-100,\n  "field_relatedness": 0-100,\n  "domain_shift": 0-100,\n  "responseLanguage": "...",\n  "short_explanation": "..."\n}`
   };
@@ -75,16 +75,22 @@ function parseQwenPayload(payload) {
   };
 }
 
-async function callQwen(prompt, { model, review = false } = {}) {
+async function callQwen(prompt, { model, review = false, primary = null } = {}) {
   const res = await fetch(API_CONFIG.qwenAssociationUrl, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      system: prompt.system,
-      user: prompt.user,
-      model: model || API_CONFIG.qwenPrimaryModel,
-      review,
-      interfaceLanguage: getInterfaceLanguage()
+      task: 'associative_word_score',
+      interfaceLanguage: getInterfaceLanguage(),
+      payload: {
+        language: prompt.language,
+        targetMeaning: prompt.targetMeaning,
+        word: prompt.word,
+        swow: prompt.swow,
+        review,
+        primary,
+        prompt
+      }
     })
   });
   if (!res.ok) {
@@ -103,7 +109,8 @@ export async function getQwenAssociationScores({ language, targetMeaning, word, 
   const requestedModel = review ? API_CONFIG.qwenReviewModel : API_CONFIG.qwenPrimaryModel;
   const parsed = parseQwenPayload(await callQwen(prompt, {
     model: requestedModel,
-    review
+    review,
+    primary
   }));
   return { ...parsed, model: requestedModel };
 }

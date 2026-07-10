@@ -182,13 +182,17 @@ function evaluateAffixDecision(card) {
   } else if (procedure === 'associativ_affix') {
     const words = card.evidence?.frequencyWords || card.frequencyWords || {};
     const represented = CONTROL_LANGUAGES.filter(lang => Array.isArray(words?.[lang]) && words[lang].length > 0);
+    const representedGroups = new Set(represented.map(lang => AFFIX_GROUPS[lang])).size;
     criteria.required_languages = 3;
     criteria.required_groups = 2;
     criteria.ipm_threshold = 3;
-    criteria.ipm_passed = represented.every(lang => words[lang].every(item => Number(item.ipm) >= 3));
-    criteria.word_count_passed = represented.every(lang => words[lang].length >= 1 && words[lang].length <= 5);
-    criteria.recognition_type = card.recognitionType || card.criteria?.recognition_type || 'associative';
-    accepted = coveredLanguages >= 3 && coveredGroups >= 2 && criteria.ipm_passed && criteria.word_count_passed && criteria.recognition_type === 'associative';
+    criteria.frequency_language_count = represented.length;
+    criteria.frequency_group_count = representedGroups;
+    criteria.ipm_passed = represented.length >= 3 && represented.every(lang => words[lang].every(item => Number(item.ipm) >= 3));
+    criteria.word_count_passed = represented.length >= 3 && represented.every(lang => words[lang].length >= 1 && words[lang].length <= 5);
+    criteria.recognition_type = card.recognitionType || card.criteria?.recognition_type || null;
+    needsManualReview = !criteria.recognition_type;
+    accepted = !needsManualReview && represented.length >= 3 && representedGroups >= 2 && criteria.ipm_passed && criteria.word_count_passed && criteria.recognition_type === 'associative';
   } else {
     const c = card.criteria || {};
     const keys = ['necessityConfirmed','noSeriousConflicts','shortestSuitableAlternative','partialInternationalPresence','derivationallyViable','meaningClear','noBetterStandardProcedure'];
@@ -196,7 +200,8 @@ function evaluateAffixDecision(card) {
     accepted = !needsManualReview && keys.every(key => c[key] === true);
     Object.assign(criteria, Object.fromEntries(keys.map(key => [key, c[key] === true])));
   }
-  return { criteria, decision: { accepted, needs_manual_review: needsManualReview || !accepted }, eligible: accepted, decisionText: accepted ? 'accepted' : (needsManualReview ? 'needs_manual_review' : 'rejected') };
+  const status = accepted ? 'accepted' : (needsManualReview ? 'needs_manual_review' : 'rejected');
+  return { criteria, decision: { status, accepted, rejected: status === 'rejected', needs_manual_review: status === 'needs_manual_review' }, eligible: accepted, decisionText: status };
 }
 
 function randomAffixId() {
@@ -302,12 +307,53 @@ function buildAffixesAlterPrompt(input) { return `Ты создаёшь JSON-к�
 Входная карточка:
 ${JSON.stringify(input, null, 2)}`; }
 const TASKS = {
+  associative_word_score: { modelEnv: 'Qwen3_235B_A22B_Instruct_2507_FP8_Yandex', folderEnv: 'yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8' },
   affixes_check: { modelEnv: 'Qwen3_235B_A22B_Instruct_2507_FP8_Yandex', folderEnv: 'yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8', buildPrompt: buildAffixesCheckPrompt, normalize: normalizeAffixesCheckCard },
   affixes_alter_card: { modelEnv: 'Qwen3_235B_A22B_Instruct_2507_FP8_Yandex', folderEnv: 'yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8', buildPrompt: buildAffixesAlterPrompt, normalize: normalizeAffixesAlterCard },
   altervordes: { modelEnv: 'Qwen3_235B_A22B_Instruct_2507_FP8_Yandex', folderEnv: 'yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8' },
   community_word_check: { modelEnv: 'Qwen3_235B_A22B_Instruct_2507_FP8_Yandex', folderEnv: 'yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8' },
   grammar_short_word_check: { modelEnv: 'Qwen3_235B_A22B_Instruct_2507_FP8_Yandex', folderEnv: 'yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8' }
 };
+
+function clampScore(value) {
+  const number = Number(value);
+  return Number.isFinite(number) ? Math.max(0, Math.min(100, Math.round(number))) : null;
+}
+function normalizeAssociativeScore(result) {
+  return {
+    word: normalizeString(result?.word),
+    target_meaning: normalizeString(result?.target_meaning),
+    directness: clampScore(result?.directness),
+    field_relatedness: clampScore(result?.field_relatedness),
+    domain_shift: clampScore(result?.domain_shift),
+    responseLanguage: normalizeString(result?.responseLanguage),
+    short_explanation: normalizeString(result?.short_explanation || result?.explanation)
+  };
+}
+function buildAssociativeScorePrompt(input, interfaceLanguage) {
+  return `Evaluate semantic association for Interal Associativ vordes.
+${getQwenLanguageInstruction(interfaceLanguage)}
+Use only scores 0-100. directness = how directly the candidate word points to the target meaning. field_relatedness = semantic-field proximity. domain_shift = competing modern domain shift; lower is better. Return strict JSON only.
+Input:
+${JSON.stringify(input, null, 2)}
+Return {"word":"","target_meaning":"","directness":0,"field_relatedness":0,"domain_shift":0,"responseLanguage":"${interfaceLanguage}","short_explanation":""}.`;
+}
+async function runAssociativeWordScore(payload, interfaceLanguage) {
+  const input = {
+    language: normalizeString(payload?.language),
+    targetMeaning: normalizeString(payload?.targetMeaning),
+    word: normalizeString(payload?.word),
+    swow: payload?.swow || null,
+    review: payload?.review === true,
+    primary: payload?.primary || null
+  };
+  if (!input.language || !input.targetMeaning || !input.word) throw Object.assign(Error('language, targetMeaning and word are required'), { status: 400 });
+  const result = await callYandex([
+    { role: 'system', content: 'Return only valid JSON. Do not include markdown.' },
+    { role: 'user', content: buildAssociativeScorePrompt(input, interfaceLanguage) }
+  ], true);
+  return { ...normalizeAssociativeScore(extract(result.content)), model: result.model };
+}
 
 async function runAltervordes(payload, interfaceLanguage) {
   if (!process.env[TASKS.altervordes.modelEnv]) throw Object.assign(Error(`Missing Yandex API key: ${TASKS.altervordes.modelEnv}`), { status: 500 });
@@ -345,7 +391,7 @@ async function runAffixesCheck(payload, interfaceLanguage) {
 
   const generated = extract(result.content);
   const card = normalizeAffixesCheckCard(generated, input);
-  return { ok: true, analysis: { eligible: card.eligible === true, decision: card.decisionText, recommendedForm: card.recommendedForm || card.form, form: card.form, morphemeType: card.morphemeType, procedure: card.procedure, meaning: card.meaning, criteria: card.criteria, evidence: card.evidence, forms: card.forms, decision_object: card.decision, decision: card.decisionText, shortConclusion: card.eligible ? (interfaceLanguage === 'en' ? 'The affix can be saved as a candidate card.' : 'Аффикс можно сохранить как карточку-кандидат.') : (interfaceLanguage === 'en' ? 'The affix did not pass deterministic criteria or needs manual review.' : 'Аффикс не прошёл детерминированные критерии или требует ручной проверки.'), risks: card.risks || [] }, card };
+  return { ok: true, analysis: { eligible: card.eligible === true, decision: card.decision, recommendedForm: card.recommendedForm || card.form, form: card.form, morphemeType: card.morphemeType, procedure: card.procedure, meaning: card.meaning, criteria: card.criteria, evidence: card.evidence, forms: card.forms, shortConclusion: card.eligible ? (interfaceLanguage === 'en' ? 'The affix can be saved as a candidate card.' : 'Аффикс можно сохранить как карточку-кандидат.') : (interfaceLanguage === 'en' ? 'The affix did not pass deterministic criteria or needs manual review.' : 'Аффикс не прошёл детерминированные критерии или требует ручной проверки.'), risks: card.risks || [] }, card };
 }
 
 
@@ -380,6 +426,7 @@ export default async function handler(req, res) {
     const payload = request?.payload && typeof request.payload === 'object' ? request.payload : {};
     const interfaceLanguage = normalizeInterfaceLanguage(request?.interfaceLanguage || payload.interfaceLanguage);
     if (!TASKS[task]) return send(res, 400, { ok: false, error: 'Unknown Qwen task' });
+    if (task === 'associative_word_score') return send(res, 200, await runAssociativeWordScore(payload, interfaceLanguage));
     if (task === 'affixes_check') return send(res, 200, await runAffixesCheck(payload, interfaceLanguage));
     if (task === 'affixes_alter_card') return send(res, 200, await runAffixesAlterCard(payload));
     if (task === 'altervordes') return send(res, 200, await runAltervordes(payload, interfaceLanguage));

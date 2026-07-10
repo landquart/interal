@@ -1240,7 +1240,7 @@ async function createCardOnServer(card) {
     });
     const data = await response.json().catch(() => null);
     if (!response.ok || !data?.ok) throw new Error(data?.error || `HTTP ${response.status}`);
-    return data.card?.payload || { ...card, id: data.id, section: data.section, discussionId: data.discussionId || `card-${data.id}` };
+    return window.InteralJsonCardModal?.parseCardsApiResponse?.(data, card) || (data?.card?.payload ?? data?.payload ?? { ...card, id: data.id, section: data.section, discussionId: data.discussionId || `card-${data.id}`, status: data.status || 'pending' });
   } catch (error) {
     if (!isDatabaseLimitError(error)) throw error;
     console.warn("Supabase insert failed; using fallback sequential card id");

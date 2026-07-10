@@ -1,3 +1,5 @@
+import { LANGUAGE_SOURCES, CATEGORY_ORDER } from '../associativvordes/js/config-frequency-sources.js';
+
 const LANGUAGES = [
   { code: 'en', name: { ru: 'Английский', en: 'English' }, group: 'Germanic' },
   { code: 'de', name: { ru: 'Немецкий', en: 'German' }, group: 'Germanic' },
@@ -8,15 +10,12 @@ const LANGUAGES = [
 ];
 
 function buildFrequencySources() {
-  const shared = window.InteralFrequencySources;
-  if (shared?.LANGUAGE_SOURCES) {
-    const base = '../associativvordes/frequency%20lists';
-    return Object.fromEntries(Object.entries(shared.LANGUAGE_SOURCES).map(([lang, categories]) => [
-      lang,
-      (shared.CATEGORY_ORDER || Object.keys(categories)).flatMap(category => (categories[category] || []).map(file => `${base}/${lang}/${file}`))
-    ]));
-  }
-  return {};
+  if (!LANGUAGE_SOURCES || !Object.keys(LANGUAGE_SOURCES).length) return {};
+  const base = '../associativvordes/frequency%20lists';
+  return Object.fromEntries(Object.entries(LANGUAGE_SOURCES).map(([lang, categories]) => [
+    lang,
+    (CATEGORY_ORDER || Object.keys(categories)).flatMap(category => (categories[category] || []).map(file => `${base}/${lang}/${file}`))
+  ]));
 }
 const FREQUENCY_SOURCES = buildFrequencySources();
 
@@ -70,7 +69,7 @@ async function createCardOnServer(card) {
     });
     const data = await response.json().catch(() => null);
     if (!response.ok || !data?.ok) throw new Error(data?.error || `HTTP ${response.status}`);
-    return data.card?.payload || { ...card, id: data.id, discussionId: data.discussionId || `card-${data.id}` };
+    return window.InteralJsonCardModal?.parseCardsApiResponse?.(data, card) || (data?.card?.payload ?? data?.payload ?? { ...card, id: data.id, section: data.section, discussionId: data.discussionId || `card-${data.id}`, status: data.status || 'pending' });
   } catch (error) {
     if (!isDatabaseLimitError(error)) throw error;
     console.warn('Supabase insert failed; using fallback sequential card id');
