@@ -1201,6 +1201,7 @@ window.refreshCustomSelect = function refreshCustomSelect(selectOrId) {
   const CARD_ID_PATTERN = /^(iv|av|in|vc|gv|al|af)_[0-9A-Za-z]{12}$/;
   const SECTION_PREFIX = { internationalismes:'in', associativvordes:'av', indoeuropanvordes:'iv', vordesofcommunites:'vc', grammaticebrevivordes:'gv', altervordes:'al', affixes:'af' };
   const API_ENDPOINT = location.hostname === 'landquart.github.io' ? 'https://interal.vercel.app/api/cards' : '/api/cards';
+  const FALLBACK_ID_ENDPOINT = location.hostname === 'landquart.github.io' ? 'https://interal.vercel.app/api/cards-next-id' : '/api/cards-next-id';
   function publicJsonError(error, fallback){
     const raw = error?.publicMessage || error?.message || error?.error || error || fallback || 'JSON card error';
     const message=String(raw);
@@ -1215,7 +1216,7 @@ window.refreshCustomSelect = function refreshCustomSelect(selectOrId) {
         section: payload.section ?? data.section ?? draftCard.section,
         status: payload.status ?? data.status ?? 'pending',
         discussionId: payload.discussionId ?? data.discussionId ?? (data.id ? `card-${data.id}` : null),
-        persistence: { saved: true, status: data.status ?? payload.status ?? 'pending' }
+        persistence: { saved: true, mode: 'supabase', status: data.status ?? payload.status ?? 'pending', idReserved: true }
       };
     }
     if (!data?.id) throw new Error('The server did not return a card ID.');
@@ -1225,7 +1226,7 @@ window.refreshCustomSelect = function refreshCustomSelect(selectOrId) {
       section:data.section ?? draftCard.section,
       status:data.status ?? 'pending',
       discussionId:data.discussionId ?? `card-${data.id}`,
-      persistence: { saved: true, status: data.status ?? 'pending' }
+      persistence: { saved: true, mode: 'supabase', status: data.status ?? 'pending', idReserved: true }
     };
   }
   function validateCardId(card, section){ const id=card?.id; if(!CARD_ID_PATTERN.test(String(id||''))) throw new Error('The server returned an invalid card ID.'); const prefix=SECTION_PREFIX[section]; if(prefix && !String(id).startsWith(`${prefix}_`)) throw new Error('The server returned a card ID for another section.'); return true; }
@@ -1235,17 +1236,35 @@ window.refreshCustomSelect = function refreshCustomSelect(selectOrId) {
     if(!response.ok||!data?.ok) throw new Error(data?.error||`Health check failed (${response.status})`);
     return data;
   }
-  async function createCardOnServer(draftCard,{section,title,category,endpoint=API_ENDPOINT,onProgress,allowLocalFallback=true}={}){
-    if(!draftCard||typeof draftCard!=='object') throw new Error('Invalid source data for JSON card.');
+  function isFallbackEligibleError(error, responseStatus, apiError){
+    if (responseStatus === 400) return false;
+    const message = String(apiError || error?.message || '').toLowerCase();
+    if (message.includes('invalid request body') || message.includes('invalid title') || message.includes('invalid payload') || message.includes('invalid card section') || message.includes('payload too large')) return false;
+    return true;
+  }
+  async function createFallbackCardId(draftCard,{section,endpoint=FALLBACK_ID_ENDPOINT,sourceError=null}={}){
+    if(!draftCard||typeof draftCard!=='object') throw new Error('Invalid source data for fallback JSON card.');
     if(!section) throw new Error('Invalid card section.');
+    const url=`${endpoint}?section=${encodeURIComponent(section)}`;
+    const response=await fetch(url,{method:'GET',cache:'no-store',headers:{Accept:'application/json'}});
+    const data=await response.json().catch(()=>null);
+    if(!response.ok||!data?.ok||!data?.id) throw new Error(data?.error||`Fallback ID request failed (${response.status}).`);
+    const card={...draftCard,id:data.id,section:data.section||section,status:'local',discussionId:`card-${data.id}`,fallbackMode:data.mode||'fallback-sequential',persistence:{saved:false,mode:'fallback-id',status:'local',idReserved:false,guarantee:data.guarantee||'best-effort-read-check-only',warning:sourceError?publicJsonError(sourceError):null}};
+    validateCardId(card, section);
+    return card;
+  }
+  function createLocalOnlyCard(draftCard, section, primaryError, fallbackError){
+    return {...draftCard,id:null,section: draftCard?.section || section,status:'local',discussionId:null,persistence:{saved:false,mode:'local-only',status:'local',idReserved:false,primarySaveFailed:true,fallbackIdFailed:true,warning:publicJsonError(primaryError),fallbackWarning:publicJsonError(fallbackError)}};
+  }
+  async function saveCardNormally(draftCard,{section,title,category,endpoint=API_ENDPOINT,onProgress}={}){
     const safeTitle=title||draftCard?.interal?.word||draftCard?.title||draftCard?.form||draftCard?.selectedForm||'Untitled card';
     let health=null;
     try{ health=await checkHealth(endpoint); }
-    catch(e){ console.warn('Cards API health-check failed; trying POST anyway:', e); if(!allowLocalFallback) throw new Error(publicJsonError(e,'Cards API is unavailable.')); }
+    catch(e){ console.warn('Cards API health-check failed; trying POST anyway:', e); }
     if(health && (health.hasSupabaseUrl===false || health.hasSupabaseKey===false)){
-      const err = new Error(document.documentElement.lang?.startsWith('en') ? 'The JSON card was generated locally but was not saved on the server.' : 'JSON-карточка сформирована локально, но не была сохранена на сервере.');
+      const err = new Error('Supabase is not configured for cards persistence.');
       err.code = 'SUPABASE_NOT_CONFIGURED';
-      err.publicMessage = err.message;
+      err.publicMessage = document.documentElement.lang?.startsWith('en') ? 'The server is not configured to save JSON cards.' : 'Сервер не настроен для сохранения JSON-карточек.';
       throw err;
     }
     let response, data;
@@ -1253,9 +1272,32 @@ window.refreshCustomSelect = function refreshCustomSelect(selectOrId) {
       onProgress?.(document.documentElement.lang?.startsWith('en')?'Saving card...':'Сохранение карточки...');
       response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({section,title:safeTitle,category:category||draftCard?.vord_type||draftCard?.card_type||null,payload:draftCard})});
       data=await response.json().catch(()=>null);
-    }catch(e){ throw new Error(publicJsonError(e,'Network error while saving the JSON card.')); }
-    if(!response.ok||!data?.ok){ const kind=response.status===400?'Invalid JSON card data':response.status>=500?'Server error while saving JSON card':'Cards API error'; throw new Error(publicJsonError(data?.error,`${kind} (${response.status}).`)); }
+    }catch(e){ e.responseStatus = null; throw e; }
+    if(!response.ok||!data?.ok){
+      const kind=response.status===400?'Invalid JSON card data':response.status>=500?'Server error while saving JSON card':'Cards API error';
+      const err = new Error(publicJsonError(data?.error,`${kind} (${response.status}).`));
+      err.responseStatus=response.status;
+      err.apiError=data?.error;
+      err.fallbackEligible=isFallbackEligibleError(err,response.status,data?.error);
+      throw err;
+    }
     const card=extractSavedCard(data,draftCard); validateCardId(card,section); return card;
+  }
+  async function createCardOnServer(draftCard,{section,title,category,endpoint=API_ENDPOINT,fallbackEndpoint=FALLBACK_ID_ENDPOINT,onProgress,allowLocalFallback=true}={}){
+    if(!draftCard||typeof draftCard!=='object') throw new Error('Invalid source data for JSON card.');
+    if(!section) throw new Error('Invalid card section.');
+    try{ return await saveCardNormally(draftCard,{section,title,category,endpoint,onProgress}); }
+    catch(saveError){
+      const eligible = saveError?.fallbackEligible ?? isFallbackEligibleError(saveError, saveError?.responseStatus, saveError?.apiError);
+      if(!allowLocalFallback || !eligible) throw saveError;
+      console.warn('Primary card persistence failed; requesting fallback ID:', saveError);
+      onProgress?.(document.documentElement.lang?.startsWith('en')?'Generating fallback ID...':'Создание резервного ID...');
+      try{ return await createFallbackCardId(draftCard,{section,endpoint:fallbackEndpoint,sourceError:saveError}); }
+      catch(fallbackError){
+        const combinedError = new Error(document.documentElement.lang?.startsWith('en')?'The JSON card was generated, but neither server saving nor fallback ID generation succeeded.':'JSON-карточка сформирована, но не удалось ни сохранить её на сервере, ни создать резервный ID.');
+        combinedError.primaryError=saveError; combinedError.fallbackError=fallbackError; combinedError.localOnlyCard=createLocalOnlyCard(draftCard,section,saveError,fallbackError); throw combinedError;
+      }
+    }
   }
 
   function normalizeContact(type, value) {
@@ -1278,16 +1320,16 @@ window.refreshCustomSelect = function refreshCustomSelect(selectOrId) {
     function applyTexts(){ const t=texts(); const map={jsonCardTitle:t.title,useAuthorBlockLabel:t.useAuthor,authorDisplayNameLabel:t.authorName,authorContactTypeLabel:t.contactType,authorContactValueLabel:t.contact,jsonCardOutputLabel:t.output}; Object.entries(map).forEach(([id,v])=>{ if($(id)) $(id).textContent=v; }); const generateButton=$(ids.generateButtonId); if(generateButton){ const textEl=generateButton.querySelector('.btn-text') || generateButton; textEl.textContent=t.generate; } if($(ids.closeButtonId)) $(ids.closeButtonId).setAttribute('aria-label',t.close); [ids.copyButtonId,ids.downloadButtonId].forEach((id)=>{ const b=$(id); if(!b) return; const v=id===ids.copyButtonId?t.copy:t.download; b.setAttribute('aria-label',v); b.title=v; }); }
     function resetCopy(){ const b=$(ids.copyButtonId); clearTimeout(timer); if(b){ b.classList.remove('is-copied'); b.title=texts().copy; b.setAttribute('aria-label',texts().copy); } }
     function showError(message){ if(output()) output().value=message; }
-    function showPersistenceWarning(error){ const base = lang()==='en'?'The JSON card was generated locally but was not saved on the server.':'JSON-карточка сформирована локально, но не была сохранена на сервере.'; const detail = publicJsonError(error, ''); window.alert?.(detail && detail !== base ? `${base}\n${detail}` : base); }
+    function showPersistenceWarning(error, mode){ const base = mode==='fallback-id' ? (lang()==='en'?'A fallback ID was assigned, but the card was not saved on the server.':'Карточке присвоен резервный ID, но она не была сохранена на сервере.') : mode==='local-only' ? (lang()==='en'?'The card was generated locally, but no ID was created.':'Карточка сформирована локально, но ID не был создан.') : (lang()==='en'?'The JSON card was generated locally but was not saved on the server.':'JSON-карточка сформирована локально, но не была сохранена на сервере.'); const detail = publicJsonError(error, ''); window.alert?.(detail && detail !== base ? `${base}\n${detail}` : base); }
     function open(){ opener=document.activeElement; resetCopy(); const m=$(ids.modalId); if(m){ m.classList.add('show'); m.setAttribute('aria-hidden','false'); } const btn=$(ids.generateButtonId); if(btn){ btn.hidden=false; setButtonStatus(btn, texts().generate, false); } setTimeout(()=>btn?.focus(),0); }
     function close(){ const m=$(ids.modalId); resetCopy(); if(m){ m.classList.remove('show'); m.setAttribute('aria-hidden','true'); } const btn=$(ids.generateButtonId); if(btn) setButtonStatus(btn, texts().generate, false); if(opener?.focus) opener.focus(); }
     function getAuthor(){ if(!$(ids.useAuthorBlockId)?.checked) return null; const name=$(ids.authorDisplayNameId)?.value.trim()||''; const type=$(ids.authorContactTypeId)?.value||'telegram'; const contact=normalizeContact(type,$(ids.authorContactValueId)?.value||''); if(!name && !contact) throw new Error(lang()==='en'?'Add a name or contact for authorship.':'Укажите имя или контакт для авторства.'); const author={}; if(name) author.display_name=name; if(contact) author.contacts=[{type,url:contact}]; return author; }
-    async function generate(){ const btn=$(ids.generateButtonId); const t=texts(); let draftCard=null; try{ if(btn) setButtonStatus(btn, t.generating, true); const author=getAuthor(); if(output()) output().value=''; draftCard=await options.buildCard?.({author, onProgress: text => btn && setButtonStatus(btn, text, true)}); if(!draftCard||typeof draftCard!=='object') throw new Error('The page did not create a valid JSON card.'); const localCard={...draftCard,persistence:{saved:false,status:'local'}}; if(output()) output().value=options.formatCard?options.formatCard(localCard):JSON.stringify(localCard,null,2); if(options.createCardOnServer){ try{ const saved=await options.createCardOnServer(draftCard,{author,onProgress:text=>btn&&setButtonStatus(btn,text,true)}); if(output()) output().value=options.formatCard?options.formatCard(saved):JSON.stringify(saved,null,2); }catch(saveError){ console.error('JSON card persistence failed:', saveError); const warning=publicJsonError(saveError, lang()==='en'?'The JSON card was generated locally but was not saved on the server.':'JSON-карточка сформирована локально, но не была сохранена на сервере.'); const fallback={...draftCard,persistence:{saved:false,status:'local',warning}}; if(output()) output().value=options.formatCard?options.formatCard(fallback):JSON.stringify(fallback,null,2); showPersistenceWarning(saveError); } } if(btn) setButtonStatus(btn, lang()==='en'?'Done':'Готово', true); }catch(e){ console.error('JSON card generation failed:', e); const msg=publicJsonError(e, lang()==='en'?'Could not generate JSON card.':'Не удалось сформировать JSON-карточку.'); if(btn) setButtonStatus(btn, lang()==='en'?'Error':'Ошибка', false); showError(msg); return; }finally{ if(btn) setTimeout(()=>setButtonStatus(btn, texts().generate, false), 800); } }
+    async function generate(){ const btn=$(ids.generateButtonId); const t=texts(); let draftCard=null; try{ if(btn) setButtonStatus(btn, t.generating, true); const author=getAuthor(); if(output()) output().value=''; draftCard=await options.buildCard?.({author, onProgress: text => btn && setButtonStatus(btn, text, true)}); if(!draftCard||typeof draftCard!=='object') throw new Error('The page did not create a valid JSON card.'); const localCard={...draftCard,persistence:{saved:false,status:'local'}}; if(output()) output().value=options.formatCard?options.formatCard(localCard):JSON.stringify(localCard,null,2); if(options.createCardOnServer){ try{ const saved=await options.createCardOnServer(draftCard,{author,onProgress:text=>btn&&setButtonStatus(btn,text,true)}); if(output()) output().value=options.formatCard?options.formatCard(saved):JSON.stringify(saved,null,2); if(saved?.persistence?.mode==='fallback-id') showPersistenceWarning(saved?.persistence?.warning||null,'fallback-id'); }catch(saveError){ console.error('JSON card persistence failed:', saveError); if(saveError?.localOnlyCard){ const fallback=saveError.localOnlyCard; if(output()) output().value=options.formatCard?options.formatCard(fallback):JSON.stringify(fallback,null,2); showPersistenceWarning(saveError,'local-only'); } else { const msg=publicJsonError(saveError, lang()==='en'?'Could not save JSON card.':'Не удалось сохранить JSON-карточку.'); showError(msg); throw saveError; } } } if(btn) setButtonStatus(btn, lang()==='en'?'Done':'Готово', true); }catch(e){ console.error('JSON card generation failed:', e); const msg=publicJsonError(e, lang()==='en'?'Could not generate JSON card.':'Не удалось сформировать JSON-карточку.'); if(btn) setButtonStatus(btn, lang()==='en'?'Error':'Ошибка', false); showError(msg); return; }finally{ if(btn) setTimeout(()=>setButtonStatus(btn, texts().generate, false), 800); } }
     async function copy(){ const text=output()?.value||''; if(!text.trim()) return alert(texts().empty); await (window.copyText ? window.copyText(text) : navigator.clipboard.writeText(text)); const b=$(ids.copyButtonId); if(b){ b.classList.add('is-copied'); b.title=texts().copiedTitle; b.setAttribute('aria-label',texts().copied); timer=setTimeout(resetCopy,1500); } }
     function download(){ const text=output()?.value||''; if(!text.trim()) return alert(texts().empty); let filename=options.getFilename?.(text)||'json-card.json'; try{ const id=JSON.parse(text)?.id; if(id) filename=`${id}.json`; }catch{} const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([text],{type:'application/json;charset=utf-8'})); a.download=filename; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(a.href); }
     const modal=$(ids.modalId); if(modal?.dataset.interalJsonModalInit==='1') return modal._interalJsonModalApi; if(modal) modal.dataset.interalJsonModalInit='1'; applyTexts(); $(ids.openButtonId)?.addEventListener('click', open); $(ids.closeButtonId)?.addEventListener('click', close); $(ids.modalId)?.addEventListener('click', e=>{ if(e.target===$(ids.modalId)) close(); }); $(ids.useAuthorBlockId)?.addEventListener('change', e=>{ if($(ids.authorFieldsId)) $(ids.authorFieldsId).style.display=e.target.checked?'grid':'none'; }); $(ids.generateButtonId)?.addEventListener('click', generate); $(ids.copyButtonId)?.addEventListener('click', copy); $(ids.downloadButtonId)?.addEventListener('click', download); document.addEventListener('keydown', e=>{ if(e.key==='Escape' && $(ids.modalId)?.classList.contains('show')) close(); }); document.addEventListener('interal:languagechange', applyTexts); const api = { open, close, generate, getAuthor, applyTexts }; if(modal) modal._interalJsonModalApi=api; return api;
   }
-  window.InteralJsonCards = { extractSavedCard, createCardOnServer, validateCardId, checkHealth, publicJsonError };
+  window.InteralJsonCards = { extractSavedCard, createCardOnServer, createFallbackCardId, validateCardId, checkHealth, publicJsonError, isFallbackEligibleError };
   window.InteralJsonDiagnostics = { getStatus(){ return { modalLoaded:Boolean(window.InteralJsonCardModal), cardsHelperLoaded:Boolean(window.InteralJsonCards), page:window.location.pathname, sharedUiVersion:document.querySelector('script[src*="/shared/ui.js"]')?.src ?? document.querySelector('script[src*="shared/ui.js"]')?.src ?? null }; } };
   window.InteralJsonCardModal = { init, normalizeContact };
   window.InteralButtonStatus = { setButtonStatus };
