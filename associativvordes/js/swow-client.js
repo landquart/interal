@@ -2,7 +2,7 @@ import { normalizeWord } from './frequency-loader.js';
 
 export const API_CONFIG = {
   swowBasePath: './swow_association_strength',
-  qwenAssociationUrl: '/api/qwen-association',
+  qwenAssociationUrl: '/api/qwen-analyze',
   qwenPrimaryModel: 'qwen3.6-35b-a3b/latest',
   qwenReviewModel: 'qwen3-235b-a22b-fp8/latest'
 };

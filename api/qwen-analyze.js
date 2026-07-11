@@ -301,12 +301,31 @@ function buildAffixesAlterPrompt(input) { return `Ты создаёшь JSON-к�
 
 Входная карточка:
 ${JSON.stringify(input, null, 2)}`; }
+
+function numOrNull(value){ const n=Number(value); return Number.isFinite(n)?Math.max(0,Math.min(100,Math.round(n))):null; }
+function normalizeAssociationResult(r,input,model){ return { word: normalizeString(r?.word,input.word), target_meaning: normalizeString(r?.target_meaning,input.targetMeaning), directness: numOrNull(r?.directness ?? r?.Di), field_relatedness: numOrNull(r?.field_relatedness ?? r?.Pr), domain_shift: numOrNull(r?.domain_shift ?? r?.Sh), responseLanguage: normalizeInterfaceLanguage(r?.responseLanguage||input.interfaceLanguage), short_explanation: normalizeString(r?.short_explanation||r?.explanation), model }; }
+function validateAssociationPayload(payload, interfaceLanguage){ const input={...payload, interfaceLanguage}; input.language=normalizeString(input.language); input.targetMeaning=normalizeString(input.targetMeaning); input.word=normalizeString(input.word); if(!input.language) throw Object.assign(Error('language is required'),{status:400}); if(!input.targetMeaning) throw Object.assign(Error('targetMeaning is required'),{status:400}); if(!input.word) throw Object.assign(Error('word is required'),{status:400}); return input; }
+function buildAssociationPrompt(input){ return `Evaluate semantic association between a target meaning and an associative word for Interal. Do not generate candidate words. Return only valid JSON. Use 0-100 integer scores.
+Di/directness = how directly the word points to target meaning.
+Pr/field_relatedness = how strongly the word belongs to same semantic field.
+Sh/domain_shift = how strongly modern meaning belongs to a different competing domain.
+Review mode: ${input.review===true}. If review mode, independently review primary scores.
+Input: ${JSON.stringify(input,null,2)}
+Return {"word":"","target_meaning":"","directness":0,"field_relatedness":0,"domain_shift":0,"responseLanguage":"${input.interfaceLanguage}","short_explanation":""}`; }
+async function runAssociationScore(payload, interfaceLanguage){ const input=validateAssociationPayload(payload, interfaceLanguage); const result=await callYandex([{role:'system',content:'You are a lexical association evaluator. Return only valid JSON.'},{role:'user',content:buildAssociationPrompt(input)}], true); return { ok:true, analysis: normalizeAssociationResult(extract(result.content), input, result.model), model: result.model }; }
+
+function validateValenPayload(payload){ return payload && typeof payload==='object' ? payload : {}; }
+function buildValenPrompt(input, interfaceLanguage){ return `Determine Interal semantic-spectrum PRECE scores. Return only JSON. Interface language: ${interfaceLanguage}. P 0-4, R 0-4, C 0-5, E 0-4 or null with externalKnowledgeMode non_explanatory. 70/30 semantic distance is auxiliary only; classify PRECE independently. Input: ${JSON.stringify(input,null,2)}. Return {"chain":[],"chain_type":"semantic_extension","P":0,"R":0,"C":0,"E":0,"externalKnowledgeMode":"numeric","zone_hint":"","confidence":0.8,"explanation":"","analogies_used":[]}.`; }
+async function runDetermineValenType(payload, interfaceLanguage){ const input=validateValenPayload(payload); const result=await callYandex([{role:'system',content:'You are a linguistic classifier. Return only valid JSON.'},{role:'user',content:buildValenPrompt(input, interfaceLanguage)}], true); const ai=extract(result.content); return { ok:true, ai, model: result.model }; }
+
 const TASKS = {
   affixes_check: { modelEnv: 'Qwen3_235B_A22B_Instruct_2507_FP8_Yandex', folderEnv: 'yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8', buildPrompt: buildAffixesCheckPrompt, normalize: normalizeAffixesCheckCard },
   affixes_alter_card: { modelEnv: 'Qwen3_235B_A22B_Instruct_2507_FP8_Yandex', folderEnv: 'yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8', buildPrompt: buildAffixesAlterPrompt, normalize: normalizeAffixesAlterCard },
   altervordes: { modelEnv: 'Qwen3_235B_A22B_Instruct_2507_FP8_Yandex', folderEnv: 'yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8' },
   community_word_check: { modelEnv: 'Qwen3_235B_A22B_Instruct_2507_FP8_Yandex', folderEnv: 'yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8' },
-  grammar_short_word_check: { modelEnv: 'Qwen3_235B_A22B_Instruct_2507_FP8_Yandex', folderEnv: 'yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8' }
+  grammar_short_word_check: { modelEnv: 'Qwen3_235B_A22B_Instruct_2507_FP8_Yandex', folderEnv: 'yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8' },
+  associative_word_score: { modelEnv: 'Qwen3_235B_A22B_Instruct_2507_FP8_Yandex', folderEnv: 'yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8' },
+  determine_valen_type: { modelEnv: 'Qwen3_235B_A22B_Instruct_2507_FP8_Yandex', folderEnv: 'yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8' }
 };
 
 async function runAltervordes(payload, interfaceLanguage) {
@@ -383,6 +402,8 @@ export default async function handler(req, res) {
     if (task === 'affixes_check') return send(res, 200, await runAffixesCheck(payload, interfaceLanguage));
     if (task === 'affixes_alter_card') return send(res, 200, await runAffixesAlterCard(payload));
     if (task === 'altervordes') return send(res, 200, await runAltervordes(payload, interfaceLanguage));
+    if (task === 'associative_word_score') return send(res, 200, await runAssociationScore(payload, interfaceLanguage));
+    if (task === 'determine_valen_type') return send(res, 200, await runDetermineValenType(payload, interfaceLanguage));
     if (task === 'community_word_check' || task === 'grammar_short_word_check') return send(res, 200, await runSimpleConsultativeTask(payload, interfaceLanguage, task));
     return send(res, 400, { ok: false, error: 'Unsupported Qwen task' });
   } catch (e) {

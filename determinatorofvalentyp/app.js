@@ -478,7 +478,7 @@ const i18n = {
     addItem: 'Добавить элемент', primaryRoot: 'Основной корень', component: 'Компонент (аффикс/окончание)', word: 'Слово', meaning: 'Значение', assimilationType: 'Тип ассимиляции', search: 'Поиск', category: 'Категория', element: 'Элемент', prefixAssimilation: 'Ассимиляция приставки', prefixVariant: 'Вариант приставки', add: 'Добавить', analyse: 'Анализировать', analysing: 'Анализируем…', clear: 'Сбросить', result: 'Результат', fillAndAnalyse: 'Заполните поля и нажмите «Анализировать».',
     spectrumZone: 'Зона спектра', confidence: 'Уверенность', chainType: 'Тип цепочки', aiConfidence: 'Уверенность модели', explanatoryChain: 'Объяснительная цепочка', explanation: 'Обоснование', analogiesUsed: 'Использованные аналогии', borderlineZones: 'Граничные зоны', warnings: 'Предупреждения', formRecommendation: 'Рекомендация формы', apiErrorManualMode: 'Ошибка API / ручной режим', editScoresHint: 'Измените оценки, чтобы пересчитать зону локально без API.',
     high: 'высокая', medium: 'средняя', low: 'низкая', assimilation: 'Ассимиляция', copied: 'Скопировано', copyFailed: 'Ошибка копирования', copyPrompt: 'Копировать промпт', buildPrompt: 'Собрать промпт', resetConfirm: 'Сбросить введённые данные? Это действие нельзя отменить.', deleteComponent: 'Удалить компонент', addComponentAria: 'Добавить компонент', componentSearchResults: 'Результаты поиска компонентов', componentSearchSelect: 'Выбрать',
-    apiErrorWarning: 'API недоступен или вернул ошибку. Можно вручную выставить P/R/C/E ниже — зона пересчитается локально без нового запроса.', apiUnavailableManual: 'API недоступен. Выставьте P/R/C/E вручную — зона пересчитается локально.', insufficientData: 'Заполните логическое и международное значение. Ручной блок P/R/C/E доступен ниже.', noComponentsFound: 'Компоненты не найдены. Попробуйте без дефиса, без / или по значению.', localModelUnavailable: 'Локальная модель недоступна. Использован только расчёт по правилам.', unknownError: 'Неизвестная ошибка', manualParseError: 'Не удалось извлечь distance/similarity из ответа нейросети.',
+    apiErrorWarning: 'API недоступен или вернул ошибку. Можно вручную выставить P/R/C/E ниже — зона пересчитается локально без нового запроса.', apiUnavailableManual: 'Автоматический анализ недоступен. Выставьте P/R/C/E вручную.', insufficientData: 'Заполните логическое и международное значение. Ручной блок P/R/C/E доступен ниже.', noComponentsFound: 'Компоненты не найдены. Попробуйте без дефиса, без / или по значению.', localModelUnavailable: 'Локальная модель недоступна. Использован только расчёт по правилам.', unknownError: 'Неизвестная ошибка', manualParseError: 'Не удалось извлечь distance/similarity из ответа нейросети.',
     noChainWarning: 'Модель не вернула объяснительную цепочку. Можно выставить P/R/C/E вручную.', zoneMismatchWarning: 'Подсказка модели по зоне отличается от расчёта P/R/C/E; итоговая зона пересчитана кодом.', lexicalizationWarning: 'Тип цепочки похож на лексикализацию, но оценки P/R/C/E попали в другую зону.',
     regularFormFallback: 'регулярная форма', naturalisticFormFallback: 'натуралистическая форма', recRegularEnough: 'Обычно достаточно логической/регулярной формы: {regular}. Отдельная интернациональная маркировка не обязательна.', recOptional: 'Случай пограничный. Можно оставить логическую/регулярную форму: {regular}, но если интернациональное значение закреплено отдельно, допустима отдельная маркировка: {natural}.', recSeparate: 'Рекомендуется отдельная интернациональная маркировка: для существительного — -u ({natural}), для интернациональных прилагательных — -al/-ari/-ic, для логических прилагательных — -i; глаголы с интернациональным значением сохраняют консервативный корень, а логические — изменённую корневую основу, если она есть.',
     manualPromptLabel: 'Промпт для внешней нейросети (вспомогательная оценка семантической дистанции)', manualPromptPlaceholder: 'Нажмите «Собрать промпт»', manualResponseLabel: 'Ответ нейросети (вставьте сюда)', manualResponsePlaceholder: 'Например: {"distance":0.38,"similarity":0.62,"reason":"..."}', manualHint: 'Вспомогательная машинная оценка семантической дистанции. Она не является показателем P, R, C или E и не заменяет классификацию по семантическому спектру. Если ответ предоставлен, дистанция считается как правило-ориентированная оценка + вспомогательная оценка семантической дистанции (70/30).', preceLegend: 'P — Predictabilitá, предсказуемость; R — Relationalitá, смысловая связанность; C — Complexitá of cheyn, сложность объяснительной цепочки; E — External cognoscentian dependentia, зависимость от внешнего знания. Диапазоны: P 0–4, R 0–4, C 0–5, E 0–4 или «не помогает».', eDoesNotHelp: 'Не помогает',
@@ -491,7 +491,7 @@ const i18n = {
     addItem: 'Add item', primaryRoot: 'Primary root', component: 'Component (affix/ending)', word: 'Word', meaning: 'Meaning', assimilationType: 'Assimilation type', search: 'Search', category: 'Category', element: 'Element', prefixAssimilation: 'Prefix assimilation', prefixVariant: 'Prefix variant', add: 'Add', analyse: 'Analyse', analysing: 'Analysing…', clear: 'Reset', result: 'Result', fillAndAnalyse: 'Fill in fields and click “Analyse”.',
     spectrumZone: 'Spectrum zone', confidence: 'Confidence', chainType: 'Chain type', aiConfidence: 'AI confidence', explanatoryChain: 'Explanatory chain', explanation: 'Explanation', analogiesUsed: 'Analogies used', borderlineZones: 'Borderline zones', warnings: 'Warnings', formRecommendation: 'Form recommendation', apiErrorManualMode: 'API error / manual mode', editScoresHint: 'Edit scores to recalculate the zone locally.',
     high: 'high', medium: 'medium', low: 'low', assimilation: 'Assimilation', copied: 'Copied', copyFailed: 'Copy failed', copyPrompt: 'Copy prompt', buildPrompt: 'Build prompt', resetConfirm: 'Reset entered data? This action cannot be undone.', deleteComponent: 'Delete component', addComponentAria: 'Add component', componentSearchResults: 'Component search results', componentSearchSelect: 'Select',
-    apiErrorWarning: 'API unavailable or returned an error. You can set P/R/C/E manually below — the zone will be recalculated locally without a new request.', apiUnavailableManual: 'API unavailable. Set P/R/C/E manually — the zone will be recalculated locally.', insufficientData: 'Fill in logical and international meaning. The manual P/R/C/E block is available below.', noComponentsFound: 'No components found. Try without hyphen, without /, or by meaning.', localModelUnavailable: 'Local model unavailable. Used only rule-based calculation.', unknownError: 'Unknown error', manualParseError: 'Could not extract distance/similarity from neural model response.',
+    apiErrorWarning: 'API unavailable or returned an error. You can set P/R/C/E manually below — the zone will be recalculated locally without a new request.', apiUnavailableManual: 'Automatic analysis is unavailable. Set P/R/C/E manually.', insufficientData: 'Fill in logical and international meaning. The manual P/R/C/E block is available below.', noComponentsFound: 'No components found. Try without hyphen, without /, or by meaning.', localModelUnavailable: 'Local model unavailable. Used only rule-based calculation.', unknownError: 'Unknown error', manualParseError: 'Could not extract distance/similarity from neural model response.',
     noChainWarning: 'The model did not return an explanatory chain. You can set P/R/C/E manually.', zoneMismatchWarning: 'The model zone hint differs from the P/R/C/E calculation; the final zone was recalculated by code.', lexicalizationWarning: 'The chain type looks like lexicalization, but P/R/C/E scores landed in another zone.',
     regularFormFallback: 'regular form', naturalisticFormFallback: 'naturalistic form', recRegularEnough: 'The logical/regular form is usually enough: {regular}. Separate international marking is not required.', recOptional: 'This is a borderline case. You may keep the logical/regular form: {regular}, but if the international meaning is fixed separately, separate marking is acceptable: {natural}.', recSeparate: 'Separate international marking is recommended: for nouns — -u ({natural}); for international adjectives — -al/-ari/-ic; for logical adjectives — -i. Verbs with international meaning keep the conservative root, while logical verbs use the changed root stem when available.',
     manualPromptLabel: 'Prompt for external neural model (auxiliary semantic-distance estimate)', manualPromptPlaceholder: 'Click “Build prompt”', manualResponseLabel: 'Neural model response (paste here)', manualResponsePlaceholder: 'For example: {"distance":0.38,"similarity":0.62,"reason":"..."}', manualHint: 'Auxiliary machine estimate of semantic distance. It is not a P, R, C, or E score and does not replace classification on the semantic spectrum. If response is provided, distance is computed as rule-oriented estimate + auxiliary semantic-distance estimate (70/30).', preceLegend: 'P — Predictability; R — Semantic relatedness; C — Explanatory-chain complexity; E — Dependence on external knowledge. Ranges: P 0–4, R 0–4, C 0–5, E 0–4 or “does not help”.', eDoesNotHelp: 'Does not help',
@@ -1765,9 +1765,10 @@ async function analyzeByRules(input, runId) {
       ok: false,
       error: 'insufficient_data',
       details: txt('insufficientData'),
-      computed: classifyByPRECE({ P: 2, R: 3, C: 2, E: 1 }),
-      ai: normalizeAiResult({ chain: [], P: 2, R: 3, C: 2, E: 1, confidence: 0.3 }),
-      retrieval: { examples_used: [] }
+      computed: null,
+      ai: null,
+      retrieval: { examples_used: [] },
+      manualOnly: true
     };
   }
 
@@ -1800,23 +1801,10 @@ async function analyzeByRules(input, runId) {
   }
 
   if (!response.ok || data.ok === false) {
-    const fallbackScores = state.lastAnalysis?.computed?.scores || { P: 2, R: 3, C: 2, E: 1 };
-    const computed = classifyByPRECE(fallbackScores);
-    computed.formRecommendation = buildFormRecommendation(computed, input);
-    computed.warnings = [
-      txt('apiErrorWarning'),
-      String(data.details || data.error || response.statusText || txt('unknownError'))
-    ];
-    return {
-      ok: false,
-      error: data.error || 'api_error',
-      details: data.details || response.statusText,
-      ai: normalizeAiResult({ ...fallbackScores, chain: [], confidence: 0.2 }),
-      computed,
-      retrieval: { examples_used: [] }
-    };
+    return { ok: false, error: data.error || 'api_error', details: `${txt('apiUnavailableManual')} ${String(data.details || data.error || response.statusText || txt('unknownError'))}`, ai: null, computed: null, retrieval: { examples_used: [] }, manualOnly: true };
   }
 
+  if (!data.computed && data.ai) data.computed = classifyByPRECE(normalizeAiResult(data.ai));
   if (!data.computed.formRecommendation) data.computed.formRecommendation = buildFormRecommendation(data.computed, input);
   data.computed.warnings = Array.isArray(data.computed.warnings) ? data.computed.warnings : shouldWarn(data);
   return data;
@@ -1830,28 +1818,28 @@ function badge(text, type = '') {
 function renderResult(result, input) {
   els.resultPanel.hidden = false;
   const isEn = currentLang() === 'en';
-  const computed = result.computed || classifyByPRECE(result.ai || { P: 2, R: 3, C: 2, E: 1 });
-  const ai = normalizeAiResult(result.ai || computed.scores || {});
+  const computed = result.computed || null;
+  const ai = result.ai ? normalizeAiResult(result.ai) : null;
   const confidenceLabels = { high: txt('high'), medium: txt('medium'), low: txt('low') };
-  const zoneName = isEn ? computed.zone_en : computed.zone_ru;
-  const formRecommendation = computed.formRecommendation || buildFormRecommendation(computed, input);
-  const warnings = Array.isArray(computed.warnings) ? computed.warnings : [];
+  const zoneName = computed ? (isEn ? computed.zone_en : computed.zone_ru) : txt('apiUnavailableManual');
+  const formRecommendation = computed ? (computed.formRecommendation || buildFormRecommendation(computed, input)) : { text: '—' };
+  const warnings = computed && Array.isArray(computed.warnings) ? computed.warnings : [result.details || txt('apiUnavailableManual')];
   const examples = result.retrieval?.examples_used || [];
-  const chain = ai.chain.length ? ai.chain : (input.explanationChain ? input.explanationChain.split(/\s*→\s*/).filter(Boolean) : []);
+  const chain = ai && ai.chain.length ? ai.chain : (input.explanationChain ? input.explanationChain.split(/\s*→\s*/).filter(Boolean) : []);
 
   state.lastAnalysis = result;
   els.result.classList.remove('empty');
   els.result.innerHTML = `
     <div class="badges">
-      ${badge(zoneName, computed.zone_id === 'semantic_conventionalization' || computed.zone_id === 'lexicalization' ? 'warn' : 'ok')}
-      ${badge(`${txt('confidence')}: ${confidenceLabels[computed.confidence] || computed.confidence}`, 'warn')}
+      ${badge(zoneName, computed?.zone_id === 'semantic_conventionalization' || computed?.zone_id === 'lexicalization' ? 'warn' : 'ok')}
+      ${computed ? badge(`${txt('confidence')}: ${confidenceLabels[computed.confidence] || computed.confidence}`, 'warn') : ''}
       ${result.ok === false ? badge(txt('apiErrorManualMode'), 'no') : ''}
     </div>
 
     <div class="result-grid">
       <div class="result-card">
         <h3>${txt('spectrumZone')}</h3>
-        <pre>${escapeHtml(zoneName)}\n${escapeHtml(computed.zone_id)}</pre>
+        <pre>${escapeHtml(zoneName)}\n${escapeHtml(computed?.zone_id || 'manual_required')}</pre>
       </div>
       <div class="result-card">
         <h3>P/R/C/E</h3><p class="result-hint">${txt('preceLegend')}</p>
@@ -1859,14 +1847,14 @@ function renderResult(result, input) {
           ${['P', 'R', 'C'].map((key) => `
             <label class="score-field">
               <span>${key}</span>
-              <input class="interal-input" type="number" min="0" max="${key === 'C' ? 5 : 4}" step="1" value="${escapeHtml(computed.scores[key] ?? '')}" data-score-key="${key}" />
+              <input class="interal-input" type="number" min="0" max="${key === 'C' ? 5 : 4}" step="1" value="${escapeHtml(computed?.scores?.[key] ?? '')}" data-score-key="${key}" />
             </label>
           `).join('')}
             <label class="score-field">
               <span>E</span>
               <select class="interal-select" data-score-key="E">
-                ${[0,1,2,3,4].map((value) => `<option value="${value}" ${computed.scores.E === value ? 'selected' : ''}>${value}</option>`).join('')}
-                <option value="non_explanatory" ${computed.scores.externalKnowledgeMode === 'non_explanatory' ? 'selected' : ''}>${txt('eDoesNotHelp')}</option>
+                ${[0,1,2,3,4].map((value) => `<option value="${value}" ${computed?.scores?.E === value ? 'selected' : ''}>${value}</option>`).join('')}
+                <option value="non_explanatory" ${computed?.scores?.externalKnowledgeMode === 'non_explanatory' ? 'selected' : ''}>${txt('eDoesNotHelp')}</option>
               </select>
             </label>
         </div>
@@ -1874,11 +1862,11 @@ function renderResult(result, input) {
       </div>
       <div class="result-card">
         <h3>${txt('chainType')}</h3>
-        <pre>${escapeHtml(ai.chain_type || '—')}</pre>
+        <pre>${escapeHtml(ai?.chain_type || '—')}</pre>
       </div>
       <div class="result-card">
         <h3>${txt('aiConfidence')}</h3>
-        <pre>${escapeHtml(Math.round((ai.confidence || 0) * 100))}%</pre>
+        <pre>${escapeHtml(ai ? Math.round((ai.confidence || 0) * 100) : 0)}%</pre>
       </div>
     </div>
 
@@ -1889,17 +1877,17 @@ function renderResult(result, input) {
 
     <div class="result-card">
       <h3>${txt('explanation')}</h3>
-      <pre>${escapeHtml(ai.explanation || result.details || '—')}</pre>
+      <pre>${escapeHtml(ai?.explanation || result.details || '—')}</pre>
     </div>
 
     <div class="result-grid">
       <div class="result-card">
         <h3>${txt('analogiesUsed')}</h3>
-        <pre>${escapeHtml((ai.analogies_used && ai.analogies_used.length ? ai.analogies_used : examples.map((ex) => ex.word)).join('\n') || '—')}</pre>
+        <pre>${escapeHtml((ai?.analogies_used && ai.analogies_used.length ? ai.analogies_used : examples.map((ex) => ex.word)).join('\n') || '—')}</pre>
       </div>
       <div class="result-card">
         <h3>${txt('borderlineZones')}</h3>
-        <pre>${escapeHtml((computed.borderline_zones || []).map((zone) => `${isEn ? zone.zone_en : zone.zone_ru} (${zone.zone_id})`).join('\n') || '—')}</pre>
+        <pre>${escapeHtml((computed?.borderline_zones || []).map((zone) => `${isEn ? zone.zone_en : zone.zone_ru} (${zone.zone_id})`).join('\n') || '—')}</pre>
       </div>
       <div class="result-card">
         <h3>${txt('warnings')}</h3>
@@ -1914,7 +1902,7 @@ function renderResult(result, input) {
 
   els.result.querySelectorAll('[data-score-key]').forEach((inputEl) => {
     inputEl.addEventListener('change', () => {
-      const scores = { ...computed.scores };
+      const scores = { ...(computed?.scores || {}) };
       els.result.querySelectorAll('[data-score-key]').forEach((field) => {
         const key = field.dataset.scoreKey;
         if (key === 'E' && field.value === 'non_explanatory') { scores.E = null; scores.externalKnowledgeMode = 'non_explanatory'; } else { scores[key] = Number(field.value); if (key === 'E') scores.externalKnowledgeMode = 'numeric'; }
@@ -2096,11 +2084,8 @@ function attachEvents() {
       if (!isCurrentRun(runId)) return;
       } catch (error) {
       if (!isCurrentRun(runId)) return;
-      const computed = classifyByPRECE({ P: 2, R: 3, C: 2, E: 1 });
-      computed.formRecommendation = buildFormRecommendation(computed, input);
-      computed.warnings = [txt('apiUnavailableManual'), String(error.message || error)];
       if (!isCurrentRun(runId)) return;
-      renderResult({ ok: false, error: 'frontend_error', details: String(error.message || error), ai: normalizeAiResult({ P: 2, R: 3, C: 2, E: 1, confidence: 0.2 }), computed, retrieval: { examples_used: [] } }, input);
+      renderResult({ ok: false, error: 'frontend_error', details: `${txt('apiUnavailableManual')} ${String(error.message || error)}`, ai: null, computed: null, retrieval: { examples_used: [] }, manualOnly: true }, input);
     } finally {
       if (!isCurrentRun(runId)) return;
       els.analyzeBtn.disabled = false;

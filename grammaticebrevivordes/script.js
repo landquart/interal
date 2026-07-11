@@ -85,8 +85,8 @@ function renderTranslations(defaults = {}) {
 }
 
 const I18N = {
-  ru: { title:'Grammatic e brevi vordes', lead:'', params:'Параметры слова', word:'Слово в Интерaле', pos:'Часть речи', meaning:'Значение', translations:'Переводы', criteria:'Критерии', arguments:'Обоснование', result:'Итог', card:'JSON-карточка', preposition:'предлог', conjunction:'союз', particle:'частица', adverb:'наречие', check:'Проверить', json:'Сформировать JSON-карточку', copy:'Скопировать', download:'Скачать', passed:'Пройдено', decision:'Решение', accept:'ПРИНЯТО', reject:'НЕ ПРИНЯТО', table:{language:'Язык', translation:'Перевод'}, comment:'Комментарий', criterionDecision:'Оценка', criterionPass:'Соответствует', criterionFail:'Не соответствует', requiredForAcceptance:'Минимум для принятия', recogNote:'Распознаваемость/когнативность может отсутствовать, если выполнены остальные три критерия.', reset:'Сбросить' },
-  en: { title:'Grammatic e brevi vordes', lead:'', params:'Word parameters', word:'Interal word', pos:'Part of speech', meaning:'Meaning', translations:'Translations', criteria:'Criteria', arguments:'Justification', result:'Decision', card:'JSON card', preposition:'preposition', conjunction:'conjunction', particle:'particle', adverb:'adverb', check:'Check', json:'Generate JSON card', copy:'Copy', download:'Download', passed:'Passed', decision:'Decision', accept:'ACCEPTED', reject:'NOT ACCEPTED', table:{language:'Language', translation:'Translation'}, comment:'Comment', criterionDecision:'Evaluation', criterionPass:'Passes', criterionFail:'Does not pass', requiredForAcceptance:'Required for acceptance', recogNote:'Recognizability/cognateness may be absent if the other three criteria are satisfied.', reset:'Reset' }
+  ru: { title:'Grammatic e brevi vordes', lead:'', params:'Параметры слова', word:'Слово в Интерaле', pos:'Часть речи', meaning:'Значение', translations:'Переводы', criteria:'Критерии', arguments:'Обоснование', result:'Итог', card:'JSON-карточка', preposition:'предлог', conjunction:'союз', particle:'частица', adverb:'наречие', check:'Проверить', json:'Сформировать JSON-карточку', copy:'Скопировать', download:'Скачать', passed:'Пройдено', decision:'Решение', accept:'ПРИНЯТО', reject:'НЕ ПРИНЯТО', table:{language:'Язык', translation:'Перевод'}, comment:'Комментарий', criterionDecision:'Оценка', criterionPass:'Соответствует', criterionFail:'Не соответствует', requiredForAcceptance:'Минимум для принятия', recogNote:'Распознаваемость/когнативность может отсутствовать, если выполнены остальные три критерия.', reset:'Сбросить', validationRequired:'Заполните слово, значение и часть речи.' },
+  en: { title:'Grammatic e brevi vordes', lead:'', params:'Word parameters', word:'Interal word', pos:'Part of speech', meaning:'Meaning', translations:'Translations', criteria:'Criteria', arguments:'Justification', result:'Decision', card:'JSON card', preposition:'preposition', conjunction:'conjunction', particle:'particle', adverb:'adverb', check:'Check', json:'Generate JSON card', copy:'Copy', download:'Download', passed:'Passed', decision:'Decision', accept:'ACCEPTED', reject:'NOT ACCEPTED', table:{language:'Language', translation:'Translation'}, comment:'Comment', criterionDecision:'Evaluation', criterionPass:'Passes', criterionFail:'Does not pass', requiredForAcceptance:'Required for acceptance', recogNote:'Recognizability/cognateness may be absent if the other three criteria are satisfied.', reset:'Reset', validationRequired:'Fill word, meaning and part of speech.' }
 };
 const CRITERIA = [{ id: 'brevity', ru: 'Краткость', en: 'Brevity' }, { id: 'pronounceability', ru: 'Легкопроизносимость', en: 'Pronounceability' }, { id: 'recognizability', ru: 'Распознаваемость / когнативность', en: 'Recognizability / cognateness' }, { id: 'no_conflict', ru: 'Отсутствие конфликта', en: 'Absence of conflict' }];
 const CRITERIA_NAMES = CRITERIA.map(item => item.ru);
@@ -100,7 +100,7 @@ function getDefaultState() {
     arguments: '',
     criteria: [false, false, false, false],
     comments: ['', '', '', ''],
-    checked: false
+    checked: false, aiChecked: false, manuallyEdited: false, finalized: false
   };
 }
 function setButtonStatus(selector, text, disabled = true, options = {}) { window.InteralButtonStatus?.setButtonStatus(selector, text, disabled, options); }
@@ -128,6 +128,7 @@ async function resetState() {
 
 function countPassedCriteria() { return state.criteria.filter(Boolean).length; }
 function isGrammarShortWordAccepted() { return countPassedCriteria() >= REQUIRED_CRITERIA_COUNT; }
+function validateForm(){ return Boolean(state.word && state.meaning && state.part_of_speech); }
 function result(){ const n=countPassedCriteria(); return {passed:n,total:CRITERIA_NAMES.length,required:REQUIRED_CRITERIA_COUNT,accepted:isGrammarShortWordAccepted()}; }
 function makeCardDraft(author = null){ const r=result(); const card = { version:'1.0', card_type:'vord_card', vord_type:'gv', procedure:'grammar_short_word', status:'draft', interal:{word:state.word, part_of_speech:state.part_of_speech}, translations:LANGUAGES.map(lang=>({language:lang.code, word:state.translations[lang.code]||''})), function:{meaning:state.meaning}, criteria:CRITERIA.map((criterion,i)=>({id:criterion.id, passed:Boolean(state.criteria[i]), explanation:state.comments[i]||''})), decision:{accepted:r.accepted, required_criteria:r.required, passed_criteria:r.passed, total_criteria:r.total} }; if (author) card.author = author; return card; }
 function makeCard(author){ return makeCardDraft(author); }
@@ -140,7 +141,7 @@ async function autoCheckWithQwen() {
     const data = await response.json().catch(()=>null);
     const criteria = data?.analysis?.criteria;
     if (response.ok && criteria && typeof criteria === 'object') {
-      CRITERIA.forEach((criterion,i)=>{ const item=criteria[criterion.id]; if (item && typeof item.passed === 'boolean') { state.criteria[i]=item.passed; state.comments[i]=String(item.explanation||state.comments[i]||''); } });
+      CRITERIA.forEach((criterion,i)=>{ const item=criteria[criterion.id]; if (item && typeof item.passed === 'boolean') { state.criteria[i]=item.passed; state.comments[i]=String(item.explanation||state.comments[i]||''); } }); state.aiChecked=true; state.finalized=true;
     }
   } catch (error) { console.warn('grammar_short_word_check unavailable; manual mode remains active', error); }
 }
@@ -164,9 +165,9 @@ function bindJsonModal() {
   });
   document.addEventListener('interal:languagechange', () => { document.documentElement.lang = currentLang(); readState(); render(); });
   byId('resetBtn')?.addEventListener('click', resetState);
-  byId('checkBtn')?.addEventListener('click', async () => { readState(); await autoCheckWithQwen(); state.checked = true; render(); updateResetButtonVisibility(); });
-  byId('app')?.addEventListener('input', () => { state.checked = false; renderResult(); updateResetButtonVisibility();  });
-  byId('app')?.addEventListener('change', () => { state.checked = false; renderResult(); updateResetButtonVisibility();  });
+  byId('checkBtn')?.addEventListener('click', async () => { readState(); if(!validateForm()){ alert(t('validationRequired')); return; } await autoCheckWithQwen(); state.checked = true; state.finalized = true; render(); updateResetButtonVisibility(); });
+  byId('app')?.addEventListener('input', () => { if(state.checked){ readState(); state.manuallyEdited=true; state.finalized=true; renderResult(); } updateResetButtonVisibility();  });
+  byId('app')?.addEventListener('change', () => { if(state.checked){ readState(); state.manuallyEdited=true; state.finalized=true; renderResult(); } updateResetButtonVisibility();  });
 }
 bindJsonModal();
 render();

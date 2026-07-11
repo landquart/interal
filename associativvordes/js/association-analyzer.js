@@ -62,9 +62,8 @@ export function calculateSwowBonus(swow) {
 }
 
 export function calculateFinalScore({ frequency_score, association_score }) {
-  if (frequency_score == null && association_score == null) return null;
-  if (frequency_score == null) return association_score;
-  if (association_score == null) return frequency_score;
+  if (association_score == null) return null;
+  if (frequency_score == null) return null;
   return clamp(
     FINAL_SCORE_WEIGHTS.association_score * association_score +
     FINAL_SCORE_WEIGHTS.frequency_score * frequency_score,
@@ -78,8 +77,13 @@ export function classifyScore(final_score) {
   return 'scored';
 }
 
+function semanticConfirmedFromQwen(qwen) {
+  return Number.isFinite(Number(qwen?.directness)) && Number.isFinite(Number(qwen?.field_relatedness)) && Number.isFinite(Number(qwen?.domain_shift));
+}
+
 function buildEvaluation(qwen, frequencyScore, swowBonus) {
-  const association_score_base = calculateAssociationScore(qwen);
+  const semantic_confirmed = semanticConfirmedFromQwen(qwen);
+  const association_score_base = semantic_confirmed ? calculateAssociationScore(qwen) : null;
   const association_score = association_score_base == null ? null : clamp(association_score_base + swowBonus, 0, 100);
   const final_score = calculateFinalScore({ frequency_score: frequencyScore, association_score });
   return {
@@ -91,6 +95,7 @@ function buildEvaluation(qwen, frequencyScore, swowBonus) {
     association_score,
     final_score,
     classification: classifyScore(final_score),
+    semantic_confirmed,
     explanation: qwen.short_explanation
   };
 }
@@ -157,12 +162,20 @@ export async function analyzeAssociativeWord({ language, targetMeaning, word, on
         short_explanation: reviewQwen.short_explanation || primary.explanation
       };
       review = buildEvaluation(reviewQwen, frequency.frequency_score, swow_bonus);
-      finalEvaluation = buildEvaluation(averagedQwen, frequency.frequency_score, swow_bonus);
-      finalEvaluation.combination_method = 'arithmetic_mean';
+      if (review.semantic_confirmed) {
+        finalEvaluation = buildEvaluation(averagedQwen, frequency.frequency_score, swow_bonus);
+        finalEvaluation.combination_method = 'arithmetic_mean';
+      } else {
+        warnings.push('Review model returned invalid semantic scores; primary evaluation kept');
+        finalEvaluation.combination_method = 'primary_only';
+      }
     } catch (error) {
       warnings.push(`Review model unavailable: ${error.message}`);
       review = { status: 'review_unavailable', error: error.message };
+      finalEvaluation.combination_method = 'primary_only';
     }
+  } else {
+    finalEvaluation.combination_method = 'primary_only';
   }
   const classification = finalEvaluation.classification;
   const final_score = finalEvaluation.final_score;
@@ -201,7 +214,9 @@ export async function analyzeAssociativeWord({ language, targetMeaning, word, on
       domain_shift: finalEvaluation.domain_shift,
       association_score_base: finalEvaluation.association_score_base,
       association_score: finalEvaluation.association_score,
-      explanation: finalEvaluation.explanation
+      explanation: finalEvaluation.explanation,
+      semantic_confirmed: finalEvaluation.semantic_confirmed,
+      combination_method: finalEvaluation.combination_method || 'primary_only'
     },
     primary,
     final_score,
