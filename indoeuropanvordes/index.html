@@ -9,7 +9,7 @@
 <link rel="apple-touch-icon" sizes="512x512" href="../favicon/favicon%20interal%20512.png" />
 
 <title>Indoeuropan vordes</title>
-<link rel="stylesheet" href="../shared/ui.css?v=liquid-glass-20260710" />
+<link rel="stylesheet" href="../shared/ui.css?v=json-cards-fix-20260711-1" />
 
 <style>
 .internationalita-page {
@@ -729,7 +729,7 @@ body.dark-theme .internationalita-page .json-card-icon-btn.is-copied {
 </div>
 
 
-<script src="./aline.js?v=liquid-glass-20260710"></script>
+<script src="./aline.js?v=json-cards-fix-20260711-1"></script>
 
 <script>
 "use strict";
@@ -1231,21 +1231,13 @@ function isDatabaseLimitError(error) { const message = String(error?.message || 
 async function createFallbackCard(card, section) { const response = await fetch(`${CARDS_NEXT_ID_ENDPOINT}?section=${encodeURIComponent(section)}`, { cache: "no-store" }); const data = await response.json().catch(() => null); if (!response.ok || !data?.ok || !data.id) throw new Error(data?.error || `HTTP ${response.status}`); return { ...card, id: data.id, section: data.section || section, discussionId: `card-${data.id}`, fallbackMode: "fallback-sequential", persistenceRequired: "Save this card to the GitHub JSON registry or another durable registry; fallback IDs are best-effort read-check-only and are not reserved in Supabase." }; }
 
 async function createCardOnServer(card) {
-  const title = card?.interal?.word || card?.title || "Untitled card";
-  try {
-    const response = await fetch(CARDS_API_ENDPOINT, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ section: "indoeuropanvordes", title, category: card?.vord_type || "iv", payload: card })
-    });
-    const data = await response.json().catch(() => null);
-    if (!response.ok || !data?.ok) throw new Error(data?.error || `HTTP ${response.status}`);
-    return data.card?.payload || { ...card, id: data.id, section: data.section, discussionId: data.discussionId || `card-${data.id}` };
-  } catch (error) {
-    if (!isDatabaseLimitError(error)) throw error;
-    console.warn("Supabase insert failed; using fallback sequential card id");
-    return createFallbackCard(card, "indoeuropanvordes");
-  }
+  if (!window.InteralJsonCards) throw new Error("InteralJsonCards is not loaded.");
+  return window.InteralJsonCards.createCardOnServer(card, {
+    section: "indoeuropanvordes",
+    title: card?.interal?.word || card?.title,
+    category: "iv",
+    endpoint: CARDS_API_ENDPOINT
+  });
 }
 
 async function getCreatedAt() {
@@ -2799,9 +2791,18 @@ generateJsonCardBtn.addEventListener("click", async () => {
 
     const author = getAuthorBlock();
     const timeMeta = await getCreatedAt();
-    const card = await createCardOnServer(makeIndoeuropanCard(lastCalculationPayload, timeMeta, author));
-    jsonCardOutput.value = formatGeneratedJsonCard(card);
+    const draftCard = makeIndoeuropanCard(lastCalculationPayload, timeMeta, author);
+    jsonCardOutput.value = formatGeneratedJsonCard({ ...draftCard, persistence: { saved: false, status: "local" } });
+    try {
+      const card = await createCardOnServer(draftCard);
+      jsonCardOutput.value = formatGeneratedJsonCard(card);
+    } catch (saveError) {
+      console.error("Indoeuropan JSON card persistence failed:", saveError);
+      jsonCardOutput.value = formatGeneratedJsonCard({ ...draftCard, persistence: { saved: false, status: "local", warning: saveError.message || String(saveError) } });
+      alert(TEXT_I18N[getCurrentLanguage()].jsonCard.localWarning || (getCurrentLanguage() === "en" ? "The JSON card was generated locally but was not saved on the server." : "JSON-карточка сформирована локально, но не была сохранена на сервере."));
+    }
   } catch (error) {
+    console.error("Indoeuropan JSON card generation failed:", error);
     alert(error.message || String(error));
   } finally {
     generateJsonCardBtn.disabled = false;
@@ -2846,9 +2847,9 @@ applyLocalizedTexts();
 updateResetButtonVisibility();
 </script>
 
-<script src="./download-json-card.js?v=liquid-glass-20260710"></script>
-<script src="../shared/copy-plain.js?v=liquid-glass-20260710"></script>
-<script src="../shared/ui.js?v=liquid-glass-20260710" defer></script>
+<script src="./download-json-card.js?v=json-cards-fix-20260711-1"></script>
+<script src="../shared/copy-plain.js?v=json-cards-fix-20260711-1"></script>
+<script src="../shared/ui.js?v=json-cards-fix-20260711-1" defer></script>
 
 </body>
 </html>
