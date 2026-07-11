@@ -1,3 +1,5 @@
+import { LANGUAGE_SOURCES, CATEGORY_ORDER } from '../associativvordes/js/config-frequency-sources.js';
+
 const LANGUAGES = [
   { code: 'en', name: { ru: 'Английский', en: 'English' }, group: 'Germanic' },
   { code: 'de', name: { ru: 'Немецкий', en: 'German' }, group: 'Germanic' },
@@ -8,17 +10,14 @@ const LANGUAGES = [
 ];
 
 function buildFrequencySources() {
-  const shared = window.InteralFrequencySources;
-  if (shared?.LANGUAGE_SOURCES) {
-    const base = '../associativvordes/frequency%20lists';
-    return Object.fromEntries(Object.entries(shared.LANGUAGE_SOURCES).map(([lang, categories]) => [
-      lang,
-      (shared.CATEGORY_ORDER || Object.keys(categories)).flatMap(category => (categories[category] || []).map(file => `${base}/${lang}/${file}`))
-    ]));
-  }
-  return {};
+  const base = '../associativvordes/frequency%20lists';
+  return Object.fromEntries(Object.entries(LANGUAGE_SOURCES || {}).map(([lang, categories]) => [
+    lang,
+    (CATEGORY_ORDER || Object.keys(categories)).flatMap(category => (categories[category] || []).map(file => `${base}/${lang}/${file}`))
+  ]));
 }
 const FREQUENCY_SOURCES = buildFrequencySources();
+function hasFrequencyConfiguration() { return LANGUAGES.every(lang => Array.isArray(FREQUENCY_SOURCES[lang.code]) && FREQUENCY_SOURCES[lang.code].length > 0); }
 
 const frequencyCache = new Map();
 const MAX_FREQUENCY_ENTRIES_PER_SOURCE = 100000;
@@ -28,7 +27,7 @@ const I18N = {
     evidence: 'Языковое покрытие', result: 'Итог', card: 'JSON-карточка', check: 'Проверить', json: 'Сформировать JSON-карточку', copy: 'Скопировать', download: 'Скачать',
     table: { language: 'Язык', form: 'Форма', distance: 'D — расстояние Левенштейна', passed: 'Проходит', translation: 'Перевод', source: 'Источник', match: 'Тип' },
     coverage: 'Покрытие', required: 'Минимум', decision: 'Решение', accept: 'ПРИНЯТО', reject: 'НЕ ПРИНЯТО', reasonOk: 'Критерий 5/6 выполнен. Для формы длиной до 3 символов требуется точное совпадение: D = 0. Для формы длиной от 4 символов допускается D ≤ 2.', reasonBad: 'Недостаточное покрытие контрольных языков.',
-    loadingLists: 'Загрузка частотных списков...', searching: 'Поиск форм...', frequencySource: 'частотный список', manualSource: 'вручную', noForm: 'не найдено', searchError: 'Не удалось загрузить частотные списки. Формы можно ввести вручную.', manualMode: 'ручное переопределение', autoMode: 'авто', resetAria: 'Сбросить', resetConfirm: 'Сбросить введённые данные? Это действие нельзя отменить.',
+    loadingLists: 'Загрузка частотных списков...', searching: 'Поиск форм...', frequencySource: 'частотный список', manualSource: 'вручную', noForm: 'не найдено', searchError: 'Не удалось загрузить частотные списки. Формы можно ввести вручную.', configError: 'Конфигурация частотных источников не загружена. Введите формы вручную; автоматический результат недоступен.', manualMode: 'ручное переопределение', autoMode: 'авто', resetAria: 'Сбросить', resetConfirm: 'Сбросить введённые данные? Это действие нельзя отменить.',
     jsonCard: { close: 'Закрыть JSON-карточку', title: 'JSON-карточка', useAuthor: 'Указать авторство', authorName: 'Имя или ник', contactType: 'Тип контакта', contact: 'Контакт', generate: 'Сгенерировать карточку', generating: 'Генерация...', output: 'Готовый JSON', copy: 'Скопировать JSON-карточку', copied: 'JSON-карточка скопирована', copiedTitle: 'Скопировано', download: 'Скачать JSON-карточку', empty: 'Сначала сгенерируйте JSON-карточку.', unavailable: 'JSON-карточка доступна только после успешной проверки.' }
   },
   en: {
@@ -36,7 +35,7 @@ const I18N = {
     evidence: 'Language coverage', result: 'Decision', card: 'JSON card', check: 'Check', json: 'Generate JSON card', copy: 'Copy', download: 'Download',
     table: { language: 'Language', form: 'Form', distance: 'D — Levenshtein distance', passed: 'Passes', translation: 'Translation', source: 'Source', match: 'Match' },
     coverage: 'Coverage', required: 'Required', decision: 'Decision', accept: 'ACCEPTED', reject: 'NOT ACCEPTED', reasonOk: 'The 5/6 criterion is met. Forms up to 3 characters require an exact match: D = 0. Forms of 4 or more characters may pass with D ≤ 2.', reasonBad: 'Insufficient control-language coverage.',
-    loadingLists: 'Loading frequency lists...', searching: 'Searching forms...', frequencySource: 'frequency list', manualSource: 'manual', noForm: 'not found', searchError: 'Could not load frequency lists. Forms can be entered manually.', manualMode: 'manual override', autoMode: 'auto', resetAria: 'Reset', resetConfirm: 'Reset entered data? This action cannot be undone.',
+    loadingLists: 'Loading frequency lists...', searching: 'Searching forms...', frequencySource: 'frequency list', manualSource: 'manual', noForm: 'not found', searchError: 'Could not load frequency lists. Forms can be entered manually.', configError: 'Frequency-source configuration is not loaded. Enter forms manually; the automatic result is unavailable.', manualMode: 'manual override', autoMode: 'auto', resetAria: 'Reset', resetConfirm: 'Reset entered data? This action cannot be undone.',
     jsonCard: { close: 'Close JSON card', title: 'JSON card', useAuthor: 'Add authorship', authorName: 'Name or nickname', contactType: 'Contact type', contact: 'Contact', generate: 'Generate card', generating: 'Generating...', output: 'Generated JSON', copy: 'Copy JSON card', copied: 'JSON card copied', copiedTitle: 'Copied', download: 'Download JSON card', empty: 'Generate the JSON card first.', unavailable: 'The JSON card is available only after a successful check.' }
   }
 };
@@ -280,12 +279,13 @@ async function analyze() {
   render();
   setButtonStatus('#checkBtn', currentLang() === 'en' ? 'Preparing...' : 'Подготовка...', true);
   try {
+    if (!hasFrequencyConfiguration()) throw new Error('Missing frequency-source configuration');
     await searchAllLanguages(runId, { onProgress: text => setButtonStatus('#checkBtn', text, true) });
     if (!isCurrentRun(runId)) return;
   } catch (error) {
     if (!isCurrentRun(runId)) return;
     console.error(error);
-    state.searchError = t('searchError');
+    state.searchError = error.message === 'Missing frequency-source configuration' ? t('configError') : t('searchError');
     setButtonStatus('#checkBtn', currentLang() === 'en' ? 'Error' : 'Ошибка', false);
   } finally {
     if (!isCurrentRun(runId)) return;
@@ -385,7 +385,7 @@ function render() {
 const jsonFilename = 'internationalism-card.json';
 function bindJsonModal() {
   window.InteralJsonCardModal?.init({ getLanguage: currentLang, getTexts: () => t('jsonCard'), buildCard: async ({ onProgress } = {}) => { readState(); if (!canCreateCard()) throw new Error(t('jsonCard.unavailable')); onProgress?.(currentLang() === 'en' ? 'Building card...' : 'Сборка карточки...'); return makeCard(); }, createCardOnServer: (card, ctx) => window.InteralJsonCards.createCardOnServer(card, { section: 'internationalismes', title: card?.interal?.word, category: 'in', onProgress: ctx?.onProgress }), formatCard: (card) => JSON.stringify(card, null, 2), getFilename: () => jsonFilename });
-  document.addEventListener('interal:languagechange', () => { document.documentElement.lang = currentLang(); if (state.searchError) state.searchError = t('searchError'); readState(); syncPosSelectOptions(); render(); });
+  document.addEventListener('interal:languagechange', () => { document.documentElement.lang = currentLang(); if (state.searchError) state.searchError = state.searchError === I18N[state.lang === 'en' ? 'ru' : 'en']?.configError ? t('configError') : t('searchError'); readState(); syncPosSelectOptions(); render(); });
   byId('resetBtn')?.addEventListener('click', resetAll);
   byId('checkBtn')?.addEventListener('click', analyze);
   byId('app')?.addEventListener('input', event => {

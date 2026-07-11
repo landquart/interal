@@ -169,25 +169,36 @@ function evaluateAffixDecision(card) {
   const procedure = card.procedure;
   const evidence = card.evidence || {};
   const controlLanguages = evidence.controlLanguages || card.forms?.controlLanguages || {};
-  const coveredLanguages = countCoveredLanguageArrays(controlLanguages);
-  const coveredGroups = new Set(CONTROL_LANGUAGES.filter(lang => Array.isArray(controlLanguages?.[lang]) && controlLanguages[lang].length > 0).map(lang => AFFIX_GROUPS[lang])).size;
   let accepted = false;
   let needsManualReview = false;
-  const criteria = { covered_languages: coveredLanguages, covered_groups: coveredGroups };
+  const criteria = {};
+
   if (procedure === 'international_affix') {
-    criteria.required_languages = 5;
+    const coveredLanguages = countCoveredLanguageArrays(controlLanguages);
+    const coveredGroups = new Set(CONTROL_LANGUAGES.filter(lang => Array.isArray(controlLanguages?.[lang]) && controlLanguages[lang].length > 0).map(lang => AFFIX_GROUPS[lang])).size;
+    Object.assign(criteria, { covered_languages: coveredLanguages, covered_groups: coveredGroups, required_languages: 5 });
     criteria.immediate_recognition = evidence.immediateRecognition === true;
     criteria.stable_international_presence = evidence.stableInternationalPresence === true;
     accepted = coveredLanguages >= 5 && criteria.immediate_recognition && criteria.stable_international_presence;
   } else if (procedure === 'associativ_affix') {
-    const words = card.evidence?.frequencyWords || card.frequencyWords || {};
-    const represented = CONTROL_LANGUAGES.filter(lang => Array.isArray(words?.[lang]) && words[lang].length > 0);
-    criteria.required_languages = 3;
-    criteria.required_groups = 2;
+    const frequencyWords = card.evidence?.frequencyWords || card.frequencyWords || {};
+    const representedFrequencyLanguages = CONTROL_LANGUAGES.filter((lang) =>
+      Array.isArray(frequencyWords?.[lang]) && frequencyWords[lang].length > 0
+    );
+    const coveredLanguages = representedFrequencyLanguages.length;
+    const coveredGroups = new Set(representedFrequencyLanguages.map(lang => AFFIX_GROUPS[lang]).filter(Boolean)).size;
+    Object.assign(criteria, { covered_languages: coveredLanguages, covered_groups: coveredGroups, required_languages: 3, required_groups: 2 });
+    criteria.frequency_language_count = representedFrequencyLanguages.length;
     criteria.ipm_threshold = 3;
-    criteria.ipm_passed = represented.every(lang => words[lang].every(item => Number(item.ipm) >= 3));
-    criteria.word_count_passed = represented.every(lang => words[lang].length >= 1 && words[lang].length <= 5);
-    criteria.recognition_type = card.recognitionType || card.criteria?.recognition_type || 'associative';
+    criteria.ipm_passed = representedFrequencyLanguages.length >= 3 &&
+      representedFrequencyLanguages.every((lang) =>
+        frequencyWords[lang].every((item) => Number(item.ipm) >= 3)
+      );
+    criteria.word_count_passed = representedFrequencyLanguages.length >= 3 &&
+      representedFrequencyLanguages.every((lang) =>
+        frequencyWords[lang].length >= 1 && frequencyWords[lang].length <= 5
+      );
+    criteria.recognition_type = card.recognitionType || card.criteria?.recognition_type || 'needs_manual_review';
     accepted = coveredLanguages >= 3 && coveredGroups >= 2 && criteria.ipm_passed && criteria.word_count_passed && criteria.recognition_type === 'associative';
   } else {
     const c = card.criteria || {};
@@ -196,7 +207,9 @@ function evaluateAffixDecision(card) {
     accepted = !needsManualReview && keys.every(key => c[key] === true);
     Object.assign(criteria, Object.fromEntries(keys.map(key => [key, c[key] === true])));
   }
-  return { criteria, decision: { accepted, needs_manual_review: needsManualReview || !accepted }, eligible: accepted, decisionText: accepted ? 'accepted' : (needsManualReview ? 'needs_manual_review' : 'rejected') };
+
+  const status = accepted ? 'accepted' : (needsManualReview ? 'needs_manual_review' : 'rejected');
+  return { criteria, decision: { status, accepted, rejected: status === 'rejected', needs_manual_review: status === 'needs_manual_review' }, eligible: accepted };
 }
 
 function randomAffixId() {
@@ -244,7 +257,6 @@ function normalizeAffixesCheckCard(generated, input) {
   normalized.criteria = { ...normalized.criteria, ...evaluation.criteria };
   normalized.decision = evaluation.decision;
   normalized.eligible = evaluation.eligible;
-  normalized.decisionText = evaluation.decisionText;
   return normalized;
 }
 function buildAffixesCheckPrompt(input) { return `You check an Interal affix and create exactly one strict JSON card.
@@ -364,7 +376,7 @@ async function runAffixesCheck(payload, interfaceLanguage) {
 
   const generated = extract(result.content);
   const card = normalizeAffixesCheckCard(generated, input);
-  return { ok: true, analysis: { eligible: card.eligible === true, decision: card.decisionText, recommendedForm: card.recommendedForm || card.form, form: card.form, morphemeType: card.morphemeType, procedure: card.procedure, meaning: card.meaning, criteria: card.criteria, evidence: card.evidence, forms: card.forms, decision_object: card.decision, decision: card.decisionText, shortConclusion: card.eligible ? (interfaceLanguage === 'en' ? 'The affix can be saved as a candidate card.' : 'Аффикс можно сохранить как карточку-кандидат.') : (interfaceLanguage === 'en' ? 'The affix did not pass deterministic criteria or needs manual review.' : 'Аффикс не прошёл детерминированные критерии или требует ручной проверки.'), risks: card.risks || [] }, card };
+  return { ok: true, analysis: { eligible: card.eligible === true, decision: card.decision, recommendedForm: card.recommendedForm || card.form, form: card.form, morphemeType: card.morphemeType, procedure: card.procedure, meaning: card.meaning, criteria: card.criteria, evidence: card.evidence, forms: card.forms, shortConclusion: card.eligible ? (interfaceLanguage === 'en' ? 'The affix can be saved as a candidate card.' : 'Аффикс можно сохранить как карточку-кандидат.') : (interfaceLanguage === 'en' ? 'The affix did not pass deterministic criteria or needs manual review.' : 'Аффикс не прошёл детерминированные критерии или требует ручной проверки.'), risks: card.risks || [] }, card };
 }
 
 
