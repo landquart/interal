@@ -384,7 +384,7 @@ function render() {
 }
 const jsonFilename = 'internationalism-card.json';
 function bindJsonModal() {
-  window.InteralJsonCardModal?.init({ getLanguage: currentLang, getTexts: () => t('jsonCard'), buildCard: async ({ onProgress } = {}) => { readState(); if (!canCreateCard()) throw new Error(t('jsonCard.unavailable')); onProgress?.(currentLang() === 'en' ? 'Building card...' : 'Сборка карточки...'); return makeCard(); }, createCardOnServer: (card, ctx) => window.InteralJsonCards.createCardOnServer(card, { section: 'internationalismes', title: card?.interal?.word, category: 'in', onProgress: ctx?.onProgress }), formatCard: (card) => JSON.stringify(card, null, 2), getFilename: () => jsonFilename });
+  if (!window.InteralJsonCardModal) throw new Error('InteralJsonCardModal is not loaded.'); if (!window.InteralJsonCards) throw new Error('InteralJsonCards is not loaded.'); window.InteralJsonCardModal.init({ getLanguage: currentLang, getTexts: () => t('jsonCard'), buildCard: async ({ onProgress } = {}) => { readState(); if (!canCreateCard()) throw new Error(t('jsonCard.unavailable')); onProgress?.(currentLang() === 'en' ? 'Building card...' : 'Сборка карточки...'); return makeCard(); }, createCardOnServer: (card, ctx) => window.InteralJsonCards.createCardOnServer(card, { section: 'internationalismes', title: card?.interal?.word, category: 'in', onProgress: ctx?.onProgress }), formatCard: (card) => JSON.stringify(card, null, 2), getFilename: () => jsonFilename });
   document.addEventListener('interal:languagechange', () => { document.documentElement.lang = currentLang(); if (state.searchError) state.searchError = state.searchError === I18N[state.lang === 'en' ? 'ru' : 'en']?.configError ? t('configError') : t('searchError'); readState(); syncPosSelectOptions(); render(); });
   byId('resetBtn')?.addEventListener('click', resetAll);
   byId('checkBtn')?.addEventListener('click', analyze);
@@ -403,6 +403,6 @@ function bindJsonModal() {
   });
 }
 document.documentElement.lang = currentLang();
-bindJsonModal();
+try { bindJsonModal(); } catch (error) { console.error('Could not initialize JSON card module:', error); alert(currentLang() === 'en' ? 'Could not load the JSON card module. Reload the page.' : 'Не удалось загрузить модуль JSON-карточек. Обновите страницу.'); }
 syncPosSelectOptions();
 applyJsonModalTexts(); render();

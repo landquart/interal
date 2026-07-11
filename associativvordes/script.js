@@ -885,7 +885,8 @@ function isDatabaseLimitError(error) { const message = String(error?.message || 
 async function createFallbackCard(card, section) { const response = await fetch(`${CARDS_NEXT_ID_ENDPOINT}?section=${encodeURIComponent(section)}`, { cache: 'no-store' }); const data = await response.json().catch(() => null); if (!response.ok || !data?.ok || !data.id) throw new Error(data?.error || `HTTP ${response.status}`); return { ...card, id: data.id, section: data.section || section, discussionId: `card-${data.id}`, fallbackMode: 'fallback-sequential', persistenceRequired: 'Save this card to the GitHub JSON registry or another durable registry; fallback IDs are best-effort read-check-only and are not reserved in Supabase.' }; }
 
     async function createCardOnServer(card) {
-  if (window.InteralJsonCards?.createCardOnServer) {
+  if (!window.InteralJsonCards) throw new Error('InteralJsonCards is not loaded.');
+  if (window.InteralJsonCards.createCardOnServer) {
     return window.InteralJsonCards.createCardOnServer(card, { section: 'associativvordes', title: card?.interal?.word || card?.title, category: card?.vord_type || 'av', endpoint: CARDS_API_ENDPOINT });
   }
   const title = card?.interal?.word || card?.title || 'Untitled card';
@@ -950,6 +951,34 @@ async function createFallbackCard(card, section) { const response = await fetch(
       return json.length <= JSON_CARD_WRAPPER_LIMIT ? json : `${JSON_CARD_START_MARKER}\n${json}\n${JSON_CARD_END_MARKER}`;
     }
 
+
+    function getJsonByteSize(value) { return new TextEncoder().encode(JSON.stringify(value)).length; }
+    function compactAssociativeLanguageResult(item) {
+      const a = item?.association || {};
+      const m = item?.models || {};
+      const s = item?.swow || {};
+      return {
+        code: item?.code || null,
+        word: item?.word || '',
+        selected: Boolean(item?.selected),
+        frequency: { F: finiteOrNull(item?.frequency?.score ?? a.F) },
+        association: { Di: finiteOrNull(a.Di), Pr: finiteOrNull(a.Pr), Sh: finiteOrNull(a.Sh), A_base: finiteOrNull(a.A_base ?? a.score_base), swow_bonus: finiteOrNull(a.swow_bonus ?? s.bonus), A_final: finiteOrNull(a.A_final ?? a.score), P: finiteOrNull(a.P ?? item?.final_score) },
+        models: { primary_model: m.primary?.model || m.primary_model || null, review_model: m.review?.model || m.review_model || null, combination_method: m.combination_method || a.combination_method || 'primary_only' },
+        swow: { available: Boolean(s.found || s.available), bonus: finiteOrNull(s.bonus || 0) }
+      };
+    }
+    function compactAssociativeCard(card) {
+      return {
+        version: card.version, card_type: card.card_type, vord_type: card.vord_type, status: card.status, procedure: card.procedure, created_at: card.created_at, created_at_source: card.created_at_source, interal: card.interal, translation: card.translation, ...(card.author ? { author: card.author } : {}), supported_groups: card.supported_groups,
+        calculation: { TA: finiteOrNull(card.calculation?.TA), FA: finiteOrNull(card.calculation?.FA), represented_languages: finiteOrNull(card.calculation?.represented_languages), represented_groups: finiteOrNull(card.calculation?.represented_groups), semantic_confirmed: card.calculation?.semantic_confirmed === true, accepted: card.calculation?.accepted === true },
+        language_results: (card.language_results || []).map(compactAssociativeLanguageResult)
+      };
+    }
+    function prepareAssociativeCardForPersistence(card) {
+      let draft = card;
+      if (getJsonByteSize(draft) > 45000) draft = compactAssociativeCard(draft);
+      return draft;
+    }
     function makeAssociativeCard(timeMeta, author = null) {
       const result = calculateFinal();
       const supportedGroups = [...new Set(result.languageScores.filter((x) => Number.isFinite(Number(x.normalized))).map((x) => x.lang.group))];
@@ -1113,11 +1142,22 @@ async function createFallbackCard(card, section) { const response = await fetch(
     });
     document.getElementById('generateJsonCardBtn').addEventListener('click', async () => {
       const btn = document.getElementById('generateJsonCardBtn');
+      const output = document.getElementById('jsonCardOutput');
       const original = textGroup('jsonCard').generate;
+      let draftCard = null;
       try {
         btn.disabled = true;
         btn.textContent = textGroup('alerts').jsonCardGenerating;
-        document.getElementById('jsonCardOutput').value = formatGeneratedJsonCard(await createCardOnServer(makeAssociativeCard(await getCreatedAt(), getAuthorBlock())));
+        draftCard = prepareAssociativeCardForPersistence(makeAssociativeCard(await getCreatedAt(), getAuthorBlock()));
+        output.value = formatGeneratedJsonCard({ ...draftCard, persistence: { saved: false, status: 'local' } });
+        const size = getJsonByteSize(draftCard);
+        if (size > 50000) throw new Error(currentLang() === 'en' ? 'The card was generated locally but is too large to save on the server.' : 'Карточка сформирована локально, но слишком велика для сохранения на сервере.');
+        output.value = formatGeneratedJsonCard(await createCardOnServer(draftCard));
+      } catch (error) {
+        console.error('Associative card generation failed:', error);
+        const warning = error.message || (currentLang() === 'en' ? 'Could not save the JSON card.' : 'Не удалось сохранить JSON-карточку.');
+        if (draftCard) output.value = formatGeneratedJsonCard({ ...draftCard, persistence: { saved: false, status: 'local', warning } });
+        alert(warning);
       } finally {
         btn.disabled = false;
         btn.textContent = original;
