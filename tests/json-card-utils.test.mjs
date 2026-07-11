@@ -14,11 +14,10 @@ function okResponse(data,status=200){ return {ok:status>=200&&status<300,status,
 function badResponse(error,status){ return {ok:false,status,json:async()=>({ok:false,error})}; }
 
 let {context,elements,alerts,calls}=load();
-const { extractSavedCard, createCardOnServer, validateCardId, createFallbackCardId } = context.window.InteralJsonCards;
+const { extractSavedCard, createCardOnServer, validateCardId } = context.window.InteralJsonCards;
 const draft={section:'internationalismes', interal:{word:'test'}};
 assert.equal(extractSavedCard({card:{payload:{id:'in_ABCDEFGHIJKL'}}}, draft).persistence.mode, 'supabase');
-assert.equal(extractSavedCard({payload:{id:'in_zzzzzzzzzzzz'}}, draft).id, 'in_zzzzzzzzzzzz');
-assert.equal(extractSavedCard({id:'in_123456789abc', section:'internationalismes', status:'pending'}, draft).discussionId, 'card-in_123456789abc');
+assert.equal(extractSavedCard({id:'in_123456789abc', section:'internationalismes', status:'pending', discussionId:'card-in_123456789abc'}, draft).discussionId, 'card-in_123456789abc');
 assert.throws(()=>extractSavedCard({ok:true}, draft), /ID/);
 assert.throws(()=>validateCardId({id:'zz_123456789abc'}, 'internationalismes'), /invalid/);
 assert.throws(()=>validateCardId({id:'av_123456789abc'}, 'internationalismes'), /another section/);
@@ -27,32 +26,24 @@ context.fetch=async(url,opts)=> { calls.push(String(url)); return String(url).in
 let saved=await createCardOnServer(draft,{section:'internationalismes',title:'test'});
 assert.equal(saved.id,'in_123456789abc'); assert.equal(saved.status,'pending'); assert.equal(saved.persistence.saved,true); assert.equal(saved.persistence.mode,'supabase');
 
-context.fetch=async(url)=> { calls.push(String(url)); if(String(url).includes('health')) return okResponse({ok:true,hasSupabaseUrl:false,hasSupabaseKey:false}); if(String(url).includes('cards-next-id')) return okResponse({ok:true,id:'in_000000000001',section:'internationalismes',mode:'fallback-sequential',guarantee:'best-effort-read-check-only'}); throw new Error('POST should not run'); };
-saved=await createCardOnServer(draft,{section:'internationalismes',title:'test'});
-assert.equal(saved.id,'in_000000000001'); assert.equal(saved.status,'local'); assert.equal(saved.persistence.saved,false); assert.equal(saved.persistence.mode,'fallback-id'); assert.ok(calls.some((url)=>url.includes('cards-next-id')));
+context.fetch=async(url)=> { calls.push(String(url)); return badResponse('Internal server error',500); };
+await assert.rejects(createCardOnServer(draft,{section:'internationalismes',title:'test'}), /Internal server error/);
+assert.ok(!calls.some((url)=>url.includes('cards-next-id')));
 
-for (const [name, responder] of [['500', async(url)=>String(url).includes('health')?okResponse({ok:true,hasSupabaseUrl:true,hasSupabaseKey:true}):String(url).includes('cards-next-id')?okResponse({ok:true,id:'in_000000000002',section:'internationalismes'}):badResponse('Internal server error',500)], ['network', async(url)=>String(url).includes('health')?okResponse({ok:true,hasSupabaseUrl:true,hasSupabaseKey:true}):String(url).includes('cards-next-id')?okResponse({ok:true,id:'in_000000000003',section:'internationalismes'}):Promise.reject(new Error('post down'))]]) { calls.length=0; context.fetch=async(url,opts)=>{ calls.push(String(url)); return responder(url,opts); }; saved=await createCardOnServer(draft,{section:'internationalismes',title:'test'}); assert.match(saved.id,/^in_/); assert.equal(saved.persistence.mode,'fallback-id', name); assert.ok(calls.some((url)=>url.includes('cards-next-id')), name); }
+context.fetch=async()=>Promise.reject(new Error('post down'));
+await assert.rejects(createCardOnServer(draft,{section:'internationalismes',title:'test'}), /post down/);
 
-for (const [error,status] of [['Invalid title',400], ['Payload too large',400]]) { calls.length=0; context.fetch=async(url)=>{ calls.push(String(url)); return String(url).includes('health')?okResponse({ok:true,hasSupabaseUrl:true,hasSupabaseKey:true}):badResponse(error,status); }; await assert.rejects(createCardOnServer(draft,{section:'internationalismes',title:'test'}), new RegExp(error)); assert.ok(!calls.some((url)=>url.includes('cards-next-id'))); }
-
-context.fetch=async(url)=> String(url).includes('health')?okResponse({ok:true,hasSupabaseUrl:true,hasSupabaseKey:true}):String(url).includes('cards-next-id')?badResponse('fallback down',500):badResponse('Internal server error',500);
-await assert.rejects(createCardOnServer(draft,{section:'internationalismes',title:'test'}), /не удалось|neither/);
-try { await createCardOnServer(draft,{section:'internationalismes',title:'test'}); } catch (e) { assert.equal(e.localOnlyCard.id, null); assert.equal(e.localOnlyCard.persistence.mode, 'local-only'); }
-
-context.fetch=async()=>okResponse({ok:true,id:'av_000000000001',section:'associativvordes'});
-await assert.rejects(createFallbackCardId(draft,{section:'internationalismes'}), /another section/);
-const prefixes={indoeuropanvordes:'iv',associativvordes:'av',internationalismes:'in',vordesofcommunites:'vc',grammaticebrevivordes:'gv',altervordes:'al',affixes:'af'};
-for (const [section,prefix] of Object.entries(prefixes)) { context.fetch=async()=>okResponse({ok:true,id:`${prefix}_123456789abc`,section}); const card=await createFallbackCardId(draft,{section}); assert.equal(card.id,`${prefix}_123456789abc`); }
+for (const [error,status] of [['Invalid title',400], ['Payload too large',400]]) { calls.length=0; context.fetch=async(url)=>{ calls.push(String(url)); return badResponse(error,status); }; await assert.rejects(createCardOnServer(draft,{section:'internationalismes',title:'test'}), new RegExp(error)); assert.ok(!calls.some((url)=>url.includes('cards-next-id'))); }
 
 ({context,elements,alerts,calls}=load());
 let builds=0;
-context.window.InteralJsonCardModal.init({buildCard:async()=>({section:'internationalismes', interal:{word:'x'}, n:++builds}), createCardOnServer:async(card)=>({...card,id:'in_000000000004',section:'internationalismes',status:'local',discussionId:'card-in_000000000004',fallbackMode:'fallback-sequential',persistence:{saved:false,mode:'fallback-id',idReserved:false}}), formatCard:c=>JSON.stringify(c)});
+context.window.InteralJsonCardModal.init({buildCard:async()=>({section:'internationalismes', interal:{word:'x'}, n:++builds}), createCardOnServer:async(card)=>({...card,id:'in_000000000004',section:'internationalismes',status:'pending',discussionId:'card-in_000000000004',persistence:{saved:true,mode:'supabase'}}), formatCard:c=>JSON.stringify(c)});
 await context.document.getElementById('jsonCardModal')._interalJsonModalApi.generate();
-assert.match(elements.jsonCardOutput.value, /in_000000000004/); assert.match(alerts.join('\n'), /резервный ID/);
+assert.match(elements.jsonCardOutput.value, /in_000000000004/); assert.equal(alerts.length, 0);
 ({context,elements,alerts}=load());
-context.window.InteralJsonCardModal.init({buildCard:async()=>draft, createCardOnServer:async()=>{ const e=new Error('both down'); e.localOnlyCard={...draft,id:null,status:'local',persistence:{saved:false,mode:'local-only',idReserved:false,primarySaveFailed:true,fallbackIdFailed:true}}; throw e; }, formatCard:c=>JSON.stringify(c)});
+context.window.InteralJsonCardModal.init({buildCard:async()=>draft, createCardOnServer:async()=>{ throw new Error('save down'); }, formatCard:c=>JSON.stringify(c)});
 await context.document.getElementById('jsonCardModal')._interalJsonModalApi.generate();
-assert.match(elements.jsonCardOutput.value, /"id":null/); assert.match(alerts.join('\n'), /ID не был создан/);
+assert.match(elements.jsonCardOutput.value, /save down/); assert.equal(alerts.length, 0);
 const api1=context.window.InteralJsonCardModal.init({buildCard:async()=>draft});
 const api2=context.window.InteralJsonCardModal.init({buildCard:async()=>draft});
 assert.equal(api1,api2);
