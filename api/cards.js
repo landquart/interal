@@ -213,6 +213,13 @@ async function createCard(req, res) {
 
     if (error.code === '23505') continue;
 
+    console.error('cards insert error', {
+      code: error?.code || null,
+      message: error?.message || null,
+      section,
+      payloadBytes: getPayloadSizeBytes(payload)
+    });
+
     throw error;
   }
 
@@ -251,7 +258,7 @@ export default async function handler(req, res) {
       error: 'Method not allowed'
     });
   } catch (error) {
-    console.error('cards error:', error);
+    console.error('cards error:', { name: error?.name || null, message: error?.message || null, status: error?.status || null });
 
     const status = error instanceof ValidationError ? error.status : 500;
     sendJson(req, res, status, {

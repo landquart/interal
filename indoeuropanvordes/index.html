@@ -9,7 +9,7 @@
 <link rel="apple-touch-icon" sizes="512x512" href="../favicon/favicon%20interal%20512.png" />
 
 <title>Indoeuropan vordes</title>
-<link rel="stylesheet" href="../shared/ui.css?v=json-cards-fix-20260711-1" />
+<link rel="stylesheet" href="../shared/ui.css?v=json-id-fallback-20260711-1" />
 
 <style>
 .internationalita-page {
@@ -729,7 +729,7 @@ body.dark-theme .internationalita-page .json-card-icon-btn.is-copied {
 </div>
 
 
-<script src="./aline.js?v=json-cards-fix-20260711-1"></script>
+<script src="./aline.js?v=json-id-fallback-20260711-1"></script>
 
 <script>
 "use strict";
@@ -1226,10 +1226,6 @@ async function resetAll() {
 
 
 const CARDS_API_ENDPOINT = location.hostname === "landquart.github.io" ? "https://interal.vercel.app/api/cards" : "/api/cards";
-const CARDS_NEXT_ID_ENDPOINT = location.hostname === "landquart.github.io" ? "https://interal.vercel.app/api/cards-next-id" : "/api/cards-next-id";
-function isDatabaseLimitError(error) { const message = String(error?.message || error?.error || "").toLowerCase(); if (/invalid|validation|payload too large|path|section|title/.test(message)) return false; return message.includes("quota") || message.includes("storage") || message.includes("database size") || message.includes("disk") || message.includes("no space") || message.includes("insert") || message.includes("could not generate unique card id") || message.includes("write"); }
-async function createFallbackCard(card, section) { const response = await fetch(`${CARDS_NEXT_ID_ENDPOINT}?section=${encodeURIComponent(section)}`, { cache: "no-store" }); const data = await response.json().catch(() => null); if (!response.ok || !data?.ok || !data.id) throw new Error(data?.error || `HTTP ${response.status}`); return { ...card, id: data.id, section: data.section || section, discussionId: `card-${data.id}`, fallbackMode: "fallback-sequential", persistenceRequired: "Save this card to the GitHub JSON registry or another durable registry; fallback IDs are best-effort read-check-only and are not reserved in Supabase." }; }
-
 async function createCardOnServer(card) {
   if (!window.InteralJsonCards) throw new Error("InteralJsonCards is not loaded.");
   return window.InteralJsonCards.createCardOnServer(card, {
@@ -2847,9 +2843,9 @@ applyLocalizedTexts();
 updateResetButtonVisibility();
 </script>
 
-<script src="./download-json-card.js?v=json-cards-fix-20260711-1"></script>
-<script src="../shared/copy-plain.js?v=json-cards-fix-20260711-1"></script>
-<script src="../shared/ui.js?v=json-cards-fix-20260711-1" defer></script>
+<script src="./download-json-card.js?v=json-id-fallback-20260711-1"></script>
+<script src="../shared/copy-plain.js?v=json-id-fallback-20260711-1"></script>
+<script src="../shared/ui.js?v=json-id-fallback-20260711-1" defer></script>
 
 </body>
 </html>
