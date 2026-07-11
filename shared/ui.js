@@ -1236,10 +1236,18 @@ window.refreshCustomSelect = function refreshCustomSelect(selectOrId) {
     if(!response.ok||!data?.ok) throw new Error(data?.error||`Health check failed (${response.status})`);
     return data;
   }
-  function isFallbackEligibleError(error, responseStatus, apiError){
+  function getJsonByteSize(value){
+    const text = JSON.stringify(value);
+    if (typeof TextEncoder !== 'undefined') return new TextEncoder().encode(text).length;
+    if (typeof Blob !== 'undefined') { const size = new Blob([text]).size; if (Number.isFinite(size)) return size; }
+    return encodeURIComponent(text).replace(/%[0-9A-F]{2}/g, 'x').length;
+  }
+  function isFallbackEligibleError(error, responseStatus, apiError, apiCode){
     if (responseStatus === 400) return false;
+    const code = String(apiCode || error?.code || '').toUpperCase();
+    if (code === 'VALIDATION_ERROR' || code === 'SUPABASE_INSERT_FAILED') return false;
     const message = String(apiError || error?.message || '').toLowerCase();
-    if (message.includes('invalid request body') || message.includes('invalid title') || message.includes('invalid payload') || message.includes('invalid card section') || message.includes('payload too large')) return false;
+    if (message.includes('invalid request body') || message.includes('invalid title') || message.includes('invalid payload') || message.includes('invalid card section') || message.includes('payload too large') || message.includes('card persistence failed')) return false;
     return true;
   }
   async function createFallbackCardId(draftCard,{section,endpoint=FALLBACK_ID_ENDPOINT,sourceError=null}={}){
@@ -1278,7 +1286,11 @@ window.refreshCustomSelect = function refreshCustomSelect(selectOrId) {
       const err = new Error(publicJsonError(data?.error,`${kind} (${response.status}).`));
       err.responseStatus=response.status;
       err.apiError=data?.error;
-      err.fallbackEligible=isFallbackEligibleError(err,response.status,data?.error);
+      err.code=data?.code||null;
+      err.requestSection=section;
+      err.payloadBytes=getJsonByteSize(draftCard);
+      err.publicMessage=`${publicJsonError(data?.error,`${kind} (${response.status}).`)} [status: ${response.status}; code: ${data?.code||'UNKNOWN'}; section: ${section}; payloadBytes: ${err.payloadBytes}]`;
+      err.fallbackEligible=isFallbackEligibleError(err,response.status,data?.error,data?.code);
       throw err;
     }
     const card=extractSavedCard(data,draftCard); validateCardId(card,section); return card;
@@ -1288,7 +1300,7 @@ window.refreshCustomSelect = function refreshCustomSelect(selectOrId) {
     if(!section) throw new Error('Invalid card section.');
     try{ return await saveCardNormally(draftCard,{section,title,category,endpoint,onProgress}); }
     catch(saveError){
-      const eligible = saveError?.fallbackEligible ?? isFallbackEligibleError(saveError, saveError?.responseStatus, saveError?.apiError);
+      const eligible = saveError?.fallbackEligible ?? isFallbackEligibleError(saveError, saveError?.responseStatus, saveError?.apiError, saveError?.code);
       if(!allowLocalFallback || !eligible) throw saveError;
       console.warn('Primary card persistence failed; requesting fallback ID:', saveError);
       onProgress?.(document.documentElement.lang?.startsWith('en')?'Generating fallback ID...':'Создание резервного ID...');
