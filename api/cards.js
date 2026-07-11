@@ -183,6 +183,7 @@ async function createCard(req, res) {
       ...payload,
       id,
       section,
+      status: 'pending',
       discussionId
     };
     const row = {
