@@ -56,6 +56,12 @@ function getSupabaseClient() {
       auth: {
         persistSession: false,
         autoRefreshToken: false
+      },
+      global: {
+        headers: {
+          apikey: SUPABASE_SERVICE_ROLE_KEY,
+          Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`
+        }
       }
     });
   }
@@ -197,7 +203,11 @@ async function createCard(req, res) {
         section,
         status: 'pending',
         discussionId,
-        card: data || row
+        card: data || row,
+        persistence: {
+          saved: true,
+          mode: 'supabase'
+        }
       });
       return;
     }
