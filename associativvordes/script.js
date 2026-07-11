@@ -601,7 +601,7 @@ const TEXT_I18N = {
       const finalAssociation = represented.length ? totalAssociation / represented.length : 0;
       const representedLangs = represented.length;
       const groups = new Set(represented.map(x => x.lang.group));
-      const semanticConfirmed = represented.some(x => Number.isFinite(Number(x.normalized)));
+      const semanticConfirmed = represented.length > 0 && represented.every(x => (state.languages[x.lang.code] || []).filter(item => item.selected).some(item => item.analysis?.association?.semantic_confirmed === true));
       const accepted =
         representedLangs >= 3 &&
         groups.size >= 2 &&
@@ -693,7 +693,7 @@ const TEXT_I18N = {
 
     function rowHtml(lang, item, idx) {
       const analysis = item.analysis || {};
-      const assoc = analysis.review || analysis.association || {};
+      const assoc = analysis.association || {};
       const labels = textGroup('panel');
       const warningList = analysis.warnings || [];
       const warnings = warningList.join('; ');
@@ -872,7 +872,7 @@ const TEXT_I18N = {
     const JSON_CARD_WRAPPER_LIMIT = 4096;
     const JSON_CARD_START_MARKER = "/card";
     const JSON_CARD_END_MARKER = "/done";
-    const CREATED_AT_ENDPOINT = "/api/created-at";
+    const CREATED_AT_ENDPOINT = "/api/created_at";
 
     function finiteOrNull(value) {
       const number = Number(value);
@@ -885,6 +885,9 @@ function isDatabaseLimitError(error) { const message = String(error?.message || 
 async function createFallbackCard(card, section) { const response = await fetch(`${CARDS_NEXT_ID_ENDPOINT}?section=${encodeURIComponent(section)}`, { cache: 'no-store' }); const data = await response.json().catch(() => null); if (!response.ok || !data?.ok || !data.id) throw new Error(data?.error || `HTTP ${response.status}`); return { ...card, id: data.id, section: data.section || section, discussionId: `card-${data.id}`, fallbackMode: 'fallback-sequential', persistenceRequired: 'Save this card to the GitHub JSON registry or another durable registry; fallback IDs are best-effort read-check-only and are not reserved in Supabase.' }; }
 
     async function createCardOnServer(card) {
+  if (window.InteralJsonCards?.createCardOnServer) {
+    return window.InteralJsonCards.createCardOnServer(card, { section: 'associativvordes', title: card?.interal?.word || card?.title, category: card?.vord_type || 'av', endpoint: CARDS_API_ENDPOINT });
+  }
   const title = card?.interal?.word || card?.title || 'Untitled card';
   try {
     const response = await fetch(CARDS_API_ENDPOINT, {
@@ -955,6 +958,7 @@ async function createFallbackCard(card, section) { const response = await fetch(
         card_type: 'vord_card',
         vord_type: 'av',
         status: 'draft',
+        procedure: 'associative_word',
         created_at: timeMeta.created_at,
         created_at_source: timeMeta.created_at_source,
         interal: { word: state.root || '', part_of_speech: state.elementType || 'root' },
@@ -981,7 +985,7 @@ async function createFallbackCard(card, section) { const response = await fetch(
             return { code: lang.code, name: lang.name, group: lang.group, speakers_thousands: finiteOrNull(lang.speakers), word: '', normalized_graphic: '', selected: false, match: null, frequency: { score: null, ipm: null, category_breakdown: {} }, association: null, swow: null, final_score: null, status: 'unavailable', supports_group: false };
           }
           const analysis = best.analysis || {};
-          const association = analysis.review || analysis.association || {};
+          const association = analysis.association || {};
           return {
             code: lang.code,
             name: lang.name,
@@ -992,8 +996,8 @@ async function createFallbackCard(card, section) { const response = await fetch(
             selected: true,
             match: best.match ? { type: best.match.type, root: state.root || '', fragment: best.match.fragment || '', distance: finiteOrNull(best.match.distance) } : null,
             frequency: { score: finiteOrNull(analysis.frequency?.frequency_score ?? best.frequency_score), ipm: null, category_breakdown: analysis.frequency?.category_breakdown || {} },
-            association: { Di: finiteOrNull(association.directness), Pr: finiteOrNull(association.field_relatedness), Sh: finiteOrNull(association.domain_shift), A_base: finiteOrNull(association.association_score_base), swow_bonus: finiteOrNull(analysis.swow?.bonus || 0), A_final: finiteOrNull(association.association_score), F: finiteOrNull(analysis.frequency?.frequency_score ?? best.frequency_score), P: finiteOrNull(analysis.final_score ?? best.final_score), directness: finiteOrNull(association.directness), field_relatedness: finiteOrNull(association.field_relatedness), domain_shift: finiteOrNull(association.domain_shift), score_base: finiteOrNull(association.association_score_base), score: finiteOrNull(association.association_score), explanation: association.explanation || '' },
-            models: { primary: analysis.primary || null, review: analysis.review || null, combination_method: analysis.review && analysis.review.status !== 'review_unavailable' ? 'arithmetic_mean' : 'primary_only' },
+            association: { primary: analysis.primary || null, review: analysis.review || null, combination_method: association.combination_method || 'primary_only', Di: finiteOrNull(association.Di ?? association.directness), Pr: finiteOrNull(association.Pr ?? association.field_relatedness), Sh: finiteOrNull(association.Sh ?? association.domain_shift), A_base: finiteOrNull(association.A_base ?? association.association_score_base), swow_bonus: finiteOrNull(association.swow_bonus ?? analysis.swow?.bonus ?? 0), A_final: finiteOrNull(association.A_final ?? association.association_score), F: finiteOrNull(association.F ?? analysis.frequency?.frequency_score ?? best.frequency_score), P: finiteOrNull(association.P ?? analysis.final_score ?? best.final_score), TA: finiteOrNull(result.totalAssociation), FA: finiteOrNull(result.finalAssociation), semantic_confirmed: association.semantic_confirmed === true, accepted: result.accepted, directness: finiteOrNull(association.directness), field_relatedness: finiteOrNull(association.field_relatedness), domain_shift: finiteOrNull(association.domain_shift), score_base: finiteOrNull(association.association_score_base), score: finiteOrNull(association.association_score), explanation: association.explanation || '' },
+            models: { primary: analysis.primary || null, review: analysis.review || null, combination_method: association.combination_method || 'primary_only' },
             swow: { found: Boolean(analysis.swow?.bonus), bonus: finiteOrNull(analysis.swow?.bonus || 0), target_to_word: analysis.swow?.target_to_word || null, word_to_target: analysis.swow?.word_to_target || null },
             final_score: finiteOrNull(analysis.final_score ?? best.final_score),
             status: Number.isFinite(Number(analysis.final_score ?? best.final_score)) ? 'scored' : 'unavailable',
@@ -1029,7 +1033,7 @@ async function createFallbackCard(card, section) { const response = await fetch(
     }
 
     function hasPassedJsonCardThreshold() {
-      return calculateFinal().finalAssociation >= THRESHOLDS.main;
+      const r = calculateFinal(); return r.accepted && r.semanticConfirmed;
     }
 
     function syncCheckedVisibility() {
@@ -1141,16 +1145,10 @@ async function createFallbackCard(card, section) { const response = await fetch(
     });
 
     window.testQwenAssociation = async function () {
-      return await fetch('/api/qwen-association', {
+      return await fetch('/api/qwen-analyze', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          system: 'Return only JSON.',
-          user: 'Return {"word":"test","target_meaning":"test","directness":80,"field_relatedness":90,"domain_shift":10,"short_explanation":"test"}',
-          model: 'qwen3.6-35b-a3b/latest',
-          review: false,
-          interfaceLanguage: currentLang()
-        })
+        body: JSON.stringify({ task: 'associative_word_score', interfaceLanguage: currentLang(), payload: { language: 'en', targetMeaning: 'test', word: 'test', swow: {}, review: false } })
       }).then(r => r.json());
     };
 
