@@ -1197,6 +1197,37 @@ window.refreshCustomSelect = function refreshCustomSelect(selectOrId) {
     }
   }
 
+
+  const CARD_ID_PATTERN = /^(iv|av|in|vc|gv|al|af)_[0-9A-Za-z]{12}$/;
+  const SECTION_PREFIX = { internationalismes:'in', associativvordes:'av', indoeuropanvordes:'iv', vordesofcommunites:'vc', grammaticebrevivordes:'gv', altervordes:'al', affixes:'af' };
+  const API_ENDPOINT = location.hostname === 'landquart.github.io' ? 'https://interal.vercel.app/api/cards' : '/api/cards';
+  function publicJsonError(error, fallback){ const message=String(error?.message||error||fallback||'JSON card error'); return message.replace(/(apikey|authorization|service_role|bearer)\s*[:=]\s*\S+/ig,'$1: [hidden]'); }
+  function extractSavedCard(data, draftCard){
+    const payload = data?.card?.payload ?? data?.payload ?? null;
+    if (payload && typeof payload === 'object') return payload;
+    if (!data?.id) throw new Error('The server did not return a card ID.');
+    return { ...draftCard, id:data.id, section:data.section ?? draftCard.section, status:data.status ?? 'pending', discussionId:data.discussionId ?? `card-${data.id}` };
+  }
+  function validateCardId(card, section){ const id=card?.id; if(!CARD_ID_PATTERN.test(String(id||''))) throw new Error('The server returned an invalid card ID.'); const prefix=SECTION_PREFIX[section]; if(prefix && !String(id).startsWith(`${prefix}_`)) throw new Error('The server returned a card ID for another section.'); return true; }
+  async function checkHealth(endpoint=API_ENDPOINT){ const response=await fetch(`${endpoint}?health=1`,{cache:'no-store'}); const data=await response.json().catch(()=>null); if(!response.ok||!data?.ok) throw new Error(data?.error||`Health check failed (${response.status})`); return data; }
+  async function createCardOnServer(draftCard,{section,title,category,endpoint=API_ENDPOINT,onProgress,allowLocalFallback=true}={}){
+    if(!draftCard||typeof draftCard!=='object') throw new Error('Invalid source data for JSON card.');
+    if(!section) throw new Error('Invalid card section.');
+    const safeTitle=title||draftCard?.interal?.word||draftCard?.title||draftCard?.form||draftCard?.selectedForm||'Untitled card';
+    let health=null; try{ health=await checkHealth(endpoint); }catch(e){ if(!allowLocalFallback) throw new Error(publicJsonError(e,'Cards API is unavailable.')); }
+    if(health && (health.hasSupabaseUrl===false || health.hasSupabaseKey===false)){
+      return { ...draftCard, localOnly:true, persistenceWarning:'Карточка сформирована локально, но не была сохранена на сервере.' };
+    }
+    let response, data;
+    try{
+      onProgress?.(document.documentElement.lang?.startsWith('en')?'Saving card...':'Сохранение карточки...');
+      response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({section,title:safeTitle,category:category||draftCard?.vord_type||draftCard?.card_type||null,payload:draftCard})});
+      data=await response.json().catch(()=>null);
+    }catch(e){ throw new Error(publicJsonError(e,'Network error while saving the JSON card.')); }
+    if(!response.ok||!data?.ok){ const kind=response.status===400?'Invalid JSON card data':response.status>=500?'Server error while saving JSON card':'Cards API error'; throw new Error(publicJsonError(data?.error,`${kind} (${response.status}).`)); }
+    const card=extractSavedCard(data,draftCard); validateCardId(card,section); return card;
+  }
+
   function normalizeContact(type, value) {
     const raw = String(value || '').trim();
     if (!raw) return '';
@@ -1216,14 +1247,16 @@ window.refreshCustomSelect = function refreshCustomSelect(selectOrId) {
     let timer = 0;
     function applyTexts(){ const t=texts(); const map={jsonCardTitle:t.title,useAuthorBlockLabel:t.useAuthor,authorDisplayNameLabel:t.authorName,authorContactTypeLabel:t.contactType,authorContactValueLabel:t.contact,jsonCardOutputLabel:t.output}; Object.entries(map).forEach(([id,v])=>{ if($(id)) $(id).textContent=v; }); const generateButton=$(ids.generateButtonId); if(generateButton){ const textEl=generateButton.querySelector('.btn-text') || generateButton; textEl.textContent=t.generate; } if($(ids.closeButtonId)) $(ids.closeButtonId).setAttribute('aria-label',t.close); [ids.copyButtonId,ids.downloadButtonId].forEach((id)=>{ const b=$(id); if(!b) return; const v=id===ids.copyButtonId?t.copy:t.download; b.setAttribute('aria-label',v); b.title=v; }); }
     function resetCopy(){ const b=$(ids.copyButtonId); clearTimeout(timer); if(b){ b.classList.remove('is-copied'); b.title=texts().copy; b.setAttribute('aria-label',texts().copy); } }
-    function open(){ opener=document.activeElement; if(output()) output().value=''; resetCopy(); const m=$(ids.modalId); if(m){ m.classList.add('show'); m.setAttribute('aria-hidden','false'); } setTimeout(()=>$(ids.generateButtonId)?.focus(),0); }
-    function close(){ const m=$(ids.modalId); resetCopy(); if(m){ m.classList.remove('show'); m.setAttribute('aria-hidden','true'); } if(opener?.focus) opener.focus(); }
+    function showError(message){ if(output()) output().value=message; }
+    function open(){ opener=document.activeElement; resetCopy(); const m=$(ids.modalId); if(m){ m.classList.add('show'); m.setAttribute('aria-hidden','false'); } const btn=$(ids.generateButtonId); if(btn){ btn.hidden=false; setButtonStatus(btn, texts().generate, false); } setTimeout(()=>btn?.focus(),0); }
+    function close(){ const m=$(ids.modalId); resetCopy(); if(m){ m.classList.remove('show'); m.setAttribute('aria-hidden','true'); } const btn=$(ids.generateButtonId); if(btn) setButtonStatus(btn, texts().generate, false); if(opener?.focus) opener.focus(); }
     function getAuthor(){ if(!$(ids.useAuthorBlockId)?.checked) return null; const name=$(ids.authorDisplayNameId)?.value.trim()||''; const type=$(ids.authorContactTypeId)?.value||'telegram'; const contact=normalizeContact(type,$(ids.authorContactValueId)?.value||''); if(!name && !contact) throw new Error(lang()==='en'?'Add a name or contact for authorship.':'Укажите имя или контакт для авторства.'); const author={}; if(name) author.display_name=name; if(contact) author.contacts=[{type,url:contact}]; return author; }
-    async function generate(){ const btn=$(ids.generateButtonId); const t=texts(); try{ if(btn) setButtonStatus(btn, t.generating, true); const author=getAuthor(); if(btn) setButtonStatus(btn, lang()==='en'?'Generating JSON...':'Генерация JSON...', true); let card=await options.buildCard?.({author, onProgress: text => btn && setButtonStatus(btn, text, true)}); if(options.createCardOnServer){ if(btn) setButtonStatus(btn, lang()==='en'?'Saving card...':'Сохранение карточки...', true); card=await options.createCardOnServer(card); } if(btn) setButtonStatus(btn, lang()==='en'?'Formatting JSON...':'Форматирование JSON...', true); const formatted=options.formatCard?options.formatCard(card):JSON.stringify(card,null,2); if(output()) output().value=formatted; if(btn) setButtonStatus(btn, lang()==='en'?'Done':'Готово', true); }catch(e){ if(btn) setButtonStatus(btn, lang()==='en'?'Error':'Ошибка', false); alert(e.message||String(e)); return; }finally{ if(btn) setTimeout(()=>setButtonStatus(btn, texts().generate, false), 800); } }
+    async function generate(){ const btn=$(ids.generateButtonId); const t=texts(); try{ if(btn) setButtonStatus(btn, t.generating, true); const author=getAuthor(); if(output()) output().value=''; let card=await options.buildCard?.({author, onProgress: text => btn && setButtonStatus(btn, text, true)}); if(options.createCardOnServer){ card=await options.createCardOnServer(card,{author,onProgress:text=>btn&&setButtonStatus(btn,text,true)}); } const formatted=options.formatCard?options.formatCard(card):JSON.stringify(card,null,2); if(output()) output().value=formatted; if(btn) setButtonStatus(btn, lang()==='en'?'Done':'Готово', true); }catch(e){ const msg=publicJsonError(e, lang()==='en'?'Could not generate JSON card.':'Не удалось сформировать JSON-карточку.'); if(btn) setButtonStatus(btn, lang()==='en'?'Error':'Ошибка', false); showError(msg); return; }finally{ if(btn) setTimeout(()=>setButtonStatus(btn, texts().generate, false), 800); } }
     async function copy(){ const text=output()?.value||''; if(!text.trim()) return alert(texts().empty); await (window.copyText ? window.copyText(text) : navigator.clipboard.writeText(text)); const b=$(ids.copyButtonId); if(b){ b.classList.add('is-copied'); b.title=texts().copiedTitle; b.setAttribute('aria-label',texts().copied); timer=setTimeout(resetCopy,1500); } }
     function download(){ const text=output()?.value||''; if(!text.trim()) return alert(texts().empty); let filename=options.getFilename?.(text)||'json-card.json'; try{ const id=JSON.parse(text)?.id; if(id) filename=`${id}.json`; }catch{} const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([text],{type:'application/json;charset=utf-8'})); a.download=filename; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(a.href); }
-    applyTexts(); $(ids.openButtonId)?.addEventListener('click', open); $(ids.closeButtonId)?.addEventListener('click', close); $(ids.modalId)?.addEventListener('click', e=>{ if(e.target===$(ids.modalId)) close(); }); $(ids.useAuthorBlockId)?.addEventListener('change', e=>{ if($(ids.authorFieldsId)) $(ids.authorFieldsId).style.display=e.target.checked?'grid':'none'; }); $(ids.generateButtonId)?.addEventListener('click', generate); $(ids.copyButtonId)?.addEventListener('click', copy); $(ids.downloadButtonId)?.addEventListener('click', download); document.addEventListener('keydown', e=>{ if(e.key==='Escape' && $(ids.modalId)?.classList.contains('show')) close(); }); document.addEventListener('interal:languagechange', applyTexts); return { open, close, generate, getAuthor, applyTexts };
+    const modal=$(ids.modalId); if(modal?.dataset.interalJsonModalInit==='1') return modal._interalJsonModalApi; if(modal) modal.dataset.interalJsonModalInit='1'; applyTexts(); $(ids.openButtonId)?.addEventListener('click', open); $(ids.closeButtonId)?.addEventListener('click', close); $(ids.modalId)?.addEventListener('click', e=>{ if(e.target===$(ids.modalId)) close(); }); $(ids.useAuthorBlockId)?.addEventListener('change', e=>{ if($(ids.authorFieldsId)) $(ids.authorFieldsId).style.display=e.target.checked?'grid':'none'; }); $(ids.generateButtonId)?.addEventListener('click', generate); $(ids.copyButtonId)?.addEventListener('click', copy); $(ids.downloadButtonId)?.addEventListener('click', download); document.addEventListener('keydown', e=>{ if(e.key==='Escape' && $(ids.modalId)?.classList.contains('show')) close(); }); document.addEventListener('interal:languagechange', applyTexts); const api = { open, close, generate, getAuthor, applyTexts }; if(modal) modal._interalJsonModalApi=api; return api;
   }
+  window.InteralJsonCards = { extractSavedCard, createCardOnServer, validateCardId, checkHealth, publicJsonError };
   window.InteralJsonCardModal = { init, normalizeContact };
   window.InteralButtonStatus = { setButtonStatus };
 })();
