@@ -56,12 +56,6 @@ function getSupabaseClient() {
       auth: {
         persistSession: false,
         autoRefreshToken: false
-      },
-      global: {
-        headers: {
-          apikey: SUPABASE_SERVICE_ROLE_KEY,
-          Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`
-        }
       }
     });
   }
@@ -144,7 +138,6 @@ function validateCreateBody(body) {
   const section = typeof body.section === 'string' ? body.section.trim() : '';
   const title = body.title;
   const category = typeof body.category === 'string' && body.category.trim() ? body.category.trim() : null;
-  const slug = typeof body.slug === 'string' && body.slug.trim() ? body.slug.trim() : null;
   const payload = body.payload;
 
   if (!CARD_PREFIXES[section]) {
@@ -167,13 +160,12 @@ function validateCreateBody(body) {
     section,
     title: title.trim(),
     category,
-    slug,
     payload
   };
 }
 
 async function createCard(req, res) {
-  const { section, title, category, slug, payload } = validateCreateBody(getRequestBody(req));
+  const { section, title, category, payload } = validateCreateBody(getRequestBody(req));
   const client = getSupabaseClient();
 
   for (let attempt = 0; attempt < MAX_ID_ATTEMPTS; attempt += 1) {
@@ -192,7 +184,6 @@ async function createCard(req, res) {
       status: 'pending',
       title,
       category: category || null,
-      slug: slug || null,
       discussion_id: discussionId,
       payload: cardPayload
     };
@@ -216,11 +207,18 @@ async function createCard(req, res) {
     console.error('cards insert error', {
       code: error?.code || null,
       message: error?.message || null,
+      details: error?.details || null,
+      hint: error?.hint || null,
       section,
-      payloadBytes: getPayloadSizeBytes(payload)
+      titlePresent: typeof title === 'string' && title.trim().length > 0,
+      payloadBytes: getPayloadSizeBytes(payload),
+      insertedFields: Object.keys(row)
     });
 
-    throw error;
+    const insertError = new Error('Card persistence failed');
+    insertError.code = 'SUPABASE_INSERT_FAILED';
+    insertError.cause = error;
+    throw insertError;
   }
 
   throw new Error('Could not generate unique card id');
@@ -263,7 +261,8 @@ export default async function handler(req, res) {
     const status = error instanceof ValidationError ? error.status : 500;
     sendJson(req, res, status, {
       ok: false,
-      error: error instanceof ValidationError ? error.message : 'Internal server error'
+      error: error instanceof ValidationError ? error.message : error?.message === 'Card persistence failed' ? 'Card persistence failed' : 'Internal server error',
+      code: error instanceof ValidationError ? 'VALIDATION_ERROR' : error?.code || 'INTERNAL_ERROR'
     });
   }
 }
