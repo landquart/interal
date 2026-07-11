@@ -130,7 +130,7 @@ function countPassedCriteria() { return state.criteria.filter(Boolean).length; }
 function isGrammarShortWordAccepted() { return countPassedCriteria() >= REQUIRED_CRITERIA_COUNT; }
 function result(){ const n=countPassedCriteria(); return {passed:n,total:CRITERIA_NAMES.length,required:REQUIRED_CRITERIA_COUNT,accepted:isGrammarShortWordAccepted()}; }
 function makeCardDraft(author = null){ const r=result(); const card = { version:'1.0', card_type:'vord_card', vord_type:'gv', procedure:'grammar_short_word', status:'draft', interal:{word:state.word, part_of_speech:state.part_of_speech}, translations:LANGUAGES.map(lang=>({language:lang.code, word:state.translations[lang.code]||''})), function:{meaning:state.meaning}, criteria:CRITERIA.map((criterion,i)=>({id:criterion.id, passed:Boolean(state.criteria[i]), explanation:state.comments[i]||''})), decision:{accepted:r.accepted, required_criteria:r.required, passed_criteria:r.passed, total_criteria:r.total} }; if (author) card.author = author; return card; }
-async function makeCard(author){ return createCardOnServer(makeCardDraft(author)); }
+function makeCard(author){ return makeCardDraft(author); }
 function generateJson(){ openJsonModal(); }
 function renderCriteria(){ return `<div class="criteria-list grammar-criteria-list">${CRITERIA.map((criterion,i)=>`<div class="criterion grammar-criterion"><div class="criterion-head"><strong>${escapeHtml(criterion[currentLang()])}</strong></div><label class="criterion-check"><input id="crit_${i}" type="checkbox" ${state.criteria[i] ? 'checked' : ''}><span>${t('criterionPass')}</span></label><label class="field criterion-comment"><span>${t('comment')}</span><textarea class="interal-textarea" id="comment_${i}">${escapeHtml(state.comments[i])}</textarea></label></div>`).join('')}</div>`; }
 
@@ -158,6 +158,7 @@ function bindJsonModal() {
     getLanguage: currentLang,
     getTexts: getJsonCardTexts,
     buildCard: async ({ author, onProgress } = {}) => { onProgress?.(currentLang() === 'en' ? 'Reading data...' : 'Чтение данных...'); readState(); if (!state.checked || !result().accepted) throw new Error(getJsonCardTexts().unavailable); onProgress?.(currentLang() === 'en' ? 'Saving card...' : 'Сохранение карточки...'); return makeCard(author); },
+    createCardOnServer: (card, ctx) => window.InteralJsonCards.createCardOnServer(card, { section: 'grammaticebrevivordes', title: card?.interal?.word, category: 'gv', onProgress: ctx?.onProgress }),
     formatCard: (card) => JSON.stringify(card, null, 2),
     getFilename: () => jsonFilename
   });

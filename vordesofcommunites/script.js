@@ -132,7 +132,7 @@ function getFormRecommendation(){ const answer = state.answers[2] || 'yes'; if (
 function recommendationLabel(value){ return value === 'keep_unchanged' ? t('keepUnchanged') : value === 'light_adaptation' ? t('lightAdaptation') : t('notCommunityWord'); }
 function result(){ const criteria=[state.answers[0] === 'yes', state.answers[1] === 'yes', state.answers[2] === 'yes' || state.answers[2] === 'partially']; const n=criteria.filter(Boolean).length; return { passed:n, total:3, criteria, formRecommendation:getFormRecommendation(), accepted:criteria[0]&&criteria[1]&&criteria[2] }; }
 function makeCardDraft(author = null){ const r=result(); const card = { version:'1.0', card_type:'vord_card', vord_type:'vc', procedure:'community_word', status:'draft', interal:{word:state.word, part_of_speech:state.part_of_speech}, translations: LANGUAGES.map(lang=>({language:lang.code, word:state.translations[lang.code]||''})), domain:state.domain, criteria: QUESTIONS[currentLang()].map((q,i)=>({id:['domain_specificity','international_use_in_community','recognizability_loss_after_adaptation'][i], question:q, answer:state.answers[i]||'yes', passed:Boolean(r.criteria[i]), explanation:''})), form_recommendation:r.formRecommendation, decision:{accepted:r.accepted} }; if (author) card.author = author; return card; }
-async function makeCard(author){ return createCardOnServer(makeCardDraft(author)); }
+function makeCard(author){ return makeCardDraft(author); }
 function generateJson(){ openJsonModal(); }
 function renderCriteria(){ const questions = QUESTIONS[currentLang()]; return `<div class="criteria-list">${questions.map((q,i)=>`<div class="criterion"><p>${escapeHtml(q)}</p><select class="interal-select js-custom-select" id="ans_${i}"><option value="yes">${t('answerYes')}</option>${i===2?`<option value="partially">${t('answerPartially')}</option>`:''}<option value="no">${t('answerNo')}</option></select></div>`).join('')}</div>`; }
 
@@ -161,6 +161,7 @@ function bindJsonModal() {
     getLanguage: currentLang,
     getTexts: getJsonCardTexts,
     buildCard: async ({ author, onProgress } = {}) => { onProgress?.(currentLang() === 'en' ? 'Reading data...' : 'Чтение данных...'); readState(); onProgress?.(currentLang() === 'en' ? 'Saving card...' : 'Сохранение карточки...'); return makeCard(author); },
+    createCardOnServer: (card, ctx) => window.InteralJsonCards.createCardOnServer(card, { section: 'vordesofcommunites', title: card?.interal?.word, category: 'vc', onProgress: ctx?.onProgress }),
     formatCard: (card) => JSON.stringify(card, null, 2),
     getFilename: () => jsonFilename
   });
