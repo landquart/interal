@@ -1108,6 +1108,7 @@ body.dark-theme #jsonCardModal{background:rgba(0,0,0,.62);}
 #jsonCardModal .modal-inner{position:relative;width:min(100%,680px);max-height:min(88vh,760px);overflow:auto;background:var(--surface-elevated);color:var(--text);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);box-shadow:var(--shadow-md);padding:28px;}
 .json-card-title{margin:0 46px 20px 0;font-size:1.35rem;font-weight:800;}
 .json-card-form{display:grid;gap:14px;}
+.json-card-form #generateJsonCardBtn{justify-self:center;width:fit-content;max-width:100%;min-width:0;padding-inline:18px;}
 .json-card-form .checkbox-line{display:flex;align-items:center;gap:10px;margin:0;}
 .json-author-fields{display:grid;gap:10px;padding:14px;border:1px solid var(--border-subtle);border-radius:var(--radius-md);background:var(--surface-soft);}
 .json-card-output{min-height:220px;width:100%;resize:vertical;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;line-height:1.45;}
@@ -1124,7 +1125,7 @@ body.dark-theme #jsonCardModal{background:rgba(0,0,0,.62);}
 .json-card-close-btn:hover{background:var(--surface-hover);}
 .json-card-close-btn:focus-visible{outline:2px solid var(--focus-outline);outline-offset:3px;box-shadow:0 0 0 5px var(--focus-ring);}
 .json-card-close-btn svg{width:20px;height:20px;stroke:currentColor;}
-@media (max-width:560px){#jsonCardModal .modal-inner{padding:20px;}.json-card-form .tool-btn{width:100%;}.json-card-actions{justify-content:stretch;}.json-card-icon-btn{flex:1 1 0;border-radius:var(--radius-md);}}
+@media (max-width:560px){#jsonCardModal .modal-inner{padding:20px;}.json-card-form .tool-btn:not(#generateJsonCardBtn){width:100%;}.json-card-form #generateJsonCardBtn{justify-self:center;width:fit-content;max-width:100%;}.json-card-actions{justify-content:stretch;}.json-card-icon-btn{flex:1 1 0;border-radius:var(--radius-md);}}
 
 
 .tool-btn,
