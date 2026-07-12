@@ -800,6 +800,7 @@ const TEXT_I18N = {
       document.getElementById('copyJsonCardBtn')?.setAttribute('title', jsonCardText.copy);
       document.getElementById('downloadJsonCardBtn')?.setAttribute('aria-label', jsonCardText.download);
       document.getElementById('downloadJsonCardBtn')?.setAttribute('title', jsonCardText.download);
+      window.InteralJsonCardModal?.applyContactTypeLabels?.('authorContactType', currentLang());
       const resetBtn = document.getElementById('resetBtn');
       resetBtn.setAttribute('aria-label', textValue('reset'));
       resetBtn.setAttribute('title', textValue('reset'));
