@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
-import { CARD_PREFIXES, createCardId, getPayloadSizeBytes, MAX_PAYLOAD_BYTES } from '../api/cards.js';
+import { CARD_PREFIXES, createCardId, getPayloadSizeBytes, getSupabaseConstraint, MAX_PAYLOAD_BYTES } from '../api/cards.js';
 
 function el(){return {style:{},dataset:{},classList:{add(){},remove(){},toggle(){},contains(){return false}},setAttribute(){},getAttribute(){return null},append(){},appendChild(){},prepend(){},remove(){},addEventListener(){},querySelector(){return el()},querySelectorAll(){return []},focus(){},click(){},textContent:'',value:'',checked:false,hidden:false,disabled:false};}
 function loadUi(){
@@ -49,6 +49,8 @@ for (const [section,prefix] of Object.entries(CARD_PREFIXES)) {
 }
 assert.throws(() => createCardId('in'), /Invalid card section/);
 assert.ok(getPayloadSizeBytes({x:'a'.repeat(MAX_PAYLOAD_BYTES + 1)}) > MAX_PAYLOAD_BYTES);
+assert.equal(getSupabaseConstraint({ constraint: 'cards_id_check' }), 'cards_id_check');
+assert.equal(getSupabaseConstraint({ message: 'new row for relation "cards" violates check constraint "cards_id_check"' }), 'cards_id_check');
 
 const htmlFiles = ['internationalismes/index.html','indoeuropanvordes/index.html','associativvordes/index.html','vordesofcommunites/index.html','grammaticebrevivordes/index.html','altervordes/index.html','affixes/index.html'];
 for (const file of htmlFiles) {
