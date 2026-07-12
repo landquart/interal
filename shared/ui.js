@@ -1175,6 +1175,10 @@ window.refreshCustomSelect = function refreshCustomSelect(selectOrId) {
     ru: { close: 'Закрыть JSON-карточку', title: 'JSON-карточка', useAuthor: 'Указать авторство', authorName: 'Имя или ник', contactType: 'Тип контакта', contact: 'Контакт', generate: 'Сгенерировать карточку', generating: 'Генерация...', output: 'Готовый JSON', copy: 'Скопировать JSON-карточку', copied: 'JSON-карточка скопирована', copiedTitle: 'Скопировано', download: 'Скачать JSON-карточку', empty: 'Сначала сгенерируйте JSON-карточку.', unavailable: 'JSON-карточка доступна только после успешной проверки.' },
     en: { close: 'Close JSON card', title: 'JSON card', useAuthor: 'Add authorship', authorName: 'Name or nickname', contactType: 'Contact type', contact: 'Contact', generate: 'Generate card', generating: 'Generating...', output: 'Generated JSON', copy: 'Copy JSON card', copied: 'JSON card copied', copiedTitle: 'Copied', download: 'Download JSON card', empty: 'Generate the JSON card first.', unavailable: 'The JSON card is available only after a successful check.' }
   };
+  const CONTACT_TYPE_LABELS = {
+    ru: { telegram: 'Telegram', discord: 'Discord', email: 'Email', signal: 'Signal', matrix: 'Matrix', simplex: 'Simplex', other: 'Другое' },
+    en: { telegram: 'Telegram', discord: 'Discord', email: 'Email', signal: 'Signal', matrix: 'Matrix', simplex: 'Simplex', other: 'Other' }
+  };
   const $ = (id) => document.getElementById(id);
 
   const buttonLoaderTimers = new Map();
@@ -1278,6 +1282,15 @@ window.refreshCustomSelect = function refreshCustomSelect(selectOrId) {
     }
     return raw;
   }
+  function applyContactTypeLabels(selectOrId = 'authorContactType', language = document.documentElement.lang || 'ru') {
+    const select = typeof selectOrId === 'string' ? $(selectOrId) : selectOrId;
+    if (!select) return;
+    const labels = CONTACT_TYPE_LABELS[String(language).startsWith('en') ? 'en' : 'ru'];
+    Array.from(select.options || []).forEach((option) => {
+      if (labels[option.value]) option.textContent = labels[option.value];
+    });
+    window.refreshCustomSelect?.(select);
+  }
   function init(options = {}) {
     const ids = { modalId:'jsonCardModal', openButtonId:'jsonCardBtn', closeButtonId:'closeJsonCardBtn', useAuthorBlockId:'useAuthorBlock', authorFieldsId:'jsonAuthorFields', authorDisplayNameId:'authorDisplayName', authorContactTypeId:'authorContactType', authorContactValueId:'authorContactValue', generateButtonId:'generateJsonCardBtn', outputId:'jsonCardOutput', copyButtonId:'copyJsonCardBtn', downloadButtonId:'downloadJsonCardBtn', ...options };
     const lang = () => (options.getLanguage?.() || document.documentElement.lang || 'ru').startsWith('en') ? 'en' : 'ru';
@@ -1285,7 +1298,7 @@ window.refreshCustomSelect = function refreshCustomSelect(selectOrId) {
     const output = () => $(ids.outputId);
     let opener = null;
     let timer = 0;
-    function applyTexts(){ const t=texts(); const map={jsonCardTitle:t.title,useAuthorBlockLabel:t.useAuthor,authorDisplayNameLabel:t.authorName,authorContactTypeLabel:t.contactType,authorContactValueLabel:t.contact,jsonCardOutputLabel:t.output}; Object.entries(map).forEach(([id,v])=>{ if($(id)) $(id).textContent=v; }); const generateButton=$(ids.generateButtonId); if(generateButton){ const textEl=generateButton.querySelector('.btn-text') || generateButton; textEl.textContent=t.generate; } if($(ids.closeButtonId)) $(ids.closeButtonId).setAttribute('aria-label',t.close); [ids.copyButtonId,ids.downloadButtonId].forEach((id)=>{ const b=$(id); if(!b) return; const v=id===ids.copyButtonId?t.copy:t.download; b.setAttribute('aria-label',v); b.title=v; }); }
+    function applyTexts(){ const t=texts(); const map={jsonCardTitle:t.title,useAuthorBlockLabel:t.useAuthor,authorDisplayNameLabel:t.authorName,authorContactTypeLabel:t.contactType,authorContactValueLabel:t.contact,jsonCardOutputLabel:t.output}; Object.entries(map).forEach(([id,v])=>{ if($(id)) $(id).textContent=v; }); applyContactTypeLabels(ids.authorContactTypeId, lang()); const generateButton=$(ids.generateButtonId); if(generateButton){ const textEl=generateButton.querySelector('.btn-text') || generateButton; textEl.textContent=t.generate; } if($(ids.closeButtonId)) $(ids.closeButtonId).setAttribute('aria-label',t.close); [ids.copyButtonId,ids.downloadButtonId].forEach((id)=>{ const b=$(id); if(!b) return; const v=id===ids.copyButtonId?t.copy:t.download; b.setAttribute('aria-label',v); b.title=v; }); }
     function resetCopy(){ const b=$(ids.copyButtonId); clearTimeout(timer); if(b){ b.classList.remove('is-copied'); b.title=texts().copy; b.setAttribute('aria-label',texts().copy); } }
     function showError(message){ if(output()) output().value=message; }
     function open(){ opener=document.activeElement; resetCopy(); const m=$(ids.modalId); if(m){ m.classList.add('show'); m.setAttribute('aria-hidden','false'); } const btn=$(ids.generateButtonId); if(btn){ btn.hidden=false; setButtonStatus(btn, texts().generate, false); } setTimeout(()=>btn?.focus(),0); }
@@ -1298,6 +1311,6 @@ window.refreshCustomSelect = function refreshCustomSelect(selectOrId) {
   }
   window.InteralJsonCards = { extractSavedCard, createCardOnServer, validateCardId, publicJsonError };
   window.InteralJsonDiagnostics = { getStatus(){ return { version: INTERAL_JSON_MODULE_VERSION, modalLoaded:Boolean(window.InteralJsonCardModal), cardsHelperLoaded:Boolean(window.InteralJsonCards), helpers:Object.keys(window.InteralJsonCards || {}), page:window.location.pathname, scriptUrl:document.querySelector('script[src*="shared/ui.js"]')?.src || null }; } };
-  window.InteralJsonCardModal = { init, normalizeContact };
+  window.InteralJsonCardModal = { init, normalizeContact, applyContactTypeLabels };
   window.InteralButtonStatus = { setButtonStatus };
 })();
