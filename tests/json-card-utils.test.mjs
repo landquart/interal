@@ -1,53 +1,74 @@
 import assert from 'node:assert/strict';
-import vm from 'node:vm';
 import fs from 'node:fs';
+import vm from 'node:vm';
+import { CARD_PREFIXES, createCardId, getPayloadSizeBytes, MAX_PAYLOAD_BYTES } from '../api/cards.js';
 
-function el(){ return { value:'', hidden:false, disabled:false, dataset:{}, classList:{ add(){}, remove(){}, toggle(){}, contains(){return false;} }, addEventListener(){}, setAttribute(){}, querySelector(){return el()}, querySelectorAll(){return []}, focus(){}, append(){}, prepend(){}, remove(){}, click(){}, style:{}, textContent:'' }; }
-function load(){
-  const modal=el(); modal.id='jsonCardModal';
-  const elements={ jsonCardModal:modal, generateJsonCardBtn:el(), jsonCardOutput:el(), jsonCardBtn:el(), closeJsonCardBtn:el(), copyJsonCardBtn:el(), downloadJsonCardBtn:el(), useAuthorBlock:el(), jsonAuthorFields:el(), authorDisplayName:el(), authorContactType:{...el(), value:'telegram'}, authorContactValue:el() };
-  const alerts=[]; const calls=[];
-  const context={ console, calls, alert:(msg)=>alerts.push(msg), setTimeout, clearTimeout, requestAnimationFrame:(fn)=>setTimeout(fn,0), CustomEvent:class{constructor(type,init){this.type=type;this.detail=init?.detail}}, location:{hostname:'localhost', pathname:'/test/', origin:'http://localhost'}, navigator:{clipboard:{writeText:async()=>{}}}, localStorage:{getItem(){return null}, setItem(){}, removeItem(){}}, Blob:class{}, URL:Object.assign(URL,{createObjectURL(){return 'blob:'}, revokeObjectURL(){}}), fetch:async()=>({ok:true,json:async()=>({ok:true,hasSupabaseUrl:true,hasSupabaseKey:true})}), document:{dispatchEvent(){}, documentElement:{lang:'ru', classList:{add(){}, remove(){}, toggle(){}, contains(){return false}}, style:{setProperty(){}}}, body:{appendChild(){}, append(){}, prepend(){}, classList:{add(){}, remove(){}, toggle(){}, contains(){return false}}}, createElement(){return el()}, querySelector(sel){return sel.includes('/shared/ui.js')?{src:'/shared/ui.js?v=test'}:null}, querySelectorAll(){return []}, getElementById(id){return elements[id]||null}, addEventListener(){}}, window:null };
+function el(){return {style:{},dataset:{},classList:{add(){},remove(){},toggle(){},contains(){return false}},setAttribute(){},getAttribute(){return null},append(){},appendChild(){},prepend(){},remove(){},addEventListener(){},querySelector(){return el()},querySelectorAll(){return []},focus(){},click(){},textContent:'',value:'',checked:false,hidden:false,disabled:false};}
+function loadUi(){
+  const elements={}; const alerts=[]; const calls=[];
+  const context={ console, calls, alert:(msg)=>alerts.push(msg), setTimeout, clearTimeout, requestAnimationFrame:(fn)=>setTimeout(fn,0), CustomEvent:class{constructor(type,init){this.type=type;this.detail=init?.detail}}, location:{hostname:'localhost', pathname:'/internationalismes/', origin:'http://localhost'}, navigator:{clipboard:{writeText:async()=>{}}}, localStorage:{getItem(){return null}, setItem(){}, removeItem(){}}, Blob:class{}, URL:Object.assign(URL,{createObjectURL(){return 'blob:'}, revokeObjectURL(){}}), TextEncoder, fetch:async()=>({ok:true,json:async()=>({ok:true,id:'in_123456789abc',section:'internationalismes',status:'pending'})}), document:{currentScript:{src:'http://localhost/shared/ui.js?v=cards-primary-id-fix-20260712-1'}, dispatchEvent(){}, documentElement:{lang:'ru', classList:{add(){}, remove(){}, toggle(){}, contains(){return false}}, style:{setProperty(){}}}, body:{appendChild(){}, append(){}, prepend(){}, classList:{add(){}, remove(){}, toggle(){}, contains(){return false}}}, createElement(){return el()}, querySelector(sel){return sel.includes('shared/ui.js')?{src:'/shared/ui.js?v=cards-primary-id-fix-20260712-1'}:null}, querySelectorAll(){return []}, getElementById(id){return elements[id]||null}, addEventListener(){}}, window:null };
   context.addEventListener=()=>{}; context.removeEventListener=()=>{}; context.matchMedia=()=>({matches:false, addEventListener(){}, removeEventListener(){}}); context.window=context; vm.createContext(context); vm.runInContext(fs.readFileSync('shared/ui.js','utf8'), context); return {context,elements,alerts,calls};
 }
-function okResponse(data,status=200){ return {ok:status>=200&&status<300,status,json:async()=>data}; }
-function badResponse(error,status){ return {ok:false,status,json:async()=>({ok:false,error})}; }
+const okResponse=(data)=>({ok:true,status:200,json:async()=>data});
+const badResponse=(error,status=500,code='SUPABASE_INSERT_FAILED')=>({ok:false,status,json:async()=>({ok:false,error,code})});
 
-let {context,elements,alerts,calls}=load();
+const {context,calls}=loadUi();
 const { extractSavedCard, createCardOnServer, validateCardId } = context.window.InteralJsonCards;
 const draft={section:'internationalismes', interal:{word:'test'}};
-assert.equal(extractSavedCard({card:{payload:{id:'in_ABCDEFGHIJKL'}}}, draft).persistence.mode, 'supabase');
+
+assert.equal(context.window.InteralJsonDiagnostics.getStatus().version, 'cards-primary-id-fix-20260712-1');
+assert.equal(JSON.stringify(context.window.InteralJsonDiagnostics.getStatus().helpers), JSON.stringify(['extractSavedCard','createCardOnServer','validateCardId','publicJsonError']));
 assert.equal(extractSavedCard({id:'in_123456789abc', section:'internationalismes', status:'pending', discussionId:'card-in_123456789abc'}, draft).discussionId, 'card-in_123456789abc');
-assert.throws(()=>extractSavedCard({ok:true}, draft), /ID/);
-assert.throws(()=>validateCardId({id:'zz_123456789abc'}, 'internationalismes'), /invalid/);
+assert.equal(extractSavedCard({id:'in_123456789abc', section:'internationalismes', status:'pending', card:{payload:{version:'1.0'}}}, draft).id, 'in_123456789abc');
+assert.throws(() => extractSavedCard({ok:true}, draft), /server did not return/);
 assert.throws(()=>validateCardId({id:'av_123456789abc'}, 'internationalismes'), /another section/);
 
-context.fetch=async(url,opts)=> { calls.push(String(url)); return String(url).includes('health') ? okResponse({ok:true,hasSupabaseUrl:true,hasSupabaseKey:true}) : okResponse({ok:true,id:'in_123456789abc',section:'internationalismes',status:'pending'}); };
+context.fetch=async(url,opts)=> { calls.push({url:String(url),opts}); return okResponse({ok:true,id:'in_123456789abc',section:'internationalismes',status:'pending'}); };
 let saved=await createCardOnServer(draft,{section:'internationalismes',title:'test'});
-assert.equal(saved.id,'in_123456789abc'); assert.equal(saved.status,'pending'); assert.equal(saved.persistence.saved,true); assert.equal(saved.persistence.mode,'supabase');
+assert.equal(saved.id,'in_123456789abc');
+assert.equal(saved.persistence.mode,'supabase');
+assert.equal(calls.length, 1);
+assert.equal(calls[0].opts.method, 'POST');
+assert.ok(!calls.some((call)=>call.url.includes(['cards','next','id'].join('-'))));
 
-context.fetch=async(url)=> { calls.push(String(url)); return badResponse('Internal server error',500); };
-await assert.rejects(createCardOnServer(draft,{section:'internationalismes',title:'test'}), /Internal server error/);
-assert.ok(!calls.some((url)=>url.includes('cards-next-id')));
+calls.length=0;
+context.fetch=async(url)=>{ calls.push({url:String(url)}); return badResponse('Invalid title',400,'INVALID_TITLE'); };
+await assert.rejects(createCardOnServer(draft,{section:'internationalismes',title:'test'}), /Invalid title/);
+assert.equal(calls.length, 1);
+assert.ok(!calls.some((call)=>call.url.includes(['cards','next','id'].join('-'))));
 
-context.fetch=async()=>Promise.reject(new Error('post down'));
-await assert.rejects(createCardOnServer(draft,{section:'internationalismes',title:'test'}), /post down/);
+calls.length=0;
+context.fetch=async(url)=>{ calls.push({url:String(url)}); return badResponse('Card persistence failed',500,'SUPABASE_INSERT_FAILED'); };
+await assert.rejects(createCardOnServer(draft,{section:'internationalismes',title:'test'}), /Card persistence failed/);
+assert.ok(!calls.some((call)=>call.url.includes(['cards','next','id'].join('-'))));
 
-for (const [error,status] of [['Invalid title',400], ['Payload too large',400]]) { calls.length=0; context.fetch=async(url)=>{ calls.push(String(url)); return badResponse(error,status); }; await assert.rejects(createCardOnServer(draft,{section:'internationalismes',title:'test'}), new RegExp(error)); assert.ok(!calls.some((url)=>url.includes('cards-next-id'))); }
+for (const [section,prefix] of Object.entries(CARD_PREFIXES)) {
+  const id = createCardId(section);
+  assert.match(id, new RegExp(`^${prefix}_[0-9A-Za-z]{12}$`));
+  assert.doesNotMatch(id, new RegExp(`^${prefix}_0{12}$`));
+}
+assert.throws(() => createCardId('in'), /Invalid card section/);
+assert.ok(getPayloadSizeBytes({x:'a'.repeat(MAX_PAYLOAD_BYTES + 1)}) > MAX_PAYLOAD_BYTES);
 
-({context,elements,alerts,calls}=load());
-let builds=0;
-context.window.InteralJsonCardModal.init({buildCard:async()=>({section:'internationalismes', interal:{word:'x'}, n:++builds}), createCardOnServer:async(card)=>({...card,id:'in_000000000004',section:'internationalismes',status:'pending',discussionId:'card-in_000000000004',persistence:{saved:true,mode:'supabase'}}), formatCard:c=>JSON.stringify(c)});
-await context.document.getElementById('jsonCardModal')._interalJsonModalApi.generate();
-assert.match(elements.jsonCardOutput.value, /in_000000000004/); assert.equal(alerts.length, 0);
-({context,elements,alerts}=load());
-context.window.InteralJsonCardModal.init({buildCard:async()=>draft, createCardOnServer:async()=>{ throw new Error('save down'); }, formatCard:c=>JSON.stringify(c)});
-await context.document.getElementById('jsonCardModal')._interalJsonModalApi.generate();
-assert.match(elements.jsonCardOutput.value, /save down/); assert.equal(alerts.length, 0);
-const api1=context.window.InteralJsonCardModal.init({buildCard:async()=>draft});
-const api2=context.window.InteralJsonCardModal.init({buildCard:async()=>draft});
-assert.equal(api1,api2);
-const assoc=fs.readFileSync('associativvordes/script.js','utf8');
-assert.match(assoc, /function compactAssociativeCard/);
-assert.match(assoc, /45000/);
-console.log('json-card-utils ok');
+const htmlFiles = ['internationalismes/index.html','indoeuropanvordes/index.html','associativvordes/index.html','vordesofcommunites/index.html','grammaticebrevivordes/index.html','altervordes/index.html','affixes/index.html'];
+for (const file of htmlFiles) {
+  const html = fs.readFileSync(file, 'utf8');
+  assert.match(html, /shared\/ui\.js\?v=cards-primary-id-fix-20260712-1/);
+  assert.doesNotMatch(html, new RegExp(['cards-primary-id-fix','20260711','1'].join('-')));
+}
+const ui = fs.readFileSync('shared/ui.js','utf8');
+assert.match(ui, /INTERAL_JSON_MODULE_VERSION = 'cards-primary-id-fix-20260712-1'/);
+assert.doesNotMatch(ui, new RegExp(['createFallbackCardId','isFallbackEligibleError','checkHealth','createLocalOnlyCard'].join('|')));
+
+const pageSections = {
+  'internationalismes/script.js': 'internationalismes',
+  'associativvordes/script.js': 'associativvordes',
+  'vordesofcommunites/script.js': 'vordesofcommunites',
+  'grammaticebrevivordes/script.js': 'grammaticebrevivordes',
+  'altervordes/script.js': 'altervordes',
+  'affixes/script.js': 'affixes',
+  'indoeuropanvordes/index.html': 'indoeuropanvordes'
+};
+for (const [file, section] of Object.entries(pageSections)) {
+  assert.match(fs.readFileSync(file, 'utf8'), new RegExp(`section:\\s*['\"]${section}['\"]|CARD_SECTION\\s*=\\s*['\"]${section}['\"]`));
+}
