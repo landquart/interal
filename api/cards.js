@@ -131,6 +131,21 @@ function getPayloadSizeBytes(payload) {
   return Buffer.byteLength(JSON.stringify(payload), 'utf8');
 }
 
+function getSupabaseConstraint(error) {
+  if (!error || typeof error !== 'object') return null;
+
+  if (typeof error.constraint === 'string' && error.constraint.trim()) {
+    return error.constraint.trim();
+  }
+
+  const text = [error.message, error.details, error.hint]
+    .filter((value) => typeof value === 'string' && value.trim())
+    .join('\n');
+  const match = text.match(/constraint ["']?([^"'\n]+)["']?/i);
+
+  return match?.[1] || null;
+}
+
 function validateCreateBody(body) {
   if (!body || typeof body !== 'object' || Array.isArray(body)) {
     throw new ValidationError('Invalid request body', 400, 'INVALID_PAYLOAD');
@@ -216,18 +231,30 @@ async function createCard(req, res) {
 
     if (error.code === '23505') continue;
 
+    const constraint = getSupabaseConstraint(error);
+    const postgresCode = error?.code || null;
+
     console.error('cards insert error', {
-      code: error?.code || null,
+      postgresCode,
+      constraint,
       message: error?.message || null,
       details: error?.details || null,
       hint: error?.hint || null,
       section,
+      category: category || null,
+      idPrefix: id.split('_')[0],
       payloadBytes: getPayloadSizeBytes(payload),
       insertedFields: Object.keys(row)
     });
 
-    const insertError = new Error('Card persistence failed');
-    insertError.code = 'SUPABASE_INSERT_FAILED';
+    const isCheckViolation = postgresCode === '23514';
+    const insertError = new Error(
+      isCheckViolation
+        ? 'Card data is not compatible with the database constraints'
+        : 'Card persistence failed'
+    );
+    insertError.code = isCheckViolation ? 'CARDS_CHECK_CONSTRAINT_FAILED' : 'SUPABASE_INSERT_FAILED';
+    insertError.status = isCheckViolation ? 500 : 500;
     insertError.cause = error;
     throw insertError;
   }
@@ -271,13 +298,15 @@ export default async function handler(req, res) {
   } catch (error) {
     console.error('cards error:', { name: error?.name || null, message: error?.message || null, status: error?.status || null });
 
-    const status = error instanceof ValidationError ? error.status : 500;
+    const isKnownPersistenceError = error?.code === 'SUPABASE_INSERT_FAILED'
+      || error?.code === 'CARDS_CHECK_CONSTRAINT_FAILED';
+    const status = error instanceof ValidationError ? error.status : error?.status || 500;
     sendJson(req, res, status, {
       ok: false,
-      error: error instanceof ValidationError ? error.message : error?.message === 'Card persistence failed' ? 'Card persistence failed' : 'Internal server error',
+      error: error instanceof ValidationError || isKnownPersistenceError ? error.message : 'Internal server error',
       code: error instanceof ValidationError ? error.code : error?.code || 'INTERNAL_ERROR'
     });
   }
 }
 
-export { CARD_PREFIXES, createBase62Id, createCardId, getPayloadSizeBytes, MAX_PAYLOAD_BYTES };
+export { CARD_PREFIXES, createBase62Id, createCardId, getPayloadSizeBytes, getSupabaseConstraint, MAX_PAYLOAD_BYTES };
