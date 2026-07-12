@@ -36,10 +36,11 @@ const MAX_ID_ATTEMPTS = 10;
 let supabaseClient = null;
 
 class ValidationError extends Error {
-  constructor(message, status = 400) {
+  constructor(message, status = 400, code = 'VALIDATION_ERROR') {
     super(message);
     this.name = 'ValidationError';
     this.status = status;
+    this.code = code;
   }
 }
 
@@ -56,12 +57,6 @@ function getSupabaseClient() {
       auth: {
         persistSession: false,
         autoRefreshToken: false
-      },
-      global: {
-        headers: {
-          apikey: SUPABASE_SERVICE_ROLE_KEY,
-          Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`
-        }
       }
     });
   }
@@ -114,7 +109,7 @@ function createCardId(section) {
   const prefix = CARD_PREFIXES[section];
 
   if (!prefix) {
-    throw new ValidationError('Invalid card section');
+    throw new ValidationError('Invalid card section', 400, 'INVALID_CARD_SECTION');
   }
 
   return `${prefix}_${createBase62Id(RANDOM_ID_LENGTH)}`;
@@ -126,7 +121,7 @@ function getRequestBody(req) {
     try {
       return JSON.parse(req.body);
     } catch {
-      throw new ValidationError('Invalid request body');
+      throw new ValidationError('Invalid request body', 400, 'INVALID_PAYLOAD');
     }
   }
   return null;
@@ -138,7 +133,7 @@ function getPayloadSizeBytes(payload) {
 
 function validateCreateBody(body) {
   if (!body || typeof body !== 'object' || Array.isArray(body)) {
-    throw new ValidationError('Invalid request body');
+    throw new ValidationError('Invalid request body', 400, 'INVALID_PAYLOAD');
   }
 
   const section = typeof body.section === 'string' ? body.section.trim() : '';
@@ -147,19 +142,19 @@ function validateCreateBody(body) {
   const payload = body.payload;
 
   if (!CARD_PREFIXES[section]) {
-    throw new ValidationError('Invalid card section');
+    throw new ValidationError('Invalid card section', 400, 'INVALID_CARD_SECTION');
   }
 
   if (typeof title !== 'string' || !title.trim()) {
-    throw new ValidationError('Invalid title');
+    throw new ValidationError('Invalid title', 400, 'INVALID_TITLE');
   }
 
   if (!payload || typeof payload !== 'object' || Array.isArray(payload)) {
-    throw new ValidationError('Invalid payload');
+    throw new ValidationError('Invalid payload', 400, 'INVALID_PAYLOAD');
   }
 
   if (getPayloadSizeBytes(payload) > MAX_PAYLOAD_BYTES) {
-    throw new ValidationError('Payload too large');
+    throw new ValidationError('Payload too large', 400, 'PAYLOAD_TOO_LARGE');
   }
 
   return {
@@ -194,7 +189,14 @@ async function createCard(req, res) {
       payload: cardPayload
     };
 
-    const { data, error } = await client.from('cards').insert(row).select('*').single();
+    console.info('cards insert attempt', {
+      section,
+      idPrefix: id.split('_')[0],
+      payloadBytes: getPayloadSizeBytes(payload),
+      insertedFields: Object.keys(row)
+    });
+
+    const { error } = await client.from('cards').insert(row);
 
     if (!error) {
       sendJson(req, res, 200, {
@@ -203,7 +205,7 @@ async function createCard(req, res) {
         section,
         status: 'pending',
         discussionId,
-        card: data || row,
+        card: row,
         persistence: {
           saved: true,
           mode: 'supabase'
@@ -220,7 +222,6 @@ async function createCard(req, res) {
       details: error?.details || null,
       hint: error?.hint || null,
       section,
-      titlePresent: typeof title === 'string' && title.trim().length > 0,
       payloadBytes: getPayloadSizeBytes(payload),
       insertedFields: Object.keys(row)
     });
@@ -231,7 +232,9 @@ async function createCard(req, res) {
     throw insertError;
   }
 
-  throw new Error('Could not generate unique card id');
+  const idError = new Error('Could not generate unique card id');
+  idError.code = 'ID_GENERATION_FAILED';
+  throw idError;
 }
 
 function sendHealthCheck(req, res) {
@@ -272,7 +275,9 @@ export default async function handler(req, res) {
     sendJson(req, res, status, {
       ok: false,
       error: error instanceof ValidationError ? error.message : error?.message === 'Card persistence failed' ? 'Card persistence failed' : 'Internal server error',
-      code: error instanceof ValidationError ? 'VALIDATION_ERROR' : error?.code || 'INTERNAL_ERROR'
+      code: error instanceof ValidationError ? error.code : error?.code || 'INTERNAL_ERROR'
     });
   }
 }
+
+export { CARD_PREFIXES, createBase62Id, createCardId, getPayloadSizeBytes, MAX_PAYLOAD_BYTES };

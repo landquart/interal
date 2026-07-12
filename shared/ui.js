@@ -1198,6 +1198,7 @@ window.refreshCustomSelect = function refreshCustomSelect(selectOrId) {
   }
 
 
+  const INTERAL_JSON_MODULE_VERSION = 'cards-primary-id-fix-20260712-1';
   const CARD_ID_PATTERN = /^(iv|av|in|vc|gv|al|af)_[0-9A-Za-z]{12}$/;
   const SECTION_PREFIX = { internationalismes:'in', associativvordes:'av', indoeuropanvordes:'iv', vordesofcommunites:'vc', grammaticebrevivordes:'gv', altervordes:'al', affixes:'af' };
   const API_ENDPOINT = location.hostname === 'landquart.github.io' ? 'https://interal.vercel.app/api/cards' : '/api/cards';
@@ -1206,17 +1207,26 @@ window.refreshCustomSelect = function refreshCustomSelect(selectOrId) {
     const message=String(raw);
     return message.replace(/(apikey|authorization|service_role|bearer|supabase[_-]?(service)?[_-]?role[_-]?key)\s*[:=]\s*\S+/ig,'$1: [hidden]');
   }
-  function extractSavedCard(data, card){
-    const savedCard =
-      data?.card?.payload || {
-        ...card,
-        id: data?.id,
-        section: data?.section,
-        status: data?.status,
-        discussionId: data?.discussionId
-      };
+  function extractSavedCard(data, draftCard){
+    const payload = data?.card?.payload;
 
-    if (!savedCard?.id) throw new Error('The server did not return a card ID.');
+    const savedCard = payload && typeof payload === 'object'
+      ? {
+          ...payload,
+          id: payload.id || data.id,
+          section: payload.section || data.section,
+          status: payload.status || data.status || 'pending',
+          discussionId: payload.discussionId || data.discussionId
+        }
+      : {
+          ...draftCard,
+          id: data?.id,
+          section: data?.section,
+          status: data?.status || 'pending',
+          discussionId: data?.discussionId
+        };
+
+    if (!savedCard.id) throw new Error('The server did not return a card ID.');
 
     return {
       ...savedCard,
@@ -1240,6 +1250,9 @@ window.refreshCustomSelect = function refreshCustomSelect(selectOrId) {
 
     onProgress?.(document.documentElement.lang?.startsWith('en')?'Saving card...':'Сохранение карточки...');
 
+    const payloadBytes = getJsonByteSize(card);
+    console.info('JSON card payload size', { section, payloadBytes });
+
     const response = await fetch(endpoint, {
       method: 'POST',
       headers: {
@@ -1261,7 +1274,7 @@ window.refreshCustomSelect = function refreshCustomSelect(selectOrId) {
       error.apiError = data?.error;
       error.code = data?.code || null;
       error.requestSection = section;
-      error.payloadBytes = getJsonByteSize(card);
+      error.payloadBytes = payloadBytes;
       throw error;
     }
 
@@ -1299,7 +1312,7 @@ window.refreshCustomSelect = function refreshCustomSelect(selectOrId) {
     const modal=$(ids.modalId); if(modal?.dataset.interalJsonModalInit==='1') return modal._interalJsonModalApi; if(modal) modal.dataset.interalJsonModalInit='1'; applyTexts(); $(ids.openButtonId)?.addEventListener('click', open); $(ids.closeButtonId)?.addEventListener('click', close); $(ids.modalId)?.addEventListener('click', e=>{ if(e.target===$(ids.modalId)) close(); }); $(ids.useAuthorBlockId)?.addEventListener('change', e=>{ if($(ids.authorFieldsId)) $(ids.authorFieldsId).style.display=e.target.checked?'grid':'none'; }); $(ids.generateButtonId)?.addEventListener('click', generate); $(ids.copyButtonId)?.addEventListener('click', copy); $(ids.downloadButtonId)?.addEventListener('click', download); document.addEventListener('keydown', e=>{ if(e.key==='Escape' && $(ids.modalId)?.classList.contains('show')) close(); }); document.addEventListener('interal:languagechange', applyTexts); const api = { open, close, generate, getAuthor, applyTexts }; if(modal) modal._interalJsonModalApi=api; return api;
   }
   window.InteralJsonCards = { extractSavedCard, createCardOnServer, validateCardId, publicJsonError };
-  window.InteralJsonDiagnostics = { getStatus(){ return { modalLoaded:Boolean(window.InteralJsonCardModal), cardsHelperLoaded:Boolean(window.InteralJsonCards), page:window.location.pathname, sharedUiVersion:document.querySelector('script[src*="/shared/ui.js"]')?.src ?? document.querySelector('script[src*="shared/ui.js"]')?.src ?? null }; } };
+  window.InteralJsonDiagnostics = { getStatus(){ return { version: INTERAL_JSON_MODULE_VERSION, modalLoaded:Boolean(window.InteralJsonCardModal), cardsHelperLoaded:Boolean(window.InteralJsonCards), helpers:Object.keys(window.InteralJsonCards || {}), page:window.location.pathname, scriptUrl:document.querySelector('script[src*="shared/ui.js"]')?.src || null }; } };
   window.InteralJsonCardModal = { init, normalizeContact };
   window.InteralButtonStatus = { setButtonStatus };
 })();
