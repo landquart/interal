@@ -1211,30 +1211,15 @@ window.refreshCustomSelect = function refreshCustomSelect(selectOrId) {
     const payload = data?.card?.payload;
 
     const savedCard = payload && typeof payload === 'object'
-      ? {
-          ...payload,
-          id: payload.id || data.id,
-          section: payload.section || data.section,
-          status: payload.status || data.status || 'pending',
-          discussionId: payload.discussionId || data.discussionId
-        }
-      : {
-          ...draftCard,
-          id: data?.id,
-          section: data?.section,
-          status: data?.status || 'pending',
-          discussionId: data?.discussionId
-        };
+      ? { ...payload, id: payload.id || data.id, status: payload.status || data.status || 'pending' }
+      : { ...draftCard, id: data?.id, status: data?.status || 'pending' };
+    delete savedCard.section;
+    delete savedCard.discussionId;
+    delete savedCard.persistence;
 
     if (!savedCard.id) throw new Error('The server did not return a card ID.');
 
-    return {
-      ...savedCard,
-      persistence: {
-        saved: true,
-        mode: 'supabase'
-      }
-    };
+    return savedCard;
   }
   function validateCardId(card, section){ const id=card?.id; if(!CARD_ID_PATTERN.test(String(id||''))) throw new Error('The server returned an invalid card ID.'); const prefix=SECTION_PREFIX[section]; if(prefix && !String(id).startsWith(`${prefix}_`)) throw new Error('The server returned a card ID for another section.'); return true; }
   function getJsonByteSize(value){

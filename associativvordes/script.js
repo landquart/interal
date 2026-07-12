@@ -935,85 +935,42 @@ const TEXT_I18N = {
     function getJsonByteSize(value) { return new TextEncoder().encode(JSON.stringify(value)).length; }
     function compactAssociativeLanguageResult(item) {
       const a = item?.association || {};
-      const m = item?.models || {};
       const s = item?.swow || {};
+      const word = item?.word || '';
+      if (!word) return null;
       return {
-        code: item?.code || null,
-        word: item?.word || '',
-        selected: Boolean(item?.selected),
-        frequency: { F: finiteOrNull(item?.frequency?.score ?? a.F) },
-        association: { Di: finiteOrNull(a.Di), Pr: finiteOrNull(a.Pr), Sh: finiteOrNull(a.Sh), A_base: finiteOrNull(a.A_base ?? a.score_base), swow_bonus: finiteOrNull(a.swow_bonus ?? s.bonus), A_final: finiteOrNull(a.A_final ?? a.score), P: finiteOrNull(a.P ?? item?.final_score) },
-        models: { primary_model: m.primary?.model || m.primary_model || null, review_model: m.review?.model || m.review_model || null, combination_method: m.combination_method || a.combination_method || 'primary_only' },
-        swow: { available: Boolean(s.found || s.available), bonus: finiteOrNull(s.bonus || 0) }
+        language: item?.code || '',
+        word,
+        F: finiteOrNull(item?.frequency?.score ?? a.F),
+        Di: finiteOrNull(a.Di),
+        Pr: finiteOrNull(a.Pr),
+        Sh: finiteOrNull(a.Sh),
+        swow_bonus: finiteOrNull(a.swow_bonus ?? s.bonus ?? 0),
+        A: finiteOrNull(a.A_final ?? a.A_base),
+        P: finiteOrNull(a.P ?? item?.final_score)
       };
     }
     function compactAssociativeCard(card) {
       return {
-        version: card.version, card_type: card.card_type, vord_type: card.vord_type, status: card.status, procedure: card.procedure, created_at: card.created_at, created_at_source: card.created_at_source, interal: card.interal, translation: card.translation, ...(card.author ? { author: card.author } : {}), supported_groups: card.supported_groups,
-        calculation: { TA: finiteOrNull(card.calculation?.TA), FA: finiteOrNull(card.calculation?.FA), represented_languages: finiteOrNull(card.calculation?.represented_languages), represented_groups: finiteOrNull(card.calculation?.represented_groups), semantic_confirmed: card.calculation?.semantic_confirmed === true, accepted: card.calculation?.accepted === true },
-        language_results: (card.language_results || []).map(compactAssociativeLanguageResult)
+        version: card.version,
+        card_type: card.card_type,
+        vord_type: card.vord_type,
+        procedure: card.procedure,
+        interal: card.interal,
+        translation: card.translation,
+        ...(card.author ? { author: card.author } : {}),
+        supported_groups: card.supported_groups,
+        result: {
+          TA: finiteOrNull(card.calculation?.TA),
+          FA: finiteOrNull(card.calculation?.FA),
+          represented_languages: finiteOrNull(card.calculation?.represented_languages),
+          represented_groups: finiteOrNull(card.calculation?.represented_groups)
+        },
+        language_evidence: (card.language_results || []).map(compactAssociativeLanguageResult).filter(Boolean)
       };
     }
     function prepareAssociativeCardForPersistence(card) {
-      let draft = card;
-      if (getJsonByteSize(draft) > 45000) draft = compactAssociativeCard(draft);
-      return draft;
-    }
-    function makeAssociativeCard(timeMeta, author = null) {
-      const result = calculateFinal();
-      const supportedGroups = [...new Set(result.languageScores.filter((x) => Number.isFinite(Number(x.normalized))).map((x) => x.lang.group))];
-      return {
-        version: '1.0',
-        card_type: 'vord_card',
-        vord_type: 'av',
-        status: 'draft',
-        procedure: 'associative_word',
-        created_at: timeMeta.created_at,
-        created_at_source: timeMeta.created_at_source,
-        interal: { word: state.root || '', part_of_speech: state.elementType || 'root' },
-        translation: { language: 'ru', word: state.meaning || '' },
-        ...(author ? { author } : {}),
-        supported_groups: supportedGroups,
-        calculation: {
-          association_percent: finiteOrNull(result.finalAssociation),
-          TA: finiteOrNull(result.totalAssociation),
-          FA: finiteOrNull(result.finalAssociation),
-          weighted_sum: finiteOrNull(result.totalAssociation),
-          total_speakers_thousands: LANGUAGES.reduce((sum, lang) => sum + (Number(lang.speakers) || 0), 0),
-          represented_languages: result.representedLangs,
-          represented_groups: result.groups,
-          semantic_confirmed: result.semanticConfirmed,
-          accepted: result.accepted,
-          thresholds: { strong: 55, accept: THRESHOLDS.main, review_min: THRESHOLDS.reviewMin, review_max: THRESHOLDS.reviewMax, reject_below: THRESHOLDS.rejectBelow },
-          weights: { association_score: 0.65, frequency_score: 0.35 }
-        },
-        language_results: LANGUAGES.map((lang) => {
-          const selected = (state.languages[lang.code] || []).filter((item) => item.selected);
-          const best = selected.sort((a, b) => (wordWeight(b) || -1) - (wordWeight(a) || -1))[0];
-          if (!best) {
-            return { code: lang.code, name: lang.name, group: lang.group, speakers_thousands: finiteOrNull(lang.speakers), word: '', normalized_graphic: '', selected: false, match: null, frequency: { score: null, ipm: null, category_breakdown: {} }, association: null, swow: null, final_score: null, status: 'unavailable', supports_group: false };
-          }
-          const analysis = best.analysis || {};
-          const association = analysis.association || {};
-          return {
-            code: lang.code,
-            name: lang.name,
-            group: lang.group,
-            speakers_thousands: finiteOrNull(lang.speakers),
-            word: best.word || '',
-            normalized_graphic: stripDiacritics(best.word || ''),
-            selected: true,
-            match: best.match ? { type: best.match.type, root: state.root || '', fragment: best.match.fragment || '', distance: finiteOrNull(best.match.distance) } : null,
-            frequency: { score: finiteOrNull(analysis.frequency?.frequency_score ?? best.frequency_score), ipm: null, category_breakdown: analysis.frequency?.category_breakdown || {} },
-            association: { primary: analysis.primary || null, review: analysis.review || null, combination_method: association.combination_method || 'primary_only', Di: finiteOrNull(association.Di ?? association.directness), Pr: finiteOrNull(association.Pr ?? association.field_relatedness), Sh: finiteOrNull(association.Sh ?? association.domain_shift), A_base: finiteOrNull(association.A_base ?? association.association_score_base), swow_bonus: finiteOrNull(association.swow_bonus ?? analysis.swow?.bonus ?? 0), A_final: finiteOrNull(association.A_final ?? association.association_score), F: finiteOrNull(association.F ?? analysis.frequency?.frequency_score ?? best.frequency_score), P: finiteOrNull(association.P ?? analysis.final_score ?? best.final_score), TA: finiteOrNull(result.totalAssociation), FA: finiteOrNull(result.finalAssociation), semantic_confirmed: association.semantic_confirmed === true, accepted: result.accepted, directness: finiteOrNull(association.directness), field_relatedness: finiteOrNull(association.field_relatedness), domain_shift: finiteOrNull(association.domain_shift), score_base: finiteOrNull(association.association_score_base), score: finiteOrNull(association.association_score), explanation: association.explanation || '' },
-            models: { primary: analysis.primary || null, review: analysis.review || null, combination_method: association.combination_method || 'primary_only' },
-            swow: { found: Boolean(analysis.swow?.bonus), bonus: finiteOrNull(analysis.swow?.bonus || 0), target_to_word: analysis.swow?.target_to_word || null, word_to_target: analysis.swow?.word_to_target || null },
-            final_score: finiteOrNull(analysis.final_score ?? best.final_score),
-            status: Number.isFinite(Number(analysis.final_score ?? best.final_score)) ? 'scored' : 'unavailable',
-            supports_group: Number.isFinite(Number(analysis.final_score ?? best.final_score))
-          };
-        })
-      };
+      return compactAssociativeCard(card);
     }
 
     function openJsonCardModal() {

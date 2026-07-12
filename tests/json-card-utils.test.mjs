@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
-import { CARD_PREFIXES, createCardId, getPayloadSizeBytes, getSupabaseConstraint, MAX_PAYLOAD_BYTES } from '../api/cards.js';
+import { CARD_PREFIXES, buildPublicCardPayload, createCardId, getPayloadSizeBytes, getSupabaseConstraint, MAX_PAYLOAD_BYTES } from '../api/cards.js';
 
 function el(){return {style:{},dataset:{},classList:{add(){},remove(){},toggle(){},contains(){return false}},setAttribute(){},getAttribute(){return null},append(){},appendChild(){},prepend(){},remove(){},addEventListener(){},querySelector(){return el()},querySelectorAll(){return []},focus(){},click(){},textContent:'',value:'',checked:false,hidden:false,disabled:false};}
 function loadUi(){
@@ -18,7 +18,7 @@ const draft={section:'internationalismes', interal:{word:'test'}};
 
 assert.equal(context.window.InteralJsonDiagnostics.getStatus().version, 'cards-primary-id-fix-20260712-1');
 assert.equal(JSON.stringify(context.window.InteralJsonDiagnostics.getStatus().helpers), JSON.stringify(['extractSavedCard','createCardOnServer','validateCardId','publicJsonError']));
-assert.equal(extractSavedCard({id:'in_123456789abc', section:'internationalismes', status:'pending', discussionId:'card-in_123456789abc'}, draft).discussionId, 'card-in_123456789abc');
+assert.equal(extractSavedCard({id:'in_123456789abc', section:'internationalismes', status:'pending', discussionId:'card-in_123456789abc'}, draft).discussionId, undefined);
 assert.equal(extractSavedCard({id:'in_123456789abc', section:'internationalismes', status:'pending', card:{payload:{version:'1.0'}}}, draft).id, 'in_123456789abc');
 assert.throws(() => extractSavedCard({ok:true}, draft), /server did not return/);
 assert.throws(()=>validateCardId({id:'av_123456789abc'}, 'internationalismes'), /another section/);
@@ -26,7 +26,7 @@ assert.throws(()=>validateCardId({id:'av_123456789abc'}, 'internationalismes'), 
 context.fetch=async(url,opts)=> { calls.push({url:String(url),opts}); return okResponse({ok:true,id:'in_123456789abc',section:'internationalismes',status:'pending'}); };
 let saved=await createCardOnServer(draft,{section:'internationalismes',title:'test'});
 assert.equal(saved.id,'in_123456789abc');
-assert.equal(saved.persistence.mode,'supabase');
+assert.equal(saved.persistence, undefined);
 assert.equal(calls.length, 1);
 assert.equal(calls[0].opts.method, 'POST');
 assert.ok(!calls.some((call)=>call.url.includes(['cards','next','id'].join('-'))));
@@ -48,6 +48,18 @@ for (const [section,prefix] of Object.entries(CARD_PREFIXES)) {
   assert.doesNotMatch(id, new RegExp(`^${prefix}_0{12}$`));
 }
 assert.throws(() => createCardId('in'), /Invalid card section/);
+
+const publicPayload = buildPublicCardPayload({ id:'client', section:'internationalismes', status:'draft', discussionId:'card-client', persistence:{saved:true}, created_at:'client-time', created_at_source:'device', version:'1.0', card_type:'vord_card', vord_type:'in', interal:{word:'test'}, author:null, empty:'', risks:[] }, 'in_123456789abc');
+assert.deepEqual(Object.keys(publicPayload).slice(0, 5), ['id','version','card_type','vord_type','status']);
+assert.equal(publicPayload.id, 'in_123456789abc');
+assert.equal(publicPayload.section, undefined);
+assert.equal(publicPayload.discussionId, undefined);
+assert.equal(publicPayload.persistence, undefined);
+assert.equal(publicPayload.created_at_source, undefined);
+assert.equal(publicPayload.author, undefined);
+assert.equal(publicPayload.risks, undefined);
+assert.match(publicPayload.created_at, /^\d{4}-\d{2}-\d{2}T/);
+
 assert.ok(getPayloadSizeBytes({x:'a'.repeat(MAX_PAYLOAD_BYTES + 1)}) > MAX_PAYLOAD_BYTES);
 assert.equal(getSupabaseConstraint({ constraint: 'cards_id_check' }), 'cards_id_check');
 assert.equal(getSupabaseConstraint({ message: 'new row for relation "cards" violates check constraint "cards_id_check"' }), 'cards_id_check');
