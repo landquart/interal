@@ -558,6 +558,7 @@ const TEXT_I18N = {
         if (!isCurrentRun(runId)) return;
         state.checked = true;
         renderAll();
+        window.InteralFormDraft?.save?.();
         setCalculateButtonStatus('Готово', true);
         setTimeout(() => {
           if (isCurrentRun(runId)) setCalculateButtonStatus(defaultCalculateButtonText(), false);
@@ -1053,6 +1054,22 @@ const TEXT_I18N = {
       document.getElementById('elementType').value = state.elementType;
       searchDerivatives();
     }
+
+
+    function compactAssociativeLanguages(languages) {
+      const output = {};
+      LANGUAGES.forEach((lang) => {
+        output[lang.code] = (languages?.[lang.code] || []).filter((item) => item && (item.selected || item.word)).map((item) => ({
+          word: item.word || '', model: item.model || '', selected: Boolean(item.selected), frequency_score: finiteOrNull(item.frequency_score), association_score: finiteOrNull(item.association_score), final_score: finiteOrNull(item.final_score), analysisStatus: item.analysisStatus || null,
+          analysis: item.analysis ? { final_score: finiteOrNull(item.analysis.final_score), frequency: item.analysis.frequency ? { frequency_score: finiteOrNull(item.analysis.frequency.frequency_score) } : null, swow: item.analysis.swow ? { bonus: finiteOrNull(item.analysis.swow.bonus) } : null, association: item.analysis.association ? { association_score: finiteOrNull(item.analysis.association.association_score), directness: finiteOrNull(item.analysis.association.directness), field_relatedness: finiteOrNull(item.analysis.association.field_relatedness), domain_shift: finiteOrNull(item.analysis.association.domain_shift), semantic_confirmed: Boolean(item.analysis.association.semantic_confirmed), explanation: item.analysis.association.explanation || '' } : null, warnings: Array.isArray(item.analysis.warnings) ? item.analysis.warnings.slice(0, 5) : [] } : null
+        }));
+      });
+      return output;
+    }
+    function collectAssociativePageState() { const r = calculateFinal(); return { version: 2, page: location.pathname, fields: { root: state.root || document.getElementById('rootInput').value, meaning: state.meaning || document.getElementById('meaningInput').value, elementType: state.elementType || document.getElementById('elementType').value, languages: compactAssociativeLanguages(state.languages) }, result: state.checked ? { finalAssociation: r.finalAssociation, totalAssociation: r.totalAssociation, representedLanguages: r.representedLangs, representedGroups: r.groups, semanticConfirmed: r.semanticConfirmed, accepted: r.accepted, selectedLanguageResults: compactAssociativeLanguages(state.languages) } : null, flags: { checked: Boolean(state.checked), accepted: Boolean(state.checked && r.accepted) }, ui: { activeLanguageTab: activeLang }, savedAt: new Date().toISOString() }; }
+    function importAssociativePageState(saved = {}) { const fields = saved.version === 2 && saved.fields ? saved.fields : saved; state = emptyState(); state.root = fields.root || ''; state.meaning = fields.meaning || ''; state.elementType = fields.elementType || 'root'; state.languages = compactAssociativeLanguages(fields.languages || saved.result?.selectedLanguageResults || {}); state.checked = Boolean(saved.flags?.checked || saved.checked || saved.result); activeLang = saved.ui?.activeLanguageTab || activeLang || 'en'; document.getElementById('rootInput').value = state.root; document.getElementById('meaningInput').value = state.meaning; document.getElementById('elementType').value = state.elementType; renderAll(); syncCheckedVisibility(); syncJsonCardButtonVisibility(); return true; }
+    window.InteralPageStateExport = collectAssociativePageState;
+    window.InteralPageStateImport = importAssociativePageState;
 
     document.getElementById('rootInput').addEventListener('input', () => { state.checked = false; renderAll(); });
     document.getElementById('meaningInput').addEventListener('input', () => { state.checked = false; renderAll(); });

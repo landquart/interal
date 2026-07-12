@@ -277,6 +277,7 @@ async function analyze() {
     state.checked = true;
     setButtonStatus('#checkBtn', currentLang() === 'en' ? 'Calculating result...' : 'Расчёт результата...', true);
     render();
+    window.InteralFormDraft?.save?.();
     setTimeout(() => setButtonStatus('#checkBtn', t('check'), false), 800);
   }
 }
@@ -366,6 +367,29 @@ function render() {
   byId('evidenceBox').innerHTML = `<div class="language-grid">${renderEvidenceRows()}</div>`; LANGUAGES.forEach(lang => { const pass = byId(`pass_${lang.code}`); if (pass && (state.manualOverride[lang.code] === null || state.manualOverride[lang.code] === undefined)) pass.indeterminate = true; });
   renderResult(); updateResetButtonVisibility();
 }
+
+function collectInternationalismesPageState() {
+  const r = result();
+  return { version: 2, page: location.pathname, fields: { word: state.word, partOfSpeech: state.part_of_speech, languageForms: { ...state.evidence }, manualOverrides: { ...state.manualOverride } }, result: state.checked ? { passed: r.passed, total: r.total, accepted: r.accepted, languageEvidence: LANGUAGES.map((lang) => ({ code: lang.code, form: state.evidence[lang.code] || '', passed: effectivePassed(lang.code), meta: state.matchMeta[lang.code] || null })) } : null, flags: { checked: Boolean(state.checked), accepted: Boolean(state.checked && r.accepted) }, ui: { activeTab: null, selectedLanguage: null }, savedAt: new Date().toISOString() };
+}
+function importInternationalismesPageState(saved = {}) {
+  const source = saved.version === 2 && saved.fields ? saved : { fields: { word: saved.word, partOfSpeech: saved.part_of_speech || saved.partOfSpeech, languageForms: saved.evidence || saved.languageForms, manualOverrides: saved.manualOverride || saved.manualOverrides }, result: saved.result, flags: { checked: saved.checked, accepted: saved.accepted } };
+  const fields = source.fields || {};
+  state.word = fields.word || '';
+  state.part_of_speech = fields.partOfSpeech || 'noun';
+  state.evidence = { ...emptyLangMap(''), ...(fields.languageForms || {}) };
+  state.manualOverride = { ...emptyLangMap(null), ...(fields.manualOverrides || {}) };
+  state.autoPassed = emptyLangMap(false);
+  state.matchMeta = emptyLangMap(null);
+  (source.result?.languageEvidence || []).forEach((row) => { if (row?.code) { state.autoPassed[row.code] = Boolean(row.passed); state.matchMeta[row.code] = row.meta || null; if (row.form != null) state.evidence[row.code] = row.form; } });
+  state.checked = Boolean(source.flags?.checked || source.result);
+  byId('wordInput').value = state.word; byId('posInput').value = state.part_of_speech;
+  render(); setJsonEnabled(Boolean(source.flags?.accepted));
+  return true;
+}
+window.InteralPageStateExport = collectInternationalismesPageState;
+window.InteralPageStateImport = importInternationalismesPageState;
+
 const jsonFilename = 'internationalism-card.json';
 function bindJsonModal() {
   if (!window.InteralJsonCardModal) throw new Error('InteralJsonCardModal is not loaded.'); if (!window.InteralJsonCards) throw new Error('InteralJsonCards is not loaded.'); window.InteralJsonCardModal.init({ getLanguage: currentLang, getTexts: () => t('jsonCard'), buildCard: async ({ onProgress } = {}) => { readState(); if (!canCreateCard()) throw new Error(t('jsonCard.unavailable')); onProgress?.(currentLang() === 'en' ? 'Building card...' : 'Сборка карточки...'); return makeCard(); }, createCardOnServer: (card, ctx) => window.InteralJsonCards.createCardOnServer(card, { section: 'internationalismes', title: card?.interal?.word, category: 'in', onProgress: ctx?.onProgress }), formatCard: (card) => JSON.stringify(card, null, 2), getFilename: () => jsonFilename });

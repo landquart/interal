@@ -1,7 +1,8 @@
 (function () {
-  const DRAFT_PREFIX = 'interal.explicitPageState:';
+  const DRAFT_PREFIX = 'interal-page-state:v2:';
+  const LEGACY_DRAFT_PREFIX = 'interal.explicitPageState:';
   const RESET_PREFIX = 'interal.resetPage:';
-  const SAVE_DELAY = 80;
+  const SAVE_DELAY = 250;
   const RESTORE_DELAYS = [0, 80, 250, 600];
   const RESET_CLEAR_DELAYS = [0, 80, 250, 600, 1000];
   const SHARE_API_URL = 'https://interal.vercel.app/api/share-state';
@@ -22,6 +23,19 @@
 
   function storageKey() {
     return `${DRAFT_PREFIX}${window.location.pathname}`;
+  }
+
+  function legacyStorageKey() {
+    return `${LEGACY_DRAFT_PREFIX}${window.location.pathname}`;
+  }
+
+  function currentPageLegacyKeys() {
+    const path = window.location.pathname;
+    const keys = [legacyStorageKey(), `interal.pageState:${path}`];
+    if (/\/altervordes\//.test(path)) keys.push('altervordes-state-v1', 'interal_altervordes_state');
+    if (/\/affixes\//.test(path)) keys.push('affixes-state-v1', 'interal_affixes_state');
+    if (/\/associativvordes\//.test(path)) keys.push('interal_associative_state');
+    return keys;
   }
 
   function resetKey() {
@@ -437,16 +451,7 @@
         const key = localStorage.key(i);
         if (!key) continue;
 
-        if (
-          key.startsWith(DRAFT_PREFIX) ||
-          key.startsWith('interal.pageState:') ||
-          key === 'interal_associative_state' ||
-          key === 'determinator-valentyp-state-v1' ||
-          key === 'altervordes-state-v1' ||
-          key === 'interal_altervordes_state' ||
-          key === 'affixes-state-v1' ||
-          key === 'interal_affixes_state'
-        ) {
+        if (key === storageKey() || currentPageLegacyKeys().includes(key)) {
           localStorage.removeItem(key);
         }
       }
@@ -767,12 +772,19 @@
     let payload = null;
 
     try {
-      const raw = localStorage.getItem(storageKey());
+      let raw = localStorage.getItem(storageKey());
+      if (!raw) {
+        for (const legacyKey of currentPageLegacyKeys()) {
+          raw = localStorage.getItem(legacyKey);
+          if (raw) break;
+        }
+      }
       if (!raw) return false;
 
       payload = JSON.parse(raw);
     } catch (error) {
-      console.warn('Could not read form draft:', error);
+      console.warn('Saved page state is invalid:', error);
+      try { localStorage.removeItem(storageKey()); } catch (_) {}
       return false;
     }
 
@@ -880,6 +892,9 @@
     createShareUrl,
     createShortShareUrl,
     getSharePath,
-    key: storageKey
+    key: storageKey,
+    isRestoring: () => isRestoring,
+    storageKey,
+    legacyKeys: currentPageLegacyKeys
   });
 })();

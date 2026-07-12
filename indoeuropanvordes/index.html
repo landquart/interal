@@ -2158,6 +2158,7 @@ async function calculateInternationality() {
     buildExplanation(payload);
     explainBtn.style.display = "block";
     jsonCardBtn.style.display = payload.accepted === true ? "block" : "none";
+    window.InteralFormDraft?.save?.();
   } catch (error) {
     if (error && error.name === "AbortError") return;
     showMessage(escapeHTML(error.message || String(error)));
@@ -2728,16 +2729,57 @@ explainModal.addEventListener("click", (event) => {
   if (event.target === explainModal) closeExplain();
 });
 
+
+function collectIndoeuropanPageState() {
+  const languageRowsState = CONTROL_LANGUAGES.map((lang) => { const inputs = getRowInputs(lang.code); return { code: lang.code, word: inputs.word?.value || '', ipa: inputs.ipa?.value || '' }; });
+  const r = lastCalculationPayload;
+  return { version: 2, page: location.pathname, fields: { interalWord: wordInput.value.trim(), lookupWord: lookupWordInput.value.trim(), lookupLang: lookupLangSelect.value, languageRows: languageRowsState }, result: r ? { ...r, rows: r.rows || [] } : null, flags: { checked: Boolean(r), accepted: Boolean(r?.accepted) }, ui: { activeTab: null, selectedLanguage: lookupLangSelect.value }, savedAt: new Date().toISOString() };
+}
+function importIndoeuropanPageState(saved = {}) {
+  const fields = saved.version === 2 && saved.fields ? saved.fields : saved;
+  wordInput.value = fields.interalWord || fields.word || '';
+  lookupWordInput.value = fields.lookupWord || '';
+  lookupLangSelect.value = fields.lookupLang || lookupLangSelect.value;
+  (fields.languageRows || []).forEach((row) => { const inputs = getRowInputs(row.code); if (inputs.word) inputs.word.value = row.word || ''; if (inputs.ipa) inputs.ipa.value = row.ipa || ''; });
+  const restoredResult = saved.version === 2 ? saved.result : saved.lastCalculationPayload;
+  lastCalculationPayload = restoredResult || null;
+  if (restoredResult) {
+    tableWrap.style.display = "block";
+    resultBox.style.display = "block";
+    restoredResult.rows?.forEach((row) => renderScoreIntoRow(row.code, row));
+    renderResult(restoredResult);
+    buildExplanation(restoredResult);
+    explainBtn.style.display = "block";
+    jsonCardBtn.style.display = restoredResult.accepted ? "block" : "none";
+  } else {
+    clearScores(); resultBox.style.display = "none"; explainBtn.style.display = "none"; jsonCardBtn.style.display = "none";
+  }
+  updateResetButtonVisibility();
+  return true;
+}
+function invalidateRestoredIndoeuropanResult() {
+  if (window.InteralFormDraft?.isRestoring?.()) return;
+  lastCalculationPayload = null;
+  resultBox.style.display = "none";
+  explainBtn.style.display = "none";
+  jsonCardBtn.style.display = "none";
+  jsonCardOutput.value = "";
+  clearScores();
+  updateResetButtonVisibility();
+}
+window.InteralPageStateExport = collectIndoeuropanPageState;
+window.InteralPageStateImport = importIndoeuropanPageState;
+
 calcBtn.addEventListener("click", calculateInternationality);
 resetBtn.addEventListener("click", resetAll);
 
 [wordInput, lookupWordInput, lookupLangSelect].forEach((element) => {
-  element.addEventListener("input", updateResetButtonVisibility);
-  element.addEventListener("change", updateResetButtonVisibility);
+  element.addEventListener("input", invalidateRestoredIndoeuropanResult);
+  element.addEventListener("change", invalidateRestoredIndoeuropanResult);
 });
 
-languageRows.addEventListener("input", updateResetButtonVisibility);
-languageRows.addEventListener("change", updateResetButtonVisibility);
+languageRows.addEventListener("input", invalidateRestoredIndoeuropanResult);
+languageRows.addEventListener("change", invalidateRestoredIndoeuropanResult);
 
 document.addEventListener("interal:languagechange", () => {
   document.documentElement.lang = currentLang();
