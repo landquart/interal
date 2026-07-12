@@ -4,7 +4,7 @@
     "@supabase/supabase-js": "^2.45.0"
   },
   "scripts": {
-    "test": "node tests/json-card-utils.test.mjs",
+    "test": "node tests/json-card-utils.test.mjs && node tests/persistence-helper.test.mjs",
     "test:cards-schema": "node scripts/test-cards-schema.mjs"
   }
 }
