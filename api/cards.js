@@ -146,6 +146,62 @@ function getSupabaseConstraint(error) {
   return match?.[1] || null;
 }
 
+
+function isPlainObject(value) {
+  return value && typeof value === 'object' && !Array.isArray(value);
+}
+
+function pruneEmptyPublicFields(value) {
+  if (Array.isArray(value)) {
+    return value
+      .map((item) => pruneEmptyPublicFields(item))
+      .filter((item) => item !== undefined);
+  }
+
+  if (!isPlainObject(value)) {
+    if (value === null || value === '') return undefined;
+    return value;
+  }
+
+  const result = {};
+  for (const [key, child] of Object.entries(value)) {
+    const pruned = pruneEmptyPublicFields(child);
+    if (pruned === undefined) continue;
+    if (Array.isArray(pruned) && pruned.length === 0) continue;
+    if (isPlainObject(pruned) && Object.keys(pruned).length === 0) continue;
+    result[key] = pruned;
+  }
+
+  return Object.keys(result).length ? result : undefined;
+}
+
+function buildPublicCardPayload(payload, id) {
+  const {
+    id: _clientId,
+    section: _clientSection,
+    status: _clientStatus,
+    discussionId: _discussionId,
+    persistence: _persistence,
+    created_at: _clientCreatedAt,
+    createdAt: _clientCreatedAtCamel,
+    created_at_source: _createdAtSource,
+    version,
+    card_type: cardType,
+    vord_type: vordType,
+    ...rest
+  } = payload;
+  const body = pruneEmptyPublicFields(rest) || {};
+  return {
+    id,
+    version: version || '1.0',
+    card_type: cardType,
+    vord_type: vordType,
+    status: 'pending',
+    ...body,
+    created_at: new Date().toISOString()
+  };
+}
+
 function validateCreateBody(body) {
   if (!body || typeof body !== 'object' || Array.isArray(body)) {
     throw new ValidationError('Invalid request body', 400, 'INVALID_PAYLOAD');
@@ -187,13 +243,7 @@ async function createCard(req, res) {
   for (let attempt = 0; attempt < MAX_ID_ATTEMPTS; attempt += 1) {
     const id = createCardId(section);
     const discussionId = `card-${id}`;
-    const cardPayload = {
-      ...payload,
-      id,
-      section,
-      status: 'pending',
-      discussionId
-    };
+    const cardPayload = buildPublicCardPayload(payload, id);
     const row = {
       id,
       section,
@@ -309,4 +359,4 @@ export default async function handler(req, res) {
   }
 }
 
-export { CARD_PREFIXES, createBase62Id, createCardId, getPayloadSizeBytes, getSupabaseConstraint, MAX_PAYLOAD_BYTES };
+export { CARD_PREFIXES, buildPublicCardPayload, createBase62Id, createCardId, getPayloadSizeBytes, getSupabaseConstraint, MAX_PAYLOAD_BYTES };

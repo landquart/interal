@@ -1356,9 +1356,6 @@ function makeIndoeuropanCard(payload, timeMeta, author = null) {
     version: "1.0",
     card_type: "vord_card",
     vord_type: "iv",
-    status: "draft",
-    created_at: timeMeta.created_at,
-    created_at_source: timeMeta.created_at_source,
     interal: {
       word: payload.interalWord || "",
       ipa: payload.interalIPA || "",
@@ -1370,34 +1367,18 @@ function makeIndoeuropanCard(payload, timeMeta, author = null) {
     },
     ...(author ? { author } : {}),
     supported_groups: Array.isArray(payload.supportedGroups) ? payload.supportedGroups : [],
-    calculation: {
-      pi_percent: finiteOrNull(payload.formalPI),
-      weighted_sum: finiteOrNull(payload.weightedSum),
-      total_speakers_thousands: finiteOrNull(payload.totalSpeakers)
+    procedure: "indoeuropan_word",
+    result: {
+      pi_percent: finiteOrNull(payload.formalPI)
     },
-    language_results: (Array.isArray(payload.rows) ? payload.rows : []).map((row) => {
-      const graphic = {
-        score: finiteOrNull(row.graphic)
-      };
-
-      if (row.graphicDetails) {
-        graphic.distance_d = finiteOrNull(row.graphicDetails.distance);
-        graphic.max_length_l = finiteOrNull(row.graphicDetails.maxLen);
-      }
-
+    language_evidence: (Array.isArray(payload.rows) ? payload.rows : []).map((row) => {
       return {
-        code: row.code || "",
-        name: row.englishName || row.name || "",
-        group: row.group || "",
-        speakers_thousands: finiteOrNull(row.speakers),
+        language: row.code || "",
         word: row.word || "",
-        normalized_graphic: row.nationalGraphic || "",
         ipa: row.ipa || "",
-        graphic,
-        phonetic: makePhoneticBlock(row),
-        final_similarity_s: finiteOrNull(row.general),
-        speaker_contribution: finiteOrNull(row.contribution),
-        supports_group: Number.isFinite(row.general) && row.general >= payload.supportThreshold
+        G: finiteOrNull(row.graphic),
+        PH: finiteOrNull(row.phonetic),
+        S: finiteOrNull(row.general)
       };
     })
   };
