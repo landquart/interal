@@ -1179,6 +1179,7 @@ window.refreshCustomSelect = function refreshCustomSelect(selectOrId) {
     ru: { telegram: 'Telegram', discord: 'Discord', email: 'Email', signal: 'Signal', matrix: 'Matrix', simplex: 'Simplex', other: 'Другое' },
     en: { telegram: 'Telegram', discord: 'Discord', email: 'Email', signal: 'Signal', matrix: 'Matrix', simplex: 'Simplex', other: 'Other' }
   };
+  const CONTACT_TYPE_ORDER = ['telegram', 'discord', 'email', 'signal', 'matrix', 'simplex', 'other'];
   const $ = (id) => document.getElementById(id);
 
   const buttonLoaderTimers = new Map();
@@ -1202,7 +1203,7 @@ window.refreshCustomSelect = function refreshCustomSelect(selectOrId) {
   }
 
 
-  const INTERAL_JSON_MODULE_VERSION = 'cards-primary-id-fix-20260712-1';
+  const INTERAL_JSON_MODULE_VERSION = 'contact-types-20260713-1';
   const CARD_ID_PATTERN = /^(iv|av|in|vc|gv|al|af)_[0-9A-Za-z]{12}$/;
   const SECTION_PREFIX = { internationalismes:'in', associativvordes:'av', indoeuropanvordes:'iv', vordesofcommunites:'vc', grammaticebrevivordes:'gv', altervordes:'al', affixes:'af' };
   const API_ENDPOINT = location.hostname === 'landquart.github.io' ? 'https://interal.vercel.app/api/cards' : '/api/cards';
@@ -1286,9 +1287,17 @@ window.refreshCustomSelect = function refreshCustomSelect(selectOrId) {
     const select = typeof selectOrId === 'string' ? $(selectOrId) : selectOrId;
     if (!select) return;
     const labels = CONTACT_TYPE_LABELS[String(language).startsWith('en') ? 'en' : 'ru'];
-    Array.from(select.options || []).forEach((option) => {
-      if (labels[option.value]) option.textContent = labels[option.value];
+    const previousValue = select.value || 'telegram';
+    CONTACT_TYPE_ORDER.forEach((value) => {
+      let option = Array.from(select.options || []).find((item) => item.value === value);
+      if (!option) {
+        option = document.createElement('option');
+        option.value = value;
+        select.appendChild(option);
+      }
+      option.textContent = labels[value] || value;
     });
+    select.value = CONTACT_TYPE_ORDER.includes(previousValue) ? previousValue : 'telegram';
     window.refreshCustomSelect?.(select);
   }
   function init(options = {}) {
