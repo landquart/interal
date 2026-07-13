@@ -30,7 +30,7 @@
       blackName: 'Black',
       whiteName: 'White',
       nameUseTitle: 'Name use',
-      nameUseText1: 'The name “Интераль”/Interal and all derivatives of it may be used freely to designate the language and make accurate mention of the project, including scientific, educational, informational, and critical materials.',
+      nameUseText1: 'The name Interal and all derivatives of it may be used freely to designate the language and make accurate mention of the project, including scientific, educational, informational, and critical materials.',
       nameUseText2: 'Registration of a similar domain name or account name is prohibited if it creates confusion or imitation of the official project.',
       download: 'Download'
     }
