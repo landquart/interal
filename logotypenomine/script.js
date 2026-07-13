@@ -20,7 +20,9 @@
       sizeLabel: 'Размер',
       altGold: 'Золотистый логотип Интераля',
       altWhite: 'Белый логотип Интераля',
-      altBlack: 'Чёрный логотип Интераля'
+      altBlack: 'Чёрный логотип Интераля',
+      copyColor: 'Скопировать',
+      copiedColor: 'Скопировано'
     },
     en: {
       title: 'Logo and name',
@@ -42,7 +44,9 @@
       sizeLabel: 'Size',
       altGold: 'Golden Interal logo',
       altWhite: 'White Interal logo',
-      altBlack: 'Black Interal logo'
+      altBlack: 'Black Interal logo',
+      copyColor: 'Copy',
+      copiedColor: 'Copied'
     }
   };
 
@@ -69,16 +73,14 @@
   function renderLogos() {
     const files = format === 'svg' ? logoSets.svg.default : logoSets.png[size];
     const t = text[currentLang()];
-    sizeGroup.hidden = format === 'svg';
+    sizeGroup.classList.toggle('is-visually-hidden', format === 'svg');
+    sizeGroup.setAttribute('aria-hidden', String(format === 'svg'));
     grid.innerHTML = files.map((file) => `
       <article class="logo-variant">
         <div class="logo-preview ${variantClass(file)}">
           <div class="logo-preview-inset"><img src="${href(file)}" alt="${logoAlt(file, t)}"></div>
         </div>
-        <div class="logo-meta">
-          <div class="logo-file-name">${file}</div>
-          <a class="logo-download-btn" href="${href(file)}" download aria-label="${t.download} ${file}"><img src="../elements/Download.svg" alt="" aria-hidden="true"></a>
-        </div>
+        <a class="logo-download-btn" href="${href(file)}" download aria-label="${t.download} ${file}"><img src="../elements/Download.svg" alt="" aria-hidden="true"></a>
       </article>`).join('');
   }
 
@@ -105,7 +107,39 @@
     });
     document.title = t.title;
     renderLogos();
+    updateCopyLabels();
   }
+
+  function updateCopyLabels() {
+    const t = text[currentLang()];
+    document.querySelectorAll('[data-copy-color]').forEach((btn) => {
+      btn.setAttribute('aria-label', `${t.copyColor} ${btn.dataset.copyColor}`);
+    });
+  }
+
+  function copyColor(btn) {
+    const value = btn.dataset.copyColor;
+    const write = navigator.clipboard && window.isSecureContext
+      ? navigator.clipboard.writeText(value)
+      : Promise.reject(new Error('Clipboard API unavailable'));
+    write.catch(() => {
+      const input = document.createElement('input');
+      input.value = value;
+      input.setAttribute('readonly', '');
+      input.style.position = 'fixed';
+      input.style.opacity = '0';
+      document.body.appendChild(input);
+      input.select();
+      document.execCommand('copy');
+      input.remove();
+    }).finally(() => {
+      const t = text[currentLang()];
+      btn.setAttribute('aria-label', `${t.copiedColor} ${value}`);
+      window.setTimeout(() => btn.setAttribute('aria-label', `${t.copyColor} ${value}`), 1200);
+    });
+  }
+
+  document.querySelectorAll('[data-copy-color]').forEach((btn) => btn.addEventListener('click', () => copyColor(btn)));
 
   document.querySelectorAll('[data-format]').forEach((btn) => btn.addEventListener('click', () => {
     format = btn.dataset.format;
