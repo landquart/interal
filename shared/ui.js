@@ -70,6 +70,7 @@
     logoName: {
       path: 'logotypenomine/',
       icon: '',
+      mobileIcon: 'elements/interalen%20logo.svg',
       labelKey: 'navLogoName',
       group: 'identity'
     }
@@ -713,7 +714,7 @@
     if (currentItem) {
       const t = i18n[getLang()];
       const label = t[currentItem.labelKey];
-      const mobileIcon = currentItem.icon || '';
+      const mobileIcon = currentItem.mobileIcon || currentItem.icon || '';
       const icon = mobileCurrentPageLink.querySelector('.top-current-page-icon');
       mobileCurrentPageLink.href = joinUrl(currentItem.path);
       mobileCurrentPageLink.setAttribute('aria-label', label);
