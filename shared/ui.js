@@ -713,16 +713,17 @@
     if (currentItem) {
       const t = i18n[getLang()];
       const label = t[currentItem.labelKey];
+      const mobileIcon = currentItem.icon || (currentNav === 'logoName' ? 'elements/interalen%20logo%20512%20b.png' : '');
       const icon = mobileCurrentPageLink.querySelector('.top-current-page-icon');
       mobileCurrentPageLink.href = joinUrl(currentItem.path);
       mobileCurrentPageLink.setAttribute('aria-label', label);
       mobileCurrentPageLink.setAttribute('title', label);
-      mobileCurrentPageLink.classList.toggle('top-current-page-link--text', !currentItem.icon);
+      mobileCurrentPageLink.classList.toggle('top-current-page-link--text', !mobileIcon);
       if (icon) {
-        icon.hidden = !currentItem.icon;
-        if (currentItem.icon) icon.src = joinUrl(currentItem.icon);
+        icon.hidden = !mobileIcon;
+        if (mobileIcon) icon.src = joinUrl(mobileIcon);
       }
-      mobileCurrentPageLink.dataset.label = currentItem.icon ? '' : label;
+      mobileCurrentPageLink.dataset.label = mobileIcon ? '' : label;
     }
   }
 
