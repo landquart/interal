@@ -66,6 +66,12 @@
       icon: 'elements/registre.svg',
       labelKey: 'navRegistry',
       group: 'registry'
+    },
+    logoName: {
+      path: 'logotypenomine/',
+      icon: 'elements/interalen%20logo.svg',
+      labelKey: 'navLogoName',
+      group: 'identity'
     }
   };
 
@@ -93,6 +99,7 @@
     if (path.includes('/altervordes/')) return 'altervordes';
     if (path.includes('/affixes/')) return 'affixes';
     if (path.includes('/registre/')) return 'registry';
+    if (path.includes('/logotypenomine/')) return 'logoName';
     return '';
   }
 
@@ -121,6 +128,7 @@
       navGrammar: 'Grammatic e brevi vordes',
       navAltervordes: 'Alter vordes',
       navAffixes: 'Affixes',
+      navLogoName: 'Логотип и название',
       instrumentsLabel: 'Инструменты',
       navAriaLabel: 'Разделы сайта',
       ru: 'Русский',
@@ -158,6 +166,7 @@
       navGrammar: 'Grammatic e brevi vordes',
       navAltervordes: 'Alter vordes',
       navAffixes: 'Affixes',
+      navLogoName: 'Logo and name',
       instrumentsLabel: 'Instruments',
       navAriaLabel: 'Site sections',
       ru: 'Русский',
@@ -217,6 +226,9 @@
     <a class="top-desktop-link" href="${joinUrl(pageNavItems.registry.path)}" data-nav="registry">
       <span class="top-desktop-link-main"></span>
     </a>
+    <a class="top-desktop-link" href="${joinUrl(pageNavItems.logoName.path)}" data-nav="logoName">
+      <span class="top-desktop-link-main"></span>
+    </a>
   `;
 
   const mobileCurrentPageLink = document.createElement('a');
@@ -243,6 +255,7 @@
       </div>
       <div class="menu-divider menu-divider--mobile" aria-hidden="true"></div>
       <a class="menu-nav-link" href="${joinUrl(pageNavItems.registry.path)}" data-nav="registry"><img class="menu-nav-icon" src="${joinUrl(pageNavItems.registry.icon)}" alt="" aria-hidden="true" /><span class="menu-nav-main"></span></a>
+      <a class="menu-nav-link" href="${joinUrl(pageNavItems.logoName.path)}" data-nav="logoName"><img class="menu-nav-icon" src="${joinUrl(pageNavItems.logoName.icon)}" alt="" aria-hidden="true" /><span class="menu-nav-main"></span></a>
       ${canCopyPageState ? `
       <div class="menu-divider menu-divider--mobile" aria-hidden="true"></div>
       <button class="menu-copy-btn" type="button" data-copy-state="true">
