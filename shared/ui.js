@@ -206,6 +206,12 @@
   brandLink.className = 'top-brand';
   brandLink.href = joinUrl('index.html');
   brandLink.innerHTML = `
+    <img
+      class="top-brand-logo"
+      src="${joinUrl('elements/interalen%20logo.svg')}"
+      alt=""
+      aria-hidden="true"
+    />
     <span class="top-brand-text">Interal</span>
   `;
 
@@ -526,11 +532,12 @@
     document.dispatchEvent(new CustomEvent('interal:languagechange', { detail: { lang: nextLang } }));
   }
 
-  function applyMobileBrandLogo() {
+  function applyBrandLogo() {
     const logo = brandLink.querySelector('.top-brand-logo');
     if (!logo) return;
     logo.src = joinUrl('elements/interalen%20logo.svg');
-    logo.alt = 'Interal logo';
+    logo.alt = '';
+    logo.setAttribute('aria-hidden', 'true');
   }
 
 
@@ -792,8 +799,7 @@
 
   initTheme();
   applyLanguage(getLang());
-  applyMobileBrandLogo();
-  window.addEventListener('resize', applyMobileBrandLogo);
+  applyBrandLogo();
   markCurrentPage();
   // Shared page-state restore is intentionally disabled: reset must not reapply URL/hash state.
 
