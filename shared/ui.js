@@ -716,7 +716,7 @@
     });
 
     const currentItem = currentNav ? pageNavItems[currentNav] : null;
-    const hideMobileCurrentPageLink = !currentItem;
+    const hideMobileCurrentPageLink = !currentItem || currentNav === 'logoName';
     mobileCurrentPageLink.hidden = hideMobileCurrentPageLink;
     if (currentItem) {
       const t = i18n[getLang()];
