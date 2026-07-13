@@ -113,12 +113,12 @@
   function updateCopyLabels() {
     const t = text[currentLang()];
     document.querySelectorAll('[data-copy-color]').forEach((btn) => {
-      btn.setAttribute('aria-label', `${t.copyColor} ${btn.dataset.copyColor}`);
+      btn.setAttribute('aria-label', `${t.copyColor} #${btn.dataset.copyColor}`);
     });
   }
 
   function copyColor(btn) {
-    const value = btn.dataset.copyColor;
+    const value = `#${btn.dataset.copyColor}`;
     const write = navigator.clipboard && window.isSecureContext
       ? navigator.clipboard.writeText(value)
       : Promise.reject(new Error('Clipboard API unavailable'));
