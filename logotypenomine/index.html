@@ -4,6 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Логотип и название</title>
+  <meta name="description" content="Официальный логотип, цвета и правила использования названия Интераля.">
+  <link rel="canonical" href="https://interal.vercel.app/logotypenomine/">
+  <meta property="og:title" content="Логотип и название">
+  <meta property="og:description" content="Официальный логотип, цвета и правила использования названия Интераля.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://interal.vercel.app/logotypenomine/">
   <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon%20interal%2032.png" />
   <link rel="icon" type="image/png" sizes="64x64" href="../favicon/favicon%20interal%2064.png" />
   <link rel="apple-touch-icon" sizes="512x512" href="../favicon/favicon%20interal%20512.png" />
@@ -16,17 +22,16 @@
       <h1 class="interal-page-title" data-i18n="title">Логотип и название</h1>
     </header>
 
-    <section class="interal-panel logo-download-panel" aria-labelledby="logo-download-title">
-      <h2 id="logo-download-title" class="visually-removed" data-i18n="title">Логотип и название</h2>
+    <section class="interal-panel logo-download-panel">
       <div class="logo-controls">
-        <div class="segment-group" role="radiogroup" aria-label="Формат" data-control="format">
-          <button class="segment-btn is-active" type="button" role="radio" aria-checked="true" data-format="png">PNG</button>
-          <button class="segment-btn" type="button" role="radio" aria-checked="false" data-format="svg">SVG</button>
+        <div class="segment-group" role="group" aria-label="Формат" data-control="format" data-i18n-aria="formatLabel">
+          <button class="segment-btn is-active" type="button" aria-pressed="true" data-format="png">PNG</button>
+          <button class="segment-btn" type="button" aria-pressed="false" data-format="svg">SVG</button>
         </div>
-        <div class="segment-group" role="radiogroup" aria-label="Размер" data-control="size">
-          <button class="segment-btn is-active" type="button" role="radio" aria-checked="true" data-size="512">512×512</button>
-          <button class="segment-btn" type="button" role="radio" aria-checked="false" data-size="1024">1024×1024</button>
-          <button class="segment-btn" type="button" role="radio" aria-checked="false" data-size="2048">2048×2048</button>
+        <div class="segment-group" role="group" aria-label="Размер" data-control="size" data-i18n-aria="sizeLabel">
+          <button class="segment-btn is-active" type="button" aria-pressed="true" data-size="512">512×512</button>
+          <button class="segment-btn" type="button" aria-pressed="false" data-size="1024">1024×1024</button>
+          <button class="segment-btn" type="button" aria-pressed="false" data-size="2048">2048×2048</button>
         </div>
       </div>
       <div class="logo-preview-grid" id="logoPreviewGrid"></div>
@@ -40,7 +45,7 @@
     <section class="interal-panel text-panel">
       <h2 data-i18n="logoUseTitle">Использование логотипа</h2>
       <p data-i18n="logoUseText1">Разрешается использовать неизменённый логотип для информационного упоминания проекта, размещения ссылок на его официальный сайт, публикации обзоров, научных и образовательных материалов, а также для распространения официальных материалов Интераля.</p>
-      <p data-i18n="logoUseText2">Запрещается использование логотипа на любых носителях для создания ложного впечатления об официальной связи с проектом или его представлении.</p>
+      <p data-i18n="logoUseText2">Запрещается использование логотипа способом, создающим ложное впечатление об официальной связи с проектом или о том, что стороннее лицо либо организация официально представляет Интераль.</p>
       <p data-i18n="logoUseText3">Без предварительного разрешения не допускаются:<br>— изменение формы, пропорций, цветов или элементов логотипа;<br>— размещение логотипа на продукции, предназначенной для продажи.</p>
     </section>
 
@@ -56,7 +61,7 @@
     <section class="interal-panel text-panel">
       <h2 data-i18n="nameUseTitle">Использование названия</h2>
       <p data-i18n="nameUseText1">Название «Интераль»/Interal и все производные от него разрешается свободно использовать для обозначения языка и достоверного упоминания проекта, включая научные, образовательные, информационные и критические материалы.</p>
-      <p data-i18n="nameUseText2">Запрещается регистрация сходного доменного имени, названия аккаунта, если создаётся смешение или имитация официального проекта.</p>
+      <p data-i18n="nameUseText2">Запрещается регистрация доменных имён и названий аккаунтов, способных создать ложное впечатление, что они принадлежат официальному проекту Интераля или связаны с ним.</p>
     </section>
   </main>
   <script src="../shared/ui.js?v=contact-types-20260713-1"></script>
