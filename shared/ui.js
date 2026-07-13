@@ -708,7 +708,8 @@
     });
 
     const currentItem = currentNav ? pageNavItems[currentNav] : null;
-    mobileCurrentPageLink.hidden = !currentItem;
+    const hideMobileCurrentPageLink = !currentItem || currentNav === 'logoName';
+    mobileCurrentPageLink.hidden = hideMobileCurrentPageLink;
     if (currentItem) {
       const t = i18n[getLang()];
       const label = t[currentItem.labelKey];
