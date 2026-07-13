@@ -619,12 +619,3 @@ body.dark-theme.determinator-page .modal-backdrop {
   background: var(--brand-gold);
   opacity: .62;
 }
-.determinator-page .plus-btn {
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--brand-gold) 12%, var(--surface-elevated));
-  box-shadow: inset 0 0 0 1px var(--brand-gold-border);
-}
-.determinator-page .plus-btn:hover,
-.determinator-page .plus-btn:focus-visible {
-  background: color-mix(in srgb, var(--brand-gold) 20%, var(--surface-elevated));
-}

@@ -9,7 +9,7 @@
 <link rel="apple-touch-icon" sizes="512x512" href="../favicon/favicon%20interal%20512.png" />
 
 <title>Indoeuropan vordes</title>
-<link rel="stylesheet" href="../shared/ui.css?v=cards-primary-id-fix-20260712-1" />
+<link rel="stylesheet" href="../shared/ui.css?v=contact-types-20260713-1" />
 
 <style>
 .internationalita-page {
@@ -695,9 +695,13 @@ body.dark-theme .internationalita-page .json-card-icon-btn.is-copied {
 
         <label for="authorContactType" id="authorContactTypeLabel">Тип контакта</label>
         <select class="interal-select js-custom-select" id="authorContactType">
-          <option value="telegram">telegram</option>
-          <option value="matrix">matrix</option>
-          <option value="email">email</option>
+          <option value="telegram">Telegram</option>
+          <option value="discord">Discord</option>
+          <option value="email">Email</option>
+          <option value="signal">Signal</option>
+          <option value="matrix">Matrix</option>
+          <option value="simplex">Simplex</option>
+          <option value="other">Другое</option>
         </select>
 
         <label for="authorContactValue" id="authorContactValueLabel">Контакт</label>
@@ -729,7 +733,7 @@ body.dark-theme .internationalita-page .json-card-icon-btn.is-copied {
 </div>
 
 
-<script src="./aline.js?v=cards-primary-id-fix-20260712-1"></script>
+<script src="./aline.js?v=contact-types-20260713-1"></script>
 
 <script>
 "use strict";
@@ -2864,11 +2868,17 @@ initRows();
 
 applyLocalizedTexts();
 updateResetButtonVisibility();
+document.addEventListener("DOMContentLoaded", () => {
+  window.InteralJsonCardModal?.applyContactTypeLabels?.(
+    "authorContactType",
+    document.documentElement.lang
+  );
+});
 </script>
 
-<script src="./download-json-card.js?v=cards-primary-id-fix-20260712-1"></script>
-<script src="../shared/copy-plain.js?v=cards-primary-id-fix-20260712-1"></script>
-<script src="../shared/ui.js?v=cards-primary-id-fix-20260712-1" defer></script>
+<script src="./download-json-card.js?v=contact-types-20260713-1"></script>
+<script src="../shared/copy-plain.js?v=contact-types-20260713-1"></script>
+<script src="../shared/ui.js?v=contact-types-20260713-1" defer></script>
 
 </body>
 </html>

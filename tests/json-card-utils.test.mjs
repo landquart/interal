@@ -6,7 +6,7 @@ import { CARD_PREFIXES, buildPublicCardPayload, createCardId, getPayloadSizeByte
 function el(){return {style:{},dataset:{},classList:{add(){},remove(){},toggle(){},contains(){return false}},setAttribute(){},getAttribute(){return null},append(){},appendChild(){},prepend(){},remove(){},addEventListener(){},querySelector(){return el()},querySelectorAll(){return []},focus(){},click(){},textContent:'',value:'',checked:false,hidden:false,disabled:false};}
 function loadUi(){
   const elements={}; const alerts=[]; const calls=[];
-  const context={ console, calls, alert:(msg)=>alerts.push(msg), setTimeout, clearTimeout, requestAnimationFrame:(fn)=>setTimeout(fn,0), CustomEvent:class{constructor(type,init){this.type=type;this.detail=init?.detail}}, location:{hostname:'localhost', pathname:'/internationalismes/', origin:'http://localhost'}, navigator:{clipboard:{writeText:async()=>{}}}, localStorage:{getItem(){return null}, setItem(){}, removeItem(){}}, Blob:class{}, URL:Object.assign(URL,{createObjectURL(){return 'blob:'}, revokeObjectURL(){}}), TextEncoder, fetch:async()=>({ok:true,json:async()=>({ok:true,id:'in_123456789abc',section:'internationalismes',status:'pending'})}), document:{currentScript:{src:'http://localhost/shared/ui.js?v=cards-primary-id-fix-20260712-1'}, dispatchEvent(){}, documentElement:{lang:'ru', classList:{add(){}, remove(){}, toggle(){}, contains(){return false}}, style:{setProperty(){}}}, body:{appendChild(){}, append(){}, prepend(){}, classList:{add(){}, remove(){}, toggle(){}, contains(){return false}}}, createElement(){return el()}, querySelector(sel){return sel.includes('shared/ui.js')?{src:'/shared/ui.js?v=cards-primary-id-fix-20260712-1'}:null}, querySelectorAll(){return []}, getElementById(id){return elements[id]||null}, addEventListener(){}}, window:null };
+  const context={ console, calls, alert:(msg)=>alerts.push(msg), setTimeout, clearTimeout, requestAnimationFrame:(fn)=>setTimeout(fn,0), CustomEvent:class{constructor(type,init){this.type=type;this.detail=init?.detail}}, location:{hostname:'localhost', pathname:'/internationalismes/', origin:'http://localhost'}, navigator:{clipboard:{writeText:async()=>{}}}, localStorage:{getItem(){return null}, setItem(){}, removeItem(){}}, Blob:class{}, URL:Object.assign(URL,{createObjectURL(){return 'blob:'}, revokeObjectURL(){}}), TextEncoder, fetch:async()=>({ok:true,json:async()=>({ok:true,id:'in_123456789abc',section:'internationalismes',status:'pending'})}), document:{currentScript:{src:'http://localhost/shared/ui.js?v=contact-types-20260713-1'}, dispatchEvent(){}, documentElement:{lang:'ru', classList:{add(){}, remove(){}, toggle(){}, contains(){return false}}, style:{setProperty(){}}}, body:{appendChild(){}, append(){}, prepend(){}, classList:{add(){}, remove(){}, toggle(){}, contains(){return false}}}, createElement(){return el()}, querySelector(sel){return sel.includes('shared/ui.js')?{src:'/shared/ui.js?v=contact-types-20260713-1'}:null}, querySelectorAll(){return []}, getElementById(id){return elements[id]||null}, addEventListener(){}}, window:null };
   context.addEventListener=()=>{}; context.removeEventListener=()=>{}; context.matchMedia=()=>({matches:false, addEventListener(){}, removeEventListener(){}}); context.window=context; vm.createContext(context); vm.runInContext(fs.readFileSync('shared/ui.js','utf8'), context); return {context,elements,alerts,calls};
 }
 const okResponse=(data)=>({ok:true,status:200,json:async()=>data});
@@ -16,7 +16,7 @@ const {context,calls}=loadUi();
 const { extractSavedCard, createCardOnServer, validateCardId } = context.window.InteralJsonCards;
 const draft={section:'internationalismes', interal:{word:'test'}};
 
-assert.equal(context.window.InteralJsonDiagnostics.getStatus().version, 'cards-primary-id-fix-20260712-1');
+assert.equal(context.window.InteralJsonDiagnostics.getStatus().version, 'contact-types-20260713-1');
 assert.equal(JSON.stringify(context.window.InteralJsonDiagnostics.getStatus().helpers), JSON.stringify(['extractSavedCard','createCardOnServer','validateCardId','publicJsonError']));
 assert.equal(extractSavedCard({id:'in_123456789abc', section:'internationalismes', status:'pending', discussionId:'card-in_123456789abc'}, draft).discussionId, undefined);
 assert.equal(extractSavedCard({id:'in_123456789abc', section:'internationalismes', status:'pending', card:{payload:{version:'1.0'}}}, draft).id, 'in_123456789abc');
@@ -67,11 +67,11 @@ assert.equal(getSupabaseConstraint({ message: 'new row for relation "cards" viol
 const htmlFiles = ['internationalismes/index.html','indoeuropanvordes/index.html','associativvordes/index.html','vordesofcommunites/index.html','grammaticebrevivordes/index.html','altervordes/index.html','affixes/index.html'];
 for (const file of htmlFiles) {
   const html = fs.readFileSync(file, 'utf8');
-  assert.match(html, /shared\/ui\.js\?v=cards-primary-id-fix-20260712-1/);
+  assert.match(html, /shared\/ui\.js\?v=contact-types-20260713-1/);
   assert.doesNotMatch(html, new RegExp(['cards-primary-id-fix','20260711','1'].join('-')));
 }
 const ui = fs.readFileSync('shared/ui.js','utf8');
-assert.match(ui, /INTERAL_JSON_MODULE_VERSION = 'cards-primary-id-fix-20260712-1'/);
+assert.match(ui, /INTERAL_JSON_MODULE_VERSION = 'contact-types-20260713-1'/);
 assert.doesNotMatch(ui, new RegExp(['createFallbackCardId','isFallbackEligibleError','checkHealth','createLocalOnlyCard'].join('|')));
 
 const pageSections = {
