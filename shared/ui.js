@@ -69,7 +69,7 @@
     },
     logoName: {
       path: 'logotypenomine/',
-      icon: 'elements/interalen%20logo.svg',
+      icon: '',
       labelKey: 'navLogoName',
       group: 'identity'
     }
@@ -205,9 +205,12 @@
   brandLink.className = 'top-brand';
   brandLink.href = joinUrl('index.html');
   brandLink.innerHTML = `
-    <img class="top-brand-logo" src="${joinUrl('elements/interalen%20logo.svg')}" alt="Interal logo" />
     <span class="top-brand-text">Interal</span>
   `;
+
+  function navIconHtml(item, className) {
+    return item.icon ? `<img class="${className}" src="${joinUrl(item.icon)}" alt="" aria-hidden="true" />` : '';
+  }
 
   const desktopControls = document.createElement('div');
   desktopControls.className = 'top-desktop-controls';
@@ -219,7 +222,7 @@
       <div class="top-desktop-dropdown-menu" role="menu">
         ${instrumentNavKeys.map((key) => {
           const item = pageNavItems[key];
-          return `<a class="top-desktop-dropdown-link" href="${joinUrl(item.path)}" data-nav="${key}" role="menuitem"><img class="top-desktop-dropdown-icon" src="${joinUrl(item.icon)}" alt="" aria-hidden="true" /><span class="top-desktop-link-main"></span></a>`;
+          return `<a class="top-desktop-dropdown-link" href="${joinUrl(item.path)}" data-nav="${key}" role="menuitem">${navIconHtml(item, 'top-desktop-dropdown-icon')}<span class="top-desktop-link-main"></span></a>`;
         }).join('')}
       </div>
     </div>
@@ -250,12 +253,12 @@
         <div class="menu-nav-heading"></div>
         ${instrumentNavKeys.map((key) => {
           const item = pageNavItems[key];
-          return `<a class="menu-nav-link" href="${joinUrl(item.path)}" data-nav="${key}"><img class="menu-nav-icon" src="${joinUrl(item.icon)}" alt="" aria-hidden="true" /><span class="menu-nav-main"></span></a>`;
+          return `<a class="menu-nav-link" href="${joinUrl(item.path)}" data-nav="${key}">${navIconHtml(item, 'menu-nav-icon')}<span class="menu-nav-main"></span></a>`;
         }).join('')}
       </div>
       <div class="menu-divider menu-divider--mobile" aria-hidden="true"></div>
-      <a class="menu-nav-link" href="${joinUrl(pageNavItems.registry.path)}" data-nav="registry"><img class="menu-nav-icon" src="${joinUrl(pageNavItems.registry.icon)}" alt="" aria-hidden="true" /><span class="menu-nav-main"></span></a>
-      <a class="menu-nav-link" href="${joinUrl(pageNavItems.logoName.path)}" data-nav="logoName"><img class="menu-nav-icon" src="${joinUrl(pageNavItems.logoName.icon)}" alt="" aria-hidden="true" /><span class="menu-nav-main"></span></a>
+      <a class="menu-nav-link" href="${joinUrl(pageNavItems.registry.path)}" data-nav="registry">${navIconHtml(pageNavItems.registry, 'menu-nav-icon')}<span class="menu-nav-main"></span></a>
+      <a class="menu-nav-link" href="${joinUrl(pageNavItems.logoName.path)}" data-nav="logoName">${navIconHtml(pageNavItems.logoName, 'menu-nav-icon')}<span class="menu-nav-main"></span></a>
       ${canCopyPageState ? `
       <div class="menu-divider menu-divider--mobile" aria-hidden="true"></div>
       <button class="menu-copy-btn" type="button" data-copy-state="true">
@@ -713,7 +716,12 @@
       mobileCurrentPageLink.href = joinUrl(currentItem.path);
       mobileCurrentPageLink.setAttribute('aria-label', label);
       mobileCurrentPageLink.setAttribute('title', label);
-      if (icon) icon.src = joinUrl(currentItem.icon);
+      mobileCurrentPageLink.classList.toggle('top-current-page-link--text', !currentItem.icon);
+      if (icon) {
+        icon.hidden = !currentItem.icon;
+        if (currentItem.icon) icon.src = joinUrl(currentItem.icon);
+      }
+      mobileCurrentPageLink.dataset.label = currentItem.icon ? '' : label;
     }
   }
 
