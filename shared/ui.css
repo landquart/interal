@@ -638,7 +638,7 @@ body.dark-theme .top-desktop-link.is-active:hover {
 .menu-nav-link.is-active{background:var(--surface-hover);color:var(--text);box-shadow:inset 0 0 0 1px var(--border-subtle)}
 .auto-contrast-text{color:var(--auto-contrast-color);}
 .top-desktop-link-main,.menu-nav-main{text-decoration:none;font-weight:600}
-@media (min-width:980px){.top-desktop-controls{display:flex;margin-left:auto}.top-current-page-link{display:none}.top-nav-window{justify-content:flex-start}.menu-preferences-row{display:flex;gap:8px}.menu-theme-toggle,.menu-lang-trigger{width:42px;height:42px;border-radius:999px}}
+@media (min-width:980px){.top-desktop-controls{display:flex;margin-left:auto}.top-current-page-link{display:none}.top-nav-window{justify-content:flex-start}.top-brand{position:relative;left:auto;transform:none;margin-left:2px}.menu-preferences-row{display:flex;gap:8px}.menu-theme-toggle,.menu-lang-trigger{width:42px;height:42px;border-radius:999px}}
 
 @media (min-width:980px){
   .side-menu .menu-nav-link{display:none;}
