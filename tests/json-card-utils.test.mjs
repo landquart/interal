@@ -101,3 +101,19 @@ const pageSections = {
 for (const [file, section] of Object.entries(pageSections)) {
   assert.match(fs.readFileSync(file, 'utf8'), new RegExp(`section:\\s*['\"]${section}['\"]|CARD_SECTION\\s*=\\s*['\"]${section}['\"]`));
 }
+
+const jsonTextSources = [
+  'shared/ui.js',
+  'internationalismes/script.js',
+  'associativvordes/script.js',
+  'vordesofcommunites/script.js',
+  'grammaticebrevivordes/script.js',
+  'altervordes/script.js',
+  'affixes/script.js',
+  'indoeuropanvordes/index.html'
+];
+for (const file of jsonTextSources) {
+  const source = fs.readFileSync(file, 'utf8');
+  assert.match(source, /Remember for future cards/);
+  assert.match(source, /Delete saved data/);
+}
