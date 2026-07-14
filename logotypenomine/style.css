@@ -13,6 +13,7 @@
 .logo-preview-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
 .logo-variant { min-width: 0; position: relative; }
 .logo-preview { min-height: clamp(190px, 24vw, 240px); border-radius: var(--radius-md); border: 1px solid var(--border-subtle); background: var(--surface-elevated); display: grid; place-items: center; padding: clamp(18px, 4vw, 32px); overflow: visible; }
+.logo-preview--gold { background: #000000; border-color: #000000; }
 .logo-preview--white { background: #E39B12; }
 .logo-preview--black { background: #ffffff; }
 .logo-preview-inset { display: grid; place-items: center; width: min(72%, 184px); aspect-ratio: 1; padding: 16px; border-radius: 20px; background: transparent; }
