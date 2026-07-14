@@ -706,6 +706,15 @@ body.dark-theme .internationalita-page .json-card-icon-btn.is-copied {
 
         <label for="authorContactValue" id="authorContactValueLabel">Контакт</label>
         <input class="interal-input" id="authorContactValue" type="text" autocomplete="off">
+
+        <label class="checkbox-line" for="rememberAuthorData">
+          <input id="rememberAuthorData" type="checkbox">
+          <span id="rememberAuthorDataLabel">Запомнить для следующих карточек</span>
+        </label>
+
+        <button class="link-button author-storage-clear" id="clearSavedAuthorData" type="button" hidden>
+          Удалить сохранённые данные
+        </button>
       </div>
 
       <button id="generateJsonCardBtn" class="tool-btn interal-btn interal-btn--primary gradient-hover" type="button">Сгенерировать карточку</button>
@@ -771,6 +780,8 @@ const jsonAuthorFields = document.getElementById("jsonAuthorFields");
 const authorDisplayName = document.getElementById("authorDisplayName");
 const authorContactType = document.getElementById("authorContactType");
 const authorContactValue = document.getElementById("authorContactValue");
+const rememberAuthorData = document.getElementById("rememberAuthorData");
+const clearSavedAuthorData = document.getElementById("clearSavedAuthorData");
 const generateJsonCardBtn = document.getElementById("generateJsonCardBtn");
 const jsonCardOutput = document.getElementById("jsonCardOutput");
 const copyJsonCardBtn = document.getElementById("copyJsonCardBtn");
@@ -803,6 +814,8 @@ const TEXT_I18N = {
       authorName: "Имя или ник",
       contactType: "Тип контакта",
       contact: "Контакт",
+      rememberAuthor: "Запомнить для следующих карточек",
+      clearSavedAuthor: "Удалить сохранённые данные",
       generate: "Сгенерировать карточку",
       output: "Готовый JSON",
       copy: "Скопировать JSON-карточку",
@@ -906,6 +919,8 @@ const TEXT_I18N = {
       authorName: "Name or nickname",
       contactType: "Contact type",
       contact: "Contact",
+      rememberAuthor: "Remember for future cards",
+      clearSavedAuthor: "Delete saved data",
       generate: "Generate card",
       output: "Generated JSON",
       copy: "Copy JSON card",
@@ -1212,6 +1227,8 @@ function applyLocalizedTexts(lang = currentLang()) {
   setText("#authorDisplayNameLabel", text.jsonCard.authorName);
   setText("#authorContactTypeLabel", text.jsonCard.contactType);
   setText("#authorContactValueLabel", text.jsonCard.contact);
+  setText("#rememberAuthorDataLabel", text.jsonCard.rememberAuthor);
+  setText("#clearSavedAuthorData", text.jsonCard.clearSavedAuthor);
   setText("#generateJsonCardBtn", text.jsonCard.generate);
   setText("#jsonCardOutputLabel", text.jsonCard.output);
   copyJsonCardBtn.setAttribute("aria-label", text.jsonCard.copy);
@@ -1298,6 +1315,10 @@ function getAuthorBlock() {
   }
 
   const author = {};
+  if (rememberAuthorData?.checked) {
+    window.InteralJsonCardModal?.saveAuthorData?.({ displayName, contactType: authorContactType.value, contactValue: contact });
+  }
+
   if (displayName) author.display_name = displayName;
 
   if (contact) {
@@ -1394,6 +1415,8 @@ function openJsonCardModal() {
   if (!lastCalculationPayload?.accepted) return;
   jsonCardOutput.value = "";
   setJsonCardCopyState(false);
+  window.InteralJsonCardModal?.restoreAuthorData?.();
+  if (clearSavedAuthorData) clearSavedAuthorData.hidden = !window.InteralJsonCardModal?.hasSavedAuthorData?.();
   jsonCardModal.classList.add("show");
   jsonCardModal.setAttribute("aria-hidden", "false");
   generateJsonCardBtn.focus();
@@ -2801,6 +2824,17 @@ closeExplainBtn.addEventListener("click", closeExplain);
 jsonCardBtn.addEventListener("click", openJsonCardModal);
 useAuthorBlock.addEventListener("change", () => {
   jsonAuthorFields.style.display = useAuthorBlock.checked ? "block" : "none";
+});
+rememberAuthorData?.addEventListener("change", () => {
+  if (!rememberAuthorData.checked) {
+    window.InteralJsonCardModal?.clearSavedAuthorData?.();
+    if (clearSavedAuthorData) clearSavedAuthorData.hidden = true;
+  }
+});
+clearSavedAuthorData?.addEventListener("click", () => {
+  window.InteralJsonCardModal?.clearSavedAuthorData?.();
+  if (rememberAuthorData) rememberAuthorData.checked = false;
+  if (clearSavedAuthorData) clearSavedAuthorData.hidden = true;
 });
 generateJsonCardBtn.addEventListener("click", async () => {
   if (!lastCalculationPayload?.accepted) {

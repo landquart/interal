@@ -43,7 +43,7 @@ const TEXT_I18N = {
           jsonCardThresholdUnavailable: 'JSON-карточку можно сформировать только после прохождения главного порога.'
         },
         jsonCard: {
-          close: 'Закрыть JSON-карточку', title: 'JSON-карточка', useAuthor: 'Указать авторство', authorName: 'Имя или ник', contactType: 'Тип контакта', contact: 'Контакт', generate: 'Сгенерировать карточку', output: 'Готовый JSON', copy: 'Скопировать JSON-карточку', download: 'Скачать JSON-карточку'
+          close: 'Закрыть JSON-карточку', title: 'JSON-карточка', useAuthor: 'Указать авторство', authorName: 'Имя или ник', contactType: 'Тип контакта', contact: 'Контакт', rememberAuthor: 'Запомнить для следующих карточек', clearSavedAuthor: 'Удалить сохранённые данные', generate: 'Сгенерировать карточку', output: 'Готовый JSON', copy: 'Скопировать JSON-карточку', download: 'Скачать JSON-карточку'
         }
       },
       en: {
@@ -86,7 +86,7 @@ const TEXT_I18N = {
           jsonCardThresholdUnavailable: 'The JSON card can be generated only after passing the main threshold.'
         },
         jsonCard: {
-          close: 'Close JSON card', title: 'JSON card', useAuthor: 'Add authorship', authorName: 'Name or nickname', contactType: 'Contact type', contact: 'Contact', generate: 'Generate card', output: 'Generated JSON', copy: 'Copy JSON card', download: 'Download JSON card'
+          close: 'Close JSON card', title: 'JSON card', useAuthor: 'Add authorship', authorName: 'Name or nickname', contactType: 'Contact type', contact: 'Contact', rememberAuthor: 'Remember for future cards', clearSavedAuthor: 'Delete saved data', generate: 'Generate card', output: 'Generated JSON', copy: 'Copy JSON card', download: 'Download JSON card'
         }
       }
     };
@@ -794,7 +794,7 @@ const TEXT_I18N = {
       document.getElementById('rootInput').setAttribute('placeholder', textValue('rootPlaceholder'));
       document.getElementById('meaningInput').setAttribute('placeholder', textValue('meaningPlaceholder'));
       const jsonCardText = textGroup('jsonCard');
-      Object.entries({ jsonCardTitle: jsonCardText.title, useAuthorBlockLabel: jsonCardText.useAuthor, authorDisplayNameLabel: jsonCardText.authorName, authorContactTypeLabel: jsonCardText.contactType, authorContactValueLabel: jsonCardText.contact, generateJsonCardBtn: jsonCardText.generate, jsonCardOutputLabel: jsonCardText.output }).forEach(([id, value]) => { const element = document.getElementById(id); if (element) element.textContent = value; });
+      Object.entries({ jsonCardTitle: jsonCardText.title, useAuthorBlockLabel: jsonCardText.useAuthor, authorDisplayNameLabel: jsonCardText.authorName, authorContactTypeLabel: jsonCardText.contactType, authorContactValueLabel: jsonCardText.contact, rememberAuthorDataLabel: jsonCardText.rememberAuthor, clearSavedAuthorData: jsonCardText.clearSavedAuthor, generateJsonCardBtn: jsonCardText.generate, jsonCardOutputLabel: jsonCardText.output }).forEach(([id, value]) => { const element = document.getElementById(id); if (element) element.textContent = value; });
       document.getElementById('closeJsonCardBtn')?.setAttribute('aria-label', jsonCardText.close);
       document.getElementById('copyJsonCardBtn')?.setAttribute('aria-label', jsonCardText.copy);
       document.getElementById('copyJsonCardBtn')?.setAttribute('title', jsonCardText.copy);
@@ -921,6 +921,7 @@ const TEXT_I18N = {
       const displayName = document.getElementById('authorDisplayName').value.trim();
       const contactType = document.getElementById('authorContactType').value;
       const rawContact = document.getElementById('authorContactValue').value.trim();
+      if (document.getElementById('rememberAuthorData')?.checked) window.InteralJsonCardModal?.saveAuthorData?.({ displayName, contactType, contactValue: rawContact });
       const url = contactType === 'telegram' ? normalizeTelegramContact(rawContact) : contactType === 'email' ? normalizeEmailContact(rawContact) : rawContact;
       return {
         ...(displayName ? { display_name: displayName } : {}),
@@ -985,6 +986,9 @@ const TEXT_I18N = {
         return;
       }
       document.getElementById('jsonCardOutput').value = '';
+      window.InteralJsonCardModal?.restoreAuthorData?.();
+      const clearSaved = document.getElementById('clearSavedAuthorData');
+      if (clearSaved) clearSaved.hidden = !window.InteralJsonCardModal?.hasSavedAuthorData?.();
       document.getElementById('jsonCardModal').classList.add('show');
     }
 
@@ -1094,6 +1098,20 @@ const TEXT_I18N = {
     });
     document.getElementById('useAuthorBlock').addEventListener('change', (event) => {
       document.getElementById('jsonAuthorFields').style.display = event.target.checked ? 'block' : 'none';
+    });
+    document.getElementById('rememberAuthorData')?.addEventListener('change', (event) => {
+      if (!event.target.checked) {
+        window.InteralJsonCardModal?.clearSavedAuthorData?.();
+        const clearSaved = document.getElementById('clearSavedAuthorData');
+        if (clearSaved) clearSaved.hidden = true;
+      }
+    });
+    document.getElementById('clearSavedAuthorData')?.addEventListener('click', () => {
+      window.InteralJsonCardModal?.clearSavedAuthorData?.();
+      const remember = document.getElementById('rememberAuthorData');
+      if (remember) remember.checked = false;
+      const clearSaved = document.getElementById('clearSavedAuthorData');
+      if (clearSaved) clearSaved.hidden = true;
     });
     document.getElementById('generateJsonCardBtn').addEventListener('click', async () => {
       const btn = document.getElementById('generateJsonCardBtn');

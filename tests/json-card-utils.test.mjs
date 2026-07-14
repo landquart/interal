@@ -16,6 +16,21 @@ const {context,calls}=loadUi();
 const { extractSavedCard, createCardOnServer, validateCardId } = context.window.InteralJsonCards;
 const draft={section:'internationalismes', interal:{word:'test'}};
 
+const storage = new Map();
+context.localStorage = { getItem(key){ return storage.has(key) ? storage.get(key) : null; }, setItem(key, value){ storage.set(key, String(value)); }, removeItem(key){ storage.delete(key); } };
+const authorStorage = context.window.InteralJsonCardModal;
+assert.equal(authorStorage.saveAuthorData({ displayName: 'Landquart', contactType: 'telegram', contactValue: '@username' }), true);
+assert.equal(JSON.stringify(authorStorage.readSavedAuthorData()), JSON.stringify({ version: 1, displayName: 'Landquart', contactType: 'telegram', contactValue: '@username' }));
+assert.equal(authorStorage.hasSavedAuthorData(), true);
+authorStorage.clearSavedAuthorData();
+assert.equal(authorStorage.readSavedAuthorData(), null);
+storage.set('interal:json-card-author:v1', '{broken');
+assert.equal(authorStorage.readSavedAuthorData(), null);
+assert.equal(storage.has('interal:json-card-author:v1'), false);
+assert.equal(authorStorage.saveAuthorData({ displayName: '', contactType: 'telegram', contactValue: '' }), false);
+assert.equal(authorStorage.saveAuthorData({ displayName: 'Name', contactType: 'unknown', contactValue: 'value', token: 'secret' }), true);
+assert.equal(JSON.stringify(authorStorage.readSavedAuthorData()), JSON.stringify({ version: 1, displayName: 'Name', contactType: 'telegram', contactValue: 'value' }));
+
 assert.equal(context.window.InteralJsonDiagnostics.getStatus().version, 'contact-types-20260713-1');
 assert.equal(JSON.stringify(context.window.InteralJsonDiagnostics.getStatus().helpers), JSON.stringify(['extractSavedCard','createCardOnServer','validateCardId','publicJsonError']));
 assert.equal(extractSavedCard({id:'in_123456789abc', section:'internationalismes', status:'pending', discussionId:'card-in_123456789abc'}, draft).discussionId, undefined);
@@ -85,4 +100,20 @@ const pageSections = {
 };
 for (const [file, section] of Object.entries(pageSections)) {
   assert.match(fs.readFileSync(file, 'utf8'), new RegExp(`section:\\s*['\"]${section}['\"]|CARD_SECTION\\s*=\\s*['\"]${section}['\"]`));
+}
+
+const jsonTextSources = [
+  'shared/ui.js',
+  'internationalismes/script.js',
+  'associativvordes/script.js',
+  'vordesofcommunites/script.js',
+  'grammaticebrevivordes/script.js',
+  'altervordes/script.js',
+  'affixes/script.js',
+  'indoeuropanvordes/index.html'
+];
+for (const file of jsonTextSources) {
+  const source = fs.readFileSync(file, 'utf8');
+  assert.match(source, /Remember for future cards/);
+  assert.match(source, /Delete saved data/);
 }
