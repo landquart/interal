@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import { randomBytes } from 'node:crypto';
+import { normalizeCardSchema, validateCard } from '../shared/card-schema.mjs';
 
 const SUPABASE_URL = (process.env.SUPABASE_URL || '').trim();
 const SUPABASE_SERVICE_ROLE_KEY = (process.env.SUPABASE_SERVICE_ROLE_KEY || '').trim();
@@ -210,7 +211,7 @@ function validateCreateBody(body) {
   const section = typeof body.section === 'string' ? body.section.trim() : '';
   const title = body.title;
   const category = typeof body.category === 'string' && body.category.trim() ? body.category.trim() : null;
-  const payload = body.payload;
+  const payload = normalizeCardSchema(body.payload);
 
   if (!CARD_PREFIXES[section]) {
     throw new ValidationError('Invalid card section', 400, 'INVALID_CARD_SECTION');
@@ -222,6 +223,12 @@ function validateCreateBody(body) {
 
   if (!payload || typeof payload !== 'object' || Array.isArray(payload)) {
     throw new ValidationError('Invalid payload', 400, 'INVALID_PAYLOAD');
+  }
+
+  const validation = validateCard(payload);
+  if (!validation.ok) {
+    const failed = validation.checks.find((check) => !check.ok);
+    throw new ValidationError(`Invalid card schema: ${failed?.label || 'unknown field'}`, 400, 'INVALID_CARD_SCHEMA');
   }
 
   if (getPayloadSizeBytes(payload) > MAX_PAYLOAD_BYTES) {

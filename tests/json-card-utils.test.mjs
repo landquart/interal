@@ -117,3 +117,24 @@ for (const file of jsonTextSources) {
   assert.match(source, /Remember for future cards/);
   assert.match(source, /Delete saved data/);
 }
+
+const schema = await import('../shared/card-schema.mjs');
+const baseIv = { card_type:'vord_card', vord_type:'iv', interal:{ word:'test', part_of_speech:'noun' }, translation:{ language:'ru', word:'тест' } };
+assert.equal(schema.getPiPercent({ result: { pi_percent: 58.4 } }), 58.4);
+assert.equal(schema.getPiPercent({ result: { pi_percent: 0 }, calculation: { pi_percent: 58.4 } }), 0);
+assert.equal(schema.getPiPercent({ calculation: { pi_percent: 58.4 } }), 58.4);
+assert.equal(schema.normalizeCardSchema({ calculation: { pi_percent: '58.4' } }).result.pi_percent, 58.4);
+assert.equal(schema.validateCard({ ...baseIv, result: { pi_percent: 58.4 } }).ok, true);
+assert.equal(schema.validateCard({ ...baseIv, result: { pi_percent: 0 } }).ok, true);
+assert.equal(schema.validateCard({ ...baseIv, calculation: { pi_percent: 58.4 } }).ok, true);
+assert.equal(schema.validateCard({ ...baseIv }).ok, false);
+assert.equal(schema.validateCard({ ...baseIv, result: { pi_percent: 1 } }).ok, true);
+assert.equal(schema.validateCard({ ...baseIv, result: { pi_percent: 1 }, author: {} }).ok, false);
+assert.equal(schema.validateCard({ ...baseIv, result: { pi_percent: 1 }, author: { contacts: [{ type:'email', url:'mailto:a@example.test' }] } }).ok, true);
+assert.equal(context.window.InteralCardSchema.getPiPercent({ result: { pi_percent: 0 } }), 0);
+
+calls.length=0;
+context.fetch=async(url,opts)=> { calls.push({url:String(url),opts}); return okResponse({ok:true,id:'iv_123456789abc',section:'indoeuropanvordes',status:'pending',card:{payload:{...baseIv, calculation:{pi_percent:'58.4'}}}}); };
+saved=await createCardOnServer({ ...baseIv, calculation: { pi_percent: '58.4' } },{section:'indoeuropanvordes',title:'test'});
+assert.equal(JSON.parse(calls[0].opts.body).payload.result.pi_percent, 58.4);
+assert.equal(saved.result.pi_percent, 58.4);
