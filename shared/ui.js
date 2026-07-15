@@ -1234,6 +1234,17 @@ window.refreshCustomSelect = function refreshCustomSelect(selectOrId) {
   }
 
 
+  const PI_PERCENT_PATHS = ['result.pi_percent', 'calculation.pi_percent', 'pi_percent'];
+  function getPath(object, path) { return String(path).split('.').reduce((value, key) => value?.[key], object); }
+  function hasFieldValue(value) { return value !== undefined && value !== null && value !== ''; }
+  function getFirstAvailableField(object, paths) { for (const path of paths) { const value = getPath(object, path); if (hasFieldValue(value)) return { found: true, path, value }; } return { found: false, path: null, value: undefined }; }
+  function getPiPercent(card) { return getFirstAvailableField(card, PI_PERCENT_PATHS).value; }
+  function cloneJsonValue(value) { if (typeof structuredClone === 'function') return structuredClone(value); return JSON.parse(JSON.stringify(value)); }
+  function normalizeCardSchema(source) { if (!source || typeof source !== 'object' || Array.isArray(source)) return source; const card = cloneJsonValue(source); const pi = getPiPercent(card); if (hasFieldValue(pi)) { card.result = { ...(card.result || {}), pi_percent: Number.isFinite(Number(pi)) ? Number(pi) : pi }; } return card; }
+  function validateOptionalAuthor(card, checks) { if (!card?.author) return; const contacts = card.author.contacts; checks.push({ ok: hasFieldValue(card.author.display_name) || (Array.isArray(contacts) && contacts.length > 0), text: 'author', error: 'author' }); }
+  const CARD_SCHEMAS = { iv:{ required:[{label:'interal.word',paths:['interal.word']},{label:'interal.part_of_speech',paths:['interal.part_of_speech']},{label:'translation.language',paths:['translation.language']},{label:'translation.word',paths:['translation.word']},{label:'pi_percent',paths:PI_PERCENT_PATHS,validate(value){return Number.isFinite(Number(value));}}] }, av:{required:[{label:'interal.word',paths:['interal.word']}]}, in:{required:[{label:'interal.word',paths:['interal.word']}]}, vc:{required:[{label:'interal.word',paths:['interal.word']}]}, gv:{required:[{label:'interal.word',paths:['interal.word']}]}, al:{required:[{label:'interal.word',paths:['interal.word']}]}, af:{required:[{label:'form',paths:['form']}]} };
+  function validateCard(card) { const checks = [{ ok: card && typeof card === 'object' && !Array.isArray(card), text: 'jsonObjectFound', error: 'jsonObjectFound' }, { ok: card?.card_type === 'vord_card' || card?.card_type === 'affix_card', text: 'card_type', error: 'card_type' }]; const schema = CARD_SCHEMAS[card?.vord_type] || { required: [] }; for (const field of schema.required) { const result = getFirstAvailableField(card, field.paths); const valid = result.found && (!field.validate || field.validate(result.value)); checks.push({ ok: valid, text: result.path || field.label, error: field.label }); } validateOptionalAuthor(card, checks); return checks; }
+
   const INTERAL_JSON_MODULE_VERSION = 'contact-types-20260713-1';
   const CARD_ID_PATTERN = /^(iv|av|in|vc|gv|al|af)_[0-9A-Za-z]{12}$/;
   const SECTION_PREFIX = { internationalismes:'in', associativvordes:'av', indoeuropanvordes:'iv', vordesofcommunites:'vc', grammaticebrevivordes:'gv', altervordes:'al', affixes:'af' };
@@ -1271,7 +1282,8 @@ window.refreshCustomSelect = function refreshCustomSelect(selectOrId) {
 
     onProgress?.(document.documentElement.lang?.startsWith('en')?'Saving card...':'Сохранение карточки...');
 
-    const payloadBytes = getJsonByteSize(card);
+    const normalizedCard = normalizeCardSchema(card);
+    const payloadBytes = getJsonByteSize(normalizedCard);
     console.info('JSON card payload size', { section, payloadBytes });
 
     const response = await fetch(endpoint, {
@@ -1282,8 +1294,8 @@ window.refreshCustomSelect = function refreshCustomSelect(selectOrId) {
       body: JSON.stringify({
         section,
         title: safeTitle,
-        category: category || card?.vord_type || card?.card_type || null,
-        payload: card
+        category: category || normalizedCard?.vord_type || normalizedCard?.card_type || null,
+        payload: normalizedCard
       })
     });
 
@@ -1299,7 +1311,7 @@ window.refreshCustomSelect = function refreshCustomSelect(selectOrId) {
       throw error;
     }
 
-    const savedCard = extractSavedCard(data, card);
+    const savedCard = normalizeCardSchema(extractSavedCard(data, normalizedCard));
     validateCardId(savedCard, section);
     return savedCard;
   }
@@ -1419,6 +1431,7 @@ window.refreshCustomSelect = function refreshCustomSelect(selectOrId) {
     function download(){ const text=output()?.value||''; if(!text.trim()) return alert(texts().empty); let filename=options.getFilename?.(text)||'json-card.json'; try{ const id=JSON.parse(text)?.id; if(id) filename=`${id}.json`; }catch{} const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([text],{type:'application/json;charset=utf-8'})); a.download=filename; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(a.href); }
     const modal=$(ids.modalId); if(modal?.dataset.interalJsonModalInit==='1') return modal._interalJsonModalApi; if(modal) modal.dataset.interalJsonModalInit='1'; applyTexts(); $(ids.openButtonId)?.addEventListener('click', open); $(ids.closeButtonId)?.addEventListener('click', close); $(ids.modalId)?.addEventListener('click', e=>{ if(e.target===$(ids.modalId)) close(); }); $(ids.useAuthorBlockId)?.addEventListener('change', e=>{ if($(ids.authorFieldsId)) $(ids.authorFieldsId).style.display=e.target.checked?'grid':'none'; }); $(ids.rememberAuthorDataId)?.addEventListener('change', e=>{ if(!e.target.checked){ clearSavedAuthorData(); syncAuthorStorageControls(ids); } }); $(ids.clearSavedAuthorDataId)?.addEventListener('click', ()=>{ clearSavedAuthorData(); if($(ids.rememberAuthorDataId)) $(ids.rememberAuthorDataId).checked=false; syncAuthorStorageControls(ids); }); $(ids.generateButtonId)?.addEventListener('click', generate); $(ids.copyButtonId)?.addEventListener('click', copy); $(ids.downloadButtonId)?.addEventListener('click', download); document.addEventListener('keydown', e=>{ if(e.key==='Escape' && $(ids.modalId)?.classList.contains('show')) close(); }); document.addEventListener('interal:languagechange', applyTexts); const api = { open, close, generate, getAuthor, applyTexts }; if(modal) modal._interalJsonModalApi=api; return api;
   }
+  window.InteralCardSchema = { getPath, hasFieldValue, getFirstAvailableField, getPiPercent, cloneJsonValue, normalizeCardSchema, validateOptionalAuthor, validateCard, CARD_SCHEMAS };
   window.InteralJsonCards = { extractSavedCard, createCardOnServer, validateCardId, publicJsonError };
   window.InteralJsonAuthorStorage = { readSavedAuthorData, saveAuthorData, clearSavedAuthorData, restoreAuthorData, hasSavedAuthorData };
   window.InteralJsonDiagnostics = { getStatus(){ return { version: INTERAL_JSON_MODULE_VERSION, modalLoaded:Boolean(window.InteralJsonCardModal), cardsHelperLoaded:Boolean(window.InteralJsonCards), helpers:Object.keys(window.InteralJsonCards || {}), page:window.location.pathname, scriptUrl:document.querySelector('script[src*="shared/ui.js"]')?.src || null }; } };

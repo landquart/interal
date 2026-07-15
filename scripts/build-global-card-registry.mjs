@@ -1,3 +1,4 @@
+import { getPiPercent, normalizeCardSchema } from '../shared/card-schema.mjs';
 import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
@@ -159,7 +160,7 @@ for (const filePath of files) {
   const raw = await readFile(filePath, 'utf8');
   let card;
   try {
-    card = JSON.parse(raw);
+    card = normalizeCardSchema(JSON.parse(raw));
   } catch (error) {
     fail(filePath, `invalid JSON: ${error.message}`);
   }
@@ -182,7 +183,7 @@ for (const filePath of files) {
     author: text(card.author?.display_name),
     author_contact_type: text(card.author?.contacts?.[0]?.type),
     author_contact_url: text(card.author?.contacts?.[0]?.url),
-    pi_percent: finiteNumber(card.calculation?.pi_percent),
+    pi_percent: finiteNumber(getPiPercent(card)),
     supported_groups: stringArray(card.supported_groups),
     detail_path: path.relative(ROOT, filePath).split(path.sep).join('/'),
     search_blob: makeSearchBlob(card)
