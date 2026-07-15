@@ -89,6 +89,31 @@
 
   const instrumentNavKeys = instrumentNavOrder.filter((key) => pageNavItems[key]?.group === 'instruments');
 
+
+  function getTelegramSafeAreaInset(name) {
+    const webApp = window.Telegram?.WebApp;
+    const contentInset = webApp?.contentSafeAreaInset?.[name];
+    const safeInset = webApp?.safeAreaInset?.[name];
+    return Math.max(Number(contentInset) || 0, Number(safeInset) || 0, 0);
+  }
+
+  function syncVisualViewportVars() {
+    const vv = window.visualViewport;
+    const top = vv ? Math.max(0, vv.offsetTop || 0) : 0;
+    const height = vv ? Math.max(0, vv.height || window.innerHeight || 0) : (window.innerHeight || 0);
+    const rootStyle = document.documentElement.style;
+    rootStyle.setProperty('--visual-viewport-top', `${top}px`);
+    if (height) rootStyle.setProperty('--visual-viewport-height', `${height}px`);
+    rootStyle.setProperty('--app-safe-top', `${getTelegramSafeAreaInset('top')}px`);
+    rootStyle.setProperty('--app-safe-bottom', `${getTelegramSafeAreaInset('bottom')}px`);
+  }
+
+  syncVisualViewportVars();
+  window.addEventListener('resize', syncVisualViewportVars, { passive: true });
+  window.addEventListener('orientationchange', syncVisualViewportVars, { passive: true });
+  window.visualViewport?.addEventListener('resize', syncVisualViewportVars, { passive: true });
+  window.visualViewport?.addEventListener('scroll', syncVisualViewportVars, { passive: true });
+
   function getCurrentPageNav() {
     const path = window.location.pathname;
     if (path.includes('/indoeuropanvordes/')) return 'indoeuropanvordes';
@@ -287,8 +312,8 @@
       <img class="menu-theme-icon" src="${joinUrl('elements/moon.svg')}" alt="" aria-hidden="true" />
       </button>
     </div>
-    <div class="menu-lang-modal" hidden>
-      <div class="menu-lang-modal-content">
+    <div class="menu-lang-modal select-modal-overlay profile-language-modal" hidden>
+      <div class="menu-lang-modal-content profile-language-modal-card" role="dialog" aria-modal="true" aria-label="Language">
         <button class="menu-lang-btn" type="button" data-lang="ru"><img class="menu-lang-flag" src="${joinUrl('elements/russia_flag_duolingo_minimal.svg')}" alt="" aria-hidden="true" /><span class="menu-lang-name">Русский</span></button>
         <button class="menu-lang-btn" type="button" data-lang="en"><img class="menu-lang-flag" src="${joinUrl('elements/uk_flag_duolingo_minimal.svg')}" alt="" aria-hidden="true" /><span class="menu-lang-name">English</span></button>
       </div>
@@ -894,7 +919,7 @@ function setupModalSelects(root = document) {
 
   if (!modal) {
     modal = document.createElement('div');
-    modal.className = 'interal-select-modal';
+    modal.className = 'interal-select-modal select-modal-overlay';
     modal.hidden = true;
     modal.innerHTML = `
       <div class="interal-select-modal-backdrop" data-select-close></div>
@@ -903,7 +928,7 @@ function setupModalSelects(root = document) {
           <strong class="interal-select-modal-title" id="interalSelectModalTitle"></strong>
           <button class="interal-select-modal-close" type="button" data-select-close aria-label="Закрыть">×</button>
         </div>
-        <div class="interal-select-modal-options" role="listbox"></div>
+        <div class="interal-select-modal-options" role="listbox" tabindex="-1"></div>
       </div>
     `;
     document.body.appendChild(modal);
@@ -915,20 +940,26 @@ function setupModalSelects(root = document) {
 
   if (modal.dataset.modalSelectListeners !== 'true') {
     modal.dataset.modalSelectListeners = 'true';
-    modal._modalSelectState = { activeSelect: null, activeTrigger: null };
+    modal._modalSelectState = { activeSelect: null, activeTrigger: null, scrollY: 0, previousFocus: null };
 
     modal._closeModalSelect = function closeModal() {
       const state = modal._modalSelectState;
       modal.hidden = true;
+      document.body.classList.remove('select-modal-open');
+      document.body.style.removeProperty('--select-modal-scroll-y');
       optionsBox.innerHTML = '';
 
       if (state.activeTrigger) {
         state.activeTrigger.setAttribute('aria-expanded', 'false');
-        state.activeTrigger.focus();
       }
+      window.scrollTo(0, state.scrollY || 0);
+      const focusTarget = state.activeTrigger || state.previousFocus;
+      if (focusTarget && typeof focusTarget.focus === 'function') focusTarget.focus();
 
       state.activeSelect = null;
       state.activeTrigger = null;
+      state.previousFocus = null;
+      state.scrollY = 0;
     };
 
     modal.addEventListener('click', (event) => {
@@ -938,8 +969,27 @@ function setupModalSelects(root = document) {
     });
 
     document.addEventListener('keydown', (event) => {
-      if (modal.hidden || event.key !== 'Escape') return;
-      modal._closeModalSelect();
+      if (modal.hidden) return;
+      const enabledOptions = Array.from(optionsBox.querySelectorAll('.interal-select-option:not(:disabled)'));
+      const currentIndex = enabledOptions.indexOf(document.activeElement);
+      const focusOption = (index) => {
+        const option = enabledOptions[index];
+        if (!option) return;
+        event.preventDefault();
+        option.focus();
+        option.scrollIntoView({ block: 'nearest' });
+      };
+      if (event.key === 'Escape') { event.preventDefault(); modal._closeModalSelect(); }
+      else if (event.key === 'ArrowDown') focusOption(currentIndex < enabledOptions.length - 1 ? currentIndex + 1 : 0);
+      else if (event.key === 'ArrowUp') focusOption(currentIndex > 0 ? currentIndex - 1 : enabledOptions.length - 1);
+      else if (event.key === 'Home') focusOption(0);
+      else if (event.key === 'End') focusOption(enabledOptions.length - 1);
+      else if (event.key === 'Tab') {
+        const focusable = [closeButton, ...enabledOptions].filter(Boolean);
+        const index = focusable.indexOf(document.activeElement);
+        if (event.shiftKey && index <= 0) { event.preventDefault(); focusable.at(-1)?.focus(); }
+        else if (!event.shiftKey && index === focusable.length - 1) { event.preventDefault(); focusable[0]?.focus(); }
+      }
     });
   }
 
@@ -1025,17 +1075,23 @@ function setupModalSelects(root = document) {
     const state = modal._modalSelectState;
     state.activeSelect = select;
     state.activeTrigger = trigger;
+    state.previousFocus = document.activeElement;
+    state.scrollY = window.scrollY || document.documentElement.scrollTop || 0;
 
     const label = select.id ? document.querySelector(`label[for="${cssEscape(select.id)}"]`) : null;
     title.textContent = label?.textContent?.trim() || getUiText('selectChoose');
     closeButton?.setAttribute('aria-label', getUiText('close'));
     buildModalOptions(select, trigger);
 
+    syncVisualViewportVars();
+    document.body.style.setProperty('--select-modal-scroll-y', `-${state.scrollY}px`);
+    document.body.classList.add('select-modal-open');
     modal.hidden = false;
     trigger.setAttribute('aria-expanded', 'true');
 
     const selectedButton = optionsBox.querySelector('.is-selected:not(:disabled)') || optionsBox.querySelector('.interal-select-option:not(:disabled)');
-    selectedButton?.focus();
+    (selectedButton || closeButton)?.focus();
+    selectedButton?.scrollIntoView({ block: 'nearest' });
   }
 
   selects.forEach((select) => {
