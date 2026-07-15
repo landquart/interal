@@ -1,20 +1,15 @@
 import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
+import { CANONICAL_VORD_TYPES, VORD_TYPE_LABELS, getCardPiPercent, validateCardSchema } from '../shared/card-schema.mjs';
 
 const ROOT = process.cwd();
 const ACCEPTED_ROOT = path.join(ROOT, 'cards', 'accepted');
 const REGISTRY_PATH = path.join(ROOT, 'cards', 'registry.json');
-const VORD_TYPES = ['iv', 'av', 'in', 'vc', 'gv'];
-const VORD_TYPE_LABELS = {
-  iv: 'indoeropan vordes',
-  av: 'associativ vordes',
-  in: 'internationalismes',
-  vc: 'vordes of communités',
-  gv: 'grammatic vordes'
-};
+const VORD_TYPES = CANONICAL_VORD_TYPES;
 const VORD_TYPE_SET = new Set(VORD_TYPES);
-const ID_RE = /^(iv|av|in|vc|gv)_[0-9a-fA-F]{32}$/;
+const REMOVED_CARD_WORDS = new Set(['dre']);
+const ID_RE = /^(iv|av|in|vc|gv|al|af)_(?:[0-9a-fA-F]{32}|[0-9A-Za-z]{12})$/;
 
 async function listJsonFiles(dir) {
   let entries = [];
@@ -121,10 +116,11 @@ function validateCard(card, filePath, expectedType, seenIds) {
   if (!VORD_TYPE_SET.has(expectedType)) fail(filePath, `invalid accepted folder "${expectedType}"`);
   if (!card || typeof card !== 'object' || Array.isArray(card)) fail(filePath, 'card must be a JSON object');
   if (typeof card.id !== 'string' || !card.id) fail(filePath, 'id is required');
-  if (!ID_RE.test(card.id)) fail(filePath, `id must match <vord_type>_ + 32 hex chars: "${card.id}"`);
+  if (!ID_RE.test(card.id)) fail(filePath, `id must match <vord_type>_ plus 32 hex chars or 12 base62 chars: "${card.id}"`);
   if (seenIds.has(card.id)) fail(filePath, `duplicate id "${card.id}"`);
   seenIds.add(card.id);
   if (!card.id.startsWith(`${expectedType}_`)) fail(filePath, `id must start with "${expectedType}_"`);
+  try { validateCardSchema(card, { expectedType }); } catch (error) { fail(filePath, error.message); }
   if (card.word_type !== undefined) fail(filePath, 'use vord_type short code instead of word_type');
   if (!VORD_TYPE_SET.has(card.vord_type)) fail(filePath, `invalid vord_type "${card.vord_type}"`);
   if (card.vord_type !== expectedType) fail(filePath, `vord_type "${card.vord_type}" does not match folder "${expectedType}"`);
@@ -164,6 +160,7 @@ for (const filePath of files) {
     fail(filePath, `invalid JSON: ${error.message}`);
   }
   validateCard(card, filePath, expectedType, seenIds);
+  if (REMOVED_CARD_WORDS.has(text(card.interal?.word).toLowerCase())) continue;
 
   const compact = {
     id: text(card.id),
@@ -182,7 +179,7 @@ for (const filePath of files) {
     author: text(card.author?.display_name),
     author_contact_type: text(card.author?.contacts?.[0]?.type),
     author_contact_url: text(card.author?.contacts?.[0]?.url),
-    pi_percent: finiteNumber(card.calculation?.pi_percent),
+    pi_percent: finiteNumber(getCardPiPercent(card)),
     supported_groups: stringArray(card.supported_groups),
     detail_path: path.relative(ROOT, filePath).split(path.sep).join('/'),
     search_blob: makeSearchBlob(card)
