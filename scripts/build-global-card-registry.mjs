@@ -8,7 +8,6 @@ const ACCEPTED_ROOT = path.join(ROOT, 'cards', 'accepted');
 const REGISTRY_PATH = path.join(ROOT, 'cards', 'registry.json');
 const VORD_TYPES = CANONICAL_VORD_TYPES;
 const VORD_TYPE_SET = new Set(VORD_TYPES);
-const REMOVED_CARD_WORDS = new Set(['dre']);
 const ID_RE = /^(iv|av|in|vc|gv|al|af)_(?:[0-9a-fA-F]{32}|[0-9A-Za-z]{12})$/;
 
 async function listJsonFiles(dir) {
@@ -160,8 +159,6 @@ for (const filePath of files) {
     fail(filePath, `invalid JSON: ${error.message}`);
   }
   validateCard(card, filePath, expectedType, seenIds);
-  if (REMOVED_CARD_WORDS.has(text(card.interal?.word).toLowerCase())) continue;
-
   const compact = {
     id: text(card.id),
     vord_type: VORD_TYPE_LABELS[card.vord_type] || '',
