@@ -339,9 +339,15 @@
       function groupLabel(value) { return (GROUP_LABELS[state.lang] && GROUP_LABELS[state.lang][value]) || value || ''; }
       function groupListLabel(values) { return Array.isArray(values) && values.length ? values.map(groupLabel).join(', ') : ''; }
       function translationForSiteLanguage(card) {
-        if (card.translations && typeof card.translations === 'object' && card.translations[state.lang]) return card.translations[state.lang];
-        if (card.translation_language === state.lang) return card.translation_word || '';
-        return '';
+        if (
+          card.translations &&
+          typeof card.translations === 'object' &&
+          card.translations[state.lang]
+        ) {
+          return card.translations[state.lang];
+        }
+
+        return card.translation_word || '';
       }
       function formatDate(value) { if (!value) return t('noValue'); const date = new Date(value); if (Number.isNaN(date.getTime())) return value; return new Intl.DateTimeFormat(state.lang === 'en' ? 'en-US' : 'ru-RU', { dateStyle: 'medium', timeStyle: 'short' }).format(date); }
       function formatNumber(value) { return typeof value === 'number' && Number.isFinite(value) ? new Intl.NumberFormat(state.lang === 'en' ? 'en-US' : 'ru-RU', { maximumFractionDigits: 6 }).format(value) : t('noValue'); }

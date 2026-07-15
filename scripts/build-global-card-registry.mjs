@@ -54,19 +54,36 @@ function stringArray(value) {
 
 function languageTranslations(card) {
   const translations = {};
+
   if (card.translation && typeof card.translation === 'object') {
     const code = text(card.translation.language);
     const word = text(card.translation.word);
-    if (code && word) translations[code] = word;
-  }
-  if (Array.isArray(card.language_results)) {
-    for (const result of card.language_results) {
-      if (!result || typeof result !== 'object') continue;
-      const code = text(result.code);
-      const word = text(result.word);
-      if (code && word && !translations[code]) translations[code] = word;
+
+    if (code && word) {
+      translations[code] = word;
     }
   }
+
+  for (const fieldName of [
+    'language_results',
+    'language_evidence'
+  ]) {
+    const items = card[fieldName];
+
+    if (!Array.isArray(items)) continue;
+
+    for (const item of items) {
+      if (!item || typeof item !== 'object') continue;
+
+      const code = text(item.code || item.language);
+      const word = text(item.word);
+
+      if (code && word && !translations[code]) {
+        translations[code] = word;
+      }
+    }
+  }
+
   return translations;
 }
 
