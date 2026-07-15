@@ -2,19 +2,21 @@
   "version": "1.0",
   "registry_type": "vordesen_card_registry",
   "title": "Registre of vordesen cartes",
-  "generated_at": "2026-07-14T18:12:42.057Z",
-  "count": 2,
+  "generated_at": "2026-07-15T16:43:52.040Z",
+  "count": 1,
   "vord_types": [
     "iv",
     "av",
     "in",
     "vc",
-    "gv"
+    "gv",
+    "al",
+    "af"
   ],
   "cards": [
     {
       "id": "iv_3e1e5e67755f4b9aabe2758a1fe414e2",
-      "vord_type": "indoeropan vordes",
+      "vord_type": "indoeuropan vordes",
       "vord_type_code": "iv",
       "status": "accepted",
       "word": "matre",
@@ -45,42 +47,7 @@
         "Hellenic"
       ],
       "detail_path": "cards/accepted/iv/iv_3e1e5e67755f4b9aabe2758a1fe414e2.json",
-      "search_blob": "iv_3e1e5e67755f4b9aabe2758a1fe414e2 iv indoeropan vordes matre matre en mother noun landquart germanic romance slavic hellenic en english germanic mother mother ˈmʌðə m a t r e m ʌ ð ə de german germanic mutter mutter ˈmʊtɐ m a t r e m ʊ t ɐ fr french romance mere mere mɛʁ m a t r e m ɛ ʁ es spanish romance madre madre ˈmaðɾe m a t r e m a ð ɾ e it italian romance madre madre ˈmadre m a t r e m a d r e ru russian slavic мать mat' matʲ m a t r e m a t el greek hellenic μητερα mitera miˈtera m a t r e m i t e r a"
-    },
-    {
-      "id": "iv_wthM8GJWiXbR",
-      "vord_type": "indoeropan vordes",
-      "vord_type_code": "iv",
-      "status": "accepted",
-      "word": "dre",
-      "ipa": "dre",
-      "translation_language": "en",
-      "translation_word": "tree",
-      "translations": {
-        "en": "tree",
-        "de": "Tanne",
-        "fr": "dru",
-        "es": "duro",
-        "it": "duro",
-        "ru": "дерево",
-        "el": "δρυς"
-      },
-      "part_of_speech": "noun",
-      "created_at": "2026-07-14T18:10:50.061Z",
-      "created_at_source": "mini_app",
-      "accepted_at": "2026-07-14T18:12:42.057Z",
-      "author": "landquart",
-      "author_contact_type": "telegram",
-      "author_contact_url": "https://t.me/quinarta",
-      "pi_percent": 74.3735704649232,
-      "supported_groups": [
-        "Germanic",
-        "Romance",
-        "Slavic",
-        "Hellenic"
-      ],
-      "detail_path": "cards/accepted/iv/iv_wthM8GJWiXbR.json",
-      "search_blob": "iv_wthm8gjwixbr indoeropan vordes iv accepted dre dre en tree tree tanne dru duro duro дерево δρυς noun 2026-07-14t18:10:50.061z mini_app 2026-07-14t18:12:42.057z landquart telegram https://t.me/quinarta 74.3735704649232 germanic romance slavic hellenic cards/accepted/iv/iv_wthm8gjwixbr.json"
+      "search_blob": "iv_3e1e5e67755f4b9aabe2758a1fe414e2 iv indoeuropan vordes matre matre en mother noun landquart germanic romance slavic hellenic en english germanic mother mother ˈmʌðə m a t r e m ʌ ð ə de german germanic mutter mutter ˈmʊtɐ m a t r e m ʊ t ɐ fr french romance mere mere mɛʁ m a t r e m ɛ ʁ es spanish romance madre madre ˈmaðɾe m a t r e m a ð ɾ e it italian romance madre madre ˈmadre m a t r e m a d r e ru russian slavic мать mat' matʲ m a t r e m a t el greek hellenic μητερα mitera miˈtera m a t r e m i t e r a"
     }
   ]
 }

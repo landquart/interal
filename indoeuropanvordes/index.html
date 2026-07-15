@@ -9,7 +9,7 @@
 <link rel="apple-touch-icon" sizes="512x512" href="../favicon/favicon%20interal%20512.png" />
 
 <title>Indoeuropan vordes</title>
-<link rel="stylesheet" href="../shared/ui.css?v=brand-logo-20260713-1" />
+<link rel="stylesheet" href="../shared/ui.css?v=site-fixes-20260715-1" />
 
 <style>
 .internationalita-page {
@@ -802,6 +802,7 @@ const TEXT_I18N = {
     closeExplainBtn: "Закрыть",
     resetAria: "Сбросить",
     resetConfirm: "Сбросить введённые данные? Это действие нельзя отменить.",
+      jsonModuleUnavailable: "Модуль создания JSON-карточек не загружен. Перезагрузите страницу.",
     table: {
       language: "Язык",
       group: "Группа",
@@ -907,6 +908,7 @@ const TEXT_I18N = {
     closeExplainBtn: "Close",
     resetAria: "Reset",
     resetConfirm: "Reset entered data? This action cannot be undone.",
+      jsonModuleUnavailable: "The JSON card module is unavailable. Reload the page.",
     table: {
       language: "Language",
       group: "Group",
@@ -1250,7 +1252,7 @@ async function resetAll() {
 
 const CARDS_API_ENDPOINT = location.hostname === "landquart.github.io" ? "https://interal.vercel.app/api/cards" : "/api/cards";
 async function createCardOnServer(card) {
-  if (!window.InteralJsonCards) throw new Error("InteralJsonCards is not loaded.");
+  if (!window.InteralJsonCards) throw new Error(TEXT_I18N[getCurrentLanguage()].jsonModuleUnavailable);
   return window.InteralJsonCards.createCardOnServer(card, {
     section: "indoeuropanvordes",
     title: card?.interal?.word || card?.title,
@@ -2924,7 +2926,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 <script src="./download-json-card.js?v=contact-types-20260713-1"></script>
 <script src="../shared/copy-plain.js?v=contact-types-20260713-1"></script>
-<script src="../shared/ui.js?v=brand-logo-20260713-1" defer></script>
+<script src="../shared/ui.js?v=site-fixes-20260715-1" defer></script>
 
 </body>
 </html>

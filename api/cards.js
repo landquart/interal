@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import { randomBytes } from 'node:crypto';
+import { normalizeCardSchema } from '../shared/card-schema.mjs';
 
 const SUPABASE_URL = (process.env.SUPABASE_URL || '').trim();
 const SUPABASE_SERVICE_ROLE_KEY = (process.env.SUPABASE_SERVICE_ROLE_KEY || '').trim();
@@ -176,6 +177,8 @@ function pruneEmptyPublicFields(value) {
 }
 
 function buildPublicCardPayload(payload, id) {
+  const normalizedPayload = normalizeCardSchema(payload);
+  payload = normalizedPayload;
   const {
     id: _clientId,
     section: _clientSection,

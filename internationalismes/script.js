@@ -27,7 +27,7 @@ const I18N = {
     evidence: 'Языковое покрытие', result: 'Итог', card: 'JSON-карточка', check: 'Проверить', json: 'Сформировать JSON-карточку', copy: 'Скопировать', download: 'Скачать',
     table: { language: 'Язык', form: 'Форма', distance: 'D — расстояние Левенштейна', passed: 'Проходит', translation: 'Перевод', source: 'Источник', match: 'Тип' },
     coverage: 'Покрытие', required: 'Минимум', decision: 'Решение', accept: 'ПРИНЯТО', reject: 'НЕ ПРИНЯТО', reasonOk: 'Критерий 5/6 выполнен. Для формы длиной до 3 символов требуется точное совпадение: D = 0. Для формы длиной от 4 символов допускается D ≤ 2.', reasonBad: 'Недостаточное покрытие контрольных языков.',
-    loadingLists: 'Загрузка частотных списков...', searching: 'Поиск форм...', frequencySource: 'частотный список', manualSource: 'вручную', noForm: 'не найдено', searchError: 'Не удалось загрузить частотные списки. Формы можно ввести вручную.', configError: 'Конфигурация частотных источников не загружена. Введите формы вручную; автоматический результат недоступен.', manualMode: 'ручное переопределение', autoMode: 'авто', resetAria: 'Сбросить', resetConfirm: 'Сбросить введённые данные? Это действие нельзя отменить.',
+    loadingLists: 'Загрузка частотных списков...', searching: 'Поиск форм...', frequencySource: 'частотный список', manualSource: 'вручную', noForm: 'не найдено', searchError: 'Не удалось загрузить частотные списки. Формы можно ввести вручную.', configError: 'Конфигурация частотных источников не загружена. Введите формы вручную; автоматический результат недоступен.', manualMode: 'ручное переопределение', autoMode: 'авто', resetAria: 'Сбросить', resetConfirm: 'Сбросить введённые данные? Это действие нельзя отменить.', jsonModuleUnavailable: 'Модуль создания JSON-карточек не загружен. Перезагрузите страницу.', buildingCard: 'Сборка карточки...', buttonError: 'Ошибка',
     jsonCard: { close: 'Закрыть JSON-карточку', title: 'JSON-карточка', useAuthor: 'Указать авторство', authorName: 'Имя или ник', contactType: 'Тип контакта', contact: 'Контакт', rememberAuthor: 'Запомнить для следующих карточек', clearSavedAuthor: 'Удалить сохранённые данные', generate: 'Сгенерировать карточку', generating: 'Генерация...', output: 'Готовый JSON', copy: 'Скопировать JSON-карточку', copied: 'JSON-карточка скопирована', copiedTitle: 'Скопировано', download: 'Скачать JSON-карточку', empty: 'Сначала сгенерируйте JSON-карточку.', unavailable: 'JSON-карточка доступна только после успешной проверки.' }
   },
   en: {
@@ -35,7 +35,7 @@ const I18N = {
     evidence: 'Language coverage', result: 'Decision', card: 'JSON card', check: 'Check', json: 'Generate JSON card', copy: 'Copy', download: 'Download',
     table: { language: 'Language', form: 'Form', distance: 'D — Levenshtein distance', passed: 'Passes', translation: 'Translation', source: 'Source', match: 'Match' },
     coverage: 'Coverage', required: 'Required', decision: 'Decision', accept: 'ACCEPTED', reject: 'NOT ACCEPTED', reasonOk: 'The 5/6 criterion is met. Forms up to 3 characters require an exact match: D = 0. Forms of 4 or more characters may pass with D ≤ 2.', reasonBad: 'Insufficient control-language coverage.',
-    loadingLists: 'Loading frequency lists...', searching: 'Searching forms...', frequencySource: 'frequency list', manualSource: 'manual', noForm: 'not found', searchError: 'Could not load frequency lists. Forms can be entered manually.', configError: 'Frequency-source configuration is not loaded. Enter forms manually; the automatic result is unavailable.', manualMode: 'manual override', autoMode: 'auto', resetAria: 'Reset', resetConfirm: 'Reset entered data? This action cannot be undone.',
+    loadingLists: 'Loading frequency lists...', searching: 'Searching forms...', frequencySource: 'frequency list', manualSource: 'manual', noForm: 'not found', searchError: 'Could not load frequency lists. Forms can be entered manually.', configError: 'Frequency-source configuration is not loaded. Enter forms manually; the automatic result is unavailable.', manualMode: 'manual override', autoMode: 'auto', resetAria: 'Reset', resetConfirm: 'Reset entered data? This action cannot be undone.', jsonModuleUnavailable: 'The JSON card module is unavailable. Reload the page.', buildingCard: 'Building card...', buttonError: 'Error',
     jsonCard: { close: 'Close JSON card', title: 'JSON card', useAuthor: 'Add authorship', authorName: 'Name or nickname', contactType: 'Contact type', contact: 'Contact', rememberAuthor: 'Remember for future cards', clearSavedAuthor: 'Delete saved data', generate: 'Generate card', generating: 'Generating...', output: 'Generated JSON', copy: 'Copy JSON card', copied: 'JSON card copied', copiedTitle: 'Copied', download: 'Download JSON card', empty: 'Generate the JSON card first.', unavailable: 'The JSON card is available only after a successful check.' }
   }
 };
@@ -57,7 +57,7 @@ function byId(id) { return document.getElementById(id); }
 function escapeHtml(value) { return String(value ?? '').replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch])); }
 const CARDS_API_ENDPOINT = location.hostname === 'landquart.github.io' ? 'https://interal.vercel.app/api/cards' : '/api/cards';
 async function createCardOnServer(card) {
-  if (!window.InteralJsonCards) throw new Error('InteralJsonCards is not loaded.');
+  if (!window.InteralJsonCards) throw new Error(t('jsonModuleUnavailable'));
   return window.InteralJsonCards.createCardOnServer(card, { section: 'internationalismes', title: card?.interal?.word || card?.title, category: card?.vord_type || 'in', endpoint: CARDS_API_ENDPOINT });
 }
 function downloadJson(filename, text) { const blob = new Blob([text], { type: 'application/json;charset=utf-8' }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = filename; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url); }
@@ -270,7 +270,7 @@ async function analyze() {
     if (!isCurrentRun(runId)) return;
     console.error(error);
     state.searchError = error.message === 'Missing frequency-source configuration' ? t('configError') : t('searchError');
-    setButtonStatus('#checkBtn', currentLang() === 'en' ? 'Error' : 'Ошибка', false);
+    setButtonStatus('#checkBtn', t('buttonError'), false);
   } finally {
     if (!isCurrentRun(runId)) return;
     state.isSearching = false;
@@ -392,7 +392,7 @@ window.InteralPageStateImport = importInternationalismesPageState;
 
 const jsonFilename = 'internationalism-card.json';
 function bindJsonModal() {
-  if (!window.InteralJsonCardModal) throw new Error('InteralJsonCardModal is not loaded.'); if (!window.InteralJsonCards) throw new Error('InteralJsonCards is not loaded.'); window.InteralJsonCardModal.init({ getLanguage: currentLang, getTexts: () => t('jsonCard'), buildCard: async ({ onProgress } = {}) => { readState(); if (!canCreateCard()) throw new Error(t('jsonCard.unavailable')); onProgress?.(currentLang() === 'en' ? 'Building card...' : 'Сборка карточки...'); return makeCard(); }, createCardOnServer: (card, ctx) => window.InteralJsonCards.createCardOnServer(card, { section: 'internationalismes', title: card?.interal?.word, category: 'in', onProgress: ctx?.onProgress }), formatCard: (card) => JSON.stringify(card, null, 2), getFilename: () => jsonFilename });
+  if (!window.InteralJsonCardModal) throw new Error(t('jsonModuleUnavailable')); if (!window.InteralJsonCards) throw new Error(t('jsonModuleUnavailable')); window.InteralJsonCardModal.init({ getLanguage: currentLang, getTexts: () => t('jsonCard'), buildCard: async ({ onProgress } = {}) => { readState(); if (!canCreateCard()) throw new Error(t('jsonCard.unavailable')); onProgress?.(t('buildingCard')); return makeCard(); }, createCardOnServer: (card, ctx) => window.InteralJsonCards.createCardOnServer(card, { section: 'internationalismes', title: card?.interal?.word, category: 'in', onProgress: ctx?.onProgress }), formatCard: (card) => JSON.stringify(card, null, 2), getFilename: () => jsonFilename });
   document.addEventListener('interal:languagechange', () => { document.documentElement.lang = currentLang(); if (state.searchError) state.searchError = state.searchError === I18N[state.lang === 'en' ? 'ru' : 'en']?.configError ? t('configError') : t('searchError'); readState(); syncPosSelectOptions(); render(); });
   byId('resetBtn')?.addEventListener('click', resetAll);
   byId('checkBtn')?.addEventListener('click', analyze);

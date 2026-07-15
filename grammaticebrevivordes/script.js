@@ -23,7 +23,7 @@ function escapeHtml(value) {
 }
 const CARDS_API_ENDPOINT = location.hostname === 'landquart.github.io' ? 'https://interal.vercel.app/api/cards' : '/api/cards';
 async function createCardOnServer(card) {
-  if (!window.InteralJsonCards) throw new Error('InteralJsonCards is not loaded.');
+  if (!window.InteralJsonCards) throw new Error(t('jsonModuleUnavailable'));
   return window.InteralJsonCards.createCardOnServer(card, { section: 'grammaticebrevivordes', title: card?.interal?.word || card?.title, category: card?.vord_type || 'gv', endpoint: CARDS_API_ENDPOINT });
 }
 function downloadJson(filename, text) {
@@ -145,7 +145,7 @@ function getJsonCardTexts() {
   return { close: currentLang() === 'en' ? 'Close JSON card' : 'Закрыть JSON-карточку', title: t('card'), useAuthor: currentLang() === 'en' ? 'Add authorship' : 'Указать авторство', authorName: currentLang() === 'en' ? 'Name or nickname' : 'Имя или ник', contactType: currentLang() === 'en' ? 'Contact type' : 'Тип контакта', contact: currentLang() === 'en' ? 'Contact' : 'Контакт', rememberAuthor: currentLang() === 'en' ? 'Remember for future cards' : 'Запомнить для следующих карточек', clearSavedAuthor: currentLang() === 'en' ? 'Delete saved data' : 'Удалить сохранённые данные', generate: currentLang() === 'en' ? 'Generate card' : 'Сгенерировать карточку', generating: currentLang() === 'en' ? 'Generating...' : 'Генерация...', output: currentLang() === 'en' ? 'Generated JSON' : 'Готовый JSON', copy: currentLang() === 'en' ? 'Copy JSON card' : 'Скопировать JSON-карточку', copied: currentLang() === 'en' ? 'JSON card copied' : 'JSON-карточка скопирована', copiedTitle: currentLang() === 'en' ? 'Copied' : 'Скопировано', download: currentLang() === 'en' ? 'Download JSON card' : 'Скачать JSON-карточку', empty: currentLang() === 'en' ? 'Generate the JSON card first.' : 'Сначала сгенерируйте JSON-карточку.', unavailable: currentLang() === 'en' ? 'The JSON card is available only after a successful check.' : 'JSON-карточка доступна только после успешной проверки.' };
 }
 function bindJsonModal() {
-  if (!window.InteralJsonCardModal) throw new Error('InteralJsonCardModal is not loaded.'); if (!window.InteralJsonCards) throw new Error('InteralJsonCards is not loaded.'); window.InteralJsonCardModal.init({
+  if (!window.InteralJsonCardModal) throw new Error(t('jsonModuleUnavailable')); if (!window.InteralJsonCards) throw new Error(t('jsonModuleUnavailable')); window.InteralJsonCardModal.init({
     getLanguage: currentLang,
     getTexts: getJsonCardTexts,
     buildCard: async ({ author, onProgress } = {}) => { onProgress?.(currentLang() === 'en' ? 'Reading data...' : 'Чтение данных...'); readState(); if (!state.checked || !result().accepted) throw new Error(getJsonCardTexts().unavailable); onProgress?.(currentLang() === 'en' ? 'Saving card...' : 'Сохранение карточки...'); return makeCard(author); },

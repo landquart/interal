@@ -21,6 +21,8 @@ const TEXT_I18N = {
         languagesTitle: 'Языки и дериваты',
         reset: 'Сбросить',
         resetConfirm: 'Сбросить введённые данные? Это действие нельзя отменить.',
+        jsonModuleUnavailable: 'Модуль создания JSON-карточек не загружен. Перезагрузите страницу.',
+        rankJsonObjectError: 'JSON должен быть объектом формата { \"word\": rank }',
         manual: 'ручная',
         languages: {
           en: 'Английский', de: 'Немецкий', fr: 'Французский', es: 'Испанский', it: 'Итальянский', ru: 'Русский'
@@ -64,6 +66,8 @@ const TEXT_I18N = {
         languagesTitle: 'Languages and derivatives',
         reset: 'Reset',
         resetConfirm: 'Reset entered data? This action cannot be undone.',
+        jsonModuleUnavailable: 'The JSON card module is unavailable. Reload the page.',
+        rankJsonObjectError: 'JSON must be an object formatted as { \"word\": rank }',
         manual: 'manual',
         languages: {
           en: 'English', de: 'German', fr: 'French', es: 'Spanish', it: 'Italian', ru: 'Russian'
@@ -178,7 +182,7 @@ const TEXT_I18N = {
 
           const json = await response.json();
           if (!json || typeof json !== 'object' || Array.isArray(json)) {
-            throw new Error('JSON должен быть объектом формата { "word": rank }');
+            throw new Error(t('rankJsonObjectError'));
           }
 
           loadedFrequencies[lang.code] = json;
@@ -884,7 +888,7 @@ const TEXT_I18N = {
     const CARDS_API_ENDPOINT = location.hostname === 'landquart.github.io' ? 'https://interal.vercel.app/api/cards' : '/api/cards';
 
     async function createCardOnServer(card) {
-      if (!window.InteralJsonCards) throw new Error('InteralJsonCards is not loaded.');
+      if (!window.InteralJsonCards) throw new Error(textValue('jsonModuleUnavailable'));
       return window.InteralJsonCards.createCardOnServer(card, { section: 'associativvordes', title: card?.interal?.word || card?.title, category: card?.vord_type || 'av', endpoint: CARDS_API_ENDPOINT });
     }
 
