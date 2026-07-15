@@ -191,8 +191,8 @@ cards.sort((a, b) => a.id.localeCompare(b.id));
 
 const nextRegistryComparable = {
   version: '1.0',
-  registry_type: 'vordesen_card_registry',
-  title: 'Registre of vordesen cartes',
+  registry_type: 'lexical_card_registry',
+  title: 'Registre of lexical cartes',
   count: cards.length,
   vord_types: VORD_TYPES,
   cards

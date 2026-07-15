@@ -1,4 +1,4 @@
-name: Build registre of vordesen cartes
+name: Build registre of lexical cartes
 
 on:
   workflow_dispatch:
@@ -34,5 +34,5 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
           git add cards
-          git commit -m "Update vordesen card registry"
+          git commit -m "Update lexical card registry"
           git push

@@ -6,7 +6,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon%20interal%2032.png" />
   <link rel="icon" type="image/png" sizes="64x64" href="../favicon/favicon%20interal%2064.png" />
   <link rel="apple-touch-icon" sizes="512x512" href="../favicon/favicon%20interal%20512.png" />
-  <title>Registre of vordesen cartes</title>
+  <title>Registre of lexical cartes</title>
   <link rel="stylesheet" href="../shared/ui.css?v=site-fixes-20260715-1" />
   <style>
     * { box-sizing: border-box; }
@@ -164,7 +164,7 @@
 </head>
 <body class="interal-tool-page registry-body">
   <main class="interal-page-shell interal-page-shell--wide registry-page">
-    <header class="interal-page-hero"><h1 class="interal-page-title registry-title" id="registry-title" data-i18n="title">Registre of vordesen cartes</h1></header>
+    <header class="interal-page-hero"><h1 class="interal-page-title registry-title" id="registry-title" data-i18n="title">Registre of lexical cartes</h1></header>
     <section class="interal-panel registry-panel" data-i18n-attr="aria-label:filtersAria">
       <div class="registry-controls">
         <div class="field field--search">
@@ -245,12 +245,12 @@
   <div class="registry-toast" id="registry-toast" role="status" aria-live="polite"></div>
 
   <script src="../shared/copy-plain.js?v=contact-types-20260713-1"></script>
-  <script src="../shared/ui.js?v=site-fixes-20260715-1" defer></script>
+  <script src="../shared/ui.js?v=registry-name-20260715-1" defer></script>
   <script>
     (function () {
       const TEXT_I18N = {
         ru: {
-          title: 'Registre of vordesen cartes', filtersAria: 'Фильтры реестра',
+          title: 'Registre of lexical cartes', filtersAria: 'Фильтры реестра',
           searchLabel: 'Поиск', searchPlaceholder: 'Поиск по слову, переводу, ID, автору, группе...', typeLabel: 'Тип слова', allTypes: 'Все типы',
           posLabel: 'Часть речи', allParts: 'Все части речи', groupLabel: 'Языковая группа', allGroups: 'Все группы', authorLabel: 'Автор', authorPlaceholder: 'Автор',
           minPiLabel: 'Минимальный PI', sortLabel: 'Сортировка', resetFilters: 'Сбросить', resetConfirm: 'Сбросить введённые данные? Это действие нельзя отменить.',
@@ -261,7 +261,7 @@
           noValue: '—', openJson: 'Открыть JSON', copyId: 'Скопировать ID', copyJson: 'Скопировать JSON-карточку', startDiscussion: 'Начать обсуждение', viewComments: (count) => `Смотреть комментарии (${count})`, discussionTitle: 'Обсуждение', fullJsonTitle: 'Полная JSON-карточка', close: 'Закрыть', jsonCopied: 'JSON-карточка скопирована', jsonCopyFailed: 'Не удалось скопировать JSON-карточку', idCopied: 'ID скопирован', idCopyFailed: 'Не удалось скопировать ID', jsonLoadFailed: 'Не удалось загрузить полную JSON-карточку.'
         },
         en: {
-          title: 'Registre of vordesen cartes', filtersAria: 'Registry filters',
+          title: 'Registre of lexical cartes', filtersAria: 'Registry filters',
           searchLabel: 'Search', searchPlaceholder: 'Search by word, translation, ID, author, group...', typeLabel: 'Word type', allTypes: 'All types',
           posLabel: 'Part of speech', allParts: 'All parts of speech', groupLabel: 'Language group', allGroups: 'All groups', authorLabel: 'Author', authorPlaceholder: 'Author',
           minPiLabel: 'Minimum PI', sortLabel: 'Sort', resetFilters: 'Reset', resetConfirm: 'Reset entered data? This action cannot be undone.',
