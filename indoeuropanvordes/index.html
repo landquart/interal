@@ -712,9 +712,11 @@ body.dark-theme .internationalita-page .json-card-icon-btn.is-copied {
           <span id="rememberAuthorDataLabel">Запомнить для следующих карточек</span>
         </label>
 
-        <button class="link-button author-storage-clear" id="clearSavedAuthorData" type="button" hidden>
-          Удалить сохранённые данные
-        </button>
+        <div class="author-data-actions" hidden>
+          <button class="author-data-delete-button" id="clearSavedAuthorData" type="button" hidden>
+            Удалить сохранённые данные
+          </button>
+        </div>
       </div>
 
       <button id="generateJsonCardBtn" class="tool-btn interal-btn interal-btn--primary gradient-hover" type="button">Сгенерировать карточку</button>
@@ -1416,7 +1418,11 @@ function openJsonCardModal() {
   jsonCardOutput.value = "";
   setJsonCardCopyState(false);
   window.InteralJsonCardModal?.restoreAuthorData?.();
-  if (clearSavedAuthorData) clearSavedAuthorData.hidden = !window.InteralJsonCardModal?.hasSavedAuthorData?.();
+  if (clearSavedAuthorData) {
+    const hidden = !window.InteralJsonCardModal?.hasSavedAuthorData?.();
+    clearSavedAuthorData.hidden = hidden;
+    clearSavedAuthorData.closest(".author-data-actions")?.toggleAttribute("hidden", hidden);
+  }
   jsonCardModal.classList.add("show");
   jsonCardModal.setAttribute("aria-hidden", "false");
   generateJsonCardBtn.focus();
@@ -2828,13 +2834,19 @@ useAuthorBlock.addEventListener("change", () => {
 rememberAuthorData?.addEventListener("change", () => {
   if (!rememberAuthorData.checked) {
     window.InteralJsonCardModal?.clearSavedAuthorData?.();
-    if (clearSavedAuthorData) clearSavedAuthorData.hidden = true;
+    if (clearSavedAuthorData) {
+      clearSavedAuthorData.hidden = true;
+      clearSavedAuthorData.closest(".author-data-actions")?.setAttribute("hidden", "");
+    }
   }
 });
 clearSavedAuthorData?.addEventListener("click", () => {
   window.InteralJsonCardModal?.clearSavedAuthorData?.();
   if (rememberAuthorData) rememberAuthorData.checked = false;
-  if (clearSavedAuthorData) clearSavedAuthorData.hidden = true;
+  if (clearSavedAuthorData) {
+    clearSavedAuthorData.hidden = true;
+    clearSavedAuthorData.closest(".author-data-actions")?.setAttribute("hidden", "");
+  }
 });
 generateJsonCardBtn.addEventListener("click", async () => {
   if (!lastCalculationPayload?.accepted) {

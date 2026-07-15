@@ -67,6 +67,8 @@
   --brand-gold-control: #a47a1f;
   --brand-gold-soft: color-mix(in srgb, var(--brand-gold) 14%, transparent);
   --brand-gold-border: color-mix(in srgb, var(--brand-gold) 48%, var(--border-subtle));
+  --danger-bg: color-mix(in srgb, #dc2626 9%, transparent);
+  --danger-text: #b91c1c;
 }
 [hidden] {
   display: none !important;
@@ -132,6 +134,8 @@ body.dark-theme {
   --brand-gold-control: #d8b65f;
   --brand-gold-soft: color-mix(in srgb, var(--brand-gold) 12%, transparent);
   --brand-gold-border: color-mix(in srgb, var(--brand-gold) 38%, var(--border-subtle));
+  --danger-bg: color-mix(in srgb, #f87171 14%, transparent);
+  --danger-text: #fca5a5;
   --menu-icon-filter: brightness(0) invert(1);
 }
 
@@ -1114,10 +1118,14 @@ body.dark-theme #jsonCardModal{background:rgba(0,0,0,.62);}
 .json-card-form #generateJsonCardBtn{justify-self:center;width:fit-content;max-width:100%;min-width:0;padding-inline:18px;}
 .json-card-form .checkbox-line{display:flex;align-items:center;gap:10px;margin:0;}
 .json-author-fields{display:grid;gap:10px;padding:14px;border:1px solid var(--border-subtle);border-radius:var(--radius-md);background:var(--surface-soft);}
+.author-data-actions{display:flex;justify-content:flex-start;align-items:center;margin-top:4px;}
+.author-data-delete-button{justify-self:start;align-self:start;width:auto;max-width:100%;min-height:40px;padding:9px 14px;border:1px solid color-mix(in srgb, var(--danger-text) 22%, transparent);border-radius:var(--radius-pill);display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--danger-bg);color:var(--danger-text);box-shadow:none;font:600 14px/1.2 "Jost","Helvetica Neue",Helvetica,Arial,sans-serif;text-align:center;white-space:normal;cursor:pointer;transition:background-color .15s ease,border-color .15s ease,transform .15s ease;}
+.author-data-delete-button:active{transform:scale(.98);}
+.author-data-delete-button:disabled{opacity:1;color:var(--text-muted);background:transparent;border-color:var(--border-subtle);box-shadow:none;cursor:default;}
 .json-card-output{min-height:220px;width:100%;resize:vertical;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;line-height:1.45;}
 .json-card-actions{display:flex;justify-content:flex-end;gap:12px;margin-top:16px;}
 .json-card-icon-btn{width:46px;height:46px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--button-secondary-border);border-radius:999px;background:var(--button-secondary-bg);color:var(--button-secondary-text);cursor:pointer;transition:transform .15s ease,background .15s ease,border-color .15s ease;}
-.json-card-icon-btn:hover{background:var(--surface-hover);transform:translateY(-1px);}
+@media (hover: hover){.author-data-delete-button:hover:not(:disabled){background:color-mix(in srgb, var(--danger-text) 14%, transparent);border-color:color-mix(in srgb, var(--danger-text) 34%, transparent);transform:none;}.json-card-icon-btn:hover{background:var(--surface-hover);transform:translateY(-1px);}}
 .json-card-icon-btn:focus-visible{outline:2px solid var(--focus-outline);outline-offset:3px;box-shadow:0 0 0 5px var(--focus-ring);}
 .json-card-icon-btn:active{transform:translateY(0) scale(.98);}
 .json-card-icon-btn.is-copied{background:#16a34a;border-color:#16a34a;color:#fff;}

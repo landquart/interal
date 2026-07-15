@@ -451,7 +451,7 @@
           <label for="authorContactType" id="authorContactTypeLabel">Тип контакта</label><select class="interal-select js-custom-select" id="authorContactType"><option value="telegram">Telegram</option><option value="discord">Discord</option><option value="email">Email</option><option value="signal">Signal</option><option value="matrix">Matrix</option><option value="simplex">Simplex</option><option value="other">Другое</option></select>
           <label for="authorContactValue" id="authorContactValueLabel">Контакт</label><input class="interal-input" id="authorContactValue" type="text" autocomplete="off">
           <label class="checkbox-line" for="rememberAuthorData"><input id="rememberAuthorData" type="checkbox"><span id="rememberAuthorDataLabel">Запомнить для следующих карточек</span></label>
-          <button class="link-button author-storage-clear" id="clearSavedAuthorData" type="button" hidden>Удалить сохранённые данные</button>
+          <div class="author-data-actions" hidden><button class="author-data-delete-button" id="clearSavedAuthorData" type="button" hidden>Удалить сохранённые данные</button></div>
         </div>
         <button id="generateJsonCardBtn" class="tool-btn interal-btn interal-btn--primary gradient-hover" type="button">Сгенерировать карточку</button>
         <label for="jsonCardOutput" id="jsonCardOutputLabel">Готовый JSON</label><textarea id="jsonCardOutput" class="interal-textarea json-card-output" spellcheck="false" readonly></textarea>

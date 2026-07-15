@@ -1366,7 +1366,12 @@ window.refreshCustomSelect = function refreshCustomSelect(selectOrId) {
   }
   function syncAuthorStorageControls(ids) {
     const clearButton = $(ids.clearSavedAuthorDataId);
-    if (clearButton) clearButton.hidden = !hasSavedAuthorData();
+    if (clearButton) {
+      const hidden = !hasSavedAuthorData();
+      clearButton.hidden = hidden;
+      const actions = clearButton.closest('.author-data-actions');
+      if (actions) actions.hidden = hidden;
+    }
   }
 
   function normalizeContact(type, value) {
