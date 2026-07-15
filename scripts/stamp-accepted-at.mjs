@@ -4,8 +4,18 @@ import process from 'node:process';
 
 const ROOT = process.cwd();
 const ACCEPTED_ROOT = path.join(ROOT, 'cards', 'accepted');
-const VORD_TYPES = new Set(['iv', 'av', 'in', 'vc', 'gv']);
-const ID_RE = /^(iv|av|in|vc|gv)_[0-9a-fA-F]{32}$/;
+const VORD_TYPES = new Set([
+  'iv',
+  'av',
+  'in',
+  'vc',
+  'gv',
+  'al',
+  'af'
+]);
+
+const ID_RE =
+  /^(iv|av|in|vc|gv|al|af)_[0-9A-Za-z]{12}$/;
 
 async function listJsonFiles(dir) {
   let entries = [];
@@ -42,7 +52,7 @@ function validateCard(card, filePath, expectedType) {
   if (!VORD_TYPES.has(expectedType)) fail(filePath, `invalid accepted folder "${expectedType}"`);
   if (!card || typeof card !== 'object' || Array.isArray(card)) fail(filePath, 'card must be a JSON object');
   if (typeof card.id !== 'string' || !card.id) fail(filePath, 'id is required');
-  if (!ID_RE.test(card.id)) fail(filePath, `id must match <vord_type>_ + 32 hex chars: "${card.id}"`);
+  if (!ID_RE.test(card.id)) fail(filePath, `id must match <vord_type>_ + 12 base62 chars: "${card.id}"`);
   if (!card.id.startsWith(`${expectedType}_`)) fail(filePath, `id must start with "${expectedType}_"`);
   if (card.vord_type === undefined) {
     card.vord_type = expectedType;
