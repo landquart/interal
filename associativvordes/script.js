@@ -988,7 +988,7 @@ const TEXT_I18N = {
       document.getElementById('jsonCardOutput').value = '';
       window.InteralJsonCardModal?.restoreAuthorData?.();
       const clearSaved = document.getElementById('clearSavedAuthorData');
-      if (clearSaved) clearSaved.hidden = !window.InteralJsonCardModal?.hasSavedAuthorData?.();
+      if (clearSaved) { const hidden = !window.InteralJsonCardModal?.hasSavedAuthorData?.(); clearSaved.hidden = hidden; clearSaved.closest('.author-data-actions')?.toggleAttribute('hidden', hidden); }
       document.getElementById('jsonCardModal').classList.add('show');
     }
 
@@ -1103,7 +1103,7 @@ const TEXT_I18N = {
       if (!event.target.checked) {
         window.InteralJsonCardModal?.clearSavedAuthorData?.();
         const clearSaved = document.getElementById('clearSavedAuthorData');
-        if (clearSaved) clearSaved.hidden = true;
+        if (clearSaved) { clearSaved.hidden = true; clearSaved.closest('.author-data-actions')?.setAttribute('hidden', ''); }
       }
     });
     document.getElementById('clearSavedAuthorData')?.addEventListener('click', () => {
@@ -1111,7 +1111,7 @@ const TEXT_I18N = {
       const remember = document.getElementById('rememberAuthorData');
       if (remember) remember.checked = false;
       const clearSaved = document.getElementById('clearSavedAuthorData');
-      if (clearSaved) clearSaved.hidden = true;
+      if (clearSaved) { clearSaved.hidden = true; clearSaved.closest('.author-data-actions')?.setAttribute('hidden', ''); }
     });
     document.getElementById('generateJsonCardBtn').addEventListener('click', async () => {
       const btn = document.getElementById('generateJsonCardBtn');
