@@ -3,6 +3,7 @@ import { getBidirectionalSwow, normalizeSwowWord } from './swow-client.js';
 import { ASSOCIATION_SCORE_WEIGHTS, FINAL_SCORE_WEIGHTS, getQwenAssociationScores, qwenFallback } from './qwen-client.js';
 
 export const THRESHOLDS = {
+  word: 35,
   main: 35,
   reviewMin: 25,
   reviewMax: 35,
@@ -72,9 +73,19 @@ export function calculateFinalScore({ frequency_score, association_score }) {
   );
 }
 
+export function passesWordThreshold(score) {
+  return Number.isFinite(Number(score)) && Number(score) >= THRESHOLDS.word;
+}
+
 export function classifyScore(final_score) {
   if (final_score == null) return 'unavailable';
-  return 'scored';
+  const score = Number(final_score);
+  if (!Number.isFinite(score)) return 'unavailable';
+  return passesWordThreshold(score) ? 'passed_threshold' : 'below_threshold';
+}
+
+export function finalAssociationPassesThreshold(finalAssociation) {
+  return Number.isFinite(Number(finalAssociation)) && Number(finalAssociation) >= THRESHOLDS.main;
 }
 
 function semanticConfirmedFromQwen(qwen) {
