@@ -115,6 +115,16 @@ async function pathSize(path) {
   return info.size;
 }
 
+function rootSamples(entries, roots = ['alter', 'regul', 'ocul', 'inter'], limit = 20) {
+  return Object.fromEntries(roots.map(root => [
+    root,
+    entries
+      .filter(entry => entry.search_form.includes(root) || entry.normalized.includes(root))
+      .slice(0, limit)
+      .map(entry => entry.word)
+  ]));
+}
+
 function buildReport(language, result, manifestLanguage, totalBytes = 0) {
   return {
     language,
@@ -124,10 +134,7 @@ function buildReport(language, result, manifestLanguage, totalBytes = 0) {
     source_files: result.sourceFiles,
     shards: manifestLanguage.shards.map(shard => ({ file: shard.file, entries: shard.entries })),
     total_bytes: totalBytes,
-    alter_candidates: result.entries
-      .filter(entry => entry.normalized.includes('alter'))
-      .slice(0, 20)
-      .map(entry => entry.word)
+    root_samples: rootSamples(result.entries)
   };
 }
 
