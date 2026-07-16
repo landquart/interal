@@ -737,6 +737,14 @@ const TEXT_I18N = {
       syncJsonCardButtonVisibility();
     }
 
+    function invalidateAssociativeResult() {
+      if (window.InteralFormDraft?.isRestoring?.()) return;
+      state.checked = false;
+      syncCheckedVisibility();
+      syncJsonCardButtonVisibility();
+      window.InteralFormDraft?.save?.();
+    }
+
     function updateItem(lang, idx, key, value) {
       const item = state.languages[lang][idx];
       item[key] = value;
@@ -748,11 +756,13 @@ const TEXT_I18N = {
         item.association_score = null;
         item.final_score = null;
         renderAll();
+        invalidateAssociativeResult();
         if (normalizeText(value)) analyzeItem(lang, idx);
         return;
       }
 
       renderAll();
+      invalidateAssociativeResult();
     }
 
     async function analyzeItem(lang, idx) {
@@ -777,16 +787,19 @@ const TEXT_I18N = {
         Object.assign(item, failed, { analysisStatus: 'error' });
       }
       renderAll();
+      window.InteralFormDraft?.save?.();
     }
 
     function deleteItem(lang, idx) {
       state.languages[lang].splice(idx, 1);
       renderAll();
+      invalidateAssociativeResult();
     }
 
     function addRow(lang) {
       state.languages[lang].push({ word: '', model: '', analysis: null, frequency_score: null, association_score: null, final_score: null, selected: false });
       renderAll();
+      invalidateAssociativeResult();
     }
 
 
@@ -997,9 +1010,9 @@ const TEXT_I18N = {
     window.InteralPageStateExport = collectAssociativePageState;
     window.InteralPageStateImport = importAssociativePageState;
 
-    document.getElementById('rootInput').addEventListener('input', () => { state.checked = false; renderAll(); });
-    document.getElementById('meaningInput').addEventListener('input', () => { state.checked = false; renderAll(); });
-    document.getElementById('elementType').addEventListener('change', () => { state.checked = false; renderAll(); });
+    document.getElementById('rootInput').addEventListener('input', () => { state.root = document.getElementById('rootInput').value; invalidateAssociativeResult(); renderAll(); });
+    document.getElementById('meaningInput').addEventListener('input', () => { state.meaning = document.getElementById('meaningInput').value; invalidateAssociativeResult(); renderAll(); });
+    document.getElementById('elementType').addEventListener('change', () => { state.elementType = document.getElementById('elementType').value; invalidateAssociativeResult(); renderAll(); });
     document.getElementById('calculateBtn').addEventListener('click', () => searchDerivatives());
     document.getElementById('showExampleBtn').addEventListener('click', showExample);
     document.getElementById('jsonCardBtn').addEventListener('click', openJsonCardModal);

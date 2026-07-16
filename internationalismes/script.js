@@ -324,10 +324,16 @@ function setJsonEnabled(enabled) {
   }
 }
 function resetSuccessfulCheck() {
+  if (window.InteralFormDraft?.isRestoring?.()) return;
   state.checked = false;
+  state.autoPassed = emptyLangMap(false);
+  state.matchMeta = emptyLangMap(null);
   setJsonEnabled(false);
+  const evidenceSection = byId('evidenceSection');
+  if (evidenceSection) evidenceSection.hidden = true;
   const resultSection = byId('resultSection');
   if (resultSection) resultSection.hidden = true;
+  window.InteralFormDraft?.save?.();
 }
 function getAuthorBlock() { if (!byId('useAuthorBlock')?.checked) return null; const displayName = byId('authorDisplayName')?.value.trim() || ''; const contactType = byId('authorContactType')?.value || 'telegram'; const contactValue = byId('authorContactValue')?.value.trim() || ''; const author = {}; if (displayName) author.display_name = displayName; if (contactValue) author.contacts = [{ type: contactType, url: window.InteralJsonCardModal?.normalizeContact?.(contactType, contactValue) || contactValue }]; return Object.keys(author).length ? author : null; }
 function evidenceForCard(lang) { const code = lang.code; const form = state.evidence[code] || ''; const meta = state.matchMeta[code] || {}; const evidence = { language: code, form, distance: Number.isFinite(Number(meta.distance)) ? Number(meta.distance) : null, passed: effectivePassed(code) }; if (meta.source && meta.source !== 'frequency_list') evidence.source = meta.source; return evidence; }
@@ -385,6 +391,7 @@ function importInternationalismesPageState(saved = {}) {
   state.checked = Boolean(source.flags?.checked || source.result);
   byId('wordInput').value = state.word; byId('posInput').value = state.part_of_speech;
   render(); setJsonEnabled(Boolean(source.flags?.accepted));
+  updateResetButtonVisibility();
   return true;
 }
 window.InteralPageStateExport = collectInternationalismesPageState;
@@ -405,8 +412,8 @@ function bindJsonModal() {
   });
   byId('app')?.addEventListener('change', event => {
     const target = event.target;
-    if (target?.id?.startsWith('pass_')) { const code = target.id.replace('pass_', ''); state.manualOverride[code] = Boolean(target.checked); resetSuccessfulCheck(); render(); return; }
-    if (target?.id === 'posInput') { state.part_of_speech = target.value || 'noun'; resetSuccessfulCheck(); updateResetButtonVisibility(); window.refreshCustomSelect?.(target); return; }
+    if (target?.id?.startsWith('pass_')) { const code = target.id.replace('pass_', ''); state.manualOverride[code] = Boolean(target.checked); resetSuccessfulCheck(); render(); window.InteralFormDraft?.save?.(); return; }
+    if (target?.id === 'posInput') { state.part_of_speech = target.value || 'noun'; resetSuccessfulCheck(); updateResetButtonVisibility(); window.refreshCustomSelect?.(target); window.InteralFormDraft?.save?.(); return; }
     readState(); render();
   });
 }
