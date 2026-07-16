@@ -43,7 +43,7 @@ const I18N = {
 function getDefaultState() { return { word: '', part_of_speech: 'noun', evidence: {}, autoPassed: {}, manualOverride: {}, matchMeta: {}, isSearching: false, searchError: '', checked: false }; }
 let state = getDefaultState();
 let activeRunId = 0;
-function setButtonStatus(selector, text, disabled = true, options = {}) { window.InteralButtonStatus?.setButtonStatus(selector, text, disabled, options); }
+function setButtonStatus(selector, text, disabled = true, options = {}) { return window.InteralButtonStatus?.setButtonStatus(selector, text, disabled, options) ?? false; }
 function nextRunId() { activeRunId += 1; return activeRunId; }
 function invalidateActiveRuns() { activeRunId += 1; }
 function isCurrentRun(runId) { return runId === activeRunId; }
@@ -261,24 +261,24 @@ async function analyze() {
   state.isSearching = true;
   state.searchError = '';
   render();
-  setButtonStatus('#checkBtn', currentLang() === 'en' ? 'Preparing...' : 'Подготовка...', true);
+  setButtonStatus('#checkBtn', currentLang() === 'en' ? 'Calculating...' : 'Расчёт...', true, { loading: true });
   try {
     if (!hasFrequencyConfiguration()) throw new Error('Missing frequency-source configuration');
-    await searchAllLanguages(runId, { onProgress: text => setButtonStatus('#checkBtn', text, true) });
+    await searchAllLanguages(runId, { onProgress: text => setButtonStatus('#checkBtn', text, true, { loading: true }) });
     if (!isCurrentRun(runId)) return;
   } catch (error) {
     if (!isCurrentRun(runId)) return;
     console.error(error);
     state.searchError = error.message === 'Missing frequency-source configuration' ? t('configError') : t('searchError');
-    setButtonStatus('#checkBtn', t('buttonError'), false);
+    setButtonStatus('#checkBtn', t('buttonError'), false, { loading: false });
   } finally {
     if (!isCurrentRun(runId)) return;
     state.isSearching = false;
     state.checked = true;
-    setButtonStatus('#checkBtn', currentLang() === 'en' ? 'Calculating result...' : 'Расчёт результата...', true);
+    setButtonStatus('#checkBtn', currentLang() === 'en' ? 'Calculating result...' : 'Расчёт результата...', true, { loading: true });
     render();
     window.InteralFormDraft?.save?.();
-    setTimeout(() => setButtonStatus('#checkBtn', t('check'), false), 800);
+    setButtonStatus('#checkBtn', t('check'), false, { loading: false });
   }
 }
 
@@ -363,7 +363,7 @@ function renderResult() {
 }
 function render() {
   renderChrome(); applyJsonModalTexts(); document.title = t('title'); byId('pageTitle').textContent = t('title'); byId('pageLead').textContent = t('lead');
-  byId('paramsTitle').textContent = t('params'); byId('wordLabel').textContent = t('word'); byId('posLabel').textContent = t('pos'); setButtonStatus('#checkBtn', state.isSearching ? (currentLang() === 'en' ? 'Searching...' : 'Поиск...') : t('check'), state.isSearching); byId('evidenceTitle').textContent = t('evidence'); byId('decisionTitle').textContent = t('decision'); byId('jsonBtn').textContent = t('json'); byId('resetBtn').title = t('resetAria'); byId('resetBtn').setAttribute('aria-label', t('resetAria'));
+  byId('paramsTitle').textContent = t('params'); byId('wordLabel').textContent = t('word'); byId('posLabel').textContent = t('pos'); setButtonStatus('#checkBtn', state.isSearching ? (currentLang() === 'en' ? 'Searching...' : 'Поиск...') : t('check'), state.isSearching, { loading: state.isSearching }); byId('evidenceTitle').textContent = t('evidence'); byId('decisionTitle').textContent = t('decision'); byId('jsonBtn').textContent = t('json'); byId('resetBtn').title = t('resetAria'); byId('resetBtn').setAttribute('aria-label', t('resetAria'));
   const posInput = byId('posInput');
   if (posInput && posInput.value !== state.part_of_speech) {
     posInput.value = state.part_of_speech || 'noun';

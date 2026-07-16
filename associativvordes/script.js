@@ -109,26 +109,8 @@ const TEXT_I18N = {
     }
 
 
-    let calculateLoaderTimer = null;
-
-    function setCalculateButtonStatus(text, disabled = true) {
-      const button = document.querySelector('#calculateBtn');
-      if (!button) return;
-
-      const textEl = button.querySelector('.btn-text') || button;
-
-      textEl.textContent = text;
-      button.disabled = disabled;
-
-      clearTimeout(calculateLoaderTimer);
-
-      if (disabled) {
-        calculateLoaderTimer = setTimeout(() => {
-          button.classList.add('is-loading');
-        }, 700);
-      } else {
-        button.classList.remove('is-loading');
-      }
+    function setCalculateButtonStatus(text, disabled = true, options = {}) {
+      window.InteralButtonStatus?.setButtonStatus('#calculateBtn', text, disabled, options);
     }
 
     function defaultCalculateButtonText() {
@@ -475,23 +457,23 @@ const TEXT_I18N = {
     async function searchDerivatives() {
       const runId = nextRunId();
       try {
-        setCalculateButtonStatus('Подготовка...', true);
+        setCalculateButtonStatus(currentLang() === 'en' ? 'Calculating...' : 'Расчёт...', true, { loading: true });
         await runCalculation({
           runId,
-          onProgress: text => { if (isCurrentRun(runId)) setCalculateButtonStatus(text, true); }
+          onProgress: text => { if (isCurrentRun(runId)) setCalculateButtonStatus(text, true, { loading: true }); }
         });
         if (!isCurrentRun(runId)) return;
         state.checked = true;
         renderAll();
         window.InteralFormDraft?.save?.();
-        setCalculateButtonStatus('Готово', true);
+        setCalculateButtonStatus(currentLang() === 'en' ? 'Done' : 'Готово', true, { loading: true });
         setTimeout(() => {
-          if (isCurrentRun(runId)) setCalculateButtonStatus(defaultCalculateButtonText(), false);
+          if (isCurrentRun(runId)) setCalculateButtonStatus(defaultCalculateButtonText(), false, { loading: false });
         }, 800);
       } catch (error) {
         if (!isCurrentRun(runId)) return;
         console.error(error);
-        setCalculateButtonStatus('Ошибка расчёта', false);
+        setCalculateButtonStatus(currentLang() === 'en' ? 'Calculation error' : 'Ошибка расчёта', false, { loading: false });
       } finally {
         if (isCurrentRun(runId)) renderAll();
       }

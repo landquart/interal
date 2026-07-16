@@ -95,7 +95,7 @@ function getDefaultState() {
     checked: false, incompleteMode: false, qwenError: ''
   };
 }
-function setButtonStatus(selector, text, disabled = true, options = {}) { window.InteralButtonStatus?.setButtonStatus(selector, text, disabled, options); }
+function setButtonStatus(selector, text, disabled = true, options = {}) { return window.InteralButtonStatus?.setButtonStatus(selector, text, disabled, options) ?? false; }
 let state = getDefaultState();
 function readState() { state.word=byId('wordInput')?.value.trim()||''; state.part_of_speech=byId('posInput')?.value||'adverb'; state.domain=byId('domainInput')?.value.trim()||''; for(const lang of LANGUAGES) state.translations[lang.code]=byId(`tr_${lang.code}`)?.value.trim()||''; const questions = QUESTIONS[currentLang()]; state.answers = questions.map((_,i)=>byId(`ans_${i}`)?.value||'yes'); state.criteria = state.answers.map((answer,i)=> i === 0 ? answer === 'yes' : i === 1 ? answer === 'yes' : answer === 'yes' || answer === 'partially'); state.incompleteMode=Boolean(byId('incompleteMode')?.checked); }
 
@@ -161,7 +161,7 @@ function bindJsonModal() {
   });
   document.addEventListener('interal:languagechange', () => { document.documentElement.lang = currentLang(); readState(); render(); });
   byId('resetBtn')?.addEventListener('click', resetState);
-  byId('checkBtn')?.addEventListener('click', async () => { readState(); if(!validateForm()){ alert(t('validationRequired')); render(); return; } const ok=await autoCheckWithQwen(); if(ok) state.checked = true; render(); updateCheckedVisibility(); updateResetButtonVisibility(); window.InteralFormDraft?.save?.(); });
+  byId('checkBtn')?.addEventListener('click', async () => { readState(); if(!validateForm()){ alert(t('validationRequired')); render(); return; } setButtonStatus('#checkBtn', currentLang() === 'en' ? 'Calculating...' : 'Расчёт...', true, { loading: true }); try { const ok=await autoCheckWithQwen(); if(ok) state.checked = true; render(); updateCheckedVisibility(); updateResetButtonVisibility(); window.InteralFormDraft?.save?.(); } finally { setButtonStatus('#checkBtn', t('check'), false, { loading: false }); } });
   byId('app')?.addEventListener('input', () => { updateResetButtonVisibility(); if (state.checked && !window.InteralFormDraft?.isRestoring?.()) { state.checked = false; readState(); render(); window.InteralFormDraft?.save?.(); return; } if (state.checked) { readState(); renderResult(); if(state.qwenError) byId('resultBox').insertAdjacentHTML('beforeend', `<p class="muted">${escapeHtml(state.qwenError)}</p>`); updateCheckedVisibility(); window.InteralFormDraft?.save?.(); } });
   byId('app')?.addEventListener('change', () => { updateResetButtonVisibility(); if (state.checked && !window.InteralFormDraft?.isRestoring?.()) { state.checked = false; readState(); render(); window.InteralFormDraft?.save?.(); return; } if (state.checked) { readState(); renderResult(); if(state.qwenError) byId('resultBox').insertAdjacentHTML('beforeend', `<p class="muted">${escapeHtml(state.qwenError)}</p>`); updateCheckedVisibility(); window.InteralFormDraft?.save?.(); } });
 }

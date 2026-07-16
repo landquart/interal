@@ -1189,28 +1189,40 @@ body.dark-theme #jsonCardModal{background:rgba(0,0,0,.62);}
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 9px;
 }
 
 .btn-loader {
+  display: none;
   width: 22px;
   height: 22px;
-  display: none;
-  flex: 0 0 auto;
+  flex: 0 0 22px;
   object-fit: contain;
   pointer-events: none;
 }
 
+.interal-btn.is-loading {
+  cursor: wait;
+}
+
+.interal-btn.is-loading .btn-loader {
+  display: block;
+}
+
+.interal-btn.is-loading .btn-text {
+  display: inline;
+}
+
+:root {
+  --button-loader-filter: brightness(0) invert(1);
+}
+
+body.dark-theme {
+  --button-loader-filter: none;
+}
+
 .interal-btn--primary .btn-loader {
-  filter: invert(1);
-}
-
-body.dark-theme .interal-btn--primary .btn-loader {
-  filter: none;
-}
-
-.is-loading .btn-loader {
-  display: inline-block;
+  filter: var(--button-loader-filter);
 }
 
 .btn-text {
