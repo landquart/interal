@@ -13,6 +13,7 @@ on:
           - fr
           - es
           - it
+          - ru
         default: en
 
 jobs:
@@ -24,9 +25,9 @@ jobs:
       - name: Validate language input
         run: |
           case "${{ inputs.language }}" in
-            en|de|fr|es|it) ;;
+            en|de|fr|es|it|ru) ;;
             *)
-              echo "Unsupported language: ${{ inputs.language }}. Expected one of: en, de, fr, es, it." >&2
+              echo "Unsupported language: ${{ inputs.language }}. Expected one of: en, de, fr, es, it, ru." >&2
               exit 1
               ;;
           esac
@@ -48,6 +49,9 @@ jobs:
 
       - name: Run selected language fixture test
         run: node tests/associative-index-builder.test.mjs --language="${{ inputs.language }}"
+
+      - name: Run Russian normalization tests
+        run: node tests/associative-index-russian-normalization.test.mjs
 
       - name: Build selected associative index
         run: npm run build:associative-index -- --languages="${{ inputs.language }}" --report=associativvordes/candidate-index/build-report.json
