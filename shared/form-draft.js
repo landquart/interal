@@ -14,6 +14,8 @@
   let isRestoring = false;
   let isResetting = false;
   let lastSerialized = '';
+  let initialRestoreAttempted = false;
+  let initialRestoreSucceeded = false;
 
   function isInstrumentPage() {
     return /\/(indoeuropanvordes|associativvordes|determinatorofvalentyp|internationalismes|vordesofcommunites|grammaticebrevivordes|altervordes|affixes)\//.test(window.location.pathname);
@@ -528,11 +530,14 @@
     if (!pageState || typeof pageState !== 'object') return false;
     if (typeof window.InteralPageStateImport !== 'function') return false;
 
+    isRestoring = true;
     try {
       return window.InteralPageStateImport(pageState) !== false;
     } catch (error) {
       console.warn('Could not import page-specific share state:', error);
       return false;
+    } finally {
+      isRestoring = false;
     }
   }
 
@@ -813,20 +818,26 @@
   }
 
   async function restoreInitialState() {
+    if (initialRestoreAttempted) return initialRestoreSucceeded;
+    initialRestoreAttempted = true;
     if (hasResetFlag()) {
       clearResetStateAfterLoad();
+      initialRestoreSucceeded = false;
       return false;
     }
 
     if (await restoreShortStateFromUrl()) {
+      initialRestoreSucceeded = true;
       return true;
     }
 
     if (restoreSharedStateFromUrl()) {
+      initialRestoreSucceeded = true;
       return true;
     }
 
-    return restoreDraft();
+    initialRestoreSucceeded = restoreDraft();
+    return initialRestoreSucceeded;
   }
 
   document.addEventListener('click', (event) => {

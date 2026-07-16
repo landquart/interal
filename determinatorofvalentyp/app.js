@@ -1098,7 +1098,9 @@ function addRootComponent() {
   els.rootMeaningInput.readOnly = false;
 
   renderComponents();
+  invalidateDeterminatorResult();
   closeAllModals();
+  window.InteralFormDraft?.save?.();
 }
 
 function openPrefixVariantStep(item) {
@@ -1151,7 +1153,9 @@ function savePrefixVariant() {
 
   pendingPrefixItem = null;
   renderComponents();
+  invalidateDeterminatorResult();
   closeAllModals();
+  window.InteralFormDraft?.save?.();
 }
 
 function addSelectedComponent() {
@@ -1174,12 +1178,16 @@ function addSelectedComponent() {
   });
 
   renderComponents();
+  invalidateDeterminatorResult();
   closeAllModals();
+  window.InteralFormDraft?.save?.();
 }
 
 function removeComponent(id) {
   state.components = state.components.filter((item) => item.id !== id);
   renderComponents();
+  invalidateDeterminatorResult();
+  window.InteralFormDraft?.save?.();
 }
 
 function componentSummaryText() {
@@ -1815,6 +1823,54 @@ function badge(text, type = '') {
 }
 
 
+function collectDeterminatorPageState() {
+  const input = getInput();
+  return {
+    version: 2,
+    page: location.pathname,
+    fields: input,
+    result: state.lastAnalysis ? { analysis: state.lastAnalysis } : null,
+    flags: { checked: Boolean(state.lastAnalysis), accepted: Boolean(state.lastAnalysis && state.lastAnalysis.ok !== false) },
+    ui: { componentCount: state.components.length },
+    savedAt: new Date().toISOString()
+  };
+}
+
+function importDeterminatorPageState(saved = {}) {
+  if (saved.version !== 2 && !saved.fields) return false;
+  const fields = saved.fields || {};
+  els.regularWord.value = fields.logicalForm ?? fields.regularWord ?? '';
+  els.logicalMeaning.value = fields.logicalMeaning ?? '';
+  els.internationalMeaning.value = fields.internationalMeaning ?? '';
+  els.naturalisticWord.value = fields.internationalForm ?? fields.naturalisticWord ?? '';
+  if (els.explanationChain) els.explanationChain.value = fields.explanationChain ?? '';
+  if (els.useLlm) els.useLlm.checked = Boolean(fields.useLLM);
+  if (els.ollamaUrl) els.ollamaUrl.value = fields.ollamaUrl ?? 'http://localhost:11434';
+  if (els.ollamaModel) els.ollamaModel.value = fields.embeddingModel ?? 'qwen3-embedding';
+  if (els.manualEmbeddingResponse) els.manualEmbeddingResponse.value = fields.manualEmbeddingResponse ?? '';
+  state.components = Array.isArray(fields.components) ? fields.components.filter(Boolean).map((item) => ({ ...item, id: item.id || crypto.randomUUID() })) : [];
+  state.lastAnalysis = saved.result?.analysis || null;
+  renderComponents();
+  if (state.lastAnalysis) renderResult(state.lastAnalysis, getInput());
+  else { els.resultPanel.hidden = true; els.result.classList.add('empty'); els.result.textContent = txt('fillAndAnalyse'); }
+  syncPromptButtonsVisibility();
+  syncClearButtonVisibility();
+  window.initCustomSelects?.();
+  return true;
+}
+
+function invalidateDeterminatorResult() {
+  if (window.InteralFormDraft?.isRestoring?.()) return;
+  state.lastAnalysis = null;
+  els.resultPanel.hidden = true;
+  els.result.classList.add('empty');
+  els.result.textContent = txt('fillAndAnalyse');
+  window.InteralFormDraft?.save?.();
+}
+
+window.InteralPageStateExport = collectDeterminatorPageState;
+window.InteralPageStateImport = importDeterminatorPageState;
+
 function renderResult(result, input) {
   els.resultPanel.hidden = false;
   const isEn = currentLang() === 'en';
@@ -2082,10 +2138,12 @@ function attachEvents() {
       if (!isCurrentRun(runId) || !result) return;
       renderResult(result, input);
       if (!isCurrentRun(runId)) return;
+      window.InteralFormDraft?.save?.();
       } catch (error) {
       if (!isCurrentRun(runId)) return;
       if (!isCurrentRun(runId)) return;
       renderResult({ ok: false, error: 'frontend_error', details: `${txt('apiUnavailableManual')} ${String(error.message || error)}`, ai: null, computed: null, retrieval: { examples_used: [] }, manualOnly: true }, input);
+      window.InteralFormDraft?.save?.();
     } finally {
       if (!isCurrentRun(runId)) return;
       els.analyzeBtn.disabled = false;
@@ -2112,6 +2170,7 @@ function attachEvents() {
     if (!el) return;
     el.addEventListener('input', () => {
       syncClearButtonVisibility();
+      invalidateDeterminatorResult();
       });
   });
 }
