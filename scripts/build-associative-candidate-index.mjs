@@ -16,7 +16,7 @@ import {
 const DEFAULT_INPUT_ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', 'associativvordes', 'frequency lists');
 const DEFAULT_OUTPUT_ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', 'associativvordes', 'candidate-index');
 const MANIFEST_VERSION = '1';
-const NORMALIZER_VERSION = '1';
+const NORMALIZER_VERSION = '2';
 const DRY_RUN_SOURCE_BY_LANGUAGE = {
   en: 'normative/bnc-clean2.lemmatized_spacy_ipm6.json'
 };

@@ -59,6 +59,16 @@ assert.equal(calculateFrequencyScore({ subtitles: { category_score: 25 }, normat
 assert.equal(normalizeLemma(' Café '), 'café');
 assert.equal(stripDiacritics('régulación'), 'regulacion');
 assert.equal(buildSearchForm('régulation'), 'regulation');
+assert.equal(buildSearchForm('Änderung'), 'anderung');
+assert.equal(buildSearchForm('Größe'), 'grosse');
+assert.equal(buildSearchForm('groß'), 'gross');
+assert.equal(buildSearchForm('regulación'), 'regulacion');
+assert.equal(buildSearchForm('regolazione'), 'regolazione');
+assert.equal(buildSearchForm("l’amour"), "l'amour");
+assert.equal(buildSearchForm("l’amour-propre"), "l'amour-propre");
+assert.equal(buildSearchForm('avant‑garde'), 'avant-garde');
+assert.notEqual(buildSearchForm('avant-garde'), 'avantgarde');
+assert.equal(buildSearchForm('niño'), 'nino');
 assert.equal(transliterateRussianForSearch('альтернативный'), 'alternativnyj');
 const russian = index.get('альтернативный');
 assert.equal(russian.original, 'альтернативный');
@@ -88,3 +98,5 @@ assert.deepEqual(
   ],
   'separates rank object keys from nested word IPM values'
 );
+
+assert.equal(calculateFrequencyScore({ subtitles: { category_score: 25 }, web: { category_score: 75 } }), 50, 'weights normalize over present categories only');

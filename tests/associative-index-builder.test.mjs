@@ -108,3 +108,57 @@ assert.deepEqual(await readJson('.tmp/associative-index-reordered/en/a.json'), f
 
 assert.equal(existsSync('associativvordes/candidate-index'), false, '.tmp does not write production candidate-index');
 assert.match(await readFile('.gitignore', 'utf8'), /^\.tmp\/$/m, '.tmp ignored');
+
+async function buildLanguageFixture(language, out) {
+  await rm(out, { recursive: true, force: true });
+  const result = run([`--languages=${language}`, `--input-root=${fixtureRoot}`, `--output-root=${out}`, '--max-records=5000']);
+  assert.equal(result.status, 0, result.stderr || result.stdout);
+  return { manifest: await readJson(join(out, 'manifest.json')) };
+}
+
+async function readAllLanguageEntries(out, language) {
+  const manifest = await readJson(join(out, 'manifest.json'));
+  const entries = [];
+  for (const shard of manifest.languages[language].shards) entries.push(...await readJson(join(out, shard.file)));
+  return entries;
+}
+
+for (const language of ['de', 'fr', 'es', 'it']) {
+  await buildLanguageFixture(language, `.tmp/associative-index-${language}`);
+}
+
+const deEntries = await readAllLanguageEntries('.tmp/associative-index-de', 'de');
+const deAenderung = deEntries.find(entry => entry.normalized === 'änderung');
+assert.equal(deAenderung.word, 'Änderung', 'German original form is preserved');
+assert.equal(deAenderung.search_form, 'anderung', 'German umlaut is stripped only in search_form');
+assert.equal(deEntries.find(entry => entry.normalized === 'größe').search_form, 'grosse', 'ß becomes ss in search_form');
+assert.equal(deEntries.find(entry => entry.normalized === 'küche').search_form, 'kuche', 'ü is stripped in search_form');
+const deDoppel = deEntries.find(entry => entry.normalized === 'doppel');
+assert.equal(deDoppel.sources.length, 3, 'German duplicate sources are merged without loss');
+assert.equal(deEntries.find(entry => entry.normalized === 'nullwert').category_breakdown.normative.category_ipm, 0, 'zero IPM is not a positive observation');
+assert.equal(deEntries.some(entry => entry.normalized === 'rangnur'), false, 'rank-only German record is rejected');
+
+const frEntries = await readAllLanguageEntries('.tmp/associative-index-fr', 'fr');
+const regulation = frEntries.find(entry => entry.normalized === 'régulation');
+assert.equal(regulation.word, 'régulation', 'French diacritic is preserved in word');
+assert.equal(regulation.search_form, 'regulation', 'French diacritic is stripped in search_form');
+assert.equal(frEntries.find(entry => entry.normalized === 'mère').search_form, 'mere');
+assert.equal(frEntries.find(entry => entry.normalized === 'forêt').search_form, 'foret');
+assert.equal(frEntries.find(entry => entry.normalized === 'façade').search_form, 'facade');
+assert.equal(frEntries.find(entry => entry.normalized === "l’amour").search_form, "l'amour", 'Unicode apostrophe normalizes consistently');
+assert.equal(frEntries.find(entry => entry.normalized === 'avant-garde').search_form, 'avant-garde', 'hyphen preserves word boundary');
+assert.equal(frEntries.find(entry => entry.normalized === 'doublon').sources.length, 2, 'French duplicate sources are merged');
+
+const esEntries = await readAllLanguageEntries('.tmp/associative-index-es', 'es');
+assert.equal(esEntries.find(entry => entry.normalized === 'regulación').search_form, 'regulacion', 'Spanish accent is stripped in search_form');
+assert.equal(esEntries.find(entry => entry.normalized === 'niño').search_form, 'nino', 'Spanish ñ is normalized deterministically');
+assert.equal(esEntries.find(entry => entry.normalized === 'casa').search_form, 'casa', 'Spanish ASCII form is preserved in search_form');
+assert.equal(esEntries.find(entry => entry.normalized === 'duplicado').sources.length, 3, 'Spanish duplicate sources are merged');
+assert.equal(esEntries.some(entry => entry.normalized === 'rango'), false, 'rank-only Spanish record is rejected');
+
+const itEntries = await readAllLanguageEntries('.tmp/associative-index-it', 'it');
+assert.equal(itEntries.find(entry => entry.normalized === 'città').word, 'città', 'Italian diacritic is preserved');
+assert.equal(itEntries.find(entry => entry.normalized === 'città').search_form, 'citta', 'Italian diacritic is stripped in search_form');
+assert.equal(itEntries.find(entry => entry.normalized === "l’amico").search_form, "l'amico", 'Italian apostrophe normalizes consistently');
+assert.equal(itEntries.find(entry => entry.normalized === 'regolazione').search_form, 'regolazione', 'Italian ASCII search_form remains unchanged');
+assert.equal(itEntries.find(entry => entry.normalized === 'duplicato').sources.length, 3, 'Italian duplicate sources are merged');
