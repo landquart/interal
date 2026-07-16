@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { createHash } from 'node:crypto';
-import { access, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { access, mkdir, readFile, stat, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { BASE_CATEGORY_WEIGHTS, CATEGORY_ORDER, LANGUAGE_SOURCES } from '../associativvordes/js/config-frequency-sources.js';
@@ -30,16 +30,17 @@ function parseArgs(argv) {
     else if (arg.startsWith('--input-root=')) options.inputRoot = arg.slice('--input-root='.length);
     else if (arg.startsWith('--output-root=')) options.outputRoot = arg.slice('--output-root='.length);
     else if (arg.startsWith('--max-records=')) options.maxRecords = Number(arg.slice('--max-records='.length));
+    else if (arg.startsWith('--report=')) options.reportPath = arg.slice('--report='.length);
     else throw new Error(`Unknown argument: ${arg}`);
   }
   if (!options.languages?.length) throw new Error('--languages is required');
   if (options.maxRecords != null && (!Number.isInteger(options.maxRecords) || options.maxRecords < 0)) throw new Error('--max-records must be a non-negative integer');
   options.inputRoot ??= DEFAULT_INPUT_ROOT;
   options.outputRoot ??= DEFAULT_OUTPUT_ROOT;
-  if (!options.dryRun && !options.noWrite && options.inputRoot === DEFAULT_INPUT_ROOT && options.maxRecords == null) {
-    throw new Error('Refusing to read production frequency lists without --dry-run or --max-records');
+  if (!process.env.GITHUB_ACTIONS && !options.dryRun && !options.noWrite && options.inputRoot === DEFAULT_INPUT_ROOT && options.maxRecords == null) {
+    throw new Error('Refusing to read production frequency lists without --dry-run or --max-records outside GitHub Actions');
   }
-  if (!options.noWrite && !options.dryRun && options.outputRoot === DEFAULT_OUTPUT_ROOT) throw new Error('Refusing to write production candidate-index in this task');
+  if (!process.env.GITHUB_ACTIONS && !options.noWrite && !options.dryRun && options.outputRoot === DEFAULT_OUTPUT_ROOT) throw new Error('Refusing to write production candidate-index outside GitHub Actions');
   return options;
 }
 
@@ -106,6 +107,28 @@ function scanForInvalidData(value, sourceId, path = 'root') {
     }
     scanForInvalidData(child, sourceId, `${path}.${key}`);
   }
+}
+
+
+async function pathSize(path) {
+  const info = await stat(path);
+  return info.size;
+}
+
+function buildReport(language, result, manifestLanguage, totalBytes = 0) {
+  return {
+    language,
+    entries: result.entries.length,
+    duplicates_merged: result.diagnostics.duplicate_lemmas,
+    invalid_records: result.diagnostics.invalid_records,
+    source_files: result.sourceFiles,
+    shards: manifestLanguage.shards.map(shard => ({ file: shard.file, entries: shard.entries })),
+    total_bytes: totalBytes,
+    alter_candidates: result.entries
+      .filter(entry => entry.normalized.includes('alter'))
+      .slice(0, 20)
+      .map(entry => entry.word)
+  };
 }
 
 async function buildLanguage(language, options) {
@@ -204,13 +227,30 @@ export async function main(argv = process.argv.slice(2)) {
     console.log(JSON.stringify(diagnostics, null, 2));
   }
 
+  const writtenFiles = [];
   if (!options.noWrite && !options.dryRun) {
     await mkdir(options.outputRoot, { recursive: true });
     for (const [language, result] of built) {
       await mkdir(join(options.outputRoot, language), { recursive: true });
-      for (const [name, entries] of result.shards) await writeFile(join(options.outputRoot, language, `${name}.json`), `${JSON.stringify(entries, null, 2)}\n`);
+      for (const [name, entries] of result.shards) {
+        const shardPath = join(options.outputRoot, language, `${name}.json`);
+        await writeFile(shardPath, `${JSON.stringify(entries, null, 2)}\n`);
+        writtenFiles.push(shardPath);
+      }
     }
-    await writeFile(join(options.outputRoot, 'manifest.json'), `${JSON.stringify(manifest, null, 2)}\n`);
+    const manifestPath = join(options.outputRoot, 'manifest.json');
+    await writeFile(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
+    writtenFiles.push(manifestPath);
+  }
+
+  if (options.reportPath) {
+    if (options.languages.length !== 1) throw new Error('--report currently supports exactly one language');
+    const language = options.languages[0];
+    const result = built.get(language);
+    const totalBytes = writtenFiles.length ? (await Promise.all(writtenFiles.map(pathSize))).reduce((sum, size) => sum + size, 0) : 0;
+    const report = buildReport(language, result, manifest.languages[language], totalBytes);
+    await mkdir(dirname(options.reportPath), { recursive: true });
+    await writeFile(options.reportPath, `${JSON.stringify(report, null, 2)}\n`);
   }
   return manifest;
 }
