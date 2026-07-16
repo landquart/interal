@@ -101,3 +101,27 @@ Each artifact is language-scoped. If you download artifacts for several language
 ## What the workflow does not do
 
 The workflow does not commit generated index files, does not run `git add`, does not run `git commit`, does not run `git push`, does not open pull requests, and does not deploy or merge anything. Generated files exist only in the workflow workspace and in the downloaded artifact.
+
+## Merge downloaded language artifacts
+
+After the five language-specific workflow runs finish, combine only the downloaded artifacts in a separate reviewed step. Do not run a production build during this merge step, do not download artifacts automatically from GitHub in the merge script, and do not copy individual language shards into production by hand.
+
+1. Run the workflow separately for each supported language: `en`, `de`, `fr`, `es`, and `it`.
+2. Download each artifact from its completed workflow run.
+3. Unpack the artifacts into one input directory so that it contains these sibling directories:
+   - `associative-index-en`;
+   - `associative-index-de`;
+   - `associative-index-fr`;
+   - `associative-index-es`;
+   - `associative-index-it`.
+4. Run the merge command against that input directory and a reviewed output directory:
+
+   ```sh
+   npm run merge:associative-index -- --input-root=.tmp/associative-artifacts --output-root=.tmp/associative-index-merged
+   ```
+
+5. Inspect `.tmp/associative-index-merged/candidate-index/manifest.json` before using the merged index. The merged output keeps language shards separate under `candidate-index/en/`, `candidate-index/de/`, `candidate-index/fr/`, `candidate-index/es/`, and `candidate-index/it/`; it does not concatenate all languages into one JSON file.
+6. Keep the merged `manifest.json` as the source of truth. Do not manually copy standalone shards from a single artifact into production, because that bypasses manifest and compatibility checks.
+7. Never merge artifacts built with different schema versions, different `normalizer_version` values, different shard entry formats, or incompatible frequency configuration metadata. The merge command rejects those combinations instead of silently producing a mixed index.
+
+The merge command validates every artifact before writing output. It requires a matching language directory and manifest language, `manifest.json`, `build-report.json`, existing shard files, positive `entries` and shard counts, matching entry metadata, candidates with non-empty `sources`, finite `frequency_score` values, supported versions, and a present config hash. It writes to `<output-root>.tmp`, validates the complete merged candidate index, and then atomically replaces `<output-root>` so a failed merge does not damage an existing output directory.
