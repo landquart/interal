@@ -1,0 +1,85 @@
+import assert from 'node:assert/strict';
+import { spawnSync } from 'node:child_process';
+import { existsSync } from 'node:fs';
+import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { join } from 'node:path';
+
+const node = process.execPath;
+const script = 'scripts/build-associative-candidate-index.mjs';
+const fixtureRoot = 'tests/fixtures/associative-frequency';
+const outputRoot = '.tmp/associative-index-test';
+
+async function readJson(path) {
+  return JSON.parse(await readFile(path, 'utf8'));
+}
+
+function run(args, options = {}) {
+  return spawnSync(node, [script, ...args], { encoding: 'utf8', ...options });
+}
+
+async function build(extra = [], out = outputRoot) {
+  await rm(out, { recursive: true, force: true });
+  const result = run(['--languages=en', `--input-root=${fixtureRoot}`, `--output-root=${out}`, '--max-records=5000', ...extra]);
+  assert.equal(result.status, 0, result.stderr || result.stdout);
+  return { manifest: await readJson(join(out, 'manifest.json')), entries: await readJson(join(out, 'en', 'a.json')) };
+}
+
+const first = await build();
+assert.ok(existsSync(join(outputRoot, 'manifest.json')), 'creates manifest');
+assert.ok(first.manifest.languages.en.shards.length > 0, 'creates shards');
+assert.ok(existsSync(join(outputRoot, 'en', 'a.json')), 'creates letter shard');
+assert.ok(existsSync(join(outputRoot, 'en', '_other.json')), 'creates _other shard');
+
+const alternative = first.entries.find(entry => entry.normalized === 'alternative');
+assert.ok(alternative, 'keeps alternative');
+assert.equal(first.entries.filter(entry => entry.normalized === 'alternative').length, 1, 'merges duplicates');
+assert.ok(alternative.sources.some(source => source.id.includes('hermit_2016')), 'preserves sources');
+assert.ok(alternative.sources.some(source => source.id.includes('bnc-clean2')), 'preserves multiple sources');
+assert.equal(alternative.rank, null, 'does not treat rank as output IPM');
+assert.ok(Number.isFinite(alternative.frequency_score), 'frequency_score finite');
+assert.ok(alternative.frequency_score >= 0 && alternative.frequency_score <= 100, 'frequency_score range');
+assert.equal(first.manifest.config_hash.length, 64, 'config_hash present');
+
+const second = await build([], '.tmp/associative-index-test-2');
+assert.equal(first.manifest.config_hash, second.manifest.config_hash, 'config_hash deterministic');
+const firstManifestNoDate = { ...first.manifest, generated_at: 'ignored-a' };
+const secondManifestNoDate = { ...second.manifest, generated_at: 'ignored-b' };
+assert.equal(firstManifestNoDate.config_hash, secondManifestNoDate.config_hash, 'generated_at does not affect config_hash');
+assert.deepEqual(first.entries, second.entries, 'repeat build gives same entries');
+
+const limited = await build(['--max-records=1'], '.tmp/associative-index-test-limited');
+assert.equal(limited.manifest.languages.en.entries, 1, '--max-records limits processing');
+
+await rm('.tmp/associative-index-no-write', { recursive: true, force: true });
+const noWrite = run(['--languages=en', `--input-root=${fixtureRoot}`, '--output-root=.tmp/associative-index-no-write', '--max-records=5000', '--no-write']);
+assert.equal(noWrite.status, 0, noWrite.stderr || noWrite.stdout);
+assert.equal(existsSync('.tmp/associative-index-no-write'), false, '--no-write does not create files');
+
+const invalid = run(['--languages=en', '--input-root=tests/fixtures/associative-frequency-invalid', '--output-root=.tmp/associative-index-invalid', '--max-records=5000']);
+assert.notEqual(invalid.status, 0, 'data errors exit non-zero');
+
+await rm('.tmp/associative-frequency-reordered', { recursive: true, force: true });
+await mkdir('.tmp/associative-frequency-reordered/en', { recursive: true });
+const files = [
+  'hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json',
+  'hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json',
+  'bnc-clean2.lemmatized_spacy_ipm6.json',
+  'sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json'
+];
+for (const file of files) {
+  const data = await readJson(join(fixtureRoot, 'en', file));
+  if (Array.isArray(data)) data.reverse();
+  else {
+    const reversed = Object.fromEntries(Object.entries(data).reverse());
+    await writeFile(join('.tmp/associative-frequency-reordered/en', file), `${JSON.stringify(reversed, null, 2)}\n`);
+    continue;
+  }
+  await writeFile(join('.tmp/associative-frequency-reordered/en', file), `${JSON.stringify(data, null, 2)}\n`);
+}
+await rm('.tmp/associative-index-reordered', { recursive: true, force: true });
+const reorderedRun = run(['--languages=en', '--input-root=.tmp/associative-frequency-reordered', '--output-root=.tmp/associative-index-reordered', '--max-records=5000']);
+assert.equal(reorderedRun.status, 0, reorderedRun.stderr || reorderedRun.stdout);
+assert.deepEqual(await readJson('.tmp/associative-index-reordered/en/a.json'), first.entries, 'input order does not affect output');
+
+assert.equal(existsSync('associativvordes/candidate-index'), false, '.tmp does not write production candidate-index');
+assert.match(await readFile('.gitignore', 'utf8'), /^\.tmp\/$/m, '.tmp ignored');
