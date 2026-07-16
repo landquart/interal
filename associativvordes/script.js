@@ -1,6 +1,7 @@
-import { analyzeAssociativeWord, THRESHOLDS } from './js/association-analyzer.js';
+import { analyzeAssociativeWord, THRESHOLDS, passesWordThreshold, finalAssociationPassesThreshold } from './js/association-analyzer.js';
 import { QWEN_RUNTIME_CONFIG } from './js/qwen-client.js';
-import { formatMetric, resultRowClasses, swowLabel } from './js/render-results.js';
+import { formatMetric, resultRowClasses, swowLabel, thresholdStatusLabel, thresholdStatusForResult, semanticWarningLabel } from './js/render-results.js';
+import { normalizeText, stripDiacritics, includesRoot, fuzzyRootMatch, fuzzyIncludesRoot, specialRootMatch, sortRootCandidateMatches } from './js/root-matcher.js';
 
 const TEXT_I18N = {
       ru: {
@@ -34,7 +35,7 @@ const TEXT_I18N = {
           group: 'Группа', languageScore: 'Балл языка', weightSum: 'сумма весов', addWord: 'Добавить слово', use: 'Учитывать', word: 'Слово', model: 'Модель', frequencyPercent: 'F — частотность', directness: 'Di — прямота связи', fieldRelatedness: 'Pr — близость поля', domainShift: 'Sh — сдвиг области', swowBonus: 'Бонус SWOW, 0–15', associationPercent: 'A — ассоциация', finalPercent: 'P — вес деривата', status: 'Статус', explanation: 'Объяснение', warnings: 'Предупреждения', details: 'Детали', analyze: 'Анализировать', delete: 'Удалить', association: 'Ассоциация', rank: 'Ранг', frequency: 'Частота', weightP: 'Вес P'
         },
         results: {
-          finalAssociation: 'FA — конечная ассоциация', totalAssociation: 'TA — общая сумма баллов языков', languagesRepresented: 'языков представлено', languageGroups: 'языковых групп', accept: 'ПРИНЯТЬ', reject: 'НЕ ПРИНИМАТЬ', fewerLanguages: 'меньше 3 языков', fewerGroups: 'меньше 2 языковых групп', belowThreshold: 'ниже главного порога', reasons: 'Причины', allMet: 'Все условия выполнены.'
+          finalAssociation: 'FA — конечная ассоциация', totalAssociation: 'TA — общая сумма баллов языков', languagesRepresented: 'языков представлено', languageGroups: 'языковых групп', accept: 'ПРИНЯТЬ', reject: 'НЕ ПРИНИМАТЬ', fewerLanguages: 'меньше 3 языков', fewerGroups: 'меньше 2 языковых групп', belowThreshold: 'FA ниже 35%', reasons: 'Причины', allMet: 'Все условия выполнены.'
         },
         alerts: {
           jsonCardUnavailable: 'Сначала выполните расчёт.',
@@ -79,7 +80,7 @@ const TEXT_I18N = {
           group: 'Group', languageScore: 'Language score', weightSum: 'weight sum', addWord: 'Add word', use: 'Use', word: 'Word', model: 'Model', frequencyPercent: 'F — frequency', directness: 'Di — directness', fieldRelatedness: 'Pr — field proximity', domainShift: 'Sh — domain shift', swowBonus: 'SWOW bonus — 0–15', associationPercent: 'A — association', finalPercent: 'P — derivative weight', status: 'Status', explanation: 'Explanation', warnings: 'Warnings', details: 'Details', analyze: 'Analyze', delete: 'Delete', association: 'Association', rank: 'Rank', frequency: 'Frequency', weightP: 'Weight P'
         },
         results: {
-          finalAssociation: 'FA — final association', totalAssociation: 'TA — total language score', languagesRepresented: 'languages represented', languageGroups: 'language groups', accept: 'ACCEPT', reject: 'DO NOT ACCEPT', fewerLanguages: 'fewer than 3 languages', fewerGroups: 'fewer than 2 language groups', belowThreshold: 'below the main threshold', reasons: 'Reasons', allMet: 'All conditions are met.'
+          finalAssociation: 'FA — final association', totalAssociation: 'TA — total language score', languagesRepresented: 'languages represented', languageGroups: 'language groups', accept: 'ACCEPT', reject: 'DO NOT ACCEPT', fewerLanguages: 'fewer than 3 languages', fewerGroups: 'fewer than 2 language groups', belowThreshold: 'FA below 35%', reasons: 'Reasons', allMet: 'All conditions are met.'
         },
         alerts: {
           jsonCardUnavailable: 'Run a calculation first.',
@@ -223,88 +224,6 @@ const TEXT_I18N = {
       };
     }
 
-    function normalizeText(s) {
-      return String(s || '').trim().toLowerCase().normalize('NFC');
-    }
-
-    function stripDiacritics(s) {
-      return normalizeText(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-    }
-
-    function includesRoot(word, root) {
-      const w = stripDiacritics(word);
-      const r = stripDiacritics(root);
-      return r.length > 0 && w.includes(r);
-    }
-
-    function levenshtein(a, b) {
-      const left = String(a || '');
-      const right = String(b || '');
-
-      const dp = Array.from({ length: left.length + 1 }, () =>
-        Array(right.length + 1).fill(0)
-      );
-
-      for (let i = 0; i <= left.length; i++) dp[i][0] = i;
-      for (let j = 0; j <= right.length; j++) dp[0][j] = j;
-
-      for (let i = 1; i <= left.length; i++) {
-        for (let j = 1; j <= right.length; j++) {
-          const cost = left[i - 1] === right[j - 1] ? 0 : 1;
-          dp[i][j] = Math.min(
-            dp[i - 1][j] + 1,
-            dp[i][j - 1] + 1,
-            dp[i - 1][j - 1] + cost
-          );
-        }
-      }
-
-      return dp[left.length][right.length];
-    }
-
-    function allowedRootDistance(root) {
-      const len = stripDiacritics(root).length;
-      if (len <= 3) return 1;
-      return 2;
-    }
-
-    function fuzzyRootMatch(word, root) {
-      const w = stripDiacritics(word);
-      const r = stripDiacritics(root);
-
-      if (!w || !r || r.length < 4) return null;
-
-      const exactIndex = w.indexOf(r);
-      if (exactIndex !== -1) {
-        return { type: 'exact', distance: 0, fragment: r, index: exactIndex };
-      }
-
-      const maxDistance = allowedRootDistance(r);
-      const minLen = Math.max(3, r.length - maxDistance);
-      const maxLen = r.length + maxDistance;
-      const maxStart = Math.min(w.length - 1, 3);
-      let best = null;
-
-      for (let i = 0; i <= maxStart; i++) {
-        for (let len = minLen; len <= maxLen; len++) {
-          const part = w.slice(i, i + len);
-          if (part.length < minLen) continue;
-
-          const distance = levenshtein(part, r);
-          if (distance <= maxDistance && (!best || distance < best.distance)) {
-            best = { type: 'fuzzy', distance, fragment: part, index: i };
-            if (distance === 1) return best;
-          }
-        }
-      }
-
-      return best;
-    }
-
-    function fuzzyIncludesRoot(word, root) {
-      return Boolean(fuzzyRootMatch(word, root));
-    }
-
     function getFrequencyScore(item) {
       const score = typeof item === 'object' ? item?.analysis?.frequency?.frequency_score : item;
       return Number.isFinite(Number(score)) ? Number(score) : 0;
@@ -402,7 +321,7 @@ const TEXT_I18N = {
         .slice(0, maxModels)
         .map(x => ({
           ...x,
-          selected: true
+          selected: passesWordThreshold(wordWeight(x))
         }));
     }
 
@@ -452,7 +371,7 @@ const TEXT_I18N = {
           frequency_score: analysis.frequency.frequency_score,
           association_score: analysis.association.association_score,
           final_score: analysis.final_score,
-          selected: true
+          selected: passesWordThreshold(analysis.final_score)
         };
       } catch (error) {
         if (!isCurrentRun(runId)) return item;
@@ -495,17 +414,19 @@ const TEXT_I18N = {
         });
       };
 
-      localWords
+      const candidates = localWords
         .map(word => {
           const fuzzyMatch = fuzzyRootMatch(word, root);
-          if (fuzzyMatch) return { word, match: fuzzyMatch };
+          if (fuzzyMatch?.type === 'exact') return { word, match: fuzzyMatch };
           if (specialRootMatch(langCode, word, root)) {
-            return { word, match: { type: 'special', distance: null, fragment: stripDiacritics(root), index: null } };
+            return { word, match: { type: 'special', distance: 0, similarity: 1, fragment: stripDiacritics(root), index: null } };
           }
+          if (fuzzyMatch) return { word, match: fuzzyMatch };
           return null;
         })
-        .filter(Boolean)
-        .slice(0, 30)
+        .filter(Boolean);
+
+      sortRootCandidateMatches(candidates, word => getRank(langCode, word))
         .forEach(({ word, match }) => add(word, { match }));
 
       return Array.from(byWord.values()).slice(0, QWEN_RUNTIME_CONFIG.maxCandidatesPerLanguage);
@@ -576,18 +497,12 @@ const TEXT_I18N = {
       }
     }
 
-    function specialRootMatch(lang, word, root) {
-      // Небольшой демо-словарь для случаев, когда корень адаптирован графически.
-      const w = normalizeText(word);
-      if (root === 'inter') return w.includes('интер') || w.includes('ίντερ') || w.includes('inter');
-      if (root === 'ocul') return w.includes('окул') || w.includes('ocul') || w.includes('okul');
-      if (root === 'regul') return w.includes('регул') || w.includes('regul') || w.includes('régul') || w.includes('regol');
-      return false;
-    }
-
     function calculateLanguage(langCode) {
       const items = state.languages[langCode] || [];
-      const selected = items.filter(x => x.selected).slice(0, state.maxModels);
+      const selected = items
+        .filter(x => x.selected)
+        .filter(x => passesWordThreshold(wordWeight(x)))
+        .slice(0, state.maxModels);
       const scores = selected
         .map(wordWeight)
         .filter(score => Number.isFinite(Number(score)));
@@ -610,7 +525,7 @@ const TEXT_I18N = {
       const accepted =
         representedLangs >= 3 &&
         groups.size >= 2 &&
-        finalAssociation >= THRESHOLDS.main &&
+        finalAssociationPassesThreshold(finalAssociation) &&
         semanticConfirmed;
       return { languageScores, totalAssociation, finalAssociation, representedLangs, groups: groups.size, semanticConfirmed, accepted };
     }
@@ -665,6 +580,7 @@ const TEXT_I18N = {
               <tr>
                 <th class="col-word sticky-word">${labels.word}</th>
                 <th class="col-score">${labels.finalPercent}</th>
+                <th class="col-score">${labels.status}</th>
                 <th class="col-score">${labels.associationPercent}</th>
                 <th class="col-score">${labels.frequencyPercent}</th>
                 <th class="col-score">SWOW</th>
@@ -719,6 +635,7 @@ const TEXT_I18N = {
             </label>
           </td>
           <td class="col-score"><strong>${formatMetric(analysis.final_score ?? item.final_score, 2)}</strong></td>
+          <td class="col-score">${thresholdStatusLabel(thresholdStatusForResult({ final_score: analysis.final_score ?? item.final_score }), currentLang())}${assoc.semantic_confirmed === false ? `<br><span class="muted">${semanticWarningLabel(currentLang())}</span>` : ''}</td>
           <td class="col-score">${formatMetric(assoc.association_score ?? item.association_score, 1)}</td>
           <td class="col-score">${formatMetric(analysis.frequency?.frequency_score ?? item.frequency_score, 2)}</td>
           <td class="col-score">${formatMetric(analysis.swow?.bonus, 1)}</td>
@@ -755,15 +672,15 @@ const TEXT_I18N = {
       `;
       resultBox.classList.add('is-updated');
 
-      let statusClass = result.accepted ? 'ok' : (result.finalAssociation >= THRESHOLDS.main ? 'warn' : 'bad');
+      let statusClass = result.accepted ? 'ok' : (finalAssociationPassesThreshold(result.finalAssociation) ? 'warn' : 'bad');
       let statusText = result.accepted ? labels.accept : labels.reject;
       let reasons = [];
       if (result.representedLangs < 3) reasons.push(labels.fewerLanguages);
       if (result.groups < 2) reasons.push(labels.fewerGroups);
-      if (result.finalAssociation < THRESHOLDS.main) {
+      if (!finalAssociationPassesThreshold(result.finalAssociation)) {
         reasons.push(labels.belowThreshold);
       }
-      if (!result.semanticConfirmed) reasons.push(currentLang() === 'en' ? 'semantic correspondence not confirmed' : 'семантическое соответствие не подтверждено');
+      if (!result.semanticConfirmed) reasons.push(semanticWarningLabel(currentLang()));
 
       document.getElementById('decisionBox').innerHTML = `
         <span class="status ${statusClass}">${statusText}</span>
@@ -853,7 +770,7 @@ const TEXT_I18N = {
         item.frequency_score = item.analysis.frequency.frequency_score;
         item.association_score = item.analysis.association.association_score;
         item.final_score = item.analysis.final_score;
-        item.selected = true;
+        item.selected = passesWordThreshold(item.analysis.final_score);
         item.analysisStatus = null;
       } catch (error) {
         const failed = failedAnalysis(lang, item, error);
@@ -868,7 +785,7 @@ const TEXT_I18N = {
     }
 
     function addRow(lang) {
-      state.languages[lang].push({ word: '', model: '', analysis: null, frequency_score: null, association_score: null, final_score: null, selected: true });
+      state.languages[lang].push({ word: '', model: '', analysis: null, frequency_score: null, association_score: null, final_score: null, selected: false });
       renderAll();
     }
 
