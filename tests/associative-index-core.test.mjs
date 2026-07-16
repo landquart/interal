@@ -75,3 +75,16 @@ assert.deepEqual(sorted.map(x => x.normalized), ['c', 'a', 'b']);
 const unorderedA = extractFrequencyRecords({ first: 1, second: 2 }).map(r => r.normalized).sort();
 const unorderedB = extractFrequencyRecords({ second: 2, first: 1 }).map(r => r.normalized).sort();
 assert.deepEqual(unorderedA, unorderedB);
+
+
+const bncRankIpmRecords = extractFrequencyRecords(await fixture('bnc-rank-ipm-format'), 'normative/bnc-clean2.lemmatized_spacy_ipm6.json');
+assert.equal(bncRankIpmRecords.length, 3, 'extracts BNC rank-keyed records');
+assert.deepEqual(
+  bncRankIpmRecords.map(({ normalized, ipm, rank, source, search_form }) => ({ normalized, ipm, rank, source, search_form })),
+  [
+    { normalized: 'the', ipm: 63237.079021, rank: 1, source: 'normative/bnc-clean2.lemmatized_spacy_ipm6.json', search_form: 'the' },
+    { normalized: 'be', ipm: 38454.291099, rank: 2, source: 'normative/bnc-clean2.lemmatized_spacy_ipm6.json', search_form: 'be' },
+    { normalized: 'alter', ipm: 12.345678, rank: 5492, source: 'normative/bnc-clean2.lemmatized_spacy_ipm6.json', search_form: 'alter' }
+  ],
+  'separates rank object keys from nested word IPM values'
+);
