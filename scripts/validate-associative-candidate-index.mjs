@@ -21,9 +21,17 @@ async function readJson(path) {
 async function main(argv = process.argv.slice(2)) {
   const [root = 'associativvordes/candidate-index', language = 'en'] = argv;
   const manifest = await readJson(join(root, 'manifest.json'));
+  const manifestLanguages = Object.keys(manifest.languages ?? {});
+  if (manifestLanguages.length !== 1 || manifestLanguages[0] !== language) fail(`Manifest must contain only ${language}; found: ${manifestLanguages.join(', ')}`);
   const languageManifest = manifest.languages?.[language] ?? fail(`Missing ${language} manifest`);
   if (languageManifest.entries <= 0) fail('manifest entries must be > 0');
   if (!Array.isArray(languageManifest.shards) || languageManifest.shards.length <= 0) fail('manifest shards must be > 0');
+
+  const rootEntries = await readdir(root, { withFileTypes: true });
+  const extraLanguageDirs = rootEntries
+    .filter(entry => entry.isDirectory() && entry.name !== language)
+    .map(entry => entry.name);
+  if (extraLanguageDirs.length) fail(`Unexpected language data in output: ${extraLanguageDirs.join(', ')}`);
 
   const diskShards = new Set((await readdir(join(root, language))).filter(file => file.endsWith('.json')).map(file => `${language}/${file}`));
   const manifestShards = new Set(languageManifest.shards.map(shard => shard.file));
@@ -54,7 +62,11 @@ async function main(argv = process.argv.slice(2)) {
   const report = await readJson(join(root, 'build-report.json'));
   if (report.language !== language) fail('Report language mismatch');
   if (report.entries !== actualEntries) fail('Report entries mismatch');
-  if (!Array.isArray(report.alter_candidates) || report.alter_candidates.length > 20) fail('Report alter_candidates invalid');
+  const expectedRoots = ['alter', 'regul', 'ocul', 'inter'];
+  if (!report.root_samples || typeof report.root_samples !== 'object') fail('Report root_samples missing');
+  for (const root of expectedRoots) {
+    if (!Array.isArray(report.root_samples[root]) || report.root_samples[root].length > 20) fail(`Report root_samples.${root} invalid`);
+  }
   const totalBytes = (await stat(join(root, 'manifest.json'))).size
     + (await stat(join(root, 'build-report.json'))).size
     + (await Promise.all(languageManifest.shards.map(shard => stat(join(root, shard.file))))).reduce((sum, info) => sum + info.size, 0);
