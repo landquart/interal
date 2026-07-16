@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { readdir, readFile, stat } from 'node:fs/promises';
-import { join } from 'node:path';
+import { basename, join } from 'node:path';
 
 function fail(message) {
   throw new Error(message);
@@ -46,8 +46,16 @@ async function main(argv = process.argv.slice(2)) {
     if (entries.length !== shard.entries) fail(`Shard count mismatch: ${shard.file}`);
     for (const entry of entries) {
       scanFinite(entry, `${shard.file}:${entry.normalized ?? entry.word ?? actualEntries}`);
+      if (!entry.word) fail(`Entry without word: ${entry.normalized ?? shard.file}`);
       if (!entry.normalized || seen.has(entry.normalized)) fail(`Duplicate or empty normalized entry: ${entry.normalized}`);
       seen.add(entry.normalized);
+      if (!entry.search_form) fail(`Entry without search_form: ${entry.normalized}`);
+      if (language === 'ru') {
+        if (/^[a-z]/i.test(entry.word)) fail(`Russian word was replaced by transliteration: ${entry.normalized}`);
+        if (!/[а-яё]/i.test(entry.word) || !/[а-яё]/i.test(entry.normalized)) fail(`Russian word and normalized must remain Cyrillic: ${entry.normalized}`);
+      }
+      const expectedShard = /^[a-z]/.test(entry.search_form[0]?.toLowerCase() ?? '') ? `${entry.search_form[0].toLowerCase()}.json` : '_other.json';
+      if (basename(shard.file) !== expectedShard) fail(`Shard ${shard.file} does not match search_form ${entry.search_form}`);
       if (!Array.isArray(entry.sources) || entry.sources.length === 0) fail(`Entry without sources: ${entry.normalized}`);
       if (!Number.isFinite(entry.frequency_score) || entry.frequency_score < 0 || entry.frequency_score > 100) fail(`frequency_score out of range: ${entry.normalized}`);
       for (const source of entry.sources) {
@@ -66,6 +74,12 @@ async function main(argv = process.argv.slice(2)) {
   if (!report.root_samples || typeof report.root_samples !== 'object') fail('Report root_samples missing');
   for (const root of expectedRoots) {
     if (!Array.isArray(report.root_samples[root]) || report.root_samples[root].length > 20) fail(`Report root_samples.${root} invalid`);
+  }
+  if (language === 'ru') {
+    const t = report.transliteration;
+    if (!t || t.version !== '1') fail('Russian report transliteration metadata missing');
+    if (t.entries_with_search_form !== actualEntries || t.entries_without_search_form !== 0) fail('Russian transliteration entry counts invalid');
+    if (!Number.isInteger(t.collisions) || t.collisions < 0) fail('Russian transliteration collisions invalid');
   }
   const totalBytes = (await stat(join(root, 'manifest.json'))).size
     + (await stat(join(root, 'build-report.json'))).size

@@ -130,6 +130,21 @@ function sourceMatchesOption(sourceId, fileName, sourceFile) {
   return sourceFile === sourceId || sourceFile === fileName || sourceId.endsWith(`/${sourceFile}`);
 }
 
+function countSearchFormCollisions(entries) {
+  const originalsBySearchForm = new Map();
+  for (const entry of entries) {
+    if (!entry.search_form) continue;
+    const originals = originalsBySearchForm.get(entry.search_form) ?? new Set();
+    originals.add(entry.normalized);
+    originalsBySearchForm.set(entry.search_form, originals);
+  }
+  let collisions = 0;
+  for (const originals of originalsBySearchForm.values()) {
+    if (originals.size > 1) collisions += originals.size - 1;
+  }
+  return collisions;
+}
+
 function buildReport(language, result, manifestLanguage, totalBytes = 0) {
   return {
     language,
@@ -139,6 +154,14 @@ function buildReport(language, result, manifestLanguage, totalBytes = 0) {
     source_files: result.sourceFiles,
     shards: manifestLanguage.shards.map(shard => ({ file: shard.file, entries: shard.entries })),
     total_bytes: totalBytes,
+    ...(language === 'ru' ? {
+      transliteration: {
+        version: '1',
+        entries_with_search_form: result.entries.filter(entry => entry.search_form).length,
+        entries_without_search_form: result.entries.filter(entry => !entry.search_form).length,
+        collisions: countSearchFormCollisions(result.entries)
+      }
+    } : {}),
     root_samples: rootSamples(result.entries)
   };
 }
@@ -224,7 +247,8 @@ async function buildLanguage(language, options) {
     max_ipm: ipmValues.length ? Math.max(...ipmValues) : 0,
     min_frequency_score: frequencyScores.length ? Math.min(...frequencyScores) : 0,
     max_frequency_score: frequencyScores.length ? Math.max(...frequencyScores) : 0,
-    root_samples: rootSamples(entries)
+    root_samples: rootSamples(entries),
+    ...(language === 'ru' ? { search_form_collisions: countSearchFormCollisions(entries) } : {})
   };
   if (options.sourceFile && sourceFiles.length === 0) throw new Error(`--source-file did not match an existing source for ${language}: ${options.sourceFile}`);
   return { entries, sourceFiles, shards: Array.from(shards.entries()).sort(([a], [b]) => a.localeCompare(b)), diagnostics };

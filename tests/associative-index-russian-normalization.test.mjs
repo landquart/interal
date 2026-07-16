@@ -95,7 +95,8 @@ const build = spawnSync(node, [
   '--languages=ru',
   `--input-root=${fixtureRoot}`,
   `--output-root=${outputRoot}`,
-  '--max-records=5000'
+  '--max-records=5000',
+  `--report=${outputRoot}/build-report.json`
 ], { encoding: 'utf8' });
 assert.equal(build.status, 0, build.stderr || build.stdout);
 
@@ -112,3 +113,10 @@ assertRoot(entries, 'okul', ['окуляр', 'окулист']);
 assertRoot(entries, 'inter', ['интернациональный', 'интерактивный'], ['альтернатива', 'альтернативный']);
 assert.equal(fuzzyRootMatch('inter', 'alter'), null, 'alter does not fuzzily match inter');
 assert.equal(fuzzyRootMatch('internacionalnyj', 'alter'), null, 'alter does not fuzzily match интернациональный search_form');
+
+const ruReport = await readJson(join(outputRoot, 'build-report.json'));
+assert.equal(ruReport.transliteration.version, '1', 'Russian report includes transliteration version');
+assert.equal(ruReport.transliteration.entries_with_search_form, entries.length, 'all Russian entries have search_form in report');
+assert.equal(ruReport.transliteration.entries_without_search_form, 0, 'Russian report has no missing search_form');
+assert.ok(ruReport.transliteration.collisions >= 1, 'Russian report counts search_form collisions without deleting entries');
+assert.ok(ruReport.root_samples.alter.includes('альтернатива'), 'Russian root samples use original Cyrillic words');
