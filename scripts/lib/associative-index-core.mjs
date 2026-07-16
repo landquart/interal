@@ -64,7 +64,7 @@ function pushRecord(records, lemmaValue, ipmValue, rankValue, sourceId) {
   const ipm = finitePositiveNumber(ipmValue);
   if (!normalized || ipm == null) return;
   const rank = rankValue != null && /^\d+$/.test(String(rankValue)) ? Number(rankValue) : undefined;
-  records.push({ original, normalized, search_form: buildSearchForm(original), lemma: normalized, ipm, ...(rank ? { rank } : {}), ...(sourceId ? { source: sourceId } : {}) });
+  records.push({ original, normalized, search_form: buildSearchForm(original), lemma: normalized, frequency_lookup_key: normalized, ipm, ...(rank ? { rank } : {}), ...(sourceId ? { source: sourceId } : {}) });
 }
 
 export function extractFrequencyRecords(data, sourceId = '') {
@@ -108,8 +108,10 @@ export function extractFrequencyRecords(data, sourceId = '') {
 export function mergeFrequencyRecord(index, record, sourceId = record?.source || 'default') {
   if (!(index instanceof Map) || !record) return index;
   const normalized = normalizeLemma(record.normalized ?? record.lemma ?? record.original);
+  const frequencyLookupKey = normalizeLemma(record.frequency_lookup_key ?? normalized);
   const ipm = finitePositiveNumber(record.ipm);
   if (!normalized || ipm == null) return index;
+  if (frequencyLookupKey !== normalized) throw new Error(`Frequency lookup key must be normalized original lemma for ${normalized}`);
   const existing = index.get(normalized) ?? { original: record.original || normalized, normalized, search_form: buildSearchForm(record.original || normalized), sources: {}, ranks: {} };
   if (!existing.sources) existing.sources = {};
   existing.sources[sourceId] = ipm;

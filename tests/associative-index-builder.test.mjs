@@ -75,10 +75,15 @@ assert.equal(existsSync('.tmp/associative-index-no-write'), false, '--no-write d
 const dryRun = run(['--languages=en', `--input-root=${fixtureRoot}`, '--output-root=.tmp/associative-index-dry-run', '--max-records=2', '--dry-run', '--no-write']);
 assert.equal(dryRun.status, 0, dryRun.stderr || dryRun.stdout);
 const dryRunStats = JSON.parse(dryRun.stdout);
-assert.deepEqual(Object.keys(dryRunStats), ['language', 'source', 'records_read', 'valid_lemmas', 'invalid_records', 'duplicate_lemmas', 'min_frequency_score', 'max_frequency_score'], 'dry-run prints compact diagnostics only');
+assert.deepEqual(Object.keys(dryRunStats), ['language', 'source_file', 'records_read', 'valid_lemmas', 'invalid_records', 'duplicate_lemmas', 'lemmas_with_search_form', 'lemmas_without_search_form', 'min_ipm', 'max_ipm', 'min_frequency_score', 'max_frequency_score', 'root_samples'], 'dry-run prints compact diagnostics only');
 assert.equal(dryRunStats.language, 'en');
 assert.equal(dryRunStats.records_read, 2);
 assert.equal(dryRunStats.valid_lemmas, 2);
+assert.equal(dryRunStats.lemmas_with_search_form, 2);
+assert.equal(dryRunStats.lemmas_without_search_form, 0);
+assert.ok(dryRunStats.max_ipm >= dryRunStats.min_ipm);
+assert.deepEqual(Object.keys(dryRunStats.root_samples), ['alter', 'regul', 'ocul', 'inter']);
+assert.equal(JSON.stringify(dryRunStats).includes('category_breakdown'), false, 'diagnostics do not print full dictionary entries');
 assert.equal(existsSync('.tmp/associative-index-dry-run'), false, '--dry-run --no-write does not create files');
 
 const invalid = run(['--languages=en', '--input-root=tests/fixtures/associative-frequency-invalid', '--output-root=.tmp/associative-index-invalid', '--max-records=5000']);
@@ -163,3 +168,19 @@ assert.equal(itEntries.find(entry => entry.normalized === 'città').search_form,
 assert.equal(itEntries.find(entry => entry.normalized === "l’amico").search_form, "l'amico", 'Italian apostrophe normalizes consistently');
 assert.equal(itEntries.find(entry => entry.normalized === 'regolazione').search_form, 'regolazione', 'Italian ASCII search_form remains unchanged');
 assert.equal(itEntries.find(entry => entry.normalized === 'duplicato').sources.length, 3, 'Italian duplicate sources are merged');
+
+await rm('.tmp/associative-index-ru-dry-run', { recursive: true, force: true });
+const ruDryRun = run(['--languages=ru', `--input-root=${fixtureRoot}`, '--output-root=.tmp/associative-index-ru-dry-run', '--source-file=rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json', '--max-records=3', '--dry-run', '--no-write']);
+assert.equal(ruDryRun.status, 0, ruDryRun.stderr || ruDryRun.stdout);
+const ruDryRunStats = JSON.parse(ruDryRun.stdout);
+assert.equal(ruDryRunStats.language, 'ru', 'Russian dry-run reports language');
+assert.equal(ruDryRunStats.source_file, 'normative/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json', 'Russian dry-run preserves source file');
+assert.equal(ruDryRunStats.records_read, 3, 'Russian dry-run respects --max-records');
+assert.equal(ruDryRunStats.valid_lemmas, 3, 'Russian dry-run extracts valid lemmas');
+assert.equal(ruDryRunStats.lemmas_with_search_form, 3, 'Russian dry-run creates search_form');
+assert.equal(ruDryRunStats.lemmas_without_search_form, 0, 'Russian dry-run has no missing search_form');
+assert.equal(ruDryRunStats.min_ipm, 2.8, 'Russian dry-run extracts IPM, not rank');
+assert.equal(ruDryRunStats.max_ipm, 4.2, 'Russian dry-run reports max IPM from source values');
+assert.ok(ruDryRunStats.min_frequency_score >= 0, 'Russian frequency_score is non-negative');
+assert.equal(existsSync('.tmp/associative-index-ru-dry-run'), false, 'Russian dry-run no-write does not create files');
+assert.equal(JSON.stringify(ruDryRunStats).includes('category_breakdown'), false, 'Russian diagnostics do not print full dictionary entries');

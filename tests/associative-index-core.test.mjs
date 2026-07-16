@@ -100,3 +100,17 @@ assert.deepEqual(
 );
 
 assert.equal(calculateFrequencyScore({ subtitles: { category_score: 25 }, web: { category_score: 75 } }), 50, 'weights normalize over present categories only');
+
+const ruRncRecords = extractFrequencyRecords(await fixture('ru-rnc-rank-ipm-format'), 'normative/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json');
+assert.equal(ruRncRecords.length, 6, 'extracts Russian RNC rank-keyed records');
+const ruAlternative = ruRncRecords.find(record => record.normalized === 'альтернатива');
+assert.equal(ruAlternative.original, 'альтернатива', 'Russian lemma is extracted from nested key');
+assert.equal(ruAlternative.ipm, 14.2, 'Russian IPM is extracted from nested numeric value');
+assert.equal(ruAlternative.rank, 250, 'Russian rank is extracted from object key');
+assert.notEqual(ruAlternative.ipm, ruAlternative.rank, 'Russian rank is not treated as IPM');
+assert.equal(ruAlternative.normalized, 'альтернатива', 'Russian normalized lemma remains Cyrillic');
+assert.equal(ruAlternative.search_form, 'alternativa', 'Russian search_form is transliterated for root matching');
+assert.equal(ruAlternative.source, 'normative/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json', 'Russian source metadata is preserved');
+assert.equal(ruAlternative.frequency_lookup_key, ruAlternative.normalized, 'frequency lookup key uses normalized original Cyrillic lemma');
+assert.notEqual(ruAlternative.frequency_lookup_key, ruAlternative.search_form, 'frequency lookup key does not use transliterated search_form');
+assert.equal(buildSearchForm('альтернатива').includes('inter'), false, 'alter does not match inter');
