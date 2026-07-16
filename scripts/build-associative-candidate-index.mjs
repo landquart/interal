@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { createHash } from 'node:crypto';
-import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { access, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { BASE_CATEGORY_WEIGHTS, CATEGORY_ORDER, LANGUAGE_SOURCES } from '../associativvordes/js/config-frequency-sources.js';
@@ -17,6 +17,9 @@ const DEFAULT_INPUT_ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '
 const DEFAULT_OUTPUT_ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', 'associativvordes', 'candidate-index');
 const MANIFEST_VERSION = '1';
 const NORMALIZER_VERSION = '1';
+const DRY_RUN_SOURCE_BY_LANGUAGE = {
+  en: 'normative/bnc-clean2.lemmatized_spacy_ipm6.json'
+};
 
 function parseArgs(argv) {
   const options = { dryRun: false, noWrite: false };
@@ -36,7 +39,7 @@ function parseArgs(argv) {
   if (!options.dryRun && !options.noWrite && options.inputRoot === DEFAULT_INPUT_ROOT && options.maxRecords == null) {
     throw new Error('Refusing to read production frequency lists without --dry-run or --max-records');
   }
-  if (options.outputRoot === DEFAULT_OUTPUT_ROOT) throw new Error('Refusing to write production candidate-index in this task');
+  if (!options.noWrite && !options.dryRun && options.outputRoot === DEFAULT_OUTPUT_ROOT) throw new Error('Refusing to write production candidate-index in this task');
   return options;
 }
 
@@ -56,6 +59,15 @@ function configHash(languages) {
 async function loadJsonFile(path) {
   // Extension point: production can replace this with a streaming JSON reader. Fixture builds intentionally parse one small file at a time.
   return JSON.parse(await readFile(path, 'utf8'));
+}
+
+async function fileExists(path) {
+  try {
+    await access(path);
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 function shardName(searchForm) {
@@ -102,21 +114,35 @@ async function buildLanguage(language, options) {
   const merged = new Map();
   const sourceFiles = [];
   let processed = 0;
+  let invalidRecords = 0;
+  const dryRunSource = options.dryRun && options.noWrite && options.inputRoot === DEFAULT_INPUT_ROOT
+    ? DRY_RUN_SOURCE_BY_LANGUAGE[language]
+    : null;
 
   for (const category of CATEGORY_ORDER) {
     for (const fileName of sources[category] ?? []) {
       if (options.maxRecords != null && processed >= options.maxRecords) break;
       const sourceId = `${category}/${fileName}`;
+      if (dryRunSource && sourceId !== dryRunSource) continue;
+      const path = join(options.inputRoot, language, fileName);
+      if (!(await fileExists(path))) {
+        if (dryRunSource === sourceId) throw new Error(`Dry-run source not found: ${path}`);
+        continue;
+      }
       sourceFiles.push(sourceId);
-      if (options.dryRun && options.inputRoot === DEFAULT_INPUT_ROOT) continue;
-      const data = await loadJsonFile(join(options.inputRoot, language, fileName));
+      const data = await loadJsonFile(path);
       scanForInvalidData(data, sourceId);
       for (const record of extractFrequencyRecords(data, sourceId)) {
         if (options.maxRecords != null && processed >= options.maxRecords) break;
         if (record.ipm < 0) throw new Error(`Negative IPM in ${sourceId}: ${record.normalized}`);
+        if (!record.normalized || !Number.isFinite(record.ipm)) {
+          invalidRecords += 1;
+          continue;
+        }
         mergeFrequencyRecord(merged, record, sourceId);
         processed += 1;
       }
+      if (dryRunSource) break;
     }
   }
 
@@ -146,7 +172,18 @@ async function buildLanguage(language, options) {
     if (!shards.has(shard)) shards.set(shard, []);
     shards.get(shard).push(entry);
   }
-  return { entries, sourceFiles, shards: Array.from(shards.entries()).sort(([a], [b]) => a.localeCompare(b)) };
+  const frequencyScores = entries.map(entry => entry.frequency_score).filter(Number.isFinite);
+  const diagnostics = {
+    language,
+    source: sourceFiles.length === 1 ? sourceFiles[0] : sourceFiles,
+    records_read: processed,
+    valid_lemmas: entries.length,
+    invalid_records: invalidRecords,
+    duplicate_lemmas: Math.max(0, processed - entries.length - invalidRecords),
+    min_frequency_score: frequencyScores.length ? Math.min(...frequencyScores) : 0,
+    max_frequency_score: frequencyScores.length ? Math.max(...frequencyScores) : 0
+  };
+  return { entries, sourceFiles, shards: Array.from(shards.entries()).sort(([a], [b]) => a.localeCompare(b)), diagnostics };
 }
 
 export async function main(argv = process.argv.slice(2)) {
@@ -158,6 +195,13 @@ export async function main(argv = process.argv.slice(2)) {
     const result = await buildLanguage(language, options);
     built.set(language, result);
     manifest.languages[language] = { entries: result.entries.length, source_files: result.sourceFiles, shards: result.shards.map(([name, entries]) => ({ file: `${language}/${name}.json`, entries: entries.length })) };
+  }
+
+  if (options.dryRun) {
+    const diagnostics = options.languages.length === 1
+      ? built.get(options.languages[0]).diagnostics
+      : Object.fromEntries(Array.from(built, ([language, result]) => [language, result.diagnostics]));
+    console.log(JSON.stringify(diagnostics, null, 2));
   }
 
   if (!options.noWrite && !options.dryRun) {

@@ -55,6 +55,15 @@ const noWrite = run(['--languages=en', `--input-root=${fixtureRoot}`, '--output-
 assert.equal(noWrite.status, 0, noWrite.stderr || noWrite.stdout);
 assert.equal(existsSync('.tmp/associative-index-no-write'), false, '--no-write does not create files');
 
+const dryRun = run(['--languages=en', `--input-root=${fixtureRoot}`, '--output-root=.tmp/associative-index-dry-run', '--max-records=2', '--dry-run', '--no-write']);
+assert.equal(dryRun.status, 0, dryRun.stderr || dryRun.stdout);
+const dryRunStats = JSON.parse(dryRun.stdout);
+assert.deepEqual(Object.keys(dryRunStats), ['language', 'source', 'records_read', 'valid_lemmas', 'invalid_records', 'duplicate_lemmas', 'min_frequency_score', 'max_frequency_score'], 'dry-run prints compact diagnostics only');
+assert.equal(dryRunStats.language, 'en');
+assert.equal(dryRunStats.records_read, 2);
+assert.equal(dryRunStats.valid_lemmas, 2);
+assert.equal(existsSync('.tmp/associative-index-dry-run'), false, '--dry-run --no-write does not create files');
+
 const invalid = run(['--languages=en', '--input-root=tests/fixtures/associative-frequency-invalid', '--output-root=.tmp/associative-index-invalid', '--max-records=5000']);
 assert.notEqual(invalid.status, 0, 'data errors exit non-zero');
 
