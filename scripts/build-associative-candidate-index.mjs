@@ -103,7 +103,6 @@ function scanForInvalidData(value, sourceId, path = 'root') {
     if (['ipm', 'IPM', 'frequency', 'freq'].includes(key)) {
       const number = Number(child);
       if (!Number.isFinite(number)) throw new Error(`Invalid IPM in ${sourceId} at ${path}.${key}`);
-      if (number < 0) throw new Error(`Negative IPM in ${sourceId} at ${path}.${key}`);
     }
     scanForInvalidData(child, sourceId, `${path}.${key}`);
   }

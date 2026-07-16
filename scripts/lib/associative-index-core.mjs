@@ -7,7 +7,7 @@ const WORD_FIELDS = ['word', 'lemma', 'form'];
 const RUSSIAN_SEARCH_MAP = {
   а: 'a', б: 'b', в: 'v', г: 'g', д: 'd', е: 'e', ё: 'e', ж: 'zh', з: 'z', и: 'i', й: 'j',
   к: 'k', л: 'l', м: 'm', н: 'n', о: 'o', п: 'p', р: 'r', с: 's', т: 't', у: 'u', ф: 'f',
-  х: 'h', ц: 'c', ч: 'ch', ш: 'sh', щ: 'shch', ъ: '', ы: 'y', ь: '', э: 'e', ю: 'yu', я: 'ya'
+  х: 'h', ц: 'c', ч: 'ch', ш: 'sh', щ: 'shch', ъ: '', ы: 'y', ь: '', э: 'e', ю: 'ju', я: 'ja'
 };
 
 export function normalizeLemma(value) {
@@ -23,13 +23,17 @@ export function stripDiacritics(value) {
 }
 
 export function transliterateRussianForSearch(value) {
-  return Array.from(String(value ?? '')).map(char => RUSSIAN_SEARCH_MAP[char] ?? RUSSIAN_SEARCH_MAP[char.toLowerCase()] ?? char).join('');
+  const chars = Array.from(normalizeLemma(value));
+  return chars
+    .map((char, index) => (char === 'ъ' && chars[index - 1] === 'б' && chars[index + 1] === 'е' ? 'j' : RUSSIAN_SEARCH_MAP[char] ?? char))
+    .join('');
 }
 
 export function buildSearchForm(value) {
-  return stripDiacritics(transliterateRussianForSearch(normalizeLemma(value)))
+  const normalized = normalizeLemma(value)
     .replace(/[’‘‛ʼ`´]/g, "'")
-    .replace(/[‐‑‒–—―−﹘﹣－]/g, '-')
+    .replace(/[‐‑‒–—―−﹘﹣－]/g, '-');
+  return stripDiacritics(transliterateRussianForSearch(normalized))
     .replace(/\s+/g, ' ')
     .trim();
 }
