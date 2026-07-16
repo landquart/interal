@@ -15,7 +15,11 @@ export function normalizeLemma(value) {
 }
 
 export function stripDiacritics(value) {
-  return normalizeLemma(value).normalize('NFD').replace(/[\u0300-\u036f]/g, '').normalize('NFC');
+  return normalizeLemma(value)
+    .replace(/ß/g, 'ss')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .normalize('NFC');
 }
 
 export function transliterateRussianForSearch(value) {
@@ -24,8 +28,8 @@ export function transliterateRussianForSearch(value) {
 
 export function buildSearchForm(value) {
   return stripDiacritics(transliterateRussianForSearch(normalizeLemma(value)))
-    .replace(/[’‘`´]/g, "'")
-    .replace(/[‐‑‒–—―]/g, '-')
+    .replace(/[’‘‛ʼ`´]/g, "'")
+    .replace(/[‐‑‒–—―−﹘﹣－]/g, '-')
     .replace(/\s+/g, ' ')
     .trim();
 }
