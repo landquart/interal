@@ -30,6 +30,7 @@ function parseArgs(argv) {
     else if (arg.startsWith('--input-root=')) options.inputRoot = arg.slice('--input-root='.length);
     else if (arg.startsWith('--output-root=')) options.outputRoot = arg.slice('--output-root='.length);
     else if (arg.startsWith('--max-records=')) options.maxRecords = Number(arg.slice('--max-records='.length));
+    else if (arg.startsWith('--source-file=')) options.sourceFile = arg.slice('--source-file='.length);
     else if (arg.startsWith('--report=')) options.reportPath = arg.slice('--report='.length);
     else throw new Error(`Unknown argument: ${arg}`);
   }
@@ -118,10 +119,15 @@ function rootSamples(entries, roots = ['alter', 'regul', 'ocul', 'inter'], limit
   return Object.fromEntries(roots.map(root => [
     root,
     entries
-      .filter(entry => entry.search_form.includes(root) || entry.normalized.includes(root))
+      .filter(entry => entry.search_form.includes(root) || (root === 'ocul' && entry.search_form.includes('okul')))
       .slice(0, limit)
       .map(entry => entry.word)
   ]));
+}
+
+function sourceMatchesOption(sourceId, fileName, sourceFile) {
+  if (!sourceFile) return true;
+  return sourceFile === sourceId || sourceFile === fileName || sourceId.endsWith(`/${sourceFile}`);
 }
 
 function buildReport(language, result, manifestLanguage, totalBytes = 0) {
@@ -152,6 +158,7 @@ async function buildLanguage(language, options) {
     for (const fileName of sources[category] ?? []) {
       if (options.maxRecords != null && processed >= options.maxRecords) break;
       const sourceId = `${category}/${fileName}`;
+      if (!sourceMatchesOption(sourceId, fileName, options.sourceFile)) continue;
       if (dryRunSource && sourceId !== dryRunSource) continue;
       const path = join(options.inputRoot, language, fileName);
       if (!(await fileExists(path))) {
@@ -164,6 +171,7 @@ async function buildLanguage(language, options) {
       for (const record of extractFrequencyRecords(data, sourceId)) {
         if (options.maxRecords != null && processed >= options.maxRecords) break;
         if (record.ipm < 0) throw new Error(`Negative IPM in ${sourceId}: ${record.normalized}`);
+        if (record.frequency_lookup_key !== record.normalized) throw new Error(`Frequency lookup key must equal normalized original word in ${sourceId}: ${record.normalized}`);
         if (!record.normalized || !Number.isFinite(record.ipm)) {
           invalidRecords += 1;
           continue;
@@ -202,16 +210,23 @@ async function buildLanguage(language, options) {
     shards.get(shard).push(entry);
   }
   const frequencyScores = entries.map(entry => entry.frequency_score).filter(Number.isFinite);
+  const ipmValues = entries.flatMap(entry => entry.sources.map(source => source.ipm)).filter(Number.isFinite);
   const diagnostics = {
     language,
-    source: sourceFiles.length === 1 ? sourceFiles[0] : sourceFiles,
+    source_file: sourceFiles.length === 1 ? sourceFiles[0] : sourceFiles,
     records_read: processed,
     valid_lemmas: entries.length,
     invalid_records: invalidRecords,
     duplicate_lemmas: Math.max(0, processed - entries.length - invalidRecords),
+    lemmas_with_search_form: entries.filter(entry => entry.search_form).length,
+    lemmas_without_search_form: entries.filter(entry => !entry.search_form).length,
+    min_ipm: ipmValues.length ? Math.min(...ipmValues) : 0,
+    max_ipm: ipmValues.length ? Math.max(...ipmValues) : 0,
     min_frequency_score: frequencyScores.length ? Math.min(...frequencyScores) : 0,
-    max_frequency_score: frequencyScores.length ? Math.max(...frequencyScores) : 0
+    max_frequency_score: frequencyScores.length ? Math.max(...frequencyScores) : 0,
+    root_samples: rootSamples(entries)
   };
+  if (options.sourceFile && sourceFiles.length === 0) throw new Error(`--source-file did not match an existing source for ${language}: ${options.sourceFile}`);
   return { entries, sourceFiles, shards: Array.from(shards.entries()).sort(([a], [b]) => a.localeCompare(b)), diagnostics };
 }
 
