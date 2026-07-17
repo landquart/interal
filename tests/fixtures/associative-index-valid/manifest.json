@@ -1,0 +1,29 @@
+{
+  "version": "1",
+  "normalizer_version": "2",
+  "config_hash": "fixture",
+  "languages": {
+    "en": {
+      "entries": 3,
+      "shards": [
+        {
+          "file": "en/a.json",
+          "entries": 2
+        },
+        {
+          "file": "en/i.json",
+          "entries": 1
+        }
+      ]
+    },
+    "ru": {
+      "entries": 2,
+      "shards": [
+        {
+          "file": "ru/a.json",
+          "entries": 2
+        }
+      ]
+    }
+  }
+}

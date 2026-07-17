@@ -57,7 +57,7 @@ jobs:
         run: npm run build:associative-index -- --languages="${{ inputs.language }}" --report=associativvordes/candidate-index/build-report.json
 
       - name: Validate candidate index
-        run: node scripts/validate-associative-candidate-index.mjs associativvordes/candidate-index "${{ inputs.language }}"
+        run: npm run validate:associative-index -- --index-root=associativvordes/candidate-index --languages="${{ inputs.language }}" --strict
 
       - name: Package candidate index
         run: |
