@@ -1154,6 +1154,18 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
       };
     }
 
+    function compactStateMatch(match) {
+      if (!match || typeof match !== 'object' || Array.isArray(match)) return null;
+      const type = String(match.type || '').trim();
+      if (!['exact', 'special', 'fuzzy'].includes(type)) return null;
+      const distance = finiteOrNull(match.distance);
+      const similarity = finiteOrNull(match.similarity);
+      const fragment = typeof match.fragment === 'string' ? match.fragment : '';
+      const index = Number(match.index);
+      if (distance == null || similarity == null || !fragment || !Number.isInteger(index) || index < 0) return null;
+      return { type, distance, similarity, fragment, index };
+    }
+
     function normalizeRestoredLanguageStatuses(statuses = {}) {
       return Object.fromEntries(LANGUAGES.map(lang => {
         const restored = statuses?.[lang.code] && typeof statuses[lang.code] === 'object' ? statuses[lang.code] : createLanguageStatus();
@@ -1190,12 +1202,7 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
               word: String(item.word || ''),
               normalized: String(item.normalized || ''),
               search_form: String(item.search_form || ''),
-              match: item.match && typeof item.match === 'object' ? {
-                type: item.match.type || null,
-                root: item.match.root || null,
-                search_form: item.match.search_form || null,
-                matched: item.match.matched || null
-              } : null,
+              match: compactStateMatch(item.match),
               rank: finiteOrNull(item.rank),
               frequency_score: finiteOrNull(item.frequency_score),
               category_breakdown: item.category_breakdown && typeof item.category_breakdown === 'object' ? JSON.parse(JSON.stringify(item.category_breakdown)) : {},
