@@ -4,6 +4,7 @@ import { escapeHtml, formatMetric, renderCandidateEvidenceDetails, resultRowClas
 import { normalizeText, stripDiacritics, includesRoot, fuzzyIncludesRoot, specialRootMatch } from './js/root-matcher.js';
 import { createCandidateIndexLoader } from './js/candidate-index-loader.js';
 import { findCandidatesForRoot } from './js/candidate-finder.js';
+import { createEmptyAssociativeState, invalidateSearchResult as invalidateAssociativeSearchResult, invalidateFinalCalculation as invalidateAssociativeFinalCalculation, addManualCandidate, updateCandidate, deleteCandidate, compactAssociativeState, restoreAssociativeState } from './js/associative-state.js';
 
 // Persistence compatibility markers: status: 'no_candidates', candidates: [] ; status: 'index_error', errorCode:
 const TEXT_I18N = {
@@ -141,18 +142,7 @@ const TEXT_I18N = {
     let activeLang = 'en';
 
     function emptyState() {
-      const langs = {};
-      LANGUAGES.forEach(l => langs[l.code] = []);
-      return {
-        root: '',
-        meaning: '',
-        elementType: 'root',
-        maxModels: 5,
-        languages: langs,
-        checked: false,
-        languageStatuses: Object.fromEntries(LANGUAGES.map(l => [l.code, createLanguageStatus()])),
-        globalStatus: 'idle'
-      };
+      return createEmptyAssociativeState({ languages: LANGUAGES, createLanguageStatus });
     }
 
     function createLanguageStatus(status = 'idle', extra = {}) {
@@ -850,44 +840,30 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
     }
 
     function invalidateSearchResult() {
-      if (shouldSkipAssociativeInvalidation()) return;
-      invalidateActiveRuns();
-      state.checked = false;
-      state.languages = emptyState().languages;
-      state.languageStatuses = emptyState().languageStatuses;
-      state.globalStatus = 'idle';
+      const changed = invalidateAssociativeSearchResult(state, {
+        createEmptyState: emptyState,
+        shouldSkip: shouldSkipAssociativeInvalidation,
+        onInvalidateActiveRuns: invalidateActiveRuns
+      });
+      if (!changed) return;
       syncCheckedVisibility();
       syncJsonCardButtonVisibility();
       window.InteralFormDraft?.save?.();
     }
 
     function invalidateFinalCalculation() {
-      if (shouldSkipAssociativeInvalidation()) return;
-      state.checked = false;
-      state.globalStatus = 'idle';
+      const changed = invalidateAssociativeFinalCalculation(state, { shouldSkip: shouldSkipAssociativeInvalidation });
+      if (!changed) return;
       syncCheckedVisibility();
       syncJsonCardButtonVisibility();
       window.InteralFormDraft?.save?.();
     }
 
     function updateItem(lang, idx, key, value) {
-      const item = state.languages[lang][idx];
-      item[key] = value;
-      if (key === 'word') {
-        item.model = inferModel(value, state.root, state.elementType);
-        item.analysisStatus = normalizeText(value) ? 'analyzing' : 'unavailable';
-        item.analysis = null;
-        item.frequency_score = null;
-        item.association_score = null;
-        item.final_score = null;
-        invalidateFinalCalculation();
-        renderAll();
-        if (normalizeText(value)) analyzeItem(lang, idx);
-        return;
-      }
-
+      updateCandidate(state, lang, idx, key, value, { inferModel, normalizeText });
       invalidateFinalCalculation();
       renderAll();
+      if (key === 'word' && normalizeText(value)) analyzeItem(lang, idx);
     }
 
     async function analyzeItem(lang, idx) {
@@ -918,13 +894,13 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
     }
 
     function deleteItem(lang, idx) {
-      state.languages[lang].splice(idx, 1);
+      deleteCandidate(state, lang, idx);
       invalidateFinalCalculation();
       renderAll();
     }
 
     function addRow(lang) {
-      state.languages[lang].push({ word: '', model: '', analysis: null, frequency_score: null, association_score: null, final_score: null, selected: false });
+      addManualCandidate(state, lang);
       invalidateFinalCalculation();
       renderAll();
     }
@@ -1303,63 +1279,39 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
     }
 
     function collectAssociativePageState() {
-      const r = calculateFinal();
-      const checked = Boolean(state.checked);
-      const payload = {
-        version: PAGE_STATE_VERSION,
-        page: PAGE_STATE_NAME,
-        state: {
-          root: state.root || document.getElementById('rootInput').value,
-          meaning: state.meaning || document.getElementById('meaningInput').value,
-          elementType: state.elementType || document.getElementById('elementType').value,
-          maxModels: state.maxModels,
-          activeLang,
-          languages: compactAssociativeLanguages(state.languages),
-          languageStatuses: state.languageStatuses,
-          globalStatus: state.globalStatus,
-          checked,
-          result: checked ? {
+      return compactAssociativeState(state, {
+        languages: LANGUAGES,
+        activeLang,
+        calculateResult: () => {
+          const r = calculateFinal();
+          return {
             finalAssociation: r.finalAssociation,
             totalAssociation: r.totalAssociation,
             representedLanguages: r.representedLangs,
             representedGroups: r.groups,
             semanticConfirmed: r.semanticConfirmed,
             accepted: r.accepted
-          } : null
+          };
         }
-      };
-      return JSON.parse(JSON.stringify(payload));
-    }
-
-    function unwrapAssociativePageState(saved = {}) {
-      if (!saved || typeof saved !== 'object' || Array.isArray(saved)) return null;
-      if (saved.version === PAGE_STATE_VERSION && saved.page === PAGE_STATE_NAME && saved.state && typeof saved.state === 'object') return saved.state;
-      if (saved.version === 2 && saved.fields && typeof saved.fields === 'object') {
-        return { ...saved.fields, activeLang: saved.ui?.activeLanguageTab, checked: Boolean(saved.flags?.checked || saved.checked || saved.result), result: saved.result || null };
-      }
-      console.warn('Associativ vordes state version is incompatible; using defaults.');
-      return null;
+      });
     }
 
     function importAssociativePageState(saved = {}) {
-      const fields = unwrapAssociativePageState(saved);
-      if (!fields) return false;
-      if (fields.languages && typeof fields.languages !== 'object') return false;
-      if (fields.languageStatuses && typeof fields.languageStatuses !== 'object') return false;
+      const restored = restoreAssociativeState(saved, {
+        languages: LANGUAGES,
+        createLanguageStatus,
+        currentLang,
+        activeLang
+      });
+      if (!restored) {
+        console.warn('Associativ vordes state version is incompatible; using defaults.');
+        return false;
+      }
 
       isImportingAssociativeState = true;
       try {
-        state = emptyState();
-        state.root = typeof fields.root === 'string' ? fields.root : '';
-        state.meaning = typeof fields.meaning === 'string' ? fields.meaning : '';
-        state.elementType = fields.elementType === 'preposition' ? 'preposition' : 'root';
-        state.maxModels = Number.isFinite(Number(fields.maxModels)) ? Math.max(1, Math.min(20, Number(fields.maxModels))) : 5;
-        state.languages = compactAssociativeLanguages(fields.languages || fields.selectedLanguageResults || {});
-        state.checked = Boolean(fields.checked || fields.result);
-        state.languageStatuses = normalizeRestoredLanguageStatuses(fields.languageStatuses);
-        state.globalStatus = normalizeGlobalStatusForRestore(fields.globalStatus || (fields.result ? 'completed' : 'idle'), state.checked);
-        if (state.globalStatus === 'aborted') state.checked = true;
-        activeLang = LANGUAGES.some(lang => lang.code === fields.activeLang) ? fields.activeLang : (LANGUAGES.some(lang => lang.code === fields.activeLanguageTab) ? fields.activeLanguageTab : activeLang || 'en');
+        state = restored.state;
+        activeLang = restored.activeLang;
         document.getElementById('rootInput').value = state.root;
         document.getElementById('meaningInput').value = state.meaning;
         document.getElementById('elementType').value = state.elementType;

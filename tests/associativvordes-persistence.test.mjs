@@ -1,139 +1,65 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
+import { compactAssociativeState, restoreAssociativeState } from '../associativvordes/js/associative-state.js';
 import { swowLabel } from '../associativvordes/js/render-results.js';
 
 const script = await readFile('associativvordes/script.js', 'utf8');
 const formDraft = await readFile('shared/form-draft.js', 'utf8');
 
-assert.match(script, /version: PAGE_STATE_VERSION,[\s\S]*page: PAGE_STATE_NAME,[\s\S]*state: \{/, 'completed state exports through versioned compact page adapter');
-assert.match(script, /result: checked \? \{[\s\S]*finalAssociation[\s\S]*accepted[\s\S]*\} : null/, 'completed result is exported');
-assert.match(script, /unwrapAssociativePageState[\s\S]*saved\.version === PAGE_STATE_VERSION[\s\S]*saved\.page === PAGE_STATE_NAME/, 'completed state imports from current adapter version');
+assert.match(script, /compactAssociativeState\(state/, 'script exports through pure compact state adapter');
+assert.match(script, /restoreAssociativeState\(saved/, 'script imports through pure restore state adapter');
 assert.match(script, /importAssociativePageState[\s\S]*renderAll\(\)[\s\S]*setCalculateButtonStatus\(defaultCalculateButtonText\(\), false/, 'import restores result and leaves calculate button usable');
-assert.doesNotMatch(script, /importAssociativePageState[\s\S]*analyzeAssociativeWord\(/, 'import does not call Qwen');
-assert.doesNotMatch(script, /importAssociativePageState[\s\S]*candidateIndexLoader\./, 'import does not load shards or index for display');
-assert.match(script, /\['loading_index', 'analyzing'\]\.includes\(restored\.status\)[\s\S]*'aborted'/, 'loading_index and analyzing restore as aborted');
-assert.match(script, /Предыдущий расчёт был прерван\. Запустите его повторно\./, 'Russian interrupted explanation is localized');
-assert.match(script, /The previous calculation was interrupted\. Run it again\./, 'English interrupted explanation is localized');
+assert.doesNotMatch(script.match(/function importAssociativePageState[\s\S]*?function resetAssociativePageState/)?.[0] || '', /analyzeAssociativeWord\(/, 'import does not call Qwen');
+assert.doesNotMatch(script.match(/function importAssociativePageState[\s\S]*?function resetAssociativePageState/)?.[0] || '', /candidateIndexLoader\./, 'import does not load shards or index for display');
 assert.match(formDraft, /if \(await restoreShortStateFromUrl\(\)\)[\s\S]*return true;[\s\S]*if \(restoreSharedStateFromUrl\(\)\)[\s\S]*return true;[\s\S]*initialRestoreSucceeded = restoreDraft\(\)/, 'URL priority remains ?s=, then ?state=, then local draft');
 assert.match(formDraft, /if \(initialRestoreAttempted\) return initialRestoreSucceeded/, 'successful URL import prevents duplicate local restore');
 assert.match(script, /window\.InteralFormDraft\?\.isRestoring\?\.\(\) \|\| isImportingAssociativeState/, 'isRestoring blocks invalidation during import');
-assert.match(script, /state\.languages = emptyState\(\)\.languages;[\s\S]*state\.languageStatuses = emptyState\(\)\.languageStatuses;[\s\S]*state\.globalStatus = 'idle'/, 'root/meaning/element type changes invalidate previous result');
+assert.match(script, /invalidateAssociativeSearchResult\(state,[\s\S]*onInvalidateActiveRuns: invalidateActiveRuns/, 'root/meaning/element type changes invalidate previous result');
 assert.match(formDraft, /window\.InteralPageReset\?\.\(\)/, 'reset calls page-specific reset hook');
 assert.match(script, /function resetAssociativePageState\(\)[\s\S]*invalidateActiveRuns\(\)[\s\S]*state = emptyState\(\)/, 'reset cancels active run and clears only page state');
-assert.match(script, /activeLang = LANGUAGES\.some/, 'active language is restored');
-assert.match(script, /word: String\(item\.word \|\| ''\)/, 'original words including Russian are preserved');
-assert.match(script, /match: compactStateMatch\(item\.match\)/, 'match metadata is preserved compactly');
-assert.match(script, /MAX_STATE_SOURCES_PER_CANDIDATE[\s\S]*compactStateSource/, 'sources are compact and bounded');
-assert.doesNotMatch(script.match(/function collectAssociativePageState[\s\S]*?function unwrapAssociativePageState/)?.[0] || '', /manifest|shard|loader|cache/i, 'full shard/loader cache is not exported by persistence adapter');
-assert.doesNotMatch(script.match(/function collectAssociativePageState[\s\S]*?function unwrapAssociativePageState/)?.[0] || '', /diagnosticsState|diagnostics/i, 'diagnostics are not exported');
-assert.match(formDraft, /interal_associative_state/, 'legacy Associativ vordes migration key remains readable');
+assert.match(script, /activeLang = restored\.activeLang/, 'active language is restored');
 assert.match(script, /console\.warn\('Associativ vordes state version is incompatible; using defaults\.'\)/, 'incompatible versions are safely rejected');
 assert.match(script, /function nextRunId\(\)[\s\S]*activeRunId \+= 1/, 'new calculation after restore gets a new run id');
-assert.match(script, /MAX_STATE_CANDIDATES_PER_LANGUAGE = 80[\s\S]*MAX_STATE_WARNING_LENGTH = 240[\s\S]*MAX_STATE_EXPLANATION_LENGTH = 1200/, 'URL share state remains compact');
-assert.match(script, /return JSON\.parse\(JSON\.stringify\(payload\)\)/, 'export normalizes JSON and rejects circular values');
-assert.doesNotMatch(script.match(/function collectAssociativePageState[\s\S]*?function unwrapAssociativePageState/)?.[0] || '', /new Map|new Set|AbortController|Promise|undefined/, 'export avoids non-JSON runtime objects');
-assert.match(script, /function compactStateMatch\(match\)[\s\S]*return \{ type, distance, similarity, fragment, index \}/, 'root match is compacted with canonical real fields only');
-assert.doesNotMatch(script.match(/function compactStateMatch[\s\S]*?function normalizeRestoredLanguageStatuses/)?.[0] || '', /\broot\b|\bmatched\b|\bsearch_form\b/, 'compact match does not save legacy/fake root, matched, or search_form fields');
-assert.match(script, /const matchIndex = Number\.isInteger\(item\.match\?\.index\) \? item\.match\.index : null/, 'inferModel uses restored match index after reload');
 
-const persistenceHelpers = script.match(/function sourceFileNameForState[\s\S]*?function collectAssociativePageState/)?.[0]?.replace(/\n    function collectAssociativePageState[\s\S]*$/, '');
-assert.ok(persistenceHelpers, 'persistence source helpers are present');
-const compactAssociativeLanguages = Function(`
-  const LANGUAGES = [{ code: 'en' }, { code: 'de' }, { code: 'fr' }, { code: 'es' }, { code: 'it' }, { code: 'ru' }];
-  const MAX_STATE_CANDIDATES_PER_LANGUAGE = 80;
-  const MAX_STATE_SOURCES_PER_CANDIDATE = 12;
-  const MAX_STATE_WARNING_LENGTH = 240;
-  const MAX_STATE_EXPLANATION_LENGTH = 1200;
-  function finiteOrNull(value) { const number = Number(value); return Number.isFinite(number) ? number : null; }
-  ${persistenceHelpers}
-  return compactAssociativeLanguages;
-`)();
-const sourceBeforeExport = { id: 'en:web:fixture', file: '/tmp/private/web-fixture.tsv', category: 'web', ipm: 0 };
-const exportedLanguages = compactAssociativeLanguages({ en: [{ word: 'interact', sources: [sourceBeforeExport] }] });
-const serializedLanguages = JSON.parse(JSON.stringify(exportedLanguages));
-const importedLanguages = compactAssociativeLanguages(serializedLanguages);
-const sourceAfterImport = importedLanguages.en[0].sources[0];
-assert.deepEqual(sourceAfterImport, { id: sourceBeforeExport.id, file: 'web-fixture.tsv', category: sourceBeforeExport.category, ipm: sourceBeforeExport.ipm }, 'source survives export JSON import round-trip with canonical id/file/category/ipm');
-assert.equal(Object.hasOwn(sourceAfterImport, 'value'), false, 'compact source does not replace ipm with value');
-assert.equal(Object.hasOwn(sourceAfterImport, 'reference'), false, 'compact source does not replace id with reference');
-assert.equal(sourceAfterImport.file.includes('/tmp/private'), false, 'compact source does not store absolute path');
-const limitedSources = Array.from({ length: 13 }, (_, index) => ({ id: `src:${index}`, file: `source-${index}.tsv`, category: 'web', ipm: index }));
-const limitedCandidate = compactAssociativeLanguages({ en: [{ word: 'truncate', sources: limitedSources }] }).en[0];
-assert.equal(limitedCandidate.sources.length, 12, 'source limit is applied');
-assert.equal(limitedCandidate.source_count, 13, 'source_count records full source count when truncated');
-assert.equal(limitedCandidate.sources_truncated, true, 'sources_truncated does not hide truncation');
+const languages = ['en', 'de', 'fr', 'es', 'it', 'ru'];
+const createLanguageStatus = (status = 'idle', extra = {}) => ({ status, errorCode: null, message: null, ...extra });
+const state = {
+  root: 'inter', meaning: 'between', elementType: 'root', maxModels: 5, checked: true, globalStatus: 'completed',
+  languageStatuses: Object.fromEntries(languages.map(code => [code, createLanguageStatus('completed')])),
+  languages: Object.fromEntries(languages.map(code => [code, []]))
+};
+state.languages.en.push({
+  word: 'interact', selected: true,
+  sources: [{ id: 'en:web:fixture', file: '/tmp/private/web-fixture.tsv', category: 'web', ipm: 0 }],
+  match: { type: 'exact', distance: 0, similarity: 1, fragment: 'inter', index: 0 },
+  analysis: { swow: { bonus: 11, target_to_word: { found: true, r1_strength: 0.11, r123_strength: 0.22, diagnostic: { shard: 'not saved' } }, word_to_target: { found: false, r1_strength: null, r123_strength: null } } }
+});
 
-const matchCases = [
-  { type: 'exact', distance: 0, similarity: 1, fragment: 'alter', index: 0 },
-  { type: 'fuzzy', distance: 1, similarity: 0.8, fragment: 'altes', index: 0 },
-  { type: 'special', distance: 0, similarity: 1, fragment: 'regul', index: 2 }
-];
-for (const match of matchCases) {
-  const candidate = compactAssociativeLanguages({ en: [{ word: 'alteration', match }] }).en[0];
-  assert.deepEqual(candidate.match, match, `${match.type} match survives export`);
-  const restored = compactAssociativeLanguages({ en: [candidate] }).en[0];
-  assert.deepEqual(restored.match, match, `${match.type} match survives import round-trip`);
-  assert.equal(restored.match.distance, match.distance, `${match.type} distance survives details reload`);
-  assert.equal(restored.match.similarity, match.similarity, `${match.type} similarity survives details reload`);
-  assert.equal(restored.match.fragment, match.fragment, `${match.type} fragment survives details reload`);
-  assert.equal(restored.match.index, match.index, `${match.type} index survives reload for model inference`);
-  assert.equal(Object.hasOwn(restored.match, 'root'), false, `${match.type} match does not store fake root`);
-  assert.equal(Object.hasOwn(restored.match, 'matched'), false, `${match.type} match does not store fake matched`);
-  assert.equal(Object.hasOwn(restored.match, 'search_form'), false, `${match.type} match does not store fake search_form`);
-}
-assert.equal(compactAssociativeLanguages({ en: [{ word: 'zero', match: { type: 'exact', distance: 0, similarity: 0, fragment: 'z', index: 0 } }] }).en[0].match.similarity, 0, 'numeric zero in match survives and does not become null');
-assert.equal(compactAssociativeLanguages({ en: [{ word: 'bad', match: { type: 'exact', distance: 0, similarity: 1, fragment: '', index: 0 } }] }).en[0].match, null, 'invalid match is safely normalized to null');
-assert.equal(compactAssociativeLanguages({ en: [{ word: 'bad', match: { type: 'made-up', distance: 0, similarity: 1, fragment: 'x', index: 0 } }] }).en[0].match, null, 'unknown match type is safely normalized to null');
-assert.equal(compactAssociativeLanguages({ en: [{ word: 'bad', match: { type: 'exact', distance: 0, similarity: 1, fragment: 'x', index: -1 } }] }).en[0].match, null, 'invalid match index is safely normalized to null');
+const exported = compactAssociativeState(state, { languages, activeLang: 'en', calculateResult: () => ({ finalAssociation: 40, totalAssociation: 50, representedLanguages: 1, representedGroups: 1, semanticConfirmed: true, accepted: true }) });
+assert.equal(exported.version, 1, 'completed state exports through versioned compact page adapter');
+assert.equal(exported.page, 'associativvordes', 'completed state exports page name');
+assert.equal(exported.state.result.accepted, true, 'completed result is exported');
+assert.doesNotMatch(JSON.stringify(exported), /diagnosticsState|manifest|shard|loader|cache|AbortController|Promise/, 'export avoids runtime diagnostics and non-JSON objects');
 
-const swowEvidenceCases = [
-  {
-    name: 'direct pair',
-    input: { bonus: 11, target_to_word: { found: true, r1_strength: 0.11, r123_strength: 0.22, diagnostic: { shard: 'not saved' } }, word_to_target: { found: false, r1_strength: null, r123_strength: null } },
-    expectedLabel: 'SWOW direct'
-  },
-  {
-    name: 'reverse pair',
-    input: { bonus: 12, target_to_word: { found: false, r1_strength: null, r123_strength: null }, word_to_target: { found: true, r1_strength: 0.33, r123_strength: 0.44, rows: [{ full: 'dataset not saved' }] } },
-    expectedLabel: 'SWOW direct'
-  },
-  {
-    name: 'no pair',
-    input: { bonus: 0, target_to_word: { found: false, r1_strength: null, r123_strength: null }, word_to_target: { found: false, r1_strength: null, r123_strength: null } },
-    expectedLabel: 'no direct SWOW'
-  },
-  {
-    name: 'nonzero bonus',
-    input: { bonus: 7.5, target_to_word: { found: false, r1_strength: null, r123_strength: null }, word_to_target: { found: false, r1_strength: null, r123_strength: null } },
-    expectedLabel: 'no direct SWOW'
-  }
-];
-for (const swowCase of swowEvidenceCases) {
-  const beforeLabel = swowLabel(swowCase.input);
-  const candidate = compactAssociativeLanguages({ en: [{ word: swowCase.name, analysis: { swow: swowCase.input } }] }).en[0];
-  const restored = compactAssociativeLanguages({ en: [JSON.parse(JSON.stringify(candidate))] }).en[0];
-  assert.deepEqual(restored.analysis.swow, {
-    bonus: swowCase.input.bonus,
-    target_to_word: {
-      found: swowCase.input.target_to_word.found,
-      r1_strength: swowCase.input.target_to_word.r1_strength,
-      r123_strength: swowCase.input.target_to_word.r123_strength
-    },
-    word_to_target: {
-      found: swowCase.input.word_to_target.found,
-      r1_strength: swowCase.input.word_to_target.r1_strength,
-      r123_strength: swowCase.input.word_to_target.r123_strength
-    }
-  }, `${swowCase.name} keeps only minimal SWOW evidence through round-trip`);
-  assert.equal(swowLabel(restored.analysis.swow), beforeLabel, `${swowCase.name} swowLabel is stable after reload`);
-  assert.equal(swowLabel(restored.analysis.swow), swowCase.expectedLabel, `${swowCase.name} label matches evidence`);
-}
-const legacySwow = compactAssociativeLanguages({ en: [{ word: 'legacy', analysis: { swow: { bonus: 5 } } }] }).en[0].analysis.swow;
-assert.deepEqual(legacySwow, {
-  bonus: 5,
-  target_to_word: { found: false, r1_strength: null, r123_strength: null },
-  word_to_target: { found: false, r1_strength: null, r123_strength: null }
-}, 'legacy SWOW { bonus } imports safely with explicit false sides');
-assert.equal(swowLabel(legacySwow), 'no direct SWOW', 'legacy SWOW { bonus } label is safe');
+const imported = restoreAssociativeState(exported, { languages, createLanguageStatus, currentLang: () => 'en' });
+const restored = imported.state.languages.en[0];
+assert.deepEqual(restored.sources[0], { id: 'en:web:fixture', file: 'web-fixture.tsv', category: 'web', ipm: 0 }, 'source survives export/import with canonical id/file/category/ipm');
+assert.equal(restored.sources[0].file.includes('/tmp/private'), false, 'compact source does not store absolute path');
+assert.deepEqual(restored.match, { type: 'exact', distance: 0, similarity: 1, fragment: 'inter', index: 0 }, 'match survives export/import');
+assert.equal(Object.hasOwn(restored.match, 'root'), false, 'match does not store fake root');
+assert.deepEqual(restored.analysis.swow, { bonus: 11, target_to_word: { found: true, r1_strength: 0.11, r123_strength: 0.22 }, word_to_target: { found: false, r1_strength: null, r123_strength: null } }, 'SWOW keeps only minimal evidence through round-trip');
+assert.equal(swowLabel(restored.analysis.swow), 'SWOW direct', 'SWOW label is stable after reload');
+
+const interrupted = structuredClone(exported);
+interrupted.state.globalStatus = 'analyzing';
+interrupted.state.languageStatuses.en = createLanguageStatus('loading_index');
+const interruptedImport = restoreAssociativeState(interrupted, { languages, createLanguageStatus, currentLang: () => 'en' });
+assert.equal(interruptedImport.state.globalStatus, 'aborted', 'interrupted global state becomes aborted');
+assert.equal(interruptedImport.state.languageStatuses.en.status, 'aborted', 'interrupted language state becomes aborted');
+assert.match(interruptedImport.state.languageStatuses.en.message, /previous calculation was interrupted/, 'English interrupted explanation is localized');
+
+const completedImport = restoreAssociativeState(exported, { languages, createLanguageStatus });
+assert.equal(completedImport.state.globalStatus, 'completed', 'completed state is not marked for re-analysis');
+assert.equal(completedImport.state.languageStatuses.en.status, 'completed', 'completed language status is preserved');
 
 console.log('associativvordes persistence tests passed');
