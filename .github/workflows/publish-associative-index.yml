@@ -218,7 +218,9 @@ jobs:
           NODE
 
       - name: Create pull request for manual review
-        uses: peter-evans/create-pull-request@v6
+        id: create_pr
+        continue-on-error: true
+        uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ github.token }}
           branch: publish/associative-index-${{ github.run_id }}
@@ -228,3 +230,29 @@ jobs:
           body-path: ${{ env.PR_BODY }}
           commit-message: Publish merged associative index candidate
           add-paths: associativvordes/candidate-index
+
+      - name: Verify review pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_BRANCH: publish/associative-index-${{ github.run_id }}
+        run: |
+          set -euo pipefail
+          echo "create-pull-request outcome: ${{ steps.create_pr.outcome }}"
+          for attempt in $(seq 1 30); do
+            pr_url="$(gh pr list --repo "$GITHUB_REPOSITORY" --state open --head "$PR_BRANCH" --json url --jq '.[0].url // empty' || true)"
+            if [ -n "$pr_url" ]; then
+              echo "Review PR: $pr_url"
+              exit 0
+            fi
+            if [ "$attempt" = "1" ]; then
+              timeout 120s gh pr create \
+                --repo "$GITHUB_REPOSITORY" \
+                --base main \
+                --head "$PR_BRANCH" \
+                --title "Publish merged associative index candidate" \
+                --body-file "$PR_BODY" || true
+            fi
+            sleep 10
+          done
+          echo "Review PR was not created for $PR_BRANCH" >&2
+          exit 1
