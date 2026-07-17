@@ -990,6 +990,39 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
       };
     }
 
+
+    function makeAssociativeCard(timestamp = {}, author = null) {
+      const result = calculateFinal();
+      const selectedLanguages = Object.entries(state.languages || {}).flatMap(([code, items]) => (items || [])
+        .filter(item => item.selected)
+        .map(item => ({ code, ...item })));
+      return {
+        version: '1.0',
+        card_type: 'vord_card',
+        vord_type: 'av',
+        procedure: 'associative_word',
+        status: 'draft',
+        ...timestamp,
+        interal: { word: state.root, type: state.elementType || 'root' },
+        translation: state.meaning,
+        ...(author ? { author } : {}),
+        supported_groups: [...new Set(selectedLanguages.map(item => item.group).filter(Boolean))],
+        calculation: {
+          TA: result.totalAssociation,
+          FA: result.finalAssociation,
+          represented_languages: result.languagesRepresented,
+          represented_groups: result.languageGroups
+        },
+        language_results: selectedLanguages.map(item => ({
+          code: item.code,
+          word: item.word,
+          final_score: item.final_score,
+          frequency: { score: item.frequency_score },
+          association: item.analysis?.association || {}
+        }))
+      };
+    }
+
     function formatGeneratedJsonCard(card) {
       const json = JSON.stringify(card, null, 2);
       return json.length <= JSON_CARD_WRAPPER_LIMIT ? json : `${JSON_CARD_START_MARKER}\n${json}\n${JSON_CARD_END_MARKER}`;
