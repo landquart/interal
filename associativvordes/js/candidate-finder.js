@@ -115,6 +115,7 @@ export function findCandidatesForRoot({ entries, root, language, maxCandidates =
       search_form: entry.search_form,
       rank: entry.rank,
       frequency_score: entry.frequency_score,
+      category_breakdown: isPlainObject(entry.category_breakdown) ? entry.category_breakdown : {},
       sources: entry.sources,
       total_ipm: totalIpm(entry),
       match

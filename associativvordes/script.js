@@ -1,7 +1,9 @@
 import { analyzeAssociativeWord, THRESHOLDS, passesWordThreshold, finalAssociationPassesThreshold } from './js/association-analyzer.js';
 import { QWEN_RUNTIME_CONFIG } from './js/qwen-client.js';
 import { formatMetric, resultRowClasses, swowLabel, thresholdStatusLabel, thresholdStatusForResult, semanticWarningLabel } from './js/render-results.js';
-import { normalizeText, stripDiacritics, includesRoot, fuzzyRootMatch, fuzzyIncludesRoot, specialRootMatch, sortRootCandidateMatches } from './js/root-matcher.js';
+import { normalizeText, stripDiacritics, includesRoot, fuzzyIncludesRoot, specialRootMatch } from './js/root-matcher.js';
+import { createCandidateIndexLoader } from './js/candidate-index-loader.js';
+import { findCandidatesForRoot } from './js/candidate-finder.js';
 
 const TEXT_I18N = {
       ru: {
@@ -126,72 +128,14 @@ const TEXT_I18N = {
       { code: 'ru', name: 'Russian', group: 'Slavic', speakers: 210000 }
     ];
 
-    const DEFAULT_DERIVATIVES = {
-      en: ['ocular', 'oculist', 'oculus', 'binocular', 'monocular', 'monocle', 'inoculate', 'regulate', 'regulation', 'regulatory', 'regular', 'international', 'internet', 'interaction', 'interactive', 'intercontinental', 'interface'],
-      de: ['okular', 'okulist', 'binokular', 'monokel', 'regulieren', 'regulation', 'regulatorisch', 'regel', 'international', 'internet', 'interaktion', 'interkulturell'],
-      fr: ['oculaire', 'oculiste', 'binoculaire', 'monocle', 'réguler', 'régulation', 'réglement', 'réglementaire', 'international', 'internet', 'interaction', 'intervenir'],
-      es: ['ocular', 'oculista', 'binocular', 'monóculo', 'regular', 'regulación', 'reglamento', 'reglamentario', 'internacional', 'internet', 'interacción'],
-      it: ['oculare', 'oculista', 'binoculare', 'monocolo', 'regolare', 'regolazione', 'regolamento', 'regolamentare', 'internazionale', 'internet', 'interazione'],
-      ru: ['окулист', 'окуляр', 'очки', 'бинокулярный', 'монокль', 'регулировать', 'регуляция', 'регламент', 'регламентарный', 'регулярный', 'интернациональный', 'интернет', 'интерактивный']
-    };
-
-    const DEFAULT_FREQUENCIES = {
-      en: { ocular: 39497, oculist: 60000, oculus: 50000, binocular: 30000, monocular: 50000, monocle: 25000, inoculate: 18000, regulate: 6500, regulation: 2600, regulatory: 8400, regular: 850, international: 700, internet: 900, interaction: 4300, interactive: 5400, intercontinental: 21000, interface: 3800 },
-      de: { okular: 60000, okulist: 60000, binokular: 60000, monokel: 50000, regulieren: 9000, regulation: 11000, regulatorisch: 25000, regel: 900, international: 800, internet: 700, interaktion: 9000, interkulturell: 17000 },
-      fr: { oculaire: 14735, oculiste: 50000, binoculaire: 50000, monocle: 22000, réguler: 14000, régulation: 9000, réglement: 6000, réglementaire: 8500, international: 850, internet: 900, interaction: 5500, intervenir: 1800 },
-      es: { ocular: 20219, oculista: 45000, binocular: 35000, monóculo: 45000, regular: 1300, regulación: 7000, reglamento: 7500, reglamentario: 16000, internacional: 900, internet: 1000, interacción: 5800 },
-      it: { oculare: 38367, oculista: 50000, binoculare: 50000, monocolo: 45000, regolare: 2200, regolazione: 9500, regolamento: 6000, regolamentare: 12000, internazionale: 900, internet: 950, interazione: 7000 },
-      ru: { окулист: 50000, окуляр: 60000, очки: 1200, бинокулярный: 60000, монокль: 39000, регулировать: 5500, регуляция: 13000, регламент: 6500, регламентарный: 30000, регулярный: 2800, интернациональный: 18000, интернет: 600, интерактивный: 9000 }
-    };
-
-    let derivativeData = structuredClone(DEFAULT_DERIVATIVES);
-    let frequencyData = structuredClone(DEFAULT_FREQUENCIES);
+    const candidateIndexLoader = createCandidateIndexLoader();
     let state = emptyState();
     let activeRunId = 0;
-    function nextRunId() { activeRunId += 1; return activeRunId; }
-    function invalidateActiveRuns() { activeRunId += 1; }
+    let activeRunAbortController = null;
+    function nextRunId() { activeRunId += 1; activeRunAbortController?.abort?.(); activeRunAbortController = new AbortController(); return activeRunId; }
+    function invalidateActiveRuns() { activeRunId += 1; activeRunAbortController?.abort?.(); activeRunAbortController = null; }
     function isCurrentRun(runId) { return runId === activeRunId; }
     let activeLang = 'en';
-
-    async function loadJsonFilesFromDirectory() {
-      const loadedFrequencies = {};
-      const loadedDerivatives = {};
-      const missing = [];
-
-      for (const lang of LANGUAGES) {
-        try {
-          const response = await fetch(`./${lang.code}.json`, { cache: 'no-store' });
-          if (!response.ok) throw new Error(`HTTP ${response.status}`);
-
-          const json = await response.json();
-          if (!json || typeof json !== 'object' || Array.isArray(json)) {
-            throw new Error(t('rankJsonObjectError'));
-          }
-
-          loadedFrequencies[lang.code] = json;
-          loadedDerivatives[lang.code] = Object.keys(json);
-        } catch (error) {
-          missing.push(`${lang.code}: ${error.message}`);
-        }
-      }
-
-      if (Object.keys(loadedFrequencies).length) {
-        frequencyData = {
-          ...frequencyData,
-          ...loadedFrequencies
-        };
-      }
-      if (Object.keys(loadedDerivatives).length) {
-        derivativeData = {
-          ...derivativeData,
-          ...loadedDerivatives
-        };
-      }
-
-      if (missing.length) {
-        console.warn(currentLang() === 'en' ? 'Not all JSON files could be loaded; built-in demo data was used:' : 'Не все JSON-файлы удалось загрузить, использованы встроенные демо-данные:', missing.join('; '));
-      }
-    }
 
     function emptyState() {
       const langs = {};
@@ -207,7 +151,7 @@ const TEXT_I18N = {
     }
 
     function getFrequencyScore(item) {
-      const score = typeof item === 'object' ? item?.analysis?.frequency?.frequency_score : item;
+      const score = typeof item === 'object' ? item?.analysis?.frequency?.frequency_score ?? item?.frequency_score : item;
       return Number.isFinite(Number(score)) ? Number(score) : 0;
     }
 
@@ -236,11 +180,13 @@ const TEXT_I18N = {
       return textValue('resetConfirm');
     }
 
-    function inferModel(word, root, elementType) {
+    function inferModel(word, root, elementType, item = {}) {
       const original = String(word || '').trim();
-      const w = stripDiacritics(original);
       const r = stripDiacritics(root);
-      const idx = w.indexOf(r);
+      const searchForm = String(item.search_form || original);
+      const w = stripDiacritics(searchForm);
+      const matchIndex = Number.isInteger(item.match?.index) ? item.match.index : null;
+      const idx = matchIndex != null && matchIndex >= 0 ? matchIndex : w.indexOf(r);
       if (idx === -1) return getManualModelLabel();
 
       const before = w.slice(0, idx);
@@ -261,12 +207,6 @@ const TEXT_I18N = {
       const w = stripDiacritics(word);
       if (!w || !root) return 0;
       return includesRoot(w, root) || fuzzyIncludesRoot(w, root) || specialRootMatch('any', w, root) ? 1 : 0;
-    }
-
-    function getRank(lang, word) {
-      const key = normalizeText(word);
-      const raw = frequencyData[lang] || {};
-      return raw[key] || raw[stripDiacritics(key)] || 50001;
     }
 
     function wordWeight(item) {
@@ -315,7 +255,7 @@ const TEXT_I18N = {
           language: langCode,
           target_meaning: state.meaning || state.root,
           word: item.word,
-          frequency: { frequency_score: null, category_breakdown: {}, warnings: [] },
+          frequency: item.frequencyProfile || { frequency_score: null, category_breakdown: {}, warnings: [] },
           swow: { target_to_word: null, word_to_target: null, bonus: 0, source: 'local_swow' },
           association: {
             directness: null,
@@ -344,6 +284,7 @@ const TEXT_I18N = {
           language: langCode,
           targetMeaning: state.meaning || state.root,
           word: item.word,
+          frequencyProfile: item.frequencyProfile,
           onProgress: text => { if (isCurrentRun(runId)) onProgress?.(text.replace(`${langCode} —`, `${languageName} —`)); }
         });
         if (!isCurrentRun(runId)) return item;
@@ -382,36 +323,38 @@ const TEXT_I18N = {
       return results;
     }
 
-    async function getLanguageCandidates(langCode, root) {
-      const localWords = derivativeData[langCode] || [];
-      const byWord = new Map();
-      const add = (word, extra = {}) => {
-        const key = normalizeText(word);
-        if (!key || byWord.has(key)) return;
-        byWord.set(key, {
-          word,
-          model: inferModel(word, root, state.elementType),
-          selected: false,
-          ...extra
-        });
+    function frequencyProfileFromCandidate(candidate) {
+      return {
+        frequency_score: candidate.frequency_score,
+        category_breakdown: candidate.category_breakdown || {},
+        rank: candidate.rank ?? null,
+        sources: Array.isArray(candidate.sources) ? candidate.sources : [],
+        warnings: []
       };
+    }
 
-      const candidates = localWords
-        .map(word => {
-          const fuzzyMatch = fuzzyRootMatch(word, root);
-          if (fuzzyMatch?.type === 'exact') return { word, match: fuzzyMatch };
-          if (specialRootMatch(langCode, word, root)) {
-            return { word, match: { type: 'special', distance: 0, similarity: 1, fragment: stripDiacritics(root), index: null } };
-          }
-          if (fuzzyMatch) return { word, match: fuzzyMatch };
-          return null;
-        })
-        .filter(Boolean);
+    async function getLanguageCandidates(langCode, root, { signal } = {}) {
+      const entries = await candidateIndexLoader.loadCandidateEntries(langCode, root, { signal });
+      const { candidates } = findCandidatesForRoot({
+        entries,
+        root,
+        language: langCode,
+        maxCandidates: QWEN_RUNTIME_CONFIG.maxCandidatesPerLanguage
+      });
 
-      sortRootCandidateMatches(candidates, word => getRank(langCode, word))
-        .forEach(({ word, match }) => add(word, { match }));
-
-      return Array.from(byWord.values()).slice(0, QWEN_RUNTIME_CONFIG.maxCandidatesPerLanguage);
+      return candidates.map(candidate => ({
+        word: candidate.word,
+        normalized: candidate.normalized,
+        search_form: candidate.search_form,
+        match: candidate.match,
+        rank: candidate.rank,
+        frequency_score: candidate.frequency_score,
+        category_breakdown: candidate.category_breakdown || {},
+        sources: candidate.sources,
+        model: inferModel(candidate.word, root, state.elementType, candidate),
+        selected: false,
+        frequencyProfile: frequencyProfileFromCandidate(candidate)
+      }));
     }
 
     async function runCalculation({ runId, onProgress } = {}) {
@@ -435,7 +378,16 @@ const TEXT_I18N = {
         if (!isCurrentRun(runId)) return;
         const languageName = textGroup('languages')[lang.code] || lang.name;
         onProgress?.(`Поиск похожих корней: ${languageName}`);
-        const candidates = await getLanguageCandidates(lang.code, root);
+        let candidates;
+        try {
+          candidates = await getLanguageCandidates(lang.code, root, { signal: activeRunAbortController?.signal });
+        } catch (error) {
+          if (!isCurrentRun(runId)) return;
+          nextLangs[lang.code] = [];
+          nextLangs[`${lang.code}Status`] = { status: 'index_error', errorCode: error.code || error.name || 'INDEX_ERROR' };
+          continue;
+        }
+        if (!candidates.length) nextLangs[`${lang.code}Status`] = { status: 'no_candidates', candidates: [] };
         if (!isCurrentRun(runId)) return;
         onProgress?.(`Qwen3.6: оценка слов — ${languageName}`);
         const analyzed = await mapWithConcurrency(
@@ -757,7 +709,8 @@ const TEXT_I18N = {
         item.analysis = await analyzeAssociativeWord({
           language: lang,
           targetMeaning: state.meaning || state.root,
-          word: item.word
+          word: item.word,
+          frequencyProfile: item.frequencyProfile
         });
         item.frequency_score = item.analysis.frequency.frequency_score;
         item.association_score = item.analysis.association.association_score;
@@ -981,7 +934,7 @@ const TEXT_I18N = {
       const output = {};
       LANGUAGES.forEach((lang) => {
         output[lang.code] = (languages?.[lang.code] || []).filter((item) => item && (item.selected || item.word)).map((item) => ({
-          word: item.word || '', model: item.model || '', selected: Boolean(item.selected), frequency_score: finiteOrNull(item.frequency_score), association_score: finiteOrNull(item.association_score), final_score: finiteOrNull(item.final_score), analysisStatus: item.analysisStatus || null,
+          word: item.word || '', normalized: item.normalized || '', search_form: item.search_form || '', match: item.match || null, rank: finiteOrNull(item.rank), frequency_score: finiteOrNull(item.frequency_score), category_breakdown: item.category_breakdown || {}, sources: Array.isArray(item.sources) ? item.sources : [], frequencyProfile: item.frequencyProfile || null, model: item.model || '', selected: Boolean(item.selected), association_score: finiteOrNull(item.association_score), final_score: finiteOrNull(item.final_score), analysisStatus: item.analysisStatus || null,
           analysis: item.analysis ? { final_score: finiteOrNull(item.analysis.final_score), frequency: item.analysis.frequency ? { frequency_score: finiteOrNull(item.analysis.frequency.frequency_score) } : null, swow: item.analysis.swow ? { bonus: finiteOrNull(item.analysis.swow.bonus) } : null, association: item.analysis.association ? { association_score: finiteOrNull(item.analysis.association.association_score), directness: finiteOrNull(item.analysis.association.directness), field_relatedness: finiteOrNull(item.analysis.association.field_relatedness), domain_shift: finiteOrNull(item.analysis.association.domain_shift), semantic_confirmed: Boolean(item.analysis.association.semantic_confirmed), explanation: item.analysis.association.explanation || '' } : null, warnings: Array.isArray(item.analysis.warnings) ? item.analysis.warnings.slice(0, 5) : [] } : null
         }));
       });
@@ -1082,7 +1035,6 @@ const TEXT_I18N = {
     };
 
     async function init() {
-      await loadJsonFilesFromDirectory();
       renderAll();
     }
 
