@@ -1,5 +1,6 @@
 import { getFrequencyProfile } from './frequency-loader.js';
-import { getBidirectionalSwow, normalizeSwowWord } from './swow-client.js';
+import { getBidirectionalSwow } from './swow-client.js';
+import { getTargetMeaningForLanguage as translateTargetMeaningForLanguage, hasOfflineTargetMeaningTranslation } from './target-meaning-translator.js';
 import { ASSOCIATION_SCORE_WEIGHTS, FINAL_SCORE_WEIGHTS, getQwenAssociationScores, QWEN_ERROR_CODES } from './qwen-client.js';
 
 export const THRESHOLDS = {
@@ -10,29 +11,12 @@ export const THRESHOLDS = {
   rejectBelow: 25
 };
 
-const TARGET_MEANING_TRANSLATIONS = {
-  'правило': { ru: 'правило', en: 'rule', de: 'Regel', es: 'regla', fr: 'règle', it: 'regola' },
-  'солнце': { ru: 'солнце', en: 'sun', de: 'Sonne', es: 'sol', fr: 'soleil', it: 'sole' }
-};
+export async function getTargetMeaningForLanguage(targetMeaning, language, options) {
+  return translateTargetMeaningForLanguage(targetMeaning, language, options);
+}
 
 export function clamp(value, min = 0, max = 100) {
   return Math.max(min, Math.min(max, value));
-}
-
-export async function getTargetMeaningForLanguage(targetMeaning, language) {
-  const key = normalizeSwowWord(targetMeaning);
-  const lang = normalizeSwowWord(language);
-  const translated = TARGET_MEANING_TRANSLATIONS[key]?.[lang];
-
-  if (translated) return translated;
-
-  return targetMeaning;
-}
-
-function hasTargetMeaningTranslation(targetMeaning, language) {
-  const key = normalizeSwowWord(targetMeaning);
-  const lang = normalizeSwowWord(language);
-  return Boolean(TARGET_MEANING_TRANSLATIONS[key]?.[lang]);
 }
 
 export function calculateAssociationScore({ directness, field_relatedness, domain_shift }) {
@@ -247,11 +231,11 @@ export async function analyzeAssociativeWord({ language, targetMeaning, word, fr
   });
   warnings.push(...(frequency.warnings || []));
 
-  const swowTargetMeaning = await getTargetMeaningForLanguage(targetMeaning, language).catch(() => {
+  const swowTargetMeaning = await translateTargetMeaningForLanguage(targetMeaning, language).catch(() => {
     warnings.push('Target meaning translation unavailable');
     return targetMeaning;
   });
-  if (!hasTargetMeaningTranslation(targetMeaning, language)) {
+  if (!hasOfflineTargetMeaningTranslation(targetMeaning, language) && swowTargetMeaning === targetMeaning) {
     warnings.push(`No target meaning translation for ${language}; using original targetMeaning`);
   }
 
