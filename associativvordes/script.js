@@ -1166,6 +1166,32 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
       return { type, distance, similarity, fragment, index };
     }
 
+
+    function compactStateSwowStrength(value) {
+      if (value == null || value === '') return null;
+      const number = Number(value);
+      return Number.isFinite(number) ? number : null;
+    }
+
+    function compactStateSwowSide(side) {
+      const source = side && typeof side === 'object' && !Array.isArray(side) ? side : {};
+      return {
+        found: source.found === true,
+        r1_strength: compactStateSwowStrength(source.r1_strength),
+        r123_strength: compactStateSwowStrength(source.r123_strength)
+      };
+    }
+
+    function compactStateSwowEvidence(swow) {
+      const source = swow && typeof swow === 'object' && !Array.isArray(swow) ? swow : {};
+      const bonus = compactStateSwowStrength(source.bonus);
+      return {
+        bonus: bonus ?? 0,
+        target_to_word: compactStateSwowSide(source.target_to_word),
+        word_to_target: compactStateSwowSide(source.word_to_target)
+      };
+    }
+
     function normalizeRestoredLanguageStatuses(statuses = {}) {
       return Object.fromEntries(LANGUAGES.map(lang => {
         const restored = statuses?.[lang.code] && typeof statuses[lang.code] === 'object' ? statuses[lang.code] : createLanguageStatus();
@@ -1226,7 +1252,7 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
               analysis: item.analysis ? {
                 final_score: finiteOrNull(item.analysis.final_score),
                 frequency: item.analysis.frequency ? { frequency_score: finiteOrNull(item.analysis.frequency.frequency_score) } : null,
-                swow: item.analysis.swow ? { bonus: finiteOrNull(item.analysis.swow.bonus) } : null,
+                swow: item.analysis.swow ? compactStateSwowEvidence(item.analysis.swow) : null,
                 association: item.analysis.association ? {
                   association_score: finiteOrNull(item.analysis.association.association_score),
                   directness: finiteOrNull(item.analysis.association.directness),
