@@ -100,13 +100,20 @@ export function languageConfigHash(language, { languageSources = LANGUAGE_SOURCE
   });
 }
 
+function optionalFiniteNumber(value) {
+  if (value == null || typeof value === 'boolean') return null;
+  if (typeof value === 'string' && value.trim() === '') return null;
+  const number = Number(value);
+  return Number.isFinite(number) ? number : null;
+}
+
 export function finiteNumericRange(values, fallback = 0) {
   let min = Infinity;
   let max = -Infinity;
   let count = 0;
   for (const value of values ?? []) {
-    const number = Number(value);
-    if (!Number.isFinite(number)) continue;
+    const number = optionalFiniteNumber(value);
+    if (number == null) continue;
     if (number < min) min = number;
     if (number > max) max = number;
     count += 1;
@@ -168,8 +175,6 @@ function assertValidEntry(entry, seen) {
   if (!Array.isArray(entry.sources) || entry.sources.length === 0) throw new Error(`Missing sources for ${entry.normalized}`);
   if (seen.has(entry.normalized)) throw new Error(`Duplicate normalized entry: ${entry.normalized}`);
   seen.add(entry.normalized);
-  const text = JSON.stringify(entry);
-  if (text.includes('null') && Number.isNaN(entry.frequency_score)) throw new Error(`NaN in entry: ${entry.normalized}`);
   for (const source of entry.sources) {
     if (!source.id) throw new Error(`Missing source id for ${entry.normalized}`);
     if (!source.file) throw new Error(`Missing source file for ${entry.normalized} from ${source.id}`);
@@ -181,18 +186,30 @@ function assertValidEntry(entry, seen) {
   }
 }
 
-function scanForInvalidData(value, sourceId, path = 'root') {
-  if (Array.isArray(value)) {
-    for (let index = 0; index < value.length; index += 1) scanForInvalidData(value[index], sourceId, `${path}[${index}]`);
-    return;
-  }
-  if (!value || typeof value !== 'object') return;
-  for (const [key, child] of Object.entries(value)) {
-    if (['ipm', 'IPM', 'frequency', 'freq'].includes(key)) {
-      const number = Number(child);
-      if (!Number.isFinite(number)) throw new Error(`Invalid IPM in ${sourceId} at ${path}.${key}`);
+export function scanForInvalidData(value, sourceId, path = 'root') {
+  const stack = [{ value, path }];
+  while (stack.length) {
+    const current = stack.pop();
+    const currentValue = current.value;
+    if (!currentValue || typeof currentValue !== 'object') continue;
+
+    if (Array.isArray(currentValue)) {
+      for (let index = currentValue.length - 1; index >= 0; index -= 1) {
+        stack.push({ value: currentValue[index], path: `${current.path}[${index}]` });
+      }
+      continue;
     }
-    scanForInvalidData(child, sourceId, `${path}.${key}`);
+
+    const entries = Object.entries(currentValue);
+    for (let index = entries.length - 1; index >= 0; index -= 1) {
+      const [key, child] = entries[index];
+      const childPath = `${current.path}.${key}`;
+      if (['ipm', 'IPM', 'frequency', 'freq'].includes(key)) {
+        const number = optionalFiniteNumber(child);
+        if (number == null) throw new Error(`Invalid IPM in ${sourceId} at ${childPath}`);
+      }
+      if (child && typeof child === 'object') stack.push({ value: child, path: childPath });
+    }
   }
 }
 
@@ -339,11 +356,12 @@ async function buildLanguage(language, options) {
     }
     const frequency_score = calculateFrequencyScore(category_breakdown);
     const ranks = Object.values(record.ranks ?? {}).map(validRank).filter(rank => rank != null);
+    const rankRange = finiteNumericRange(ranks, Infinity);
     return {
       word: record.original,
       normalized: record.normalized,
       search_form: record.search_form,
-      rank: ranks.length ? Math.min(...ranks) : null,
+      rank: rankRange.count ? rankRange.min : null,
       frequency_score,
       category_breakdown,
       sources: Object.entries(record.sources).sort(([a], [b]) => a.localeCompare(b)).map(([id, ipm]) => canonicalSourceFromId(id, ipm))
