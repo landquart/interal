@@ -32,6 +32,7 @@ async function build(extra = [], out = outputRoot) {
 }
 
 const first = await build();
+const firstAllEntries = await readAllLanguageEntries(outputRoot, 'en');
 assert.ok(existsSync(join(outputRoot, 'manifest.json')), 'creates manifest');
 assert.ok(first.manifest.languages.en.shards.length > 0, 'creates shards');
 assert.ok(existsSync(join(outputRoot, 'en', 'a.json')), 'creates letter shard');
@@ -51,7 +52,10 @@ assert.ok(LANGUAGE_SOURCES.en[hermitSource.category].includes(hermitSource.file)
 assert.equal(hermitSource.file.includes('/'), false, 'source file is a bare file name');
 assert.equal(hermitSource.file.includes('\\'), false, 'source file does not contain a Windows path separator');
 assert.equal(bncSource.category, 'normative', 'normative source category comes from LANGUAGE_SOURCES');
-assert.equal(alternative.rank, null, 'does not treat rank as output IPM');
+assert.equal(alternative.rank, 1, 'uses the minimum valid rank from merged sources');
+assert.equal(JSON.stringify(alternative).includes('source_ranks'), false, 'runtime entry does not include source_ranks diagnostics');
+assert.equal(firstAllEntries.find(entry => entry.normalized === 'zeta').rank, null, 'rank is null when all sources lack rank');
+assert.equal(JSON.stringify(firstAllEntries).includes('50001'), false, 'candidate-index does not write fake fallback rank');
 assert.ok(Number.isFinite(alternative.frequency_score), 'frequency_score finite');
 assert.ok(alternative.frequency_score >= 0 && alternative.frequency_score <= 100, 'frequency_score range');
 assert.equal(first.manifest.global_config_hash.length, 64, 'global_config_hash present');
@@ -177,11 +181,13 @@ const deEntries = await readAllLanguageEntries('.tmp/associative-index-de', 'de'
 const deAenderung = deEntries.find(entry => entry.normalized === 'änderung');
 assert.equal(deAenderung.word, 'Änderung', 'German original form is preserved');
 assert.equal(deAenderung.search_form, 'anderung', 'German umlaut is stripped only in search_form');
+assert.equal(deAenderung.rank, 101, 'uses minimum rank across multiple ranked sources');
 assert.equal(deEntries.find(entry => entry.normalized === 'größe').search_form, 'grosse', 'ß becomes ss in search_form');
 assert.equal(deEntries.find(entry => entry.normalized === 'küche').search_form, 'kuche', 'ü is stripped in search_form');
 const deDoppel = deEntries.find(entry => entry.normalized === 'doppel');
 assert.equal(deDoppel.sources.length, 3, 'German duplicate sources are merged without loss');
 assert.equal(deEntries.find(entry => entry.normalized === 'nullwert').category_breakdown.normative.category_ipm, 0, 'zero IPM is not a positive observation');
+assert.equal(deEntries.find(entry => entry.normalized === 'doppel').rank, 105, 'uses minimum rank across multiple ranked sources');
 assert.equal(deEntries.some(entry => entry.normalized === 'rangnur'), false, 'rank-only German record is rejected');
 
 const frEntries = await readAllLanguageEntries('.tmp/associative-index-fr', 'fr');

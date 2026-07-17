@@ -10,7 +10,8 @@ import {
   calculateFrequencyScore,
   extractFrequencyRecords,
   mergeFrequencyRecord,
-  stableSortEntries
+  stableSortEntries,
+  validRank
 } from './lib/associative-index-core.mjs';
 
 const DEFAULT_INPUT_ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', 'associativvordes', 'frequency lists');
@@ -251,11 +252,12 @@ async function buildLanguage(language, options) {
       if (values.length) category_breakdown[category] = calculateCategoryProfile(values);
     }
     const frequency_score = calculateFrequencyScore(category_breakdown);
+    const ranks = Object.values(record.ranks ?? {}).map(validRank).filter(rank => rank != null);
     return {
       word: record.original,
       normalized: record.normalized,
       search_form: record.search_form,
-      rank: null,
+      rank: ranks.length ? Math.min(...ranks) : null,
       frequency_score,
       category_breakdown,
       sources: Object.entries(record.sources).sort(([a], [b]) => a.localeCompare(b)).map(([id, ipm]) => canonicalSourceFromId(id, ipm))

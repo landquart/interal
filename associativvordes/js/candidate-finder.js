@@ -35,6 +35,10 @@ function sourceFile(source) {
   return typeof source?.file === 'string' && source.file.trim() ? source.file : null;
 }
 
+function validRank(value) {
+  return typeof value === 'number' && Number.isFinite(value) && Number.isInteger(value) && value > 0;
+}
+
 function totalIpm(entry) {
   return Array.isArray(entry.sources) ? entry.sources.reduce((sum, source) => sum + sourceIpm(source), 0) : 0;
 }
@@ -43,7 +47,7 @@ function completenessScore(entry) {
   return [entry.word, entry.normalized, entry.search_form].filter(value => typeof value === 'string' && value.trim()).length
     + (Array.isArray(entry.sources) ? Math.min(entry.sources.length, 20) : 0)
     + (isPlainObject(entry.category_breakdown) ? Object.keys(entry.category_breakdown).length : 0)
-    + (typeof entry.rank === 'number' && Number.isFinite(entry.rank) ? 1 : 0)
+    + (validRank(entry.rank) ? 1 : 0)
     + (typeof entry.frequency_score === 'number' && Number.isFinite(entry.frequency_score) ? 1 : 0);
 }
 
@@ -91,8 +95,8 @@ function findMatch({ searchForm, root, language, specialRootMatcher }) {
 }
 
 function compareCandidates(a, b) {
-  const rankA = typeof a.rank === 'number' && Number.isFinite(a.rank) ? a.rank : Number.POSITIVE_INFINITY;
-  const rankB = typeof b.rank === 'number' && Number.isFinite(b.rank) ? b.rank : Number.POSITIVE_INFINITY;
+  const rankA = validRank(a.rank) ? a.rank : Number.POSITIVE_INFINITY;
+  const rankB = validRank(b.rank) ? b.rank : Number.POSITIVE_INFINITY;
   return (MATCH_PRIORITY[a.match.type] ?? 99) - (MATCH_PRIORITY[b.match.type] ?? 99)
     || (a.match.distance ?? 0) - (b.match.distance ?? 0)
     || (b.match.similarity ?? 0) - (a.match.similarity ?? 0)
