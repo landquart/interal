@@ -16,7 +16,8 @@ export const TARGET_TRANSLATION_ERROR_CODES = Object.freeze({
 
 export const OFFLINE_TARGET_TRANSLATION_CACHE = Object.freeze({
   'ru:правило': Object.freeze({ ru: 'правило', en: 'rule', de: 'Regel', es: 'regla', fr: 'règle', it: 'regola' }),
-  'ru:солнце': Object.freeze({ ru: 'солнце', en: 'sun', de: 'Sonne', es: 'sol', fr: 'soleil', it: 'sole' })
+  'ru:солнце': Object.freeze({ ru: 'солнце', en: 'sun', de: 'Sonne', es: 'sol', fr: 'soleil', it: 'sole' }),
+  'ru:другой': Object.freeze({ en: 'other', de: 'andere', fr: 'autre', es: 'otro', it: 'altro', ru: 'другой' })
 });
 
 const runtimeCache = new Map();
