@@ -64,6 +64,14 @@ function joinUrl(baseUrl, path) {
   return `${normalizeBaseUrl(baseUrl)}${path}`;
 }
 
+function throwIfAborted(signal) {
+  if (signal?.aborted) throw abortError(signal.reason);
+}
+
+function fetchOptionsWithSignal(signal) {
+  return signal ? { signal } : {};
+}
+
 async function fetchJson(fetchImpl, url, fetchOptions, code, language, shard) {
   let response;
   try {
@@ -201,35 +209,51 @@ export function createCandidateIndexLoader(options = {}) {
   let manifestPromise;
   const shardPromises = new Map();
   const shardCache = new Map();
+  let manifestCache;
+
+  function getReusablePromise(record, signal) {
+    if (!record || record.signal !== signal) return null;
+    return record.promise;
+  }
 
   async function loadManifest({ signal } = {}) {
-    if (manifestPromise) {
+    if (manifestCache) {
       diagnostics.cacheHits += 1;
-      return withAbort(manifestPromise, signal);
+      throwIfAborted(signal);
+      return manifestCache;
+    }
+    const reusableManifestPromise = getReusablePromise(manifestPromise, signal);
+    if (reusableManifestPromise) {
+      diagnostics.cacheHits += 1;
+      return withAbort(reusableManifestPromise, signal);
     }
     diagnostics.cacheMisses += 1;
     diagnostics.fetchCount += 1;
-    manifestPromise = fetchJson(fetchImpl, joinUrl(baseUrl, 'manifest.json'), {}, CANDIDATE_INDEX_ERROR_CODES.MANIFEST_FETCH_FAILED)
-      .then(validateManifest)
-      .then(manifest => { diagnostics.manifestLoaded = true; diagnostics.manifestVersion = manifest.version || null; diagnostics.normalizerVersion = manifest.normalizer_version || null; return manifest; })
-      .catch(error => { manifestPromise = undefined; throw error; });
-    return withAbort(manifestPromise, signal);
+    const record = { signal, promise: null };
+    record.promise = fetchJson(fetchImpl, joinUrl(baseUrl, 'manifest.json'), fetchOptionsWithSignal(signal), CANDIDATE_INDEX_ERROR_CODES.MANIFEST_FETCH_FAILED)
+      .then(payload => { throwIfAborted(signal); return validateManifest(payload); })
+      .then(manifest => { throwIfAborted(signal); manifestCache = manifest; diagnostics.manifestLoaded = true; diagnostics.manifestVersion = manifest.version || null; diagnostics.normalizerVersion = manifest.normalizer_version || null; return manifest; })
+      .catch(error => { if (manifestPromise === record) manifestPromise = undefined; throw error; });
+    manifestPromise = record;
+    return withAbort(record.promise, signal);
   }
 
   async function loadShard(language, shardId, { signal } = {}) {
     const manifest = await loadManifest({ signal });
     const shardMeta = getShardMeta(manifest, language, shardId);
     const key = `${language}/${shardMeta.id}`;
-    if (shardCache.has(key)) { diagnostics.cacheHits += 1; return shardCache.get(key); }
-    if (shardPromises.has(key)) { diagnostics.cacheHits += 1; return withAbort(shardPromises.get(key), signal); }
+    if (shardCache.has(key)) { diagnostics.cacheHits += 1; throwIfAborted(signal); return shardCache.get(key); }
+    const reusableShardPromise = getReusablePromise(shardPromises.get(key), signal);
+    if (reusableShardPromise) { diagnostics.cacheHits += 1; return withAbort(reusableShardPromise, signal); }
     diagnostics.cacheMisses += 1;
     diagnostics.fetchCount += 1;
-    const promise = fetchJson(fetchImpl, joinUrl(baseUrl, shardMeta.file), {}, CANDIDATE_INDEX_ERROR_CODES.SHARD_FETCH_FAILED, language, shardMeta.id)
-      .then(payload => validateShardPayload(payload, language, shardMeta, diagnostics))
-      .then(entries => { shardCache.set(key, entries); diagnostics.loadedShards.push(key); return entries; })
-      .catch(error => { shardPromises.delete(key); throw error; });
-    shardPromises.set(key, promise);
-    return withAbort(promise, signal);
+    const record = { signal, promise: null };
+    record.promise = fetchJson(fetchImpl, joinUrl(baseUrl, shardMeta.file), fetchOptionsWithSignal(signal), CANDIDATE_INDEX_ERROR_CODES.SHARD_FETCH_FAILED, language, shardMeta.id)
+      .then(payload => { throwIfAborted(signal); return validateShardPayload(payload, language, shardMeta, diagnostics); })
+      .then(entries => { throwIfAborted(signal); shardCache.set(key, entries); diagnostics.loadedShards.push(key); return entries; })
+      .catch(error => { if (shardPromises.get(key) === record) shardPromises.delete(key); throw error; });
+    shardPromises.set(key, record);
+    return withAbort(record.promise, signal);
   }
 
   async function loadCandidateEntries(language, root, { signal } = {}) {
@@ -247,6 +271,7 @@ export function createCandidateIndexLoader(options = {}) {
 
   function clearCandidateIndexCache() {
     manifestPromise = undefined;
+    manifestCache = undefined;
     shardPromises.clear();
     shardCache.clear();
     Object.assign(diagnostics, createDiagnostics());
