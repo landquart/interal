@@ -36,9 +36,19 @@ assert.equal(it.find(r => r.normalized === 'città').ipm, 7.25);
 assert.equal(ru.find(r => r.normalized === 'альтернативный').ipm, 9);
 
 const ranked = de.find(r => r.normalized === 'alternative');
-assert.equal(ranked.rank, 105);
+assert.equal(ranked.rank, 105, 'extracts one valid rank');
 assert.equal(ranked.ipm, 17.4);
 assert.equal(extractFrequencyRecords({ 105: { alternative: { rank: 105 } } }).length, 0);
+assert.equal(extractFrequencyRecords({ bad: { ipm: 1, rank: 0 } })[0].rank, undefined, 'drops zero rank');
+assert.equal(extractFrequencyRecords({ bad: { ipm: 1, rank: -1 } })[0].rank, undefined, 'drops negative rank');
+assert.equal(extractFrequencyRecords({ bad: { ipm: 1, rank: 1.5 } })[0].rank, undefined, 'drops fractional rank');
+assert.equal(extractFrequencyRecords({ bad: { ipm: 1, rank: Infinity } })[0].rank, undefined, 'drops non-finite rank');
+
+const rankIndex = new Map();
+mergeFrequencyRecord(rankIndex, { original: 'ranked', normalized: 'ranked', ipm: 1, rank: 30 }, 'source-a');
+mergeFrequencyRecord(rankIndex, { original: 'ranked', normalized: 'ranked', ipm: 2, rank: 10 }, 'source-b');
+mergeFrequencyRecord(rankIndex, { original: 'ranked', normalized: 'ranked', ipm: 3, rank: 'damaged' }, 'source-c');
+assert.deepEqual(rankIndex.get('ranked').ranks, { 'source-a': 30, 'source-b': 10 }, 'merge stores only valid ranks by source');
 
 const index = new Map();
 for (const record of all) mergeFrequencyRecord(index, record, record.source);

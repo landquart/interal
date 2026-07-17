@@ -44,6 +44,12 @@ function finitePositiveNumber(value) {
   return Number.isFinite(number) && number >= 0 ? number : null;
 }
 
+export function validRank(value) {
+  if (value === '' || value == null) return null;
+  const number = Number(value);
+  return Number.isFinite(number) && Number.isInteger(number) && number > 0 ? number : null;
+}
+
 function explicitIpm(record) {
   for (const field of IPM_FIELDS) {
     if (Object.hasOwn(record, field)) return finitePositiveNumber(record[field]);
@@ -63,8 +69,8 @@ function pushRecord(records, lemmaValue, ipmValue, rankValue, sourceId) {
   const normalized = normalizeLemma(original);
   const ipm = finitePositiveNumber(ipmValue);
   if (!normalized || ipm == null) return;
-  const rank = rankValue != null && /^\d+$/.test(String(rankValue)) ? Number(rankValue) : undefined;
-  records.push({ original, normalized, search_form: buildSearchForm(original), lemma: normalized, frequency_lookup_key: normalized, ipm, ...(rank ? { rank } : {}), ...(sourceId ? { source: sourceId } : {}) });
+  const rank = validRank(rankValue);
+  records.push({ original, normalized, search_form: buildSearchForm(original), lemma: normalized, frequency_lookup_key: normalized, ipm, ...(rank != null ? { rank } : {}), ...(sourceId ? { source: sourceId } : {}) });
 }
 
 export function extractFrequencyRecords(data, sourceId = '') {
@@ -114,8 +120,10 @@ export function mergeFrequencyRecord(index, record, sourceId = record?.source ||
   if (frequencyLookupKey !== normalized) throw new Error(`Frequency lookup key must be normalized original lemma for ${normalized}`);
   const existing = index.get(normalized) ?? { original: record.original || normalized, normalized, search_form: buildSearchForm(record.original || normalized), sources: {}, ranks: {} };
   if (!existing.sources) existing.sources = {};
+  if (!existing.ranks) existing.ranks = {};
   existing.sources[sourceId] = ipm;
-  if (record.rank != null) existing.ranks[sourceId] = record.rank;
+  const rank = validRank(record.rank);
+  if (rank != null) existing.ranks[sourceId] = rank;
   index.set(normalized, existing);
   return index;
 }
