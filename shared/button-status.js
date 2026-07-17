@@ -73,8 +73,6 @@
     function success(token, text = getSuccessText()) {
       if (!isCurrent(token)) return false;
       clearRestoreTimer();
-      // Keep the button temporarily disabled to prevent a duplicate run, but
-      // stop the loader immediately: the operation has already completed.
       setStatus(text, true, { loading: false });
       scheduleRestore(token);
       return true;
@@ -95,8 +93,116 @@
     return { start, progress, success, error, abort, restore, isCurrent };
   }
 
+  const ASSOCIATIVE_LANGUAGE_GROUPS = Object.freeze({
+    en: 'Germanic',
+    de: 'Germanic',
+    fr: 'Romance',
+    es: 'Romance',
+    it: 'Romance',
+    ru: 'Slavic'
+  });
+  const ASSOCIATIVE_GROUP_ORDER = Object.freeze(['Germanic', 'Romance', 'Slavic']);
+
+  function isPlainObject(value) {
+    return Boolean(value) && typeof value === 'object' && !Array.isArray(value);
+  }
+
+  function associativeLanguageCode(item) {
+    return String(item?.language || item?.code || '').trim().toLowerCase();
+  }
+
+  function normalizeAssociativeCard(card) {
+    if (!isPlainObject(card) || card.vord_type !== 'av') return card;
+    const next = typeof structuredClone === 'function'
+      ? structuredClone(card)
+      : JSON.parse(JSON.stringify(card));
+    const evidence = Array.isArray(next.language_evidence)
+      ? next.language_evidence
+      : (Array.isArray(next.language_results) ? next.language_results : []);
+    const languageCodes = [...new Set(evidence.map(associativeLanguageCode).filter(code => ASSOCIATIVE_LANGUAGE_GROUPS[code]))];
+    const groups = [...new Set(languageCodes.map(code => ASSOCIATIVE_LANGUAGE_GROUPS[code]))]
+      .sort((a, b) => ASSOCIATIVE_GROUP_ORDER.indexOf(a) - ASSOCIATIVE_GROUP_ORDER.indexOf(b));
+
+    next.supported_groups = groups;
+    if (isPlainObject(next.calculation)) {
+      next.calculation.represented_languages = languageCodes.length;
+      next.calculation.represented_groups = groups.length;
+    }
+    if (isPlainObject(next.result)) {
+      next.result.represented_languages = languageCodes.length;
+      next.result.represented_groups = groups.length;
+    }
+    return next;
+  }
+
+  function normalizeAssociativeJsonText(value) {
+    const text = String(value ?? '');
+    const wrapped = /^\s*\/card\s*\n([\s\S]*)\n\/done\s*$/m.exec(text);
+    const jsonText = wrapped ? wrapped[1] : text;
+    let card;
+    try {
+      card = JSON.parse(jsonText);
+    } catch {
+      return text;
+    }
+    const normalized = normalizeAssociativeCard(card);
+    const serialized = JSON.stringify(normalized, null, 2);
+    return wrapped ? `/card\n${serialized}\n/done` : serialized;
+  }
+
+  function installAssociativeCardOutputNormalizer() {
+    if (!String(location?.pathname || '').includes('/associativvordes/')) return;
+    const output = document.getElementById('jsonCardOutput');
+    if (!output || output.__interalAssociativeValuePatched) return;
+    const descriptor = Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value');
+    if (!descriptor?.get || !descriptor?.set) return;
+    Object.defineProperty(output, 'value', {
+      configurable: true,
+      enumerable: descriptor.enumerable,
+      get() { return descriptor.get.call(this); },
+      set(value) { descriptor.set.call(this, normalizeAssociativeJsonText(value)); }
+    });
+    Object.defineProperty(output, '__interalAssociativeValuePatched', { value: true });
+  }
+
+  function installAssociativeCardsFetchNormalizer() {
+    if (!String(location?.pathname || '').includes('/associativvordes/')) return;
+    if (window.__INTERAL_ASSOCIATIVE_CARD_FETCH_PATCHED__) return;
+    const originalFetch = window.fetch?.bind(window);
+    if (typeof originalFetch !== 'function') return;
+    window.fetch = function patchedFetch(input, init = {}) {
+      const url = typeof input === 'string' ? input : input?.url;
+      if (String(url || '').includes('/api/cards') && typeof init.body === 'string') {
+        try {
+          const request = JSON.parse(init.body);
+          if (isPlainObject(request?.payload) && request.payload.vord_type === 'av') {
+            init = { ...init, body: JSON.stringify({ ...request, payload: normalizeAssociativeCard(request.payload) }) };
+          }
+        } catch {
+          // Preserve the original request; the API will return its normal validation error.
+        }
+      }
+      return originalFetch(input, init);
+    };
+    window.__INTERAL_ASSOCIATIVE_CARD_FETCH_PATCHED__ = true;
+  }
+
   window.InteralButtonStatus = {
     setButtonStatus,
     createButtonStatusController
   };
+  window.InteralAssociativeCardCompat = Object.freeze({
+    normalizeAssociativeCard,
+    normalizeAssociativeJsonText
+  });
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      installAssociativeCardOutputNormalizer();
+      installAssociativeCardsFetchNormalizer();
+    }, { once: true });
+  } else {
+    installAssociativeCardOutputNormalizer();
+    installAssociativeCardsFetchNormalizer();
+  }
 })();
