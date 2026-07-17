@@ -10,6 +10,11 @@ const node = process.execPath;
 const script = 'scripts/build-associative-candidate-index.mjs';
 const fixtureRoot = 'tests/fixtures/associative-frequency';
 const outputRoot = '.tmp/associative-index-test';
+const productionIndexRoot = 'associativvordes/candidate-index';
+const productionManifestPath = join(productionIndexRoot, 'manifest.json');
+const productionIndexExisted = existsSync(productionIndexRoot);
+const productionManifestExisted = existsSync(productionManifestPath);
+const productionManifestBefore = productionManifestExisted ? await readFile(productionManifestPath, 'utf8') : null;
 
 async function readJson(path) {
   return JSON.parse(await readFile(path, 'utf8'));
@@ -72,7 +77,6 @@ assert.equal(first.manifest.global_config_hash.length, 64, 'global_config_hash p
 assert.equal(first.manifest.languages.en.language_config_hash.length, 64, 'language_config_hash present');
 assertCanonicalShardOrder(first.entries, 'builder writes a shard in canonical search_form/normalized/word order');
 
-
 const reportOut = '.tmp/associative-index-test-report';
 await rm(reportOut, { recursive: true, force: true });
 const reportRun = run(['--languages=en', `--input-root=${fixtureRoot}`, `--output-root=${reportOut}`, '--max-records=5000', `--report=${reportOut}/build-report.json`]);
@@ -124,7 +128,6 @@ assert.deepEqual(Object.keys(dryRunStats.root_samples), ['alter', 'regul', 'ocul
 assert.equal(JSON.stringify(dryRunStats).includes('category_breakdown'), false, 'diagnostics do not print full dictionary entries');
 assert.equal(existsSync('.tmp/associative-index-dry-run'), false, '--dry-run --no-write does not create files');
 
-
 await rm('.tmp/associative-frequency-missing-required', { recursive: true, force: true });
 await cp(fixtureRoot, '.tmp/associative-frequency-missing-required', { recursive: true });
 await rm(join('.tmp/associative-frequency-missing-required', 'en', 'bnc-clean2.lemmatized_spacy_ipm6.json'), { force: true });
@@ -174,20 +177,21 @@ const files = [
 ];
 for (const file of files) {
   const data = await readJson(join(fixtureRoot, 'en', file));
-  if (Array.isArray(data)) data.reverse();
-  else {
-    const reversed = Object.fromEntries(Object.entries(data).reverse());
-    await writeFile(join('.tmp/associative-frequency-reordered/en', file), `${JSON.stringify(reversed, null, 2)}\n`);
-    continue;
-  }
-  await writeFile(join('.tmp/associative-frequency-reordered/en', file), `${JSON.stringify(data, null, 2)}\n`);
+  const reordered = Array.isArray(data)
+    ? [...data].reverse()
+    : Object.fromEntries(Object.entries(data).reverse());
+  await writeFile(join('.tmp/associative-frequency-reordered/en', file), `${JSON.stringify(reordered, null, 2)}\n`);
 }
 await rm('.tmp/associative-index-reordered', { recursive: true, force: true });
 const reorderedRun = run(['--languages=en', '--input-root=.tmp/associative-frequency-reordered', '--output-root=.tmp/associative-index-reordered', '--max-records=5000']);
 assert.equal(reorderedRun.status, 0, reorderedRun.stderr || reorderedRun.stdout);
 assert.deepEqual(await readJson('.tmp/associative-index-reordered/en/a.json'), first.entries, 'input order does not affect output');
 
-assert.equal(existsSync('associativvordes/candidate-index'), false, '.tmp does not write production candidate-index');
+assert.equal(existsSync(productionIndexRoot), productionIndexExisted, '.tmp builds do not create or remove production candidate-index');
+assert.equal(existsSync(productionManifestPath), productionManifestExisted, '.tmp builds do not create or remove the production manifest');
+if (productionManifestBefore != null) {
+  assert.equal(await readFile(productionManifestPath, 'utf8'), productionManifestBefore, '.tmp builds do not modify the production manifest');
+}
 assert.match(await readFile('.gitignore', 'utf8'), /^\.tmp\/$/m, '.tmp ignored');
 
 async function buildLanguageFixture(language, out) {
