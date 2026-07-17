@@ -150,11 +150,17 @@
     return wrapped ? `/card\n${serialized}\n/done` : serialized;
   }
 
+  function isAssociativePage() {
+    return String(globalThis.location?.pathname || '').includes('/associativvordes/');
+  }
+
   function installAssociativeCardOutputNormalizer() {
-    if (!String(location?.pathname || '').includes('/associativvordes/')) return;
+    if (!isAssociativePage()) return;
     const output = document.getElementById('jsonCardOutput');
     if (!output || output.__interalAssociativeValuePatched) return;
-    const descriptor = Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value');
+    const TextareaConstructor = globalThis.HTMLTextAreaElement;
+    if (typeof TextareaConstructor !== 'function') return;
+    const descriptor = Object.getOwnPropertyDescriptor(TextareaConstructor.prototype, 'value');
     if (!descriptor?.get || !descriptor?.set) return;
     Object.defineProperty(output, 'value', {
       configurable: true,
@@ -166,7 +172,7 @@
   }
 
   function installAssociativeCardsFetchNormalizer() {
-    if (!String(location?.pathname || '').includes('/associativvordes/')) return;
+    if (!isAssociativePage()) return;
     if (window.__INTERAL_ASSOCIATIVE_CARD_FETCH_PATCHED__) return;
     const originalFetch = window.fetch?.bind(window);
     if (typeof originalFetch !== 'function') return;
