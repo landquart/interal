@@ -1,0 +1,227 @@
+name: Publish Associative Index Candidate
+
+on:
+  workflow_dispatch:
+    inputs:
+      artifact_source:
+        description: Use six build run IDs or six artifact IDs
+        required: true
+        type: choice
+        options:
+          - run_ids
+          - artifact_ids
+      en_run_id:
+        description: English build workflow run ID (required when artifact_source=run_ids)
+        required: false
+      de_run_id:
+        description: German build workflow run ID (required when artifact_source=run_ids)
+        required: false
+      fr_run_id:
+        description: French build workflow run ID (required when artifact_source=run_ids)
+        required: false
+      es_run_id:
+        description: Spanish build workflow run ID (required when artifact_source=run_ids)
+        required: false
+      it_run_id:
+        description: Italian build workflow run ID (required when artifact_source=run_ids)
+        required: false
+      ru_run_id:
+        description: Russian build workflow run ID (required when artifact_source=run_ids)
+        required: false
+      en_artifact_id:
+        description: English artifact ID (required when artifact_source=artifact_ids)
+        required: false
+      de_artifact_id:
+        description: German artifact ID (required when artifact_source=artifact_ids)
+        required: false
+      fr_artifact_id:
+        description: French artifact ID (required when artifact_source=artifact_ids)
+        required: false
+      es_artifact_id:
+        description: Spanish artifact ID (required when artifact_source=artifact_ids)
+        required: false
+      it_artifact_id:
+        description: Italian artifact ID (required when artifact_source=artifact_ids)
+        required: false
+      ru_artifact_id:
+        description: Russian artifact ID (required when artifact_source=artifact_ids)
+        required: false
+      confirm_publish:
+        description: Type PUBLISH_ASSOCIATIVE_INDEX to create a review PR
+        required: true
+
+env:
+  LANGUAGES: en de fr es it ru
+  ARTIFACT_ROOT: .tmp/publish-associative-index/artifacts
+  MERGED_ROOT: .tmp/publish-associative-index/merged
+  VALIDATION_REPORT: .tmp/publish-associative-index/validation-report.json
+  PR_BODY: .tmp/publish-associative-index/pr-body.md
+
+permissions:
+  contents: write
+  actions: read
+  pull-requests: write
+
+jobs:
+  publish:
+    name: Merge, validate, and open review PR
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Validate publish inputs
+        run: |
+          set -euo pipefail
+          if [ "${{ inputs.confirm_publish }}" != "PUBLISH_ASSOCIATIVE_INDEX" ]; then
+            echo "confirm_publish must equal PUBLISH_ASSOCIATIVE_INDEX" >&2
+            exit 1
+          fi
+          require_numeric() {
+            value="$1"
+            label="$2"
+            if ! printf '%s' "$value" | grep -Eq '^[0-9]+$'; then
+              echo "$label must be a numeric GitHub ID" >&2
+              exit 1
+            fi
+          }
+          if [ "${{ inputs.artifact_source }}" = "run_ids" ]; then
+            require_numeric "${{ inputs.en_run_id }}" en_run_id
+            require_numeric "${{ inputs.de_run_id }}" de_run_id
+            require_numeric "${{ inputs.fr_run_id }}" fr_run_id
+            require_numeric "${{ inputs.es_run_id }}" es_run_id
+            require_numeric "${{ inputs.it_run_id }}" it_run_id
+            require_numeric "${{ inputs.ru_run_id }}" ru_run_id
+            for artifact_id in "${{ inputs.en_artifact_id }}" "${{ inputs.de_artifact_id }}" "${{ inputs.fr_artifact_id }}" "${{ inputs.es_artifact_id }}" "${{ inputs.it_artifact_id }}" "${{ inputs.ru_artifact_id }}"; do
+              if [ -n "$artifact_id" ]; then echo "artifact ID inputs must be empty when artifact_source=run_ids" >&2; exit 1; fi
+            done
+          else
+            require_numeric "${{ inputs.en_artifact_id }}" en_artifact_id
+            require_numeric "${{ inputs.de_artifact_id }}" de_artifact_id
+            require_numeric "${{ inputs.fr_artifact_id }}" fr_artifact_id
+            require_numeric "${{ inputs.es_artifact_id }}" es_artifact_id
+            require_numeric "${{ inputs.it_artifact_id }}" it_artifact_id
+            require_numeric "${{ inputs.ru_artifact_id }}" ru_artifact_id
+            for run_id in "${{ inputs.en_run_id }}" "${{ inputs.de_run_id }}" "${{ inputs.fr_run_id }}" "${{ inputs.es_run_id }}" "${{ inputs.it_run_id }}" "${{ inputs.ru_run_id }}"; do
+              if [ -n "$run_id" ]; then echo "run ID inputs must be empty when artifact_source=artifact_ids" >&2; exit 1; fi
+            done
+          fi
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Download artifacts by run ID
+        if: inputs.artifact_source == 'run_ids'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EN_RUN_ID: ${{ inputs.en_run_id }}
+          DE_RUN_ID: ${{ inputs.de_run_id }}
+          FR_RUN_ID: ${{ inputs.fr_run_id }}
+          ES_RUN_ID: ${{ inputs.es_run_id }}
+          IT_RUN_ID: ${{ inputs.it_run_id }}
+          RU_RUN_ID: ${{ inputs.ru_run_id }}
+        run: |
+          set -euo pipefail
+          mkdir -p "$ARTIFACT_ROOT"
+          for language in $LANGUAGES; do
+            var="$(printf '%s_RUN_ID' "$language" | tr '[:lower:]' '[:upper:]')"
+            run_id="${!var}"
+            gh run download "$run_id" --name "associative-index-$language" --dir "$ARTIFACT_ROOT/associative-index-$language"
+          done
+
+      - name: Download artifacts by artifact ID
+        if: inputs.artifact_source == 'artifact_ids'
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          artifact-ids: ${{ inputs.en_artifact_id }},${{ inputs.de_artifact_id }},${{ inputs.fr_artifact_id }},${{ inputs.es_artifact_id }},${{ inputs.it_artifact_id }},${{ inputs.ru_artifact_id }}
+          path: ${{ env.ARTIFACT_ROOT }}
+          merge-multiple: false
+
+      - name: Verify artifact names and payloads
+        run: |
+          set -euo pipefail
+          for language in $LANGUAGES; do
+            dir="$ARTIFACT_ROOT/associative-index-$language"
+            test -d "$dir" || { echo "Missing artifact directory: associative-index-$language" >&2; exit 1; }
+            test -f "$dir/manifest.json" || { echo "Missing manifest for $language" >&2; exit 1; }
+            test -f "$dir/build-report.json" || { echo "Missing build-report for $language" >&2; exit 1; }
+            test -d "$dir/$language" || { echo "Missing shard directory for $language" >&2; exit 1; }
+          done
+          count="$(find "$ARTIFACT_ROOT" -mindepth 1 -maxdepth 1 -type d -name 'associative-index-*' | wc -l | tr -d ' ')"
+          if [ "$count" != "6" ]; then echo "Expected exactly six associative-index-* artifact directories, found $count" >&2; exit 1; fi
+
+      - name: Merge candidate index artifacts
+        run: npm run merge:associative-index -- --input-root="$ARTIFACT_ROOT" --output-root="$MERGED_ROOT"
+
+      - name: Strictly validate merged candidate index
+        run: npm run validate:associative-index -- --index-root="$MERGED_ROOT/candidate-index" --languages=en,de,fr,es,it,ru --strict --report="$VALIDATION_REPORT"
+
+      - name: Verify merged manifest and publishable files
+        run: |
+          set -euo pipefail
+          node --input-type=module <<'NODE'
+          import { readFile } from 'node:fs/promises';
+          const manifest = JSON.parse(await readFile(`${process.env.MERGED_ROOT}/candidate-index/manifest.json`, 'utf8'));
+          const languages = Object.keys(manifest.languages ?? {}).sort();
+          const expected = ['de', 'en', 'es', 'fr', 'it', 'ru'];
+          if (JSON.stringify(languages) !== JSON.stringify(expected)) throw new Error(`manifest languages mismatch: ${languages.join(',')}`);
+          NODE
+          if find "$MERGED_ROOT/candidate-index" \( -path '*/node_modules/*' -o -iname '*fixture*' -o -iname '*.tmp' -o -path '*/.tmp/*' -o -iregex '.*\(corpus\|frequency lists\|\.out\(\.gz\)?\.\|\.log\).*' \) | grep -q .; then
+            echo "Merged candidate-index contains source corpora, fixtures, logs, node_modules, or temporary files" >&2
+            exit 1
+          fi
+
+      - name: Copy candidate index into repository
+        run: |
+          set -euo pipefail
+          rm -rf associativvordes/candidate-index
+          mkdir -p associativvordes/candidate-index
+          cp -R "$MERGED_ROOT/candidate-index/." associativvordes/candidate-index/
+          if find associativvordes/candidate-index \( -path '*/node_modules/*' -o -iname '*fixture*' -o -iname '*.tmp' -o -path '*/.tmp/*' -o -iregex '.*\(corpus\|frequency lists\|\.out\(\.gz\)?\.\|\.log\).*' \) | grep -q .; then
+            echo "Repository candidate-index contains forbidden source or temporary files" >&2
+            exit 1
+          fi
+
+      - name: Build pull request description
+        run: |
+          set -euo pipefail
+          node --input-type=module <<'NODE'
+          import { mkdir, readFile, writeFile } from 'node:fs/promises';
+          import { dirname } from 'node:path';
+          const manifest = JSON.parse(await readFile('associativvordes/candidate-index/manifest.json', 'utf8'));
+          const validation = JSON.parse(await readFile(process.env.VALIDATION_REPORT, 'utf8'));
+          const lines = ['## Associative index candidate publication', '', 'Manual review PR for a merged six-language `associativvordes/candidate-index` candidate.', '', '### Manifest summary', '', '| Language | Entries | Shards | language_config_hash |', '| --- | ---: | ---: | --- |'];
+          for (const language of ['en', 'de', 'fr', 'es', 'it', 'ru']) {
+            const info = manifest.languages[language];
+            lines.push(`| ${language} | ${info.entries} | ${info.shards.length} | \`${info.language_config_hash ?? ''}\` |`);
+          }
+          lines.push('', `- global_config_hash: \`${manifest.global_config_hash ?? manifest.config_hash}\``, '', '### Validator results', '', `- valid: ${validation.valid}`, `- errors: ${validation.errors?.length ?? 0}`, `- warnings: ${validation.warnings?.length ?? 0}`, '', '| Language | Entries | Shards | Errors | Warnings |', '| --- | ---: | ---: | ---: | ---: |');
+          for (const language of ['en', 'de', 'fr', 'es', 'it', 'ru']) {
+            const info = validation.languages[language];
+            lines.push(`| ${language} | ${info.entries} | ${info.shards} | ${info.errors} | ${info.warnings} |`);
+          }
+          await mkdir(dirname(process.env.PR_BODY), { recursive: true });
+          await writeFile(process.env.PR_BODY, `${lines.join('\n')}\n`);
+          NODE
+
+      - name: Create pull request for manual review
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ github.token }}
+          branch: publish/associative-index-${{ github.run_id }}
+          delete-branch: true
+          base: main
+          title: Publish merged associative index candidate
+          body-path: ${{ env.PR_BODY }}
+          commit-message: Publish merged associative index candidate
+          add-paths: associativvordes/candidate-index
