@@ -27,10 +27,11 @@ function explicitLemma(record) {
 function frequencyRecord(lemmaValue, ipmValue, rankValue, sourceId) {
   const original = String(lemmaValue ?? '').trim();
   const normalized = normalizeLemma(original);
+  const searchForm = buildSearchForm(original);
   const ipm = finitePositiveNumber(ipmValue);
-  if (!normalized || ipm == null) return null;
+  if (!normalized || !searchForm || ipm == null) return null;
   const rank = validRank(rankValue);
-  return { original, normalized, search_form: buildSearchForm(original), lemma: normalized, frequency_lookup_key: normalized, ipm, ...(rank != null ? { rank } : {}), ...(sourceId ? { source: sourceId } : {}) };
+  return { original, normalized, search_form: searchForm, lemma: normalized, frequency_lookup_key: normalized, ipm, ...(rank != null ? { rank } : {}), ...(sourceId ? { source: sourceId } : {}) };
 }
 
 function recordsFromTopLevelEntry(key, value, sourceId) {
