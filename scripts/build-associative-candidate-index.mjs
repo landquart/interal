@@ -27,16 +27,12 @@ const DRY_RUN_SOURCE_BY_LANGUAGE = {
 };
 
 export const SOURCE_FORMATS = {
-  // Verified against every production LANGUAGE_SOURCES file: all production corpora are
-  // JSON objects keyed by rank, with each rank containing one or more lemma -> IPM pairs.
   production: {
     subtitles: 'ranked-word-ipm-object',
     normative: 'ranked-word-ipm-object',
     web: 'ranked-word-ipm-object',
     mixed: 'ranked-word-ipm-object'
   },
-  // Fixtures intentionally cover the legacy parser's accepted shapes. They remain small
-  // enough to parse as whole JSON in tests and local fixture builds.
   fixtures: {
     subtitles: 'legacy-json',
     normative: 'legacy-json',
@@ -104,6 +100,24 @@ export function languageConfigHash(language, { languageSources = LANGUAGE_SOURCE
   });
 }
 
+export function finiteNumericRange(values, fallback = 0) {
+  let min = Infinity;
+  let max = -Infinity;
+  let count = 0;
+  for (const value of values ?? []) {
+    const number = Number(value);
+    if (!Number.isFinite(number)) continue;
+    if (number < min) min = number;
+    if (number > max) max = number;
+    count += 1;
+  }
+  return {
+    min: count ? min : fallback,
+    max: count ? max : fallback,
+    count
+  };
+}
+
 async function loadJsonFile(path) {
   return JSON.parse(await readFile(path, 'utf8'));
 }
@@ -167,7 +181,6 @@ function assertValidEntry(entry, seen) {
   }
 }
 
-
 function scanForInvalidData(value, sourceId, path = 'root') {
   if (Array.isArray(value)) {
     for (let index = 0; index < value.length; index += 1) scanForInvalidData(value[index], sourceId, `${path}[${index}]`);
@@ -182,7 +195,6 @@ function scanForInvalidData(value, sourceId, path = 'root') {
     scanForInvalidData(child, sourceId, `${path}.${key}`);
   }
 }
-
 
 async function pathSize(path) {
   const info = await stat(path);
@@ -346,8 +358,16 @@ async function buildLanguage(language, options) {
     if (!shards.has(shard)) shards.set(shard, []);
     shards.get(shard).push(entry);
   }
-  const frequencyScores = entries.map(entry => entry.frequency_score).filter(Number.isFinite);
-  const ipmValues = entries.flatMap(entry => entry.sources.map(source => source.ipm)).filter(Number.isFinite);
+
+  const frequencyRange = finiteNumericRange((function* () {
+    for (const entry of entries) yield entry.frequency_score;
+  })());
+  const ipmRange = finiteNumericRange((function* () {
+    for (const entry of entries) {
+      for (const source of entry.sources) yield source.ipm;
+    }
+  })());
+
   const diagnostics = {
     language,
     source_file: sourceFiles.length === 1 ? sourceFiles[0] : sourceFiles,
@@ -357,10 +377,10 @@ async function buildLanguage(language, options) {
     duplicate_lemmas: Math.max(0, processed - entries.length - invalidRecords),
     lemmas_with_search_form: entries.filter(entry => entry.search_form).length,
     lemmas_without_search_form: entries.filter(entry => !entry.search_form).length,
-    min_ipm: ipmValues.length ? Math.min(...ipmValues) : 0,
-    max_ipm: ipmValues.length ? Math.max(...ipmValues) : 0,
-    min_frequency_score: frequencyScores.length ? Math.min(...frequencyScores) : 0,
-    max_frequency_score: frequencyScores.length ? Math.max(...frequencyScores) : 0,
+    min_ipm: ipmRange.min,
+    max_ipm: ipmRange.max,
+    min_frequency_score: frequencyRange.min,
+    max_frequency_score: frequencyRange.max,
     root_samples: rootSamples(entries),
     ...(language === 'ru' ? { search_form_collisions: countSearchFormCollisions(entries) } : {})
   };
@@ -417,7 +437,7 @@ export async function main(argv = process.argv.slice(2)) {
 
 if (import.meta.url === `file://${process.argv[1]}`) {
   main().catch(error => {
-    console.error(error.message);
+    console.error(error?.stack || error?.message || error);
     process.exitCode = 1;
   });
 }
