@@ -4,6 +4,7 @@ import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { createCandidateIndexLoader } from '../associativvordes/js/candidate-index-loader.js';
+import { appendItems } from '../scripts/validate-associative-index.mjs';
 
 const fixture = 'tests/fixtures/associative-index-valid';
 const tmp = '.tmp/associative-index-validator';
@@ -16,6 +17,12 @@ const entry = (word, search_form, extra = {}) => ({
   category_breakdown: { normative: { max_ipm: 1, total_ipm: 1, sources: 1 } },
   sources: extra.sources ?? [{ id: 'normative/source.json', file: 'source.json', category: 'normative', ipm: 1 }]
 });
+
+const largeInput = Array.from({ length: 500_000 }, (_, index) => index);
+const largeOutput = [];
+assert.doesNotThrow(() => appendItems(largeOutput, largeInput), 'validator accumulation must not depend on argument spread limits');
+assert.equal(largeOutput.length, largeInput.length, 'validator accumulation preserves every large-shard entry');
+assert.equal(largeOutput.at(-1), largeInput.at(-1), 'validator accumulation preserves entry order');
 
 async function writeJson(path, value) { await mkdir(join(path, '..'), { recursive: true }).catch(() => {}); await writeFile(path, `${JSON.stringify(value, null, 2)}\n`); }
 async function makeValid(root = fixture) {
