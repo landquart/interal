@@ -169,6 +169,19 @@ function sourceMatchesOption(sourceId, fileName, sourceFile) {
   return sourceFile === sourceId || sourceFile === fileName || sourceId.endsWith(`/${sourceFile}`);
 }
 
+function normalizeLanguageSource(category, source) {
+  if (typeof source === 'string') return { fileName: source, sourceId: `${category}/${source}`, optional: false };
+  if (!source || typeof source !== 'object') throw new Error(`Invalid LANGUAGE_SOURCES entry for ${category}`);
+  const fileName = source.file;
+  if (typeof fileName !== 'string' || !fileName || basename(fileName) !== fileName) throw new Error(`Invalid LANGUAGE_SOURCES file for ${category}`);
+  if (source.optional != null && source.optional !== true) throw new Error(`Invalid optional metadata for ${category}/${fileName}: use optional: true or omit it`);
+  return { fileName, sourceId: `${category}/${fileName}`, optional: source.optional === true };
+}
+
+function expectedLanguageSources(sources) {
+  return CATEGORY_ORDER.flatMap(category => (sources[category] ?? []).map(source => normalizeLanguageSource(category, source)));
+}
+
 function countSearchFormCollisions(entries) {
   const originalsBySearchForm = new Map();
   for (const entry of entries) {
@@ -190,6 +203,9 @@ function buildReport(language, result, manifestLanguage, totalBytes = 0) {
     entries: result.entries.length,
     duplicates_merged: result.diagnostics.duplicate_lemmas,
     invalid_records: result.diagnostics.invalid_records,
+    expected_source_files: result.expectedSourceFiles,
+    loaded_source_files: result.sourceFiles,
+    missing_optional_sources: result.missingOptionalSources,
     source_files: result.sourceFiles,
     shards: manifestLanguage.shards.map(shard => ({ file: shard.file, entries: shard.entries })),
     total_bytes: totalBytes,
@@ -216,33 +232,40 @@ async function buildLanguage(language, options) {
     ? DRY_RUN_SOURCE_BY_LANGUAGE[language]
     : null;
 
-  for (const category of CATEGORY_ORDER) {
-    for (const fileName of sources[category] ?? []) {
-      if (options.maxRecords != null && processed >= options.maxRecords) break;
-      const sourceId = `${category}/${fileName}`;
-      if (!sourceMatchesOption(sourceId, fileName, options.sourceFile)) continue;
-      if (dryRunSource && sourceId !== dryRunSource) continue;
-      const path = join(options.inputRoot, language, fileName);
-      if (!(await fileExists(path))) {
-        if (dryRunSource === sourceId) throw new Error(`Dry-run source not found: ${path}`);
+  const expectedSources = expectedLanguageSources(sources);
+  const expectedSourceFiles = expectedSources.map(source => source.sourceId);
+  const missingOptionalSources = [];
+
+  for (const source of expectedSources) {
+    const { fileName, sourceId, optional } = source;
+    const matchesRequestedSource = sourceMatchesOption(sourceId, fileName, options.sourceFile);
+    if (options.sourceFile && !matchesRequestedSource) continue;
+    if (dryRunSource && sourceId !== dryRunSource) continue;
+    const path = join(options.inputRoot, language, fileName);
+    if (!(await fileExists(path))) {
+      if (dryRunSource === sourceId) throw new Error(`Dry-run source not found: ${path}`);
+      if (optional) {
+        missingOptionalSources.push(sourceId);
         continue;
       }
-      sourceFiles.push(sourceId);
-      const data = await loadJsonFile(path);
-      scanForInvalidData(data, sourceId);
-      for (const record of extractFrequencyRecords(data, sourceId)) {
-        if (options.maxRecords != null && processed >= options.maxRecords) break;
-        if (record.ipm < 0) throw new Error(`Negative IPM in ${sourceId}: ${record.normalized}`);
-        if (record.frequency_lookup_key !== record.normalized) throw new Error(`Frequency lookup key must equal normalized original word in ${sourceId}: ${record.normalized}`);
-        if (!record.normalized || !Number.isFinite(record.ipm)) {
-          invalidRecords += 1;
-          continue;
-        }
-        mergeFrequencyRecord(merged, record, sourceId);
-        processed += 1;
-      }
-      if (dryRunSource) break;
+      throw new Error(`Missing required source for ${language}: ${sourceId} at ${path}`);
     }
+    if (options.maxRecords != null && processed >= options.maxRecords) continue;
+    sourceFiles.push(sourceId);
+    const data = await loadJsonFile(path);
+    scanForInvalidData(data, sourceId);
+    for (const record of extractFrequencyRecords(data, sourceId)) {
+      if (options.maxRecords != null && processed >= options.maxRecords) break;
+      if (record.ipm < 0) throw new Error(`Negative IPM in ${sourceId}: ${record.normalized}`);
+      if (record.frequency_lookup_key !== record.normalized) throw new Error(`Frequency lookup key must equal normalized original word in ${sourceId}: ${record.normalized}`);
+      if (!record.normalized || !Number.isFinite(record.ipm)) {
+        invalidRecords += 1;
+        continue;
+      }
+      mergeFrequencyRecord(merged, record, sourceId);
+      processed += 1;
+    }
+    if (dryRunSource) break;
   }
 
   const entries = stableSortEntries(Array.from(merged.values()).map(record => {
@@ -291,7 +314,7 @@ async function buildLanguage(language, options) {
     ...(language === 'ru' ? { search_form_collisions: countSearchFormCollisions(entries) } : {})
   };
   if (options.sourceFile && sourceFiles.length === 0) throw new Error(`--source-file did not match an existing source for ${language}: ${options.sourceFile}`);
-  return { entries, sourceFiles, shards: Array.from(shards.entries()).sort(([a], [b]) => a.localeCompare(b)), diagnostics };
+  return { entries, sourceFiles, expectedSourceFiles, missingOptionalSources, shards: Array.from(shards.entries()).sort(([a], [b]) => a.localeCompare(b)), diagnostics };
 }
 
 export async function main(argv = process.argv.slice(2)) {
