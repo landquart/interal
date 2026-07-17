@@ -49,7 +49,11 @@ assert.match(publishWorkflow, /npm run validate:associative-index[\s\S]*--strict
 assert.match(publishWorkflow, /manifest languages mismatch/, 'publish workflow verifies the merged manifest language set');
 assert.match(publishWorkflow, /associativvordes\/candidate-index/, 'publish workflow copies the result into the runtime candidate-index directory');
 assert.match(publishWorkflow, /source corpora|forbidden source/, 'publish workflow checks for source corpora and temporary files');
-assert.match(publishWorkflow, /peter-evans\/create-pull-request@v6/, 'publish workflow opens a pull request for manual review');
+assert.match(publishWorkflow, /peter-evans\/create-pull-request@v8/, 'publish workflow uses the Node 24 create-pull-request action');
+assert.match(publishWorkflow, /id:\s*create_pr[\s\S]*continue-on-error:\s*true/, 'publish workflow tolerates a transient PR API timeout only at the PR action step');
+assert.match(publishWorkflow, /name:\s*Verify review pull request/, 'publish workflow verifies that a review PR actually exists');
+assert.match(publishWorkflow, /gh pr list[\s\S]*--head "\$PR_BRANCH"/, 'publish workflow polls GitHub for the publication PR');
+assert.match(publishWorkflow, /timeout 120s gh pr create/, 'publish workflow has a bounded CLI fallback for PR creation');
 assert.match(publishWorkflow, /branch:\s*publish\/associative-index-\$\{\{ github\.run_id \}\}/, 'publish workflow uses a separate publication branch');
 assert.match(publishWorkflow, /base:\s*main/, 'publish workflow targets main through a pull request');
 assert.doesNotMatch(publishWorkflow, /git\s+push\s+origin\s+main|git\s+push\s+[^\n]*main/, 'publish workflow does not directly push to main');
