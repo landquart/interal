@@ -69,7 +69,7 @@ jobs:
           cp associativvordes/candidate-index/${{ inputs.language }}/*.json ".tmp/associative-index-artifact/${{ inputs.language }}/"
 
       - name: Upload candidate index artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: associative-index-${{ inputs.language }}
           path: .tmp/associative-index-artifact
