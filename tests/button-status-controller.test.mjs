@@ -35,7 +35,7 @@ const first = controller.start('Calculating...');
 assert.deepEqual(calls.at(-1), { text: 'Calculating...', disabled: true, loading: true }, 'run start disables busy loading button');
 
 controller.success(first, 'Done');
-assert.deepEqual(calls.at(-1), { text: 'Done', disabled: true, loading: true }, 'success keeps Done visible while pending restore');
+assert.deepEqual(calls.at(-1), { text: 'Done', disabled: true, loading: false }, 'success keeps Done visible without showing the loader');
 assert.equal(timers.at(-1).delay, 800, 'success restore uses 800 ms delay');
 
 const second = controller.start('Calculating again...');
