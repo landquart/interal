@@ -14,7 +14,7 @@ const fixtureFrequencyRoot = 'tests/fixtures/associative-frequency';
 const entry = (word, search_form, extra = {}) => ({
   word, normalized: extra.normalized ?? word.toLowerCase(), search_form, rank: null, frequency_score: extra.frequency_score ?? 50,
   category_breakdown: { normative: { max_ipm: 1, total_ipm: 1, sources: 1 } },
-  sources: extra.sources ?? [{ id: 'normative/source.json', ipm: 1 }]
+  sources: extra.sources ?? [{ id: 'normative/source.json', file: 'source.json', category: 'normative', ipm: 1 }]
 });
 
 async function writeJson(path, value) { await mkdir(join(path, '..'), { recursive: true }).catch(() => {}); await writeFile(path, `${JSON.stringify(value, null, 2)}\n`); }
@@ -49,6 +49,9 @@ assert.equal(run(await mutate('no-sources', async r => { const a=await readJson(
 assert.equal(run(await mutate('nan-like', async r => { await writeFile(join(r,'en/a.json'), (await readFile(join(r,'en/a.json'),'utf8')).replace('50','NaN')); })).status, 1, 'NaN-like corruption rejected');
 assert.equal(run(await mutate('inf-like', async r => { await writeFile(join(r,'en/a.json'), (await readFile(join(r,'en/a.json'),'utf8')).replace('50','Infinity')); })).status, 1, 'Infinity-like corruption rejected');
 assert.equal(run(await mutate('negative-ipm', async r => { const a=await readJson(join(r,'en/a.json')); a[0].sources[0].ipm=-1; await writeJson(join(r,'en/a.json'),a); })).status, 1, 'negative IPM rejected');
+assert.equal(run(await mutate('missing-source-category', async r => { const a=await readJson(join(r,'en/a.json')); delete a[0].sources[0].category; await writeJson(join(r,'en/a.json'),a); })).status, 1, 'source without category rejected');
+assert.equal(run(await mutate('missing-source-ipm', async r => { const a=await readJson(join(r,'en/a.json')); delete a[0].sources[0].ipm; await writeJson(join(r,'en/a.json'),a); })).status, 1, 'source without ipm rejected');
+assert.equal(run(await mutate('source-file-path', async r => { const a=await readJson(join(r,'en/a.json')); a[0].sources[0].file='normative/source.json'; await writeJson(join(r,'en/a.json'),a); })).status, 1, 'source file path rejected');
 assert.equal(run(await mutate('duplicate-normalized', async r => { const a=await readJson(join(r,'en/a.json')); a[1].normalized=a[0].normalized; await writeJson(join(r,'en/a.json'),a); })).status, 1, 'duplicate normalized detected');
 assert.equal(run(await mutate('absolute-source', async r => { const a=await readJson(join(r,'en/a.json')); a[0].sources[0].id='/tmp/source.json'; await writeJson(join(r,'en/a.json'),a); })).status, 1, 'absolute source path detected');
 assert.equal(run(await mutate('traversal', async r => { const m=await readJson(join(r,'manifest.json')); m.languages.en.shards[0].file='../x.json'; await writeJson(join(r,'manifest.json'),m); })).status, 1, 'path traversal detected');
