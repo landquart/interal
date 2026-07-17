@@ -23,7 +23,9 @@ assert.match(script, /state\.languages = \{ \.\.\.state\.languages, \.\.\.nextLa
 assert.match(analyzer, /combination_method = 'primary_only'/, 'review errors keep primary evaluation');
 assert.match(qwen, /requestTimeoutMs: 15000/, 'single Qwen request has bounded timeout');
 assert.match(qwen, /AbortController/, 'Qwen timeout uses AbortController');
-assert.match(script, /finally[\s\S]*setCalculateButtonStatus\(defaultCalculateButtonText\(\), false, \{ loading: false \}\)/, 'button resets through finally');
+assert.match(script, /buttonController\?\.success[\s\S]*Done[\s\S]*Готово/, 'successful calculation shows localized completion status');
+const searchDerivativesBlock = script.match(/async function searchDerivatives\(\) \{[\s\S]*?\n    \}/)?.[0] || '';
+assert.doesNotMatch(searchDerivativesBlock, /finally[\s\S]*setCalculateButtonStatus\(defaultCalculateButtonText\(\), false, \{ loading: false \}\)/, 'finally does not immediately overwrite the completion status');
 assert.match(script, /completed_with_warnings/, 'global status supports completed with warnings');
 assert.match(script, /normalizeRestoredLanguageStatuses[\s\S]*loading_index[\s\S]*analyzing[\s\S]*aborted/, 'interrupted restore becomes aborted');
 assert.match(script, /InteralAssociativDiagnostics/, 'developer diagnostics are available behind explicit diagnostics function');

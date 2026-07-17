@@ -42,6 +42,7 @@ const TEXT_I18N = {
           finalAssociation: 'FA — конечная ассоциация', totalAssociation: 'TA — общая сумма баллов языков', languagesRepresented: 'языков представлено', languageGroups: 'языковых групп', accept: 'ПРИНЯТЬ', reject: 'НЕ ПРИНИМАТЬ', insufficientData: 'Недостаточно данных', noCalculatedData: 'Нет рассчитанных данных.', noCandidates: 'Кандидаты не найдены.', indexUnavailable: 'Индекс языка недоступен.', qwenUnavailable: 'Анализ Qwen недоступен.', calculationAborted: 'Расчёт был прерван.', calculationIncomplete: 'Расчёт не завершён.', partialErrors: 'Часть языков рассчитана с ошибками.', fewerLanguages: 'Представлено меньше 3 языков.', fewerGroups: 'Представлено меньше 2 языковых групп.', belowThreshold: 'FA ниже 35%.', semanticUnconfirmed: 'Семантическое соответствие не подтверждено.', reasons: 'Причины', warnings: 'Предупреждения', allMet: 'Все условия выполнены.'
         },
         alerts: {
+          rootRequired: 'Введите кандидатный корень или предлог.',
           jsonCardUnavailable: 'Сначала выполните расчёт.',
           jsonCardCopied: 'JSON-карточка скопирована',
           jsonCardCopiedTitle: 'Скопировано',
@@ -88,6 +89,7 @@ const TEXT_I18N = {
           finalAssociation: 'FA — final association', totalAssociation: 'TA — total language score', languagesRepresented: 'languages represented', languageGroups: 'language groups', accept: 'ACCEPT', reject: 'DO NOT ACCEPT', insufficientData: 'Insufficient data', noCalculatedData: 'No calculated data.', noCandidates: 'No candidates found.', indexUnavailable: 'The language index is unavailable.', qwenUnavailable: 'Qwen analysis is unavailable.', calculationAborted: 'The calculation was aborted.', calculationIncomplete: 'The calculation is incomplete.', partialErrors: 'Some languages were calculated with errors.', fewerLanguages: 'Fewer than 3 languages are represented.', fewerGroups: 'Fewer than 2 language groups are represented.', belowThreshold: 'FA is below 35%.', semanticUnconfirmed: 'Semantic correspondence is not confirmed.', reasons: 'Reasons', warnings: 'Warnings', allMet: 'All conditions are met.'
         },
         alerts: {
+          rootRequired: 'Enter a candidate root or preposition.',
           jsonCardUnavailable: 'Run a calculation first.',
           jsonCardCopied: 'JSON card copied',
           jsonCardCopiedTitle: 'Copied',
@@ -117,6 +119,21 @@ const TEXT_I18N = {
 
     function setCalculateButtonStatus(text, disabled = true, options = {}) {
       window.InteralButtonStatus?.setButtonStatus('#calculateBtn', text, disabled, options);
+    }
+
+    let calculateButtonController = null;
+
+    function getCalculateButtonController() {
+      if (!calculateButtonController) {
+        calculateButtonController = window.InteralButtonStatus?.createButtonStatusController?.({
+          setStatus: setCalculateButtonStatus,
+          getDefaultText: defaultCalculateButtonText,
+          getSuccessText: () => currentLang() === 'en' ? 'Done' : 'Готово',
+          getErrorText: () => currentLang() === 'en' ? 'Calculation error' : 'Ошибка расчёта',
+          successDelayMs: 800
+        });
+      }
+      return calculateButtonController;
     }
 
     function defaultCalculateButtonText() {
@@ -500,7 +517,7 @@ const TEXT_I18N = {
 
       if (!root) {
         alert(textGroup('alerts').rootRequired);
-        return;
+        return false;
       }
 
       state.root = root;
@@ -562,18 +579,27 @@ const TEXT_I18N = {
       onProgress?.(currentLang() === 'en' ? 'Calculating final percentage...' : 'Расчёт итогового процента...');
       state.languages = { ...state.languages, ...nextLangs };
       calculateFinal();
+      return true;
     }
 
     async function searchDerivatives() {
       const runId = nextRunId();
+      const buttonController = getCalculateButtonController();
+      const buttonToken = buttonController?.start(currentLang() === 'en' ? 'Calculating...' : 'Расчёт...');
       resetRunDiagnostics(runId);
       try {
-        setCalculateButtonStatus(currentLang() === 'en' ? 'Calculating...' : 'Расчёт...', true, { loading: true });
-        await runCalculation({
+        const calculated = await runCalculation({
           runId,
-          onProgress: text => { if (isCurrentRun(runId)) setCalculateButtonStatus(text, true, { loading: true }); }
+          onProgress: text => { if (isCurrentRun(runId)) buttonController?.progress(buttonToken, text); }
         });
-        if (!isCurrentRun(runId)) return;
+        if (!isCurrentRun(runId)) {
+          buttonController?.abort(buttonToken);
+          return;
+        }
+        if (!calculated) {
+          buttonController?.restore(buttonToken);
+          return;
+        }
         state.checked = true;
         {
           const summary = summarizeLanguageStatuses(state.languageStatuses);
@@ -581,18 +607,19 @@ const TEXT_I18N = {
         }
         renderAll();
         window.InteralFormDraft?.save?.();
-        setCalculateButtonStatus(state.globalStatus === 'completed_with_warnings' ? textGroup('errors').completedWithWarnings : (currentLang() === 'en' ? 'Done' : 'Готово'), true, { loading: true });
-        setTimeout(() => {
-          if (isCurrentRun(runId)) setCalculateButtonStatus(defaultCalculateButtonText(), false, { loading: false });
-        }, 800);
+        buttonController?.success(buttonToken, state.globalStatus === 'completed_with_warnings' ? textGroup('errors').completedWithWarnings : (currentLang() === 'en' ? 'Done' : 'Готово'));
       } catch (error) {
-        if (!isCurrentRun(runId)) return;
+        if (!isCurrentRun(runId)) {
+          buttonController?.abort(buttonToken);
+          return;
+        }
         console.error(error);
-        setCalculateButtonStatus(currentLang() === 'en' ? 'Calculation error' : 'Ошибка расчёта', false, { loading: false });
+        buttonController?.error(buttonToken, currentLang() === 'en' ? 'Calculation error' : 'Ошибка расчёта');
       } finally {
         if (isCurrentRun(runId)) {
-          setCalculateButtonStatus(defaultCalculateButtonText(), false, { loading: false });
           renderAll();
+        } else {
+          buttonController?.abort(buttonToken);
         }
       }
     }
