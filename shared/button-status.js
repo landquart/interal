@@ -1,9 +1,8 @@
 (function () {
   function setButtonStatus(selector, text, disabled = true, options = {}) {
-    const button =
-      typeof selector === 'string'
-        ? document.querySelector(selector)
-        : selector;
+    const button = typeof selector === 'string'
+      ? document.querySelector(selector)
+      : selector;
 
     if (!button) return false;
 
@@ -14,18 +13,15 @@
     button.disabled = Boolean(disabled);
     button.setAttribute('aria-busy', loading ? 'true' : 'false');
 
-    if (label) {
-      label.textContent = text || '';
-    } else {
-      button.textContent = text || '';
-    }
+    if (label) label.textContent = text || '';
+    else button.textContent = text || '';
 
     return true;
   }
 
-
   function createButtonStatusController(options = {}) {
-    const setStatus = options.setStatus || ((text, disabled, statusOptions) => setButtonStatus(options.selector, text, disabled, statusOptions));
+    const setStatus = options.setStatus
+      || ((text, disabled, statusOptions) => setButtonStatus(options.selector, text, disabled, statusOptions));
     const getDefaultText = options.getDefaultText || (() => '');
     const getSuccessText = options.getSuccessText || (() => 'Done');
     const getErrorText = options.getErrorText || (() => 'Error');
@@ -67,14 +63,20 @@
       return true;
     }
 
-    function success(token, text = getSuccessText()) {
-      if (!isCurrent(token)) return false;
-      clearRestoreTimer();
-      setStatus(text, true, { loading: true });
+    function scheduleRestore(token) {
       restoreTimer = schedule(() => {
         restoreTimer = null;
         restore(token);
       }, delayMs);
+    }
+
+    function success(token, text = getSuccessText()) {
+      if (!isCurrent(token)) return false;
+      clearRestoreTimer();
+      // Keep the button temporarily disabled to prevent a duplicate run, but
+      // stop the loader immediately: the operation has already completed.
+      setStatus(text, true, { loading: false });
+      scheduleRestore(token);
       return true;
     }
 
@@ -82,10 +84,7 @@
       if (!isCurrent(token)) return false;
       clearRestoreTimer();
       setStatus(text, false, { loading: false });
-      restoreTimer = schedule(() => {
-        restoreTimer = null;
-        restore(token);
-      }, delayMs);
+      scheduleRestore(token);
       return true;
     }
 
