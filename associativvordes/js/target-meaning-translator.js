@@ -1,5 +1,4 @@
-import { API_CONFIG } from './swow-client.js';
-import { normalizeSwowWord } from './swow-client.js';
+import { API_CONFIG, normalizeSwowWord } from './swow-client.js';
 
 export const TARGET_TRANSLATION_LANGUAGES = Object.freeze(['en', 'de', 'fr', 'es', 'it', 'ru']);
 const LANGUAGE_SET = new Set(TARGET_TRANSLATION_LANGUAGES);
@@ -14,10 +13,17 @@ export const TARGET_TRANSLATION_ERROR_CODES = Object.freeze({
   BACKEND_ERROR: 'TARGET_TRANSLATION_BACKEND_ERROR'
 });
 
+const OTHER_TRANSLATIONS = Object.freeze({ en: 'other', de: 'andere', fr: 'autre', es: 'otro', it: 'altro', ru: 'другой' });
+const RULE_TRANSLATIONS = Object.freeze({ en: 'rule', de: 'Regel', fr: 'règle', es: 'regla', it: 'regola', ru: 'правило' });
+const SUN_TRANSLATIONS = Object.freeze({ en: 'sun', de: 'Sonne', fr: 'soleil', es: 'sol', it: 'sole', ru: 'солнце' });
+
 export const OFFLINE_TARGET_TRANSLATION_CACHE = Object.freeze({
-  'ru:правило': Object.freeze({ ru: 'правило', en: 'rule', de: 'Regel', es: 'regla', fr: 'règle', it: 'regola' }),
-  'ru:солнце': Object.freeze({ ru: 'солнце', en: 'sun', de: 'Sonne', es: 'sol', fr: 'soleil', it: 'sole' }),
-  'ru:другой': Object.freeze({ en: 'other', de: 'andere', fr: 'autre', es: 'otro', it: 'altro', ru: 'другой' })
+  'ru:правило': RULE_TRANSLATIONS,
+  'en:rule': RULE_TRANSLATIONS,
+  'ru:солнце': SUN_TRANSLATIONS,
+  'en:sun': SUN_TRANSLATIONS,
+  'ru:другой': OTHER_TRANSLATIONS,
+  'en:other': OTHER_TRANSLATIONS
 });
 
 const runtimeCache = new Map();
@@ -45,12 +51,39 @@ function normalizeMeaning(value) {
   return String(value || '').trim();
 }
 
+function interfaceLanguage() {
+  try {
+    const stored = globalThis.localStorage?.getItem?.('interal.lang');
+    if (stored === 'en' || stored === 'ru') return stored;
+  } catch {
+    // Storage may be unavailable in private or test contexts.
+  }
+  const htmlLang = normalizeLanguageCode(globalThis.document?.documentElement?.lang);
+  return htmlLang === 'en' ? 'en' : (htmlLang === 'ru' ? 'ru' : null);
+}
+
+export function resolveTargetMeaningSourceLanguage(targetMeaning, requestedLanguage = 'auto') {
+  const requested = normalizeLanguageCode(requestedLanguage);
+  const uiLanguage = interfaceLanguage();
+  if (!requested || requested === 'auto') return uiLanguage || 'ru';
+
+  // script.js historically supplied "ru" unconditionally. On the English UI,
+  // the documented examples and user input are English, so treat that value as
+  // the old fallback rather than as an explicit override.
+  if (requested === 'ru' && uiLanguage === 'en') return 'en';
+
+  if (!LANGUAGE_SET.has(requested)) {
+    fail(TARGET_TRANSLATION_ERROR_CODES.INVALID_INPUT, 'Unsupported source language.');
+  }
+  return requested;
+}
+
 function validateLanguages(sourceLanguage, targetLanguages) {
   const source = normalizeLanguageCode(sourceLanguage);
   if (!LANGUAGE_SET.has(source)) fail(TARGET_TRANSLATION_ERROR_CODES.INVALID_INPUT, 'Unsupported source language.');
   const targets = Array.isArray(targetLanguages) ? targetLanguages.map(normalizeLanguageCode) : [];
   if (!targets.length) fail(TARGET_TRANSLATION_ERROR_CODES.INVALID_INPUT, 'targetLanguages must be a non-empty array.');
-  if (targets.some((code) => !LANGUAGE_SET.has(code))) fail(TARGET_TRANSLATION_ERROR_CODES.INVALID_INPUT, 'Unsupported target language.');
+  if (targets.some(code => !LANGUAGE_SET.has(code))) fail(TARGET_TRANSLATION_ERROR_CODES.INVALID_INPUT, 'Unsupported target language.');
   return { source, targets: [...new Set(targets)] };
 }
 
@@ -59,34 +92,56 @@ function cacheKey(targetMeaning, sourceLanguage) {
 }
 
 function validateTranslationsPayload(payload, targetLanguages) {
-  if (!payload || typeof payload !== 'object' || Array.isArray(payload)) fail(TARGET_TRANSLATION_ERROR_CODES.INVALID_RESPONSE, 'Translation response is not an object.');
+  if (!payload || typeof payload !== 'object' || Array.isArray(payload)) {
+    fail(TARGET_TRANSLATION_ERROR_CODES.INVALID_RESPONSE, 'Translation response is not an object.');
+  }
   const translations = payload.translations;
-  if (!translations || typeof translations !== 'object' || Array.isArray(translations)) fail(TARGET_TRANSLATION_ERROR_CODES.INVALID_RESPONSE, 'Translation response has no translations object.');
+  if (!translations || typeof translations !== 'object' || Array.isArray(translations)) {
+    fail(TARGET_TRANSLATION_ERROR_CODES.INVALID_RESPONSE, 'Translation response has no translations object.');
+  }
   const normalized = {};
   for (const language of targetLanguages) {
     const value = translations[language];
-    if (typeof value !== 'string') fail(TARGET_TRANSLATION_ERROR_CODES.INVALID_RESPONSE, `Missing translation for ${language}.`, { details: payload });
+    if (typeof value !== 'string') {
+      fail(TARGET_TRANSLATION_ERROR_CODES.INVALID_RESPONSE, `Missing translation for ${language}.`, { details: payload });
+    }
     const trimmed = value.trim();
-    if (!trimmed || trimmed.length > 80 || /[\r\n]/.test(trimmed)) fail(TARGET_TRANSLATION_ERROR_CODES.INVALID_RESPONSE, `Invalid translation for ${language}.`, { details: payload });
+    if (!trimmed || trimmed.length > 80 || /[\r\n]/.test(trimmed)) {
+      fail(TARGET_TRANSLATION_ERROR_CODES.INVALID_RESPONSE, `Invalid translation for ${language}.`, { details: payload });
+    }
     normalized[language] = trimmed;
   }
   return { translations: normalized };
 }
 
-export function clearTargetMeaningTranslationCache() {
-  runtimeCache.clear();
+export function clearTargetMeaningTranslationCache(options = {}) {
+  // Ordinary calculation starts must not discard a useful key-based cache.
+  // Tests and diagnostics can still explicitly request a complete reset.
+  if (options === true || options?.force === true) runtimeCache.clear();
 }
 
-export async function translateTargetMeaning({ targetMeaning, sourceLanguage = 'ru', targetLanguages = TARGET_TRANSLATION_LANGUAGES, signal, timeoutMs = DEFAULT_TIMEOUT_MS } = {}) {
+export function getTargetMeaningTranslationCacheSize() {
+  return runtimeCache.size;
+}
+
+export async function translateTargetMeaning({
+  targetMeaning,
+  sourceLanguage = 'auto',
+  targetLanguages = TARGET_TRANSLATION_LANGUAGES,
+  signal,
+  timeoutMs = DEFAULT_TIMEOUT_MS
+} = {}) {
   const meaning = normalizeMeaning(targetMeaning);
   if (!meaning) fail(TARGET_TRANSLATION_ERROR_CODES.INVALID_INPUT, 'targetMeaning is required.');
-  const { source, targets } = validateLanguages(sourceLanguage, targetLanguages);
+  const resolvedSource = resolveTargetMeaningSourceLanguage(meaning, sourceLanguage);
+  const { source, targets } = validateLanguages(resolvedSource, targetLanguages);
   const key = cacheKey(meaning, source);
   const cached = runtimeCache.get(key) || OFFLINE_TARGET_TRANSLATION_CACHE[key];
-  if (cached && targets.every((language) => typeof cached[language] === 'string' && cached[language].trim())) {
-    const translations = Object.fromEntries(targets.map((language) => [language, cached[language].trim()]));
+
+  if (cached && targets.every(language => typeof cached[language] === 'string' && cached[language].trim())) {
+    const translations = Object.fromEntries(targets.map(language => [language, cached[language].trim()]));
     runtimeCache.set(key, { ...(runtimeCache.get(key) || {}), ...translations });
-    return { translations, cached: true };
+    return { translations, cached: true, networkRequest: false, sourceLanguage: source };
   }
 
   const timeoutController = new AbortController();
@@ -94,6 +149,7 @@ export async function translateTargetMeaning({ targetMeaning, sourceLanguage = '
   const timeoutId = setTimeout(() => timeoutController.abort(new Error('Target translation timeout')), timeoutMs);
   const abort = () => requestController.abort(signal?.reason);
   const timeoutAbort = () => requestController.abort(timeoutController.signal.reason);
+
   if (signal) {
     if (signal.aborted) fail(TARGET_TRANSLATION_ERROR_CODES.ABORTED, 'Target translation aborted.');
     signal.addEventListener('abort', abort, { once: true });
@@ -105,7 +161,10 @@ export async function translateTargetMeaning({ targetMeaning, sourceLanguage = '
     response = await fetch(API_CONFIG.qwenAssociationUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ task: 'associative_target_translation', payload: { targetMeaning: meaning, sourceLanguage: source, targetLanguages: targets } }),
+      body: JSON.stringify({
+        task: 'associative_target_translation',
+        payload: { targetMeaning: meaning, sourceLanguage: source, targetLanguages: targets }
+      }),
       signal: requestController.signal
     });
   } catch (error) {
@@ -119,22 +178,38 @@ export async function translateTargetMeaning({ targetMeaning, sourceLanguage = '
   }
 
   let payload = null;
-  try { payload = await response.json(); } catch (error) { fail(TARGET_TRANSLATION_ERROR_CODES.INVALID_RESPONSE, 'Target translation returned invalid JSON.', { cause: error }); }
-  if (!response.ok) fail(payload?.errorCode || TARGET_TRANSLATION_ERROR_CODES.HTTP_ERROR, payload?.error || 'Target translation HTTP error.', { status: response.status, details: payload });
-  if (payload?.ok === false || payload?.errorCode) fail(payload.errorCode || TARGET_TRANSLATION_ERROR_CODES.BACKEND_ERROR, payload.error || 'Target translation backend error.', { details: payload });
+  try {
+    payload = await response.json();
+  } catch (error) {
+    fail(TARGET_TRANSLATION_ERROR_CODES.INVALID_RESPONSE, 'Target translation returned invalid JSON.', { cause: error });
+  }
+  if (!response.ok) {
+    fail(payload?.errorCode || TARGET_TRANSLATION_ERROR_CODES.HTTP_ERROR, payload?.error || 'Target translation HTTP error.', { status: response.status, details: payload });
+  }
+  if (payload?.ok === false || payload?.errorCode) {
+    fail(payload.errorCode || TARGET_TRANSLATION_ERROR_CODES.BACKEND_ERROR, payload.error || 'Target translation backend error.', { details: payload });
+  }
+
   const parsed = validateTranslationsPayload(payload, targets);
   runtimeCache.set(key, { ...(runtimeCache.get(key) || {}), ...parsed.translations });
-  return { ...parsed, cached: false };
+  return { ...parsed, cached: false, networkRequest: true, sourceLanguage: source };
 }
 
 export async function getTargetMeaningForLanguage(targetMeaning, language, options = {}) {
   const lang = normalizeLanguageCode(language);
-  const result = await translateTargetMeaning({ targetMeaning, sourceLanguage: options.sourceLanguage || 'ru', targetLanguages: [lang], signal: options.signal, timeoutMs: options.timeoutMs });
+  const result = await translateTargetMeaning({
+    targetMeaning,
+    sourceLanguage: options.sourceLanguage || 'auto',
+    targetLanguages: [lang],
+    signal: options.signal,
+    timeoutMs: options.timeoutMs
+  });
   return result.translations[lang];
 }
 
-export function hasOfflineTargetMeaningTranslation(targetMeaning, language, sourceLanguage = 'ru') {
+export function hasOfflineTargetMeaningTranslation(targetMeaning, language, sourceLanguage = 'auto') {
   const lang = normalizeLanguageCode(language);
-  const key = cacheKey(targetMeaning, normalizeLanguageCode(sourceLanguage));
+  const source = resolveTargetMeaningSourceLanguage(targetMeaning, sourceLanguage);
+  const key = cacheKey(targetMeaning, source);
   return Boolean(OFFLINE_TARGET_TRANSLATION_CACHE[key]?.[lang]);
 }
