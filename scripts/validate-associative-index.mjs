@@ -63,12 +63,13 @@ function validateManifest(manifest, languages, c) {
   if (!isObject(manifest)) return c.error('manifest must be an object');
   if (manifest.version !== SUPPORTED_VERSION) c.error(`unsupported manifest version: ${manifest.version}`);
   if (manifest.normalizer_version !== SUPPORTED_NORMALIZER_VERSION) c.error(`unsupported normalizer_version: ${manifest.normalizer_version}`);
-  if (typeof (manifest.global_config_hash ?? manifest.config_hash) !== 'string' || !(manifest.global_config_hash ?? manifest.config_hash)) c.error('config hash is required');
+  if (typeof (manifest.global_config_hash ?? manifest.config_hash) !== 'string' || !(manifest.global_config_hash ?? manifest.config_hash)) c.error('global_config_hash is required');
   if (!isObject(manifest.languages)) return c.error('manifest.languages must be an object');
   const seenPaths = new Set();
   for (const lang of languages) {
     const info = manifest.languages[lang];
     if (!isObject(info)) { c.error(`language missing from manifest: ${lang}`); continue; }
+    if (info.language_config_hash != null && (typeof info.language_config_hash !== 'string' || !info.language_config_hash)) c.error(`${lang}: language_config_hash must be a non-empty string`);
     if (!Number.isInteger(info.entries) || info.entries < 0) c.error(`${lang}: entries must be a non-negative integer`);
     if (!Array.isArray(info.shards)) { c.error(`${lang}: shards must be an array`); continue; }
     for (const shard of info.shards) {

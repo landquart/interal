@@ -17,6 +17,9 @@ const DEFAULT_INPUT_ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '
 const DEFAULT_OUTPUT_ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', 'associativvordes', 'candidate-index');
 const MANIFEST_VERSION = '1';
 const NORMALIZER_VERSION = '2';
+const SUPPORTED_LANGUAGES = ['en', 'de', 'fr', 'es', 'it', 'ru'];
+const ENTRY_STRUCTURE = ['word', 'normalized', 'search_form', 'rank', 'frequency_score', 'category_breakdown', 'sources'];
+const SHARDING_RULES = { version: '1', strategy: 'first-lowercase-latin-letter-else-_other', shard_filename: '<language>/<shard>.json' };
 const DRY_RUN_SOURCE_BY_LANGUAGE = {
   en: 'normative/bnc-clean2.lemmatized_spacy_ipm6.json'
 };
@@ -53,9 +56,31 @@ function stableJson(value) {
   return JSON.stringify(value);
 }
 
-function configHash(languages) {
-  const config = { version: MANIFEST_VERSION, normalizer_version: NORMALIZER_VERSION, languages, CATEGORY_ORDER, BASE_CATEGORY_WEIGHTS, SCORE_CONFIG, sources: Object.fromEntries(languages.map(lang => [lang, LANGUAGE_SOURCES[lang] ?? {}])) };
+function hashConfig(config) {
   return createHash('sha256').update(stableJson(config)).digest('hex');
+}
+
+export function globalConfigHash({ languageSources = LANGUAGE_SOURCES, baseCategoryWeights = BASE_CATEGORY_WEIGHTS, scoreConfig = SCORE_CONFIG } = {}) {
+  const sources = Object.fromEntries(SUPPORTED_LANGUAGES.map(lang => [lang, languageSources[lang] ?? {}]));
+  return hashConfig({
+    version: MANIFEST_VERSION,
+    normalizer_version: NORMALIZER_VERSION,
+    entry_structure: ENTRY_STRUCTURE,
+    formulas_and_weights: { CATEGORY_ORDER, BASE_CATEGORY_WEIGHTS: baseCategoryWeights, SCORE_CONFIG: scoreConfig },
+    sharding_rules: SHARDING_RULES,
+    supported_languages: SUPPORTED_LANGUAGES,
+    language_sources: sources
+  });
+}
+
+export function languageConfigHash(language, { languageSources = LANGUAGE_SOURCES } = {}) {
+  return hashConfig({
+    version: MANIFEST_VERSION,
+    normalizer_version: NORMALIZER_VERSION,
+    language,
+    category_order: CATEGORY_ORDER,
+    sources: languageSources[language] ?? {}
+  });
 }
 
 async function loadJsonFile(path) {
@@ -256,13 +281,13 @@ async function buildLanguage(language, options) {
 
 export async function main(argv = process.argv.slice(2)) {
   const options = parseArgs(argv);
-  const manifest = { version: MANIFEST_VERSION, normalizer_version: NORMALIZER_VERSION, config_hash: configHash(options.languages), generated_at: new Date().toISOString(), languages: {} };
+  const manifest = { version: MANIFEST_VERSION, normalizer_version: NORMALIZER_VERSION, global_config_hash: globalConfigHash(), generated_at: new Date().toISOString(), languages: {} };
   const built = new Map();
 
   for (const language of options.languages) {
     const result = await buildLanguage(language, options);
     built.set(language, result);
-    manifest.languages[language] = { entries: result.entries.length, source_files: result.sourceFiles, shards: result.shards.map(([name, entries]) => ({ file: `${language}/${name}.json`, entries: entries.length })) };
+    manifest.languages[language] = { language_config_hash: languageConfigHash(language), entries: result.entries.length, source_files: result.sourceFiles, shards: result.shards.map(([name, entries]) => ({ file: `${language}/${name}.json`, entries: entries.length })) };
   }
 
   if (options.dryRun) {

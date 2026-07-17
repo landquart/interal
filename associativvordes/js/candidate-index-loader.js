@@ -96,10 +96,11 @@ function validateManifest(manifest) {
   if (!isPlainObject(manifest)) throw new CandidateIndexError(CANDIDATE_INDEX_ERROR_CODES.MANIFEST_INVALID, 'Candidate index manifest must be an object.');
   if (manifest.version !== SUPPORTED_MANIFEST_VERSION) throw new CandidateIndexError(CANDIDATE_INDEX_ERROR_CODES.MANIFEST_VERSION_UNSUPPORTED, 'Candidate index manifest version is unsupported.');
   if (manifest.normalizer_version !== SUPPORTED_NORMALIZER_VERSION) throw new CandidateIndexError(CANDIDATE_INDEX_ERROR_CODES.INDEX_CONFIG_INCOMPATIBLE, 'Candidate index normalizer version is incompatible.');
-  if (typeof manifestConfigHash(manifest) !== 'string' || !manifestConfigHash(manifest)) throw new CandidateIndexError(CANDIDATE_INDEX_ERROR_CODES.INDEX_CONFIG_INCOMPATIBLE, 'Candidate index config hash is required.');
+  if (typeof manifestConfigHash(manifest) !== 'string' || !manifestConfigHash(manifest)) throw new CandidateIndexError(CANDIDATE_INDEX_ERROR_CODES.INDEX_CONFIG_INCOMPATIBLE, 'Candidate index global config hash is required.');
   if (!isPlainObject(manifest.languages)) throw new CandidateIndexError(CANDIDATE_INDEX_ERROR_CODES.MANIFEST_INVALID, 'Candidate index manifest languages must be an object.');
   for (const [language, info] of Object.entries(manifest.languages)) {
     if (!isPlainObject(info)) throw new CandidateIndexError(CANDIDATE_INDEX_ERROR_CODES.MANIFEST_INVALID, 'Candidate index language metadata must be an object.', { language });
+    if (info.language_config_hash != null && (typeof info.language_config_hash !== 'string' || !info.language_config_hash)) throw new CandidateIndexError(CANDIDATE_INDEX_ERROR_CODES.INDEX_CONFIG_INCOMPATIBLE, 'Candidate index language config hash is invalid.', { language });
     if (!Number.isInteger(info.entries) || info.entries < 0) throw new CandidateIndexError(CANDIDATE_INDEX_ERROR_CODES.MANIFEST_INVALID, 'Candidate index language entries must be a non-negative integer.', { language });
     if (!Array.isArray(info.shards)) throw new CandidateIndexError(CANDIDATE_INDEX_ERROR_CODES.MANIFEST_INVALID, 'Candidate index shards must be listed.', { language });
     for (const shard of info.shards) {

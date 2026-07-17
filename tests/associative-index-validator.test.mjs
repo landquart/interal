@@ -29,7 +29,7 @@ async function makeValid(root = fixture) {
   await writeJson(join(root, 'en/a.json'), en.filter(e => e.search_form[0] === 'a'));
   await writeJson(join(root, 'en/i.json'), en.filter(e => e.search_form[0] === 'i'));
   await writeJson(join(root, 'ru/a.json'), ru);
-  await writeJson(join(root, 'manifest.json'), { version: '1', normalizer_version: '2', config_hash: 'fixture', languages: { en: { entries: 3, shards: [{ file: 'en/a.json', entries: 2 }, { file: 'en/i.json', entries: 1 }] }, ru: { entries: 2, shards: [{ file: 'ru/a.json', entries: 2 }] } } });
+  await writeJson(join(root, 'manifest.json'), { version: '1', normalizer_version: '2', global_config_hash: 'fixture-global', languages: { en: { language_config_hash: 'fixture-en', entries: 3, shards: [{ file: 'en/a.json', entries: 2 }, { file: 'en/i.json', entries: 1 }] }, ru: { language_config_hash: 'fixture-ru', entries: 2, shards: [{ file: 'ru/a.json', entries: 2 }] } } });
 }
 async function fresh(name) { const root = join(tmp, name); await rm(root, { recursive: true, force: true }); await cp(fixture, root, { recursive: true }); return root; }
 function run(root, args = []) { return spawnSync(process.execPath, ['scripts/validate-associative-index.mjs', `--index-root=${root}`, '--strict', ...args], { encoding: 'utf8' }); }
