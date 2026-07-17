@@ -10,6 +10,13 @@ const YANDEX_CHAT_COMPLETIONS_URL = 'https://ai.api.cloud.yandex.net/v1/chat/com
 const QWEN_235_MODEL = 'qwen3-235b-a22b-fp8/latest';
 const CONTROL_LANGUAGES = ['en', 'de', 'fr', 'es', 'it', 'ru'];
 const AUXILIARY_LANGUAGES = ['pl', 'sv', 'ca', 'oc', 'ro'];
+const TARGET_TRANSLATION_LANGUAGES = ['en', 'de', 'fr', 'es', 'it', 'ru'];
+const TARGET_TRANSLATION_CODES = new Set(TARGET_TRANSLATION_LANGUAGES);
+const TARGET_TRANSLATION_CACHE = new Map();
+const OFFLINE_TARGET_TRANSLATIONS = {
+  'ru:правило': { ru: 'правило', en: 'rule', de: 'Regel', es: 'regla', fr: 'règle', it: 'regola' },
+  'ru:солнце': { ru: 'солнце', en: 'sun', de: 'Sonne', es: 'sol', fr: 'soleil', it: 'sole' }
+};
 
 
 
@@ -314,6 +321,57 @@ function buildAffixesAlterPrompt(input) { return `Ты создаёшь JSON-к�
 Входная карточка:
 ${JSON.stringify(input, null, 2)}`; }
 
+
+function makeError(message, status = 400, errorCode = 'QWEN_INVALID_REQUEST') { return Object.assign(Error(message), { status, errorCode }); }
+function normalizeLanguageCode(value) { return String(value || '').trim().toLowerCase(); }
+function normalizeCacheText(value) { return String(value || '').trim().toLocaleLowerCase('ru'); }
+function targetTranslationCacheKey(targetMeaning, sourceLanguage) { return `${sourceLanguage}:${normalizeCacheText(targetMeaning)}`; }
+function validateTargetTranslationPayload(payload) {
+  if (!payload || typeof payload !== 'object' || Array.isArray(payload)) throw makeError('Invalid body', 400, 'TARGET_TRANSLATION_INVALID_INPUT');
+  const targetMeaning = normalizeString(payload.targetMeaning);
+  const sourceLanguage = normalizeLanguageCode(payload.sourceLanguage);
+  const targetLanguages = Array.isArray(payload.targetLanguages) ? [...new Set(payload.targetLanguages.map(normalizeLanguageCode))] : [];
+  if (!targetMeaning) throw makeError('targetMeaning is required', 400, 'TARGET_TRANSLATION_INVALID_INPUT');
+  if (!TARGET_TRANSLATION_CODES.has(sourceLanguage)) throw makeError('Unsupported sourceLanguage', 400, 'TARGET_TRANSLATION_UNSUPPORTED_LANGUAGE');
+  if (!targetLanguages.length) throw makeError('targetLanguages must be a non-empty array', 400, 'TARGET_TRANSLATION_INVALID_INPUT');
+  if (targetLanguages.some((code) => !TARGET_TRANSLATION_CODES.has(code))) throw makeError('Unsupported targetLanguages', 400, 'TARGET_TRANSLATION_UNSUPPORTED_LANGUAGE');
+  return { targetMeaning, sourceLanguage, targetLanguages };
+}
+function validateTargetTranslationResult(result, input) {
+  if (!result || typeof result !== 'object' || Array.isArray(result)) throw makeError('AI returned non-object JSON', 502, 'TARGET_TRANSLATION_INVALID_JSON');
+  const translations = result.translations;
+  if (!translations || typeof translations !== 'object' || Array.isArray(translations)) throw makeError('AI returned missing translations object', 502, 'TARGET_TRANSLATION_INVALID_JSON');
+  const normalized = {};
+  for (const language of input.targetLanguages) {
+    const value = translations[language];
+    if (typeof value !== 'string') throw makeError(`AI returned missing translation for ${language}`, 502, 'TARGET_TRANSLATION_INVALID_JSON');
+    const trimmed = value.trim();
+    if (!trimmed || trimmed.length > 80 || /[\r\n]/.test(trimmed)) throw makeError(`AI returned invalid translation for ${language}`, 502, 'TARGET_TRANSLATION_INVALID_VALUE');
+    normalized[language] = trimmed;
+  }
+  return { translations: normalized };
+}
+function buildTargetTranslationMessages(input) {
+  return [
+    { role: 'system', content: 'You are a precise translator. Return only valid JSON. Translate only the target meaning. Do not generate candidate words. Do not explain anything.' },
+    { role: 'user', content: `Translate one target meaning from ${input.sourceLanguage} into these language codes: ${input.targetLanguages.join(', ')}. Values must be short strings only, without explanations, alternatives, comments, markdown, or candidate generation. Return exactly this JSON shape: {"translations":{${input.targetLanguages.map((code) => `"${code}":""`).join(',')}}}. Input: ${JSON.stringify(input)}` }
+  ];
+}
+async function runTargetTranslation(payload) {
+  const input = validateTargetTranslationPayload(payload);
+  const key = targetTranslationCacheKey(input.targetMeaning, input.sourceLanguage);
+  const cached = TARGET_TRANSLATION_CACHE.get(key) || OFFLINE_TARGET_TRANSLATIONS[key];
+  if (cached && input.targetLanguages.every((language) => typeof cached[language] === 'string' && cached[language].trim())) {
+    const translations = Object.fromEntries(input.targetLanguages.map((language) => [language, cached[language].trim()]));
+    TARGET_TRANSLATION_CACHE.set(key, { ...(TARGET_TRANSLATION_CACHE.get(key) || {}), ...translations });
+    return { ok: true, translations, cached: true };
+  }
+  const result = await callYandex(buildTargetTranslationMessages(input), true);
+  const parsed = validateTargetTranslationResult(extract(result.content), input);
+  TARGET_TRANSLATION_CACHE.set(key, { ...(TARGET_TRANSLATION_CACHE.get(key) || {}), ...parsed.translations });
+  return { ok: true, ...parsed, cached: false, model: result.model };
+}
+
 function numOrNull(value){ const n=Number(value); return Number.isFinite(n)?Math.max(0,Math.min(100,Math.round(n))):null; }
 function normalizeAssociationResult(r,input,model){ return { word: normalizeString(r?.word,input.word), target_meaning: normalizeString(r?.target_meaning,input.targetMeaning), directness: numOrNull(r?.directness ?? r?.Di), field_relatedness: numOrNull(r?.field_relatedness ?? r?.Pr), domain_shift: numOrNull(r?.domain_shift ?? r?.Sh), responseLanguage: normalizeInterfaceLanguage(r?.responseLanguage||input.interfaceLanguage), short_explanation: normalizeString(r?.short_explanation||r?.explanation), model }; }
 function validateAssociationPayload(payload, interfaceLanguage){ const input={...payload, interfaceLanguage}; input.language=normalizeString(input.language); input.targetMeaning=normalizeString(input.targetMeaning); input.word=normalizeString(input.word); if(!input.language) throw Object.assign(Error('language is required'),{status:400}); if(!input.targetMeaning) throw Object.assign(Error('targetMeaning is required'),{status:400}); if(!input.word) throw Object.assign(Error('word is required'),{status:400}); return input; }
@@ -337,7 +395,8 @@ const TASKS = {
   community_word_check: { modelEnv: 'Qwen3_235B_A22B_Instruct_2507_FP8_Yandex', folderEnv: 'yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8' },
   grammar_short_word_check: { modelEnv: 'Qwen3_235B_A22B_Instruct_2507_FP8_Yandex', folderEnv: 'yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8' },
   associative_word_score: { modelEnv: 'Qwen3_235B_A22B_Instruct_2507_FP8_Yandex', folderEnv: 'yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8' },
-  determine_valen_type: { modelEnv: 'Qwen3_235B_A22B_Instruct_2507_FP8_Yandex', folderEnv: 'yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8' }
+  determine_valen_type: { modelEnv: 'Qwen3_235B_A22B_Instruct_2507_FP8_Yandex', folderEnv: 'yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8' },
+  associative_target_translation: { modelEnv: 'Qwen3_235B_A22B_Instruct_2507_FP8_Yandex', folderEnv: 'yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8' }
 };
 
 async function runAltervordes(payload, interfaceLanguage) {
@@ -415,11 +474,12 @@ export default async function handler(req, res) {
     if (task === 'affixes_alter_card') return send(res, 200, await runAffixesAlterCard(payload));
     if (task === 'altervordes') return send(res, 200, await runAltervordes(payload, interfaceLanguage));
     if (task === 'associative_word_score') return send(res, 200, await runAssociationScore(payload, interfaceLanguage));
+    if (task === 'associative_target_translation') return send(res, 200, await runTargetTranslation(payload));
     if (task === 'determine_valen_type') return send(res, 200, await runDetermineValenType(payload, interfaceLanguage));
     if (task === 'community_word_check' || task === 'grammar_short_word_check') return send(res, 200, await runSimpleConsultativeTask(payload, interfaceLanguage, task));
     return send(res, 400, { ok: false, error: 'Unsupported Qwen task' });
   } catch (e) {
     const status = e.status && e.status >= 400 && e.status < 600 ? e.status : 500;
-    return send(res, status, { ok: false, error: status < 500 ? e.message : 'qwen_analyze_failed', details: String(e.details || e.message || e).slice(0, 1200) });
+    return send(res, status, { ok: false, error: status < 500 ? e.message : 'qwen_analyze_failed', errorCode: e.errorCode || (status < 500 ? 'QWEN_INVALID_REQUEST' : 'QWEN_ANALYZE_FAILED'), details: String(e.details || e.message || e).slice(0, 1200) });
   }
 }
