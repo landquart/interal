@@ -1,6 +1,6 @@
 import { getFrequencyProfile } from './frequency-loader.js';
 import { getBidirectionalSwow, normalizeSwowWord } from './swow-client.js';
-import { ASSOCIATION_SCORE_WEIGHTS, FINAL_SCORE_WEIGHTS, getQwenAssociationScores, qwenFallback } from './qwen-client.js';
+import { ASSOCIATION_SCORE_WEIGHTS, FINAL_SCORE_WEIGHTS, getQwenAssociationScores, QWEN_ERROR_CODES } from './qwen-client.js';
 
 export const THRESHOLDS = {
   word: 35,
@@ -111,7 +111,7 @@ function buildEvaluation(qwen, frequencyScore, swowBonus) {
   };
 }
 
-export async function analyzeAssociativeWord({ language, targetMeaning, word, frequencyProfile, onProgress } = {}) {
+export async function analyzeAssociativeWord({ language, targetMeaning, word, frequencyProfile, onProgress, onReviewRequest, signal } = {}) {
   const warnings = [];
   const hasFrequencyProfile = frequencyProfile && typeof frequencyProfile === 'object' && Number.isFinite(Number(frequencyProfile.frequency_score));
   if (!hasFrequencyProfile) onProgress?.('Загрузка частотных списков...');
@@ -147,14 +147,8 @@ export async function analyzeAssociativeWord({ language, targetMeaning, word, fr
     source: 'local_swow'
   };
 
-  let primaryQwen;
-  try {
-    onProgress?.(`Qwen3.6: ${language} — ${word}`);
-    primaryQwen = await getQwenAssociationScores({ language, targetMeaning, word, swow, review: false });
-  } catch (error) {
-    warnings.push(`Qwen evaluation unavailable: ${error.message}`);
-    primaryQwen = qwenFallback();
-  }
+  onProgress?.(`Qwen3.6: ${language} — ${word}`);
+  const primaryQwen = await getQwenAssociationScores({ language, targetMeaning, word, swow, review: false, signal });
 
   const primary = buildEvaluation(primaryQwen, frequency.frequency_score, swow_bonus);
   if (primary.association_score == null) warnings.push('Association score unavailable');
@@ -165,7 +159,8 @@ export async function analyzeAssociativeWord({ language, targetMeaning, word, fr
   if (Number.isFinite(Number(primary.final_score)) && primary.final_score >= THRESHOLDS.reviewMin && primary.final_score <= THRESHOLDS.reviewMax) {
     try {
       onProgress?.(`Qwen review: ${language} — ${word}`);
-      const reviewQwen = await getQwenAssociationScores({ language, targetMeaning, word, swow, review: true, primary });
+      onReviewRequest?.();
+      const reviewQwen = await getQwenAssociationScores({ language, targetMeaning, word, swow, review: true, primary, signal });
       const averagedQwen = {
         ...reviewQwen,
         directness: (Number(primary.directness) + Number(reviewQwen.directness)) / 2,
@@ -182,8 +177,8 @@ export async function analyzeAssociativeWord({ language, targetMeaning, word, fr
         finalEvaluation.combination_method = 'primary_only';
       }
     } catch (error) {
-      warnings.push(`Review model unavailable: ${error.message}`);
-      review = { status: 'review_unavailable', error: error.message };
+      warnings.push('Review model unavailable; primary evaluation kept');
+      review = { status: 'review_unavailable', errorCode: error.code || QWEN_ERROR_CODES.REVIEW_FAILED };
       finalEvaluation.combination_method = 'primary_only';
     }
   } else {
