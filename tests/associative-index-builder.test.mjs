@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
-import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { cp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
 const node = process.execPath;
@@ -15,6 +15,11 @@ async function readJson(path) {
 
 function run(args, options = {}) {
   return spawnSync(node, [script, ...args], { encoding: 'utf8', ...options });
+}
+
+function assertCanonicalShardOrder(entries, message) {
+  const keys = entries.map(entry => `${entry.search_form}\0${entry.normalized}\0${entry.word}`);
+  assert.deepEqual(keys, [...keys].sort((a, b) => a.localeCompare(b)), message);
 }
 
 async function build(extra = [], out = outputRoot) {
@@ -39,6 +44,7 @@ assert.equal(alternative.rank, null, 'does not treat rank as output IPM');
 assert.ok(Number.isFinite(alternative.frequency_score), 'frequency_score finite');
 assert.ok(alternative.frequency_score >= 0 && alternative.frequency_score <= 100, 'frequency_score range');
 assert.equal(first.manifest.config_hash.length, 64, 'config_hash present');
+assertCanonicalShardOrder(first.entries, 'builder writes a shard in canonical search_form/normalized/word order');
 
 
 const reportOut = '.tmp/associative-index-test-report';
@@ -88,6 +94,20 @@ assert.equal(existsSync('.tmp/associative-index-dry-run'), false, '--dry-run --n
 
 const invalid = run(['--languages=en', '--input-root=tests/fixtures/associative-frequency-invalid', '--output-root=.tmp/associative-index-invalid', '--max-records=5000']);
 assert.notEqual(invalid.status, 0, 'data errors exit non-zero');
+
+await rm('.tmp/associative-frequency-canonical', { recursive: true, force: true });
+await cp(fixtureRoot, '.tmp/associative-frequency-canonical', { recursive: true });
+const canonicalWebFile = join('.tmp/associative-frequency-canonical', 'en', 'sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json');
+const canonicalWeb = await readJson(canonicalWebFile);
+canonicalWeb.zzzfirst = 100;
+canonicalWeb.aaalast = 1;
+await writeFile(canonicalWebFile, `${JSON.stringify(canonicalWeb, null, 2)}\n`);
+await rm('.tmp/associative-index-canonical', { recursive: true, force: true });
+const canonicalRun = run(['--languages=en', '--input-root=.tmp/associative-frequency-canonical', '--output-root=.tmp/associative-index-canonical', '--max-records=5000']);
+assert.equal(canonicalRun.status, 0, canonicalRun.stderr || canonicalRun.stdout);
+const canonicalA = await readJson('.tmp/associative-index-canonical/en/a.json');
+assertCanonicalShardOrder(canonicalA, 'builder creates shard in canonical order');
+assert.ok(canonicalA.findIndex(entry => entry.normalized === 'aaalast') < canonicalA.findIndex(entry => entry.normalized === 'alternative'), 'frequency does not define physical shard order');
 
 await rm('.tmp/associative-frequency-reordered', { recursive: true, force: true });
 await mkdir('.tmp/associative-frequency-reordered/en', { recursive: true });

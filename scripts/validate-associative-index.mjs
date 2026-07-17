@@ -3,6 +3,7 @@ import { access, mkdir, readdir, readFile, stat, writeFile } from 'node:fs/promi
 import { dirname, isAbsolute, join, relative, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { findCandidatesForRoot } from '../associativvordes/js/candidate-finder.js';
+import { candidateIndexEntryComparator } from './lib/associative-index-core.mjs';
 
 const SUPPORTED_VERSION = '1';
 const SUPPORTED_NORMALIZER_VERSION = '2';
@@ -152,9 +153,8 @@ async function validateIndex(options) {
       if (entries.length !== shard.entries) c.error(`${shard.file}: shard entries metadata mismatch`);
       let prev = null;
       for (const [i, entry] of entries.entries()) {
-        const key = `${entry?.search_form ?? ''}\u0000${entry?.normalized ?? ''}\u0000${entry?.word ?? ''}`;
-        if (prev != null && key.localeCompare(prev) < 0) c.error(`${shard.file}: entries are not deterministically sorted`);
-        prev = key;
+        if (prev != null && candidateIndexEntryComparator(prev, entry) > 0) c.error(`${shard.file}: entries are not deterministically sorted`);
+        prev = entry;
         validateEntry(entry, lang, shard, i, seen, c);
       }
       langReport.entries += entries.length; entriesForSamples.push(...entries);

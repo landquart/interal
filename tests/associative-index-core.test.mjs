@@ -76,11 +76,11 @@ assert.equal(russian.search_form, 'alternativnyj');
 assert.notEqual(russian.original, russian.search_form);
 
 const sorted = stableSortEntries([
-  { original: 'b', normalized: 'b', frequency_score: 2 },
-  { original: 'a', normalized: 'a', frequency_score: 2 },
-  { original: 'c', normalized: 'c', frequency_score: 3 }
+  { original: 'b', normalized: 'b', search_form: 'alterb', frequency_score: 100 },
+  { original: 'a', normalized: 'a', search_form: 'altera', frequency_score: 1 },
+  { original: 'c', normalized: 'c', search_form: 'alterc', frequency_score: 50 }
 ]);
-assert.deepEqual(sorted.map(x => x.normalized), ['c', 'a', 'b']);
+assert.deepEqual(sorted.map(x => x.normalized), ['a', 'b', 'c'], 'candidate-index order ignores frequency and uses search_form/normalized/original');
 
 const unorderedA = extractFrequencyRecords({ first: 1, second: 2 }).map(r => r.normalized).sort();
 const unorderedB = extractFrequencyRecords({ second: 2, first: 1 }).map(r => r.normalized).sort();
