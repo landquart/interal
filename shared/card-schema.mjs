@@ -140,11 +140,6 @@ export function validateCardSchema(card, options = {}) {
   if (!nonEmpty(card.interal.word)) throw new CardSchemaError('interal.word', 'is required');
   const pi = getCardPiPercent(card);
   if (pi !== undefined && (typeof pi !== 'number' || !Number.isFinite(pi))) throw new CardSchemaError('result.pi_percent', 'must be a finite number when present');
-  if (card.vord_type === 'av') {
-    if (!isRecord(card.result)) throw new CardSchemaError('result', 'is required for associative cards');
-    if (finiteOrNull(card.result.represented_languages) == null) throw new CardSchemaError('result.represented_languages', 'must be a finite number');
-    if (finiteOrNull(card.result.represented_groups) == null) throw new CardSchemaError('result.represented_groups', 'must be a finite number');
-  }
   validateAuthor(card.author);
   return true;
 }
