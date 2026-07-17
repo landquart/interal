@@ -846,8 +846,11 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
     }
 
     function invalidateAssociativeResult() {
-      if (window.InteralFormDraft?.isRestoring?.()) return;
+      if (window.InteralFormDraft?.isRestoring?.() || isImportingAssociativeState) return;
       state.checked = false;
+      state.languages = emptyState().languages;
+      state.languageStatuses = emptyState().languageStatuses;
+      state.globalStatus = 'idle';
       syncCheckedVisibility();
       syncJsonCardButtonVisibility();
       window.InteralFormDraft?.save?.();
@@ -1100,28 +1103,190 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
     }
 
 
+    const PAGE_STATE_VERSION = 1;
+    const PAGE_STATE_NAME = 'associativvordes';
+    const MAX_STATE_CANDIDATES_PER_LANGUAGE = 80;
+    const MAX_STATE_SOURCES_PER_CANDIDATE = 12;
+    const MAX_STATE_WARNING_LENGTH = 240;
+    const MAX_STATE_EXPLANATION_LENGTH = 1200;
+    let isImportingAssociativeState = false;
+
+    function truncateStateText(value, limit) {
+      const text = String(value || '');
+      return text.length > limit ? `${text.slice(0, limit - 1)}…` : text;
+    }
+
+    function compactStateSource(source) {
+      if (!source || typeof source !== 'object') return null;
+      return {
+        category: source.category || source.source || source.name || '',
+        value: finiteOrNull(source.value ?? source.score ?? source.frequency ?? source.count),
+        weight: finiteOrNull(source.weight),
+        reference: source.reference || source.ref || source.url || null
+      };
+    }
+
     function normalizeRestoredLanguageStatuses(statuses = {}) {
       return Object.fromEntries(LANGUAGES.map(lang => {
-        const restored = statuses?.[lang.code] || createLanguageStatus();
-        const status = ['loading_index', 'analyzing'].includes(restored.status) ? 'aborted' : (restored.status || 'idle');
-        return [lang.code, { ...createLanguageStatus(status), ...restored, status, errorCode: status === 'aborted' ? 'RESTORE_INTERRUPTED' : (restored.errorCode || null) }];
+        const restored = statuses?.[lang.code] && typeof statuses[lang.code] === 'object' ? statuses[lang.code] : createLanguageStatus();
+        const interrupted = ['loading_index', 'analyzing'].includes(restored.status) || (restored.status === 'idle' && Boolean(state?.checked));
+        const status = interrupted ? 'aborted' : (restored.status || 'idle');
+        const message = currentLang() === 'en'
+          ? 'The previous calculation was interrupted. Run it again.'
+          : 'Предыдущий расчёт был прерван. Запустите его повторно.';
+        return [lang.code, {
+          ...createLanguageStatus(status),
+          ...restored,
+          status,
+          errorCode: status === 'aborted' ? 'RESTORE_INTERRUPTED' : (restored.errorCode || null),
+          message: status === 'aborted' ? message : (restored.message || null)
+        }];
       }));
+    }
+
+    function normalizeGlobalStatusForRestore(status, checked) {
+      if (['loading_index', 'analyzing', 'loading'].includes(status) || (status === 'idle' && checked)) return 'aborted';
+      if (['completed', 'completed_with_warnings', 'no_candidates', 'index_error', 'qwen_error', 'aborted', 'idle'].includes(status)) return status;
+      return checked ? 'completed' : 'idle';
     }
 
     function compactAssociativeLanguages(languages) {
       const output = {};
       LANGUAGES.forEach((lang) => {
-        output[lang.code] = (languages?.[lang.code] || []).filter((item) => item && (item.selected || item.word)).map((item) => ({
-          word: item.word || '', normalized: item.normalized || '', search_form: item.search_form || '', match: item.match || null, rank: finiteOrNull(item.rank), frequency_score: finiteOrNull(item.frequency_score), category_breakdown: item.category_breakdown || {}, sources: Array.isArray(item.sources) ? item.sources : [], warnings: Array.isArray(item.warnings) ? item.warnings : [], category_score: finiteOrNull(item.category_score), category_weight: finiteOrNull(item.category_weight), frequencyProfile: item.frequencyProfile || null, model: item.model || '', selected: Boolean(item.selected), association_score: finiteOrNull(item.association_score), final_score: finiteOrNull(item.final_score), analysisStatus: item.analysisStatus || null,
-          analysis: item.analysis ? { final_score: finiteOrNull(item.analysis.final_score), frequency: item.analysis.frequency ? { frequency_score: finiteOrNull(item.analysis.frequency.frequency_score) } : null, swow: item.analysis.swow ? { bonus: finiteOrNull(item.analysis.swow.bonus) } : null, association: item.analysis.association ? { association_score: finiteOrNull(item.analysis.association.association_score), directness: finiteOrNull(item.analysis.association.directness), field_relatedness: finiteOrNull(item.analysis.association.field_relatedness), domain_shift: finiteOrNull(item.analysis.association.domain_shift), semantic_confirmed: Boolean(item.analysis.association.semantic_confirmed), explanation: item.analysis.association.explanation || '' } : null, warnings: Array.isArray(item.analysis.warnings) ? item.analysis.warnings.slice(0, 5) : [] } : null
-        }));
+        output[lang.code] = (Array.isArray(languages?.[lang.code]) ? languages[lang.code] : [])
+          .filter((item) => item && (item.selected || item.word))
+          .slice(0, MAX_STATE_CANDIDATES_PER_LANGUAGE)
+          .map((item) => ({
+            word: String(item.word || ''),
+            normalized: String(item.normalized || ''),
+            search_form: String(item.search_form || ''),
+            match: item.match && typeof item.match === 'object' ? {
+              type: item.match.type || null,
+              root: item.match.root || null,
+              search_form: item.match.search_form || null,
+              matched: item.match.matched || null
+            } : null,
+            rank: finiteOrNull(item.rank),
+            frequency_score: finiteOrNull(item.frequency_score),
+            category_breakdown: item.category_breakdown && typeof item.category_breakdown === 'object' ? JSON.parse(JSON.stringify(item.category_breakdown)) : {},
+            sources: Array.isArray(item.sources) ? item.sources.slice(0, MAX_STATE_SOURCES_PER_CANDIDATE).map(compactStateSource).filter(Boolean) : [],
+            warnings: Array.isArray(item.warnings) ? item.warnings.slice(0, 8).map(w => truncateStateText(w, MAX_STATE_WARNING_LENGTH)) : [],
+            category_score: finiteOrNull(item.category_score),
+            category_weight: finiteOrNull(item.category_weight),
+            frequencyProfile: item.frequencyProfile && typeof item.frequencyProfile === 'object' ? {
+              frequency_score: finiteOrNull(item.frequencyProfile.frequency_score),
+              rank: finiteOrNull(item.frequencyProfile.rank),
+              category_score: finiteOrNull(item.frequencyProfile.category_score),
+              category_weight: finiteOrNull(item.frequencyProfile.category_weight)
+            } : null,
+            model: String(item.model || ''),
+            selected: Boolean(item.selected),
+            association_score: finiteOrNull(item.association_score),
+            final_score: finiteOrNull(item.final_score),
+            analysisStatus: item.analysisStatus || null,
+            analysis: item.analysis ? {
+              final_score: finiteOrNull(item.analysis.final_score),
+              frequency: item.analysis.frequency ? { frequency_score: finiteOrNull(item.analysis.frequency.frequency_score) } : null,
+              swow: item.analysis.swow ? { bonus: finiteOrNull(item.analysis.swow.bonus) } : null,
+              association: item.analysis.association ? {
+                association_score: finiteOrNull(item.analysis.association.association_score),
+                directness: finiteOrNull(item.analysis.association.directness),
+                field_relatedness: finiteOrNull(item.analysis.association.field_relatedness),
+                domain_shift: finiteOrNull(item.analysis.association.domain_shift),
+                semantic_confirmed: item.analysis.association.semantic_confirmed === true,
+                explanation: truncateStateText(item.analysis.association.explanation, MAX_STATE_EXPLANATION_LENGTH)
+              } : null,
+              warnings: Array.isArray(item.analysis.warnings) ? item.analysis.warnings.slice(0, 8).map(w => truncateStateText(w, MAX_STATE_WARNING_LENGTH)) : []
+            } : null
+          }));
       });
       return output;
     }
-    function collectAssociativePageState() { const r = calculateFinal(); return { version: 2, page: location.pathname, fields: { root: state.root || document.getElementById('rootInput').value, meaning: state.meaning || document.getElementById('meaningInput').value, elementType: state.elementType || document.getElementById('elementType').value, languages: compactAssociativeLanguages(state.languages), languageStatuses: state.languageStatuses, globalStatus: state.globalStatus }, result: state.checked ? { finalAssociation: r.finalAssociation, totalAssociation: r.totalAssociation, representedLanguages: r.representedLangs, representedGroups: r.groups, semanticConfirmed: r.semanticConfirmed, accepted: r.accepted, selectedLanguageResults: compactAssociativeLanguages(state.languages) } : null, flags: { checked: Boolean(state.checked), accepted: Boolean(state.checked && r.accepted) }, ui: { activeLanguageTab: activeLang }, savedAt: new Date().toISOString() }; }
-    function importAssociativePageState(saved = {}) { const fields = saved.version === 2 && saved.fields ? saved.fields : saved; state = emptyState(); state.root = fields.root || ''; state.meaning = fields.meaning || ''; state.elementType = fields.elementType || 'root'; state.languages = compactAssociativeLanguages(fields.languages || saved.result?.selectedLanguageResults || {}); state.languageStatuses = normalizeRestoredLanguageStatuses(fields.languageStatuses); state.globalStatus = fields.globalStatus || 'idle'; state.checked = Boolean(saved.flags?.checked || saved.checked || saved.result); activeLang = saved.ui?.activeLanguageTab || activeLang || 'en'; document.getElementById('rootInput').value = state.root; document.getElementById('meaningInput').value = state.meaning; document.getElementById('elementType').value = state.elementType; renderAll(); syncCheckedVisibility(); syncJsonCardButtonVisibility(); return true; }
+
+    function collectAssociativePageState() {
+      const r = calculateFinal();
+      const checked = Boolean(state.checked);
+      const payload = {
+        version: PAGE_STATE_VERSION,
+        page: PAGE_STATE_NAME,
+        state: {
+          root: state.root || document.getElementById('rootInput').value,
+          meaning: state.meaning || document.getElementById('meaningInput').value,
+          elementType: state.elementType || document.getElementById('elementType').value,
+          maxModels: state.maxModels,
+          activeLang,
+          languages: compactAssociativeLanguages(state.languages),
+          languageStatuses: state.languageStatuses,
+          globalStatus: state.globalStatus,
+          checked,
+          result: checked ? {
+            finalAssociation: r.finalAssociation,
+            totalAssociation: r.totalAssociation,
+            representedLanguages: r.representedLangs,
+            representedGroups: r.groups,
+            semanticConfirmed: r.semanticConfirmed,
+            accepted: r.accepted
+          } : null
+        }
+      };
+      return JSON.parse(JSON.stringify(payload));
+    }
+
+    function unwrapAssociativePageState(saved = {}) {
+      if (!saved || typeof saved !== 'object' || Array.isArray(saved)) return null;
+      if (saved.version === PAGE_STATE_VERSION && saved.page === PAGE_STATE_NAME && saved.state && typeof saved.state === 'object') return saved.state;
+      if (saved.version === 2 && saved.fields && typeof saved.fields === 'object') {
+        return { ...saved.fields, activeLang: saved.ui?.activeLanguageTab, checked: Boolean(saved.flags?.checked || saved.checked || saved.result), result: saved.result || null };
+      }
+      console.warn('Associativ vordes state version is incompatible; using defaults.');
+      return null;
+    }
+
+    function importAssociativePageState(saved = {}) {
+      const fields = unwrapAssociativePageState(saved);
+      if (!fields) return false;
+      if (fields.languages && typeof fields.languages !== 'object') return false;
+      if (fields.languageStatuses && typeof fields.languageStatuses !== 'object') return false;
+
+      isImportingAssociativeState = true;
+      try {
+        state = emptyState();
+        state.root = typeof fields.root === 'string' ? fields.root : '';
+        state.meaning = typeof fields.meaning === 'string' ? fields.meaning : '';
+        state.elementType = fields.elementType === 'preposition' ? 'preposition' : 'root';
+        state.maxModels = Number.isFinite(Number(fields.maxModels)) ? Math.max(1, Math.min(20, Number(fields.maxModels))) : 5;
+        state.languages = compactAssociativeLanguages(fields.languages || fields.selectedLanguageResults || {});
+        state.checked = Boolean(fields.checked || fields.result);
+        state.languageStatuses = normalizeRestoredLanguageStatuses(fields.languageStatuses);
+        state.globalStatus = normalizeGlobalStatusForRestore(fields.globalStatus || (fields.result ? 'completed' : 'idle'), state.checked);
+        if (state.globalStatus === 'aborted') state.checked = true;
+        activeLang = LANGUAGES.some(lang => lang.code === fields.activeLang) ? fields.activeLang : (LANGUAGES.some(lang => lang.code === fields.activeLanguageTab) ? fields.activeLanguageTab : activeLang || 'en');
+        document.getElementById('rootInput').value = state.root;
+        document.getElementById('meaningInput').value = state.meaning;
+        document.getElementById('elementType').value = state.elementType;
+        renderAll();
+        syncCheckedVisibility();
+        syncJsonCardButtonVisibility();
+        setCalculateButtonStatus(defaultCalculateButtonText(), false, { loading: false });
+        return true;
+      } finally {
+        isImportingAssociativeState = false;
+      }
+    }
+
+    function resetAssociativePageState() {
+      invalidateActiveRuns();
+      state = emptyState();
+      activeLang = 'en';
+      ['rootInput', 'meaningInput'].forEach(id => { const element = document.getElementById(id); if (element) element.value = ''; });
+      const type = document.getElementById('elementType');
+      if (type) type.value = 'root';
+      renderAll();
+      setCalculateButtonStatus(defaultCalculateButtonText(), false, { loading: false });
+    }
     window.InteralPageStateExport = collectAssociativePageState;
     window.InteralPageStateImport = importAssociativePageState;
+    window.InteralPageReset = resetAssociativePageState;
 
     document.getElementById('rootInput').addEventListener('input', () => { state.root = document.getElementById('rootInput').value; invalidateAssociativeResult(); renderAll(); });
     document.getElementById('meaningInput').addEventListener('input', () => { state.meaning = document.getElementById('meaningInput').value; invalidateAssociativeResult(); renderAll(); });

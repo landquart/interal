@@ -740,6 +740,12 @@
 
     isResetting = true;
     setResetFlag();
+    try {
+      window.InteralPageReset?.();
+    } catch (error) {
+      console.warn('Could not reset page-specific state:', error);
+    }
+
     clearCurrentDraft();
     clearAllResetStorage();
     clearDraftFields();
