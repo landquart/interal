@@ -1,6 +1,6 @@
-import { analyzeAssociativeWord, THRESHOLDS, passesWordThreshold, finalAssociationPassesThreshold, calculateLanguageScore, calculateFinalAssociation, finalAssociationRejectionReasons, canCreateAssociativeJsonCard } from './js/association-analyzer.js';
+import { analyzeAssociativeWord, THRESHOLDS, passesWordThreshold, finalAssociationPassesThreshold, calculateLanguageScore, calculateFinalAssociation, buildDecisionReasons, decisionStatusForResult, canCreateAssociativeJsonCard, normalizeLanguageStatus, summarizeLanguageStatuses } from './js/association-analyzer.js';
 import { QWEN_RUNTIME_CONFIG, QWEN_ERROR_CODES } from './js/qwen-client.js';
-import { formatMetric, resultRowClasses, swowLabel, thresholdStatusLabel, thresholdStatusForResult, semanticWarningLabel } from './js/render-results.js';
+import { formatMetric, resultRowClasses, swowLabel, thresholdStatusLabel, thresholdStatusForResult, semanticWarningLabel, languageStatusLabel } from './js/render-results.js';
 import { normalizeText, stripDiacritics, includesRoot, fuzzyIncludesRoot, specialRootMatch } from './js/root-matcher.js';
 import { createCandidateIndexLoader } from './js/candidate-index-loader.js';
 import { findCandidatesForRoot } from './js/candidate-finder.js';
@@ -38,7 +38,7 @@ const TEXT_I18N = {
           group: 'Группа', languageScore: 'Балл языка', weightSum: 'сумма весов', addWord: 'Добавить слово', use: 'Учитывать', word: 'Слово', model: 'Модель', frequencyPercent: 'F — частотность', directness: 'Di — прямота связи', fieldRelatedness: 'Pr — близость поля', domainShift: 'Sh — сдвиг области', swowBonus: 'Бонус SWOW, 0–15', associationPercent: 'A — ассоциация', finalPercent: 'P — вес деривата', status: 'Статус', explanation: 'Объяснение', warnings: 'Предупреждения', details: 'Детали', analyze: 'Анализировать', delete: 'Удалить', association: 'Ассоциация', rank: 'Ранг', frequency: 'Частота', weightP: 'Вес P'
         },
         results: {
-          finalAssociation: 'FA — конечная ассоциация', totalAssociation: 'TA — общая сумма баллов языков', languagesRepresented: 'языков представлено', languageGroups: 'языковых групп', accept: 'ПРИНЯТЬ', reject: 'НЕ ПРИНИМАТЬ', fewerLanguages: 'меньше 3 языков', fewerGroups: 'меньше 2 языковых групп', belowThreshold: 'FA ниже 35%', reasons: 'Причины', allMet: 'Все условия выполнены.'
+          finalAssociation: 'FA — конечная ассоциация', totalAssociation: 'TA — общая сумма баллов языков', languagesRepresented: 'языков представлено', languageGroups: 'языковых групп', accept: 'ПРИНЯТЬ', reject: 'НЕ ПРИНИМАТЬ', insufficientData: 'Недостаточно данных', noCalculatedData: 'Нет рассчитанных данных.', noCandidates: 'Кандидаты не найдены.', indexUnavailable: 'Индекс языка недоступен.', qwenUnavailable: 'Анализ Qwen недоступен.', calculationAborted: 'Расчёт был прерван.', calculationIncomplete: 'Расчёт не завершён.', partialErrors: 'Часть языков рассчитана с ошибками.', fewerLanguages: 'Представлено меньше 3 языков.', fewerGroups: 'Представлено меньше 2 языковых групп.', belowThreshold: 'FA ниже 35%.', semanticUnconfirmed: 'Семантическое соответствие не подтверждено.', reasons: 'Причины', warnings: 'Предупреждения', allMet: 'Все условия выполнены.'
         },
         alerts: {
           jsonCardUnavailable: 'Сначала выполните расчёт.',
@@ -84,7 +84,7 @@ const TEXT_I18N = {
           group: 'Group', languageScore: 'Language score', weightSum: 'weight sum', addWord: 'Add word', use: 'Use', word: 'Word', model: 'Model', frequencyPercent: 'F — frequency', directness: 'Di — directness', fieldRelatedness: 'Pr — field proximity', domainShift: 'Sh — domain shift', swowBonus: 'SWOW bonus — 0–15', associationPercent: 'A — association', finalPercent: 'P — derivative weight', status: 'Status', explanation: 'Explanation', warnings: 'Warnings', details: 'Details', analyze: 'Analyze', delete: 'Delete', association: 'Association', rank: 'Rank', frequency: 'Frequency', weightP: 'Weight P'
         },
         results: {
-          finalAssociation: 'FA — final association', totalAssociation: 'TA — total language score', languagesRepresented: 'languages represented', languageGroups: 'language groups', accept: 'ACCEPT', reject: 'DO NOT ACCEPT', fewerLanguages: 'fewer than 3 languages', fewerGroups: 'fewer than 2 language groups', belowThreshold: 'FA below 35%', reasons: 'Reasons', allMet: 'All conditions are met.'
+          finalAssociation: 'FA — final association', totalAssociation: 'TA — total language score', languagesRepresented: 'languages represented', languageGroups: 'language groups', accept: 'ACCEPT', reject: 'DO NOT ACCEPT', insufficientData: 'Insufficient data', noCalculatedData: 'No calculated data.', noCandidates: 'No candidates found.', indexUnavailable: 'The language index is unavailable.', qwenUnavailable: 'Qwen analysis is unavailable.', calculationAborted: 'The calculation was aborted.', calculationIncomplete: 'The calculation is incomplete.', partialErrors: 'Some languages were calculated with errors.', fewerLanguages: 'Fewer than 3 languages are represented.', fewerGroups: 'Fewer than 2 language groups are represented.', belowThreshold: 'FA is below 35%.', semanticUnconfirmed: 'Semantic correspondence is not confirmed.', reasons: 'Reasons', warnings: 'Warnings', allMet: 'All conditions are met.'
         },
         alerts: {
           jsonCardUnavailable: 'Run a calculation first.',
@@ -157,7 +157,7 @@ const TEXT_I18N = {
     }
 
     function createLanguageStatus(status = 'idle', extra = {}) {
-      return { status, errorCode: null, candidateCount: 0, analyzedCount: 0, ...extra };
+      return normalizeLanguageStatus({ status, ...extra });
     }
 
     function createDeveloperDiagnostics() {
@@ -414,11 +414,12 @@ const TEXT_I18N = {
       state.maxModels = 5;
       const nextLangs = {};
 
-      onProgress?.('Загрузка частотных списков...');
+      onProgress?.(currentLang() === 'en' ? 'Loading frequency lists...' : 'Загрузка частотных списков...');
       for (const lang of LANGUAGES) {
         if (!isCurrentRun(runId)) return;
         const languageName = textGroup('languages')[lang.code] || lang.name;
-        onProgress?.(`Поиск похожих корней: ${languageName}`);
+        onProgress?.(`${currentLang() === 'en' ? 'Searching similar roots' : 'Поиск похожих корней'}: ${languageName}`);
+        state.languageStatuses[lang.code] = createLanguageStatus('loading_index');
         let candidates;
         try {
           candidates = await getLanguageCandidates(lang.code, root, { signal: activeRunAbortController?.signal });
@@ -438,7 +439,7 @@ const TEXT_I18N = {
         const validCandidates = candidates.filter(candidate => isValidRuntimeCandidate(candidate, root, lang.code, seenWords));
         if (!validCandidates.length) {
           nextLangs[lang.code] = candidates.map(item => ({ ...item, selected: false, analysisStatus: 'skipped' }));
-          state.languageStatuses[lang.code] = createLanguageStatus('no_candidates', { candidateCount: candidates.length });
+          state.languageStatuses[lang.code] = createLanguageStatus('no_candidates');
           continue;
         }
         state.languageStatuses[lang.code] = createLanguageStatus('analyzing', { candidateCount: validCandidates.length });
@@ -454,10 +455,16 @@ const TEXT_I18N = {
         onProgress?.(`Расчёт языковых баллов: ${languageName}`);
         nextLangs[lang.code] = groupByBestModel(analyzed, state.maxModels);
         const failedCount = analyzed.filter(item => item.analysis?.status === 'error').length;
-        state.languageStatuses[lang.code] = createLanguageStatus(failedCount === analyzed.length ? 'qwen_error' : 'completed', { errorCode: failedCount ? 'QWEN_PARTIAL_FAILURE' : null, candidateCount: validCandidates.length, analyzedCount: analyzed.length - failedCount });
+        {
+          const successfulCount = analyzed.length - failedCount;
+          state.languageStatuses[lang.code] = createLanguageStatus(
+            successfulCount === 0 ? 'qwen_error' : 'completed',
+            { errorCode: failedCount ? (successfulCount === 0 ? 'QWEN_FAILED' : 'QWEN_PARTIAL_FAILURE') : null, candidateCount: validCandidates.length, analyzedCount: analyzed.length, successfulCount, failedCount }
+          );
+        }
       }
       if (!isCurrentRun(runId)) return;
-      onProgress?.('Расчёт итогового процента...');
+      onProgress?.(currentLang() === 'en' ? 'Calculating final percentage...' : 'Расчёт итогового процента...');
       state.languages = { ...state.languages, ...nextLangs };
       calculateFinal();
     }
@@ -472,7 +479,10 @@ const TEXT_I18N = {
         });
         if (!isCurrentRun(runId)) return;
         state.checked = true;
-        state.globalStatus = Object.values(state.languageStatuses).some(s => ['index_error','qwen_error'].includes(s.status) || s.errorCode) ? 'completed_with_warnings' : 'completed';
+        {
+          const summary = summarizeLanguageStatuses(state.languageStatuses);
+          state.globalStatus = summary.allTerminal ? (summary.warnings.length ? 'completed_with_warnings' : 'completed') : 'loading';
+        }
         renderAll();
         window.InteralFormDraft?.save?.();
         setCalculateButtonStatus(state.globalStatus === 'completed_with_warnings' ? textGroup('errors').completedWithWarnings : (currentLang() === 'en' ? 'Done' : 'Готово'), true, { loading: true });
@@ -513,7 +523,11 @@ const TEXT_I18N = {
         const score = calculateLanguage(lang.code);
         const btn = document.createElement('button');
         btn.className = `tab ${activeLang === lang.code ? 'active' : ''}`;
-        btn.textContent = `${textGroup('languages')[lang.code] || lang.name} (${formatPercent(score.normalized, 1)})`;
+        {
+          const status = state.languageStatuses[lang.code] || createLanguageStatus();
+          const label = score.normalized == null ? languageStatusLabel(status, currentLang(), { short: true }) : formatPercent(score.normalized, 1);
+          btn.textContent = `${textGroup('languages')[lang.code] || lang.name} (${label})`;
+        }
         btn.onclick = () => { activeLang = lang.code; renderAll(); };
         tabs.appendChild(btn);
       }
@@ -546,7 +560,7 @@ const TEXT_I18N = {
         <div class="row" style="margin-bottom:12px;">
           <div>
             <h3>${textGroup('languages')[lang.code] || lang.name}</h3>
-            <p class="muted">${labels.group}: ${textGroup('groups')[lang.group] || lang.group}. ${labels.languageScore}: <strong>${formatFixed(score.normalized, 2)}%</strong>; ${labels.weightSum}: <strong>${formatFixed(score.sum, 2)}</strong>.</p>
+            <p class="muted">${labels.group}: ${textGroup('groups')[lang.group] || lang.group}. ${labels.languageScore}: <strong>${formatFixed(score.normalized, 2)}%</strong>; ${labels.weightSum}: <strong>${formatFixed(score.sum, 2)}</strong>. ${labels.status}: <strong>${languageStatusLabel(state.languageStatuses[activeLang], currentLang())}</strong></p>
           </div>
           <button class="tool-btn interal-btn interal-btn--secondary fit short" onclick="addRow('${activeLang}')">${labels.addWord}</button>
         </div>
@@ -648,14 +662,30 @@ const TEXT_I18N = {
       `;
       resultBox.classList.add('is-updated');
 
-      let statusClass = result.accepted ? 'ok' : (finalAssociationPassesThreshold(result.finalAssociation) ? 'warn' : 'bad');
-      let statusText = result.accepted ? labels.accept : labels.reject;
-      const reasonLabels = { fewer_languages: labels.fewerLanguages, fewer_groups: labels.fewerGroups, below_threshold: labels.belowThreshold, semantic_unconfirmed: semanticWarningLabel(currentLang()), no_calculated_languages: currentLang() === 'en' ? 'No data' : 'Нет данных' };
-      let reasons = finalAssociationRejectionReasons(result).map(reason => reasonLabels[reason]).filter(Boolean);
+      const decision = decisionStatusForResult(result);
+      const statusClass = decision === 'accept' ? 'ok' : (decision === 'insufficient_data' ? 'warn' : 'bad');
+      const statusText = decision === 'accept' ? labels.accept : (decision === 'insufficient_data' ? labels.insufficientData : labels.reject);
+      const reasonLabels = {
+        no_calculated_data: labels.noCalculatedData,
+        fewer_than_3_languages: labels.fewerLanguages,
+        fewer_than_2_groups: labels.fewerGroups,
+        final_association_below_35: labels.belowThreshold,
+        semantic_not_confirmed: labels.semanticUnconfirmed,
+        some_languages_no_candidates: labels.noCandidates,
+        some_languages_index_error: labels.indexUnavailable,
+        some_languages_qwen_error: labels.qwenUnavailable,
+        calculation_incomplete: labels.calculationIncomplete
+      };
+      const { critical, warnings } = buildDecisionReasons(result);
+      const criticalText = critical.map(reason => reasonLabels[reason]).filter(Boolean);
+      const warningText = warnings.map(reason => reasonLabels[reason] || labels.partialErrors).filter(Boolean);
+      const parts = [];
+      if (criticalText.length) parts.push(`${labels.reasons}: ${criticalText.join(', ')}`);
+      if (warningText.length) parts.push(`${labels.warnings}: ${warningText.join(', ')}`);
 
       document.getElementById('decisionBox').innerHTML = `
         <span class="status ${statusClass}">${statusText}</span>
-        <span class="muted" style="margin-left:8px;">${reasons.length ? labels.reasons + ': ' + reasons.join(', ') : labels.allMet}</span>
+        <span class="muted" style="margin-left:8px;">${parts.length ? parts.join(' · ') : labels.allMet}</span>
       `;
     }
 
