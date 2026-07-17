@@ -205,8 +205,8 @@ export function scanForInvalidData(value, sourceId, path = 'root') {
       const [key, child] = entries[index];
       const childPath = `${current.path}.${key}`;
       if (['ipm', 'IPM', 'frequency', 'freq'].includes(key)) {
-        const number = optionalFiniteNumber(child);
-        if (number == null) throw new Error(`Invalid IPM in ${sourceId} at ${childPath}`);
+        const missing = child == null || (typeof child === 'string' && child.trim() === '');
+        if (!missing && !Number.isFinite(Number(child))) throw new Error(`Invalid IPM in ${sourceId} at ${childPath}`);
       }
       if (child && typeof child === 'object') stack.push({ value: child, path: childPath });
     }
