@@ -24,6 +24,16 @@ function assertCanonicalShardOrder(entries, message) {
   assert.deepEqual(keys, [...keys].sort((a, b) => a.localeCompare(b)), message);
 }
 
+async function readAllLanguageEntries(out, language) {
+  const manifest = await readJson(join(out, 'manifest.json'));
+  const entries = [];
+  for (const shard of manifest.languages[language].shards) {
+    const shardEntries = await readJson(join(out, shard.file));
+    for (const entry of shardEntries) entries.push(entry);
+  }
+  return entries;
+}
+
 async function build(extra = [], out = outputRoot) {
   await rm(out, { recursive: true, force: true });
   const result = run(['--languages=en', `--input-root=${fixtureRoot}`, `--output-root=${out}`, '--max-records=5000', ...extra]);
@@ -186,14 +196,6 @@ async function buildLanguageFixture(language, out) {
   assert.equal(result.status, 0, result.stderr || result.stdout);
   return { manifest: await readJson(join(out, 'manifest.json')) };
 }
-
-async function readAllLanguageEntries(out, language) {
-  const manifest = await readJson(join(out, 'manifest.json'));
-  const entries = [];
-  for (const shard of manifest.languages[language].shards) entries.push(...await readJson(join(out, shard.file)));
-  return entries;
-}
-
 
 const enOnly = first;
 const ruOnly = await buildLanguageFixture('ru', '.tmp/associative-index-ru');
