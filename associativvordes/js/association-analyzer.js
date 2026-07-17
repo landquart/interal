@@ -77,11 +77,47 @@ export function passesWordThreshold(score) {
   return isFiniteScore(score) && Number(score) >= THRESHOLDS.word;
 }
 
-export const UNAVAILABLE_REASONS = ['no_candidates', 'index_error', 'qwen_error', 'incomplete', 'aborted', 'no_calculated_languages'];
+export const LANGUAGE_STATUSES = ['idle', 'loading_index', 'no_candidates', 'analyzing', 'completed', 'index_error', 'qwen_error', 'incomplete', 'aborted'];
+export const TERMINAL_LANGUAGE_STATUSES = ['completed', 'no_candidates', 'index_error', 'qwen_error', 'incomplete', 'aborted'];
+export const INTERMEDIATE_LANGUAGE_STATUSES = ['idle', 'loading_index', 'analyzing'];
+export const CRITICAL_DECISION_REASONS = ['no_calculated_data', 'fewer_than_3_languages', 'fewer_than_2_groups', 'final_association_below_35', 'semantic_not_confirmed'];
+export const WARNING_DECISION_REASONS = ['some_languages_no_candidates', 'some_languages_index_error', 'some_languages_qwen_error', 'calculation_incomplete'];
+export const UNAVAILABLE_REASONS = ['no_candidates', 'index_error', 'qwen_error', 'incomplete', 'aborted', 'no_calculated_data'];
 
 export function isFiniteScore(value) {
   if (value == null || value === '') return false;
   return Number.isFinite(Number(value));
+}
+
+export function normalizeLanguageStatus(entry = {}) {
+  const status = LANGUAGE_STATUSES.includes(entry?.status) ? entry.status : 'idle';
+  return {
+    status,
+    errorCode: entry?.errorCode || null,
+    candidateCount: Number.isFinite(Number(entry?.candidateCount)) ? Number(entry.candidateCount) : 0,
+    analyzedCount: Number.isFinite(Number(entry?.analyzedCount)) ? Number(entry.analyzedCount) : 0,
+    successfulCount: Number.isFinite(Number(entry?.successfulCount)) ? Number(entry.successfulCount) : 0,
+    failedCount: Number.isFinite(Number(entry?.failedCount)) ? Number(entry.failedCount) : 0
+  };
+}
+
+export function isLanguageTerminal(status) {
+  const value = typeof status === 'string' ? status : status?.status;
+  return TERMINAL_LANGUAGE_STATUSES.includes(value);
+}
+
+export function summarizeLanguageStatuses(languageStatuses = {}) {
+  const statuses = Object.fromEntries(Object.entries(languageStatuses || {}).map(([code, entry]) => [code, normalizeLanguageStatus(entry)]));
+  const values = Object.values(statuses);
+  const allTerminal = values.length > 0 && values.every(isLanguageTerminal);
+  const hasIntermediate = values.some(entry => INTERMEDIATE_LANGUAGE_STATUSES.includes(entry.status));
+  const warnings = [];
+  if (values.some(entry => entry.status === 'no_candidates')) warnings.push('some_languages_no_candidates');
+  if (values.some(entry => entry.status === 'index_error')) warnings.push('some_languages_index_error');
+  if (values.some(entry => entry.status === 'qwen_error')) warnings.push('some_languages_qwen_error');
+  if (values.some(entry => entry.status === 'completed' && entry.failedCount > 0)) warnings.push('partial_qwen_failure');
+  if (values.some(entry => ['incomplete', 'aborted'].includes(entry.status)) || hasIntermediate) warnings.push('calculation_incomplete');
+  return { statuses, allTerminal, hasIntermediate, warnings: [...new Set(warnings)] };
 }
 
 export function calculateLanguageScore(items = [], { maxModels = Infinity, scoreGetter = (item) => item?.final_score } = {}) {
@@ -101,13 +137,10 @@ export function calculateLanguageScore(items = [], { maxModels = Infinity, score
 }
 
 export function unavailableReasonsFromStatuses(languageStatuses = {}) {
+  const { statuses } = summarizeLanguageStatuses(languageStatuses);
   const reasons = new Set();
-  Object.values(languageStatuses || {}).forEach((entry = {}) => {
-    const status = entry.status;
-    if (UNAVAILABLE_REASONS.includes(status)) reasons.add(status);
-    if (status === 'completed' && Number(entry.candidateCount) === 0) reasons.add('no_candidates');
-    if (entry.errorCode && status === 'index_error') reasons.add('index_error');
-    if (entry.errorCode && status === 'qwen_error') reasons.add('qwen_error');
+  Object.values(statuses).forEach((entry) => {
+    if (UNAVAILABLE_REASONS.includes(entry.status)) reasons.add(entry.status);
   });
   return [...reasons];
 }
@@ -121,21 +154,49 @@ export function calculateFinalAssociation({ languages = [], languageResults = []
   const representedLangs = represented.length;
   const groups = new Set(represented.map((score) => score.lang?.group).filter(Boolean));
   const semanticConfirmed = represented.length > 0 && represented.every((score) => score.semanticConfirmed === true);
+  const statusSummary = summarizeLanguageStatuses(languageStatuses);
   const unavailableReasons = unavailableReasonsFromStatuses(languageStatuses);
-  if (!hasCalculatedData && !unavailableReasons.includes('no_calculated_languages')) unavailableReasons.push('no_calculated_languages');
+  if (!hasCalculatedData && !unavailableReasons.includes('no_calculated_data')) unavailableReasons.push('no_calculated_data');
   const accepted = representedLangs >= 3 && groups.size >= 2 && finalAssociationPassesThreshold(finalAssociation) && semanticConfirmed;
-  return { languageScores, totalAssociation, finalAssociation, representedLangs, groups: groups.size, semanticConfirmed, accepted, hasCalculatedData, unavailableReasons };
+  return { languageScores, totalAssociation, finalAssociation, representedLangs, groups: groups.size, semanticConfirmed, accepted, hasCalculatedData, unavailableReasons, languageStatusSummary: statusSummary };
+}
+
+export function buildDecisionReasons(result = {}) {
+  const critical = [];
+  const warnings = [];
+  const add = (target, reason) => { if (!target.includes(reason)) target.push(reason); };
+  const summary = result.languageStatusSummary || summarizeLanguageStatuses(result.languageStatuses || {});
+  if (summary.hasIntermediate) add(warnings, 'calculation_incomplete');
+  if (!result.hasCalculatedData || !isFiniteScore(result.finalAssociation)) {
+    add(critical, 'no_calculated_data');
+  } else {
+    if (Number(result.representedLangs) < 3) add(critical, 'fewer_than_3_languages');
+    if (Number(result.groups) < 2) add(critical, 'fewer_than_2_groups');
+    if (Number(result.finalAssociation) < THRESHOLDS.main) add(critical, 'final_association_below_35');
+    if (!result.semanticConfirmed) add(critical, 'semantic_not_confirmed');
+  }
+  for (const warning of summary.warnings || []) {
+    if (WARNING_DECISION_REASONS.includes(warning)) add(warnings, warning);
+  }
+  return { critical, warnings };
 }
 
 export function finalAssociationRejectionReasons(result = {}) {
-  const reasons = [];
-  if (Number(result.representedLangs) < 3) reasons.push('fewer_languages');
-  if (Number(result.groups) < 2) reasons.push('fewer_groups');
-  const finalAssociation = Number(result.finalAssociation);
-  if (isFiniteScore(result.finalAssociation) && finalAssociation < THRESHOLDS.main) reasons.push('below_threshold');
-  if (!result.semanticConfirmed) reasons.push('semantic_unconfirmed');
-  if (!result.hasCalculatedData) reasons.push('no_calculated_languages');
-  return reasons;
+  const { critical } = buildDecisionReasons(result);
+  const legacy = {
+    no_calculated_data: 'no_calculated_languages',
+    fewer_than_3_languages: 'fewer_languages',
+    fewer_than_2_groups: 'fewer_groups',
+    final_association_below_35: 'below_threshold',
+    semantic_not_confirmed: 'semantic_unconfirmed'
+  };
+  return critical.map(reason => legacy[reason] || reason);
+}
+
+export function decisionStatusForResult(result = {}) {
+  const reasons = buildDecisionReasons(result);
+  if (!result.hasCalculatedData || !isFiniteScore(result.finalAssociation)) return 'insufficient_data';
+  return reasons.critical.length ? 'reject' : 'accept';
 }
 
 export function canCreateAssociativeJsonCard(result = {}) {
