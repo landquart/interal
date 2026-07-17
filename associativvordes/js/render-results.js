@@ -28,12 +28,14 @@ export function warningLabel(code, lang = 'ru') {
     duplicate_runtime_entry: 'Duplicate runtime entry was ignored.',
     partial_source_data: 'Source metadata is incomplete.',
     qwen_partial_failure: 'Qwen analysis partially failed.',
+    sources_truncated: 'Source list was truncated in saved state.',
     missing_category: 'Source category is missing.'
   } : {
     candidate_found_but_frequency_zero: 'Кандидат найден, но частотность равна нулю.',
     duplicate_runtime_entry: 'Дубликат runtime-записи был пропущен.',
     partial_source_data: 'Метаданные источника неполные.',
     qwen_partial_failure: 'Анализ Qwen частично не выполнен.',
+    sources_truncated: 'Список источников был обрезан в сохранённом состоянии.',
     missing_category: 'Не указана категория источника.'
   };
   return labels[code] || (lang === 'en' ? 'Diagnostic warning.' : 'Диагностическое предупреждение.');
@@ -83,9 +85,13 @@ export function renderCandidateEvidenceDetails(item = {}, labels = {}, lang = 'r
   const analysisWarnings = Array.isArray(item.analysis?.warnings) ? item.analysis.warnings : [];
   const itemWarnings = Array.isArray(item.warnings) ? item.warnings : [];
   const sourceSummary = summarizeCandidateSources(item.sources);
-  const warnings = [...new Set([...itemWarnings, ...sourceSummary.warnings, ...analysisWarnings])];
+  const sourceCount = item.sources_truncated && Number.isFinite(Number(item.source_count))
+    ? Math.max(sourceSummary.count, Number(item.source_count))
+    : sourceSummary.count;
+  const truncationWarnings = item.sources_truncated ? ['sources_truncated'] : [];
+  const warnings = [...new Set([...itemWarnings, ...sourceSummary.warnings, ...truncationWarnings, ...analysisWarnings])];
   const shownSources = sourceSummary.details.slice(0, sourceLimit);
-  const more = Math.max(0, sourceSummary.count - shownSources.length);
+  const more = Math.max(0, sourceCount - shownSources.length);
   const t = lang === 'en' ? {
     matchType: 'Match type', fragment: 'Fragment', distance: 'Distance', similarity: 'Similarity', frequencyScore: 'frequency_score', sourceCount: 'Sources', shown: 'Shown', more: 'More', sourceIds: 'Source files', categories: 'Categories', ipmByCategory: 'IPM by category', categoryScore: 'category_score', categoryWeight: 'category_weight', warnings: 'Warnings', warningCodes: 'Warning codes'
   } : {
@@ -102,7 +108,7 @@ export function renderCandidateEvidenceDetails(item = {}, labels = {}, lang = 'r
                 <dt>${t.distance}</dt><dd>${formatMetric(match?.distance, 0)}</dd>
                 <dt>${t.similarity}</dt><dd>${formatSimilarity(match?.similarity, 1)}</dd>
                 <dt>${t.frequencyScore}</dt><dd>${formatMetric(item.analysis?.frequency?.frequency_score ?? item.frequency_score, 2)}</dd>
-                <dt>${t.sourceCount}</dt><dd>${sourceSummary.count}<br><span class="muted">${t.shown}: ${shownSources.length}; ${t.more}: ${more}</span></dd>
+                <dt>${t.sourceCount}</dt><dd>${sourceCount}<br><span class="muted">${t.shown}: ${shownSources.length}; ${t.more}: ${more}</span></dd>
                 <dt>${t.sourceIds}</dt><dd>${sourceEntries.length ? sourceEntries.join('<br>') : '—'}</dd>
                 <dt>${t.categories}</dt><dd>${categoryEntries.length ? categoryEntries.join('<br>') : '—'}</dd>
                 <dt>${t.ipmByCategory}</dt><dd>${ipmEntries.length ? ipmEntries.join('<br>') : '—'}</dd>

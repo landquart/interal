@@ -1116,13 +1116,27 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
       return text.length > limit ? `${text.slice(0, limit - 1)}…` : text;
     }
 
+    function sourceFileNameForState(value) {
+      const normalized = String(value || '').replace(/\\/g, '/');
+      return normalized.split('/').filter(Boolean).pop() || '';
+    }
+
     function compactStateSource(source) {
       if (!source || typeof source !== 'object') return null;
+      const id = String(source.id || source.reference || source.ref || '').trim();
+      const file = sourceFileNameForState(source.file || source.filename || source.path || source.source || source.reference || source.ref);
+      const category = String(source.category || source.corpus_category || source.type || source.name || '').trim();
+      const ipm = finiteOrNull(source.ipm ?? source.IPM ?? source.frequency_ipm ?? source.value ?? source.score ?? source.frequency ?? source.count);
+      if (!id || !file || !category || ipm == null) return null;
+      return { id, file, category, ipm };
+    }
+
+    function compactStateSources(sources) {
+      const sourceList = Array.isArray(sources) ? sources : [];
       return {
-        category: source.category || source.source || source.name || '',
-        value: finiteOrNull(source.value ?? source.score ?? source.frequency ?? source.count),
-        weight: finiteOrNull(source.weight),
-        reference: source.reference || source.ref || source.url || null
+        sources: sourceList.slice(0, MAX_STATE_SOURCES_PER_CANDIDATE).map(compactStateSource).filter(Boolean),
+        source_count: sourceList.length,
+        sources_truncated: sourceList.length > MAX_STATE_SOURCES_PER_CANDIDATE
       };
     }
 
@@ -1156,49 +1170,54 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
         output[lang.code] = (Array.isArray(languages?.[lang.code]) ? languages[lang.code] : [])
           .filter((item) => item && (item.selected || item.word))
           .slice(0, MAX_STATE_CANDIDATES_PER_LANGUAGE)
-          .map((item) => ({
-            word: String(item.word || ''),
-            normalized: String(item.normalized || ''),
-            search_form: String(item.search_form || ''),
-            match: item.match && typeof item.match === 'object' ? {
-              type: item.match.type || null,
-              root: item.match.root || null,
-              search_form: item.match.search_form || null,
-              matched: item.match.matched || null
-            } : null,
-            rank: finiteOrNull(item.rank),
-            frequency_score: finiteOrNull(item.frequency_score),
-            category_breakdown: item.category_breakdown && typeof item.category_breakdown === 'object' ? JSON.parse(JSON.stringify(item.category_breakdown)) : {},
-            sources: Array.isArray(item.sources) ? item.sources.slice(0, MAX_STATE_SOURCES_PER_CANDIDATE).map(compactStateSource).filter(Boolean) : [],
-            warnings: Array.isArray(item.warnings) ? item.warnings.slice(0, 8).map(w => truncateStateText(w, MAX_STATE_WARNING_LENGTH)) : [],
-            category_score: finiteOrNull(item.category_score),
-            category_weight: finiteOrNull(item.category_weight),
-            frequencyProfile: item.frequencyProfile && typeof item.frequencyProfile === 'object' ? {
-              frequency_score: finiteOrNull(item.frequencyProfile.frequency_score),
-              rank: finiteOrNull(item.frequencyProfile.rank),
-              category_score: finiteOrNull(item.frequencyProfile.category_score),
-              category_weight: finiteOrNull(item.frequencyProfile.category_weight)
-            } : null,
-            model: String(item.model || ''),
-            selected: Boolean(item.selected),
-            association_score: finiteOrNull(item.association_score),
-            final_score: finiteOrNull(item.final_score),
-            analysisStatus: item.analysisStatus || null,
-            analysis: item.analysis ? {
-              final_score: finiteOrNull(item.analysis.final_score),
-              frequency: item.analysis.frequency ? { frequency_score: finiteOrNull(item.analysis.frequency.frequency_score) } : null,
-              swow: item.analysis.swow ? { bonus: finiteOrNull(item.analysis.swow.bonus) } : null,
-              association: item.analysis.association ? {
-                association_score: finiteOrNull(item.analysis.association.association_score),
-                directness: finiteOrNull(item.analysis.association.directness),
-                field_relatedness: finiteOrNull(item.analysis.association.field_relatedness),
-                domain_shift: finiteOrNull(item.analysis.association.domain_shift),
-                semantic_confirmed: item.analysis.association.semantic_confirmed === true,
-                explanation: truncateStateText(item.analysis.association.explanation, MAX_STATE_EXPLANATION_LENGTH)
+          .map((item) => {
+            const sourceState = compactStateSources(item.sources);
+            return {
+              word: String(item.word || ''),
+              normalized: String(item.normalized || ''),
+              search_form: String(item.search_form || ''),
+              match: item.match && typeof item.match === 'object' ? {
+                type: item.match.type || null,
+                root: item.match.root || null,
+                search_form: item.match.search_form || null,
+                matched: item.match.matched || null
               } : null,
-              warnings: Array.isArray(item.analysis.warnings) ? item.analysis.warnings.slice(0, 8).map(w => truncateStateText(w, MAX_STATE_WARNING_LENGTH)) : []
-            } : null
-          }));
+              rank: finiteOrNull(item.rank),
+              frequency_score: finiteOrNull(item.frequency_score),
+              category_breakdown: item.category_breakdown && typeof item.category_breakdown === 'object' ? JSON.parse(JSON.stringify(item.category_breakdown)) : {},
+              sources: sourceState.sources,
+              source_count: sourceState.source_count,
+              sources_truncated: sourceState.sources_truncated,
+              warnings: Array.isArray(item.warnings) ? item.warnings.slice(0, 8).map(w => truncateStateText(w, MAX_STATE_WARNING_LENGTH)) : [],
+              category_score: finiteOrNull(item.category_score),
+              category_weight: finiteOrNull(item.category_weight),
+              frequencyProfile: item.frequencyProfile && typeof item.frequencyProfile === 'object' ? {
+                frequency_score: finiteOrNull(item.frequencyProfile.frequency_score),
+                rank: finiteOrNull(item.frequencyProfile.rank),
+                category_score: finiteOrNull(item.frequencyProfile.category_score),
+                category_weight: finiteOrNull(item.frequencyProfile.category_weight)
+              } : null,
+              model: String(item.model || ''),
+              selected: Boolean(item.selected),
+              association_score: finiteOrNull(item.association_score),
+              final_score: finiteOrNull(item.final_score),
+              analysisStatus: item.analysisStatus || null,
+              analysis: item.analysis ? {
+                final_score: finiteOrNull(item.analysis.final_score),
+                frequency: item.analysis.frequency ? { frequency_score: finiteOrNull(item.analysis.frequency.frequency_score) } : null,
+                swow: item.analysis.swow ? { bonus: finiteOrNull(item.analysis.swow.bonus) } : null,
+                association: item.analysis.association ? {
+                  association_score: finiteOrNull(item.analysis.association.association_score),
+                  directness: finiteOrNull(item.analysis.association.directness),
+                  field_relatedness: finiteOrNull(item.analysis.association.field_relatedness),
+                  domain_shift: finiteOrNull(item.analysis.association.domain_shift),
+                  semantic_confirmed: item.analysis.association.semantic_confirmed === true,
+                  explanation: truncateStateText(item.analysis.association.explanation, MAX_STATE_EXPLANATION_LENGTH)
+                } : null,
+                warnings: Array.isArray(item.analysis.warnings) ? item.analysis.warnings.slice(0, 8).map(w => truncateStateText(w, MAX_STATE_WARNING_LENGTH)) : []
+              } : null
+            };
+          });
       });
       return output;
     }

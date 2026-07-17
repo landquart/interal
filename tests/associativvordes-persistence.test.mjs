@@ -32,4 +32,31 @@ assert.match(script, /MAX_STATE_CANDIDATES_PER_LANGUAGE = 80[\s\S]*MAX_STATE_WAR
 assert.match(script, /return JSON\.parse\(JSON\.stringify\(payload\)\)/, 'export normalizes JSON and rejects circular values');
 assert.doesNotMatch(script.match(/function collectAssociativePageState[\s\S]*?function unwrapAssociativePageState/)?.[0] || '', /new Map|new Set|AbortController|Promise|undefined/, 'export avoids non-JSON runtime objects');
 
+const persistenceHelpers = script.match(/function sourceFileNameForState[\s\S]*?function collectAssociativePageState/)?.[0]?.replace(/\n    function collectAssociativePageState[\s\S]*$/, '');
+assert.ok(persistenceHelpers, 'persistence source helpers are present');
+const compactAssociativeLanguages = Function(`
+  const LANGUAGES = [{ code: 'en' }, { code: 'de' }, { code: 'fr' }, { code: 'es' }, { code: 'it' }, { code: 'ru' }];
+  const MAX_STATE_CANDIDATES_PER_LANGUAGE = 80;
+  const MAX_STATE_SOURCES_PER_CANDIDATE = 12;
+  const MAX_STATE_WARNING_LENGTH = 240;
+  const MAX_STATE_EXPLANATION_LENGTH = 1200;
+  function finiteOrNull(value) { const number = Number(value); return Number.isFinite(number) ? number : null; }
+  ${persistenceHelpers}
+  return compactAssociativeLanguages;
+`)();
+const sourceBeforeExport = { id: 'en:web:fixture', file: '/tmp/private/web-fixture.tsv', category: 'web', ipm: 0 };
+const exportedLanguages = compactAssociativeLanguages({ en: [{ word: 'interact', sources: [sourceBeforeExport] }] });
+const serializedLanguages = JSON.parse(JSON.stringify(exportedLanguages));
+const importedLanguages = compactAssociativeLanguages(serializedLanguages);
+const sourceAfterImport = importedLanguages.en[0].sources[0];
+assert.deepEqual(sourceAfterImport, { id: sourceBeforeExport.id, file: 'web-fixture.tsv', category: sourceBeforeExport.category, ipm: sourceBeforeExport.ipm }, 'source survives export JSON import round-trip with canonical id/file/category/ipm');
+assert.equal(Object.hasOwn(sourceAfterImport, 'value'), false, 'compact source does not replace ipm with value');
+assert.equal(Object.hasOwn(sourceAfterImport, 'reference'), false, 'compact source does not replace id with reference');
+assert.equal(sourceAfterImport.file.includes('/tmp/private'), false, 'compact source does not store absolute path');
+const limitedSources = Array.from({ length: 13 }, (_, index) => ({ id: `src:${index}`, file: `source-${index}.tsv`, category: 'web', ipm: index }));
+const limitedCandidate = compactAssociativeLanguages({ en: [{ word: 'truncate', sources: limitedSources }] }).en[0];
+assert.equal(limitedCandidate.sources.length, 12, 'source limit is applied');
+assert.equal(limitedCandidate.source_count, 13, 'source_count records full source count when truncated');
+assert.equal(limitedCandidate.sources_truncated, true, 'sources_truncated does not hide truncation');
+
 console.log('associativvordes persistence tests passed');
