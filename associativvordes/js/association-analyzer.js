@@ -1,6 +1,6 @@
 import { getFrequencyProfile } from './frequency-loader.js';
 import { getBidirectionalSwow } from './swow-client.js';
-import { getTargetMeaningForLanguage as translateTargetMeaningForLanguage, hasOfflineTargetMeaningTranslation } from './target-meaning-translator.js';
+import { getTargetMeaningForLanguage as translateTargetMeaningForLanguage } from './target-meaning-translator.js';
 import { ASSOCIATION_SCORE_WEIGHTS, FINAL_SCORE_WEIGHTS, getQwenAssociationScores, QWEN_ERROR_CODES } from './qwen-client.js';
 
 export const THRESHOLDS = {
@@ -221,7 +221,7 @@ function buildEvaluation(qwen, frequencyScore, swowBonus) {
   };
 }
 
-export async function analyzeAssociativeWord({ language, targetMeaning, word, frequencyProfile, onProgress, onReviewRequest, signal } = {}) {
+export async function analyzeAssociativeWord({ language, targetMeaning, localizedTargetMeaning, word, frequencyProfile, onProgress, onReviewRequest, signal } = {}) {
   const warnings = [];
   const hasFrequencyProfile = frequencyProfile && typeof frequencyProfile === 'object' && Number.isFinite(Number(frequencyProfile.frequency_score));
   if (!hasFrequencyProfile) onProgress?.('Загрузка частотных списков...');
@@ -231,19 +231,20 @@ export async function analyzeAssociativeWord({ language, targetMeaning, word, fr
   });
   warnings.push(...(frequency.warnings || []));
 
-  const swowTargetMeaning = await translateTargetMeaningForLanguage(targetMeaning, language).catch(() => {
-    warnings.push('Target meaning translation unavailable');
-    return targetMeaning;
-  });
-  if (!hasOfflineTargetMeaningTranslation(targetMeaning, language) && swowTargetMeaning === targetMeaning) {
-    warnings.push(`No target meaning translation for ${language}; using original targetMeaning`);
+  let swowTargetMeaning = typeof localizedTargetMeaning === 'string' ? localizedTargetMeaning.trim() : '';
+  if (!swowTargetMeaning && arguments[0] && !Object.prototype.hasOwnProperty.call(arguments[0], 'localizedTargetMeaning')) {
+    swowTargetMeaning = await translateTargetMeaningForLanguage(targetMeaning, language).catch(() => '');
   }
-
-  onProgress?.(`SWOW: ${language} — ${word}`);
-  const bidirectionalSwow = await getBidirectionalSwow(language, swowTargetMeaning, word).catch(error => {
-    warnings.push(`SWOW unavailable: ${error.message}`);
-    return { target_to_word: null, word_to_target: null };
-  });
+  let bidirectionalSwow = { target_to_word: null, word_to_target: null };
+  if (!swowTargetMeaning) {
+    warnings.push('target_translation_unavailable');
+  } else {
+    onProgress?.(`SWOW: ${language} — ${word}`);
+    bidirectionalSwow = await getBidirectionalSwow(language, swowTargetMeaning, word).catch(error => {
+      warnings.push(`SWOW unavailable: ${error.message}`);
+      return { target_to_word: null, word_to_target: null };
+    });
+  }
   const swowPairFound = Boolean(bidirectionalSwow.target_to_word?.found || bidirectionalSwow.word_to_target?.found);
   if (!swowPairFound) warnings.push('No SWOW pair found, association not penalized');
   for (const side of [bidirectionalSwow.target_to_word, bidirectionalSwow.word_to_target]) {

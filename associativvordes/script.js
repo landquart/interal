@@ -4,6 +4,7 @@ import { escapeHtml, formatMetric, renderCandidateEvidenceDetails, resultRowClas
 import { normalizeText, stripDiacritics, includesRoot, fuzzyIncludesRoot, specialRootMatch } from './js/root-matcher.js';
 import { createCandidateIndexLoader } from './js/candidate-index-loader.js';
 import { findCandidatesForRoot } from './js/candidate-finder.js';
+import { clearTargetMeaningTranslationCache, translateTargetMeaning, TARGET_TRANSLATION_LANGUAGES } from './js/target-meaning-translator.js';
 import { createEmptyAssociativeState, invalidateSearchResult as invalidateAssociativeSearchResult, invalidateFinalCalculation as invalidateAssociativeFinalCalculation, addManualCandidate, updateCandidate, deleteCandidate, compactAssociativeState, restoreAssociativeState } from './js/associative-state.js';
 
 // Persistence compatibility markers: status: 'no_candidates', candidates: [] ; status: 'index_error', errorCode:
@@ -193,6 +194,7 @@ const TEXT_I18N = {
         qwenReviewRequestCount: 0,
         qwenFailedRequestCount: 0,
         abortedRequestCount: 0,
+        targetTranslationRequestCount: 0,
         durationByStage: {},
         activeRunId: null
       };
@@ -241,6 +243,7 @@ const TEXT_I18N = {
         qwenReviewRequestCount: run.qwenReviewRequestCount,
         qwenFailedRequestCount: run.qwenFailedRequestCount,
         abortedRequestCount: run.abortedRequestCount,
+        targetTranslationRequestCount: run.targetTranslationRequestCount,
         durationByStage: run.durationByStage,
         activeRunId: run.activeRunId
       }));
@@ -402,7 +405,7 @@ const TEXT_I18N = {
       return true;
     }
 
-    async function analyzeCandidateItem(langCode, item, onProgress, runId) {
+    async function analyzeCandidateItem(langCode, item, onProgress, runId, localizedTargetMeaning) {
       if (!isCurrentRun(runId)) return item;
       try {
         const languageName = textGroup('languages')[langCode] || langCode;
@@ -411,6 +414,7 @@ const TEXT_I18N = {
         const analysis = await analyzeAssociativeWord({
           language: langCode,
           targetMeaning: state.meaning || state.root,
+          localizedTargetMeaning,
           word: item.word,
           frequencyProfile: item.frequencyProfile,
           onProgress: text => { if (isCurrentRun(runId)) onProgress?.(text.replace(`${langCode} —`, `${languageName} —`)); },
@@ -510,6 +514,26 @@ const TEXT_I18N = {
       }));
     }
 
+
+    async function getRunTargetTranslations(targetMeaning, runId, onProgress) {
+      if (!targetMeaning) return {};
+      onProgress?.(currentLang() === 'en' ? 'Translating target meaning...' : 'Перевод значения...');
+      incrementDiagnostic('targetTranslationRequestCount');
+      try {
+        const result = await translateTargetMeaning({
+          targetMeaning,
+          sourceLanguage: 'ru',
+          targetLanguages: TARGET_TRANSLATION_LANGUAGES,
+          signal: activeRunAbortController?.signal
+        });
+        return isCurrentRun(runId) ? (result.translations || {}) : {};
+      } catch (error) {
+        if (error?.name === 'AbortError' || error?.code === 'TARGET_TRANSLATION_ABORTED') incrementDiagnostic('abortedRequestCount');
+        console.warn('Target meaning translation unavailable; SWOW will be skipped for untranslated languages.', error);
+        return {};
+      }
+    }
+
     async function runCalculation({ runId, onProgress } = {}) {
       const root = normalizeText(document.getElementById('rootInput').value);
       const meaning = document.getElementById('meaningInput').value.trim();
@@ -525,6 +549,9 @@ const TEXT_I18N = {
       state.elementType = elementType;
       state.maxModels = 5;
       const nextLangs = {};
+      clearTargetMeaningTranslationCache();
+      const targetTranslations = await getRunTargetTranslations(meaning || root, runId, onProgress);
+      if (!isCurrentRun(runId)) return;
 
       onProgress?.(currentLang() === 'en' ? 'Loading frequency lists...' : 'Загрузка частотных списков...');
       for (const lang of LANGUAGES) {
@@ -560,7 +587,7 @@ const TEXT_I18N = {
         const analyzed = await mapWithConcurrency(
           validCandidates,
           QWEN_RUNTIME_CONFIG.maxConcurrentQwenRequests,
-          item => analyzeCandidateItem(lang.code, item, onProgress, runId)
+          item => analyzeCandidateItem(lang.code, item, onProgress, runId, targetTranslations[lang.code] || '')
         );
 
         if (!isCurrentRun(runId)) return;
@@ -900,9 +927,12 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
       item.analysisStatus = 'analyzing';
       renderAll();
       try {
+        const targetTranslations = await getRunTargetTranslations(state.meaning || state.root, activeRunId, null);
+        incrementDiagnostic('qwenPrimaryRequestCount');
         item.analysis = await analyzeAssociativeWord({
           language: lang,
           targetMeaning: state.meaning || state.root,
+          localizedTargetMeaning: targetTranslations[lang] || '',
           word: item.word,
           frequencyProfile: item.frequencyProfile,
           onReviewRequest: () => incrementDiagnostic('qwenReviewRequestCount')
