@@ -35,6 +35,11 @@ function shardIdFromPath(file) { return String(file).split('/').pop().replace(/\
 function isBadRelPath(file) { return typeof file !== 'string' || !file || isAbsolute(file) || file.includes('://') || file.includes('\\') || file.split('/').includes('..'); }
 function isBareFileName(file) { return typeof file === 'string' && file.trim() && !isAbsolute(file) && !file.includes('://') && !file.includes('\\') && !file.includes('/') && !file.split('/').includes('..'); }
 
+export function appendItems(target, values) {
+  for (const value of values) target.push(value);
+  return target;
+}
+
 class Collector {
   constructor(max) { this.max = max; this.errors = []; this.warnings = []; this.errorCount = 0; this.warningCount = 0; }
   error(message) { this.errorCount += 1; if (this.errors.length < this.max) this.errors.push(message); }
@@ -55,7 +60,7 @@ async function listFiles(root, base = root) {
   for (const dirent of await readdir(root, { withFileTypes: true })) {
     const path = join(root, dirent.name);
     const rel = relative(base, path).replaceAll('\\', '/');
-    if (dirent.isDirectory()) out.push(...await listFiles(path, base)); else out.push(rel);
+    if (dirent.isDirectory()) appendItems(out, await listFiles(path, base)); else out.push(rel);
   }
   return out;
 }
@@ -167,7 +172,8 @@ async function validateIndex(options) {
         prev = entry;
         validateEntry(entry, lang, shard, i, seen, c);
       }
-      langReport.entries += entries.length; entriesForSamples.push(...entries);
+      langReport.entries += entries.length;
+      appendItems(entriesForSamples, entries);
     }
     if (langReport.entries !== info.entries) c.error(`${lang}: manifest entries ${info.entries} != actual ${langReport.entries}`);
     for (const root of ROOT_SAMPLES) {
