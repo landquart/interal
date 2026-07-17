@@ -28,8 +28,9 @@ function response(body, ok = true) {
 
 function mockFetch(routes, { delay = false } = {}) {
   const calls = [];
-  const fetch = async (url) => {
+  const fetch = async (url, options = {}) => {
     calls.push(String(url));
+    fetch.options.push(options);
     if (delay) await new Promise(resolve => setTimeout(resolve, 5));
     const route = routes[String(url)];
     if (route instanceof Error) throw route;
@@ -37,6 +38,7 @@ function mockFetch(routes, { delay = false } = {}) {
     return typeof route === 'function' ? route() : route;
   };
   fetch.calls = calls;
+  fetch.options = [];
   return fetch;
 }
 
@@ -184,6 +186,105 @@ test('AbortSignal stops operation without poisoning cache', async () => {
   controller.abort();
   await rejectsCode(() => pending, CANDIDATE_INDEX_ERROR_CODES.ABORTED);
   await loader.loadManifest();
+  assert.equal(fetch.calls.filter(url => url.endsWith('manifest.json')).length, 2);
+});
+
+function abortError() {
+  return Object.assign(new Error('Aborted'), { name: 'AbortError' });
+}
+
+function controlledFetch(routes = baseRoutes()) {
+  const calls = [];
+  const requests = [];
+  const fetch = (url, options = {}) => {
+    calls.push(String(url));
+    return new Promise((resolve, reject) => {
+      const request = { url: String(url), options, resolve: value => resolve(value), reject };
+      if (options.signal?.aborted) {
+        reject(abortError());
+        return;
+      }
+      const onAbort = () => { request.aborted = true; reject(abortError()); };
+      options.signal?.addEventListener('abort', onAbort, { once: true });
+      request.resolveRoute = () => {
+        options.signal?.removeEventListener('abort', onAbort);
+        const route = routes[String(url)];
+        resolve(typeof route === 'function' ? route() : route);
+      };
+      requests.push(request);
+    });
+  };
+  fetch.calls = calls;
+  fetch.requests = requests;
+  return fetch;
+}
+
+async function flushMicrotasks() {
+  await Promise.resolve();
+  await Promise.resolve();
+  await new Promise(resolve => setTimeout(resolve, 0));
+}
+
+test('passes AbortSignal to fetch options', async () => {
+  const fetch = mockFetch(baseRoutes());
+  const loader = createCandidateIndexLoader({ fetch });
+  const controller = new AbortController();
+  await loader.loadManifest({ signal: controller.signal });
+  assert.equal(fetch.options[0].signal, controller.signal);
+});
+
+test('abort cancels the mock shard request and returns ABORTED', async () => {
+  const fetch = controlledFetch();
+  const loader = createCandidateIndexLoader({ fetch });
+  const controller = new AbortController();
+  const pending = loader.loadShard('en', 'a', { signal: controller.signal });
+  await flushMicrotasks();
+  fetch.requests.find(request => request.url.endsWith('manifest.json')).resolveRoute();
+  await flushMicrotasks();
+  const shardRequest = fetch.requests.find(request => request.url.endsWith('/en/a.json'));
+  assert.equal(shardRequest.options.signal, controller.signal);
+  controller.abort();
+  assert.equal(shardRequest.aborted, true);
+  await rejectsCode(() => pending, CANDIDATE_INDEX_ERROR_CODES.ABORTED);
+});
+
+test('aborted shard is not cached and retry performs a new fetch', async () => {
+  const fetch = controlledFetch();
+  const loader = createCandidateIndexLoader({ fetch });
+  const controller = new AbortController();
+  const pending = loader.loadShard('en', 'a', { signal: controller.signal });
+  await flushMicrotasks();
+  fetch.requests.find(request => request.url.endsWith('manifest.json')).resolveRoute();
+  await flushMicrotasks();
+  controller.abort();
+  await rejectsCode(() => pending, CANDIDATE_INDEX_ERROR_CODES.ABORTED);
+
+  const retry = loader.loadShard('en', 'a');
+  await flushMicrotasks();
+  const retryShard = fetch.requests.filter(request => request.url.endsWith('/en/a.json')).at(-1);
+  retryShard.resolveRoute();
+  const entries = await retry;
+  assert.deepEqual(entries.map(entry => entry.word), ['alter']);
+  assert.equal(fetch.calls.filter(url => url.endsWith('/en/a.json')).length, 2);
+});
+
+test('completed shard cache survives an aborted consumer', async () => {
+  const fetch = mockFetch(baseRoutes());
+  const loader = createCandidateIndexLoader({ fetch });
+  await loader.loadShard('en', 'a');
+  const controller = new AbortController();
+  controller.abort();
+  await rejectsCode(() => loader.loadShard('en', 'a', { signal: controller.signal }), CANDIDATE_INDEX_ERROR_CODES.ABORTED);
+  const entries = await loader.loadShard('en', 'a');
+  assert.deepEqual(entries.map(entry => entry.word), ['alter']);
+  assert.equal(fetch.calls.filter(url => url.endsWith('/en/a.json')).length, 1);
+});
+
+test('completed manifest cache is shared after successful load', async () => {
+  const fetch = mockFetch(baseRoutes());
+  const loader = createCandidateIndexLoader({ fetch });
+  await loader.loadManifest({ signal: new AbortController().signal });
+  await loader.loadManifest({ signal: new AbortController().signal });
   assert.equal(fetch.calls.filter(url => url.endsWith('manifest.json')).length, 1);
 });
 
