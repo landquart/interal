@@ -88,6 +88,7 @@ export function createEmptyAssociativeState({ languages = DEFAULT_LANGUAGE_CODES
     root: '', meaning: '', elementType: 'root', maxModels: 5,
     languages: Object.fromEntries(codes.map(code => [code, []])),
     checked: false,
+    resultDirty: false,
     languageStatuses: Object.fromEntries(codes.map(code => [code, createLanguageStatus('idle')])),
     globalStatus: 'idle'
   };
@@ -98,6 +99,7 @@ export function invalidateSearchResult(state, { createEmptyState = createEmptyAs
   onInvalidateActiveRuns?.();
   const empty = createEmptyState();
   state.checked = false;
+  state.resultDirty = false;
   state.languages = empty.languages;
   state.languageStatuses = empty.languageStatuses;
   state.globalStatus = 'idle';
@@ -106,8 +108,8 @@ export function invalidateSearchResult(state, { createEmptyState = createEmptyAs
 
 export function invalidateFinalCalculation(state, { shouldSkip = () => false } = {}) {
   if (shouldSkip()) return false;
-  state.checked = false;
-  state.globalStatus = 'idle';
+  state.resultDirty = Boolean(state.checked);
+  state.globalStatus = state.resultDirty ? 'aborted' : 'idle';
   return true;
 }
 
@@ -169,14 +171,15 @@ function compactAssociativeLanguages(languages, languageList = DEFAULT_LANGUAGE_
 
 export function compactAssociativeState(state, { languages = DEFAULT_LANGUAGE_CODES, activeLang = 'en', calculateResult } = {}) {
   const checked = Boolean(state.checked);
+  const resultDirty = Boolean(state.resultDirty);
   const r = calculateResult?.();
-  return cloneJson({ version: PAGE_STATE_VERSION, page: PAGE_STATE_NAME, state: { root: state.root || '', meaning: state.meaning || '', elementType: state.elementType || 'root', maxModels: state.maxModels, activeLang, languages: compactAssociativeLanguages(state.languages, languages), languageStatuses: state.languageStatuses, globalStatus: state.globalStatus, checked, result: checked && r ? r : null } });
+  return cloneJson({ version: PAGE_STATE_VERSION, page: PAGE_STATE_NAME, state: { root: state.root || '', meaning: state.meaning || '', elementType: state.elementType || 'root', maxModels: state.maxModels, activeLang, languages: compactAssociativeLanguages(state.languages, languages), languageStatuses: state.languageStatuses, globalStatus: state.globalStatus, checked, resultDirty, result: checked && r ? r : null } });
 }
 
 function unwrapAssociativePageState(saved = {}) {
   if (!saved || typeof saved !== 'object' || Array.isArray(saved)) return null;
   if (saved.version === PAGE_STATE_VERSION && saved.page === PAGE_STATE_NAME && saved.state && typeof saved.state === 'object') return saved.state;
-  if (saved.version === 2 && saved.fields && typeof saved.fields === 'object') return { ...saved.fields, activeLang: saved.ui?.activeLanguageTab, checked: Boolean(saved.flags?.checked || saved.checked || saved.result), result: saved.result || null };
+  if (saved.version === 2 && saved.fields && typeof saved.fields === 'object') return { ...saved.fields, activeLang: saved.ui?.activeLanguageTab, checked: Boolean(saved.flags?.checked || saved.checked || saved.result), resultDirty: Boolean(saved.flags?.resultDirty || saved.resultDirty || saved.calculationDirty), result: saved.result || null };
   return null;
 }
 
@@ -196,6 +199,7 @@ export function restoreAssociativeState(saved = {}, { languages = DEFAULT_LANGUA
   restored.maxModels = Number.isFinite(Number(fields.maxModels)) ? Math.max(1, Math.min(20, Number(fields.maxModels))) : 5;
   restored.languages = compactAssociativeLanguages(fields.languages || fields.selectedLanguageResults || {}, languages);
   restored.checked = Boolean(fields.checked || fields.result);
+  restored.resultDirty = Boolean(fields.resultDirty ?? fields.calculationDirty ?? false);
   const message = currentLang() === 'en' ? 'The previous calculation was interrupted. Run it again.' : 'Предыдущий расчёт был прерван. Запустите его повторно.';
   restored.languageStatuses = Object.fromEntries(languageCodes(languages).map(code => {
     const source = fields.languageStatuses?.[code] && typeof fields.languageStatuses[code] === 'object' ? fields.languageStatuses[code] : createLanguageStatus('idle');
@@ -204,7 +208,7 @@ export function restoreAssociativeState(saved = {}, { languages = DEFAULT_LANGUA
     return [code, { ...createLanguageStatus(status), ...source, status, errorCode: status === 'aborted' ? 'RESTORE_INTERRUPTED' : (source.errorCode || null), message: status === 'aborted' ? message : (source.message || null) }];
   }));
   restored.globalStatus = normalizeGlobalStatusForRestore(fields.globalStatus || (fields.result ? 'completed' : 'idle'), restored.checked);
-  if (restored.globalStatus === 'aborted') restored.checked = true;
+  if (restored.globalStatus === 'aborted') { restored.checked = true; restored.resultDirty = true; }
   const codes = languageCodes(languages);
   const nextActiveLang = codes.includes(fields.activeLang) ? fields.activeLang : (codes.includes(fields.activeLanguageTab) ? fields.activeLanguageTab : activeLang || codes[0]);
   return { state: restored, activeLang: nextActiveLang };

@@ -61,5 +61,17 @@ assert.match(interruptedImport.state.languageStatuses.en.message, /previous calc
 const completedImport = restoreAssociativeState(exported, { languages, createLanguageStatus });
 assert.equal(completedImport.state.globalStatus, 'completed', 'completed state is not marked for re-analysis');
 assert.equal(completedImport.state.languageStatuses.en.status, 'completed', 'completed language status is preserved');
+assert.equal(completedImport.state.resultDirty, false, 'completed state restores clean dirty flag by default');
+
+const dirty = structuredClone(exported);
+dirty.state.resultDirty = true;
+const dirtyImport = restoreAssociativeState(dirty, { languages, createLanguageStatus });
+assert.equal(dirtyImport.state.checked, true, 'dirty state keeps restored result sections visible');
+assert.equal(dirtyImport.state.resultDirty, true, 'dirty state survives export/import');
+
+const legacyWithoutDirty = structuredClone(exported);
+delete legacyWithoutDirty.state.resultDirty;
+const legacyImport = restoreAssociativeState(legacyWithoutDirty, { languages, createLanguageStatus });
+assert.equal(legacyImport.state.resultDirty, false, 'legacy state without dirty flag imports without error');
 
 console.log('associativvordes persistence tests passed');

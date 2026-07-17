@@ -45,7 +45,8 @@ function populatedState() {
   assert.equal(state.languages.en.at(-1), row, 'addRow stores the new row');
   assert.equal(state.languages.en.length, 2, 'addRow keeps existing language rows');
   assert.equal(state.languages.de.length, 1, 'addRow does not clear other languages');
-  assert.equal(state.checked, false, 'addRow invalidates only the final calculation');
+  assert.equal(state.checked, true, 'addRow keeps existing results visible');
+  assert.equal(state.resultDirty, true, 'addRow marks the final calculation as outdated');
 }
 
 {
@@ -67,7 +68,8 @@ function populatedState() {
   assert.equal(state.languages.ru[0].selected, false, 'checkbox value is applied');
   assert.equal(state.languages.en.length, 1, 'checkbox does not clear another language');
   assert.equal(state.languageStatuses.en.status, 'completed', 'checkbox does not clear language statuses');
-  assert.equal(state.checked, false, 'checkbox invalidates final calculation');
+  assert.equal(state.checked, true, 'checkbox keeps the table visible');
+  assert.equal(state.resultDirty, true, 'checkbox marks the final calculation as outdated');
 }
 
 {
@@ -81,6 +83,8 @@ function populatedState() {
   assert.deepEqual(state.languages.en, [], 'changing root clears old English results');
   assert.deepEqual(state.languages.ru, [], 'changing root clears old Russian results');
   assert.equal(state.languageStatuses.fr.status, 'idle', 'changing root resets stale language statuses');
+  assert.equal(state.checked, false, 'changing root hides old results');
+  assert.equal(state.resultDirty, false, 'changing root clears dirty state with stale results');
   assert.equal(aborted, 1, 'changing root aborts active work');
 }
 
@@ -117,11 +121,37 @@ function populatedState() {
   assert.equal(imported.state.languageStatuses.en.status, 'completed', 'completed language state is not marked for re-analysis');
 }
 
+
+{
+  const state = populatedState();
+  const exported = compactAssociativeState(state, { languages: LANGUAGES, activeLang: 'en', calculateResult: () => ({ finalAssociation: 40, totalAssociation: 50, representedLanguages: 4, representedGroups: 3, semanticConfirmed: true, accepted: true }) });
+  assert.equal(exported.state.resultDirty, false, 'clean completed state exports a clean dirty flag');
+  addManualCandidate(state, 'en', { word: 'interlude' });
+  assert.equal(state.languages.en.at(-1).word, 'interlude', 'manual row remains in state after invalidation');
+  assert.equal(state.languages.de[0].word, 'international', 'manual row does not clear other languages');
+  assert.equal(state.checked, true, 'manual row keeps result sections visible');
+  assert.equal(state.resultDirty, true, 'manual row marks totals as outdated');
+  const dirtyExport = compactAssociativeState(state, { languages: LANGUAGES, activeLang: 'en', calculateResult: () => ({ finalAssociation: 40, totalAssociation: 50, representedLanguages: 4, representedGroups: 3, semanticConfirmed: true, accepted: true }) });
+  assert.equal(dirtyExport.state.resultDirty, true, 'export preserves dirty state');
+  const dirtyImport = restoreAssociativeState(dirtyExport, { languages: LANGUAGES, createLanguageStatus });
+  assert.equal(dirtyImport.state.checked, true, 'import keeps dirty results visible');
+  assert.equal(dirtyImport.state.resultDirty, true, 'import restores dirty state');
+}
+
+{
+  const oldExport = compactAssociativeState(populatedState(), { languages: LANGUAGES, activeLang: 'en', calculateResult: () => ({ finalAssociation: 40, totalAssociation: 50, representedLanguages: 4, representedGroups: 3, semanticConfirmed: true, accepted: true }) });
+  delete oldExport.state.resultDirty;
+  const imported = restoreAssociativeState(oldExport, { languages: LANGUAGES, createLanguageStatus });
+  assert.equal(imported.state.resultDirty, false, 'old state without dirty flag imports safely as clean');
+  assert.equal(imported.state.checked, true, 'old state without dirty flag still restores visible results');
+}
+
 {
   const script = await readFile('associativvordes/script.js', 'utf8');
   assert.match(script, /from '\.\/js\/associative-state\.js'/, 'script.js is wired to the pure state module');
   assert.match(script, /addManualCandidate\(state, lang\)/, 'addRow delegates to the pure add candidate function');
   assert.match(script, /restoreAssociativeState\(saved/, 'import delegates to pure restore logic');
+  assert.match(script, /state\.resultDirty \|\| !hasPassedJsonCardThreshold\(\)/, 'dirty state blocks JSON-card availability');
 }
 
 console.log('associativvordes state behavior tests passed');

@@ -41,7 +41,7 @@ const TEXT_I18N = {
           group: 'Группа', languageScore: 'Балл языка', weightSum: 'сумма весов', addWord: 'Добавить слово', use: 'Учитывать', word: 'Слово', model: 'Модель', frequencyPercent: 'F — частотность', directness: 'Di — прямота связи', fieldRelatedness: 'Pr — близость поля', domainShift: 'Sh — сдвиг области', swowBonus: 'Бонус SWOW, 0–15', associationPercent: 'A — ассоциация', finalPercent: 'P — вес деривата', status: 'Статус', explanation: 'Объяснение', warnings: 'Предупреждения', details: 'Детали', analyze: 'Анализировать', delete: 'Удалить', association: 'Ассоциация', rank: 'Ранг', frequency: 'Частота', weightP: 'Вес P'
         },
         results: {
-          finalAssociation: 'FA — конечная ассоциация', totalAssociation: 'TA — общая сумма баллов языков', languagesRepresented: 'языков представлено', languageGroups: 'языковых групп', accept: 'ПРИНЯТЬ', reject: 'НЕ ПРИНИМАТЬ', insufficientData: 'Недостаточно данных', noCalculatedData: 'Нет рассчитанных данных.', noCandidates: 'Кандидаты не найдены.', indexUnavailable: 'Индекс языка недоступен.', qwenUnavailable: 'Анализ Qwen недоступен.', calculationAborted: 'Расчёт был прерван.', calculationIncomplete: 'Расчёт не завершён.', partialErrors: 'Часть языков рассчитана с ошибками.', fewerLanguages: 'Представлено меньше 3 языков.', fewerGroups: 'Представлено меньше 2 языковых групп.', belowThreshold: 'FA ниже 35%.', semanticUnconfirmed: 'Семантическое соответствие не подтверждено.', reasons: 'Причины', warnings: 'Предупреждения', allMet: 'Все условия выполнены.'
+          finalAssociation: 'FA — конечная ассоциация', totalAssociation: 'TA — общая сумма баллов языков', languagesRepresented: 'языков представлено', languageGroups: 'языковых групп', accept: 'ПРИНЯТЬ', reject: 'НЕ ПРИНИМАТЬ', insufficientData: 'Недостаточно данных', noCalculatedData: 'Нет рассчитанных данных.', noCandidates: 'Кандидаты не найдены.', indexUnavailable: 'Индекс языка недоступен.', qwenUnavailable: 'Анализ Qwen недоступен.', calculationAborted: 'Расчёт был прерван.', calculationIncomplete: 'Расчёт не завершён.', calculationDirty: 'Итог устарел после ручного изменения. Запустите расчёт повторно.', partialErrors: 'Часть языков рассчитана с ошибками.', fewerLanguages: 'Представлено меньше 3 языков.', fewerGroups: 'Представлено меньше 2 языковых групп.', belowThreshold: 'FA ниже 35%.', semanticUnconfirmed: 'Семантическое соответствие не подтверждено.', reasons: 'Причины', warnings: 'Предупреждения', allMet: 'Все условия выполнены.'
         },
         alerts: {
           rootRequired: 'Введите кандидатный корень или предлог.',
@@ -88,7 +88,7 @@ const TEXT_I18N = {
           group: 'Group', languageScore: 'Language score', weightSum: 'weight sum', addWord: 'Add word', use: 'Use', word: 'Word', model: 'Model', frequencyPercent: 'F — frequency', directness: 'Di — directness', fieldRelatedness: 'Pr — field proximity', domainShift: 'Sh — domain shift', swowBonus: 'SWOW bonus — 0–15', associationPercent: 'A — association', finalPercent: 'P — derivative weight', status: 'Status', explanation: 'Explanation', warnings: 'Warnings', details: 'Details', analyze: 'Analyze', delete: 'Delete', association: 'Association', rank: 'Rank', frequency: 'Frequency', weightP: 'Weight P'
         },
         results: {
-          finalAssociation: 'FA — final association', totalAssociation: 'TA — total language score', languagesRepresented: 'languages represented', languageGroups: 'language groups', accept: 'ACCEPT', reject: 'DO NOT ACCEPT', insufficientData: 'Insufficient data', noCalculatedData: 'No calculated data.', noCandidates: 'No candidates found.', indexUnavailable: 'The language index is unavailable.', qwenUnavailable: 'Qwen analysis is unavailable.', calculationAborted: 'The calculation was aborted.', calculationIncomplete: 'The calculation is incomplete.', partialErrors: 'Some languages were calculated with errors.', fewerLanguages: 'Fewer than 3 languages are represented.', fewerGroups: 'Fewer than 2 language groups are represented.', belowThreshold: 'FA is below 35%.', semanticUnconfirmed: 'Semantic correspondence is not confirmed.', reasons: 'Reasons', warnings: 'Warnings', allMet: 'All conditions are met.'
+          finalAssociation: 'FA — final association', totalAssociation: 'TA — total language score', languagesRepresented: 'languages represented', languageGroups: 'language groups', accept: 'ACCEPT', reject: 'DO NOT ACCEPT', insufficientData: 'Insufficient data', noCalculatedData: 'No calculated data.', noCandidates: 'No candidates found.', indexUnavailable: 'The language index is unavailable.', qwenUnavailable: 'Qwen analysis is unavailable.', calculationAborted: 'The calculation was aborted.', calculationIncomplete: 'The calculation is incomplete.', calculationDirty: 'The total is outdated after a manual change. Run the calculation again.', partialErrors: 'Some languages were calculated with errors.', fewerLanguages: 'Fewer than 3 languages are represented.', fewerGroups: 'Fewer than 2 language groups are represented.', belowThreshold: 'FA is below 35%.', semanticUnconfirmed: 'Semantic correspondence is not confirmed.', reasons: 'Reasons', warnings: 'Warnings', allMet: 'All conditions are met.'
         },
         alerts: {
           rootRequired: 'Enter a candidate root or preposition.',
@@ -623,6 +623,7 @@ const TEXT_I18N = {
           return;
         }
         state.checked = true;
+        state.resultDirty = false;
         {
           const summary = summarizeLanguageStatuses(state.languageStatuses);
           state.globalStatus = summary.allTerminal ? (summary.warnings.length ? 'completed_with_warnings' : 'completed') : 'loading';
@@ -808,7 +809,7 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
       `;
       resultBox.classList.add('is-updated');
 
-      const decision = decisionStatusForResult(result);
+      const decision = state.resultDirty ? 'insufficient_data' : decisionStatusForResult(result);
       const statusClass = decision === 'accept' ? 'ok' : (decision === 'insufficient_data' ? 'warn' : 'bad');
       const statusText = decision === 'accept' ? labels.accept : (decision === 'insufficient_data' ? labels.insufficientData : labels.reject);
       const reasonLabels = {
@@ -820,9 +821,10 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
         some_languages_no_candidates: labels.noCandidates,
         some_languages_index_error: labels.indexUnavailable,
         some_languages_qwen_error: labels.qwenUnavailable,
-        calculation_incomplete: labels.calculationIncomplete
+        calculation_incomplete: state.resultDirty ? labels.calculationDirty : labels.calculationIncomplete
       };
       const { critical, warnings } = buildDecisionReasons(result);
+      if (state.resultDirty && !critical.includes('calculation_incomplete')) critical.push('calculation_incomplete');
       const criticalText = critical.map(reason => reasonLabels[reason]).filter(Boolean);
       const warningText = warnings.map(reason => reasonLabels[reason] || labels.partialErrors).filter(Boolean);
       const parts = [];
@@ -1098,6 +1100,10 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
     }
 
     function openJsonCardModal() {
+      if (state.resultDirty) {
+        alert(textGroup('results').calculationDirty);
+        return;
+      }
       if (!hasPassedJsonCardThreshold()) {
         alert(textGroup('alerts').jsonCardThresholdUnavailable);
         return;
@@ -1126,6 +1132,7 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
     }
 
     function hasPassedJsonCardThreshold() {
+      if (!state.checked || state.resultDirty) return false;
       const r = calculateFinal(); return canCreateAssociativeJsonCard(r);
     }
 
@@ -1140,7 +1147,7 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
     function syncJsonCardButtonVisibility() {
       syncCheckedVisibility();
       const jsonCardBtn = document.getElementById('jsonCardBtn');
-      if (jsonCardBtn) jsonCardBtn.hidden = !state.checked || !hasPassedJsonCardThreshold();
+      if (jsonCardBtn) jsonCardBtn.hidden = !state.checked || state.resultDirty || !hasPassedJsonCardThreshold();
     }
 
     function syncResetButtonVisibility() {
