@@ -32,7 +32,11 @@ function isAbortError(error) {
 }
 
 function abortError(cause) {
-  return new CandidateIndexError(CANDIDATE_INDEX_ERROR_CODES.ABORTED, 'Candidate index request was aborted.', { cause });
+  return new CandidateIndexError(
+    CANDIDATE_INDEX_ERROR_CODES.ABORTED,
+    'Candidate index request was aborted.',
+    { cause }
+  );
 }
 
 async function withAbort(promise, signal) {
@@ -52,7 +56,18 @@ async function withAbort(promise, signal) {
 }
 
 function createDiagnostics() {
-  return { manifestLoaded: false, manifestVersion: null, normalizerVersion: null, loadedShards: [], cacheHits: 0, cacheMisses: 0, fetchCount: 0, rejectedEntries: 0, validationErrors: [] };
+  return {
+    manifestLoaded: false,
+    manifestVersion: null,
+    normalizerVersion: null,
+    loadedShards: [],
+    unlistedShards: [],
+    cacheHits: 0,
+    cacheMisses: 0,
+    fetchCount: 0,
+    rejectedEntries: 0,
+    validationErrors: []
+  };
 }
 
 function normalizeBaseUrl(baseUrl = DEFAULT_BASE_URL) {
@@ -80,7 +95,9 @@ async function fetchJson(fetchImpl, url, fetchOptions, code, language, shard) {
     if (isAbortError(error)) throw abortError(error);
     throw new CandidateIndexError(code, 'Candidate index fetch failed.', { language, shard, cause: error });
   }
-  if (!response?.ok) throw new CandidateIndexError(code, 'Candidate index fetch failed.', { language, shard, cause: response });
+  if (!response?.ok) {
+    throw new CandidateIndexError(code, 'Candidate index fetch failed.', { language, shard, cause: response });
+  }
   try {
     return await response.json();
   } catch (error) {
@@ -93,7 +110,12 @@ function isPlainObject(value) {
 }
 
 function assertRelativeShardPath(file) {
-  return typeof file === 'string' && file && !file.startsWith('/') && !file.includes('://') && !file.includes('\\') && !file.split('/').includes('..');
+  return typeof file === 'string'
+    && file
+    && !file.startsWith('/')
+    && !file.includes('://')
+    && !file.includes('\\')
+    && !file.split('/').includes('..');
 }
 
 function manifestConfigHash(manifest) {
@@ -101,16 +123,34 @@ function manifestConfigHash(manifest) {
 }
 
 function validateManifest(manifest) {
-  if (!isPlainObject(manifest)) throw new CandidateIndexError(CANDIDATE_INDEX_ERROR_CODES.MANIFEST_INVALID, 'Candidate index manifest must be an object.');
-  if (manifest.version !== SUPPORTED_MANIFEST_VERSION) throw new CandidateIndexError(CANDIDATE_INDEX_ERROR_CODES.MANIFEST_VERSION_UNSUPPORTED, 'Candidate index manifest version is unsupported.');
-  if (manifest.normalizer_version !== SUPPORTED_NORMALIZER_VERSION) throw new CandidateIndexError(CANDIDATE_INDEX_ERROR_CODES.INDEX_CONFIG_INCOMPATIBLE, 'Candidate index normalizer version is incompatible.');
-  if (typeof manifestConfigHash(manifest) !== 'string' || !manifestConfigHash(manifest)) throw new CandidateIndexError(CANDIDATE_INDEX_ERROR_CODES.INDEX_CONFIG_INCOMPATIBLE, 'Candidate index global config hash is required.');
-  if (!isPlainObject(manifest.languages)) throw new CandidateIndexError(CANDIDATE_INDEX_ERROR_CODES.MANIFEST_INVALID, 'Candidate index manifest languages must be an object.');
+  if (!isPlainObject(manifest)) {
+    throw new CandidateIndexError(CANDIDATE_INDEX_ERROR_CODES.MANIFEST_INVALID, 'Candidate index manifest must be an object.');
+  }
+  if (manifest.version !== SUPPORTED_MANIFEST_VERSION) {
+    throw new CandidateIndexError(CANDIDATE_INDEX_ERROR_CODES.MANIFEST_VERSION_UNSUPPORTED, 'Candidate index manifest version is unsupported.');
+  }
+  if (manifest.normalizer_version !== SUPPORTED_NORMALIZER_VERSION) {
+    throw new CandidateIndexError(CANDIDATE_INDEX_ERROR_CODES.INDEX_CONFIG_INCOMPATIBLE, 'Candidate index normalizer version is incompatible.');
+  }
+  if (typeof manifestConfigHash(manifest) !== 'string' || !manifestConfigHash(manifest)) {
+    throw new CandidateIndexError(CANDIDATE_INDEX_ERROR_CODES.INDEX_CONFIG_INCOMPATIBLE, 'Candidate index global config hash is required.');
+  }
+  if (!isPlainObject(manifest.languages)) {
+    throw new CandidateIndexError(CANDIDATE_INDEX_ERROR_CODES.MANIFEST_INVALID, 'Candidate index manifest languages must be an object.');
+  }
   for (const [language, info] of Object.entries(manifest.languages)) {
-    if (!isPlainObject(info)) throw new CandidateIndexError(CANDIDATE_INDEX_ERROR_CODES.MANIFEST_INVALID, 'Candidate index language metadata must be an object.', { language });
-    if (info.language_config_hash != null && (typeof info.language_config_hash !== 'string' || !info.language_config_hash)) throw new CandidateIndexError(CANDIDATE_INDEX_ERROR_CODES.INDEX_CONFIG_INCOMPATIBLE, 'Candidate index language config hash is invalid.', { language });
-    if (!Number.isInteger(info.entries) || info.entries < 0) throw new CandidateIndexError(CANDIDATE_INDEX_ERROR_CODES.MANIFEST_INVALID, 'Candidate index language entries must be a non-negative integer.', { language });
-    if (!Array.isArray(info.shards)) throw new CandidateIndexError(CANDIDATE_INDEX_ERROR_CODES.MANIFEST_INVALID, 'Candidate index shards must be listed.', { language });
+    if (!isPlainObject(info)) {
+      throw new CandidateIndexError(CANDIDATE_INDEX_ERROR_CODES.MANIFEST_INVALID, 'Candidate index language metadata must be an object.', { language });
+    }
+    if (info.language_config_hash != null && (typeof info.language_config_hash !== 'string' || !info.language_config_hash)) {
+      throw new CandidateIndexError(CANDIDATE_INDEX_ERROR_CODES.INDEX_CONFIG_INCOMPATIBLE, 'Candidate index language config hash is invalid.', { language });
+    }
+    if (!Number.isInteger(info.entries) || info.entries < 0) {
+      throw new CandidateIndexError(CANDIDATE_INDEX_ERROR_CODES.MANIFEST_INVALID, 'Candidate index language entries must be a non-negative integer.', { language });
+    }
+    if (!Array.isArray(info.shards)) {
+      throw new CandidateIndexError(CANDIDATE_INDEX_ERROR_CODES.MANIFEST_INVALID, 'Candidate index shards must be listed.', { language });
+    }
     for (const shard of info.shards) {
       if (!isPlainObject(shard) || !assertRelativeShardPath(shard.file) || !Number.isInteger(shard.entries) || shard.entries < 0) {
         throw new CandidateIndexError(CANDIDATE_INDEX_ERROR_CODES.MANIFEST_INVALID, 'Candidate index shard metadata is invalid.', { language, shard: shard?.file });
@@ -126,17 +166,20 @@ function shardIdFromFile(file) {
 
 function getLanguageInfo(manifest, language) {
   const info = manifest.languages?.[language];
-  if (!info) throw new CandidateIndexError(CANDIDATE_INDEX_ERROR_CODES.LANGUAGE_NOT_INDEXED, 'Language is not indexed.', { language });
+  if (!info) {
+    throw new CandidateIndexError(CANDIDATE_INDEX_ERROR_CODES.LANGUAGE_NOT_INDEXED, 'Language is not indexed.', { language });
+  }
   return info;
 }
 
 function getShardMeta(manifest, language, shardId) {
   const info = getLanguageInfo(manifest, language);
   const found = info.shards.find(shard => shardIdFromFile(shard.file) === shardId || shard.file === shardId);
-  if (!found) throw new CandidateIndexError(CANDIDATE_INDEX_ERROR_CODES.SHARD_NOT_LISTED, 'Shard is not listed in manifest.', { language, shard: shardId });
+  if (!found) {
+    throw new CandidateIndexError(CANDIDATE_INDEX_ERROR_CODES.SHARD_NOT_LISTED, 'Shard is not listed in manifest.', { language, shard: shardId });
+  }
   return { ...found, id: shardIdFromFile(found.file) };
 }
-
 
 function normalizeSourceForRuntime(source) {
   if (!isPlainObject(source)) return null;
@@ -181,13 +224,17 @@ function validateEntry(entry, index, diagnostics) {
 
 function validateShardPayload(payload, language, shardMeta, diagnostics) {
   const entries = Array.isArray(payload) ? payload : payload?.entries;
-  if (!Array.isArray(entries)) throw new CandidateIndexError(CANDIDATE_INDEX_ERROR_CODES.SHARD_INVALID, 'Candidate index shard must be an array or object with entries.', { language, shard: shardMeta.id });
+  if (!Array.isArray(entries)) {
+    throw new CandidateIndexError(CANDIDATE_INDEX_ERROR_CODES.SHARD_INVALID, 'Candidate index shard must be an array or object with entries.', { language, shard: shardMeta.id });
+  }
   const normalizedEntries = [];
   for (const [index, entry] of entries.entries()) {
     try {
       validateEntry(entry, index, diagnostics);
       normalizedEntries.push(normalizeEntrySourcesForRuntime(entry));
-    } catch (cause) { throw new CandidateIndexError(CANDIDATE_INDEX_ERROR_CODES.SHARD_INVALID, 'Candidate index shard contains invalid entries.', { language, shard: shardMeta.id, cause }); }
+    } catch (cause) {
+      throw new CandidateIndexError(CANDIDATE_INDEX_ERROR_CODES.SHARD_INVALID, 'Candidate index shard contains invalid entries.', { language, shard: shardMeta.id, cause });
+    }
   }
   return normalizedEntries;
 }
@@ -196,7 +243,8 @@ function candidateShardIdsForRoot(language, root) {
   const normalized = stripDiacritics(normalizeText(root));
   const ids = new Set();
   const first = normalized[0];
-  if (first && first >= 'a' && first <= 'z') ids.add(first); else ids.add('_other');
+  if (first && first >= 'a' && first <= 'z') ids.add(first);
+  else ids.add('_other');
   if (['inter', 'ocul', 'regul'].includes(normalized)) ids.add('_other');
   return [...ids];
 }
@@ -205,11 +253,12 @@ export function createCandidateIndexLoader(options = {}) {
   const baseUrl = normalizeBaseUrl(options.baseUrl ?? DEFAULT_BASE_URL);
   const fetchImpl = options.fetch ?? globalThis.fetch?.bind(globalThis);
   if (typeof fetchImpl !== 'function') throw new TypeError('createCandidateIndexLoader requires fetch support.');
+
   const diagnostics = createDiagnostics();
   let manifestPromise;
+  let manifestCache;
   const shardPromises = new Map();
   const shardCache = new Map();
-  let manifestCache;
 
   function getReusablePromise(record, signal) {
     if (!record || record.signal !== signal) return null;
@@ -230,10 +279,25 @@ export function createCandidateIndexLoader(options = {}) {
     diagnostics.cacheMisses += 1;
     diagnostics.fetchCount += 1;
     const record = { signal, promise: null };
-    record.promise = fetchJson(fetchImpl, joinUrl(baseUrl, 'manifest.json'), fetchOptionsWithSignal(signal), CANDIDATE_INDEX_ERROR_CODES.MANIFEST_FETCH_FAILED)
+    record.promise = fetchJson(
+      fetchImpl,
+      joinUrl(baseUrl, 'manifest.json'),
+      fetchOptionsWithSignal(signal),
+      CANDIDATE_INDEX_ERROR_CODES.MANIFEST_FETCH_FAILED
+    )
       .then(payload => { throwIfAborted(signal); return validateManifest(payload); })
-      .then(manifest => { throwIfAborted(signal); manifestCache = manifest; diagnostics.manifestLoaded = true; diagnostics.manifestVersion = manifest.version || null; diagnostics.normalizerVersion = manifest.normalizer_version || null; return manifest; })
-      .catch(error => { if (manifestPromise === record) manifestPromise = undefined; throw error; });
+      .then(manifest => {
+        throwIfAborted(signal);
+        manifestCache = manifest;
+        diagnostics.manifestLoaded = true;
+        diagnostics.manifestVersion = manifest.version || null;
+        diagnostics.normalizerVersion = manifest.normalizer_version || null;
+        return manifest;
+      })
+      .catch(error => {
+        if (manifestPromise === record) manifestPromise = undefined;
+        throw error;
+      });
     manifestPromise = record;
     return withAbort(record.promise, signal);
   }
@@ -242,16 +306,38 @@ export function createCandidateIndexLoader(options = {}) {
     const manifest = await loadManifest({ signal });
     const shardMeta = getShardMeta(manifest, language, shardId);
     const key = `${language}/${shardMeta.id}`;
-    if (shardCache.has(key)) { diagnostics.cacheHits += 1; throwIfAborted(signal); return shardCache.get(key); }
+    if (shardCache.has(key)) {
+      diagnostics.cacheHits += 1;
+      throwIfAborted(signal);
+      return shardCache.get(key);
+    }
     const reusableShardPromise = getReusablePromise(shardPromises.get(key), signal);
-    if (reusableShardPromise) { diagnostics.cacheHits += 1; return withAbort(reusableShardPromise, signal); }
+    if (reusableShardPromise) {
+      diagnostics.cacheHits += 1;
+      return withAbort(reusableShardPromise, signal);
+    }
     diagnostics.cacheMisses += 1;
     diagnostics.fetchCount += 1;
     const record = { signal, promise: null };
-    record.promise = fetchJson(fetchImpl, joinUrl(baseUrl, shardMeta.file), fetchOptionsWithSignal(signal), CANDIDATE_INDEX_ERROR_CODES.SHARD_FETCH_FAILED, language, shardMeta.id)
+    record.promise = fetchJson(
+      fetchImpl,
+      joinUrl(baseUrl, shardMeta.file),
+      fetchOptionsWithSignal(signal),
+      CANDIDATE_INDEX_ERROR_CODES.SHARD_FETCH_FAILED,
+      language,
+      shardMeta.id
+    )
       .then(payload => { throwIfAborted(signal); return validateShardPayload(payload, language, shardMeta, diagnostics); })
-      .then(entries => { throwIfAborted(signal); shardCache.set(key, entries); diagnostics.loadedShards.push(key); return entries; })
-      .catch(error => { if (shardPromises.get(key) === record) shardPromises.delete(key); throw error; });
+      .then(entries => {
+        throwIfAborted(signal);
+        shardCache.set(key, entries);
+        diagnostics.loadedShards.push(key);
+        return entries;
+      })
+      .catch(error => {
+        if (shardPromises.get(key) === record) shardPromises.delete(key);
+        throw error;
+      });
     shardPromises.set(key, record);
     return withAbort(record.promise, signal);
   }
@@ -262,8 +348,15 @@ export function createCandidateIndexLoader(options = {}) {
     const entries = [];
     const ids = candidateShardIdsForRoot(language, root);
     for (const shardId of ids) {
-      try { entries.push(...await loadShard(language, shardId, { signal })); }
-      catch (error) { if (error.code === CANDIDATE_INDEX_ERROR_CODES.SHARD_NOT_LISTED && shardId === '_other') continue; throw error; }
+      try {
+        entries.push(...await loadShard(language, shardId, { signal }));
+      } catch (error) {
+        if (error.code === CANDIDATE_INDEX_ERROR_CODES.SHARD_NOT_LISTED) {
+          diagnostics.unlistedShards.push(`${language}/${shardId}`);
+          continue;
+        }
+        throw error;
+      }
     }
     const normalizedRoot = normalizeText(root);
     return entries.filter(entry => fuzzyRootMatch(entry.search_form, normalizedRoot) || specialRootMatch(language, entry.search_form, normalizedRoot));
@@ -278,8 +371,19 @@ export function createCandidateIndexLoader(options = {}) {
   }
 
   function getCandidateIndexDiagnostics() {
-    return { ...diagnostics, loadedShards: [...diagnostics.loadedShards], validationErrors: [...diagnostics.validationErrors] };
+    return {
+      ...diagnostics,
+      loadedShards: [...diagnostics.loadedShards],
+      unlistedShards: [...diagnostics.unlistedShards],
+      validationErrors: [...diagnostics.validationErrors]
+    };
   }
 
-  return { loadManifest, loadShard, loadCandidateEntries, clearCandidateIndexCache, getCandidateIndexDiagnostics };
+  return {
+    loadManifest,
+    loadShard,
+    loadCandidateEntries,
+    clearCandidateIndexCache,
+    getCandidateIndexDiagnostics
+  };
 }
