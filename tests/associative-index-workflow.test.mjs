@@ -50,7 +50,8 @@ assert.match(publishWorkflow, /branch:\s*publish\/associative-index-\$\{\{ githu
 assert.match(publishWorkflow, /base:\s*main/, 'publish workflow targets main through a pull request');
 assert.doesNotMatch(publishWorkflow, /git\s+push\s+origin\s+main|git\s+push\s+[^\n]*main/, 'publish workflow does not directly push to main');
 assert.doesNotMatch(publishWorkflow, /gh\s+pr\s+merge|auto-merge|merge-method/, 'publish workflow does not automatically merge the PR');
-assert.doesNotMatch(publishWorkflow, /vercel|deploy|deployment/i, 'publish workflow does not deploy before merge');
+assert.doesNotMatch(publishWorkflow, /vercel|gh\s+deploy|vercel\s+deploy/i, 'publish workflow does not deploy before merge');
+assert.match(publishWorkflow, /npm run check:associative-index-deployment/, 'publish workflow gates publication with the production candidate-index deployment check');
 assert.match(publishWorkflow, /global_config_hash/, 'publish PR body includes global_config_hash');
 assert.match(publishWorkflow, /language_config_hash/, 'publish PR body includes language_config_hash values');
 assert.match(publishWorkflow, /Validator results/, 'publish PR body includes validator results');
