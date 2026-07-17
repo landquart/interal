@@ -6,6 +6,7 @@ import { createCandidateIndexLoader } from './js/candidate-index-loader.js';
 import { findCandidatesForRoot } from './js/candidate-finder.js';
 import { clearTargetMeaningTranslationCache, translateTargetMeaning, TARGET_TRANSLATION_LANGUAGES } from './js/target-meaning-translator.js';
 import { createEmptyAssociativeState, invalidateSearchResult as invalidateAssociativeSearchResult, invalidateFinalCalculation as invalidateAssociativeFinalCalculation, addManualCandidate, updateCandidate, deleteCandidate, compactAssociativeState, restoreAssociativeState } from './js/associative-state.js';
+import { optionalFiniteNumber, associativeWordWeight, rankSortValue } from './js/associative-numeric.js';
 
 // Persistence compatibility markers: status: 'no_candidates', candidates: [] ; status: 'index_error', errorCode:
 const TEXT_I18N = {
@@ -327,13 +328,7 @@ const TEXT_I18N = {
     }
 
     function wordWeight(item) {
-      const final = Number(item.final_score);
-      if (Number.isFinite(final)) return final;
-
-      const analysisFinal = Number(item.analysis?.final_score);
-      if (Number.isFinite(analysisFinal)) return analysisFinal;
-
-      return null;
+      return associativeWordWeight(item);
     }
 
     function groupByBestModel(items, maxModels) {
@@ -349,7 +344,7 @@ const TEXT_I18N = {
         if (
           !current ||
           itemScore > currentScore ||
-          (itemScore === currentScore && Number(item.rank) < Number(current.rank))
+          (itemScore === currentScore && rankSortValue(item.rank) < rankSortValue(current.rank))
         ) {
           byModel.set(item.model, item);
         }
@@ -971,8 +966,7 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
     const CREATED_AT_ENDPOINT = "/api/created_at";
 
     function finiteOrNull(value) {
-      const number = Number(value);
-      return Number.isFinite(number) ? number : null;
+      return optionalFiniteNumber(value);
     }
 
     const CARDS_API_ENDPOINT = location.hostname === 'landquart.github.io' ? 'https://interal.vercel.app/api/cards' : '/api/cards';

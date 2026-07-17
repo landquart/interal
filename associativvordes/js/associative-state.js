@@ -1,3 +1,5 @@
+import { optionalFiniteNumber } from './associative-numeric.js';
+
 const DEFAULT_LANGUAGE_CODES = ['en', 'de', 'fr', 'es', 'it', 'ru'];
 const PAGE_STATE_VERSION = 1;
 const PAGE_STATE_NAME = 'associativvordes';
@@ -18,9 +20,8 @@ function cloneJson(value) {
   return value == null ? value : JSON.parse(JSON.stringify(value));
 }
 
-function finiteOrNull(value) {
-  const number = Number(value);
-  return Number.isFinite(number) ? number : null;
+export function finiteOrNull(value) {
+  return optionalFiniteNumber(value);
 }
 
 function truncateStateText(value, limit) {
