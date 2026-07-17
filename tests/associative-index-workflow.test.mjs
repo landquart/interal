@@ -21,11 +21,15 @@ const uploadIndex = workflow.indexOf('Upload candidate index artifact');
 assert.ok(validateIndex > 0, 'workflow validates generated index');
 assert.ok(uploadIndex > validateIndex, 'validation runs before upload-artifact');
 assert.doesNotMatch(workflow, /if:\s*always\(\)/, 'workflow does not force artifact upload after failures');
+assert.doesNotMatch(workflow, /continue-on-error:\s*true/, 'workflow does not continue after build or validation errors');
 
 const russianTestsIndex = workflow.indexOf('Run Russian normalization tests');
 const buildIndex = workflow.indexOf('Build selected associative index');
 assert.ok(russianTestsIndex > 0, 'workflow runs Russian normalization tests');
 assert.ok(buildIndex > russianTestsIndex, 'Russian tests run before build');
+const packageIndex = workflow.indexOf('Package candidate index');
+assert.ok(packageIndex > buildIndex, 'workflow packages only after the build step succeeds');
+assert.ok(uploadIndex > packageIndex, 'workflow uploads only after packaging succeeds');
 
 const publishWorkflow = await readFile('.github/workflows/publish-associative-index.yml', 'utf8');
 

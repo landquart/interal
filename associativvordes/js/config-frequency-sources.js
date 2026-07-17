@@ -10,7 +10,7 @@ export const BASE_CATEGORY_WEIGHTS = {
 export const LANGUAGE_SOURCES = {
   en: {
     subtitles: [
-      'hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json',
+      { file: 'hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json', optional: true },
       'hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json'
     ],
     normative: ['bnc-clean2.lemmatized_spacy_ipm6.json'],
