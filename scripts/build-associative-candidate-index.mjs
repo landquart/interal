@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { createHash } from 'node:crypto';
 import { access, mkdir, readFile, stat, writeFile } from 'node:fs/promises';
-import { dirname, join } from 'node:path';
+import { basename, dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { BASE_CATEGORY_WEIGHTS, CATEGORY_ORDER, LANGUAGE_SOURCES } from '../associativvordes/js/config-frequency-sources.js';
 import { SCORE_CONFIG } from '../associativvordes/js/frequency-loader.js';
@@ -102,6 +102,14 @@ function shardName(searchForm) {
   return first && first >= 'a' && first <= 'z' ? first : '_other';
 }
 
+function canonicalSourceFromId(id, ipm) {
+  const [category, ...rest] = String(id || '').split('/');
+  const file = rest.join('/');
+  if (!CATEGORY_ORDER.includes(category) || !file || basename(file) !== file) throw new Error(`Invalid source id: ${id}`);
+  if (!Number.isFinite(ipm) || ipm < 0) throw new Error(`Invalid IPM for ${id}`);
+  return { id: `${category}/${file}`, file, category, ipm };
+}
+
 function assertValidEntry(entry, seen) {
   if (!entry.word) throw new Error(`Invalid empty word for ${entry.normalized}`);
   if (!entry.search_form) throw new Error(`Invalid empty search_form for ${entry.normalized}`);
@@ -114,6 +122,11 @@ function assertValidEntry(entry, seen) {
   if (text.includes('null') && Number.isNaN(entry.frequency_score)) throw new Error(`NaN in entry: ${entry.normalized}`);
   for (const source of entry.sources) {
     if (!source.id) throw new Error(`Missing source id for ${entry.normalized}`);
+    if (!source.file) throw new Error(`Missing source file for ${entry.normalized} from ${source.id}`);
+    if (!source.category) throw new Error(`Missing source category for ${entry.normalized} from ${source.id}`);
+    if (source.id !== `${source.category}/${source.file}`) throw new Error(`Invalid canonical source id for ${entry.normalized}: ${source.id}`);
+    if (!CATEGORY_ORDER.includes(source.category)) throw new Error(`Invalid source category for ${entry.normalized} from ${source.id}`);
+    if (basename(source.file) !== source.file || source.file.includes('://')) throw new Error(`Invalid source file for ${entry.normalized} from ${source.id}`);
     if (!Number.isFinite(source.ipm) || source.ipm < 0) throw new Error(`Invalid IPM for ${entry.normalized} from ${source.id}`);
   }
 }
@@ -245,7 +258,7 @@ async function buildLanguage(language, options) {
       rank: null,
       frequency_score,
       category_breakdown,
-      sources: Object.entries(record.sources).sort(([a], [b]) => a.localeCompare(b)).map(([id, ipm]) => ({ id, ipm }))
+      sources: Object.entries(record.sources).sort(([a], [b]) => a.localeCompare(b)).map(([id, ipm]) => canonicalSourceFromId(id, ipm))
     };
   }));
 

@@ -3,6 +3,7 @@ import { spawnSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
 import { cp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
+import { LANGUAGE_SOURCES } from '../associativvordes/js/config-frequency-sources.js';
 import { globalConfigHash, languageConfigHash } from '../scripts/build-associative-candidate-index.mjs';
 
 const node = process.execPath;
@@ -39,8 +40,17 @@ assert.ok(existsSync(join(outputRoot, 'en', '_other.json')), 'creates _other sha
 const alternative = first.entries.find(entry => entry.normalized === 'alternative');
 assert.ok(alternative, 'keeps alternative');
 assert.equal(first.entries.filter(entry => entry.normalized === 'alternative').length, 1, 'merges duplicates');
-assert.ok(alternative.sources.some(source => source.id.includes('hermit_2016')), 'preserves sources');
-assert.ok(alternative.sources.some(source => source.id.includes('bnc-clean2')), 'preserves multiple sources');
+const hermitSource = alternative.sources.find(source => source.id.includes('hermit_2016'));
+const bncSource = alternative.sources.find(source => source.id.includes('bnc-clean2'));
+assert.ok(hermitSource, 'preserves sources');
+assert.ok(bncSource, 'preserves multiple sources');
+assert.deepEqual(Object.keys(hermitSource), ['id', 'file', 'category', 'ipm'], 'builder creates canonical source shape');
+assert.equal(hermitSource.id, `${hermitSource.category}/${hermitSource.file}`, 'source id is category/file');
+assert.equal(hermitSource.category, 'subtitles', 'source category comes from LANGUAGE_SOURCES category');
+assert.ok(LANGUAGE_SOURCES.en[hermitSource.category].includes(hermitSource.file), 'source category matches LANGUAGE_SOURCES');
+assert.equal(hermitSource.file.includes('/'), false, 'source file is a bare file name');
+assert.equal(hermitSource.file.includes('\\'), false, 'source file does not contain a Windows path separator');
+assert.equal(bncSource.category, 'normative', 'normative source category comes from LANGUAGE_SOURCES');
 assert.equal(alternative.rank, null, 'does not treat rank as output IPM');
 assert.ok(Number.isFinite(alternative.frequency_score), 'frequency_score finite');
 assert.ok(alternative.frequency_score >= 0 && alternative.frequency_score <= 100, 'frequency_score range');

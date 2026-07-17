@@ -9,6 +9,7 @@ const SUPPORTED_VERSION = '1';
 const SUPPORTED_NORMALIZER_VERSION = '2';
 const DEFAULT_LANGUAGES = ['en', 'de', 'fr', 'es', 'it', 'ru'];
 const ROOT_SAMPLES = ['alter', 'regul', 'ocul', 'inter'];
+const SOURCE_CATEGORIES = new Set(['subtitles', 'normative', 'web', 'mixed']);
 const EXIT = { OK: 0, VALIDATION: 1, CLI: 2, MANIFEST: 3, VERSION: 4 };
 
 function parseArgs(argv) {
@@ -32,7 +33,7 @@ function hasLatin(value) { return /[a-z]/iu.test(String(value)); }
 function shardIdForSearchForm(searchForm) { const c = String(searchForm || '')[0]?.toLowerCase(); return c && c >= 'a' && c <= 'z' ? c : '_other'; }
 function shardIdFromPath(file) { return String(file).split('/').pop().replace(/\.json$/i, ''); }
 function isBadRelPath(file) { return typeof file !== 'string' || !file || isAbsolute(file) || file.includes('://') || file.includes('\\') || file.split('/').includes('..'); }
-function sourcePath(source) { return source.path ?? source.file ?? source.filename ?? source.source ?? source.id; }
+function isBareFileName(file) { return typeof file === 'string' && file.trim() && !isAbsolute(file) && !file.includes('://') && !file.includes('\\') && !file.includes('/') && !file.split('/').includes('..'); }
 
 class Collector {
   constructor(max) { this.max = max; this.errors = []; this.warnings = []; this.errorCount = 0; this.warningCount = 0; }
@@ -98,13 +99,21 @@ function validateEntry(entry, lang, shard, index, seenNormalized, c) {
   if (!(typeof entry.rank === 'number' || entry.rank === null) || (typeof entry.rank === 'number' && !Number.isFinite(entry.rank))) c.error(`${label}: rank must be a finite number or null`);
   if (!isObject(entry.category_breakdown)) c.error(`${label}: category_breakdown must be an object`);
   if (!Array.isArray(entry.sources) || entry.sources.length === 0) c.error(`${label}: sources must be a non-empty array`);
-  else for (const [si, source] of entry.sources.entries()) {
-    const p = sourcePath(source);
-    if (typeof p !== 'string' || !p.trim()) c.error(`${label}.sources[${si}]: source filename/path is required`);
-    if (typeof p === 'string' && (isAbsolute(p) || p.includes('://'))) c.error(`${label}.sources[${si}]: absolute source path is forbidden`);
-    const ipm = source?.ipm ?? source?.IPM ?? source?.frequency_ipm;
-    if (typeof ipm !== 'number' || !Number.isFinite(ipm)) c.error(`${label}.sources[${si}]: ipm must be finite`);
-    if (Number.isFinite(ipm) && ipm < 0) c.error(`${label}.sources[${si}]: ipm must not be negative`);
+  else {
+    let prevSourceId = null;
+    for (const [si, source] of entry.sources.entries()) {
+      if (!isObject(source)) { c.error(`${label}.sources[${si}]: source must be an object`); continue; }
+      for (const field of ['id', 'file', 'category', 'ipm']) if (!Object.hasOwn(source, field)) c.error(`${label}.sources[${si}]: ${field} is required`);
+      if (typeof source.id !== 'string' || !source.id.trim()) c.error(`${label}.sources[${si}]: id must be a non-empty string`);
+      if (typeof source.id === 'string' && (isAbsolute(source.id) || source.id.includes('://') || source.id.includes('\\') || source.id.split('/').includes('..'))) c.error(`${label}.sources[${si}]: absolute source path or URL is forbidden`);
+      if (!isBareFileName(source.file)) c.error(`${label}.sources[${si}]: file must be a bare filename`);
+      if (!SOURCE_CATEGORIES.has(source.category)) c.error(`${label}.sources[${si}]: category must be one of subtitles, normative, web, mixed`);
+      if (typeof source.id === 'string' && isBareFileName(source.file) && SOURCE_CATEGORIES.has(source.category) && source.id !== `${source.category}/${source.file}`) c.error(`${label}.sources[${si}]: id must equal category/file`);
+      if (typeof source.id === 'string' && prevSourceId != null && prevSourceId.localeCompare(source.id) > 0) c.error(`${label}.sources[${si}]: sources must be sorted by id`);
+      if (typeof source.id === 'string') prevSourceId = source.id;
+      if (typeof source.ipm !== 'number' || !Number.isFinite(source.ipm)) c.error(`${label}.sources[${si}]: ipm must be finite`);
+      if (Number.isFinite(source.ipm) && source.ipm < 0) c.error(`${label}.sources[${si}]: ipm must not be negative`);
+    }
   }
   if (entry.normalized) { if (seenNormalized.has(entry.normalized)) c.error(`${lang}: duplicate normalized entry: ${entry.normalized}`); seenNormalized.add(entry.normalized); }
   if (entry.search_form && shardIdForSearchForm(entry.search_form) !== shardIdFromPath(shard.file)) c.error(`${label}: search_form belongs in shard ${shardIdForSearchForm(entry.search_form)}.json`);
