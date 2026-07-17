@@ -20,7 +20,7 @@ assert.match(script, /frequencyProfile: item\.frequencyProfile/, 'analysis recei
 assert.match(script, /const searchForm = String\(item\.search_form \|\| original\)/, 'inferModel uses search_form without replacing original word');
 assert.match(script, /Number\.isInteger\(item\.match\?\.index\)/, 'inferModel uses match metadata when available');
 assert.match(script, /window\.InteralPageStateExport|window\.InteralPageStateImport/, 'page state persistence hooks remain');
-assert.match(script, /sources: Array\.isArray\(item\.sources\)/, 'saved state includes sources without storing shard payloads');
+assert.match(script, /sources: sourceState\.sources/, 'saved state includes sources without storing shard payloads');
 assert.doesNotMatch(script, /manifestLoaded|loadedShards|shardCache/, 'localStorage compaction does not persist manifest or shards');
 assert.match(html, /script\.js\?v=associative-index-runtime-20260716-1/, 'fixed cache busting is updated');
 
