@@ -53,7 +53,6 @@ assert.equal(diagnostic.rejectedByReason.search_form_empty, 1);
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('регулировать', 'regulirovat', { language: 'ru', normalized: 'регулировать' })], root: 'regul', language: 'ru' })), ['регулировать']);
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('интернациональный', 'internacionalnyj', { language: 'ru', normalized: 'интернациональный' })], root: 'inter', language: 'ru' })), ['интернациональный']);
 
-
 const canonicalSources = [
   { id: 'en:web:alter', file: 'web/en-alter.tsv', category: 'web', ipm: 2.5 },
   { id: 'en:subtitles:alter', file: 'subtitles/en-alter.tsv', category: 'subtitles', ipm: 1.25 }
@@ -69,3 +68,33 @@ assert.deepEqual(canonicalEntry.sources, canonicalSources);
 
 const legacyCategoryFromIdOnly = entry('alterable', 'alterable', { sources: [{ id: 'web:alterable', file: 'legacy.tsv', ipm: 1 }] });
 assert(findCandidatesForRoot({ entries: [legacyCategoryFromIdOnly], root: 'alter' }).candidates[0].warnings.includes('missing_category'));
+
+const diacriticEntries = [
+  entry('si', 'si', { normalized: 'si' }),
+  entry('sí', 'si', { normalized: 'sí' }),
+  entry('ou', 'ou', { normalized: 'ou' }),
+  entry('où', 'ou', { normalized: 'où' }),
+  entry('cote', 'cote', { normalized: 'cote' }),
+  entry('côté', 'cote', { normalized: 'côté' })
+];
+assert.deepEqual(words(findCandidatesForRoot({ entries: diacriticEntries.slice(0, 2), root: 'si', language: 'fr' })).sort(), ['si', 'sí'].sort(), 'si and sí remain distinct lemmas');
+assert.deepEqual(words(findCandidatesForRoot({ entries: diacriticEntries.slice(2, 4), root: 'ou', language: 'fr' })).sort(), ['ou', 'où'].sort(), 'ou and où remain distinct lemmas');
+assert.deepEqual(words(findCandidatesForRoot({ entries: diacriticEntries.slice(4), root: 'cote', language: 'fr' })).sort(), ['cote', 'côté'].sort(), 'cote and côté remain distinct lemmas');
+
+const duplicateA = entry('côté', 'cote', { normalized: 'côté', warnings: [] });
+const duplicateB = entry('côté', 'cote', { normalized: 'côté', warnings: [], sources: [...canonicalSources] });
+const duplicateInput = [duplicateA, duplicateB];
+const beforeDuplicateInput = structuredClone(duplicateInput);
+const firstDuplicateRun = findCandidatesForRoot({ entries: duplicateInput, root: 'cote', language: 'fr' });
+const secondDuplicateRun = findCandidatesForRoot({ entries: duplicateInput, root: 'cote', language: 'fr' });
+assert.equal(firstDuplicateRun.candidates.length, 1, 'identical normalized lemmas are deduplicated');
+assert.equal(firstDuplicateRun.diagnostics.duplicates, 1, 'duplicate is reported');
+assert(firstDuplicateRun.candidates[0].warnings.includes('duplicate_runtime_entry'), 'retained candidate receives duplicate warning');
+assert.deepEqual(duplicateInput, beforeDuplicateInput, 'candidate finder does not mutate shard cache entries');
+assert.deepEqual(secondDuplicateRun, firstDuplicateRun, 'repeated call on the same cached entries is stable');
+
+assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('ocular', 'ocular')], root: 'ocul', language: 'en' })), ['ocular'], 'ocul exact matching remains available');
+assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('окуляр', 'okuljar', { normalized: 'окуляр', language: 'ru' })], root: 'ocul', language: 'ru' })), ['окуляр'], 'ocul/okul special matching remains available');
+assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('regolare', 'regolare')], root: 'regul', language: 'it' })), ['regolare'], 'regul/regol special matching remains available');
+
+console.log('associative candidate finder tests passed');
