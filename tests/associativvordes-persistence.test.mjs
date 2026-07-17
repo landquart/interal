@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
+import { swowLabel } from '../associativvordes/js/render-results.js';
 
 const script = await readFile('associativvordes/script.js', 'utf8');
 const formDraft = await readFile('shared/form-draft.js', 'utf8');
@@ -84,5 +85,55 @@ assert.equal(compactAssociativeLanguages({ en: [{ word: 'zero', match: { type: '
 assert.equal(compactAssociativeLanguages({ en: [{ word: 'bad', match: { type: 'exact', distance: 0, similarity: 1, fragment: '', index: 0 } }] }).en[0].match, null, 'invalid match is safely normalized to null');
 assert.equal(compactAssociativeLanguages({ en: [{ word: 'bad', match: { type: 'made-up', distance: 0, similarity: 1, fragment: 'x', index: 0 } }] }).en[0].match, null, 'unknown match type is safely normalized to null');
 assert.equal(compactAssociativeLanguages({ en: [{ word: 'bad', match: { type: 'exact', distance: 0, similarity: 1, fragment: 'x', index: -1 } }] }).en[0].match, null, 'invalid match index is safely normalized to null');
+
+const swowEvidenceCases = [
+  {
+    name: 'direct pair',
+    input: { bonus: 11, target_to_word: { found: true, r1_strength: 0.11, r123_strength: 0.22, diagnostic: { shard: 'not saved' } }, word_to_target: { found: false, r1_strength: null, r123_strength: null } },
+    expectedLabel: 'SWOW direct'
+  },
+  {
+    name: 'reverse pair',
+    input: { bonus: 12, target_to_word: { found: false, r1_strength: null, r123_strength: null }, word_to_target: { found: true, r1_strength: 0.33, r123_strength: 0.44, rows: [{ full: 'dataset not saved' }] } },
+    expectedLabel: 'SWOW direct'
+  },
+  {
+    name: 'no pair',
+    input: { bonus: 0, target_to_word: { found: false, r1_strength: null, r123_strength: null }, word_to_target: { found: false, r1_strength: null, r123_strength: null } },
+    expectedLabel: 'no direct SWOW'
+  },
+  {
+    name: 'nonzero bonus',
+    input: { bonus: 7.5, target_to_word: { found: false, r1_strength: null, r123_strength: null }, word_to_target: { found: false, r1_strength: null, r123_strength: null } },
+    expectedLabel: 'no direct SWOW'
+  }
+];
+for (const swowCase of swowEvidenceCases) {
+  const beforeLabel = swowLabel(swowCase.input);
+  const candidate = compactAssociativeLanguages({ en: [{ word: swowCase.name, analysis: { swow: swowCase.input } }] }).en[0];
+  const restored = compactAssociativeLanguages({ en: [JSON.parse(JSON.stringify(candidate))] }).en[0];
+  assert.deepEqual(restored.analysis.swow, {
+    bonus: swowCase.input.bonus,
+    target_to_word: {
+      found: swowCase.input.target_to_word.found,
+      r1_strength: swowCase.input.target_to_word.r1_strength,
+      r123_strength: swowCase.input.target_to_word.r123_strength
+    },
+    word_to_target: {
+      found: swowCase.input.word_to_target.found,
+      r1_strength: swowCase.input.word_to_target.r1_strength,
+      r123_strength: swowCase.input.word_to_target.r123_strength
+    }
+  }, `${swowCase.name} keeps only minimal SWOW evidence through round-trip`);
+  assert.equal(swowLabel(restored.analysis.swow), beforeLabel, `${swowCase.name} swowLabel is stable after reload`);
+  assert.equal(swowLabel(restored.analysis.swow), swowCase.expectedLabel, `${swowCase.name} label matches evidence`);
+}
+const legacySwow = compactAssociativeLanguages({ en: [{ word: 'legacy', analysis: { swow: { bonus: 5 } } }] }).en[0].analysis.swow;
+assert.deepEqual(legacySwow, {
+  bonus: 5,
+  target_to_word: { found: false, r1_strength: null, r123_strength: null },
+  word_to_target: { found: false, r1_strength: null, r123_strength: null }
+}, 'legacy SWOW { bonus } imports safely with explicit false sides');
+assert.equal(swowLabel(legacySwow), 'no direct SWOW', 'legacy SWOW { bonus } label is safe');
 
 console.log('associativvordes persistence tests passed');
