@@ -845,11 +845,25 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
       syncJsonCardButtonVisibility();
     }
 
-    function invalidateAssociativeResult() {
-      if (window.InteralFormDraft?.isRestoring?.() || isImportingAssociativeState) return;
+    function shouldSkipAssociativeInvalidation() {
+      return window.InteralFormDraft?.isRestoring?.() || isImportingAssociativeState;
+    }
+
+    function invalidateSearchResult() {
+      if (shouldSkipAssociativeInvalidation()) return;
+      invalidateActiveRuns();
       state.checked = false;
       state.languages = emptyState().languages;
       state.languageStatuses = emptyState().languageStatuses;
+      state.globalStatus = 'idle';
+      syncCheckedVisibility();
+      syncJsonCardButtonVisibility();
+      window.InteralFormDraft?.save?.();
+    }
+
+    function invalidateFinalCalculation() {
+      if (shouldSkipAssociativeInvalidation()) return;
+      state.checked = false;
       state.globalStatus = 'idle';
       syncCheckedVisibility();
       syncJsonCardButtonVisibility();
@@ -866,14 +880,14 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
         item.frequency_score = null;
         item.association_score = null;
         item.final_score = null;
+        invalidateFinalCalculation();
         renderAll();
-        invalidateAssociativeResult();
         if (normalizeText(value)) analyzeItem(lang, idx);
         return;
       }
 
+      invalidateFinalCalculation();
       renderAll();
-      invalidateAssociativeResult();
     }
 
     async function analyzeItem(lang, idx) {
@@ -905,14 +919,14 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
 
     function deleteItem(lang, idx) {
       state.languages[lang].splice(idx, 1);
+      invalidateFinalCalculation();
       renderAll();
-      invalidateAssociativeResult();
     }
 
     function addRow(lang) {
       state.languages[lang].push({ word: '', model: '', analysis: null, frequency_score: null, association_score: null, final_score: null, selected: false });
+      invalidateFinalCalculation();
       renderAll();
-      invalidateAssociativeResult();
     }
 
 
@@ -1307,9 +1321,9 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
     window.InteralPageStateImport = importAssociativePageState;
     window.InteralPageReset = resetAssociativePageState;
 
-    document.getElementById('rootInput').addEventListener('input', () => { state.root = document.getElementById('rootInput').value; invalidateAssociativeResult(); renderAll(); });
-    document.getElementById('meaningInput').addEventListener('input', () => { state.meaning = document.getElementById('meaningInput').value; invalidateAssociativeResult(); renderAll(); });
-    document.getElementById('elementType').addEventListener('change', () => { state.elementType = document.getElementById('elementType').value; invalidateAssociativeResult(); renderAll(); });
+    document.getElementById('rootInput').addEventListener('input', () => { state.root = document.getElementById('rootInput').value; invalidateSearchResult(); renderAll(); });
+    document.getElementById('meaningInput').addEventListener('input', () => { state.meaning = document.getElementById('meaningInput').value; invalidateSearchResult(); renderAll(); });
+    document.getElementById('elementType').addEventListener('change', () => { state.elementType = document.getElementById('elementType').value; invalidateSearchResult(); renderAll(); });
     document.getElementById('calculateBtn').addEventListener('click', () => searchDerivatives());
     document.getElementById('showExampleBtn').addEventListener('click', showExample);
     document.getElementById('jsonCardBtn').addEventListener('click', openJsonCardModal);
