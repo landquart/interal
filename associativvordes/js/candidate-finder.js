@@ -16,7 +16,7 @@ function isPlainObject(value) {
 }
 
 function normalizedLemma(entry) {
-  return stripDiacritics(normalizeText(entry.normalized || entry.word));
+  return normalizeText(entry.normalized || entry.word);
 }
 
 function entryLanguage(entry) {
@@ -106,6 +106,13 @@ function compareCandidates(a, b) {
     || a.word.localeCompare(b.word);
 }
 
+function withDuplicateWarning(entry) {
+  return {
+    ...entry,
+    warnings: [...new Set([...(Array.isArray(entry.warnings) ? entry.warnings : []), 'duplicate_runtime_entry'])]
+  };
+}
+
 export function findCandidatesForRoot({ entries, root, language, maxCandidates = Infinity, specialRootMatcher } = {}) {
   if (!Array.isArray(entries)) throw new TypeError('findCandidatesForRoot requires entries to be an array.');
   if (typeof root !== 'string' || !root.trim()) throw new TypeError('findCandidatesForRoot requires a non-empty root.');
@@ -121,9 +128,7 @@ export function findCandidatesForRoot({ entries, root, language, maxCandidates =
       diagnostics.duplicates += 1;
       diagnostics.warnings.push({ reason: 'duplicate_runtime_entry', word: entry.word, normalized: entry.normalized });
       const replacementIsBetter = completenessScore(entry) > completenessScore(existing);
-      const retainedEntry = replacementIsBetter ? entry : existing;
-      retainedEntry.warnings = [...new Set([...(Array.isArray(retainedEntry.warnings) ? retainedEntry.warnings : []), 'duplicate_runtime_entry'])];
-      if (replacementIsBetter) byLemma.set(key, retainedEntry);
+      byLemma.set(key, withDuplicateWarning(replacementIsBetter ? entry : existing));
       continue;
     }
     byLemma.set(key, entry);
