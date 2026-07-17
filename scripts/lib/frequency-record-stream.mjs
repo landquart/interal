@@ -167,12 +167,28 @@ async function* topLevelEntries(filePath) {
   }
 }
 
-export async function* streamFrequencyRecords({ filePath, sourceId = '', format, maxRecords } = {}) {
+function recordsForFormat(entry, format, sourceId, filePath) {
+  if (format === 'legacy-json') return entry.root === 'array' ? recordsFromArrayItem(entry.value, sourceId) : recordsFromTopLevelEntry(entry.key, entry.value, sourceId);
+  if (format === 'ranked-word-ipm-object') {
+    if (entry.root !== 'object') throw new Error(`Expected ranked word/IPM object root in ${filePath}`);
+    const records = [];
+    if (!/^\d+$/.test(String(entry.key)) || !entry.value || typeof entry.value !== 'object' || Array.isArray(entry.value)) return records;
+    for (const [word, ipm] of Object.entries(entry.value)) {
+      if (typeof ipm !== 'number') throw new Error(`Invalid ranked word/IPM value in ${sourceId || filePath} at rank ${entry.key}`);
+      const record = frequencyRecord(word, ipm, entry.key, sourceId);
+      if (record) records.push(record);
+    }
+    return records;
+  }
+  throw new Error(`Unsupported frequency source format: ${format}`);
+}
+
+export async function* streamFrequencyRecords({ filePath, sourceId = '', format = 'legacy-json', maxRecords } = {}) {
   if (!filePath) throw new Error('streamFrequencyRecords requires filePath');
   const limit = maxRecords == null ? Infinity : Number(maxRecords);
   let emitted = 0;
   for await (const entry of topLevelEntries(filePath)) {
-    const records = entry.root === 'array' ? recordsFromArrayItem(entry.value, sourceId) : recordsFromTopLevelEntry(entry.key, entry.value, sourceId);
+    const records = recordsForFormat(entry, format, sourceId, filePath);
     for (const record of records) {
       if (emitted >= limit) return;
       emitted += 1;

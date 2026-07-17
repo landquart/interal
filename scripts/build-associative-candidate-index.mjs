@@ -13,6 +13,7 @@ import {
   stableSortEntries,
   validRank
 } from './lib/associative-index-core.mjs';
+import { streamFrequencyRecords } from './lib/frequency-record-stream.mjs';
 
 const DEFAULT_INPUT_ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', 'associativvordes', 'frequency lists');
 const DEFAULT_OUTPUT_ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', 'associativvordes', 'candidate-index');
@@ -23,6 +24,25 @@ const ENTRY_STRUCTURE = ['word', 'normalized', 'search_form', 'rank', 'frequency
 const SHARDING_RULES = { version: '1', strategy: 'first-lowercase-latin-letter-else-_other', shard_filename: '<language>/<shard>.json' };
 const DRY_RUN_SOURCE_BY_LANGUAGE = {
   en: 'normative/bnc-clean2.lemmatized_spacy_ipm6.json'
+};
+
+export const SOURCE_FORMATS = {
+  // Verified against every production LANGUAGE_SOURCES file: all production corpora are
+  // JSON objects keyed by rank, with each rank containing one or more lemma -> IPM pairs.
+  production: {
+    subtitles: 'ranked-word-ipm-object',
+    normative: 'ranked-word-ipm-object',
+    web: 'ranked-word-ipm-object',
+    mixed: 'ranked-word-ipm-object'
+  },
+  // Fixtures intentionally cover the legacy parser's accepted shapes. They remain small
+  // enough to parse as whole JSON in tests and local fixture builds.
+  fixtures: {
+    subtitles: 'legacy-json',
+    normative: 'legacy-json',
+    web: 'legacy-json',
+    mixed: 'legacy-json'
+  }
 };
 
 function parseArgs(argv) {
@@ -85,8 +105,23 @@ export function languageConfigHash(language, { languageSources = LANGUAGE_SOURCE
 }
 
 async function loadJsonFile(path) {
-  // Extension point: production can replace this with a streaming JSON reader. Fixture builds intentionally parse one small file at a time.
   return JSON.parse(await readFile(path, 'utf8'));
+}
+
+function parserModeForOptions(options) {
+  return options.inputRoot === DEFAULT_INPUT_ROOT ? 'stream' : 'legacy_json';
+}
+
+function sourceFormatsForOptions(options) {
+  return parserModeForOptions(options) === 'stream' ? SOURCE_FORMATS.production : SOURCE_FORMATS.fixtures;
+}
+
+function formatForSource(sourceId, options) {
+  const formats = sourceFormatsForOptions(options);
+  const [family] = String(sourceId).split('/');
+  const format = formats[family];
+  if (!format) throw new Error(`No frequency source format configured for ${sourceId}`);
+  return format;
 }
 
 async function fileExists(path) {
@@ -200,6 +235,9 @@ function countSearchFormCollisions(entries) {
 function buildReport(language, result, manifestLanguage, totalBytes = 0) {
   return {
     language,
+    parser_mode: result.parserMode,
+    peak_records_buffered: result.peakRecordsBuffered,
+    source_formats: result.sourceFormats,
     entries: result.entries.length,
     duplicates_merged: result.diagnostics.duplicate_lemmas,
     invalid_records: result.diagnostics.invalid_records,
@@ -235,6 +273,9 @@ async function buildLanguage(language, options) {
   const expectedSources = expectedLanguageSources(sources);
   const expectedSourceFiles = expectedSources.map(source => source.sourceId);
   const missingOptionalSources = [];
+  const parserMode = parserModeForOptions(options);
+  const sourceFormats = {};
+  let peakRecordsBuffered = 0;
 
   for (const source of expectedSources) {
     const { fileName, sourceId, optional } = source;
@@ -252,9 +293,18 @@ async function buildLanguage(language, options) {
     }
     if (options.maxRecords != null && processed >= options.maxRecords) continue;
     sourceFiles.push(sourceId);
-    const data = await loadJsonFile(path);
-    scanForInvalidData(data, sourceId);
-    for (const record of extractFrequencyRecords(data, sourceId)) {
+    const format = formatForSource(sourceId, options);
+    sourceFormats[sourceId] = format;
+    let recordIterable;
+    if (parserMode === 'stream') {
+      recordIterable = streamFrequencyRecords({ filePath: path, sourceId, format, maxRecords: options.maxRecords == null ? undefined : options.maxRecords - processed });
+    } else {
+      const data = await loadJsonFile(path);
+      scanForInvalidData(data, sourceId);
+      recordIterable = extractFrequencyRecords(data, sourceId);
+      peakRecordsBuffered = Math.max(peakRecordsBuffered, recordIterable.length);
+    }
+    for await (const record of recordIterable) {
       if (options.maxRecords != null && processed >= options.maxRecords) break;
       if (record.ipm < 0) throw new Error(`Negative IPM in ${sourceId}: ${record.normalized}`);
       if (record.frequency_lookup_key !== record.normalized) throw new Error(`Frequency lookup key must equal normalized original word in ${sourceId}: ${record.normalized}`);
@@ -264,6 +314,7 @@ async function buildLanguage(language, options) {
       }
       mergeFrequencyRecord(merged, record, sourceId);
       processed += 1;
+      peakRecordsBuffered = Math.max(peakRecordsBuffered, merged.size);
     }
     if (dryRunSource) break;
   }
@@ -314,7 +365,7 @@ async function buildLanguage(language, options) {
     ...(language === 'ru' ? { search_form_collisions: countSearchFormCollisions(entries) } : {})
   };
   if (options.sourceFile && sourceFiles.length === 0) throw new Error(`--source-file did not match an existing source for ${language}: ${options.sourceFile}`);
-  return { entries, sourceFiles, expectedSourceFiles, missingOptionalSources, shards: Array.from(shards.entries()).sort(([a], [b]) => a.localeCompare(b)), diagnostics };
+  return { entries, sourceFiles, expectedSourceFiles, missingOptionalSources, parserMode, peakRecordsBuffered, sourceFormats, shards: Array.from(shards.entries()).sort(([a], [b]) => a.localeCompare(b)), diagnostics };
 }
 
 export async function main(argv = process.argv.slice(2)) {
@@ -355,7 +406,8 @@ export async function main(argv = process.argv.slice(2)) {
     if (options.languages.length !== 1) throw new Error('--report currently supports exactly one language');
     const language = options.languages[0];
     const result = built.get(language);
-    const totalBytes = writtenFiles.length ? (await Promise.all(writtenFiles.map(pathSize))).reduce((sum, size) => sum + size, 0) : 0;
+    let totalBytes = 0;
+    for (const writtenFile of writtenFiles) totalBytes += await pathSize(writtenFile);
     const report = buildReport(language, result, manifest.languages[language], totalBytes);
     await mkdir(dirname(options.reportPath), { recursive: true });
     await writeFile(options.reportPath, `${JSON.stringify(report, null, 2)}\n`);

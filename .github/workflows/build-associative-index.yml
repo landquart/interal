@@ -21,6 +21,8 @@ jobs:
     name: Build associative index (${{ inputs.language }})
     runs-on: ubuntu-latest
     timeout-minutes: 45
+    env:
+      NODE_OPTIONS: --max-old-space-size=4096
     steps:
       - name: Validate language input
         run: |
