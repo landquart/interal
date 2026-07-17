@@ -29,6 +29,12 @@ assert.equal(findCandidatesForRoot({ entries: [entry('альтернативны
 assert.equal(findCandidatesForRoot({ entries: [{ ...entry('bad', 'bad'), sources: undefined }], root: 'bad' }).diagnostics.rejectedByReason.sources_missing, 1);
 assert.equal(findCandidatesForRoot({ entries: [entry('bad', 'bad', { frequency_score: Infinity })], root: 'bad' }).diagnostics.rejectedByReason.frequency_score_not_finite, 1);
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('alter-low', 'alterlow', { frequency_score: 10 }), entry('alter-high', 'alterhigh', { frequency_score: 90 })], root: 'alter' })), ['alter-high', 'alter-low']);
+assert.deepEqual(words(findCandidatesForRoot({ entries: [
+  entry('alter-fuzzy-high', 'alteshigh', { frequency_score: 100, ipm: 100 }),
+  entry('alter-exact-low', 'alterlow', { frequency_score: 1, ipm: 1 }),
+  entry('alter-exact-ipm-low', 'alteripmlow', { frequency_score: 50, ipm: 1 }),
+  entry('alter-exact-ipm-high', 'alteripmhigh', { frequency_score: 50, ipm: 99 })
+], root: 'alter' })), ['alter-exact-ipm-high', 'alter-exact-ipm-low', 'alter-exact-low', 'alter-fuzzy-high'], 'candidate finder keeps runtime quality/frequency/IPM sorting independent of shard order');
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('alter-rank2', 'alterrank2', { rank: 2 }), entry('alter-rank1', 'alterrank1', { rank: 1 })], root: 'alter' })), ['alter-rank1', 'alter-rank2']);
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('alter-null', 'alternull', { rank: null }), entry('alter-ranked', 'alterranked', { rank: 3 })], root: 'alter' })), ['alter-ranked', 'alter-null']);
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('база', 'baza', { normalized: 'база' }), entry('base', 'baza', { normalized: 'base' })], root: 'baza' })).sort(), ['base', 'база'].sort());

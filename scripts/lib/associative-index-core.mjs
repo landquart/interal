@@ -134,11 +134,12 @@ export function calculateFrequencyScore(categoryBreakdown = {}, categoryWeights 
   return available.reduce((sum, category) => sum + ((categoryWeights[category] || 0) / totalBase) * (categoryBreakdown[category].category_score || 0), 0);
 }
 
+export function candidateIndexEntryComparator(a, b) {
+  return String(a?.search_form ?? '').localeCompare(String(b?.search_form ?? ''))
+    || String(a?.normalized ?? a?.lemma ?? a?.original ?? '').localeCompare(String(b?.normalized ?? b?.lemma ?? b?.original ?? ''))
+    || String(a?.word ?? a?.original ?? '').localeCompare(String(b?.word ?? b?.original ?? ''));
+}
+
 export function stableSortEntries(entries) {
-  return Array.from(entries).sort((a, b) =>
-    (b.frequency_score ?? 0) - (a.frequency_score ?? 0) ||
-    (b.category_score ?? 0) - (a.category_score ?? 0) ||
-    String(a.normalized ?? a.lemma ?? a.original ?? '').localeCompare(String(b.normalized ?? b.lemma ?? b.original ?? '')) ||
-    String(a.original ?? '').localeCompare(String(b.original ?? ''))
-  );
+  return Array.from(entries).sort(candidateIndexEntryComparator);
 }

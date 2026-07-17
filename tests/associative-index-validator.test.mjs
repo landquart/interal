@@ -8,6 +8,9 @@ import { createCandidateIndexLoader } from '../associativvordes/js/candidate-ind
 const fixture = 'tests/fixtures/associative-index-valid';
 const tmp = '.tmp/associative-index-validator';
 
+const builderScript = 'scripts/build-associative-candidate-index.mjs';
+const fixtureFrequencyRoot = 'tests/fixtures/associative-frequency';
+
 const entry = (word, search_form, extra = {}) => ({
   word, normalized: extra.normalized ?? word.toLowerCase(), search_form, rank: null, frequency_score: extra.frequency_score ?? 50,
   category_breakdown: { normative: { max_ipm: 1, total_ipm: 1, sources: 1 } },
@@ -50,6 +53,13 @@ assert.equal(run(await mutate('duplicate-normalized', async r => { const a=await
 assert.equal(run(await mutate('absolute-source', async r => { const a=await readJson(join(r,'en/a.json')); a[0].sources[0].id='/tmp/source.json'; await writeJson(join(r,'en/a.json'),a); })).status, 1, 'absolute source path detected');
 assert.equal(run(await mutate('traversal', async r => { const m=await readJson(join(r,'manifest.json')); m.languages.en.shards[0].file='../x.json'; await writeJson(join(r,'manifest.json'),m); })).status, 1, 'path traversal detected');
 assert.equal(run(await mutate('wrong-shard', async r => { const a=await readJson(join(r,'en/a.json')); a[0].search_form='zeta'; await writeJson(join(r,'en/a.json'),a); })).status, 1, 'wrong shard for search_form detected');
+assert.equal(run(await mutate('shuffled-shard', async r => { const a=await readJson(join(r,'en/a.json')); a.reverse(); await writeJson(join(r,'en/a.json'),a); })).status, 1, 'truly shuffled shard is rejected');
+const builderOut = join(tmp, 'builder-output');
+await rm(builderOut, { recursive: true, force: true });
+const builderRun = spawnSync(process.execPath, [builderScript, '--languages=en', `--input-root=${fixtureFrequencyRoot}`, `--output-root=${builderOut}`, '--max-records=5000'], { encoding: 'utf8' });
+assert.equal(builderRun.status, 0, builderRun.stderr || builderRun.stdout);
+assert.equal(run(builderOut).status, 0, 'validator accepts shard produced by builder');
+
 assert.equal(run(await mutate('ru-lost-original', async r => { const a=await readJson(join(r,'ru/a.json')); a[0].normalized='alternativnyj'; await writeJson(join(r,'ru/a.json'),a); })).status, 1, 'Russian original/normalized Cyrillic is preserved');
 assert.equal(run(await mutate('ru-collision', async r => { const a=await readJson(join(r,'ru/a.json')); a[1].search_form=a[0].search_form; await writeJson(join(r,'ru/a.json'),a); })).status, 0, 'search_form collisions are not duplicate normalized');
 assert.equal(run(await mutate('alter-inter', async r => { const a=await readJson(join(r,'en/a.json')); a.push(entry('inter','alter',{normalized:'inter'})); a.sort((x,y)=>`${x.search_form}\0${x.normalized}\0${x.word}`.localeCompare(`${y.search_form}\0${y.normalized}\0${y.word}`)); await writeJson(join(r,'en/a.json'),a); const m=await readJson(join(r,'manifest.json')); m.languages.en.entries++; m.languages.en.shards[0].entries++; await writeJson(join(r,'manifest.json'),m); })).status, 1, 'alter to inter regression detected');
