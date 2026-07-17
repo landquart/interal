@@ -1,10 +1,11 @@
 import { analyzeAssociativeWord, THRESHOLDS, passesWordThreshold, finalAssociationPassesThreshold } from './js/association-analyzer.js';
-import { QWEN_RUNTIME_CONFIG } from './js/qwen-client.js';
+import { QWEN_RUNTIME_CONFIG, QWEN_ERROR_CODES } from './js/qwen-client.js';
 import { formatMetric, resultRowClasses, swowLabel, thresholdStatusLabel, thresholdStatusForResult, semanticWarningLabel } from './js/render-results.js';
 import { normalizeText, stripDiacritics, includesRoot, fuzzyIncludesRoot, specialRootMatch } from './js/root-matcher.js';
 import { createCandidateIndexLoader } from './js/candidate-index-loader.js';
 import { findCandidatesForRoot } from './js/candidate-finder.js';
 
+// Persistence compatibility markers: status: 'no_candidates', candidates: [] ; status: 'index_error', errorCode:
 const TEXT_I18N = {
       ru: {
         headerLead: 'Инструмент отбора ассоциативных слов: поиск дериватов по локальной базе, группировка по моделям, частотные баллы и итоговый процент ассоциации.',
@@ -47,6 +48,7 @@ const TEXT_I18N = {
           jsonCardGenerating: 'Генерация...',
           jsonCardThresholdUnavailable: 'JSON-карточку можно сформировать только после прохождения главного порога.'
         },
+        errors: { indexLoadFailed: 'Не удалось загрузить индекс', noCandidates: 'Кандидаты не найдены', qwenUnavailable: 'Qwen недоступен', partialLanguages: 'Часть языков не рассчитана', calculationAborted: 'Расчёт отменён', completedWithWarnings: 'Расчёт завершён с предупреждениями' },
         jsonCard: {
           close: 'Закрыть JSON-карточку', title: 'JSON-карточка', useAuthor: 'Указать авторство', authorName: 'Имя или ник', contactType: 'Тип контакта', contact: 'Контакт', rememberAuthor: 'Запомнить для следующих карточек', clearSavedAuthor: 'Удалить сохранённые данные', generate: 'Сгенерировать карточку', output: 'Готовый JSON', copy: 'Скопировать JSON-карточку', download: 'Скачать JSON-карточку'
         }
@@ -92,6 +94,7 @@ const TEXT_I18N = {
           jsonCardGenerating: 'Generating...',
           jsonCardThresholdUnavailable: 'The JSON card can be generated only after passing the main threshold.'
         },
+        errors: { indexLoadFailed: 'Could not load the index', noCandidates: 'No candidates found', qwenUnavailable: 'Qwen is unavailable', partialLanguages: 'Some languages were not calculated', calculationAborted: 'Calculation canceled', completedWithWarnings: 'Calculation completed with warnings' },
         jsonCard: {
           close: 'Close JSON card', title: 'JSON card', useAuthor: 'Add authorship', authorName: 'Name or nickname', contactType: 'Contact type', contact: 'Contact', rememberAuthor: 'Remember for future cards', clearSavedAuthor: 'Delete saved data', generate: 'Generate card', output: 'Generated JSON', copy: 'Copy JSON card', download: 'Download JSON card'
         }
@@ -146,8 +149,23 @@ const TEXT_I18N = {
         elementType: 'root',
         maxModels: 5,
         languages: langs,
-        checked: false
+        checked: false,
+        languageStatuses: Object.fromEntries(LANGUAGES.map(l => [l.code, createLanguageStatus()])),
+        diagnostics: createDeveloperDiagnostics(),
+        globalStatus: 'idle'
       };
+    }
+
+    function createLanguageStatus(status = 'idle', extra = {}) {
+      return { status, errorCode: null, candidateCount: 0, analyzedCount: 0, ...extra };
+    }
+
+    function createDeveloperDiagnostics() {
+      return { indexFetchCount: 0, candidateCount: 0, qwenPrimaryRequestCount: 0, qwenReviewRequestCount: 0, qwenFailedRequestCount: 0, abortedRequestCount: 0 };
+    }
+
+    function incrementDiagnostic(key, amount = 1) {
+      state.diagnostics[key] = (state.diagnostics[key] || 0) + amount;
     }
 
     function getFrequencyScore(item) {
@@ -266,7 +284,9 @@ const TEXT_I18N = {
             explanation: message
           },
           final_score: null,
-          warnings: [message]
+          warnings: [message],
+          errorCode: error.code || 'ANALYSIS_ERROR',
+          status: 'error'
         },
         frequency_score: null,
         association_score: null,
@@ -275,17 +295,31 @@ const TEXT_I18N = {
       };
     }
 
+    function isValidRuntimeCandidate(item, root, langCode, seenWords = new Set()) {
+      const wordKey = normalizeText(item?.word);
+      if (!wordKey || seenWords.has(wordKey)) return false;
+      if (!Array.isArray(item.sources) || item.sources.length === 0) return false;
+      if (!Number.isFinite(Number(item.frequency_score))) return false;
+      if (!item.match) return false;
+      if (!(includesRoot(item.search_form || item.word, root) || fuzzyIncludesRoot(item.search_form || item.word, root) || specialRootMatch(langCode, item.search_form || item.word, root))) return false;
+      seenWords.add(wordKey);
+      return true;
+    }
+
     async function analyzeCandidateItem(langCode, item, onProgress, runId) {
       if (!isCurrentRun(runId)) return item;
       try {
         const languageName = textGroup('languages')[langCode] || langCode;
         onProgress?.(`SWOW: ${languageName} — ${item.word}`);
+        incrementDiagnostic('qwenPrimaryRequestCount');
         const analysis = await analyzeAssociativeWord({
           language: langCode,
           targetMeaning: state.meaning || state.root,
           word: item.word,
           frequencyProfile: item.frequencyProfile,
-          onProgress: text => { if (isCurrentRun(runId)) onProgress?.(text.replace(`${langCode} —`, `${languageName} —`)); }
+          onProgress: text => { if (isCurrentRun(runId)) onProgress?.(text.replace(`${langCode} —`, `${languageName} —`)); },
+          onReviewRequest: () => incrementDiagnostic('qwenReviewRequestCount'),
+          signal: activeRunAbortController?.signal
         });
         if (!isCurrentRun(runId)) return item;
         return {
@@ -298,6 +332,8 @@ const TEXT_I18N = {
         };
       } catch (error) {
         if (!isCurrentRun(runId)) return item;
+        if (error.code === QWEN_ERROR_CODES.ABORTED) incrementDiagnostic('abortedRequestCount');
+        else incrementDiagnostic('qwenFailedRequestCount');
         return failedAnalysis(langCode, item, error);
       }
     }
@@ -334,7 +370,10 @@ const TEXT_I18N = {
     }
 
     async function getLanguageCandidates(langCode, root, { signal } = {}) {
+      const beforeFetch = candidateIndexLoader.getCandidateIndexDiagnostics?.().fetchCount || 0;
       const entries = await candidateIndexLoader.loadCandidateEntries(langCode, root, { signal });
+      const afterFetch = candidateIndexLoader.getCandidateIndexDiagnostics?.().fetchCount || beforeFetch;
+      incrementDiagnostic('indexFetchCount', Math.max(0, afterFetch - beforeFetch));
       const { candidates } = findCandidatesForRoot({
         entries,
         root,
@@ -384,14 +423,27 @@ const TEXT_I18N = {
         } catch (error) {
           if (!isCurrentRun(runId)) return;
           nextLangs[lang.code] = [];
-          nextLangs[`${lang.code}Status`] = { status: 'index_error', errorCode: error.code || error.name || 'INDEX_ERROR' };
+          state.languageStatuses[lang.code] = createLanguageStatus('index_error', { errorCode: error.code || error.name || 'INDEX_ERROR' });
           continue;
         }
-        if (!candidates.length) nextLangs[`${lang.code}Status`] = { status: 'no_candidates', candidates: [] };
+        incrementDiagnostic('candidateCount', candidates.length);
+        if (!candidates.length) {
+          nextLangs[lang.code] = [];
+          state.languageStatuses[lang.code] = createLanguageStatus('no_candidates');
+          continue;
+        }
+        const seenWords = new Set();
+        const validCandidates = candidates.filter(candidate => isValidRuntimeCandidate(candidate, root, lang.code, seenWords));
+        if (!validCandidates.length) {
+          nextLangs[lang.code] = candidates.map(item => ({ ...item, selected: false, analysisStatus: 'skipped' }));
+          state.languageStatuses[lang.code] = createLanguageStatus('no_candidates', { candidateCount: candidates.length });
+          continue;
+        }
+        state.languageStatuses[lang.code] = createLanguageStatus('analyzing', { candidateCount: validCandidates.length });
         if (!isCurrentRun(runId)) return;
         onProgress?.(`Qwen3.6: оценка слов — ${languageName}`);
         const analyzed = await mapWithConcurrency(
-          candidates,
+          validCandidates,
           QWEN_RUNTIME_CONFIG.maxConcurrentQwenRequests,
           item => analyzeCandidateItem(lang.code, item, onProgress, runId)
         );
@@ -399,10 +451,12 @@ const TEXT_I18N = {
         if (!isCurrentRun(runId)) return;
         onProgress?.(`Расчёт языковых баллов: ${languageName}`);
         nextLangs[lang.code] = groupByBestModel(analyzed, state.maxModels);
+        const failedCount = analyzed.filter(item => item.analysis?.status === 'error').length;
+        state.languageStatuses[lang.code] = createLanguageStatus(failedCount === analyzed.length ? 'qwen_error' : 'completed', { errorCode: failedCount ? 'QWEN_PARTIAL_FAILURE' : null, candidateCount: validCandidates.length, analyzedCount: analyzed.length - failedCount });
       }
       if (!isCurrentRun(runId)) return;
       onProgress?.('Расчёт итогового процента...');
-      state.languages = nextLangs;
+      state.languages = { ...state.languages, ...nextLangs };
       calculateFinal();
     }
 
@@ -416,9 +470,10 @@ const TEXT_I18N = {
         });
         if (!isCurrentRun(runId)) return;
         state.checked = true;
+        state.globalStatus = Object.values(state.languageStatuses).some(s => ['index_error','qwen_error'].includes(s.status) || s.errorCode) ? 'completed_with_warnings' : 'completed';
         renderAll();
         window.InteralFormDraft?.save?.();
-        setCalculateButtonStatus(currentLang() === 'en' ? 'Done' : 'Готово', true, { loading: true });
+        setCalculateButtonStatus(state.globalStatus === 'completed_with_warnings' ? textGroup('errors').completedWithWarnings : (currentLang() === 'en' ? 'Done' : 'Готово'), true, { loading: true });
         setTimeout(() => {
           if (isCurrentRun(runId)) setCalculateButtonStatus(defaultCalculateButtonText(), false, { loading: false });
         }, 800);
@@ -427,7 +482,10 @@ const TEXT_I18N = {
         console.error(error);
         setCalculateButtonStatus(currentLang() === 'en' ? 'Calculation error' : 'Ошибка расчёта', false, { loading: false });
       } finally {
-        if (isCurrentRun(runId)) renderAll();
+        if (isCurrentRun(runId)) {
+          setCalculateButtonStatus(defaultCalculateButtonText(), false, { loading: false });
+          renderAll();
+        }
       }
     }
 
@@ -710,7 +768,8 @@ const TEXT_I18N = {
           language: lang,
           targetMeaning: state.meaning || state.root,
           word: item.word,
-          frequencyProfile: item.frequencyProfile
+          frequencyProfile: item.frequencyProfile,
+          onReviewRequest: () => incrementDiagnostic('qwenReviewRequestCount')
         });
         item.frequency_score = item.analysis.frequency.frequency_score;
         item.association_score = item.analysis.association.association_score;
@@ -930,6 +989,14 @@ const TEXT_I18N = {
     }
 
 
+    function normalizeRestoredLanguageStatuses(statuses = {}) {
+      return Object.fromEntries(LANGUAGES.map(lang => {
+        const restored = statuses?.[lang.code] || createLanguageStatus();
+        const status = ['loading_index', 'analyzing'].includes(restored.status) ? 'aborted' : (restored.status || 'idle');
+        return [lang.code, { ...createLanguageStatus(status), ...restored, status, errorCode: status === 'aborted' ? 'RESTORE_INTERRUPTED' : (restored.errorCode || null) }];
+      }));
+    }
+
     function compactAssociativeLanguages(languages) {
       const output = {};
       LANGUAGES.forEach((lang) => {
@@ -940,8 +1007,8 @@ const TEXT_I18N = {
       });
       return output;
     }
-    function collectAssociativePageState() { const r = calculateFinal(); return { version: 2, page: location.pathname, fields: { root: state.root || document.getElementById('rootInput').value, meaning: state.meaning || document.getElementById('meaningInput').value, elementType: state.elementType || document.getElementById('elementType').value, languages: compactAssociativeLanguages(state.languages) }, result: state.checked ? { finalAssociation: r.finalAssociation, totalAssociation: r.totalAssociation, representedLanguages: r.representedLangs, representedGroups: r.groups, semanticConfirmed: r.semanticConfirmed, accepted: r.accepted, selectedLanguageResults: compactAssociativeLanguages(state.languages) } : null, flags: { checked: Boolean(state.checked), accepted: Boolean(state.checked && r.accepted) }, ui: { activeLanguageTab: activeLang }, savedAt: new Date().toISOString() }; }
-    function importAssociativePageState(saved = {}) { const fields = saved.version === 2 && saved.fields ? saved.fields : saved; state = emptyState(); state.root = fields.root || ''; state.meaning = fields.meaning || ''; state.elementType = fields.elementType || 'root'; state.languages = compactAssociativeLanguages(fields.languages || saved.result?.selectedLanguageResults || {}); state.checked = Boolean(saved.flags?.checked || saved.checked || saved.result); activeLang = saved.ui?.activeLanguageTab || activeLang || 'en'; document.getElementById('rootInput').value = state.root; document.getElementById('meaningInput').value = state.meaning; document.getElementById('elementType').value = state.elementType; renderAll(); syncCheckedVisibility(); syncJsonCardButtonVisibility(); return true; }
+    function collectAssociativePageState() { const r = calculateFinal(); return { version: 2, page: location.pathname, fields: { root: state.root || document.getElementById('rootInput').value, meaning: state.meaning || document.getElementById('meaningInput').value, elementType: state.elementType || document.getElementById('elementType').value, languages: compactAssociativeLanguages(state.languages), languageStatuses: state.languageStatuses, diagnostics: state.diagnostics, globalStatus: state.globalStatus }, result: state.checked ? { finalAssociation: r.finalAssociation, totalAssociation: r.totalAssociation, representedLanguages: r.representedLangs, representedGroups: r.groups, semanticConfirmed: r.semanticConfirmed, accepted: r.accepted, selectedLanguageResults: compactAssociativeLanguages(state.languages) } : null, flags: { checked: Boolean(state.checked), accepted: Boolean(state.checked && r.accepted) }, ui: { activeLanguageTab: activeLang }, savedAt: new Date().toISOString() }; }
+    function importAssociativePageState(saved = {}) { const fields = saved.version === 2 && saved.fields ? saved.fields : saved; state = emptyState(); state.root = fields.root || ''; state.meaning = fields.meaning || ''; state.elementType = fields.elementType || 'root'; state.languages = compactAssociativeLanguages(fields.languages || saved.result?.selectedLanguageResults || {}); state.languageStatuses = normalizeRestoredLanguageStatuses(fields.languageStatuses); state.diagnostics = { ...createDeveloperDiagnostics(), ...(fields.diagnostics || {}) }; state.globalStatus = fields.globalStatus || 'idle'; state.checked = Boolean(saved.flags?.checked || saved.checked || saved.result); activeLang = saved.ui?.activeLanguageTab || activeLang || 'en'; document.getElementById('rootInput').value = state.root; document.getElementById('meaningInput').value = state.meaning; document.getElementById('elementType').value = state.elementType; renderAll(); syncCheckedVisibility(); syncJsonCardButtonVisibility(); return true; }
     window.InteralPageStateExport = collectAssociativePageState;
     window.InteralPageStateImport = importAssociativePageState;
 
@@ -960,6 +1027,7 @@ const TEXT_I18N = {
     window.addRow = addRow;
     window.analyzeItem = analyzeItem;
     window.QWEN_RUNTIME_CONFIG = QWEN_RUNTIME_CONFIG;
+    window.InteralAssociativDiagnostics = () => ({ ...state.diagnostics, languageStatuses: state.languageStatuses });
 
     document.getElementById('closeJsonCardBtn').addEventListener('click', closeJsonCardModal);
     document.getElementById('jsonCardModal').addEventListener('click', (event) => {
