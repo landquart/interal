@@ -40,7 +40,12 @@ assert.doesNotThrow(
   'deep validation must not depend on recursive calls'
 );
 
-let invalidNested = { ipm: null };
+assert.doesNotThrow(
+  () => scanForInvalidData({ ipm: null }, 'fixture/missing.json'),
+  'missing legacy IPM values are skipped by the record parser'
+);
+
+let invalidNested = { ipm: 'Infinity' };
 for (let index = 0; index < 500; index += 1) {
   invalidNested = { child: invalidNested };
 }
