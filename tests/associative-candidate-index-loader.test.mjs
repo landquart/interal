@@ -7,7 +7,7 @@ const validEntry = (word, search_form = word.toLowerCase()) => ({
   search_form,
   rank: null,
   frequency_score: 50,
-  sources: [{ id: 'fixture', ipm: 1 }]
+  sources: [{ id: 'fixture', file: 'fixture.tsv', category: 'mixed', ipm: 1 }]
 });
 
 const manifest = (overrides = {}) => ({
@@ -142,6 +142,22 @@ test('shard HTTP error returns SHARD_FETCH_FAILED', async () => {
 test('damaged shard is rejected and not returned as empty array', async () => {
   const routes = baseRoutes();
   routes['./candidate-index/en/a.json'] = response({ nope: [] });
+  const loader = createCandidateIndexLoader({ fetch: mockFetch(routes) });
+  await rejectsCode(() => loader.loadShard('en', 'a'), CANDIDATE_INDEX_ERROR_CODES.SHARD_INVALID);
+});
+
+
+test('normalizes legacy fixture source metadata without deriving category from id', async () => {
+  const routes = baseRoutes();
+  routes['./candidate-index/en/a.json'] = response([{ ...validEntry('alter'), sources: [{ id: 'fixture:web', filename: 'legacy.tsv', corpus_category: 'web', frequency_ipm: '2.5' }] }]);
+  const loader = createCandidateIndexLoader({ fetch: mockFetch(routes) });
+  const entries = await loader.loadShard('en', 'a');
+  assert.deepEqual(entries[0].sources, [{ id: 'fixture:web', file: 'legacy.tsv', category: 'web', ipm: 2.5 }]);
+});
+
+test('source category is required even when legacy id contains one', async () => {
+  const routes = baseRoutes();
+  routes['./candidate-index/en/a.json'] = response([{ ...validEntry('alter'), sources: [{ id: 'fixture:web', file: 'legacy.tsv', ipm: 1 }] }]);
   const loader = createCandidateIndexLoader({ fetch: mockFetch(routes) });
   await rejectsCode(() => loader.loadShard('en', 'a'), CANDIDATE_INDEX_ERROR_CODES.SHARD_INVALID);
 });

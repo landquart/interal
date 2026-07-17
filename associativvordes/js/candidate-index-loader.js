@@ -129,6 +129,31 @@ function getShardMeta(manifest, language, shardId) {
   return { ...found, id: shardIdFromFile(found.file) };
 }
 
+
+function normalizeSourceForRuntime(source) {
+  if (!isPlainObject(source)) return null;
+  const id = typeof source.id === 'string' && source.id.trim() ? source.id : null;
+  const file = typeof source.file === 'string' && source.file.trim()
+    ? source.file
+    : (typeof source.filename === 'string' && source.filename.trim() ? source.filename : null);
+  const category = typeof source.category === 'string' && source.category.trim()
+    ? source.category
+    : (typeof source.corpus_category === 'string' && source.corpus_category.trim()
+      ? source.corpus_category
+      : (typeof source.type === 'string' && source.type.trim() ? source.type : null));
+  const ipm = typeof source.ipm === 'number' && Number.isFinite(source.ipm)
+    ? source.ipm
+    : (Number.isFinite(Number(source.IPM ?? source.frequency_ipm)) ? Number(source.IPM ?? source.frequency_ipm) : null);
+  if (!id || !file || !category || ipm == null) return null;
+  return { id, file, category, ipm };
+}
+
+function normalizeEntrySourcesForRuntime(entry) {
+  const sources = entry.sources.map(normalizeSourceForRuntime);
+  if (sources.some(source => !source)) return null;
+  return { ...entry, sources };
+}
+
 function validateEntry(entry, index, diagnostics) {
   const invalid = reason => {
     diagnostics.rejectedEntries += 1;
@@ -140,6 +165,7 @@ function validateEntry(entry, index, diagnostics) {
   if (typeof entry.normalized !== 'string' || !entry.normalized) invalid(`entry ${index} normalized is required`);
   if (typeof entry.search_form !== 'string' || !entry.search_form) invalid(`entry ${index} search_form is required`);
   if (!Array.isArray(entry.sources) || entry.sources.length === 0) invalid(`entry ${index} sources are required`);
+  if (!normalizeEntrySourcesForRuntime(entry)) invalid(`entry ${index} sources must use canonical runtime shape`);
   if (typeof entry.frequency_score !== 'number' || !Number.isFinite(entry.frequency_score) || entry.frequency_score < 0 || entry.frequency_score > 100) invalid(`entry ${index} frequency_score is invalid`);
   if (!(typeof entry.rank === 'number' || entry.rank === null)) invalid(`entry ${index} rank is invalid`);
   if (typeof entry.rank === 'number' && !Number.isFinite(entry.rank)) invalid(`entry ${index} rank is not finite`);
@@ -148,10 +174,14 @@ function validateEntry(entry, index, diagnostics) {
 function validateShardPayload(payload, language, shardMeta, diagnostics) {
   const entries = Array.isArray(payload) ? payload : payload?.entries;
   if (!Array.isArray(entries)) throw new CandidateIndexError(CANDIDATE_INDEX_ERROR_CODES.SHARD_INVALID, 'Candidate index shard must be an array or object with entries.', { language, shard: shardMeta.id });
+  const normalizedEntries = [];
   for (const [index, entry] of entries.entries()) {
-    try { validateEntry(entry, index, diagnostics); } catch (cause) { throw new CandidateIndexError(CANDIDATE_INDEX_ERROR_CODES.SHARD_INVALID, 'Candidate index shard contains invalid entries.', { language, shard: shardMeta.id, cause }); }
+    try {
+      validateEntry(entry, index, diagnostics);
+      normalizedEntries.push(normalizeEntrySourcesForRuntime(entry));
+    } catch (cause) { throw new CandidateIndexError(CANDIDATE_INDEX_ERROR_CODES.SHARD_INVALID, 'Candidate index shard contains invalid entries.', { language, shard: shardMeta.id, cause }); }
   }
-  return entries;
+  return normalizedEntries;
 }
 
 function candidateShardIdsForRoot(language, root) {

@@ -7,7 +7,7 @@ const entry = (word, search_form, extra = {}) => ({
   search_form,
   rank: extra.rank ?? null,
   frequency_score: extra.frequency_score ?? 50,
-  sources: extra.sources ?? [{ name: 'test', ipm: extra.ipm ?? 1 }],
+  sources: extra.sources ?? [{ id: 'fixture:test', file: 'fixture.txt', category: 'mixed', ipm: extra.ipm ?? 1 }],
   ...extra
 });
 const words = result => result.candidates.map(candidate => candidate.word);
@@ -50,3 +50,20 @@ assert.equal(diagnostic.rejectedByReason.search_form_empty, 1);
 
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('регулировать', 'regulirovat', { language: 'ru', normalized: 'регулировать' })], root: 'regul', language: 'ru' })), ['регулировать']);
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('интернациональный', 'internacionalnyj', { language: 'ru', normalized: 'интернациональный' })], root: 'inter', language: 'ru' })), ['интернациональный']);
+
+
+const canonicalSources = [
+  { id: 'en:web:alter', file: 'web/en-alter.tsv', category: 'web', ipm: 2.5 },
+  { id: 'en:subtitles:alter', file: 'subtitles/en-alter.tsv', category: 'subtitles', ipm: 1.25 }
+];
+const canonicalEntry = entry('alteration', 'alteration', { sources: canonicalSources, frequency_score: 75 });
+const canonicalResult = findCandidatesForRoot({ entries: [canonicalEntry], root: 'alter', language: 'en' });
+assert.equal(canonicalResult.candidates[0].total_ipm, 3.75);
+assert(!canonicalResult.candidates[0].warnings.includes('missing_category'));
+assert(!canonicalResult.candidates[0].warnings.includes('partial_source_data'));
+assert.deepEqual(canonicalResult.candidates[0].sources, canonicalSources);
+assert(!Object.hasOwn(canonicalEntry, '__runtimeWarnings'));
+assert.deepEqual(canonicalEntry.sources, canonicalSources);
+
+const legacyCategoryFromIdOnly = entry('alterable', 'alterable', { sources: [{ id: 'web:alterable', file: 'legacy.tsv', ipm: 1 }] });
+assert(findCandidatesForRoot({ entries: [legacyCategoryFromIdOnly], root: 'alter' }).candidates[0].warnings.includes('missing_category'));

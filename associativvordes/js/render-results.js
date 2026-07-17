@@ -46,12 +46,11 @@ function sourceFileName(source) {
 }
 
 function sourceCategory(source) {
-  return source?.category ?? source?.corpus_category ?? source?.type ?? null;
+  return source?.category ?? null;
 }
 
 function sourceIpm(source) {
-  const value = source?.ipm ?? source?.IPM ?? source?.frequency_ipm;
-  return Number.isFinite(Number(value)) ? Number(value) : null;
+  return typeof source?.ipm === 'number' && Number.isFinite(source.ipm) ? source.ipm : null;
 }
 
 export function summarizeCandidateSources(sources = []) {
@@ -59,17 +58,19 @@ export function summarizeCandidateSources(sources = []) {
   const categories = new Set();
   const ipmByCategory = {};
   const ids = [];
+  const details = [];
   const warnings = [];
   for (const source of safeSources) {
     const file = sourceFileName(source);
     const category = sourceCategory(source);
     const ipm = sourceIpm(source);
     ids.push(file);
+    details.push({ file, category, ipm });
     if (category) categories.add(category); else warnings.push('missing_category');
     if (!category || file === '—' || ipm == null) warnings.push('partial_source_data');
     if (category && ipm != null) ipmByCategory[category] = (ipmByCategory[category] || 0) + ipm;
   }
-  return { count: safeSources.length, ids, categories: [...categories], ipmByCategory, warnings: [...new Set(warnings)] };
+  return { count: safeSources.length, ids, details, categories: [...categories], ipmByCategory, warnings: [...new Set(warnings)] };
 }
 
 export function formatSimilarity(value, digits = 1) {
@@ -83,13 +84,14 @@ export function renderCandidateEvidenceDetails(item = {}, labels = {}, lang = 'r
   const itemWarnings = Array.isArray(item.warnings) ? item.warnings : [];
   const sourceSummary = summarizeCandidateSources(item.sources);
   const warnings = [...new Set([...itemWarnings, ...sourceSummary.warnings, ...analysisWarnings])];
-  const shownSources = sourceSummary.ids.slice(0, sourceLimit);
+  const shownSources = sourceSummary.details.slice(0, sourceLimit);
   const more = Math.max(0, sourceSummary.count - shownSources.length);
   const t = lang === 'en' ? {
-    matchType: 'Match type', fragment: 'Fragment', distance: 'Distance', similarity: 'Similarity', frequencyScore: 'frequency_score', sourceCount: 'Sources', shown: 'Shown', more: 'More', sourceIds: 'Source identifiers', categories: 'Categories', ipmByCategory: 'IPM by category', categoryScore: 'category_score', categoryWeight: 'category_weight', warnings: 'Warnings', warningCodes: 'Warning codes'
+    matchType: 'Match type', fragment: 'Fragment', distance: 'Distance', similarity: 'Similarity', frequencyScore: 'frequency_score', sourceCount: 'Sources', shown: 'Shown', more: 'More', sourceIds: 'Source files', categories: 'Categories', ipmByCategory: 'IPM by category', categoryScore: 'category_score', categoryWeight: 'category_weight', warnings: 'Warnings', warningCodes: 'Warning codes'
   } : {
-    matchType: 'Тип совпадения', fragment: 'Фрагмент', distance: 'Distance', similarity: 'Similarity', frequencyScore: 'frequency_score', sourceCount: 'Источники', shown: 'Показано', more: 'Ещё', sourceIds: 'Идентификаторы источников', categories: 'Категории', ipmByCategory: 'IPM по категориям', categoryScore: 'category_score', categoryWeight: 'category_weight', warnings: 'Предупреждения', warningCodes: 'Коды предупреждений'
+    matchType: 'Тип совпадения', fragment: 'Фрагмент', distance: 'Distance', similarity: 'Similarity', frequencyScore: 'frequency_score', sourceCount: 'Источники', shown: 'Показано', more: 'Ещё', sourceIds: 'Файлы источников', categories: 'Категории', ipmByCategory: 'IPM по категориям', categoryScore: 'category_score', categoryWeight: 'category_weight', warnings: 'Предупреждения', warningCodes: 'Коды предупреждений'
   };
+  const sourceEntries = shownSources.map(source => `${escapeHtml(source.file)} <span class="muted">— ${escapeHtml(categoryLabel(source.category, lang))} · IPM ${formatMetric(source.ipm, 3)}</span>`);
   const categoryEntries = sourceSummary.categories.map(category => `${escapeHtml(categoryLabel(category, lang))} <span class="mono">(${escapeHtml(category)})</span>`);
   const ipmEntries = Object.entries(sourceSummary.ipmByCategory).map(([category, ipm]) => `${escapeHtml(categoryLabel(category, lang))}: ${formatMetric(ipm, 3)}`);
   const warningText = warnings.length ? warnings.map(code => escapeHtml(warningLabel(code, lang))).join('<br>') : '—';
@@ -101,7 +103,7 @@ export function renderCandidateEvidenceDetails(item = {}, labels = {}, lang = 'r
                 <dt>${t.similarity}</dt><dd>${formatSimilarity(match?.similarity, 1)}</dd>
                 <dt>${t.frequencyScore}</dt><dd>${formatMetric(item.analysis?.frequency?.frequency_score ?? item.frequency_score, 2)}</dd>
                 <dt>${t.sourceCount}</dt><dd>${sourceSummary.count}<br><span class="muted">${t.shown}: ${shownSources.length}; ${t.more}: ${more}</span></dd>
-                <dt>${t.sourceIds}</dt><dd>${shownSources.length ? shownSources.map(escapeHtml).join('<br>') : '—'}</dd>
+                <dt>${t.sourceIds}</dt><dd>${sourceEntries.length ? sourceEntries.join('<br>') : '—'}</dd>
                 <dt>${t.categories}</dt><dd>${categoryEntries.length ? categoryEntries.join('<br>') : '—'}</dd>
                 <dt>${t.ipmByCategory}</dt><dd>${ipmEntries.length ? ipmEntries.join('<br>') : '—'}</dd>
                 <dt>${t.categoryScore}</dt><dd>${formatMetric(item.category_score ?? item.frequencyProfile?.category_score, 3)}</dd>

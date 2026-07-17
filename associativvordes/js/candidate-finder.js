@@ -24,12 +24,15 @@ function entryLanguage(entry) {
 }
 
 function sourceCategory(source) {
-  return source?.category ?? source?.corpus_category ?? source?.type ?? null;
+  return source?.category ?? null;
 }
 
 function sourceIpm(source) {
-  const value = source?.ipm ?? source?.IPM ?? source?.frequency_ipm;
-  return typeof value === 'number' && Number.isFinite(value) ? value : 0;
+  return typeof source?.ipm === 'number' && Number.isFinite(source.ipm) ? source.ipm : 0;
+}
+
+function sourceFile(source) {
+  return typeof source?.file === 'string' && source.file.trim() ? source.file : null;
 }
 
 function totalIpm(entry) {
@@ -56,14 +59,17 @@ function validateEntry(entry, language, diagnostics) {
   const storedLanguage = entryLanguage(entry);
   if (storedLanguage != null && language != null && String(storedLanguage) !== String(language)) return reject(diagnostics, 'language_mismatch'), false;
   if (!normalizedLemma(entry)) return reject(diagnostics, 'normalized_empty'), false;
-  const sourceWarnings = new Set();
-  for (const source of entry.sources) {
-    if (!sourceCategory(source)) sourceWarnings.add('missing_category');
-    if (!source || (!source.file && !source.filename && !source.path && !source.source && !source.id) || !sourceCategory(source) || !Number.isFinite(Number(source.ipm ?? source.IPM ?? source.frequency_ipm))) sourceWarnings.add('partial_source_data');
-  }
-  if (entry.frequency_score === 0) sourceWarnings.add('candidate_found_but_frequency_zero');
-  if (sourceWarnings.size) entry.__runtimeWarnings = [...new Set([...(Array.isArray(entry.warnings) ? entry.warnings : []), ...sourceWarnings])];
   return true;
+}
+
+function runtimeWarningsForEntry(entry) {
+  const warnings = new Set(Array.isArray(entry.warnings) ? entry.warnings : []);
+  for (const source of entry.sources) {
+    if (!sourceCategory(source)) warnings.add('missing_category');
+    if (!source || !sourceFile(source) || !sourceCategory(source) || typeof source.ipm !== 'number' || !Number.isFinite(source.ipm)) warnings.add('partial_source_data');
+  }
+  if (entry.frequency_score === 0) warnings.add('candidate_found_but_frequency_zero');
+  return [...warnings];
 }
 
 function exactRootMatch(searchForm, root) {
@@ -110,8 +116,6 @@ export function findCandidatesForRoot({ entries, root, language, maxCandidates =
     if (existing) {
       diagnostics.duplicates += 1;
       diagnostics.warnings.push({ reason: 'duplicate_runtime_entry', word: entry.word, normalized: entry.normalized });
-      if (Array.isArray(existing.warnings)) existing.warnings = [...new Set([...existing.warnings, 'duplicate_runtime_entry'])];
-      else existing.warnings = ['duplicate_runtime_entry'];
       if (completenessScore(entry) > completenessScore(existing)) byLemma.set(key, entry);
       continue;
     }
@@ -130,7 +134,7 @@ export function findCandidatesForRoot({ entries, root, language, maxCandidates =
       frequency_score: entry.frequency_score,
       category_breakdown: isPlainObject(entry.category_breakdown) ? entry.category_breakdown : {},
       sources: entry.sources,
-      warnings: [...new Set([...(Array.isArray(entry.warnings) ? entry.warnings : []), ...(Array.isArray(entry.__runtimeWarnings) ? entry.__runtimeWarnings : [])])],
+      warnings: runtimeWarningsForEntry(entry),
       total_ipm: totalIpm(entry),
       match
     });
