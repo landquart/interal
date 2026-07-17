@@ -2,7 +2,7 @@
 import { cp, mkdir, readdir, readFile, rm, rename, stat, writeFile } from 'node:fs/promises';
 import { join, relative, resolve, sep } from 'node:path';
 
-const LANGUAGES = ['en', 'de', 'fr', 'es', 'it'];
+const LANGUAGES = ['en', 'de', 'fr', 'es', 'it', 'ru'];
 const ARTIFACT_PREFIX = 'associative-index-';
 const SUPPORTED_VERSION = '1';
 const SUPPORTED_NORMALIZER_VERSION = '2';
@@ -42,8 +42,12 @@ function signatureOfEntry(entry) {
 }
 
 function compatibleMetadata(manifest) {
-  const { generated_at, languages, config_hash, ...metadata } = manifest;
+  const { generated_at, languages, config_hash, global_config_hash, ...metadata } = manifest;
   return metadata;
+}
+
+function manifestGlobalConfigHash(manifest) {
+  return manifest.global_config_hash ?? manifest.config_hash;
 }
 
 function stableJson(value) {
@@ -61,7 +65,7 @@ async function validateArtifact(inputRoot, language) {
   if (!LANGUAGES.includes(language)) throw new Error(`Unknown language: ${language}`);
   if (manifest.version !== SUPPORTED_VERSION) throw new Error(`${artifactName}: unsupported version ${manifest.version}`);
   if (manifest.normalizer_version !== SUPPORTED_NORMALIZER_VERSION) throw new Error(`${artifactName}: unsupported normalizer_version ${manifest.normalizer_version}`);
-  if (!manifest.config_hash || typeof manifest.config_hash !== 'string') throw new Error(`${artifactName}: config_hash is required`);
+  if (!manifestGlobalConfigHash(manifest) || typeof manifestGlobalConfigHash(manifest) !== 'string') throw new Error(`${artifactName}: global_config_hash is required`);
   if (!manifest.languages || typeof manifest.languages !== 'object') throw new Error(`${artifactName}: languages metadata is required`);
   const manifestLanguages = Object.keys(manifest.languages).sort();
   if (manifestLanguages.length !== 1 || manifestLanguages[0] !== language) throw new Error(`${artifactName}: manifest language must match artifact directory`);
@@ -70,6 +74,7 @@ async function validateArtifact(inputRoot, language) {
   const info = manifest.languages[language];
   if (!Number.isInteger(info.entries) || info.entries <= 0) throw new Error(`${artifactName}: entries must be > 0`);
   if (!Array.isArray(info.shards) || info.shards.length <= 0) throw new Error(`${artifactName}: shards must be > 0`);
+  if (info.language_config_hash != null && (typeof info.language_config_hash !== 'string' || !info.language_config_hash)) throw new Error(`${artifactName}: language_config_hash must be a non-empty string`);
   if (!Array.isArray(info.source_files)) throw new Error(`${artifactName}: source_files must be an array`);
 
   let countedEntries = 0;
@@ -103,8 +108,8 @@ async function validateArtifact(inputRoot, language) {
 
 function assertCompatible(artifacts) {
   const first = artifacts[0];
-  const globalHashes = new Set(artifacts.map(a => a.manifest.config_hash));
-  if (globalHashes.size !== 1) throw new Error('Incompatible config_hash values; language-specific hashes are not supported by these artifacts');
+  const globalHashes = new Set(artifacts.map(a => manifestGlobalConfigHash(a.manifest)));
+  if (globalHashes.size !== 1) throw new Error('Incompatible global_config_hash values');
   for (const artifact of artifacts.slice(1)) {
     if (artifact.manifest.version !== first.manifest.version) throw new Error('Incompatible schema versions');
     if (artifact.manifest.normalizer_version !== first.manifest.normalizer_version) throw new Error('Incompatible normalizer_version values');
@@ -118,12 +123,13 @@ function buildMergedManifest(artifacts) {
   const manifest = {
     version: first.version,
     normalizer_version: first.normalizer_version,
-    global_config_hash: first.config_hash,
+    global_config_hash: manifestGlobalConfigHash(first),
     generated_at: first.generated_at,
     languages: {}
   };
   for (const artifact of artifacts) {
     manifest.languages[artifact.language] = {
+      language_config_hash: artifact.info.language_config_hash ?? artifact.manifest.config_hash,
       entries: artifact.info.entries,
       source_files: [...artifact.info.source_files].sort(),
       shards: artifact.info.shards.map(shard => ({ file: shard.file, entries: shard.entries })).sort((a, b) => a.file.localeCompare(b.file)),

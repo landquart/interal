@@ -1,9 +1,10 @@
 {
   "version": "1",
   "normalizer_version": "2",
-  "config_hash": "fixture",
+  "global_config_hash": "fixture-global",
   "languages": {
     "en": {
+      "language_config_hash": "fixture-en",
       "entries": 3,
       "shards": [
         {
@@ -17,6 +18,7 @@
       ]
     },
     "ru": {
+      "language_config_hash": "fixture-ru",
       "entries": 2,
       "shards": [
         {

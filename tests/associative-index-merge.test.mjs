@@ -4,7 +4,7 @@ import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { main as mergeArtifacts } from '../scripts/merge-associative-index-artifacts.mjs';
 
-const LANGUAGES = ['en', 'de', 'fr', 'es', 'it'];
+const LANGUAGES = ['en', 'de', 'fr', 'es', 'it', 'ru'];
 const CONFIG_HASH = 'fixture-global-config-hash';
 
 async function writeJson(path, value) {
@@ -35,10 +35,11 @@ async function makeArtifact(root, language, options = {}) {
   const manifest = {
     version: options.version ?? '1',
     normalizer_version: options.normalizerVersion ?? '2',
-    config_hash: options.configHash ?? CONFIG_HASH,
+    global_config_hash: options.globalConfigHash ?? options.configHash ?? CONFIG_HASH,
     generated_at: options.generatedAt ?? '2026-01-01T00:00:00.000Z',
     languages: {
       [options.manifestLanguage ?? language]: {
+        language_config_hash: options.languageConfigHash ?? `fixture-${language}-language-config-hash`,
         entries,
         source_files: [`normative/${language}.json`],
         shards: [{ file: options.shardFile ?? shardFile, entries: options.shardEntries ?? shardEntries.length }]
@@ -101,6 +102,7 @@ await test('five valid artifacts merge into one separated candidate-index manife
     const manifest = await readManifest(output);
     assert.deepEqual(Object.keys(manifest.languages), LANGUAGES);
     assert.equal(manifest.global_config_hash, CONFIG_HASH);
+    assert.equal(manifest.languages.en.language_config_hash, 'fixture-en-language-config-hash');
     assert.equal(manifest.languages.en.entries, 2);
     assert.ok(manifest.languages.en.shards.every(shard => shard.file.startsWith('en/') && !shard.file.startsWith('/')));
     assert.ok(await readFile(join(output, 'candidate-index', 'de', 'a.json'), 'utf8'));
@@ -141,7 +143,7 @@ await test('rerun is deterministic, does not duplicate, and removes stale shards
     await mergeArtifacts([`--input-root=${input}`, `--output-root=${output}`]);
     const secondManifest = await readManifest(output);
     assert.equal(JSON.stringify(secondManifest), first);
-    assert.equal(Object.keys(secondManifest.languages).length, 5);
+    assert.equal(Object.keys(secondManifest.languages).length, LANGUAGES.length);
     await assert.rejects(() => readFile(join(output, 'candidate-index', 'en', 'stale.json')), /ENOENT/);
   } finally {
     await rm(root, { recursive: true, force: true });
@@ -170,3 +172,5 @@ await test('one artifact cannot silently overwrite another language', async () =
     await cp(join(input, 'associative-index-en'), join(input, 'associative-index-it'), { recursive: true });
   }, /manifest language must match/);
 });
+
+await test('rejects incompatible global_config_hash', () => expectReject(input => makeArtifact(input, 'ru', { globalConfigHash: 'other-global-hash' }), /global_config_hash/));

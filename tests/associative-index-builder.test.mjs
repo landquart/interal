@@ -3,6 +3,7 @@ import { spawnSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
 import { cp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
+import { globalConfigHash, languageConfigHash } from '../scripts/build-associative-candidate-index.mjs';
 
 const node = process.execPath;
 const script = 'scripts/build-associative-candidate-index.mjs';
@@ -43,7 +44,8 @@ assert.ok(alternative.sources.some(source => source.id.includes('bnc-clean2')), 
 assert.equal(alternative.rank, null, 'does not treat rank as output IPM');
 assert.ok(Number.isFinite(alternative.frequency_score), 'frequency_score finite');
 assert.ok(alternative.frequency_score >= 0 && alternative.frequency_score <= 100, 'frequency_score range');
-assert.equal(first.manifest.config_hash.length, 64, 'config_hash present');
+assert.equal(first.manifest.global_config_hash.length, 64, 'global_config_hash present');
+assert.equal(first.manifest.languages.en.language_config_hash.length, 64, 'language_config_hash present');
 assertCanonicalShardOrder(first.entries, 'builder writes a shard in canonical search_form/normalized/word order');
 
 
@@ -64,10 +66,10 @@ assert.ok(report.root_samples.alter.length <= 20, 'report limits alter samples')
 assert.ok(report.root_samples.alter.map(word => word.toLowerCase()).includes('alternative'), 'report root samples come from built entries');
 
 const second = await build([], '.tmp/associative-index-test-2');
-assert.equal(first.manifest.config_hash, second.manifest.config_hash, 'config_hash deterministic');
+assert.equal(first.manifest.global_config_hash, second.manifest.global_config_hash, 'global_config_hash deterministic');
 const firstManifestNoDate = { ...first.manifest, generated_at: 'ignored-a' };
 const secondManifestNoDate = { ...second.manifest, generated_at: 'ignored-b' };
-assert.equal(firstManifestNoDate.config_hash, secondManifestNoDate.config_hash, 'generated_at does not affect config_hash');
+assert.equal(firstManifestNoDate.global_config_hash, secondManifestNoDate.global_config_hash, 'generated_at does not affect global_config_hash');
 assert.deepEqual(first.entries, second.entries, 'repeat build gives same entries');
 
 const limited = await build(['--max-records=1'], '.tmp/associative-index-test-limited');
@@ -148,6 +150,14 @@ async function readAllLanguageEntries(out, language) {
   for (const shard of manifest.languages[language].shards) entries.push(...await readJson(join(out, shard.file)));
   return entries;
 }
+
+
+const enOnly = first;
+const ruOnly = await buildLanguageFixture('ru', '.tmp/associative-index-ru');
+assert.equal(enOnly.manifest.global_config_hash, ruOnly.manifest.global_config_hash, 'separate en and ru builds share global_config_hash');
+assert.notEqual(enOnly.manifest.languages.en.language_config_hash, ruOnly.manifest.languages.ru.language_config_hash, 'en and ru language_config_hash values differ');
+assert.notEqual(globalConfigHash({ baseCategoryWeights: { subtitles: 0.31, normative: 0.29, web: 0.30, mixed: 0.10 } }), enOnly.manifest.global_config_hash, 'changing global weights changes global_config_hash');
+assert.notEqual(languageConfigHash('ru', { languageSources: { ru: { subtitles: ['hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json'], normative: ['changed-source.json'], web: ['ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json'], mixed: [] } } }), ruOnly.manifest.languages.ru.language_config_hash, 'changing only ru sources changes ru language_config_hash');
 
 for (const language of ['de', 'fr', 'es', 'it']) {
   await buildLanguageFixture(language, `.tmp/associative-index-${language}`);
