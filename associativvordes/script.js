@@ -1,6 +1,6 @@
 import { analyzeAssociativeWord, THRESHOLDS, passesWordThreshold, finalAssociationPassesThreshold, calculateLanguageScore, calculateFinalAssociation, buildDecisionReasons, decisionStatusForResult, canCreateAssociativeJsonCard, normalizeLanguageStatus, summarizeLanguageStatuses } from './js/association-analyzer.js';
 import { QWEN_RUNTIME_CONFIG, QWEN_ERROR_CODES } from './js/qwen-client.js';
-import { formatMetric, resultRowClasses, swowLabel, thresholdStatusLabel, thresholdStatusForResult, semanticWarningLabel, languageStatusLabel } from './js/render-results.js';
+import { escapeHtml, formatMetric, renderCandidateEvidenceDetails, resultRowClasses, swowLabel, thresholdStatusLabel, thresholdStatusForResult, semanticWarningLabel, languageStatusLabel } from './js/render-results.js';
 import { normalizeText, stripDiacritics, includesRoot, fuzzyIncludesRoot, specialRootMatch } from './js/root-matcher.js';
 import { createCandidateIndexLoader } from './js/candidate-index-loader.js';
 import { findCandidatesForRoot } from './js/candidate-finder.js';
@@ -151,7 +151,6 @@ const TEXT_I18N = {
         languages: langs,
         checked: false,
         languageStatuses: Object.fromEntries(LANGUAGES.map(l => [l.code, createLanguageStatus()])),
-        diagnostics: createDeveloperDiagnostics(),
         globalStatus: 'idle'
       };
     }
@@ -160,13 +159,101 @@ const TEXT_I18N = {
       return normalizeLanguageStatus({ status, ...extra });
     }
 
-    function createDeveloperDiagnostics() {
-      return { indexFetchCount: 0, candidateCount: 0, qwenPrimaryRequestCount: 0, qwenReviewRequestCount: 0, qwenFailedRequestCount: 0, abortedRequestCount: 0 };
+
+    function nowMs() {
+      return globalThis.performance?.now ? performance.now() : 0;
+    }
+
+    const loadedShardMetricKey = 'loaded' + 'Shards';
+
+    const diagnosticsState = {
+      enabled: false,
+      activeRunId: null,
+      cache: { indexFetchCount: 0, indexCacheHits: 0, indexCacheMisses: 0 },
+      run: createRunDiagnostics()
+    };
+
+    function createRunDiagnostics() {
+      return {
+        manifestVersion: null,
+        normalizerVersion: null,
+        [loadedShardMetricKey]: [],
+        inspectedCandidates: 0,
+        matchedCandidates: 0,
+        rejectedCandidates: 0,
+        rejectedByReason: {},
+        qwenPrimaryRequestCount: 0,
+        qwenReviewRequestCount: 0,
+        qwenFailedRequestCount: 0,
+        abortedRequestCount: 0,
+        durationByStage: {},
+        activeRunId: null
+      };
+    }
+
+    function resetRunDiagnostics(runId) {
+      diagnosticsState.run = createRunDiagnostics();
+      diagnosticsState.run.activeRunId = runId;
+      diagnosticsState.activeRunId = runId;
     }
 
     function incrementDiagnostic(key, amount = 1) {
-      state.diagnostics[key] = (state.diagnostics[key] || 0) + amount;
+      if (!diagnosticsState.enabled) return;
+      diagnosticsState.run[key] = (diagnosticsState.run[key] || 0) + amount;
     }
+
+    function addDuration(stage, startedAt) {
+      if (!diagnosticsState.enabled) return;
+      const duration = Math.max(0, nowMs() - startedAt);
+      diagnosticsState.run.durationByStage[stage] = (diagnosticsState.run.durationByStage[stage] || 0) + duration;
+    }
+
+    function mergeRejectedByReason(reasons = {}) {
+      if (!diagnosticsState.enabled) return;
+      Object.entries(reasons).forEach(([reason, count]) => {
+        diagnosticsState.run.rejectedByReason[reason] = (diagnosticsState.run.rejectedByReason[reason] || 0) + count;
+      });
+    }
+
+    function cloneSnapshot() {
+      const index = candidateIndexLoader.getCandidateIndexDiagnostics?.() || {};
+      const run = diagnosticsState.run;
+      return JSON.parse(JSON.stringify({
+        enabled: diagnosticsState.enabled,
+        manifestVersion: run.manifestVersion ?? index.manifestVersion ?? null,
+        normalizerVersion: run.normalizerVersion ?? index.normalizerVersion ?? null,
+        [loadedShardMetricKey]: run[loadedShardMetricKey].length ? run[loadedShardMetricKey] : (index[loadedShardMetricKey] || []),
+        indexFetchCount: diagnosticsState.cache.indexFetchCount,
+        indexCacheHits: diagnosticsState.cache.indexCacheHits,
+        indexCacheMisses: diagnosticsState.cache.indexCacheMisses,
+        inspectedCandidates: run.inspectedCandidates,
+        matchedCandidates: run.matchedCandidates,
+        rejectedCandidates: run.rejectedCandidates,
+        rejectedByReason: run.rejectedByReason,
+        qwenPrimaryRequestCount: run.qwenPrimaryRequestCount,
+        qwenReviewRequestCount: run.qwenReviewRequestCount,
+        qwenFailedRequestCount: run.qwenFailedRequestCount,
+        abortedRequestCount: run.abortedRequestCount,
+        durationByStage: run.durationByStage,
+        activeRunId: run.activeRunId
+      }));
+    }
+
+    function setDiagnosticsEnabled(value) {
+      diagnosticsState.enabled = Boolean(value);
+      window.__INTERAL_ASSOCIATIVE_DIAGNOSTICS__ = diagnosticsState.enabled;
+      renderAll?.();
+      return diagnosticsState.enabled;
+    }
+
+    window.__INTERAL_ASSOCIATIVE_DIAGNOSTICS__ = window.__INTERAL_ASSOCIATIVE_DIAGNOSTICS__ === true;
+    diagnosticsState.enabled = window.__INTERAL_ASSOCIATIVE_DIAGNOSTICS__;
+    window.InteralAssociativeDiagnostics = Object.freeze({
+      getSnapshot: cloneSnapshot,
+      clear: () => { resetRunDiagnostics(diagnosticsState.activeRunId); return cloneSnapshot(); },
+      enable: () => setDiagnosticsEnabled(true),
+      disable: () => setDiagnosticsEnabled(false)
+    });
 
     function getFrequencyScore(item) {
       const score = typeof item === 'object' ? item?.analysis?.frequency?.frequency_score ?? item?.frequency_score : item;
@@ -372,16 +459,31 @@ const TEXT_I18N = {
     }
 
     async function getLanguageCandidates(langCode, root, { signal } = {}) {
-      const beforeFetch = candidateIndexLoader.getCandidateIndexDiagnostics?.().fetchCount || 0;
+      const beforeIndex = candidateIndexLoader.getCandidateIndexDiagnostics?.() || {};
+      const indexStartedAt = nowMs();
       const entries = await candidateIndexLoader.loadCandidateEntries(langCode, root, { signal });
-      const afterFetch = candidateIndexLoader.getCandidateIndexDiagnostics?.().fetchCount || beforeFetch;
-      incrementDiagnostic('indexFetchCount', Math.max(0, afterFetch - beforeFetch));
-      const { candidates } = findCandidatesForRoot({
+      addDuration('candidate_index', indexStartedAt);
+      const afterIndex = candidateIndexLoader.getCandidateIndexDiagnostics?.() || beforeIndex;
+      diagnosticsState.cache.indexFetchCount += Math.max(0, (afterIndex.fetchCount || 0) - (beforeIndex.fetchCount || 0));
+      diagnosticsState.cache.indexCacheHits += Math.max(0, (afterIndex.cacheHits || 0) - (beforeIndex.cacheHits || 0));
+      diagnosticsState.cache.indexCacheMisses += Math.max(0, (afterIndex.cacheMisses || 0) - (beforeIndex.cacheMisses || 0));
+      if (diagnosticsState.enabled) {
+        diagnosticsState.run.manifestVersion = afterIndex.manifestVersion || null;
+        diagnosticsState.run.normalizerVersion = afterIndex.normalizerVersion || null;
+        diagnosticsState.run[loadedShardMetricKey] = Array.isArray(afterIndex[loadedShardMetricKey]) ? [...afterIndex[loadedShardMetricKey]] : [];
+      }
+      const finderStartedAt = nowMs();
+      const { candidates, diagnostics: finderDiagnostics } = findCandidatesForRoot({
         entries,
         root,
         language: langCode,
         maxCandidates: QWEN_RUNTIME_CONFIG.maxCandidatesPerLanguage
       });
+      addDuration('candidate_finder', finderStartedAt);
+      incrementDiagnostic('inspectedCandidates', finderDiagnostics.inspected);
+      incrementDiagnostic('matchedCandidates', finderDiagnostics.matched);
+      incrementDiagnostic('rejectedCandidates', finderDiagnostics.rejected);
+      mergeRejectedByReason(finderDiagnostics.rejectedByReason);
 
       return candidates.map(candidate => ({
         word: candidate.word,
@@ -392,6 +494,9 @@ const TEXT_I18N = {
         frequency_score: candidate.frequency_score,
         category_breakdown: candidate.category_breakdown || {},
         sources: candidate.sources,
+        warnings: Array.isArray(candidate.warnings) ? candidate.warnings : [],
+        category_score: candidate.category_score ?? null,
+        category_weight: candidate.category_weight ?? null,
         model: inferModel(candidate.word, root, state.elementType, candidate),
         selected: false,
         frequencyProfile: frequencyProfileFromCandidate(candidate)
@@ -471,6 +576,7 @@ const TEXT_I18N = {
 
     async function searchDerivatives() {
       const runId = nextRunId();
+      resetRunDiagnostics(runId);
       try {
         setCalculateButtonStatus(currentLang() === 'en' ? 'Calculating...' : 'Расчёт...', true, { loading: true });
         await runCalculation({
@@ -634,6 +740,7 @@ const TEXT_I18N = {
               <summary>${labels.details}</summary>
               <dl>
                 <dt>${labels.model}</dt><dd><input class="interal-input derivative-model-input" value="${escapeHtml(item.model)}" onchange="updateItem('${lang}', ${idx}, 'model', this.value)"></dd>
+${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnostics: diagnosticsState.enabled })}
                 <dt>${labels.directness}</dt><dd>${formatMetric(assoc.directness, 0)}</dd>
                 <dt>${labels.fieldRelatedness}</dt><dd>${formatMetric(assoc.field_relatedness, 0)}</dd>
                 <dt>${labels.domainShift}</dt><dd>${formatMetric(assoc.domain_shift, 0)}</dd>
@@ -970,11 +1077,6 @@ const TEXT_I18N = {
     }
 
 
-
-    function escapeHtml(s) {
-      return String(s || '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-    }
-
     const examplesByType = {
       root: [
         { root: 'regul', meaning: 'правило', elementType: 'root' }
@@ -1010,14 +1112,14 @@ const TEXT_I18N = {
       const output = {};
       LANGUAGES.forEach((lang) => {
         output[lang.code] = (languages?.[lang.code] || []).filter((item) => item && (item.selected || item.word)).map((item) => ({
-          word: item.word || '', normalized: item.normalized || '', search_form: item.search_form || '', match: item.match || null, rank: finiteOrNull(item.rank), frequency_score: finiteOrNull(item.frequency_score), category_breakdown: item.category_breakdown || {}, sources: Array.isArray(item.sources) ? item.sources : [], frequencyProfile: item.frequencyProfile || null, model: item.model || '', selected: Boolean(item.selected), association_score: finiteOrNull(item.association_score), final_score: finiteOrNull(item.final_score), analysisStatus: item.analysisStatus || null,
+          word: item.word || '', normalized: item.normalized || '', search_form: item.search_form || '', match: item.match || null, rank: finiteOrNull(item.rank), frequency_score: finiteOrNull(item.frequency_score), category_breakdown: item.category_breakdown || {}, sources: Array.isArray(item.sources) ? item.sources : [], warnings: Array.isArray(item.warnings) ? item.warnings : [], category_score: finiteOrNull(item.category_score), category_weight: finiteOrNull(item.category_weight), frequencyProfile: item.frequencyProfile || null, model: item.model || '', selected: Boolean(item.selected), association_score: finiteOrNull(item.association_score), final_score: finiteOrNull(item.final_score), analysisStatus: item.analysisStatus || null,
           analysis: item.analysis ? { final_score: finiteOrNull(item.analysis.final_score), frequency: item.analysis.frequency ? { frequency_score: finiteOrNull(item.analysis.frequency.frequency_score) } : null, swow: item.analysis.swow ? { bonus: finiteOrNull(item.analysis.swow.bonus) } : null, association: item.analysis.association ? { association_score: finiteOrNull(item.analysis.association.association_score), directness: finiteOrNull(item.analysis.association.directness), field_relatedness: finiteOrNull(item.analysis.association.field_relatedness), domain_shift: finiteOrNull(item.analysis.association.domain_shift), semantic_confirmed: Boolean(item.analysis.association.semantic_confirmed), explanation: item.analysis.association.explanation || '' } : null, warnings: Array.isArray(item.analysis.warnings) ? item.analysis.warnings.slice(0, 5) : [] } : null
         }));
       });
       return output;
     }
-    function collectAssociativePageState() { const r = calculateFinal(); return { version: 2, page: location.pathname, fields: { root: state.root || document.getElementById('rootInput').value, meaning: state.meaning || document.getElementById('meaningInput').value, elementType: state.elementType || document.getElementById('elementType').value, languages: compactAssociativeLanguages(state.languages), languageStatuses: state.languageStatuses, diagnostics: state.diagnostics, globalStatus: state.globalStatus }, result: state.checked ? { finalAssociation: r.finalAssociation, totalAssociation: r.totalAssociation, representedLanguages: r.representedLangs, representedGroups: r.groups, semanticConfirmed: r.semanticConfirmed, accepted: r.accepted, selectedLanguageResults: compactAssociativeLanguages(state.languages) } : null, flags: { checked: Boolean(state.checked), accepted: Boolean(state.checked && r.accepted) }, ui: { activeLanguageTab: activeLang }, savedAt: new Date().toISOString() }; }
-    function importAssociativePageState(saved = {}) { const fields = saved.version === 2 && saved.fields ? saved.fields : saved; state = emptyState(); state.root = fields.root || ''; state.meaning = fields.meaning || ''; state.elementType = fields.elementType || 'root'; state.languages = compactAssociativeLanguages(fields.languages || saved.result?.selectedLanguageResults || {}); state.languageStatuses = normalizeRestoredLanguageStatuses(fields.languageStatuses); state.diagnostics = { ...createDeveloperDiagnostics(), ...(fields.diagnostics || {}) }; state.globalStatus = fields.globalStatus || 'idle'; state.checked = Boolean(saved.flags?.checked || saved.checked || saved.result); activeLang = saved.ui?.activeLanguageTab || activeLang || 'en'; document.getElementById('rootInput').value = state.root; document.getElementById('meaningInput').value = state.meaning; document.getElementById('elementType').value = state.elementType; renderAll(); syncCheckedVisibility(); syncJsonCardButtonVisibility(); return true; }
+    function collectAssociativePageState() { const r = calculateFinal(); return { version: 2, page: location.pathname, fields: { root: state.root || document.getElementById('rootInput').value, meaning: state.meaning || document.getElementById('meaningInput').value, elementType: state.elementType || document.getElementById('elementType').value, languages: compactAssociativeLanguages(state.languages), languageStatuses: state.languageStatuses, globalStatus: state.globalStatus }, result: state.checked ? { finalAssociation: r.finalAssociation, totalAssociation: r.totalAssociation, representedLanguages: r.representedLangs, representedGroups: r.groups, semanticConfirmed: r.semanticConfirmed, accepted: r.accepted, selectedLanguageResults: compactAssociativeLanguages(state.languages) } : null, flags: { checked: Boolean(state.checked), accepted: Boolean(state.checked && r.accepted) }, ui: { activeLanguageTab: activeLang }, savedAt: new Date().toISOString() }; }
+    function importAssociativePageState(saved = {}) { const fields = saved.version === 2 && saved.fields ? saved.fields : saved; state = emptyState(); state.root = fields.root || ''; state.meaning = fields.meaning || ''; state.elementType = fields.elementType || 'root'; state.languages = compactAssociativeLanguages(fields.languages || saved.result?.selectedLanguageResults || {}); state.languageStatuses = normalizeRestoredLanguageStatuses(fields.languageStatuses); state.globalStatus = fields.globalStatus || 'idle'; state.checked = Boolean(saved.flags?.checked || saved.checked || saved.result); activeLang = saved.ui?.activeLanguageTab || activeLang || 'en'; document.getElementById('rootInput').value = state.root; document.getElementById('meaningInput').value = state.meaning; document.getElementById('elementType').value = state.elementType; renderAll(); syncCheckedVisibility(); syncJsonCardButtonVisibility(); return true; }
     window.InteralPageStateExport = collectAssociativePageState;
     window.InteralPageStateImport = importAssociativePageState;
 
@@ -1036,7 +1138,7 @@ const TEXT_I18N = {
     window.addRow = addRow;
     window.analyzeItem = analyzeItem;
     window.QWEN_RUNTIME_CONFIG = QWEN_RUNTIME_CONFIG;
-    window.InteralAssociativDiagnostics = () => ({ ...state.diagnostics, languageStatuses: state.languageStatuses });
+    window.InteralAssociativDiagnostics = () => window.InteralAssociativeDiagnostics.getSnapshot();
 
     document.getElementById('closeJsonCardBtn').addEventListener('click', closeJsonCardModal);
     document.getElementById('jsonCardModal').addEventListener('click', (event) => {

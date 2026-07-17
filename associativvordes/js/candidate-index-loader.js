@@ -52,7 +52,7 @@ async function withAbort(promise, signal) {
 }
 
 function createDiagnostics() {
-  return { manifestLoaded: false, loadedShards: [], cacheHits: 0, cacheMisses: 0, fetchCount: 0, rejectedEntries: 0, validationErrors: [] };
+  return { manifestLoaded: false, manifestVersion: null, normalizerVersion: null, loadedShards: [], cacheHits: 0, cacheMisses: 0, fetchCount: 0, rejectedEntries: 0, validationErrors: [] };
 }
 
 function normalizeBaseUrl(baseUrl = DEFAULT_BASE_URL) {
@@ -180,7 +180,7 @@ export function createCandidateIndexLoader(options = {}) {
     diagnostics.fetchCount += 1;
     manifestPromise = fetchJson(fetchImpl, joinUrl(baseUrl, 'manifest.json'), {}, CANDIDATE_INDEX_ERROR_CODES.MANIFEST_FETCH_FAILED)
       .then(validateManifest)
-      .then(manifest => { diagnostics.manifestLoaded = true; return manifest; })
+      .then(manifest => { diagnostics.manifestLoaded = true; diagnostics.manifestVersion = manifest.version || null; diagnostics.normalizerVersion = manifest.normalizer_version || null; return manifest; })
       .catch(error => { manifestPromise = undefined; throw error; });
     return withAbort(manifestPromise, signal);
   }
