@@ -74,7 +74,72 @@ export function calculateFinalScore({ frequency_score, association_score }) {
 }
 
 export function passesWordThreshold(score) {
-  return Number.isFinite(Number(score)) && Number(score) >= THRESHOLDS.word;
+  return isFiniteScore(score) && Number(score) >= THRESHOLDS.word;
+}
+
+export const UNAVAILABLE_REASONS = ['no_candidates', 'index_error', 'qwen_error', 'incomplete', 'aborted', 'no_calculated_languages'];
+
+export function isFiniteScore(value) {
+  if (value == null || value === '') return false;
+  return Number.isFinite(Number(value));
+}
+
+export function calculateLanguageScore(items = [], { maxModels = Infinity, scoreGetter = (item) => item?.final_score } = {}) {
+  const selected = (Array.isArray(items) ? items : [])
+    .filter((item) => item?.selected)
+    .slice(0, maxModels);
+  const scores = selected
+    .map(scoreGetter)
+    .map(Number)
+    .filter(Number.isFinite);
+  const sum = scores.reduce((acc, score) => acc + score, 0);
+  return {
+    sum: scores.length ? sum : null,
+    normalized: scores.length ? sum / scores.length : null,
+    count: scores.length
+  };
+}
+
+export function unavailableReasonsFromStatuses(languageStatuses = {}) {
+  const reasons = new Set();
+  Object.values(languageStatuses || {}).forEach((entry = {}) => {
+    const status = entry.status;
+    if (UNAVAILABLE_REASONS.includes(status)) reasons.add(status);
+    if (status === 'completed' && Number(entry.candidateCount) === 0) reasons.add('no_candidates');
+    if (entry.errorCode && status === 'index_error') reasons.add('index_error');
+    if (entry.errorCode && status === 'qwen_error') reasons.add('qwen_error');
+  });
+  return [...reasons];
+}
+
+export function calculateFinalAssociation({ languages = [], languageResults = [], languageStatuses = {} } = {}) {
+  const languageScores = (languages || []).map((lang, index) => ({ lang, ...(languageResults[index] || {}) }));
+  const represented = languageScores.filter((score) => isFiniteScore(score.normalized));
+  const hasCalculatedData = represented.length > 0;
+  const totalAssociation = hasCalculatedData ? represented.reduce((acc, score) => acc + Number(score.normalized), 0) : null;
+  const finalAssociation = hasCalculatedData ? totalAssociation / represented.length : null;
+  const representedLangs = represented.length;
+  const groups = new Set(represented.map((score) => score.lang?.group).filter(Boolean));
+  const semanticConfirmed = represented.length > 0 && represented.every((score) => score.semanticConfirmed === true);
+  const unavailableReasons = unavailableReasonsFromStatuses(languageStatuses);
+  if (!hasCalculatedData && !unavailableReasons.includes('no_calculated_languages')) unavailableReasons.push('no_calculated_languages');
+  const accepted = representedLangs >= 3 && groups.size >= 2 && finalAssociationPassesThreshold(finalAssociation) && semanticConfirmed;
+  return { languageScores, totalAssociation, finalAssociation, representedLangs, groups: groups.size, semanticConfirmed, accepted, hasCalculatedData, unavailableReasons };
+}
+
+export function finalAssociationRejectionReasons(result = {}) {
+  const reasons = [];
+  if (Number(result.representedLangs) < 3) reasons.push('fewer_languages');
+  if (Number(result.groups) < 2) reasons.push('fewer_groups');
+  const finalAssociation = Number(result.finalAssociation);
+  if (isFiniteScore(result.finalAssociation) && finalAssociation < THRESHOLDS.main) reasons.push('below_threshold');
+  if (!result.semanticConfirmed) reasons.push('semantic_unconfirmed');
+  if (!result.hasCalculatedData) reasons.push('no_calculated_languages');
+  return reasons;
+}
+
+export function canCreateAssociativeJsonCard(result = {}) {
+  return Boolean(result.hasCalculatedData && finalAssociationPassesThreshold(result.finalAssociation) && result.accepted && result.semanticConfirmed);
 }
 
 export function classifyScore(final_score) {
@@ -85,7 +150,7 @@ export function classifyScore(final_score) {
 }
 
 export function finalAssociationPassesThreshold(finalAssociation) {
-  return Number.isFinite(Number(finalAssociation)) && Number(finalAssociation) >= THRESHOLDS.main;
+  return isFiniteScore(finalAssociation) && Number(finalAssociation) >= THRESHOLDS.main;
 }
 
 function semanticConfirmedFromQwen(qwen) {

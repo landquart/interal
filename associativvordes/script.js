@@ -1,4 +1,4 @@
-import { analyzeAssociativeWord, THRESHOLDS, passesWordThreshold, finalAssociationPassesThreshold } from './js/association-analyzer.js';
+import { analyzeAssociativeWord, THRESHOLDS, passesWordThreshold, finalAssociationPassesThreshold, calculateLanguageScore, calculateFinalAssociation, finalAssociationRejectionReasons, canCreateAssociativeJsonCard } from './js/association-analyzer.js';
 import { QWEN_RUNTIME_CONFIG, QWEN_ERROR_CODES } from './js/qwen-client.js';
 import { formatMetric, resultRowClasses, swowLabel, thresholdStatusLabel, thresholdStatusForResult, semanticWarningLabel } from './js/render-results.js';
 import { normalizeText, stripDiacritics, includesRoot, fuzzyIncludesRoot, specialRootMatch } from './js/root-matcher.js';
@@ -178,7 +178,8 @@ const TEXT_I18N = {
     }
 
     function formatFixed(value, digits) {
-      if (!Number.isFinite(value)) return '—';
+      if (value == null || value === '' || !Number.isFinite(Number(value))) return '—';
+      value = Number(value);
       return new Intl.NumberFormat(currentLocale(), {
         minimumFractionDigits: digits,
         maximumFractionDigits: digits
@@ -186,6 +187,7 @@ const TEXT_I18N = {
     }
 
     function formatPercent(value, digits = 0) {
+      if (value == null || value === '' || !Number.isFinite(Number(value))) return '—';
       return `${formatFixed(value, digits)}%`;
     }
 
@@ -490,36 +492,18 @@ const TEXT_I18N = {
     }
 
     function calculateLanguage(langCode) {
-      const items = state.languages[langCode] || [];
-      const selected = items
-        .filter(x => x.selected)
-        .filter(x => passesWordThreshold(wordWeight(x)))
-        .slice(0, state.maxModels);
-      const scores = selected
-        .map(wordWeight)
-        .filter(score => Number.isFinite(Number(score)));
-      const sum = scores.reduce((acc, x) => acc + x, 0);
-      return {
-        sum,
-        normalized: scores.length ? sum / scores.length : null,
-        count: scores.length
-      };
+      return calculateLanguageScore(state.languages[langCode] || [], { maxModels: state.maxModels, scoreGetter: wordWeight });
     }
 
     function calculateFinal() {
-      const languageScores = LANGUAGES.map(l => ({ lang: l, ...calculateLanguage(l.code) }));
-      const represented = languageScores.filter(x => Number.isFinite(Number(x.normalized)));
-      const totalAssociation = represented.reduce((acc, x) => acc + x.normalized, 0);
-      const finalAssociation = represented.length ? totalAssociation / represented.length : 0;
-      const representedLangs = represented.length;
-      const groups = new Set(represented.map(x => x.lang.group));
-      const semanticConfirmed = represented.length > 0 && represented.every(x => (state.languages[x.lang.code] || []).filter(item => item.selected).some(item => item.analysis?.association?.semantic_confirmed === true));
-      const accepted =
-        representedLangs >= 3 &&
-        groups.size >= 2 &&
-        finalAssociationPassesThreshold(finalAssociation) &&
-        semanticConfirmed;
-      return { languageScores, totalAssociation, finalAssociation, representedLangs, groups: groups.size, semanticConfirmed, accepted };
+      const languageResults = LANGUAGES.map(l => {
+        const score = calculateLanguage(l.code);
+        const semanticConfirmed = Number.isFinite(Number(score.normalized)) && (state.languages[l.code] || [])
+          .filter(item => item.selected)
+          .some(item => item.analysis?.association?.semantic_confirmed === true);
+        return { ...score, semanticConfirmed };
+      });
+      return calculateFinalAssociation({ languages: LANGUAGES, languageResults, languageStatuses: state.languageStatuses });
     }
 
     function renderTabs() {
@@ -666,13 +650,8 @@ const TEXT_I18N = {
 
       let statusClass = result.accepted ? 'ok' : (finalAssociationPassesThreshold(result.finalAssociation) ? 'warn' : 'bad');
       let statusText = result.accepted ? labels.accept : labels.reject;
-      let reasons = [];
-      if (result.representedLangs < 3) reasons.push(labels.fewerLanguages);
-      if (result.groups < 2) reasons.push(labels.fewerGroups);
-      if (!finalAssociationPassesThreshold(result.finalAssociation)) {
-        reasons.push(labels.belowThreshold);
-      }
-      if (!result.semanticConfirmed) reasons.push(semanticWarningLabel(currentLang()));
+      const reasonLabels = { fewer_languages: labels.fewerLanguages, fewer_groups: labels.fewerGroups, below_threshold: labels.belowThreshold, semantic_unconfirmed: semanticWarningLabel(currentLang()), no_calculated_languages: currentLang() === 'en' ? 'No data' : 'Нет данных' };
+      let reasons = finalAssociationRejectionReasons(result).map(reason => reasonLabels[reason]).filter(Boolean);
 
       document.getElementById('decisionBox').innerHTML = `
         <span class="status ${statusClass}">${statusText}</span>
@@ -933,7 +912,7 @@ const TEXT_I18N = {
     }
 
     function hasPassedJsonCardThreshold() {
-      const r = calculateFinal(); return r.accepted && r.semanticConfirmed;
+      const r = calculateFinal(); return canCreateAssociativeJsonCard(r);
     }
 
     function syncCheckedVisibility() {
