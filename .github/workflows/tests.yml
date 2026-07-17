@@ -1,0 +1,39 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check changed associative modules
+        run: |
+          node --check associativvordes/js/candidate-index-loader.js
+          node --check associativvordes/js/candidate-finder.js
+          node --check associativvordes/js/target-meaning-translator.js
+          node --check shared/button-status.js
+          node --check shared/card-schema.mjs
+          node --check scripts/audit-associative-index-memory.mjs
+
+      - name: Run all tests
+        run: npm test
