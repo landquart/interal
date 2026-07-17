@@ -192,6 +192,9 @@ jobs:
             exit 1
           fi
 
+      - name: Check production candidate index deployment gate
+        run: npm run check:associative-index-deployment
+
       - name: Build pull request description
         run: |
           set -euo pipefail

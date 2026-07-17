@@ -10,6 +10,18 @@ for (const page of pages) {
   assert.match(html, /shared\/ui\.js\?v=/, `${file} must include shared/ui.js with cache busting`);
 }
 
+
+const packageJson = JSON.parse(await readFile('package.json', 'utf8'));
+assert.equal(packageJson.scripts['check:associative-index-deployment'], 'node scripts/check-associative-index-deployment.mjs', 'package.json must expose the production associative index deployment check');
+assert.equal(packageJson.scripts.test.includes('check:associative-index-deployment'), false, 'npm test must not require the production candidate-index');
+
+const deploymentCheck = await readFile('scripts/check-associative-index-deployment.mjs', 'utf8');
+assert.match(deploymentCheck, /fetch\(manifestUrl\)/, 'deployment check must smoke-test fetching ./candidate-index/manifest.json');
+assert.match(deploymentCheck, /REQUIRED_LANGUAGES = \['en', 'de', 'fr', 'es', 'it', 'ru'\]/, 'deployment check must require all published languages');
+
+const publishWorkflow = await readFile('.github/workflows/publish-associative-index.yml', 'utf8');
+assert.match(publishWorkflow, /npm run check:associative-index-deployment/, 'publish workflow must run the deployment check after copying the merged index');
+
 const registry = JSON.parse(await readFile('cards/registry.json', 'utf8'));
 const registryIds = new Set(registry.cards.map((card) => card.id));
 const removedDreCardIds = [
