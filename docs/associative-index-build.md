@@ -29,7 +29,7 @@ The workflow validates the selected language and then builds only that language 
 npm run build:associative-index -- --languages="${{ inputs.language }}" --report=associativvordes/candidate-index/build-report.json
 ```
 
-The workflow never passes `--languages=en,de,fr,es,it` and does not use matrix parallelism. The generator processes source files sequentially and the workflow has a 45 minute timeout. If the build or validation cannot complete safely, the job fails instead of publishing a partial index.
+The workflow never passes a combined language list such as `--languages=en,de,fr,es,it,ru` and does not use matrix parallelism. The generator processes source files sequentially and the workflow has a 45 minute timeout. If the build or validation cannot complete safely, the job fails instead of publishing a partial index.
 
 ## Download the artifact
 
@@ -119,7 +119,7 @@ The workflow does not commit generated index files, does not run `git add`, does
 
 After the language-specific workflow runs finish, combine only the downloaded artifacts in a separate reviewed step. Do not run a production build during this merge step, do not download artifacts automatically from GitHub in the merge script, and do not copy individual language shards into production by hand.
 
-1. Run the workflow separately for each supported language: `en`, `de`, `fr`, `es`, `it`, and `ru`.
+1. Run the workflow separately for each supported language: `en`, `de`, `fr`, `es`, `it`, and `ru`. The merge requires all six artifacts; five language artifacts are incomplete and must be rejected.
 2. Download each artifact from its completed workflow run.
 3. Unpack the artifacts into one input directory so that it contains these sibling directories:
    - `associative-index-en`;

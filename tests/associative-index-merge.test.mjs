@@ -92,11 +92,8 @@ async function test(name, fn) {
   }
 }
 
-await test('five valid artifacts merge into one separated candidate-index manifest', async () => {
-  const { root, input, output } = await fixtureRoot(async input => {
-    await rm(join(input, 'associative-index-fr'), { recursive: true, force: true });
-    await makeArtifact(input, 'fr', { generatedAt: '2099-01-01T00:00:00.000Z' });
-  });
+await test('six valid artifacts merge into one separated candidate-index manifest', async () => {
+  const { root, input, output } = await fixtureRoot();
   try {
     await mergeArtifacts([`--input-root=${input}`, `--output-root=${output}`]);
     const manifest = await readManifest(output);
@@ -104,12 +101,21 @@ await test('five valid artifacts merge into one separated candidate-index manife
     assert.equal(manifest.global_config_hash, CONFIG_HASH);
     assert.equal(manifest.languages.en.language_config_hash, 'fixture-en-language-config-hash');
     assert.equal(manifest.languages.en.entries, 2);
+    assert.equal(manifest.languages.ru.language_config_hash, 'fixture-ru-language-config-hash');
+    assert.equal(manifest.languages.ru.entries, 2);
     assert.ok(manifest.languages.en.shards.every(shard => shard.file.startsWith('en/') && !shard.file.startsWith('/')));
+    assert.ok(manifest.languages.ru.shards.every(shard => shard.file.startsWith('ru/') && !shard.file.startsWith('/')));
     assert.ok(await readFile(join(output, 'candidate-index', 'de', 'a.json'), 'utf8'));
+    assert.ok(await readFile(join(output, 'candidate-index', 'ru', 'a.json'), 'utf8'));
   } finally {
     await rm(root, { recursive: true, force: true });
   }
 });
+
+
+await test('rejects five artifacts when ru is missing', () => expectReject(async input => {
+  await rm(join(input, 'associative-index-ru'), { recursive: true, force: true });
+}, /Missing artifact for language: ru/));
 
 await test('rejects incompatible version', () => expectReject(input => makeArtifact(input, 'de', { version: '2' }), /unsupported version/));
 await test('rejects incompatible normalizer_version', () => expectReject(input => makeArtifact(input, 'de', { normalizerVersion: '1' }), /normalizer_version/));
