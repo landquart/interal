@@ -120,7 +120,10 @@ export function findCandidatesForRoot({ entries, root, language, maxCandidates =
     if (existing) {
       diagnostics.duplicates += 1;
       diagnostics.warnings.push({ reason: 'duplicate_runtime_entry', word: entry.word, normalized: entry.normalized });
-      if (completenessScore(entry) > completenessScore(existing)) byLemma.set(key, entry);
+      const replacementIsBetter = completenessScore(entry) > completenessScore(existing);
+      const retainedEntry = replacementIsBetter ? entry : existing;
+      retainedEntry.warnings = [...new Set([...(Array.isArray(retainedEntry.warnings) ? retainedEntry.warnings : []), 'duplicate_runtime_entry'])];
+      if (replacementIsBetter) byLemma.set(key, retainedEntry);
       continue;
     }
     byLemma.set(key, entry);
