@@ -1,0 +1,696 @@
+{
+  "version": "1",
+  "normalizer_version": "2",
+  "global_config_hash": "bff63c31892c2e25a7d300c6ff79c0149868504108e131e7e3d7bee67e47225a",
+  "generated_at": "2026-07-17T20:26:49.678Z",
+  "languages": {
+    "en": {
+      "language_config_hash": "a7775aa6b736b82f6f126b106543103c3366303f0e75aedb79a849928db5fc53",
+      "entries": 1131099,
+      "source_files": [
+        "normative/bnc-clean2.lemmatized_spacy_ipm6.json",
+        "subtitles/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "web/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json"
+      ],
+      "shards": [
+        {
+          "file": "en/a.json",
+          "entries": 69525
+        },
+        {
+          "file": "en/b.json",
+          "entries": 72021
+        },
+        {
+          "file": "en/c.json",
+          "entries": 77919
+        },
+        {
+          "file": "en/d.json",
+          "entries": 54032
+        },
+        {
+          "file": "en/e.json",
+          "entries": 34240
+        },
+        {
+          "file": "en/f.json",
+          "entries": 42850
+        },
+        {
+          "file": "en/g.json",
+          "entries": 44773
+        },
+        {
+          "file": "en/h.json",
+          "entries": 47946
+        },
+        {
+          "file": "en/i.json",
+          "entries": 32351
+        },
+        {
+          "file": "en/j.json",
+          "entries": 17662
+        },
+        {
+          "file": "en/k.json",
+          "entries": 42825
+        },
+        {
+          "file": "en/l.json",
+          "entries": 43425
+        },
+        {
+          "file": "en/m.json",
+          "entries": 76756
+        },
+        {
+          "file": "en/n.json",
+          "entries": 33925
+        },
+        {
+          "file": "en/o.json",
+          "entries": 35067
+        },
+        {
+          "file": "en/p.json",
+          "entries": 69316
+        },
+        {
+          "file": "en/q.json",
+          "entries": 4743
+        },
+        {
+          "file": "en/r.json",
+          "entries": 46097
+        },
+        {
+          "file": "en/s.json",
+          "entries": 114610
+        },
+        {
+          "file": "en/t.json",
+          "entries": 67480
+        },
+        {
+          "file": "en/u.json",
+          "entries": 19062
+        },
+        {
+          "file": "en/v.json",
+          "entries": 23430
+        },
+        {
+          "file": "en/w.json",
+          "entries": 33193
+        },
+        {
+          "file": "en/x.json",
+          "entries": 2190
+        },
+        {
+          "file": "en/y.json",
+          "entries": 15059
+        },
+        {
+          "file": "en/z.json",
+          "entries": 10602
+        }
+      ],
+      "total_bytes": 983838408
+    },
+    "de": {
+      "language_config_hash": "072f2798d30a1fb5e50dc47f845f59dd7a7904e1cd094621bc2017bd08f70004",
+      "entries": 1113521,
+      "source_files": [
+        "normative/deu_lemma_rank_word_ipm_corrected.json",
+        "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "web/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json"
+      ],
+      "shards": [
+        {
+          "file": "de/a.json",
+          "entries": 71373
+        },
+        {
+          "file": "de/b.json",
+          "entries": 75142
+        },
+        {
+          "file": "de/c.json",
+          "entries": 26899
+        },
+        {
+          "file": "de/d.json",
+          "entries": 44103
+        },
+        {
+          "file": "de/e.json",
+          "entries": 48465
+        },
+        {
+          "file": "de/f.json",
+          "entries": 53534
+        },
+        {
+          "file": "de/g.json",
+          "entries": 59827
+        },
+        {
+          "file": "de/h.json",
+          "entries": 59190
+        },
+        {
+          "file": "de/i.json",
+          "entries": 20176
+        },
+        {
+          "file": "de/j.json",
+          "entries": 12152
+        },
+        {
+          "file": "de/k.json",
+          "entries": 67823
+        },
+        {
+          "file": "de/l.json",
+          "entries": 41465
+        },
+        {
+          "file": "de/m.json",
+          "entries": 64164
+        },
+        {
+          "file": "de/n.json",
+          "entries": 29820
+        },
+        {
+          "file": "de/o.json",
+          "entries": 17722
+        },
+        {
+          "file": "de/p.json",
+          "entries": 55095
+        },
+        {
+          "file": "de/q.json",
+          "entries": 3428
+        },
+        {
+          "file": "de/r.json",
+          "entries": 49262
+        },
+        {
+          "file": "de/s.json",
+          "entries": 128544
+        },
+        {
+          "file": "de/t.json",
+          "entries": 47635
+        },
+        {
+          "file": "de/u.json",
+          "entries": 26466
+        },
+        {
+          "file": "de/v.json",
+          "entries": 38745
+        },
+        {
+          "file": "de/w.json",
+          "entries": 43710
+        },
+        {
+          "file": "de/x.json",
+          "entries": 847
+        },
+        {
+          "file": "de/y.json",
+          "entries": 2777
+        },
+        {
+          "file": "de/z.json",
+          "entries": 25157
+        }
+      ],
+      "total_bytes": 797516551
+    },
+    "fr": {
+      "language_config_hash": "235843c9875928ff1c476969527440ec955cab4764a707f33ea773f7b86ea4a0",
+      "entries": 558932,
+      "source_files": [
+        "subtitles/hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "web/sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json"
+      ],
+      "shards": [
+        {
+          "file": "fr/_other.json",
+          "entries": 77
+        },
+        {
+          "file": "fr/a.json",
+          "entries": 37654
+        },
+        {
+          "file": "fr/b.json",
+          "entries": 33802
+        },
+        {
+          "file": "fr/c.json",
+          "entries": 45826
+        },
+        {
+          "file": "fr/d.json",
+          "entries": 33331
+        },
+        {
+          "file": "fr/e.json",
+          "entries": 27475
+        },
+        {
+          "file": "fr/f.json",
+          "entries": 20487
+        },
+        {
+          "file": "fr/g.json",
+          "entries": 21733
+        },
+        {
+          "file": "fr/h.json",
+          "entries": 19403
+        },
+        {
+          "file": "fr/i.json",
+          "entries": 16360
+        },
+        {
+          "file": "fr/j.json",
+          "entries": 8769
+        },
+        {
+          "file": "fr/k.json",
+          "entries": 17781
+        },
+        {
+          "file": "fr/l.json",
+          "entries": 21820
+        },
+        {
+          "file": "fr/m.json",
+          "entries": 39514
+        },
+        {
+          "file": "fr/n.json",
+          "entries": 14468
+        },
+        {
+          "file": "fr/o.json",
+          "entries": 11584
+        },
+        {
+          "file": "fr/p.json",
+          "entries": 39825
+        },
+        {
+          "file": "fr/q.json",
+          "entries": 3120
+        },
+        {
+          "file": "fr/r.json",
+          "entries": 29178
+        },
+        {
+          "file": "fr/s.json",
+          "entries": 49730
+        },
+        {
+          "file": "fr/t.json",
+          "entries": 29108
+        },
+        {
+          "file": "fr/u.json",
+          "entries": 4691
+        },
+        {
+          "file": "fr/v.json",
+          "entries": 13664
+        },
+        {
+          "file": "fr/w.json",
+          "entries": 9180
+        },
+        {
+          "file": "fr/x.json",
+          "entries": 1046
+        },
+        {
+          "file": "fr/y.json",
+          "entries": 4406
+        },
+        {
+          "file": "fr/z.json",
+          "entries": 4900
+        }
+      ],
+      "total_bytes": 379220035
+    },
+    "es": {
+      "language_config_hash": "ad0d85b955be0932da701d30458d7148bc65b912ce27a5e2f4c9b5202bce53dc",
+      "entries": 941863,
+      "source_files": [
+        "mixed/es_wordlist.lemmatized_stanza_ipm6.json",
+        "subtitles/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "subtitles/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json"
+      ],
+      "shards": [
+        {
+          "file": "es/a.json",
+          "entries": 76646
+        },
+        {
+          "file": "es/b.json",
+          "entries": 48375
+        },
+        {
+          "file": "es/c.json",
+          "entries": 83390
+        },
+        {
+          "file": "es/d.json",
+          "entries": 59575
+        },
+        {
+          "file": "es/e.json",
+          "entries": 55252
+        },
+        {
+          "file": "es/f.json",
+          "entries": 29491
+        },
+        {
+          "file": "es/g.json",
+          "entries": 31992
+        },
+        {
+          "file": "es/h.json",
+          "entries": 32259
+        },
+        {
+          "file": "es/i.json",
+          "entries": 33960
+        },
+        {
+          "file": "es/j.json",
+          "entries": 13828
+        },
+        {
+          "file": "es/k.json",
+          "entries": 25955
+        },
+        {
+          "file": "es/l.json",
+          "entries": 35299
+        },
+        {
+          "file": "es/m.json",
+          "entries": 63576
+        },
+        {
+          "file": "es/n.json",
+          "entries": 23444
+        },
+        {
+          "file": "es/o.json",
+          "entries": 18982
+        },
+        {
+          "file": "es/p.json",
+          "entries": 67517
+        },
+        {
+          "file": "es/q.json",
+          "entries": 6441
+        },
+        {
+          "file": "es/r.json",
+          "entries": 48180
+        },
+        {
+          "file": "es/s.json",
+          "entries": 78497
+        },
+        {
+          "file": "es/t.json",
+          "entries": 47817
+        },
+        {
+          "file": "es/u.json",
+          "entries": 8323
+        },
+        {
+          "file": "es/v.json",
+          "entries": 22386
+        },
+        {
+          "file": "es/w.json",
+          "entries": 13199
+        },
+        {
+          "file": "es/x.json",
+          "entries": 1303
+        },
+        {
+          "file": "es/y.json",
+          "entries": 8385
+        },
+        {
+          "file": "es/z.json",
+          "entries": 7791
+        }
+      ],
+      "total_bytes": 802181000
+    },
+    "it": {
+      "language_config_hash": "13aba998b93ffa9ebbe739ad1a2ebf1434c381f0eb6f2c5dca39320327d8416d",
+      "entries": 610111,
+      "source_files": [
+        "subtitles/hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "subtitles/hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "web/sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json"
+      ],
+      "shards": [
+        {
+          "file": "it/a.json",
+          "entries": 48113
+        },
+        {
+          "file": "it/b.json",
+          "entries": 31070
+        },
+        {
+          "file": "it/c.json",
+          "entries": 52298
+        },
+        {
+          "file": "it/d.json",
+          "entries": 31558
+        },
+        {
+          "file": "it/e.json",
+          "entries": 18578
+        },
+        {
+          "file": "it/f.json",
+          "entries": 23432
+        },
+        {
+          "file": "it/g.json",
+          "entries": 23053
+        },
+        {
+          "file": "it/h.json",
+          "entries": 13467
+        },
+        {
+          "file": "it/i.json",
+          "entries": 27772
+        },
+        {
+          "file": "it/j.json",
+          "entries": 6043
+        },
+        {
+          "file": "it/k.json",
+          "entries": 14429
+        },
+        {
+          "file": "it/l.json",
+          "entries": 23205
+        },
+        {
+          "file": "it/m.json",
+          "entries": 39798
+        },
+        {
+          "file": "it/n.json",
+          "entries": 14552
+        },
+        {
+          "file": "it/o.json",
+          "entries": 12890
+        },
+        {
+          "file": "it/p.json",
+          "entries": 45340
+        },
+        {
+          "file": "it/q.json",
+          "entries": 4063
+        },
+        {
+          "file": "it/r.json",
+          "entries": 36726
+        },
+        {
+          "file": "it/s.json",
+          "entries": 73236
+        },
+        {
+          "file": "it/t.json",
+          "entries": 30962
+        },
+        {
+          "file": "it/u.json",
+          "entries": 7715
+        },
+        {
+          "file": "it/v.json",
+          "entries": 14859
+        },
+        {
+          "file": "it/w.json",
+          "entries": 7891
+        },
+        {
+          "file": "it/x.json",
+          "entries": 841
+        },
+        {
+          "file": "it/y.json",
+          "entries": 3524
+        },
+        {
+          "file": "it/z.json",
+          "entries": 4696
+        }
+      ],
+      "total_bytes": 532903153
+    },
+    "ru": {
+      "language_config_hash": "83c72beb047644753589916c46767d3ebe0a019ab8df63a348d9a5f6661983a8",
+      "entries": 569454,
+      "source_files": [
+        "normative/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+        "subtitles/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json"
+      ],
+      "shards": [
+        {
+          "file": "ru/a.json",
+          "entries": 24456
+        },
+        {
+          "file": "ru/b.json",
+          "entries": 32433
+        },
+        {
+          "file": "ru/c.json",
+          "entries": 11303
+        },
+        {
+          "file": "ru/d.json",
+          "entries": 30171
+        },
+        {
+          "file": "ru/e.json",
+          "entries": 15847
+        },
+        {
+          "file": "ru/f.json",
+          "entries": 13872
+        },
+        {
+          "file": "ru/g.json",
+          "entries": 22403
+        },
+        {
+          "file": "ru/h.json",
+          "entries": 15692
+        },
+        {
+          "file": "ru/i.json",
+          "entries": 12568
+        },
+        {
+          "file": "ru/j.json",
+          "entries": 10397
+        },
+        {
+          "file": "ru/k.json",
+          "entries": 41824
+        },
+        {
+          "file": "ru/l.json",
+          "entries": 17505
+        },
+        {
+          "file": "ru/m.json",
+          "entries": 34708
+        },
+        {
+          "file": "ru/n.json",
+          "entries": 28224
+        },
+        {
+          "file": "ru/o.json",
+          "entries": 28484
+        },
+        {
+          "file": "ru/p.json",
+          "entries": 60349
+        },
+        {
+          "file": "ru/r.json",
+          "entries": 24180
+        },
+        {
+          "file": "ru/s.json",
+          "entries": 60114
+        },
+        {
+          "file": "ru/t.json",
+          "entries": 23827
+        },
+        {
+          "file": "ru/u.json",
+          "entries": 12329
+        },
+        {
+          "file": "ru/v.json",
+          "entries": 29481
+        },
+        {
+          "file": "ru/y.json",
+          "entries": 408
+        },
+        {
+          "file": "ru/z.json",
+          "entries": 18879
+        }
+      ],
+      "total_bytes": 407784965
+    }
+  }
+}
