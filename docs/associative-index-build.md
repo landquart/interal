@@ -139,3 +139,39 @@ After the language-specific workflow runs finish, combine only the downloaded ar
 7. Never merge artifacts built with different schema versions, different `normalizer_version` values, different shard entry formats, or incompatible frequency configuration metadata. The merge command rejects those combinations instead of silently producing a mixed index.
 
 The merge command validates every artifact before writing output. It requires a matching language directory and manifest language, `manifest.json`, `build-report.json`, existing shard files, positive `entries` and shard counts, matching entry metadata, candidates with non-empty `sources`, finite `frequency_score` values, supported versions, and a present config hash. It writes to `<output-root>.tmp`, validates the complete merged candidate index, and then atomically replaces `<output-root>` so a failed merge does not damage an existing output directory.
+
+## Final candidate-index validation
+
+Use the final validator for an already-built language artifact, a merged candidate-index directory, or a small fixture index. It does not build indexes and must not be used as a wrapper around a production corpus run.
+
+Validate one downloaded artifact:
+
+```sh
+npm run validate:associative-index -- --index-root=.tmp/associative-index-en --languages=en --strict
+```
+
+Validate a merged index directory:
+
+```sh
+npm run validate:associative-index -- --index-root=.tmp/associative-index-merged/candidate-index --languages=en,de,fr,es,it,ru --strict --report=.tmp/associative-index-validation.json
+```
+
+The validator checks the manifest contract, supported `version` and `normalizer_version`, config hash presence, language metadata, relative shard paths, missing and extra shards, shard JSON shape, deterministic sorting, duplicate `normalized` lemmas per language, candidate fields, finite scores, IPM values, source paths, and forbidden files such as temporary files, source corpora, `node_modules`, fixtures, and build logs inside the index.
+
+For Russian, validation keeps the original lemma as the deduplication key: Cyrillic words must not lose Cyrillic in `normalized`, Latin `search_form` is checked for root-search usability, and shared `search_form` values across different Cyrillic originals are allowed rather than treated as duplicate lemmas. This protects the runtime contract where `word` is displayed as the original form while `search_form` is only the lookup key.
+
+Exit codes are stable:
+
+- `0`: index is valid;
+- `1`: validation errors were found in strict mode;
+- `2`: CLI usage error;
+- `3`: `manifest.json` is missing or unreadable;
+- `4`: unsupported manifest `version` or `normalizer_version`.
+
+Critical errors include missing or unreadable manifest, incompatible versions, invalid shard paths, absent shards, entry-count mismatches, non-finite values (`NaN`/`Infinity` after JSON corruption), negative IPM values, candidates without sources, absolute source paths, duplicate normalized lemmas, shard/search-form mismatches, and runtime-contract violations. Warnings are reserved for suspicious but potentially corpus-valid conditions, such as a Russian row that looks transliterated while retaining Cyrillic metadata.
+
+When `--report=<path>` is supplied, the validator writes a compact JSON summary with top-level `valid`, `version`, `normalizer_version`, per-language counts (`entries`, `shards`, `bytes`, `errors`, `warnings`), `root_samples`, and capped top-level `errors`/`warnings`. The report never embeds the full dictionary; use `--max-errors=<number>` to cap stored diagnostics.
+
+Root samples are diagnostic searches for `alter`, `regul`, `ocul`, and `inter` using the runtime-compatible candidate finder. A language may legitimately have no candidate for a sample root. However, `alter` returning `inter`, `international`, or `internet` is treated as a regression because it would recreate the false Associativ vordes match the index is designed to avoid.
+
+Full production candidate-index builds are performed only by the manual GitHub Actions workflow. Do not run local full corpus builds for validation; validate downloaded artifacts, merged artifact directories, or fixtures instead.
