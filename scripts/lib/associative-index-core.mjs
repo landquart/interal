@@ -67,10 +67,11 @@ function explicitLemma(record) {
 function pushRecord(records, lemmaValue, ipmValue, rankValue, sourceId) {
   const original = String(lemmaValue ?? '').trim();
   const normalized = normalizeLemma(original);
+  const searchForm = buildSearchForm(original);
   const ipm = finitePositiveNumber(ipmValue);
-  if (!normalized || ipm == null) return;
+  if (!normalized || !searchForm || ipm == null) return;
   const rank = validRank(rankValue);
-  records.push({ original, normalized, search_form: buildSearchForm(original), lemma: normalized, frequency_lookup_key: normalized, ipm, ...(rank != null ? { rank } : {}), ...(sourceId ? { source: sourceId } : {}) });
+  records.push({ original, normalized, search_form: searchForm, lemma: normalized, frequency_lookup_key: normalized, ipm, ...(rank != null ? { rank } : {}), ...(sourceId ? { source: sourceId } : {}) });
 }
 
 export function extractFrequencyRecords(data, sourceId = '') {
