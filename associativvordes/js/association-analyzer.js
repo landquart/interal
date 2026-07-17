@@ -111,10 +111,11 @@ function buildEvaluation(qwen, frequencyScore, swowBonus) {
   };
 }
 
-export async function analyzeAssociativeWord({ language, targetMeaning, word, onProgress } = {}) {
+export async function analyzeAssociativeWord({ language, targetMeaning, word, frequencyProfile, onProgress } = {}) {
   const warnings = [];
-  onProgress?.('Загрузка частотных списков...');
-  const frequency = await getFrequencyProfile(language, word).catch(error => {
+  const hasFrequencyProfile = frequencyProfile && typeof frequencyProfile === 'object' && Number.isFinite(Number(frequencyProfile.frequency_score));
+  if (!hasFrequencyProfile) onProgress?.('Загрузка частотных списков...');
+  const frequency = hasFrequencyProfile ? { ...frequencyProfile, warnings: Array.isArray(frequencyProfile.warnings) ? frequencyProfile.warnings : [] } : await getFrequencyProfile(language, word).catch(error => {
     warnings.push(`Frequency unavailable: ${error.message}`);
     return { frequency_score: null, category_breakdown: {}, warnings: ['Frequency unavailable'] };
   });
