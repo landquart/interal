@@ -5,7 +5,7 @@ const config = JSON.parse(await readFile('vercel.json', 'utf8'));
 assert.equal(config.$schema, 'https://openapi.vercel.sh/vercel.json');
 assert.equal(config.framework, null, 'the static site keeps the Other framework preset');
 assert.equal(config.buildCommand, 'npm run check:associative-index-deployment', 'every Vercel build runs the associative index gate');
-assert.equal(Object.hasOwn(config, 'outputDirectory'), false, 'root static output is not redirected to an incorrect directory');
+assert.equal(config.outputDirectory, '.', 'the build gate still serves the repository root as the static output');
 
 const headerMap = new Map((config.headers || []).map(entry => [entry.source, entry.headers]));
 for (const source of ['/associativvordes/script.js', '/associativvordes/js/(.*)', '/shared/button-status.js']) {
