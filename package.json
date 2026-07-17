@@ -8,6 +8,7 @@
     "test:cards-schema": "node scripts/test-cards-schema.mjs",
     "test:card-schema": "node tests/card-schema.test.mjs",
     "build:associative-index": "node scripts/build-associative-candidate-index.mjs",
+    "audit:associative-index-memory": "node scripts/audit-associative-index-memory.mjs",
     "merge:associative-index": "node scripts/merge-associative-index-artifacts.mjs",
     "validate:associative-index": "node scripts/validate-associative-index.mjs",
     "check:associative-index-deployment": "node scripts/check-associative-index-deployment.mjs"
