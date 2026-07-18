@@ -5,10 +5,10 @@ import { tmpdir } from 'node:os';
 import { basename, dirname, join } from 'node:path';
 import { once } from 'node:events';
 import readline from 'node:readline';
+import { buildSearchForm, SEARCH_NORMALIZER_VERSION } from '../associativvordes/js/search-normalizer.js';
 
-const STATIC_MANIFEST_VERSION = '2';
-const STATIC_INDEX_FORMAT = 'static-inverted-ngram-v1';
-const SUPPORTED_NORMALIZER_VERSION = '2';
+const STATIC_MANIFEST_VERSION = '3';
+const STATIC_INDEX_FORMAT = 'static-inverted-ngram-v2';
 const DEFAULT_INPUT_ROOT = 'associativvordes/candidate-index';
 const DEFAULT_OUTPUT_ROOT = 'associativvordes/search-index';
 const DEFAULT_BLOCK_SIZE = 2048;
@@ -35,7 +35,7 @@ function normalizeText(value) {
   return String(value || '').trim().toLowerCase().normalize('NFC');
 }
 
-function fnv1a(value) {
+export function fnv1a(value) {
   let hash = 0x811c9dc5;
   for (const char of String(value)) {
     hash ^= char.codePointAt(0);
@@ -48,13 +48,13 @@ function bucketWidth(count) {
   return Math.max(2, Math.ceil(Math.log(count) / Math.log(16)));
 }
 
-function bucketName(gram, count) {
-  return String(fnv1a(gram) % count).toString(16).padStart(bucketWidth(count), '0');
+export function bucketName(gram, count) {
+  return (fnv1a(gram) % count).toString(16).padStart(bucketWidth(count), '0');
 }
 
 function uniqueGrams(value, length) {
   const grams = new Set();
-  const text = String(value || '');
+  const text = buildSearchForm(value);
   if (text.length < length) return grams;
   for (let index = 0; index <= text.length - length; index += 1) grams.add(text.slice(index, index + length));
   return grams;
@@ -148,6 +148,7 @@ function validateCandidateEntry(entry, language, index) {
   if (!(entry.rank === null || (Number.isInteger(entry.rank) && entry.rank > 0))) throw new Error(`Invalid rank for ${language} candidate entry ${index}`);
   if (typeof entry.frequency_score !== 'number' || !Number.isFinite(entry.frequency_score) || entry.frequency_score < 0 || entry.frequency_score > 100) throw new Error(`Invalid frequency_score for ${language} candidate entry ${index}`);
   if (!Array.isArray(entry.sources) || !entry.sources.length) throw new Error(`Missing sources for ${language} candidate entry ${index}`);
+  if (entry.search_form !== buildSearchForm(entry.word)) throw new Error(`Non-canonical search_form for ${language} candidate entry ${index}`);
 }
 
 function compactEntry(entry, sourceIndex) {
@@ -185,7 +186,7 @@ async function listSpoolBuckets(spoolRoot, length, bucketCount) {
 
 export async function buildStaticSearchIndex(options) {
   const sourceManifest = await readJson(join(options.inputRoot, 'manifest.json'));
-  if (sourceManifest.version !== '1' || sourceManifest.normalizer_version !== SUPPORTED_NORMALIZER_VERSION || !isPlainObject(sourceManifest.languages?.[options.language])) throw new Error(`Input candidate index is incompatible for ${options.language}`);
+  if (sourceManifest.version !== '1' || !['2', SEARCH_NORMALIZER_VERSION].includes(sourceManifest.normalizer_version) || !isPlainObject(sourceManifest.languages?.[options.language])) throw new Error(`Input candidate index is incompatible for ${options.language}`);
   const sourceLanguage = sourceManifest.languages[options.language];
   if (!Array.isArray(sourceLanguage.shards) || !sourceLanguage.shards.length) throw new Error(`Input candidate index has no shards for ${options.language}`);
 
@@ -254,9 +255,10 @@ export async function buildStaticSearchIndex(options) {
     const sources = sourceIds.map(sourceDescriptor);
     const manifest = {
       version: STATIC_MANIFEST_VERSION,
-      normalizer_version: SUPPORTED_NORMALIZER_VERSION,
+      normalizer_version: SEARCH_NORMALIZER_VERSION,
       index_format: STATIC_INDEX_FORMAT,
       source_manifest_version: sourceManifest.version,
+      source_normalizer_version: sourceManifest.normalizer_version,
       global_config_hash: sourceManifest.global_config_hash ?? sourceManifest.config_hash,
       generated_at: new Date().toISOString(),
       languages: {
@@ -297,7 +299,9 @@ export async function buildStaticSearchIndex(options) {
 
 export async function main(argv = process.argv.slice(2)) {
   const options = parseArgs(argv);
-  return buildStaticSearchIndex(options);
+  const result = await buildStaticSearchIndex(options);
+  console.log(JSON.stringify(result.report, null, 2));
+  return result;
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
