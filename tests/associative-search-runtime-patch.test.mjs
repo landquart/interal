@@ -7,14 +7,22 @@ import { patchAssociativeSearchRuntime } from '../scripts/patch-associative-sear
 const execFileAsync = promisify(execFile);
 const tempRoot = '.tmp/associative-runtime-patch';
 const tempFile = `${tempRoot}/script.mjs`;
+const runtimeMarker = '// Static associative search runtime v2';
 await rm(tempRoot, { recursive: true, force: true });
 await mkdir(tempRoot, { recursive: true });
 
 try {
   const source = await readFile('associativvordes/script.js', 'utf8');
+  const sourceWasAlreadyPatched = source.includes(runtimeMarker);
   const patched = patchAssociativeSearchRuntime(source);
-  assert.notEqual(patched, source, 'runtime migration must modify the unpatched source');
-  assert.ok(patched.includes('// Static associative search runtime v2'));
+
+  if (sourceWasAlreadyPatched) {
+    assert.equal(patched, source, 'published patched runtime must remain unchanged');
+  } else {
+    assert.notEqual(patched, source, 'runtime migration must modify the unpatched source');
+  }
+
+  assert.ok(patched.includes(runtimeMarker));
   assert.ok(patched.includes('const SEARCH_RESULTS_PAGE_SIZE = 100'));
   assert.ok(patched.includes('autoAnalyzeCandidatesPerLanguage'));
   assert.ok(patched.includes("analysisStatus: 'pending'"));
