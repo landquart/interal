@@ -32,8 +32,12 @@ assert.match(legacyGateSource, /STATIC_MANIFEST_PATH/);
 assert.match(legacyGateSource, /response\.status !== 200/);
 assert.match(legacyGateSource, /manifest\.normalizer_version/);
 assert.match(staticGateSource, /search-index/);
-assert.match(staticGateSource, /static-inverted-ngram-v1/);
+assert.match(staticGateSource, /STATIC_MANIFEST_VERSION = '3'/);
+assert.match(staticGateSource, /static-inverted-ngram-v2/);
+assert.match(staticGateSource, /SEARCH_NORMALIZER_VERSION/);
 assert.match(staticGateSource, /entry_blocks/);
 assert.match(staticGateSource, /postings/);
+assert.match(staticGateSource, /loadCandidateEntries\('en', 'regul'\)/, 'deployment gate performs a real browser-loader search');
+assert.match(staticGateSource, /indexOf\('regul'\) > 0/, 'deployment gate verifies a root outside the initial word position');
 
 console.log('Vercel associative index deployment gate tests passed');
