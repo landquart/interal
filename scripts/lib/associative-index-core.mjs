@@ -1,42 +1,17 @@
 import { BASE_CATEGORY_WEIGHTS, CATEGORY_ORDER } from '../../associativvordes/js/config-frequency-sources.js';
 import { ipmToScore, meanNonZero } from '../../associativvordes/js/frequency-loader.js';
+import {
+  buildSearchForm,
+  normalizeText,
+  stripDiacritics,
+  transliterateRussianForSearch
+} from '../../associativvordes/js/search-normalizer.js';
 
 const IPM_FIELDS = ['ipm', 'IPM', 'frequency', 'freq'];
 const WORD_FIELDS = ['word', 'lemma', 'form'];
 
-const RUSSIAN_SEARCH_MAP = {
-  а: 'a', б: 'b', в: 'v', г: 'g', д: 'd', е: 'e', ё: 'e', ж: 'zh', з: 'z', и: 'i', й: 'j',
-  к: 'k', л: 'l', м: 'm', н: 'n', о: 'o', п: 'p', р: 'r', с: 's', т: 't', у: 'u', ф: 'f',
-  х: 'h', ц: 'c', ч: 'ch', ш: 'sh', щ: 'shch', ъ: '', ы: 'y', ь: '', э: 'e', ю: 'ju', я: 'ja'
-};
-
-export function normalizeLemma(value) {
-  return String(value ?? '').trim().toLowerCase().normalize('NFC');
-}
-
-export function stripDiacritics(value) {
-  return normalizeLemma(value)
-    .replace(/ß/g, 'ss')
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .normalize('NFC');
-}
-
-export function transliterateRussianForSearch(value) {
-  const chars = Array.from(normalizeLemma(value));
-  return chars
-    .map((char, index) => (char === 'ъ' && chars[index - 1] === 'б' && chars[index + 1] === 'е' ? 'j' : RUSSIAN_SEARCH_MAP[char] ?? char))
-    .join('');
-}
-
-export function buildSearchForm(value) {
-  const normalized = normalizeLemma(value)
-    .replace(/[’‘‛ʼ`´]/g, "'")
-    .replace(/[‐‑‒–—―−﹘﹣－]/g, '-');
-  return stripDiacritics(transliterateRussianForSearch(normalized))
-    .replace(/\s+/g, ' ')
-    .trim();
-}
+export const normalizeLemma = normalizeText;
+export { buildSearchForm, stripDiacritics, transliterateRussianForSearch };
 
 function finitePositiveNumber(value) {
   if (value === '' || value == null) return null;
@@ -71,7 +46,16 @@ function pushRecord(records, lemmaValue, ipmValue, rankValue, sourceId) {
   const ipm = finitePositiveNumber(ipmValue);
   if (!normalized || !searchForm || ipm == null) return;
   const rank = validRank(rankValue);
-  records.push({ original, normalized, search_form: searchForm, lemma: normalized, frequency_lookup_key: normalized, ipm, ...(rank != null ? { rank } : {}), ...(sourceId ? { source: sourceId } : {}) });
+  records.push({
+    original,
+    normalized,
+    search_form: searchForm,
+    lemma: normalized,
+    frequency_lookup_key: normalized,
+    ipm,
+    ...(rank != null ? { rank } : {}),
+    ...(sourceId ? { source: sourceId } : {})
+  });
 }
 
 export function extractFrequencyRecords(data, sourceId = '') {
@@ -119,7 +103,13 @@ export function mergeFrequencyRecord(index, record, sourceId = record?.source ||
   const ipm = finitePositiveNumber(record.ipm);
   if (!normalized || ipm == null) return index;
   if (frequencyLookupKey !== normalized) throw new Error(`Frequency lookup key must be normalized original lemma for ${normalized}`);
-  const existing = index.get(normalized) ?? { original: record.original || normalized, normalized, search_form: buildSearchForm(record.original || normalized), sources: {}, ranks: {} };
+  const existing = index.get(normalized) ?? {
+    original: record.original || normalized,
+    normalized,
+    search_form: buildSearchForm(record.original || normalized),
+    sources: {},
+    ranks: {}
+  };
   if (!existing.sources) existing.sources = {};
   if (!existing.ranks) existing.ranks = {};
   existing.sources[sourceId] = ipm;
