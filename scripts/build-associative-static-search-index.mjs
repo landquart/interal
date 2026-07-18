@@ -6,9 +6,9 @@ import { basename, dirname, join } from 'node:path';
 import { once } from 'node:events';
 import readline from 'node:readline';
 import { buildSearchForm, SEARCH_NORMALIZER_VERSION } from '../associativvordes/js/search-normalizer.js';
+import { AFFIX_SEARCH_CONFIG_VERSION } from '../associativvordes/js/affix-search-config.js';
+import { STATIC_INDEX_FORMAT, STATIC_MANIFEST_VERSION, anchoredPostingKeys } from '../associativvordes/js/affix-boundary-index.js';
 
-const STATIC_MANIFEST_VERSION = '3';
-const STATIC_INDEX_FORMAT = 'static-inverted-ngram-v2';
 const DEFAULT_INPUT_ROOT = 'associativvordes/candidate-index';
 const DEFAULT_OUTPUT_ROOT = 'associativvordes/search-index';
 const DEFAULT_BLOCK_SIZE = 2048;
@@ -48,16 +48,8 @@ function bucketWidth(count) {
   return Math.max(2, Math.ceil(Math.log(count) / Math.log(16)));
 }
 
-export function bucketName(gram, count) {
-  return (fnv1a(gram) % count).toString(16).padStart(bucketWidth(count), '0');
-}
-
-function uniqueGrams(value, length) {
-  const grams = new Set();
-  const text = buildSearchForm(value);
-  if (text.length < length) return grams;
-  for (let index = 0; index <= text.length - length; index += 1) grams.add(text.slice(index, index + length));
-  return grams;
+export function bucketName(key, count) {
+  return (fnv1a(key) % count).toString(16).padStart(bucketWidth(count), '0');
 }
 
 function isPlainObject(value) {
@@ -93,8 +85,8 @@ class PostingSpool {
     this.streams = new Map();
   }
 
-  write(length, gram, id) {
-    const bucket = bucketName(gram, this.bucketCount);
+  write(length, postingKey, id) {
+    const bucket = bucketName(postingKey, this.bucketCount);
     const key = `${length}/${bucket}`;
     let stream = this.streams.get(key);
     if (!stream) {
@@ -102,7 +94,7 @@ class PostingSpool {
       stream = createWriteStream(path, { flags: 'a', encoding: 'utf8', highWaterMark: 64 * 1024 });
       this.streams.set(key, stream);
     }
-    return stream.write(`${gram}\t${id}\n`) ? null : once(stream, 'drain');
+    return stream.write(`${postingKey}\t${id}\n`) ? null : once(stream, 'drain');
   }
 
   async close() {
@@ -129,16 +121,16 @@ async function convertSpoolBucket(inputPath, outputPath) {
     if (!line) continue;
     const tab = line.lastIndexOf('\t');
     if (tab <= 0) throw new Error(`Invalid posting spool line in ${inputPath}`);
-    const gram = line.slice(0, tab);
+    const postingKey = line.slice(0, tab);
     const id = Number(line.slice(tab + 1));
     if (!Number.isInteger(id) || id < 0) throw new Error(`Invalid posting id in ${inputPath}`);
-    const ids = postings.get(gram) ?? [];
-    if (ids.length && id <= ids[ids.length - 1]) throw new Error(`Posting ids are not strictly increasing for ${gram}`);
+    const ids = postings.get(postingKey) ?? [];
+    if (ids.length && id <= ids[ids.length - 1]) throw new Error(`Posting ids are not strictly increasing for ${postingKey}`);
     ids.push(id);
-    postings.set(gram, ids);
+    postings.set(postingKey, ids);
   }
   const payload = {};
-  for (const gram of [...postings.keys()].sort((a, b) => a.localeCompare(b))) payload[gram] = encodeDeltas(postings.get(gram));
+  for (const postingKey of [...postings.keys()].sort((a, b) => a.localeCompare(b))) payload[postingKey] = encodeDeltas(postings.get(postingKey));
   await writeJson(outputPath, payload);
   return { grams: postings.size, bytes: (await stat(outputPath)).size };
 }
@@ -219,8 +211,8 @@ export async function buildStaticSearchIndex(options) {
         validateCandidateEntry(entry, options.language, entryId);
         block.push(compactEntry(entry, sourceIndex));
         for (const length of [1, 2, 3]) {
-          for (const gram of uniqueGrams(entry.search_form, length)) {
-            const wait = spool.write(length, gram, entryId);
+          for (const postingKey of anchoredPostingKeys(entry.search_form, options.language, length)) {
+            const wait = spool.write(length, postingKey, entryId);
             if (wait) await wait;
           }
         }
@@ -256,6 +248,7 @@ export async function buildStaticSearchIndex(options) {
     const manifest = {
       version: STATIC_MANIFEST_VERSION,
       normalizer_version: SEARCH_NORMALIZER_VERSION,
+      affix_config_version: AFFIX_SEARCH_CONFIG_VERSION,
       index_format: STATIC_INDEX_FORMAT,
       source_manifest_version: sourceManifest.version,
       source_normalizer_version: sourceManifest.normalizer_version,

@@ -23,6 +23,7 @@ assert.equal(packageJson.scripts['check:associative-search-index-deployment'], '
 
 const legacyGateSource = await readFile('scripts/check-associative-index-deployment.mjs', 'utf8');
 const staticGateSource = await readFile('scripts/check-associative-static-search-index-deployment.mjs', 'utf8');
+const boundaryIndexSource = await readFile('associativvordes/js/affix-boundary-index.js', 'utf8');
 for (const language of ['en', 'de', 'fr', 'es', 'it', 'ru']) {
   assert.match(legacyGateSource, new RegExp(`['"]${language}['"]`), `legacy deployment gate recognizes ${language}`);
   assert.match(staticGateSource, new RegExp(`['"]${language}['"]`), `static deployment gate requires ${language}`);
@@ -34,12 +35,17 @@ assert.match(legacyGateSource, /manifest\.normalizer_version/);
 assert.match(legacyGateSource, /SEARCH_NORMALIZER_VERSION/);
 assert.match(legacyGateSource, /SUPPORTED_NORMALIZER_VERSION/);
 assert.match(staticGateSource, /search-index/);
-assert.match(staticGateSource, /STATIC_MANIFEST_VERSION = '3'/);
-assert.match(staticGateSource, /static-inverted-ngram-v2/);
+assert.match(staticGateSource, /STATIC_MANIFEST_VERSION/);
+assert.match(staticGateSource, /STATIC_INDEX_FORMAT/);
+assert.match(staticGateSource, /AFFIX_SEARCH_CONFIG_VERSION/);
+assert.match(boundaryIndexSource, /STATIC_MANIFEST_VERSION = '4'/);
+assert.match(boundaryIndexSource, /static-affix-anchored-ngram-v1/);
 assert.match(staticGateSource, /SEARCH_NORMALIZER_VERSION/);
 assert.match(staticGateSource, /entry_blocks/);
 assert.match(staticGateSource, /postings/);
 assert.match(staticGateSource, /loadCandidateEntries\('en', 'regul'\)/, 'deployment gate performs a real browser-loader search');
-assert.match(staticGateSource, /indexOf\('regul'\) > 0/, 'deployment gate verifies a root outside the initial word position');
+assert.match(staticGateSource, /xregulation/, 'deployment gate rejects an arbitrary pseudo-prefix');
+assert.match(staticGateSource, /walter/i, 'deployment gate rejects alter inside Walter');
+assert.match(staticGateSource, /buhgalter/, 'deployment gate rejects alter inside бухгалтерия');
 
 console.log('Vercel associative index deployment gate tests passed');
