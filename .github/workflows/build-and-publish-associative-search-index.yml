@@ -6,6 +6,10 @@ on:
       confirm_publish:
         description: Type BUILD_AND_PUBLISH_STATIC_SEARCH_INDEX
         required: true
+      source_run_id:
+        description: Optional successful run ID whose six language artifacts should be reused
+        required: false
+        default: ''
 
 permissions:
   contents: write
@@ -14,6 +18,7 @@ permissions:
 
 jobs:
   test:
+    if: inputs.source_run_id == ''
     name: Test static search implementation
     runs-on: ubuntu-latest
     timeout-minutes: 25
@@ -27,6 +32,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
         with:
+          ref: ${{ github.ref_name }}
           show-progress: false
       - name: Setup Node
         uses: actions/setup-node@v6
@@ -39,6 +45,7 @@ jobs:
         run: npm test
 
   build:
+    if: inputs.source_run_id == ''
     name: Build static search index (${{ matrix.language }})
     needs: test
     runs-on: ubuntu-latest
@@ -53,6 +60,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
         with:
+          ref: ${{ github.ref_name }}
           show-progress: false
       - name: Setup Node
         uses: actions/setup-node@v6
@@ -107,8 +115,9 @@ jobs:
           retention-days: 14
 
   publish:
+    if: always() && ((inputs.source_run_id != '') || (needs.test.result == 'success' && needs.build.result == 'success'))
     name: Merge, validate, and open review PR
-    needs: build
+    needs: [test, build]
     runs-on: ubuntu-latest
     timeout-minutes: 120
     env:
@@ -118,9 +127,23 @@ jobs:
       PR_BODY: .tmp/static-search-pr-body.md
       PR_BRANCH: publish/associative-search-index-${{ github.run_id }}
     steps:
-      - name: Checkout repository
+      - name: Validate publication inputs
+        run: |
+          set -euo pipefail
+          if [ "${{ inputs.confirm_publish }}" != "BUILD_AND_PUBLISH_STATIC_SEARCH_INDEX" ]; then
+            echo "confirm_publish must equal BUILD_AND_PUBLISH_STATIC_SEARCH_INDEX" >&2
+            exit 1
+          fi
+          source_run_id="${{ inputs.source_run_id }}"
+          if [ -n "$source_run_id" ] && ! [[ "$source_run_id" =~ ^[0-9]+$ ]]; then
+            echo "source_run_id must be a numeric GitHub Actions run ID" >&2
+            exit 1
+          fi
+      - name: Checkout selected source branch
         uses: actions/checkout@v6
         with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
           persist-credentials: true
           show-progress: false
       - name: Setup Node
@@ -130,9 +153,20 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm ci
-      - name: Download language artifacts
+      - name: Download artifacts from this run
+        if: inputs.source_run_id == ''
         uses: actions/download-artifact@v4
         with:
+          pattern: associative-search-index-*
+          path: ${{ env.ARTIFACT_ROOT }}
+          merge-multiple: false
+      - name: Download artifacts from existing run
+        if: inputs.source_run_id != ''
+        uses: actions/download-artifact@v4
+        with:
+          run-id: ${{ inputs.source_run_id }}
+          github-token: ${{ github.token }}
+          repository: ${{ github.repository }}
           pattern: associative-search-index-*
           path: ${{ env.ARTIFACT_ROOT }}
           merge-multiple: false
@@ -199,22 +233,33 @@ jobs:
           await mkdir(dirname(process.env.PR_BODY), { recursive: true });
           await writeFile(process.env.PR_BODY, `${lines.join('\n')}\n`);
           NODE
-      - name: Create pull request for manual review
-        id: create_pr
-        continue-on-error: true
-        uses: peter-evans/create-pull-request@v8
-        with:
-          token: ${{ github.token }}
-          branch: ${{ env.PR_BRANCH }}
-          delete-branch: true
-          base: main
-          title: Publish corrected static associative search index
-          body-path: ${{ env.PR_BODY }}
-          commit-message: Publish corrected static associative search index
-          add-paths: |
-            associativvordes/search-index
-            associativvordes/candidate-index
+      - name: Commit and push review branch
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A -- \
+            associativvordes/search-index \
+            associativvordes/candidate-index \
             associativvordes/script.js
+          if git diff --cached --quiet; then
+            echo "Publication produced no tracked changes relative to the selected source branch." >&2
+            exit 1
+          fi
+          git switch -c "$PR_BRANCH"
+          git commit -m "Publish corrected static associative search index"
+          git push --force-with-lease origin "$PR_BRANCH"
+      - name: Create pull request for manual review
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          timeout 300s gh pr create \
+            --repo "$GITHUB_REPOSITORY" \
+            --base main \
+            --head "$PR_BRANCH" \
+            --title "Publish corrected static associative search index" \
+            --body-file "$PR_BODY"
       - name: Verify review pull request
         env:
           GH_TOKEN: ${{ github.token }}
@@ -225,14 +270,6 @@ jobs:
             if [ -n "$pr_url" ]; then
               echo "Review PR: $pr_url"
               exit 0
-            fi
-            if [ "$attempt" = "1" ]; then
-              timeout 300s gh pr create \
-                --repo "$GITHUB_REPOSITORY" \
-                --base main \
-                --head "$PR_BRANCH" \
-                --title "Publish corrected static associative search index" \
-                --body-file "$PR_BODY" || true
             fi
             sleep 10
           done
