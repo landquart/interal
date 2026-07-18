@@ -51,6 +51,16 @@ export const AFFIX_SEARCH_CONFIG = freezeConfig({
   }
 });
 
+const automaticConfigCache = new Map();
+
 export function getAffixSearchConfig(language) {
-  return AFFIX_SEARCH_CONFIG[String(language || 'en').toLowerCase()] || AFFIX_SEARCH_CONFIG.en;
+  const code = String(language || 'en').toLowerCase();
+  if (automaticConfigCache.has(code)) return automaticConfigCache.get(code);
+  const raw = AFFIX_SEARCH_CONFIG[code] || AFFIX_SEARCH_CONFIG.en;
+  const automatic = Object.freeze({
+    ...raw,
+    restrictedPrefixes: Object.freeze(raw.restrictedPrefixes.filter(prefix => Array.from(prefix).length > 1))
+  });
+  automaticConfigCache.set(code, automatic);
+  return automatic;
 }
