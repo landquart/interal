@@ -125,7 +125,8 @@ async function runBrowserSmokeCheck() {
   try {
     const { port } = server.address();
     const pageUrl = `http://127.0.0.1:${port}/associativvordes/`;
-    const response = await fetch(new URL('./candidate-index/manifest.json', pageUrl));
+    const manifestUrl = new URL('./candidate-index/manifest.json', pageUrl);
+    const response = await fetch(manifestUrl);
     if (response.status !== 200) fail(`Browser smoke-check expected HTTP 200 for ./candidate-index/manifest.json; received ${response.status}.`);
     await response.json();
   } finally {
