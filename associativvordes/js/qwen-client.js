@@ -14,7 +14,7 @@ export const FINAL_SCORE_WEIGHTS = {
 export const QWEN_RUNTIME_CONFIG = {
   enableCandidateGeneration: false,
   enableReviewModel: true,
-  maxCandidatesPerLanguage: 5,
+  maxCandidatesPerLanguage: Infinity,
   maxConcurrentQwenRequests: 1,
   maxReviewRequestsPerSearch: 5,
   requestTimeoutMs: 15000
@@ -24,7 +24,6 @@ export const QWEN_ERROR_CODES = Object.freeze({
   HTTP_ERROR: 'QWEN_HTTP_ERROR',
   TIMEOUT: 'QWEN_TIMEOUT',
   INVALID_RESPONSE: 'QWEN_INVALID_RESPONSE',
-  SEMANTIC_SCORES_INVALID: 'QWEN_SEMANTIC_SCORES_INVALID',
   ABORTED: 'QWEN_ABORTED',
   BACKEND_ERROR: 'QWEN_BACKEND_ERROR',
   REVIEW_FAILED: 'QWEN_REVIEW_FAILED'
@@ -78,95 +77,62 @@ function extractJsonText(raw) {
   if (fenced) return fenced[1].trim();
   const start = raw.indexOf('{');
   const end = raw.lastIndexOf('}');
-  if (start !== -1 && end > start) return raw.slice(start, end + 1);
-  return raw.trim();
+  return start >= 0 && end > start ? raw.slice(start, end + 1) : raw;
 }
 
-function parseQwenPayload(payload) {
-  const raw = payload?.analysis ?? payload?.choices?.[0]?.message?.content ?? payload?.content ?? payload?.text ?? payload;
-  let object;
+export function parseQwenAssociationResponse(raw) {
+  let data;
   try {
-    object = typeof raw === 'string' ? JSON.parse(extractJsonText(raw)) : raw;
-  } catch (_error) {
-    throw qwenError(QWEN_ERROR_CODES.INVALID_RESPONSE, 'Qwen returned invalid JSON.', { details: String(raw).slice(0, 500), cause: _error });
+    data = typeof raw === 'string' ? JSON.parse(extractJsonText(raw)) : raw;
+  } catch (cause) {
+    throw qwenError(QWEN_ERROR_CODES.INVALID_RESPONSE, 'Qwen returned invalid JSON.', { cause });
   }
-  if (!object || typeof object !== 'object') throw qwenError(QWEN_ERROR_CODES.INVALID_RESPONSE, 'Qwen response is not an object.');
-  const parsed = {
-    word: object.word,
-    target_meaning: object.target_meaning,
-    directness: clampIntegerOrNull(object.directness),
-    field_relatedness: clampIntegerOrNull(object.field_relatedness),
-    domain_shift: clampIntegerOrNull(object.domain_shift),
-    responseLanguage: object.responseLanguage || '',
-    short_explanation: object.short_explanation || object.explanation || '',
-    model: payload?.model || payload?.kind || ''
+  const directness = clampIntegerOrNull(data?.directness);
+  const field_relatedness = clampIntegerOrNull(data?.field_relatedness);
+  const domain_shift = clampIntegerOrNull(data?.domain_shift);
+  if ([directness, field_relatedness, domain_shift].some(value => value == null)) {
+    throw qwenError(QWEN_ERROR_CODES.INVALID_RESPONSE, 'Qwen response is missing valid semantic scores.', { details: data });
+  }
+  return {
+    word: typeof data.word === 'string' ? data.word : '',
+    target_meaning: typeof data.target_meaning === 'string' ? data.target_meaning : '',
+    directness,
+    field_relatedness,
+    domain_shift,
+    responseLanguage: typeof data.responseLanguage === 'string' ? data.responseLanguage : '',
+    short_explanation: typeof data.short_explanation === 'string' ? data.short_explanation : ''
   };
-  if (parsed.directness == null || parsed.field_relatedness == null || parsed.domain_shift == null) {
-    throw qwenError(QWEN_ERROR_CODES.SEMANTIC_SCORES_INVALID, 'Qwen semantic scores are invalid.', { details: object });
-  }
-  return parsed;
 }
 
-async function callQwen(prompt, { model, review = false, signal } = {}) {
-  const timeoutController = new AbortController();
-  const timeoutId = setTimeout(() => timeoutController.abort(new Error('Qwen request timeout')), QWEN_RUNTIME_CONFIG.requestTimeoutMs);
-  const abortController = new AbortController();
-  const abort = () => abortController.abort(signal?.reason);
-  if (signal) {
-    if (signal.aborted) throw qwenError(QWEN_ERROR_CODES.ABORTED, 'Qwen request aborted.');
-    signal.addEventListener('abort', abort, { once: true });
-  }
-  const timeoutAbort = () => abortController.abort(timeoutController.signal.reason);
-  timeoutController.signal.addEventListener('abort', timeoutAbort, { once: true });
-  let res;
+async function postQwen(payload, { signal } = {}) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(new Error('Qwen timeout')), QWEN_RUNTIME_CONFIG.requestTimeoutMs);
+  const abort = () => controller.abort(signal?.reason);
+  signal?.addEventListener('abort', abort, { once: true });
   try {
-    res = await fetch(API_CONFIG.qwenAssociationUrl, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      task: 'associative_word_score',
-      interfaceLanguage: getInterfaceLanguage(),
-      payload: {
-        language: prompt.input?.language,
-        targetMeaning: prompt.input?.targetMeaning,
-        word: prompt.input?.word,
-        swow: prompt.input?.swow,
-        review,
-        primary: prompt.input?.primary || null,
-        model: model || API_CONFIG.qwenPrimaryModel
-      }
-    }),
-    signal: abortController.signal
-  });
+    const response = await fetch(API_CONFIG.qwenEndpoint, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(payload),
+      signal: controller.signal
+    });
+    if (!response.ok) throw qwenError(QWEN_ERROR_CODES.HTTP_ERROR, `Qwen HTTP ${response.status}`, { status: response.status });
+    return await response.json();
   } catch (error) {
-    if (timeoutController.signal.aborted) throw qwenError(QWEN_ERROR_CODES.TIMEOUT, 'Qwen request timed out.', { cause: error });
-    if (error?.name === 'AbortError') throw qwenError(QWEN_ERROR_CODES.ABORTED, 'Qwen request aborted.', { cause: error });
-    throw qwenError(QWEN_ERROR_CODES.HTTP_ERROR, 'Qwen request failed.', { cause: error });
+    if (controller.signal.aborted) {
+      if (signal?.aborted) throw qwenError(QWEN_ERROR_CODES.ABORTED, 'Qwen request aborted.', { cause: error });
+      throw qwenError(QWEN_ERROR_CODES.TIMEOUT, 'Qwen request timed out.', { cause: error });
+    }
+    if (error instanceof QwenClientError) throw error;
+    throw qwenError(QWEN_ERROR_CODES.BACKEND_ERROR, 'Qwen request failed.', { cause: error });
   } finally {
-    clearTimeout(timeoutId);
-    signal?.removeEventListener?.('abort', abort);
-    timeoutController.signal.removeEventListener('abort', timeoutAbort);
+    clearTimeout(timeout);
+    signal?.removeEventListener('abort', abort);
   }
-  if (!res.ok) {
-    let details = '';
-    try {
-      const errorPayload = await res.json();
-      details = errorPayload.details || errorPayload.error || JSON.stringify(errorPayload);
-    } catch {}
-    throw qwenError(QWEN_ERROR_CODES.HTTP_ERROR, 'Qwen HTTP error.', { status: res.status, details });
-  }
-  const payload = await res.json().catch(error => { throw qwenError(QWEN_ERROR_CODES.INVALID_RESPONSE, 'Qwen returned invalid JSON.', { cause: error }); });
-  if (payload?.ok === false || payload?.errorCode) throw qwenError(payload.errorCode || QWEN_ERROR_CODES.BACKEND_ERROR, 'Qwen backend error.', { details: payload });
-  return payload;
 }
 
-export async function getQwenAssociationScores({ language, targetMeaning, word, swow, review = false, primary = null, signal } = {}) {
-  const prompt = buildQwenAssociationPrompt({ language, targetMeaning, word, swow, primary, review });
-  const requestedModel = review ? API_CONFIG.qwenReviewModel : API_CONFIG.qwenPrimaryModel;
-  const parsed = parseQwenPayload(await callQwen(prompt, {
-    model: requestedModel,
-    review,
-    signal
-  }));
-  return { ...parsed, model: requestedModel };
+export async function requestQwenAssociation(input, options = {}) {
+  const payload = buildQwenAssociationPrompt(input);
+  const raw = await postQwen({ task: 'associative_semantic_evaluation', ...payload }, options);
+  return parseQwenAssociationResponse(raw?.result ?? raw?.output ?? raw);
 }
