@@ -240,6 +240,7 @@ export function createCandidateIndexLoader(options = {}) {
           return manifest;
         } catch (error) {
           if (isAbortError(error)) throw error;
+          if (error?.code !== CANDIDATE_INDEX_ERROR_CODES.MANIFEST_FETCH_FAILED) throw error;
           lastError = error;
         }
       }
