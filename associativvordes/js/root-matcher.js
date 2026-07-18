@@ -1,14 +1,10 @@
-export function normalizeText(s) {
-  return String(s || '').trim().toLowerCase().normalize('NFC');
-}
+import { buildSearchForm, normalizeText, stripDiacritics } from './search-normalizer.js';
 
-export function stripDiacritics(s) {
-  return normalizeText(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-}
+export { buildSearchForm, normalizeText, stripDiacritics };
 
 export function includesRoot(word, root) {
-  const w = stripDiacritics(word);
-  const r = stripDiacritics(root);
+  const w = buildSearchForm(word);
+  const r = buildSearchForm(root);
   return r.length > 0 && w.includes(r);
 }
 
@@ -32,7 +28,7 @@ export function levenshtein(a, b) {
 }
 
 export function allowedRootDistance(root) {
-  const length = stripDiacritics(root).length;
+  const length = buildSearchForm(root).length;
   if (length <= 3) return 0;
   if (length <= 5) return 1;
   if (length <= 8) return 2;
@@ -40,8 +36,8 @@ export function allowedRootDistance(root) {
 }
 
 export function fuzzyRootMatch(word, root) {
-  const w = stripDiacritics(word);
-  const r = stripDiacritics(root);
+  const w = buildSearchForm(word);
+  const r = buildSearchForm(root);
   if (!w || !r || r.length < 4) return null;
   const exactIndex = w.indexOf(r);
   if (exactIndex !== -1) return { type: 'exact', distance: 0, similarity: 1, fragment: r, index: exactIndex };
@@ -50,14 +46,18 @@ export function fuzzyRootMatch(word, root) {
   const minLen = Math.max(1, r.length - maxDistance);
   const maxLen = r.length + maxDistance;
   let best = null;
-  for (let i = 0; i < w.length; i += 1) {
-    for (let len = minLen; len <= maxLen; len += 1) {
-      const part = w.slice(i, i + len);
-      if (part.length < minLen || part[0] !== r[0]) continue;
-      const distance = levenshtein(part, r);
-      const similarity = 1 - distance / Math.max(r.length, part.length);
-      if (distance <= maxDistance && similarity >= 0.8 && (!best || distance < best.distance || (distance === best.distance && similarity > best.similarity) || (distance === best.distance && similarity === best.similarity && i < best.index))) {
-        best = { type: 'fuzzy', distance, similarity, fragment: part, index: i };
+  for (let index = 0; index < w.length; index += 1) {
+    for (let length = minLen; length <= maxLen; length += 1) {
+      const fragment = w.slice(index, index + length);
+      if (fragment.length < minLen) continue;
+      const distance = levenshtein(fragment, r);
+      if (distance > maxDistance) continue;
+      const similarity = 1 - distance / Math.max(r.length, fragment.length);
+      if (!best
+        || distance < best.distance
+        || (distance === best.distance && similarity > best.similarity)
+        || (distance === best.distance && similarity === best.similarity && index < best.index)) {
+        best = { type: 'fuzzy', distance, similarity, fragment, index };
       }
     }
   }
@@ -75,19 +75,19 @@ const SPECIAL_ROOT_VARIANTS = Object.freeze({
 });
 
 export function specialRootVariants(lang, root) {
-  const canonical = stripDiacritics(root);
+  const canonical = buildSearchForm(root);
   const config = SPECIAL_ROOT_VARIANTS[canonical];
   if (!config) return [];
   const language = normalizeText(lang);
   const values = language === 'any'
     ? Object.values(config).flat()
     : [...(config.any || []), ...(config[language] || [])];
-  return [...new Set(values.map(stripDiacritics).filter(Boolean))];
+  return [...new Set(values.map(buildSearchForm).filter(Boolean))];
 }
 
 export function specialRootMatch(lang, word, root) {
-  const w = stripDiacritics(word);
-  return specialRootVariants(lang, root).some(variant => w.includes(variant));
+  const searchForm = buildSearchForm(word);
+  return specialRootVariants(lang, root).some(variant => searchForm.includes(variant));
 }
 
 export function sortRootCandidateMatches(candidates, getRank = () => 50001) {
