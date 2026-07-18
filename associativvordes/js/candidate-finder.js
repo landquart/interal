@@ -1,4 +1,5 @@
 import { findRootMatch, normalizeText } from './root-matcher.js';
+import { acceptAffixBoundaryMatch } from './affix-boundary-index.js';
 
 const MATCH_PRIORITY = Object.freeze({ exact: 0, special: 1, fuzzy: 2 });
 const BOUNDARY_PRIORITY = Object.freeze({ token: 0, safe: 1, combining: 2, restricted: 3 });
@@ -84,7 +85,8 @@ function findMatch({ searchForm, root, language, specialRootMatcher }) {
       ? { type: 'special', distance: 0, similarity: 1, index: 0, ...customSpecial }
       : { type: 'special', distance: 0, similarity: 1, fragment: root, index: 0 };
   }
-  return findRootMatch(searchForm, root, language || 'en');
+  const match = findRootMatch(searchForm, root, language || 'en');
+  return acceptAffixBoundaryMatch(match, root) ? match : null;
 }
 
 function compareCandidates(a, b) {
