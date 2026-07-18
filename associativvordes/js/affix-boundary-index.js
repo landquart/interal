@@ -1,4 +1,4 @@
-import { allowedRootDistance, buildSearchForm, rootBoundarySegments } from './root-matcher.js';
+import { allowedRootDistance, buildSearchForm, levenshtein, rootBoundarySegments } from './root-matcher.js';
 
 export const STATIC_MANIFEST_VERSION = '4';
 export const STATIC_INDEX_FORMAT = 'static-affix-anchored-ngram-v1';
@@ -72,4 +72,15 @@ export function fuzzyAnchoredLookupGroups(root) {
     }
     return { seed, lookups: keys };
   });
+}
+
+export function acceptAffixBoundaryMatch(match, root) {
+  if (!match) return false;
+  if (!Number.isFinite(match.distance) || match.distance <= 0) return true;
+  const canonicalRoot = buildSearchForm(root);
+  const fragment = buildSearchForm(match.fragment);
+  if (!canonicalRoot || !fragment) return false;
+  if (fragment.length > canonicalRoot.length && levenshtein(fragment.slice(1), canonicalRoot) < match.distance) return false;
+  if (fragment.length < canonicalRoot.length && levenshtein(fragment, canonicalRoot.slice(1)) < match.distance) return false;
+  return true;
 }
