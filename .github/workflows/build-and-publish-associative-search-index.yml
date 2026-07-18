@@ -26,6 +26,8 @@ jobs:
           fi
       - name: Checkout repository
         uses: actions/checkout@v6
+        with:
+          show-progress: false
       - name: Setup Node
         uses: actions/setup-node@v6
         with:
@@ -50,6 +52,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
+        with:
+          show-progress: false
       - name: Setup Node
         uses: actions/setup-node@v6
         with:
@@ -57,12 +61,23 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm ci
-      - name: Build language index
+      - name: Build temporary candidate index from frequency lists
         run: |
-          rm -rf .tmp/static-search-build
+          set -euo pipefail
+          rm -rf .tmp/static-candidate-index .tmp/static-search-build
+          npm run build:associative-index -- \
+            --languages="${{ matrix.language }}" \
+            --output-root=.tmp/static-candidate-index \
+            --report=.tmp/static-candidate-index/candidate-build-report.json
+          npm run validate:associative-index -- \
+            --index-root=.tmp/static-candidate-index \
+            --languages="${{ matrix.language }}" \
+            --strict
+      - name: Build compact static language index
+        run: |
           npm run build:associative-search-index -- \
             --language="${{ matrix.language }}" \
-            --input-root=associativvordes/candidate-index \
+            --input-root=.tmp/static-candidate-index \
             --output-root=.tmp/static-search-build \
             --report=.tmp/static-search-build/build-report.json
       - name: Strictly validate language index
@@ -81,6 +96,7 @@ jobs:
           cp .tmp/static-search-build/manifest.json "$artifact/manifest.json"
           cp .tmp/static-search-build/build-report.json "$artifact/build-report.json"
           cp .tmp/static-search-build/validation-report.json "$artifact/validation-report.json"
+          cp .tmp/static-candidate-index/candidate-build-report.json "$artifact/candidate-build-report.json"
           cp -R ".tmp/static-search-build/${{ matrix.language }}" "$artifact/${{ matrix.language }}"
       - name: Upload language artifact
         uses: actions/upload-artifact@v7
@@ -106,6 +122,7 @@ jobs:
         uses: actions/checkout@v6
         with:
           persist-credentials: true
+          show-progress: false
       - name: Setup Node
         uses: actions/setup-node@v6
         with:
@@ -126,6 +143,7 @@ jobs:
             dir="$ARTIFACT_ROOT/associative-search-index-$language"
             test -f "$dir/manifest.json"
             test -f "$dir/build-report.json"
+            test -f "$dir/candidate-build-report.json"
             test -d "$dir/$language"
           done
           count="$(find "$ARTIFACT_ROOT" -mindepth 1 -maxdepth 1 -type d -name 'associative-search-index-*' | wc -l | tr -d ' ')"
@@ -142,14 +160,16 @@ jobs:
             --languages=en,de,fr,es,it,ru \
             --strict \
             --report="$VALIDATION_REPORT"
-      - name: Copy index into repository
+      - name: Replace legacy index with static index
         run: |
           set -euo pipefail
-          rm -rf associativvordes/search-index
+          rm -rf associativvordes/search-index associativvordes/candidate-index
           mkdir -p associativvordes/search-index
           cp -R "$MERGED_ROOT/search-index/." associativvordes/search-index/
-      - name: Run deployment gate
-        run: npm run check:associative-search-index-deployment
+      - name: Run deployment gates
+        run: |
+          npm run check:associative-index-deployment
+          npm run check:associative-search-index-deployment
       - name: Build pull request description
         run: |
           node --input-type=module <<'NODE'
@@ -160,7 +180,9 @@ jobs:
           const lines = [
             '## Static associative search index publication',
             '',
-            'Publishes the complete static inverted n-gram index generated from the six production frequency-list candidate indexes.',
+            'Publishes the complete static inverted n-gram index generated directly from the six production frequency-list sources.',
+            '',
+            'The legacy letter-sharded `associativvordes/candidate-index` is removed in the same commit so the repository and Vercel deployment do not store two complete indexes.',
             '',
             '| Language | Entries | Entry blocks | Posting buckets | Posting IDs |',
             '| --- | ---: | ---: | ---: | ---: |'
@@ -169,7 +191,7 @@ jobs:
             const info = validation.languages[language];
             lines.push(`| ${language} | ${manifest.languages[language].entries} | ${info.entry_blocks} | ${info.posting_buckets} | ${info.posting_ids} |`);
           }
-          lines.push('', `- format: \`${manifest.index_format}\``, `- global_config_hash: \`${manifest.global_config_hash}\``, `- validation errors: ${validation.errors.length}`, `- validation warnings: ${validation.warnings.length}`, '', 'The browser loader automatically prefers this index and falls back to the old letter-sharded candidate index only when the new manifest is absent.');
+          lines.push('', `- format: \`${manifest.index_format}\``, `- global_config_hash: \`${manifest.global_config_hash}\``, `- validation errors: ${validation.errors.length}`, `- validation warnings: ${validation.warnings.length}`, '', 'The browser loader uses the new static index immediately after this PR is merged and deployed.');
           await mkdir(dirname(process.env.PR_BODY), { recursive: true });
           await writeFile(process.env.PR_BODY, `${lines.join('\n')}\n`);
           NODE
@@ -185,7 +207,9 @@ jobs:
           title: Publish static associative search index
           body-path: ${{ env.PR_BODY }}
           commit-message: Publish static associative search index
-          add-paths: associativvordes/search-index
+          add-paths: |
+            associativvordes/search-index
+            associativvordes/candidate-index
       - name: Verify review pull request
         env:
           GH_TOKEN: ${{ github.token }}
