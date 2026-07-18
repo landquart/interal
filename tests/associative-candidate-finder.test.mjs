@@ -20,7 +20,7 @@ assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('international', 
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('internet', 'internet')], root: 'alter' })), []);
 assert.equal(findCandidatesForRoot({ entries: [entry('altesation', 'altesation')], root: 'alter' }).candidates[0].match.type, 'fuzzy');
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('altxsation', 'altxsation')], root: 'alter' })), []);
-assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('xlteration', 'xlteration')], root: 'alter' })), []);
+assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('xlteration', 'xlteration')], root: 'alter' })), ['xlteration'], 'a first-character substitution is accepted when it is within the configured Levenshtein distance');
 assert.equal(findCandidatesForRoot({ entries: [entry('altesation', 'altesation')], root: 'alter' }).candidates[0].match.similarity, 0.8);
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('ixxxxx', 'ixxxxx')], root: 'intern' })), []);
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('альтернатива', 'alternativa', { language: 'ru', normalized: 'альтернатива' })], root: 'alter', language: 'ru' })), ['альтернатива']);
