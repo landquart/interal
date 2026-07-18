@@ -80,7 +80,7 @@ jobs:
             --input-root=.tmp/static-candidate-index \
             --output-root=.tmp/static-search-build \
             --report=.tmp/static-search-build/build-report.json
-      - name: Strictly validate language index
+      - name: Strictly validate complete language index
         run: |
           npm run validate:associative-search-index -- \
             --index-root=.tmp/static-search-build \
@@ -153,7 +153,7 @@ jobs:
           npm run merge:associative-search-index -- \
             --input-root="$ARTIFACT_ROOT" \
             --output-root="$MERGED_ROOT"
-      - name: Strictly validate merged index
+      - name: Strictly validate complete merged index
         run: |
           npm run validate:associative-search-index -- \
             --index-root="$MERGED_ROOT/search-index" \
@@ -166,6 +166,8 @@ jobs:
           rm -rf associativvordes/search-index associativvordes/candidate-index
           mkdir -p associativvordes/search-index
           cp -R "$MERGED_ROOT/search-index/." associativvordes/search-index/
+      - name: Apply full-search browser runtime
+        run: node scripts/patch-associative-search-runtime.mjs associativvordes/script.js
       - name: Run deployment gates
         run: |
           npm run check:associative-index-deployment
@@ -184,14 +186,16 @@ jobs:
             '',
             'The legacy letter-sharded `associativvordes/candidate-index` is removed in the same commit so the repository and Vercel deployment do not store two complete indexes.',
             '',
-            '| Language | Entries | Entry blocks | Posting buckets | Posting IDs |',
-            '| --- | ---: | ---: | ---: | ---: |'
+            'The browser runtime keeps every found candidate, renders results in pages of 100, automatically analyzes only a small initial set, and allows any remaining candidate to be analyzed manually.',
+            '',
+            '| Language | Entries | Entry blocks | Posting buckets | Posting IDs | Expected posting IDs |',
+            '| --- | ---: | ---: | ---: | ---: | ---: |'
           ];
           for (const language of ['en', 'de', 'fr', 'es', 'it', 'ru']) {
             const info = validation.languages[language];
-            lines.push(`| ${language} | ${manifest.languages[language].entries} | ${info.entry_blocks} | ${info.posting_buckets} | ${info.posting_ids} |`);
+            lines.push(`| ${language} | ${manifest.languages[language].entries} | ${info.entry_blocks} | ${info.posting_buckets} | ${info.posting_ids} | ${info.expected_posting_ids} |`);
           }
-          lines.push('', `- format: \`${manifest.index_format}\``, `- global_config_hash: \`${manifest.global_config_hash}\``, `- validation errors: ${validation.errors.length}`, `- validation warnings: ${validation.warnings.length}`, '', 'The browser loader uses the new static index immediately after this PR is merged and deployed.');
+          lines.push('', `- format: \`${manifest.index_format}\``, `- normalizer: \`${manifest.normalizer_version}\``, `- global_config_hash: \`${manifest.global_config_hash}\``, `- validation errors: ${validation.errors.length}`, `- validation warnings: ${validation.warnings.length}`, '', 'The browser loader uses the corrected static index immediately after this PR is merged and deployed.');
           await mkdir(dirname(process.env.PR_BODY), { recursive: true });
           await writeFile(process.env.PR_BODY, `${lines.join('\n')}\n`);
           NODE
@@ -204,12 +208,13 @@ jobs:
           branch: ${{ env.PR_BRANCH }}
           delete-branch: true
           base: main
-          title: Publish static associative search index
+          title: Publish corrected static associative search index
           body-path: ${{ env.PR_BODY }}
-          commit-message: Publish static associative search index
+          commit-message: Publish corrected static associative search index
           add-paths: |
             associativvordes/search-index
             associativvordes/candidate-index
+            associativvordes/script.js
       - name: Verify review pull request
         env:
           GH_TOKEN: ${{ github.token }}
@@ -226,7 +231,7 @@ jobs:
                 --repo "$GITHUB_REPOSITORY" \
                 --base main \
                 --head "$PR_BRANCH" \
-                --title "Publish static associative search index" \
+                --title "Publish corrected static associative search index" \
                 --body-file "$PR_BODY" || true
             fi
             sleep 10
