@@ -1,6 +1,7 @@
-import { fuzzyRootMatch, includesRoot, normalizeText, specialRootMatch, stripDiacritics } from './root-matcher.js';
+import { findRootMatch, normalizeText } from './root-matcher.js';
 
 const MATCH_PRIORITY = Object.freeze({ exact: 0, special: 1, fuzzy: 2 });
+const BOUNDARY_PRIORITY = Object.freeze({ token: 0, safe: 1, combining: 2, restricted: 3 });
 
 function createDiagnostics() {
   return { inspected: 0, matched: 0, rejected: 0, rejectedByReason: {}, duplicates: 0, warnings: [] };
@@ -76,28 +77,21 @@ function runtimeWarningsForEntry(entry) {
   return [...warnings];
 }
 
-function exactRootMatch(searchForm, root) {
-  if (!includesRoot(searchForm, root)) return null;
-  const word = stripDiacritics(searchForm);
-  const normalizedRoot = stripDiacritics(root);
-  return { type: 'exact', distance: 0, similarity: 1, fragment: normalizedRoot, index: word.indexOf(normalizedRoot) };
-}
-
 function findMatch({ searchForm, root, language, specialRootMatcher }) {
-  const exact = exactRootMatch(searchForm, root);
-  if (exact) return exact;
-  const specialMatcher = specialRootMatcher || specialRootMatch;
-  if (specialMatcher(language, searchForm, stripDiacritics(root))) {
-    return { type: 'special', distance: 0, similarity: 1, fragment: stripDiacritics(root), index: 0 };
+  if (specialRootMatcher) {
+    const customSpecial = specialRootMatcher(language, searchForm, root);
+    if (customSpecial) return typeof customSpecial === 'object'
+      ? { type: 'special', distance: 0, similarity: 1, index: 0, ...customSpecial }
+      : { type: 'special', distance: 0, similarity: 1, fragment: root, index: 0 };
   }
-  const fuzzy = fuzzyRootMatch(searchForm, root);
-  return fuzzy && fuzzy.type === 'exact' ? { ...fuzzy, type: 'exact' } : fuzzy;
+  return findRootMatch(searchForm, root, language || 'en');
 }
 
 function compareCandidates(a, b) {
   const rankA = validRank(a.rank) ? a.rank : Number.POSITIVE_INFINITY;
   const rankB = validRank(b.rank) ? b.rank : Number.POSITIVE_INFINITY;
   return (MATCH_PRIORITY[a.match.type] ?? 99) - (MATCH_PRIORITY[b.match.type] ?? 99)
+    || (BOUNDARY_PRIORITY[a.match.boundary?.kind] ?? 99) - (BOUNDARY_PRIORITY[b.match.boundary?.kind] ?? 99)
     || (a.match.distance ?? 0) - (b.match.distance ?? 0)
     || (b.match.similarity ?? 0) - (a.match.similarity ?? 0)
     || (b.frequency_score ?? 0) - (a.frequency_score ?? 0)
@@ -113,7 +107,7 @@ function withDuplicateWarning(entry) {
   };
 }
 
-export function findCandidatesForRoot({ entries, root, language, maxCandidates = Infinity, specialRootMatcher } = {}) {
+export function findCandidatesForRoot({ entries, root, language = 'en', maxCandidates = Infinity, specialRootMatcher } = {}) {
   if (!Array.isArray(entries)) throw new TypeError('findCandidatesForRoot requires entries to be an array.');
   if (typeof root !== 'string' || !root.trim()) throw new TypeError('findCandidatesForRoot requires a non-empty root.');
   if (maxCandidates !== Infinity && (!Number.isInteger(maxCandidates) || maxCandidates < 0)) throw new TypeError('maxCandidates must be a non-negative integer.');
