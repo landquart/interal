@@ -1,8 +1,11 @@
 #!/usr/bin/env node
-import { access, readFile, stat, writeFile, mkdir } from 'node:fs/promises';
+import { access, mkdir, readFile, stat, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
+import { buildSearchForm, SEARCH_NORMALIZER_VERSION } from '../associativvordes/js/search-normalizer.js';
 
 const REQUIRED_LANGUAGES = ['en', 'de', 'fr', 'es', 'it', 'ru'];
+const STATIC_MANIFEST_VERSION = '3';
+const STATIC_INDEX_FORMAT = 'static-inverted-ngram-v2';
 
 function parseArgs(argv) {
   const options = { indexRoot: 'associativvordes/search-index', strict: false };
@@ -28,6 +31,28 @@ function isSafeRelativePath(file) {
 
 async function readJson(path) {
   return JSON.parse(await readFile(path, 'utf8'));
+}
+
+function fnv1a(value) {
+  let hash = 0x811c9dc5;
+  for (const char of String(value)) {
+    hash ^= char.codePointAt(0);
+    hash = Math.imul(hash, 0x01000193);
+  }
+  return hash >>> 0;
+}
+
+function bucketName(gram, count) {
+  const width = Math.max(2, Math.ceil(Math.log(count) / Math.log(16)));
+  return (fnv1a(gram) % count).toString(16).padStart(width, '0');
+}
+
+function uniqueGrams(value, length) {
+  const text = String(value || '');
+  const grams = new Set();
+  if (text.length < length) return grams;
+  for (let index = 0; index <= text.length - length; index += 1) grams.add(text.slice(index, index + length));
+  return grams;
 }
 
 function decodeDeltas(values) {
@@ -56,6 +81,20 @@ function validateCompactEntry(record, sourceCount, label) {
   for (const pair of sources) {
     if (!Array.isArray(pair) || pair.length !== 2 || !Number.isInteger(pair[0]) || pair[0] < 0 || pair[0] >= sourceCount || typeof pair[1] !== 'number' || !Number.isFinite(pair[1]) || pair[1] < 0) throw new Error(`${label}: source pair is invalid`);
   }
+  const canonicalSearchForm = buildSearchForm(word);
+  const storedSearchForm = searchForm ?? canonicalSearchForm;
+  if (!canonicalSearchForm || storedSearchForm !== canonicalSearchForm) throw new Error(`${label}: search_form is not canonical for normalizer ${SEARCH_NORMALIZER_VERSION}`);
+  return storedSearchForm;
+}
+
+function sorted(values) {
+  return [...values].sort((a, b) => String(a).localeCompare(String(b)));
+}
+
+function sameStringSets(left, right) {
+  const a = sorted(left);
+  const b = sorted(right);
+  return a.length === b.length && a.every((value, index) => value === b[index]);
 }
 
 export async function validateStaticSearchIndex({ indexRoot, languages, strict = false }) {
@@ -69,7 +108,11 @@ export async function validateStaticSearchIndex({ indexRoot, languages, strict =
     errors.push(`manifest: ${error.message}`);
     return report;
   }
-  if (!isPlainObject(manifest) || manifest.version !== '2' || manifest.normalizer_version !== '2' || manifest.index_format !== 'static-inverted-ngram-v1' || !isPlainObject(manifest.languages)) {
+  if (!isPlainObject(manifest)
+    || manifest.version !== STATIC_MANIFEST_VERSION
+    || manifest.normalizer_version !== SEARCH_NORMALIZER_VERSION
+    || manifest.index_format !== STATIC_INDEX_FORMAT
+    || !isPlainObject(manifest.languages)) {
     errors.push('manifest shape or versions are invalid');
     return report;
   }
@@ -77,7 +120,17 @@ export async function validateStaticSearchIndex({ indexRoot, languages, strict =
 
   for (const language of languages) {
     const info = manifest.languages[language];
-    const languageReport = { entries: 0, entry_blocks: 0, posting_buckets: 0, posting_grams: 0, posting_ids: 0, bytes: 0, errors: 0, warnings: 0 };
+    const languageReport = {
+      entries: 0,
+      entry_blocks: 0,
+      posting_buckets: 0,
+      posting_grams: 0,
+      posting_ids: 0,
+      expected_posting_ids: 0,
+      bytes: 0,
+      errors: 0,
+      warnings: 0
+    };
     report.languages[language] = languageReport;
     const startErrors = errors.length;
     const startWarnings = warnings.length;
@@ -95,6 +148,9 @@ export async function validateStaticSearchIndex({ indexRoot, languages, strict =
       if (!isPlainObject(source) || typeof source.id !== 'string' || typeof source.file !== 'string' || typeof source.category !== 'string') errors.push(`${language}: source dictionary entry ${index} is invalid`);
     }
 
+    const searchForms = new Array(info.entries);
+    const expectedBuckets = { '1': new Set(), '2': new Set(), '3': new Set() };
+    const expectedPostingIds = { '1': 0, '2': 0, '3': 0 };
     let expectedFirstId = 0;
     for (const block of info.entry_blocks) {
       if (!isPlainObject(block) || !isSafeRelativePath(block.file) || block.first_id !== expectedFirstId || !Number.isInteger(block.entries) || block.entries <= 0) {
@@ -106,7 +162,18 @@ export async function validateStaticSearchIndex({ indexRoot, languages, strict =
         const payload = await readJson(path);
         languageReport.bytes += (await stat(path)).size;
         if (!isPlainObject(payload) || payload.first_id !== block.first_id || !Array.isArray(payload.entries) || payload.entries.length !== block.entries) throw new Error('payload shape mismatch');
-        for (let offset = 0; offset < payload.entries.length; offset += 1) validateCompactEntry(payload.entries[offset], info.sources.length, `${language}:${block.first_id + offset}`);
+        for (let offset = 0; offset < payload.entries.length; offset += 1) {
+          const id = block.first_id + offset;
+          const searchForm = validateCompactEntry(payload.entries[offset], info.sources.length, `${language}:${id}`);
+          searchForms[id] = searchForm;
+          for (const length of ['1', '2', '3']) {
+            const posting = info.postings[length];
+            if (!isPlainObject(posting) || !Number.isInteger(posting.bucket_count) || posting.bucket_count <= 0) continue;
+            const grams = uniqueGrams(searchForm, Number(length));
+            expectedPostingIds[length] += grams.size;
+            for (const gram of grams) expectedBuckets[length].add(bucketName(gram, posting.bucket_count));
+          }
+        }
       } catch (error) {
         errors.push(`${language}: ${block.file}: ${error.message}`);
       }
@@ -115,6 +182,7 @@ export async function validateStaticSearchIndex({ indexRoot, languages, strict =
     }
     languageReport.entries = expectedFirstId;
     if (expectedFirstId !== info.entries) errors.push(`${language}: entry block total ${expectedFirstId} does not equal manifest entries ${info.entries}`);
+    if (searchForms.some(value => typeof value !== 'string' || !value)) errors.push(`${language}: one or more search forms could not be loaded`);
 
     for (const length of ['1', '2', '3']) {
       const posting = info.postings[length];
@@ -122,13 +190,21 @@ export async function validateStaticSearchIndex({ indexRoot, languages, strict =
         errors.push(`${language}: postings metadata ${length} is invalid`);
         continue;
       }
-      const seenBuckets = new Set();
+      const manifestBuckets = new Set(posting.buckets);
+      if (manifestBuckets.size !== posting.buckets.length) errors.push(`${language}: duplicate postings bucket in length ${length}`);
+      if (!sameStringSets(manifestBuckets, expectedBuckets[length])) {
+        const missing = sorted([...expectedBuckets[length]].filter(bucket => !manifestBuckets.has(bucket)));
+        const extra = sorted([...manifestBuckets].filter(bucket => !expectedBuckets[length].has(bucket)));
+        errors.push(`${language}: postings bucket coverage mismatch for length ${length}; missing=${missing.join(',') || '-'} extra=${extra.join(',') || '-'}`);
+      }
+
+      const seenGrams = new Set();
+      let actualPostingIds = 0;
       for (const bucket of posting.buckets) {
-        if (typeof bucket !== 'string' || seenBuckets.has(bucket)) {
-          errors.push(`${language}: duplicate or invalid postings bucket ${length}/${bucket}`);
+        if (typeof bucket !== 'string') {
+          errors.push(`${language}: invalid postings bucket ${length}/${bucket}`);
           continue;
         }
-        seenBuckets.add(bucket);
         const file = posting.template.replace('{bucket}', bucket);
         if (!isSafeRelativePath(file)) {
           errors.push(`${language}: unsafe postings path ${file}`);
@@ -140,18 +216,27 @@ export async function validateStaticSearchIndex({ indexRoot, languages, strict =
           languageReport.bytes += (await stat(path)).size;
           if (!isPlainObject(payload)) throw new Error('bucket payload must be an object');
           for (const [gram, deltas] of Object.entries(payload)) {
-            if ([...gram].length !== Number(length)) throw new Error(`gram ${JSON.stringify(gram)} has wrong length`);
+            if (gram.length !== Number(length)) throw new Error(`gram ${JSON.stringify(gram)} has wrong length`);
+            if (bucketName(gram, posting.bucket_count) !== bucket) throw new Error(`gram ${JSON.stringify(gram)} is stored in the wrong bucket ${bucket}`);
+            if (seenGrams.has(gram)) throw new Error(`gram ${JSON.stringify(gram)} is duplicated across buckets`);
+            seenGrams.add(gram);
             const ids = decodeDeltas(deltas);
             if (ids == null) throw new Error(`gram ${JSON.stringify(gram)} has invalid delta postings`);
-            if (ids.some(id => id >= info.entries)) throw new Error(`gram ${JSON.stringify(gram)} has an out-of-range id`);
+            for (const id of ids) {
+              if (id >= info.entries) throw new Error(`gram ${JSON.stringify(gram)} has an out-of-range id`);
+              if (!searchForms[id]?.includes(gram)) throw new Error(`gram ${JSON.stringify(gram)} references entry ${id} that does not contain it`);
+            }
+            actualPostingIds += ids.length;
             languageReport.posting_grams += 1;
-            languageReport.posting_ids += ids.length;
           }
           languageReport.posting_buckets += 1;
         } catch (error) {
           errors.push(`${language}: ${file}: ${error.message}`);
         }
       }
+      languageReport.posting_ids += actualPostingIds;
+      languageReport.expected_posting_ids += expectedPostingIds[length];
+      if (actualPostingIds !== expectedPostingIds[length]) errors.push(`${language}: posting id total mismatch for length ${length}: expected ${expectedPostingIds[length]}, got ${actualPostingIds}`);
     }
     if (strict && languageReport.posting_grams === 0) errors.push(`${language}: strict validation requires postings`);
     languageReport.errors = errors.length - startErrors;
