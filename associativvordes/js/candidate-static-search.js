@@ -10,6 +10,7 @@ import { SEARCH_NORMALIZER_VERSION } from './search-normalizer.js';
 import {
   STATIC_INDEX_FORMAT,
   STATIC_MANIFEST_VERSION,
+  acceptAffixBoundaryMatch,
   exactAnchoredLookups,
   fuzzyAnchoredLookupGroups,
   fuzzySeedGrams
@@ -188,5 +189,8 @@ export async function loadStaticCandidateEntries({ manifest, language, root, sig
   }
   diagnostics.candidateIds = candidateIds.size;
   const entries = await loadEntriesByIds([...candidateIds].sort((a, b) => a - b));
-  return entries.filter(entry => Boolean(findRootMatch(entry.search_form, normalizedRoot, language)));
+  return entries.filter(entry => {
+    const match = findRootMatch(entry.search_form, normalizedRoot, language);
+    return acceptAffixBoundaryMatch(match, normalizedRoot);
+  });
 }
