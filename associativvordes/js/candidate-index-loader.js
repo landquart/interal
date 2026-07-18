@@ -1,5 +1,17 @@
-import { fuzzyRootMatch, includesRoot, normalizeText, specialRootMatch, specialRootVariants, stripDiacritics } from './root-matcher.js';
-import { STATIC_MANIFEST_VERSION, fuzzySeedGrams, loadStaticCandidateEntries, validateStaticManifest } from './candidate-static-search.js';
+import {
+  buildSearchForm,
+  fuzzyRootMatch,
+  includesRoot,
+  specialRootMatch,
+  specialRootVariants
+} from './root-matcher.js';
+import {
+  STATIC_MANIFEST_VERSION,
+  fuzzySeedGrams,
+  loadStaticCandidateEntries,
+  validateStaticManifest
+} from './candidate-static-search.js';
+import { SEARCH_NORMALIZER_VERSION } from './search-normalizer.js';
 
 export { fuzzySeedGrams };
 
@@ -16,9 +28,10 @@ export const CANDIDATE_INDEX_ERROR_CODES = Object.freeze({
 });
 
 const LEGACY_MANIFEST_VERSION = '1';
-const SUPPORTED_NORMALIZER_VERSION = '2';
+const LEGACY_NORMALIZER_VERSIONS = new Set(['2', SEARCH_NORMALIZER_VERSION]);
 const DEFAULT_STATIC_BASE_URL = './search-index/';
 const DEFAULT_LEGACY_BASE_URL = './candidate-index/';
+const DEFAULT_MAX_CACHED_RESOURCES = 128;
 
 export class CandidateIndexError extends Error {
   constructor(code, message, { language, shard, cause } = {}) {
@@ -69,6 +82,7 @@ function createDiagnostics() {
     unlistedShards: [],
     cacheHits: 0,
     cacheMisses: 0,
+    cacheEvictions: 0,
     fetchCount: 0,
     rejectedEntries: 0,
     candidateIds: 0,
@@ -122,12 +136,11 @@ const staticContext = {
   isSafeRelativePath,
   manifestConfigHash,
   makeError,
-  codes: CANDIDATE_INDEX_ERROR_CODES,
-  supportedNormalizerVersion: SUPPORTED_NORMALIZER_VERSION
+  codes: CANDIDATE_INDEX_ERROR_CODES
 };
 
 function validateLegacyManifest(manifest) {
-  if (manifest.normalizer_version !== SUPPORTED_NORMALIZER_VERSION) throw makeError(CANDIDATE_INDEX_ERROR_CODES.INDEX_CONFIG_INCOMPATIBLE, 'Candidate index normalizer version is incompatible.');
+  if (!LEGACY_NORMALIZER_VERSIONS.has(manifest.normalizer_version)) throw makeError(CANDIDATE_INDEX_ERROR_CODES.INDEX_CONFIG_INCOMPATIBLE, 'Candidate index normalizer version is incompatible.');
   if (typeof manifestConfigHash(manifest) !== 'string' || !manifestConfigHash(manifest)) throw makeError(CANDIDATE_INDEX_ERROR_CODES.INDEX_CONFIG_INCOMPATIBLE, 'Candidate index global config hash is required.');
   if (!isPlainObject(manifest.languages)) throw makeError(CANDIDATE_INDEX_ERROR_CODES.MANIFEST_INVALID, 'Candidate index manifest languages must be an object.');
   for (const [language, info] of Object.entries(manifest.languages)) {
@@ -196,7 +209,7 @@ function validateLegacyShardPayload(payload, language, shardMeta, diagnostics) {
 }
 
 function legacyShardIdsForRoot(root) {
-  const normalized = stripDiacritics(normalizeText(root));
+  const normalized = buildSearchForm(root);
   const first = normalized[0];
   const ids = new Set([first && first >= 'a' && first <= 'z' ? first : '_other']);
   if (specialRootVariants('any', normalized).length) ids.add('_other');
@@ -212,6 +225,9 @@ export function createCandidateIndexLoader(options = {}) {
     : (options.searchBaseUrl != null || options.preferStatic === true || options.fetch == null ? [staticBase, legacyBase] : [legacyBase, staticBase]);
   const fetchImpl = options.fetch ?? globalThis.fetch?.bind(globalThis);
   if (typeof fetchImpl !== 'function') throw new TypeError('createCandidateIndexLoader requires fetch support.');
+  const maxCachedResources = Number.isInteger(options.maxCachedResources) && options.maxCachedResources >= 0
+    ? options.maxCachedResources
+    : DEFAULT_MAX_CACHED_RESOURCES;
 
   const diagnostics = createDiagnostics();
   let manifestRecord;
@@ -219,6 +235,26 @@ export function createCandidateIndexLoader(options = {}) {
   let activeBaseUrl;
   const resourcePromises = new Map();
   const resourceCache = new Map();
+
+  function getCachedResource(path) {
+    if (!resourceCache.has(path)) return undefined;
+    const value = resourceCache.get(path);
+    resourceCache.delete(path);
+    resourceCache.set(path, value);
+    diagnostics.cacheHits += 1;
+    return value;
+  }
+
+  function cacheResource(path, value) {
+    if (maxCachedResources === 0) return;
+    if (resourceCache.has(path)) resourceCache.delete(path);
+    resourceCache.set(path, value);
+    while (resourceCache.size > maxCachedResources) {
+      const oldest = resourceCache.keys().next().value;
+      resourceCache.delete(oldest);
+      diagnostics.cacheEvictions += 1;
+    }
+  }
 
   async function loadManifest({ signal } = {}) {
     if (manifestCache) { diagnostics.cacheHits += 1; throwIfAborted(signal); return manifestCache; }
@@ -245,16 +281,16 @@ export function createCandidateIndexLoader(options = {}) {
         }
       }
       throw lastError || makeError(CANDIDATE_INDEX_ERROR_CODES.MANIFEST_FETCH_FAILED, 'Candidate index manifest could not be loaded.');
-    })().catch(error => {
+    })().finally(() => {
       if (manifestRecord === record) manifestRecord = undefined;
-      throw error;
     });
     manifestRecord = record;
     return withAbort(record.promise, signal);
   }
 
   async function loadResource(path, { signal, code, language, shard, validator, diagnosticKey } = {}) {
-    if (resourceCache.has(path)) { diagnostics.cacheHits += 1; throwIfAborted(signal); return resourceCache.get(path); }
+    const cached = getCachedResource(path);
+    if (cached !== undefined) { throwIfAborted(signal); return cached; }
     const existing = resourcePromises.get(path);
     if (existing && existing.signal === signal) { diagnostics.cacheHits += 1; return withAbort(existing.promise, signal); }
     diagnostics.cacheMisses += 1;
@@ -262,8 +298,14 @@ export function createCandidateIndexLoader(options = {}) {
     const record = { signal, promise: null };
     record.promise = fetchJson(fetchImpl, joinUrl(activeBaseUrl, path), signal, code, language, shard)
       .then(payload => { throwIfAborted(signal); return validator ? validator(payload) : payload; })
-      .then(value => { resourceCache.set(path, value); diagnostics.loadedShards.push(diagnosticKey ?? path); return value; })
-      .catch(error => { if (resourcePromises.get(path) === record) resourcePromises.delete(path); throw error; });
+      .then(value => {
+        cacheResource(path, value);
+        diagnostics.loadedShards.push(diagnosticKey ?? path);
+        return value;
+      })
+      .finally(() => {
+        if (resourcePromises.get(path) === record) resourcePromises.delete(path);
+      });
     resourcePromises.set(path, record);
     return withAbort(record.promise, signal);
   }
@@ -293,7 +335,7 @@ export function createCandidateIndexLoader(options = {}) {
         throw error;
       }
     }
-    const normalizedRoot = normalizeText(root);
+    const normalizedRoot = buildSearchForm(root);
     return entries.filter(entry => includesRoot(entry.search_form, normalizedRoot) || fuzzyRootMatch(entry.search_form, normalizedRoot) || specialRootMatch(language, entry.search_form, normalizedRoot));
   }
 
@@ -314,7 +356,15 @@ export function createCandidateIndexLoader(options = {}) {
   }
 
   function getCandidateIndexDiagnostics() {
-    return { ...diagnostics, loadedShards: [...diagnostics.loadedShards], unlistedShards: [...diagnostics.unlistedShards], validationErrors: [...diagnostics.validationErrors] };
+    return {
+      ...diagnostics,
+      cachedResources: resourceCache.size,
+      pendingResources: resourcePromises.size,
+      maxCachedResources,
+      loadedShards: [...diagnostics.loadedShards],
+      unlistedShards: [...diagnostics.unlistedShards],
+      validationErrors: [...diagnostics.validationErrors]
+    };
   }
 
   return { loadManifest, loadShard, loadCandidateEntries, clearCandidateIndexCache, getCandidateIndexDiagnostics };
