@@ -253,7 +253,7 @@ export function createCandidateIndexLoader(options = {}) {
     return withAbort(record.promise, signal);
   }
 
-  async function loadResource(path, { signal, code, language, shard, validator } = {}) {
+  async function loadResource(path, { signal, code, language, shard, validator, diagnosticKey } = {}) {
     if (resourceCache.has(path)) { diagnostics.cacheHits += 1; throwIfAborted(signal); return resourceCache.get(path); }
     const existing = resourcePromises.get(path);
     if (existing && existing.signal === signal) { diagnostics.cacheHits += 1; return withAbort(existing.promise, signal); }
@@ -262,7 +262,7 @@ export function createCandidateIndexLoader(options = {}) {
     const record = { signal, promise: null };
     record.promise = fetchJson(fetchImpl, joinUrl(activeBaseUrl, path), signal, code, language, shard)
       .then(payload => { throwIfAborted(signal); return validator ? validator(payload) : payload; })
-      .then(value => { resourceCache.set(path, value); diagnostics.loadedShards.push(path); return value; })
+      .then(value => { resourceCache.set(path, value); diagnostics.loadedShards.push(diagnosticKey ?? path); return value; })
       .catch(error => { if (resourcePromises.get(path) === record) resourcePromises.delete(path); throw error; });
     resourcePromises.set(path, record);
     return withAbort(record.promise, signal);
@@ -272,7 +272,14 @@ export function createCandidateIndexLoader(options = {}) {
     const manifest = await loadManifest({ signal });
     if (manifest.version !== LEGACY_MANIFEST_VERSION) throw makeError(CANDIDATE_INDEX_ERROR_CODES.SHARD_NOT_LISTED, 'Letter shards are unavailable in the static search index.', { language, shard: shardId });
     const meta = getLegacyShardMeta(manifest, language, shardId);
-    return loadResource(meta.file, { signal, code: CANDIDATE_INDEX_ERROR_CODES.SHARD_FETCH_FAILED, language, shard: meta.id, validator: payload => validateLegacyShardPayload(payload, language, meta, diagnostics) });
+    return loadResource(meta.file, {
+      signal,
+      code: CANDIDATE_INDEX_ERROR_CODES.SHARD_FETCH_FAILED,
+      language,
+      shard: meta.id,
+      diagnosticKey: `${language}/${meta.id}`,
+      validator: payload => validateLegacyShardPayload(payload, language, meta, diagnostics)
+    });
   }
 
   async function loadLegacyCandidateEntries(language, root, { signal } = {}) {
