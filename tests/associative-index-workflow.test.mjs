@@ -72,9 +72,19 @@ assert.match(runtimeLoader, /joinUrl\(baseUrl, 'manifest\.json'\)/, 'runtime loa
 
 const staticWorkflow = await readFile('.github/workflows/build-and-publish-associative-search-index.yml', 'utf8');
 assert.match(staticWorkflow, /BUILD_AND_PUBLISH_STATIC_SEARCH_INDEX/, 'static publication requires an explicit confirmation phrase');
+assert.match(staticWorkflow, /source_run_id:/, 'static publication can reuse a previously validated six-language artifact run');
+assert.match(staticWorkflow, /if:\s*inputs\.source_run_id == ''/, 'static build jobs are skipped in artifact-reuse mode');
+assert.match(staticWorkflow, /run-id:\s*\$\{\{ inputs\.source_run_id \}\}/, 'artifact-reuse mode downloads the selected workflow run');
 assert.match(staticWorkflow, /matrix:[\s\S]*language:\s*\[en, de, fr, es, it, ru\]/, 'static publication builds all six languages separately');
 assert.match(staticWorkflow, /build:associative-index[\s\S]*build:associative-search-index/, 'static index is generated directly from frequency-list candidate builds');
 assert.match(staticWorkflow, /validate:associative-search-index[\s\S]*--strict/, 'static publication strictly validates generated indexes');
 assert.match(staticWorkflow, /rm -rf associativvordes\/search-index associativvordes\/candidate-index/, 'static publication replaces rather than duplicates the legacy index');
-assert.match(staticWorkflow, /peter-evans\/create-pull-request@v8/, 'static publication opens a review PR');
+assert.match(staticWorkflow, /ref:\s*\$\{\{ github\.ref_name \}\}/, 'static publication checks out the branch selected in Run workflow');
+assert.match(staticWorkflow, /fetch-depth:\s*0/, 'publication checkout preserves source-branch history for the combined PR');
+assert.match(staticWorkflow, /name:\s*Commit and push review branch/, 'static publication creates the review branch explicitly');
+assert.match(staticWorkflow, /git switch -c "\$PR_BRANCH"/, 'static publication creates a real local review branch');
+assert.match(staticWorkflow, /git push --force-with-lease origin "\$PR_BRANCH"/, 'static publication pushes the review branch before opening a PR');
+assert.match(staticWorkflow, /gh pr create[\s\S]*--base main[\s\S]*--head "\$PR_BRANCH"/, 'static publication opens a PR from the pushed branch to main');
+assert.doesNotMatch(staticWorkflow, /peter-evans\/create-pull-request/, 'static publication no longer relies on implicit branch creation by an action');
+assert.doesNotMatch(staticWorkflow, /git\s+push\s+origin\s+main|git\s+push\s+[^\n]*main/, 'static publication never pushes directly to main');
 assert.doesNotMatch(staticWorkflow, /gh\s+pr\s+merge|auto-merge|merge-method/, 'static publication does not merge automatically');
