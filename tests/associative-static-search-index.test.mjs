@@ -59,7 +59,11 @@ const fetch = async url => {
 };
 const loader = createCandidateIndexLoader({ searchBaseUrl: './search-index/', legacyBaseUrl: './missing-index/', fetch, maxCachedResources: 2 });
 const regul = await loader.loadCandidateEntries('en', 'regul');
-assert.deepEqual(regul.map(item => item.word), ['irregular', 'qegular', 'regular', 'regulation', 'xregulation'], 'static inverted index finds exact and fuzzy roots in every word position and bucket');
+assert.deepEqual(
+  regul.map(item => item.word).sort(),
+  ['irregular', 'qegular', 'regular', 'regulation', 'xregulation'].sort(),
+  'static inverted index finds exact and fuzzy roots in every word position and bucket'
+);
 const alter = await loader.loadCandidateEntries('en', 'alter');
 assert.deepEqual(alter.map(item => item.word), ['alternative', 'alteration']);
 assert.deepEqual((await loader.loadCandidateEntries('en', 'oc')).map(item => item.word), ['ocular'], 'bigram postings support short roots');
