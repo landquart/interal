@@ -1,0 +1,211 @@
+name: Build and Publish Static Associative Search Index
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm_publish:
+        description: Type BUILD_AND_PUBLISH_STATIC_SEARCH_INDEX
+        required: true
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: read
+
+jobs:
+  test:
+    name: Test static search implementation
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Validate confirmation
+        run: |
+          if [ "${{ inputs.confirm_publish }}" != "BUILD_AND_PUBLISH_STATIC_SEARCH_INDEX" ]; then
+            echo "confirm_publish must equal BUILD_AND_PUBLISH_STATIC_SEARCH_INDEX" >&2
+            exit 1
+          fi
+      - name: Checkout repository
+        uses: actions/checkout@v6
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Run tests
+        run: npm test
+
+  build:
+    name: Build static search index (${{ matrix.language }})
+    needs: test
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [en, de, fr, es, it, ru]
+    env:
+      NODE_OPTIONS: --max-old-space-size=6144
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Build language index
+        run: |
+          rm -rf .tmp/static-search-build
+          npm run build:associative-search-index -- \
+            --language="${{ matrix.language }}" \
+            --input-root=associativvordes/candidate-index \
+            --output-root=.tmp/static-search-build \
+            --report=.tmp/static-search-build/build-report.json
+      - name: Strictly validate language index
+        run: |
+          npm run validate:associative-search-index -- \
+            --index-root=.tmp/static-search-build \
+            --languages="${{ matrix.language }}" \
+            --strict \
+            --report=.tmp/static-search-build/validation-report.json
+      - name: Package language artifact
+        run: |
+          set -euo pipefail
+          artifact=".tmp/static-search-artifact"
+          rm -rf "$artifact"
+          mkdir -p "$artifact"
+          cp .tmp/static-search-build/manifest.json "$artifact/manifest.json"
+          cp .tmp/static-search-build/build-report.json "$artifact/build-report.json"
+          cp .tmp/static-search-build/validation-report.json "$artifact/validation-report.json"
+          cp -R ".tmp/static-search-build/${{ matrix.language }}" "$artifact/${{ matrix.language }}"
+      - name: Upload language artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: associative-search-index-${{ matrix.language }}
+          path: .tmp/static-search-artifact
+          if-no-files-found: error
+          retention-days: 14
+
+  publish:
+    name: Merge, validate, and open review PR
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      ARTIFACT_ROOT: .tmp/static-search-artifacts
+      MERGED_ROOT: .tmp/static-search-merged
+      VALIDATION_REPORT: .tmp/static-search-validation.json
+      PR_BODY: .tmp/static-search-pr-body.md
+      PR_BRANCH: publish/associative-search-index-${{ github.run_id }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: true
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Download language artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: associative-search-index-*
+          path: ${{ env.ARTIFACT_ROOT }}
+          merge-multiple: false
+      - name: Verify six artifacts
+        run: |
+          set -euo pipefail
+          for language in en de fr es it ru; do
+            dir="$ARTIFACT_ROOT/associative-search-index-$language"
+            test -f "$dir/manifest.json"
+            test -f "$dir/build-report.json"
+            test -d "$dir/$language"
+          done
+          count="$(find "$ARTIFACT_ROOT" -mindepth 1 -maxdepth 1 -type d -name 'associative-search-index-*' | wc -l | tr -d ' ')"
+          test "$count" = "6"
+      - name: Merge static search artifacts
+        run: |
+          npm run merge:associative-search-index -- \
+            --input-root="$ARTIFACT_ROOT" \
+            --output-root="$MERGED_ROOT"
+      - name: Strictly validate merged index
+        run: |
+          npm run validate:associative-search-index -- \
+            --index-root="$MERGED_ROOT/search-index" \
+            --languages=en,de,fr,es,it,ru \
+            --strict \
+            --report="$VALIDATION_REPORT"
+      - name: Copy index into repository
+        run: |
+          set -euo pipefail
+          rm -rf associativvordes/search-index
+          mkdir -p associativvordes/search-index
+          cp -R "$MERGED_ROOT/search-index/." associativvordes/search-index/
+      - name: Run deployment gate
+        run: npm run check:associative-search-index-deployment
+      - name: Build pull request description
+        run: |
+          node --input-type=module <<'NODE'
+          import { mkdir, readFile, writeFile } from 'node:fs/promises';
+          import { dirname } from 'node:path';
+          const manifest = JSON.parse(await readFile('associativvordes/search-index/manifest.json', 'utf8'));
+          const validation = JSON.parse(await readFile(process.env.VALIDATION_REPORT, 'utf8'));
+          const lines = [
+            '## Static associative search index publication',
+            '',
+            'Publishes the complete static inverted n-gram index generated from the six production frequency-list candidate indexes.',
+            '',
+            '| Language | Entries | Entry blocks | Posting buckets | Posting IDs |',
+            '| --- | ---: | ---: | ---: | ---: |'
+          ];
+          for (const language of ['en', 'de', 'fr', 'es', 'it', 'ru']) {
+            const info = validation.languages[language];
+            lines.push(`| ${language} | ${manifest.languages[language].entries} | ${info.entry_blocks} | ${info.posting_buckets} | ${info.posting_ids} |`);
+          }
+          lines.push('', `- format: \`${manifest.index_format}\``, `- global_config_hash: \`${manifest.global_config_hash}\``, `- validation errors: ${validation.errors.length}`, `- validation warnings: ${validation.warnings.length}`, '', 'The browser loader automatically prefers this index and falls back to the old letter-sharded candidate index only when the new manifest is absent.');
+          await mkdir(dirname(process.env.PR_BODY), { recursive: true });
+          await writeFile(process.env.PR_BODY, `${lines.join('\n')}\n`);
+          NODE
+      - name: Create pull request for manual review
+        id: create_pr
+        continue-on-error: true
+        uses: peter-evans/create-pull-request@v8
+        with:
+          token: ${{ github.token }}
+          branch: ${{ env.PR_BRANCH }}
+          delete-branch: true
+          base: main
+          title: Publish static associative search index
+          body-path: ${{ env.PR_BODY }}
+          commit-message: Publish static associative search index
+          add-paths: associativvordes/search-index
+      - name: Verify review pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          for attempt in $(seq 1 30); do
+            pr_url="$(gh pr list --repo "$GITHUB_REPOSITORY" --state open --head "$PR_BRANCH" --json url --jq '.[0].url // empty' || true)"
+            if [ -n "$pr_url" ]; then
+              echo "Review PR: $pr_url"
+              exit 0
+            fi
+            if [ "$attempt" = "1" ]; then
+              timeout 300s gh pr create \
+                --repo "$GITHUB_REPOSITORY" \
+                --base main \
+                --head "$PR_BRANCH" \
+                --title "Publish static associative search index" \
+                --body-file "$PR_BODY" || true
+            fi
+            sleep 10
+          done
+          echo "Review PR was not created for $PR_BRANCH" >&2
+          exit 1
