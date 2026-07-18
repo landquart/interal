@@ -31,6 +31,8 @@ assert.match(legacyGateSource, /candidate-index\/manifest\.json/);
 assert.match(legacyGateSource, /STATIC_MANIFEST_PATH/);
 assert.match(legacyGateSource, /response\.status !== 200/);
 assert.match(legacyGateSource, /manifest\.normalizer_version/);
+assert.match(legacyGateSource, /SEARCH_NORMALIZER_VERSION/);
+assert.match(legacyGateSource, /SUPPORTED_NORMALIZER_VERSION/);
 assert.match(staticGateSource, /search-index/);
 assert.match(staticGateSource, /STATIC_MANIFEST_VERSION = '3'/);
 assert.match(staticGateSource, /static-inverted-ngram-v2/);
