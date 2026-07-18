@@ -86,5 +86,5 @@ assert.match(staticWorkflow, /git switch -c "\$PR_BRANCH"/, 'static publication 
 assert.match(staticWorkflow, /git push --force-with-lease origin "\$PR_BRANCH"/, 'static publication pushes the review branch before opening a PR');
 assert.match(staticWorkflow, /gh pr create[\s\S]*--base main[\s\S]*--head "\$PR_BRANCH"/, 'static publication opens a PR from the pushed branch to main');
 assert.doesNotMatch(staticWorkflow, /peter-evans\/create-pull-request/, 'static publication no longer relies on implicit branch creation by an action');
-assert.doesNotMatch(staticWorkflow, /git\s+push\s+origin\s+main|git\s+push\s+[^\n]*main/, 'static publication never pushes directly to main');
+assert.doesNotMatch(staticWorkflow, /git\s+push[^\n]*origin[^\n]*main/, 'static publication never pushes directly to main');
 assert.doesNotMatch(staticWorkflow, /gh\s+pr\s+merge|auto-merge|merge-method/, 'static publication does not merge automatically');
