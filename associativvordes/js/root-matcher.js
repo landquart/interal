@@ -53,7 +53,7 @@ export function fuzzyRootMatch(word, root) {
   for (let i = 0; i < w.length; i += 1) {
     for (let len = minLen; len <= maxLen; len += 1) {
       const part = w.slice(i, i + len);
-      if (part.length < minLen) continue;
+      if (part.length < minLen || part[0] !== r[0]) continue;
       const distance = levenshtein(part, r);
       const similarity = 1 - distance / Math.max(r.length, part.length);
       if (distance <= maxDistance && similarity >= 0.8 && (!best || distance < best.distance || (distance === best.distance && similarity > best.similarity) || (distance === best.distance && similarity === best.similarity && i < best.index))) {
