@@ -4,10 +4,14 @@ import { access, readFile, stat } from 'node:fs/promises';
 import { createServer } from 'node:http';
 import { extname, join, normalize, relative, sep } from 'node:path';
 import { once } from 'node:events';
+import { createCandidateIndexLoader } from '../associativvordes/js/candidate-index-loader.js';
+import { SEARCH_NORMALIZER_VERSION } from '../associativvordes/js/search-normalizer.js';
 
 const INDEX_ROOT = 'associativvordes/search-index';
 const MANIFEST_PATH = `${INDEX_ROOT}/manifest.json`;
 const REQUIRED_LANGUAGES = ['en', 'de', 'fr', 'es', 'it', 'ru'];
+const STATIC_MANIFEST_VERSION = '3';
+const STATIC_INDEX_FORMAT = 'static-inverted-ngram-v2';
 
 function isPlainObject(value) {
   return value && typeof value === 'object' && !Array.isArray(value);
@@ -36,7 +40,11 @@ async function manifestOrSkip() {
     return null;
   }
   const manifest = JSON.parse(await readFile(MANIFEST_PATH, 'utf8'));
-  if (!isPlainObject(manifest) || manifest.version !== '2' || manifest.normalizer_version !== '2' || manifest.index_format !== 'static-inverted-ngram-v1' || !isPlainObject(manifest.languages)) throw new Error('Static associative search manifest is incompatible.');
+  if (!isPlainObject(manifest)
+    || manifest.version !== STATIC_MANIFEST_VERSION
+    || manifest.normalizer_version !== SEARCH_NORMALIZER_VERSION
+    || manifest.index_format !== STATIC_INDEX_FORMAT
+    || !isPlainObject(manifest.languages)) throw new Error('Static associative search manifest is incompatible.');
   for (const language of REQUIRED_LANGUAGES) {
     const info = manifest.languages[language];
     if (!isPlainObject(info) || !Number.isInteger(info.entries) || info.entries <= 0 || !Array.isArray(info.entry_blocks) || !info.entry_blocks.length || !isPlainObject(info.postings)) throw new Error(`Static associative search manifest is missing ${language}.`);
@@ -54,7 +62,7 @@ async function manifestOrSkip() {
   return manifest;
 }
 
-async function runBrowserSmokeCheck(manifest) {
+async function runBrowserSmokeCheck() {
   const root = process.cwd();
   const server = createServer(async (request, response) => {
     try {
@@ -76,13 +84,11 @@ async function runBrowserSmokeCheck(manifest) {
   try {
     const { port } = server.address();
     const base = `http://127.0.0.1:${port}/associativvordes/search-index/`;
-    const manifestResponse = await fetch(new URL('manifest.json', base));
-    if (!manifestResponse.ok) throw new Error(`Browser smoke check failed for manifest: HTTP ${manifestResponse.status}`);
-    await manifestResponse.json();
-    const firstBlock = manifest.languages.en.entry_blocks[0].file;
-    const blockResponse = await fetch(new URL(firstBlock, base));
-    if (!blockResponse.ok) throw new Error(`Browser smoke check failed for entry block: HTTP ${blockResponse.status}`);
-    await blockResponse.json();
+    const loader = createCandidateIndexLoader({ searchBaseUrl: base, legacyBaseUrl: `${base}missing/`, preferStatic: true, maxCachedResources: 16 });
+    const regul = await loader.loadCandidateEntries('en', 'regul');
+    if (!regul.length || !regul.some(entry => entry.search_form.includes('regul'))) throw new Error('Browser smoke check did not find an English regul candidate.');
+    const middle = regul.find(entry => entry.search_form.indexOf('regul') > 0);
+    if (!middle) throw new Error('Browser smoke check did not find a root outside the initial word position.');
   } finally {
     await new Promise(resolve => server.close(resolve));
   }
@@ -90,6 +96,6 @@ async function runBrowserSmokeCheck(manifest) {
 
 const manifest = await manifestOrSkip();
 if (manifest) {
-  await runBrowserSmokeCheck(manifest);
+  await runBrowserSmokeCheck();
   console.log('Static associative search index deployment check passed.');
 }

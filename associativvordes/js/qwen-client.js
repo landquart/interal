@@ -15,6 +15,7 @@ export const QWEN_RUNTIME_CONFIG = {
   enableCandidateGeneration: false,
   enableReviewModel: true,
   maxCandidatesPerLanguage: Infinity,
+  autoAnalyzeCandidatesPerLanguage: 5,
   maxConcurrentQwenRequests: 1,
   maxReviewRequestsPerSearch: 5,
   requestTimeoutMs: 15000
@@ -121,23 +122,23 @@ async function callQwen(prompt, { model, review = false, signal } = {}) {
   let res;
   try {
     res = await fetch(API_CONFIG.qwenAssociationUrl, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      task: 'associative_word_score',
-      interfaceLanguage: getInterfaceLanguage(),
-      payload: {
-        language: prompt.input?.language,
-        targetMeaning: prompt.input?.targetMeaning,
-        word: prompt.input?.word,
-        swow: prompt.input?.swow,
-        review,
-        primary: prompt.input?.primary || null,
-        model: model || API_CONFIG.qwenPrimaryModel
-      }
-    }),
-    signal: abortController.signal
-  });
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        task: 'associative_word_score',
+        interfaceLanguage: getInterfaceLanguage(),
+        payload: {
+          language: prompt.input?.language,
+          targetMeaning: prompt.input?.targetMeaning,
+          word: prompt.input?.word,
+          swow: prompt.input?.swow,
+          review,
+          primary: prompt.input?.primary || null,
+          model: model || API_CONFIG.qwenPrimaryModel
+        }
+      }),
+      signal: abortController.signal
+    });
   } catch (error) {
     if (timeoutController.signal.aborted) throw qwenError(QWEN_ERROR_CODES.TIMEOUT, 'Qwen request timed out.', { cause: error });
     if (error?.name === 'AbortError') throw qwenError(QWEN_ERROR_CODES.ABORTED, 'Qwen request aborted.', { cause: error });

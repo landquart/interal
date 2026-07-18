@@ -86,7 +86,9 @@ async function validateShardFiles(manifest) {
 async function validateLoaderCompatibility() {
   const source = await readFile(LOADER_PATH, 'utf8');
   if (!source.includes('LEGACY_MANIFEST_VERSION') || !source.includes('STATIC_MANIFEST_VERSION')) fail(`${LOADER_PATH} must validate both legacy and static manifest versions.`);
-  if (!source.includes('manifest.normalizer_version') || !source.includes('SUPPORTED_NORMALIZER_VERSION')) fail(`${LOADER_PATH} must validate manifest.normalizer_version.`);
+  const validatesNormalizer = source.includes('manifest.normalizer_version')
+    && (source.includes('SEARCH_NORMALIZER_VERSION') || source.includes('SUPPORTED_NORMALIZER_VERSION'));
+  if (!validatesNormalizer) fail(`${LOADER_PATH} must validate manifest.normalizer_version through the shared search normalizer version.`);
 }
 
 function contentType(path) {

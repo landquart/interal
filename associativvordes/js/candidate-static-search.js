@@ -1,13 +1,21 @@
 import { CATEGORY_ORDER } from './config-frequency-sources.js';
 import { ipmToScore, meanNonZero } from './frequency-loader.js';
-import { allowedRootDistance, fuzzyRootMatch, includesRoot, normalizeText, specialRootMatch, specialRootVariants, stripDiacritics } from './root-matcher.js';
+import {
+  allowedRootDistance,
+  buildSearchForm,
+  fuzzyRootMatch,
+  includesRoot,
+  specialRootMatch,
+  specialRootVariants
+} from './root-matcher.js';
+import { SEARCH_NORMALIZER_VERSION } from './search-normalizer.js';
 
-export const STATIC_MANIFEST_VERSION = '2';
-export const STATIC_INDEX_FORMAT = 'static-inverted-ngram-v1';
+export const STATIC_MANIFEST_VERSION = '3';
+export const STATIC_INDEX_FORMAT = 'static-inverted-ngram-v2';
 
 export function validateStaticManifest(manifest, context) {
-  const { isPlainObject, isSafeRelativePath, manifestConfigHash, makeError, codes, supportedNormalizerVersion } = context;
-  if (manifest.normalizer_version !== supportedNormalizerVersion) throw makeError(codes.INDEX_CONFIG_INCOMPATIBLE, 'Static search index normalizer version is incompatible.');
+  const { isPlainObject, isSafeRelativePath, manifestConfigHash, makeError, codes } = context;
+  if (manifest.normalizer_version !== SEARCH_NORMALIZER_VERSION) throw makeError(codes.INDEX_CONFIG_INCOMPATIBLE, 'Static search index normalizer version is incompatible.');
   if (manifest.index_format !== STATIC_INDEX_FORMAT) throw makeError(codes.INDEX_CONFIG_INCOMPATIBLE, 'Static search index format is unsupported.');
   if (typeof manifestConfigHash(manifest) !== 'string' || !manifestConfigHash(manifest)) throw makeError(codes.INDEX_CONFIG_INCOMPATIBLE, 'Static search index global config hash is required.');
   if (!isPlainObject(manifest.languages)) throw makeError(codes.MANIFEST_INVALID, 'Static search index languages must be an object.');
@@ -29,7 +37,7 @@ export function validateStaticManifest(manifest, context) {
   return manifest;
 }
 
-function fnv1a(value) {
+export function fnv1a(value) {
   let hash = 0x811c9dc5;
   for (const char of String(value)) {
     hash ^= char.codePointAt(0);
@@ -38,13 +46,13 @@ function fnv1a(value) {
   return hash >>> 0;
 }
 
-function bucketName(gram, count) {
+export function bucketName(gram, count) {
   const width = Math.max(2, Math.ceil(Math.log(count) / Math.log(16)));
-  return String(fnv1a(gram) % count).toString(16).padStart(width, '0');
+  return (fnv1a(gram) % count).toString(16).padStart(width, '0');
 }
 
 function uniqueGrams(value, length) {
-  const text = stripDiacritics(value);
+  const text = buildSearchForm(value);
   const grams = new Set();
   if (!text || text.length < length) return [];
   for (let index = 0; index <= text.length - length; index += 1) grams.add(text.slice(index, index + length));
@@ -52,14 +60,14 @@ function uniqueGrams(value, length) {
 }
 
 function exactLookupGrams(value) {
-  const text = stripDiacritics(value);
+  const text = buildSearchForm(value);
   if (!text) return [];
   if (text.length <= 2) return [{ gram: text, length: text.length }];
   return uniqueGrams(text, 3).map(gram => ({ gram, length: 3 }));
 }
 
 export function fuzzySeedGrams(root) {
-  const text = stripDiacritics(root);
+  const text = buildSearchForm(root);
   const distance = allowedRootDistance(text);
   if (!text || distance <= 0) return [];
   const partCount = Math.min(text.length, distance + 1);
@@ -84,6 +92,7 @@ function decodeDeltas(values) {
     const value = values[index];
     if (!Number.isInteger(value) || value < 0) return null;
     current = index === 0 ? value : current + value;
+    if (output.length && current <= output[output.length - 1]) return null;
     output.push(current);
   }
   return output;
@@ -124,8 +133,8 @@ function categoryBreakdownFromSources(sources) {
 function decodeCompactEntry(record, sourceDictionary, language, index, context) {
   if (!Array.isArray(record) || record.length !== 6) throw context.makeError(context.codes.SHARD_INVALID, `Compact entry ${index} has an invalid shape.`, { language });
   const [word, normalizedValue, searchFormValue, rank, frequencyScore, sourcePairs] = record;
-  const normalized = normalizedValue == null ? normalizeText(word) : normalizedValue;
-  const searchForm = searchFormValue == null ? stripDiacritics(normalized) : searchFormValue;
+  const normalized = normalizedValue == null ? String(word || '').trim().toLowerCase().normalize('NFC') : normalizedValue;
+  const searchForm = searchFormValue == null ? buildSearchForm(normalized) : searchFormValue;
   if (typeof word !== 'string' || !word || typeof normalized !== 'string' || !normalized || typeof searchForm !== 'string' || !searchForm || !(rank === null || (Number.isInteger(rank) && rank > 0)) || typeof frequencyScore !== 'number' || !Number.isFinite(frequencyScore) || frequencyScore < 0 || frequencyScore > 100 || !Array.isArray(sourcePairs) || !sourcePairs.length) throw context.makeError(context.codes.SHARD_INVALID, `Compact entry ${index} is invalid.`, { language });
   const sources = sourcePairs.map(pair => {
     if (!Array.isArray(pair) || pair.length !== 2 || !Number.isInteger(pair[0]) || pair[0] < 0 || pair[0] >= sourceDictionary.length || typeof pair[1] !== 'number' || !Number.isFinite(pair[1]) || pair[1] < 0) throw context.makeError(context.codes.SHARD_INVALID, `Compact entry ${index} source is invalid.`, { language });
@@ -199,7 +208,7 @@ export async function loadStaticCandidateEntries({ manifest, language, root, sig
     return output.map(item => item.entry);
   }
 
-  const normalizedRoot = stripDiacritics(root);
+  const normalizedRoot = buildSearchForm(root);
   const candidateIds = new Set(await exactIds(normalizedRoot));
   for (const variant of specialRootVariants(language, normalizedRoot)) addAll(candidateIds, await exactIds(variant));
   for (const seed of fuzzySeedGrams(normalizedRoot)) {

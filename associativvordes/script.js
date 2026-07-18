@@ -158,6 +158,18 @@ const TEXT_I18N = {
     function invalidateActiveRuns() { activeRunId += 1; activeRunAbortController?.abort?.(); activeRunAbortController = null; }
     function isCurrentRun(runId) { return runId === activeRunId; }
     let activeLang = 'en';
+    // Static associative search runtime v2
+    const SEARCH_RESULTS_PAGE_SIZE = 100;
+    const visibleCandidateCounts = Object.fromEntries(LANGUAGES.map(lang => [lang.code, SEARCH_RESULTS_PAGE_SIZE]));
+
+    function resetVisibleCandidateCounts() {
+      for (const lang of LANGUAGES) visibleCandidateCounts[lang.code] = SEARCH_RESULTS_PAGE_SIZE;
+    }
+
+    function showMoreCandidates(langCode) {
+      visibleCandidateCounts[langCode] = (visibleCandidateCounts[langCode] || SEARCH_RESULTS_PAGE_SIZE) + SEARCH_RESULTS_PAGE_SIZE;
+      renderLanguagePanel();
+    }
 
     function emptyState() {
       return createEmptyAssociativeState({ languages: LANGUAGES, createLanguageStatus });
@@ -387,7 +399,7 @@ const TEXT_I18N = {
           errorCode: error.code || 'ANALYSIS_ERROR',
           status: 'error'
         },
-        frequency_score: null,
+        frequency_score: Number.isFinite(Number(item.frequency_score)) ? Number(item.frequency_score) : null,
         association_score: null,
         final_score: null,
         selected: false
@@ -548,6 +560,7 @@ const TEXT_I18N = {
       state.meaning = meaning;
       state.elementType = elementType;
       state.maxModels = 5;
+      resetVisibleCandidateCounts();
       const nextLangs = {};
       clearTargetMeaningTranslationCache();
       const targetTranslations = await getRunTargetTranslations(meaning || root, runId, onProgress);
@@ -581,26 +594,43 @@ const TEXT_I18N = {
           state.languageStatuses[lang.code] = createLanguageStatus('no_candidates');
           continue;
         }
-        state.languageStatuses[lang.code] = createLanguageStatus('analyzing', { candidateCount: validCandidates.length });
-        if (!isCurrentRun(runId)) return;
-        onProgress?.(`Qwen3.6: оценка слов — ${languageName}`);
-        const analyzed = await mapWithConcurrency(
-          validCandidates,
-          QWEN_RUNTIME_CONFIG.maxConcurrentQwenRequests,
-          item => analyzeCandidateItem(lang.code, item, onProgress, runId, targetTranslations[lang.code] || '')
+        const preparedCandidates = validCandidates.map(item => ({ ...item, selected: false, analysisStatus: 'pending' }));
+        const automaticLimit = Math.min(
+          preparedCandidates.length,
+          Math.max(0, Number(QWEN_RUNTIME_CONFIG.autoAnalyzeCandidatesPerLanguage) || 0)
         );
-
+        const automaticCandidates = preparedCandidates.slice(0, automaticLimit);
+        state.languageStatuses[lang.code] = createLanguageStatus(automaticCandidates.length ? 'analyzing' : 'completed', { candidateCount: preparedCandidates.length });
         if (!isCurrentRun(runId)) return;
-        onProgress?.(`Расчёт языковых баллов: ${languageName}`);
-        nextLangs[lang.code] = groupByBestModel(analyzed, state.maxModels);
-        const failedCount = analyzed.filter(item => item.analysis?.status === 'error').length;
-        {
-          const successfulCount = analyzed.length - failedCount;
-          state.languageStatuses[lang.code] = createLanguageStatus(
-            successfulCount === 0 ? 'qwen_error' : 'completed',
-            { errorCode: failedCount ? (successfulCount === 0 ? 'QWEN_FAILED' : 'QWEN_PARTIAL_FAILURE') : null, candidateCount: validCandidates.length, analyzedCount: analyzed.length, successfulCount, failedCount }
+
+        let analyzed = [];
+        if (automaticCandidates.length) {
+          onProgress?.(`Qwen3.6: оценка первых ${automaticCandidates.length} слов — ${languageName}`);
+          analyzed = await mapWithConcurrency(
+            automaticCandidates,
+            QWEN_RUNTIME_CONFIG.maxConcurrentQwenRequests,
+            item => analyzeCandidateItem(lang.code, item, onProgress, runId, targetTranslations[lang.code] || '')
           );
         }
+
+        if (!isCurrentRun(runId)) return;
+        const analyzedByWord = new Map(analyzed.map(item => [normalizeText(item.word), {
+          ...item,
+          analysisStatus: item.analysis?.status === 'error' ? 'error' : null
+        }]));
+        nextLangs[lang.code] = preparedCandidates.map(item => analyzedByWord.get(normalizeText(item.word)) || item);
+        const failedCount = analyzed.filter(item => item.analysis?.status === 'error').length;
+        const successfulCount = analyzed.length - failedCount;
+        state.languageStatuses[lang.code] = createLanguageStatus(
+          analyzed.length > 0 && successfulCount === 0 ? 'qwen_error' : 'completed',
+          {
+            errorCode: failedCount ? (successfulCount === 0 ? 'QWEN_FAILED' : 'QWEN_PARTIAL_FAILURE') : null,
+            candidateCount: preparedCandidates.length,
+            analyzedCount: analyzed.length,
+            successfulCount,
+            failedCount
+          }
+        );
       }
       if (!isCurrentRun(runId)) return;
       onProgress?.(currentLang() === 'en' ? 'Calculating final percentage...' : 'Расчёт итогового процента...');
@@ -651,8 +681,23 @@ const TEXT_I18N = {
       }
     }
 
+    function scoringCandidates(langCode) {
+      const byModel = new Map();
+      for (const item of state.languages[langCode] || []) {
+        const score = wordWeight(item);
+        if (!item.selected || !Number.isFinite(score)) continue;
+        const key = item.model || item.word;
+        const current = byModel.get(key);
+        const currentScore = current ? wordWeight(current) : null;
+        if (!current || score > currentScore || (score === currentScore && Number(item.rank) < Number(current.rank))) byModel.set(key, item);
+      }
+      return [...byModel.values()]
+        .sort((a, b) => wordWeight(b) - wordWeight(a) || a.word.localeCompare(b.word))
+        .slice(0, state.maxModels);
+    }
+
     function calculateLanguage(langCode) {
-      return calculateLanguageScore(state.languages[langCode] || [], { maxModels: state.maxModels, scoreGetter: wordWeight });
+      return calculateLanguageScore(scoringCandidates(langCode), { maxModels: Infinity, scoreGetter: wordWeight });
     }
 
     function calculateFinal() {
@@ -704,13 +749,20 @@ const TEXT_I18N = {
       const lang = LANGUAGES.find(l => l.code === activeLang);
       const panel = document.getElementById('languagePanel');
       const items = state.languages[activeLang] || [];
+      const visibleCount = Math.min(visibleCandidateCounts[activeLang] || SEARCH_RESULTS_PAGE_SIZE, items.length);
+      const visibleItems = items.slice(0, visibleCount);
       const score = calculateLanguage(activeLang);
       const labels = textGroup('panel');
+      const resultCountText = currentLang() === 'en'
+        ? `Showing ${visibleCount} of ${items.length} candidates`
+        : `Показано ${visibleCount} из ${items.length} кандидатов`;
+      const showMoreText = currentLang() === 'en' ? 'Show 100 more' : 'Показать ещё 100';
       panel.innerHTML = `
         <div class="row" style="margin-bottom:12px;">
           <div>
             <h3>${textGroup('languages')[lang.code] || lang.name}</h3>
             <p class="muted">${labels.group}: ${textGroup('groups')[lang.group] || lang.group}. ${labels.languageScore}: <strong>${formatFixed(score.normalized, 2)}%</strong>; ${labels.weightSum}: <strong>${formatFixed(score.sum, 2)}</strong>. ${labels.status}: <strong>${languageStatusLabel(state.languageStatuses[activeLang], currentLang())}</strong></p>
+            <p class="muted">${resultCountText}</p>
           </div>
           <button class="tool-btn interal-btn interal-btn--secondary fit short" onclick="addRow('${activeLang}')">${labels.addWord}</button>
         </div>
@@ -728,9 +780,10 @@ const TEXT_I18N = {
                 <th class="col-actions"></th>
               </tr>
             </thead>
-            <tbody>${items.map((item, idx) => rowHtml(activeLang, item, idx)).join('')}</tbody>
+            <tbody>${visibleItems.map((item, idx) => rowHtml(activeLang, item, idx)).join('')}</tbody>
           </table>
         </div>
+        ${visibleCount < items.length ? `<div class="row" style="justify-content:center;margin-top:12px;"><button class="tool-btn interal-btn interal-btn--secondary fit" onclick="showMoreCandidates('${activeLang}')">${showMoreText}</button></div>` : ''}
       `;
     }
 
@@ -758,6 +811,19 @@ const TEXT_I18N = {
       const labels = textGroup('panel');
       const warningList = analysis.warnings || [];
       const warnings = warningList.join('; ');
+      const pendingLabel = currentLang() === 'en' ? 'not analyzed' : 'не анализировалось';
+      const displayStatus = item.analysisStatus === 'analyzing'
+        ? statusLabel('analyzing')
+        : item.analysisStatus === 'pending'
+          ? pendingLabel
+          : item.analysisStatus === 'error'
+            ? statusLabel('error')
+            : `${thresholdStatusLabel(thresholdStatusForResult({ final_score: analysis.final_score ?? item.final_score }), currentLang())}${assoc.semantic_confirmed === false ? `<br><span class="muted">${semanticWarningLabel(currentLang())}</span>` : ''}`;
+      const analysisButton = item.analysisStatus === 'analyzing'
+        ? `<button class="tool-btn interal-btn interal-btn--secondary fit short" disabled>${statusLabel('analyzing')}</button>`
+        : (!analysis.association || item.analysisStatus === 'pending' || item.analysisStatus === 'error')
+          ? `<button class="tool-btn interal-btn interal-btn--secondary fit short" onclick="analyzeItem('${lang}', ${idx})">${labels.analyze}</button>`
+          : '';
       return `
         <tr class="${[resultRowClasses(analysis), item.selected ? 'is-selected' : ''].filter(Boolean).join(' ')}" title="${escapeHtml(warnings)}">
           <td class="col-word word-cell sticky-word">
@@ -775,7 +841,7 @@ const TEXT_I18N = {
             </label>
           </td>
           <td class="col-score"><strong>${formatMetric(analysis.final_score ?? item.final_score, 2)}</strong></td>
-          <td class="col-score">${thresholdStatusLabel(thresholdStatusForResult({ final_score: analysis.final_score ?? item.final_score }), currentLang())}${assoc.semantic_confirmed === false ? `<br><span class="muted">${semanticWarningLabel(currentLang())}</span>` : ''}</td>
+          <td class="col-score">${displayStatus}</td>
           <td class="col-score">${formatMetric(assoc.association_score ?? item.association_score, 1)}</td>
           <td class="col-score">${formatMetric(analysis.frequency?.frequency_score ?? item.frequency_score, 2)}</td>
           <td class="col-score">${formatMetric(analysis.swow?.bonus, 1)}</td>
@@ -794,7 +860,7 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
               </dl>
             </details>
           </td>
-          <td class="col-actions"><button class="word-remove-btn" title="${labels.delete}" aria-label="${labels.delete}" onclick="deleteItem('${lang}', ${idx})">×</button></td>
+          <td class="col-actions">${analysisButton}<button class="word-remove-btn" title="${labels.delete}" aria-label="${labels.delete}" onclick="deleteItem('${lang}', ${idx})">×</button></td>
         </tr>
       `;
     }
@@ -946,6 +1012,14 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
         const failed = failedAnalysis(lang, item, error);
         Object.assign(item, failed, { analysisStatus: 'error' });
       }
+      const languageItems = state.languages[lang] || [];
+      const analyzedItems = languageItems.filter(candidate => candidate.analysis);
+      const failedCount = analyzedItems.filter(candidate => candidate.analysis?.status === 'error').length;
+      const successfulCount = analyzedItems.length - failedCount;
+      state.languageStatuses[lang] = createLanguageStatus(
+        analyzedItems.length > 0 && successfulCount === 0 ? 'qwen_error' : 'completed',
+        { candidateCount: languageItems.length, analyzedCount: analyzedItems.length, successfulCount, failedCount, errorCode: failedCount ? (successfulCount === 0 ? 'QWEN_FAILED' : 'QWEN_PARTIAL_FAILURE') : null }
+      );
       renderAll();
       window.InteralFormDraft?.save?.();
     }
@@ -1386,6 +1460,7 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
       invalidateActiveRuns();
       state = emptyState();
       activeLang = 'en';
+      resetVisibleCandidateCounts();
       ['rootInput', 'meaningInput'].forEach(id => { const element = document.getElementById(id); if (element) element.value = ''; });
       const type = document.getElementById('elementType');
       if (type) type.value = 'root';
@@ -1410,6 +1485,7 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
     window.deleteItem = deleteItem;
     window.addRow = addRow;
     window.analyzeItem = analyzeItem;
+    window.showMoreCandidates = showMoreCandidates;
     window.QWEN_RUNTIME_CONFIG = QWEN_RUNTIME_CONFIG;
     window.InteralAssociativDiagnostics = () => window.InteralAssociativeDiagnostics.getSnapshot();
 

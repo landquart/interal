@@ -1,8 +1,11 @@
 #!/usr/bin/env node
 import { cp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
+import { SEARCH_NORMALIZER_VERSION } from '../associativvordes/js/search-normalizer.js';
 
 const LANGUAGES = ['en', 'de', 'fr', 'es', 'it', 'ru'];
+const STATIC_MANIFEST_VERSION = '3';
+const STATIC_INDEX_FORMAT = 'static-inverted-ngram-v2';
 
 function parseArgs(argv) {
   const options = {};
@@ -28,12 +31,16 @@ export async function mergeStaticSearchArtifacts({ inputRoot, outputRoot }) {
   for (const language of LANGUAGES) {
     const artifactRoot = join(inputRoot, `associative-search-index-${language}`);
     const manifest = await readJson(join(artifactRoot, 'manifest.json'));
-    if (manifest.version !== '2' || manifest.normalizer_version !== '2' || manifest.index_format !== 'static-inverted-ngram-v1' || !manifest.languages?.[language]) throw new Error(`Invalid static search artifact for ${language}`);
+    if (manifest.version !== STATIC_MANIFEST_VERSION
+      || manifest.normalizer_version !== SEARCH_NORMALIZER_VERSION
+      || manifest.index_format !== STATIC_INDEX_FORMAT
+      || !manifest.languages?.[language]) throw new Error(`Invalid static search artifact for ${language}`);
     const currentShared = {
       version: manifest.version,
       normalizer_version: manifest.normalizer_version,
       index_format: manifest.index_format,
       source_manifest_version: manifest.source_manifest_version,
+      source_normalizer_version: manifest.source_normalizer_version,
       global_config_hash: manifest.global_config_hash ?? manifest.config_hash
     };
     if (!shared) shared = currentShared;
