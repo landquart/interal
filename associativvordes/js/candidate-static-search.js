@@ -1,21 +1,26 @@
 import { CATEGORY_ORDER } from './config-frequency-sources.js';
 import { ipmToScore, meanNonZero } from './frequency-loader.js';
 import {
-  allowedRootDistance,
+  AFFIX_SEARCH_CONFIG_VERSION,
   buildSearchForm,
-  fuzzyRootMatch,
-  includesRoot,
-  specialRootMatch,
+  findRootMatch,
   specialRootVariants
 } from './root-matcher.js';
 import { SEARCH_NORMALIZER_VERSION } from './search-normalizer.js';
+import {
+  STATIC_INDEX_FORMAT,
+  STATIC_MANIFEST_VERSION,
+  exactAnchoredLookups,
+  fuzzyAnchoredLookupGroups,
+  fuzzySeedGrams
+} from './affix-boundary-index.js';
 
-export const STATIC_MANIFEST_VERSION = '3';
-export const STATIC_INDEX_FORMAT = 'static-inverted-ngram-v2';
+export { STATIC_INDEX_FORMAT, STATIC_MANIFEST_VERSION, fuzzySeedGrams };
 
 export function validateStaticManifest(manifest, context) {
   const { isPlainObject, isSafeRelativePath, manifestConfigHash, makeError, codes } = context;
   if (manifest.normalizer_version !== SEARCH_NORMALIZER_VERSION) throw makeError(codes.INDEX_CONFIG_INCOMPATIBLE, 'Static search index normalizer version is incompatible.');
+  if (manifest.affix_config_version !== AFFIX_SEARCH_CONFIG_VERSION) throw makeError(codes.INDEX_CONFIG_INCOMPATIBLE, 'Static search affix configuration is incompatible.');
   if (manifest.index_format !== STATIC_INDEX_FORMAT) throw makeError(codes.INDEX_CONFIG_INCOMPATIBLE, 'Static search index format is unsupported.');
   if (typeof manifestConfigHash(manifest) !== 'string' || !manifestConfigHash(manifest)) throw makeError(codes.INDEX_CONFIG_INCOMPATIBLE, 'Static search index global config hash is required.');
   if (!isPlainObject(manifest.languages)) throw makeError(codes.MANIFEST_INVALID, 'Static search index languages must be an object.');
@@ -46,42 +51,9 @@ export function fnv1a(value) {
   return hash >>> 0;
 }
 
-export function bucketName(gram, count) {
+export function bucketName(key, count) {
   const width = Math.max(2, Math.ceil(Math.log(count) / Math.log(16)));
-  return (fnv1a(gram) % count).toString(16).padStart(width, '0');
-}
-
-function uniqueGrams(value, length) {
-  const text = buildSearchForm(value);
-  const grams = new Set();
-  if (!text || text.length < length) return [];
-  for (let index = 0; index <= text.length - length; index += 1) grams.add(text.slice(index, index + length));
-  return [...grams];
-}
-
-function exactLookupGrams(value) {
-  const text = buildSearchForm(value);
-  if (!text) return [];
-  if (text.length <= 2) return [{ gram: text, length: text.length }];
-  return uniqueGrams(text, 3).map(gram => ({ gram, length: 3 }));
-}
-
-export function fuzzySeedGrams(root) {
-  const text = buildSearchForm(root);
-  const distance = allowedRootDistance(text);
-  if (!text || distance <= 0) return [];
-  const partCount = Math.min(text.length, distance + 1);
-  const baseLength = Math.floor(text.length / partCount);
-  const remainder = text.length % partCount;
-  const seeds = [];
-  let offset = 0;
-  for (let index = 0; index < partCount; index += 1) {
-    const partLength = baseLength + (index < remainder ? 1 : 0);
-    const part = text.slice(offset, offset + partLength);
-    offset += partLength;
-    if (part) seeds.push({ gram: part, length: part.length });
-  }
-  return [...new Map(seeds.map(seed => [`${seed.length}:${seed.gram}`, seed])).values()];
+  return (fnv1a(key) % count).toString(16).padStart(width, '0');
 }
 
 function decodeDeltas(values) {
@@ -160,26 +132,26 @@ export async function loadStaticCandidateEntries({ manifest, language, root, sig
   const info = manifest.languages[language];
   if (!info) throw context.makeError(context.codes.LANGUAGE_NOT_INDEXED, 'Language is not indexed.', { language });
 
-  async function loadPosting(gram, length) {
-    const meta = info.postings[String(length)];
-    const bucket = bucketName(gram, meta.bucket_count);
+  async function loadPosting(lookup) {
+    const meta = info.postings[String(lookup.length)];
+    const bucket = bucketName(lookup.key, meta.bucket_count);
     if (!meta.buckets.includes(bucket)) return [];
     const path = meta.template.replace('{bucket}', bucket);
     const payload = await loadResource(path, { signal, code: context.codes.SHARD_FETCH_FAILED, language, shard: bucket, validator: value => {
       if (!context.isPlainObject(value)) throw context.makeError(context.codes.SHARD_INVALID, 'Static postings bucket must be an object.', { language, shard: bucket });
       return value;
     } });
-    if (!Object.hasOwn(payload, gram)) return [];
-    const decoded = decodeDeltas(payload[gram]);
-    if (decoded == null) throw context.makeError(context.codes.SHARD_INVALID, `Static postings list is invalid for ${gram}.`, { language, shard: bucket });
+    if (!Object.hasOwn(payload, lookup.key)) return [];
+    const decoded = decodeDeltas(payload[lookup.key]);
+    if (decoded == null) throw context.makeError(context.codes.SHARD_INVALID, `Static postings list is invalid for ${lookup.key}.`, { language, shard: bucket });
     return decoded;
   }
 
   async function exactIds(value) {
-    const lookups = exactLookupGrams(value);
+    const lookups = exactAnchoredLookups(value);
     if (!lookups.length) return [];
     const lists = [];
-    for (const lookup of lookups) lists.push(await loadPosting(lookup.gram, lookup.length));
+    for (const lookup of lookups) lists.push(await loadPosting(lookup));
     lists.sort((a, b) => a.length - b.length);
     let result = lists[0] || [];
     for (let index = 1; index < lists.length && result.length; index += 1) result = intersectSorted(result, lists[index]);
@@ -197,13 +169,13 @@ export async function loadStaticCandidateEntries({ manifest, language, root, sig
       grouped.get(block.file).ids.push(id);
     }
     const output = [];
-    for (const { block, ids: blockIds } of grouped.values()) {
+    await Promise.all([...grouped.values()].map(async ({ block, ids: blockIds }) => {
       const payload = await loadResource(block.file, { signal, code: context.codes.SHARD_FETCH_FAILED, language, shard: block.file, validator: value => {
         if (!context.isPlainObject(value) || value.first_id !== block.first_id || !Array.isArray(value.entries) || value.entries.length !== block.entries) throw context.makeError(context.codes.SHARD_INVALID, 'Static entry block is invalid.', { language, shard: block.file });
         return value;
       } });
       for (const id of blockIds) output.push({ id, entry: decodeCompactEntry(payload.entries[id - block.first_id], sourceDictionary, language, id, context) });
-    }
+    }));
     output.sort((a, b) => a.id - b.id);
     return output.map(item => item.entry);
   }
@@ -211,11 +183,10 @@ export async function loadStaticCandidateEntries({ manifest, language, root, sig
   const normalizedRoot = buildSearchForm(root);
   const candidateIds = new Set(await exactIds(normalizedRoot));
   for (const variant of specialRootVariants(language, normalizedRoot)) addAll(candidateIds, await exactIds(variant));
-  for (const seed of fuzzySeedGrams(normalizedRoot)) {
-    const ids = seed.length <= 3 ? await loadPosting(seed.gram, seed.length) : await exactIds(seed.gram);
-    addAll(candidateIds, ids);
+  for (const group of fuzzyAnchoredLookupGroups(normalizedRoot)) {
+    for (const lookup of group.lookups) addAll(candidateIds, await loadPosting(lookup));
   }
   diagnostics.candidateIds = candidateIds.size;
   const entries = await loadEntriesByIds([...candidateIds].sort((a, b) => a - b));
-  return entries.filter(entry => includesRoot(entry.search_form, normalizedRoot) || fuzzyRootMatch(entry.search_form, normalizedRoot) || specialRootMatch(language, entry.search_form, normalizedRoot));
+  return entries.filter(entry => Boolean(findRootMatch(entry.search_form, normalizedRoot, language)));
 }
