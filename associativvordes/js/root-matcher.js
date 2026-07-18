@@ -15,16 +15,20 @@ export function includesRoot(word, root) {
 export function levenshtein(a, b) {
   const left = String(a || '');
   const right = String(b || '');
-  const dp = Array.from({ length: left.length + 1 }, () => Array(right.length + 1).fill(0));
-  for (let i = 0; i <= left.length; i++) dp[i][0] = i;
-  for (let j = 0; j <= right.length; j++) dp[0][j] = j;
-  for (let i = 1; i <= left.length; i++) {
-    for (let j = 1; j <= right.length; j++) {
+  if (left === right) return 0;
+  if (!left.length) return right.length;
+  if (!right.length) return left.length;
+  let previous = Array.from({ length: right.length + 1 }, (_, index) => index);
+  let current = new Array(right.length + 1);
+  for (let i = 1; i <= left.length; i += 1) {
+    current[0] = i;
+    for (let j = 1; j <= right.length; j += 1) {
       const cost = left[i - 1] === right[j - 1] ? 0 : 1;
-      dp[i][j] = Math.min(dp[i - 1][j] + 1, dp[i][j - 1] + 1, dp[i - 1][j - 1] + cost);
+      current[j] = Math.min(current[j - 1] + 1, previous[j] + 1, previous[j - 1] + cost);
     }
+    [previous, current] = [current, previous];
   }
-  return dp[left.length][right.length];
+  return previous[right.length];
 }
 
 export function allowedRootDistance(root) {
@@ -43,18 +47,16 @@ export function fuzzyRootMatch(word, root) {
   if (exactIndex !== -1) return { type: 'exact', distance: 0, similarity: 1, fragment: r, index: exactIndex };
   const maxDistance = allowedRootDistance(r);
   if (maxDistance <= 0) return null;
-  const minLen = Math.max(3, r.length - maxDistance);
+  const minLen = Math.max(1, r.length - maxDistance);
   const maxLen = r.length + maxDistance;
-  const maxStart = Math.min(w.length - 1, 3);
   let best = null;
-  for (let i = 0; i <= maxStart; i++) {
-    for (let len = minLen; len <= maxLen; len++) {
+  for (let i = 0; i < w.length; i += 1) {
+    for (let len = minLen; len <= maxLen; len += 1) {
       const part = w.slice(i, i + len);
-      if (part.length < minLen) continue;
-      if (part[0] !== r[0]) continue;
+      if (part.length < minLen || part[0] !== r[0]) continue;
       const distance = levenshtein(part, r);
       const similarity = 1 - distance / Math.max(r.length, part.length);
-      if (distance <= maxDistance && similarity >= 0.8 && (!best || distance < best.distance || (distance === best.distance && similarity > best.similarity))) {
+      if (distance <= maxDistance && similarity >= 0.8 && (!best || distance < best.distance || (distance === best.distance && similarity > best.similarity) || (distance === best.distance && similarity === best.similarity && i < best.index))) {
         best = { type: 'fuzzy', distance, similarity, fragment: part, index: i };
       }
     }
@@ -66,12 +68,26 @@ export function fuzzyIncludesRoot(word, root) {
   return Boolean(fuzzyRootMatch(word, root));
 }
 
+const SPECIAL_ROOT_VARIANTS = Object.freeze({
+  inter: Object.freeze({ any: ['inter'], ru: ['интер'], el: ['ίντερ'] }),
+  ocul: Object.freeze({ any: ['ocul', 'okul'], ru: ['окул'] }),
+  regul: Object.freeze({ any: ['regul'], ru: ['регул'], fr: ['régul'], it: ['regol'] })
+});
+
+export function specialRootVariants(lang, root) {
+  const canonical = stripDiacritics(root);
+  const config = SPECIAL_ROOT_VARIANTS[canonical];
+  if (!config) return [];
+  const language = normalizeText(lang);
+  const values = language === 'any'
+    ? Object.values(config).flat()
+    : [...(config.any || []), ...(config[language] || [])];
+  return [...new Set(values.map(stripDiacritics).filter(Boolean))];
+}
+
 export function specialRootMatch(lang, word, root) {
-  const w = normalizeText(word);
-  if (root === 'inter') return w.includes('интер') || w.includes('ίντερ') || w.includes('inter');
-  if (root === 'ocul') return w.includes('окул') || w.includes('ocul') || w.includes('okul');
-  if (root === 'regul') return w.includes('регул') || w.includes('regul') || w.includes('régul') || w.includes('regol');
-  return false;
+  const w = stripDiacritics(word);
+  return specialRootVariants(lang, root).some(variant => w.includes(variant));
 }
 
 export function sortRootCandidateMatches(candidates, getRank = () => 50001) {

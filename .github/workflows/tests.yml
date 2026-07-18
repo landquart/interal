@@ -16,6 +16,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
+        with:
+          show-progress: false
 
       - name: Setup Node
         uses: actions/setup-node@v6
@@ -29,11 +31,32 @@ jobs:
       - name: Check changed associative modules
         run: |
           node --check associativvordes/js/candidate-index-loader.js
+          node --check associativvordes/js/candidate-static-search.js
           node --check associativvordes/js/candidate-finder.js
+          node --check associativvordes/js/root-matcher.js
           node --check associativvordes/js/target-meaning-translator.js
           node --check shared/button-status.js
           node --check shared/card-schema.mjs
           node --check scripts/audit-associative-index-memory.mjs
+          node --check scripts/build-associative-static-search-index.mjs
+          node --check scripts/validate-associative-static-search-index.mjs
+          node --check scripts/merge-associative-static-search-artifacts.mjs
+          node --check scripts/check-associative-static-search-index-deployment.mjs
+
+      - name: Run static search regression test
+        run: node tests/associative-static-search-index.test.mjs
 
       - name: Run all tests
-        run: npm test
+        run: |
+          mkdir -p .tmp/test-logs
+          set -o pipefail
+          npm test 2>&1 | tee .tmp/test-logs/all-tests.log
+
+      - name: Upload test log
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: test-log-${{ github.run_id }}
+          path: .tmp/test-logs/all-tests.log
+          if-no-files-found: warn
+          retention-days: 3

@@ -11,6 +11,10 @@
     "audit:associative-index-memory": "node scripts/audit-associative-index-memory.mjs",
     "merge:associative-index": "node scripts/merge-associative-index-artifacts.mjs",
     "validate:associative-index": "node scripts/validate-associative-index.mjs",
-    "check:associative-index-deployment": "node scripts/check-associative-index-deployment.mjs"
+    "check:associative-index-deployment": "node scripts/check-associative-index-deployment.mjs",
+    "build:associative-search-index": "node scripts/build-associative-static-search-index.mjs",
+    "merge:associative-search-index": "node scripts/merge-associative-static-search-artifacts.mjs",
+    "validate:associative-search-index": "node scripts/validate-associative-static-search-index.mjs",
+    "check:associative-search-index-deployment": "node scripts/check-associative-static-search-index-deployment.mjs"
   }
 }

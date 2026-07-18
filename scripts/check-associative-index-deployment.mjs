@@ -8,6 +8,7 @@ import { once } from 'node:events';
 const REQUIRED_LANGUAGES = ['en', 'de', 'fr', 'es', 'it', 'ru'];
 const INDEX_ROOT = 'associativvordes/candidate-index';
 const MANIFEST_PATH = `${INDEX_ROOT}/manifest.json`;
+const STATIC_MANIFEST_PATH = 'associativvordes/search-index/manifest.json';
 const LOADER_PATH = 'associativvordes/js/candidate-index-loader.js';
 const SUPPORTED_VERSION = '1';
 const SUPPORTED_NORMALIZER_VERSION = '2';
@@ -22,6 +23,15 @@ function isObject(value) {
 
 function isSafeRelativePath(file) {
   return typeof file === 'string' && file && !file.startsWith('/') && !file.includes('://') && !file.includes('\\') && !file.split('/').includes('..');
+}
+
+async function fileExists(path) {
+  try {
+    const info = await stat(path);
+    return info.isFile() && info.size > 0;
+  } catch {
+    return false;
+  }
 }
 
 async function readJson(path) {
@@ -69,16 +79,13 @@ function validateManifestShape(manifest) {
 
 async function validateShardFiles(manifest) {
   for (const language of REQUIRED_LANGUAGES) {
-    for (const shard of manifest.languages[language].shards) {
-      const path = join(INDEX_ROOT, shard.file);
-      await assertFile(path);
-    }
+    for (const shard of manifest.languages[language].shards) await assertFile(join(INDEX_ROOT, shard.file));
   }
 }
 
 async function validateLoaderCompatibility() {
   const source = await readFile(LOADER_PATH, 'utf8');
-  if (!source.includes('manifest.version') || !source.includes('SUPPORTED_MANIFEST_VERSION')) fail(`${LOADER_PATH} must validate manifest.version.`);
+  if (!source.includes('LEGACY_MANIFEST_VERSION') || !source.includes('STATIC_MANIFEST_VERSION')) fail(`${LOADER_PATH} must validate both legacy and static manifest versions.`);
   if (!source.includes('manifest.normalizer_version') || !source.includes('SUPPORTED_NORMALIZER_VERSION')) fail(`${LOADER_PATH} must validate manifest.normalizer_version.`);
 }
 
@@ -119,7 +126,6 @@ async function runBrowserSmokeCheck() {
     const { port } = server.address();
     const pageUrl = `http://127.0.0.1:${port}/associativvordes/`;
     const manifestUrl = new URL('./candidate-index/manifest.json', pageUrl);
-    // Browser smoke-check equivalent: fetch('./candidate-index/manifest.json') from associativvordes/index.html.
     const response = await fetch(manifestUrl);
     if (response.status !== 200) fail(`Browser smoke-check expected HTTP 200 for ./candidate-index/manifest.json; received ${response.status}.`);
     await response.json();
@@ -128,11 +134,14 @@ async function runBrowserSmokeCheck() {
   }
 }
 
-await assertFile(MANIFEST_PATH);
-const manifest = await readJson(MANIFEST_PATH);
-validateManifestShape(manifest);
-await validateShardFiles(manifest);
 await validateLoaderCompatibility();
-await runBrowserSmokeCheck();
-
-console.log('Associative candidate-index deployment check passed.');
+if (await fileExists(STATIC_MANIFEST_PATH)) {
+  console.log('Static associative search index is published; legacy candidate-index deployment check skipped.');
+} else {
+  await assertFile(MANIFEST_PATH);
+  const manifest = await readJson(MANIFEST_PATH);
+  validateManifestShape(manifest);
+  await validateShardFiles(manifest);
+  await runBrowserSmokeCheck();
+  console.log('Associative candidate-index deployment check passed.');
+}

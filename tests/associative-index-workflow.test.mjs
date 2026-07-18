@@ -66,5 +66,15 @@ assert.match(publishWorkflow, /Validator results/, 'publish PR body includes val
 assert.match(publishWorkflow, /Entries \| Shards/, 'publish PR body includes entry and shard counts');
 
 const runtimeLoader = await readFile('associativvordes/js/candidate-index-loader.js', 'utf8');
-assert.match(runtimeLoader, /DEFAULT_BASE_URL = '\.\/candidate-index\/'/, 'runtime keeps a relative candidate-index base URL');
-assert.match(runtimeLoader, /joinUrl\(baseUrl, 'manifest\.json'\)/, 'runtime loads manifest.json through that relative candidate-index base URL');
+assert.match(runtimeLoader, /DEFAULT_STATIC_BASE_URL = '\.\/search-index\/'/, 'runtime uses the static search index as its production source');
+assert.match(runtimeLoader, /DEFAULT_LEGACY_BASE_URL = '\.\/candidate-index\/'/, 'runtime keeps the relative candidate-index fallback during migration');
+assert.match(runtimeLoader, /joinUrl\(baseUrl, 'manifest\.json'\)/, 'runtime loads manifest.json through a relative index base URL');
+
+const staticWorkflow = await readFile('.github/workflows/build-and-publish-associative-search-index.yml', 'utf8');
+assert.match(staticWorkflow, /BUILD_AND_PUBLISH_STATIC_SEARCH_INDEX/, 'static publication requires an explicit confirmation phrase');
+assert.match(staticWorkflow, /matrix:[\s\S]*language:\s*\[en, de, fr, es, it, ru\]/, 'static publication builds all six languages separately');
+assert.match(staticWorkflow, /build:associative-index[\s\S]*build:associative-search-index/, 'static index is generated directly from frequency-list candidate builds');
+assert.match(staticWorkflow, /validate:associative-search-index[\s\S]*--strict/, 'static publication strictly validates generated indexes');
+assert.match(staticWorkflow, /rm -rf associativvordes\/search-index associativvordes\/candidate-index/, 'static publication replaces rather than duplicates the legacy index');
+assert.match(staticWorkflow, /peter-evans\/create-pull-request@v8/, 'static publication opens a review PR');
+assert.doesNotMatch(staticWorkflow, /gh\s+pr\s+merge|auto-merge|merge-method/, 'static publication does not merge automatically');

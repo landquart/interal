@@ -14,7 +14,7 @@ export const FINAL_SCORE_WEIGHTS = {
 export const QWEN_RUNTIME_CONFIG = {
   enableCandidateGeneration: false,
   enableReviewModel: true,
-  maxCandidatesPerLanguage: 5,
+  maxCandidatesPerLanguage: Infinity,
   maxConcurrentQwenRequests: 1,
   maxReviewRequestsPerSearch: 5,
   requestTimeoutMs: 15000
