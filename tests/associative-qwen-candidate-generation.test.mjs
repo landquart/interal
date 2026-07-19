@@ -34,7 +34,9 @@ const clientSource = await readFile('associativvordes/js/qwen-client.js', 'utf8'
 const checkboxHookSource = await readFile('associativvordes/js/qwen-checkbox-hook.js', 'utf8');
 const swowClientSource = await readFile('associativvordes/js/swow-client.js', 'utf8');
 const endpointSource = await readFile('api/qwen-candidates.js', 'utf8');
+const endpointModule = await import('../api/qwen-candidates.js');
 
+assert.equal(typeof endpointModule.default, 'function', 'supplemental candidate API exports a loadable Vercel handler');
 assert.match(clientSource, /key === 'selected' && value === true/, 'checking an unscored word activates the Qwen-analysis hook');
 assert.match(clientSource, /stateCandidateHasQwen\(candidate\)/, 'the checkbox hook does not repeat an existing Qwen score');
 assert.match(checkboxHookSource, /persistedCandidate[\s\S]*if \(persistedCandidate\) return result/, 'the overflow hook complements rather than duplicates the primary checkbox hook');
