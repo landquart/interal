@@ -61,6 +61,7 @@ assert.match(script, /window\.InteralAssociativeModels/);
 
 const qwen = await readFile('associativvordes/js/qwen-client.js', 'utf8');
 assert.match(qwen, /compareFrequencyRepresentatives\(proposed, existing\)/);
-assert.match(qwen, /InteralAssociativeModels\?\.reconcile/);
+assert.doesNotMatch(qwen, /InteralAssociativeModels\?\.reconcile/, 'Qwen insertion waits for analyzeItem to reconcile after scoring');
+assert.match(qwen, /autoAnalyzeCandidatesPerLanguage: Infinity/);
 
 console.log('Associative model-selection and threshold policy tests passed.');

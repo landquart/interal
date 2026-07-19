@@ -63,7 +63,7 @@ export function lexicalModelDescriptor(candidate, root, language = 'en') {
   const wordForm = buildSearchForm(candidate?.search_form || word);
   if (!wordForm) return { key: '', label: '', stem: '', prefix: '', fragment: '' };
   const rootForm = buildSearchForm(root);
-  const fragment = buildSearchForm(candidate?.match?.fragment || rootForm);
+  const fragment = buildSearchForm(candidate?.match?.type === 'special' ? candidate.match.fragment : rootForm);
   const explicitIndex = Number(candidate?.match?.index);
   const inferredIndex = fragment ? wordForm.indexOf(fragment) : (rootForm ? wordForm.indexOf(rootForm) : -1);
   const index = Number.isInteger(explicitIndex) && explicitIndex >= 0 ? explicitIndex : Math.max(0, inferredIndex);

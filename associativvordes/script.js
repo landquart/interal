@@ -365,10 +365,9 @@ const TEXT_I18N = {
       return null;
     }
 
-    function groupByBestModel(items, maxModels = Infinity, langCode = 'en') {
+    function groupByBestModel(items, _maxModels = Infinity, langCode = 'en') {
       return reconcileModelRepresentatives(items, state.root, langCode)
         .filter(item => Number.isFinite(wordWeight(item)))
-        .slice(0, maxModels)
         .map(item => ({ ...item, selected: true }));
     }
 
@@ -679,9 +678,7 @@ const TEXT_I18N = {
     }
 
     function scoringCandidates(langCode) {
-      const reconciled = reconcileModelRepresentatives(state.languages[langCode], state.root, langCode);
-      state.languages[langCode] = reconciled;
-      return reconciled
+      return (state.languages[langCode] || [])
         .filter(item => item.selected && Number.isFinite(wordWeight(item)))
         .sort((a, b) => compareFrequencyRepresentatives(a, b));
     }

@@ -1,4 +1,5 @@
 import { API_CONFIG } from './swow-client.js';
+import { buildSearchForm } from './search-normalizer.js';
 import { lexicalModelDescriptor, compareFrequencyRepresentatives } from './candidate-model-family.js';
 
 export const ASSOCIATION_SCORE_WEIGHTS = {
@@ -14,12 +15,12 @@ export const FINAL_SCORE_WEIGHTS = {
 
 export const QWEN_RUNTIME_CONFIG = {
   enableCandidateGeneration: true,
-  enableReviewModel: true,
+  enableReviewModel: false,
   maxCandidatesPerLanguage: Infinity,
-  autoAnalyzeCandidatesPerLanguage: 5,
+  autoAnalyzeCandidatesPerLanguage: Infinity,
   maxGeneratedCandidatesPerLanguage: 2,
   maxConcurrentQwenRequests: 1,
-  maxReviewRequestsPerSearch: 5,
+  maxReviewRequestsPerSearch: 0,
   requestTimeoutMs: 15000
 };
 
@@ -320,7 +321,6 @@ async function addVerifiedCandidateToRuntime(language, suggestion, entry, root, 
   window.updateItem(language, index, 'word', entry.word);
   window.updateItem(language, index, 'model_key', descriptor.key);
   window.updateItem(language, index, 'model', descriptor.label);
-  window.InteralAssociativeModels?.reconcile?.(language);
   return true;
 }
 
