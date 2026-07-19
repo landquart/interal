@@ -1,7 +1,7 @@
 import { buildSearchForm } from './search-normalizer.js';
 
 const OUTER_ENDINGS = Object.freeze({
-  en: ['ingly', 'edly', 'ly', 'ing', 'ed', 'est', 'er', 'es', 's'],
+  en: ['ingly', 'edly', 'ly', 'ing', 'ed', 'est', 'er'],
   de: ['erweise', 'eren', 'erer', 'eres', 'erem', 'est', 'en', 'er', 'es', 'em', 'e', 'n', 's'],
   fr: ['issements', 'issement', 'ements', 'ement', 'amment', 'emment', 'ment', 'ées', 'ée', 'és', 'es', 's', 'e'],
   es: ['amientos', 'amiento', 'imientos', 'imiento', 'mente', 'ados', 'adas', 'idos', 'idas', 'ando', 'iendo', 'es', 'os', 'as', 'o', 'a'],
@@ -20,6 +20,13 @@ function stripOuterEnding(value, endings, minimumLength = 4) {
     if (!value.endsWith(ending) || value.length - ending.length < minimumLength) continue;
     return value.slice(0, -ending.length);
   }
+  return value;
+}
+
+function stripEnglishPlural(value, minimumLength = 4) {
+  if (value.endsWith('ies') && value.length - 3 >= minimumLength) return `${value.slice(0, -3)}y`;
+  if (/(?:ches|shes|xes|zes|sses)$/.test(value) && value.length - 2 >= minimumLength) return value.slice(0, -2);
+  if (value.endsWith('s') && !value.endsWith('ss') && value.length - 1 >= minimumLength) return value.slice(0, -1);
   return value;
 }
 
@@ -52,7 +59,8 @@ export function canonicalLexicalStem(value, language = 'en') {
   const normalized = buildSearchForm(value).replace(/[^a-z0-9'-]+/g, '');
   if (!normalized) return '';
   const endings = OUTER_ENDINGS[language] || OUTER_ENDINGS.en;
-  let stem = stripOuterEnding(normalized, endings);
+  let stem = language === 'en' ? stripEnglishPlural(normalized) : normalized;
+  if (stem === normalized) stem = stripOuterEnding(normalized, endings);
   if ((language === 'es' || language === 'it') && normalized.endsWith('mente')) stem = stripOuterEnding(stem, endings);
   if (language === 'fr' && stem.endsWith('if') && stem.length > 5) stem = `${stem.slice(0, -2)}iv`;
   return stem;
