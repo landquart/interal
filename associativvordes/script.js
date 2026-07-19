@@ -6,7 +6,7 @@ import { createCandidateIndexLoader } from './js/candidate-index-loader.js';
 import { findCandidatesForRoot } from './js/candidate-finder.js';
 import { lexicalModelDescriptor, selectHighestFrequencyPerModel, compareFrequencyRepresentatives } from './js/candidate-model-family.js';
 import { clearTargetMeaningTranslationCache, translateTargetMeaning, TARGET_TRANSLATION_LANGUAGES } from './js/target-meaning-translator.js';
-import { createEmptyAssociativeState, invalidateSearchResult as invalidateAssociativeSearchResult, invalidateFinalCalculation as invalidateAssociativeFinalCalculation, addManualCandidate, updateCandidate, deleteCandidate, compactAssociativeState, restoreAssociativeState } from './js/associative-state.js';
+import { MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE, createEmptyAssociativeState, invalidateSearchResult as invalidateAssociativeSearchResult, invalidateFinalCalculation as invalidateAssociativeFinalCalculation, addManualCandidate, updateCandidate, deleteCandidate, compactAssociativeState, restoreAssociativeState } from './js/associative-state.js';
 
 // Persistence compatibility markers: status: 'no_candidates', candidates: [] ; status: 'index_error', errorCode:
 const TEXT_I18N = {
@@ -365,9 +365,10 @@ const TEXT_I18N = {
       return null;
     }
 
-    function groupByBestModel(items, _maxModels = Infinity, langCode = 'en') {
+    function groupByBestModel(items, maxModels = MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE, langCode = 'en') {
       return reconcileModelRepresentatives(items, state.root, langCode)
         .filter(item => Number.isFinite(wordWeight(item)))
+        .slice(0, maxModels)
         .map(item => ({ ...item, selected: true }));
     }
 
@@ -555,7 +556,7 @@ const TEXT_I18N = {
       state.root = root;
       state.meaning = meaning;
       state.elementType = elementType;
-      state.maxModels = Number.MAX_SAFE_INTEGER;
+      state.maxModels = MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE;
       resetVisibleCandidateCounts();
       const nextLangs = {};
       clearTargetMeaningTranslationCache();
@@ -680,11 +681,12 @@ const TEXT_I18N = {
     function scoringCandidates(langCode) {
       return (state.languages[langCode] || [])
         .filter(item => item.selected && Number.isFinite(wordWeight(item)))
-        .sort((a, b) => compareFrequencyRepresentatives(a, b));
+        .sort((a, b) => compareFrequencyRepresentatives(a, b))
+        .slice(0, state.maxModels || MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE);
     }
 
     function calculateLanguage(langCode) {
-      return calculateLanguageScore(scoringCandidates(langCode), { maxModels: Infinity, scoreGetter: wordWeight });
+      return calculateLanguageScore(scoringCandidates(langCode), { maxModels: state.maxModels, scoreGetter: wordWeight });
     }
 
     function calculateFinal() {

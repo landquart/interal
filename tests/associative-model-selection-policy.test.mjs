@@ -35,6 +35,16 @@ const language = calculateLanguageScore([
   { selected: true, final_score: 20 }
 ]);
 assert.equal(language.normalized, 50, 'low-scoring models remain in the language mean');
+const limitedLanguage = calculateLanguageScore([
+  { selected: true, final_score: 100 },
+  { selected: true, final_score: 90 },
+  { selected: true, final_score: 80 },
+  { selected: true, final_score: 70 },
+  { selected: true, final_score: 60 },
+  { selected: true, final_score: 0 }
+], { maxModels: 5 });
+assert.equal(limitedLanguage.count, 5, 'no more than five words participate in one language result');
+assert.equal(limitedLanguage.normalized, 80, 'the sixth selected word is excluded by the five-word limit');
 
 const accepted = calculateFinalAssociation({
   languages: [{ code: 'en', group: 'Germanic' }],
@@ -51,8 +61,8 @@ const rejected = calculateFinalAssociation({
 assert.equal(decisionStatusForResult(rejected), 'reject');
 
 const script = await readFile('associativvordes/script.js', 'utf8');
-assert.doesNotMatch(script, /state\.maxModels = 5/);
-assert.doesNotMatch(script, /slice\(0, state\.maxModels\)/);
+assert.match(script, /state\.maxModels = MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE/);
+assert.match(script, /slice\(0, state\.maxModels \|\| MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE\)/);
 assert.doesNotMatch(script, /passesWordThreshold/);
 assert.doesNotMatch(script, /derivative-model-input/);
 assert.match(script, /model_key: candidate\.model_key/);
@@ -63,7 +73,7 @@ assert.doesNotMatch(script, /function scoringCandidates[\s\S]*state\.languages\[
 const qwen = await readFile('associativvordes/js/qwen-client.js', 'utf8');
 assert.match(qwen, /compareFrequencyRepresentatives\(proposed, existing\)/);
 assert.doesNotMatch(qwen, /InteralAssociativeModels\?\.reconcile/, 'Qwen insertion waits for analyzeItem to reconcile after scoring');
-assert.match(qwen, /autoAnalyzeCandidatesPerLanguage: Infinity/);
+assert.equal((await import('../associativvordes/js/qwen-client.js')).QWEN_RUNTIME_CONFIG.autoAnalyzeCandidatesPerLanguage, 5);
 assert.match(qwen, /enableReviewModel: false/);
 
 console.log('Associative model-selection and threshold policy tests passed.');
