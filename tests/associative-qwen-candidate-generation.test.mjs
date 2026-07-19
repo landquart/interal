@@ -37,6 +37,69 @@ const endpointSource = await readFile('api/qwen-candidates.js', 'utf8');
 const endpointModule = await import('../api/qwen-candidates.js');
 
 assert.equal(typeof endpointModule.default, 'function', 'supplemental candidate API exports a loadable Vercel handler');
+
+const previousFetch = globalThis.fetch;
+const previousApiKey = process.env.Qwen3_235B_A22B_Instruct_2507_FP8_Yandex;
+const previousFolderId = process.env.yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8;
+process.env.Qwen3_235B_A22B_Instruct_2507_FP8_Yandex = 'test-key';
+process.env.yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8 = 'test-folder';
+globalThis.fetch = async () => ({
+  ok: true,
+  status: 200,
+  statusText: 'OK',
+  text: async () => JSON.stringify({
+    choices: [{
+      message: {
+        content: JSON.stringify({
+          candidates: {
+            en: [
+              { word: 'altruism', root_variant: 'altru' },
+              { word: 'altruist', root_variant: 'altru' },
+              { word: 'charity', root_variant: 'altru' },
+              { word: 'alterity', root_variant: '' }
+            ],
+            ru: [
+              { word: 'альтруизм', root_variant: 'альтру' },
+              { word: 'альтруист', root_variant: 'альтру' },
+              { word: 'благотворительность', root_variant: 'альтру' }
+            ]
+          }
+        })
+      }
+    }]
+  })
+});
+
+const responseHeaders = {};
+let responseText = '';
+const response = {
+  statusCode: 0,
+  setHeader(name, value) { responseHeaders[name] = value; },
+  end(value = '') { responseText = String(value); }
+};
+await endpointModule.default({
+  method: 'POST',
+  headers: {},
+  body: { root: 'alter', targetMeaning: 'other', interfaceLanguage: 'en', existingCandidates: {} }
+}, response);
+const endpointPayload = JSON.parse(responseText);
+assert.equal(response.statusCode, 200, 'supplemental endpoint accepts a valid request');
+assert.deepEqual(endpointPayload.candidates.en, [
+  { word: 'altruism', root_variant: 'altru' },
+  { word: 'altruist', root_variant: 'altru' }
+], 'endpoint retains only bounded English lemmas with a visible allomorph');
+assert.deepEqual(endpointPayload.candidates.ru, [
+  { word: 'альтруизм', root_variant: 'альтру' },
+  { word: 'альтруист', root_variant: 'альтру' }
+], 'endpoint retains only bounded Russian lemmas with a visible allomorph');
+assert.equal(responseHeaders['Cache-Control'], 'no-store', 'candidate responses are not cached');
+
+globalThis.fetch = previousFetch;
+if (previousApiKey == null) delete process.env.Qwen3_235B_A22B_Instruct_2507_FP8_Yandex;
+else process.env.Qwen3_235B_A22B_Instruct_2507_FP8_Yandex = previousApiKey;
+if (previousFolderId == null) delete process.env.yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8;
+else process.env.yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8 = previousFolderId;
+
 assert.match(clientSource, /key === 'selected' && value === true/, 'checking an unscored word activates the Qwen-analysis hook');
 assert.match(clientSource, /stateCandidateHasQwen\(candidate\)/, 'the checkbox hook does not repeat an existing Qwen score');
 assert.match(checkboxHookSource, /persistedCandidate[\s\S]*if \(persistedCandidate\) return result/, 'the overflow hook complements rather than duplicates the primary checkbox hook');
