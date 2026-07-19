@@ -6,12 +6,12 @@ import { extname, join, normalize, relative, sep } from 'node:path';
 import { once } from 'node:events';
 import { createCandidateIndexLoader } from '../associativvordes/js/candidate-index-loader.js';
 import { SEARCH_NORMALIZER_VERSION } from '../associativvordes/js/search-normalizer.js';
+import { AFFIX_SEARCH_CONFIG_VERSION } from '../associativvordes/js/affix-search-config.js';
+import { STATIC_INDEX_FORMAT, STATIC_MANIFEST_VERSION } from '../associativvordes/js/affix-boundary-index.js';
 
 const INDEX_ROOT = 'associativvordes/search-index';
 const MANIFEST_PATH = `${INDEX_ROOT}/manifest.json`;
 const REQUIRED_LANGUAGES = ['en', 'de', 'fr', 'es', 'it', 'ru'];
-const STATIC_MANIFEST_VERSION = '3';
-const STATIC_INDEX_FORMAT = 'static-inverted-ngram-v2';
 
 function isPlainObject(value) {
   return value && typeof value === 'object' && !Array.isArray(value);
@@ -43,6 +43,7 @@ async function manifestOrSkip() {
   if (!isPlainObject(manifest)
     || manifest.version !== STATIC_MANIFEST_VERSION
     || manifest.normalizer_version !== SEARCH_NORMALIZER_VERSION
+    || manifest.affix_config_version !== AFFIX_SEARCH_CONFIG_VERSION
     || manifest.index_format !== STATIC_INDEX_FORMAT
     || !isPlainObject(manifest.languages)) throw new Error('Static associative search manifest is incompatible.');
   for (const language of REQUIRED_LANGUAGES) {
@@ -86,9 +87,13 @@ async function runBrowserSmokeCheck() {
     const base = `http://127.0.0.1:${port}/associativvordes/search-index/`;
     const loader = createCandidateIndexLoader({ searchBaseUrl: base, legacyBaseUrl: `${base}missing/`, preferStatic: true, maxCachedResources: 16 });
     const regul = await loader.loadCandidateEntries('en', 'regul');
-    if (!regul.length || !regul.some(entry => entry.search_form.includes('regul'))) throw new Error('Browser smoke check did not find an English regul candidate.');
-    const middle = regul.find(entry => entry.search_form.indexOf('regul') > 0);
-    if (!middle) throw new Error('Browser smoke check did not find a root outside the initial word position.');
+    if (!regul.some(entry => entry.search_form.startsWith('regul'))) throw new Error('Browser smoke check did not find an English regul candidate at a valid boundary.');
+    if (regul.some(entry => entry.search_form === 'xregulation')) throw new Error('Browser smoke check accepted an unrecognized x- prefix.');
+    const alter = await loader.loadCandidateEntries('en', 'alter');
+    if (!alter.some(entry => entry.search_form.startsWith('alter'))) throw new Error('Browser smoke check did not find an English alter candidate.');
+    if (alter.some(entry => entry.search_form === 'walter')) throw new Error('Browser smoke check accepted alter inside Walter.');
+    const russianAlter = await loader.loadCandidateEntries('ru', 'alter');
+    if (russianAlter.some(entry => entry.search_form.includes('buhgalter'))) throw new Error('Browser smoke check accepted alter inside бухгалтерия.');
   } finally {
     await new Promise(resolve => server.close(resolve));
   }

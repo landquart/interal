@@ -2,10 +2,11 @@
 import { access, mkdir, readFile, stat, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { buildSearchForm, SEARCH_NORMALIZER_VERSION } from '../associativvordes/js/search-normalizer.js';
+import { AFFIX_SEARCH_CONFIG_VERSION } from '../associativvordes/js/affix-search-config.js';
+import { rootBoundarySegments } from '../associativvordes/js/root-matcher.js';
+import { STATIC_INDEX_FORMAT, STATIC_MANIFEST_VERSION, anchoredPostingKeys, parsePostingKey } from '../associativvordes/js/affix-boundary-index.js';
 
 const REQUIRED_LANGUAGES = ['en', 'de', 'fr', 'es', 'it', 'ru'];
-const STATIC_MANIFEST_VERSION = '3';
-const STATIC_INDEX_FORMAT = 'static-inverted-ngram-v2';
 
 function parseArgs(argv) {
   const options = { indexRoot: 'associativvordes/search-index', strict: false };
@@ -42,17 +43,9 @@ function fnv1a(value) {
   return hash >>> 0;
 }
 
-function bucketName(gram, count) {
+function bucketName(key, count) {
   const width = Math.max(2, Math.ceil(Math.log(count) / Math.log(16)));
-  return (fnv1a(gram) % count).toString(16).padStart(width, '0');
-}
-
-function uniqueGrams(value, length) {
-  const text = String(value || '');
-  const grams = new Set();
-  if (text.length < length) return grams;
-  for (let index = 0; index <= text.length - length; index += 1) grams.add(text.slice(index, index + length));
-  return grams;
+  return (fnv1a(key) % count).toString(16).padStart(width, '0');
 }
 
 function decodeDeltas(values) {
@@ -97,6 +90,30 @@ function sameStringSets(left, right) {
   return a.length === b.length && a.every((value, index) => value === b[index]);
 }
 
+function createBoundaryCache(searchForms, language, maxEntries = 50000) {
+  const cache = new Map();
+  return id => {
+    if (cache.has(id)) {
+      const value = cache.get(id);
+      cache.delete(id);
+      cache.set(id, value);
+      return value;
+    }
+    const value = rootBoundarySegments(searchForms[id], language);
+    cache.set(id, value);
+    if (cache.size > maxEntries) cache.delete(cache.keys().next().value);
+    return value;
+  };
+}
+
+function postingReferencesEntry(searchForm, boundaries, parsed) {
+  for (const boundary of boundaries) {
+    const start = boundary.start + parsed.offset;
+    if (start + parsed.length <= boundary.end && searchForm.slice(start, start + parsed.length) === parsed.gram) return true;
+  }
+  return false;
+}
+
 export async function validateStaticSearchIndex({ indexRoot, languages, strict = false }) {
   const errors = [];
   const warnings = [];
@@ -111,6 +128,7 @@ export async function validateStaticSearchIndex({ indexRoot, languages, strict =
   if (!isPlainObject(manifest)
     || manifest.version !== STATIC_MANIFEST_VERSION
     || manifest.normalizer_version !== SEARCH_NORMALIZER_VERSION
+    || manifest.affix_config_version !== AFFIX_SEARCH_CONFIG_VERSION
     || manifest.index_format !== STATIC_INDEX_FORMAT
     || !isPlainObject(manifest.languages)) {
     errors.push('manifest shape or versions are invalid');
@@ -169,9 +187,9 @@ export async function validateStaticSearchIndex({ indexRoot, languages, strict =
           for (const length of ['1', '2', '3']) {
             const posting = info.postings[length];
             if (!isPlainObject(posting) || !Number.isInteger(posting.bucket_count) || posting.bucket_count <= 0) continue;
-            const grams = uniqueGrams(searchForm, Number(length));
-            expectedPostingIds[length] += grams.size;
-            for (const gram of grams) expectedBuckets[length].add(bucketName(gram, posting.bucket_count));
+            const keys = anchoredPostingKeys(searchForm, language, Number(length));
+            expectedPostingIds[length] += keys.size;
+            for (const key of keys) expectedBuckets[length].add(bucketName(key, posting.bucket_count));
           }
         }
       } catch (error) {
@@ -183,6 +201,7 @@ export async function validateStaticSearchIndex({ indexRoot, languages, strict =
     languageReport.entries = expectedFirstId;
     if (expectedFirstId !== info.entries) errors.push(`${language}: entry block total ${expectedFirstId} does not equal manifest entries ${info.entries}`);
     if (searchForms.some(value => typeof value !== 'string' || !value)) errors.push(`${language}: one or more search forms could not be loaded`);
+    const boundariesForId = createBoundaryCache(searchForms, language);
 
     for (const length of ['1', '2', '3']) {
       const posting = info.postings[length];
@@ -198,7 +217,7 @@ export async function validateStaticSearchIndex({ indexRoot, languages, strict =
         errors.push(`${language}: postings bucket coverage mismatch for length ${length}; missing=${missing.join(',') || '-'} extra=${extra.join(',') || '-'}`);
       }
 
-      const seenGrams = new Set();
+      const seenKeys = new Set();
       let actualPostingIds = 0;
       for (const bucket of posting.buckets) {
         if (typeof bucket !== 'string') {
@@ -215,16 +234,17 @@ export async function validateStaticSearchIndex({ indexRoot, languages, strict =
           const payload = await readJson(path);
           languageReport.bytes += (await stat(path)).size;
           if (!isPlainObject(payload)) throw new Error('bucket payload must be an object');
-          for (const [gram, deltas] of Object.entries(payload)) {
-            if (gram.length !== Number(length)) throw new Error(`gram ${JSON.stringify(gram)} has wrong length`);
-            if (bucketName(gram, posting.bucket_count) !== bucket) throw new Error(`gram ${JSON.stringify(gram)} is stored in the wrong bucket ${bucket}`);
-            if (seenGrams.has(gram)) throw new Error(`gram ${JSON.stringify(gram)} is duplicated across buckets`);
-            seenGrams.add(gram);
+          for (const [key, deltas] of Object.entries(payload)) {
+            const parsed = parsePostingKey(key);
+            if (!parsed || parsed.length !== Number(length)) throw new Error(`posting key ${JSON.stringify(key)} has wrong shape or gram length`);
+            if (bucketName(key, posting.bucket_count) !== bucket) throw new Error(`posting key ${JSON.stringify(key)} is stored in the wrong bucket ${bucket}`);
+            if (seenKeys.has(key)) throw new Error(`posting key ${JSON.stringify(key)} is duplicated across buckets`);
+            seenKeys.add(key);
             const ids = decodeDeltas(deltas);
-            if (ids == null) throw new Error(`gram ${JSON.stringify(gram)} has invalid delta postings`);
+            if (ids == null) throw new Error(`posting key ${JSON.stringify(key)} has invalid delta postings`);
             for (const id of ids) {
-              if (id >= info.entries) throw new Error(`gram ${JSON.stringify(gram)} has an out-of-range id`);
-              if (!searchForms[id]?.includes(gram)) throw new Error(`gram ${JSON.stringify(gram)} references entry ${id} that does not contain it`);
+              if (id >= info.entries) throw new Error(`posting key ${JSON.stringify(key)} has an out-of-range id`);
+              if (!postingReferencesEntry(searchForms[id], boundariesForId(id), parsed)) throw new Error(`posting key ${JSON.stringify(key)} references entry ${id} outside an affix boundary`);
             }
             actualPostingIds += ids.length;
             languageReport.posting_grams += 1;
