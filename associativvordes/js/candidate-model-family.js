@@ -29,6 +29,19 @@ function normalizeFrenchAlternation(value) {
   return value;
 }
 
+function writingSystem(value) {
+  const text = String(value || '');
+  const hasLatin = /[A-Za-zÀ-ÖØ-öø-ÿ]/u.test(text);
+  const hasCyrillic = /[\u0400-\u04ff]/u.test(text);
+  const hasGreek = /[\u0370-\u03ff]/u.test(text);
+  const count = Number(hasLatin) + Number(hasCyrillic) + Number(hasGreek);
+  if (count > 1) return 'mixed';
+  if (hasCyrillic) return 'cyrillic';
+  if (hasGreek) return 'greek';
+  if (hasLatin) return 'latin';
+  return 'other';
+}
+
 export function canonicalLexicalStem(value, language = 'en') {
   const normalized = buildSearchForm(value).replace(/[^a-z0-9'-]+/g, '');
   if (!normalized) return '';
@@ -50,7 +63,7 @@ export function lexicalModelFamilyKey(candidate, root, language = 'en') {
   if (rootForm && wordForm.includes(rootForm) && stem.length < rootForm.length) stem = rootForm;
   const matchIndex = Number.isInteger(candidate?.match?.index) ? candidate.match.index : Math.max(0, wordForm.indexOf(rootForm));
   const prefix = matchIndex > 0 ? wordForm.slice(0, matchIndex) : '';
-  return `${prefix}|${stem}`;
+  return `${writingSystem(candidate?.word)}|${prefix}|${stem}`;
 }
 
 function totalIpm(candidate) {
