@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { findCandidatesForRoot } from '../associativvordes/js/candidate-finder.js';
-import { analyzeAssociativeWord } from '../associativvordes/js/association-analyzer.js';
+import { lexicalModelDescriptor } from '../associativvordes/js/candidate-model-family.js';
 
 const script = await readFile('associativvordes/script.js', 'utf8');
 const html = await readFile('associativvordes/index.html', 'utf8');
@@ -17,8 +17,9 @@ assert.match(script, /isCurrentRun\(runId\)/, 'runId guard remains in runtime');
 assert.match(script, /activeRunAbortController/, 'stale candidate loads are abortable');
 assert.match(script, /frequencyProfile: frequencyProfileFromCandidate\(candidate\)/, 'frequency profile is derived from index candidate');
 assert.match(script, /frequencyProfile: item\.frequencyProfile/, 'analysis receives precomputed frequency profile');
-assert.match(script, /const searchForm = String\(item\.search_form \|\| original\)/, 'inferModel uses search_form without replacing original word');
-assert.match(script, /Number\.isInteger\(item\.match\?\.index\)/, 'inferModel uses match metadata when available');
+assert.match(script, /lexicalModelDescriptor\(\{ \.\.\.item, word \}, root, language\)/, 'runtime model inference delegates to the canonical descriptor');
+assert.match(script, /model_key: candidate\.model_key \|\| candidate\.model_family_key/, 'canonical model identity is preserved from candidate search');
+assert.match(script, /reconcileModelRepresentatives\(validCandidates, root, lang\.code\)/, 'one representative per model is selected before Qwen analysis');
 assert.match(script, /window\.InteralPageStateExport|window\.InteralPageStateImport/, 'page state persistence hooks remain');
 assert.match(script, /sources: sourceState\.sources/, 'saved state includes sources without storing shard payloads');
 assert.doesNotMatch(script, /manifestLoaded|loadedShards|shardCache/, 'localStorage compaction does not persist manifest or shards');
@@ -36,6 +37,11 @@ assert.equal(alter[0].frequency_score, 91, 'frequency_score comes from index');
 assert.deepEqual(alter[0].sources, [{ source: 'fixture', ipm: 10 }], 'candidate contains sources');
 assert.equal(findCandidatesForRoot({ entries: fixtureEntries, root: 'alter', language: 'ru' }).candidates[0].word, 'альтернативный', 'Russian original word is preserved');
 assert.equal(findCandidatesForRoot({ entries: fixtureEntries, root: 'alter', language: 'en' }).diagnostics.rejectedByReason.sources_empty, 1, 'candidate without sources is rejected before analysis');
+
+const modelFromSearchForm = lexicalModelDescriptor({ word: 'неважно', search_form: 'alternativnyj', match: { type: 'exact', fragment: 'alter', index: 0 } }, 'alter', 'ru');
+assert.match(modelFromSearchForm.key, /\|alternativ$/, 'canonical model descriptor uses search_form rather than display spelling');
+const modelFromMatch = lexicalModelDescriptor({ word: 'realteration', search_form: 'realteration', match: { type: 'exact', fragment: 'alter', index: 2 } }, 'alter', 'en');
+assert.match(modelFromMatch.key, /\|re\|alter\|realteration$/, 'canonical model descriptor preserves prefix position from match metadata');
 
 const analyzerSource = await readFile('associativvordes/js/association-analyzer.js', 'utf8');
 assert.match(analyzerSource, /hasFrequencyProfile \? \{ \.\.\.frequencyProfile/, 'analyzer uses supplied frequencyProfile');
