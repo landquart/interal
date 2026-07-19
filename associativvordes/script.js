@@ -691,10 +691,10 @@ const TEXT_I18N = {
 
     function calculateFinal() {
       const languageResults = LANGUAGES.map(l => {
-        const score = calculateLanguage(l.code);
-        const semanticConfirmed = Number.isFinite(Number(score.normalized)) && (state.languages[l.code] || [])
-          .filter(item => item.selected)
-          .some(item => item.analysis?.association?.semantic_confirmed === true);
+        const candidates = scoringCandidates(l.code);
+        const score = calculateLanguageScore(candidates, { maxModels: state.maxModels, scoreGetter: wordWeight });
+        const semanticConfirmed = Number.isFinite(Number(score.normalized))
+          && candidates.some(item => item.analysis?.association?.semantic_confirmed === true);
         return { ...score, semanticConfirmed };
       });
       return calculateFinalAssociation({ languages: LANGUAGES, languageResults, languageStatuses: state.languageStatuses });
@@ -1090,9 +1090,9 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
 
     function makeAssociativeCard(timestamp = {}, author = null) {
       const result = calculateFinal();
-      const selectedLanguages = Object.entries(state.languages || {}).flatMap(([code, items]) => (items || [])
-        .filter(item => item.selected)
-        .map(item => ({ code, ...item })));
+      const selectedLanguages = LANGUAGES.flatMap(({ code }) =>
+        scoringCandidates(code).map(item => ({ code, ...item }))
+      );
       return {
         version: '1.0',
         card_type: 'vord_card',
