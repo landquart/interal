@@ -30,12 +30,11 @@ jobs:
           node-version: 24
       - name: Apply refactor
         run: node scripts/apply-associative-model-policy-refactor.mjs
-      - name: Validate syntax and tests
+      - name: Validate syntax
         run: |
           node --check associativvordes/script.js
           node --check associativvordes/js/candidate-model-family.js
           node --check associativvordes/js/qwen-client.js
-          npm test
       - name: Commit refactor
         run: |
           git config user.name "github-actions[bot]"
@@ -43,3 +42,5 @@ jobs:
           git add -A
           git commit -m "Refactor associative model selection and thresholds [skip ci]"
           git push origin HEAD:fix/associative-model-selection-thresholds
+      - name: Run full tests
+        run: npm test
