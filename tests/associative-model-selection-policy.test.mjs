@@ -58,10 +58,12 @@ assert.doesNotMatch(script, /derivative-model-input/);
 assert.match(script, /model_key: candidate\.model_key/);
 assert.match(script, /reconcileModelRepresentatives/);
 assert.match(script, /window\.InteralAssociativeModels/);
+assert.doesNotMatch(script, /function scoringCandidates[\s\S]*state\.languages\[langCode\] = reconciled/, 'render-time scoring must not replace in-flight candidate objects');
 
 const qwen = await readFile('associativvordes/js/qwen-client.js', 'utf8');
 assert.match(qwen, /compareFrequencyRepresentatives\(proposed, existing\)/);
 assert.doesNotMatch(qwen, /InteralAssociativeModels\?\.reconcile/, 'Qwen insertion waits for analyzeItem to reconcile after scoring');
 assert.match(qwen, /autoAnalyzeCandidatesPerLanguage: Infinity/);
+assert.match(qwen, /enableReviewModel: false/);
 
 console.log('Associative model-selection and threshold policy tests passed.');
