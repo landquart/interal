@@ -1,6 +1,6 @@
 import { findRootMatch, normalizeText } from './root-matcher.js';
 import { acceptAffixBoundaryMatch } from './affix-boundary-index.js';
-import { lexicalModelFamilyKey, selectHighestFrequencyPerModel } from './candidate-model-family.js';
+import { lexicalModelDescriptor, selectHighestFrequencyPerModel } from './candidate-model-family.js';
 
 const MATCH_PRIORITY = Object.freeze({ exact: 0, special: 1, fuzzy: 2 });
 const BOUNDARY_PRIORITY = Object.freeze({ token: 0, safe: 1, combining: 2, restricted: 3 });
@@ -147,7 +147,10 @@ export function findCandidatesForRoot({ entries, root, language = 'en', maxCandi
       total_ipm: totalIpm(entry),
       match
     };
-    candidate.model_family_key = lexicalModelFamilyKey(candidate, root, language);
+    const model = lexicalModelDescriptor(candidate, root, language);
+    candidate.model_family_key = model.key;
+    candidate.model_key = model.key;
+    candidate.model_label = model.label;
     matched.push(candidate);
   }
 

@@ -1,4 +1,5 @@
 import { API_CONFIG } from './swow-client.js';
+import { lexicalModelDescriptor, compareFrequencyRepresentatives } from './candidate-model-family.js';
 
 export const ASSOCIATION_SCORE_WEIGHTS = {
   directness: 0.45,
@@ -270,16 +271,12 @@ function activateLanguageTab(language) {
   return Boolean(tab);
 }
 
-function modelForGeneratedCandidate(entry, suggestion, canonicalRoot, buildSearchForm) {
-  const wordForm = buildSearchForm(entry.search_form || entry.word);
-  const variant = buildSearchForm(suggestion.root_variant || canonicalRoot);
-  const index = variant ? wordForm.indexOf(variant) : -1;
-  if (index > 0) return `${wordForm.slice(0, index)}-`;
-  if (index === 0) {
-    const tail = wordForm.slice(variant.length).match(/^[a-z0-9]{1,8}/i)?.[0];
-    return tail ? `-${tail}` : variant;
-  }
-  return buildSearchForm(canonicalRoot) || 'manual';
+function modelForGeneratedCandidate(entry, suggestion, canonicalRoot, language) {
+  const searchForm = entry.search_form || entry.word;
+  const variant = suggestion.root_variant || canonicalRoot;
+  const variantIndex = buildSearchForm(searchForm).indexOf(buildSearchForm(variant));
+  const match = { type: 'special', distance: 0, similarity: 1, fragment: buildSearchForm(variant), index: Math.max(0, variantIndex) };
+  return lexicalModelDescriptor({ ...entry, match }, canonicalRoot, language);
 }
 
 async function verifySuggestionInLocalIndex(loader, language, suggestion, buildSearchForm, signal) {
@@ -290,6 +287,10 @@ async function verifySuggestionInLocalIndex(loader, language, suggestion, buildS
 }
 
 async function addVerifiedCandidateToRuntime(language, suggestion, entry, root, buildSearchForm) {
+  const descriptor = modelForGeneratedCandidate(entry, suggestion, root, language);
+  const proposed = { ...entry, model_key: descriptor.key, model: descriptor.label, frequencyProfile: { frequency_score: entry.frequency_score } };
+  const existing = window.InteralAssociativeModels?.findRepresentative?.(language, descriptor.key);
+  if (existing && compareFrequencyRepresentatives(proposed, existing) >= 0) return false;
   if (!activateLanguageTab(language)) return false;
   window.addRow(language);
   const total = candidateCountFromPanel();
@@ -317,7 +318,9 @@ async function addVerifiedCandidateToRuntime(language, suggestion, entry, root, 
   window.updateItem(language, index, 'frequencyProfile', frequencyProfile);
   window.updateItem(language, index, 'warnings', ['qwen_suggestion_verified_in_local_index']);
   window.updateItem(language, index, 'word', entry.word);
-  window.updateItem(language, index, 'model', modelForGeneratedCandidate(entry, suggestion, root, buildSearchForm));
+  window.updateItem(language, index, 'model_key', descriptor.key);
+  window.updateItem(language, index, 'model', descriptor.label);
+  window.InteralAssociativeModels?.reconcile?.(language);
   return true;
 }
 

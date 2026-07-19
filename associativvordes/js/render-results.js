@@ -120,15 +120,9 @@ export function renderCandidateEvidenceDetails(item = {}, labels = {}, lang = 'r
 
 
 export function thresholdStatusLabel(status, lang = 'ru') {
-  const labels = lang === 'en' ? {
-    passed_threshold: 'threshold passed',
-    below_threshold: 'below the 35% threshold',
-    unavailable: 'unavailable'
-  } : {
-    passed_threshold: 'порог пройден',
-    below_threshold: 'ниже порога 35%',
-    unavailable: 'нет данных'
-  };
+  const labels = lang === 'en'
+    ? { evaluated: 'evaluated', unavailable: 'unavailable' }
+    : { evaluated: 'оценено', unavailable: 'нет данных' };
   return labels[status] || labels.unavailable;
 }
 

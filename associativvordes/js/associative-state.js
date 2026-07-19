@@ -84,7 +84,7 @@ function compactStateSwowEvidence(swow) {
 export function createEmptyAssociativeState({ languages = DEFAULT_LANGUAGE_CODES, createLanguageStatus = defaultLanguageStatus } = {}) {
   const codes = languageCodes(languages);
   return {
-    root: '', meaning: '', elementType: 'root', maxModels: 5,
+    root: '', meaning: '', elementType: 'root', maxModels: Number.MAX_SAFE_INTEGER,
     languages: Object.fromEntries(codes.map(code => [code, []])),
     checked: false,
     languageStatuses: Object.fromEntries(codes.map(code => [code, createLanguageStatus('idle')])),
@@ -113,7 +113,7 @@ export function invalidateFinalCalculation(state, { shouldSkip = () => false } =
 
 export function addManualCandidate(state, lang, candidate = {}) {
   state.languages[lang] ||= [];
-  const row = { word: '', model: '', analysis: null, frequency_score: null, association_score: null, final_score: null, selected: false, ...candidate };
+  const row = { word: '', model: '', model_key: '', analysis: null, frequency_score: null, association_score: null, final_score: null, selected: false, ...candidate };
   state.languages[lang].push(row);
   invalidateFinalCalculation(state);
   return row;
@@ -125,6 +125,7 @@ export function updateCandidate(state, lang, idx, key, value, { inferModel = () 
   item[key] = value;
   if (key === 'word') {
     item.model = inferModel(value, state.root, state.elementType);
+    item.model_key = '';
     item.analysisStatus = normalizeText(value) ? 'analyzing' : 'unavailable';
     item.analysis = null;
     item.frequency_score = null;
@@ -159,7 +160,7 @@ function compactAssociativeLanguages(languages, languageList = DEFAULT_LANGUAGE_
           warnings: Array.isArray(item.warnings) ? item.warnings.slice(0, 8).map(w => truncateStateText(w, MAX_STATE_WARNING_LENGTH)) : [],
           category_score: finiteOrNull(item.category_score), category_weight: finiteOrNull(item.category_weight),
           frequencyProfile: item.frequencyProfile && typeof item.frequencyProfile === 'object' ? { frequency_score: finiteOrNull(item.frequencyProfile.frequency_score), rank: finiteOrNull(item.frequencyProfile.rank), category_score: finiteOrNull(item.frequencyProfile.category_score), category_weight: finiteOrNull(item.frequencyProfile.category_weight) } : null,
-          model: String(item.model || ''), selected: Boolean(item.selected), association_score: finiteOrNull(item.association_score), final_score: finiteOrNull(item.final_score), analysisStatus: item.analysisStatus || null,
+          model: String(item.model || ''), model_key: String(item.model_key || item.model_family_key || ''), selected: Boolean(item.selected), association_score: finiteOrNull(item.association_score), final_score: finiteOrNull(item.final_score), analysisStatus: item.analysisStatus || null,
           analysis: item.analysis ? { final_score: finiteOrNull(item.analysis.final_score), frequency: item.analysis.frequency ? { frequency_score: finiteOrNull(item.analysis.frequency.frequency_score) } : null, swow: item.analysis.swow ? compactStateSwowEvidence(item.analysis.swow) : null, association: item.analysis.association ? { association_score: finiteOrNull(item.analysis.association.association_score), directness: finiteOrNull(item.analysis.association.directness), field_relatedness: finiteOrNull(item.analysis.association.field_relatedness), domain_shift: finiteOrNull(item.analysis.association.domain_shift), semantic_confirmed: item.analysis.association.semantic_confirmed === true, explanation: truncateStateText(item.analysis.association.explanation, MAX_STATE_EXPLANATION_LENGTH) } : null, warnings: Array.isArray(item.analysis.warnings) ? item.analysis.warnings.slice(0, 8).map(w => truncateStateText(w, MAX_STATE_WARNING_LENGTH)) : [] } : null
         };
       });
@@ -193,7 +194,7 @@ export function restoreAssociativeState(saved = {}, { languages = DEFAULT_LANGUA
   restored.root = typeof fields.root === 'string' ? fields.root : '';
   restored.meaning = typeof fields.meaning === 'string' ? fields.meaning : '';
   restored.elementType = fields.elementType === 'preposition' ? 'preposition' : 'root';
-  restored.maxModels = Number.isFinite(Number(fields.maxModels)) ? Math.max(1, Math.min(20, Number(fields.maxModels))) : 5;
+  restored.maxModels = Number.isFinite(Number(fields.maxModels)) ? Math.max(1, Number(fields.maxModels)) : Number.MAX_SAFE_INTEGER;
   restored.languages = compactAssociativeLanguages(fields.languages || fields.selectedLanguageResults || {}, languages);
   restored.checked = Boolean(fields.checked || fields.result);
   const message = currentLang() === 'en' ? 'The previous calculation was interrupted. Run it again.' : 'Предыдущий расчёт был прерван. Запустите его повторно.';
