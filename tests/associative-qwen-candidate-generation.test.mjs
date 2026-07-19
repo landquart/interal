@@ -31,10 +31,16 @@ assert.deepEqual(normalized.en, [
 assert.deepEqual(normalized.de, [], 'missing language arrays normalize to an empty list');
 
 const clientSource = await readFile('associativvordes/js/qwen-client.js', 'utf8');
+const checkboxHookSource = await readFile('associativvordes/js/qwen-checkbox-hook.js', 'utf8');
+const swowClientSource = await readFile('associativvordes/js/swow-client.js', 'utf8');
 const endpointSource = await readFile('api/qwen-candidates.js', 'utf8');
 
 assert.match(clientSource, /key === 'selected' && value === true/, 'checking an unscored word activates the Qwen-analysis hook');
 assert.match(clientSource, /stateCandidateHasQwen\(candidate\)/, 'the checkbox hook does not repeat an existing Qwen score');
+assert.match(checkboxHookSource, /persistedCandidate[\s\S]*if \(persistedCandidate\) return result/, 'the overflow hook complements rather than duplicates the primary checkbox hook');
+assert.match(checkboxHookSource, /input\.word-select\[data-lang=/, 'visible rows beyond the compact-state limit are located directly in the table');
+assert.match(checkboxHookSource, /await window\.analyzeItem\(language, index\)/, 'checking an unscored row beyond the first 80 still runs analysis');
+assert.match(swowClientSource, /import '\.\/qwen-checkbox-hook\.js'/, 'the overflow checkbox hook is installed by the normal runtime module graph');
 assert.match(clientSource, /loadCandidateEntries\(language, suggestion\.word/, 'generated words must be found in the local static index');
 assert.match(clientSource, /buildSearchForm\(entry\.word\) === requested/, 'local verification requires an exact normalized lemma');
 assert.match(clientSource, /qwen_suggestion_verified_in_local_index/, 'only locally verified suggestions are marked for insertion');
