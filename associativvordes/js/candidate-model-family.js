@@ -7,11 +7,11 @@ const SIMPLE_ENDINGS = Object.freeze({
   es: ['amientos', 'amiento', 'imientos', 'imiento', 'mente', 'ados', 'adas', 'idos', 'idas', 'ando', 'iendo', 'os', 'as', 'o', 'a'],
   it: ['amenti', 'amento', 'imenti', 'imento', 'mente', 'ando', 'endo', 'ati', 'ate', 'ito', 'ita', 'iti', 'ite', 'i', 'e', 'o', 'a'],
   ru: [
-    'nymi', 'nymi', 'nogo', 'nego', 'nomu', 'nemu', 'nyh', 'nih', 'naja', 'njaja', 'noe', 'nee', 'nye', 'nie',
+    'nymi', 'nogo', 'nego', 'nomu', 'nemu', 'nyh', 'nih', 'naja', 'njaja', 'noe', 'nee', 'nye', 'nie',
     'nyj', 'nij', 'noj', 'nuju', 'njuju', 'nym', 'nim', 'nom', 'nem', 'no',
     'jami', 'ami', 'jakh', 'ah', 'jah', 'ogo', 'ego', 'omu', 'emu', 'ymi', 'imi', 'yh', 'ih',
     'aja', 'jaja', 'oe', 'ee', 'ye', 'ie', 'uju', 'juu', 'oj', 'ej', 'yj', 'ij',
-    'ami', 'jami', 'ov', 'ev', 'om', 'em', 'am', 'jam', 'ah', 'jah', 'u', 'ju', 'y', 'i', 'a', 'ja', 'e'
+    'ov', 'ev', 'om', 'em', 'am', 'jam', 'u', 'ju', 'y', 'i', 'a', 'ja', 'e'
   ]
 });
 
@@ -30,14 +30,13 @@ function normalizeFrenchAlternation(value) {
 }
 
 export function canonicalLexicalStem(value, language = 'en') {
-  let stem = buildSearchForm(value).replace(/[^a-z0-9'-]+/g, '');
-  if (!stem) return '';
+  const normalized = buildSearchForm(value).replace(/[^a-z0-9'-]+/g, '');
+  if (!normalized) return '';
 
   const endings = SIMPLE_ENDINGS[language] || SIMPLE_ENDINGS.en;
-  for (let pass = 0; pass < 2; pass += 1) {
-    const next = stripOneEnding(stem, endings);
-    if (next === stem) break;
-    stem = next;
+  let stem = stripOneEnding(normalized, endings);
+  if ((language === 'es' || language === 'it') && normalized.endsWith('mente')) {
+    stem = stripOneEnding(stem, endings);
   }
   if (language === 'fr') stem = normalizeFrenchAlternation(stem);
   return stem;
