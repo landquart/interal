@@ -18,13 +18,52 @@ import {
 
 export { STATIC_INDEX_FORMAT, STATIC_MANIFEST_VERSION, fuzzySeedGrams };
 
+export const STATIC_ENTRY_BLOCK_CONCURRENCY = 6;
+export const STATIC_RESOURCE_RETRY_ATTEMPTS = 3;
+
+export async function mapWithConcurrency(items, limit, mapper) {
+  const values = Array.from(items || []);
+  const workerLimit = Number(limit);
+  if (!Number.isInteger(workerLimit) || workerLimit < 1) throw new TypeError('concurrency limit must be a positive integer');
+  if (typeof mapper !== 'function') throw new TypeError('mapper must be a function');
+  const output = new Array(values.length);
+  let cursor = 0;
+
+  async function worker() {
+    while (cursor < values.length) {
+      const index = cursor;
+      cursor += 1;
+      output[index] = await mapper(values[index], index);
+    }
+  }
+
+  await Promise.all(Array.from({ length: Math.min(workerLimit, values.length) }, () => worker()));
+  return output;
+}
+
+async function retryStaticResource(operation, { signal, shouldRetry, attempts = STATIC_RESOURCE_RETRY_ATTEMPTS } = {}) {
+  let lastError;
+  const totalAttempts = Math.max(1, Number(attempts) || 1);
+  for (let attempt = 1; attempt <= totalAttempts; attempt += 1) {
+    if (signal?.aborted) throw lastError || signal.reason || new Error('Static index request aborted.');
+    try {
+      return await operation();
+    } catch (error) {
+      lastError = error;
+      if (attempt >= totalAttempts || !shouldRetry?.(error)) throw error;
+      await new Promise(resolve => setTimeout(resolve, 120 * attempt));
+    }
+  }
+  throw lastError;
+}
+
 export function validateStaticManifest(manifest, context) {
   const { isPlainObject, isSafeRelativePath, manifestConfigHash, makeError, codes } = context;
   if (manifest.normalizer_version !== SEARCH_NORMALIZER_VERSION) throw makeError(codes.INDEX_CONFIG_INCOMPATIBLE, 'Static search index normalizer version is incompatible.');
   if (manifest.affix_config_version !== AFFIX_SEARCH_CONFIG_VERSION) throw makeError(codes.INDEX_CONFIG_INCOMPATIBLE, 'Static search affix configuration is incompatible.');
   if (manifest.index_format !== STATIC_INDEX_FORMAT) throw makeError(codes.INDEX_CONFIG_INCOMPATIBLE, 'Static search index format is unsupported.');
   if (typeof manifestConfigHash(manifest) !== 'string' || !manifestConfigHash(manifest)) throw makeError(codes.INDEX_CONFIG_INCOMPATIBLE, 'Static search index global config hash is required.');
-  if (!isPlainObject(manifest.languages)) throw makeError(codes.MANIFEST_INVALID, 'Static search index languages must be an object.');
+  if (!isPlainObject(manifest.languages)) throw makeError(codes.MANIFEST_INVALID, 'Static search index manifest languages must be an object.');
   for (const [language, info] of Object.entries(manifest.languages)) {
     if (!isPlainObject(info) || !Number.isInteger(info.entries) || info.entries < 0) throw makeError(codes.MANIFEST_INVALID, 'Static search language metadata is invalid.', { language });
     if (!Array.isArray(info.sources) || !Array.isArray(info.entry_blocks) || !isPlainObject(info.postings)) throw makeError(codes.MANIFEST_INVALID, 'Static search language resources are missing.', { language });
@@ -132,16 +171,17 @@ function blockForId(info, id) {
 export async function loadStaticCandidateEntries({ manifest, language, root, signal, loadResource, context, diagnostics }) {
   const info = manifest.languages[language];
   if (!info) throw context.makeError(context.codes.LANGUAGE_NOT_INDEXED, 'Language is not indexed.', { language });
+  const shouldRetryFetch = error => error?.code === context.codes.SHARD_FETCH_FAILED;
 
   async function loadPosting(lookup) {
     const meta = info.postings[String(lookup.length)];
     const bucket = bucketName(lookup.key, meta.bucket_count);
     if (!meta.buckets.includes(bucket)) return [];
     const path = meta.template.replace('{bucket}', bucket);
-    const payload = await loadResource(path, { signal, code: context.codes.SHARD_FETCH_FAILED, language, shard: bucket, validator: value => {
+    const payload = await retryStaticResource(() => loadResource(path, { signal, code: context.codes.SHARD_FETCH_FAILED, language, shard: bucket, validator: value => {
       if (!context.isPlainObject(value)) throw context.makeError(context.codes.SHARD_INVALID, 'Static postings bucket must be an object.', { language, shard: bucket });
       return value;
-    } });
+    } }), { signal, shouldRetry: shouldRetryFetch });
     if (!Object.hasOwn(payload, lookup.key)) return [];
     const decoded = decodeDeltas(payload[lookup.key]);
     if (decoded == null) throw context.makeError(context.codes.SHARD_INVALID, `Static postings list is invalid for ${lookup.key}.`, { language, shard: bucket });
@@ -170,13 +210,13 @@ export async function loadStaticCandidateEntries({ manifest, language, root, sig
       grouped.get(block.file).ids.push(id);
     }
     const output = [];
-    await Promise.all([...grouped.values()].map(async ({ block, ids: blockIds }) => {
-      const payload = await loadResource(block.file, { signal, code: context.codes.SHARD_FETCH_FAILED, language, shard: block.file, validator: value => {
+    await mapWithConcurrency(grouped.values(), STATIC_ENTRY_BLOCK_CONCURRENCY, async ({ block, ids: blockIds }) => {
+      const payload = await retryStaticResource(() => loadResource(block.file, { signal, code: context.codes.SHARD_FETCH_FAILED, language, shard: block.file, validator: value => {
         if (!context.isPlainObject(value) || value.first_id !== block.first_id || !Array.isArray(value.entries) || value.entries.length !== block.entries) throw context.makeError(context.codes.SHARD_INVALID, 'Static entry block is invalid.', { language, shard: block.file });
         return value;
-      } });
+      } }), { signal, shouldRetry: shouldRetryFetch });
       for (const id of blockIds) output.push({ id, entry: decodeCompactEntry(payload.entries[id - block.first_id], sourceDictionary, language, id, context) });
-    }));
+    });
     output.sort((a, b) => a.id - b.id);
     return output.map(item => item.entry);
   }
