@@ -11,7 +11,7 @@ assert.equal(QWEN_RUNTIME_CONFIG.enableCandidateGeneration, true, 'bounded suppl
 assert.equal(QWEN_RUNTIME_CONFIG.maxGeneratedCandidatesPerLanguage, 2, 'candidate generation cannot create an unbounded result set');
 assert.deepEqual(THRESHOLDS, { main: 35 }, 'only the final association threshold remains');
 assert.equal(QWEN_RUNTIME_CONFIG.enableReviewModel, false, 'score-triggered per-word review is disabled');
-assert.equal(QWEN_RUNTIME_CONFIG.autoAnalyzeCandidatesPerLanguage, Infinity, 'every model representative is analyzed');
+assert.equal(QWEN_RUNTIME_CONFIG.autoAnalyzeCandidatesPerLanguage, 5, 'automatic analysis is limited to five model representatives per language');
 assert.equal(QWEN_RUNTIME_CONFIG.maxReviewRequestsPerSearch, 0, 'no per-word review request budget remains');
 assert.match(script, /languageStatuses/, 'per-language statuses are persisted in state');
 assert.match(script, /createLanguageStatus\('no_candidates'\)[\s\S]*continue;/, 'no_candidates path skips ordinary candidate Qwen analysis');

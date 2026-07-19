@@ -1,6 +1,7 @@
 import { API_CONFIG } from './swow-client.js';
 import { buildSearchForm } from './search-normalizer.js';
 import { lexicalModelDescriptor, compareFrequencyRepresentatives } from './candidate-model-family.js';
+import { MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE } from './associative-state.js';
 
 export const ASSOCIATION_SCORE_WEIGHTS = {
   directness: 0.45,
@@ -17,7 +18,7 @@ export const QWEN_RUNTIME_CONFIG = {
   enableCandidateGeneration: true,
   enableReviewModel: false,
   maxCandidatesPerLanguage: Infinity,
-  autoAnalyzeCandidatesPerLanguage: Infinity,
+  autoAnalyzeCandidatesPerLanguage: MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE,
   maxGeneratedCandidatesPerLanguage: 2,
   maxConcurrentQwenRequests: 1,
   maxReviewRequestsPerSearch: 0,

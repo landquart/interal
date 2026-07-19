@@ -1,6 +1,7 @@
 const DEFAULT_LANGUAGE_CODES = ['en', 'de', 'fr', 'es', 'it', 'ru'];
 const PAGE_STATE_VERSION = 1;
 const PAGE_STATE_NAME = 'associativvordes';
+export const MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE = 5;
 const MAX_STATE_CANDIDATES_PER_LANGUAGE = 80;
 const MAX_STATE_SOURCES_PER_CANDIDATE = 12;
 const MAX_STATE_WARNING_LENGTH = 240;
@@ -84,7 +85,7 @@ function compactStateSwowEvidence(swow) {
 export function createEmptyAssociativeState({ languages = DEFAULT_LANGUAGE_CODES, createLanguageStatus = defaultLanguageStatus } = {}) {
   const codes = languageCodes(languages);
   return {
-    root: '', meaning: '', elementType: 'root', maxModels: Number.MAX_SAFE_INTEGER,
+    root: '', meaning: '', elementType: 'root', maxModels: MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE,
     languages: Object.fromEntries(codes.map(code => [code, []])),
     checked: false,
     languageStatuses: Object.fromEntries(codes.map(code => [code, createLanguageStatus('idle')])),
@@ -194,7 +195,9 @@ export function restoreAssociativeState(saved = {}, { languages = DEFAULT_LANGUA
   restored.root = typeof fields.root === 'string' ? fields.root : '';
   restored.meaning = typeof fields.meaning === 'string' ? fields.meaning : '';
   restored.elementType = fields.elementType === 'preposition' ? 'preposition' : 'root';
-  restored.maxModels = Number.isFinite(Number(fields.maxModels)) ? Math.max(1, Number(fields.maxModels)) : Number.MAX_SAFE_INTEGER;
+  restored.maxModels = Number.isFinite(Number(fields.maxModels))
+    ? Math.max(1, Math.min(MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE, Number(fields.maxModels)))
+    : MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE;
   restored.languages = compactAssociativeLanguages(fields.languages || fields.selectedLanguageResults || {}, languages);
   restored.checked = Boolean(fields.checked || fields.result);
   const message = currentLang() === 'en' ? 'The previous calculation was interrupted. Run it again.' : 'Предыдущий расчёт был прерван. Запустите его повторно.';
