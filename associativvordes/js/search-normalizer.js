@@ -35,3 +35,7 @@ export function buildSearchForm(value) {
     .replace(/\s+/g, ' ')
     .trim();
 }
+
+export function isUsableSearchForm(value) {
+  return /[a-z0-9]/i.test(String(value ?? ''));
+}
