@@ -12,10 +12,11 @@ export const FINAL_SCORE_WEIGHTS = {
 };
 
 export const QWEN_RUNTIME_CONFIG = {
-  enableCandidateGeneration: false,
+  enableCandidateGeneration: true,
   enableReviewModel: true,
   maxCandidatesPerLanguage: Infinity,
   autoAnalyzeCandidatesPerLanguage: 5,
+  maxGeneratedCandidatesPerLanguage: 2,
   maxConcurrentQwenRequests: 1,
   maxReviewRequestsPerSearch: 5,
   requestTimeoutMs: 15000
@@ -28,7 +29,8 @@ export const QWEN_ERROR_CODES = Object.freeze({
   SEMANTIC_SCORES_INVALID: 'QWEN_SEMANTIC_SCORES_INVALID',
   ABORTED: 'QWEN_ABORTED',
   BACKEND_ERROR: 'QWEN_BACKEND_ERROR',
-  REVIEW_FAILED: 'QWEN_REVIEW_FAILED'
+  REVIEW_FAILED: 'QWEN_REVIEW_FAILED',
+  CANDIDATE_GENERATION_FAILED: 'QWEN_CANDIDATE_GENERATION_FAILED'
 });
 
 export class QwenClientError extends Error {
@@ -171,3 +173,272 @@ export async function getQwenAssociationScores({ language, targetMeaning, word, 
   }));
   return { ...parsed, model: requestedModel };
 }
+
+const CONTROL_LANGUAGE_CODES = Object.freeze(['en', 'de', 'fr', 'es', 'it', 'ru']);
+
+function normalizeCandidateWord(value, maxLength = 80) {
+  const word = typeof value === 'string' ? value.trim().normalize('NFC') : '';
+  return word && word.length <= maxLength && !/[\r\n]/.test(word) ? word : '';
+}
+
+export function normalizeQwenCandidateSuggestions(payload, languages = CONTROL_LANGUAGE_CODES, maxPerLanguage = QWEN_RUNTIME_CONFIG.maxGeneratedCandidatesPerLanguage) {
+  const source = payload?.candidates && typeof payload.candidates === 'object' ? payload.candidates : {};
+  const output = {};
+  for (const language of languages) {
+    const seen = new Set();
+    output[language] = [];
+    for (const raw of Array.isArray(source[language]) ? source[language] : []) {
+      const item = typeof raw === 'string' ? { word: raw } : raw;
+      if (!item || typeof item !== 'object' || Array.isArray(item)) continue;
+      const word = normalizeCandidateWord(item.word);
+      const rootVariant = normalizeCandidateWord(item.root_variant ?? item.rootVariant, 40);
+      if (!word) continue;
+      const key = word.toLocaleLowerCase(language === 'ru' ? 'ru' : undefined);
+      if (seen.has(key)) continue;
+      seen.add(key);
+      output[language].push({ word, root_variant: rootVariant });
+      if (output[language].length >= Math.max(0, Number(maxPerLanguage) || 0)) break;
+    }
+  }
+  return output;
+}
+
+function qwenCandidateGenerationUrl() {
+  return globalThis.location?.hostname === 'landquart.github.io'
+    ? 'https://interal.vercel.app/api/qwen-candidates'
+    : '/api/qwen-candidates';
+}
+
+export async function getQwenCandidateSuggestions({ root, targetMeaning, existingCandidates = {}, signal } = {}) {
+  const timeoutController = new AbortController();
+  const timeoutId = setTimeout(() => timeoutController.abort(new Error('Qwen candidate request timeout')), QWEN_RUNTIME_CONFIG.requestTimeoutMs);
+  const abortController = new AbortController();
+  const forwardAbort = () => abortController.abort(signal?.reason);
+  const timeoutAbort = () => abortController.abort(timeoutController.signal.reason);
+  if (signal) {
+    if (signal.aborted) throw qwenError(QWEN_ERROR_CODES.ABORTED, 'Qwen candidate request aborted.');
+    signal.addEventListener('abort', forwardAbort, { once: true });
+  }
+  timeoutController.signal.addEventListener('abort', timeoutAbort, { once: true });
+  let response;
+  try {
+    response = await fetch(qwenCandidateGenerationUrl(), {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ root, targetMeaning, existingCandidates, interfaceLanguage: getInterfaceLanguage() }),
+      signal: abortController.signal
+    });
+  } catch (error) {
+    if (timeoutController.signal.aborted) throw qwenError(QWEN_ERROR_CODES.TIMEOUT, 'Qwen candidate generation timed out.', { cause: error });
+    if (error?.name === 'AbortError') throw qwenError(QWEN_ERROR_CODES.ABORTED, 'Qwen candidate generation aborted.', { cause: error });
+    throw qwenError(QWEN_ERROR_CODES.CANDIDATE_GENERATION_FAILED, 'Qwen candidate generation failed.', { cause: error });
+  } finally {
+    clearTimeout(timeoutId);
+    signal?.removeEventListener?.('abort', forwardAbort);
+    timeoutController.signal.removeEventListener('abort', timeoutAbort);
+  }
+  const payload = await response.json().catch(error => { throw qwenError(QWEN_ERROR_CODES.INVALID_RESPONSE, 'Qwen candidate generation returned invalid JSON.', { cause: error }); });
+  if (!response.ok || payload?.ok === false) throw qwenError(payload?.errorCode || QWEN_ERROR_CODES.CANDIDATE_GENERATION_FAILED, 'Qwen candidate generation backend error.', { status: response.status, details: payload });
+  return normalizeQwenCandidateSuggestions(payload);
+}
+
+function hasFiniteScore(value) {
+  return value !== null && value !== undefined && value !== '' && Number.isFinite(Number(value));
+}
+
+function stateCandidateHasQwen(candidate) {
+  return hasFiniteScore(candidate?.analysis?.association?.association_score)
+    || hasFiniteScore(candidate?.association_score)
+    || candidate?.analysisStatus === 'analyzing';
+}
+
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function candidateCountFromPanel() {
+  const paragraphs = [...(document.getElementById('languagePanel')?.querySelectorAll('p.muted') || [])];
+  const countText = paragraphs.map(element => element.textContent || '').find(text => /(?:Показано|Showing)/i.test(text));
+  const match = countText?.match(/(?:из|of)\s+(\d+)\s+(?:кандидатов|candidates)/i);
+  return match ? Number(match[1]) : null;
+}
+
+function activateLanguageTab(language) {
+  const index = CONTROL_LANGUAGE_CODES.indexOf(language);
+  const tab = document.querySelectorAll('#tabs .tab')[index];
+  tab?.click();
+  return Boolean(tab);
+}
+
+function modelForGeneratedCandidate(entry, suggestion, canonicalRoot, buildSearchForm) {
+  const wordForm = buildSearchForm(entry.search_form || entry.word);
+  const variant = buildSearchForm(suggestion.root_variant || canonicalRoot);
+  const index = variant ? wordForm.indexOf(variant) : -1;
+  if (index > 0) return `${wordForm.slice(0, index)}-`;
+  if (index === 0) {
+    const tail = wordForm.slice(variant.length).match(/^[a-z0-9]{1,8}/i)?.[0];
+    return tail ? `-${tail}` : variant;
+  }
+  return buildSearchForm(canonicalRoot) || 'manual';
+}
+
+async function verifySuggestionInLocalIndex(loader, language, suggestion, buildSearchForm, signal) {
+  const requested = buildSearchForm(suggestion.word);
+  if (!requested) return null;
+  const entries = await loader.loadCandidateEntries(language, suggestion.word, { signal });
+  return entries.find(entry => buildSearchForm(entry.word) === requested || buildSearchForm(entry.normalized) === requested) || null;
+}
+
+async function addVerifiedCandidateToRuntime(language, suggestion, entry, root, buildSearchForm) {
+  if (!activateLanguageTab(language)) return false;
+  window.addRow(language);
+  const total = candidateCountFromPanel();
+  if (!Number.isInteger(total) || total < 1) return false;
+  const index = total - 1;
+  const searchForm = entry.search_form || buildSearchForm(entry.word);
+  const variant = buildSearchForm(suggestion.root_variant || root);
+  const variantIndex = variant ? searchForm.indexOf(variant) : -1;
+  const fragment = variantIndex >= 0 ? variant : buildSearchForm(suggestion.word);
+  const match = { type: 'special', distance: 0, similarity: 1, fragment, index: Math.max(0, variantIndex) };
+  const frequencyProfile = {
+    frequency_score: entry.frequency_score,
+    category_breakdown: entry.category_breakdown || {},
+    rank: entry.rank ?? null,
+    sources: Array.isArray(entry.sources) ? entry.sources : [],
+    warnings: []
+  };
+
+  window.updateItem(language, index, 'normalized', entry.normalized || entry.word);
+  window.updateItem(language, index, 'search_form', searchForm);
+  window.updateItem(language, index, 'match', match);
+  window.updateItem(language, index, 'rank', entry.rank ?? null);
+  window.updateItem(language, index, 'category_breakdown', entry.category_breakdown || {});
+  window.updateItem(language, index, 'sources', Array.isArray(entry.sources) ? entry.sources : []);
+  window.updateItem(language, index, 'frequencyProfile', frequencyProfile);
+  window.updateItem(language, index, 'warnings', ['qwen_suggestion_verified_in_local_index']);
+  window.updateItem(language, index, 'word', entry.word);
+  window.updateItem(language, index, 'model', modelForGeneratedCandidate(entry, suggestion, root, buildSearchForm));
+  return true;
+}
+
+function installAssociativeBrowserEnhancements() {
+  if (typeof window === 'undefined' || typeof document === 'undefined') return;
+  let attempts = 0;
+  const install = () => {
+    attempts += 1;
+    if (typeof window.updateItem !== 'function'
+      || typeof window.analyzeItem !== 'function'
+      || typeof window.addRow !== 'function'
+      || typeof window.InteralPageStateExport !== 'function') {
+      if (attempts < 100) setTimeout(install, 100);
+      return;
+    }
+    if (window.updateItem.__interalQwenCandidateEnhancements) return;
+
+    const originalUpdateItem = window.updateItem;
+    const pendingCheckboxAnalyses = new Set();
+    const enhancedUpdateItem = function enhancedUpdateItem(language, index, key, value) {
+      const result = originalUpdateItem.apply(this, arguments);
+      if (key === 'selected' && value === true) {
+        const analysisKey = `${language}:${index}`;
+        queueMicrotask(async () => {
+          const snapshot = window.InteralPageStateExport?.();
+          const candidate = snapshot?.state?.languages?.[language]?.[index];
+          if (!candidate || stateCandidateHasQwen(candidate) || pendingCheckboxAnalyses.has(analysisKey)) return;
+          pendingCheckboxAnalyses.add(analysisKey);
+          try { await window.analyzeItem(language, index); }
+          finally { pendingCheckboxAnalyses.delete(analysisKey); }
+        });
+      }
+      return result;
+    };
+    enhancedUpdateItem.__interalQwenCandidateEnhancements = true;
+    window.updateItem = enhancedUpdateItem;
+
+    if (!QWEN_RUNTIME_CONFIG.enableCandidateGeneration) return;
+    const calculateButton = document.getElementById('calculateBtn');
+    if (!calculateButton) return;
+    let generationToken = 0;
+    let generationAbortController = null;
+    let loaderPromise = null;
+    let normalizerPromise = null;
+
+    async function supplementAfterCompletedCalculation(token, rootAtClick, meaningAtClick) {
+      const deadline = Date.now() + 30 * 60 * 1000;
+      while (token === generationToken && Date.now() < deadline) {
+        await delay(500);
+        const snapshot = window.InteralPageStateExport?.();
+        const sectionVisible = document.getElementById('languagesSection')?.hidden === false;
+        const buttonReady = document.getElementById('calculateBtn')?.disabled === false;
+        const sameRoot = String(document.getElementById('rootInput')?.value || '').trim() === rootAtClick;
+        if (snapshot?.state?.checked && sectionVisible && buttonReady && sameRoot) break;
+      }
+      if (token !== generationToken || Date.now() >= deadline) return;
+
+      const snapshot = window.InteralPageStateExport?.();
+      if (!snapshot?.state?.checked) return;
+      const existingCandidates = Object.fromEntries(CONTROL_LANGUAGE_CODES.map(language => [
+        language,
+        (snapshot.state.languages?.[language] || []).map(candidate => candidate.word).filter(Boolean)
+      ]));
+      let suggestions;
+      try {
+        suggestions = await getQwenCandidateSuggestions({
+          root: rootAtClick,
+          targetMeaning: meaningAtClick || rootAtClick,
+          existingCandidates,
+          signal: generationAbortController?.signal
+        });
+      } catch (error) {
+        if (error?.code !== QWEN_ERROR_CODES.ABORTED) console.warn('Supplemental Qwen candidates unavailable:', error);
+        return;
+      }
+      if (token !== generationToken) return;
+
+      loaderPromise ||= import('./candidate-index-loader.js').then(module => module.createCandidateIndexLoader());
+      normalizerPromise ||= import('./search-normalizer.js');
+      const [loader, normalizer] = await Promise.all([loaderPromise, normalizerPromise]);
+      const buildSearchForm = normalizer.buildSearchForm;
+      const existingKeys = Object.fromEntries(CONTROL_LANGUAGE_CODES.map(language => [
+        language,
+        new Set((existingCandidates[language] || []).map(buildSearchForm))
+      ]));
+
+      for (const language of CONTROL_LANGUAGE_CODES) {
+        for (const suggestion of suggestions[language] || []) {
+          if (token !== generationToken) return;
+          const suggestionKey = buildSearchForm(suggestion.word);
+          if (!suggestionKey || existingKeys[language].has(suggestionKey)) continue;
+          let entry;
+          try {
+            entry = await verifySuggestionInLocalIndex(loader, language, suggestion, buildSearchForm, generationAbortController?.signal);
+          } catch (error) {
+            if (error?.code === 'ABORTED') return;
+            console.warn(`Could not verify supplemental candidate ${language}:${suggestion.word}`, error);
+            continue;
+          }
+          if (!entry) continue;
+          existingKeys[language].add(suggestionKey);
+          await addVerifiedCandidateToRuntime(language, suggestion, entry, rootAtClick, buildSearchForm);
+          await delay(4000);
+        }
+      }
+    }
+
+    calculateButton.addEventListener('click', () => {
+      generationToken += 1;
+      generationAbortController?.abort?.();
+      generationAbortController = new AbortController();
+      const token = generationToken;
+      const rootAtClick = String(document.getElementById('rootInput')?.value || '').trim();
+      const meaningAtClick = String(document.getElementById('meaningInput')?.value || '').trim();
+      if (!rootAtClick) return;
+      void supplementAfterCompletedCalculation(token, rootAtClick, meaningAtClick);
+    }, { capture: true });
+  };
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', install, { once: true });
+  else setTimeout(install, 0);
+}
+
+installAssociativeBrowserEnhancements();
