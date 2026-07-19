@@ -6,7 +6,7 @@ const MATCH_PRIORITY = Object.freeze({ exact: 0, special: 1, fuzzy: 2 });
 const BOUNDARY_PRIORITY = Object.freeze({ token: 0, safe: 1, combining: 2, restricted: 3 });
 
 function createDiagnostics() {
-  return { inspected: 0, matched: 0, rejected: 0, rejectedByReason: {}, duplicates: 0, modelDuplicates: 0, warnings: [] };
+  return { inspected: 0, matched: 0, rejected: 0, rejectedByReason: {}, duplicates: 0, warnings: [] };
 }
 
 function reject(diagnostics, reason) {
@@ -152,7 +152,7 @@ export function findCandidatesForRoot({ entries, root, language = 'en', maxCandi
   }
 
   const grouped = selectHighestFrequencyPerModel(matched, root, language);
-  diagnostics.modelDuplicates = grouped.dropped.length;
+  if (grouped.dropped.length) diagnostics.modelDuplicates = grouped.dropped.length;
   for (const item of grouped.dropped) diagnostics.warnings.push({ reason: 'lower_frequency_model_variant', word: item.word, model: item.model_family_key });
 
   grouped.candidates.sort(compareCandidates);
