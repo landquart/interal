@@ -45,9 +45,11 @@ export function canonicalLexicalStem(value, language = 'en') {
 export function lexicalModelFamilyKey(candidate, root, language = 'en') {
   const wordForm = buildSearchForm(candidate?.search_form || candidate?.word);
   if (!wordForm) return '';
-  const stem = canonicalLexicalStem(wordForm, language) || wordForm;
-  const matchIndex = Number.isInteger(candidate?.match?.index) ? candidate.match.index : Math.max(0, wordForm.indexOf(buildSearchForm(root)));
-  const prefix = matchIndex > 0 ? canonicalLexicalStem(wordForm.slice(0, matchIndex), language) : '';
+  const rootForm = buildSearchForm(root);
+  let stem = canonicalLexicalStem(wordForm, language) || wordForm;
+  if (rootForm && wordForm.includes(rootForm) && stem.length < rootForm.length) stem = rootForm;
+  const matchIndex = Number.isInteger(candidate?.match?.index) ? candidate.match.index : Math.max(0, wordForm.indexOf(rootForm));
+  const prefix = matchIndex > 0 ? wordForm.slice(0, matchIndex) : '';
   return `${prefix}|${stem}`;
 }
 
