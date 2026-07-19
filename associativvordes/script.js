@@ -1,9 +1,10 @@
-import { analyzeAssociativeWord, THRESHOLDS, passesWordThreshold, finalAssociationPassesThreshold, calculateLanguageScore, calculateFinalAssociation, buildDecisionReasons, decisionStatusForResult, canCreateAssociativeJsonCard, normalizeLanguageStatus, summarizeLanguageStatuses } from './js/association-analyzer.js';
+import { analyzeAssociativeWord, finalAssociationPassesThreshold, calculateLanguageScore, calculateFinalAssociation, buildDecisionReasons, decisionStatusForResult, canCreateAssociativeJsonCard, normalizeLanguageStatus, summarizeLanguageStatuses } from './js/association-analyzer.js';
 import { QWEN_RUNTIME_CONFIG, QWEN_ERROR_CODES } from './js/qwen-client.js';
 import { escapeHtml, formatMetric, renderCandidateEvidenceDetails, resultRowClasses, swowLabel, thresholdStatusLabel, thresholdStatusForResult, semanticWarningLabel, languageStatusLabel } from './js/render-results.js';
 import { normalizeText, stripDiacritics, includesRoot, fuzzyIncludesRoot, specialRootMatch } from './js/root-matcher.js';
 import { createCandidateIndexLoader } from './js/candidate-index-loader.js';
 import { findCandidatesForRoot } from './js/candidate-finder.js';
+import { lexicalModelDescriptor, selectHighestFrequencyPerModel, compareFrequencyRepresentatives } from './js/candidate-model-family.js';
 import { clearTargetMeaningTranslationCache, translateTargetMeaning, TARGET_TRANSLATION_LANGUAGES } from './js/target-meaning-translator.js';
 import { createEmptyAssociativeState, invalidateSearchResult as invalidateAssociativeSearchResult, invalidateFinalCalculation as invalidateAssociativeFinalCalculation, addManualCandidate, updateCandidate, deleteCandidate, compactAssociativeState, restoreAssociativeState } from './js/associative-state.js';
 
@@ -309,27 +310,43 @@ const TEXT_I18N = {
       return textValue('resetConfirm');
     }
 
-    function inferModel(word, root, elementType, item = {}) {
-      const original = String(word || '').trim();
-      const r = stripDiacritics(root);
-      const searchForm = String(item.search_form || original);
-      const w = stripDiacritics(searchForm);
-      const matchIndex = Number.isInteger(item.match?.index) ? item.match.index : null;
-      const idx = matchIndex != null && matchIndex >= 0 ? matchIndex : w.indexOf(r);
-      if (idx === -1) return getManualModelLabel();
-
-      const before = w.slice(0, idx);
-      const after = w.slice(idx + r.length);
-
+    function inferModel(word, root, elementType, item = {}, language = 'en') {
       if (elementType === 'preposition') {
+        const normalizedRoot = stripDiacritics(root);
+        const searchForm = stripDiacritics(String(item.search_form || word || ''));
+        const index = Number.isInteger(item.match?.index) ? item.match.index : searchForm.indexOf(normalizedRoot);
+        const after = index >= 0 ? searchForm.slice(index + normalizedRoot.length) : '';
         const next = after.match(/^[a-zа-яёα-ωάέήίόύώϊϋΐΰ]+/i);
-        return next ? `${r}+${next[0].slice(0, 6)}` : `${r}+`;
+        return next ? `${normalizedRoot}+${next[0].slice(0, 6)}` : `${normalizedRoot}+`;
       }
+      return lexicalModelDescriptor({ ...item, word }, root, language).label || getManualModelLabel();
+    }
 
-      if (before) return `${before}-`;
-      const suffixMatch = after.match(/^[a-zа-яёα-ωάέήίόύώϊϋΐΰ]{1,8}/i);
-      if (suffixMatch) return `-${suffixMatch[0]}`;
-      return `${r}`;
+    function withModelIdentity(item, root, langCode) {
+      const descriptor = lexicalModelDescriptor(item, root, langCode);
+      return {
+        ...item,
+        model_family_key: descriptor.key || item.model_family_key || '',
+        model_key: descriptor.key || item.model_key || '',
+        model_label: descriptor.label || item.model_label || item.model || '',
+        model: descriptor.label || item.model || getManualModelLabel()
+      };
+    }
+
+    function reconcileModelRepresentatives(items, root, langCode) {
+      const prepared = (Array.isArray(items) ? items : []).map(item => withModelIdentity(item, root, langCode));
+      const selection = selectHighestFrequencyPerModel(prepared, root, langCode);
+      return selection.groups.map(group => {
+        const representative = group.representative;
+        const selectedInGroup = group.members.some(item => item.selected);
+        const hasScore = Number.isFinite(wordWeight(representative));
+        return { ...representative, selected: hasScore ? (representative.selected || selectedInGroup) : Boolean(representative.selected) };
+      });
+    }
+
+    function reconcileLanguageModels(langCode) {
+      state.languages[langCode] = reconcileModelRepresentatives(state.languages[langCode], state.root, langCode);
+      return state.languages[langCode];
     }
 
     function inferAssociation(word, root, meaning) {
@@ -348,32 +365,10 @@ const TEXT_I18N = {
       return null;
     }
 
-    function groupByBestModel(items, maxModels) {
-      const byModel = new Map();
-
-      for (const item of items) {
-        const itemScore = wordWeight(item);
-        if (!Number.isFinite(itemScore)) continue;
-
-        const current = byModel.get(item.model);
-        const currentScore = current ? wordWeight(current) : null;
-
-        if (
-          !current ||
-          itemScore > currentScore ||
-          (itemScore === currentScore && Number(item.rank) < Number(current.rank))
-        ) {
-          byModel.set(item.model, item);
-        }
-      }
-
-      return Array.from(byModel.values())
-        .sort((a, b) => wordWeight(b) - wordWeight(a) || a.word.localeCompare(b.word))
-        .slice(0, maxModels)
-        .map(x => ({
-          ...x,
-          selected: passesWordThreshold(wordWeight(x))
-        }));
+    function groupByBestModel(items, _maxModels = Infinity, langCode = 'en') {
+      return reconcileModelRepresentatives(items, state.root, langCode)
+        .filter(item => Number.isFinite(wordWeight(item)))
+        .map(item => ({ ...item, selected: true }));
     }
 
     function failedAnalysis(langCode, item, error) {
@@ -440,7 +435,7 @@ const TEXT_I18N = {
           frequency_score: analysis.frequency.frequency_score,
           association_score: analysis.association.association_score,
           final_score: analysis.final_score,
-          selected: passesWordThreshold(analysis.final_score)
+          selected: Number.isFinite(Number(analysis.final_score))
         };
       } catch (error) {
         if (!isCurrentRun(runId)) return item;
@@ -520,7 +515,8 @@ const TEXT_I18N = {
         warnings: Array.isArray(candidate.warnings) ? candidate.warnings : [],
         category_score: candidate.category_score ?? null,
         category_weight: candidate.category_weight ?? null,
-        model: inferModel(candidate.word, root, state.elementType, candidate),
+        model_key: candidate.model_key || candidate.model_family_key || '',
+        model: candidate.model_label || inferModel(candidate.word, root, state.elementType, candidate, langCode),
         selected: false,
         frequencyProfile: frequencyProfileFromCandidate(candidate)
       }));
@@ -559,7 +555,7 @@ const TEXT_I18N = {
       state.root = root;
       state.meaning = meaning;
       state.elementType = elementType;
-      state.maxModels = 5;
+      state.maxModels = Number.MAX_SAFE_INTEGER;
       resetVisibleCandidateCounts();
       const nextLangs = {};
       clearTargetMeaningTranslationCache();
@@ -594,7 +590,7 @@ const TEXT_I18N = {
           state.languageStatuses[lang.code] = createLanguageStatus('no_candidates');
           continue;
         }
-        const preparedCandidates = validCandidates.map(item => ({ ...item, selected: false, analysisStatus: 'pending' }));
+        const preparedCandidates = reconcileModelRepresentatives(validCandidates, root, lang.code).map(item => ({ ...item, selected: false, analysisStatus: 'pending' }));
         const automaticLimit = Math.min(
           preparedCandidates.length,
           Math.max(0, Number(QWEN_RUNTIME_CONFIG.autoAnalyzeCandidatesPerLanguage) || 0)
@@ -618,7 +614,7 @@ const TEXT_I18N = {
           ...item,
           analysisStatus: item.analysis?.status === 'error' ? 'error' : null
         }]));
-        nextLangs[lang.code] = preparedCandidates.map(item => analyzedByWord.get(normalizeText(item.word)) || item);
+        nextLangs[lang.code] = reconcileModelRepresentatives(preparedCandidates.map(item => analyzedByWord.get(normalizeText(item.word)) || item), root, lang.code);
         const failedCount = analyzed.filter(item => item.analysis?.status === 'error').length;
         const successfulCount = analyzed.length - failedCount;
         state.languageStatuses[lang.code] = createLanguageStatus(
@@ -682,18 +678,9 @@ const TEXT_I18N = {
     }
 
     function scoringCandidates(langCode) {
-      const byModel = new Map();
-      for (const item of state.languages[langCode] || []) {
-        const score = wordWeight(item);
-        if (!item.selected || !Number.isFinite(score)) continue;
-        const key = item.model || item.word;
-        const current = byModel.get(key);
-        const currentScore = current ? wordWeight(current) : null;
-        if (!current || score > currentScore || (score === currentScore && Number(item.rank) < Number(current.rank))) byModel.set(key, item);
-      }
-      return [...byModel.values()]
-        .sort((a, b) => wordWeight(b) - wordWeight(a) || a.word.localeCompare(b.word))
-        .slice(0, state.maxModels);
+      return (state.languages[langCode] || [])
+        .filter(item => item.selected && Number.isFinite(wordWeight(item)))
+        .sort((a, b) => compareFrequencyRepresentatives(a, b));
     }
 
     function calculateLanguage(langCode) {
@@ -849,7 +836,7 @@ const TEXT_I18N = {
             <details class="derivative-details">
               <summary>${labels.details}</summary>
               <dl>
-                <dt>${labels.model}</dt><dd><input class="interal-input derivative-model-input" value="${escapeHtml(item.model)}" onchange="updateItem('${lang}', ${idx}, 'model', this.value)"></dd>
+                <dt>${labels.model}</dt><dd><span class="mono">${escapeHtml(item.model || item.model_key || '—')}</span></dd>
 ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnostics: diagnosticsState.enabled })}
                 <dt>${labels.directness}</dt><dd>${formatMetric(assoc.directness, 0)}</dd>
                 <dt>${labels.fieldRelatedness}</dt><dd>${formatMetric(assoc.field_relatedness, 0)}</dd>
@@ -989,7 +976,7 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
     async function analyzeItem(lang, idx) {
       const item = state.languages[lang][idx];
       if (!item || !normalizeText(item.word)) return;
-      item.model = item.model || inferModel(item.word, state.root, state.elementType);
+      Object.assign(item, withModelIdentity(item, state.root, lang));
       item.analysisStatus = 'analyzing';
       renderAll();
       try {
@@ -1006,12 +993,13 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
         item.frequency_score = item.analysis.frequency.frequency_score;
         item.association_score = item.analysis.association.association_score;
         item.final_score = item.analysis.final_score;
-        item.selected = passesWordThreshold(item.analysis.final_score);
+        item.selected = Number.isFinite(Number(item.analysis.final_score));
         item.analysisStatus = null;
       } catch (error) {
         const failed = failedAnalysis(lang, item, error);
         Object.assign(item, failed, { analysisStatus: 'error' });
       }
+      state.languages[lang] = reconcileModelRepresentatives(state.languages[lang], state.root, lang);
       const languageItems = state.languages[lang] || [];
       const analyzedItems = languageItems.filter(candidate => candidate.analysis);
       const failedCount = analyzedItems.filter(candidate => candidate.analysis?.status === 'error').length;
@@ -1385,6 +1373,7 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
                 category_weight: finiteOrNull(item.frequencyProfile.category_weight)
               } : null,
               model: String(item.model || ''),
+              model_key: String(item.model_key || item.model_family_key || ''),
               selected: Boolean(item.selected),
               association_score: finiteOrNull(item.association_score),
               final_score: finiteOrNull(item.final_score),
@@ -1442,6 +1431,9 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
       isImportingAssociativeState = true;
       try {
         state = restored.state;
+        for (const lang of LANGUAGES) {
+          state.languages[lang.code] = reconcileModelRepresentatives(state.languages[lang.code], state.root, lang.code);
+        }
         activeLang = restored.activeLang;
         document.getElementById('rootInput').value = state.root;
         document.getElementById('meaningInput').value = state.meaning;
@@ -1487,6 +1479,11 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
     window.analyzeItem = analyzeItem;
     window.showMoreCandidates = showMoreCandidates;
     window.QWEN_RUNTIME_CONFIG = QWEN_RUNTIME_CONFIG;
+    window.InteralAssociativeModels = {
+      reconcile: (language) => reconcileLanguageModels(language),
+      descriptor: (language, candidate) => lexicalModelDescriptor(candidate, state.root, language),
+      findRepresentative: (language, modelKey) => (state.languages[language] || []).find(item => (item.model_key || lexicalModelDescriptor(item, state.root, language).key) === modelKey) || null
+    };
     window.InteralAssociativDiagnostics = () => window.InteralAssociativeDiagnostics.getSnapshot();
 
     document.getElementById('closeJsonCardBtn').addEventListener('click', closeJsonCardModal);

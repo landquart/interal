@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { lexicalModelFamilyKey, selectHighestFrequencyPerModel } from '../associativvordes/js/candidate-model-family.js';
 import { findCandidatesForRoot } from '../associativvordes/js/candidate-finder.js';
 
-function entry(word, searchForm, ipm, rank) {
+function entry(word, searchForm, ipm, rank, match = null) {
   return {
     word,
     normalized: word.toLowerCase(),
@@ -10,7 +10,8 @@ function entry(word, searchForm, ipm, rank) {
     rank,
     frequency_score: Math.min(100, ipm),
     category_breakdown: {},
-    sources: [{ id: 'normative/test.json', file: 'test.json', category: 'normative', ipm }]
+    sources: [{ id: 'normative/test.json', file: 'test.json', category: 'normative', ipm }],
+    ...(match ? { match } : {})
   };
 }
 
@@ -43,11 +44,59 @@ const matched = russianVariants.map(item => ({
   total_ipm: item.sources[0].ipm,
   match: { type: 'exact', distance: 0, similarity: 1, index: 0, fragment: 'alter' }
 }));
+matched[3].match = { type: 'special', distance: 0, similarity: 1, index: 0, fragment: 'altru' };
+matched[4].match = { type: 'special', distance: 0, similarity: 1, index: 0, fragment: 'altru' };
 assert.equal(lexicalModelFamilyKey(matched[0], 'alter', 'ru'), lexicalModelFamilyKey(matched[1], 'alter', 'ru'));
 assert.equal(lexicalModelFamilyKey(matched[0], 'alter', 'ru'), lexicalModelFamilyKey(matched[2], 'alter', 'ru'));
 assert.notEqual(lexicalModelFamilyKey(matched[3], 'alter', 'ru'), lexicalModelFamilyKey(matched[4], 'alter', 'ru'));
 
 const frequencySelection = selectHighestFrequencyPerModel(matched.slice(0, 3), 'alter', 'ru');
 assert.deepEqual(frequencySelection.candidates.map(candidate => candidate.word), ['альтернатива']);
+
+const languageFamilies = {
+  en: [
+    entry('alternative', 'alternative', 90, 1),
+    entry('alternatives', 'alternatives', 60, 2),
+    entry('alternatively', 'alternatively', 40, 3)
+  ],
+  de: [
+    entry('Alternative', 'alternative', 90, 1),
+    entry('Alternativen', 'alternativen', 60, 2),
+    entry('alternativer', 'alternativer', 40, 3)
+  ],
+  fr: [
+    entry('alternative', 'alternative', 90, 1),
+    entry('alternatives', 'alternatives', 60, 2),
+    entry('alternativement', 'alternativement', 40, 3)
+  ],
+  es: [
+    entry('alternativa', 'alternativa', 90, 1),
+    entry('alternativas', 'alternativas', 60, 2),
+    entry('alternativamente', 'alternativamente', 40, 3)
+  ],
+  it: [
+    entry('alternativa', 'alternativa', 90, 1),
+    entry('alternative', 'alternative', 60, 2),
+    entry('alternativamente', 'alternativamente', 40, 3)
+  ],
+  ru: russianVariants.slice(0, 3)
+};
+
+for (const [language, candidates] of Object.entries(languageFamilies)) {
+  const withMatches = candidates.map(candidate => ({
+    ...candidate,
+    match: { type: 'exact', distance: 0, similarity: 1, index: 0, fragment: 'alter' }
+  }));
+  const grouped = selectHighestFrequencyPerModel(withMatches, 'alter', language);
+  assert.equal(grouped.candidates.length, 1, `${language} grammatical/POS variants form one model`);
+  assert.equal(grouped.candidates[0].frequency_score, 90, `${language} keeps the highest-F representative`);
+}
+
+const rootForms = [
+  entry('alter', 'alter', 90, 1, { type: 'exact', distance: 0, similarity: 1, index: 0, fragment: 'alter' }),
+  entry('altered', 'altered', 50, 2, { type: 'exact', distance: 0, similarity: 1, index: 0, fragment: 'alter' }),
+  entry('altering', 'altering', 40, 3, { type: 'exact', distance: 0, similarity: 1, index: 0, fragment: 'alter' })
+];
+assert.equal(selectHighestFrequencyPerModel(rootForms, 'alter', 'en').candidates.length, 1, 'root protection keeps alter/altered/altering in one model');
 
 console.log('Associative lexical model family tests passed.');

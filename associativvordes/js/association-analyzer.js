@@ -3,13 +3,7 @@ import { getBidirectionalSwow } from './swow-client.js';
 import { getTargetMeaningForLanguage as translateTargetMeaningForLanguage } from './target-meaning-translator.js';
 import { ASSOCIATION_SCORE_WEIGHTS, FINAL_SCORE_WEIGHTS, getQwenAssociationScores, QWEN_ERROR_CODES } from './qwen-client.js';
 
-export const THRESHOLDS = {
-  word: 35,
-  main: 35,
-  reviewMin: 25,
-  reviewMax: 35,
-  rejectBelow: 25
-};
+export const THRESHOLDS = { main: 35 };
 
 export async function getTargetMeaningForLanguage(targetMeaning, language, options) {
   return translateTargetMeaningForLanguage(targetMeaning, language, options);
@@ -58,14 +52,14 @@ export function calculateFinalScore({ frequency_score, association_score }) {
 }
 
 export function passesWordThreshold(score) {
-  return isFiniteScore(score) && Number(score) >= THRESHOLDS.word;
+  return isFiniteScore(score);
 }
 
 export const LANGUAGE_STATUSES = ['idle', 'loading_index', 'no_candidates', 'analyzing', 'completed', 'index_error', 'qwen_error', 'incomplete', 'aborted'];
 export const TERMINAL_LANGUAGE_STATUSES = ['completed', 'no_candidates', 'index_error', 'qwen_error', 'incomplete', 'aborted'];
 export const INTERMEDIATE_LANGUAGE_STATUSES = ['idle', 'loading_index', 'analyzing'];
-export const CRITICAL_DECISION_REASONS = ['no_calculated_data', 'fewer_than_3_languages', 'fewer_than_2_groups', 'final_association_below_35', 'semantic_not_confirmed'];
-export const WARNING_DECISION_REASONS = ['some_languages_no_candidates', 'some_languages_index_error', 'some_languages_qwen_error', 'calculation_incomplete'];
+export const CRITICAL_DECISION_REASONS = ['no_calculated_data', 'final_association_below_35'];
+export const WARNING_DECISION_REASONS = ['fewer_than_3_languages', 'fewer_than_2_groups', 'semantic_not_confirmed', 'some_languages_no_candidates', 'some_languages_index_error', 'some_languages_qwen_error', 'calculation_incomplete'];
 export const UNAVAILABLE_REASONS = ['no_candidates', 'index_error', 'qwen_error', 'incomplete', 'aborted', 'no_calculated_data'];
 
 export function isFiniteScore(value) {
@@ -141,7 +135,7 @@ export function calculateFinalAssociation({ languages = [], languageResults = []
   const statusSummary = summarizeLanguageStatuses(languageStatuses);
   const unavailableReasons = unavailableReasonsFromStatuses(languageStatuses);
   if (!hasCalculatedData && !unavailableReasons.includes('no_calculated_data')) unavailableReasons.push('no_calculated_data');
-  const accepted = representedLangs >= 3 && groups.size >= 2 && finalAssociationPassesThreshold(finalAssociation) && semanticConfirmed;
+  const accepted = hasCalculatedData && finalAssociationPassesThreshold(finalAssociation);
   return { languageScores, totalAssociation, finalAssociation, representedLangs, groups: groups.size, semanticConfirmed, accepted, hasCalculatedData, unavailableReasons, languageStatusSummary: statusSummary };
 }
 
@@ -154,10 +148,10 @@ export function buildDecisionReasons(result = {}) {
   if (!result.hasCalculatedData || !isFiniteScore(result.finalAssociation)) {
     add(critical, 'no_calculated_data');
   } else {
-    if (Number(result.representedLangs) < 3) add(critical, 'fewer_than_3_languages');
-    if (Number(result.groups) < 2) add(critical, 'fewer_than_2_groups');
     if (Number(result.finalAssociation) < THRESHOLDS.main) add(critical, 'final_association_below_35');
-    if (!result.semanticConfirmed) add(critical, 'semantic_not_confirmed');
+    if (Number(result.representedLangs) < 3) add(warnings, 'fewer_than_3_languages');
+    if (Number(result.groups) < 2) add(warnings, 'fewer_than_2_groups');
+    if (!result.semanticConfirmed) add(warnings, 'semantic_not_confirmed');
   }
   for (const warning of summary.warnings || []) {
     if (WARNING_DECISION_REASONS.includes(warning)) add(warnings, warning);
@@ -184,14 +178,11 @@ export function decisionStatusForResult(result = {}) {
 }
 
 export function canCreateAssociativeJsonCard(result = {}) {
-  return Boolean(result.hasCalculatedData && finalAssociationPassesThreshold(result.finalAssociation) && result.accepted && result.semanticConfirmed);
+  return Boolean(result.hasCalculatedData && finalAssociationPassesThreshold(result.finalAssociation) && result.accepted);
 }
 
 export function classifyScore(final_score) {
-  if (final_score == null) return 'unavailable';
-  const score = Number(final_score);
-  if (!Number.isFinite(score)) return 'unavailable';
-  return passesWordThreshold(score) ? 'passed_threshold' : 'below_threshold';
+  return isFiniteScore(final_score) ? 'evaluated' : 'unavailable';
 }
 
 export function finalAssociationPassesThreshold(finalAssociation) {
@@ -265,36 +256,8 @@ export async function analyzeAssociativeWord({ language, targetMeaning, localize
   if (primary.association_score == null) warnings.push('Association score unavailable');
   if (frequency.frequency_score == null) warnings.push('Frequency score unavailable');
 
-  let review = null;
-  let finalEvaluation = primary;
-  if (Number.isFinite(Number(primary.final_score)) && primary.final_score >= THRESHOLDS.reviewMin && primary.final_score <= THRESHOLDS.reviewMax) {
-    try {
-      onProgress?.(`Qwen review: ${language} — ${word}`);
-      onReviewRequest?.();
-      const reviewQwen = await getQwenAssociationScores({ language, targetMeaning, word, swow, review: true, primary, signal });
-      const averagedQwen = {
-        ...reviewQwen,
-        directness: (Number(primary.directness) + Number(reviewQwen.directness)) / 2,
-        field_relatedness: (Number(primary.field_relatedness) + Number(reviewQwen.field_relatedness)) / 2,
-        domain_shift: (Number(primary.domain_shift) + Number(reviewQwen.domain_shift)) / 2,
-        short_explanation: reviewQwen.short_explanation || primary.explanation
-      };
-      review = buildEvaluation(reviewQwen, frequency.frequency_score, swow_bonus);
-      if (review.semantic_confirmed) {
-        finalEvaluation = buildEvaluation(averagedQwen, frequency.frequency_score, swow_bonus);
-        finalEvaluation.combination_method = 'arithmetic_mean';
-      } else {
-        warnings.push('Review model returned invalid semantic scores; primary evaluation kept');
-        finalEvaluation.combination_method = 'primary_only';
-      }
-    } catch (error) {
-      warnings.push('Review model unavailable; primary evaluation kept');
-      review = { status: 'review_unavailable', errorCode: error.code || QWEN_ERROR_CODES.REVIEW_FAILED };
-      finalEvaluation.combination_method = 'primary_only';
-    }
-  } else {
-    finalEvaluation.combination_method = 'primary_only';
-  }
+  const review = null;
+  const finalEvaluation = { ...primary, combination_method: 'primary_only' };
   const classification = finalEvaluation.classification;
   const final_score = finalEvaluation.final_score;
 
