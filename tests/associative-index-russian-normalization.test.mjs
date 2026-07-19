@@ -44,9 +44,10 @@ const requiredTransliterations = new Map([
   ['окулист', 'okulist'],
   ['интернациональный', 'internacionalnyj'],
   ['интерактивный', 'interaktivnyj'],
-  ['ёлка', 'elka'],
-  ['объект', 'objekt'],
-  ['подъезд', 'podezd']
+  ['ёлка', 'jolka'],
+  ['объект', 'ob-ekt'],
+  ['подъезд', 'pod-ezd'],
+  ['съёмка', 's-jomka']
 ]);
 for (const [input, expected] of requiredTransliterations) {
   assert.equal(transliterateRussianForSearch(input), expected);
@@ -82,8 +83,10 @@ assert.equal(alternative.normalized, 'альтернатива', 'normalized rem
 assert.equal(alternative.search_form, 'alternativa', 'search_form is Latin');
 assert.equal(index.get('дубль').original, 'дубль', 'UI/Qwen original form remains available');
 assert.equal(Object.keys(index.get('дубль').sources).length, 3, 'duplicate original lemmas are merged');
-assert.equal(index.get('замок').search_form, index.get('замокъ').search_form, 'fixture has a transliteration collision');
-assert.ok(index.has('замок') && index.has('замокъ'), 'different originals are not merged by search_form collision');
+assert.equal(index.get('замок').search_form, 'zamok');
+assert.equal(index.get('замокъ').search_form, 'zamok-');
+assert.notEqual(index.get('замок').search_form, index.get('замокъ').search_form, 'hard sign is preserved as a separator');
+assert.ok(index.has('замок') && index.has('замокъ'), 'different originals remain separate');
 assert.equal(index.get('интернет').sources['web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json'], 20, 'frequency lookup uses original normalized key');
 assert.equal(index.has('internet'), false, 'frequency lookup does not use search_form as key');
 assert.equal(index.has('отрицательный'), false, 'negative IPM fixture row is rejected');
@@ -115,8 +118,8 @@ assert.equal(fuzzyRootMatch('inter', 'alter'), null, 'alter does not fuzzily mat
 assert.equal(fuzzyRootMatch('internacionalnyj', 'alter'), null, 'alter does not fuzzily match интернациональный search_form');
 
 const ruReport = await readJson(join(outputRoot, 'build-report.json'));
-assert.equal(ruReport.transliteration.version, '1', 'Russian report includes transliteration version');
+assert.equal(ruReport.transliteration.version, '1', 'Russian report includes transliteration schema version');
 assert.equal(ruReport.transliteration.entries_with_search_form, entries.length, 'all Russian entries have search_form in report');
 assert.equal(ruReport.transliteration.entries_without_search_form, 0, 'Russian report has no missing search_form');
-assert.ok(ruReport.transliteration.collisions >= 1, 'Russian report counts search_form collisions without deleting entries');
+assert.ok(Number.isInteger(ruReport.transliteration.collisions) && ruReport.transliteration.collisions >= 0, 'Russian report counts remaining search_form collisions');
 assert.ok(ruReport.root_samples.alter.includes('альтернатива'), 'Russian root samples use original Cyrillic words');

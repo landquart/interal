@@ -7,6 +7,7 @@ import { createCandidateIndexLoader, fuzzySeedGrams } from '../associativvordes/
 import { bucketName as runtimeBucketName } from '../associativvordes/js/candidate-static-search.js';
 import { acceptAffixBoundaryMatch, anchoredPostingKeys } from '../associativvordes/js/affix-boundary-index.js';
 import { buildSearchForm, findRootMatch, fuzzyRootMatch, includesRoot, rootBoundarySegments, specialRootMatch, specialRootVariants } from '../associativvordes/js/root-matcher.js';
+import { SEARCH_NORMALIZER_VERSION } from '../associativvordes/js/search-normalizer.js';
 
 const sourceRoot = '.tmp/static-search-source';
 const outputRoot = '.tmp/static-search-output';
@@ -42,7 +43,7 @@ assert.ok(!anchoredPostingKeys('walter', 'en', 3).has('0:alt'), 'arbitrary w- do
 
 const { manifest, report } = await buildStaticSearchIndex({ language: 'en', inputRoot: sourceRoot, outputRoot, blockSize: 128, bucketCount: 128 });
 assert.equal(manifest.version, '4');
-assert.equal(manifest.normalizer_version, '3');
+assert.equal(manifest.normalizer_version, SEARCH_NORMALIZER_VERSION);
 assert.equal(manifest.affix_config_version, '1');
 assert.equal(manifest.index_format, 'static-affix-anchored-ngram-v1');
 assert.equal(report.entries, 12);

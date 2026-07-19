@@ -1,5 +1,5 @@
 import { createReadStream } from 'node:fs';
-import { buildSearchForm, normalizeLemma, validRank } from './associative-index-core.mjs';
+import { buildSearchForm, isUsableSearchForm, normalizeLemma, validRank } from './associative-index-core.mjs';
 
 const IPM_FIELDS = ['ipm', 'IPM', 'frequency', 'freq'];
 const WORD_FIELDS = ['word', 'lemma', 'form'];
@@ -29,7 +29,7 @@ function frequencyRecord(lemmaValue, ipmValue, rankValue, sourceId) {
   const normalized = normalizeLemma(original);
   const searchForm = buildSearchForm(original);
   const ipm = finitePositiveNumber(ipmValue);
-  if (!normalized || !searchForm || ipm == null) return null;
+  if (!normalized || !isUsableSearchForm(searchForm) || ipm == null) return null;
   const rank = validRank(rankValue);
   return { original, normalized, search_form: searchForm, lemma: normalized, frequency_lookup_key: normalized, ipm, ...(rank != null ? { rank } : {}), ...(sourceId ? { source: sourceId } : {}) };
 }

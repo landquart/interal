@@ -2,6 +2,7 @@ import { BASE_CATEGORY_WEIGHTS, CATEGORY_ORDER } from '../../associativvordes/js
 import { ipmToScore, meanNonZero } from '../../associativvordes/js/frequency-loader.js';
 import {
   buildSearchForm,
+  isUsableSearchForm,
   normalizeText,
   stripDiacritics,
   transliterateRussianForSearch
@@ -11,7 +12,7 @@ const IPM_FIELDS = ['ipm', 'IPM', 'frequency', 'freq'];
 const WORD_FIELDS = ['word', 'lemma', 'form'];
 
 export const normalizeLemma = normalizeText;
-export { buildSearchForm, stripDiacritics, transliterateRussianForSearch };
+export { buildSearchForm, isUsableSearchForm, stripDiacritics, transliterateRussianForSearch };
 
 function finitePositiveNumber(value) {
   if (value === '' || value == null) return null;
@@ -44,7 +45,7 @@ function pushRecord(records, lemmaValue, ipmValue, rankValue, sourceId) {
   const normalized = normalizeLemma(original);
   const searchForm = buildSearchForm(original);
   const ipm = finitePositiveNumber(ipmValue);
-  if (!normalized || !searchForm || ipm == null) return;
+  if (!normalized || !isUsableSearchForm(searchForm) || ipm == null) return;
   const rank = validRank(rankValue);
   records.push({
     original,
@@ -100,13 +101,14 @@ export function mergeFrequencyRecord(index, record, sourceId = record?.source ||
   if (!(index instanceof Map) || !record) return index;
   const normalized = normalizeLemma(record.normalized ?? record.lemma ?? record.original);
   const frequencyLookupKey = normalizeLemma(record.frequency_lookup_key ?? normalized);
+  const searchForm = buildSearchForm(record.original || normalized);
   const ipm = finitePositiveNumber(record.ipm);
-  if (!normalized || ipm == null) return index;
+  if (!normalized || !isUsableSearchForm(searchForm) || ipm == null) return index;
   if (frequencyLookupKey !== normalized) throw new Error(`Frequency lookup key must be normalized original lemma for ${normalized}`);
   const existing = index.get(normalized) ?? {
     original: record.original || normalized,
     normalized,
-    search_form: buildSearchForm(record.original || normalized),
+    search_form: searchForm,
     sources: {},
     ranks: {}
   };
