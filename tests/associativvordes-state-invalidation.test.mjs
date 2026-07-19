@@ -4,6 +4,7 @@ import {
   addManualCandidate,
   compactAssociativeState,
   createEmptyAssociativeState,
+  deleteCandidate,
   invalidateSearchResult,
   restoreAssociativeState,
   updateCandidate
@@ -45,7 +46,8 @@ function populatedState() {
   assert.equal(state.languages.en.at(-1), row, 'addRow stores the new row');
   assert.equal(state.languages.en.length, 2, 'addRow keeps existing language rows');
   assert.equal(state.languages.de.length, 1, 'addRow does not clear other languages');
-  assert.equal(state.checked, false, 'addRow invalidates only the final calculation');
+  assert.equal(state.checked, true, 'addRow keeps existing results visible');
+  assert.equal(state.globalStatus, 'completed', 'addRow preserves the completed result state');
 }
 
 {
@@ -59,6 +61,7 @@ function populatedState() {
   assert.equal(state.languages.en[0].model, 'inter-...', 'word edit refreshes model');
   assert.equal(state.languages.en[0].analysis, null, 'word edit clears stale analysis for that item');
   assert.equal(state.languages.de[0].word, 'international', 'word edit leaves other languages intact');
+  assert.equal(state.checked, true, 'word edit keeps the results table visible while the item is reanalyzed');
 }
 
 {
@@ -67,7 +70,17 @@ function populatedState() {
   assert.equal(state.languages.ru[0].selected, false, 'checkbox value is applied');
   assert.equal(state.languages.en.length, 1, 'checkbox does not clear another language');
   assert.equal(state.languageStatuses.en.status, 'completed', 'checkbox does not clear language statuses');
-  assert.equal(state.checked, false, 'checkbox invalidates final calculation');
+  assert.equal(state.checked, true, 'checkbox keeps the full result visible');
+  assert.equal(state.globalStatus, 'completed', 'checkbox preserves the completed calculation status');
+}
+
+{
+  const state = populatedState();
+  const removed = deleteCandidate(state, 'ru', 0);
+  assert.equal(removed.word, 'интервал', 'delete removes only the requested candidate');
+  assert.deepEqual(state.languages.ru, [], 'deleted candidate is removed from its language');
+  assert.equal(state.languages.en.length, 1, 'delete keeps candidates in other languages');
+  assert.equal(state.checked, true, 'delete keeps the remaining result visible');
 }
 
 {
@@ -81,6 +94,7 @@ function populatedState() {
   assert.deepEqual(state.languages.en, [], 'changing root clears old English results');
   assert.deepEqual(state.languages.ru, [], 'changing root clears old Russian results');
   assert.equal(state.languageStatuses.fr.status, 'idle', 'changing root resets stale language statuses');
+  assert.equal(state.checked, false, 'changing a search input hides the obsolete result');
   assert.equal(aborted, 1, 'changing root aborts active work');
 }
 
@@ -122,6 +136,7 @@ function populatedState() {
   assert.match(script, /from '\.\/js\/associative-state\.js'/, 'script.js is wired to the pure state module');
   assert.match(script, /addManualCandidate\(state, lang\)/, 'addRow delegates to the pure add candidate function');
   assert.match(script, /restoreAssociativeState\(saved/, 'import delegates to pure restore logic');
+  assert.match(script, /element\.hidden = !checked/, 'result visibility remains controlled only by the completed-search flag');
 }
 
 console.log('associativvordes state behavior tests passed');

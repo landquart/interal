@@ -105,8 +105,9 @@ export function invalidateSearchResult(state, { createEmptyState = createEmptyAs
 
 export function invalidateFinalCalculation(state, { shouldSkip = () => false } = {}) {
   if (shouldSkip()) return false;
-  state.checked = false;
-  state.globalStatus = 'idle';
+  // Candidate selection and manual row changes are recalculated locally by renderAll().
+  // `checked` controls result visibility and must remain true until the search inputs change.
+  if (!state.checked) state.globalStatus = 'idle';
   return true;
 }
 
