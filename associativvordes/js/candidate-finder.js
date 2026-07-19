@@ -1,5 +1,6 @@
 import { findRootMatch, normalizeText } from './root-matcher.js';
 import { acceptAffixBoundaryMatch } from './affix-boundary-index.js';
+import { lexicalModelFamilyKey, selectHighestFrequencyPerModel } from './candidate-model-family.js';
 
 const MATCH_PRIORITY = Object.freeze({ exact: 0, special: 1, fuzzy: 2 });
 const BOUNDARY_PRIORITY = Object.freeze({ token: 0, safe: 1, combining: 2, restricted: 3 });
@@ -130,11 +131,11 @@ export function findCandidatesForRoot({ entries, root, language = 'en', maxCandi
     byLemma.set(key, entry);
   }
 
-  const candidates = [];
+  const matched = [];
   for (const entry of byLemma.values()) {
     const match = findMatch({ searchForm: entry.search_form, root, language, specialRootMatcher });
     if (!match) continue;
-    candidates.push({
+    const candidate = {
       word: entry.word,
       normalized: entry.normalized,
       search_form: entry.search_form,
@@ -145,9 +146,16 @@ export function findCandidatesForRoot({ entries, root, language = 'en', maxCandi
       warnings: runtimeWarningsForEntry(entry),
       total_ipm: totalIpm(entry),
       match
-    });
+    };
+    candidate.model_family_key = lexicalModelFamilyKey(candidate, root, language);
+    matched.push(candidate);
   }
-  candidates.sort(compareCandidates);
-  diagnostics.matched = candidates.length;
-  return { candidates: candidates.slice(0, maxCandidates), diagnostics };
+
+  const grouped = selectHighestFrequencyPerModel(matched, root, language);
+  if (grouped.dropped.length) diagnostics.modelDuplicates = grouped.dropped.length;
+  for (const item of grouped.dropped) diagnostics.warnings.push({ reason: 'lower_frequency_model_variant', word: item.word, model: item.model_family_key });
+
+  grouped.candidates.sort(compareCandidates);
+  diagnostics.matched = grouped.candidates.length;
+  return { candidates: grouped.candidates.slice(0, maxCandidates), diagnostics };
 }
