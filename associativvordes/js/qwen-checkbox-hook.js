@@ -1,3 +1,46 @@
+const QWEN_CANDIDATE_LANGUAGES = ['en', 'de', 'fr', 'es', 'it', 'ru'];
+
+function emptyCandidateResponse() {
+  return {
+    ok: true,
+    candidates: Object.fromEntries(QWEN_CANDIDATE_LANGUAGES.map((language) => [language, []])),
+    stale: true
+  };
+}
+
+function candidateRequestSignature() {
+  if (typeof document === 'undefined') return '';
+  return JSON.stringify([
+    String(document.getElementById('rootInput')?.value || '').trim(),
+    String(document.getElementById('meaningInput')?.value || '').trim(),
+    String(document.getElementById('elementType')?.value || '')
+  ]);
+}
+
+function installQwenCandidateRequestGuard() {
+  if (typeof window === 'undefined' || typeof document === 'undefined' || typeof window.fetch !== 'function') return;
+  if (window.fetch.__interalQwenCandidateRequestGuard) return;
+
+  const originalFetch = window.fetch.bind(window);
+  const guardedFetch = async function guardedFetch(input, init) {
+    const requestUrl = typeof input === 'string' ? input : String(input?.url || input || '');
+    if (!requestUrl.includes('/api/qwen-candidates')) return originalFetch(input, init);
+
+    const signature = candidateRequestSignature();
+    const response = await originalFetch(input, init);
+    const resultStillVisible = document.getElementById('languagesSection')?.hidden === false;
+    if (signature === candidateRequestSignature() && resultStillVisible) return response;
+
+    return new Response(JSON.stringify(emptyCandidateResponse()), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' }
+    });
+  };
+
+  guardedFetch.__interalQwenCandidateRequestGuard = true;
+  window.fetch = guardedFetch;
+}
+
 function installQwenCheckboxOverflowHook() {
   if (typeof window === 'undefined' || typeof document === 'undefined') return;
 
@@ -58,4 +101,5 @@ function installQwenCheckboxOverflowHook() {
   }
 }
 
+installQwenCandidateRequestGuard();
 installQwenCheckboxOverflowHook();
