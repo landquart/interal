@@ -7,13 +7,18 @@ on:
     paths:
       - scripts/apply-associative-model-policy-refactor.mjs
       - .github/workflows/apply-associative-model-policy-refactor.yml
+  pull_request:
+    branches:
+      - main
+    paths:
+      - scripts/apply-associative-model-policy-refactor.mjs
+      - .github/workflows/apply-associative-model-policy-refactor.yml
 
 permissions:
   contents: write
 
 jobs:
   apply:
-    if: ${{ github.actor != 'github-actions[bot]' }}
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v6
