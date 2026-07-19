@@ -1,0 +1,40 @@
+name: Apply Associative Model Policy Refactor
+
+on:
+  push:
+    branches:
+      - fix/associative-model-selection-thresholds
+    paths:
+      - scripts/apply-associative-model-policy-refactor.mjs
+      - .github/workflows/apply-associative-model-policy-refactor.yml
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: ${{ github.actor != 'github-actions[bot]' }}
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: fix/associative-model-selection-thresholds
+          fetch-depth: 0
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+      - name: Apply refactor
+        run: node scripts/apply-associative-model-policy-refactor.mjs
+      - name: Validate syntax and tests
+        run: |
+          node --check associativvordes/script.js
+          node --check associativvordes/js/candidate-model-family.js
+          node --check associativvordes/js/qwen-client.js
+          npm test
+      - name: Commit refactor
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Refactor associative model selection and thresholds [skip ci]"
+          git push origin HEAD:fix/associative-model-selection-thresholds
