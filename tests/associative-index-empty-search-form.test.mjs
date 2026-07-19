@@ -12,8 +12,8 @@ const records = [
 ];
 
 const legacy = extractFrequencyRecords(records, sourceId);
-assert.deepEqual(legacy.map(record => record.normalized), ['моль', 'дом'], 'legacy parser skips standalone signs whose search_form is empty');
-assert.deepEqual(legacy.map(record => record.search_form), ['mol', 'dom'], 'legacy parser preserves usable Russian search forms');
+assert.deepEqual(legacy.map(record => record.normalized), ['ъ', 'моль', 'дом'], 'legacy parser skips only signs whose search_form is empty');
+assert.deepEqual(legacy.map(record => record.search_form), ['-', 'mol', 'dom'], 'legacy parser preserves the hard-sign separator and usable Russian search forms');
 
 const tmpRoot = '.tmp/associative-index-empty-search-form';
 const tmpFile = `${tmpRoot}/records.json`;
@@ -23,8 +23,8 @@ await writeFile(tmpFile, `${JSON.stringify(records)}\n`);
 
 const streamed = [];
 for await (const record of streamFrequencyRecords({ filePath: tmpFile, sourceId, format: 'legacy-json' })) streamed.push(record);
-assert.deepEqual(streamed.map(record => record.normalized), ['моль', 'дом'], 'stream parser skips standalone signs whose search_form is empty');
-assert.deepEqual(streamed.map(record => record.search_form), ['mol', 'dom'], 'stream parser preserves usable Russian search forms');
+assert.deepEqual(streamed.map(record => record.normalized), ['ъ', 'моль', 'дом'], 'stream parser skips only signs whose search_form is empty');
+assert.deepEqual(streamed.map(record => record.search_form), ['-', 'mol', 'dom'], 'stream parser preserves the hard-sign separator and usable Russian search forms');
 
 await rm(tmpRoot, { recursive: true, force: true });
 console.log('associative index empty search_form tests passed');
