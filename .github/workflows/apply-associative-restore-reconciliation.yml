@@ -7,6 +7,12 @@ on:
     paths:
       - scripts/apply-associative-restore-reconciliation.mjs
       - .github/workflows/apply-associative-restore-reconciliation.yml
+  pull_request:
+    branches:
+      - main
+    paths:
+      - scripts/apply-associative-restore-reconciliation.mjs
+      - .github/workflows/apply-associative-restore-reconciliation.yml
 
 permissions:
   contents: write
