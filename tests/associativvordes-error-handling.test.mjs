@@ -7,14 +7,15 @@ const script = await readFile('associativvordes/script.js', 'utf8');
 const qwen = await readFile('associativvordes/js/qwen-client.js', 'utf8');
 const analyzer = await readFile('associativvordes/js/association-analyzer.js', 'utf8');
 
-assert.equal(QWEN_RUNTIME_CONFIG.enableCandidateGeneration, false, 'Qwen candidate generation remains disabled');
+assert.equal(QWEN_RUNTIME_CONFIG.enableCandidateGeneration, true, 'bounded supplemental Qwen candidate generation is enabled');
+assert.equal(QWEN_RUNTIME_CONFIG.maxGeneratedCandidatesPerLanguage, 2, 'candidate generation cannot create an unbounded result set');
 assert.equal(THRESHOLDS.word, 35, 'word threshold remains 35%');
 assert.equal(THRESHOLDS.main, 35, 'main threshold remains 35%');
 assert.equal(THRESHOLDS.reviewMin, 25, 'review lower bound is unchanged');
 assert.equal(THRESHOLDS.reviewMax, 35, 'review upper bound is unchanged');
 assert.match(script, /languageStatuses/, 'per-language statuses are persisted in state');
-assert.match(script, /createLanguageStatus\('no_candidates'\)[\s\S]*continue;/, 'no_candidates path skips Qwen analysis');
-assert.match(script, /createLanguageStatus\('index_error'[\s\S]*continue;/, 'index_error path skips Qwen analysis');
+assert.match(script, /createLanguageStatus\('no_candidates'\)[\s\S]*continue;/, 'no_candidates path skips ordinary candidate Qwen analysis');
+assert.match(script, /createLanguageStatus\('index_error'[\s\S]*continue;/, 'index_error path skips ordinary candidate Qwen analysis');
 assert.match(script, /isValidRuntimeCandidate[\s\S]*sources\.length === 0[\s\S]*frequency_score[\s\S]*!item\.match/, 'candidates are validated before Qwen');
 assert.match(script, /word: item\.word/, 'original candidate word is sent to Qwen');
 assert.doesNotMatch(script, /word: item\.search_form/, 'search_form is not sent to Qwen as word');
@@ -23,6 +24,7 @@ assert.match(script, /state\.languages = \{ \.\.\.state\.languages, \.\.\.nextLa
 assert.match(analyzer, /combination_method = 'primary_only'/, 'review errors keep primary evaluation');
 assert.match(qwen, /requestTimeoutMs: 15000/, 'single Qwen request has bounded timeout');
 assert.match(qwen, /AbortController/, 'Qwen timeout uses AbortController');
+assert.match(qwen, /qwen_suggestion_verified_in_local_index/, 'generated candidates must be verified in the local index before analysis');
 assert.match(script, /buttonController\?\.success[\s\S]*Done[\s\S]*Готово/, 'successful calculation shows localized completion status');
 const searchDerivativesBlock = script.match(/async function searchDerivatives\(\) \{[\s\S]*?\n    \}/)?.[0] || '';
 assert.doesNotMatch(searchDerivativesBlock, /finally[\s\S]*setCalculateButtonStatus\(defaultCalculateButtonText\(\), false, \{ loading: false \}\)/, 'finally does not immediately overwrite the completion status');
@@ -32,7 +34,7 @@ assert.match(script, /InteralAssociativDiagnostics/, 'developer diagnostics are 
 assert.match(script, /qwenPrimaryRequestCount|qwenReviewRequestCount|qwenFailedRequestCount|abortedRequestCount|indexFetchCount|candidateCount/, 'request diagnostics are counted');
 assert.match(script, /mapWithConcurrency\([\s\S]*QWEN_RUNTIME_CONFIG\.maxConcurrentQwenRequests/, 'maxConcurrentQwenRequests is honored');
 assert.doesNotMatch(script, /Promise\.all\(LANGUAGES|LANGUAGES\.map\(async/, 'languages are not launched with Promise.all');
-assert.match(qwen, /QWEN_HTTP_ERROR|QWEN_TIMEOUT|QWEN_INVALID_RESPONSE|QWEN_SEMANTIC_SCORES_INVALID|QWEN_ABORTED|QWEN_REVIEW_FAILED/, 'stable Qwen error codes are defined');
+assert.match(qwen, /QWEN_HTTP_ERROR|QWEN_TIMEOUT|QWEN_INVALID_RESPONSE|QWEN_SEMANTIC_SCORES_INVALID|QWEN_ABORTED|QWEN_REVIEW_FAILED|QWEN_CANDIDATE_GENERATION_FAILED/, 'stable Qwen error codes are defined');
 
 const previousDocument = globalThis.document;
 globalThis.document = { documentElement: { lang: 'en' } };
