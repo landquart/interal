@@ -1,10 +1,22 @@
 import { normalizeInterfaceLanguage } from './lib/interface-language.js';
+import { buildSearchForm } from '../associativvordes/js/search-normalizer.js';
 
 const MAX_BODY_BYTES = 50_000;
 const YANDEX_CHAT_COMPLETIONS_URL = 'https://ai.api.cloud.yandex.net/v1/chat/completions';
 const QWEN_MODEL = 'qwen3-235b-a22b-fp8/latest';
 const CONTROL_LANGUAGES = ['en', 'de', 'fr', 'es', 'it', 'ru'];
 const MAX_CANDIDATES_PER_LANGUAGE = 2;
+
+const ROOT_ALLOMORPH_HINTS = Object.freeze({
+  alter: {
+    en: ['altru'],
+    de: ['altru'],
+    fr: ['altru', 'autrui'],
+    es: ['altru', 'otr'],
+    it: ['altru', 'altrui'],
+    ru: ['altru', 'альтру']
+  }
+});
 
 function cors(req, res) {
   const origin = req.headers.origin || '*';
@@ -63,13 +75,19 @@ function languageLower(value, language) {
   return String(value || '').toLocaleLowerCase(language === 'ru' ? 'ru' : undefined);
 }
 
+function rootVariantIsVisible(word, rootVariant, language) {
+  if (languageLower(word, language).includes(languageLower(rootVariant, language))) return true;
+  const normalizedWord = buildSearchForm(word);
+  const normalizedVariant = buildSearchForm(rootVariant);
+  return Boolean(normalizedVariant && normalizedWord.includes(normalizedVariant));
+}
+
 function normalizeCandidate(value, language) {
   const source = typeof value === 'string' ? { word: value } : value;
   if (!source || typeof source !== 'object' || Array.isArray(source)) return null;
   const word = normalizeWord(source.word);
   const rootVariant = normalizeWord(source.root_variant ?? source.rootVariant, 40);
-  if (!word || !rootVariant) return null;
-  if (!languageLower(word, language).includes(languageLower(rootVariant, language))) return null;
+  if (!word || !rootVariant || !rootVariantIsVisible(word, rootVariant, language)) return null;
   return { word, root_variant: rootVariant };
 }
 
@@ -89,20 +107,14 @@ function validateInput(body) {
   const interfaceLanguage = normalizeInterfaceLanguage(body.interfaceLanguage);
   if (!root) throw Object.assign(new Error('root is required'), { status: 400 });
   if (!targetMeaning) throw Object.assign(new Error('targetMeaning is required'), { status: 400 });
-  return {
-    root,
-    targetMeaning,
-    interfaceLanguage,
-    existingCandidates: normalizeExistingCandidates(body.existingCandidates)
-  };
+  return { root, targetMeaning, interfaceLanguage, existingCandidates: normalizeExistingCandidates(body.existingCandidates) };
 }
 
-function normalizeResult(result) {
+function normalizeResult(result, languages = CONTROL_LANGUAGES) {
   const source = result?.candidates && typeof result.candidates === 'object' ? result.candidates : {};
-  const candidates = {};
-  for (const language of CONTROL_LANGUAGES) {
+  const candidates = Object.fromEntries(CONTROL_LANGUAGES.map(language => [language, []]));
+  for (const language of languages) {
     const seen = new Set();
-    candidates[language] = [];
     for (const rawCandidate of Array.isArray(source[language]) ? source[language] : []) {
       const candidate = normalizeCandidate(rawCandidate, language);
       if (!candidate) continue;
@@ -116,20 +128,48 @@ function normalizeResult(result) {
   return candidates;
 }
 
-function buildPrompt(input) {
+function mergeCandidateMaps(primary, repair) {
+  const output = {};
+  for (const language of CONTROL_LANGUAGES) {
+    const seen = new Set();
+    output[language] = [];
+    for (const candidate of [...(primary[language] || []), ...(repair[language] || [])]) {
+      const key = languageLower(candidate.word, language);
+      if (seen.has(key)) continue;
+      seen.add(key);
+      output[language].push(candidate);
+      if (output[language].length >= MAX_CANDIDATES_PER_LANGUAGE) break;
+    }
+  }
+  return output;
+}
+
+function allomorphHints(root, languages) {
+  const hints = ROOT_ALLOMORPH_HINTS[buildSearchForm(root)] || {};
+  return Object.fromEntries(languages.map(language => [language, hints[language] || []]));
+}
+
+function buildPrompt(input, languages = CONTROL_LANGUAGES, repair = false) {
+  const hints = allomorphHints(input.root, languages);
   return `You generate supplemental lexical candidates for the Interal associative-word procedure.
 
-Return only real dictionary lemmas that may contain a historically or morphologically transformed reflex of the requested root and are semantically useful for the target meaning. The ordinary local root search has already run; do not repeat words from existingCandidates. Do not invent words, names, phrases, inflected forms, spelling variants, or translations of the target meaning that have no relation to the requested root.
+This is a morphological and etymological discovery task, not a semantic filtering task. Return real dictionary lemmas that contain a historically or morphologically transformed reflex of the requested root. Do not reject a word merely because its modern meaning has shifted far from targetMeaning: SWOW and a separate Qwen scoring stage evaluate semantics later.
 
-Historical allomorphy is allowed when linguistically justified. For example, Latin alter may be reflected by altru- in English altruism/altruist and Russian альтруизм/альтруист. This example illustrates transformation only; include such words only when relevant to the actual input.
+The ordinary local root search has already run. Do not repeat words from existingCandidates. Do not invent words, names, phrases, inflected forms, spelling variants, or unrelated translations. Prefer dictionary headwords and distinct derivational models. Historical allomorphy is explicitly required when justified.
 
-For each language return no more than ${MAX_CANDIDATES_PER_LANGUAGE} additional lemmas. root_variant is mandatory and must be the exact visible segment in the returned word that represents the requested root or its justified allomorph. Candidates with a missing or non-visible root_variant are discarded. Use exact native spelling, including Cyrillic for Russian.
+For Latin alter, transformed reflexes such as altru- must produce candidates such as English altruism/altruist and Russian альтруизм/альтруист when those words are absent from existingCandidates. The allomorph hints below are search directions, not permission to invent words.
+
+Requested languages: ${JSON.stringify(languages)}
+Allomorph hints: ${JSON.stringify(hints)}
+Repair pass: ${repair ? 'true' : 'false'}
+
+For every requested language, return up to ${MAX_CANDIDATES_PER_LANGUAGE} additional lemmas when genuine words exist. root_variant is mandatory. It may be written in the word's native script or in the same Latin search transliteration; it must correspond to a visible segment after normalization. Use exact native spelling for word, including Cyrillic for Russian.
 
 Input:
 ${JSON.stringify(input, null, 2)}
 
 Return exactly this JSON shape:
-{"candidates":{"en":[{"word":"","root_variant":""}],"de":[],"fr":[],"es":[],"it":[],"ru":[]}}`;
+{"candidates":{"en":[],"de":[],"fr":[],"es":[],"it":[],"ru":[]}}`;
 }
 
 function getAiText(responseJson, fallbackText) {
@@ -139,7 +179,7 @@ function getAiText(responseJson, fallbackText) {
   return fallbackText;
 }
 
-async function callYandex(input) {
+async function callYandex(input, { languages = CONTROL_LANGUAGES, repair = false } = {}) {
   const apiKey = process.env.Qwen3_235B_A22B_Instruct_2507_FP8_Yandex;
   const folderId = process.env.yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8;
   if (!apiKey) throw Object.assign(new Error('Missing Yandex API key'), { status: 500 });
@@ -148,8 +188,8 @@ async function callYandex(input) {
   const requestBody = {
     model: `gpt://${folderId}/${QWEN_MODEL}`,
     messages: [
-      { role: 'system', content: 'You are a conservative multilingual lexicographer. Return only valid JSON. Never invent candidate words.' },
-      { role: 'user', content: buildPrompt(input) }
+      { role: 'system', content: 'You are a conservative multilingual historical lexicographer. Return only valid JSON and never invent candidate words.' },
+      { role: 'user', content: buildPrompt(input, languages, repair) }
     ],
     temperature: 0,
     max_tokens: 1800,
@@ -182,8 +222,23 @@ export default async function handler(req, res) {
   try {
     if (req.method !== 'POST') return send(res, 405, { ok: false, error: 'Method not allowed' });
     const input = validateInput(await readBody(req));
-    const result = await callYandex(input);
-    return send(res, 200, { ok: true, candidates: normalizeResult(extractJson(result.content)), model: result.model });
+    const first = await callYandex(input);
+    const primaryCandidates = normalizeResult(extractJson(first.content));
+    const missingLanguages = CONTROL_LANGUAGES.filter(language => primaryCandidates[language].length === 0);
+    let repairCandidates = Object.fromEntries(CONTROL_LANGUAGES.map(language => [language, []]));
+    let repairModel = null;
+    if (missingLanguages.length) {
+      const repair = await callYandex(input, { languages: missingLanguages, repair: true });
+      repairCandidates = normalizeResult(extractJson(repair.content), missingLanguages);
+      repairModel = repair.model;
+    }
+    return send(res, 200, {
+      ok: true,
+      candidates: mergeCandidateMaps(primaryCandidates, repairCandidates),
+      model: first.model,
+      repairModel,
+      repairedLanguages: missingLanguages
+    });
   } catch (error) {
     const status = error.status && error.status >= 400 && error.status < 600 ? error.status : 500;
     return send(res, status, {
