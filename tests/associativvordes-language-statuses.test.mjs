@@ -37,10 +37,12 @@ assert.equal(oneError.finalAssociation, 47.5, 'one language error does not clear
 
 const threeOfSix = calculateFinalAssociation({ languages, languageResults: [success(40), empty, success(50), empty, empty, success(60)], languageStatuses: {} });
 assert.equal(threeOfSix.finalAssociation, 50, 'three successful languages from six form FA');
-assert.equal(threeOfSix.accepted, true, 'three languages in two groups can be accepted');
+assert.equal(threeOfSix.accepted, true, 'FA above the final threshold is accepted');
 
 const oneGroup = calculateFinalAssociation({ languages: languages.slice(0, 2), languageResults: [success(80), success(70)], languageStatuses: {} });
-assert.equal(buildDecisionReasons(oneGroup).critical.includes('fewer_than_2_groups'), true, 'minimum two groups remains required');
+assert.equal(oneGroup.accepted, true, 'evidence from one group does not create a second numerical acceptance threshold');
+assert.equal(buildDecisionReasons(oneGroup).warnings.includes('fewer_than_2_groups'), true, 'one represented group is reported as an evidence warning');
+assert.equal(buildDecisionReasons(oneGroup).critical.includes('fewer_than_2_groups'), false, 'evidence breadth does not override FA acceptance');
 
 const faNull = calculateFinalAssociation({ languages: languages.slice(0, 3), languageResults: [empty, empty, empty], languageStatuses: {} });
 assert.deepEqual(buildDecisionReasons(faNull).critical, ['no_calculated_data'], 'FA null gives no_calculated_data');
@@ -51,7 +53,8 @@ assert.equal(buildDecisionReasons(faZero).critical.includes('final_association_b
 
 const analyzing = calculateFinalAssociation({ languages: languages.slice(0, 3), languageResults: [success(40), empty, empty], languageStatuses: { de: { status: 'analyzing' } } });
 assert.equal(buildDecisionReasons(analyzing).warnings.includes('calculation_incomplete'), true, 'analyzing is intermediate warning');
-assert.equal(buildDecisionReasons(analyzing).critical.includes('fewer_than_3_languages'), true, 'partial numeric data still reports current critical result only with data');
+assert.equal(buildDecisionReasons(analyzing).warnings.includes('fewer_than_3_languages'), true, 'limited current evidence is reported as a warning');
+assert.equal(buildDecisionReasons(analyzing).critical.includes('fewer_than_3_languages'), false, 'limited evidence is not a separate acceptance threshold');
 
 for (const status of ['completed', 'no_candidates', 'index_error', 'qwen_error', 'incomplete', 'aborted']) assert.equal(isLanguageTerminal(status), true, `${status} is terminal`);
 assert.equal(summarizeLanguageStatuses({ en: { status: 'completed' }, de: { status: 'no_candidates' }, fr: { status: 'index_error' } }).allTerminal, true, 'all terminal statuses finish global run');
@@ -66,8 +69,9 @@ assert.equal(acceptedWithIndexWarning.accepted, true, 'index_error warning need 
 assert.equal(decisionStatusForResult(acceptedWithIndexWarning), 'accept', 'accepted decision survives warning');
 
 const semanticBad = calculateFinalAssociation({ languages: languages.slice(0, 3), languageResults: [success(50), success(50), success(50, false)], languageStatuses: {} });
-assert.equal(buildDecisionReasons(semanticBad).critical.includes('semantic_not_confirmed'), true, 'semantic_not_confirmed cancels acceptance');
-assert.equal(decisionStatusForResult(semanticBad), 'reject', 'semantic critical reason rejects');
+assert.equal(buildDecisionReasons(semanticBad).warnings.includes('semantic_not_confirmed'), true, 'semantic uncertainty is retained as a warning');
+assert.equal(buildDecisionReasons(semanticBad).critical.includes('semantic_not_confirmed'), false, 'semantic uncertainty is not another numerical threshold');
+assert.equal(decisionStatusForResult(semanticBad), 'accept', 'FA alone determines the accept/reject decision when data exist');
 
 const duplicateOrder = buildDecisionReasons({ ...faZero, languageStatusSummary: summarizeLanguageStatuses({ en: { status: 'index_error' }, de: { status: 'index_error' } }) });
 assert.equal(new Set(duplicateOrder.critical).size, duplicateOrder.critical.length, 'critical reasons are unique');
