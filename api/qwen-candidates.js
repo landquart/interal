@@ -59,12 +59,17 @@ function normalizeWord(value, maxLength = 80) {
   return word;
 }
 
-function normalizeCandidate(value) {
+function languageLower(value, language) {
+  return String(value || '').toLocaleLowerCase(language === 'ru' ? 'ru' : undefined);
+}
+
+function normalizeCandidate(value, language) {
   const source = typeof value === 'string' ? { word: value } : value;
   if (!source || typeof source !== 'object' || Array.isArray(source)) return null;
   const word = normalizeWord(source.word);
   const rootVariant = normalizeWord(source.root_variant ?? source.rootVariant, 40);
-  if (!word) return null;
+  if (!word || !rootVariant) return null;
+  if (!languageLower(word, language).includes(languageLower(rootVariant, language))) return null;
   return { word, root_variant: rootVariant };
 }
 
@@ -99,9 +104,9 @@ function normalizeResult(result) {
     const seen = new Set();
     candidates[language] = [];
     for (const rawCandidate of Array.isArray(source[language]) ? source[language] : []) {
-      const candidate = normalizeCandidate(rawCandidate);
+      const candidate = normalizeCandidate(rawCandidate, language);
       if (!candidate) continue;
-      const key = candidate.word.toLocaleLowerCase(language === 'ru' ? 'ru' : undefined);
+      const key = languageLower(candidate.word, language);
       if (seen.has(key)) continue;
       seen.add(key);
       candidates[language].push(candidate);
@@ -118,7 +123,7 @@ Return only real dictionary lemmas that may contain a historically or morphologi
 
 Historical allomorphy is allowed when linguistically justified. For example, Latin alter may be reflected by altru- in English altruism/altruist and Russian альтруизм/альтруист. This example illustrates transformation only; include such words only when relevant to the actual input.
 
-For each language return no more than ${MAX_CANDIDATES_PER_LANGUAGE} additional lemmas. root_variant must be the visible segment in the returned word that represents the requested root or its justified allomorph. Use exact native spelling, including Cyrillic for Russian.
+For each language return no more than ${MAX_CANDIDATES_PER_LANGUAGE} additional lemmas. root_variant is mandatory and must be the exact visible segment in the returned word that represents the requested root or its justified allomorph. Candidates with a missing or non-visible root_variant are discarded. Use exact native spelling, including Cyrillic for Russian.
 
 Input:
 ${JSON.stringify(input, null, 2)}
