@@ -42,6 +42,17 @@ function writingSystem(value) {
   return 'other';
 }
 
+function diacriticSignature(value) {
+  const decomposed = String(value || '').normalize('NFD');
+  const marks = [];
+  let baseIndex = -1;
+  for (const char of decomposed) {
+    if (/\p{M}/u.test(char)) marks.push(`${baseIndex}:${char.codePointAt(0).toString(16)}`);
+    else baseIndex += 1;
+  }
+  return marks.length ? marks.join(',') : 'plain';
+}
+
 export function canonicalLexicalStem(value, language = 'en') {
   const normalized = buildSearchForm(value).replace(/[^a-z0-9'-]+/g, '');
   if (!normalized) return '';
@@ -63,7 +74,7 @@ export function lexicalModelFamilyKey(candidate, root, language = 'en') {
   if (rootForm && wordForm.includes(rootForm) && stem.length < rootForm.length) stem = rootForm;
   const matchIndex = Number.isInteger(candidate?.match?.index) ? candidate.match.index : Math.max(0, wordForm.indexOf(rootForm));
   const prefix = matchIndex > 0 ? wordForm.slice(0, matchIndex) : '';
-  return `${writingSystem(candidate?.word)}|${prefix}|${stem}`;
+  return `${writingSystem(candidate?.word)}|${diacriticSignature(candidate?.word)}|${prefix}|${stem}`;
 }
 
 function totalIpm(candidate) {
