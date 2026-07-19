@@ -1,4 +1,5 @@
 import { normalizeWord } from './frequency-loader.js';
+import './qwen-checkbox-hook.js';
 
 export const API_CONFIG = {
   swowBasePath: './swow_association_strength',
