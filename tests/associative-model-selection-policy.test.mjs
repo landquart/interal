@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { lexicalModelDescriptor, selectHighestFrequencyPerModel } from '../associativvordes/js/candidate-model-family.js';
 import { calculateLanguageScore, calculateFinalAssociation, classifyScore, passesWordThreshold, decisionStatusForResult } from '../associativvordes/js/association-analyzer.js';
+import { MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE } from '../associativvordes/js/associative-state.js';
 import { readFile } from 'node:fs/promises';
 
 function candidate(word, search_form, frequency_score, final_score, rank = null) {
@@ -10,6 +11,8 @@ function candidate(word, search_form, frequency_score, final_score, rank = null)
     sources: [{ id: 'test', file: 'test.json', category: 'normative', ipm: frequency_score }]
   };
 }
+
+assert.equal(MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE, 5, 'the shared associative-word limit is five per language');
 
 const variants = [
   candidate('альтернатива', 'alternativa', 92, 18, 1),
@@ -42,7 +45,7 @@ const limitedLanguage = calculateLanguageScore([
   { selected: true, final_score: 70 },
   { selected: true, final_score: 60 },
   { selected: true, final_score: 0 }
-], { maxModels: 5 });
+], { maxModels: MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE });
 assert.equal(limitedLanguage.count, 5, 'no more than five words participate in one language result');
 assert.equal(limitedLanguage.normalized, 80, 'the sixth selected word is excluded by the five-word limit');
 
@@ -75,7 +78,7 @@ assert.doesNotMatch(script, /function scoringCandidates[\s\S]*state\.languages\[
 const qwen = await readFile('associativvordes/js/qwen-client.js', 'utf8');
 assert.match(qwen, /compareFrequencyRepresentatives\(proposed, existing\)/);
 assert.doesNotMatch(qwen, /InteralAssociativeModels\?\.reconcile/, 'Qwen insertion waits for analyzeItem to reconcile after scoring');
-assert.equal((await import('../associativvordes/js/qwen-client.js')).QWEN_RUNTIME_CONFIG.autoAnalyzeCandidatesPerLanguage, 5);
+assert.equal((await import('../associativvordes/js/qwen-client.js')).QWEN_RUNTIME_CONFIG.autoAnalyzeCandidatesPerLanguage, MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE);
 assert.match(qwen, /enableReviewModel: false/);
 
 console.log('Associative model-selection and threshold policy tests passed.');
