@@ -1431,6 +1431,9 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
       isImportingAssociativeState = true;
       try {
         state = restored.state;
+        for (const lang of LANGUAGES) {
+          state.languages[lang.code] = reconcileModelRepresentatives(state.languages[lang.code], state.root, lang.code);
+        }
         activeLang = restored.activeLang;
         document.getElementById('rootInput').value = state.root;
         document.getElementById('meaningInput').value = state.meaning;
