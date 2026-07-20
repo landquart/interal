@@ -1484,7 +1484,14 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
     window.InteralAssociativeModels = {
       reconcile: (language) => reconcileLanguageModels(language),
       descriptor: (language, candidate) => lexicalModelDescriptor(candidate, state.root, language),
-      findRepresentative: (language, modelKey) => (state.languages[language] || []).find(item => (item.model_key || lexicalModelDescriptor(item, state.root, language).key) === modelKey) || null
+      findRepresentative: (language, modelKey) => (state.languages[language] || []).find(item => (item.model_key || lexicalModelDescriptor(item, state.root, language).key) === modelKey) || null,
+      findIndexByWord: (language, word) => {
+        const key = normalizeText(word);
+        return (state.languages[language] || []).findIndex(item => normalizeText(item.word) === key);
+      },
+      findIndexByModel: (language, modelKey) => (state.languages[language] || []).findIndex(item => (item.model_key || lexicalModelDescriptor(item, state.root, language).key) === modelKey),
+      candidateAt: (language, index) => (state.languages[language] || [])[index] || null,
+      allCandidates: (language) => state.languages[language] || []
     };
     window.InteralAssociativDiagnostics = () => window.InteralAssociativeDiagnostics.getSnapshot();
 

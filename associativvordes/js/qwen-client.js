@@ -348,12 +348,11 @@ function currentModelEvidence(snapshot) {
 }
 
 async function waitForCandidateAnalysis(language, word, tokenIsCurrent) {
-  const key = buildSearchForm(word);
   const deadline = Date.now() + QWEN_RUNTIME_CONFIG.supplementalAnalysisTimeoutMs;
   while (Date.now() < deadline && tokenIsCurrent()) {
     await delay(250);
-    const snapshot = window.InteralPageStateExport?.();
-    const candidate = (snapshot?.state?.languages?.[language] || []).find(item => buildSearchForm(item.word) === key);
+    const index = window.InteralAssociativeModels?.findIndexByWord?.(language, word) ?? -1;
+    const candidate = index >= 0 ? window.InteralAssociativeModels?.candidateAt?.(language, index) : null;
     if (!candidate) continue;
     if (hasFiniteScore(candidateFinalScore(candidate))) return candidate;
     if (candidate.analysisStatus === 'error' || candidate.analysis?.status === 'error') return null;
@@ -361,22 +360,7 @@ async function waitForCandidateAnalysis(language, word, tokenIsCurrent) {
   return null;
 }
 
-async function addVerifiedCandidateToRuntime(language, suggestion, entry, root, originalUpdateItem, tokenIsCurrent) {
-  const descriptor = modelForGeneratedCandidate(entry, suggestion, root, language);
-  const proposed = {
-    ...entry,
-    model_key: descriptor.key,
-    model_family_key: descriptor.key,
-    model: descriptor.label,
-    frequencyProfile: { frequency_score: entry.frequency_score }
-  };
-  const existing = window.InteralAssociativeModels?.findRepresentative?.(language, descriptor.key);
-  if (existing && compareFrequencyRepresentatives(proposed, existing) >= 0) return null;
-  if (!activateLanguageTab(language) || !tokenIsCurrent()) return null;
-  window.addRow(language);
-  const total = candidateCountFromPanel();
-  if (!Number.isInteger(total) || total < 1) return null;
-  const index = total - 1;
+function applyVerifiedCandidateData(language, index, suggestion, entry, root, descriptor, originalUpdateItem) {
   const searchForm = entry.search_form || buildSearchForm(entry.word);
   const variant = buildSearchForm(suggestion.root_variant || root);
   const variantIndex = variant ? searchForm.indexOf(variant) : -1;
@@ -389,7 +373,6 @@ async function addVerifiedCandidateToRuntime(language, suggestion, entry, root, 
     sources: Array.isArray(entry.sources) ? entry.sources : [],
     warnings: []
   };
-
   originalUpdateItem(language, index, 'normalized', entry.normalized || entry.word);
   originalUpdateItem(language, index, 'search_form', searchForm);
   originalUpdateItem(language, index, 'match', match);
@@ -401,13 +384,54 @@ async function addVerifiedCandidateToRuntime(language, suggestion, entry, root, 
   originalUpdateItem(language, index, 'word', entry.word);
   originalUpdateItem(language, index, 'model_key', descriptor.key);
   originalUpdateItem(language, index, 'model', descriptor.label);
-  return await waitForCandidateAnalysis(language, entry.word, tokenIsCurrent);
+}
+
+async function analyzeRuntimeCandidate(language, index, word, originalUpdateItem, tokenIsCurrent) {
+  if (!Number.isInteger(index) || index < 0 || !tokenIsCurrent()) return null;
+  const current = window.InteralAssociativeModels?.candidateAt?.(language, index);
+  if (!current) return null;
+  originalUpdateItem(language, index, 'selected', true);
+  if (!hasFiniteScore(candidateFinalScore(current))) await window.analyzeItem(language, index);
+  return await waitForCandidateAnalysis(language, word || current.word, tokenIsCurrent);
+}
+
+async function addVerifiedCandidateToRuntime(language, suggestion, entry, root, originalUpdateItem, tokenIsCurrent) {
+  const descriptor = modelForGeneratedCandidate(entry, suggestion, root, language);
+  const proposed = {
+    ...entry,
+    model_key: descriptor.key,
+    model_family_key: descriptor.key,
+    model: descriptor.label,
+    frequencyProfile: { frequency_score: entry.frequency_score }
+  };
+  const exactIndex = window.InteralAssociativeModels?.findIndexByWord?.(language, entry.word) ?? -1;
+  if (exactIndex >= 0) {
+    applyVerifiedCandidateData(language, exactIndex, suggestion, entry, root, descriptor, originalUpdateItem);
+    return await analyzeRuntimeCandidate(language, exactIndex, entry.word, originalUpdateItem, tokenIsCurrent);
+  }
+
+  const modelIndex = window.InteralAssociativeModels?.findIndexByModel?.(language, descriptor.key) ?? -1;
+  if (modelIndex >= 0) {
+    const existing = window.InteralAssociativeModels?.candidateAt?.(language, modelIndex);
+    if (existing && compareFrequencyRepresentatives(proposed, existing) < 0) {
+      applyVerifiedCandidateData(language, modelIndex, suggestion, entry, root, descriptor, originalUpdateItem);
+      return await analyzeRuntimeCandidate(language, modelIndex, entry.word, originalUpdateItem, tokenIsCurrent);
+    }
+    return await analyzeRuntimeCandidate(language, modelIndex, existing?.word, originalUpdateItem, tokenIsCurrent);
+  }
+
+  if (!activateLanguageTab(language) || !tokenIsCurrent()) return null;
+  window.addRow(language);
+  const total = candidateCountFromPanel();
+  if (!Number.isInteger(total) || total < 1) return null;
+  const index = total - 1;
+  applyVerifiedCandidateData(language, index, suggestion, entry, root, descriptor, originalUpdateItem);
+  return await analyzeRuntimeCandidate(language, index, entry.word, originalUpdateItem, tokenIsCurrent);
 }
 
 function rebalanceSelectedModels(originalUpdateItem) {
-  const snapshot = window.InteralPageStateExport?.();
   for (const language of CONTROL_LANGUAGE_CODES) {
-    const candidates = snapshot?.state?.languages?.[language] || [];
+    const candidates = window.InteralAssociativeModels?.allCandidates?.(language) || [];
     const best = selectBestFinalModels(candidates, MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE);
     const selected = new Set(best.map(candidateIdentity));
     candidates.forEach((candidate, index) => {
@@ -473,11 +497,11 @@ function installAssociativeBrowserEnhancements() {
 
       const snapshot = window.InteralPageStateExport?.();
       if (!snapshot?.state?.checked) return;
+      const currentModels = currentModelEvidence(snapshot);
       const existingCandidates = Object.fromEntries(CONTROL_LANGUAGE_CODES.map(language => [
         language,
-        (snapshot.state.languages?.[language] || []).map(candidate => candidate.word).filter(Boolean)
+        (currentModels[language] || []).map(candidate => candidate.word).filter(Boolean)
       ]));
-      const currentModels = currentModelEvidence(snapshot);
       let suggestions;
       try {
         suggestions = await getQwenCandidateSuggestions({
@@ -495,16 +519,14 @@ function installAssociativeBrowserEnhancements() {
 
       loaderPromise ||= import('./candidate-index-loader.js').then(module => module.createCandidateIndexLoader());
       const loader = await loaderPromise;
-      const existingKeys = Object.fromEntries(CONTROL_LANGUAGE_CODES.map(language => [
-        language,
-        new Set((existingCandidates[language] || []).map(buildSearchForm))
-      ]));
+      const processedSuggestionKeys = Object.fromEntries(CONTROL_LANGUAGE_CODES.map(language => [language, new Set()]));
 
       for (const language of CONTROL_LANGUAGE_CODES) {
         for (const suggestion of suggestions[language] || []) {
           if (!tokenIsCurrent()) return;
           const suggestionKey = buildSearchForm(suggestion.word);
-          if (!suggestionKey || existingKeys[language].has(suggestionKey)) continue;
+          if (!suggestionKey || processedSuggestionKeys[language].has(suggestionKey)) continue;
+          processedSuggestionKeys[language].add(suggestionKey);
           let entry;
           try {
             entry = await verifySuggestionInLocalIndex(loader, language, suggestion, generationAbortController?.signal);
@@ -514,7 +536,6 @@ function installAssociativeBrowserEnhancements() {
             continue;
           }
           if (!entry) continue;
-          existingKeys[language].add(suggestionKey);
           await addVerifiedCandidateToRuntime(language, suggestion, entry, rootAtClick, originalUpdateItem, tokenIsCurrent);
           await delay(250);
         }

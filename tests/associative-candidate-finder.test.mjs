@@ -34,7 +34,7 @@ assert.deepEqual(words(findCandidatesForRoot({ entries: [
   entry('alter-exact-low', 'alter-low', { frequency_score: 1, ipm: 1 }),
   entry('alter-exact-ipm-low', 'alter-ipm-low', { frequency_score: 50, ipm: 1 }),
   entry('alter-exact-ipm-high', 'alter-ipm-high', { frequency_score: 50, ipm: 99 })
-], root: 'alter' })), ['alter-fuzzy-high', 'alter-exact-ipm-high', 'alter-exact-ipm-low', 'alter-exact-low'], 'initial model ordering is frequency-first; rank and IPM break frequency ties before match quality');
+], root: 'alter' })), ['alter-exact-ipm-high', 'alter-exact-ipm-low', 'alter-exact-low', 'alter-fuzzy-high'], 'exact and configured allomorph matches are ranked by F before fuzzy lookalikes are considered');
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('alter-rank2', 'alter-rank2', { rank: 2 }), entry('alter-rank1', 'alter-rank1', { rank: 1 })], root: 'alter' })), ['alter-rank1', 'alter-rank2']);
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('alter-null', 'alter-null', { rank: null }), entry('alter-ranked', 'alter-ranked', { rank: 3 })], root: 'alter' })), ['alter-ranked', 'alter-null'], 'rank influences sorting after frequency tie');
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('alter-null-high-frequency', 'alter-null-high-frequency', { rank: null, frequency_score: 90 }), entry('alter-ranked-low-frequency', 'alter-ranked-low-frequency', { rank: 1, frequency_score: 10 })], root: 'alter' })), ['alter-null-high-frequency', 'alter-ranked-low-frequency'], 'frequency_score is compared before real rank vs null');
@@ -102,5 +102,21 @@ assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('бухгалте
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('realteration', 'realteration')], root: 'alter', language: 'en' })), ['realteration'], 'a root after a known safe prefix is accepted');
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('irregular', 'irregular')], root: 'regul', language: 'en' })), ['irregular'], 'a root after a known restricted allomorph is accepted');
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('xregulation', 'xregulation')], root: 'regul', language: 'en' })), [], 'an arbitrary initial letter is not treated as a prefix');
+
+const alterRegression = findCandidatesForRoot({
+  entries: [
+    entry('after', 'after', { frequency_score: 100 }),
+    entry('afternoon', 'afternoon', { frequency_score: 77 }),
+    entry('afterwards', 'afterwards', { frequency_score: 60 }),
+    entry('disaster', 'disaster', { frequency_score: 59 }),
+    entry('alternative', 'alternative', { frequency_score: 70 }),
+    entry('alter', 'alter', { frequency_score: 58 }),
+    entry('alteration', 'alteration', { frequency_score: 50 })
+  ],
+  root: 'alter',
+  language: 'en'
+});
+assert.deepEqual(words(alterRegression).slice(0, 3), ['alternative', 'alter', 'alteration'], 'valid alter models must precede more frequent fuzzy lookalikes such as after and disaster');
+assert.ok(alterRegression.candidates.slice(0, 3).every(candidate => candidate.match.type !== 'fuzzy'));
 
 console.log('associative candidate finder tests passed');
