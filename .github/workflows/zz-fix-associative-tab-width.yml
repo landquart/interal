@@ -1,0 +1,114 @@
+name: Apply associative tab width fix
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v6
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Patch restored tab sizing
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('associativvordes/script.js')
+          text = path.read_text(encoding='utf-8')
+
+          old_sync = '''    function syncTabWidths() {
+      const tabs = document.getElementById('tabs');
+      if (!tabs) return;
+      const tabButtons = Array.from(tabs.querySelectorAll('.tab'));
+      if (!tabButtons.length) return;
+
+      for (const btn of tabButtons) btn.style.width = "";
+
+      let maxWidth = 0;
+      for (const btn of tabButtons) {
+        maxWidth = Math.max(maxWidth, Math.ceil(btn.getBoundingClientRect().width));
+      }
+      for (const btn of tabButtons) {
+        btn.style.width = `${maxWidth}px`;
+      }
+    }'''
+
+          new_sync = '''    function syncTabWidths() {
+      const tabs = document.getElementById('tabs');
+      if (!tabs) return;
+      const tabButtons = Array.from(tabs.querySelectorAll('.tab'));
+      if (!tabButtons.length) return;
+
+      for (const btn of tabButtons) btn.style.width = "";
+
+      // A restored result can render while languagesSection is still hidden.
+      // Hidden buttons report a zero width; never persist that as an inline size.
+      if (tabs.closest('[hidden]') || tabs.getClientRects().length === 0) return;
+
+      let maxWidth = 0;
+      for (const btn of tabButtons) {
+        maxWidth = Math.max(maxWidth, Math.ceil(btn.getBoundingClientRect().width));
+      }
+      if (!Number.isFinite(maxWidth) || maxWidth <= 0) return;
+      for (const btn of tabButtons) {
+        btn.style.width = `${maxWidth}px`;
+      }
+    }'''
+
+          if text.count(old_sync) != 1:
+              raise SystemExit(f'syncTabWidths block: expected 1 match, found {text.count(old_sync)}')
+          text = text.replace(old_sync, new_sync, 1)
+
+          old_render = '''    function renderAll() {
+      applyLocalizedTexts();
+      renderTabs();
+      syncTabWidths();'''
+          new_render = '''    function renderAll() {
+      // Visibility must be synchronized before measuring language tabs.
+      syncCheckedVisibility();
+      applyLocalizedTexts();
+      renderTabs();
+      syncTabWidths();'''
+
+          if text.count(old_render) != 1:
+              raise SystemExit(f'renderAll block: expected 1 match, found {text.count(old_render)}')
+          text = text.replace(old_render, new_render, 1)
+          path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate fix
+        run: |
+          node --check associativvordes/script.js
+          node tests/associative-tab-width-restore.test.mjs
+          npm test
+
+      - name: Commit verified fix
+        shell: bash
+        run: |
+          rm .github/workflows/zz-fix-associative-tab-width.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add associativvordes/script.js tests/associative-tab-width-restore.test.mjs .github/workflows/zz-fix-associative-tab-width.yml
+          git commit -m "Fix restored associative language tab widths"
+          git push origin HEAD:main
