@@ -1,6 +1,6 @@
 import { findRootMatch, normalizeText } from './root-matcher.js';
 import { acceptAffixBoundaryMatch } from './affix-boundary-index.js';
-import { lexicalModelDescriptor, selectHighestFrequencyPerModel } from './candidate-model-family.js';
+import { lexicalModelDescriptor, selectHighestFrequencyPerModel, compareFrequencyRepresentatives } from './candidate-model-family.js';
 
 const MATCH_PRIORITY = Object.freeze({ exact: 0, special: 1, fuzzy: 2 });
 const BOUNDARY_PRIORITY = Object.freeze({ token: 0, safe: 1, combining: 2, restricted: 3 });
@@ -93,11 +93,11 @@ function findMatch({ searchForm, root, language, specialRootMatcher }) {
 function compareCandidates(a, b) {
   const rankA = validRank(a.rank) ? a.rank : Number.POSITIVE_INFINITY;
   const rankB = validRank(b.rank) ? b.rank : Number.POSITIVE_INFINITY;
-  return (MATCH_PRIORITY[a.match.type] ?? 99) - (MATCH_PRIORITY[b.match.type] ?? 99)
+  return compareFrequencyRepresentatives(a, b)
+    || (MATCH_PRIORITY[a.match.type] ?? 99) - (MATCH_PRIORITY[b.match.type] ?? 99)
     || (BOUNDARY_PRIORITY[a.match.boundary?.kind] ?? 99) - (BOUNDARY_PRIORITY[b.match.boundary?.kind] ?? 99)
     || (a.match.distance ?? 0) - (b.match.distance ?? 0)
     || (b.match.similarity ?? 0) - (a.match.similarity ?? 0)
-    || (b.frequency_score ?? 0) - (a.frequency_score ?? 0)
     || (b.total_ipm ?? 0) - (a.total_ipm ?? 0)
     || rankA - rankB
     || a.word.localeCompare(b.word);

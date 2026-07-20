@@ -1,12 +1,16 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import {
+  compareFinalModelCandidates,
   normalizeQwenCandidateSuggestions,
-  QWEN_RUNTIME_CONFIG
+  QWEN_RUNTIME_CONFIG,
+  selectBestFinalModels
 } from '../associativvordes/js/qwen-client.js';
 
-assert.equal(QWEN_RUNTIME_CONFIG.enableCandidateGeneration, true, 'supplemental candidate generation is enabled');
+assert.equal(QWEN_RUNTIME_CONFIG.enableCandidateGeneration, true, 'top-five model refinement is enabled');
 assert.equal(QWEN_RUNTIME_CONFIG.maxGeneratedCandidatesPerLanguage, 2, 'candidate generation is strictly bounded per language');
+assert.equal(QWEN_RUNTIME_CONFIG.autoAnalyzeCandidatesPerLanguage, 5, 'the initial stage analyzes five frequency-selected models');
+assert.ok(QWEN_RUNTIME_CONFIG.candidateRequestTimeoutMs > QWEN_RUNTIME_CONFIG.requestTimeoutMs, 'the multilingual candidate audit has a longer timeout than one word score');
 
 const normalized = normalizeQwenCandidateSuggestions({
   candidates: {
@@ -28,7 +32,26 @@ assert.deepEqual(normalized.en, [
   { word: 'altruism', root_variant: 'altru' },
   { word: 'altruist', root_variant: 'altru' }
 ], 'English suggestions obey the same deterministic limit');
-assert.deepEqual(normalized.de, [], 'missing language arrays normalize to an empty list');
+assert.deepEqual(normalized.de, [], 'an empty language decision remains empty');
+
+const evaluatedModels = [
+  { word: 'alternative', model_key: 'm1', frequency_score: 95, final_score: 35, rank: 1 },
+  { word: 'alteration', model_key: 'm2', frequency_score: 90, final_score: 50, rank: 2 },
+  { word: 'alterity', model_key: 'm3', frequency_score: 85, final_score: 45, rank: 3 },
+  { word: 'alternate', model_key: 'm4', frequency_score: 80, final_score: 40, rank: 4 },
+  { word: 'alterable', model_key: 'm5', frequency_score: 75, final_score: 30, rank: 5 },
+  { word: 'altruism', model_key: 'm6', frequency_score: 60, final_score: 82, rank: 6 },
+  { word: 'altruist', model_key: 'm7', frequency_score: 55, final_score: 78, rank: 7 }
+];
+const finalFive = selectBestFinalModels(evaluatedModels, 5);
+assert.deepEqual(finalFive.map(item => item.word), ['altruism', 'altruist', 'alteration', 'alterity', 'alternate'], 'higher-P supplemental models replace weaker members of the initial frequency five');
+assert.ok(compareFinalModelCandidates(evaluatedModels[5], evaluatedModels[0]) < 0, 'final model comparison prioritizes P before F');
+
+const sameModel = selectBestFinalModels([
+  { word: 'alternative', model_key: 'same', frequency_score: 90, final_score: 30, rank: 1 },
+  { word: 'alternatively', model_key: 'same', frequency_score: 60, final_score: 99, rank: 2 }
+], 5);
+assert.deepEqual(sameModel.map(item => item.word), ['alternative'], 'one model still uses its most frequent representative even when another form has a higher P');
 
 const clientSource = await readFile('associativvordes/js/qwen-client.js', 'utf8');
 const checkboxHookSource = await readFile('associativvordes/js/qwen-checkbox-hook.js', 'utf8');
@@ -37,6 +60,7 @@ const endpointSource = await readFile('api/qwen-candidates.js', 'utf8');
 const endpointModule = await import('../api/qwen-candidates.js');
 
 assert.equal(typeof endpointModule.default, 'function', 'supplemental candidate API exports a loadable Vercel handler');
+assert.equal(endpointModule.maxDuration, 60, 'the server allows enough time for one multilingual audit');
 
 const previousFetch = globalThis.fetch;
 const previousApiKey = process.env.Qwen3_235B_A22B_Instruct_2507_FP8_Yandex;
@@ -44,8 +68,11 @@ const previousFolderId = process.env.yandex_folder_Qwen3_235B_A22B_Instruct_2507
 process.env.Qwen3_235B_A22B_Instruct_2507_FP8_Yandex = 'test-key';
 process.env.yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8 = 'test-folder';
 let qwenRequestCount = 0;
-globalThis.fetch = async () => {
+let sentPrompt = '';
+globalThis.fetch = async (_url, options) => {
   qwenRequestCount += 1;
+  const request = JSON.parse(options.body);
+  sentPrompt = request.messages?.[1]?.content || '';
   return {
     ok: true,
     status: 200,
@@ -57,14 +84,15 @@ globalThis.fetch = async () => {
             candidates: {
               en: [
                 { word: 'altruism', root_variant: 'altru' },
-                { word: 'altruist', root_variant: 'altru' },
-                { word: 'charity', root_variant: 'altru' },
-                { word: 'alterity', root_variant: '' }
+                { word: 'altruist', root_variant: 'altru' }
               ],
+              de: [],
+              fr: [],
+              es: [],
+              it: [],
               ru: [
                 { word: 'альтруизм', root_variant: 'altru' },
-                { word: 'альтруист', root_variant: 'альтру' },
-                { word: 'благотворительность', root_variant: 'альтру' }
+                { word: 'альтруист', root_variant: 'альтру' }
               ]
             }
           })
@@ -81,54 +109,58 @@ const response = {
   setHeader(name, value) { responseHeaders[name] = value; },
   end(value = '') { responseText = String(value); }
 };
+const currentModels = {
+  en: [{ word: 'alternative', model_key: 'en|alternative', frequency_score: 95, association_score: 20, final_score: 46 }],
+  ru: [{ word: 'альтернатива', model_key: 'ru|alternativ', frequency_score: 92, association_score: 18, final_score: 44 }]
+};
 await endpointModule.default({
   method: 'POST',
   headers: {},
-  body: { root: 'alter', targetMeaning: 'other', interfaceLanguage: 'en', existingCandidates: {} }
+  body: { root: 'alter', targetMeaning: 'other', interfaceLanguage: 'en', existingCandidates: { en: ['alternative'], ru: ['альтернатива'] }, currentModels }
 }, response);
 const endpointPayload = JSON.parse(responseText);
-assert.equal(response.statusCode, 200, 'supplemental endpoint accepts a valid request');
+assert.equal(response.statusCode, 200, 'supplemental endpoint accepts a scored top-five audit request');
 assert.deepEqual(endpointPayload.candidates.en, [
   { word: 'altruism', root_variant: 'altru' },
   { word: 'altruist', root_variant: 'altru' }
-], 'endpoint retains only bounded English lemmas with a visible allomorph');
+]);
 assert.deepEqual(endpointPayload.candidates.ru, [
   { word: 'альтруизм', root_variant: 'altru' },
   { word: 'альтруист', root_variant: 'альтру' }
-], 'Russian candidates accept either native or canonical search transliteration for root_variant');
-assert.equal(qwenRequestCount, 2, 'one repair request is made for languages left empty by the first response');
-assert.deepEqual(endpointPayload.repairedLanguages.sort(), ['de', 'es', 'fr', 'it']);
+]);
+assert.deepEqual(endpointPayload.candidates.de, [], 'a deliberate empty language result is not repaired or filled');
+assert.equal(qwenRequestCount, 1, 'the audit uses one Qwen request and does not reinterpret empty arrays as failures');
+assert.equal(endpointPayload.currentModels.en[0].final_score, 46, 'measured current-model scores reach the server prompt');
+assert.match(sentPrompt, /Current top models with measured scores/);
+assert.match(sentPrompt, /Empty arrays are valid final decisions/);
 assert.equal(responseHeaders['Cache-Control'], 'no-store', 'candidate responses are not cached');
 
 globalThis.fetch = previousFetch;
 if (previousApiKey == null) delete process.env.Qwen3_235B_A22B_Instruct_2507_FP8_Yandex;
 else process.env.Qwen3_235B_A22B_Instruct_2507_FP8_Yandex = previousApiKey;
 if (previousFolderId == null) delete process.env.yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8;
-else process.env.yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8 = previousFolderId;
+else process.env.yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8_Yandex = previousFolderId;
 
 assert.match(clientSource, /key === 'selected' && value === true/, 'checking an unscored word activates the Qwen-analysis hook');
 assert.match(clientSource, /stateCandidateHasQwen\(candidate\)/, 'the checkbox hook does not repeat an existing Qwen score');
 assert.match(checkboxHookSource, /persistedCandidate[\s\S]*if \(persistedCandidate\) return result/, 'the overflow hook complements rather than duplicates the primary checkbox hook');
 assert.match(checkboxHookSource, /input\.word-select\[data-lang=/, 'visible rows beyond the compact-state limit are located directly in the table');
 assert.match(checkboxHookSource, /await window\.analyzeItem\(language, index\)/, 'checking an unscored row beyond the first 80 still runs analysis');
-assert.match(checkboxHookSource, /candidateRequestSignature\(\)[\s\S]*resultStillVisible/, 'supplemental responses are discarded after the search inputs or visible result change');
-assert.match(checkboxHookSource, /emptyCandidateResponse\(\)/, 'a stale candidate response becomes an empty successful response instead of mutating new results');
-assert.match(swowClientSource, /import '\.\/qwen-checkbox-hook\.js'/, 'the checkbox and stale-request guards are installed by the normal runtime module graph');
+assert.match(swowClientSource, /import '\.\/qwen-checkbox-hook\.js'/, 'the checkbox guard remains in the normal runtime module graph');
+assert.match(clientSource, /currentModels[\s\S]*getQwenCandidateSuggestions/, 'the candidate audit receives the measured current five models');
 assert.match(clientSource, /loadCandidateEntries\(language, suggestion\.word/, 'generated words must be found in the local static index');
 assert.match(clientSource, /buildSearchForm\(entry\.word\) === requested/, 'local verification requires an exact normalized lemma');
 assert.match(clientSource, /qwen_suggestion_verified_in_local_index/, 'only locally verified suggestions are marked for insertion');
-assert.match(clientSource, /window\.updateItem\(language, index, 'frequencyProfile'/, 'verified frequency evidence is attached before semantic analysis');
-assert.match(clientSource, /window\.updateItem\(language, index, 'word', entry\.word\)/, 'inserting the verified word triggers the existing SWOW and Qwen analysis pipeline');
-assert.match(clientSource, /await delay\(4000\)/, 'supplemental analyses are staggered instead of launching an uncontrolled burst');
+assert.match(clientSource, /waitForCandidateAnalysis/, 'every verified supplement is scored before final selection');
+assert.match(clientSource, /selectBestFinalModels[\s\S]*candidateFinalScore/, 'the final five are ranked by measured P');
+assert.match(clientSource, /rebalanceSelectedModels/, 'supplements can replace weaker members of the original five');
 
-assert.match(endpointSource, /Never invent candidate words|never invent candidate words/i, 'server prompt explicitly forbids invented candidates');
-assert.match(endpointSource, /morphological and etymological discovery task/, 'candidate discovery no longer filters out words because of semantic drift');
-assert.match(endpointSource, /SWOW and a separate Qwen scoring stage evaluate semantics later/, 'semantic evaluation is deferred to the actual scoring stage');
-assert.match(endpointSource, /English altruism\/altruist and Russian альтруизм\/альтруист/, 'prompt covers historically transformed root reflexes such as alter → altru-');
-assert.match(endpointSource, /ROOT_ALLOMORPH_HINTS/, 'known historical allomorphs are supplied as generation hints');
-assert.match(endpointSource, /missingLanguages[\s\S]*repair: true/, 'empty languages receive one bounded repair pass');
-assert.match(endpointSource, /buildSearchForm\(word\)[\s\S]*buildSearchForm\(rootVariant\)/, 'native and transliterated root variants are compared in one canonical search form');
-assert.match(endpointSource, /MAX_CANDIDATES_PER_LANGUAGE = 2/, 'server and client enforce the same candidate limit');
-assert.match(endpointSource, /!word \|\| !rootVariant/, 'server rejects candidates without an explicit transformed-root segment');
+assert.match(endpointSource, /already selected up to five distinct derivational models per language by corpus frequency/, 'server understands the two-stage selection policy');
+assert.match(endpointSource, /credible chance of receiving a higher final P/, 'Qwen only proposes plausible improvements');
+assert.match(endpointSource, /If the current five models are already adequate, return an empty array/, 'Qwen may correctly propose nothing');
+assert.match(endpointSource, /English altruism\/altruist and Russian альтруизм\/альтруист/, 'prompt explicitly covers alter → altru-');
+assert.match(endpointSource, /ROOT_ALLOMORPH_HINTS/, 'historical allomorph hints remain available');
+assert.doesNotMatch(endpointSource, /missingLanguages[\s\S]*repair/, 'empty arrays are no longer treated as missing output');
+assert.match(endpointSource, /buildSearchForm\(word\)[\s\S]*buildSearchForm\(rootVariant\)/, 'native and transliterated root variants share one canonical search form');
 
-console.log('Associative Qwen candidate generation tests passed.');
+console.log('Associative Qwen top-five refinement tests passed.');

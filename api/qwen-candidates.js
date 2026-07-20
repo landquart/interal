@@ -1,10 +1,13 @@
 import { normalizeInterfaceLanguage } from './lib/interface-language.js';
 import { buildSearchForm } from '../associativvordes/js/search-normalizer.js';
 
-const MAX_BODY_BYTES = 50_000;
+export const maxDuration = 60;
+
+const MAX_BODY_BYTES = 100_000;
 const YANDEX_CHAT_COMPLETIONS_URL = 'https://ai.api.cloud.yandex.net/v1/chat/completions';
 const QWEN_MODEL = 'qwen3-235b-a22b-fp8/latest';
 const CONTROL_LANGUAGES = ['en', 'de', 'fr', 'es', 'it', 'ru'];
+const MAX_MODELS_PER_LANGUAGE = 5;
 const MAX_CANDIDATES_PER_LANGUAGE = 2;
 
 const ROOT_ALLOMORPH_HINTS = Object.freeze({
@@ -71,6 +74,11 @@ function normalizeWord(value, maxLength = 80) {
   return word;
 }
 
+function finiteScore(value) {
+  const number = Number(value);
+  return Number.isFinite(number) ? Math.max(0, Math.min(100, number)) : null;
+}
+
 function languageLower(value, language) {
   return String(value || '').toLocaleLowerCase(language === 'ru' ? 'ru' : undefined);
 }
@@ -100,6 +108,33 @@ function normalizeExistingCandidates(value) {
   }));
 }
 
+function normalizeCurrentModels(value) {
+  const source = value && typeof value === 'object' && !Array.isArray(value) ? value : {};
+  return Object.fromEntries(CONTROL_LANGUAGES.map(language => {
+    const values = Array.isArray(source[language]) ? source[language] : [];
+    const models = [];
+    const seen = new Set();
+    for (const raw of values) {
+      if (!raw || typeof raw !== 'object' || Array.isArray(raw)) continue;
+      const word = normalizeWord(raw.word);
+      if (!word) continue;
+      const modelKey = normalizeWord(raw.model_key ?? raw.modelKey, 240);
+      const key = modelKey || languageLower(word, language);
+      if (seen.has(key)) continue;
+      seen.add(key);
+      models.push({
+        word,
+        model_key: modelKey,
+        frequency_score: finiteScore(raw.frequency_score ?? raw.F),
+        final_score: finiteScore(raw.final_score ?? raw.P),
+        association_score: finiteScore(raw.association_score ?? raw.A)
+      });
+      if (models.length >= MAX_MODELS_PER_LANGUAGE) break;
+    }
+    return [language, models];
+  }));
+}
+
 function validateInput(body) {
   if (!body || typeof body !== 'object' || Array.isArray(body)) throw Object.assign(new Error('Invalid body'), { status: 400 });
   const root = normalizeWord(body.root, 60);
@@ -107,13 +142,19 @@ function validateInput(body) {
   const interfaceLanguage = normalizeInterfaceLanguage(body.interfaceLanguage);
   if (!root) throw Object.assign(new Error('root is required'), { status: 400 });
   if (!targetMeaning) throw Object.assign(new Error('targetMeaning is required'), { status: 400 });
-  return { root, targetMeaning, interfaceLanguage, existingCandidates: normalizeExistingCandidates(body.existingCandidates) };
+  return {
+    root,
+    targetMeaning,
+    interfaceLanguage,
+    existingCandidates: normalizeExistingCandidates(body.existingCandidates),
+    currentModels: normalizeCurrentModels(body.currentModels)
+  };
 }
 
-function normalizeResult(result, languages = CONTROL_LANGUAGES) {
+function normalizeResult(result) {
   const source = result?.candidates && typeof result.candidates === 'object' ? result.candidates : {};
   const candidates = Object.fromEntries(CONTROL_LANGUAGES.map(language => [language, []]));
-  for (const language of languages) {
+  for (const language of CONTROL_LANGUAGES) {
     const seen = new Set();
     for (const rawCandidate of Array.isArray(source[language]) ? source[language] : []) {
       const candidate = normalizeCandidate(rawCandidate, language);
@@ -128,48 +169,38 @@ function normalizeResult(result, languages = CONTROL_LANGUAGES) {
   return candidates;
 }
 
-function mergeCandidateMaps(primary, repair) {
-  const output = {};
-  for (const language of CONTROL_LANGUAGES) {
-    const seen = new Set();
-    output[language] = [];
-    for (const candidate of [...(primary[language] || []), ...(repair[language] || [])]) {
-      const key = languageLower(candidate.word, language);
-      if (seen.has(key)) continue;
-      seen.add(key);
-      output[language].push(candidate);
-      if (output[language].length >= MAX_CANDIDATES_PER_LANGUAGE) break;
-    }
-  }
-  return output;
-}
-
-function allomorphHints(root, languages) {
+function allomorphHints(root) {
   const hints = ROOT_ALLOMORPH_HINTS[buildSearchForm(root)] || {};
-  return Object.fromEntries(languages.map(language => [language, hints[language] || []]));
+  return Object.fromEntries(CONTROL_LANGUAGES.map(language => [language, hints[language] || []]));
 }
 
-function buildPrompt(input, languages = CONTROL_LANGUAGES, repair = false) {
-  const hints = allomorphHints(input.root, languages);
-  return `You generate supplemental lexical candidates for the Interal associative-word procedure.
+function buildPrompt(input) {
+  const hints = allomorphHints(input.root);
+  return `You audit the current five lexical-association models for each control language in the Interal associative-word procedure.
 
-This is a morphological and etymological discovery task, not a semantic filtering task. Return real dictionary lemmas that contain a historically or morphologically transformed reflex of the requested root. Do not reject a word merely because its modern meaning has shifted far from targetMeaning: SWOW and a separate Qwen scoring stage evaluate semantics later.
+The program has already selected up to five distinct derivational models per language by corpus frequency and has already calculated their frequency score F, association score A, and final score P. Your task is only to detect an important missing derivational model that a human speaker would plausibly recall as an early association with targetMeaning.
 
-The ordinary local root search has already run. Do not repeat words from existingCandidates. Do not invent words, names, phrases, inflected forms, spelling variants, or unrelated translations. Prefer dictionary headwords and distinct derivational models. Historical allomorphy is explicitly required when justified.
+Return an additional candidate only when all of the following are true:
+1. it is a real dictionary lemma in the requested language;
+2. it contains a historically or morphologically justified reflex or allomorph of the requested root;
+3. it represents a distinct derivational model, not an inflectional, grammatical, spelling, or part-of-speech variant of a current model;
+4. it is reasonably common, not an obscure technicalism or proper name;
+5. it has a credible chance of receiving a higher final P than at least the weakest current model after the program independently checks corpus frequency, SWOW, and Qwen semantic scores.
 
-For Latin alter, transformed reflexes such as altru- must produce candidates such as English altruism/altruist and Russian альтруизм/альтруист when those words are absent from existingCandidates. The allomorph hints below are search directions, not permission to invent words.
+If the current five models are already adequate, return an empty array for that language. Empty arrays are valid final decisions and must not be filled merely to reach a quota. Do not repeat existingCandidates. Do not invent words or return phrases.
 
-Requested languages: ${JSON.stringify(languages)}
+For Latin alter, the historical reflex altru- is mandatory to consider. When absent from currentModels, candidates such as English altruism/altruist and Russian альтруизм/альтруист are valid distinct models and should be proposed. The program will still verify every word in its local index and score it independently.
+
 Allomorph hints: ${JSON.stringify(hints)}
-Repair pass: ${repair ? 'true' : 'false'}
+Current top models with measured scores: ${JSON.stringify(input.currentModels)}
+All words already found by the program: ${JSON.stringify(input.existingCandidates)}
+Root: ${JSON.stringify(input.root)}
+Target meaning: ${JSON.stringify(input.targetMeaning)}
 
-For every requested language, return up to ${MAX_CANDIDATES_PER_LANGUAGE} additional lemmas when genuine words exist. root_variant is mandatory. It may be written in the word's native script or in the same Latin search transliteration; it must correspond to a visible segment after normalization. Use exact native spelling for word, including Cyrillic for Russian.
+Return at most ${MAX_CANDIDATES_PER_LANGUAGE} candidates per language and exactly this JSON shape:
+{"candidates":{"en":[],"de":[],"fr":[],"es":[],"it":[],"ru":[]}}
 
-Input:
-${JSON.stringify(input, null, 2)}
-
-Return exactly this JSON shape:
-{"candidates":{"en":[],"de":[],"fr":[],"es":[],"it":[],"ru":[]}}`;
+Each non-empty item must be {"word":"exact dictionary lemma","root_variant":"visible root reflex inside the word"}.`;
 }
 
 function getAiText(responseJson, fallbackText) {
@@ -179,7 +210,7 @@ function getAiText(responseJson, fallbackText) {
   return fallbackText;
 }
 
-async function callYandex(input, { languages = CONTROL_LANGUAGES, repair = false } = {}) {
+async function callYandex(input) {
   const apiKey = process.env.Qwen3_235B_A22B_Instruct_2507_FP8_Yandex;
   const folderId = process.env.yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8;
   if (!apiKey) throw Object.assign(new Error('Missing Yandex API key'), { status: 500 });
@@ -188,11 +219,11 @@ async function callYandex(input, { languages = CONTROL_LANGUAGES, repair = false
   const requestBody = {
     model: `gpt://${folderId}/${QWEN_MODEL}`,
     messages: [
-      { role: 'system', content: 'You are a conservative multilingual historical lexicographer. Return only valid JSON and never invent candidate words.' },
-      { role: 'user', content: buildPrompt(input, languages, repair) }
+      { role: 'system', content: 'You are a conservative multilingual historical lexicographer auditing an already scored top-five list. Return only valid JSON. Empty arrays are correct when no improvement is justified.' },
+      { role: 'user', content: buildPrompt(input) }
     ],
     temperature: 0,
-    max_tokens: 1800,
+    max_tokens: 2400,
     response_format: { type: 'json_object' }
   };
 
@@ -222,22 +253,12 @@ export default async function handler(req, res) {
   try {
     if (req.method !== 'POST') return send(res, 405, { ok: false, error: 'Method not allowed' });
     const input = validateInput(await readBody(req));
-    const first = await callYandex(input);
-    const primaryCandidates = normalizeResult(extractJson(first.content));
-    const missingLanguages = CONTROL_LANGUAGES.filter(language => primaryCandidates[language].length === 0);
-    let repairCandidates = Object.fromEntries(CONTROL_LANGUAGES.map(language => [language, []]));
-    let repairModel = null;
-    if (missingLanguages.length) {
-      const repair = await callYandex(input, { languages: missingLanguages, repair: true });
-      repairCandidates = normalizeResult(extractJson(repair.content), missingLanguages);
-      repairModel = repair.model;
-    }
+    const response = await callYandex(input);
     return send(res, 200, {
       ok: true,
-      candidates: mergeCandidateMaps(primaryCandidates, repairCandidates),
-      model: first.model,
-      repairModel,
-      repairedLanguages: missingLanguages
+      candidates: normalizeResult(extractJson(response.content)),
+      model: response.model,
+      currentModels: input.currentModels
     });
   } catch (error) {
     const status = error.status && error.status >= 400 && error.status < 600 ? error.status : 500;
