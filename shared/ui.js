@@ -25,7 +25,7 @@
 
   const stylesheet = document.createElement('link');
   stylesheet.rel = 'stylesheet';
-  stylesheet.href = new URL('instrumentes.css?v=20260720-1', sharedRoot).href;
+  stylesheet.href = new URL('instrumentes.css?v=20260720-2', sharedRoot).href;
   document.head.appendChild(stylesheet);
 
   const siteRoot = new URL('../', loader.src);
