@@ -22,7 +22,9 @@ export const QWEN_RUNTIME_CONFIG = {
   maxGeneratedCandidatesPerLanguage: 2,
   maxConcurrentQwenRequests: 1,
   maxReviewRequestsPerSearch: 0,
-  requestTimeoutMs: 15000
+  requestTimeoutMs: 15000,
+  candidateRequestTimeoutMs: 70000,
+  supplementalAnalysisTimeoutMs: 30000
 };
 
 export const QWEN_ERROR_CODES = Object.freeze({
@@ -195,7 +197,7 @@ export function normalizeQwenCandidateSuggestions(payload, languages = CONTROL_L
       if (!item || typeof item !== 'object' || Array.isArray(item)) continue;
       const word = normalizeCandidateWord(item.word);
       const rootVariant = normalizeCandidateWord(item.root_variant ?? item.rootVariant, 40);
-      if (!word) continue;
+      if (!word || !rootVariant) continue;
       const key = word.toLocaleLowerCase(language === 'ru' ? 'ru' : undefined);
       if (seen.has(key)) continue;
       seen.add(key);
@@ -212,9 +214,9 @@ function qwenCandidateGenerationUrl() {
     : '/api/qwen-candidates';
 }
 
-export async function getQwenCandidateSuggestions({ root, targetMeaning, existingCandidates = {}, signal } = {}) {
+export async function getQwenCandidateSuggestions({ root, targetMeaning, existingCandidates = {}, currentModels = {}, signal } = {}) {
   const timeoutController = new AbortController();
-  const timeoutId = setTimeout(() => timeoutController.abort(new Error('Qwen candidate request timeout')), QWEN_RUNTIME_CONFIG.requestTimeoutMs);
+  const timeoutId = setTimeout(() => timeoutController.abort(new Error('Qwen candidate request timeout')), QWEN_RUNTIME_CONFIG.candidateRequestTimeoutMs);
   const abortController = new AbortController();
   const forwardAbort = () => abortController.abort(signal?.reason);
   const timeoutAbort = () => abortController.abort(timeoutController.signal.reason);
@@ -228,7 +230,7 @@ export async function getQwenCandidateSuggestions({ root, targetMeaning, existin
     response = await fetch(qwenCandidateGenerationUrl(), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ root, targetMeaning, existingCandidates, interfaceLanguage: getInterfaceLanguage() }),
+      body: JSON.stringify({ root, targetMeaning, existingCandidates, currentModels, interfaceLanguage: getInterfaceLanguage() }),
       signal: abortController.signal
     });
   } catch (error) {
@@ -247,6 +249,44 @@ export async function getQwenCandidateSuggestions({ root, targetMeaning, existin
 
 function hasFiniteScore(value) {
   return value !== null && value !== undefined && value !== '' && Number.isFinite(Number(value));
+}
+
+function candidateFinalScore(candidate) {
+  const direct = Number(candidate?.final_score);
+  if (Number.isFinite(direct)) return direct;
+  const nested = Number(candidate?.analysis?.final_score);
+  return Number.isFinite(nested) ? nested : null;
+}
+
+function candidateFrequencyScore(candidate) {
+  const values = [candidate?.frequency_score, candidate?.analysis?.frequency?.frequency_score, candidate?.frequencyProfile?.frequency_score];
+  for (const value of values) {
+    const number = Number(value);
+    if (Number.isFinite(number)) return number;
+  }
+  return Number.NEGATIVE_INFINITY;
+}
+
+export function compareFinalModelCandidates(left, right) {
+  const leftScore = candidateFinalScore(left);
+  const rightScore = candidateFinalScore(right);
+  return (rightScore ?? Number.NEGATIVE_INFINITY) - (leftScore ?? Number.NEGATIVE_INFINITY)
+    || compareFrequencyRepresentatives(left, right)
+    || String(left?.word || '').localeCompare(String(right?.word || ''));
+}
+
+export function selectBestFinalModels(candidates, limit = MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE) {
+  const representatives = new Map();
+  for (const candidate of Array.isArray(candidates) ? candidates : []) {
+    if (!hasFiniteScore(candidateFinalScore(candidate))) continue;
+    const key = String(candidate?.model_key || candidate?.model_family_key || candidate?.model || buildSearchForm(candidate?.word));
+    if (!key) continue;
+    const current = representatives.get(key);
+    if (!current || compareFrequencyRepresentatives(candidate, current) < 0) representatives.set(key, candidate);
+  }
+  return [...representatives.values()]
+    .sort(compareFinalModelCandidates)
+    .slice(0, Math.max(0, Number(limit) || 0));
 }
 
 function stateCandidateHasQwen(candidate) {
@@ -281,22 +321,61 @@ function modelForGeneratedCandidate(entry, suggestion, canonicalRoot, language) 
   return lexicalModelDescriptor({ ...entry, match }, canonicalRoot, language);
 }
 
-async function verifySuggestionInLocalIndex(loader, language, suggestion, buildSearchForm, signal) {
+async function verifySuggestionInLocalIndex(loader, language, suggestion, signal) {
   const requested = buildSearchForm(suggestion.word);
   if (!requested) return null;
   const entries = await loader.loadCandidateEntries(language, suggestion.word, { signal });
   return entries.find(entry => buildSearchForm(entry.word) === requested || buildSearchForm(entry.normalized) === requested) || null;
 }
 
-async function addVerifiedCandidateToRuntime(language, suggestion, entry, root, buildSearchForm) {
+function candidateIdentity(candidate) {
+  return `${String(candidate?.model_key || candidate?.model_family_key || candidate?.model || '')}|${buildSearchForm(candidate?.word)}`;
+}
+
+function currentModelEvidence(snapshot) {
+  return Object.fromEntries(CONTROL_LANGUAGE_CODES.map(language => {
+    const candidates = snapshot?.state?.languages?.[language] || [];
+    const selected = candidates.filter(candidate => candidate.selected && hasFiniteScore(candidateFinalScore(candidate)));
+    const best = selectBestFinalModels(selected.length ? selected : candidates, MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE);
+    return [language, best.map(candidate => ({
+      word: candidate.word,
+      model_key: candidate.model_key || candidate.model_family_key || candidate.model || '',
+      frequency_score: candidateFrequencyScore(candidate),
+      association_score: Number(candidate?.association_score ?? candidate?.analysis?.association?.association_score),
+      final_score: candidateFinalScore(candidate)
+    }))];
+  }));
+}
+
+async function waitForCandidateAnalysis(language, word, tokenIsCurrent) {
+  const key = buildSearchForm(word);
+  const deadline = Date.now() + QWEN_RUNTIME_CONFIG.supplementalAnalysisTimeoutMs;
+  while (Date.now() < deadline && tokenIsCurrent()) {
+    await delay(250);
+    const snapshot = window.InteralPageStateExport?.();
+    const candidate = (snapshot?.state?.languages?.[language] || []).find(item => buildSearchForm(item.word) === key);
+    if (!candidate) continue;
+    if (hasFiniteScore(candidateFinalScore(candidate))) return candidate;
+    if (candidate.analysisStatus === 'error' || candidate.analysis?.status === 'error') return null;
+  }
+  return null;
+}
+
+async function addVerifiedCandidateToRuntime(language, suggestion, entry, root, originalUpdateItem, tokenIsCurrent) {
   const descriptor = modelForGeneratedCandidate(entry, suggestion, root, language);
-  const proposed = { ...entry, model_key: descriptor.key, model: descriptor.label, frequencyProfile: { frequency_score: entry.frequency_score } };
+  const proposed = {
+    ...entry,
+    model_key: descriptor.key,
+    model_family_key: descriptor.key,
+    model: descriptor.label,
+    frequencyProfile: { frequency_score: entry.frequency_score }
+  };
   const existing = window.InteralAssociativeModels?.findRepresentative?.(language, descriptor.key);
-  if (existing && compareFrequencyRepresentatives(proposed, existing) >= 0) return false;
-  if (!activateLanguageTab(language)) return false;
+  if (existing && compareFrequencyRepresentatives(proposed, existing) >= 0) return null;
+  if (!activateLanguageTab(language) || !tokenIsCurrent()) return null;
   window.addRow(language);
   const total = candidateCountFromPanel();
-  if (!Number.isInteger(total) || total < 1) return false;
+  if (!Number.isInteger(total) || total < 1) return null;
   const index = total - 1;
   const searchForm = entry.search_form || buildSearchForm(entry.word);
   const variant = buildSearchForm(suggestion.root_variant || root);
@@ -311,18 +390,31 @@ async function addVerifiedCandidateToRuntime(language, suggestion, entry, root, 
     warnings: []
   };
 
-  window.updateItem(language, index, 'normalized', entry.normalized || entry.word);
-  window.updateItem(language, index, 'search_form', searchForm);
-  window.updateItem(language, index, 'match', match);
-  window.updateItem(language, index, 'rank', entry.rank ?? null);
-  window.updateItem(language, index, 'category_breakdown', entry.category_breakdown || {});
-  window.updateItem(language, index, 'sources', Array.isArray(entry.sources) ? entry.sources : []);
-  window.updateItem(language, index, 'frequencyProfile', frequencyProfile);
-  window.updateItem(language, index, 'warnings', ['qwen_suggestion_verified_in_local_index']);
-  window.updateItem(language, index, 'word', entry.word);
-  window.updateItem(language, index, 'model_key', descriptor.key);
-  window.updateItem(language, index, 'model', descriptor.label);
-  return true;
+  originalUpdateItem(language, index, 'normalized', entry.normalized || entry.word);
+  originalUpdateItem(language, index, 'search_form', searchForm);
+  originalUpdateItem(language, index, 'match', match);
+  originalUpdateItem(language, index, 'rank', entry.rank ?? null);
+  originalUpdateItem(language, index, 'category_breakdown', entry.category_breakdown || {});
+  originalUpdateItem(language, index, 'sources', Array.isArray(entry.sources) ? entry.sources : []);
+  originalUpdateItem(language, index, 'frequencyProfile', frequencyProfile);
+  originalUpdateItem(language, index, 'warnings', ['qwen_suggestion_verified_in_local_index']);
+  originalUpdateItem(language, index, 'word', entry.word);
+  originalUpdateItem(language, index, 'model_key', descriptor.key);
+  originalUpdateItem(language, index, 'model', descriptor.label);
+  return await waitForCandidateAnalysis(language, entry.word, tokenIsCurrent);
+}
+
+function rebalanceSelectedModels(originalUpdateItem) {
+  const snapshot = window.InteralPageStateExport?.();
+  for (const language of CONTROL_LANGUAGE_CODES) {
+    const candidates = snapshot?.state?.languages?.[language] || [];
+    const best = selectBestFinalModels(candidates, MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE);
+    const selected = new Set(best.map(candidateIdentity));
+    candidates.forEach((candidate, index) => {
+      const shouldSelect = selected.has(candidateIdentity(candidate));
+      if (Boolean(candidate.selected) !== shouldSelect) originalUpdateItem(language, index, 'selected', shouldSelect);
+    });
+  }
 }
 
 function installAssociativeBrowserEnhancements() {
@@ -365,11 +457,11 @@ function installAssociativeBrowserEnhancements() {
     let generationToken = 0;
     let generationAbortController = null;
     let loaderPromise = null;
-    let normalizerPromise = null;
 
     async function supplementAfterCompletedCalculation(token, rootAtClick, meaningAtClick) {
+      const tokenIsCurrent = () => token === generationToken && !generationAbortController?.signal.aborted;
       const deadline = Date.now() + 30 * 60 * 1000;
-      while (token === generationToken && Date.now() < deadline) {
+      while (tokenIsCurrent() && Date.now() < deadline) {
         await delay(500);
         const snapshot = window.InteralPageStateExport?.();
         const sectionVisible = document.getElementById('languagesSection')?.hidden === false;
@@ -377,7 +469,7 @@ function installAssociativeBrowserEnhancements() {
         const sameRoot = String(document.getElementById('rootInput')?.value || '').trim() === rootAtClick;
         if (snapshot?.state?.checked && sectionVisible && buttonReady && sameRoot) break;
       }
-      if (token !== generationToken || Date.now() >= deadline) return;
+      if (!tokenIsCurrent() || Date.now() >= deadline) return;
 
       const snapshot = window.InteralPageStateExport?.();
       if (!snapshot?.state?.checked) return;
@@ -385,24 +477,24 @@ function installAssociativeBrowserEnhancements() {
         language,
         (snapshot.state.languages?.[language] || []).map(candidate => candidate.word).filter(Boolean)
       ]));
+      const currentModels = currentModelEvidence(snapshot);
       let suggestions;
       try {
         suggestions = await getQwenCandidateSuggestions({
           root: rootAtClick,
           targetMeaning: meaningAtClick || rootAtClick,
           existingCandidates,
+          currentModels,
           signal: generationAbortController?.signal
         });
       } catch (error) {
         if (error?.code !== QWEN_ERROR_CODES.ABORTED) console.warn('Supplemental Qwen candidates unavailable:', error);
         return;
       }
-      if (token !== generationToken) return;
+      if (!tokenIsCurrent()) return;
 
       loaderPromise ||= import('./candidate-index-loader.js').then(module => module.createCandidateIndexLoader());
-      normalizerPromise ||= import('./search-normalizer.js');
-      const [loader, normalizer] = await Promise.all([loaderPromise, normalizerPromise]);
-      const buildSearchForm = normalizer.buildSearchForm;
+      const loader = await loaderPromise;
       const existingKeys = Object.fromEntries(CONTROL_LANGUAGE_CODES.map(language => [
         language,
         new Set((existingCandidates[language] || []).map(buildSearchForm))
@@ -410,12 +502,12 @@ function installAssociativeBrowserEnhancements() {
 
       for (const language of CONTROL_LANGUAGE_CODES) {
         for (const suggestion of suggestions[language] || []) {
-          if (token !== generationToken) return;
+          if (!tokenIsCurrent()) return;
           const suggestionKey = buildSearchForm(suggestion.word);
           if (!suggestionKey || existingKeys[language].has(suggestionKey)) continue;
           let entry;
           try {
-            entry = await verifySuggestionInLocalIndex(loader, language, suggestion, buildSearchForm, generationAbortController?.signal);
+            entry = await verifySuggestionInLocalIndex(loader, language, suggestion, generationAbortController?.signal);
           } catch (error) {
             if (error?.code === 'ABORTED') return;
             console.warn(`Could not verify supplemental candidate ${language}:${suggestion.word}`, error);
@@ -423,10 +515,13 @@ function installAssociativeBrowserEnhancements() {
           }
           if (!entry) continue;
           existingKeys[language].add(suggestionKey);
-          await addVerifiedCandidateToRuntime(language, suggestion, entry, rootAtClick, buildSearchForm);
-          await delay(4000);
+          await addVerifiedCandidateToRuntime(language, suggestion, entry, rootAtClick, originalUpdateItem, tokenIsCurrent);
+          await delay(250);
         }
       }
+      if (!tokenIsCurrent()) return;
+      rebalanceSelectedModels(originalUpdateItem);
+      window.InteralFormDraft?.save?.();
     }
 
     calculateButton.addEventListener('click', () => {
