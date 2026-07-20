@@ -136,6 +136,26 @@ assert.match(sentPrompt, /Current top models with measured scores/);
 assert.match(sentPrompt, /Empty arrays are valid final decisions/);
 assert.equal(responseHeaders['Cache-Control'], 'no-store', 'candidate responses are not cached');
 
+let fallbackResponseText = '';
+const fallbackResponse = {
+  statusCode: 0,
+  setHeader() {},
+  end(value = '') { fallbackResponseText = String(value); }
+};
+globalThis.fetch = async () => { throw new Error('simulated Qwen outage'); };
+await endpointModule.default({
+  method: 'POST',
+  headers: {},
+  body: { root: 'alter', targetMeaning: 'other', interfaceLanguage: 'en', existingCandidates: {}, currentModels: {} }
+}, fallbackResponse);
+const fallbackPayload = JSON.parse(fallbackResponseText);
+assert.equal(fallbackResponse.statusCode, 200, 'known allomorph candidates survive a Qwen transport failure');
+assert.deepEqual(fallbackPayload.candidates.en, [
+  { word: 'altruism', root_variant: 'altru' },
+  { word: 'altruist', root_variant: 'altru' }
+]);
+assert.equal(fallbackPayload.qwenAuditError.errorCode, 'QWEN_CANDIDATE_AUDIT_UNAVAILABLE');
+
 globalThis.fetch = previousFetch;
 if (previousApiKey == null) delete process.env.Qwen3_235B_A22B_Instruct_2507_FP8_Yandex;
 else process.env.Qwen3_235B_A22B_Instruct_2507_FP8_Yandex = previousApiKey;
@@ -166,6 +186,7 @@ assert.match(endpointSource, /credible chance of receiving a higher final P/, 'Q
 assert.match(endpointSource, /If the current five models are already adequate, return an empty array/, 'Qwen may correctly propose nothing outside the configured high-confidence allomorphs');
 assert.match(endpointSource, /ROOT_ALLOMORPH_CANDIDATES/, 'known high-confidence allomorph models are guaranteed after the audit');
 assert.match(endpointSource, /mergeCandidateMaps\(guaranteedCandidates, qwenCandidates\)/, 'guaranteed allomorph candidates cannot be suppressed by an empty model response');
+assert.match(endpointSource, /QWEN_CANDIDATE_AUDIT_UNAVAILABLE/, 'known allomorph candidates survive Qwen transport and parsing failures');
 assert.match(endpointSource, /English altruism\/altruist and Russian альтруизм\/альтруист/, 'prompt explicitly covers alter → altru-');
 assert.match(endpointSource, /ROOT_ALLOMORPH_HINTS/, 'historical allomorph hints remain available');
 assert.doesNotMatch(endpointSource, /missingLanguages[\s\S]*repair/, 'empty arrays are no longer treated as a second model request');
