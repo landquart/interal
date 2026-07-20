@@ -15,6 +15,11 @@ const OUTER_ENDINGS = Object.freeze({
   ]
 });
 
+const RUSSIAN_MODEL_FAMILY_SUFFIXES = Object.freeze([
+  'shchik',
+  'chik'
+]);
+
 function stripOuterEnding(value, endings, minimumLength = 4) {
   for (const ending of endings) {
     if (!value.endsWith(ending) || value.length - ending.length < minimumLength) continue;
@@ -61,6 +66,7 @@ export function canonicalLexicalStem(value, language = 'en') {
   const endings = OUTER_ENDINGS[language] || OUTER_ENDINGS.en;
   let stem = language === 'en' ? stripEnglishPlural(normalized) : normalized;
   if (stem === normalized) stem = stripOuterEnding(normalized, endings);
+  if (language === 'ru') stem = stripOuterEnding(stem, RUSSIAN_MODEL_FAMILY_SUFFIXES);
   if ((language === 'es' || language === 'it') && normalized.endsWith('mente')) stem = stripOuterEnding(stem, endings);
   if (language === 'fr' && stem.endsWith('if') && stem.length > 5) stem = `${stem.slice(0, -2)}iv`;
   return stem;
