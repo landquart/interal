@@ -101,6 +101,7 @@ document.addEventListener("copy", function (event) {
 
     resizeFrame = schedule(() => {
       resizeFrame = null;
+      if (typeof document.getElementById !== 'function') return;
       const section = document.getElementById('languagesSection');
       const tabs = document.getElementById('tabs');
       if (!section || !tabs) return;
@@ -124,6 +125,7 @@ document.addEventListener("copy", function (event) {
   }
 
   function initializeTabWidthObserver() {
+    if (typeof document.getElementById !== 'function' || typeof MutationObserver !== 'function') return;
     const section = document.getElementById('languagesSection');
     const tabs = document.getElementById('tabs');
     if (!section || !tabs) return;
