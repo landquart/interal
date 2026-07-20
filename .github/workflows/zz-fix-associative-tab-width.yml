@@ -112,3 +112,5 @@ jobs:
           git add associativvordes/script.js tests/associative-tab-width-restore.test.mjs .github/workflows/zz-fix-associative-tab-width.yml
           git commit -m "Fix restored associative language tab widths"
           git push origin HEAD:main
+
+# retrigger after workflow registration
