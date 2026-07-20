@@ -154,6 +154,11 @@ assert.match(clientSource, /qwen_suggestion_verified_in_local_index/, 'only loca
 assert.match(clientSource, /waitForCandidateAnalysis/, 'every verified supplement is scored before final selection');
 assert.match(clientSource, /selectBestFinalModels[\s\S]*candidateFinalScore/, 'the final five are ranked by measured P');
 assert.match(clientSource, /rebalanceSelectedModels/, 'supplements can replace weaker members of the original five');
+assert.match(clientSource, /existingCandidates = Object.fromEntries[sS]*currentModels[language]/, 'the audit excludes only the current five, not every lower-ranked local candidate');
+assert.match(clientSource, /findIndexByWord/, 'a Qwen suggestion already present lower in the full result is located instead of discarded');
+assert.match(clientSource, /findIndexByModel/, 'an existing representative of the suggested model is reused');
+assert.match(clientSource, /allCandidates/, 'final rebalancing uses the full runtime candidate list rather than the truncated saved-state snapshot');
+assert.doesNotMatch(clientSource, /existingKeys[language].has(suggestionKey)/, 'an already-found but unselected word is not silently skipped');
 
 assert.match(endpointSource, /already selected up to five distinct derivational models per language by corpus frequency/, 'server understands the two-stage selection policy');
 assert.match(endpointSource, /credible chance of receiving a higher final P/, 'Qwen only proposes plausible improvements');
