@@ -199,6 +199,142 @@
     }
   }
 
+
+  function finiteShareNumber(value) {
+    if (value == null || value === '' || typeof value === 'boolean') return null;
+    const number = Number(value);
+    return Number.isFinite(number) ? number : null;
+  }
+
+  function truncateShareText(value, limit) {
+    const text = String(value || '');
+    return text.length > limit ? `${text.slice(0, limit - 1)}…` : text;
+  }
+
+  function compactShareSwowSide(side) {
+    const source = side && typeof side === 'object' && !Array.isArray(side) ? side : {};
+    return {
+      found: source.found === true,
+      r1_strength: finiteShareNumber(source.r1_strength),
+      r123_strength: finiteShareNumber(source.r123_strength)
+    };
+  }
+
+  function compactShareSwow(swow) {
+    const source = swow && typeof swow === 'object' && !Array.isArray(swow) ? swow : {};
+    return {
+      bonus: finiteShareNumber(source.bonus) ?? 0,
+      target_to_word: compactShareSwowSide(source.target_to_word),
+      word_to_target: compactShareSwowSide(source.word_to_target)
+    };
+  }
+
+  function compactAssociativeShareCandidate(item) {
+    if (!item || typeof item !== 'object' || item.selected !== true) return null;
+    const analysis = item.analysis && typeof item.analysis === 'object' && !Array.isArray(item.analysis)
+      ? item.analysis
+      : null;
+    const association = analysis?.association && typeof analysis.association === 'object' && !Array.isArray(analysis.association)
+      ? analysis.association
+      : null;
+
+    return {
+      word: String(item.word || ''),
+      normalized: String(item.normalized || ''),
+      search_form: String(item.search_form || ''),
+      match: item.match && typeof item.match === 'object' && !Array.isArray(item.match)
+        ? {
+            type: String(item.match.type || ''),
+            distance: finiteShareNumber(item.match.distance),
+            similarity: finiteShareNumber(item.match.similarity),
+            fragment: String(item.match.fragment || ''),
+            index: finiteShareNumber(item.match.index)
+          }
+        : null,
+      rank: finiteShareNumber(item.rank),
+      frequency_score: finiteShareNumber(item.frequency_score),
+      model: String(item.model || ''),
+      model_key: String(item.model_key || item.model_family_key || ''),
+      selected: true,
+      association_score: finiteShareNumber(item.association_score),
+      final_score: finiteShareNumber(item.final_score),
+      analysisStatus: item.analysisStatus || null,
+      analysis: analysis
+        ? {
+            final_score: finiteShareNumber(analysis.final_score),
+            frequency: analysis.frequency && typeof analysis.frequency === 'object'
+              ? { frequency_score: finiteShareNumber(analysis.frequency.frequency_score) }
+              : null,
+            swow: analysis.swow ? compactShareSwow(analysis.swow) : null,
+            association: association
+              ? {
+                  association_score: finiteShareNumber(association.association_score),
+                  directness: finiteShareNumber(association.directness),
+                  field_relatedness: finiteShareNumber(association.field_relatedness),
+                  domain_shift: finiteShareNumber(association.domain_shift),
+                  semantic_confirmed: association.semantic_confirmed === true,
+                  explanation: truncateShareText(association.explanation, 320)
+                }
+              : null,
+            warnings: Array.isArray(analysis.warnings)
+              ? analysis.warnings.slice(0, 3).map((warning) => truncateShareText(warning, 120))
+              : []
+          }
+        : null
+    };
+  }
+
+  function compactAssociativePageStateForShare(pageState) {
+    if (!pageState || pageState.page !== 'associativvordes' || !pageState.state || typeof pageState.state !== 'object') {
+      return pageState;
+    }
+
+    const sourceState = pageState.state;
+    const languages = {};
+
+    Object.entries(sourceState.languages || {}).forEach(([code, items]) => {
+      languages[code] = (Array.isArray(items) ? items : [])
+        .filter((item) => item?.selected === true)
+        .slice(0, 5)
+        .map(compactAssociativeShareCandidate)
+        .filter(Boolean);
+    });
+
+    return {
+      version: pageState.version,
+      page: pageState.page,
+      state: {
+        root: String(sourceState.root || ''),
+        meaning: String(sourceState.meaning || ''),
+        elementType: sourceState.elementType === 'preposition' ? 'preposition' : 'root',
+        maxModels: Math.max(1, Math.min(5, Number(sourceState.maxModels) || 5)),
+        activeLang: String(sourceState.activeLang || 'en'),
+        languages,
+        languageStatuses: sourceState.languageStatuses && typeof sourceState.languageStatuses === 'object'
+          ? JSON.parse(JSON.stringify(sourceState.languageStatuses))
+          : {},
+        globalStatus: String(sourceState.globalStatus || 'idle'),
+        checked: Boolean(sourceState.checked),
+        result: sourceState.result && typeof sourceState.result === 'object'
+          ? JSON.parse(JSON.stringify(sourceState.result))
+          : null
+      }
+    };
+  }
+
+  function collectPageShareStateExport() {
+    if (typeof window.InteralPageShareStateExport === 'function') {
+      try {
+        const state = window.InteralPageShareStateExport();
+        if (state && typeof state === 'object' && !Array.isArray(state)) return state;
+      } catch (error) {
+        console.warn('Could not export page-specific compact share state:', error);
+      }
+    }
+
+    return compactAssociativePageStateForShare(collectPageStateExport());
+  }
+
   function createSharePayload() {
     const draft = collectDraft();
     const payload = {
@@ -207,7 +343,7 @@
       path: getSharePath(),
       fields: draft.fields
     };
-    const pageState = collectPageStateExport();
+    const pageState = collectPageShareStateExport();
 
     if (pageState) {
       payload.pageState = pageState;
