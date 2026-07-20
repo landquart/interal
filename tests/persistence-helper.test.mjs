@@ -133,4 +133,92 @@ function makeContext(search = '', pathname = '/internationalismes/') {
   assert.equal(imported.fields.root, 'vid');
 }
 
+
+{
+  const { ctx, store } = makeContext('', '/associativvordes/');
+  const languages = Object.fromEntries(['en', 'de', 'fr', 'es', 'it', 'ru'].map((code) => [
+    code,
+    Array.from({ length: 80 }, (_, index) => ({
+      word: `${code}-word-${index}`,
+      normalized: `${code}-word-${index}`,
+      search_form: `${code}-word-${index}`,
+      match: { type: 'exact', distance: 0, similarity: 1, fragment: 'alter', index: 0 },
+      rank: index + 1,
+      frequency_score: 90 - index / 10,
+      category_breakdown: { subtitles: { score: 88, weight: 1 } },
+      sources: Array.from({ length: 12 }, (_, sourceIndex) => ({
+        id: `web/source-${sourceIndex}.json`,
+        file: `source-${sourceIndex}.json`,
+        category: 'web',
+        ipm: sourceIndex + 0.5
+      })),
+      warnings: ['w'.repeat(240)],
+      model: `model-${index}`,
+      model_key: `model-${index}`,
+      selected: index < 8,
+      association_score: 70,
+      final_score: 75 - index,
+      analysisStatus: 'completed',
+      analysis: {
+        final_score: 75 - index,
+        frequency: { frequency_score: 90 - index / 10 },
+        swow: {
+          bonus: 4,
+          target_to_word: { found: true, r1_strength: 0.5, r123_strength: 0.8 },
+          word_to_target: { found: false, r1_strength: null, r123_strength: null }
+        },
+        association: {
+          association_score: 70,
+          directness: 72,
+          field_relatedness: 68,
+          domain_shift: 15,
+          semantic_confirmed: true,
+          explanation: 'x'.repeat(2000)
+        },
+        warnings: ['warning '.repeat(80)]
+      }
+    }))
+  ]));
+
+  ctx.window.InteralPageStateExport = () => ({
+    version: 1,
+    page: 'associativvordes',
+    state: {
+      root: 'alter',
+      meaning: 'другой',
+      elementType: 'root',
+      maxModels: 5,
+      activeLang: 'en',
+      languages,
+      languageStatuses: Object.fromEntries(Object.keys(languages).map((code) => [code, { status: 'completed' }])),
+      globalStatus: 'completed',
+      checked: true,
+      result: { finalAssociation: 61.2, accepted: true }
+    }
+  });
+
+  let posted = null;
+  ctx.fetch = async (_url, options) => {
+    posted = JSON.parse(options.body);
+    return { ok: true, status: 200, json: async () => ({ ok: true, id: 'AbCdEf123456' }) };
+  };
+
+  const shortUrl = await ctx.window.InteralFormDraft.createShortShareUrl();
+  assert.equal(shortUrl, 'https://interal.vercel.app/associativvordes/?s=AbCdEf123456');
+  assert.ok(posted);
+  assert.ok(Buffer.byteLength(JSON.stringify(posted.payload), 'utf8') < 50_000);
+
+  for (const items of Object.values(posted.payload.pageState.state.languages)) {
+    assert.equal(items.length, 5);
+    assert.ok(items.every((item) => item.selected === true));
+    assert.ok(items.every((item) => !('sources' in item)));
+    assert.ok(items.every((item) => item.analysis.association.explanation.length <= 320));
+  }
+
+  ctx.window.InteralFormDraft.save();
+  const locallySaved = JSON.parse(store.get('interal-page-state:v2:/associativvordes/'));
+  assert.equal(locallySaved.pageState.state.languages.en.length, 80);
+  assert.equal(locallySaved.pageState.state.languages.en[0].sources.length, 12);
+}
+
 console.log('persistence-helper tests passed');
