@@ -34,7 +34,7 @@ assert.deepEqual(words(findCandidatesForRoot({ entries: [
   entry('alter-exact-low', 'alter-low', { frequency_score: 1, ipm: 1 }),
   entry('alter-exact-ipm-low', 'alter-ipm-low', { frequency_score: 50, ipm: 1 }),
   entry('alter-exact-ipm-high', 'alter-ipm-high', { frequency_score: 50, ipm: 99 })
-], root: 'alter' })), ['alter-fuzzy-high', 'alter-exact-ipm-low', 'alter-exact-ipm-high', 'alter-exact-low'], 'initial model ordering is frequency-first; match quality only breaks frequency ties');
+], root: 'alter' })), ['alter-fuzzy-high', 'alter-exact-ipm-high', 'alter-exact-ipm-low', 'alter-exact-low'], 'initial model ordering is frequency-first; rank and IPM break frequency ties before match quality');
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('alter-rank2', 'alter-rank2', { rank: 2 }), entry('alter-rank1', 'alter-rank1', { rank: 1 })], root: 'alter' })), ['alter-rank1', 'alter-rank2']);
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('alter-null', 'alter-null', { rank: null }), entry('alter-ranked', 'alter-ranked', { rank: 3 })], root: 'alter' })), ['alter-ranked', 'alter-null'], 'rank influences sorting after frequency tie');
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('alter-null-high-frequency', 'alter-null-high-frequency', { rank: null, frequency_score: 90 }), entry('alter-ranked-low-frequency', 'alter-ranked-low-frequency', { rank: 1, frequency_score: 10 })], root: 'alter' })), ['alter-null-high-frequency', 'alter-ranked-low-frequency'], 'frequency_score is compared before real rank vs null');
