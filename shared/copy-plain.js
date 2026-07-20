@@ -84,6 +84,72 @@ document.addEventListener("copy", function (event) {
   applyPendingPageState();
 })();
 
+(function stabilizeAssociativeLanguageTabs() {
+  if (!/\/associativvordes\//.test(window.location.pathname)) return;
+
+  let resizeFrame = null;
+  let observer = null;
+
+  function equalizeVisibleTabWidths() {
+    if (resizeFrame != null && typeof window.cancelAnimationFrame === 'function') {
+      window.cancelAnimationFrame(resizeFrame);
+    }
+
+    const schedule = typeof window.requestAnimationFrame === 'function'
+      ? window.requestAnimationFrame.bind(window)
+      : (callback) => window.setTimeout(callback, 0);
+
+    resizeFrame = schedule(() => {
+      resizeFrame = null;
+      const section = document.getElementById('languagesSection');
+      const tabs = document.getElementById('tabs');
+      if (!section || !tabs) return;
+
+      const buttons = Array.from(tabs.querySelectorAll('.tab'));
+      if (!buttons.length) return;
+
+      // Remove a stale zero-width value written while the restored section was hidden.
+      for (const button of buttons) button.style.width = '';
+
+      if (section.hidden || tabs.getClientRects().length === 0) return;
+
+      let maxWidth = 0;
+      for (const button of buttons) {
+        maxWidth = Math.max(maxWidth, Math.ceil(button.getBoundingClientRect().width));
+      }
+      if (!Number.isFinite(maxWidth) || maxWidth <= 0) return;
+
+      for (const button of buttons) button.style.width = `${maxWidth}px`;
+    });
+  }
+
+  function initializeTabWidthObserver() {
+    const section = document.getElementById('languagesSection');
+    const tabs = document.getElementById('tabs');
+    if (!section || !tabs) return;
+
+    observer?.disconnect?.();
+    observer = new MutationObserver(equalizeVisibleTabWidths);
+    observer.observe(section, {
+      attributes: true,
+      attributeFilter: ['hidden'],
+      childList: true,
+      subtree: true
+    });
+
+    window.addEventListener('resize', equalizeVisibleTabWidths, { passive: true });
+    document.addEventListener('interal:formdraftrestore', equalizeVisibleTabWidths);
+    document.fonts?.ready?.then(equalizeVisibleTabWidths).catch(() => {});
+    equalizeVisibleTabWidths();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeTabWidthObserver, { once: true });
+  } else {
+    initializeTabWidthObserver();
+  }
+})();
+
 (function loadInteralFormDraft() {
   if (window.__interalFormDraftLoaderReady) return;
   window.__interalFormDraftLoaderReady = true;
