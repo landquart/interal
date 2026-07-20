@@ -19,7 +19,7 @@ const loader = createCandidateIndexLoader({
   searchBaseUrl: './search-index/',
   legacyBaseUrl: './missing-candidate-index/',
   fetch: fetchFromRepository,
-  maxCachedResources: 32
+  maxCachedResources: 64
 });
 
 async function assertIndexed(language, query, expectedWords) {
@@ -31,6 +31,10 @@ async function assertIndexed(language, query, expectedWords) {
 }
 
 await assertIndexed('en', 'altru', ['altruism', 'altruist']);
+await assertIndexed('de', 'altru', ['Altruismus', 'Altruist']);
+await assertIndexed('fr', 'altru', ['altruisme', 'altruiste']);
+await assertIndexed('es', 'altru', ['altruismo', 'altruista']);
+await assertIndexed('it', 'altru', ['altruismo', 'altruista']);
 await assertIndexed('ru', 'альтру', ['альтруизм', 'альтруист']);
 
 console.log('Associative Qwen local-index verification tests passed.');
