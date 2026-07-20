@@ -37,7 +37,19 @@ jobs:
       - name: Run focused regression test
         run: node tests/associative-qwen-runtime-finalization.test.mjs
       - name: Run full test suite
-        run: npm test
+        id: full_tests
+        continue-on-error: true
+        run: npm test > full-test.log 2>&1
+      - name: Upload full test log
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: associative-runtime-finalization-full-test-log
+          path: full-test.log
+          if-no-files-found: error
+      - name: Require full suite success
+        if: steps.full_tests.outcome != 'success'
+        run: exit 1
       - name: Commit patch
         run: |
           git config user.name "github-actions[bot]"
