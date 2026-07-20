@@ -19,20 +19,48 @@ const agentNoun = {
   rank: 2,
   selected: true
 };
+const abstractNoun = {
+  word: 'альтернативность',
+  match: { type: 'exact', fragment: 'alter', index: 0 },
+  frequency_score: 18.2,
+  rank: 3,
+  selected: true
+};
+const inflectedAbstractNoun = {
+  word: 'альтернативности',
+  match: { type: 'exact', fragment: 'alter', index: 0 },
+  frequency_score: 12.4,
+  rank: 4,
+  selected: true
+};
 
 const adjectiveModel = lexicalModelDescriptor(adjective, root, 'ru');
 const agentModel = lexicalModelDescriptor(agentNoun, root, 'ru');
+const abstractModel = lexicalModelDescriptor(abstractNoun, root, 'ru');
+const inflectedAbstractModel = lexicalModelDescriptor(inflectedAbstractNoun, root, 'ru');
 
 assert.equal(adjectiveModel.stem, 'alternativ');
 assert.equal(agentModel.stem, 'alternativ');
+assert.equal(abstractModel.stem, 'alternativ');
+assert.equal(inflectedAbstractModel.stem, 'alternativ');
 assert.equal(agentModel.key, adjectiveModel.key);
+assert.equal(abstractModel.key, adjectiveModel.key);
+assert.equal(inflectedAbstractModel.key, adjectiveModel.key);
 
-const selection = selectHighestFrequencyPerModel([agentNoun, adjective], root, 'ru');
+const selection = selectHighestFrequencyPerModel([
+  agentNoun,
+  abstractNoun,
+  inflectedAbstractNoun,
+  adjective
+], root, 'ru');
 assert.equal(selection.groups.length, 1);
 assert.equal(selection.candidates.length, 1);
 assert.equal(selection.candidates[0].word, 'альтернативный');
-assert.equal(selection.dropped.length, 1);
-assert.equal(selection.dropped[0].word, 'альтернативщик');
+assert.equal(selection.dropped.length, 3);
+assert.deepEqual(
+  selection.dropped.map((item) => item.word).sort(),
+  ['альтернативности', 'альтернативность', 'альтернативщик'].sort()
+);
 
 const distinctSelection = selectHighestFrequencyPerModel([
   adjective,
