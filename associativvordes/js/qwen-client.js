@@ -348,12 +348,11 @@ function currentModelEvidence(snapshot) {
 }
 
 async function waitForCandidateAnalysis(language, word, tokenIsCurrent) {
-  const key = buildSearchForm(word);
   const deadline = Date.now() + QWEN_RUNTIME_CONFIG.supplementalAnalysisTimeoutMs;
   while (Date.now() < deadline && tokenIsCurrent()) {
     await delay(250);
-    const snapshot = window.InteralPageStateExport?.();
-    const candidate = (snapshot?.state?.languages?.[language] || []).find(item => buildSearchForm(item.word) === key);
+    const index = window.InteralAssociativeModels?.findIndexByWord?.(language, word) ?? -1;
+    const candidate = index >= 0 ? window.InteralAssociativeModels?.candidateAt?.(language, index) : null;
     if (!candidate) continue;
     if (hasFiniteScore(candidateFinalScore(candidate))) return candidate;
     if (candidate.analysisStatus === 'error' || candidate.analysis?.status === 'error') return null;
@@ -431,9 +430,8 @@ async function addVerifiedCandidateToRuntime(language, suggestion, entry, root, 
 }
 
 function rebalanceSelectedModels(originalUpdateItem) {
-  const snapshot = window.InteralPageStateExport?.();
   for (const language of CONTROL_LANGUAGE_CODES) {
-    const candidates = snapshot?.state?.languages?.[language] || [];
+    const candidates = window.InteralAssociativeModels?.allCandidates?.(language) || [];
     const best = selectBestFinalModels(candidates, MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE);
     const selected = new Set(best.map(candidateIdentity));
     candidates.forEach((candidate, index) => {

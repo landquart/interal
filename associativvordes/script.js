@@ -1490,7 +1490,8 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
         return (state.languages[language] || []).findIndex(item => normalizeText(item.word) === key);
       },
       findIndexByModel: (language, modelKey) => (state.languages[language] || []).findIndex(item => (item.model_key || lexicalModelDescriptor(item, state.root, language).key) === modelKey),
-      candidateAt: (language, index) => (state.languages[language] || [])[index] || null
+      candidateAt: (language, index) => (state.languages[language] || [])[index] || null,
+      allCandidates: (language) => state.languages[language] || []
     };
     window.InteralAssociativDiagnostics = () => window.InteralAssociativeDiagnostics.getSnapshot();
 
