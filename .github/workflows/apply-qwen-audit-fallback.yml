@@ -1,0 +1,43 @@
+name: Apply Qwen Audit Fallback
+
+on:
+  push:
+    branches:
+      - fix/qwen-audit-failure-fallback
+    paths:
+      - scripts/apply-qwen-audit-fallback.mjs
+      - .github/workflows/apply-qwen-audit-fallback.yml
+  pull_request:
+    branches:
+      - main
+    paths:
+      - scripts/apply-qwen-audit-fallback.mjs
+      - .github/workflows/apply-qwen-audit-fallback.yml
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: fix/qwen-audit-failure-fallback
+          fetch-depth: 0
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+      - name: Apply patch
+        run: node scripts/apply-qwen-audit-fallback.mjs
+      - name: Validate syntax
+        run: |
+          node --check api/qwen-candidates.js
+          node --check tests/associative-qwen-candidate-generation.test.mjs
+      - name: Commit patch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Keep known allomorph candidates when Qwen audit fails"
+          git push origin HEAD:fix/qwen-audit-failure-fallback
