@@ -1,0 +1,185 @@
+
+> test
+> node scripts/run-tests.mjs
+
+Discovered 46 test files; running 46.
+
+> node tests/associative-affix-boundary.test.mjs
+Associative affix boundary tests passed.
+
+> node tests/associative-candidate-finder.test.mjs
+associative candidate finder tests passed
+
+> node tests/associative-candidate-index-loader-missing-shards.test.mjs
+associative candidate-index missing shard tests passed
+
+> node tests/associative-candidate-index-loader.test.mjs
+ok - manifest loads once and repeated calls share cache
+ok - concurrent manifest calls use one promise
+ok - loads only needed shard for root and not the whole language
+ok - repeat shard request uses cache
+ok - different languages have different shard cache keys
+ok - missing language returns LANGUAGE_NOT_INDEXED
+ok - missing shard returns SHARD_NOT_LISTED
+ok - manifest HTTP error returns MANIFEST_FETCH_FAILED
+ok - damaged manifest is rejected
+ok - incompatible version is rejected
+ok - incompatible normalizer_version is rejected
+ok - shard HTTP error returns SHARD_FETCH_FAILED
+ok - damaged shard is rejected and not returned as empty array
+ok - normalizes legacy fixture source metadata without deriving category from id
+ok - source category is required even when legacy id contains one
+ok - entry without sources is rejected
+ok - non-finite frequency_score is rejected
+ok - AbortSignal stops operation without poisoning cache
+ok - passes AbortSignal to fetch options
+ok - abort cancels the mock shard request and returns ABORTED
+ok - aborted shard is not cached and retry performs a new fetch
+ok - completed shard cache survives an aborted consumer
+ok - completed manifest cache is shared after successful load
+ok - diagnostics count fetches and cache hits
+ok - special roots add _other only when needed and skip if not listed
+ok - production base URL is relative and overridable
+
+> node tests/associative-index-builder.test.mjs
+
+> node tests/associative-index-core.test.mjs
+
+> node tests/associative-index-empty-search-form.test.mjs
+associative index empty search_form tests passed
+
+> node tests/associative-index-large-range.test.mjs
+associative index large numeric range tests passed
+
+> node tests/associative-index-memory-audit.test.mjs
+associative index memory audit tests passed
+
+> node tests/associative-index-merge.test.mjs
+ok - six valid artifacts merge into one separated candidate-index manifest
+ok - rejects five artifacts when ru is missing
+ok - rejects incompatible version
+ok - rejects incompatible normalizer_version
+ok - rejects missing shard
+ok - rejects incorrect entries metadata
+ok - rejects candidate without sources
+ok - rejects damaged non-finite number value
+ok - rejects language mismatch between directory and manifest
+ok - error keeps existing output and removes temp directory
+ok - rerun is deterministic, does not duplicate, and removes stale shards
+ok - input directory order does not change manifest
+ok - one artifact cannot silently overwrite another language
+ok - rejects incompatible global_config_hash
+
+> node tests/associative-index-russian-normalization.test.mjs
+
+> node tests/associative-index-validator.test.mjs
+
+> node tests/associative-index-workflow.test.mjs
+
+> node tests/associative-model-family.test.mjs
+Associative lexical model family tests passed.
+
+> node tests/associative-model-selection-policy.test.mjs
+Associative model-selection and threshold policy tests passed.
+
+> node tests/associative-qwen-candidate-generation.test.mjs
+Associative Qwen top-five refinement tests passed.
+
+> node tests/associative-qwen-local-index.test.mjs
+Associative Qwen local-index verification tests passed.
+
+> node tests/associative-qwen-runtime-finalization.test.mjs
+Associative Qwen runtime finalization tests passed.
+
+> node tests/associative-search-runtime-patch.test.mjs
+Associative search runtime patch tests passed.
+
+> node tests/associative-static-index-load-control.test.mjs
+Associative static index load-control tests passed.
+
+> node tests/associative-static-search-index.test.mjs
+Static associative search index tests passed.
+
+> node tests/associative-target-translation-backend.test.mjs
+
+> node tests/associativvordes-card-compat.test.mjs
+associativvordes browser card compatibility tests passed
+
+> node tests/associativvordes-card-normalization.test.mjs
+associativvordes card normalization tests passed
+
+> node tests/associativvordes-error-handling.test.mjs
+associativvordes error-handling tests passed
+
+> node tests/associativvordes-language-statuses.test.mjs
+associativvordes language-status tests passed
+
+> node tests/associativvordes-no-data.test.mjs
+associativvordes no-data tests passed
+
+> node tests/associativvordes-persistence.test.mjs
+associativvordes persistence tests passed
+
+> node tests/associativvordes-render-sources.test.mjs
+
+> node tests/associativvordes-root-matcher.test.mjs
+
+> node tests/associativvordes-runtime-index.test.mjs
+
+> node tests/associativvordes-sources-diagnostics.test.mjs
+associativvordes sources diagnostics tests passed
+
+> node tests/associativvordes-state-invalidation.test.mjs
+associativvordes state behavior tests passed
+
+> node tests/associativvordes-target-language-cache.test.mjs
+associativvordes target language and cache tests passed
+
+> node tests/associativvordes-target-translation-batch.test.mjs
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null
+}
+associativvordes target translation batch tests passed
+
+> node tests/associativvordes-thresholds.test.mjs
+
+> node tests/button-status-controller.test.mjs
+button status controller tests passed
+
+> node tests/button-status-success.test.mjs
+button status success tests passed
+
+> node tests/card-schema.test.mjs
+card-schema tests passed
+
+> node tests/four-tools-regression.test.mjs
+four tool regression tests passed
+
+> node tests/frequency-record-stream.test.mjs
+
+> node tests/i18n-and-assets.test.mjs
+i18n/assets tests passed
+
+> node tests/json-card-utils.test.mjs
+JSON card payload size { section: 'internationalismes', payloadBytes: 58 }
+JSON card payload size { section: 'internationalismes', payloadBytes: 58 }
+JSON card payload size { section: 'internationalismes', payloadBytes: 58 }
+
+> node tests/persistence-helper.test.mjs
+Saved page state is invalid: SyntaxError: Expected property name or '}' in JSON at position 1 (line 1 column 2)
+    at JSON.parse (<anonymous>)
+    at Object.restoreDraft [as restore] (evalmachine.<anonymous>:795:22)
+    at file:///home/runner/work/interal/interal/tests/persistence-helper.test.mjs:50:44
+persistence-helper tests passed
+
+> node tests/target-meaning-translator.test.mjs
+
+> node tests/vercel-associative-index-gate.test.mjs
+Vercel associative index deployment gate tests passed
+
+All tests passed.
