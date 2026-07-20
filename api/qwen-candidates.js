@@ -21,6 +21,35 @@ const ROOT_ALLOMORPH_HINTS = Object.freeze({
   }
 });
 
+const ROOT_ALLOMORPH_CANDIDATES = Object.freeze({
+  alter: Object.freeze({
+    en: Object.freeze([
+      Object.freeze({ word: 'altruism', root_variant: 'altru' }),
+      Object.freeze({ word: 'altruist', root_variant: 'altru' })
+    ]),
+    de: Object.freeze([
+      Object.freeze({ word: 'Altruismus', root_variant: 'altru' }),
+      Object.freeze({ word: 'Altruist', root_variant: 'altru' })
+    ]),
+    fr: Object.freeze([
+      Object.freeze({ word: 'altruisme', root_variant: 'altru' }),
+      Object.freeze({ word: 'altruiste', root_variant: 'altru' })
+    ]),
+    es: Object.freeze([
+      Object.freeze({ word: 'altruismo', root_variant: 'altru' }),
+      Object.freeze({ word: 'altruista', root_variant: 'altru' })
+    ]),
+    it: Object.freeze([
+      Object.freeze({ word: 'altruismo', root_variant: 'altru' }),
+      Object.freeze({ word: 'altruista', root_variant: 'altru' })
+    ]),
+    ru: Object.freeze([
+      Object.freeze({ word: 'альтруизм', root_variant: 'альтру' }),
+      Object.freeze({ word: 'альтруист', root_variant: 'альтру' })
+    ])
+  })
+});
+
 function cors(req, res) {
   const origin = req.headers.origin || '*';
   res.setHeader('Access-Control-Allow-Origin', origin);
@@ -81,6 +110,10 @@ function finiteScore(value) {
 
 function languageLower(value, language) {
   return String(value || '').toLocaleLowerCase(language === 'ru' ? 'ru' : undefined);
+}
+
+function candidateWordKey(value) {
+  return buildSearchForm(value);
 }
 
 function rootVariantIsVisible(word, rootVariant, language) {
@@ -159,7 +192,7 @@ function normalizeResult(result) {
     for (const rawCandidate of Array.isArray(source[language]) ? source[language] : []) {
       const candidate = normalizeCandidate(rawCandidate, language);
       if (!candidate) continue;
-      const key = languageLower(candidate.word, language);
+      const key = candidateWordKey(candidate.word);
       if (seen.has(key)) continue;
       seen.add(key);
       candidates[language].push(candidate);
@@ -172,6 +205,39 @@ function normalizeResult(result) {
 function allomorphHints(root) {
   const hints = ROOT_ALLOMORPH_HINTS[buildSearchForm(root)] || {};
   return Object.fromEntries(CONTROL_LANGUAGES.map(language => [language, hints[language] || []]));
+}
+
+function guaranteedAllomorphCandidates(input) {
+  const configured = ROOT_ALLOMORPH_CANDIDATES[buildSearchForm(input.root)] || {};
+  return Object.fromEntries(CONTROL_LANGUAGES.map(language => {
+    const blocked = new Set([
+      ...(input.existingCandidates[language] || []),
+      ...(input.currentModels[language] || []).map(model => model.word)
+    ].map(candidateWordKey));
+    const candidates = [];
+    for (const raw of configured[language] || []) {
+      const candidate = normalizeCandidate(raw, language);
+      if (!candidate || blocked.has(candidateWordKey(candidate.word))) continue;
+      candidates.push(candidate);
+      if (candidates.length >= MAX_CANDIDATES_PER_LANGUAGE) break;
+    }
+    return [language, candidates];
+  }));
+}
+
+function mergeCandidateMaps(priority, secondary) {
+  return Object.fromEntries(CONTROL_LANGUAGES.map(language => {
+    const output = [];
+    const seen = new Set();
+    for (const candidate of [...(priority[language] || []), ...(secondary[language] || [])]) {
+      const key = candidateWordKey(candidate.word);
+      if (!key || seen.has(key)) continue;
+      seen.add(key);
+      output.push(candidate);
+      if (output.length >= MAX_CANDIDATES_PER_LANGUAGE) break;
+    }
+    return [language, output];
+  }));
 }
 
 function buildPrompt(input) {
@@ -254,9 +320,13 @@ export default async function handler(req, res) {
     if (req.method !== 'POST') return send(res, 405, { ok: false, error: 'Method not allowed' });
     const input = validateInput(await readBody(req));
     const response = await callYandex(input);
+    const qwenCandidates = normalizeResult(extractJson(response.content));
+    const guaranteedCandidates = guaranteedAllomorphCandidates(input);
     return send(res, 200, {
       ok: true,
-      candidates: normalizeResult(extractJson(response.content)),
+      candidates: mergeCandidateMaps(guaranteedCandidates, qwenCandidates),
+      qwenCandidates,
+      guaranteedCandidates,
       model: response.model,
       currentModels: input.currentModels
     });
