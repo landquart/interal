@@ -2,6 +2,7 @@ import { findRootMatch, normalizeText } from './root-matcher.js';
 import { acceptAffixBoundaryMatch } from './affix-boundary-index.js';
 import { lexicalModelDescriptor, selectHighestFrequencyPerModel, compareFrequencyRepresentatives } from './candidate-model-family.js';
 
+const MATCH_TIER = Object.freeze({ exact: 0, special: 0, fuzzy: 1 });
 const MATCH_PRIORITY = Object.freeze({ exact: 0, special: 1, fuzzy: 2 });
 const BOUNDARY_PRIORITY = Object.freeze({ token: 0, safe: 1, combining: 2, restricted: 3 });
 
@@ -93,7 +94,8 @@ function findMatch({ searchForm, root, language, specialRootMatcher }) {
 function compareCandidates(a, b) {
   const rankA = validRank(a.rank) ? a.rank : Number.POSITIVE_INFINITY;
   const rankB = validRank(b.rank) ? b.rank : Number.POSITIVE_INFINITY;
-  return compareFrequencyRepresentatives(a, b)
+  return (MATCH_TIER[a.match.type] ?? 99) - (MATCH_TIER[b.match.type] ?? 99)
+    || compareFrequencyRepresentatives(a, b)
     || (MATCH_PRIORITY[a.match.type] ?? 99) - (MATCH_PRIORITY[b.match.type] ?? 99)
     || (BOUNDARY_PRIORITY[a.match.boundary?.kind] ?? 99) - (BOUNDARY_PRIORITY[b.match.boundary?.kind] ?? 99)
     || (a.match.distance ?? 0) - (b.match.distance ?? 0)
