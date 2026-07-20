@@ -17,7 +17,8 @@ const OUTER_ENDINGS = Object.freeze({
 
 const RUSSIAN_MODEL_FAMILY_SUFFIXES = Object.freeze([
   'shchik',
-  'chik'
+  'chik',
+  'nost'
 ]);
 
 function stripOuterEnding(value, endings, minimumLength = 4) {
