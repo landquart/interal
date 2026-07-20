@@ -1,0 +1,175 @@
+name: Apply associative persistence fix
+
+on:
+  push:
+    branches:
+      - agent/fix-associative-share-links
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v5
+        with:
+          ref: agent/fix-associative-share-links
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Patch persistence logic
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          def replace_once(text, old, new, label):
+              count = text.count(old)
+              if count != 1:
+                  raise SystemExit(f'{label}: expected one match, found {count}')
+              return text.replace(old, new, 1)
+
+          state_path = Path('associativvordes/js/associative-state.js')
+          state = state_path.read_text(encoding='utf-8')
+          state = replace_once(
+              state,
+              'const MAX_STATE_CANDIDATES_PER_LANGUAGE = 80;',
+              'const MAX_STATE_CANDIDATES_PER_LANGUAGE = 20;',
+              'candidate persistence limit'
+          )
+          state_path.write_text(state, encoding='utf-8')
+
+          draft_path = Path('shared/form-draft.js')
+          draft = draft_path.read_text(encoding='utf-8')
+          draft = replace_once(
+              draft,
+              "  let initialRestoreAttempted = false;\n  let initialRestoreSucceeded = false;",
+              "  let initialRestoreInFlight = null;\n  let initialRestoreSucceeded = false;",
+              'restore state variables'
+          )
+          draft = replace_once(
+              draft,
+              "  function applySharedPayload(payload) {\n    const fieldsApplied = payload?.fields && typeof payload.fields === 'object'\n      ? applyFields(payload.fields)\n      : false;\n    const pageStateApplied = applyPageState(payload?.pageState);\n\n    if (pageStateApplied) {\n      try {\n        lastSerialized = JSON.stringify(collectDraft());\n        localStorage.setItem(storageKey(), lastSerialized);\n      } catch (error) {\n        console.warn('Could not save restored page-specific state:', error);\n      }\n    }\n\n    return fieldsApplied || pageStateApplied;\n  }\n\n  function applyFields(fields) {",
+              "  function hasPageStatePayload(payload) {\n    return Boolean(payload?.pageState && typeof payload.pageState === 'object' && !Array.isArray(payload.pageState));\n  }\n\n  function applySharedPayload(payload) {\n    const hasPageState = hasPageStatePayload(payload);\n\n    // Restore fields and page state atomically. If the page module has not\n    // registered its importer yet, leave both the UI and localStorage intact\n    // so a later scheduled attempt can restore the complete result.\n    if (hasPageState && typeof window.InteralPageStateImport !== 'function') {\n      return false;\n    }\n\n    const fieldsApplied = payload?.fields && typeof payload.fields === 'object'\n      ? applyFields(payload.fields, { persist: !hasPageState })\n      : false;\n    const pageStateApplied = applyPageState(payload?.pageState);\n\n    if (hasPageState && !pageStateApplied) {\n      return false;\n    }\n\n    if (pageStateApplied) {\n      try {\n        lastSerialized = JSON.stringify(collectDraft());\n        localStorage.setItem(storageKey(), lastSerialized);\n      } catch (error) {\n        console.warn('Could not save restored page-specific state:', error);\n      }\n    }\n\n    return fieldsApplied || pageStateApplied;\n  }\n\n  function applyFields(fields, { persist = true } = {}) {",
+              'atomic shared payload restoration'
+          )
+          draft = replace_once(
+              draft,
+              "      lastSerialized = JSON.stringify(collectDraft());\n      localStorage.setItem(storageKey(), lastSerialized);\n      window.dispatchEvent(new CustomEvent('interal:formdraftrestore', { detail: { key: storageKey() } }));",
+              "      if (persist) {\n        lastSerialized = JSON.stringify(collectDraft());\n        localStorage.setItem(storageKey(), lastSerialized);\n      }\n      window.dispatchEvent(new CustomEvent('interal:formdraftrestore', { detail: { key: storageKey() } }));",
+              'conditional field persistence'
+          )
+          draft = replace_once(
+              draft,
+              "  async function restoreInitialState() {\n    if (initialRestoreAttempted) return initialRestoreSucceeded;\n    initialRestoreAttempted = true;\n    if (hasResetFlag()) {\n      clearResetStateAfterLoad();\n      initialRestoreSucceeded = false;\n      return false;\n    }\n\n    if (await restoreShortStateFromUrl()) {\n      initialRestoreSucceeded = true;\n      return true;\n    }\n\n    if (restoreSharedStateFromUrl()) {\n      initialRestoreSucceeded = true;\n      return true;\n    }\n\n    initialRestoreSucceeded = restoreDraft();\n    return initialRestoreSucceeded;\n  }",
+              "  async function restoreInitialState() {\n    if (initialRestoreSucceeded) return true;\n    if (initialRestoreInFlight) return initialRestoreInFlight;\n\n    initialRestoreInFlight = (async () => {\n      if (hasResetFlag()) {\n        clearResetStateAfterLoad();\n        return false;\n      }\n\n      if (await restoreShortStateFromUrl()) {\n        initialRestoreSucceeded = true;\n        return true;\n      }\n\n      if (restoreSharedStateFromUrl()) {\n        initialRestoreSucceeded = true;\n        return true;\n      }\n\n      if (restoreDraft()) {\n        initialRestoreSucceeded = true;\n        return true;\n      }\n\n      return false;\n    })();\n\n    try {\n      return await initialRestoreInFlight;\n    } finally {\n      initialRestoreInFlight = null;\n    }\n  }",
+              'retryable initial restoration'
+          )
+          draft_path.write_text(draft, encoding='utf-8')
+
+          test_path = Path('tests/persistence-helper.test.mjs')
+          test = test_path.read_text(encoding='utf-8')
+          test = replace_once(
+              test,
+              "import vm from 'node:vm';",
+              "import vm from 'node:vm';\nimport { compactAssociativeState } from '../associativvordes/js/associative-state.js';",
+              'associative state test import'
+          )
+          race_test = r'''
+{
+  const { ctx, store, fields } = makeContext();
+  const key = 'interal-page-state:v2:/internationalismes/';
+  const saved = {
+    version: 1,
+    path: '/interal/internationalismes/',
+    fields: { wordInput: 'saved-field' },
+    pageState: { version: 2, fields: { word: 'saved-result' }, result: { accepted: true }, flags: { checked: true } }
+  };
+  store.set(key, JSON.stringify(saved));
+
+  // The first attempt may run before the page module registers its importer.
+  // It must not apply fields or overwrite the complete saved payload.
+  assert.equal(await ctx.window.InteralFormDraft.restoreInitial(), false);
+  assert.equal(fields.wordInput.value, '');
+  assert.equal(JSON.parse(store.get(key)).pageState.result.accepted, true);
+
+  let imported = null;
+  ctx.window.InteralPageStateImport = (state) => { imported = state; return true; };
+  ctx.window.InteralPageStateExport = () => imported;
+
+  // A later attempt must be allowed and must restore the whole result.
+  assert.equal(await ctx.window.InteralFormDraft.restoreInitial(), true);
+  assert.equal(fields.wordInput.value, 'saved-field');
+  assert.equal(imported.result.accepted, true);
+  assert.equal(JSON.parse(store.get(key)).pageState.result.accepted, true);
+}
+
+'''
+          marker = "{\n  const { ctx, store } = makeContext('', '/altervordes/');"
+          test = replace_once(test, marker, race_test + marker, 'restore race regression test')
+          old_export = """  ctx.window.InteralPageStateExport = () => ({
+    version: 1,
+    page: 'associativvordes',
+    state: {
+      root: 'alter',
+      meaning: 'другой',
+      elementType: 'root',
+      maxModels: 5,
+      activeLang: 'en',
+      languages,
+      languageStatuses: Object.fromEntries(Object.keys(languages).map((code) => [code, { status: 'completed' }])),
+      globalStatus: 'completed',
+      checked: true,
+      result: { finalAssociation: 61.2, accepted: true }
+    }
+  });"""
+          new_export = """  ctx.window.InteralPageStateExport = () => compactAssociativeState({
+    root: 'alter',
+    meaning: 'другой',
+    elementType: 'root',
+    maxModels: 5,
+    languages,
+    languageStatuses: Object.fromEntries(Object.keys(languages).map((code) => [code, { status: 'completed' }])),
+    globalStatus: 'completed',
+    checked: true
+  }, {
+    languages: ['en', 'de', 'fr', 'es', 'it', 'ru'],
+    activeLang: 'en',
+    calculateResult: () => ({ finalAssociation: 61.2, accepted: true })
+  });"""
+          test = replace_once(test, old_export, new_export, 'real associative exporter in persistence test')
+          test = replace_once(
+              test,
+              "  assert.equal(locallySaved.pageState.state.languages.en.length, 80);",
+              "  assert.equal(locallySaved.pageState.state.languages.en.length, 20);",
+              'local candidate limit assertion'
+          )
+          test_path.write_text(test, encoding='utf-8')
+          PY
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate persistence changes
+        run: |
+          node --check shared/form-draft.js
+          node tests/persistence-helper.test.mjs
+          npm test
+
+      - name: Commit verified fix
+        shell: bash
+        run: |
+          rm .github/workflows/zz-fix-associative-persistence.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add associativvordes/js/associative-state.js shared/form-draft.js tests/persistence-helper.test.mjs .github/workflows/zz-fix-associative-persistence.yml
+          git commit -m "Fix associative result persistence"
+          git push origin HEAD:agent/fix-associative-share-links
