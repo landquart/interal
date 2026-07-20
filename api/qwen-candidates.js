@@ -319,15 +319,29 @@ export default async function handler(req, res) {
   try {
     if (req.method !== 'POST') return send(res, 405, { ok: false, error: 'Method not allowed' });
     const input = validateInput(await readBody(req));
-    const response = await callYandex(input);
-    const qwenCandidates = normalizeResult(extractJson(response.content));
     const guaranteedCandidates = guaranteedAllomorphCandidates(input);
+    let qwenCandidates = Object.fromEntries(CONTROL_LANGUAGES.map(language => [language, []]));
+    let model = null;
+    let qwenAuditError = null;
+    try {
+      const response = await callYandex(input);
+      qwenCandidates = normalizeResult(extractJson(response.content));
+      model = response.model;
+    } catch (error) {
+      const hasGuaranteedCandidates = CONTROL_LANGUAGES.some(language => guaranteedCandidates[language]?.length);
+      if (!hasGuaranteedCandidates) throw error;
+      qwenAuditError = {
+        errorCode: 'QWEN_CANDIDATE_AUDIT_UNAVAILABLE',
+        details: String(error.details || error.message || error).slice(0, 1200)
+      };
+    }
     return send(res, 200, {
       ok: true,
       candidates: mergeCandidateMaps(guaranteedCandidates, qwenCandidates),
       qwenCandidates,
       guaranteedCandidates,
-      model: response.model,
+      qwenAuditError,
+      model,
       currentModels: input.currentModels
     });
   } catch (error) {
