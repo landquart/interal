@@ -26,9 +26,7 @@ export function lexicalModelDescriptor(candidate, root, language = 'en', element
     match: candidate?.match
   });
   const stemRoot = String(language).toLowerCase() === 'ru' ? buildSearchForm(analysis.matched_root_variant || analysis.canonical_root) : (analysis.matched_root_variant || analysis.canonical_root);
-  const stem = analysis.analysis_confidence === 'low'
-    ? stemRoot
-    : `${stemRoot}${analysis.first_meaningful_derivational_element && analysis.first_meaningful_derivational_element !== 'base' && !(String(language).toLowerCase() === 'ru' && stemRoot === 'alternativ') ? analysis.first_meaningful_derivational_element : ''}`;
+  const stem = stemRoot;
   return { key: analysis.model_key, label: analysis.model_label, stem, prefix: analysis.prefix_chain.join('+'), fragment: analysis.matched_root_variant, analysis };
 }
 

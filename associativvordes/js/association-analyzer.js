@@ -264,25 +264,44 @@ export async function analyzeAssociativeWord({ language, targetMeaning, localize
   const noteReview = (key) => { reviewDiagnostics[key] += 1; onReviewEvent?.(key, { diagnostics: reviewDiagnostics, budget }); };
   const hasFrequencyProfile = frequencyProfile && typeof frequencyProfile === 'object' && Number.isFinite(Number(frequencyProfile.frequency_score));
   if (!hasFrequencyProfile) onProgress?.('Загрузка частотных списков...');
-  const frequency = hasFrequencyProfile ? { ...frequencyProfile, warnings: Array.isArray(frequencyProfile.warnings) ? frequencyProfile.warnings : [] } : await getFrequencyProfile(language, word).catch(error => {
-    warnings.push(`Frequency unavailable: ${error.message}`);
-    return { frequency_score: null, category_breakdown: {}, warnings: ['Frequency unavailable'] };
-  });
+  let frequency;
+  if (hasFrequencyProfile) {
+    frequency = { ...frequencyProfile, warnings: Array.isArray(frequencyProfile.warnings) ? frequencyProfile.warnings : [] };
+  } else {
+    try {
+      frequency = await getFrequencyProfile(language, word, { signal });
+      throwIfAborted(signal, 'frequency_profile');
+    } catch (error) {
+      if (isAbortError(error, signal)) throw normalizeAbortError(error, { stage: 'frequency_profile', runId });
+      warnings.push(`Frequency unavailable: ${error.message}`);
+      frequency = { frequency_score: null, category_breakdown: {}, warnings: ['Frequency unavailable'] };
+    }
+  }
   warnings.push(...(frequency.warnings || []));
 
   let swowTargetMeaning = typeof localizedTargetMeaning === 'string' ? localizedTargetMeaning.trim() : '';
   if (!swowTargetMeaning && arguments[0] && !Object.prototype.hasOwnProperty.call(arguments[0], 'localizedTargetMeaning')) {
-    swowTargetMeaning = await translateTargetMeaningForLanguage(targetMeaning, language).catch(() => '');
+    try {
+      swowTargetMeaning = await translateTargetMeaningForLanguage(targetMeaning, language, { signal });
+      throwIfAborted(signal, 'target_translation');
+    } catch (error) {
+      if (isAbortError(error, signal)) throw normalizeAbortError(error, { stage: 'target_translation', runId });
+      swowTargetMeaning = '';
+    }
   }
   let bidirectionalSwow = { target_to_word: null, word_to_target: null };
   if (!swowTargetMeaning) {
     warnings.push('target_translation_unavailable');
   } else {
     onProgress?.(`SWOW: ${language} — ${word}`);
-    bidirectionalSwow = await getBidirectionalSwow(language, swowTargetMeaning, word).catch(error => {
+    try {
+      bidirectionalSwow = await getBidirectionalSwow(language, swowTargetMeaning, word, { signal });
+      throwIfAborted(signal, 'swow');
+    } catch (error) {
+      if (isAbortError(error, signal)) throw normalizeAbortError(error, { stage: 'swow', runId });
       warnings.push(`SWOW unavailable: ${error.message}`);
-      return { target_to_word: null, word_to_target: null };
-    });
+      bidirectionalSwow = { target_to_word: null, word_to_target: null };
+    }
   }
   const swowPairFound = Boolean(bidirectionalSwow.target_to_word?.found || bidirectionalSwow.word_to_target?.found);
   if (!swowPairFound) warnings.push('No SWOW pair found, association not penalized');

@@ -24,9 +24,9 @@ try {
 
   assert.ok(patched.includes(runtimeMarker));
   assert.ok(patched.includes('const SEARCH_RESULTS_PAGE_SIZE = 100'));
-  assert.ok(patched.includes('autoAnalyzeCandidatesPerLanguage'));
+  assert.ok(patched.includes('runAssociativeCalculation'), 'published runtime uses the unified production runner');
   assert.ok(patched.includes("analysisStatus: 'pending'"));
-  assert.ok(patched.includes('nextLangs[lang.code] = reconcileModelRepresentatives'));
+  assert.ok(patched.includes('candidateFinalizer'), 'production adapter supplies final model grouping to the unified runner');
   assert.ok(patched.includes('window.showMoreCandidates = showMoreCandidates'));
   assert.ok(patched.includes('frequency_score: Number.isFinite(Number(item.frequency_score))'));
   assert.ok(patched.includes('const analysisButton = item.analysisStatus'));

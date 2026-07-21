@@ -1,10 +1,10 @@
 import { BASE_CATEGORY_WEIGHTS, CATEGORY_ORDER, FREQUENCY_LIST_BASE_PATH, LANGUAGE_SOURCES } from './config-frequency-sources.js';
 import { normalizeLanguageSource } from './language-source-descriptor.js';
+import { isAbortError, normalizeAbortError } from './qwen-client.js';
 
+// Cache only fully loaded maps so cancellation of one run cannot poison another run.
 const frequencyCache = new Map();
-export const SCORE_CONFIG = {
-  ipmRef: 300
-};
+export const SCORE_CONFIG = { ipmRef: 300 };
 
 export function meanNonZero(values) {
   const valid = values.filter(v => typeof v === 'number' && v > 0);
@@ -25,6 +25,9 @@ function sourceUrl(language, fileName) {
   return `${FREQUENCY_LIST_BASE_PATH}/${encodeURIComponent(language)}/${encodeURIComponent(fileName)}`;
 }
 
+function throwIfAborted(signal, stage) {
+  if (signal?.aborted) throw normalizeAbortError(signal.reason, { stage });
+}
 
 function addIpm(map, word, value) {
   const key = normalizeWord(word);
@@ -35,7 +38,6 @@ function addIpm(map, word, value) {
 export function normalizeFrequencyData(data) {
   const map = new Map();
   if (!data || typeof data !== 'object') return map;
-
   if (Array.isArray(data)) {
     for (const record of data) {
       if (!record || typeof record !== 'object') continue;
@@ -43,52 +45,44 @@ export function normalizeFrequencyData(data) {
     }
     return map;
   }
-
   for (const [key, record] of Object.entries(data)) {
-    if (typeof record === 'number') {
-      addIpm(map, key, record);
-      continue;
-    }
+    if (typeof record === 'number') { addIpm(map, key, record); continue; }
     if (!record || typeof record !== 'object') continue;
-
     const explicitWord = record.word ?? record.lemma ?? record.form;
     const explicitValue = record.ipm ?? record.IPM ?? record.frequency ?? record.freq;
-    if (explicitValue != null) {
-      addIpm(map, explicitWord || key, explicitValue);
-      continue;
-    }
-
+    if (explicitValue != null) { addIpm(map, explicitWord || key, explicitValue); continue; }
     for (const [nestedWord, nestedValue] of Object.entries(record)) {
       if (typeof nestedValue === 'number') addIpm(map, nestedWord, nestedValue);
-      else if (nestedValue && typeof nestedValue === 'object') {
-        addIpm(map, nestedWord, nestedValue.ipm ?? nestedValue.IPM ?? nestedValue.frequency ?? nestedValue.freq);
-      }
+      else if (nestedValue && typeof nestedValue === 'object') addIpm(map, nestedWord, nestedValue.ipm ?? nestedValue.IPM ?? nestedValue.frequency ?? nestedValue.freq);
     }
   }
-
   return map;
 }
 
-async function loadFrequencyFile(language, fileName) {
+async function loadFrequencyFile(language, fileName, { signal } = {}) {
   const key = `${language}/${fileName}`;
+  throwIfAborted(signal, 'frequency_fetch');
   if (frequencyCache.has(key)) return frequencyCache.get(key);
-
-  const promise = fetch(sourceUrl(language, fileName), { cache: 'force-cache' })
-    .then(res => {
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      return res.json();
-    })
-    .then(normalizeFrequencyData);
-  frequencyCache.set(key, promise);
-  return promise;
+  let response;
+  try {
+    response = await fetch(sourceUrl(language, fileName), { cache: 'force-cache', signal });
+  } catch (error) {
+    if (isAbortError(error, signal)) throw normalizeAbortError(error, { stage: 'frequency_fetch' });
+    throw error;
+  }
+  throwIfAborted(signal, 'frequency_fetch');
+  if (!response.ok) throw new Error(`HTTP ${response.status}`);
+  const payload = await response.json();
+  throwIfAborted(signal, 'frequency_parse');
+  const normalized = normalizeFrequencyData(payload);
+  frequencyCache.set(key, normalized);
+  return normalized;
 }
 
 function extractIpm(data, word) {
   if (!data) return 0;
   const key = normalizeWord(word);
-  if (data instanceof Map) {
-    return data.get(key) ?? data.get(key.normalize('NFD').replace(/[\u0300-\u036f]/g, '')) ?? 0;
-  }
+  if (data instanceof Map) return data.get(key) ?? data.get(key.normalize('NFD').replace(/[\u0300-\u036f]/g, '')) ?? 0;
   return normalizeFrequencyData(data).get(key) || 0;
 }
 
@@ -100,23 +94,20 @@ export function getLanguageCategoryWeights(language) {
   return Object.fromEntries(available.map(category => [category, (BASE_CATEGORY_WEIGHTS[category] || 0) / totalBase]));
 }
 
-export async function getFrequencyProfile(language, word) {
+export async function getFrequencyProfile(language, word, { signal } = {}) {
   const lang = normalizeWord(language);
   const sources = LANGUAGE_SOURCES[lang] || {};
   const categoryWeights = getLanguageCategoryWeights(lang);
   const category_breakdown = {};
   const warnings = [];
   let frequency_score = 0;
-
   for (const category of CATEGORY_ORDER) {
+    throwIfAborted(signal, `frequency:${category}`);
     const files = Array.isArray(sources[category]) ? sources[category] : [];
-    if (!files.length) {
-      warnings.push(`No ${category} source for ${lang}`);
-      continue;
-    }
-
+    if (!files.length) { warnings.push(`No ${category} source for ${lang}`); continue; }
     const ipm_values = [];
     for (const source of files) {
+      throwIfAborted(signal, `frequency:${category}`);
       let descriptor;
       try {
         descriptor = normalizeLanguageSource(category, source);
@@ -127,29 +118,26 @@ export async function getFrequencyProfile(language, word) {
       }
       const { fileName, sourceId, optional } = descriptor;
       try {
-        const data = await loadFrequencyFile(lang, fileName);
+        const data = await loadFrequencyFile(lang, fileName, { signal });
+        throwIfAborted(signal, `frequency:${category}`);
         ipm_values.push(extractIpm(data, word));
       } catch (error) {
+        if (isAbortError(error, signal)) throw normalizeAbortError(error, { stage: `frequency:${category}` });
         const requiredness = optional ? 'Optional' : 'Required';
         warnings.push(`${requiredness} frequency file unavailable: ${lang}/${sourceId} (${error.message})`);
         ipm_values.push(0);
       }
     }
-
     const category_ipm = meanNonZero(ipm_values);
     if (category_ipm === 0) warnings.push(`Word not found in ${category} corpus for ${lang}`);
     const category_score = ipmToScore(category_ipm);
     const category_weight = categoryWeights[category] || 0;
     frequency_score += category_weight * category_score;
-    category_breakdown[category] = {
-      available: true,
-      files_count: files.length,
-      ipm_values,
-      category_ipm,
-      category_score,
-      category_weight
-    };
+    category_breakdown[category] = { available: true, files_count: files.length, ipm_values, category_ipm, category_score, category_weight };
   }
-
   return { frequency_score, category_breakdown, warnings };
+}
+
+export function clearFrequencyCacheForTests() {
+  frequencyCache.clear();
 }
