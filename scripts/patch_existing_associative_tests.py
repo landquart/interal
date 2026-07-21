@@ -78,4 +78,13 @@ for old, new in replacements:
     text = text.replace(old, new, 1)
 path.write_text(text, encoding='utf-8')
 
+path = root / 'tests/associativvordes-target-translation-batch.test.mjs'
+text = path.read_text(encoding='utf-8')
+old = "assert.match(script, /analyzeCandidateItem\\(lang\\.code, item, onProgress, runId, targetTranslations\\[lang\\.code\\] \\|\\| ''\\)/, 'analyzer receives the prepared localized target meaning');"
+new = "assert.match(script, /analyzeCandidateItem\\(language\\.code, candidate, context\\.onProgress, runId, context\\.translation\\)/, 'the unified production adapter passes the prepared localized target meaning to the analyzer');"
+if old not in text:
+    raise SystemExit('target translation adapter assertion not found')
+text = text.replace(old, new, 1)
+path.write_text(text, encoding='utf-8')
+
 print('Updated existing associative tests for unified production behavior.')
