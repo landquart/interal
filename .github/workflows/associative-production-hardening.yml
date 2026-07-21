@@ -22,6 +22,9 @@ jobs:
         with:
           node-version: '24'
 
+      - name: Repair patch matcher
+        run: python3 scripts/repair_associative_patch.py
+
       - name: Apply core hardening
         run: |
           set -o pipefail
@@ -76,6 +79,7 @@ jobs:
 
       - name: Commit validated changes
         run: |
+          rm -f scripts/repair_associative_patch.py
           rm -f scripts/apply_associative_core_hardening.py
           rm -f scripts/apply_associative_morphology_hardening.py
           rm -f scripts/apply_associative_hardening_tests.py
