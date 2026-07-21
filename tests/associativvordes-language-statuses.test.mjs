@@ -37,12 +37,14 @@ assert.equal(oneError.finalAssociation, 47.5, 'one language error does not clear
 
 const threeOfSix = calculateFinalAssociation({ languages, languageResults: [success(40), empty, success(50), empty, empty, success(60)], languageStatuses: {} });
 assert.equal(threeOfSix.finalAssociation, 50, 'three successful languages from six form FA');
-assert.equal(threeOfSix.accepted, true, 'FA above the final threshold is accepted');
+assert.equal(threeOfSix.accepted, true, 'FA above the final threshold with three languages and two groups is accepted');
+assert.equal(decisionStatusForResult(threeOfSix), 'accept', 'complete methodology evidence accepts FA 40+');
 
 const oneGroup = calculateFinalAssociation({ languages: languages.slice(0, 2), languageResults: [success(80), success(70)], languageStatuses: {} });
-assert.equal(oneGroup.accepted, true, 'evidence from one group does not create a second numerical acceptance threshold');
-assert.equal(buildDecisionReasons(oneGroup).warnings.includes('fewer_than_2_groups'), true, 'one represented group is reported as an evidence warning');
-assert.equal(buildDecisionReasons(oneGroup).critical.includes('fewer_than_2_groups'), false, 'evidence breadth does not override FA acceptance');
+assert.equal(oneGroup.accepted, false, 'one group cannot be accepted even when FA passes');
+assert.equal(decisionStatusForResult(oneGroup), 'reject', 'fewer than two groups rejects the result');
+assert.equal(buildDecisionReasons(oneGroup).warnings.includes('fewer_than_2_groups'), false, 'one represented group is not a warning');
+assert.equal(buildDecisionReasons(oneGroup).critical.includes('fewer_than_2_groups'), true, 'one represented group is a critical refusal reason');
 
 const faNull = calculateFinalAssociation({ languages: languages.slice(0, 3), languageResults: [empty, empty, empty], languageStatuses: {} });
 assert.deepEqual(buildDecisionReasons(faNull).critical, ['no_calculated_data'], 'FA null gives no_calculated_data');
@@ -53,8 +55,9 @@ assert.equal(buildDecisionReasons(faZero).critical.includes('final_association_b
 
 const analyzing = calculateFinalAssociation({ languages: languages.slice(0, 3), languageResults: [success(40), empty, empty], languageStatuses: { de: { status: 'analyzing' } } });
 assert.equal(buildDecisionReasons(analyzing).warnings.includes('calculation_incomplete'), true, 'analyzing is intermediate warning');
-assert.equal(buildDecisionReasons(analyzing).warnings.includes('fewer_than_3_languages'), true, 'limited current evidence is reported as a warning');
-assert.equal(buildDecisionReasons(analyzing).critical.includes('fewer_than_3_languages'), false, 'limited evidence is not a separate acceptance threshold');
+assert.equal(buildDecisionReasons(analyzing).warnings.includes('fewer_than_3_languages'), false, 'limited current evidence is not a warning');
+assert.equal(buildDecisionReasons(analyzing).critical.includes('fewer_than_3_languages'), true, 'limited evidence is a critical acceptance threshold');
+assert.equal(decisionStatusForResult(analyzing), 'reject', 'fewer than three represented languages rejects the result');
 
 for (const status of ['completed', 'no_candidates', 'index_error', 'qwen_error', 'incomplete', 'aborted']) assert.equal(isLanguageTerminal(status), true, `${status} is terminal`);
 assert.equal(summarizeLanguageStatuses({ en: { status: 'completed' }, de: { status: 'no_candidates' }, fr: { status: 'index_error' } }).allTerminal, true, 'all terminal statuses finish global run');
@@ -71,16 +74,20 @@ assert.equal(decisionStatusForResult(acceptedWithIndexWarning), 'accept', 'accep
 const semanticBad = calculateFinalAssociation({ languages: languages.slice(0, 3), languageResults: [success(50), success(50), success(50, false)], languageStatuses: {} });
 assert.equal(buildDecisionReasons(semanticBad).warnings.includes('semantic_not_confirmed'), true, 'semantic uncertainty is retained as a warning');
 assert.equal(buildDecisionReasons(semanticBad).critical.includes('semantic_not_confirmed'), false, 'semantic uncertainty is not another numerical threshold');
-assert.equal(decisionStatusForResult(semanticBad), 'accept', 'FA alone determines the accept/reject decision when data exist');
+assert.equal(decisionStatusForResult(semanticBad), 'accept', 'semantic uncertainty remains a warning when methodology thresholds pass');
 
 const duplicateOrder = buildDecisionReasons({ ...faZero, languageStatusSummary: summarizeLanguageStatuses({ en: { status: 'index_error' }, de: { status: 'index_error' } }) });
 assert.equal(new Set(duplicateOrder.critical).size, duplicateOrder.critical.length, 'critical reasons are unique');
-assert.deepEqual(duplicateOrder.critical, ['final_association_below_35'], 'critical reasons have deterministic order');
+assert.deepEqual(duplicateOrder.critical, ['final_association_below_35'], 'critical reasons have deterministic order when breadth thresholds pass');
 
 for (const status of ['idle', 'loading_index', 'no_candidates', 'analyzing', 'completed', 'index_error', 'qwen_error', 'incomplete', 'aborted']) {
   assert.ok(languageStatusLabel({ status }, 'ru'), `RU label exists for ${status}`);
   assert.ok(languageStatusLabel({ status }, 'en'), `EN label exists for ${status}`);
 }
 assert.equal(languageStatusLabel({ status: 'no_candidates' }, 'en', { short: true }).includes('0'), false, 'no_candidates tab label does not show 0%');
+
+const finiteNormalizedWithoutWords = calculateFinalAssociation({ languages, languageResults: [{ normalized: 80, sum: 80, count: 0, semanticConfirmed: true }, success(40), success(40)], languageStatuses: {} });
+assert.equal(finiteNormalizedWithoutWords.representedLangs, 2, 'represented languages require at least one finite selected derivative score');
+assert.equal(finiteNormalizedWithoutWords.groups, 2, 'groups are counted only from represented languages');
 
 console.log('associativvordes language-status tests passed');

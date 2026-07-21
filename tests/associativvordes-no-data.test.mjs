@@ -3,6 +3,7 @@ import {
   calculateFinalAssociation,
   calculateLanguageScore,
   canCreateAssociativeJsonCard,
+  decisionStatusForResult,
   finalAssociationPassesThreshold,
   finalAssociationRejectionReasons
 } from '../associativvordes/js/association-analyzer.js';
@@ -51,6 +52,52 @@ assert.equal(finalAssociationRejectionReasons({ representedLangs: 3, groups: 2, 
 assert.equal(canCreateAssociativeJsonCard(empty), false, 'JSON card is unavailable without FA');
 assert.equal(canCreateAssociativeJsonCard(realZeroFinal), false, 'JSON card is not blocked merely by zero; methodology acceptance blocks this case');
 assert.equal(realZeroFinal.hasCalculatedData, true, 'zero is treated as a completed calculation');
+
+const oneLanguageHighFa = calculateFinalAssociation({ languages: [languages[0]], languageResults: [{ sum: 40, normalized: 40, count: 1, semanticConfirmed: true }] });
+assert.equal(oneLanguageHighFa.finalAssociation, 40, 'FA 40 with one language is calculated');
+assert.equal(oneLanguageHighFa.groups, 1, 'FA 40 with one language has one represented group');
+assert.equal(oneLanguageHighFa.accepted, false, 'FA 40 with 1 language and 1 group is rejected');
+assert.equal(decisionStatusForResult(oneLanguageHighFa), 'reject', 'FA 40 with 1 language and 1 group returns reject');
+
+const threeLanguagesOneGroupHighFa = calculateFinalAssociation({
+  languages: [{ code: 'en', group: 'germanic' }, { code: 'de', group: 'germanic' }, { code: 'nl', group: 'germanic' }],
+  languageResults: [
+    { sum: 40, normalized: 40, count: 1, semanticConfirmed: true },
+    { sum: 40, normalized: 40, count: 1, semanticConfirmed: true },
+    { sum: 40, normalized: 40, count: 1, semanticConfirmed: true }
+  ]
+});
+assert.equal(threeLanguagesOneGroupHighFa.finalAssociation, 40, 'FA 40 with three languages is calculated');
+assert.equal(threeLanguagesOneGroupHighFa.groups, 1, 'FA 40 with three same-group languages has one group');
+assert.equal(threeLanguagesOneGroupHighFa.accepted, false, 'FA 40 with 3 languages and 1 group is rejected');
+assert.equal(decisionStatusForResult(threeLanguagesOneGroupHighFa), 'reject', 'FA 40 with 3 languages and 1 group returns reject');
+
+const threeLanguagesTwoGroupsHighFa = calculateFinalAssociation({
+  languages,
+  languageResults: [
+    { sum: 40, normalized: 40, count: 1, semanticConfirmed: true },
+    { sum: 40, normalized: 40, count: 1, semanticConfirmed: true },
+    { sum: 40, normalized: 40, count: 1, semanticConfirmed: true }
+  ]
+});
+assert.equal(threeLanguagesTwoGroupsHighFa.finalAssociation, 40, 'FA 40 with three languages and two groups is calculated');
+assert.equal(threeLanguagesTwoGroupsHighFa.groups, 2, 'FA 40 with three languages spans two groups');
+assert.equal(threeLanguagesTwoGroupsHighFa.accepted, true, 'FA 40 with 3 languages and 2 groups is accepted');
+assert.equal(decisionStatusForResult(threeLanguagesTwoGroupsHighFa), 'accept', 'FA 40 with 3 languages and 2 groups returns accept');
+
+const sixLanguagesLowFa = calculateFinalAssociation({
+  languages: [...languages, { code: 'es', group: 'romance' }, { code: 'ru', group: 'slavic' }, { code: 'pl', group: 'slavic' }],
+  languageResults: Array.from({ length: 6 }, () => ({ sum: 34.99, normalized: 34.99, count: 1, semanticConfirmed: true }))
+});
+assert.equal(sixLanguagesLowFa.finalAssociation, 34.99, 'FA 34.99 with six languages and three groups is calculated');
+assert.equal(sixLanguagesLowFa.groups, 3, 'FA 34.99 fixture spans three groups');
+assert.equal(sixLanguagesLowFa.accepted, false, 'FA 34.99 with 6 languages and 3 groups is rejected');
+assert.equal(decisionStatusForResult(sixLanguagesLowFa), 'reject', 'FA 34.99 with 6 languages and 3 groups returns reject');
+
+assert.equal(canCreateAssociativeJsonCard(oneLanguageHighFa), false, 'JSON card is blocked for FA 40 with fewer than three languages');
+assert.equal(canCreateAssociativeJsonCard(threeLanguagesOneGroupHighFa), false, 'JSON card is blocked for FA 40 with fewer than two groups');
+assert.equal(canCreateAssociativeJsonCard(threeLanguagesTwoGroupsHighFa), true, 'JSON card is allowed for an accepted result');
+assert.equal(canCreateAssociativeJsonCard(sixLanguagesLowFa), false, 'JSON card is blocked when FA is below threshold');
 
 const noWords = calculateLanguageScore([], { scoreGetter: item => item.final_score });
 assert.deepEqual(noWords, { sum: null, normalized: null, count: 0 }, 'no selected calculated words returns nulls');

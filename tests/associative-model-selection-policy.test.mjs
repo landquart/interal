@@ -50,16 +50,24 @@ assert.equal(limitedLanguage.count, 5, 'no more than five words participate in o
 assert.equal(limitedLanguage.normalized, 80, 'the sixth selected word is excluded by the five-word limit');
 
 const accepted = calculateFinalAssociation({
-  languages: [{ code: 'en', group: 'Germanic' }],
-  languageResults: [{ normalized: 40, sum: 40, count: 1, semanticConfirmed: true }],
-  languageStatuses: { en: { status: 'completed' } }
+  languages: [{ code: 'en', group: 'Germanic' }, { code: 'fr', group: 'Romance' }, { code: 'ru', group: 'Slavic' }],
+  languageResults: [
+    { normalized: 40, sum: 40, count: 1, semanticConfirmed: true },
+    { normalized: 40, sum: 40, count: 1, semanticConfirmed: true },
+    { normalized: 40, sum: 40, count: 1, semanticConfirmed: true }
+  ],
+  languageStatuses: { en: { status: 'completed' }, fr: { status: 'completed' }, ru: { status: 'completed' } }
 });
-assert.equal(accepted.accepted, true, 'the final FA threshold is the only numerical acceptance threshold');
+assert.equal(accepted.accepted, true, 'FA threshold plus language and group breadth accepts the result');
 assert.equal(decisionStatusForResult(accepted), 'accept');
 const rejected = calculateFinalAssociation({
-  languages: [{ code: 'en', group: 'Germanic' }],
-  languageResults: [{ normalized: 34, sum: 34, count: 1, semanticConfirmed: true }],
-  languageStatuses: { en: { status: 'completed' } }
+  languages: [{ code: 'en', group: 'Germanic' }, { code: 'fr', group: 'Romance' }, { code: 'ru', group: 'Slavic' }],
+  languageResults: [
+    { normalized: 34, sum: 34, count: 1, semanticConfirmed: true },
+    { normalized: 34, sum: 34, count: 1, semanticConfirmed: true },
+    { normalized: 34, sum: 34, count: 1, semanticConfirmed: true }
+  ],
+  languageStatuses: { en: { status: 'completed' }, fr: { status: 'completed' }, ru: { status: 'completed' } }
 });
 assert.equal(decisionStatusForResult(rejected), 'reject');
 

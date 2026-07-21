@@ -58,8 +58,8 @@ export function passesWordThreshold(score) {
 export const LANGUAGE_STATUSES = ['idle', 'loading_index', 'no_candidates', 'analyzing', 'completed', 'index_error', 'qwen_error', 'incomplete', 'aborted'];
 export const TERMINAL_LANGUAGE_STATUSES = ['completed', 'no_candidates', 'index_error', 'qwen_error', 'incomplete', 'aborted'];
 export const INTERMEDIATE_LANGUAGE_STATUSES = ['idle', 'loading_index', 'analyzing'];
-export const CRITICAL_DECISION_REASONS = ['no_calculated_data', 'final_association_below_35'];
-export const WARNING_DECISION_REASONS = ['fewer_than_3_languages', 'fewer_than_2_groups', 'semantic_not_confirmed', 'some_languages_no_candidates', 'some_languages_index_error', 'some_languages_qwen_error', 'calculation_incomplete'];
+export const CRITICAL_DECISION_REASONS = ['no_calculated_data', 'final_association_below_35', 'fewer_than_3_languages', 'fewer_than_2_groups'];
+export const WARNING_DECISION_REASONS = ['semantic_not_confirmed', 'some_languages_no_candidates', 'some_languages_index_error', 'some_languages_qwen_error', 'calculation_incomplete'];
 export const UNAVAILABLE_REASONS = ['no_candidates', 'index_error', 'qwen_error', 'incomplete', 'aborted', 'no_calculated_data'];
 
 export function isFiniteScore(value) {
@@ -125,7 +125,7 @@ export function unavailableReasonsFromStatuses(languageStatuses = {}) {
 
 export function calculateFinalAssociation({ languages = [], languageResults = [], languageStatuses = {} } = {}) {
   const languageScores = (languages || []).map((lang, index) => ({ lang, ...(languageResults[index] || {}) }));
-  const represented = languageScores.filter((score) => isFiniteScore(score.normalized));
+  const represented = languageScores.filter((score) => isFiniteScore(score.normalized) && Number(score.count) > 0);
   const hasCalculatedData = represented.length > 0;
   const totalAssociation = hasCalculatedData ? represented.reduce((acc, score) => acc + Number(score.normalized), 0) : null;
   const finalAssociation = hasCalculatedData ? totalAssociation / represented.length : null;
@@ -135,7 +135,10 @@ export function calculateFinalAssociation({ languages = [], languageResults = []
   const statusSummary = summarizeLanguageStatuses(languageStatuses);
   const unavailableReasons = unavailableReasonsFromStatuses(languageStatuses);
   if (!hasCalculatedData && !unavailableReasons.includes('no_calculated_data')) unavailableReasons.push('no_calculated_data');
-  const accepted = hasCalculatedData && finalAssociationPassesThreshold(finalAssociation);
+  const accepted = hasCalculatedData
+    && finalAssociationPassesThreshold(finalAssociation)
+    && representedLangs >= 3
+    && groups.size >= 2;
   return { languageScores, totalAssociation, finalAssociation, representedLangs, groups: groups.size, semanticConfirmed, accepted, hasCalculatedData, unavailableReasons, languageStatusSummary: statusSummary };
 }
 
@@ -149,8 +152,8 @@ export function buildDecisionReasons(result = {}) {
     add(critical, 'no_calculated_data');
   } else {
     if (Number(result.finalAssociation) < THRESHOLDS.main) add(critical, 'final_association_below_35');
-    if (Number(result.representedLangs) < 3) add(warnings, 'fewer_than_3_languages');
-    if (Number(result.groups) < 2) add(warnings, 'fewer_than_2_groups');
+    if (Number(result.representedLangs) < 3) add(critical, 'fewer_than_3_languages');
+    if (Number(result.groups) < 2) add(critical, 'fewer_than_2_groups');
     if (!result.semanticConfirmed) add(warnings, 'semantic_not_confirmed');
   }
   for (const warning of summary.warnings || []) {
@@ -178,7 +181,11 @@ export function decisionStatusForResult(result = {}) {
 }
 
 export function canCreateAssociativeJsonCard(result = {}) {
-  return Boolean(result.hasCalculatedData && finalAssociationPassesThreshold(result.finalAssociation) && result.accepted);
+  return Boolean(result.hasCalculatedData
+    && finalAssociationPassesThreshold(result.finalAssociation)
+    && Number(result.representedLangs) >= 3
+    && Number(result.groups) >= 2
+    && result.accepted);
 }
 
 export function classifyScore(final_score) {
