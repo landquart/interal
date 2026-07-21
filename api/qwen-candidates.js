@@ -9,6 +9,8 @@ const QWEN_MODEL = 'qwen3-235b-a22b-fp8/latest';
 const CONTROL_LANGUAGES = ['en', 'de', 'fr', 'es', 'it', 'ru'];
 const MAX_MODELS_PER_LANGUAGE = 5;
 const MAX_CANDIDATES_PER_LANGUAGE = 2;
+const MAX_KNOWN_CANDIDATE_WORDS_PER_LANGUAGE = 120;
+const MAX_KNOWN_MODEL_KEYS_PER_LANGUAGE = 500;
 
 const ROOT_ALLOMORPH_HINTS = Object.freeze({
   alter: {
@@ -132,12 +134,42 @@ function normalizeCandidate(value, language) {
   return { word, root_variant: rootVariant };
 }
 
-function normalizeExistingCandidates(value) {
+function compactCandidateItem(raw, language, index) {
+  const source = typeof raw === 'string' ? { word: raw } : raw;
+  if (!source || typeof source !== 'object' || Array.isArray(source)) return null;
+  const word = normalizeWord(source.word);
+  if (!word) return null;
+  const item = { word, model_key: normalizeWord(source.model_key ?? source.modelKey, 240), F: finiteScore(source.F ?? source.frequency_score) };
+  const rank = Number(source.rank);
+  if (Number.isFinite(rank) && rank > 0) item.rank = rank;
+  else if (index != null) item.rank = index + 1;
+  return item;
+}
+
+function normalizeKnownCandidates(value) {
   const source = value && typeof value === 'object' && !Array.isArray(value) ? value : {};
   return Object.fromEntries(CONTROL_LANGUAGES.map((language) => {
     const values = Array.isArray(source[language]) ? source[language] : [];
-    const words = [...new Set(values.map((item) => normalizeWord(item)).filter(Boolean))].slice(0, 80);
+    const seen = new Set();
+    const words = [];
+    for (const raw of values) {
+      const item = compactCandidateItem(raw, language, words.length);
+      const key = item && candidateWordKey(item.word);
+      if (!key || seen.has(key)) continue;
+      seen.add(key);
+      words.push(item);
+      if (words.length >= MAX_KNOWN_CANDIDATE_WORDS_PER_LANGUAGE) break;
+    }
     return [language, words];
+  }));
+}
+
+function normalizeKnownModelKeys(value) {
+  const source = value && typeof value === 'object' && !Array.isArray(value) ? value : {};
+  return Object.fromEntries(CONTROL_LANGUAGES.map((language) => {
+    const values = Array.isArray(source[language]) ? source[language] : [];
+    const keys = [...new Set(values.map(item => normalizeWord(item, 240)).filter(Boolean))].slice(0, MAX_KNOWN_MODEL_KEYS_PER_LANGUAGE);
+    return [language, keys];
   }));
 }
 
@@ -175,13 +207,14 @@ function validateInput(body) {
   const interfaceLanguage = normalizeInterfaceLanguage(body.interfaceLanguage);
   if (!root) throw Object.assign(new Error('root is required'), { status: 400 });
   if (!targetMeaning) throw Object.assign(new Error('targetMeaning is required'), { status: 400 });
-  return {
-    root,
-    targetMeaning,
-    interfaceLanguage,
-    existingCandidates: normalizeExistingCandidates(body.existingCandidates),
-    currentModels: normalizeCurrentModels(body.currentModels)
-  };
+  const currentTopModels = normalizeCurrentModels(body.currentTopModels ?? body.currentModels);
+  const knownCandidates = normalizeKnownCandidates(body.knownCandidates ?? body.existingCandidates);
+  const explicitModelKeys = normalizeKnownModelKeys(body.knownModelKeys);
+  const knownModelKeys = Object.fromEntries(CONTROL_LANGUAGES.map(language => {
+    const derived = knownCandidates[language].map(candidate => candidate.model_key).filter(Boolean);
+    return [language, [...new Set([...(explicitModelKeys[language] || []), ...derived])].slice(0, MAX_KNOWN_MODEL_KEYS_PER_LANGUAGE)];
+  }));
+  return { root, targetMeaning, interfaceLanguage, currentTopModels, knownCandidates, knownModelKeys };
 }
 
 function normalizeResult(result) {
@@ -211,8 +244,8 @@ function guaranteedAllomorphCandidates(input) {
   const configured = ROOT_ALLOMORPH_CANDIDATES[buildSearchForm(input.root)] || {};
   return Object.fromEntries(CONTROL_LANGUAGES.map(language => {
     const blocked = new Set([
-      ...(input.existingCandidates[language] || []),
-      ...(input.currentModels[language] || []).map(model => model.word)
+      ...(input.knownCandidates[language] || []).map(item => item.word),
+      ...(input.currentTopModels[language] || []).map(model => model.word)
     ].map(candidateWordKey));
     const candidates = [];
     for (const raw of configured[language] || []) {
@@ -253,13 +286,15 @@ Return an additional candidate only when all of the following are true:
 4. it is reasonably common, not an obscure technicalism or proper name;
 5. it has a credible chance of entering the frequency-selected top five after the program independently checks the word in the local frequency index.
 
-If the current five models are already adequate, return an empty array for that language. Empty arrays are valid final decisions and must not be filled merely to reach a quota. Do not repeat existingCandidates. Do not invent words or return phrases.
+If the current five models are already adequate, return an empty array for that language. Empty arrays are valid final decisions and must not be filled merely to reach a quota. Do not return a word already present in knownCandidates. Do not return a word belonging to a knownModelKeys model unless it is genuinely a different derivational model. Do not repeat currentTopModels. Empty arrays are allowed. Do not invent words or return phrases.
 
-For Latin alter, the historical reflex altru- is mandatory to consider. When absent from currentModels, candidates such as English altruism/altruist and Russian альтруизм/альтруист are valid distinct models and should be proposed. The program will still verify every word in its local index and score it independently.
+For Latin alter, the historical reflex altru- is mandatory to consider. When absent from currentTopModels, candidates such as English altruism/altruist and Russian альтруизм/альтруист are valid distinct models and should be proposed. The program will still verify every word in its local index and score it independently.
 
 Allomorph hints: ${JSON.stringify(hints)}
-Current top models with measured scores: ${JSON.stringify(input.currentModels)}
-All words already found by the program: ${JSON.stringify(input.existingCandidates)}
+Candidate audit payload: ${JSON.stringify({ currentTopModels: input.currentTopModels, knownCandidates: input.knownCandidates, knownModelKeys: input.knownModelKeys })}
+Current top models with measured scores: ${JSON.stringify(input.currentTopModels)}
+All compact known candidates, capped at ${MAX_KNOWN_CANDIDATE_WORDS_PER_LANGUAGE} words per language: ${JSON.stringify(input.knownCandidates)}
+All known derivational model keys, capped at ${MAX_KNOWN_MODEL_KEYS_PER_LANGUAGE} per language: ${JSON.stringify(input.knownModelKeys)}
 Root: ${JSON.stringify(input.root)}
 Target meaning: ${JSON.stringify(input.targetMeaning)}
 
@@ -342,7 +377,9 @@ export default async function handler(req, res) {
       guaranteedCandidates,
       qwenAuditError,
       model,
-      currentModels: input.currentModels
+      currentTopModels: input.currentTopModels,
+      knownCandidates: input.knownCandidates,
+      knownModelKeys: input.knownModelKeys
     });
   } catch (error) {
     const status = error.status && error.status >= 400 && error.status < 600 ? error.status : 500;

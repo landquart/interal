@@ -20,6 +20,7 @@ export const QWEN_RUNTIME_CONFIG = {
   maxCandidatesPerLanguage: Infinity,
   autoAnalyzeCandidatesPerLanguage: MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE,
   maxGeneratedCandidatesPerLanguage: 2,
+  maxKnownCandidateWordsPerLanguage: 120,
   maxConcurrentQwenRequests: 1,
   maxReviewRequestsPerSearch: Infinity,
   requestTimeoutMs: 15000,
@@ -216,7 +217,6 @@ export function normalizeQwenCandidateSuggestions(payload, languages = CONTROL_L
   const source = payload?.candidates && typeof payload.candidates === 'object' ? payload.candidates : {};
   const output = {};
   for (const language of languages) {
-    const seen = new Set();
     output[language] = [];
     for (const raw of Array.isArray(source[language]) ? source[language] : []) {
       const item = typeof raw === 'string' ? { word: raw } : raw;
@@ -224,9 +224,6 @@ export function normalizeQwenCandidateSuggestions(payload, languages = CONTROL_L
       const word = normalizeCandidateWord(item.word);
       const rootVariant = normalizeCandidateWord(item.root_variant ?? item.rootVariant, 40);
       if (!word || !rootVariant) continue;
-      const key = word.toLocaleLowerCase(language === 'ru' ? 'ru' : undefined);
-      if (seen.has(key)) continue;
-      seen.add(key);
       output[language].push({ word, root_variant: rootVariant });
       if (output[language].length >= Math.max(0, Number(maxPerLanguage) || 0)) break;
     }
@@ -240,7 +237,7 @@ function qwenCandidateGenerationUrl() {
     : '/api/qwen-candidates';
 }
 
-export async function getQwenCandidateSuggestions({ root, targetMeaning, existingCandidates = {}, currentModels = {}, signal } = {}) {
+export async function getQwenCandidateSuggestions({ root, targetMeaning, currentTopModels = {}, knownCandidates = {}, knownModelKeys = {}, signal } = {}) {
   if (signal?.aborted) throw normalizeAbortError(signal.reason, { stage: 'candidate_audit' });
   const timeoutController = new AbortController();
   const timeoutId = setTimeout(() => timeoutController.abort(new Error('Qwen candidate request timeout')), QWEN_RUNTIME_CONFIG.candidateRequestTimeoutMs);
@@ -254,7 +251,7 @@ export async function getQwenCandidateSuggestions({ root, targetMeaning, existin
     response = await fetch(qwenCandidateGenerationUrl(), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ root, targetMeaning, existingCandidates, currentModels, interfaceLanguage: getInterfaceLanguage() }),
+      body: JSON.stringify({ root, targetMeaning, currentTopModels, knownCandidates, knownModelKeys, interfaceLanguage: getInterfaceLanguage() }),
       signal: abortController.signal
     });
   } catch (error) {
@@ -347,6 +344,50 @@ export async function verifySuggestionInLocalIndex(loader, language, suggestion,
 
 function candidateIdentity(candidate) {
   return `${String(candidate?.model_key || candidate?.model_family_key || candidate?.model || '')}|${buildSearchForm(candidate?.word)}`;
+}
+
+
+function compactCandidateEvidence(candidate, index) {
+  return {
+    word: candidate.word,
+    model_key: candidate.model_key || candidate.model_family_key || candidate.model || '',
+    F: candidateFrequencyScore(candidate),
+    rank: candidate.rank ?? index + 1
+  };
+}
+
+export function buildQwenCandidateAuditPayload(candidatesByLanguage = {}, languages = CONTROL_LANGUAGE_CODES, limit = QWEN_RUNTIME_CONFIG.maxKnownCandidateWordsPerLanguage) {
+  const wordLimit = Math.max(0, Number(limit) || 0);
+  const currentTopModels = {};
+  const knownCandidates = {};
+  const knownModelKeys = {};
+  for (const language of languages) {
+    const source = Array.isArray(candidatesByLanguage[language]) ? candidatesByLanguage[language] : [];
+    const sorted = source.slice().sort(compareFrequencyRepresentatives);
+    currentTopModels[language] = selectBestFinalModels(source, MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE).map(compactCandidateEvidence);
+    const seenWords = new Set();
+    knownCandidates[language] = [];
+    for (const candidate of sorted) {
+      const key = buildSearchForm(candidate.word);
+      if (!key || seenWords.has(key)) continue;
+      seenWords.add(key);
+      if (knownCandidates[language].length < wordLimit) knownCandidates[language].push(compactCandidateEvidence(candidate, knownCandidates[language].length));
+    }
+    knownModelKeys[language] = [...new Set(source.map(candidate => String(candidate?.model_key || candidate?.model_family_key || candidate?.model || '').trim()).filter(Boolean))];
+  }
+  return { currentTopModels, knownCandidates, knownModelKeys };
+}
+
+export function createQwenCandidateAuditDiagnostics() {
+  return {
+    suggestedCount: 0,
+    duplicateWordCount: 0,
+    duplicateModelCount: 0,
+    locallyMissingCount: 0,
+    verifiedNewModelCount: 0,
+    rejectedInvalidCount: 0,
+    auditRetryCount: 0
+  };
 }
 
 function currentModelEvidence(snapshot) {
@@ -496,25 +537,15 @@ export async function refineCandidatesWithQwenAudit({ root, targetMeaning, candi
   const output = Object.fromEntries(languages.map(language => [language, Array.isArray(candidatesByLanguage[language]) ? candidatesByLanguage[language].slice() : []]));
   if (!QWEN_RUNTIME_CONFIG.enableCandidateGeneration || !loader || !root) return { candidatesByLanguage: output, warnings: [] };
 
-  const currentModels = Object.fromEntries(languages.map(language => [
-    language,
-    selectBestFinalModels(output[language], MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE).map(candidate => ({
-      word: candidate.word,
-      model_key: candidate.model_key || candidate.model_family_key || candidate.model || '',
-      frequency_score: candidateFrequencyScore(candidate),
-      association_score: Number(candidate?.association_score ?? candidate?.analysis?.association?.association_score),
-      final_score: candidateFinalScore(candidate)
-    }))
-  ]));
-  const existingCandidates = Object.fromEntries(languages.map(language => [
-    language,
-    (currentModels[language] || []).map(candidate => candidate.word).filter(Boolean)
-  ]));
+  const { currentTopModels, knownCandidates, knownModelKeys } = buildQwenCandidateAuditPayload(output, languages);
+  const knownWordSets = Object.fromEntries(languages.map(language => [language, new Set((output[language] || []).map(candidate => buildSearchForm(candidate.word)).filter(Boolean))]));
+  const knownModelSets = Object.fromEntries(languages.map(language => [language, new Set((knownModelKeys[language] || []).filter(Boolean))]));
+  const diagnostics = createQwenCandidateAuditDiagnostics();
   const warnings = [];
   let suggestions;
   try {
     onProgress?.(getInterfaceLanguage() === 'en' ? 'Qwen3-235B: candidate audit...' : 'Qwen3-235B: аудит кандидатов...');
-    suggestions = await getQwenCandidateSuggestions({ root, targetMeaning: targetMeaning || root, existingCandidates, currentModels, signal });
+    suggestions = await getQwenCandidateSuggestions({ root, targetMeaning: targetMeaning || root, currentTopModels, knownCandidates, knownModelKeys, signal });
   } catch (error) {
     throwIfAbortError(error, { signal, stage: 'candidate_audit' });
     const warning = 'qwen_candidate_audit_unavailable';
@@ -524,29 +555,36 @@ export async function refineCandidatesWithQwenAudit({ root, targetMeaning, candi
   }
 
   for (const language of languages) {
-    const seen = new Set((output[language] || []).map(candidate => buildSearchForm(candidate.word)));
+    const seen = knownWordSets[language] || new Set();
+    const models = knownModelSets[language] || new Set();
     const processed = new Set();
     for (const suggestion of suggestions?.[language] || []) {
+      diagnostics.suggestedCount += 1;
       if (signal?.aborted) throw normalizeAbortError(signal.reason, { stage: 'candidate_verification' });
       const key = buildSearchForm(suggestion.word);
-      if (!key || processed.has(key) || seen.has(key)) continue;
+      if (!key) { diagnostics.rejectedInvalidCount += 1; continue; }
+      if (processed.has(key) || seen.has(key)) { diagnostics.duplicateWordCount += 1; continue; }
       processed.add(key);
       try {
         onProgress?.(`${getInterfaceLanguage() === 'en' ? 'Verifying Qwen candidate' : 'Проверка кандидата Qwen'}: ${language} — ${suggestion.word}`);
         const entry = await verifySuggestionInLocalIndex(loader, language, suggestion, signal);
-        if (!entry) continue;
+        if (!entry) { diagnostics.locallyMissingCount += 1; continue; }
         const descriptor = modelForGeneratedCandidate(entry, { ...suggestion, elementType }, root, language);
+        if (models.has(descriptor.key)) { diagnostics.duplicateModelCount += 1; continue; }
         output[language].push(verifiedCandidatePatch(suggestion, entry, root, descriptor, { resetAnalysis: true }));
         seen.add(key);
+        models.add(descriptor.key);
+        diagnostics.verifiedNewModelCount += 1;
       } catch (error) {
         throwIfAbortError(error, { signal, stage: 'candidate_verification' });
         const warning = `qwen_candidate_verification_failed:${language}:${suggestion.word}`;
         warnings.push(warning);
+        diagnostics.rejectedInvalidCount += 1;
         onWarning?.(warning, error);
       }
     }
   }
-  return { candidatesByLanguage: output, warnings };
+  return { candidatesByLanguage: output, warnings, diagnostics };
 }
 
 function installAssociativeBrowserEnhancements() {
