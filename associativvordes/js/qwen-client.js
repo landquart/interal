@@ -312,7 +312,7 @@ function modelForGeneratedCandidate(entry, suggestion, canonicalRoot, language) 
   return lexicalModelDescriptor({ ...entry, match }, canonicalRoot, language, suggestion.elementType || 'root');
 }
 
-async function verifySuggestionInLocalIndex(loader, language, suggestion, signal) {
+export async function verifySuggestionInLocalIndex(loader, language, suggestion, signal) {
   const requested = buildSearchForm(suggestion.word);
   if (!requested) return null;
   const entries = await loader.loadCandidateEntries(language, suggestion.word, { signal });
@@ -460,6 +460,63 @@ function rebalanceSelectedModels(originalUpdateItem) {
   if (candidate) originalUpdateItem(language, index, 'selected', Boolean(candidate.selected));
 }
 
+export async function refineCandidatesWithQwenAudit({ root, targetMeaning, candidatesByLanguage = {}, loader, signal, onProgress, onWarning, languages = CONTROL_LANGUAGE_CODES, elementType = 'root' } = {}) {
+  const output = Object.fromEntries(languages.map(language => [language, Array.isArray(candidatesByLanguage[language]) ? candidatesByLanguage[language].slice() : []]));
+  if (!QWEN_RUNTIME_CONFIG.enableCandidateGeneration || !loader || !root) return { candidatesByLanguage: output, warnings: [] };
+
+  const currentModels = Object.fromEntries(languages.map(language => [
+    language,
+    selectBestFinalModels(output[language], MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE).map(candidate => ({
+      word: candidate.word,
+      model_key: candidate.model_key || candidate.model_family_key || candidate.model || '',
+      frequency_score: candidateFrequencyScore(candidate),
+      association_score: Number(candidate?.association_score ?? candidate?.analysis?.association?.association_score),
+      final_score: candidateFinalScore(candidate)
+    }))
+  ]));
+  const existingCandidates = Object.fromEntries(languages.map(language => [
+    language,
+    (currentModels[language] || []).map(candidate => candidate.word).filter(Boolean)
+  ]));
+  const warnings = [];
+  let suggestions;
+  try {
+    onProgress?.(getInterfaceLanguage() === 'en' ? 'Qwen3-235B: candidate audit...' : 'Qwen3-235B: аудит кандидатов...');
+    suggestions = await getQwenCandidateSuggestions({ root, targetMeaning: targetMeaning || root, existingCandidates, currentModels, signal });
+  } catch (error) {
+    if (error?.code === QWEN_ERROR_CODES.ABORTED) throw error;
+    const warning = 'qwen_candidate_audit_unavailable';
+    warnings.push(warning);
+    onWarning?.(warning, error);
+    return { candidatesByLanguage: output, warnings };
+  }
+
+  for (const language of languages) {
+    const seen = new Set((output[language] || []).map(candidate => buildSearchForm(candidate.word)));
+    const processed = new Set();
+    for (const suggestion of suggestions?.[language] || []) {
+      if (signal?.aborted) throw qwenError(QWEN_ERROR_CODES.ABORTED, 'Qwen candidate verification aborted.');
+      const key = buildSearchForm(suggestion.word);
+      if (!key || processed.has(key) || seen.has(key)) continue;
+      processed.add(key);
+      try {
+        onProgress?.(`${getInterfaceLanguage() === 'en' ? 'Verifying Qwen candidate' : 'Проверка кандидата Qwen'}: ${language} — ${suggestion.word}`);
+        const entry = await verifySuggestionInLocalIndex(loader, language, suggestion, signal);
+        if (!entry) continue;
+        const descriptor = modelForGeneratedCandidate(entry, { ...suggestion, elementType }, root, language);
+        output[language].push(verifiedCandidatePatch(suggestion, entry, root, descriptor, { resetAnalysis: true }));
+        seen.add(key);
+      } catch (error) {
+        if (error?.code === QWEN_ERROR_CODES.ABORTED || error?.name === 'AbortError') throw error;
+        const warning = `qwen_candidate_verification_failed:${language}:${suggestion.word}`;
+        warnings.push(warning);
+        onWarning?.(warning, error);
+      }
+    }
+  }
+  return { candidatesByLanguage: output, warnings };
+}
+
 function installAssociativeBrowserEnhancements() {
   if (typeof window === 'undefined' || typeof document === 'undefined') return;
   let attempts = 0;
@@ -494,86 +551,6 @@ function installAssociativeBrowserEnhancements() {
     enhancedUpdateItem.__interalQwenCandidateEnhancements = true;
     window.updateItem = enhancedUpdateItem;
 
-    if (!QWEN_RUNTIME_CONFIG.enableCandidateGeneration) return;
-    const calculateButton = document.getElementById('calculateBtn');
-    if (!calculateButton) return;
-    let generationToken = 0;
-    let generationAbortController = null;
-    let loaderPromise = null;
-
-    async function supplementAfterCompletedCalculation(token, rootAtClick, meaningAtClick) {
-      const tokenIsCurrent = () => token === generationToken && !generationAbortController?.signal.aborted;
-      const deadline = Date.now() + 30 * 60 * 1000;
-      while (tokenIsCurrent() && Date.now() < deadline) {
-        await delay(500);
-        const snapshot = window.InteralPageStateExport?.();
-        const sectionVisible = document.getElementById('languagesSection')?.hidden === false;
-        const buttonReady = document.getElementById('calculateBtn')?.disabled === false;
-        const sameRoot = String(document.getElementById('rootInput')?.value || '').trim() === rootAtClick;
-        if (snapshot?.state?.checked && sectionVisible && buttonReady && sameRoot) break;
-      }
-      if (!tokenIsCurrent() || Date.now() >= deadline) return;
-
-      const snapshot = window.InteralPageStateExport?.();
-      if (!snapshot?.state?.checked) return;
-      const currentModels = currentModelEvidence(snapshot);
-      const existingCandidates = Object.fromEntries(CONTROL_LANGUAGE_CODES.map(language => [
-        language,
-        (currentModels[language] || []).map(candidate => candidate.word).filter(Boolean)
-      ]));
-      let suggestions;
-      try {
-        suggestions = await getQwenCandidateSuggestions({
-          root: rootAtClick,
-          targetMeaning: meaningAtClick || rootAtClick,
-          existingCandidates,
-          currentModels,
-          signal: generationAbortController?.signal
-        });
-      } catch (error) {
-        if (error?.code !== QWEN_ERROR_CODES.ABORTED) console.warn('Supplemental Qwen candidates unavailable:', error);
-        return;
-      }
-      if (!tokenIsCurrent()) return;
-
-      loaderPromise ||= import('./candidate-index-loader.js').then(module => module.createCandidateIndexLoader());
-      const loader = await loaderPromise;
-      const processedSuggestionKeys = Object.fromEntries(CONTROL_LANGUAGE_CODES.map(language => [language, new Set()]));
-
-      for (const language of CONTROL_LANGUAGE_CODES) {
-        for (const suggestion of suggestions[language] || []) {
-          if (!tokenIsCurrent()) return;
-          const suggestionKey = buildSearchForm(suggestion.word);
-          if (!suggestionKey || processedSuggestionKeys[language].has(suggestionKey)) continue;
-          processedSuggestionKeys[language].add(suggestionKey);
-          let entry;
-          try {
-            entry = await verifySuggestionInLocalIndex(loader, language, suggestion, generationAbortController?.signal);
-          } catch (error) {
-            if (error?.code === 'ABORTED') return;
-            console.warn(`Could not verify supplemental candidate ${language}:${suggestion.word}`, error);
-            continue;
-          }
-          if (!entry) continue;
-          await addVerifiedCandidateToRuntime(language, suggestion, entry, rootAtClick, tokenIsCurrent);
-          await delay(250);
-        }
-      }
-      if (!tokenIsCurrent()) return;
-      rebalanceSelectedModels(originalUpdateItem);
-      window.InteralFormDraft?.save?.();
-    }
-
-    calculateButton.addEventListener('click', () => {
-      generationToken += 1;
-      generationAbortController?.abort?.();
-      generationAbortController = new AbortController();
-      const token = generationToken;
-      const rootAtClick = String(document.getElementById('rootInput')?.value || '').trim();
-      const meaningAtClick = String(document.getElementById('meaningInput')?.value || '').trim();
-      if (!rootAtClick) return;
-      void supplementAfterCompletedCalculation(token, rootAtClick, meaningAtClick);
-    }, { capture: true });
   };
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', install, { once: true });
