@@ -266,24 +266,20 @@ function candidateFrequencyScore(candidate) {
 }
 
 export function compareFinalModelCandidates(left, right) {
-  const leftScore = candidateFinalScore(left);
-  const rightScore = candidateFinalScore(right);
-  return (rightScore ?? Number.NEGATIVE_INFINITY) - (leftScore ?? Number.NEGATIVE_INFINITY)
-    || compareFrequencyRepresentatives(left, right)
-    || String(left?.word || '').localeCompare(String(right?.word || ''));
+  return compareFrequencyRepresentatives(left, right);
 }
 
 export function selectBestFinalModels(candidates, limit = MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE) {
   const representatives = new Map();
   for (const candidate of Array.isArray(candidates) ? candidates : []) {
-    if (!hasFiniteScore(candidateFinalScore(candidate))) continue;
+    if (!hasFiniteScore(candidateFrequencyScore(candidate))) continue;
     const key = String(candidate?.model_key || candidate?.model_family_key || candidate?.model || buildSearchForm(candidate?.word));
     if (!key) continue;
     const current = representatives.get(key);
     if (!current || compareFrequencyRepresentatives(candidate, current) < 0) representatives.set(key, candidate);
   }
   return [...representatives.values()]
-    .sort(compareFinalModelCandidates)
+    .sort(compareFrequencyRepresentatives)
     .slice(0, Math.max(0, Number(limit) || 0));
 }
 
@@ -330,7 +326,7 @@ function candidateIdentity(candidate) {
 function currentModelEvidence(snapshot) {
   return Object.fromEntries(CONTROL_LANGUAGE_CODES.map(language => {
     const candidates = snapshot?.state?.languages?.[language] || [];
-    const selected = candidates.filter(candidate => candidate.selected && hasFiniteScore(candidateFinalScore(candidate)));
+    const selected = candidates.filter(candidate => candidate.selected && hasFiniteScore(candidateFrequencyScore(candidate)));
     const best = selectBestFinalModels(selected.length ? selected : candidates, MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE);
     return [language, best.map(candidate => ({
       word: candidate.word,

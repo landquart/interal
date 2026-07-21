@@ -244,14 +244,14 @@ function buildPrompt(input) {
   const hints = allomorphHints(input.root);
   return `You audit the current five lexical-association models for each control language in the Interal associative-word procedure.
 
-The program has already selected up to five distinct derivational models per language by corpus frequency and has already calculated their frequency score F, association score A, and final score P. Your task is only to detect an important missing derivational model that a human speaker would plausibly recall as an early association with targetMeaning.
+The program has already selected up to five distinct derivational models per language by corpus frequency. It may also provide already measured A and P for context, but automatic model replacement is performed only after local-index verification and only by frequency score F. Your task is only to detect an important missing derivational model that a human speaker would plausibly recall as an early association with targetMeaning.
 
 Return an additional candidate only when all of the following are true:
 1. it is a real dictionary lemma in the requested language;
 2. it contains a historically or morphologically justified reflex or allomorph of the requested root;
 3. it represents a distinct derivational model, not an inflectional, grammatical, spelling, or part-of-speech variant of a current model;
 4. it is reasonably common, not an obscure technicalism or proper name;
-5. it has a credible chance of receiving a higher final P than at least the weakest current model after the program independently checks corpus frequency, SWOW, and Qwen semantic scores.
+5. it has a credible chance of entering the frequency-selected top five after the program independently checks the word in the local frequency index.
 
 If the current five models are already adequate, return an empty array for that language. Empty arrays are valid final decisions and must not be filled merely to reach a quota. Do not repeat existingCandidates. Do not invent words or return phrases.
 
