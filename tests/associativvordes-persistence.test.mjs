@@ -72,4 +72,18 @@ const completedImport = restoreAssociativeState(exported, { languages, createLan
 assert.equal(completedImport.state.globalStatus, 'completed', 'completed state is not marked for re-analysis');
 assert.equal(completedImport.state.languageStatuses.en.status, 'completed', 'completed language status is preserved');
 
+const completedWarnings = structuredClone(exported);
+completedWarnings.state.globalStatus = 'completed_with_warnings';
+completedWarnings.state.languageStatuses.en = createLanguageStatus('completed_with_warnings');
+const completedWarningsImport = restoreAssociativeState(completedWarnings, { languages, createLanguageStatus });
+assert.equal(completedWarningsImport.state.globalStatus, 'completed_with_warnings', 'completed_with_warnings global state survives restore');
+assert.equal(completedWarningsImport.state.languageStatuses.en.status, 'completed_with_warnings', 'completed_with_warnings language status survives restore');
+
+const staleLoading = structuredClone(exported);
+staleLoading.state.globalStatus = 'loading';
+staleLoading.state.languageStatuses.en = createLanguageStatus('loading');
+const staleLoadingImport = restoreAssociativeState(staleLoading, { languages, createLanguageStatus, currentLang: () => 'en' });
+assert.equal(staleLoadingImport.state.globalStatus, 'aborted', 'stale loading global state is not restored as active loading');
+assert.equal(staleLoadingImport.state.languageStatuses.en.status, 'aborted', 'legacy loading language state becomes aborted');
+
 console.log('associativvordes persistence tests passed');

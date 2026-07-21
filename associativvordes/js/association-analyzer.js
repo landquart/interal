@@ -60,9 +60,11 @@ export function shouldReviewPrimaryScore(score) {
   return isFiniteScore(score) && Number(score) >= REVIEW_SCORE_RANGE.min && Number(score) <= REVIEW_SCORE_RANGE.max;
 }
 
-export const LANGUAGE_STATUSES = ['idle', 'loading_index', 'no_candidates', 'analyzing', 'completed', 'index_error', 'qwen_error', 'incomplete', 'aborted'];
-export const TERMINAL_LANGUAGE_STATUSES = ['completed', 'no_candidates', 'index_error', 'qwen_error', 'incomplete', 'aborted'];
-export const INTERMEDIATE_LANGUAGE_STATUSES = ['idle', 'loading_index', 'analyzing'];
+export const INTERMEDIATE_LANGUAGE_STATUSES = ['idle', 'loading_index', 'grouping_candidates', 'candidate_audit', 'analyzing', 'reviewing'];
+export const SUCCESS_TERMINAL_LANGUAGE_STATUSES = ['completed', 'completed_with_warnings'];
+export const FAILURE_TERMINAL_LANGUAGE_STATUSES = ['no_candidates', 'index_error', 'qwen_error', 'incomplete', 'aborted'];
+export const TERMINAL_LANGUAGE_STATUSES = [...SUCCESS_TERMINAL_LANGUAGE_STATUSES, ...FAILURE_TERMINAL_LANGUAGE_STATUSES];
+export const LANGUAGE_STATUSES = [...INTERMEDIATE_LANGUAGE_STATUSES, ...TERMINAL_LANGUAGE_STATUSES];
 export const CRITICAL_DECISION_REASONS = ['no_calculated_data', 'final_association_below_35', 'fewer_than_3_languages', 'fewer_than_2_groups'];
 export const WARNING_DECISION_REASONS = ['semantic_not_confirmed', 'some_languages_no_candidates', 'some_languages_index_error', 'some_languages_qwen_error', 'calculation_incomplete'];
 export const UNAVAILABLE_REASONS = ['no_candidates', 'index_error', 'qwen_error', 'incomplete', 'aborted', 'no_calculated_data'];
@@ -73,10 +75,14 @@ export function isFiniteScore(value) {
 }
 
 export function normalizeLanguageStatus(entry = {}) {
-  const status = LANGUAGE_STATUSES.includes(entry?.status) ? entry.status : 'idle';
+  const hasStatus = entry && Object.prototype.hasOwnProperty.call(entry, 'status') && entry.status != null && entry.status !== '';
+  const status = LANGUAGE_STATUSES.includes(entry?.status) ? entry.status : (hasStatus ? 'incomplete' : 'idle');
+  const diagnostics = Array.isArray(entry?.diagnostics) ? [...entry.diagnostics] : [];
+  if (hasStatus && !LANGUAGE_STATUSES.includes(entry?.status) && !diagnostics.includes('unknown_language_status')) diagnostics.push('unknown_language_status');
   return {
     status,
     errorCode: entry?.errorCode || null,
+    diagnostics,
     candidateCount: Number.isFinite(Number(entry?.candidateCount)) ? Number(entry.candidateCount) : 0,
     analyzedCount: Number.isFinite(Number(entry?.analyzedCount)) ? Number(entry.analyzedCount) : 0,
     successfulCount: Number.isFinite(Number(entry?.successfulCount)) ? Number(entry.successfulCount) : 0,
@@ -93,14 +99,32 @@ export function summarizeLanguageStatuses(languageStatuses = {}) {
   const statuses = Object.fromEntries(Object.entries(languageStatuses || {}).map(([code, entry]) => [code, normalizeLanguageStatus(entry)]));
   const values = Object.values(statuses);
   const allTerminal = values.length > 0 && values.every(isLanguageTerminal);
-  const hasIntermediate = values.some(entry => INTERMEDIATE_LANGUAGE_STATUSES.includes(entry.status));
+  const intermediate = values.filter(entry => INTERMEDIATE_LANGUAGE_STATUSES.includes(entry.status)).map(entry => entry.status);
+  const failed = values.filter(entry => FAILURE_TERMINAL_LANGUAGE_STATUSES.includes(entry.status)).map(entry => entry.status);
+  const successful = values.filter(entry => entry.status === 'completed').length;
+  const completedWithWarnings = values.filter(entry => entry.status === 'completed_with_warnings').length;
+  const hasIntermediate = intermediate.length > 0;
   const warnings = [];
   if (values.some(entry => entry.status === 'no_candidates')) warnings.push('some_languages_no_candidates');
   if (values.some(entry => entry.status === 'index_error')) warnings.push('some_languages_index_error');
   if (values.some(entry => entry.status === 'qwen_error')) warnings.push('some_languages_qwen_error');
-  if (values.some(entry => entry.status === 'completed' && entry.failedCount > 0)) warnings.push('partial_qwen_failure');
+  if (values.some(entry => ['completed', 'completed_with_warnings'].includes(entry.status) && entry.failedCount > 0)) warnings.push('partial_qwen_failure');
+  if (values.some(entry => entry.status === 'completed_with_warnings')) warnings.push('completed_with_warnings');
+  if (values.some(entry => entry.diagnostics?.includes('unknown_language_status'))) warnings.push('unknown_language_status');
   if (values.some(entry => ['incomplete', 'aborted'].includes(entry.status)) || hasIntermediate) warnings.push('calculation_incomplete');
-  return { statuses, allTerminal, hasIntermediate, warnings: [...new Set(warnings)] };
+  const unavailableReasons = [...new Set(values.map(entry => entry.status).filter(status => UNAVAILABLE_REASONS.includes(status)))];
+  return { statuses, allTerminal, hasIntermediate, successful, completedWithWarnings, failed, intermediate, warnings: [...new Set(warnings)], unavailableReasons };
+}
+
+export function deriveGlobalStatusFromLanguageStatuses(languageStatuses = {}) {
+  const summary = summarizeLanguageStatuses(languageStatuses);
+  const statuses = Object.values(summary.statuses || {});
+  if (!statuses.length) return 'idle';
+  if (summary.hasIntermediate) return 'loading';
+  if (!summary.allTerminal) return 'incomplete';
+  if (statuses.some(entry => entry.status === 'aborted')) return 'aborted';
+  if (statuses.some(entry => entry.status === 'incomplete')) return 'incomplete';
+  return summary.warnings?.length ? 'completed_with_warnings' : 'completed';
 }
 
 export function calculateLanguageScore(items = [], { maxModels = Infinity, scoreGetter = (item) => item?.final_score } = {}) {
@@ -120,12 +144,7 @@ export function calculateLanguageScore(items = [], { maxModels = Infinity, score
 }
 
 export function unavailableReasonsFromStatuses(languageStatuses = {}) {
-  const { statuses } = summarizeLanguageStatuses(languageStatuses);
-  const reasons = new Set();
-  Object.values(statuses).forEach((entry) => {
-    if (UNAVAILABLE_REASONS.includes(entry.status)) reasons.add(entry.status);
-  });
-  return [...reasons];
+  return summarizeLanguageStatuses(languageStatuses).unavailableReasons;
 }
 
 export function calculateFinalAssociation({ languages = [], languageResults = [], languageStatuses = {} } = {}) {

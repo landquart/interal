@@ -183,8 +183,8 @@ function unwrapAssociativePageState(saved = {}) {
 }
 
 function normalizeGlobalStatusForRestore(status, checked) {
-  if (['loading_index', 'analyzing', 'loading'].includes(status) || (status === 'idle' && checked)) return 'aborted';
-  if (['completed', 'completed_with_warnings', 'no_candidates', 'index_error', 'qwen_error', 'aborted', 'idle'].includes(status)) return status;
+  if (['loading_index', 'grouping_candidates', 'candidate_audit', 'analyzing', 'reviewing', 'loading'].includes(status) || (status === 'idle' && checked)) return 'aborted';
+  if (['completed', 'completed_with_warnings', 'no_candidates', 'index_error', 'qwen_error', 'incomplete', 'aborted', 'idle'].includes(status)) return status;
   return checked ? 'completed' : 'idle';
 }
 
@@ -203,7 +203,7 @@ export function restoreAssociativeState(saved = {}, { languages = DEFAULT_LANGUA
   const message = currentLang() === 'en' ? 'The previous calculation was interrupted. Run it again.' : 'Предыдущий расчёт был прерван. Запустите его повторно.';
   restored.languageStatuses = Object.fromEntries(languageCodes(languages).map(code => {
     const source = fields.languageStatuses?.[code] && typeof fields.languageStatuses[code] === 'object' ? fields.languageStatuses[code] : createLanguageStatus('idle');
-    const interrupted = ['loading_index', 'analyzing'].includes(source.status) || (source.status === 'idle' && Boolean(restored.checked));
+    const interrupted = ['loading_index', 'grouping_candidates', 'candidate_audit', 'analyzing', 'reviewing', 'loading'].includes(source.status) || (source.status === 'idle' && Boolean(restored.checked));
     const status = interrupted ? 'aborted' : (source.status || 'idle');
     return [code, { ...createLanguageStatus(status), ...source, status, errorCode: status === 'aborted' ? 'RESTORE_INTERRUPTED' : (source.errorCode || null), message: status === 'aborted' ? message : (source.message || null) }];
   }));

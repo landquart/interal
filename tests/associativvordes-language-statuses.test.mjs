@@ -3,6 +3,7 @@ import {
   buildDecisionReasons,
   calculateFinalAssociation,
   decisionStatusForResult,
+  deriveGlobalStatusFromLanguageStatuses,
   isLanguageTerminal,
   normalizeLanguageStatus,
   summarizeLanguageStatuses
@@ -59,8 +60,20 @@ assert.equal(buildDecisionReasons(analyzing).warnings.includes('fewer_than_3_lan
 assert.equal(buildDecisionReasons(analyzing).critical.includes('fewer_than_3_languages'), true, 'limited evidence is a critical acceptance threshold');
 assert.equal(decisionStatusForResult(analyzing), 'reject', 'fewer than three represented languages rejects the result');
 
-for (const status of ['completed', 'no_candidates', 'index_error', 'qwen_error', 'incomplete', 'aborted']) assert.equal(isLanguageTerminal(status), true, `${status} is terminal`);
+for (const status of ['loading_index', 'grouping_candidates', 'candidate_audit', 'analyzing', 'reviewing']) {
+  assert.equal(summarizeLanguageStatuses({ en: { status } }).hasIntermediate, true, `${status} is intermediate`);
+}
+for (const status of ['completed', 'completed_with_warnings', 'no_candidates', 'index_error', 'qwen_error', 'incomplete', 'aborted']) assert.equal(isLanguageTerminal(status), true, `${status} is terminal`);
+const unknownStatus = normalizeLanguageStatus({ status: 'future_status' });
+assert.equal(unknownStatus.status, 'incomplete', 'unknown status becomes safe incomplete, not false idle');
+assert.equal(unknownStatus.diagnostics.includes('unknown_language_status'), true, 'unknown status adds diagnostic warning');
+assert.equal(summarizeLanguageStatuses({ en: { status: 'future_status' } }).warnings.includes('unknown_language_status'), true, 'unknown status is summarized diagnostically');
 assert.equal(summarizeLanguageStatuses({ en: { status: 'completed' }, de: { status: 'no_candidates' }, fr: { status: 'index_error' } }).allTerminal, true, 'all terminal statuses finish global run');
+assert.equal(summarizeLanguageStatuses({ en: { status: 'completed' }, de: { status: 'completed_with_warnings' } }).unavailableReasons.length, 0, 'successful statuses are not unavailable');
+assert.equal(deriveGlobalStatusFromLanguageStatuses({ en: { status: 'completed' }, de: { status: 'completed' } }), 'completed', 'all completed gives completed global status');
+assert.equal(deriveGlobalStatusFromLanguageStatuses({ en: { status: 'completed_with_warnings' }, de: { status: 'completed' } }), 'completed_with_warnings', 'warnings terminal status gives completed_with_warnings global status');
+assert.equal(deriveGlobalStatusFromLanguageStatuses({ en: { status: 'candidate_audit' }, de: { status: 'completed' } }), 'loading', 'candidate audit keeps global status loading');
+assert.equal(deriveGlobalStatusFromLanguageStatuses({ en: { status: 'completed' }, de: { status: 'no_candidates' } }), 'completed_with_warnings', 'no_candidates terminal status finishes global run with warnings');
 
 const withIncomplete = calculateFinalAssociation({ languages: languages.slice(0, 3), languageResults: [success(40), empty, success(50)], languageStatuses: { de: { status: 'incomplete' } } });
 assert.equal(withIncomplete.representedLangs, 2, 'incomplete does not participate in FA');
@@ -80,7 +93,7 @@ const duplicateOrder = buildDecisionReasons({ ...faZero, languageStatusSummary: 
 assert.equal(new Set(duplicateOrder.critical).size, duplicateOrder.critical.length, 'critical reasons are unique');
 assert.deepEqual(duplicateOrder.critical, ['final_association_below_35'], 'critical reasons have deterministic order when breadth thresholds pass');
 
-for (const status of ['idle', 'loading_index', 'no_candidates', 'analyzing', 'completed', 'index_error', 'qwen_error', 'incomplete', 'aborted']) {
+for (const status of ['idle', 'loading_index', 'grouping_candidates', 'candidate_audit', 'no_candidates', 'analyzing', 'reviewing', 'completed', 'completed_with_warnings', 'index_error', 'qwen_error', 'incomplete', 'aborted']) {
   assert.ok(languageStatusLabel({ status }, 'ru'), `RU label exists for ${status}`);
   assert.ok(languageStatusLabel({ status }, 'en'), `EN label exists for ${status}`);
 }
