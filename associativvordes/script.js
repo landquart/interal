@@ -206,6 +206,7 @@ const TEXT_I18N = {
         qwenPrimaryRequestCount: 0,
         qwenReviewRequestCount: 0,
         qwenFailedRequestCount: 0,
+        qwenUsedModels: [],
         abortedRequestCount: 0,
         targetTranslationRequestCount: 0,
         durationByStage: {},
@@ -222,6 +223,13 @@ const TEXT_I18N = {
     function incrementDiagnostic(key, amount = 1) {
       if (!diagnosticsState.enabled) return;
       diagnosticsState.run[key] = (diagnosticsState.run[key] || 0) + amount;
+    }
+
+
+    function recordQwenUsedModels(analysis) {
+      if (!diagnosticsState.enabled || !analysis) return;
+      const models = [analysis.primary?.model, analysis.review?.model, analysis.association?.model].filter(Boolean);
+      diagnosticsState.run.qwenUsedModels = [...new Set([...(diagnosticsState.run.qwenUsedModels || []), ...models])];
     }
 
     function addDuration(stage, startedAt) {
@@ -255,6 +263,7 @@ const TEXT_I18N = {
         qwenPrimaryRequestCount: run.qwenPrimaryRequestCount,
         qwenReviewRequestCount: run.qwenReviewRequestCount,
         qwenFailedRequestCount: run.qwenFailedRequestCount,
+        qwenUsedModels: run.qwenUsedModels,
         abortedRequestCount: run.abortedRequestCount,
         targetTranslationRequestCount: run.targetTranslationRequestCount,
         durationByStage: run.durationByStage,
@@ -430,6 +439,8 @@ const TEXT_I18N = {
           signal: activeRunAbortController?.signal
         });
         if (!isCurrentRun(runId)) return item;
+        recordQwenUsedModels(analysis);
+        if (analysis.warnings?.some?.(warning => String(warning).startsWith('review_failed'))) incrementDiagnostic('qwenFailedRequestCount');
         return {
           ...item,
           analysis,
@@ -992,6 +1003,8 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
           frequencyProfile: item.frequencyProfile,
           onReviewRequest: () => incrementDiagnostic('qwenReviewRequestCount')
         });
+        recordQwenUsedModels(item.analysis);
+        if (item.analysis.warnings?.some?.(warning => String(warning).startsWith('review_failed'))) incrementDiagnostic('qwenFailedRequestCount');
         item.frequency_score = item.analysis.frequency.frequency_score;
         item.association_score = item.analysis.association.association_score;
         item.final_score = item.analysis.final_score;

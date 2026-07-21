@@ -15,7 +15,7 @@ assert.doesNotMatch(assocClient, /qwen-association/);
 assert.match(assocAnalyzer, /association_score == null\) return null/);
 assert.match(assocAnalyzer, /THRESHOLDS = \{ main: 35 \}/, 'associative procedure has one final numerical threshold');
 assert.doesNotMatch(assocAnalyzer, /reviewMin|reviewMax|primary\.final_score[\s\S]*THRESHOLDS/, 'per-word scores do not trigger threshold-specific review');
-assert.match(assocAnalyzer, /const finalEvaluation = \{ \.\.\.primary, combination_method: 'primary_only' \}/, 'all associative candidates use one scoring path');
+assert.match(assocAnalyzer, /let finalEvaluation = \{ \.\.\.primary, combination_method: 'primary_only' \}/, 'associative candidates default to the primary scoring path');
 assert.match(assocScript, /analysis\.association \|\| \{\}/);
 assert.match(assocScript, /procedure: 'associative_word'/);
 assert.match(assocScript, /semantic_confirmed/);

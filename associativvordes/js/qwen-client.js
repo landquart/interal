@@ -16,12 +16,12 @@ export const FINAL_SCORE_WEIGHTS = {
 
 export const QWEN_RUNTIME_CONFIG = {
   enableCandidateGeneration: true,
-  enableReviewModel: false,
+  enableReviewModel: true,
   maxCandidatesPerLanguage: Infinity,
   autoAnalyzeCandidatesPerLanguage: MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE,
   maxGeneratedCandidatesPerLanguage: 2,
   maxConcurrentQwenRequests: 1,
-  maxReviewRequestsPerSearch: 0,
+  maxReviewRequestsPerSearch: Infinity,
   requestTimeoutMs: 15000,
   candidateRequestTimeoutMs: 70000,
   supplementalAnalysisTimeoutMs: 30000
@@ -115,7 +115,7 @@ function parseQwenPayload(payload) {
   return parsed;
 }
 
-async function callQwen(prompt, { model, review = false, signal } = {}) {
+async function callQwen(prompt, { review = false, signal } = {}) {
   const timeoutController = new AbortController();
   const timeoutId = setTimeout(() => timeoutController.abort(new Error('Qwen request timeout')), QWEN_RUNTIME_CONFIG.requestTimeoutMs);
   const abortController = new AbortController();
@@ -140,8 +140,7 @@ async function callQwen(prompt, { model, review = false, signal } = {}) {
           word: prompt.input?.word,
           swow: prompt.input?.swow,
           review,
-          primary: prompt.input?.primary || null,
-          model: model || API_CONFIG.qwenPrimaryModel
+          primary: prompt.input?.primary || null
         }
       }),
       signal: abortController.signal
@@ -170,13 +169,12 @@ async function callQwen(prompt, { model, review = false, signal } = {}) {
 
 export async function getQwenAssociationScores({ language, targetMeaning, word, swow, review = false, primary = null, signal } = {}) {
   const prompt = buildQwenAssociationPrompt({ language, targetMeaning, word, swow, primary, review });
-  const requestedModel = review ? API_CONFIG.qwenReviewModel : API_CONFIG.qwenPrimaryModel;
+  const fallbackModel = review ? API_CONFIG.qwenReviewModel : API_CONFIG.qwenPrimaryModel;
   const parsed = parseQwenPayload(await callQwen(prompt, {
-    model: requestedModel,
     review,
     signal
   }));
-  return { ...parsed, model: requestedModel };
+  return { ...parsed, model: parsed.model || fallbackModel };
 }
 
 const CONTROL_LANGUAGE_CODES = Object.freeze(['en', 'de', 'fr', 'es', 'it', 'ru']);

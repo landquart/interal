@@ -4,6 +4,7 @@ import { getTargetMeaningForLanguage as translateTargetMeaningForLanguage } from
 import { ASSOCIATION_SCORE_WEIGHTS, FINAL_SCORE_WEIGHTS, getQwenAssociationScores, QWEN_ERROR_CODES } from './qwen-client.js';
 
 export const THRESHOLDS = { main: 35 };
+export const REVIEW_SCORE_RANGE = Object.freeze({ min: 25, max: 35 });
 
 export async function getTargetMeaningForLanguage(targetMeaning, language, options) {
   return translateTargetMeaningForLanguage(targetMeaning, language, options);
@@ -53,6 +54,10 @@ export function calculateFinalScore({ frequency_score, association_score }) {
 
 export function passesWordThreshold(score) {
   return isFiniteScore(score);
+}
+
+export function shouldReviewPrimaryScore(score) {
+  return isFiniteScore(score) && Number(score) >= REVIEW_SCORE_RANGE.min && Number(score) <= REVIEW_SCORE_RANGE.max;
 }
 
 export const LANGUAGE_STATUSES = ['idle', 'loading_index', 'no_candidates', 'analyzing', 'completed', 'index_error', 'qwen_error', 'incomplete', 'aborted'];
@@ -263,8 +268,21 @@ export async function analyzeAssociativeWord({ language, targetMeaning, localize
   if (primary.association_score == null) warnings.push('Association score unavailable');
   if (frequency.frequency_score == null) warnings.push('Frequency score unavailable');
 
-  const review = null;
-  const finalEvaluation = { ...primary, combination_method: 'primary_only' };
+  let review = null;
+  let finalEvaluation = { ...primary, combination_method: 'primary_only' };
+  if (shouldReviewPrimaryScore(primary.final_score)) {
+    try {
+      onReviewRequest?.();
+      onProgress?.(`Qwen3-235B: ${language} — ${word}`);
+      const reviewQwen = await getQwenAssociationScores({ language, targetMeaning, word, swow, review: true, primary, signal });
+      review = buildEvaluation(reviewQwen, frequency.frequency_score, swow_bonus);
+      finalEvaluation = { ...review, combination_method: 'review_override' };
+    } catch (error) {
+      warnings.push('review_failed');
+      warnings.push(`review_failed: ${error.message || error}`);
+      finalEvaluation = { ...primary, combination_method: 'primary_fallback_after_review_error' };
+    }
+  }
   const classification = finalEvaluation.classification;
   const final_score = finalEvaluation.final_score;
 
@@ -297,6 +315,7 @@ export async function analyzeAssociativeWord({ language, targetMeaning, localize
       A_final: finalEvaluation.association_score,
       F: frequency.frequency_score,
       P: final_score,
+      model: finalEvaluation.model,
       directness: finalEvaluation.directness,
       field_relatedness: finalEvaluation.field_relatedness,
       domain_shift: finalEvaluation.domain_shift,

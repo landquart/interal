@@ -10,9 +10,9 @@ const analyzer = await readFile('associativvordes/js/association-analyzer.js', '
 assert.equal(QWEN_RUNTIME_CONFIG.enableCandidateGeneration, true, 'bounded supplemental Qwen candidate generation is enabled');
 assert.equal(QWEN_RUNTIME_CONFIG.maxGeneratedCandidatesPerLanguage, 2, 'candidate generation cannot create an unbounded result set');
 assert.deepEqual(THRESHOLDS, { main: 35 }, 'only the final association threshold remains');
-assert.equal(QWEN_RUNTIME_CONFIG.enableReviewModel, false, 'score-triggered per-word review is disabled');
+assert.equal(QWEN_RUNTIME_CONFIG.enableReviewModel, true, 'score-triggered per-word review is enabled for disputed primary scores');
 assert.equal(QWEN_RUNTIME_CONFIG.autoAnalyzeCandidatesPerLanguage, 5, 'automatic analysis is limited to five model representatives per language');
-assert.equal(QWEN_RUNTIME_CONFIG.maxReviewRequestsPerSearch, 0, 'no per-word review request budget remains');
+assert.equal(QWEN_RUNTIME_CONFIG.maxReviewRequestsPerSearch, Infinity, 'review request budget no longer disables disputed-score review');
 assert.match(script, /languageStatuses/, 'per-language statuses are persisted in state');
 assert.match(script, /createLanguageStatus\('no_candidates'\)[\s\S]*continue;/, 'no_candidates path skips ordinary candidate Qwen analysis');
 assert.match(script, /createLanguageStatus\('index_error'[\s\S]*continue;/, 'index_error path skips ordinary candidate Qwen analysis');
@@ -21,8 +21,8 @@ assert.match(script, /word: item\.word/, 'original candidate word is sent to Qwe
 assert.doesNotMatch(script, /word: item\.search_form/, 'search_form is not sent to Qwen as word');
 assert.match(script, /failedAnalysis[\s\S]*final_score: null[\s\S]*selected: false/, 'Qwen error does not become final_score 0');
 assert.match(script, /state\.languages = \{ \.\.\.state\.languages, \.\.\.nextLangs \}/, 'one failed language does not clear previous language results');
-assert.match(analyzer, /const finalEvaluation = \{ \.\.\.primary, combination_method: 'primary_only' \}/, 'all words use one uniform primary evaluation path');
-assert.doesNotMatch(analyzer, /reviewMin|reviewMax|primary\.final_score >=/, 'no per-word score interval triggers a second evaluation');
+assert.match(analyzer, /let finalEvaluation = \{ \.\.\.primary, combination_method: 'primary_only' \}/, 'primary-only remains the default evaluation path');
+assert.match(analyzer, /shouldReviewPrimaryScore\(primary\.final_score\)/, 'only disputed primary derivative scores trigger review');
 assert.match(qwen, /requestTimeoutMs: 15000/, 'single Qwen request has bounded timeout');
 assert.match(qwen, /AbortController/, 'Qwen timeout uses AbortController');
 assert.match(qwen, /qwen_suggestion_verified_in_local_index/, 'generated candidates must be verified in the local index before analysis');
