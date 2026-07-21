@@ -1,4 +1,115 @@
 (function () {
+  const BUTTON_LOADER_FILENAME = 'loader_video_fitted_0_1s_triangle_fixed_centered.svg';
+  const currentScript = document.currentScript;
+  const buttonLoaderUrl = currentScript
+    ? new URL(`../elements/${BUTTON_LOADER_FILENAME}`, currentScript.src).href
+    : `/elements/${BUTTON_LOADER_FILENAME}`;
+
+  function installButtonLoaderStyles() {
+    if (document.getElementById('interal-button-loader-styles')) return;
+
+    const style = document.createElement('style');
+    style.id = 'interal-button-loader-styles';
+    style.textContent = `
+      button.interal-btn,
+      button.tool-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+      }
+
+      button.interal-btn > .btn-loader,
+      button.tool-btn > .btn-loader {
+        display: none;
+        width: 22px;
+        height: 22px;
+        flex: 0 0 22px;
+        object-fit: contain;
+        pointer-events: none;
+      }
+
+      button.interal-btn.is-loading,
+      button.tool-btn.is-loading {
+        cursor: wait;
+      }
+
+      button.interal-btn.is-loading > .btn-loader,
+      button.tool-btn.is-loading > .btn-loader,
+      button.interal-btn[aria-busy="true"] > .btn-loader,
+      button.tool-btn[aria-busy="true"] > .btn-loader {
+        display: block;
+      }
+
+      button.interal-btn--primary > .btn-loader {
+        filter: var(--button-loader-filter, brightness(0) invert(1));
+      }
+
+      button.interal-btn > .btn-text,
+      button.tool-btn > .btn-text {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      @media (max-width: 640px) {
+        button.interal-btn > .btn-loader,
+        button.tool-btn > .btn-loader {
+          width: 20px;
+          height: 20px;
+          flex-basis: 20px;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  function ensureButtonStructure(button) {
+    if (!(button instanceof HTMLButtonElement)) return null;
+
+    let loader = button.querySelector(':scope > .btn-loader');
+    if (!loader) {
+      loader = document.createElement('img');
+      loader.className = 'btn-loader';
+      loader.alt = '';
+      loader.setAttribute('aria-hidden', 'true');
+      loader.decoding = 'async';
+      loader.src = buttonLoaderUrl;
+      button.prepend(loader);
+    } else if (!loader.getAttribute('src')) {
+      loader.src = buttonLoaderUrl;
+    }
+
+    let label = button.querySelector(':scope > .btn-text');
+    if (!label) {
+      label = document.createElement('span');
+      label.className = 'btn-text';
+
+      const text = Array.from(button.childNodes)
+        .filter((node) => node !== loader && node.nodeType === Node.TEXT_NODE)
+        .map((node) => node.textContent || '')
+        .join('')
+        .trim();
+
+      Array.from(button.childNodes).forEach((node) => {
+        if (node !== loader && node.nodeType === Node.TEXT_NODE) node.remove();
+      });
+
+      label.textContent = text;
+      button.appendChild(label);
+    }
+
+    return { loader, label };
+  }
+
+  function prepareExistingButtonLoaders(root = document) {
+    root.querySelectorAll('.btn-loader').forEach((loader) => {
+      const button = loader.closest('button');
+      if (button) ensureButtonStructure(button);
+    });
+  }
+
   function setButtonStatus(selector, text, disabled = true, options = {}) {
     const button = typeof selector === 'string'
       ? document.querySelector(selector)
@@ -6,7 +117,9 @@
 
     if (!button) return false;
 
-    const label = button.querySelector('.btn-text');
+    installButtonLoaderStyles();
+    const structure = ensureButtonStructure(button);
+    const label = structure?.label || button.querySelector('.btn-text');
     const loading = options.loading === true;
 
     button.classList.toggle('is-loading', loading);
@@ -193,9 +306,12 @@
     window.__INTERAL_ASSOCIATIVE_CARD_FETCH_PATCHED__ = true;
   }
 
+  installButtonLoaderStyles();
+
   window.InteralButtonStatus = {
     setButtonStatus,
-    createButtonStatusController
+    createButtonStatusController,
+    ensureButtonStructure
   };
   window.InteralAssociativeCardCompat = Object.freeze({
     normalizeAssociativeCard,
@@ -204,10 +320,12 @@
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
+      prepareExistingButtonLoaders();
       installAssociativeCardOutputNormalizer();
       installAssociativeCardsFetchNormalizer();
     }, { once: true });
   } else {
+    prepareExistingButtonLoaders();
     installAssociativeCardOutputNormalizer();
     installAssociativeCardsFetchNormalizer();
   }
