@@ -23,10 +23,13 @@
   );
   (0, eval)(`${coreSource}\n//# sourceURL=${core.url.href}`);
 
-  const stylesheet = document.createElement('link');
-  stylesheet.rel = 'stylesheet';
-  stylesheet.href = new URL('instrumentes.css?v=20260720-10', sharedRoot).href;
-  document.head.appendChild(stylesheet);
+  if (!document.querySelector('link[data-interal-instrumentes-css]')) {
+    const stylesheet = document.createElement('link');
+    stylesheet.rel = 'stylesheet';
+    stylesheet.dataset.interalInstrumentesCss = 'true';
+    stylesheet.href = new URL('instrumentes.css?v=20260721-1', sharedRoot).href;
+    document.head.appendChild(stylesheet);
+  }
 
   const siteRoot = new URL('../', loader.src);
   window.InteralInstrumentes = {
