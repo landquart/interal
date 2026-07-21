@@ -39,9 +39,9 @@ assert.equal(findCandidatesForRoot({ entries: fixtureEntries, root: 'alter', lan
 assert.equal(findCandidatesForRoot({ entries: fixtureEntries, root: 'alter', language: 'en' }).diagnostics.rejectedByReason.sources_empty, 1, 'candidate without sources is rejected before analysis');
 
 const modelFromSearchForm = lexicalModelDescriptor({ word: 'неважно', search_form: 'alternativnyj', match: { type: 'exact', fragment: 'alter', index: 0 } }, 'alter', 'ru');
-assert.match(modelFromSearchForm.key, /\|alternativ$/, 'canonical model descriptor uses search_form rather than display spelling');
+assert.equal(modelFromSearchForm.key, 'ru|root||alter|н', 'canonical model descriptor uses the v2 derivational model from search_form');
 const modelFromMatch = lexicalModelDescriptor({ word: 'realteration', search_form: 'realteration', match: { type: 'exact', fragment: 'alter', index: 2 } }, 'alter', 'en');
-assert.match(modelFromMatch.key, /\|re\|alter\|realteration$/, 'canonical model descriptor preserves prefix position from match metadata');
+assert.equal(modelFromMatch.key, 'en|root|re|alter|ation', 'canonical model descriptor preserves prefix position without including the whole word');
 
 const analyzerSource = await readFile('associativvordes/js/association-analyzer.js', 'utf8');
 assert.match(analyzerSource, /hasFrequencyProfile \? \{ \.\.\.frequencyProfile/, 'analyzer uses supplied frequencyProfile');

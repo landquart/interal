@@ -1,0 +1,12 @@
+[
+  { "id": "en-regulation-family", "language": "en", "elementType": "root", "canonicalRoot": "regul", "word": "regulationism", "expected": { "prefix_chain": [], "canonical_root": "regul", "first_meaningful_derivational_element": "ation", "model_group": "en|root||regul|ation", "confidence": ["high", "medium"] } },
+  { "id": "en-deregulation-family", "language": "en", "elementType": "root", "canonicalRoot": "regul", "word": "deregulationism", "matchIndex": 2, "expected": { "prefix_chain": ["de"], "canonical_root": "regul", "first_meaningful_derivational_element": "ation", "model_group": "en|root|de|regul|ation", "confidence": ["high", "medium"] } },
+  { "id": "en-inter-action", "language": "en", "elementType": "preposition", "canonicalRoot": "inter", "word": "interactive", "expected": { "first_lexical_root_after_preposition": "act", "model_group": "en|preposition|inter|act", "confidence": ["high", "medium"] } },
+  { "id": "ru-alternative", "language": "ru", "elementType": "root", "canonicalRoot": "alter", "matchedRootVariant": "alternativ", "word": "alternativnost", "expected": { "canonical_root": "alter", "first_meaningful_derivational_element": "н", "model_group": "ru|root||alter|н", "confidence": ["high", "medium"] } },
+  { "id": "en-unknown-fallback", "language": "en", "elementType": "root", "canonicalRoot": "regul", "word": "unknownregulword", "matchIndex": 7, "expected": { "model_group": "en|fallback|regul|unknownregulword", "confidence": ["low"] } },
+  { "pairs": [
+    { "left": "regulation", "right": "regulationism", "language": "en", "elementType": "root", "canonicalRoot": "regul", "relationship": "same_model" },
+    { "left": "altruism", "right": "altruist", "language": "en", "elementType": "root", "canonicalRoot": "alter", "matchedRootVariant": "altru", "relationship": "different_model" },
+    { "left": "interaction", "right": "interactive", "language": "en", "elementType": "preposition", "canonicalRoot": "inter", "relationship": "same_model" }
+  ] }
+]

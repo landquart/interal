@@ -154,11 +154,12 @@ export function findCandidatesForRoot({ entries, root, language = 'en', elementT
     candidate.model_key = model.key;
     candidate.model_label = model.label;
     candidate.morpheme_analysis = model.analysis;
+    candidate.parser_version = model.analysis?.parser_version || candidate.parser_version;
     if (model.analysis?.diagnostic_reason?.startsWith('morpheme_parse_fallback')) candidate.warnings = [...new Set([...(candidate.warnings || []), 'morpheme_parse_fallback'])];
     matched.push(candidate);
   }
 
-  const grouped = selectHighestFrequencyPerModel(matched, root, language);
+  const grouped = selectHighestFrequencyPerModel(matched, root, language, elementType);
   if (grouped.dropped.length) diagnostics.modelDuplicates = grouped.dropped.length;
   for (const item of grouped.dropped) diagnostics.warnings.push({ reason: 'lower_frequency_model_variant', word: item.word, model: item.model_family_key });
 

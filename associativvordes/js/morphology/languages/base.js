@@ -1,0 +1,1 @@
+export function morph(form, canonical = form, extra = {}) { return { form, canonical, type: extra.type || 'derivational_suffix', priority: extra.priority ?? Math.min(99, 40 + String(form).length * 4), ...extra }; }

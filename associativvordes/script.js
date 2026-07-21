@@ -331,7 +331,9 @@ const TEXT_I18N = {
         model_family_key: descriptor.key || item.model_family_key || '',
         model_key: descriptor.key || item.model_key || '',
         model_label: descriptor.label || item.model_label || item.model || '',
-        model: descriptor.label || item.model || getManualModelLabel()
+        model: descriptor.label || item.model || getManualModelLabel(),
+        morpheme_analysis: descriptor.analysis || item.morpheme_analysis || null,
+        parser_version: descriptor.analysis?.parser_version || item.parser_version || item.morpheme_analysis?.parser_version || null
       };
     }
 
