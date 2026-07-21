@@ -208,4 +208,19 @@ const refined = await refineCandidatesWithQwenAudit({ root: 'zet', targetMeaning
 assert.equal(fetchCount, 1); assert.ok(refined.candidatesByLanguage.en.some(c => c.word === 'zeta')); assert.equal(finalizeCandidateOrdering(refined.candidatesByLanguage.en, 1)[0].word, 'zeta');
 globalThis.fetch = originalFetch; globalThis.document = originalDocument; globalThis.location = originalLocation;
 
+{
+  resetAssociativeCalculationRunnerForTests();
+  const { QWEN_RUNTIME_CONFIG } = await import('../associativvordes/js/qwen-client.js');
+  const originalLimit = QWEN_RUNTIME_CONFIG.maxReviewRequestsPerSearch;
+  QWEN_RUNTIME_CONFIG.maxReviewRequestsPerSearch = 2;
+  const { deps, counts } = makeDeps({ langs: twoLanguages, primaryScore: 30 });
+  const result = await runAssociativeCalculation({ input: { root: 'budget2' }, dependencies: deps });
+  QWEN_RUNTIME_CONFIG.maxReviewRequestsPerSearch = originalLimit;
+  assert.equal(counts.reviewRequests, 2, 'budget 2 limits deterministic final-model order across languages');
+  assert.equal(result.state.reviewDiagnostics.reviewEligibleCount, 10);
+  assert.equal(result.state.reviewDiagnostics.reviewStartedCount, counts.reviewRequests);
+  assert.equal(result.state.reviewDiagnostics.reviewCompletedCount, counts.reviewRequests);
+  assert.equal(result.state.reviewDiagnostics.reviewSkippedBudgetCount, 8);
+}
+
 console.log('Associative atomic pipeline integration tests passed.');

@@ -1,7 +1,7 @@
 import { getFrequencyProfile } from './frequency-loader.js';
 import { getBidirectionalSwow } from './swow-client.js';
 import { getTargetMeaningForLanguage as translateTargetMeaningForLanguage } from './target-meaning-translator.js';
-import { ASSOCIATION_SCORE_WEIGHTS, FINAL_SCORE_WEIGHTS, getQwenAssociationScores, QWEN_ERROR_CODES, isAbortError, normalizeAbortError } from './qwen-client.js';
+import { ASSOCIATION_SCORE_WEIGHTS, FINAL_SCORE_WEIGHTS, getQwenAssociationScores, QWEN_ERROR_CODES, QWEN_RUNTIME_CONFIG, createReviewBudget, isAbortError, normalizeAbortError } from './qwen-client.js';
 
 export const THRESHOLDS = { main: 35 };
 export const REVIEW_SCORE_RANGE = Object.freeze({ min: 25, max: 35 });
@@ -247,9 +247,21 @@ function throwIfAborted(signal, stage) {
   if (signal?.aborted) throw normalizeAbortError(signal.reason, { stage });
 }
 
-export async function analyzeAssociativeWord({ language, targetMeaning, localizedTargetMeaning, word, frequencyProfile, onProgress, onReviewRequest, signal, runId } = {}) {
+export async function analyzeAssociativeWord({ language, targetMeaning, localizedTargetMeaning, word, frequencyProfile, onProgress, onReviewRequest, onReviewEvent, reviewBudget, signal, runId } = {}) {
   throwIfAborted(signal, 'analysis_start');
   const warnings = [];
+  const budget = reviewBudget || createReviewBudget({ enabled: QWEN_RUNTIME_CONFIG.enableReviewModel === true, maxRequests: QWEN_RUNTIME_CONFIG.maxReviewRequestsPerSearch });
+  const reviewDiagnostics = {
+    reviewEligibleCount: 0,
+    reviewStartedCount: 0,
+    reviewCompletedCount: 0,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: budget.limit
+  };
+  const noteReview = (key) => { reviewDiagnostics[key] += 1; onReviewEvent?.(key, { diagnostics: reviewDiagnostics, budget }); };
   const hasFrequencyProfile = frequencyProfile && typeof frequencyProfile === 'object' && Number.isFinite(Number(frequencyProfile.frequency_score));
   if (!hasFrequencyProfile) onProgress?.('Загрузка частотных списков...');
   const frequency = hasFrequencyProfile ? { ...frequencyProfile, warnings: Array.isArray(frequencyProfile.warnings) ? frequencyProfile.warnings : [] } : await getFrequencyProfile(language, word).catch(error => {
@@ -302,18 +314,37 @@ export async function analyzeAssociativeWord({ language, targetMeaning, localize
   let review = null;
   let finalEvaluation = { ...primary, combination_method: 'primary_only' };
   if (shouldReviewPrimaryScore(primary.final_score)) {
-    try {
-      onReviewRequest?.();
-      onProgress?.(`Qwen3-235B: ${language} — ${word}`);
-      const reviewQwen = await getQwenAssociationScores({ language, targetMeaning, word, swow, review: true, primary, signal });
-      throwIfAborted(signal, 'review_qwen');
-      review = buildEvaluation(reviewQwen, frequency.frequency_score, swow_bonus);
-      finalEvaluation = { ...review, combination_method: 'review_override' };
-    } catch (error) {
-      if (isAbortError(error, signal)) throw normalizeAbortError(error, { stage: 'review_qwen', runId });
-      warnings.push('review_failed');
-      warnings.push(`review_failed: ${error.message || error}`);
-      finalEvaluation = { ...primary, combination_method: 'primary_fallback_after_review_error' };
+    noteReview('reviewEligibleCount');
+    throwIfAborted(signal, 'before_review_qwen');
+    if (QWEN_RUNTIME_CONFIG.enableReviewModel !== true || budget.enabled !== true) {
+      noteReview('reviewSkippedDisabledCount');
+    } else if (!budget.canRequest()) {
+      noteReview('reviewSkippedBudgetCount');
+      warnings.push('review_budget_exhausted');
+      finalEvaluation = { ...primary, combination_method: 'primary_only_review_budget_exhausted' };
+    } else {
+      try {
+        if (!budget.reserve()) {
+          noteReview('reviewSkippedBudgetCount');
+          warnings.push('review_budget_exhausted');
+          finalEvaluation = { ...primary, combination_method: 'primary_only_review_budget_exhausted' };
+        } else {
+          noteReview('reviewStartedCount');
+          onReviewRequest?.();
+          onProgress?.(`Qwen3-235B: ${language} — ${word}`);
+          const reviewQwen = await getQwenAssociationScores({ language, targetMeaning, word, swow, review: true, primary, signal });
+          throwIfAborted(signal, 'review_qwen');
+          review = buildEvaluation(reviewQwen, frequency.frequency_score, swow_bonus);
+          noteReview('reviewCompletedCount');
+          finalEvaluation = { ...review, combination_method: 'review_override' };
+        }
+      } catch (error) {
+        if (isAbortError(error, signal)) { noteReview('reviewAbortedCount'); budget.releaseOnAbort?.(); throw normalizeAbortError(error, { stage: 'review_qwen', runId }); }
+        noteReview('reviewFailedCount');
+        warnings.push('review_failed');
+        warnings.push(`review_failed: ${error.message || error}`);
+        finalEvaluation = { ...primary, combination_method: 'primary_fallback_after_review_error' };
+      }
     }
   }
   const classification = finalEvaluation.classification;
@@ -325,7 +356,8 @@ export async function analyzeAssociativeWord({ language, targetMeaning, localize
     swowPairFound,
     swowTargetMeaning,
     targetToWord: swow.target_to_word,
-    wordToTarget: swow.word_to_target
+    wordToTarget: swow.word_to_target,
+    review: reviewDiagnostics
   };
   console.debug('Associativ vordes SWOW diagnostics', diagnostics);
 

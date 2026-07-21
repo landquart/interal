@@ -107,3 +107,98 @@ for (const primaryP of [25, 30, 35]) {
 globalThis.fetch = originalFetch;
 globalThis.document = originalDocument;
 console.log('associativvordes qwen review tests passed');
+
+// Review runtime configuration and per-run budget coverage.
+globalThis.document = { documentElement: { lang: 'en' } };
+const { QWEN_RUNTIME_CONFIG, createReviewBudget } = await import('../associativvordes/js/qwen-client.js');
+const originalEnableReviewModel = QWEN_RUNTIME_CONFIG.enableReviewModel;
+const originalMaxReviewRequestsPerSearch = QWEN_RUNTIME_CONFIG.maxReviewRequestsPerSearch;
+async function runBudgetCase({ primaryP = 30, enabled = true, maxRequests = Infinity, abortBeforeReview = false, reviewAbort = false } = {}) {
+  QWEN_RUNTIME_CONFIG.enableReviewModel = enabled;
+  const controller = new AbortController();
+  const budget = createReviewBudget({ enabled, maxRequests });
+  const result = await runCaseWithBudget({ primaryP, budget, signal: controller.signal, abortBeforeReview, reviewAbort });
+  QWEN_RUNTIME_CONFIG.enableReviewModel = originalEnableReviewModel;
+  return { ...result, budget };
+}
+async function runCaseWithBudget({ primaryP, budget, signal, abortBeforeReview = false, reviewAbort = false }) {
+  const primaryA = 30;
+  const F = (primaryP - 0.65 * primaryA) / 0.35;
+  const calls = [];
+  const events = [];
+  globalThis.fetch = async (url, init = {}) => {
+    const request = JSON.parse(init.body);
+    calls.push(request);
+    if (request.payload.review === true) {
+      if (reviewAbort) throw new DOMException('aborted', 'AbortError');
+      return new Response(JSON.stringify({ ok: true, analysis: { directness: 80, field_relatedness: 70, domain_shift: 20, short_explanation: 'review' } }), { status: 200, headers: { 'Content-Type': 'application/json' } });
+    }
+    return new Response(JSON.stringify({ ok: true, analysis: { directness: primaryA, field_relatedness: primaryA, domain_shift: 100 - primaryA, short_explanation: 'primary' } }), { status: 200, headers: { 'Content-Type': 'application/json' } });
+  };
+  const result = await analyzeAssociativeWord({
+    language: 'en', targetMeaning: 'target', localizedTargetMeaning: '', word: 'word',
+    frequencyProfile: { frequency_score: F, category_breakdown: {}, warnings: [] },
+    reviewBudget: budget,
+    signal,
+    onReviewEvent: key => { events.push(key); if (abortBeforeReview && key === 'reviewEligibleCount') signal?.throwIfAborted?.(); }
+  });
+  return { result, calls, events };
+}
+
+{
+  const { calls, result } = await runBudgetCase({ primaryP: 30, enabled: true, maxRequests: Infinity });
+  assert.equal(calls.filter(c => c.payload.review === true).length, 1, 'enabled + P 30 + infinity budget starts review');
+  assert.equal(result.diagnostics.review.reviewStartedCount, 1);
+}
+{
+  const { calls, result } = await runBudgetCase({ primaryP: 30, enabled: false, maxRequests: Infinity });
+  assert.equal(calls.filter(c => c.payload.review === true).length, 0, 'disabled review starts no request');
+  assert.equal(result.diagnostics.review.reviewSkippedDisabledCount, 1);
+}
+{
+  const { calls, result } = await runBudgetCase({ primaryP: 30, enabled: true, maxRequests: 0 });
+  assert.equal(calls.filter(c => c.payload.review === true).length, 0, 'budget 0 starts no review');
+  assert.equal(result.diagnostics.review.reviewSkippedDisabledCount, 1);
+}
+{
+  QWEN_RUNTIME_CONFIG.enableReviewModel = true;
+  const budget = createReviewBudget({ enabled: true, maxRequests: 1 });
+  const first = await runCaseWithBudget({ primaryP: 30, budget });
+  const second = await runCaseWithBudget({ primaryP: 30, budget });
+  assert.equal(first.calls.concat(second.calls).filter(c => c.payload.review === true).length, 1, 'budget 1 + two candidates starts one request');
+  assert.equal(second.result.association.combination_method, 'primary_only_review_budget_exhausted');
+  assert.ok(second.result.warnings.includes('review_budget_exhausted'));
+}
+{
+  const budget = createReviewBudget({ enabled: true, maxRequests: 2 });
+  const runs = [await runCaseWithBudget({ primaryP: 30, budget }), await runCaseWithBudget({ primaryP: 30, budget }), await runCaseWithBudget({ primaryP: 30, budget })];
+  assert.equal(runs.flatMap(r => r.calls).filter(c => c.payload.review === true).length, 2, 'budget 2 + three candidates starts two requests');
+}
+{
+  const budget = createReviewBudget({ enabled: true, maxRequests: 1 });
+  await runCaseWithBudget({ primaryP: 24, budget });
+  assert.equal(budget.used, 0, 'P outside range does not spend budget');
+}
+{
+  const controller = new AbortController();
+  controller.abort(new DOMException('cancelled', 'AbortError'));
+  const budget = createReviewBudget({ enabled: true, maxRequests: 1 });
+  await assert.rejects(() => runCaseWithBudget({ primaryP: 30, budget, signal: controller.signal }), /Operation aborted|cancelled/);
+  assert.equal(budget.used, 0, 'candidate aborted before review does not spend budget');
+}
+{
+  const budget = createReviewBudget({ enabled: true, maxRequests: 1 });
+  await assert.rejects(() => runCaseWithBudget({ primaryP: 30, budget, reviewAbort: true }), /aborted/);
+  assert.equal(budget.used, 1, 'started aborted review remains used');
+}
+{
+  const first = createReviewBudget({ enabled: true, maxRequests: 1 });
+  await runCaseWithBudget({ primaryP: 30, budget: first });
+  const second = createReviewBudget({ enabled: true, maxRequests: 1 });
+  await runCaseWithBudget({ primaryP: 30, budget: second });
+  assert.equal(first.used, 1); assert.equal(second.used, 1, 'new user run gets new budget');
+}
+QWEN_RUNTIME_CONFIG.enableReviewModel = originalEnableReviewModel;
+QWEN_RUNTIME_CONFIG.maxReviewRequestsPerSearch = originalMaxReviewRequestsPerSearch;
+globalThis.fetch = originalFetch;
+globalThis.document = originalDocument;
