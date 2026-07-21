@@ -1,4 +1,4 @@
-import { analyzeAssociativeWord, finalAssociationPassesThreshold, calculateLanguageScore, calculateFinalAssociation, buildDecisionReasons, decisionStatusForResult, canCreateAssociativeJsonCard, normalizeLanguageStatus, summarizeLanguageStatuses, deriveGlobalStatusFromLanguageStatuses } from './js/association-analyzer.js';
+import { analyzeAssociativeWord, finalAssociationPassesThreshold, calculateLanguageScore, calculateFinalAssociation, buildDecisionReasons, decisionStatusForResult, canCreateAssociativeJsonCard, normalizeLanguageStatus, summarizeLanguageStatuses, deriveGlobalStatusFromLanguageStatuses, createReviewBudget } from './js/association-analyzer.js';
 import { QWEN_RUNTIME_CONFIG, QWEN_ERROR_CODES, refineCandidatesWithQwenAudit, selectBestFinalModels, finalizeCandidateOrdering, isAbortError, normalizeAbortError } from './js/qwen-client.js';
 import { escapeHtml, formatMetric, renderCandidateEvidenceDetails, resultRowClasses, swowLabel, thresholdStatusLabel, thresholdStatusForResult, semanticWarningLabel, languageStatusLabel } from './js/render-results.js';
 import { normalizeText, stripDiacritics, includesRoot, fuzzyIncludesRoot, specialRootMatch } from './js/root-matcher.js';
@@ -155,6 +155,7 @@ const TEXT_I18N = {
     let state = emptyState();
     let activeRunId = 0;
     let activeRunAbortController = null;
+    let activeReviewBudget = null;
     function nextRunId() { activeRunAbortController?.abort?.(normalizeAbortError(null, { stage: 'new_run', runId: activeRunId })); activeRunId += 1; activeRunAbortController = new AbortController(); return activeRunId; }
     function invalidateActiveRuns() { activeRunAbortController?.abort?.(normalizeAbortError(null, { stage: 'reset', runId: activeRunId })); activeRunId += 1; activeRunAbortController = null; }
     function isCurrentRun(runId) { return runId === activeRunId; }
@@ -217,6 +218,14 @@ const TEXT_I18N = {
         qwenUsedModels: [],
         abortedRequestCount: 0,
         targetTranslationRequestCount: 0,
+        reviewEligibleCount: 0,
+        reviewStartedCount: 0,
+        reviewCompletedCount: 0,
+        reviewFailedCount: 0,
+        reviewAbortedCount: 0,
+        reviewSkippedDisabledCount: 0,
+        reviewSkippedBudgetCount: 0,
+        reviewBudgetLimit: null,
         durationByStage: {},
         activeRunId: null
       };
@@ -274,6 +283,14 @@ const TEXT_I18N = {
         qwenUsedModels: run.qwenUsedModels,
         abortedRequestCount: run.abortedRequestCount,
         targetTranslationRequestCount: run.targetTranslationRequestCount,
+        reviewEligibleCount: run.reviewEligibleCount,
+        reviewStartedCount: run.reviewStartedCount,
+        reviewCompletedCount: run.reviewCompletedCount,
+        reviewFailedCount: run.reviewFailedCount,
+        reviewAbortedCount: run.reviewAbortedCount,
+        reviewSkippedDisabledCount: run.reviewSkippedDisabledCount,
+        reviewSkippedBudgetCount: run.reviewSkippedBudgetCount,
+        reviewBudgetLimit: run.reviewBudgetLimit,
         durationByStage: run.durationByStage,
         activeRunId: run.activeRunId
       }));
@@ -438,6 +455,14 @@ const TEXT_I18N = {
           word: item.word,
           frequencyProfile: item.frequencyProfile,
           onProgress: text => { if (isCurrentRun(runId)) onProgress?.(text.replace(`${langCode} —`, `${languageName} —`)); },
+          reviewBudget: activeReviewBudget,
+          onReviewEligible: () => incrementDiagnostic('reviewEligibleCount'),
+          onReviewStarted: () => incrementDiagnostic('reviewStartedCount'),
+          onReviewCompleted: () => incrementDiagnostic('reviewCompletedCount'),
+          onReviewFailed: () => incrementDiagnostic('reviewFailedCount'),
+          onReviewAborted: () => incrementDiagnostic('reviewAbortedCount'),
+          onReviewSkippedDisabled: () => incrementDiagnostic('reviewSkippedDisabledCount'),
+          onReviewSkippedBudget: () => incrementDiagnostic('reviewSkippedBudgetCount'),
           onReviewRequest: () => {
             throwIfStaleRun(runId, 'review_request');
             incrementDiagnostic('qwenReviewRequestCount');
@@ -726,6 +751,8 @@ const TEXT_I18N = {
       const buttonController = getCalculateButtonController();
       const buttonToken = buttonController?.start(currentLang() === 'en' ? 'Calculating...' : 'Расчёт...');
       resetRunDiagnostics(runId);
+      activeReviewBudget = createReviewBudget({ enabled: QWEN_RUNTIME_CONFIG.enableReviewModel, maxRequests: QWEN_RUNTIME_CONFIG.maxReviewRequestsPerSearch });
+      diagnosticsState.run.reviewBudgetLimit = activeReviewBudget.limit;
       try {
         const calculated = await runCalculation({
           runId,
@@ -1075,6 +1102,7 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
           localizedTargetMeaning: targetTranslations[lang] || '',
           word: item.word,
           frequencyProfile: item.frequencyProfile,
+          reviewBudget: createReviewBudget({ enabled: QWEN_RUNTIME_CONFIG.enableReviewModel, maxRequests: QWEN_RUNTIME_CONFIG.maxReviewRequestsPerSearch }),
           onReviewRequest: () => incrementDiagnostic('qwenReviewRequestCount')
         });
         recordQwenUsedModels(item.analysis);

@@ -1,7 +1,7 @@
 import { getFrequencyProfile } from './frequency-loader.js';
 import { getBidirectionalSwow } from './swow-client.js';
 import { getTargetMeaningForLanguage as translateTargetMeaningForLanguage } from './target-meaning-translator.js';
-import { ASSOCIATION_SCORE_WEIGHTS, FINAL_SCORE_WEIGHTS, getQwenAssociationScores, QWEN_ERROR_CODES, isAbortError, normalizeAbortError } from './qwen-client.js';
+import { ASSOCIATION_SCORE_WEIGHTS, FINAL_SCORE_WEIGHTS, getQwenAssociationScores, QWEN_RUNTIME_CONFIG, QWEN_ERROR_CODES, isAbortError, normalizeAbortError } from './qwen-client.js';
 
 export const THRESHOLDS = { main: 35 };
 export const REVIEW_SCORE_RANGE = Object.freeze({ min: 25, max: 35 });
@@ -58,6 +58,20 @@ export function passesWordThreshold(score) {
 
 export function shouldReviewPrimaryScore(score) {
   return isFiniteScore(score) && Number(score) >= REVIEW_SCORE_RANGE.min && Number(score) <= REVIEW_SCORE_RANGE.max;
+}
+
+export function createReviewBudget({ enabled = QWEN_RUNTIME_CONFIG.enableReviewModel, maxRequests = QWEN_RUNTIME_CONFIG.maxReviewRequestsPerSearch } = {}) {
+  const limit = maxRequests === Infinity ? Infinity : Math.max(0, Math.floor(Number(maxRequests) || 0));
+  let used = 0;
+  return {
+    get used() { return used; },
+    get remaining() { return limit === Infinity ? Infinity : Math.max(0, limit - used); },
+    get limit() { return limit; },
+    get enabled() { return Boolean(enabled) && limit !== 0; },
+    canRequest() { return Boolean(enabled) && (limit === Infinity || used < limit); },
+    reserve() { if (!this.canRequest()) return false; used += 1; return true; },
+    releaseOnAbort() { /* started review API calls remain counted for this run-scoped budget. */ }
+  };
 }
 
 export const INTERMEDIATE_LANGUAGE_STATUSES = ['idle', 'loading_index', 'grouping_candidates', 'candidate_audit', 'analyzing', 'reviewing'];
@@ -247,7 +261,7 @@ function throwIfAborted(signal, stage) {
   if (signal?.aborted) throw normalizeAbortError(signal.reason, { stage });
 }
 
-export async function analyzeAssociativeWord({ language, targetMeaning, localizedTargetMeaning, word, frequencyProfile, onProgress, onReviewRequest, signal, runId } = {}) {
+export async function analyzeAssociativeWord({ language, targetMeaning, localizedTargetMeaning, word, frequencyProfile, onProgress, onReviewEligible, onReviewStarted, onReviewCompleted, onReviewFailed, onReviewAborted, onReviewSkippedDisabled, onReviewSkippedBudget, onReviewRequest, reviewBudget, signal, runId } = {}) {
   throwIfAborted(signal, 'analysis_start');
   const warnings = [];
   const hasFrequencyProfile = frequencyProfile && typeof frequencyProfile === 'object' && Number.isFinite(Number(frequencyProfile.frequency_score));
@@ -302,15 +316,29 @@ export async function analyzeAssociativeWord({ language, targetMeaning, localize
   let review = null;
   let finalEvaluation = { ...primary, combination_method: 'primary_only' };
   if (shouldReviewPrimaryScore(primary.final_score)) {
-    try {
+    onReviewEligible?.();
+    const budget = reviewBudget || createReviewBudget();
+    if (!budget.enabled) {
+      onReviewSkippedDisabled?.();
+    } else if (signal?.aborted) {
+      onReviewSkippedDisabled?.();
+      throwIfAborted(signal, 'review_qwen');
+    } else if (!budget.reserve()) {
+      warnings.push('review_budget_exhausted');
+      onReviewSkippedBudget?.();
+      finalEvaluation = { ...primary, combination_method: 'primary_only_review_budget_exhausted' };
+    } else try {
       onReviewRequest?.();
+      onReviewStarted?.();
       onProgress?.(`Qwen3-235B: ${language} — ${word}`);
       const reviewQwen = await getQwenAssociationScores({ language, targetMeaning, word, swow, review: true, primary, signal });
       throwIfAborted(signal, 'review_qwen');
       review = buildEvaluation(reviewQwen, frequency.frequency_score, swow_bonus);
+      onReviewCompleted?.();
       finalEvaluation = { ...review, combination_method: 'review_override' };
     } catch (error) {
-      if (isAbortError(error, signal)) throw normalizeAbortError(error, { stage: 'review_qwen', runId });
+      if (isAbortError(error, signal)) { onReviewAborted?.(); budget.releaseOnAbort?.(); throw normalizeAbortError(error, { stage: 'review_qwen', runId }); }
+      onReviewFailed?.();
       warnings.push('review_failed');
       warnings.push(`review_failed: ${error.message || error}`);
       finalEvaluation = { ...primary, combination_method: 'primary_fallback_after_review_error' };

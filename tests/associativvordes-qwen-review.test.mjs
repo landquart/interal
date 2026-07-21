@@ -1,14 +1,17 @@
 import assert from 'node:assert/strict';
-import { analyzeAssociativeWord } from '../associativvordes/js/association-analyzer.js';
+import { analyzeAssociativeWord, createReviewBudget } from '../associativvordes/js/association-analyzer.js';
+import { QWEN_RUNTIME_CONFIG } from '../associativvordes/js/qwen-client.js';
 
 const originalFetch = globalThis.fetch;
 const originalDocument = globalThis.document;
 globalThis.document = { documentElement: { lang: 'en' } };
 
-async function runCase({ primaryP, reviewScores = { directness: 80, field_relatedness: 70, domain_shift: 20 }, reviewFails = false, reviewAbort = false, reviewAbortCode = null, payloadModel = 'evil-model/latest' }) {
+async function runCase({ primaryP, reviewBudget = null, enableReviewModel = true, signal = undefined, onReviewEligible = undefined, reviewScores = { directness: 80, field_relatedness: 70, domain_shift: 20 }, reviewFails = false, reviewAbort = false, reviewAbortCode = null, payloadModel = 'evil-model/latest' }) {
   const primaryA = 30;
   const F = (primaryP - 0.65 * primaryA) / 0.35;
   const calls = [];
+  const originalEnableReviewModel = QWEN_RUNTIME_CONFIG.enableReviewModel;
+  QWEN_RUNTIME_CONFIG.enableReviewModel = enableReviewModel;
   globalThis.fetch = async (url, init = {}) => {
     assert.equal(String(url), '/api/qwen-analyze');
     const request = JSON.parse(init.body);
@@ -24,15 +27,23 @@ async function runCase({ primaryP, reviewScores = { directness: 80, field_relate
   };
   const progress = [];
   let reviewCount = 0;
-  const result = await analyzeAssociativeWord({
+  let result;
+  try {
+    result = await analyzeAssociativeWord({
     language: 'en',
     targetMeaning: 'target',
     localizedTargetMeaning: '',
     word: 'word',
     frequencyProfile: { frequency_score: F, category_breakdown: {}, warnings: [] },
     onProgress: (text) => progress.push(text),
-    onReviewRequest: () => { reviewCount += 1; }
+    onReviewEligible,
+    onReviewRequest: () => { reviewCount += 1; },
+    reviewBudget,
+    signal
   });
+  } finally {
+    QWEN_RUNTIME_CONFIG.enableReviewModel = originalEnableReviewModel;
+  }
   return { result, calls, progress, reviewCount };
 }
 
@@ -42,6 +53,42 @@ for (const primaryP of [24.9, 35.1]) {
   assert.equal(reviewCount, 0, `primary P=${primaryP} has no review diagnostic callback`);
   assert.equal(result.review, null, `primary P=${primaryP} leaves review null`);
   assert.equal(result.association.combination_method, 'primary_only');
+}
+
+{
+  const budget = createReviewBudget({ enabled: true, maxRequests: Infinity });
+  const { calls, reviewCount } = await runCase({ primaryP: 30, reviewBudget: budget });
+  assert.equal(calls.filter(call => call.payload.review === true).length, 1, 'review enabled + P 30 + budget Infinity starts review');
+  assert.equal(reviewCount, 1);
+  assert.equal(budget.used, 1);
+}
+
+{
+  const budget = createReviewBudget({ enabled: false, maxRequests: Infinity });
+  const { result, calls, reviewCount } = await runCase({ primaryP: 30, reviewBudget: budget, enableReviewModel: false });
+  assert.equal(calls.length, 1, 'review disabled + P 30 does not start review');
+  assert.equal(reviewCount, 0);
+  assert.equal(result.association.combination_method, 'primary_only');
+}
+
+{
+  const budget = createReviewBudget({ enabled: true, maxRequests: 0 });
+  const { result, calls, reviewCount } = await runCase({ primaryP: 30, reviewBudget: budget });
+  assert.equal(calls.length, 1, 'budget 0 + P 30 does not start review');
+  assert.equal(reviewCount, 0);
+  assert.equal(result.association.combination_method, 'primary_only');
+}
+
+
+{
+  const budget = createReviewBudget({ enabled: true, maxRequests: 1 });
+  const controller = new AbortController();
+  await assert.rejects(
+    () => runCase({ primaryP: 30, reviewBudget: budget, signal: controller.signal, onReviewEligible: () => controller.abort(new DOMException('cancelled', 'AbortError')) }),
+    error => error?.name === 'AbortError',
+    'candidate cancelled before review start aborts without starting review API call'
+  );
+  assert.equal(budget.used, 0, 'cancelled before review start does not spend budget');
 }
 
 for (const primaryP of [25, 30, 35]) {

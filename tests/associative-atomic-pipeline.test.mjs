@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { runAssociativeCalculation, resetAssociativeCalculationRunnerForTests, restoreAssociativeCalculation } from '../associativvordes/js/associative-calculation-runner.js';
-import { refineCandidatesWithQwenAudit, finalizeCandidateOrdering } from '../associativvordes/js/qwen-client.js';
+import { refineCandidatesWithQwenAudit, finalizeCandidateOrdering, QWEN_RUNTIME_CONFIG } from '../associativvordes/js/qwen-client.js';
 
 function deferred() { let resolve, reject; const promise = new Promise((res, rej) => { resolve = res; reject = rej; }); return { promise, resolve, reject }; }
 async function tick(times = 1) { for (let i = 0; i < times; i += 1) await Promise.resolve(); }
@@ -131,6 +131,65 @@ assert.match(scriptSource, /activeRunAbortController\?\.abort\?\.\(/, 'browser r
   assert.deepEqual(include.state.selectedModels.en, ['a','g','b','c','d'], 'frequency controls top five, not semantic P');
   const exclude = await runAssociativeCalculation({ input: { root: 'select' }, dependencies: makeDeps({ auditAdds: [{ ...qwenSeventh, frequency_score: 1 }], primaryScore: 99 }).deps });
   assert.deepEqual(exclude.state.selectedModels.en, ['a','b','c','d','e']);
+}
+
+
+{
+  const original = QWEN_RUNTIME_CONFIG.maxReviewRequestsPerSearch;
+  QWEN_RUNTIME_CONFIG.maxReviewRequestsPerSearch = 1;
+  resetAssociativeCalculationRunnerForTests();
+  const { deps, counts } = makeDeps({ primaryScore: 30 });
+  const result = await runAssociativeCalculation({ input: { root: 'budget1' }, dependencies: deps });
+  assert.equal(counts.reviewRequests, 1, 'budget 1 + two or more disputed candidates starts one review');
+  assert.equal(result.state.diagnostics.reviewEligibleCount, 5);
+  assert.equal(result.state.diagnostics.reviewStartedCount, 1);
+  assert.equal(result.state.diagnostics.reviewSkippedBudgetCount, 4);
+  assert.equal(result.state.diagnostics.reviewBudgetLimit, 1);
+  assert.ok(result.state.warnings.includes('review_budget_exhausted'));
+  QWEN_RUNTIME_CONFIG.maxReviewRequestsPerSearch = original;
+}
+
+{
+  const original = QWEN_RUNTIME_CONFIG.maxReviewRequestsPerSearch;
+  QWEN_RUNTIME_CONFIG.maxReviewRequestsPerSearch = 2;
+  resetAssociativeCalculationRunnerForTests();
+  const { deps, counts } = makeDeps({ primaryScore: 30 });
+  const result = await runAssociativeCalculation({ input: { root: 'budget2' }, dependencies: deps });
+  assert.equal(counts.reviewRequests, 2, 'budget 2 + three or more disputed candidates starts two reviews');
+  assert.equal(result.state.diagnostics.reviewStartedCount, 2);
+  assert.equal(result.state.diagnostics.reviewCompletedCount, 2);
+  assert.equal(result.state.diagnostics.reviewSkippedBudgetCount, 3);
+  QWEN_RUNTIME_CONFIG.maxReviewRequestsPerSearch = original;
+}
+
+{
+  const original = QWEN_RUNTIME_CONFIG.maxReviewRequestsPerSearch;
+  QWEN_RUNTIME_CONFIG.maxReviewRequestsPerSearch = 1;
+  resetAssociativeCalculationRunnerForTests();
+  const first = await runAssociativeCalculation({ input: { root: 'fresh1' }, dependencies: makeDeps({ primaryScore: 30 }).deps });
+  resetAssociativeCalculationRunnerForTests();
+  const secondDeps = makeDeps({ primaryScore: 30 });
+  const second = await runAssociativeCalculation({ input: { root: 'fresh2' }, dependencies: secondDeps.deps });
+  assert.equal(first.state.diagnostics.reviewStartedCount, 1, 'first run uses its budget');
+  assert.equal(second.state.diagnostics.reviewStartedCount, 1, 'new user run receives fresh review budget');
+  assert.equal(secondDeps.counts.reviewRequests, 1);
+  QWEN_RUNTIME_CONFIG.maxReviewRequestsPerSearch = original;
+}
+
+{
+  resetAssociativeCalculationRunnerForTests();
+  const { deps, counts } = makeDeps({ primaryScore: 36 });
+  const result = await runAssociativeCalculation({ input: { root: 'outside' }, dependencies: deps });
+  assert.equal(counts.reviewRequests, 0, 'P outside range does not spend review budget');
+  assert.equal(result.state.diagnostics.reviewEligibleCount, 0);
+  assert.equal(result.state.diagnostics.reviewStartedCount, 0);
+}
+
+{
+  resetAssociativeCalculationRunnerForTests();
+  const { deps, counts } = makeDeps({ reviewReject: abortError(), primaryScore: 30 });
+  await assert.rejects(() => runAssociativeCalculation({ input: { root: 'abortstarted' }, dependencies: deps }), /Operation aborted|cancelled/);
+  assert.equal(counts.reviewRequests, 1, 'factually started aborted review calls analyzer once');
 }
 
 for (const [score, expected] of [[24.99, 0], [25, 5], [30, 5], [35, 5], [35.01, 0]]) {
