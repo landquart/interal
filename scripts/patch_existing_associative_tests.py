@@ -54,4 +54,13 @@ for old, new in replacements:
     text = text.replace(old, new, 1)
 path.write_text(text, encoding='utf-8')
 
+path = root / 'tests/associativvordes-persistence.test.mjs'
+text = path.read_text(encoding='utf-8')
+old = "assert.equal(exported.version, 1, 'completed state exports through versioned compact page adapter');"
+new = "assert.equal(exported.version, 2, 'completed state exports through the current versioned morphology-aware page adapter');"
+if old not in text:
+    raise SystemExit('persistence state-version assertion not found')
+text = text.replace(old, new, 1)
+path.write_text(text, encoding='utf-8')
+
 print('Updated existing associative tests for unified production behavior.')
