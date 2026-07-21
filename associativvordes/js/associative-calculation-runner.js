@@ -1,6 +1,6 @@
 import { calculateLanguageScore, calculateFinalAssociation, deriveGlobalStatusFromLanguageStatuses, shouldReviewPrimaryScore } from './association-analyzer.js';
 import { finalizeCandidateOrdering, selectBestFinalModels, isAbortError, normalizeAbortError } from './qwen-client.js';
-import { MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE, createEmptyAssociativeState } from './associative-state.js';
+import { MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE, createEmptyAssociativeState, addRunWarning, addCandidateWarning, hasAnyAssociativeWarnings, hasLanguageAssociativeWarnings, migrateAssociativeWarnings } from './associative-state.js';
 
 const DEFAULT_LANGUAGES = [
   { code: 'en', name: 'English', group: 'Germanic' },
@@ -20,6 +20,7 @@ function clone(value) { return value == null ? value : JSON.parse(JSON.stringify
 function scoreOf(item) { return Number(item?.final_score ?? item?.analysis?.final_score ?? item?.P); }
 function associationScore(result) { return Number(result?.association_score ?? result?.analysis?.association?.association_score ?? result?.P ?? result?.final_score); }
 function withAnalysis(candidate, analysis) { const p = Number(analysis?.final_score ?? analysis?.P ?? associationScore(analysis)); return { ...candidate, analysis, association_score: associationScore(analysis), final_score: Number.isFinite(p) ? p : candidate.final_score, selected: Number.isFinite(p), analysisStatus: null }; }
+function candidateId(candidate) { return candidate?.model_key || candidate?.model || candidate?.word || candidate?.normalized || 'unknown_candidate'; }
 
 export function resetAssociativeCalculationRunnerForTests() { latestRunId = 0; }
 
@@ -41,7 +42,7 @@ export async function runAssociativeCalculation({ input = {}, dependencies = {},
   const emit = (event, payload) => { events.push(event); dependencies.onEvent?.(event, payload); };
   const state = dependencies.stateStorage?.create?.() || createEmptyAssociativeState({ languages, createLanguageStatus: status });
   state.languageScores ||= {};
-  Object.assign(state, { root: input.root || input.word || '', meaning: input.meaning || input.targetMeaning || '', elementType: input.elementType || 'root', maxModels, checked: false, globalStatus: 'loading', warnings: [] });
+  Object.assign(state, { root: input.root || input.word || '', meaning: input.meaning || input.targetMeaning || '', elementType: input.elementType || 'root', maxModels, checked: false, globalStatus: 'loading', warnings: migrateAssociativeWarnings(state, { languages }) });
   const run = { runId, signal };
   const button = dependencies.buttonStatusController;
   const token = button?.start?.('translation');
@@ -68,7 +69,7 @@ export async function runAssociativeCalculation({ input = {}, dependencies = {},
       refined = await dependencies.candidateAudit?.audit?.({ candidatesByLanguage: pools, input, translations }, { signal, runId }) || pools;
     } catch (error) {
       if (isAbortError(error, signal)) throw abortErr(error, 'candidate_audit', runId);
-      state.warnings.push('qwen_candidate_audit_unavailable');
+      addRunWarning(state, 'qwen_candidate_audit_unavailable', error?.message);
       refined = pools;
     }
     throwIfInactive(run, 'candidate_audit'); emit('audit:end');
@@ -100,7 +101,7 @@ export async function runAssociativeCalculation({ input = {}, dependencies = {},
             throwIfInactive(run, 'review'); emit('review:end');
           } catch (error) {
             if (isAbortError(error, signal)) throw abortErr(error, 'review', runId);
-            state.warnings.push('review_failed'); final = primary; emit('review:end');
+            addCandidateWarning(state, lang.code, candidateId(candidate), 'review_failed', error?.message); final = primary; emit('review:end');
           }
         }
         analyzed.push(withAnalysis(candidate, final));
@@ -108,20 +109,26 @@ export async function runAssociativeCalculation({ input = {}, dependencies = {},
       const byKey = new Map(analyzed.map(c => [c.model_key || c.model || c.word, c]));
       state.languages[lang.code] = (finalPools[lang.code] || []).map(c => byKey.get(c.model_key || c.model || c.word) || { ...c, selected: false });
       state.languageScores[lang.code] = calculateLanguageScore(state.languages[lang.code], { maxModels, scoreGetter: scoreOf });
-      state.languageStatuses[lang.code] = status(state.warnings.length ? 'completed_with_warnings' : 'completed', { candidateCount: finalPools[lang.code].length, analyzedCount: analyzed.length, successfulCount: analyzed.length });
+      state.languageStatuses[lang.code] = status(hasLanguageAssociativeWarnings(state.warnings, lang.code) ? 'completed_with_warnings' : 'completed', { candidateCount: finalPools[lang.code].length, analyzedCount: analyzed.length, successfulCount: analyzed.length });
       emit('language_score:calculated');
     }
     throwIfInactive(run, 'before_scores'); emit('scores:calculated');
     state.selectedModels = selectedModels;
     state.finalAssociationResult = calculateFinalAssociation({ languages, languageResults: languages.map(l => state.languageScores[l.code]), languageStatuses: state.languageStatuses });
     state.FA = state.finalAssociationResult.finalAssociation;
-    state.globalStatus = deriveGlobalStatusFromLanguageStatuses(state.languageStatuses);
+    state.globalStatus = hasAnyAssociativeWarnings(state.warnings) && deriveGlobalStatusFromLanguageStatuses(state.languageStatuses) === 'completed' ? 'completed_with_warnings' : deriveGlobalStatusFromLanguageStatuses(state.languageStatuses);
     if (state.globalStatus === 'loading') throw new Error('Done blocked for loading global status');
     await dependencies.renderer?.renderFinal?.(state, { runId, signal });
     throwIfInactive(run, 'render'); emit('render:final');
     state.checked = true; emit('state:checked'); setState('state:checked');
-    await dependencies.stateStorage?.save?.(state, { runId, signal });
+    try {
+      await dependencies.stateStorage?.save?.(state, { runId, signal });
+    } catch (error) {
+      if (isAbortError(error, signal)) throw abortErr(error, 'save', runId);
+      addRunWarning(state, 'final_save_failed', error?.message);
+    }
     throwIfInactive(run, 'save'); emit('draft:saved');
+    if (hasAnyAssociativeWarnings(state.warnings) && state.globalStatus === 'completed') state.globalStatus = 'completed_with_warnings';
     button?.success?.(token, state.globalStatus === 'completed_with_warnings' ? 'completed_with_warnings' : 'Done'); emit('button:done');
     emit('run:end');
     return { ok: true, state, events, selectedModels };

@@ -29,6 +29,81 @@ function truncateStateText(value, limit) {
   return text.length > limit ? `${text.slice(0, limit - 1)}…` : text;
 }
 
+function warningEntry(code, details) {
+  const entry = { code: truncateStateText(code, MAX_STATE_WARNING_LENGTH) };
+  if (details != null) entry.details = truncateStateText(typeof details === 'string' ? details : JSON.stringify(details), MAX_STATE_WARNING_LENGTH);
+  return entry;
+}
+
+function warningKey(entry) {
+  return `${entry?.code || ''}:${entry?.details || ''}`;
+}
+
+function addDedupedWarning(list, code, details) {
+  if (!code) return false;
+  const entry = warningEntry(code, details);
+  if (list.some(item => warningKey(item) === warningKey(entry))) return false;
+  list.push(entry);
+  return true;
+}
+
+export function createEmptyWarnings({ languages = DEFAULT_LANGUAGE_CODES } = {}) {
+  const codes = languageCodes(languages);
+  return {
+    run: [],
+    languages: Object.fromEntries(codes.map(code => [code, []])),
+    candidates: Object.fromEntries(codes.map(code => [code, {}]))
+  };
+}
+
+export function migrateAssociativeWarnings(source = {}, { languages = DEFAULT_LANGUAGE_CODES } = {}) {
+  const warnings = createEmptyWarnings({ languages });
+  const codes = languageCodes(languages);
+  const incoming = source?.warnings && typeof source.warnings === 'object' && !Array.isArray(source.warnings) ? source.warnings : {};
+  for (const warning of (Array.isArray(incoming.run) ? incoming.run : [])) addDedupedWarning(warnings.run, warning?.code || warning, warning?.details);
+  for (const code of codes) {
+    for (const warning of (Array.isArray(incoming.languages?.[code]) ? incoming.languages[code] : [])) addDedupedWarning(warnings.languages[code], warning?.code || warning, warning?.details);
+    const candidates = incoming.candidates?.[code] && typeof incoming.candidates[code] === 'object' ? incoming.candidates[code] : {};
+    for (const [candidateId, list] of Object.entries(candidates)) {
+      warnings.candidates[code][candidateId] = [];
+      for (const warning of (Array.isArray(list) ? list : [])) addDedupedWarning(warnings.candidates[code][candidateId], warning?.code || warning, warning?.details);
+      if (!warnings.candidates[code][candidateId].length) delete warnings.candidates[code][candidateId];
+    }
+  }
+  if (Array.isArray(source?.warnings)) {
+    for (const warning of source.warnings) addDedupedWarning(warnings.run, warning?.code || warning, warning?.details);
+  }
+  return warnings;
+}
+
+export function addRunWarning(state, code, details) {
+  state.warnings = migrateAssociativeWarnings(state, { languages: Object.keys(state.languages || state.languageStatuses || {}) });
+  return addDedupedWarning(state.warnings.run, code, details);
+}
+
+export function addLanguageWarning(state, language, code, details) {
+  state.warnings = migrateAssociativeWarnings(state, { languages: Object.keys(state.languages || state.languageStatuses || {}) });
+  state.warnings.languages[language] ||= [];
+  return addDedupedWarning(state.warnings.languages[language], code, details);
+}
+
+export function addCandidateWarning(state, language, candidateId, code, details) {
+  state.warnings = migrateAssociativeWarnings(state, { languages: Object.keys(state.languages || state.languageStatuses || {}) });
+  state.warnings.candidates[language] ||= {};
+  state.warnings.candidates[language][candidateId] ||= [];
+  return addDedupedWarning(state.warnings.candidates[language][candidateId], code, details);
+}
+
+export function hasAnyAssociativeWarnings(warnings = {}) {
+  const normalized = migrateAssociativeWarnings({ warnings }, { languages: Object.keys(warnings.languages || warnings.candidates || {}) });
+  return Boolean(normalized.run.length || Object.values(normalized.languages).some(list => list.length) || Object.values(normalized.candidates).some(map => Object.values(map).some(list => list.length)));
+}
+
+export function hasLanguageAssociativeWarnings(warnings = {}, language) {
+  const normalized = migrateAssociativeWarnings({ warnings }, { languages: Object.keys(warnings.languages || warnings.candidates || {}) });
+  return Boolean(normalized.languages[language]?.length || Object.values(normalized.candidates[language] || {}).some(list => list.length));
+}
+
 function sourceFileNameForState(value) {
   const normalized = String(value || '').replace(/\\/g, '/');
   return normalized.split('/').filter(Boolean).pop() || '';
@@ -89,6 +164,7 @@ export function createEmptyAssociativeState({ languages = DEFAULT_LANGUAGE_CODES
     languages: Object.fromEntries(codes.map(code => [code, []])),
     checked: false,
     languageStatuses: Object.fromEntries(codes.map(code => [code, createLanguageStatus('idle')])),
+    warnings: createEmptyWarnings({ languages: codes }),
     globalStatus: 'idle'
   };
 }
@@ -172,7 +248,7 @@ function compactAssociativeLanguages(languages, languageList = DEFAULT_LANGUAGE_
 export function compactAssociativeState(state, { languages = DEFAULT_LANGUAGE_CODES, activeLang = 'en', calculateResult } = {}) {
   const checked = Boolean(state.checked);
   const r = calculateResult?.();
-  return cloneJson({ version: PAGE_STATE_VERSION, page: PAGE_STATE_NAME, state: { root: state.root || '', meaning: state.meaning || '', elementType: state.elementType || 'root', maxModels: state.maxModels, activeLang, languages: compactAssociativeLanguages(state.languages, languages), languageStatuses: state.languageStatuses, globalStatus: state.globalStatus, checked, result: checked && r ? r : null } });
+  return cloneJson({ version: PAGE_STATE_VERSION, page: PAGE_STATE_NAME, state: { root: state.root || '', meaning: state.meaning || '', elementType: state.elementType || 'root', maxModels: state.maxModels, activeLang, languages: compactAssociativeLanguages(state.languages, languages), languageStatuses: state.languageStatuses, warnings: migrateAssociativeWarnings(state, { languages }), globalStatus: state.globalStatus, checked, result: checked && r ? r : null } });
 }
 
 function unwrapAssociativePageState(saved = {}) {
@@ -199,6 +275,7 @@ export function restoreAssociativeState(saved = {}, { languages = DEFAULT_LANGUA
     ? Math.max(1, Math.min(MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE, Number(fields.maxModels)))
     : MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE;
   restored.languages = compactAssociativeLanguages(fields.languages || fields.selectedLanguageResults || {}, languages);
+  restored.warnings = migrateAssociativeWarnings(fields, { languages });
   restored.checked = Boolean(fields.checked || fields.result);
   const message = currentLang() === 'en' ? 'The previous calculation was interrupted. Run it again.' : 'Предыдущий расчёт был прерван. Запустите его повторно.';
   restored.languageStatuses = Object.fromEntries(languageCodes(languages).map(code => {

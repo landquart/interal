@@ -6,7 +6,7 @@ import { createCandidateIndexLoader } from './js/candidate-index-loader.js';
 import { findCandidatesForRoot } from './js/candidate-finder.js';
 import { lexicalModelDescriptor, selectHighestFrequencyPerModel, compareFrequencyRepresentatives } from './js/candidate-model-family.js';
 import { clearTargetMeaningTranslationCache, translateTargetMeaning, TARGET_TRANSLATION_LANGUAGES } from './js/target-meaning-translator.js';
-import { MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE, createEmptyAssociativeState, invalidateSearchResult as invalidateAssociativeSearchResult, invalidateFinalCalculation as invalidateAssociativeFinalCalculation, addManualCandidate, updateCandidate, deleteCandidate, compactAssociativeState, restoreAssociativeState } from './js/associative-state.js';
+import { MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE, createEmptyAssociativeState, invalidateSearchResult as invalidateAssociativeSearchResult, invalidateFinalCalculation as invalidateAssociativeFinalCalculation, addManualCandidate, updateCandidate, deleteCandidate, compactAssociativeState, restoreAssociativeState, addRunWarning, addLanguageWarning, addCandidateWarning, hasAnyAssociativeWarnings, hasLanguageAssociativeWarnings } from './js/associative-state.js';
 
 // Persistence compatibility markers: status: 'no_candidates', candidates: [] ; status: 'index_error', errorCode:
 const TEXT_I18N = {
@@ -185,7 +185,16 @@ const TEXT_I18N = {
     }
 
     function deriveGlobalStatus(statusSummary = summarizeLanguageStatuses(state.languageStatuses)) {
-      return deriveGlobalStatusFromLanguageStatuses(statusSummary.statuses || state.languageStatuses);
+      const status = deriveGlobalStatusFromLanguageStatuses(statusSummary.statuses || state.languageStatuses);
+      return hasAnyAssociativeWarnings(state.warnings) && status === 'completed' ? 'completed_with_warnings' : status;
+    }
+
+    function warningCode(value) {
+      return String(value || '').split(':')[0].trim();
+    }
+
+    function candidateWarningId(candidate) {
+      return candidate?.model_key || candidate?.model_family_key || candidate?.model || candidate?.word || candidate?.normalized || 'unknown_candidate';
     }
 
 
@@ -449,6 +458,7 @@ const TEXT_I18N = {
         throwIfStaleRun(runId, 'candidate_analysis_after_qwen');
         recordQwenUsedModels(analysis);
         if (analysis.warnings?.some?.(warning => String(warning).startsWith('review_failed'))) incrementDiagnostic('qwenFailedRequestCount');
+        for (const warning of (analysis.warnings || [])) addCandidateWarning(state, langCode, candidateWarningId(item), warningCode(warning), warning);
         return {
           ...item,
           analysis,
@@ -605,6 +615,7 @@ const TEXT_I18N = {
         } catch (error) {
           if (isAbortError(error, currentRunSignal()) || !isCurrentRun(runId)) throw normalizeAbortError(error, { stage: 'candidate_index', runId });
           candidatePools[lang.code] = [];
+          addLanguageWarning(state, lang.code, 'language_index_unavailable', error?.message);
           state.languageStatuses[lang.code] = createLanguageStatus('index_error', { errorCode: error.code || error.name || 'INDEX_ERROR' });
           continue;
         }
@@ -647,8 +658,10 @@ const TEXT_I18N = {
         throwIfStaleRun(runId, 'candidate_audit_after_await');
       } catch (error) {
         if (isAbortError(error, currentRunSignal()) || !isCurrentRun(runId)) throw normalizeAbortError(error, { stage: error?.stage || 'candidate_audit', runId });
-        throw error;
+        addRunWarning(state, 'qwen_candidate_audit_unavailable', error?.message);
+        refined = { candidatesByLanguage: preliminaryPools };
       }
+      for (const warning of auditWarnings) addRunWarning(state, warningCode(warning) || 'qwen_candidate_audit_unavailable', warning);
 
       onProgress?.(currentLang() === 'en' ? 'Selecting final five frequency models...' : 'Выбор итоговых пяти частотных моделей...');
       const finalPools = {};
@@ -692,10 +705,12 @@ const TEXT_I18N = {
         });
         const failedCount = analyzed.filter(item => item.analysis?.status === 'error').length;
         const successfulCount = analyzed.length - failedCount;
+        if (failedCount && successfulCount) addLanguageWarning(state, lang.code, 'language_stage_partial', { failedCount, successfulCount });
+        if (analyzed.length > 0 && successfulCount === 0) addLanguageWarning(state, lang.code, 'all_language_candidates_analysis_failed', { analyzedCount: analyzed.length });
         state.languageStatuses[lang.code] = createLanguageStatus(
-          analyzed.length > 0 && successfulCount === 0 ? 'qwen_error' : (failedCount || auditWarnings.length ? 'completed_with_warnings' : 'completed'),
+          analyzed.length > 0 && successfulCount === 0 ? 'qwen_error' : (failedCount || hasLanguageAssociativeWarnings(state.warnings, lang.code) ? 'completed_with_warnings' : 'completed'),
           {
-            errorCode: failedCount ? (successfulCount === 0 ? 'QWEN_FAILED' : 'QWEN_PARTIAL_FAILURE') : (auditWarnings.length ? 'QWEN_CANDIDATE_AUDIT_WARNING' : null),
+            errorCode: failedCount ? (successfulCount === 0 ? 'QWEN_FAILED' : 'QWEN_PARTIAL_FAILURE') : null,
             candidateCount: pool.length,
             analyzedCount: analyzed.length,
             successfulCount,
@@ -707,17 +722,6 @@ const TEXT_I18N = {
       onProgress?.(currentLang() === 'en' ? 'Calculating final percentage...' : 'Расчёт итогового процента...');
       state.languages = { ...state.languages, ...nextLangs };
       calculateFinal();
-      if (auditWarnings.length) {
-        for (const lang of LANGUAGES) {
-          if (state.languageStatuses[lang.code]?.status === 'completed') {
-            state.languageStatuses[lang.code] = createLanguageStatus('completed_with_warnings', {
-              ...state.languageStatuses[lang.code],
-              errorCode: state.languageStatuses[lang.code]?.errorCode || 'QWEN_CANDIDATE_AUDIT_WARNING'
-            });
-            break;
-          }
-        }
-      }
       return true;
     }
 
