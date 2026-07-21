@@ -1,4 +1,5 @@
 import { BASE_CATEGORY_WEIGHTS, CATEGORY_ORDER, FREQUENCY_LIST_BASE_PATH, LANGUAGE_SOURCES } from './config-frequency-sources.js';
+import { normalizeLanguageSource } from './language-source-descriptor.js';
 
 const frequencyCache = new Map();
 export const SCORE_CONFIG = {
@@ -115,12 +116,22 @@ export async function getFrequencyProfile(language, word) {
     }
 
     const ipm_values = [];
-    for (const fileName of files) {
+    for (const source of files) {
+      let descriptor;
+      try {
+        descriptor = normalizeLanguageSource(category, source);
+      } catch (error) {
+        warnings.push(`Invalid frequency source descriptor for ${lang}/${category}: ${error.message}`);
+        ipm_values.push(0);
+        continue;
+      }
+      const { fileName, sourceId, optional } = descriptor;
       try {
         const data = await loadFrequencyFile(lang, fileName);
         ipm_values.push(extractIpm(data, word));
       } catch (error) {
-        warnings.push(`Frequency file unavailable: ${lang}/${fileName} (${error.message})`);
+        const requiredness = optional ? 'Optional' : 'Required';
+        warnings.push(`${requiredness} frequency file unavailable: ${lang}/${sourceId} (${error.message})`);
         ipm_values.push(0);
       }
     }
