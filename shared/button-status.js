@@ -6,7 +6,8 @@
     : `/elements/${BUTTON_LOADER_FILENAME}`;
 
   function installButtonLoaderStyles() {
-    if (document.getElementById('interal-button-loader-styles')) return;
+    if (typeof document.createElement !== 'function' || !document.head || typeof document.head.appendChild !== 'function') return;
+    if (typeof document.getElementById === 'function' && document.getElementById('interal-button-loader-styles')) return;
 
     const style = document.createElement('style');
     style.id = 'interal-button-loader-styles';
@@ -66,10 +67,11 @@
   }
 
   function ensureButtonStructure(button) {
-    if (!(button instanceof HTMLButtonElement)) return null;
+    if (!button || String(button.tagName || '').toUpperCase() !== 'BUTTON') return null;
 
-    let loader = button.querySelector(':scope > .btn-loader');
+    let loader = button.querySelector?.(':scope > .btn-loader') || null;
     if (!loader) {
+      if (typeof document.createElement !== 'function' || typeof button.prepend !== 'function') return null;
       loader = document.createElement('img');
       loader.className = 'btn-loader';
       loader.alt = '';
@@ -77,23 +79,25 @@
       loader.decoding = 'async';
       loader.src = buttonLoaderUrl;
       button.prepend(loader);
-    } else if (!loader.getAttribute('src')) {
+    } else if (!loader.getAttribute?.('src')) {
       loader.src = buttonLoaderUrl;
     }
 
-    let label = button.querySelector(':scope > .btn-text');
+    let label = button.querySelector?.(':scope > .btn-text') || null;
     if (!label) {
+      if (typeof document.createElement !== 'function' || typeof button.appendChild !== 'function') return { loader, label: null };
       label = document.createElement('span');
       label.className = 'btn-text';
 
-      const text = Array.from(button.childNodes)
-        .filter((node) => node !== loader && node.nodeType === Node.TEXT_NODE)
+      const childNodes = Array.from(button.childNodes || []);
+      const text = childNodes
+        .filter((node) => node !== loader && node.nodeType === 3)
         .map((node) => node.textContent || '')
         .join('')
         .trim();
 
-      Array.from(button.childNodes).forEach((node) => {
-        if (node !== loader && node.nodeType === Node.TEXT_NODE) node.remove();
+      childNodes.forEach((node) => {
+        if (node !== loader && node.nodeType === 3 && typeof node.remove === 'function') node.remove();
       });
 
       label.textContent = text;
@@ -104,8 +108,9 @@
   }
 
   function prepareExistingButtonLoaders(root = document) {
+    if (!root || typeof root.querySelectorAll !== 'function') return;
     root.querySelectorAll('.btn-loader').forEach((loader) => {
-      const button = loader.closest('button');
+      const button = loader.closest?.('button');
       if (button) ensureButtonStructure(button);
     });
   }
@@ -119,7 +124,7 @@
 
     installButtonLoaderStyles();
     const structure = ensureButtonStructure(button);
-    const label = structure?.label || button.querySelector('.btn-text');
+    const label = structure?.label || button.querySelector?.('.btn-text');
     const loading = options.loading === true;
 
     button.classList.toggle('is-loading', loading);
@@ -318,7 +323,7 @@
     normalizeAssociativeJsonText
   });
 
-  if (document.readyState === 'loading') {
+  if (document.readyState === 'loading' && typeof document.addEventListener === 'function') {
     document.addEventListener('DOMContentLoaded', () => {
       prepareExistingButtonLoaders();
       installAssociativeCardOutputNormalizer();
