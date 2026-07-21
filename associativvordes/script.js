@@ -1,4 +1,4 @@
-import { analyzeAssociativeWord, finalAssociationPassesThreshold, calculateLanguageScore, calculateFinalAssociation, buildDecisionReasons, decisionStatusForResult, canCreateAssociativeJsonCard, normalizeLanguageStatus, summarizeLanguageStatuses } from './js/association-analyzer.js';
+import { analyzeAssociativeWord, finalAssociationPassesThreshold, calculateLanguageScore, calculateFinalAssociation, buildDecisionReasons, decisionStatusForResult, canCreateAssociativeJsonCard, normalizeLanguageStatus, summarizeLanguageStatuses, deriveGlobalStatusFromLanguageStatuses } from './js/association-analyzer.js';
 import { QWEN_RUNTIME_CONFIG, QWEN_ERROR_CODES, refineCandidatesWithQwenAudit, selectBestFinalModels, finalizeCandidateOrdering } from './js/qwen-client.js';
 import { escapeHtml, formatMetric, renderCandidateEvidenceDetails, resultRowClasses, swowLabel, thresholdStatusLabel, thresholdStatusForResult, semanticWarningLabel, languageStatusLabel } from './js/render-results.js';
 import { normalizeText, stripDiacritics, includesRoot, fuzzyIncludesRoot, specialRootMatch } from './js/root-matcher.js';
@@ -178,6 +178,10 @@ const TEXT_I18N = {
 
     function createLanguageStatus(status = 'idle', extra = {}) {
       return normalizeLanguageStatus({ status, ...extra });
+    }
+
+    function deriveGlobalStatus(statusSummary = summarizeLanguageStatuses(state.languageStatuses)) {
+      return deriveGlobalStatusFromLanguageStatuses(statusSummary.statuses || state.languageStatuses);
     }
 
 
@@ -430,7 +434,10 @@ const TEXT_I18N = {
           word: item.word,
           frequencyProfile: item.frequencyProfile,
           onProgress: text => { if (isCurrentRun(runId)) onProgress?.(text.replace(`${langCode} —`, `${languageName} —`)); },
-          onReviewRequest: () => incrementDiagnostic('qwenReviewRequestCount'),
+          onReviewRequest: () => {
+            incrementDiagnostic('qwenReviewRequestCount');
+            state.languageStatuses[langCode] = createLanguageStatus('reviewing', state.languageStatuses[langCode]);
+          },
           signal: activeRunAbortController?.signal
         });
         if (!isCurrentRun(runId)) return item;
@@ -596,9 +603,10 @@ const TEXT_I18N = {
           continue;
         }
         onProgress?.(`${currentLang() === 'en' ? 'Grouping candidate models' : 'Группировка моделей'}: ${languageName}`);
+        state.languageStatuses[lang.code] = createLanguageStatus('grouping_candidates', { candidateCount: validCandidates.length });
         candidatePools[lang.code] = reconcileModelRepresentatives(validCandidates, root, lang.code)
           .map(item => ({ ...item, selected: false, analysisStatus: 'pending' }));
-        state.languageStatuses[lang.code] = createLanguageStatus('loading', { candidateCount: candidatePools[lang.code].length });
+        state.languageStatuses[lang.code] = createLanguageStatus('candidate_audit', { candidateCount: candidatePools[lang.code].length });
       }
       if (!isCurrentRun(runId)) return;
 
@@ -664,7 +672,7 @@ const TEXT_I18N = {
         const failedCount = analyzed.filter(item => item.analysis?.status === 'error').length;
         const successfulCount = analyzed.length - failedCount;
         state.languageStatuses[lang.code] = createLanguageStatus(
-          analyzed.length > 0 && successfulCount === 0 ? 'qwen_error' : 'completed',
+          analyzed.length > 0 && successfulCount === 0 ? 'qwen_error' : (failedCount || auditWarnings.length ? 'completed_with_warnings' : 'completed'),
           {
             errorCode: failedCount ? (successfulCount === 0 ? 'QWEN_FAILED' : 'QWEN_PARTIAL_FAILURE') : (auditWarnings.length ? 'QWEN_CANDIDATE_AUDIT_WARNING' : null),
             candidateCount: pool.length,
@@ -713,11 +721,11 @@ const TEXT_I18N = {
         state.checked = true;
         {
           const summary = summarizeLanguageStatuses(state.languageStatuses);
-          state.globalStatus = summary.allTerminal ? (summary.warnings.length ? 'completed_with_warnings' : 'completed') : 'loading';
+          state.globalStatus = deriveGlobalStatus(summary);
         }
         renderAll();
         window.InteralFormDraft?.save?.();
-        buttonController?.success(buttonToken, state.globalStatus === 'completed_with_warnings' ? textGroup('errors').completedWithWarnings : (currentLang() === 'en' ? 'Done' : 'Готово'));
+        if (state.checked && state.globalStatus !== 'loading') buttonController?.success(buttonToken, state.globalStatus === 'completed_with_warnings' ? textGroup('errors').completedWithWarnings : (currentLang() === 'en' ? 'Done' : 'Готово'));
       } catch (error) {
         if (!isCurrentRun(runId)) {
           buttonController?.abort(buttonToken);
@@ -1383,7 +1391,7 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
     function normalizeRestoredLanguageStatuses(statuses = {}) {
       return Object.fromEntries(LANGUAGES.map(lang => {
         const restored = statuses?.[lang.code] && typeof statuses[lang.code] === 'object' ? statuses[lang.code] : createLanguageStatus();
-        const interrupted = ['loading_index', 'analyzing'].includes(restored.status) || (restored.status === 'idle' && Boolean(state?.checked));
+        const interrupted = ['loading_index', 'grouping_candidates', 'candidate_audit', 'analyzing', 'reviewing', 'loading'].includes(restored.status) || (restored.status === 'idle' && Boolean(state?.checked));
         const status = interrupted ? 'aborted' : (restored.status || 'idle');
         const message = currentLang() === 'en'
           ? 'The previous calculation was interrupted. Run it again.'
@@ -1399,8 +1407,8 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
     }
 
     function normalizeGlobalStatusForRestore(status, checked) {
-      if (['loading_index', 'analyzing', 'loading'].includes(status) || (status === 'idle' && checked)) return 'aborted';
-      if (['completed', 'completed_with_warnings', 'no_candidates', 'index_error', 'qwen_error', 'aborted', 'idle'].includes(status)) return status;
+      if (['loading_index', 'grouping_candidates', 'candidate_audit', 'analyzing', 'reviewing', 'loading'].includes(status) || (status === 'idle' && checked)) return 'aborted';
+      if (['completed', 'completed_with_warnings', 'no_candidates', 'index_error', 'qwen_error', 'incomplete', 'aborted', 'idle'].includes(status)) return status;
       return checked ? 'completed' : 'idle';
     }
 
