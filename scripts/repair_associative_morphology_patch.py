@@ -25,5 +25,16 @@ new = """  return output.sort((a, b) => b.confidence_score - a.confidence_score
 if old not in text:
     raise SystemExit('preposition ranking target not found')
 text = text.replace(old, new, 1)
+old = """new = r'''  const stem = analysis.analysis_confidence === 'low'
+    ? stemRoot
+    : `${stemRoot}${analysis.first_meaningful_derivational_element && analysis.first_meaningful_derivational_element !== 'base' ? analysis.first_meaningful_derivational_element : ''}`;
+'''
+"""
+new = """new = r'''  const stem = stemRoot;
+'''
+"""
+if old not in text:
+    raise SystemExit('descriptor stem replacement target not found')
+text = text.replace(old, new, 1)
 path.write_text(text, encoding='utf-8')
-print('Repaired lexical-root ranking.')
+print('Repaired lexical-root ranking and canonical descriptor stem.')
