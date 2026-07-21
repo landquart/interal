@@ -32,7 +32,7 @@
       if (value) node.textContent = value;
     });
     if (document.body.classList.contains('instrumentes-page')) {
-      document.title = lang === 'en' ? dictionary.instruments : `${dictionary.instruments} — Interal`;
+      document.title = dictionary.instruments;
     }
   }
 
