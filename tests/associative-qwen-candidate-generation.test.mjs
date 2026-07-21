@@ -44,8 +44,8 @@ const evaluatedModels = [
   { word: 'altruist', model_key: 'm7', frequency_score: 55, final_score: 78, rank: 7 }
 ];
 const finalFive = selectBestFinalModels(evaluatedModels, 5);
-assert.deepEqual(finalFive.map(item => item.word), ['altruism', 'altruist', 'alteration', 'alterity', 'alternate'], 'higher-P supplemental models replace weaker members of the initial frequency five');
-assert.ok(compareFinalModelCandidates(evaluatedModels[5], evaluatedModels[0]) < 0, 'final model comparison prioritizes P before F');
+assert.deepEqual(finalFive.map(item => item.word), ['alternative', 'alteration', 'alterity', 'alternate', 'alterable'], 'final five are selected by frequency even when lower-F supplemental models have higher P');
+assert.ok(compareFinalModelCandidates(evaluatedModels[5], evaluatedModels[0]) > 0, 'final model comparison prioritizes F before P');
 
 const sameModel = selectBestFinalModels([
   { word: 'alternative', model_key: 'same', frequency_score: 90, final_score: 30, rank: 1 },
@@ -173,7 +173,7 @@ assert.match(clientSource, /loadCandidateEntries\(language, suggestion\.word/, '
 assert.match(clientSource, /buildSearchForm\(entry\.word\) === requested/, 'local verification requires an exact normalized lemma');
 assert.match(clientSource, /qwen_suggestion_verified_in_local_index/, 'only locally verified suggestions are marked for insertion');
 assert.match(clientSource, /waitForCandidateAnalysis/, 'every verified supplement is scored before final selection');
-assert.match(clientSource, /selectBestFinalModels[\s\S]*candidateFinalScore/, 'the final five are ranked by measured P');
+assert.match(clientSource, /selectBestFinalModels[\s\S]*candidateFrequencyScore/, 'the final five are ranked by measured F');
 assert.match(clientSource, /rebalanceSelectedModels/, 'supplements can replace weaker members of the original five');
 assert.match(clientSource, /existingCandidates = Object\.fromEntries[\s\S]*currentModels\[language\]/, 'the audit excludes only the current five, not every lower-ranked local candidate');
 assert.match(clientSource, /findIndexByWord/, 'a suggested word already present lower in the full result is located instead of discarded');
@@ -182,7 +182,7 @@ assert.match(clientSource, /allCandidates/, 'final rebalancing uses the full run
 assert.doesNotMatch(clientSource, /existingKeys\[language\]\.has\(suggestionKey\)/, 'an already-found but unselected word is not silently skipped');
 
 assert.match(endpointSource, /already selected up to five distinct derivational models per language by corpus frequency/, 'server understands the two-stage selection policy');
-assert.match(endpointSource, /credible chance of receiving a higher final P/, 'Qwen only proposes plausible improvements');
+assert.match(endpointSource, /credible chance of entering the frequency-selected top five/, 'Qwen proposes plausible frequency improvements');
 assert.match(endpointSource, /If the current five models are already adequate, return an empty array/, 'Qwen may correctly propose nothing outside the configured high-confidence allomorphs');
 assert.match(endpointSource, /ROOT_ALLOMORPH_CANDIDATES/, 'known high-confidence allomorph models are guaranteed after the audit');
 assert.match(endpointSource, /mergeCandidateMaps\(guaranteedCandidates, qwenCandidates\)/, 'guaranteed allomorph candidates cannot be suppressed by an empty model response');
