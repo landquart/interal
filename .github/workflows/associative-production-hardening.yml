@@ -22,11 +22,14 @@ jobs:
         with:
           node-version: '24'
 
-      - name: Apply production hardening
-        run: |
-          python3 scripts/apply_associative_core_hardening.py
-          python3 scripts/apply_associative_morphology_hardening.py
-          python3 scripts/apply_associative_hardening_tests.py
+      - name: Apply core hardening
+        run: python3 scripts/apply_associative_core_hardening.py
+
+      - name: Apply morphology hardening
+        run: python3 scripts/apply_associative_morphology_hardening.py
+
+      - name: Apply hardening tests
+        run: python3 scripts/apply_associative_hardening_tests.py
 
       - name: Validate JavaScript syntax
         run: |
