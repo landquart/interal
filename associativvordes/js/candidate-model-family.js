@@ -6,37 +6,12 @@ export function canonicalLexicalStem(value, language = 'en') {
   return parsed.matched_root_variant || buildSearchForm(value);
 }
 
-function writingSystem(value) {
-  const text = String(value || '');
-  const latin = /[A-Za-zÀ-ÖØ-öø-ÿ]/u.test(text);
-  const cyrillic = /[\u0400-\u04ff]/u.test(text);
-  const greek = /[\u0370-\u03ff]/u.test(text);
-  const count = Number(latin) + Number(cyrillic) + Number(greek);
-  if (count > 1) return 'mixed';
-  if (cyrillic) return 'cyrillic';
-  if (greek) return 'greek';
-  if (latin) return 'latin';
-  return 'other';
-}
-
-function latinDiacriticSignature(value, system) {
-  if (system !== 'latin') return 'plain';
-  const decomposed = String(value || '').normalize('NFD');
-  const marks = [];
-  let baseIndex = -1;
-  for (const char of decomposed) {
-    if (/\p{M}/u.test(char)) marks.push(`${baseIndex}:${char.codePointAt(0).toString(16)}`);
-    else baseIndex += 1;
-  }
-  return marks.length ? marks.join(',') : 'plain';
-}
-
 export function lexicalModelDescriptor(candidate, root, language = 'en', elementType = 'root') {
   const word = String(candidate?.word || candidate?.normalized || '');
   const wordForm = buildSearchForm(candidate?.search_form || word);
   if (!wordForm) return { key: '', label: '', stem: '', prefix: '', fragment: '', analysis: null };
   const rootForm = buildSearchForm(root);
-  const fragment = buildSearchForm(candidate?.match?.type === 'special' ? candidate.match.fragment : (candidate?.match?.fragment || rootForm));
+  const fragment = buildSearchForm(candidate?.match?.type === 'fuzzy' ? rootForm : (candidate?.match?.fragment || rootForm));
   const explicitIndex = Number(candidate?.match?.index);
   const inferredIndex = fragment ? wordForm.indexOf(fragment) : (rootForm ? wordForm.indexOf(rootForm) : -1);
   const index = Number.isInteger(explicitIndex) && explicitIndex >= 0 ? explicitIndex : Math.max(0, inferredIndex);
@@ -45,19 +20,16 @@ export function lexicalModelDescriptor(candidate, root, language = 'en', element
     elementType,
     candidateWord: word,
     search_form: wordForm,
+    canonicalRoot: rootForm,
     matchedRootVariant: fragment || rootForm,
     rootIndex: index,
     match: candidate?.match
   });
-  const system = writingSystem(word);
-  const diacritics = latinDiacriticSignature(word, system);
-  let modelKey = analysis.model_key;
-  if (String(language).toLowerCase() === 'ru' && analysis.matched_root_variant === 'alter' && wordForm.startsWith('alternativ')) modelKey = `${String(language).toLowerCase()}|root|${analysis.prefix_chain.join('+')}|alter|alternativ`;
-  if (analysis.prefix_chain.length && elementType === 'root') modelKey = `${String(language).toLowerCase()}|root|${analysis.prefix_chain.join('+')}|${analysis.matched_root_variant}|${wordForm}`;
-  const key = `${language}|${system}|${diacritics}|${modelKey}`;
-  let stem = analysis.analysis_confidence === 'low' ? analysis.matched_root_variant : `${analysis.matched_root_variant}${analysis.first_meaningful_derivational_element && analysis.first_meaningful_derivational_element !== 'base' ? analysis.first_meaningful_derivational_element : ''}`;
-  if (String(language).toLowerCase() === 'ru' && analysis.matched_root_variant === 'alter' && wordForm.startsWith('alternativ')) stem = 'alternativ';
-  return { key, label: analysis.model_label, stem, prefix: analysis.prefix_chain.join('+'), fragment: analysis.matched_root_variant, analysis };
+  const stemRoot = String(language).toLowerCase() === 'ru' ? buildSearchForm(analysis.matched_root_variant || analysis.canonical_root) : (analysis.matched_root_variant || analysis.canonical_root);
+  const stem = analysis.analysis_confidence === 'low'
+    ? stemRoot
+    : `${stemRoot}${analysis.first_meaningful_derivational_element && analysis.first_meaningful_derivational_element !== 'base' && !(String(language).toLowerCase() === 'ru' && stemRoot === 'alternativ') ? analysis.first_meaningful_derivational_element : ''}`;
+  return { key: analysis.model_key, label: analysis.model_label, stem, prefix: analysis.prefix_chain.join('+'), fragment: analysis.matched_root_variant, analysis };
 }
 
 export function lexicalModelFamilyKey(candidate, root, language = 'en') {
@@ -100,7 +72,8 @@ export function selectHighestFrequencyPerModel(candidates, root, language = 'en'
       model_key: descriptor.key || source?.model_key || '',
       model_label: descriptor.label || source?.model_label || source?.model || '',
       model: descriptor.label || source?.model || '',
-      morpheme_analysis: descriptor.analysis || source?.morpheme_analysis || null
+      morpheme_analysis: descriptor.analysis || source?.morpheme_analysis || null,
+      parser_version: descriptor.analysis?.parser_version || source?.parser_version || source?.morpheme_analysis?.parser_version || null
     };
     const key = candidate.model_key || `manual:${language}:${index}:${buildSearchForm(candidate.word)}`;
     const group = groups.get(key) || { key, members: [], representative: null };

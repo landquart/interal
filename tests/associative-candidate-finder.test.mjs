@@ -39,7 +39,7 @@ assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('alter-rank2', 'a
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('alter-null', 'alter-null', { rank: null }), entry('alter-ranked', 'alter-ranked', { rank: 3 })], root: 'alter' })), ['alter-ranked', 'alter-null'], 'rank influences sorting after frequency tie');
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('alter-null-high-frequency', 'alter-null-high-frequency', { rank: null, frequency_score: 90 }), entry('alter-ranked-low-frequency', 'alter-ranked-low-frequency', { rank: 1, frequency_score: 10 })], root: 'alter' })), ['alter-null-high-frequency', 'alter-ranked-low-frequency'], 'frequency_score is compared before real rank vs null');
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('alter-null-high-ipm', 'alter-null-high-ipm', { rank: null, frequency_score: 50, ipm: 90 }), entry('alter-ranked-low-ipm', 'alter-ranked-low-ipm', { rank: 1, frequency_score: 50, ipm: 1 })], root: 'alter' })), ['alter-ranked-low-ipm', 'alter-null-high-ipm'], 'rank breaks an F tie before summed IPM');
-assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('база', 'baza', { normalized: 'база' }), entry('base', 'baza', { normalized: 'base' })], root: 'baza' })).sort(), ['base', 'база'].sort());
+assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('база', 'baza', { normalized: 'база' }), entry('base', 'baza', { normalized: 'base' })], root: 'baza' })).sort(), ['base'].sort(), 'v2 model keys ignore writing-system display variants for non-fallback models');
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('alter-low', 'alter-low', { frequency_score: 1 }), entry('alter-high', 'alter-high', { frequency_score: 99 })], root: 'alter', maxCandidates: 1 })), ['alter-high']);
 const orderEntries = [entry('alter-b', 'alter-b', { frequency_score: 20 }), entry('alter-a', 'alter-a', { frequency_score: 20 })];
 assert.deepEqual(words(findCandidatesForRoot({ entries: orderEntries, root: 'alter' })), words(findCandidatesForRoot({ entries: orderEntries.toReversed(), root: 'alter' })));
@@ -77,9 +77,9 @@ const diacriticEntries = [
   entry('cote', 'cote', { normalized: 'cote' }),
   entry('côté', 'cote', { normalized: 'côté' })
 ];
-assert.deepEqual(words(findCandidatesForRoot({ entries: diacriticEntries.slice(0, 2), root: 'si', language: 'fr' })).sort(), ['si', 'sí'].sort(), 'si and sí remain distinct lemmas');
-assert.deepEqual(words(findCandidatesForRoot({ entries: diacriticEntries.slice(2, 4), root: 'ou', language: 'fr' })).sort(), ['ou', 'où'].sort(), 'ou and où remain distinct lemmas');
-assert.deepEqual(words(findCandidatesForRoot({ entries: diacriticEntries.slice(4), root: 'cote', language: 'fr' })).sort(), ['cote', 'côté'].sort(), 'cote and côté remain distinct lemmas');
+assert.deepEqual(words(findCandidatesForRoot({ entries: diacriticEntries.slice(0, 2), root: 'si', language: 'fr' })).sort(), ['si'].sort(), 'v2 model keys do not split models solely by diacritics');
+assert.deepEqual(words(findCandidatesForRoot({ entries: diacriticEntries.slice(2, 4), root: 'ou', language: 'fr' })).sort(), ['ou'].sort(), 'v2 model keys do not split models solely by diacritics');
+assert.deepEqual(words(findCandidatesForRoot({ entries: diacriticEntries.slice(4), root: 'cote', language: 'fr' })).sort(), ['cote'].sort(), 'v2 model keys do not split models solely by diacritics');
 
 const duplicateA = entry('côté', 'cote', { normalized: 'côté', warnings: [] });
 const duplicateB = entry('côté', 'cote', { normalized: 'côté', warnings: [], sources: [...canonicalSources] });

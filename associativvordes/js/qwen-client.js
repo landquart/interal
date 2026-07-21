@@ -382,7 +382,10 @@ function verifiedCandidatePatch(suggestion, entry, root, descriptor, { resetAnal
     warnings: [...new Set([...(Array.isArray(entry.warnings) ? entry.warnings : []), 'qwen_suggestion_verified_in_local_index'])],
     model_key: descriptor.key,
     model_family_key: descriptor.key,
-    model: descriptor.label
+    model: descriptor.label,
+    model_label: descriptor.label,
+    morpheme_analysis: descriptor.analysis,
+    parser_version: descriptor.analysis?.parser_version || null
   };
   if (resetAnalysis) {
     Object.assign(patch, {
@@ -419,6 +422,9 @@ async function addVerifiedCandidateToRuntime(language, suggestion, entry, root, 
     model_key: descriptor.key,
     model_family_key: descriptor.key,
     model: descriptor.label,
+    model_label: descriptor.label,
+    morpheme_analysis: descriptor.analysis,
+    parser_version: descriptor.analysis?.parser_version || null,
     frequencyProfile: { frequency_score: entry.frequency_score }
   };
   const exactIndex = window.InteralAssociativeModels?.findIndexByWord?.(language, entry.word) ?? -1;
