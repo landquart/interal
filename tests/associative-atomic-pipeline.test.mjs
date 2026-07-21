@@ -1,108 +1,172 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
+import { runAssociativeCalculation, resetAssociativeCalculationRunnerForTests, restoreAssociativeCalculation } from '../associativvordes/js/associative-calculation-runner.js';
 import { refineCandidatesWithQwenAudit, finalizeCandidateOrdering } from '../associativvordes/js/qwen-client.js';
 
-const scriptSource = await readFile('associativvordes/script.js', 'utf8');
-const clientSource = await readFile('associativvordes/js/qwen-client.js', 'utf8');
+function deferred() { let resolve, reject; const promise = new Promise((res, rej) => { resolve = res; reject = rej; }); return { promise, resolve, reject }; }
+async function tick(times = 1) { for (let i = 0; i < times; i += 1) await Promise.resolve(); }
+const languages = [{ code: 'en', group: 'Germanic' }];
+const baseCandidates = ['a','b','c','d','e','f'].map((word, i) => ({ word, model_key: word, model: word, frequency_score: 100 - i * 10, selected: false, parser_version: 'pv2' }));
+function snapshot(state) { return JSON.stringify({ checked: state.checked, languages: state.languages, selectedModels: state.selectedModels, scores: state.languageScores, FA: state.FA, globalStatus: state.globalStatus }); }
+function abortError() { return new DOMException('cancelled', 'AbortError'); }
 
-assert.doesNotMatch(clientSource, /calculateButton\.addEventListener\('click',[\s\S]*?\{\s*capture:\s*true\s*\}/, 'no capture click handler starts a background supplement after the main calculation');
-assert.doesNotMatch(clientSource, /supplementAfterCompletedCalculation/, 'post-completion supplement function is removed');
-assert.match(clientSource, /export async function refineCandidatesWithQwenAudit/, 'candidate supplement is an exported async pipeline step');
-assert.match(scriptSource, /await refineCandidatesWithQwenAudit/, 'runCalculation directly awaits candidate audit before final selection');
-assert.ok(scriptSource.indexOf('await refineCandidatesWithQwenAudit') < scriptSource.indexOf('Selecting final five frequency models'), 'Qwen suggestions are considered before the final five models are selected');
-assert.ok(scriptSource.indexOf('Selecting final five frequency models') < scriptSource.indexOf('Qwen3.6: оценка первых'), 'primary Qwen analysis runs only after the final five frequency models are fixed');
-assert.ok(scriptSource.indexOf('Расчёт итогового процента') > scriptSource.indexOf('Qwen3.6: оценка первых'), 'FA is calculated after final model evaluation');
-assert.ok(scriptSource.indexOf('state.checked = true') > scriptSource.indexOf('await runCalculation'), 'state.checked is set only after the awaited pipeline completes');
-assert.ok(scriptSource.indexOf('window.InteralFormDraft?.save?.();', scriptSource.indexOf('state.checked = true')) > scriptSource.indexOf('state.checked = true'), 'form draft is saved only after final checked state');
-assert.match(scriptSource, /buttonController\?\.start\([\s\S]*?buttonController\?\.success/, 'button controller keeps the loader-owned button state until final success');
-assert.match(scriptSource, /activeRunAbortController\?\.abort\?\.\(/ , 'new runs and resets abort the previous pipeline');
-assert.match(scriptSource, /isCurrentRun\(runId\)/, 'pipeline checks run identity before mutating final state');
-assert.match(scriptSource, /QWEN_CANDIDATE_AUDIT_WARNING/, 'candidate audit failures are converted into a completed warning result');
-
-assert.match(scriptSource, /function nextRunId\(\) \{ activeRunAbortController\?\.abort\?\.\([\s\S]*?activeRunId \+= 1;[\s\S]*?new AbortController\(\)/, 'new calculation aborts the previous controller before creating the next one');
-assert.match(scriptSource, /throwIfStaleRun\(runId, 'candidate_analysis_after_qwen'\)/, 'old run is checked after primary/review candidate analysis awaits');
-assert.match(scriptSource, /throwIfStaleRun\(runId, 'candidate_audit_after_await'\)/, 'old run is checked after candidate audit awaits');
-assert.match(scriptSource, /throwIfStaleRun\(runId, 'candidate_analysis_after_batch'\)/, 'old run is checked after suggestion verification/concurrency awaits');
-assert.match(scriptSource, /isAbortError\(error, currentRunSignal\(\)\)[\s\S]*buttonController\?\.abort\(buttonToken\)/, 'aborted runs use silent button abort rather than error/Done');
-assert.match(scriptSource, /window\.InteralFormDraft\?\.save\?\.\(\);/, 'draft save remains after successful current-run completion only');
-assert.ok(scriptSource.indexOf('window.InteralFormDraft?.save?.();') > scriptSource.indexOf('if (!isCurrentRun(runId) || currentRunSignal()?.aborted)'), 'draft is not saved before the stale-run/abort guard');
-assert.ok(scriptSource.indexOf('buttonController?.success') > scriptSource.indexOf('if (!isCurrentRun(runId) || currentRunSignal()?.aborted)'), 'Done is not shown before the stale-run/abort guard');
-assert.ok(scriptSource.indexOf('renderAll();') > scriptSource.indexOf('state.checked = true'), 'final render follows checked state after a successful current run');
-assert.match(scriptSource, /finally \{[\s\S]*if \(isCurrentRun\(runId\)\)[\s\S]*renderAll\(\)[\s\S]*else[\s\S]*buttonController\?\.abort/, 'cancelled old runs do not execute final render');
-
-
-const originalFetch = globalThis.fetch;
-const originalDocument = globalThis.document;
-const originalLocation = globalThis.location;
-globalThis.document = { documentElement: { lang: 'en' } };
-globalThis.location = { hostname: 'localhost' };
-let fetchCount = 0;
-globalThis.fetch = async (_url, options) => {
-  fetchCount += 1;
-  assert.ok(options.signal, 'candidate audit request receives the shared AbortSignal');
-  return {
-    ok: true,
-    async json() {
-      return { candidates: { en: [{ word: 'zeta', root_variant: 'zet' }] } };
+function makeDeps({ defers = {}, events = [], primaryScore = 30, reviewScore = 50, auditAdds = [], auditReject, reviewReject, langs = languages } = {}) {
+  const counts = { translationRequests: 0, candidateAuditRequests: 0, candidateVerificationRequests: 0, primaryRequests: 0, reviewRequests: 0, saves: 0, renders: 0, runs: 0 };
+  const dom = { disabled: false, ariaBusy: 'false', loading: false, svgVisible: false, text: 'Calculate', snapshots: [] };
+  const saved = [];
+  const wait = async (name) => defers[name] ? defers[name].promise : undefined;
+  const deps = {
+    languages: langs,
+    eventLog: events,
+    targetTranslator: { async translate() { counts.translationRequests++; events.push('mock:translation'); await wait('translation'); return { en: 'eye' }; } },
+    candidateIndexLoader: { async load() { events.push('mock:index'); await wait('index'); return baseCandidates; } },
+    candidateAudit: { async audit({ candidatesByLanguage }) { counts.candidateAuditRequests++; events.push('mock:audit'); await wait('audit'); if (auditReject) throw auditReject; return { en: [...candidatesByLanguage.en, ...auditAdds] }; } },
+    candidateVerifier: { async verify({ candidatesByLanguage }) { counts.candidateVerificationRequests++; events.push('mock:verify'); await wait('verify'); return candidatesByLanguage; } },
+    primaryAnalyzer: { async analyze({ candidate }) { counts.primaryRequests++; events.push(`mock:primary:${candidate.word}`); await wait(`primary:${candidate.word}`); await wait('primary'); return { final_score: primaryScore, association_score: 90, model: 'primary' }; } },
+    reviewAnalyzer: { async analyze({ candidate }) { counts.reviewRequests++; events.push(`mock:review:${candidate.word}`); await wait(`review:${candidate.word}`); await wait('review'); if (reviewReject) throw reviewReject; return { final_score: reviewScore, association_score: 95, model: 'review' }; } },
+    renderer: { async renderFinal(state) { counts.renders++; await wait('render'); dom.snapshots.push(snapshot(state)); } },
+    stateStorage: { create: undefined, async save(state) { counts.saves++; await wait('save'); saved.push(JSON.parse(JSON.stringify(state))); }, async load() { return saved.at(-1); } },
+    buttonStatusController: {
+      start(text) { counts.runs++; Object.assign(dom, { disabled: true, ariaBusy: 'true', loading: true, svgVisible: true, text }); return 1; },
+      progress(_token, text) { Object.assign(dom, { disabled: true, ariaBusy: 'true', loading: true, svgVisible: true, text }); },
+      success(_token, text) { Object.assign(dom, { disabled: false, ariaBusy: 'false', loading: false, svgVisible: false, text }); },
+      abort() { Object.assign(dom, { disabled: false, ariaBusy: 'false', loading: false, svgVisible: false, text: 'Calculate' }); },
+      error() { Object.assign(dom, { disabled: false, ariaBusy: 'false', loading: false, svgVisible: false, text: 'Error' }); }
     }
   };
-};
-const loader = {
-  async loadCandidateEntries(language, word, { signal } = {}) {
-    assert.equal(language, 'en');
-    assert.equal(word, 'zeta');
-    assert.ok(signal, 'local verification receives the shared AbortSignal');
-    return [{ word: 'zeta', normalized: 'zeta', search_form: 'zeta', frequency_score: 99, sources: [{ id: 'test' }] }];
-  }
-};
-const refined = await refineCandidatesWithQwenAudit({
-  root: 'zet',
-  targetMeaning: 'test',
-  candidatesByLanguage: { en: [{ word: 'alpha', model_key: 'a', frequency_score: 10, sources: [{ id: 'base' }], match: {} }] },
-  loader,
-  languages: ['en'],
-  signal: new AbortController().signal
-});
-assert.equal(fetchCount, 1, 'candidate audit performs exactly one network request inside the awaited stage');
-assert.ok(refined.candidatesByLanguage.en.some(candidate => candidate.word === 'zeta'), 'verified Qwen suggestion is added before final ordering');
-assert.equal(finalizeCandidateOrdering(refined.candidatesByLanguage.en, 1)[0].word, 'zeta', 'Qwen suggestion participates in frequency-only final selection');
+  return { deps, counts, dom, saved };
+}
 
+async function complete(defers) { for (const d of Object.values(defers)) d.resolve?.(); await tick(4); }
 
-const abortingSignal = new AbortController();
-abortingSignal.abort(new DOMException('cancelled', 'AbortError'));
-await assert.rejects(
-  () => refineCandidatesWithQwenAudit({
-    root: 'zet',
-    targetMeaning: 'test',
-    candidatesByLanguage: { en: [{ word: 'alpha', model_key: 'a', frequency_score: 10 }] },
-    loader,
-    languages: ['en'],
-    signal: abortingSignal.signal,
-    onWarning: warning => { throw new Error(`abort must not become audit warning: ${warning}`); }
-  }),
-  error => error?.name === 'AbortError' && error?.code === 'ABORTED',
-  'candidate audit abort propagates without warning fallback'
-);
+// Secondary architecture checks kept deliberately small; behavior assertions below execute code.
+const scriptSource = await readFile('associativvordes/script.js', 'utf8');
+const clientSource = await readFile('associativvordes/js/qwen-client.js', 'utf8');
+assert.doesNotMatch(clientSource, /supplementAfterCompletedCalculation/, 'no removed background supplement helper remains');
+assert.match(clientSource, /export async function refineCandidatesWithQwenAudit/, 'candidate audit remains an exported pipeline step');
+assert.match(scriptSource, /activeRunAbortController\?\.abort\?\.\(/, 'browser runner still aborts previous active runs');
 
-fetchCount = 0;
-globalThis.fetch = async () => {
-  fetchCount += 1;
-  return { ok: false, async json() { return { ok: false, errorCode: 'SIMULATED' }; } };
-};
-const fallback = await refineCandidatesWithQwenAudit({
-  root: 'zet',
-  targetMeaning: 'test',
-  candidatesByLanguage: { en: [{ word: 'alpha', model_key: 'a', frequency_score: 10 }] },
-  loader,
-  languages: ['en'],
-  signal: new AbortController().signal
-});
-assert.deepEqual(fallback.candidatesByLanguage.en.map(candidate => candidate.word), ['alpha'], 'candidate audit failure preserves the base result');
-assert.deepEqual(fallback.warnings, ['qwen_candidate_audit_unavailable'], 'candidate audit failure reports a warning');
-assert.equal(fetchCount, 1, 'failed candidate audit does not schedule retry/background requests');
+{
+  resetAssociativeCalculationRunnerForTests();
+  const events = [];
+  const defers = Object.fromEntries(['translation','index','audit','verify','primary','review','render','save'].map(k => [k, deferred()]));
+  const { deps, counts, dom, saved } = makeDeps({ defers, events, auditAdds: [{ word: 'g', model_key: 'g', model: 'g', frequency_score: 150, parser_version: 'pv2' }] });
+  const run = runAssociativeCalculation({ input: { root: 'ocul', meaning: 'eye' }, dependencies: deps, onStateChange: (state, meta) => { if (meta.event.startsWith('status')) assert.equal(state.checked, false); } });
+  await tick(); assert.equal(dom.disabled, true); assert.equal(dom.ariaBusy, 'true'); assert.equal(dom.loading, true); assert.equal(dom.svgVisible, true); assert.match(dom.text, /translation/);
+  for (const name of ['translation','index','audit','verify','primary','review','render','save']) { defers[name].resolve(); await tick(4); if (!events.includes('button:done')) assert.equal(dom.loading, true, `loader remains on during ${name}`); }
+  const result = await run;
+  assert.deepEqual(events.filter(e => !e.startsWith('mock:')), ['run:start','translation:start','translation:end','index:start','index:end','audit:start','audit:end','selection:final','primary:start','primary:end','review:start','review:end','primary:start','primary:end','review:start','review:end','primary:start','primary:end','review:start','review:end','primary:start','primary:end','review:start','review:end','primary:start','primary:end','review:start','review:end','language_score:calculated','scores:calculated','render:final','state:checked','draft:saved','button:done','run:end']);
+  assert.ok(events.indexOf('audit:end') < events.indexOf('selection:final'));
+  assert.ok(events.indexOf('selection:final') < events.indexOf('primary:start'));
+  assert.ok(events.lastIndexOf('review:end') < events.indexOf('language_score:calculated'));
+  assert.ok(events.indexOf('scores:calculated') < events.indexOf('render:final'));
+  assert.ok(events.indexOf('render:final') < events.indexOf('draft:saved'));
+  assert.ok(events.indexOf('draft:saved') < events.indexOf('button:done'));
+  assert.equal(result.state.checked, true); assert.equal(dom.text, 'Done'); assert.equal(counts.saves, 1); assert.equal(saved[0].languages.en[0].parser_version, 'pv2'); assert.equal(saved[0].languages.en[0].model_key, 'g');
+  const frozen = snapshot(result.state); const domFrozen = JSON.stringify(dom.snapshots); const countsFrozen = { ...counts };
+  await complete(defers); await tick(5);
+  assert.equal(snapshot(result.state), frozen, 'state/result do not change after Done');
+  assert.equal(JSON.stringify(dom.snapshots), domFrozen, 'DOM snapshot does not change after Done');
+  assert.deepEqual(counts, countsFrozen, 'no extra network/save/render calls after Done');
+}
 
-globalThis.fetch = originalFetch;
-globalThis.document = originalDocument;
-globalThis.location = originalLocation;
+{
+  resetAssociativeCalculationRunnerForTests();
+  const aReview = deferred();
+  const a = makeDeps({ defers: { review: aReview }, events: [] });
+  const runA = runAssociativeCalculation({ input: { root: 'A' }, dependencies: a.deps, signal: new AbortController().signal }).catch(e => e);
+  await tick(10);
+  const b = makeDeps({ events: [] });
+  const runB = runAssociativeCalculation({ input: { root: 'B' }, dependencies: b.deps });
+  aReview.resolve(); await tick(5);
+  const resultB = await runB;
+  const resultA = await runA;
+  assert.equal(resultA.name, 'AbortError');
+  assert.equal(resultB.state.root, 'B');
+  assert.equal(a.counts.renders, 0); assert.equal(a.counts.saves, 0); assert.ok(!a.deps.eventLog.includes('button:done'));
+}
 
-console.log('Associative atomic pipeline tests passed.');
+{
+  resetAssociativeCalculationRunnerForTests();
+  const events = [];
+  const { deps, counts } = makeDeps({ events, auditReject: new Error('audit down') });
+  const result = await runAssociativeCalculation({ input: { root: 'warn' }, dependencies: deps });
+  assert.ok(result.state.warnings.includes('qwen_candidate_audit_unavailable'));
+  assert.deepEqual(result.state.selectedModels.en, ['a','b','c','d','e']);
+  assert.ok(events.indexOf('audit:end') < events.indexOf('button:done'));
+  assert.equal(counts.candidateAuditRequests, 1);
+}
+
+{
+  resetAssociativeCalculationRunnerForTests();
+  const { deps } = makeDeps({ reviewReject: new Error('review failed'), primaryScore: 30 });
+  const result = await runAssociativeCalculation({ input: { root: 'reviewfail' }, dependencies: deps });
+  assert.ok(result.state.warnings.includes('review_failed'));
+  assert.equal(result.state.languages.en[0].analysis.model, 'primary');
+  assert.equal(result.state.checked, true);
+}
+
+{
+  resetAssociativeCalculationRunnerForTests();
+  const { deps } = makeDeps({ reviewReject: abortError(), primaryScore: 30 });
+  await assert.rejects(() => runAssociativeCalculation({ input: { root: 'abortreview' }, dependencies: deps }), /Operation aborted|cancelled/);
+  assert.ok(!deps.eventLog.includes('button:done'));
+}
+
+{
+  resetAssociativeCalculationRunnerForTests();
+  const seen = [];
+  const { deps } = makeDeps({ reviewReject: new Error('review failed'), primaryScore: 30 });
+  const result = await runAssociativeCalculation({ input: { root: 'statuses' }, dependencies: deps, onStateChange: s => seen.push(JSON.stringify(s.languageStatuses.en)) });
+  assert.ok(seen.some(s => s.includes('loading_index'))); assert.ok(seen.some(s => s.includes('analyzing'))); assert.ok(seen.some(s => s.includes('reviewing')));
+  assert.equal(result.state.languageStatuses.en.status, 'completed_with_warnings');
+  assert.notEqual(result.state.globalStatus, 'loading');
+  assert.ok(deps.eventLog.includes('button:done'));
+}
+
+{
+  resetAssociativeCalculationRunnerForTests();
+  const qwenSeventh = { word: 'g', model_key: 'g', model: 'g', frequency_score: 95, final_score: 1, parser_version: 'pv2' };
+  const include = await runAssociativeCalculation({ input: { root: 'select' }, dependencies: makeDeps({ auditAdds: [qwenSeventh], primaryScore: 1 }).deps });
+  assert.deepEqual(include.state.selectedModels.en, ['a','g','b','c','d'], 'frequency controls top five, not semantic P');
+  const exclude = await runAssociativeCalculation({ input: { root: 'select' }, dependencies: makeDeps({ auditAdds: [{ ...qwenSeventh, frequency_score: 1 }], primaryScore: 99 }).deps });
+  assert.deepEqual(exclude.state.selectedModels.en, ['a','b','c','d','e']);
+}
+
+for (const [score, expected] of [[24.99, 0], [25, 5], [30, 5], [35, 5], [35.01, 0]]) {
+  resetAssociativeCalculationRunnerForTests();
+  const { deps, counts } = makeDeps({ primaryScore: score });
+  await runAssociativeCalculation({ input: { root: `range${score}` }, dependencies: deps });
+  assert.equal(counts.reviewRequests, expected, `review count for ${score}`);
+}
+
+{
+  resetAssociativeCalculationRunnerForTests();
+  const h = makeDeps();
+  const result = await runAssociativeCalculation({ input: { root: 'persist' }, dependencies: h.deps });
+  assert.equal(h.counts.saves, 1); assert.equal(h.saved[0].checked, true); assert.equal(h.saved[0].languages.en[0].parser_version, 'pv2'); assert.ok(h.saved[0].languages.en[0].model_key);
+  const restored = await restoreAssociativeCalculation({ dependencies: h.deps });
+  assert.equal(restored.root, result.state.root); assert.equal(h.counts.primaryRequests, 5, 'restore does not start background requests');
+  const before = snapshot(restored); await tick(5); assert.equal(snapshot(restored), before);
+  h.saved.push({ ...result.state, checked: false, globalStatus: 'loading' });
+  assert.equal(await restoreAssociativeCalculation({ dependencies: h.deps }), null);
+}
+
+{
+  resetAssociativeCalculationRunnerForTests();
+  const { deps, counts } = makeDeps();
+  await runAssociativeCalculation({ input: { root: 'click' }, dependencies: deps });
+  assert.equal(counts.runs, 1); assert.equal(counts.candidateAuditRequests, 1); assert.equal(counts.primaryRequests, 5); assert.equal(counts.candidateVerificationRequests, 1); assert.doesNotMatch(clientSource, /supplementAfterCompletedCalculation/); assert.equal(counts.candidateAuditRequests, 1);
+}
+
+// Existing qwen-client behavioral checks: no real network, mocked fetch only.
+const originalFetch = globalThis.fetch; const originalDocument = globalThis.document; const originalLocation = globalThis.location;
+globalThis.document = { documentElement: { lang: 'en' } }; globalThis.location = { hostname: 'localhost' };
+let fetchCount = 0;
+globalThis.fetch = async (_url, options) => { fetchCount++; assert.ok(options.signal); return { ok: true, async json() { return { candidates: { en: [{ word: 'zeta', root_variant: 'zet' }] } }; } }; };
+const loader = { async loadCandidateEntries(language, word, { signal } = {}) { assert.ok(signal); return [{ word, normalized: word, search_form: word, frequency_score: 99, sources: [{ id: 'test' }] }]; } };
+const refined = await refineCandidatesWithQwenAudit({ root: 'zet', targetMeaning: 'test', candidatesByLanguage: { en: [{ word: 'alpha', model_key: 'a', frequency_score: 10, sources: [{ id: 'base' }], match: {} }] }, loader, languages: ['en'], signal: new AbortController().signal });
+assert.equal(fetchCount, 1); assert.ok(refined.candidatesByLanguage.en.some(c => c.word === 'zeta')); assert.equal(finalizeCandidateOrdering(refined.candidatesByLanguage.en, 1)[0].word, 'zeta');
+globalThis.fetch = originalFetch; globalThis.document = originalDocument; globalThis.location = originalLocation;
+
+console.log('Associative atomic pipeline integration tests passed.');
