@@ -1,5 +1,5 @@
 import { calculateLanguageScore, calculateFinalAssociation, deriveGlobalStatusFromLanguageStatuses, shouldReviewPrimaryScore } from './association-analyzer.js';
-import { finalizeCandidateOrdering, selectBestFinalModels, isAbortError, normalizeAbortError } from './qwen-client.js';
+import { finalizeCandidateOrdering, selectBestFinalModels, isAbortError, normalizeAbortError, QWEN_RUNTIME_CONFIG, createReviewBudget } from './qwen-client.js';
 import { MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE, createEmptyAssociativeState, addRunWarning, addCandidateWarning, hasAnyAssociativeWarnings, hasLanguageAssociativeWarnings, migrateAssociativeWarnings } from './associative-state.js';
 
 const DEFAULT_LANGUAGES = [
@@ -21,6 +21,7 @@ function scoreOf(item) { return Number(item?.final_score ?? item?.analysis?.fina
 function associationScore(result) { return Number(result?.association_score ?? result?.analysis?.association?.association_score ?? result?.P ?? result?.final_score); }
 function withAnalysis(candidate, analysis) { const p = Number(analysis?.final_score ?? analysis?.P ?? associationScore(analysis)); return { ...candidate, analysis, association_score: associationScore(analysis), final_score: Number.isFinite(p) ? p : candidate.final_score, selected: Number.isFinite(p), analysisStatus: null }; }
 function candidateId(candidate) { return candidate?.model_key || candidate?.model || candidate?.word || candidate?.normalized || 'unknown_candidate'; }
+function createReviewDiagnostics(budget) { return { reviewEligibleCount: 0, reviewStartedCount: 0, reviewCompletedCount: 0, reviewFailedCount: 0, reviewAbortedCount: 0, reviewSkippedDisabledCount: 0, reviewSkippedBudgetCount: 0, reviewBudgetLimit: budget.limit }; }
 
 export function resetAssociativeCalculationRunnerForTests() { latestRunId = 0; }
 
@@ -40,8 +41,11 @@ export async function runAssociativeCalculation({ input = {}, dependencies = {},
   const maxModels = input.maxModels || MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE;
   const events = dependencies.eventLog || [];
   const emit = (event, payload) => { events.push(event); dependencies.onEvent?.(event, payload); };
+  const reviewBudget = createReviewBudget({ enabled: QWEN_RUNTIME_CONFIG.enableReviewModel === true, maxRequests: QWEN_RUNTIME_CONFIG.maxReviewRequestsPerSearch });
+  const reviewDiagnostics = createReviewDiagnostics(reviewBudget);
   const state = dependencies.stateStorage?.create?.() || createEmptyAssociativeState({ languages, createLanguageStatus: status });
   state.languageScores ||= {};
+  state.reviewDiagnostics = reviewDiagnostics;
   Object.assign(state, { root: input.root || input.word || '', meaning: input.meaning || input.targetMeaning || '', elementType: input.elementType || 'root', maxModels, checked: false, globalStatus: 'loading', warnings: migrateAssociativeWarnings(state, { languages }) });
   const run = { runId, signal };
   const button = dependencies.buttonStatusController;
@@ -94,14 +98,25 @@ export async function runAssociativeCalculation({ input = {}, dependencies = {},
         let final = primary;
         const p = Number(primary?.final_score ?? primary?.P ?? associationScore(primary));
         if (shouldReviewPrimaryScore(p)) {
-          state.languageStatuses[lang.code] = status('reviewing', { candidateCount: finalPools[lang.code].length }); setState('status:reviewing');
-          emit('review:start'); progress(`review:${lang.code}`);
-          try {
-            final = await dependencies.reviewAnalyzer?.analyze?.({ language: lang.code, candidate, primary, input }, { signal, runId });
-            throwIfInactive(run, 'review'); emit('review:end');
-          } catch (error) {
-            if (isAbortError(error, signal)) throw abortErr(error, 'review', runId);
-            addCandidateWarning(state, lang.code, candidateId(candidate), 'review_failed', error?.message); final = primary; emit('review:end');
+          reviewDiagnostics.reviewEligibleCount += 1;
+          throwIfInactive(run, 'before_review');
+          if (QWEN_RUNTIME_CONFIG.enableReviewModel !== true || reviewBudget.enabled !== true) {
+            reviewDiagnostics.reviewSkippedDisabledCount += 1;
+          } else if (!reviewBudget.canRequest()) {
+            reviewDiagnostics.reviewSkippedBudgetCount += 1;
+            addCandidateWarning(state, lang.code, candidateId(candidate), 'review_budget_exhausted');
+            final = { ...primary, combination_method: 'primary_only_review_budget_exhausted' };
+          } else {
+            state.languageStatuses[lang.code] = status('reviewing', { candidateCount: finalPools[lang.code].length }); setState('status:reviewing');
+            emit('review:start'); progress(`review:${lang.code}`);
+            reviewBudget.reserve(); reviewDiagnostics.reviewStartedCount += 1;
+            try {
+              final = await dependencies.reviewAnalyzer?.analyze?.({ language: lang.code, candidate, primary, input }, { signal, runId });
+              throwIfInactive(run, 'review'); reviewDiagnostics.reviewCompletedCount += 1; emit('review:end');
+            } catch (error) {
+              if (isAbortError(error, signal)) { reviewDiagnostics.reviewAbortedCount += 1; throw abortErr(error, 'review', runId); }
+              reviewDiagnostics.reviewFailedCount += 1; addCandidateWarning(state, lang.code, candidateId(candidate), 'review_failed', error?.message); final = primary; emit('review:end');
+            }
           }
         }
         analyzed.push(withAnalysis(candidate, final));

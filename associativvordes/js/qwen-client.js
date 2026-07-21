@@ -28,6 +28,21 @@ export const QWEN_RUNTIME_CONFIG = {
   supplementalAnalysisTimeoutMs: 30000
 };
 
+export function createReviewBudget({ enabled = true, maxRequests = Infinity } = {}) {
+  const finiteMax = Number(maxRequests);
+  const limit = maxRequests === Infinity ? Infinity : Math.max(0, Number.isFinite(finiteMax) ? Math.floor(finiteMax) : 0);
+  const state = { used: 0 };
+  return {
+    enabled: enabled === true && limit !== 0,
+    limit,
+    canRequest() { return this.enabled && (limit === Infinity || state.used < limit); },
+    reserve() { if (!this.canRequest()) return false; state.used += 1; return true; },
+    releaseOnAbort() {},
+    get used() { return state.used; },
+    get remaining() { return limit === Infinity ? Infinity : Math.max(0, limit - state.used); }
+  };
+}
+
 export const QWEN_ERROR_CODES = Object.freeze({
   HTTP_ERROR: 'QWEN_HTTP_ERROR',
   TIMEOUT: 'QWEN_TIMEOUT',
