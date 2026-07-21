@@ -1,7 +1,7 @@
 import { calculateLanguageScore, calculateFinalAssociation, deriveGlobalStatusFromLanguageStatuses, shouldReviewPrimaryScore } from './association-analyzer.js';
 import { createReviewBudget } from './review-budget.js';
 import { finalizeCandidateOrdering, selectBestFinalModels, isAbortError, normalizeAbortError, QWEN_RUNTIME_CONFIG } from './qwen-client.js';
-import { MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE, createEmptyAssociativeState } from './associative-state.js';
+import { MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE, createEmptyAssociativeState, addRunWarning, addCandidateWarning, hasAnyAssociativeWarning, candidateId } from './associative-state.js';
 
 const DEFAULT_LANGUAGES = [
   { code: 'en', name: 'English', group: 'Germanic' },
@@ -105,7 +105,7 @@ export async function runAssociativeCalculation({ input = {}, dependencies = {},
             throwIfInactive(run, 'review');
           } else if (!reviewBudget.reserve()) {
             state.diagnostics.reviewSkippedBudgetCount += 1;
-            state.warnings.push('review_budget_exhausted');
+            addRunWarning(state, 'review_budget_exhausted');
             final = { ...primary, association: { ...(primary.association || {}), combination_method: 'primary_only_review_budget_exhausted' }, combination_method: 'primary_only_review_budget_exhausted', warnings: [...(primary.warnings || []), 'review_budget_exhausted'] };
           } else {
             state.languageStatuses[lang.code] = status('reviewing', { candidateCount: finalPools[lang.code].length }); setState('status:reviewing');
@@ -116,7 +116,7 @@ export async function runAssociativeCalculation({ input = {}, dependencies = {},
               throwIfInactive(run, 'review'); state.diagnostics.reviewCompletedCount += 1; emit('review:end');
             } catch (error) {
               if (isAbortError(error, signal)) { state.diagnostics.reviewAbortedCount += 1; throw abortErr(error, 'review', runId); }
-              state.diagnostics.reviewFailedCount += 1; state.warnings.push('review_failed'); final = primary; emit('review:end');
+              state.diagnostics.reviewFailedCount += 1; addCandidateWarning(state, lang.code, candidateId(candidate), 'review_failed', error?.message); final = primary; emit('review:end');
             }
           }
         }
@@ -125,7 +125,7 @@ export async function runAssociativeCalculation({ input = {}, dependencies = {},
       const byKey = new Map(analyzed.map(c => [c.model_key || c.model || c.word, c]));
       state.languages[lang.code] = (finalPools[lang.code] || []).map(c => byKey.get(c.model_key || c.model || c.word) || { ...c, selected: false });
       state.languageScores[lang.code] = calculateLanguageScore(state.languages[lang.code], { maxModels, scoreGetter: scoreOf });
-      state.languageStatuses[lang.code] = status(state.warnings.length ? 'completed_with_warnings' : 'completed', { candidateCount: finalPools[lang.code].length, analyzedCount: analyzed.length, successfulCount: analyzed.length });
+      state.languageStatuses[lang.code] = status(hasAnyAssociativeWarning(state) ? 'completed_with_warnings' : 'completed', { candidateCount: finalPools[lang.code].length, analyzedCount: analyzed.length, successfulCount: analyzed.length });
       emit('language_score:calculated');
     }
     throwIfInactive(run, 'before_scores'); emit('scores:calculated');

@@ -120,6 +120,40 @@ export function addManualCandidate(state, lang, candidate = {}) {
   return row;
 }
 
+
+export function candidateId(candidate = {}) {
+  return String(candidate.model_key || candidate.model_family_key || candidate.model || candidate.word || '').trim();
+}
+
+export function addRunWarning(state, code, detail = '') {
+  if (!state || !code) return null;
+  state.warnings ||= [];
+  const base = String(code);
+  if (!state.warnings.includes(base)) state.warnings.push(base);
+  const warning = detail ? `${code}: ${detail}` : base;
+  if (warning !== base && !state.warnings.includes(warning)) state.warnings.push(warning);
+  return warning;
+}
+
+export function addCandidateWarning(state, lang, id, code, detail = '') {
+  const warning = addRunWarning(state, code, detail);
+  const items = state?.languages?.[lang];
+  if (!Array.isArray(items) || !id || !warning) return warning;
+  const item = items.find(candidate => candidateId(candidate) === id);
+  if (!item) return warning;
+  item.warnings ||= [];
+  if (!item.warnings.includes(warning)) item.warnings.push(warning);
+  return warning;
+}
+
+export function hasAnyAssociativeWarning(state = {}) {
+  if (Array.isArray(state.warnings) && state.warnings.length > 0) return true;
+  return Object.values(state.languages || {}).some(items => Array.isArray(items) && items.some(item =>
+    (Array.isArray(item?.warnings) && item.warnings.length > 0)
+      || (Array.isArray(item?.analysis?.warnings) && item.analysis.warnings.length > 0)
+  ));
+}
+
 export function updateCandidate(state, lang, idx, key, value, { inferModel = () => '', normalizeText = value => String(value || '').trim() } = {}) {
   const item = state.languages?.[lang]?.[idx];
   if (!item) return null;
