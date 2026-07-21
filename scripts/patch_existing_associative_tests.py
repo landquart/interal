@@ -63,4 +63,19 @@ if old not in text:
 text = text.replace(old, new, 1)
 path.write_text(text, encoding='utf-8')
 
+path = root / 'tests/associativvordes-runtime-index.test.mjs'
+text = path.read_text(encoding='utf-8')
+replacements = [
+    ("assert.match(script, /lexicalModelDescriptor\\(\\{ \\.\\.\\.item, word \\}, root, language\\)/, 'runtime model inference delegates to the canonical descriptor');", "assert.match(script, /lexicalModelDescriptor\\(\\{ \\.\\.\\.item, word \\}, root, language, elementType\\)/, 'runtime model inference delegates to the canonical descriptor with element type');"),
+    ("assert.match(script, /reconcileModelRepresentatives\\(validCandidates, root, lang\\.code\\)/, 'one representative per model is selected before Qwen analysis');", "assert.match(script, /reconcileModelRepresentatives\\(valid, root, language\\.code\\)/, 'one representative per model is selected before Qwen analysis');"),
+    ("assert.match(html, /script\\.js\\?v=associative-index-runtime-20260716-1/, 'fixed cache busting is updated');", "assert.match(html, /script\\.js\\?v=associative-production-hardening-20260721-1/, 'production hardening cache busting is updated');"),
+    ("assert.match(analyzerSource, /hasFrequencyProfile \\? \\{ \\.\\.\\.frequencyProfile/, 'analyzer uses supplied frequencyProfile');", "assert.match(analyzerSource, /if \\(hasFrequencyProfile\\)[\\s\\S]*frequency = \\{ \\.\\.\\.frequencyProfile/, 'analyzer uses supplied frequencyProfile');"),
+    ("assert.match(analyzerSource, /: await getFrequencyProfile\\(language, word\\)/, 'manual words still use runtime frequency lookup when no profile is supplied');", "assert.match(analyzerSource, /getFrequencyProfile\\(language, word, \\{ signal \\}\\)/, 'manual words use abort-aware runtime frequency lookup when no profile is supplied');")
+]
+for old, new in replacements:
+    if old not in text:
+        raise SystemExit(f'runtime-index assertion not found: {old}')
+    text = text.replace(old, new, 1)
+path.write_text(text, encoding='utf-8')
+
 print('Updated existing associative tests for unified production behavior.')
