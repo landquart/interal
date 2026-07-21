@@ -38,7 +38,7 @@ state.languages.en.push({
 });
 
 const exported = compactAssociativeState(state, { languages, activeLang: 'en', calculateResult: () => ({ finalAssociation: 40, totalAssociation: 50, representedLanguages: 1, representedGroups: 1, semanticConfirmed: true, accepted: true }) });
-assert.equal(exported.version, 1, 'completed state exports through versioned compact page adapter');
+assert.equal(exported.version, 2, 'completed state exports through the current versioned morphology-aware page adapter');
 assert.equal(exported.page, 'associativvordes', 'completed state exports page name');
 assert.equal(exported.state.result.accepted, true, 'completed result is exported');
 assert.equal(exported.state.maxModels, 5, 'the five-word limit is persisted');

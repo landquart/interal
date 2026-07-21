@@ -1,5 +1,5 @@
 const DEFAULT_LANGUAGE_CODES = ['en', 'de', 'fr', 'es', 'it', 'ru'];
-const PAGE_STATE_VERSION = 1;
+const PAGE_STATE_VERSION = 2;
 const PAGE_STATE_NAME = 'associativvordes';
 export const MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE = 5;
 const MAX_STATE_CANDIDATES_PER_LANGUAGE = 20;
@@ -169,6 +169,23 @@ export function createEmptyAssociativeState({ languages = DEFAULT_LANGUAGE_CODES
   };
 }
 
+
+export function resetAssociativeRunState(state, { languages = DEFAULT_LANGUAGE_CODES, createLanguageStatus = defaultLanguageStatus } = {}) {
+  const codes = languageCodes(languages);
+  state.languages = Object.fromEntries(codes.map(code => [code, []]));
+  state.languageStatuses = Object.fromEntries(codes.map(code => [code, createLanguageStatus('idle')]));
+  state.warnings = createEmptyWarnings({ languages: codes });
+  state.languageScores = {};
+  state.reviewDiagnostics = null;
+  state.candidateAuditDiagnostics = null;
+  state.finalAssociationResult = null;
+  state.selectedModels = {};
+  state.FA = null;
+  state.checked = false;
+  state.globalStatus = 'idle';
+  return state;
+}
+
 export function invalidateSearchResult(state, { createEmptyState = createEmptyAssociativeState, shouldSkip = () => false, onInvalidateActiveRuns } = {}) {
   if (shouldSkip()) return false;
   onInvalidateActiveRuns?.();
@@ -237,7 +254,9 @@ function compactAssociativeLanguages(languages, languageList = DEFAULT_LANGUAGE_
           warnings: Array.isArray(item.warnings) ? item.warnings.slice(0, 8).map(w => truncateStateText(w, MAX_STATE_WARNING_LENGTH)) : [],
           category_score: finiteOrNull(item.category_score), category_weight: finiteOrNull(item.category_weight),
           frequencyProfile: item.frequencyProfile && typeof item.frequencyProfile === 'object' ? { frequency_score: finiteOrNull(item.frequencyProfile.frequency_score), rank: finiteOrNull(item.frequencyProfile.rank), category_score: finiteOrNull(item.frequencyProfile.category_score), category_weight: finiteOrNull(item.frequencyProfile.category_weight) } : null,
-          model: String(item.model || ''), model_key: String(item.model_key || item.model_family_key || ''), selected: Boolean(item.selected), association_score: finiteOrNull(item.association_score), final_score: finiteOrNull(item.final_score), analysisStatus: item.analysisStatus || null,
+          model: String(item.model || ''), model_label: String(item.model_label || item.model || ''), model_key: String(item.model_key || item.model_family_key || ''), parser_version: String(item.parser_version || item.morpheme_analysis?.parser_version || ''), morpheme_analysis: item.morpheme_analysis && typeof item.morpheme_analysis === 'object' ? {
+             parser_version: String(item.morpheme_analysis.parser_version || item.parser_version || ''), language: String(item.morpheme_analysis.language || ''), element_type: String(item.morpheme_analysis.element_type || ''), canonical_root: String(item.morpheme_analysis.canonical_root || ''), matched_root_variant: String(item.morpheme_analysis.matched_root_variant || ''), prefix_chain: Array.isArray(item.morpheme_analysis.prefix_chain) ? item.morpheme_analysis.prefix_chain.map(String) : [], first_meaningful_derivational_element: String(item.morpheme_analysis.first_meaningful_derivational_element || ''), first_lexical_root_after_preposition: String(item.morpheme_analysis.first_lexical_root_after_preposition || ''), model_key: String(item.morpheme_analysis.model_key || item.model_key || ''), model_label: String(item.morpheme_analysis.model_label || item.model_label || item.model || ''), analysis_confidence: String(item.morpheme_analysis.analysis_confidence || ''), diagnostic_reason: String(item.morpheme_analysis.diagnostic_reason || ''), warnings: Array.isArray(item.morpheme_analysis.warnings) ? item.morpheme_analysis.warnings.slice(0, 8).map(String) : []
+           } : null, selected: Boolean(item.selected), association_score: finiteOrNull(item.association_score), final_score: finiteOrNull(item.final_score), analysisStatus: item.analysisStatus || null,
           analysis: item.analysis ? { final_score: finiteOrNull(item.analysis.final_score), frequency: item.analysis.frequency ? { frequency_score: finiteOrNull(item.analysis.frequency.frequency_score) } : null, swow: item.analysis.swow ? compactStateSwowEvidence(item.analysis.swow) : null, association: item.analysis.association ? { association_score: finiteOrNull(item.analysis.association.association_score), directness: finiteOrNull(item.analysis.association.directness), field_relatedness: finiteOrNull(item.analysis.association.field_relatedness), domain_shift: finiteOrNull(item.analysis.association.domain_shift), semantic_confirmed: item.analysis.association.semantic_confirmed === true, explanation: truncateStateText(item.analysis.association.explanation, MAX_STATE_EXPLANATION_LENGTH) } : null, warnings: Array.isArray(item.analysis.warnings) ? item.analysis.warnings.slice(0, 8).map(w => truncateStateText(w, MAX_STATE_WARNING_LENGTH)) : [] } : null
         };
       });
@@ -253,7 +272,7 @@ export function compactAssociativeState(state, { languages = DEFAULT_LANGUAGE_CO
 
 function unwrapAssociativePageState(saved = {}) {
   if (!saved || typeof saved !== 'object' || Array.isArray(saved)) return null;
-  if (saved.version === PAGE_STATE_VERSION && saved.page === PAGE_STATE_NAME && saved.state && typeof saved.state === 'object') return saved.state;
+  if ([1, PAGE_STATE_VERSION].includes(saved.version) && saved.page === PAGE_STATE_NAME && saved.state && typeof saved.state === 'object') return saved.state;
   if (saved.version === 2 && saved.fields && typeof saved.fields === 'object') return { ...saved.fields, activeLang: saved.ui?.activeLanguageTab, checked: Boolean(saved.flags?.checked || saved.checked || saved.result), result: saved.result || null };
   return null;
 }

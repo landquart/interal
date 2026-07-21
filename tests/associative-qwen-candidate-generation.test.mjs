@@ -101,13 +101,13 @@ assert.equal(refinedAudit.candidatesByLanguage.en.filter(item => item.word === '
 assert.equal(refinedAudit.candidatesByLanguage.en.some(item => item.word === 'alterator'), false, 'different word with an existing model_key is not a new model');
 assert.equal(refinedAudit.candidatesByLanguage.en.some(item => item.word === 'novelty'), true, 'new word with a new model passes local verification');
 assert.equal(loader.calls.some(call => call.word === 'alternative'), false, 'duplicate suggestion does not start semantic or local verification');
-assert.deepEqual(refinedAudit.diagnostics, { suggestedCount: 7, duplicateWordCount: 3, duplicateModelCount: 1, locallyMissingCount: 1, verifiedNewModelCount: 1, rejectedInvalidCount: 1, auditRetryCount: 0 }, 'diagnostics counts duplicate, missing, invalid, and verified suggestions');
+assert.deepEqual(refinedAudit.diagnostics, { suggestedCount: 7, duplicateWordCount: 3, duplicateModelCount: 1, locallyMissingCount: 1, verifiedNewModelCount: 1, rejectedInvalidCount: 1, auditRetryCount: 0, status: 'completed', model: null, usedGuaranteedFallback: false, backendErrorCode: null, backendErrorDetails: null }, 'diagnostics counts duplicate, missing, invalid, verified, and backend audit state');
 globalThis.fetch = previousFetchForRefine;
 QWEN_RUNTIME_CONFIG.maxGeneratedCandidatesPerLanguage = previousGeneratedLimit;
 
 globalThis.fetch = async () => ({ ok: true, json: async () => ({ ok: true, candidates: { en: [] } }) });
 const emptyAudit = await refineCandidatesWithQwenAudit({ root: 'nov', targetMeaning: 'new', candidatesByLanguage: { en: auditBase }, loader: makeLoader({}), languages: ['en'] });
-assert.deepEqual(emptyAudit.diagnostics, { suggestedCount: 0, duplicateWordCount: 0, duplicateModelCount: 0, locallyMissingCount: 0, verifiedNewModelCount: 0, rejectedInvalidCount: 0, auditRetryCount: 0 }, 'empty Qwen response is a normal no-op');
+assert.deepEqual(emptyAudit.diagnostics, { suggestedCount: 0, duplicateWordCount: 0, duplicateModelCount: 0, locallyMissingCount: 0, verifiedNewModelCount: 0, rejectedInvalidCount: 0, auditRetryCount: 0, status: 'completed', model: null, usedGuaranteedFallback: false, backendErrorCode: null, backendErrorDetails: null }, 'empty Qwen response is a normal completed no-op');
 globalThis.fetch = previousFetchForRefine;
 
 const clientSource = await readFile('associativvordes/js/qwen-client.js', 'utf8');

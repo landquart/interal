@@ -278,9 +278,26 @@ export async function getQwenCandidateSuggestions({ root, targetMeaning, current
     signal?.removeEventListener?.('abort', forwardAbort);
     timeoutController.signal.removeEventListener('abort', timeoutAbort);
   }
-  const payload = await response.json().catch(error => { throw qwenError(QWEN_ERROR_CODES.INVALID_RESPONSE, 'Qwen candidate generation returned invalid JSON.', { cause: error }); });
+  let payload;
+  try {
+    payload = await response.json();
+  } catch (error) {
+    throw qwenError(QWEN_ERROR_CODES.INVALID_RESPONSE, 'Qwen candidate generation returned invalid JSON.', { cause: error });
+  }
   if (!response.ok || payload?.ok === false) throw qwenError(payload?.errorCode || QWEN_ERROR_CODES.CANDIDATE_GENERATION_FAILED, 'Qwen candidate generation backend error.', { status: response.status, details: payload });
-  return normalizeQwenCandidateSuggestions(payload);
+  const audit = payload.audit || {
+    status: payload.qwenAuditError ? 'completed_with_fallback' : 'completed',
+    model: payload.model || null,
+    error: payload.qwenAuditError || null
+  };
+  return {
+    suggestions: normalizeQwenCandidateSuggestions(payload),
+    auditStatus: audit.status || 'completed',
+    auditError: audit.error || null,
+    model: audit.model || payload.model || null,
+    guaranteedCandidates: payload.guaranteedCandidates || {},
+    qwenCandidates: payload.qwenCandidates || {}
+  };
 }
 
 function hasFiniteScore(value) {
@@ -401,7 +418,12 @@ export function createQwenCandidateAuditDiagnostics() {
     locallyMissingCount: 0,
     verifiedNewModelCount: 0,
     rejectedInvalidCount: 0,
-    auditRetryCount: 0
+    auditRetryCount: 0,
+    status: 'pending',
+    model: null,
+    usedGuaranteedFallback: false,
+    backendErrorCode: null,
+    backendErrorDetails: null
   };
 }
 
@@ -560,7 +582,18 @@ export async function refineCandidatesWithQwenAudit({ root, targetMeaning, candi
   let suggestions;
   try {
     onProgress?.(getInterfaceLanguage() === 'en' ? 'Qwen3-235B: candidate audit...' : 'Qwen3-235B: аудит кандидатов...');
-    suggestions = await getQwenCandidateSuggestions({ root, targetMeaning: targetMeaning || root, currentTopModels, knownCandidates, knownModelKeys, signal });
+    const auditResponse = await getQwenCandidateSuggestions({ root, targetMeaning: targetMeaning || root, currentTopModels, knownCandidates, knownModelKeys, signal });
+    suggestions = auditResponse.suggestions;
+    diagnostics.status = auditResponse.auditStatus;
+    diagnostics.model = auditResponse.model;
+    diagnostics.usedGuaranteedFallback = auditResponse.auditStatus === 'completed_with_fallback';
+    diagnostics.backendErrorCode = auditResponse.auditError?.code || auditResponse.auditError?.errorCode || null;
+    diagnostics.backendErrorDetails = auditResponse.auditError?.details || null;
+    if (auditResponse.auditError) {
+      const warning = 'qwen_candidate_audit_unavailable';
+      warnings.push(warning);
+      onWarning?.(warning, auditResponse.auditError);
+    }
   } catch (error) {
     throwIfAbortError(error, { signal, stage: 'candidate_audit' });
     const warning = 'qwen_candidate_audit_unavailable';

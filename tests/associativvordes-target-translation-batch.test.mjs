@@ -8,7 +8,7 @@ const analyzer = await readFile('associativvordes/js/association-analyzer.js', '
 assert.match(script, /translateTargetMeaning\(\{[\s\S]*targetLanguages: TARGET_TRANSLATION_LANGUAGES/, 'run requests all target translations in one batch');
 assert.match(script, /targetTranslationRequestCount/, 'developer diagnostics include a single batch translation request counter');
 assert.match(script, /clearTargetMeaningTranslationCache\(\);[\s\S]*getRunTargetTranslations/, 'new run invalidates target translation cache before translating the current meaning');
-assert.match(script, /analyzeCandidateItem\(lang\.code, item, onProgress, runId, targetTranslations\[lang\.code\] \|\| ''\)/, 'analyzer receives the prepared localized target meaning');
+assert.match(script, /analyzeCandidateItem\(language\.code, candidate, context\.onProgress, runId, context\.translation\)/, 'the unified production adapter passes the prepared localized target meaning to the analyzer');
 assert.match(analyzer, /localizedTargetMeaning/, 'analyzer accepts localizedTargetMeaning');
 assert.match(analyzer, /target_translation_unavailable/, 'missing translation produces the stable warning');
 assert.doesNotMatch(analyzer, /using original targetMeaning/, 'SWOW no longer falls back to the original targetMeaning');

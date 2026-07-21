@@ -5,8 +5,11 @@ import { normalizeText, stripDiacritics, includesRoot, fuzzyIncludesRoot, specia
 import { createCandidateIndexLoader } from './js/candidate-index-loader.js';
 import { findCandidatesForRoot } from './js/candidate-finder.js';
 import { lexicalModelDescriptor, selectHighestFrequencyPerModel, compareFrequencyRepresentatives } from './js/candidate-model-family.js';
+import { registerLexicalRootsFromEntries } from './js/morphology/lexical-root-index.js';
+import { getLanguageConfig } from './js/morphology/languages/index.js';
 import { clearTargetMeaningTranslationCache, translateTargetMeaning, TARGET_TRANSLATION_LANGUAGES } from './js/target-meaning-translator.js';
-import { MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE, createEmptyAssociativeState, invalidateSearchResult as invalidateAssociativeSearchResult, invalidateFinalCalculation as invalidateAssociativeFinalCalculation, addManualCandidate, updateCandidate, deleteCandidate, compactAssociativeState, restoreAssociativeState, addRunWarning, addLanguageWarning, addCandidateWarning, hasAnyAssociativeWarnings, hasLanguageAssociativeWarnings } from './js/associative-state.js';
+import { MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE, createEmptyAssociativeState, resetAssociativeRunState, invalidateSearchResult as invalidateAssociativeSearchResult, invalidateFinalCalculation as invalidateAssociativeFinalCalculation, addManualCandidate, updateCandidate, deleteCandidate, compactAssociativeState, restoreAssociativeState, addRunWarning, addLanguageWarning, addCandidateWarning, hasAnyAssociativeWarnings, hasLanguageAssociativeWarnings } from './js/associative-state.js';
+import { runAssociativeCalculation } from './js/associative-calculation-runner.js';
 
 // Persistence compatibility markers: status: 'no_candidates', candidates: [] ; status: 'index_error', errorCode:
 const TEXT_I18N = {
@@ -235,6 +238,14 @@ const TEXT_I18N = {
         qwenUsedModels: [],
         abortedRequestCount: 0,
         targetTranslationRequestCount: 0,
+        candidateAuditSuggestedCount: 0,
+        candidateAuditDuplicateWordCount: 0,
+        candidateAuditDuplicateModelCount: 0,
+        candidateAuditLocallyMissingCount: 0,
+        candidateAuditVerifiedNewModelCount: 0,
+        candidateAuditRejectedInvalidCount: 0,
+        candidateAuditStatus: null,
+        candidateAuditBackendErrorCode: null,
         durationByStage: {},
         activeRunId: null
       };
@@ -302,6 +313,14 @@ const TEXT_I18N = {
         qwenUsedModels: run.qwenUsedModels,
         abortedRequestCount: run.abortedRequestCount,
         targetTranslationRequestCount: run.targetTranslationRequestCount,
+        candidateAuditSuggestedCount: run.candidateAuditSuggestedCount,
+        candidateAuditDuplicateWordCount: run.candidateAuditDuplicateWordCount,
+        candidateAuditDuplicateModelCount: run.candidateAuditDuplicateModelCount,
+        candidateAuditLocallyMissingCount: run.candidateAuditLocallyMissingCount,
+        candidateAuditVerifiedNewModelCount: run.candidateAuditVerifiedNewModelCount,
+        candidateAuditRejectedInvalidCount: run.candidateAuditRejectedInvalidCount,
+        candidateAuditStatus: run.candidateAuditStatus,
+        candidateAuditBackendErrorCode: run.candidateAuditBackendErrorCode,
         durationByStage: run.durationByStage,
         activeRunId: run.activeRunId
       }));
@@ -536,6 +555,7 @@ const TEXT_I18N = {
       const beforeIndex = candidateIndexLoader.getCandidateIndexDiagnostics?.() || {};
       const indexStartedAt = nowMs();
       const entries = await candidateIndexLoader.loadCandidateEntries(langCode, root, { signal });
+      registerLexicalRootsFromEntries(langCode, entries, { prefix: state.elementType === 'preposition' ? root : '', config: getLanguageConfig(langCode) });
       addDuration('candidate_index', indexStartedAt);
       const afterIndex = candidateIndexLoader.getCandidateIndexDiagnostics?.() || beforeIndex;
       diagnosticsState.cache.indexFetchCount += Math.max(0, (afterIndex.fetchCount || 0) - (beforeIndex.fetchCount || 0));
@@ -600,191 +620,125 @@ const TEXT_I18N = {
       }
     }
 
-    async function runCalculation({ runId, onProgress } = {}) {
+    async function runCalculation({ runId } = {}) {
       const root = normalizeText(document.getElementById('rootInput').value);
       const meaning = document.getElementById('meaningInput').value.trim();
       const elementType = document.getElementById('elementType').value;
-
       if (!root) {
         alert(textGroup('alerts').rootRequired);
         return false;
       }
-
-      state.root = root;
-      state.meaning = meaning;
-      state.elementType = elementType;
-      state.maxModels = MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE;
-      state.checked = false;
-      state.globalStatus = 'loading';
-      resetVisibleCandidateCounts();
+      const signal = currentRunSignal();
       clearTargetMeaningTranslationCache();
-
-      const targetTranslations = await getRunTargetTranslations(meaning || root, runId, onProgress);
-      throwIfStaleRun(runId, 'after_target_translation');
-
-      const candidatePools = {};
-      onProgress?.(currentLang() === 'en' ? 'Loading frequency lists...' : 'Загрузка частотных списков...');
-      for (const lang of LANGUAGES) {
-        if (!isCurrentRun(runId)) return;
-        const languageName = textGroup('languages')[lang.code] || lang.name;
-        onProgress?.(`${currentLang() === 'en' ? 'Searching similar roots' : 'Поиск похожих корней'}: ${languageName}`);
-        state.languageStatuses[lang.code] = createLanguageStatus('loading_index');
-        let candidates;
-        try {
-          candidates = await getLanguageCandidates(lang.code, root, { signal: currentRunSignal() });
-          throwIfStaleRun(runId, 'candidate_index_after_await');
-        } catch (error) {
-          if (isAbortError(error, currentRunSignal()) || !isCurrentRun(runId)) throw normalizeAbortError(error, { stage: 'candidate_index', runId });
-          candidatePools[lang.code] = [];
-          addLanguageWarning(state, lang.code, 'language_index_unavailable', error?.message);
-          state.languageStatuses[lang.code] = createLanguageStatus('index_error', { errorCode: error.code || error.name || 'INDEX_ERROR' });
-          continue;
-        }
-        incrementDiagnostic('candidateCount', candidates.length);
-        const seenWords = new Set();
-        const validCandidates = candidates.filter(candidate => isValidRuntimeCandidate(candidate, root, lang.code, seenWords));
-        if (!validCandidates.length) {
-          candidatePools[lang.code] = [];
-          state.languageStatuses[lang.code] = createLanguageStatus('no_candidates');
-          continue;
-        }
-        onProgress?.(`${currentLang() === 'en' ? 'Grouping candidate models' : 'Группировка моделей'}: ${languageName}`);
-        state.languageStatuses[lang.code] = createLanguageStatus('grouping_candidates', { candidateCount: validCandidates.length });
-        candidatePools[lang.code] = reconcileModelRepresentatives(validCandidates, root, lang.code)
-          .map(item => ({ ...item, selected: false, analysisStatus: 'pending' }));
-        state.languageStatuses[lang.code] = createLanguageStatus('candidate_audit', { candidateCount: candidatePools[lang.code].length });
-      }
-      if (!isCurrentRun(runId)) return;
-
-      onProgress?.(currentLang() === 'en' ? 'Selecting preliminary frequency models...' : 'Предварительный выбор частотных моделей...');
-      const preliminaryPools = Object.fromEntries(LANGUAGES.map(lang => [
-        lang.code,
-        finalizeCandidateOrdering(candidatePools[lang.code] || [], MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE)
-      ]));
-
-      const auditWarnings = [];
-      let refined;
-      try {
-        refined = await refineCandidatesWithQwenAudit({
-        root,
-        targetMeaning: meaning || root,
-        candidatesByLanguage: preliminaryPools,
-        loader: candidateIndexLoader,
-        signal: currentRunSignal(),
-        elementType,
-        onProgress,
-        onWarning: warning => auditWarnings.push(warning),
-        languages: LANGUAGES.map(lang => lang.code)
-        });
-        throwIfStaleRun(runId, 'candidate_audit_after_await');
-      } catch (error) {
-        if (isAbortError(error, currentRunSignal()) || !isCurrentRun(runId)) throw normalizeAbortError(error, { stage: error?.stage || 'candidate_audit', runId });
-        addRunWarning(state, 'qwen_candidate_audit_unavailable', error?.message);
-        refined = { candidatesByLanguage: preliminaryPools };
-      }
-      for (const warning of auditWarnings) addRunWarning(state, warningCode(warning) || 'qwen_candidate_audit_unavailable', warning);
-
-      onProgress?.(currentLang() === 'en' ? 'Selecting final five frequency models...' : 'Выбор итоговых пяти частотных моделей...');
-      const finalPools = {};
-      for (const lang of LANGUAGES) {
-        const regrouped = reconcileModelRepresentatives(refined.candidatesByLanguage[lang.code] || [], root, lang.code);
-        finalPools[lang.code] = finalizeCandidateOrdering(regrouped, MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE)
-          .map(item => ({ ...item, analysisStatus: item.selected ? 'pending' : item.analysisStatus || 'pending' }));
-      }
-
-      const nextLangs = {};
-      for (const lang of LANGUAGES) {
-        if (!isCurrentRun(runId)) return;
-        const languageName = textGroup('languages')[lang.code] || lang.name;
-        const pool = finalPools[lang.code] || [];
-        // Atomic pipeline still honors QWEN_RUNTIME_CONFIG.autoAnalyzeCandidatesPerLanguage through MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE.
-        // Compatibility marker: nextLangs[lang.code] = reconcileModelRepresentatives
-        const selectedForAnalysis = selectBestFinalModels(pool, MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE);
-        if (!pool.length) {
-          nextLangs[lang.code] = [];
-          if (state.languageStatuses[lang.code]?.status !== 'index_error') state.languageStatuses[lang.code] = createLanguageStatus('no_candidates');
-          continue;
-        }
-        if (!selectedForAnalysis.length) {
-          nextLangs[lang.code] = pool;
-          state.languageStatuses[lang.code] = createLanguageStatus('completed', { candidateCount: pool.length });
-          continue;
-        }
-        state.languageStatuses[lang.code] = createLanguageStatus('analyzing', { candidateCount: pool.length, analyzedCount: 0 });
-        onProgress?.(`Qwen3.6: оценка первых ${selectedForAnalysis.length} слов — ${languageName}`);
-        const analyzed = await mapWithConcurrency(
-          selectedForAnalysis,
-          QWEN_RUNTIME_CONFIG.maxConcurrentQwenRequests,
-          item => analyzeCandidateItem(lang.code, item, onProgress, runId, targetTranslations[lang.code] || ''),
-          { signal: currentRunSignal(), runId, stage: 'candidate_analysis_concurrency' }
-        );
-        throwIfStaleRun(runId, 'candidate_analysis_after_batch');
-        const analyzedByIdentity = new Map(analyzed.map(item => [`${item.model_key || item.model_family_key || item.model}|${normalizeText(item.word)}`, item]));
-        nextLangs[lang.code] = pool.map(item => {
-          const analyzedItem = analyzedByIdentity.get(`${item.model_key || item.model_family_key || item.model}|${normalizeText(item.word)}`);
-          return analyzedItem ? { ...analyzedItem, selected: Number.isFinite(wordWeight(analyzedItem)), analysisStatus: analyzedItem.analysis?.status === 'error' ? 'error' : null } : { ...item, selected: false };
-        });
-        const failedCount = analyzed.filter(item => item.analysis?.status === 'error').length;
-        const successfulCount = analyzed.length - failedCount;
-        if (failedCount && successfulCount) addLanguageWarning(state, lang.code, 'language_stage_partial', { failedCount, successfulCount });
-        if (analyzed.length > 0 && successfulCount === 0) addLanguageWarning(state, lang.code, 'all_language_candidates_analysis_failed', { analyzedCount: analyzed.length });
-        state.languageStatuses[lang.code] = createLanguageStatus(
-          analyzed.length > 0 && successfulCount === 0 ? 'qwen_error' : (failedCount || hasLanguageAssociativeWarnings(state.warnings, lang.code) ? 'completed_with_warnings' : 'completed'),
-          {
-            errorCode: failedCount ? (successfulCount === 0 ? 'QWEN_FAILED' : 'QWEN_PARTIAL_FAILURE') : null,
-            candidateCount: pool.length,
-            analyzedCount: analyzed.length,
-            successfulCount,
-            failedCount
-          }
-        );
-      }
-      throwIfStaleRun(runId, 'before_final_calculation');
-      onProgress?.(currentLang() === 'en' ? 'Calculating final percentage...' : 'Расчёт итогового процента...');
-      state.languages = { ...state.languages, ...nextLangs };
-      calculateFinal();
+      const languageScore = (language, candidates) => {
+        const selected = candidates
+          .filter(item => item.selected && Number.isFinite(wordWeight(item)))
+          .sort(compareFrequencyRepresentatives)
+          .slice(0, MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE);
+        return calculateLanguageScore(selected, { maxModels: MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE, scoreGetter: wordWeight });
+      };
+      const result = await runAssociativeCalculation({
+        input: { root, meaning, targetMeaning: meaning || root, elementType, maxModels: MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE },
+        state,
+        runId,
+        signal,
+        dependencies: {
+          languages: LANGUAGES,
+          isCurrentRun,
+          buttonStatusController: getCalculateButtonController(),
+          buttonTexts: {
+            start: currentLang() === 'en' ? 'Calculating...' : 'Расчёт...',
+            done: currentLang() === 'en' ? 'Done' : 'Готово',
+            warnings: textGroup('errors').completedWithWarnings,
+            error: currentLang() === 'en' ? 'Calculation error' : 'Ошибка расчёта'
+          },
+          targetTranslator: {
+            translate: async (_input, context) => getRunTargetTranslations(meaning || root, runId, context.onProgress)
+          },
+          candidateIndexLoader: {
+            load: async (language, _input, context) => {
+              const languageName = textGroup('languages')[language.code] || language.name;
+              context.onProgress?.(`${currentLang() === 'en' ? 'Searching similar roots' : 'Поиск похожих корней'}: ${languageName}`);
+              const candidates = await getLanguageCandidates(language.code, root, { signal: context.signal });
+              throwIfStaleRun(runId, 'candidate_index_after_await', context.signal);
+              const seenWords = new Set();
+              const valid = candidates.filter(candidate => isValidRuntimeCandidate(candidate, root, language.code, seenWords));
+              return reconcileModelRepresentatives(valid, root, language.code).map(item => ({ ...item, selected: false, analysisStatus: 'pending' }));
+            }
+          },
+          candidateAudit: {
+            audit: async (payload, context) => {
+              const auditWarnings = [];
+              const response = await refineCandidatesWithQwenAudit({
+                root,
+                targetMeaning: meaning || root,
+                candidatesByLanguage: payload.candidatesByLanguage,
+                loader: candidateIndexLoader,
+                signal: context.signal,
+                elementType,
+                onProgress: context.onProgress,
+                onWarning: warning => auditWarnings.push(warning),
+                languages: LANGUAGES.map(language => language.code)
+              });
+              if (response.diagnostics) {
+                state.candidateAuditDiagnostics = response.diagnostics;
+                Object.assign(diagnosticsState.run, {
+                  candidateAuditSuggestedCount: response.diagnostics.suggestedCount || 0,
+                  candidateAuditDuplicateWordCount: response.diagnostics.duplicateWordCount || 0,
+                  candidateAuditDuplicateModelCount: response.diagnostics.duplicateModelCount || 0,
+                  candidateAuditLocallyMissingCount: response.diagnostics.locallyMissingCount || 0,
+                  candidateAuditVerifiedNewModelCount: response.diagnostics.verifiedNewModelCount || 0,
+                  candidateAuditRejectedInvalidCount: response.diagnostics.rejectedInvalidCount || 0,
+                  candidateAuditStatus: response.diagnostics.status || null,
+                  candidateAuditBackendErrorCode: response.diagnostics.backendErrorCode || null
+                });
+              }
+              return { ...response, warnings: [...(response.warnings || []), ...auditWarnings] };
+            }
+          },
+          candidateFinalizer: {
+            finalize: (language, candidates) => finalizeCandidateOrdering(reconcileModelRepresentatives(candidates, root, language.code), MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE)
+              .map(item => ({ ...item, analysisStatus: item.selected ? 'pending' : item.analysisStatus || 'pending' }))
+          },
+          candidateAnalyzer: {
+            analyze: async (language, candidate, context) => {
+              const analyzed = await analyzeCandidateItem(language.code, candidate, context.onProgress, runId, context.translation);
+              if (analyzed.analysis?.review) {
+                context.onReviewStart?.();
+                context.onReviewEnd?.();
+              }
+              return analyzed;
+            }
+          },
+          languageScore: { calculate: languageScore },
+          finalScore: {
+            calculate: current => {
+              const languageResults = LANGUAGES.map(language => {
+                const candidates = (current.languages[language.code] || []).filter(item => item.selected && Number.isFinite(wordWeight(item)));
+                const score = calculateLanguageScore(candidates, { maxModels: current.maxModels, scoreGetter: wordWeight });
+                const semanticConfirmed = Number.isFinite(Number(score.normalized)) && candidates.some(item => item.analysis?.association?.semantic_confirmed === true);
+                return { ...score, semanticConfirmed };
+              });
+              return calculateFinalAssociation({ languages: LANGUAGES, languageResults, languageStatuses: current.languageStatuses });
+            }
+          },
+          renderer: { renderFinal: async () => renderAll() },
+          stateStorage: { save: async () => Promise.resolve(window.InteralFormDraft?.save?.()) }
+        },
+        onProgress: text => { if (isCurrentRun(runId)) getCalculateButtonController()?.progress?.(undefined, text); }
+      });
+      state = result.state;
       return true;
     }
 
     async function searchDerivatives() {
       const runId = nextRunId();
-      const buttonController = getCalculateButtonController();
-      const buttonToken = buttonController?.start(currentLang() === 'en' ? 'Calculating...' : 'Расчёт...');
       resetRunDiagnostics(runId);
       try {
-        const calculated = await runCalculation({
-          runId,
-          onProgress: text => { if (isCurrentRun(runId)) buttonController?.progress(buttonToken, text); }
-        });
-        if (!isCurrentRun(runId) || currentRunSignal()?.aborted) {
-          buttonController?.abort(buttonToken);
-          return;
-        }
-        if (!calculated) {
-          buttonController?.restore(buttonToken);
-          return;
-        }
-        state.checked = true;
-        {
-          const summary = summarizeLanguageStatuses(state.languageStatuses);
-          state.globalStatus = deriveGlobalStatus(summary);
-        }
-        renderAll();
-        window.InteralFormDraft?.save?.();
-        if (state.checked && state.globalStatus !== 'loading') buttonController?.success(buttonToken, state.globalStatus === 'completed_with_warnings' ? textGroup('errors').completedWithWarnings : (currentLang() === 'en' ? 'Done' : 'Готово'));
+        await runCalculation({ runId });
       } catch (error) {
-        if (isAbortError(error, currentRunSignal()) || !isCurrentRun(runId)) {
-          buttonController?.abort(buttonToken);
-          return;
-        }
+        if (isAbortError(error, currentRunSignal()) || !isCurrentRun(runId)) return;
         console.error(error);
-        buttonController?.error(buttonToken, currentLang() === 'en' ? 'Calculation error' : 'Ошибка расчёта');
-      } finally {
-        if (isCurrentRun(runId)) {
-          renderAll();
-        } else {
-          buttonController?.abort(buttonToken);
-        }
       }
     }
 
@@ -1227,6 +1181,9 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
         language_results: selectedLanguages.map(item => ({
           code: item.code,
           word: item.word,
+          parser_version: item.parser_version || item.morpheme_analysis?.parser_version || null,
+          model_key: item.model_key || item.model_family_key || null,
+          model_label: item.model_label || item.model || null,
           final_score: item.final_score,
           frequency: { score: item.frequency_score },
           association: item.analysis?.association || {}

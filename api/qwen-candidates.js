@@ -370,11 +370,17 @@ export default async function handler(req, res) {
         details: String(error.details || error.message || error).slice(0, 1200)
       };
     }
+    const audit = {
+      status: qwenAuditError ? 'completed_with_fallback' : 'completed',
+      model,
+      error: qwenAuditError ? { code: qwenAuditError.errorCode, details: qwenAuditError.details } : null
+    };
     return send(res, 200, {
       ok: true,
       candidates: mergeCandidateMaps(guaranteedCandidates, qwenCandidates),
       qwenCandidates,
       guaranteedCandidates,
+      audit,
       qwenAuditError,
       model,
       currentTopModels: input.currentTopModels,

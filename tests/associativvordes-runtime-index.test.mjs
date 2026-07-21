@@ -17,13 +17,13 @@ assert.match(script, /isCurrentRun\(runId\)/, 'runId guard remains in runtime');
 assert.match(script, /activeRunAbortController/, 'stale candidate loads are abortable');
 assert.match(script, /frequencyProfile: frequencyProfileFromCandidate\(candidate\)/, 'frequency profile is derived from index candidate');
 assert.match(script, /frequencyProfile: item\.frequencyProfile/, 'analysis receives precomputed frequency profile');
-assert.match(script, /lexicalModelDescriptor\(\{ \.\.\.item, word \}, root, language\)/, 'runtime model inference delegates to the canonical descriptor');
+assert.match(script, /lexicalModelDescriptor\(\{ \.\.\.item, word \}, root, language, elementType\)/, 'runtime model inference delegates to the canonical descriptor with element type');
 assert.match(script, /model_key: candidate\.model_key \|\| candidate\.model_family_key/, 'canonical model identity is preserved from candidate search');
-assert.match(script, /reconcileModelRepresentatives\(validCandidates, root, lang\.code\)/, 'one representative per model is selected before Qwen analysis');
+assert.match(script, /reconcileModelRepresentatives\(valid, root, language\.code\)/, 'one representative per model is selected before Qwen analysis');
 assert.match(script, /window\.InteralPageStateExport|window\.InteralPageStateImport/, 'page state persistence hooks remain');
 assert.match(script, /sources: sourceState\.sources/, 'saved state includes sources without storing shard payloads');
 assert.doesNotMatch(script, /manifestLoaded|loadedShards|shardCache/, 'localStorage compaction does not persist manifest or shards');
-assert.match(html, /script\.js\?v=associative-index-runtime-20260716-1/, 'fixed cache busting is updated');
+assert.match(html, /script\.js\?v=associative-production-hardening-20260721-1/, 'production hardening cache busting is updated');
 
 const fixtureEntries = [
   { word: 'alter', language: 'en', normalized: 'alter', search_form: 'alter', rank: 1, frequency_score: 91, category_breakdown: { fixture: 91 }, sources: [{ source: 'fixture', ipm: 10 }] },
@@ -44,5 +44,5 @@ const modelFromMatch = lexicalModelDescriptor({ word: 'realteration', search_for
 assert.equal(modelFromMatch.key, 'en|root|re|alter|ation', 'canonical model descriptor preserves prefix position without including the whole word');
 
 const analyzerSource = await readFile('associativvordes/js/association-analyzer.js', 'utf8');
-assert.match(analyzerSource, /hasFrequencyProfile \? \{ \.\.\.frequencyProfile/, 'analyzer uses supplied frequencyProfile');
-assert.match(analyzerSource, /: await getFrequencyProfile\(language, word\)/, 'manual words still use runtime frequency lookup when no profile is supplied');
+assert.match(analyzerSource, /if \(hasFrequencyProfile\)[\s\S]*frequency = \{ \.\.\.frequencyProfile/, 'analyzer uses supplied frequencyProfile');
+assert.match(analyzerSource, /getFrequencyProfile\(language, word, \{ signal \}\)/, 'manual words use abort-aware runtime frequency lookup when no profile is supplied');
