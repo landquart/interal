@@ -4,6 +4,7 @@ import { access, mkdir, readFile, stat, writeFile } from 'node:fs/promises';
 import { basename, dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { BASE_CATEGORY_WEIGHTS, CATEGORY_ORDER, LANGUAGE_SOURCES } from '../associativvordes/js/config-frequency-sources.js';
+import { normalizeLanguageSource } from '../associativvordes/js/language-source-descriptor.js';
 import { SCORE_CONFIG } from '../associativvordes/js/frequency-loader.js';
 import {
   calculateCategoryProfile,
@@ -231,15 +232,6 @@ function rootSamples(entries, roots = ['alter', 'regul', 'ocul', 'inter'], limit
 function sourceMatchesOption(sourceId, fileName, sourceFile) {
   if (!sourceFile) return true;
   return sourceFile === sourceId || sourceFile === fileName || sourceId.endsWith(`/${sourceFile}`);
-}
-
-function normalizeLanguageSource(category, source) {
-  if (typeof source === 'string') return { fileName: source, sourceId: `${category}/${source}`, optional: false };
-  if (!source || typeof source !== 'object') throw new Error(`Invalid LANGUAGE_SOURCES entry for ${category}`);
-  const fileName = source.file;
-  if (typeof fileName !== 'string' || !fileName || basename(fileName) !== fileName) throw new Error(`Invalid LANGUAGE_SOURCES file for ${category}`);
-  if (source.optional != null && source.optional !== true) throw new Error(`Invalid optional metadata for ${category}/${fileName}: use optional: true or omit it`);
-  return { fileName, sourceId: `${category}/${fileName}`, optional: source.optional === true };
 }
 
 function expectedLanguageSources(sources) {
