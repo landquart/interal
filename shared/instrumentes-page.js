@@ -5,7 +5,7 @@
   const text = {
     ru: {
       instruments: 'Инструменты', registry: 'Реестр',
-      promo: 'Внеси свой вклад в международный язык (всего в пару кликов!)', try: 'Попробовать',
+      promo: 'Внеси вклад в Интераль всего в пару кликов!', try: 'Попробовать',
       indoeuropan: 'Индоевропейские слова', associativ: 'Ассоциативные слова',
       internationalismes: 'Интернационализмы', communities: 'Слова сообществ',
       grammar: 'Грамматические и краткие слова', altervordes: 'Иные слова',
@@ -14,7 +14,7 @@
     },
     en: {
       instruments: 'Instruments', registry: 'Registry',
-      promo: 'Contribute to an international language (in just a couple of clicks!)', try: 'Try it',
+      promo: 'Contribute to Interal in just a couple of clicks!', try: 'Try it',
       indoeuropan: 'Indo-European words', associativ: 'Associative words',
       internationalismes: 'Internationalisms', communities: 'Words of communities',
       grammar: 'Grammatic and brief words', altervordes: 'Other words',
