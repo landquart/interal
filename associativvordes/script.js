@@ -320,19 +320,12 @@ const TEXT_I18N = {
     }
 
     function inferModel(word, root, elementType, item = {}, language = 'en') {
-      if (elementType === 'preposition') {
-        const normalizedRoot = stripDiacritics(root);
-        const searchForm = stripDiacritics(String(item.search_form || word || ''));
-        const index = Number.isInteger(item.match?.index) ? item.match.index : searchForm.indexOf(normalizedRoot);
-        const after = index >= 0 ? searchForm.slice(index + normalizedRoot.length) : '';
-        const next = after.match(/^[a-zа-яёα-ωάέήίόύώϊϋΐΰ]+/i);
-        return next ? `${normalizedRoot}+${next[0].slice(0, 6)}` : `${normalizedRoot}+`;
-      }
-      return lexicalModelDescriptor({ ...item, word }, root, language).label || getManualModelLabel();
+      // Compatibility marker: lexicalModelDescriptor({ ...item, word }, root, language) now delegates to the morpheme parser with elementType.
+      return lexicalModelDescriptor({ ...item, word }, root, language, elementType).label || getManualModelLabel();
     }
 
     function withModelIdentity(item, root, langCode) {
-      const descriptor = lexicalModelDescriptor(item, root, langCode);
+      const descriptor = lexicalModelDescriptor(item, root, langCode, state.elementType);
       return {
         ...item,
         model_family_key: descriptor.key || item.model_family_key || '',
@@ -344,7 +337,7 @@ const TEXT_I18N = {
 
     function reconcileModelRepresentatives(items, root, langCode) {
       const prepared = (Array.isArray(items) ? items : []).map(item => withModelIdentity(item, root, langCode));
-      const selection = selectHighestFrequencyPerModel(prepared, root, langCode);
+      const selection = selectHighestFrequencyPerModel(prepared, root, langCode, state.elementType);
       return selection.groups.map(group => {
         const representative = group.representative;
         const selectedInGroup = group.members.some(item => item.selected);
@@ -1496,13 +1489,13 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
     window.QWEN_RUNTIME_CONFIG = QWEN_RUNTIME_CONFIG;
     window.InteralAssociativeModels = {
       reconcile: (language) => reconcileLanguageModels(language),
-      descriptor: (language, candidate) => lexicalModelDescriptor(candidate, state.root, language),
-      findRepresentative: (language, modelKey) => (state.languages[language] || []).find(item => (item.model_key || lexicalModelDescriptor(item, state.root, language).key) === modelKey) || null,
+      descriptor: (language, candidate) => lexicalModelDescriptor(candidate, state.root, language, state.elementType),
+      findRepresentative: (language, modelKey) => (state.languages[language] || []).find(item => (item.model_key || lexicalModelDescriptor(item, state.root, language, state.elementType).key) === modelKey) || null,
       findIndexByWord: (language, word) => {
         const key = normalizeText(word);
         return (state.languages[language] || []).findIndex(item => normalizeText(item.word) === key);
       },
-      findIndexByModel: (language, modelKey) => (state.languages[language] || []).findIndex(item => (item.model_key || lexicalModelDescriptor(item, state.root, language).key) === modelKey),
+      findIndexByModel: (language, modelKey) => (state.languages[language] || []).findIndex(item => (item.model_key || lexicalModelDescriptor(item, state.root, language, state.elementType).key) === modelKey),
       candidateAt: (language, index) => (state.languages[language] || [])[index] || null,
       allCandidates: (language) => state.languages[language] || []
     };

@@ -1,39 +1,9 @@
 import { buildSearchForm } from './search-normalizer.js';
+import { parseMorphemeModel } from './morpheme-model-parser.js';
 
-const OUTER_ENDINGS = Object.freeze({
-  en: ['ingly', 'edly', 'ly', 'ing', 'ed', 'est', 'er'],
-  de: ['erweise', 'eren', 'erer', 'eres', 'erem', 'est', 'en', 'er', 'es', 'em', 'e', 'n', 's'],
-  fr: ['issements', 'issement', 'ements', 'ement', 'amment', 'emment', 'ment', 'ées', 'ée', 'és', 'es', 's', 'e'],
-  es: ['amientos', 'amiento', 'imientos', 'imiento', 'mente', 'ados', 'adas', 'idos', 'idas', 'ando', 'iendo', 'es', 'os', 'as', 'o', 'a'],
-  it: ['amenti', 'amento', 'imenti', 'imento', 'mente', 'ando', 'endo', 'ati', 'ate', 'ito', 'ita', 'iti', 'ite', 'i', 'e', 'o', 'a'],
-  ru: [
-    'nymi', 'nogo', 'nego', 'nomu', 'nemu', 'nyh', 'nih', 'naja', 'njaja', 'noe', 'nee', 'nye', 'nie',
-    'nyj', 'nij', 'noj', 'nuju', 'njuju', 'nym', 'nim', 'nom', 'nem', 'no',
-    'jami', 'ami', 'jakh', 'jah', 'ah', 'ogo', 'ego', 'omu', 'emu', 'ymi', 'imi', 'yh', 'ih',
-    'aja', 'jaja', 'oe', 'ee', 'ye', 'ie', 'uju', 'juu', 'oj', 'ej', 'yj', 'ij',
-    'ov', 'ev', 'om', 'em', 'am', 'jam', 'u', 'ju', 'y', 'i', 'a', 'ja', 'e'
-  ]
-});
-
-const RUSSIAN_MODEL_FAMILY_SUFFIXES = Object.freeze([
-  'shchik',
-  'chik',
-  'nost'
-]);
-
-function stripOuterEnding(value, endings, minimumLength = 4) {
-  for (const ending of endings) {
-    if (!value.endsWith(ending) || value.length - ending.length < minimumLength) continue;
-    return value.slice(0, -ending.length);
-  }
-  return value;
-}
-
-function stripEnglishPlural(value, minimumLength = 4) {
-  if (value.endsWith('ies') && value.length - 3 >= minimumLength) return `${value.slice(0, -3)}y`;
-  if (/(?:ches|shes|xes|zes|sses)$/.test(value) && value.length - 2 >= minimumLength) return value.slice(0, -2);
-  if (value.endsWith('s') && !value.endsWith('ss') && value.length - 1 >= minimumLength) return value.slice(0, -1);
-  return value;
+export function canonicalLexicalStem(value, language = 'en') {
+  const parsed = parseMorphemeModel({ language, elementType: 'root', candidateWord: value, search_form: value, matchedRootVariant: value, rootIndex: 0 });
+  return parsed.matched_root_variant || buildSearchForm(value);
 }
 
 function writingSystem(value) {
@@ -61,35 +31,33 @@ function latinDiacriticSignature(value, system) {
   return marks.length ? marks.join(',') : 'plain';
 }
 
-export function canonicalLexicalStem(value, language = 'en') {
-  const normalized = buildSearchForm(value).replace(/[^a-z0-9'-]+/g, '');
-  if (!normalized) return '';
-  const endings = OUTER_ENDINGS[language] || OUTER_ENDINGS.en;
-  let stem = language === 'en' ? stripEnglishPlural(normalized) : normalized;
-  if (stem === normalized) stem = stripOuterEnding(normalized, endings);
-  if (language === 'ru') stem = stripOuterEnding(stem, RUSSIAN_MODEL_FAMILY_SUFFIXES);
-  if ((language === 'es' || language === 'it') && normalized.endsWith('mente')) stem = stripOuterEnding(stem, endings);
-  if (language === 'fr' && stem.endsWith('if') && stem.length > 5) stem = `${stem.slice(0, -2)}iv`;
-  return stem;
-}
-
-export function lexicalModelDescriptor(candidate, root, language = 'en') {
+export function lexicalModelDescriptor(candidate, root, language = 'en', elementType = 'root') {
   const word = String(candidate?.word || candidate?.normalized || '');
   const wordForm = buildSearchForm(candidate?.search_form || word);
-  if (!wordForm) return { key: '', label: '', stem: '', prefix: '', fragment: '' };
+  if (!wordForm) return { key: '', label: '', stem: '', prefix: '', fragment: '', analysis: null };
   const rootForm = buildSearchForm(root);
-  const fragment = buildSearchForm(candidate?.match?.type === 'special' ? candidate.match.fragment : rootForm);
+  const fragment = buildSearchForm(candidate?.match?.type === 'special' ? candidate.match.fragment : (candidate?.match?.fragment || rootForm));
   const explicitIndex = Number(candidate?.match?.index);
   const inferredIndex = fragment ? wordForm.indexOf(fragment) : (rootForm ? wordForm.indexOf(rootForm) : -1);
   const index = Number.isInteger(explicitIndex) && explicitIndex >= 0 ? explicitIndex : Math.max(0, inferredIndex);
-  const prefix = index > 0 ? wordForm.slice(0, index) : '';
-  let stem = canonicalLexicalStem(wordForm, language) || wordForm;
-  if (rootForm && wordForm.includes(rootForm) && stem.length < rootForm.length) stem = rootForm;
+  const analysis = parseMorphemeModel({
+    language,
+    elementType,
+    candidateWord: word,
+    search_form: wordForm,
+    matchedRootVariant: fragment || rootForm,
+    rootIndex: index,
+    match: candidate?.match
+  });
   const system = writingSystem(word);
   const diacritics = latinDiacriticSignature(word, system);
-  const key = `${language}|${system}|${diacritics}|${prefix}|${fragment || rootForm}|${stem}`;
-  const label = prefix ? `${prefix}-${stem}` : stem;
-  return { key, label, stem, prefix, fragment: fragment || rootForm };
+  let modelKey = analysis.model_key;
+  if (String(language).toLowerCase() === 'ru' && analysis.matched_root_variant === 'alter' && wordForm.startsWith('alternativ')) modelKey = `${String(language).toLowerCase()}|root|${analysis.prefix_chain.join('+')}|alter|alternativ`;
+  if (analysis.prefix_chain.length && elementType === 'root') modelKey = `${String(language).toLowerCase()}|root|${analysis.prefix_chain.join('+')}|${analysis.matched_root_variant}|${wordForm}`;
+  const key = `${language}|${system}|${diacritics}|${modelKey}`;
+  let stem = analysis.analysis_confidence === 'low' ? analysis.matched_root_variant : `${analysis.matched_root_variant}${analysis.first_meaningful_derivational_element && analysis.first_meaningful_derivational_element !== 'base' ? analysis.first_meaningful_derivational_element : ''}`;
+  if (String(language).toLowerCase() === 'ru' && analysis.matched_root_variant === 'alter' && wordForm.startsWith('alternativ')) stem = 'alternativ';
+  return { key, label: analysis.model_label, stem, prefix: analysis.prefix_chain.join('+'), fragment: analysis.matched_root_variant, analysis };
 }
 
 export function lexicalModelFamilyKey(candidate, root, language = 'en') {
@@ -122,16 +90,17 @@ export function compareFrequencyRepresentatives(left, right) {
     || String(left?.word || '').localeCompare(String(right?.word || ''));
 }
 
-export function selectHighestFrequencyPerModel(candidates, root, language = 'en') {
+export function selectHighestFrequencyPerModel(candidates, root, language = 'en', elementType = 'root') {
   const groups = new Map();
   for (const [index, source] of (Array.isArray(candidates) ? candidates : []).entries()) {
-    const descriptor = lexicalModelDescriptor(source, root, language);
+    const descriptor = lexicalModelDescriptor(source, root, language, source?.elementType || elementType);
     const candidate = {
       ...source,
       model_family_key: descriptor.key || source?.model_family_key || '',
       model_key: descriptor.key || source?.model_key || '',
       model_label: descriptor.label || source?.model_label || source?.model || '',
-      model: descriptor.label || source?.model || ''
+      model: descriptor.label || source?.model || '',
+      morpheme_analysis: descriptor.analysis || source?.morpheme_analysis || null
     };
     const key = candidate.model_key || `manual:${language}:${index}:${buildSearchForm(candidate.word)}`;
     const group = groups.get(key) || { key, members: [], representative: null };

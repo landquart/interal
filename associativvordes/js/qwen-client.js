@@ -309,7 +309,7 @@ function modelForGeneratedCandidate(entry, suggestion, canonicalRoot, language) 
   const variant = suggestion.root_variant || canonicalRoot;
   const variantIndex = buildSearchForm(searchForm).indexOf(buildSearchForm(variant));
   const match = { type: 'special', distance: 0, similarity: 1, fragment: buildSearchForm(variant), index: Math.max(0, variantIndex) };
-  return lexicalModelDescriptor({ ...entry, match }, canonicalRoot, language);
+  return lexicalModelDescriptor({ ...entry, match }, canonicalRoot, language, suggestion.elementType || 'root');
 }
 
 async function verifySuggestionInLocalIndex(loader, language, suggestion, signal) {

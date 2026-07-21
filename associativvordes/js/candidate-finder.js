@@ -112,7 +112,7 @@ function withDuplicateWarning(entry) {
   };
 }
 
-export function findCandidatesForRoot({ entries, root, language = 'en', maxCandidates = Infinity, specialRootMatcher } = {}) {
+export function findCandidatesForRoot({ entries, root, language = 'en', elementType = 'root', maxCandidates = Infinity, specialRootMatcher } = {}) {
   if (!Array.isArray(entries)) throw new TypeError('findCandidatesForRoot requires entries to be an array.');
   if (typeof root !== 'string' || !root.trim()) throw new TypeError('findCandidatesForRoot requires a non-empty root.');
   if (maxCandidates !== Infinity && (!Number.isInteger(maxCandidates) || maxCandidates < 0)) throw new TypeError('maxCandidates must be a non-negative integer.');
@@ -149,10 +149,12 @@ export function findCandidatesForRoot({ entries, root, language = 'en', maxCandi
       total_ipm: totalIpm(entry),
       match
     };
-    const model = lexicalModelDescriptor(candidate, root, language);
+    const model = lexicalModelDescriptor(candidate, root, language, elementType);
     candidate.model_family_key = model.key;
     candidate.model_key = model.key;
     candidate.model_label = model.label;
+    candidate.morpheme_analysis = model.analysis;
+    if (model.analysis?.diagnostic_reason?.startsWith('morpheme_parse_fallback')) candidate.warnings = [...new Set([...(candidate.warnings || []), 'morpheme_parse_fallback'])];
     matched.push(candidate);
   }
 
