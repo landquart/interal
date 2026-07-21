@@ -34,4 +34,24 @@ if old not in text:
 text = text.replace(old, new, 1)
 path.write_text(text, encoding='utf-8')
 
+path = root / 'tests/associativvordes-error-handling.test.mjs'
+text = path.read_text(encoding='utf-8')
+text = text.replace(
+    "const analyzer = await readFile('associativvordes/js/association-analyzer.js', 'utf8');",
+    "const analyzer = await readFile('associativvordes/js/association-analyzer.js', 'utf8');\nconst runner = await readFile('associativvordes/js/associative-calculation-runner.js', 'utf8');",
+    1
+)
+replacements = [
+    ("assert.match(script, /createLanguageStatus\\('no_candidates'\\)[\\s\\S]*continue;/, 'no_candidates path skips ordinary candidate Qwen analysis');", "assert.match(runner, /status\\('no_candidates'\\)[\\s\\S]*continue;/, 'no_candidates path skips candidate analysis in the unified runner');"),
+    ("assert.match(script, /createLanguageStatus\\('index_error'[\\s\\S]*continue;/, 'index_error path skips ordinary candidate Qwen analysis');", "assert.match(runner, /addLanguageWarning\\(currentState, language\\.code, 'language_index_unavailable'[\\s\\S]*status\\('index_error'/, 'index errors are terminal for that language in the unified runner');"),
+    ("assert.match(script, /state\\.languages = \\{ \\.\\.\\.state\\.languages, \\.\\.\\.nextLangs \\}/, 'one failed language does not clear previous language results');", "assert.match(runner, /currentState\\.languages\\[language\\.code\\] = pool\\.map/, 'each language result is updated independently');"),
+    ("assert.match(script, /buttonController\\?\\.success[\\s\\S]*Done[\\s\\S]*Готово/, 'successful calculation shows localized completion status');", "assert.match(script, /buttonTexts:[\\s\\S]*done: currentLang\\(\\) === 'en' \\? 'Done' : 'Готово'/, 'production supplies localized completion text to the unified runner');"),
+    ("assert.match(script, /mapWithConcurrency\\([\\s\\S]*QWEN_RUNTIME_CONFIG\\.maxConcurrentQwenRequests/, 'maxConcurrentQwenRequests is honored');", "assert.match(runner, /for \\(const candidate of selected\\)/, 'only the bounded final selected model set is analyzed');")
+]
+for old, new in replacements:
+    if old not in text:
+        raise SystemExit(f'error-handling assertion not found: {old}')
+    text = text.replace(old, new, 1)
+path.write_text(text, encoding='utf-8')
+
 print('Updated existing associative tests for unified production behavior.')
