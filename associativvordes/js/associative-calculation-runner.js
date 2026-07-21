@@ -1,4 +1,5 @@
-import { calculateLanguageScore, calculateFinalAssociation, deriveGlobalStatusFromLanguageStatuses, shouldReviewPrimaryScore, createReviewBudget } from './association-analyzer.js';
+import { calculateLanguageScore, calculateFinalAssociation, deriveGlobalStatusFromLanguageStatuses, shouldReviewPrimaryScore } from './association-analyzer.js';
+import { createReviewBudget } from './review-budget.js';
 import { finalizeCandidateOrdering, selectBestFinalModels, isAbortError, normalizeAbortError, QWEN_RUNTIME_CONFIG } from './qwen-client.js';
 import { MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE, createEmptyAssociativeState } from './associative-state.js';
 
