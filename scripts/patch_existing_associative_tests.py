@@ -25,4 +25,13 @@ if old not in text:
 text = text.replace(old, new, 1)
 path.write_text(text, encoding='utf-8')
 
+path = root / 'tests/associative-search-runtime-patch.test.mjs'
+text = path.read_text(encoding='utf-8')
+old = "  assert.ok(patched.includes('autoAnalyzeCandidatesPerLanguage'));\n  assert.ok(patched.includes(\"analysisStatus: 'pending'\"));\n  assert.ok(patched.includes('nextLangs[lang.code] = reconcileModelRepresentatives'));"
+new = "  assert.ok(patched.includes('runAssociativeCalculation'), 'published runtime uses the unified production runner');\n  assert.ok(patched.includes(\"analysisStatus: 'pending'\"));\n  assert.ok(patched.includes('candidateFinalizer'), 'production adapter supplies final model grouping to the unified runner');"
+if old not in text:
+    raise SystemExit('runtime patch legacy assertions not found')
+text = text.replace(old, new, 1)
+path.write_text(text, encoding='utf-8')
+
 print('Updated existing associative tests for unified production behavior.')
