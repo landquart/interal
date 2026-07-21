@@ -15,9 +15,21 @@ assert.ok(scriptSource.indexOf('Расчёт итогового процента
 assert.ok(scriptSource.indexOf('state.checked = true') > scriptSource.indexOf('await runCalculation'), 'state.checked is set only after the awaited pipeline completes');
 assert.ok(scriptSource.indexOf('window.InteralFormDraft?.save?.();', scriptSource.indexOf('state.checked = true')) > scriptSource.indexOf('state.checked = true'), 'form draft is saved only after final checked state');
 assert.match(scriptSource, /buttonController\?\.start\([\s\S]*?buttonController\?\.success/, 'button controller keeps the loader-owned button state until final success');
-assert.match(scriptSource, /activeRunAbortController\?\.abort\?\.\(\)/, 'new runs and resets abort the previous pipeline');
+assert.match(scriptSource, /activeRunAbortController\?\.abort\?\.\(/ , 'new runs and resets abort the previous pipeline');
 assert.match(scriptSource, /isCurrentRun\(runId\)/, 'pipeline checks run identity before mutating final state');
 assert.match(scriptSource, /QWEN_CANDIDATE_AUDIT_WARNING/, 'candidate audit failures are converted into a completed warning result');
+
+assert.match(scriptSource, /function nextRunId\(\) \{ activeRunAbortController\?\.abort\?\.\([\s\S]*?activeRunId \+= 1;[\s\S]*?new AbortController\(\)/, 'new calculation aborts the previous controller before creating the next one');
+assert.match(scriptSource, /throwIfStaleRun\(runId, 'candidate_analysis_after_qwen'\)/, 'old run is checked after primary/review candidate analysis awaits');
+assert.match(scriptSource, /throwIfStaleRun\(runId, 'candidate_audit_after_await'\)/, 'old run is checked after candidate audit awaits');
+assert.match(scriptSource, /throwIfStaleRun\(runId, 'candidate_analysis_after_batch'\)/, 'old run is checked after suggestion verification/concurrency awaits');
+assert.match(scriptSource, /isAbortError\(error, currentRunSignal\(\)\)[\s\S]*buttonController\?\.abort\(buttonToken\)/, 'aborted runs use silent button abort rather than error/Done');
+assert.match(scriptSource, /window\.InteralFormDraft\?\.save\?\.\(\);/, 'draft save remains after successful current-run completion only');
+assert.ok(scriptSource.indexOf('window.InteralFormDraft?.save?.();') > scriptSource.indexOf('if (!isCurrentRun(runId) || currentRunSignal()?.aborted)'), 'draft is not saved before the stale-run/abort guard');
+assert.ok(scriptSource.indexOf('buttonController?.success') > scriptSource.indexOf('if (!isCurrentRun(runId) || currentRunSignal()?.aborted)'), 'Done is not shown before the stale-run/abort guard');
+assert.ok(scriptSource.indexOf('renderAll();') > scriptSource.indexOf('state.checked = true'), 'final render follows checked state after a successful current run');
+assert.match(scriptSource, /finally \{[\s\S]*if \(isCurrentRun\(runId\)\)[\s\S]*renderAll\(\)[\s\S]*else[\s\S]*buttonController\?\.abort/, 'cancelled old runs do not execute final render');
+
 
 const originalFetch = globalThis.fetch;
 const originalDocument = globalThis.document;
@@ -54,6 +66,23 @@ const refined = await refineCandidatesWithQwenAudit({
 assert.equal(fetchCount, 1, 'candidate audit performs exactly one network request inside the awaited stage');
 assert.ok(refined.candidatesByLanguage.en.some(candidate => candidate.word === 'zeta'), 'verified Qwen suggestion is added before final ordering');
 assert.equal(finalizeCandidateOrdering(refined.candidatesByLanguage.en, 1)[0].word, 'zeta', 'Qwen suggestion participates in frequency-only final selection');
+
+
+const abortingSignal = new AbortController();
+abortingSignal.abort(new DOMException('cancelled', 'AbortError'));
+await assert.rejects(
+  () => refineCandidatesWithQwenAudit({
+    root: 'zet',
+    targetMeaning: 'test',
+    candidatesByLanguage: { en: [{ word: 'alpha', model_key: 'a', frequency_score: 10 }] },
+    loader,
+    languages: ['en'],
+    signal: abortingSignal.signal,
+    onWarning: warning => { throw new Error(`abort must not become audit warning: ${warning}`); }
+  }),
+  error => error?.name === 'AbortError' && error?.code === 'ABORTED',
+  'candidate audit abort propagates without warning fallback'
+);
 
 fetchCount = 0;
 globalThis.fetch = async () => {

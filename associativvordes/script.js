@@ -1,5 +1,5 @@
 import { analyzeAssociativeWord, finalAssociationPassesThreshold, calculateLanguageScore, calculateFinalAssociation, buildDecisionReasons, decisionStatusForResult, canCreateAssociativeJsonCard, normalizeLanguageStatus, summarizeLanguageStatuses, deriveGlobalStatusFromLanguageStatuses } from './js/association-analyzer.js';
-import { QWEN_RUNTIME_CONFIG, QWEN_ERROR_CODES, refineCandidatesWithQwenAudit, selectBestFinalModels, finalizeCandidateOrdering } from './js/qwen-client.js';
+import { QWEN_RUNTIME_CONFIG, QWEN_ERROR_CODES, refineCandidatesWithQwenAudit, selectBestFinalModels, finalizeCandidateOrdering, isAbortError, normalizeAbortError } from './js/qwen-client.js';
 import { escapeHtml, formatMetric, renderCandidateEvidenceDetails, resultRowClasses, swowLabel, thresholdStatusLabel, thresholdStatusForResult, semanticWarningLabel, languageStatusLabel } from './js/render-results.js';
 import { normalizeText, stripDiacritics, includesRoot, fuzzyIncludesRoot, specialRootMatch } from './js/root-matcher.js';
 import { createCandidateIndexLoader } from './js/candidate-index-loader.js';
@@ -155,9 +155,13 @@ const TEXT_I18N = {
     let state = emptyState();
     let activeRunId = 0;
     let activeRunAbortController = null;
-    function nextRunId() { activeRunId += 1; activeRunAbortController?.abort?.(); activeRunAbortController = new AbortController(); return activeRunId; }
-    function invalidateActiveRuns() { activeRunId += 1; activeRunAbortController?.abort?.(); activeRunAbortController = null; }
+    function nextRunId() { activeRunAbortController?.abort?.(normalizeAbortError(null, { stage: 'new_run', runId: activeRunId })); activeRunId += 1; activeRunAbortController = new AbortController(); return activeRunId; }
+    function invalidateActiveRuns() { activeRunAbortController?.abort?.(normalizeAbortError(null, { stage: 'reset', runId: activeRunId })); activeRunId += 1; activeRunAbortController = null; }
     function isCurrentRun(runId) { return runId === activeRunId; }
+    function currentRunSignal() { return activeRunAbortController?.signal; }
+    function throwIfStaleRun(runId, stage, signal = currentRunSignal()) {
+      if (!isCurrentRun(runId) || signal?.aborted) throw normalizeAbortError(signal?.reason, { stage, runId });
+    }
     let activeLang = 'en';
     // Static associative search runtime v2
     const SEARCH_RESULTS_PAGE_SIZE = 100;
@@ -422,7 +426,7 @@ const TEXT_I18N = {
     }
 
     async function analyzeCandidateItem(langCode, item, onProgress, runId, localizedTargetMeaning) {
-      if (!isCurrentRun(runId)) return item;
+      throwIfStaleRun(runId, 'candidate_analysis_start');
       try {
         const languageName = textGroup('languages')[langCode] || langCode;
         onProgress?.(`SWOW: ${languageName} — ${item.word}`);
@@ -435,12 +439,14 @@ const TEXT_I18N = {
           frequencyProfile: item.frequencyProfile,
           onProgress: text => { if (isCurrentRun(runId)) onProgress?.(text.replace(`${langCode} —`, `${languageName} —`)); },
           onReviewRequest: () => {
+            throwIfStaleRun(runId, 'review_request');
             incrementDiagnostic('qwenReviewRequestCount');
             state.languageStatuses[langCode] = createLanguageStatus('reviewing', state.languageStatuses[langCode]);
           },
-          signal: activeRunAbortController?.signal
+          signal: currentRunSignal(),
+          runId
         });
-        if (!isCurrentRun(runId)) return item;
+        throwIfStaleRun(runId, 'candidate_analysis_after_qwen');
         recordQwenUsedModels(analysis);
         if (analysis.warnings?.some?.(warning => String(warning).startsWith('review_failed'))) incrementDiagnostic('qwenFailedRequestCount');
         return {
@@ -452,22 +458,27 @@ const TEXT_I18N = {
           selected: Number.isFinite(Number(analysis.final_score))
         };
       } catch (error) {
-        if (!isCurrentRun(runId)) return item;
+        if (isAbortError(error, currentRunSignal()) || !isCurrentRun(runId)) {
+          incrementDiagnostic('abortedRequestCount');
+          throw normalizeAbortError(error, { stage: error?.stage || 'candidate_analysis', runId });
+        }
         if (error.code === QWEN_ERROR_CODES.ABORTED) incrementDiagnostic('abortedRequestCount');
         else incrementDiagnostic('qwenFailedRequestCount');
         return failedAnalysis(langCode, item, error);
       }
     }
 
-    async function mapWithConcurrency(items, limit, mapper) {
+    async function mapWithConcurrency(items, limit, mapper, { signal, runId, stage = 'concurrency' } = {}) {
       const results = [];
       let index = 0;
       const safeLimit = Math.max(1, Number(limit) || 1);
 
       async function worker() {
         while (index < items.length) {
+          if (!isCurrentRun(runId) || signal?.aborted) throw normalizeAbortError(signal?.reason, { stage, runId });
           const currentIndex = index++;
           results[currentIndex] = await mapper(items[currentIndex], currentIndex);
+          if (!isCurrentRun(runId) || signal?.aborted) throw normalizeAbortError(signal?.reason, { stage, runId });
         }
       }
 
@@ -546,11 +557,13 @@ const TEXT_I18N = {
           targetMeaning,
           sourceLanguage: 'ru',
           targetLanguages: TARGET_TRANSLATION_LANGUAGES,
-          signal: activeRunAbortController?.signal
+          signal: currentRunSignal(),
+          runId
         });
-        return isCurrentRun(runId) ? (result.translations || {}) : {};
+        throwIfStaleRun(runId, 'target_translation_after_await');
+        return result.translations || {};
       } catch (error) {
-        if (error?.name === 'AbortError' || error?.code === 'TARGET_TRANSLATION_ABORTED') incrementDiagnostic('abortedRequestCount');
+        if (isAbortError(error, currentRunSignal()) || !isCurrentRun(runId)) { incrementDiagnostic('abortedRequestCount'); throw normalizeAbortError(error, { stage: 'target_translation', runId }); }
         console.warn('Target meaning translation unavailable; SWOW will be skipped for untranslated languages.', error);
         return {};
       }
@@ -576,7 +589,7 @@ const TEXT_I18N = {
       clearTargetMeaningTranslationCache();
 
       const targetTranslations = await getRunTargetTranslations(meaning || root, runId, onProgress);
-      if (!isCurrentRun(runId)) return;
+      throwIfStaleRun(runId, 'after_target_translation');
 
       const candidatePools = {};
       onProgress?.(currentLang() === 'en' ? 'Loading frequency lists...' : 'Загрузка частотных списков...');
@@ -587,9 +600,10 @@ const TEXT_I18N = {
         state.languageStatuses[lang.code] = createLanguageStatus('loading_index');
         let candidates;
         try {
-          candidates = await getLanguageCandidates(lang.code, root, { signal: activeRunAbortController?.signal });
+          candidates = await getLanguageCandidates(lang.code, root, { signal: currentRunSignal() });
+          throwIfStaleRun(runId, 'candidate_index_after_await');
         } catch (error) {
-          if (!isCurrentRun(runId)) return;
+          if (isAbortError(error, currentRunSignal()) || !isCurrentRun(runId)) throw normalizeAbortError(error, { stage: 'candidate_index', runId });
           candidatePools[lang.code] = [];
           state.languageStatuses[lang.code] = createLanguageStatus('index_error', { errorCode: error.code || error.name || 'INDEX_ERROR' });
           continue;
@@ -617,18 +631,24 @@ const TEXT_I18N = {
       ]));
 
       const auditWarnings = [];
-      const refined = await refineCandidatesWithQwenAudit({
+      let refined;
+      try {
+        refined = await refineCandidatesWithQwenAudit({
         root,
         targetMeaning: meaning || root,
         candidatesByLanguage: preliminaryPools,
         loader: candidateIndexLoader,
-        signal: activeRunAbortController?.signal,
+        signal: currentRunSignal(),
         elementType,
         onProgress,
         onWarning: warning => auditWarnings.push(warning),
         languages: LANGUAGES.map(lang => lang.code)
-      });
-      if (!isCurrentRun(runId)) return;
+        });
+        throwIfStaleRun(runId, 'candidate_audit_after_await');
+      } catch (error) {
+        if (isAbortError(error, currentRunSignal()) || !isCurrentRun(runId)) throw normalizeAbortError(error, { stage: error?.stage || 'candidate_audit', runId });
+        throw error;
+      }
 
       onProgress?.(currentLang() === 'en' ? 'Selecting final five frequency models...' : 'Выбор итоговых пяти частотных моделей...');
       const finalPools = {};
@@ -661,9 +681,10 @@ const TEXT_I18N = {
         const analyzed = await mapWithConcurrency(
           selectedForAnalysis,
           QWEN_RUNTIME_CONFIG.maxConcurrentQwenRequests,
-          item => analyzeCandidateItem(lang.code, item, onProgress, runId, targetTranslations[lang.code] || '')
+          item => analyzeCandidateItem(lang.code, item, onProgress, runId, targetTranslations[lang.code] || ''),
+          { signal: currentRunSignal(), runId, stage: 'candidate_analysis_concurrency' }
         );
-        if (!isCurrentRun(runId)) return;
+        throwIfStaleRun(runId, 'candidate_analysis_after_batch');
         const analyzedByIdentity = new Map(analyzed.map(item => [`${item.model_key || item.model_family_key || item.model}|${normalizeText(item.word)}`, item]));
         nextLangs[lang.code] = pool.map(item => {
           const analyzedItem = analyzedByIdentity.get(`${item.model_key || item.model_family_key || item.model}|${normalizeText(item.word)}`);
@@ -682,7 +703,7 @@ const TEXT_I18N = {
           }
         );
       }
-      if (!isCurrentRun(runId)) return;
+      throwIfStaleRun(runId, 'before_final_calculation');
       onProgress?.(currentLang() === 'en' ? 'Calculating final percentage...' : 'Расчёт итогового процента...');
       state.languages = { ...state.languages, ...nextLangs };
       calculateFinal();
@@ -710,7 +731,7 @@ const TEXT_I18N = {
           runId,
           onProgress: text => { if (isCurrentRun(runId)) buttonController?.progress(buttonToken, text); }
         });
-        if (!isCurrentRun(runId)) {
+        if (!isCurrentRun(runId) || currentRunSignal()?.aborted) {
           buttonController?.abort(buttonToken);
           return;
         }
@@ -727,7 +748,7 @@ const TEXT_I18N = {
         window.InteralFormDraft?.save?.();
         if (state.checked && state.globalStatus !== 'loading') buttonController?.success(buttonToken, state.globalStatus === 'completed_with_warnings' ? textGroup('errors').completedWithWarnings : (currentLang() === 'en' ? 'Done' : 'Готово'));
       } catch (error) {
-        if (!isCurrentRun(runId)) {
+        if (isAbortError(error, currentRunSignal()) || !isCurrentRun(runId)) {
           buttonController?.abort(buttonToken);
           return;
         }
