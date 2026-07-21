@@ -87,6 +87,6 @@ const qwen = await readFile('associativvordes/js/qwen-client.js', 'utf8');
 assert.match(qwen, /compareFrequencyRepresentatives\(proposed, existing\)/);
 assert.doesNotMatch(qwen, /InteralAssociativeModels\?\.reconcile/, 'Qwen insertion waits for analyzeItem to reconcile after scoring');
 assert.equal((await import('../associativvordes/js/qwen-client.js')).QWEN_RUNTIME_CONFIG.autoAnalyzeCandidatesPerLanguage, MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE);
-assert.match(qwen, /enableReviewModel: false/);
+assert.match(qwen, /enableReviewModel: true/);
 
 console.log('Associative model-selection and threshold policy tests passed.');
