@@ -1,0 +1,70 @@
+name: Associative production hardening
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+
+jobs:
+  apply-and-test:
+    if: github.head_ref == 'fix/associative-production-hardening' && github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Apply production hardening
+        run: |
+          python3 scripts/apply_associative_core_hardening.py
+          python3 scripts/apply_associative_morphology_hardening.py
+          python3 scripts/apply_associative_hardening_tests.py
+
+      - name: Validate JavaScript syntax
+        run: |
+          node --check associativvordes/script.js
+          node --check associativvordes/js/associative-calculation-runner.js
+          node --check associativvordes/js/association-analyzer.js
+          node --check associativvordes/js/qwen-client.js
+          node --check associativvordes/js/swow-client.js
+          node --check associativvordes/js/frequency-loader.js
+          node --check associativvordes/js/morphology/analyzer.js
+          node --check associativvordes/js/morphology/segmentation-engine.js
+          node --check api/qwen-candidates.js
+
+      - name: Install dependencies
+        run: npm install --ignore-scripts --no-audit --no-fund
+
+      - name: Run targeted tests
+        run: |
+          node tests/associative-atomic-pipeline.test.mjs
+          node tests/associative-production-hardening.test.mjs
+          node tests/associative-morpheme-model-parser-v2.test.mjs
+          node tests/associativvordes-qwen-review.test.mjs
+          node tests/associative-qwen-candidate-generation.test.mjs
+
+      - name: Run full test suite
+        run: npm test
+
+      - name: Check diff
+        run: git diff --check
+
+      - name: Commit validated changes
+        run: |
+          rm -f scripts/apply_associative_core_hardening.py
+          rm -f scripts/apply_associative_morphology_hardening.py
+          rm -f scripts/apply_associative_hardening_tests.py
+          rm -f .github/workflows/associative-production-hardening.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Harden associative production pipeline and morphology"
+          git push origin HEAD:${{ github.head_ref }}
