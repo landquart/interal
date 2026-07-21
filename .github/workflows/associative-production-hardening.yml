@@ -25,6 +25,7 @@ jobs:
       - name: Repair patch matchers
         run: |
           python3 scripts/repair_associative_patch.py
+          python3 scripts/repair_associative_core_behavior_patch.py
           python3 scripts/repair_associative_morphology_patch.py
 
       - name: Apply core hardening
@@ -91,6 +92,7 @@ jobs:
       - name: Commit validated changes
         run: |
           rm -f scripts/repair_associative_patch.py
+          rm -f scripts/repair_associative_core_behavior_patch.py
           rm -f scripts/repair_associative_morphology_patch.py
           rm -f scripts/patch_existing_associative_tests.py
           rm -f scripts/apply_associative_core_hardening.py
