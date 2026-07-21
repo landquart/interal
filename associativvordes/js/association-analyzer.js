@@ -1,7 +1,7 @@
 import { getFrequencyProfile } from './frequency-loader.js';
 import { getBidirectionalSwow } from './swow-client.js';
 import { getTargetMeaningForLanguage as translateTargetMeaningForLanguage } from './target-meaning-translator.js';
-import { ASSOCIATION_SCORE_WEIGHTS, FINAL_SCORE_WEIGHTS, getQwenAssociationScores, QWEN_ERROR_CODES } from './qwen-client.js';
+import { ASSOCIATION_SCORE_WEIGHTS, FINAL_SCORE_WEIGHTS, getQwenAssociationScores, QWEN_ERROR_CODES, isAbortError, normalizeAbortError } from './qwen-client.js';
 
 export const THRESHOLDS = { main: 35 };
 export const REVIEW_SCORE_RANGE = Object.freeze({ min: 25, max: 35 });
@@ -243,7 +243,12 @@ function buildEvaluation(qwen, frequencyScore, swowBonus) {
   };
 }
 
-export async function analyzeAssociativeWord({ language, targetMeaning, localizedTargetMeaning, word, frequencyProfile, onProgress, onReviewRequest, signal } = {}) {
+function throwIfAborted(signal, stage) {
+  if (signal?.aborted) throw normalizeAbortError(signal.reason, { stage });
+}
+
+export async function analyzeAssociativeWord({ language, targetMeaning, localizedTargetMeaning, word, frequencyProfile, onProgress, onReviewRequest, signal, runId } = {}) {
+  throwIfAborted(signal, 'analysis_start');
   const warnings = [];
   const hasFrequencyProfile = frequencyProfile && typeof frequencyProfile === 'object' && Number.isFinite(Number(frequencyProfile.frequency_score));
   if (!hasFrequencyProfile) onProgress?.('Загрузка частотных списков...');
@@ -281,7 +286,14 @@ export async function analyzeAssociativeWord({ language, targetMeaning, localize
   };
 
   onProgress?.(`Qwen3.6: ${language} — ${word}`);
-  const primaryQwen = await getQwenAssociationScores({ language, targetMeaning, word, swow, review: false, signal });
+  let primaryQwen;
+  try {
+    primaryQwen = await getQwenAssociationScores({ language, targetMeaning, word, swow, review: false, signal });
+    throwIfAborted(signal, 'primary_qwen');
+  } catch (error) {
+    if (isAbortError(error, signal)) throw normalizeAbortError(error, { stage: 'primary_qwen', runId });
+    throw error;
+  }
 
   const primary = buildEvaluation(primaryQwen, frequency.frequency_score, swow_bonus);
   if (primary.association_score == null) warnings.push('Association score unavailable');
@@ -294,9 +306,11 @@ export async function analyzeAssociativeWord({ language, targetMeaning, localize
       onReviewRequest?.();
       onProgress?.(`Qwen3-235B: ${language} — ${word}`);
       const reviewQwen = await getQwenAssociationScores({ language, targetMeaning, word, swow, review: true, primary, signal });
+      throwIfAborted(signal, 'review_qwen');
       review = buildEvaluation(reviewQwen, frequency.frequency_score, swow_bonus);
       finalEvaluation = { ...review, combination_method: 'review_override' };
     } catch (error) {
+      if (isAbortError(error, signal)) throw normalizeAbortError(error, { stage: 'review_qwen', runId });
       warnings.push('review_failed');
       warnings.push(`review_failed: ${error.message || error}`);
       finalEvaluation = { ...primary, combination_method: 'primary_fallback_after_review_error' };

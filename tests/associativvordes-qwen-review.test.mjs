@@ -5,7 +5,7 @@ const originalFetch = globalThis.fetch;
 const originalDocument = globalThis.document;
 globalThis.document = { documentElement: { lang: 'en' } };
 
-async function runCase({ primaryP, reviewScores = { directness: 80, field_relatedness: 70, domain_shift: 20 }, reviewFails = false, payloadModel = 'evil-model/latest' }) {
+async function runCase({ primaryP, reviewScores = { directness: 80, field_relatedness: 70, domain_shift: 20 }, reviewFails = false, reviewAbort = false, reviewAbortCode = null, payloadModel = 'evil-model/latest' }) {
   const primaryA = 30;
   const F = (primaryP - 0.65 * primaryA) / 0.35;
   const calls = [];
@@ -15,6 +15,8 @@ async function runCase({ primaryP, reviewScores = { directness: 80, field_relate
     calls.push(request);
     assert.equal('model' in request.payload, false, 'client does not send arbitrary model names');
     if (request.payload.review === true) {
+      if (reviewAbort) throw new DOMException('aborted', 'AbortError');
+      if (reviewAbortCode) { const error = new Error('aborted'); error.code = reviewAbortCode; throw error; }
       if (reviewFails) return new Response(JSON.stringify({ ok: false, errorCode: 'QWEN_REVIEW_FAILED', error: 'boom' }), { status: 502, headers: { 'Content-Type': 'application/json' } });
       return new Response(JSON.stringify({ ok: true, analysis: { ...reviewScores, model: 'gpt://folder/qwen3-235b-a22b-fp8/latest', short_explanation: 'review' } }), { status: 200, headers: { 'Content-Type': 'application/json' } });
     }
@@ -66,12 +68,40 @@ for (const primaryP of [25, 30, 35]) {
   assert.equal(result.review.final_score, result.final_score, 'review is retained separately');
 }
 
+
+{
+  await assert.rejects(
+    () => runCase({ primaryP: 30, reviewAbort: true }),
+    error => error?.name === 'AbortError' && error?.code === 'ABORTED' && error?.stage === 'review_qwen',
+    'AbortError review is propagated as normalized abort'
+  );
+}
+
+{
+  await assert.rejects(
+    () => runCase({ primaryP: 30, reviewAbortCode: 'QWEN_ABORTED' }),
+    error => error?.name === 'AbortError' && error?.code === 'ABORTED' && error?.stage === 'review_qwen',
+    'QWEN_ERROR_CODES.ABORTED review is propagated as normalized abort'
+  );
+}
+
 {
   const { result } = await runCase({ primaryP: 30, reviewFails: true });
   assert.equal(result.review, null, 'failed review stays null');
   assert.equal(result.association.combination_method, 'primary_fallback_after_review_error');
   assert.equal(Math.round(result.final_score * 10) / 10, 30, 'review failure preserves primary final score');
   assert.ok(result.warnings.includes('review_failed'), 'review failure warning is present');
+  assert.ok(result.warnings.some(warning => String(warning).startsWith('review_failed:')), 'ordinary review error keeps diagnostic warning');
+}
+
+{
+  let abortResult = null;
+  try {
+    abortResult = await runCase({ primaryP: 30, reviewAbort: true });
+  } catch (error) {
+    assert.equal(error.name, 'AbortError', 'aborted review rejects instead of returning fallback');
+  }
+  assert.equal(abortResult, null, 'aborted review has no returned result and therefore no review_failed warning');
 }
 
 globalThis.fetch = originalFetch;

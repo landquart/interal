@@ -38,6 +38,36 @@ export const QWEN_ERROR_CODES = Object.freeze({
   CANDIDATE_GENERATION_FAILED: 'QWEN_CANDIDATE_GENERATION_FAILED'
 });
 
+
+export function isAbortError(error, signal) {
+  return Boolean(
+    signal?.aborted
+    || error?.name === 'AbortError'
+    || error?.code === QWEN_ERROR_CODES.ABORTED
+    || error?.code === 'ABORTED'
+    || error?.code === 'TARGET_TRANSLATION_ABORTED'
+    || error?.code === 'CANDIDATE_INDEX_ABORTED'
+    || error instanceof DOMException && error.name === 'AbortError'
+    || error?.cause?.name === 'AbortError'
+    || error?.cause?.code === QWEN_ERROR_CODES.ABORTED
+    || error?.cause?.code === 'ABORTED'
+  );
+}
+
+export function normalizeAbortError(error, { stage, runId } = {}) {
+  const abort = new Error(error?.message || 'Operation aborted.');
+  abort.name = 'AbortError';
+  abort.code = 'ABORTED';
+  if (stage != null) abort.stage = stage;
+  if (runId != null) abort.runId = runId;
+  if (error != null) abort.cause = error;
+  return abort;
+}
+
+export function throwIfAbortError(error, { signal, stage, runId } = {}) {
+  if (isAbortError(error, signal)) throw normalizeAbortError(error, { stage, runId });
+}
+
 export class QwenClientError extends Error {
   constructor(code, message, { status, details, cause } = {}) {
     super(message);
@@ -116,14 +146,12 @@ function parseQwenPayload(payload) {
 }
 
 async function callQwen(prompt, { review = false, signal } = {}) {
+  if (signal?.aborted) throw normalizeAbortError(signal.reason, { stage: review ? 'review_qwen' : 'primary_qwen' });
   const timeoutController = new AbortController();
   const timeoutId = setTimeout(() => timeoutController.abort(new Error('Qwen request timeout')), QWEN_RUNTIME_CONFIG.requestTimeoutMs);
   const abortController = new AbortController();
   const abort = () => abortController.abort(signal?.reason);
-  if (signal) {
-    if (signal.aborted) throw qwenError(QWEN_ERROR_CODES.ABORTED, 'Qwen request aborted.');
-    signal.addEventListener('abort', abort, { once: true });
-  }
+  if (signal) signal.addEventListener('abort', abort, { once: true });
   const timeoutAbort = () => abortController.abort(timeoutController.signal.reason);
   timeoutController.signal.addEventListener('abort', timeoutAbort, { once: true });
   let res;
@@ -147,7 +175,7 @@ async function callQwen(prompt, { review = false, signal } = {}) {
     });
   } catch (error) {
     if (timeoutController.signal.aborted) throw qwenError(QWEN_ERROR_CODES.TIMEOUT, 'Qwen request timed out.', { cause: error });
-    if (error?.name === 'AbortError') throw qwenError(QWEN_ERROR_CODES.ABORTED, 'Qwen request aborted.', { cause: error });
+    if (signal?.aborted || isAbortError(error)) throw normalizeAbortError(error, { stage: review ? 'review_qwen' : 'primary_qwen' });
     throw qwenError(QWEN_ERROR_CODES.HTTP_ERROR, 'Qwen request failed.', { cause: error });
   } finally {
     clearTimeout(timeoutId);
@@ -213,15 +241,13 @@ function qwenCandidateGenerationUrl() {
 }
 
 export async function getQwenCandidateSuggestions({ root, targetMeaning, existingCandidates = {}, currentModels = {}, signal } = {}) {
+  if (signal?.aborted) throw normalizeAbortError(signal.reason, { stage: 'candidate_audit' });
   const timeoutController = new AbortController();
   const timeoutId = setTimeout(() => timeoutController.abort(new Error('Qwen candidate request timeout')), QWEN_RUNTIME_CONFIG.candidateRequestTimeoutMs);
   const abortController = new AbortController();
   const forwardAbort = () => abortController.abort(signal?.reason);
   const timeoutAbort = () => abortController.abort(timeoutController.signal.reason);
-  if (signal) {
-    if (signal.aborted) throw qwenError(QWEN_ERROR_CODES.ABORTED, 'Qwen candidate request aborted.');
-    signal.addEventListener('abort', forwardAbort, { once: true });
-  }
+  if (signal) signal.addEventListener('abort', forwardAbort, { once: true });
   timeoutController.signal.addEventListener('abort', timeoutAbort, { once: true });
   let response;
   try {
@@ -233,7 +259,7 @@ export async function getQwenCandidateSuggestions({ root, targetMeaning, existin
     });
   } catch (error) {
     if (timeoutController.signal.aborted) throw qwenError(QWEN_ERROR_CODES.TIMEOUT, 'Qwen candidate generation timed out.', { cause: error });
-    if (error?.name === 'AbortError') throw qwenError(QWEN_ERROR_CODES.ABORTED, 'Qwen candidate generation aborted.', { cause: error });
+    if (signal?.aborted || isAbortError(error)) throw normalizeAbortError(error, { stage: 'candidate_audit' });
     throw qwenError(QWEN_ERROR_CODES.CANDIDATE_GENERATION_FAILED, 'Qwen candidate generation failed.', { cause: error });
   } finally {
     clearTimeout(timeoutId);
@@ -490,7 +516,7 @@ export async function refineCandidatesWithQwenAudit({ root, targetMeaning, candi
     onProgress?.(getInterfaceLanguage() === 'en' ? 'Qwen3-235B: candidate audit...' : 'Qwen3-235B: аудит кандидатов...');
     suggestions = await getQwenCandidateSuggestions({ root, targetMeaning: targetMeaning || root, existingCandidates, currentModels, signal });
   } catch (error) {
-    if (error?.code === QWEN_ERROR_CODES.ABORTED) throw error;
+    throwIfAbortError(error, { signal, stage: 'candidate_audit' });
     const warning = 'qwen_candidate_audit_unavailable';
     warnings.push(warning);
     onWarning?.(warning, error);
@@ -501,7 +527,7 @@ export async function refineCandidatesWithQwenAudit({ root, targetMeaning, candi
     const seen = new Set((output[language] || []).map(candidate => buildSearchForm(candidate.word)));
     const processed = new Set();
     for (const suggestion of suggestions?.[language] || []) {
-      if (signal?.aborted) throw qwenError(QWEN_ERROR_CODES.ABORTED, 'Qwen candidate verification aborted.');
+      if (signal?.aborted) throw normalizeAbortError(signal.reason, { stage: 'candidate_verification' });
       const key = buildSearchForm(suggestion.word);
       if (!key || processed.has(key) || seen.has(key)) continue;
       processed.add(key);
@@ -513,7 +539,7 @@ export async function refineCandidatesWithQwenAudit({ root, targetMeaning, candi
         output[language].push(verifiedCandidatePatch(suggestion, entry, root, descriptor, { resetAnalysis: true }));
         seen.add(key);
       } catch (error) {
-        if (error?.code === QWEN_ERROR_CODES.ABORTED || error?.name === 'AbortError') throw error;
+        throwIfAbortError(error, { signal, stage: 'candidate_verification' });
         const warning = `qwen_candidate_verification_failed:${language}:${suggestion.word}`;
         warnings.push(warning);
         onWarning?.(warning, error);
