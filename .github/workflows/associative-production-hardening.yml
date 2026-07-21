@@ -41,6 +41,7 @@ jobs:
         run: |
           set -o pipefail
           python3 scripts/apply_associative_hardening_tests.py 2>&1 | tee tests-hardening.log
+          python3 scripts/patch_existing_associative_tests.py 2>&1 | tee -a tests-hardening.log
 
       - name: Validate JavaScript syntax
         run: |
@@ -91,6 +92,7 @@ jobs:
         run: |
           rm -f scripts/repair_associative_patch.py
           rm -f scripts/repair_associative_morphology_patch.py
+          rm -f scripts/patch_existing_associative_tests.py
           rm -f scripts/apply_associative_core_hardening.py
           rm -f scripts/apply_associative_morphology_hardening.py
           rm -f scripts/apply_associative_hardening_tests.py
