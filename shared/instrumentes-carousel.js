@@ -49,6 +49,7 @@
       card.style.filter = '';
       card.style.transition = '';
       card.style.zIndex = '';
+      card.style.boxShadow = '';
     });
   };
 
@@ -75,6 +76,7 @@
         card.style.opacity = '';
         card.style.filter = '';
         card.style.zIndex = '';
+        card.style.boxShadow = '';
       });
     }
 
@@ -95,38 +97,59 @@
     }, baseAnimationMs);
   };
 
+  const mobileShadow = (level) => `0 ${Math.round(6 + level * 8)}px ${Math.round(16 + level * 14)}px color-mix(in srgb,var(--text) ${Math.round(7 + level * 5)}%,transparent)`;
+  const depthValues = (progress, role) => {
+    const firstHalf = clamp(progress / 0.5, 0, 1);
+    const secondHalf = clamp((progress - 0.5) / 0.5, 0, 1);
+    const layerHasSwitched = progress >= 0.5;
+
+    if (role === 'outgoing') {
+      return {
+        scale: progress < 0.5 ? lerp(1, 0.91, firstHalf) : lerp(0.91, 0.82, secondHalf),
+        opacity: progress < 0.5 ? lerp(1, 0.82, firstHalf) : lerp(0.82, 0.64, secondHalf),
+        blur: progress < 0.5 ? lerp(0, 2, firstHalf) : lerp(2, 4, secondHalf),
+        zIndex: layerHasSwitched ? 2 : 3,
+        shadowLevel: progress < 0.5 ? lerp(1, 0.5, firstHalf) : lerp(0.5, 0, secondHalf),
+      };
+    }
+
+    return {
+      scale: progress < 0.5 ? lerp(0.82, 0.91, firstHalf) : lerp(0.91, 1, secondHalf),
+      opacity: progress < 0.5 ? lerp(0.64, 0.82, firstHalf) : lerp(0.82, 1, secondHalf),
+      blur: progress < 0.5 ? lerp(4, 2, firstHalf) : lerp(2, 0, secondHalf),
+      zIndex: layerHasSwitched ? 3 : 2,
+      shadowLevel: progress < 0.5 ? lerp(0, 0.5, firstHalf) : lerp(0.5, 1, secondHalf),
+    };
+  };
+
+  const applyCardDepth = (card, x, values, updateZIndex = true) => {
+    if (updateZIndex) card.style.zIndex = String(values.zIndex);
+    card.style.transform = `translate3d(calc(-50% + ${x}px), 0, 0) scale(${values.scale})`;
+    card.style.opacity = String(values.opacity);
+    card.style.filter = `blur(${values.blur}px)`;
+    card.style.boxShadow = mobileShadow(values.shadowLevel);
+  };
+
   const applyDragFrame = () => {
     if (!drag) return;
     rafId = 0;
     const deltaX = drag.displayDeltaX;
     const direction = deltaX < 0 ? 1 : -1;
     const targetIndex = activeIndex + direction;
-    const progress = clamp(Math.abs(deltaX) / switchDistance(), 0, 1);
     const side = sideOffset();
+    const progress = clamp(Math.abs(deltaX) / side, 0, 1);
+    const incomingStartX = direction > 0 ? side : -side;
 
     cards.forEach((card, index) => {
       card.style.transition = 'none';
       if (index === activeIndex) {
-        card.style.zIndex = '3';
-        card.style.transform = `translateX(calc(-50% + ${deltaX}px)) scale(${lerp(1, 0.82, progress)})`;
-        card.style.opacity = String(lerp(1, 0.65, progress));
-        card.style.filter = `blur(${lerp(0, 4, progress)}px)`;
+        applyCardDepth(card, deltaX, depthValues(progress, 'outgoing'));
       } else if (index === targetIndex) {
-        const start = direction > 0 ? side : -side;
-        card.style.zIndex = '2';
-        card.style.transform = `translateX(calc(-50% + ${lerp(start, 0, progress)}px)) scale(${lerp(0.82, 1, progress)})`;
-        card.style.opacity = String(lerp(0.65, 1, progress));
-        card.style.filter = `blur(${lerp(4, 0, progress)}px)`;
+        applyCardDepth(card, incomingStartX + deltaX, depthValues(progress, 'incoming'));
       } else if (index === activeIndex - 1) {
-        card.style.zIndex = '1';
-        card.style.transform = `translateX(calc(-50% - ${side}px)) scale(.82)`;
-        card.style.opacity = '.65';
-        card.style.filter = 'blur(4px)';
+        applyCardDepth(card, -side, { scale: 0.82, opacity: 0.64, blur: 4, zIndex: 1, shadowLevel: 0 });
       } else if (index === activeIndex + 1) {
-        card.style.zIndex = '1';
-        card.style.transform = `translateX(calc(-50% + ${side}px)) scale(.82)`;
-        card.style.opacity = '.65';
-        card.style.filter = 'blur(4px)';
+        applyCardDepth(card, side, { scale: 0.82, opacity: 0.64, blur: 4, zIndex: 1, shadowLevel: 0 });
       }
     });
   };
@@ -137,6 +160,10 @@
 
   const endDrag = (event) => {
     if (!drag || event.pointerId !== drag.pointerId) return;
+    if (rafId) {
+      window.cancelAnimationFrame(rafId);
+      applyDragFrame();
+    }
     const data = drag;
     drag = null;
     if (rafId) window.cancelAnimationFrame(rafId);
@@ -146,17 +173,53 @@
 
     const deltaX = data.displayDeltaX;
     const rawDeltaX = data.lastX - data.startX;
-    const canMove = !(rawDeltaX > 0 && activeIndex === 0) && !(rawDeltaX < 0 && activeIndex === cards.length - 1);
+    const direction = rawDeltaX < 0 ? 1 : -1;
+    const targetIndex = activeIndex + direction;
+    const canMove = targetIndex >= 0 && targetIndex < cards.length;
     const elapsed = Math.max(1, data.lastTime - data.startTime);
     const velocity = rawDeltaX / elapsed;
     const shouldSwitch = canMove && (Math.abs(rawDeltaX) >= switchDistance() || Math.abs(velocity) > 0.55);
-    const nextIndex = shouldSwitch ? activeIndex + (rawDeltaX < 0 ? 1 : -1) : activeIndex;
-    const remaining = shouldSwitch ? Math.max(0, switchDistance() - Math.abs(deltaX)) : Math.abs(deltaX);
-    const duration = reduceMotion.matches ? 120 : clamp(180 + (remaining / switchDistance()) * 140, 180, 320);
-    cards.forEach((card) => { card.style.transition = `transform ${duration}ms ${finishEase}, opacity ${duration}ms ${finishEase}, filter ${duration}ms ${finishEase}`; });
-    activeIndex = clamp(nextIndex, 0, cards.length - 1);
-    window.requestAnimationFrame(() => render({ preserveInlineTransition: true }));
-    window.setTimeout(() => { isAnimating = false; render(); }, duration);
+    const side = sideOffset();
+    const currentProgress = clamp(Math.abs(deltaX) / side, 0, 1);
+    const finalProgress = shouldSwitch ? 1 : 0;
+    const remaining = Math.abs(finalProgress - currentProgress) * side;
+    const duration = reduceMotion.matches ? 120 : clamp(180 + (remaining / side) * 140, 180, 320);
+    const finishDirection = canMove ? direction : (deltaX < 0 ? 1 : -1);
+    const incomingStartX = finishDirection > 0 ? side : -side;
+    const incomingIndex = activeIndex + finishDirection;
+
+    if (!canMove || !cards[incomingIndex]) { render(); return; }
+
+    isAnimating = true;
+    cards.forEach((card) => {
+      card.style.transition = `transform ${duration}ms ${finishEase}, opacity ${duration}ms ${finishEase}, filter ${duration}ms ${finishEase}, box-shadow ${duration}ms ${finishEase}`;
+    });
+
+    const zSwitchFraction = shouldSwitch
+      ? currentProgress < 0.5 ? (0.5 - currentProgress) / Math.max(0.001, 1 - currentProgress) : 0
+      : currentProgress > 0.5 ? (currentProgress - 0.5) / Math.max(0.001, currentProgress) : 0;
+
+    window.requestAnimationFrame(() => {
+      applyCardDepth(cards[activeIndex], shouldSwitch ? -finishDirection * side : 0, depthValues(finalProgress, 'outgoing'), false);
+      applyCardDepth(cards[incomingIndex], shouldSwitch ? 0 : incomingStartX, depthValues(finalProgress, 'incoming'), false);
+      cards.forEach((card, index) => {
+        if (index !== activeIndex && index !== incomingIndex) {
+          const x = index < activeIndex ? -side : side;
+          applyCardDepth(card, x, { scale: 0.82, opacity: 0.64, blur: 4, zIndex: 1, shadowLevel: 0 });
+        }
+      });
+    });
+
+    window.setTimeout(() => {
+      cards[activeIndex].style.zIndex = shouldSwitch ? '2' : '3';
+      cards[incomingIndex].style.zIndex = shouldSwitch ? '3' : '2';
+    }, duration * zSwitchFraction);
+
+    window.setTimeout(() => {
+      if (shouldSwitch) activeIndex = clamp(incomingIndex, 0, cards.length - 1);
+      isAnimating = false;
+      render();
+    }, duration);
   };
 
   prevButton.addEventListener('click', () => goTo(activeIndex - 1));
