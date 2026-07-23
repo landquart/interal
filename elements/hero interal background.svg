@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2560" height="1895" viewBox="0 0 2560 1895" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="base" x1="0" y1="795.9" x2="2508.344" y2="1338.07" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FD7B3D"/>
+      <stop offset="0.22" stop-color="#F5516F"/>
+      <stop offset="0.48" stop-color="#D986DB"/>
+      <stop offset="0.72" stop-color="#B0ABEA"/>
+      <stop offset="1" stop-color="#5A99FC"/>
+    </linearGradient>
+    <radialGradient id="orange" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(0 454.8) scale(1843.2 1364.4)">
+      <stop stop-color="#FF9C31" stop-opacity="0.98"/>
+      <stop offset="0.48" stop-color="#FF7738" stop-opacity="0.74"/>
+      <stop offset="1" stop-color="#FF7738" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="red" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(460.8 1819.2) scale(1843.2 1364.4)">
+      <stop stop-color="#F34F4F" stop-opacity="0.96"/>
+      <stop offset="0.52" stop-color="#EF4F72" stop-opacity="0.66"/>
+      <stop offset="1" stop-color="#EF4F72" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="magenta" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1152.004 833.8) scale(1612.8 1193.85)">
+      <stop stop-color="#DA79DE" stop-opacity="0.92"/>
+      <stop offset="0.52" stop-color="#D45FC4" stop-opacity="0.48"/>
+      <stop offset="1" stop-color="#D45FC4" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="peach" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(2227.204 75.8) scale(1638.4 1212.8)">
+      <stop stop-color="#FFC19B" stop-opacity="0.98"/>
+      <stop offset="0.54" stop-color="#F5B9B2" stop-opacity="0.62"/>
+      <stop offset="1" stop-color="#F5B9B2" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="lavender" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(2150.404 890.65) scale(1382.4 1023.3)">
+      <stop stop-color="#C8B2EA" stop-opacity="0.86"/>
+      <stop offset="0.58" stop-color="#B69DE5" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#B69DE5" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="blue" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(2560.004 1819.2) scale(1766.4 1307.55)">
+      <stop stop-color="#5799FC"/>
+      <stop offset="0.48" stop-color="#729DF7" stop-opacity="0.78"/>
+      <stop offset="1" stop-color="#729DF7" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="light" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1433.604 0) scale(1382.4 1023.3)">
+      <stop stop-color="#F8D3D8" stop-opacity="0.58"/>
+      <stop offset="1" stop-color="#F8D3D8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="2560" height="1895" fill="url(#base)"/>
+  <rect width="2560" height="1895" fill="url(#orange)"/>
+  <rect width="2560" height="1895" fill="url(#red)"/>
+  <rect width="2560" height="1895" fill="url(#magenta)"/>
+  <rect width="2560" height="1895" fill="url(#peach)"/>
+  <rect width="2560" height="1895" fill="url(#lavender)"/>
+  <rect width="2560" height="1895" fill="url(#blue)"/>
+  <rect width="2560" height="1895" fill="url(#light)"/>
+  <rect width="2560" height="1895" fill="#000" fill-opacity="0.2"/>
+</svg>
