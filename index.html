@@ -30,55 +30,44 @@
     body.homepage.has-global-menu { padding-top: var(--global-header-offset); }
     body.homepage.dark-theme { --homepage-section-bg: var(--bg); }
 
-    .hero {
-      --hero-arc-height: clamp(118px, 18svh, 248px);
+    .hero-stage {
+      --hero-transition-height: clamp(116px, 17svh, 230px);
       position: relative;
       isolation: isolate;
       width: 100vw;
-      height: calc(100vh - var(--global-header-offset));
-      height: calc(100svh - var(--global-header-offset));
       margin-left: calc(50% - 50vw);
       overflow: hidden;
       background: #b77cb8;
       color: #fff;
     }
 
-    .hero-gradient {
+    .hero-stage-bg {
       position: absolute;
       inset: 0;
       z-index: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      object-position: center;
+      object-fit: fill;
       display: block;
       pointer-events: none;
       user-select: none;
     }
 
-    .hero::after {
-      content: "";
-      position: absolute;
+    .hero {
+      position: relative;
       z-index: 1;
-      left: -10%;
-      right: -10%;
-      bottom: -1px;
-      height: var(--hero-arc-height);
-      border-radius: 50% 50% 0 0 / 100% 100% 0 0;
-      background: var(--homepage-section-bg);
-      pointer-events: none;
+      width: 100%;
+      height: calc(100vh - var(--global-header-offset));
+      height: calc(100svh - var(--global-header-offset));
+      min-height: 520px;
+      overflow: hidden;
     }
 
     .hero-inner {
-      position: relative;
-      z-index: 2;
       width: min(100%, 1680px);
       height: 100%;
       margin: 0 auto;
-      padding:
-        clamp(38px, 5vh, 82px)
-        clamp(34px, 7vw, 142px)
-        calc(var(--hero-arc-height) + clamp(22px, 3.6vh, 58px));
+      padding: clamp(38px, 6vh, 88px) clamp(34px, 7vw, 142px);
       display: grid;
       grid-template-columns: minmax(0, 1.14fr) minmax(280px, .78fr);
       grid-template-areas: "copy logo";
@@ -148,90 +137,32 @@
       filter: brightness(0) invert(1);
     }
 
+    .hero-transition {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: var(--hero-transition-height);
+      overflow: hidden;
+    }
+
+    .hero-transition::after {
+      content: "";
+      position: absolute;
+      left: -10%;
+      right: -10%;
+      bottom: -1px;
+      height: 100%;
+      border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+      background: var(--homepage-section-bg);
+      pointer-events: none;
+    }
+
     .home-wrap {
       width: min(1240px, 100%);
       margin: 0 auto;
-      padding-top: clamp(22px, 3vw, 38px);
+      padding-top: clamp(10px, 2vw, 22px);
       display: grid;
       gap: 14px;
-    }
-
-    .home-conversation-card {
-      min-height: clamp(180px, 32vh, 360px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: clamp(24px, 4vw, 42px);
-      border-radius: var(--radius-lg);
-      background: #E7D187;
-      color: #111;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .home-conversation-card::before {
-      content: "";
-      position: absolute;
-      inset: -40%;
-      background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,.30), transparent 34%);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity .25s ease;
-    }
-
-    .home-conversation-card:hover::before { opacity: 1; }
-
-    .home-conversation-text {
-      position: relative;
-      z-index: 1;
-      width: min(100%, 380px);
-      margin: 0;
-      display: grid;
-      gap: clamp(14px, 2.4vw, 22px);
-    }
-
-    .home-conversation-part {
-      margin: 0;
-      display: grid;
-      gap: 5px;
-      padding: clamp(16px, 2.6vw, 24px);
-      border-radius: 22px;
-      background: rgba(255, 255, 255, 0.18);
-      border: 1px solid rgba(17, 17, 17, 0.10);
-      transition: transform .22s ease, background-color .22s ease, border-color .22s ease;
-    }
-
-    .home-conversation-part:hover {
-      transform: scale(1.025);
-      background: rgba(255,255,255,.28);
-      border-color: rgba(17,17,17,.18);
-    }
-
-    .home-conversation-title {
-      display: block;
-      font-size: clamp(1.08rem, 1.8vw, 1.55rem);
-      line-height: 1.12;
-      font-weight: 850;
-      letter-spacing: .025em;
-      text-transform: uppercase;
-    }
-
-    .home-conversation-sub {
-      display: block;
-      font-size: clamp(.9rem, 1.12vw, 1.05rem);
-      line-height: 1.25;
-      font-weight: 600;
-      letter-spacing: .01em;
-      opacity: .72;
-    }
-
-    .home-conversation-divider {
-      width: min(150px, 52%);
-      height: 1px;
-      justify-self: center;
-      background: rgba(17, 17, 17, 0.22);
     }
 
     .home-section { display: grid; gap: 10px; }
@@ -491,20 +422,17 @@
     @media (max-width: 860px) {
       body.homepage { padding-right: 12px; padding-left: 12px; }
 
-      .hero {
-        --hero-arc-height: clamp(50px, 9svh, 72px);
+      .hero-stage {
+        --hero-transition-height: clamp(52px, 9svh, 74px);
       }
 
-      .hero-gradient {
-        object-position: 53% center;
+      .hero {
+        min-height: 500px;
       }
 
       .hero-inner {
         width: 100%;
-        padding:
-          clamp(18px, 3.5svh, 34px)
-          clamp(22px, 6vw, 28px)
-          calc(var(--hero-arc-height) + clamp(14px, 2.5svh, 24px));
+        padding: clamp(18px, 3.5svh, 34px) clamp(22px, 6vw, 28px);
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -583,23 +511,16 @@
       .tool-link-main { font-size: .98rem; }
       .tool-link-sub { font-size: .86rem; }
       .homepage .registry-container { grid-template-columns: 1fr; }
-      .home-conversation-card { min-height: 170px; border-radius: 22px; }
-    }
-
-    @media (max-width: 430px) {
-      .hero-main-lines[data-lang-layout="ru"] .hero-main-line-2 {
-        max-width: 12ch;
-      }
     }
 
     @media (max-height: 720px) and (min-width: 861px) {
       .hero {
-        --hero-arc-height: clamp(96px, 15svh, 136px);
+        min-height: 0;
       }
 
       .hero-inner {
         padding-top: 24px;
-        padding-bottom: calc(var(--hero-arc-height) + 20px);
+        padding-bottom: 24px;
       }
 
       .hero-logo { width: clamp(205px, 20vw, 300px); }
@@ -609,10 +530,14 @@
     }
 
     @media (max-height: 700px) and (max-width: 860px) {
+      .hero {
+        min-height: 0;
+      }
+
       .hero-inner {
         gap: 14px;
         padding-top: 12px;
-        padding-bottom: calc(var(--hero-arc-height) + 10px);
+        padding-bottom: 12px;
       }
 
       .hero-logo { width: clamp(94px, 27vw, 118px); }
@@ -623,9 +548,7 @@
 
     @media (prefers-reduced-motion: reduce) {
       .tool-link,
-      .tool-icon-wrap,
-      .home-conversation-part,
-      .home-conversation-card::before {
+      .tool-icon-wrap {
         transition: none;
       }
 
@@ -637,45 +560,35 @@
   </style>
 </head>
 <body class="homepage">
-  <section class="hero" aria-labelledby="home-hero-title">
-    <img class="hero-gradient" src="elements/hero%20interal%20background.svg" alt="" aria-hidden="true" />
-    <div class="hero-inner">
-      <div class="hero-copy">
-        <h1 class="hero-title" id="home-hero-title">
-          <span class="hero-brand-line" data-i18n="home.heroBrand">Interal —</span>
-          <span class="hero-main-lines">
-            <span data-i18n="home.heroMainLine1">индоевропейский</span>
-            <span class="hero-main-line-2" data-i18n="home.heroMainLine2">вспомогательный язык</span>
-          </span>
-          <span class="hero-accent-lines">
-            <span data-i18n="home.heroAccentLine1">для международных</span>
-            <span data-i18n="home.heroAccentLine2">отношений</span>
-          </span>
-        </h1>
+  <div class="hero-stage">
+    <img class="hero-stage-bg" src="elements/hero%20interal%20background.svg" alt="" aria-hidden="true" />
+
+    <section class="hero" aria-labelledby="home-hero-title">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <h1 class="hero-title" id="home-hero-title">
+            <span class="hero-brand-line" data-i18n="home.heroBrand">Interal —</span>
+            <span class="hero-main-lines">
+              <span data-i18n="home.heroMainLine1">индоевропейский</span>
+              <span data-i18n="home.heroMainLine2">вспомогательный язык</span>
+            </span>
+            <span class="hero-accent-lines">
+              <span data-i18n="home.heroAccentLine1">для международных</span>
+              <span data-i18n="home.heroAccentLine2">отношений</span>
+            </span>
+          </h1>
+        </div>
+
+        <div class="hero-logo-wrap">
+          <img class="hero-logo" src="elements/interalen%20logo.svg" alt="Interal" />
+        </div>
       </div>
-      <div class="hero-logo-wrap">
-        <img class="hero-logo" src="elements/interalen%20logo.svg" alt="Interal" />
-      </div>
-    </div>
-  </section>
+    </section>
+
+    <div class="hero-transition" aria-hidden="true"></div>
+  </div>
 
   <div class="home-wrap">
-    <div class="home-conversation-card" aria-label="National and international conversation">
-      <div class="home-conversation-text">
-        <section class="home-conversation-part">
-          <span class="home-conversation-title" data-i18n="home.conversationNationalTitle">Национальная беседа</span>
-          <span class="home-conversation-sub" data-i18n="home.conversationNationalSub">на национальном языке</span>
-        </section>
-
-        <span class="home-conversation-divider" aria-hidden="true"></span>
-
-        <section class="home-conversation-part">
-          <span class="home-conversation-title" data-i18n="home.conversationInternationalTitle">Международная беседа</span>
-          <span class="home-conversation-sub" data-i18n="home.conversationInternationalSub">на международном языке</span>
-        </section>
-      </div>
-    </div>
-
     <section class="home-section" aria-labelledby="home-tools-title">
       <h2 class="home-section-title" id="home-tools-title" data-i18n="home.toolsTitle">Инструменты</h2>
       <div class="container">
@@ -781,11 +694,6 @@
           'home.registrySub': 'Реестр лексических карточек',
           'home.toolsTitle': 'Инструменты',
           'home.registryTitle': 'Реестр',
-          'home.conversationNationalTitle': 'Национальная беседа',
-          'home.conversationNationalSub': 'на национальном языке',
-          'home.conversationInternationalTitle': 'Международная беседа',
-          'home.conversationInternationalSub': 'на международном языке',
-          'home.conversationText': 'НАЦИОНАЛЬНАЯ БЕСЕДА\nНА НАЦИОНАЛЬНОМ ЯЗЫКЕ\nМЕЖДУНАРОДНАЯ БЕСЕДА\nНА МЕЖДУНАРОДНОМ ЯЗЫКЕ',
           'home.footerIcons': 'Иконки —',
           'home.socialLinksLabel': 'Социальные ссылки',
           'home.telegramBotLabel': 'Telegram-бот',
@@ -817,11 +725,6 @@
           'home.registrySub': 'Registry of lexical cards',
           'home.toolsTitle': 'Tools',
           'home.registryTitle': 'Registry',
-          'home.conversationNationalTitle': 'National conversation',
-          'home.conversationNationalSub': 'in a national language',
-          'home.conversationInternationalTitle': 'International conversation',
-          'home.conversationInternationalSub': 'in an international language',
-          'home.conversationText': 'NATIONAL CONVERSATION\nIN A NATIONAL LANGUAGE\nINTERNATIONAL CONVERSATION\nIN AN INTERNATIONAL LANGUAGE',
           'home.footerIcons': 'Icons —',
           'home.socialLinksLabel': 'Social links',
           'home.telegramBotLabel': 'Telegram bot',
@@ -869,17 +772,6 @@
             card.style.setProperty('--tilt-y', '0deg');
           });
         });
-
-        const conversationCard = document.querySelector('.home-conversation-card');
-        if (conversationCard) {
-          conversationCard.addEventListener('pointermove', (event) => {
-            const rect = conversationCard.getBoundingClientRect();
-            const x = ((event.clientX - rect.left) / rect.width) * 100;
-            const y = ((event.clientY - rect.top) / rect.height) * 100;
-            conversationCard.style.setProperty('--mx', `${x}%`);
-            conversationCard.style.setProperty('--my', `${y}%`);
-          });
-        }
       }
     })();
   </script>
