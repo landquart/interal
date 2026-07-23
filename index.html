@@ -171,40 +171,41 @@
 
     .home-intro {
       display: grid;
-      gap: clamp(18px, 3vw, 34px);
-      margin-bottom: clamp(10px, 2vw, 20px);
+      gap: clamp(16px, 2.4vw, 28px);
+      margin-bottom: clamp(20px, 4vw, 44px);
     }
 
     .home-intro-row {
       display: grid;
-      grid-template-columns: minmax(230px, .52fr) minmax(0, 1fr);
-      align-items: center;
-      gap: clamp(18px, 4vw, 54px);
+      grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+      align-items: start;
+      gap: clamp(22px, 3.2vw, 40px);
     }
 
     .home-quote {
       margin: 0;
       width: 100%;
-      max-width: 430px;
-      padding: clamp(18px, 2.8vw, 30px);
-      border-radius: var(--radius-lg);
-      background: var(--surface);
-      border: 1px solid var(--border-subtle);
-      box-shadow: var(--shadow-sm);
+      max-width: 540px;
       color: var(--text);
-      font-size: clamp(1.45rem, 3.15vw, 2.85rem);
+      font-size: clamp(1.55rem, 2.65vw, 2.55rem);
       font-weight: 800;
-      line-height: .98;
+      line-height: 1.08;
       letter-spacing: -.035em;
       text-transform: uppercase;
+      overflow-wrap: anywhere;
     }
 
     .home-quote em {
-      display: inline;
+      display: block;
       font-family: "Cormorant Garamond", Georgia, serif;
       font-style: italic;
       font-weight: 500;
-      letter-spacing: -.03em;
+      line-height: 1.04;
+      letter-spacing: -.025em;
+    }
+
+    html[lang="en"] .home-quote {
+      font-size: clamp(1.42rem, 2.35vw, 2.28rem);
     }
 
     .home-intro-description {
@@ -216,12 +217,13 @@
     }
 
     .home-standalone-quote {
-      justify-self: start;
+      justify-self: end;
     }
 
     .home-about {
       display: grid;
-      gap: clamp(14px, 2vw, 20px);
+      gap: clamp(18px, 2.6vw, 30px);
+      margin-bottom: clamp(10px, 2vw, 20px);
     }
 
     .home-about-title {
@@ -235,20 +237,26 @@
 
     .home-about-cards {
       display: grid;
-      gap: clamp(14px, 2.2vw, 22px);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(18px, 2.8vw, 32px);
+      align-items: start;
     }
 
     .home-about-card {
-      width: min(560px, 100%);
+      width: 100%;
+      min-height: clamp(150px, 13vw, 190px);
       padding: clamp(20px, 3vw, 30px);
       border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-sm);
+      box-shadow: 0 10px 24px rgba(15, 23, 42, .08);
       color: var(--about-card-text, #111827);
       background: var(--about-card-bg);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
     }
 
     .home-about-card:nth-child(even) {
-      justify-self: end;
+      transform: translateY(clamp(34px, 4vw, 54px));
     }
 
     .home-about-card-title {
@@ -262,8 +270,8 @@
     .home-about-card-text {
       margin: 0;
       font-size: clamp(.98rem, 1.35vw, 1.08rem);
-      line-height: 1.42;
-      font-weight: 700;
+      line-height: 1.5;
+      font-weight: 500;
     }
 
     .home-section { display: grid; gap: 10px; }
@@ -579,15 +587,22 @@
       }
 
 
-      .home-intro-row {
-        grid-template-columns: 1fr;
-        align-items: stretch;
-        gap: 12px;
+      .home-intro {
+        gap: 14px;
+        margin-bottom: 26px;
       }
 
-      .home-quote {
+      .home-intro-row {
+        grid-template-columns: 1fr;
+        align-items: start;
+        gap: 14px;
+      }
+
+      .home-quote,
+      html[lang="en"] .home-quote {
         max-width: none;
-        font-size: clamp(1.35rem, 7vw, 2rem);
+        justify-self: start;
+        font-size: clamp(1.35rem, 6.4vw, 2rem);
       }
 
       .home-intro-description {
@@ -595,10 +610,21 @@
         line-height: 1.56;
       }
 
+      .home-about {
+        gap: 16px;
+      }
+
+      .home-about-cards {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
       .home-about-card,
       .home-about-card:nth-child(even) {
         width: 100%;
         justify-self: stretch;
+        transform: none;
+        min-height: 0;
       }
 
       .homepage .container {
@@ -720,28 +746,29 @@
 
   <div class="home-wrap">
 
-    <section class="home-intro" aria-labelledby="home-about-title">
+    <section class="home-intro" aria-label="Описание Interal" data-i18n-aria-label="home.introAriaLabel">
       <div class="home-intro-row">
-        <blockquote class="home-quote">
+        <p class="home-quote">
           <span data-i18n="home.introQuoteLead">НАЦИОНАЛЬНАЯ БЕСЕДА</span>
           <em data-i18n="home.introQuoteAccent">НА НАЦИОНАЛЬНОМ ЯЗЫКЕ</em>
-        </blockquote>
+        </p>
         <p class="home-intro-description" data-i18n="home.introDescription">Interal (от International Auxiliari Lingua — «международный вспомогательный язык») — плановый язык-посредник, объединяющий в единой системе наиболее практичные элементы натурализма и схематизма. Его лексика, приставки и суффиксы отбираются прежде всего из английского, французского, испанского, греческого и латыни, в меньшей степени — из немецкого, итальянского, русского, датского и шведского, а также из международно известных слов китайского, арабского, хинди, санскрита и других языков. Гибкое словообразование позволяет получать узнаваемые слова разными способами. Interal ориентирован прежде всего на носителей индоевропейских языков как общий и нейтральный язык, но открыт для всех и может быть проще в изучении, чем этнические индоевропейские языки. Это не претензия на совершенный или принципиально новый проект, а научно обоснованная компиляция интерлингвистических идей, построенная на объективности, удобстве и практической проверке решений; она служит основой для дальнейшего развития языка, пересмотра неэффективных элементов и сохранения тех, которые действительно работают.</p>
       </div>
 
-      <blockquote class="home-quote home-standalone-quote">
+      <p class="home-quote home-standalone-quote">
         <span data-i18n="home.secondQuoteLead">МЕЖДУНАРОДНАЯ БЕСЕДА</span>
         <em data-i18n="home.secondQuoteAccent">НА МЕЖДУНАРОДНОМ ЯЗЫКЕ</em>
-      </blockquote>
+      </p>
+    </section>
 
-      <div class="home-about">
-        <h2 class="home-about-title" id="home-about-title" data-i18n="home.aboutTitle">Интераль — это...</h2>
+    <section class="home-about" aria-labelledby="home-about-title">
+      <h2 class="home-about-title" id="home-about-title" data-i18n="home.aboutTitle">Интераль — это...</h2>
         <div class="home-about-cards">
           <article class="home-about-card" style="--about-card-bg: #FFD146; --about-card-text: #1f1a05;">
             <h3 class="home-about-card-title" data-i18n="home.aboutCard1Title">Международная лексика</h3>
             <p class="home-about-card-text" data-i18n="home.aboutCard1Text">Основан на наиболее распространённых словах, знакомых любому образованному человеку</p>
           </article>
-          <article class="home-about-card" style="--about-card-bg: #FF4646; --about-card-text: #ffffff;">
+          <article class="home-about-card" style="--about-card-bg: #FF4646; --about-card-text: #211010;">
             <h3 class="home-about-card-title" data-i18n="home.aboutCard2Title">Регулярная грамматика</h3>
             <p class="home-about-card-text" data-i18n="home.aboutCard2Text">Все правила максимально интуитивно понятны и легки для изучения</p>
           </article>
@@ -754,7 +781,6 @@
             <p class="home-about-card-text" data-i18n="home.aboutCard4Text">Основан на реальных языковых данных и их всесторонней адекватной оценке</p>
           </article>
         </div>
-      </div>
     </section>
 
     <section class="home-section" aria-labelledby="home-tools-title">
@@ -842,6 +868,7 @@
           'home.heroMainLine2': 'вспомогательный язык',
           'home.heroAccentLine1': 'для международных',
           'home.heroAccentLine2': 'отношений',
+          'home.introAriaLabel': 'Описание Interal',
           'home.introQuoteLead': 'НАЦИОНАЛЬНАЯ БЕСЕДА',
           'home.introQuoteAccent': 'НА НАЦИОНАЛЬНОМ ЯЗЫКЕ',
           'home.introDescription': 'Interal (от International Auxiliari Lingua — «международный вспомогательный язык») — плановый язык-посредник, объединяющий в единой системе наиболее практичные элементы натурализма и схематизма. Его лексика, приставки и суффиксы отбираются прежде всего из английского, французского, испанского, греческого и латыни, в меньшей степени — из немецкого, итальянского, русского, датского и шведского, а также из международно известных слов китайского, арабского, хинди, санскрита и других языков. Гибкое словообразование позволяет получать узнаваемые слова разными способами. Interal ориентирован прежде всего на носителей индоевропейских языков как общий и нейтральный язык, но открыт для всех и может быть проще в изучении, чем этнические индоевропейские языки. Это не претензия на совершенный или принципиально новый проект, а научно обоснованная компиляция интерлингвистических идей, построенная на объективности, удобстве и практической проверке решений; она служит основой для дальнейшего развития языка, пересмотра неэффективных элементов и сохранения тех, которые действительно работают.',
@@ -887,6 +914,7 @@
           'home.heroMainLine2': 'auxiliary language',
           'home.heroAccentLine1': 'for international',
           'home.heroAccentLine2': 'relations',
+          'home.introAriaLabel': 'Interal description',
           'home.introQuoteLead': 'NATIONAL CONVERSATION',
           'home.introQuoteAccent': 'IN A NATIONAL LANGUAGE',
           'home.introDescription': 'Interal, derived from International Auxiliari Lingua, meaning “international auxiliary language”, is a planned intermediary language that combines the most practical elements of naturalism and schematism within a unified system. Its vocabulary, prefixes, and suffixes are selected primarily from English, French, Spanish, Greek, and Latin; to a lesser extent from German, Italian, Russian, Danish, and Swedish; and also from internationally known words of Chinese, Arabic, Hindi, Sanskrit, and other origins. Its flexible word-formation system makes it possible to create recognisable words in different ways. Interal is intended primarily as a common and neutral language for speakers of Indo-European languages, but it is open to everyone and may be easier to learn than ethnic Indo-European languages. It does not claim to be a perfect or fundamentally new project, but rather a scientifically grounded synthesis of interlinguistic ideas based on objectivity, usability, and practical evaluation of linguistic decisions. This provides a foundation for the language’s further development, the revision of ineffective elements, and the preservation of those that genuinely work.',
