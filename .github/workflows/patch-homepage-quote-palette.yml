@@ -1,0 +1,225 @@
+name: Patch homepage quote and palette
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/patch-homepage-quote-palette.yml
+
+permissions:
+  contents: write
+
+jobs:
+  patch-homepage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+        with:
+          ref: main
+
+      - name: Correct homepage composition
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          import textwrap
+
+          path = Path('index.html')
+          text = path.read_text(encoding='utf-8')
+
+          css_pattern = re.compile(
+              r"    \.home-intro \{.*?    \.home-standalone-quote \{\n      justify-self: end;\n    \}\n",
+              re.S,
+          )
+          css_replacement = '''    .home-intro {
+            margin-bottom: clamp(24px, 4vw, 46px);
+          }
+
+          .home-intro-row {
+            display: grid;
+            grid-template-columns: minmax(300px, .82fr) minmax(0, 1.18fr);
+            align-items: start;
+            gap: clamp(28px, 4vw, 52px);
+          }
+
+          .home-quote-group {
+            display: grid;
+            align-content: start;
+            gap: clamp(10px, 1.25vw, 16px);
+            min-width: 0;
+          }
+
+          .home-quote {
+            margin: 0;
+            width: 100%;
+            max-width: 590px;
+            color: var(--text);
+            font-size: clamp(1.48rem, 2.35vw, 2.35rem);
+            font-weight: 800;
+            line-height: 1.02;
+            letter-spacing: -.035em;
+            text-transform: uppercase;
+            overflow-wrap: normal;
+          }
+
+          .home-quote span,
+          .home-quote em {
+            display: inline;
+          }
+
+          .home-quote em {
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-size: 1.22em;
+            font-style: italic;
+            font-weight: 500;
+            line-height: .82;
+            letter-spacing: -.035em;
+            text-transform: none;
+          }
+
+          html[lang="en"] .home-quote {
+            font-size: clamp(1.34rem, 2.08vw, 2.08rem);
+          }
+
+          .home-intro-description {
+            margin: 0;
+            min-width: 0;
+            color: var(--text);
+            font-size: clamp(1rem, 1.35vw, 1.12rem);
+            line-height: 1.62;
+          }
+'''
+          text, css_count = css_pattern.subn(css_replacement, text, count=1)
+          if css_count != 1:
+              raise SystemExit(f'Expected one desktop intro CSS block, replaced {css_count}')
+
+          mobile_old = '''      .home-intro {
+              gap: 14px;
+              margin-bottom: 26px;
+            }
+
+            .home-intro-row {
+              grid-template-columns: 1fr;
+              align-items: start;
+              gap: 14px;
+            }
+
+            .home-quote,
+            html[lang="en"] .home-quote {
+              max-width: none;
+              justify-self: start;
+              font-size: clamp(1.35rem, 6.4vw, 2rem);
+            }
+
+            .home-intro-description {
+              font-size: 1rem;
+              line-height: 1.56;
+            }
+'''
+          mobile_new = '''      .home-intro {
+              margin-bottom: 26px;
+            }
+
+            .home-intro-row {
+              grid-template-columns: 1fr;
+              align-items: start;
+              gap: 20px;
+            }
+
+            .home-quote-group {
+              gap: 10px;
+            }
+
+            .home-quote,
+            html[lang="en"] .home-quote {
+              max-width: none;
+              font-size: clamp(1.3rem, 6vw, 1.9rem);
+            }
+
+            .home-intro-description {
+              font-size: 1rem;
+              line-height: 1.56;
+            }
+'''
+          if mobile_old not in text:
+              raise SystemExit('Expected mobile intro CSS block was not found')
+          text = text.replace(mobile_old, mobile_new, 1)
+
+          intro_pattern = re.compile(
+              r'<section class="home-intro"(?P<attrs>[^>]*)>\s*'
+              r'<div class="home-intro-row">\s*'
+              r'(?P<quote1><p class="home-quote">.*?</p>)\s*'
+              r'(?P<description><p class="home-intro-description".*?</p>)\s*'
+              r'</div>\s*'
+              r'(?P<quote2><p class="home-quote home-standalone-quote">.*?</p>)\s*'
+              r'</section>',
+              re.S,
+          )
+          match = intro_pattern.search(text)
+          if not match:
+              raise SystemExit('Expected homepage intro markup was not found')
+
+          quote1 = textwrap.dedent(match.group('quote1')).strip()
+          quote2 = textwrap.dedent(match.group('quote2')).strip().replace(
+              'class="home-quote home-standalone-quote"',
+              'class="home-quote"',
+              1,
+          )
+          description = textwrap.dedent(match.group('description')).strip()
+
+          intro_replacement = (
+              f'<section class="home-intro"{match.group("attrs")}>\n'
+              '      <div class="home-intro-row">\n'
+              '        <div class="home-quote-group">\n'
+              f'{textwrap.indent(quote1, "          ")}\n'
+              f'{textwrap.indent(quote2, "          ")}\n'
+              '        </div>\n'
+              f'{textwrap.indent(description, "        ")}\n'
+              '      </div>\n'
+              '    </section>'
+          )
+          text = intro_pattern.sub(intro_replacement, text, count=1)
+
+          palette = {
+              '--about-card-bg: #FFD146; --about-card-text: #1f1a05;': '--about-card-bg: #C9A54A; --about-card-text: #1D1A12;',
+              '--about-card-bg: #FF4646; --about-card-text: #211010;': '--about-card-bg: #B85F62; --about-card-text: #12090A;',
+              '--about-card-bg: #4646FF; --about-card-text: #ffffff;': '--about-card-bg: #5C6098; --about-card-text: #FFFFFF;',
+              '--about-card-bg: #58E14B; --about-card-text: #0d2609;': '--about-card-bg: #71926A; --about-card-text: #132012;',
+          }
+          for old, new in palette.items():
+              if old not in text:
+                  raise SystemExit(f'Expected palette token was not found: {old}')
+              text = text.replace(old, new, 1)
+
+          if 'home-standalone-quote' in text:
+              raise SystemExit('Obsolete separated quote class remains')
+          if text.count('class="home-quote"') != 2:
+              raise SystemExit('The combined quote must contain exactly two quote lines')
+          if 'class="home-quote-group"' not in text:
+              raise SystemExit('Combined quote group was not created')
+
+          path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Validate patch
+        shell: bash
+        run: |
+          git diff --check
+          grep -q 'class="home-quote-group"' index.html
+          ! grep -q 'home-standalone-quote' index.html
+          grep -q '#C9A54A' index.html
+          grep -q '#B85F62' index.html
+          grep -q '#5C6098' index.html
+          grep -q '#71926A' index.html
+
+      - name: Commit correction and remove workflow
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git rm .github/workflows/patch-homepage-quote-palette.yml
+          git commit -m "Refine homepage quote and card palette"
+          git push origin main
