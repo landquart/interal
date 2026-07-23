@@ -29,123 +29,104 @@ jobs:
           path = Path('index.html')
           text = path.read_text(encoding='utf-8')
 
-          css_pattern = re.compile(
-              r"    \.home-intro \{.*?    \.home-standalone-quote \{\n      justify-self: end;\n    \}\n",
+          desktop_pattern = re.compile(
+              r"    \.home-intro \{.*?    \.home-standalone-quote \{\s*justify-self: end;\s*\}\n",
               re.S,
           )
-          css_replacement = '''    .home-intro {
-            margin-bottom: clamp(24px, 4vw, 46px);
-          }
+          desktop_replacement = '''    .home-intro {
+      margin-bottom: clamp(24px, 4vw, 46px);
+    }
 
-          .home-intro-row {
-            display: grid;
-            grid-template-columns: minmax(300px, .82fr) minmax(0, 1.18fr);
-            align-items: start;
-            gap: clamp(28px, 4vw, 52px);
-          }
+    .home-intro-row {
+      display: grid;
+      grid-template-columns: minmax(300px, .82fr) minmax(0, 1.18fr);
+      align-items: start;
+      gap: clamp(28px, 4vw, 52px);
+    }
 
-          .home-quote-group {
-            display: grid;
-            align-content: start;
-            gap: clamp(10px, 1.25vw, 16px);
-            min-width: 0;
-          }
+    .home-quote-group {
+      display: grid;
+      align-content: start;
+      gap: clamp(10px, 1.25vw, 16px);
+      min-width: 0;
+    }
 
-          .home-quote {
-            margin: 0;
-            width: 100%;
-            max-width: 590px;
-            color: var(--text);
-            font-size: clamp(1.48rem, 2.35vw, 2.35rem);
-            font-weight: 800;
-            line-height: 1.02;
-            letter-spacing: -.035em;
-            text-transform: uppercase;
-            overflow-wrap: normal;
-          }
+    .home-quote {
+      margin: 0;
+      width: 100%;
+      max-width: 590px;
+      color: var(--text);
+      font-size: clamp(1.48rem, 2.35vw, 2.35rem);
+      font-weight: 800;
+      line-height: 1.02;
+      letter-spacing: -.035em;
+      text-transform: uppercase;
+      overflow-wrap: normal;
+    }
 
-          .home-quote span,
-          .home-quote em {
-            display: inline;
-          }
+    .home-quote span,
+    .home-quote em {
+      display: inline;
+    }
 
-          .home-quote em {
-            font-family: "Cormorant Garamond", Georgia, serif;
-            font-size: 1.22em;
-            font-style: italic;
-            font-weight: 500;
-            line-height: .82;
-            letter-spacing: -.035em;
-            text-transform: none;
-          }
+    .home-quote em {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 1.22em;
+      font-style: italic;
+      font-weight: 500;
+      line-height: .82;
+      letter-spacing: -.035em;
+      text-transform: none;
+    }
 
-          html[lang="en"] .home-quote {
-            font-size: clamp(1.34rem, 2.08vw, 2.08rem);
-          }
+    html[lang="en"] .home-quote {
+      font-size: clamp(1.34rem, 2.08vw, 2.08rem);
+    }
 
-          .home-intro-description {
-            margin: 0;
-            min-width: 0;
-            color: var(--text);
-            font-size: clamp(1rem, 1.35vw, 1.12rem);
-            line-height: 1.62;
-          }
+    .home-intro-description {
+      margin: 0;
+      min-width: 0;
+      color: var(--text);
+      font-size: clamp(1rem, 1.35vw, 1.12rem);
+      line-height: 1.62;
+    }
 '''
-          text, css_count = css_pattern.subn(css_replacement, text, count=1)
-          if css_count != 1:
-              raise SystemExit(f'Expected one desktop intro CSS block, replaced {css_count}')
+          text, count = desktop_pattern.subn(desktop_replacement, text, count=1)
+          if count != 1:
+              raise SystemExit(f'Expected one desktop intro CSS block, replaced {count}')
 
-          mobile_old = '''      .home-intro {
-              gap: 14px;
-              margin-bottom: 26px;
-            }
+          mobile_pattern = re.compile(
+              r"      \.home-intro \{.*?      \.home-intro-description \{\s*font-size: 1rem;\s*line-height: 1\.56;\s*\}\n",
+              re.S,
+          )
+          mobile_replacement = '''      .home-intro {
+        margin-bottom: 26px;
+      }
 
-            .home-intro-row {
-              grid-template-columns: 1fr;
-              align-items: start;
-              gap: 14px;
-            }
+      .home-intro-row {
+        grid-template-columns: 1fr;
+        align-items: start;
+        gap: 20px;
+      }
 
-            .home-quote,
-            html[lang="en"] .home-quote {
-              max-width: none;
-              justify-self: start;
-              font-size: clamp(1.35rem, 6.4vw, 2rem);
-            }
+      .home-quote-group {
+        gap: 10px;
+      }
 
-            .home-intro-description {
-              font-size: 1rem;
-              line-height: 1.56;
-            }
+      .home-quote,
+      html[lang="en"] .home-quote {
+        max-width: none;
+        font-size: clamp(1.3rem, 6vw, 1.9rem);
+      }
+
+      .home-intro-description {
+        font-size: 1rem;
+        line-height: 1.56;
+      }
 '''
-          mobile_new = '''      .home-intro {
-              margin-bottom: 26px;
-            }
-
-            .home-intro-row {
-              grid-template-columns: 1fr;
-              align-items: start;
-              gap: 20px;
-            }
-
-            .home-quote-group {
-              gap: 10px;
-            }
-
-            .home-quote,
-            html[lang="en"] .home-quote {
-              max-width: none;
-              font-size: clamp(1.3rem, 6vw, 1.9rem);
-            }
-
-            .home-intro-description {
-              font-size: 1rem;
-              line-height: 1.56;
-            }
-'''
-          if mobile_old not in text:
-              raise SystemExit('Expected mobile intro CSS block was not found')
-          text = text.replace(mobile_old, mobile_new, 1)
+          text, count = mobile_pattern.subn(mobile_replacement, text, count=1)
+          if count != 1:
+              raise SystemExit(f'Expected one mobile intro CSS block, replaced {count}')
 
           intro_pattern = re.compile(
               r'<section class="home-intro"(?P<attrs>[^>]*)>\s*'
@@ -168,7 +149,6 @@ jobs:
               1,
           )
           description = textwrap.dedent(match.group('description')).strip()
-
           intro_replacement = (
               f'<section class="home-intro"{match.group("attrs")}>\n'
               '      <div class="home-intro-row">\n'
@@ -182,23 +162,31 @@ jobs:
           )
           text = intro_pattern.sub(intro_replacement, text, count=1)
 
-          palette = {
+          replacements = {
               '--about-card-bg: #FFD146; --about-card-text: #1f1a05;': '--about-card-bg: #C9A54A; --about-card-text: #1D1A12;',
               '--about-card-bg: #FF4646; --about-card-text: #211010;': '--about-card-bg: #B85F62; --about-card-text: #12090A;',
               '--about-card-bg: #4646FF; --about-card-text: #ffffff;': '--about-card-bg: #5C6098; --about-card-text: #FFFFFF;',
               '--about-card-bg: #58E14B; --about-card-text: #0d2609;': '--about-card-bg: #71926A; --about-card-text: #132012;',
           }
-          for old, new in palette.items():
+          for old, new in replacements.items():
               if old not in text:
                   raise SystemExit(f'Expected palette token was not found: {old}')
               text = text.replace(old, new, 1)
 
+          checks = [
+              'class="home-quote-group"',
+              '#C9A54A',
+              '#B85F62',
+              '#5C6098',
+              '#71926A',
+          ]
+          for token in checks:
+              if token not in text:
+                  raise SystemExit(f'Missing expected token: {token}')
           if 'home-standalone-quote' in text:
-              raise SystemExit('Obsolete separated quote class remains')
+              raise SystemExit('Separated quote class remains')
           if text.count('class="home-quote"') != 2:
-              raise SystemExit('The combined quote must contain exactly two quote lines')
-          if 'class="home-quote-group"' not in text:
-              raise SystemExit('Combined quote group was not created')
+              raise SystemExit('Combined quote must contain exactly two lines')
 
           path.write_text(text, encoding='utf-8')
           PY
