@@ -190,6 +190,6 @@ document.addEventListener("copy", function (event) {
 
   const loaderScriptSrc = document.currentScript?.src || document.baseURI;
   const script = document.createElement('script');
-  script.src = new URL('homepage-polish.js?v=homepage-quote-palette-20260723-1', loaderScriptSrc).toString();
+  script.src = new URL('homepage-polish.js?v=homepage-quote-tools-20260723-2', loaderScriptSrc).toString();
   document.head.appendChild(script);
 })();
