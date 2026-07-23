@@ -1,0 +1,49 @@
+name: Apply design refinements from PR trigger
+
+on:
+  pull_request_target:
+    types: [opened]
+
+permissions:
+  contents: write
+  pull-requests: read
+
+jobs:
+  apply:
+    if: github.event.pull_request.title == 'Trigger restrained design refinements'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v5
+        with:
+          ref: main
+
+      - name: Apply refinements
+        run: python3 scripts/apply_design_refinements.py
+
+      - name: Validate
+        shell: bash
+        run: |
+          git diff --check
+          grep -q 'class="home-quote-group"' index.html
+          ! grep -q 'home-standalone-quote' index.html
+          ! grep -q 'loadHomepagePolish' shared/copy-plain.js
+          test ! -e shared/homepage-polish.js
+          grep -q 'clip-path: inset(50%)' shared/ui.css
+          grep -q 'Restrained design-system refinements' shared/ui.css
+          grep -q 'color-mix(in srgb, #3a8f55 14%' associativvordes/index.html
+          grep -q 'Restrained modal alignment' determinatorofvalentyp/styles.css
+          grep -q 'height: 94svh' index.html
+          ! grep -q 'pointermove' index.html
+
+      - name: Commit and push to main
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/apply-design-refinements.yml
+          git rm .github/workflows/apply-design-refinements-pr.yml
+          git rm scripts/apply_design_refinements.py
+          git add -A
+          git commit -m "Refine site design system without restructuring"
+          git push origin main
