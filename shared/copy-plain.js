@@ -185,11 +185,13 @@ document.addEventListener("copy", function (event) {
   }
 })();
 
-(function loadHomepagePolish() {
-  if (!document.body.classList.contains('homepage')) return;
+(function loadDesignRefinements() {
+  if (document.getElementById('interal-design-refinements')) return;
 
   const loaderScriptSrc = document.currentScript?.src || document.baseURI;
-  const script = document.createElement('script');
-  script.src = new URL('homepage-polish.js?v=homepage-quote-tools-20260723-2', loaderScriptSrc).toString();
-  document.head.appendChild(script);
+  const stylesheet = document.createElement('link');
+  stylesheet.id = 'interal-design-refinements';
+  stylesheet.rel = 'stylesheet';
+  stylesheet.href = new URL('design-refinements.css?v=design-system-20260723-1', loaderScriptSrc).toString();
+  document.head.appendChild(stylesheet);
 })();
