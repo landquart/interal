@@ -1,0 +1,292 @@
+/* Restrained site-wide design refinements. No structural redesign. */
+
+/* Keep visually hidden content available to assistive technologies. */
+.visually-removed {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Preserve the established UI, but reduce unnecessary visual layering. */
+.interal-panel h2 {
+  font-weight: 700;
+}
+
+.interal-field label,
+.interal-field > span {
+  font-weight: 600;
+}
+
+.interal-tool-page .interal-panel {
+  box-shadow: var(--shadow-sm);
+}
+
+.interal-tool-page .interal-panel .result-card,
+.interal-tool-page .interal-panel .metric,
+.interal-tool-page .interal-panel .component-item {
+  box-shadow: none;
+}
+
+/* Remove the redundant separators while retaining the glass navigation. */
+@media (min-width: 980px) {
+  .top-desktop-link + .top-desktop-link {
+    padding-left: 12px;
+    margin-left: 0;
+  }
+
+  .top-desktop-link + .top-desktop-link::after {
+    display: none;
+  }
+}
+
+/* Bring the side menu closer to the top-bar visual language. */
+.side-menu {
+  border-radius: 0 24px 24px 0;
+  background: color-mix(in srgb, var(--sidebar-bg) 94%, transparent);
+  -webkit-backdrop-filter: blur(16px) saturate(125%);
+  backdrop-filter: blur(16px) saturate(125%);
+}
+
+/* Use one restrained modal treatment across the tool pages. */
+.interal-tool-page .modal-backdrop {
+  background: rgba(0, 0, 0, .42);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+body.dark-theme.interal-tool-page .modal-backdrop,
+body.dark-theme .interal-tool-page .modal-backdrop {
+  background: rgba(0, 0, 0, .58);
+}
+
+.interal-tool-page .modal-card {
+  border-radius: 24px;
+  background: var(--surface-elevated);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, .24);
+}
+
+/* Distinguish analytical states with muted, readable colours. */
+.associativ-page .status.ok {
+  background: color-mix(in srgb, #3a8f55 14%, var(--surface-elevated));
+  border-color: color-mix(in srgb, #3a8f55 42%, var(--border-control));
+  color: var(--text);
+}
+
+.associativ-page .status.warn {
+  background: color-mix(in srgb, #b8792d 14%, var(--surface-elevated));
+  border-color: color-mix(in srgb, #b8792d 42%, var(--border-control));
+  color: var(--text);
+}
+
+.associativ-page .status.bad {
+  background: color-mix(in srgb, #b45555 14%, var(--surface-elevated));
+  border-color: color-mix(in srgb, #b45555 42%, var(--border-control));
+  color: var(--text);
+}
+
+/* Homepage: retain the existing composition, but make it calmer and coherent. */
+.homepage .hero-stage {
+  --hero-transition-height: clamp(88px, 12svh, 170px);
+}
+
+.homepage .home-intro {
+  display: grid;
+  grid-template-columns: minmax(300px, .82fr) minmax(0, 1.18fr);
+  grid-template-rows: auto auto;
+  align-items: start;
+  column-gap: clamp(28px, 4vw, 52px);
+  row-gap: clamp(12px, 1.4vw, 18px);
+  margin-bottom: clamp(24px, 4vw, 46px);
+}
+
+.homepage .home-intro-row {
+  display: contents;
+}
+
+.homepage .home-intro-row > .home-quote {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.homepage .home-standalone-quote {
+  grid-column: 1;
+  grid-row: 2;
+  justify-self: start;
+}
+
+.homepage .home-intro-description {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  max-width: 72ch;
+  font-size: clamp(1rem, 1.3vw, 1.1rem);
+}
+
+.homepage .home-quote {
+  width: 100%;
+  max-width: 590px;
+  font-size: clamp(1.46rem, 2.3vw, 2.3rem);
+  line-height: 1.02;
+  overflow-wrap: normal;
+}
+
+.homepage .home-quote span,
+.homepage .home-quote em {
+  display: block;
+}
+
+.homepage .home-quote em {
+  margin-top: .05em;
+  font-size: 1.16em;
+  line-height: .86;
+  letter-spacing: -.035em;
+  text-transform: none;
+}
+
+html[lang="en"] .homepage .home-quote {
+  font-size: clamp(1.32rem, 2.05vw, 2.05rem);
+}
+
+.homepage .home-about-card {
+  min-height: clamp(142px, 12vw, 178px);
+  border-radius: 22px;
+  border: 1px solid color-mix(in srgb, var(--about-card-text) 10%, transparent);
+  box-shadow: 0 8px 22px rgba(15, 23, 42, .065);
+}
+
+.homepage .home-about-card:nth-child(1) {
+  --about-card-bg: #C7A55A !important;
+  --about-card-text: #1D1A12 !important;
+}
+
+.homepage .home-about-card:nth-child(2) {
+  --about-card-bg: #B56767 !important;
+  --about-card-text: #130A0B !important;
+}
+
+.homepage .home-about-card:nth-child(3) {
+  --about-card-bg: #626799 !important;
+  --about-card-text: #FFFFFF !important;
+}
+
+.homepage .home-about-card:nth-child(4) {
+  --about-card-bg: #789174 !important;
+  --about-card-text: #132012 !important;
+}
+
+.homepage .home-about-card:nth-child(even) {
+  transform: translateY(clamp(24px, 3vw, 34px));
+}
+
+/* Keep tool cards compact and remove the overactive 3D treatment. */
+.homepage .tool-link:hover {
+  transform: translateY(-2px) !important;
+  background: var(--surface-hover);
+  border-color: var(--border-control);
+  box-shadow: 0 10px 24px color-mix(in srgb, var(--text) 10%, transparent);
+}
+
+.homepage .tool-link:hover::before {
+  opacity: 0 !important;
+  animation: none !important;
+}
+
+.homepage .tool-link:hover .tool-icon-wrap {
+  transform: scale(1.03) !important;
+}
+
+.homepage .tool-link:hover .tool-icon {
+  animation: none !important;
+}
+
+@media (min-width: 861px) {
+  .homepage .hero {
+    height: 94vh;
+    height: 94svh;
+  }
+
+  .homepage .container {
+    gap: 10px;
+  }
+
+  .homepage .tool-link {
+    min-height: 76px;
+    grid-template-columns: 50px minmax(0, 1fr);
+    padding: 10px 12px;
+    column-gap: 11px;
+    row-gap: 1px;
+    border-radius: 20px;
+  }
+
+  .homepage .tool-icon-wrap {
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+    min-height: 50px;
+    border-radius: 16px;
+  }
+
+  .homepage .tool-icon {
+    width: calc(var(--tool-icon-size, 42px) * .8);
+    height: calc(var(--tool-icon-size, 42px) * .8);
+  }
+
+  .homepage .tool-link-main {
+    font-size: .95rem;
+  }
+
+  .homepage .tool-link-sub {
+    font-size: .82rem;
+  }
+}
+
+@media (max-width: 860px) {
+  .homepage .home-intro {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    row-gap: 10px;
+    margin-bottom: 26px;
+  }
+
+  .homepage .home-intro-row > .home-quote {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .homepage .home-standalone-quote {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .homepage .home-intro-description {
+    grid-column: 1;
+    grid-row: 3;
+    max-width: none;
+    margin-top: 10px;
+  }
+
+  .homepage .home-quote,
+  html[lang="en"] .homepage .home-quote {
+    max-width: none;
+    font-size: clamp(1.28rem, 5.8vw, 1.86rem);
+  }
+
+  .homepage .home-about-card:nth-child(even) {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .homepage .tool-link,
+  .homepage .tool-icon-wrap,
+  .side-menu,
+  .interal-tool-page .modal-card {
+    transition: none !important;
+  }
+}
