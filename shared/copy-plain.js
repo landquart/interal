@@ -184,3 +184,12 @@ document.addEventListener("copy", function (event) {
     loadFallback();
   }
 })();
+
+(function loadHomepagePolish() {
+  if (!document.body.classList.contains('homepage')) return;
+
+  const loaderScriptSrc = document.currentScript?.src || document.baseURI;
+  const script = document.createElement('script');
+  script.src = new URL('homepage-polish.js?v=homepage-quote-palette-20260723-1', loaderScriptSrc).toString();
+  document.head.appendChild(script);
+})();
