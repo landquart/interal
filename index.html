@@ -20,14 +20,14 @@
       --homepage-section-bg: #ffffff;
       margin: 0;
       min-height: 100vh;
-      padding: var(--global-header-offset) 16px 16px;
+      padding: 0 16px 16px;
       overflow-x: clip;
       background: var(--homepage-section-bg);
       font-family: "Jost", "Helvetica Neue", Helvetica, Arial, sans-serif;
       line-height: 1.5;
     }
 
-    body.homepage.has-global-menu { padding-top: var(--global-header-offset); }
+    body.homepage.has-global-menu { padding-top: 0; }
     body.homepage.dark-theme { --homepage-section-bg: var(--bg); }
 
     .hero-stage {
@@ -57,9 +57,9 @@
       position: relative;
       z-index: 1;
       width: 100%;
-      height: calc(100vh - var(--global-header-offset));
-      height: calc(100svh - var(--global-header-offset));
-      min-height: 520px;
+      height: 100vh;
+      height: 100svh;
+      min-height: 560px;
       overflow: hidden;
     }
 
@@ -67,7 +67,10 @@
       width: min(100%, 1680px);
       height: 100%;
       margin: 0 auto;
-      padding: clamp(38px, 6vh, 88px) clamp(34px, 7vw, 142px);
+      padding:
+        calc(var(--global-header-offset) + clamp(24px, 3.8vh, 58px))
+        clamp(34px, 7vw, 142px)
+        clamp(30px, 5vh, 72px);
       display: grid;
       grid-template-columns: minmax(0, 1.14fr) minmax(280px, .78fr);
       grid-template-areas: "copy logo";
@@ -427,17 +430,20 @@
       }
 
       .hero {
-        min-height: 500px;
+        min-height: 0;
       }
 
       .hero-inner {
         width: 100%;
-        padding: clamp(18px, 3.5svh, 34px) clamp(22px, 6vw, 28px);
+        padding:
+          calc(var(--global-header-offset) + clamp(8px, 2.2svh, 18px))
+          clamp(20px, 5.4vw, 26px)
+          clamp(18px, 3svh, 28px);
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: stretch;
-        gap: clamp(18px, 3.6svh, 32px);
+        gap: clamp(18px, 3svh, 26px);
       }
 
       .hero-logo-wrap {
@@ -446,30 +452,30 @@
       }
 
       .hero-logo {
-        width: clamp(112px, 33vw, 148px);
+        width: clamp(150px, 47vw, 210px);
       }
 
       .hero-copy {
         order: 2;
         width: 100%;
-        max-width: 560px;
+        max-width: 600px;
         margin: 0 auto;
       }
 
       .hero-brand-line {
-        margin-bottom: .4em;
-        font-size: clamp(2rem, 9vw, 2.65rem);
+        margin-bottom: .34em;
+        font-size: clamp(2.35rem, 11.7vw, 3.15rem);
       }
 
       .hero-main-lines {
-        font-size: clamp(1.62rem, 7.25vw, 2.18rem);
-        line-height: .98;
+        font-size: clamp(1.85rem, 9.2vw, 2.55rem);
+        line-height: .94;
       }
 
       .hero-accent-lines {
-        margin-top: .22em;
-        font-size: clamp(2.05rem, 9.2vw, 2.78rem);
-        line-height: .84;
+        margin-top: .18em;
+        font-size: clamp(2.45rem, 12.2vw, 3.45rem);
+        line-height: .82;
       }
 
       .homepage .container {
@@ -519,8 +525,8 @@
       }
 
       .hero-inner {
-        padding-top: 24px;
-        padding-bottom: 24px;
+        padding-top: calc(var(--global-header-offset) + 18px);
+        padding-bottom: 20px;
       }
 
       .hero-logo { width: clamp(205px, 20vw, 300px); }
@@ -530,20 +536,16 @@
     }
 
     @media (max-height: 700px) and (max-width: 860px) {
-      .hero {
-        min-height: 0;
-      }
-
       .hero-inner {
-        gap: 14px;
-        padding-top: 12px;
+        gap: 12px;
+        padding-top: calc(var(--global-header-offset) + 6px);
         padding-bottom: 12px;
       }
 
-      .hero-logo { width: clamp(94px, 27vw, 118px); }
-      .hero-brand-line { font-size: clamp(1.72rem, 8vw, 2.18rem); }
-      .hero-main-lines { font-size: clamp(1.38rem, 6.5vw, 1.82rem); }
-      .hero-accent-lines { font-size: clamp(1.78rem, 8vw, 2.28rem); }
+      .hero-logo { width: clamp(130px, 38vw, 160px); }
+      .hero-brand-line { font-size: clamp(2.05rem, 10.4vw, 2.5rem); }
+      .hero-main-lines { font-size: clamp(1.62rem, 8.3vw, 2.05rem); }
+      .hero-accent-lines { font-size: clamp(2.15rem, 10.8vw, 2.65rem); }
     }
 
     @media (prefers-reduced-motion: reduce) {
