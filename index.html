@@ -449,6 +449,8 @@
       .hero-logo-wrap {
         order: 1;
         flex: 0 0 auto;
+        transform: translateY(calc(-1 * clamp(28px, 5svh, 48px)));
+        margin-bottom: -18px;
       }
 
       .hero-logo {
@@ -540,6 +542,11 @@
         gap: 12px;
         padding-top: calc(var(--global-header-offset) + 6px);
         padding-bottom: 12px;
+      }
+
+      .hero-logo-wrap {
+        transform: translateY(-18px);
+        margin-bottom: -10px;
       }
 
       .hero-logo { width: clamp(130px, 38vw, 160px); }
