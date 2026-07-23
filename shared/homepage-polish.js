@@ -54,10 +54,11 @@
 
         .homepage .home-quote span,
         .homepage .home-quote em {
-          display: inline;
+          display: block;
         }
 
         .homepage .home-quote em {
+          margin-top: .05em;
           font-family: "Cormorant Garamond", Georgia, serif;
           font-size: 1.22em;
           font-style: italic;
@@ -75,6 +76,42 @@
           border-radius: 22px;
           box-shadow: 0 8px 22px rgba(15, 23, 42, .065);
           border: 1px solid color-mix(in srgb, var(--about-card-text) 10%, transparent);
+        }
+
+        @media (min-width: 861px) {
+          .homepage .container {
+            gap: 10px;
+          }
+
+          .homepage .tool-link {
+            min-height: 76px;
+            grid-template-columns: 50px minmax(0, 1fr);
+            padding: 10px 12px;
+            column-gap: 11px;
+            row-gap: 1px;
+            border-radius: 20px;
+          }
+
+          .homepage .tool-icon-wrap {
+            width: 50px;
+            height: 50px;
+            min-width: 50px;
+            min-height: 50px;
+            border-radius: 16px;
+          }
+
+          .homepage .tool-icon {
+            width: calc(var(--tool-icon-size, 42px) * .8);
+            height: calc(var(--tool-icon-size, 42px) * .8);
+          }
+
+          .homepage .tool-link-main {
+            font-size: .95rem;
+          }
+
+          .homepage .tool-link-sub {
+            font-size: .82rem;
+          }
         }
 
         @media (max-width: 860px) {
