@@ -3,6 +3,8 @@ import { readFile } from 'node:fs/promises';
 import {
   compareFinalModelCandidates,
   normalizeQwenCandidateSuggestions,
+  normalizeQwenCandidateValidation,
+  applyQwenCandidateValidation,
   buildQwenCandidateAuditPayload,
   refineCandidatesWithQwenAudit,
   QWEN_RUNTIME_CONFIG,
@@ -36,6 +38,77 @@ assert.deepEqual(normalized.en, [
   { word: 'altruist', root_variant: 'altru' }
 ], 'English suggestions obey the same deterministic limit');
 assert.deepEqual(normalized.de, [], 'missing language arrays normalize to empty lists');
+
+const validationTopModels = {
+  en: [
+    { word: 'alternate', model_key: 'en|alternate', frequency_score: 80 },
+    { word: 'alternately', model_key: 'en|alternately', frequency_score: 30 }
+  ],
+  fr: [
+    { word: 'alternative', model_key: 'fr|alternative', frequency_score: 85 },
+    { word: 'alternatif', model_key: 'fr|alternatif', frequency_score: 70 }
+  ],
+  ru: [
+    { word: 'альтернативный', model_key: 'ru|alternativnyj', frequency_score: 90 },
+    { word: 'альтернативка', model_key: 'ru|alternativka', frequency_score: 20 },
+    { word: 'альтер-эго', model_key: 'ru|alter-ego', frequency_score: 60 },
+    { word: 'альтер', model_key: 'ru|alter', frequency_score: 50 }
+  ]
+};
+const normalizedValidation = normalizeQwenCandidateValidation({
+  candidateValidation: {
+    en: [
+      { word: 'alternate', decision: 'keep', reason: 'frequency representative' },
+      { word: 'alternately', decision: 'remove_duplicate', same_model_as: 'alternate', reason: 'adverbial form' }
+    ],
+    fr: [
+      { word: 'alternative', decision: 'keep' },
+      { word: 'alternatif', decision: 'remove_duplicate', same_model_as: 'alternative' }
+    ],
+    ru: [
+      { word: 'альтернативный', decision: 'keep' },
+      { word: 'альтернативка', decision: 'remove_duplicate', same_model_as: 'альтернативный' },
+      { word: 'альтер-эго', decision: 'keep' },
+      { word: 'альтер', decision: 'remove_irrelevant', reason: 'tokenization artefact from альтер эго' }
+    ]
+  }
+}, validationTopModels, ['en', 'fr', 'ru']);
+assert.ok(Array.isArray(normalizedValidation.en), 'a complete validation is accepted');
+assert.equal(normalizedValidation.en[1].same_model_as, 'alternate', 'a duplicate must point to the retained representative');
+
+const validationPools = {
+  en: [...validationTopModels.en, { word: 'alteration', model_key: 'en|alteration', frequency_score: 25 }],
+  fr: [...validationTopModels.fr, { word: 'altération', model_key: 'fr|alteration', frequency_score: 15 }],
+  ru: [...validationTopModels.ru, { word: 'альтерация', model_key: 'ru|alteracija', frequency_score: 10 }]
+};
+const appliedValidation = applyQwenCandidateValidation(validationPools, normalizedValidation, validationTopModels, ['en', 'fr', 'ru']);
+assert.deepEqual(selectBestFinalModels(appliedValidation.candidatesByLanguage.en, 5).map(item => item.word), ['alternate'], 'duplicate removal does not backfill an unreviewed sixth model');
+assert.deepEqual(selectBestFinalModels(appliedValidation.candidatesByLanguage.fr, 5).map(item => item.word), ['alternative'], 'French part-of-speech variants count as one Qwen-validated model');
+assert.deepEqual(selectBestFinalModels(appliedValidation.candidatesByLanguage.ru, 5).map(item => item.word), ['альтернативный', 'альтер-эго'], 'Russian duplicate and tokenization artefact are excluded without forcing five results');
+assert.deepEqual(appliedValidation.diagnostics, {
+  validatedLanguageCount: 3,
+  validationIncompleteLanguageCount: 0,
+  validationKeptCount: 4,
+  validationRemovedDuplicateCount: 3,
+  validationRemovedIrrelevantCount: 1
+});
+
+const incompleteValidation = normalizeQwenCandidateValidation({
+  candidateValidation: { en: [{ word: 'alternate', decision: 'keep' }] }
+}, validationTopModels, ['en']);
+assert.equal(incompleteValidation.en, null, 'an incomplete Qwen verdict cannot silently remove an unchecked candidate');
+const incompleteApplied = applyQwenCandidateValidation(validationPools, incompleteValidation, validationTopModels, ['en']);
+assert.deepEqual(selectBestFinalModels(incompleteApplied.candidatesByLanguage.en, 5).map(item => item.word), ['alternate', 'alternately', 'alteration'], 'incomplete validation preserves the deterministic fallback set');
+
+const lowerFrequencyRepresentative = normalizeQwenCandidateValidation({
+  candidateValidation: {
+    en: [
+      { word: 'alternate', decision: 'remove_duplicate', same_model_as: 'alternately' },
+      { word: 'alternately', decision: 'keep' }
+    ]
+  }
+}, validationTopModels, ['en']);
+assert.equal(lowerFrequencyRepresentative.en, null, 'Qwen cannot replace a model representative with its lower-frequency variant');
 
 const evaluatedModels = [
   { word: 'alternative', model_key: 'm1', frequency_score: 95, final_score: 35, rank: 1 },
@@ -85,15 +158,19 @@ const previousGeneratedLimit = QWEN_RUNTIME_CONFIG.maxGeneratedCandidatesPerLang
 QWEN_RUNTIME_CONFIG.maxGeneratedCandidatesPerLanguage = 10;
 globalThis.fetch = async (_url, options) => ({
   ok: true,
-  json: async () => ({ ok: true, candidates: { en: [
-    { word: 'alternative', root_variant: 'alter' },
-    { word: 'altruism', root_variant: 'altru' },
-    { word: 'alterator', root_variant: 'alter' },
-    { word: 'novelty', root_variant: 'nov' },
-    { word: 'novelty', root_variant: 'nov' },
-    { word: 'missing', root_variant: 'miss' },
-    { word: 'broken', root_variant: 'brok' }
-  ] } })
+  json: async () => ({
+    ok: true,
+    candidateValidation: { en: ['alternative', 'alteration', 'alterity', 'alternate', 'alterable'].map(word => ({ word, decision: 'keep' })) },
+    candidates: { en: [
+      { word: 'alternative', root_variant: 'alter' },
+      { word: 'altruism', root_variant: 'altru' },
+      { word: 'alterator', root_variant: 'alter' },
+      { word: 'novelty', root_variant: 'nov' },
+      { word: 'novelty', root_variant: 'nov' },
+      { word: 'missing', root_variant: 'miss' },
+      { word: 'broken', root_variant: 'brok' }
+    ] }
+  })
 });
 const duplicateAlteratorKey = lexicalModelDescriptor({ word: 'alterator', search_form: 'alterator', match: { type: 'special', fragment: 'alter', index: 0 } }, 'nov', 'en').key;
 const auditBase = evaluatedModels.map(item => ({ ...item, model_key: item.word === 'alteration' ? duplicateAlteratorKey : item.model_key, model_family_key: item.word === 'alteration' ? duplicateAlteratorKey : item.model_key, search_form: item.word.toLowerCase(), sources: [{ id: 'base' }], match: { fragment: 'alter' } }));
@@ -107,13 +184,20 @@ assert.equal(refinedAudit.candidatesByLanguage.en.filter(item => item.word === '
 assert.equal(refinedAudit.candidatesByLanguage.en.some(item => item.word === 'alterator'), false, 'different word with an existing model_key is not a new model');
 assert.equal(refinedAudit.candidatesByLanguage.en.some(item => item.word === 'novelty'), true, 'new word with a new model passes local verification');
 assert.equal(loader.calls.some(call => call.word === 'alternative'), false, 'duplicate suggestion does not start semantic or local verification');
-assert.deepEqual(refinedAudit.diagnostics, { suggestedCount: 7, duplicateWordCount: 3, duplicateModelCount: 1, locallyMissingCount: 1, verifiedNewModelCount: 1, rejectedInvalidCount: 1, auditRetryCount: 0, status: 'completed', model: null, usedGuaranteedFallback: false, backendErrorCode: null, backendErrorDetails: null }, 'diagnostics counts duplicate, missing, invalid, verified, and backend audit state');
+assert.deepEqual(refinedAudit.diagnostics, { suggestedCount: 7, duplicateWordCount: 3, duplicateModelCount: 1, locallyMissingCount: 1, verifiedNewModelCount: 1, rejectedInvalidCount: 1, auditRetryCount: 0, validatedLanguageCount: 1, validationIncompleteLanguageCount: 0, validationKeptCount: 5, validationRemovedDuplicateCount: 0, validationRemovedIrrelevantCount: 0, status: 'completed', model: null, usedGuaranteedFallback: false, backendErrorCode: null, backendErrorDetails: null }, 'diagnostics counts duplicate, missing, invalid, verified, validation, and backend audit state');
 globalThis.fetch = previousFetchForRefine;
 QWEN_RUNTIME_CONFIG.maxGeneratedCandidatesPerLanguage = previousGeneratedLimit;
 
-globalThis.fetch = async () => ({ ok: true, json: async () => ({ ok: true, candidates: { en: [] } }) });
+globalThis.fetch = async () => ({
+  ok: true,
+  json: async () => ({
+    ok: true,
+    candidateValidation: { en: ['alternative', 'alteration', 'alterity', 'alternate', 'alterable'].map(word => ({ word, decision: 'keep' })) },
+    candidates: { en: [] }
+  })
+});
 const emptyAudit = await refineCandidatesWithQwenAudit({ root: 'nov', targetMeaning: 'new', candidatesByLanguage: { en: auditBase }, loader: makeLoader({}), languages: ['en'] });
-assert.deepEqual(emptyAudit.diagnostics, { suggestedCount: 0, duplicateWordCount: 0, duplicateModelCount: 0, locallyMissingCount: 0, verifiedNewModelCount: 0, rejectedInvalidCount: 0, auditRetryCount: 0, status: 'completed', model: null, usedGuaranteedFallback: false, backendErrorCode: null, backendErrorDetails: null }, 'empty Qwen response is a normal completed no-op');
+assert.deepEqual(emptyAudit.diagnostics, { suggestedCount: 0, duplicateWordCount: 0, duplicateModelCount: 0, locallyMissingCount: 0, verifiedNewModelCount: 0, rejectedInvalidCount: 0, auditRetryCount: 0, validatedLanguageCount: 1, validationIncompleteLanguageCount: 0, validationKeptCount: 5, validationRemovedDuplicateCount: 0, validationRemovedIrrelevantCount: 0, status: 'completed', model: null, usedGuaranteedFallback: false, backendErrorCode: null, backendErrorDetails: null }, 'empty Qwen suggestion response is a normal completed validation');
 globalThis.fetch = previousFetchForRefine;
 
 const clientSource = await readFile('associativvordes/js/qwen-client.js', 'utf8');
@@ -143,7 +227,17 @@ globalThis.fetch = async (_url, options) => {
     text: async () => JSON.stringify({
       choices: [{
         message: {
-          content: JSON.stringify({ candidates: { en: [], de: [], fr: [], es: [], it: [], ru: [] } })
+          content: JSON.stringify({
+            validation: {
+              en: [{ word: 'alternative', decision: 'keep', reason: 'valid model' }],
+              de: [],
+              fr: [],
+              es: [],
+              it: [],
+              ru: [{ word: 'альтернатива', decision: 'keep', reason: 'valid model' }]
+            },
+            candidates: { en: [], de: [], fr: [], es: [], it: [], ru: [] }
+          })
         }
       }]
     })
@@ -169,6 +263,8 @@ await endpointModule.default({
 const endpointPayload = JSON.parse(responseText);
 assert.equal(response.statusCode, 200, 'supplemental endpoint accepts a scored top-five audit request');
 assert.deepEqual(endpointPayload.qwenCandidates, { en: [], de: [], fr: [], es: [], it: [], ru: [] }, 'the test models an empty Qwen generation result');
+assert.equal(endpointPayload.candidateValidation.en[0].decision, 'keep', 'the endpoint returns the normalized set-level validation');
+assert.equal(endpointPayload.audit.status, 'completed', 'complete candidate validation completes the audit');
 assert.deepEqual(endpointPayload.candidates.en, [
   { word: 'altruism', root_variant: 'altru' },
   { word: 'altruist', root_variant: 'altru' }
@@ -200,6 +296,11 @@ assert.match(sentPrompt, /knownCandidates/);
 assert.match(sentPrompt, /knownModelKeys/);
 assert.match(sentPrompt, /Current top models with measured scores/);
 assert.match(sentPrompt, /Empty arrays are valid final decisions/);
+assert.match(sentPrompt, /Five is a strict upper limit, not a quota/);
+assert.match(sentPrompt, /"alternate" and "alternately" are one model/);
+assert.match(sentPrompt, /"alternative" and "alternatif" are one model/);
+assert.match(sentPrompt, /"альтернативный" and "альтернативка" are one model/);
+assert.match(sentPrompt, /separated first token of "альтер эго"/);
 assert.equal(responseHeaders['Cache-Control'], 'no-store', 'candidate responses are not cached');
 
 let fallbackResponseText = '';
@@ -247,13 +348,15 @@ assert.match(clientSource, /findIndexByModel/, 'an existing representative of th
 assert.match(clientSource, /allCandidates/, 'final rebalancing uses the full runtime candidate list rather than the truncated saved-state snapshot');
 assert.match(clientSource, /duplicateWordCount/, 'duplicate suggestions are counted before local verification');
 
-assert.match(endpointSource, /already selected up to five distinct derivational models per language by corpus frequency/, 'server understands the two-stage selection policy');
+assert.match(endpointSource, /provisionally selected up to five parser-separated candidates per language/, 'server treats parser groups as provisional rather than guaranteed distinct models');
 assert.match(endpointSource, /credible chance of entering the frequency-selected top five/, 'Qwen proposes plausible frequency improvements');
-assert.match(endpointSource, /If the current five models are already adequate, return an empty array/, 'Qwen may correctly propose nothing outside the configured high-confidence allomorphs');
+assert.match(endpointSource, /If the retained models are already adequate, return an empty candidate array/, 'Qwen may correctly propose nothing outside the configured high-confidence allomorphs');
 assert.match(endpointSource, /ROOT_ALLOMORPH_CANDIDATES/, 'known high-confidence allomorph models are guaranteed after the audit');
 assert.match(endpointSource, /mergeCandidateMaps\(guaranteedCandidates, qwenCandidates\)/, 'guaranteed allomorph candidates cannot be suppressed by an empty model response');
 assert.match(endpointSource, /QWEN_CANDIDATE_AUDIT_UNAVAILABLE/, 'known allomorph candidates survive Qwen transport and parsing failures');
 assert.match(endpointSource, /English altruism\/altruist and Russian альтруизм\/альтруист/, 'prompt explicitly covers alter → altru-');
+assert.match(endpointSource, /remove_duplicate/, 'the Qwen audit can explicitly remove duplicate models');
+assert.match(endpointSource, /remove_irrelevant/, 'the Qwen audit can explicitly remove irrelevant or tokenized candidates');
 assert.match(endpointSource, /ROOT_ALLOMORPH_HINTS/, 'historical allomorph hints remain available');
 assert.doesNotMatch(endpointSource, /missingLanguages[\s\S]*repair/, 'empty arrays are no longer treated as a second model request');
 assert.match(endpointSource, /buildSearchForm\(word\)[\s\S]*buildSearchForm\(rootVariant\)/, 'native and transliterated root variants share one canonical search form');

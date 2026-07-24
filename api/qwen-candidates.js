@@ -11,6 +11,7 @@ const MAX_MODELS_PER_LANGUAGE = 5;
 const MAX_CANDIDATES_PER_LANGUAGE = 2;
 const MAX_KNOWN_CANDIDATE_WORDS_PER_LANGUAGE = 120;
 const MAX_KNOWN_MODEL_KEYS_PER_LANGUAGE = 500;
+const CANDIDATE_VALIDATION_DECISIONS = new Set(['keep', 'remove_duplicate', 'remove_irrelevant']);
 
 const ROOT_ALLOMORPH_HINTS = Object.freeze({
   alter: {
@@ -235,6 +236,79 @@ function normalizeResult(result) {
   return candidates;
 }
 
+export function normalizeCandidateValidationResult(result, input) {
+  const source = result?.validation && typeof result.validation === 'object' && !Array.isArray(result.validation)
+    ? result.validation
+    : {};
+  const validation = {};
+
+  for (const language of CONTROL_LANGUAGES) {
+    const top = input.currentTopModels[language] || [];
+    if (!top.length) {
+      validation[language] = [];
+      continue;
+    }
+
+    const topByWord = new Map(top.map(item => [candidateWordKey(item.word), item]).filter(([key]) => Boolean(key)));
+    const rawItems = source[language];
+    if (!Array.isArray(rawItems) || topByWord.size !== top.length) {
+      validation[language] = null;
+      continue;
+    }
+
+    const decisions = new Map();
+    let invalid = false;
+    for (const raw of rawItems) {
+      if (!raw || typeof raw !== 'object' || Array.isArray(raw)) { invalid = true; break; }
+      const word = normalizeWord(raw.word);
+      const key = candidateWordKey(word);
+      const decision = String(raw.decision || '').trim().toLowerCase();
+      const sameModelAs = normalizeWord(raw.same_model_as ?? raw.sameModelAs);
+      const reason = normalizeWord(raw.reason, 240);
+      if (!key || !topByWord.has(key) || decisions.has(key) || !CANDIDATE_VALIDATION_DECISIONS.has(decision)) {
+        invalid = true;
+        break;
+      }
+      decisions.set(key, {
+        word: topByWord.get(key).word,
+        decision,
+        ...(sameModelAs ? { same_model_as: sameModelAs } : {}),
+        ...(reason ? { reason } : {})
+      });
+    }
+
+    if (invalid || decisions.size !== topByWord.size) {
+      validation[language] = null;
+      continue;
+    }
+
+    for (const item of decisions.values()) {
+      if (item.decision !== 'remove_duplicate') continue;
+      const targetKey = candidateWordKey(item.same_model_as);
+      const target = decisions.get(targetKey);
+      const removedCandidate = topByWord.get(candidateWordKey(item.word));
+      const retainedCandidate = topByWord.get(targetKey);
+      const removedFrequency = Number(removedCandidate?.frequency_score);
+      const retainedFrequency = Number(retainedCandidate?.frequency_score);
+      if (!targetKey || targetKey === candidateWordKey(item.word) || target?.decision !== 'keep') {
+        invalid = true;
+        break;
+      }
+      if (Number.isFinite(removedFrequency) && Number.isFinite(retainedFrequency) && retainedFrequency < removedFrequency) {
+        invalid = true;
+        break;
+      }
+      item.same_model_as = target.word;
+    }
+
+    validation[language] = invalid
+      ? null
+      : top.map(item => decisions.get(candidateWordKey(item.word)));
+  }
+
+  return validation;
+}
+
 function allomorphHints(root) {
   const hints = ROOT_ALLOMORPH_HINTS[buildSearchForm(root)] || {};
   return Object.fromEntries(CONTROL_LANGUAGES.map(language => [language, hints[language] || []]));
@@ -275,18 +349,30 @@ function mergeCandidateMaps(priority, secondary) {
 
 function buildPrompt(input) {
   const hints = allomorphHints(input.root);
-  return `You audit the current five lexical-association models for each control language in the Interal associative-word procedure.
+  return `You perform a conservative set-level audit of lexical associations for each control language in the Interal associative-word procedure.
 
-The program has already selected up to five distinct derivational models per language by corpus frequency. It may also provide already measured A and P for context, but automatic model replacement is performed only after local-index verification and only by frequency score F. Your task is only to detect an important missing derivational model that a human speaker would plausibly recall as an early association with targetMeaning.
+The program has provisionally selected up to five parser-separated candidates per language. The parser can incorrectly split one lexical/derivational model into several candidates or admit a corpus tokenization artefact. Five is a strict upper limit, not a quota: after validation a language may correctly have 0–4 retained models, and removed candidates must not be replaced merely to reach five.
 
-Return an additional candidate only when all of the following are true:
+Task A — validate every item in currentTopModels.
+Return exactly one validation entry for every currentTopModels item, preserving its exact word spelling. Use only:
+- "keep": a genuine, relevant, independent lexical association representing a distinct derivational model;
+- "remove_duplicate": the same lexical/derivational model as another retained item; set same_model_as to the exact retained word;
+- "remove_irrelevant": a false root relation, weak/unrelated association, non-independent fragment, corpus/tokenization artefact, proper name, or otherwise unsuitable item.
+
+Within one duplicate model, normally keep the representative with the highest F. Part-of-speech, adverbial, gender, colloquial, inflectional, spelling, hyphenation, and tokenization variants do not create a new model by themselves. Apply these concrete precedents:
+- English "alternate" and "alternately" are one model; retain only one representative.
+- French "alternative" and "alternatif" are one model; retain only one representative.
+- Russian "альтернативный" and "альтернативка" are one model; retain only one representative.
+- Russian "альтер" occurring as the separated first token of "альтер эго" is not an independent model. Do not count "альтер" together with "альтер-эго"; reject the tokenization artefact.
+
+Task B — propose an important missing model only when all of the following are true:
 1. it is a real dictionary lemma in the requested language;
 2. it contains a historically or morphologically justified reflex or allomorph of the requested root;
 3. it represents a distinct derivational model, not an inflectional, grammatical, spelling, or part-of-speech variant of a current model;
 4. it is reasonably common, not an obscure technicalism or proper name;
 5. it has a credible chance of entering the frequency-selected top five after the program independently checks the word in the local frequency index.
 
-If the current five models are already adequate, return an empty array for that language. Empty arrays are valid final decisions and must not be filled merely to reach a quota. Do not return a word already present in knownCandidates. Do not return a word belonging to a knownModelKeys model unless it is genuinely a different derivational model. Do not repeat currentTopModels. Empty arrays are allowed. Do not invent words or return phrases.
+If the retained models are already adequate, return an empty candidate array for that language. Empty arrays are valid final decisions and must not be filled merely to reach a quota. Do not return a word already present in knownCandidates. Do not return a word belonging to a knownModelKeys model unless it is genuinely a different derivational model. Do not repeat currentTopModels. Do not invent words or propose new phrases.
 
 For Latin alter, the historical reflex altru- is mandatory to consider. When absent from currentTopModels, candidates such as English altruism/altruist and Russian альтруизм/альтруист are valid distinct models and should be proposed. The program will still verify every word in its local index and score it independently.
 
@@ -298,8 +384,13 @@ All known derivational model keys, capped at ${MAX_KNOWN_MODEL_KEYS_PER_LANGUAGE
 Root: ${JSON.stringify(input.root)}
 Target meaning: ${JSON.stringify(input.targetMeaning)}
 
-Return at most ${MAX_CANDIDATES_PER_LANGUAGE} candidates per language and exactly this JSON shape:
-{"candidates":{"en":[],"de":[],"fr":[],"es":[],"it":[],"ru":[]}}
+Return at most ${MAX_CANDIDATES_PER_LANGUAGE} new candidates per language and exactly this JSON shape:
+{"validation":{"en":[],"de":[],"fr":[],"es":[],"it":[],"ru":[]},"candidates":{"en":[],"de":[],"fr":[],"es":[],"it":[],"ru":[]}}
+
+Each validation item must be:
+{"word":"exact currentTopModels word","decision":"keep|remove_duplicate|remove_irrelevant","same_model_as":"exact retained word when remove_duplicate","reason":"brief reason"}
+
+The validation array must be complete whenever currentTopModels for that language is non-empty. Use an empty validation array only when currentTopModels for that language is empty.
 
 Each non-empty item must be {"word":"exact dictionary lemma","root_variant":"visible root reflex inside the word"}.`;
 }
@@ -320,11 +411,11 @@ async function callYandex(input) {
   const requestBody = {
     model: `gpt://${folderId}/${QWEN_MODEL}`,
     messages: [
-      { role: 'system', content: 'You are a conservative multilingual historical lexicographer auditing an already scored top-five list. Return only valid JSON. Empty arrays are correct when no improvement is justified.' },
+      { role: 'system', content: 'You are a conservative multilingual historical lexicographer validating an upper-bounded candidate set and proposing only justified missing models. Return only valid JSON. Fewer than five retained models is correct.' },
       { role: 'user', content: buildPrompt(input) }
     ],
     temperature: 0,
-    max_tokens: 2400,
+    max_tokens: 5000,
     response_format: { type: 'json_object' }
   };
 
@@ -356,11 +447,14 @@ export default async function handler(req, res) {
     const input = validateInput(await readBody(req));
     const guaranteedCandidates = guaranteedAllomorphCandidates(input);
     let qwenCandidates = Object.fromEntries(CONTROL_LANGUAGES.map(language => [language, []]));
+    let candidateValidation = Object.fromEntries(CONTROL_LANGUAGES.map(language => [language, input.currentTopModels[language]?.length ? null : []]));
     let model = null;
     let qwenAuditError = null;
     try {
       const response = await callYandex(input);
-      qwenCandidates = normalizeResult(extractJson(response.content));
+      const result = extractJson(response.content);
+      qwenCandidates = normalizeResult(result);
+      candidateValidation = normalizeCandidateValidationResult(result, input);
       model = response.model;
     } catch (error) {
       const hasGuaranteedCandidates = CONTROL_LANGUAGES.some(language => guaranteedCandidates[language]?.length);
@@ -370,15 +464,20 @@ export default async function handler(req, res) {
         details: String(error.details || error.message || error).slice(0, 1200)
       };
     }
+    const incompleteValidationLanguages = CONTROL_LANGUAGES.filter(language => input.currentTopModels[language]?.length && !Array.isArray(candidateValidation[language]));
     const audit = {
-      status: qwenAuditError ? 'completed_with_fallback' : 'completed',
+      status: qwenAuditError
+        ? 'completed_with_fallback'
+        : (incompleteValidationLanguages.length ? 'completed_with_incomplete_validation' : 'completed'),
       model,
-      error: qwenAuditError ? { code: qwenAuditError.errorCode, details: qwenAuditError.details } : null
+      error: qwenAuditError ? { code: qwenAuditError.errorCode, details: qwenAuditError.details } : null,
+      incompleteValidationLanguages
     };
     return send(res, 200, {
       ok: true,
       candidates: mergeCandidateMaps(guaranteedCandidates, qwenCandidates),
       qwenCandidates,
+      candidateValidation,
       guaranteedCandidates,
       audit,
       qwenAuditError,
