@@ -207,8 +207,13 @@ html[lang="en"] .homepage .home-quote {
 
 @media (min-width: 861px) {
   .homepage .hero {
-    height: 94vh;
-    height: 94svh;
+    height: calc(100vh + 1px);
+    height: calc(100svh + 1px);
+  }
+
+  .homepage .home-section[aria-labelledby="home-tools-title"] {
+    width: min(100%, 1000px);
+    justify-self: center;
   }
 
   .homepage .container {
