@@ -677,6 +677,26 @@
         height: calc(100vh + 1px);
         height: calc(100svh + 1px);
       }
+
+      body.homepage .home-wrap > .home-intro {
+        display: flex;
+        align-items: center;
+        column-gap: clamp(28px, 4vw, 52px);
+        row-gap: 0;
+      }
+
+      body.homepage .home-intro > .home-intro-quotes {
+        flex: 0 1 40%;
+        min-width: 0;
+        display: grid;
+        align-content: center;
+        gap: clamp(28px, 2.2vw, 36px);
+      }
+
+      body.homepage .home-intro > .home-intro-description {
+        flex: 1 1 60%;
+        min-width: 0;
+      }
     }
 
     @media (max-height: 720px) and (min-width: 861px) {
