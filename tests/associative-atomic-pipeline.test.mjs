@@ -105,6 +105,24 @@ assert.doesNotMatch(scriptSource, /supplementAfterCompletedCalculation/, 'remove
 }
 
 {
+  const { dependencies, counts } = makeDependencies();
+  dependencies.candidateAudit.audit = async ({ candidatesByLanguage }) => ({
+    candidatesByLanguage: {
+      en: candidatesByLanguage.en.map((candidate, index) => ({
+        ...candidate,
+        automatic_selection_eligible: index === 0
+      }))
+    },
+    warnings: [],
+    diagnostics: { status: 'completed', validationKeptCount: 1, validationRemovedDuplicateCount: 1 }
+  });
+  const result = await runAssociativeCalculation({ input: { root: 'validated', maxModels: 5 }, dependencies });
+  assert.equal(counts.analyses, 1, 'the five-model value is a cap and Qwen validation may authorize fewer analyses');
+  assert.deepEqual(result.selectedModels.en, ['a'], 'an ineligible lower-ranked model cannot backfill a removed model');
+  assert.equal(result.state.languages.en.filter(candidate => candidate.selected).length, 1);
+}
+
+{
   const state = createEmptyAssociativeState({ languages });
   const first = makeDependencies({ auditError: new Error('audit offline'), sharedState: state });
   const warningResult = await runAssociativeCalculation({ input: { root: 'first' }, state, dependencies: first.dependencies });
