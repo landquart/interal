@@ -1,11 +1,12 @@
 import { analyzeAssociativeWord, finalAssociationPassesThreshold, calculateLanguageScore, calculateFinalAssociation, buildDecisionReasons, decisionStatusForResult, canCreateAssociativeJsonCard, normalizeLanguageStatus, summarizeLanguageStatuses, deriveGlobalStatusFromLanguageStatuses } from './js/association-analyzer.js';
-import { QWEN_RUNTIME_CONFIG, QWEN_ERROR_CODES, createReviewBudget, refineCandidatesWithQwenAudit, selectBestFinalModels, compareFinalModelCandidates, finalizeCandidateOrdering, isAbortError, normalizeAbortError } from './js/qwen-client.js';
+import { QWEN_RUNTIME_CONFIG, QWEN_ERROR_CODES, createReviewBudget, refineCandidatesWithQwenAudit, validateFinalCandidatesWithQwen, selectBestFinalModels, compareFinalModelCandidates, finalizeCandidateOrdering, isAbortError, normalizeAbortError } from './js/qwen-client.js';
 import { escapeHtml, formatMetric, renderCandidateEvidenceDetails, resultRowClasses, swowLabel, thresholdStatusLabel, thresholdStatusForResult, semanticWarningLabel, languageStatusLabel } from './js/render-results.js';
 import { normalizeText, stripDiacritics, includesRoot, fuzzyIncludesRoot, findRootMatch, specialRootMatch } from './js/root-matcher.js';
 import { acceptAffixBoundaryMatch } from './js/affix-boundary-index.js';
 import { createCandidateIndexLoader } from './js/candidate-index-loader.js';
 import { findCandidatesForRoot, isReliableFuzzyMorphemeAnalysis } from './js/candidate-finder.js';
 import { lexicalModelDescriptor, selectHighestFrequencyPerModel } from './js/candidate-model-family.js';
+import { applyDeterministicCandidateIntegrity } from './js/candidate-integrity.js';
 import { registerLexicalRootsFromEntries } from './js/morphology/lexical-root-index.js';
 import { getLanguageConfig } from './js/morphology/languages/index.js';
 import { clearTargetMeaningTranslationCache, translateTargetMeaning, TARGET_TRANSLATION_LANGUAGES } from './js/target-meaning-translator.js';
@@ -696,25 +697,35 @@ const TEXT_I18N = {
                 onWarning: warning => auditWarnings.push(warning),
                 languages: LANGUAGES.map(language => language.code)
               });
-              if (response.diagnostics) {
-                state.candidateAuditDiagnostics = response.diagnostics;
+              const integrity = applyDeterministicCandidateIntegrity(response.candidatesByLanguage, {
+                root,
+                languages: LANGUAGES.map(language => language.code)
+              });
+              const diagnostics = { ...(response.diagnostics || {}), ...integrity.diagnostics };
+              if (diagnostics) {
+                state.candidateAuditDiagnostics = diagnostics;
                 Object.assign(diagnosticsState.run, {
-                  candidateAuditSuggestedCount: response.diagnostics.suggestedCount || 0,
-                  candidateAuditDuplicateWordCount: response.diagnostics.duplicateWordCount || 0,
-                  candidateAuditDuplicateModelCount: response.diagnostics.duplicateModelCount || 0,
-                  candidateAuditLocallyMissingCount: response.diagnostics.locallyMissingCount || 0,
-                  candidateAuditVerifiedNewModelCount: response.diagnostics.verifiedNewModelCount || 0,
-                  candidateAuditRejectedInvalidCount: response.diagnostics.rejectedInvalidCount || 0,
-                  candidateAuditValidatedLanguageCount: response.diagnostics.validatedLanguageCount || 0,
-                  candidateAuditValidationIncompleteLanguageCount: response.diagnostics.validationIncompleteLanguageCount || 0,
-                  candidateAuditValidationKeptCount: response.diagnostics.validationKeptCount || 0,
-                  candidateAuditValidationRemovedDuplicateCount: response.diagnostics.validationRemovedDuplicateCount || 0,
-                  candidateAuditValidationRemovedIrrelevantCount: response.diagnostics.validationRemovedIrrelevantCount || 0,
-                  candidateAuditStatus: response.diagnostics.status || null,
-                  candidateAuditBackendErrorCode: response.diagnostics.backendErrorCode || null
+                  candidateAuditSuggestedCount: diagnostics.suggestedCount || 0,
+                  candidateAuditDuplicateWordCount: diagnostics.duplicateWordCount || 0,
+                  candidateAuditDuplicateModelCount: diagnostics.duplicateModelCount || 0,
+                  candidateAuditLocallyMissingCount: diagnostics.locallyMissingCount || 0,
+                  candidateAuditVerifiedNewModelCount: diagnostics.verifiedNewModelCount || 0,
+                  candidateAuditRejectedInvalidCount: diagnostics.rejectedInvalidCount || 0,
+                  candidateAuditValidatedLanguageCount: diagnostics.validatedLanguageCount || 0,
+                  candidateAuditValidationIncompleteLanguageCount: diagnostics.validationIncompleteLanguageCount || 0,
+                  candidateAuditValidationKeptCount: diagnostics.validationKeptCount || 0,
+                  candidateAuditValidationRemovedDuplicateCount: diagnostics.validationRemovedDuplicateCount || 0,
+                  candidateAuditValidationRemovedIrrelevantCount: diagnostics.validationRemovedIrrelevantCount || 0,
+                  candidateAuditStatus: diagnostics.status || null,
+                  candidateAuditBackendErrorCode: diagnostics.backendErrorCode || null
                 });
               }
-              return { ...response, warnings: [...(response.warnings || []), ...auditWarnings] };
+              return {
+                ...response,
+                candidatesByLanguage: integrity.candidatesByLanguage,
+                diagnostics,
+                warnings: [...(response.warnings || []), ...auditWarnings]
+              };
             }
           },
           candidateFinalizer: {
@@ -730,6 +741,17 @@ const TEXT_I18N = {
               }
               return analyzed;
             }
+          },
+          candidatePostValidator: {
+            validate: async (payload, context) => validateFinalCandidatesWithQwen({
+              root,
+              targetMeaning: meaning || root,
+              candidatesByLanguage: payload.candidatesByLanguage,
+              languages: LANGUAGES.map(language => language.code),
+              limit: MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE,
+              signal: context.signal,
+              onProgress: context.onProgress
+            })
           },
           languageScore: { calculate: languageScore },
           finalScore: {

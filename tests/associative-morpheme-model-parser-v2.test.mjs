@@ -7,13 +7,14 @@ import { lexicalModelDescriptor, selectHighestFrequencyPerModel } from '../assoc
 const parse = (word, opts = {}) => parseDerivationalModel({ word, candidateWord: word, search_form: word, match: { fragment: opts.matchedRootVariant || opts.canonicalRoot, index: opts.matchIndex ?? word.indexOf(opts.matchedRootVariant || opts.canonicalRoot) }, ...opts });
 const key = (word, root = 'regul', language = 'en', elementType = 'root', extra = {}) => lexicalModelDescriptor({ word, search_form: word, match: { fragment: extra.matchedRootVariant || root, index: extra.matchIndex ?? word.indexOf(extra.matchedRootVariant || root) } }, root, language, elementType).key;
 
-assert.equal(MORPHEME_PARSER_VERSION, '2.0.0');
+assert.equal(MORPHEME_PARSER_VERSION, '2.1.0');
 assert.equal(key('regulation', 'regul'), 'en|root||regul|ation');
 assert.equal(key('regulation'), key('regulationism'));
 assert.equal(key('deregulation', 'regul', 'en', 'root', { matchIndex: 2 }), key('deregulationism', 'regul', 'en', 'root', { matchIndex: 2 }));
 assert.notEqual(key('regulation'), key('deregulation', 'regul', 'en', 'root', { matchIndex: 2 }));
 assert.equal(key('alternative', 'altern'), key('alternatives', 'altern'));
 assert.equal(key('alternative', 'altern'), key('alternatively', 'altern'));
+assert.equal(key('alternate', 'alter'), key('alternately', 'alter'), 'adverbial English forms share the alternate model');
 assert.equal(key('altruism', 'alter', 'en', 'root', { matchedRootVariant: 'altru' }), key('altruistic', 'alter', 'en', 'root', { matchedRootVariant: 'altru' }));
 assert.notEqual(key('altruism', 'alter', 'en', 'root', { matchedRootVariant: 'altru' }), key('altruist', 'alter', 'en', 'root', { matchedRootVariant: 'altru' }));
 assert.notEqual(key('active', 'act'), key('activity', 'act'));
@@ -27,6 +28,7 @@ assert.equal(key('alternativnyj', 'alter', 'ru', 'root', { matchedRootVariant: '
 assert.notEqual(key('alternativnyj', 'alter', 'ru', 'root', { matchedRootVariant: 'alternativ' }), key('altruizm', 'alter', 'ru', 'root', { matchedRootVariant: 'altru' }));
 assert.notEqual(key('altruizm', 'alter', 'ru', 'root', { matchedRootVariant: 'altru' }), key('altruist', 'alter', 'ru', 'root', { matchedRootVariant: 'altru' }));
 for (const w of ['alternativnyj','alternativnaja','alternativnoe','alternativnye']) assert.equal(key(w, 'alter', 'ru', 'root', { matchedRootVariant: 'alternativ' }), 'ru|root||alter|н');
+assert.equal(key('alternativnyj', 'alter', 'ru'), key('alternativka', 'alter', 'ru'), 'Russian colloquial and adjective forms share one alternative model');
 assert.notEqual(key('reguljacija', 'regul', 'ru'), key('dereguljacija', 'regul', 'ru', 'root', { matchIndex: 2 }));
 
 for (const language of ['de','fr','es','it']) {
@@ -38,6 +40,7 @@ for (const language of ['de','fr','es','it']) {
   assert.ok(parse(language === 'fr' ? 'régulation' : 'regulation', { language, canonicalRoot: 'regul' }).model_key);
   assert.ok(parse(language === 'de' ? 'aktion' : 'action', { language, canonicalRoot: language === 'de' ? 'akt' : 'act' }).alternative_analyses.length >= 0);
 }
+assert.equal(key('alternative', 'alter', 'fr'), key('alternatif', 'alter', 'fr'), 'French gender/POS forms share one alternative model');
 
 for (const item of corpus.filter(x => x.id)) {
   const analysis = parse(item.word, item);
