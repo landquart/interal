@@ -1,43 +1,66 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="2560" height="1895" viewBox="0 0 2560 1895" preserveAspectRatio="none">
   <defs>
     <linearGradient id="base" x1="0" y1="795.9" x2="2508.344" y2="1338.07" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#FD7B3D"/>
+      <animate attributeName="x1" values="-280;220;-280" dur="12s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.5;1" keySplines=".45 0 .25 1;.45 0 .25 1"/>
+      <animate attributeName="x2" values="2280;2780;2280" dur="12s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.5;1" keySplines=".45 0 .25 1;.45 0 .25 1"/>
+      <stop stop-color="#FD7B3D">
+        <animate attributeName="stop-color" values="#FD7B3D;#FF4F82;#FD7B3D" dur="10s" repeatCount="indefinite"/>
+      </stop>
       <stop offset="0.22" stop-color="#F5516F"/>
-      <stop offset="0.48" stop-color="#D986DB"/>
+      <stop offset="0.48" stop-color="#D986DB">
+        <animate attributeName="stop-color" values="#D986DB;#A879F2;#D986DB" dur="11s" repeatCount="indefinite"/>
+      </stop>
       <stop offset="0.72" stop-color="#B0ABEA"/>
-      <stop offset="1" stop-color="#5A99FC"/>
+      <stop offset="1" stop-color="#5A99FC">
+        <animate attributeName="stop-color" values="#5A99FC;#58C6F8;#5A99FC" dur="9s" repeatCount="indefinite"/>
+      </stop>
     </linearGradient>
     <radialGradient id="orange" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(0 454.8) scale(1843.2 1364.4)">
-      <stop stop-color="#FF9C31" stop-opacity="0.98"/>
+      <animateTransform attributeName="gradientTransform" type="translate" additive="sum" values="-220 -120;360 190;-220 -120" dur="11s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.5;1" keySplines=".45 0 .25 1;.45 0 .25 1"/>
+      <stop stop-color="#FF9C31" stop-opacity="0.98">
+        <animate attributeName="stop-color" values="#FF9C31;#FF665C;#FF9C31" dur="9s" repeatCount="indefinite"/>
+      </stop>
       <stop offset="0.48" stop-color="#FF7738" stop-opacity="0.74"/>
       <stop offset="1" stop-color="#FF7738" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="red" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(460.8 1819.2) scale(1843.2 1364.4)">
+      <animateTransform attributeName="gradientTransform" type="translate" additive="sum" values="-180 160;330 -210;-180 160" dur="13s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.5;1" keySplines=".45 0 .25 1;.45 0 .25 1"/>
       <stop stop-color="#F34F4F" stop-opacity="0.96"/>
       <stop offset="0.52" stop-color="#EF4F72" stop-opacity="0.66"/>
       <stop offset="1" stop-color="#EF4F72" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="magenta" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1152.004 833.8) scale(1612.8 1193.85)">
-      <stop stop-color="#DA79DE" stop-opacity="0.92"/>
+      <animateTransform attributeName="gradientTransform" type="translate" additive="sum" values="-280 -180;300 230;-280 -180" dur="10s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.5;1" keySplines=".45 0 .25 1;.45 0 .25 1"/>
+      <stop stop-color="#DA79DE" stop-opacity="0.92">
+        <animate attributeName="stop-color" values="#DA79DE;#9F75F2;#EF68B7;#DA79DE" dur="12s" repeatCount="indefinite"/>
+      </stop>
       <stop offset="0.52" stop-color="#D45FC4" stop-opacity="0.48"/>
       <stop offset="1" stop-color="#D45FC4" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="peach" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(2227.204 75.8) scale(1638.4 1212.8)">
+      <animateTransform attributeName="gradientTransform" type="translate" additive="sum" values="220 -140;-340 260;220 -140" dur="14s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.5;1" keySplines=".45 0 .25 1;.45 0 .25 1"/>
       <stop stop-color="#FFC19B" stop-opacity="0.98"/>
       <stop offset="0.54" stop-color="#F5B9B2" stop-opacity="0.62"/>
       <stop offset="1" stop-color="#F5B9B2" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="lavender" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(2150.404 890.65) scale(1382.4 1023.3)">
-      <stop stop-color="#C8B2EA" stop-opacity="0.86"/>
+      <animateTransform attributeName="gradientTransform" type="translate" additive="sum" values="260 170;-300 -190;260 170" dur="9s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.5;1" keySplines=".45 0 .25 1;.45 0 .25 1"/>
+      <stop stop-color="#C8B2EA" stop-opacity="0.86">
+        <animate attributeName="stop-color" values="#C8B2EA;#8FA9F4;#D799EC;#C8B2EA" dur="11s" repeatCount="indefinite"/>
+      </stop>
       <stop offset="0.58" stop-color="#B69DE5" stop-opacity="0.45"/>
       <stop offset="1" stop-color="#B69DE5" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="blue" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(2560.004 1819.2) scale(1766.4 1307.55)">
-      <stop stop-color="#5799FC"/>
+      <animateTransform attributeName="gradientTransform" type="translate" additive="sum" values="300 180;-420 -260;300 180" dur="12s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.5;1" keySplines=".45 0 .25 1;.45 0 .25 1"/>
+      <stop stop-color="#5799FC">
+        <animate attributeName="stop-color" values="#5799FC;#6472F5;#44BCEB;#5799FC" dur="10s" repeatCount="indefinite"/>
+      </stop>
       <stop offset="0.48" stop-color="#729DF7" stop-opacity="0.78"/>
       <stop offset="1" stop-color="#729DF7" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="light" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1433.604 0) scale(1382.4 1023.3)">
+      <animateTransform attributeName="gradientTransform" type="translate" additive="sum" values="-180 -120;260 230;-180 -120" dur="15s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.5;1" keySplines=".45 0 .25 1;.45 0 .25 1"/>
       <stop stop-color="#F8D3D8" stop-opacity="0.58"/>
       <stop offset="1" stop-color="#F8D3D8" stop-opacity="0"/>
     </radialGradient>
