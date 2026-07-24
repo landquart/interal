@@ -179,7 +179,7 @@ async function validateIndex(options) {
     for (const root of ROOT_SAMPLES) {
       const result = findCandidatesForRoot({ entries: entriesForSamples, root, language: lang, maxCandidates: 20 });
       langReport.root_samples[root] = result.candidates.map(x => ({ word: x.word, normalized: x.normalized, search_form: x.search_form, sources: x.sources.length }));
-      if (root === 'alter' && result.candidates.some(x => ['inter', 'international', 'internet'].includes(String(x.normalized || x.word).toLowerCase()))) c.error(`${lang}: root sample regression alter returned inter/international/internet`);
+      if (root === 'alter' && result.candidates.some(x => ['inter', 'international', 'internet', 'after', 'afternoon', 'afterwards', 'disaster', 'altesation'].includes(String(x.normalized || x.word).toLowerCase()))) c.error(`${lang}: root sample regression alter returned an unrelated fuzzy lookalike`);
       if (result.candidates.some(x => !Array.isArray(x.sources) || x.sources.length === 0)) c.error(`${lang}: root sample candidate without sources for ${root}`);
     }
     langReport.errors = c.errorCount - beforeE; langReport.warnings = c.warningCount - beforeW;

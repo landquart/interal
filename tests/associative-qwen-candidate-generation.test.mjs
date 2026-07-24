@@ -48,7 +48,13 @@ const evaluatedModels = [
 ];
 const finalFive = selectBestFinalModels(evaluatedModels, 5);
 assert.deepEqual(finalFive.map(item => item.word), ['alternative', 'alteration', 'alterity', 'alternate', 'alterable'], 'final five are selected by frequency even when lower-F supplemental models have higher P');
-assert.ok(compareFinalModelCandidates(evaluatedModels[5], evaluatedModels[0]) > 0, 'final model comparison prioritizes F before P');
+assert.ok(compareFinalModelCandidates(evaluatedModels[5], evaluatedModels[0]) > 0, 'final model comparison falls back to F when root-match evidence is equal');
+
+const qualityFirst = selectBestFinalModels([
+  { word: 'exact-derivative', model_key: 'exact', frequency_score: 20, match: { type: 'exact', distance: 0, similarity: 1 } },
+  { word: 'fuzzy-lookalike', model_key: 'fuzzy', frequency_score: 99, match: { type: 'fuzzy', distance: 1, similarity: 0.8 } }
+], 5);
+assert.deepEqual(qualityFirst.map(item => item.word), ['exact-derivative', 'fuzzy-lookalike'], 'match quality takes precedence over frequency in the final model set');
 
 const sameModel = selectBestFinalModels([
   { word: 'alternative', model_key: 'same', frequency_score: 90, final_score: 30, rank: 1 },
@@ -233,7 +239,7 @@ assert.match(clientSource, /loadCandidateEntries\(language, suggestion\.word/, '
 assert.match(clientSource, /buildSearchForm\(entry\.word\) === requested/, 'local verification requires an exact normalized lemma');
 assert.match(clientSource, /qwen_suggestion_verified_in_local_index/, 'only locally verified suggestions are marked for insertion');
 assert.match(clientSource, /waitForCandidateAnalysis/, 'every verified supplement is scored before final selection');
-assert.match(clientSource, /selectBestFinalModels[\s\S]*candidateFrequencyScore/, 'the final five are ranked by measured F');
+assert.match(clientSource, /selectBestFinalModels[\s\S]*compareFinalModelCandidates/, 'the final five use root-match quality before measured F');
 assert.match(clientSource, /rebalanceSelectedModels/, 'supplements can replace weaker members of the original five');
 assert.match(clientSource, /buildQwenCandidateAuditPayload/, 'the audit builds compact known-candidate payloads from the full local pool');
 assert.match(clientSource, /findIndexByWord/, 'a suggested word already present lower in the full result is located instead of discarded');

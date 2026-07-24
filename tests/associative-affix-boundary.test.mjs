@@ -45,6 +45,6 @@ assert.ok(!rootBoundarySegments('precounterrealteration', 'en').some(boundary =>
 assert.equal(findRootMatch('alteration', 'alter', 'en')?.suffix, 'ation', 'known suffixes annotate the matched derivational model');
 assert.equal(findRootMatch('irregular', 'regul', 'en')?.boundary?.kind, 'restricted', 'restricted allomorphs are marked explicitly');
 assert.equal(acceptAffixBoundaryMatch(findRootMatch('xregulation', 'regul', 'en'), 'regul'), false, 'a leading insertion is not promoted to an unknown prefix');
-assert.equal(acceptAffixBoundaryMatch(findRootMatch('xlteration', 'alter', 'en'), 'alter'), true, 'a same-length first-character substitution remains a fuzzy candidate');
+assert.equal(findRootMatch('xlteration', 'alter', 'en'), null, 'a first-character substitution cannot create a fuzzy root candidate');
 
 console.log('Associative affix boundary tests passed.');

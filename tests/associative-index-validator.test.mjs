@@ -29,7 +29,7 @@ async function makeValid(root = fixture) {
   await rm(root, { recursive: true, force: true });
   await mkdir(join(root, 'en'), { recursive: true });
   await mkdir(join(root, 'ru'), { recursive: true });
-  const en = [entry('alter', 'alter'), entry('altesation', 'altesation'), entry('inter', 'inter')];
+  const en = [entry('alter', 'alter'), entry('altruism', 'altruism'), entry('inter', 'inter')];
   const ru = [entry('альтернативный', 'alternativnyj', { normalized: 'альтернативный' }), entry('альтернатива', 'alternativa', { normalized: 'альтернатива' })];
   en.sort((a,b)=>`${a.search_form}\0${a.normalized}\0${a.word}`.localeCompare(`${b.search_form}\0${b.normalized}\0${b.word}`));
   ru.sort((a,b)=>`${a.search_form}\0${a.normalized}\0${a.word}`.localeCompare(`${b.search_form}\0${b.normalized}\0${b.word}`));

@@ -27,6 +27,9 @@ function makeCopyPlainContext({ includeDeclaredFormDraft = true } = {}) {
     createElement(tagName) {
       return { tagName: String(tagName).toUpperCase(), src: '' };
     },
+    getElementById(id) {
+      return id === 'interal-design-refinements' ? { id } : null;
+    },
     addEventListener(type, listener) {
       const list = listeners.get(type) || [];
       list.push(listener);

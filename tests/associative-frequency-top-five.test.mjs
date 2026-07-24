@@ -46,8 +46,18 @@ assert.deepEqual(
     candidate('exact-low', 'exact-model', 20, 90, 1, 20, 'exact'),
     candidate('fuzzy-high', 'fuzzy-model', 80, 10, 999, 80, 'fuzzy')
   ], 5).map(item => item.word),
-  ['fuzzy-high', 'exact-low'],
-  'exact match with F=20 does not displace fuzzy match with F=80 from another model'
+  ['exact-low', 'fuzzy-high'],
+  'an exact derivative is selected before a more frequent fuzzy candidate from another model'
+);
+
+const closeFuzzy = candidate('close-fuzzy', 'close', 20, 1, 20, 20, 'fuzzy');
+closeFuzzy.match = { ...closeFuzzy.match, distance: 1, similarity: 0.9 };
+const distantFuzzy = candidate('distant-fuzzy', 'distant', 99, 1, 1, 99, 'fuzzy');
+distantFuzzy.match = { ...distantFuzzy.match, distance: 2, similarity: 0.8 };
+assert.deepEqual(
+  selectBestFinalModels([distantFuzzy, closeFuzzy], 5).map(item => item.word),
+  ['close-fuzzy', 'distant-fuzzy'],
+  'distance and similarity are compared before corpus frequency'
 );
 
 const sameModel = selectHighestFrequencyPerModel([
@@ -56,8 +66,14 @@ const sameModel = selectHighestFrequencyPerModel([
 ], 'root', 'en');
 assert.deepEqual(sameModel.candidates.map(item => item.word), ['rooting'], 'one model keeps the derivative with maximum F');
 
+const sameModelMixedQuality = selectHighestFrequencyPerModel([
+  { ...candidate('rooted', 'same', 20, 1, 2, 20, 'exact'), search_form: 'rooted' },
+  { ...candidate('rooting', 'same', 99, 1, 1, 99, 'fuzzy'), search_form: 'rooting' }
+], 'root', 'en');
+assert.deepEqual(sameModelMixedQuality.candidates.map(item => item.word), ['rooted'], 'a fuzzy form cannot replace an exact representative of the same model by frequency alone');
+
 assert.equal(compareFrequencyRepresentatives(candidate('rank-one', 'a', 50, 1, 1, 10), candidate('rank-two', 'b', 50, 1, 2, 100)) < 0, true, 'lower rank wins after equal F');
 assert.equal(compareFrequencyRepresentatives(candidate('ipm-high', 'a', 50, 1, 1, 20), candidate('ipm-low', 'b', 50, 1, 1, 10)) < 0, true, 'higher total IPM wins after equal F and rank');
 assert.equal(compareFrequencyRepresentatives(candidate('alpha', 'a', 50, 1, 1, 10), candidate('beta', 'b', 50, 1, 1, 10)) < 0, true, 'stable lexicographic ordering wins after equal F/rank/IPM');
 
-console.log('Associative frequency-first top-five tests passed.');
+console.log('Associative match-quality-first top-five tests passed.');

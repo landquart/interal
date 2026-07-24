@@ -18,10 +18,11 @@ assert.equal(findCandidatesForRoot({ entries: [entry('regolare', 'regolare'), en
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('inter', 'inter')], root: 'alter' })), []);
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('international', 'international')], root: 'alter' })), []);
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('internet', 'internet')], root: 'alter' })), []);
-assert.equal(findCandidatesForRoot({ entries: [entry('altesation', 'altesation')], root: 'alter' }).candidates[0].match.type, 'fuzzy');
+assert.equal(findCandidatesForRoot({ entries: [entry('altruism', 'altruism')], root: 'alter' }).candidates[0].match.type, 'fuzzy');
+assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('altesation', 'altesation')], root: 'alter' })), [], 'an artificial fuzzy lookalike without a reliable morpheme parse is rejected');
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('altxsation', 'altxsation')], root: 'alter' })), []);
-assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('xlteration', 'xlteration')], root: 'alter' })), ['xlteration'], 'a first-character substitution is accepted at a valid root boundary');
-assert.equal(findCandidatesForRoot({ entries: [entry('altesation', 'altesation')], root: 'alter' }).candidates[0].match.similarity, 0.8);
+assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('xlteration', 'xlteration')], root: 'alter' })), [], 'a first-character substitution is rejected at a valid root boundary');
+assert.equal(findCandidatesForRoot({ entries: [entry('altruism', 'altruism')], root: 'alter' }).candidates[0].match.similarity, 0.8);
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('ixxxxx', 'ixxxxx')], root: 'intern' })), []);
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('альтернатива', 'alternativa', { language: 'ru', normalized: 'альтернатива' })], root: 'alter', language: 'ru' })), ['альтернатива']);
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('интернациональный', 'internacionalnyj', { language: 'ru', normalized: 'интернациональный' })], root: 'alter', language: 'ru' })), []);
@@ -30,11 +31,11 @@ assert.equal(findCandidatesForRoot({ entries: [{ ...entry('bad', 'bad'), sources
 assert.equal(findCandidatesForRoot({ entries: [entry('bad', 'bad', { frequency_score: Infinity })], root: 'bad' }).diagnostics.rejectedByReason.frequency_score_not_finite, 1);
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('alter-low', 'alter-low', { frequency_score: 10 }), entry('alter-high', 'alter-high', { frequency_score: 90 })], root: 'alter' })), ['alter-high', 'alter-low']);
 assert.deepEqual(words(findCandidatesForRoot({ entries: [
-  entry('alter-fuzzy-high', 'altes-high', { frequency_score: 100, ipm: 100 }),
+  entry('altruism', 'altruism', { frequency_score: 100, ipm: 100 }),
   entry('alter-exact-low', 'alter-low', { frequency_score: 1, ipm: 1 }),
   entry('alter-exact-ipm-low', 'alter-ipm-low', { frequency_score: 50, ipm: 1 }),
   entry('alter-exact-ipm-high', 'alter-ipm-high', { frequency_score: 50, ipm: 99 })
-], root: 'alter' })), ['alter-exact-ipm-high', 'alter-exact-ipm-low', 'alter-exact-low', 'alter-fuzzy-high'], 'exact and configured allomorph matches are ranked by F before fuzzy lookalikes are considered');
+], root: 'alter' })), ['alter-exact-ipm-high', 'alter-exact-ipm-low', 'alter-exact-low', 'altruism'], 'exact matches are ranked by F before a morphologically verified fuzzy allomorph is considered');
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('alter-rank2', 'alter-rank2', { rank: 2 }), entry('alter-rank1', 'alter-rank1', { rank: 1 })], root: 'alter' })), ['alter-rank1', 'alter-rank2']);
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('alter-null', 'alter-null', { rank: null }), entry('alter-ranked', 'alter-ranked', { rank: 3 })], root: 'alter' })), ['alter-ranked', 'alter-null'], 'rank influences sorting after frequency tie');
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('alter-null-high-frequency', 'alter-null-high-frequency', { rank: null, frequency_score: 90 }), entry('alter-ranked-low-frequency', 'alter-ranked-low-frequency', { rank: 1, frequency_score: 10 })], root: 'alter' })), ['alter-null-high-frequency', 'alter-ranked-low-frequency'], 'frequency_score is compared before real rank vs null');
@@ -103,6 +104,22 @@ assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('realteration', '
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('irregular', 'irregular')], root: 'regul', language: 'en' })), ['irregular'], 'a root after a known restricted allomorph is accepted');
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('xregulation', 'xregulation')], root: 'regul', language: 'en' })), [], 'an arbitrary initial letter is not treated as a prefix');
 
+const prepositionModels = findCandidatesForRoot({
+  entries: [
+    entry('interaction', 'interaction', { frequency_score: 90 }),
+    entry('interactive', 'interactive', { frequency_score: 80 }),
+    entry('international', 'international', { frequency_score: 70 }),
+    entry('internationalism', 'internationalism', { frequency_score: 60 }),
+    entry('internet', 'internet', { frequency_score: 50 }),
+    entry('interval', 'interval', { frequency_score: 40 })
+  ],
+  root: 'inter',
+  language: 'en',
+  elementType: 'preposition'
+});
+assert.deepEqual(words(prepositionModels), ['interaction', 'international', 'internet', 'interval'], 'preposition grouping keeps one frequency-ranked representative per following lexical root');
+assert.ok(prepositionModels.candidates.every(candidate => candidate.model_key.startsWith('en|preposition|inter|')));
+
 const alterRegression = findCandidatesForRoot({
   entries: [
     entry('after', 'after', { frequency_score: 100 }),
@@ -116,7 +133,7 @@ const alterRegression = findCandidatesForRoot({
   root: 'alter',
   language: 'en'
 });
-assert.deepEqual(words(alterRegression).slice(0, 3), ['alternative', 'alter', 'alteration'], 'valid alter models must precede more frequent fuzzy lookalikes such as after and disaster');
-assert.ok(alterRegression.candidates.slice(0, 3).every(candidate => candidate.match.type !== 'fuzzy'));
+assert.deepEqual(words(alterRegression), ['alternative', 'alter', 'alteration'], 'real dictionary lookalikes such as after and disaster must not enter the alter candidate pool');
+assert.equal(alterRegression.diagnostics.rejectedByReason.fuzzy_morphology_unverified, 4);
 
 console.log('associative candidate finder tests passed');

@@ -1,6 +1,10 @@
 import { buildSearchForm } from './search-normalizer.js';
 import { parseMorphemeModel } from './morpheme-model-parser.js';
 
+const MATCH_TIER = Object.freeze({ exact: 0, special: 0, fuzzy: 1 });
+const BOUNDARY_PRIORITY = Object.freeze({ token: 0, safe: 1, combining: 2, restricted: 3 });
+const MORPHOLOGY_CONFIDENCE_PRIORITY = Object.freeze({ high: 0, medium: 1, low: 3 });
+
 export function canonicalLexicalStem(value, language = 'en') {
   const parsed = parseMorphemeModel({ language, elementType: 'root', candidateWord: value, search_form: value, matchedRootVariant: value, rootIndex: 0 });
   return parsed.matched_root_variant || buildSearchForm(value);
@@ -60,6 +64,36 @@ export function compareFrequencyRepresentatives(left, right) {
     || String(left?.word || '').localeCompare(String(right?.word || ''));
 }
 
+function morphologyConfidencePriority(candidate) {
+  const analysis = candidate?.morpheme_analysis;
+  if (!analysis) return 2;
+  if (analysis.fallback === true || analysis.diagnostic_reason === 'morpheme_parse_fallback' || analysis.diagnostic_reason === 'lexical_root_not_found') return 3;
+  return MORPHOLOGY_CONFIDENCE_PRIORITY[analysis.analysis_confidence] ?? 2;
+}
+
+function finiteMatchNumber(value, fallback) {
+  const number = Number(value);
+  return Number.isFinite(number) ? number : fallback;
+}
+
+export function compareRootMatchQuality(left, right) {
+  const leftMatch = left?.match || {};
+  const rightMatch = right?.match || {};
+  const leftTier = MATCH_TIER[leftMatch.type] ?? 99;
+  const rightTier = MATCH_TIER[rightMatch.type] ?? 99;
+  const tierDifference = leftTier - rightTier;
+  if (tierDifference || leftTier !== MATCH_TIER.fuzzy) return tierDifference;
+  return morphologyConfidencePriority(left) - morphologyConfidencePriority(right)
+    || finiteMatchNumber(leftMatch.distance, Number.POSITIVE_INFINITY) - finiteMatchNumber(rightMatch.distance, Number.POSITIVE_INFINITY)
+    || finiteMatchNumber(rightMatch.similarity, Number.NEGATIVE_INFINITY) - finiteMatchNumber(leftMatch.similarity, Number.NEGATIVE_INFINITY)
+    || (BOUNDARY_PRIORITY[leftMatch.boundary?.kind] ?? 99) - (BOUNDARY_PRIORITY[rightMatch.boundary?.kind] ?? 99);
+}
+
+export function compareRootMatchThenFrequency(left, right) {
+  return compareRootMatchQuality(left, right)
+    || compareFrequencyRepresentatives(left, right);
+}
+
 export function selectHighestFrequencyPerModel(candidates, root, language = 'en', elementType = 'root') {
   const groups = new Map();
   for (const [index, source] of (Array.isArray(candidates) ? candidates : []).entries()) {
@@ -76,7 +110,7 @@ export function selectHighestFrequencyPerModel(candidates, root, language = 'en'
     const key = candidate.model_key || `manual:${language}:${index}:${buildSearchForm(candidate.word)}`;
     const group = groups.get(key) || { key, members: [], representative: null };
     group.members.push(candidate);
-    if (!group.representative || compareFrequencyRepresentatives(candidate, group.representative) < 0) group.representative = candidate;
+    if (!group.representative || compareRootMatchThenFrequency(candidate, group.representative) < 0) group.representative = candidate;
     groups.set(key, group);
   }
   const groupList = [...groups.values()];

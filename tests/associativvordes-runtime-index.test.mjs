@@ -9,6 +9,9 @@ const html = await readFile('associativvordes/index.html', 'utf8');
 assert.match(script, /createCandidateIndexLoader\(\)/, 'runtime creates one candidate-index loader');
 assert.match(script, /candidateIndexLoader\.loadCandidateEntries\(langCode, root, \{ signal \}\)/, 'getLanguageCandidates uses loader with AbortSignal');
 assert.match(script, /findCandidatesForRoot\(\{[\s\S]*maxCandidates: QWEN_RUNTIME_CONFIG\.maxCandidatesPerLanguage/, 'finder applies runtime limit after sorting');
+assert.match(script, /findCandidatesForRoot\(\{[\s\S]*elementType: state\.elementType[\s\S]*maxCandidates:/, 'runtime passes the selected root/preposition type into initial model grouping');
+assert.match(script, /morpheme_analysis: candidate\.morpheme_analysis/, 'runtime preserves independent morpheme evidence for candidate validation');
+assert.match(script, /findRootMatch\(item\.search_form \|\| item\.word, root, langCode\)[\s\S]*isReliableFuzzyMorphemeAnalysis/, 'runtime revalidates boundaries and fuzzy morphology independently');
 assert.doesNotMatch(script, /DEFAULT_DERIVATIVES|DEFAULT_FREQUENCIES|loadJsonFilesFromDirectory|derivativeData|frequencyData/, 'demo arrays and legacy JSON loader are not used');
 assert.doesNotMatch(script, /fetch\(`\.\/\$\{lang\.code\}\.json`|\.\/en\.json/, 'legacy per-language JSON files are not loaded');
 assert.match(script, /status: 'no_candidates', candidates: \[\]/, 'no_candidates status is structured');
@@ -23,7 +26,7 @@ assert.match(script, /reconcileModelRepresentatives\(valid, root, language\.code
 assert.match(script, /window\.InteralPageStateExport|window\.InteralPageStateImport/, 'page state persistence hooks remain');
 assert.match(script, /sources: sourceState\.sources/, 'saved state includes sources without storing shard payloads');
 assert.doesNotMatch(script, /manifestLoaded|loadedShards|shardCache/, 'localStorage compaction does not persist manifest or shards');
-assert.match(html, /script\.js\?v=associative-production-hardening-20260721-1/, 'production hardening cache busting is updated');
+assert.match(html, /script\.js\?v=associative-search-precision-20260724-1/, 'search precision cache busting is updated');
 
 const fixtureEntries = [
   { word: 'alter', language: 'en', normalized: 'alter', search_form: 'alter', rank: 1, frequency_score: 91, category_breakdown: { fixture: 91 }, sources: [{ source: 'fixture', ipm: 10 }] },

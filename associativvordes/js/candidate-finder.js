@@ -1,10 +1,6 @@
 import { findRootMatch, normalizeText } from './root-matcher.js';
 import { acceptAffixBoundaryMatch } from './affix-boundary-index.js';
-import { lexicalModelDescriptor, selectHighestFrequencyPerModel, compareFrequencyRepresentatives } from './candidate-model-family.js';
-
-const MATCH_TIER = Object.freeze({ exact: 0, special: 0, fuzzy: 1 });
-const MATCH_PRIORITY = Object.freeze({ exact: 0, special: 1, fuzzy: 2 });
-const BOUNDARY_PRIORITY = Object.freeze({ token: 0, safe: 1, combining: 2, restricted: 3 });
+import { lexicalModelDescriptor, selectHighestFrequencyPerModel, compareRootMatchThenFrequency } from './candidate-model-family.js';
 
 function createDiagnostics() {
   return { inspected: 0, matched: 0, rejected: 0, rejectedByReason: {}, duplicates: 0, warnings: [] };
@@ -91,18 +87,14 @@ function findMatch({ searchForm, root, language, specialRootMatcher }) {
   return acceptAffixBoundaryMatch(match, root) ? match : null;
 }
 
-function compareCandidates(a, b) {
-  const rankA = validRank(a.rank) ? a.rank : Number.POSITIVE_INFINITY;
-  const rankB = validRank(b.rank) ? b.rank : Number.POSITIVE_INFINITY;
-  return (MATCH_TIER[a.match.type] ?? 99) - (MATCH_TIER[b.match.type] ?? 99)
-    || compareFrequencyRepresentatives(a, b)
-    || (MATCH_PRIORITY[a.match.type] ?? 99) - (MATCH_PRIORITY[b.match.type] ?? 99)
-    || (BOUNDARY_PRIORITY[a.match.boundary?.kind] ?? 99) - (BOUNDARY_PRIORITY[b.match.boundary?.kind] ?? 99)
-    || (a.match.distance ?? 0) - (b.match.distance ?? 0)
-    || (b.match.similarity ?? 0) - (a.match.similarity ?? 0)
-    || (b.total_ipm ?? 0) - (a.total_ipm ?? 0)
-    || rankA - rankB
-    || a.word.localeCompare(b.word);
+export function isReliableFuzzyMorphemeAnalysis(analysis) {
+  return Boolean(analysis
+    && analysis.fallback !== true
+    && analysis.analysis_confidence !== 'low'
+    && analysis.diagnostic_reason !== 'morpheme_parse_fallback'
+    && analysis.diagnostic_reason !== 'lexical_root_not_found'
+    && analysis.best_analysis
+    && analysis.best_analysis.morphotacticsValid !== false);
 }
 
 function withDuplicateWarning(entry) {
@@ -156,14 +148,18 @@ export function findCandidatesForRoot({ entries, root, language = 'en', elementT
     candidate.morpheme_analysis = model.analysis;
     candidate.parser_version = model.analysis?.parser_version || candidate.parser_version;
     if (model.analysis?.diagnostic_reason?.startsWith('morpheme_parse_fallback')) candidate.warnings = [...new Set([...(candidate.warnings || []), 'morpheme_parse_fallback'])];
+    if (match.type === 'fuzzy' && !isReliableFuzzyMorphemeAnalysis(model.analysis)) {
+      reject(diagnostics, 'fuzzy_morphology_unverified');
+      continue;
+    }
     matched.push(candidate);
   }
 
   const grouped = selectHighestFrequencyPerModel(matched, root, language, elementType);
   if (grouped.dropped.length) diagnostics.modelDuplicates = grouped.dropped.length;
-  for (const item of grouped.dropped) diagnostics.warnings.push({ reason: 'lower_frequency_model_variant', word: item.word, model: item.model_family_key });
+  for (const item of grouped.dropped) diagnostics.warnings.push({ reason: 'lower_priority_model_variant', word: item.word, model: item.model_family_key });
 
-  grouped.candidates.sort(compareCandidates);
+  grouped.candidates.sort(compareRootMatchThenFrequency);
   diagnostics.matched = grouped.candidates.length;
   return { candidates: grouped.candidates.slice(0, maxCandidates), diagnostics };
 }

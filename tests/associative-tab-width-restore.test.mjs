@@ -35,6 +35,7 @@ const document = {
   head: { appendChild() { throw new Error('form-draft.js must not be loaded twice'); } },
   createElement() { return { src: '' }; },
   getElementById(id) {
+    if (id === 'interal-design-refinements') return { id };
     if (id === 'languagesSection') return section;
     if (id === 'tabs') return tabs;
     return null;

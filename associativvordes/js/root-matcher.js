@@ -5,6 +5,7 @@ export { AFFIX_SEARCH_CONFIG_VERSION, buildSearchForm, normalizeText, stripDiacr
 
 const TOKEN_SEPARATOR_RE = /[\s'\-]/;
 const affixCache = new Map();
+export const MIN_FUZZY_ROOT_SIMILARITY = 0.8;
 
 function uniqueSortedAffixes(values) {
   return [...new Set((values || []).map(buildSearchForm).filter(Boolean))]
@@ -172,9 +173,11 @@ export function fuzzyRootMatch(word, root, language = 'en') {
     for (let length = minLen; length <= maxLen; length += 1) {
       if (boundary.start + length > boundary.end) continue;
       const fragment = text.slice(boundary.start, boundary.start + length);
+      if (fragment[0] !== canonicalRoot[0]) continue;
       const distance = levenshtein(fragment, canonicalRoot);
       if (distance > maxDistance) continue;
       const similarity = 1 - distance / Math.max(canonicalRoot.length, fragment.length);
+      if (similarity < MIN_FUZZY_ROOT_SIMILARITY) continue;
       const candidate = {
         type: 'fuzzy',
         distance,

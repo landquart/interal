@@ -1,6 +1,6 @@
 import { API_CONFIG } from './swow-client.js';
 import { buildSearchForm } from './search-normalizer.js';
-import { lexicalModelDescriptor, compareFrequencyRepresentatives } from './candidate-model-family.js';
+import { lexicalModelDescriptor, compareFrequencyRepresentatives, compareRootMatchThenFrequency } from './candidate-model-family.js';
 import { MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE } from './associative-state.js';
 
 export const ASSOCIATION_SCORE_WEIGHTS = {
@@ -321,7 +321,7 @@ function candidateFrequencyScore(candidate) {
 }
 
 export function compareFinalModelCandidates(left, right) {
-  return compareFrequencyRepresentatives(left, right);
+  return compareRootMatchThenFrequency(left, right);
 }
 
 export function selectBestFinalModels(candidates, limit = MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE) {
@@ -331,10 +331,10 @@ export function selectBestFinalModels(candidates, limit = MAX_ASSOCIATIVE_MODELS
     const key = String(candidate?.model_key || candidate?.model_family_key || candidate?.model || buildSearchForm(candidate?.word));
     if (!key) continue;
     const current = representatives.get(key);
-    if (!current || compareFrequencyRepresentatives(candidate, current) < 0) representatives.set(key, candidate);
+    if (!current || compareFinalModelCandidates(candidate, current) < 0) representatives.set(key, candidate);
   }
   return [...representatives.values()]
-    .sort(compareFrequencyRepresentatives)
+    .sort(compareFinalModelCandidates)
     .slice(0, Math.max(0, Number(limit) || 0));
 }
 
@@ -521,16 +521,7 @@ async function analyzeRuntimeCandidate(language, index, word, tokenIsCurrent) {
 
 async function addVerifiedCandidateToRuntime(language, suggestion, entry, root, tokenIsCurrent) {
   const descriptor = modelForGeneratedCandidate(entry, suggestion, root, language);
-  const proposed = {
-    ...entry,
-    model_key: descriptor.key,
-    model_family_key: descriptor.key,
-    model: descriptor.label,
-    model_label: descriptor.label,
-    morpheme_analysis: descriptor.analysis,
-    parser_version: descriptor.analysis?.parser_version || null,
-    frequencyProfile: { frequency_score: entry.frequency_score }
-  };
+  const proposed = verifiedCandidatePatch(suggestion, entry, root, descriptor);
   const exactIndex = window.InteralAssociativeModels?.findIndexByWord?.(language, entry.word) ?? -1;
   if (exactIndex >= 0) {
     applyVerifiedCandidateData(language, exactIndex, suggestion, entry, root, descriptor, { resetAnalysis: false });
@@ -540,7 +531,7 @@ async function addVerifiedCandidateToRuntime(language, suggestion, entry, root, 
   const modelIndex = window.InteralAssociativeModels?.findIndexByModel?.(language, descriptor.key) ?? -1;
   if (modelIndex >= 0) {
     const existing = runtimeCandidates(language)?.[modelIndex];
-    if (existing && compareFrequencyRepresentatives(proposed, existing) < 0) {
+    if (existing && compareFinalModelCandidates(proposed, existing) < 0) {
       applyVerifiedCandidateData(language, modelIndex, suggestion, entry, root, descriptor, { resetAnalysis: true });
       return await analyzeRuntimeCandidate(language, modelIndex, entry.word, tokenIsCurrent);
     }
