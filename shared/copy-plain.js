@@ -192,6 +192,6 @@ document.addEventListener("copy", function (event) {
   const stylesheet = document.createElement('link');
   stylesheet.id = 'interal-design-refinements';
   stylesheet.rel = 'stylesheet';
-  stylesheet.href = new URL('design-refinements.css?v=design-system-20260723-1', loaderScriptSrc).toString();
+  stylesheet.href = new URL('design-refinements.css?v=homepage-fixes-20260724-1', loaderScriptSrc).toString();
   document.head.appendChild(stylesheet);
 })();
