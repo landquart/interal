@@ -68,7 +68,7 @@ const loader = createCandidateIndexLoader({ searchBaseUrl: './search-index/', le
 const regul = await loader.loadCandidateEntries('en', 'regul');
 assert.deepEqual(
   regul.map(item => item.word).sort(),
-  ['irregular', 'qegular', 'regular', 'regulation'].sort(),
+  ['irregular', 'regular', 'regulation'].sort(),
   'static affix index finds roots only at token or recognized prefix boundaries'
 );
 assert.ok(!regul.some(item => item.word === 'xregulation'));
@@ -81,7 +81,7 @@ assert.deepEqual((await loader.loadCandidateEntries('en', 'x')).map(item => item
 assert.ok((await loader.loadCandidateEntries('en', 'regl')).some(item => item.word === 'regular'), 'fuzzy candidate retrieval uses affix-anchored partition seeds');
 assert.ok(fuzzySeedGrams('regul').length >= 2);
 assert.equal(fuzzyRootMatch('prefixregulation', 'regul', 'en'), null, 'fuzzy matcher does not scan arbitrary internal positions');
-assert.equal(fuzzyRootMatch('qegular', 'regular', 'en')?.distance, 1, 'fuzzy matcher permits a first-character substitution at a valid boundary');
+assert.equal(fuzzyRootMatch('qegular', 'regular', 'en'), null, 'fuzzy matcher rejects a first-character substitution even at a valid boundary');
 const xPrefixMatch = findRootMatch('xregulation', 'regul', 'en');
 assert.equal(acceptAffixBoundaryMatch(xPrefixMatch, 'regul'), false, 'leading insertion is not treated as an implicit prefix');
 assert.equal(includesRoot('Straße', 'strasse'), true, 'runtime and build normalization both map ß to ss');

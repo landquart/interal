@@ -1,10 +1,11 @@
 import { analyzeAssociativeWord, finalAssociationPassesThreshold, calculateLanguageScore, calculateFinalAssociation, buildDecisionReasons, decisionStatusForResult, canCreateAssociativeJsonCard, normalizeLanguageStatus, summarizeLanguageStatuses, deriveGlobalStatusFromLanguageStatuses } from './js/association-analyzer.js';
-import { QWEN_RUNTIME_CONFIG, QWEN_ERROR_CODES, createReviewBudget, refineCandidatesWithQwenAudit, selectBestFinalModels, finalizeCandidateOrdering, isAbortError, normalizeAbortError } from './js/qwen-client.js';
+import { QWEN_RUNTIME_CONFIG, QWEN_ERROR_CODES, createReviewBudget, refineCandidatesWithQwenAudit, selectBestFinalModels, compareFinalModelCandidates, finalizeCandidateOrdering, isAbortError, normalizeAbortError } from './js/qwen-client.js';
 import { escapeHtml, formatMetric, renderCandidateEvidenceDetails, resultRowClasses, swowLabel, thresholdStatusLabel, thresholdStatusForResult, semanticWarningLabel, languageStatusLabel } from './js/render-results.js';
-import { normalizeText, stripDiacritics, includesRoot, fuzzyIncludesRoot, specialRootMatch } from './js/root-matcher.js';
+import { normalizeText, stripDiacritics, includesRoot, fuzzyIncludesRoot, findRootMatch, specialRootMatch } from './js/root-matcher.js';
+import { acceptAffixBoundaryMatch } from './js/affix-boundary-index.js';
 import { createCandidateIndexLoader } from './js/candidate-index-loader.js';
-import { findCandidatesForRoot } from './js/candidate-finder.js';
-import { lexicalModelDescriptor, selectHighestFrequencyPerModel, compareFrequencyRepresentatives } from './js/candidate-model-family.js';
+import { findCandidatesForRoot, isReliableFuzzyMorphemeAnalysis } from './js/candidate-finder.js';
+import { lexicalModelDescriptor, selectHighestFrequencyPerModel } from './js/candidate-model-family.js';
 import { registerLexicalRootsFromEntries } from './js/morphology/lexical-root-index.js';
 import { getLanguageConfig } from './js/morphology/languages/index.js';
 import { clearTargetMeaningTranslationCache, translateTargetMeaning, TARGET_TRANSLATION_LANGUAGES } from './js/target-meaning-translator.js';
@@ -467,7 +468,9 @@ const TEXT_I18N = {
       if (!Array.isArray(item.sources) || item.sources.length === 0) return false;
       if (!Number.isFinite(Number(item.frequency_score))) return false;
       if (!item.match) return false;
-      if (!(includesRoot(item.search_form || item.word, root) || fuzzyIncludesRoot(item.search_form || item.word, root) || specialRootMatch(langCode, item.search_form || item.word, root))) return false;
+      const verifiedMatch = findRootMatch(item.search_form || item.word, root, langCode);
+      if (!acceptAffixBoundaryMatch(verifiedMatch, root)) return false;
+      if ((item.match.type === 'fuzzy' || verifiedMatch.type === 'fuzzy') && !isReliableFuzzyMorphemeAnalysis(item.morpheme_analysis)) return false;
       seenWords.add(wordKey);
       return true;
     }
@@ -571,6 +574,7 @@ const TEXT_I18N = {
         entries,
         root,
         language: langCode,
+        elementType: state.elementType,
         maxCandidates: QWEN_RUNTIME_CONFIG.maxCandidatesPerLanguage
       });
       addDuration('candidate_finder', finderStartedAt);
@@ -589,6 +593,8 @@ const TEXT_I18N = {
         category_breakdown: candidate.category_breakdown || {},
         sources: candidate.sources,
         warnings: Array.isArray(candidate.warnings) ? candidate.warnings : [],
+        morpheme_analysis: candidate.morpheme_analysis || null,
+        parser_version: candidate.parser_version || candidate.morpheme_analysis?.parser_version || null,
         category_score: candidate.category_score ?? null,
         category_weight: candidate.category_weight ?? null,
         model_key: candidate.model_key || candidate.model_family_key || '',
@@ -633,7 +639,7 @@ const TEXT_I18N = {
       const languageScore = (language, candidates) => {
         const selected = candidates
           .filter(item => item.selected && Number.isFinite(wordWeight(item)))
-          .sort(compareFrequencyRepresentatives)
+          .sort(compareFinalModelCandidates)
           .slice(0, MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE);
         return calculateLanguageScore(selected, { maxModels: MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE, scoreGetter: wordWeight });
       };
@@ -745,7 +751,7 @@ const TEXT_I18N = {
     function scoringCandidates(langCode) {
       return (state.languages[langCode] || [])
         .filter(item => item.selected && Number.isFinite(wordWeight(item)))
-        .sort((a, b) => compareFrequencyRepresentatives(a, b))
+        .sort(compareFinalModelCandidates)
         .slice(0, state.maxModels || MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE);
     }
 
