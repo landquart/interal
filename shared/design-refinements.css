@@ -208,11 +208,6 @@ html[lang="en"] .homepage .home-quote {
     height: calc(100svh + 1px);
   }
 
-  .homepage .home-section[aria-labelledby="home-tools-title"] {
-    width: min(100%, 1000px);
-    justify-self: center;
-  }
-
   .homepage .container {
     gap: 10px;
   }
