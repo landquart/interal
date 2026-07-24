@@ -41,6 +41,26 @@
       color: #fff;
     }
 
+    .hero-stage::after {
+      content: "";
+      position: absolute;
+      inset: -22%;
+      z-index: 0;
+      background:
+        radial-gradient(circle at 18% 26%, rgba(255, 126, 82, .62) 0, transparent 36%),
+        radial-gradient(circle at 82% 18%, rgba(137, 104, 255, .58) 0, transparent 38%),
+        radial-gradient(circle at 78% 82%, rgba(56, 156, 255, .54) 0, transparent 39%),
+        radial-gradient(circle at 34% 78%, rgba(238, 67, 158, .48) 0, transparent 40%);
+      opacity: .68;
+      mix-blend-mode: soft-light;
+      filter: blur(30px) saturate(125%);
+      transform: translate3d(-4%, -2%, 0) scale(1.02) rotate(-1deg);
+      transform-origin: center;
+      animation: heroColorFlow 18s cubic-bezier(.45, 0, .25, 1) infinite alternate;
+      will-change: transform, opacity;
+      pointer-events: none;
+    }
+
     .hero-stage-bg {
       position: absolute;
       inset: 0;
@@ -51,6 +71,10 @@
       display: block;
       pointer-events: none;
       user-select: none;
+      transform: scale(1.045);
+      transform-origin: center;
+      animation: heroBackdropFlow 22s ease-in-out infinite alternate;
+      will-change: transform, filter;
     }
 
     .hero {
@@ -458,6 +482,36 @@
       100% { transform: scale(var(--tool-icon-scale, 1)) translateY(0) rotate(0deg); }
     }
 
+    @keyframes heroColorFlow {
+      0% {
+        opacity: .62;
+        transform: translate3d(-4%, -2%, 0) scale(1.02) rotate(-1deg);
+      }
+      50% {
+        opacity: .76;
+        transform: translate3d(4%, 3%, 0) scale(1.1) rotate(1deg);
+      }
+      100% {
+        opacity: .66;
+        transform: translate3d(-1%, 5%, 0) scale(1.06) rotate(-.5deg);
+      }
+    }
+
+    @keyframes heroBackdropFlow {
+      0% {
+        transform: translate3d(-1.2%, -.8%, 0) scale(1.055);
+        filter: saturate(103%) hue-rotate(-2deg);
+      }
+      50% {
+        transform: translate3d(1.1%, .7%, 0) scale(1.075);
+        filter: saturate(114%) hue-rotate(5deg);
+      }
+      100% {
+        transform: translate3d(-.4%, 1%, 0) scale(1.065);
+        filter: saturate(108%) hue-rotate(-5deg);
+      }
+    }
+
     .home-footer {
       width: 100vw;
       margin: 4px calc(50% - 50vw) -16px;
@@ -749,6 +803,21 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
+      .hero-stage-bg,
+      .hero-stage::after {
+        animation: none;
+      }
+
+      .hero-stage-bg {
+        transform: none;
+        filter: none;
+      }
+
+      .hero-stage::after {
+        opacity: .5;
+        transform: none;
+      }
+
       .tool-link,
       .tool-icon-wrap {
         transition: none;
