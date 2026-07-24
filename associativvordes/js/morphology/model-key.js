@@ -1,4 +1,4 @@
-export const MORPHEME_PARSER_VERSION = '2.0.0';
+export const MORPHEME_PARSER_VERSION = '2.1.0';
 
 export function buildModelKey(analysis) {
   const language = String(analysis.language || 'en').toLowerCase();

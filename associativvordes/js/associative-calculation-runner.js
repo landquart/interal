@@ -48,6 +48,12 @@ function candidateIdentity(candidate) {
   return candidate?.model_key || candidate?.model_family_key || candidate?.model || candidate?.word || candidate?.normalized || 'unknown_candidate';
 }
 
+function candidateRecordIdentity(candidate) {
+  const model = candidateIdentity(candidate);
+  const word = String(candidate?.word || candidate?.normalized || '').trim().normalize('NFC').toLocaleLowerCase();
+  return `${model}|${word}`;
+}
+
 function normalizeAuditResult(value, fallback) {
   if (!value) return { candidatesByLanguage: fallback, warnings: [], diagnostics: null };
   if (value.candidatesByLanguage && typeof value.candidatesByLanguage === 'object') {
@@ -60,6 +66,19 @@ function normalizeAuditResult(value, fallback) {
     };
   }
   return { candidatesByLanguage: value, warnings: [], diagnostics: null };
+}
+
+function normalizePostValidationResult(value) {
+  if (!value || !value.candidatesByLanguage || typeof value.candidatesByLanguage !== 'object') {
+    const error = new TypeError('Final candidate validator returned an invalid result.');
+    error.code = 'FINAL_CANDIDATE_VALIDATION_INVALID';
+    throw error;
+  }
+  return {
+    candidatesByLanguage: value.candidatesByLanguage,
+    warnings: Array.isArray(value.warnings) ? value.warnings : [],
+    diagnostics: value.diagnostics || null
+  };
 }
 
 function throwIfInactive({ signal, runId, isCurrentRun }, stage) {
@@ -215,17 +234,17 @@ export async function runAssociativeCalculation({
     emit('selection:final');
 
     const selectedModels = {};
+    const analysisStats = {};
     for (const language of languages) {
       ensureActive(`analysis:${language.code}`);
       const pool = finalPools[language.code] || [];
       if (!pool.length) {
         currentState.languages[language.code] = [];
         if (currentState.languageStatuses[language.code]?.status !== 'index_error') currentState.languageStatuses[language.code] = status('no_candidates');
-        selectedModels[language.code] = [];
+        analysisStats[language.code] = { candidateCount: 0, analyzedCount: 0, successfulCount: 0, failedCount: 0 };
         continue;
       }
       const selected = dependencies.candidateSelector?.select?.(language, pool, { maxModels, state: currentState }) || selectBestFinalModels(pool, maxModels);
-      selectedModels[language.code] = selected.map(candidateIdentity);
       currentState.languageStatuses[language.code] = status('analyzing', { candidateCount: pool.length });
       setState('status:analyzing');
       const analyzed = [];
@@ -254,20 +273,87 @@ export async function runAssociativeCalculation({
         }
         analyzed.push(analyzedCandidate);
       }
-      const byIdentity = new Map(analyzed.map(item => [candidateIdentity(item), item]));
-      currentState.languages[language.code] = pool.map(item => byIdentity.get(candidateIdentity(item)) || { ...item, selected: false });
+      const byIdentity = new Map(analyzed.map(item => [candidateRecordIdentity(item), item]));
+      currentState.languages[language.code] = pool.map(item => byIdentity.get(candidateRecordIdentity(item)) || { ...item, selected: false });
       const failedCount = analyzed.filter(item => item?.analysis?.status === 'error' || item?.analysisStatus === 'error' || !Number.isFinite(scoreOf(item))).length;
       const successfulCount = analyzed.length - failedCount;
       if (failedCount && successfulCount) addLanguageWarning(currentState, language.code, 'language_stage_partial', { failedCount, successfulCount });
       if (analyzed.length && !successfulCount) addLanguageWarning(currentState, language.code, 'all_language_candidates_analysis_failed', { analyzedCount: analyzed.length });
+      analysisStats[language.code] = {
+        candidateCount: pool.length,
+        analyzedCount: analyzed.length,
+        successfulCount,
+        failedCount
+      };
+    }
+
+    ensureActive('final_candidate_validation');
+    let finalValidationFailed = false;
+    const finalValidationFailedLanguages = new Set();
+    if (dependencies.candidatePostValidator?.validate) {
+      emit('final_validation:start');
+      progress(dependencies.progressTexts?.finalValidation || 'final candidate validation');
+      try {
+        const response = await dependencies.candidatePostValidator.validate({
+          root: currentState.root,
+          targetMeaning: currentState.meaning || currentState.root,
+          candidatesByLanguage: currentState.languages,
+          translations,
+          input
+        }, { signal, runId: effectiveRunId, onProgress: progress });
+        ensureActive('final_candidate_validation:after');
+        const validated = normalizePostValidationResult(response);
+        currentState.languages = Object.fromEntries(languages.map(language => [
+          language.code,
+          Array.isArray(validated.candidatesByLanguage?.[language.code])
+            ? validated.candidatesByLanguage[language.code]
+            : []
+        ]));
+        for (const warning of validated.warnings) {
+          const code = String(warning?.code || warning || '').split(':')[0] || 'qwen_final_candidate_validation_unavailable';
+          addRunWarning(currentState, code, warning?.details || warning);
+        }
+        currentState.finalCandidateValidationDiagnostics = validated.diagnostics || null;
+        for (const code of validated.diagnostics?.validationFailClosedLanguages || []) finalValidationFailedLanguages.add(code);
+      } catch (error) {
+        if (isAbortError(error, signal)) throw normalizeAbortError(error, { stage: 'final_candidate_validation', runId: effectiveRunId });
+        finalValidationFailed = true;
+        for (const language of languages) finalValidationFailedLanguages.add(language.code);
+        addRunWarning(currentState, 'qwen_final_candidate_validation_unavailable', error?.message);
+        currentState.languages = Object.fromEntries(languages.map(language => [
+          language.code,
+          (currentState.languages[language.code] || []).map(candidate => ({ ...candidate, selected: false }))
+        ]));
+      }
+      emit('final_validation:end');
+    }
+
+    for (const language of languages) {
+      const source = currentState.languages[language.code] || [];
+      const finalSelected = selectBestFinalModels(source.filter(candidate => candidate?.selected), maxModels);
+      const selectedRecords = new Set(finalSelected.map(candidateRecordIdentity));
+      currentState.languages[language.code] = source.map(candidate => ({
+        ...candidate,
+        selected: selectedRecords.has(candidateRecordIdentity(candidate))
+      }));
+      selectedModels[language.code] = finalSelected.map(candidateIdentity);
+
+      const stats = analysisStats[language.code] || { candidateCount: source.length, analyzedCount: 0, successfulCount: 0, failedCount: 0 };
       const score = dependencies.languageScore?.calculate?.(language, currentState.languages[language.code], { maxModels, state: currentState }) || defaultLanguageScore(currentState.languages[language.code], maxModels);
       currentState.languageScores[language.code] = score;
-      currentState.languageStatuses[language.code] = status(
-        analyzed.length && !successfulCount
-          ? 'qwen_error'
-          : (failedCount || hasLanguageAssociativeWarnings(currentState.warnings, language.code) ? 'completed_with_warnings' : 'completed'),
-        { candidateCount: pool.length, analyzedCount: analyzed.length, successfulCount, failedCount, errorCode: failedCount ? (successfulCount ? 'QWEN_PARTIAL_FAILURE' : 'QWEN_FAILED') : null }
-      );
+      if (currentState.languageStatuses[language.code]?.status !== 'index_error' && stats.candidateCount > 0) {
+        currentState.languageStatuses[language.code] = status(
+          stats.analyzedCount && !stats.successfulCount || finalValidationFailed || finalValidationFailedLanguages.has(language.code)
+            ? 'qwen_error'
+            : (stats.failedCount || hasLanguageAssociativeWarnings(currentState.warnings, language.code) ? 'completed_with_warnings' : 'completed'),
+          {
+            ...stats,
+            errorCode: finalValidationFailed || finalValidationFailedLanguages.has(language.code)
+              ? 'QWEN_FINAL_VALIDATION_FAILED'
+              : (stats.failedCount ? (stats.successfulCount ? 'QWEN_PARTIAL_FAILURE' : 'QWEN_FAILED') : null)
+          }
+        );
+      }
       emit('language_score:calculated');
     }
 

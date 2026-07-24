@@ -53,7 +53,7 @@ function assemble(base, candidate, alternatives) {
     ignored_connectors: candidate.ignored_connectors || [],
     first_meaningful_derivational_element: base.element_type === 'preposition'
       ? (candidate.first_lexical_root_after_preposition || '')
-      : (candidate.derivational?.[0]?.canonical || candidate.defaultFirstDerivationalElement || 'base'),
+      : (candidate.defaultFirstDerivationalElement || candidate.derivational?.[0]?.canonical || 'base'),
     following_derivational_elements: (candidate.derivational || []).slice(1).map(item => item.canonical),
     inflectional_ending: candidate.inflectional_ending || '',
     first_lexical_root_after_preposition: candidate.first_lexical_root_after_preposition || '',

@@ -222,11 +222,37 @@ export async function getQwenAssociationScores({ language, targetMeaning, word, 
 }
 
 const CONTROL_LANGUAGE_CODES = Object.freeze(['en', 'de', 'fr', 'es', 'it', 'ru']);
-const QWEN_CANDIDATE_DECISIONS = new Set(['keep', 'remove_duplicate', 'remove_irrelevant']);
+const QWEN_CANDIDATE_DECISIONS = new Set(['keep', 'remove_duplicate', 'remove_irrelevant', 'remove_wrong_language']);
+const QWEN_CANDIDATE_CHECKS = Object.freeze([
+  'language_match',
+  'dictionary_lemma',
+  'root_relation',
+  'semantic_relevance',
+  'distinct_model'
+]);
 
 function normalizeCandidateWord(value, maxLength = 80) {
   const word = typeof value === 'string' ? value.trim().normalize('NFC') : '';
   return word && word.length <= maxLength && !/[\r\n]/.test(word) ? word : '';
+}
+
+function normalizeCandidateChecks(value) {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return null;
+  const checks = {};
+  for (const key of QWEN_CANDIDATE_CHECKS) {
+    if (typeof value[key] !== 'boolean') return null;
+    checks[key] = value[key];
+  }
+  return checks;
+}
+
+function normalizedValidationDecision(rawDecision, checks) {
+  if (!checks) return '';
+  if (checks.language_match === false) return 'remove_wrong_language';
+  const decision = String(rawDecision || '').trim().toLowerCase();
+  if (!QWEN_CANDIDATE_DECISIONS.has(decision)) return '';
+  if (decision === 'keep' && QWEN_CANDIDATE_CHECKS.some(key => checks[key] !== true)) return 'remove_irrelevant';
+  return decision;
 }
 
 export function normalizeQwenCandidateSuggestions(payload, languages = CONTROL_LANGUAGE_CODES, maxPerLanguage = QWEN_RUNTIME_CONFIG.maxGeneratedCandidatesPerLanguage) {
@@ -273,17 +299,29 @@ export function normalizeQwenCandidateValidation(payload, currentTopModels = {},
       if (!raw || typeof raw !== 'object' || Array.isArray(raw)) { invalid = true; break; }
       const word = normalizeCandidateWord(raw.word);
       const key = buildSearchForm(word);
-      const decision = String(raw.decision || '').trim().toLowerCase();
+      const checks = normalizeCandidateChecks(raw.checks);
+      const decision = normalizedValidationDecision(raw.decision, checks);
       const sameModelAs = normalizeCandidateWord(raw.same_model_as ?? raw.sameModelAs);
+      const canonicalLexeme = normalizeCandidateWord(raw.canonical_lexeme ?? raw.canonicalLexeme);
       const reason = normalizeCandidateWord(raw.reason, 240);
       if (!key || !topByWord.has(key) || decisions.has(key) || !QWEN_CANDIDATE_DECISIONS.has(decision)) {
+        invalid = true;
+        break;
+      }
+      if (decision === 'keep' && !canonicalLexeme) {
+        invalid = true;
+        break;
+      }
+      if (decision === 'remove_duplicate' && (!sameModelAs || checks?.distinct_model !== false)) {
         invalid = true;
         break;
       }
       decisions.set(key, {
         word: topByWord.get(key).word,
         decision,
+        checks,
         ...(sameModelAs ? { same_model_as: sameModelAs } : {}),
+        ...(canonicalLexeme ? { canonical_lexeme: canonicalLexeme } : {}),
         ...(reason ? { reason } : {})
       });
     }
@@ -310,6 +348,7 @@ export function normalizeQwenCandidateValidation(payload, currentTopModels = {},
         break;
       }
       item.same_model_as = target.word;
+      item.canonical_lexeme = target.canonical_lexeme;
     }
 
     output[language] = invalid
@@ -326,7 +365,7 @@ function qwenCandidateGenerationUrl() {
     : '/api/qwen-candidates';
 }
 
-export async function getQwenCandidateSuggestions({ root, targetMeaning, currentTopModels = {}, knownCandidates = {}, knownModelKeys = {}, signal } = {}) {
+export async function getQwenCandidateSuggestions({ root, targetMeaning, currentTopModels = {}, knownCandidates = {}, knownModelKeys = {}, validationStage = 'initial', signal } = {}) {
   if (signal?.aborted) throw normalizeAbortError(signal.reason, { stage: 'candidate_audit' });
   const timeoutController = new AbortController();
   const timeoutId = setTimeout(() => timeoutController.abort(new Error('Qwen candidate request timeout')), QWEN_RUNTIME_CONFIG.candidateRequestTimeoutMs);
@@ -340,7 +379,7 @@ export async function getQwenCandidateSuggestions({ root, targetMeaning, current
     response = await fetch(qwenCandidateGenerationUrl(), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ root, targetMeaning, currentTopModels, knownCandidates, knownModelKeys, interfaceLanguage: getInterfaceLanguage() }),
+      body: JSON.stringify({ root, targetMeaning, currentTopModels, knownCandidates, knownModelKeys, validationStage, interfaceLanguage: getInterfaceLanguage() }),
       signal: abortController.signal
     });
   } catch (error) {
@@ -456,12 +495,17 @@ function candidateIdentity(candidate) {
 
 
 function compactCandidateEvidence(candidate, index) {
-  return {
+  const evidence = {
     word: candidate.word,
     model_key: candidate.model_key || candidate.model_family_key || candidate.model || '',
     F: candidateFrequencyScore(candidate),
     rank: candidate.rank ?? index + 1
   };
+  const associationScore = Number(candidate?.association_score ?? candidate?.analysis?.association?.association_score);
+  const finalScore = candidateFinalScore(candidate);
+  if (Number.isFinite(associationScore)) evidence.association_score = associationScore;
+  if (Number.isFinite(finalScore)) evidence.final_score = finalScore;
+  return evidence;
 }
 
 export function buildQwenCandidateAuditPayload(candidatesByLanguage = {}, languages = CONTROL_LANGUAGE_CODES, limit = QWEN_RUNTIME_CONFIG.maxKnownCandidateWordsPerLanguage) {
@@ -500,6 +544,11 @@ export function createQwenCandidateAuditDiagnostics() {
     validationKeptCount: 0,
     validationRemovedDuplicateCount: 0,
     validationRemovedIrrelevantCount: 0,
+    validationRemovedWrongLanguageCount: 0,
+    validationCanonicalDuplicateCount: 0,
+    validationFailClosedCount: 0,
+    validationIncompleteLanguages: [],
+    validationFailClosedLanguages: [],
     status: 'pending',
     model: null,
     usedGuaranteedFallback: false,
@@ -508,14 +557,25 @@ export function createQwenCandidateAuditDiagnostics() {
   };
 }
 
-export function applyQwenCandidateValidation(candidatesByLanguage = {}, validation = {}, currentTopModels = {}, languages = CONTROL_LANGUAGE_CODES) {
+export function applyQwenCandidateValidation(
+  candidatesByLanguage = {},
+  validation = {},
+  currentTopModels = {},
+  languages = CONTROL_LANGUAGE_CODES,
+  { failClosed = false, validationField = 'qwen_candidate_validation' } = {}
+) {
   const output = {};
   const diagnostics = {
     validatedLanguageCount: 0,
     validationIncompleteLanguageCount: 0,
     validationKeptCount: 0,
     validationRemovedDuplicateCount: 0,
-    validationRemovedIrrelevantCount: 0
+    validationRemovedIrrelevantCount: 0,
+    validationRemovedWrongLanguageCount: 0,
+    validationCanonicalDuplicateCount: 0,
+    validationFailClosedCount: 0,
+    validationIncompleteLanguages: [],
+    validationFailClosedLanguages: []
   };
 
   for (const language of languages) {
@@ -528,14 +588,36 @@ export function applyQwenCandidateValidation(candidatesByLanguage = {}, validati
     }
     if (!Array.isArray(decisions) || decisions.length !== top.length) {
       diagnostics.validationIncompleteLanguageCount += 1;
-      output[language] = candidates.slice();
+      diagnostics.validationIncompleteLanguages.push(language);
+      if (failClosed) diagnostics.validationFailClosedLanguages.push(language);
+      output[language] = candidates.map(candidate => {
+        if (!failClosed) return { ...candidate };
+        diagnostics.validationFailClosedCount += candidate?.selected || candidate?.automatic_selection_eligible !== false ? 1 : 0;
+        return {
+          ...candidate,
+          automatic_selection_eligible: false,
+          selected: false,
+          [validationField]: { decision: 'unvalidated', reason: 'incomplete_qwen_validation' }
+        };
+      });
       continue;
     }
 
     const byWord = new Map(decisions.map(item => [buildSearchForm(item?.word), item]).filter(([key]) => Boolean(key)));
     if (byWord.size !== top.length || top.some(item => !byWord.has(buildSearchForm(item?.word)))) {
       diagnostics.validationIncompleteLanguageCount += 1;
-      output[language] = candidates.slice();
+      diagnostics.validationIncompleteLanguages.push(language);
+      if (failClosed) diagnostics.validationFailClosedLanguages.push(language);
+      output[language] = candidates.map(candidate => {
+        if (!failClosed) return { ...candidate };
+        diagnostics.validationFailClosedCount += candidate?.selected || candidate?.automatic_selection_eligible !== false ? 1 : 0;
+        return {
+          ...candidate,
+          automatic_selection_eligible: false,
+          selected: false,
+          [validationField]: { decision: 'unvalidated', reason: 'mismatched_qwen_validation' }
+        };
+      });
       continue;
     }
 
@@ -544,15 +626,46 @@ export function applyQwenCandidateValidation(candidatesByLanguage = {}, validati
       if (decision.decision === 'keep') diagnostics.validationKeptCount += 1;
       else if (decision.decision === 'remove_duplicate') diagnostics.validationRemovedDuplicateCount += 1;
       else if (decision.decision === 'remove_irrelevant') diagnostics.validationRemovedIrrelevantCount += 1;
+      else if (decision.decision === 'remove_wrong_language') diagnostics.validationRemovedWrongLanguageCount += 1;
     }
 
-    output[language] = candidates.map(candidate => {
+    const validated = candidates.map(candidate => {
       const decision = byWord.get(buildSearchForm(candidate?.word));
       if (!decision) return { ...candidate, automatic_selection_eligible: false };
       return {
         ...candidate,
-        automatic_selection_eligible: decision.decision === 'keep',
-        qwen_candidate_validation: { ...decision }
+        automatic_selection_eligible: candidate?.automatic_selection_eligible !== false && decision.decision === 'keep',
+        selected: Boolean(candidate?.selected) && candidate?.automatic_selection_eligible !== false && decision.decision === 'keep',
+        [validationField]: { ...decision }
+      };
+    });
+
+    const canonicalRepresentatives = new Map();
+    for (const candidate of validated) {
+      if (candidate.automatic_selection_eligible === false) continue;
+      const canonical = buildSearchForm(candidate?.[validationField]?.canonical_lexeme);
+      if (!canonical) continue;
+      const current = canonicalRepresentatives.get(canonical);
+      if (!current || compareFinalModelCandidates(candidate, current) < 0) canonicalRepresentatives.set(canonical, candidate);
+    }
+    output[language] = validated.map(candidate => {
+      if (candidate.automatic_selection_eligible === false) return candidate;
+      const canonical = buildSearchForm(candidate?.[validationField]?.canonical_lexeme);
+      const representative = canonical && canonicalRepresentatives.get(canonical);
+      if (!representative || candidateIdentity(representative) === candidateIdentity(candidate)) return candidate;
+      diagnostics.validationCanonicalDuplicateCount += 1;
+      diagnostics.validationRemovedDuplicateCount += 1;
+      diagnostics.validationKeptCount = Math.max(0, diagnostics.validationKeptCount - 1);
+      return {
+        ...candidate,
+        automatic_selection_eligible: false,
+        selected: false,
+        [validationField]: {
+          ...candidate[validationField],
+          decision: 'remove_duplicate',
+          same_model_as: representative.word,
+          reason: candidate[validationField]?.reason || 'canonical_lexeme_duplicate'
+        }
       };
     });
   }
@@ -770,6 +883,119 @@ export async function refineCandidatesWithQwenAudit({ root, targetMeaning, candi
     }
   }
   return { candidatesByLanguage: output, warnings, diagnostics };
+}
+
+export function buildFinalQwenValidationPayload(candidatesByLanguage = {}, languages = CONTROL_LANGUAGE_CODES, limit = MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE) {
+  const currentTopModels = {};
+  const knownCandidates = {};
+  const knownModelKeys = {};
+  const maxModels = Math.max(0, Number(limit) || 0);
+  for (const language of languages) {
+    const selected = (Array.isArray(candidatesByLanguage?.[language]) ? candidatesByLanguage[language] : [])
+      .filter(candidate => candidate?.selected && hasFiniteScore(candidateFinalScore(candidate)))
+      .sort(compareFinalModelCandidates)
+      .slice(0, maxModels);
+    currentTopModels[language] = selected.map(compactCandidateEvidence);
+    knownCandidates[language] = selected.map(compactCandidateEvidence);
+    knownModelKeys[language] = [...new Set(selected
+      .map(candidate => String(candidate?.model_key || candidate?.model_family_key || candidate?.model || '').trim())
+      .filter(Boolean))];
+  }
+  return { currentTopModels, knownCandidates, knownModelKeys };
+}
+
+function finalizeStrictlyValidatedModels(candidatesByLanguage, languages, limit) {
+  const output = {};
+  for (const language of languages) {
+    const source = Array.isArray(candidatesByLanguage?.[language]) ? candidatesByLanguage[language] : [];
+    const best = selectBestFinalModels(source.filter(candidate => candidate?.selected), limit);
+    const selected = new Set(best.map(candidateIdentity));
+    output[language] = source.map(candidate => ({
+      ...candidate,
+      selected: selected.has(candidateIdentity(candidate))
+    }));
+  }
+  return output;
+}
+
+export async function validateFinalCandidatesWithQwen({
+  root,
+  targetMeaning,
+  candidatesByLanguage = {},
+  languages = CONTROL_LANGUAGE_CODES,
+  limit = MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE,
+  signal,
+  onProgress,
+  onWarning
+} = {}) {
+  const fallback = Object.fromEntries(languages.map(language => [
+    language,
+    Array.isArray(candidatesByLanguage?.[language]) ? candidatesByLanguage[language].map(candidate => ({ ...candidate })) : []
+  ]));
+  const payload = buildFinalQwenValidationPayload(fallback, languages, limit);
+  const hasSelectedCandidates = languages.some(language => payload.currentTopModels[language]?.length);
+  if (!hasSelectedCandidates) {
+    return {
+      candidatesByLanguage: fallback,
+      warnings: [],
+      diagnostics: { status: 'not_required', validationStage: 'final', validationIncompleteLanguageCount: 0, validationFailClosedCount: 0 }
+    };
+  }
+
+  let validation = {};
+  let auditStatus = 'failed_closed';
+  let auditError = null;
+  const warnings = [];
+  try {
+    onProgress?.(getInterfaceLanguage() === 'en' ? 'Qwen3-235B: final model validation...' : 'Qwen3-235B: финальная проверка моделей...');
+    const response = await getQwenCandidateSuggestions({
+      root,
+      targetMeaning: targetMeaning || root,
+      ...payload,
+      validationStage: 'final',
+      signal
+    });
+    validation = response.validation;
+    auditStatus = response.auditStatus;
+    auditError = response.auditError;
+  } catch (error) {
+    throwIfAbortError(error, { signal, stage: 'final_candidate_validation' });
+    auditError = error;
+    const warning = 'qwen_final_candidate_validation_unavailable';
+    warnings.push(warning);
+    onWarning?.(warning, error);
+  }
+
+  const applied = applyQwenCandidateValidation(
+    fallback,
+    validation,
+    payload.currentTopModels,
+    languages,
+    { failClosed: true, validationField: 'qwen_final_validation' }
+  );
+  const candidates = finalizeStrictlyValidatedModels(applied.candidatesByLanguage, languages, limit);
+  const incomplete = applied.diagnostics.validationIncompleteLanguageCount > 0;
+  if (incomplete) {
+    const warning = 'qwen_final_candidate_validation_incomplete';
+    if (!warnings.includes(warning)) warnings.push(warning);
+    onWarning?.(warning, { incompleteLanguages: applied.diagnostics.validationIncompleteLanguageCount });
+  }
+  if (auditError && !warnings.includes('qwen_final_candidate_validation_unavailable')) {
+    warnings.push('qwen_final_candidate_validation_unavailable');
+  }
+
+  return {
+    candidatesByLanguage: candidates,
+    warnings,
+    diagnostics: {
+      ...applied.diagnostics,
+      status: incomplete || auditError ? 'failed_closed' : auditStatus,
+      validationStage: 'final',
+      model: null,
+      backendErrorCode: auditError?.code || auditError?.errorCode || null,
+      backendErrorDetails: auditError?.details || auditError?.message || null
+    }
+  };
 }
 
 function installAssociativeBrowserEnhancements() {

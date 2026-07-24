@@ -6,11 +6,36 @@ import {
   normalizeQwenCandidateValidation,
   applyQwenCandidateValidation,
   buildQwenCandidateAuditPayload,
+  buildFinalQwenValidationPayload,
   refineCandidatesWithQwenAudit,
+  validateFinalCandidatesWithQwen,
   QWEN_RUNTIME_CONFIG,
   selectBestFinalModels
 } from '../associativvordes/js/qwen-client.js';
 import { lexicalModelDescriptor } from '../associativvordes/js/candidate-model-family.js';
+
+const validChecks = Object.freeze({
+  language_match: true,
+  dictionary_lemma: true,
+  root_relation: true,
+  semantic_relevance: true,
+  distinct_model: true
+});
+const keepDecision = (word, canonical_lexeme = word, extra = {}) => ({
+  word,
+  decision: 'keep',
+  checks: { ...validChecks },
+  canonical_lexeme,
+  ...extra
+});
+const duplicateDecision = (word, same_model_as, canonical_lexeme, extra = {}) => ({
+  word,
+  decision: 'remove_duplicate',
+  checks: { ...validChecks, distinct_model: false },
+  canonical_lexeme,
+  same_model_as,
+  ...extra
+});
 
 assert.equal(QWEN_RUNTIME_CONFIG.enableCandidateGeneration, true, 'top-five model refinement is enabled');
 assert.equal(QWEN_RUNTIME_CONFIG.maxGeneratedCandidatesPerLanguage, 2, 'candidate generation is strictly bounded per language');
@@ -58,18 +83,18 @@ const validationTopModels = {
 const normalizedValidation = normalizeQwenCandidateValidation({
   candidateValidation: {
     en: [
-      { word: 'alternate', decision: 'keep', reason: 'frequency representative' },
-      { word: 'alternately', decision: 'remove_duplicate', same_model_as: 'alternate', reason: 'adverbial form' }
+      keepDecision('alternate', 'alternate', { reason: 'frequency representative' }),
+      duplicateDecision('alternately', 'alternate', 'alternate', { reason: 'adverbial form' })
     ],
     fr: [
-      { word: 'alternative', decision: 'keep' },
-      { word: 'alternatif', decision: 'remove_duplicate', same_model_as: 'alternative' }
+      keepDecision('alternative', 'alternatif'),
+      duplicateDecision('alternatif', 'alternative', 'alternatif')
     ],
     ru: [
-      { word: 'альтернативный', decision: 'keep' },
-      { word: 'альтернативка', decision: 'remove_duplicate', same_model_as: 'альтернативный' },
-      { word: 'альтер-эго', decision: 'keep' },
-      { word: 'альтер', decision: 'remove_irrelevant', reason: 'tokenization artefact from альтер эго' }
+      keepDecision('альтернативный', 'альтернатива'),
+      duplicateDecision('альтернативка', 'альтернативный', 'альтернатива'),
+      keepDecision('альтер-эго', 'альтер-эго'),
+      { word: 'альтер', decision: 'remove_irrelevant', checks: { ...validChecks, dictionary_lemma: false, semantic_relevance: false }, canonical_lexeme: 'альтер', reason: 'tokenization artefact from альтер эго' }
     ]
   }
 }, validationTopModels, ['en', 'fr', 'ru']);
@@ -90,21 +115,69 @@ assert.deepEqual(appliedValidation.diagnostics, {
   validationIncompleteLanguageCount: 0,
   validationKeptCount: 4,
   validationRemovedDuplicateCount: 3,
-  validationRemovedIrrelevantCount: 1
+  validationRemovedIrrelevantCount: 1,
+  validationRemovedWrongLanguageCount: 0,
+  validationCanonicalDuplicateCount: 0,
+  validationFailClosedCount: 0,
+  validationIncompleteLanguages: [],
+  validationFailClosedLanguages: []
 });
 
 const incompleteValidation = normalizeQwenCandidateValidation({
-  candidateValidation: { en: [{ word: 'alternate', decision: 'keep' }] }
+  candidateValidation: { en: [keepDecision('alternate')] }
 }, validationTopModels, ['en']);
 assert.equal(incompleteValidation.en, null, 'an incomplete Qwen verdict cannot silently remove an unchecked candidate');
 const incompleteApplied = applyQwenCandidateValidation(validationPools, incompleteValidation, validationTopModels, ['en']);
 assert.deepEqual(selectBestFinalModels(incompleteApplied.candidatesByLanguage.en, 5).map(item => item.word), ['alternate', 'alternately', 'alteration'], 'incomplete validation preserves the deterministic fallback set');
+const strictIncompleteApplied = applyQwenCandidateValidation(
+  { en: validationTopModels.en.map(item => ({ ...item, selected: true })) },
+  incompleteValidation,
+  validationTopModels,
+  ['en'],
+  { failClosed: true, validationField: 'qwen_final_validation' }
+);
+assert.deepEqual(selectBestFinalModels(strictIncompleteApplied.candidatesByLanguage.en, 5), [], 'the final validation fails closed instead of filling a five-model quota');
+assert.ok(strictIncompleteApplied.candidatesByLanguage.en.every(item => item.selected === false), 'an incomplete final verdict cannot leave a provisional model selected');
+
+const wrongLanguageValidation = normalizeQwenCandidateValidation({
+  candidateValidation: {
+    fr: [
+      keepDecision('alternative', 'alternatif'),
+      {
+        word: 'alternatif',
+        decision: 'keep',
+        checks: { ...validChecks, language_match: false },
+        canonical_lexeme: 'alternate',
+        reason: 'English corpus token'
+      }
+    ]
+  }
+}, validationTopModels, ['fr']);
+assert.equal(wrongLanguageValidation.fr[1].decision, 'remove_wrong_language', 'a failed language check cannot be overridden by a keep label');
+
+const canonicalCollision = normalizeQwenCandidateValidation({
+  candidateValidation: {
+    en: [
+      keepDecision('alternate', 'alternate'),
+      keepDecision('alternately', 'alternate')
+    ]
+  }
+}, validationTopModels, ['en']);
+const canonicalApplied = applyQwenCandidateValidation(
+  { en: validationTopModels.en.map(item => ({ ...item, selected: true })) },
+  canonicalCollision,
+  validationTopModels,
+  ['en'],
+  { failClosed: true, validationField: 'qwen_final_validation' }
+);
+assert.deepEqual(selectBestFinalModels(canonicalApplied.candidatesByLanguage.en, 5).map(item => item.word), ['alternate'], 'equal canonical lexemes are deterministically collapsed even when Qwen labels both keep');
+assert.equal(canonicalApplied.diagnostics.validationCanonicalDuplicateCount, 1);
 
 const lowerFrequencyRepresentative = normalizeQwenCandidateValidation({
   candidateValidation: {
     en: [
-      { word: 'alternate', decision: 'remove_duplicate', same_model_as: 'alternately' },
-      { word: 'alternately', decision: 'keep' }
+      duplicateDecision('alternate', 'alternately', 'alternate'),
+      keepDecision('alternately', 'alternate')
     ]
   }
 }, validationTopModels, ['en']);
@@ -160,7 +233,7 @@ globalThis.fetch = async (_url, options) => ({
   ok: true,
   json: async () => ({
     ok: true,
-    candidateValidation: { en: ['alternative', 'alteration', 'alterity', 'alternate', 'alterable'].map(word => ({ word, decision: 'keep' })) },
+    candidateValidation: { en: ['alternative', 'alteration', 'alterity', 'alternate', 'alterable'].map(word => keepDecision(word)) },
     candidates: { en: [
       { word: 'alternative', root_variant: 'alter' },
       { word: 'altruism', root_variant: 'altru' },
@@ -184,7 +257,7 @@ assert.equal(refinedAudit.candidatesByLanguage.en.filter(item => item.word === '
 assert.equal(refinedAudit.candidatesByLanguage.en.some(item => item.word === 'alterator'), false, 'different word with an existing model_key is not a new model');
 assert.equal(refinedAudit.candidatesByLanguage.en.some(item => item.word === 'novelty'), true, 'new word with a new model passes local verification');
 assert.equal(loader.calls.some(call => call.word === 'alternative'), false, 'duplicate suggestion does not start semantic or local verification');
-assert.deepEqual(refinedAudit.diagnostics, { suggestedCount: 7, duplicateWordCount: 3, duplicateModelCount: 1, locallyMissingCount: 1, verifiedNewModelCount: 1, rejectedInvalidCount: 1, auditRetryCount: 0, validatedLanguageCount: 1, validationIncompleteLanguageCount: 0, validationKeptCount: 5, validationRemovedDuplicateCount: 0, validationRemovedIrrelevantCount: 0, status: 'completed', model: null, usedGuaranteedFallback: false, backendErrorCode: null, backendErrorDetails: null }, 'diagnostics counts duplicate, missing, invalid, verified, validation, and backend audit state');
+assert.deepEqual(refinedAudit.diagnostics, { suggestedCount: 7, duplicateWordCount: 3, duplicateModelCount: 1, locallyMissingCount: 1, verifiedNewModelCount: 1, rejectedInvalidCount: 1, auditRetryCount: 0, validatedLanguageCount: 1, validationIncompleteLanguageCount: 0, validationKeptCount: 5, validationRemovedDuplicateCount: 0, validationRemovedIrrelevantCount: 0, validationRemovedWrongLanguageCount: 0, validationCanonicalDuplicateCount: 0, validationFailClosedCount: 0, validationIncompleteLanguages: [], validationFailClosedLanguages: [], status: 'completed', model: null, usedGuaranteedFallback: false, backendErrorCode: null, backendErrorDetails: null }, 'diagnostics counts duplicate, missing, invalid, verified, validation, and backend audit state');
 globalThis.fetch = previousFetchForRefine;
 QWEN_RUNTIME_CONFIG.maxGeneratedCandidatesPerLanguage = previousGeneratedLimit;
 
@@ -192,12 +265,50 @@ globalThis.fetch = async () => ({
   ok: true,
   json: async () => ({
     ok: true,
-    candidateValidation: { en: ['alternative', 'alteration', 'alterity', 'alternate', 'alterable'].map(word => ({ word, decision: 'keep' })) },
+    candidateValidation: { en: ['alternative', 'alteration', 'alterity', 'alternate', 'alterable'].map(word => keepDecision(word)) },
     candidates: { en: [] }
   })
 });
 const emptyAudit = await refineCandidatesWithQwenAudit({ root: 'nov', targetMeaning: 'new', candidatesByLanguage: { en: auditBase }, loader: makeLoader({}), languages: ['en'] });
-assert.deepEqual(emptyAudit.diagnostics, { suggestedCount: 0, duplicateWordCount: 0, duplicateModelCount: 0, locallyMissingCount: 0, verifiedNewModelCount: 0, rejectedInvalidCount: 0, auditRetryCount: 0, validatedLanguageCount: 1, validationIncompleteLanguageCount: 0, validationKeptCount: 5, validationRemovedDuplicateCount: 0, validationRemovedIrrelevantCount: 0, status: 'completed', model: null, usedGuaranteedFallback: false, backendErrorCode: null, backendErrorDetails: null }, 'empty Qwen suggestion response is a normal completed validation');
+assert.deepEqual(emptyAudit.diagnostics, { suggestedCount: 0, duplicateWordCount: 0, duplicateModelCount: 0, locallyMissingCount: 0, verifiedNewModelCount: 0, rejectedInvalidCount: 0, auditRetryCount: 0, validatedLanguageCount: 1, validationIncompleteLanguageCount: 0, validationKeptCount: 5, validationRemovedDuplicateCount: 0, validationRemovedIrrelevantCount: 0, validationRemovedWrongLanguageCount: 0, validationCanonicalDuplicateCount: 0, validationFailClosedCount: 0, validationIncompleteLanguages: [], validationFailClosedLanguages: [], status: 'completed', model: null, usedGuaranteedFallback: false, backendErrorCode: null, backendErrorDetails: null }, 'empty Qwen suggestion response is a normal completed validation');
+globalThis.fetch = previousFetchForRefine;
+
+const finalAuditInput = {
+  en: [
+    { ...validationTopModels.en[0], selected: true, final_score: 42 },
+    { ...validationTopModels.en[1], selected: true, final_score: 38 }
+  ]
+};
+const finalValidationPayload = buildFinalQwenValidationPayload(finalAuditInput, ['en']);
+assert.deepEqual(finalValidationPayload.currentTopModels.en.map(item => item.word), ['alternate', 'alternately']);
+assert.deepEqual(finalValidationPayload.currentTopModels.en.map(item => item.final_score), [42, 38], 'the final audit receives measured post-analysis scores');
+let finalValidationRequest = null;
+globalThis.fetch = async (_url, options) => {
+  finalValidationRequest = JSON.parse(options.body);
+  return {
+    ok: true,
+    json: async () => ({
+      ok: true,
+      candidateValidation: {
+        en: [
+          keepDecision('alternate', 'alternate'),
+          keepDecision('alternately', 'alternate')
+        ]
+      },
+      candidates: { en: [] },
+      audit: { status: 'completed' }
+    })
+  };
+};
+const finalAudit = await validateFinalCandidatesWithQwen({
+  root: 'alter',
+  targetMeaning: 'other',
+  candidatesByLanguage: finalAuditInput,
+  languages: ['en']
+});
+assert.equal(finalValidationRequest.validationStage, 'final', 'the independent post-analysis audit is explicitly marked as final');
+assert.deepEqual(finalAudit.candidatesByLanguage.en.filter(item => item.selected).map(item => item.word), ['alternate'], 'the post-analysis audit never backfills a removed duplicate');
+assert.equal(finalAudit.diagnostics.validationCanonicalDuplicateCount, 1);
 globalThis.fetch = previousFetchForRefine;
 
 const clientSource = await readFile('associativvordes/js/qwen-client.js', 'utf8');
@@ -229,12 +340,12 @@ globalThis.fetch = async (_url, options) => {
         message: {
           content: JSON.stringify({
             validation: {
-              en: [{ word: 'alternative', decision: 'keep', reason: 'valid model' }],
+              en: [keepDecision('alternative', 'alternative', { reason: 'valid model' })],
               de: [],
               fr: [],
               es: [],
               it: [],
-              ru: [{ word: 'альтернатива', decision: 'keep', reason: 'valid model' }]
+              ru: [keepDecision('альтернатива', 'альтернатива', { reason: 'valid model' })]
             },
             candidates: { en: [], de: [], fr: [], es: [], it: [], ru: [] }
           })
@@ -301,7 +412,67 @@ assert.match(sentPrompt, /"alternate" and "alternately" are one model/);
 assert.match(sentPrompt, /"alternative" and "alternatif" are one model/);
 assert.match(sentPrompt, /"альтернативный" and "альтернативка" are one model/);
 assert.match(sentPrompt, /separated first token of "альтер эго"/);
+assert.match(sentPrompt, /remove_wrong_language/);
+assert.match(sentPrompt, /language_match/);
+assert.match(sentPrompt, /canonical_lexeme/);
 assert.equal(responseHeaders['Cache-Control'], 'no-store', 'candidate responses are not cached');
+
+let finalEndpointResponseText = '';
+const finalEndpointResponse = {
+  statusCode: 0,
+  setHeader() {},
+  end(value = '') { finalEndpointResponseText = String(value); }
+};
+globalThis.fetch = async (_url, options) => {
+  const request = JSON.parse(options.body);
+  sentPrompt = request.messages?.[1]?.content || '';
+  return {
+    ok: true,
+    status: 200,
+    statusText: 'OK',
+    text: async () => JSON.stringify({
+      choices: [{
+        message: {
+          content: JSON.stringify({
+            validation: {
+              en: [
+                keepDecision('alternate', 'alternate'),
+                keepDecision('alternately', 'alternate')
+              ],
+              de: [],
+              fr: [],
+              es: [],
+              it: [],
+              ru: []
+            },
+            candidates: { en: [{ word: 'altruism', root_variant: 'altru' }], de: [], fr: [], es: [], it: [], ru: [] }
+          })
+        }
+      }]
+    })
+  };
+};
+await endpointModule.default({
+  method: 'POST',
+  headers: {},
+  body: {
+    root: 'alter',
+    targetMeaning: 'other',
+    interfaceLanguage: 'en',
+    validationStage: 'final',
+    currentTopModels: {
+      en: [
+        { word: 'alternate', model_key: 'same-parser-key', frequency_score: 80, final_score: 42 },
+        { word: 'alternately', model_key: 'same-parser-key', frequency_score: 30, final_score: 38 }
+      ]
+    }
+  }
+}, finalEndpointResponse);
+const finalEndpointPayload = JSON.parse(finalEndpointResponseText);
+assert.equal(finalEndpointResponse.statusCode, 200);
+assert.equal(finalEndpointPayload.currentTopModels.en.length, 2, 'server validation preserves distinct words even when a stale parser gave them the same model key');
+assert.deepEqual(finalEndpointPayload.candidates.en, [], 'the final validation stage cannot add or backfill a candidate even if Qwen proposes one');
+assert.match(sentPrompt, /FINAL, after independent semantic scoring/);
 
 let fallbackResponseText = '';
 const fallbackResponse = {

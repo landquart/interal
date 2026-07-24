@@ -123,6 +123,43 @@ assert.doesNotMatch(scriptSource, /supplementAfterCompletedCalculation/, 'remove
 }
 
 {
+  const { dependencies, counts } = makeDependencies();
+  dependencies.candidatePostValidator = {
+    async validate({ candidatesByLanguage }) {
+      return {
+        candidatesByLanguage: {
+          en: candidatesByLanguage.en.map((candidate, index) => ({
+            ...candidate,
+            selected: index === 0,
+            automatic_selection_eligible: index === 0,
+            qwen_final_validation: {
+              word: candidate.word,
+              decision: index === 0 ? 'keep' : 'remove_irrelevant'
+            }
+          }))
+        },
+        warnings: [],
+        diagnostics: { status: 'completed' }
+      };
+    }
+  };
+  const result = await runAssociativeCalculation({ input: { root: 'post-validated', maxModels: 5 }, dependencies });
+  assert.equal(counts.analyses, 5, 'five is only the provisional analysis cap');
+  assert.deepEqual(result.selectedModels.en, ['a'], 'the final validator may retain fewer models without backfilling');
+  assert.deepEqual(result.state.languages.en.filter(candidate => candidate.selected).map(candidate => candidate.word), ['a']);
+  assert.ok(dependencies.eventLog.indexOf('final_validation:end') < dependencies.eventLog.indexOf('language_score:calculated'));
+}
+
+{
+  const { dependencies } = makeDependencies();
+  dependencies.candidatePostValidator = { async validate() { throw new Error('final audit unavailable'); } };
+  const result = await runAssociativeCalculation({ input: { root: 'fail-closed', maxModels: 5 }, dependencies });
+  assert.deepEqual(result.state.languages.en.filter(candidate => candidate.selected), [], 'a failed configured final validator fails closed');
+  assert.equal(result.state.languageStatuses.en.status, 'qwen_error');
+  assert.equal(result.state.warnings.run.at(-1).code, 'qwen_final_candidate_validation_unavailable');
+}
+
+{
   const state = createEmptyAssociativeState({ languages });
   const first = makeDependencies({ auditError: new Error('audit offline'), sharedState: state });
   const warningResult = await runAssociativeCalculation({ input: { root: 'first' }, state, dependencies: first.dependencies });
