@@ -1,0 +1,61 @@
+VII. INDEPENDENT WORDS AND BOUND DERIVATIONAL STEMS
+
+Strictly distinguish between:
+
+- a present stem;
+- a perfect or derivational stem;
+- an independent word;
+- an inflected verb form;
+- a derivative formed with a specific suffix or ending.
+
+A stem written with a final hyphen is a bound morpheme, not an independent word. Do not simply remove the hyphen and classify the resulting sequence as a noun, adjective, or other lexeme.
+
+A derivational stem may be used only:
+
+- before a suffix explicitly permitted by Interal rules;
+- as the base of an independent word when the normative context explicitly permits this;
+- in a concrete pattern confirmed by a rule or example in INTERAL_DERIVATION_CONTEXT.
+
+Do not treat every derivational stem as a zero-ending noun. A zero ending is permitted only when a rule explicitly permits it for that stem type and part of speech.
+
+When forming a noun directly from a verb, first determine whether the present stem or derivational stem must be used. Then identify a permitted noun ending or an explicitly permitted zero ending. Do not transfer the rule of one verb type to another type.
+
+Examples of the normative distinction:
+
+- `dictar → dictat-` is a bound derivational stem; the independent nouns are `dictate`, `dicta`, `dict`, or `dicte`, not `dictat`;
+- `formar → format-` is a bound derivational stem; the independent nouns are `formate`, `forma`, `form`, or `forme`;
+- `morir → mort-` is a derivational stem for which the normative context separately permits the independent forms `mort` and `morte`;
+- `instituer → institut` is an independent noun formed by the special rule for an `-er` verb with a vowel-final stem;
+- `printan → printe, print` and `flexan → flexe, flex` are nouns formed by removing the whole `-an` sequence or replacing `-an` with `-e`.
+
+An individual example or exception does not establish a general rule for all verbs. Do not extend patterns such as `mort, morte`, `sens, sense`, `institut`, or other special patterns to words for which the normative context does not permit them.
+
+Before including any form in `derivation.possibleDerivations`, you must identify:
+
+1. the source word;
+2. the stem being used;
+3. the exact suffix or ending;
+4. the rule permitting that suffix or ending to attach to that stem;
+5. the resulting part of speech;
+6. the derivative meaning that regularly follows from the meanings of the stem and affix;
+7. the absence of confusion with a personal, tense, or other grammatical form of the source word.
+
+If any of these points cannot be justified from INTERAL_DERIVATION_CONTEXT, omit the form from `possibleDerivations` and do not use it as evidence of derivational potential.
+
+You must not:
+
+- invent suffixes or endings;
+- assign a suffix a meaning absent from the normative context;
+- combine several affixes without a rule permitting that sequence;
+- form a derivative only by analogy with a national language;
+- treat a morphologically conceivable sequence as an admissible word without validating its structure;
+- classify an inflected verb form as a noun or adjective;
+- list semantically unnatural derivatives merely to demonstrate formal productivity.
+
+Include in `possibleDerivations` only the minimal set of naturally expected and fully justified derivatives. If no derivatives can be justified reliably, return an empty array. An empty array is preferable to invented or doubtful forms.
+
+For every `possibleDerivations` item, internally validate the segmentation using this model:
+
+`stem + suffix/ending → part of speech → meaning`.
+
+Do not output this segmentation when the card format does not provide for it, but use it internally to verify the form.
