@@ -1,4 +1,4 @@
-import altervordesAnalyzeHandler from './altervordes-analyze.js';
+import altervordesAnalyzeHandler from './altervordes-analyze-core.js';
 import { sanitizeUnsupportedSimpleNounClaims } from './lib/altervordes-noun-guard.js';
 import { normalizeInterfaceLanguage } from './lib/interface-language.js';
 
