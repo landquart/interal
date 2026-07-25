@@ -1,32 +1,32 @@
-const SAFE_DERIVATIONAL_POTENTIAL = Object.freeze({
-  ru: 'Конкретные производные не перечисляются. Деривационный потенциал оценивается только по совместимости основы с общей моделью образования слов (§ 6), модифицированным правилом де Валя (§ 75) и правилами соответствующих суффиксов (§§ 80–81). Форма и значение каждого реального производного требуют отдельной морфологической и семантической проверки.',
-  en: 'Concrete derivatives are not listed. Derivational potential is assessed only through compatibility with the general word-formation pattern (§ 6), the modified de Wahl rule (§ 75), and the rules of the relevant suffixes (§§ 80–81). The form and meaning of every real derivative require a separate morphological and semantic check.'
+const POTENTIAL_LABELS = Object.freeze({
+  ru: Object.freeze({ yes: 'Есть.', no: 'Нет.' }),
+  en: Object.freeze({ yes: 'Yes.', no: 'No.' })
 });
 
 const SAFE_SHORT_CONCLUSIONS = Object.freeze({
   accepted: Object.freeze({
-    en: 'The candidate form is compatible with the applicable Interal rules; concrete derivatives require separate verification.',
-    de: 'Die Kandidatenform entspricht den anwendbaren Regeln des Interal; konkrete Ableitungen müssen gesondert geprüft werden.',
-    fr: 'La forme candidate est compatible avec les règles applicables de l’Interal ; les dérivés concrets doivent être vérifiés séparément.',
-    es: 'La forma candidata es compatible con las reglas aplicables del Interal; las derivaciones concretas requieren una verificación separada.',
-    it: 'La forma candidata è compatibile con le regole applicabili dell’Interal; le derivazioni concrete richiedono una verifica separata.',
-    ru: 'Кандидатная форма совместима с применимыми правилами Интераля; конкретные производные требуют отдельной проверки.'
+    en: 'The candidate form meets the applicable Interal requirements.',
+    de: 'Die Kandidatenform erfüllt die anwendbaren Anforderungen des Interal.',
+    fr: 'La forme candidate satisfait aux exigences applicables de l’Interal.',
+    es: 'La forma candidata cumple los requisitos aplicables del Interal.',
+    it: 'La forma candidata soddisfa i requisiti applicabili dell’Interal.',
+    ru: 'Кандидатная форма соответствует применимым требованиям Интераля.'
   }),
   rejected: Object.freeze({
-    en: 'The candidate form cannot be accepted on the basis of the verified analysis; concrete derivatives are not generated.',
-    de: 'Die Kandidatenform kann auf Grundlage der geprüften Analyse nicht angenommen werden; konkrete Ableitungen werden nicht erzeugt.',
-    fr: 'La forme candidate ne peut pas être acceptée sur la base de l’analyse vérifiée ; aucun dérivé concret n’est généré.',
-    es: 'La forma candidata no puede aceptarse según el análisis verificado; no se generan derivaciones concretas.',
-    it: 'La forma candidata non può essere accettata sulla base dell’analisi verificata; non vengono generate derivazioni concrete.',
-    ru: 'Кандидатная форма не может быть принята по результатам проверенного анализа; конкретные производные не генерируются.'
+    en: 'The candidate form does not meet the applicable Interal requirements.',
+    de: 'Die Kandidatenform erfüllt die anwendbaren Anforderungen des Interal nicht.',
+    fr: 'La forme candidate ne satisfait pas aux exigences applicables de l’Interal.',
+    es: 'La forma candidata no cumple los requisitos aplicables del Interal.',
+    it: 'La forma candidata non soddisfa i requisiti applicabili dell’Interal.',
+    ru: 'Кандидатная форма не соответствует применимым требованиям Интераля.'
   }),
   needs_manual_review: Object.freeze({
-    en: 'Manual review is required; concrete derivatives are not generated without a separate morphological and semantic check.',
-    de: 'Eine manuelle Prüfung ist erforderlich; konkrete Ableitungen werden ohne gesonderte morphologische und semantische Prüfung nicht erzeugt.',
-    fr: 'Une vérification manuelle est nécessaire ; aucun dérivé concret n’est généré sans contrôle morphologique et sémantique distinct.',
-    es: 'Se requiere una revisión manual; no se generan derivaciones concretas sin una comprobación morfológica y semántica separada.',
-    it: 'È necessaria una revisione manuale; non vengono generate derivazioni concrete senza una verifica morfologica e semantica separata.',
-    ru: 'Требуется ручная проверка; конкретные производные не генерируются без отдельной морфологической и семантической проверки.'
+    en: 'The candidate form requires manual review.',
+    de: 'Die Kandidatenform erfordert eine manuelle Prüfung.',
+    fr: 'La forme candidate nécessite une vérification manuelle.',
+    es: 'La forma candidata requiere una revisión manual.',
+    it: 'La forma candidata richiede una verifica manuale.',
+    ru: 'Кандидатная форма требует ручной проверки.'
   })
 });
 
@@ -37,14 +37,31 @@ function cloneRecord(value) {
     : JSON.parse(JSON.stringify(value));
 }
 
+export function hasDerivationalPotential(raw = {}, input = {}) {
+  const derivation = raw?.derivation && typeof raw.derivation === 'object' && !Array.isArray(raw.derivation)
+    ? raw.derivation
+    : {};
+  const capabilities = {
+    verb: derivation.canFormVerb === true,
+    noun: derivation.canFormNoun === true,
+    adjective: derivation.canFormAdjective === true
+  };
+  const sourcePartOfSpeech = String(input.partOfSpeech || '').trim();
+  if (Object.prototype.hasOwnProperty.call(capabilities, sourcePartOfSpeech)) {
+    capabilities[sourcePartOfSpeech] = false;
+  }
+  return Object.values(capabilities).some(Boolean);
+}
+
 export function sanitizeGeneratedDerivativeClaims(raw = {}, input = {}) {
   const result = cloneRecord(raw);
   const language = input.interfaceLanguage === 'en' ? 'en' : 'ru';
+  const potential = hasDerivationalPotential(result, input);
 
   if (!result.analysis || typeof result.analysis !== 'object' || Array.isArray(result.analysis)) {
     result.analysis = {};
   }
-  result.analysis.derivationalPotential = SAFE_DERIVATIONAL_POTENTIAL[language];
+  result.analysis.derivationalPotential = POTENTIAL_LABELS[language][potential ? 'yes' : 'no'];
 
   if (!result.derivation || typeof result.derivation !== 'object' || Array.isArray(result.derivation)) {
     result.derivation = {};
