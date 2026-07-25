@@ -4,7 +4,10 @@ import {
   buildAltervordesSystemPrompt,
   buildAltervordesUserPrompt
 } from '../api/lib/altervordes-prompts.js';
-import { sanitizeGeneratedDerivativeClaims } from '../api/lib/altervordes-noun-guard.js';
+import {
+  hasDerivationalPotential,
+  sanitizeGeneratedDerivativeClaims
+} from '../api/lib/altervordes-noun-guard.js';
 
 const context = {
   version: 'test-version',
@@ -31,57 +34,77 @@ for (const prompt of [ruSystem, enSystem, ruUser, enUser]) {
   assert.equal(prompt.includes('{{INPUT_JSON}}'), false);
 }
 
-assert.match(ruSystem, /Интераля/);
-assert.match(ruSystem, /Никогда не пиши «Интерала»/);
-assert.match(ruSystem, /binding-context-marker/);
-assert.match(ruSystem, /ПРОВЕРКА ДЕРИВАЦИОННОГО ПОТЕНЦИАЛА БЕЗ ГЕНЕРАЦИИ СЛОВ/);
-assert.match(ruSystem, /В `derivation\.possibleDerivations` всегда возвращай пустой массив/);
-assert.match(ruSystem, /не пиши ни одного нового слова/);
-assert.match(ruSystem, /`-ment` отбрасывается только конечная `r` или `n`/);
-assert.match(ruSystem, /`-ori\/a` является специальным вариантом, а не универсальным суффиксом со значением места/);
-assert.match(ruSystem, /не создавай её/);
+assert.match(ruSystem, /ОЦЕНКА ДЕРИВАЦИОННОГО ПОТЕНЦИАЛА/);
+assert.match(ruSystem, /возвращай ровно одно из двух значений/);
+assert.match(ruSystem, /`Есть\.`/);
+assert.match(ruSystem, /`Нет\.`/);
+assert.match(ruSystem, /запрещены любые объяснения, ссылки, номера параграфов/);
+assert.match(ruSystem, /пустой массив `\[\]`/);
 
-assert.match(enSystem, /EVALUATING DERIVATIONAL POTENTIAL WITHOUT GENERATING WORDS/);
-assert.match(enSystem, /Always return an empty array `\[\]` in `derivation\.possibleDerivations`/);
-assert.match(enSystem, /do not write any new word/);
-assert.match(enSystem, /with `-ment`, only final `r` or `n` is removed/);
-assert.match(enSystem, /`-ori\/a` is a special variant, not a universal place-forming suffix/);
-assert.match(enSystem, /do not create it/);
+assert.match(enSystem, /EVALUATING DERIVATIONAL POTENTIAL/);
+assert.match(enSystem, /return exactly one of these two values/);
+assert.match(enSystem, /`Yes\.`/);
+assert.match(enSystem, /`No\.`/);
+assert.match(enSystem, /No explanations, references, paragraph numbers/);
+assert.match(enSystem, /empty array `\[\]`/);
 
-assert.match(ruUser, /Не создавай и не перечисляй конкретные производные/);
-assert.match(ruUser, /всегда верни пустой массив `\[\]`/);
-assert.match(enUser, /Do not construct or list concrete derivatives/);
-assert.match(enUser, /Always return an empty array `\[\]`/);
+assert.match(ruUser, /верни только `Есть\.` или `Нет\.`/);
+assert.match(ruUser, /без объяснений, ссылок, примеров и уточнений/);
+assert.match(enUser, /return only `Yes\.` or `No\.`/);
+assert.match(enUser, /without explanations, references, examples, or qualifications/);
 
-const unsafeResult = {
+const resultWithPotential = {
   decision: 'accepted',
   eligible: true,
   analysis: {
-    derivationalPotential: "Существительные: 'testa', 'testat', 'testate', 'testator'; прилагательные: 'testal', 'testiv'."
+    derivationalPotential: "Существительные: 'testa', 'testator'; прилагательное: 'testal'."
   },
   derivation: {
-    possibleDerivations: ['testa', 'testat', 'testate', 'testator', 'testation', 'testment']
+    canFormVerb: true,
+    canFormNoun: true,
+    canFormAdjective: false,
+    possibleDerivations: ['testa', 'testator', 'testal']
   },
   shortConclusion: {
-    en: 'The candidate can form testat and testator.',
-    de: 'Die Formen testat und testator sind möglich.',
-    fr: 'Les formes testat et testator sont possibles.',
-    es: 'Las formas testat y testator son posibles.',
-    it: 'Le forme testat e testator sono possibili.',
-    ru: 'Возможны формы testat и testator.'
+    en: 'The candidate can form testator.',
+    de: 'Testator ist möglich.',
+    fr: 'Testator est possible.',
+    es: 'Testator es posible.',
+    it: 'Testator è possibile.',
+    ru: 'Возможна форма testator.'
   }
 };
 
-const sanitized = sanitizeGeneratedDerivativeClaims(unsafeResult, baseInput);
-assert.deepEqual(sanitized.derivation.possibleDerivations, []);
-assert.doesNotMatch(sanitized.analysis.derivationalPotential, /testa|testat|testator|testment/i);
-assert.match(sanitized.analysis.derivationalPotential, /Конкретные производные не перечисляются/);
-assert.doesNotMatch(sanitized.shortConclusion.ru, /testat|testator/i);
-assert.equal(Object.keys(sanitized.shortConclusion).sort().join(','), 'de,en,es,fr,it,ru');
+assert.equal(hasDerivationalPotential(resultWithPotential, baseInput), true);
+const sanitizedWithPotential = sanitizeGeneratedDerivativeClaims(resultWithPotential, baseInput);
+assert.equal(sanitizedWithPotential.analysis.derivationalPotential, 'Есть.');
+assert.deepEqual(sanitizedWithPotential.derivation.possibleDerivations, []);
+assert.doesNotMatch(sanitizedWithPotential.shortConclusion.ru, /testator/i);
 
-const apiSource = await readFile(new URL('../api/qwen-analyze.js', import.meta.url), 'utf8');
-assert.match(apiSource, /buildAltervordesSystemPromptV2\(input\.interfaceLanguage, DERIVATION_CONTEXT\)/);
-assert.match(apiSource, /buildAltervordesUserPromptV2\(input\)/);
+const resultWithoutPotential = {
+  decision: 'accepted',
+  eligible: true,
+  analysis: { derivationalPotential: 'Подробное объяснение.' },
+  derivation: {
+    canFormVerb: true,
+    canFormNoun: false,
+    canFormAdjective: false,
+    possibleDerivations: ['invented']
+  },
+  shortConclusion: {}
+};
+
+assert.equal(hasDerivationalPotential(resultWithoutPotential, baseInput), false);
+const sanitizedWithoutPotential = sanitizeGeneratedDerivativeClaims(resultWithoutPotential, baseInput);
+assert.equal(sanitizedWithoutPotential.analysis.derivationalPotential, 'Нет.');
+assert.deepEqual(sanitizedWithoutPotential.derivation.possibleDerivations, []);
+
+const englishWithoutPotential = sanitizeGeneratedDerivativeClaims(resultWithoutPotential, {
+  ...baseInput,
+  interfaceLanguage: 'en'
+});
+assert.equal(englishWithoutPotential.analysis.derivationalPotential, 'No.');
+assert.equal(Object.keys(englishWithoutPotential.shortConclusion).sort().join(','), 'de,en,es,fr,it,ru');
 
 const publicEndpoint = await readFile(new URL('../api/altervordes-analyze.js', import.meta.url), 'utf8');
 assert.match(publicEndpoint, /altervordes-analyze-guarded\.js/);
@@ -94,4 +117,4 @@ const coreEndpoint = await readFile(new URL('../api/altervordes-analyze-core.js'
 assert.match(coreEndpoint, /multilingualShortConclusion: true/);
 assert.match(coreEndpoint, /buildAltervordesSystemPrompt/);
 
-console.log('Alter vordes prompt and derivative suppression tests passed.');
+console.log('Alter vordes binary derivational potential tests passed.');
