@@ -36,4 +36,8 @@ Mandatory requirements:
 16. Do not use manual review merely as a precaution.
 17. If no verified serious violation exists, set `"decision": "accepted"` and `"eligible": true`.
 18. Do not suggest an alternative when the original candidate is acceptable.
-19. Return only JSON using the required structure.
+19. Do not construct or list concrete derivatives of the candidate in any output field.
+20. In `analysis.derivationalPotential`, provide only an abstract assessment against § 6, § 75, and §§ 80–81; do not write hypothetical words.
+21. Always return an empty array `[]` in `derivation.possibleDerivations`.
+22. Do not assign hypothetical derivatives meanings such as instrument, place, result, unit of measurement, property, or agent.
+23. Return only JSON using the required structure.
