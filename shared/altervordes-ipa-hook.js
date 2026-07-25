@@ -3,6 +3,8 @@
   if (!cards?.createCardOnServer || cards.__altervordesIpaHookInstalled) return;
 
   const originalCreateCardOnServer = cards.createCardOnServer;
+  const hookUrl = document.currentScript?.src || window.location.href;
+  const transcriberUrl = new URL('./interal-ipa.mjs', hookUrl).href;
   let transcriberModulePromise = null;
 
   function clonePayload(payload) {
@@ -21,7 +23,7 @@
 
     let preparedPayload = payload;
     if (section === 'altervordes' && word && !existingIpa) {
-      transcriberModulePromise ||= import('./interal-ipa.mjs');
+      transcriberModulePromise ||= import(transcriberUrl);
       const { transcribeInteral } = await transcriberModulePromise;
       preparedPayload = clonePayload(payload);
       preparedPayload.interal = {
