@@ -1,5 +1,9 @@
 import { readFileSync } from 'node:fs';
 import { getQwenLanguageInstruction, normalizeInterfaceLanguage } from './lib/interface-language.js';
+import {
+  buildAltervordesSystemPrompt as buildAltervordesSystemPromptV2,
+  buildAltervordesUserPrompt as buildAltervordesUserPromptV2
+} from './lib/altervordes-prompts.js';
 
 const DERIVATION_CONTEXT = JSON.parse(
   readFileSync(new URL('./interal-derivation-context.json', import.meta.url), 'utf8')
@@ -406,7 +410,10 @@ async function runAltervordes(payload, interfaceLanguage) {
   if (!process.env[TASKS.altervordes.modelEnv]) throw Object.assign(Error(`Missing Yandex API key: ${TASKS.altervordes.modelEnv}`), { status: 500 });
   if (!process.env[TASKS.altervordes.folderEnv]) throw Object.assign(Error(`Missing Yandex folder id: ${TASKS.altervordes.folderEnv}`), { status: 500 });
   const input = validateAltervordes({ ...payload, interfaceLanguage });
-  const messages = [{ role: 'system', content: buildAltervordesSystemPrompt(input.interfaceLanguage) }, { role: 'user', content: buildAltervordesUserPrompt(input) }];
+  const messages = [
+    { role: 'system', content: buildAltervordesSystemPromptV2(input.interfaceLanguage, DERIVATION_CONTEXT) },
+    { role: 'user', content: buildAltervordesUserPromptV2(input) }
+  ];
   let result;
   try { result = await callYandex(messages, true); }
   catch (error) { if (error.status && error.status >= 400 && error.status < 500) result = await callYandex(messages, false); else throw error; }
