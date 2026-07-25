@@ -1,0 +1,322 @@
+name: One-time Interal IPA integration
+
+on:
+  push:
+    paths:
+      - .github/workflows/fix-interal-ipa.yml
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+      - name: Add deterministic IPA and repair pesar card
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          from datetime import datetime, timezone
+
+          module = r'''const BASE_VOWELS = new Set(['a', 'e', 'i', 'o', 'u']);
+          const STRESS_VOWELS = new Set(['a', 'e', 'i', 'o', 'u', 'y']);
+          const U_AS_VOWEL_EXCEPTIONS = [
+            'authentic', 'pausa', 'haus', 'audir', 'aura', 'fauna',
+            'sauna', 'caus', 'applaudir', 'laudar'
+          ];
+          const X_AS_KZ_WORDS = ['examen', 'exemple', 'exercise', 'exister'];
+
+          function parseOrthography(input) {
+            const chars = [];
+            let explicitStress = -1;
+            const graveIndices = new Set();
+            const normalized = String(input || '').trim().toLowerCase().normalize('NFD');
+
+            for (const symbol of normalized) {
+              if (/^[a-z]$/.test(symbol)) {
+                chars.push(symbol);
+                continue;
+              }
+              if ((symbol === '\u0301' || symbol === '\u0300') && chars.length) {
+                explicitStress = chars.length - 1;
+                if (symbol === '\u0300') graveIndices.add(chars.length - 1);
+              }
+            }
+
+            return { chars, explicitStress, graveIndices };
+          }
+
+          function isStressVowel(char) {
+            return STRESS_VOWELS.has(char);
+          }
+
+          function vowelIndices(chars) {
+            const result = [];
+            chars.forEach((char, index) => {
+              if (isStressVowel(char)) result.push(index);
+            });
+            return result;
+          }
+
+          function previousVowel(chars, beforeIndex) {
+            for (let index = beforeIndex - 1; index >= 0; index -= 1) {
+              if (isStressVowel(chars[index])) return index;
+            }
+            return -1;
+          }
+
+          function findStressIndex(chars, explicitStress, partOfSpeech = '') {
+            const vowels = vowelIndices(chars);
+            if (vowels.length <= 1) return -1;
+            if (explicitStress >= 0 && isStressVowel(chars[explicitStress])) return explicitStress;
+
+            const word = chars.join('');
+            const lastVowel = vowels[vowels.length - 1];
+
+            if (/(?:ita|ite|eta|ete|yer)$/.test(word)) return lastVowel;
+            if (word.endsWith('abil')) return word.length - 4;
+            if (word.endsWith('ibil')) return word.length - 4;
+            if (word.endsWith('eria')) return vowels[vowels.length - 2];
+
+            const shiftedEnding = word.match(/(?:ic|er|or|ing|im|um|us|is|ul|ix)$/)?.[0];
+            if (shiftedEnding && !(shiftedEnding === 'er' && partOfSpeech === 'verb')) {
+              const index = previousVowel(chars, word.length - shiftedEnding.length);
+              if (index >= 0) return index;
+            }
+
+            for (let index = chars.length - 1; index >= 0; index -= 1) {
+              if (!isStressVowel(chars[index])) {
+                if (chars[index] === 'u' && index > 0 && BASE_VOWELS.has(chars[index - 1])) {
+                  return index - 1;
+                }
+                const indexBeforeLastConsonant = previousVowel(chars, index);
+                if (indexBeforeLastConsonant >= 0) return indexBeforeLastConsonant;
+              }
+            }
+
+            return vowels[Math.max(0, vowels.length - 2)];
+          }
+
+          function findSyllableStart(chars, stressIndex) {
+            if (stressIndex < 0) return -1;
+            const previous = previousVowel(chars, stressIndex);
+            return previous < 0 ? 0 : previous + 1;
+          }
+
+          function isVowelForContext(chars, index) {
+            const char = chars[index];
+            if (BASE_VOWELS.has(char)) return true;
+            if (char !== 'y') return false;
+            const previous = chars[index - 1];
+            const next = chars[index + 1];
+            return !(BASE_VOWELS.has(previous) && next);
+          }
+
+          function usesRegularU(word) {
+            return U_AS_VOWEL_EXCEPTIONS.some((root) => word.startsWith(root));
+          }
+
+          function usesKzForX(word) {
+            return X_AS_KZ_WORDS.some((root) => word.startsWith(root));
+          }
+
+          export function transcribeInteral(input, options = {}) {
+            const { chars, explicitStress, graveIndices } = parseOrthography(input);
+            if (!chars.length) return '';
+
+            const word = chars.join('');
+            const stressIndex = findStressIndex(chars, explicitStress, String(options.partOfSpeech || ''));
+            const stressStart = findSyllableStart(chars, stressIndex);
+            const regularU = usesRegularU(word);
+            const xAsKz = usesKzForX(word);
+            const output = [];
+
+            for (let index = 0; index < chars.length; index += 1) {
+              if (index === stressStart) output.push('ˈ');
+
+              const char = chars[index];
+              const next = chars[index + 1];
+              const next2 = chars[index + 2];
+              const previous = chars[index - 1];
+
+              if (char === 'q' && next === 'u') {
+                output.push('kw');
+                index += 1;
+                continue;
+              }
+              if (char === 'g' && next === 'u' && isVowelForContext(chars, index + 2)) {
+                output.push('gw');
+                index += 1;
+                continue;
+              }
+              if (char === 's' && next === 'h') {
+                output.push('ʂ');
+                index += 1;
+                continue;
+              }
+              if (char === 'c' && next === 'h') {
+                output.push(graveIndices.has(index + 2) ? 'k' : 't͡ɕ');
+                index += 1;
+                continue;
+              }
+              if (char === 'z' && next === 'z') {
+                output.push('t͡s');
+                index += 1;
+                continue;
+              }
+              if (char === 'p' && next === 'h') {
+                output.push('f');
+                index += 1;
+                continue;
+              }
+              if (char === 'r' && next === 'h') {
+                output.push('r');
+                index += 1;
+                continue;
+              }
+              if (char === 't' && next === 'h') {
+                output.push('t');
+                index += 1;
+                continue;
+              }
+              if (char === 't' && next === 'i' && ['a', 'e', 'o', 'u'].includes(next2)) {
+                output.push('t͡s');
+                continue;
+              }
+
+              if (char === 'c') {
+                output.push(['i', 'e', 'y'].includes(next) ? 't͡s' : 'k');
+              } else if (char === 's') {
+                output.push(isVowelForContext(chars, index - 1) && isVowelForContext(chars, index + 1) ? 'z' : 's');
+              } else if (char === 'u' && !regularU && ['a', 'e'].includes(previous)) {
+                output.push('w');
+              } else if (char === 'x') {
+                output.push(xAsKz ? 'kz' : 'ks');
+              } else if (char === 'y') {
+                output.push(isVowelForContext(chars, index - 1) && Boolean(next) ? 'j' : 'i');
+              } else {
+                output.push({
+                  a: 'a', b: 'b', d: 'd', e: 'e', f: 'f', g: 'g', h: 'x',
+                  i: 'i', j: 'ʒ', k: 'k', l: 'l', m: 'm', n: 'n', o: 'o',
+                  p: 'p', q: 'k', r: 'r', t: 't', v: 'v', w: 'w', z: 'z'
+                }[char] || char);
+              }
+            }
+
+            return output.join('');
+          }
+          '''
+          Path('shared/interal-ipa.mjs').write_text(module, encoding='utf-8')
+
+          api_path = Path('api/cards.js')
+          api = api_path.read_text(encoding='utf-8')
+          import_anchor = "import { normalizeCardSchema } from '../shared/card-schema.mjs';"
+          if "interal-ipa.mjs" not in api:
+              assert import_anchor in api
+              api = api.replace(import_anchor, import_anchor + "\nimport { transcribeInteral } from '../shared/interal-ipa.mjs';", 1)
+
+          old_signature = 'function buildPublicCardPayload(payload, id) {'
+          if old_signature in api:
+              api = api.replace(old_signature, "function buildPublicCardPayload(payload, id, section = '') {", 1)
+
+          anchor = '  payload = normalizedPayload;\n'
+          ipa_block = '''  payload = normalizedPayload;
+          const shouldGenerateInteralIpa = section === 'altervordes'
+            || payload?.vord_type === 'al'
+            || payload?.procedure === 'alter_word';
+          const interalWord = typeof payload?.interal?.word === 'string'
+            ? payload.interal.word.trim()
+            : '';
+          const existingIpa = typeof payload?.interal?.ipa === 'string'
+            ? payload.interal.ipa.trim()
+            : '';
+          if (shouldGenerateInteralIpa && interalWord && !existingIpa) {
+            payload.interal = {
+              ...payload.interal,
+              ipa: transcribeInteral(interalWord, {
+                partOfSpeech: payload.interal?.part_of_speech
+              })
+            };
+          }
+          '''
+          if 'shouldGenerateInteralIpa' not in api:
+              assert anchor in api
+              api = api.replace(anchor, ipa_block, 1)
+
+          api = api.replace('const cardPayload = buildPublicCardPayload(payload, id);', 'const cardPayload = buildPublicCardPayload(payload, id, section);')
+          api_path.write_text(api, encoding='utf-8')
+
+          test = r'''import assert from 'node:assert/strict';
+          import { transcribeInteral } from '../shared/interal-ipa.mjs';
+          import { buildPublicCardPayload } from '../api/cards.js';
+
+          assert.equal(transcribeInteral('pesar', { partOfSpeech: 'verb' }), 'peˈzar');
+          assert.equal(transcribeInteral('PESAR', { partOfSpeech: 'verb' }), 'peˈzar');
+          assert.equal(transcribeInteral('casa'), 'ˈkaza');
+          assert.equal(transcribeInteral('dre'), 'dre');
+          assert.equal(transcribeInteral('exámen'), 'eˈkzamen');
+
+          const generated = buildPublicCardPayload({
+            version: '1.0',
+            card_type: 'vord_card',
+            vord_type: 'al',
+            procedure: 'alter_word',
+            interal: { word: 'pesar', part_of_speech: 'verb' },
+            translation: { language: 'ru', word: 'весить' }
+          }, 'al_123456789abc', 'altervordes');
+          assert.equal(generated.interal.ipa, 'peˈzar');
+
+          const preserved = buildPublicCardPayload({
+            version: '1.0',
+            card_type: 'vord_card',
+            vord_type: 'al',
+            interal: { word: 'pesar', ipa: 'custom', part_of_speech: 'verb' }
+          }, 'al_abcdefghijkl', 'altervordes');
+          assert.equal(preserved.interal.ipa, 'custom');
+
+          const card = JSON.parse(await (await import('node:fs/promises')).readFile('cards/accepted/al/al_PJGrBLWQYMqT.json', 'utf8'));
+          assert.equal(card.interal.ipa, 'peˈzar');
+          const registry = JSON.parse(await (await import('node:fs/promises')).readFile('cards/registry.json', 'utf8'));
+          const registryCard = registry.cards.find((item) => item.id === 'al_PJGrBLWQYMqT');
+          assert.equal(registryCard.ipa, 'peˈzar');
+          assert.match(registryCard.search_blob, /peˈzar/);
+
+          console.log('Interal IPA generation tests passed.');
+          '''
+          Path('tests/interal-ipa.test.mjs').write_text(test, encoding='utf-8')
+
+          card_path = Path('cards/accepted/al/al_PJGrBLWQYMqT.json')
+          card = json.loads(card_path.read_text(encoding='utf-8'))
+          card.setdefault('interal', {})['ipa'] = 'peˈzar'
+          card_path.write_text(json.dumps(card, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+
+          registry_path = Path('cards/registry.json')
+          registry = json.loads(registry_path.read_text(encoding='utf-8'))
+          target = next(item for item in registry.get('cards', []) if item.get('id') == 'al_PJGrBLWQYMqT')
+          target['ipa'] = 'peˈzar'
+          blob = str(target.get('search_blob') or '')
+          if 'peˈzar' not in blob:
+              target['search_blob'] = (blob + ' peˈzar').strip()
+          registry['generated_at'] = datetime.now(timezone.utc).isoformat(timespec='milliseconds').replace('+00:00', 'Z')
+          registry_path.write_text(json.dumps(registry, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+
+          Path('.github/workflows/fix-interal-ipa.yml').unlink()
+          PY
+      - name: Validate
+        run: |
+          node --check api/cards.js
+          node tests/interal-ipa.test.mjs
+      - name: Commit result
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add -A
+          git commit -m "Add deterministic IPA to Alter vordes cards"
+          git push
