@@ -1,0 +1,39 @@
+Evaluate the following candidate word for the Interal Alter vordes category.
+
+Alter vordes are words that did not pass any of the five main lexical selection procedures:
+
+1. grammatical and short function words;
+2. internationalisms;
+3. professional, cultural, social, or subcultural community words;
+4. common Indo-European words;
+5. associative words.
+
+This is a qualitative, not mathematical, procedure.
+
+Do not calculate percentages, scores, or numerical ratings.
+
+Input:
+
+{{INPUT_JSON}}
+
+Mandatory requirements:
+
+1. Analyse only the meaning supplied in `translation`.
+2. Do not assign unrelated meanings to the candidate.
+3. Translate the supplied meaning into all control and auxiliary languages.
+4. Check the form only against the binding INTERAL_DERIVATION_CONTEXT.
+5. Identify the exact infinitive type and applicable stem transformation.
+6. Apply every provision of the modified de Wahl rule relevant to the candidate.
+7. Consider exceptions, alternative forms, and the noun- and adjective-formation rules.
+8. Do not replace the modified de Wahl rule with the classical rule.
+9. Do not treat a normative stem alternation as a derivational defect.
+10. Do not treat the existence of two stems or several normative forms as instability.
+11. Do not require unnecessary derivatives unrelated to the candidate meaning.
+12. Do not invent conflicts with absent or unverified Interal words.
+13. Do not treat foreign-language polysemy as a serious conflict.
+14. Do not add minor or hypothetical observations to `risks`.
+15. Reject the candidate only when a specific violation is proven.
+16. Do not use manual review merely as a precaution.
+17. If no verified serious violation exists, set `"decision": "accepted"` and `"eligible": true`.
+18. Do not suggest an alternative when the original candidate is acceptable.
+19. Return only JSON using the required structure.
