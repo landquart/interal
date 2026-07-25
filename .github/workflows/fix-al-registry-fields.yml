@@ -1,0 +1,66 @@
+name: One-time Alter vordes registry field fix
+
+on:
+  push:
+    paths:
+      - .github/workflows/fix-al-registry-fields.yml
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+      - name: Hide PI and language groups for Alter vordes
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('registre/index.html')
+          source = path.read_text(encoding='utf-8')
+
+          old_tags = """        const tags = document.createElement('div'); tags.className = 'card-tags'; [typeLabel(card), posLabel(card.part_of_speech), typeof card.pi_percent === 'number' ? `PI ${formatNumber(card.pi_percent)}` : ''].filter(Boolean).forEach((item, index) => { const tag = document.createElement('span'); tag.className = `card-tag${index === 0 ? ' card-tag--type' : ''}`; tag.textContent = item; tags.append(tag); });"""
+          new_tags = """        const isAlterWord = codeOf(card) === 'al';
+          const tags = document.createElement('div'); tags.className = 'card-tags'; [typeLabel(card), posLabel(card.part_of_speech), !isAlterWord && typeof card.pi_percent === 'number' ? `PI ${formatNumber(card.pi_percent)}` : ''].filter(Boolean).forEach((item, index) => { const tag = document.createElement('span'); tag.className = `card-tag${index === 0 ? ' card-tag--type' : ''}`; tag.textContent = item; tags.append(tag); });"""
+
+          old_grid = """        grid.append(row(t('type'), typeLabel(card)), row(t('partOfSpeech'), posLabel(card.part_of_speech)), row(t('translation'), translationForSiteLanguage(card)), row(t('pi'), formatNumber(card.pi_percent), 'pi'), row(t('groups'), groupListLabel(card.supported_groups)), row(t('author'), card.author), row(t('authorContact'), card.author_contact_url ? `${card.author_contact_type} — ${card.author_contact_url}` : ''), row(t('createdAt'), formatDate(card.created_at)), row(t('acceptedAt'), formatDate(card.accepted_at)), row(t('id'), card.id));"""
+          new_grid = """        const cardRows = [row(t('type'), typeLabel(card)), row(t('partOfSpeech'), posLabel(card.part_of_speech)), row(t('translation'), translationForSiteLanguage(card))];
+          if (!isAlterWord) cardRows.push(row(t('pi'), formatNumber(card.pi_percent), 'pi'), row(t('groups'), groupListLabel(card.supported_groups)));
+          cardRows.push(row(t('author'), card.author), row(t('authorContact'), card.author_contact_url ? `${card.author_contact_type} — ${card.author_contact_url}` : ''), row(t('createdAt'), formatDate(card.created_at)), row(t('acceptedAt'), formatDate(card.accepted_at)), row(t('id'), card.id));
+          grid.append(...cardRows);"""
+
+          assert old_tags in source, 'registry tag renderer changed'
+          assert old_grid in source, 'registry field renderer changed'
+          source = source.replace(old_tags, new_tags, 1).replace(old_grid, new_grid, 1)
+          path.write_text(source, encoding='utf-8')
+
+          test = """import assert from 'node:assert/strict';
+          import { readFile } from 'node:fs/promises';
+
+          const source = await readFile('registre/index.html', 'utf8');
+          assert.match(source, /const isAlterWord = codeOf\(card\) === 'al';/);
+          assert.match(source, /!isAlterWord && typeof card\.pi_percent === 'number'/);
+          assert.match(source, /if \(!isAlterWord\) cardRows\.push\(row\(t\('pi'\)/);
+          assert.match(source, /row\(t\('groups'\), groupListLabel\(card\.supported_groups\)\)/);
+          assert.match(source, /grid\.append\(\.\.\.cardRows\);/);
+          console.log('Alter vordes registry fields test passed.');
+          """
+          Path('tests/registry-altervordes-fields.test.mjs').write_text(test, encoding='utf-8')
+          Path('.github/workflows/fix-al-registry-fields.yml').unlink()
+          PY
+      - name: Validate
+        run: node tests/registry-altervordes-fields.test.mjs
+      - name: Commit result
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add -A
+          git commit -m "Hide PI and language groups for Alter vordes"
+          git push
