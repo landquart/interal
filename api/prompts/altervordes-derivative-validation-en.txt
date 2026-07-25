@@ -1,66 +1,22 @@
-VII. EVALUATING DERIVATIONAL POTENTIAL WITHOUT GENERATING WORDS
+VII. EVALUATING DERIVATIONAL POTENTIAL
 
-This section clarifies the combined application of § 6, § 75, and §§ 80–81 of the Interal grammar.
+Determine only whether the analysed form has derivational potential.
 
-Qwen performs a qualitative stem assessment but is not an Interal dictionary generator. Do not construct or list concrete derivatives of the candidate being analysed.
+Derivational potential exists when the form supports at least one regular and semantically justified direction of word formation without a verified morphological, orthographic, or semantic conflict.
 
-MANDATORY OUTPUT RESTRICTION
+Derivational potential does not exist when no such direction is supported or when word formation is blocked by a verified conflict.
 
-- Always return an empty array `[]` in `derivation.possibleDerivations`.
-- In `analysis.derivationalPotential`, do not write any new word produced from the candidate by removing or replacing an ending, transforming the stem, or adding a suffix.
-- Do not place hypothetical forms in quotation marks or backticks.
-- Do not list hypothetical nouns, adjectives, agents, instruments, places, processes, or results.
-- Do not use statements such as “can form”, “also possible”, or “natural derivatives” followed by a list of words.
-- Do not reproduce grammar examples as derivatives of the candidate being analysed.
+Strictly distinguish between present, root, and derivational stems, past-tense forms, and independent words. Do not treat a bound stem or grammatical form as an independent derivative. Do not extend an individual example to other lexical families.
 
-In `analysis.derivationalPotential`, assess only general properties of the stem:
+Do not construct or list concrete derivatives. Do not select suffixes or propose nouns, adjectives, agents, instruments, places, processes, results, or properties.
 
-1. whether the form permits a simple noun under the general pattern in § 6;
-2. whether the verbal stem is compatible with the applicable pattern in § 75;
-3. whether appropriate suffixes can attach without an orthographic or morphological conflict;
-4. whether each concrete derivative would require a separate semantic and attachment-rule check.
+Always return an empty array `[]` in `derivation.possibleDerivations`.
 
-Use abstract wording only, for example: the stem is compatible with regular Interal word formation; simple nouns follow § 6; a derivational stem is used only in the contexts specified by § 75; every suffix requires a separate morphological and semantic check.
+In `analysis.derivationalPotential`, return exactly one of these two values:
 
-Do not prove derivational potential by the number of invented derivatives. The formal possibility of attaching a suffix does not show that a concrete word is natural, necessary, or has the meaning selected by the model.
+- `Yes.` — when derivational potential exists;
+- `No.` — when derivational potential does not exist.
 
-DISTINGUISHING THE PATTERNS
+The value must be consistent with `derivation.canFormVerb`, `derivation.canFormNoun`, and `derivation.canFormAdjective`.
 
-Strictly distinguish between:
-
-- the present stem;
-- the root;
-- the perfect or derivational stem;
-- the past-tense form;
-- a simple noun;
-- a suffixed derivative.
-
-A bound stem written with a final hyphen is not an independent word. For verbs ending in `-ar` or `-ir`, the sequence produced by replacing final `r` with `t` also coincides with the past-tense form and must not be classified as a noun.
-
-Examples in § 75 demonstrate rules in particular cases. They do not permit automatic transfer of the same finished form to every other root.
-
-EXACT SUFFIX APPLICATION
-
-Do not choose a suffix merely because its approximate meaning appears suitable. First verify its complete form, the part of speech of the base, its attachment rule, and its normative meaning under §§ 80–81.
-
-Pay particular attention to the following:
-
-- with `-ment`, only final `r` or `n` is removed; do not shorten the stem arbitrarily;
-- `-ad/a` applies to verbs ending in `-ar`, whereas `-id/a` applies to verbs ending in `-ir` and `-er`;
-- `-ant` and `-ent` are distributed by infinitive type as specified in § 80;
-- use of `-or` after `t` and `s` is limited to the verb type specified in § 80 and is not a general replacement for every agent or instrument suffix;
-- `-ori/a` is a special variant, not a universal place-forming suffix;
-- `-iv` expresses ability or a property but cannot automatically be assigned any convenient meaning;
-- every other suffix must follow its own rule.
-
-Do not assign meanings such as “unit of measurement”, “scales”, “place of action”, “result”, or “having a property” unless they follow directly from the normative meaning of the selected suffix and the exact semantics of the base.
-
-SECTION FORMAT
-
-`analysis.derivationalPotential` must contain 1–3 sentences and no list of concrete words. It must state:
-
-- the general compatibility or incompatibility of the stem with derivation;
-- the relevant classes of rules;
-- the need to validate each real derivative separately.
-
-When a concrete derivative was not supplied by the user and is not itself the object of evaluation, do not create it.
+No explanations, references, paragraph numbers, rule names, examples, form lists, qualifications, or caveats are permitted in `analysis.derivationalPotential`.
