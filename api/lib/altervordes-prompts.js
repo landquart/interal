@@ -100,7 +100,7 @@ function applyMultilingualShortConclusion(template, language) {
   );
 }
 
-export function buildAltervordesSystemPrompt(interfaceLanguage, derivationContext) {
+export function buildAltervordesSystemPrompt(interfaceLanguage, derivationContext, options = {}) {
   const language = normalizeInterfaceLanguage(interfaceLanguage);
   const boundaries = DERIVATIVE_SECTION_BOUNDARIES[language];
   const revisedTemplate = replaceRequiredSection(
@@ -109,20 +109,24 @@ export function buildAltervordesSystemPrompt(interfaceLanguage, derivationContex
     boundaries.end,
     DERIVATIVE_VALIDATION_SECTIONS[language]
   );
-  const multilingualTemplate = applyMultilingualShortConclusion(revisedTemplate, language);
+  const finalTemplate = options.multilingualShortConclusion === true
+    ? applyMultilingualShortConclusion(revisedTemplate, language)
+    : revisedTemplate;
   return replaceRequiredPlaceholder(
-    multilingualTemplate,
+    finalTemplate,
     '{{INTERAL_DERIVATION_CONTEXT}}',
     JSON.stringify(derivationContext, null, 2)
   );
 }
 
-export function buildAltervordesUserPrompt(input) {
+export function buildAltervordesUserPrompt(input, options = {}) {
   const language = normalizeInterfaceLanguage(input?.interfaceLanguage);
   const rendered = replaceRequiredPlaceholder(
     USER_PROMPTS[language],
     '{{INPUT_JSON}}',
     JSON.stringify(input, null, 2)
   );
-  return `${rendered}\n\n${SHORT_CONCLUSION_USER_REQUIREMENT[language]}`;
+  return options.multilingualShortConclusion === true
+    ? `${rendered}\n\n${SHORT_CONCLUSION_USER_REQUIREMENT[language]}`
+    : rendered;
 }
