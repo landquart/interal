@@ -36,11 +36,21 @@ assert.match(ruSystem, /pesar → pesat-/);
 assert.match(ruSystem, /-mitter → -miss-/);
 assert.match(ruSystem, /согласная \+ g/);
 assert.match(ruSystem, /binding-context-marker/);
+assert.match(ruSystem, /САМОСТОЯТЕЛЬНЫЕ СЛОВА И СВЯЗАННЫЕ ДЕРИВАЦИОННЫЕ ТЕМЫ/);
+assert.match(ruSystem, /Тема, обозначенная конечным дефисом, является связанной морфемой/);
+assert.match(ruSystem, /Пустой массив предпочтительнее выдуманных или сомнительных форм/);
+assert.doesNotMatch(ruSystem, /VII\. СУЩЕСТВИТЕЛЬНЫЕ И ПРИЛАГАТЕЛЬНЫЕ БЕЗ УКАЗАННЫХ СУФФИКСОВ/);
+assert.doesNotMatch(ruSystem, /Не выводи существительное `pesat`/);
 
 assert.match(enSystem, /pesar → pesat-/);
 assert.match(enSystem, /-mitter → -miss-/);
 assert.match(enSystem, /consonant \+ `g`/);
 assert.match(enSystem, /binding-context-marker/);
+assert.match(enSystem, /INDEPENDENT WORDS AND BOUND DERIVATIONAL STEMS/);
+assert.match(enSystem, /A stem written with a final hyphen is a bound morpheme/);
+assert.match(enSystem, /An empty array is preferable to invented or doubtful forms/);
+assert.doesNotMatch(enSystem, /VII\. NOUNS AND ADJECTIVES WITHOUT THE LISTED SUFFIXES/);
+assert.doesNotMatch(enSystem, /Do not generate the noun `pesat`/);
 
 assert.match(ruUser, /"candidate": "pesar"/);
 assert.match(ruUser, /"interfaceLanguage": "ru"/);
