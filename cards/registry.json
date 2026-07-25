@@ -2,7 +2,7 @@
   "version": "1.0",
   "registry_type": "lexical_card_registry",
   "title": "Registre of lexical cartes",
-  "generated_at": "2026-07-25T17:15:44.836Z",
+  "generated_at": "2026-07-25T17:16:24.104Z",
   "count": 3,
   "vord_types": [
     "iv",
@@ -14,6 +14,30 @@
     "af"
   ],
   "cards": [
+    {
+      "id": "al_PJGrBLWQYMqT",
+      "vord_type": "alter vordes",
+      "vord_type_code": "al",
+      "status": "accepted",
+      "word": "pesar",
+      "ipa": "",
+      "translation_language": "ru",
+      "translation_word": "весить",
+      "translations": {
+        "ru": "весить"
+      },
+      "part_of_speech": "verb",
+      "created_at": "2026-07-25T16:50:41.808Z",
+      "created_at_source": "mini_app",
+      "accepted_at": "2026-07-25T17:15:44.835Z",
+      "author": "landquart",
+      "author_contact_type": "telegram",
+      "author_contact_url": "https://t.me/quinarta",
+      "pi_percent": null,
+      "supported_groups": [],
+      "detail_path": "cards/accepted/al/al_PJGrBLWQYMqT.json",
+      "search_blob": "al_pjgrblwqymqt al alter vordes pesar ru весить verb landquart alter_word 2026-06-29 wiegen ζυγιζω to weigh pesar peser pesare весить pesar pesar wazyc a cantari vaga die kandidatenform erfullt die anwendbaren anforderungen des interal. the candidate form meets the applicable interal requirements. la forma candidata cumple los requisitos aplicables del interal. la forme candidate satisfait aux exigences applicables de l’interal. la forma candidata soddisfa i requisiti applicabili dell’interal. кандидатная форма соответствует применимым требованиям интераля."
+    },
     {
       "id": "iv_1KjajlU3SH8Z",
       "vord_type": "indoeuropan vordes",
@@ -83,30 +107,6 @@
       ],
       "detail_path": "cards/accepted/iv/iv_3e1e5e67755f4b9aabe2758a1fe414e2.json",
       "search_blob": "iv_3e1e5e67755f4b9aabe2758a1fe414e2 iv indoeuropan vordes matre matre en mother noun landquart germanic romance slavic hellenic en english germanic mother mother ˈmʌðə m a t r e m ʌ ð ə de german germanic mutter mutter ˈmʊtɐ m a t r e m ʊ t ɐ fr french romance mere mere mɛʁ m a t r e m ɛ ʁ es spanish romance madre madre ˈmaðɾe m a t r e m a ð ɾ e it italian romance madre madre ˈmadre m a t r e m a d r e ru russian slavic мать mat' matʲ m a t r e m a t el greek hellenic μητερα mitera miˈtera m a t r e m i t e r a"
-    },
-    {
-      "id": "al_PJGrBLWQYMqT",
-      "vord_type": "alphabetic loans",
-      "vord_type_code": "al",
-      "status": "accepted",
-      "word": "pesar",
-      "ipa": "",
-      "translation_language": "ru",
-      "translation_word": "весить",
-      "translations": {
-        "ru": "весить"
-      },
-      "part_of_speech": "verb",
-      "created_at": "2026-07-25T16:50:41.808Z",
-      "created_at_source": "mini_app",
-      "accepted_at": "2026-07-25T17:15:44.835Z",
-      "author": "landquart",
-      "author_contact_type": "telegram",
-      "author_contact_url": "https://t.me/quinarta",
-      "pi_percent": null,
-      "supported_groups": [],
-      "detail_path": "cards/accepted/al/al_PJGrBLWQYMqT.json",
-      "search_blob": "al_pjgrblwqymqt alphabetic loans al accepted pesar  ru весить весить verb 2026-07-25t16:50:41.808z mini_app 2026-07-25t17:15:44.835z landquart telegram https://t.me/quinarta cards/accepted/al/al_pjgrblwqymqt.json"
     }
   ]
 }
