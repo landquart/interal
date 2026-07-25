@@ -1,1 +1,1 @@
-export { default } from './altervordes-analyze-guarded.js';
+export { default } from '../server/altervordes-analyze-handler.js';
