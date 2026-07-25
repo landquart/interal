@@ -26,6 +26,11 @@
   const authorAutosave = loadSource('json-author-autosave.js?v=json-author-autosave-20260725-1');
   (0, eval)(`${authorAutosave.source}\n//# sourceURL=${authorAutosave.url.href}`);
 
+  if (/\/registre\/?$/.test(window.location.pathname)) {
+    const registryFields = loadSource('registry-altervordes-fields.js?v=20260725-1');
+    (0, eval)(`${registryFields.source}\n//# sourceURL=${registryFields.url.href}`);
+  }
+
   if (!document.querySelector('link[data-interal-instrumentes-css]')) {
     const stylesheet = document.createElement('link');
     stylesheet.rel = 'stylesheet';
