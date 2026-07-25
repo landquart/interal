@@ -16,12 +16,15 @@
     return { source: request.responseText, url };
   }
 
-  const core = loadSource('ui-core.js');
+  const core = loadSource('ui-core.js?v=json-author-autosave-20260725-1');
   const coreSource = core.source.replace(
     'const currentScript = document.currentScript;',
     'const currentScript = document.querySelector(\'script[data-interal-ui-loader="true"]\');'
   );
   (0, eval)(`${coreSource}\n//# sourceURL=${core.url.href}`);
+
+  const authorAutosave = loadSource('json-author-autosave.js?v=json-author-autosave-20260725-1');
+  (0, eval)(`${authorAutosave.source}\n//# sourceURL=${authorAutosave.url.href}`);
 
   if (!document.querySelector('link[data-interal-instrumentes-css]')) {
     const stylesheet = document.createElement('link');
