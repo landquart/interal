@@ -1,0 +1,65 @@
+{
+  "id": "al_PJGrBLWQYMqT",
+  "author": {
+    "contacts": [
+      {
+        "url": "https://t.me/quinarta",
+        "type": "telegram"
+      }
+    ],
+    "display_name": "landquart"
+  },
+  "status": "accepted",
+  "interal": {
+    "word": "pesar",
+    "part_of_speech": "verb"
+  },
+  "version": "1.0",
+  "criteria": {
+    "brevity": true,
+    "conflicts": true,
+    "neutrality": true,
+    "pronounceability": true,
+    "interal_rule_compatibility": true,
+    "part_of_speech_suitability": true
+  },
+  "card_type": "vord_card",
+  "procedure": "alter_word",
+  "vord_type": "al",
+  "created_at": "2026-07-25T16:50:41.808Z",
+  "derivation": {
+    "rule_version": "2026-06-29"
+  },
+  "translation": {
+    "word": "весить",
+    "language": "ru"
+  },
+  "translations": {
+    "controlLanguages": {
+      "de": "wiegen",
+      "el": "ζυγίζω",
+      "en": "to weigh",
+      "es": "pesar",
+      "fr": "peser",
+      "it": "pesare",
+      "ru": "весить"
+    },
+    "auxiliaryLanguages": {
+      "ca": "pesar",
+      "oc": "pesar",
+      "pl": "ważyć",
+      "ro": "a cântări",
+      "sv": "väga"
+    }
+  },
+  "short_conclusion": {
+    "de": "Die Kandidatenform erfüllt die anwendbaren Anforderungen des Interal.",
+    "en": "The candidate form meets the applicable Interal requirements.",
+    "es": "La forma candidata cumple los requisitos aplicables del Interal.",
+    "fr": "La forme candidate satisfait aux exigences applicables de l’Interal.",
+    "it": "La forma candidata soddisfa i requisiti applicabili dell’Interal.",
+    "ru": "Кандидатная форма соответствует применимым требованиям Интераля."
+  },
+  "created_at_source": "mini_app",
+  "accepted_at": "2026-07-25T17:15:44.835Z"
+}
