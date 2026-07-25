@@ -7,7 +7,7 @@ import {
 import {
   hasDerivationalPotential,
   sanitizeGeneratedDerivativeClaims
-} from '../api/lib/altervordes-noun-guard.js';
+} from '../server/altervordes-noun-guard.js';
 
 const context = {
   version: 'test-version',
@@ -107,14 +107,11 @@ assert.equal(englishWithoutPotential.analysis.derivationalPotential, 'No.');
 assert.equal(Object.keys(englishWithoutPotential.shortConclusion).sort().join(','), 'de,en,es,fr,it,ru');
 
 const publicEndpoint = await readFile(new URL('../api/altervordes-analyze.js', import.meta.url), 'utf8');
-assert.match(publicEndpoint, /altervordes-analyze-guarded\.js/);
+assert.match(publicEndpoint, /\.\.\/server\/altervordes-analyze-handler\.js/);
 
-const guardedEndpoint = await readFile(new URL('../api/altervordes-analyze-guarded.js', import.meta.url), 'utf8');
-assert.match(guardedEndpoint, /altervordes-analyze-core\.js/);
-assert.match(guardedEndpoint, /sanitizeUnsupportedSimpleNounClaims/);
-
-const coreEndpoint = await readFile(new URL('../api/altervordes-analyze-core.js', import.meta.url), 'utf8');
-assert.match(coreEndpoint, /multilingualShortConclusion: true/);
-assert.match(coreEndpoint, /buildAltervordesSystemPrompt/);
+const serverHandler = await readFile(new URL('../server/altervordes-analyze-handler.js', import.meta.url), 'utf8');
+assert.match(serverHandler, /sanitizeGeneratedDerivativeClaims/);
+assert.match(serverHandler, /multilingualShortConclusion: true/);
+assert.match(serverHandler, /buildAltervordesSystemPrompt/);
 
 console.log('Alter vordes binary derivational potential tests passed.');
