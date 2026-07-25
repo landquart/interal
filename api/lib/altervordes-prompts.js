@@ -26,6 +26,41 @@ const DERIVATIVE_SECTION_BOUNDARIES = Object.freeze({
   }
 });
 
+const SHORT_CONCLUSION_SCHEMA = `"shortConclusion": {
+    "en": "",
+    "de": "",
+    "fr": "",
+    "es": "",
+    "it": "",
+    "ru": ""
+  }`;
+
+const SHORT_CONCLUSION_GUIDANCE = Object.freeze({
+  ru: `Поле \`shortConclusion\` должно содержать шесть кратких, естественных и семантически эквивалентных версий вывода на английском, немецком, французском, испанском, итальянском и русском языках.
+
+Каждое из полей \`en\`, \`de\`, \`fr\`, \`es\`, \`it\` и \`ru\` обязательно и должно содержать непустую строку.
+
+Сначала сформулируй один точный вывод по результатам анализа, затем передай его без изменения смысла на всех шести языках. Все версии должны выражать одно и то же решение, одни и те же основания, одинаковую степень уверенности и одинаковые ограничения. Не добавляй в одну языковую версию сведения, отсутствующие в других. Не смешивай языки и не оставляй непереведённые фрагменты.
+
+Переводи смысл естественно, а не механически слово в слово. Названия форм Интераля, морфемы, условные обозначения и примеры слов сохраняй без перевода, когда они являются объектом анализа.
+
+Каждая версия должна быть краткой и не повторять все предыдущие разделы.`,
+  en: `The \`shortConclusion\` field must contain six concise, natural, and semantically equivalent versions of the conclusion in English, German, French, Spanish, Italian, and Russian.
+
+Each of the \`en\`, \`de\`, \`fr\`, \`es\`, \`it\`, and \`ru\` fields is required and must contain a non-empty string.
+
+First formulate one precise conclusion from the analysis, then express it without changing its meaning in all six languages. Every version must communicate the same decision, grounds, degree of certainty, and limitations. Do not add information to one language version that is absent from the others. Do not mix languages or leave untranslated fragments.
+
+Translate the meaning naturally rather than mechanically word for word. Preserve Interal forms, morphemes, notation, and example words unchanged when they are the object of analysis.
+
+Keep every version concise and do not repeat all preceding sections.`
+});
+
+const SHORT_CONCLUSION_USER_REQUIREMENT = Object.freeze({
+  ru: 'Поле shortConclusion обязательно заполни на всех шести контрольных языках: en, de, fr, es, it, ru. Все шесть версий должны быть семантически эквивалентны.',
+  en: 'Populate shortConclusion in all six control languages: en, de, fr, es, it, ru. All six versions must be semantically equivalent.'
+});
+
 const USER_PROMPTS = Object.freeze({
   ru: readPrompt('altervordes-user-ru.txt'),
   en: readPrompt('altervordes-user-en.txt')
@@ -38,6 +73,13 @@ function replaceRequiredPlaceholder(template, placeholder, value) {
   return template.replace(placeholder, value);
 }
 
+function replaceRequiredText(template, original, replacement) {
+  if (!template.includes(original)) {
+    throw new Error(`Missing required prompt text: ${original}`);
+  }
+  return template.replace(original, replacement);
+}
+
 function replaceRequiredSection(template, startHeading, endHeading, replacement) {
   const startIndex = template.indexOf(startHeading);
   const endIndex = template.indexOf(endHeading, startIndex + startHeading.length);
@@ -45,6 +87,17 @@ function replaceRequiredSection(template, startHeading, endHeading, replacement)
     throw new Error(`Missing prompt section boundary: ${startHeading} -> ${endHeading}`);
   }
   return `${template.slice(0, startIndex)}${replacement.trim()}\n\n${template.slice(endIndex)}`;
+}
+
+function applyMultilingualShortConclusion(template, language) {
+  const oldGuidance = language === 'ru'
+    ? '`shortConclusion` должно содержать краткий итог без повторения всех разделов.'
+    : 'Keep `shortConclusion` concise and do not repeat all previous sections.';
+  return replaceRequiredText(
+    replaceRequiredText(template, '"shortConclusion": ""', SHORT_CONCLUSION_SCHEMA),
+    oldGuidance,
+    SHORT_CONCLUSION_GUIDANCE[language]
+  );
 }
 
 export function buildAltervordesSystemPrompt(interfaceLanguage, derivationContext) {
@@ -56,8 +109,9 @@ export function buildAltervordesSystemPrompt(interfaceLanguage, derivationContex
     boundaries.end,
     DERIVATIVE_VALIDATION_SECTIONS[language]
   );
+  const multilingualTemplate = applyMultilingualShortConclusion(revisedTemplate, language);
   return replaceRequiredPlaceholder(
-    revisedTemplate,
+    multilingualTemplate,
     '{{INTERAL_DERIVATION_CONTEXT}}',
     JSON.stringify(derivationContext, null, 2)
   );
@@ -65,9 +119,10 @@ export function buildAltervordesSystemPrompt(interfaceLanguage, derivationContex
 
 export function buildAltervordesUserPrompt(input) {
   const language = normalizeInterfaceLanguage(input?.interfaceLanguage);
-  return replaceRequiredPlaceholder(
+  const rendered = replaceRequiredPlaceholder(
     USER_PROMPTS[language],
     '{{INPUT_JSON}}',
     JSON.stringify(input, null, 2)
   );
+  return `${rendered}\n\n${SHORT_CONCLUSION_USER_REQUIREMENT[language]}`;
 }
