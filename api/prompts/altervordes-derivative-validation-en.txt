@@ -1,143 +1,66 @@
-VII. EXACT ALGORITHM FOR FORMING NOUNS FROM VERBS
+VII. EVALUATING DERIVATIONAL POTENTIAL WITHOUT GENERATING WORDS
 
-This section clarifies the combined application of § 6 and the notes to § 75 of the Interal grammar. If an abbreviated statement in INTERAL_DERIVATION_CONTEXT permits more than one interpretation, follow the exact algorithm and restrictions in this section.
+This section clarifies the combined application of § 6, § 75, and §§ 80–81 of the Interal grammar.
+
+Qwen performs a qualitative stem assessment but is not an Interal dictionary generator. Do not construct or list concrete derivatives of the candidate being analysed.
+
+MANDATORY OUTPUT RESTRICTION
+
+- Always return an empty array `[]` in `derivation.possibleDerivations`.
+- In `analysis.derivationalPotential`, do not write any new word produced from the candidate by removing or replacing an ending, transforming the stem, or adding a suffix.
+- Do not place hypothetical forms in quotation marks or backticks.
+- Do not list hypothetical nouns, adjectives, agents, instruments, places, processes, or results.
+- Do not use statements such as “can form”, “also possible”, or “natural derivatives” followed by a list of words.
+- Do not reproduce grammar examples as derivatives of the candidate being analysed.
+
+In `analysis.derivationalPotential`, assess only general properties of the stem:
+
+1. whether the form permits a simple noun under the general pattern in § 6;
+2. whether the verbal stem is compatible with the applicable pattern in § 75;
+3. whether appropriate suffixes can attach without an orthographic or morphological conflict;
+4. whether each concrete derivative would require a separate semantic and attachment-rule check.
+
+Use abstract wording only, for example: the stem is compatible with regular Interal word formation; simple nouns follow § 6; a derivational stem is used only in the contexts specified by § 75; every suffix requires a separate morphological and semantic check.
+
+Do not prove derivational potential by the number of invented derivatives. The formal possibility of attaching a suffix does not show that a concrete word is natural, necessary, or has the meaning selected by the model.
+
+DISTINGUISHING THE PATTERNS
 
 Strictly distinguish between:
 
-- the present stem of a verb;
+- the present stem;
+- the root;
 - the perfect or derivational stem;
 - the past-tense form;
-- an independent noun without a derivational suffix;
-- a noun formed with a specific derivational suffix.
+- a simple noun;
+- a suffixed derivative.
 
-Do not merge these categories under the general statement that “nouns can be formed from the verb.” Determine the formation path of every individual form first.
+A bound stem written with a final hyphen is not an independent word. For verbs ending in `-ar` or `-ir`, the sequence produced by replacing final `r` with `t` also coincides with the past-tense form and must not be classified as a noun.
 
-A. GENERAL PRODUCTIVE PATTERN FOR A SIMPLE NOUN
+Examples in § 75 demonstrate rules in particular cases. They do not permit automatic transfer of the same finished form to every other root.
 
-For ordinary infinitives ending in `-ar`, `-er`, or `-ir`, a simple noun without a derivational suffix is formed by default from the present form or the root.
+EXACT SUFFIX APPLICATION
 
-1. Final `r` may be removed while preserving the preceding infinitive vowel:
+Do not choose a suffix merely because its approximate meaning appears suitable. First verify its complete form, the part of speech of the base, its attachment rule, and its normative meaning under §§ 80–81.
 
-- `nominar → nomina`;
-- `dictar → dicta`;
-- `formar → forma`.
+Pay particular attention to the following:
 
-2. The whole infinitive ending `-ar`, `-er`, or `-ir` may be removed, after which the root may remain without an ending or take optional noun ending `-e`:
+- with `-ment`, only final `r` or `n` is removed; do not shorten the stem arbitrarily;
+- `-ad/a` applies to verbs ending in `-ar`, whereas `-id/a` applies to verbs ending in `-ir` and `-er`;
+- `-ant` and `-ent` are distributed by infinitive type as specified in § 80;
+- use of `-or` after `t` and `s` is limited to the verb type specified in § 80 and is not a general replacement for every agent or instrument suffix;
+- `-ori/a` is a special variant, not a universal place-forming suffix;
+- `-iv` expresses ability or a property but cannot automatically be assigned any convenient meaning;
+- every other suffix must follow its own rule.
 
-- `nominar → nomin, nomine`;
-- `dictar → dict, dicte`;
-- `formar → form, forme`.
+Do not assign meanings such as “unit of measurement”, “scales”, “place of action”, “result”, or “having a property” unless they follow directly from the normative meaning of the selected suffix and the exact semantics of the base.
 
-Ending `-e` may replace another noun ending or be added to a form without an ending when this does not violate a separate spelling rule or create a verified conflict.
+SECTION FORMAT
 
-These two patterns are the general productive model. When no separate explicit rule applies, use only these patterns.
+`analysis.derivationalPotential` must contain 1–3 sentences and no list of concrete words. It must state:
 
-Do not insert `t` into a simple noun by analogy with a derivational stem.
+- the general compatibility or incompatibility of the stem with derivation;
+- the relevant classes of rules;
+- the need to validate each real derivative separately.
 
-Do not list all three theoretically available forms automatically. Include only semantically natural and phonologically acceptable variants.
-
-B. A T-FINAL DERIVATIONAL STEM IS NOT A GENERAL SIMPLE-NOUN PATTERN
-
-A form written with a final hyphen is a bound stem, not an independent word.
-
-For verbs ending in `-ar` or `-ir`, the form produced by replacing final `r` with `t` is a derivational stem. The same sequence without a following derivational suffix coincides with the past-tense form and must never be classified as a noun.
-
-Do not assume that adding `-e` to any `-t` stem produces a simple noun.
-
-The forms `dictate` and `formate` cited in the grammar are directly attested forms of those specific lexical families. They demonstrate that a noun from a derivational stem may exist in a particular family, but they do not establish a productive pattern `any -ar/-ir verb → t-final stem + e`.
-
-Therefore a noun of the form `t-final stem + e` is permitted only when:
-
-- that exact form or exact lexical family is explicitly given in INTERAL_DERIVATION_CONTEXT; or
-- a separate normative rule explicitly permits it for that verb.
-
-When no exact confirmation exists, do not propose the bare `-t` form and do not propose the `-t + e` form. Use the general pattern in section A.
-
-Do not infer new permission merely by analogy with `dictate`, `formate`, or another individual example. Examples of a special form are closed evidence for the named families, not templates for any root.
-
-A transformed perfect stem may be used without an ending or with `-e` only where this is explicitly permitted for the relevant verb or verb type:
-
-- `morir → mort-, mort, morte`;
-- `sentir → sens-, sens, sense`.
-
-Do not extend these patterns to other verbs.
-
-When a verb ends in `-er` and its root ends in a vowel after removal of `-er`, a noun may be formed by removing `-er` and adding `t` only when the rule explicitly provides for it:
-
-- `instituer → institut`.
-
-When the infinitive ends in `-an`, a noun is formed only in one of two ways:
-
-- replace the whole sequence `-an` with `-e`;
-- remove the whole sequence `-an`.
-
-Examples:
-
-- `printan → printe, print`;
-- `flexan → flexe, flex`.
-
-Do not remove only final `n`.
-
-For nouns from verbs whose roots end in `d` or `r`, the present stem is preferred, although the perfect stem is also permitted only within the scope of the explicitly stated rule:
-
-- `responder → responde or response`;
-- `seder → sede`;
-- `referer → refer`;
-- `transferer → transfer`.
-
-C. NOUNS WITH DERIVATIONAL SUFFIXES
-
-A suffixed noun is not another variant of the simple noun without a suffix. List it separately and explicitly identify the complete suffix and its meaning.
-
-Stem transformation or `t` insertion applies only before suffixes for which the rule explicitly requires it, including `-ion`, `-iv`, `-or`, `-ori`, `-oria`, `-ura`, and `-al`. Do not automatically use a `-t` stem before every affix.
-
-For nouns, pay particular attention to:
-
-- `-ion` — process or result of an action;
-- `-or` — agent, instrument, or object in the permitted patterns;
-- `-ori/a` — a complete suffix with its own meaning;
-- `-ur/a` — result of an action.
-
-Final `a` in forms ending in `-oria`, `-ura`, `-ada`, and similar patterns belongs to the complete suffix. It does not license attachment of a separate `-a` to any `-t` stem.
-
-For other suffixes, follow their own attachment rules. For example:
-
-- `-ad/a` is used with verbs ending in `-ar`: `babillar → babillada`;
-- `-id/a` is used with verbs ending in `-ir` or `-er`: `audir → audida`, `currer → currida`;
-- with `-ment`, normally only final `r` or `n` is removed rather than using a `-t` stem: `guvernar → guvernament`, `mover → movement`.
-
-Do not mechanically generate every theoretically possible derivative. The existence of a productive suffix does not mean that the derivative is naturally expected for the given meaning.
-
-D. MANDATORY VALIDATION OF EVERY PROPOSED NOUN
-
-Before including a form in `analysis.derivationalPotential` or `derivation.possibleDerivations`, determine:
-
-1. whether it is a simple noun or a suffixed derivative;
-2. whether it is based on the present stem, root, or derivational stem;
-3. which ending or complete suffix is used;
-4. whether the pattern is a general productive pattern or a directly attested special form;
-5. whether a normative rule permits that combination for this exact stem;
-6. whether the form coincides with the past tense or another grammatical form of the verb;
-7. whether its meaning matches the function of the suffix;
-8. whether the derivative is semantically natural rather than merely formally possible.
-
-In `analysis.derivationalPotential`, name the principal nouns formed by the general pattern in section A first. List suffixed nouns separately. Mention a special form from a derivational stem only when it is directly confirmed.
-
-Do not use one list such as “nouns: X, Y, Z” when it mixes a simple noun, a bound stem, a past-tense form, and a suffixed derivative. Separate these types explicitly.
-
-Do not list a form unless its morphological segmentation can be explained. Internally validate every form using this model:
-
-`source verb → selected stem + ending/complete suffix → part of speech → meaning`.
-
-You must not:
-
-- present a bound derivational stem as an independent noun;
-- present a past-tense form as a noun;
-- treat `t-final stem + e` as a general productive pattern;
-- extend individual examples such as `dictate`, `formate`, `mort(e)`, `sens(e)`, or `institut` to other lexical families;
-- attach a separate `-a` to a `-t` stem;
-- invent suffixes, endings, or their meanings;
-- mix the rule for a direct noun with the rule for a suffixed derivative;
-- list every formally possible derivative without checking whether it is natural.
-
-If no derivatives can be justified reliably, return an empty array. An empty array is preferable to invented or doubtful forms.
+When a concrete derivative was not supplied by the user and is not itself the object of evaluation, do not create it.
