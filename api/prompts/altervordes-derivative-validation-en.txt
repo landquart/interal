@@ -1,5 +1,7 @@
 VII. EXACT ALGORITHM FOR FORMING NOUNS FROM VERBS
 
+This section clarifies the combined application of § 6 and the notes to § 75 of the Interal grammar. If an abbreviated statement in INTERAL_DERIVATION_CONTEXT permits more than one interpretation, follow the exact algorithm and examples in this section.
+
 Strictly distinguish between:
 
 - the present stem of a verb;
@@ -109,6 +111,8 @@ Before including a form in `analysis.derivationalPotential` or `derivation.possi
 7. whether the derivative is semantically natural rather than merely formally possible.
 
 In `analysis.derivationalPotential`, name the principal nouns without derivational suffixes first. List suffixed nouns separately and do not present them as equivalent variants of one simple noun.
+
+Do not use one list such as “nouns: X, Y, Z” when it mixes a simple noun, a bound stem, a past-tense form, and a suffixed derivative. Separate these types explicitly.
 
 Do not list a form unless its morphological segmentation can be explained. Internally validate every form using this model:
 
