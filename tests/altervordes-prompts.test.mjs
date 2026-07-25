@@ -4,11 +4,7 @@ import {
   buildAltervordesSystemPrompt,
   buildAltervordesUserPrompt
 } from '../api/lib/altervordes-prompts.js';
-import {
-  findUnsupportedSimpleNounClaims,
-  getUnsupportedSimpleNounForms,
-  sanitizeUnsupportedSimpleNounClaims
-} from '../api/lib/altervordes-noun-guard.js';
+import { sanitizeGeneratedDerivativeClaims } from '../api/lib/altervordes-noun-guard.js';
 
 const context = {
   version: 'test-version',
@@ -37,60 +33,51 @@ for (const prompt of [ruSystem, enSystem, ruUser, enUser]) {
 
 assert.match(ruSystem, /Интераля/);
 assert.match(ruSystem, /Никогда не пиши «Интерала»/);
-assert.match(ruSystem, /pesar → pesat-/);
-assert.match(ruSystem, /-mitter → -miss-/);
-assert.match(ruSystem, /согласная \+ g/);
 assert.match(ruSystem, /binding-context-marker/);
-assert.match(ruSystem, /ОБЩАЯ ПРОДУКТИВНАЯ МОДЕЛЬ ПРОСТОГО СУЩЕСТВИТЕЛЬНОГО/);
-assert.match(ruSystem, /Эти две схемы являются общей продуктивной моделью/);
-assert.match(ruSystem, /Запрещено считать, что к любой теме на `-t` можно добавить `-e`/);
-assert.match(ruSystem, /не создают продуктивной модели/);
-assert.match(ruSystem, /Примеры специальной формы являются закрытыми свидетельствами/);
-assert.match(ruSystem, /Суффиксальное существительное не является вариантом простого существительного без суффикса/);
-assert.match(ruSystem, /Пустой массив предпочтительнее выдуманных или сомнительных форм/);
-assert.doesNotMatch(ruSystem, /Не выводи существительное `pesat`/);
+assert.match(ruSystem, /ПРОВЕРКА ДЕРИВАЦИОННОГО ПОТЕНЦИАЛА БЕЗ ГЕНЕРАЦИИ СЛОВ/);
+assert.match(ruSystem, /В `derivation\.possibleDerivations` всегда возвращай пустой массив/);
+assert.match(ruSystem, /не пиши ни одного нового слова/);
+assert.match(ruSystem, /`-ment` отбрасывается только конечная `r` или `n`/);
+assert.match(ruSystem, /`-ori\/a` является специальным вариантом, а не универсальным суффиксом со значением места/);
+assert.match(ruSystem, /не создавай её/);
 
-assert.match(enSystem, /pesar → pesat-/);
-assert.match(enSystem, /-mitter → -miss-/);
-assert.match(enSystem, /consonant \+ `g`/);
-assert.match(enSystem, /binding-context-marker/);
-assert.match(enSystem, /GENERAL PRODUCTIVE PATTERN FOR A SIMPLE NOUN/);
-assert.match(enSystem, /These two patterns are the general productive model/);
-assert.match(enSystem, /Do not assume that adding `-e` to any `-t` stem/);
-assert.match(enSystem, /do not establish a productive pattern/);
-assert.match(enSystem, /closed evidence for the named families/);
-assert.match(enSystem, /A suffixed noun is not another variant of the simple noun without a suffix/);
-assert.match(enSystem, /An empty array is preferable to invented or doubtful forms/);
-assert.doesNotMatch(enSystem, /Do not generate the noun `pesat`/);
+assert.match(enSystem, /EVALUATING DERIVATIONAL POTENTIAL WITHOUT GENERATING WORDS/);
+assert.match(enSystem, /Always return an empty array `\[\]` in `derivation\.possibleDerivations`/);
+assert.match(enSystem, /do not write any new word/);
+assert.match(enSystem, /with `-ment`, only final `r` or `n` is removed/);
+assert.match(enSystem, /`-ori\/a` is a special variant, not a universal place-forming suffix/);
+assert.match(enSystem, /do not create it/);
 
-assert.match(ruUser, /"candidate": "testar"/);
-assert.match(ruUser, /"interfaceLanguage": "ru"/);
-assert.match(enUser, /"candidate": "testar"/);
-assert.match(enUser, /"interfaceLanguage": "en"/);
-
-assert.deepEqual(getUnsupportedSimpleNounForms(baseInput), ['testat', 'testate']);
-assert.deepEqual(getUnsupportedSimpleNounForms({ ...baseInput, candidate: 'dictar' }), ['dictat']);
+assert.match(ruUser, /Не создавай и не перечисляй конкретные производные/);
+assert.match(ruUser, /всегда верни пустой массив `\[\]`/);
+assert.match(enUser, /Do not construct or list concrete derivatives/);
+assert.match(enUser, /Always return an empty array `\[\]`/);
 
 const unsafeResult = {
   decision: 'accepted',
   eligible: true,
   analysis: {
-    derivationalPotential: "Существительные: 'testa', 'testat', 'testate'; также возможны 'testator' и 'testation'."
+    derivationalPotential: "Существительные: 'testa', 'testat', 'testate', 'testator'; прилагательные: 'testal', 'testiv'."
   },
   derivation: {
-    possibleDerivations: ['testa', 'testat', 'testate', 'testator', 'testation']
+    possibleDerivations: ['testa', 'testat', 'testate', 'testator', 'testation', 'testment']
   },
   shortConclusion: {
-    en: 'The noun testat is possible.', de: 'Testat ist möglich.', fr: 'Testat est possible.',
-    es: 'Testat es posible.', it: 'Testat è possibile.', ru: 'Существительное testat возможно.'
+    en: 'The candidate can form testat and testator.',
+    de: 'Die Formen testat und testator sind möglich.',
+    fr: 'Les formes testat et testator sont possibles.',
+    es: 'Las formas testat y testator son posibles.',
+    it: 'Le forme testat e testator sono possibili.',
+    ru: 'Возможны формы testat и testator.'
   }
 };
 
-assert.deepEqual(findUnsupportedSimpleNounClaims(unsafeResult, baseInput), ['testat', 'testate']);
-const sanitized = sanitizeUnsupportedSimpleNounClaims(unsafeResult, baseInput);
-assert.deepEqual(sanitized.derivation.possibleDerivations, ['testa', 'testator', 'testation']);
-assert.doesNotMatch(sanitized.analysis.derivationalPotential, /testat|testate/i);
-assert.doesNotMatch(sanitized.shortConclusion.ru, /testat|testate/i);
+const sanitized = sanitizeGeneratedDerivativeClaims(unsafeResult, baseInput);
+assert.deepEqual(sanitized.derivation.possibleDerivations, []);
+assert.doesNotMatch(sanitized.analysis.derivationalPotential, /testa|testat|testator|testment/i);
+assert.match(sanitized.analysis.derivationalPotential, /Конкретные производные не перечисляются/);
+assert.doesNotMatch(sanitized.shortConclusion.ru, /testat|testator/i);
+assert.equal(Object.keys(sanitized.shortConclusion).sort().join(','), 'de,en,es,fr,it,ru');
 
 const apiSource = await readFile(new URL('../api/qwen-analyze.js', import.meta.url), 'utf8');
 assert.match(apiSource, /buildAltervordesSystemPromptV2\(input\.interfaceLanguage, DERIVATION_CONTEXT\)/);
@@ -107,4 +94,4 @@ const coreEndpoint = await readFile(new URL('../api/altervordes-analyze-core.js'
 assert.match(coreEndpoint, /multilingualShortConclusion: true/);
 assert.match(coreEndpoint, /buildAltervordesSystemPrompt/);
 
-console.log('Alter vordes localized prompt and noun guard tests passed.');
+console.log('Alter vordes prompt and derivative suppression tests passed.');
