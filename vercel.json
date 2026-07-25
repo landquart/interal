@@ -3,12 +3,6 @@
   "framework": null,
   "buildCommand": "npm run check:associative-index-deployment && npm run check:associative-search-index-deployment",
   "outputDirectory": ".",
-  "rewrites": [
-    {
-      "source": "/api/altervordes-analyze",
-      "destination": "/api/altervordes-analyze-guarded"
-    }
-  ],
   "headers": [
     {
       "source": "/associativvordes/script.js",
