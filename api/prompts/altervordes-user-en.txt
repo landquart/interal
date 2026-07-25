@@ -37,7 +37,7 @@ Mandatory requirements:
 17. If no verified serious violation exists, set `"decision": "accepted"` and `"eligible": true`.
 18. Do not suggest an alternative when the original candidate is acceptable.
 19. Do not construct or list concrete derivatives of the candidate in any output field.
-20. In `analysis.derivationalPotential`, provide only an abstract assessment against § 6, § 75, and §§ 80–81; do not write hypothetical words.
+20. In `analysis.derivationalPotential`, return only `Yes.` or `No.` without explanations, references, examples, or qualifications.
 21. Always return an empty array `[]` in `derivation.possibleDerivations`.
-22. Do not assign hypothetical derivatives meanings such as instrument, place, result, unit of measurement, property, or agent.
+22. The value of `analysis.derivationalPotential` must be consistent with `canFormVerb`, `canFormNoun`, and `canFormAdjective`.
 23. Return only JSON using the required structure.
