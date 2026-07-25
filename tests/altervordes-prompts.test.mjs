@@ -96,13 +96,15 @@ const apiSource = await readFile(new URL('../api/qwen-analyze.js', import.meta.u
 assert.match(apiSource, /buildAltervordesSystemPromptV2\(input\.interfaceLanguage, DERIVATION_CONTEXT\)/);
 assert.match(apiSource, /buildAltervordesUserPromptV2\(input\)/);
 
+const publicEndpoint = await readFile(new URL('../api/altervordes-analyze.js', import.meta.url), 'utf8');
+assert.match(publicEndpoint, /altervordes-analyze-guarded\.js/);
+
 const guardedEndpoint = await readFile(new URL('../api/altervordes-analyze-guarded.js', import.meta.url), 'utf8');
+assert.match(guardedEndpoint, /altervordes-analyze-core\.js/);
 assert.match(guardedEndpoint, /sanitizeUnsupportedSimpleNounClaims/);
 
-const vercelConfig = JSON.parse(await readFile(new URL('../vercel.json', import.meta.url), 'utf8'));
-assert.deepEqual(vercelConfig.rewrites, [{
-  source: '/api/altervordes-analyze',
-  destination: '/api/altervordes-analyze-guarded'
-}]);
+const coreEndpoint = await readFile(new URL('../api/altervordes-analyze-core.js', import.meta.url), 'utf8');
+assert.match(coreEndpoint, /multilingualShortConclusion: true/);
+assert.match(coreEndpoint, /buildAltervordesSystemPrompt/);
 
 console.log('Alter vordes localized prompt and noun guard tests passed.');
