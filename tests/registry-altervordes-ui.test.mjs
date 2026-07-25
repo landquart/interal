@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 
 const loader = await readFile('shared/ui.js', 'utf8');
-assert.match(loader, /\/\\\/registre\\\/?\$\//);
+assert.ok(loader.includes("if (/\\/registre\\/?$/.test(window.location.pathname))"));
 assert.match(loader, /registry-altervordes-fields\.js/);
 
 const cleanup = await readFile('shared/registry-altervordes-fields.js', 'utf8');
