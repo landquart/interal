@@ -254,6 +254,7 @@ jobs:
           api_path.write_text(api, encoding='utf-8')
 
           test = r'''import assert from 'node:assert/strict';
+          import { readFile } from 'node:fs/promises';
           import { transcribeInteral } from '../shared/interal-ipa.mjs';
           import { buildPublicCardPayload } from '../api/cards.js';
 
@@ -281,9 +282,9 @@ jobs:
           }, 'al_abcdefghijkl', 'altervordes');
           assert.equal(preserved.interal.ipa, 'custom');
 
-          const card = JSON.parse(await (await import('node:fs/promises')).readFile('cards/accepted/al/al_PJGrBLWQYMqT.json', 'utf8'));
+          const card = JSON.parse(await readFile('cards/accepted/al/al_PJGrBLWQYMqT.json', 'utf8'));
           assert.equal(card.interal.ipa, 'peˈzar');
-          const registry = JSON.parse(await (await import('node:fs/promises')).readFile('cards/registry.json', 'utf8'));
+          const registry = JSON.parse(await readFile('cards/registry.json', 'utf8'));
           const registryCard = registry.cards.find((item) => item.id === 'al_PJGrBLWQYMqT');
           assert.equal(registryCard.ipa, 'peˈzar');
           assert.match(registryCard.search_blob, /peˈzar/);
