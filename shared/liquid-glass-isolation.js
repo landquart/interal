@@ -1,5 +1,5 @@
 (function () {
-  const VERSION = 'telegram-portal-shadow-v1';
+  const VERSION = 'telegram-portal-shadow-v2';
   const root = document.documentElement;
   if (!root || root.dataset.liquidGlassIsolation === VERSION) return;
   root.dataset.liquidGlassIsolation = VERSION;
@@ -13,6 +13,17 @@
       }
       shadowRoot.appendChild(clone);
     });
+
+    const safetyStyle = document.createElement('style');
+    safetyStyle.textContent = `
+      *, *::before, *::after {
+        pointer-events: none !important;
+        animation: none !important;
+        transition: none !important;
+        caret-color: transparent !important;
+      }
+    `;
+    shadowRoot.appendChild(safetyStyle);
   }
 
   function ensureIsolated(viewport) {
