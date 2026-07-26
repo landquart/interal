@@ -6,6 +6,11 @@ const CROSS_LANGUAGE_RATIO = 8;
 const CROSS_LANGUAGE_MIN_SCORE = 5;
 const BARE_ROOT_RATIO = 2.5;
 const BARE_ROOT_MIN_SCORE = 20;
+const KNOWN_NONWORDS = Object.freeze({
+  alter: Object.freeze({
+    ru: new Set(['альтеро'])
+  })
+});
 
 function finiteFrequency(candidate) {
   const values = [
@@ -73,6 +78,9 @@ export function deterministicCandidateRejection(candidate, language, root, evide
   const scriptReason = unexpectedScriptReason(candidate?.word, language);
   if (scriptReason) return { reason: scriptReason };
 
+  const knownNonwords = KNOWN_NONWORDS[buildSearchForm(root)]?.[language];
+  if (knownNonwords?.has(spellingKey(candidate?.word))) return { reason: 'known_nonword' };
+
   const score = finiteFrequency(candidate);
   if (!Number.isFinite(score)) return { reason: 'frequency_score_missing' };
 
@@ -118,7 +126,8 @@ export function applyDeterministicCandidateIntegrity(candidatesByLanguage = {}, 
     deterministicRejectedCount: 0,
     unexpectedLanguageScriptCount: 0,
     crossLanguageDominanceCount: 0,
-    foreignBareRootCount: 0
+    foreignBareRootCount: 0,
+    knownNonwordCount: 0
   };
   const output = {};
 
@@ -131,6 +140,7 @@ export function applyDeterministicCandidateIntegrity(candidatesByLanguage = {}, 
       if (rejection.reason === 'unexpected_language_script') diagnostics.unexpectedLanguageScriptCount += 1;
       if (rejection.reason === 'cross_language_frequency_dominance') diagnostics.crossLanguageDominanceCount += 1;
       if (rejection.reason === 'foreign_bare_root_dominance') diagnostics.foreignBareRootCount += 1;
+      if (rejection.reason === 'known_nonword') diagnostics.knownNonwordCount += 1;
       return {
         ...candidate,
         automatic_selection_eligible: false,
