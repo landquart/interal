@@ -20,16 +20,8 @@
     const liquidGlassStylesheet = document.createElement('link');
     liquidGlassStylesheet.rel = 'stylesheet';
     liquidGlassStylesheet.dataset.interalLiquidGlassCss = 'true';
-    liquidGlassStylesheet.href = new URL('liquid-glass.css?v=20260726-3', sharedRoot).href;
+    liquidGlassStylesheet.href = new URL('liquid-glass.css?v=telegram-portal-20260726-1', sharedRoot).href;
     document.head.appendChild(liquidGlassStylesheet);
-  }
-
-  if (!document.querySelector('link[data-interal-liquid-glass-layout-fix-css]')) {
-    const liquidGlassLayoutFix = document.createElement('link');
-    liquidGlassLayoutFix.rel = 'stylesheet';
-    liquidGlassLayoutFix.dataset.interalLiquidGlassLayoutFixCss = 'true';
-    liquidGlassLayoutFix.href = new URL('liquid-glass-layout-fix.css?v=20260726-3', sharedRoot).href;
-    document.head.appendChild(liquidGlassLayoutFix);
   }
 
   const core = loadSource('ui-core.js?v=json-author-autosave-20260725-1');
@@ -39,7 +31,7 @@
   );
   (0, eval)(`${coreSource}\n//# sourceURL=${core.url.href}`);
 
-  const liquidGlass = loadSource('liquid-glass.js?v=20260726-3');
+  const liquidGlass = loadSource('liquid-glass.js?v=telegram-portal-20260726-1');
   (0, eval)(`${liquidGlass.source}\n//# sourceURL=${liquidGlass.url.href}`);
 
   const authorAutosave = loadSource('json-author-autosave.js?v=json-author-autosave-20260725-1');
