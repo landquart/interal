@@ -4,6 +4,17 @@ import { parseMorphemeModel } from './morpheme-model-parser.js';
 const MATCH_TIER = Object.freeze({ exact: 0, special: 0, fuzzy: 1 });
 const BOUNDARY_PRIORITY = Object.freeze({ token: 0, safe: 1, combining: 2, restricted: 3 });
 const MORPHOLOGY_CONFIDENCE_PRIORITY = Object.freeze({ high: 0, medium: 1, low: 3 });
+const RUSSIAN_QUALITY_SUFFIXES = Object.freeze(['ность', 'ный', 'ная', 'ное', 'ные']);
+
+function russianAdjectivalQualityFamily(word) {
+  const normalized = String(word || '').trim().normalize('NFC').toLocaleLowerCase('ru');
+  for (const suffix of RUSSIAN_QUALITY_SUFFIXES) {
+    if (normalized.length > suffix.length + 2 && normalized.endsWith(suffix)) {
+      return buildSearchForm(normalized.slice(0, -suffix.length));
+    }
+  }
+  return '';
+}
 
 export function canonicalLexicalStem(value, language = 'en') {
   const parsed = parseMorphemeModel({ language, elementType: 'root', candidateWord: value, search_form: value, matchedRootVariant: value, rootIndex: 0 });
@@ -29,7 +40,12 @@ export function lexicalModelDescriptor(candidate, root, language = 'en', element
     rootIndex: index,
     match: candidate?.match
   });
-  const stemRoot = String(language).toLowerCase() === 'ru' ? buildSearchForm(analysis.matched_root_variant || analysis.canonical_root) : (analysis.matched_root_variant || analysis.canonical_root);
+  const languageCode = String(language).toLowerCase();
+  const qualityFamily = languageCode === 'ru' ? russianAdjectivalQualityFamily(word) : '';
+  if (qualityFamily) {
+    analysis.model_key = `ru|adjectival-quality|${qualityFamily}`;
+  }
+  const stemRoot = languageCode === 'ru' ? buildSearchForm(analysis.matched_root_variant || analysis.canonical_root) : (analysis.matched_root_variant || analysis.canonical_root);
   const stem = stemRoot;
   return { key: analysis.model_key, label: analysis.model_label, stem, prefix: analysis.prefix_chain.join('+'), fragment: analysis.matched_root_variant, analysis };
 }
