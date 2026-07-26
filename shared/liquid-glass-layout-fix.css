@@ -1,0 +1,21 @@
+/* Preserve the original topbar brand geometry after Liquid Glass overrides. */
+html.liquid-glass-enhanced .top-nav-window > .top-brand,
+html.liquid-glass-lite .top-nav-window > .top-brand {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: 0;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+@media (min-width: 980px) {
+  html.liquid-glass-enhanced .top-nav-window > .top-brand,
+  html.liquid-glass-lite .top-nav-window > .top-brand {
+    position: relative;
+    left: auto;
+    top: auto;
+    margin-left: 2px;
+    transform: none;
+  }
+}
