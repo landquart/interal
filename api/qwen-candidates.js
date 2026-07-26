@@ -19,6 +19,12 @@ const CANDIDATE_VALIDATION_CHECKS = Object.freeze([
   'semantic_relevance',
   'distinct_model'
 ]);
+const REQUIRED_CANDIDATE_VALIDATION_CHECKS = Object.freeze([
+  'language_match',
+  'dictionary_lemma',
+  'root_relation',
+  'distinct_model'
+]);
 
 const ROOT_ALLOMORPH_HINTS = Object.freeze({
   alter: {
@@ -141,7 +147,12 @@ function normalizedValidationDecision(rawDecision, checks) {
   if (checks.language_match === false) return 'remove_wrong_language';
   const decision = String(rawDecision || '').trim().toLowerCase();
   if (!CANDIDATE_VALIDATION_DECISIONS.has(decision)) return '';
-  if (decision === 'keep' && CANDIDATE_VALIDATION_CHECKS.some(key => checks[key] !== true)) return 'remove_irrelevant';
+  if (decision === 'keep' && REQUIRED_CANDIDATE_VALIDATION_CHECKS.some(key => checks[key] !== true)) return 'remove_irrelevant';
+  if (
+    decision === 'remove_irrelevant'
+    && REQUIRED_CANDIDATE_VALIDATION_CHECKS.every(key => checks[key] === true)
+    && checks.semantic_relevance === false
+  ) return 'keep';
   return decision;
 }
 
@@ -290,15 +301,14 @@ export function normalizeCandidateValidationResult(result, input) {
       const word = normalizeWord(raw.word);
       const key = candidateWordKey(word);
       const checks = normalizeValidationChecks(raw.checks);
+      if (checks && rootVariantIsVisible(topByWord.get(key)?.word || word, input.root, language)) {
+        checks.root_relation = true;
+      }
       const decision = normalizedValidationDecision(raw.decision, checks);
       const sameModelAs = normalizeWord(raw.same_model_as ?? raw.sameModelAs);
-      const canonicalLexeme = normalizeWord(raw.canonical_lexeme ?? raw.canonicalLexeme);
+      const canonicalLexeme = normalizeWord(raw.canonical_lexeme ?? raw.canonicalLexeme) || (decision === 'keep' ? word : '');
       const reason = normalizeWord(raw.reason, 240);
       if (!key || !topByWord.has(key) || decisions.has(key) || !CANDIDATE_VALIDATION_DECISIONS.has(decision)) {
-        invalid = true;
-        break;
-      }
-      if (decision === 'keep' && !canonicalLexeme) {
         invalid = true;
         break;
       }
@@ -390,14 +400,14 @@ function mergeCandidateMaps(priority, secondary) {
 function buildPrompt(input) {
   const hints = allomorphHints(input.root);
   const finalStage = input.validationStage === 'final';
-  return `You perform a conservative set-level audit of lexical associations for each control language in the Interal associative-word procedure.
+  return `You perform a conservative structural-integrity audit of lexical associations for each control language in the Interal associative-word procedure. This is not a second semantic scoring pass.
 
 Validation stage: ${finalStage ? 'FINAL, after independent semantic scoring' : 'INITIAL, before independent semantic scoring'}.
 The program has provisionally selected up to five parser-separated candidates per language. The parser can incorrectly split one lexical/derivational model into several candidates, admit a word from another language, or admit a corpus tokenization artefact. Five is a strict upper limit, not a quota: after validation a language may correctly have 0–4 retained models, and removed candidates must not be replaced merely to reach five.
 
 Task A — validate every item in currentTopModels.
 Return exactly one validation entry for every currentTopModels item, preserving its exact word spelling. Use only:
-- "keep": a genuine, relevant, independent lexical association representing a distinct derivational model;
+- "keep": a genuine independent lexical association representing a distinct derivational model;
 - "remove_duplicate": the same lexical/derivational model as another retained item; set same_model_as to the exact retained word;
 - "remove_wrong_language": the spelling is corpus noise or a word from a different language rather than a dictionary lemma of the requested language;
 - "remove_irrelevant": a false root relation, weak/unrelated association, non-independent fragment, corpus/tokenization artefact, proper name, or otherwise unsuitable item.
@@ -406,10 +416,10 @@ For every item, independently return all five boolean checks:
 - language_match: it is a dictionary word of that exact requested language, not merely an English or other-language token found in its corpus;
 - dictionary_lemma: it is a real usable lemma/form, not a name, OCR error, concatenation, or token fragment;
 - root_relation: the requested root/allomorph is genuinely present morphologically or historically;
-- semantic_relevance: the modern word is a credible association with targetMeaning;
+- semantic_relevance: informational only because semantic relevance was already scored independently; this check alone must never remove an item;
 - distinct_model: it is a separate lexical/derivational model from every retained item, not only a gender, adverbial, POS, colloquial, inflectional, spelling, hyphenation, or tokenization variant.
 
-For "keep", all five checks must be true and canonical_lexeme must name the normalized dictionary family shared by its grammatical/POS variants. For "remove_duplicate", distinct_model must be false, same_model_as must name the retained representative, and canonical_lexeme must be the same as that representative. If language_match is false, use "remove_wrong_language". Do not infer language membership from corpus presence alone.
+For "keep", language_match, dictionary_lemma, root_relation, and distinct_model must be true. semantic_relevance is informational and may be false without changing "keep". canonical_lexeme should name the normalized dictionary family shared by grammatical/POS variants; if uncertain, repeat the exact word. For "remove_duplicate", distinct_model must be false, same_model_as must name the retained representative, and canonical_lexeme must be the same as that representative. If language_match is false, use "remove_wrong_language". Do not infer language membership from corpus presence alone.
 
 Within one duplicate model, normally keep the representative with the highest F. Part-of-speech, adverbial, gender, colloquial, inflectional, spelling, hyphenation, and tokenization variants do not create a new model by themselves. Apply these concrete precedents:
 - English "alternate" and "alternately" are one model; retain only one representative.
