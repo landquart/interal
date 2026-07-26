@@ -103,6 +103,20 @@ function finalGlobalStatus(state) {
     : languageStatus;
 }
 
+async function mapWithConcurrency(items, concurrency, mapper) {
+  const source = Array.from(items || []);
+  const limit = Math.max(1, Math.min(source.length || 1, Number(concurrency) || 1));
+  const results = new Array(source.length);
+  let cursor = 0;
+  await Promise.all(Array.from({ length: limit }, async () => {
+    while (cursor < source.length) {
+      const index = cursor++;
+      results[index] = await mapper(source[index], index);
+    }
+  }));
+  return results;
+}
+
 export function resetAssociativeCalculationRunnerForTests() {
   latestTestRunId = 0;
 }
@@ -172,7 +186,7 @@ export async function runAssociativeCalculation({
 
     const candidatePools = {};
     emit('index:start');
-    for (const language of languages) {
+    await Promise.all(languages.map(async (language) => {
       ensureActive(`index:${language.code}`);
       currentState.languageStatuses[language.code] = status('loading_index');
       setState('status:loading_index');
@@ -194,7 +208,7 @@ export async function runAssociativeCalculation({
         addLanguageWarning(currentState, language.code, 'language_index_unavailable', error?.message);
         currentState.languageStatuses[language.code] = status('index_error', { errorCode: error?.code || error?.name || 'INDEX_ERROR' });
       }
-    }
+    }));
     ensureActive('index');
     emit('index:end');
 
@@ -248,7 +262,10 @@ export async function runAssociativeCalculation({
       currentState.languageStatuses[language.code] = status('analyzing', { candidateCount: pool.length });
       setState('status:analyzing');
       const analyzed = [];
-      for (const candidate of selected) {
+      const analyzedResults = await mapWithConcurrency(
+        selected,
+        dependencies.analysisConcurrency ?? 3,
+        async (candidate) => {
         ensureActive(`primary:${language.code}`);
         emit('primary:start');
         progress(`primary:${language.code}`);
@@ -271,8 +288,10 @@ export async function runAssociativeCalculation({
         if (Array.isArray(result?.warnings)) {
           for (const warning of result.warnings) addCandidateWarning(currentState, language.code, candidateIdentity(candidate), String(warning?.code || warning).split(':')[0], warning?.details || warning);
         }
-        analyzed.push(analyzedCandidate);
-      }
+          return analyzedCandidate;
+        }
+      );
+      analyzed.push(...analyzedResults);
       const byIdentity = new Map(analyzed.map(item => [candidateRecordIdentity(item), item]));
       currentState.languages[language.code] = pool.map(item => byIdentity.get(candidateRecordIdentity(item)) || { ...item, selected: false });
       const failedCount = analyzed.filter(item => item?.analysis?.status === 'error' || item?.analysisStatus === 'error' || !Number.isFinite(scoreOf(item))).length;
@@ -288,8 +307,6 @@ export async function runAssociativeCalculation({
     }
 
     ensureActive('final_candidate_validation');
-    let finalValidationFailed = false;
-    const finalValidationFailedLanguages = new Set();
     if (dependencies.candidatePostValidator?.validate) {
       emit('final_validation:start');
       progress(dependencies.progressTexts?.finalValidation || 'final candidate validation');
@@ -314,16 +331,9 @@ export async function runAssociativeCalculation({
           addRunWarning(currentState, code, warning?.details || warning);
         }
         currentState.finalCandidateValidationDiagnostics = validated.diagnostics || null;
-        for (const code of validated.diagnostics?.validationFailClosedLanguages || []) finalValidationFailedLanguages.add(code);
       } catch (error) {
         if (isAbortError(error, signal)) throw normalizeAbortError(error, { stage: 'final_candidate_validation', runId: effectiveRunId });
-        finalValidationFailed = true;
-        for (const language of languages) finalValidationFailedLanguages.add(language.code);
         addRunWarning(currentState, 'qwen_final_candidate_validation_unavailable', error?.message);
-        currentState.languages = Object.fromEntries(languages.map(language => [
-          language.code,
-          (currentState.languages[language.code] || []).map(candidate => ({ ...candidate, selected: false }))
-        ]));
       }
       emit('final_validation:end');
     }
@@ -343,14 +353,12 @@ export async function runAssociativeCalculation({
       currentState.languageScores[language.code] = score;
       if (currentState.languageStatuses[language.code]?.status !== 'index_error' && stats.candidateCount > 0) {
         currentState.languageStatuses[language.code] = status(
-          stats.analyzedCount && !stats.successfulCount || finalValidationFailed || finalValidationFailedLanguages.has(language.code)
+          stats.analyzedCount && !stats.successfulCount
             ? 'qwen_error'
             : (stats.failedCount || hasLanguageAssociativeWarnings(currentState.warnings, language.code) ? 'completed_with_warnings' : 'completed'),
           {
             ...stats,
-            errorCode: finalValidationFailed || finalValidationFailedLanguages.has(language.code)
-              ? 'QWEN_FINAL_VALIDATION_FAILED'
-              : (stats.failedCount ? (stats.successfulCount ? 'QWEN_PARTIAL_FAILURE' : 'QWEN_FAILED') : null)
+            errorCode: stats.failedCount ? (stats.successfulCount ? 'QWEN_PARTIAL_FAILURE' : 'QWEN_FAILED') : null
           }
         );
       }
