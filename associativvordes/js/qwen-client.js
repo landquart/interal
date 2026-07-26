@@ -230,6 +230,12 @@ const QWEN_CANDIDATE_CHECKS = Object.freeze([
   'semantic_relevance',
   'distinct_model'
 ]);
+const REQUIRED_QWEN_CANDIDATE_CHECKS = Object.freeze([
+  'language_match',
+  'dictionary_lemma',
+  'root_relation',
+  'distinct_model'
+]);
 
 function normalizeCandidateWord(value, maxLength = 80) {
   const word = typeof value === 'string' ? value.trim().normalize('NFC') : '';
@@ -251,7 +257,12 @@ function normalizedValidationDecision(rawDecision, checks) {
   if (checks.language_match === false) return 'remove_wrong_language';
   const decision = String(rawDecision || '').trim().toLowerCase();
   if (!QWEN_CANDIDATE_DECISIONS.has(decision)) return '';
-  if (decision === 'keep' && QWEN_CANDIDATE_CHECKS.some(key => checks[key] !== true)) return 'remove_irrelevant';
+  if (decision === 'keep' && REQUIRED_QWEN_CANDIDATE_CHECKS.some(key => checks[key] !== true)) return 'remove_irrelevant';
+  if (
+    decision === 'remove_irrelevant'
+    && REQUIRED_QWEN_CANDIDATE_CHECKS.every(key => checks[key] === true)
+    && checks.semantic_relevance === false
+  ) return 'keep';
   return decision;
 }
 
@@ -302,13 +313,9 @@ export function normalizeQwenCandidateValidation(payload, currentTopModels = {},
       const checks = normalizeCandidateChecks(raw.checks);
       const decision = normalizedValidationDecision(raw.decision, checks);
       const sameModelAs = normalizeCandidateWord(raw.same_model_as ?? raw.sameModelAs);
-      const canonicalLexeme = normalizeCandidateWord(raw.canonical_lexeme ?? raw.canonicalLexeme);
+      const canonicalLexeme = normalizeCandidateWord(raw.canonical_lexeme ?? raw.canonicalLexeme) || (decision === 'keep' ? word : '');
       const reason = normalizeCandidateWord(raw.reason, 240);
       if (!key || !topByWord.has(key) || decisions.has(key) || !QWEN_CANDIDATE_DECISIONS.has(decision)) {
-        invalid = true;
-        break;
-      }
-      if (decision === 'keep' && !canonicalLexeme) {
         invalid = true;
         break;
       }
@@ -943,7 +950,7 @@ export async function validateFinalCandidatesWithQwen({
   }
 
   let validation = {};
-  let auditStatus = 'failed_closed';
+  let auditStatus = 'fallback';
   let auditError = null;
   const warnings = [];
   try {
@@ -971,7 +978,7 @@ export async function validateFinalCandidatesWithQwen({
     validation,
     payload.currentTopModels,
     languages,
-    { failClosed: true, validationField: 'qwen_final_validation' }
+    { failClosed: false, validationField: 'qwen_final_validation' }
   );
   const candidates = finalizeStrictlyValidatedModels(applied.candidatesByLanguage, languages, limit);
   const incomplete = applied.diagnostics.validationIncompleteLanguageCount > 0;
@@ -989,7 +996,7 @@ export async function validateFinalCandidatesWithQwen({
     warnings,
     diagnostics: {
       ...applied.diagnostics,
-      status: incomplete || auditError ? 'failed_closed' : auditStatus,
+      status: incomplete || auditError ? 'fallback' : auditStatus,
       validationStage: 'final',
       model: null,
       backendErrorCode: auditError?.code || auditError?.errorCode || null,
