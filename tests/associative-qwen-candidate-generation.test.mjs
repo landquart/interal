@@ -288,13 +288,15 @@ globalThis.fetch = previousFetchForRefine;
 
 const finalAuditInput = {
   en: [
-    { ...validationTopModels.en[0], selected: true, final_score: 42 },
+    { ...validationTopModels.en[0], selected: true, final_score: 42, match: { type: 'exact' } },
     { ...validationTopModels.en[1], selected: true, final_score: 38 }
   ]
 };
 const finalValidationPayload = buildFinalQwenValidationPayload(finalAuditInput, ['en']);
 assert.deepEqual(finalValidationPayload.currentTopModels.en.map(item => item.word), ['alternate', 'alternately']);
 assert.deepEqual(finalValidationPayload.currentTopModels.en.map(item => item.final_score), [42, 38], 'the final audit receives measured post-analysis scores');
+assert.equal(finalValidationPayload.currentTopModels.en[0].root_match_type, 'exact', 'deterministic exact-match evidence reaches the structural audit');
+assert.equal(finalValidationPayload.currentTopModels.en[1].root_match_type, undefined, 'substring visibility alone is not promoted to exact evidence');
 let finalValidationRequest = null;
 globalThis.fetch = async (_url, options) => {
   finalValidationRequest = JSON.parse(options.body);
