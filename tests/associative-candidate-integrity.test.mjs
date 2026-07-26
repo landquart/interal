@@ -18,7 +18,8 @@ const pools = {
   ],
   ru: [
     { word: 'альтер', search_form: 'alter', frequency_score: 10 },
-    { word: 'alternate', frequency_score: 2 }
+    { word: 'alternate', frequency_score: 2 },
+    { word: 'альтеро', frequency_score: 30 }
   ]
 };
 
@@ -28,16 +29,19 @@ assert.equal(deterministicCandidateRejection(pools.fr[1], 'fr', 'alter', evidenc
 assert.equal(deterministicCandidateRejection(pools.fr[2], 'fr', 'alter', evidence).reason, 'foreign_bare_root_dominance', 'a bare English root does not become a French model through corpus noise');
 assert.equal(deterministicCandidateRejection(pools.ru[0], 'ru', 'alter', evidence).reason, 'foreign_bare_root_dominance', 'the separated Russian token from альтер эго is conservatively rejected');
 assert.equal(deterministicCandidateRejection(pools.ru[1], 'ru', 'alter', evidence).reason, 'unexpected_language_script', 'a Latin-script English token cannot enter Russian results');
+assert.equal(deterministicCandidateRejection(pools.ru[2], 'ru', 'alter', evidence).reason, 'known_nonword', 'the known Russian corpus artefact альтеро is rejected before Qwen can admit it');
 
 const applied = applyDeterministicCandidateIntegrity(pools, { root: 'alter', languages: ['en', 'fr', 'ru'] });
 assert.equal(applied.candidatesByLanguage.fr.find(item => item.word === 'alternative').automatic_selection_eligible, undefined);
 assert.equal(applied.candidatesByLanguage.fr.find(item => item.word === 'alternate').automatic_selection_eligible, false);
 assert.equal(applied.candidatesByLanguage.ru.find(item => item.word === 'альтер').automatic_selection_eligible, false);
+assert.equal(applied.candidatesByLanguage.ru.find(item => item.word === 'альтеро').automatic_selection_eligible, false);
 assert.deepEqual(applied.diagnostics, {
-  deterministicRejectedCount: 4,
+  deterministicRejectedCount: 5,
   unexpectedLanguageScriptCount: 1,
   crossLanguageDominanceCount: 1,
-  foreignBareRootCount: 2
+  foreignBareRootCount: 2,
+  knownNonwordCount: 1
 });
 
 console.log('Associative deterministic candidate-integrity tests passed.');
