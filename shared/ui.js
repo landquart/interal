@@ -20,7 +20,7 @@
     const liquidGlassStylesheet = document.createElement('link');
     liquidGlassStylesheet.rel = 'stylesheet';
     liquidGlassStylesheet.dataset.interalLiquidGlassCss = 'true';
-    liquidGlassStylesheet.href = new URL('liquid-glass.css?v=20260726-2', sharedRoot).href;
+    liquidGlassStylesheet.href = new URL('liquid-glass.css?v=20260726-3', sharedRoot).href;
     document.head.appendChild(liquidGlassStylesheet);
   }
 
@@ -28,7 +28,7 @@
     const liquidGlassLayoutFix = document.createElement('link');
     liquidGlassLayoutFix.rel = 'stylesheet';
     liquidGlassLayoutFix.dataset.interalLiquidGlassLayoutFixCss = 'true';
-    liquidGlassLayoutFix.href = new URL('liquid-glass-layout-fix.css?v=20260726-2', sharedRoot).href;
+    liquidGlassLayoutFix.href = new URL('liquid-glass-layout-fix.css?v=20260726-3', sharedRoot).href;
     document.head.appendChild(liquidGlassLayoutFix);
   }
 
@@ -39,7 +39,7 @@
   );
   (0, eval)(`${coreSource}\n//# sourceURL=${core.url.href}`);
 
-  const liquidGlass = loadSource('liquid-glass.js?v=20260726-2');
+  const liquidGlass = loadSource('liquid-glass.js?v=20260726-3');
   (0, eval)(`${liquidGlass.source}\n//# sourceURL=${liquidGlass.url.href}`);
 
   const authorAutosave = loadSource('json-author-autosave.js?v=json-author-autosave-20260725-1');
