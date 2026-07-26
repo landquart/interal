@@ -1140,9 +1140,6 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
 
 
 
-    const JSON_CARD_WRAPPER_LIMIT = 4096;
-    const JSON_CARD_START_MARKER = "/card";
-    const JSON_CARD_END_MARKER = "/done";
     const CREATED_AT_ENDPOINT = "/api/created_at";
 
     function finiteOrNull(value) {
@@ -1211,8 +1208,15 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
         procedure: 'associative_word',
         status: 'draft',
         ...timestamp,
-        interal: { word: state.root, type: state.elementType || 'root' },
-        translation: state.meaning,
+        interal: {
+          word: state.root,
+          type: state.elementType || 'root',
+          part_of_speech: state.elementType === 'preposition' ? 'preposition' : 'other'
+        },
+        translation: {
+          language: currentLang(),
+          word: state.meaning || state.root
+        },
         ...(author ? { author } : {}),
         supported_groups: [...new Set(selectedLanguages.map(item => item.group).filter(Boolean))],
         calculation: {
@@ -1235,8 +1239,7 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
     }
 
     function formatGeneratedJsonCard(card) {
-      const json = JSON.stringify(card, null, 2);
-      return json.length <= JSON_CARD_WRAPPER_LIMIT ? json : `${JSON_CARD_START_MARKER}\n${json}\n${JSON_CARD_END_MARKER}`;
+      return JSON.stringify(card, null, 2);
     }
 
 
