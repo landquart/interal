@@ -20,7 +20,7 @@
     const liquidGlassStylesheet = document.createElement('link');
     liquidGlassStylesheet.rel = 'stylesheet';
     liquidGlassStylesheet.dataset.interalLiquidGlassCss = 'true';
-    liquidGlassStylesheet.href = new URL('liquid-glass.css?v=telegram-efficient-dropdown-20260726-1', sharedRoot).href;
+    liquidGlassStylesheet.href = new URL('liquid-glass.css?v=telegram-efficient-top-strip-20260726-1', sharedRoot).href;
     document.head.appendChild(liquidGlassStylesheet);
   }
 
