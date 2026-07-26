@@ -39,7 +39,7 @@ assert.doesNotMatch(legacySystem, /шесть кратких, естествен
 const endpointModule = await import('../api/altervordes-analyze.js');
 assert.equal(typeof endpointModule.default, 'function');
 
-const endpointSource = await readFile(new URL('../api/altervordes-analyze.js', import.meta.url), 'utf8');
+const endpointSource = await readFile(new URL('../server/altervordes-analyze-handler.js', import.meta.url), 'utf8');
 assert.match(endpointSource, /const CONCLUSION_CODES = \['en', 'de', 'fr', 'es', 'it', 'ru'\]/);
 assert.match(endpointSource, /multilingualShortConclusion: true/);
 assert.match(endpointSource, /AI returned missing shortConclusion translation/);
