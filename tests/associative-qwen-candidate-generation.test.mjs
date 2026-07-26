@@ -215,6 +215,21 @@ const qualityFirst = selectBestFinalModels([
 ], 5);
 assert.deepEqual(qualityFirst.map(item => item.word), ['exact-derivative', 'fuzzy-lookalike'], 'match quality takes precedence over frequency in the final model set');
 
+const guaranteedRussianModels = selectBestFinalModels([
+  { word: 'альтернатива', model_key: 'ru|alternative', frequency_score: 99, match: { type: 'exact' } },
+  { word: 'изменение', model_key: 'ru|change', frequency_score: 90, match: { type: 'exact' } },
+  { word: 'другой', model_key: 'ru|other', frequency_score: 80, match: { type: 'exact' } },
+  { word: 'иначе', model_key: 'ru|otherwise', frequency_score: 70, match: { type: 'exact' } },
+  { word: 'вариант', model_key: 'ru|variant', frequency_score: 60, match: { type: 'exact' } },
+  { word: 'альтруизм', model_key: 'ru|altruism', frequency_score: 20, guaranteed_allomorph: true, match: { type: 'special' } },
+  { word: 'альтруист', model_key: 'ru|altruist', frequency_score: 10, guaranteed_allomorph: true, match: { type: 'special' } }
+], 5);
+assert.deepEqual(
+  guaranteedRussianModels.map(item => item.word),
+  ['альтруизм', 'альтруист', 'альтернатива', 'изменение', 'другой'],
+  'both curated Russian alter → альтру- models survive the five-item ceiling regardless of lower corpus frequency'
+);
+
 const sameModel = selectBestFinalModels([
   { word: 'alternative', model_key: 'same', frequency_score: 90, final_score: 30, rank: 1 },
   { word: 'alternatively', model_key: 'same', frequency_score: 60, final_score: 99, rank: 2 }
@@ -247,6 +262,7 @@ globalThis.fetch = async (_url, options) => ({
   json: async () => ({
     ok: true,
     candidateValidation: { en: ['alternative', 'alteration', 'alterity', 'alternate', 'alterable'].map(word => keepDecision(word)) },
+    guaranteedCandidates: { en: [{ word: 'altruism', root_variant: 'altru' }] },
     candidates: { en: [
       { word: 'alternative', root_variant: 'alter' },
       { word: 'altruism', root_variant: 'altru' },
@@ -267,6 +283,7 @@ const loader = makeLoader({
 const refinedAudit = await refineCandidatesWithQwenAudit({ root: 'nov', targetMeaning: 'new', candidatesByLanguage: { en: auditBase }, loader, languages: ['en'] });
 assert.equal(refinedAudit.candidatesByLanguage.en.filter(item => item.word === 'alternative').length, 1, 'word already in current top five is discarded');
 assert.equal(refinedAudit.candidatesByLanguage.en.filter(item => item.word === 'altruism').length, 1, 'word below top five but in local pool is not added again');
+assert.equal(refinedAudit.candidatesByLanguage.en.find(item => item.word === 'altruism').guaranteed_allomorph, true, 'an existing lower-ranked curated allomorph keeps guaranteed provenance');
 assert.equal(refinedAudit.candidatesByLanguage.en.some(item => item.word === 'alterator'), false, 'different word with an existing model_key is not a new model');
 assert.equal(refinedAudit.candidatesByLanguage.en.some(item => item.word === 'novelty'), true, 'new word with a new model passes local verification');
 assert.equal(loader.calls.some(call => call.word === 'alternative'), false, 'duplicate suggestion does not start semantic or local verification');
@@ -292,11 +309,17 @@ const finalAuditInput = {
     { ...validationTopModels.en[1], selected: true, final_score: 38 }
   ]
 };
+finalAuditInput.ru = [
+  { word: 'альтруизм', model_key: 'ru|altruism', frequency_score: 20, final_score: 51, selected: true, guaranteed_allomorph: true, match: { type: 'special' } },
+  { word: 'альтруист', model_key: 'ru|altruist', frequency_score: 10, final_score: 49, selected: true, guaranteed_allomorph: true, match: { type: 'special' } }
+];
 const finalValidationPayload = buildFinalQwenValidationPayload(finalAuditInput, ['en']);
 assert.deepEqual(finalValidationPayload.currentTopModels.en.map(item => item.word), ['alternate', 'alternately']);
 assert.deepEqual(finalValidationPayload.currentTopModels.en.map(item => item.final_score), [42, 38], 'the final audit receives measured post-analysis scores');
 assert.equal(finalValidationPayload.currentTopModels.en[0].root_match_type, 'exact', 'deterministic exact-match evidence reaches the structural audit');
 assert.equal(finalValidationPayload.currentTopModels.en[1].root_match_type, undefined, 'substring visibility alone is not promoted to exact evidence');
+const russianFinalValidationPayload = buildFinalQwenValidationPayload(finalAuditInput, ['ru']);
+assert.deepEqual(russianFinalValidationPayload.currentTopModels.ru.map(item => item.root_match_type), ['guaranteed_allomorph', 'guaranteed_allomorph'], 'curated Russian allomorph evidence reaches the structural audit');
 let finalValidationRequest = null;
 globalThis.fetch = async (_url, options) => {
   finalValidationRequest = JSON.parse(options.body);
@@ -498,6 +521,71 @@ assert.equal(finalEndpointResponse.statusCode, 200);
 assert.equal(finalEndpointPayload.currentTopModels.en.length, 2, 'server validation preserves distinct words even when a stale parser gave them the same model key');
 assert.deepEqual(finalEndpointPayload.candidates.en, [], 'the final validation stage cannot add or backfill a candidate even if Qwen proposes one');
 assert.match(sentPrompt, /FINAL, after independent semantic scoring/);
+
+let guaranteedRussianResponseText = '';
+const guaranteedRussianResponse = {
+  statusCode: 0,
+  setHeader() {},
+  end(value = '') { guaranteedRussianResponseText = String(value); }
+};
+globalThis.fetch = async () => ({
+  ok: true,
+  status: 200,
+  statusText: 'OK',
+  text: async () => JSON.stringify({
+    choices: [{
+      message: {
+        content: JSON.stringify({
+          validation: {
+            en: [],
+            de: [],
+            fr: [],
+            es: [],
+            it: [],
+            ru: [
+              {
+                word: 'альтруизм',
+                decision: 'remove_wrong_language',
+                checks: { ...validChecks, language_match: false, dictionary_lemma: false, root_relation: false },
+                canonical_lexeme: 'альтруизм',
+                reason: 'incorrect Qwen verdict'
+              },
+              duplicateDecision('альтруист', 'альтруизм', 'альтруизм')
+            ]
+          },
+          candidates: { en: [], de: [], fr: [], es: [], it: [], ru: [] }
+        })
+      }
+    }]
+  })
+});
+await endpointModule.default({
+  method: 'POST',
+  headers: {},
+  body: {
+    root: 'alter',
+    targetMeaning: 'другой',
+    interfaceLanguage: 'ru',
+    validationStage: 'final',
+    currentTopModels: {
+      ru: [
+        { word: 'альтруизм', model_key: 'ru|altruism', frequency_score: 20, final_score: 51, root_match_type: 'guaranteed_allomorph' },
+        { word: 'альтруист', model_key: 'ru|altruist', frequency_score: 10, final_score: 49, root_match_type: 'guaranteed_allomorph' }
+      ]
+    }
+  }
+}, guaranteedRussianResponse);
+const guaranteedRussianPayload = JSON.parse(guaranteedRussianResponseText);
+assert.deepEqual(
+  guaranteedRussianPayload.candidateValidation.ru.map(item => item.decision),
+  ['keep', 'keep'],
+  'Qwen cannot remove or collapse the two curated Russian alter → альтру- models'
+);
+assert.deepEqual(
+  guaranteedRussianPayload.currentTopModels.ru.map(item => item.root_match_type),
+  ['guaranteed_allomorph', 'guaranteed_allomorph'],
+  'the backend preserves guaranteed-allomorph provenance'
+);
 
 let fallbackResponseText = '';
 const fallbackResponse = {
