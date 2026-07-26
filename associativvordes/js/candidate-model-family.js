@@ -41,7 +41,7 @@ export function lexicalModelDescriptor(candidate, root, language = 'en', element
     match: candidate?.match
   });
   const languageCode = String(language).toLowerCase();
-  const qualityFamily = languageCode === 'ru' ? russianAdjectivalQualityFamily(word) : '';
+  const qualityFamily = languageCode === 'ru' && index > 0 ? russianAdjectivalQualityFamily(word) : '';
   if (qualityFamily) {
     analysis.model_key = `ru|adjectival-quality|${qualityFamily}`;
   }
