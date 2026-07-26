@@ -68,7 +68,25 @@
       ]
     },
     {
+      "source": "/shared/liquid-glass-tuning.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
       "source": "/shared/liquid-glass.css",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/shared/liquid-glass-tuning.css",
       "headers": [
         {
           "key": "Cache-Control",
