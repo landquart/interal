@@ -103,20 +103,6 @@ function finalGlobalStatus(state) {
     : languageStatus;
 }
 
-async function mapWithConcurrency(items, concurrency, mapper) {
-  const source = Array.from(items || []);
-  const limit = Math.max(1, Math.min(source.length || 1, Number(concurrency) || 1));
-  const results = new Array(source.length);
-  let cursor = 0;
-  await Promise.all(Array.from({ length: limit }, async () => {
-    while (cursor < source.length) {
-      const index = cursor++;
-      results[index] = await mapper(source[index], index);
-    }
-  }));
-  return results;
-}
-
 export function resetAssociativeCalculationRunnerForTests() {
   latestTestRunId = 0;
 }
@@ -186,7 +172,7 @@ export async function runAssociativeCalculation({
 
     const candidatePools = {};
     emit('index:start');
-    await Promise.all(languages.map(async (language) => {
+    for (const language of languages) {
       ensureActive(`index:${language.code}`);
       currentState.languageStatuses[language.code] = status('loading_index');
       setState('status:loading_index');
@@ -208,7 +194,7 @@ export async function runAssociativeCalculation({
         addLanguageWarning(currentState, language.code, 'language_index_unavailable', error?.message);
         currentState.languageStatuses[language.code] = status('index_error', { errorCode: error?.code || error?.name || 'INDEX_ERROR' });
       }
-    }));
+    }
     ensureActive('index');
     emit('index:end');
 
@@ -262,10 +248,7 @@ export async function runAssociativeCalculation({
       currentState.languageStatuses[language.code] = status('analyzing', { candidateCount: pool.length });
       setState('status:analyzing');
       const analyzed = [];
-      const analyzedResults = await mapWithConcurrency(
-        selected,
-        dependencies.analysisConcurrency ?? 3,
-        async (candidate) => {
+      for (const candidate of selected) {
         ensureActive(`primary:${language.code}`);
         emit('primary:start');
         progress(`primary:${language.code}`);
@@ -288,10 +271,8 @@ export async function runAssociativeCalculation({
         if (Array.isArray(result?.warnings)) {
           for (const warning of result.warnings) addCandidateWarning(currentState, language.code, candidateIdentity(candidate), String(warning?.code || warning).split(':')[0], warning?.details || warning);
         }
-          return analyzedCandidate;
-        }
-      );
-      analyzed.push(...analyzedResults);
+        analyzed.push(analyzedCandidate);
+      }
       const byIdentity = new Map(analyzed.map(item => [candidateRecordIdentity(item), item]));
       currentState.languages[language.code] = pool.map(item => byIdentity.get(candidateRecordIdentity(item)) || { ...item, selected: false });
       const failedCount = analyzed.filter(item => item?.analysis?.status === 'error' || item?.analysisStatus === 'error' || !Number.isFinite(scoreOf(item))).length;
