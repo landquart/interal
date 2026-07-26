@@ -16,12 +16,23 @@
     return { source: request.responseText, url };
   }
 
+  if (!document.querySelector('link[data-interal-liquid-glass-css]')) {
+    const liquidGlassStylesheet = document.createElement('link');
+    liquidGlassStylesheet.rel = 'stylesheet';
+    liquidGlassStylesheet.dataset.interalLiquidGlassCss = 'true';
+    liquidGlassStylesheet.href = new URL('liquid-glass.css?v=20260726-1', sharedRoot).href;
+    document.head.appendChild(liquidGlassStylesheet);
+  }
+
   const core = loadSource('ui-core.js?v=json-author-autosave-20260725-1');
   const coreSource = core.source.replace(
     'const currentScript = document.currentScript;',
     'const currentScript = document.querySelector(\'script[data-interal-ui-loader="true"]\');'
   );
   (0, eval)(`${coreSource}\n//# sourceURL=${core.url.href}`);
+
+  const liquidGlass = loadSource('liquid-glass.js?v=20260726-1');
+  (0, eval)(`${liquidGlass.source}\n//# sourceURL=${liquidGlass.url.href}`);
 
   const authorAutosave = loadSource('json-author-autosave.js?v=json-author-autosave-20260725-1');
   (0, eval)(`${authorAutosave.source}\n//# sourceURL=${authorAutosave.url.href}`);
