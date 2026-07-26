@@ -34,7 +34,7 @@ assert.match(script, /completed_with_warnings/, 'global status supports complete
 assert.match(script, /normalizeRestoredLanguageStatuses[\s\S]*loading_index[\s\S]*analyzing[\s\S]*aborted/, 'interrupted restore becomes aborted');
 assert.match(script, /InteralAssociativDiagnostics/, 'developer diagnostics are available behind explicit diagnostics function');
 assert.match(script, /qwenPrimaryRequestCount|qwenReviewRequestCount|qwenFailedRequestCount|abortedRequestCount|indexFetchCount|candidateCount/, 'request diagnostics are counted');
-assert.match(runner, /for \(const candidate of selected\)/, 'only the bounded final selected model set is analyzed');
+assert.match(runner, /mapWithConcurrency\([\s\S]*selected[\s\S]*analysisConcurrency \?\? 3/, 'only the bounded final selected model set is analyzed with safe concurrency');
 assert.doesNotMatch(script, /Promise\.all\(LANGUAGES|LANGUAGES\.map\(async/, 'languages are not launched with Promise.all');
 assert.match(qwen, /QWEN_HTTP_ERROR|QWEN_TIMEOUT|QWEN_INVALID_RESPONSE|QWEN_SEMANTIC_SCORES_INVALID|QWEN_ABORTED|QWEN_REVIEW_FAILED|QWEN_CANDIDATE_GENERATION_FAILED/, 'stable Qwen error codes are defined');
 
