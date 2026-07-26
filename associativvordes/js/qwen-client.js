@@ -512,6 +512,7 @@ function compactCandidateEvidence(candidate, index) {
   const finalScore = candidateFinalScore(candidate);
   if (Number.isFinite(associationScore)) evidence.association_score = associationScore;
   if (Number.isFinite(finalScore)) evidence.final_score = finalScore;
+  if (candidate?.match?.type === 'exact') evidence.root_match_type = 'exact';
   return evidence;
 }
 
