@@ -1,5 +1,5 @@
 (function () {
-  const VERSION = 'refraction-blur-v2';
+  const VERSION = 'refraction-blur-v3';
   const root = document.documentElement;
   if (!root || root.dataset.liquidGlassTuning === VERSION) return;
   root.dataset.liquidGlassTuning = VERSION;
@@ -15,7 +15,7 @@
     if (!filterId) return;
 
     const filter = document.getElementById(filterId);
-    if (!(filter instanceof SVGFilterElement)) return;
+    if (!(filter instanceof Element) || filter.tagName.toLowerCase() !== 'filter') return;
 
     const displacement = filter.querySelector('feDisplacementMap');
     const blur = filter.querySelector('feGaussianBlur');
