@@ -28,7 +28,7 @@
     const liquidGlassTuningStylesheet = document.createElement('link');
     liquidGlassTuningStylesheet.rel = 'stylesheet';
     liquidGlassTuningStylesheet.dataset.interalLiquidGlassTuningCss = 'true';
-    liquidGlassTuningStylesheet.href = new URL('liquid-glass-tuning.css?v=refraction-blur-20260726-1', sharedRoot).href;
+    liquidGlassTuningStylesheet.href = new URL('liquid-glass-tuning.css?v=refraction-blur-20260726-2', sharedRoot).href;
     document.head.appendChild(liquidGlassTuningStylesheet);
   }
 
@@ -45,7 +45,7 @@
   const liquidGlassIsolation = loadSource('liquid-glass-isolation.js?v=telegram-portal-20260726-2');
   (0, eval)(`${liquidGlassIsolation.source}\n//# sourceURL=${liquidGlassIsolation.url.href}`);
 
-  const liquidGlassTuning = loadSource('liquid-glass-tuning.js?v=refraction-blur-20260726-1');
+  const liquidGlassTuning = loadSource('liquid-glass-tuning.js?v=refraction-blur-20260726-2');
   (0, eval)(`${liquidGlassTuning.source}\n//# sourceURL=${liquidGlassTuning.url.href}`);
 
   const authorAutosave = loadSource('json-author-autosave.js?v=json-author-autosave-20260725-1');
