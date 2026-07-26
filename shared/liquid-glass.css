@@ -28,6 +28,8 @@ html[data-liquid-glass-tier] .top-nav-window::before {
   content: "";
   position: absolute;
   inset: 0;
+  width: auto;
+  height: auto;
   z-index: 1;
   pointer-events: none;
   border-radius: inherit;
