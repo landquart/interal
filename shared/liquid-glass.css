@@ -62,6 +62,21 @@ html[data-liquid-glass-tier] .top-nav-window > .top-brand {
   z-index: 3;
 }
 
+/*
+ * Permanent desktop brand geometry. Keep this rule independent from optical
+ * tuning: the logo and title must remain the first normal-flow item on PC.
+ */
+@media (min-width: 980px) {
+  html[data-liquid-glass-tier] .top-nav-window > .top-brand {
+    position: relative !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    margin-left: 2px !important;
+    transform: none !important;
+  }
+}
+
 html[data-liquid-glass-tier="full"] .top-nav-window::before {
   background: linear-gradient(180deg, rgba(248, 249, 252, 0.34), rgba(244, 246, 250, 0.24));
 }
