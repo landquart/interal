@@ -153,9 +153,10 @@ assert.doesNotMatch(scriptSource, /supplementAfterCompletedCalculation/, 'remove
 {
   const { dependencies } = makeDependencies();
   dependencies.candidatePostValidator = { async validate() { throw new Error('final audit unavailable'); } };
-  const result = await runAssociativeCalculation({ input: { root: 'fail-closed', maxModels: 5 }, dependencies });
-  assert.deepEqual(result.state.languages.en.filter(candidate => candidate.selected), [], 'a failed configured final validator fails closed');
-  assert.equal(result.state.languageStatuses.en.status, 'qwen_error');
+  const result = await runAssociativeCalculation({ input: { root: 'fail-open', maxModels: 5 }, dependencies });
+  assert.equal(result.state.languages.en.filter(candidate => candidate.selected).length, 5, 'a final-validator outage preserves independently analyzed candidates');
+  assert.equal(result.state.languageStatuses.en.status, 'completed');
+  assert.equal(result.state.globalStatus, 'completed_with_warnings');
   assert.equal(result.state.warnings.run.at(-1).code, 'qwen_final_candidate_validation_unavailable');
 }
 

@@ -155,6 +155,19 @@ const wrongLanguageValidation = normalizeQwenCandidateValidation({
 }, validationTopModels, ['fr']);
 assert.equal(wrongLanguageValidation.fr[1].decision, 'remove_wrong_language', 'a failed language check cannot be overridden by a keep label');
 
+const semanticOnlyRejection = normalizeQwenCandidateValidation({
+  candidateValidation: {
+    en: [{
+      word: 'alternate',
+      decision: 'remove_irrelevant',
+      checks: { ...validChecks, semantic_relevance: false },
+      reason: 'second semantic opinion'
+    }, keepDecision('alternately', 'alternately')]
+  }
+}, validationTopModels, ['en']);
+assert.equal(semanticOnlyRejection.en[0].decision, 'keep', 'the structural audit cannot erase an independently scored word solely on a second semantic opinion');
+assert.equal(semanticOnlyRejection.en[0].canonical_lexeme, 'alternate', 'a kept word safely supplies its own canonical family when Qwen omits one');
+
 const canonicalCollision = normalizeQwenCandidateValidation({
   candidateValidation: {
     en: [
@@ -275,13 +288,15 @@ globalThis.fetch = previousFetchForRefine;
 
 const finalAuditInput = {
   en: [
-    { ...validationTopModels.en[0], selected: true, final_score: 42 },
+    { ...validationTopModels.en[0], selected: true, final_score: 42, match: { type: 'exact' } },
     { ...validationTopModels.en[1], selected: true, final_score: 38 }
   ]
 };
 const finalValidationPayload = buildFinalQwenValidationPayload(finalAuditInput, ['en']);
 assert.deepEqual(finalValidationPayload.currentTopModels.en.map(item => item.word), ['alternate', 'alternately']);
 assert.deepEqual(finalValidationPayload.currentTopModels.en.map(item => item.final_score), [42, 38], 'the final audit receives measured post-analysis scores');
+assert.equal(finalValidationPayload.currentTopModels.en[0].root_match_type, 'exact', 'deterministic exact-match evidence reaches the structural audit');
+assert.equal(finalValidationPayload.currentTopModels.en[1].root_match_type, undefined, 'substring visibility alone is not promoted to exact evidence');
 let finalValidationRequest = null;
 globalThis.fetch = async (_url, options) => {
   finalValidationRequest = JSON.parse(options.body);
@@ -309,6 +324,16 @@ const finalAudit = await validateFinalCandidatesWithQwen({
 assert.equal(finalValidationRequest.validationStage, 'final', 'the independent post-analysis audit is explicitly marked as final');
 assert.deepEqual(finalAudit.candidatesByLanguage.en.filter(item => item.selected).map(item => item.word), ['alternate'], 'the post-analysis audit never backfills a removed duplicate');
 assert.equal(finalAudit.diagnostics.validationCanonicalDuplicateCount, 1);
+
+globalThis.fetch = async () => { throw new Error('final audit unavailable'); };
+const finalFallback = await validateFinalCandidatesWithQwen({
+  root: 'alter',
+  targetMeaning: 'other',
+  candidatesByLanguage: finalAuditInput,
+  languages: ['en']
+});
+assert.deepEqual(finalFallback.candidatesByLanguage.en.filter(item => item.selected).map(item => item.word), ['alternate', 'alternately'], 'a final Qwen outage preserves the independently analyzed selection');
+assert.equal(finalFallback.diagnostics.status, 'fallback');
 globalThis.fetch = previousFetchForRefine;
 
 const clientSource = await readFile('associativvordes/js/qwen-client.js', 'utf8');
@@ -528,6 +553,7 @@ assert.match(endpointSource, /QWEN_CANDIDATE_AUDIT_UNAVAILABLE/, 'known allomorp
 assert.match(endpointSource, /English altruism\/altruist and Russian альтруизм\/альтруист/, 'prompt explicitly covers alter → altru-');
 assert.match(endpointSource, /remove_duplicate/, 'the Qwen audit can explicitly remove duplicate models');
 assert.match(endpointSource, /remove_irrelevant/, 'the Qwen audit can explicitly remove irrelevant or tokenized candidates');
+assert.match(endpointSource, /structural-integrity audit/, 'the final audit is structural rather than a second semantic scorer');
 assert.match(endpointSource, /ROOT_ALLOMORPH_HINTS/, 'historical allomorph hints remain available');
 assert.doesNotMatch(endpointSource, /missingLanguages[\s\S]*repair/, 'empty arrays are no longer treated as a second model request');
 assert.match(endpointSource, /buildSearchForm\(word\)[\s\S]*buildSearchForm\(rootVariant\)/, 'native and transliterated root variants share one canonical search form');
