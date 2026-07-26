@@ -211,7 +211,13 @@ function normalizeKnownModelKeys(value) {
   }));
 }
 
-function normalizeCurrentModels(value) {
+function guaranteedAllomorphWord(root, language, word) {
+  const candidates = ROOT_ALLOMORPH_CANDIDATES[buildSearchForm(root)]?.[language] || [];
+  const wordKey = candidateWordKey(word);
+  return Boolean(wordKey && candidates.some(candidate => candidateWordKey(candidate.word) === wordKey));
+}
+
+function normalizeCurrentModels(value, root = '') {
   const source = value && typeof value === 'object' && !Array.isArray(value) ? value : {};
   return Object.fromEntries(CONTROL_LANGUAGES.map(language => {
     const values = Array.isArray(source[language]) ? source[language] : [];
@@ -228,7 +234,11 @@ function normalizeCurrentModels(value) {
       models.push({
         word,
         model_key: modelKey,
-        root_match_type: raw.root_match_type === 'exact' ? 'exact' : '',
+        root_match_type: raw.root_match_type === 'exact'
+          ? 'exact'
+          : raw.root_match_type === 'guaranteed_allomorph' || guaranteedAllomorphWord(root, language, word)
+            ? 'guaranteed_allomorph'
+            : '',
         frequency_score: finiteScore(raw.frequency_score ?? raw.F),
         final_score: finiteScore(raw.final_score ?? raw.P),
         association_score: finiteScore(raw.association_score ?? raw.A)
@@ -247,7 +257,7 @@ function validateInput(body) {
   const validationStage = body.validationStage === 'final' ? 'final' : 'initial';
   if (!root) throw Object.assign(new Error('root is required'), { status: 400 });
   if (!targetMeaning) throw Object.assign(new Error('targetMeaning is required'), { status: 400 });
-  const currentTopModels = normalizeCurrentModels(body.currentTopModels ?? body.currentModels);
+  const currentTopModels = normalizeCurrentModels(body.currentTopModels ?? body.currentModels, root);
   const knownCandidates = normalizeKnownCandidates(body.knownCandidates ?? body.existingCandidates);
   const explicitModelKeys = normalizeKnownModelKeys(body.knownModelKeys);
   const knownModelKeys = Object.fromEntries(CONTROL_LANGUAGES.map(language => {
@@ -302,12 +312,23 @@ export function normalizeCandidateValidationResult(result, input) {
       const word = normalizeWord(raw.word);
       const key = candidateWordKey(word);
       const checks = normalizeValidationChecks(raw.checks);
-      if (checks && topByWord.get(key)?.root_match_type === 'exact') {
+      const rootMatchType = topByWord.get(key)?.root_match_type;
+      if (checks && rootMatchType === 'exact') {
         checks.root_relation = true;
       }
-      const decision = normalizedValidationDecision(raw.decision, checks);
+      if (checks && rootMatchType === 'guaranteed_allomorph') {
+        checks.language_match = true;
+        checks.dictionary_lemma = true;
+        checks.root_relation = true;
+        checks.distinct_model = true;
+      }
+      const decision = rootMatchType === 'guaranteed_allomorph'
+        ? 'keep'
+        : normalizedValidationDecision(raw.decision, checks);
       const sameModelAs = normalizeWord(raw.same_model_as ?? raw.sameModelAs);
-      const canonicalLexeme = normalizeWord(raw.canonical_lexeme ?? raw.canonicalLexeme) || (decision === 'keep' ? word : '');
+      const canonicalLexeme = rootMatchType === 'guaranteed_allomorph'
+        ? word
+        : normalizeWord(raw.canonical_lexeme ?? raw.canonicalLexeme) || (decision === 'keep' ? word : '');
       const reason = normalizeWord(raw.reason, 240);
       if (!key || !topByWord.has(key) || decisions.has(key) || !CANDIDATE_VALIDATION_DECISIONS.has(decision)) {
         invalid = true;
