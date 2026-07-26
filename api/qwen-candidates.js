@@ -228,6 +228,7 @@ function normalizeCurrentModels(value) {
       models.push({
         word,
         model_key: modelKey,
+        root_match_type: raw.root_match_type === 'exact' ? 'exact' : '',
         frequency_score: finiteScore(raw.frequency_score ?? raw.F),
         final_score: finiteScore(raw.final_score ?? raw.P),
         association_score: finiteScore(raw.association_score ?? raw.A)
@@ -301,7 +302,7 @@ export function normalizeCandidateValidationResult(result, input) {
       const word = normalizeWord(raw.word);
       const key = candidateWordKey(word);
       const checks = normalizeValidationChecks(raw.checks);
-      if (checks && rootVariantIsVisible(topByWord.get(key)?.word || word, input.root, language)) {
+      if (checks && topByWord.get(key)?.root_match_type === 'exact') {
         checks.root_relation = true;
       }
       const decision = normalizedValidationDecision(raw.decision, checks);
