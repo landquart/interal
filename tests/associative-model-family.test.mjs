@@ -53,6 +53,21 @@ assert.notEqual(lexicalModelFamilyKey(matched[3], 'alter', 'ru'), lexicalModelFa
 const frequencySelection = selectHighestFrequencyPerModel(matched.slice(0, 3), 'alter', 'ru');
 assert.deepEqual(frequencySelection.candidates.map(candidate => candidate.word), ['альтернатива']);
 
+const russianQualityPair = [
+  entry('безальтернативный', 'bezalternativnyj', 55, 1, { type: 'exact', distance: 0, similarity: 1, index: 3, fragment: 'alter' }),
+  entry('безальтернативность', 'bezalternativnost', 35, 2, { type: 'exact', distance: 0, similarity: 1, index: 3, fragment: 'alter' })
+];
+assert.equal(
+  lexicalModelFamilyKey(russianQualityPair[0], 'alter', 'ru'),
+  lexicalModelFamilyKey(russianQualityPair[1], 'alter', 'ru'),
+  'Russian -ный adjective and -ность quality noun share one lexical model'
+);
+assert.deepEqual(
+  selectHighestFrequencyPerModel(russianQualityPair, 'alter', 'ru').candidates.map(candidate => candidate.word),
+  ['безальтернативный'],
+  'one Russian adjectival-quality model keeps only its highest-frequency representative'
+);
+
 const languageFamilies = {
   en: [
     entry('alternative', 'alternative', 90, 1),
