@@ -24,6 +24,14 @@
     document.head.appendChild(liquidGlassStylesheet);
   }
 
+  if (!document.querySelector('link[data-interal-liquid-glass-layout-fix-css]')) {
+    const liquidGlassLayoutFix = document.createElement('link');
+    liquidGlassLayoutFix.rel = 'stylesheet';
+    liquidGlassLayoutFix.dataset.interalLiquidGlassLayoutFixCss = 'true';
+    liquidGlassLayoutFix.href = new URL('liquid-glass-layout-fix.css?v=20260726-1', sharedRoot).href;
+    document.head.appendChild(liquidGlassLayoutFix);
+  }
+
   const core = loadSource('ui-core.js?v=json-author-autosave-20260725-1');
   const coreSource = core.source.replace(
     'const currentScript = document.currentScript;',
