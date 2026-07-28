@@ -220,10 +220,19 @@ async function runSuccessfulCalculation(page) {
   assert.equal(await page.locator('#calculateBtn .btn-loader').evaluate(element => getComputedStyle(element).display), 'block');
 
   await page.waitForFunction(expectedRunCount => (
-    window.__associativeRunCount === expectedRunCount
-    && window.__associativeStages.at(-1) === 'run:end'
-    && document.getElementById('calculateBtn').getAttribute('aria-busy') === 'false'
+    window.__lastAssociativeError
+    || (
+      window.__associativeRunCount === expectedRunCount
+      && window.__associativeStages.at(-1) === 'run:end'
+      && document.getElementById('calculateBtn').getAttribute('aria-busy') === 'false'
+    )
   ), previousRunCount + 1);
+  const runtimeError = await page.evaluate(() => window.__lastAssociativeError);
+  assert.equal(
+    runtimeError,
+    undefined,
+    `browser calculation failed after stages: ${JSON.stringify(await page.evaluate(() => window.__associativeStages))}`
+  );
   assert.equal(await page.locator('[data-testid="fa"]').textContent(), 'FA: 42.5%');
   assert.equal(await page.locator('[data-testid="ta"]').textContent(), 'TA: 240');
   assert.equal(await page.locator('#resultSection').isVisible(), true);
