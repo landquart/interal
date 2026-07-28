@@ -28,6 +28,9 @@ assert.match(qwen, /requestTimeoutMs: 15000/, 'single Qwen request has bounded t
 assert.match(qwen, /AbortController/, 'Qwen timeout uses AbortController');
 assert.match(qwen, /qwen_suggestion_verified_in_local_index/, 'generated candidates must be verified in the local index before analysis');
 assert.match(script, /buttonTexts:[\s\S]*done: currentLang\(\) === 'en' \? 'Done' : 'Готово'/, 'production supplies localized completion text to the unified runner');
+assert.match(script, /CALCULATE_BUTTON_LOADER_FILENAME = 'loader_video_fitted_0_1s_triangle_fixed_centered\.svg'/, 'the associative calculate button is pinned to the centered SVG loader');
+assert.match(script, /ensureCalculateButtonLoader[\s\S]*loading = 'eager'[\s\S]*decoding = 'sync'[\s\S]*fetchPriority = 'high'/, 'the calculate loader is created and requested eagerly even if the shared helper is late');
+assert.match(script, /setCalculateButtonStatus[\s\S]*setProperty\('display', 'block', 'important'\)/, 'loading status forces the centered SVG to be visible in the button');
 assert.match(script, /part_of_speech: state\.elementType === 'preposition' \? 'preposition' : 'other'/, 'generated cards include the bot-required part of speech');
 assert.match(script, /translation: \{[\s\S]*language: currentLang\(\),[\s\S]*word: state\.meaning \|\| state\.root/, 'generated cards always include the bot-required translation language and a non-empty word');
 assert.doesNotMatch(script, /JSON_CARD_START_MARKER|JSON_CARD_END_MARKER|JSON_CARD_WRAPPER_LIMIT/, 'generated cards are always plain JSON without Telegram command wrappers');
