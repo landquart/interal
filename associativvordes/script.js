@@ -25,7 +25,7 @@ const TEXT_I18N = {
         targetMeaningLabel: 'Значение для анализа',
         targetMeaningPlaceholder: 'например: другой',
         translationWordLabel: 'Словарный перевод',
-        translationWordPlaceholder: 'например: альтернативный',
+        translationWordPlaceholder: 'например: другой',
         elementTypeLabel: 'Тип элемента',
         rootOption: 'корень',
         prepositionOption: 'предлог',
@@ -90,7 +90,7 @@ const TEXT_I18N = {
         targetMeaningLabel: 'Meaning for analysis',
         targetMeaningPlaceholder: 'for example: other',
         translationWordLabel: 'Dictionary translation',
-        translationWordPlaceholder: 'for example: alternative',
+        translationWordPlaceholder: 'for example: other',
         elementTypeLabel: 'Element type',
         rootOption: 'root',
         prepositionOption: 'preposition',
@@ -1482,7 +1482,7 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
 
     const examplesByType = {
       root: [
-        { root: 'alter', targetMeaning: 'другой', translationWord: 'альтернативный', elementType: 'root', partOfSpeech: 'adjective' }
+        { root: 'alter', targetMeaning: 'другой', translationWord: 'другой', elementType: 'root', partOfSpeech: 'adjective' }
       ],
       preposition: [
         { root: 'inter', targetMeaning: 'между', translationWord: 'между', elementType: 'preposition', partOfSpeech: 'preposition' }
