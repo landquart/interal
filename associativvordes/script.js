@@ -123,46 +123,10 @@ const TEXT_I18N = {
       return TEXT_I18N[currentLang()][key] || TEXT_I18N.ru[key] || key;
     }
 
-    const CALCULATE_BUTTON_LOADER_FILENAME = 'loader_video_fitted_0_1s_triangle_fixed_centered.svg';
-    const CALCULATE_BUTTON_LOADER_URL = new URL(`../elements/${CALCULATE_BUTTON_LOADER_FILENAME}?v=calculate-button-20260728-1`, import.meta.url).href;
-
-    function ensureCalculateButtonLoader(button) {
-      if (!button) return null;
-      let loader = button.querySelector(':scope > .btn-loader');
-      if (!loader) {
-        loader = document.createElement('img');
-        loader.className = 'btn-loader';
-        button.prepend(loader);
-      }
-      if (loader.src !== CALCULATE_BUTTON_LOADER_URL) loader.src = CALCULATE_BUTTON_LOADER_URL;
-      loader.alt = '';
-      loader.setAttribute('aria-hidden', 'true');
-      loader.loading = 'eager';
-      loader.decoding = 'sync';
-      loader.fetchPriority = 'high';
-      return loader;
-    }
-
     function setCalculateButtonStatus(text, disabled = true, options = {}) {
       const button = document.getElementById('calculateBtn');
       if (!button) return false;
-      const loading = options.loading === true;
-      const handled = window.InteralButtonStatus?.setButtonStatus(button, text, disabled, options) === true;
-      const loader = ensureCalculateButtonLoader(button);
-
-      if (!handled) {
-        button.classList.toggle('is-loading', loading);
-        button.disabled = Boolean(disabled);
-        button.setAttribute('aria-busy', loading ? 'true' : 'false');
-        const label = button.querySelector(':scope > .btn-text');
-        if (label) label.textContent = text || '';
-      }
-
-      if (loader) {
-        if (loading) loader.style.setProperty('display', 'block', 'important');
-        else loader.style.removeProperty('display');
-      }
-      return true;
+      return window.InteralButtonStatus?.setButtonStatus(button, text, disabled, options) === true;
     }
 
     let calculateButtonController = null;

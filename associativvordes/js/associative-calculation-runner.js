@@ -103,6 +103,13 @@ function finalGlobalStatus(state) {
     : languageStatus;
 }
 
+export function waitForNextPaint(scheduleFrame = globalThis.requestAnimationFrame) {
+  if (typeof scheduleFrame !== 'function') return Promise.resolve();
+  return new Promise(resolve => {
+    scheduleFrame(() => scheduleFrame(resolve));
+  });
+}
+
 export function resetAssociativeCalculationRunnerForTests() {
   latestTestRunId = 0;
 }
@@ -156,6 +163,8 @@ export async function runAssociativeCalculation({
     error: dependencies.buttonTexts?.error || 'Calculation error'
   };
   const buttonToken = button?.start?.(labels.start);
+  await (dependencies.waitForPaint || waitForNextPaint)();
+  ensureActive('button_paint');
   const progress = text => {
     onProgress?.(text);
     button?.progress?.(buttonToken, text);
