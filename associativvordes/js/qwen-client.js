@@ -442,7 +442,8 @@ function candidateFrequencyScore(candidate) {
 }
 
 export function compareFinalModelCandidates(left, right) {
-  return compareRootMatchThenFrequency(left, right);
+  return Number(right?.guaranteed_allomorph === true) - Number(left?.guaranteed_allomorph === true)
+    || compareRootMatchThenFrequency(left, right);
 }
 
 export function selectBestFinalModels(candidates, limit = MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE) {
@@ -512,7 +513,8 @@ function compactCandidateEvidence(candidate, index) {
   const finalScore = candidateFinalScore(candidate);
   if (Number.isFinite(associationScore)) evidence.association_score = associationScore;
   if (Number.isFinite(finalScore)) evidence.final_score = finalScore;
-  if (candidate?.match?.type === 'exact') evidence.root_match_type = 'exact';
+  if (candidate?.guaranteed_allomorph === true) evidence.root_match_type = 'guaranteed_allomorph';
+  else if (candidate?.match?.type === 'exact') evidence.root_match_type = 'exact';
   return evidence;
 }
 
@@ -714,7 +716,7 @@ function runtimeCandidates(language) {
   return Array.isArray(candidates) ? candidates : null;
 }
 
-function verifiedCandidatePatch(suggestion, entry, root, descriptor, { resetAnalysis = false } = {}) {
+function verifiedCandidatePatch(suggestion, entry, root, descriptor, { resetAnalysis = false, guaranteedAllomorph = false } = {}) {
   const searchForm = entry.search_form || buildSearchForm(entry.word);
   const variant = buildSearchForm(suggestion.root_variant || root);
   const variantIndex = variant ? searchForm.indexOf(variant) : -1;
@@ -737,7 +739,12 @@ function verifiedCandidatePatch(suggestion, entry, root, descriptor, { resetAnal
     category_breakdown: entry.category_breakdown || {},
     sources: Array.isArray(entry.sources) ? entry.sources : [],
     frequencyProfile,
-    warnings: [...new Set([...(Array.isArray(entry.warnings) ? entry.warnings : []), 'qwen_suggestion_verified_in_local_index'])],
+    warnings: [...new Set([
+      ...(Array.isArray(entry.warnings) ? entry.warnings : []),
+      'qwen_suggestion_verified_in_local_index',
+      ...(guaranteedAllomorph ? ['guaranteed_allomorph_verified_in_local_index'] : [])
+    ])],
+    ...(guaranteedAllomorph ? { guaranteed_allomorph: true } : {}),
     automatic_selection_eligible: true,
     qwen_candidate_validation: { word: entry.word, decision: 'keep', reason: 'verified_qwen_suggestion' },
     model_key: descriptor.key,
@@ -828,11 +835,13 @@ export async function refineCandidatesWithQwenAudit({ root, targetMeaning, candi
   const warnings = [];
   let suggestions;
   let validation;
+  let guaranteedCandidates = {};
   try {
     onProgress?.(getInterfaceLanguage() === 'en' ? 'Qwen3-235B: candidate audit...' : 'Qwen3-235B: аудит кандидатов...');
     const auditResponse = await getQwenCandidateSuggestions({ root, targetMeaning: targetMeaning || root, currentTopModels, knownCandidates, knownModelKeys, signal });
     suggestions = auditResponse.suggestions;
     validation = auditResponse.validation;
+    guaranteedCandidates = auditResponse.guaranteedCandidates || {};
     diagnostics.status = auditResponse.auditStatus;
     diagnostics.model = auditResponse.model;
     diagnostics.usedGuaranteedFallback = auditResponse.auditStatus === 'completed_with_fallback';
@@ -861,6 +870,14 @@ export async function refineCandidatesWithQwenAudit({ root, targetMeaning, candi
   }
 
   for (const language of languages) {
+    const guaranteedWords = new Set((guaranteedCandidates?.[language] || []).map(candidate => buildSearchForm(candidate?.word)).filter(Boolean));
+    for (const candidate of output[language] || []) {
+      if (guaranteedWords.has(buildSearchForm(candidate?.word))) {
+        candidate.guaranteed_allomorph = true;
+        candidate.automatic_selection_eligible = true;
+        candidate.warnings = [...new Set([...(candidate.warnings || []), 'guaranteed_allomorph_verified_in_local_index'])];
+      }
+    }
     const seen = knownWordSets[language] || new Set();
     const models = knownModelSets[language] || new Set();
     const processed = new Set();
@@ -877,7 +894,10 @@ export async function refineCandidatesWithQwenAudit({ root, targetMeaning, candi
         if (!entry) { diagnostics.locallyMissingCount += 1; continue; }
         const descriptor = modelForGeneratedCandidate(entry, { ...suggestion, elementType }, root, language);
         if (models.has(descriptor.key)) { diagnostics.duplicateModelCount += 1; continue; }
-        output[language].push(verifiedCandidatePatch(suggestion, entry, root, descriptor, { resetAnalysis: true }));
+        output[language].push(verifiedCandidatePatch(suggestion, entry, root, descriptor, {
+          resetAnalysis: true,
+          guaranteedAllomorph: guaranteedWords.has(key)
+        }));
         seen.add(key);
         models.add(descriptor.key);
         diagnostics.verifiedNewModelCount += 1;

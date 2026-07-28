@@ -28,6 +28,9 @@ assert.match(qwen, /requestTimeoutMs: 15000/, 'single Qwen request has bounded t
 assert.match(qwen, /AbortController/, 'Qwen timeout uses AbortController');
 assert.match(qwen, /qwen_suggestion_verified_in_local_index/, 'generated candidates must be verified in the local index before analysis');
 assert.match(script, /buttonTexts:[\s\S]*done: currentLang\(\) === 'en' \? 'Done' : 'Готово'/, 'production supplies localized completion text to the unified runner');
+assert.match(script, /part_of_speech: state\.elementType === 'preposition' \? 'preposition' : 'other'/, 'generated cards include the bot-required part of speech');
+assert.match(script, /translation: \{[\s\S]*language: currentLang\(\),[\s\S]*word: state\.meaning \|\| state\.root/, 'generated cards always include the bot-required translation language and a non-empty word');
+assert.doesNotMatch(script, /JSON_CARD_START_MARKER|JSON_CARD_END_MARKER|JSON_CARD_WRAPPER_LIMIT/, 'generated cards are always plain JSON without Telegram command wrappers');
 const searchDerivativesBlock = script.match(/async function searchDerivatives\(\) \{[\s\S]*?\n    \}/)?.[0] || '';
 assert.doesNotMatch(searchDerivativesBlock, /finally[\s\S]*setCalculateButtonStatus\(defaultCalculateButtonText\(\), false, \{ loading: false \}\)/, 'finally does not immediately overwrite the completion status');
 assert.match(script, /completed_with_warnings/, 'global status supports completed with warnings');
