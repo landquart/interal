@@ -2,8 +2,8 @@
   "version": "1.0",
   "registry_type": "lexical_card_registry",
   "title": "Registre of lexical cartes",
-  "generated_at": "2026-07-28T13:56:17.534Z",
-  "count": 3,
+  "generated_at": "2026-07-28T16:45:15.760Z",
+  "count": 4,
   "vord_types": [
     "iv",
     "av",
@@ -113,6 +113,41 @@
       ],
       "detail_path": "cards/accepted/iv/iv_3e1e5e67755f4b9aabe2758a1fe414e2.json",
       "search_blob": "iv_3e1e5e67755f4b9aabe2758a1fe414e2 iv indoeuropan vordes matre matre en mother noun landquart germanic romance slavic hellenic en english germanic mother mother ˈmʌðə m a t r e m ʌ ð ə de german germanic mutter mutter ˈmʊtɐ m a t r e m ʊ t ɐ fr french romance mere mere mɛʁ m a t r e m ɛ ʁ es spanish romance madre madre ˈmaðɾe m a t r e m a ð ɾ e it italian romance madre madre ˈmadre m a t r e m a d r e ru russian slavic мать mat' matʲ m a t r e m a t el greek hellenic μητερα mitera miˈtera m a t r e m i t e r a"
+    },
+    {
+      "id": "av_jH6SGcfLeGaN",
+      "vord_type": "associativ vordes",
+      "vord_type_code": "av",
+      "status": "accepted",
+      "word": "alter",
+      "ipa": "",
+      "translation_language": "ru",
+      "translation_word": "другой",
+      "translations": {
+        "ru": "альтер-эго",
+        "en": "altruism",
+        "de": "altersgruppe",
+        "fr": "altération",
+        "es": "alteración",
+        "it": "alternare"
+      },
+      "part_of_speech": "other",
+      "created_at": "2026-07-28T16:42:38.376Z",
+      "created_at_source": "mini_app",
+      "accepted_at": "2026-07-28T16:45:15.760Z",
+      "author": "landquart",
+      "author_contact_type": "telegram",
+      "author_contact_url": "https://t.me/quinarta",
+      "final_percentage_code": "FA",
+      "final_percentage_value": 43.90082429467122,
+      "final_percentage_source_path": "result.FA",
+      "supported_groups": [
+        "Germanic",
+        "Romance",
+        "Slavic"
+      ],
+      "detail_path": "cards/accepted/av/av_jH6SGcfLeGaN.json",
+      "search_blob": "av_jh6sgcflegan associativ vordes av accepted alter  ru другой альтер-эго altruism altersgruppe altération alteración alternare other 2026-07-28t16:42:38.376z mini_app 2026-07-28t16:45:15.760z landquart telegram https://t.me/quinarta fa 43.90082429467122 result.fa germanic romance slavic cards/accepted/av/av_jh6sgcflegan.json"
     }
   ]
 }
