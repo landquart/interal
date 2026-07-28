@@ -7,7 +7,7 @@
   <link rel="icon" type="image/png" sizes="64x64" href="../favicon/favicon%20interal%2064.png" />
   <link rel="apple-touch-icon" sizes="512x512" href="../favicon/favicon%20interal%20512.png" />
   <title>Associativ vordes</title>
-  <link rel="preload" href="../elements/loader_video_fitted_0_1s_triangle_fixed_centered.svg?v=calculate-button-20260728-1" as="image" type="image/svg+xml" fetchpriority="high" />
+  <link rel="preload" href="../elements/loader_video_fitted_0_1s_triangle_fixed_centered.svg" as="image" type="image/svg+xml" fetchpriority="high" />
   <link rel="stylesheet" href="../shared/ui.css?v=site-fixes-20260715-1" />
   <style>
     h2 { margin: 0 0 14px; font-size: 21px; }
@@ -64,12 +64,6 @@
     .actions-row { display: flex; flex-wrap: wrap; gap: 10px; }
     .associativ-page .actions-row .interal-btn { flex: 0 1 auto; width: auto; min-width: 0; padding-inline: 18px; }
     .fit.short { width: auto; min-width: 0; padding-inline: 12px; }
-    .associativ-page #calculateBtn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
-    .associativ-page #calculateBtn .btn-text { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .associativ-page .btn-loader { width: 22px; height: 22px; display: none; flex: 0 0 auto; object-fit: contain; pointer-events: none; }
-    .associativ-page #calculateBtn.interal-btn--primary .btn-loader { filter: invert(1); }
-    body.dark-theme .associativ-page #calculateBtn.interal-btn--primary .btn-loader { filter: none; }
-    .associativ-page .is-loading .btn-loader { display: inline-block; }
     .json-card-bottom-actions { margin-top: 0; }
 
 
@@ -409,12 +403,7 @@
       </div>
       <div class="interal-actions row actions-row" style="grid-column: 1 / -1;">
         <button class="tool-btn interal-btn interal-btn--primary gradient-hover" id="calculateBtn" type="button">
-          <img
-            class="btn-loader"
-            src="../elements/loader_video_fitted_0_1s_triangle_fixed_centered.svg?v=calculate-button-20260728-1"
-            alt=""
-            aria-hidden="true"
-          />
+          <img class="btn-loader" src="../elements/loader_video_fitted_0_1s_triangle_fixed_centered.svg" alt="" aria-hidden="true" />
           <span class="btn-text" id="searchBtn">Рассчитать</span>
         </button>
         <button class="tool-btn interal-btn interal-btn--secondary" id="showExampleBtn">Показать пример</button>
@@ -469,7 +458,7 @@
   <script src="../shared/copy-plain.js?v=contact-types-20260713-1"></script>
   <script src="../shared/ui.js?v=registry-name-20260715-1" defer></script>
   <script src="../shared/button-status.js?v=button-loader-20260716-1" defer></script>
-  <script type="module" src="./script.js?v=calculate-button-loader-20260728-1"></script>
+  <script type="module" src="./script.js?v=calculate-button-paint-20260728-1"></script>
   <script src="../shared/form-draft.js?v=page-state-20260716-1" defer></script>
 </body>
 </html>

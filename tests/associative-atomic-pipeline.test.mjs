@@ -33,13 +33,17 @@ function snapshot(state) {
 }
 
 function makeDependencies({ saveDeferred, auditError, analyzeDeferred, sharedState } = {}) {
-  const counts = { translations: 0, indexes: 0, audits: 0, analyses: 0, renders: 0, saves: 0, done: 0 };
+  const counts = { paints: 0, translations: 0, indexes: 0, audits: 0, analyses: 0, renders: 0, saves: 0, done: 0 };
   const events = [];
   const button = { loading: false, text: 'Calculate' };
   const dependencies = {
     languages,
     eventLog: events,
     isCurrentRun: () => true,
+    async waitForPaint() {
+      counts.paints += 1;
+      events.push('button:painted');
+    },
     buttonStatusController: {
       start(text) { button.loading = true; button.text = text; return 1; },
       progress(_token, text) { button.loading = true; button.text = text; },
@@ -47,7 +51,7 @@ function makeDependencies({ saveDeferred, auditError, analyzeDeferred, sharedSta
       abort() { button.loading = false; button.text = 'Calculate'; },
       error() { button.loading = false; button.text = 'Error'; }
     },
-    targetTranslator: { async translate() { counts.translations += 1; return { en: 'eye' }; } },
+    targetTranslator: { async translate() { counts.translations += 1; events.push('translation:called'); return { en: 'eye' }; } },
     candidateIndexLoader: { async load() { counts.indexes += 1; return candidates; } },
     candidateAudit: {
       async audit({ candidatesByLanguage }) {
@@ -90,6 +94,8 @@ assert.doesNotMatch(scriptSource, /supplementAfterCompletedCalculation/, 'remove
   save.resolve();
   const result = await run;
   assert.equal(counts.done, 1);
+  assert.equal(counts.paints, 1, 'the loading state is painted exactly once before the calculation');
+  assert.ok(events.indexOf('button:painted') < events.indexOf('translation:called'), 'the browser receives a paint opportunity before translation and index work');
   assert.equal(button.loading, false);
   assert.equal(result.state.checked, true);
   assert.ok(events.indexOf('audit:end') < events.indexOf('selection:final'));
