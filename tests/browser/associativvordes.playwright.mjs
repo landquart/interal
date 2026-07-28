@@ -206,7 +206,7 @@ async function configurePage(page) {
     body: runtimeAdapter
   }));
   await page.goto(`${baseUrl}/associativvordes/`);
-  await page.waitForFunction(() => window.__associativeReady === true);
+  await page.waitForFunction(() => window.__associativeReady === true, undefined, { polling: 25 });
 }
 
 async function runSuccessfulCalculation(page) {
@@ -215,7 +215,11 @@ async function runSuccessfulCalculation(page) {
   await page.locator('#meaningInput').fill('other');
   await page.locator('#calculateBtn').click();
 
-  await page.waitForFunction(() => document.getElementById('calculateBtn').classList.contains('is-loading'));
+  await page.waitForFunction(
+    () => document.getElementById('calculateBtn').classList.contains('is-loading'),
+    undefined,
+    { polling: 25 }
+  );
   assert.equal(await page.locator('#calculateBtn').getAttribute('aria-busy'), 'true');
   assert.equal(await page.locator('#calculateBtn .btn-loader').evaluate(element => getComputedStyle(element).display), 'block');
 
@@ -227,7 +231,7 @@ async function runSuccessfulCalculation(page) {
         && window.__associativeStages.at(-1) === 'run:end'
         && document.getElementById('calculateBtn').getAttribute('aria-busy') === 'false'
       )
-    ), previousRunCount + 1, { timeout: 3000 });
+    ), previousRunCount + 1, { timeout: 3000, polling: 25 });
   } catch (error) {
     const diagnostics = await page.evaluate(() => ({
       events: window.__associativeStages,
@@ -251,7 +255,11 @@ async function runSuccessfulCalculation(page) {
   assert.equal(await page.locator('#languagesSection').isVisible(), true);
   assert.equal(await page.locator('#calculateBtn').getAttribute('aria-busy'), 'false');
   assert.equal(await page.locator('#calculateBtn').isDisabled(), true, 'Done remains briefly visible');
-  await page.waitForFunction(() => !document.getElementById('calculateBtn').disabled);
+  await page.waitForFunction(
+    () => !document.getElementById('calculateBtn').disabled,
+    undefined,
+    { polling: 25 }
+  );
 
   const stages = await page.evaluate(() => window.__associativeStages);
   assert.ok(stages.indexOf('button:paint') < stages.indexOf('translation:start'));
@@ -278,7 +286,11 @@ try {
 
   await desktop.evaluate(() => { window.__failTranslation = true; });
   await desktop.locator('#calculateBtn').click();
-  await desktop.waitForFunction(() => window.__lastAssociativeError === 'mock translation failure');
+  await desktop.waitForFunction(
+    () => window.__lastAssociativeError === 'mock translation failure',
+    undefined,
+    { polling: 25 }
+  );
   assert.equal(await desktop.locator('#calculateBtn').getAttribute('aria-busy'), 'false');
   assert.equal(await desktop.locator('#calculateBtn').isDisabled(), false);
   assert.equal(await desktop.locator('#calculateBtn').evaluate(element => element.classList.contains('is-loading')), false);
