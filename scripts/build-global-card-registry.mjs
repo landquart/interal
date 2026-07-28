@@ -1,7 +1,12 @@
 import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
-import { CANONICAL_VORD_TYPES, VORD_TYPE_LABELS, getCardPiPercent, validateCardSchema } from '../shared/card-schema.mjs';
+import {
+  CANONICAL_VORD_TYPES,
+  VORD_TYPE_LABELS,
+  getCardFinalPercentage,
+  validateCardSchema
+} from '../shared/card-schema.mjs';
 
 const ROOT = process.cwd();
 const ACCEPTED_ROOT = path.join(ROOT, 'cards', 'accepted');
@@ -176,6 +181,7 @@ for (const filePath of files) {
     fail(filePath, `invalid JSON: ${error.message}`);
   }
   validateCard(card, filePath, expectedType, seenIds);
+  const finalPercentage = getCardFinalPercentage(card);
   const compact = {
     id: text(card.id),
     vord_type: VORD_TYPE_LABELS[card.vord_type] || '',
@@ -193,7 +199,9 @@ for (const filePath of files) {
     author: text(card.author?.display_name),
     author_contact_type: text(card.author?.contacts?.[0]?.type),
     author_contact_url: text(card.author?.contacts?.[0]?.url),
-    pi_percent: finiteNumber(getCardPiPercent(card)),
+    final_percentage_code: finalPercentage?.code || null,
+    final_percentage_value: finiteNumber(finalPercentage?.value),
+    final_percentage_source_path: finalPercentage?.source_path || null,
     supported_groups: stringArray(card.supported_groups),
     detail_path: path.relative(ROOT, filePath).split(path.sep).join('/'),
     search_blob: makeSearchBlob(card)
