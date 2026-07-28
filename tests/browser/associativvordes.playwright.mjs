@@ -219,14 +219,26 @@ async function runSuccessfulCalculation(page) {
   assert.equal(await page.locator('#calculateBtn').getAttribute('aria-busy'), 'true');
   assert.equal(await page.locator('#calculateBtn .btn-loader').evaluate(element => getComputedStyle(element).display), 'block');
 
-  await page.waitForFunction(expectedRunCount => (
-    window.__lastAssociativeError
-    || (
-      window.__associativeRunCount === expectedRunCount
-      && window.__associativeStages.at(-1) === 'run:end'
-      && document.getElementById('calculateBtn').getAttribute('aria-busy') === 'false'
-    )
-  ), previousRunCount + 1);
+  try {
+    await page.waitForFunction(expectedRunCount => (
+      window.__lastAssociativeError
+      || (
+        window.__associativeRunCount === expectedRunCount
+        && window.__associativeStages.at(-1) === 'run:end'
+        && document.getElementById('calculateBtn').getAttribute('aria-busy') === 'false'
+      )
+    ), previousRunCount + 1, { timeout: 3000 });
+  } catch (error) {
+    const diagnostics = await page.evaluate(() => ({
+      events: window.__associativeStages,
+      lastError: window.__lastAssociativeError,
+      runCount: window.__associativeRunCount,
+      visibility: document.visibilityState,
+      ariaBusy: document.getElementById('calculateBtn').getAttribute('aria-busy'),
+      loading: document.getElementById('calculateBtn').classList.contains('is-loading')
+    }));
+    throw new Error(`browser calculation stalled: ${JSON.stringify(diagnostics)}`, { cause: error });
+  }
   const runtimeError = await page.evaluate(() => window.__lastAssociativeError);
   assert.equal(
     runtimeError,
