@@ -204,7 +204,8 @@ export function fuzzyIncludesRoot(word, root, language = 'en') {
 const SPECIAL_ROOT_VARIANTS = Object.freeze({
   inter: Object.freeze({ any: ['inter'], ru: ['интер'], el: ['ίντερ'] }),
   ocul: Object.freeze({ any: ['ocul', 'okul'], ru: ['окул'] }),
-  regul: Object.freeze({ any: ['regul'], ru: ['регул'], fr: ['régul'], it: ['regol'] })
+  regul: Object.freeze({ any: ['regul'], ru: ['регул'], fr: ['régul'], it: ['regol'] }),
+  alter: Object.freeze({ any: ['alter', 'altru'] })
 });
 
 export function specialRootVariants(lang, root) {

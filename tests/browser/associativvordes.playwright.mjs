@@ -277,7 +277,12 @@ async function runSuccessfulCalculation(page) {
 
 let browser;
 try {
-  browser = await chromium.launch({ headless: true, channel: 'chrome' });
+  try {
+    browser = await chromium.launch({ headless: true, channel: 'chrome' });
+  } catch (error) {
+    if (!String(error?.message || error).includes("Chromium distribution 'chrome' is not found")) throw error;
+    browser = await chromium.launch({ headless: true });
+  }
   const desktop = await browser.newPage({ viewport: { width: 1440, height: 900 } });
   await configurePage(desktop);
   await runSuccessfulCalculation(desktop);

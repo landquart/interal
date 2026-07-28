@@ -20,7 +20,12 @@ await mkdir(join(sourceRoot, 'en'), { recursive: true });
 const source = { id: 'normative/test.json', file: 'test.json', category: 'normative', ipm: 10 };
 const entry = (word, rank, score = 50) => ({ word, normalized: word.toLowerCase(), search_form: buildSearchForm(word), rank, frequency_score: score, category_breakdown: {}, sources: [{ ...source }] });
 const shards = {
-  'en/a.json': [entry('alternative', 2, 70), entry('alteration', 3, 60)],
+  'en/a.json': [
+    entry('alternative', 2, 70),
+    entry('alteration', 3, 60),
+    entry('altruism', 13, 58),
+    entry('altesation', 14, 99)
+  ],
   'en/i.json': [entry('irregular', 4, 55)],
   'en/r.json': [entry('regular', 1, 90), entry('regulation', 5, 80), entry('realteration', 6, 65)],
   'en/o.json': [entry('ocular', 7, 50)],
@@ -46,7 +51,7 @@ assert.equal(manifest.version, '4');
 assert.equal(manifest.normalizer_version, SEARCH_NORMALIZER_VERSION);
 assert.equal(manifest.affix_config_version, '1');
 assert.equal(manifest.index_format, 'static-affix-anchored-ngram-v1');
-assert.equal(report.entries, 12);
+assert.equal(report.entries, 14);
 assert.ok(report.posting_grams > 0);
 assert.ok(report.total_bytes > 0);
 assert.ok(manifest.languages.en.postings['3'].buckets.includes('68'), 'high decimal bucket 104 is retained as hexadecimal 68');
@@ -74,7 +79,12 @@ assert.deepEqual(
 assert.ok(!regul.some(item => item.word === 'xregulation'));
 assert.ok(!regul.some(item => item.word === 'prefixregulation'));
 const alter = await loader.loadCandidateEntries('en', 'alter');
-assert.deepEqual(alter.map(item => item.word).sort(), ['alternative', 'alteration', 'realteration'].sort());
+assert.deepEqual(
+  alter.map(item => item.word).sort(),
+  ['alternative', 'alteration', 'altruism', 'realteration'].sort(),
+  'exact and curated allomorph matches are returned without using broad fuzzy postings as a five-word quota'
+);
+assert.ok(!alter.some(item => item.word === 'altesation'), 'an unrelated fuzzy lookalike is not fetched when reliable matches already exist');
 assert.ok(!alter.some(item => item.word === 'Walter'));
 assert.deepEqual((await loader.loadCandidateEntries('en', 'oc')).map(item => item.word), ['ocular'], 'bigram postings support short roots');
 assert.deepEqual((await loader.loadCandidateEntries('en', 'x')).map(item => item.word), ['xregulation'], 'single-character roots remain searchable at a real boundary');

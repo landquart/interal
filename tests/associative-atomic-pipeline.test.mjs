@@ -179,6 +179,40 @@ assert.doesNotMatch(scriptSource, /supplementAfterCompletedCalculation/, 'remove
 }
 
 {
+  const concurrentLanguages = ['en', 'de', 'fr', 'es', 'it', 'ru'].map(code => ({ code, group: code === 'ru' ? 'Slavic' : 'Test' }));
+  const firstWave = deferred();
+  let activeIndexes = 0;
+  let maxActiveIndexes = 0;
+  const result = runAssociativeCalculation({
+    input: { root: 'alter' },
+    dependencies: {
+      languages: concurrentLanguages,
+      isCurrentRun: () => true,
+      targetTranslator: { async translate() { return {}; } },
+      candidateIndexLoader: {
+        async load() {
+          activeIndexes += 1;
+          maxActiveIndexes = Math.max(maxActiveIndexes, activeIndexes);
+          if (activeIndexes === 3) firstWave.resolve();
+          await firstWave.promise;
+          activeIndexes -= 1;
+          return [];
+        }
+      },
+      candidateAudit: {
+        async audit({ candidatesByLanguage }) {
+          return { candidatesByLanguage, warnings: [] };
+        }
+      },
+      renderer: { async renderFinal() {} },
+      stateStorage: { async save() {} }
+    }
+  });
+  await result;
+  assert.equal(maxActiveIndexes, 3, 'language indexes use bounded parallel loading instead of six serial downloads');
+}
+
+{
   const { dependencies, counts } = makeDependencies();
   dependencies.candidateAudit.audit = async ({ candidatesByLanguage }) => ({
     candidatesByLanguage: {

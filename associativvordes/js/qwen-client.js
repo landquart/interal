@@ -17,7 +17,7 @@ export const FINAL_SCORE_WEIGHTS = {
 export const QWEN_RUNTIME_CONFIG = {
   enableCandidateGeneration: true,
   enableReviewModel: true,
-  maxCandidatesPerLanguage: Infinity,
+  maxCandidatesPerLanguage: 120,
   autoAnalyzeCandidatesPerLanguage: MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE,
   maxGeneratedCandidatesPerLanguage: 2,
   maxKnownCandidateWordsPerLanguage: 120,

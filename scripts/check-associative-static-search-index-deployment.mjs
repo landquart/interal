@@ -91,8 +91,13 @@ async function runBrowserSmokeCheck() {
     if (regul.some(entry => entry.search_form === 'xregulation')) throw new Error('Browser smoke check accepted an unrecognized x- prefix.');
     const alter = await loader.loadCandidateEntries('en', 'alter');
     if (!alter.some(entry => entry.search_form.startsWith('alter'))) throw new Error('Browser smoke check did not find an English alter candidate.');
+    if (!alter.some(entry => entry.search_form.startsWith('altru'))) throw new Error('Browser smoke check did not find the curated English alter/altru allomorph.');
     if (alter.some(entry => entry.search_form === 'walter')) throw new Error('Browser smoke check accepted alter inside Walter.');
+    const alterDiagnostics = loader.getCandidateIndexDiagnostics();
+    if (alterDiagnostics.fuzzyCandidateIds !== 0) throw new Error('Browser smoke check used broad fuzzy postings despite exact alter candidates.');
+    if (alterDiagnostics.querySuppressed === true || alterDiagnostics.candidateEntryBlocks > 24) throw new Error('Browser smoke check exceeded the bounded alter entry-block budget.');
     const russianAlter = await loader.loadCandidateEntries('ru', 'alter');
+    if (!russianAlter.some(entry => entry.search_form.startsWith('altru'))) throw new Error('Browser smoke check did not find Russian альтруизм/альтруист candidates.');
     if (russianAlter.some(entry => entry.search_form.includes('buhgalter'))) throw new Error('Browser smoke check accepted alter inside бухгалтерия.');
   } finally {
     await new Promise(resolve => server.close(resolve));
