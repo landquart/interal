@@ -52,9 +52,6 @@ jobs:
           set -o pipefail
           npm test 2>&1 | tee .tmp/test-logs/all-tests.log
 
-      - name: Install Playwright Chromium
-        run: npx playwright install --with-deps chromium
-
       - name: Run Associativ vordes browser regression
         run: npm run test:browser
 

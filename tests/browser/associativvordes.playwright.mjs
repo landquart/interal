@@ -257,7 +257,7 @@ async function runSuccessfulCalculation(page) {
 
 let browser;
 try {
-  browser = await chromium.launch({ headless: true });
+  browser = await chromium.launch({ headless: true, channel: 'chrome' });
   const desktop = await browser.newPage({ viewport: { width: 1440, height: 900 } });
   await configurePage(desktop);
   await runSuccessfulCalculation(desktop);
