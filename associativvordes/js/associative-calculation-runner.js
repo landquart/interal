@@ -103,10 +103,51 @@ function finalGlobalStatus(state) {
     : languageStatus;
 }
 
-export function waitForNextPaint(scheduleFrame = globalThis.requestAnimationFrame) {
-  if (typeof scheduleFrame !== 'function') return Promise.resolve();
+export function waitForNextPaint({
+  scheduleFrame = globalThis.requestAnimationFrame,
+  scheduleTimeout = globalThis.setTimeout,
+  cancelTimeout = globalThis.clearTimeout,
+  timeoutMs = 100,
+  documentHidden = globalThis.document?.hidden === true
+} = {}) {
+  if (documentHidden || typeof scheduleFrame !== 'function') return Promise.resolve('skipped');
+
   return new Promise(resolve => {
-    scheduleFrame(() => scheduleFrame(resolve));
+    let settled = false;
+    let timeoutScheduled = false;
+    let timeoutId;
+
+    const finish = reason => {
+      if (settled) return;
+      settled = true;
+      if (timeoutScheduled && typeof cancelTimeout === 'function') {
+        try {
+          cancelTimeout(timeoutId);
+        } catch {
+          // A broken timer cleanup must never block the calculation.
+        }
+      }
+      resolve(reason);
+    };
+
+    if (typeof scheduleTimeout === 'function') {
+      try {
+        const delay = Number.isFinite(Number(timeoutMs)) ? Math.max(0, Number(timeoutMs)) : 100;
+        timeoutId = scheduleTimeout(() => finish('timeout'), delay);
+        timeoutScheduled = true;
+      } catch {
+        timeoutScheduled = false;
+      }
+    }
+
+    try {
+      scheduleFrame(() => finish('frame'));
+    } catch {
+      finish('frame_error');
+      return;
+    }
+
+    if (!timeoutScheduled) Promise.resolve().then(() => finish('fallback'));
   });
 }
 
@@ -162,16 +203,19 @@ export async function runAssociativeCalculation({
     warnings: dependencies.buttonTexts?.warnings || 'Completed with warnings',
     error: dependencies.buttonTexts?.error || 'Calculation error'
   };
-  const buttonToken = button?.start?.(labels.start);
-  await (dependencies.waitForPaint || waitForNextPaint)();
-  ensureActive('button_paint');
+  let buttonToken;
   const progress = text => {
     onProgress?.(text);
     button?.progress?.(buttonToken, text);
   };
 
-  emit('run:start');
   try {
+    buttonToken = button?.start?.(labels.start);
+    emit('button:start');
+    await (dependencies.waitForPaint || waitForNextPaint)();
+    ensureActive('button_paint');
+    emit('button:paint');
+    emit('run:start');
     ensureActive('run_start');
     emit('translation:start');
     progress(dependencies.progressTexts?.translation || 'translation');

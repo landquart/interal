@@ -768,8 +768,7 @@ const TEXT_I18N = {
           },
           renderer: { renderFinal: async () => renderAll() },
           stateStorage: { save: async () => Promise.resolve(window.InteralFormDraft?.save?.()) }
-        },
-        onProgress: text => { if (isCurrentRun(runId)) getCalculateButtonController()?.progress?.(undefined, text); }
+        }
       });
       state = result.state;
       return true;
