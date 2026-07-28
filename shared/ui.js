@@ -20,7 +20,7 @@
     const liquidGlassStylesheet = document.createElement('link');
     liquidGlassStylesheet.rel = 'stylesheet';
     liquidGlassStylesheet.dataset.interalLiquidGlassCss = 'true';
-    liquidGlassStylesheet.href = new URL('liquid-glass.css?v=unified-light-material-20260728-1', sharedRoot).href;
+    liquidGlassStylesheet.href = new URL('liquid-glass.css?v=unified-blur-20260728-2', sharedRoot).href;
     document.head.appendChild(liquidGlassStylesheet);
   }
 
