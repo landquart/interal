@@ -22,6 +22,7 @@ const DEFAULT_LANGUAGES = [
 ];
 
 let latestTestRunId = 0;
+const DEFAULT_INDEX_CONCURRENCY = 3;
 
 function status(statusName, patch = {}) {
   return {
@@ -101,6 +102,22 @@ function finalGlobalStatus(state) {
   return hasAnyAssociativeWarnings(state.warnings) && languageStatus === 'completed'
     ? 'completed_with_warnings'
     : languageStatus;
+}
+
+async function mapWithConcurrency(items, limit, mapper) {
+  const values = Array.from(items || []);
+  const concurrency = Math.max(1, Math.min(values.length || 1, Number(limit) || 1));
+  let cursor = 0;
+
+  async function worker() {
+    while (cursor < values.length) {
+      const index = cursor;
+      cursor += 1;
+      await mapper(values[index], index);
+    }
+  }
+
+  await Promise.all(Array.from({ length: concurrency }, () => worker()));
 }
 
 export function waitForNextPaint({
@@ -225,7 +242,7 @@ export async function runAssociativeCalculation({
 
     const candidatePools = {};
     emit('index:start');
-    for (const language of languages) {
+    await mapWithConcurrency(languages, dependencies.indexConcurrency ?? DEFAULT_INDEX_CONCURRENCY, async language => {
       ensureActive(`index:${language.code}`);
       currentState.languageStatuses[language.code] = status('loading_index');
       setState('status:loading_index');
@@ -247,7 +264,7 @@ export async function runAssociativeCalculation({
         addLanguageWarning(currentState, language.code, 'language_index_unavailable', error?.message);
         currentState.languageStatuses[language.code] = status('index_error', { errorCode: error?.code || error?.name || 'INDEX_ERROR' });
       }
-    }
+    });
     ensureActive('index');
     emit('index:end');
 

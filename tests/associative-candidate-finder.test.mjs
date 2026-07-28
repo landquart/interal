@@ -18,11 +18,11 @@ assert.equal(findCandidatesForRoot({ entries: [entry('regolare', 'regolare'), en
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('inter', 'inter')], root: 'alter' })), []);
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('international', 'international')], root: 'alter' })), []);
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('internet', 'internet')], root: 'alter' })), []);
-assert.equal(findCandidatesForRoot({ entries: [entry('altruism', 'altruism')], root: 'alter' }).candidates[0].match.type, 'fuzzy');
+assert.equal(findCandidatesForRoot({ entries: [entry('altruism', 'altruism')], root: 'alter' }).candidates[0].match.type, 'special');
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('altesation', 'altesation')], root: 'alter' })), [], 'an artificial fuzzy lookalike without a reliable morpheme parse is rejected');
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('altxsation', 'altxsation')], root: 'alter' })), []);
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('xlteration', 'xlteration')], root: 'alter' })), [], 'a first-character substitution is rejected at a valid root boundary');
-assert.equal(findCandidatesForRoot({ entries: [entry('altruism', 'altruism')], root: 'alter' }).candidates[0].match.similarity, 0.8);
+assert.equal(findCandidatesForRoot({ entries: [entry('altruism', 'altruism')], root: 'alter' }).candidates[0].match.similarity, 1);
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('ixxxxx', 'ixxxxx')], root: 'intern' })), []);
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('альтернатива', 'alternativa', { language: 'ru', normalized: 'альтернатива' })], root: 'alter', language: 'ru' })), ['альтернатива']);
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('интернациональный', 'internacionalnyj', { language: 'ru', normalized: 'интернациональный' })], root: 'alter', language: 'ru' })), []);
@@ -35,7 +35,7 @@ assert.deepEqual(words(findCandidatesForRoot({ entries: [
   entry('alter-exact-low', 'alter-low', { frequency_score: 1, ipm: 1 }),
   entry('alter-exact-ipm-low', 'alter-ipm-low', { frequency_score: 50, ipm: 1 }),
   entry('alter-exact-ipm-high', 'alter-ipm-high', { frequency_score: 50, ipm: 99 })
-], root: 'alter' })), ['alter-exact-ipm-high', 'alter-exact-ipm-low', 'alter-exact-low', 'altruism'], 'exact matches are ranked by F before a morphologically verified fuzzy allomorph is considered');
+], root: 'alter' })), ['altruism', 'alter-exact-ipm-high', 'alter-exact-ipm-low', 'alter-exact-low'], 'curated allomorphs and exact matches share the reliable tier and are ranked by F');
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('alter-rank2', 'alter-rank2', { rank: 2 }), entry('alter-rank1', 'alter-rank1', { rank: 1 })], root: 'alter' })), ['alter-rank1', 'alter-rank2']);
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('alter-null', 'alter-null', { rank: null }), entry('alter-ranked', 'alter-ranked', { rank: 3 })], root: 'alter' })), ['alter-ranked', 'alter-null'], 'rank influences sorting after frequency tie');
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('alter-null-high-frequency', 'alter-null-high-frequency', { rank: null, frequency_score: 90 }), entry('alter-ranked-low-frequency', 'alter-ranked-low-frequency', { rank: 1, frequency_score: 10 })], root: 'alter' })), ['alter-null-high-frequency', 'alter-ranked-low-frequency'], 'frequency_score is compared before real rank vs null');

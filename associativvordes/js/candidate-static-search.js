@@ -20,6 +20,8 @@ export { STATIC_INDEX_FORMAT, STATIC_MANIFEST_VERSION, fuzzySeedGrams };
 
 export const STATIC_ENTRY_BLOCK_CONCURRENCY = 6;
 export const STATIC_RESOURCE_RETRY_ATTEMPTS = 3;
+export const STATIC_MAX_CANDIDATE_IDS = 8192;
+export const STATIC_MAX_ENTRY_BLOCKS = 24;
 
 export async function mapWithConcurrency(items, limit, mapper) {
   const values = Array.from(items || []);
@@ -223,10 +225,49 @@ export async function loadStaticCandidateEntries({ manifest, language, root, sig
 
   const normalizedRoot = buildSearchForm(root);
   const candidateIds = new Set(await exactIds(normalizedRoot));
-  for (const variant of specialRootVariants(language, normalizedRoot)) addAll(candidateIds, await exactIds(variant));
-  for (const group of fuzzyAnchoredLookupGroups(normalizedRoot)) {
-    for (const lookup of group.lookups) addAll(candidateIds, await loadPosting(lookup));
+  for (const variant of specialRootVariants(language, normalizedRoot)) {
+    addAll(candidateIds, await exactIds(variant));
   }
+  diagnostics.exactCandidateIds = candidateIds.size;
+
+  // Fuzzy retrieval is a fallback, not a quota filler. Combining every fuzzy
+  // posting for a root such as "alter" can cover almost the entire dictionary
+  // (tens of thousands of ids and hundreds of entry blocks), even when exact
+  // derivatives already exist. Besides admitting weaker candidates, that made
+  // an ordinary calculation download the full per-language index.
+  if (candidateIds.size === 0) {
+    const fuzzyIds = new Set();
+    for (const group of fuzzyAnchoredLookupGroups(normalizedRoot)) {
+      for (const lookup of group.lookups) addAll(fuzzyIds, await loadPosting(lookup));
+    }
+    diagnostics.fuzzyCandidateIds = fuzzyIds.size;
+    addAll(candidateIds, fuzzyIds);
+  } else {
+    diagnostics.fuzzyCandidateIds = 0;
+  }
+
+  const candidateBlocks = new Set();
+  for (const id of candidateIds) {
+    const block = blockForId(info, id);
+    if (block) candidateBlocks.add(block.file);
+  }
+  diagnostics.candidateEntryBlocks = candidateBlocks.size;
+
+  // Keep every browser query bounded. If a fallback typo or an extremely short
+  // root is too broad, return no local candidates and let the Qwen audit propose
+  // specific words that are verified by exact word lookup. Never download an
+  // effectively complete million-entry index for a single button click.
+  if (candidateIds.size > STATIC_MAX_CANDIDATE_IDS || candidateBlocks.size > STATIC_MAX_ENTRY_BLOCKS) {
+    diagnostics.querySuppressed = true;
+    diagnostics.querySuppressedReason = candidateIds.size > STATIC_MAX_CANDIDATE_IDS
+      ? 'candidate_id_limit'
+      : 'entry_block_limit';
+    diagnostics.candidateIds = candidateIds.size;
+    return [];
+  }
+
+  diagnostics.querySuppressed = false;
+  diagnostics.querySuppressedReason = null;
   diagnostics.candidateIds = candidateIds.size;
   const entries = await loadEntriesByIds([...candidateIds].sort((a, b) => a - b));
   return entries.filter(entry => {
