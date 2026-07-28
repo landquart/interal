@@ -28,7 +28,8 @@ assert.match(qwen, /requestTimeoutMs: 15000/, 'single Qwen request has bounded t
 assert.match(qwen, /AbortController/, 'Qwen timeout uses AbortController');
 assert.match(qwen, /qwen_suggestion_verified_in_local_index/, 'generated candidates must be verified in the local index before analysis');
 assert.match(script, /buttonTexts:[\s\S]*done: currentLang\(\) === 'en' \? 'Done' : 'Готово'/, 'production supplies localized completion text to the unified runner');
-assert.match(runner, /await \(dependencies\.waitForPaint \|\| waitForNextPaint\)\(\)/, 'the calculation waits until the loading state has been painted');
+assert.match(runner, /try \{[\s\S]*buttonToken = button\?\.start[\s\S]*await \(dependencies\.waitForPaint \|\| waitForNextPaint\)\(\)[\s\S]*emit\('translation:start'\)/, 'button start, paint wait, and translation are protected by the same try/catch');
+assert.doesNotMatch(script, /progress\?\.\(undefined/, 'production never sends progress without the runner token');
 assert.doesNotMatch(script, /ensureCalculateButtonLoader|CALCULATE_BUTTON_LOADER_URL|setProperty\('display'/, 'the page does not duplicate or override the shared button loader');
 assert.match(script, /part_of_speech: state\.elementType === 'preposition' \? 'preposition' : 'other'/, 'generated cards include the bot-required part of speech');
 assert.match(script, /translation: \{[\s\S]*language: currentLang\(\),[\s\S]*word: state\.meaning \|\| state\.root/, 'generated cards always include the bot-required translation language and a non-empty word');

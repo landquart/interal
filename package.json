@@ -5,6 +5,7 @@
   },
   "scripts": {
     "test": "node scripts/run-tests.mjs",
+    "test:browser": "node tests/browser/associativvordes.playwright.mjs",
     "test:cards-schema": "node scripts/test-cards-schema.mjs",
     "test:card-schema": "node tests/card-schema.test.mjs",
     "build:associative-index": "node scripts/build-associative-candidate-index.mjs",
@@ -16,5 +17,8 @@
     "merge:associative-search-index": "node scripts/merge-associative-static-search-artifacts.mjs",
     "validate:associative-search-index": "node scripts/validate-associative-static-search-index.mjs",
     "check:associative-search-index-deployment": "node scripts/check-associative-static-search-index-deployment.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.62.0"
   }
 }

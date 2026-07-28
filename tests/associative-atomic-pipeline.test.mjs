@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { runAssociativeCalculation } from '../associativvordes/js/associative-calculation-runner.js';
+import { runAssociativeCalculation, waitForNextPaint } from '../associativvordes/js/associative-calculation-runner.js';
 import { createEmptyAssociativeState } from '../associativvordes/js/associative-state.js';
 
 function deferred() {
@@ -33,9 +33,11 @@ function snapshot(state) {
 }
 
 function makeDependencies({ saveDeferred, auditError, analyzeDeferred, sharedState } = {}) {
-  const counts = { paints: 0, translations: 0, indexes: 0, audits: 0, analyses: 0, renders: 0, saves: 0, done: 0 };
+  const counts = { starts: 0, paints: 0, translations: 0, indexes: 0, audits: 0, analyses: 0, renders: 0, saves: 0, done: 0, errors: 0, aborts: 0 };
   const events = [];
   const button = { loading: false, text: 'Calculate' };
+  const buttonToken = 41;
+  const progressTokens = [];
   const dependencies = {
     languages,
     eventLog: events,
@@ -45,11 +47,11 @@ function makeDependencies({ saveDeferred, auditError, analyzeDeferred, sharedSta
       events.push('button:painted');
     },
     buttonStatusController: {
-      start(text) { button.loading = true; button.text = text; return 1; },
-      progress(_token, text) { button.loading = true; button.text = text; },
-      success(_token, text) { counts.done += 1; button.loading = false; button.text = text; },
-      abort() { button.loading = false; button.text = 'Calculate'; },
-      error() { button.loading = false; button.text = 'Error'; }
+      start(text) { counts.starts += 1; button.loading = true; button.text = text; return buttonToken; },
+      progress(token, text) { progressTokens.push(token); button.loading = true; button.text = text; },
+      success(token, text) { assert.equal(token, buttonToken); counts.done += 1; button.loading = false; button.text = text; },
+      abort(token) { assert.equal(token, buttonToken); counts.aborts += 1; button.loading = false; button.text = 'Calculate'; },
+      error(token) { assert.equal(token, buttonToken); counts.errors += 1; button.loading = false; button.text = 'Error'; }
     },
     targetTranslator: { async translate() { counts.translations += 1; events.push('translation:called'); return { en: 'eye' }; } },
     candidateIndexLoader: { async load() { counts.indexes += 1; return candidates; } },
@@ -74,7 +76,7 @@ function makeDependencies({ saveDeferred, auditError, analyzeDeferred, sharedSta
       async save() { counts.saves += 1; if (saveDeferred) await saveDeferred.promise; }
     }
   };
-  return { dependencies, counts, events, button };
+  return { dependencies, counts, events, button, buttonToken, progressTokens };
 }
 
 const scriptSource = await readFile('associativvordes/script.js', 'utf8');
@@ -84,7 +86,7 @@ assert.doesNotMatch(scriptSource, /supplementAfterCompletedCalculation/, 'remove
 
 {
   const save = deferred();
-  const { dependencies, counts, events, button } = makeDependencies({ saveDeferred: save });
+  const { dependencies, counts, events, button, buttonToken, progressTokens } = makeDependencies({ saveDeferred: save });
   const run = runAssociativeCalculation({ input: { root: 'ocul', meaning: 'eye' }, dependencies });
   await Promise.resolve();
   assert.equal(button.loading, true, 'loader starts with the production runner');
@@ -94,8 +96,13 @@ assert.doesNotMatch(scriptSource, /supplementAfterCompletedCalculation/, 'remove
   save.resolve();
   const result = await run;
   assert.equal(counts.done, 1);
+  assert.equal(counts.starts, 1, 'the runner starts the button exactly once');
   assert.equal(counts.paints, 1, 'the loading state is painted exactly once before the calculation');
   assert.ok(events.indexOf('button:painted') < events.indexOf('translation:called'), 'the browser receives a paint opportunity before translation and index work');
+  assert.ok(events.indexOf('button:start') < events.indexOf('button:paint'), 'the runner records button start before paint');
+  assert.ok(events.indexOf('button:paint') < events.indexOf('translation:start'), 'paint completes before translation starts');
+  assert.ok(progressTokens.length > 0);
+  assert.ok(progressTokens.every(token => token === buttonToken), 'every progress update uses the token returned by start');
   assert.equal(button.loading, false);
   assert.equal(result.state.checked, true);
   assert.ok(events.indexOf('audit:end') < events.indexOf('selection:final'));
@@ -108,6 +115,67 @@ assert.doesNotMatch(scriptSource, /supplementAfterCompletedCalculation/, 'remove
   await Promise.resolve();
   assert.equal(snapshot(result.state), frozenState, 'state is immutable after Done');
   assert.deepEqual(counts, frozenCounts, 'no render/save/network work occurs after Done');
+}
+
+{
+  let frameCallback;
+  let timeoutCallback;
+  const { dependencies, counts, events, button } = makeDependencies();
+  dependencies.waitForPaint = () => waitForNextPaint({
+    scheduleFrame(callback) {
+      frameCallback = callback;
+    },
+    scheduleTimeout(callback) {
+      timeoutCallback = callback;
+      return 77;
+    },
+    cancelTimeout() {}
+  });
+
+  const run = runAssociativeCalculation({ input: { root: 'frozen-frame' }, dependencies });
+  await Promise.resolve();
+  assert.equal(counts.starts, 1);
+  assert.equal(counts.translations, 0, 'translation waits for the paint opportunity');
+  assert.equal(typeof frameCallback, 'function');
+  timeoutCallback();
+  const result = await run;
+  assert.equal(result.ok, true);
+  assert.equal(counts.translations, 1, 'the fallback timer releases translation when animation frames freeze');
+  assert.equal(counts.indexes, 1);
+  assert.equal(counts.analyses, 5);
+  assert.equal(button.loading, false);
+  assert.ok(events.includes('scores:calculated'));
+}
+
+{
+  const { dependencies, counts, button } = makeDependencies();
+  dependencies.waitForPaint = async () => {
+    throw new Error('paint preparation failed');
+  };
+  await assert.rejects(
+    runAssociativeCalculation({ input: { root: 'paint-error' }, dependencies }),
+    /paint preparation failed/
+  );
+  assert.equal(counts.errors, 1, 'a paint-stage error reaches the runner catch');
+  assert.equal(counts.translations, 0);
+  assert.equal(button.loading, false, 'a paint-stage error restores the button');
+}
+
+{
+  const controller = new AbortController();
+  const { dependencies, counts, button } = makeDependencies();
+  dependencies.waitForPaint = async () => {
+    controller.abort(new DOMException('cancelled during paint', 'AbortError'));
+    throw controller.signal.reason;
+  };
+  await assert.rejects(
+    runAssociativeCalculation({ input: { root: 'paint-abort' }, dependencies, signal: controller.signal }),
+    error => error.name === 'AbortError'
+  );
+  assert.equal(counts.aborts, 1, 'paint-stage cancellation uses button.abort');
+  assert.equal(counts.errors, 0);
+  assert.equal(counts.translations, 0);
+  assert.equal(button.loading, false, 'paint-stage cancellation restores the button');
 }
 
 {
