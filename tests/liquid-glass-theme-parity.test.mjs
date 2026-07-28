@@ -15,20 +15,25 @@ assert.match(
   /blur\(8px\)\s+saturate\(132%\)\s+contrast\(102%\)/,
   'balanced material filter must match the light website topbar'
 );
-assert.doesNotMatch(
+assert.match(
   material,
-  /body\.dark-theme[^,{]*\.top-nav-window/,
-  'dark theme must not replace the canonical glass material'
+  /body\.dark-theme \.top-nav-window::before\s*\{[^}]*rgba\(35,\s*36,\s*42,\s*0\.55\)[^}]*rgba\(22,\s*24,\s*29,\s*0\.43\)/s,
+  'dark theme must preserve its dark material gradient'
 );
-assert.doesNotMatch(
+assert.match(
   fallback,
-  /body\.dark-theme(?:\.nav-scrolled)?\s+\.top-nav-window/,
-  'fallback topbar material must also be theme-independent'
+  /body\.dark-theme \.top-nav-window\s*\{[^}]*rgba\(42,\s*44,\s*51,\s*0\.68\)[^}]*blur\(21px\)\s*saturate\(138%\)/s,
+  'fallback keeps dark colours while sharing the light blur settings'
+);
+assert.match(
+  material,
+  /data-liquid-glass-tier="balanced"\] body\.dark-theme \.top-nav-window\s*\{[^}]*blur\(8px\)\s+saturate\(132%\)\s+contrast\(102%\)/s,
+  'balanced dark theme must copy only the light optical filter'
 );
 assert.match(
   loader,
-  /liquid-glass\.css\?v=unified-light-material-20260728-1/,
-  'the unified material must use a fresh cache key'
+  /liquid-glass\.css\?v=unified-blur-20260728-2/,
+  'the unified blur settings must use a fresh cache key'
 );
 
 console.log('liquid glass theme parity tests passed');
