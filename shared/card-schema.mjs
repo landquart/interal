@@ -31,27 +31,75 @@ export class CardSchemaError extends Error {
 const isRecord = value => Boolean(value) && typeof value === 'object' && !Array.isArray(value);
 const hasOwn = (object, key) => Object.prototype.hasOwnProperty.call(object, key);
 const nonEmpty = value => typeof value === 'string' && value.trim().length > 0;
+const FINAL_PERCENTAGE_SCHEMAS = Object.freeze({
+  av: Object.freeze({
+    code: 'FA',
+    paths: Object.freeze(['result.FA', 'calculation.FA', 'FA'])
+  }),
+  iv: Object.freeze({
+    code: 'PI',
+    paths: Object.freeze(['result.pi_percent', 'calculation.pi_percent', 'pi_percent'])
+  })
+});
 const finiteOrNull = value => {
   if (value == null || value === '' || typeof value === 'boolean') return null;
   const number = Number(value);
   return Number.isFinite(number) ? number : null;
 };
 
-export function getCardPiPercent(card) {
-  if (isRecord(card?.result) && hasOwn(card.result, 'pi_percent')) return card.result.pi_percent;
-  if (isRecord(card?.calculation) && hasOwn(card.calculation, 'pi_percent')) return card.calculation.pi_percent;
-  if (isRecord(card) && hasOwn(card, 'pi_percent')) return card.pi_percent;
+function fieldAtPath(object, path) {
+  const keys = path.split('.');
+  let current = object;
+  for (const key of keys) {
+    if (!isRecord(current) || !hasOwn(current, key)) return { found: false, value: undefined };
+    current = current[key];
+  }
+  return { found: true, value: current };
+}
+
+function setFieldAtPath(object, path, value) {
+  const keys = path.split('.');
+  let current = object;
+  keys.slice(0, -1).forEach((key) => {
+    if (!isRecord(current[key])) current[key] = {};
+    current = current[key];
+  });
+  current[keys.at(-1)] = value;
+}
+
+export function getCardFinalPercentage(card) {
+  const schema = FINAL_PERCENTAGE_SCHEMAS[card?.vord_type];
+  if (!schema) return undefined;
+  for (const sourcePath of schema.paths) {
+    const field = fieldAtPath(card, sourcePath);
+    if (field.found) {
+      return {
+        code: schema.code,
+        value: field.value,
+        source_path: sourcePath
+      };
+    }
+  }
   return undefined;
 }
 
-export function normalizeCardPi(card) {
+export function getCardPiPercent(card) {
+  const finalPercentage = getCardFinalPercentage(card);
+  return finalPercentage?.code === 'PI' ? finalPercentage.value : undefined;
+}
+
+export function normalizeCardFinalPercentage(card) {
   const next = typeof structuredClone === 'function' ? structuredClone(card) : JSON.parse(JSON.stringify(card));
-  const pi = getCardPiPercent(next);
-  if (pi !== undefined) {
-    if (!isRecord(next.result)) next.result = {};
-    next.result.pi_percent = pi;
+  const finalPercentage = getCardFinalPercentage(next);
+  if (finalPercentage && typeof finalPercentage.value === 'string' && finalPercentage.value.trim()) {
+    const number = Number(finalPercentage.value);
+    if (Number.isFinite(number)) setFieldAtPath(next, finalPercentage.source_path, number);
   }
   return next;
+}
+
+export function normalizeCardPi(card) {
+  return normalizeCardFinalPercentage(card);
 }
 
 function associativeEvidence(card) {
@@ -138,14 +186,19 @@ export function validateCardSchema(card, options = {}) {
   if (card.card_type !== undefined && card.card_type !== 'vord_card') throw new CardSchemaError('card_type', 'must be "vord_card"');
   if (!isRecord(card.interal)) throw new CardSchemaError('interal', 'is required');
   if (!nonEmpty(card.interal.word)) throw new CardSchemaError('interal.word', 'is required');
-  const pi = getCardPiPercent(card);
-  if (pi !== undefined && (typeof pi !== 'number' || !Number.isFinite(pi))) throw new CardSchemaError('result.pi_percent', 'must be a finite number when present');
+  const finalPercentage = getCardFinalPercentage(card);
+  if (
+    finalPercentage
+    && (typeof finalPercentage.value !== 'number' || !Number.isFinite(finalPercentage.value))
+  ) {
+    throw new CardSchemaError(finalPercentage.source_path, 'must be a finite number when present');
+  }
   validateAuthor(card.author);
   return true;
 }
 
 export function normalizeCardSchema(card, options = {}) {
-  const normalized = normalizeAssociativeCard(normalizeCardPi(card));
+  const normalized = normalizeAssociativeCard(normalizeCardFinalPercentage(card));
   validateCardSchema(normalized, options);
   return normalized;
 }
