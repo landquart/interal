@@ -26,7 +26,7 @@ assert.match(script, /reconcileModelRepresentatives\(valid, root, language\.code
 assert.match(script, /window\.InteralPageStateExport|window\.InteralPageStateImport/, 'page state persistence hooks remain');
 assert.match(script, /sources: sourceState\.sources/, 'saved state includes sources without storing shard payloads');
 assert.doesNotMatch(script, /manifestLoaded|loadedShards|shardCache/, 'localStorage compaction does not persist manifest or shards');
-assert.match(html, /script\.js\?v=associative-search-precision-20260724-1/, 'search precision cache busting is updated');
+assert.match(html, /script\.js\?v=calculate-button-loader-20260728-1/, 'associative runtime cache busting includes the guaranteed calculate-button loader');
 
 const fixtureEntries = [
   { word: 'alter', language: 'en', normalized: 'alter', search_form: 'alter', rank: 1, frequency_score: 91, category_breakdown: { fixture: 91 }, sources: [{ source: 'fixture', ipm: 10 }] },
