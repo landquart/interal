@@ -95,7 +95,8 @@ async function calculate() {
     await runAssociativeCalculation({
       input: {
         root: document.getElementById('rootInput').value,
-        meaning: document.getElementById('meaningInput').value,
+        meaning: document.getElementById('targetMeaningInput').value,
+        targetMeaning: document.getElementById('targetMeaningInput').value,
         maxModels: 5
       },
       state: createEmptyAssociativeState({ languages }),
@@ -212,7 +213,9 @@ async function configurePage(page) {
 async function runSuccessfulCalculation(page) {
   const previousRunCount = await page.evaluate(() => window.__associativeRunCount);
   await page.locator('#rootInput').fill('alter');
-  await page.locator('#meaningInput').fill('other');
+  await page.locator('#targetMeaningInput').fill('other');
+  await page.locator('#translationWordInput').fill('alternative');
+  await page.locator('#partOfSpeech').selectOption('adjective');
   await page.locator('#calculateBtn').click();
 
   await page.waitForFunction(

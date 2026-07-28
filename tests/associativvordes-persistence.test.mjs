@@ -25,7 +25,15 @@ assert.match(script, /function nextRunId\(\)[\s\S]*activeRunId \+= 1/, 'new calc
 const languages = ['en', 'de', 'fr', 'es', 'it', 'ru'];
 const createLanguageStatus = (status = 'idle', extra = {}) => ({ status, errorCode: null, message: null, ...extra });
 const state = {
-  root: 'inter', meaning: 'between', elementType: 'root', maxModels: MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE, checked: true, globalStatus: 'completed',
+  root: 'inter',
+  targetMeaning: 'between',
+  translationWord: 'between',
+  inputLanguage: 'en',
+  elementType: 'preposition',
+  partOfSpeech: 'preposition',
+  maxModels: MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE,
+  checked: true,
+  globalStatus: 'completed',
   languageStatuses: Object.fromEntries(languages.map(code => [code, createLanguageStatus('completed')])),
   languages: Object.fromEntries(languages.map(code => [code, []]))
 };
@@ -42,6 +50,10 @@ assert.equal(exported.version, 2, 'completed state exports through the current v
 assert.equal(exported.page, 'associativvordes', 'completed state exports page name');
 assert.equal(exported.state.result.accepted, true, 'completed result is exported');
 assert.equal(exported.state.maxModels, 5, 'the five-word limit is persisted');
+assert.equal(exported.state.targetMeaning, 'between', 'the analysis target is persisted separately');
+assert.equal(exported.state.translationWord, 'between', 'the dictionary translation is persisted separately');
+assert.equal(exported.state.inputLanguage, 'en', 'the language of both user-entered meanings is persisted');
+assert.equal(exported.state.partOfSpeech, 'preposition', 'the explicit part of speech is persisted');
 assert.equal(exported.state.languages.en[0].model_key, 'en|latin|plain||inter|interact', 'canonical model key survives compact export');
 assert.doesNotMatch(JSON.stringify(exported), /diagnosticsState|manifest|shard|loader|cache|AbortController|Promise/, 'export avoids runtime diagnostics and non-JSON objects');
 
@@ -53,6 +65,9 @@ assert.deepEqual(restored.match, { type: 'exact', distance: 0, similarity: 1, fr
 assert.equal(Object.hasOwn(restored.match, 'root'), false, 'match does not store fake root');
 assert.equal(restored.model_key, 'en|latin|plain||inter|interact', 'canonical model identity survives restore');
 assert.equal(imported.state.maxModels, 5, 'the five-word limit survives restore');
+assert.equal(imported.state.targetMeaning, 'between', 'the analysis target survives restore');
+assert.equal(imported.state.translationWord, 'between', 'the dictionary translation survives restore');
+assert.equal(imported.state.partOfSpeech, 'preposition', 'the part of speech survives restore');
 assert.deepEqual(restored.analysis.swow, { bonus: 11, target_to_word: { found: true, r1_strength: 0.11, r123_strength: 0.22 }, word_to_target: { found: false, r1_strength: null, r123_strength: null } }, 'SWOW keeps only minimal evidence through round-trip');
 assert.equal(swowLabel(restored.analysis.swow), 'SWOW direct', 'SWOW label is stable after reload');
 
@@ -67,6 +82,14 @@ assert.match(interruptedImport.state.languageStatuses.en.message, /previous calc
 const staleUnlimited = structuredClone(exported);
 staleUnlimited.state.maxModels = Number.MAX_SAFE_INTEGER;
 assert.equal(restoreAssociativeState(staleUnlimited, { languages, createLanguageStatus }).state.maxModels, 5, 'older unlimited drafts are clamped to five words');
+
+const legacyMeaning = structuredClone(exported);
+delete legacyMeaning.state.targetMeaning;
+delete legacyMeaning.state.translationWord;
+legacyMeaning.state.meaning = 'legacy target';
+const legacyMeaningImport = restoreAssociativeState(legacyMeaning, { languages, createLanguageStatus });
+assert.equal(legacyMeaningImport.state.targetMeaning, 'legacy target', 'legacy meaning remains readable as the analysis target');
+assert.equal(legacyMeaningImport.state.translationWord, '', 'legacy meaning is never invented as a dictionary translation');
 
 const completedImport = restoreAssociativeState(exported, { languages, createLanguageStatus });
 assert.equal(completedImport.state.globalStatus, 'completed', 'completed state is not marked for re-analysis');

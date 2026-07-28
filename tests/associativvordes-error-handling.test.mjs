@@ -31,8 +31,10 @@ assert.match(script, /buttonTexts:[\s\S]*done: currentLang\(\) === 'en' \? 'Done
 assert.match(runner, /try \{[\s\S]*buttonToken = button\?\.start[\s\S]*await \(dependencies\.waitForPaint \|\| waitForNextPaint\)\(\)[\s\S]*emit\('translation:start'\)/, 'button start, paint wait, and translation are protected by the same try/catch');
 assert.doesNotMatch(script, /progress\?\.\(undefined/, 'production never sends progress without the runner token');
 assert.doesNotMatch(script, /ensureCalculateButtonLoader|CALCULATE_BUTTON_LOADER_URL|setProperty\('display'/, 'the page does not duplicate or override the shared button loader');
-assert.match(script, /part_of_speech: state\.elementType === 'preposition' \? 'preposition' : 'other'/, 'generated cards include the bot-required part of speech');
-assert.match(script, /translation: \{[\s\S]*language: currentLang\(\),[\s\S]*word: state\.meaning \|\| state\.root/, 'generated cards always include the bot-required translation language and a non-empty word');
+assert.match(script, /makeAssociativeLemmaMetadata\(\{[\s\S]*partOfSpeech,[\s\S]*translationWord: state\.translationWord,[\s\S]*targetMeaning: state\.targetMeaning/, 'generated cards delegate validated lemma metadata to the shared builder');
+assert.doesNotMatch(script, /part_of_speech:[^\n]*'other'/, 'generated root cards never receive an automatic other fallback');
+assert.doesNotMatch(script, /translation:\s*\{[\s\S]{0,200}word:\s*state\.(?:targetMeaning|root)/, 'dictionary translation never falls back to the target meaning or root');
+assert.doesNotMatch(script, /targetMeaning:\s*state\.root/, 'the analysis target never falls back to the root');
 assert.doesNotMatch(script, /JSON_CARD_START_MARKER|JSON_CARD_END_MARKER|JSON_CARD_WRAPPER_LIMIT/, 'generated cards are always plain JSON without Telegram command wrappers');
 const searchDerivativesBlock = script.match(/async function searchDerivatives\(\) \{[\s\S]*?\n    \}/)?.[0] || '';
 assert.doesNotMatch(searchDerivativesBlock, /finally[\s\S]*setCalculateButtonStatus\(defaultCalculateButtonText\(\), false, \{ loading: false \}\)/, 'finally does not immediately overwrite the completion status');
