@@ -177,7 +177,9 @@ function pruneEmptyPublicFields(value) {
 }
 
 function buildPublicCardPayload(payload, id) {
-  const normalizedPayload = normalizeCardSchema(payload);
+  const normalizedPayload = normalizeCardSchema(payload, {
+    strictAssociative: payload?.vord_type === 'av'
+  });
   payload = normalizedPayload;
   const {
     id: _clientId,

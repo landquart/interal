@@ -160,7 +160,13 @@ function compactStateSwowEvidence(swow) {
 export function createEmptyAssociativeState({ languages = DEFAULT_LANGUAGE_CODES, createLanguageStatus = defaultLanguageStatus } = {}) {
   const codes = languageCodes(languages);
   return {
-    root: '', meaning: '', elementType: 'root', maxModels: MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE,
+    root: '',
+    targetMeaning: '',
+    translationWord: '',
+    inputLanguage: '',
+    elementType: 'root',
+    partOfSpeech: '',
+    maxModels: MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE,
     languages: Object.fromEntries(codes.map(code => [code, []])),
     checked: false,
     languageStatuses: Object.fromEntries(codes.map(code => [code, createLanguageStatus('idle')])),
@@ -267,7 +273,26 @@ function compactAssociativeLanguages(languages, languageList = DEFAULT_LANGUAGE_
 export function compactAssociativeState(state, { languages = DEFAULT_LANGUAGE_CODES, activeLang = 'en', calculateResult } = {}) {
   const checked = Boolean(state.checked);
   const r = calculateResult?.();
-  return cloneJson({ version: PAGE_STATE_VERSION, page: PAGE_STATE_NAME, state: { root: state.root || '', meaning: state.meaning || '', elementType: state.elementType || 'root', maxModels: state.maxModels, activeLang, languages: compactAssociativeLanguages(state.languages, languages), languageStatuses: state.languageStatuses, warnings: migrateAssociativeWarnings(state, { languages }), globalStatus: state.globalStatus, checked, result: checked && r ? r : null } });
+  return cloneJson({
+    version: PAGE_STATE_VERSION,
+    page: PAGE_STATE_NAME,
+    state: {
+      root: state.root || '',
+      targetMeaning: state.targetMeaning || '',
+      translationWord: state.translationWord || '',
+      inputLanguage: state.inputLanguage || '',
+      elementType: state.elementType || 'root',
+      partOfSpeech: state.elementType === 'preposition' ? 'preposition' : (state.partOfSpeech || ''),
+      maxModels: state.maxModels,
+      activeLang,
+      languages: compactAssociativeLanguages(state.languages, languages),
+      languageStatuses: state.languageStatuses,
+      warnings: migrateAssociativeWarnings(state, { languages }),
+      globalStatus: state.globalStatus,
+      checked,
+      result: checked && r ? r : null
+    }
+  });
 }
 
 function unwrapAssociativePageState(saved = {}) {
@@ -288,8 +313,15 @@ export function restoreAssociativeState(saved = {}, { languages = DEFAULT_LANGUA
   if (!fields || (fields.languages && typeof fields.languages !== 'object') || (fields.languageStatuses && typeof fields.languageStatuses !== 'object')) return null;
   const restored = createEmptyAssociativeState({ languages, createLanguageStatus });
   restored.root = typeof fields.root === 'string' ? fields.root : '';
-  restored.meaning = typeof fields.meaning === 'string' ? fields.meaning : '';
+  restored.targetMeaning = typeof fields.targetMeaning === 'string'
+    ? fields.targetMeaning
+    : (typeof fields.meaning === 'string' ? fields.meaning : '');
+  restored.translationWord = typeof fields.translationWord === 'string' ? fields.translationWord : '';
+  restored.inputLanguage = typeof fields.inputLanguage === 'string' ? fields.inputLanguage : '';
   restored.elementType = fields.elementType === 'preposition' ? 'preposition' : 'root';
+  restored.partOfSpeech = restored.elementType === 'preposition'
+    ? 'preposition'
+    : (typeof fields.partOfSpeech === 'string' ? fields.partOfSpeech : '');
   restored.maxModels = Number.isFinite(Number(fields.maxModels))
     ? Math.max(1, Math.min(MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE, Number(fields.maxModels)))
     : MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE;

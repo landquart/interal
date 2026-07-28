@@ -2,7 +2,7 @@
   "version": "1.0",
   "registry_type": "lexical_card_registry",
   "title": "Registre of lexical cartes",
-  "generated_at": "2026-07-28T16:46:02.743Z",
+  "generated_at": "2026-07-28T18:01:58.069Z",
   "count": 4,
   "vord_types": [
     "iv",
@@ -24,7 +24,18 @@
       "translation_language": "ru",
       "translation_word": "весить",
       "translations": {
-        "ru": "весить"
+        "ru": "весить",
+        "de": "wiegen",
+        "el": "ζυγίζω",
+        "en": "to weigh",
+        "es": "pesar",
+        "fr": "peser",
+        "it": "pesare",
+        "ca": "pesar",
+        "oc": "pesar",
+        "pl": "ważyć",
+        "ro": "a cântări",
+        "sv": "väga"
       },
       "part_of_speech": "verb",
       "created_at": "2026-07-25T16:50:41.808Z",
@@ -46,18 +57,13 @@
       "vord_type_code": "av",
       "status": "accepted",
       "word": "alter",
-      "ipa": "",
+      "ipa": "ˈalter",
       "translation_language": "ru",
-      "translation_word": "другой",
+      "translation_word": "альтернативный",
       "translations": {
-        "ru": "другой",
-        "en": "alternative",
-        "de": "alter",
-        "fr": "alternative",
-        "es": "alternativo",
-        "it": "alternativa"
+        "ru": "альтернативный"
       },
-      "part_of_speech": "other",
+      "part_of_speech": "adjective",
       "created_at": "2026-07-28T16:42:38.376Z",
       "created_at_source": "mini_app",
       "accepted_at": "2026-07-28T16:45:15.760Z",
@@ -73,7 +79,7 @@
         "Slavic"
       ],
       "detail_path": "cards/accepted/av/av_jH6SGcfLeGaN.json",
-      "search_blob": "av_jh6sgcflegan av associativ vordes alter ru другои other landquart germanic romance slavic associative_word alternative en alter en alternate en alteration en altruism en alter de alternativ de altersvorsorge de altersversorgung de altersgruppe de alternative fr alterer fr alternance fr alterner fr alteration fr alternativo es alterar es alterado es altercado es alteracion es alternativa it altrui it alterare it alterazione it alternare it альтернативныи ru альтруизм ru альтруистическии ru безальтернативныи ru альтер-эго ru"
+      "search_blob": "av_jh6sgcflegan av associativ vordes alter ˈalter ru альтернативныи adjective landquart germanic romance slavic associative_word ru другои alternative en alter en alternate en alteration en altruism en alter de alternativ de altersvorsorge de altersversorgung de altersgruppe de alternative fr alterer fr alternance fr alterner fr alteration fr alternativo es alterar es alterado es altercado es alteracion es alternativa it altrui it alterare it alterazione it alternare it альтернативныи ru альтруизм ru альтруистическии ru безальтернативныи ru альтер-эго ru"
     },
     {
       "id": "iv_1KjajlU3SH8Z",
@@ -85,13 +91,7 @@
       "translation_language": "en",
       "translation_word": "tree",
       "translations": {
-        "en": "tree",
-        "de": "Tanne",
-        "fr": "dru",
-        "es": "duro",
-        "it": "duro",
-        "ru": "дерево",
-        "el": "δρυς"
+        "en": "tree"
       },
       "part_of_speech": "noun",
       "created_at": "2026-07-15T21:37:19.000Z",
@@ -122,13 +122,7 @@
       "translation_language": "en",
       "translation_word": "mother",
       "translations": {
-        "en": "mother",
-        "de": "Mutter",
-        "fr": "mère",
-        "es": "madre",
-        "it": "madre",
-        "ru": "мать",
-        "el": "μητέρα"
+        "en": "mother"
       },
       "part_of_speech": "noun",
       "created_at": "2026-05-30T21:42:49.842Z",

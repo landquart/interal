@@ -41,4 +41,37 @@ assert.throws(
   () => validateCardSchema({ ...base, vord_type: 'av', calculation: { FA: 'not-a-number' } }),
   (error) => error instanceof CardSchemaError && error.path === 'calculation.FA'
 );
+const associative = {
+  version: '1.0',
+  card_type: 'vord_card',
+  vord_type: 'av',
+  interal: { word: 'alter', ipa: 'ˈalter', type: 'root', part_of_speech: 'adjective' },
+  translation: { language: 'ru', word: 'альтернативный' },
+  analysis_input: { language: 'ru', target_meaning: 'другой' },
+  result: { FA: 43.9, TA: 263.4 }
+};
+assert.doesNotThrow(() => validateCardSchema(associative, { strictAssociative: true }));
+assert.throws(
+  () => validateCardSchema({ ...associative, interal: { ...associative.interal, ipa: '' } }, { strictAssociative: true }),
+  (error) => error instanceof CardSchemaError && error.path === 'interal.ipa'
+);
+assert.throws(
+  () => validateCardSchema({ ...associative, interal: { ...associative.interal, part_of_speech: '' } }, { strictAssociative: true }),
+  (error) => error instanceof CardSchemaError && error.path === 'interal.part_of_speech'
+);
+assert.throws(
+  () => validateCardSchema({ ...associative, translation: { language: 'ru', word: '' } }, { strictAssociative: true }),
+  (error) => error instanceof CardSchemaError && error.path === 'translation.word'
+);
+assert.throws(
+  () => validateCardSchema({ ...associative, analysis_input: { language: 'ru', target_meaning: '' } }, { strictAssociative: true }),
+  (error) => error instanceof CardSchemaError && error.path === 'analysis_input.target_meaning'
+);
+assert.throws(
+  () => validateCardSchema({ ...associative, result: { FA: 43.9, TA: '263.4' } }, { strictAssociative: true }),
+  (error) => error instanceof CardSchemaError && error.path === 'result.TA'
+);
+assert.doesNotThrow(
+  () => validateCardSchema({ ...associative, interal: { word: 'inter', ipa: 'ˈinter', type: 'preposition', part_of_speech: 'preposition' } }, { strictAssociative: true })
+);
 console.log('card-schema tests passed');

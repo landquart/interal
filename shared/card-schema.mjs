@@ -19,6 +19,18 @@ const ASSOCIATIVE_LANGUAGE_GROUPS = Object.freeze({
   ru: 'Slavic'
 });
 const ASSOCIATIVE_GROUP_ORDER = Object.freeze(['Germanic', 'Romance', 'Slavic']);
+const ASSOCIATIVE_PARTS_OF_SPEECH = new Set([
+  'noun',
+  'verb',
+  'adjective',
+  'adverb',
+  'pronoun',
+  'preposition',
+  'conjunction',
+  'particle',
+  'numeral',
+  'other'
+]);
 
 export class CardSchemaError extends Error {
   constructor(path, message) {
@@ -186,6 +198,34 @@ export function validateCardSchema(card, options = {}) {
   if (card.card_type !== undefined && card.card_type !== 'vord_card') throw new CardSchemaError('card_type', 'must be "vord_card"');
   if (!isRecord(card.interal)) throw new CardSchemaError('interal', 'is required');
   if (!nonEmpty(card.interal.word)) throw new CardSchemaError('interal.word', 'is required');
+  if (card.vord_type === 'av' && options.strictAssociative === true) {
+    if (!nonEmpty(card.interal.ipa)) throw new CardSchemaError('interal.ipa', 'is required');
+    if (!nonEmpty(card.interal.part_of_speech)) throw new CardSchemaError('interal.part_of_speech', 'is required');
+    if (!ASSOCIATIVE_PARTS_OF_SPEECH.has(card.interal.part_of_speech)) {
+      throw new CardSchemaError('interal.part_of_speech', 'has an invalid value');
+    }
+    if (!['root', 'preposition'].includes(card.interal.type)) {
+      throw new CardSchemaError('interal.type', 'must be "root" or "preposition"');
+    }
+    if (card.interal.type === 'preposition' && card.interal.part_of_speech !== 'preposition') {
+      throw new CardSchemaError('interal.part_of_speech', 'must be "preposition" for a preposition');
+    }
+    if (card.interal.type === 'root' && card.interal.part_of_speech === 'preposition') {
+      throw new CardSchemaError('interal.part_of_speech', 'must describe the selected root');
+    }
+    if (!isRecord(card.translation)) throw new CardSchemaError('translation', 'is required');
+    if (!nonEmpty(card.translation.language)) throw new CardSchemaError('translation.language', 'is required');
+    if (!nonEmpty(card.translation.word)) throw new CardSchemaError('translation.word', 'is required');
+    if (!isRecord(card.analysis_input)) throw new CardSchemaError('analysis_input', 'is required');
+    if (!nonEmpty(card.analysis_input.language)) throw new CardSchemaError('analysis_input.language', 'is required');
+    if (!nonEmpty(card.analysis_input.target_meaning)) throw new CardSchemaError('analysis_input.target_meaning', 'is required');
+    if (!isRecord(card.result)) throw new CardSchemaError('result', 'is required');
+    for (const metric of ['FA', 'TA']) {
+      if (typeof card.result[metric] !== 'number' || !Number.isFinite(card.result[metric])) {
+        throw new CardSchemaError(`result.${metric}`, 'must be a finite number');
+      }
+    }
+  }
   const finalPercentage = getCardFinalPercentage(card);
   if (
     finalPercentage

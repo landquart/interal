@@ -44,8 +44,9 @@ const brokenRuntimeCard = {
     card_type: 'vord_card',
     vord_type: 'av',
     procedure: 'associative_word',
-    interal: { word: 'alter', type: 'root' },
-    translation: 'other',
+    interal: { word: 'alter', ipa: 'ˈalter', type: 'root', part_of_speech: 'adjective' },
+    translation: { language: 'ru', word: 'альтернативный' },
+    analysis_input: { language: 'ru', target_meaning: 'другой' },
     supported_groups: ['Romance', 'Romance'],
     result: { TA: 80, FA: 40, represented_languages: 3, represented_groups: 2 },
     language_evidence: [
@@ -57,7 +58,9 @@ const brokenRuntimeCard = {
   assert.deepEqual(normalized.supported_groups, ['Germanic', 'Romance']);
   assert.equal(normalized.result.represented_languages, 3, 'existing correct count is retained');
   assert.equal(normalized.result.represented_groups, 2, 'existing correct group count is retained');
-  assert.equal(validateCardSchema(normalized, { expectedType: 'av' }), true);
+  assert.equal(validateCardSchema(normalized, { expectedType: 'av', strictAssociative: true }), true);
+  assert.equal(normalized.translation.word, 'альтернативный');
+  assert.equal(normalized.analysis_input.target_meaning, 'другой');
 }
 
 {

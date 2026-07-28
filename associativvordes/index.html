@@ -391,14 +391,34 @@
         <input class="interal-input" id="rootInput" value="" placeholder="например: ocul, regul, inter" />
       </div>
       <div>
-        <label for="meaningInput" id="meaningLabel">Перевод / значение</label>
-        <input class="interal-input" id="meaningInput" value="" placeholder="например: глаз, правило, между" />
+        <label for="targetMeaningInput" id="targetMeaningLabel">Значение для анализа</label>
+        <input class="interal-input" id="targetMeaningInput" value="" placeholder="например: другой" />
       </div>
-      <div style="grid-column: 1 / -1; max-width: 420px; margin: 0 auto; width: 100%;">
+      <div>
+        <label for="translationWordInput" id="translationWordLabel">Словарный перевод</label>
+        <input class="interal-input" id="translationWordInput" value="" placeholder="например: альтернативный" />
+      </div>
+      <div>
         <label for="elementType" id="elementTypeLabel">Тип элемента</label>
         <select class="interal-select js-custom-select" id="elementType">
           <option value="root" id="rootOption">корень</option>
           <option value="preposition" id="prepositionOption">предлог</option>
+        </select>
+      </div>
+      <div>
+        <label for="partOfSpeech" id="partOfSpeechLabel">Часть речи</label>
+        <select class="interal-select js-custom-select" id="partOfSpeech">
+          <option value="" id="partOfSpeechPlaceholder">Выберите часть речи</option>
+          <option value="noun" id="posNoun">существительное</option>
+          <option value="verb" id="posVerb">глагол</option>
+          <option value="adjective" id="posAdjective">прилагательное</option>
+          <option value="adverb" id="posAdverb">наречие</option>
+          <option value="pronoun" id="posPronoun">местоимение</option>
+          <option value="conjunction" id="posConjunction">союз</option>
+          <option value="particle" id="posParticle">частица</option>
+          <option value="numeral" id="posNumeral">числительное</option>
+          <option value="other" id="posOther">другое</option>
+          <option value="preposition" id="posPreposition" hidden>предлог</option>
         </select>
       </div>
       <div class="interal-actions row actions-row" style="grid-column: 1 / -1;">
@@ -458,7 +478,7 @@
   <script src="../shared/copy-plain.js?v=contact-types-20260713-1"></script>
   <script src="../shared/ui.js?v=registry-name-20260715-1" defer></script>
   <script src="../shared/button-status.js?v=button-loader-20260716-1" defer></script>
-  <script type="module" src="./script.js?v=bounded-static-index-20260728-1"></script>
+  <script type="module" src="./script.js?v=associative-card-metadata-20260728-1"></script>
   <script src="../shared/form-draft.js?v=page-state-20260716-1" defer></script>
 </body>
 </html>

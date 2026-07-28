@@ -12,6 +12,7 @@ import { getLanguageConfig } from './js/morphology/languages/index.js';
 import { clearTargetMeaningTranslationCache, translateTargetMeaning, TARGET_TRANSLATION_LANGUAGES } from './js/target-meaning-translator.js';
 import { MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE, createEmptyAssociativeState, resetAssociativeRunState, invalidateSearchResult as invalidateAssociativeSearchResult, invalidateFinalCalculation as invalidateAssociativeFinalCalculation, addManualCandidate, updateCandidate, deleteCandidate, compactAssociativeState, restoreAssociativeState, addRunWarning, addLanguageWarning, addCandidateWarning, hasAnyAssociativeWarnings, hasLanguageAssociativeWarnings } from './js/associative-state.js';
 import { runAssociativeCalculation } from './js/associative-calculation-runner.js';
+import { ASSOCIATIVE_ROOT_PARTS_OF_SPEECH, makeAssociativeLemmaMetadata } from './js/card-metadata.js';
 
 // Persistence compatibility markers: status: 'no_candidates', candidates: [] ; status: 'index_error', errorCode:
 const TEXT_I18N = {
@@ -21,11 +22,25 @@ const TEXT_I18N = {
         searchNote: 'Сначала задайте корень и тип элемента, затем запустите расчёт.',
         rootLabel: 'Кандидатный корень / предлог',
         rootPlaceholder: 'например: ocul, regul, inter',
-        meaningLabel: 'Перевод / значение',
-        meaningPlaceholder: 'например: глаз, правило, между',
+        targetMeaningLabel: 'Значение для анализа',
+        targetMeaningPlaceholder: 'например: другой',
+        translationWordLabel: 'Словарный перевод',
+        translationWordPlaceholder: 'например: альтернативный',
         elementTypeLabel: 'Тип элемента',
         rootOption: 'корень',
         prepositionOption: 'предлог',
+        partOfSpeechLabel: 'Часть речи',
+        partOfSpeechPlaceholder: 'Выберите часть речи',
+        posNoun: 'существительное',
+        posVerb: 'глагол',
+        posAdjective: 'прилагательное',
+        posAdverb: 'наречие',
+        posPronoun: 'местоимение',
+        posConjunction: 'союз',
+        posParticle: 'частица',
+        posNumeral: 'числительное',
+        posOther: 'другое',
+        posPreposition: 'предлог',
         searchBtn: 'Рассчитать',
         showExampleBtn: 'Показать пример',
         jsonCardBtn: 'Сформировать JSON-карточку',
@@ -50,6 +65,10 @@ const TEXT_I18N = {
         },
         alerts: {
           rootRequired: 'Введите кандидатный корень или предлог.',
+          targetMeaningRequired: 'Введите значение, относительно которого нужно проверить ассоциации.',
+          translationRequired: 'Введите отдельный словарный перевод слова Интераля.',
+          partOfSpeechRequired: 'Выберите часть речи слова Интераля.',
+          ipaUnavailable: 'Не удалось определить IPA для слова Интераля. Проверьте слово и часть речи.',
           jsonCardUnavailable: 'Сначала выполните расчёт.',
           jsonCardCopied: 'JSON-карточка скопирована',
           jsonCardCopiedTitle: 'Скопировано',
@@ -68,11 +87,25 @@ const TEXT_I18N = {
         searchNote: 'First enter the root and element type, then run the calculation.',
         rootLabel: 'Candidate root / preposition',
         rootPlaceholder: 'for example: ocul, regul, inter',
-        meaningLabel: 'Translation / meaning',
-        meaningPlaceholder: 'for example: eye, rule, between',
+        targetMeaningLabel: 'Meaning for analysis',
+        targetMeaningPlaceholder: 'for example: other',
+        translationWordLabel: 'Dictionary translation',
+        translationWordPlaceholder: 'for example: alternative',
         elementTypeLabel: 'Element type',
         rootOption: 'root',
         prepositionOption: 'preposition',
+        partOfSpeechLabel: 'Part of speech',
+        partOfSpeechPlaceholder: 'Select a part of speech',
+        posNoun: 'noun',
+        posVerb: 'verb',
+        posAdjective: 'adjective',
+        posAdverb: 'adverb',
+        posPronoun: 'pronoun',
+        posConjunction: 'conjunction',
+        posParticle: 'particle',
+        posNumeral: 'numeral',
+        posOther: 'other',
+        posPreposition: 'preposition',
         searchBtn: 'Calculate',
         showExampleBtn: 'Show example',
         jsonCardBtn: 'Generate JSON card',
@@ -97,6 +130,10 @@ const TEXT_I18N = {
         },
         alerts: {
           rootRequired: 'Enter a candidate root or preposition.',
+          targetMeaningRequired: 'Enter the target meaning used for association analysis.',
+          translationRequired: 'Enter a separate dictionary translation of the Interal word.',
+          partOfSpeechRequired: 'Select the Interal word’s part of speech.',
+          ipaUnavailable: 'Could not determine IPA for the Interal word. Check the word and part of speech.',
           jsonCardUnavailable: 'Run a calculation first.',
           jsonCardCopied: 'JSON card copied',
           jsonCardCopiedTitle: 'Copied',
@@ -115,12 +152,42 @@ const TEXT_I18N = {
       return localStorage.getItem('interal.lang') === 'en' ? 'en' : 'ru';
     }
 
+    const ROOT_PARTS_OF_SPEECH = new Set(ASSOCIATIVE_ROOT_PARTS_OF_SPEECH);
+
     function textGroup(group) {
       return TEXT_I18N[currentLang()][group] || TEXT_I18N.ru[group] || {};
     }
 
     function textValue(key) {
       return TEXT_I18N[currentLang()][key] || TEXT_I18N.ru[key] || key;
+    }
+
+    function effectivePartOfSpeech() {
+      return state.elementType === 'preposition' ? 'preposition' : String(state.partOfSpeech || '').trim();
+    }
+
+    function syncPartOfSpeechControl() {
+      const select = document.getElementById('partOfSpeech');
+      if (!select) return;
+      if (state.elementType === 'preposition') {
+        state.partOfSpeech = 'preposition';
+        select.value = 'preposition';
+        select.disabled = true;
+      } else {
+        if (state.partOfSpeech === 'preposition') state.partOfSpeech = '';
+        select.disabled = false;
+        select.value = ROOT_PARTS_OF_SPEECH.has(state.partOfSpeech) ? state.partOfSpeech : '';
+      }
+      window.refreshCustomSelect?.(select);
+    }
+
+    function validatePartOfSpeech() {
+      const partOfSpeech = effectivePartOfSpeech();
+      const valid = state.elementType === 'preposition'
+        ? partOfSpeech === 'preposition'
+        : ROOT_PARTS_OF_SPEECH.has(partOfSpeech);
+      if (!valid) alert(textGroup('alerts').partOfSpeechRequired);
+      return valid;
     }
 
     function setCalculateButtonStatus(text, disabled = true, options = {}) {
@@ -456,7 +523,7 @@ const TEXT_I18N = {
         ...item,
         analysis: {
           language: langCode,
-          target_meaning: state.meaning || state.root,
+          target_meaning: state.targetMeaning,
           word: item.word,
           frequency: item.frequencyProfile || { frequency_score: null, category_breakdown: {}, warnings: [] },
           swow: { target_to_word: null, word_to_target: null, bonus: 0, source: 'local_swow' },
@@ -501,7 +568,7 @@ const TEXT_I18N = {
         incrementDiagnostic('qwenPrimaryRequestCount');
         const analysis = await analyzeAssociativeWord({
           language: langCode,
-          targetMeaning: state.meaning || state.root,
+          targetMeaning: state.targetMeaning,
           localizedTargetMeaning,
           word: item.word,
           frequencyProfile: item.frequencyProfile,
@@ -646,12 +713,26 @@ const TEXT_I18N = {
 
     async function runCalculation({ runId } = {}) {
       const root = normalizeText(document.getElementById('rootInput').value);
-      const meaning = document.getElementById('meaningInput').value.trim();
+      const targetMeaning = document.getElementById('targetMeaningInput').value.trim();
+      const translationWord = document.getElementById('translationWordInput').value.trim();
       const elementType = document.getElementById('elementType').value;
+      state.root = root;
+      state.targetMeaning = targetMeaning;
+      state.translationWord = translationWord;
+      state.inputLanguage = currentLang();
+      state.elementType = elementType;
+      state.partOfSpeech = elementType === 'preposition'
+        ? 'preposition'
+        : document.getElementById('partOfSpeech').value;
       if (!root) {
         alert(textGroup('alerts').rootRequired);
         return false;
       }
+      if (!targetMeaning) {
+        alert(textGroup('alerts').targetMeaningRequired);
+        return false;
+      }
+      if (!validatePartOfSpeech()) return false;
       const signal = currentRunSignal();
       clearTargetMeaningTranslationCache();
       const languageScore = (language, candidates) => {
@@ -662,7 +743,7 @@ const TEXT_I18N = {
         return calculateLanguageScore(selected, { maxModels: MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE, scoreGetter: wordWeight });
       };
       const result = await runAssociativeCalculation({
-        input: { root, meaning, targetMeaning: meaning || root, elementType, maxModels: MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE },
+        input: { root, meaning: targetMeaning, targetMeaning, elementType, maxModels: MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE },
         state,
         runId,
         signal,
@@ -677,7 +758,7 @@ const TEXT_I18N = {
             error: currentLang() === 'en' ? 'Calculation error' : 'Ошибка расчёта'
           },
           targetTranslator: {
-            translate: async (_input, context) => getRunTargetTranslations(meaning || root, runId, context.onProgress)
+            translate: async (_input, context) => getRunTargetTranslations(targetMeaning, runId, context.onProgress)
           },
           candidateIndexLoader: {
             load: async (language, _input, context) => {
@@ -695,7 +776,7 @@ const TEXT_I18N = {
               const auditWarnings = [];
               const response = await refineCandidatesWithQwenAudit({
                 root,
-                targetMeaning: meaning || root,
+                targetMeaning,
                 candidatesByLanguage: payload.candidatesByLanguage,
                 loader: candidateIndexLoader,
                 signal: context.signal,
@@ -752,7 +833,7 @@ const TEXT_I18N = {
           candidatePostValidator: {
             validate: async (payload, context) => validateFinalCandidatesWithQwen({
               root,
-              targetMeaning: meaning || root,
+              targetMeaning,
               candidatesByLanguage: payload.candidatesByLanguage,
               languages: LANGUAGES.map(language => language.code),
               limit: MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE,
@@ -1016,10 +1097,23 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
         searchTitle: textValue('searchTitle'),
         searchNote: textValue('searchNote'),
         rootLabel: textValue('rootLabel'),
-        meaningLabel: textValue('meaningLabel'),
+        targetMeaningLabel: textValue('targetMeaningLabel'),
+        translationWordLabel: textValue('translationWordLabel'),
         elementTypeLabel: textValue('elementTypeLabel'),
         rootOption: textValue('rootOption'),
         prepositionOption: textValue('prepositionOption'),
+        partOfSpeechLabel: textValue('partOfSpeechLabel'),
+        partOfSpeechPlaceholder: textValue('partOfSpeechPlaceholder'),
+        posNoun: textValue('posNoun'),
+        posVerb: textValue('posVerb'),
+        posAdjective: textValue('posAdjective'),
+        posAdverb: textValue('posAdverb'),
+        posPronoun: textValue('posPronoun'),
+        posConjunction: textValue('posConjunction'),
+        posParticle: textValue('posParticle'),
+        posNumeral: textValue('posNumeral'),
+        posOther: textValue('posOther'),
+        posPreposition: textValue('posPreposition'),
         showExampleBtn: textValue('showExampleBtn'),
         jsonCardBtn: textValue('jsonCardBtn'),
         resultTitle: textValue('resultTitle'),
@@ -1033,7 +1127,8 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
         setCalculateButtonStatus(defaultCalculateButtonText(), false);
       }
       document.getElementById('rootInput').setAttribute('placeholder', textValue('rootPlaceholder'));
-      document.getElementById('meaningInput').setAttribute('placeholder', textValue('meaningPlaceholder'));
+      document.getElementById('targetMeaningInput').setAttribute('placeholder', textValue('targetMeaningPlaceholder'));
+      document.getElementById('translationWordInput').setAttribute('placeholder', textValue('translationWordPlaceholder'));
       const jsonCardText = textGroup('jsonCard');
       Object.entries({ jsonCardTitle: jsonCardText.title, useAuthorBlockLabel: jsonCardText.useAuthor, authorDisplayNameLabel: jsonCardText.authorName, authorContactTypeLabel: jsonCardText.contactType, authorContactValueLabel: jsonCardText.contact, rememberAuthorDataLabel: jsonCardText.rememberAuthor, clearSavedAuthorData: jsonCardText.clearSavedAuthor, generateJsonCardBtn: jsonCardText.generate, jsonCardOutputLabel: jsonCardText.output }).forEach(([id, value]) => { const element = document.getElementById(id); if (element) element.textContent = value; });
       document.getElementById('closeJsonCardBtn')?.setAttribute('aria-label', jsonCardText.close);
@@ -1095,11 +1190,11 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
       item.analysisStatus = 'analyzing';
       renderAll();
       try {
-        const targetTranslations = await getRunTargetTranslations(state.meaning || state.root, activeRunId, null);
+        const targetTranslations = await getRunTargetTranslations(state.targetMeaning, activeRunId, null);
         incrementDiagnostic('qwenPrimaryRequestCount');
         item.analysis = await analyzeAssociativeWord({
           language: lang,
-          targetMeaning: state.meaning || state.root,
+          targetMeaning: state.targetMeaning,
           localizedTargetMeaning: targetTranslations[lang] || '',
           word: item.word,
           frequencyProfile: item.frequencyProfile,
@@ -1207,6 +1302,40 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
       const selectedLanguages = LANGUAGES.flatMap(({ code }) =>
         scoringCandidates(code).map(item => ({ code, ...item }))
       );
+      const partOfSpeech = effectivePartOfSpeech();
+      if (
+        (state.elementType === 'preposition' && partOfSpeech !== 'preposition')
+        || (state.elementType !== 'preposition' && !ROOT_PARTS_OF_SPEECH.has(partOfSpeech))
+      ) {
+        throw new Error(textGroup('alerts').partOfSpeechRequired);
+      }
+      if (!String(state.translationWord || '').trim()) {
+        throw new Error(textGroup('alerts').translationRequired);
+      }
+      if (!String(state.targetMeaning || '').trim()) {
+        throw new Error(textGroup('alerts').targetMeaningRequired);
+      }
+      const inputLanguage = state.inputLanguage || currentLang();
+      let lemmaMetadata;
+      try {
+        lemmaMetadata = makeAssociativeLemmaMetadata({
+          word: state.root,
+          elementType: state.elementType,
+          partOfSpeech,
+          translationLanguage: inputLanguage,
+          translationWord: state.translationWord,
+          targetMeaning: state.targetMeaning
+        });
+      } catch (error) {
+        const messageByCode = {
+          ROOT_REQUIRED: textGroup('alerts').rootRequired,
+          TARGET_MEANING_REQUIRED: textGroup('alerts').targetMeaningRequired,
+          TRANSLATION_REQUIRED: textGroup('alerts').translationRequired,
+          PART_OF_SPEECH_REQUIRED: textGroup('alerts').partOfSpeechRequired,
+          IPA_UNAVAILABLE: textGroup('alerts').ipaUnavailable
+        };
+        throw new Error(messageByCode[error?.code] || error?.message || textGroup('alerts').ipaUnavailable);
+      }
       return {
         version: '1.0',
         card_type: 'vord_card',
@@ -1214,15 +1343,7 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
         procedure: 'associative_word',
         status: 'draft',
         ...timestamp,
-        interal: {
-          word: state.root,
-          type: state.elementType || 'root',
-          part_of_speech: state.elementType === 'preposition' ? 'preposition' : 'other'
-        },
-        translation: {
-          language: currentLang(),
-          word: state.meaning || state.root
-        },
+        ...lemmaMetadata,
         ...(author ? { author } : {}),
         supported_groups: [...new Set(selectedLanguages.map(item => item.group).filter(Boolean))],
         calculation: {
@@ -1275,6 +1396,7 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
         procedure: card.procedure,
         interal: card.interal,
         translation: card.translation,
+        analysis_input: card.analysis_input,
         ...(card.author ? { author: card.author } : {}),
         supported_groups: card.supported_groups,
         result: {
@@ -1295,6 +1417,15 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
         alert(textGroup('alerts').jsonCardThresholdUnavailable);
         return;
       }
+      state.translationWord = document.getElementById('translationWordInput').value.trim();
+      state.partOfSpeech = document.getElementById('elementType').value === 'preposition'
+        ? 'preposition'
+        : document.getElementById('partOfSpeech').value;
+      if (!validatePartOfSpeech()) return;
+      if (!state.translationWord) {
+        alert(textGroup('alerts').translationRequired);
+        return;
+      }
       if (!Object.values(state.languages || {}).some((items) => items.some((item) => item.selected))) {
         alert(textGroup('alerts').jsonCardUnavailable);
         return;
@@ -1312,10 +1443,12 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
 
     function hasUserInputForReset() {
       const hasRoot = normalizeText(document.getElementById('rootInput').value).length > 0;
-      const hasMeaning = String(document.getElementById('meaningInput').value || '').trim().length > 0;
+      const hasTargetMeaning = String(document.getElementById('targetMeaningInput').value || '').trim().length > 0;
+      const hasTranslation = String(document.getElementById('translationWordInput').value || '').trim().length > 0;
       const hasTypeChange = document.getElementById('elementType').value !== 'root';
+      const hasPartOfSpeech = String(document.getElementById('partOfSpeech').value || '').trim().length > 0;
       const hasLanguageRows = Object.values(state.languages || {}).some((items) => Array.isArray(items) && items.length > 0);
-      return hasRoot || hasMeaning || hasTypeChange || hasLanguageRows;
+      return hasRoot || hasTargetMeaning || hasTranslation || hasTypeChange || hasPartOfSpeech || hasLanguageRows;
     }
 
     function hasPassedJsonCardThreshold() {
@@ -1349,10 +1482,10 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
 
     const examplesByType = {
       root: [
-        { root: 'regul', meaning: 'правило', elementType: 'root' }
+        { root: 'alter', targetMeaning: 'другой', translationWord: 'альтернативный', elementType: 'root', partOfSpeech: 'adjective' }
       ],
       preposition: [
-        { root: 'inter', meaning: 'между', elementType: 'preposition' }
+        { root: 'inter', targetMeaning: 'между', translationWord: 'между', elementType: 'preposition', partOfSpeech: 'preposition' }
       ]
     };
 
@@ -1361,11 +1494,16 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
       const examples = examplesByType[selectedType] || examplesByType.root;
       const choice = examples[Math.floor(Math.random() * examples.length)];
       state.root = choice.root;
-      state.meaning = choice.meaning;
+      state.targetMeaning = choice.targetMeaning;
+      state.translationWord = choice.translationWord;
+      state.inputLanguage = currentLang();
       state.elementType = selectedType;
+      state.partOfSpeech = choice.partOfSpeech;
       document.getElementById('rootInput').value = state.root;
-      document.getElementById('meaningInput').value = state.meaning;
+      document.getElementById('targetMeaningInput').value = state.targetMeaning;
+      document.getElementById('translationWordInput').value = state.translationWord;
       document.getElementById('elementType').value = state.elementType;
+      syncPartOfSpeechControl();
       searchDerivatives();
     }
 
@@ -1561,8 +1699,10 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
         }
         activeLang = restored.activeLang;
         document.getElementById('rootInput').value = state.root;
-        document.getElementById('meaningInput').value = state.meaning;
+        document.getElementById('targetMeaningInput').value = state.targetMeaning;
+        document.getElementById('translationWordInput').value = state.translationWord;
         document.getElementById('elementType').value = state.elementType;
+        syncPartOfSpeechControl();
         renderAll();
         syncCheckedVisibility();
         syncJsonCardButtonVisibility();
@@ -1578,9 +1718,13 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
       state = emptyState();
       activeLang = 'en';
       resetVisibleCandidateCounts();
-      ['rootInput', 'meaningInput'].forEach(id => { const element = document.getElementById(id); if (element) element.value = ''; });
+      ['rootInput', 'targetMeaningInput', 'translationWordInput'].forEach(id => {
+        const element = document.getElementById(id);
+        if (element) element.value = '';
+      });
       const type = document.getElementById('elementType');
       if (type) type.value = 'root';
+      syncPartOfSpeechControl();
       renderAll();
       setCalculateButtonStatus(defaultCalculateButtonText(), false, { loading: false });
     }
@@ -1589,8 +1733,27 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
     window.InteralPageReset = resetAssociativePageState;
 
     document.getElementById('rootInput').addEventListener('input', () => { state.root = document.getElementById('rootInput').value; invalidateSearchResult(); renderAll(); });
-    document.getElementById('meaningInput').addEventListener('input', () => { state.meaning = document.getElementById('meaningInput').value; invalidateSearchResult(); renderAll(); });
-    document.getElementById('elementType').addEventListener('change', () => { state.elementType = document.getElementById('elementType').value; invalidateSearchResult(); renderAll(); });
+    document.getElementById('targetMeaningInput').addEventListener('input', () => {
+      state.targetMeaning = document.getElementById('targetMeaningInput').value;
+      state.inputLanguage = currentLang();
+      invalidateSearchResult();
+      renderAll();
+    });
+    document.getElementById('translationWordInput').addEventListener('input', () => {
+      state.translationWord = document.getElementById('translationWordInput').value;
+      state.inputLanguage = currentLang();
+      syncCheckedVisibility();
+    });
+    document.getElementById('elementType').addEventListener('change', () => {
+      state.elementType = document.getElementById('elementType').value;
+      syncPartOfSpeechControl();
+      invalidateSearchResult();
+      renderAll();
+    });
+    document.getElementById('partOfSpeech').addEventListener('change', () => {
+      if (state.elementType !== 'preposition') state.partOfSpeech = document.getElementById('partOfSpeech').value;
+      syncCheckedVisibility();
+    });
     document.getElementById('calculateBtn').addEventListener('click', () => searchDerivatives());
     document.getElementById('showExampleBtn').addEventListener('click', showExample);
     document.getElementById('jsonCardBtn').addEventListener('click', openJsonCardModal);
@@ -1692,6 +1855,7 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
     };
 
     async function init() {
+      syncPartOfSpeechControl();
       renderAll();
     }
 

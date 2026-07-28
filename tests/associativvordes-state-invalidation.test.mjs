@@ -17,7 +17,10 @@ function populatedState() {
   const state = createEmptyAssociativeState({ languages: LANGUAGES, createLanguageStatus });
   Object.assign(state, {
     root: 'inter',
-    meaning: 'between',
+    targetMeaning: 'between',
+    translationWord: 'between',
+    inputLanguage: 'en',
+    partOfSpeech: 'preposition',
     checked: true,
     globalStatus: 'completed',
     languageStatuses: {

@@ -7,6 +7,7 @@ import {
   getCardFinalPercentage,
   validateCardSchema
 } from '../shared/card-schema.mjs';
+import { languageTranslations } from './lib/registry-translations.mjs';
 
 const ROOT = process.cwd();
 const ACCEPTED_ROOT = path.join(ROOT, 'cards', 'accepted');
@@ -55,41 +56,6 @@ function finiteNumber(value) {
 
 function stringArray(value) {
   return Array.isArray(value) ? value.filter((item) => typeof item === 'string') : [];
-}
-
-function languageTranslations(card) {
-  const translations = {};
-
-  if (card.translation && typeof card.translation === 'object') {
-    const code = text(card.translation.language);
-    const word = text(card.translation.word);
-
-    if (code && word) {
-      translations[code] = word;
-    }
-  }
-
-  for (const fieldName of [
-    'language_results',
-    'language_evidence'
-  ]) {
-    const items = card[fieldName];
-
-    if (!Array.isArray(items)) continue;
-
-    for (const item of items) {
-      if (!item || typeof item !== 'object') continue;
-
-      const code = text(item.code || item.language);
-      const word = text(item.word);
-
-      if (code && word && !translations[code]) {
-        translations[code] = word;
-      }
-    }
-  }
-
-  return translations;
 }
 
 function normalizeSearch(value) {
@@ -141,7 +107,14 @@ function validateCard(card, filePath, expectedType, seenIds) {
   if (seenIds.has(card.id)) fail(filePath, `duplicate id "${card.id}"`);
   seenIds.add(card.id);
   if (!card.id.startsWith(`${expectedType}_`)) fail(filePath, `id must start with "${expectedType}_"`);
-  try { validateCardSchema(card, { expectedType }); } catch (error) { fail(filePath, error.message); }
+  try {
+    validateCardSchema(card, {
+      expectedType,
+      strictAssociative: expectedType === 'av'
+    });
+  } catch (error) {
+    fail(filePath, error.message);
+  }
   if (card.word_type !== undefined) fail(filePath, 'use vord_type short code instead of word_type');
   if (!VORD_TYPE_SET.has(card.vord_type)) fail(filePath, `invalid vord_type "${card.vord_type}"`);
   if (card.vord_type !== expectedType) fail(filePath, `vord_type "${card.vord_type}" does not match folder "${expectedType}"`);
