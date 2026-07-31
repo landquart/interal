@@ -1,0 +1,3026 @@
+{
+  "generated_at": "2026-07-31T20:41:42.351Z",
+  "method": {
+    "control_languages": [
+      "en",
+      "de",
+      "es",
+      "fr",
+      "it",
+      "ru"
+    ],
+    "within_language": "Арифметическое среднее IPM по всем настроенным частотным источникам языка; отсутствие леммы в конкретном источнике = 0.",
+    "across_languages": "Геометрическое среднее с единицей: exp(mean(ln(1 + IPM_lang))) - 1; отсутствие целевого когната в языке = 0.",
+    "caveat": "Частотность относится к лемме целиком и не разделяет значения полисемичного слова."
+  },
+  "results": [
+    {
+      "id": "station",
+      "logical": "Station — стояние",
+      "international": "Stationu — станция",
+      "forms": {
+        "en": [
+          "station"
+        ],
+        "de": [
+          "station"
+        ],
+        "es": [
+          "estación",
+          "estacion"
+        ],
+        "fr": [
+          "station"
+        ],
+        "it": [
+          "stazione"
+        ],
+        "ru": [
+          "станция"
+        ]
+      },
+      "languages": {
+        "en": {
+          "forms": [
+            "station"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "bnc-clean2.lemmatized_spacy_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "de": {
+          "forms": [
+            "station"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "deu_lemma_rank_word_ipm_corrected.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "es": {
+          "forms": [
+            "estación",
+            "estacion"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "es_wordlist.lemmatized_stanza_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "fr": {
+          "forms": [
+            "station"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "it": {
+          "forms": [
+            "stazione"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "ru": {
+          "forms": [
+            "станция"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        }
+      },
+      "arithmetic_mean_ipm": 0,
+      "geometric_mean_ipm": 0,
+      "language_values_ipm": {
+        "en": 0,
+        "de": 0,
+        "es": 0,
+        "fr": 0,
+        "it": 0,
+        "ru": 0
+      },
+      "cognate_languages": 6,
+      "positive_languages": 0,
+      "tertile": "низкая"
+    },
+    {
+      "id": "conductor",
+      "logical": "Conductor — совместно ведущий",
+      "international": "Conductoru — дирижёр",
+      "forms": {
+        "en": [
+          "conductor"
+        ],
+        "de": null,
+        "es": null,
+        "fr": null,
+        "it": null,
+        "ru": null
+      },
+      "languages": {
+        "en": {
+          "forms": [
+            "conductor"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "bnc-clean2.lemmatized_spacy_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "de": {
+          "forms": null,
+          "source_values": [
+            {
+              "source": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "no_target_cognate"
+            },
+            {
+              "source": "deu_lemma_rank_word_ipm_corrected.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "no_target_cognate"
+            },
+            {
+              "source": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "no_target_cognate"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "es": {
+          "forms": null,
+          "source_values": [
+            {
+              "source": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "no_target_cognate"
+            },
+            {
+              "source": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "no_target_cognate"
+            },
+            {
+              "source": "es_wordlist.lemmatized_stanza_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "no_target_cognate"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "fr": {
+          "forms": null,
+          "source_values": [
+            {
+              "source": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "no_target_cognate"
+            },
+            {
+              "source": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "no_target_cognate"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "it": {
+          "forms": null,
+          "source_values": [
+            {
+              "source": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "no_target_cognate"
+            },
+            {
+              "source": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "no_target_cognate"
+            },
+            {
+              "source": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "no_target_cognate"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "ru": {
+          "forms": null,
+          "source_values": [
+            {
+              "source": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "no_target_cognate"
+            },
+            {
+              "source": "rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "no_target_cognate"
+            },
+            {
+              "source": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "no_target_cognate"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        }
+      },
+      "arithmetic_mean_ipm": 0,
+      "geometric_mean_ipm": 0,
+      "language_values_ipm": {
+        "en": 0,
+        "de": 0,
+        "es": 0,
+        "fr": 0,
+        "it": 0,
+        "ru": 0
+      },
+      "cognate_languages": 1,
+      "positive_languages": 0,
+      "tertile": "низкая"
+    },
+    {
+      "id": "circumspection",
+      "logical": "Circumspection — взгляд вокруг",
+      "international": "Circumspectionu — осмотрительность, осторожность",
+      "forms": {
+        "en": [
+          "circumspection"
+        ],
+        "de": [
+          "zirkumspektion"
+        ],
+        "es": [
+          "circunspección",
+          "circunspeccion"
+        ],
+        "fr": [
+          "circonspection"
+        ],
+        "it": [
+          "circospezione"
+        ],
+        "ru": [
+          "циркумспекция"
+        ]
+      },
+      "languages": {
+        "en": {
+          "forms": [
+            "circumspection"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "bnc-clean2.lemmatized_spacy_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "de": {
+          "forms": [
+            "zirkumspektion"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "deu_lemma_rank_word_ipm_corrected.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "es": {
+          "forms": [
+            "circunspección",
+            "circunspeccion"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "es_wordlist.lemmatized_stanza_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "fr": {
+          "forms": [
+            "circonspection"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "it": {
+          "forms": [
+            "circospezione"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "ru": {
+          "forms": [
+            "циркумспекция"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        }
+      },
+      "arithmetic_mean_ipm": 0,
+      "geometric_mean_ipm": 0,
+      "language_values_ipm": {
+        "en": 0,
+        "de": 0,
+        "es": 0,
+        "fr": 0,
+        "it": 0,
+        "ru": 0
+      },
+      "cognate_languages": 6,
+      "positive_languages": 0,
+      "tertile": "низкая"
+    },
+    {
+      "id": "transaction",
+      "logical": "Transaction — действие, переходящее от одной стороны к другой",
+      "international": "Transactionu — транзакция",
+      "forms": {
+        "en": [
+          "transaction"
+        ],
+        "de": [
+          "transaktion"
+        ],
+        "es": [
+          "transacción",
+          "transaccion"
+        ],
+        "fr": [
+          "transaction"
+        ],
+        "it": [
+          "transazione"
+        ],
+        "ru": [
+          "транзакция"
+        ]
+      },
+      "languages": {
+        "en": {
+          "forms": [
+            "transaction"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "bnc-clean2.lemmatized_spacy_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "de": {
+          "forms": [
+            "transaktion"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "deu_lemma_rank_word_ipm_corrected.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "es": {
+          "forms": [
+            "transacción",
+            "transaccion"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "es_wordlist.lemmatized_stanza_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "fr": {
+          "forms": [
+            "transaction"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "it": {
+          "forms": [
+            "transazione"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "ru": {
+          "forms": [
+            "транзакция"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        }
+      },
+      "arithmetic_mean_ipm": 0,
+      "geometric_mean_ipm": 0,
+      "language_values_ipm": {
+        "en": 0,
+        "de": 0,
+        "es": 0,
+        "fr": 0,
+        "it": 0,
+        "ru": 0
+      },
+      "cognate_languages": 6,
+      "positive_languages": 0,
+      "tertile": "низкая"
+    },
+    {
+      "id": "creature",
+      "logical": "Creatura — созданное",
+      "international": "Creaturu — живое существо",
+      "forms": {
+        "en": [
+          "creature"
+        ],
+        "de": [
+          "kreatur"
+        ],
+        "es": [
+          "criatura"
+        ],
+        "fr": [
+          "créature",
+          "creature"
+        ],
+        "it": [
+          "creatura"
+        ],
+        "ru": null
+      },
+      "languages": {
+        "en": {
+          "forms": [
+            "creature"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "bnc-clean2.lemmatized_spacy_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "de": {
+          "forms": [
+            "kreatur"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "deu_lemma_rank_word_ipm_corrected.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "es": {
+          "forms": [
+            "criatura"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "es_wordlist.lemmatized_stanza_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "fr": {
+          "forms": [
+            "créature",
+            "creature"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "it": {
+          "forms": [
+            "creatura"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "ru": {
+          "forms": null,
+          "source_values": [
+            {
+              "source": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "no_target_cognate"
+            },
+            {
+              "source": "rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "no_target_cognate"
+            },
+            {
+              "source": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "no_target_cognate"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        }
+      },
+      "arithmetic_mean_ipm": 0,
+      "geometric_mean_ipm": 0,
+      "language_values_ipm": {
+        "en": 0,
+        "de": 0,
+        "es": 0,
+        "fr": 0,
+        "it": 0,
+        "ru": 0
+      },
+      "cognate_languages": 5,
+      "positive_languages": 0,
+      "tertile": "низкая"
+    },
+    {
+      "id": "trajectory",
+      "logical": "Trajectoria — место, где бросают через",
+      "international": "Trajectoriu — траектория",
+      "forms": {
+        "en": [
+          "trajectory"
+        ],
+        "de": [
+          "trajektorie"
+        ],
+        "es": [
+          "trayectoria"
+        ],
+        "fr": [
+          "trajectoire"
+        ],
+        "it": [
+          "traiettoria"
+        ],
+        "ru": [
+          "траектория"
+        ]
+      },
+      "languages": {
+        "en": {
+          "forms": [
+            "trajectory"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "bnc-clean2.lemmatized_spacy_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "de": {
+          "forms": [
+            "trajektorie"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "deu_lemma_rank_word_ipm_corrected.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "es": {
+          "forms": [
+            "trayectoria"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "es_wordlist.lemmatized_stanza_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "fr": {
+          "forms": [
+            "trajectoire"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "it": {
+          "forms": [
+            "traiettoria"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "ru": {
+          "forms": [
+            "траектория"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        }
+      },
+      "arithmetic_mean_ipm": 0,
+      "geometric_mean_ipm": 0,
+      "language_values_ipm": {
+        "en": 0,
+        "de": 0,
+        "es": 0,
+        "fr": 0,
+        "it": 0,
+        "ru": 0
+      },
+      "cognate_languages": 6,
+      "positive_languages": 0,
+      "tertile": "средняя"
+    },
+    {
+      "id": "parliament",
+      "logical": "Parlament — говорение",
+      "international": "Parlamentu — парламент",
+      "forms": {
+        "en": [
+          "parliament"
+        ],
+        "de": [
+          "parlament"
+        ],
+        "es": [
+          "parlamento"
+        ],
+        "fr": [
+          "parlement"
+        ],
+        "it": [
+          "parlamento"
+        ],
+        "ru": [
+          "парламент"
+        ]
+      },
+      "languages": {
+        "en": {
+          "forms": [
+            "parliament"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "bnc-clean2.lemmatized_spacy_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "de": {
+          "forms": [
+            "parlament"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "deu_lemma_rank_word_ipm_corrected.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "es": {
+          "forms": [
+            "parlamento"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "es_wordlist.lemmatized_stanza_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "fr": {
+          "forms": [
+            "parlement"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "it": {
+          "forms": [
+            "parlamento"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "ru": {
+          "forms": [
+            "парламент"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        }
+      },
+      "arithmetic_mean_ipm": 0,
+      "geometric_mean_ipm": 0,
+      "language_values_ipm": {
+        "en": 0,
+        "de": 0,
+        "es": 0,
+        "fr": 0,
+        "it": 0,
+        "ru": 0
+      },
+      "cognate_languages": 6,
+      "positive_languages": 0,
+      "tertile": "средняя"
+    },
+    {
+      "id": "pact",
+      "logical": "Pact — скреплённое, закреплённое",
+      "international": "Pactu — пакт, соглашение",
+      "forms": {
+        "en": [
+          "pact"
+        ],
+        "de": [
+          "pakt"
+        ],
+        "es": [
+          "pacto"
+        ],
+        "fr": [
+          "pacte"
+        ],
+        "it": [
+          "patto"
+        ],
+        "ru": [
+          "пакт"
+        ]
+      },
+      "languages": {
+        "en": {
+          "forms": [
+            "pact"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "bnc-clean2.lemmatized_spacy_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "de": {
+          "forms": [
+            "pakt"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "deu_lemma_rank_word_ipm_corrected.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "es": {
+          "forms": [
+            "pacto"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "es_wordlist.lemmatized_stanza_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "fr": {
+          "forms": [
+            "pacte"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "it": {
+          "forms": [
+            "patto"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "ru": {
+          "forms": [
+            "пакт"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        }
+      },
+      "arithmetic_mean_ipm": 0,
+      "geometric_mean_ipm": 0,
+      "language_values_ipm": {
+        "en": 0,
+        "de": 0,
+        "es": 0,
+        "fr": 0,
+        "it": 0,
+        "ru": 0
+      },
+      "cognate_languages": 6,
+      "positive_languages": 0,
+      "tertile": "средняя"
+    },
+    {
+      "id": "circumvention",
+      "logical": "Circumvention — приход вокруг",
+      "international": "Circumventionu — уклонение, обход запрета",
+      "forms": {
+        "en": [
+          "circumvention"
+        ],
+        "de": null,
+        "es": null,
+        "fr": null,
+        "it": null,
+        "ru": null
+      },
+      "languages": {
+        "en": {
+          "forms": [
+            "circumvention"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "bnc-clean2.lemmatized_spacy_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "de": {
+          "forms": null,
+          "source_values": [
+            {
+              "source": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "no_target_cognate"
+            },
+            {
+              "source": "deu_lemma_rank_word_ipm_corrected.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "no_target_cognate"
+            },
+            {
+              "source": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "no_target_cognate"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "es": {
+          "forms": null,
+          "source_values": [
+            {
+              "source": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "no_target_cognate"
+            },
+            {
+              "source": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "no_target_cognate"
+            },
+            {
+              "source": "es_wordlist.lemmatized_stanza_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "no_target_cognate"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "fr": {
+          "forms": null,
+          "source_values": [
+            {
+              "source": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "no_target_cognate"
+            },
+            {
+              "source": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "no_target_cognate"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "it": {
+          "forms": null,
+          "source_values": [
+            {
+              "source": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "no_target_cognate"
+            },
+            {
+              "source": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "no_target_cognate"
+            },
+            {
+              "source": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "no_target_cognate"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "ru": {
+          "forms": null,
+          "source_values": [
+            {
+              "source": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "no_target_cognate"
+            },
+            {
+              "source": "rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "no_target_cognate"
+            },
+            {
+              "source": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "no_target_cognate"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        }
+      },
+      "arithmetic_mean_ipm": 0,
+      "geometric_mean_ipm": 0,
+      "language_values_ipm": {
+        "en": 0,
+        "de": 0,
+        "es": 0,
+        "fr": 0,
+        "it": 0,
+        "ru": 0
+      },
+      "cognate_languages": 1,
+      "positive_languages": 0,
+      "tertile": "средняя"
+    },
+    {
+      "id": "information",
+      "logical": "Information — формирование в",
+      "international": "Informationu — информация",
+      "forms": {
+        "en": [
+          "information"
+        ],
+        "de": [
+          "information"
+        ],
+        "es": [
+          "información",
+          "informacion"
+        ],
+        "fr": [
+          "information"
+        ],
+        "it": [
+          "informazione"
+        ],
+        "ru": [
+          "информация"
+        ]
+      },
+      "languages": {
+        "en": {
+          "forms": [
+            "information"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "bnc-clean2.lemmatized_spacy_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "de": {
+          "forms": [
+            "information"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "deu_lemma_rank_word_ipm_corrected.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "es": {
+          "forms": [
+            "información",
+            "informacion"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "es_wordlist.lemmatized_stanza_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "fr": {
+          "forms": [
+            "information"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "it": {
+          "forms": [
+            "informazione"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "ru": {
+          "forms": [
+            "информация"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        }
+      },
+      "arithmetic_mean_ipm": 0,
+      "geometric_mean_ipm": 0,
+      "language_values_ipm": {
+        "en": 0,
+        "de": 0,
+        "es": 0,
+        "fr": 0,
+        "it": 0,
+        "ru": 0
+      },
+      "cognate_languages": 6,
+      "positive_languages": 0,
+      "tertile": "средняя"
+    },
+    {
+      "id": "recreation",
+      "logical": "Recreation — повторное создание",
+      "international": "Recreationu — отдых, развлечение",
+      "forms": {
+        "en": [
+          "recreation"
+        ],
+        "de": [
+          "rekreation"
+        ],
+        "es": [
+          "recreación",
+          "recreacion"
+        ],
+        "fr": [
+          "récréation",
+          "recreation"
+        ],
+        "it": [
+          "ricreazione"
+        ],
+        "ru": [
+          "рекреация"
+        ]
+      },
+      "languages": {
+        "en": {
+          "forms": [
+            "recreation"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "bnc-clean2.lemmatized_spacy_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "de": {
+          "forms": [
+            "rekreation"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "deu_lemma_rank_word_ipm_corrected.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "es": {
+          "forms": [
+            "recreación",
+            "recreacion"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "es_wordlist.lemmatized_stanza_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "fr": {
+          "forms": [
+            "récréation",
+            "recreation"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "it": {
+          "forms": [
+            "ricreazione"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "ru": {
+          "forms": [
+            "рекреация"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        }
+      },
+      "arithmetic_mean_ipm": 0,
+      "geometric_mean_ipm": 0,
+      "language_values_ipm": {
+        "en": 0,
+        "de": 0,
+        "es": 0,
+        "fr": 0,
+        "it": 0,
+        "ru": 0
+      },
+      "cognate_languages": 6,
+      "positive_languages": 0,
+      "tertile": "высокая"
+    },
+    {
+      "id": "preposition",
+      "logical": "Preposition — предварительное ложение",
+      "international": "Prepositionu — предлог",
+      "forms": {
+        "en": [
+          "preposition"
+        ],
+        "de": [
+          "präposition",
+          "praeposition"
+        ],
+        "es": [
+          "preposición",
+          "preposicion"
+        ],
+        "fr": [
+          "préposition",
+          "preposition"
+        ],
+        "it": [
+          "preposizione"
+        ],
+        "ru": null
+      },
+      "languages": {
+        "en": {
+          "forms": [
+            "preposition"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "bnc-clean2.lemmatized_spacy_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "de": {
+          "forms": [
+            "präposition",
+            "praeposition"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "deu_lemma_rank_word_ipm_corrected.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "es": {
+          "forms": [
+            "preposición",
+            "preposicion"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "es_wordlist.lemmatized_stanza_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "fr": {
+          "forms": [
+            "préposition",
+            "preposition"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "it": {
+          "forms": [
+            "preposizione"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "ru": {
+          "forms": null,
+          "source_values": [
+            {
+              "source": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "no_target_cognate"
+            },
+            {
+              "source": "rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "no_target_cognate"
+            },
+            {
+              "source": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "no_target_cognate"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        }
+      },
+      "arithmetic_mean_ipm": 0,
+      "geometric_mean_ipm": 0,
+      "language_values_ipm": {
+        "en": 0,
+        "de": 0,
+        "es": 0,
+        "fr": 0,
+        "it": 0,
+        "ru": 0
+      },
+      "cognate_languages": 5,
+      "positive_languages": 0,
+      "tertile": "высокая"
+    },
+    {
+      "id": "doctor",
+      "logical": "Doctor — обучающий, учитель",
+      "international": "Doctoru — врач",
+      "forms": {
+        "en": [
+          "doctor"
+        ],
+        "de": [
+          "doktor"
+        ],
+        "es": [
+          "doctor"
+        ],
+        "fr": [
+          "docteur"
+        ],
+        "it": [
+          "dottore"
+        ],
+        "ru": [
+          "доктор"
+        ]
+      },
+      "languages": {
+        "en": {
+          "forms": [
+            "doctor"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "bnc-clean2.lemmatized_spacy_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "de": {
+          "forms": [
+            "doktor"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "deu_lemma_rank_word_ipm_corrected.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "es": {
+          "forms": [
+            "doctor"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "es_wordlist.lemmatized_stanza_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "fr": {
+          "forms": [
+            "docteur"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "it": {
+          "forms": [
+            "dottore"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "ru": {
+          "forms": [
+            "доктор"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        }
+      },
+      "arithmetic_mean_ipm": 0,
+      "geometric_mean_ipm": 0,
+      "language_values_ipm": {
+        "en": 0,
+        "de": 0,
+        "es": 0,
+        "fr": 0,
+        "it": 0,
+        "ru": 0
+      },
+      "cognate_languages": 6,
+      "positive_languages": 0,
+      "tertile": "высокая"
+    },
+    {
+      "id": "temperament",
+      "logical": "Temperament — результат уравновешивания",
+      "international": "Temperamentu — темперамент",
+      "forms": {
+        "en": [
+          "temperament"
+        ],
+        "de": [
+          "temperament"
+        ],
+        "es": [
+          "temperamento"
+        ],
+        "fr": [
+          "tempérament",
+          "temperament"
+        ],
+        "it": [
+          "temperamento"
+        ],
+        "ru": [
+          "темперамент"
+        ]
+      },
+      "languages": {
+        "en": {
+          "forms": [
+            "temperament"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "bnc-clean2.lemmatized_spacy_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "de": {
+          "forms": [
+            "temperament"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "deu_lemma_rank_word_ipm_corrected.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "es": {
+          "forms": [
+            "temperamento"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "es_wordlist.lemmatized_stanza_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "fr": {
+          "forms": [
+            "tempérament",
+            "temperament"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "it": {
+          "forms": [
+            "temperamento"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "ru": {
+          "forms": [
+            "темперамент"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        }
+      },
+      "arithmetic_mean_ipm": 0,
+      "geometric_mean_ipm": 0,
+      "language_values_ipm": {
+        "en": 0,
+        "de": 0,
+        "es": 0,
+        "fr": 0,
+        "it": 0,
+        "ru": 0
+      },
+      "cognate_languages": 6,
+      "positive_languages": 0,
+      "tertile": "высокая"
+    },
+    {
+      "id": "emulsion",
+      "logical": "Emulsion — дойка",
+      "international": "Emulsionu — эмульсия",
+      "forms": {
+        "en": [
+          "emulsion"
+        ],
+        "de": [
+          "emulsion"
+        ],
+        "es": [
+          "emulsión",
+          "emulsion"
+        ],
+        "fr": [
+          "émulsion",
+          "emulsion"
+        ],
+        "it": [
+          "emulsione"
+        ],
+        "ru": [
+          "эмульсия"
+        ]
+      },
+      "languages": {
+        "en": {
+          "forms": [
+            "emulsion"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "bnc-clean2.lemmatized_spacy_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "de": {
+          "forms": [
+            "emulsion"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "deu_lemma_rank_word_ipm_corrected.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "es": {
+          "forms": [
+            "emulsión",
+            "emulsion"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "es_wordlist.lemmatized_stanza_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "fr": {
+          "forms": [
+            "émulsion",
+            "emulsion"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "it": {
+          "forms": [
+            "emulsione"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        },
+        "ru": {
+          "forms": [
+            "эмульсия"
+          ],
+          "source_values": [
+            {
+              "source": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            },
+            {
+              "source": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+              "ipm": 0,
+              "matched": null,
+              "reason": "not_in_source"
+            }
+          ],
+          "source_mean_ipm": 0,
+          "found_in_sources": 0
+        }
+      },
+      "arithmetic_mean_ipm": 0,
+      "geometric_mean_ipm": 0,
+      "language_values_ipm": {
+        "en": 0,
+        "de": 0,
+        "es": 0,
+        "fr": 0,
+        "it": 0,
+        "ru": 0
+      },
+      "cognate_languages": 6,
+      "positive_languages": 0,
+      "tertile": "высокая"
+    }
+  ]
+}
