@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import { LANGUAGE_SOURCES, CATEGORY_ORDER } from '../associativvordes/js/config-frequency-sources.js';
+import { LANGUAGE_SOURCES, CATEGORY_ORDER, BASE_CATEGORY_WEIGHTS } from '../associativvordes/js/config-frequency-sources.js';
 
 const LANGUAGES = ['en', 'de', 'es', 'fr', 'it', 'ru'];
 const BASE = join('associativvordes', 'frequency lists');
@@ -144,52 +144,91 @@ const ITEMS = [
   }
 ];
 
-function numericValue(value) {
-  if (typeof value === 'number' && Number.isFinite(value)) return value;
-  if (Array.isArray(value)) {
-    for (const part of value) {
-      const n = numericValue(part);
-      if (n != null) return n;
-    }
-    return null;
-  }
-  if (value && typeof value === 'object') {
-    for (const key of ['ipm', 'frequency', 'freq', 'value', 'score']) {
-      const n = Number(value[key]);
-      if (Number.isFinite(n)) return n;
-    }
-  }
-  const n = Number(value);
-  return Number.isFinite(n) ? n : null;
+function addIpm(map, word, value) {
+  const key = String(word || '').trim().toLowerCase().normalize('NFC');
+  const number = Number(value);
+  if (key && Number.isFinite(number) && number > 0) map.set(key, number);
 }
 
-function sourceFiles(language) {
-  const files = [];
+function normalizeFrequencyData(data) {
+  const map = new Map();
+  if (!data || typeof data !== 'object') return map;
+  if (Array.isArray(data)) {
+    for (const record of data) {
+      if (!record || typeof record !== 'object') continue;
+      addIpm(map, record.word ?? record.lemma ?? record.form,
+        record.ipm ?? record.IPM ?? record.frequency ?? record.freq);
+    }
+    return map;
+  }
+  for (const [key, record] of Object.entries(data)) {
+    if (typeof record === 'number') {
+      addIpm(map, key, record);
+      continue;
+    }
+    if (!record || typeof record !== 'object') continue;
+    const explicitWord = record.word ?? record.lemma ?? record.form;
+    const explicitValue = record.ipm ?? record.IPM ?? record.frequency ?? record.freq;
+    if (explicitValue != null) {
+      addIpm(map, explicitWord || key, explicitValue);
+      continue;
+    }
+    for (const [nestedWord, nestedValue] of Object.entries(record)) {
+      if (typeof nestedValue === 'number') {
+        addIpm(map, nestedWord, nestedValue);
+      } else if (nestedValue && typeof nestedValue === 'object') {
+        addIpm(map, nestedWord,
+          nestedValue.ipm ?? nestedValue.IPM ?? nestedValue.frequency ?? nestedValue.freq);
+      }
+    }
+  }
+  return map;
+}
+
+function sourceDescriptors(language) {
+  const descriptors = [];
   for (const category of CATEGORY_ORDER) {
     for (const source of LANGUAGE_SOURCES[language]?.[category] || []) {
-      files.push(typeof source === 'string' ? source : source.file);
+      descriptors.push({
+        category,
+        file: typeof source === 'string' ? source : source.file
+      });
     }
   }
-  return files;
+  return descriptors;
 }
 
-function lookup(data, candidates) {
+function languageCategoryWeights(language) {
+  const available = CATEGORY_ORDER.filter(
+    category => Array.isArray(LANGUAGE_SOURCES[language]?.[category]) &&
+      LANGUAGE_SOURCES[language][category].length > 0
+  );
+  const total = available.reduce(
+    (sum, category) => sum + (BASE_CATEGORY_WEIGHTS[category] || 0), 0
+  );
+  return Object.fromEntries(
+    available.map(category => [category, (BASE_CATEGORY_WEIGHTS[category] || 0) / total])
+  );
+}
+
+function lookup(map, candidates) {
   if (!candidates) return { value: 0, matched: null };
   for (const candidate of candidates) {
-    const variants = [...new Set([
-      candidate,
-      candidate.toLowerCase(),
-      candidate.normalize('NFC'),
-      candidate.normalize('NFC').toLowerCase()
-    ])];
-    for (const variant of variants) {
-      if (Object.prototype.hasOwnProperty.call(data, variant)) {
-        const n = numericValue(data[variant]);
-        if (n != null && n >= 0) return { value: n, matched: variant };
+    const nfc = candidate.normalize('NFC').toLowerCase();
+    const stripped = nfc.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    for (const variant of [...new Set([nfc, stripped])]) {
+      const value = map.get(variant);
+      if (typeof value === 'number' && value > 0) {
+        return { value, matched: variant };
       }
     }
   }
   return { value: 0, matched: null };
+}
+
+function meanNonZero(values) {
+  const valid = values.filter(value => typeof value === 'number' && value > 0);
+  return valid.length ? valid.reduce((a, b) => a + b, 0) / valid.length : 0;
 }
 
 const results = ITEMS.map(item => ({
@@ -203,12 +242,12 @@ const results = ITEMS.map(item => ({
 }));
 
 for (const language of LANGUAGES) {
-  const files = sourceFiles(language);
-  for (const file of files) {
-    const path = join(BASE, language, file);
+  const descriptors = sourceDescriptors(language);
+  for (const descriptor of descriptors) {
+    const path = join(BASE, language, descriptor.file);
     let data;
     try {
-      data = JSON.parse(await readFile(path, 'utf8'));
+      data = normalizeFrequencyData(JSON.parse(await readFile(path, 'utf8')));
     } catch (error) {
       console.error(`Cannot read ${path}: ${error.message}`);
       continue;
@@ -217,13 +256,20 @@ for (const language of LANGUAGES) {
       const forms = result.forms[language];
       if (!forms) {
         result.languages[language].source_values.push({
-          source: file, ipm: 0, matched: null, reason: 'no_target_cognate'
+          category: descriptor.category,
+          source: descriptor.file,
+          ipm: 0,
+          matched: null,
+          reason: 'no_target_cognate'
         });
         continue;
       }
       const hit = lookup(data, forms);
       result.languages[language].source_values.push({
-        source: file, ipm: hit.value, matched: hit.matched,
+        category: descriptor.category,
+        source: descriptor.file,
+        ipm: hit.value,
+        matched: hit.matched,
         reason: hit.matched ? 'found' : 'not_in_source'
       });
     }
@@ -234,21 +280,33 @@ for (const result of results) {
   const languageValues = [];
   for (const language of LANGUAGES) {
     const info = result.languages[language];
-    const values = info.source_values.map(x => x.ipm);
-    info.source_mean_ipm = values.length
-      ? values.reduce((a, b) => a + b, 0) / values.length
-      : 0;
-    info.found_in_sources = info.source_values.filter(x => x.matched).length;
+    const weights = languageCategoryWeights(language);
+    info.category_ipm = {};
+    info.source_mean_ipm = 0;
+    for (const category of CATEGORY_ORDER) {
+      const values = info.source_values
+        .filter(entry => entry.category === category)
+        .map(entry => entry.ipm);
+      if (!values.length) continue;
+      const categoryIpm = meanNonZero(values);
+      info.category_ipm[category] = categoryIpm;
+      info.source_mean_ipm += (weights[category] || 0) * categoryIpm;
+    }
+    info.found_in_sources = info.source_values.filter(entry => entry.matched).length;
     languageValues.push(info.source_mean_ipm);
   }
-  result.arithmetic_mean_ipm = languageValues.reduce((a, b) => a + b, 0) / LANGUAGES.length;
+  result.arithmetic_mean_ipm =
+    languageValues.reduce((a, b) => a + b, 0) / LANGUAGES.length;
   result.geometric_mean_ipm =
-    Math.exp(languageValues.reduce((sum, value) => sum + Math.log1p(value), 0) / LANGUAGES.length) - 1;
+    Math.exp(languageValues.reduce((sum, value) => sum + Math.log1p(value), 0)
+      / LANGUAGES.length) - 1;
   result.language_values_ipm = Object.fromEntries(
     LANGUAGES.map((lang, i) => [lang, languageValues[i]])
   );
-  result.cognate_languages = LANGUAGES.filter(lang => result.forms[lang] != null).length;
-  result.positive_languages = LANGUAGES.filter(lang => result.languages[lang].source_mean_ipm > 0).length;
+  result.cognate_languages =
+    LANGUAGES.filter(lang => result.forms[lang] != null).length;
+  result.positive_languages =
+    LANGUAGES.filter(lang => result.languages[lang].source_mean_ipm > 0).length;
 }
 
 const sorted = [...results].sort((a, b) => a.geometric_mean_ipm - b.geometric_mean_ipm);
@@ -260,7 +318,7 @@ const output = {
   generated_at: new Date().toISOString(),
   method: {
     control_languages: LANGUAGES,
-    within_language: 'Арифметическое среднее IPM по всем настроенным частотным источникам языка; отсутствие леммы в конкретном источнике = 0.',
+    within_language: 'Внутри категории используется среднее ненулевых IPM, затем категории объединяются с весами конфигурации репозитория; отсутствие леммы во всех источниках категории = 0.',
     across_languages: 'Геометрическое среднее с единицей: exp(mean(ln(1 + IPM_lang))) - 1; отсутствие целевого когната в языке = 0.',
     caveat: 'Частотность относится к лемме целиком и не разделяет значения полисемичного слова.'
   },
