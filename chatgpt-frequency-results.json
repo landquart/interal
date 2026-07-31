@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-31T20:41:42.351Z",
+  "generated_at": "2026-07-31T20:45:19.544Z",
   "method": {
     "control_languages": [
       "en",
@@ -9,7 +9,7 @@
       "it",
       "ru"
     ],
-    "within_language": "Арифметическое среднее IPM по всем настроенным частотным источникам языка; отсутствие леммы в конкретном источнике = 0.",
+    "within_language": "Внутри категории используется среднее ненулевых IPM, затем категории объединяются с весами конфигурации репозитория; отсутствие леммы во всех источниках категории = 0.",
     "across_languages": "Геометрическое среднее с единицей: exp(mean(ln(1 + IPM_lang))) - 1; отсутствие целевого когната в языке = 0.",
     "caveat": "Частотность относится к лемме целиком и не разделяет значения полисемичного слова."
   },
@@ -46,32 +46,41 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 114.110907,
+              "matched": "station",
+              "reason": "found"
             },
             {
+              "category": "subtitles",
               "source": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 114.199228,
+              "matched": "station",
+              "reason": "found"
             },
             {
+              "category": "normative",
               "source": "bnc-clean2.lemmatized_spacy_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 150.569768,
+              "matched": "station",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 173.582272,
+              "matched": "station",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 146.10236916666668,
+          "found_in_sources": 4,
+          "category_ipm": {
+            "subtitles": 114.1550675,
+            "normative": 150.569768,
+            "web": 173.582272
+          }
         },
         "de": {
           "forms": [
@@ -79,26 +88,34 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 26.47584,
+              "matched": "station",
+              "reason": "found"
             },
             {
+              "category": "normative",
               "source": "deu_lemma_rank_word_ipm_corrected.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 61.541025,
+              "matched": "station",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 44.474028,
+              "matched": "station",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 44.16363100000001,
+          "found_in_sources": 3,
+          "category_ipm": {
+            "subtitles": 26.47584,
+            "normative": 61.541025,
+            "web": 44.474028
+          }
         },
         "es": {
           "forms": [
@@ -107,26 +124,33 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 70.722869,
+              "matched": "estación",
+              "reason": "found"
             },
             {
+              "category": "subtitles",
               "source": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 71.360103,
+              "matched": "estación",
+              "reason": "found"
             },
             {
+              "category": "mixed",
               "source": "es_wordlist.lemmatized_stanza_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 91.834087,
+              "matched": "estación",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 76.23963624999999,
+          "found_in_sources": 3,
+          "category_ipm": {
+            "subtitles": 71.04148599999999,
+            "mixed": 91.834087
+          }
         },
         "fr": {
           "forms": [
@@ -134,20 +158,26 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 39.682084,
+              "matched": "station",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 84.265416,
+              "matched": "station",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 61.97375,
+          "found_in_sources": 2,
+          "category_ipm": {
+            "subtitles": 39.682084,
+            "web": 84.265416
+          }
         },
         "it": {
           "forms": [
@@ -155,26 +185,33 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 62.064381,
+              "matched": "stazione",
+              "reason": "found"
             },
             {
+              "category": "subtitles",
               "source": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 64.325445,
+              "matched": "stazione",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 76.702309,
+              "matched": "stazione",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 69.948611,
+          "found_in_sources": 3,
+          "category_ipm": {
+            "subtitles": 63.194913,
+            "web": 76.702309
+          }
         },
         "ru": {
           "forms": [
@@ -182,41 +219,49 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 55.974579,
+              "matched": "станция",
+              "reason": "found"
             },
             {
+              "category": "normative",
               "source": "rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 130.632395,
+              "matched": "станция",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 115.178951,
+              "matched": "станция",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 100.59530833333335,
+          "found_in_sources": 3,
+          "category_ipm": {
+            "subtitles": 55.974579,
+            "normative": 130.632395,
+            "web": 115.178951
+          }
         }
       },
-      "arithmetic_mean_ipm": 0,
-      "geometric_mean_ipm": 0,
+      "arithmetic_mean_ipm": 83.17055095833335,
+      "geometric_mean_ipm": 77.44001004024622,
       "language_values_ipm": {
-        "en": 0,
-        "de": 0,
-        "es": 0,
-        "fr": 0,
-        "it": 0,
-        "ru": 0
+        "en": 146.10236916666668,
+        "de": 44.16363100000001,
+        "es": 76.23963624999999,
+        "fr": 61.97375,
+        "it": 69.948611,
+        "ru": 100.59530833333335
       },
       "cognate_languages": 6,
-      "positive_languages": 0,
-      "tertile": "низкая"
+      "positive_languages": 6,
+      "tertile": "высокая"
     },
     {
       "id": "conductor",
@@ -239,49 +284,61 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 4.600266,
+              "matched": "conductor",
+              "reason": "found"
             },
             {
+              "category": "subtitles",
               "source": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 4.436425,
+              "matched": "conductor",
+              "reason": "found"
             },
             {
+              "category": "normative",
               "source": "bnc-clean2.lemmatized_spacy_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 9.457585,
+              "matched": "conductor",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 8.939098,
+              "matched": "conductor",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 7.638342833333334,
+          "found_in_sources": 4,
+          "category_ipm": {
+            "subtitles": 4.518345500000001,
+            "normative": 9.457585,
+            "web": 8.939098
+          }
         },
         "de": {
           "forms": null,
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
               "ipm": 0,
               "matched": null,
               "reason": "no_target_cognate"
             },
             {
+              "category": "normative",
               "source": "deu_lemma_rank_word_ipm_corrected.json",
               "ipm": 0,
               "matched": null,
               "reason": "no_target_cognate"
             },
             {
+              "category": "web",
               "source": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
               "ipm": 0,
               "matched": null,
@@ -289,24 +346,32 @@
             }
           ],
           "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "found_in_sources": 0,
+          "category_ipm": {
+            "subtitles": 0,
+            "normative": 0,
+            "web": 0
+          }
         },
         "es": {
           "forms": null,
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
               "ipm": 0,
               "matched": null,
               "reason": "no_target_cognate"
             },
             {
+              "category": "subtitles",
               "source": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
               "ipm": 0,
               "matched": null,
               "reason": "no_target_cognate"
             },
             {
+              "category": "mixed",
               "source": "es_wordlist.lemmatized_stanza_ipm6.json",
               "ipm": 0,
               "matched": null,
@@ -314,18 +379,24 @@
             }
           ],
           "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "found_in_sources": 0,
+          "category_ipm": {
+            "subtitles": 0,
+            "mixed": 0
+          }
         },
         "fr": {
           "forms": null,
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
               "ipm": 0,
               "matched": null,
               "reason": "no_target_cognate"
             },
             {
+              "category": "web",
               "source": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
               "ipm": 0,
               "matched": null,
@@ -333,24 +404,31 @@
             }
           ],
           "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "found_in_sources": 0,
+          "category_ipm": {
+            "subtitles": 0,
+            "web": 0
+          }
         },
         "it": {
           "forms": null,
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
               "ipm": 0,
               "matched": null,
               "reason": "no_target_cognate"
             },
             {
+              "category": "subtitles",
               "source": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
               "ipm": 0,
               "matched": null,
               "reason": "no_target_cognate"
             },
             {
+              "category": "web",
               "source": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
               "ipm": 0,
               "matched": null,
@@ -358,24 +436,31 @@
             }
           ],
           "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "found_in_sources": 0,
+          "category_ipm": {
+            "subtitles": 0,
+            "web": 0
+          }
         },
         "ru": {
           "forms": null,
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
               "ipm": 0,
               "matched": null,
               "reason": "no_target_cognate"
             },
             {
+              "category": "normative",
               "source": "rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
               "ipm": 0,
               "matched": null,
               "reason": "no_target_cognate"
             },
             {
+              "category": "web",
               "source": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
               "ipm": 0,
               "matched": null,
@@ -383,13 +468,18 @@
             }
           ],
           "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "found_in_sources": 0,
+          "category_ipm": {
+            "subtitles": 0,
+            "normative": 0,
+            "web": 0
+          }
         }
       },
-      "arithmetic_mean_ipm": 0,
-      "geometric_mean_ipm": 0,
+      "arithmetic_mean_ipm": 1.273057138888889,
+      "geometric_mean_ipm": 0.4324244961281196,
       "language_values_ipm": {
-        "en": 0,
+        "en": 7.638342833333334,
         "de": 0,
         "es": 0,
         "fr": 0,
@@ -397,7 +487,7 @@
         "ru": 0
       },
       "cognate_languages": 1,
-      "positive_languages": 0,
+      "positive_languages": 1,
       "tertile": "низкая"
     },
     {
@@ -432,32 +522,41 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 0.02057,
+              "matched": "circumspection",
+              "reason": "found"
             },
             {
+              "category": "subtitles",
               "source": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 0.020264,
+              "matched": "circumspection",
+              "reason": "found"
             },
             {
+              "category": "normative",
               "source": "bnc-clean2.lemmatized_spacy_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 0.334043,
+              "matched": "circumspection",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 0.140334,
+              "matched": "circumspection",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 0.16493133333333335,
+          "found_in_sources": 4,
+          "category_ipm": {
+            "subtitles": 0.020417,
+            "normative": 0.334043,
+            "web": 0.140334
+          }
         },
         "de": {
           "forms": [
@@ -465,18 +564,21 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
               "ipm": 0,
               "matched": null,
               "reason": "not_in_source"
             },
             {
+              "category": "normative",
               "source": "deu_lemma_rank_word_ipm_corrected.json",
               "ipm": 0,
               "matched": null,
               "reason": "not_in_source"
             },
             {
+              "category": "web",
               "source": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
               "ipm": 0,
               "matched": null,
@@ -484,7 +586,12 @@
             }
           ],
           "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "found_in_sources": 0,
+          "category_ipm": {
+            "subtitles": 0,
+            "normative": 0,
+            "web": 0
+          }
         },
         "es": {
           "forms": [
@@ -493,26 +600,33 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 0.030869,
+              "matched": "circunspección",
+              "reason": "found"
             },
             {
+              "category": "subtitles",
               "source": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 0.026078,
+              "matched": "circunspección",
+              "reason": "found"
             },
             {
+              "category": "mixed",
               "source": "es_wordlist.lemmatized_stanza_ipm6.json",
               "ipm": 0,
               "matched": null,
               "reason": "not_in_source"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 0.021355124999999996,
+          "found_in_sources": 2,
+          "category_ipm": {
+            "subtitles": 0.0284735,
+            "mixed": 0
+          }
         },
         "fr": {
           "forms": [
@@ -520,20 +634,26 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 0.08275,
+              "matched": "circonspection",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 0.582082,
+              "matched": "circonspection",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 0.332416,
+          "found_in_sources": 2,
+          "category_ipm": {
+            "subtitles": 0.08275,
+            "web": 0.582082
+          }
         },
         "it": {
           "forms": [
@@ -541,26 +661,33 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 0.145048,
+              "matched": "circospezione",
+              "reason": "found"
             },
             {
+              "category": "subtitles",
               "source": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 0.161528,
+              "matched": "circospezione",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 0.61055,
+              "matched": "circospezione",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 0.381919,
+          "found_in_sources": 3,
+          "category_ipm": {
+            "subtitles": 0.153288,
+            "web": 0.61055
+          }
         },
         "ru": {
           "forms": [
@@ -568,18 +695,21 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
               "ipm": 0,
               "matched": null,
               "reason": "not_in_source"
             },
             {
+              "category": "normative",
               "source": "rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
               "ipm": 0,
               "matched": null,
               "reason": "not_in_source"
             },
             {
+              "category": "web",
               "source": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
               "ipm": 0,
               "matched": null,
@@ -587,21 +717,26 @@
             }
           ],
           "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "found_in_sources": 0,
+          "category_ipm": {
+            "subtitles": 0,
+            "normative": 0,
+            "web": 0
+          }
         }
       },
-      "arithmetic_mean_ipm": 0,
-      "geometric_mean_ipm": 0,
+      "arithmetic_mean_ipm": 0.15010357638888888,
+      "geometric_mean_ipm": 0.1396371231025224,
       "language_values_ipm": {
-        "en": 0,
+        "en": 0.16493133333333335,
         "de": 0,
-        "es": 0,
-        "fr": 0,
-        "it": 0,
+        "es": 0.021355124999999996,
+        "fr": 0.332416,
+        "it": 0.381919,
         "ru": 0
       },
       "cognate_languages": 6,
-      "positive_languages": 0,
+      "positive_languages": 4,
       "tertile": "низкая"
     },
     {
@@ -636,32 +771,41 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 5.198675,
+              "matched": "transaction",
+              "reason": "found"
             },
             {
+              "category": "subtitles",
               "source": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 5.294761,
+              "matched": "transaction",
+              "reason": "found"
             },
             {
+              "category": "normative",
               "source": "bnc-clean2.lemmatized_spacy_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 46.08746,
+              "matched": "transaction",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 45.17003,
+              "matched": "transaction",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 32.168069333333335,
+          "found_in_sources": 4,
+          "category_ipm": {
+            "subtitles": 5.2467179999999995,
+            "normative": 46.08746,
+            "web": 45.17003
+          }
         },
         "de": {
           "forms": [
@@ -669,26 +813,34 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 1.757331,
+              "matched": "transaktion",
+              "reason": "found"
             },
             {
+              "category": "normative",
               "source": "deu_lemma_rank_word_ipm_corrected.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 27.66238,
+              "matched": "transaktion",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 7.712577,
+              "matched": "transaktion",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 12.377429333333335,
+          "found_in_sources": 3,
+          "category_ipm": {
+            "subtitles": 1.757331,
+            "normative": 27.66238,
+            "web": 7.712577
+          }
         },
         "es": {
           "forms": [
@@ -697,26 +849,33 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 3.460094,
+              "matched": "transacción",
+              "reason": "found"
             },
             {
+              "category": "subtitles",
               "source": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 3.541927,
+              "matched": "transacción",
+              "reason": "found"
             },
             {
+              "category": "mixed",
               "source": "es_wordlist.lemmatized_stanza_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 48.059962,
+              "matched": "transacción",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 14.640748375,
+          "found_in_sources": 3,
+          "category_ipm": {
+            "subtitles": 3.5010104999999996,
+            "mixed": 48.059962
+          }
         },
         "fr": {
           "forms": [
@@ -724,20 +883,26 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 8.054336,
+              "matched": "transaction",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 24.200953,
+              "matched": "transaction",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 16.1276445,
+          "found_in_sources": 2,
+          "category_ipm": {
+            "subtitles": 8.054336,
+            "web": 24.200953
+          }
         },
         "it": {
           "forms": [
@@ -745,26 +910,33 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 5.302306,
+              "matched": "transazione",
+              "reason": "found"
             },
             {
+              "category": "subtitles",
               "source": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 5.500238,
+              "matched": "transazione",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 14.223514,
+              "matched": "transazione",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 9.812393,
+          "found_in_sources": 3,
+          "category_ipm": {
+            "subtitles": 5.4012720000000005,
+            "web": 14.223514
+          }
         },
         "ru": {
           "forms": [
@@ -772,41 +944,49 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 0.928442,
+              "matched": "транзакция",
+              "reason": "found"
             },
             {
+              "category": "normative",
               "source": "rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 1.26087,
+              "matched": "транзакция",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 3.627759,
+              "matched": "транзакция",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 1.939023666666667,
+          "found_in_sources": 3,
+          "category_ipm": {
+            "subtitles": 0.928442,
+            "normative": 1.26087,
+            "web": 3.627759
+          }
         }
       },
-      "arithmetic_mean_ipm": 0,
-      "geometric_mean_ipm": 0,
+      "arithmetic_mean_ipm": 14.51088470138889,
+      "geometric_mean_ipm": 11.479451251914822,
       "language_values_ipm": {
-        "en": 0,
-        "de": 0,
-        "es": 0,
-        "fr": 0,
-        "it": 0,
-        "ru": 0
+        "en": 32.168069333333335,
+        "de": 12.377429333333335,
+        "es": 14.640748375,
+        "fr": 16.1276445,
+        "it": 9.812393,
+        "ru": 1.939023666666667
       },
       "cognate_languages": 6,
-      "positive_languages": 0,
-      "tertile": "низкая"
+      "positive_languages": 6,
+      "tertile": "средняя"
     },
     {
       "id": "creature",
@@ -838,32 +1018,41 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 45.888588,
+              "matched": "creature",
+              "reason": "found"
             },
             {
+              "category": "subtitles",
               "source": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 46.590425,
+              "matched": "creature",
+              "reason": "found"
             },
             {
+              "category": "normative",
               "source": "bnc-clean2.lemmatized_spacy_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 39.99118,
+              "matched": "creature",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 24.011743,
+              "matched": "creature",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 36.747476500000005,
+          "found_in_sources": 4,
+          "category_ipm": {
+            "subtitles": 46.239506500000005,
+            "normative": 39.99118,
+            "web": 24.011743
+          }
         },
         "de": {
           "forms": [
@@ -871,26 +1060,34 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 12.320632,
+              "matched": "kreatur",
+              "reason": "found"
             },
             {
+              "category": "normative",
               "source": "deu_lemma_rank_word_ipm_corrected.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 2.486506,
+              "matched": "kreatur",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 9.48086,
+              "matched": "kreatur",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 8.095999333333335,
+          "found_in_sources": 3,
+          "category_ipm": {
+            "subtitles": 12.320632,
+            "normative": 2.486506,
+            "web": 9.48086
+          }
         },
         "es": {
           "forms": [
@@ -898,26 +1095,33 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 46.496596,
+              "matched": "criatura",
+              "reason": "found"
             },
             {
+              "category": "subtitles",
               "source": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 46.76339,
+              "matched": "criatura",
+              "reason": "found"
             },
             {
+              "category": "mixed",
               "source": "es_wordlist.lemmatized_stanza_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 2.46153,
+              "matched": "criatura",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 35.58787725,
+          "found_in_sources": 3,
+          "category_ipm": {
+            "subtitles": 46.629993,
+            "mixed": 2.46153
+          }
         },
         "fr": {
           "forms": [
@@ -926,20 +1130,26 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 40.323397,
+              "matched": "créature",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 14.770611,
+              "matched": "créature",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 27.547004,
+          "found_in_sources": 2,
+          "category_ipm": {
+            "subtitles": 40.323397,
+            "web": 14.770611
+          }
         },
         "it": {
           "forms": [
@@ -947,43 +1157,53 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 44.889636,
+              "matched": "creatura",
+              "reason": "found"
             },
             {
+              "category": "subtitles",
               "source": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 44.503052,
+              "matched": "creatura",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 25.51164,
+              "matched": "creatura",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 35.103992,
+          "found_in_sources": 3,
+          "category_ipm": {
+            "subtitles": 44.696343999999996,
+            "web": 25.51164
+          }
         },
         "ru": {
           "forms": null,
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
               "ipm": 0,
               "matched": null,
               "reason": "no_target_cognate"
             },
             {
+              "category": "normative",
               "source": "rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
               "ipm": 0,
               "matched": null,
               "reason": "no_target_cognate"
             },
             {
+              "category": "web",
               "source": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
               "ipm": 0,
               "matched": null,
@@ -991,22 +1211,27 @@
             }
           ],
           "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "found_in_sources": 0,
+          "category_ipm": {
+            "subtitles": 0,
+            "normative": 0,
+            "web": 0
+          }
         }
       },
-      "arithmetic_mean_ipm": 0,
-      "geometric_mean_ipm": 0,
+      "arithmetic_mean_ipm": 23.847058180555553,
+      "geometric_mean_ipm": 14.323755695505762,
       "language_values_ipm": {
-        "en": 0,
-        "de": 0,
-        "es": 0,
-        "fr": 0,
-        "it": 0,
+        "en": 36.747476500000005,
+        "de": 8.095999333333335,
+        "es": 35.58787725,
+        "fr": 27.547004,
+        "it": 35.103992,
         "ru": 0
       },
       "cognate_languages": 5,
-      "positive_languages": 0,
-      "tertile": "низкая"
+      "positive_languages": 5,
+      "tertile": "высокая"
     },
     {
       "id": "trajectory",
@@ -1039,32 +1264,41 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 2.80504,
+              "matched": "trajectory",
+              "reason": "found"
             },
             {
+              "category": "subtitles",
               "source": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 2.774756,
+              "matched": "trajectory",
+              "reason": "found"
             },
             {
+              "category": "normative",
               "source": "bnc-clean2.lemmatized_spacy_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 2.985507,
+              "matched": "trajectory",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 3.832974,
+              "matched": "trajectory",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 3.2027930000000007,
+          "found_in_sources": 4,
+          "category_ipm": {
+            "subtitles": 2.789898,
+            "normative": 2.985507,
+            "web": 3.832974
+          }
         },
         "de": {
           "forms": [
@@ -1072,26 +1306,34 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 0.006437,
+              "matched": "trajektorie",
+              "reason": "found"
             },
             {
+              "category": "normative",
               "source": "deu_lemma_rank_word_ipm_corrected.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 0.155407,
+              "matched": "trajektorie",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
               "ipm": 0,
               "matched": null,
               "reason": "not_in_source"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 0.053947999999999996,
+          "found_in_sources": 2,
+          "category_ipm": {
+            "subtitles": 0.006437,
+            "normative": 0.155407,
+            "web": 0
+          }
         },
         "es": {
           "forms": [
@@ -1099,26 +1341,33 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 5.79208,
+              "matched": "trayectoria",
+              "reason": "found"
             },
             {
+              "category": "subtitles",
               "source": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 5.632944,
+              "matched": "trayectoria",
+              "reason": "found"
             },
             {
+              "category": "mixed",
               "source": "es_wordlist.lemmatized_stanza_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 17.903905,
+              "matched": "trayectoria",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 8.76036025,
+          "found_in_sources": 3,
+          "category_ipm": {
+            "subtitles": 5.712512,
+            "mixed": 17.903905
+          }
         },
         "fr": {
           "forms": [
@@ -1126,20 +1375,26 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 8.450846,
+              "matched": "trajectoire",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 14.343544,
+              "matched": "trajectoire",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 11.397195,
+          "found_in_sources": 2,
+          "category_ipm": {
+            "subtitles": 8.450846,
+            "web": 14.343544
+          }
         },
         "it": {
           "forms": [
@@ -1147,26 +1402,33 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 5.506448,
+              "matched": "traiettoria",
+              "reason": "found"
             },
             {
+              "category": "subtitles",
               "source": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 5.330426,
+              "matched": "traiettoria",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 6.249162,
+              "matched": "traiettoria",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 5.8337995,
+          "found_in_sources": 3,
+          "category_ipm": {
+            "subtitles": 5.418437,
+            "web": 6.249162
+          }
         },
         "ru": {
           "forms": [
@@ -1174,40 +1436,48 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 4.864512,
+              "matched": "траектория",
+              "reason": "found"
             },
             {
+              "category": "normative",
               "source": "rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 15.005914,
+              "matched": "траектория",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 10.649117,
+              "matched": "траектория",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 10.173181000000003,
+          "found_in_sources": 3,
+          "category_ipm": {
+            "subtitles": 4.864512,
+            "normative": 15.005914,
+            "web": 10.649117
+          }
         }
       },
-      "arithmetic_mean_ipm": 0,
-      "geometric_mean_ipm": 0,
+      "arithmetic_mean_ipm": 6.570212791666667,
+      "geometric_mean_ipm": 4.870353511911089,
       "language_values_ipm": {
-        "en": 0,
-        "de": 0,
-        "es": 0,
-        "fr": 0,
-        "it": 0,
-        "ru": 0
+        "en": 3.2027930000000007,
+        "de": 0.053947999999999996,
+        "es": 8.76036025,
+        "fr": 11.397195,
+        "it": 5.8337995,
+        "ru": 10.173181000000003
       },
       "cognate_languages": 6,
-      "positive_languages": 0,
+      "positive_languages": 6,
       "tertile": "средняя"
     },
     {
@@ -1241,32 +1511,41 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 6.773237,
+              "matched": "parliament",
+              "reason": "found"
             },
             {
+              "category": "subtitles",
               "source": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 7.565806,
+              "matched": "parliament",
+              "reason": "found"
             },
             {
+              "category": "normative",
               "source": "bnc-clean2.lemmatized_spacy_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 105.400925,
+              "matched": "parliament",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 83.469901,
+              "matched": "parliament",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 65.3467825,
+          "found_in_sources": 4,
+          "category_ipm": {
+            "subtitles": 7.1695215,
+            "normative": 105.400925,
+            "web": 83.469901
+          }
         },
         "de": {
           "forms": [
@@ -1274,26 +1553,34 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 4.274242,
+              "matched": "parlament",
+              "reason": "found"
             },
             {
+              "category": "normative",
               "source": "deu_lemma_rank_word_ipm_corrected.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 84.230392,
+              "matched": "parlament",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 82.46813,
+              "matched": "parlament",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 56.99092133333334,
+          "found_in_sources": 3,
+          "category_ipm": {
+            "subtitles": 4.274242,
+            "normative": 84.230392,
+            "web": 82.46813
+          }
         },
         "es": {
           "forms": [
@@ -1301,26 +1588,33 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 0.207662,
+              "matched": "parlamento",
+              "reason": "found"
             },
             {
+              "category": "subtitles",
               "source": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 0.21574,
+              "matched": "parlamento",
+              "reason": "found"
             },
             {
+              "category": "mixed",
               "source": "es_wordlist.lemmatized_stanza_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 200.689217,
+              "matched": "parlamento",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 50.33108,
+          "found_in_sources": 3,
+          "category_ipm": {
+            "subtitles": 0.211701,
+            "mixed": 200.689217
+          }
         },
         "fr": {
           "forms": [
@@ -1328,20 +1622,26 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 5.009824,
+              "matched": "parlement",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 67.110674,
+              "matched": "parlement",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 36.060249,
+          "found_in_sources": 2,
+          "category_ipm": {
+            "subtitles": 5.009824,
+            "web": 67.110674
+          }
         },
         "it": {
           "forms": [
@@ -1349,26 +1649,33 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 0.037605,
+              "matched": "parlamento",
+              "reason": "found"
             },
             {
+              "category": "subtitles",
               "source": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 0.049701,
+              "matched": "parlamento",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 146.350581,
+              "matched": "parlamento",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 73.197117,
+          "found_in_sources": 3,
+          "category_ipm": {
+            "subtitles": 0.043653,
+            "web": 146.350581
+          }
         },
         "ru": {
           "forms": [
@@ -1376,41 +1683,49 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 8.92481,
+              "matched": "парламент",
+              "reason": "found"
             },
             {
+              "category": "normative",
               "source": "rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 39.055848,
+              "matched": "парламент",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 38.420518,
+              "matched": "парламент",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 28.800392000000002,
+          "found_in_sources": 3,
+          "category_ipm": {
+            "subtitles": 8.92481,
+            "normative": 39.055848,
+            "web": 38.420518
+          }
         }
       },
-      "arithmetic_mean_ipm": 0,
-      "geometric_mean_ipm": 0,
+      "arithmetic_mean_ipm": 51.78775697222222,
+      "geometric_mean_ipm": 49.29362465096329,
       "language_values_ipm": {
-        "en": 0,
-        "de": 0,
-        "es": 0,
-        "fr": 0,
-        "it": 0,
-        "ru": 0
+        "en": 65.3467825,
+        "de": 56.99092133333334,
+        "es": 50.33108,
+        "fr": 36.060249,
+        "it": 73.197117,
+        "ru": 28.800392000000002
       },
       "cognate_languages": 6,
-      "positive_languages": 0,
-      "tertile": "средняя"
+      "positive_languages": 6,
+      "tertile": "высокая"
     },
     {
       "id": "pact",
@@ -1443,32 +1758,41 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 5.082733,
+              "matched": "pact",
+              "reason": "found"
             },
             {
+              "category": "subtitles",
               "source": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 4.890924,
+              "matched": "pact",
+              "reason": "found"
             },
             {
+              "category": "normative",
               "source": "bnc-clean2.lemmatized_spacy_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 12.140366,
+              "matched": "pact",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 4.711611,
+              "matched": "pact",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 7.279601833333334,
+          "found_in_sources": 4,
+          "category_ipm": {
+            "subtitles": 4.9868285,
+            "normative": 12.140366,
+            "web": 4.711611
+          }
         },
         "de": {
           "forms": [
@@ -1476,26 +1800,34 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 4.963013,
+              "matched": "pakt",
+              "reason": "found"
             },
             {
+              "category": "normative",
               "source": "deu_lemma_rank_word_ipm_corrected.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 2.797319,
+              "matched": "pakt",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 9.644865,
+              "matched": "pakt",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 5.801732333333334,
+          "found_in_sources": 3,
+          "category_ipm": {
+            "subtitles": 4.963013,
+            "normative": 2.797319,
+            "web": 9.644865
+          }
         },
         "es": {
           "forms": [
@@ -1503,26 +1835,33 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 0.550023,
+              "matched": "pacto",
+              "reason": "found"
             },
             {
+              "category": "subtitles",
               "source": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 0.628253,
+              "matched": "pacto",
+              "reason": "found"
             },
             {
+              "category": "mixed",
               "source": "es_wordlist.lemmatized_stanza_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 42.197512,
+              "matched": "pacto",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 10.991231500000001,
+          "found_in_sources": 3,
+          "category_ipm": {
+            "subtitles": 0.5891379999999999,
+            "mixed": 42.197512
+          }
         },
         "fr": {
           "forms": [
@@ -1530,20 +1869,26 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 8.919763,
+              "matched": "pacte",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 22.780239,
+              "matched": "pacte",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 15.850001,
+          "found_in_sources": 2,
+          "category_ipm": {
+            "subtitles": 8.919763,
+            "web": 22.780239
+          }
         },
         "it": {
           "forms": [
@@ -1551,26 +1896,33 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 36.734721,
+              "matched": "patto",
+              "reason": "found"
             },
             {
+              "category": "subtitles",
               "source": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 36.650303,
+              "matched": "patto",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 63.868567,
+              "matched": "patto",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 50.2805395,
+          "found_in_sources": 3,
+          "category_ipm": {
+            "subtitles": 36.692512,
+            "web": 63.868567
+          }
         },
         "ru": {
           "forms": [
@@ -1578,40 +1930,48 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 1.543044,
+              "matched": "пакт",
+              "reason": "found"
             },
             {
+              "category": "normative",
               "source": "rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 4.856686,
+              "matched": "пакт",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 5.04978,
+              "matched": "пакт",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 3.816503333333334,
+          "found_in_sources": 3,
+          "category_ipm": {
+            "subtitles": 1.543044,
+            "normative": 4.856686,
+            "web": 5.04978
+          }
         }
       },
-      "arithmetic_mean_ipm": 0,
-      "geometric_mean_ipm": 0,
+      "arithmetic_mean_ipm": 15.669934916666667,
+      "geometric_mean_ipm": 10.87944614656681,
       "language_values_ipm": {
-        "en": 0,
-        "de": 0,
-        "es": 0,
-        "fr": 0,
-        "it": 0,
-        "ru": 0
+        "en": 7.279601833333334,
+        "de": 5.801732333333334,
+        "es": 10.991231500000001,
+        "fr": 15.850001,
+        "it": 50.2805395,
+        "ru": 3.816503333333334
       },
       "cognate_languages": 6,
-      "positive_languages": 0,
+      "positive_languages": 6,
       "tertile": "средняя"
     },
     {
@@ -1635,49 +1995,61 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 0.01309,
+              "matched": "circumvention",
+              "reason": "found"
             },
             {
+              "category": "subtitles",
               "source": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 0.014474,
+              "matched": "circumvention",
+              "reason": "found"
             },
             {
+              "category": "normative",
               "source": "bnc-clean2.lemmatized_spacy_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 0.062633,
+              "matched": "circumvention",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 0.220364,
+              "matched": "circumvention",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 0.09892633333333335,
+          "found_in_sources": 4,
+          "category_ipm": {
+            "subtitles": 0.013781999999999999,
+            "normative": 0.062633,
+            "web": 0.220364
+          }
         },
         "de": {
           "forms": null,
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
               "ipm": 0,
               "matched": null,
               "reason": "no_target_cognate"
             },
             {
+              "category": "normative",
               "source": "deu_lemma_rank_word_ipm_corrected.json",
               "ipm": 0,
               "matched": null,
               "reason": "no_target_cognate"
             },
             {
+              "category": "web",
               "source": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
               "ipm": 0,
               "matched": null,
@@ -1685,24 +2057,32 @@
             }
           ],
           "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "found_in_sources": 0,
+          "category_ipm": {
+            "subtitles": 0,
+            "normative": 0,
+            "web": 0
+          }
         },
         "es": {
           "forms": null,
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
               "ipm": 0,
               "matched": null,
               "reason": "no_target_cognate"
             },
             {
+              "category": "subtitles",
               "source": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
               "ipm": 0,
               "matched": null,
               "reason": "no_target_cognate"
             },
             {
+              "category": "mixed",
               "source": "es_wordlist.lemmatized_stanza_ipm6.json",
               "ipm": 0,
               "matched": null,
@@ -1710,18 +2090,24 @@
             }
           ],
           "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "found_in_sources": 0,
+          "category_ipm": {
+            "subtitles": 0,
+            "mixed": 0
+          }
         },
         "fr": {
           "forms": null,
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
               "ipm": 0,
               "matched": null,
               "reason": "no_target_cognate"
             },
             {
+              "category": "web",
               "source": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
               "ipm": 0,
               "matched": null,
@@ -1729,24 +2115,31 @@
             }
           ],
           "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "found_in_sources": 0,
+          "category_ipm": {
+            "subtitles": 0,
+            "web": 0
+          }
         },
         "it": {
           "forms": null,
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
               "ipm": 0,
               "matched": null,
               "reason": "no_target_cognate"
             },
             {
+              "category": "subtitles",
               "source": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
               "ipm": 0,
               "matched": null,
               "reason": "no_target_cognate"
             },
             {
+              "category": "web",
               "source": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
               "ipm": 0,
               "matched": null,
@@ -1754,24 +2147,31 @@
             }
           ],
           "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "found_in_sources": 0,
+          "category_ipm": {
+            "subtitles": 0,
+            "web": 0
+          }
         },
         "ru": {
           "forms": null,
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
               "ipm": 0,
               "matched": null,
               "reason": "no_target_cognate"
             },
             {
+              "category": "normative",
               "source": "rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
               "ipm": 0,
               "matched": null,
               "reason": "no_target_cognate"
             },
             {
+              "category": "web",
               "source": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
               "ipm": 0,
               "matched": null,
@@ -1779,13 +2179,18 @@
             }
           ],
           "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "found_in_sources": 0,
+          "category_ipm": {
+            "subtitles": 0,
+            "normative": 0,
+            "web": 0
+          }
         }
       },
-      "arithmetic_mean_ipm": 0,
-      "geometric_mean_ipm": 0,
+      "arithmetic_mean_ipm": 0.016487722222222227,
+      "geometric_mean_ipm": 0.01584651898803302,
       "language_values_ipm": {
-        "en": 0,
+        "en": 0.09892633333333335,
         "de": 0,
         "es": 0,
         "fr": 0,
@@ -1793,8 +2198,8 @@
         "ru": 0
       },
       "cognate_languages": 1,
-      "positive_languages": 0,
-      "tertile": "средняя"
+      "positive_languages": 1,
+      "tertile": "низкая"
     },
     {
       "id": "information",
@@ -1828,32 +2233,41 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 102.172655,
+              "matched": "information",
+              "reason": "found"
             },
             {
+              "category": "subtitles",
               "source": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 104.197369,
+              "matched": "information",
+              "reason": "found"
             },
             {
+              "category": "normative",
               "source": "bnc-clean2.lemmatized_spacy_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 403.607149,
+              "matched": "information",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 1388.707205,
+              "matched": "information",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 631.833122,
+          "found_in_sources": 4,
+          "category_ipm": {
+            "subtitles": 103.185012,
+            "normative": 403.607149,
+            "web": 1388.707205
+          }
         },
         "de": {
           "forms": [
@@ -1861,26 +2275,34 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 23.540517,
+              "matched": "information",
+              "reason": "found"
             },
             {
+              "category": "normative",
               "source": "deu_lemma_rank_word_ipm_corrected.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 447.881901,
+              "matched": "information",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 426.447661,
+              "matched": "information",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 299.29002633333334,
+          "found_in_sources": 3,
+          "category_ipm": {
+            "subtitles": 23.540517,
+            "normative": 447.881901,
+            "web": 426.447661
+          }
         },
         "es": {
           "forms": [
@@ -1889,26 +2311,33 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 142.739414,
+              "matched": "información",
+              "reason": "found"
             },
             {
+              "category": "subtitles",
               "source": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 144.453238,
+              "matched": "información",
+              "reason": "found"
             },
             {
+              "category": "mixed",
               "source": "es_wordlist.lemmatized_stanza_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 323.227166,
+              "matched": "información",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 188.50403599999999,
+          "found_in_sources": 3,
+          "category_ipm": {
+            "subtitles": 143.596326,
+            "mixed": 323.227166
+          }
         },
         "fr": {
           "forms": [
@@ -1916,20 +2345,26 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 98.958684,
+              "matched": "information",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 808.92211,
+              "matched": "information",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 453.94039699999996,
+          "found_in_sources": 2,
+          "category_ipm": {
+            "subtitles": 98.958684,
+            "web": 808.92211
+          }
         },
         "it": {
           "forms": [
@@ -1937,26 +2372,33 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 148.82988,
+              "matched": "informazione",
+              "reason": "found"
             },
             {
+              "category": "subtitles",
               "source": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 153.629755,
+              "matched": "informazione",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 548.843057,
+              "matched": "informazione",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 350.03643725,
+          "found_in_sources": 3,
+          "category_ipm": {
+            "subtitles": 151.2298175,
+            "web": 548.843057
+          }
         },
         "ru": {
           "forms": [
@@ -1964,41 +2406,49 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 171.572117,
+              "matched": "информация",
+              "reason": "found"
             },
             {
+              "category": "normative",
               "source": "rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 325.911638,
+              "matched": "информация",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 486.921137,
+              "matched": "информация",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 328.134964,
+          "found_in_sources": 3,
+          "category_ipm": {
+            "subtitles": 171.572117,
+            "normative": 325.911638,
+            "web": 486.921137
+          }
         }
       },
-      "arithmetic_mean_ipm": 0,
-      "geometric_mean_ipm": 0,
+      "arithmetic_mean_ipm": 375.2898304305556,
+      "geometric_mean_ipm": 350.7128337063359,
       "language_values_ipm": {
-        "en": 0,
-        "de": 0,
-        "es": 0,
-        "fr": 0,
-        "it": 0,
-        "ru": 0
+        "en": 631.833122,
+        "de": 299.29002633333334,
+        "es": 188.50403599999999,
+        "fr": 453.94039699999996,
+        "it": 350.03643725,
+        "ru": 328.134964
       },
       "cognate_languages": 6,
-      "positive_languages": 0,
-      "tertile": "средняя"
+      "positive_languages": 6,
+      "tertile": "высокая"
     },
     {
       "id": "recreation",
@@ -2033,32 +2483,41 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 1.769045,
+              "matched": "recreation",
+              "reason": "found"
             },
             {
+              "category": "subtitles",
               "source": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 1.789045,
+              "matched": "recreation",
+              "reason": "found"
             },
             {
+              "category": "normative",
               "source": "bnc-clean2.lemmatized_spacy_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 10.000404,
+              "matched": "recreation",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 17.459448,
+              "matched": "recreation",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 9.746299,
+          "found_in_sources": 4,
+          "category_ipm": {
+            "subtitles": 1.779045,
+            "normative": 10.000404,
+            "web": 17.459448
+          }
         },
         "de": {
           "forms": [
@@ -2066,18 +2525,21 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
               "ipm": 0,
               "matched": null,
               "reason": "not_in_source"
             },
             {
+              "category": "normative",
               "source": "deu_lemma_rank_word_ipm_corrected.json",
               "ipm": 0,
               "matched": null,
               "reason": "not_in_source"
             },
             {
+              "category": "web",
               "source": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
               "ipm": 0,
               "matched": null,
@@ -2085,7 +2547,12 @@
             }
           ],
           "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "found_in_sources": 0,
+          "category_ipm": {
+            "subtitles": 0,
+            "normative": 0,
+            "web": 0
+          }
         },
         "es": {
           "forms": [
@@ -2094,26 +2561,33 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 2.211317,
+              "matched": "recreación",
+              "reason": "found"
             },
             {
+              "category": "subtitles",
               "source": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 2.138432,
+              "matched": "recreación",
+              "reason": "found"
             },
             {
+              "category": "mixed",
               "source": "es_wordlist.lemmatized_stanza_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 2.342308,
+              "matched": "recreación",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 2.216732875,
+          "found_in_sources": 3,
+          "category_ipm": {
+            "subtitles": 2.1748745,
+            "mixed": 2.342308
+          }
         },
         "fr": {
           "forms": [
@@ -2122,20 +2596,26 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 2.182532,
+              "matched": "récréation",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 3.359177,
+              "matched": "récréation",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 2.7708545,
+          "found_in_sources": 2,
+          "category_ipm": {
+            "subtitles": 2.182532,
+            "web": 3.359177
+          }
         },
         "it": {
           "forms": [
@@ -2143,26 +2623,33 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 2.213323,
+              "matched": "ricreazione",
+              "reason": "found"
             },
             {
+              "category": "subtitles",
               "source": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 2.186841,
+              "matched": "ricreazione",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 1.961201,
+              "matched": "ricreazione",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 2.0806415,
+          "found_in_sources": 3,
+          "category_ipm": {
+            "subtitles": 2.200082,
+            "web": 1.961201
+          }
         },
         "ru": {
           "forms": [
@@ -2170,41 +2657,49 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 0.052307,
+              "matched": "рекреация",
+              "reason": "found"
             },
             {
+              "category": "normative",
               "source": "rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 0.513688,
+              "matched": "рекреация",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 0.605537,
+              "matched": "рекреация",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 0.3905106666666667,
+          "found_in_sources": 3,
+          "category_ipm": {
+            "subtitles": 0.052307,
+            "normative": 0.513688,
+            "web": 0.605537
+          }
         }
       },
-      "arithmetic_mean_ipm": 0,
-      "geometric_mean_ipm": 0,
+      "arithmetic_mean_ipm": 2.867506423611111,
+      "geometric_mean_ipm": 1.86960109813307,
       "language_values_ipm": {
-        "en": 0,
+        "en": 9.746299,
         "de": 0,
-        "es": 0,
-        "fr": 0,
-        "it": 0,
-        "ru": 0
+        "es": 2.216732875,
+        "fr": 2.7708545,
+        "it": 2.0806415,
+        "ru": 0.3905106666666667
       },
       "cognate_languages": 6,
-      "positive_languages": 0,
-      "tertile": "высокая"
+      "positive_languages": 5,
+      "tertile": "средняя"
     },
     {
       "id": "preposition",
@@ -2238,32 +2733,41 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 0.243103,
+              "matched": "preposition",
+              "reason": "found"
             },
             {
+              "category": "subtitles",
               "source": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 0.221459,
+              "matched": "preposition",
+              "reason": "found"
             },
             {
+              "category": "normative",
               "source": "bnc-clean2.lemmatized_spacy_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 1.0752,
+              "matched": "preposition",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 1.322182,
+              "matched": "preposition",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 0.8765543333333334,
+          "found_in_sources": 4,
+          "category_ipm": {
+            "subtitles": 0.23228100000000002,
+            "normative": 1.0752,
+            "web": 1.322182
+          }
         },
         "de": {
           "forms": [
@@ -2272,26 +2776,34 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 0.115868,
+              "matched": "präposition",
+              "reason": "found"
             },
             {
+              "category": "normative",
               "source": "deu_lemma_rank_word_ipm_corrected.json",
               "ipm": 0,
               "matched": null,
               "reason": "not_in_source"
             },
             {
+              "category": "web",
               "source": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 0.720573,
+              "matched": "präposition",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 0.27881366666666674,
+          "found_in_sources": 2,
+          "category_ipm": {
+            "subtitles": 0.115868,
+            "normative": 0,
+            "web": 0.720573
+          }
         },
         "es": {
           "forms": [
@@ -2300,26 +2812,33 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 0.216081,
+              "matched": "preposición",
+              "reason": "found"
             },
             {
+              "category": "subtitles",
               "source": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 0.21574,
+              "matched": "preposición",
+              "reason": "found"
             },
             {
+              "category": "mixed",
               "source": "es_wordlist.lemmatized_stanza_ipm6.json",
               "ipm": 0,
               "matched": null,
               "reason": "not_in_source"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 0.16193287499999998,
+          "found_in_sources": 2,
+          "category_ipm": {
+            "subtitles": 0.2159105,
+            "mixed": 0
+          }
         },
         "fr": {
           "forms": [
@@ -2328,20 +2847,26 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 0.158604,
+              "matched": "préposition",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 0.998297,
+              "matched": "préposition",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 0.5784505,
+          "found_in_sources": 2,
+          "category_ipm": {
+            "subtitles": 0.158604,
+            "web": 0.998297
+          }
         },
         "it": {
           "forms": [
@@ -2349,43 +2874,53 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 0.177281,
+              "matched": "preposizione",
+              "reason": "found"
             },
             {
+              "category": "subtitles",
               "source": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 0.178095,
+              "matched": "preposizione",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 1.337182,
+              "matched": "preposizione",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 0.7574350000000001,
+          "found_in_sources": 3,
+          "category_ipm": {
+            "subtitles": 0.177688,
+            "web": 1.337182
+          }
         },
         "ru": {
           "forms": null,
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
               "ipm": 0,
               "matched": null,
               "reason": "no_target_cognate"
             },
             {
+              "category": "normative",
               "source": "rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
               "ipm": 0,
               "matched": null,
               "reason": "no_target_cognate"
             },
             {
+              "category": "web",
               "source": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
               "ipm": 0,
               "matched": null,
@@ -2393,22 +2928,27 @@
             }
           ],
           "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "found_in_sources": 0,
+          "category_ipm": {
+            "subtitles": 0,
+            "normative": 0,
+            "web": 0
+          }
         }
       },
-      "arithmetic_mean_ipm": 0,
-      "geometric_mean_ipm": 0,
+      "arithmetic_mean_ipm": 0.4421977291666667,
+      "geometric_mean_ipm": 0.4062955905432546,
       "language_values_ipm": {
-        "en": 0,
-        "de": 0,
-        "es": 0,
-        "fr": 0,
-        "it": 0,
+        "en": 0.8765543333333334,
+        "de": 0.27881366666666674,
+        "es": 0.16193287499999998,
+        "fr": 0.5784505,
+        "it": 0.7574350000000001,
         "ru": 0
       },
       "cognate_languages": 5,
-      "positive_languages": 0,
-      "tertile": "высокая"
+      "positive_languages": 5,
+      "tertile": "низкая"
     },
     {
       "id": "doctor",
@@ -2441,32 +2981,41 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 331.540795,
+              "matched": "doctor",
+              "reason": "found"
             },
             {
+              "category": "subtitles",
               "source": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 323.621654,
+              "matched": "doctor",
+              "reason": "found"
             },
             {
+              "category": "normative",
               "source": "bnc-clean2.lemmatized_spacy_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 154.599158,
+              "matched": "doctor",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 114.976824,
+              "matched": "doctor",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 199.0524021666667,
+          "found_in_sources": 4,
+          "category_ipm": {
+            "subtitles": 327.58122449999996,
+            "normative": 154.599158,
+            "web": 114.976824
+          }
         },
         "de": {
           "forms": [
@@ -2474,26 +3023,34 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 137.702693,
+              "matched": "doktor",
+              "reason": "found"
             },
             {
+              "category": "normative",
               "source": "deu_lemma_rank_word_ipm_corrected.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 6.371672,
+              "matched": "doktor",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 14.605131,
+              "matched": "doktor",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 52.89316533333334,
+          "found_in_sources": 3,
+          "category_ipm": {
+            "subtitles": 137.702693,
+            "normative": 6.371672,
+            "web": 14.605131
+          }
         },
         "es": {
           "forms": [
@@ -2501,26 +3058,33 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 243.904378,
+              "matched": "doctor",
+              "reason": "found"
             },
             {
+              "category": "subtitles",
               "source": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 248.909256,
+              "matched": "doctor",
+              "reason": "found"
             },
             {
+              "category": "mixed",
               "source": "es_wordlist.lemmatized_stanza_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 37.030868,
+              "matched": "doctor",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 194.06282975,
+          "found_in_sources": 3,
+          "category_ipm": {
+            "subtitles": 246.406817,
+            "mixed": 37.030868
+          }
         },
         "fr": {
           "forms": [
@@ -2528,20 +3092,26 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 246.967444,
+              "matched": "docteur",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 42.07109,
+              "matched": "docteur",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 144.519267,
+          "found_in_sources": 2,
+          "category_ipm": {
+            "subtitles": 246.967444,
+            "web": 42.07109
+          }
         },
         "it": {
           "forms": [
@@ -2549,26 +3119,33 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 433.284911,
+              "matched": "dottore",
+              "reason": "found"
             },
             {
+              "category": "subtitles",
               "source": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 432.199395,
+              "matched": "dottore",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 130.668673,
+              "matched": "dottore",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 281.705413,
+          "found_in_sources": 3,
+          "category_ipm": {
+            "subtitles": 432.74215300000003,
+            "web": 130.668673
+          }
         },
         "ru": {
           "forms": [
@@ -2576,40 +3153,48 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 596.040005,
+              "matched": "доктор",
+              "reason": "found"
             },
             {
+              "category": "normative",
               "source": "rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 126.989881,
+              "matched": "доктор",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 108.73036,
+              "matched": "доктор",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 277.25341533333335,
+          "found_in_sources": 3,
+          "category_ipm": {
+            "subtitles": 596.040005,
+            "normative": 126.989881,
+            "web": 108.73036
+          }
         }
       },
-      "arithmetic_mean_ipm": 0,
-      "geometric_mean_ipm": 0,
+      "arithmetic_mean_ipm": 191.58108209722226,
+      "geometric_mean_ipm": 168.92522415554149,
       "language_values_ipm": {
-        "en": 0,
-        "de": 0,
-        "es": 0,
-        "fr": 0,
-        "it": 0,
-        "ru": 0
+        "en": 199.0524021666667,
+        "de": 52.89316533333334,
+        "es": 194.06282975,
+        "fr": 144.519267,
+        "it": 281.705413,
+        "ru": 277.25341533333335
       },
       "cognate_languages": 6,
-      "positive_languages": 0,
+      "positive_languages": 6,
       "tertile": "высокая"
     },
     {
@@ -2644,32 +3229,41 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 1.3726,
+              "matched": "temperament",
+              "reason": "found"
             },
             {
+              "category": "subtitles",
               "source": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 1.457579,
+              "matched": "temperament",
+              "reason": "found"
             },
             {
+              "category": "normative",
               "source": "bnc-clean2.lemmatized_spacy_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 6.492956,
+              "matched": "temperament",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 3.079455,
+              "matched": "temperament",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 3.6625001666666672,
+          "found_in_sources": 4,
+          "category_ipm": {
+            "subtitles": 1.4150895000000001,
+            "normative": 6.492956,
+            "web": 3.079455
+          }
         },
         "de": {
           "forms": [
@@ -2677,26 +3271,34 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 4.068255,
+              "matched": "temperament",
+              "reason": "found"
             },
             {
+              "category": "normative",
               "source": "deu_lemma_rank_word_ipm_corrected.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 4.195979,
+              "matched": "temperament",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 4.086157,
+              "matched": "temperament",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 4.116797,
+          "found_in_sources": 3,
+          "category_ipm": {
+            "subtitles": 4.068255,
+            "normative": 4.195979,
+            "web": 4.086157
+          }
         },
         "es": {
           "forms": [
@@ -2704,26 +3306,33 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 4.947402,
+              "matched": "temperamento",
+              "reason": "found"
             },
             {
+              "category": "subtitles",
               "source": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 5.059218,
+              "matched": "temperamento",
+              "reason": "found"
             },
             {
+              "category": "mixed",
               "source": "es_wordlist.lemmatized_stanza_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 1.608474,
+              "matched": "temperamento",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 4.154601,
+          "found_in_sources": 3,
+          "category_ipm": {
+            "subtitles": 5.003310000000001,
+            "mixed": 1.608474
+          }
         },
         "fr": {
           "forms": [
@@ -2732,20 +3341,26 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 3.565147,
+              "matched": "tempérament",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 4.818643,
+              "matched": "tempérament",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 4.191895,
+          "found_in_sources": 2,
+          "category_ipm": {
+            "subtitles": 3.565147,
+            "web": 4.818643
+          }
         },
         "it": {
           "forms": [
@@ -2753,26 +3368,33 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 2.068275,
+              "matched": "temperamento",
+              "reason": "found"
             },
             {
+              "category": "subtitles",
               "source": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 2.161991,
+              "matched": "temperamento",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 3.098286,
+              "matched": "temperamento",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 2.6067095,
+          "found_in_sources": 3,
+          "category_ipm": {
+            "subtitles": 2.115133,
+            "web": 3.098286
+          }
         },
         "ru": {
           "forms": [
@@ -2780,41 +3402,49 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 1.529967,
+              "matched": "темперамент",
+              "reason": "found"
             },
             {
+              "category": "normative",
               "source": "rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 10.47612,
+              "matched": "темперамент",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 8.619511,
+              "matched": "темперамент",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 6.875199333333334,
+          "found_in_sources": 3,
+          "category_ipm": {
+            "subtitles": 1.529967,
+            "normative": 10.47612,
+            "web": 8.619511
+          }
         }
       },
-      "arithmetic_mean_ipm": 0,
-      "geometric_mean_ipm": 0,
+      "arithmetic_mean_ipm": 4.267950333333334,
+      "geometric_mean_ipm": 4.1256835112927455,
       "language_values_ipm": {
-        "en": 0,
-        "de": 0,
-        "es": 0,
-        "fr": 0,
-        "it": 0,
-        "ru": 0
+        "en": 3.6625001666666672,
+        "de": 4.116797,
+        "es": 4.154601,
+        "fr": 4.191895,
+        "it": 2.6067095,
+        "ru": 6.875199333333334
       },
       "cognate_languages": 6,
-      "positive_languages": 0,
-      "tertile": "высокая"
+      "positive_languages": 6,
+      "tertile": "средняя"
     },
     {
       "id": "emulsion",
@@ -2849,32 +3479,41 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 0.233753,
+              "matched": "emulsion",
+              "reason": "found"
             },
             {
+              "category": "subtitles",
               "source": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 0.230144,
+              "matched": "emulsion",
+              "reason": "found"
             },
             {
+              "category": "normative",
               "source": "bnc-clean2.lemmatized_spacy_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 1.785041,
+              "matched": "emulsion",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 1.625957,
+              "matched": "emulsion",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 1.2143155,
+          "found_in_sources": 4,
+          "category_ipm": {
+            "subtitles": 0.2319485,
+            "normative": 1.785041,
+            "web": 1.625957
+          }
         },
         "de": {
           "forms": [
@@ -2882,26 +3521,34 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 0.096557,
+              "matched": "emulsion",
+              "reason": "found"
             },
             {
+              "category": "normative",
               "source": "deu_lemma_rank_word_ipm_corrected.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 0.621627,
+              "matched": "emulsion",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 0.588846,
+              "matched": "emulsion",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 0.4356766666666667,
+          "found_in_sources": 3,
+          "category_ipm": {
+            "subtitles": 0.096557,
+            "normative": 0.621627,
+            "web": 0.588846
+          }
         },
         "es": {
           "forms": [
@@ -2910,26 +3557,33 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 0.173987,
+              "matched": "emulsión",
+              "reason": "found"
             },
             {
+              "category": "subtitles",
               "source": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 0.163583,
+              "matched": "emulsión",
+              "reason": "found"
             },
             {
+              "category": "mixed",
               "source": "es_wordlist.lemmatized_stanza_ipm6.json",
               "ipm": 0,
               "matched": null,
               "reason": "not_in_source"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 0.12658875,
+          "found_in_sources": 2,
+          "category_ipm": {
+            "subtitles": 0.16878500000000002,
+            "mixed": 0
+          }
         },
         "fr": {
           "forms": [
@@ -2938,20 +3592,26 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 0.186188,
+              "matched": "émulsion",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 1.934588,
+              "matched": "émulsion",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 1.0603879999999999,
+          "found_in_sources": 2,
+          "category_ipm": {
+            "subtitles": 0.186188,
+            "web": 1.934588
+          }
         },
         "it": {
           "forms": [
@@ -2959,26 +3619,33 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 0.188025,
+              "matched": "emulsione",
+              "reason": "found"
             },
             {
+              "category": "subtitles",
               "source": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 0.207087,
+              "matched": "emulsione",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 1.17749,
+              "matched": "emulsione",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 0.687523,
+          "found_in_sources": 3,
+          "category_ipm": {
+            "subtitles": 0.197556,
+            "web": 1.17749
+          }
         },
         "ru": {
           "forms": [
@@ -2986,41 +3653,49 @@
           ],
           "source_values": [
             {
+              "category": "subtitles",
               "source": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 0.150382,
+              "matched": "эмульсия",
+              "reason": "found"
             },
             {
+              "category": "normative",
               "source": "rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 4.825553,
+              "matched": "эмульсия",
+              "reason": "found"
             },
             {
+              "category": "web",
               "source": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
-              "ipm": 0,
-              "matched": null,
-              "reason": "not_in_source"
+              "ipm": 2.002299,
+              "matched": "эмульсия",
+              "reason": "found"
             }
           ],
-          "source_mean_ipm": 0,
-          "found_in_sources": 0
+          "source_mean_ipm": 2.3260780000000003,
+          "found_in_sources": 3,
+          "category_ipm": {
+            "subtitles": 0.150382,
+            "normative": 4.825553,
+            "web": 2.002299
+          }
         }
       },
-      "arithmetic_mean_ipm": 0,
-      "geometric_mean_ipm": 0,
+      "arithmetic_mean_ipm": 0.9750949861111112,
+      "geometric_mean_ipm": 0.8600821097850351,
       "language_values_ipm": {
-        "en": 0,
-        "de": 0,
-        "es": 0,
-        "fr": 0,
-        "it": 0,
-        "ru": 0
+        "en": 1.2143155,
+        "de": 0.4356766666666667,
+        "es": 0.12658875,
+        "fr": 1.0603879999999999,
+        "it": 0.687523,
+        "ru": 2.3260780000000003
       },
       "cognate_languages": 6,
-      "positive_languages": 0,
-      "tertile": "высокая"
+      "positive_languages": 6,
+      "tertile": "низкая"
     }
   ]
 }
