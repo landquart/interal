@@ -1,6 +1,9 @@
 name: Temporary PRCE frequency analysis
 
 on:
+  pull_request:
+    branches:
+      - main
   push:
     branches:
       - chatgpt-frequency-analysis-20260731
@@ -9,7 +12,7 @@ on:
       - .github/workflows/chatgpt-frequency-analysis.yml
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   calculate:
@@ -17,9 +20,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          ref: chatgpt-frequency-analysis-20260731
-          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -29,10 +29,28 @@ jobs:
       - name: Calculate frequencies
         run: node scripts/chatgpt-calc-prce-frequency.mjs
 
-      - name: Commit result
+      - name: Build compact summary
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add chatgpt-frequency-results.json
-          git commit -m "Calculate PRCE frequency values" || exit 0
-          git push
+          node - <<'NODE'
+          const fs = require('fs');
+          const full = JSON.parse(fs.readFileSync('chatgpt-frequency-results.json', 'utf8'));
+          const results = full.results.map(({ id, logical, international, geometric_mean_ipm, arithmetic_mean_ipm, tertile, language_values_ipm, cognate_languages, positive_languages }) => ({
+            id,
+            logical,
+            international,
+            geometric_mean_ipm,
+            arithmetic_mean_ipm,
+            tertile,
+            language_values_ipm,
+            cognate_languages,
+            positive_languages
+          }));
+          fs.writeFileSync('chatgpt-frequency-summary.json', JSON.stringify({ generated_at: full.generated_at, method: full.method, results }, null, 2));
+          NODE
+
+      - name: Upload summary
+        uses: actions/upload-artifact@v4
+        with:
+          name: prce-frequency-summary
+          path: chatgpt-frequency-summary.json
+          retention-days: 1
