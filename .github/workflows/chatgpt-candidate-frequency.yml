@@ -1,0 +1,23 @@
+name: Temporary candidate frequency analysis
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  calculate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: node scripts/chatgpt-candidate-frequency.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: candidate-frequency-results
+          path: chatgpt-candidate-frequency-results.json
+          retention-days: 1
