@@ -1,0 +1,38 @@
+name: Temporary all derivative frequency analysis
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  calculate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Decode calculation files
+        run: |
+          base64 -d scripts/chatgpt-all-frequency.mjs.gz.b64 | gunzip > scripts/chatgpt-all-frequency.mjs
+          base64 -d scripts/chatgpt-all-derivatives-input.json.gz.b64 | gunzip > scripts/chatgpt-all-derivatives-input.json
+
+      - name: Calculate frequencies
+        run: node scripts/chatgpt-all-frequency.mjs
+
+      - name: Upload results
+        uses: actions/upload-artifact@v4
+        with:
+          name: all-derivative-frequency-results
+          path: |
+            all-derivatives-frequency-results.json
+            all-derivatives-frequency-compact.json
+          retention-days: 1
