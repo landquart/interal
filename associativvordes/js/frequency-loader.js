@@ -21,8 +21,8 @@ export function normalizeWord(value) {
   return String(value || '').trim().toLowerCase().normalize('NFC');
 }
 
-function sourceUrl(language, fileName) {
-  return `${FREQUENCY_LIST_BASE_PATH}/${encodeURIComponent(language)}/${encodeURIComponent(fileName)}`;
+function sourceUrl(language, fileName, basePath = FREQUENCY_LIST_BASE_PATH) {
+  return `${basePath}/${encodeURIComponent(language)}/${encodeURIComponent(fileName)}`;
 }
 
 function throwIfAborted(signal, stage) {
@@ -59,13 +59,13 @@ export function normalizeFrequencyData(data) {
   return map;
 }
 
-async function loadFrequencyFile(language, fileName, { signal } = {}) {
-  const key = `${language}/${fileName}`;
+async function loadFrequencyFile(language, fileName, { signal, basePath = FREQUENCY_LIST_BASE_PATH } = {}) {
+  const key = `${basePath}/${language}/${fileName}`;
   throwIfAborted(signal, 'frequency_fetch');
   if (frequencyCache.has(key)) return frequencyCache.get(key);
   let response;
   try {
-    response = await fetch(sourceUrl(language, fileName), { cache: 'force-cache', signal });
+    response = await fetch(sourceUrl(language, fileName, basePath), { cache: 'force-cache', signal });
   } catch (error) {
     if (isAbortError(error, signal)) throw normalizeAbortError(error, { stage: 'frequency_fetch' });
     throw error;
@@ -94,7 +94,7 @@ export function getLanguageCategoryWeights(language) {
   return Object.fromEntries(available.map(category => [category, (BASE_CATEGORY_WEIGHTS[category] || 0) / totalBase]));
 }
 
-export async function getFrequencyProfile(language, word, { signal } = {}) {
+export async function getFrequencyProfile(language, word, { signal, basePath = FREQUENCY_LIST_BASE_PATH } = {}) {
   const lang = normalizeWord(language);
   const sources = LANGUAGE_SOURCES[lang] || {};
   const categoryWeights = getLanguageCategoryWeights(lang);
@@ -118,7 +118,7 @@ export async function getFrequencyProfile(language, word, { signal } = {}) {
       }
       const { fileName, sourceId, optional } = descriptor;
       try {
-        const data = await loadFrequencyFile(lang, fileName, { signal });
+        const data = await loadFrequencyFile(lang, fileName, { signal, basePath });
         throwIfAborted(signal, `frequency:${category}`);
         ipm_values.push(extractIpm(data, word));
       } catch (error) {
@@ -135,7 +135,11 @@ export async function getFrequencyProfile(language, word, { signal } = {}) {
     frequency_score += category_weight * category_score;
     category_breakdown[category] = { available: true, files_count: files.length, ipm_values, category_ipm, category_score, category_weight };
   }
-  return { frequency_score, category_breakdown, warnings };
+  const combined_ipm = CATEGORY_ORDER.reduce((sum, category) => {
+    const details = category_breakdown[category];
+    return sum + (Number(details?.category_ipm) || 0) * (Number(details?.category_weight) || 0);
+  }, 0);
+  return { frequency_score, combined_ipm, category_breakdown, warnings };
 }
 
 export function clearFrequencyCacheForTests() {

@@ -35,6 +35,9 @@ const brokenRuntimeCard = {
   assert.equal(normalized.result.FA, 40);
   assert.equal(normalized.calculation.represented_languages, 3);
   assert.equal(normalized.calculation.represented_groups, 2);
+  assert.equal(normalized.result.FAv, 40, 'legacy FA is exposed as FAv when a card is reopened');
+  assert.equal(normalized.result.representedLanguages, 3);
+  assert.equal(normalized.result.representedLanguageGroups, 2);
   assert.deepEqual(brokenRuntimeCard.supported_groups, [], 'normalization does not mutate the original card');
 }
 

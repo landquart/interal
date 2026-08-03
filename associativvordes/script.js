@@ -13,6 +13,7 @@ import { clearTargetMeaningTranslationCache, translateTargetMeaning, TARGET_TRAN
 import { MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE, createEmptyAssociativeState, resetAssociativeRunState, invalidateSearchResult as invalidateAssociativeSearchResult, invalidateFinalCalculation as invalidateAssociativeFinalCalculation, addManualCandidate, updateCandidate, deleteCandidate, compactAssociativeState, restoreAssociativeState, addRunWarning, addLanguageWarning, addCandidateWarning, hasAnyAssociativeWarnings, hasLanguageAssociativeWarnings } from './js/associative-state.js';
 import { runAssociativeCalculation } from './js/associative-calculation-runner.js';
 import { ASSOCIATIVE_ROOT_PARTS_OF_SPEECH, makeAssociativeLemmaMetadata } from './js/card-metadata.js';
+import { CONTROL_LANGUAGES as CONTROL_LANGUAGE_CONFIG } from '../shared/control-language-demographics.mjs';
 
 // Persistence compatibility markers: status: 'no_candidates', candidates: [] ; status: 'index_error', errorCode:
 const TEXT_I18N = {
@@ -61,7 +62,7 @@ const TEXT_I18N = {
           group: 'Группа', languageScore: 'Балл языка', weightSum: 'сумма весов', addWord: 'Добавить слово', use: 'Учитывать', word: 'Слово', model: 'Модель', frequencyPercent: 'F — частотность', directness: 'Di — прямота связи', fieldRelatedness: 'Pr — близость поля', domainShift: 'Sh — сдвиг области', swowBonus: 'Бонус SWOW, 0–15', associationPercent: 'A — ассоциация', finalPercent: 'P — вес деривата', status: 'Статус', explanation: 'Объяснение', warnings: 'Предупреждения', details: 'Детали', analyze: 'Анализировать', delete: 'Удалить', association: 'Ассоциация', rank: 'Ранг', frequency: 'Частота', weightP: 'Вес P'
         },
         results: {
-          finalAssociation: 'FA — конечная ассоциация', totalAssociation: 'TA — общая сумма баллов языков', languagesRepresented: 'языков представлено', languageGroups: 'языковых групп', accept: 'ПРИНЯТЬ', reject: 'НЕ ПРИНИМАТЬ', insufficientData: 'Недостаточно данных', noCalculatedData: 'Нет рассчитанных данных.', noCandidates: 'Кандидаты не найдены.', indexUnavailable: 'Индекс языка недоступен.', qwenUnavailable: 'Анализ Qwen недоступен.', calculationAborted: 'Расчёт был прерван.', calculationIncomplete: 'Расчёт не завершён.', partialErrors: 'Часть языков рассчитана с ошибками.', fewerLanguages: 'Представлено меньше 3 языков.', fewerGroups: 'Представлено меньше 2 языковых групп.', belowThreshold: 'FA ниже 35%.', semanticUnconfirmed: 'Семантическое соответствие не подтверждено.', reasons: 'Причины', warnings: 'Предупреждения', allMet: 'Все условия выполнены.'
+          finalAssociation: 'FA<sub>v</sub> — конечная ассоциация слова', totalAssociation: 'Σ(N<sub>l</sub> × P̄<sub>l</sub>)', speakersTotal: 'ΣN представленных языков', languagesRepresented: 'языков представлено', languageGroups: 'языковых групп', language: 'Язык', speakers: 'Число говорящих N', selectedDerivatives: 'Выбрано дериватов', languageAverageP: 'Средний P̄<sub>l</sub>', weightedLanguageP: 'N<sub>l</sub> × P̄<sub>l</sub>', calculationDetails: 'Детализация FA<sub>v</sub>', acceptanceCriteria: 'Критерии принятия', criterionLanguages: 'Минимум 3 языка', criterionGroups: 'Минимум 2 языковые группы', criterionThreshold: 'FA<sub>v</sub> ≥ 35 %', met: 'выполнено', notMet: 'не выполнено', accept: 'ПРИНЯТЬ', reject: 'НЕ ПРИНИМАТЬ', insufficientData: 'Недостаточно данных', noCalculatedData: 'Нет рассчитанных данных.', noCandidates: 'Кандидаты не найдены.', indexUnavailable: 'Индекс языка недоступен.', qwenUnavailable: 'Анализ Qwen недоступен.', calculationAborted: 'Расчёт был прерван.', calculationIncomplete: 'Расчёт не завершён.', partialErrors: 'Часть языков рассчитана с ошибками.', fewerLanguages: 'Представлено меньше 3 языков.', fewerGroups: 'Представлено меньше 2 языковых групп.', belowThreshold: 'FAᵥ ниже 35%.', semanticUnconfirmed: 'Семантическое соответствие не подтверждено.', reasons: 'Причины', warnings: 'Предупреждения', allMet: 'Все условия выполнены.'
         },
         alerts: {
           rootRequired: 'Введите кандидатный корень или предлог.',
@@ -126,7 +127,7 @@ const TEXT_I18N = {
           group: 'Group', languageScore: 'Language score', weightSum: 'weight sum', addWord: 'Add word', use: 'Use', word: 'Word', model: 'Model', frequencyPercent: 'F — frequency', directness: 'Di — directness', fieldRelatedness: 'Pr — field proximity', domainShift: 'Sh — domain shift', swowBonus: 'SWOW bonus — 0–15', associationPercent: 'A — association', finalPercent: 'P — derivative weight', status: 'Status', explanation: 'Explanation', warnings: 'Warnings', details: 'Details', analyze: 'Analyze', delete: 'Delete', association: 'Association', rank: 'Rank', frequency: 'Frequency', weightP: 'Weight P'
         },
         results: {
-          finalAssociation: 'FA — final association', totalAssociation: 'TA — total language score', languagesRepresented: 'languages represented', languageGroups: 'language groups', accept: 'ACCEPT', reject: 'DO NOT ACCEPT', insufficientData: 'Insufficient data', noCalculatedData: 'No calculated data.', noCandidates: 'No candidates found.', indexUnavailable: 'The language index is unavailable.', qwenUnavailable: 'Qwen analysis is unavailable.', calculationAborted: 'The calculation was aborted.', calculationIncomplete: 'The calculation is incomplete.', partialErrors: 'Some languages were calculated with errors.', fewerLanguages: 'Fewer than 3 languages are represented.', fewerGroups: 'Fewer than 2 language groups are represented.', belowThreshold: 'FA is below 35%.', semanticUnconfirmed: 'Semantic correspondence is not confirmed.', reasons: 'Reasons', warnings: 'Warnings', allMet: 'All conditions are met.'
+          finalAssociation: 'FA<sub>v</sub> — final word association', totalAssociation: 'Σ(N<sub>l</sub> × P̄<sub>l</sub>)', speakersTotal: 'ΣN of represented languages', languagesRepresented: 'languages represented', languageGroups: 'language groups', language: 'Language', speakers: 'Speakers N', selectedDerivatives: 'Selected derivatives', languageAverageP: 'Average P̄<sub>l</sub>', weightedLanguageP: 'N<sub>l</sub> × P̄<sub>l</sub>', calculationDetails: 'FA<sub>v</sub> details', acceptanceCriteria: 'Acceptance criteria', criterionLanguages: 'At least 3 languages', criterionGroups: 'At least 2 language groups', criterionThreshold: 'FA<sub>v</sub> ≥ 35%', met: 'met', notMet: 'not met', accept: 'ACCEPT', reject: 'DO NOT ACCEPT', insufficientData: 'Insufficient data', noCalculatedData: 'No calculated data.', noCandidates: 'No candidates found.', indexUnavailable: 'The language index is unavailable.', qwenUnavailable: 'Qwen analysis is unavailable.', calculationAborted: 'The calculation was aborted.', calculationIncomplete: 'The calculation is incomplete.', partialErrors: 'Some languages were calculated with errors.', fewerLanguages: 'Fewer than 3 languages are represented.', fewerGroups: 'Fewer than 2 language groups are represented.', belowThreshold: 'FAᵥ is below 35%.', semanticUnconfirmed: 'Semantic correspondence is not confirmed.', reasons: 'Reasons', warnings: 'Warnings', allMet: 'All conditions are met.'
         },
         alerts: {
           rootRequired: 'Enter a candidate root or preposition.',
@@ -215,14 +216,7 @@ const TEXT_I18N = {
       return textValue('searchBtn');
     }
 
-    const LANGUAGES = [
-      { code: 'en', name: 'English', group: 'Germanic', speakers: 1493000 },
-      { code: 'de', name: 'German', group: 'Germanic', speakers: 133000 },
-      { code: 'fr', name: 'French', group: 'Romance', speakers: 334000 },
-      { code: 'es', name: 'Spanish', group: 'Romance', speakers: 561000 },
-      { code: 'it', name: 'Italian', group: 'Romance', speakers: 66000 },
-      { code: 'ru', name: 'Russian', group: 'Slavic', speakers: 210000 }
-    ];
+    const LANGUAGES = CONTROL_LANGUAGE_CONFIG.map((language) => ({ ...language }));
 
     const candidateIndexLoader = createCandidateIndexLoader();
     let state = emptyState();
@@ -1054,11 +1048,17 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
       const resultBox = document.getElementById('resultBox');
       resultBox.classList.remove('is-updated');
       void resultBox.offsetWidth;
+      const representedRows = result.languageScores.filter(item => Number(item.count) > 0 && Number.isFinite(Number(item.normalized)));
+      const numberFormat = new Intl.NumberFormat(currentLang() === 'en' ? 'en' : 'ru', { maximumFractionDigits: 2 });
+      const criterion = (label, passed) => `<li><strong>${label}:</strong> ${passed ? labels.met : labels.notMet}</li>`;
       resultBox.innerHTML = `
         <div class="metric is-updated"><strong>${formatPercent(result.finalAssociation, 1)}</strong><span>${labels.finalAssociation}</span></div>
-        <div class="metric"><strong>${formatFixed(result.totalAssociation, 3)}</strong><span>${labels.totalAssociation}</span></div>
+        <div class="metric"><strong>${numberFormat.format(result.weightedScoreTotal)}</strong><span>${labels.totalAssociation}</span></div>
+        <div class="metric"><strong>${numberFormat.format(result.speakersTotal)}</strong><span>${labels.speakersTotal}</span></div>
         <div class="metric"><strong>${result.representedLangs}/${LANGUAGES.length}</strong><span>${labels.languagesRepresented}</span></div>
         <div class="metric"><strong>${result.groups}/${new Set(LANGUAGES.map(l => l.group)).size}</strong><span>${labels.languageGroups}</span></div>
+        <details open class="language-table-wrap"><summary>${labels.calculationDetails}</summary><table><thead><tr><th>${labels.language}</th><th>${labels.speakers}</th><th>${labels.selectedDerivatives}</th><th>${labels.languageAverageP}</th><th>${labels.weightedLanguageP}</th></tr></thead><tbody>${representedRows.map(item => `<tr><th>${escapeHtml(textGroup('languages')[item.lang.code] || item.lang.name)}</th><td>${numberFormat.format(item.speakers)}</td><td>${item.count}</td><td>${formatMetric(item.normalized, 2)}</td><td>${numberFormat.format(item.weightedScore)}</td></tr>`).join('')}</tbody></table></details>
+        <details open><summary>${labels.acceptanceCriteria}</summary><ul>${criterion(labels.criterionLanguages, result.representedLangs >= 3)}${criterion(labels.criterionGroups, result.groups >= 2)}${criterion(labels.criterionThreshold, finalAssociationPassesThreshold(result.finalAssociation))}</ul></details>
       `;
       resultBox.classList.add('is-updated');
 
@@ -1299,9 +1299,12 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
 
     function makeAssociativeCard(timestamp = {}, author = null) {
       const result = calculateFinal();
-      const selectedLanguages = LANGUAGES.flatMap(({ code }) =>
-        scoringCandidates(code).map(item => ({ code, ...item }))
+      const selectedLanguages = LANGUAGES.flatMap(({ code, group }) =>
+        scoringCandidates(code).map(item => ({ code, group, ...item }))
       );
+      const languageCalculation = Object.fromEntries(result.languageScores
+        .filter(item => Number(item.count) > 0 && Number.isFinite(Number(item.normalized)))
+        .map(item => [item.lang.code, { N: item.speakers, selectedCount: item.count, averageP: item.normalized, weightedScore: item.weightedScore }]));
       const partOfSpeech = effectivePartOfSpeech();
       if (
         (state.elementType === 'preposition' && partOfSpeech !== 'preposition')
@@ -1349,8 +1352,17 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
         calculation: {
           TA: result.totalAssociation,
           FA: result.finalAssociation,
-          represented_languages: result.languagesRepresented,
-          represented_groups: result.languageGroups
+          represented_languages: result.representedLangs,
+          represented_groups: result.groups,
+          representedLanguages: result.representedLangs,
+          representedLanguageGroups: result.groups,
+          speakersTotal: result.speakersTotal,
+          weightedScoreTotal: result.weightedScoreTotal,
+          languageAverageP: result.languageAverageP,
+          languageCalculation,
+          FAv: result.FAv,
+          threshold: result.threshold,
+          accepted: result.accepted
         },
         language_results: selectedLanguages.map(item => ({
           code: item.code,
@@ -1359,6 +1371,10 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
           model_key: item.model_key || item.model_family_key || null,
           model_label: item.model_label || item.model || null,
           final_score: item.final_score,
+          speakers: languageCalculation[item.code]?.N,
+          selected_count: languageCalculation[item.code]?.selectedCount,
+          language_average_P: languageCalculation[item.code]?.averageP,
+          weighted_score: languageCalculation[item.code]?.weightedScore,
           frequency: { score: item.frequency_score },
           association: item.analysis?.association || {}
         }))
@@ -1379,6 +1395,10 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
       return {
         language: item?.code || '',
         word,
+        N: finiteOrNull(item?.speakers),
+        selectedCount: finiteOrNull(item?.selected_count),
+        languageAverageP: finiteOrNull(item?.language_average_P),
+        weightedScore: finiteOrNull(item?.weighted_score),
         F: finiteOrNull(item?.frequency?.score ?? a.F),
         Di: finiteOrNull(a.Di),
         Pr: finiteOrNull(a.Pr),
@@ -1403,7 +1423,16 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
           TA: finiteOrNull(card.calculation?.TA),
           FA: finiteOrNull(card.calculation?.FA),
           represented_languages: finiteOrNull(card.calculation?.represented_languages),
-          represented_groups: finiteOrNull(card.calculation?.represented_groups)
+          represented_groups: finiteOrNull(card.calculation?.represented_groups),
+          representedLanguages: finiteOrNull(card.calculation?.representedLanguages),
+          representedLanguageGroups: finiteOrNull(card.calculation?.representedLanguageGroups),
+          speakersTotal: finiteOrNull(card.calculation?.speakersTotal),
+          weightedScoreTotal: finiteOrNull(card.calculation?.weightedScoreTotal),
+          languageAverageP: card.calculation?.languageAverageP || {},
+          languageCalculation: card.calculation?.languageCalculation || {},
+          FAv: finiteOrNull(card.calculation?.FAv),
+          threshold: finiteOrNull(card.calculation?.threshold),
+          accepted: card.calculation?.accepted === true
         },
         language_evidence: (card.language_results || []).map(compactAssociativeLanguageResult).filter(Boolean)
       };
@@ -1669,9 +1698,14 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
           const r = calculateFinal();
           return {
             finalAssociation: r.finalAssociation,
+            FAv: r.FAv,
             totalAssociation: r.totalAssociation,
+            speakersTotal: r.speakersTotal,
+            weightedScoreTotal: r.weightedScoreTotal,
+            languageAverageP: r.languageAverageP,
             representedLanguages: r.representedLangs,
             representedGroups: r.groups,
+            threshold: r.threshold,
             semanticConfirmed: r.semanticConfirmed,
             accepted: r.accepted
           };

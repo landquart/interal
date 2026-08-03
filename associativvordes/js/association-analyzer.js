@@ -2,6 +2,7 @@ import { getFrequencyProfile } from './frequency-loader.js';
 import { getBidirectionalSwow } from './swow-client.js';
 import { getTargetMeaningForLanguage as translateTargetMeaningForLanguage } from './target-meaning-translator.js';
 import { ASSOCIATION_SCORE_WEIGHTS, FINAL_SCORE_WEIGHTS, getQwenAssociationScores, QWEN_ERROR_CODES, QWEN_RUNTIME_CONFIG, createReviewBudget, isAbortError, normalizeAbortError } from './qwen-client.js';
+import { calculateDirectDemographicAverage, requireSpeakerCount } from '../../shared/control-language-demographics.mjs';
 
 export const THRESHOLDS = { main: 35 };
 export const REVIEW_SCORE_RANGE = Object.freeze({ min: 25, max: 35 });
@@ -152,9 +153,18 @@ export function calculateFinalAssociation({ languages = [], languageResults = []
   const represented = languageScores.filter((score) => isFiniteScore(score.normalized) && Number(score.count) > 0);
   const hasCalculatedData = represented.length > 0;
   const totalAssociation = hasCalculatedData ? represented.reduce((acc, score) => acc + Number(score.normalized), 0) : null;
-  const finalAssociation = hasCalculatedData ? totalAssociation / represented.length : null;
+  for (const score of represented) {
+    score.speakers = requireSpeakerCount(score.lang?.code);
+    score.weightedScore = score.speakers * Number(score.normalized);
+  }
+  const weighted = hasCalculatedData
+    ? calculateDirectDemographicAverage(represented.map(score => ({ language: score.lang.code, speakers: score.speakers, averageP: score.normalized })), 'averageP')
+    : { speakersTotal: 0, weightedScoreTotal: 0, score: null };
+  const { speakersTotal, weightedScoreTotal } = weighted;
+  const finalAssociation = weighted.score;
   const representedLangs = represented.length;
   const groups = new Set(represented.map((score) => score.lang?.group).filter(Boolean));
+  const languageAverageP = Object.fromEntries(represented.map((score) => [score.lang.code, Number(score.normalized)]));
   const semanticConfirmed = represented.length > 0 && represented.every((score) => score.semanticConfirmed === true);
   const statusSummary = summarizeLanguageStatuses(languageStatuses);
   const unavailableReasons = unavailableReasonsFromStatuses(languageStatuses);
@@ -163,7 +173,7 @@ export function calculateFinalAssociation({ languages = [], languageResults = []
     && finalAssociationPassesThreshold(finalAssociation)
     && representedLangs >= 3
     && groups.size >= 2;
-  return { languageScores, totalAssociation, finalAssociation, representedLangs, groups: groups.size, semanticConfirmed, accepted, hasCalculatedData, unavailableReasons, languageStatusSummary: statusSummary };
+  return { languageScores, totalAssociation, speakersTotal, weightedScoreTotal, languageAverageP, finalAssociation, FAv: finalAssociation, representedLangs, groups: groups.size, semanticConfirmed, accepted, threshold: THRESHOLDS.main, hasCalculatedData, unavailableReasons, languageStatusSummary: statusSummary };
 }
 
 export function buildDecisionReasons(result = {}) {

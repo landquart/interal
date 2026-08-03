@@ -20,11 +20,19 @@ assert.deepEqual(
 );
 assert.deepEqual(
   getCardFinalPercentage({ ...base, vord_type: 'av', result: { TA: 90, FA: 42.5 } }),
-  { code: 'FA', value: 42.5, source_path: 'result.FA' }
+  { code: 'FAᵥ', value: 42.5, source_path: 'result.FA' }
 );
 assert.deepEqual(
   getCardFinalPercentage({ ...base, vord_type: 'av', calculation: { FA: 40 }, FA: 39 }),
-  { code: 'FA', value: 40, source_path: 'calculation.FA' }
+  { code: 'FAᵥ', value: 40, source_path: 'calculation.FA' }
+);
+assert.deepEqual(
+  getCardFinalPercentage({ ...base, vord_type: 'av', result: { FAv: 56, FA: 40 } }),
+  { code: 'FAᵥ', value: 56, source_path: 'result.FAv' }
+);
+assert.deepEqual(
+  getCardFinalPercentage({ ...base, vord_type: 'af', calculation: { FAa: 18 } }),
+  { code: 'FAₐ', value: 18, source_path: 'calculation.FAa' }
 );
 assert.equal(getCardFinalPercentage({ ...base, vord_type: 'av', result: { TA: 90 } }), undefined);
 assert.equal(getCardFinalPercentage({ ...base, vord_type: 'in', pi_percent: 50 }), undefined);
@@ -73,5 +81,20 @@ assert.throws(
 );
 assert.doesNotThrow(
   () => validateCardSchema({ ...associative, interal: { word: 'inter', ipa: 'ˈinter', type: 'preposition', part_of_speech: 'preposition' } }, { strictAssociative: true })
+);
+const associativeAffix = {
+  version: '1.0',
+  card_type: 'affix_card',
+  vord_type: 'af',
+  form: '-x',
+  morpheme_type: 'suffix',
+  procedure: 'associativ_affix',
+  calculation: { speakersTotal: 1_960_000_000, weightedScoreTotal: 40_000_000_000, FAa: 20.408, threshold: 15, accepted: true }
+};
+assert.doesNotThrow(() => validateCardSchema(associativeAffix));
+assert.deepEqual(normalizeCardSchema(associativeAffix).calculation, associativeAffix.calculation, 'FAa calculation survives card reopening');
+assert.throws(
+  () => validateCardSchema({ ...associativeAffix, calculation: { ...associativeAffix.calculation, FAa: '20.408' } }),
+  (error) => error instanceof CardSchemaError && error.path === 'calculation.FAa'
 );
 console.log('card-schema tests passed');

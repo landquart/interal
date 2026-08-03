@@ -75,7 +75,7 @@ const script = await readFile('associativvordes/script.js', 'utf8');
 assert.match(script, /maxModels: MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE/, 'production passes the fixed five-model limit into the unified runner');
 assert.match(script, /slice\(0, state\.maxModels \|\| MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE\)/);
 assert.match(script, /const candidates = scoringCandidates\(l\.code\)/, 'FA evidence uses only the five scoring candidates');
-assert.match(script, /LANGUAGES\.flatMap\(\(\{ code \}\) =>[\s\S]*scoringCandidates\(code\)/, 'JSON card uses the same five-word evidence set as FA');
+assert.match(script, /LANGUAGES\.flatMap\(\(\{ code, group \}\) =>[\s\S]*scoringCandidates\(code\)/, 'JSON card uses the same five-word evidence set as FA');
 assert.doesNotMatch(script, /passesWordThreshold/);
 assert.doesNotMatch(script, /derivative-model-input/);
 assert.match(script, /model_key: candidate\.model_key/);
