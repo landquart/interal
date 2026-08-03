@@ -26,7 +26,7 @@ assert.match(script, /reconcileModelRepresentatives\(valid, root, language\.code
 assert.match(script, /window\.InteralPageStateExport|window\.InteralPageStateImport/, 'page state persistence hooks remain');
 assert.match(script, /sources: sourceState\.sources/, 'saved state includes sources without storing shard payloads');
 assert.doesNotMatch(script, /manifestLoaded|loadedShards|shardCache/, 'localStorage compaction does not persist manifest or shards');
-assert.match(html, /script\.js\?v=associative-card-metadata-20260728-1/, 'associative runtime cache busting includes the card-metadata schema fix');
+assert.match(html, /script\.js\?v=association-methodology-20260803-1/, 'associative runtime cache busting includes the current association methodology');
 assert.match(html, /<button[^>]+id="calculateBtn"[\s\S]*?<img class="btn-loader" src="\.\.\/elements\/loader_video_fitted_0_1s_triangle_fixed_centered\.svg"/, 'the calculate button uses the same shared-loader markup as the working tools');
 assert.doesNotMatch(html, /\.associativ-page \.btn-loader|#calculateBtn[^{}]*\.btn-loader/, 'the page does not override shared loader rendering');
 assert.doesNotMatch(script, /getElementById\(['"]calculateBtn['"]\)\.(?:textContent|innerHTML)\s*=/, 'runtime status changes never destroy the shared loader and label nodes');

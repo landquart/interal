@@ -60,7 +60,7 @@ assert.equal(oneLanguageHighFa.accepted, false, 'FA 40 with 1 language and 1 gro
 assert.equal(decisionStatusForResult(oneLanguageHighFa), 'reject', 'FA 40 with 1 language and 1 group returns reject');
 
 const threeLanguagesOneGroupHighFa = calculateFinalAssociation({
-  languages: [{ code: 'en', group: 'germanic' }, { code: 'de', group: 'germanic' }, { code: 'nl', group: 'germanic' }],
+  languages: [{ code: 'en', group: 'germanic' }, { code: 'de', group: 'germanic' }, { code: 'en', group: 'germanic' }],
   languageResults: [
     { sum: 40, normalized: 40, count: 1, semanticConfirmed: true },
     { sum: 40, normalized: 40, count: 1, semanticConfirmed: true },
@@ -86,7 +86,7 @@ assert.equal(threeLanguagesTwoGroupsHighFa.accepted, true, 'FA 40 with 3 languag
 assert.equal(decisionStatusForResult(threeLanguagesTwoGroupsHighFa), 'accept', 'FA 40 with 3 languages and 2 groups returns accept');
 
 const sixLanguagesLowFa = calculateFinalAssociation({
-  languages: [...languages, { code: 'es', group: 'romance' }, { code: 'ru', group: 'slavic' }, { code: 'pl', group: 'slavic' }],
+  languages: [...languages, { code: 'es', group: 'romance' }, { code: 'it', group: 'romance' }, { code: 'ru', group: 'slavic' }],
   languageResults: Array.from({ length: 6 }, () => ({ sum: 34.99, normalized: 34.99, count: 1, semanticConfirmed: true }))
 });
 assert.equal(sixLanguagesLowFa.finalAssociation, 34.99, 'FA 34.99 with six languages and three groups is calculated');

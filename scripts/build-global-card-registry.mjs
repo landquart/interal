@@ -119,7 +119,9 @@ function validateCard(card, filePath, expectedType, seenIds) {
   if (!VORD_TYPE_SET.has(card.vord_type)) fail(filePath, `invalid vord_type "${card.vord_type}"`);
   if (card.vord_type !== expectedType) fail(filePath, `vord_type "${card.vord_type}" does not match folder "${expectedType}"`);
   if (card.status !== 'accepted') fail(filePath, 'status must be "accepted"');
-  if (!card.interal || typeof card.interal !== 'object' || typeof card.interal.word !== 'string' || !card.interal.word.trim()) {
+  if (card.vord_type === 'af') {
+    if (typeof card.form !== 'string' || !card.form.trim()) fail(filePath, 'form is required');
+  } else if (!card.interal || typeof card.interal !== 'object' || typeof card.interal.word !== 'string' || !card.interal.word.trim()) {
     fail(filePath, 'interal.word is required');
   }
 }
@@ -160,12 +162,12 @@ for (const filePath of files) {
     vord_type: VORD_TYPE_LABELS[card.vord_type] || '',
     vord_type_code: text(card.vord_type),
     status: text(card.status),
-    word: text(card.interal?.word),
+    word: text(card.interal?.word || card.form),
     ipa: text(card.interal?.ipa),
     translation_language: text(card.translation?.language),
     translation_word: text(card.translation?.word),
     translations: languageTranslations(card),
-    part_of_speech: text(card.interal?.part_of_speech),
+    part_of_speech: text(card.interal?.part_of_speech || card.morpheme_type || card.morphemeType),
     created_at: text(card.created_at),
     created_at_source: text(card.created_at_source),
     accepted_at: text(card.accepted_at),

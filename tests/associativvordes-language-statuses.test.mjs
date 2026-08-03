@@ -34,10 +34,10 @@ assert.equal(fullQwen.status, 'qwen_error', 'full Qwen failure is qwen_error');
 
 const oneError = calculateFinalAssociation({ languages: languages.slice(0, 3), languageResults: [success(45), success(50), empty], languageStatuses: { fr: { status: 'index_error' } } });
 assert.equal(oneError.representedLangs, 2, 'one language error preserves other represented languages');
-assert.equal(oneError.finalAssociation, 47.5, 'one language error does not clear FA from other languages');
+assert.equal(oneError.finalAssociation, (1_493_000_000 * 45 + 133_000_000 * 50) / (1_493_000_000 + 133_000_000), 'one language error does not clear FA from other languages');
 
 const threeOfSix = calculateFinalAssociation({ languages, languageResults: [success(40), empty, success(50), empty, empty, success(60)], languageStatuses: {} });
-assert.equal(threeOfSix.finalAssociation, 50, 'three successful languages from six form FA');
+assert.equal(threeOfSix.finalAssociation, (1_493_000_000 * 40 + 334_000_000 * 50 + 210_000_000 * 60) / (1_493_000_000 + 334_000_000 + 210_000_000), 'three successful languages from six form demographically weighted FA');
 assert.equal(threeOfSix.accepted, true, 'FA above the final threshold with three languages and two groups is accepted');
 assert.equal(decisionStatusForResult(threeOfSix), 'accept', 'complete methodology evidence accepts FA 40+');
 

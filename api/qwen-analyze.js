@@ -4,6 +4,7 @@ import {
   buildAltervordesSystemPrompt as buildAltervordesSystemPromptV2,
   buildAltervordesUserPrompt as buildAltervordesUserPromptV2
 } from './lib/altervordes-prompts.js';
+import { calculateAssociativeAffix } from '../shared/associative-affix-calculation.mjs';
 
 const DERIVATION_CONTEXT = JSON.parse(
   readFileSync(new URL('./interal-derivation-context.json', import.meta.url), 'utf8')
@@ -184,6 +185,7 @@ function evaluateAffixDecision(card) {
   const controlLanguages = evidence.controlLanguages || card.forms?.controlLanguages || {};
   let accepted = false;
   let needsManualReview = false;
+  let calculation = null;
   const criteria = {};
 
   if (procedure === 'international_affix') {
@@ -195,24 +197,21 @@ function evaluateAffixDecision(card) {
     accepted = coveredLanguages >= 5 && criteria.immediate_recognition && criteria.stable_international_presence;
   } else if (procedure === 'associativ_affix') {
     const frequencyWords = card.evidence?.frequencyWords || card.frequencyWords || {};
-    const representedFrequencyLanguages = CONTROL_LANGUAGES.filter((lang) =>
-      Array.isArray(frequencyWords?.[lang]) && frequencyWords[lang].length > 0
-    );
-    const coveredLanguages = representedFrequencyLanguages.length;
-    const coveredGroups = new Set(representedFrequencyLanguages.map(lang => AFFIX_GROUPS[lang]).filter(Boolean)).size;
-    Object.assign(criteria, { covered_languages: coveredLanguages, covered_groups: coveredGroups, required_languages: 3, required_groups: 2 });
-    criteria.frequency_language_count = representedFrequencyLanguages.length;
+    calculation = calculateAssociativeAffix(frequencyWords);
+    Object.assign(criteria, {
+      covered_languages: calculation.representedLanguages,
+      covered_groups: calculation.representedLanguageGroups,
+      required_languages: 3,
+      required_groups: 2
+    });
+    criteria.frequency_language_count = calculation.representedLanguages;
     criteria.ipm_threshold = 3;
-    criteria.ipm_passed = representedFrequencyLanguages.length >= 3 &&
-      representedFrequencyLanguages.every((lang) =>
-        frequencyWords[lang].every((item) => Number(item.ipm) >= 3)
-      );
-    criteria.word_count_passed = representedFrequencyLanguages.length >= 3 &&
-      representedFrequencyLanguages.every((lang) =>
-        frequencyWords[lang].length >= 1 && frequencyWords[lang].length <= 5
-      );
+    criteria.ipm_passed = calculation.criteria.minimum_ipm_each_language;
+    criteria.word_count_passed = calculation.criteria.one_to_five_words_each_language;
+    criteria.FAa_threshold = calculation.threshold;
+    criteria.FAa_passed = calculation.criteria.FAa_threshold;
     criteria.recognition_type = card.recognitionType || card.criteria?.recognition_type || 'needs_manual_review';
-    accepted = coveredLanguages >= 3 && coveredGroups >= 2 && criteria.ipm_passed && criteria.word_count_passed && criteria.recognition_type === 'associative';
+    accepted = calculation.accepted;
   } else {
     const c = card.criteria || {};
     const keys = ['necessityConfirmed','noSeriousConflicts','shortestSuitableAlternative','partialInternationalPresence','derivationallyViable','meaningClear','noBetterStandardProcedure'];
@@ -222,7 +221,7 @@ function evaluateAffixDecision(card) {
   }
 
   const status = accepted ? 'accepted' : (needsManualReview ? 'needs_manual_review' : 'rejected');
-  return { criteria, decision: { status, accepted, rejected: status === 'rejected', needs_manual_review: status === 'needs_manual_review' }, eligible: accepted };
+  return { criteria, calculation, decision: { status, accepted, rejected: status === 'rejected', needs_manual_review: status === 'needs_manual_review' }, eligible: accepted };
 }
 
 function randomAffixId() {
@@ -267,6 +266,10 @@ function normalizeAffixesCheckCard(generated, input) {
     recommendedForm: normalizeString(card.recommendedForm, normalizeString(card.form, input.form))
   };
   const evaluation = evaluateAffixDecision(normalized);
+  if (evaluation.calculation) {
+    normalized.evidence.frequencyWords = evaluation.calculation.normalizedFrequencyWords;
+    normalized.calculation = evaluation.calculation;
+  }
   normalized.criteria = { ...normalized.criteria, ...evaluation.criteria };
   normalized.decision = evaluation.decision;
   normalized.eligible = evaluation.eligible;
@@ -276,7 +279,7 @@ function buildAffixesCheckPrompt(input) { return `You check an Interal affix and
 
 Methodology for affixes:
 - international_affix: present in many widespread borrowings and/or stable common Indo-European correspondences; at least 5 of 6 control languages; form/pronunciation may differ if immediate recognition remains possible.
-- associativ_affix: present in at least 3 control languages and 2 language groups; borrowings are fewer; recognition is associative and analogical, not immediate; consider 1–5 frequent words and ipm where relevant.
+- associativ_affix: present in at least 3 control languages and 2 language groups; borrowings are fewer; recognition is associative and analogical, not immediate; provide 1–5 frequent borrowing candidates per represented language. IPM values are provisional and will be deterministically verified against local frequency lists.
 - alter_affix: needed when affixes for the required meaning differ significantly across control languages, or when a more widespread affix has several morphological forms because of derivation and/or several meanings.
 - Standardization: consider both ordinary forms in individual words and forms in derived words; do not automatically transfer source-language endings; choose the more widespread, prototypical, or derivationally convenient form.
 - If the optional input comment is present, use it only as analyst context for interpreting the candidate affix; do not copy the comment into the output JSON and do not add explanatory fields.
@@ -445,7 +448,7 @@ async function runAffixesCheck(payload, interfaceLanguage) {
 
   const generated = extract(result.content);
   const card = normalizeAffixesCheckCard(generated, input);
-  return { ok: true, analysis: { eligible: card.eligible === true, decision: card.decision, recommendedForm: card.recommendedForm || card.form, form: card.form, morphemeType: card.morphemeType, procedure: card.procedure, meaning: card.meaning, criteria: card.criteria, evidence: card.evidence, forms: card.forms, shortConclusion: card.eligible ? (interfaceLanguage === 'en' ? 'The affix can be saved as a candidate card.' : 'Аффикс можно сохранить как карточку-кандидат.') : (interfaceLanguage === 'en' ? 'The affix did not pass deterministic criteria or needs manual review.' : 'Аффикс не прошёл детерминированные критерии или требует ручной проверки.'), risks: card.risks || [] }, card };
+  return { ok: true, analysis: { eligible: card.eligible === true, decision: card.decision, recommendedForm: card.recommendedForm || card.form, form: card.form, morphemeType: card.morphemeType, procedure: card.procedure, meaning: card.meaning, criteria: card.criteria, calculation: card.calculation, evidence: card.evidence, forms: card.forms, shortConclusion: card.eligible ? (interfaceLanguage === 'en' ? 'The affix can be saved as a candidate card.' : 'Аффикс можно сохранить как карточку-кандидат.') : (interfaceLanguage === 'en' ? 'The affix did not pass deterministic criteria or needs manual review.' : 'Аффикс не прошёл детерминированные критерии или требует ручной проверки.'), risks: card.risks || [] }, card };
 }
 
 

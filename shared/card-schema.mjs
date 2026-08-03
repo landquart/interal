@@ -45,8 +45,12 @@ const hasOwn = (object, key) => Object.prototype.hasOwnProperty.call(object, key
 const nonEmpty = value => typeof value === 'string' && value.trim().length > 0;
 const FINAL_PERCENTAGE_SCHEMAS = Object.freeze({
   av: Object.freeze({
-    code: 'FA',
-    paths: Object.freeze(['result.FA', 'calculation.FA', 'FA'])
+    code: 'FAᵥ',
+    paths: Object.freeze(['result.FAv', 'calculation.FAv', 'FAv', 'result.FA', 'calculation.FA', 'FA'])
+  }),
+  af: Object.freeze({
+    code: 'FAₐ',
+    paths: Object.freeze(['result.FAa', 'calculation.FAa', 'FAa'])
   }),
   iv: Object.freeze({
     code: 'PI',
@@ -158,15 +162,21 @@ export function normalizeAssociativeCard(card) {
     ...sourceResult,
     ...(sourceResult.TA == null && sourceCalculation.TA != null ? { TA: sourceCalculation.TA } : {}),
     ...(sourceResult.FA == null && sourceCalculation.FA != null ? { FA: sourceCalculation.FA } : {}),
+    ...(sourceResult.FAv == null && (sourceCalculation.FAv ?? sourceResult.FA ?? sourceCalculation.FA) != null ? { FAv: sourceCalculation.FAv ?? sourceResult.FA ?? sourceCalculation.FA } : {}),
     represented_languages: representedLanguages ?? codes.length,
-    represented_groups: representedGroups ?? next.supported_groups.length
+    represented_groups: representedGroups ?? next.supported_groups.length,
+    representedLanguages: finiteOrNull(sourceResult.representedLanguages ?? sourceCalculation.representedLanguages) ?? representedLanguages ?? codes.length,
+    representedLanguageGroups: finiteOrNull(sourceResult.representedLanguageGroups ?? sourceCalculation.representedLanguageGroups) ?? representedGroups ?? next.supported_groups.length
   };
 
   if (isRecord(next.calculation)) {
     next.calculation = {
       ...next.calculation,
       represented_languages: next.result.represented_languages,
-      represented_groups: next.result.represented_groups
+      represented_groups: next.result.represented_groups,
+      representedLanguages: next.result.representedLanguages,
+      representedLanguageGroups: next.result.representedLanguageGroups,
+      ...(next.calculation.FAv == null && next.result.FAv != null ? { FAv: next.result.FAv } : {})
     };
   }
   return next;
@@ -195,6 +205,25 @@ export function validateCardSchema(card, options = {}) {
   if (!nonEmpty(card.vord_type)) throw new CardSchemaError('vord_type', 'is required');
   if (!TYPE_SET.has(card.vord_type)) throw new CardSchemaError('vord_type', `unknown vord_type "${card.vord_type}"`);
   if (options.expectedType && card.vord_type !== options.expectedType) throw new CardSchemaError('vord_type', `does not match expected "${options.expectedType}"`);
+  if (card.vord_type === 'af') {
+    if (card.card_type !== 'affix_card') throw new CardSchemaError('card_type', 'must be "affix_card"');
+    if (!nonEmpty(card.form)) throw new CardSchemaError('form', 'is required');
+    if (!['suffix', 'prefix'].includes(card.morpheme_type ?? card.morphemeType)) throw new CardSchemaError('morpheme_type', 'must be "suffix" or "prefix"');
+    if (!['international_affix', 'associativ_affix', 'alter_affix'].includes(card.procedure)) throw new CardSchemaError('procedure', 'has an invalid value');
+    if (card.procedure === 'associativ_affix' && isRecord(card.calculation)) {
+      for (const metric of ['speakersTotal', 'weightedScoreTotal', 'FAa']) {
+        if (typeof card.calculation[metric] !== 'number' || !Number.isFinite(card.calculation[metric])) {
+          throw new CardSchemaError(`calculation.${metric}`, 'must be a finite number');
+        }
+      }
+    }
+    const finalPercentage = getCardFinalPercentage(card);
+    if (finalPercentage && (typeof finalPercentage.value !== 'number' || !Number.isFinite(finalPercentage.value))) {
+      throw new CardSchemaError(finalPercentage.source_path, 'must be a finite number when present');
+    }
+    validateAuthor(card.author);
+    return true;
+  }
   if (card.card_type !== undefined && card.card_type !== 'vord_card') throw new CardSchemaError('card_type', 'must be "vord_card"');
   if (!isRecord(card.interal)) throw new CardSchemaError('interal', 'is required');
   if (!nonEmpty(card.interal.word)) throw new CardSchemaError('interal.word', 'is required');
