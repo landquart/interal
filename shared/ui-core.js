@@ -1050,6 +1050,10 @@ function setupModalSelects(root = document) {
       check.alt = '';
       check.setAttribute('aria-hidden', 'true');
       check.draggable = false;
+      check.width = 18;
+      check.height = 18;
+      check.style.display = 'block';
+      check.style.filter = 'var(--menu-icon-filter, none)';
 
       btn.append(labelText, check);
 
