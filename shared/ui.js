@@ -46,7 +46,7 @@
     const stylesheet = document.createElement('link');
     stylesheet.rel = 'stylesheet';
     stylesheet.dataset.interalInstrumentesCss = 'true';
-    stylesheet.href = new URL('instrumentes.css?v=20260722-3', sharedRoot).href;
+    stylesheet.href = new URL('instrumentes.css?v=lexeme-goal-20260804-1', sharedRoot).href;
     document.head.appendChild(stylesheet);
   }
 
@@ -60,7 +60,7 @@
     }
   };
 
-  for (const name of ['instrumentes-nav.js', 'instrumentes-page.js?v=20260722-3']) {
+  for (const name of ['instrumentes-nav.js', 'instrumentes-page.js?v=lexeme-goal-20260804-1']) {
     const file = loadSource(name);
     (0, eval)(`${file.source}\n//# sourceURL=${file.url.href}`);
   }
