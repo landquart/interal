@@ -30,18 +30,6 @@ const TEXT_I18N = {
         elementTypeLabel: 'Тип элемента',
         rootOption: 'корень',
         prepositionOption: 'предлог',
-        partOfSpeechLabel: 'Часть речи',
-        partOfSpeechPlaceholder: 'Выберите часть речи',
-        posNoun: 'существительное',
-        posVerb: 'глагол',
-        posAdjective: 'прилагательное',
-        posAdverb: 'наречие',
-        posPronoun: 'местоимение',
-        posConjunction: 'союз',
-        posParticle: 'частица',
-        posNumeral: 'числительное',
-        posOther: 'другое',
-        posPreposition: 'предлог',
         searchBtn: 'Рассчитать',
         showExampleBtn: 'Показать пример',
         jsonCardBtn: 'Сформировать JSON-карточку',
@@ -68,8 +56,7 @@ const TEXT_I18N = {
           rootRequired: 'Введите кандидатный корень или предлог.',
           targetMeaningRequired: 'Введите значение, относительно которого нужно проверить ассоциации.',
           translationRequired: 'Введите отдельный словарный перевод слова Интераля.',
-          partOfSpeechRequired: 'Выберите часть речи слова Интераля.',
-          ipaUnavailable: 'Не удалось определить IPA для слова Интераля. Проверьте слово и часть речи.',
+          ipaUnavailable: 'Не удалось определить IPA для слова Интераля. Проверьте написание слова.',
           jsonCardUnavailable: 'Сначала выполните расчёт.',
           jsonCardCopied: 'JSON-карточка скопирована',
           jsonCardCopiedTitle: 'Скопировано',
@@ -95,18 +82,6 @@ const TEXT_I18N = {
         elementTypeLabel: 'Element type',
         rootOption: 'root',
         prepositionOption: 'preposition',
-        partOfSpeechLabel: 'Part of speech',
-        partOfSpeechPlaceholder: 'Select a part of speech',
-        posNoun: 'noun',
-        posVerb: 'verb',
-        posAdjective: 'adjective',
-        posAdverb: 'adverb',
-        posPronoun: 'pronoun',
-        posConjunction: 'conjunction',
-        posParticle: 'particle',
-        posNumeral: 'numeral',
-        posOther: 'other',
-        posPreposition: 'preposition',
         searchBtn: 'Calculate',
         showExampleBtn: 'Show example',
         jsonCardBtn: 'Generate JSON card',
@@ -133,8 +108,7 @@ const TEXT_I18N = {
           rootRequired: 'Enter a candidate root or preposition.',
           targetMeaningRequired: 'Enter the target meaning used for association analysis.',
           translationRequired: 'Enter a separate dictionary translation of the Interal word.',
-          partOfSpeechRequired: 'Select the Interal word’s part of speech.',
-          ipaUnavailable: 'Could not determine IPA for the Interal word. Check the word and part of speech.',
+          ipaUnavailable: 'Could not determine IPA for the Interal word. Check the word spelling.',
           jsonCardUnavailable: 'Run a calculation first.',
           jsonCardCopied: 'JSON card copied',
           jsonCardCopiedTitle: 'Copied',
@@ -159,10 +133,6 @@ const TEXT_I18N = {
 
     function textValue(key) {
       return TEXT_I18N[currentLang()][key] || TEXT_I18N.ru[key] || key;
-    }
-
-    function syncPartOfSpeechControl() {
-      state.partOfSpeech = '';
     }
 
     function setCalculateButtonStatus(text, disabled = true, options = {}) {
@@ -688,7 +658,6 @@ const TEXT_I18N = {
       state.translationWord = targetMeaning;
       state.inputLanguage = currentLang();
       state.elementType = elementType;
-      state.partOfSpeech = '';
       if (!root) {
         alert(textGroup('alerts').rootRequired);
         return false;
@@ -1072,18 +1041,6 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
         elementTypeLabel: textValue('elementTypeLabel'),
         rootOption: textValue('rootOption'),
         prepositionOption: textValue('prepositionOption'),
-        partOfSpeechLabel: textValue('partOfSpeechLabel'),
-        partOfSpeechPlaceholder: textValue('partOfSpeechPlaceholder'),
-        posNoun: textValue('posNoun'),
-        posVerb: textValue('posVerb'),
-        posAdjective: textValue('posAdjective'),
-        posAdverb: textValue('posAdverb'),
-        posPronoun: textValue('posPronoun'),
-        posConjunction: textValue('posConjunction'),
-        posParticle: textValue('posParticle'),
-        posNumeral: textValue('posNumeral'),
-        posOther: textValue('posOther'),
-        posPreposition: textValue('posPreposition'),
         showExampleBtn: textValue('showExampleBtn'),
         jsonCardBtn: textValue('jsonCardBtn'),
         resultTitle: textValue('resultTitle'),
@@ -1407,7 +1364,6 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
         return;
       }
       state.translationWord = String(state.targetMeaning || '').trim();
-      state.partOfSpeech = '';
       if (!state.translationWord) {
         alert(textGroup('alerts').translationRequired);
         return;
@@ -1482,11 +1438,9 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
       state.translationWord = choice.translationWord;
       state.inputLanguage = currentLang();
       state.elementType = selectedType;
-      state.partOfSpeech = '';
       document.getElementById('rootInput').value = state.root;
       document.getElementById('targetMeaningInput').value = state.targetMeaning;
       document.getElementById('elementType').value = state.elementType;
-      syncPartOfSpeechControl();
       searchDerivatives();
     }
 
@@ -1689,7 +1643,6 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
         document.getElementById('rootInput').value = state.root;
         document.getElementById('targetMeaningInput').value = state.targetMeaning;
         document.getElementById('elementType').value = state.elementType;
-        syncPartOfSpeechControl();
         renderAll();
         syncCheckedVisibility();
         syncJsonCardButtonVisibility();
@@ -1711,7 +1664,6 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
       });
       const type = document.getElementById('elementType');
       if (type) type.value = 'root';
-      syncPartOfSpeechControl();
       renderAll();
       setCalculateButtonStatus(defaultCalculateButtonText(), false, { loading: false });
     }
@@ -1728,7 +1680,6 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
     });
     document.getElementById('elementType').addEventListener('change', () => {
       state.elementType = document.getElementById('elementType').value;
-      syncPartOfSpeechControl();
       invalidateSearchResult();
       renderAll();
     });
@@ -1833,7 +1784,6 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
     };
 
     async function init() {
-      syncPartOfSpeechControl();
       renderAll();
     }
 
