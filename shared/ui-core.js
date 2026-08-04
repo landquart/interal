@@ -1044,10 +1044,12 @@ function setupModalSelects(root = document) {
       labelText.className = 'interal-select-option-text';
       labelText.textContent = option.textContent || option.label || option.value;
 
-      const check = document.createElement('span');
+      const check = document.createElement('img');
       check.className = 'interal-select-option-check';
+      check.src = joinUrl('elements/Unread.svg');
+      check.alt = '';
       check.setAttribute('aria-hidden', 'true');
-      check.textContent = '✓';
+      check.draggable = false;
 
       btn.append(labelText, check);
 
