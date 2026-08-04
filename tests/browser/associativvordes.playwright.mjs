@@ -214,8 +214,8 @@ async function runSuccessfulCalculation(page) {
   const previousRunCount = await page.evaluate(() => window.__associativeRunCount);
   await page.locator('#rootInput').fill('alter');
   await page.locator('#targetMeaningInput').fill('other');
-  await page.locator('#translationWordInput').fill('alternative');
-  await page.locator('#partOfSpeech').selectOption('adjective');
+  await expect(page.locator('#translationWordInput')).toHaveCount(0);
+  await expect(page.locator('#partOfSpeech')).toHaveCount(0);
   await page.locator('#calculateBtn').click();
 
   await page.waitForFunction(
