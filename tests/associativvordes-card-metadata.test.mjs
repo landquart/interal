@@ -10,26 +10,21 @@ let transcriberCall = null;
 const metadata = makeAssociativeLemmaMetadata({
   word: 'alter',
   elementType: 'root',
-  partOfSpeech: 'adjective',
   translationLanguage: 'ru',
   translationWord: 'альтернативный',
   targetMeaning: 'другой',
-  transcriber(word, options) {
-    transcriberCall = { word, options };
+  transcriber(word) {
+    transcriberCall = { word };
     return 'ˈalter';
   }
 });
 
-assert.deepEqual(transcriberCall, {
-  word: 'alter',
-  options: { partOfSpeech: 'adjective' }
-});
+assert.deepEqual(transcriberCall, { word: 'alter' });
 assert.deepEqual(metadata, {
   interal: {
     word: 'alter',
     ipa: 'ˈalter',
-    type: 'root',
-    part_of_speech: 'adjective'
+    type: 'root'
   },
   translation: {
     language: 'ru',
@@ -45,29 +40,17 @@ assert.notEqual(metadata.translation.word, metadata.analysis_input.target_meanin
 const preposition = makeAssociativeLemmaMetadata({
   word: 'inter',
   elementType: 'preposition',
-  partOfSpeech: '',
   translationLanguage: 'ru',
   translationWord: 'между',
   targetMeaning: 'между',
-  transcriber: (_word, options) => options.partOfSpeech === 'preposition' ? 'ˈinter' : ''
+  transcriber: () => 'ˈinter'
 });
-assert.equal(preposition.interal.part_of_speech, 'preposition');
+assert.deepEqual(preposition.interal, { word: 'inter', ipa: 'ˈinter', type: 'preposition' });
 
 assert.throws(
   () => makeAssociativeLemmaMetadata({
     word: 'alter',
     elementType: 'root',
-    translationLanguage: 'ru',
-    translationWord: 'альтернативный',
-    targetMeaning: 'другой'
-  }),
-  (error) => error instanceof AssociativeCardMetadataError && error.code === 'PART_OF_SPEECH_REQUIRED'
-);
-assert.throws(
-  () => makeAssociativeLemmaMetadata({
-    word: 'alter',
-    elementType: 'root',
-    partOfSpeech: 'adjective',
     translationLanguage: 'ru',
     translationWord: '',
     targetMeaning: 'другой'
@@ -78,7 +61,6 @@ assert.throws(
   () => makeAssociativeLemmaMetadata({
     word: 'alter',
     elementType: 'root',
-    partOfSpeech: 'adjective',
     translationLanguage: 'ru',
     translationWord: 'альтернативный',
     targetMeaning: 'другой',
@@ -90,7 +72,7 @@ assert.throws(
 const source = await readFile('associativvordes/script.js', 'utf8');
 assert.doesNotMatch(source, /translationWord\s*\|\|\s*state\.targetMeaning/);
 assert.doesNotMatch(source, /targetMeaning\s*\|\|\s*state\.root/);
-assert.doesNotMatch(source, /part_of_speech:[^\n]*'other'/);
+assert.doesNotMatch(source, /partOfSpeech\s*[,):=]|part_of_speech/);
 
 assert.deepEqual(
   languageTranslations({
