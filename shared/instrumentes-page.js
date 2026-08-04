@@ -2,10 +2,18 @@
   const context = window.InteralInstrumentes;
   if (!context) return;
 
+  const LEXEME_GOAL = 1000;
+  let lexemeGoalCount = null;
+  let lexemeGoalStatus = 'loading';
+
   const text = {
     ru: {
       instruments: 'Инструменты', registry: 'Реестр',
       promo: 'Внеси вклад в Интераль всего в пару кликов!', try: 'Попробовать',
+      lexemeGoalTitle: 'Наша первая цель — зафиксировать 1000 лексем!',
+      lexemeGoalLoading: 'Загрузка данных реестра',
+      lexemeGoalUnavailable: 'Количество лексем временно недоступно',
+      lexemeGoalAria: (count, goal) => `${count} из ${goal} лексем`,
       indoeuropan: 'Индоевропейские слова', associativ: 'Ассоциативные слова',
       internationalismes: 'Интернационализмы', communities: 'Слова сообществ',
       grammar: 'Грамматические и краткие слова', altervordes: 'Иные слова',
@@ -28,6 +36,10 @@
     en: {
       instruments: 'Instruments', registry: 'Registry',
       promo: 'Contribute to Interal in just a couple of clicks!', try: 'Try it',
+      lexemeGoalTitle: 'Our first goal is to register 1,000 lexemes!',
+      lexemeGoalLoading: 'Loading registry data',
+      lexemeGoalUnavailable: 'The lexeme count is temporarily unavailable',
+      lexemeGoalAria: (count, goal) => `${count} of ${goal} lexemes`,
       indoeuropan: 'Indo-European words', associativ: 'Associative words',
       internationalismes: 'Internationalisms', communities: 'Words of communities',
       grammar: 'Grammatic and brief words', altervordes: 'Other words',
@@ -49,6 +61,103 @@
     }
   };
 
+  function getNumberFormatter(options = {}) {
+    const locale = context.getLang() === 'en' ? 'en-US' : 'ru-RU';
+    return new Intl.NumberFormat(locale, options);
+  }
+
+  function renderLexemeGoal() {
+    const container = document.querySelector('[data-lexeme-goal]');
+    if (!container) return;
+
+    const dictionary = text[context.getLang()];
+    const goal = Number.parseInt(container.dataset.goal, 10) || LEXEME_GOAL;
+    const countNode = container.querySelector('[data-lexeme-goal-count]');
+    const totalNode = container.querySelector('[data-lexeme-goal-total]');
+    const percentNode = container.querySelector('[data-lexeme-goal-percent]');
+    const progressNode = container.querySelector('[data-lexeme-goal-progress]');
+
+    if (!countNode || !totalNode || !percentNode || !progressNode) return;
+
+    totalNode.textContent = getNumberFormatter().format(goal);
+
+    if (lexemeGoalStatus !== 'ready' || !Number.isFinite(lexemeGoalCount)) {
+      countNode.textContent = '—';
+      percentNode.textContent = '—%';
+      progressNode.style.setProperty('--lexeme-goal-progress', '0%');
+      progressNode.setAttribute('aria-valuenow', '0');
+      progressNode.setAttribute('aria-busy', lexemeGoalStatus === 'loading' ? 'true' : 'false');
+      progressNode.setAttribute(
+        'aria-valuetext',
+        lexemeGoalStatus === 'loading'
+          ? dictionary.lexemeGoalLoading
+          : dictionary.lexemeGoalUnavailable
+      );
+      container.classList.remove('has-progress');
+      container.classList.toggle('is-unavailable', lexemeGoalStatus === 'unavailable');
+      return;
+    }
+
+    const count = Math.max(0, Math.trunc(lexemeGoalCount));
+    const cappedCount = Math.min(count, goal);
+    const percentage = goal > 0 ? (cappedCount / goal) * 100 : 0;
+    const percentageDigits = percentage > 0 && percentage < 10 ? 1 : 0;
+
+    countNode.textContent = getNumberFormatter().format(count);
+    percentNode.textContent = `${getNumberFormatter({
+      minimumFractionDigits: percentage > 0 && percentage < 1 ? 1 : 0,
+      maximumFractionDigits: percentageDigits
+    }).format(percentage)}%`;
+    progressNode.style.setProperty('--lexeme-goal-progress', `${percentage}%`);
+    progressNode.setAttribute('aria-valuenow', String(cappedCount));
+    progressNode.setAttribute(
+      'aria-valuetext',
+      dictionary.lexemeGoalAria(
+        getNumberFormatter().format(count),
+        getNumberFormatter().format(goal)
+      )
+    );
+    progressNode.setAttribute('aria-busy', 'false');
+    container.classList.toggle('has-progress', count > 0);
+    container.classList.remove('is-unavailable');
+  }
+
+  function readRegistryLexemeCount(registry) {
+    const declaredCount = Number(registry?.count);
+    if (Number.isInteger(declaredCount) && declaredCount >= 0) {
+      return declaredCount;
+    }
+
+    if (Array.isArray(registry?.cards)) {
+      return registry.cards.length;
+    }
+
+    throw new Error('Registry count is unavailable');
+  }
+
+  async function loadLexemeGoal() {
+    if (!document.querySelector('[data-lexeme-goal]')) return;
+
+    try {
+      const response = await fetch(context.joinUrl('cards/registry.json'), {
+        cache: 'no-store',
+        headers: { Accept: 'application/json' }
+      });
+
+      if (!response.ok) {
+        throw new Error(`Registry request failed with status ${response.status}`);
+      }
+
+      lexemeGoalCount = readRegistryLexemeCount(await response.json());
+      lexemeGoalStatus = 'ready';
+    } catch {
+      lexemeGoalCount = null;
+      lexemeGoalStatus = 'unavailable';
+    }
+
+    renderLexemeGoal();
+  }
+
   function updateText() {
     const lang = context.getLang();
     const dictionary = text[lang];
@@ -64,6 +173,7 @@
     if (document.body.classList.contains('instrumentes-page')) {
       document.title = dictionary.instruments;
     }
+    renderLexemeGoal();
   }
 
   if (document.body.classList.contains('homepage')) {
@@ -85,5 +195,6 @@
   }
 
   updateText();
+  loadLexemeGoal();
   document.addEventListener('interal:languagechange', updateText);
 })();
