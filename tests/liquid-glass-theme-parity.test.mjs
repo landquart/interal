@@ -45,6 +45,28 @@ assert.doesNotMatch(
   /background|border:\s*1px|box-shadow|backdrop-filter/,
   'base topbar rule contains geometry only'
 );
+const glassContentLayer =
+  material.match(/\.top-nav-window > \*\s*\{([^}]*)\}/s)?.[1] || '';
+assert.doesNotMatch(
+  glassContentLayer,
+  /position\s*:/,
+  'glass layering must not override mobile brand positioning'
+);
+assert.match(
+  base,
+  /\.top-brand\{[^}]*position:absolute;[^}]*left:50%;[^}]*transform:translateX\(-50%\)/,
+  'mobile logo and name remain an absolutely centered group'
+);
+assert.match(
+  base,
+  /@media \(min-width:980px\)[\s\S]*?\.top-brand\{position:relative;left:auto;transform:none;/,
+  'desktop logo and name retain their existing inline position'
+);
+assert.match(
+  core,
+  /top-brand-logo[\s\S]*top-brand-text/,
+  'gold logo stays to the left of the Interal name'
+);
 assert.doesNotMatch(
   runtime,
   /canvas|feDisplacementMap|requestAnimationFrame|MutationObserver|ResizeObserver|PerformanceObserver|getBattery/i,
@@ -55,7 +77,7 @@ for (const signal of ['deviceMemory', 'hardwareConcurrency', 'saveData']) {
 }
 assert.doesNotMatch(core, /--glass-highlight-x|pointermove/, 'topbar highlight is static');
 assert.match(core, /addEventListener\(\s*['"]scroll['"][\s\S]*passive:\s*true/, 'scroll state uses a passive listener');
-assert.match(loader, /liquid-glass\.css\?v=ayu-material-20260804-1/, 'glass CSS cache key is current');
+assert.match(loader, /liquid-glass\.css\?v=mobile-brand-20260804-1/, 'glass CSS cache key is current');
 assert.match(loader, /liquid-glass\.js\?v=ayu-material-20260804-1/, 'glass runtime cache key is current');
 
 console.log('liquid glass theme parity tests passed');
