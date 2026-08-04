@@ -46,7 +46,7 @@
     const stylesheet = document.createElement('link');
     stylesheet.rel = 'stylesheet';
     stylesheet.dataset.interalInstrumentesCss = 'true';
-    stylesheet.href = new URL('instrumentes.css?v=lexeme-goal-20260804-1', sharedRoot).href;
+    stylesheet.href = new URL('instrumentes.css?v=lexeme-goal-20260804-2', sharedRoot).href;
     document.head.appendChild(stylesheet);
   }
 
