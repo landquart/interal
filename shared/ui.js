@@ -20,7 +20,7 @@
     const liquidGlassStylesheet = document.createElement('link');
     liquidGlassStylesheet.rel = 'stylesheet';
     liquidGlassStylesheet.dataset.interalLiquidGlassCss = 'true';
-    liquidGlassStylesheet.href = new URL('liquid-glass.css?v=ayu-material-20260804-1', sharedRoot).href;
+    liquidGlassStylesheet.href = new URL('liquid-glass.css?v=mobile-brand-20260804-1', sharedRoot).href;
     document.head.appendChild(liquidGlassStylesheet);
   }
 
