@@ -47,7 +47,7 @@ const brokenRuntimeCard = {
     card_type: 'vord_card',
     vord_type: 'av',
     procedure: 'associative_word',
-    interal: { word: 'alter', ipa: 'ˈalter', type: 'root', part_of_speech: 'adjective' },
+    interal: { word: 'alter', ipa: 'ˈalter', type: 'root' },
     translation: { language: 'ru', word: 'альтернативный' },
     analysis_input: { language: 'ru', target_meaning: 'другой' },
     supported_groups: ['Romance', 'Romance'],
