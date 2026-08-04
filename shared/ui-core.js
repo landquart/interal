@@ -786,37 +786,6 @@
     { passive: true }
   );
 
-  const glassTopbar = document.querySelector('.top-nav-window');
-
-  const precisePointer = window.matchMedia(
-    '(hover: hover) and (pointer: fine)'
-  ).matches;
-
-  const reducedMotion = window.matchMedia(
-    '(prefers-reduced-motion: reduce)'
-  ).matches;
-
-  if (glassTopbar && precisePointer && !reducedMotion) {
-    glassTopbar.addEventListener('pointermove', (event) => {
-      const rect = glassTopbar.getBoundingClientRect();
-
-      const x =
-        ((event.clientX - rect.left) / rect.width) * 100;
-
-      glassTopbar.style.setProperty(
-        '--glass-highlight-x',
-        `${Math.max(8, Math.min(92, x))}%`
-      );
-    });
-
-    glassTopbar.addEventListener('pointerleave', () => {
-      glassTopbar.style.setProperty(
-        '--glass-highlight-x',
-        '28%'
-      );
-    });
-  }
-
   document.addEventListener('mouseover', (event) => {
     const target = event.target.closest?.('.menu-nav-link, .menu-copy-btn, .top-desktop-link, .top-desktop-dropdown-link, .menu-lang-modal .menu-lang-btn');
     if (target) requestAnimationFrame(applyAdaptiveTextContrast);
