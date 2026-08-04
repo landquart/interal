@@ -164,22 +164,11 @@ const TEXT_I18N = {
     }
 
     function effectivePartOfSpeech() {
-      return state.elementType === 'preposition' ? 'preposition' : String(state.partOfSpeech || '').trim();
+      return state.elementType === 'preposition' ? 'preposition' : 'other';
     }
 
     function syncPartOfSpeechControl() {
-      const select = document.getElementById('partOfSpeech');
-      if (!select) return;
-      if (state.elementType === 'preposition') {
-        state.partOfSpeech = 'preposition';
-        select.value = 'preposition';
-        select.disabled = true;
-      } else {
-        if (state.partOfSpeech === 'preposition') state.partOfSpeech = '';
-        select.disabled = false;
-        select.value = ROOT_PARTS_OF_SPEECH.has(state.partOfSpeech) ? state.partOfSpeech : '';
-      }
-      window.refreshCustomSelect?.(select);
+      state.partOfSpeech = effectivePartOfSpeech();
     }
 
     function validatePartOfSpeech() {
@@ -708,16 +697,13 @@ const TEXT_I18N = {
     async function runCalculation({ runId } = {}) {
       const root = normalizeText(document.getElementById('rootInput').value);
       const targetMeaning = document.getElementById('targetMeaningInput').value.trim();
-      const translationWord = document.getElementById('translationWordInput').value.trim();
       const elementType = document.getElementById('elementType').value;
       state.root = root;
       state.targetMeaning = targetMeaning;
-      state.translationWord = translationWord;
+      state.translationWord = targetMeaning;
       state.inputLanguage = currentLang();
       state.elementType = elementType;
-      state.partOfSpeech = elementType === 'preposition'
-        ? 'preposition'
-        : document.getElementById('partOfSpeech').value;
+      state.partOfSpeech = elementType === 'preposition' ? 'preposition' : 'other';
       if (!root) {
         alert(textGroup('alerts').rootRequired);
         return false;
@@ -1128,7 +1114,6 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
       }
       document.getElementById('rootInput').setAttribute('placeholder', textValue('rootPlaceholder'));
       document.getElementById('targetMeaningInput').setAttribute('placeholder', textValue('targetMeaningPlaceholder'));
-      document.getElementById('translationWordInput').setAttribute('placeholder', textValue('translationWordPlaceholder'));
       const jsonCardText = textGroup('jsonCard');
       Object.entries({ jsonCardTitle: jsonCardText.title, useAuthorBlockLabel: jsonCardText.useAuthor, authorDisplayNameLabel: jsonCardText.authorName, authorContactTypeLabel: jsonCardText.contactType, authorContactValueLabel: jsonCardText.contact, rememberAuthorDataLabel: jsonCardText.rememberAuthor, clearSavedAuthorData: jsonCardText.clearSavedAuthor, generateJsonCardBtn: jsonCardText.generate, jsonCardOutputLabel: jsonCardText.output }).forEach(([id, value]) => { const element = document.getElementById(id); if (element) element.textContent = value; });
       document.getElementById('closeJsonCardBtn')?.setAttribute('aria-label', jsonCardText.close);
@@ -1446,10 +1431,8 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
         alert(textGroup('alerts').jsonCardThresholdUnavailable);
         return;
       }
-      state.translationWord = document.getElementById('translationWordInput').value.trim();
-      state.partOfSpeech = document.getElementById('elementType').value === 'preposition'
-        ? 'preposition'
-        : document.getElementById('partOfSpeech').value;
+      state.translationWord = String(state.targetMeaning || '').trim();
+      state.partOfSpeech = effectivePartOfSpeech();
       if (!validatePartOfSpeech()) return;
       if (!state.translationWord) {
         alert(textGroup('alerts').translationRequired);
@@ -1473,11 +1456,9 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
     function hasUserInputForReset() {
       const hasRoot = normalizeText(document.getElementById('rootInput').value).length > 0;
       const hasTargetMeaning = String(document.getElementById('targetMeaningInput').value || '').trim().length > 0;
-      const hasTranslation = String(document.getElementById('translationWordInput').value || '').trim().length > 0;
       const hasTypeChange = document.getElementById('elementType').value !== 'root';
-      const hasPartOfSpeech = String(document.getElementById('partOfSpeech').value || '').trim().length > 0;
       const hasLanguageRows = Object.values(state.languages || {}).some((items) => Array.isArray(items) && items.length > 0);
-      return hasRoot || hasTargetMeaning || hasTranslation || hasTypeChange || hasPartOfSpeech || hasLanguageRows;
+      return hasRoot || hasTargetMeaning || hasTypeChange || hasLanguageRows;
     }
 
     function hasPassedJsonCardThreshold() {
@@ -1530,7 +1511,6 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
       state.partOfSpeech = choice.partOfSpeech;
       document.getElementById('rootInput').value = state.root;
       document.getElementById('targetMeaningInput').value = state.targetMeaning;
-      document.getElementById('translationWordInput').value = state.translationWord;
       document.getElementById('elementType').value = state.elementType;
       syncPartOfSpeechControl();
       searchDerivatives();
@@ -1734,7 +1714,6 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
         activeLang = restored.activeLang;
         document.getElementById('rootInput').value = state.root;
         document.getElementById('targetMeaningInput').value = state.targetMeaning;
-        document.getElementById('translationWordInput').value = state.translationWord;
         document.getElementById('elementType').value = state.elementType;
         syncPartOfSpeechControl();
         renderAll();
@@ -1752,7 +1731,7 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
       state = emptyState();
       activeLang = 'en';
       resetVisibleCandidateCounts();
-      ['rootInput', 'targetMeaningInput', 'translationWordInput'].forEach(id => {
+      ['rootInput', 'targetMeaningInput'].forEach(id => {
         const element = document.getElementById(id);
         if (element) element.value = '';
       });
@@ -1773,20 +1752,11 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
       invalidateSearchResult();
       renderAll();
     });
-    document.getElementById('translationWordInput').addEventListener('input', () => {
-      state.translationWord = document.getElementById('translationWordInput').value;
-      state.inputLanguage = currentLang();
-      syncCheckedVisibility();
-    });
     document.getElementById('elementType').addEventListener('change', () => {
       state.elementType = document.getElementById('elementType').value;
       syncPartOfSpeechControl();
       invalidateSearchResult();
       renderAll();
-    });
-    document.getElementById('partOfSpeech').addEventListener('change', () => {
-      if (state.elementType !== 'preposition') state.partOfSpeech = document.getElementById('partOfSpeech').value;
-      syncCheckedVisibility();
     });
     document.getElementById('calculateBtn').addEventListener('click', () => searchDerivatives());
     document.getElementById('showExampleBtn').addEventListener('click', showExample);
