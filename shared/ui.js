@@ -20,18 +20,18 @@
     const liquidGlassStylesheet = document.createElement('link');
     liquidGlassStylesheet.rel = 'stylesheet';
     liquidGlassStylesheet.dataset.interalLiquidGlassCss = 'true';
-    liquidGlassStylesheet.href = new URL('liquid-glass.css?v=unified-blur-20260728-2', sharedRoot).href;
+    liquidGlassStylesheet.href = new URL('liquid-glass.css?v=ayu-material-20260804-1', sharedRoot).href;
     document.head.appendChild(liquidGlassStylesheet);
   }
 
-  const core = loadSource('ui-core.js?v=select-unread-20260804-1');
+  const core = loadSource('ui-core.js?v=ayu-material-20260804-1');
   const coreSource = core.source.replace(
     'const currentScript = document.currentScript;',
     'const currentScript = document.querySelector(\'script[data-interal-ui-loader="true"]\');'
   );
   (0, eval)(`${coreSource}\n//# sourceURL=${core.url.href}`);
 
-  const liquidGlass = loadSource('liquid-glass.js?v=telegram-efficient-20260726-1');
+  const liquidGlass = loadSource('liquid-glass.js?v=ayu-material-20260804-1');
   (0, eval)(`${liquidGlass.source}\n//# sourceURL=${liquidGlass.url.href}`);
 
   const authorAutosave = loadSource('json-author-autosave.js?v=json-author-autosave-20260725-1');
