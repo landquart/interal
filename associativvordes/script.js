@@ -12,7 +12,7 @@ import { getLanguageConfig } from './js/morphology/languages/index.js';
 import { clearTargetMeaningTranslationCache, translateTargetMeaning, TARGET_TRANSLATION_LANGUAGES } from './js/target-meaning-translator.js';
 import { MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE, createEmptyAssociativeState, resetAssociativeRunState, invalidateSearchResult as invalidateAssociativeSearchResult, invalidateFinalCalculation as invalidateAssociativeFinalCalculation, addManualCandidate, updateCandidate, deleteCandidate, compactAssociativeState, restoreAssociativeState, addRunWarning, addLanguageWarning, addCandidateWarning, hasAnyAssociativeWarnings, hasLanguageAssociativeWarnings } from './js/associative-state.js';
 import { runAssociativeCalculation } from './js/associative-calculation-runner.js';
-import { ASSOCIATIVE_ROOT_PARTS_OF_SPEECH, makeAssociativeLemmaMetadata } from './js/card-metadata.js';
+import { makeAssociativeLemmaMetadata } from './js/card-metadata.js';
 import { CONTROL_LANGUAGES as CONTROL_LANGUAGE_CONFIG } from '../shared/control-language-demographics.mjs';
 
 // Persistence compatibility markers: status: 'no_candidates', candidates: [] ; status: 'index_error', errorCode:
@@ -153,8 +153,6 @@ const TEXT_I18N = {
       return localStorage.getItem('interal.lang') === 'en' ? 'en' : 'ru';
     }
 
-    const ROOT_PARTS_OF_SPEECH = new Set(ASSOCIATIVE_ROOT_PARTS_OF_SPEECH);
-
     function textGroup(group) {
       return TEXT_I18N[currentLang()][group] || TEXT_I18N.ru[group] || {};
     }
@@ -163,21 +161,8 @@ const TEXT_I18N = {
       return TEXT_I18N[currentLang()][key] || TEXT_I18N.ru[key] || key;
     }
 
-    function effectivePartOfSpeech() {
-      return state.elementType === 'preposition' ? 'preposition' : 'other';
-    }
-
     function syncPartOfSpeechControl() {
-      state.partOfSpeech = effectivePartOfSpeech();
-    }
-
-    function validatePartOfSpeech() {
-      const partOfSpeech = effectivePartOfSpeech();
-      const valid = state.elementType === 'preposition'
-        ? partOfSpeech === 'preposition'
-        : ROOT_PARTS_OF_SPEECH.has(partOfSpeech);
-      if (!valid) alert(textGroup('alerts').partOfSpeechRequired);
-      return valid;
+      state.partOfSpeech = '';
     }
 
     function setCalculateButtonStatus(text, disabled = true, options = {}) {
@@ -703,7 +688,7 @@ const TEXT_I18N = {
       state.translationWord = targetMeaning;
       state.inputLanguage = currentLang();
       state.elementType = elementType;
-      state.partOfSpeech = elementType === 'preposition' ? 'preposition' : 'other';
+      state.partOfSpeech = '';
       if (!root) {
         alert(textGroup('alerts').rootRequired);
         return false;
@@ -712,7 +697,6 @@ const TEXT_I18N = {
         alert(textGroup('alerts').targetMeaningRequired);
         return false;
       }
-      if (!validatePartOfSpeech()) return false;
       const signal = currentRunSignal();
       clearTargetMeaningTranslationCache();
       const languageScore = (language, candidates) => {
@@ -1290,13 +1274,6 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
       const languageCalculation = Object.fromEntries(result.languageScores
         .filter(item => Number(item.count) > 0 && Number.isFinite(Number(item.normalized)))
         .map(item => [item.lang.code, { N: item.speakers, selectedCount: item.count, averageP: item.normalized, weightedScore: item.weightedScore }]));
-      const partOfSpeech = effectivePartOfSpeech();
-      if (
-        (state.elementType === 'preposition' && partOfSpeech !== 'preposition')
-        || (state.elementType !== 'preposition' && !ROOT_PARTS_OF_SPEECH.has(partOfSpeech))
-      ) {
-        throw new Error(textGroup('alerts').partOfSpeechRequired);
-      }
       if (!String(state.translationWord || '').trim()) {
         throw new Error(textGroup('alerts').translationRequired);
       }
@@ -1309,7 +1286,6 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
         lemmaMetadata = makeAssociativeLemmaMetadata({
           word: state.root,
           elementType: state.elementType,
-          partOfSpeech,
           translationLanguage: inputLanguage,
           translationWord: state.translationWord,
           targetMeaning: state.targetMeaning
@@ -1319,7 +1295,6 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
           ROOT_REQUIRED: textGroup('alerts').rootRequired,
           TARGET_MEANING_REQUIRED: textGroup('alerts').targetMeaningRequired,
           TRANSLATION_REQUIRED: textGroup('alerts').translationRequired,
-          PART_OF_SPEECH_REQUIRED: textGroup('alerts').partOfSpeechRequired,
           IPA_UNAVAILABLE: textGroup('alerts').ipaUnavailable
         };
         throw new Error(messageByCode[error?.code] || error?.message || textGroup('alerts').ipaUnavailable);
@@ -1432,8 +1407,7 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
         return;
       }
       state.translationWord = String(state.targetMeaning || '').trim();
-      state.partOfSpeech = effectivePartOfSpeech();
-      if (!validatePartOfSpeech()) return;
+      state.partOfSpeech = '';
       if (!state.translationWord) {
         alert(textGroup('alerts').translationRequired);
         return;
@@ -1492,10 +1466,10 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
 
     const examplesByType = {
       root: [
-        { root: 'alter', targetMeaning: 'другой', translationWord: 'другой', elementType: 'root', partOfSpeech: 'adjective' }
+        { root: 'alter', targetMeaning: 'другой', translationWord: 'другой', elementType: 'root' }
       ],
       preposition: [
-        { root: 'inter', targetMeaning: 'между', translationWord: 'между', elementType: 'preposition', partOfSpeech: 'preposition' }
+        { root: 'inter', targetMeaning: 'между', translationWord: 'между', elementType: 'preposition' }
       ]
     };
 
@@ -1508,7 +1482,7 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
       state.translationWord = choice.translationWord;
       state.inputLanguage = currentLang();
       state.elementType = selectedType;
-      state.partOfSpeech = choice.partOfSpeech;
+      state.partOfSpeech = '';
       document.getElementById('rootInput').value = state.root;
       document.getElementById('targetMeaningInput').value = state.targetMeaning;
       document.getElementById('elementType').value = state.elementType;
