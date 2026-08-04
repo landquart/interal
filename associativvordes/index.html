@@ -115,15 +115,58 @@
 
     .result-box {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
       gap: 12px;
+      min-width: 0;
     }
     .associativ-page .metric {
+      min-width: 0;
+      overflow: hidden;
       border: 1px solid var(--border-control);
       border-radius: var(--radius-md);
       padding: 14px;
       background: var(--surface);
       transform-origin: center;
+    }
+
+    .result-box > details {
+      grid-column: 1 / -1;
+      min-width: 0;
+      max-width: 100%;
+      overflow-wrap: anywhere;
+    }
+
+    .result-box > details summary {
+      width: fit-content;
+      max-width: 100%;
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
+
+    .result-table-scroll {
+      width: 100%;
+      max-width: 100%;
+      margin-top: 6px;
+      overflow-x: auto;
+      overscroll-behavior-inline: contain;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .result-table-scroll table {
+      width: 100%;
+      min-width: 720px;
+      margin: 0;
+    }
+
+    .acceptance-criteria ul {
+      max-width: 100%;
+      margin: 8px 0 0;
+      padding-left: 22px;
+    }
+
+    .acceptance-criteria li {
+      max-width: 100%;
+      overflow-wrap: anywhere;
     }
     .result-box.is-updated .metric,
     .associativ-page .metric.is-updated {
@@ -136,8 +179,23 @@
     }
     .associativ-page .metric:first-child { border-color: var(--brand-gold-border); box-shadow: inset 0 3px 0 var(--brand-gold), var(--shadow-sm); }
     .associativ-page .metric:first-child strong { color: var(--brand-gold-text); }
-    .associativ-page .metric strong { font-size: 22px; display: block; }
-    .associativ-page .metric span { color: var(--text-muted); font-size: 13px; }
+    .associativ-page .metric strong {
+      display: block;
+      max-width: 100%;
+      font-size: clamp(18px, 1.65vw, 22px);
+      line-height: 1.18;
+      white-space: normal;
+      overflow-wrap: anywhere;
+      word-break: normal;
+    }
+    .associativ-page .metric span {
+      display: block;
+      max-width: 100%;
+      color: var(--text-muted);
+      font-size: 13px;
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
 
     .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
 
@@ -468,7 +526,7 @@
   <script src="../shared/copy-plain.js?v=contact-types-20260713-1"></script>
   <script src="../shared/ui.js?v=registry-name-20260715-1" defer></script>
   <script src="../shared/button-status.js?v=button-loader-20260716-1" defer></script>
-  <script type="module" src="./script.js?v=associative-auto-metadata-20260804-1"></script>
+  <script type="module" src="./script.js?v=result-layout-20260804-1"></script>
   <script src="../shared/form-draft.js?v=page-state-20260716-1" defer></script>
 </body>
 </html>
