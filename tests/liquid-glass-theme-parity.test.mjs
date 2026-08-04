@@ -2,38 +2,60 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 
 const material = await readFile('shared/liquid-glass.css', 'utf8');
-const fallback = await readFile('shared/ui.css', 'utf8');
+const base = await readFile('shared/ui.css', 'utf8');
+const runtime = await readFile('shared/liquid-glass.js', 'utf8');
+const core = await readFile('shared/ui-core.js', 'utf8');
 const loader = await readFile('shared/ui.js', 'utf8');
 
+assert.match(material, /--glass-blur:\s*18px;/, 'normal glass uses an 18px blur');
+assert.match(material, /--glass-saturation:\s*135%;/, 'normal glass uses 135% saturation');
 assert.match(
   material,
-  /rgba\(248,\s*249,\s*252,\s*0\.42\).*rgba\(244,\s*246,\s*250,\s*0\.30\)/s,
-  'canonical light material gradient must stay intact'
-);
-assert.match(
-  material,
-  /blur\(8px\)\s+saturate\(132%\)\s+contrast\(102%\)/,
-  'balanced material filter must match the light website topbar'
+  /data-liquid-glass-tier="lite"[\s\S]*--glass-blur:\s*12px;[\s\S]*--glass-saturation:\s*125%;/,
+  'lite glass uses the reduced optical settings'
 );
 assert.match(
   material,
-  /body\.dark-theme \.top-nav-window::before\s*\{[^}]*rgba\(35,\s*36,\s*42,\s*0\.55\)[^}]*rgba\(22,\s*24,\s*29,\s*0\.43\)/s,
-  'dark theme must preserve its dark material gradient'
-);
-assert.match(
-  fallback,
-  /body\.dark-theme \.top-nav-window\s*\{[^}]*rgba\(42,\s*44,\s*51,\s*0\.68\)[^}]*blur\(21px\)\s*saturate\(138%\)/s,
-  'fallback keeps dark colours while sharing the light blur settings'
+  /body\.dark-theme[\s\S]*--glass-bg-top:\s*rgba\(38, 40, 47,[\s\S]*--glass-bg-bottom:\s*rgba\(22, 24, 29,/,
+  'dark glass stays graphite instead of using a white fill'
 );
 assert.match(
   material,
-  /data-liquid-glass-tier="balanced"\] body\.dark-theme \.top-nav-window\s*\{[^}]*blur\(8px\)\s+saturate\(132%\)\s+contrast\(102%\)/s,
-  'balanced dark theme must copy only the light optical filter'
+  /@supports\s*\(\s*\(backdrop-filter:[\s\S]*-webkit-backdrop-filter:/,
+  'glass has a feature-gated backdrop implementation'
 );
 assert.match(
-  loader,
-  /liquid-glass\.css\?v=unified-blur-20260728-2/,
-  'the unified blur settings must use a fresh cache key'
+  material,
+  /@supports not[\s\S]*\.top-nav-window\s*\{[\s\S]*backdrop-filter:\s*none;/,
+  'glass has an opaque fallback when backdrop blur is unavailable'
 );
+assert.match(
+  material,
+  /body\.nav-scrolled[\s\S]*--glass-bg-top:/,
+  'scrolling only strengthens the material tint'
+);
+assert.doesNotMatch(
+  base,
+  /body\.dark-theme \.top-nav-window|\.top-nav-window::before|\.top-nav-window::after/,
+  'base UI CSS no longer duplicates topbar material rules'
+);
+const baseTopbar = base.match(/\.top-nav-window\s*\{([^}]*)\}/s)?.[1] || '';
+assert.doesNotMatch(
+  baseTopbar,
+  /background|border:\s*1px|box-shadow|backdrop-filter/,
+  'base topbar rule contains geometry only'
+);
+assert.doesNotMatch(
+  runtime,
+  /canvas|feDisplacementMap|requestAnimationFrame|MutationObserver|ResizeObserver|PerformanceObserver|getBattery/i,
+  'runtime does not create continuously redrawn or synthetic refraction layers'
+);
+for (const signal of ['deviceMemory', 'hardwareConcurrency', 'saveData']) {
+  assert(runtime.includes(signal), `runtime uses the real ${signal} performance signal`);
+}
+assert.doesNotMatch(core, /--glass-highlight-x|pointermove/, 'topbar highlight is static');
+assert.match(core, /addEventListener\(\s*['"]scroll['"][\s\S]*passive:\s*true/, 'scroll state uses a passive listener');
+assert.match(loader, /liquid-glass\.css\?v=ayu-material-20260804-1/, 'glass CSS cache key is current');
+assert.match(loader, /liquid-glass\.js\?v=ayu-material-20260804-1/, 'glass runtime cache key is current');
 
 console.log('liquid glass theme parity tests passed');
