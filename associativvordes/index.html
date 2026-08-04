@@ -16,6 +16,16 @@
 
     .associativ-page .card { position: relative; }
 
+    .associativ-search-card .card-tools {
+      position: static;
+      grid-column: 1 / -1;
+      width: 100%;
+      justify-self: end;
+    }
+
+    .associativ-search-card .card-tools:has(.card-reset-btn.is-hidden) {
+      display: none;
+    }
 
     .card-scroll-wrap {
       overflow-x: auto;
@@ -376,7 +386,7 @@
   <header class="interal-page-hero">
     <h1 class="interal-page-title">Associativ vordes</h1>
   </header>
-    <section class="interal-panel card grid grid-2">
+    <section class="interal-panel card grid grid-2 associativ-search-card">
       <div class="card-tools">
         <button class="card-reset-btn interal-reset-btn is-hidden" id="resetBtn" aria-label="Сбросить" title="Сбросить">
           <img src="../elements/Eraser%20Square.svg" alt="" aria-hidden="true"  />
