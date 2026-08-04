@@ -76,17 +76,32 @@ assert.match(
 );
 assert.match(
   styles,
+  /\.instrumentes-lexeme-goal-track\{[^}]*height:30px[^}]*padding:0[^}]*overflow:hidden/,
+  'progress fill reaches the full inner edge of the rounded track'
+);
+assert.match(
+  styles,
+  /\.instrumentes-lexeme-goal\.has-progress \.instrumentes-lexeme-goal-fill\{min-width:28px\}/,
+  'small progress values fill the complete desktop left cap'
+);
+assert.match(
+  styles,
+  /max-width:560px[^}]*[\s\S]*\.instrumentes-lexeme-goal\.has-progress \.instrumentes-lexeme-goal-fill\{min-width:24px\}/,
+  'small progress values fill the complete mobile left cap'
+);
+assert.match(
+  styles,
   /prefers-reduced-motion:reduce[^}]*instrumentes-lexeme-goal-fill\{transition:none\}/,
   'progress animation respects reduced motion'
 );
 assert.match(
   html,
-  /instrumentes\.css\?v=lexeme-goal-20260804-1/,
+  /instrumentes\.css\?v=lexeme-goal-20260804-2/,
   'page loads the current progress styles'
 );
 assert.match(
   html,
-  /ui\.js\?v=lexeme-goal-20260804-1/,
+  /ui\.js\?v=lexeme-goal-20260804-2/,
   'page loads the current progress runtime'
 );
 assert.match(
