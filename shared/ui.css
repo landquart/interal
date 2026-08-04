@@ -1456,8 +1456,12 @@ body.dark-theme .secondary-btn.gradient-hover:hover:not(:disabled) {
 }
 
 .interal-select-modal .interal-select-option-check {
+  display: block;
+  width: 18px;
+  height: 18px;
   opacity: 0;
   flex: 0 0 auto;
+  filter: var(--menu-icon-filter, none);
 }
 
 .interal-select-modal .interal-select-option.is-selected .interal-select-option-check {
