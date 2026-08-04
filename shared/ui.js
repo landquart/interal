@@ -24,7 +24,7 @@
     document.head.appendChild(liquidGlassStylesheet);
   }
 
-  const core = loadSource('ui-core.js?v=json-author-autosave-20260725-1');
+  const core = loadSource('ui-core.js?v=select-unread-20260804-1');
   const coreSource = core.source.replace(
     'const currentScript = document.currentScript;',
     'const currentScript = document.querySelector(\'script[data-interal-ui-loader="true"]\');'
