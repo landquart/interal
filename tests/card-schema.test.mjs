@@ -53,7 +53,7 @@ const associative = {
   version: '1.0',
   card_type: 'vord_card',
   vord_type: 'av',
-  interal: { word: 'alter', ipa: 'ˈalter', type: 'root', part_of_speech: 'adjective' },
+  interal: { word: 'alter', ipa: 'ˈalter', type: 'root' },
   translation: { language: 'ru', word: 'альтернативный' },
   analysis_input: { language: 'ru', target_meaning: 'другой' },
   result: { FA: 43.9, TA: 263.4 }
@@ -64,7 +64,7 @@ assert.throws(
   (error) => error instanceof CardSchemaError && error.path === 'interal.ipa'
 );
 assert.throws(
-  () => validateCardSchema({ ...associative, interal: { ...associative.interal, part_of_speech: '' } }, { strictAssociative: true }),
+  () => validateCardSchema({ ...associative, interal: { ...associative.interal, part_of_speech: 'other' } }, { strictAssociative: true }),
   (error) => error instanceof CardSchemaError && error.path === 'interal.part_of_speech'
 );
 assert.throws(
@@ -80,7 +80,7 @@ assert.throws(
   (error) => error instanceof CardSchemaError && error.path === 'result.TA'
 );
 assert.doesNotThrow(
-  () => validateCardSchema({ ...associative, interal: { word: 'inter', ipa: 'ˈinter', type: 'preposition', part_of_speech: 'preposition' } }, { strictAssociative: true })
+  () => validateCardSchema({ ...associative, interal: { word: 'inter', ipa: 'ˈinter', type: 'preposition' } }, { strictAssociative: true })
 );
 const associativeAffix = {
   version: '1.0',
