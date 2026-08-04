@@ -1,192 +1,236 @@
-/* Efficient Telegram-style Liquid Glass for the fixed website topbar. */
+/* Interal glass material: the single visual source for the website topbar. */
 
-html[data-liquid-glass-tier] .top-nav-window {
-  position: relative;
-  overflow: visible;
-  isolation: isolate;
-  background: transparent !important;
-  border: 1px solid rgba(255, 255, 255, 0.76) !important;
-  box-shadow:
-    0 13px 36px rgba(15, 23, 42, 0.14),
-    0 2px 8px rgba(15, 23, 42, 0.075),
-    inset 0 1px 0 rgba(255, 255, 255, 0.90),
-    inset 0 -1px 0 rgba(15, 23, 42, 0.07) !important;
-  transition: none !important;
+:root {
+  --glass-blur: 18px;
+  --glass-saturation: 135%;
+  --glass-bg-top: rgba(252, 253, 255, 0.95);
+  --glass-bg-bottom: rgba(246, 248, 252, 0.90);
+  --glass-border: rgba(255, 255, 255, 0.82);
+  --glass-highlight: rgba(255, 255, 255, 0.78);
+  --glass-highlight-soft: rgba(255, 255, 255, 0.22);
+  --glass-radial-highlight: rgba(255, 255, 255, 0.28);
+  --glass-bottom-shade: rgba(15, 23, 42, 0.055);
+  --glass-shadow:
+    0 12px 30px rgba(15, 23, 42, 0.13),
+    0 2px 7px rgba(15, 23, 42, 0.06);
 }
 
-html[data-liquid-glass-tier] body.nav-scrolled .top-nav-window {
-  background: transparent !important;
-  border-color: rgba(255, 255, 255, 0.76) !important;
-  box-shadow:
-    0 13px 36px rgba(15, 23, 42, 0.14),
-    0 2px 8px rgba(15, 23, 42, 0.075),
-    inset 0 1px 0 rgba(255, 255, 255, 0.90),
-    inset 0 -1px 0 rgba(15, 23, 42, 0.07) !important;
+body.dark-theme {
+  --glass-bg-top: rgba(38, 40, 47, 0.95);
+  --glass-bg-bottom: rgba(22, 24, 29, 0.91);
+  --glass-border: rgba(255, 255, 255, 0.14);
+  --glass-highlight: rgba(255, 255, 255, 0.16);
+  --glass-highlight-soft: rgba(255, 255, 255, 0.055);
+  --glass-radial-highlight: rgba(255, 255, 255, 0.10);
+  --glass-bottom-shade: rgba(0, 0, 0, 0.30);
+  --glass-shadow:
+    0 14px 34px rgba(0, 0, 0, 0.38),
+    0 3px 9px rgba(0, 0, 0, 0.20);
 }
 
-html[data-liquid-glass-tier] .top-nav-window::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  width: auto;
-  height: auto;
-  z-index: 1;
-  pointer-events: none;
-  border-radius: inherit;
-  background: linear-gradient(180deg, rgba(248, 249, 252, 0.42), rgba(244, 246, 250, 0.30));
-  box-shadow:
-    inset 0 2px 2px rgba(255, 255, 255, 0.54),
-    inset 0 -2px 3px rgba(15, 23, 42, 0.065),
-    inset 3px 0 4px rgba(255, 255, 255, 0.13),
-    inset -3px 0 4px rgba(15, 23, 42, 0.04);
+body.nav-scrolled {
+  --glass-bg-top: rgba(252, 253, 255, 0.98);
+  --glass-bg-bottom: rgba(246, 248, 252, 0.94);
+  --glass-shadow:
+    0 15px 36px rgba(15, 23, 42, 0.16),
+    0 3px 9px rgba(15, 23, 42, 0.07);
 }
 
-html[data-liquid-glass-tier] .top-nav-window::after {
+body.dark-theme.nav-scrolled {
+  --glass-bg-top: rgba(38, 40, 47, 0.97);
+  --glass-bg-bottom: rgba(22, 24, 29, 0.94);
+  --glass-shadow:
+    0 16px 38px rgba(0, 0, 0, 0.43),
+    0 3px 10px rgba(0, 0, 0, 0.23);
+}
+
+.top-nav-window {
+  background:
+    linear-gradient(
+      180deg,
+      var(--glass-bg-top) 0%,
+      var(--glass-bg-bottom) 100%
+    );
+  border: 1px solid var(--glass-border);
+  box-shadow:
+    var(--glass-shadow),
+    inset 0 1px 0 var(--glass-highlight),
+    inset 0 -1px 0 var(--glass-bottom-shade);
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+
+.top-nav-window::before,
+.top-nav-window::after {
   content: "";
   position: absolute;
   inset: 1px;
-  z-index: 2;
-  pointer-events: none;
+  z-index: 0;
   border-radius: inherit;
-  background:
-    radial-gradient(240px 86px at 28% -24px, rgba(255, 255, 255, 0.56), rgba(255, 255, 255, 0.14) 44%, transparent 74%),
-    linear-gradient(110deg, rgba(255, 255, 255, 0.13), transparent 25%, transparent 76%, rgba(15, 23, 42, 0.045));
-  opacity: 0.80;
+  pointer-events: none;
 }
 
-html[data-liquid-glass-tier] .top-nav-window > :not(.liquid-portal-viewport) {
+.top-nav-window::before {
+  background:
+    linear-gradient(
+      180deg,
+      var(--glass-highlight-soft) 0%,
+      transparent 34%,
+      transparent 70%,
+      var(--glass-bottom-shade) 100%
+    );
+  opacity: 0.55;
+}
+
+.top-nav-window::after {
+  background:
+    radial-gradient(
+      190px 72px at 30% -18px,
+      var(--glass-radial-highlight) 0%,
+      transparent 74%
+    );
+  opacity: 0.72;
+}
+
+.top-nav-window > * {
   position: relative;
-  z-index: 3;
+  z-index: 1;
 }
 
-html[data-liquid-glass-tier] .top-nav-window > .top-brand {
-  position: absolute;
-  z-index: 3;
-}
-
-/*
- * Permanent desktop brand geometry. Keep this rule independent from optical
- * tuning: the logo and title must remain the first normal-flow item on PC.
- */
-@media (min-width: 980px) {
-  html[data-liquid-glass-tier] .top-nav-window > .top-brand {
-    position: relative !important;
-    left: auto !important;
-    right: auto !important;
-    top: auto !important;
-    margin-left: 2px !important;
-    transform: none !important;
+@supports (
+  (backdrop-filter: blur(1px)) or
+  (-webkit-backdrop-filter: blur(1px))
+) {
+  :root {
+    --glass-bg-top: rgba(255, 255, 255, 0.60);
+    --glass-bg-bottom: rgba(246, 248, 252, 0.43);
+    --glass-border: rgba(255, 255, 255, 0.70);
   }
 
-  html[data-liquid-glass-tier] .top-desktop-dropdown {
-    z-index: 4;
+  body.dark-theme {
+    --glass-bg-top: rgba(38, 40, 47, 0.60);
+    --glass-bg-bottom: rgba(22, 24, 29, 0.46);
+    --glass-border: rgba(255, 255, 255, 0.13);
   }
 
-  html[data-liquid-glass-tier] .top-desktop-dropdown-menu {
-    z-index: 5;
+  body.nav-scrolled {
+    --glass-bg-top: rgba(255, 255, 255, 0.72);
+    --glass-bg-bottom: rgba(246, 248, 252, 0.56);
+  }
+
+  body.dark-theme.nav-scrolled {
+    --glass-bg-top: rgba(38, 40, 47, 0.69);
+    --glass-bg-bottom: rgba(22, 24, 29, 0.56);
+  }
+
+  html:not([data-liquid-glass-tier="solid"]) .top-nav-window {
+    -webkit-backdrop-filter:
+      blur(var(--glass-blur))
+      saturate(var(--glass-saturation));
+    backdrop-filter:
+      blur(var(--glass-blur))
+      saturate(var(--glass-saturation));
   }
 }
 
-html[data-liquid-glass-tier="full"] .top-nav-window::before {
-  background: linear-gradient(180deg, rgba(248, 249, 252, 0.34), rgba(244, 246, 250, 0.24));
+html[data-liquid-glass-tier="lite"] {
+  --glass-blur: 12px;
+  --glass-saturation: 125%;
 }
 
-html[data-liquid-glass-tier="balanced"] .top-nav-window {
-  -webkit-backdrop-filter: blur(8px) saturate(132%) contrast(102%);
-  backdrop-filter: blur(8px) saturate(132%) contrast(102%);
+html[data-liquid-glass-tier="lite"] body:not(.dark-theme) {
+  --glass-bg-top: rgba(255, 255, 255, 0.69);
+  --glass-bg-bottom: rgba(246, 248, 252, 0.53);
 }
 
-html[data-liquid-glass-tier="lite"] .top-nav-window {
-  -webkit-backdrop-filter: blur(3px) saturate(116%);
-  backdrop-filter: blur(3px) saturate(116%);
+html[data-liquid-glass-tier="lite"] body.dark-theme {
+  --glass-bg-top: rgba(38, 40, 47, 0.68);
+  --glass-bg-bottom: rgba(22, 24, 29, 0.55);
 }
 
-html[data-liquid-glass-tier="lite"] .top-nav-window::before {
-  background: linear-gradient(180deg, rgba(248, 249, 252, 0.78), rgba(244, 246, 250, 0.68));
+html[data-liquid-glass-tier="lite"] body:not(.dark-theme).nav-scrolled {
+  --glass-bg-top: rgba(255, 255, 255, 0.77);
+  --glass-bg-bottom: rgba(246, 248, 252, 0.63);
 }
 
-html[data-liquid-glass-tier="solid"] .top-nav-window::before {
-  background: rgba(247, 248, 251, 0.96);
+html[data-liquid-glass-tier="lite"] body.dark-theme.nav-scrolled {
+  --glass-bg-top: rgba(38, 40, 47, 0.76);
+  --glass-bg-bottom: rgba(22, 24, 29, 0.64);
 }
 
-.liquid-portal-viewport {
-  position: absolute !important;
-  inset: 0 !important;
-  z-index: 0 !important;
-  display: block;
-  overflow: hidden;
-  border-radius: inherit;
-  pointer-events: none;
-  contain: paint;
-  transform: translateZ(0);
+html[data-liquid-glass-tier="lite"] .top-nav-window::after {
+  display: none;
 }
 
-.liquid-portal-shadow-host {
-  position: absolute;
-  inset: 0;
-  display: block;
-  overflow: visible;
-  pointer-events: none;
+html[data-liquid-glass-tier="solid"] body:not(.dark-theme) {
+  --glass-bg-top: rgba(252, 253, 255, 0.95);
+  --glass-bg-bottom: rgba(246, 248, 252, 0.90);
 }
 
-html:not([data-liquid-glass-tier="full"]) .liquid-portal-viewport,
-html.liquid-glass-paused .liquid-portal-viewport {
-  display: none !important;
+html[data-liquid-glass-tier="solid"] body.dark-theme {
+  --glass-bg-top: rgba(38, 40, 47, 0.95);
+  --glass-bg-bottom: rgba(22, 24, 29, 0.91);
 }
 
-html[data-liquid-glass-tier] body.dark-theme .top-nav-window,
-html[data-liquid-glass-tier] body.dark-theme.nav-scrolled .top-nav-window {
-  border-color: rgba(255, 255, 255, 0.19) !important;
-  box-shadow:
-    0 15px 40px rgba(0, 0, 0, 0.40),
-    0 3px 10px rgba(0, 0, 0, 0.22),
-    inset 0 1px 0 rgba(255, 255, 255, 0.17),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.30) !important;
+html[data-liquid-glass-tier="solid"] body:not(.dark-theme).nav-scrolled {
+  --glass-bg-top: rgba(252, 253, 255, 0.98);
+  --glass-bg-bottom: rgba(246, 248, 252, 0.95);
 }
 
-html[data-liquid-glass-tier] body.dark-theme .top-nav-window::before {
-  background: linear-gradient(180deg, rgba(35, 36, 42, 0.55), rgba(22, 24, 29, 0.43));
-  box-shadow:
-    inset 0 2px 2px rgba(255, 255, 255, 0.12),
-    inset 0 -2px 3px rgba(0, 0, 0, 0.25),
-    inset 3px 0 4px rgba(255, 255, 255, 0.04),
-    inset -3px 0 4px rgba(0, 0, 0, 0.12);
+html[data-liquid-glass-tier="solid"] body.dark-theme.nav-scrolled {
+  --glass-bg-top: rgba(38, 40, 47, 0.98);
+  --glass-bg-bottom: rgba(22, 24, 29, 0.95);
 }
 
-html[data-liquid-glass-tier] body.dark-theme .top-nav-window::after {
-  background:
-    radial-gradient(240px 86px at 28% -24px, rgba(255, 255, 255, 0.19), rgba(255, 255, 255, 0.055) 44%, transparent 74%),
-    linear-gradient(110deg, rgba(255, 255, 255, 0.035), transparent 25%, transparent 76%, rgba(0, 0, 0, 0.10));
+@supports not (
+  (backdrop-filter: blur(1px)) or
+  (-webkit-backdrop-filter: blur(1px))
+) {
+  .top-nav-window {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
 }
 
-/*
- * Dark mode keeps its own material colours. Only the optical filter is shared
- * with the corresponding light-mode performance tier.
- */
-html[data-liquid-glass-tier="balanced"] body.dark-theme .top-nav-window {
-  -webkit-backdrop-filter: blur(8px) saturate(132%) contrast(102%);
-  backdrop-filter: blur(8px) saturate(132%) contrast(102%);
+@media (prefers-reduced-transparency: reduce) {
+  .top-nav-window {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+
+  body:not(.dark-theme) .top-nav-window {
+    --glass-bg-top: rgba(252, 253, 255, 0.97);
+    --glass-bg-bottom: rgba(246, 248, 252, 0.93);
+  }
+
+  body.dark-theme .top-nav-window {
+    --glass-bg-top: rgba(38, 40, 47, 0.97);
+    --glass-bg-bottom: rgba(22, 24, 29, 0.94);
+  }
 }
 
-html[data-liquid-glass-tier="lite"] body.dark-theme .top-nav-window {
-  -webkit-backdrop-filter: blur(3px) saturate(116%);
-  backdrop-filter: blur(3px) saturate(116%);
+@media (prefers-contrast: more) {
+  body:not(.dark-theme) .top-nav-window {
+    --glass-bg-top: rgba(252, 253, 255, 0.88);
+    --glass-bg-bottom: rgba(246, 248, 252, 0.78);
+    --glass-border: rgba(17, 24, 39, 0.30);
+  }
+
+  body.dark-theme .top-nav-window {
+    --glass-bg-top: rgba(32, 34, 40, 0.86);
+    --glass-bg-bottom: rgba(18, 20, 25, 0.78);
+    --glass-border: rgba(255, 255, 255, 0.34);
+  }
+
+  .top-nav-window::after {
+    display: none;
+  }
 }
 
-html[data-liquid-glass-tier="lite"] body.dark-theme .top-nav-window::before {
-  background: rgba(26, 28, 33, 0.86);
-}
-
-html[data-liquid-glass-tier="solid"] body.dark-theme .top-nav-window::before {
-  background: rgba(24, 26, 31, 0.97);
-}
-
-html[data-liquid-glass-tier] .top-desktop-dropdown-menu {
-  background: color-mix(in srgb, var(--surface-elevated) 94%, transparent);
-  -webkit-backdrop-filter: blur(8px) saturate(120%);
-  backdrop-filter: blur(8px) saturate(120%);
-}
-
-@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
-  .liquid-portal-viewport { display: none !important; }
+@media (prefers-reduced-motion: reduce) {
+  .top-nav-window,
+  .top-nav-window::before,
+  .top-nav-window::after {
+    transition: none !important;
+  }
 }
