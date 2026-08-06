@@ -5,8 +5,8 @@
       @media (prefers-reduced-motion: reduce) {
         .motion-field { display: none; }
         .static-field { display: inline; }
-        .hero-amber-core { stop-color: #E0A04A !important; }
-        .hero-warm-core { stop-color: #D78B32 !important; }
+        .hero-amber-core { stop-color: #D78B32 !important; }
+        .hero-warm-core { stop-color: #E56F5D !important; }
       }
     </style>
     <radialGradient id="plum" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1060 1730) scale(1900 1320)">
@@ -19,44 +19,48 @@
       <stop offset=".52" stop-color="#B8A7DF" stop-opacity=".34"/>
       <stop offset="1" stop-color="#B8A7DF" stop-opacity="0"/>
     </radialGradient>
-    <radialGradient id="amber" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(120 120) scale(980 720)">
-      <stop class="hero-amber-core" stop-color="#E0A04A" stop-opacity=".88">
-        <animate attributeName="stop-color" values="#E0A04A;#F08B6A;#E0A04A" dur="9.6s" repeatCount="indefinite"/>
+    <linearGradient id="amberWash" x1="-420" y1="80" x2="2050" y2="1510" gradientUnits="userSpaceOnUse">
+      <stop class="hero-amber-core" stop-color="#D78B32" stop-opacity=".42">
+        <animate attributeName="stop-color" values="#D78B32;#E56F5D;#E0A04A;#D78B32" dur="5.4s" repeatCount="indefinite"/>
       </stop>
-      <stop offset=".42" stop-color="#D78B32" stop-opacity=".52"/>
-      <stop offset="1" stop-color="#D78B32" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="warmRight" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(2440 1640) scale(880 660)">
-      <stop class="hero-warm-core" stop-color="#D78B32" stop-opacity=".56">
-        <animate attributeName="stop-color" values="#D78B32;#E56F5D;#D78B32" dur="10.4s" repeatCount="indefinite"/>
+      <stop offset=".24" stop-color="#E0A04A" stop-opacity=".30"/>
+      <stop offset=".48" stop-color="#F08B6A" stop-opacity=".22"/>
+      <stop offset=".72" stop-color="#684270" stop-opacity=".16"/>
+      <stop offset="1" stop-color="#3658B0" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="warmRightWash" x1="3020" y1="1820" x2="840" y2="520" gradientUnits="userSpaceOnUse">
+      <stop class="hero-warm-core" stop-color="#E56F5D" stop-opacity=".30">
+        <animate attributeName="stop-color" values="#E56F5D;#D78B32;#F08B6A;#E56F5D" dur="6.1s" repeatCount="indefinite"/>
       </stop>
-      <stop offset=".38" stop-color="#E56F5D" stop-opacity=".34"/>
-      <stop offset="1" stop-color="#E56F5D" stop-opacity="0"/>
-    </radialGradient>
+      <stop offset=".30" stop-color="#D78B32" stop-opacity=".22"/>
+      <stop offset=".58" stop-color="#F08B6A" stop-opacity=".14"/>
+      <stop offset=".78" stop-color="#684270" stop-opacity=".10"/>
+      <stop offset="1" stop-color="#3658B0" stop-opacity="0"/>
+    </linearGradient>
   </defs>
   <rect width="2560" height="1895" fill="#3658B0"/>
   <g class="motion-field hero-plum-field">
-    <animateTransform attributeName="transform" type="translate" values="-90 60;140 -80;60 160;-90 60" keyTimes="0;.34;.67;1" dur="7.2s" repeatCount="indefinite"/>
-    <animate attributeName="opacity" values=".68;.54;.86;.68" keyTimes="0;.34;.67;1" dur="7.2s" repeatCount="indefinite"/>
+    <animateTransform attributeName="transform" type="translate" values="-120 70;160 -90;70 180;-120 70" keyTimes="0;.34;.67;1" dur="4.8s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values=".66;.56;.82;.66" keyTimes="0;.34;.67;1" dur="4.8s" repeatCount="indefinite"/>
     <rect x="-700" y="-650" width="3960" height="3195" fill="url(#plum)"/>
   </g>
   <g class="motion-field hero-lavender-field">
-    <animateTransform attributeName="transform" type="translate" values="90 -60;-160 100;-40 190;90 -60" keyTimes="0;.34;.67;1" dur="8.1s" repeatCount="indefinite"/>
-    <animate attributeName="opacity" values=".60;.84;.52;.60" keyTimes="0;.34;.67;1" dur="8.1s" repeatCount="indefinite"/>
+    <animateTransform attributeName="transform" type="translate" values="100 -70;-180 110;-30 200;100 -70" keyTimes="0;.34;.67;1" dur="5.3s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values=".60;.80;.54;.60" keyTimes="0;.34;.67;1" dur="5.3s" repeatCount="indefinite"/>
     <rect x="-700" y="-650" width="3960" height="3195" fill="url(#lavender)"/>
   </g>
   <g class="motion-field hero-amber-field">
-    <animateTransform attributeName="transform" type="translate" values="-80 -40;140 70;30 160;-80 -40" keyTimes="0;.34;.67;1" dur="6.9s" repeatCount="indefinite"/>
-    <animate attributeName="opacity" values=".56;.82;.48;.56" keyTimes="0;.34;.67;1" dur="6.9s" repeatCount="indefinite"/>
-    <rect x="-700" y="-650" width="3960" height="3195" fill="url(#amber)"/>
+    <animateTransform attributeName="transform" type="translate" values="-180 -80;220 60;40 180;-180 -80" keyTimes="0;.34;.67;1" dur="4.1s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values=".58;.72;.52;.58" keyTimes="0;.34;.67;1" dur="4.1s" repeatCount="indefinite"/>
+    <rect x="-700" y="-650" width="3960" height="3195" fill="url(#amberWash)"/>
   </g>
   <g class="motion-field hero-warm-right-field">
-    <animateTransform attributeName="transform" type="translate" values="90 50;-100 -80;-40 120;90 50" keyTimes="0;.34;.67;1" dur="8.7s" repeatCount="indefinite"/>
-    <animate attributeName="opacity" values=".44;.50;.66;.44" keyTimes="0;.34;.67;1" dur="8.7s" repeatCount="indefinite"/>
-    <rect x="-700" y="-650" width="3960" height="3195" fill="url(#warmRight)"/>
+    <animateTransform attributeName="transform" type="translate" values="120 70;-160 -90;-50 150;120 70" keyTimes="0;.34;.67;1" dur="4.7s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values=".40;.50;.44;.40" keyTimes="0;.34;.67;1" dur="4.7s" repeatCount="indefinite"/>
+    <rect x="-700" y="-650" width="3960" height="3195" fill="url(#warmRightWash)"/>
   </g>
   <g class="static-field"><rect x="-700" y="-650" width="3960" height="3195" fill="url(#plum)"/></g>
   <g class="static-field"><rect x="-700" y="-650" width="3960" height="3195" fill="url(#lavender)"/></g>
-  <g class="static-field"><rect x="-700" y="-650" width="3960" height="3195" fill="url(#amber)"/></g>
-  <g class="static-field"><rect x="-700" y="-650" width="3960" height="3195" fill="url(#warmRight)"/></g>
+  <g class="static-field"><rect x="-700" y="-650" width="3960" height="3195" fill="url(#amberWash)"/></g>
+  <g class="static-field"><rect x="-700" y="-650" width="3960" height="3195" fill="url(#warmRightWash)"/></g>
 </svg>
