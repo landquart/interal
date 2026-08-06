@@ -152,7 +152,6 @@
       display: block;
       width: clamp(230px, 23vw, 400px);
       height: auto;
-      filter: brightness(0) invert(1);
     }
 
     .hero-transition {
@@ -278,7 +277,7 @@
     }
 
     .home-about-card:nth-child(even) {
-      transform: translateY(clamp(34px, 4vw, 54px));
+      transform: translateY(clamp(24px, 3vw, 36px));
     }
 
     .home-about-card-title {
@@ -302,6 +301,16 @@
 
     .home-section { display: grid; gap: 10px; }
     .home-section-title { margin: 2px 2px 0; color: var(--text); font-size: clamp(1.15rem, 2vw, 1.45rem); line-height: 1.2; font-weight: var(--type-weight-section); }
+
+    #home-tools-title::after,
+    #home-registry-title::after {
+      content: "";
+      display: block;
+      width: 38px;
+      height: 3px;
+      margin-top: 7px;
+      background: linear-gradient(90deg, #3658B0, #684270);
+    }
 
     .homepage .container {
       width: 100%;
@@ -740,7 +749,7 @@
 </head>
 <body class="homepage">
   <div class="hero-stage">
-    <img class="hero-stage-bg" src="elements/hero%20interal%20background.svg?v=smil-flow-20260806-1" alt="" aria-hidden="true" />
+    <img class="hero-stage-bg" src="elements/hero%20interal%20background.svg?v=controlled-flow-20260806-2" alt="" aria-hidden="true" />
 
     <section class="hero" aria-labelledby="home-hero-title">
       <div class="hero-inner">
@@ -759,7 +768,8 @@
         </div>
 
         <div class="hero-logo-wrap">
-          <img class="hero-logo" src="elements/interalen%20logo.svg" alt="Interal" />
+          <!-- Logo variants: gold on neutral light/dark surfaces; white on saturated color backgrounds such as the hero. -->
+          <img class="hero-logo" src="elements/interalen%20logo%20white.svg" alt="Interal" />
         </div>
       </div>
     </section>
