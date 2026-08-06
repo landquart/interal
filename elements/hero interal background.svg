@@ -1,5 +1,39 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="2560" height="1895" viewBox="0 0 2560 1895" preserveAspectRatio="none">
   <defs>
+    <style>
+      @media (prefers-reduced-motion: no-preference) {
+        .hero-plum-field { animation: heroPlumFlow 6.2s cubic-bezier(.45, 0, .55, 1) infinite; }
+        .hero-lavender-field { animation: heroLavenderFlow 5.8s cubic-bezier(.45, 0, .55, 1) infinite; }
+        .hero-amber-field { animation: heroAmberFlow 4.6s cubic-bezier(.45, 0, .55, 1) infinite; }
+        .hero-coral-field { animation: heroCoralFlow 5s cubic-bezier(.45, 0, .55, 1) infinite; }
+        .hero-warm-right-field { animation: heroWarmRightFlow 5.4s cubic-bezier(.45, 0, .55, 1) infinite; }
+      }
+      @keyframes heroPlumFlow {
+        0%, 100% { transform: translate(-180px, 100px); }
+        34% { transform: translate(260px, -120px); }
+        67% { transform: translate(120px, 300px); }
+      }
+      @keyframes heroLavenderFlow {
+        0%, 100% { transform: translate(180px, -100px); }
+        34% { transform: translate(-360px, 220px); }
+        67% { transform: translate(-80px, 460px); }
+      }
+      @keyframes heroAmberFlow {
+        0%, 100% { transform: translate(-180px, -80px); }
+        34% { transform: translate(440px, 180px); }
+        67% { transform: translate(80px, 520px); }
+      }
+      @keyframes heroCoralFlow {
+        0%, 100% { transform: translate(120px, -180px); }
+        34% { transform: translate(520px, 120px); }
+        67% { transform: translate(-300px, 360px); }
+      }
+      @keyframes heroWarmRightFlow {
+        0%, 100% { transform: translate(220px, 120px); }
+        34% { transform: translate(-420px, -260px); }
+        67% { transform: translate(-160px, 340px); }
+      }
+    </style>
     <radialGradient id="plum" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1060 1730) scale(1900 1320)">
       <stop stop-color="#684270" stop-opacity=".9"/>
       <stop offset=".52" stop-color="#684270" stop-opacity=".46"/>
@@ -27,9 +61,9 @@
     </radialGradient>
   </defs>
   <rect width="2560" height="1895" fill="#3658B0"/>
-  <rect width="2560" height="1895" fill="url(#plum)"/>
-  <rect width="2560" height="1895" fill="url(#lavender)"/>
-  <rect width="2560" height="1895" fill="url(#amber)"/>
-  <rect width="2560" height="1895" fill="url(#coral)"/>
-  <rect width="2560" height="1895" fill="url(#warmRight)"/>
+  <g class="hero-plum-field"><rect x="-700" y="-650" width="3960" height="3195" fill="url(#plum)"/></g>
+  <g class="hero-lavender-field"><rect x="-700" y="-650" width="3960" height="3195" fill="url(#lavender)"/></g>
+  <g class="hero-amber-field"><rect x="-700" y="-650" width="3960" height="3195" fill="url(#amber)"/></g>
+  <g class="hero-coral-field"><rect x="-700" y="-650" width="3960" height="3195" fill="url(#coral)"/></g>
+  <g class="hero-warm-right-field"><rect x="-700" y="-650" width="3960" height="3195" fill="url(#warmRight)"/></g>
 </svg>
