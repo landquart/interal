@@ -66,8 +66,6 @@
       user-select: none;
       transform: scale(1.045);
       transform-origin: center;
-      animation: heroBackdropFlow 5.8s cubic-bezier(.45, 0, .55, 1) infinite alternate;
-      will-change: transform;
     }
 
     .hero {
@@ -436,18 +434,6 @@
     body:not(.dark-theme) .tool-icon { filter: brightness(0); }
     body.dark-theme .tool-icon { filter: brightness(0) invert(1); }
 
-    @keyframes heroBackdropFlow {
-      0% {
-        transform: translate3d(-5%, -3%, 0) scale(1.11) rotate(-1.1deg);
-      }
-      50% {
-        transform: translate3d(4.5%, 2.2%, 0) scale(1.16) rotate(.8deg);
-      }
-      100% {
-        transform: translate3d(-2%, 5%, 0) scale(1.13) rotate(-.55deg);
-      }
-    }
-
     .home-footer {
       width: 100vw;
       margin: 4px calc(50% - 50vw) -16px;
@@ -754,7 +740,7 @@
 </head>
 <body class="homepage">
   <div class="hero-stage">
-    <img class="hero-stage-bg" src="elements/hero%20interal%20background.svg?v=warmer-motion-20260806-1" alt="" aria-hidden="true" />
+    <img class="hero-stage-bg" src="elements/hero%20interal%20background.svg?v=visible-flow-20260806-1" alt="" aria-hidden="true" />
 
     <section class="hero" aria-labelledby="home-hero-title">
       <div class="hero-inner">
