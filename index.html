@@ -468,9 +468,10 @@
     }
 
     .home-footer {
+      position: relative;
       width: 100vw;
       margin: 4px calc(50% - 50vw) -16px;
-      padding: 18px max(18px, calc((100vw - 1240px) / 2 + 18px));
+      padding: 30px max(18px, calc((100vw - 1240px) / 2 + 18px)) 18px;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
@@ -486,6 +487,21 @@
 
     body.dark-theme .home-footer {
       background: color-mix(in srgb, var(--bg) 78%, #000 22%);
+    }
+
+    .home-footer::before {
+      content: "";
+      position: absolute;
+      top: 7px;
+      left: 50%;
+      width: 64px;
+      height: 18px;
+      transform: translateX(-50%);
+      color: var(--brand-gold-text);
+      background: currentColor;
+      -webkit-mask: url("elements/interal-wave-divider.svg") center / contain no-repeat;
+      mask: url("elements/interal-wave-divider.svg") center / contain no-repeat;
+      pointer-events: none;
     }
 
     .home-footer-info {
