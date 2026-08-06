@@ -1,52 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="2560" height="1895" viewBox="0 0 2560 1895" preserveAspectRatio="none">
   <defs>
     <style>
-      @media (prefers-reduced-motion: no-preference) {
-        .hero-plum-field { animation: heroPlumFlow 6.2s cubic-bezier(.45, 0, .55, 1) infinite; }
-        .hero-lavender-field { animation: heroLavenderFlow 5.8s cubic-bezier(.45, 0, .55, 1) infinite; }
-        .hero-amber-field { animation: heroAmberFlow 4.6s cubic-bezier(.45, 0, .55, 1) infinite; }
-        .hero-coral-field { animation: heroCoralFlow 5s cubic-bezier(.45, 0, .55, 1) infinite; }
-        .hero-warm-right-field { animation: heroWarmRightFlow 5.4s cubic-bezier(.45, 0, .55, 1) infinite; }
-        .hero-amber-core { animation: heroAmberHue 4.6s ease-in-out infinite; }
-        .hero-coral-core { animation: heroCoralHue 5s ease-in-out infinite; }
-        .hero-warm-core { animation: heroWarmHue 5.4s ease-in-out infinite; }
-      }
-      @keyframes heroAmberHue {
-        0%, 100% { stop-color: #E0A04A; }
-        50% { stop-color: #F08B6A; }
-      }
-      @keyframes heroCoralHue {
-        0%, 100% { stop-color: #F08B6A; }
-        50% { stop-color: #D78B32; }
-      }
-      @keyframes heroWarmHue {
-        0%, 100% { stop-color: #D78B32; }
-        50% { stop-color: #E56F5D; }
-      }
-      @keyframes heroPlumFlow {
-        0%, 100% { transform: translate(-180px, 100px); opacity: .62; }
-        34% { transform: translate(260px, -120px); opacity: .34; }
-        67% { transform: translate(120px, 300px); opacity: 1; }
-      }
-      @keyframes heroLavenderFlow {
-        0%, 100% { transform: translate(180px, -100px); opacity: .48; }
-        34% { transform: translate(-360px, 220px); opacity: 1; }
-        67% { transform: translate(-80px, 460px); opacity: .32; }
-      }
-      @keyframes heroAmberFlow {
-        0%, 100% { transform: translate(-180px, -80px); opacity: .34; }
-        34% { transform: translate(440px, 180px); opacity: 1; }
-        67% { transform: translate(80px, 520px); opacity: .26; }
-      }
-      @keyframes heroCoralFlow {
-        0%, 100% { transform: translate(120px, -180px); opacity: 1; }
-        34% { transform: translate(520px, 120px); opacity: .28; }
-        67% { transform: translate(-300px, 360px); opacity: 1; }
-      }
-      @keyframes heroWarmRightFlow {
-        0%, 100% { transform: translate(220px, 120px); opacity: .3; }
-        34% { transform: translate(-420px, -260px); opacity: 1; }
-        67% { transform: translate(-160px, 340px); opacity: .42; }
+      .static-field { display: none; }
+      @media (prefers-reduced-motion: reduce) {
+        .motion-field { display: none; }
+        .static-field { display: inline; }
+        .hero-amber-core { stop-color: #E0A04A !important; }
+        .hero-coral-core { stop-color: #F08B6A !important; }
+        .hero-warm-core { stop-color: #D78B32 !important; }
       }
     </style>
     <radialGradient id="plum" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1060 1730) scale(1900 1320)">
@@ -60,25 +21,56 @@
       <stop offset="1" stop-color="#B8A7DF" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="amber" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(120 120) scale(1180 800)">
-      <stop class="hero-amber-core" stop-color="#E0A04A" stop-opacity=".88"/>
+      <stop class="hero-amber-core" stop-color="#E0A04A" stop-opacity=".88">
+        <animate attributeName="stop-color" values="#E0A04A;#F08B6A;#E0A04A" dur="4.6s" repeatCount="indefinite"/>
+      </stop>
       <stop offset=".42" stop-color="#D78B32" stop-opacity=".58"/>
       <stop offset="1" stop-color="#D78B32" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="coral" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(430 1040) scale(1320 1020)">
-      <stop class="hero-coral-core" stop-color="#F08B6A" stop-opacity=".8"/>
+      <stop class="hero-coral-core" stop-color="#F08B6A" stop-opacity=".8">
+        <animate attributeName="stop-color" values="#F08B6A;#D78B32;#F08B6A" dur="5s" repeatCount="indefinite"/>
+      </stop>
       <stop offset=".44" stop-color="#E56F5D" stop-opacity=".52"/>
       <stop offset="1" stop-color="#E56F5D" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="warmRight" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(2440 1640) scale(1180 820)">
-      <stop class="hero-warm-core" stop-color="#D78B32" stop-opacity=".64"/>
+      <stop class="hero-warm-core" stop-color="#D78B32" stop-opacity=".64">
+        <animate attributeName="stop-color" values="#D78B32;#E56F5D;#D78B32" dur="5.4s" repeatCount="indefinite"/>
+      </stop>
       <stop offset=".38" stop-color="#E56F5D" stop-opacity=".44"/>
       <stop offset="1" stop-color="#E56F5D" stop-opacity="0"/>
     </radialGradient>
   </defs>
   <rect width="2560" height="1895" fill="#3658B0"/>
-  <g class="hero-plum-field"><rect x="-700" y="-650" width="3960" height="3195" fill="url(#plum)"/></g>
-  <g class="hero-lavender-field"><rect x="-700" y="-650" width="3960" height="3195" fill="url(#lavender)"/></g>
-  <g class="hero-amber-field"><rect x="-700" y="-650" width="3960" height="3195" fill="url(#amber)"/></g>
-  <g class="hero-coral-field"><rect x="-700" y="-650" width="3960" height="3195" fill="url(#coral)"/></g>
-  <g class="hero-warm-right-field"><rect x="-700" y="-650" width="3960" height="3195" fill="url(#warmRight)"/></g>
+  <g class="motion-field hero-plum-field">
+    <animateTransform attributeName="transform" type="translate" values="-180 100;260 -120;120 300;-180 100" keyTimes="0;.34;.67;1" dur="6.2s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values=".62;.34;1;.62" keyTimes="0;.34;.67;1" dur="6.2s" repeatCount="indefinite"/>
+    <rect x="-700" y="-650" width="3960" height="3195" fill="url(#plum)"/>
+  </g>
+  <g class="motion-field hero-lavender-field">
+    <animateTransform attributeName="transform" type="translate" values="180 -100;-360 220;-80 460;180 -100" keyTimes="0;.34;.67;1" dur="5.8s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values=".48;1;.32;.48" keyTimes="0;.34;.67;1" dur="5.8s" repeatCount="indefinite"/>
+    <rect x="-700" y="-650" width="3960" height="3195" fill="url(#lavender)"/>
+  </g>
+  <g class="motion-field hero-amber-field">
+    <animateTransform attributeName="transform" type="translate" values="-180 -80;440 180;80 520;-180 -80" keyTimes="0;.34;.67;1" dur="4.6s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values=".34;1;.26;.34" keyTimes="0;.34;.67;1" dur="4.6s" repeatCount="indefinite"/>
+    <rect x="-700" y="-650" width="3960" height="3195" fill="url(#amber)"/>
+  </g>
+  <g class="motion-field hero-coral-field">
+    <animateTransform attributeName="transform" type="translate" values="120 -180;520 120;-300 360;120 -180" keyTimes="0;.34;.67;1" dur="5s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="1;.28;1;1" keyTimes="0;.34;.67;1" dur="5s" repeatCount="indefinite"/>
+    <rect x="-700" y="-650" width="3960" height="3195" fill="url(#coral)"/>
+  </g>
+  <g class="motion-field hero-warm-right-field">
+    <animateTransform attributeName="transform" type="translate" values="220 120;-420 -260;-160 340;220 120" keyTimes="0;.34;.67;1" dur="5.4s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values=".3;1;.42;.3" keyTimes="0;.34;.67;1" dur="5.4s" repeatCount="indefinite"/>
+    <rect x="-700" y="-650" width="3960" height="3195" fill="url(#warmRight)"/>
+  </g>
+  <g class="static-field"><rect x="-700" y="-650" width="3960" height="3195" fill="url(#plum)"/></g>
+  <g class="static-field"><rect x="-700" y="-650" width="3960" height="3195" fill="url(#lavender)"/></g>
+  <g class="static-field"><rect x="-700" y="-650" width="3960" height="3195" fill="url(#amber)"/></g>
+  <g class="static-field"><rect x="-700" y="-650" width="3960" height="3195" fill="url(#coral)"/></g>
+  <g class="static-field"><rect x="-700" y="-650" width="3960" height="3195" fill="url(#warmRight)"/></g>
 </svg>
