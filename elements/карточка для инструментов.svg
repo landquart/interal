@@ -16,27 +16,30 @@
 <stop offset="0.4" stop-color="#3658B0"/>
 <stop offset="1" stop-color="#3658B0"/>
 </linearGradient>
-<radialGradient id="cardLavender" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(555 340) scale(350 210)">
-<stop stop-color="#B8A7DF" stop-opacity="0.62"/>
-<stop offset="0.5" stop-color="#B8A7DF" stop-opacity="0.26"/>
-<stop offset="1" stop-color="#B8A7DF" stop-opacity="0"/>
-</radialGradient>
-<radialGradient id="cardWarm" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(520 115) scale(300 170)">
-<stop class="card-warm-core" stop-color="#D78B32" stop-opacity="0.68">
-<animate attributeName="stop-color" values="#D78B32;#E56F5D;#D78B32" dur="10.2s" repeatCount="indefinite"/>
+<linearGradient id="cardLavender" x1="650" y1="420" x2="150" y2="55" gradientUnits="userSpaceOnUse">
+<stop stop-color="#B8A7DF" stop-opacity="0.46"/>
+<stop offset="0.42" stop-color="#B8A7DF" stop-opacity="0.24"/>
+<stop offset="0.76" stop-color="#684270" stop-opacity="0.10"/>
+<stop offset="1" stop-color="#3658B0" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="cardWarm" x1="650" y1="20" x2="145" y2="345" gradientUnits="userSpaceOnUse">
+<stop class="card-warm-core" stop-color="#D78B32" stop-opacity="0.48">
+<animate attributeName="stop-color" values="#D78B32;#E56F5D;#F08B6A;#D78B32" dur="5.2s" repeatCount="indefinite"/>
 </stop>
-<stop offset="0.42" stop-color="#E56F5D" stop-opacity="0.36"/>
-<stop offset="1" stop-color="#E56F5D" stop-opacity="0"/>
-</radialGradient>
+<stop offset="0.28" stop-color="#E0A04A" stop-opacity="0.32"/>
+<stop offset="0.54" stop-color="#F08B6A" stop-opacity="0.20"/>
+<stop offset="0.76" stop-color="#684270" stop-opacity="0.11"/>
+<stop offset="1" stop-color="#3658B0" stop-opacity="0"/>
+</linearGradient>
 </defs>
 <g clip-path="url(#cardSurfaceClip)">
 <rect width="575" height="377" fill="url(#cardBase)"/>
 <g class="motion-field card-lavender-field">
-<animateTransform attributeName="transform" type="translate" values="45 -25;-55 35;25 60;45 -25" keyTimes="0;.34;.67;1" dur="9.1s" repeatCount="indefinite"/>
+<animateTransform attributeName="transform" type="translate" values="35 -20;-45 30;20 50;35 -20" keyTimes="0;.34;.67;1" dur="4.9s" repeatCount="indefinite"/>
 <rect x="-360" y="-280" width="1295" height="937" fill="url(#cardLavender)"/>
 </g>
 <g class="motion-field card-warm-field">
-<animateTransform attributeName="transform" type="translate" values="25 -20;65 30;-15 55;25 -20" keyTimes="0;.34;.67;1" dur="8.6s" repeatCount="indefinite"/>
+<animateTransform attributeName="transform" type="translate" values="15 -10;55 20;-10 45;15 -10" keyTimes="0;.34;.67;1" dur="4.3s" repeatCount="indefinite"/>
 <rect x="-360" y="-280" width="1295" height="937" fill="url(#cardWarm)"/>
 </g>
 <g class="static-field"><rect x="-360" y="-280" width="1295" height="937" fill="url(#cardLavender)"/></g>
