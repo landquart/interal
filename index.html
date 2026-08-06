@@ -303,6 +303,16 @@
     .home-section { display: grid; gap: 10px; }
     .home-section-title { margin: 2px 2px 0; color: var(--text); font-size: clamp(1.15rem, 2vw, 1.45rem); line-height: 1.2; font-weight: var(--type-weight-section); }
 
+    #home-tools-title::after,
+    #home-registry-title::after {
+      content: "";
+      display: block;
+      width: 38px;
+      height: 3px;
+      margin-top: 7px;
+      background: linear-gradient(90deg, #3658B0, #684270);
+    }
+
     .homepage .container {
       width: 100%;
       display: grid;
