@@ -5,8 +5,6 @@
 @media (prefers-reduced-motion: reduce) {
   .motion-field { display: none; }
   .static-field { display: inline; }
-  .card-amber-core { stop-color: #E0A04A !important; }
-  .card-coral-core { stop-color: #F08B6A !important; }
   .card-warm-core { stop-color: #D78B32 !important; }
 }
 </style>
@@ -23,23 +21,9 @@
 <stop offset="0.5" stop-color="#B8A7DF" stop-opacity="0.26"/>
 <stop offset="1" stop-color="#B8A7DF" stop-opacity="0"/>
 </radialGradient>
-<radialGradient id="cardAmber" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(265 62) scale(265 155)">
-<stop class="card-amber-core" stop-color="#E0A04A" stop-opacity="0.86">
-<animate attributeName="stop-color" values="#E0A04A;#F08B6A;#E0A04A" dur="4s" repeatCount="indefinite"/>
-</stop>
-<stop offset="0.46" stop-color="#D78B32" stop-opacity="0.52"/>
-<stop offset="1" stop-color="#D78B32" stop-opacity="0"/>
-</radialGradient>
-<radialGradient id="cardCoral" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(520 110) scale(285 205)">
-<stop class="card-coral-core" stop-color="#F08B6A" stop-opacity="0.78">
-<animate attributeName="stop-color" values="#F08B6A;#D78B32;#F08B6A" dur="4.4s" repeatCount="indefinite"/>
-</stop>
-<stop offset="0.46" stop-color="#E56F5D" stop-opacity="0.48"/>
-<stop offset="1" stop-color="#E56F5D" stop-opacity="0"/>
-</radialGradient>
 <radialGradient id="cardWarm" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(190 350) scale(300 170)">
 <stop class="card-warm-core" stop-color="#D78B32" stop-opacity="0.68">
-<animate attributeName="stop-color" values="#D78B32;#E56F5D;#D78B32" dur="4.8s" repeatCount="indefinite"/>
+<animate attributeName="stop-color" values="#D78B32;#E56F5D;#D78B32" dur="10.2s" repeatCount="indefinite"/>
 </stop>
 <stop offset="0.42" stop-color="#E56F5D" stop-opacity="0.36"/>
 <stop offset="1" stop-color="#E56F5D" stop-opacity="0"/>
@@ -48,24 +32,14 @@
 <g clip-path="url(#cardSurfaceClip)">
 <rect width="575" height="377" fill="url(#cardBase)"/>
 <g class="motion-field card-lavender-field">
-<animateTransform attributeName="transform" type="translate" values="65 -45;-105 70;25 115;65 -45" keyTimes="0;.34;.67;1" dur="5.2s" repeatCount="indefinite"/>
+<animateTransform attributeName="transform" type="translate" values="45 -25;-55 35;25 60;45 -25" keyTimes="0;.34;.67;1" dur="9.1s" repeatCount="indefinite"/>
 <rect x="-360" y="-280" width="1295" height="937" fill="url(#cardLavender)"/>
 </g>
-<g class="motion-field card-amber-field">
-<animateTransform attributeName="transform" type="translate" values="-90 -50;150 65;35 145;-90 -50" keyTimes="0;.34;.67;1" dur="4s" repeatCount="indefinite"/>
-<rect x="-360" y="-280" width="1295" height="937" fill="url(#cardAmber)"/>
-</g>
-<g class="motion-field card-coral-field">
-<animateTransform attributeName="transform" type="translate" values="95 -65;-170 85;-45 150;95 -65" keyTimes="0;.34;.67;1" dur="4.4s" repeatCount="indefinite"/>
-<rect x="-360" y="-280" width="1295" height="937" fill="url(#cardCoral)"/>
-</g>
 <g class="motion-field card-warm-field">
-<animateTransform attributeName="transform" type="translate" values="-100 70;125 -70;75 110;-100 70" keyTimes="0;.34;.67;1" dur="4.8s" repeatCount="indefinite"/>
+<animateTransform attributeName="transform" type="translate" values="25 -20;65 30;-15 55;25 -20" keyTimes="0;.34;.67;1" dur="8.6s" repeatCount="indefinite"/>
 <rect x="-360" y="-280" width="1295" height="937" fill="url(#cardWarm)"/>
 </g>
 <g class="static-field"><rect x="-360" y="-280" width="1295" height="937" fill="url(#cardLavender)"/></g>
-<g class="static-field"><rect x="-360" y="-280" width="1295" height="937" fill="url(#cardAmber)"/></g>
-<g class="static-field"><rect x="-360" y="-280" width="1295" height="937" fill="url(#cardCoral)"/></g>
 <g class="static-field"><rect x="-360" y="-280" width="1295" height="937" fill="url(#cardWarm)"/></g>
 </g>
 <mask id="mask0_5_10" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="273" height="272">
