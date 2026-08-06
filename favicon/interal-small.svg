@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <mask id="optical-cut">
+      <rect width="64" height="64" fill="black"/>
+      <circle cx="32" cy="32" r="30" fill="white"/>
+      <path d="M32 8L34.3 13.7L40 16L34.3 18.3L32 24L29.7 18.3L24 16L29.7 13.7L32 8Z" fill="black"/>
+      <g fill="none" stroke="black" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 29C12 33 17 35 22 35C27 35 29.5 31 32 31C34.5 31 37 35 42 35C47 35 52 33 60 29"/>
+        <path d="M4 39C12 43 17 45 22 45C27 45 29.5 41 32 41C34.5 41 37 45 42 45C47 45 52 43 60 39"/>
+        <path d="M4 49C12 53 17 55 22 55C27 55 29.5 51 32 51C34.5 51 37 55 42 55C47 55 52 53 60 49"/>
+      </g>
+    </mask>
+  </defs>
+  <rect width="64" height="64" fill="#E39B12" mask="url(#optical-cut)"/>
+</svg>
