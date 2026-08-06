@@ -235,10 +235,16 @@
     .home-intro-description {
       margin: 0;
       min-width: 0;
+      max-width: var(--type-content-measure);
+      display: grid;
+      gap: .82em;
       color: var(--text);
       font-size: clamp(1rem, 1.35vw, 1.12rem);
       line-height: 1.62;
-      max-width: var(--type-content-measure);
+    }
+
+    .home-intro-description p {
+      margin: 0;
     }
 
     .home-standalone-quote {
@@ -841,7 +847,12 @@
         </p>
       </div>
 
-      <p class="home-intro-description" data-i18n="home.introDescription">Interal (от International Auxiliari Lingua — «международный вспомогательный язык») — плановый язык-посредник, объединяющий в единой системе наиболее практичные элементы натурализма и схематизма. Его лексика, приставки и суффиксы отбираются прежде всего из английского, французского, испанского, греческого и латыни, в меньшей степени — из немецкого, итальянского, русского, датского и шведского, а также из международно известных слов китайского, арабского, хинди, санскрита и других языков. Гибкое словообразование позволяет получать узнаваемые слова разными способами. Interal ориентирован прежде всего на носителей индоевропейских языков как общий и нейтральный язык, но открыт для всех и может быть проще в изучении, чем этнические индоевропейские языки. Это не претензия на совершенный или принципиально новый проект, а научно обоснованная компиляция интерлингвистических идей, построенная на объективности, удобстве и практической проверке решений; она служит основой для дальнейшего развития языка, пересмотра неэффективных элементов и сохранения тех, которые действительно работают.</p>
+      <div class="home-intro-description">
+        <p data-i18n="home.introDescription1">Interal (от International Auxiliari Lingua — «международный вспомогательный язык») — плановый язык-посредник, объединяющий в единой системе наиболее практичные элементы натурализма и схематизма.</p>
+        <p data-i18n="home.introDescription2">Его лексика, приставки и суффиксы отбираются прежде всего из английского, французского, испанского, греческого и латыни, в меньшей степени — из немецкого, итальянского, русского, датского и шведского, а также из международно известных слов китайского, арабского, хинди, санскрита и других языков. Гибкое словообразование позволяет получать узнаваемые слова разными способами.</p>
+        <p data-i18n="home.introDescription3">Interal ориентирован прежде всего на носителей индоевропейских языков как общий и нейтральный язык, но открыт для всех и может быть проще в изучении, чем этнические индоевропейские языки.</p>
+        <p data-i18n="home.introDescription4">Это не претензия на совершенный или принципиально новый проект, а научно обоснованная компиляция интерлингвистических идей, построенная на объективности, удобстве и практической проверке решений; она служит основой для дальнейшего развития языка, пересмотра неэффективных элементов и сохранения тех, которые действительно работают.</p>
+      </div>
     </section>
 
     <section class="home-about" aria-labelledby="home-about-title">
@@ -954,7 +965,10 @@
           'home.introAriaLabel': 'Описание Interal',
           'home.introQuoteLead': 'НАЦИОНАЛЬНАЯ БЕСЕДА',
           'home.introQuoteAccent': 'НА НАЦИОНАЛЬНОМ ЯЗЫКЕ',
-          'home.introDescription': 'Interal (от International Auxiliari Lingua — «международный вспомогательный язык») — плановый язык-посредник, объединяющий в единой системе наиболее практичные элементы натурализма и схематизма. Его лексика, приставки и суффиксы отбираются прежде всего из английского, французского, испанского, греческого и латыни, в меньшей степени — из немецкого, итальянского, русского, датского и шведского, а также из международно известных слов китайского, арабского, хинди, санскрита и других языков. Гибкое словообразование позволяет получать узнаваемые слова разными способами. Interal ориентирован прежде всего на носителей индоевропейских языков как общий и нейтральный язык, но открыт для всех и может быть проще в изучении, чем этнические индоевропейские языки. Это не претензия на совершенный или принципиально новый проект, а научно обоснованная компиляция интерлингвистических идей, построенная на объективности, удобстве и практической проверке решений; она служит основой для дальнейшего развития языка, пересмотра неэффективных элементов и сохранения тех, которые действительно работают.',
+          'home.introDescription1': 'Interal (от International Auxiliari Lingua — «международный вспомогательный язык») — плановый язык-посредник, объединяющий в единой системе наиболее практичные элементы натурализма и схематизма.',
+          'home.introDescription2': 'Его лексика, приставки и суффиксы отбираются прежде всего из английского, французского, испанского, греческого и латыни, в меньшей степени — из немецкого, итальянского, русского, датского и шведского, а также из международно известных слов китайского, арабского, хинди, санскрита и других языков. Гибкое словообразование позволяет получать узнаваемые слова разными способами.',
+          'home.introDescription3': 'Interal ориентирован прежде всего на носителей индоевропейских языков как общий и нейтральный язык, но открыт для всех и может быть проще в изучении, чем этнические индоевропейские языки.',
+          'home.introDescription4': 'Это не претензия на совершенный или принципиально новый проект, а научно обоснованная компиляция интерлингвистических идей, построенная на объективности, удобстве и практической проверке решений; она служит основой для дальнейшего развития языка, пересмотра неэффективных элементов и сохранения тех, которые действительно работают.',
           'home.secondQuoteLead': 'МЕЖДУНАРОДНАЯ БЕСЕДА',
           'home.secondQuoteAccent': 'НА МЕЖДУНАРОДНОМ ЯЗЫКЕ',
           'home.aboutTitle': 'Интераль — это...',
@@ -1000,7 +1014,10 @@
           'home.introAriaLabel': 'Interal description',
           'home.introQuoteLead': 'NATIONAL CONVERSATION',
           'home.introQuoteAccent': 'IN A NATIONAL LANGUAGE',
-          'home.introDescription': 'Interal, derived from International Auxiliari Lingua, meaning “international auxiliary language”, is a planned intermediary language that combines the most practical elements of naturalism and schematism within a unified system. Its vocabulary, prefixes, and suffixes are selected primarily from English, French, Spanish, Greek, and Latin; to a lesser extent from German, Italian, Russian, Danish, and Swedish; and also from internationally known words of Chinese, Arabic, Hindi, Sanskrit, and other origins. Its flexible word-formation system makes it possible to create recognisable words in different ways. Interal is intended primarily as a common and neutral language for speakers of Indo-European languages, but it is open to everyone and may be easier to learn than ethnic Indo-European languages. It does not claim to be a perfect or fundamentally new project, but rather a scientifically grounded synthesis of interlinguistic ideas based on objectivity, usability, and practical evaluation of linguistic decisions. This provides a foundation for the language’s further development, the revision of ineffective elements, and the preservation of those that genuinely work.',
+          'home.introDescription1': 'Interal, derived from International Auxiliari Lingua, meaning “international auxiliary language”, is a planned intermediary language that combines the most practical elements of naturalism and schematism within a unified system.',
+          'home.introDescription2': 'Its vocabulary, prefixes, and suffixes are selected primarily from English, French, Spanish, Greek, and Latin; to a lesser extent from German, Italian, Russian, Danish, and Swedish; and also from internationally known words of Chinese, Arabic, Hindi, Sanskrit, and other origins. Its flexible word-formation system makes it possible to create recognisable words in different ways.',
+          'home.introDescription3': 'Interal is intended primarily as a common and neutral language for speakers of Indo-European languages, but it is open to everyone and may be easier to learn than ethnic Indo-European languages.',
+          'home.introDescription4': 'It does not claim to be a perfect or fundamentally new project, but rather a scientifically grounded synthesis of interlinguistic ideas based on objectivity, usability, and practical evaluation of linguistic decisions. This provides a foundation for the language’s further development, the revision of ineffective elements, and the preservation of those that genuinely work.',
           'home.secondQuoteLead': 'INTERNATIONAL CONVERSATION',
           'home.secondQuoteAccent': 'IN AN INTERNATIONAL LANGUAGE',
           'home.aboutTitle': 'Interal is...',
