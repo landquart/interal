@@ -96,7 +96,7 @@
   min-height: 42px;
   padding: 10px 12px;
   border-radius: var(--radius-md);
-  font-weight: 700;
+  font-weight: var(--type-weight-label);
   border: 1px solid var(--border-subtle);
   background: var(--surface-elevated);
 }
@@ -125,7 +125,7 @@
   margin-bottom: 6px;
   color: var(--text-muted);
   font-size: 13px;
-  font-weight: 700;
+  font-weight: var(--type-weight-label);
 }
 
 .altervordes-page .decision-form {
@@ -144,7 +144,7 @@
 
 .altervordes-page summary {
   cursor: pointer;
-  font-weight: 800;
+  font-weight: var(--type-weight-card);
 }
 
 .altervordes-page details > *:not(summary) {
@@ -227,4 +227,4 @@
   background: color-mix(in srgb, var(--brand-gold) 8%, var(--surface-elevated));
 }
 .altervordes-page .decision-main-item:first-child p,
-.altervordes-page .decision-form { color: var(--brand-gold-text); font-weight: 800; }
+.altervordes-page .decision-form { color: var(--brand-gold-text); font-weight: var(--type-weight-result); }
