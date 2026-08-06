@@ -1,46 +1,13 @@
 <svg width="575" height="377" viewBox="0 0 575 377" fill="none" xmlns="http://www.w3.org/2000/svg">
 <defs>
 <style>
-@media (prefers-reduced-motion: no-preference) {
-  .card-lavender-field { animation: cardLavenderFlow 5.2s cubic-bezier(.45, 0, .55, 1) infinite; }
-  .card-amber-field { animation: cardAmberFlow 4s cubic-bezier(.45, 0, .55, 1) infinite; }
-  .card-coral-field { animation: cardCoralFlow 4.4s cubic-bezier(.45, 0, .55, 1) infinite; }
-  .card-warm-field { animation: cardWarmFlow 4.8s cubic-bezier(.45, 0, .55, 1) infinite; }
-  .card-amber-core { animation: cardAmberHue 4s ease-in-out infinite; }
-  .card-coral-core { animation: cardCoralHue 4.4s ease-in-out infinite; }
-  .card-warm-core { animation: cardWarmHue 4.8s ease-in-out infinite; }
-}
-@keyframes cardAmberHue {
-  0%, 100% { stop-color: #E0A04A; }
-  50% { stop-color: #F08B6A; }
-}
-@keyframes cardCoralHue {
-  0%, 100% { stop-color: #F08B6A; }
-  50% { stop-color: #D78B32; }
-}
-@keyframes cardWarmHue {
-  0%, 100% { stop-color: #D78B32; }
-  50% { stop-color: #E56F5D; }
-}
-@keyframes cardLavenderFlow {
-  0%, 100% { transform: translate(65px, -45px); }
-  34% { transform: translate(-105px, 70px); }
-  67% { transform: translate(25px, 115px); }
-}
-@keyframes cardAmberFlow {
-  0%, 100% { transform: translate(-90px, -50px); }
-  34% { transform: translate(150px, 65px); }
-  67% { transform: translate(35px, 145px); }
-}
-@keyframes cardCoralFlow {
-  0%, 100% { transform: translate(95px, -65px); }
-  34% { transform: translate(-170px, 85px); }
-  67% { transform: translate(-45px, 150px); }
-}
-@keyframes cardWarmFlow {
-  0%, 100% { transform: translate(-100px, 70px); }
-  34% { transform: translate(125px, -70px); }
-  67% { transform: translate(75px, 110px); }
+.static-field { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  .motion-field { display: none; }
+  .static-field { display: inline; }
+  .card-amber-core { stop-color: #E0A04A !important; }
+  .card-coral-core { stop-color: #F08B6A !important; }
+  .card-warm-core { stop-color: #D78B32 !important; }
 }
 </style>
 <clipPath id="cardSurfaceClip">
@@ -57,27 +24,49 @@
 <stop offset="1" stop-color="#B8A7DF" stop-opacity="0"/>
 </radialGradient>
 <radialGradient id="cardAmber" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(265 62) scale(265 155)">
-<stop class="card-amber-core" stop-color="#E0A04A" stop-opacity="0.86"/>
+<stop class="card-amber-core" stop-color="#E0A04A" stop-opacity="0.86">
+<animate attributeName="stop-color" values="#E0A04A;#F08B6A;#E0A04A" dur="4s" repeatCount="indefinite"/>
+</stop>
 <stop offset="0.46" stop-color="#D78B32" stop-opacity="0.52"/>
 <stop offset="1" stop-color="#D78B32" stop-opacity="0"/>
 </radialGradient>
 <radialGradient id="cardCoral" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(520 110) scale(285 205)">
-<stop class="card-coral-core" stop-color="#F08B6A" stop-opacity="0.78"/>
+<stop class="card-coral-core" stop-color="#F08B6A" stop-opacity="0.78">
+<animate attributeName="stop-color" values="#F08B6A;#D78B32;#F08B6A" dur="4.4s" repeatCount="indefinite"/>
+</stop>
 <stop offset="0.46" stop-color="#E56F5D" stop-opacity="0.48"/>
 <stop offset="1" stop-color="#E56F5D" stop-opacity="0"/>
 </radialGradient>
 <radialGradient id="cardWarm" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(190 350) scale(300 170)">
-<stop class="card-warm-core" stop-color="#D78B32" stop-opacity="0.68"/>
+<stop class="card-warm-core" stop-color="#D78B32" stop-opacity="0.68">
+<animate attributeName="stop-color" values="#D78B32;#E56F5D;#D78B32" dur="4.8s" repeatCount="indefinite"/>
+</stop>
 <stop offset="0.42" stop-color="#E56F5D" stop-opacity="0.36"/>
 <stop offset="1" stop-color="#E56F5D" stop-opacity="0"/>
 </radialGradient>
 </defs>
 <g clip-path="url(#cardSurfaceClip)">
 <rect width="575" height="377" fill="url(#cardBase)"/>
-<g class="card-lavender-field"><rect x="-360" y="-280" width="1295" height="937" fill="url(#cardLavender)"/></g>
-<g class="card-amber-field"><rect x="-360" y="-280" width="1295" height="937" fill="url(#cardAmber)"/></g>
-<g class="card-coral-field"><rect x="-360" y="-280" width="1295" height="937" fill="url(#cardCoral)"/></g>
-<g class="card-warm-field"><rect x="-360" y="-280" width="1295" height="937" fill="url(#cardWarm)"/></g>
+<g class="motion-field card-lavender-field">
+<animateTransform attributeName="transform" type="translate" values="65 -45;-105 70;25 115;65 -45" keyTimes="0;.34;.67;1" dur="5.2s" repeatCount="indefinite"/>
+<rect x="-360" y="-280" width="1295" height="937" fill="url(#cardLavender)"/>
+</g>
+<g class="motion-field card-amber-field">
+<animateTransform attributeName="transform" type="translate" values="-90 -50;150 65;35 145;-90 -50" keyTimes="0;.34;.67;1" dur="4s" repeatCount="indefinite"/>
+<rect x="-360" y="-280" width="1295" height="937" fill="url(#cardAmber)"/>
+</g>
+<g class="motion-field card-coral-field">
+<animateTransform attributeName="transform" type="translate" values="95 -65;-170 85;-45 150;95 -65" keyTimes="0;.34;.67;1" dur="4.4s" repeatCount="indefinite"/>
+<rect x="-360" y="-280" width="1295" height="937" fill="url(#cardCoral)"/>
+</g>
+<g class="motion-field card-warm-field">
+<animateTransform attributeName="transform" type="translate" values="-100 70;125 -70;75 110;-100 70" keyTimes="0;.34;.67;1" dur="4.8s" repeatCount="indefinite"/>
+<rect x="-360" y="-280" width="1295" height="937" fill="url(#cardWarm)"/>
+</g>
+<g class="static-field"><rect x="-360" y="-280" width="1295" height="937" fill="url(#cardLavender)"/></g>
+<g class="static-field"><rect x="-360" y="-280" width="1295" height="937" fill="url(#cardAmber)"/></g>
+<g class="static-field"><rect x="-360" y="-280" width="1295" height="937" fill="url(#cardCoral)"/></g>
+<g class="static-field"><rect x="-360" y="-280" width="1295" height="937" fill="url(#cardWarm)"/></g>
 </g>
 <mask id="mask0_5_10" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="273" height="272">
 <path d="M136.5 0C211.887 0 273 60.8893 273 136C273 211.111 211.887 272 136.5 272C61.1131 272 0 211.111 0 136C0 60.8893 61.1131 0 136.5 0Z" fill="white"/>
