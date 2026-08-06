@@ -214,8 +214,8 @@ async function runSuccessfulCalculation(page) {
   const previousRunCount = await page.evaluate(() => window.__associativeRunCount);
   await page.locator('#rootInput').fill('alter');
   await page.locator('#targetMeaningInput').fill('other');
-  await expect(page.locator('#translationWordInput')).toHaveCount(0);
-  await expect(page.locator('#partOfSpeech')).toHaveCount(0);
+  assert.equal(await page.locator('#translationWordInput').count(), 0, 'translation word input stays absent');
+  assert.equal(await page.locator('#partOfSpeech').count(), 0, 'part-of-speech field stays absent');
   await page.locator('#calculateBtn').click();
 
   await page.waitForFunction(
