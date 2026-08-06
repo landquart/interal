@@ -226,18 +226,6 @@ body.has-global-menu .interal-tool-page {
   text-align: center;
 }
 
-.interal-page-hero::after {
-  content: "";
-  display: block;
-  width: 64px;
-  height: 18px;
-  margin: 10px auto 0;
-  color: var(--brand-gold-text);
-  background: currentColor;
-  -webkit-mask: url("../elements/interal-wave-divider.svg") center / contain no-repeat;
-  mask: url("../elements/interal-wave-divider.svg") center / contain no-repeat;
-}
-
 .interal-page-title {
   margin: 0;
   text-align: center;
