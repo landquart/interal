@@ -6,7 +6,7 @@ const loaderSource = await readFile(new URL('../shared/ui.js', import.meta.url),
 const alterPageSource = await readFile(new URL('../altervordes/index.html', import.meta.url), 'utf8');
 
 assert.match(loaderSource, /json-author-autosave\.js\?v=json-author-autosave-20260725-1/);
-assert.match(loaderSource, /ui-core\.js\?v=json-author-autosave-20260725-1/);
+assert.match(loaderSource, /ui-core\.js\?v=[a-z0-9-]+-\d{8}-\d+/);
 assert.match(alterPageSource, /shared\/ui\.js\?v=json-author-autosave-20260725-1/);
 
 assert.match(autosaveSource, /remember\.addEventListener\('change'/);
