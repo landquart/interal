@@ -16,12 +16,12 @@
 
 /* Preserve the established UI, but reduce unnecessary visual layering. */
 .interal-panel h2 {
-  font-weight: 700;
+  font-weight: var(--type-weight-card);
 }
 
 .interal-field label,
 .interal-field > span {
-  font-weight: 600;
+  font-weight: var(--type-weight-label);
 }
 
 .interal-tool-page .interal-panel {
