@@ -9,29 +9,29 @@
         .hero-warm-right-field { animation: heroWarmRightFlow 5.4s cubic-bezier(.45, 0, .55, 1) infinite; }
       }
       @keyframes heroPlumFlow {
-        0%, 100% { transform: translate(-180px, 100px); opacity: .82; }
-        34% { transform: translate(260px, -120px); opacity: .62; }
-        67% { transform: translate(120px, 300px); opacity: .94; }
+        0%, 100% { transform: translate(-180px, 100px); opacity: .62; }
+        34% { transform: translate(260px, -120px); opacity: .34; }
+        67% { transform: translate(120px, 300px); opacity: 1; }
       }
       @keyframes heroLavenderFlow {
-        0%, 100% { transform: translate(180px, -100px); opacity: .78; }
+        0%, 100% { transform: translate(180px, -100px); opacity: .48; }
         34% { transform: translate(-360px, 220px); opacity: 1; }
-        67% { transform: translate(-80px, 460px); opacity: .64; }
+        67% { transform: translate(-80px, 460px); opacity: .32; }
       }
       @keyframes heroAmberFlow {
-        0%, 100% { transform: translate(-180px, -80px); opacity: .74; }
+        0%, 100% { transform: translate(-180px, -80px); opacity: .34; }
         34% { transform: translate(440px, 180px); opacity: 1; }
-        67% { transform: translate(80px, 520px); opacity: .62; }
+        67% { transform: translate(80px, 520px); opacity: .26; }
       }
       @keyframes heroCoralFlow {
-        0%, 100% { transform: translate(120px, -180px); opacity: .9; }
-        34% { transform: translate(520px, 120px); opacity: .6; }
+        0%, 100% { transform: translate(120px, -180px); opacity: 1; }
+        34% { transform: translate(520px, 120px); opacity: .28; }
         67% { transform: translate(-300px, 360px); opacity: 1; }
       }
       @keyframes heroWarmRightFlow {
-        0%, 100% { transform: translate(220px, 120px); opacity: .68; }
+        0%, 100% { transform: translate(220px, 120px); opacity: .3; }
         34% { transform: translate(-420px, -260px); opacity: 1; }
-        67% { transform: translate(-160px, 340px); opacity: .76; }
+        67% { transform: translate(-160px, 340px); opacity: .42; }
       }
     </style>
     <radialGradient id="plum" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1060 1730) scale(1900 1320)">
