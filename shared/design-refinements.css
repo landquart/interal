@@ -157,24 +157,35 @@ html[lang="en"] .homepage .home-quote {
   box-shadow: 0 8px 22px rgba(15, 23, 42, .065);
 }
 
-.homepage .home-about-card:nth-child(1) {
-  --about-card-bg: #C7A55A !important;
-  --about-card-text: #1D1A12 !important;
+.homepage {
+  --home-about-lexicon-bg: #C98F72;
+  --home-about-lexicon-text: #21140F;
+  --home-about-grammar-bg: #B76573;
+  --home-about-grammar-text: #1A0C10;
+  --home-about-derivation-bg: #656B9D;
+  --home-about-derivation-text: #FFFFFF;
+  --home-about-methodology-bg: #568F9A;
+  --home-about-methodology-text: #0A1719;
 }
 
-.homepage .home-about-card:nth-child(2) {
-  --about-card-bg: #B56767 !important;
-  --about-card-text: #130A0B !important;
+.homepage .home-about-card[data-tone="lexicon"] {
+  --about-card-bg: var(--home-about-lexicon-bg);
+  --about-card-text: var(--home-about-lexicon-text);
 }
 
-.homepage .home-about-card:nth-child(3) {
-  --about-card-bg: #626799 !important;
-  --about-card-text: #FFFFFF !important;
+.homepage .home-about-card[data-tone="grammar"] {
+  --about-card-bg: var(--home-about-grammar-bg);
+  --about-card-text: var(--home-about-grammar-text);
 }
 
-.homepage .home-about-card:nth-child(4) {
-  --about-card-bg: #789174 !important;
-  --about-card-text: #132012 !important;
+.homepage .home-about-card[data-tone="derivation"] {
+  --about-card-bg: var(--home-about-derivation-bg);
+  --about-card-text: var(--home-about-derivation-text);
+}
+
+.homepage .home-about-card[data-tone="methodology"] {
+  --about-card-bg: var(--home-about-methodology-bg);
+  --about-card-text: var(--home-about-methodology-text);
 }
 
 .homepage .home-about-card:nth-child(even) {
