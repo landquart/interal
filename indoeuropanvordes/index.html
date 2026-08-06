@@ -84,7 +84,7 @@ body.dark-theme .internationalita-page .card-reset-btn img {
   font-size: clamp(2rem, 5vw, 2.7rem);
   line-height: 1.12;
   letter-spacing: 0.2px;
-  font-weight: 800;
+  font-weight: var(--type-weight-page);
   color: var(--text);
 }
 
@@ -221,6 +221,7 @@ body.dark-theme .internationalita-page .card-reset-btn img {
   display: block;
   font-size: 18px;
   font-weight: 800;
+  font-variant-numeric: tabular-nums;
 }
 
 .internationalita-page .small-note {
@@ -272,7 +273,7 @@ body.dark-theme .internationalita-page .table-wrap thead th {
 .internationalita-page thead th {
   border-top: 0;
   color: var(--text-muted);
-  font-weight: 800;
+  font-weight: var(--type-weight-label);
   white-space: nowrap;
 }
 
@@ -316,24 +317,24 @@ body.dark-theme .internationalita-page .table-wrap thead th {
 
 .internationalita-page .status-ok {
   color: #1f7a3a;
-  font-weight: 800;
+  font-weight: var(--type-weight-label);
 }
 
 .internationalita-page .status-warn {
   color: #9a6a00;
-  font-weight: 800;
+  font-weight: var(--type-weight-label);
 }
 
 .internationalita-page .status-bad {
   color: #a33;
-  font-weight: 800;
+  font-weight: var(--type-weight-label);
 }
 
 .internationalita-page .explain-title {
   margin: 0 0 14px;
   text-align: center;
   font-size: 1.5rem;
-  font-weight: 800;
+  font-weight: var(--type-weight-card);
   line-height: 1.2;
 }
 
@@ -344,7 +345,7 @@ body.dark-theme .internationalita-page .table-wrap thead th {
 .internationalita-page .explain-section h4 {
   margin: 0 0 8px;
   font-size: 15px;
-  font-weight: 800;
+  font-weight: var(--type-weight-card);
 }
 
 .internationalita-page .explain-code {
@@ -436,7 +437,7 @@ body.dark-theme .internationalita-page #jsonCardModal {
 .internationalita-page .mini-title {
   margin-top: 8px;
   margin-bottom: 4px;
-  font-weight: 800;
+  font-weight: var(--type-weight-card);
 }
 
 .internationalita-page .mini-calc-table {
@@ -458,7 +459,7 @@ body.dark-theme .internationalita-page #jsonCardModal {
   margin: 0 42px 14px;
   text-align: center;
   font-size: 1.5rem;
-  font-weight: 800;
+  font-weight: var(--type-weight-card);
   line-height: 1.2;
 }
 
@@ -596,7 +597,7 @@ body.dark-theme .internationalita-page .json-card-icon-btn.is-copied {
 
 .internationalita-page .internationalita-shell { display: grid; gap: var(--page-section-gap, 18px); }
 .internationalita-page .interal-panel.card { width: 100%; max-width: none; margin: 0; padding: var(--panel-padding, 18px); border-radius: var(--radius-lg); background: var(--surface); border: 1px solid var(--border-subtle); box-shadow: var(--shadow-md); }
-.internationalita-page .interal-page-title.page-title { margin: 0; font-size: clamp(1.7rem, 4vw, 2.8rem); line-height: 1; letter-spacing: -0.05em; font-weight: 800; }
+.internationalita-page .interal-page-title.page-title { margin: 0; font-size: clamp(1.7rem, 4vw, 2.8rem); line-height: 1; letter-spacing: -0.05em; font-weight: var(--type-weight-page); }
 .internationalita-page .json-card-bottom-actions { margin-top: 14px; }
 @media (max-width: 640px) { .internationalita-page .interal-panel.card { padding: 14px; border-radius: var(--radius-md); } }
 </style>
