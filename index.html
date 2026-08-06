@@ -238,6 +238,7 @@
       color: var(--text);
       font-size: clamp(1rem, 1.35vw, 1.12rem);
       line-height: 1.62;
+      max-width: var(--type-content-measure);
     }
 
     .home-standalone-quote {
@@ -255,7 +256,7 @@
       color: var(--text);
       font-size: clamp(1.65rem, 3vw, 2.35rem);
       line-height: 1.08;
-      font-weight: 800;
+      font-weight: var(--type-weight-section);
       letter-spacing: -.025em;
     }
 
@@ -303,7 +304,7 @@
     }
 
     .home-section { display: grid; gap: 10px; }
-    .home-section-title { margin: 2px 2px 0; color: var(--text); font-size: clamp(1.15rem, 2vw, 1.45rem); line-height: 1.2; font-weight: 800; }
+    .home-section-title { margin: 2px 2px 0; color: var(--text); font-size: clamp(1.15rem, 2vw, 1.45rem); line-height: 1.2; font-weight: var(--type-weight-section); }
 
     .homepage .container {
       width: 100%;
@@ -389,7 +390,7 @@
       min-width: 0;
       align-self: end;
       line-height: 1.18;
-      font-weight: 700;
+      font-weight: var(--type-weight-card);
       text-decoration: none;
       font-size: 1.02rem;
       color: var(--text);

@@ -76,6 +76,12 @@
   --space-5: 24px;
   --space-6: 32px;
   --global-header-offset: 86px;
+  --type-weight-page: 700;
+  --type-weight-section: 700;
+  --type-weight-card: 600;
+  --type-weight-label: 600;
+  --type-weight-result: 700;
+  --type-content-measure: 68ch;
 }
 [hidden] {
   display: none !important;
@@ -156,13 +162,13 @@ body.select-modal-open{overflow:hidden;position:fixed;top:var(--select-modal-scr
 
 
 /* Shared reusable Interal components */
-.interal-button{min-height:44px;border-radius:var(--radius-pill);border:1px solid var(--button-secondary-border);background:var(--button-secondary-bg);color:var(--button-secondary-text);padding:var(--space-2) var(--space-4);font-weight:700;cursor:pointer;transition:background .18s ease,color .18s ease,border-color .18s ease,transform .18s ease;}
+.interal-button{min-height:44px;border-radius:var(--radius-pill);border:1px solid var(--button-secondary-border);background:var(--button-secondary-bg);color:var(--button-secondary-text);padding:var(--space-2) var(--space-4);font-weight:var(--type-weight-label);cursor:pointer;transition:background .18s ease,color .18s ease,border-color .18s ease,transform .18s ease;}
 .interal-button--primary{background:var(--button-primary-bg);color:var(--button-primary-text);border-color:var(--button-primary-bg);}
 .interal-button--secondary{background:var(--button-secondary-bg);color:var(--button-secondary-text);border-color:var(--button-secondary-border);}
 .interal-button--danger{background:var(--danger-bg);color:var(--danger-text);border-color:color-mix(in srgb,var(--danger-text) 34%,transparent);}
 .interal-icon-button{min-width:44px;min-height:44px;display:inline-grid;place-items:center;border-radius:var(--radius-pill);}
 .interal-field{display:grid;gap:var(--space-2);}
-.interal-field-label{font-weight:700;color:var(--text);}
+.interal-field-label{font-weight:var(--type-weight-label);color:var(--text);}
 .interal-input,.interal-select,.interal-textarea{width:100%;border:1px solid var(--control-border);border-radius:var(--radius-sm);background:var(--control-bg);color:var(--control-text);padding:var(--space-3) var(--space-4);}
 .interal-result-card,.interal-notice,.interal-empty-state{border:1px solid var(--border-subtle);border-radius:var(--radius-md);background:var(--surface-elevated);padding:var(--space-4);box-shadow:var(--shadow-soft);}
 .interal-data-table{width:100%;border-collapse:separate;border-spacing:0;border:1px solid var(--border-subtle);border-radius:var(--radius-md);overflow:hidden;background:var(--surface-elevated);}
@@ -236,12 +242,12 @@ body.has-global-menu .interal-tool-page {
   font-size: clamp(1.7rem, 3.4vw, 2.55rem);
   line-height: 1.08;
   letter-spacing: -0.04em;
-  font-weight: 800;
+  font-weight: var(--type-weight-page);
 }
 
 .interal-page-lead {
   margin: 8px auto 0;
-  max-width: 720px;
+  max-width: min(100%, var(--type-content-measure));
   color: var(--text-muted);
   font-size: .98rem;
   line-height: 1.55;
@@ -262,7 +268,7 @@ body.has-global-menu .interal-tool-page {
   margin: 0 0 12px;
   font-size: 1.12rem;
   line-height: 1.2;
-  font-weight: 750;
+  font-weight: var(--type-weight-card);
   color: var(--text);
 }
 
@@ -277,7 +283,7 @@ body.has-global-menu .interal-tool-page {
 .interal-field > span {
   color: var(--text-muted);
   font-size: 14px;
-  font-weight: 650;
+  font-weight: var(--type-weight-label);
 }
 
 .interal-actions {
@@ -975,7 +981,7 @@ body.dark-theme .interal-confirm-icon {
 #jsonCardModal.show{opacity:1;pointer-events:auto;}
 body.dark-theme #jsonCardModal{background:rgba(0,0,0,.62);}
 #jsonCardModal .modal-inner{position:relative;width:min(100%,680px);max-height:min(88vh,760px);overflow:auto;background:var(--surface-elevated);color:var(--text);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);box-shadow:var(--shadow-md);padding:28px;}
-.json-card-title{margin:0 46px 20px 0;font-size:1.35rem;font-weight:800;}
+.json-card-title{margin:0 46px 20px 0;font-size:1.35rem;font-weight:var(--type-weight-card);}
 .json-card-form{display:grid;gap:14px;}
 .json-card-form #generateJsonCardBtn{justify-self:center;width:fit-content;max-width:100%;min-width:0;padding-inline:18px;}
 .json-card-form .checkbox-line{display:flex;align-items:center;gap:10px;margin:0;}

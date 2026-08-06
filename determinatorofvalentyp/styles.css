@@ -582,7 +582,7 @@ body.dark-theme.determinator-page .modal-backdrop {
 }
 
 .determinator-page .component-search-form {
-  font-weight: 750;
+  font-weight: var(--type-weight-result);
 }
 
 .determinator-page .component-search-category,
