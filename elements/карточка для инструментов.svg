@@ -1,12 +1,24 @@
 <svg width="575" height="377" viewBox="0 0 575 377" fill="none" xmlns="http://www.w3.org/2000/svg">
 <defs>
-<linearGradient id="cardGradient" x1="43" y1="46" x2="575" y2="377" gradientUnits="userSpaceOnUse">
-<stop stop-color="#C5485D"/>
-<stop offset="0.55" stop-color="#9554B7"/>
-<stop offset="1" stop-color="#5B6FD8"/>
+<linearGradient id="cardBase" x1="43" y1="377" x2="575" y2="46" gradientUnits="userSpaceOnUse">
+<stop stop-color="#684270"/>
+<stop offset="0.42" stop-color="#3658B0"/>
+<stop offset="1" stop-color="#3658B0"/>
 </linearGradient>
+<radialGradient id="cardLavender" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(575 365) scale(330 190)">
+<stop stop-color="#B8A7DF" stop-opacity="0.56"/>
+<stop offset="0.5" stop-color="#B8A7DF" stop-opacity="0.22"/>
+<stop offset="1" stop-color="#B8A7DF" stop-opacity="0"/>
+</radialGradient>
+<radialGradient id="cardAmber" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(265 52) scale(180 105)">
+<stop stop-color="#D78B32" stop-opacity="0.58"/>
+<stop offset="0.46" stop-color="#D78B32" stop-opacity="0.18"/>
+<stop offset="1" stop-color="#D78B32" stop-opacity="0"/>
+</radialGradient>
 </defs>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M575 117C575 77.7878 543.212 46 504 46H114C74.7878 46 43 77.7878 43 117V306C43 345.212 74.7878 377 114 377H504C543.212 377 575 345.212 575 306V117Z" fill="url(#cardGradient)"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M575 117C575 77.7878 543.212 46 504 46H114C74.7878 46 43 77.7878 43 117V306C43 345.212 74.7878 377 114 377H504C543.212 377 575 345.212 575 306V117Z" fill="url(#cardBase)"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M575 117C575 77.7878 543.212 46 504 46H114C74.7878 46 43 77.7878 43 117V306C43 345.212 74.7878 377 114 377H504C543.212 377 575 345.212 575 306V117Z" fill="url(#cardLavender)"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M575 117C575 77.7878 543.212 46 504 46H114C74.7878 46 43 77.7878 43 117V306C43 345.212 74.7878 377 114 377H504C543.212 377 575 345.212 575 306V117Z" fill="url(#cardAmber)"/>
 <mask id="mask0_5_10" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="273" height="272">
 <path d="M136.5 0C211.887 0 273 60.8893 273 136C273 211.111 211.887 272 136.5 272C61.1131 272 0 211.111 0 136C0 60.8893 61.1131 0 136.5 0Z" fill="white"/>
 <path d="M136.5 0C211.887 0 273 60.8893 273 136C273 211.111 211.887 272 136.5 272C61.1131 272 0 211.111 0 136C0 60.8893 61.1131 0 136.5 0Z" stroke="black"/>
