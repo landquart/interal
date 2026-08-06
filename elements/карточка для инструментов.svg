@@ -6,6 +6,21 @@
   .card-amber-field { animation: cardAmberFlow 4s cubic-bezier(.45, 0, .55, 1) infinite; }
   .card-coral-field { animation: cardCoralFlow 4.4s cubic-bezier(.45, 0, .55, 1) infinite; }
   .card-warm-field { animation: cardWarmFlow 4.8s cubic-bezier(.45, 0, .55, 1) infinite; }
+  .card-amber-core { animation: cardAmberHue 4s ease-in-out infinite; }
+  .card-coral-core { animation: cardCoralHue 4.4s ease-in-out infinite; }
+  .card-warm-core { animation: cardWarmHue 4.8s ease-in-out infinite; }
+}
+@keyframes cardAmberHue {
+  0%, 100% { stop-color: #E0A04A; }
+  50% { stop-color: #F08B6A; }
+}
+@keyframes cardCoralHue {
+  0%, 100% { stop-color: #F08B6A; }
+  50% { stop-color: #D78B32; }
+}
+@keyframes cardWarmHue {
+  0%, 100% { stop-color: #D78B32; }
+  50% { stop-color: #E56F5D; }
 }
 @keyframes cardLavenderFlow {
   0%, 100% { transform: translate(65px, -45px); }
@@ -42,17 +57,17 @@
 <stop offset="1" stop-color="#B8A7DF" stop-opacity="0"/>
 </radialGradient>
 <radialGradient id="cardAmber" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(265 62) scale(265 155)">
-<stop stop-color="#E0A04A" stop-opacity="0.86"/>
+<stop class="card-amber-core" stop-color="#E0A04A" stop-opacity="0.86"/>
 <stop offset="0.46" stop-color="#D78B32" stop-opacity="0.52"/>
 <stop offset="1" stop-color="#D78B32" stop-opacity="0"/>
 </radialGradient>
 <radialGradient id="cardCoral" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(520 110) scale(285 205)">
-<stop stop-color="#F08B6A" stop-opacity="0.78"/>
+<stop class="card-coral-core" stop-color="#F08B6A" stop-opacity="0.78"/>
 <stop offset="0.46" stop-color="#E56F5D" stop-opacity="0.48"/>
 <stop offset="1" stop-color="#E56F5D" stop-opacity="0"/>
 </radialGradient>
 <radialGradient id="cardWarm" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(190 350) scale(300 170)">
-<stop stop-color="#D78B32" stop-opacity="0.68"/>
+<stop class="card-warm-core" stop-color="#D78B32" stop-opacity="0.68"/>
 <stop offset="0.42" stop-color="#E56F5D" stop-opacity="0.36"/>
 <stop offset="1" stop-color="#E56F5D" stop-opacity="0"/>
 </radialGradient>
