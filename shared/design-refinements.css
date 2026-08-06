@@ -34,6 +34,19 @@
   box-shadow: none;
 }
 
+/* Shared tool-state hierarchy: neutral empty/loading states and one primary result heading. */
+.interal-tool-page :is(.components-list.empty, .result.empty, .registry-message, .interal-empty-state) {
+  color: var(--text-muted);
+  background: var(--surface-soft);
+  border: 1px solid var(--border-subtle);
+  box-shadow: none;
+}
+
+.interal-tool-page :is(#resultSection, #resultPanel) h2 {
+  color: var(--text);
+  font-weight: var(--type-weight-section);
+}
+
 /* Remove the redundant separators while retaining the glass navigation. */
 @media (min-width: 980px) {
   .top-desktop-link + .top-desktop-link {
