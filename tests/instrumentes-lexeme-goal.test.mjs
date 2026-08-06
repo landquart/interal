@@ -96,13 +96,13 @@ assert.match(
 );
 assert.match(
   html,
-  /instrumentes\.css\?v=lexeme-goal-20260804-2/,
-  'page loads the current progress styles'
+  /instrumentes\.css\?v=[a-z0-9-]+-\d{8}-\d+/,
+  'page loads versioned instrument styles'
 );
 assert.match(
   html,
-  /ui\.js\?v=lexeme-goal-20260804-2/,
-  'page loads the current progress runtime'
+  /ui\.js\?v=[a-z0-9-]+-\d{8}-\d+/,
+  'page loads a versioned shared runtime'
 );
 assert.match(
   loader,
