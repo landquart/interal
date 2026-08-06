@@ -2,26 +2,30 @@
 <defs>
 <style>
 @media (prefers-reduced-motion: no-preference) {
-  .card-lavender-field { animation: cardLavenderDrift 5.4s ease-in-out infinite alternate; }
-  .card-amber-field { animation: cardAmberDrift 4.2s ease-in-out infinite alternate; }
-  .card-coral-field { animation: cardCoralDrift 4.8s ease-in-out infinite alternate; }
-  .card-warm-field { animation: cardWarmDrift 5s ease-in-out infinite alternate; }
+  .card-lavender-field { animation: cardLavenderFlow 5.2s cubic-bezier(.45, 0, .55, 1) infinite; }
+  .card-amber-field { animation: cardAmberFlow 4s cubic-bezier(.45, 0, .55, 1) infinite; }
+  .card-coral-field { animation: cardCoralFlow 4.4s cubic-bezier(.45, 0, .55, 1) infinite; }
+  .card-warm-field { animation: cardWarmFlow 4.8s cubic-bezier(.45, 0, .55, 1) infinite; }
 }
-@keyframes cardLavenderDrift {
-  from { transform: translate(-18px, -8px); }
-  to { transform: translate(20px, 12px); }
+@keyframes cardLavenderFlow {
+  0%, 100% { transform: translate(65px, -45px); }
+  34% { transform: translate(-105px, 70px); }
+  67% { transform: translate(25px, 115px); }
 }
-@keyframes cardAmberDrift {
-  from { transform: translate(-24px, 10px); }
-  to { transform: translate(28px, -12px); }
+@keyframes cardAmberFlow {
+  0%, 100% { transform: translate(-90px, -50px); }
+  34% { transform: translate(150px, 65px); }
+  67% { transform: translate(35px, 145px); }
 }
-@keyframes cardCoralDrift {
-  from { transform: translate(22px, -10px); }
-  to { transform: translate(-26px, 14px); }
+@keyframes cardCoralFlow {
+  0%, 100% { transform: translate(95px, -65px); }
+  34% { transform: translate(-170px, 85px); }
+  67% { transform: translate(-45px, 150px); }
 }
-@keyframes cardWarmDrift {
-  from { transform: translate(-14px, -12px); }
-  to { transform: translate(20px, 10px); }
+@keyframes cardWarmFlow {
+  0%, 100% { transform: translate(-100px, 70px); }
+  34% { transform: translate(125px, -70px); }
+  67% { transform: translate(75px, 110px); }
 }
 </style>
 <clipPath id="cardSurfaceClip">
