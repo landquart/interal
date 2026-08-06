@@ -185,7 +185,7 @@
       promo.className = 'home-instruments-promo';
       promo.setAttribute('aria-labelledby', 'home-instruments-promo-title');
       promo.innerHTML = `
-        <img class="home-instruments-promo-bg" src="${context.joinUrl('elements/%D0%BA%D0%B0%D1%80%D1%82%D0%BE%D1%87%D0%BA%D0%B0%20%D0%B4%D0%BB%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%BE%D0%B2.svg')}?v=diffuse-flow-20260806-2" alt="" aria-hidden="true">
+        <img class="home-instruments-promo-bg" src="${context.joinUrl('elements/%D0%BA%D0%B0%D1%80%D1%82%D0%BE%D1%87%D0%BA%D0%B0%20%D0%B4%D0%BB%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%BE%D0%B2.svg')}?v=mesh-flow-20260806-1" alt="" aria-hidden="true">
         <div class="home-instruments-promo-content">
           <h2 class="home-instruments-promo-title" id="home-instruments-promo-title" data-instruments-text="promo"></h2>
           <a class="home-instruments-promo-button" href="${context.joinUrl('instrumentes/')}" data-instruments-text="try"></a>
