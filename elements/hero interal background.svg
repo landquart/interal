@@ -7,6 +7,21 @@
         .hero-amber-field { animation: heroAmberFlow 4.6s cubic-bezier(.45, 0, .55, 1) infinite; }
         .hero-coral-field { animation: heroCoralFlow 5s cubic-bezier(.45, 0, .55, 1) infinite; }
         .hero-warm-right-field { animation: heroWarmRightFlow 5.4s cubic-bezier(.45, 0, .55, 1) infinite; }
+        .hero-amber-core { animation: heroAmberHue 4.6s ease-in-out infinite; }
+        .hero-coral-core { animation: heroCoralHue 5s ease-in-out infinite; }
+        .hero-warm-core { animation: heroWarmHue 5.4s ease-in-out infinite; }
+      }
+      @keyframes heroAmberHue {
+        0%, 100% { stop-color: #E0A04A; }
+        50% { stop-color: #F08B6A; }
+      }
+      @keyframes heroCoralHue {
+        0%, 100% { stop-color: #F08B6A; }
+        50% { stop-color: #D78B32; }
+      }
+      @keyframes heroWarmHue {
+        0%, 100% { stop-color: #D78B32; }
+        50% { stop-color: #E56F5D; }
       }
       @keyframes heroPlumFlow {
         0%, 100% { transform: translate(-180px, 100px); opacity: .62; }
@@ -45,17 +60,17 @@
       <stop offset="1" stop-color="#B8A7DF" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="amber" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(120 120) scale(1180 800)">
-      <stop stop-color="#E0A04A" stop-opacity=".88"/>
+      <stop class="hero-amber-core" stop-color="#E0A04A" stop-opacity=".88"/>
       <stop offset=".42" stop-color="#D78B32" stop-opacity=".58"/>
       <stop offset="1" stop-color="#D78B32" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="coral" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(430 1040) scale(1320 1020)">
-      <stop stop-color="#F08B6A" stop-opacity=".8"/>
+      <stop class="hero-coral-core" stop-color="#F08B6A" stop-opacity=".8"/>
       <stop offset=".44" stop-color="#E56F5D" stop-opacity=".52"/>
       <stop offset="1" stop-color="#E56F5D" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="warmRight" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(2440 1640) scale(1180 820)">
-      <stop stop-color="#D78B32" stop-opacity=".64"/>
+      <stop class="hero-warm-core" stop-color="#D78B32" stop-opacity=".64"/>
       <stop offset=".38" stop-color="#E56F5D" stop-opacity=".44"/>
       <stop offset="1" stop-color="#E56F5D" stop-opacity="0"/>
     </radialGradient>
