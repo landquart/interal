@@ -235,9 +235,16 @@
     .home-intro-description {
       margin: 0;
       min-width: 0;
+      max-width: var(--type-content-measure);
+      display: grid;
+      gap: .82em;
       color: var(--text);
       font-size: clamp(1rem, 1.35vw, 1.12rem);
       line-height: 1.62;
+    }
+
+    .home-intro-description p {
+      margin: 0;
     }
 
     .home-standalone-quote {
@@ -255,7 +262,7 @@
       color: var(--text);
       font-size: clamp(1.65rem, 3vw, 2.35rem);
       line-height: 1.08;
-      font-weight: 800;
+      font-weight: var(--type-weight-section);
       letter-spacing: -.025em;
     }
 
@@ -303,7 +310,7 @@
     }
 
     .home-section { display: grid; gap: 10px; }
-    .home-section-title { margin: 2px 2px 0; color: var(--text); font-size: clamp(1.15rem, 2vw, 1.45rem); line-height: 1.2; font-weight: 800; }
+    .home-section-title { margin: 2px 2px 0; color: var(--text); font-size: clamp(1.15rem, 2vw, 1.45rem); line-height: 1.2; font-weight: var(--type-weight-section); }
 
     .homepage .container {
       width: 100%;
@@ -389,7 +396,7 @@
       min-width: 0;
       align-self: end;
       line-height: 1.18;
-      font-weight: 700;
+      font-weight: var(--type-weight-card);
       text-decoration: none;
       font-size: 1.02rem;
       color: var(--text);
@@ -467,9 +474,10 @@
     }
 
     .home-footer {
+      position: relative;
       width: 100vw;
       margin: 4px calc(50% - 50vw) -16px;
-      padding: 18px max(18px, calc((100vw - 1240px) / 2 + 18px));
+      padding: 30px max(18px, calc((100vw - 1240px) / 2 + 18px)) 18px;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
@@ -485,6 +493,21 @@
 
     body.dark-theme .home-footer {
       background: color-mix(in srgb, var(--bg) 78%, #000 22%);
+    }
+
+    .home-footer::before {
+      content: "";
+      position: absolute;
+      top: 7px;
+      left: 50%;
+      width: 64px;
+      height: 18px;
+      transform: translateX(-50%);
+      color: var(--brand-gold-text);
+      background: currentColor;
+      -webkit-mask: url("elements/interal-wave-divider.svg") center / contain no-repeat;
+      mask: url("elements/interal-wave-divider.svg") center / contain no-repeat;
+      pointer-events: none;
     }
 
     .home-footer-info {
@@ -824,25 +847,30 @@
         </p>
       </div>
 
-      <p class="home-intro-description" data-i18n="home.introDescription">Interal (от International Auxiliari Lingua — «международный вспомогательный язык») — плановый язык-посредник, объединяющий в единой системе наиболее практичные элементы натурализма и схематизма. Его лексика, приставки и суффиксы отбираются прежде всего из английского, французского, испанского, греческого и латыни, в меньшей степени — из немецкого, итальянского, русского, датского и шведского, а также из международно известных слов китайского, арабского, хинди, санскрита и других языков. Гибкое словообразование позволяет получать узнаваемые слова разными способами. Interal ориентирован прежде всего на носителей индоевропейских языков как общий и нейтральный язык, но открыт для всех и может быть проще в изучении, чем этнические индоевропейские языки. Это не претензия на совершенный или принципиально новый проект, а научно обоснованная компиляция интерлингвистических идей, построенная на объективности, удобстве и практической проверке решений; она служит основой для дальнейшего развития языка, пересмотра неэффективных элементов и сохранения тех, которые действительно работают.</p>
+      <div class="home-intro-description">
+        <p data-i18n="home.introDescription1">Interal (от International Auxiliari Lingua — «международный вспомогательный язык») — плановый язык-посредник, объединяющий в единой системе наиболее практичные элементы натурализма и схематизма.</p>
+        <p data-i18n="home.introDescription2">Его лексика, приставки и суффиксы отбираются прежде всего из английского, французского, испанского, греческого и латыни, в меньшей степени — из немецкого, итальянского, русского, датского и шведского, а также из международно известных слов китайского, арабского, хинди, санскрита и других языков. Гибкое словообразование позволяет получать узнаваемые слова разными способами.</p>
+        <p data-i18n="home.introDescription3">Interal ориентирован прежде всего на носителей индоевропейских языков как общий и нейтральный язык, но открыт для всех и может быть проще в изучении, чем этнические индоевропейские языки.</p>
+        <p data-i18n="home.introDescription4">Это не претензия на совершенный или принципиально новый проект, а научно обоснованная компиляция интерлингвистических идей, построенная на объективности, удобстве и практической проверке решений; она служит основой для дальнейшего развития языка, пересмотра неэффективных элементов и сохранения тех, которые действительно работают.</p>
+      </div>
     </section>
 
     <section class="home-about" aria-labelledby="home-about-title">
       <h2 class="home-about-title" id="home-about-title" data-i18n="home.aboutTitle">Интераль — это...</h2>
         <div class="home-about-cards">
-          <article class="home-about-card" style="--about-card-bg: #FFD146; --about-card-text: #1f1a05;">
+          <article class="home-about-card" data-tone="lexicon">
             <h3 class="home-about-card-title" data-i18n="home.aboutCard1Title">Международная лексика</h3>
             <p class="home-about-card-text" data-i18n="home.aboutCard1Text">Основан на наиболее распространённых словах, знакомых любому образованному человеку</p>
           </article>
-          <article class="home-about-card" style="--about-card-bg: #FF4646; --about-card-text: #211010;">
+          <article class="home-about-card" data-tone="grammar">
             <h3 class="home-about-card-title" data-i18n="home.aboutCard2Title">Регулярная грамматика</h3>
             <p class="home-about-card-text" data-i18n="home.aboutCard2Text">Все правила максимально интуитивно понятны и легки для изучения</p>
           </article>
-          <article class="home-about-card" style="--about-card-bg: #4646FF; --about-card-text: #ffffff;">
+          <article class="home-about-card" data-tone="derivation">
             <h3 class="home-about-card-title" data-i18n="home.aboutCard3Title">Прозрачное словообразование</h3>
             <p class="home-about-card-text" data-i18n="home.aboutCard3Text">Образованные слова всегда легко разбить на морфемы или, наоборот, составить узнаваемое слово</p>
           </article>
-          <article class="home-about-card" style="--about-card-bg: #58E14B; --about-card-text: #0d2609;">
+          <article class="home-about-card" data-tone="methodology">
             <h3 class="home-about-card-title" data-i18n="home.aboutCard4Title">Научная методология</h3>
             <p class="home-about-card-text" data-i18n="home.aboutCard4Text">Основан на реальных языковых данных и их всесторонней адекватной оценке</p>
           </article>
@@ -937,7 +965,10 @@
           'home.introAriaLabel': 'Описание Interal',
           'home.introQuoteLead': 'НАЦИОНАЛЬНАЯ БЕСЕДА',
           'home.introQuoteAccent': 'НА НАЦИОНАЛЬНОМ ЯЗЫКЕ',
-          'home.introDescription': 'Interal (от International Auxiliari Lingua — «международный вспомогательный язык») — плановый язык-посредник, объединяющий в единой системе наиболее практичные элементы натурализма и схематизма. Его лексика, приставки и суффиксы отбираются прежде всего из английского, французского, испанского, греческого и латыни, в меньшей степени — из немецкого, итальянского, русского, датского и шведского, а также из международно известных слов китайского, арабского, хинди, санскрита и других языков. Гибкое словообразование позволяет получать узнаваемые слова разными способами. Interal ориентирован прежде всего на носителей индоевропейских языков как общий и нейтральный язык, но открыт для всех и может быть проще в изучении, чем этнические индоевропейские языки. Это не претензия на совершенный или принципиально новый проект, а научно обоснованная компиляция интерлингвистических идей, построенная на объективности, удобстве и практической проверке решений; она служит основой для дальнейшего развития языка, пересмотра неэффективных элементов и сохранения тех, которые действительно работают.',
+          'home.introDescription1': 'Interal (от International Auxiliari Lingua — «международный вспомогательный язык») — плановый язык-посредник, объединяющий в единой системе наиболее практичные элементы натурализма и схематизма.',
+          'home.introDescription2': 'Его лексика, приставки и суффиксы отбираются прежде всего из английского, французского, испанского, греческого и латыни, в меньшей степени — из немецкого, итальянского, русского, датского и шведского, а также из международно известных слов китайского, арабского, хинди, санскрита и других языков. Гибкое словообразование позволяет получать узнаваемые слова разными способами.',
+          'home.introDescription3': 'Interal ориентирован прежде всего на носителей индоевропейских языков как общий и нейтральный язык, но открыт для всех и может быть проще в изучении, чем этнические индоевропейские языки.',
+          'home.introDescription4': 'Это не претензия на совершенный или принципиально новый проект, а научно обоснованная компиляция интерлингвистических идей, построенная на объективности, удобстве и практической проверке решений; она служит основой для дальнейшего развития языка, пересмотра неэффективных элементов и сохранения тех, которые действительно работают.',
           'home.secondQuoteLead': 'МЕЖДУНАРОДНАЯ БЕСЕДА',
           'home.secondQuoteAccent': 'НА МЕЖДУНАРОДНОМ ЯЗЫКЕ',
           'home.aboutTitle': 'Интераль — это...',
@@ -983,7 +1014,10 @@
           'home.introAriaLabel': 'Interal description',
           'home.introQuoteLead': 'NATIONAL CONVERSATION',
           'home.introQuoteAccent': 'IN A NATIONAL LANGUAGE',
-          'home.introDescription': 'Interal, derived from International Auxiliari Lingua, meaning “international auxiliary language”, is a planned intermediary language that combines the most practical elements of naturalism and schematism within a unified system. Its vocabulary, prefixes, and suffixes are selected primarily from English, French, Spanish, Greek, and Latin; to a lesser extent from German, Italian, Russian, Danish, and Swedish; and also from internationally known words of Chinese, Arabic, Hindi, Sanskrit, and other origins. Its flexible word-formation system makes it possible to create recognisable words in different ways. Interal is intended primarily as a common and neutral language for speakers of Indo-European languages, but it is open to everyone and may be easier to learn than ethnic Indo-European languages. It does not claim to be a perfect or fundamentally new project, but rather a scientifically grounded synthesis of interlinguistic ideas based on objectivity, usability, and practical evaluation of linguistic decisions. This provides a foundation for the language’s further development, the revision of ineffective elements, and the preservation of those that genuinely work.',
+          'home.introDescription1': 'Interal, derived from International Auxiliari Lingua, meaning “international auxiliary language”, is a planned intermediary language that combines the most practical elements of naturalism and schematism within a unified system.',
+          'home.introDescription2': 'Its vocabulary, prefixes, and suffixes are selected primarily from English, French, Spanish, Greek, and Latin; to a lesser extent from German, Italian, Russian, Danish, and Swedish; and also from internationally known words of Chinese, Arabic, Hindi, Sanskrit, and other origins. Its flexible word-formation system makes it possible to create recognisable words in different ways.',
+          'home.introDescription3': 'Interal is intended primarily as a common and neutral language for speakers of Indo-European languages, but it is open to everyone and may be easier to learn than ethnic Indo-European languages.',
+          'home.introDescription4': 'It does not claim to be a perfect or fundamentally new project, but rather a scientifically grounded synthesis of interlinguistic ideas based on objectivity, usability, and practical evaluation of linguistic decisions. This provides a foundation for the language’s further development, the revision of ineffective elements, and the preservation of those that genuinely work.',
           'home.secondQuoteLead': 'INTERNATIONAL CONVERSATION',
           'home.secondQuoteAccent': 'IN AN INTERNATIONAL LANGUAGE',
           'home.aboutTitle': 'Interal is...',

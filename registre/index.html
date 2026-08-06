@@ -29,7 +29,7 @@
     .field--type, .field--pos, .field--group { grid-column: span 3; }
     .field--author, .field--pi, .field--sort { grid-column: span 3; }
     .field--reset { grid-column: span 3; }
-    .field label { color: var(--text-muted); font-size: .85rem; font-weight: 700; }
+    .field label { color: var(--text-muted); font-size: .85rem; font-weight: var(--type-weight-label); }
     .field input,
     .field select {
       width: 100%; min-height: 44px; border-radius: var(--radius-sm); border: 1px solid var(--control-border);
@@ -46,7 +46,7 @@
     }
     .registry-btn {
       min-height: 44px; border-radius: var(--radius-sm); border: 1px solid var(--button-secondary-border);
-      background: var(--button-secondary-bg); color: var(--button-secondary-text); padding: 0 14px; font: inherit; font-weight: 700;
+      background: var(--button-secondary-bg); color: var(--button-secondary-text); padding: 0 14px; font: inherit; font-weight: var(--type-weight-label);
       cursor: pointer; transition: transform .18s ease, background-color .18s ease, border-color .18s ease;
     }
     .registry-btn:hover { transform: translateY(-1px); background: var(--surface-hover); border-color: var(--border-strong); }
@@ -69,7 +69,7 @@
           var(--button-primary-bg)
         );
     }
-    .registry-summary { margin: 14px 0; color: var(--text-muted); font-weight: 700; }
+    .registry-summary { margin: 14px 0; color: var(--text-muted); font-weight: var(--type-weight-label); }
     .registry-message { margin: 14px 0; padding: 16px; border-radius: var(--radius-md); background: var(--surface-soft); color: var(--text); border: 1px solid var(--border-subtle); }
     .registry-list { display: grid; gap: 12px; }
     .registry-card { padding: 16px; display: grid; gap: 12px; }
@@ -79,12 +79,12 @@
     .card-word { margin: 0; color: var(--text); font-size: clamp(1.3rem, 3vw, 2rem); line-height: 1.1; overflow-wrap: anywhere; }
     .card-ipa { color: var(--text-muted); font-weight: 600; overflow-wrap: anywhere; }
     .card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-    .card-tag { display: inline-flex; align-items: center; min-height: 28px; border-radius: var(--radius-pill); padding: 3px 10px; background: var(--surface-soft); border: 1px solid var(--border-subtle); color: var(--text); font-size: .86rem; font-weight: 700; }
+    .card-tag { display: inline-flex; align-items: center; min-height: 28px; border-radius: var(--radius-pill); padding: 3px 10px; background: var(--surface-soft); border: 1px solid var(--border-subtle); color: var(--text); font-size: .86rem; font-weight: var(--type-weight-label); }
     .card-tag--type { background: color-mix(in srgb, var(--brand-gold) 14%, var(--surface-elevated)); border-color: var(--brand-gold-border); color: var(--brand-gold-text); }
-    .card-row--pi .card-value { color: var(--brand-gold-text); font-size: 1.15rem; font-weight: 800; }
+    .card-row--pi .card-value { color: var(--brand-gold-text); font-size: 1.15rem; font-weight: 800; font-variant-numeric: tabular-nums; }
     .card-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
     .card-row { min-width: 0; padding: 10px; border-radius: var(--radius-sm); background: var(--surface-elevated); border: 1px solid var(--border-subtle); }
-    .card-label { display: block; color: var(--text-muted); font-size: .78rem; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; }
+    .card-label { display: block; color: var(--text-muted); font-size: .78rem; font-weight: var(--type-weight-label); text-transform: uppercase; letter-spacing: .04em; }
     .card-value { display: block; color: var(--text); overflow-wrap: anywhere; white-space: pre-wrap; }
     .card-actions { display: flex; gap: 8px; flex-wrap: wrap; }
     .registry-modal { position: fixed; inset: 0; z-index: var(--z-page-modal); display: none; place-items: center; padding: 18px; }
@@ -96,7 +96,7 @@
     .registry-json-view { width: 100%; min-height: 260px; resize: vertical; border-radius: var(--radius-md); border: 1px solid var(--control-border); background: var(--control-bg); color: var(--control-text); padding: 12px; font: 0.9rem/1.45 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; white-space: pre; overflow: auto; }
     .registry-modal-actions { display: flex; gap: 8px; justify-content: flex-end; flex-wrap: wrap; }
     .registry-copy-icon-btn { width: 46px; min-height: 46px; padding: 0; justify-content: center; }
-    .registry-toast { position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%) translateY(18px); z-index: var(--z-toast); opacity: 0; pointer-events: none; border-radius: var(--radius-pill); background: var(--button-primary-bg); color: var(--button-primary-text); padding: 10px 14px; font-weight: 800; transition: opacity .18s ease, transform .18s ease; }
+    .registry-toast { position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%) translateY(18px); z-index: var(--z-toast); opacity: 0; pointer-events: none; border-radius: var(--radius-pill); background: var(--button-primary-bg); color: var(--button-primary-text); padding: 10px 14px; font-weight: var(--type-weight-label); transition: opacity .18s ease, transform .18s ease; }
     .registry-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
     .giscus-modal {
       position: fixed;
@@ -157,7 +157,7 @@
     /* Shared layout normalization */
     body.has-global-menu.interal-tool-page { padding-top: 86px; }
     .registry-page.interal-page-shell { width: min(var(--page-width, 828px), calc(100% - 32px)); padding: 14px 0 48px; display: grid; gap: var(--page-section-gap, 18px); }
-    .registry-title.interal-page-title { margin: 0; font-size: clamp(1.7rem, 4vw, 2.8rem); line-height: 1; letter-spacing: -0.05em; font-weight: 800; }
+    .registry-title.interal-page-title { margin: 0; font-size: clamp(1.7rem, 4vw, 2.8rem); line-height: 1; letter-spacing: -0.05em; font-weight: var(--type-weight-page); }
     .registry-panel.interal-panel { width: 100%; margin: 0; padding: var(--panel-padding, 18px); border-radius: var(--radius-lg); background: var(--surface); border: 1px solid var(--border-subtle); box-shadow: var(--shadow-md); }
     @media (max-width: 640px) { .registry-page.interal-page-shell { width: min(100% - 24px, var(--page-width, 828px)); padding: 10px 0 34px; gap: 12px; } .registry-panel.interal-panel { padding: 14px; border-radius: var(--radius-md); } }
   </style>

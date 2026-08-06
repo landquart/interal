@@ -12,6 +12,7 @@
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const mobileQuery = window.matchMedia('(max-width: 560px)');
+  const desktopQuery = window.matchMedia('(min-width: 980px)');
   const baseAnimationMs = reduceMotion.matches ? 120 : 560;
   const finishEase = 'cubic-bezier(0.22, 1, 0.36, 1)';
   let activeIndex = 0;
@@ -31,12 +32,13 @@
   const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
   const lerp = (from, to, progress) => from + (to - from) * progress;
   const isMobile = () => mobileQuery.matches;
+  const isDesktop = () => desktopQuery.matches;
   const cardWidth = () => cards[activeIndex]?.getBoundingClientRect().width || track.clientWidth * 0.82;
   const sideOffset = () => Math.min(track.clientWidth * 0.58, cardWidth() * 0.92);
   const switchDistance = () => cardWidth() * 0.3;
 
   const setArrow = (button, slot, visible) => {
-    const shouldShow = visible && !isMobile();
+    const shouldShow = visible && !isMobile() && !isDesktop();
     const isMounted = button.parentNode === carousel;
     if (shouldShow && !isMounted) slot.replaceWith(button);
     if (!shouldShow && isMounted) button.replaceWith(slot);
@@ -62,7 +64,27 @@
     card.tabIndex = isActive ? 0 : -1;
   };
 
+  const renderDesktop = () => {
+    if (rafId) window.cancelAnimationFrame(rafId);
+    rafId = 0;
+    drag = null;
+    clearCardInlineStyles();
+    cards.forEach((card) => {
+      card.classList.remove('is-active', 'is-previous', 'is-next', 'is-hidden');
+      card.setAttribute('aria-hidden', 'false');
+      card.removeAttribute('tabindex');
+    });
+    track.tabIndex = -1;
+    setArrow(prevButton, prevSlot, false);
+    setArrow(nextButton, nextSlot, false);
+  };
+
   const render = ({ preserveInlineTransition = false } = {}) => {
+    if (isDesktop()) {
+      renderDesktop();
+      return;
+    }
+    track.tabIndex = 0;
     if (!preserveInlineTransition) clearCardInlineStyles();
     cards.forEach((card, index) => {
       if (index === activeIndex) setCardState(card, 'is-active');
@@ -85,6 +107,7 @@
   };
 
   const goTo = (index) => {
+    if (isDesktop()) return;
     const nextIndex = clamp(index, 0, cards.length - 1);
     if (nextIndex === activeIndex || isAnimating) return;
 
@@ -231,6 +254,7 @@
   });
 
   track.addEventListener('click', (event) => {
+    if (isDesktop()) return;
     if (suppressNextClick) { event.preventDefault(); suppressNextClick = false; return; }
     const card = event.target.closest('.instrument-card');
     if (!card || !track.contains(card)) return;
@@ -265,6 +289,7 @@
   track.addEventListener('pointerup', endDrag);
   track.addEventListener('pointercancel', endDrag);
   mobileQuery.addEventListener?.('change', render);
+  desktopQuery.addEventListener?.('change', render);
   reduceMotion.addEventListener?.('change', render);
 
   render();
