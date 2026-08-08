@@ -26,20 +26,9 @@ export function calculateAssociationScore({ directness, field_relatedness, domai
   );
 }
 
-function normalizeSwowStrength(value) {
-  const number = Number(value) || 0;
-  return number > 1 ? number / 100 : number;
-}
-
-export function calculateSwowBonus(swow) {
-  if (!swow) return 0;
-  const strongest = Math.max(
-    normalizeSwowStrength(swow.target_to_word?.r1_strength),
-    normalizeSwowStrength(swow.target_to_word?.r123_strength),
-    normalizeSwowStrength(swow.word_to_target?.r1_strength),
-    normalizeSwowStrength(swow.word_to_target?.r123_strength)
-  );
-  return clamp(strongest * 100, 0, 15);
+// Legacy-compatible API: SWOW evidence is diagnostic only and must not change A or P.
+export function calculateSwowBonus() {
+  return 0;
 }
 
 export function calculateFinalScore({ frequency_score, association_score }) {
@@ -234,10 +223,10 @@ function semanticConfirmedFromQwen(qwen) {
   return Number.isFinite(Number(qwen?.directness)) && Number.isFinite(Number(qwen?.field_relatedness)) && Number.isFinite(Number(qwen?.domain_shift));
 }
 
-function buildEvaluation(qwen, frequencyScore, swowBonus) {
+function buildEvaluation(qwen, frequencyScore) {
   const semantic_confirmed = semanticConfirmedFromQwen(qwen);
   const association_score_base = semantic_confirmed ? calculateAssociationScore(qwen) : null;
-  const association_score = association_score_base == null ? null : clamp(association_score_base + swowBonus, 0, 100);
+  const association_score = association_score_base;
   const final_score = calculateFinalScore({ frequency_score: frequencyScore, association_score });
   return {
     model: qwen.model,
@@ -319,7 +308,7 @@ export async function analyzeAssociativeWord({ language, targetMeaning, localize
     if (side?.warning && !warnings.includes(side.warning)) warnings.push(side.warning);
   }
 
-  const swow_bonus = calculateSwowBonus(bidirectionalSwow);
+  const swow_bonus = 0;
   const swow = {
     ...bidirectionalSwow,
     bonus: swow_bonus,
@@ -336,7 +325,7 @@ export async function analyzeAssociativeWord({ language, targetMeaning, localize
     throw error;
   }
 
-  const primary = buildEvaluation(primaryQwen, frequency.frequency_score, swow_bonus);
+  const primary = buildEvaluation(primaryQwen, frequency.frequency_score);
   if (primary.association_score == null) warnings.push('Association score unavailable');
   if (frequency.frequency_score == null) warnings.push('Frequency score unavailable');
 
@@ -363,7 +352,7 @@ export async function analyzeAssociativeWord({ language, targetMeaning, localize
           onProgress?.(`Qwen3-235B: ${language} — ${word}`);
           const reviewQwen = await getQwenAssociationScores({ language, targetMeaning, word, swow, review: true, primary, signal });
           throwIfAborted(signal, 'review_qwen');
-          review = buildEvaluation(reviewQwen, frequency.frequency_score, swow_bonus);
+          review = buildEvaluation(reviewQwen, frequency.frequency_score);
           noteReview('reviewCompletedCount');
           finalEvaluation = { ...review, combination_method: 'review_override' };
         }
