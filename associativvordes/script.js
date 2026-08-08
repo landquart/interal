@@ -47,7 +47,7 @@ const TEXT_I18N = {
           Germanic: 'Германская', Romance: 'Романская', Slavic: 'Славянская'
         },
         panel: {
-          group: 'Группа', languageScore: 'Балл языка', weightSum: 'сумма весов', addWord: 'Добавить слово', use: 'Учитывать', word: 'Слово', model: 'Модель', frequencyPercent: 'F — частотность', directness: 'Di — прямота связи', fieldRelatedness: 'Pr — близость поля', domainShift: 'Sh — сдвиг области', swowBonus: 'Бонус SWOW, 0–15', associationPercent: 'A — ассоциация', finalPercent: 'P — вес деривата', status: 'Статус', explanation: 'Объяснение', warnings: 'Предупреждения', details: 'Детали', analyze: 'Анализировать', delete: 'Удалить', association: 'Ассоциация', rank: 'Ранг', frequency: 'Частота', weightP: 'Вес P'
+          group: 'Группа', languageScore: 'Балл языка', weightSum: 'сумма весов', addWord: 'Добавить слово', use: 'Учитывать', word: 'Слово', model: 'Модель', frequencyPercent: 'F — частотность', directness: 'Di — прямота связи', fieldRelatedness: 'Pr — близость поля', domainShift: 'Sh — сдвиг области', swowBonus: 'SWOW-связь', associationPercent: 'A — ассоциация', finalPercent: 'P — вес деривата', status: 'Статус', explanation: 'Объяснение', warnings: 'Предупреждения', details: 'Детали', analyze: 'Анализировать', delete: 'Удалить', association: 'Ассоциация', rank: 'Ранг', frequency: 'Частота', weightP: 'Вес P'
         },
         results: {
           finalAssociation: 'FA<sub>v</sub> — конечная ассоциация слова', totalAssociation: 'Σ(N<sub>l</sub> × P̄<sub>l</sub>)', speakersTotal: 'ΣN представленных языков', languagesRepresented: 'языков представлено', languageGroups: 'языковых групп', language: 'Язык', speakers: 'Число говорящих N', selectedDerivatives: 'Выбрано дериватов', languageAverageP: 'Средний P̄<sub>l</sub>', weightedLanguageP: 'N<sub>l</sub> × P̄<sub>l</sub>', calculationDetails: 'Детализация FA<sub>v</sub>', acceptanceCriteria: 'Критерии принятия', criterionLanguages: 'Минимум 3 языка', criterionGroups: 'Минимум 2 языковые группы', criterionThreshold: 'FA<sub>v</sub> ≥ 35 %', met: 'выполнено', notMet: 'не выполнено', accept: 'ПРИНЯТЬ', reject: 'НЕ ПРИНИМАТЬ', insufficientData: 'Недостаточно данных', noCalculatedData: 'Нет рассчитанных данных.', noCandidates: 'Кандидаты не найдены.', indexUnavailable: 'Индекс языка недоступен.', qwenUnavailable: 'Анализ Qwen недоступен.', calculationAborted: 'Расчёт был прерван.', calculationIncomplete: 'Расчёт не завершён.', partialErrors: 'Часть языков рассчитана с ошибками.', fewerLanguages: 'Представлено меньше 3 языков.', fewerGroups: 'Представлено меньше 2 языковых групп.', belowThreshold: 'FAᵥ ниже 35%.', semanticUnconfirmed: 'Семантическое соответствие не подтверждено.', reasons: 'Причины', warnings: 'Предупреждения', allMet: 'Все условия выполнены.'
@@ -99,7 +99,7 @@ const TEXT_I18N = {
           Germanic: 'Germanic', Romance: 'Romance', Slavic: 'Slavic'
         },
         panel: {
-          group: 'Group', languageScore: 'Language score', weightSum: 'weight sum', addWord: 'Add word', use: 'Use', word: 'Word', model: 'Model', frequencyPercent: 'F — frequency', directness: 'Di — directness', fieldRelatedness: 'Pr — field proximity', domainShift: 'Sh — domain shift', swowBonus: 'SWOW bonus — 0–15', associationPercent: 'A — association', finalPercent: 'P — derivative weight', status: 'Status', explanation: 'Explanation', warnings: 'Warnings', details: 'Details', analyze: 'Analyze', delete: 'Delete', association: 'Association', rank: 'Rank', frequency: 'Frequency', weightP: 'Weight P'
+          group: 'Group', languageScore: 'Language score', weightSum: 'weight sum', addWord: 'Add word', use: 'Use', word: 'Word', model: 'Model', frequencyPercent: 'F — frequency', directness: 'Di — directness', fieldRelatedness: 'Pr — field proximity', domainShift: 'Sh — domain shift', swowBonus: 'SWOW evidence', associationPercent: 'A — association', finalPercent: 'P — derivative weight', status: 'Status', explanation: 'Explanation', warnings: 'Warnings', details: 'Details', analyze: 'Analyze', delete: 'Delete', association: 'Association', rank: 'Rank', frequency: 'Frequency', weightP: 'Weight P'
         },
         results: {
           finalAssociation: 'FA<sub>v</sub> — final word association', totalAssociation: 'Σ(N<sub>l</sub> × P̄<sub>l</sub>)', speakersTotal: 'ΣN of represented languages', languagesRepresented: 'languages represented', languageGroups: 'language groups', language: 'Language', speakers: 'Speakers N', selectedDerivatives: 'Selected derivatives', languageAverageP: 'Average P̄<sub>l</sub>', weightedLanguageP: 'N<sub>l</sub> × P̄<sub>l</sub>', calculationDetails: 'FA<sub>v</sub> details', acceptanceCriteria: 'Acceptance criteria', criterionLanguages: 'At least 3 languages', criterionGroups: 'At least 2 language groups', criterionThreshold: 'FA<sub>v</sub> ≥ 35%', met: 'met', notMet: 'not met', accept: 'ACCEPT', reject: 'DO NOT ACCEPT', insufficientData: 'Insufficient data', noCalculatedData: 'No calculated data.', noCandidates: 'No candidates found.', indexUnavailable: 'The language index is unavailable.', qwenUnavailable: 'Qwen analysis is unavailable.', calculationAborted: 'The calculation was aborted.', calculationIncomplete: 'The calculation is incomplete.', partialErrors: 'Some languages were calculated with errors.', fewerLanguages: 'Fewer than 3 languages are represented.', fewerGroups: 'Fewer than 2 language groups are represented.', belowThreshold: 'FAᵥ is below 35%.', semanticUnconfirmed: 'Semantic correspondence is not confirmed.', reasons: 'Reasons', warnings: 'Warnings', allMet: 'All conditions are met.'
@@ -960,7 +960,7 @@ const TEXT_I18N = {
           <td class="col-score">${displayStatus}</td>
           <td class="col-score">${formatMetric(assoc.association_score ?? item.association_score, 1)}</td>
           <td class="col-score">${formatMetric(analysis.frequency?.frequency_score ?? item.frequency_score, 2)}</td>
-          <td class="col-score">${formatMetric(analysis.swow?.bonus, 1)}</td>
+          <td class="col-score">${escapeHtml(swowLabel(analysis.swow))}</td>
           <td class="col-details">
             <details class="derivative-details">
               <summary>${labels.details}</summary>
@@ -970,7 +970,7 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
                 <dt>${labels.directness}</dt><dd>${formatMetric(assoc.directness, 0)}</dd>
                 <dt>${labels.fieldRelatedness}</dt><dd>${formatMetric(assoc.field_relatedness, 0)}</dd>
                 <dt>${labels.domainShift}</dt><dd>${formatMetric(assoc.domain_shift, 0)}</dd>
-                <dt>${labels.swowBonus}</dt><dd>${formatMetric(analysis.swow?.bonus, 1)}</dd>
+                <dt>${labels.swowBonus}</dt><dd>${escapeHtml(swowLabel(analysis.swow))}</dd>
                 <dt>${labels.explanation}</dt><dd>${escapeHtml(assoc.explanation || '—')}</dd>
                 <dt>${labels.warnings}</dt><dd>${escapeHtml(warnings || '—')}</dd>
               </dl>
@@ -1320,7 +1320,7 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
         Di: finiteOrNull(a.Di),
         Pr: finiteOrNull(a.Pr),
         Sh: finiteOrNull(a.Sh),
-        swow_bonus: finiteOrNull(a.swow_bonus ?? s.bonus ?? 0),
+        swow_bonus: 0,
         A: finiteOrNull(a.A_final ?? a.A_base),
         P: finiteOrNull(a.P ?? item?.final_score)
       };
@@ -1512,9 +1512,8 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
 
     function compactStateSwowEvidence(swow) {
       const source = swow && typeof swow === 'object' && !Array.isArray(swow) ? swow : {};
-      const bonus = compactStateSwowStrength(source.bonus);
       return {
-        bonus: bonus ?? 0,
+        bonus: 0,
         target_to_word: compactStateSwowSide(source.target_to_word),
         word_to_target: compactStateSwowSide(source.word_to_target)
       };
