@@ -95,6 +95,36 @@ assert.match(
   'progress animation respects reduced motion'
 );
 assert.match(
+  styles,
+  /\.instrument-art::before\{[^}]*mask-image:url\("data:image\/svg\+xml[^}]*mask-composite:intersect/,
+  'instrument backgrounds use one repeated rounded cubic mask without extra DOM nodes'
+);
+assert.match(
+  styles,
+  /\.instrument-art\{[^}]*radial-gradient[^}]*radial-gradient[^}]*linear-gradient/,
+  'instrument backgrounds combine distributed color spots with a quiet base surface'
+);
+assert.match(
+  styles,
+  /body\.dark-theme \.instrument-art\{[^}]*#191923[^}]*#252438/,
+  'dark mode uses a dedicated restrained cubic glass surface'
+);
+assert.match(
+  styles,
+  /\.instrument-bg\{display:none\}/,
+  'legacy gradient artwork is no longer painted behind the instrument icons'
+);
+assert.match(
+  styles,
+  /max-width:560px[^}]*[\s\S]*\.instrument-art\{--cubic-step:58px;/,
+  'mobile keeps fewer large cubes instead of shrinking the pattern'
+);
+assert.doesNotMatch(
+  styles,
+  /\.instrument-art::before\{[^}]*backdrop-filter/,
+  'cubic tiles do not create repeated backdrop-filter layers'
+);
+assert.match(
   html,
   /instrumentes\.css\?v=[a-z0-9-]+-\d{8}-\d+/,
   'page loads versioned instrument styles'
