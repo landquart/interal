@@ -25,7 +25,9 @@ assert.match(css, /\.interal-page-loader\{[^}]*background:transparent/, 'initial
 assert.match(runtime, /requestAnimationFrame\(finish\)/, 'initial loading leaves after the first ready paint without an artificial two-frame delay');
 
 assert.match(css, /@supports \(-moz-appearance:none\)[\s\S]*scrollbar-width:thin;[\s\S]*scrollbar-color:var\(--scrollbar-thumb\) transparent/, 'Firefox uses the shared thin scrollbar fallback without overriding Blink geometry');
-assert.match(css, /:root:has\(body\.dark-theme\)[^}]*--scrollbar-thumb: rgba\(255,255,255,\.44\)/, 'the body theme propagates dark scrollbar tokens to the HTML scroll root');
+assert.match(css, /:root\s*\{[^}]*--scrollbar-thumb:\s*#C99A22;[^}]*--scrollbar-thumb-hover:\s*#B98A16;[^}]*--scrollbar-thumb-active:\s*#A8790C;/s, 'the light theme exposes the solid Interal amber scrollbar palette');
+assert.match(css, /:root:has\(body\.dark-theme\)\s*\{[^}]*--scrollbar-thumb:\s*#D2A62B;[^}]*--scrollbar-thumb-hover:\s*#DFB63D;[^}]*--scrollbar-thumb-active:\s*#C99A22;/s, 'the body theme propagates the brighter dark amber palette to the HTML scroll root');
+assert.doesNotMatch(css, /--scrollbar-thumb(?:-hover|-active)?:\s*rgba\(/, 'legacy translucent neutral scrollbar values are removed');
 assert.match(css, /:where\([\s\S]*html,[\s\S]*\.side-menu,[\s\S]*\.interal-select-modal-options[\s\S]*\)::\-webkit-scrollbar\{width:10px;height:10px;/, 'WebKit styles the real viewport and internal scroll containers');
 assert.match(css, /::\-webkit-scrollbar-thumb\{[^}]*border:2px solid transparent;[^}]*border-radius:999px;/, 'WebKit renders a six-pixel pill thumb inside the ten-pixel hit area');
 assert.match(css, /::\-webkit-scrollbar-thumb:active\{background-color:var\(--scrollbar-thumb-active\)/, 'dragging uses the Interal accent');
