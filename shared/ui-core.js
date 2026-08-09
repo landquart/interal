@@ -4,6 +4,7 @@
   const COPY_FEEDBACK_TIMEOUT = 3200;
 
   let lockedScrollY = 0;
+  let menuScrollLocked = false;
 
   const currentScript = document.currentScript;
   const sharedPath = currentScript ? new URL(currentScript.src, window.location.href).pathname : '/shared/ui.js';
@@ -357,13 +358,28 @@
   }
 
   function lockPageScroll() {
+    if (menuScrollLocked) return;
     lockedScrollY = window.scrollY || document.documentElement.scrollTop || 0;
     document.body.style.setProperty('--menu-scroll-y', `-${lockedScrollY}px`);
+    document.documentElement.classList.add('menu-scroll-locked');
+    menuScrollLocked = true;
   }
 
   function unlockPageScroll() {
+    if (!menuScrollLocked) {
+      document.documentElement.classList.remove('menu-scroll-locked');
+      document.body.style.removeProperty('--menu-scroll-y');
+      return;
+    }
+    document.documentElement.classList.remove('menu-scroll-locked');
     document.body.style.removeProperty('--menu-scroll-y');
+    menuScrollLocked = false;
     window.scrollTo(0, lockedScrollY);
+  }
+
+  function syncMenuScrollLock() {
+    if (document.body.classList.contains('menu-open')) lockPageScroll();
+    else unlockPageScroll();
   }
 
   function closeMenu() {
@@ -840,6 +856,7 @@
 
   if (window.MutationObserver) {
     const menuStateObserver = new window.MutationObserver(() => {
+      syncMenuScrollLock();
       syncMenuButtonState();
       scheduleScrollUiState();
     });
