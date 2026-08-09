@@ -16,6 +16,85 @@
     return { source: request.responseText, url };
   }
 
+  let expressiveLoaderSource = '';
+  try {
+    expressiveLoaderSource = loadSource('../elements/material3_expressive_loader.svg').source;
+  } catch (error) {
+    console.warn('Could not load the expressive loading indicator.', error);
+  }
+
+  function createExpressiveLoader(options = {}) {
+    const visual = document.createElement('span');
+    visual.className = ['interal-expressive-loader', options.className || ''].filter(Boolean).join(' ');
+    if (!expressiveLoaderSource) return visual;
+
+    visual.innerHTML = expressiveLoaderSource.trim();
+    const svg = visual.querySelector('svg');
+    if (svg) {
+      svg.removeAttribute?.('role');
+      svg.removeAttribute?.('aria-label');
+      svg.setAttribute?.('aria-hidden', 'true');
+      svg.setAttribute?.('focusable', 'false');
+      if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) {
+        svg.querySelectorAll?.('animate, animateTransform').forEach((node) => node.remove());
+      }
+    }
+    return visual;
+  }
+
+  window.InteralExpressiveLoader = Object.assign(window.InteralExpressiveLoader || {}, {
+    create: createExpressiveLoader
+  });
+
+  function mountInitialPageLoader() {
+    if (!expressiveLoaderSource || !document.body) return null;
+
+    try {
+      document.body.classList.toggle('dark-theme', localStorage.getItem('interal.theme') === 'dark');
+    } catch (_) {}
+
+    const pageLoader = document.createElement('div');
+    pageLoader.className = 'interal-page-loader';
+    pageLoader.setAttribute('role', 'status');
+    pageLoader.setAttribute('aria-live', 'polite');
+    let language = 'ru';
+    try {
+      language = localStorage.getItem('interal.lang') === 'en' ? 'en' : 'ru';
+    } catch (_) {}
+    pageLoader.setAttribute('aria-label', language === 'en' ? 'Loading' : 'Загрузка');
+    pageLoader.append(createExpressiveLoader());
+    document.body.append(pageLoader);
+
+    const removeLoader = () => {
+      if (!pageLoader.isConnected || pageLoader.classList.contains('is-leaving')) return;
+      pageLoader.classList.add('is-leaving');
+      const remove = () => pageLoader.remove();
+      pageLoader.addEventListener('transitionend', remove, { once: true });
+      window.setTimeout(remove, 240);
+    };
+
+    const finishWhenReady = () => {
+      let finished = false;
+      const finish = () => {
+        if (finished) return;
+        finished = true;
+        window.clearTimeout(fallbackTimer);
+        removeLoader();
+      };
+      const fallbackTimer = window.setTimeout(finish, 160);
+      requestAnimationFrame(() => requestAnimationFrame(finish));
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', finishWhenReady, { once: true });
+    } else {
+      finishWhenReady();
+    }
+
+    return pageLoader;
+  }
+
+  mountInitialPageLoader();
+
   if (!document.querySelector('link[data-interal-liquid-glass-css]')) {
     const liquidGlassStylesheet = document.createElement('link');
     liquidGlassStylesheet.rel = 'stylesheet';
