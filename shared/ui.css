@@ -67,8 +67,8 @@
   --brand-gold-control: #a47a1f;
   --brand-gold-soft: color-mix(in srgb, var(--brand-gold) 14%, transparent);
   --brand-gold-border: color-mix(in srgb, var(--brand-gold) 48%, var(--border-subtle));
-  --scrollbar-thumb: rgba(17,17,17,.36);
-  --scrollbar-thumb-hover: rgba(17,17,17,.56);
+  --scrollbar-thumb: rgba(17,17,17,.46);
+  --scrollbar-thumb-hover: rgba(17,17,17,.66);
   --scrollbar-thumb-active: var(--brand-gold-control);
   --loader-color: var(--brand-gold-control);
   --danger-bg: color-mix(in srgb, #dc2626 9%, transparent);
@@ -151,13 +151,21 @@ body.dark-theme {
   --brand-gold-control: #d8b65f;
   --brand-gold-soft: color-mix(in srgb, var(--brand-gold) 12%, transparent);
   --brand-gold-border: color-mix(in srgb, var(--brand-gold) 38%, var(--border-subtle));
-  --scrollbar-thumb: rgba(245,245,245,.38);
-  --scrollbar-thumb-hover: rgba(245,245,245,.58);
+  --scrollbar-thumb: rgba(255,255,255,.44);
+  --scrollbar-thumb-hover: rgba(255,255,255,.66);
   --scrollbar-thumb-active: var(--brand-gold);
   --loader-color: var(--brand-gold);
   --danger-bg: color-mix(in srgb, #f87171 14%, transparent);
   --danger-text: #fca5a5;
   --menu-icon-filter: brightness(0) invert(1);
+}
+
+/* The site keeps its existing theme state on body. Mirror only scrollbar
+   tokens to the document scroll root; custom properties cannot inherit upward. */
+:root:has(body.dark-theme) {
+  --scrollbar-thumb: rgba(255,255,255,.44);
+  --scrollbar-thumb-hover: rgba(255,255,255,.66);
+  --scrollbar-thumb-active: #d8b65f;
 }
 
 html{scrollbar-gutter:stable;}
@@ -168,19 +176,191 @@ body{background:var(--bg);color:var(--text)}
 body.menu-open{overflow:hidden;position:fixed;top:var(--menu-scroll-y, 0);left:0;right:0;width:100%;}
 body.select-modal-open{overflow:hidden;position:fixed;top:var(--select-modal-scroll-y, 0);left:0;right:0;width:100%;}
 
-/* Root viewport plus internal overflow containers. Firefox uses its native thin fallback. */
-html,body,*{scrollbar-width:thin;scrollbar-color:var(--scrollbar-thumb) transparent;}
-html::-webkit-scrollbar,body::-webkit-scrollbar,*::-webkit-scrollbar{width:9px;height:9px;}
-html::-webkit-scrollbar-track,body::-webkit-scrollbar-track,*::-webkit-scrollbar-track,
-html::-webkit-scrollbar-corner,body::-webkit-scrollbar-corner,*::-webkit-scrollbar-corner{background:transparent;}
-html::-webkit-scrollbar-thumb,body::-webkit-scrollbar-thumb,*::-webkit-scrollbar-thumb{min-height:32px;border:2px solid transparent;border-radius:999px;background-color:var(--scrollbar-thumb);background-clip:content-box;}
-html::-webkit-scrollbar-thumb:hover,body::-webkit-scrollbar-thumb:hover,*::-webkit-scrollbar-thumb:hover{background-color:var(--scrollbar-thumb-hover);}
-html::-webkit-scrollbar-thumb:active,body::-webkit-scrollbar-thumb:active,*::-webkit-scrollbar-thumb:active{background-color:var(--scrollbar-thumb-active);}
-html::-webkit-scrollbar-button,body::-webkit-scrollbar-button,*::-webkit-scrollbar-button{display:none;width:0;height:0;}
+/* Real scroll roots: the document viewport and the overflow containers used by
+   navigation, modals, tables and long code/results blocks. */
+@supports (-moz-appearance:none) {
+  :where(
+    html,
+    body,
+    .side-menu,
+    .interal-modal-card,
+    .interal-select-modal-options,
+    #jsonCardModal .modal-inner,
+    .registry-json-view,
+    .giscus-modal-card,
+    .table-wrap,
+    .language-table-wrap,
+    .card-scroll-wrap,
+    .result-table-scroll,
+    .derivatives-table-wrap,
+    .determinator-page .modal-card,
+    .determinator-page .chooser-card,
+    .internationalita-page .explain-code,
+    .internationalita-page #explainText,
+    .internationalita-page .json-card-form,
+    .associativ-page table
+  ) {
+    scrollbar-width:thin;
+    scrollbar-color:var(--scrollbar-thumb) transparent;
+  }
+}
+
+:where(
+  html,
+  body,
+  .side-menu,
+  .interal-modal-card,
+  .interal-select-modal-options,
+  #jsonCardModal .modal-inner,
+  .registry-json-view,
+  .giscus-modal-card,
+  .table-wrap,
+  .language-table-wrap,
+  .card-scroll-wrap,
+  .result-table-scroll,
+  .derivatives-table-wrap,
+  .determinator-page .modal-card,
+  .determinator-page .chooser-card,
+  .internationalita-page .explain-code,
+  .internationalita-page #explainText,
+  .internationalita-page .json-card-form,
+  .associativ-page table
+)::-webkit-scrollbar{width:10px;height:10px;}
+
+:where(
+  html,
+  body,
+  .side-menu,
+  .interal-modal-card,
+  .interal-select-modal-options,
+  #jsonCardModal .modal-inner,
+  .registry-json-view,
+  .giscus-modal-card,
+  .table-wrap,
+  .language-table-wrap,
+  .card-scroll-wrap,
+  .result-table-scroll,
+  .derivatives-table-wrap,
+  .determinator-page .modal-card,
+  .determinator-page .chooser-card,
+  .internationalita-page .explain-code,
+  .internationalita-page #explainText,
+  .internationalita-page .json-card-form,
+  .associativ-page table
+)::-webkit-scrollbar-track,
+:where(
+  html,
+  body,
+  .side-menu,
+  .interal-modal-card,
+  .interal-select-modal-options,
+  #jsonCardModal .modal-inner,
+  .registry-json-view,
+  .giscus-modal-card,
+  .table-wrap,
+  .language-table-wrap,
+  .card-scroll-wrap,
+  .result-table-scroll,
+  .derivatives-table-wrap,
+  .determinator-page .modal-card,
+  .determinator-page .chooser-card,
+  .internationalita-page .explain-code,
+  .internationalita-page #explainText,
+  .internationalita-page .json-card-form,
+  .associativ-page table
+)::-webkit-scrollbar-corner{background:transparent;}
+
+:where(
+  html,
+  body,
+  .side-menu,
+  .interal-modal-card,
+  .interal-select-modal-options,
+  #jsonCardModal .modal-inner,
+  .registry-json-view,
+  .giscus-modal-card,
+  .table-wrap,
+  .language-table-wrap,
+  .card-scroll-wrap,
+  .result-table-scroll,
+  .derivatives-table-wrap,
+  .determinator-page .modal-card,
+  .determinator-page .chooser-card,
+  .internationalita-page .explain-code,
+  .internationalita-page #explainText,
+  .internationalita-page .json-card-form,
+  .associativ-page table
+)::-webkit-scrollbar-thumb{min-height:36px;border:2px solid transparent;border-radius:999px;background-color:var(--scrollbar-thumb);background-clip:content-box;}
+
+:where(
+  html,
+  body,
+  .side-menu,
+  .interal-modal-card,
+  .interal-select-modal-options,
+  #jsonCardModal .modal-inner,
+  .registry-json-view,
+  .giscus-modal-card,
+  .table-wrap,
+  .language-table-wrap,
+  .card-scroll-wrap,
+  .result-table-scroll,
+  .derivatives-table-wrap,
+  .determinator-page .modal-card,
+  .determinator-page .chooser-card,
+  .internationalita-page .explain-code,
+  .internationalita-page #explainText,
+  .internationalita-page .json-card-form,
+  .associativ-page table
+)::-webkit-scrollbar-thumb:hover{background-color:var(--scrollbar-thumb-hover);}
+
+:where(
+  html,
+  body,
+  .side-menu,
+  .interal-modal-card,
+  .interal-select-modal-options,
+  #jsonCardModal .modal-inner,
+  .registry-json-view,
+  .giscus-modal-card,
+  .table-wrap,
+  .language-table-wrap,
+  .card-scroll-wrap,
+  .result-table-scroll,
+  .derivatives-table-wrap,
+  .determinator-page .modal-card,
+  .determinator-page .chooser-card,
+  .internationalita-page .explain-code,
+  .internationalita-page #explainText,
+  .internationalita-page .json-card-form,
+  .associativ-page table
+)::-webkit-scrollbar-thumb:active{background-color:var(--scrollbar-thumb-active);}
+
+:where(
+  html,
+  body,
+  .side-menu,
+  .interal-modal-card,
+  .interal-select-modal-options,
+  #jsonCardModal .modal-inner,
+  .registry-json-view,
+  .giscus-modal-card,
+  .table-wrap,
+  .language-table-wrap,
+  .card-scroll-wrap,
+  .result-table-scroll,
+  .derivatives-table-wrap,
+  .determinator-page .modal-card,
+  .determinator-page .chooser-card,
+  .internationalita-page .explain-code,
+  .internationalita-page #explainText,
+  .internationalita-page .json-card-form,
+  .associativ-page table
+)::-webkit-scrollbar-button{display:none;width:0;height:0;}
 
 @media (hover:none) and (pointer:coarse){
-  html::-webkit-scrollbar,body::-webkit-scrollbar,*::-webkit-scrollbar{width:4px;height:4px;}
-  html::-webkit-scrollbar-thumb,body::-webkit-scrollbar-thumb,*::-webkit-scrollbar-thumb{min-height:24px;border:1px solid transparent;}
+  :where(html,body,.side-menu,.interal-modal-card,.interal-select-modal-options,#jsonCardModal .modal-inner,.registry-json-view,.giscus-modal-card,.table-wrap,.language-table-wrap,.card-scroll-wrap,.result-table-scroll,.derivatives-table-wrap,.determinator-page .modal-card,.determinator-page .chooser-card,.internationalita-page .explain-code,.internationalita-page #explainText,.internationalita-page .json-card-form,.associativ-page table)::-webkit-scrollbar{width:4px;height:4px;}
+  :where(html,body,.side-menu,.interal-modal-card,.interal-select-modal-options,#jsonCardModal .modal-inner,.registry-json-view,.giscus-modal-card,.table-wrap,.language-table-wrap,.card-scroll-wrap,.result-table-scroll,.derivatives-table-wrap,.determinator-page .modal-card,.determinator-page .chooser-card,.internationalita-page .explain-code,.internationalita-page #explainText,.internationalita-page .json-card-form,.associativ-page table)::-webkit-scrollbar-thumb{min-height:24px;border-width:1px;}
 }
 
 .interal-page-loader{position:fixed;inset:0;z-index:calc(var(--z-page-modal) + 80);display:grid;place-items:center;background:transparent;color:var(--loader-color);opacity:1;visibility:visible;transition:opacity 120ms ease,visibility 0s linear 120ms;}
