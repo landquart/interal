@@ -67,9 +67,9 @@
   --brand-gold-control: #a47a1f;
   --brand-gold-soft: color-mix(in srgb, var(--brand-gold) 14%, transparent);
   --brand-gold-border: color-mix(in srgb, var(--brand-gold) 48%, var(--border-subtle));
-  --scrollbar-thumb: rgba(17,17,17,.46);
-  --scrollbar-thumb-hover: rgba(17,17,17,.66);
-  --scrollbar-thumb-active: var(--brand-gold-control);
+  --scrollbar-thumb: #C99A22;
+  --scrollbar-thumb-hover: #B98A16;
+  --scrollbar-thumb-active: #A8790C;
   --loader-color: var(--brand-gold-control);
   --danger-bg: color-mix(in srgb, #dc2626 9%, transparent);
   --danger-text: #b91c1c;
@@ -151,9 +151,9 @@ body.dark-theme {
   --brand-gold-control: #d8b65f;
   --brand-gold-soft: color-mix(in srgb, var(--brand-gold) 12%, transparent);
   --brand-gold-border: color-mix(in srgb, var(--brand-gold) 38%, var(--border-subtle));
-  --scrollbar-thumb: rgba(255,255,255,.44);
-  --scrollbar-thumb-hover: rgba(255,255,255,.66);
-  --scrollbar-thumb-active: var(--brand-gold);
+  --scrollbar-thumb: #D2A62B;
+  --scrollbar-thumb-hover: #DFB63D;
+  --scrollbar-thumb-active: #C99A22;
   --loader-color: var(--brand-gold);
   --danger-bg: color-mix(in srgb, #f87171 14%, transparent);
   --danger-text: #fca5a5;
@@ -163,9 +163,9 @@ body.dark-theme {
 /* The site keeps its existing theme state on body. Mirror only scrollbar
    tokens to the document scroll root; custom properties cannot inherit upward. */
 :root:has(body.dark-theme) {
-  --scrollbar-thumb: rgba(255,255,255,.44);
-  --scrollbar-thumb-hover: rgba(255,255,255,.66);
-  --scrollbar-thumb-active: #d8b65f;
+  --scrollbar-thumb: #D2A62B;
+  --scrollbar-thumb-hover: #DFB63D;
+  --scrollbar-thumb-active: #C99A22;
 }
 
 html{scrollbar-gutter:stable;}
