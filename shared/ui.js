@@ -18,7 +18,7 @@
 
   let expressiveLoaderSource = '';
   try {
-    expressiveLoaderSource = loadSource('../elements/material3_expressive_loader.svg').source;
+    expressiveLoaderSource = loadSource('../elements/material3_expressive_loader.svg?v=interal-loader-20260809-2').source;
   } catch (error) {
     console.warn('Could not load the expressive loading indicator.', error);
   }
@@ -70,7 +70,7 @@
       pageLoader.classList.add('is-leaving');
       const remove = () => pageLoader.remove();
       pageLoader.addEventListener('transitionend', remove, { once: true });
-      window.setTimeout(remove, 240);
+      window.setTimeout(remove, 160);
     };
 
     const finishWhenReady = () => {
@@ -81,8 +81,9 @@
         window.clearTimeout(fallbackTimer);
         removeLoader();
       };
-      const fallbackTimer = window.setTimeout(finish, 160);
-      requestAnimationFrame(() => requestAnimationFrame(finish));
+      const fallbackTimer = window.setTimeout(finish, 100);
+      if (typeof requestAnimationFrame === 'function') requestAnimationFrame(finish);
+      else finish();
     };
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', finishWhenReady, { once: true });
@@ -103,7 +104,7 @@
     document.head.appendChild(liquidGlassStylesheet);
   }
 
-  const core = loadSource('ui-core.js?v=ayu-material-20260804-1');
+  const core = loadSource('ui-core.js?v=interal-ui-20260809-2');
   const coreSource = core.source.replace(
     'const currentScript = document.currentScript;',
     'const currentScript = document.querySelector(\'script[data-interal-ui-loader="true"]\');'
