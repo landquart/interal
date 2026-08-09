@@ -67,9 +67,10 @@
   --brand-gold-control: #a47a1f;
   --brand-gold-soft: color-mix(in srgb, var(--brand-gold) 14%, transparent);
   --brand-gold-border: color-mix(in srgb, var(--brand-gold) 48%, var(--border-subtle));
-  --scrollbar-thumb: #C99A22;
-  --scrollbar-thumb-hover: #B98A16;
-  --scrollbar-thumb-active: #A8790C;
+  --scrollbar-thumb: rgba(25, 25, 30, .24);
+  --scrollbar-thumb-hover: rgba(25, 25, 30, .38);
+  --scrollbar-thumb-active: rgba(25, 25, 30, .50);
+  --scrollbar-track: transparent;
   --loader-color: var(--brand-gold-control);
   --danger-bg: color-mix(in srgb, #dc2626 9%, transparent);
   --danger-text: #b91c1c;
@@ -151,9 +152,9 @@ body.dark-theme {
   --brand-gold-control: #d8b65f;
   --brand-gold-soft: color-mix(in srgb, var(--brand-gold) 12%, transparent);
   --brand-gold-border: color-mix(in srgb, var(--brand-gold) 38%, var(--border-subtle));
-  --scrollbar-thumb: #D2A62B;
-  --scrollbar-thumb-hover: #DFB63D;
-  --scrollbar-thumb-active: #C99A22;
+  --scrollbar-thumb: rgba(255, 255, 255, .24);
+  --scrollbar-thumb-hover: rgba(255, 255, 255, .38);
+  --scrollbar-thumb-active: rgba(255, 255, 255, .50);
   --loader-color: var(--brand-gold);
   --danger-bg: color-mix(in srgb, #f87171 14%, transparent);
   --danger-text: #fca5a5;
@@ -163,12 +164,15 @@ body.dark-theme {
 /* The site keeps its existing theme state on body. Mirror only scrollbar
    tokens to the document scroll root; custom properties cannot inherit upward. */
 :root:has(body.dark-theme) {
-  --scrollbar-thumb: #D2A62B;
-  --scrollbar-thumb-hover: #DFB63D;
-  --scrollbar-thumb-active: #C99A22;
+  --scrollbar-thumb: rgba(255, 255, 255, .24);
+  --scrollbar-thumb-hover: rgba(255, 255, 255, .38);
+  --scrollbar-thumb-active: rgba(255, 255, 255, .50);
 }
 
-html{scrollbar-gutter:stable;}
+html{overflow-x:clip;}
+html.menu-scroll-locked,
+html:has(body.select-modal-open){overflow:hidden;}
+@media (hover:hover) and (pointer:fine){html{scrollbar-gutter:stable;}}
 *,
 *::before,
 *::after{box-sizing:border-box;}
@@ -181,7 +185,6 @@ body.select-modal-open{overflow:hidden;position:fixed;top:var(--select-modal-scr
 @supports (-moz-appearance:none) {
   :where(
     html,
-    body,
     .side-menu,
     .interal-modal-card,
     .interal-select-modal-options,
@@ -201,13 +204,12 @@ body.select-modal-open{overflow:hidden;position:fixed;top:var(--select-modal-scr
     .associativ-page table
   ) {
     scrollbar-width:thin;
-    scrollbar-color:var(--scrollbar-thumb) transparent;
+    scrollbar-color:var(--scrollbar-thumb) var(--scrollbar-track);
   }
 }
 
 :where(
   html,
-  body,
   .side-menu,
   .interal-modal-card,
   .interal-select-modal-options,
@@ -225,11 +227,10 @@ body.select-modal-open{overflow:hidden;position:fixed;top:var(--select-modal-scr
   .internationalita-page #explainText,
   .internationalita-page .json-card-form,
   .associativ-page table
-)::-webkit-scrollbar{width:10px;height:10px;}
+)::-webkit-scrollbar{width:8px;height:8px;}
 
 :where(
   html,
-  body,
   .side-menu,
   .interal-modal-card,
   .interal-select-modal-options,
@@ -250,7 +251,6 @@ body.select-modal-open{overflow:hidden;position:fixed;top:var(--select-modal-scr
 )::-webkit-scrollbar-track,
 :where(
   html,
-  body,
   .side-menu,
   .interal-modal-card,
   .interal-select-modal-options,
@@ -268,11 +268,10 @@ body.select-modal-open{overflow:hidden;position:fixed;top:var(--select-modal-scr
   .internationalita-page #explainText,
   .internationalita-page .json-card-form,
   .associativ-page table
-)::-webkit-scrollbar-corner{background:transparent;}
+)::-webkit-scrollbar-corner{background:var(--scrollbar-track);}
 
 :where(
   html,
-  body,
   .side-menu,
   .interal-modal-card,
   .interal-select-modal-options,
@@ -294,7 +293,6 @@ body.select-modal-open{overflow:hidden;position:fixed;top:var(--select-modal-scr
 
 :where(
   html,
-  body,
   .side-menu,
   .interal-modal-card,
   .interal-select-modal-options,
@@ -316,7 +314,6 @@ body.select-modal-open{overflow:hidden;position:fixed;top:var(--select-modal-scr
 
 :where(
   html,
-  body,
   .side-menu,
   .interal-modal-card,
   .interal-select-modal-options,
@@ -338,7 +335,6 @@ body.select-modal-open{overflow:hidden;position:fixed;top:var(--select-modal-scr
 
 :where(
   html,
-  body,
   .side-menu,
   .interal-modal-card,
   .interal-select-modal-options,
@@ -359,8 +355,8 @@ body.select-modal-open{overflow:hidden;position:fixed;top:var(--select-modal-scr
 )::-webkit-scrollbar-button{display:none;width:0;height:0;}
 
 @media (hover:none) and (pointer:coarse){
-  :where(html,body,.side-menu,.interal-modal-card,.interal-select-modal-options,#jsonCardModal .modal-inner,.registry-json-view,.giscus-modal-card,.table-wrap,.language-table-wrap,.card-scroll-wrap,.result-table-scroll,.derivatives-table-wrap,.determinator-page .modal-card,.determinator-page .chooser-card,.internationalita-page .explain-code,.internationalita-page #explainText,.internationalita-page .json-card-form,.associativ-page table)::-webkit-scrollbar{width:4px;height:4px;}
-  :where(html,body,.side-menu,.interal-modal-card,.interal-select-modal-options,#jsonCardModal .modal-inner,.registry-json-view,.giscus-modal-card,.table-wrap,.language-table-wrap,.card-scroll-wrap,.result-table-scroll,.derivatives-table-wrap,.determinator-page .modal-card,.determinator-page .chooser-card,.internationalita-page .explain-code,.internationalita-page #explainText,.internationalita-page .json-card-form,.associativ-page table)::-webkit-scrollbar-thumb{min-height:24px;border-width:1px;}
+  :where(html,.side-menu,.interal-modal-card,.interal-select-modal-options,#jsonCardModal .modal-inner,.registry-json-view,.giscus-modal-card,.table-wrap,.language-table-wrap,.card-scroll-wrap,.result-table-scroll,.derivatives-table-wrap,.determinator-page .modal-card,.determinator-page .chooser-card,.internationalita-page .explain-code,.internationalita-page #explainText,.internationalita-page .json-card-form,.associativ-page table)::-webkit-scrollbar{width:4px;height:4px;}
+  :where(html,.side-menu,.interal-modal-card,.interal-select-modal-options,#jsonCardModal .modal-inner,.registry-json-view,.giscus-modal-card,.table-wrap,.language-table-wrap,.card-scroll-wrap,.result-table-scroll,.derivatives-table-wrap,.determinator-page .modal-card,.determinator-page .chooser-card,.internationalita-page .explain-code,.internationalita-page #explainText,.internationalita-page .json-card-form,.associativ-page table)::-webkit-scrollbar-thumb{min-height:24px;border-width:1px;}
 }
 
 .interal-page-loader{position:fixed;inset:0;z-index:calc(var(--z-page-modal) + 80);display:grid;place-items:center;background:transparent;color:var(--loader-color);opacity:1;visibility:visible;transition:opacity 120ms ease,visibility 0s linear 120ms;}
@@ -598,7 +594,7 @@ body.dark-theme .top-brand-logo{filter:none!important}
 .top-current-page-link--text{width:auto;max-width:46vw;padding:0 12px;font-weight:700;font-size:.9rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .top-current-page-link--text::after{content:attr(data-label);overflow:hidden;text-overflow:ellipsis}
 .side-menu-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:opacity .2s;z-index:1190}
-.side-menu{position:fixed;top:0;left:0;height:100vh;height:100dvh;width:min(320px,86vw);background:var(--sidebar-bg);border-right:1px solid var(--sidebar-border);transform:translateX(-100%);transition:transform .22s;z-index:var(--z-sidebar);padding:72px 16px max(20px, env(safe-area-inset-bottom));overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;touch-action:pan-y}
+.side-menu{position:fixed;top:0;left:0;height:100vh;height:100dvh;width:min(320px,86vw);background:var(--sidebar-bg);border-right:1px solid var(--sidebar-border);transform:translateX(-100%);transition:transform .22s;z-index:var(--z-sidebar);padding:72px 16px max(20px, env(safe-area-inset-bottom));overflow-x:clip;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;touch-action:pan-y}
 body.menu-open .side-menu{transform:translateX(0)}
 body.menu-open .side-menu-overlay{opacity:1;pointer-events:auto}
 .menu-nav,.menu-preferences-row{margin-top:12px;padding-top:14px}

@@ -104,7 +104,7 @@
     document.head.appendChild(liquidGlassStylesheet);
   }
 
-  const core = loadSource('ui-core.js?v=interal-ui-20260809-2');
+  const core = loadSource('ui-core.js?v=interal-ui-20260809-3');
   const coreSource = core.source.replace(
     'const currentScript = document.currentScript;',
     'const currentScript = document.querySelector(\'script[data-interal-ui-loader="true"]\');'
