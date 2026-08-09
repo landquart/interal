@@ -13,15 +13,21 @@ const [core, css, runtime, sidebar, loader, buttonStatus] = await Promise.all([
 assert.match(loader, /<animateTransform\b/, 'expressive loader keeps its rotating SMIL animation');
 assert.match(loader, /<animate\b/, 'expressive loader keeps its morphing SMIL animation');
 assert.match(loader, /var\(--loader-color/, 'expressive loader remains themeable');
+const morphAnimation = loader.match(/<animate attributeName="d"[\s\S]*?\/>/)?.[0] || '';
+assert.equal(morphAnimation.match(/values="([\s\S]*?)"/)?.[1].split(';').length, 8, 'morph animation keeps one non-duplicated seven-shape cycle');
+assert.match(morphAnimation, /dur="4550ms"/, 'the optimized morph loop preserves the original 650 ms per-shape timing');
+assert.doesNotMatch(loader, /#0B57D0/i, 'the SVG cannot flash the old blue fallback before theme hydration');
 assert.match(runtime, /material3_expressive_loader\.svg/, 'shared runtime loads the supplied loader asset');
 assert.match(runtime, /querySelectorAll\?\.\('animate, animateTransform'\)/, 'reduced motion retains a static loader shape');
 assert.match(runtime, /interal-page-loader/, 'initial page loading uses the expressive indicator');
 assert.match(css, /\.interal-page-loader\.is-leaving\{opacity:0;/, 'initial loading fades without affecting layout');
+assert.match(css, /\.interal-page-loader\{[^}]*background:transparent/, 'initial loading does not paint an opaque white screen');
+assert.match(runtime, /requestAnimationFrame\(finish\)/, 'initial loading leaves after the first ready paint without an artificial two-frame delay');
 
 assert.match(css, /scrollbar-width:thin;scrollbar-color:var\(--scrollbar-thumb\) transparent/, 'Firefox uses the shared thin scrollbar fallback');
-assert.match(css, /\*::\-webkit-scrollbar\{width:9px;height:9px;/, 'WebKit uses a compact scrollbar gutter');
-assert.match(css, /\*::\-webkit-scrollbar-thumb\{[^}]*border:2px solid transparent;[^}]*border-radius:999px;/, 'WebKit renders an approximately five-pixel pill thumb');
-assert.match(css, /\*::\-webkit-scrollbar-thumb:active\{background-color:var\(--scrollbar-thumb-active\)/, 'dragging uses the Interal accent');
+assert.match(css, /html::\-webkit-scrollbar,body::\-webkit-scrollbar,\*::\-webkit-scrollbar\{width:9px;height:9px;/, 'WebKit explicitly styles the root viewport scrollbar');
+assert.match(css, /html::\-webkit-scrollbar-thumb,body::\-webkit-scrollbar-thumb,\*::\-webkit-scrollbar-thumb\{[^}]*border:2px solid transparent;[^}]*border-radius:999px;/, 'WebKit renders an approximately five-pixel pill thumb');
+assert.match(css, /html::\-webkit-scrollbar-thumb:active,body::\-webkit-scrollbar-thumb:active,\*::\-webkit-scrollbar-thumb:active\{background-color:var\(--scrollbar-thumb-active\)/, 'dragging uses the Interal accent');
 assert.match(css, /@media \(hover:none\) and \(pointer:coarse\)[\s\S]*width:4px/, 'coarse pointers keep a minimal mobile scrollbar');
 
 assert.match(core, /createElement\('button'\)[\s\S]*interal-back-to-top[\s\S]*aria-label/, 'back-to-top is a labelled native button');
