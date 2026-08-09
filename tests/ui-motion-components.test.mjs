@@ -31,11 +31,11 @@ assert.match(core, /scrollTo\(\{ top: 0, left: 0, behavior: reduceMotion \? 'aut
 assert.match(css, /\.interal-back-to-top\{[^}]*safe-area-inset-bottom/, 'mobile back-to-top placement respects the device safe area');
 assert.match(css, /body\.menu-open \.interal-back-to-top[\s\S]*interal-confirm-overlay\.show/, 'back-to-top stays below menus and modal overlays');
 
-assert.match(sidebar, /id="sidebar-outline"[\s\S]*M18\.165 11\.327/, 'sidebar source preserves the current compact ChatGPT outer geometry');
-assert.match(sidebar, /id="sidebar-divider"[\s\S]*M6\.835 4c-\.451\.004[\s\S]*\.316\.026\.685\.034 1\.136\.038z/, 'sidebar source preserves the rounded attached divider geometry');
+assert.match(sidebar, /id="sidebar-outline"[\s\S]*<rect x="3" y="4" width="18" height="16" rx="5" fill="none" stroke="currentColor" stroke-width="1\.5"/, 'sidebar source keeps the requested rounded outline unchanged');
+assert.match(sidebar, /id="sidebar-divider"[\s\S]*<path d="M9 4V20" fill="none" stroke="currentColor" stroke-width="1\.5" stroke-linecap="round"/, 'sidebar divider is only one thin vertical line joined to both borders');
 assert.match(core, /sidebar_corrected_v2\.svg[\s\S]*#sidebar-outline[\s\S]*#sidebar-divider/, 'menu button references the static shell and moving divider from one SVG source');
 assert.match(css, /\.sidebar-state-divider\{[^}]*transition:transform 240ms cubic-bezier\(\.2,0,0,1\)/, 'divider movement keeps the requested timing and easing');
-assert.match(css, /body\.menu-open \.sidebar-state-divider\{transform:translateX\(10px\)\}/, 'divider moves to the symmetric right-hand position');
+assert.match(css, /body\.menu-open \.sidebar-state-divider\{transform:translateX\(6px\)\}/, 'divider alone moves to the symmetric right-hand position');
 assert.match(core, /syncMenuButtonState[\s\S]*aria-expanded[\s\S]*closeMenu[\s\S]*openMenu/, 'accessible label and expanded state follow the actual sidebar state');
 assert.match(core, /MutationObserver[\s\S]*syncMenuButtonState[\s\S]*menu-open/, 'programmatic sidebar state changes stay synchronized');
 
