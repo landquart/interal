@@ -24,15 +24,23 @@ assert.match(css, /\.interal-page-loader\.is-leaving\{opacity:0;/, 'initial load
 assert.match(css, /\.interal-page-loader\{[^}]*background:transparent/, 'initial loading does not paint an opaque white screen');
 assert.match(runtime, /requestAnimationFrame\(finish\)/, 'initial loading leaves after the first ready paint without an artificial two-frame delay');
 
-assert.match(css, /@supports \(-moz-appearance:none\)[\s\S]*scrollbar-width:thin;[\s\S]*scrollbar-color:var\(--scrollbar-thumb\) transparent/, 'Firefox uses the shared thin scrollbar fallback without overriding Blink geometry');
-assert.match(css, /:root\s*\{[^}]*--scrollbar-thumb:\s*#C99A22;[^}]*--scrollbar-thumb-hover:\s*#B98A16;[^}]*--scrollbar-thumb-active:\s*#A8790C;/s, 'the light theme exposes the solid Interal amber scrollbar palette');
-assert.match(css, /:root:has\(body\.dark-theme\)\s*\{[^}]*--scrollbar-thumb:\s*#D2A62B;[^}]*--scrollbar-thumb-hover:\s*#DFB63D;[^}]*--scrollbar-thumb-active:\s*#C99A22;/s, 'the body theme propagates the brighter dark amber palette to the HTML scroll root');
-assert.doesNotMatch(css, /--scrollbar-thumb(?:-hover|-active)?:\s*rgba\(/, 'legacy translucent neutral scrollbar values are removed');
-assert.match(css, /:where\([\s\S]*html,[\s\S]*\.side-menu,[\s\S]*\.interal-select-modal-options[\s\S]*\)::\-webkit-scrollbar\{width:10px;height:10px;/, 'WebKit styles the real viewport and internal scroll containers');
-assert.match(css, /::\-webkit-scrollbar-thumb\{[^}]*border:2px solid transparent;[^}]*border-radius:999px;/, 'WebKit renders a six-pixel pill thumb inside the ten-pixel hit area');
-assert.match(css, /::\-webkit-scrollbar-thumb:active\{background-color:var\(--scrollbar-thumb-active\)/, 'dragging uses the Interal accent');
+assert.match(css, /@supports \(-moz-appearance:none\)[\s\S]*scrollbar-width:thin;[\s\S]*scrollbar-color:var\(--scrollbar-thumb\) var\(--scrollbar-track\)/, 'Firefox uses the shared thin scrollbar fallback without overriding Blink geometry');
+assert.match(css, /:root\s*\{[^}]*--scrollbar-thumb:\s*rgba\(25, 25, 30, \.24\);[^}]*--scrollbar-thumb-hover:\s*rgba\(25, 25, 30, \.38\);[^}]*--scrollbar-thumb-active:\s*rgba\(25, 25, 30, \.50\);[^}]*--scrollbar-track:\s*transparent;/s, 'the light scrollbar uses the neutral service palette');
+assert.match(css, /:root:has\(body\.dark-theme\)\s*\{[^}]*--scrollbar-thumb:\s*rgba\(255, 255, 255, \.24\);[^}]*--scrollbar-thumb-hover:\s*rgba\(255, 255, 255, \.38\);[^}]*--scrollbar-thumb-active:\s*rgba\(255, 255, 255, \.50\);/s, 'the body theme propagates the neutral dark palette to the HTML scroll root');
+assert.doesNotMatch(css, /--scrollbar-thumb(?:-hover|-active)?:\s*#[0-9a-f]{3,8}/i, 'scrollbars no longer use saturated brand colors');
+assert.match(css, /:where\([\s\S]*html,[\s\S]*\.side-menu,[\s\S]*\.interal-select-modal-options[\s\S]*\)::\-webkit-scrollbar\{width:8px;height:8px;/, 'WebKit styles the real viewport and necessary internal scroll containers');
+assert.match(css, /::\-webkit-scrollbar-thumb\{[^}]*border:2px solid transparent;[^}]*border-radius:999px;/, 'WebKit renders a four-pixel pill thumb inside the eight-pixel hit area');
+assert.match(css, /::\-webkit-scrollbar-thumb:active\{background-color:var\(--scrollbar-thumb-active\)/, 'dragging uses the neutral active token');
 assert.doesNotMatch(css, /\*::\-webkit-scrollbar/, 'the scrollbar is not attached indiscriminately to every element');
 assert.match(css, /@media \(hover:none\) and \(pointer:coarse\)[\s\S]*width:4px/, 'coarse pointers keep a minimal mobile scrollbar');
+assert.doesNotMatch(css, /:where\([^)]*body[,)]/, 'body is not styled as a second document scroll root');
+assert.match(css, /html\{overflow-x:clip;\}/, 'the document has a final horizontal overflow guard after layout fixes');
+assert.match(css, /\.side-menu\{[^}]*overflow-x:clip;overflow-y:auto;/, 'the sidebar scrolls vertically only when needed and cannot create a horizontal bar');
+assert.match(css, /html\.menu-scroll-locked,[\s\S]*body\.select-modal-open\)\{overflow:hidden;\}/, 'the actual document scroll root is locked behind blocking overlays');
+assert.match(core, /document\.documentElement\.classList\.add\('menu-scroll-locked'\)/, 'opening the sidebar locks the HTML scroll root');
+assert.match(core, /document\.documentElement\.classList\.remove\('menu-scroll-locked'\)/, 'closing the sidebar restores the HTML scroll root');
+assert.match(core, /syncMenuScrollLock\(\);[\s\S]*syncMenuButtonState\(\);/, 'programmatic menu state changes synchronize the scroll lock');
+assert.doesNotMatch(await readFile('index.html', 'utf8'), /width:\s*100vw/, 'homepage full-bleed sections no longer exceed the padded document width');
 
 assert.match(core, /createElement\('button'\)[\s\S]*interal-back-to-top[\s\S]*aria-label/, 'back-to-top is a labelled native button');
 assert.match(core, /addEventListener\(\s*'scroll',[\s\S]*passive:\s*true/, 'back-to-top shares a passive scroll listener');
