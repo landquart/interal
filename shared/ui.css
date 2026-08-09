@@ -67,8 +67,8 @@
   --brand-gold-control: #a47a1f;
   --brand-gold-soft: color-mix(in srgb, var(--brand-gold) 14%, transparent);
   --brand-gold-border: color-mix(in srgb, var(--brand-gold) 48%, var(--border-subtle));
-  --scrollbar-thumb: color-mix(in srgb, var(--text) 30%, transparent);
-  --scrollbar-thumb-hover: color-mix(in srgb, var(--text) 46%, transparent);
+  --scrollbar-thumb: rgba(17,17,17,.36);
+  --scrollbar-thumb-hover: rgba(17,17,17,.56);
   --scrollbar-thumb-active: var(--brand-gold-control);
   --loader-color: var(--brand-gold-control);
   --danger-bg: color-mix(in srgb, #dc2626 9%, transparent);
@@ -151,8 +151,8 @@ body.dark-theme {
   --brand-gold-control: #d8b65f;
   --brand-gold-soft: color-mix(in srgb, var(--brand-gold) 12%, transparent);
   --brand-gold-border: color-mix(in srgb, var(--brand-gold) 38%, var(--border-subtle));
-  --scrollbar-thumb: color-mix(in srgb, var(--text) 30%, transparent);
-  --scrollbar-thumb-hover: color-mix(in srgb, var(--text) 48%, transparent);
+  --scrollbar-thumb: rgba(245,245,245,.38);
+  --scrollbar-thumb-hover: rgba(245,245,245,.58);
   --scrollbar-thumb-active: var(--brand-gold);
   --loader-color: var(--brand-gold);
   --danger-bg: color-mix(in srgb, #f87171 14%, transparent);
@@ -168,21 +168,22 @@ body{background:var(--bg);color:var(--text)}
 body.menu-open{overflow:hidden;position:fixed;top:var(--menu-scroll-y, 0);left:0;right:0;width:100%;}
 body.select-modal-open{overflow:hidden;position:fixed;top:var(--select-modal-scroll-y, 0);left:0;right:0;width:100%;}
 
-/* Shared scrollbar: Firefox fallback plus a 5 px visible WebKit thumb. */
-*{scrollbar-width:thin;scrollbar-color:var(--scrollbar-thumb) transparent;}
-*::-webkit-scrollbar{width:9px;height:9px;}
-*::-webkit-scrollbar-track,*::-webkit-scrollbar-corner{background:transparent;}
-*::-webkit-scrollbar-thumb{min-height:32px;border:2px solid transparent;border-radius:999px;background-color:var(--scrollbar-thumb);background-clip:content-box;}
-*::-webkit-scrollbar-thumb:hover{background-color:var(--scrollbar-thumb-hover);}
-*::-webkit-scrollbar-thumb:active{background-color:var(--scrollbar-thumb-active);}
-*::-webkit-scrollbar-button{display:none;width:0;height:0;}
+/* Root viewport plus internal overflow containers. Firefox uses its native thin fallback. */
+html,body,*{scrollbar-width:thin;scrollbar-color:var(--scrollbar-thumb) transparent;}
+html::-webkit-scrollbar,body::-webkit-scrollbar,*::-webkit-scrollbar{width:9px;height:9px;}
+html::-webkit-scrollbar-track,body::-webkit-scrollbar-track,*::-webkit-scrollbar-track,
+html::-webkit-scrollbar-corner,body::-webkit-scrollbar-corner,*::-webkit-scrollbar-corner{background:transparent;}
+html::-webkit-scrollbar-thumb,body::-webkit-scrollbar-thumb,*::-webkit-scrollbar-thumb{min-height:32px;border:2px solid transparent;border-radius:999px;background-color:var(--scrollbar-thumb);background-clip:content-box;}
+html::-webkit-scrollbar-thumb:hover,body::-webkit-scrollbar-thumb:hover,*::-webkit-scrollbar-thumb:hover{background-color:var(--scrollbar-thumb-hover);}
+html::-webkit-scrollbar-thumb:active,body::-webkit-scrollbar-thumb:active,*::-webkit-scrollbar-thumb:active{background-color:var(--scrollbar-thumb-active);}
+html::-webkit-scrollbar-button,body::-webkit-scrollbar-button,*::-webkit-scrollbar-button{display:none;width:0;height:0;}
 
 @media (hover:none) and (pointer:coarse){
-  *::-webkit-scrollbar{width:4px;height:4px;}
-  *::-webkit-scrollbar-thumb{min-height:24px;border:1px solid transparent;}
+  html::-webkit-scrollbar,body::-webkit-scrollbar,*::-webkit-scrollbar{width:4px;height:4px;}
+  html::-webkit-scrollbar-thumb,body::-webkit-scrollbar-thumb,*::-webkit-scrollbar-thumb{min-height:24px;border:1px solid transparent;}
 }
 
-.interal-page-loader{position:fixed;inset:0;z-index:calc(var(--z-page-modal) + 80);display:grid;place-items:center;background:var(--bg);color:var(--loader-color);opacity:1;visibility:visible;transition:opacity 180ms ease,visibility 0s linear 180ms;}
+.interal-page-loader{position:fixed;inset:0;z-index:calc(var(--z-page-modal) + 80);display:grid;place-items:center;background:transparent;color:var(--loader-color);opacity:1;visibility:visible;transition:opacity 120ms ease,visibility 0s linear 120ms;}
 .interal-page-loader.is-leaving{opacity:0;visibility:hidden;pointer-events:none;}
 .interal-expressive-loader{width:48px;height:48px;color:var(--loader-color);}
 .interal-expressive-loader svg{display:block;width:100%;height:100%;overflow:visible;}
