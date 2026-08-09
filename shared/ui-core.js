@@ -225,7 +225,7 @@
   menuButtonIcon.className = 'top-menu-btn-icon';
   const sidebarIconSource = joinUrl('elements/sidebar_corrected_v2.svg');
   menuButtonIcon.innerHTML = `
-    <svg class="sidebar-state-icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+    <svg class="sidebar-state-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
       <use class="sidebar-state-outline" href="${sidebarIconSource}#sidebar-outline" />
       <use class="sidebar-state-divider" href="${sidebarIconSource}#sidebar-divider" />
     </svg>
