@@ -8,7 +8,7 @@
   <link rel="icon" type="image/png" sizes="64x64" href="favicon/favicon%20interal%2064.png" />
   <link rel="apple-touch-icon" sizes="512x512" href="favicon/favicon%20interal%20512.png" />
   <title>Interal</title>
-  <link rel="stylesheet" href="shared/ui.css?v=interal-ui-20260809-4" />
+  <link rel="stylesheet" href="shared/ui.css?v=interal-ui-20260809-5" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500&display=swap" rel="stylesheet" />
@@ -38,8 +38,8 @@
       --interal-amber: #D78B32;
       position: relative;
       isolation: isolate;
-      width: 100vw;
-      margin-left: calc(50% - 50vw);
+      width: calc(100% + 32px);
+      margin-left: -16px;
       overflow: hidden;
       background: var(--interal-ultramarine);
       color: #fff;
@@ -444,9 +444,9 @@
     body.dark-theme .tool-icon { filter: brightness(0) invert(1); }
 
     .home-footer {
-      width: 100vw;
-      margin: 4px calc(50% - 50vw) -16px;
-      padding: 18px max(18px, calc((100vw - 1240px) / 2 + 18px));
+      width: calc(100% + 32px);
+      margin: 4px -16px -16px;
+      padding: 18px max(18px, calc((100% - 1240px) / 2 + 18px));
       display: flex;
       flex-wrap: wrap;
       align-items: center;
@@ -897,7 +897,7 @@
   </div>
 
   <script src="./shared/copy-plain.js?v=homepage-fixes-20260724-2"></script>
-  <script src="shared/ui.js?v=interal-ui-20260809-2" defer></script>
+  <script src="shared/ui.js?v=interal-ui-20260809-3" defer></script>
   <script>
     (function () {
       const dict = {
