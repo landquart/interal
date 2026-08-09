@@ -73,7 +73,17 @@
       window.setTimeout(remove, 240);
     };
 
-    const finishWhenReady = () => requestAnimationFrame(() => requestAnimationFrame(removeLoader));
+    const finishWhenReady = () => {
+      let finished = false;
+      const finish = () => {
+        if (finished) return;
+        finished = true;
+        window.clearTimeout(fallbackTimer);
+        removeLoader();
+      };
+      const fallbackTimer = window.setTimeout(finish, 160);
+      requestAnimationFrame(() => requestAnimationFrame(finish));
+    };
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', finishWhenReady, { once: true });
     } else {
