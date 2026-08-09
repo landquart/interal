@@ -404,9 +404,9 @@ body.has-global-menu .interal-tool-page {
 .top-nav,.top-nav *,.side-menu,.side-menu *{box-sizing:border-box}
 .top-menu-btn,.top-brand,.top-current-page-link,.top-desktop-link,.top-desktop-dropdown-link,.menu-nav-link,.menu-copy-btn,.menu-lang-trigger,.menu-theme-toggle,.menu-lang-modal-content,.side-menu{border:0;box-shadow:none}
 .top-menu-btn{min-width:44px;height:44px;border-radius:999px;background:transparent;color:var(--text);border:1px solid transparent;cursor:pointer;display:flex;align-items:center;justify-content:center}.top-menu-btn-text{display:none}.top-menu-btn-icon{display:grid;place-items:center;font-size:28px;line-height:1}
-.sidebar-state-icon{display:block;width:26px;height:auto;overflow:visible;color:currentColor}
-.sidebar-state-divider{transform:translateX(0);transition:transform 240ms cubic-bezier(.2,0,0,1);will-change:transform}
-body.menu-open .sidebar-state-divider{transform:translateX(269px)}
+.sidebar-state-icon{display:block;width:22px;height:22px;color:currentColor}
+.sidebar-state-divider{transform:translateX(0);transform-origin:0 0;transition:transform 240ms cubic-bezier(.2,0,0,1);will-change:transform}
+body.menu-open .sidebar-state-divider{transform:translateX(10px)}
 .top-brand{position:absolute;left:50%;transform:translateX(-50%);display:inline-flex;align-items:center;justify-content:center;gap:7px;height:44px;padding:0 10px;color:var(--text);text-decoration:none;font-weight:700;white-space:nowrap;z-index:2;min-width:0}
 .top-brand-logo{display:block;width:32px;height:32px;flex:0 0 32px;object-fit:contain;filter:none!important}
 body.dark-theme .top-brand-logo{filter:none!important}
