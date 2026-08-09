@@ -166,7 +166,8 @@
       resetWarningTitle: 'Сбросить данные?',
       resetWarningMessage: 'Введённые данные будут удалены. Это действие нельзя отменить.',
       resetWarningConfirm: 'Сбросить',
-      resetWarningCancel: 'Отмена'
+      resetWarningCancel: 'Отмена',
+      backToTop: 'Вернуться к началу страницы'
     },
     en: {
       openMenu: 'Open menu',
@@ -204,7 +205,8 @@
       resetWarningTitle: 'Reset data?',
       resetWarningMessage: 'Entered data will be deleted. This action cannot be undone.',
       resetWarningConfirm: 'Reset',
-      resetWarningCancel: 'Cancel'
+      resetWarningCancel: 'Cancel',
+      backToTop: 'Back to top'
     }
   };
 
@@ -219,7 +221,13 @@
 
   const menuButtonIcon = document.createElement('span');
   menuButtonIcon.className = 'top-menu-btn-icon';
-  menuButtonIcon.innerHTML = `<img src="${joinUrl('elements/Hamburger%20Menu.svg')}" alt="" aria-hidden="true" />`; 
+  const sidebarIconSource = joinUrl('elements/sidebar_corrected_v2.svg');
+  menuButtonIcon.innerHTML = `
+    <svg class="sidebar-state-icon" viewBox="0 0 543 292" fill="none" aria-hidden="true" focusable="false">
+      <use class="sidebar-state-outline" href="${sidebarIconSource}#sidebar-outline" />
+      <use class="sidebar-state-divider" href="${sidebarIconSource}#sidebar-divider" />
+    </svg>
+  `;
 
   const menuButtonText = document.createElement('span');
   menuButtonText.className = 'top-menu-btn-text';
@@ -273,6 +281,16 @@
 
   const overlay = document.createElement('div');
   overlay.className = 'side-menu-overlay';
+
+  const backToTopButton = document.createElement('button');
+  backToTopButton.className = 'interal-back-to-top';
+  backToTopButton.type = 'button';
+  backToTopButton.setAttribute('aria-label', i18n.ru.backToTop);
+  backToTopButton.innerHTML = `
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M6.5 14.5 12 9l5.5 5.5" />
+    </svg>
+  `;
 
   const menu = document.createElement('aside');
   menu.className = 'side-menu';
@@ -345,12 +363,14 @@
     toggleLanguageList(false);
     if (wasOpen) unlockPageScroll();
     menuButton.setAttribute('aria-expanded', 'false');
+    scheduleScrollUiState();
   }
 
   function openMenu() {
     if (!document.body.classList.contains('menu-open')) lockPageScroll();
     document.body.classList.add('menu-open');
     menuButton.setAttribute('aria-expanded', 'true');
+    scheduleScrollUiState();
   }
 
   function toggleLanguageList(force) {
@@ -508,6 +528,7 @@
     const t = i18n[nextLang];
     const isDesktop = window.matchMedia('(min-width: 980px)').matches;
     menuButton.setAttribute('aria-label', t.openMenu);
+    backToTopButton.setAttribute('aria-label', t.backToTop);
     const menuTitle = menu.querySelector('.menu-title');
     if (menuTitle) menuTitle.textContent = isDesktop ? t.desktopMenuLabel : t.mobileMenuLabel;
     const siteNav = menu.querySelector('.menu-nav');
@@ -769,22 +790,53 @@
   document.body.prepend(overlay);
   document.body.prepend(menu);
   document.body.prepend(topNav);
+  document.body.append(backToTopButton);
 
 
-  function syncTopbarScrollState() {
-    document.body.classList.toggle(
-      'nav-scrolled',
-      window.scrollY > 16
-    );
+  let scrollUiFrame = 0;
+
+  function hasBlockingOverlay() {
+    return document.body.classList.contains('menu-open')
+      || document.body.classList.contains('select-modal-open')
+      || document.body.classList.contains('menu-modal-open')
+      || Boolean(document.querySelector('.interal-confirm-overlay.show, #jsonCardModal.show'));
   }
 
-  syncTopbarScrollState();
+  function syncScrollUiState() {
+    scrollUiFrame = 0;
+    const scrollY = Math.max(0, window.scrollY || document.documentElement.scrollTop || 0);
+    const revealAt = Math.max(480, Math.round((window.innerHeight || 0) * 0.7));
+    document.body.classList.toggle('nav-scrolled', scrollY > 16);
+    backToTopButton.classList.toggle('is-visible', scrollY > revealAt && !hasBlockingOverlay());
+  }
+
+  function scheduleScrollUiState() {
+    if (scrollUiFrame) return;
+    scrollUiFrame = requestAnimationFrame(syncScrollUiState);
+  }
+
+  syncScrollUiState();
 
   window.addEventListener(
     'scroll',
-    syncTopbarScrollState,
+    scheduleScrollUiState,
     { passive: true }
   );
+  window.addEventListener('resize', scheduleScrollUiState, { passive: true });
+
+  backToTopButton.addEventListener('click', () => {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: 0, left: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+  });
+
+  if (window.MutationObserver) {
+    const menuStateObserver = new window.MutationObserver(() => {
+      const expanded = document.body.classList.contains('menu-open');
+      menuButton.setAttribute('aria-expanded', String(expanded));
+      scheduleScrollUiState();
+    });
+    menuStateObserver.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+  }
 
   document.addEventListener('mouseover', (event) => {
     const target = event.target.closest?.('.menu-nav-link, .menu-copy-btn, .top-desktop-link, .top-desktop-dropdown-link, .menu-lang-modal .menu-lang-btn');
