@@ -1,36 +1,18 @@
 <svg width="543" height="292" viewBox="0 0 543 292" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" clip-rule="evenodd" d="
-    M67 0
-    H476
-    C513.003 0 543 29.997 543 67
-    V225
-    C543 262.003 513.003 292 476 292
-    H67
-    C29.997 292 0 262.003 0 225
-    V67
-    C0 29.997 29.997 0 67 0
-    Z
-
-    M67 8
-    C34.415 8 8 34.415 8 67
-    V225
-    C8 257.585 34.415 284 67 284
+  <!-- The source geometry is split into reusable parts so the exact divider can move. -->
+  <path id="sidebar-outline" fill-rule="evenodd" clip-rule="evenodd" d="
+    M67 0 H476 C513.003 0 543 29.997 543 67 V225 C543 262.003 513.003 292 476 292 H67 C29.997 292 0 262.003 0 225 V67 C0 29.997 29.997 0 67 0 Z
+    M67 8 C34.415 8 8 34.415 8 67 V225 C8 257.585 34.415 284 67 284 H476 C508.585 284 535 257.585 535 225 V67 C535 34.415 508.585 8 476 8 H67 Z
+  " fill="currentColor"/>
+  <path id="sidebar-divider" d="
+    M118 8 H156
+    C147.716 8 141 14.716 141 23
+    V269
+    C141 277.284 147.716 284 156 284
     H118
     C126.284 284 133 277.284 133 269
     V23
     C133 14.716 126.284 8 118 8
-    H67
     Z
-
-    M156 8
-    C147.716 8 141 14.716 141 23
-    V269
-    C141 277.284 147.716 284 156 284
-    H476
-    C508.585 284 535 257.585 535 225
-    V67
-    C535 34.415 508.585 8 476 8
-    H156
-    Z
-  " fill="black"/>
+  " fill="currentColor"/>
 </svg>
