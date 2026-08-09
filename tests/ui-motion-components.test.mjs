@@ -24,10 +24,12 @@ assert.match(css, /\.interal-page-loader\.is-leaving\{opacity:0;/, 'initial load
 assert.match(css, /\.interal-page-loader\{[^}]*background:transparent/, 'initial loading does not paint an opaque white screen');
 assert.match(runtime, /requestAnimationFrame\(finish\)/, 'initial loading leaves after the first ready paint without an artificial two-frame delay');
 
-assert.match(css, /scrollbar-width:thin;scrollbar-color:var\(--scrollbar-thumb\) transparent/, 'Firefox uses the shared thin scrollbar fallback');
-assert.match(css, /html::\-webkit-scrollbar,body::\-webkit-scrollbar,\*::\-webkit-scrollbar\{width:9px;height:9px;/, 'WebKit explicitly styles the root viewport scrollbar');
-assert.match(css, /html::\-webkit-scrollbar-thumb,body::\-webkit-scrollbar-thumb,\*::\-webkit-scrollbar-thumb\{[^}]*border:2px solid transparent;[^}]*border-radius:999px;/, 'WebKit renders an approximately five-pixel pill thumb');
-assert.match(css, /html::\-webkit-scrollbar-thumb:active,body::\-webkit-scrollbar-thumb:active,\*::\-webkit-scrollbar-thumb:active\{background-color:var\(--scrollbar-thumb-active\)/, 'dragging uses the Interal accent');
+assert.match(css, /@supports \(-moz-appearance:none\)[\s\S]*scrollbar-width:thin;[\s\S]*scrollbar-color:var\(--scrollbar-thumb\) transparent/, 'Firefox uses the shared thin scrollbar fallback without overriding Blink geometry');
+assert.match(css, /:root:has\(body\.dark-theme\)[^}]*--scrollbar-thumb: rgba\(255,255,255,\.44\)/, 'the body theme propagates dark scrollbar tokens to the HTML scroll root');
+assert.match(css, /:where\([\s\S]*html,[\s\S]*\.side-menu,[\s\S]*\.interal-select-modal-options[\s\S]*\)::\-webkit-scrollbar\{width:10px;height:10px;/, 'WebKit styles the real viewport and internal scroll containers');
+assert.match(css, /::\-webkit-scrollbar-thumb\{[^}]*border:2px solid transparent;[^}]*border-radius:999px;/, 'WebKit renders a six-pixel pill thumb inside the ten-pixel hit area');
+assert.match(css, /::\-webkit-scrollbar-thumb:active\{background-color:var\(--scrollbar-thumb-active\)/, 'dragging uses the Interal accent');
+assert.doesNotMatch(css, /\*::\-webkit-scrollbar/, 'the scrollbar is not attached indiscriminately to every element');
 assert.match(css, /@media \(hover:none\) and \(pointer:coarse\)[\s\S]*width:4px/, 'coarse pointers keep a minimal mobile scrollbar');
 
 assert.match(core, /createElement\('button'\)[\s\S]*interal-back-to-top[\s\S]*aria-label/, 'back-to-top is a labelled native button');
