@@ -97,7 +97,7 @@ assert.equal(getSupabaseConstraint({ message: 'new row for relation "cards" viol
 const htmlFiles = ['internationalismes/index.html','indoeuropanvordes/index.html','associativvordes/index.html','vordesofcommunites/index.html','grammaticebrevivordes/index.html','altervordes/index.html','affixes/index.html'];
 for (const file of htmlFiles) {
   const html = fs.readFileSync(file, 'utf8');
-  assert.match(html, /shared\/ui\.js\?v=(?:registry-name-20260715-1|json-author-autosave-20260725-1)/);
+  assert.match(html, /shared\/ui\.js\?v=interal-ui-20260809-2/);
   assert.doesNotMatch(html, new RegExp(['cards-primary-id-fix','20260711','1'].join('-')));
 }
 const uiCore = fs.readFileSync('shared/ui-core.js','utf8');
