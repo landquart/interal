@@ -132,6 +132,7 @@
   const i18n = {
     ru: {
       openMenu: 'Открыть меню',
+      closeMenu: 'Закрыть меню',
       menuTitle: 'Меню',
       mobileMenuLabel: 'Меню',
       desktopMenuLabel: 'Настройки',
@@ -171,6 +172,7 @@
     },
     en: {
       openMenu: 'Open menu',
+      closeMenu: 'Close menu',
       menuTitle: 'Menu',
       mobileMenuLabel: 'Menu',
       desktopMenuLabel: 'Settings',
@@ -223,7 +225,7 @@
   menuButtonIcon.className = 'top-menu-btn-icon';
   const sidebarIconSource = joinUrl('elements/sidebar_corrected_v2.svg');
   menuButtonIcon.innerHTML = `
-    <svg class="sidebar-state-icon" viewBox="0 0 543 292" fill="none" aria-hidden="true" focusable="false">
+    <svg class="sidebar-state-icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
       <use class="sidebar-state-outline" href="${sidebarIconSource}#sidebar-outline" />
       <use class="sidebar-state-divider" href="${sidebarIconSource}#sidebar-divider" />
     </svg>
@@ -347,6 +349,13 @@
     return currentLang();
   }
 
+  function syncMenuButtonState() {
+    const expanded = document.body.classList.contains('menu-open');
+    const labels = i18n[currentLang()];
+    menuButton.setAttribute('aria-expanded', String(expanded));
+    menuButton.setAttribute('aria-label', expanded ? labels.closeMenu : labels.openMenu);
+  }
+
   function lockPageScroll() {
     lockedScrollY = window.scrollY || document.documentElement.scrollTop || 0;
     document.body.style.setProperty('--menu-scroll-y', `-${lockedScrollY}px`);
@@ -362,14 +371,14 @@
     document.body.classList.remove('menu-open');
     toggleLanguageList(false);
     if (wasOpen) unlockPageScroll();
-    menuButton.setAttribute('aria-expanded', 'false');
+    syncMenuButtonState();
     scheduleScrollUiState();
   }
 
   function openMenu() {
     if (!document.body.classList.contains('menu-open')) lockPageScroll();
     document.body.classList.add('menu-open');
-    menuButton.setAttribute('aria-expanded', 'true');
+    syncMenuButtonState();
     scheduleScrollUiState();
   }
 
@@ -527,7 +536,7 @@
 
     const t = i18n[nextLang];
     const isDesktop = window.matchMedia('(min-width: 980px)').matches;
-    menuButton.setAttribute('aria-label', t.openMenu);
+    syncMenuButtonState();
     backToTopButton.setAttribute('aria-label', t.backToTop);
     const menuTitle = menu.querySelector('.menu-title');
     if (menuTitle) menuTitle.textContent = isDesktop ? t.desktopMenuLabel : t.mobileMenuLabel;
@@ -831,8 +840,7 @@
 
   if (window.MutationObserver) {
     const menuStateObserver = new window.MutationObserver(() => {
-      const expanded = document.body.classList.contains('menu-open');
-      menuButton.setAttribute('aria-expanded', String(expanded));
+      syncMenuButtonState();
       scheduleScrollUiState();
     });
     menuStateObserver.observe(document.body, { attributes: true, attributeFilter: ['class'] });
