@@ -271,9 +271,46 @@
       box-shadow: 0 10px 24px rgba(15, 23, 42, .08);
       color: var(--about-card-text, #111827);
       background: var(--about-card-bg);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(124px, .85fr);
+      align-items: center;
+      gap: clamp(16px, 2.2vw, 28px);
+      overflow: hidden;
+    }
+
+    .home-about-card-copy {
+      grid-column: 1;
+      grid-row: 1;
+      min-width: 0;
+      display: grid;
+      align-content: center;
+      gap: 8px;
+    }
+
+    .home-about-card-figure {
+      grid-column: 2;
+      grid-row: 1;
+      width: 100%;
+      height: clamp(108px, 10vw, 142px);
+      min-width: 0;
+      display: grid;
+      place-items: center;
+    }
+
+    .home-about-card-figure img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      max-width: 158px;
+      object-fit: contain;
+    }
+
+    .home-about-card:nth-child(even) .home-about-card-copy {
+      grid-column: 2;
+    }
+
+    .home-about-card:nth-child(even) .home-about-card-figure {
+      grid-column: 1;
     }
 
     .home-about-card:nth-child(even) {
@@ -281,7 +318,7 @@
     }
 
     .home-about-card-title {
-      margin: 0 0 8px;
+      margin: 0;
       width: 100%;
       font-family: "Cormorant Garamond", Georgia, serif;
       font-size: clamp(1.34rem, 2.15vw, 1.62rem);
@@ -614,6 +651,13 @@
         justify-self: stretch;
         transform: none;
         min-height: 0;
+        grid-template-columns: minmax(0, 1fr) minmax(92px, 34%);
+        gap: clamp(12px, 4vw, 18px);
+        padding: clamp(18px, 5vw, 22px);
+      }
+
+      .home-about-card-figure {
+        height: clamp(96px, 28vw, 124px);
       }
 
       .homepage .container {
@@ -804,20 +848,40 @@
       <h2 class="home-about-title" id="home-about-title" data-i18n="home.aboutTitle">Интераль — это...</h2>
         <div class="home-about-cards">
           <article class="home-about-card" data-tone="lexicon">
-            <h3 class="home-about-card-title" data-i18n="home.aboutCard1Title">Международная лексика</h3>
-            <p class="home-about-card-text" data-i18n="home.aboutCard1Text">Основан на наиболее распространённых словах, знакомых любому образованному человеку</p>
+            <div class="home-about-card-copy">
+              <h3 class="home-about-card-title" data-i18n="home.aboutCard1Title">Международная лексика</h3>
+              <p class="home-about-card-text" data-i18n="home.aboutCard1Text">Основан на наиболее распространённых словах, знакомых любому образованному человеку</p>
+            </div>
+            <div class="home-about-card-figure" aria-hidden="true">
+              <img src="elements/circles.svg?v=about-cards-20260812-1" alt="" />
+            </div>
           </article>
           <article class="home-about-card" data-tone="grammar">
-            <h3 class="home-about-card-title" data-i18n="home.aboutCard2Title">Регулярная грамматика</h3>
-            <p class="home-about-card-text" data-i18n="home.aboutCard2Text">Все правила максимально интуитивно понятны и легки для изучения</p>
+            <div class="home-about-card-copy">
+              <h3 class="home-about-card-title" data-i18n="home.aboutCard2Title">Регулярная грамматика</h3>
+              <p class="home-about-card-text" data-i18n="home.aboutCard2Text">Все правила максимально интуитивно понятны и легки для изучения</p>
+            </div>
+            <div class="home-about-card-figure" aria-hidden="true">
+              <img src="elements/regularita.svg?v=about-cards-20260812-1" alt="" />
+            </div>
           </article>
           <article class="home-about-card" data-tone="derivation">
-            <h3 class="home-about-card-title" data-i18n="home.aboutCard3Title">Прозрачное словообразование</h3>
-            <p class="home-about-card-text" data-i18n="home.aboutCard3Text">Образованные слова всегда легко разбить на морфемы или, наоборот, составить узнаваемое слово</p>
+            <div class="home-about-card-copy">
+              <h3 class="home-about-card-title" data-i18n="home.aboutCard3Title">Прозрачное словообразование</h3>
+              <p class="home-about-card-text" data-i18n="home.aboutCard3Text">Образованные слова всегда легко разбить на морфемы или, наоборот, составить узнаваемое слово</p>
+            </div>
+            <div class="home-about-card-figure" aria-hidden="true">
+              <img src="elements/concentric.svg?v=about-cards-20260812-1" alt="" />
+            </div>
           </article>
           <article class="home-about-card" data-tone="methodology">
-            <h3 class="home-about-card-title" data-i18n="home.aboutCard4Title">Научная методология</h3>
-            <p class="home-about-card-text" data-i18n="home.aboutCard4Text">Основан на реальных языковых данных и их всесторонней адекватной оценке</p>
+            <div class="home-about-card-copy">
+              <h3 class="home-about-card-title" data-i18n="home.aboutCard4Title">Научная методология</h3>
+              <p class="home-about-card-text" data-i18n="home.aboutCard4Text">Основан на реальных языковых данных и их всесторонней адекватной оценке</p>
+            </div>
+            <div class="home-about-card-figure" aria-hidden="true">
+              <img src="elements/star.svg?v=about-cards-20260812-1" alt="" />
+            </div>
           </article>
         </div>
     </section>
