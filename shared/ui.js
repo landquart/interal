@@ -126,7 +126,7 @@
     const stylesheet = document.createElement('link');
     stylesheet.rel = 'stylesheet';
     stylesheet.dataset.interalInstrumentesCss = 'true';
-    stylesheet.href = new URL('instrumentes.css?v=instrumentes-ready-20260806-1', sharedRoot).href;
+    stylesheet.href = new URL('instrumentes.css?v=instrumentes-promo-title-20260812-1', sharedRoot).href;
     document.head.appendChild(stylesheet);
   }
 
