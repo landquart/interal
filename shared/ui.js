@@ -136,6 +136,43 @@
     return pageLoader;
   }
 
+  function initHomepageScrollReveal() {
+    const body = document.body;
+    if (!body?.classList.contains('homepage')) return;
+
+    const cards = Array.from(document.querySelectorAll('.home-about-card'));
+    if (!cards.length) return;
+
+    const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    if (reducedMotion || !('IntersectionObserver' in window)) {
+      cards.forEach((card) => card.classList.add('is-revealed'));
+      return;
+    }
+
+    body.classList.add('home-scroll-reveal-ready');
+
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        entry.target.classList.add('is-revealed');
+        observer.unobserve(entry.target);
+      }
+    }, {
+      threshold: 0.16,
+      rootMargin: '0px 0px -8% 0px'
+    });
+
+    const immediateBoundary = window.innerHeight * 0.82;
+    cards.forEach((card) => {
+      const rect = card.getBoundingClientRect();
+      if (rect.top < immediateBoundary && rect.bottom > 0) {
+        card.classList.add('is-revealed');
+      } else {
+        observer.observe(card);
+      }
+    });
+  }
+
   mountInitialPageLoader();
 
   if (!document.querySelector('link[data-interal-liquid-glass-css]')) {
@@ -144,6 +181,14 @@
     liquidGlassStylesheet.dataset.interalLiquidGlassCss = 'true';
     liquidGlassStylesheet.href = new URL('liquid-glass.css?v=mobile-brand-20260804-1', sharedRoot).href;
     document.head.appendChild(liquidGlassStylesheet);
+  }
+
+  if (document.body?.classList.contains('homepage') && !document.querySelector('link[data-interal-home-scroll-reveal-css]')) {
+    const homeRevealStylesheet = document.createElement('link');
+    homeRevealStylesheet.rel = 'stylesheet';
+    homeRevealStylesheet.dataset.interalHomeScrollRevealCss = 'true';
+    homeRevealStylesheet.href = new URL('home-scroll-reveal.css?v=20260818-1', sharedRoot).href;
+    document.head.appendChild(homeRevealStylesheet);
   }
 
   const core = loadSource('ui-core.js?v=interal-ui-20260809-3');
@@ -189,5 +234,16 @@
 
   if (document.body?.classList.contains('instrumentes-page')) {
     document.body.classList.remove('instrumentes-pending');
+  }
+
+  const startHomepageReveal = () => {
+    if (typeof requestAnimationFrame === 'function') requestAnimationFrame(initHomepageScrollReveal);
+    else initHomepageScrollReveal();
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', startHomepageReveal, { once: true });
+  } else {
+    startHomepageReveal();
   }
 })();
