@@ -233,3 +233,56 @@ html[data-liquid-glass-tier="solid"] body.dark-theme.nav-scrolled {
     transition: none !important;
   }
 }
+
+/* Homepage conversation quote glow: one shared diffuse blue-lavender field. */
+.homepage .home-intro-quotes {
+  position: relative;
+  isolation: isolate;
+}
+
+.homepage .home-intro-quotes::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 54%;
+  z-index: -1;
+  width: 118%;
+  height: 94%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(112, 118, 255, 0.10) 0%,
+    rgba(112, 118, 255, 0.22) 34%,
+    rgba(145, 116, 246, 0.30) 58%,
+    rgba(126, 132, 255, 0.12) 72%,
+    transparent 84%
+  );
+  filter: blur(24px);
+  pointer-events: none;
+}
+
+.homepage .home-intro-quotes > * {
+  position: relative;
+  z-index: 1;
+}
+
+body.dark-theme.homepage .home-intro-quotes::before {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(92, 104, 255, 0.08) 0%,
+    rgba(92, 104, 255, 0.20) 34%,
+    rgba(145, 112, 255, 0.27) 58%,
+    rgba(104, 116, 255, 0.12) 72%,
+    transparent 84%
+  );
+}
+
+@media (max-width: 860px) {
+  .homepage .home-intro-quotes::before {
+    top: 52%;
+    width: 108%;
+    height: 92%;
+    filter: blur(21px);
+  }
+}
