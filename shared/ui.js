@@ -151,14 +151,16 @@
 
     body.classList.add('home-scroll-reveal-ready');
 
-    let parallaxFrame = 0;
+    /* Second layer only: motion of the SVG after the existing reveal is complete. */
+    const motion = cards.map(() => ({ y: 0, rotation: 0, targetY: 0, targetRotation: 0 }));
+    let motionFrame = 0;
+    let settleTimer = 0;
+    let lastScrollY = window.scrollY || window.pageYOffset || 0;
 
-    const updateFigureParallax = () => {
-      parallaxFrame = 0;
+    const runFigureMotion = () => {
+      motionFrame = 0;
+      let needsAnotherFrame = false;
       const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 1;
-      const isMobile = window.innerWidth <= 860;
-      const maxY = isMobile ? 8 : 11;
-      const maxRotation = isMobile ? 0.55 : 0.8;
 
       cards.forEach((card, index) => {
         if (!card.classList.contains('is-parallax-ready')) return;
@@ -167,29 +169,68 @@
         if (!figure) return;
 
         const rect = card.getBoundingClientRect();
-        if (rect.bottom < -100 || rect.top > viewportHeight + 100) return;
+        if (rect.bottom < -120 || rect.top > viewportHeight + 120) return;
 
-        const center = rect.top + rect.height / 2;
-        const normalized = Math.max(-1, Math.min(1, (center - viewportHeight / 2) / (viewportHeight / 2)));
-        const y = normalized * maxY;
-        const rotationDirection = index % 2 === 0 ? -1 : 1;
-        const rotation = normalized * maxRotation * rotationDirection;
+        const state = motion[index];
+        state.y += (state.targetY - state.y) * 0.24;
+        state.rotation += (state.targetRotation - state.rotation) * 0.22;
 
-        figure.style.setProperty('--figure-parallax-y', `${y.toFixed(2)}px`);
-        figure.style.setProperty('--figure-parallax-rotate', `${rotation.toFixed(3)}deg`);
+        if (Math.abs(state.targetY - state.y) > 0.08 || Math.abs(state.targetRotation - state.rotation) > 0.01) {
+          needsAnotherFrame = true;
+        }
+
+        figure.style.setProperty('--figure-parallax-y', `${state.y.toFixed(2)}px`);
+        figure.style.setProperty('--figure-parallax-rotate', `${state.rotation.toFixed(3)}deg`);
       });
+
+      if (needsAnotherFrame) motionFrame = window.requestAnimationFrame(runFigureMotion);
     };
 
-    const requestFigureParallax = () => {
-      if (parallaxFrame) return;
-      parallaxFrame = window.requestAnimationFrame(updateFigureParallax);
+    const requestFigureMotion = () => {
+      if (!motionFrame) motionFrame = window.requestAnimationFrame(runFigureMotion);
+    };
+
+    const settleFigures = () => {
+      motion.forEach((state) => {
+        state.targetY = 0;
+        state.targetRotation = 0;
+      });
+      requestFigureMotion();
+    };
+
+    const handleDirectionalScroll = () => {
+      const currentScrollY = window.scrollY || window.pageYOffset || 0;
+      const delta = currentScrollY - lastScrollY;
+      lastScrollY = currentScrollY;
+      if (Math.abs(delta) < 0.25) return;
+
+      const isMobile = window.innerWidth <= 860;
+      const maxY = isMobile ? 10 : 14;
+      const maxRotation = isMobile ? 0.75 : 1.05;
+      const direction = delta > 0 ? 1 : -1;
+      const velocity = Math.min(1, Math.max(0.42, Math.abs(delta) / 24));
+
+      cards.forEach((card, index) => {
+        if (!card.classList.contains('is-parallax-ready')) return;
+        const rect = card.getBoundingClientRect();
+        const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 1;
+        if (rect.bottom < -80 || rect.top > viewportHeight + 80) return;
+
+        const state = motion[index];
+        const alternatingRotation = index % 2 === 0 ? -1 : 1;
+        state.targetY = direction * maxY * velocity;
+        state.targetRotation = direction * maxRotation * velocity * alternatingRotation;
+      });
+
+      requestFigureMotion();
+      window.clearTimeout(settleTimer);
+      settleTimer = window.setTimeout(settleFigures, 110);
     };
 
     const enableFigureParallax = (card) => {
       window.setTimeout(() => {
         if (!card.isConnected || !card.classList.contains('is-revealed')) return;
         card.classList.add('is-parallax-ready');
-        requestFigureParallax();
       }, 1400);
     };
 
@@ -220,8 +261,7 @@
       }
     });
 
-    window.addEventListener('scroll', requestFigureParallax, { passive: true });
-    window.addEventListener('resize', requestFigureParallax, { passive: true });
+    window.addEventListener('scroll', handleDirectionalScroll, { passive: true });
   }
 
   mountInitialPageLoader();
@@ -238,7 +278,7 @@
     const homeRevealStylesheet = document.createElement('link');
     homeRevealStylesheet.rel = 'stylesheet';
     homeRevealStylesheet.dataset.interalHomeScrollRevealCss = 'true';
-    homeRevealStylesheet.href = new URL('home-scroll-reveal.css?v=20260818-2', sharedRoot).href;
+    homeRevealStylesheet.href = new URL('home-scroll-reveal.css?v=20260818-4', sharedRoot).href;
     document.head.appendChild(homeRevealStylesheet);
   }
 
