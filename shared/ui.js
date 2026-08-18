@@ -151,10 +151,58 @@
 
     body.classList.add('home-scroll-reveal-ready');
 
+    let parallaxFrame = 0;
+
+    const updateFigureParallax = () => {
+      parallaxFrame = 0;
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 1;
+      const isMobile = window.innerWidth <= 860;
+      const maxY = isMobile ? 8 : 11;
+      const maxRotation = isMobile ? 0.55 : 0.8;
+
+      cards.forEach((card, index) => {
+        if (!card.classList.contains('is-parallax-ready')) return;
+
+        const figure = card.querySelector('.home-about-card-figure img');
+        if (!figure) return;
+
+        const rect = card.getBoundingClientRect();
+        if (rect.bottom < -100 || rect.top > viewportHeight + 100) return;
+
+        const center = rect.top + rect.height / 2;
+        const normalized = Math.max(-1, Math.min(1, (center - viewportHeight / 2) / (viewportHeight / 2)));
+        const y = normalized * maxY;
+        const rotationDirection = index % 2 === 0 ? -1 : 1;
+        const rotation = normalized * maxRotation * rotationDirection;
+
+        figure.style.setProperty('--figure-parallax-y', `${y.toFixed(2)}px`);
+        figure.style.setProperty('--figure-parallax-rotate', `${rotation.toFixed(3)}deg`);
+      });
+    };
+
+    const requestFigureParallax = () => {
+      if (parallaxFrame) return;
+      parallaxFrame = window.requestAnimationFrame(updateFigureParallax);
+    };
+
+    const enableFigureParallax = (card) => {
+      window.setTimeout(() => {
+        if (!card.isConnected || !card.classList.contains('is-revealed')) return;
+        card.classList.add('is-parallax-ready');
+        requestFigureParallax();
+      }, 1400);
+    };
+
+    const revealCard = (card) => {
+      if (card.classList.contains('is-revealed')) return;
+      card.classList.add('is-revealed');
+      enableFigureParallax(card);
+    };
+
     const observer = new IntersectionObserver((entries) => {
       for (const entry of entries) {
         if (!entry.isIntersecting) continue;
-        entry.target.classList.add('is-revealed');
+        revealCard(entry.target);
         observer.unobserve(entry.target);
       }
     }, {
@@ -166,11 +214,14 @@
     cards.forEach((card) => {
       const rect = card.getBoundingClientRect();
       if (rect.top < immediateBoundary && rect.bottom > 0) {
-        card.classList.add('is-revealed');
+        revealCard(card);
       } else {
         observer.observe(card);
       }
     });
+
+    window.addEventListener('scroll', requestFigureParallax, { passive: true });
+    window.addEventListener('resize', requestFigureParallax, { passive: true });
   }
 
   mountInitialPageLoader();
@@ -187,7 +238,7 @@
     const homeRevealStylesheet = document.createElement('link');
     homeRevealStylesheet.rel = 'stylesheet';
     homeRevealStylesheet.dataset.interalHomeScrollRevealCss = 'true';
-    homeRevealStylesheet.href = new URL('home-scroll-reveal.css?v=20260818-1', sharedRoot).href;
+    homeRevealStylesheet.href = new URL('home-scroll-reveal.css?v=20260818-2', sharedRoot).href;
     document.head.appendChild(homeRevealStylesheet);
   }
 
