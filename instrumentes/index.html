@@ -18,6 +18,25 @@
     .instrument-card-background[src*="card-1-exact-bridge%201%282%29%201.svg"] {
       filter: brightness(0.666094) saturate(1.063899) hue-rotate(6.957deg);
     }
+    .instrument-copy {
+      left: 5.85%;
+      top: 74.5%;
+      width: 72%;
+      height: 25%;
+      gap: 1px;
+    }
+    .instrument-name {
+      font-size: clamp(.94rem, .89rem + .22vw, 1.04rem);
+      line-height: 1.03;
+      overflow-wrap: normal;
+      word-break: normal;
+    }
+    .instrument-description {
+      font-size: clamp(.71rem, .68rem + .14vw, .79rem);
+      line-height: 1.07;
+      overflow-wrap: normal;
+      word-break: normal;
+    }
     @media (hover:hover) and (pointer:fine) {
       .instrument-card:hover .instrument-card-background[src*="card-3-yellow-topographic"] {
         filter: brightness(0.68) saturate(1.86) hue-rotate(-12deg);
