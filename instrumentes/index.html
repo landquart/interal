@@ -11,6 +11,22 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" data-interal-instrumentes-css href="../shared/instrumentes.css?v=surface-theme-20260817-1">
+  <style>
+    .instrument-card-background[src*="card-3-yellow-topographic"] {
+      filter: brightness(0.668523) saturate(1.572124) hue-rotate(-7.958deg);
+    }
+    .instrument-card-background[src*="card-1-exact-bridge%201%282%29%201.svg"] {
+      filter: brightness(0.666094) saturate(1.063899) hue-rotate(6.957deg);
+    }
+    @media (hover:hover) and (pointer:fine) {
+      .instrument-card:hover .instrument-card-background[src*="card-3-yellow-topographic"] {
+        filter: brightness(0.668523) saturate(1.634999) hue-rotate(-7.958deg);
+      }
+      .instrument-card:hover .instrument-card-background[src*="card-1-exact-bridge%201%282%29%201.svg"] {
+        filter: brightness(0.666094) saturate(1.106455) hue-rotate(6.957deg);
+      }
+    }
+  </style>
 </head>
 <body class="instrumentes-page interal-tool-page instrumentes-pending">
   <script>
