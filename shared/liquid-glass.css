@@ -244,21 +244,37 @@ html[data-liquid-glass-tier="solid"] body.dark-theme.nav-scrolled {
   content: "";
   position: absolute;
   left: 50%;
-  top: 54%;
+  top: 53%;
   z-index: -1;
-  width: 118%;
-  height: 94%;
+  width: 165%;
+  height: 150%;
   transform: translate(-50%, -50%);
   border-radius: 50%;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(112, 118, 255, 0.10) 0%,
-    rgba(112, 118, 255, 0.22) 34%,
-    rgba(145, 116, 246, 0.30) 58%,
-    rgba(126, 132, 255, 0.12) 72%,
-    transparent 84%
-  );
-  filter: blur(24px);
+  background:
+    radial-gradient(
+      ellipse at 34% 43%,
+      rgba(92, 145, 255, 0.38) 0%,
+      rgba(105, 137, 255, 0.27) 24%,
+      rgba(111, 131, 255, 0.11) 43%,
+      transparent 62%
+    ),
+    radial-gradient(
+      ellipse at 68% 59%,
+      rgba(166, 112, 255, 0.38) 0%,
+      rgba(153, 116, 255, 0.27) 25%,
+      rgba(139, 122, 255, 0.11) 45%,
+      transparent 64%
+    ),
+    radial-gradient(
+      ellipse at center,
+      rgba(112, 126, 255, 0.16) 0%,
+      rgba(119, 129, 255, 0.24) 34%,
+      rgba(145, 119, 255, 0.18) 56%,
+      rgba(125, 137, 255, 0.08) 72%,
+      transparent 88%
+    );
+  filter: blur(42px);
+  opacity: .98;
   pointer-events: none;
 }
 
@@ -268,21 +284,37 @@ html[data-liquid-glass-tier="solid"] body.dark-theme.nav-scrolled {
 }
 
 body.dark-theme.homepage .home-intro-quotes::before {
-  background: radial-gradient(
-    ellipse at center,
-    rgba(92, 104, 255, 0.08) 0%,
-    rgba(92, 104, 255, 0.20) 34%,
-    rgba(145, 112, 255, 0.27) 58%,
-    rgba(104, 116, 255, 0.12) 72%,
-    transparent 84%
-  );
+  background:
+    radial-gradient(
+      ellipse at 34% 43%,
+      rgba(88, 136, 255, 0.34) 0%,
+      rgba(96, 125, 255, 0.24) 25%,
+      rgba(105, 117, 255, 0.10) 44%,
+      transparent 63%
+    ),
+    radial-gradient(
+      ellipse at 68% 59%,
+      rgba(158, 106, 255, 0.34) 0%,
+      rgba(145, 108, 255, 0.24) 26%,
+      rgba(134, 113, 255, 0.10) 46%,
+      transparent 65%
+    ),
+    radial-gradient(
+      ellipse at center,
+      rgba(98, 112, 255, 0.14) 0%,
+      rgba(106, 117, 255, 0.21) 35%,
+      rgba(138, 108, 255, 0.16) 57%,
+      rgba(111, 123, 255, 0.07) 74%,
+      transparent 89%
+    );
+  opacity: .94;
 }
 
 @media (max-width: 860px) {
   .homepage .home-intro-quotes::before {
     top: 52%;
-    width: 108%;
-    height: 92%;
-    filter: blur(21px);
+    width: 148%;
+    height: 158%;
+    filter: blur(36px);
   }
 }
