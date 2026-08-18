@@ -4,6 +4,7 @@
 
   loader.dataset.interalUiLoader = 'true';
   const sharedRoot = new URL('./', loader.src);
+  const INITIAL_LOADER_DELAY_MS = 1000;
 
   function loadSource(name) {
     const url = new URL(name, sharedRoot);
@@ -14,6 +15,34 @@
       throw new Error(`Could not load ${name}: ${request.status}`);
     }
     return { source: request.responseText, url };
+  }
+
+  function ensureCriticalLoaderStyles() {
+    if (!document.head || document.getElementById('interal-critical-loader-style')) return;
+    const style = document.createElement('style');
+    style.id = 'interal-critical-loader-style';
+    style.textContent = `
+      .interal-page-loader {
+        background: transparent !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+      }
+      .interal-page-loader.is-visible:not(.is-leaving) {
+        opacity: 1 !important;
+        visibility: visible !important;
+      }
+      .interal-page-loader.is-leaving {
+        opacity: 0 !important;
+        visibility: hidden !important;
+      }
+      .interal-page-loader,
+      .interal-expressive-loader,
+      .interal-expressive-loader svg {
+        background: transparent !important;
+      }
+    `;
+    document.head.appendChild(style);
   }
 
   let expressiveLoaderSource = '';
@@ -35,6 +64,7 @@
       svg.removeAttribute?.('aria-label');
       svg.setAttribute?.('aria-hidden', 'true');
       svg.setAttribute?.('focusable', 'false');
+      svg.style.setProperty('background', 'transparent', 'important');
       if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) {
         svg.querySelectorAll?.('animate, animateTransform').forEach((node) => node.remove());
       }
@@ -49,12 +79,15 @@
   function mountInitialPageLoader() {
     if (!expressiveLoaderSource || !document.body) return null;
 
+    ensureCriticalLoaderStyles();
+
     try {
       document.body.classList.toggle('dark-theme', localStorage.getItem('interal.theme') === 'dark');
     } catch (_) {}
 
     const pageLoader = document.createElement('div');
     pageLoader.className = 'interal-page-loader';
+    pageLoader.style.setProperty('background', 'transparent', 'important');
     pageLoader.setAttribute('role', 'status');
     pageLoader.setAttribute('aria-live', 'polite');
     let language = 'ru';
@@ -65,8 +98,15 @@
     pageLoader.append(createExpressiveLoader());
     document.body.append(pageLoader);
 
-    const removeLoader = () => {
+    const revealTimer = window.setTimeout(() => {
       if (!pageLoader.isConnected || pageLoader.classList.contains('is-leaving')) return;
+      pageLoader.classList.add('is-visible');
+    }, INITIAL_LOADER_DELAY_MS);
+
+    const removeLoader = () => {
+      window.clearTimeout(revealTimer);
+      if (!pageLoader.isConnected || pageLoader.classList.contains('is-leaving')) return;
+      pageLoader.classList.remove('is-visible');
       pageLoader.classList.add('is-leaving');
       const remove = () => pageLoader.remove();
       pageLoader.addEventListener('transitionend', remove, { once: true });
