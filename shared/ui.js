@@ -98,10 +98,12 @@
     pageLoader.append(createExpressiveLoader());
     document.body.append(pageLoader);
 
+    const elapsedSinceNavigation = typeof performance?.now === 'function' ? performance.now() : 0;
+    const revealDelay = Math.max(0, INITIAL_LOADER_DELAY_MS - elapsedSinceNavigation);
     const revealTimer = window.setTimeout(() => {
       if (!pageLoader.isConnected || pageLoader.classList.contains('is-leaving')) return;
       pageLoader.classList.add('is-visible');
-    }, INITIAL_LOADER_DELAY_MS);
+    }, revealDelay);
 
     const removeLoader = () => {
       window.clearTimeout(revealTimer);
