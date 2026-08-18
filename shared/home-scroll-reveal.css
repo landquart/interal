@@ -88,6 +88,19 @@ body.homepage.home-scroll-reveal-ready .home-about-card:nth-child(even):not(.is-
   --figure-rotate: 4deg;
 }
 
+/* The initial reveal above stays untouched. Only the SVG inside a fully revealed card
+   receives this small scroll-linked movement, so scrolling upward reverses it naturally. */
+body.homepage.home-scroll-reveal-ready .home-about-card.is-parallax-ready .home-about-card-figure img {
+  --figure-parallax-y: 0px;
+  --figure-parallax-rotate: 0deg;
+  transform:
+    translate3d(0, var(--figure-parallax-y), 0)
+    rotate(var(--figure-parallax-rotate));
+  transform-origin: center;
+  transition: transform 150ms cubic-bezier(.22, .61, .36, 1);
+  will-change: transform;
+}
+
 @media (max-width: 860px) {
   body.homepage.home-scroll-reveal-ready .home-about-card:nth-child(even) {
     --card-base-y: 0px;
@@ -118,7 +131,10 @@ body.homepage.home-scroll-reveal-ready .home-about-card:nth-child(even):not(.is-
     will-change: auto;
   }
 
-  body.homepage.home-scroll-reveal-ready .home-about-card-figure {
+  body.homepage.home-scroll-reveal-ready .home-about-card-figure,
+  body.homepage.home-scroll-reveal-ready .home-about-card-figure img {
     transform: none !important;
+    transition: none !important;
+    will-change: auto;
   }
 }
