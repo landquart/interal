@@ -57,3 +57,5 @@ jobs:
           git add -- '*.html'
           git commit -m "Use first-paint transparent loader across site"
           git push
+
+      # This workflow is temporary and exists only to update all static HTML entrypoints.
