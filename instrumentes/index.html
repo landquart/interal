@@ -45,6 +45,24 @@
         filter: brightness(0.666094) saturate(1.106455) hue-rotate(6.957deg);
       }
     }
+    @media (max-width:560px) {
+      .instrumentes-carousel {
+        display: block;
+        width: 100%;
+        overflow: visible;
+      }
+      .instrumentes-track {
+        grid-column: auto;
+        width: 100%;
+        overflow: visible;
+      }
+      .instrument-card.is-previous {
+        transform: translateX(calc(-50% - clamp(68px, 22vw, 124px))) scale(.78);
+      }
+      .instrument-card.is-next {
+        transform: translateX(calc(-50% + clamp(68px, 22vw, 124px))) scale(.78);
+      }
+    }
   </style>
 </head>
 <body class="instrumentes-page interal-tool-page instrumentes-pending">
