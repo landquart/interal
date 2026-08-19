@@ -1,0 +1,59 @@
+name: Inject loader paint fix
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  inject:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Insert first-paint loader before shared UI
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          pattern = re.compile(
+              r'(?P<indent>^[ \t]*)<script src="(?P<prefix>(?:\.\./)*)shared/ui\.js\?v=[^"]+" defer></script>',
+              re.MULTILINE,
+          )
+
+          changed = []
+          for path in Path('.').rglob('*.html'):
+              text = path.read_text(encoding='utf-8')
+              if 'loader-paint-fix.js?v=interal-loader-20260819-3' in text:
+                  continue
+
+              def repl(match):
+                  indent = match.group('indent')
+                  prefix = match.group('prefix')
+                  return (
+                      f'{indent}<script src="{prefix}shared/loader-paint-fix.js?v=interal-loader-20260819-3"></script>\n'
+                      f'{indent}<script src="{prefix}shared/ui.js?v=interal-ui-20260819-2" defer></script>'
+                  )
+
+              updated, count = pattern.subn(repl, text)
+              if count:
+                  path.write_text(updated, encoding='utf-8')
+                  changed.append(str(path))
+
+          print('\n'.join(changed))
+          PY
+
+          if git diff --quiet -- '*.html'; then
+            exit 0
+          fi
+
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add -- '*.html'
+          git commit -m "Use first-paint transparent loader across site"
+          git push
