@@ -22,16 +22,9 @@
     const style = document.createElement('style');
     style.id = 'interal-critical-loader-style';
     style.textContent = `
-      html.interal-loader-active,
-      html.interal-loader-active body {
-        background: var(--surface, #f3f4f6) !important;
-        transition: none !important;
-      }
-      html.interal-loader-active:has(body.dark-theme) {
-        background: #202124 !important;
-      }
       .interal-page-loader {
         background: transparent !important;
+        background-color: transparent !important;
         opacity: 0 !important;
         visibility: hidden !important;
         pointer-events: none !important;
@@ -48,6 +41,7 @@
       .interal-expressive-loader,
       .interal-expressive-loader svg {
         background: transparent !important;
+        background-color: transparent !important;
       }
     `;
     document.head.appendChild(style);
@@ -73,6 +67,7 @@
       svg.setAttribute?.('aria-hidden', 'true');
       svg.setAttribute?.('focusable', 'false');
       svg.style.setProperty('background', 'transparent', 'important');
+      svg.style.setProperty('background-color', 'transparent', 'important');
       if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) {
         svg.querySelectorAll?.('animate, animateTransform').forEach((node) => node.remove());
       }
@@ -96,6 +91,7 @@
     const pageLoader = document.createElement('div');
     pageLoader.className = 'interal-page-loader';
     pageLoader.style.setProperty('background', 'transparent', 'important');
+    pageLoader.style.setProperty('background-color', 'transparent', 'important');
     pageLoader.setAttribute('role', 'status');
     pageLoader.setAttribute('aria-live', 'polite');
     let language = 'ru';
@@ -108,10 +104,17 @@
 
     const elapsedSinceNavigation = typeof performance?.now === 'function' ? performance.now() : 0;
     const revealDelay = Math.max(0, INITIAL_LOADER_DELAY_MS - elapsedSinceNavigation);
+    const revealLoader = () => {
+      if (!pageLoader.isConnected || pageLoader.classList.contains('is-leaving')) return;
+      pageLoader.classList.add('is-visible');
+    };
     const revealTimer = window.setTimeout(() => {
       if (!pageLoader.isConnected || pageLoader.classList.contains('is-leaving')) return;
-      document.documentElement.classList.add('interal-loader-active');
-      pageLoader.classList.add('is-visible');
+      if (typeof requestAnimationFrame === 'function') {
+        requestAnimationFrame(() => requestAnimationFrame(revealLoader));
+      } else {
+        revealLoader();
+      }
     }, revealDelay);
 
     const removeLoader = () => {
@@ -119,10 +122,7 @@
       if (!pageLoader.isConnected || pageLoader.classList.contains('is-leaving')) return;
       pageLoader.classList.remove('is-visible');
       pageLoader.classList.add('is-leaving');
-      const remove = () => {
-        pageLoader.remove();
-        document.documentElement.classList.remove('interal-loader-active');
-      };
+      const remove = () => pageLoader.remove();
       pageLoader.addEventListener('transitionend', remove, { once: true });
       window.setTimeout(remove, 160);
     };
