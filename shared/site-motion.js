@@ -36,12 +36,12 @@
       }
 
       .interal-page-transition.is-resetting {
-        transition: none !important;
+        transition: none;
       }
 
       @media (prefers-reduced-motion: reduce) {
         .interal-page-transition {
-          display: none !important;
+          display: none;
         }
       }
     `;
@@ -158,60 +158,7 @@
     });
   }
 
-  function initHomepageIconScrollDirection() {
-    const body = document.body;
-    if (!body?.classList.contains('homepage') || prefersReducedMotion()) return;
-
-    const figures = Array.from(document.querySelectorAll('.home-about-card-figure img'));
-    if (!figures.length) return;
-
-    let lastScrollY = window.scrollY || window.pageYOffset || 0;
-    let reverseScrollLocked = false;
-
-    const lockReverseScrollMotion = () => {
-      if (reverseScrollLocked) return;
-      reverseScrollLocked = true;
-
-      figures.forEach((figure) => {
-        figure.style.setProperty('--figure-parallax-y', '0px');
-        figure.style.setProperty('--figure-parallax-rotate', '0deg');
-        figure.style.setProperty('transform', 'translate3d(0, 0, 0) rotate(0deg)', 'important');
-        figure.style.setProperty('transition', 'none', 'important');
-      });
-    };
-
-    const unlockForwardScrollMotion = () => {
-      if (!reverseScrollLocked) return;
-      reverseScrollLocked = false;
-
-      figures.forEach((figure) => {
-        figure.style.removeProperty('transform');
-        figure.style.removeProperty('transition');
-      });
-    };
-
-    const handleScrollDirection = () => {
-      const currentScrollY = window.scrollY || window.pageYOffset || 0;
-      const delta = currentScrollY - lastScrollY;
-      lastScrollY = currentScrollY;
-
-      if (delta < -0.25) {
-        lockReverseScrollMotion();
-        return;
-      }
-
-      if (delta > 0.25) {
-        unlockForwardScrollMotion();
-      }
-    };
-
-    window.addEventListener('scroll', handleScrollDirection, { passive: true, capture: true });
-  }
-
-  const start = () => {
-    initPageTransitions();
-    initHomepageIconScrollDirection();
-  };
+  const start = () => initPageTransitions();
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', start, { once: true });
