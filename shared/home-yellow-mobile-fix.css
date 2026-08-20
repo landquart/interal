@@ -1,0 +1,32 @@
+/* Prevent the editorial yellow intro from exposing the page background while its
+   scroll animation is in progress, especially on long mobile layouts. */
+body.homepage.home-editorial-motion-ready .home-wrap {
+  padding-top: 0;
+}
+
+body.homepage.home-editorial-motion-ready .hero-transition::after {
+  background: #F4D84B;
+}
+
+body.homepage.home-editorial-motion-ready .home-intro {
+  background: #F4D84B;
+}
+
+@media (max-width: 860px) {
+  body.homepage.home-editorial-motion-ready .home-intro {
+    --yellow-plane-scale: 1 !important;
+    --yellow-plane-y: 0px !important;
+  }
+
+  body.homepage.home-editorial-motion-ready .home-intro::before {
+    opacity: 0 !important;
+    transform: none !important;
+    will-change: auto !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.homepage.home-editorial-motion-ready .home-intro {
+    background: #F4D84B;
+  }
+}
