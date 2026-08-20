@@ -39,17 +39,9 @@
 
   const sharedRoot = new URL("./", script.src);
 
-  if (!document.querySelector('link[data-interal-home-yellow-mobile-fix]')) {
-    const yellowFix = document.createElement("link");
-    yellowFix.rel = "stylesheet";
-    yellowFix.href = new URL("home-yellow-mobile-fix.css?v=20260820-1", sharedRoot).href;
-    yellowFix.dataset.interalHomeYellowMobileFix = "true";
-    document.head?.appendChild(yellowFix);
-  }
-
   if (!document.querySelector('script[data-interal-site-motion]')) {
     const motionScript = document.createElement("script");
-    motionScript.src = new URL("site-motion.js?v=yellow-scroll-20260820-1", sharedRoot).href;
+    motionScript.src = new URL("site-motion.js?v=page-transitions-only-20260820-2", sharedRoot).href;
     motionScript.async = false;
     motionScript.dataset.interalSiteMotion = "true";
     document.head?.appendChild(motionScript);
