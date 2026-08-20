@@ -38,6 +38,15 @@
   document.head?.appendChild(style);
 
   const sharedRoot = new URL("./", script.src);
+
+  if (!document.querySelector('script[data-interal-site-motion]')) {
+    const motionScript = document.createElement("script");
+    motionScript.src = new URL("site-motion.js?v=yellow-scroll-20260820-1", sharedRoot).href;
+    motionScript.async = false;
+    motionScript.dataset.interalSiteMotion = "true";
+    document.head?.appendChild(motionScript);
+  }
+
   const imageUrl = new URL("../elements/material3_expressive_loader.svg?v=interal-loader-20260819-3", sharedRoot).href;
   let overlay = null;
   let revealTimer = 0;
