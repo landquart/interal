@@ -162,32 +162,34 @@
     const body = document.body;
     if (!body?.classList.contains('homepage') || prefersReducedMotion()) return;
 
-    if (!document.getElementById('interal-home-icon-scroll-direction-style')) {
-      const style = document.createElement('style');
-      style.id = 'interal-home-icon-scroll-direction-style';
-      style.textContent = `
-        body.homepage.interal-scrolling-up .home-about-card.is-parallax-ready .home-about-card-figure img {
-          --figure-parallax-y: 0px !important;
-          --figure-parallax-rotate: 0deg !important;
-          transform: translate3d(0, 0, 0) rotate(0deg) !important;
-          transition: none !important;
-        }
-      `;
-      document.head.appendChild(style);
-    }
+    const cards = Array.from(document.querySelectorAll('.home-about-card'));
+    if (!cards.length) return;
 
     let lastScrollY = window.scrollY || window.pageYOffset || 0;
-    let releaseTimer = 0;
+    let scrollingUp = false;
 
-    const releaseReverseSuppression = (delay = 0) => {
-      window.clearTimeout(releaseTimer);
-      if (delay <= 0) {
-        body.classList.remove('interal-scrolling-up');
-        return;
-      }
-      releaseTimer = window.setTimeout(() => {
-        body.classList.remove('interal-scrolling-up');
-      }, delay);
+    const disableParallax = () => {
+      if (scrollingUp) return;
+      scrollingUp = true;
+
+      cards.forEach((card) => {
+        card.classList.remove('is-parallax-ready');
+        const figure = card.querySelector('.home-about-card-figure img');
+        if (!figure) return;
+        figure.style.setProperty('--figure-parallax-y', '0px');
+        figure.style.setProperty('--figure-parallax-rotate', '0deg');
+      });
+    };
+
+    const enableParallax = () => {
+      if (!scrollingUp) return;
+      scrollingUp = false;
+
+      cards.forEach((card) => {
+        if (card.classList.contains('is-revealed')) {
+          card.classList.add('is-parallax-ready');
+        }
+      });
     };
 
     const handleScrollDirection = () => {
@@ -196,16 +198,12 @@
       lastScrollY = currentScrollY;
 
       if (delta < -0.25) {
-        window.clearTimeout(releaseTimer);
-        body.classList.add('interal-scrolling-up');
-        releaseTimer = window.setTimeout(() => {
-          body.classList.remove('interal-scrolling-up');
-        }, 180);
+        disableParallax();
         return;
       }
 
       if (delta > 0.25) {
-        releaseReverseSuppression(48);
+        enableParallax();
       }
     };
 
