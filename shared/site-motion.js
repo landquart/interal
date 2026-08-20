@@ -1,6 +1,7 @@
 (function () {
   const PAGE_TRANSITION_KEY = 'interal.page-transition.pending';
   const PAGE_TRANSITION_DURATION_MS = 480;
+  const PAGE_TRANSITION_YELLOW = '#F5EE91';
 
   function prefersReducedMotion() {
     return Boolean(window.matchMedia?.('(prefers-reduced-motion: reduce)').matches);
@@ -16,7 +17,7 @@
         position: fixed;
         inset: -1px;
         z-index: 2147483000;
-        background: #F4D84B;
+        background: ${PAGE_TRANSITION_YELLOW};
         transform: translate3d(0, 101%, 0);
         transform-origin: center;
         pointer-events: none;
@@ -157,7 +158,64 @@
     });
   }
 
-  const start = () => initPageTransitions();
+  function initHomepageIconScrollDirection() {
+    const body = document.body;
+    if (!body?.classList.contains('homepage') || prefersReducedMotion()) return;
+
+    if (!document.getElementById('interal-home-icon-scroll-direction-style')) {
+      const style = document.createElement('style');
+      style.id = 'interal-home-icon-scroll-direction-style';
+      style.textContent = `
+        body.homepage.interal-scrolling-up .home-about-card.is-parallax-ready .home-about-card-figure img {
+          --figure-parallax-y: 0px !important;
+          --figure-parallax-rotate: 0deg !important;
+          transform: translate3d(0, 0, 0) rotate(0deg) !important;
+          transition: none !important;
+        }
+      `;
+      document.head.appendChild(style);
+    }
+
+    let lastScrollY = window.scrollY || window.pageYOffset || 0;
+    let releaseTimer = 0;
+
+    const releaseReverseSuppression = (delay = 0) => {
+      window.clearTimeout(releaseTimer);
+      if (delay <= 0) {
+        body.classList.remove('interal-scrolling-up');
+        return;
+      }
+      releaseTimer = window.setTimeout(() => {
+        body.classList.remove('interal-scrolling-up');
+      }, delay);
+    };
+
+    const handleScrollDirection = () => {
+      const currentScrollY = window.scrollY || window.pageYOffset || 0;
+      const delta = currentScrollY - lastScrollY;
+      lastScrollY = currentScrollY;
+
+      if (delta < -0.25) {
+        window.clearTimeout(releaseTimer);
+        body.classList.add('interal-scrolling-up');
+        releaseTimer = window.setTimeout(() => {
+          body.classList.remove('interal-scrolling-up');
+        }, 180);
+        return;
+      }
+
+      if (delta > 0.25) {
+        releaseReverseSuppression(48);
+      }
+    };
+
+    window.addEventListener('scroll', handleScrollDirection, { passive: true });
+  }
+
+  const start = () => {
+    initPageTransitions();
+    initHomepageIconScrollDirection();
+  };
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', start, { once: true });
