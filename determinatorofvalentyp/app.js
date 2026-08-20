@@ -1055,21 +1055,52 @@ function syncBodyModalState() {
   document.body.classList.toggle('modal-open', hasOpen);
 }
 
-function openModal(modal) {
-  modal.classList.remove('hidden');
-  modal.setAttribute('aria-hidden', 'false');
-  syncBodyModalState();
+function openModal(modal, trigger, triggerRect) {
+  const applyOpen = () => {
+    modal.classList.remove('hidden');
+    modal.setAttribute('aria-hidden', 'false');
+    syncBodyModalState();
+  };
+  const focusTarget = () => modal.querySelector('input:not([type="hidden"]), select, textarea, button:not([data-close-modal])')
+    || modal.querySelector('button, [tabindex]:not([tabindex="-1"])');
+  if (window.InteralModalMotion) {
+    return window.InteralModalMotion.open(modal, {
+      panel: modal.querySelector('.modal-card'),
+      backdrop: modal.querySelector('.modal-backdrop'),
+      trigger,
+      triggerRect,
+      applyOpen,
+      focusTarget
+    });
+  }
+  applyOpen();
+  focusTarget()?.focus?.();
+  return Promise.resolve(true);
 }
 
-function closeModal(modal) {
-  modal.classList.add('hidden');
-  modal.setAttribute('aria-hidden', 'true');
-  syncBodyModalState();
+function closeModal(modal, options = {}) {
+  if (modal.classList.contains('hidden')) return Promise.resolve(false);
+  const applyClose = () => {
+    modal.classList.add('hidden');
+    modal.setAttribute('aria-hidden', 'true');
+    syncBodyModalState();
+  };
+  if (window.InteralModalMotion) {
+    return window.InteralModalMotion.close(modal, {
+      panel: modal.querySelector('.modal-card'),
+      backdrop: modal.querySelector('.modal-backdrop'),
+      applyClose,
+      restoreFocus: options.restoreFocus !== false
+    });
+  }
+  applyClose();
+  return Promise.resolve(true);
 }
 
 function closeAllModals() {
-  [els.chooserModal, els.rootModal, els.componentModal, els.prefixVariantModal].forEach(closeModal);
+  const closing = [els.chooserModal, els.rootModal, els.componentModal, els.prefixVariantModal].map((modal) => closeModal(modal));
   pendingPrefixItem = null;
+  return Promise.all(closing);
 }
 
 function addRootComponent() {
@@ -1103,7 +1134,7 @@ function addRootComponent() {
   window.InteralFormDraft?.save?.();
 }
 
-function openPrefixVariantStep(item) {
+async function openPrefixVariantStep(item, source) {
   pendingPrefixItem = item;
   els.prefixVariantSelect.innerHTML = '';
 
@@ -1117,8 +1148,10 @@ function openPrefixVariantStep(item) {
 
   updatePrefixVariantPreview();
   window.refreshCustomSelect?.(els.prefixVariantSelect);
-  closeModal(els.componentModal);
-  openModal(els.prefixVariantModal);
+  const trigger = source?.currentTarget instanceof Element ? source.currentTarget : source;
+  const triggerRect = trigger?.getBoundingClientRect?.();
+  await closeModal(els.componentModal, { restoreFocus: false });
+  openModal(els.prefixVariantModal, trigger, triggerRect);
 }
 
 function updatePrefixVariantPreview() {
@@ -1158,12 +1191,12 @@ function savePrefixVariant() {
   window.InteralFormDraft?.save?.();
 }
 
-function addSelectedComponent() {
+function addSelectedComponent(source) {
   const item = allComponents.find((x) => x.id === els.componentSelect.value);
   if (!item) return;
 
   if (item.category.startsWith('Приставки') && prefixAssimilationOptions[item.id]) {
-    openPrefixVariantStep(item);
+    openPrefixVariantStep(item, source);
     return;
   }
 
@@ -2024,27 +2057,32 @@ async function clearAll() {
 }
 
 function attachEvents() {
-  els.addComponentBtn.addEventListener('click', () => openModal(els.chooserModal));
-  els.chooseRootBtn.addEventListener('click', () => {
-    closeModal(els.chooserModal);
-    openModal(els.rootModal);
+  els.addComponentBtn.addEventListener('click', (event) => openModal(els.chooserModal, event.currentTarget));
+  els.chooseRootBtn.addEventListener('click', async (event) => {
+    const triggerRect = event.currentTarget.getBoundingClientRect();
+    await closeModal(els.chooserModal, { restoreFocus: false });
+    openModal(els.rootModal, event.currentTarget, triggerRect);
   });
-  els.chooseComponentBtn.addEventListener('click', () => {
-    closeModal(els.chooserModal);
-    openModal(els.componentModal);
+  els.chooseComponentBtn.addEventListener('click', async (event) => {
+    const triggerRect = event.currentTarget.getBoundingClientRect();
+    await closeModal(els.chooserModal, { restoreFocus: false });
+    openModal(els.componentModal, event.currentTarget, triggerRect);
     renderComponentSearchResults();
   });
-  els.backFromRootBtn.addEventListener('click', () => {
-    closeModal(els.rootModal);
-    openModal(els.chooserModal);
+  els.backFromRootBtn.addEventListener('click', async (event) => {
+    const triggerRect = event.currentTarget.getBoundingClientRect();
+    await closeModal(els.rootModal, { restoreFocus: false });
+    openModal(els.chooserModal, event.currentTarget, triggerRect);
   });
-  els.backFromComponentBtn.addEventListener('click', () => {
-    closeModal(els.componentModal);
-    openModal(els.chooserModal);
+  els.backFromComponentBtn.addEventListener('click', async (event) => {
+    const triggerRect = event.currentTarget.getBoundingClientRect();
+    await closeModal(els.componentModal, { restoreFocus: false });
+    openModal(els.chooserModal, event.currentTarget, triggerRect);
   });
-  els.backFromPrefixVariantBtn.addEventListener('click', () => {
-    closeModal(els.prefixVariantModal);
-    openModal(els.componentModal);
+  els.backFromPrefixVariantBtn.addEventListener('click', async (event) => {
+    const triggerRect = event.currentTarget.getBoundingClientRect();
+    await closeModal(els.prefixVariantModal, { restoreFocus: false });
+    openModal(els.componentModal, event.currentTarget, triggerRect);
     pendingPrefixItem = null;
   });
 
@@ -2153,6 +2191,16 @@ function attachEvents() {
 
   document.querySelectorAll('[data-close-modal]').forEach((el) => {
     el.addEventListener('click', closeAllModals);
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape') return;
+    const openModalElement = [els.prefixVariantModal, els.componentModal, els.rootModal, els.chooserModal]
+      .find((modal) => !modal.classList.contains('hidden'));
+    if (openModalElement) {
+      event.preventDefault();
+      closeModal(openModalElement);
+    }
   });
 
   [

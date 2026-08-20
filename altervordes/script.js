@@ -112,9 +112,6 @@ async function createJsonCard(author = null, { onProgress } = {}){ if(!hasSucces
   let card=base;
   card = await window.InteralJsonCards.createCardOnServer(base, { section:CARD_SECTION, title:base.interal.word, category:'al', endpoint:`${API_BASE}/api/cards`, onProgress });
   if(!/^al_[0-9A-Za-z]{12}$/.test(card.id)) throw Error(t().invalidCardId); lastCard=card; $('jsonCardOutput').value=JSON.stringify(card,null,2); return card; }
-let jsonOpener = null;
-function openJsonModal(){ jsonOpener=document.activeElement; $('jsonCardOutput').value=''; const modal=$('jsonCardModal'); modal.classList.add('show'); modal.setAttribute('aria-hidden','false'); document.body.classList.add('json-card-modal-open'); $('generateJsonCardBtn')?.focus(); }
-function closeJsonModal(){ const modal=$('jsonCardModal'); modal.classList.remove('show'); modal.setAttribute('aria-hidden','true'); document.body.classList.remove('json-card-modal-open'); if(jsonOpener?.focus) jsonOpener.focus(); }
 async function encodeState(payload){ return btoa(unescape(encodeURIComponent(JSON.stringify(payload)))); }
 async function decodeState(text){ return JSON.parse(decodeURIComponent(escape(atob(text)))); }
 function fill(s={}){ const fields = s.version === 2 && s.fields ? s.fields : s; const analysis = s.version === 2 ? s.result : s.lastAnalysis; $('translationInput').value=fields.translation||''; $('candidateInput').value=fields.candidate||''; $('posInput').value=POS_VALUES.includes(fields.partOfSpeech)?fields.partOfSpeech:'noun'; $('commentInput').value=fields.comment||''; hasSuccessfulCheck = Boolean(s.flags?.checked && analysis); setJsonEnabled(false); if(analysis){ renderAnalysis(analysis); hasSuccessfulCheck = Boolean(s.flags?.checked || canCreateCard(analysis)); setJsonEnabled(canCreateCard(analysis)); } updateResetVisibility(); }

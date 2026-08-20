@@ -6,7 +6,7 @@
   <link rel="icon" type="image/svg+xml" href="../favicon/favicon%20interal%20contrast.svg?v=favicon-contrast-20260812-1" />
   <link rel="apple-touch-icon" sizes="512x512" href="../favicon/favicon%20interal%20512.png" />
   <title>Registre of lexical cartes</title>
-  <link rel="stylesheet" href="../shared/ui.css?v=interal-ui-20260809-5" />
+  <link rel="stylesheet" href="../shared/ui.css?v=interal-ui-20260820-1" />
   <style>
     * { box-sizing: border-box; }
     body { margin: 0; min-height: 100vh; font-family: "Jost", "Helvetica Neue", Helvetica, Arial, sans-serif; line-height: 1.5; }
@@ -245,7 +245,7 @@
 
   <script src="../shared/copy-plain.js?v=contact-types-20260713-1"></script>
   <script src="../shared/loader-paint-fix.js?v=interal-loader-20260819-3"></script>
-  <script src="../shared/ui.js?v=interal-ui-20260819-2" defer></script>
+  <script src="../shared/ui.js?v=interal-ui-20260820-1" defer></script>
   <script>
     (function () {
       const TEXT_I18N = {
@@ -495,21 +495,40 @@
         state.lastDiscussionFocused = trigger || document.activeElement;
         const word = card.word || card.id || t('noValue');
         els.giscusTitle.textContent = `${t('discussionTitle')}: ${word}`;
-
-        els.giscusModal.classList.add('is-open');
-        els.giscusModal.setAttribute('aria-hidden', 'false');
-
         loadGiscus(card);
+        const applyOpen = () => {
+          els.giscusModal.classList.add('is-open');
+          els.giscusModal.setAttribute('aria-hidden', 'false');
+        };
+        if (window.InteralModalMotion) {
+          return window.InteralModalMotion.open(els.giscusModal, {
+            panel: els.giscusModal.querySelector('.giscus-modal-card'),
+            backdrop: els.giscusModal.querySelector('.giscus-backdrop'),
+            trigger: state.lastDiscussionFocused,
+            applyOpen,
+            focusTarget: els.giscusX
+          });
+        }
+        applyOpen();
         els.giscusX.focus();
       }
 
       function closeDiscussion() {
-        els.giscusModal.classList.remove('is-open');
-        els.giscusModal.setAttribute('aria-hidden', 'true');
-        els.giscusContainer.replaceChildren();
-        if (state.lastDiscussionFocused) {
-          state.lastDiscussionFocused.focus();
+        const applyClose = () => {
+          els.giscusModal.classList.remove('is-open');
+          els.giscusModal.setAttribute('aria-hidden', 'true');
+          els.giscusContainer.replaceChildren();
+        };
+        if (window.InteralModalMotion) {
+          return window.InteralModalMotion.close(els.giscusModal, {
+            panel: els.giscusModal.querySelector('.giscus-modal-card'),
+            backdrop: els.giscusModal.querySelector('.giscus-backdrop'),
+            applyClose,
+            focusTarget: state.lastDiscussionFocused
+          });
         }
+        applyClose();
+        state.lastDiscussionFocused?.focus?.();
       }
       function renderCard(card) {
         const article = document.createElement('article'); article.className = `registry-card${card.accepted_at ? ' is-accepted' : ''}`;
@@ -576,10 +595,35 @@
       }
       async function openJson(card, trigger) {
         state.lastFocused = trigger || document.activeElement;
-        try { els.jsonView.value = await loadFullJson(card); openModal(); } catch (_) { showToast(t('jsonLoadFailed')); }
+        try { els.jsonView.value = await loadFullJson(card); openModal(state.lastFocused); } catch (_) { showToast(t('jsonLoadFailed')); }
       }
-      function openModal() { els.modal.classList.add('is-open'); els.modal.setAttribute('aria-hidden', 'false'); els.jsonView.focus(); }
-      function closeModal() { els.modal.classList.remove('is-open'); els.modal.setAttribute('aria-hidden', 'true'); els.jsonView.value = ''; if (state.lastFocused) state.lastFocused.focus(); }
+      function openModal(trigger) {
+        const applyOpen = () => { els.modal.classList.add('is-open'); els.modal.setAttribute('aria-hidden', 'false'); };
+        if (window.InteralModalMotion) {
+          return window.InteralModalMotion.open(els.modal, {
+            panel: els.modal.querySelector('.registry-modal-card'),
+            backdrop: els.modal.querySelector('.registry-backdrop'),
+            trigger,
+            applyOpen,
+            focusTarget: els.jsonView
+          });
+        }
+        applyOpen();
+        els.jsonView.focus();
+      }
+      function closeModal() {
+        const applyClose = () => { els.modal.classList.remove('is-open'); els.modal.setAttribute('aria-hidden', 'true'); els.jsonView.value = ''; };
+        if (window.InteralModalMotion) {
+          return window.InteralModalMotion.close(els.modal, {
+            panel: els.modal.querySelector('.registry-modal-card'),
+            backdrop: els.modal.querySelector('.registry-backdrop'),
+            applyClose,
+            focusTarget: state.lastFocused
+          });
+        }
+        applyClose();
+        state.lastFocused?.focus?.();
+      }
       async function loadRegistry() {
         updateStaticI18n();
         try {

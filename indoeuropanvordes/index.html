@@ -8,7 +8,7 @@
 <link rel="apple-touch-icon" sizes="512x512" href="../favicon/favicon%20interal%20512.png" />
 
 <title>Indoeuropan vordes</title>
-<link rel="stylesheet" href="../shared/ui.css?v=interal-ui-20260809-5" />
+<link rel="stylesheet" href="../shared/ui.css?v=interal-ui-20260820-1" />
 
 <style>
 .internationalita-page {
@@ -668,8 +668,8 @@ body.dark-theme .internationalita-page .json-card-icon-btn.is-copied {
 </section>
 </main>
 
-<div id="explainModal">
-  <div class="modal-inner">
+<div id="explainModal" aria-hidden="true">
+  <div class="modal-inner" role="dialog" aria-modal="true" aria-label="Пояснение">
     <div id="explainText"></div>
     <button id="closeExplainBtn" class="tool-btn secondary-btn" type="button">Закрыть</button>
   </div>
@@ -789,6 +789,8 @@ const jsonCardOutput = document.getElementById("jsonCardOutput");
 const copyJsonCardBtn = document.getElementById("copyJsonCardBtn");
 const closeJsonCardBtn = document.getElementById("closeJsonCardBtn");
 const interalWordLabel = document.getElementById("interalWordLabel");
+let explainOpener = null;
+let jsonCardOpener = null;
 
 const TEXT_I18N = {
   ru: {
@@ -1415,8 +1417,9 @@ function makeIndoeuropanCard(payload, timeMeta, author = null) {
   return card;
 }
 
-function openJsonCardModal() {
+function openJsonCardModal(event) {
   if (!lastCalculationPayload?.accepted) return;
+  jsonCardOpener = event?.currentTarget || document.activeElement;
   jsonCardOutput.value = "";
   setJsonCardCopyState(false);
   window.InteralJsonCardModal?.restoreAuthorData?.();
@@ -1425,15 +1428,37 @@ function openJsonCardModal() {
     clearSavedAuthorData.hidden = hidden;
     clearSavedAuthorData.closest(".author-data-actions")?.toggleAttribute("hidden", hidden);
   }
-  jsonCardModal.classList.add("show");
-  jsonCardModal.setAttribute("aria-hidden", "false");
+  const applyOpen = () => {
+    jsonCardModal.classList.add("show");
+    jsonCardModal.setAttribute("aria-hidden", "false");
+  };
+  if (window.InteralModalMotion) {
+    return window.InteralModalMotion.open(jsonCardModal, {
+      panel: jsonCardModal.querySelector(".modal-inner"),
+      trigger: jsonCardOpener,
+      applyOpen,
+      focusTarget: generateJsonCardBtn
+    });
+  }
+  applyOpen();
   generateJsonCardBtn.focus();
 }
 
 function closeJsonCardModal() {
   setJsonCardCopyState(false);
-  jsonCardModal.classList.remove("show");
-  jsonCardModal.setAttribute("aria-hidden", "true");
+  const applyClose = () => {
+    jsonCardModal.classList.remove("show");
+    jsonCardModal.setAttribute("aria-hidden", "true");
+  };
+  if (window.InteralModalMotion) {
+    return window.InteralModalMotion.close(jsonCardModal, {
+      panel: jsonCardModal.querySelector(".modal-inner"),
+      applyClose,
+      focusTarget: jsonCardOpener
+    });
+  }
+  applyClose();
+  jsonCardOpener?.focus?.();
 }
 
 function clearScores() {
@@ -2697,14 +2722,40 @@ function renderExplanationTable(rows) {
   `;
 }
 
-function showExplain() {
+function showExplain(event) {
   if (!explanationHTML) return;
+  explainOpener = event?.currentTarget || document.activeElement;
   explainText.innerHTML = explanationHTML;
-  explainModal.classList.add("show");
+  const applyOpen = () => {
+    explainModal.classList.add("show");
+    explainModal.setAttribute("aria-hidden", "false");
+  };
+  if (window.InteralModalMotion) {
+    return window.InteralModalMotion.open(explainModal, {
+      panel: explainModal.querySelector(".modal-inner"),
+      trigger: explainOpener,
+      applyOpen,
+      focusTarget: closeExplainBtn
+    });
+  }
+  applyOpen();
+  closeExplainBtn.focus();
 }
 
 function closeExplain() {
-  explainModal.classList.remove("show");
+  const applyClose = () => {
+    explainModal.classList.remove("show");
+    explainModal.setAttribute("aria-hidden", "true");
+  };
+  if (window.InteralModalMotion) {
+    return window.InteralModalMotion.close(explainModal, {
+      panel: explainModal.querySelector(".modal-inner"),
+      applyClose,
+      focusTarget: explainOpener
+    });
+  }
+  applyClose();
+  explainOpener?.focus?.();
 }
 
 function currentLocale() {
@@ -2910,6 +2961,16 @@ closeJsonCardBtn.addEventListener("click", closeJsonCardModal);
 jsonCardModal.addEventListener("click", (event) => {
   if (event.target === jsonCardModal) closeJsonCardModal();
 });
+document.addEventListener("keydown", (event) => {
+  if (event.key !== "Escape") return;
+  if (jsonCardModal.classList.contains("show")) {
+    event.preventDefault();
+    closeJsonCardModal();
+  } else if (explainModal.classList.contains("show")) {
+    event.preventDefault();
+    closeExplain();
+  }
+});
 
 initRows();
 
@@ -2927,7 +2988,7 @@ document.addEventListener("DOMContentLoaded", () => {
 <script src="./download-json-card.js?v=contact-types-20260713-1"></script>
 <script src="../shared/copy-plain.js?v=contact-types-20260713-1"></script>
 <script src="../shared/loader-paint-fix.js?v=interal-loader-20260819-3"></script>
-<script src="../shared/ui.js?v=interal-ui-20260819-2" defer></script>
+<script src="../shared/ui.js?v=interal-ui-20260820-1" defer></script>
   <script src="../shared/form-draft.js?v=page-state-20260716-1" defer></script>
 
 </body>

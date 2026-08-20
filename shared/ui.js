@@ -200,6 +200,14 @@
     document.head.appendChild(liquidGlassStylesheet);
   }
 
+  if (!document.querySelector('link[data-interal-modal-motion-css]')) {
+    const modalMotionStylesheet = document.createElement('link');
+    modalMotionStylesheet.rel = 'stylesheet';
+    modalMotionStylesheet.dataset.interalModalMotionCss = 'true';
+    modalMotionStylesheet.href = new URL('modal-motion.css?v=modal-motion-20260820-1', sharedRoot).href;
+    document.head.appendChild(modalMotionStylesheet);
+  }
+
   if (document.body?.classList.contains('homepage') && !document.querySelector('link[data-interal-home-scroll-reveal-css]')) {
     const homeRevealStylesheet = document.createElement('link');
     homeRevealStylesheet.rel = 'stylesheet';
@@ -208,7 +216,10 @@
     document.head.appendChild(homeRevealStylesheet);
   }
 
-  const core = loadSource('ui-core.js?v=interal-ui-20260809-3');
+  const modalMotion = loadSource('modal-motion.js?v=modal-motion-20260820-1');
+  (0, eval)(`${modalMotion.source}\n//# sourceURL=${modalMotion.url.href}`);
+
+  const core = loadSource('ui-core.js?v=interal-ui-20260820-1');
   const coreSource = core.source.replace(
     'const currentScript = document.currentScript;',
     'const currentScript = document.querySelector(\'script[data-interal-ui-loader="true"]\');'

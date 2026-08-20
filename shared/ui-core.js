@@ -398,14 +398,42 @@
     scheduleScrollUiState();
   }
 
-  function toggleLanguageList(force) {
+  function toggleLanguageList(force, source) {
     const list = menu.querySelector('.menu-lang-modal');
     const trigger = menu.querySelector('[data-lang-trigger="true"]');
     if (!list || !trigger) return;
-    const shouldOpen = typeof force === 'boolean' ? force : list.hidden;
-    list.hidden = !shouldOpen;
-    trigger.setAttribute('aria-expanded', String(shouldOpen));
-    document.body.classList.toggle('menu-modal-open', shouldOpen);
+    const shouldOpen = typeof force === 'boolean'
+      ? force
+      : !document.body.classList.contains('menu-modal-open');
+    const panel = list.querySelector('.menu-lang-modal-content');
+    const motion = window.InteralModalMotion;
+    const applyOpen = () => {
+      list.hidden = false;
+      trigger.setAttribute('aria-expanded', 'true');
+      document.body.classList.add('menu-modal-open');
+    };
+    const applyClose = () => {
+      list.hidden = true;
+      trigger.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('menu-modal-open');
+    };
+
+    if (!motion) {
+      if (shouldOpen) applyOpen();
+      else applyClose();
+      return Promise.resolve();
+    }
+
+    if (shouldOpen) {
+      return motion.open(list, {
+        panel,
+        trigger: source || trigger,
+        applyOpen,
+        focusTarget: () => list.querySelector('.menu-lang-btn.is-active, .menu-lang-btn[data-lang]')
+      });
+    }
+
+    return motion.close(list, { panel, applyClose, focusTarget: trigger });
   }
 
 
@@ -655,14 +683,28 @@
 
     return new Promise((resolve) => {
       const previousFocus = document.activeElement;
-      const finish = (value) => {
-        dialog.hidden = true;
-        dialog.classList.remove('show');
+      let finishing = false;
+      const finish = async (value) => {
+        if (finishing) return;
+        finishing = true;
         document.removeEventListener('keydown', onKeydown);
         cancelBtn.removeEventListener('click', onCancel);
         okBtn.removeEventListener('click', onOk);
         dialog.removeEventListener('click', onOverlayClick);
-        if (previousFocus && typeof previousFocus.focus === 'function') previousFocus.focus();
+        const applyClose = () => {
+          dialog.classList.remove('show');
+          dialog.hidden = true;
+        };
+        if (window.InteralModalMotion) {
+          await window.InteralModalMotion.close(dialog, {
+            panel: dialog.querySelector('.interal-confirm-dialog'),
+            applyClose,
+            focusTarget: previousFocus
+          });
+        } else {
+          applyClose();
+          previousFocus?.focus?.();
+        }
         resolve(value);
       };
       const onCancel = () => finish(false);
@@ -681,9 +723,21 @@
       okBtn.addEventListener('click', onOk);
       dialog.addEventListener('click', onOverlayClick);
       document.addEventListener('keydown', onKeydown);
-      dialog.hidden = false;
-      requestAnimationFrame(() => dialog.classList.add('show'));
-      cancelBtn.focus();
+      const applyOpen = () => {
+        dialog.hidden = false;
+        dialog.classList.add('show');
+      };
+      if (window.InteralModalMotion) {
+        window.InteralModalMotion.open(dialog, {
+          panel: dialog.querySelector('.interal-confirm-dialog'),
+          trigger: previousFocus,
+          applyOpen,
+          focusTarget: cancelBtn
+        });
+      } else {
+        applyOpen();
+        cancelBtn.focus();
+      }
     });
   }
 
@@ -902,7 +956,7 @@
   menu.querySelectorAll('.menu-lang-btn').forEach((btn) => {
     btn.addEventListener('click', function () {
       if (btn.dataset.langTrigger === 'true') {
-        toggleLanguageList();
+        toggleLanguageList(undefined, btn);
         return;
       }
       applyLanguage(btn.dataset.lang);
@@ -990,22 +1044,30 @@ function setupModalSelects(root = document) {
 
     modal._closeModalSelect = function closeModal() {
       const state = modal._modalSelectState;
-      modal.hidden = true;
-      document.body.classList.remove('select-modal-open');
-      document.body.style.removeProperty('--select-modal-scroll-y');
-      optionsBox.innerHTML = '';
-
-      if (state.activeTrigger) {
-        state.activeTrigger.setAttribute('aria-expanded', 'false');
-      }
-      window.scrollTo(0, state.scrollY || 0);
       const focusTarget = state.activeTrigger || state.previousFocus;
-      if (focusTarget && typeof focusTarget.focus === 'function') focusTarget.focus();
-
-      state.activeSelect = null;
-      state.activeTrigger = null;
-      state.previousFocus = null;
-      state.scrollY = 0;
+      const applyClose = () => {
+        modal.hidden = true;
+        document.body.classList.remove('select-modal-open');
+        document.body.style.removeProperty('--select-modal-scroll-y');
+        optionsBox.innerHTML = '';
+        state.activeTrigger?.setAttribute('aria-expanded', 'false');
+        window.scrollTo(0, state.scrollY || 0);
+        state.activeSelect = null;
+        state.activeTrigger = null;
+        state.previousFocus = null;
+        state.scrollY = 0;
+      };
+      if (window.InteralModalMotion) {
+        return window.InteralModalMotion.close(modal, {
+          panel: modal.querySelector('.interal-select-modal-panel'),
+          backdrop: modal.querySelector('.interal-select-modal-backdrop'),
+          applyClose,
+          focusTarget
+        });
+      }
+      applyClose();
+      focusTarget?.focus?.();
+      return Promise.resolve();
     };
 
     modal.addEventListener('click', (event) => {
@@ -1138,12 +1200,26 @@ function setupModalSelects(root = document) {
     syncVisualViewportVars();
     document.body.style.setProperty('--select-modal-scroll-y', `-${state.scrollY}px`);
     document.body.classList.add('select-modal-open');
-    modal.hidden = false;
-    trigger.setAttribute('aria-expanded', 'true');
-
     const selectedButton = optionsBox.querySelector('.is-selected:not(:disabled)') || optionsBox.querySelector('.interal-select-option:not(:disabled)');
-    (selectedButton || closeButton)?.focus();
-    selectedButton?.scrollIntoView({ block: 'nearest' });
+    const applyOpen = () => {
+      modal.hidden = false;
+      trigger.setAttribute('aria-expanded', 'true');
+    };
+    const afterOpen = () => selectedButton?.scrollIntoView({ block: 'nearest' });
+    if (window.InteralModalMotion) {
+      window.InteralModalMotion.open(modal, {
+        panel: modal.querySelector('.interal-select-modal-panel'),
+        backdrop: modal.querySelector('.interal-select-modal-backdrop'),
+        trigger,
+        applyOpen,
+        afterOpen,
+        focusTarget: selectedButton || closeButton
+      });
+    } else {
+      applyOpen();
+      (selectedButton || closeButton)?.focus();
+      afterOpen();
+    }
   }
 
   selects.forEach((select) => {
@@ -1519,8 +1595,8 @@ window.refreshCustomSelect = function refreshCustomSelect(selectOrId) {
     function applyTexts(){ const t=texts(); const map={jsonCardTitle:t.title,useAuthorBlockLabel:t.useAuthor,authorDisplayNameLabel:t.authorName,authorContactTypeLabel:t.contactType,authorContactValueLabel:t.contact,[ids.rememberAuthorDataLabelId]:t.rememberAuthor,[ids.clearSavedAuthorDataId]:t.clearSavedAuthor,jsonCardOutputLabel:t.output}; Object.entries(map).forEach(([id,v])=>{ if($(id)) $(id).textContent=v; }); applyContactTypeLabels(ids.authorContactTypeId, lang()); const generateButton=$(ids.generateButtonId); if(generateButton){ const textEl=generateButton.querySelector('.btn-text') || generateButton; textEl.textContent=t.generate; } if($(ids.closeButtonId)) $(ids.closeButtonId).setAttribute('aria-label',t.close); [ids.copyButtonId,ids.downloadButtonId].forEach((id)=>{ const b=$(id); if(!b) return; const v=id===ids.copyButtonId?t.copy:t.download; b.setAttribute('aria-label',v); b.title=v; }); }
     function resetCopy(){ const b=$(ids.copyButtonId); clearTimeout(timer); if(b){ b.classList.remove('is-copied'); b.title=texts().copy; b.setAttribute('aria-label',texts().copy); } }
     function showError(message){ if(output()) output().value=message; }
-    function open(){ opener=document.activeElement; resetCopy(); restoreAuthorData(ids); syncAuthorStorageControls(ids); const m=$(ids.modalId); if(m){ m.classList.add('show'); m.setAttribute('aria-hidden','false'); } const btn=$(ids.generateButtonId); if(btn){ btn.hidden=false; setButtonStatus(btn, texts().generate, false); } setTimeout(()=>btn?.focus(),0); }
-    function close(){ const m=$(ids.modalId); resetCopy(); if(m){ m.classList.remove('show'); m.setAttribute('aria-hidden','true'); } const btn=$(ids.generateButtonId); if(btn) setButtonStatus(btn, texts().generate, false); if(opener?.focus) opener.focus(); }
+    function open(source){ opener=source?.currentTarget instanceof Element?source.currentTarget:source instanceof Element?source:document.activeElement; resetCopy(); restoreAuthorData(ids); syncAuthorStorageControls(ids); const m=$(ids.modalId); const btn=$(ids.generateButtonId); if(btn){ btn.hidden=false; setButtonStatus(btn, texts().generate, false); } if(!m) return Promise.resolve(false); const applyOpen=()=>{ m.classList.add('show'); m.setAttribute('aria-hidden','false'); }; if(window.InteralModalMotion){ return window.InteralModalMotion.open(m,{panel:m.querySelector('.modal-inner'),trigger:opener,applyOpen,focusTarget:btn}); } applyOpen(); setTimeout(()=>btn?.focus(),0); return Promise.resolve(true); }
+    function close(){ const m=$(ids.modalId); resetCopy(); const btn=$(ids.generateButtonId); if(btn) setButtonStatus(btn, texts().generate, false); if(!m) return Promise.resolve(false); const applyClose=()=>{ m.classList.remove('show'); m.setAttribute('aria-hidden','true'); }; if(window.InteralModalMotion){ return window.InteralModalMotion.close(m,{panel:m.querySelector('.modal-inner'),applyClose,focusTarget:opener}); } applyClose(); opener?.focus?.(); return Promise.resolve(true); }
     function getAuthor(){ if(!$(ids.useAuthorBlockId)?.checked) return null; const name=$(ids.authorDisplayNameId)?.value.trim()||''; const type=$(ids.authorContactTypeId)?.value||'telegram'; const rawContact=$(ids.authorContactValueId)?.value||''; const contact=normalizeContact(type,rawContact); if($(ids.rememberAuthorDataId)?.checked) saveAuthorData({ displayName:name, contactType:type, contactValue:rawContact }); if(!name && !contact) throw new Error(lang()==='en'?'Add a name or contact for authorship.':'Укажите имя или контакт для авторства.'); const author={}; if(name) author.display_name=name; if(contact) author.contacts=[{type,url:contact}]; return author; }
     async function generate(){ const btn=$(ids.generateButtonId); const t=texts(); try{ if(btn) setButtonStatus(btn, t.generating, true); const author=getAuthor(); if(output()) output().value=''; let card=await options.buildCard?.({author, onProgress: text => btn && setButtonStatus(btn, text, true)}); if(!card||typeof card!=='object') throw new Error(lang()==='en'?'The page did not create a valid JSON card.':'Страница не создала корректную JSON-карточку.'); if(options.createCardOnServer){ card=await options.createCardOnServer(card,{author,onProgress:text=>btn&&setButtonStatus(btn,text,true)}); } const formatted=options.formatCard?options.formatCard(card):JSON.stringify(card,null,2); if(output()) output().value=formatted; if(btn) setButtonStatus(btn, texts().done || (lang()==='en'?'Done':'Готово'), true); }catch(e){ console.error('JSON card generation failed:', e); const msg=publicJsonError(e, lang()==='en'?'Could not generate JSON card.':'Не удалось сформировать JSON-карточку.'); if(btn) setButtonStatus(btn, texts().error || (lang()==='en'?'Error':'Ошибка'), false); showError(msg); return; }finally{ if(btn) setTimeout(()=>setButtonStatus(btn, texts().generate, false), 800); } }
     async function copy(){ const text=output()?.value||''; if(!text.trim()) return alert(texts().empty); await (window.copyText ? window.copyText(text) : navigator.clipboard.writeText(text)); const b=$(ids.copyButtonId); if(b){ b.classList.add('is-copied'); b.title=texts().copiedTitle; b.setAttribute('aria-label',texts().copied); timer=setTimeout(resetCopy,1500); } }

@@ -1358,7 +1358,9 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
       return compactAssociativeCard(card);
     }
 
-    function openJsonCardModal() {
+    let jsonCardOpener = null;
+
+    function openJsonCardModal(event) {
       if (!hasPassedJsonCardThreshold()) {
         alert(textGroup('alerts').jsonCardThresholdUnavailable);
         return;
@@ -1376,11 +1378,40 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
       window.InteralJsonCardModal?.restoreAuthorData?.();
       const clearSaved = document.getElementById('clearSavedAuthorData');
       if (clearSaved) { const hidden = !window.InteralJsonCardModal?.hasSavedAuthorData?.(); clearSaved.hidden = hidden; clearSaved.closest('.author-data-actions')?.toggleAttribute('hidden', hidden); }
-      document.getElementById('jsonCardModal').classList.add('show');
+      const modal = document.getElementById('jsonCardModal');
+      const generateButton = document.getElementById('generateJsonCardBtn');
+      jsonCardOpener = event?.currentTarget || document.activeElement;
+      const applyOpen = () => {
+        modal.classList.add('show');
+        modal.setAttribute('aria-hidden', 'false');
+      };
+      if (window.InteralModalMotion) {
+        return window.InteralModalMotion.open(modal, {
+          panel: modal.querySelector('.modal-inner'),
+          trigger: jsonCardOpener,
+          applyOpen,
+          focusTarget: generateButton
+        });
+      }
+      applyOpen();
+      generateButton?.focus();
     }
 
     function closeJsonCardModal() {
-      document.getElementById('jsonCardModal').classList.remove('show');
+      const modal = document.getElementById('jsonCardModal');
+      const applyClose = () => {
+        modal.classList.remove('show');
+        modal.setAttribute('aria-hidden', 'true');
+      };
+      if (window.InteralModalMotion) {
+        return window.InteralModalMotion.close(modal, {
+          panel: modal.querySelector('.modal-inner'),
+          applyClose,
+          focusTarget: jsonCardOpener
+        });
+      }
+      applyClose();
+      jsonCardOpener?.focus?.();
     }
 
     function hasUserInputForReset() {
@@ -1712,6 +1743,12 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
     document.getElementById('closeJsonCardBtn').addEventListener('click', closeJsonCardModal);
     document.getElementById('jsonCardModal').addEventListener('click', (event) => {
       if (event.target === document.getElementById('jsonCardModal')) closeJsonCardModal();
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && document.getElementById('jsonCardModal').classList.contains('show')) {
+        event.preventDefault();
+        closeJsonCardModal();
+      }
     });
     document.getElementById('useAuthorBlock').addEventListener('change', (event) => {
       document.getElementById('jsonAuthorFields').style.display = event.target.checked ? 'block' : 'none';

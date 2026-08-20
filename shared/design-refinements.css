@@ -282,8 +282,7 @@ html[lang="en"] .homepage .home-quote {
 @media (prefers-reduced-motion: reduce) {
   .homepage .tool-link,
   .homepage .tool-icon-wrap,
-  .side-menu,
-  .interal-tool-page .modal-card {
+  .side-menu {
     transition: none !important;
   }
 }

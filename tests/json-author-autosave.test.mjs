@@ -7,7 +7,7 @@ const alterPageSource = await readFile(new URL('../altervordes/index.html', impo
 
 assert.match(loaderSource, /json-author-autosave\.js\?v=json-author-autosave-20260725-1/);
 assert.match(loaderSource, /ui-core\.js\?v=[a-z0-9-]+-\d{8}-\d+/);
-assert.match(alterPageSource, /shared\/ui\.js\?v=interal-ui-20260809-3/);
+assert.match(alterPageSource, /shared\/ui\.js\?v=interal-ui-20260820-1/);
 
 assert.match(autosaveSource, /remember\.addEventListener\('change'/);
 assert.match(autosaveSource, /field\?\.addEventListener\('input', persistRememberedAuthor\)/);
