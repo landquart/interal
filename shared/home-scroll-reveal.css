@@ -88,20 +88,6 @@ body.homepage.home-scroll-reveal-ready .home-about-card:nth-child(even):not(.is-
   --figure-rotate: 4deg;
 }
 
-/* This is a second motion layer. It starts only after the reveal has finished.
-   JS drives the variables from actual scroll direction; no CSS transition is
-   used here because the requestAnimationFrame spring provides the smoothing. */
-body.homepage.home-scroll-reveal-ready .home-about-card.is-parallax-ready .home-about-card-figure img {
-  --figure-parallax-y: 0px;
-  --figure-parallax-rotate: 0deg;
-  transform:
-    translate3d(0, var(--figure-parallax-y), 0)
-    rotate(var(--figure-parallax-rotate));
-  transform-origin: center;
-  transition: none;
-  will-change: transform;
-}
-
 @media (max-width: 860px) {
   body.homepage.home-scroll-reveal-ready .home-about-card:nth-child(even) {
     --card-base-y: 0px;
