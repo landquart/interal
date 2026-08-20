@@ -13,8 +13,8 @@ const [motion, motionCss, core, uiCss, runtime, determinator, associative, inter
   readFile('registre/index.html', 'utf8')
 ]);
 
-assert.match(runtime, /modal-motion\.css\?v=modal-motion-20260820-1/, 'the shared runtime loads the modal motion stylesheet');
-assert.match(runtime, /modal-motion\.js\?v=modal-motion-20260820-1/, 'the shared runtime loads modal motion before UI core');
+assert.match(runtime, /modal-motion\.css\?v=modal-motion-20260820-2/, 'the shared runtime loads the modal motion stylesheet');
+assert.match(runtime, /modal-motion\.js\?v=modal-motion-20260820-2/, 'the shared runtime loads modal motion before UI core');
 assert.match(motion, /FULL:\s*'full'[\s\S]*LITE:\s*'lite'[\s\S]*OFF:\s*'off'/, 'the controller exposes Full, Lite and Off modes');
 assert.match(motion, /prefers-reduced-motion: reduce/, 'system reduced-motion is authoritative');
 assert.match(motion, /navigator\.deviceMemory/, 'device memory is only a preliminary signal');
@@ -22,11 +22,15 @@ assert.match(motion, /navigator\.hardwareConcurrency/, 'hardware concurrency is 
 assert.match(motion, /navigator\.connection\?\.saveData/, 'data saver contributes to preliminary selection');
 assert.doesNotMatch(motion, /userAgent|screen\.width/, 'mode selection does not use model lists or screen width');
 assert.match(motion, /requestAnimationFrame\(sample\)/, 'the baseline is measured from real animation frames');
-assert.match(motion, /badRatio[\s\S]*maximum[\s\S]*average/, 'animation quality uses multiple frame metrics');
+assert.match(motion, /MINIMUM_QUALITY_INTERVAL[\s\S]*1000 \/ 60/, 'high-refresh screens may render motion at a stable 60 fps without a false downgrade');
+assert.match(motion, /poorStreak[\s\S]*DOWNGRADE_STREAK/, 'one poor animation cannot permanently downgrade the session');
+assert.match(motion, /badRatio[\s\S]*average[\s\S]*maximum/, 'animation quality uses multiple frame metrics');
 assert.match(motion, /sessionStorage\.setItem\(SESSION_KEY, next\)/, 'downgrades persist for the current session only');
 assert.doesNotMatch(motion, /localStorage/, 'performance classification is never persisted permanently');
-assert.match(motion, /pinchPolygon[\s\S]*clipPath/, 'Full mode contains directional Genie deformation');
-assert.match(motion, /translate3d[\s\S]*scale/, 'Lite mode remains compositor-friendly and directional');
+assert.match(motion, /fullKeyframes[\s\S]*skew\([\s\S]*translate3d/, 'Full mode contains a directional transform-only Genie deformation');
+assert.doesNotMatch(motion, /clipPath|clip-path/, 'modal motion avoids clip-path repaints in Android WebViews');
+assert.match(motion, /liteKeyframes[\s\S]*translate3d[\s\S]*scale/, 'Lite mode remains compositor-friendly and directional');
+assert.match(motion, /offKeyframes[\s\S]*opacity[\s\S]*translate3d/, 'Off mode remains a visible, low-cost animation');
 assert.match(motion, /visualViewport/, 'geometry is clamped to the active visual viewport');
 assert.match(motion, /shell\?\.remove\(\)/, 'temporary visual shells are removed after each animation');
 assert.match(motion, /removeProperty\('will-change'\)/, 'temporary panel layer hints are cleared');
@@ -67,8 +71,8 @@ const entryPoints = [
 
 for (const path of entryPoints) {
   const html = await readFile(path, 'utf8');
-  assert.match(html, /shared\/ui\.js\?v=interal-ui-20260820-1/, `${path} uses the new runtime cache key`);
-  assert.match(html, /shared\/ui\.css\?v=interal-ui-20260820-1/, `${path} uses the new stylesheet cache key`);
+  assert.match(html, /shared\/ui\.js\?v=interal-ui-20260820-2/, `${path} uses the new runtime cache key`);
+  assert.match(html, /shared\/ui\.css\?v=interal-ui-20260820-2/, `${path} uses the new stylesheet cache key`);
 }
 
 console.log('Modal motion tests passed');

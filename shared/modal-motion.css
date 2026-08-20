@@ -4,6 +4,9 @@
   margin: 0;
   pointer-events: none;
   transform-origin: center center;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  overflow: hidden;
   contain: layout paint style;
   isolation: isolate;
 }
@@ -14,16 +17,10 @@
   inset: 0;
   border-radius: inherit;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.16), transparent 38%);
-  opacity: 0.52;
+  opacity: 0.62;
   pointer-events: none;
 }
 
 .interal-modal-motion-shell--lite::after {
-  opacity: 0.34;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .interal-modal-motion-shell {
-    display: none;
-  }
+  opacity: 0.46;
 }

@@ -204,7 +204,7 @@
     const modalMotionStylesheet = document.createElement('link');
     modalMotionStylesheet.rel = 'stylesheet';
     modalMotionStylesheet.dataset.interalModalMotionCss = 'true';
-    modalMotionStylesheet.href = new URL('modal-motion.css?v=modal-motion-20260820-1', sharedRoot).href;
+    modalMotionStylesheet.href = new URL('modal-motion.css?v=modal-motion-20260820-2', sharedRoot).href;
     document.head.appendChild(modalMotionStylesheet);
   }
 
@@ -216,7 +216,7 @@
     document.head.appendChild(homeRevealStylesheet);
   }
 
-  const modalMotion = loadSource('modal-motion.js?v=modal-motion-20260820-1');
+  const modalMotion = loadSource('modal-motion.js?v=modal-motion-20260820-2');
   (0, eval)(`${modalMotion.source}\n//# sourceURL=${modalMotion.url.href}`);
 
   const core = loadSource('ui-core.js?v=interal-ui-20260820-1');

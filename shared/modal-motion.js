@@ -1,8 +1,10 @@
 (function () {
   'use strict';
 
-  const SESSION_KEY = 'interal.modalMotionMode';
+  const SESSION_KEY = 'interal.modalMotionMode.v2';
   const MODES = Object.freeze({ FULL: 'full', LITE: 'lite', OFF: 'off' });
+  const MINIMUM_QUALITY_INTERVAL = 1000 / 60;
+  const DOWNGRADE_STREAK = Object.freeze({ [MODES.FULL]: 2, [MODES.LITE]: 3 });
   const PANEL_SELECTORS = [
     '[role="dialog"]',
     '.modal-card',
@@ -46,6 +48,8 @@
       this.debugMode = readDebugMode();
       this.baselineFrameInterval = 16.67;
       this.baselineSamples = [];
+      this.poorStreak = 0;
+      this.lastAnimationQuality = null;
       this.preliminaryMode = this.getPreliminaryMode();
       this.sessionMode = this.readSessionMode();
       this.sampleBaseline();
@@ -71,8 +75,8 @@
     }
 
     getMode() {
-      if (reduceMotionQuery?.matches) return MODES.OFF;
       if (this.debugMode) return this.debugMode;
+      if (reduceMotionQuery?.matches) return MODES.OFF;
       return this.sessionMode || this.preliminaryMode;
     }
 
@@ -108,6 +112,7 @@
       const next = fromMode === MODES.FULL ? MODES.LITE : fromMode === MODES.LITE ? MODES.OFF : MODES.OFF;
       if (next === fromMode) return;
       this.sessionMode = next;
+      this.poorStreak = 0;
       try { sessionStorage.setItem(SESSION_KEY, next); } catch (_) {}
     }
 
@@ -116,18 +121,22 @@
       if (!Array.isArray(frameTimes) || frameTimes.length < 8 || duration < 160) return;
 
       const expected = clamp(this.baselineFrameInterval || median(frameTimes), 6.5, 33.34);
-      const badLimit = Math.max(expected * 1.78, expected + 7);
+      const qualityInterval = Math.max(expected, MINIMUM_QUALITY_INTERVAL);
+      const badLimit = Math.max(qualityInterval * 1.82, qualityInterval + 9);
       const badFrames = frameTimes.filter((time) => time > badLimit);
       const badRatio = badFrames.length / frameTimes.length;
       const average = frameTimes.reduce((sum, time) => sum + time, 0) / frameTimes.length;
       const maximum = Math.max(...frameTimes);
       const isPoor = (
-        (badRatio > (mode === MODES.FULL ? 0.16 : 0.22) && maximum > expected * 2.15)
-        || average > expected * (mode === MODES.FULL ? 1.42 : 1.55)
-        || (badRatio > 0.1 && maximum > expected * 4.2)
+        (badRatio > (mode === MODES.FULL ? 0.24 : 0.32) && maximum > qualityInterval * 2.2)
+        || average > qualityInterval * (mode === MODES.FULL ? 1.58 : 1.72)
+        || (badRatio > 0.12 && maximum > qualityInterval * 4.6)
       );
 
-      if (isPoor) this.downgrade(mode);
+      this.lastAnimationQuality = { mode, expected, qualityInterval, badRatio, average, maximum, isPoor };
+      this.poorStreak = isPoor ? this.poorStreak + 1 : 0;
+      const requiredFailures = DOWNGRADE_STREAK[mode] || Number.POSITIVE_INFINITY;
+      if (this.poorStreak >= requiredFailures) this.downgrade(mode);
     }
 
     getStatus() {
@@ -135,7 +144,9 @@
         mode: this.getMode(),
         baselineFrameInterval: this.baselineFrameInterval,
         debugMode: this.debugMode,
-        sessionMode: this.sessionMode
+        sessionMode: this.sessionMode,
+        poorStreak: this.poorStreak,
+        lastAnimationQuality: this.lastAnimationQuality
       };
     }
   }
@@ -246,11 +257,6 @@
     return container.querySelector(BACKDROP_SELECTORS.join(',')) || (panel !== container ? container : null);
   }
 
-  function readRadius(element, fallback = 24) {
-    const value = Number.parseFloat(getComputedStyle(element).borderTopLeftRadius);
-    return Number.isFinite(value) ? value : fallback;
-  }
-
   function captureInlineStyles(element, properties) {
     const saved = {};
     properties.forEach((property) => { saved[property] = element.style[property]; });
@@ -287,15 +293,15 @@
       boxShadow: style.boxShadow,
       opacity: '0',
       zIndex: String((Number.parseInt(getComputedStyle(container).zIndex, 10) || 10000) + 2),
-      willChange: mode === MODES.FULL ? 'transform, opacity, clip-path' : 'transform, opacity'
+      willChange: 'transform, opacity'
     });
     document.body.appendChild(shell);
     return shell;
   }
 
   function geometry(source, target, mode) {
-    const minScaleX = mode === MODES.FULL ? 0.28 : 0.4;
-    const minScaleY = mode === MODES.FULL ? 0.18 : 0.28;
+    const minScaleX = mode === MODES.FULL ? 0.11 : 0.22;
+    const minScaleY = mode === MODES.FULL ? 0.075 : 0.14;
     const sourceCenterX = source.left + source.width / 2;
     const sourceCenterY = source.top + source.height / 2;
     const targetCenterX = target.left + target.width / 2;
@@ -303,53 +309,51 @@
     return {
       tx: sourceCenterX - targetCenterX,
       ty: sourceCenterY - targetCenterY,
-      sx: clamp(source.width / target.width, minScaleX, 0.86),
-      sy: clamp(source.height / target.height, minScaleY, 0.82),
-      dx: sourceCenterX - targetCenterX,
-      dy: sourceCenterY - targetCenterY
+      sx: clamp(source.width / target.width, minScaleX, 0.9),
+      sy: clamp(source.height / target.height, minScaleY, 0.86),
+      skewX: clamp(((sourceCenterY - targetCenterY) / Math.max(target.height, 1)) * -7, -6, 6),
+      skewY: clamp(((sourceCenterX - targetCenterX) / Math.max(target.width, 1)) * 7, -6, 6)
     };
   }
 
-  function pinchPolygon(dx, dy, neck) {
-    const far = 100 - neck;
-    if (Math.abs(dy) >= Math.abs(dx)) {
-      return dy >= 0
-        ? `polygon(0 0, 100% 0, ${far}% 100%, ${neck}% 100%)`
-        : `polygon(${neck}% 0, ${far}% 0, 100% 100%, 0 100%)`;
-    }
-    return dx >= 0
-      ? `polygon(0 0, 100% ${neck}%, 100% ${far}%, 0 100%)`
-      : `polygon(${neck}% 0, 100% 0, 100% 100%, ${neck}% 100%)`;
-  }
-
-  function fullKeyframes(direction, source, target, radius) {
+  function fullKeyframes(direction, source, target) {
     const g = geometry(source, target, MODES.FULL);
-    const sourceRadius = clamp(Math.min(source.width, source.height) / 2, 12, 999);
-    const start = `translate3d(${g.tx}px, ${g.ty}px, 0) scale(${g.sx}, ${g.sy})`;
-    const middle = `translate3d(${g.tx * 0.5}px, ${g.ty * 0.5}px, 0) scale(${g.sx + (1 - g.sx) * 0.5}, ${g.sy + (1 - g.sy) * 0.42})`;
-    const near = `translate3d(${g.tx * 0.12}px, ${g.ty * 0.12}px, 0) scale(${0.9 + g.sx * 0.1}, ${0.86 + g.sy * 0.14})`;
-    const opened = { transform: 'translate3d(0, 0, 0) scale(1, 1)', clipPath: 'inset(0 round 0px)', borderRadius: `${radius}px`, opacity: 1 };
-    const compact = { transform: start, clipPath: `inset(0 round ${sourceRadius}px)`, borderRadius: `${sourceRadius}px`, opacity: 0.2 };
-    const pinched = { transform: middle, clipPath: pinchPolygon(g.dx, g.dy, 28), borderRadius: `${Math.max(radius, 18)}px`, opacity: 0.94, offset: 0.42 };
-    const almost = { transform: near, clipPath: pinchPolygon(g.dx, g.dy, 8), borderRadius: `${radius}px`, opacity: 1, offset: 0.76 };
+    const start = `translate3d(${g.tx}px, ${g.ty}px, 0) scale(${g.sx}, ${g.sy}) skew(${g.skewX * 0.32}deg, ${g.skewY * 0.32}deg)`;
+    const pulled = `translate3d(${g.tx * 0.56}px, ${g.ty * 0.56}px, 0) scale(${g.sx + (1 - g.sx) * 0.38}, ${g.sy + (1 - g.sy) * 0.3}) skew(${g.skewX}deg, ${g.skewY}deg)`;
+    const released = `translate3d(${g.tx * 0.16}px, ${g.ty * 0.16}px, 0) scale(${0.86 + g.sx * 0.14}, ${0.8 + g.sy * 0.2}) skew(${g.skewX * 0.38}deg, ${g.skewY * 0.38}deg)`;
+    const opened = { transform: 'translate3d(0, 0, 0) scale(1, 1) skew(0deg, 0deg)', opacity: 0 };
+    const compact = { transform: start, opacity: 0.5 };
+    const stretched = { transform: pulled, opacity: 0.98, offset: 0.38 };
+    const almost = { transform: released, opacity: 1, offset: 0.74 };
 
-    if (direction === 'open') return [compact, pinched, almost, { ...opened, opacity: 0 }];
+    if (direction === 'open') return [compact, stretched, almost, opened];
     return [
-      { ...opened, opacity: 0.92 },
-      { ...almost, opacity: 1, offset: 0.28 },
-      { ...pinched, opacity: 0.88, offset: 0.62 },
-      { ...compact, opacity: 0.12 }
+      { ...opened, opacity: 0.94 },
+      { ...almost, opacity: 1, offset: 0.3 },
+      { ...stretched, opacity: 0.94, offset: 0.64 },
+      { ...compact, opacity: 0.18 }
     ];
   }
 
   function liteKeyframes(direction, source, target) {
     const g = geometry(source, target, MODES.LITE);
-    const compact = { transform: `translate3d(${g.tx}px, ${g.ty}px, 0) scale(${g.sx}, ${g.sy})`, opacity: 0.22 };
-    const middle = { transform: `translate3d(${g.tx * 0.35}px, ${g.ty * 0.35}px, 0) scale(${g.sx + (1 - g.sx) * 0.7}, ${g.sy + (1 - g.sy) * 0.64})`, opacity: 0.96, offset: 0.62 };
-    const opened = { transform: 'translate3d(0, 0, 0) scale(1, 1)', opacity: 0 };
+    const compact = { transform: `translate3d(${g.tx}px, ${g.ty}px, 0) scale(${g.sx}, ${g.sy})`, opacity: 0.46 };
+    const middle = { transform: `translate3d(${g.tx * 0.34}px, ${g.ty * 0.34}px, 0) scale(${g.sx + (1 - g.sx) * 0.72}, ${g.sy + (1 - g.sy) * 0.68})`, opacity: 0.98, offset: 0.56 };
+    const opened = { transform: 'translate3d(0, 0, 0) scale(1, 1)', opacity: 0.04 };
     return direction === 'open'
       ? [compact, middle, opened]
       : [{ ...opened, opacity: 0.9 }, { ...middle, opacity: 0.92, offset: 0.38 }, { ...compact, opacity: 0.08 }];
+  }
+
+  function offKeyframes(direction) {
+    const still = reduceMotionQuery?.matches;
+    const closed = still
+      ? { opacity: 0 }
+      : { opacity: 0, transform: 'translate3d(0, 7px, 0) scale(0.985)' };
+    const opened = still
+      ? { opacity: 1 }
+      : { opacity: 1, transform: 'translate3d(0, 0, 0) scale(1)' };
+    return direction === 'open' ? [closed, opened] : [opened, closed];
   }
 
   function playAnimation(element, keyframes, options) {
@@ -393,9 +397,11 @@
     }
   }
 
-  function animateBackdrop(backdrop, direction) {
+  function animateBackdrop(backdrop, direction, mode) {
     if (!backdrop) return Promise.resolve();
-    const duration = direction === 'open' ? 210 : 180;
+    const duration = direction === 'open'
+      ? (mode === MODES.OFF ? 180 : 230)
+      : (mode === MODES.OFF ? 150 : 190);
     return playAnimation(backdrop, direction === 'open' ? [{ opacity: 0 }, { opacity: 1 }] : [{ opacity: 1 }, { opacity: 0 }], {
       duration,
       easing: 'ease-out',
@@ -448,23 +454,23 @@
       let shell = null;
 
       try {
-        const backdropAnimation = animateBackdrop(backdrop, 'open');
+        const backdropAnimation = animateBackdrop(backdrop, 'open', mode);
         if (mode === MODES.OFF || !validRect(modalRect)) {
           await Promise.all([
             backdropAnimation,
-            playAnimation(panel, [{ opacity: 0 }, { opacity: 1 }], { duration: 170, easing: 'ease-out', fill: 'both' })
+            playAnimation(panel, offKeyframes('open'), { duration: reduceMotionQuery?.matches ? 160 : 210, easing: 'cubic-bezier(.22, 1, .36, 1)', fill: 'both' })
           ]);
         } else {
           shell = createShell(container, panel, modalRect, mode);
-          const duration = mode === MODES.FULL ? 380 : 310;
-          const radius = readRadius(panel);
+          const duration = mode === MODES.FULL ? 410 : 340;
           const shellFrames = mode === MODES.FULL
-            ? fullKeyframes('open', state.triggerRect, modalRect, radius)
+            ? fullKeyframes('open', state.triggerRect, modalRect)
             : liteKeyframes('open', state.triggerRect, modalRect);
+          const contentRevealOffset = mode === MODES.FULL ? 0.52 : 0.46;
           await Promise.all([
             backdropAnimation,
             playAnimation(shell, shellFrames, { duration, easing: 'cubic-bezier(.22, 1, .36, 1)', fill: 'both' }),
-            playAnimation(panel, [{ opacity: 0 }, { opacity: 0, offset: 0.68 }, { opacity: 1 }], { duration, easing: 'ease-out', fill: 'both' })
+            playAnimation(panel, [{ opacity: 0 }, { opacity: 0, offset: contentRevealOffset }, { opacity: 1 }], { duration, easing: 'ease-out', fill: 'both' })
           ]);
         }
       } finally {
@@ -514,23 +520,22 @@
       let shell = null;
 
       try {
-        const backdropAnimation = animateBackdrop(backdrop, 'close');
+        const backdropAnimation = animateBackdrop(backdrop, 'close', mode);
         if (mode === MODES.OFF || !validRect(modalRect)) {
           await Promise.all([
             backdropAnimation,
-            playAnimation(panel, [{ opacity: 1 }, { opacity: 0 }], { duration: 145, easing: 'ease-in', fill: 'both' })
+            playAnimation(panel, offKeyframes('close'), { duration: reduceMotionQuery?.matches ? 140 : 180, easing: 'cubic-bezier(.4, 0, .6, 1)', fill: 'both' })
           ]);
         } else {
           shell = createShell(container, panel, modalRect, mode);
-          const duration = mode === MODES.FULL ? 300 : 260;
-          const radius = readRadius(panel);
+          const duration = mode === MODES.FULL ? 330 : 285;
           const shellFrames = mode === MODES.FULL
-            ? fullKeyframes('close', source, modalRect, radius)
+            ? fullKeyframes('close', source, modalRect)
             : liteKeyframes('close', source, modalRect);
           await Promise.all([
             backdropAnimation,
             playAnimation(shell, shellFrames, { duration, easing: 'cubic-bezier(.4, 0, .6, 1)', fill: 'both' }),
-            playAnimation(panel, [{ opacity: 1 }, { opacity: 0 }], { duration: 90, easing: 'ease-in', fill: 'both' })
+            playAnimation(panel, [{ opacity: 1 }, { opacity: 0 }], { duration: 135, easing: 'ease-in', fill: 'both' })
           ]);
         }
       } finally {
