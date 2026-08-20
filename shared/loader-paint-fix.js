@@ -41,7 +41,7 @@
 
   if (!document.querySelector('script[data-interal-site-motion]')) {
     const motionScript = document.createElement("script");
-    motionScript.src = new URL("site-motion.js?v=page-transitions-only-20260820-5", sharedRoot).href;
+    motionScript.src = new URL("site-motion.js?v=page-transitions-only-20260820-6", sharedRoot).href;
     motionScript.async = false;
     motionScript.dataset.interalSiteMotion = "true";
     document.head?.appendChild(motionScript);
