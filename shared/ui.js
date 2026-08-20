@@ -210,17 +210,43 @@
       requestFigureMotion();
     };
 
+    const resetFiguresImmediately = () => {
+      window.clearTimeout(settleTimer);
+      if (motionFrame) {
+        window.cancelAnimationFrame(motionFrame);
+        motionFrame = 0;
+      }
+
+      cards.forEach((card, index) => {
+        const state = motion[index];
+        state.y = 0;
+        state.rotation = 0;
+        state.targetY = 0;
+        state.targetRotation = 0;
+
+        const figure = card.querySelector('.home-about-card-figure img');
+        if (!figure) return;
+        figure.style.setProperty('--figure-parallax-y', '0px');
+        figure.style.setProperty('--figure-parallax-rotate', '0deg');
+      });
+    };
+
     const handleDirectionalScroll = () => {
       const currentScrollY = window.scrollY || window.pageYOffset || 0;
       const delta = currentScrollY - lastScrollY;
       lastScrollY = currentScrollY;
-      if (Math.abs(delta) < 0.25) return;
+
+      if (delta < -0.25) {
+        resetFiguresImmediately();
+        return;
+      }
+
+      if (delta <= 0.25) return;
 
       const isMobile = window.innerWidth <= 860;
       const maxY = isMobile ? 10 : 14;
       const maxRotation = isMobile ? 0.75 : 1.05;
-      const direction = delta > 0 ? 1 : -1;
-      const velocity = Math.min(1, Math.max(0.42, Math.abs(delta) / 24));
+      const velocity = Math.min(1, Math.max(0.42, delta / 24));
 
       cards.forEach((card, index) => {
         if (!card.classList.contains('is-parallax-ready')) return;
@@ -230,8 +256,8 @@
 
         const state = motion[index];
         const alternatingRotation = index % 2 === 0 ? -1 : 1;
-        state.targetY = direction * maxY * velocity;
-        state.targetRotation = direction * maxRotation * velocity * alternatingRotation;
+        state.targetY = maxY * velocity;
+        state.targetRotation = maxRotation * velocity * alternatingRotation;
       });
 
       requestFigureMotion();
