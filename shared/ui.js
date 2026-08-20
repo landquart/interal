@@ -210,24 +210,16 @@
       requestFigureMotion();
     };
 
-    const resetFiguresImmediately = () => {
+    const stopFigureMotion = () => {
       window.clearTimeout(settleTimer);
       if (motionFrame) {
         window.cancelAnimationFrame(motionFrame);
         motionFrame = 0;
       }
 
-      cards.forEach((card, index) => {
-        const state = motion[index];
-        state.y = 0;
-        state.rotation = 0;
-        state.targetY = 0;
-        state.targetRotation = 0;
-
-        const figure = card.querySelector('.home-about-card-figure img');
-        if (!figure) return;
-        figure.style.setProperty('--figure-parallax-y', '0px');
-        figure.style.setProperty('--figure-parallax-rotate', '0deg');
+      motion.forEach((state) => {
+        state.targetY = state.y;
+        state.targetRotation = state.rotation;
       });
     };
 
@@ -237,7 +229,7 @@
       lastScrollY = currentScrollY;
 
       if (delta < -0.25) {
-        resetFiguresImmediately();
+        stopFigureMotion();
         return;
       }
 
