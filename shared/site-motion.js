@@ -162,33 +162,31 @@
     const body = document.body;
     if (!body?.classList.contains('homepage') || prefersReducedMotion()) return;
 
-    const cards = Array.from(document.querySelectorAll('.home-about-card'));
-    if (!cards.length) return;
+    const figures = Array.from(document.querySelectorAll('.home-about-card-figure img'));
+    if (!figures.length) return;
 
     let lastScrollY = window.scrollY || window.pageYOffset || 0;
-    let scrollingUp = false;
+    let reverseScrollLocked = false;
 
-    const disableParallax = () => {
-      if (scrollingUp) return;
-      scrollingUp = true;
+    const lockReverseScrollMotion = () => {
+      if (reverseScrollLocked) return;
+      reverseScrollLocked = true;
 
-      cards.forEach((card) => {
-        card.classList.remove('is-parallax-ready');
-        const figure = card.querySelector('.home-about-card-figure img');
-        if (!figure) return;
+      figures.forEach((figure) => {
         figure.style.setProperty('--figure-parallax-y', '0px');
         figure.style.setProperty('--figure-parallax-rotate', '0deg');
+        figure.style.setProperty('transform', 'translate3d(0, 0, 0) rotate(0deg)', 'important');
+        figure.style.setProperty('transition', 'none', 'important');
       });
     };
 
-    const enableParallax = () => {
-      if (!scrollingUp) return;
-      scrollingUp = false;
+    const unlockForwardScrollMotion = () => {
+      if (!reverseScrollLocked) return;
+      reverseScrollLocked = false;
 
-      cards.forEach((card) => {
-        if (card.classList.contains('is-revealed')) {
-          card.classList.add('is-parallax-ready');
-        }
+      figures.forEach((figure) => {
+        figure.style.removeProperty('transform');
+        figure.style.removeProperty('transition');
       });
     };
 
@@ -198,16 +196,16 @@
       lastScrollY = currentScrollY;
 
       if (delta < -0.25) {
-        disableParallax();
+        lockReverseScrollMotion();
         return;
       }
 
       if (delta > 0.25) {
-        enableParallax();
+        unlockForwardScrollMotion();
       }
     };
 
-    window.addEventListener('scroll', handleScrollDirection, { passive: true });
+    window.addEventListener('scroll', handleScrollDirection, { passive: true, capture: true });
   }
 
   const start = () => {
