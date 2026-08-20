@@ -163,111 +163,9 @@
 
     body.classList.add('home-scroll-reveal-ready');
 
-    /* Second layer only: motion of the SVG after the existing reveal is complete. */
-    const motion = cards.map(() => ({ y: 0, rotation: 0, targetY: 0, targetRotation: 0 }));
-    let motionFrame = 0;
-    let settleTimer = 0;
-    let lastScrollY = window.scrollY || window.pageYOffset || 0;
-
-    const runFigureMotion = () => {
-      motionFrame = 0;
-      let needsAnotherFrame = false;
-      const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 1;
-
-      cards.forEach((card, index) => {
-        if (!card.classList.contains('is-parallax-ready')) return;
-
-        const figure = card.querySelector('.home-about-card-figure img');
-        if (!figure) return;
-
-        const rect = card.getBoundingClientRect();
-        if (rect.bottom < -120 || rect.top > viewportHeight + 120) return;
-
-        const state = motion[index];
-        state.y += (state.targetY - state.y) * 0.24;
-        state.rotation += (state.targetRotation - state.rotation) * 0.22;
-
-        if (Math.abs(state.targetY - state.y) > 0.08 || Math.abs(state.targetRotation - state.rotation) > 0.01) {
-          needsAnotherFrame = true;
-        }
-
-        figure.style.setProperty('--figure-parallax-y', `${state.y.toFixed(2)}px`);
-        figure.style.setProperty('--figure-parallax-rotate', `${state.rotation.toFixed(3)}deg`);
-      });
-
-      if (needsAnotherFrame) motionFrame = window.requestAnimationFrame(runFigureMotion);
-    };
-
-    const requestFigureMotion = () => {
-      if (!motionFrame) motionFrame = window.requestAnimationFrame(runFigureMotion);
-    };
-
-    const settleFigures = () => {
-      motion.forEach((state) => {
-        state.targetY = 0;
-        state.targetRotation = 0;
-      });
-      requestFigureMotion();
-    };
-
-    const stopFigureMotion = () => {
-      window.clearTimeout(settleTimer);
-      if (motionFrame) {
-        window.cancelAnimationFrame(motionFrame);
-        motionFrame = 0;
-      }
-
-      motion.forEach((state) => {
-        state.targetY = state.y;
-        state.targetRotation = state.rotation;
-      });
-    };
-
-    const handleDirectionalScroll = () => {
-      const currentScrollY = window.scrollY || window.pageYOffset || 0;
-      const delta = currentScrollY - lastScrollY;
-      lastScrollY = currentScrollY;
-
-      if (delta < -0.25) {
-        stopFigureMotion();
-        return;
-      }
-
-      if (delta <= 0.25) return;
-
-      const isMobile = window.innerWidth <= 860;
-      const maxY = isMobile ? 10 : 14;
-      const maxRotation = isMobile ? 0.75 : 1.05;
-      const velocity = Math.min(1, Math.max(0.42, delta / 24));
-
-      cards.forEach((card, index) => {
-        if (!card.classList.contains('is-parallax-ready')) return;
-        const rect = card.getBoundingClientRect();
-        const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 1;
-        if (rect.bottom < -80 || rect.top > viewportHeight + 80) return;
-
-        const state = motion[index];
-        const alternatingRotation = index % 2 === 0 ? -1 : 1;
-        state.targetY = maxY * velocity;
-        state.targetRotation = maxRotation * velocity * alternatingRotation;
-      });
-
-      requestFigureMotion();
-      window.clearTimeout(settleTimer);
-      settleTimer = window.setTimeout(settleFigures, 110);
-    };
-
-    const enableFigureParallax = (card) => {
-      window.setTimeout(() => {
-        if (!card.isConnected || !card.classList.contains('is-revealed')) return;
-        card.classList.add('is-parallax-ready');
-      }, 1400);
-    };
-
     const revealCard = (card) => {
       if (card.classList.contains('is-revealed')) return;
       card.classList.add('is-revealed');
-      enableFigureParallax(card);
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -290,8 +188,6 @@
         observer.observe(card);
       }
     });
-
-    window.addEventListener('scroll', handleDirectionalScroll, { passive: true });
   }
 
   mountInitialPageLoader();
@@ -308,7 +204,7 @@
     const homeRevealStylesheet = document.createElement('link');
     homeRevealStylesheet.rel = 'stylesheet';
     homeRevealStylesheet.dataset.interalHomeScrollRevealCss = 'true';
-    homeRevealStylesheet.href = new URL('home-scroll-reveal.css?v=20260818-4', sharedRoot).href;
+    homeRevealStylesheet.href = new URL('home-scroll-reveal.css?v=20260820-1', sharedRoot).href;
     document.head.appendChild(homeRevealStylesheet);
   }
 
