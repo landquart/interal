@@ -490,8 +490,6 @@
     body.dark-theme .tool-icon { filter: brightness(0) invert(1); }
 
     .home-footer {
-      position: relative;
-      isolation: isolate;
       width: calc(100% + 32px);
       margin: 4px -16px -16px;
       padding: 18px max(18px, calc((100% - 1240px) / 2 + 18px));
@@ -500,24 +498,15 @@
       align-items: center;
       justify-content: space-between;
       gap: 14px;
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      background: color-mix(in srgb, var(--bg) 92%, var(--text) 8%);
       border: 0;
       color: var(--text-muted);
       font-size: .92rem;
       box-shadow: none;
     }
 
-    .home-footer::before {
-      content: "";
-      position: absolute;
-      inset-block: 0;
-      inset-inline: calc(50% - 50vw);
-      z-index: -1;
-      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-      background: color-mix(in srgb, var(--bg) 92%, var(--text) 8%);
-      pointer-events: none;
-    }
-
-    body.dark-theme .home-footer::before {
+    body.dark-theme .home-footer {
       background: color-mix(in srgb, var(--bg) 78%, #000 22%);
     }
 
@@ -576,6 +565,12 @@
 
     @media (max-width: 860px) {
       body.homepage { padding-right: 12px; padding-left: 12px; }
+
+      .home-footer {
+        width: calc(100% + 24px);
+        margin-right: -12px;
+        margin-left: -12px;
+      }
 
       .hero-stage {
         --hero-transition-height: clamp(52px, 9svh, 74px);
@@ -973,26 +968,27 @@
       </div>
     </section>
 
-    <footer class="home-footer" aria-label="Техническая информация">
-      <p class="home-footer-info">
-        <span data-i18n="home.footerIcons">Иконки —</span>
-        <a href="https://www.figma.com/community/file/1166831539721848736" target="_blank" rel="noopener noreferrer">Solar Icons Set</a>
-        <span>(</span><a href="https://t.me/Design480" target="_blank" rel="noopener noreferrer">480 Design</a><span>)</span>
-      </p>
-      <div class="home-footer-socials" aria-label="Социальные ссылки" data-i18n-aria-label="home.socialLinksLabel">
-        <a class="home-footer-social" href="https://t.me/interalen_bot" target="_blank" rel="noopener noreferrer" aria-label="Telegram-бот" data-i18n-aria-label="home.telegramBotLabel">
-          <img src="elements/telegram_bot_icon.svg?v=telegram-reference-20260724-2" alt="Telegram-бот" data-i18n-alt="home.telegramBotLabel" />
-        </a>
-        <a class="home-footer-social" href="https://github.com/landquart/interal" target="_blank" rel="noopener noreferrer" aria-label="Репозиторий GitHub" data-i18n-aria-label="home.githubRepositoryLabel">
-          <img src="elements/github-logo-transparent.svg" alt="Репозиторий GitHub" data-i18n-alt="home.githubRepositoryLabel" />
-        </a>
-      </div>
-    </footer>
   </div>
+
+  <footer class="home-footer" aria-label="Техническая информация">
+    <p class="home-footer-info">
+      <span data-i18n="home.footerIcons">Иконки —</span>
+      <a href="https://www.figma.com/community/file/1166831539721848736" target="_blank" rel="noopener noreferrer">Solar Icons Set</a>
+      <span>(</span><a href="https://t.me/Design480" target="_blank" rel="noopener noreferrer">480 Design</a><span>)</span>
+    </p>
+    <div class="home-footer-socials" aria-label="Социальные ссылки" data-i18n-aria-label="home.socialLinksLabel">
+      <a class="home-footer-social" href="https://t.me/interalen_bot" target="_blank" rel="noopener noreferrer" aria-label="Telegram-бот" data-i18n-aria-label="home.telegramBotLabel">
+        <img src="elements/telegram_bot_icon.svg?v=telegram-reference-20260724-2" alt="Telegram-бот" data-i18n-alt="home.telegramBotLabel" />
+      </a>
+      <a class="home-footer-social" href="https://github.com/landquart/interal" target="_blank" rel="noopener noreferrer" aria-label="Репозиторий GitHub" data-i18n-aria-label="home.githubRepositoryLabel">
+        <img src="elements/github-logo-transparent.svg" alt="Репозиторий GitHub" data-i18n-alt="home.githubRepositoryLabel" />
+      </a>
+    </div>
+  </footer>
 
   <script src="./shared/copy-plain.js?v=homepage-fixes-20260724-2"></script>
   <script src="shared/loader-paint-fix.js?v=interal-loader-20260819-3"></script>
-  <script src="shared/ui.js?v=interal-ui-20260820-2" defer></script>
+  <script src="shared/ui.js?v=homepage-footer-20260823-1" defer></script>
   <script>
     (function () {
       const dict = {

@@ -179,7 +179,8 @@
   if (document.body.classList.contains('homepage')) {
     const sections = document.querySelectorAll('.home-section');
     const footer = document.querySelector('.home-footer');
-    if (sections.length && footer) {
+    const homeWrap = document.querySelector('.home-wrap');
+    if (sections.length && footer && homeWrap) {
       sections.forEach((section) => section.remove());
       const promo = document.createElement('section');
       promo.className = 'home-instruments-promo';
@@ -190,7 +191,7 @@
           <h2 class="home-instruments-promo-title" id="home-instruments-promo-title" data-instruments-text="promo"></h2>
           <a class="home-instruments-promo-button" href="${context.joinUrl('instrumentes/')}" data-instruments-text="try"></a>
         </div>`;
-      footer.before(promo);
+      homeWrap.append(promo);
     }
   }
 

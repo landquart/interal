@@ -255,7 +255,7 @@
     }
   };
 
-  for (const name of ['instrumentes-nav.js', 'instrumentes-page.js?v=lexeme-goal-20260804-1']) {
+  for (const name of ['instrumentes-nav.js', 'instrumentes-page.js?v=homepage-footer-20260823-1']) {
     const file = loadSource(name);
     (0, eval)(`${file.source}\n//# sourceURL=${file.url.href}`);
   }
