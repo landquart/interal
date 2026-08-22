@@ -490,25 +490,34 @@
     body.dark-theme .tool-icon { filter: brightness(0) invert(1); }
 
     .home-footer {
-      width: 100vw;
-      max-width: none;
-      justify-self: center;
-      margin: 4px 0 -16px;
-      padding: 18px max(18px, calc((100vw - 1240px) / 2 + 18px));
+      position: relative;
+      isolation: isolate;
+      width: calc(100% + 32px);
+      margin: 4px -16px -16px;
+      padding: 18px max(18px, calc((100% - 1240px) / 2 + 18px));
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
       gap: 14px;
-      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-      background: color-mix(in srgb, var(--bg) 92%, var(--text) 8%);
       border: 0;
       color: var(--text-muted);
       font-size: .92rem;
       box-shadow: none;
     }
 
-    body.dark-theme .home-footer {
+    .home-footer::before {
+      content: "";
+      position: absolute;
+      inset-block: 0;
+      inset-inline: calc(50% - 50vw);
+      z-index: -1;
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      background: color-mix(in srgb, var(--bg) 92%, var(--text) 8%);
+      pointer-events: none;
+    }
+
+    body.dark-theme .home-footer::before {
       background: color-mix(in srgb, var(--bg) 78%, #000 22%);
     }
 
