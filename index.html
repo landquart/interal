@@ -490,9 +490,11 @@
     body.dark-theme .tool-icon { filter: brightness(0) invert(1); }
 
     .home-footer {
-      width: calc(100% + 32px);
-      margin: 4px -16px -16px;
-      padding: 18px max(18px, calc((100% - 1240px) / 2 + 18px));
+      width: 100vw;
+      max-width: none;
+      justify-self: center;
+      margin: 4px 0 -16px;
+      padding: 18px max(18px, calc((100vw - 1240px) / 2 + 18px));
       display: flex;
       flex-wrap: wrap;
       align-items: center;
@@ -751,7 +753,8 @@
       }
 
       body.homepage .home-instruments-promo .home-instruments-promo-title {
-        font-size: clamp(2.05rem, 3.15vw, 2.75rem);
+        font-size: clamp(1.95rem, 3vw, 2.35rem);
+        line-height: 1.04;
       }
 
       body.homepage .home-instruments-promo .home-instruments-promo-button {
