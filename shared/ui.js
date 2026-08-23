@@ -219,7 +219,7 @@
   const modalMotion = loadSource('modal-motion.js?v=modal-motion-20260820-2');
   (0, eval)(`${modalMotion.source}\n//# sourceURL=${modalMotion.url.href}`);
 
-  const core = loadSource('ui-core.js?v=interal-ui-20260820-1');
+  const core = loadSource('ui-core.js?v=tools-cleanup-20260823-1');
   const coreSource = core.source.replace(
     'const currentScript = document.currentScript;',
     'const currentScript = document.querySelector(\'script[data-interal-ui-loader="true"]\');'
@@ -255,7 +255,7 @@
     }
   };
 
-  for (const name of ['instrumentes-nav.js', 'instrumentes-page.js?v=homepage-footer-20260823-1']) {
+  for (const name of ['instrumentes-nav.js?v=tools-cleanup-20260823-1', 'instrumentes-page.js?v=tools-cleanup-20260823-1']) {
     const file = loadSource(name);
     (0, eval)(`${file.source}\n//# sourceURL=${file.url.href}`);
   }

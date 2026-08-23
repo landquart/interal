@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 
-const pages = ['', 'indoeuropanvordes', 'associativvordes', 'determinatorofvalentyp', 'internationalismes', 'vordesofcommunites', 'grammaticebrevivordes', 'altervordes', 'affixes', 'registre', 'logotypenomine'];
+const pages = ['', 'indoeuropanvordes', 'associativvordes', 'internationalismes', 'vordesofcommunites', 'grammaticebrevivordes', 'altervordes', 'affixes', 'registre', 'logotypenomine'];
 for (const page of pages) {
   const file = page ? path.join(page, 'index.html') : 'index.html';
   const html = await readFile(file, 'utf8');

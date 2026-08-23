@@ -17,7 +17,7 @@
       indoeuropan: 'Индоевропейские слова', associativ: 'Ассоциативные слова',
       internationalismes: 'Интернационализмы', communities: 'Слова сообществ',
       grammar: 'Грамматические и краткие слова', altervordes: 'Иные слова',
-      affixes: 'Аффиксы', determinator: 'Определитель типа значения',
+      affixes: 'Аффиксы',
       registre: 'Реестр лексических карточек',
       contribution: `
         <p>Вы можете помочь проекту, предлагая лексику, которой ещё нет в языке. Для этого придумайте слово-гипотезу. Проверьте, есть ли она в <a href="${context.joinUrl('registre/')}">реестре лексических карточек</a>. Если нет, то следуйте алгоритму ниже.</p>
@@ -43,7 +43,7 @@
       indoeuropan: 'Indo-European words', associativ: 'Associative words',
       internationalismes: 'Internationalisms', communities: 'Words of communities',
       grammar: 'Grammatic and brief words', altervordes: 'Other words',
-      affixes: 'Affixes', determinator: 'Value type determinator',
+      affixes: 'Affixes',
       registre: 'Registry of lexical cards',
       contribution: `
         <p>You can contribute to the project by proposing vocabulary that is not yet included in the language. To do this, create a hypothetical word form and check whether it is already listed in the <a href="${context.joinUrl('registre/')}">registry of lexical cards</a>. If it is not, follow the algorithm below.</p>

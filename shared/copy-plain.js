@@ -12,7 +12,7 @@ document.addEventListener("copy", function (event) {
 });
 
 (function prepareInteralPageStateBridge() {
-  const instrumentPath = /\/(indoeuropanvordes|associativvordes|determinatorofvalentyp|internationalismes|vordesofcommunites|grammaticebrevivordes|altervordes|affixes)\//;
+  const instrumentPath = /\/(indoeuropanvordes|associativvordes|internationalismes|vordesofcommunites|grammaticebrevivordes|altervordes|affixes)\//;
   if (!instrumentPath.test(window.location.pathname)) return;
 
   const importDescriptor = Object.getOwnPropertyDescriptor(window, 'InteralPageStateImport');

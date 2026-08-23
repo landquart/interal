@@ -394,9 +394,6 @@ Input: ${JSON.stringify(input,null,2)}
 Return {"word":"","target_meaning":"","directness":0,"field_relatedness":0,"domain_shift":0,"responseLanguage":"${input.interfaceLanguage}","short_explanation":""}`; }
 async function runAssociationScore(payload, interfaceLanguage){ const input=validateAssociationPayload(payload, interfaceLanguage); const modelName=associationModelForRequest(input); const result=await callYandex([{role:'system',content:'You are a lexical association evaluator. Return only valid JSON.'},{role:'user',content:buildAssociationPrompt(input)}], true, modelName); return { ok:true, analysis: normalizeAssociationResult(extract(result.content), input, result.model), model: result.model, modelRole: input.review === true ? 'review' : 'primary' }; }
 
-function validateValenPayload(payload){ return payload && typeof payload==='object' ? payload : {}; }
-function buildValenPrompt(input, interfaceLanguage){ return `Determine Interal semantic-spectrum PRECE scores. Return only JSON. Interface language: ${interfaceLanguage}. P 0-4, R 0-4, C 0-5, E 0-4 or null with externalKnowledgeMode non_explanatory. 70/30 semantic distance is auxiliary only; classify PRECE independently. Input: ${JSON.stringify(input,null,2)}. Return {"chain":[],"chain_type":"semantic_extension","P":0,"R":0,"C":0,"E":0,"externalKnowledgeMode":"numeric","zone_hint":"","confidence":0.8,"explanation":"","analogies_used":[]}.`; }
-async function runDetermineValenType(payload, interfaceLanguage){ const input=validateValenPayload(payload); const result=await callYandex([{role:'system',content:'You are a linguistic classifier. Return only valid JSON.'},{role:'user',content:buildValenPrompt(input, interfaceLanguage)}], true); const ai=extract(result.content); return { ok:true, ai, model: result.model }; }
 
 const TASKS = {
   affixes_check: { modelEnv: 'Qwen3_235B_A22B_Instruct_2507_FP8_Yandex', folderEnv: 'yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8', buildPrompt: buildAffixesCheckPrompt, normalize: normalizeAffixesCheckCard },
@@ -405,7 +402,6 @@ const TASKS = {
   community_word_check: { modelEnv: 'Qwen3_235B_A22B_Instruct_2507_FP8_Yandex', folderEnv: 'yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8' },
   grammar_short_word_check: { modelEnv: 'Qwen3_235B_A22B_Instruct_2507_FP8_Yandex', folderEnv: 'yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8' },
   associative_word_score: { modelEnv: 'Qwen3_235B_A22B_Instruct_2507_FP8_Yandex', folderEnv: 'yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8' },
-  determine_valen_type: { modelEnv: 'Qwen3_235B_A22B_Instruct_2507_FP8_Yandex', folderEnv: 'yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8' },
   associative_target_translation: { modelEnv: 'Qwen3_235B_A22B_Instruct_2507_FP8_Yandex', folderEnv: 'yandex_folder_Qwen3_235B_A22B_Instruct_2507_FP8' }
 };
 
@@ -488,7 +484,6 @@ export default async function handler(req, res) {
     if (task === 'altervordes') return send(res, 200, await runAltervordes(payload, interfaceLanguage));
     if (task === 'associative_word_score') return send(res, 200, await runAssociationScore(payload, interfaceLanguage));
     if (task === 'associative_target_translation') return send(res, 200, await runTargetTranslation(payload));
-    if (task === 'determine_valen_type') return send(res, 200, await runDetermineValenType(payload, interfaceLanguage));
     if (task === 'community_word_check' || task === 'grammar_short_word_check') return send(res, 200, await runSimpleConsultativeTask(payload, interfaceLanguage, task));
     return send(res, 400, { ok: false, error: 'Unsupported Qwen task' });
   } catch (e) {

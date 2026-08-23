@@ -11,7 +11,7 @@
   const siteRoot = sharedPath.replace(/\/shared\/ui\.js$/, '/');
   const joinUrl = (path) => new URL(path.replace(/^\//, ''), window.location.origin + siteRoot).pathname;
 
-  const canCopyPageState = /\/(indoeuropanvordes|associativvordes|determinatorofvalentyp|internationalismes|vordesofcommunites|grammaticebrevivordes|altervordes|affixes)\//.test(window.location.pathname);
+  const canCopyPageState = /\/(indoeuropanvordes|associativvordes|internationalismes|vordesofcommunites|grammaticebrevivordes|altervordes|affixes)\//.test(window.location.pathname);
 
   const pageNavItems = {
     indoeuropanvordes: {
@@ -24,12 +24,6 @@
       path: 'associativvordes/',
       icon: 'elements/associativ%20vordes.svg',
       labelKey: 'navAssociativ',
-      group: 'instruments'
-    },
-    determinator: {
-      path: 'determinatorofvalentyp/',
-      icon: 'elements/determinator%20of%20valen%20typ.svg',
-      labelKey: 'navDeterminator',
       group: 'instruments'
     },
     internationalismes: {
@@ -85,7 +79,6 @@
     'grammar',
     'altervordes',
     'affixes',
-    'determinator'
   ];
 
   const instrumentNavKeys = instrumentNavOrder.filter((key) => pageNavItems[key]?.group === 'instruments');
@@ -119,7 +112,6 @@
     const path = window.location.pathname;
     if (path.includes('/indoeuropanvordes/')) return 'indoeuropanvordes';
     if (path.includes('/associativvordes/')) return 'associativ';
-    if (path.includes('/determinatorofvalentyp/')) return 'determinator';
     if (path.includes('/internationalismes/')) return 'internationalismes';
     if (path.includes('/vordesofcommunites/')) return 'communities';
     if (path.includes('/grammaticebrevivordes/')) return 'grammar';
@@ -149,7 +141,6 @@
       langChoose: 'Выбрать язык',
       navSimilarita: 'Indoeuropan vordes',
       navAssociativ: 'Associativ vordes',
-      navDeterminator: 'Determinator of valen typ',
       navRegistry: 'Registre of lexical cartes',
       navInternationalismes: 'Internationalismes',
       navCommunities: 'Vordes of communités',
@@ -189,7 +180,6 @@
       langChoose: 'Choose language',
       navSimilarita: 'Indoeuropan vordes',
       navAssociativ: 'Associativ vordes',
-      navDeterminator: 'Determinator of valen typ',
       navRegistry: 'Registre of lexical cartes',
       navInternationalismes: 'Internationalismes',
       navCommunities: 'Vordes of communités',
@@ -759,7 +749,6 @@
     const keys = new Set(extraKeys);
 
     keys.add('interal_associative_state');
-    keys.add('determinator-valentyp-state-v1');
 
     try {
       for (let i = localStorage.length - 1; i >= 0; i -= 1) {

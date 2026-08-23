@@ -5,7 +5,6 @@ const assocAnalyzer = await readFile('associativvordes/js/association-analyzer.j
 const assocScript = await readFile('associativvordes/script.js','utf8');
 const assocClient = await readFile('associativvordes/js/qwen-client.js','utf8');
 const qwenApi = await readFile('api/qwen-analyze.js','utf8');
-const det = await readFile('determinatorofvalentyp/app.js','utf8');
 const vc = await readFile('vordesofcommunites/script.js','utf8');
 const gv = await readFile('grammaticebrevivordes/script.js','utf8');
 
@@ -20,10 +19,6 @@ assert.match(assocScript, /analysis\.association \|\| \{\}/);
 assert.match(assocScript, /procedure: 'associative_word'/);
 assert.match(assocScript, /semantic_confirmed/);
 
-assert.match(qwenApi, /determine_valen_type/);
-assert.match(det, /Automatic analysis is unavailable|Автоматический анализ недоступен/);
-assert.doesNotMatch(det, /frontend_error'[\s\S]*P: 2, R: 3, C: 2, E: 1/);
-assert.match(det, /externalKnowledgeMode = 'non_explanatory'/);
 
 assert.match(vc, /function validateForm/);
 assert.match(vc, /answer === 'yes' \|\| answer === 'partially'/);
@@ -35,4 +30,4 @@ assert.match(gv, /manuallyEdited/);
 assert.match(gv, /finalized/);
 assert.match(gv, /REQUIRED_CRITERIA_COUNT = 3/);
 assert.match(gv, /procedure:'grammar_short_word'/);
-console.log('four tool regression tests passed');
+console.log('tool regression tests passed');

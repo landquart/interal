@@ -196,8 +196,6 @@ body.select-modal-open{overflow:hidden;position:fixed;top:var(--select-modal-scr
     .card-scroll-wrap,
     .result-table-scroll,
     .derivatives-table-wrap,
-    .determinator-page .modal-card,
-    .determinator-page .chooser-card,
     .internationalita-page .explain-code,
     .internationalita-page #explainText,
     .internationalita-page .json-card-form,
@@ -221,8 +219,6 @@ body.select-modal-open{overflow:hidden;position:fixed;top:var(--select-modal-scr
   .card-scroll-wrap,
   .result-table-scroll,
   .derivatives-table-wrap,
-  .determinator-page .modal-card,
-  .determinator-page .chooser-card,
   .internationalita-page .explain-code,
   .internationalita-page #explainText,
   .internationalita-page .json-card-form,
@@ -242,8 +238,6 @@ body.select-modal-open{overflow:hidden;position:fixed;top:var(--select-modal-scr
   .card-scroll-wrap,
   .result-table-scroll,
   .derivatives-table-wrap,
-  .determinator-page .modal-card,
-  .determinator-page .chooser-card,
   .internationalita-page .explain-code,
   .internationalita-page #explainText,
   .internationalita-page .json-card-form,
@@ -262,8 +256,6 @@ body.select-modal-open{overflow:hidden;position:fixed;top:var(--select-modal-scr
   .card-scroll-wrap,
   .result-table-scroll,
   .derivatives-table-wrap,
-  .determinator-page .modal-card,
-  .determinator-page .chooser-card,
   .internationalita-page .explain-code,
   .internationalita-page #explainText,
   .internationalita-page .json-card-form,
@@ -283,8 +275,6 @@ body.select-modal-open{overflow:hidden;position:fixed;top:var(--select-modal-scr
   .card-scroll-wrap,
   .result-table-scroll,
   .derivatives-table-wrap,
-  .determinator-page .modal-card,
-  .determinator-page .chooser-card,
   .internationalita-page .explain-code,
   .internationalita-page #explainText,
   .internationalita-page .json-card-form,
@@ -304,8 +294,6 @@ body.select-modal-open{overflow:hidden;position:fixed;top:var(--select-modal-scr
   .card-scroll-wrap,
   .result-table-scroll,
   .derivatives-table-wrap,
-  .determinator-page .modal-card,
-  .determinator-page .chooser-card,
   .internationalita-page .explain-code,
   .internationalita-page #explainText,
   .internationalita-page .json-card-form,
@@ -325,8 +313,6 @@ body.select-modal-open{overflow:hidden;position:fixed;top:var(--select-modal-scr
   .card-scroll-wrap,
   .result-table-scroll,
   .derivatives-table-wrap,
-  .determinator-page .modal-card,
-  .determinator-page .chooser-card,
   .internationalita-page .explain-code,
   .internationalita-page #explainText,
   .internationalita-page .json-card-form,
@@ -346,8 +332,6 @@ body.select-modal-open{overflow:hidden;position:fixed;top:var(--select-modal-scr
   .card-scroll-wrap,
   .result-table-scroll,
   .derivatives-table-wrap,
-  .determinator-page .modal-card,
-  .determinator-page .chooser-card,
   .internationalita-page .explain-code,
   .internationalita-page #explainText,
   .internationalita-page .json-card-form,
@@ -355,8 +339,8 @@ body.select-modal-open{overflow:hidden;position:fixed;top:var(--select-modal-scr
 )::-webkit-scrollbar-button{display:none;width:0;height:0;}
 
 @media (hover:none) and (pointer:coarse){
-  :where(html,.side-menu,.interal-modal-card,.interal-select-modal-options,#jsonCardModal .modal-inner,.registry-json-view,.giscus-modal-card,.table-wrap,.language-table-wrap,.card-scroll-wrap,.result-table-scroll,.derivatives-table-wrap,.determinator-page .modal-card,.determinator-page .chooser-card,.internationalita-page .explain-code,.internationalita-page #explainText,.internationalita-page .json-card-form,.associativ-page table)::-webkit-scrollbar{width:4px;height:4px;}
-  :where(html,.side-menu,.interal-modal-card,.interal-select-modal-options,#jsonCardModal .modal-inner,.registry-json-view,.giscus-modal-card,.table-wrap,.language-table-wrap,.card-scroll-wrap,.result-table-scroll,.derivatives-table-wrap,.determinator-page .modal-card,.determinator-page .chooser-card,.internationalita-page .explain-code,.internationalita-page #explainText,.internationalita-page .json-card-form,.associativ-page table)::-webkit-scrollbar-thumb{min-height:24px;border-width:1px;}
+  :where(html,.side-menu,.interal-modal-card,.interal-select-modal-options,#jsonCardModal .modal-inner,.registry-json-view,.giscus-modal-card,.table-wrap,.language-table-wrap,.card-scroll-wrap,.result-table-scroll,.derivatives-table-wrap,.internationalita-page .explain-code,.internationalita-page #explainText,.internationalita-page .json-card-form,.associativ-page table)::-webkit-scrollbar{width:4px;height:4px;}
+  :where(html,.side-menu,.interal-modal-card,.interal-select-modal-options,#jsonCardModal .modal-inner,.registry-json-view,.giscus-modal-card,.table-wrap,.language-table-wrap,.card-scroll-wrap,.result-table-scroll,.derivatives-table-wrap,.internationalita-page .explain-code,.internationalita-page #explainText,.internationalita-page .json-card-form,.associativ-page table)::-webkit-scrollbar-thumb{min-height:24px;border-width:1px;}
 }
 
 .interal-page-loader{position:fixed;inset:0;z-index:calc(var(--z-page-modal) + 80);display:grid;place-items:center;background:transparent;color:var(--loader-color);opacity:1;visibility:visible;transition:opacity 120ms ease,visibility 0s linear 120ms;}

@@ -50,7 +50,7 @@
   row.append(pageLink, toggle);
   section.replaceChildren(row, list);
 
-  if (/\/(instrumentes|indoeuropanvordes|associativvordes|determinatorofvalentyp|internationalismes|vordesofcommunites|grammaticebrevivordes|altervordes|affixes)\//.test(location.pathname)) {
+  if (/\/(instrumentes|indoeuropanvordes|associativvordes|internationalismes|vordesofcommunites|grammaticebrevivordes|altervordes|affixes)\//.test(location.pathname)) {
     pageLink.classList.add('is-active');
     if (location.pathname.includes('/instrumentes/')) pageLink.setAttribute('aria-current', 'page');
   }

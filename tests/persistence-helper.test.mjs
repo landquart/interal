@@ -63,7 +63,7 @@ function makeContext(search = '', pathname = '/internationalismes/') {
 
 
 {
-  const pages = ['/indoeuropanvordes/','/associativvordes/','/determinatorofvalentyp/','/internationalismes/','/vordesofcommunites/','/grammaticebrevivordes/','/altervordes/','/affixes/'];
+  const pages = ['/indoeuropanvordes/','/associativvordes/','/internationalismes/','/vordesofcommunites/','/grammaticebrevivordes/','/altervordes/','/affixes/'];
   for (const page of pages) {
     const { ctx, store } = makeContext('', page);
     ctx.window.InteralPageStateExport = () => ({ version:2, page, fields:{ value:page }, result:{ ok:true }, flags:{ checked:true, accepted:true }, ui:{ tab:'main' } });

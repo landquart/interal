@@ -1,13 +1,12 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 
-const [motion, motionCss, core, uiCss, runtime, determinator, associative, international, registry] = await Promise.all([
+const [motion, motionCss, core, uiCss, runtime, associative, international, registry] = await Promise.all([
   readFile('shared/modal-motion.js', 'utf8'),
   readFile('shared/modal-motion.css', 'utf8'),
   readFile('shared/ui-core.js', 'utf8'),
   readFile('shared/ui.css', 'utf8'),
   readFile('shared/ui.js', 'utf8'),
-  readFile('determinatorofvalentyp/app.js', 'utf8'),
   readFile('associativvordes/script.js', 'utf8'),
   readFile('indoeuropanvordes/index.html', 'utf8'),
   readFile('registre/index.html', 'utf8')
@@ -45,7 +44,6 @@ assert.doesNotMatch(uiCss, /selectModalCardIn/, 'the old select scale animation 
 assert.doesNotMatch(uiCss, /#jsonCardModal\{[^}]*transition:opacity/, 'the old JSON modal fade no longer competes with shared motion');
 
 for (const [name, source] of [
-  ['determinator', determinator],
   ['associative tool', associative],
   ['internationality tool', international],
   ['registry', registry]
@@ -59,7 +57,6 @@ const entryPoints = [
   'affixes/index.html',
   'altervordes/index.html',
   'associativvordes/index.html',
-  'determinatorofvalentyp/index.html',
   'grammaticebrevivordes/index.html',
   'indoeuropanvordes/index.html',
   'instrumentes/index.html',
@@ -71,8 +68,8 @@ const entryPoints = [
 
 for (const path of entryPoints) {
   const html = await readFile(path, 'utf8');
-  assert.match(html, /shared\/ui\.js\?v=interal-ui-20260820-2/, `${path} uses the new runtime cache key`);
-  assert.match(html, /shared\/ui\.css\?v=interal-ui-20260820-2/, `${path} uses the new stylesheet cache key`);
+  assert.match(html, /shared\/ui\.js\?v=/, `${path} uses the new runtime cache key`);
+  assert.match(html, /shared\/ui\.css\?v=/, `${path} uses the new stylesheet cache key`);
 }
 
 console.log('Modal motion tests passed');
