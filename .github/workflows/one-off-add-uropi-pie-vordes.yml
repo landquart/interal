@@ -1,0 +1,119 @@
+name: One-off add Uropi PIE candidates
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/one-off-add-uropi-pie-vordes.yml
+
+permissions:
+  contents: write
+
+jobs:
+  append:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Append PIE candidate rows
+        shell: bash
+        env:
+          UROPI_ROWS_GZ_B64: >-
+            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
+        run: |
+          python - <<'PY'
+          import base64
+          import gzip
+          import json
+          import os
+          from pathlib import Path
+
+          path = Path("indoeuropanvordes/pie_vordes")
+          text = path.read_text(encoding="utf-8")
+          data = json.loads(text)
+
+          additions = json.loads(
+              gzip.decompress(base64.b64decode(os.environ["UROPI_ROWS_GZ_B64"])).decode("utf-8")
+          )
+
+          existing = {
+              (str(item.get("pie", "")).strip(), str(item.get("en", {}).get("word", "")).strip().casefold())
+              for item in data.get("items", [])
+          }
+          additions = [
+              item for item in additions
+              if (str(item.get("pie", "")).strip(), str(item.get("en", {}).get("word", "")).strip().casefold())
+              not in existing
+          ]
+
+          next_id = max((int(item.get("id", 0)) for item in data.get("items", [])), default=0) + 1
+          for offset, item in enumerate(additions):
+              item["id"] = next_id + offset
+
+          langs = ["en", "de", "fr", "es", "it", "ru", "el"]
+
+          def q(value):
+              return json.dumps(value, ensure_ascii=False)
+
+          def format_item(item):
+              lines = [
+                  "    {",
+                  '      "id": ' + str(item["id"]) + ',',
+                  '      "pie": ' + q(item["pie"]) + ',',
+                  '      "part_of_speech": ' + q(item["part_of_speech"]) + ',',
+              ]
+              for lang in langs:
+                  form = item[lang]
+                  lines.append(
+                      '      "' + lang + '": { "word": ' + q(form["word"]) +
+                      ', "ipa": ' + q(form["ipa"]) + ' },'
+                  )
+              lines.append('      "status": ' + q(item["status"]) + ("," if item.get("note") else ""))
+              if item.get("note"):
+                  lines.append('      "note": ' + q(item["note"]))
+              lines.append("    }")
+              return "\n".join(lines)
+
+          if additions:
+              marker = "\n  ]"
+              if marker not in text:
+                  raise RuntimeError("Could not locate final items-array closing bracket")
+              prefix, suffix = text.rsplit(marker, 1)
+              prefix = prefix.rstrip()
+              if data.get("items") and not prefix.endswith(","):
+                  prefix += ","
+              block = ",\n".join(format_item(item) for item in additions)
+              updated = prefix + "\n" + block + marker + suffix
+          else:
+              updated = text
+
+          parsed = json.loads(updated)
+          ids = [item["id"] for item in parsed["items"]]
+          if len(ids) != len(set(ids)):
+              raise RuntimeError("Duplicate ids after append")
+          if additions and len(parsed["items"]) != len(data["items"]) + len(additions):
+              raise RuntimeError("Unexpected item count after append")
+
+          path.write_text(updated.rstrip() + "\n", encoding="utf-8")
+          print(f"Appended {len(additions)} rows; total {len(parsed['items'])}.")
+          PY
+
+          python -m json.tool indoeuropanvordes/pie_vordes >/dev/null
+
+      - name: Commit update and remove helper workflow
+        shell: bash
+        run: |
+          rm -f .github/workflows/one-off-add-uropi-pie-vordes.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add indoeuropanvordes/pie_vordes .github/workflows/one-off-add-uropi-pie-vordes.yml
+          if git diff --cached --quiet; then
+            echo "Nothing to commit."
+            exit 0
+          fi
+          git commit -m "Add Uropi-derived PIE candidate rows"
+          git push origin HEAD:main
