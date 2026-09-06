@@ -28,12 +28,14 @@
     "Germanic",
     "Romance",
     "Slavic",
-    "Hellenic"
+    "Hellenic",
+    "Indo-Aryan",
+    "Iranian"
   ],
   "calculation": {
-    "pi_percent": 74.17665866097373,
-    "weighted_sum": 2084734.9916666667,
-    "total_speakers_thousands": 2810500
+    "pi_percent": 68.0855533514105,
+    "weighted_sum": 2385377.3616666667,
+    "total_speakers_thousands": 3503500
   },
   "language_results": [
     {
@@ -281,6 +283,58 @@
       },
       "final_similarity_s": 0.71275,
       "speaker_contribution": 9622.125,
+      "supports_group": true
+    },
+    {
+      "code": "hi",
+      "name": "Hindi",
+      "group": "Indo-Aryan",
+      "speakers_thousands": 611000,
+      "word": "माँ",
+      "romanization": "mā̃",
+      "normalized_graphic": "mā̃",
+      "ipa": "mɑ̃ː",
+      "pronunciation_standard": "Standard Hindi",
+      "graphic": {
+        "score": 0.3,
+        "distance_d": 3.5,
+        "max_length_l": 5
+      },
+      "phonetic": {
+        "score": 0.5247,
+        "raw_score": 0.247,
+        "max_length": 5,
+        "tokens_interal": ["m", "a", "t", "r", "e"],
+        "tokens_language": ["m", "ɑ̃ː"]
+      },
+      "final_similarity_s": 0.41235,
+      "speaker_contribution": 251945.85,
+      "supports_group": true
+    },
+    {
+      "code": "fa",
+      "name": "Persian",
+      "group": "Iranian",
+      "speakers_thousands": 82000,
+      "word": "مادر",
+      "romanization": "mâdar",
+      "normalized_graphic": "mâdar",
+      "ipa": "mɒːˈd̪æɹ",
+      "pronunciation_standard": "Iranian Persian, formal",
+      "graphic": {
+        "score": 0.4,
+        "distance_d": 3,
+        "max_length_l": 5
+      },
+      "phonetic": {
+        "score": 0.78772,
+        "raw_score": 2.8772,
+        "max_length": 5,
+        "tokens_interal": ["m", "a", "t", "r", "e"],
+        "tokens_language": ["m", "ɒː", "d̪", "æ", "ɹ"]
+      },
+      "final_similarity_s": 0.59386,
+      "speaker_contribution": 48696.52,
       "supports_group": true
     }
   ],

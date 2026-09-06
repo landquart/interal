@@ -4,7 +4,7 @@ import { getTargetMeaningForLanguage as translateTargetMeaningForLanguage } from
 import { ASSOCIATION_SCORE_WEIGHTS, FINAL_SCORE_WEIGHTS, getQwenAssociationScores, QWEN_ERROR_CODES, QWEN_RUNTIME_CONFIG, createReviewBudget, isAbortError, normalizeAbortError } from './qwen-client.js';
 import { calculateDirectDemographicAverage, requireSpeakerCount } from '../../shared/control-language-demographics.mjs';
 
-export const THRESHOLDS = { main: 35 };
+export const THRESHOLDS = { main: 35, association: 35 };
 export const REVIEW_SCORE_RANGE = Object.freeze({ min: 25, max: 35 });
 
 export async function getTargetMeaningForLanguage(targetMeaning, language, options) {
@@ -55,7 +55,7 @@ export const SUCCESS_TERMINAL_LANGUAGE_STATUSES = ['completed', 'completed_with_
 export const FAILURE_TERMINAL_LANGUAGE_STATUSES = ['no_candidates', 'index_error', 'qwen_error', 'incomplete', 'aborted'];
 export const TERMINAL_LANGUAGE_STATUSES = [...SUCCESS_TERMINAL_LANGUAGE_STATUSES, ...FAILURE_TERMINAL_LANGUAGE_STATUSES];
 export const LANGUAGE_STATUSES = [...INTERMEDIATE_LANGUAGE_STATUSES, ...TERMINAL_LANGUAGE_STATUSES];
-export const CRITICAL_DECISION_REASONS = ['no_calculated_data', 'final_association_below_35', 'fewer_than_3_languages', 'fewer_than_2_groups'];
+export const CRITICAL_DECISION_REASONS = ['no_calculated_data', 'final_association_below_35', 'average_association_below_35', 'fewer_than_3_languages', 'fewer_than_2_groups'];
 export const WARNING_DECISION_REASONS = ['semantic_not_confirmed', 'some_languages_no_candidates', 'some_languages_index_error', 'some_languages_qwen_error', 'calculation_incomplete'];
 export const UNAVAILABLE_REASONS = ['no_candidates', 'index_error', 'qwen_error', 'incomplete', 'aborted', 'no_calculated_data'];
 
@@ -117,7 +117,11 @@ export function deriveGlobalStatusFromLanguageStatuses(languageStatuses = {}) {
   return summary.warnings?.length ? 'completed_with_warnings' : 'completed';
 }
 
-export function calculateLanguageScore(items = [], { maxModels = Infinity, scoreGetter = (item) => item?.final_score } = {}) {
+export function calculateLanguageScore(items = [], {
+  maxModels = Infinity,
+  scoreGetter = (item) => item?.final_score,
+  associationScoreGetter = (item) => item?.association_score ?? item?.analysis?.association_score ?? item?.analysis?.association?.association_score ?? item?.A_final ?? item?.analysis?.A_final
+} = {}) {
   const selected = (Array.isArray(items) ? items : [])
     .filter((item) => item?.selected)
     .slice(0, maxModels);
@@ -126,10 +130,19 @@ export function calculateLanguageScore(items = [], { maxModels = Infinity, score
     .map(Number)
     .filter(Number.isFinite);
   const sum = scores.reduce((acc, score) => acc + score, 0);
+  const associationScores = selected
+    .map(associationScoreGetter)
+    .map(Number)
+    .filter(Number.isFinite);
+  const associationSum = associationScores.reduce((acc, score) => acc + score, 0);
+  const hasCompleteAssociationData = selected.length > 0 && associationScores.length === selected.length;
   return {
     sum: scores.length ? sum : null,
     normalized: scores.length ? sum / scores.length : null,
-    count: scores.length
+    count: scores.length,
+    associationSum: associationScores.length ? associationSum : null,
+    associationNormalized: hasCompleteAssociationData ? associationSum / associationScores.length : null,
+    associationCount: associationScores.length
   };
 }
 
@@ -154,15 +167,23 @@ export function calculateFinalAssociation({ languages = [], languageResults = []
   const representedLangs = represented.length;
   const groups = new Set(represented.map((score) => score.lang?.group).filter(Boolean));
   const languageAverageP = Object.fromEntries(represented.map((score) => [score.lang.code, Number(score.normalized)]));
+  const associationRepresented = represented.filter((score) => isFiniteScore(score.associationNormalized));
+  const hasCompleteAssociationData = represented.length > 0 && associationRepresented.length === represented.length;
+  const weightedAssociation = hasCompleteAssociationData
+    ? calculateDirectDemographicAverage(associationRepresented.map((score) => ({ language: score.lang.code, speakers: score.speakers, averageA: score.associationNormalized })), 'averageA')
+    : { score: null };
+  const averageAssociation = weightedAssociation.score;
+  const languageAverageA = Object.fromEntries(associationRepresented.map((score) => [score.lang.code, Number(score.associationNormalized)]));
   const semanticConfirmed = represented.length > 0 && represented.every((score) => score.semanticConfirmed === true);
   const statusSummary = summarizeLanguageStatuses(languageStatuses);
   const unavailableReasons = unavailableReasonsFromStatuses(languageStatuses);
   if (!hasCalculatedData && !unavailableReasons.includes('no_calculated_data')) unavailableReasons.push('no_calculated_data');
   const accepted = hasCalculatedData
     && finalAssociationPassesThreshold(finalAssociation)
+    && averageAssociationPassesThreshold(averageAssociation)
     && representedLangs >= 3
     && groups.size >= 2;
-  return { languageScores, totalAssociation, speakersTotal, weightedScoreTotal, languageAverageP, finalAssociation, FAv: finalAssociation, representedLangs, groups: groups.size, semanticConfirmed, accepted, threshold: THRESHOLDS.main, hasCalculatedData, unavailableReasons, languageStatusSummary: statusSummary };
+  return { languageScores, totalAssociation, speakersTotal, weightedScoreTotal, languageAverageP, languageAverageA, averageAssociation, AAverage: averageAssociation, finalAssociation, FAv: finalAssociation, representedLangs, groups: groups.size, semanticConfirmed, accepted, threshold: THRESHOLDS.main, associationThreshold: THRESHOLDS.association, hasCalculatedData, unavailableReasons, languageStatusSummary: statusSummary };
 }
 
 export function buildDecisionReasons(result = {}) {
@@ -175,6 +196,7 @@ export function buildDecisionReasons(result = {}) {
     add(critical, 'no_calculated_data');
   } else {
     if (Number(result.finalAssociation) < THRESHOLDS.main) add(critical, 'final_association_below_35');
+    if (!averageAssociationPassesThreshold(result.averageAssociation)) add(critical, 'average_association_below_35');
     if (Number(result.representedLangs) < 3) add(critical, 'fewer_than_3_languages');
     if (Number(result.groups) < 2) add(critical, 'fewer_than_2_groups');
     if (!result.semanticConfirmed) add(warnings, 'semantic_not_confirmed');
@@ -192,6 +214,7 @@ export function finalAssociationRejectionReasons(result = {}) {
     fewer_than_3_languages: 'fewer_languages',
     fewer_than_2_groups: 'fewer_groups',
     final_association_below_35: 'below_threshold',
+    average_association_below_35: 'association_below_threshold',
     semantic_not_confirmed: 'semantic_unconfirmed'
   };
   return critical.map(reason => legacy[reason] || reason);
@@ -206,6 +229,7 @@ export function decisionStatusForResult(result = {}) {
 export function canCreateAssociativeJsonCard(result = {}) {
   return Boolean(result.hasCalculatedData
     && finalAssociationPassesThreshold(result.finalAssociation)
+    && averageAssociationPassesThreshold(result.averageAssociation)
     && Number(result.representedLangs) >= 3
     && Number(result.groups) >= 2
     && result.accepted);
@@ -217,6 +241,10 @@ export function classifyScore(final_score) {
 
 export function finalAssociationPassesThreshold(finalAssociation) {
   return isFiniteScore(finalAssociation) && Number(finalAssociation) >= THRESHOLDS.main;
+}
+
+export function averageAssociationPassesThreshold(averageAssociation) {
+  return isFiniteScore(averageAssociation) && Number(averageAssociation) >= THRESHOLDS.association;
 }
 
 function semanticConfirmedFromQwen(qwen) {

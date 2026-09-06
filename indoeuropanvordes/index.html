@@ -629,6 +629,8 @@ body.dark-theme .internationalita-page .json-card-icon-btn.is-copied {
         <option value="it">Итальянский</option>
         <option value="ru">Русский</option>
         <option value="el">Греческий</option>
+        <option value="hi">Хинди</option>
+        <option value="fa">Персидский</option>
       </select>
     </div>
   </div>
@@ -758,7 +760,9 @@ const CONTROL_LANGUAGES = [
   { code: "es", name: "Испанский", englishName: "Spanish", group: "Romance", speakers: 561000 },
   { code: "it", name: "Итальянский", englishName: "Italian", group: "Romance", speakers: 66000 },
   { code: "ru", name: "Русский", englishName: "Russian", group: "Slavic", speakers: 210000 },
-  { code: "el", name: "Греческий", englishName: "Greek", group: "Hellenic", speakers: 13500 }
+  { code: "el", name: "Греческий", englishName: "Greek", group: "Hellenic", speakers: 13500 },
+  { code: "hi", name: "Хинди", englishName: "Hindi", group: "Indo-Aryan", speakers: 611000 },
+  { code: "fa", name: "Персидский", englishName: "Persian", group: "Iranian", speakers: 82000 }
 ];
 
 const LANG_CODES = CONTROL_LANGUAGES.map((x) => x.code);
@@ -842,7 +846,7 @@ const TEXT_I18N = {
       groupSupport: "Поддержка групп считается при S ≥ {threshold}.",
       formula: "Формула",
       formalFormula: "Формула: PI = {weightedSum} / {totalSpeakers} × 100 = <strong>{formalPI}</strong>.",
-      formalRequires: "Для финального PI нужно заполнить все 7 контрольных языков. Нижняя граница PI: <strong>{lowerBoundPI}</strong>."
+      formalRequires: "Для финального PI нужно заполнить все 9 контрольных языков. Нижняя граница PI: <strong>{lowerBoundPI}</strong>."
     },
     decision: {
       incomplete: "Решение не финальное: заполнены не все контрольные языки или не все МФА.",
@@ -875,13 +879,17 @@ const TEXT_I18N = {
       es: "Испанский",
       it: "Итальянский",
       ru: "Русский",
-      el: "Греческий"
+      el: "Греческий",
+      hi: "Хинди",
+      fa: "Персидский"
     },
     languageGroups: {
       Germanic: "Германская",
       Romance: "Романская",
       Slavic: "Славянская",
-      Hellenic: "Эллинская"
+      Hellenic: "Эллинская",
+      "Indo-Aryan": "Индоарийская",
+      Iranian: "Иранская"
     },
     calcDetails: {
       graphicForms: "Графические формы",
@@ -948,7 +956,7 @@ const TEXT_I18N = {
       groupSupport: "Group support is counted when S ≥ {threshold}.",
       formula: "Formula",
       formalFormula: "Formula: PI = {weightedSum} / {totalSpeakers} × 100 = <strong>{formalPI}</strong>.",
-      formalRequires: "Final PI requires all 7 control languages to be completed. Lower bound of PI: <strong>{lowerBoundPI}</strong>."
+      formalRequires: "Final PI requires all 9 control languages to be completed. Lower bound of PI: <strong>{lowerBoundPI}</strong>."
     },
     decision: {
       incomplete: "The decision is not final: not all control languages or IPA fields are completed.",
@@ -981,13 +989,17 @@ const TEXT_I18N = {
       es: "Spanish",
       it: "Italian",
       ru: "Russian",
-      el: "Greek"
+      el: "Greek",
+      hi: "Hindi",
+      fa: "Persian"
     },
     languageGroups: {
       Germanic: "Germanic",
       Romance: "Romance",
       Slavic: "Slavic",
-      Hellenic: "Hellenic"
+      Hellenic: "Hellenic",
+      "Indo-Aryan": "Indo-Aryan",
+      Iranian: "Iranian"
     },
     calcDetails: {
       graphicForms: "Graphic forms",
@@ -1029,7 +1041,9 @@ const WIKTIONARY_APIS = {
   es: "https://es.wiktionary.org/w/api.php",
   it: "https://it.wiktionary.org/w/api.php",
   ru: "https://ru.wiktionary.org/w/api.php",
-  el: "https://el.wiktionary.org/w/api.php"
+  el: "https://el.wiktionary.org/w/api.php",
+  hi: "https://hi.wiktionary.org/w/api.php",
+  fa: "https://fa.wiktionary.org/w/api.php"
 };
 
 const WIKTIONARY_LANG_LABELS = {
@@ -1039,7 +1053,9 @@ const WIKTIONARY_LANG_LABELS = {
   es: ["Spanish", "Español"],
   it: ["Italian", "Italiano"],
   ru: ["Russian", "Русский"],
-  el: ["Greek", "Modern Greek", "Ελληνικά"]
+  el: ["Greek", "Modern Greek", "Ελληνικά"],
+  hi: ["Hindi", "हिन्दी", "हिंदी"],
+  fa: ["Persian", "Iranian Persian", "فارسی"]
 };
 
 const IPA_FALLBACKS = {
@@ -1123,6 +1139,7 @@ function initRows() {
       <td class="num">${formatInteger(lang.speakers)}</td>
       <td class="word-cell">
         <input class="table-input word-national" data-lang="${escapeHTML(lang.code)}" type="text" autocomplete="off">
+        ${["hi", "fa"].includes(lang.code) ? `<input class="table-input romanization-national" data-lang="${escapeHTML(lang.code)}" type="text" autocomplete="off" placeholder="${currentLang() === "en" ? "Latin form for G" : "Латиница для G"}">` : ""}
       </td>
       <td class="ipa-cell">
         <input class="table-input ipa-national" data-lang="${escapeHTML(lang.code)}" type="text" autocomplete="off">
@@ -1138,6 +1155,7 @@ function initRows() {
 function getRowInputs(langCode) {
   return {
     word: document.querySelector(`.word-national[data-lang="${CSS.escape(langCode)}"]`),
+    romanization: document.querySelector(`.romanization-national[data-lang="${CSS.escape(langCode)}"]`),
     ipa: document.querySelector(`.ipa-national[data-lang="${CSS.escape(langCode)}"]`)
   };
 }
@@ -1408,6 +1426,7 @@ function makeIndoeuropanCard(payload, timeMeta, author = null) {
       return {
         language: row.code || "",
         word: row.word || "",
+        romanization: row.romanization || "",
         ipa: row.ipa || "",
         G: finiteOrNull(row.graphic),
         PH: finiteOrNull(row.phonetic),
@@ -1531,12 +1550,13 @@ function transliterateGreek(text) {
   return s.split("").map((ch) => map[ch] ?? ch).join("");
 }
 
-function normalizeGraphicInput(word, langCode) {
+function normalizeGraphicInput(word, langCode, explicitRomanization = "") {
   const normalized = normalize(word);
 
   if (langCode === "interal") return stripInteralStressMarks(normalized);
   if (langCode === "ru") return transliterateRussian(normalized);
   if (langCode === "el") return transliterateGreek(normalized);
+  if (langCode === "hi" || langCode === "fa") return normalize(explicitRomanization);
 
   return normalized
     .replace(/ß/g, "ss")
@@ -1945,12 +1965,13 @@ function getPieCell(item, langCode) {
   const cell = item && item[langCode];
 
   if (!cell) {
-    return { words: [], ipa: "" };
+    return { words: [], romanization: "", ipa: "" };
   }
 
   if (typeof cell === "string") {
     return {
       words: splitVariants(cell),
+      romanization: "",
       ipa: item.ipa && item.ipa[langCode] ? String(item.ipa[langCode]) : ""
     };
   }
@@ -1958,6 +1979,7 @@ function getPieCell(item, langCode) {
   if (Array.isArray(cell)) {
     return {
       words: splitVariants(cell),
+      romanization: "",
       ipa: item.ipa && item.ipa[langCode] ? String(item.ipa[langCode]) : ""
     };
   }
@@ -1965,11 +1987,18 @@ function getPieCell(item, langCode) {
   if (typeof cell === "object") {
     return {
       words: splitVariants(cell.word || cell.words || cell.form || cell.forms || ""),
+      romanization: String(cell.romanization || cell.transliteration || ""),
       ipa: String(cell.ipa || "")
     };
   }
 
-  return { words: [], ipa: "" };
+  return { words: [], romanization: "", ipa: "" };
+}
+
+function normalizePieLookupInput(word, langCode) {
+  return langCode === "hi" || langCode === "fa"
+    ? normalize(word)
+    : normalizeGraphicInput(word, langCode);
 }
 
 function getPieForms(item, langCode) {
@@ -1988,7 +2017,7 @@ function getPieIPA(item, langCode) {
 }
 
 function findPieRowByNationalWord(data, nationalWord, selectedLang) {
-  const querySelected = normalizeGraphicInput(nationalWord, selectedLang);
+  const querySelected = normalizePieLookupInput(nationalWord, selectedLang);
 
   if (!querySelected) return null;
 
@@ -1996,7 +2025,7 @@ function findPieRowByNationalWord(data, nationalWord, selectedLang) {
     const forms = getPieForms(item, selectedLang);
 
     for (const form of forms) {
-      const normalizedForm = normalizeGraphicInput(form, selectedLang);
+      const normalizedForm = normalizePieLookupInput(form, selectedLang);
 
       if (normalizedForm && normalizedForm === querySelected) {
         return {
@@ -2016,7 +2045,7 @@ function findPieRowByNationalWord(data, nationalWord, selectedLang) {
     const forms = getPieForms(item, selectedLang);
 
     for (const form of forms) {
-      const normalizedForm = normalizeGraphicInput(form, selectedLang);
+      const normalizedForm = normalizePieLookupInput(form, selectedLang);
       if (!normalizedForm) continue;
 
       const score = graphicSimilarity(querySelected, normalizedForm);
@@ -2043,10 +2072,12 @@ function findPieRowByNationalWord(data, nationalWord, selectedLang) {
 async function fillRowsFromPieItem(item) {
   for (const lang of CONTROL_LANGUAGES) {
     const inputs = getRowInputs(lang.code);
-    const forms = getPieForms(item, lang.code);
-    const ipa = getPieIPA(item, lang.code);
+    const cell = getPieCell(item, lang.code);
+    const forms = cell.words;
+    const ipa = cell.ipa || getPieIPA(item, lang.code);
 
     inputs.word.value = forms[0] || "";
+    if (inputs.romanization) inputs.romanization.value = cell.romanization || "";
     inputs.ipa.value = ipa || "";
   }
 
@@ -2123,6 +2154,7 @@ async function calculateInternationality() {
     for (const lang of CONTROL_LANGUAGES) {
       const inputs = getRowInputs(lang.code);
       const word = inputs.word.value.trim();
+      const romanization = inputs.romanization?.value.trim() || "";
       let ipa = inputs.ipa.value.trim();
 
       if (word && !ipa && autoIpa) {
@@ -2131,7 +2163,7 @@ async function calculateInternationality() {
         if (ipa) inputs.ipa.value = ipa;
       }
 
-      const nationalGraphic = normalizeGraphicInput(word, lang.code);
+      const nationalGraphic = normalizeGraphicInput(word, lang.code, romanization);
       const graphicDetails = word ? graphicSimilarityDetails(interalGraphic, nationalGraphic) : null;
       const graphic = graphicDetails ? graphicDetails.score : null;
 
@@ -2157,6 +2189,7 @@ async function calculateInternationality() {
       rows.push({
         ...lang,
         word,
+        romanization,
         ipa,
         nationalGraphic,
         graphic,
@@ -2362,11 +2395,21 @@ function extractIPAsFromHTML(html, langCode) {
 
   const doc = new DOMParser().parseFromString(html, "text/html");
   const section = getLanguageSection(doc, langCode);
+  if (!section) return [];
 
-  return [
-    ...extractIPAsFromElement(section),
-    ...extractIPAsFromElement(doc)
-  ].filter(onlyUnique);
+  const preferredLabels = langCode === "fa"
+    ? ["Iran, formal", "Iranian Persian"]
+    : langCode === "hi" ? ["Standard Hindi"] : [];
+  if (preferredLabels.length) {
+    const preferred = [...section.querySelectorAll(".IPA, [class~='IPA'], [class*='IPA']")]
+      .filter((element) => preferredLabels.some((label) =>
+        (element.closest("li, p, div")?.textContent || "").includes(label)))
+      .map((element) => cleanIPA(element.textContent))
+      .filter(Boolean);
+    if (preferred.length) return [...new Set(preferred)];
+  }
+
+  return extractIPAsFromElement(section).filter(onlyUnique);
 }
 
 function getLanguageSection(doc, langCode) {
@@ -2517,7 +2560,7 @@ function renderResult(data) {
 
       <div class="metric">
         <span class="metric-label">${escapeHTML(text.languageGroups)}</span>
-        <span class="metric-value">${data.supportedGroups.length}/4</span>
+        <span class="metric-value">${data.supportedGroups.length}/${new Set(CONTROL_LANGUAGES.map((language) => language.group)).size}</span>
         <span class="group-pills">${data.supportedGroups.map((group) => `<span class="group-pill">${escapeHTML(getLocalizedLanguageGroup(group))}</span>`).join("")}</span>
       </div>
     </div>
@@ -2819,7 +2862,7 @@ explainModal.addEventListener("click", (event) => {
 
 
 function collectIndoeuropanPageState() {
-  const languageRowsState = CONTROL_LANGUAGES.map((lang) => { const inputs = getRowInputs(lang.code); return { code: lang.code, word: inputs.word?.value || '', ipa: inputs.ipa?.value || '' }; });
+  const languageRowsState = CONTROL_LANGUAGES.map((lang) => { const inputs = getRowInputs(lang.code); return { code: lang.code, word: inputs.word?.value || '', romanization: inputs.romanization?.value || '', ipa: inputs.ipa?.value || '' }; });
   const r = lastCalculationPayload;
   return { version: 2, page: location.pathname, fields: { interalWord: wordInput.value.trim(), lookupWord: lookupWordInput.value.trim(), lookupLang: lookupLangSelect.value, languageRows: languageRowsState }, result: r ? { ...r, rows: r.rows || [] } : null, flags: { checked: Boolean(r), accepted: Boolean(r?.accepted) }, ui: { activeTab: null, selectedLanguage: lookupLangSelect.value }, savedAt: new Date().toISOString() };
 }
@@ -2828,7 +2871,7 @@ function importIndoeuropanPageState(saved = {}) {
   wordInput.value = fields.interalWord || fields.word || '';
   lookupWordInput.value = fields.lookupWord || '';
   lookupLangSelect.value = fields.lookupLang || lookupLangSelect.value;
-  (fields.languageRows || []).forEach((row) => { const inputs = getRowInputs(row.code); if (inputs.word) inputs.word.value = row.word || ''; if (inputs.ipa) inputs.ipa.value = row.ipa || ''; });
+  (fields.languageRows || []).forEach((row) => { const inputs = getRowInputs(row.code); if (inputs.word) inputs.word.value = row.word || ''; if (inputs.romanization) inputs.romanization.value = row.romanization || ''; if (inputs.ipa) inputs.ipa.value = row.ipa || ''; });
   const restoredResult = saved.version === 2 ? saved.result : saved.lastCalculationPayload;
   lastCalculationPayload = restoredResult || null;
   if (restoredResult) {

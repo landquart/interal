@@ -29,7 +29,7 @@ const OFFLINE_TARGET_TRANSLATIONS = {
 
 const POS_VALUES = new Set(['noun','adjective','verb','adverb','pronoun','numeral','interjection','function_word','other']);
 const DECISIONS = new Set(['accepted','rejected','needs_manual_review']);
-const CONTROL_CODES = ['en','de','fr','es','it','ru','el'];
+const CONTROL_CODES = ['en','de','fr','es','it','ru'];
 const AUX_CODES = ['pl','sv','ca','oc','ro'];
 function cors(req,res){const o=req.headers.origin||'*'; res.setHeader('Access-Control-Allow-Origin', o); res.setHeader('Vary','Origin'); res.setHeader('Access-Control-Allow-Methods','POST,OPTIONS'); res.setHeader('Access-Control-Allow-Headers','Content-Type'); res.setHeader('Cache-Control','no-store');}
 function send(res,status,payload){res.statusCode=status; res.setHeader('Content-Type','application/json; charset=utf-8'); res.end(JSON.stringify(payload));}
@@ -103,7 +103,7 @@ Input:
 ${JSON.stringify(input,null,2)}
 
 Tasks:
-1. Translate the input meaning into all control languages: English, German, French, Spanish, Italian, Russian, Greek.
+1. Translate the input meaning into all control languages: English, German, French, Spanish, Italian, Russian.
 2. Translate the input meaning into all auxiliary languages: Polish, Swedish, Catalan, Occitan, Romanian.
 3. Analyze whether the candidate Interal form can be accepted as an Alter vordes form.
 4. Evaluate the form qualitatively by brevity, pronounceability, semantic and phonetic/graphic conflicts, neutrality, part of speech, future derivational potential, Interal endings, suffixes and prefixes, modified de Wahl rule if relevant, and whether the root allows natural derivations without excessive distortion.
@@ -124,7 +124,7 @@ Output only valid JSON using this schema shape:
   "partOfSpeech": "",
   "inputTranslation": "",
   "translations": {
-    "controlLanguages": { "en": "", "de": "", "fr": "", "es": "", "it": "", "ru": "", "el": "" },
+    "controlLanguages": { "en": "", "de": "", "fr": "", "es": "", "it": "", "ru": "" },
     "auxiliaryLanguages": { "pl": "", "sv": "", "ca": "", "oc": "", "ro": "" }
   },
   "analysis": {

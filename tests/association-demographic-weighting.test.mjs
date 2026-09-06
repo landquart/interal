@@ -50,13 +50,43 @@ assert.ok(result.finalAssociation < 60, 'the language with the larger N has the 
 assert.equal(result.languageScores[2].speakers, undefined, 'a language without selected derivatives is not represented');
 assert.deepEqual(result.languageAverageP, { en: 40, de: 80 });
 
+const withAssociationThreshold = calculateFinalAssociation({
+  languages,
+  languageResults: [
+    { normalized: 50, count: 1, associationNormalized: 34, semanticConfirmed: true },
+    { normalized: 50, count: 1, associationNormalized: 34, semanticConfirmed: true },
+    { normalized: 50, count: 1, associationNormalized: 34, semanticConfirmed: true }
+  ]
+});
+assert.equal(withAssociationThreshold.finalAssociation, 50);
+assert.equal(withAssociationThreshold.averageAssociation, 34);
+assert.equal(withAssociationThreshold.accepted, false, 'weighted mean A below 35 rejects even when FAv passes');
+
+const allThresholdsPass = calculateFinalAssociation({
+  languages,
+  languageResults: [
+    { normalized: 50, count: 1, associationNormalized: 35, semanticConfirmed: true },
+    { normalized: 50, count: 1, associationNormalized: 35, semanticConfirmed: true },
+    { normalized: 50, count: 1, associationNormalized: 35, semanticConfirmed: true }
+  ]
+});
+assert.equal(allThresholdsPass.averageAssociation, 35);
+assert.equal(allThresholdsPass.accepted, true);
+
 const derivativeAverage = calculateLanguageScore([
-  { selected: true, final_score: 20 },
-  { selected: true, final_score: 50 },
+  { selected: true, final_score: 20, association_score: 40 },
+  { selected: true, final_score: 50, association_score: 50 },
   { selected: false, final_score: 100 }
 ]);
 assert.equal(derivativeAverage.normalized, 35, 'P-bar uses the number of actually selected derivatives');
 assert.equal(derivativeAverage.count, 2);
+assert.equal(derivativeAverage.associationNormalized, 45, 'A-bar uses the same selected derivatives as P-bar');
+
+const incompleteAssociation = calculateLanguageScore([
+  { selected: true, final_score: 40, association_score: 50 },
+  { selected: true, final_score: 40 }
+]);
+assert.equal(incompleteAssociation.associationNormalized, null, 'A-bar is unavailable if any selected derivative lacks A');
 
 assert.throws(
   () => calculateFinalAssociation({ languages: [{ code: 'el', group: 'Hellenic' }], languageResults: [{ normalized: 50, sum: 50, count: 1 }] }),
@@ -102,7 +132,7 @@ assert.ok(insufficientBreadth.FAa >= 15);
 assert.equal(insufficientBreadth.accepted, false, 'a score above threshold does not replace breadth requirements');
 
 const associativeWordUi = await readFile('associativvordes/script.js', 'utf8');
-for (const field of ['representedLanguages', 'representedLanguageGroups', 'speakersTotal', 'weightedScoreTotal', 'languageAverageP', 'FAv', 'threshold', 'accepted']) {
+for (const field of ['representedLanguages', 'representedLanguageGroups', 'speakersTotal', 'weightedScoreTotal', 'languageAverageP', 'languageAverageA', 'FAv', 'AAverage', 'threshold', 'associationThreshold', 'accepted']) {
   assert.match(associativeWordUi, new RegExp(`\\b${field}\\b`), `associative word JSON retains ${field}`);
 }
 const affixUi = await readFile('affixes/script.js', 'utf8');

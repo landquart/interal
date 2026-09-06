@@ -145,7 +145,8 @@
   }
 
   /*
-   * Core segment inventory for the 7 control languages.
+   * Core segment inventory for the 9 control languages used by the
+   * common Indo-European word procedure.
    *
    * English:
    *   p b t d k g m n ŋ f v θ ð s z ʃ ʒ h t͡ʃ d͡ʒ
@@ -180,6 +181,10 @@
    *   p b t d k g c ɟ f v θ ð s z x ɣ ç ʝ
    *   m n ɲ l r j
    *   i e a o u
+   *
+   * Standard Hindi and Iranian Persian use the same extended IPA feature
+   * inventory below, including retroflex/dental consonants, aspiration,
+   * vowel length and nasalization.
    */
 
   const BASE_FEATURES = {

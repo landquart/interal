@@ -1,6 +1,6 @@
 {
   "id": "interal-derivation-context",
-  "version": "2026-06-29",
+  "version": "2026-09-06",
   "language": "en",
   "sourceDocuments": [
     {
@@ -318,8 +318,8 @@
       "partial compositionality",
       "semantic extension",
       "transfer",
-      "semantic conventionalization",
-      "lexicalization"
+      "exomotivation",
+      "demotivation"
     ],
     "diagnostics": {
       "predictability": "Can the accepted meaning be inferred from components and Interal rules without prior knowledge?",
@@ -330,18 +330,12 @@
     "markingRules": [
       "Nouns with international meaning receive -u.",
       "Adjectives with international meaning receive a natural suffix such as -al, -ari, -ic; adjectives with logical meaning use -i.",
-      "Verbs and some nouns with international meaning keep the conservative root without adding/changing final root letters, e.g. obseder, projecer.",
-      "Verbs with logical meaning use the modified root basis, e.g. obsesser, projecter.",
+      "Assign distinct forms to logical and international meanings only where the methodology table explicitly marks that distinction; do not infer a split merely from a possible root alternation.",
       "If there is no double root basis, one verb may carry both meanings, or the international verb can use suffix + -ar, e.g. repetitionar.",
       "Endings used to distinguish meanings cannot be replaced by -e: projectu cannot become projecte, while project can.",
       "When affixes are added to irregular derivatives, the meaning is the sum of the affix and the irregular derivative, unless an exception is specified."
     ],
     "examples": [
-      {
-        "logical": "obsession = sitting/opposite session; obsesser = sit opposite",
-        "international": "obsessionu = obsession; obseder = be obsessed",
-        "zone": "transfer"
-      },
       {
         "logical": "repetition = repeated request; repetir = request again/rehearse",
         "international": "repetitionu = rehearsal; repetitionar = rehearse",
@@ -355,17 +349,12 @@
       {
         "logical": "idei = idea-related",
         "international": "ideal = ideal",
-        "zone": "semantic extension"
-      },
-      {
-        "logical": "project = throw beyond",
-        "international": "projectu = project",
-        "zone": "semantic conventionalization/lexicalization risk"
+        "zone": "transfer"
       }
     ],
     "alterVordesUse": [
       "For Alter vordes, do not introduce a form that will create unresolved logical vs international ambiguity.",
-      "If a candidate naturally invites a logical derivative but the target meaning is internationalized, use the appropriate marking strategy or require manual review.",
+      "If a candidate naturally invites a logical derivative but the target meaning is internationalized, follow the table's ‘mark?’ decision; otherwise require manual review rather than inventing a distinction.",
       "Prefer a form whose future derivative family remains interpretable or whose opacity is explicitly manageable."
     ]
   },

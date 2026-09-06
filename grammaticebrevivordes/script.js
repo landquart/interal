@@ -75,6 +75,7 @@ const I18N = {
 const CRITERIA = [{ id: 'brevity', ru: 'Краткость', en: 'Brevity' }, { id: 'pronounceability', ru: 'Легкопроизносимость', en: 'Pronounceability' }, { id: 'recognizability', ru: 'Распознаваемость / когнативность', en: 'Recognizability / cognateness' }, { id: 'no_conflict', ru: 'Отсутствие конфликта', en: 'Absence of conflict' }];
 const CRITERIA_NAMES = CRITERIA.map(item => item.ru);
 const REQUIRED_CRITERIA_COUNT = 3;
+const MANDATORY_CRITERIA_IDS = new Set(['brevity', 'pronounceability', 'no_conflict']);
 function getDefaultState() {
   return {
     word: '',
@@ -111,7 +112,7 @@ async function resetState() {
 }
 
 function countPassedCriteria() { return state.criteria.filter(Boolean).length; }
-function isGrammarShortWordAccepted() { return countPassedCriteria() >= REQUIRED_CRITERIA_COUNT; }
+function isGrammarShortWordAccepted() { return CRITERIA.every((criterion, index) => !MANDATORY_CRITERIA_IDS.has(criterion.id) || state.criteria[index]); }
 function validateForm(){ return Boolean(state.word && state.meaning && state.part_of_speech); }
 function result(){ const n=countPassedCriteria(); return {passed:n,total:CRITERIA_NAMES.length,required:REQUIRED_CRITERIA_COUNT,accepted:isGrammarShortWordAccepted()}; }
 function makeCardDraft(author = null){ const criterionNotes = Object.fromEntries(CRITERIA.map((criterion,i)=>[criterion.id,state.comments[i]||'']).filter(([,note])=>note)); const card = { version:'1.0', card_type:'vord_card', vord_type:'gv', interal:{word:state.word, part_of_speech:state.part_of_speech}, meaning:state.meaning, translations:Object.fromEntries(LANGUAGES.map(lang=>[lang.code,state.translations[lang.code]||'']).filter(([,word])=>word)), procedure:'grammar_short_word', criteria:Object.fromEntries(CRITERIA.map((criterion,i)=>[criterion.id,Boolean(state.criteria[i])])) }; if (Object.keys(criterionNotes).length) card.criterion_notes = criterionNotes; if (author) card.author = author; return card; }

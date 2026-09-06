@@ -1,4 +1,4 @@
-import { analyzeAssociativeWord, finalAssociationPassesThreshold, calculateLanguageScore, calculateFinalAssociation, buildDecisionReasons, decisionStatusForResult, canCreateAssociativeJsonCard, normalizeLanguageStatus, summarizeLanguageStatuses, deriveGlobalStatusFromLanguageStatuses } from './js/association-analyzer.js';
+import { analyzeAssociativeWord, finalAssociationPassesThreshold, averageAssociationPassesThreshold, calculateLanguageScore, calculateFinalAssociation, buildDecisionReasons, decisionStatusForResult, canCreateAssociativeJsonCard, normalizeLanguageStatus, summarizeLanguageStatuses, deriveGlobalStatusFromLanguageStatuses } from './js/association-analyzer.js';
 import { QWEN_RUNTIME_CONFIG, QWEN_ERROR_CODES, createReviewBudget, refineCandidatesWithQwenAudit, validateFinalCandidatesWithQwen, selectBestFinalModels, compareFinalModelCandidates, finalizeCandidateOrdering, isAbortError, normalizeAbortError } from './js/qwen-client.js';
 import { escapeHtml, formatMetric, renderCandidateEvidenceDetails, resultRowClasses, swowLabel, thresholdStatusLabel, thresholdStatusForResult, semanticWarningLabel, languageStatusLabel } from './js/render-results.js';
 import { normalizeText, stripDiacritics, includesRoot, fuzzyIncludesRoot, findRootMatch, specialRootMatch } from './js/root-matcher.js';
@@ -50,7 +50,7 @@ const TEXT_I18N = {
           group: 'Группа', languageScore: 'Балл языка', weightSum: 'сумма весов', addWord: 'Добавить слово', use: 'Учитывать', word: 'Слово', model: 'Модель', frequencyPercent: 'F — частотность', directness: 'Di — прямота связи', fieldRelatedness: 'Pr — близость поля', domainShift: 'Sh — сдвиг области', swowBonus: 'SWOW-связь', associationPercent: 'A — ассоциация', finalPercent: 'P — вес деривата', status: 'Статус', explanation: 'Объяснение', warnings: 'Предупреждения', details: 'Детали', analyze: 'Анализировать', delete: 'Удалить', association: 'Ассоциация', rank: 'Ранг', frequency: 'Частота', weightP: 'Вес P'
         },
         results: {
-          finalAssociation: 'FA<sub>v</sub> — конечная ассоциация слова', totalAssociation: 'Σ(N<sub>l</sub> × P̄<sub>l</sub>)', speakersTotal: 'ΣN представленных языков', languagesRepresented: 'языков представлено', languageGroups: 'языковых групп', language: 'Язык', speakers: 'Число говорящих N', selectedDerivatives: 'Выбрано дериватов', languageAverageP: 'Средний P̄<sub>l</sub>', weightedLanguageP: 'N<sub>l</sub> × P̄<sub>l</sub>', calculationDetails: 'Детализация FA<sub>v</sub>', acceptanceCriteria: 'Критерии принятия', criterionLanguages: 'Минимум 3 языка', criterionGroups: 'Минимум 2 языковые группы', criterionThreshold: 'FA<sub>v</sub> ≥ 35 %', met: 'выполнено', notMet: 'не выполнено', accept: 'ПРИНЯТЬ', reject: 'НЕ ПРИНИМАТЬ', insufficientData: 'Недостаточно данных', noCalculatedData: 'Нет рассчитанных данных.', noCandidates: 'Кандидаты не найдены.', indexUnavailable: 'Индекс языка недоступен.', qwenUnavailable: 'Анализ Qwen недоступен.', calculationAborted: 'Расчёт был прерван.', calculationIncomplete: 'Расчёт не завершён.', partialErrors: 'Часть языков рассчитана с ошибками.', fewerLanguages: 'Представлено меньше 3 языков.', fewerGroups: 'Представлено меньше 2 языковых групп.', belowThreshold: 'FAᵥ ниже 35%.', semanticUnconfirmed: 'Семантическое соответствие не подтверждено.', reasons: 'Причины', warnings: 'Предупреждения', allMet: 'Все условия выполнены.'
+          finalAssociation: 'FA<sub>v</sub> — конечная ассоциация слова', averageAssociation: 'Ā — средняя ассоциация', totalAssociation: 'Σ(N<sub>l</sub> × P̄<sub>l</sub>)', speakersTotal: 'ΣN представленных языков', languagesRepresented: 'языков представлено', languageGroups: 'языковых групп', language: 'Язык', speakers: 'Число говорящих N', selectedDerivatives: 'Выбрано дериватов', languageAverageP: 'Средний P̄<sub>l</sub>', languageAverageA: 'Средний Ā<sub>l</sub>', weightedLanguageP: 'N<sub>l</sub> × P̄<sub>l</sub>', calculationDetails: 'Детализация FA<sub>v</sub>', acceptanceCriteria: 'Критерии принятия', criterionLanguages: 'Минимум 3 языка', criterionGroups: 'Минимум 2 языковые группы', criterionThreshold: 'FA<sub>v</sub> ≥ 35 %', criterionAssociationThreshold: 'Взвешенное среднее A ≥ 35 %', met: 'выполнено', notMet: 'не выполнено', accept: 'ПРИНЯТЬ', reject: 'НЕ ПРИНИМАТЬ', insufficientData: 'Недостаточно данных', noCalculatedData: 'Нет рассчитанных данных.', noCandidates: 'Кандидаты не найдены.', indexUnavailable: 'Индекс языка недоступен.', qwenUnavailable: 'Анализ Qwen недоступен.', calculationAborted: 'Расчёт был прерван.', calculationIncomplete: 'Расчёт не завершён.', partialErrors: 'Часть языков рассчитана с ошибками.', fewerLanguages: 'Представлено меньше 3 языков.', fewerGroups: 'Представлено меньше 2 языковых групп.', belowThreshold: 'FAᵥ ниже 35%.', associationBelowThreshold: 'Взвешенное среднее A ниже 35% или рассчитано не для всех выбранных производных.', semanticUnconfirmed: 'Семантическое соответствие не подтверждено.', reasons: 'Причины', warnings: 'Предупреждения', allMet: 'Все условия выполнены.'
         },
         alerts: {
           rootRequired: 'Введите кандидатный корень или предлог.',
@@ -102,7 +102,7 @@ const TEXT_I18N = {
           group: 'Group', languageScore: 'Language score', weightSum: 'weight sum', addWord: 'Add word', use: 'Use', word: 'Word', model: 'Model', frequencyPercent: 'F — frequency', directness: 'Di — directness', fieldRelatedness: 'Pr — field proximity', domainShift: 'Sh — domain shift', swowBonus: 'SWOW evidence', associationPercent: 'A — association', finalPercent: 'P — derivative weight', status: 'Status', explanation: 'Explanation', warnings: 'Warnings', details: 'Details', analyze: 'Analyze', delete: 'Delete', association: 'Association', rank: 'Rank', frequency: 'Frequency', weightP: 'Weight P'
         },
         results: {
-          finalAssociation: 'FA<sub>v</sub> — final word association', totalAssociation: 'Σ(N<sub>l</sub> × P̄<sub>l</sub>)', speakersTotal: 'ΣN of represented languages', languagesRepresented: 'languages represented', languageGroups: 'language groups', language: 'Language', speakers: 'Speakers N', selectedDerivatives: 'Selected derivatives', languageAverageP: 'Average P̄<sub>l</sub>', weightedLanguageP: 'N<sub>l</sub> × P̄<sub>l</sub>', calculationDetails: 'FA<sub>v</sub> details', acceptanceCriteria: 'Acceptance criteria', criterionLanguages: 'At least 3 languages', criterionGroups: 'At least 2 language groups', criterionThreshold: 'FA<sub>v</sub> ≥ 35%', met: 'met', notMet: 'not met', accept: 'ACCEPT', reject: 'DO NOT ACCEPT', insufficientData: 'Insufficient data', noCalculatedData: 'No calculated data.', noCandidates: 'No candidates found.', indexUnavailable: 'The language index is unavailable.', qwenUnavailable: 'Qwen analysis is unavailable.', calculationAborted: 'The calculation was aborted.', calculationIncomplete: 'The calculation is incomplete.', partialErrors: 'Some languages were calculated with errors.', fewerLanguages: 'Fewer than 3 languages are represented.', fewerGroups: 'Fewer than 2 language groups are represented.', belowThreshold: 'FAᵥ is below 35%.', semanticUnconfirmed: 'Semantic correspondence is not confirmed.', reasons: 'Reasons', warnings: 'Warnings', allMet: 'All conditions are met.'
+          finalAssociation: 'FA<sub>v</sub> — final word association', averageAssociation: 'Ā — average association', totalAssociation: 'Σ(N<sub>l</sub> × P̄<sub>l</sub>)', speakersTotal: 'ΣN of represented languages', languagesRepresented: 'languages represented', languageGroups: 'language groups', language: 'Language', speakers: 'Speakers N', selectedDerivatives: 'Selected derivatives', languageAverageP: 'Average P̄<sub>l</sub>', languageAverageA: 'Average Ā<sub>l</sub>', weightedLanguageP: 'N<sub>l</sub> × P̄<sub>l</sub>', calculationDetails: 'FA<sub>v</sub> details', acceptanceCriteria: 'Acceptance criteria', criterionLanguages: 'At least 3 languages', criterionGroups: 'At least 2 language groups', criterionThreshold: 'FA<sub>v</sub> ≥ 35%', criterionAssociationThreshold: 'Weighted mean A ≥ 35%', met: 'met', notMet: 'not met', accept: 'ACCEPT', reject: 'DO NOT ACCEPT', insufficientData: 'Insufficient data', noCalculatedData: 'No calculated data.', noCandidates: 'No candidates found.', indexUnavailable: 'The language index is unavailable.', qwenUnavailable: 'Qwen analysis is unavailable.', calculationAborted: 'The calculation was aborted.', calculationIncomplete: 'The calculation is incomplete.', partialErrors: 'Some languages were calculated with errors.', fewerLanguages: 'Fewer than 3 languages are represented.', fewerGroups: 'Fewer than 2 language groups are represented.', belowThreshold: 'FAᵥ is below 35%.', associationBelowThreshold: 'Weighted mean A is below 35% or is not available for every selected derivative.', semanticUnconfirmed: 'Semantic correspondence is not confirmed.', reasons: 'Reasons', warnings: 'Warnings', allMet: 'All conditions are met.'
         },
         alerts: {
           rootRequired: 'Enter a candidate root or preposition.',
@@ -992,12 +992,13 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
       const criterion = (label, passed) => `<li><strong>${label}:</strong> ${passed ? labels.met : labels.notMet}</li>`;
       resultBox.innerHTML = `
         <div class="metric is-updated"><strong>${formatPercent(result.finalAssociation, 1)}</strong><span>${labels.finalAssociation}</span></div>
+        <div class="metric"><strong>${formatPercent(result.averageAssociation, 1)}</strong><span>${labels.averageAssociation}</span></div>
         <div class="metric"><strong>${numberFormat.format(result.weightedScoreTotal)}</strong><span>${labels.totalAssociation}</span></div>
         <div class="metric"><strong>${numberFormat.format(result.speakersTotal)}</strong><span>${labels.speakersTotal}</span></div>
         <div class="metric"><strong>${result.representedLangs}/${LANGUAGES.length}</strong><span>${labels.languagesRepresented}</span></div>
         <div class="metric"><strong>${result.groups}/${new Set(LANGUAGES.map(l => l.group)).size}</strong><span>${labels.languageGroups}</span></div>
-        <details open class="language-table-wrap"><summary>${labels.calculationDetails}</summary><div class="result-table-scroll"><table><thead><tr><th>${labels.language}</th><th>${labels.speakers}</th><th>${labels.selectedDerivatives}</th><th>${labels.languageAverageP}</th><th>${labels.weightedLanguageP}</th></tr></thead><tbody>${representedRows.map(item => `<tr><th>${escapeHtml(textGroup('languages')[item.lang.code] || item.lang.name)}</th><td>${numberFormat.format(item.speakers)}</td><td>${item.count}</td><td>${formatMetric(item.normalized, 2)}</td><td>${numberFormat.format(item.weightedScore)}</td></tr>`).join('')}</tbody></table></div></details>
-        <details open class="acceptance-criteria"><summary>${labels.acceptanceCriteria}</summary><ul>${criterion(labels.criterionLanguages, result.representedLangs >= 3)}${criterion(labels.criterionGroups, result.groups >= 2)}${criterion(labels.criterionThreshold, finalAssociationPassesThreshold(result.finalAssociation))}</ul></details>
+        <details open class="language-table-wrap"><summary>${labels.calculationDetails}</summary><div class="result-table-scroll"><table><thead><tr><th>${labels.language}</th><th>${labels.speakers}</th><th>${labels.selectedDerivatives}</th><th>${labels.languageAverageP}</th><th>${labels.languageAverageA}</th><th>${labels.weightedLanguageP}</th></tr></thead><tbody>${representedRows.map(item => `<tr><th>${escapeHtml(textGroup('languages')[item.lang.code] || item.lang.name)}</th><td>${numberFormat.format(item.speakers)}</td><td>${item.count}</td><td>${formatMetric(item.normalized, 2)}</td><td>${formatMetric(item.associationNormalized, 2)}</td><td>${numberFormat.format(item.weightedScore)}</td></tr>`).join('')}</tbody></table></div></details>
+        <details open class="acceptance-criteria"><summary>${labels.acceptanceCriteria}</summary><ul>${criterion(labels.criterionLanguages, result.representedLangs >= 3)}${criterion(labels.criterionGroups, result.groups >= 2)}${criterion(labels.criterionThreshold, finalAssociationPassesThreshold(result.finalAssociation))}${criterion(labels.criterionAssociationThreshold, averageAssociationPassesThreshold(result.averageAssociation))}</ul></details>
       `;
       resultBox.classList.add('is-updated');
 
@@ -1009,6 +1010,7 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
         fewer_than_3_languages: labels.fewerLanguages,
         fewer_than_2_groups: labels.fewerGroups,
         final_association_below_35: labels.belowThreshold,
+        average_association_below_35: labels.associationBelowThreshold,
         semantic_not_confirmed: labels.semanticUnconfirmed,
         some_languages_no_candidates: labels.noCandidates,
         some_languages_index_error: labels.indexUnavailable,
@@ -1230,7 +1232,7 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
       );
       const languageCalculation = Object.fromEntries(result.languageScores
         .filter(item => Number(item.count) > 0 && Number.isFinite(Number(item.normalized)))
-        .map(item => [item.lang.code, { N: item.speakers, selectedCount: item.count, averageP: item.normalized, weightedScore: item.weightedScore }]));
+        .map(item => [item.lang.code, { N: item.speakers, selectedCount: item.count, averageP: item.normalized, averageA: item.associationNormalized, weightedScore: item.weightedScore }]));
       if (!String(state.translationWord || '').trim()) {
         throw new Error(textGroup('alerts').translationRequired);
       }
@@ -1276,9 +1278,13 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
           speakersTotal: result.speakersTotal,
           weightedScoreTotal: result.weightedScoreTotal,
           languageAverageP: result.languageAverageP,
+          languageAverageA: result.languageAverageA,
           languageCalculation,
           FAv: result.FAv,
+          AAverage: result.AAverage,
+          averageAssociation: result.averageAssociation,
           threshold: result.threshold,
+          associationThreshold: result.associationThreshold,
           accepted: result.accepted
         },
         language_results: selectedLanguages.map(item => ({
@@ -1291,6 +1297,7 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
           speakers: languageCalculation[item.code]?.N,
           selected_count: languageCalculation[item.code]?.selectedCount,
           language_average_P: languageCalculation[item.code]?.averageP,
+          language_average_A: languageCalculation[item.code]?.averageA ?? null,
           weighted_score: languageCalculation[item.code]?.weightedScore,
           frequency: { score: item.frequency_score },
           association: item.analysis?.association || {}
@@ -1315,6 +1322,7 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
         N: finiteOrNull(item?.speakers),
         selectedCount: finiteOrNull(item?.selected_count),
         languageAverageP: finiteOrNull(item?.language_average_P),
+        languageAverageA: finiteOrNull(item?.language_average_A),
         weightedScore: finiteOrNull(item?.weighted_score),
         F: finiteOrNull(item?.frequency?.score ?? a.F),
         Di: finiteOrNull(a.Di),
@@ -1346,9 +1354,13 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
           speakersTotal: finiteOrNull(card.calculation?.speakersTotal),
           weightedScoreTotal: finiteOrNull(card.calculation?.weightedScoreTotal),
           languageAverageP: card.calculation?.languageAverageP || {},
+          languageAverageA: card.calculation?.languageAverageA || {},
           languageCalculation: card.calculation?.languageCalculation || {},
           FAv: finiteOrNull(card.calculation?.FAv),
+          AAverage: finiteOrNull(card.calculation?.AAverage),
+          averageAssociation: finiteOrNull(card.calculation?.averageAssociation),
           threshold: finiteOrNull(card.calculation?.threshold),
+          associationThreshold: finiteOrNull(card.calculation?.associationThreshold),
           accepted: card.calculation?.accepted === true
         },
         language_evidence: (card.language_results || []).map(compactAssociativeLanguageResult).filter(Boolean)
