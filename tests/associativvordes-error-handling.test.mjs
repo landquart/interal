@@ -10,7 +10,7 @@ const runner = await readFile('associativvordes/js/associative-calculation-runne
 
 assert.equal(QWEN_RUNTIME_CONFIG.enableCandidateGeneration, true, 'bounded supplemental Qwen candidate generation is enabled');
 assert.equal(QWEN_RUNTIME_CONFIG.maxGeneratedCandidatesPerLanguage, 2, 'candidate generation cannot create an unbounded result set');
-assert.deepEqual(THRESHOLDS, { main: 35 }, 'only the final association threshold remains');
+assert.deepEqual(THRESHOLDS, { main: 35, association: 35 }, 'final FA and average A use the documented threshold');
 assert.equal(QWEN_RUNTIME_CONFIG.enableReviewModel, true, 'score-triggered per-word review is enabled for disputed primary scores');
 assert.equal(QWEN_RUNTIME_CONFIG.autoAnalyzeCandidatesPerLanguage, 5, 'automatic analysis is limited to five model representatives per language');
 assert.equal(QWEN_RUNTIME_CONFIG.maxReviewRequestsPerSearch, Infinity, 'review request budget no longer disables disputed-score review');
