@@ -15,7 +15,7 @@ const languages = [
   { code: 'fr', group: 'romance' }
 ];
 
-const empty = calculateFinalAssociation({ languages, languageResults: languages.map(() => ({ sum: null, normalized: null, count: 0 })) });
+const empty = calculateFinalAssociation({ languages, languageResults: languages.map(() => ({ sum: null, normalized: null, count: 0, associationSum: null, associationNormalized: null, associationCount: 0 })) });
 assert.equal(empty.finalAssociation, null, 'empty languages produce no FA');
 assert.equal(empty.totalAssociation, null, 'empty language sum is not a completed TA');
 assert.equal(empty.hasCalculatedData, false, 'empty languages have no calculated data');
@@ -23,8 +23,8 @@ assert.equal(empty.semanticConfirmed, false, 'empty languages do not confirm sem
 assert.equal(empty.accepted, false, 'empty languages are rejected without numeric FA');
 
 const zeroLanguage = calculateLanguageScore([{ selected: true, final_score: 0 }], { scoreGetter: item => item.final_score });
-assert.deepEqual(zeroLanguage, { sum: 0, normalized: 0, count: 1 }, 'calculated zero word stays a real zero');
-const realZeroFinal = calculateFinalAssociation({ languages: [languages[0]], languageResults: [{ sum: 0, normalized: 0, count: 1, semanticConfirmed: true }] });
+assert.deepEqual(zeroLanguage, { sum: 0, normalized: 0, count: 1, associationSum: null, associationNormalized: null, associationCount: 0 }, 'calculated zero word stays a real zero');
+const realZeroFinal = calculateFinalAssociation({ languages: [languages[0]], languageResults: [{ sum: 0, normalized: 0, associationNormalized: 0, count: 1, semanticConfirmed: true }] });
 assert.equal(realZeroFinal.finalAssociation, 0, 'one calculated language with score 0 gives FA 0');
 assert.equal(realZeroFinal.totalAssociation, 0, 'real zero stays TA 0');
 assert.equal(realZeroFinal.hasCalculatedData, true, 'real zero counts as calculated data');
@@ -53,7 +53,7 @@ assert.equal(canCreateAssociativeJsonCard(empty), false, 'JSON card is unavailab
 assert.equal(canCreateAssociativeJsonCard(realZeroFinal), false, 'JSON card is not blocked merely by zero; methodology acceptance blocks this case');
 assert.equal(realZeroFinal.hasCalculatedData, true, 'zero is treated as a completed calculation');
 
-const oneLanguageHighFa = calculateFinalAssociation({ languages: [languages[0]], languageResults: [{ sum: 40, normalized: 40, count: 1, semanticConfirmed: true }] });
+const oneLanguageHighFa = calculateFinalAssociation({ languages: [languages[0]], languageResults: [{ sum: 40, normalized: 40, associationNormalized: 40, count: 1, semanticConfirmed: true }] });
 assert.equal(oneLanguageHighFa.finalAssociation, 40, 'FA 40 with one language is calculated');
 assert.equal(oneLanguageHighFa.groups, 1, 'FA 40 with one language has one represented group');
 assert.equal(oneLanguageHighFa.accepted, false, 'FA 40 with 1 language and 1 group is rejected');
@@ -62,9 +62,9 @@ assert.equal(decisionStatusForResult(oneLanguageHighFa), 'reject', 'FA 40 with 1
 const threeLanguagesOneGroupHighFa = calculateFinalAssociation({
   languages: [{ code: 'en', group: 'germanic' }, { code: 'de', group: 'germanic' }, { code: 'en', group: 'germanic' }],
   languageResults: [
-    { sum: 40, normalized: 40, count: 1, semanticConfirmed: true },
-    { sum: 40, normalized: 40, count: 1, semanticConfirmed: true },
-    { sum: 40, normalized: 40, count: 1, semanticConfirmed: true }
+    { sum: 40, normalized: 40, associationNormalized: 40, count: 1, semanticConfirmed: true },
+    { sum: 40, normalized: 40, associationNormalized: 40, count: 1, semanticConfirmed: true },
+    { sum: 40, normalized: 40, associationNormalized: 40, count: 1, semanticConfirmed: true }
   ]
 });
 assert.equal(threeLanguagesOneGroupHighFa.finalAssociation, 40, 'FA 40 with three languages is calculated');
@@ -75,9 +75,9 @@ assert.equal(decisionStatusForResult(threeLanguagesOneGroupHighFa), 'reject', 'F
 const threeLanguagesTwoGroupsHighFa = calculateFinalAssociation({
   languages,
   languageResults: [
-    { sum: 40, normalized: 40, count: 1, semanticConfirmed: true },
-    { sum: 40, normalized: 40, count: 1, semanticConfirmed: true },
-    { sum: 40, normalized: 40, count: 1, semanticConfirmed: true }
+    { sum: 40, normalized: 40, associationNormalized: 40, count: 1, semanticConfirmed: true },
+    { sum: 40, normalized: 40, associationNormalized: 40, count: 1, semanticConfirmed: true },
+    { sum: 40, normalized: 40, associationNormalized: 40, count: 1, semanticConfirmed: true }
   ]
 });
 assert.equal(threeLanguagesTwoGroupsHighFa.finalAssociation, 40, 'FA 40 with three languages and two groups is calculated');
@@ -87,7 +87,7 @@ assert.equal(decisionStatusForResult(threeLanguagesTwoGroupsHighFa), 'accept', '
 
 const sixLanguagesLowFa = calculateFinalAssociation({
   languages: [...languages, { code: 'es', group: 'romance' }, { code: 'it', group: 'romance' }, { code: 'ru', group: 'slavic' }],
-  languageResults: Array.from({ length: 6 }, () => ({ sum: 34.99, normalized: 34.99, count: 1, semanticConfirmed: true }))
+  languageResults: Array.from({ length: 6 }, () => ({ sum: 34.99, normalized: 34.99, associationNormalized: 34.99, count: 1, semanticConfirmed: true }))
 });
 assert.equal(sixLanguagesLowFa.finalAssociation, 34.99, 'FA 34.99 with six languages and three groups is calculated');
 assert.equal(sixLanguagesLowFa.groups, 3, 'FA 34.99 fixture spans three groups');
@@ -100,8 +100,8 @@ assert.equal(canCreateAssociativeJsonCard(threeLanguagesTwoGroupsHighFa), true, 
 assert.equal(canCreateAssociativeJsonCard(sixLanguagesLowFa), false, 'JSON card is blocked when FA is below threshold');
 
 const noWords = calculateLanguageScore([], { scoreGetter: item => item.final_score });
-assert.deepEqual(noWords, { sum: null, normalized: null, count: 0 }, 'no selected calculated words returns nulls');
+assert.deepEqual(noWords, { sum: null, normalized: null, count: 0, associationSum: null, associationNormalized: null, associationCount: 0 }, 'no selected calculated words returns nulls');
 const calculatedZeroWord = calculateLanguageScore([{ selected: true, final_score: 0 }], { scoreGetter: item => item.final_score, maxModels: 1 });
-assert.deepEqual(calculatedZeroWord, { sum: 0, normalized: 0, count: 1 }, 'calculated zero word returns zero, not null');
+assert.deepEqual(calculatedZeroWord, { sum: 0, normalized: 0, count: 1, associationSum: null, associationNormalized: null, associationCount: 0 }, 'calculated zero word returns zero, not null');
 
 console.log('associativvordes no-data tests passed');
