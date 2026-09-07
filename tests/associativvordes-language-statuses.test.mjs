@@ -18,7 +18,7 @@ const languages = [
   { code: 'it', group: 'Romance' },
   { code: 'ru', group: 'Slavic' }
 ];
-const success = (normalized = 50, semanticConfirmed = true) => ({ sum: normalized, normalized, count: 1, semanticConfirmed });
+const success = (normalized = 50, semanticConfirmed = true) => ({ sum: normalized, normalized, associationNormalized: normalized, count: 1, semanticConfirmed });
 const empty = { sum: null, normalized: null, count: 0, semanticConfirmed: false };
 
 assert.equal(normalizeLanguageStatus({ status: 'no_candidates', candidateCount: 10 }).status, 'no_candidates', 'no_candidates remains distinct');
