@@ -42,7 +42,7 @@ assert.match(intl, /ю:'ju'/);
 assert.match(intl, /я:'ja'/);
 assert.match(intl, /const semanticConfirmed = state\.semanticConfirmed === true/);
 assert.match(intl, /accepted: coverageAccepted && semanticConfirmed/);
-assert.match(intl, /semantic_correspondence_confirmed: semanticConfirmed/);
+assert.match(intl, /semantic_correspondence_confirmed: r\.semanticConfirmed/);
 assert.match(intl, /resultSection\.hidden = !checked/);
 assert.ok(intl.includes(".replace(/[^a-z0-9'-]/g, '')"), 'normalization preserves the documented hard sign and soft sign outputs');
 
