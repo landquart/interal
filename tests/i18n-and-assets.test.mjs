@@ -54,3 +54,7 @@ for (const file of repoFiles) {
   }
 }
 console.log('i18n/assets tests passed');
+
+const registryPage = await readFile('registre/index.html', 'utf8');
+assert.match(registryPage, /'Indo-Aryan': 'индоарийская'/);
+assert.match(registryPage, /Iranian: 'иранская'/);
