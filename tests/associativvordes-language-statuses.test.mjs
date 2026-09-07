@@ -91,7 +91,7 @@ assert.equal(decisionStatusForResult(semanticBad), 'accept', 'semantic uncertain
 
 const duplicateOrder = buildDecisionReasons({ ...faZero, languageStatusSummary: summarizeLanguageStatuses({ en: { status: 'index_error' }, de: { status: 'index_error' } }) });
 assert.equal(new Set(duplicateOrder.critical).size, duplicateOrder.critical.length, 'critical reasons are unique');
-assert.deepEqual(duplicateOrder.critical, ['final_association_below_35'], 'critical reasons have deterministic order when breadth thresholds pass');
+assert.deepEqual(duplicateOrder.critical, ['final_association_below_35', 'average_association_below_35'], 'critical reasons include both documented thresholds in deterministic order');
 
 for (const status of ['idle', 'loading_index', 'grouping_candidates', 'candidate_audit', 'no_candidates', 'analyzing', 'reviewing', 'completed', 'completed_with_warnings', 'index_error', 'qwen_error', 'incomplete', 'aborted']) {
   assert.ok(languageStatusLabel({ status }, 'ru'), `RU label exists for ${status}`);
