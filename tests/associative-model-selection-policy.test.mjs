@@ -52,9 +52,9 @@ assert.equal(limitedLanguage.normalized, 80, 'the sixth selected word is exclude
 const accepted = calculateFinalAssociation({
   languages: [{ code: 'en', group: 'Germanic' }, { code: 'fr', group: 'Romance' }, { code: 'ru', group: 'Slavic' }],
   languageResults: [
-    { normalized: 40, sum: 40, count: 1, semanticConfirmed: true },
-    { normalized: 40, sum: 40, count: 1, semanticConfirmed: true },
-    { normalized: 40, sum: 40, count: 1, semanticConfirmed: true }
+    { normalized: 40, associationNormalized: 40, sum: 40, count: 1, semanticConfirmed: true },
+    { normalized: 40, associationNormalized: 40, sum: 40, count: 1, semanticConfirmed: true },
+    { normalized: 40, associationNormalized: 40, sum: 40, count: 1, semanticConfirmed: true }
   ],
   languageStatuses: { en: { status: 'completed' }, fr: { status: 'completed' }, ru: { status: 'completed' } }
 });
@@ -63,9 +63,9 @@ assert.equal(decisionStatusForResult(accepted), 'accept');
 const rejected = calculateFinalAssociation({
   languages: [{ code: 'en', group: 'Germanic' }, { code: 'fr', group: 'Romance' }, { code: 'ru', group: 'Slavic' }],
   languageResults: [
-    { normalized: 34, sum: 34, count: 1, semanticConfirmed: true },
-    { normalized: 34, sum: 34, count: 1, semanticConfirmed: true },
-    { normalized: 34, sum: 34, count: 1, semanticConfirmed: true }
+    { normalized: 34, associationNormalized: 34, sum: 34, count: 1, semanticConfirmed: true },
+    { normalized: 34, associationNormalized: 34, sum: 34, count: 1, semanticConfirmed: true },
+    { normalized: 34, associationNormalized: 34, sum: 34, count: 1, semanticConfirmed: true }
   ],
   languageStatuses: { en: { status: 'completed' }, fr: { status: 'completed' }, ru: { status: 'completed' } }
 });
