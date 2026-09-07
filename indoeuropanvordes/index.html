@@ -1714,23 +1714,6 @@ function normalizeGraphicInput(word, langCode, explicitRomanization = "") {
     .replace(/ł/g, "l");
 }
 
-function normalizeGraphicInput(word, langCode, explicitRomanization = "") {
-  const normalized = normalize(word);
-
-  if (langCode === "interal") return stripInteralStressMarks(normalized);
-  if (langCode === "ru") return transliterateRussian(normalized);
-  if (langCode === "el") return transliterateGreek(normalized);
-  if (langCode === "hi") return normalize(explicitRomanization || transliterateHindi(normalized));\n  if (langCode === "fa") return normalize(explicitRomanization || transliteratePersian(normalized));
-
-  return normalized
-    .replace(/ß/g, "ss")
-    .replace(/æ/g, "ae")
-    .replace(/œ/g, "oe")
-    .replace(/ð/g, "d")
-    .replace(/þ/g, "th")
-    .replace(/ł/g, "l");
-}
-
 function isInteralVowel(ch) {
   return INTERAL_VOWELS.has(ch);
 }
