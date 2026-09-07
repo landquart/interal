@@ -1429,6 +1429,7 @@ function makeIndoeuropanCard(payload, timeMeta, author = null) {
     ...(author ? { author } : {}),
     supported_groups: Array.isArray(payload.supportedGroups) ? payload.supportedGroups : [],
     procedure: "indoeuropan_word",
+    semantic_correspondence_confirmed: payload.semanticOk === true,
     result: {
       pi_percent: finiteOrNull(payload.formalPI)
     },
