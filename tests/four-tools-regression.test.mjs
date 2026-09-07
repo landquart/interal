@@ -7,6 +7,8 @@ const assocClient = await readFile('associativvordes/js/qwen-client.js','utf8');
 const qwenApi = await readFile('api/qwen-analyze.js','utf8');
 const vc = await readFile('vordesofcommunites/script.js','utf8');
 const gv = await readFile('grammaticebrevivordes/script.js','utf8');
+const intlHtml = await readFile('internationalismes/index.html','utf8');
+const intl = await readFile('internationalismes/script.js','utf8');
 
 assert.match(qwenApi, /associative_word_score/);
 assert.match(assocClient, /task: 'associative_word_score'/);
@@ -31,4 +33,17 @@ assert.match(gv, /finalized/);
 assert.match(gv, /REQUIRED_CRITERIA_COUNT = 3/);
 assert.match(gv, /MANDATORY_CRITERIA_IDS = new Set\(\['brevity', 'pronounceability', 'no_conflict'\]\)/);
 assert.match(gv, /procedure:'grammar_short_word'/);
+assert.match(intlHtml, /id="semanticConfirmed"/);
+assert.match(intl, /е:'je'/);
+assert.match(intl, /ё:'jo'/);
+assert.match(intl, /ъ:'-'/);
+assert.match(intl, /ь:"'"/);
+assert.match(intl, /ю:'ju'/);
+assert.match(intl, /я:'ja'/);
+assert.match(intl, /const semanticConfirmed = state\.semanticConfirmed === true/);
+assert.match(intl, /const accepted = coverageAccepted && semanticConfirmed/);
+assert.match(intl, /semantic_correspondence_confirmed: semanticConfirmed/);
+assert.match(intl, /resultSection\.hidden = !checked/);
+assert.ok(intl.includes(".replace(/[^a-z\\-' ]+/g, '')"), 'normalization preserves the documented hard sign and soft sign outputs');
+
 console.log('tool regression tests passed');
