@@ -635,6 +635,11 @@ body.dark-theme .internationalita-page .json-card-icon-btn.is-copied {
     </div>
   </div>
 
+  <label class="checkbox-line" for="semanticOk">
+    <input id="semanticOk" type="checkbox">
+    <span id="semanticOkLabel">Семантическое соответствие слов подтверждено</span>
+  </label>
+
   <div class="table-wrap" id="tableWrap" style="display:none">
     <table>
       <thead>
@@ -772,6 +777,7 @@ const CREATED_AT_ENDPOINT = "https://interal.vercel.app/api/created_at";
 const wordInput = document.getElementById("interalWord");
 const lookupWordInput = document.getElementById("lookupWord");
 const lookupLangSelect = document.getElementById("lookupLang");
+const semanticOkInput = document.getElementById("semanticOk");
 const languageRows = document.getElementById("languageRows");
 const tableWrap = document.getElementById("tableWrap");
 const calcBtn = document.getElementById("calcBtn");
@@ -804,6 +810,7 @@ const TEXT_I18N = {
     interalWordLabel: "Слово-гипотеза на Интерале",
     lookupWordLabel: "Слово на другом языке",
     lookupLangLabel: "Язык поиска",
+    semanticOkLabel: "Семантическое соответствие слов подтверждено",
     calcBtn: "Рассчитать",
     explainBtn: "Пояснение",
     jsonCardBtn: "Сформировать JSON-карточку",
@@ -914,6 +921,7 @@ const TEXT_I18N = {
     interalWordLabel: "Word-hypothesis in Interal",
     lookupWordLabel: "Word in another language",
     lookupLangLabel: "Search language",
+    semanticOkLabel: "Semantic correspondence of the words is confirmed",
     calcBtn: "Calculate",
     explainBtn: "Explanation",
     jsonCardBtn: "Generate JSON card",
@@ -1166,6 +1174,7 @@ function hasUserInputForReset() {
   return [
     wordInput.value,
     lookupWordInput.value,
+    semanticOkInput.checked ? "semantic-confirmed" : "",
     ...Array.from(document.querySelectorAll("#languageRows .table-input"), (input) => input.value)
   ].some((value) => String(value || "").trim().length >= 1);
 }
@@ -1237,6 +1246,7 @@ function applyLocalizedTexts(lang = currentLang()) {
   setText("#interalWordLabel", text.interalWordLabel);
   setText("#lookupWordLabel", text.lookupWordLabel);
   setText("#lookupLangLabel", text.lookupLangLabel);
+  setText("#semanticOkLabel", text.semanticOkLabel);
   setText("#calcBtn", text.calcBtn);
   setText("#explainBtn", text.explainBtn);
   setText("#jsonCardBtn", text.jsonCardBtn);
@@ -2263,7 +2273,7 @@ async function calculateInternationality() {
   jsonCardBtn.style.display = "none";
   jsonCardOutput.value = "";
   const interalWord = wordInput.value.trim();
-  const semanticOk = true;
+  const semanticOk = semanticOkInput.checked === true;
   const autoIpa = true;
   const supportThreshold = 0.4;
   const minPercent = 40;
@@ -3018,13 +3028,14 @@ explainModal.addEventListener("click", (event) => {
 function collectIndoeuropanPageState() {
   const languageRowsState = CONTROL_LANGUAGES.map((lang) => { const inputs = getRowInputs(lang.code); return { code: lang.code, word: inputs.word?.value || '', romanization: inputs.romanization?.value || '', ipa: inputs.ipa?.value || '' }; });
   const r = lastCalculationPayload;
-  return { version: 2, page: location.pathname, fields: { interalWord: wordInput.value.trim(), lookupWord: lookupWordInput.value.trim(), lookupLang: lookupLangSelect.value, languageRows: languageRowsState }, result: r ? { ...r, rows: r.rows || [] } : null, flags: { checked: Boolean(r), accepted: Boolean(r?.accepted) }, ui: { activeTab: null, selectedLanguage: lookupLangSelect.value }, savedAt: new Date().toISOString() };
+  return { version: 2, page: location.pathname, fields: { interalWord: wordInput.value.trim(), lookupWord: lookupWordInput.value.trim(), lookupLang: lookupLangSelect.value, semanticOk: semanticOkInput.checked === true, languageRows: languageRowsState }, result: r ? { ...r, rows: r.rows || [] } : null, flags: { checked: Boolean(r), accepted: Boolean(r?.accepted) }, ui: { activeTab: null, selectedLanguage: lookupLangSelect.value }, savedAt: new Date().toISOString() };
 }
 function importIndoeuropanPageState(saved = {}) {
   const fields = saved.version === 2 && saved.fields ? saved.fields : saved;
   wordInput.value = fields.interalWord || fields.word || '';
   lookupWordInput.value = fields.lookupWord || '';
   lookupLangSelect.value = fields.lookupLang || lookupLangSelect.value;
+  semanticOkInput.checked = fields.semanticOk === true;
   (fields.languageRows || []).forEach((row) => { const inputs = getRowInputs(row.code); if (inputs.word) inputs.word.value = row.word || ''; if (inputs.romanization) inputs.romanization.value = row.romanization || ''; if (inputs.ipa) inputs.ipa.value = row.ipa || ''; });
   const restoredResult = saved.version === 2 ? saved.result : saved.lastCalculationPayload;
   lastCalculationPayload = restoredResult || null;
@@ -3058,7 +3069,7 @@ window.InteralPageStateImport = importIndoeuropanPageState;
 calcBtn.addEventListener("click", calculateInternationality);
 resetBtn.addEventListener("click", resetAll);
 
-[wordInput, lookupWordInput, lookupLangSelect].forEach((element) => {
+[wordInput, lookupWordInput, lookupLangSelect, semanticOkInput].forEach((element) => {
   element.addEventListener("input", invalidateRestoredIndoeuropanResult);
   element.addEventListener("change", invalidateRestoredIndoeuropanResult);
 });
