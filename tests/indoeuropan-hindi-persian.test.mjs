@@ -42,6 +42,7 @@ assert.equal(byId(154).fa.romanization, 'laġzidan');
 assert.equal(byId(159).fa.romanization, 'tof kardan');
 
 const ui = await readFile('indoeuropanvordes/index.html', 'utf8');
+const aline = await readFile('indoeuropanvordes/aline.js', 'utf8');
 assert.match(ui, /code: "hi"[\s\S]*speakers: 611000/);
 assert.match(ui, /code: "fa"[\s\S]*speakers: 82000/);
 assert.match(ui, /Final PI requires all 9 control languages/);
@@ -53,5 +54,13 @@ assert.ok(ui.includes('if (ch === "\\u200c") { result += "-";'), 'Persian ZWNJ i
 assert.ok(ui.includes('.replace(/هٔ|ه\\u200cی/g, "e-ye")'), 'Persian ezafe after he is handled explicitly');
 assert.match(ui, /explicitRomanization \|\| transliterateHindi/);
 assert.match(ui, /explicitRomanization \|\| transliteratePersian/);
+
+assert.match(ui, /id="semanticOk"/);
+assert.match(ui, /const semanticOk = semanticOkInput\.checked === true/);
+assert.doesNotMatch(ui, /const semanticOk = true/);
+assert.match(ui, /semanticOk: semanticOkInput\.checked === true/);
+assert.match(aline, /mergeDiphthongs = true/);
+assert.match(aline, /gapPenalty = -0\.55/);
+assert.match(aline, /expansionPenalty = -0\.12/);
 
 console.log('Indo-European Hindi/Persian tests passed');
