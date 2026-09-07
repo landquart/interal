@@ -23,7 +23,7 @@ const frequencyCache = new Map();
 const MAX_FREQUENCY_ENTRIES_PER_SOURCE = 100000;
 const I18N = {
   ru: {
-    title: 'Internationalismes', lead: '', params: 'Параметры слова', word: 'Слово в Интерaле', pos: 'Часть речи', noun: 'существительное', adjective: 'прилагательное', verb: 'глагол', adverb: 'наречие',
+    title: 'Internationalismes', lead: '', params: 'Параметры слова', word: 'Слово в Интерaле', pos: 'Часть речи', noun: 'существительное', adjective: 'прилагательное', verb: 'глагол', adverb: 'наречие', semanticConfirmed: 'Подтверждено, что найденные формы имеют то же значение', semanticRequired: 'Семантическое соответствие обязательно.',
     evidence: 'Языковое покрытие', result: 'Итог', card: 'JSON-карточка', check: 'Проверить', json: 'Сформировать JSON-карточку', copy: 'Скопировать', download: 'Скачать',
     table: { language: 'Язык', form: 'Форма', distance: 'D — расстояние Левенштейна', passed: 'Проходит', translation: 'Перевод', source: 'Источник', match: 'Тип' },
     coverage: 'Покрытие', required: 'Минимум', decision: 'Решение', accept: 'ПРИНЯТО', reject: 'НЕ ПРИНЯТО', reasonOk: 'Критерий 5/6 выполнен. Для формы длиной до 3 символов требуется точное совпадение: D = 0. Для формы длиной от 4 символов допускается D ≤ 2.', reasonBad: 'Недостаточное покрытие контрольных языков.',
@@ -31,7 +31,7 @@ const I18N = {
     jsonCard: { close: 'Закрыть JSON-карточку', title: 'JSON-карточка', useAuthor: 'Указать авторство', authorName: 'Имя или ник', contactType: 'Тип контакта', contact: 'Контакт', rememberAuthor: 'Запомнить для следующих карточек', clearSavedAuthor: 'Удалить сохранённые данные', generate: 'Сгенерировать карточку', generating: 'Генерация...', output: 'Готовый JSON', copy: 'Скопировать JSON-карточку', copied: 'JSON-карточка скопирована', copiedTitle: 'Скопировано', download: 'Скачать JSON-карточку', empty: 'Сначала сгенерируйте JSON-карточку.', unavailable: 'JSON-карточка доступна только после успешной проверки.' }
   },
   en: {
-    title: 'Internationalismes', lead: '', params: 'Word parameters', word: 'Interal word', pos: 'Part of speech', noun: 'noun', adjective: 'adjective', verb: 'verb', adverb: 'adverb',
+    title: 'Internationalismes', lead: '', params: 'Word parameters', word: 'Interal word', pos: 'Part of speech', noun: 'noun', adjective: 'adjective', verb: 'verb', adverb: 'adverb', semanticConfirmed: 'The matched forms are confirmed to have the same meaning', semanticRequired: 'Semantic correspondence is required.',
     evidence: 'Language coverage', result: 'Decision', card: 'JSON card', check: 'Check', json: 'Generate JSON card', copy: 'Copy', download: 'Download',
     table: { language: 'Language', form: 'Form', distance: 'D — Levenshtein distance', passed: 'Passes', translation: 'Translation', source: 'Source', match: 'Match' },
     coverage: 'Coverage', required: 'Required', decision: 'Decision', accept: 'ACCEPTED', reject: 'NOT ACCEPTED', reasonOk: 'The 5/6 criterion is met. Forms up to 3 characters require an exact match: D = 0. Forms of 4 or more characters may pass with D ≤ 2.', reasonBad: 'Insufficient control-language coverage.',
@@ -40,7 +40,7 @@ const I18N = {
   }
 };
 
-function getDefaultState() { return { word: '', part_of_speech: 'noun', evidence: {}, autoPassed: {}, manualOverride: {}, matchMeta: {}, isSearching: false, searchError: '', checked: false }; }
+function getDefaultState() { return { word: '', part_of_speech: 'noun', semanticConfirmed: false, evidence: {}, autoPassed: {}, manualOverride: {}, matchMeta: {}, isSearching: false, searchError: '', checked: false }; }
 let state = getDefaultState();
 let activeRunId = 0;
 function setButtonStatus(selector, text, disabled = true, options = {}) { return window.InteralButtonStatus?.setButtonStatus(selector, text, disabled, options) ?? false; }
@@ -65,8 +65,8 @@ function copyText(text) { navigator.clipboard?.writeText(text).catch(() => {}); 
 
 function renderChrome() {}
 function levenshtein(a, b) { a = String(a || '').toLowerCase(); b = String(b || '').toLowerCase(); const dp = Array.from({ length: a.length + 1 }, (_, i) => [i]); for (let j = 1; j <= b.length; j++) dp[0][j] = j; for (let i = 1; i <= a.length; i++) for (let j = 1; j <= b.length; j++) { const cost = a[i - 1] === b[j - 1] ? 0 : 1; dp[i][j] = Math.min(dp[i - 1][j] + 1, dp[i][j - 1] + 1, dp[i - 1][j - 1] + cost); } return dp[a.length][b.length]; }
-function translitRu(value) { const map = { а:'a', б:'b', в:'v', г:'g', д:'d', е:'e', ё:'e', ж:'zh', з:'z', и:'i', й:'j', к:'k', л:'l', м:'m', н:'n', о:'o', п:'p', р:'r', с:'s', т:'t', у:'u', ф:'f', х:'h', ц:'c', ч:'ch', ш:'sh', щ:'shch', ъ:'', ы:'y', ь:'', э:'e', ю:'yu', я:'ya' }; return String(value || '').toLowerCase().split('').map(ch => map[ch] ?? ch).join('').normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
-function normalizeLatin(value) { return translitRu(value).replace(/[^a-z0-9]/g, ''); }
+function translitRu(value) { const map = { а:'a', б:'b', в:'v', г:'g', д:'d', е:'je', ё:'jo', ж:'zh', з:'z', и:'i', й:'j', к:'k', л:'l', м:'m', н:'n', о:'o', п:'p', р:'r', с:'s', т:'t', у:'u', ф:'f', х:'h', ц:'c', ч:'ch', ш:'sh', щ:'shch', ъ:'-', ы:'y', ь:"'", э:'e', ю:'ju', я:'ja' }; return String(value || '').toLowerCase().split('').map(ch => map[ch] ?? ch).join('').normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
+function normalizeLatin(value) { return translitRu(value).replace(/[^a-z0-9'-]/g, ''); }
 function formDistance(candidate, form) { return levenshtein(normalizeLatin(candidate), normalizeLatin(form)); }
 function isVowel(ch) { return 'aeiouy'.includes(ch); }
 function latinToRuCandidates(value) {
@@ -230,7 +230,7 @@ function readEvidence() {
     }
   }
 }
-function readState() { state.word = byId('wordInput')?.value.trim() || ''; state.part_of_speech = byId('posInput')?.value || state.part_of_speech; readEvidence(); }
+function readState() { state.word = byId('wordInput')?.value.trim() || ''; state.part_of_speech = byId('posInput')?.value || state.part_of_speech; state.semanticConfirmed = byId('semanticConfirmed')?.checked === true; readEvidence(); }
 function syncPosSelectOptions() {
   const select = byId('posInput');
   if (!select) return;
@@ -286,10 +286,10 @@ async function analyze() {
 function hasUserInputForReset() {
   const hasText = Boolean(byId('wordInput')?.value.trim() || LANGUAGES.some(lang => byId(`form_${lang.code}`)?.value.trim()));
   const hasOverride = LANGUAGES.some(lang => { const pass = byId(`pass_${lang.code}`); return pass && !pass.indeterminate; });
-  return hasText || hasOverride || (byId('posInput')?.value || 'noun') !== 'noun';
+  return hasText || hasOverride || byId('semanticConfirmed')?.checked === true || (byId('posInput')?.value || 'noun') !== 'noun';
 }
 function clearDomFields() {
-  byId('wordInput').value = ''; byId('posInput').value = 'noun';
+  byId('wordInput').value = ''; byId('posInput').value = 'noun'; if (byId('semanticConfirmed')) byId('semanticConfirmed').checked = false;
   LANGUAGES.forEach(lang => { const input = byId(`form_${lang.code}`); if (input) input.value = ''; const pass = byId(`pass_${lang.code}`); if (pass) { pass.checked = false; pass.indeterminate = true; } });
   const output = byId('jsonCardOutput'); if (output) output.value = '';
 }
@@ -300,7 +300,7 @@ async function resetAll() {
   });
 }
 
-function result() { const passed = LANGUAGES.filter(lang => effectivePassed(lang.code)).length; return { passed, total: 6, accepted: passed >= 5 }; }
+function result() { const passed = LANGUAGES.filter(lang => effectivePassed(lang.code)).length; const coverageAccepted = passed >= 5; const semanticConfirmed = state.semanticConfirmed === true; return { passed, total: 6, coverageAccepted, semanticConfirmed, accepted: coverageAccepted && semanticConfirmed }; }
 function canCreateCard() {
   return Boolean(state.checked && result().accepted);
 }
@@ -337,7 +337,7 @@ function resetSuccessfulCheck() {
 }
 function getAuthorBlock() { if (!byId('useAuthorBlock')?.checked) return null; const displayName = byId('authorDisplayName')?.value.trim() || ''; const contactType = byId('authorContactType')?.value || 'telegram'; const contactValue = byId('authorContactValue')?.value.trim() || ''; const author = {}; if (displayName) author.display_name = displayName; if (contactValue) author.contacts = [{ type: contactType, url: window.InteralJsonCardModal?.normalizeContact?.(contactType, contactValue) || contactValue }]; return Object.keys(author).length ? author : null; }
 function evidenceForCard(lang) { const code = lang.code; const form = state.evidence[code] || ''; const meta = state.matchMeta[code] || {}; const evidence = { language: code, form, distance: Number.isFinite(Number(meta.distance)) ? Number(meta.distance) : null, passed: effectivePassed(code) }; if (meta.source && meta.source !== 'frequency_list') evidence.source = meta.source; return evidence; }
-function makeCardDraft() { const r = result(); const card = { version: '1.0', card_type: 'vord_card', vord_type: 'in', interal: { word: byId('wordInput')?.value.trim() || state.word, part_of_speech: byId('posInput')?.value || state.part_of_speech }, procedure: 'internationalism', coverage: { passed: r.passed, total: 6 }, language_evidence: LANGUAGES.map(evidenceForCard) }; const author = getAuthorBlock(); if (author) card.author = author; return card; }
+function makeCardDraft() { const r = result(); const card = { version: '1.0', card_type: 'vord_card', vord_type: 'in', interal: { word: byId('wordInput')?.value.trim() || state.word, part_of_speech: byId('posInput')?.value || state.part_of_speech }, procedure: 'internationalism', coverage: { passed: r.passed, total: 6 }, semantic_correspondence_confirmed: r.semanticConfirmed, language_evidence: LANGUAGES.map(evidenceForCard) }; const author = getAuthorBlock(); if (author) card.author = author; return card; }
 function makeCard() { return makeCardDraft(); }
 function generateJson() { if (canCreateCard()) openJsonModal(); }
 function renderEvidenceRows() {
@@ -354,16 +354,16 @@ function renderResult() {
   const r = result();
   const checked = Boolean(state.checked);
   const accepted = checked && r.accepted;
-  byId('resultBox').innerHTML = `<span class="status-pill ${r.accepted ? 'ok' : 'bad'}">${r.accepted ? t('accept') : t('reject')}</span><dl><div><dt>${t('coverage')}</dt><dd>${r.passed}/${r.total}</dd></div><div><dt>${t('required')}</dt><dd>5/6</dd></div></dl>`;
+  byId('resultBox').innerHTML = `<span class="status-pill ${r.accepted ? 'ok' : 'bad'}">${r.accepted ? t('accept') : t('reject')}</span><dl><div><dt>${t('coverage')}</dt><dd>${r.passed}/${r.total}</dd></div><div><dt>${t('required')}</dt><dd>5/6</dd></div><div><dt>${t('semanticConfirmed')}</dt><dd>${r.semanticConfirmed ? '✓' : '×'}</dd></div></dl>${r.semanticConfirmed ? '' : `<p class="muted">${escapeHtml(t('semanticRequired'))}</p>`}`;
   const evidenceSection = byId('evidenceSection');
   if (evidenceSection) evidenceSection.hidden = !checked;
   const resultSection = byId('resultSection');
-  if (resultSection) resultSection.hidden = !accepted;
+  if (resultSection) resultSection.hidden = !checked;
   setJsonEnabled(accepted);
 }
 function render() {
   renderChrome(); applyJsonModalTexts(); document.title = t('title'); byId('pageTitle').textContent = t('title'); byId('pageLead').textContent = t('lead');
-  byId('paramsTitle').textContent = t('params'); byId('wordLabel').textContent = t('word'); byId('posLabel').textContent = t('pos'); setButtonStatus('#checkBtn', state.isSearching ? (currentLang() === 'en' ? 'Searching...' : 'Поиск...') : t('check'), state.isSearching, { loading: state.isSearching }); byId('evidenceTitle').textContent = t('evidence'); byId('decisionTitle').textContent = t('decision'); byId('jsonBtn').textContent = t('json'); byId('resetBtn').title = t('resetAria'); byId('resetBtn').setAttribute('aria-label', t('resetAria'));
+  byId('paramsTitle').textContent = t('params'); byId('wordLabel').textContent = t('word'); byId('posLabel').textContent = t('pos'); byId('semanticConfirmedLabel').textContent = t('semanticConfirmed'); setButtonStatus('#checkBtn', state.isSearching ? (currentLang() === 'en' ? 'Searching...' : 'Поиск...') : t('check'), state.isSearching, { loading: state.isSearching }); byId('evidenceTitle').textContent = t('evidence'); byId('decisionTitle').textContent = t('decision'); byId('jsonBtn').textContent = t('json'); byId('resetBtn').title = t('resetAria'); byId('resetBtn').setAttribute('aria-label', t('resetAria'));
   const posInput = byId('posInput');
   if (posInput && posInput.value !== state.part_of_speech) {
     posInput.value = state.part_of_speech || 'noun';
@@ -376,20 +376,21 @@ function render() {
 
 function collectInternationalismesPageState() {
   const r = result();
-  return { version: 2, page: location.pathname, fields: { word: state.word, partOfSpeech: state.part_of_speech, languageForms: { ...state.evidence }, manualOverrides: { ...state.manualOverride } }, result: state.checked ? { passed: r.passed, total: r.total, accepted: r.accepted, languageEvidence: LANGUAGES.map((lang) => ({ code: lang.code, form: state.evidence[lang.code] || '', passed: effectivePassed(lang.code), meta: state.matchMeta[lang.code] || null })) } : null, flags: { checked: Boolean(state.checked), accepted: Boolean(state.checked && r.accepted) }, ui: { activeTab: null, selectedLanguage: null }, savedAt: new Date().toISOString() };
+  return { version: 2, page: location.pathname, fields: { word: state.word, partOfSpeech: state.part_of_speech, semanticConfirmed: state.semanticConfirmed === true, languageForms: { ...state.evidence }, manualOverrides: { ...state.manualOverride } }, result: state.checked ? { passed: r.passed, total: r.total, accepted: r.accepted, languageEvidence: LANGUAGES.map((lang) => ({ code: lang.code, form: state.evidence[lang.code] || '', passed: effectivePassed(lang.code), meta: state.matchMeta[lang.code] || null })) } : null, flags: { checked: Boolean(state.checked), accepted: Boolean(state.checked && r.accepted) }, ui: { activeTab: null, selectedLanguage: null }, savedAt: new Date().toISOString() };
 }
 function importInternationalismesPageState(saved = {}) {
   const source = saved.version === 2 && saved.fields ? saved : { fields: { word: saved.word, partOfSpeech: saved.part_of_speech || saved.partOfSpeech, languageForms: saved.evidence || saved.languageForms, manualOverrides: saved.manualOverride || saved.manualOverrides }, result: saved.result, flags: { checked: saved.checked, accepted: saved.accepted } };
   const fields = source.fields || {};
   state.word = fields.word || '';
   state.part_of_speech = fields.partOfSpeech || 'noun';
+  state.semanticConfirmed = fields.semanticConfirmed === true;
   state.evidence = { ...emptyLangMap(''), ...(fields.languageForms || {}) };
   state.manualOverride = { ...emptyLangMap(null), ...(fields.manualOverrides || {}) };
   state.autoPassed = emptyLangMap(false);
   state.matchMeta = emptyLangMap(null);
   (source.result?.languageEvidence || []).forEach((row) => { if (row?.code) { state.autoPassed[row.code] = Boolean(row.passed); state.matchMeta[row.code] = row.meta || null; if (row.form != null) state.evidence[row.code] = row.form; } });
   state.checked = Boolean(source.flags?.checked || source.result);
-  byId('wordInput').value = state.word; byId('posInput').value = state.part_of_speech;
+  byId('wordInput').value = state.word; byId('posInput').value = state.part_of_speech; if (byId('semanticConfirmed')) byId('semanticConfirmed').checked = state.semanticConfirmed;
   render(); setJsonEnabled(Boolean(source.flags?.accepted));
   updateResetButtonVisibility();
   return true;
@@ -413,6 +414,7 @@ function bindJsonModal() {
   byId('app')?.addEventListener('change', event => {
     const target = event.target;
     if (target?.id?.startsWith('pass_')) { const code = target.id.replace('pass_', ''); state.manualOverride[code] = Boolean(target.checked); resetSuccessfulCheck(); render(); window.InteralFormDraft?.save?.(); return; }
+    if (target?.id === 'semanticConfirmed') { state.semanticConfirmed = target.checked === true; resetSuccessfulCheck(); render(); window.InteralFormDraft?.save?.(); return; }
     if (target?.id === 'posInput') { state.part_of_speech = target.value || 'noun'; resetSuccessfulCheck(); updateResetButtonVisibility(); window.refreshCustomSelect?.(target); window.InteralFormDraft?.save?.(); return; }
     readState(); render();
   });
