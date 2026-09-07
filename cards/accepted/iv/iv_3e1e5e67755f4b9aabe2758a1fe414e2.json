@@ -34,7 +34,7 @@
   ],
   "calculation": {
     "pi_percent": 68.0855533514105,
-    "weighted_sum": 2385377.3616666667,
+    "weighted_sum": 2385377.361666667,
     "total_speakers_thousands": 3503500
   },
   "language_results": [
@@ -241,7 +241,7 @@
         "tokens_language": [
           "m",
           "a",
-          "t"
+          "tʲ"
         ]
       },
       "final_similarity_s": 0.65438,
@@ -296,16 +296,25 @@
       "ipa": "mɑ̃ː",
       "pronunciation_standard": "Standard Hindi",
       "graphic": {
-        "score": 0.3,
+        "score": 0.30000000000000004,
         "distance_d": 3.5,
         "max_length_l": 5
       },
       "phonetic": {
-        "score": 0.5247,
-        "raw_score": 0.247,
+        "score": 0.5246999999999999,
+        "raw_score": 0.2469999999999999,
         "max_length": 5,
-        "tokens_interal": ["m", "a", "t", "r", "e"],
-        "tokens_language": ["m", "ɑ̃ː"]
+        "tokens_interal": [
+          "m",
+          "a",
+          "t",
+          "r",
+          "e"
+        ],
+        "tokens_language": [
+          "m",
+          "ɑ̃ː"
+        ]
       },
       "final_similarity_s": 0.41235,
       "speaker_contribution": 251945.85,
@@ -328,15 +337,28 @@
       },
       "phonetic": {
         "score": 0.78772,
-        "raw_score": 2.8772,
+        "raw_score": 2.8771999999999993,
         "max_length": 5,
-        "tokens_interal": ["m", "a", "t", "r", "e"],
-        "tokens_language": ["m", "ɒː", "d̪", "æ", "ɹ"]
+        "tokens_interal": [
+          "m",
+          "a",
+          "t",
+          "r",
+          "e"
+        ],
+        "tokens_language": [
+          "m",
+          "ɒː",
+          "d̪",
+          "æ",
+          "ɹ"
+        ]
       },
       "final_similarity_s": 0.59386,
-      "speaker_contribution": 48696.52,
+      "speaker_contribution": 48696.520000000004,
       "supports_group": true
     }
   ],
-  "accepted_at": "2026-05-30T21:51:15.221Z"
+  "accepted_at": "2026-09-07T08:49:37.876Z",
+  "semantic_correspondence_confirmed": true
 }
