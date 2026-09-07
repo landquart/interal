@@ -59,6 +59,7 @@ assert.match(ui, /id="semanticOk"/);
 assert.match(ui, /const semanticOk = semanticOkInput\.checked === true/);
 assert.doesNotMatch(ui, /const semanticOk = true/);
 assert.match(ui, /semanticOk: semanticOkInput\.checked === true/);
+assert.match(ui, /semantic_correspondence_confirmed: payload\.semanticOk === true/);
 assert.match(aline, /mergeDiphthongs: true/);
 assert.match(aline, /gapPenalty: -0\.55/);
 assert.match(aline, /expansionPenalty: -0\.12/);
