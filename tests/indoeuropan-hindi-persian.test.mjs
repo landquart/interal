@@ -26,5 +26,11 @@ assert.match(ui, /code: "fa"[\s\S]*speakers: 82000/);
 assert.match(ui, /Final PI requires all 9 control languages/);
 assert.match(ui, /romanization-national/);
 assert.match(ui, /Iranian Persian/);
+assert.match(ui, /function transliterateHindi\\(text\\)/);
+assert.match(ui, /function transliteratePersian\\(text\\)/);
+assert.match(ui, /if \\(ch === "\\\\u200c"\\) \\{ result \\+= "-";/, 'Persian ZWNJ is represented by a visible hyphen');
+assert.match(ui, /\\.replace\\(\\/هٔ\\|ه\\\\u200cی\\/g, "e-ye"\\)/, 'Persian ezafe after he is handled explicitly');
+assert.match(ui, /explicitRomanization \\|\\| transliterateHindi/);
+assert.match(ui, /explicitRomanization \\|\\| transliteratePersian/);
 
 console.log('Indo-European Hindi/Persian tests passed');
