@@ -3,7 +3,7 @@
 
   const DEFAULT_OPTIONS = {
     mergePlainAffricates: true,
-    mergeDiphthongs: false,
+    mergeDiphthongs: true,
 
     keepLength: true,
     keepAspiration: true,
@@ -17,8 +17,8 @@
     keepVoicingDiacritics: true,
     keepPlaceDiacritics: true,
 
-    gapPenalty: -0.65,
-    expansionPenalty: -0.18,
+    gapPenalty: -0.55,
+    expansionPenalty: -0.12,
 
     returnGapsInAlignment: true,
     maxAlignments: 20
