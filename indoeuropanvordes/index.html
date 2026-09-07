@@ -1550,13 +1550,167 @@ function transliterateGreek(text) {
   return s.split("").map((ch) => map[ch] ?? ch).join("");
 }
 
+const HINDI_INDEPENDENT_VOWELS = {
+  "अ": "a", "आ": "ā", "इ": "i", "ई": "ī", "उ": "u", "ऊ": "ū",
+  "ऋ": "ŕ", "ए": "e", "ऐ": "ai", "ओ": "o", "औ": "au",
+  "ऎ": "ě", "ऍ": "ĕ", "ऑ": "ŏ", "ऒ": "ǒ", "ॐ": "om"
+};
+
+const HINDI_VOWEL_SIGNS = {
+  "ा": "ā", "ि": "i", "ी": "ī", "ु": "u", "ू": "ū", "ृ": "ŕ",
+  "े": "e", "ै": "ai", "ो": "o", "ौ": "au", "ॆ": "ě", "ॅ": "ĕ",
+  "ॉ": "ŏ", "ॊ": "ǒ"
+};
+
+const HINDI_CONSONANTS = {
+  "क": "k", "ख": "kh", "ग": "g", "घ": "gh", "ङ": "ṅ",
+  "च": "c", "छ": "ch", "ज": "j", "झ": "jh", "ञ": "ñ",
+  "ट": "ṭ", "ठ": "ṭh", "ड": "ḍ", "ढ": "ḍh", "ण": "ṇ",
+  "त": "t", "थ": "th", "द": "d", "ध": "dh", "न": "n",
+  "प": "p", "फ": "ph", "ब": "b", "भ": "bh", "म": "m",
+  "य": "y", "र": "r", "ल": "l", "व": "v", "ळ": "ḷ",
+  "श": "ś", "ष": "ṣ", "स": "s", "ह": "h", "ऴ": "ḻ",
+  "क़": "q", "ख़": "x", "ग़": "ġ", "ज़": "z", "ऴ": "ḻ",
+  "ड़": "ṛ", "ढ़": "ṛh", "ऩ": "ṉ", "ऱ": "ṟ", "य़": "ẏ"
+};
+
+const HINDI_NUKTA_CONSONANTS = {
+  "क़": "q", "ख़": "x", "ग़": "ġ", "ज़": "z", "ष़": "ẓ", "झ़": "ź",
+  "फ़": "f", "ड़": "ṛ", "ढ़": "ṛh", "ऩ": "ṉ", "ऱ": "ṟ",
+  "य़": "ẏ", "व़": "w"
+};
+
+function hindiAnusvara(next) {
+  if (/[कखगघङक़ख़ग़]/u.test(next)) return "ṅ";
+  if (/[चछजझञ]/u.test(next)) return "ñ";
+  if (/[टठडढणड़ढ़]/u.test(next)) return "ṇ";
+  if (/[तथदधन]/u.test(next)) return "n";
+  if (/[पफबभम]/u.test(next)) return "m";
+  return "̃";
+}
+
+function transliterateHindi(text) {
+  const chars = Array.from(String(text || "").normalize("NFC"));
+  const units = [];
+
+  for (let i = 0; i < chars.length; i += 1) {
+    let ch = chars[i];
+    if (chars[i + 1] === "़" && HINDI_NUKTA_CONSONANTS[ch + "़"]) {
+      ch += "़";
+      i += 1;
+    }
+
+    const consonant = HINDI_NUKTA_CONSONANTS[ch] || HINDI_CONSONANTS[ch];
+    if (consonant) {
+      let vowel = "a";
+      const next = chars[i + 1] || "";
+      if (next === "्") {
+        vowel = "";
+        i += 1;
+      } else if (Object.prototype.hasOwnProperty.call(HINDI_VOWEL_SIGNS, next)) {
+        vowel = HINDI_VOWEL_SIGNS[next];
+        i += 1;
+      }
+      units.push({ type: "consonant", consonant, vowel });
+      continue;
+    }
+
+    if (HINDI_INDEPENDENT_VOWELS[ch]) {
+      units.push({ type: "literal", value: HINDI_INDEPENDENT_VOWELS[ch] });
+    } else if (ch === "ँ") {
+      units.push({ type: "nasalization" });
+    } else if (ch === "ं") {
+      units.push({ type: "literal", value: hindiAnusvara(chars[i + 1] || "") });
+    } else if (ch === "ः") {
+      units.push({ type: "literal", value: "ḥ" });
+    } else if (ch !== "़" && ch !== "्") {
+      units.push({ type: "literal", value: ch });
+    }
+  }
+
+  // В современном хинди конечное присущее согласному a обычно выпадает.
+  for (let i = units.length - 1; i >= 0; i -= 1) {
+    const unit = units[i];
+    if (unit.type === "literal" && /^\s$/u.test(unit.value)) continue;
+    if (unit.type === "consonant" && unit.vowel === "a") unit.vowel = "";
+    break;
+  }
+
+  let result = "";
+  for (const unit of units) {
+    if (unit.type === "consonant") result += unit.consonant + unit.vowel;
+    else if (unit.type === "nasalization") result += "̃";
+    else result += unit.value;
+  }
+  return result.normalize("NFC");
+}
+
+const PERSIAN_LETTERS = {
+  "ب": "b", "پ": "p", "ت": "t", "ث": "s", "ج": "j", "چ": "č",
+  "ح": "h", "خ": "x", "د": "d", "ذ": "z", "ر": "r", "ز": "z",
+  "ژ": "ž", "س": "s", "ش": "š", "ص": "s", "ض": "z", "ط": "t",
+  "ظ": "z", "ع": "'", "غ": "ġ", "ق": "ġ", "ف": "f", "ک": "k",
+  "گ": "g", "ل": "l", "م": "m", "ن": "n", "و": "v", "ی": "y",
+  "ه": "h", "ء": "'", "ؤ": "'", "ئ": "'", "أ": "'"
+};
+
+function transliteratePersian(text) {
+  let s = String(text || "").normalize("NFC")
+    .replace(/ك/g, "ک").replace(/ي/g, "ی")
+    .replace(/ه\u200c?یِّ/g, "i-ye")
+    .replace(/هٔ|ه\u200cی/g, "e-ye")
+    .replace(/یِّ/g, "i-ye")
+    .replace(/یِ/g, "-ye")
+    .replace(/خوا/g, "xâ")
+    .replace(/خوی/g, "xi")
+    .replace(/یٰ/g, "â");
+
+  const chars = Array.from(s);
+  let result = "";
+  for (let i = 0; i < chars.length; i += 1) {
+    const ch = chars[i];
+    if (ch === "\u200c") { result += "-"; continue; }
+    if (ch === "َ") { result += "a"; continue; }
+    if (ch === "ِ") { result += "-e"; continue; }
+    if (ch === "ُ") { result += "o"; continue; }
+    if (ch === "ّ") {
+      const previous = Array.from(result).at(-1) || "";
+      result += previous;
+      continue;
+    }
+    if (ch === "آ") { result += i === 0 ? "â" : "-â"; continue; }
+    if (ch === "ا") { result += i === 0 ? "a" : "â"; continue; }
+    if (ch === "ـ") continue;
+    result += PERSIAN_LETTERS[ch] ?? ch;
+  }
+  return result.normalize("NFC");
+}
+
 function normalizeGraphicInput(word, langCode, explicitRomanization = "") {
   const normalized = normalize(word);
 
   if (langCode === "interal") return stripInteralStressMarks(normalized);
   if (langCode === "ru") return transliterateRussian(normalized);
   if (langCode === "el") return transliterateGreek(normalized);
-  if (langCode === "hi" || langCode === "fa") return normalize(explicitRomanization);
+  if (langCode === "hi") return normalize(explicitRomanization || transliterateHindi(normalized));
+  if (langCode === "fa") return normalize(explicitRomanization || transliteratePersian(normalized));
+
+  return normalized
+    .replace(/ß/g, "ss")
+    .replace(/æ/g, "ae")
+    .replace(/œ/g, "oe")
+    .replace(/ð/g, "d")
+    .replace(/þ/g, "th")
+    .replace(/ł/g, "l");
+}
+
+function normalizeGraphicInput(word, langCode, explicitRomanization = "") {
+  const normalized = normalize(word);
+
+  if (langCode === "interal") return stripInteralStressMarks(normalized);
+  if (langCode === "ru") return transliterateRussian(normalized);
+  if (langCode === "el") return transliterateGreek(normalized);
+  if (langCode === "hi") return normalize(explicitRomanization || transliterateHindi(normalized));\n  if (langCode === "fa") return normalize(explicitRomanization || transliteratePersian(normalized));
 
   return normalized
     .replace(/ß/g, "ss")
