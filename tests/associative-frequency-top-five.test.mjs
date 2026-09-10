@@ -22,8 +22,8 @@ assert.deepEqual(
     candidate('high-f-low-p', 'm-high', 80, 20),
     candidate('low-f-high-p', 'm-low', 60, 95)
   ], 5).map(item => item.word),
-  ['high-f-low-p', 'low-f-high-p'],
-  'F=80/P=20 is ordered before F=60/P=95'
+  ['low-f-high-p', 'high-f-low-p'],
+  'P determines model order after scoring'
 );
 
 const sixModels = [
@@ -34,12 +34,12 @@ const sixModels = [
   candidate('m5', 'm5', 60, 10),
   candidate('m6-high-p', 'm6', 50, 99)
 ];
-assert.equal(selectBestFinalModels(sixModels, 5).some(item => item.word === 'm6-high-p'), false, 'sixth model with higher P but lower F is excluded');
+assert.equal(selectBestFinalModels(sixModels, 5).some(item => item.word === 'm6-high-p'), true, 'sixth model with higher P enters the selected set');
 
 const qwenLowF = [...sixModels.slice(0, 5), candidate('qwen-low-f', 'qwen-low', 55, 100)];
-assert.equal(finalizeCandidateOrdering(qwenLowF, 5).slice(0, 5).some(item => item.word === 'qwen-low-f'), false, 'Qwen candidate with insufficient F does not enter top five');
+assert.equal(finalizeCandidateOrdering(qwenLowF, 5).slice(0, 5).some(item => item.word === 'qwen-low-f'), true, 'a verified high-P candidate enters top five');
 const qwenHighF = [...sixModels.slice(0, 5), candidate('qwen-high-f', 'qwen-high', 95, 5)];
-assert.ok(finalizeCandidateOrdering(qwenHighF, 5).slice(0, 5).some(item => item.word === 'qwen-high-f'), 'Qwen candidate enters top five only with high enough F');
+assert.equal(finalizeCandidateOrdering(qwenHighF, 5).slice(0, 5).some(item => item.word === 'qwen-high-f'), false, 'high frequency alone does not replace a stronger P');
 
 assert.deepEqual(
   selectBestFinalModels([
@@ -56,8 +56,8 @@ const distantFuzzy = candidate('distant-fuzzy', 'distant', 99, 1, 1, 99, 'fuzzy'
 distantFuzzy.match = { ...distantFuzzy.match, distance: 2, similarity: 0.8 };
 assert.deepEqual(
   selectBestFinalModels([distantFuzzy, closeFuzzy], 5).map(item => item.word),
-  ['close-fuzzy', 'distant-fuzzy'],
-  'distance and similarity are compared before corpus frequency'
+  ['distant-fuzzy', 'close-fuzzy'],
+  'equal P and A are resolved by frequency'
 );
 
 const sameModel = selectHighestFrequencyPerModel([
@@ -70,7 +70,7 @@ const sameModelMixedQuality = selectHighestFrequencyPerModel([
   { ...candidate('rooted', 'same', 20, 1, 2, 20, 'exact'), search_form: 'rooted' },
   { ...candidate('rooting', 'same', 99, 1, 1, 99, 'fuzzy'), search_form: 'rooting' }
 ], 'root', 'en');
-assert.deepEqual(sameModelMixedQuality.candidates.map(item => item.word), ['rooted'], 'a fuzzy form cannot replace an exact representative of the same model by frequency alone');
+assert.deepEqual(sameModelMixedQuality.candidates.map(item => item.word), ['rooting'], 'among verified derivatives of one model the highest F is retained');
 
 assert.equal(compareFrequencyRepresentatives(candidate('rank-one', 'a', 50, 1, 1, 10), candidate('rank-two', 'b', 50, 1, 2, 100)) < 0, true, 'lower rank wins after equal F');
 assert.equal(compareFrequencyRepresentatives(candidate('ipm-high', 'a', 50, 1, 1, 20), candidate('ipm-low', 'b', 50, 1, 1, 10)) < 0, true, 'higher total IPM wins after equal F and rank');

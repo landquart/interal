@@ -206,14 +206,14 @@ const evaluatedModels = [
   { word: 'altruist', model_key: 'm7', frequency_score: 55, final_score: 78, rank: 7 }
 ];
 const finalFive = selectBestFinalModels(evaluatedModels, 5);
-assert.deepEqual(finalFive.map(item => item.word), ['alternative', 'alteration', 'alterity', 'alternate', 'alterable'], 'final five are selected by frequency even when lower-F supplemental models have higher P');
-assert.ok(compareFinalModelCandidates(evaluatedModels[5], evaluatedModels[0]) > 0, 'final model comparison falls back to F when root-match evidence is equal');
+assert.deepEqual(finalFive.map(item => item.word), ['altruism', 'altruist', 'alteration', 'alterity', 'alternate'], 'final five are selected by P after analysis');
+assert.ok(compareFinalModelCandidates(evaluatedModels[5], evaluatedModels[0]) < 0, 'higher P precedes higher F after evaluation');
 
 const qualityFirst = selectBestFinalModels([
   { word: 'exact-derivative', model_key: 'exact', frequency_score: 20, match: { type: 'exact', distance: 0, similarity: 1 } },
   { word: 'fuzzy-lookalike', model_key: 'fuzzy', frequency_score: 99, match: { type: 'fuzzy', distance: 1, similarity: 0.8 } }
 ], 5);
-assert.deepEqual(qualityFirst.map(item => item.word), ['exact-derivative', 'fuzzy-lookalike'], 'match quality takes precedence over frequency in the final model set');
+assert.deepEqual(qualityFirst.map(item => item.word), ['fuzzy-lookalike', 'exact-derivative'], 'unscored models are queued by frequency after root validation');
 
 const guaranteedRussianModels = selectBestFinalModels([
   { word: 'альтернатива', model_key: 'ru|alternative', frequency_score: 99, match: { type: 'exact' } },
@@ -226,8 +226,8 @@ const guaranteedRussianModels = selectBestFinalModels([
 ], 5);
 assert.deepEqual(
   guaranteedRussianModels.map(item => item.word),
-  ['альтруизм', 'альтруист', 'альтернатива', 'изменение', 'другой'],
-  'both curated Russian alter → альтру- models survive the five-item ceiling regardless of lower corpus frequency'
+  ['альтернатива', 'изменение', 'другой', 'иначе', 'вариант'],
+  'unscored models have no automatic bonus; all models are evaluated before the final cap'
 );
 
 const sameModel = selectBestFinalModels([
@@ -238,7 +238,7 @@ assert.deepEqual(sameModel.map(item => item.word), ['alternative'], 'one model s
 
 
 const payloadEvidence = buildQwenCandidateAuditPayload({ en: evaluatedModels }, ['en'], 6);
-assert.deepEqual(payloadEvidence.currentTopModels.en.map(item => item.word), ['alternative', 'alteration', 'alterity', 'alternate', 'alterable'], 'currentTopModels contains only the frequency-selected five');
+assert.deepEqual(payloadEvidence.currentTopModels.en.map(item => item.word), ['altruism', 'altruist', 'alteration', 'alterity', 'alternate'], 'currentTopModels contains the five strongest P values');
 assert.deepEqual(payloadEvidence.knownCandidates.en.map(item => item.word), ['alternative', 'alteration', 'alterity', 'alternate', 'alterable', 'altruism'], 'knownCandidates includes lower-ranked local candidates up to a bounded word limit');
 assert.deepEqual(payloadEvidence.knownModelKeys.en, ['m1', 'm2', 'm3', 'm4', 'm5', 'm6', 'm7'], 'knownModelKeys contains every local model key, not just the top five');
 
@@ -261,7 +261,7 @@ globalThis.fetch = async (_url, options) => ({
   ok: true,
   json: async () => ({
     ok: true,
-    candidateValidation: { en: ['alternative', 'alteration', 'alterity', 'alternate', 'alterable'].map(word => keepDecision(word)) },
+    candidateValidation: { en: ['altruism', 'altruist', 'alteration', 'alterity', 'alternate'].map(word => keepDecision(word)) },
     guaranteedCandidates: { en: [{ word: 'altruism', root_variant: 'altru' }] },
     candidates: { en: [
       { word: 'alternative', root_variant: 'alter' },
@@ -295,7 +295,7 @@ globalThis.fetch = async () => ({
   ok: true,
   json: async () => ({
     ok: true,
-    candidateValidation: { en: ['alternative', 'alteration', 'alterity', 'alternate', 'alterable'].map(word => keepDecision(word)) },
+    candidateValidation: { en: ['altruism', 'altruist', 'alteration', 'alterity', 'alternate'].map(word => keepDecision(word)) },
     candidates: { en: [] }
   })
 });

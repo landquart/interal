@@ -2,8 +2,8 @@
   "use strict";
 
   const DEFAULT_OPTIONS = {
-    mergePlainAffricates: true,
-    mergeDiphthongs: true,
+    mergePlainAffricates: false,
+    mergeDiphthongs: false,
 
     keepLength: true,
     keepAspiration: true,
@@ -17,11 +17,8 @@
     keepVoicingDiacritics: true,
     keepPlaceDiacritics: true,
 
-    gapPenalty: -0.55,
-    expansionPenalty: -0.12,
-
-    returnGapsInAlignment: true,
-    maxAlignments: 20
+    insertionCost: 1,
+    deletionCost: 1
   };
 
   /*
@@ -64,7 +61,7 @@
    */
 
   const FEATURE_WEIGHTS = {
-    syllabic: 18,
+    // Syllabicity selects the vowel/consonant class; it adds no distance weight.
     sonorant: 5,
     place: 17,
     manner: 16,
@@ -451,7 +448,7 @@
   }
 
   function getMultiSegments(options = {}) {
-    const opts = mergeOptions(options);
+    const opts = { ...mergeOptions(options), mergePlainAffricates: false, mergeDiphthongs: false };
     const segments = [...AFFRICATES_TIE_ABOVE, ...AFFRICATES_TIE_BELOW];
 
     if (opts.mergePlainAffricates) {
@@ -466,7 +463,7 @@
   }
 
   function tokenize(input, options = {}) {
-    const opts = mergeOptions(options);
+    const opts = { ...mergeOptions(options), mergePlainAffricates: false, mergeDiphthongs: false };
     const s = normalizeIPA(input);
     const tokens = [];
     const multiSegments = getMultiSegments(opts);
@@ -518,612 +515,57 @@
     return tokens;
   }
 
-  function splitBaseAndDiacritics(segment, options = {}) {
-    const s = normalizeIPA(segment);
-    const multiSegments = getMultiSegments(options);
-
-    for (const seg of multiSegments) {
-      if (s.startsWith(seg)) {
-        return {
-          base: SYMBOL_ALIASES.get(seg) || seg,
-          modifiers: s.slice(seg.length)
-        };
-      }
-    }
-
-    const base = s[0] || "";
-    return {
-      base: SYMBOL_ALIASES.get(base) || base,
-      modifiers: s.slice(1)
-    };
-  }
-
-  function cloneFeatures(f) {
-    return { ...f };
-  }
-
-  function getFeatures(segment, options = {}) {
-    const opts = mergeOptions(options);
-    const { base, modifiers } = splitBaseAndDiacritics(segment, opts);
-
-    const canonical = SYMBOL_ALIASES.get(base) || base;
-    const source = BASE_FEATURES[canonical];
-
-    if (!source) return null;
-
-    const f = cloneFeatures(source);
-
-    for (const mark of modifiers) {
-      applyDiacritic(f, mark, opts);
-    }
-
-    return f;
-  }
-
-  function applyDiacritic(f, mark, opts) {
-    switch (mark) {
-      case "ː":
-        if (opts.keepLength) f.long = 1;
-        break;
-
-      case "ˑ":
-        if (opts.keepLength) f.long = Math.max(f.long || 0, 0.5);
-        break;
-
-      case "ʰ":
-      case "ʱ":
-        if (opts.keepAspiration) f.aspirated = 1;
-        if (mark === "ʱ") f.voice = 1;
-        break;
-
-      case "ʲ":
-        if (opts.keepPalatalization) {
-          if (f.syllabic === 0) {
-            f.place = weightedMove(f.place, 55, 0.35);
-            f.height = Math.max(f.height || 0, 0.6);
-            f.back = weightedMove(f.back || 0, 0, 0.35);
-          } else {
-            f.back = weightedMove(f.back, 0, 0.35);
-            f.height = Math.min(1, f.height + 0.1);
-          }
-        }
-        break;
-
-      case "ʷ":
-        if (opts.keepLabialization) {
-          f.round = 1;
-          f.back = Math.max(f.back || 0, 0.6);
-        }
-        break;
-
-      case "ˠ":
-        if (opts.keepVelarization) {
-          if (f.syllabic === 0) {
-            f.place = weightedMove(f.place, 70, 0.3);
-            f.back = Math.max(f.back || 0, 0.65);
-          } else {
-            f.back = weightedMove(f.back, 1, 0.3);
-          }
-        }
-        break;
-
-      case "ˤ":
-        if (opts.keepPharyngealization) {
-          if (f.syllabic === 0) {
-            f.place = weightedMove(f.place, 95, 0.3);
-            f.back = Math.max(f.back || 0, 0.75);
-          } else {
-            f.back = weightedMove(f.back, 1, 0.3);
-          }
-        }
-        break;
-
-      case "̃":
-      case "\u0303":
-        if (opts.keepNasalization) {
-          f.nasal = Math.max(f.nasal || 0, 0.8);
-        }
-        break;
-
-      case "˞":
-        if (opts.keepRhoticity) {
-          f.rhotic = 1;
-        }
-        break;
-
-      case "̥":
-      case "\u0325":
-        if (opts.keepVoicingDiacritics) {
-          f.voice = 0;
-        }
-        break;
-
-      case "̬":
-      case "\u032C":
-        if (opts.keepVoicingDiacritics) {
-          f.voice = 1;
-        }
-        break;
-
-      case "̪":
-      case "\u032A":
-        if (opts.keepPlaceDiacritics) {
-          f.place = weightedMove(f.place, 25, 0.55);
-        }
-        break;
-
-      case "̺":
-      case "\u033A":
-        if (opts.keepPlaceDiacritics) {
-          f.place = weightedMove(f.place, 30, 0.25);
-        }
-        break;
-
-      case "̻":
-      case "\u033B":
-        if (opts.keepPlaceDiacritics) {
-          f.place = weightedMove(f.place, 30, 0.25);
-        }
-        break;
-
-      case "̩":
-      case "\u0329":
-        if (opts.keepSyllabicity) {
-          f.syllabic = 1;
-          f.sonorant = 1;
-        }
-        break;
-
-      case "̯":
-      case "\u032F":
-        if (opts.keepSyllabicity) {
-          f.syllabic = 0;
-        }
-        break;
-
-      case "̚":
-      case "\u031A":
-        f.manner = 1;
-        break;
-
-      case "̝":
-      case "\u031D":
-        if (f.syllabic === 1) {
-          f.height = Math.min(1, f.height + 0.1);
-        } else {
-          f.manner = Math.max(1, f.manner - 0.15);
-        }
-        break;
-
-      case "̞":
-      case "\u031E":
-        if (f.syllabic === 1) {
-          f.height = Math.max(0, f.height - 0.1);
-        } else {
-          f.manner = Math.min(4.5, f.manner + 0.15);
-        }
-        break;
-
-      case "̟":
-      case "\u031F":
-        if (opts.keepPlaceDiacritics) {
-          f.place = weightedMove(f.place, 0, 0.08);
-        }
-        break;
-
-      case "̠":
-      case "\u0320":
-        if (opts.keepPlaceDiacritics) {
-          f.place = weightedMove(f.place, 100, 0.08);
-        }
-        break;
-
-      case "̈":
-      case "\u0308":
-        if (f.syllabic === 1) {
-          f.back = weightedMove(f.back, 0.5, 0.5);
-        }
-        break;
-
-      case "̹":
-      case "\u0339":
-        f.round = Math.min(1, (f.round || 0) + 0.3);
-        break;
-
-      case "̜":
-      case "\u031C":
-        f.round = Math.max(0, (f.round || 0) - 0.3);
-        break;
-
-      default:
-        break;
-    }
-  }
-
-  function weightedMove(value, target, amount) {
-    const v = Number.isFinite(value) ? value : 0;
-    return v * (1 - amount) + target * amount;
-  }
-
-  function segmentDistance(a, b, options = {}) {
-    if (a === b) return 0;
-
-    const fa = getFeatures(a, options);
-    const fb = getFeatures(b, options);
-
-    if (!fa || !fb) return 1;
-
-    let totalWeight = 0;
-    let weightedDifference = 0;
-
-    for (const feature of FEATURE_NAMES) {
-      const weight = FEATURE_WEIGHTS[feature] || 1;
-      const range = FEATURE_RANGES[feature] || 1;
-
-      const av = fa[feature] ?? 0;
-      const bv = fb[feature] ?? 0;
-
-      const diff = clamp01(Math.abs(av - bv) / range);
-
-      weightedDifference += weight * diff;
-      totalWeight += weight;
-    }
-
-    if (totalWeight === 0) return 1;
-
-    return clamp01(weightedDifference / totalWeight);
-  }
-
-  function segmentSimilarity(a, b, options = {}) {
-    return clamp01(1 - segmentDistance(a, b, options));
-  }
-
-  function pairScore(a, b, options = {}) {
-    return 2 * segmentSimilarity(a, b, options) - 1;
-  }
-
-  function combinedSegmentSimilarity(one, partA, partB, options = {}) {
-    /*
-     * One segment versus two segments.
-     * Useful for:
-     *   t͡s ~ t + s
-     *   d͡ʒ ~ d + ʒ
-     *   p͡f ~ p + f
-     *   x   ~ k + s, only partially
-     */
-    const directA = segmentSimilarity(one, partA, options);
-    const directB = segmentSimilarity(one, partB, options);
-
-    const avg = (directA + directB) / 2;
-
-    return clamp01(avg);
-  }
-
-  function combinedScore(one, partA, partB, options = {}) {
-    const opts = mergeOptions(options);
-    return 2 * combinedSegmentSimilarity(one, partA, partB, opts) - 1 + opts.expansionPenalty;
-  }
-
-  function rawScore(str1, str2, options = {}) {
-    const opts = mergeOptions(options);
-    const a = tokenize(str1, opts);
-    const b = tokenize(str2, opts);
-
-    const n = a.length;
-    const m = b.length;
-
-    if (n === 0 && m === 0) return 0;
-
-    const gap = opts.gapPenalty;
-
-    const dp = Array.from({ length: n + 1 }, () =>
-      Array(m + 1).fill(-Infinity)
-    );
-
-    dp[0][0] = 0;
-
-    for (let i = 1; i <= n; i++) {
-      dp[i][0] = dp[i - 1][0] + gap;
-    }
-
-    for (let j = 1; j <= m; j++) {
-      dp[0][j] = dp[0][j - 1] + gap;
-    }
-
-    for (let i = 1; i <= n; i++) {
-      for (let j = 1; j <= m; j++) {
-        let best = -Infinity;
-
-        best = Math.max(
-          best,
-          dp[i - 1][j - 1] + pairScore(a[i - 1], b[j - 1], opts)
-        );
-
-        best = Math.max(best, dp[i - 1][j] + gap);
-        best = Math.max(best, dp[i][j - 1] + gap);
-
-        if (j >= 2) {
-          best = Math.max(
-            best,
-            dp[i - 1][j - 2] +
-              combinedScore(a[i - 1], b[j - 2], b[j - 1], opts)
-          );
-        }
-
-        if (i >= 2) {
-          best = Math.max(
-            best,
-            dp[i - 2][j - 1] +
-              combinedScore(b[j - 1], a[i - 2], a[i - 1], opts)
-          );
-        }
-
-        dp[i][j] = best;
-      }
-    }
-
-    return dp[n][m];
-  }
-
-  function normalizedSimilarity(str1, str2, options = {}) {
-    const opts = mergeOptions(options);
-    const a = tokenize(str1, opts);
-    const b = tokenize(str2, opts);
-
-    if (a.length === 0 && b.length === 0) return 1;
-    if (a.length === 0 || b.length === 0) return 0;
-
-    const raw = rawScore(str1, str2, opts);
-
-    const maxLen = Math.max(a.length, b.length);
-    const minPossible = -1 * maxLen;
-    const maxPossible = 1 * maxLen;
-
-    return clamp01((raw - minPossible) / (maxPossible - minPossible));
-  }
-
-  function distance(str1, str2, options = {}) {
-    return 1 - normalizedSimilarity(str1, str2, options);
-  }
-
-  function computeDPWithBacktrace(str1, str2, options = {}) {
-    const opts = mergeOptions(options);
-    const a = tokenize(str1, opts);
-    const b = tokenize(str2, opts);
-
-    const n = a.length;
-    const m = b.length;
-    const gap = opts.gapPenalty;
-
-    const dp = Array.from({ length: n + 1 }, () =>
-      Array(m + 1).fill(-Infinity)
-    );
-
-    const back = Array.from({ length: n + 1 }, () =>
-      Array.from({ length: m + 1 }, () => [])
-    );
-
-    dp[0][0] = 0;
-
-    for (let i = 1; i <= n; i++) {
-      dp[i][0] = dp[i - 1][0] + gap;
-      back[i][0].push({
-        prevI: i - 1,
-        prevJ: 0,
-        pair: [a[i - 1], "-"]
-      });
-    }
-
-    for (let j = 1; j <= m; j++) {
-      dp[0][j] = dp[0][j - 1] + gap;
-      back[0][j].push({
-        prevI: 0,
-        prevJ: j - 1,
-        pair: ["-", b[j - 1]]
-      });
-    }
-
-    for (let i = 1; i <= n; i++) {
-      for (let j = 1; j <= m; j++) {
-        const candidates = [];
-
-        candidates.push({
-          score: dp[i - 1][j - 1] + pairScore(a[i - 1], b[j - 1], opts),
-          prevI: i - 1,
-          prevJ: j - 1,
-          pair: [a[i - 1], b[j - 1]]
-        });
-
-        candidates.push({
-          score: dp[i - 1][j] + gap,
-          prevI: i - 1,
-          prevJ: j,
-          pair: [a[i - 1], "-"]
-        });
-
-        candidates.push({
-          score: dp[i][j - 1] + gap,
-          prevI: i,
-          prevJ: j - 1,
-          pair: ["-", b[j - 1]]
-        });
-
-        if (j >= 2) {
-          candidates.push({
-            score:
-              dp[i - 1][j - 2] +
-              combinedScore(a[i - 1], b[j - 2], b[j - 1], opts),
-            prevI: i - 1,
-            prevJ: j - 2,
-            pair: [a[i - 1], b[j - 2] + b[j - 1]]
-          });
-        }
-
-        if (i >= 2) {
-          candidates.push({
-            score:
-              dp[i - 2][j - 1] +
-              combinedScore(b[j - 1], a[i - 2], a[i - 1], opts),
-            prevI: i - 2,
-            prevJ: j - 1,
-            pair: [a[i - 2] + a[i - 1], b[j - 1]]
-          });
-        }
-
-        const best = Math.max(...candidates.map(c => c.score));
-        dp[i][j] = best;
-        back[i][j] = candidates.filter(c => almostEqual(c.score, best));
-      }
-    }
-
-    return {
-      dp,
-      back,
-      tokensA: a,
-      tokensB: b
-    };
-  }
-
-  function align(str1, str2, options = {}) {
-    const opts = mergeOptions(options);
-    const { dp, back, tokensA, tokensB } = computeDPWithBacktrace(str1, str2, opts);
-
-    const results = [];
-    const current = [];
-
-    function trace(i, j) {
-      if (results.length >= opts.maxAlignments) return;
-
-      if (i === 0 && j === 0) {
-        const alignment = current.slice().reverse();
-
-        if (opts.returnGapsInAlignment) {
-          results.push(alignment);
-        } else {
-          results.push(alignment.filter(p => p[0] !== "-" && p[1] !== "-"));
-        }
-
-        return;
-      }
-
-      const steps = back[i][j] || [];
-
-      for (const step of steps) {
-        if (results.length >= opts.maxAlignments) break;
-
-        current.push(step.pair);
-        trace(step.prevI, step.prevJ);
-        current.pop();
-      }
-    }
-
-    trace(tokensA.length, tokensB.length);
-
-    return {
-      score: dp[tokensA.length][tokensB.length],
-      normalized: normalizedSimilarity(str1, str2, opts),
-      tokensA,
-      tokensB,
-      alignments: results
-    };
-  }
-
-  function explain(str1, str2, options = {}) {
-    const opts = mergeOptions(options);
-    const result = align(str1, str2, opts);
-    const first = result.alignments[0] || [];
-
-    const pairs = first.map(pair => {
-      const a = pair[0];
-      const b = pair[1];
-
-      if (a === "-" || b === "-") {
-        return {
-          a,
-          b,
-          similarity: 0,
-          distance: 1,
-          note: "gap"
-        };
-      }
-
-      return {
-        a,
-        b,
-        similarity: segmentSimilarity(a, b, opts),
-        distance: segmentDistance(a, b, opts),
-        featuresA: getFeatures(a, opts),
-        featuresB: getFeatures(b, opts)
-      };
-    });
-
-    return {
-      ...result,
-      pairs,
-      unknownA: unknownSegments(str1, opts),
-      unknownB: unknownSegments(str2, opts)
-    };
-  }
-
-  function unknownSegments(input, options = {}) {
-    const opts = mergeOptions(options);
-    const tokens = tokenize(input, opts);
-
-    const unknown = [];
-
-    for (const token of tokens) {
-      if (!getFeatures(token, opts)) {
-        unknown.push(token);
-      }
-    }
-
-    return [...new Set(unknown)];
-  }
-
-  function clamp01(x) {
-    if (!Number.isFinite(x)) return 0;
-    return Math.max(0, Math.min(1, x));
-  }
-
-  function almostEqual(a, b, eps = 1e-10) {
-    return Math.abs(a - b) <= eps;
-  }
-
-  function addFeature(symbol, features) {
-    BASE_FEATURES[symbol] = { ...features };
-  }
-
-  function addAlias(from, to) {
-    SYMBOL_ALIASES.set(from, to);
-  }
-
-  const api = {
-    normalizeIPA,
-    tokenize,
-    unknownSegments,
-
-    getFeatures,
-    segmentDistance,
-    segmentSimilarity,
-
-    rawScore,
-    normalizedSimilarity,
-    distance,
-    align,
-    explain,
-
-    addFeature,
-    addAlias,
-
-    features: BASE_FEATURES,
-    featureWeights: FEATURE_WEIGHTS,
-    featureRanges: FEATURE_RANGES,
-    defaultOptions: DEFAULT_OPTIONS
-  };
-
-  if (typeof module !== "undefined" && module.exports) {
-    module.exports = api;
-  } else {
-    global.ALINE = api;
-  }
-})(typeof window !== "undefined" ? window : globalThis);
+const sets={V:['height','back','round','nasal','long','voice','rhotic'],C:['sonorant','place','manner','voice','nasal','lateral','rhotic','retroflex','aspirated','long','round']};
+const clip=x=>Math.max(0,Math.min(1,x));
+const featureKeys = Object.keys(BASE_FEATURES).sort((a,b)=>b.length-a.length);
+function features(input){
+ let t=normalizeIPA(input);const keys=featureKeys;let base,rest;
+ if(t.includes('͡')){const raw=t.replace('͡','');base=keys.find(k=>k.length===2&&raw.startsWith(k));if(base)rest=raw.slice(base.length);}
+ if(!base){base=BASE_FEATURES[t[0]]?t[0]:null;rest=t.slice(1);}
+ if(!base){t=t.normalize('NFD');base=BASE_FEATURES[t[0]]?t[0]:null;rest=t.slice(1);}
+ if(!base)throw Error('unknown '+input);
+ const f={...BASE_FEATURES[base]},cls=f.syllabic?'V':'C';
+ if(['ɛ','œ','ʌ','ɔ','ɜ','ɞ','ɝ'].includes(base))f.height=.5;
+ if(base==='ɐ')f.height=.25;if(['ᵻ','ᵿ'].includes(base))f.height=.85;
+ const move=(key,target,k)=>f[key]+=k*(target-f[key]);
+ for(const m of rest){switch(m){
+ case 'ː':f.long=1;break;case 'ˑ':f.long=Math.max(f.long,.5);break;
+ case 'ʰ':f.aspirated=1;break;case 'ʱ':f.aspirated=1;f.voice=1;break;
+ case '̃':f.nasal=1;break;case '˞':f.rhotic=1;break;case '̥':f.voice=0;break;case '̬':f.voice=1;break;case '̪':f.place=25;break;
+ case 'ʲ':if(cls==='C')move('place',55,.35);else{move('back',0,.35);f.height=clip(f.height+.1);}break;
+ case 'ʷ':f.round=1;if(cls==='V')f.back=Math.max(f.back,.6);break;
+ case 'ˠ':if(cls==='C')move('place',70,.3);else move('back',1,.3);break;
+ case 'ˤ':if(cls==='C')move('place',95,.3);else move('back',1,.3);break;
+ case '̺':case '̻':if(cls==='C')move('place',30,.25);break;
+ case '̝':case '̞':if(cls==='V')f.height=clip(f.height+(m==='̝'?.1:-.1));else f.manner=Math.max(1,Math.min(4.5,f.manner+(m==='̝'?-.15:.15)));break;
+ case '̟':case '̠':if(cls==='C')move('place',m==='̟'?0:100,.08);break;
+ case '̈':if(cls==='V')move('back',.5,.5);break;
+ case '̹':case '̜':f.round=clip(f.round+(m==='̹'?.3:-.3));break;
+ case '̚':f.manner=1;break;case '̩':case '̯':break;
+ default:throw Error('unknown modifier '+m+' in '+input);
+ }}
+ f._type=cls;return f;
+}
+function sub(a,b){return featureDistance(features(a),features(b));}
+function featureDistance(x,y){if(x._type!==y._type)return 1;const ks=sets[x._type];return clip(ks.reduce((s,k)=>s+FEATURE_WEIGHTS[k]*Math.abs(x[k]-y[k])/FEATURE_RANGES[k],0)/ks.reduce((s,k)=>s+FEATURE_WEIGHTS[k],0));}
+
+function explain(a,b) {
+ const x=tokenize(a),y=tokenize(b);
+ if(!x.length||!y.length) return {tokensA:x,tokensB:y,score:null,distance:null,normalized:null,pairs:[],methodologyVersion:'2026-09-09'};
+ const fx=x.map(features),fy=y.map(features);
+ const dp=Array.from({length:x.length+1},(_,i)=>[i,...Array(y.length).fill(0)]);
+ const path=Array.from({length:x.length+1},()=>Array(y.length+1));
+ for(let j=0;j<=y.length;j++)dp[0][j]=j;
+ for(let i=1;i<=x.length;i++)for(let j=1;j<=y.length;j++){
+  const values=[dp[i-1][j-1]+featureDistance(fx[i-1],fy[j-1]),dp[i-1][j]+1,dp[i][j-1]+1];
+  dp[i][j]=Math.min(...values);path[i][j]=values.indexOf(dp[i][j]);
+ }
+ const pairs=[];let i=x.length,j=y.length;
+ while(i||j){const k=!i?2:!j?1:path[i][j];const aa=k===2?'':x[--i],bb=k===1?'':y[--j];const cost=aa&&bb?sub(aa,bb):1;pairs.push({a:aa||'—',b:bb||'—',distance:cost,similarity:1-cost,note:aa&&bb?'':'gap'});}
+ pairs.reverse();const distance=dp[x.length][y.length],normalized=1-distance/Math.max(x.length,y.length);
+ return {tokensA:x,tokensB:y,score:distance,distance,normalized,similarity:normalized,pairs,methodologyVersion:'2026-09-09'};
+}
+function unknownSegments(input){return tokenize(input).filter(s=>{try{features(s);return false;}catch{return true;}});}
+const api={normalizeIPA,tokenize,unknownSegments,getFeatures:features,segmentDistance:sub,segmentSimilarity:(a,b)=>1-sub(a,b),explain,align:explain,rawScore:(a,b)=>explain(a,b).distance,normalizedSimilarity:(a,b)=>explain(a,b).normalized,distance:(a,b)=>explain(a,b).distance,features:BASE_FEATURES,featureWeights:FEATURE_WEIGHTS,featureRanges:FEATURE_RANGES,defaultOptions:DEFAULT_OPTIONS,methodologyVersion:'2026-09-09'};
+if(typeof module!=='undefined'&&module.exports)module.exports=api;else global.ALINE=api;
+})(typeof window!=='undefined'?window:globalThis);

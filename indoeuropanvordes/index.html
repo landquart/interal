@@ -753,9 +753,29 @@ body.dark-theme .internationalita-page .json-card-icon-btn.is-copied {
 </div>
 
 
-<script src="./aline.js?v=contact-types-20260713-1"></script>
+<script src="./aline.js?v=methodology-20260909"></script>
 
 <script>
+const METHODOLOGY_VERSION = '2026-09-09';
+function graphemes(s) { return String(s ?? '').trim().toLowerCase().normalize('NFC').match(/\P{M}\p{M}*|\p{M}+/gu) || []; }
+const base = s => s.normalize('NFD').replace(/\p{M}/gu, '');
+function graphicDistance(a,b) {
+ const x=graphemes(a),y=graphemes(b);if(!x.length||!y.length)return null;
+ const cost=(z,i)=>i>0&&z[i]===z[i-1]?0.5:1;
+ const dp=Array.from({length:x.length+1},()=>Array(y.length+1).fill(0));
+ for(let i=1;i<=x.length;i++)dp[i][0]=dp[i-1][0]+cost(x,i-1);
+ for(let j=1;j<=y.length;j++)dp[0][j]=dp[0][j-1]+cost(y,j-1);
+ for(let i=1;i<=x.length;i++)for(let j=1;j<=y.length;j++){
+ const sub=x[i-1]===y[j-1]?0:base(x[i-1])===base(y[j-1])?0.5:1;
+ dp[i][j]=Math.min(dp[i-1][j]+cost(x,i-1),dp[i][j-1]+cost(y,j-1),dp[i-1][j-1]+sub);
+ if(i>1&&j>1&&x[i-1]===y[j-2]&&x[i-2]===y[j-1])dp[i][j]=Math.min(dp[i][j],dp[i-2][j-2]+0.5);
+ }
+ return dp[x.length][y.length];
+}
+function graphicSimilarityDetails(a,b){const distance=graphicDistance(a,b);if(distance==null)return null;const maxLen=Math.max(graphemes(a).length,graphemes(b).length);return {source:a,target:b,distance,maxLen,score:1-distance/maxLen};}
+function internationalismFormPasses(a,b,distance){const x=graphemes(a),y=graphemes(b);if(!x.length||!y.length||!Number.isFinite(distance))return false;return Math.min(x.length,y.length)<4?distance===0:distance<=2&&distance/Math.max(x.length,y.length)<=0.25;}
+
+
 "use strict";
 
 const CONTROL_LANGUAGES = [
@@ -1106,25 +1126,7 @@ const IPA_FALLBACKS = {
   }
 };
 
-const ALINE_OPTIONS = {
-  mergePlainAffricates: true,
-  mergeDiphthongs: true,
-  keepLength: false,
-  keepAspiration: false,
-  keepPalatalization: false,
-  keepLabialization: false,
-  keepVelarization: false,
-  keepPharyngealization: false,
-  keepNasalization: false,
-  keepRhoticity: false,
-  keepSyllabicity: false,
-  keepVoicingDiacritics: false,
-  keepPlaceDiacritics: false,
-  gapPenalty: -0.55,
-  expansionPenalty: -0.12,
-  returnGapsInAlignment: true,
-  maxAlignments: 1
-};
+const ALINE_OPTIONS = {};
 
 const INTERAL_U_EXCEPTIONS = new Set([
   "authentic", "pausa", "haus", "audir", "aura", "fauna", "sauna",
@@ -1415,6 +1417,7 @@ function makeIndoeuropanCard(payload, timeMeta, author = null) {
 
   const card = {
     version: "1.0",
+    methodology_version: METHODOLOGY_VERSION,
     card_type: "vord_card",
     vord_type: "iv",
     interal: {
@@ -1441,7 +1444,10 @@ function makeIndoeuropanCard(payload, timeMeta, author = null) {
         ipa: row.ipa || "",
         G: finiteOrNull(row.graphic),
         PH: finiteOrNull(row.phonetic),
-        S: finiteOrNull(row.general)
+        S: finiteOrNull(row.general),
+        speakers: row.speakers,
+        graphic_details: row.graphicDetails,
+        phonetic_details: row.aline
       };
     })
   };
@@ -1864,12 +1870,7 @@ function interalToIPA(input) {
   return ipa;
 }
 
-function interalIPAForAline(word) {
-  return interalToIPA(word)
-    .replace(/t͡ɕ/g, "t͡ʃ")
-    .replace(/ʂ/g, "ʃ")
-    .replace(/x/g, "h");
-}
+function interalIPAForAline(word) { return interalToIPA(word); }
 
 const SIMILAR_GRAPHIC_COST = 0.5;
 
@@ -1926,102 +1927,7 @@ function graphicSubstitutionCost(aChar, bChar) {
   return 1;
 }
 
-function psychologicalLevenshtein(a, b) {
-  const left = Array.from(String(a || ""));
-  const right = Array.from(String(b || ""));
-  const n = left.length;
-  const m = right.length;
-
-  const DELETE_COST = 1;
-  const INSERT_COST = 1;
-  const SUBSTITUTE_COST = 1;
-
-  // Психологические поправки
-  const SHIFTED_GAP_COST = 0.5;
-  const TRANSPOSITION_COST = 0.5;
-
-  const dp = Array.from({ length: n + 1 }, () => Array(m + 1).fill(0));
-
-  for (let i = 0; i <= n; i++) dp[i][0] = i * DELETE_COST;
-  for (let j = 0; j <= m; j++) dp[0][j] = j * INSERT_COST;
-
-  for (let i = 1; i <= n; i++) {
-    for (let j = 1; j <= m; j++) {
-      const aChar = left[i - 1];
-      const bChar = right[j - 1];
-
-      const substitutionCost = graphicSubstitutionCost(aChar, bChar);
-
-      // Обычный Левенштейн
-      dp[i][j] = Math.min(
-        dp[i - 1][j] + DELETE_COST,
-        dp[i][j - 1] + INSERT_COST,
-        dp[i - 1][j - 1] + substitutionCost
-      );
-
-      // Соседняя перестановка: ab ~ ba
-      if (
-        i > 1 &&
-        j > 1 &&
-        left[i - 1] === right[j - 2] &&
-        left[i - 2] === right[j - 1]
-      ) {
-        dp[i][j] = Math.min(
-          dp[i][j],
-          dp[i - 2][j - 2] + TRANSPOSITION_COST
-        );
-      }
-
-      // Лишняя буква в первом слове, которая сдвигает совпадение.
-      // Например: aabc ~ abc.
-      if (
-        i > 1 &&
-        left[i - 1] === right[j - 1]
-      ) {
-        dp[i][j] = Math.min(
-          dp[i][j],
-          dp[i - 2][j - 1] + SHIFTED_GAP_COST
-        );
-      }
-
-      // Лишняя буква во втором слове, которая сдвигает совпадение.
-      // Например: abc ~ aabc.
-      if (
-        j > 1 &&
-        left[i - 1] === right[j - 1]
-      ) {
-        dp[i][j] = Math.min(
-          dp[i][j],
-          dp[i - 1][j - 2] + SHIFTED_GAP_COST
-        );
-      }
-    }
-  }
-
-  return dp[n][m];
-}
-
-function graphicSimilarityDetails(a, b) {
-  const source = String(a || "");
-  const target = String(b || "");
-  const maxLen = Math.max(Array.from(source).length, Array.from(target).length);
-
-  if (maxLen === 0) {
-    return null;
-  }
-
-  const d = psychologicalLevenshtein(source, target);
-  const score = clamp01(1 - d / maxLen);
-
-  return {
-    source,
-    target,
-    distance: d,
-    maxLen,
-    score
-  };
-}
-
+function psychologicalLevenshtein(a,b) { return graphicDistance(a,b); }
 function graphicSimilarity(a, b) {
   const details = graphicSimilarityDetails(a, b);
   return details ? details.score : null;
@@ -2031,9 +1937,9 @@ function normalizeIPAForAline(ipa) {
   return String(ipa || "")
     .normalize("NFC")
     .replace(/[\/\[\]()]/g, "")
-    .replace(/[ˈˌ.]/g, "")
+
     .replace(/ɡ/g, "g")
-    .replace(/ɫ/g, "l")
+
     .trim();
 }
 
@@ -2049,8 +1955,9 @@ function calcAlineSimilarity(ipaA, ipaB) {
 
   if (window.ALINE.explain) {
     const explanation = window.ALINE.explain(cleanA, cleanB, ALINE_OPTIONS);
+    if (explanation.normalized == null) return null;
     return {
-      score: clamp01(explanation.normalized ?? explanation.similarity ?? 0),
+      score: clamp01(explanation.normalized),
       explanation
     };
   }
@@ -2371,6 +2278,7 @@ async function calculateInternationality() {
     const accepted = formalComplete && thresholdOk && twoGroupsOk && semanticOk;
 
     const payload = {
+      methodology_version: METHODOLOGY_VERSION,
       interalWord,
       interalGraphic,
       interalIPA,
@@ -2831,10 +2739,10 @@ function renderPhoneticDetails(row) {
         <div><strong>${escapeHTML(t("ipaLanguage"))}:</strong> /${escapeHTML(tokensB.join(" · "))}/</div>
         <div><strong>${escapeHTML(t("rawCalculation"))}:</strong> ${Number.isFinite(raw) ? formatNumber(raw) : "—"}</div>
         <div><strong>${escapeHTML(t("maxLength"))}:</strong> ${formatInteger(maxLen)}</div>
-        <div><strong>${escapeHTML(t("formula"))}:</strong> pairScore = 2 × segmentSimilarity − 1<br>PH = (raw + maxLen) / (2 × maxLen)</div>
+        <div><strong>${escapeHTML(t("formula"))}:</strong> PH = 1 − Dₚ/Lₚ</div>
         <div><strong>${escapeHTML(t("calculation"))}:</strong> ${
           Number.isFinite(raw) && maxLen > 0
-            ? `PH = (${formatNumber(raw)} + ${formatInteger(maxLen)}) / (2 × ${formatInteger(maxLen)}) = ${formatScore(ph)}`
+            ? `PH = 1 − ${formatNumber(raw)}/${formatInteger(maxLen)} = ${formatScore(ph)}`
             : "—"
         }</div>
         ${renderAlineAlignment(row)}
@@ -3021,7 +2929,8 @@ function importIndoeuropanPageState(saved = {}) {
   lookupLangSelect.value = fields.lookupLang || lookupLangSelect.value;
   semanticOkInput.checked = fields.semanticOk === true;
   (fields.languageRows || []).forEach((row) => { const inputs = getRowInputs(row.code); if (inputs.word) inputs.word.value = row.word || ''; if (inputs.romanization) inputs.romanization.value = row.romanization || ''; if (inputs.ipa) inputs.ipa.value = row.ipa || ''; });
-  const restoredResult = saved.version === 2 ? saved.result : saved.lastCalculationPayload;
+  const candidateResult = saved.version === 2 ? saved.result : saved.lastCalculationPayload;
+  const restoredResult = candidateResult?.methodology_version === METHODOLOGY_VERSION ? candidateResult : null;
   lastCalculationPayload = restoredResult || null;
   if (restoredResult) {
     tableWrap.style.display = "block";

@@ -1,3 +1,4 @@
+import { getFrequencyProfile } from './js/frequency-loader.js';
 import { analyzeAssociativeWord, finalAssociationPassesThreshold, averageAssociationPassesThreshold, calculateLanguageScore, calculateFinalAssociation, buildDecisionReasons, decisionStatusForResult, canCreateAssociativeJsonCard, normalizeLanguageStatus, summarizeLanguageStatuses, deriveGlobalStatusFromLanguageStatuses } from './js/association-analyzer.js';
 import { QWEN_RUNTIME_CONFIG, QWEN_ERROR_CODES, createReviewBudget, refineCandidatesWithQwenAudit, validateFinalCandidatesWithQwen, selectBestFinalModels, compareFinalModelCandidates, finalizeCandidateOrdering, isAbortError, normalizeAbortError } from './js/qwen-client.js';
 import { escapeHtml, formatMetric, renderCandidateEvidenceDetails, resultRowClasses, swowLabel, thresholdStatusLabel, thresholdStatusForResult, semanticWarningLabel, languageStatusLabel } from './js/render-results.js';
@@ -102,7 +103,7 @@ const TEXT_I18N = {
           group: 'Group', languageScore: 'Language score', weightSum: 'weight sum', addWord: 'Add word', use: 'Use', word: 'Word', model: 'Model', frequencyPercent: 'F — frequency', directness: 'Di — directness', fieldRelatedness: 'Pr — field proximity', domainShift: 'Sh — domain shift', swowBonus: 'SWOW evidence', associationPercent: 'A — association', finalPercent: 'P — derivative weight', status: 'Status', explanation: 'Explanation', warnings: 'Warnings', details: 'Details', analyze: 'Analyze', delete: 'Delete', association: 'Association', rank: 'Rank', frequency: 'Frequency', weightP: 'Weight P'
         },
         results: {
-          finalAssociation: 'FA<sub>v</sub> — final word association', averageAssociation: 'Ā — average association', totalAssociation: 'Σ(N<sub>l</sub> × P̄<sub>l</sub>)', speakersTotal: 'ΣN of represented languages', languagesRepresented: 'languages represented', languageGroups: 'language groups', language: 'Language', speakers: 'Speakers N', selectedDerivatives: 'Selected derivatives', languageAverageP: 'Average P̄<sub>l</sub>', languageAverageA: 'Average Ā<sub>l</sub>', weightedLanguageP: 'N<sub>l</sub> × P̄<sub>l</sub>', calculationDetails: 'FA<sub>v</sub> details', acceptanceCriteria: 'Acceptance criteria', criterionLanguages: 'At least 3 languages', criterionGroups: 'At least 2 language groups', criterionThreshold: 'FA<sub>v</sub> ≥ 35%', criterionAssociationThreshold: 'Weighted mean A ≥ 35%', met: 'met', notMet: 'not met', accept: 'ACCEPT', reject: 'DO NOT ACCEPT', insufficientData: 'Insufficient data', noCalculatedData: 'No calculated data.', noCandidates: 'No candidates found.', indexUnavailable: 'The language index is unavailable.', qwenUnavailable: 'Qwen analysis is unavailable.', calculationAborted: 'The calculation was aborted.', calculationIncomplete: 'The calculation is incomplete.', partialErrors: 'Some languages were calculated with errors.', fewerLanguages: 'Fewer than 3 languages are represented.', fewerGroups: 'Fewer than 2 language groups are represented.', belowThreshold: 'FAᵥ is below 35%.', associationBelowThreshold: 'Weighted mean A is below 35% or is not available for every selected derivative.', semanticUnconfirmed: 'Semantic correspondence is not confirmed.', reasons: 'Reasons', warnings: 'Warnings', allMet: 'All conditions are met.'
+          finalAssociation: 'FA<sub>v</sub> — final word association', averageAssociation: 'Ā — average association', totalAssociation: 'Σ(N<sub>l</sub> × P̄<sub>l</sub>)', speakersTotal: 'ΣN of represented languages', languagesRepresented: 'languages represented', languageGroups: 'language groups', language: 'Language', speakers: 'Speakers N', selectedDerivatives: 'Selected derivatives', languageAverageP: 'Maximum P̄<sub>l</sub>', languageAverageA: 'Representative Ā<sub>l</sub>', weightedLanguageP: 'N<sub>l</sub> × P̄<sub>l</sub>', calculationDetails: 'FA<sub>v</sub> details', acceptanceCriteria: 'Acceptance criteria', criterionLanguages: 'At least 3 languages', criterionGroups: 'At least 2 language groups', criterionThreshold: 'FA<sub>v</sub> ≥ 35%', criterionAssociationThreshold: 'Weighted mean A ≥ 35%', met: 'met', notMet: 'not met', accept: 'ACCEPT', reject: 'DO NOT ACCEPT', insufficientData: 'Insufficient data', noCalculatedData: 'No calculated data.', noCandidates: 'No candidates found.', indexUnavailable: 'The language index is unavailable.', qwenUnavailable: 'Qwen analysis is unavailable.', calculationAborted: 'The calculation was aborted.', calculationIncomplete: 'The calculation is incomplete.', partialErrors: 'Some languages were calculated with errors.', fewerLanguages: 'Fewer than 3 languages are represented.', fewerGroups: 'Fewer than 2 language groups are represented.', belowThreshold: 'FAᵥ is below 35%.', associationBelowThreshold: 'Weighted mean A is below 35% or is not available for every selected derivative.', semanticUnconfirmed: 'Semantic correspondence is not confirmed.', reasons: 'Reasons', warnings: 'Warnings', allMet: 'All conditions are met.'
         },
         alerts: {
           rootRequired: 'Enter a candidate root or preposition.',
@@ -440,10 +441,10 @@ const TEXT_I18N = {
 
     function wordWeight(item) {
       const final = Number(item.final_score);
-      if (Number.isFinite(final)) return final;
+      if (item.final_score != null && Number.isFinite(final)) return final;
 
       const analysisFinal = Number(item.analysis?.final_score);
-      if (Number.isFinite(analysisFinal)) return analysisFinal;
+      if (item.analysis?.final_score != null && Number.isFinite(analysisFinal)) return analysisFinal;
 
       return null;
     }
@@ -531,7 +532,7 @@ const TEXT_I18N = {
           frequency_score: analysis.frequency.frequency_score,
           association_score: analysis.association.association_score,
           final_score: analysis.final_score,
-          selected: Number.isFinite(Number(analysis.final_score))
+          selected: analysis.final_score != null && Number.isFinite(Number(analysis.final_score))
         };
       } catch (error) {
         if (isAbortError(error, currentRunSignal()) || !isCurrentRun(runId)) {
@@ -598,7 +599,8 @@ const TEXT_I18N = {
         root,
         language: langCode,
         elementType: state.elementType,
-        maxCandidates: QWEN_RUNTIME_CONFIG.maxCandidatesPerLanguage
+        maxCandidates: Infinity,
+        groupModels: false
       });
       addDuration('candidate_finder', finderStartedAt);
       incrementDiagnostic('inspectedCandidates', finderDiagnostics.inspected);
@@ -701,6 +703,10 @@ const TEXT_I18N = {
               throwIfStaleRun(runId, 'candidate_index_after_await', context.signal);
               const seenWords = new Set();
               const valid = candidates.filter(candidate => isValidRuntimeCandidate(candidate, root, language.code, seenWords));
+              for (const candidate of valid) {
+                candidate.frequencyProfile = await getFrequencyProfile(language.code, candidate.word, { signal: context.signal });
+                candidate.frequency_score = candidate.frequencyProfile.frequency_score;
+              }
               return reconcileModelRepresentatives(valid, root, language.code).map(item => ({ ...item, selected: false, analysisStatus: 'pending' }));
             }
           },
@@ -750,8 +756,16 @@ const TEXT_I18N = {
             }
           },
           candidateFinalizer: {
-            finalize: (language, candidates) => finalizeCandidateOrdering(reconcileModelRepresentatives(candidates, root, language.code), MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE)
-              .map(item => ({ ...item, analysisStatus: item.selected ? 'pending' : item.analysisStatus || 'pending' }))
+            finalize: async (language, candidates, context) => {
+              for (const candidate of candidates) {
+                if (!candidate.frequencyProfile?.methodology_version) {
+                  candidate.frequencyProfile = await getFrequencyProfile(language.code, candidate.word, { signal: context?.signal });
+                  candidate.frequency_score = candidate.frequencyProfile.frequency_score;
+                }
+              }
+              return finalizeCandidateOrdering(reconcileModelRepresentatives(candidates, root, language.code), MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE)
+                .map(item => ({ ...item, analysisStatus: item.analysisStatus || 'pending' }));
+            }
           },
           candidateAnalyzer: {
             analyze: async (language, candidate, context) => {
@@ -993,7 +1007,7 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
       resultBox.innerHTML = `
         <div class="metric is-updated"><strong>${formatPercent(result.finalAssociation, 1)}</strong><span>${labels.finalAssociation}</span></div>
         <div class="metric"><strong>${formatPercent(result.averageAssociation, 1)}</strong><span>${labels.averageAssociation}</span></div>
-        <div class="metric"><strong>${numberFormat.format(result.weightedScoreTotal)}</strong><span>${labels.totalAssociation}</span></div>
+        <div class="metric"><strong>${formatFixed(result.coverage * 100, 2)}%</strong><span>${currentLang() === 'en' ? 'Weighted coverage' : 'Взвешенный охват'}</span></div><div class="metric"><strong>${numberFormat.format(result.weightedScoreTotal)}</strong><span>${labels.totalAssociation}</span></div>
         <div class="metric"><strong>${numberFormat.format(result.speakersTotal)}</strong><span>${labels.speakersTotal}</span></div>
         <div class="metric"><strong>${result.representedLangs}/${LANGUAGES.length}</strong><span>${labels.languagesRepresented}</span></div>
         <div class="metric"><strong>${result.groups}/${new Set(LANGUAGES.map(l => l.group)).size}</strong><span>${labels.languageGroups}</span></div>
@@ -1232,7 +1246,7 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
       );
       const languageCalculation = Object.fromEntries(result.languageScores
         .filter(item => Number(item.count) > 0 && Number.isFinite(Number(item.normalized)))
-        .map(item => [item.lang.code, { N: item.speakers, selectedCount: item.count, averageP: item.normalized, averageA: item.associationNormalized, weightedScore: item.weightedScore }]));
+        .map(item => [item.lang.code, { N: item.speakers, selectedCount: item.count, averageP: item.normalized, averageA: item.associationNormalized, representative: item.representative, weightedScore: item.weightedScore }]));
       if (!String(state.translationWord || '').trim()) {
         throw new Error(textGroup('alerts').translationRequired);
       }
@@ -1277,6 +1291,11 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
           representedLanguageGroups: result.groups,
           speakersTotal: result.speakersTotal,
           weightedScoreTotal: result.weightedScoreTotal,
+          methodology_version: result.methodology_version,
+          coverage: result.coverage,
+          score_interval: result.scoreInterval,
+          association_interval: result.associationInterval,
+          review_required: result.reviewRequired,
           languageAverageP: result.languageAverageP,
           languageAverageA: result.languageAverageA,
           languageCalculation,
@@ -1299,7 +1318,11 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
           language_average_P: languageCalculation[item.code]?.averageP,
           language_average_A: languageCalculation[item.code]?.averageA ?? null,
           weighted_score: languageCalculation[item.code]?.weightedScore,
-          frequency: { score: item.frequency_score },
+          frequency: { ...item.analysis?.frequency, score: item.frequency_score },
+          primary: item.analysis?.primary,
+          review: item.analysis?.review,
+          score_interval: item.analysis?.score_interval,
+          association_interval: item.analysis?.association_interval,
           association: item.analysis?.association || {}
         }))
       };
@@ -1609,6 +1632,7 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
               category_score: finiteOrNull(item.category_score),
               category_weight: finiteOrNull(item.category_weight),
               frequencyProfile: item.frequencyProfile && typeof item.frequencyProfile === 'object' ? {
+                ...item.frequencyProfile,
                 frequency_score: finiteOrNull(item.frequencyProfile.frequency_score),
                 rank: finiteOrNull(item.frequencyProfile.rank),
                 category_score: finiteOrNull(item.frequencyProfile.category_score),
@@ -1621,8 +1645,9 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
               final_score: finiteOrNull(item.final_score),
               analysisStatus: item.analysisStatus || null,
               analysis: item.analysis ? {
+                methodology_version:item.analysis.methodology_version, review_required:item.analysis.review_required, score_interval:item.analysis.score_interval, association_interval:item.analysis.association_interval, primary:item.analysis.primary, review:item.analysis.review,
                 final_score: finiteOrNull(item.analysis.final_score),
-                frequency: item.analysis.frequency ? { frequency_score: finiteOrNull(item.analysis.frequency.frequency_score) } : null,
+                frequency: item.analysis.frequency ? { ...item.analysis.frequency, frequency_score: finiteOrNull(item.analysis.frequency.frequency_score) } : null,
                 swow: item.analysis.swow ? compactStateSwowEvidence(item.analysis.swow) : null,
                 association: item.analysis.association ? {
                   association_score: finiteOrNull(item.analysis.association.association_score),
@@ -1647,6 +1672,11 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
         calculateResult: () => {
           const r = calculateFinal();
           return {
+            methodology_version: r.methodology_version,
+            review_required: r.reviewRequired,
+            coverage: r.coverage,
+            score_interval: r.scoreInterval,
+            association_interval: r.associationInterval,
             finalAssociation: r.finalAssociation,
             FAv: r.FAv,
             totalAssociation: r.totalAssociation,

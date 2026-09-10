@@ -62,8 +62,8 @@ assert.equal(index.has('broken'), false);
 assert.equal(index.has('damaged'), false);
 
 const profile = calculateCategoryProfile([0, 10, 20]);
-assert.equal(profile.category_ipm, 15);
-assert.equal(profile.category_score, ipmToScore(15));
+assert.equal(profile.category_ipm, 10);
+assert.equal(profile.category_score, ipmToScore(10));
 assert.equal(calculateFrequencyScore({ subtitles: { category_score: 25 }, normative: { category_score: 75 } }), 50);
 
 assert.equal(normalizeLemma(' Café '), 'café');

@@ -14,9 +14,9 @@ const initial = [
 ];
 
 const finalized = finalizeCandidateOrdering(initial, 5);
-assert.deepEqual(finalized.slice(0, 5).map(candidate => candidate.word), ['alternative', 'alteration', 'alterity', 'alternate', 'alterable'], 'visible top five stay in frequency-first order instead of final-P order');
+assert.deepEqual(finalized.slice(0, 5).map(candidate => candidate.word), ['alteration', 'alterity', 'alternate', 'altruism', 'altruist'], 'the five maximum-P models are displayed in frequency order');
 assert.equal(finalized.filter(candidate => candidate.selected).length, 5, 'exactly five scored models remain selected');
-assert.ok(finalized.findIndex(candidate => candidate.word === 'altruism') >= 5, 'a lower-frequency high-P supplement is not promoted into the frequency-selected top five');
+assert.ok(finalized.findIndex(candidate => candidate.word === 'altruism') < 5, 'a verified high-P supplement enters top five');
 assert.equal(initial[0].selected, true, 'finalization does not mutate the caller array');
 assert.notStrictEqual(finalized[0], initial.at(-2), 'finalization returns safe candidate copies');
 

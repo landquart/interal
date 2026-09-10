@@ -53,7 +53,7 @@ function collectAffixesState() { const analysis = compactAffixAnalysis(lastAnaly
 function saveAffixesDraft() { window.InteralFormDraft?.save?.(); }
 function hasShareableState() { return Boolean($('formInput').value.trim() || $('meaningInput').value.trim() || $('commentInput').value.trim() || $('morphemeTypeInput').value === 'prefix' || lastAnalysis || lastCard); }
 function updateStateControls() { const hasState = hasShareableState(); $('resetBtn')?.classList.toggle('is-hidden', !hasState); document.querySelectorAll('[data-copy-state="true"]').forEach((button) => { button.disabled = !hasState; button.classList.toggle('is-hidden', !hasState); }); }
-function applyAffixesState(state = {}) { if (!isObject(state)) return false; const fields = state.version === 2 && state.fields ? state.fields : state; const analysis = state.version === 2 ? state.result : state.lastAnalysis; $('formInput').value = fields.form ?? fields.formInput ?? ''; $('meaningInput').value = fields.meaning ?? fields.meaningInput ?? ''; $('morphemeTypeInput').value = MORPHEME_TYPES.includes(fields.morphemeType || fields.morphemeTypeInput) ? (fields.morphemeType || fields.morphemeTypeInput) : 'suffix'; $('commentInput').value = fields.comment ?? fields.commentInput ?? ''; lastCard = sanitizeLastCard(state.lastCard); if (lastCard) $('jsonCardOutput').value = JSON.stringify(lastCard, null, 2); if (analysis) renderAnalysis(analysis); else { lastAnalysis = null; $('resultSection').hidden = true; $('resultBox').innerHTML = ''; setJsonEnabled(false); } updateStateControls(); return true; }
+function applyAffixesState(state = {}) { if (!isObject(state)) return false; const fields = state.version === 2 && state.fields ? state.fields : state; const storedAnalysis = state.version === 2 ? state.result : state.lastAnalysis; const analysis = storedAnalysis?.procedure === 'associativ_affix' && storedAnalysis?.calculation?.methodology_version !== '2026-09-09' ? null : storedAnalysis; $('formInput').value = fields.form ?? fields.formInput ?? ''; $('meaningInput').value = fields.meaning ?? fields.meaningInput ?? ''; $('morphemeTypeInput').value = MORPHEME_TYPES.includes(fields.morphemeType || fields.morphemeTypeInput) ? (fields.morphemeType || fields.morphemeTypeInput) : 'suffix'; $('commentInput').value = fields.comment ?? fields.commentInput ?? ''; lastCard = sanitizeLastCard(state.lastCard); if (lastCard) $('jsonCardOutput').value = JSON.stringify(lastCard, null, 2); if (analysis) renderAnalysis(analysis); else { lastAnalysis = null; $('resultSection').hidden = true; $('resultBox').innerHTML = ''; setJsonEnabled(false); } updateStateControls(); return true; }
 function invalidateAffixesResult() { if (window.InteralFormDraft?.isRestoring?.()) return; lastAnalysis = null; lastCard = null; $('jsonCardOutput').value = ''; $('resultSection').hidden = true; $('resultBox').innerHTML = ''; setJsonEnabled(false); saveAffixesDraft(); updateStateControls(); }
 window.InteralPageStateExport = collectAffixesState;
 window.InteralPageStateImport = applyAffixesState;
@@ -93,7 +93,9 @@ async function verifyAssociativeAffixCalculation(result) {
     }
   }
   const calculation = calculateAssociativeAffix(verified);
-  const decision = { status: calculation.accepted ? 'accepted' : 'rejected', accepted: calculation.accepted, rejected: !calculation.accepted, needs_manual_review: false };
+  calculation.review_required ||= typeof result.criteria?.meaningClear !== 'boolean';
+  calculation.accepted &&= result.criteria?.meaningClear === true && !calculation.review_required;
+  const decision = { status: calculation.accepted ? 'accepted' : (calculation.review_required ? 'needs_manual_review' : 'rejected'), accepted: calculation.accepted, rejected: !calculation.accepted && !calculation.review_required, needs_manual_review: calculation.review_required };
   return {
     ...result,
     eligible: calculation.accepted,
@@ -110,9 +112,9 @@ function renderAssociativeAffixCalculation(result) {
   if (result?.procedure !== 'associativ_affix' || !isObject(result?.calculation)) return '';
   const c = result.calculation;
   const u = lang() === 'en' ? {
-    title: 'FA<sub>a</sub> details', language: 'Language', speakers: 'Speakers N', words: 'Selected words', totalIpm: 'Total IPM', average: 'Average F̄<sub>l</sub>', weighted: 'N<sub>l</sub> × F̄<sub>l</sub>', weightedTotal: 'Weighted score total', speakersTotal: 'Speakers total', result: 'FA<sub>a</sub>', criteria: 'Acceptance criteria', met: 'met', notMet: 'not met'
+    title: 'FA<sub>a</sub> details', language: 'Language', speakers: 'Speakers N', words: 'Selected words', totalIpm: 'Total IPM', average: 'Frequency F<sub>l</sub>', weighted: 'N<sub>l</sub> × F<sub>l</sub>', weightedTotal: 'Weighted score total', speakersTotal: 'Speakers total', result: 'FA<sub>a</sub>', criteria: 'Acceptance criteria', met: 'met', notMet: 'not met'
   } : {
-    title: 'Детализация FA<sub>a</sub>', language: 'Язык', speakers: 'Число говорящих N', words: 'Выбрано слов', totalIpm: 'Сумма IPM', average: 'Средний F̄<sub>l</sub>', weighted: 'N<sub>l</sub> × F̄<sub>l</sub>', weightedTotal: 'Сумма взвешенных результатов', speakersTotal: 'Сумма N представленных языков', result: 'FA<sub>a</sub>', criteria: 'Критерии принятия', met: 'выполнено', notMet: 'не выполнено'
+    title: 'Детализация FA<sub>a</sub>', language: 'Язык', speakers: 'Число говорящих N', words: 'Выбрано слов', totalIpm: 'Сумма IPM', average: 'Частотный F<sub>l</sub>', weighted: 'N<sub>l</sub> × F<sub>l</sub>', weightedTotal: 'Сумма взвешенных результатов', speakersTotal: 'Сумма N представленных языков', result: 'FA<sub>a</sub>', criteria: 'Критерии принятия', met: 'выполнено', notMet: 'не выполнено'
   };
   const number = new Intl.NumberFormat(lang() === 'en' ? 'en' : 'ru', { maximumFractionDigits: 2 });
   const criterion = (name, passed) => `<li><strong>${escapeHtml(name)}:</strong> ${passed ? u.met : u.notMet}</li>`;
