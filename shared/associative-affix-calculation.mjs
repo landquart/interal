@@ -1,3 +1,4 @@
+import { METHODOLOGY_VERSION } from './methodology-calculation.mjs';
 import {
   CONTROL_LANGUAGE_CODES,
   CONTROL_LANGUAGE_DEMOGRAPHICS,
@@ -19,18 +20,23 @@ function normalizeFrequencyWord(item) {
   const source = typeof item === 'string' ? { word: item } : (item && typeof item === 'object' ? item : {});
   const word = String(source.word || source.lemma || source.form || '').trim();
   const ipm = Number(source.ipm ?? source.IPM ?? source.combined_ipm);
-  if (!word || !Number.isFinite(ipm) || ipm < 0) return null;
+  if (!word || source.ipm == null && source.IPM == null && source.combined_ipm == null || !Number.isFinite(ipm) || ipm < 0) return null;
   return { ...source, word, ipm, F: normalizeIpmScore(ipm) };
 }
 
 export function calculateAssociativeAffix(frequencyWords = {}) {
   const languageDetails = [];
   const normalizedFrequencyWords = {};
+  const incompleteLanguages = [];
 
   for (const code of CONTROL_LANGUAGE_CODES) {
+    const seen = new Set();
+    if ((frequencyWords?.[code] || []).some(item => !normalizeFrequencyWord(item))) incompleteLanguages.push(code);
     const selectedWords = (Array.isArray(frequencyWords?.[code]) ? frequencyWords[code] : [])
       .map(normalizeFrequencyWord)
       .filter(Boolean)
+      .sort((a, b) => b.ipm - a.ipm || a.word.localeCompare(b.word))
+      .filter(item => { const key=String(item.lemma || item.word).toLowerCase().normalize("NFC"); if(seen.has(key)) return false; seen.add(key); return true; })
       .sort((a, b) => b.ipm - a.ipm || a.word.localeCompare(b.word))
       .slice(0, ASSOCIATIVE_AFFIX_MAX_WORDS);
     normalizedFrequencyWords[code] = selectedWords;
@@ -38,7 +44,19 @@ export function calculateAssociativeAffix(frequencyWords = {}) {
 
     const speakers = requireSpeakerCount(code);
     const totalIpm = selectedWords.reduce((sum, item) => sum + item.ipm, 0);
-    const averageF = selectedWords.reduce((sum, item) => sum + item.F, 0) / selectedWords.length;
+    let averageF;
+    const categories = [...new Set(selectedWords.flatMap(w=>Object.keys(w.category_breakdown || {})))];
+    if (!categories.length) averageF = normalizeIpmScore(totalIpm);
+    else {
+      averageF=0;
+      for(const category of categories){
+        const rows=selectedWords.map(w=>w.category_breakdown?.[category]);
+        if(rows.some(x=>!x || !Array.isArray(x.ipm_values) || x.ipm_values.some(v=>v==null || !Number.isFinite(v))) || rows.some(x=>!x.ipm_values.length || x.ipm_values.length!==rows[0].ipm_values.length || JSON.stringify(x.source_ids)!==JSON.stringify(rows[0].source_ids) || x.category_weight!==rows[0].category_weight)){averageF=null;break;}
+        const sums=rows[0].ipm_values.map((_,i)=>rows.reduce((sum,x)=>sum+x.ipm_values[i],0));
+        averageF += rows[0].category_weight * normalizeIpmScore(sums.reduce((a,b)=>a+b,0)/sums.length);
+      }
+    }
+    if (averageF == null || !Number.isFinite(averageF)) { incompleteLanguages.push(code); continue; }
     languageDetails.push({
       language: code,
       group: CONTROL_LANGUAGE_DEMOGRAPHICS[code].group,
@@ -65,13 +83,16 @@ export function calculateAssociativeAffix(frequencyWords = {}) {
     one_to_five_words_each_language: representedLanguages > 0 && languageDetails.every((item) => item.selectedCount >= 1 && item.selectedCount <= ASSOCIATIVE_AFFIX_MAX_WORDS),
     FAa_threshold: Number.isFinite(FAa) && FAa >= ASSOCIATIVE_AFFIX_THRESHOLD
   };
-  const accepted = criteria.minimum_languages
+  const accepted = !incompleteLanguages.length && criteria.minimum_languages
     && criteria.minimum_language_groups
     && criteria.minimum_ipm_each_language
     && criteria.one_to_five_words_each_language
     && criteria.FAa_threshold;
 
   return {
+    methodology_version: METHODOLOGY_VERSION,
+    incompleteLanguages: [...new Set(incompleteLanguages)],
+    review_required: incompleteLanguages.length > 0,
     representedLanguages,
     representedLanguageGroups,
     speakersTotal,

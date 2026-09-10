@@ -7,7 +7,7 @@ globalThis.document = { documentElement: { lang: 'en' } };
 
 async function runCase({ primaryP, reviewScores = { directness: 80, field_relatedness: 70, domain_shift: 20 }, reviewFails = false, reviewAbort = false, reviewAbortCode = null, payloadModel = 'evil-model/latest' }) {
   const primaryA = 30;
-  const F = (primaryP - 0.65 * primaryA) / 0.35;
+  const F = 100 * (primaryP / (100 * (primaryA / 100) ** 0.65)) ** (1 / 0.35);
   const calls = [];
   globalThis.fetch = async (url, init = {}) => {
     assert.equal(String(url), '/api/qwen-analyze');
@@ -29,22 +29,14 @@ async function runCase({ primaryP, reviewScores = { directness: 80, field_relate
     targetMeaning: 'target',
     localizedTargetMeaning: '',
     word: 'word',
-    frequencyProfile: { frequency_score: F, category_breakdown: {}, warnings: [] },
+    frequencyProfile: { methodology_version: '2026-09-09', frequency_score: F, category_breakdown: {}, warnings: [] },
     onProgress: (text) => progress.push(text),
     onReviewRequest: () => { reviewCount += 1; }
   });
   return { result, calls, progress, reviewCount };
 }
 
-for (const primaryP of [24.9, 35.1]) {
-  const { result, calls, reviewCount } = await runCase({ primaryP });
-  assert.equal(calls.length, 1, `primary P=${primaryP} does not call review`);
-  assert.equal(reviewCount, 0, `primary P=${primaryP} has no review diagnostic callback`);
-  assert.equal(result.review, null, `primary P=${primaryP} leaves review null`);
-  assert.equal(result.association.combination_method, 'primary_only');
-}
-
-for (const primaryP of [25, 30, 35]) {
+for (const primaryP of [24.9, 25, 30, 35, 35.1]) {
   const { result, calls, progress, reviewCount } = await runCase({ primaryP });
   assert.equal(calls.length, 2, `primary P=${primaryP} calls review`);
   assert.equal(calls[0].payload.review, false, 'first request is primary');
@@ -52,20 +44,21 @@ for (const primaryP of [25, 30, 35]) {
   assert.equal(reviewCount, 1, 'review diagnostic callback fires once');
   assert.match(progress.join('\n'), /Qwen3\.6/, 'primary progress shows Qwen3.6');
   assert.match(progress.join('\n'), /Qwen3-235B/, 'review progress shows Qwen3-235B');
-  assert.equal(result.association.combination_method, 'review_override');
+  assert.equal(result.association.combination_method, 'primary_with_review_interval');
 }
 
 {
   const { result } = await runCase({ primaryP: 30, reviewScores: { directness: 90, field_relatedness: 50, domain_shift: 10 } });
   const expectedA = 0.45 * 90 + 0.35 * 50 + 0.20 * (100 - 10);
-  const expectedP = 0.65 * expectedA + 0.35 * result.frequency.frequency_score;
-  assert.equal(result.association.Di, 90, 'review Di replaces final');
-  assert.equal(result.association.Pr, 50, 'review Pr replaces final');
-  assert.equal(result.association.Sh, 10, 'review Sh replaces final');
-  assert.equal(result.association.A_final, expectedA, 'review A replaces final');
-  assert.equal(result.final_score, expectedP, 'review P replaces final');
-  assert.notEqual(result.primary.final_score, result.final_score, 'primary is retained separately');
-  assert.equal(result.review.final_score, result.final_score, 'review is retained separately');
+  const expectedP = 100 * (expectedA / 100) ** 0.65 * (result.frequency.frequency_score / 100) ** 0.35;
+  assert.equal(result.association.Di, 30, 'primary Di remains nominal');
+  assert.equal(result.association.A_final, 30, 'primary A remains nominal');
+  assert.equal(result.final_score, result.primary.final_score);
+  assert.equal(result.review.association_score, expectedA);
+  assert.equal(result.review.final_score, expectedP);
+  assert.equal(result.score_interval.min, result.primary.final_score);
+  assert.equal(result.score_interval.max, expectedP);
+
 }
 
 
@@ -123,7 +116,7 @@ async function runBudgetCase({ primaryP = 30, enabled = true, maxRequests = Infi
 }
 async function runCaseWithBudget({ primaryP, budget, signal, abortBeforeReview = false, reviewAbort = false }) {
   const primaryA = 30;
-  const F = (primaryP - 0.65 * primaryA) / 0.35;
+  const F = 100 * (primaryP / (100 * (primaryA / 100) ** 0.65)) ** (1 / 0.35);
   const calls = [];
   const events = [];
   globalThis.fetch = async (url, init = {}) => {
@@ -137,7 +130,7 @@ async function runCaseWithBudget({ primaryP, budget, signal, abortBeforeReview =
   };
   const result = await analyzeAssociativeWord({
     language: 'en', targetMeaning: 'target', localizedTargetMeaning: '', word: 'word',
-    frequencyProfile: { frequency_score: F, category_breakdown: {}, warnings: [] },
+    frequencyProfile: { methodology_version: '2026-09-09', frequency_score: F, category_breakdown: {}, warnings: [] },
     reviewBudget: budget,
     signal,
     onReviewEvent: key => { events.push(key); if (abortBeforeReview && key === 'reviewEligibleCount') signal?.throwIfAborted?.(); }
@@ -177,7 +170,7 @@ async function runCaseWithBudget({ primaryP, budget, signal, abortBeforeReview =
 {
   const budget = createReviewBudget({ enabled: true, maxRequests: 1 });
   await runCaseWithBudget({ primaryP: 24, budget });
-  assert.equal(budget.used, 0, 'P outside range does not spend budget');
+  assert.equal(budget.used, 1, 'review is no longer restricted to the old 25–35 window');
 }
 {
   const controller = new AbortController();

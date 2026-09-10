@@ -1,3 +1,4 @@
+import { graphemes, internationalismFormPasses, METHODOLOGY_VERSION } from '../shared/methodology-calculation.mjs';
 import { LANGUAGE_SOURCES, CATEGORY_ORDER } from '../associativvordes/js/config-frequency-sources.js';
 
 const LANGUAGES = [
@@ -26,7 +27,7 @@ const I18N = {
     title: 'Internationalismes', lead: '', params: 'Параметры слова', word: 'Слово в Интерaле', pos: 'Часть речи', noun: 'существительное', adjective: 'прилагательное', verb: 'глагол', adverb: 'наречие', semanticConfirmed: 'Подтверждено, что найденные формы имеют то же значение', semanticRequired: 'Семантическое соответствие обязательно.',
     evidence: 'Языковое покрытие', result: 'Итог', card: 'JSON-карточка', check: 'Проверить', json: 'Сформировать JSON-карточку', copy: 'Скопировать', download: 'Скачать',
     table: { language: 'Язык', form: 'Форма', distance: 'D — расстояние Левенштейна', passed: 'Проходит', translation: 'Перевод', source: 'Источник', match: 'Тип' },
-    coverage: 'Покрытие', required: 'Минимум', decision: 'Решение', accept: 'ПРИНЯТО', reject: 'НЕ ПРИНЯТО', reasonOk: 'Критерий 5/6 выполнен. Для формы длиной до 3 символов требуется точное совпадение: D = 0. Для формы длиной от 4 символов допускается D ≤ 2.', reasonBad: 'Недостаточное покрытие контрольных языков.',
+    coverage: 'Покрытие', required: 'Минимум', decision: 'Решение', accept: 'ПРИНЯТО', reject: 'НЕ ПРИНЯТО', reasonOk: 'Критерий 5/6 выполнен. Для формы длиной до 3 символов требуется точное совпадение: D = 0. Для формы длиной от 4 символов требуются D ≤ 2 и D/L ≤ 0,25; L — длина большей формы.', reasonBad: 'Недостаточное покрытие контрольных языков.',
     loadingLists: 'Загрузка частотных списков...', searching: 'Поиск форм...', frequencySource: 'частотный список', manualSource: 'вручную', noForm: 'не найдено', searchError: 'Не удалось загрузить частотные списки. Формы можно ввести вручную.', configError: 'Конфигурация частотных источников не загружена. Введите формы вручную; автоматический результат недоступен.', manualMode: 'ручное переопределение', autoMode: 'авто', resetAria: 'Сбросить', resetConfirm: 'Сбросить введённые данные? Это действие нельзя отменить.', jsonModuleUnavailable: 'Модуль создания JSON-карточек не загружен. Перезагрузите страницу.', buildingCard: 'Сборка карточки...', buttonError: 'Ошибка',
     jsonCard: { close: 'Закрыть JSON-карточку', title: 'JSON-карточка', useAuthor: 'Указать авторство', authorName: 'Имя или ник', contactType: 'Тип контакта', contact: 'Контакт', rememberAuthor: 'Запомнить для следующих карточек', clearSavedAuthor: 'Удалить сохранённые данные', generate: 'Сгенерировать карточку', generating: 'Генерация...', output: 'Готовый JSON', copy: 'Скопировать JSON-карточку', copied: 'JSON-карточка скопирована', copiedTitle: 'Скопировано', download: 'Скачать JSON-карточку', empty: 'Сначала сгенерируйте JSON-карточку.', unavailable: 'JSON-карточка доступна только после успешной проверки.' }
   },
@@ -34,7 +35,7 @@ const I18N = {
     title: 'Internationalismes', lead: '', params: 'Word parameters', word: 'Interal word', pos: 'Part of speech', noun: 'noun', adjective: 'adjective', verb: 'verb', adverb: 'adverb', semanticConfirmed: 'The matched forms are confirmed to have the same meaning', semanticRequired: 'Semantic correspondence is required.',
     evidence: 'Language coverage', result: 'Decision', card: 'JSON card', check: 'Check', json: 'Generate JSON card', copy: 'Copy', download: 'Download',
     table: { language: 'Language', form: 'Form', distance: 'D — Levenshtein distance', passed: 'Passes', translation: 'Translation', source: 'Source', match: 'Match' },
-    coverage: 'Coverage', required: 'Required', decision: 'Decision', accept: 'ACCEPTED', reject: 'NOT ACCEPTED', reasonOk: 'The 5/6 criterion is met. Forms up to 3 characters require an exact match: D = 0. Forms of 4 or more characters may pass with D ≤ 2.', reasonBad: 'Insufficient control-language coverage.',
+    coverage: 'Coverage', required: 'Required', decision: 'Decision', accept: 'ACCEPTED', reject: 'NOT ACCEPTED', reasonOk: 'The 5/6 criterion is met. Forms up to 3 characters require an exact match: D = 0. Forms of 4 or more characters require D ≤ 2 and D/L ≤ 0.25; L is the longer form’s length.', reasonBad: 'Insufficient control-language coverage.',
     loadingLists: 'Loading frequency lists...', searching: 'Searching forms...', frequencySource: 'frequency list', manualSource: 'manual', noForm: 'not found', searchError: 'Could not load frequency lists. Forms can be entered manually.', configError: 'Frequency-source configuration is not loaded. Enter forms manually; the automatic result is unavailable.', manualMode: 'manual override', autoMode: 'auto', resetAria: 'Reset', resetConfirm: 'Reset entered data? This action cannot be undone.', jsonModuleUnavailable: 'The JSON card module is unavailable. Reload the page.', buildingCard: 'Building card...', buttonError: 'Error',
     jsonCard: { close: 'Close JSON card', title: 'JSON card', useAuthor: 'Add authorship', authorName: 'Name or nickname', contactType: 'Contact type', contact: 'Contact', rememberAuthor: 'Remember for future cards', clearSavedAuthor: 'Delete saved data', generate: 'Generate card', generating: 'Generating...', output: 'Generated JSON', copy: 'Copy JSON card', copied: 'JSON card copied', copiedTitle: 'Copied', download: 'Download JSON card', empty: 'Generate the JSON card first.', unavailable: 'The JSON card is available only after a successful check.' }
   }
@@ -64,7 +65,7 @@ function downloadJson(filename, text) { const blob = new Blob([text], { type: 'a
 function copyText(text) { navigator.clipboard?.writeText(text).catch(() => {}); }
 
 function renderChrome() {}
-function levenshtein(a, b) { a = String(a || '').toLowerCase(); b = String(b || '').toLowerCase(); const dp = Array.from({ length: a.length + 1 }, (_, i) => [i]); for (let j = 1; j <= b.length; j++) dp[0][j] = j; for (let i = 1; i <= a.length; i++) for (let j = 1; j <= b.length; j++) { const cost = a[i - 1] === b[j - 1] ? 0 : 1; dp[i][j] = Math.min(dp[i - 1][j] + 1, dp[i][j - 1] + 1, dp[i - 1][j - 1] + cost); } return dp[a.length][b.length]; }
+function levenshtein(a, b) { a = graphemes(a); b = graphemes(b); const dp = Array.from({ length: a.length + 1 }, (_, i) => [i]); for (let j = 1; j <= b.length; j++) dp[0][j] = j; for (let i = 1; i <= a.length; i++) for (let j = 1; j <= b.length; j++) { const cost = a[i - 1] === b[j - 1] ? 0 : 1; dp[i][j] = Math.min(dp[i - 1][j] + 1, dp[i][j - 1] + 1, dp[i - 1][j - 1] + cost); } return dp[a.length][b.length]; }
 function translitRu(value) { const map = { а:'a', б:'b', в:'v', г:'g', д:'d', е:'e', ё:'e', ж:'zh', з:'z', и:'i', й:'j', к:'k', л:'l', м:'m', н:'n', о:'o', п:'p', р:'r', с:'s', т:'t', у:'u', ф:'f', х:'h', ц:'c', ч:'ch', ш:'sh', щ:'shch', ъ:'', ы:'y', ь:'', э:'e', ю:'yu', я:'ya' }; return String(value || '').toLowerCase().split('').map(ch => map[ch] ?? ch).join('').normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
 function normalizeLatin(value) { return translitRu(value).replace(/[^a-z0-9]/g, ''); }
 function formDistance(candidate, form) { return levenshtein(normalizeLatin(candidate), normalizeLatin(form)); }
@@ -190,7 +191,7 @@ function findBestInternationalismMatch(langCode, interalWord, index) {
   for (let length = base.length - 2; length <= base.length + 2; length += 1) {
     for (const entry of index.lengthBuckets.get(length) || []) {
       const distance = levenshtein(base, entry.latinNormalized);
-      if (distance <= 2) best = betterMatch(best, { language: langCode, form: entry.word, distance, source: 'frequency_list', match_type: 'fuzzy', frequency: entry.frequency, passed: true });
+      if (internationalismFormPasses(base, entry.latinNormalized, distance)) best = betterMatch(best, { language: langCode, form: entry.word, distance, source: 'frequency_list', match_type: 'fuzzy', frequency: entry.frequency, passed: true });
     }
   }
   return best || emptyMatch(langCode);
@@ -210,7 +211,7 @@ async function searchAllLanguages(runId, { onProgress } = {}) {
     state.matchMeta[lang.code] = { distance: match.distance, source: match.source, match_type: match.match_type, frequency: match.frequency || 0 };
   }
 }
-function effectivePassed(langCode) { if (state.manualOverride[langCode] === true) return true; if (state.manualOverride[langCode] === false) return false; return Boolean(state.autoPassed[langCode]); }
+function effectivePassed(langCode) { if (state.manualOverride[langCode] === true) { const form=state.evidence[langCode];return internationalismFormPasses(normalizeLatin(state.word),normalizeLatin(form),formDistance(state.word,form)); } if (state.manualOverride[langCode] === false) return false; return Boolean(state.autoPassed[langCode]); }
 function readEvidence() {
   for (const lang of LANGUAGES) {
     const code = lang.code;
@@ -222,7 +223,7 @@ function readEvidence() {
     state.evidence[code] = value;
     const distance = value ? formDistance(state.word, value) : null;
     if (value !== old) {
-      state.autoPassed[code] = distance !== null && distance <= matchDistanceLimit(state.word);
+      state.autoPassed[code] = internationalismFormPasses(normalizeLatin(state.word), normalizeLatin(value), distance);
       state.matchMeta[code] = { distance, source: 'manual', match_type: value ? 'manual' : 'not_found', frequency: 0 };
     } else if (!value) {
       state.autoPassed[code] = false;
@@ -337,7 +338,7 @@ function resetSuccessfulCheck() {
 }
 function getAuthorBlock() { if (!byId('useAuthorBlock')?.checked) return null; const displayName = byId('authorDisplayName')?.value.trim() || ''; const contactType = byId('authorContactType')?.value || 'telegram'; const contactValue = byId('authorContactValue')?.value.trim() || ''; const author = {}; if (displayName) author.display_name = displayName; if (contactValue) author.contacts = [{ type: contactType, url: window.InteralJsonCardModal?.normalizeContact?.(contactType, contactValue) || contactValue }]; return Object.keys(author).length ? author : null; }
 function evidenceForCard(lang) { const code = lang.code; const form = state.evidence[code] || ''; const meta = state.matchMeta[code] || {}; const evidence = { language: code, form, distance: Number.isFinite(Number(meta.distance)) ? Number(meta.distance) : null, passed: effectivePassed(code) }; if (meta.source && meta.source !== 'frequency_list') evidence.source = meta.source; return evidence; }
-function makeCardDraft() { const r = result(); const card = { version: '1.0', card_type: 'vord_card', vord_type: 'in', interal: { word: byId('wordInput')?.value.trim() || state.word, part_of_speech: byId('posInput')?.value || state.part_of_speech }, procedure: 'internationalism', coverage: { passed: r.passed, total: 6 }, semantic_correspondence_confirmed: r.semanticConfirmed, language_evidence: LANGUAGES.map(evidenceForCard) }; const author = getAuthorBlock(); if (author) card.author = author; return card; }
+function makeCardDraft() { const r = result(); const card = { version: '1.0', methodology_version: METHODOLOGY_VERSION, card_type: 'vord_card', vord_type: 'in', interal: { word: byId('wordInput')?.value.trim() || state.word, part_of_speech: byId('posInput')?.value || state.part_of_speech }, procedure: 'internationalism', coverage: { passed: r.passed, total: 6 }, semantic_correspondence_confirmed: r.semanticConfirmed, language_evidence: LANGUAGES.map(evidenceForCard) }; const author = getAuthorBlock(); if (author) card.author = author; return card; }
 function makeCard() { return makeCardDraft(); }
 function generateJson() { if (canCreateCard()) openJsonModal(); }
 function renderEvidenceRows() {
@@ -376,7 +377,7 @@ function render() {
 
 function collectInternationalismesPageState() {
   const r = result();
-  return { version: 2, page: location.pathname, fields: { word: state.word, partOfSpeech: state.part_of_speech, semanticConfirmed: state.semanticConfirmed === true, languageForms: { ...state.evidence }, manualOverrides: { ...state.manualOverride } }, result: state.checked ? { passed: r.passed, total: r.total, accepted: r.accepted, languageEvidence: LANGUAGES.map((lang) => ({ code: lang.code, form: state.evidence[lang.code] || '', passed: effectivePassed(lang.code), meta: state.matchMeta[lang.code] || null })) } : null, flags: { checked: Boolean(state.checked), accepted: Boolean(state.checked && r.accepted) }, ui: { activeTab: null, selectedLanguage: null }, savedAt: new Date().toISOString() };
+  return { version: 2, methodology_version: METHODOLOGY_VERSION, page: location.pathname, fields: { word: state.word, partOfSpeech: state.part_of_speech, semanticConfirmed: state.semanticConfirmed === true, languageForms: { ...state.evidence }, manualOverrides: { ...state.manualOverride } }, result: state.checked ? { passed: r.passed, total: r.total, accepted: r.accepted, languageEvidence: LANGUAGES.map((lang) => ({ code: lang.code, form: state.evidence[lang.code] || '', passed: effectivePassed(lang.code), meta: state.matchMeta[lang.code] || null })) } : null, flags: { checked: Boolean(state.checked), accepted: Boolean(state.checked && r.accepted) }, ui: { activeTab: null, selectedLanguage: null }, savedAt: new Date().toISOString() };
 }
 function importInternationalismesPageState(saved = {}) {
   const source = saved.version === 2 && saved.fields ? saved : { fields: { word: saved.word, partOfSpeech: saved.part_of_speech || saved.partOfSpeech, languageForms: saved.evidence || saved.languageForms, manualOverrides: saved.manualOverride || saved.manualOverrides }, result: saved.result, flags: { checked: saved.checked, accepted: saved.accepted } };
@@ -389,6 +390,8 @@ function importInternationalismesPageState(saved = {}) {
   state.autoPassed = emptyLangMap(false);
   state.matchMeta = emptyLangMap(null);
   (source.result?.languageEvidence || []).forEach((row) => { if (row?.code) { state.autoPassed[row.code] = Boolean(row.passed); state.matchMeta[row.code] = row.meta || null; if (row.form != null) state.evidence[row.code] = row.form; } });
+  for (const lang of LANGUAGES) { const code=lang.code,form=state.evidence[code]; const distance=form?formDistance(state.word,form):null;state.autoPassed[code]=internationalismFormPasses(normalizeLatin(state.word),normalizeLatin(form),distance); }
+  if (saved.methodology_version !== METHODOLOGY_VERSION) state.manualOverride=emptyLangMap(null);
   state.checked = Boolean(source.flags?.checked || source.result);
   byId('wordInput').value = state.word; byId('posInput').value = state.part_of_speech; if (byId('semanticConfirmed')) byId('semanticConfirmed').checked = state.semanticConfirmed;
   render(); setJsonEnabled(Boolean(source.flags?.accepted));

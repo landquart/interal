@@ -298,7 +298,8 @@ export async function runAssociativeCalculation({
     const finalPools = {};
     for (const language of languages) {
       const source = audited.candidatesByLanguage?.[language.code] || candidatePools[language.code] || [];
-      const custom = dependencies.candidateFinalizer?.finalize?.(language, source, { maxModels, input, state: currentState });
+      const custom = await dependencies.candidateFinalizer?.finalize?.(language, source, { maxModels, input, state: currentState, signal });
+      ensureActive(`finalize:${language.code}`);
       finalPools[language.code] = Array.isArray(custom) ? custom : finalizeCandidateOrdering(source, maxModels);
     }
     emit('selection:final');
@@ -314,7 +315,7 @@ export async function runAssociativeCalculation({
         analysisStats[language.code] = { candidateCount: 0, analyzedCount: 0, successfulCount: 0, failedCount: 0 };
         continue;
       }
-      const selected = dependencies.candidateSelector?.select?.(language, pool, { maxModels, state: currentState }) || selectBestFinalModels(pool, maxModels);
+      const selected = dependencies.candidateSelector?.select?.(language, pool, { maxModels, state: currentState }) || selectBestFinalModels(pool, Infinity);
       currentState.languageStatuses[language.code] = status('analyzing', { candidateCount: pool.length });
       setState('status:analyzing');
       const analyzed = [];
@@ -404,7 +405,7 @@ export async function runAssociativeCalculation({
       currentState.languageScores[language.code] = score;
       if (currentState.languageStatuses[language.code]?.status !== 'index_error' && stats.candidateCount > 0) {
         currentState.languageStatuses[language.code] = status(
-          stats.analyzedCount && !stats.successfulCount
+          source.some(item => item.frequencyProfile?.methodology_version && item.frequencyProfile.frequency_score == null) ? 'incomplete' : stats.analyzedCount && !stats.successfulCount
             ? 'qwen_error'
             : (stats.failedCount || hasLanguageAssociativeWarnings(currentState.warnings, language.code) ? 'completed_with_warnings' : 'completed'),
           {

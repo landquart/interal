@@ -52,7 +52,7 @@ assert.deepEqual(buildDecisionReasons(faNull).critical, ['no_calculated_data'], 
 assert.equal(buildDecisionReasons(faNull).critical.includes('final_association_below_35'), false, 'FA null does not give below-threshold');
 
 const faZero = calculateFinalAssociation({ languages: languages.slice(0, 3), languageResults: [success(0), success(0), success(0)], languageStatuses: {} });
-assert.equal(buildDecisionReasons(faZero).critical.includes('final_association_below_35'), true, 'FA 0 gives below-threshold');
+assert.equal(buildDecisionReasons(faZero).critical.includes('no_calculated_data'), true, 'zero anchors provide no represented-language average');
 
 const analyzing = calculateFinalAssociation({ languages: languages.slice(0, 3), languageResults: [success(40), empty, empty], languageStatuses: { de: { status: 'analyzing' } } });
 assert.equal(buildDecisionReasons(analyzing).warnings.includes('calculation_incomplete'), true, 'analyzing is intermediate warning');
@@ -81,8 +81,8 @@ const withAborted = calculateFinalAssociation({ languages: languages.slice(0, 3)
 assert.equal(withAborted.representedLangs, 2, 'aborted does not participate in FA');
 
 const acceptedWithIndexWarning = calculateFinalAssociation({ languages, languageResults: [success(40), success(41), success(42), empty, empty, empty], languageStatuses: { it: { status: 'index_error' } } });
-assert.equal(acceptedWithIndexWarning.accepted, true, 'index_error warning need not cancel acceptance');
-assert.equal(decisionStatusForResult(acceptedWithIndexWarning), 'accept', 'accepted decision survives warning');
+assert.equal(acceptedWithIndexWarning.accepted, false, 'missing language evidence blocks a final decision');
+assert.equal(decisionStatusForResult(acceptedWithIndexWarning), 'reject', 'incomplete calculation cannot pass');
 
 const semanticBad = calculateFinalAssociation({ languages: languages.slice(0, 3), languageResults: [success(50), success(50), success(50, false)], languageStatuses: {} });
 assert.equal(buildDecisionReasons(semanticBad).warnings.includes('semantic_not_confirmed'), true, 'semantic uncertainty is retained as a warning');
@@ -91,7 +91,7 @@ assert.equal(decisionStatusForResult(semanticBad), 'accept', 'semantic uncertain
 
 const duplicateOrder = buildDecisionReasons({ ...faZero, languageStatusSummary: summarizeLanguageStatuses({ en: { status: 'index_error' }, de: { status: 'index_error' } }) });
 assert.equal(new Set(duplicateOrder.critical).size, duplicateOrder.critical.length, 'critical reasons are unique');
-assert.deepEqual(duplicateOrder.critical, ['final_association_below_35', 'average_association_below_35'], 'critical reasons include both documented thresholds in deterministic order');
+assert.deepEqual(duplicateOrder.critical, ['no_calculated_data'], 'zero-only anchors give no represented-language average');
 
 for (const status of ['idle', 'loading_index', 'grouping_candidates', 'candidate_audit', 'no_candidates', 'analyzing', 'reviewing', 'completed', 'completed_with_warnings', 'index_error', 'qwen_error', 'incomplete', 'aborted']) {
   assert.ok(languageStatusLabel({ status }, 'ru'), `RU label exists for ${status}`);

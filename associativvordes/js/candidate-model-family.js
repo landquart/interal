@@ -62,7 +62,7 @@ export function candidateFrequencyScore(candidate) {
   ];
   for (const value of values) {
     const number = Number(value);
-    if (Number.isFinite(number)) return number;
+    if (value != null && value !== '' && Number.isFinite(number)) return number;
   }
   return Number.NEGATIVE_INFINITY;
 }
@@ -126,7 +126,7 @@ export function selectHighestFrequencyPerModel(candidates, root, language = 'en'
     const key = candidate.model_key || `manual:${language}:${index}:${buildSearchForm(candidate.word)}`;
     const group = groups.get(key) || { key, members: [], representative: null };
     group.members.push(candidate);
-    if (!group.representative || compareRootMatchThenFrequency(candidate, group.representative) < 0) group.representative = candidate;
+    if (!group.representative || compareFrequencyRepresentatives(candidate, group.representative) < 0) group.representative = candidate;
     groups.set(key, group);
   }
   const groupList = [...groups.values()];

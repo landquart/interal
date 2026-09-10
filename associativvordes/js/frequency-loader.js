@@ -1,3 +1,4 @@
+import { METHODOLOGY_VERSION } from '../../shared/methodology-calculation.mjs';
 import { BASE_CATEGORY_WEIGHTS, CATEGORY_ORDER, FREQUENCY_LIST_BASE_PATH, LANGUAGE_SOURCES } from './config-frequency-sources.js';
 import { normalizeLanguageSource } from './language-source-descriptor.js';
 import { isAbortError, normalizeAbortError } from './qwen-client.js';
@@ -7,13 +8,15 @@ const frequencyCache = new Map();
 export const SCORE_CONFIG = { ipmRef: 300 };
 
 export function meanNonZero(values) {
-  const valid = values.filter(v => typeof v === 'number' && v > 0);
+  if (values.some(v => v == null || !Number.isFinite(v) || v < 0)) return null;
+  const valid = values.filter(v => typeof v === 'number' && v >= 0);
   if (!valid.length) return 0;
   return valid.reduce((a, b) => a + b, 0) / valid.length;
 }
 
 export function ipmToScore(ipm) {
-  if (!ipm || ipm <= 0) return 0;
+  if (ipm == null || !Number.isFinite(Number(ipm))) return null;
+  if (ipm <= 0) return 0;
   return Math.min(100, (Math.log10(1 + ipm) / Math.log10(1 + SCORE_CONFIG.ipmRef)) * 100);
 }
 
@@ -106,40 +109,59 @@ export async function getFrequencyProfile(language, word, { signal, basePath = F
     const files = Array.isArray(sources[category]) ? sources[category] : [];
     if (!files.length) { warnings.push(`No ${category} source for ${lang}`); continue; }
     const ipm_values = [];
+    const ipm_intervals = [];
+    const source_ids = [];
     for (const source of files) {
       throwIfAborted(signal, `frequency:${category}`);
       let descriptor;
       try {
         descriptor = normalizeLanguageSource(category, source);
+        source_ids.push(descriptor.sourceId);
       } catch (error) {
         warnings.push(`Invalid frequency source descriptor for ${lang}/${category}: ${error.message}`);
-        ipm_values.push(0);
+        source_ids.push(null);
+        ipm_values.push(null);
+        ipm_intervals.push({ min: 0, max: null });
         continue;
       }
       const { fileName, sourceId, optional } = descriptor;
       try {
         const data = await loadFrequencyFile(lang, fileName, { signal, basePath });
         throwIfAborted(signal, `frequency:${category}`);
-        ipm_values.push(extractIpm(data, word));
+        const observed=extractIpm(data, word);
+        const truncated=typeof source==='object' && source.complete===false || /min\d+|top\d+/i.test(fileName);
+        const cutoff=typeof source==='object' && source.cutoffIpm != null ? Number(source.cutoffIpm) : NaN;
+        if(observed===0 && truncated){
+          ipm_values.push(null);
+          ipm_intervals.push({ min: 0, max: Number.isFinite(cutoff) && cutoff >= 0 ? cutoff : null });
+          warnings.push(`Frequency is below an unknown or configured cutoff: ${lang}/${sourceId}`);
+        } else { ipm_values.push(observed); ipm_intervals.push({ min: observed, max: observed }); }
       } catch (error) {
         if (isAbortError(error, signal)) throw normalizeAbortError(error, { stage: `frequency:${category}` });
         const requiredness = optional ? 'Optional' : 'Required';
         warnings.push(`${requiredness} frequency file unavailable: ${lang}/${sourceId} (${error.message})`);
-        ipm_values.push(0);
+        ipm_values.push(null);
+        ipm_intervals.push({ min: 0, max: null });
       }
     }
     const category_ipm = meanNonZero(ipm_values);
     if (category_ipm === 0) warnings.push(`Word not found in ${category} corpus for ${lang}`);
     const category_score = ipmToScore(category_ipm);
     const category_weight = categoryWeights[category] || 0;
-    frequency_score += category_weight * category_score;
-    category_breakdown[category] = { available: true, files_count: files.length, ipm_values, category_ipm, category_score, category_weight };
+    frequency_score = frequency_score == null || category_score == null ? null : frequency_score + category_weight * category_score;
+    const category_interval = {
+      min: ipmToScore(ipm_intervals.reduce((sum, value) => sum + value.min, 0) / files.length),
+      max: ipm_intervals.some(value => value.max == null) ? 100 : ipmToScore(ipm_intervals.reduce((sum, value) => sum + value.max, 0) / files.length)
+    };
+    category_breakdown[category] = { source_ids, ipm_intervals, category_interval, available: category_ipm != null, files_count: files.length, ipm_values, category_ipm, category_score, category_weight };
   }
+  if (!Object.keys(category_breakdown).length) frequency_score = null;
   const combined_ipm = CATEGORY_ORDER.reduce((sum, category) => {
     const details = category_breakdown[category];
     return sum + (Number(details?.category_ipm) || 0) * (Number(details?.category_weight) || 0);
   }, 0);
-  return { frequency_score, combined_ipm, category_breakdown, warnings };
+  const frequency_interval={min:CATEGORY_ORDER.reduce((sum,c)=>sum+(category_breakdown[c]?.category_weight||0)*(category_breakdown[c]?.category_interval.min ?? 0),0),max:CATEGORY_ORDER.reduce((sum,c)=>sum+(category_breakdown[c]?.category_weight||0)*(category_breakdown[c]?.category_interval.max ?? 100),0)};
+  return { methodology_version: METHODOLOGY_VERSION, frequency_interval, frequency_score, combined_ipm: frequency_score == null ? null : combined_ipm, category_breakdown, warnings };
 }
 
 export function clearFrequencyCacheForTests() {

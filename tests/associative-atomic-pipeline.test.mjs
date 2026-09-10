@@ -142,7 +142,7 @@ assert.doesNotMatch(scriptSource, /supplementAfterCompletedCalculation/, 'remove
   assert.equal(result.ok, true);
   assert.equal(counts.translations, 1, 'the fallback timer releases translation when animation frames freeze');
   assert.equal(counts.indexes, 1);
-  assert.equal(counts.analyses, 5);
+  assert.equal(counts.analyses, 6);
   assert.equal(button.loading, false);
   assert.ok(events.includes('scores:calculated'));
 }
@@ -252,7 +252,7 @@ assert.doesNotMatch(scriptSource, /supplementAfterCompletedCalculation/, 'remove
     }
   };
   const result = await runAssociativeCalculation({ input: { root: 'post-validated', maxModels: 5 }, dependencies });
-  assert.equal(counts.analyses, 5, 'five is only the provisional analysis cap');
+  assert.equal(counts.analyses, 6, 'five is only the provisional analysis cap');
   assert.deepEqual(result.selectedModels.en, ['a'], 'the final validator may retain fewer models without backfilling');
   assert.deepEqual(result.state.languages.en.filter(candidate => candidate.selected).map(candidate => candidate.word), ['a']);
   assert.ok(dependencies.eventLog.indexOf('final_validation:end') < dependencies.eventLog.indexOf('language_score:calculated'));

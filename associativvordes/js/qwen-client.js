@@ -121,6 +121,7 @@ export function buildQwenAssociationPrompt({ language, targetMeaning, word, swow
 }
 
 function clampIntegerOrNull(value) {
+  if (value == null || value === '') return null;
   const number = Number(value);
   if (!Number.isFinite(number)) return null;
   return Math.max(0, Math.min(100, Math.round(number)));
@@ -146,6 +147,8 @@ function parseQwenPayload(payload) {
   }
   if (!object || typeof object !== 'object') throw qwenError(QWEN_ERROR_CODES.INVALID_RESPONSE, 'Qwen response is not an object.');
   const parsed = {
+    generation: payload?.generation,
+    prompt: payload?.prompt,
     word: object.word,
     target_meaning: object.target_meaning,
     directness: clampIntegerOrNull(object.directness),
@@ -427,23 +430,29 @@ function hasFiniteScore(value) {
 
 function candidateFinalScore(candidate) {
   const direct = Number(candidate?.final_score);
-  if (Number.isFinite(direct)) return direct;
+  if (hasFiniteScore(candidate?.final_score)) return direct;
   const nested = Number(candidate?.analysis?.final_score);
-  return Number.isFinite(nested) ? nested : null;
+  return hasFiniteScore(candidate?.analysis?.final_score) ? nested : null;
 }
 
 function candidateFrequencyScore(candidate) {
   const values = [candidate?.frequency_score, candidate?.analysis?.frequency?.frequency_score, candidate?.frequencyProfile?.frequency_score];
   for (const value of values) {
     const number = Number(value);
-    if (Number.isFinite(number)) return number;
+    if (hasFiniteScore(value)) return number;
   }
   return Number.NEGATIVE_INFINITY;
 }
 
 export function compareFinalModelCandidates(left, right) {
-  return Number(right?.guaranteed_allomorph === true) - Number(left?.guaranteed_allomorph === true)
-    || compareRootMatchThenFrequency(left, right);
+  const pA=candidateFinalScore(left),pB=candidateFinalScore(right);
+  if (pA != null && pB == null) return -1;
+  if (pA == null && pB != null) return 1;
+  if(pA!=null && pB!=null) return pB-pA
+    || Number(right?.association_score ?? right?.analysis?.association?.association_score ?? 0)-Number(left?.association_score ?? left?.analysis?.association?.association_score ?? 0)
+    || candidateFrequencyScore(right)-candidateFrequencyScore(left)
+    || String(left.word).localeCompare(String(right.word));
+  return candidateFrequencyScore(right)-candidateFrequencyScore(left) || String(left.word).localeCompare(String(right.word));
 }
 
 export function selectBestFinalModels(candidates, limit = MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE) {
@@ -454,7 +463,7 @@ export function selectBestFinalModels(candidates, limit = MAX_ASSOCIATIVE_MODELS
     const key = String(candidate?.model_key || candidate?.model_family_key || candidate?.model || buildSearchForm(candidate?.word));
     if (!key) continue;
     const current = representatives.get(key);
-    if (!current || compareFinalModelCandidates(candidate, current) < 0) representatives.set(key, candidate);
+    if (!current || candidateFrequencyScore(candidate) > candidateFrequencyScore(current) || candidateFrequencyScore(candidate) === candidateFrequencyScore(current) && String(candidate.word).localeCompare(String(current.word)) < 0) representatives.set(key, candidate);
   }
   return [...representatives.values()]
     .sort(compareFinalModelCandidates)
@@ -466,6 +475,7 @@ export function finalizeCandidateOrdering(candidates, limit = MAX_ASSOCIATIVE_MO
   const best = selectBestFinalModels(source, limit);
   const selected = new Set(best.map(candidateIdentity));
   const remaining = source.filter(candidate => !selected.has(candidateIdentity(candidate)));
+  best.sort((a,b) => candidateFrequencyScore(b)-candidateFrequencyScore(a) || String(a.word).localeCompare(String(b.word)));
   return [...best, ...remaining].map(candidate => ({
     ...candidate,
     selected: selected.has(candidateIdentity(candidate))
@@ -656,7 +666,7 @@ export function applyQwenCandidateValidation(
       const canonical = buildSearchForm(candidate?.[validationField]?.canonical_lexeme);
       if (!canonical) continue;
       const current = canonicalRepresentatives.get(canonical);
-      if (!current || compareFinalModelCandidates(candidate, current) < 0) canonicalRepresentatives.set(canonical, candidate);
+      if (!current || candidateFrequencyScore(candidate) > candidateFrequencyScore(current) || candidateFrequencyScore(candidate) === candidateFrequencyScore(current) && String(candidate.word).localeCompare(String(current.word)) < 0) canonicalRepresentatives.set(canonical, candidate);
     }
     output[language] = validated.map(candidate => {
       if (candidate.automatic_selection_eligible === false) return candidate;

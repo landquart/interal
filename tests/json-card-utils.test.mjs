@@ -3,7 +3,9 @@ import fs from 'node:fs';
 import vm from 'node:vm';
 import { CARD_PREFIXES, buildPublicCardPayload, createCardId, getPayloadSizeBytes, getSupabaseConstraint, MAX_PAYLOAD_BYTES } from '../api/cards.js';
 
-function el(){return {style:{},dataset:{},classList:{add(){},remove(){},toggle(){},contains(){return false}},setAttribute(){},getAttribute(){return null},append(){},appendChild(){},prepend(){},remove(){},addEventListener(){},querySelector(){return el()},querySelectorAll(){return []},focus(){},click(){},textContent:'',value:'',checked:false,hidden:false,disabled:false};}
+const readRepoFile = file => fs.readFileSync(new URL(`../${file}`, import.meta.url), 'utf8');
+
+function el(){return {style:{setProperty(){},removeProperty(){},getPropertyValue(){return ''}},dataset:{},classList:{add(){},remove(){},toggle(){},contains(){return false}},setAttribute(){},getAttribute(){return null},append(){},appendChild(){},prepend(){},remove(){},addEventListener(){},querySelector(){return el()},querySelectorAll(){return []},focus(){},click(){},textContent:'',value:'',checked:false,hidden:false,disabled:false};}
 function loadUi(){
   const elements={}; const alerts=[]; const calls=[];
   const currentScript = el();
@@ -13,7 +15,7 @@ function loadUi(){
     send() {
       const path = new URL(this.url).pathname.replace(/^\//, '');
       try {
-        this.responseText = fs.readFileSync(path, 'utf8');
+        this.responseText = readRepoFile(decodeURIComponent(path));
         this.status = 200;
       } catch {
         this.responseText = '';
@@ -21,8 +23,8 @@ function loadUi(){
       }
     }
   }
-  const context={ console, calls, alert:(msg)=>alerts.push(msg), setTimeout, clearTimeout, requestAnimationFrame:(fn)=>setTimeout(fn,0), CustomEvent:class{constructor(type,init){this.type=type;this.detail=init?.detail}}, location:{hostname:'localhost', pathname:'/internationalismes/', origin:'http://localhost'}, navigator:{clipboard:{writeText:async()=>{}}}, localStorage:{getItem(){return null}, setItem(){}, removeItem(){}}, Blob:class{}, URL:Object.assign(URL,{createObjectURL(){return 'blob:'}, revokeObjectURL(){}}), TextEncoder, XMLHttpRequest:MockXMLHttpRequest, fetch:async()=>({ok:true,json:async()=>({ok:true,id:'in_123456789abc',section:'internationalismes',status:'pending'})}), document:{currentScript, dispatchEvent(){}, documentElement:{lang:'ru', dataset:{}, classList:{add(){}, remove(){}, toggle(){}, contains(){return false}}, style:{setProperty(){}}}, head:{appendChild(){}, append(){}}, body:{appendChild(){}, append(){}, prepend(){}, classList:{add(){}, remove(){}, toggle(){}, contains(){return false}}}, createElement(){return el()}, querySelector(sel){return sel.includes('data-interal-ui-loader')?currentScript:null}, querySelectorAll(){return []}, getElementById(id){return elements[id]||null}, addEventListener(){}}, window:null };
-  context.addEventListener=()=>{}; context.removeEventListener=()=>{}; context.matchMedia=()=>({matches:false, addEventListener(){}, removeEventListener(){}}); context.window=context; vm.createContext(context); vm.runInContext(fs.readFileSync('shared/ui.js','utf8'), context); return {context,elements,alerts,calls};
+  const context={ console, performance: { now: () => 0 }, calls, alert:(msg)=>alerts.push(msg), setTimeout, clearTimeout, requestAnimationFrame:(fn)=>setTimeout(fn,0), CustomEvent:class{constructor(type,init){this.type=type;this.detail=init?.detail}}, location:{hostname:'localhost', pathname:'/internationalismes/', origin:'http://localhost'}, navigator:{clipboard:{writeText:async()=>{}}}, localStorage:{getItem(){return null}, setItem(){}, removeItem(){}}, Blob:class{}, URL:Object.assign(URL,{createObjectURL(){return 'blob:'}, revokeObjectURL(){}}), TextEncoder, XMLHttpRequest:MockXMLHttpRequest, fetch:async()=>({ok:true,json:async()=>({ok:true,id:'in_123456789abc',section:'internationalismes',status:'pending'})}), document:{currentScript, dispatchEvent(){}, documentElement:{lang:'ru', dataset:{}, classList:{add(){}, remove(){}, toggle(){}, contains(){return false}}, style:{setProperty(){}}}, head:{appendChild(){}, append(){}}, body:{appendChild(){}, append(){}, prepend(){}, classList:{add(){}, remove(){}, toggle(){}, contains(){return false}}}, createElement(){return el()}, querySelector(sel){return sel.includes('data-interal-ui-loader')?currentScript:null}, querySelectorAll(){return []}, getElementById(id){return elements[id]||null}, addEventListener(){}}, window:null };
+  context.addEventListener=()=>{}; context.removeEventListener=()=>{}; context.matchMedia=()=>({matches:false, addEventListener(){}, removeEventListener(){}}); context.window=context; vm.createContext(context); vm.runInContext(readRepoFile('shared/ui.js'), context); return {context,elements,alerts,calls};
 }
 const okResponse=(data)=>({ok:true,status:200,json:async()=>data});
 const badResponse=(error,status=500,code='SUPABASE_INSERT_FAILED')=>({ok:false,status,json:async()=>({ok:false,error,code})});
@@ -96,11 +98,11 @@ assert.equal(getSupabaseConstraint({ message: 'new row for relation "cards" viol
 
 const htmlFiles = ['internationalismes/index.html','indoeuropanvordes/index.html','associativvordes/index.html','vordesofcommunites/index.html','grammaticebrevivordes/index.html','altervordes/index.html','affixes/index.html'];
 for (const file of htmlFiles) {
-  const html = fs.readFileSync(file, 'utf8');
+  const html = readRepoFile(file);
   assert.match(html, /shared\/ui\.js\?v=interal-ui-20260820-2/);
   assert.doesNotMatch(html, new RegExp(['cards-primary-id-fix','20260711','1'].join('-')));
 }
-const uiCore = fs.readFileSync('shared/ui-core.js','utf8');
+const uiCore = readRepoFile('shared/ui-core.js');
 assert.match(uiCore, /INTERAL_JSON_MODULE_VERSION = 'contact-types-20260713-1'/);
 assert.doesNotMatch(uiCore, new RegExp(['createFallbackCardId','isFallbackEligibleError','checkHealth','createLocalOnlyCard'].join('|')));
 
@@ -114,7 +116,7 @@ const pageSections = {
   'indoeuropanvordes/index.html': 'indoeuropanvordes'
 };
 for (const [file, section] of Object.entries(pageSections)) {
-  assert.match(fs.readFileSync(file, 'utf8'), new RegExp(`section:\\s*['\"]${section}['\"]|CARD_SECTION\\s*=\\s*['\"]${section}['\"]`));
+  assert.match(readRepoFile(file), new RegExp(`section:\\s*['\"]${section}['\"]|CARD_SECTION\\s*=\\s*['\"]${section}['\"]`));
 }
 
 const jsonTextSources = [
@@ -128,7 +130,7 @@ const jsonTextSources = [
   'indoeuropanvordes/index.html'
 ];
 for (const file of jsonTextSources) {
-  const source = fs.readFileSync(file, 'utf8');
+  const source = readRepoFile(file);
   assert.match(source, /Remember for future cards/);
   assert.match(source, /Delete saved data/);
 }

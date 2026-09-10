@@ -37,7 +37,7 @@ const language = calculateLanguageScore([
   { selected: true, final_score: 50 },
   { selected: true, final_score: 20 }
 ]);
-assert.equal(language.normalized, 50, 'low-scoring models remain in the language mean');
+assert.equal(language.normalized, 80, 'other models do not dilute the strongest anchor');
 const limitedLanguage = calculateLanguageScore([
   { selected: true, final_score: 100 },
   { selected: true, final_score: 90 },
@@ -47,7 +47,7 @@ const limitedLanguage = calculateLanguageScore([
   { selected: true, final_score: 0 }
 ], { maxModels: MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE });
 assert.equal(limitedLanguage.count, 5, 'no more than five words participate in one language result');
-assert.equal(limitedLanguage.normalized, 80, 'the sixth selected word is excluded by the five-word limit');
+assert.equal(limitedLanguage.normalized, 100, 'maximum P remains the anchor after the five-model limit');
 
 const accepted = calculateFinalAssociation({
   languages: [{ code: 'en', group: 'Germanic' }, { code: 'fr', group: 'Romance' }, { code: 'ru', group: 'Slavic' }],

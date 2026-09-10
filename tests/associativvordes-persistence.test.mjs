@@ -42,7 +42,7 @@ state.languages.en.push({
   model_key: 'en|latin|plain||inter|interact',
   sources: [{ id: 'en:web:fixture', file: '/tmp/private/web-fixture.tsv', category: 'web', ipm: 0 }],
   match: { type: 'exact', distance: 0, similarity: 1, fragment: 'inter', index: 0 },
-  analysis: { swow: { bonus: 11, target_to_word: { found: true, r1_strength: 0.11, r123_strength: 0.22, diagnostic: { shard: 'not saved' } }, word_to_target: { found: false, r1_strength: null, r123_strength: null } } }
+  analysis: { methodology_version: '2026-09-09', swow: { bonus: 11, target_to_word: { found: true, r1_strength: 0.11, r123_strength: 0.22, diagnostic: { shard: 'not saved' } }, word_to_target: { found: false, r1_strength: null, r123_strength: null } } }
 });
 
 const exported = compactAssociativeState(state, { languages, activeLang: 'en', calculateResult: () => ({ finalAssociation: 40, totalAssociation: 50, representedLanguages: 1, representedGroups: 1, semanticConfirmed: true, accepted: true }) });

@@ -9,6 +9,7 @@ import {
 } from '../associativvordes/js/association-analyzer.js';
 import { formatMetric } from '../associativvordes/js/render-results.js';
 
+const legacyFields = value => Object.fromEntries(['sum','normalized','count','associationSum','associationNormalized','associationCount'].map(k=>[k,value[k]]));
 const languages = [
   { code: 'en', group: 'germanic' },
   { code: 'de', group: 'germanic' },
@@ -23,12 +24,12 @@ assert.equal(empty.semanticConfirmed, false, 'empty languages do not confirm sem
 assert.equal(empty.accepted, false, 'empty languages are rejected without numeric FA');
 
 const zeroLanguage = calculateLanguageScore([{ selected: true, final_score: 0 }], { scoreGetter: item => item.final_score });
-assert.deepEqual(zeroLanguage, { sum: 0, normalized: 0, count: 1, associationSum: null, associationNormalized: null, associationCount: 0 }, 'calculated zero word stays a real zero');
+assert.deepEqual(legacyFields(zeroLanguage), { sum: 0, normalized: 0, count: 1, associationSum: null, associationNormalized: null, associationCount: 0 }, 'calculated zero word stays a real zero');
 const realZeroFinal = calculateFinalAssociation({ languages: [languages[0]], languageResults: [{ sum: 0, normalized: 0, associationNormalized: 0, count: 1, semanticConfirmed: true }] });
-assert.equal(realZeroFinal.finalAssociation, 0, 'one calculated language with score 0 gives FA 0');
-assert.equal(realZeroFinal.totalAssociation, 0, 'real zero stays TA 0');
-assert.equal(realZeroFinal.hasCalculatedData, true, 'real zero counts as calculated data');
-assert.notEqual(realZeroFinal.finalAssociation, null, 'real zero is not null');
+assert.equal(realZeroFinal.finalAssociation, null, 'zero A does not represent a language');
+assert.equal(realZeroFinal.totalAssociation, null, 'no represented language gives no total');
+assert.equal(realZeroFinal.hasCalculatedData, false, 'zero is retained in the language row but not represented');
+assert.equal(realZeroFinal.languageScores[0].normalized, 0, 'the actual zero is preserved in evidence');
 
 assert.equal(formatMetric(null, 1), '—', 'null displays as no data');
 assert.equal(formatMetric(undefined, 1), '—', 'undefined displays as no data');
@@ -51,7 +52,7 @@ assert.equal(finalAssociationRejectionReasons({ representedLangs: 3, groups: 2, 
 
 assert.equal(canCreateAssociativeJsonCard(empty), false, 'JSON card is unavailable without FA');
 assert.equal(canCreateAssociativeJsonCard(realZeroFinal), false, 'JSON card is not blocked merely by zero; methodology acceptance blocks this case');
-assert.equal(realZeroFinal.hasCalculatedData, true, 'zero is treated as a completed calculation');
+assert.equal(realZeroFinal.hasCalculatedData, false, 'zero alone gives no represented-language average');
 
 const oneLanguageHighFa = calculateFinalAssociation({ languages: [languages[0]], languageResults: [{ sum: 40, normalized: 40, associationNormalized: 40, count: 1, semanticConfirmed: true }] });
 assert.equal(oneLanguageHighFa.finalAssociation, 40, 'FA 40 with one language is calculated');
@@ -100,8 +101,8 @@ assert.equal(canCreateAssociativeJsonCard(threeLanguagesTwoGroupsHighFa), true, 
 assert.equal(canCreateAssociativeJsonCard(sixLanguagesLowFa), false, 'JSON card is blocked when FA is below threshold');
 
 const noWords = calculateLanguageScore([], { scoreGetter: item => item.final_score });
-assert.deepEqual(noWords, { sum: null, normalized: null, count: 0, associationSum: null, associationNormalized: null, associationCount: 0 }, 'no selected calculated words returns nulls');
+assert.deepEqual(legacyFields(noWords), { sum: null, normalized: null, count: 0, associationSum: null, associationNormalized: null, associationCount: 0 }, 'no selected calculated words returns nulls');
 const calculatedZeroWord = calculateLanguageScore([{ selected: true, final_score: 0 }], { scoreGetter: item => item.final_score, maxModels: 1 });
-assert.deepEqual(calculatedZeroWord, { sum: 0, normalized: 0, count: 1, associationSum: null, associationNormalized: null, associationCount: 0 }, 'calculated zero word returns zero, not null');
+assert.deepEqual(legacyFields(calculatedZeroWord), { sum: 0, normalized: 0, count: 1, associationSum: null, associationNormalized: null, associationCount: 0 }, 'calculated zero word returns zero, not null');
 
 console.log('associativvordes no-data tests passed');

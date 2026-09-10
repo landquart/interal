@@ -61,7 +61,7 @@ try {
   assert.ok(fetch.calls.includes('./frequency lists/zz/object-source.json'), 'object source forms the correct URL from file');
   assert.equal(fetch.calls.some(url => url.includes('[object%20Object]') || url.includes('[object Object]')), false, 'no URL contains [object Object]');
   assert.deepEqual(profile.category_breakdown.subtitles.ipm_values, [12, 6], 'subtitles keeps one IPM value per source descriptor');
-  assert.deepEqual(profile.category_breakdown.normative.ipm_values, [0, 0], 'missing required and optional sources both contribute zero IPM values at runtime');
+  assert.deepEqual(profile.category_breakdown.normative.ipm_values, [null, null], 'missing sources remain unknown, not zero');
   assert.ok(profile.warnings.some(warning => warning.includes('Required frequency file unavailable: zz/normative/required-missing.json (HTTP 404)')), 'required source diagnostics identify required files');
   assert.ok(profile.warnings.some(warning => warning.includes('Optional frequency file unavailable: zz/normative/optional-missing.json (HTTP 404)')), 'optional source diagnostics identify optional files');
 

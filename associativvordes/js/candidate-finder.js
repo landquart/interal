@@ -104,7 +104,7 @@ function withDuplicateWarning(entry) {
   };
 }
 
-export function findCandidatesForRoot({ entries, root, language = 'en', elementType = 'root', maxCandidates = Infinity, specialRootMatcher } = {}) {
+export function findCandidatesForRoot({ entries, root, language = 'en', elementType = 'root', maxCandidates = Infinity, groupModels = true, specialRootMatcher } = {}) {
   if (!Array.isArray(entries)) throw new TypeError('findCandidatesForRoot requires entries to be an array.');
   if (typeof root !== 'string' || !root.trim()) throw new TypeError('findCandidatesForRoot requires a non-empty root.');
   if (maxCandidates !== Infinity && (!Number.isInteger(maxCandidates) || maxCandidates < 0)) throw new TypeError('maxCandidates must be a non-negative integer.');
@@ -155,7 +155,7 @@ export function findCandidatesForRoot({ entries, root, language = 'en', elementT
     matched.push(candidate);
   }
 
-  const grouped = selectHighestFrequencyPerModel(matched, root, language, elementType);
+  const grouped = groupModels ? selectHighestFrequencyPerModel(matched, root, language, elementType) : { candidates: matched, dropped: [] };
   if (grouped.dropped.length) diagnostics.modelDuplicates = grouped.dropped.length;
   for (const item of grouped.dropped) diagnostics.warnings.push({ reason: 'lower_priority_model_variant', word: item.word, model: item.model_family_key });
 

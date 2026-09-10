@@ -211,7 +211,9 @@ function evaluateAffixDecision(card) {
     criteria.FAa_threshold = calculation.threshold;
     criteria.FAa_passed = calculation.criteria.FAa_threshold;
     criteria.recognition_type = card.recognitionType || card.criteria?.recognition_type || 'needs_manual_review';
-    accepted = calculation.accepted;
+    criteria.meaningClear = card.criteria?.meaningClear === true;
+    needsManualReview = calculation.review_required || typeof card.criteria?.meaningClear !== 'boolean';
+    accepted = calculation.accepted && criteria.meaningClear && !needsManualReview;
   } else {
     const c = card.criteria || {};
     const keys = ['necessityConfirmed','noSeriousConflicts','shortestSuitableAlternative','partialInternationalPresence','derivationallyViable','meaningClear','noBetterStandardProcedure'];
@@ -279,7 +281,7 @@ function buildAffixesCheckPrompt(input) { return `You check an Interal affix and
 
 Methodology for affixes:
 - international_affix: present in many widespread borrowings and/or stable common Indo-European correspondences; at least 5 of 6 control languages; form/pronunciation may differ if immediate recognition remains possible.
-- associativ_affix: present in at least 3 control languages and 2 language groups; borrowings are fewer; recognition is associative and analogical, not immediate; provide 1–5 frequent borrowing candidates per represented language. IPM values are provisional and will be deterministically verified against local frequency lists.
+- associativ_affix: present in at least 3 control languages and 2 language groups; borrowings are fewer; recognition is associative and analogical, not immediate; provide 1–5 distinct lemmas per represented language. Confirm that each lemma contains this affix with the required meaning; set meaningClear=false if any selected lemma fails that check. IPM values are provisional and will be deterministically verified against local frequency lists.
 - alter_affix: needed when affixes for the required meaning differ significantly across control languages, or when a more widespread affix has several morphological forms because of derivation and/or several meanings.
 - Standardization: consider both ordinary forms in individual words and forms in derived words; do not automatically transfer source-language endings; choose the more widespread, prototypical, or derivationally convenient form.
 - If the optional input comment is present, use it only as analyst context for interpreting the candidate affix; do not copy the comment into the output JSON and do not add explanatory fields.
@@ -381,18 +383,22 @@ async function runTargetTranslation(payload) {
   return { ok: true, ...parsed, cached: false, model: result.model };
 }
 
-function numOrNull(value){ const n=Number(value); return Number.isFinite(n)?Math.max(0,Math.min(100,Math.round(n))):null; }
+function numOrNull(value){ if(value==null||value==='')return null; const n=Number(value); return Number.isFinite(n)?Math.max(0,Math.min(100,Math.round(n))):null; }
 function normalizeAssociationResult(r,input,model){ return { word: normalizeString(r?.word,input.word), target_meaning: normalizeString(r?.target_meaning,input.targetMeaning), directness: numOrNull(r?.directness ?? r?.Di), field_relatedness: numOrNull(r?.field_relatedness ?? r?.Pr), domain_shift: numOrNull(r?.domain_shift ?? r?.Sh), responseLanguage: normalizeInterfaceLanguage(r?.responseLanguage||input.interfaceLanguage), short_explanation: normalizeString(r?.short_explanation||r?.explanation), model }; }
 function validateAssociationPayload(payload, interfaceLanguage){ const source=payload&&typeof payload==='object'?payload:{}; const input={ interfaceLanguage, language: normalizeString(source.language), targetMeaning: normalizeString(source.targetMeaning), word: normalizeString(source.word), swow: source.swow || {}, review: source.review === true, primary: source.primary || null }; if(!input.language) throw Object.assign(Error('language is required'),{status:400}); if(!input.targetMeaning) throw Object.assign(Error('targetMeaning is required'),{status:400}); if(!input.word) throw Object.assign(Error('word is required'),{status:400}); return input; }
 function associationModelForRequest(input){ return input.review === true ? QWEN_ASSOCIATIVE_REVIEW_MODEL : QWEN_ASSOCIATIVE_PRIMARY_MODEL; }
 function buildAssociationPrompt(input){ return `Evaluate semantic association between a target meaning and an associative word for Interal. Do not generate candidate words. Return only valid JSON. Use 0-100 integer scores.
-Di/directness = how directly the word points to target meaning.
+Evaluate the direction familiar derivative -> target root/preposition meaning. Do not substitute reverse association, shared topic, or historical etymology for present-day recoverability.
+Di/directness: 0 meaning not recoverable; 25 requires specialist knowledge; 50 recoverable after a prompt; 75 clear after brief segmentation; 100 direct and unambiguous.
+Pr/field_relatedness: 0 different fields; 50 partial overlap; 100 one field.
+Sh/domain_shift: 0 no competing domain; 50 mixed domains; 100 competing domain dominates.
+Explain intermediate scores. Missing SWOW pairs are missing evidence, not proof of zero association. Inspect word_to_target as the relevant direction.
 Pr/field_relatedness = how strongly the word belongs to same semantic field.
 Sh/domain_shift = how strongly modern meaning belongs to a different competing domain.
 Review mode: ${input.review===true}. If review mode, independently review primary scores.
 Input: ${JSON.stringify(input,null,2)}
 Return {"word":"","target_meaning":"","directness":0,"field_relatedness":0,"domain_shift":0,"responseLanguage":"${input.interfaceLanguage}","short_explanation":""}`; }
-async function runAssociationScore(payload, interfaceLanguage){ const input=validateAssociationPayload(payload, interfaceLanguage); const modelName=associationModelForRequest(input); const result=await callYandex([{role:'system',content:'You are a lexical association evaluator. Return only valid JSON.'},{role:'user',content:buildAssociationPrompt(input)}], true, modelName); return { ok:true, analysis: normalizeAssociationResult(extract(result.content), input, result.model), model: result.model, modelRole: input.review === true ? 'review' : 'primary' }; }
+async function runAssociationScore(payload, interfaceLanguage){ const input=validateAssociationPayload(payload, interfaceLanguage); const modelName=associationModelForRequest(input); const result=await callYandex([{role:'system',content:'You are a lexical association evaluator. Return only valid JSON.'},{role:'user',content:buildAssociationPrompt(input)}], true, modelName); return { ok:true, analysis: normalizeAssociationResult(extract(result.content), input, result.model), model: result.model, methodology_version:'2026-09-09', generation:{temperature:0,max_tokens:2200,prompt:buildAssociationPrompt(input)}, modelRole: input.review === true ? 'review' : 'primary' }; }
 
 
 const TASKS = {

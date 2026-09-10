@@ -36,8 +36,8 @@ const languages = [
 const result = calculateFinalAssociation({
   languages,
   languageResults: [
-    { normalized: 40, sum: 80, count: 2, semanticConfirmed: true },
-    { normalized: 80, sum: 80, count: 1, semanticConfirmed: true },
+    { normalized: 40, associationNormalized: 40, sum: 80, count: 2, semanticConfirmed: true },
+    { normalized: 80, associationNormalized: 80, sum: 80, count: 1, semanticConfirmed: true },
     { normalized: null, sum: null, count: 0, semanticConfirmed: false }
   ]
 });
@@ -78,9 +78,9 @@ const derivativeAverage = calculateLanguageScore([
   { selected: true, final_score: 50, association_score: 50 },
   { selected: false, final_score: 100 }
 ]);
-assert.equal(derivativeAverage.normalized, 35, 'P-bar uses the number of actually selected derivatives');
+assert.equal(derivativeAverage.normalized, 50, 'language P is the maximum selected P');
 assert.equal(derivativeAverage.count, 2);
-assert.equal(derivativeAverage.associationNormalized, 45, 'A-bar uses the same selected derivatives as P-bar');
+assert.equal(derivativeAverage.associationNormalized, 50, 'language A belongs to the maximum-P derivative');
 
 const incompleteAssociation = calculateLanguageScore([
   { selected: true, final_score: 40, association_score: 50 },
@@ -89,7 +89,7 @@ const incompleteAssociation = calculateLanguageScore([
 assert.equal(incompleteAssociation.associationNormalized, null, 'A-bar is unavailable if any selected derivative lacks A');
 
 assert.throws(
-  () => calculateFinalAssociation({ languages: [{ code: 'el', group: 'Hellenic' }], languageResults: [{ normalized: 50, sum: 50, count: 1 }] }),
+  () => calculateFinalAssociation({ languages: [{ code: 'el', group: 'Hellenic' }], languageResults: [{ normalized: 50, associationNormalized: 50, sum: 50, count: 1 }] }),
   error => error?.code === 'MISSING_LANGUAGE_SPEAKERS',
   'a represented language without N raises a diagnostic error'
 );
@@ -103,7 +103,7 @@ assert.equal(normalizeIpmScore(3), Math.log10(4) / Math.log10(301) * 100, 'affix
 assert.equal(affix.representedLanguages, 3);
 assert.equal(affix.representedLanguageGroups, 2);
 assert.equal(affix.languageTotalIpm.en, 3, '3 IPM is checked by the per-language sum');
-assert.equal(affix.languageAverageF.en, (normalizeIpmScore(1) + normalizeIpmScore(2)) / 2, 'F-bar uses the number of actually selected words');
+assert.equal(affix.languageAverageF.en, normalizeIpmScore(3), 'IPM is summed before logarithmic normalization');
 assert.equal(affix.speakersTotal, enN + deN + CONTROL_LANGUAGE_DEMOGRAPHICS.fr.speakers);
 assert.equal(affix.accepted, true);
 
@@ -121,8 +121,8 @@ const belowAffixThreshold = calculateAssociativeAffix({
   fr: Array.from({ length: 5 }, (_, index) => ({ word: `fr-${index}`, ipm: 0.6 }))
 });
 assert.equal(belowAffixThreshold.criteria.minimum_ipm_each_language, true);
-assert.ok(belowAffixThreshold.FAa < 15);
-assert.equal(belowAffixThreshold.accepted, false, 'FAa below 15% is rejected independently of IPM totals');
+assert.ok(Math.abs(belowAffixThreshold.FAa - normalizeIpmScore(3)) < 1e-10);
+assert.equal(belowAffixThreshold.accepted, true, 'five distinct derivatives with total IPM 3 pass');
 
 const insufficientBreadth = calculateAssociativeAffix({
   en: [{ word: 'en', ipm: 300 }],

@@ -32,7 +32,7 @@ function populatedState() {
       ru: createLanguageStatus('completed')
     },
     languages: {
-      en: [{ word: 'interact', selected: true, final_score: 42, frequency_score: 20, analysis: { association: { semantic_confirmed: true } } }],
+      en: [{ word: 'interact', selected: true, final_score: 42, frequency_score: 20, analysis: { methodology_version: '2026-09-09', association: { semantic_confirmed: true } } }],
       de: [{ word: 'international', selected: true, final_score: 45 }],
       fr: [{ word: 'intérieur', selected: true, final_score: 44 }],
       es: [],
@@ -108,7 +108,7 @@ function populatedState() {
     selected: true,
     sources: [{ id: 'bnc-1', file: '/corpora/bnc.tsv', category: 'general', ipm: 12.5 }],
     match: { type: 'fuzzy', distance: 1, similarity: 0.91, fragment: 'inter', index: 0 },
-    analysis: { swow: { bonus: 10, target_to_word: { found: true, r1_strength: 2, r123_strength: 4 }, word_to_target: { found: false, r1_strength: null, r123_strength: 1 } } }
+    analysis: { methodology_version: '2026-09-09', swow: { bonus: 10, target_to_word: { found: true, r1_strength: 2, r123_strength: 4 }, word_to_target: { found: false, r1_strength: null, r123_strength: 1 } } }
   });
   const exported = compactAssociativeState(state, { languages: LANGUAGES, activeLang: 'en' });
   const imported = restoreAssociativeState(exported, { languages: LANGUAGES, createLanguageStatus });

@@ -1,11 +1,11 @@
+import { METHODOLOGY_VERSION } from '../../shared/methodology-calculation.mjs';
 import { getFrequencyProfile } from './frequency-loader.js';
 import { getBidirectionalSwow } from './swow-client.js';
 import { getTargetMeaningForLanguage as translateTargetMeaningForLanguage } from './target-meaning-translator.js';
 import { ASSOCIATION_SCORE_WEIGHTS, FINAL_SCORE_WEIGHTS, getQwenAssociationScores, QWEN_ERROR_CODES, QWEN_RUNTIME_CONFIG, createReviewBudget, isAbortError, normalizeAbortError } from './qwen-client.js';
-import { calculateDirectDemographicAverage, requireSpeakerCount } from '../../shared/control-language-demographics.mjs';
+import { CONTROL_LANGUAGE_CODES, calculateDirectDemographicAverage, requireSpeakerCount } from '../../shared/control-language-demographics.mjs';
 
 export const THRESHOLDS = { main: 35, association: 35 };
-export const REVIEW_SCORE_RANGE = Object.freeze({ min: 25, max: 35 });
 
 export async function getTargetMeaningForLanguage(targetMeaning, language, options) {
   return translateTargetMeaningForLanguage(targetMeaning, language, options);
@@ -16,14 +16,14 @@ export function clamp(value, min = 0, max = 100) {
 }
 
 export function calculateAssociationScore({ directness, field_relatedness, domain_shift }) {
-  if (directness == null || field_relatedness == null || domain_shift == null) return null;
-  return clamp(
+  if (![directness,field_relatedness,domain_shift].every(isFiniteScore)) return null;
+  return Math.min(clamp(Number(directness)), clamp(
     ASSOCIATION_SCORE_WEIGHTS.directness * directness +
     ASSOCIATION_SCORE_WEIGHTS.field_relatedness * field_relatedness +
     ASSOCIATION_SCORE_WEIGHTS.inverse_domain_shift * (100 - domain_shift),
     0,
     100
-  );
+  ));
 }
 
 // Legacy-compatible API: SWOW evidence is diagnostic only and must not change A or P.
@@ -32,11 +32,10 @@ export function calculateSwowBonus() {
 }
 
 export function calculateFinalScore({ frequency_score, association_score }) {
-  if (association_score == null) return null;
-  if (frequency_score == null) return null;
+  if (![association_score,frequency_score].every(isFiniteScore)) return null;
   return clamp(
-    FINAL_SCORE_WEIGHTS.association_score * association_score +
-    FINAL_SCORE_WEIGHTS.frequency_score * frequency_score,
+    100 * (clamp(association_score)/100) ** FINAL_SCORE_WEIGHTS.association_score *
+    (clamp(frequency_score)/100) ** FINAL_SCORE_WEIGHTS.frequency_score,
     0,
     100
   );
@@ -47,7 +46,7 @@ export function passesWordThreshold(score) {
 }
 
 export function shouldReviewPrimaryScore(score) {
-  return isFiniteScore(score) && Number(score) >= REVIEW_SCORE_RANGE.min && Number(score) <= REVIEW_SCORE_RANGE.max;
+  return isFiniteScore(score);
 }
 
 export const INTERMEDIATE_LANGUAGE_STATUSES = ['idle', 'loading_index', 'grouping_candidates', 'candidate_audit', 'analyzing', 'reviewing'];
@@ -122,28 +121,18 @@ export function calculateLanguageScore(items = [], {
   scoreGetter = (item) => item?.final_score,
   associationScoreGetter = (item) => item?.association_score ?? item?.analysis?.association_score ?? item?.analysis?.association?.association_score ?? item?.A_final ?? item?.analysis?.A_final
 } = {}) {
-  const selected = (Array.isArray(items) ? items : [])
-    .filter((item) => item?.selected)
-    .slice(0, maxModels);
-  const scores = selected
-    .map(scoreGetter)
-    .map(Number)
-    .filter(Number.isFinite);
-  const sum = scores.reduce((acc, score) => acc + score, 0);
-  const associationScores = selected
-    .map(associationScoreGetter)
-    .map(Number)
-    .filter(Number.isFinite);
-  const associationSum = associationScores.reduce((acc, score) => acc + score, 0);
-  const hasCompleteAssociationData = selected.length > 0 && associationScores.length === selected.length;
-  return {
-    sum: scores.length ? sum : null,
-    normalized: scores.length ? sum / scores.length : null,
-    count: scores.length,
-    associationSum: associationScores.length ? associationSum : null,
-    associationNormalized: hasCompleteAssociationData ? associationSum / associationScores.length : null,
-    associationCount: associationScores.length
-  };
+  const selected = (Array.isArray(items) ? items : []).filter(item => item?.selected && isFiniteScore(scoreGetter(item)))
+    .sort((a,b)=>Number(scoreGetter(b))-Number(scoreGetter(a)) || Number(associationScoreGetter(b))-Number(associationScoreGetter(a)) || Number(b.frequency_score ?? b.analysis?.frequency?.frequency_score ?? 0)-Number(a.frequency_score ?? a.analysis?.frequency?.frequency_score ?? 0) || String(a.word).localeCompare(String(b.word)))
+    .slice(0,maxModels);
+  const best=selected[0];
+  const incomplete = (items || []).some(item=>item.selected && (item.analysis?.review_required || !isFiniteScore(scoreGetter(item)) || !isFiniteScore(associationScoreGetter(item))));
+  const intervals=selected.map(item=>({word:item.word,lower:item.analysis?.score_interval?.min ?? Number(scoreGetter(item)),upper:item.analysis?.score_interval?.max ?? Number(scoreGetter(item)),aLower:item.analysis?.association_interval?.min ?? associationScoreGetter(item),aUpper:item.analysis?.association_interval?.max ?? associationScoreGetter(item)}));
+  const lower=intervals.length?Math.max(...intervals.map(x=>x.lower)):null;
+  const possible=intervals.filter(x=>x.upper>=lower);
+  const interval=intervals.length?{min:lower,max:Math.max(...intervals.map(x=>x.upper))}:null;
+  const associationInterval=possible.length&&possible.every(x=>isFiniteScore(x.aLower)&&isFiniteScore(x.aUpper))?{min:Math.min(...possible.map(x=>Number(x.aLower))),max:Math.max(...possible.map(x=>Number(x.aUpper)))}:null;
+  const representativeUncertain=possible.length>1 && possible.some(x=>x.lower!==x.upper);
+  return { incomplete, scoreInterval:interval, associationInterval, representativeUncertain, sum:best?selected.reduce((s,x)=>s+Number(scoreGetter(x)),0):null,normalized:best?Number(scoreGetter(best)):null,count:selected.length,associationNormalized:best&&!incomplete&&isFiniteScore(associationScoreGetter(best))?Number(associationScoreGetter(best)):null,associationSum:best&&!incomplete?selected.reduce((s,x)=>s+Number(associationScoreGetter(x)),0):null,associationCount:selected.filter(x=>isFiniteScore(associationScoreGetter(x))).length,representative:best?.word||null,methodology_version:METHODOLOGY_VERSION};
 }
 
 export function unavailableReasonsFromStatuses(languageStatuses = {}) {
@@ -152,7 +141,7 @@ export function unavailableReasonsFromStatuses(languageStatuses = {}) {
 
 export function calculateFinalAssociation({ languages = [], languageResults = [], languageStatuses = {} } = {}) {
   const languageScores = (languages || []).map((lang, index) => ({ lang, ...(languageResults[index] || {}) }));
-  const represented = languageScores.filter((score) => isFiniteScore(score.normalized) && Number(score.count) > 0);
+  const represented = languageScores.filter((score) => isFiniteScore(score.normalized) && Number(score.normalized)>0 && isFiniteScore(score.associationNormalized) && Number(score.associationNormalized)>0 && Number(score.count) > 0);
   const hasCalculatedData = represented.length > 0;
   const totalAssociation = hasCalculatedData ? represented.reduce((acc, score) => acc + Number(score.normalized), 0) : null;
   for (const score of represented) {
@@ -178,12 +167,18 @@ export function calculateFinalAssociation({ languages = [], languageResults = []
   const statusSummary = summarizeLanguageStatuses(languageStatuses);
   const unavailableReasons = unavailableReasonsFromStatuses(languageStatuses);
   if (!hasCalculatedData && !unavailableReasons.includes('no_calculated_data')) unavailableReasons.push('no_calculated_data');
-  const accepted = hasCalculatedData
+  const reviewRequired = languageScores.some(x=>x.incomplete || x.representativeUncertain || (x.scoreInterval && x.scoreInterval.min===0 && x.scoreInterval.max>0));
+  const aggregateInterval = (key,fallback) => represented.length ? {min:represented.reduce((s,x)=>s+x.speakers*(x[key]?.min ?? x[fallback]),0)/speakersTotal,max:represented.reduce((s,x)=>s+x.speakers*(x[key]?.max ?? x[fallback]),0)/speakersTotal}:null;
+  const scoreInterval=aggregateInterval('scoreInterval','normalized'),associationInterval=aggregateInterval('associationInterval','associationNormalized');
+  const thresholdUncertain = [ [scoreInterval,THRESHOLDS.main],[associationInterval,THRESHOLDS.association] ].some(([i,t])=>i&&i.min<t&&i.max>=t);
+  const incompleteRun=statusSummary.hasIntermediate || statusSummary.failed.some(x=>x!=='no_candidates');
+  const accepted = !reviewRequired && !thresholdUncertain && !incompleteRun && hasCalculatedData
     && finalAssociationPassesThreshold(finalAssociation)
     && averageAssociationPassesThreshold(averageAssociation)
     && representedLangs >= 3
     && groups.size >= 2;
-  return { languageScores, totalAssociation, speakersTotal, weightedScoreTotal, languageAverageP, languageAverageA, averageAssociation, AAverage: averageAssociation, finalAssociation, FAv: finalAssociation, representedLangs, groups: groups.size, semanticConfirmed, accepted, threshold: THRESHOLDS.main, associationThreshold: THRESHOLDS.association, hasCalculatedData, unavailableReasons, languageStatusSummary: statusSummary };
+  const coverage = speakersTotal / CONTROL_LANGUAGE_CODES.reduce((sum,code)=>sum+requireSpeakerCount(code),0);
+  return { methodology_version: METHODOLOGY_VERSION, thresholds_provisional:true, reviewRequired:reviewRequired||thresholdUncertain||incompleteRun, scoreInterval, associationInterval, coverage, languageScores, totalAssociation, speakersTotal, weightedScoreTotal, languageAverageP, languageAverageA, averageAssociation, AAverage: averageAssociation, finalAssociation, FAv: finalAssociation, representedLangs, groups: groups.size, semanticConfirmed, accepted, threshold: THRESHOLDS.main, associationThreshold: THRESHOLDS.association, hasCalculatedData, unavailableReasons, languageStatusSummary: statusSummary };
 }
 
 export function buildDecisionReasons(result = {}) {
@@ -192,6 +187,7 @@ export function buildDecisionReasons(result = {}) {
   const add = (target, reason) => { if (!target.includes(reason)) target.push(reason); };
   const summary = result.languageStatusSummary || summarizeLanguageStatuses(result.languageStatuses || {});
   if (summary.hasIntermediate) add(warnings, 'calculation_incomplete');
+  if(result.reviewRequired) add(critical,'calculation_incomplete');
   if (!result.hasCalculatedData || !isFiniteScore(result.finalAssociation)) {
     add(critical, 'no_calculated_data');
   } else {
@@ -258,6 +254,8 @@ function buildEvaluation(qwen, frequencyScore) {
   const final_score = calculateFinalScore({ frequency_score: frequencyScore, association_score });
   return {
     model: qwen.model,
+    generation: qwen.generation,
+    prompt: qwen.prompt,
     directness: qwen.directness,
     field_relatedness: qwen.field_relatedness,
     domain_shift: qwen.domain_shift,
@@ -289,7 +287,7 @@ export async function analyzeAssociativeWord({ language, targetMeaning, localize
     reviewBudgetLimit: budget.limit
   };
   const noteReview = (key) => { reviewDiagnostics[key] += 1; onReviewEvent?.(key, { diagnostics: reviewDiagnostics, budget }); };
-  const hasFrequencyProfile = frequencyProfile && typeof frequencyProfile === 'object' && Number.isFinite(Number(frequencyProfile.frequency_score));
+  const hasFrequencyProfile = frequencyProfile?.methodology_version === METHODOLOGY_VERSION && isFiniteScore(frequencyProfile.frequency_score);
   if (!hasFrequencyProfile) onProgress?.('Загрузка частотных списков...');
   let frequency;
   if (hasFrequencyProfile) {
@@ -382,7 +380,8 @@ export async function analyzeAssociativeWord({ language, targetMeaning, localize
           throwIfAborted(signal, 'review_qwen');
           review = buildEvaluation(reviewQwen, frequency.frequency_score);
           noteReview('reviewCompletedCount');
-          finalEvaluation = { ...review, combination_method: 'review_override' };
+          finalEvaluation = { ...primary, combination_method: 'primary_with_review_interval' };
+          if (review.final_score !== primary.final_score || review.association_score !== primary.association_score) warnings.push('association_review_disagreement');
         }
       } catch (error) {
         if (isAbortError(error, signal)) { noteReview('reviewAbortedCount'); budget.releaseOnAbort?.(); throw normalizeAbortError(error, { stage: 'review_qwen', runId }); }
@@ -408,14 +407,15 @@ export async function analyzeAssociativeWord({ language, targetMeaning, localize
   console.debug('Associativ vordes SWOW diagnostics', diagnostics);
 
   return {
+    methodology_version: METHODOLOGY_VERSION,
+    review_required: shouldReviewPrimaryScore(primary.final_score) && !review,
+    association_interval: { min:Math.min(primary.association_score ?? 0,review?.association_score ?? primary.association_score ?? 0),max:Math.max(primary.association_score ?? 0,review?.association_score ?? primary.association_score ?? 0) },
+    score_interval: { min: Math.min(primary.final_score ?? 0, review?.final_score ?? primary.final_score ?? 0), max: Math.max(primary.final_score ?? 0, review?.final_score ?? primary.final_score ?? 0) },
     language,
     target_meaning: targetMeaning,
     swow_target_meaning: swowTargetMeaning,
     word,
-    frequency: {
-      frequency_score: frequency.frequency_score,
-      category_breakdown: frequency.category_breakdown
-    },
+    frequency: { ...frequency },
     swow,
     association: {
       Di: finalEvaluation.directness,
