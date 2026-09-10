@@ -96,28 +96,18 @@ assert.match(
 );
 assert.match(
   styles,
-  /\.instrument-art::before\{[^}]*mask-image:url\("data:image\/svg\+xml[^}]*mask-composite:intersect/,
-  'instrument backgrounds use one repeated rounded cubic mask without extra DOM nodes'
+  /\.instrument-card-background\{[^}]*position:absolute[^}]*width:100%[^}]*height:100%[^}]*object-fit:contain/,
+  'instrument backgrounds fill the card while preserving image proportions'
+);
+assert.match(
+  html,
+  /<img[^>]*class="instrument-card-background"[^>]*src="[^"]+"/,
+  'the page renders the current image background'
 );
 assert.match(
   styles,
-  /\.instrument-art\{[^}]*radial-gradient[^}]*radial-gradient[^}]*linear-gradient/,
-  'instrument backgrounds combine distributed color spots with a quiet base surface'
-);
-assert.match(
-  styles,
-  /body\.dark-theme \.instrument-art\{[^}]*#191923[^}]*#252438/,
-  'dark mode uses a dedicated restrained cubic glass surface'
-);
-assert.match(
-  styles,
-  /\.instrument-bg\{display:none\}/,
-  'legacy gradient artwork is no longer painted behind the instrument icons'
-);
-assert.match(
-  styles,
-  /max-width:560px[^}]*[\s\S]*\.instrument-art\{--cubic-step:58px;/,
-  'mobile keeps fewer large cubes instead of shrinking the pattern'
+  /body\.dark-theme \.instrument-card[^}]*--instrument-card-surface:var\(--surface-elevated\)/,
+  'dark cards use the shared elevated surface'
 );
 assert.doesNotMatch(
   styles,
@@ -136,7 +126,7 @@ assert.match(
 );
 assert.match(
   loader,
-  /instrumentes-page\.js\?v=lexeme-goal-20260804-1/,
+  /instrumentes-page\.js\?v=[a-z0-9]+(?:-[a-z0-9]+)*-\d{8}-\d+(?=['"])/,
   'shared loader uses the current progress runtime'
 );
 
