@@ -2020,13 +2020,15 @@ function getPieCell(item, langCode) {
   const cell = item && item[langCode];
 
   if (!cell) {
-    return { words: [], romanization: "", ipa: "" };
+    return { words: [], roots: [], romanization: "", rootRomanization: "", ipa: "" };
   }
 
   if (typeof cell === "string") {
     return {
       words: splitVariants(cell),
+      roots: [],
       romanization: "",
+      rootRomanization: "",
       ipa: item.ipa && item.ipa[langCode] ? String(item.ipa[langCode]) : ""
     };
   }
@@ -2034,7 +2036,9 @@ function getPieCell(item, langCode) {
   if (Array.isArray(cell)) {
     return {
       words: splitVariants(cell),
+      roots: [],
       romanization: "",
+      rootRomanization: "",
       ipa: item.ipa && item.ipa[langCode] ? String(item.ipa[langCode]) : ""
     };
   }
@@ -2042,12 +2046,14 @@ function getPieCell(item, langCode) {
   if (typeof cell === "object") {
     return {
       words: splitVariants(cell.word || cell.words || cell.form || cell.forms || ""),
+      roots: splitVariants(cell.root || cell.roots || ""),
       romanization: String(cell.romanization || cell.transliteration || ""),
+      rootRomanization: String(cell.root_romanization || ""),
       ipa: String(cell.ipa || "")
     };
   }
 
-  return { words: [], romanization: "", ipa: "" };
+  return { words: [], roots: [], romanization: "", rootRomanization: "", ipa: "" };
 }
 
 function normalizePieLookupInput(word, langCode) {
@@ -2058,6 +2064,10 @@ function normalizePieLookupInput(word, langCode) {
 
 function getPieForms(item, langCode) {
   return getPieCell(item, langCode).words;
+}
+
+function getPieRoots(item, langCode) {
+  return getPieCell(item, langCode).roots;
 }
 
 function getPieIPA(item, langCode) {
