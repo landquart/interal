@@ -13,7 +13,7 @@ const manySources = Array.from({ length: 7 }, (_, index) => ({
 }));
 const item = {
   word: 'interact',
-  match: { type: 'fuzzy', fragment: '<inter>', distance: 1, similarity: 0.8 },
+  match: { type: 'special', fragment: '<inter>', distance: 0, similarity: 1 },
   frequency_score: 42.125,
   sources: manySources,
   warnings: ['duplicate_runtime_entry', '<img src=x onerror=alert(1)>']
@@ -21,9 +21,9 @@ const item = {
 const html = renderCandidateEvidenceDetails(item, {}, 'ru');
 const diagnosticHtml = renderCandidateEvidenceDetails(item, {}, 'ru', { developerDiagnostics: true });
 
-assert.match(html, /Тип совпадения[\s\S]*нечёткое/, 'details shows localized match type');
-assert.match(html, /Distance[\s\S]*1/, 'details shows distance');
-assert.match(html, /Similarity[\s\S]*80\.0%/, 'details shows formatted similarity');
+assert.match(html, /Тип совпадения[\s\S]*ветвь семейства/, 'details shows localized family-branch match type');
+assert.match(html, /Distance[\s\S]*0/, 'details shows exact family distance');
+assert.match(html, /Similarity[\s\S]*100\.0%/, 'details shows exact family similarity');
 assert.match(html, /frequency_score[\s\S]*42\.13/, 'details shows frequency_score');
 assert.match(html, /Источники[\s\S]*7/, 'details shows source count');
 assert.doesNotMatch(html, /\/home\/runner\/work|\/workspace|Codex|GitHub Actions/, 'absolute runner path is hidden');
@@ -43,7 +43,7 @@ assert.match(script, /inspectedCandidates|matchedCandidates|rejectedCandidates|r
 assert.match(script, /resetRunDiagnostics\(runId\)/, 'new run resets run counters');
 assert.doesNotMatch(script, /fields: \{[^}]*diagnostics:/, 'diagnostics is not saved in page state');
 assert.equal(matchTypeLabel('exact', 'ru'), 'точное', 'RU exact label exists');
-assert.equal(matchTypeLabel('special', 'en'), 'special match', 'EN special label exists');
+assert.equal(matchTypeLabel('special', 'en'), 'family branch', 'EN family-branch label exists');
 assert.equal(categoryLabel('normative', 'ru'), 'нормативный корпус', 'RU category label exists');
 assert.equal(categoryLabel('web', 'en'), 'web corpus', 'EN category label exists');
 assert.match(renderSource, /sourceLimit = 5/, 'source limit is compact by default');
