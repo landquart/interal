@@ -95,7 +95,7 @@ jobs:
           node scripts/build-associative-exhaustive-family-index.mjs \
             --candidate-root=.tmp/family-candidate-index \
             --output-root=.tmp/associative-exhaustive-families \
-            --etymology-gzip=.tmp/kaikki-wiktextract.jsonl.gz \
+            --etymology-gzip=x$PWD/.tmp/kaikki-wiktextract.jsonl.gz \
             --languages=en,de,fr,es,it,ru
 
       - name: Verify exhaustive assignment
