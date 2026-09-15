@@ -1,22 +1,10 @@
 import { CATEGORY_ORDER } from './config-frequency-sources.js';
 import { ipmToScore, meanNonZero } from './frequency-loader.js';
-import {
-  AFFIX_SEARCH_CONFIG_VERSION,
-  buildSearchForm,
-  findRootMatch,
-  specialRootVariants
-} from './root-matcher.js';
+import { AFFIX_SEARCH_CONFIG_VERSION, buildSearchForm, findRootMatch, specialRootVariants } from './root-matcher.js';
 import { SEARCH_NORMALIZER_VERSION } from './search-normalizer.js';
-import {
-  STATIC_INDEX_FORMAT,
-  STATIC_MANIFEST_VERSION,
-  acceptAffixBoundaryMatch,
-  exactAnchoredLookups,
-  fuzzyAnchoredLookupGroups,
-  fuzzySeedGrams
-} from './affix-boundary-index.js';
+import { STATIC_INDEX_FORMAT, STATIC_MANIFEST_VERSION, acceptAffixBoundaryMatch, exactAnchoredLookups } from './affix-boundary-index.js';
 
-export { STATIC_INDEX_FORMAT, STATIC_MANIFEST_VERSION, fuzzySeedGrams };
+export { STATIC_INDEX_FORMAT, STATIC_MANIFEST_VERSION };
 
 export const STATIC_ENTRY_BLOCK_CONCURRENCY = 6;
 export const STATIC_RESOURCE_RETRY_ATTEMPTS = 3;
@@ -30,15 +18,12 @@ export async function mapWithConcurrency(items, limit, mapper) {
   if (typeof mapper !== 'function') throw new TypeError('mapper must be a function');
   const output = new Array(values.length);
   let cursor = 0;
-
   async function worker() {
     while (cursor < values.length) {
-      const index = cursor;
-      cursor += 1;
+      const index = cursor++;
       output[index] = await mapper(values[index], index);
     }
   }
-
   await Promise.all(Array.from({ length: Math.min(workerLimit, values.length) }, () => worker()));
   return output;
 }
@@ -48,9 +33,8 @@ async function retryStaticResource(operation, { signal, shouldRetry, attempts = 
   const totalAttempts = Math.max(1, Number(attempts) || 1);
   for (let attempt = 1; attempt <= totalAttempts; attempt += 1) {
     if (signal?.aborted) throw lastError || signal.reason || new Error('Static index request aborted.');
-    try {
-      return await operation();
-    } catch (error) {
+    try { return await operation(); }
+    catch (error) {
       lastError = error;
       if (attempt >= totalAttempts || !shouldRetry?.(error)) throw error;
       await new Promise(resolve => setTimeout(resolve, 120 * attempt));
@@ -124,9 +108,7 @@ function intersectSorted(left, right) {
   return output;
 }
 
-function addAll(target, values) {
-  for (const value of values) target.add(value);
-}
+function addAll(target, values) { for (const value of values) target.add(value); }
 
 function sourceDictionaryEntry(source, index, language, context) {
   if (!context.isPlainObject(source) || typeof source.id !== 'string' || typeof source.file !== 'string' || typeof source.category !== 'string') throw context.makeError(context.codes.MANIFEST_INVALID, `Static search source ${index} is invalid.`, { language });
@@ -225,26 +207,10 @@ export async function loadStaticCandidateEntries({ manifest, language, root, sig
 
   const normalizedRoot = buildSearchForm(root);
   const candidateIds = new Set(await exactIds(normalizedRoot));
-  for (const variant of specialRootVariants(language, normalizedRoot)) {
-    addAll(candidateIds, await exactIds(variant));
-  }
+  for (const variant of specialRootVariants(language, normalizedRoot)) addAll(candidateIds, await exactIds(variant));
   diagnostics.exactCandidateIds = candidateIds.size;
-
-  // Fuzzy retrieval is a fallback, not a quota filler. Combining every fuzzy
-  // posting for a root such as "alter" can cover almost the entire dictionary
-  // (tens of thousands of ids and hundreds of entry blocks), even when exact
-  // derivatives already exist. Besides admitting weaker candidates, that made
-  // an ordinary calculation download the full per-language index.
-  if (candidateIds.size === 0) {
-    const fuzzyIds = new Set();
-    for (const group of fuzzyAnchoredLookupGroups(normalizedRoot)) {
-      for (const lookup of group.lookups) addAll(fuzzyIds, await loadPosting(lookup));
-    }
-    diagnostics.fuzzyCandidateIds = fuzzyIds.size;
-    addAll(candidateIds, fuzzyIds);
-  } else {
-    diagnostics.fuzzyCandidateIds = 0;
-  }
+  diagnostics.candidateIds = candidateIds.size;
+  diagnostics.approximateCandidateIds = 0;
 
   const candidateBlocks = new Set();
   for (const id of candidateIds) {
@@ -252,26 +218,14 @@ export async function loadStaticCandidateEntries({ manifest, language, root, sig
     if (block) candidateBlocks.add(block.file);
   }
   diagnostics.candidateEntryBlocks = candidateBlocks.size;
-
-  // Keep every browser query bounded. If a fallback typo or an extremely short
-  // root is too broad, return no local candidates and let the Qwen audit propose
-  // specific words that are verified by exact word lookup. Never download an
-  // effectively complete million-entry index for a single button click.
   if (candidateIds.size > STATIC_MAX_CANDIDATE_IDS || candidateBlocks.size > STATIC_MAX_ENTRY_BLOCKS) {
     diagnostics.querySuppressed = true;
-    diagnostics.querySuppressedReason = candidateIds.size > STATIC_MAX_CANDIDATE_IDS
-      ? 'candidate_id_limit'
-      : 'entry_block_limit';
-    diagnostics.candidateIds = candidateIds.size;
+    diagnostics.querySuppressedReason = candidateIds.size > STATIC_MAX_CANDIDATE_IDS ? 'candidate_id_limit' : 'entry_block_limit';
     return [];
   }
-
   diagnostics.querySuppressed = false;
   diagnostics.querySuppressedReason = null;
-  diagnostics.candidateIds = candidateIds.size;
+
   const entries = await loadEntriesByIds([...candidateIds].sort((a, b) => a - b));
-  return entries.filter(entry => {
-    const match = findRootMatch(entry.search_form, normalizedRoot, language);
-    return acceptAffixBoundaryMatch(match, normalizedRoot);
-  });
+  return entries.filter(entry => acceptAffixBoundaryMatch(findRootMatch(entry.search_form, normalizedRoot, language)));
 }
