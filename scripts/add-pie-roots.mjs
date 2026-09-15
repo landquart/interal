@@ -15,15 +15,16 @@ const explicit = {
     erste: 'erst', dritte: 'dritt'
   },
   fr: {
-    être: 'êt', connaître: 'conna', voir: 'voi', cuire: 'cui',
-    moudre: 'moud', mourir: 'mour', vouloir: 'voul', droite: 'droit'
+    être: 'êt', connaître: 'connaiss', voir: 'voi', cuire: 'cuis',
+    moudre: 'moul', mourir: 'mour', vouloir: 'voul', droite: 'droit',
+    édible: 'édibl', siège: 'sièg'
   },
   es: {
     ver: 've', dar: 'da', peer: 'pe', roer: 'ro',
-    'silla de montar': 'sill'
+    'silla de montar': 'sill', lecho: 'lech'
   },
   it: {
-    dare: 'da', stare: 'sta'
+    dare: 'da', stare: 'sta', letto: 'lett', edule: 'edul'
   },
   ru: {
     'мать': 'мат', 'имя': 'имен', 'ночь': 'ноч', 'соль': 'сол',
@@ -101,7 +102,7 @@ const explicit = {
     'βλέπω': 'βλεπ', 'θέλω': 'θελ'
   },
   hi: {
-    'जुआ': 'जु'
+    'जुआ': 'जु', 'ज़िंदा': 'ज़िंदा'
   },
   fa: {
     'قهوه‌ای': 'قهوه'
@@ -170,6 +171,7 @@ function romanizedRootFor(item, language, cell, root) {
   if (!romanization) return '';
 
   if (language === 'hi') {
+    if (cell.word === 'ज़िंदा') return romanization;
     if (item.part_of_speech === 'verb' && romanization.endsWith('nā')) return romanization.slice(0, -2);
     if (item.part_of_speech === 'adjective') return romanization.replace(/ā̃$|ā$/, '');
     if (hindiMarkedNouns.has(cell.word)) return romanization.replace(/ā$/, '');
@@ -183,21 +185,149 @@ function romanizedRootFor(item, language, cell, root) {
   return romanization;
 }
 
+const explicitRootIpa = {
+  en: {
+    oat: 'oʊt', sate: 'seɪt'
+  },
+  fr: {
+    connaiss: 'kɔnɛs', 'êt': 'ɛt', 'bêl': 'bɛl', donn: 'dɔn', droit: 'dʁwat',
+    mélang: 'melɑ̃ʒ', mour: 'muʁ', moul: 'mul', cuis: 'kɥiz', pét: 'pɛt',
+    tress: 'tʁɛs', suc: 'sys', su: 'sɥ', tend: 'tɑ̃d', trembl: 'tʁɑ̃bl',
+    viv: 'viv', bris: 'bʁiz', touss: 'tus', rong: 'ʁɔ̃ʒ', rot: 'ʁɔt',
+    siffl: 'sifl', gliss: 'ɡlis', crach: 'kʁaʃ', voi: 'vwa', voul: 'vul',
+    édibl: 'edibl', sièg: 'sjɛʒ'
+  },
+  es: {
+    ve: 'be', da: 'da', pe: 'pe', ro: 'ro', sill: 'siʎ'
+  },
+  it: {
+    da: 'da', sta: 'sta'
+  },
+  hi: {
+    जु: 'dʒʊ'
+  },
+  fa: {
+    'قهوه': 'ɢæhve'
+  }
+};
+
+function withoutStress(ipa) {
+  return String(ipa || '').replace(/[ˈˌ]/g, '');
+}
+
+function russianRootToIpa(root) {
+  const text = root.toLowerCase().normalize('NFC');
+  const consonants = {
+    'б': 'b', 'в': 'v', 'г': 'ɡ', 'д': 'd', 'з': 'z', 'к': 'k', 'л': 'l',
+    'м': 'm', 'н': 'n', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'ф': 'f',
+    'х': 'x', 'ж': 'ʐ', 'ш': 'ʂ', 'ц': 't͡s', 'ч': 't͡ɕ', 'щ': 'ɕː', 'й': 'j'
+  };
+  const vowels = { 'а': 'a', 'е': 'e', 'ё': 'o', 'и': 'i', 'о': 'o', 'у': 'u', 'ы': 'ɨ', 'э': 'e', 'ю': 'u', 'я': 'a' };
+  const softeners = new Set(['е', 'ё', 'и', 'ю', 'я', 'ь']);
+  const neverSoft = new Set(['ж', 'ш', 'ц']);
+  let result = '';
+
+  for (let index = 0; index < text.length; index += 1) {
+    const char = text[index];
+    const next = text[index + 1] || '';
+    if (consonants[char]) {
+      result += consonants[char];
+      if (softeners.has(next) && !neverSoft.has(char) && !['ч', 'щ', 'й'].includes(char)) result += 'ʲ';
+      continue;
+    }
+    if (vowels[char]) {
+      const previous = text[index - 1] || '';
+      if (['е', 'ё', 'ю', 'я'].includes(char) && (!previous || vowels[previous] || previous === 'ь' || previous === 'ъ')) result += 'j';
+      result += vowels[char];
+      continue;
+    }
+    if (char === 'ь' || char === 'ъ') continue;
+    result += char;
+  }
+  return result;
+}
+
+function greekRootToIpa(root) {
+  let text = root.toLowerCase().normalize('NFD').replace(/\p{M}/gu, '').replace(/ς/g, 'σ');
+  const replacements = [
+    [/αι/g, 'E'], [/ει|οι|υι/g, 'I'], [/ου/g, 'U'], [/αυ/g, 'A'], [/ευ/g, 'V'],
+    [/μπ/g, 'B'], [/ντ/g, 'D'], [/γκ/g, 'G'], [/τσ/g, 'C'], [/τζ/g, 'J']
+  ];
+  for (const [pattern, value] of replacements) text = text.replace(pattern, value);
+  const simple = {
+    'α': 'a', 'ε': 'e', 'η': 'i', 'ι': 'i', 'ο': 'o', 'υ': 'i', 'ω': 'o',
+    'β': 'v', 'δ': 'ð', 'ζ': 'z', 'θ': 'θ', 'κ': 'k', 'λ': 'l', 'μ': 'm',
+    'ν': 'n', 'ξ': 'ks', 'π': 'p', 'ρ': 'r', 'σ': 's', 'τ': 't', 'φ': 'f',
+    'ψ': 'ps', 'E': 'e', 'I': 'i', 'U': 'u', 'B': 'mb', 'D': 'nd', 'G': 'ŋg',
+    'C': 't͡s', 'J': 'd͡z'
+  };
+  const front = new Set(['ε', 'η', 'ι', 'υ', 'E', 'I']);
+  const voiceless = new Set(['κ', 'π', 'τ', 'φ', 'θ', 'χ', 'σ', 'ξ', 'ψ', 'C']);
+  let result = '';
+  for (let index = 0; index < text.length; index += 1) {
+    const char = text[index];
+    const next = text[index + 1] || '';
+    if (char === 'γ') result += front.has(next) ? 'ʝ' : 'ɣ';
+    else if (char === 'χ') result += front.has(next) ? 'ç' : 'x';
+    else if (char === 'A') result += voiceless.has(next) ? 'af' : 'av';
+    else if (char === 'V') result += voiceless.has(next) ? 'ef' : 'ev';
+    else result += simple[char] ?? char;
+  }
+  return result;
+}
+
+function deriveRootIpa(item, language, cell, root, rootRomanization) {
+  const ipa = String(cell.ipa || '');
+  if (!ipa) return '';
+  if (root === cell.word) return ipa;
+  if (explicitRootIpa[language]?.[root]) return explicitRootIpa[language][root];
+
+  let value = withoutStress(ipa);
+  if (language === 'de') {
+    if (item.part_of_speech === 'verb') return value.replace(/(?:ən|n̩|n)$/, '');
+    return value.replace(/ə$/, '');
+  }
+  if (language === 'es') {
+    if (/(?:ar|er|ir)$/.test(cell.word)) return value.replace(/[aei]ɾ$/, '');
+    return value.replace(/[aeo]$/, '');
+  }
+  if (language === 'it') {
+    const removed = cell.word.startsWith(root) ? cell.word.slice(root.length) : '';
+    if (removed.length === 3 && /^(?:are|ere|ire)$/.test(removed)) return value.replace(/[aei]ː?re$/, '');
+    return value.replace(/[aeo]$/, '');
+  }
+  if (language === 'ru') return russianRootToIpa(root);
+  if (language === 'el') return greekRootToIpa(root);
+  if (language === 'hi') {
+    if (item.part_of_speech === 'verb' && String(cell.romanization).endsWith('nā')) return value.replace(/n(?:̪)?ɑː$/, '');
+    if (/ā̃?$/.test(String(cell.romanization)) && !/ā̃?$/.test(rootRomanization)) return value.replace(/ɑ(?:ː̃|̃ː|ː)$/, '');
+  }
+  if (language === 'fa') {
+    if (String(cell.romanization).endsWith('an')) return value.replace(/æ[nɴ]$/, '');
+  }
+  return value;
+}
+
 for (const item of dictionary.items) {
   for (const language of dictionary.languages) {
     const cell = item[language];
     if (!cell || typeof cell !== 'object' || Array.isArray(cell)) continue;
 
     const root = rootFor(item, language, cell);
+    const rootRomanization = romanizedRootFor(item, language, cell, root);
+    const rootIpa = deriveRootIpa(item, language, cell, root, rootRomanization);
     const next = { word: cell.word, root };
 
     if (cell.romanization !== undefined) {
       next.romanization = cell.romanization;
-      next.root_romanization = romanizedRootFor(item, language, cell, root);
+      next.root_romanization = rootRomanization;
     }
 
+    next.ipa = cell.ipa;
+    next.root_ipa = rootIpa;
+
     for (const [key, value] of Object.entries(cell)) {
-      if (!['word', 'root', 'romanization', 'root_romanization'].includes(key)) next[key] = value;
+      if (!['word', 'root', 'romanization', 'root_romanization', 'ipa', 'root_ipa'].includes(key)) next[key] = value;
     }
 
     item[language] = next;
