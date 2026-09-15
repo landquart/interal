@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
 import { readFile, rm } from 'node:fs/promises';
 import { join } from 'node:path';
-import { fuzzyRootMatch } from '../associativvordes/js/root-matcher.js';
+import { findRootMatch } from '../associativvordes/js/root-matcher.js';
 import {
   buildSearchForm,
   extractFrequencyRecords,
@@ -27,7 +27,7 @@ async function readBuiltEntries(out = outputRoot) {
 }
 
 function assertRoot(entries, root, expected, rejected = []) {
-  const matches = entries.filter(entry => fuzzyRootMatch(entry.search_form, root));
+  const matches = entries.filter(entry => findRootMatch(entry.search_form, root, 'ru'));
   const words = matches.map(entry => entry.word);
   for (const word of expected) assert.ok(words.includes(word), `${root} finds ${word}`);
   for (const word of rejected) assert.equal(words.includes(word), false, `${root} does not find ${word}`);
@@ -114,8 +114,8 @@ assertRoot(entries, 'alter', ['альтернатива', 'альтернати�
 assertRoot(entries, 'regul', ['регулировать', 'регулярный']);
 assertRoot(entries, 'okul', ['окуляр', 'окулист']);
 assertRoot(entries, 'inter', ['интернациональный', 'интерактивный'], ['альтернатива', 'альтернативный']);
-assert.equal(fuzzyRootMatch('inter', 'alter'), null, 'alter does not fuzzily match inter');
-assert.equal(fuzzyRootMatch('internacionalnyj', 'alter'), null, 'alter does not fuzzily match интернациональный search_form');
+assert.equal(findRootMatch('inter', 'alter', 'ru'), null, 'alter does not match inter');
+assert.equal(findRootMatch('internacionalnyj', 'alter', 'ru'), null, 'alter does not match интернациональный search_form');
 
 const ruReport = await readJson(join(outputRoot, 'build-report.json'));
 assert.equal(ruReport.transliteration.version, '1', 'Russian report includes transliteration schema version');
