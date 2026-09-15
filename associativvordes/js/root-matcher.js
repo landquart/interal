@@ -1,5 +1,6 @@
 import { buildSearchForm, normalizeText, stripDiacritics } from './search-normalizer.js';
 import { AFFIX_SEARCH_CONFIG_VERSION, getAffixSearchConfig } from './affix-search-config.js';
+import { resolveAssociativeFamily } from './associative-family-registry.js';
 
 export { AFFIX_SEARCH_CONFIG_VERSION, buildSearchForm, normalizeText, stripDiacritics };
 
@@ -119,44 +120,38 @@ export function exactRootMatchAtBoundary(word, root, language = 'en') {
   return best;
 }
 
-const SPECIAL_ROOT_VARIANTS = Object.freeze({
-  inter: Object.freeze({ any: ['inter'], ru: ['интер'], el: ['ίντερ'] }),
-  ocul: Object.freeze({ any: ['ocul', 'okul'], ru: ['окул'] }),
-  regul: Object.freeze({ any: ['regul'], ru: ['регул'], fr: ['régul'], it: ['regol'] }),
-  alter: Object.freeze({ any: ['alter', 'altru'] }),
-  pede: Object.freeze({ any: ['ped', 'pedi'] })
-});
-
-export function specialRootVariants(lang, root) {
+export function specialRootVariants(_lang, root) {
+  const family = resolveAssociativeFamily(root);
+  if (!family?.verified) return [];
   const canonical = buildSearchForm(root);
-  const config = SPECIAL_ROOT_VARIANTS[canonical];
-  if (!config) return [];
-  const language = normalizeText(lang);
-  const values = language === 'any' ? Object.values(config).flat() : [...(config.any || []), ...(config[language] || [])];
-  return [...new Set(values.map(buildSearchForm).filter(Boolean))];
+  return family.aliases.filter(alias => alias !== canonical);
 }
 
 export function specialRootMatch(lang, word, root) {
-  const searchForm = buildSearchForm(word);
-  return specialRootVariants(lang, root).some(variant => searchForm.includes(variant));
+  const language = lang === 'any' ? 'en' : lang;
+  return specialRootVariants(lang, root).some(variant => Boolean(exactRootMatchAtBoundary(word, variant, language)));
 }
 
 export function specialRootMatchAtBoundary(lang, word, root) {
-  return specialRootVariants(lang, root).some(variant => exactRootMatchAtBoundary(word, variant, lang));
+  const language = lang === 'any' ? 'en' : lang;
+  return specialRootVariants(lang, root).some(variant => Boolean(exactRootMatchAtBoundary(word, variant, language)));
 }
 
 export function findRootMatch(word, root, language = 'en') {
   const exact = exactRootMatchAtBoundary(word, root, language);
   if (exact) return exact;
-  for (const variant of specialRootVariants(language, root)) {
+  const family = resolveAssociativeFamily(root);
+  if (!family) return null;
+  for (const variant of family.aliases) {
+    if (variant === buildSearchForm(root)) continue;
     const special = exactRootMatchAtBoundary(word, variant, language);
-    if (special) return { ...special, type: 'special', canonicalRoot: buildSearchForm(root), variant };
+    if (special) return { ...special, type: 'special', canonicalRoot: family.canonical, variant, family_id: family.id };
   }
   return null;
 }
 
 export function sortRootCandidateMatches(candidates, getRank = () => 50001) {
-  const typePriority = { family: 0, exact: 1, special: 2 };
+  const typePriority = { exact: 0, special: 1 };
   return candidates.slice().sort((a, b) =>
     (typePriority[a.match?.type] ?? 99) - (typePriority[b.match?.type] ?? 99) ||
     getRank(a.word) - getRank(b.word) ||
