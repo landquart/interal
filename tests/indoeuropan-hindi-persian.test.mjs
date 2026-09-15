@@ -13,6 +13,17 @@ for (const item of dictionary.items) {
       assert.ok(typeof entry[field] === 'string' && entry[field].trim(), `${item.id}: ${code} ${field} is required`);
     }
   }
+  for (const code of dictionary.languages) {
+    const entry = item[code];
+    if (!entry || typeof entry !== 'object') continue;
+    assert.ok(typeof entry.root === 'string', `${item.id}: ${code} root is required`);
+    if (entry.word.trim()) {
+      assert.ok(entry.root.trim(), `${item.id}: ${code} root must not be empty`);
+    }
+    if (['hi', 'fa'].includes(code)) {
+      assert.ok(typeof entry.root_romanization === 'string' && entry.root_romanization.trim(), `${item.id}: ${code} root_romanization is required`);
+    }
+  }
   assert.doesNotMatch(item.hi.romanization, /[\u0900-\u097f]/, `${item.id}: Hindi romanization must use Latin script`);
   assert.doesNotMatch(item.fa.romanization, /[\u0600-\u06ff]/, `${item.id}: Persian romanization must use Latin script`);
   if (/\s/.test(item.fa.word)) {
@@ -40,6 +51,13 @@ assert.equal(byId(90).fa.romanization, 'âsiâb kardan');
 assert.equal(byId(139).fa.romanization, 'juje-tiġi');
 assert.equal(byId(154).fa.romanization, 'laġzidan');
 assert.equal(byId(159).fa.romanization, 'tof kardan');
+assert.equal(byId(165).ru.root, 'вид');
+assert.equal(byId(165).it.root, 'ved');
+assert.equal(byId(165).hi.root_romanization, 'dekh');
+assert.equal(byId(165).fa.root_romanization, 'did');
+assert.equal(byId(52).es.root, 'vin');
+assert.equal(byId(52).ru.root, 'вин');
+assert.equal(byId(52).el.root, 'οιν');
 
 const ui = await readFile('indoeuropanvordes/index.html', 'utf8');
 const aline = await readFile('indoeuropanvordes/aline.js', 'utf8');
@@ -54,6 +72,8 @@ assert.ok(ui.includes('if (ch === "\\u200c") { result += "-";'), 'Persian ZWNJ i
 assert.ok(ui.includes('.replace(/هٔ|ه\\u200cی/g, "e-ye")'), 'Persian ezafe after he is handled explicitly');
 assert.match(ui, /explicitRomanization \|\| transliterateHindi/);
 assert.match(ui, /explicitRomanization \|\| transliteratePersian/);
+assert.match(ui, /roots: splitVariants\(cell\.root \|\| cell\.roots \|\| ""\)/);
+assert.match(ui, /rootRomanization: String\(cell\.root_romanization \|\| ""\)/);
 
 assert.match(ui, /id="semanticOk"/);
 assert.match(ui, /const semanticOk = semanticOkInput\.checked === true/);
