@@ -9,7 +9,7 @@ export function escapeHtml(s) {
 }
 
 export function matchTypeLabel(type, lang = 'ru') {
-  const labels = lang === 'en' ? { exact: 'exact', special: 'special match', fuzzy: 'fuzzy' } : { exact: 'точное', special: 'специальное соответствие', fuzzy: 'нечёткое' };
+  const labels = lang === 'en' ? { exact: 'exact', special: 'family branch' } : { exact: 'точное', special: 'ветвь семейства' };
   return labels[type] || '—';
 }
 
@@ -47,13 +47,8 @@ function sourceFileName(source) {
   return normalized.split('/').filter(Boolean).pop() || normalized || '—';
 }
 
-function sourceCategory(source) {
-  return source?.category ?? null;
-}
-
-function sourceIpm(source) {
-  return typeof source?.ipm === 'number' && Number.isFinite(source.ipm) ? source.ipm : null;
-}
+function sourceCategory(source) { return source?.category ?? null; }
+function sourceIpm(source) { return typeof source?.ipm === 'number' && Number.isFinite(source.ipm) ? source.ipm : null; }
 
 export function summarizeCandidateSources(sources = []) {
   const safeSources = Array.isArray(sources) ? sources : [];
@@ -85,9 +80,7 @@ export function renderCandidateEvidenceDetails(item = {}, labels = {}, lang = 'r
   const analysisWarnings = Array.isArray(item.analysis?.warnings) ? item.analysis.warnings : [];
   const itemWarnings = Array.isArray(item.warnings) ? item.warnings : [];
   const sourceSummary = summarizeCandidateSources(item.sources);
-  const sourceCount = item.sources_truncated && Number.isFinite(Number(item.source_count))
-    ? Math.max(sourceSummary.count, Number(item.source_count))
-    : sourceSummary.count;
+  const sourceCount = item.sources_truncated && Number.isFinite(Number(item.source_count)) ? Math.max(sourceSummary.count, Number(item.source_count)) : sourceSummary.count;
   const truncationWarnings = item.sources_truncated ? ['sources_truncated'] : [];
   const warnings = [...new Set([...itemWarnings, ...sourceSummary.warnings, ...truncationWarnings, ...analysisWarnings])];
   const shownSources = sourceSummary.details.slice(0, sourceLimit);
@@ -118,66 +111,24 @@ export function renderCandidateEvidenceDetails(item = {}, labels = {}, lang = 'r
                 ${warningCodes}`;
 }
 
-
 export function thresholdStatusLabel(status, lang = 'ru') {
-  const labels = lang === 'en'
-    ? { evaluated: 'evaluated', unavailable: 'unavailable' }
-    : { evaluated: 'оценено', unavailable: 'нет данных' };
+  const labels = lang === 'en' ? { evaluated: 'evaluated', unavailable: 'unavailable' } : { evaluated: 'оценено', unavailable: 'нет данных' };
   return labels[status] || labels.unavailable;
 }
-
-export function thresholdStatusForResult(result) {
-  return classifyScore(result?.final_score);
-}
-
-export function semanticWarningLabel(lang = 'ru') {
-  return lang === 'en' ? 'semantic correspondence is not confirmed' : 'семантическое соответствие не подтверждено';
-}
+export function thresholdStatusForResult(result) { return classifyScore(result?.final_score); }
+export function semanticWarningLabel(lang = 'ru') { return lang === 'en' ? 'semantic correspondence is not confirmed' : 'семантическое соответствие не подтверждено'; }
 
 export function languageStatusLabel(statusEntry, lang = 'ru', { short = false } = {}) {
   const status = normalizeLanguageStatus(statusEntry).status;
   const labels = lang === 'en' ? {
-    idle: short ? '—' : 'Not started',
-    loading_index: short ? 'loading…' : 'Loading index…',
-    grouping_candidates: short ? 'grouping…' : 'Grouping candidates…',
-    candidate_audit: short ? 'audit…' : 'Auditing candidates…',
-    analyzing: short ? 'analyzing…' : 'Analyzing…',
-    reviewing: short ? 'reviewing…' : 'Reviewing…',
-    completed: short ? 'completed' : 'Completed',
-    completed_with_warnings: short ? 'completed with warnings' : 'Completed with warnings',
-    no_candidates: short ? 'no candidates' : 'No candidates found.',
-    index_error: short ? 'index error' : 'The language index is unavailable.',
-    qwen_error: short ? 'Qwen error' : 'Qwen analysis is unavailable.',
-    incomplete: short ? 'incomplete' : 'The calculation is incomplete.',
-    aborted: short ? 'aborted' : 'The calculation was aborted.'
+    idle: short ? '—' : 'Not started', loading_index: short ? 'loading…' : 'Loading index…', grouping_candidates: short ? 'grouping…' : 'Grouping candidates…', candidate_audit: short ? 'audit…' : 'Auditing candidates…', analyzing: short ? 'analyzing…' : 'Analyzing…', reviewing: short ? 'reviewing…' : 'Reviewing…', completed: short ? 'completed' : 'Completed', completed_with_warnings: short ? 'completed with warnings' : 'Completed with warnings', no_candidates: short ? 'no candidates' : 'No candidates found.', index_error: short ? 'index error' : 'The language index is unavailable.', qwen_error: short ? 'Qwen error' : 'Qwen analysis is unavailable.', incomplete: short ? 'incomplete' : 'The calculation is incomplete.', aborted: short ? 'aborted' : 'The calculation was aborted.'
   } : {
-    idle: short ? '—' : 'Не начато',
-    loading_index: short ? 'загрузка…' : 'Загрузка индекса…',
-    grouping_candidates: short ? 'группировка…' : 'Группировка кандидатов…',
-    candidate_audit: short ? 'аудит…' : 'Аудит кандидатов…',
-    analyzing: short ? 'анализ…' : 'Анализируется…',
-    reviewing: short ? 'проверка…' : 'Проверка…',
-    completed: short ? 'готово' : 'Завершено',
-    completed_with_warnings: short ? 'готово с предупрежд.' : 'Завершено с предупреждениями',
-    no_candidates: short ? 'нет кандидатов' : 'Кандидаты не найдены.',
-    index_error: short ? 'ошибка индекса' : 'Индекс языка недоступен.',
-    qwen_error: short ? 'ошибка Qwen' : 'Анализ Qwen недоступен.',
-    incomplete: short ? 'не завершён' : 'Расчёт не завершён.',
-    aborted: short ? 'прерван' : 'Расчёт был прерван.'
+    idle: short ? '—' : 'Не начато', loading_index: short ? 'загрузка…' : 'Загрузка индекса…', grouping_candidates: short ? 'группировка…' : 'Группировка кандидатов…', candidate_audit: short ? 'аудит…' : 'Аудит кандидатов…', analyzing: short ? 'анализ…' : 'Анализируется…', reviewing: short ? 'проверка…' : 'Проверка…', completed: short ? 'готово' : 'Завершено', completed_with_warnings: short ? 'готово с предупрежд.' : 'Завершено с предупреждениями', no_candidates: short ? 'нет кандидатов' : 'Кандидаты не найдены.', index_error: short ? 'ошибка индекса' : 'Индекс языка недоступен.', qwen_error: short ? 'ошибка Qwen' : 'Анализ Qwen недоступен.', incomplete: short ? 'не завершён' : 'Расчёт не завершён.', aborted: short ? 'прерван' : 'Расчёт был прерван.'
   };
   return labels[status] || labels.idle;
 }
 
-export function swowLabel(swow) {
-  if (swow?.target_to_word?.found || swow?.word_to_target?.found) return 'SWOW direct';
-  return 'no direct SWOW';
-}
-
+export function swowLabel(swow) { return swow?.target_to_word?.found || swow?.word_to_target?.found ? 'SWOW direct' : 'no direct SWOW'; }
 export function resultRowClasses(result) {
-  return [
-    Number(result.final_score) >= 70 ? 'is-high-final' : '',
-    Number(result.association?.domain_shift) >= 65 ? 'is-high-domain-shift' : '',
-    result.association?.directness == null ? 'is-qwen-missing' : '',
-    (!result.swow?.target_to_word?.found && !result.swow?.word_to_target?.found) ? 'is-swow-missing' : ''
-  ].filter(Boolean).join(' ');
+  return [Number(result.final_score) >= 70 ? 'is-high-final' : '', Number(result.association?.domain_shift) >= 65 ? 'is-high-domain-shift' : '', result.association?.directness == null ? 'is-qwen-missing' : '', (!result.swow?.target_to_word?.found && !result.swow?.word_to_target?.found) ? 'is-swow-missing' : ''].filter(Boolean).join(' ');
 }
