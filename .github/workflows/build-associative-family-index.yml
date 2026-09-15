@@ -6,6 +6,8 @@ on:
       - associative-family-index
     paths:
       - 'scripts/build-associative-family-index.mjs'
+      - 'associativvordes/js/root-matcher.js'
+      - 'associativvordes/js/affix-search-config.js'
       - '.github/workflows/build-associative-family-index.yml'
   workflow_dispatch:
 
@@ -31,7 +33,7 @@ jobs:
         env:
           GITHUB_ACTIONS: 'true'
         run: |
-          rm -rf .tmp/family-candidate-parts .tmp/family-candidate-index .tmp/associative-family-index .tmp/etymwn
+          rm -rf .tmp/family-candidate-parts .tmp/family-candidate-index .tmp/associative-family-index
           mkdir -p .tmp/family-candidate-parts .tmp/family-candidate-index
           for lang in en de fr es it ru; do
             node scripts/build-associative-candidate-index.mjs \
@@ -51,29 +53,27 @@ jobs:
           await writeFile('.tmp/family-candidate-index/manifest.json', JSON.stringify(merged, null, 2));
           NODE
 
-      - name: Download Etymological WordNet
-        run: |
-          mkdir -p .tmp/etymwn
-          curl -fL --retry 5 --retry-delay 3 \
-            https://archive.org/download/etymwn-20130208/etymwn-20130208.zip \
-            -o .tmp/etymwn/etymwn.zip
-          unzip -q .tmp/etymwn/etymwn.zip -d .tmp/etymwn
-          ETYMWN="$(find .tmp/etymwn -name etymwn.tsv -type f | head -n 1)"
-          test -n "$ETYMWN"
-          echo "ETYMWN=$ETYMWN" >> "$GITHUB_ENV"
-
-      - name: Build associative etymological families
+      - name: Build exact associative families
         env:
           NODE_OPTIONS: --max-old-space-size=6144
         run: |
           node scripts/build-associative-family-index.mjs \
             --candidate-root=.tmp/family-candidate-index \
-            --etymwn="$ETYMWN" \
             --output-root=.tmp/associative-family-index \
-            --languages=en,de,fr,es,it,ru \
-            --max-depth=7
+            --languages=en,de,fr,es,it,ru
 
-      - name: Show control checks
+      - name: Verify no fuzzy family algorithm
+        run: |
+          node --input-type=module <<'NODE'
+          import { readFile } from 'node:fs/promises';
+          const manifest = JSON.parse(await readFile('.tmp/associative-family-index/manifest.json', 'utf8'));
+          if (manifest.algorithm?.fuzzy_matching !== false) throw new Error('family manifest must explicitly disable fuzzy matching');
+          if (manifest.algorithm?.edit_distance_matching !== false) throw new Error('family manifest must explicitly disable edit-distance matching');
+          const report = JSON.parse(await readFile('.tmp/associative-family-index/report.json', 'utf8'));
+          for (const [name, check] of Object.entries(report.controls || {})) if (!check.ok) throw new Error(`failed control family: ${name}`);
+          NODE
+
+      - name: Show family report
         run: cat .tmp/associative-family-index/report.json
 
       - name: Upload family index
