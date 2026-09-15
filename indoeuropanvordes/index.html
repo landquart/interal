@@ -1423,6 +1423,8 @@ function makeIndoeuropanCard(payload, timeMeta, author = null) {
     interal: {
       word: payload.interalWord || "",
       ipa: payload.interalIPA || "",
+      root: payload.interalRoot || payload.interalWord || "",
+      root_ipa: payload.interalRootIPA || payload.interalIPA || "",
       part_of_speech: partOfSpeech
     },
     translation: {
@@ -1440,8 +1442,11 @@ function makeIndoeuropanCard(payload, timeMeta, author = null) {
       return {
         language: row.code || "",
         word: row.word || "",
+        root: row.root || row.word || "",
         romanization: row.romanization || "",
+        root_romanization: row.rootRomanization || row.romanization || "",
         ipa: row.ipa || "",
+        root_ipa: row.rootIpa || row.ipa || "",
         G: finiteOrNull(row.graphic),
         PH: finiteOrNull(row.phonetic),
         S: finiteOrNull(row.general),
@@ -2020,7 +2025,7 @@ function getPieCell(item, langCode) {
   const cell = item && item[langCode];
 
   if (!cell) {
-    return { words: [], roots: [], romanization: "", rootRomanization: "", ipa: "" };
+    return { words: [], roots: [], romanization: "", rootRomanization: "", ipa: "", rootIpa: "" };
   }
 
   if (typeof cell === "string") {
@@ -2029,7 +2034,8 @@ function getPieCell(item, langCode) {
       roots: [],
       romanization: "",
       rootRomanization: "",
-      ipa: item.ipa && item.ipa[langCode] ? String(item.ipa[langCode]) : ""
+      ipa: item.ipa && item.ipa[langCode] ? String(item.ipa[langCode]) : "",
+      rootIpa: ""
     };
   }
 
@@ -2039,7 +2045,8 @@ function getPieCell(item, langCode) {
       roots: [],
       romanization: "",
       rootRomanization: "",
-      ipa: item.ipa && item.ipa[langCode] ? String(item.ipa[langCode]) : ""
+      ipa: item.ipa && item.ipa[langCode] ? String(item.ipa[langCode]) : "",
+      rootIpa: ""
     };
   }
 
@@ -2049,11 +2056,12 @@ function getPieCell(item, langCode) {
       roots: splitVariants(cell.root || cell.roots || ""),
       romanization: String(cell.romanization || cell.transliteration || ""),
       rootRomanization: String(cell.root_romanization || ""),
-      ipa: String(cell.ipa || "")
+      ipa: String(cell.ipa || ""),
+      rootIpa: String(cell.root_ipa || "")
     };
   }
 
-  return { words: [], roots: [], romanization: "", rootRomanization: "", ipa: "" };
+  return { words: [], roots: [], romanization: "", rootRomanization: "", ipa: "", rootIpa: "" };
 }
 
 function normalizePieLookupInput(word, langCode) {
@@ -2070,6 +2078,10 @@ function getPieRoots(item, langCode) {
   return getPieCell(item, langCode).roots;
 }
 
+function getPieRootIPA(item, langCode) {
+  return getPieCell(item, langCode).rootIpa;
+}
+
 function getPieIPA(item, langCode) {
   const cell = getPieCell(item, langCode);
   if (cell.ipa) return cell.ipa;
@@ -2079,6 +2091,25 @@ function getPieIPA(item, langCode) {
   }
 
   return "";
+}
+
+function getInteralComparisonRoot(word, partOfSpeech) {
+  const value = String(word || "").trim();
+  if (!value) return "";
+
+  if (partOfSpeech === "verb") {
+    return value.replace(/(?:ar|er|ir|an)$/i, "") || value;
+  }
+
+  if (partOfSpeech === "adjective") {
+    return value.replace(/i$/i, "") || value;
+  }
+
+  if (partOfSpeech === "noun") {
+    return value.replace(/[aeo]$/i, "") || value;
+  }
+
+  return value;
 }
 
 function findPieRowByNationalWord(data, nationalWord, selectedLang) {
@@ -2210,9 +2241,11 @@ async function calculateInternationality() {
   tableWrap.style.display = "block";
 
   try {
-    const interalGraphic = normalizeGraphicInput(interalWord, "interal");
+    const interalRoot = getInteralComparisonRoot(interalWord, matchedPieItem?.part_of_speech || "");
+    const interalGraphic = normalizeGraphicInput(interalRoot, "interal");
     const interalIPA = interalToIPA(interalWord);
-    const interalIPAComparable = interalIPAForAline(interalWord);
+    const interalRootIPA = interalToIPA(interalRoot);
+    const interalIPAComparable = interalIPAForAline(interalRoot);
 
     const rows = [];
 
@@ -2228,7 +2261,11 @@ async function calculateInternationality() {
         if (ipa) inputs.ipa.value = ipa;
       }
 
-      const nationalGraphic = normalizeGraphicInput(word, lang.code, romanization);
+      const pieCell = matchedPieItem ? getPieCell(matchedPieItem, lang.code) : null;
+      const root = pieCell?.roots[0] || word;
+      const rootRomanization = pieCell?.rootRomanization || romanization;
+      const rootIpa = pieCell?.rootIpa || ipa;
+      const nationalGraphic = normalizeGraphicInput(root, lang.code, rootRomanization);
       const graphicDetails = word ? graphicSimilarityDetails(interalGraphic, nationalGraphic) : null;
       const graphic = graphicDetails ? graphicDetails.score : null;
 
@@ -2237,8 +2274,8 @@ async function calculateInternationality() {
       let contribution = null;
       let aline = null;
 
-      if (word && ipa && interalIPAComparable) {
-        const result = calcAlineSimilarity(interalIPAComparable, ipa);
+      if (root && rootIpa && interalIPAComparable) {
+        const result = calcAlineSimilarity(interalIPAComparable, rootIpa);
 
         if (result) {
           phonetic = result.score;
@@ -2254,8 +2291,11 @@ async function calculateInternationality() {
       rows.push({
         ...lang,
         word,
+        root,
         romanization,
+        rootRomanization,
         ipa,
+        rootIpa,
         nationalGraphic,
         graphic,
         graphicDetails,
@@ -2290,8 +2330,10 @@ async function calculateInternationality() {
     const payload = {
       methodology_version: METHODOLOGY_VERSION,
       interalWord,
+      interalRoot,
       interalGraphic,
       interalIPA,
+      interalRootIPA,
       interalIPAComparable,
       lookupWord,
       lookupLang,
@@ -2683,8 +2725,10 @@ ${escapeHTML(text.formulaBody)}</div>
     <div class="explain-section">
       <h4>${escapeHTML(text.hypothesis)}</h4>
       <div class="explain-code">Interal: ${escapeHTML(data.interalWord)}
+Root: ${escapeHTML(data.interalRoot || data.interalWord)}
 ${escapeHTML(text.graphicForm)}: ${escapeHTML(data.interalGraphic)}
 IPA: /${escapeHTML(data.interalIPA || "—")}/
+Root IPA: /${escapeHTML(data.interalRootIPA || "—")}/
 ${escapeHTML(text.ipaForAline)}: /${escapeHTML(data.interalIPAComparable || "—")}/</div>
     </div>
 
@@ -2819,8 +2863,8 @@ function renderExplanationTable(rows) {
               <td>${escapeHTML(getLocalizedLanguageName(row.code))}</td>
               <td>${escapeHTML(getLocalizedLanguageGroup(row.group))}</td>
               <td class="num">${formatInteger(row.speakers)}</td>
-              <td>${escapeHTML(row.word || "—")}</td>
-              <td>${escapeHTML(row.ipa ? "/" + row.ipa + "/" : "—")}</td>
+              <td>${escapeHTML(row.word || "—")}${row.root && row.root !== row.word ? `<br>→ ${escapeHTML(row.root)}` : ""}</td>
+              <td>${escapeHTML(row.ipa ? "/" + row.ipa + "/" : "—")}${row.rootIpa && row.rootIpa !== row.ipa ? `<br>→ /${escapeHTML(row.rootIpa)}/` : ""}</td>
               <td class="num">${renderGraphicDetails(row)}</td>
               <td class="num">${renderPhoneticDetails(row)}</td>
               <td class="num">${formatScoreOrDash(row.general)}</td>
