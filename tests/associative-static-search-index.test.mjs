@@ -3,10 +3,11 @@ import { cp, mkdir, readFile, rm, unlink, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { bucketName as buildBucketName, buildStaticSearchIndex } from '../scripts/build-associative-static-search-index.mjs';
 import { validateStaticSearchIndex } from '../scripts/validate-associative-static-search-index.mjs';
-import { createCandidateIndexLoader, fuzzySeedGrams } from '../associativvordes/js/candidate-index-loader.js';
+import { createCandidateIndexLoader } from '../associativvordes/js/candidate-index-loader.js';
 import { bucketName as runtimeBucketName } from '../associativvordes/js/candidate-static-search.js';
 import { acceptAffixBoundaryMatch, anchoredPostingKeys } from '../associativvordes/js/affix-boundary-index.js';
-import { buildSearchForm, findRootMatch, fuzzyRootMatch, includesRoot, rootBoundarySegments, specialRootMatch, specialRootVariants } from '../associativvordes/js/root-matcher.js';
+import { buildSearchForm, findRootMatch, includesRoot, rootBoundarySegments, specialRootMatch, specialRootVariants } from '../associativvordes/js/root-matcher.js';
+import { resolveAssociativeFamily } from '../associativvordes/js/associative-family-registry.js';
 import { SEARCH_NORMALIZER_VERSION } from '../associativvordes/js/search-normalizer.js';
 
 const sourceRoot = '.tmp/static-search-source';
@@ -20,12 +21,7 @@ await mkdir(join(sourceRoot, 'en'), { recursive: true });
 const source = { id: 'normative/test.json', file: 'test.json', category: 'normative', ipm: 10 };
 const entry = (word, rank, score = 50) => ({ word, normalized: word.toLowerCase(), search_form: buildSearchForm(word), rank, frequency_score: score, category_breakdown: {}, sources: [{ ...source }] });
 const shards = {
-  'en/a.json': [
-    entry('alternative', 2, 70),
-    entry('alteration', 3, 60),
-    entry('altruism', 13, 58),
-    entry('altesation', 14, 99)
-  ],
+  'en/a.json': [entry('alternative', 2, 70), entry('alteration', 3, 60), entry('altruism', 13, 58), entry('altesation', 14, 99)],
   'en/i.json': [entry('irregular', 4, 55)],
   'en/r.json': [entry('regular', 1, 90), entry('regulation', 5, 80), entry('realteration', 6, 65)],
   'en/o.json': [entry('ocular', 7, 50)],
@@ -36,15 +32,12 @@ const shards = {
   'en/s.json': [entry('Straße', 12, 25)]
 };
 for (const [file, entries] of Object.entries(shards)) await writeFile(join(sourceRoot, file), `${JSON.stringify(entries, null, 2)}\n`);
-await writeFile(join(sourceRoot, 'manifest.json'), `${JSON.stringify({
-  version: '1', normalizer_version: '2', global_config_hash: 'fixture-global',
-  languages: { en: { language_config_hash: 'fixture-en', entries: Object.values(shards).reduce((sum, entries) => sum + entries.length, 0), source_files: [source.id], shards: Object.entries(shards).map(([file, entries]) => ({ file, entries: entries.length })) } }
-}, null, 2)}\n`);
+await writeFile(join(sourceRoot, 'manifest.json'), `${JSON.stringify({ version: '1', normalizer_version: '2', global_config_hash: 'fixture-global', languages: { en: { language_config_hash: 'fixture-en', entries: Object.values(shards).reduce((sum, entries) => sum + entries.length, 0), source_files: [source.id], shards: Object.entries(shards).map(([file, entries]) => ({ file, entries: entries.length })) } } }, null, 2)}\n`);
 
-assert.equal(buildBucketName('2:ter', 128), '68', 'anchored posting keys use hexadecimal bucket names');
-assert.equal(runtimeBucketName('2:ter', 128), buildBucketName('2:ter', 128), 'builder and browser use identical bucket hashing');
-assert.ok(anchoredPostingKeys('realteration', 'en', 3).has('0:alt'), 'known re- prefix creates an anchored root position');
-assert.ok(!anchoredPostingKeys('walter', 'en', 3).has('0:alt'), 'arbitrary w- does not create an alter boundary');
+assert.equal(buildBucketName('2:ter', 128), '68');
+assert.equal(runtimeBucketName('2:ter', 128), buildBucketName('2:ter', 128));
+assert.ok(anchoredPostingKeys('realteration', 'en', 3).has('0:alt'));
+assert.ok(!anchoredPostingKeys('walter', 'en', 3).has('0:alt'));
 
 const { manifest, report } = await buildStaticSearchIndex({ language: 'en', inputRoot: sourceRoot, outputRoot, blockSize: 128, bucketCount: 128 });
 assert.equal(manifest.version, '4');
@@ -54,11 +47,11 @@ assert.equal(manifest.index_format, 'static-affix-anchored-ngram-v1');
 assert.equal(report.entries, 14);
 assert.ok(report.posting_grams > 0);
 assert.ok(report.total_bytes > 0);
-assert.ok(manifest.languages.en.postings['3'].buckets.includes('68'), 'high decimal bucket 104 is retained as hexadecimal 68');
+assert.ok(manifest.languages.en.postings['3'].buckets.includes('68'));
 
 const validation = await validateStaticSearchIndex({ indexRoot: outputRoot, languages: ['en'], strict: true });
 assert.equal(validation.valid, true, validation.errors.join('\n'));
-assert.equal(validation.languages.en.posting_ids, validation.languages.en.expected_posting_ids, 'validator proves complete affix-anchored posting coverage');
+assert.equal(validation.languages.en.posting_ids, validation.languages.en.expected_posting_ids);
 
 const fetch = async url => {
   const relative = String(url).replace(/^\.\/search-index\//, '');
@@ -70,44 +63,44 @@ const fetch = async url => {
   }
 };
 const loader = createCandidateIndexLoader({ searchBaseUrl: './search-index/', legacyBaseUrl: './missing-index/', fetch, maxCachedResources: 2 });
+
 const regul = await loader.loadCandidateEntries('en', 'regul');
-assert.deepEqual(
-  regul.map(item => item.word).sort(),
-  ['irregular', 'regular', 'regulation'].sort(),
-  'static affix index finds roots only at token or recognized prefix boundaries'
-);
+assert.deepEqual(regul.map(item => item.word).sort(), ['irregular', 'regular', 'regulation'].sort());
+assert.ok(regul.every(item => item.family_id === 'family:regul'));
 assert.ok(!regul.some(item => item.word === 'xregulation'));
 assert.ok(!regul.some(item => item.word === 'prefixregulation'));
+
 const alter = await loader.loadCandidateEntries('en', 'alter');
-assert.deepEqual(
-  alter.map(item => item.word).sort(),
-  ['alternative', 'alteration', 'altruism', 'realteration'].sort(),
-  'exact and curated allomorph matches are returned without using broad fuzzy postings as a five-word quota'
-);
-assert.ok(!alter.some(item => item.word === 'altesation'), 'an unrelated fuzzy lookalike is not fetched when reliable matches already exist');
+assert.deepEqual(alter.map(item => item.word).sort(), ['alternative', 'alteration', 'altruism', 'realteration'].sort());
+assert.ok(alter.every(item => item.family_id === 'family:alter'));
+assert.ok(!alter.some(item => item.word === 'altesation'), 'lookalikes outside the verified family are rejected');
 assert.ok(!alter.some(item => item.word === 'Walter'));
-assert.deepEqual((await loader.loadCandidateEntries('en', 'oc')).map(item => item.word), ['ocular'], 'bigram postings support short roots');
-assert.deepEqual((await loader.loadCandidateEntries('en', 'x')).map(item => item.word), ['xregulation'], 'single-character roots remain searchable at a real boundary');
-assert.ok((await loader.loadCandidateEntries('en', 'regl')).some(item => item.word === 'regular'), 'fuzzy candidate retrieval uses affix-anchored partition seeds');
-assert.ok(fuzzySeedGrams('regul').length >= 2);
-assert.equal(fuzzyRootMatch('prefixregulation', 'regul', 'en'), null, 'fuzzy matcher does not scan arbitrary internal positions');
-assert.equal(fuzzyRootMatch('qegular', 'regular', 'en'), null, 'fuzzy matcher rejects a first-character substitution even at a valid boundary');
+assert.deepEqual(resolveAssociativeFamily('alter').aliases, ['alter', 'altern', 'altru']);
+
+assert.deepEqual((await loader.loadCandidateEntries('en', 'oc')).map(item => item.word), ['ocular']);
+assert.deepEqual((await loader.loadCandidateEntries('en', 'x')).map(item => item.word), ['xregulation']);
+assert.deepEqual(await loader.loadCandidateEntries('en', 'regl'), [], 'misspelled roots have no approximate fallback');
+assert.equal(findRootMatch('qegular', 'regular', 'en'), null, 'first-character substitution is rejected');
 const xPrefixMatch = findRootMatch('xregulation', 'regul', 'en');
-assert.equal(acceptAffixBoundaryMatch(xPrefixMatch, 'regul'), false, 'leading insertion is not treated as an implicit prefix');
-assert.equal(includesRoot('Straße', 'strasse'), true, 'runtime and build normalization both map ß to ss');
-assert.equal(specialRootMatch('ru', 'регуляция', 'regul'), true);
-assert.ok(specialRootVariants('any', 'regul').includes('regul'));
-assert.equal(specialRootMatch('any', 'alternative', 'inter'), false, 'alter is not confused with inter');
-assert.ok(rootBoundarySegments('counterrealteration', 'en').some(boundary => boundary.start === 'counterre'.length), 'two-prefix chains create a boundary');
-assert.equal(loader.getCandidateIndexDiagnostics().indexFormat, 'static-affix-anchored-ngram-v1');
-assert.ok(loader.getCandidateIndexDiagnostics().cachedResources <= 2, 'resource cache obeys its LRU bound');
-assert.equal(loader.getCandidateIndexDiagnostics().pendingResources, 0, 'settled resource promises are removed');
-assert.ok(loader.getCandidateIndexDiagnostics().cacheEvictions > 0, 'bounded cache evicts old resources');
+assert.equal(acceptAffixBoundaryMatch(xPrefixMatch), false, 'unknown leading material is not an implicit prefix');
+assert.equal(includesRoot('Straße', 'strasse'), true);
+assert.equal(specialRootMatch('it', 'regolare', 'regul'), true);
+assert.ok(specialRootVariants('any', 'regul').includes('regol'));
+assert.equal(specialRootMatch('any', 'alternative', 'inter'), false);
+assert.ok(rootBoundarySegments('counterrealteration', 'en').some(boundary => boundary.start === 'counterre'.length));
+
+const diagnostics = loader.getCandidateIndexDiagnostics();
+assert.equal(diagnostics.indexFormat, 'static-affix-anchored-ngram-v1');
+assert.equal(diagnostics.fuzzyCandidateIds, 0);
+assert.equal(diagnostics.approximateCandidateIds, 0);
+assert.ok(diagnostics.cachedResources <= 2);
+assert.equal(diagnostics.pendingResources, 0);
+assert.ok(diagnostics.cacheEvictions > 0);
 
 await cp(outputRoot, corruptRoot, { recursive: true });
 await unlink(join(corruptRoot, 'en', 'postings', '3', '68.json'));
 const corruptValidation = await validateStaticSearchIndex({ indexRoot: corruptRoot, languages: ['en'], strict: true });
-assert.equal(corruptValidation.valid, false, 'strict validation rejects a missing high-numbered postings bucket');
+assert.equal(corruptValidation.valid, false);
 assert.ok(corruptValidation.errors.some(error => error.includes('68.json') || error.includes('coverage mismatch')));
 
 const legacyEntry = entry('regulation', 1, 90);
@@ -116,6 +109,6 @@ const legacyPayloads = new Map([
   ['./candidate-index/en/r.json', [legacyEntry]]
 ]);
 const legacyLoader = createCandidateIndexLoader({ baseUrl: './candidate-index/', fetch: async url => legacyPayloads.has(url) ? { ok: true, status: 200, json: async () => legacyPayloads.get(url) } : { ok: false, status: 404, json: async () => null } });
-assert.deepEqual((await legacyLoader.loadCandidateEntries('en', 'regul')).map(item => item.word), ['regulation'], 'legacy candidate index remains a transition fallback');
+assert.deepEqual((await legacyLoader.loadCandidateEntries('en', 'regul')).map(item => item.word), ['regulation']);
 
-console.log('Static associative search index tests passed.');
+console.log('Static associative family search tests passed.');
