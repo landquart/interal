@@ -1,19 +1,13 @@
-import {
-  buildSearchForm,
-  fuzzyRootMatch,
-  includesRoot,
-  specialRootMatch,
-  specialRootVariants
-} from './root-matcher.js';
-import {
-  STATIC_MANIFEST_VERSION,
-  fuzzySeedGrams,
-  loadStaticCandidateEntries,
-  validateStaticManifest
-} from './candidate-static-search.js';
+import { buildSearchForm, findRootMatch } from './root-matcher.js';
+import { acceptAffixBoundaryMatch, STATIC_MANIFEST_VERSION } from './affix-boundary-index.js';
+import { loadStaticCandidateEntries, validateStaticManifest } from './candidate-static-search.js';
 import { SEARCH_NORMALIZER_VERSION } from './search-normalizer.js';
+import { resolveAssociativeFamily } from './associative-family-registry.js';
+import { QWEN_RUNTIME_CONFIG } from './qwen-client.js';
 
-export { fuzzySeedGrams };
+// Candidate generation must not create words outside the selected exact family.
+// Qwen remains enabled for semantic scoring/review of candidates already found locally.
+QWEN_RUNTIME_CONFIG.enableCandidateGeneration = false;
 
 export const CANDIDATE_INDEX_ERROR_CODES = Object.freeze({
   MANIFEST_FETCH_FAILED: 'MANIFEST_FETCH_FAILED',
@@ -44,17 +38,10 @@ export class CandidateIndexError extends Error {
   }
 }
 
-function makeError(code, message, details) {
-  return new CandidateIndexError(code, message, details);
-}
-
-function isAbortError(error) {
-  return error?.name === 'AbortError' || error?.code === CANDIDATE_INDEX_ERROR_CODES.ABORTED;
-}
-
-function abortError(cause) {
-  return makeError(CANDIDATE_INDEX_ERROR_CODES.ABORTED, 'Candidate index request was aborted.', { cause });
-}
+function makeError(code, message, details) { return new CandidateIndexError(code, message, details); }
+function isAbortError(error) { return error?.name === 'AbortError' || error?.code === CANDIDATE_INDEX_ERROR_CODES.ABORTED; }
+function abortError(cause) { return makeError(CANDIDATE_INDEX_ERROR_CODES.ABORTED, 'Candidate index request was aborted.', { cause }); }
+function throwIfAborted(signal) { if (signal?.aborted) throw abortError(signal.reason); }
 
 async function withAbort(promise, signal) {
   if (!signal) return promise;
@@ -65,11 +52,8 @@ async function withAbort(promise, signal) {
     signal.addEventListener('abort', onAbort, { once: true });
     cleanup = () => signal.removeEventListener('abort', onAbort);
   });
-  try {
-    return await Promise.race([promise, aborted]);
-  } finally {
-    cleanup?.();
-  }
+  try { return await Promise.race([promise, aborted]); }
+  finally { cleanup?.(); }
 }
 
 function createDiagnostics() {
@@ -86,58 +70,35 @@ function createDiagnostics() {
     fetchCount: 0,
     rejectedEntries: 0,
     candidateIds: 0,
+    exactCandidateIds: 0,
+    fuzzyCandidateIds: 0,
+    approximateCandidateIds: 0,
+    candidateEntryBlocks: 0,
+    querySuppressed: false,
+    querySuppressedReason: null,
+    familyId: null,
+    familyCanonical: null,
+    familyAliases: [],
     validationErrors: []
   };
 }
 
-function normalizeBaseUrl(baseUrl) {
-  const value = String(baseUrl || '');
-  return value.endsWith('/') ? value : `${value}/`;
-}
-
-function joinUrl(baseUrl, path) {
-  return `${normalizeBaseUrl(baseUrl)}${path}`;
-}
-
-function throwIfAborted(signal) {
-  if (signal?.aborted) throw abortError(signal.reason);
-}
+function normalizeBaseUrl(baseUrl) { const value = String(baseUrl || ''); return value.endsWith('/') ? value : `${value}/`; }
+function joinUrl(baseUrl, path) { return `${normalizeBaseUrl(baseUrl)}${path}`; }
 
 async function fetchJson(fetchImpl, url, signal, code, language, shard) {
   let response;
-  try {
-    response = await fetchImpl(url, signal ? { signal } : {});
-  } catch (error) {
-    if (isAbortError(error)) throw abortError(error);
-    throw makeError(code, `Candidate index fetch failed: ${url}`, { language, shard, cause: error });
-  }
+  try { response = await fetchImpl(url, signal ? { signal } : {}); }
+  catch (error) { if (isAbortError(error)) throw abortError(error); throw makeError(code, `Candidate index fetch failed: ${url}`, { language, shard, cause: error }); }
   if (!response?.ok) throw makeError(code, `Candidate index fetch failed: ${url}`, { language, shard, cause: response });
-  try {
-    return await response.json();
-  } catch (error) {
-    throw makeError(code, `Candidate index JSON parse failed: ${url}`, { language, shard, cause: error });
-  }
+  try { return await response.json(); }
+  catch (error) { throw makeError(code, `Candidate index JSON parse failed: ${url}`, { language, shard, cause: error }); }
 }
 
-function isPlainObject(value) {
-  return value && typeof value === 'object' && !Array.isArray(value);
-}
-
-function isSafeRelativePath(file) {
-  return typeof file === 'string' && file && !file.startsWith('/') && !file.includes('://') && !file.includes('\\') && !file.split('/').includes('..');
-}
-
-function manifestConfigHash(manifest) {
-  return manifest.global_config_hash ?? manifest.config_hash;
-}
-
-const staticContext = {
-  isPlainObject,
-  isSafeRelativePath,
-  manifestConfigHash,
-  makeError,
-  codes: CANDIDATE_INDEX_ERROR_CODES
-};
+function isPlainObject(value) { return value && typeof value === 'object' && !Array.isArray(value); }
+function isSafeRelativePath(file) { return typeof file === 'string' && file && !file.startsWith('/') && !file.includes('://') && !file.includes('\\') && !file.split('/').includes('..'); }
+function manifestConfigHash(manifest) { return manifest.global_config_hash ?? manifest.config_hash; }
+const staticContext = { isPlainObject, isSafeRelativePath, manifestConfigHash, makeError, codes: CANDIDATE_INDEX_ERROR_CODES };
 
 function validateLegacyManifest(manifest) {
   if (!LEGACY_NORMALIZER_VERSIONS.has(manifest.normalizer_version)) throw makeError(CANDIDATE_INDEX_ERROR_CODES.INDEX_CONFIG_INCOMPATIBLE, 'Candidate index normalizer version is incompatible.');
@@ -165,10 +126,7 @@ function getLanguageInfo(manifest, language) {
   return info;
 }
 
-function shardIdFromFile(file) {
-  return file.split('/').pop().replace(/\.json$/i, '');
-}
-
+function shardIdFromFile(file) { return file.split('/').pop().replace(/\.json$/i, ''); }
 function getLegacyShardMeta(manifest, language, shardId) {
   const info = getLanguageInfo(manifest, language);
   const found = info.shards.find(shard => shardIdFromFile(shard.file) === shardId || shard.file === shardId);
@@ -208,26 +166,33 @@ function validateLegacyShardPayload(payload, language, shardMeta, diagnostics) {
   });
 }
 
-function legacyShardIdsForRoot(root) {
-  const normalized = buildSearchForm(root);
-  const first = normalized[0];
-  const ids = new Set([first && first >= 'a' && first <= 'z' ? first : '_other']);
-  if (specialRootVariants('any', normalized).length) ids.add('_other');
+function legacyShardIdsForAliases(aliases) {
+  const ids = new Set();
+  for (const alias of aliases) {
+    const first = buildSearchForm(alias)[0];
+    ids.add(first && first >= 'a' && first <= 'z' ? first : '_other');
+  }
   return [...ids];
+}
+
+function annotateFamily(entries, family) {
+  return entries.map(entry => ({
+    ...entry,
+    family_id: family.id,
+    family_canonical: family.canonical,
+    family_aliases: [...family.aliases],
+    family_verified: family.verified
+  }));
 }
 
 export function createCandidateIndexLoader(options = {}) {
   const explicitBase = options.baseUrl ? normalizeBaseUrl(options.baseUrl) : null;
   const staticBase = normalizeBaseUrl(options.searchBaseUrl ?? DEFAULT_STATIC_BASE_URL);
   const legacyBase = normalizeBaseUrl(options.legacyBaseUrl ?? DEFAULT_LEGACY_BASE_URL);
-  const manifestBases = explicitBase
-    ? [explicitBase]
-    : (options.searchBaseUrl != null || options.preferStatic === true || options.fetch == null ? [staticBase, legacyBase] : [legacyBase, staticBase]);
+  const manifestBases = explicitBase ? [explicitBase] : (options.searchBaseUrl != null || options.preferStatic === true || options.fetch == null ? [staticBase, legacyBase] : [legacyBase, staticBase]);
   const fetchImpl = options.fetch ?? globalThis.fetch?.bind(globalThis);
   if (typeof fetchImpl !== 'function') throw new TypeError('createCandidateIndexLoader requires fetch support.');
-  const maxCachedResources = Number.isInteger(options.maxCachedResources) && options.maxCachedResources >= 0
-    ? options.maxCachedResources
-    : DEFAULT_MAX_CACHED_RESOURCES;
+  const maxCachedResources = Number.isInteger(options.maxCachedResources) && options.maxCachedResources >= 0 ? options.maxCachedResources : DEFAULT_MAX_CACHED_RESOURCES;
 
   const diagnostics = createDiagnostics();
   let manifestRecord;
@@ -281,9 +246,7 @@ export function createCandidateIndexLoader(options = {}) {
         }
       }
       throw lastError || makeError(CANDIDATE_INDEX_ERROR_CODES.MANIFEST_FETCH_FAILED, 'Candidate index manifest could not be loaded.');
-    })().finally(() => {
-      if (manifestRecord === record) manifestRecord = undefined;
-    });
+    })().finally(() => { if (manifestRecord === record) manifestRecord = undefined; });
     manifestRecord = record;
     return withAbort(record.promise, signal);
   }
@@ -298,14 +261,8 @@ export function createCandidateIndexLoader(options = {}) {
     const record = { signal, promise: null };
     record.promise = fetchJson(fetchImpl, joinUrl(activeBaseUrl, path), signal, code, language, shard)
       .then(payload => { throwIfAborted(signal); return validator ? validator(payload) : payload; })
-      .then(value => {
-        cacheResource(path, value);
-        diagnostics.loadedShards.push(diagnosticKey ?? path);
-        return value;
-      })
-      .finally(() => {
-        if (resourcePromises.get(path) === record) resourcePromises.delete(path);
-      });
+      .then(value => { cacheResource(path, value); diagnostics.loadedShards.push(diagnosticKey ?? path); return value; })
+      .finally(() => { if (resourcePromises.get(path) === record) resourcePromises.delete(path); });
     resourcePromises.set(path, record);
     return withAbort(record.promise, signal);
   }
@@ -314,36 +271,49 @@ export function createCandidateIndexLoader(options = {}) {
     const manifest = await loadManifest({ signal });
     if (manifest.version !== LEGACY_MANIFEST_VERSION) throw makeError(CANDIDATE_INDEX_ERROR_CODES.SHARD_NOT_LISTED, 'Letter shards are unavailable in the static search index.', { language, shard: shardId });
     const meta = getLegacyShardMeta(manifest, language, shardId);
-    return loadResource(meta.file, {
-      signal,
-      code: CANDIDATE_INDEX_ERROR_CODES.SHARD_FETCH_FAILED,
-      language,
-      shard: meta.id,
-      diagnosticKey: `${language}/${meta.id}`,
-      validator: payload => validateLegacyShardPayload(payload, language, meta, diagnostics)
-    });
+    return loadResource(meta.file, { signal, code: CANDIDATE_INDEX_ERROR_CODES.SHARD_FETCH_FAILED, language, shard: meta.id, diagnosticKey: `${language}/${meta.id}`, validator: payload => validateLegacyShardPayload(payload, language, meta, diagnostics) });
   }
 
-  async function loadLegacyCandidateEntries(language, root, { signal } = {}) {
+  async function loadLegacyFamilyEntries(language, family, { signal } = {}) {
     const entries = [];
-    for (const shardId of legacyShardIdsForRoot(root)) {
+    for (const shardId of legacyShardIdsForAliases(family.aliases)) {
       try {
         const shard = await loadShard(language, shardId, { signal });
-        for (const entry of shard) entries.push(entry);
+        entries.push(...shard);
       } catch (error) {
         if (error.code === CANDIDATE_INDEX_ERROR_CODES.SHARD_NOT_LISTED) { diagnostics.unlistedShards.push(`${language}/${shardId}`); continue; }
         throw error;
       }
     }
-    const normalizedRoot = buildSearchForm(root);
-    return entries.filter(entry => includesRoot(entry.search_form, normalizedRoot) || fuzzyRootMatch(entry.search_form, normalizedRoot) || specialRootMatch(language, entry.search_form, normalizedRoot));
+    const byLemma = new Map();
+    for (const entry of entries) {
+      const match = findRootMatch(entry.search_form, family.canonical, language);
+      if (!acceptAffixBoundaryMatch(match)) continue;
+      const key = buildSearchForm(entry.normalized || entry.word);
+      if (!byLemma.has(key)) byLemma.set(key, entry);
+    }
+    diagnostics.exactCandidateIds = byLemma.size;
+    diagnostics.candidateIds = byLemma.size;
+    return annotateFamily([...byLemma.values()], family);
   }
 
-  async function loadCandidateEntries(language, root, { signal } = {}) {
+  async function loadCandidateEntries(language, root, { signal, elementType = 'root' } = {}) {
     const manifest = await loadManifest({ signal });
     getLanguageInfo(manifest, language);
-    if (manifest.version === STATIC_MANIFEST_VERSION) return loadStaticCandidateEntries({ manifest, language, root, signal, loadResource, context: staticContext, diagnostics });
-    return loadLegacyCandidateEntries(language, root, { signal });
+    const family = resolveAssociativeFamily(root, { elementType });
+    if (!family) return [];
+    diagnostics.familyId = family.id;
+    diagnostics.familyCanonical = family.canonical;
+    diagnostics.familyAliases = [...family.aliases];
+    diagnostics.fuzzyCandidateIds = 0;
+    diagnostics.approximateCandidateIds = 0;
+    let entries;
+    if (manifest.version === STATIC_MANIFEST_VERSION) {
+      entries = await loadStaticCandidateEntries({ manifest, language, root: family.canonical, signal, loadResource, context: staticContext, diagnostics });
+    } else {
+      entries = await loadLegacyFamilyEntries(language, family, { signal });
+    }
+    return annotateFamily(entries, family);
   }
 
   function clearCandidateIndexCache() {
@@ -356,15 +326,7 @@ export function createCandidateIndexLoader(options = {}) {
   }
 
   function getCandidateIndexDiagnostics() {
-    return {
-      ...diagnostics,
-      cachedResources: resourceCache.size,
-      pendingResources: resourcePromises.size,
-      maxCachedResources,
-      loadedShards: [...diagnostics.loadedShards],
-      unlistedShards: [...diagnostics.unlistedShards],
-      validationErrors: [...diagnostics.validationErrors]
-    };
+    return { ...diagnostics, cachedResources: resourceCache.size, pendingResources: resourcePromises.size, maxCachedResources, loadedShards: [...diagnostics.loadedShards], unlistedShards: [...diagnostics.unlistedShards], familyAliases: [...diagnostics.familyAliases], validationErrors: [...diagnostics.validationErrors] };
   }
 
   return { loadManifest, loadShard, loadCandidateEntries, clearCandidateIndexCache, getCandidateIndexDiagnostics };
