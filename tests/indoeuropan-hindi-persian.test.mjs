@@ -17,8 +17,10 @@ for (const item of dictionary.items) {
     const entry = item[code];
     if (!entry || typeof entry !== 'object') continue;
     assert.ok(typeof entry.root === 'string', `${item.id}: ${code} root is required`);
+    assert.ok(typeof entry.root_ipa === 'string', `${item.id}: ${code} root_ipa is required`);
     if (entry.word.trim()) {
       assert.ok(entry.root.trim(), `${item.id}: ${code} root must not be empty`);
+      assert.ok(entry.root_ipa.trim(), `${item.id}: ${code} root_ipa must not be empty`);
     }
     if (['hi', 'fa'].includes(code)) {
       assert.ok(typeof entry.root_romanization === 'string' && entry.root_romanization.trim(), `${item.id}: ${code} root_romanization is required`);
@@ -52,9 +54,13 @@ assert.equal(byId(139).fa.romanization, 'juje-tiġi');
 assert.equal(byId(154).fa.romanization, 'laġzidan');
 assert.equal(byId(159).fa.romanization, 'tof kardan');
 assert.equal(byId(165).ru.root, 'вид');
+assert.equal(byId(165).ru.root_ipa, 'vʲid');
 assert.equal(byId(165).it.root, 'ved');
+assert.equal(byId(165).it.root_ipa, 'ved');
 assert.equal(byId(165).hi.root_romanization, 'dekh');
+assert.equal(byId(165).hi.root_ipa, 'd̪eːkʰ');
 assert.equal(byId(165).fa.root_romanization, 'did');
+assert.equal(byId(165).fa.root_ipa, 'diːd');
 assert.equal(byId(52).es.root, 'vin');
 assert.equal(byId(52).ru.root, 'вин');
 assert.equal(byId(52).el.root, 'οιν');
@@ -74,6 +80,10 @@ assert.match(ui, /explicitRomanization \|\| transliterateHindi/);
 assert.match(ui, /explicitRomanization \|\| transliteratePersian/);
 assert.match(ui, /roots: splitVariants\(cell\.root \|\| cell\.roots \|\| ""\)/);
 assert.match(ui, /rootRomanization: String\(cell\.root_romanization \|\| ""\)/);
+assert.match(ui, /rootIpa: String\(cell\.root_ipa \|\| ""\)/);
+assert.match(ui, /const interalRoot = getInteralComparisonRoot/);
+assert.match(ui, /normalizeGraphicInput\(root, lang\.code, rootRomanization\)/);
+assert.match(ui, /calcAlineSimilarity\(interalIPAComparable, rootIpa\)/);
 
 assert.match(ui, /id="semanticOk"/);
 assert.match(ui, /const semanticOk = semanticOkInput\.checked === true/);
