@@ -1,32 +1,37 @@
 import assert from 'node:assert/strict';
-import { MIN_FUZZY_ROOT_SIMILARITY, allowedRootDistance, fuzzyRootMatch, specialRootMatch, sortRootCandidateMatches } from '../associativvordes/js/root-matcher.js';
+import { exactRootMatchAtBoundary, findRootMatch, specialRootMatch, specialRootVariants, sortRootCandidateMatches } from '../associativvordes/js/root-matcher.js';
+import { resolveAssociativeFamily } from '../associativvordes/js/associative-family-registry.js';
 
-assert.equal(MIN_FUZZY_ROOT_SIMILARITY, 0.8);
-assert.equal(allowedRootDistance('alter'), 1);
-assert.equal(fuzzyRootMatch('inter', 'alter'), null);
-assert.equal(fuzzyRootMatch('international', 'alter'), null);
-assert.equal(fuzzyRootMatch('alteration', 'alter').type, 'exact');
-assert.equal(fuzzyRootMatch('alternative', 'alter').type, 'exact');
-assert.equal(fuzzyRootMatch('altruism', 'alter').type, 'fuzzy');
-assert.equal(fuzzyRootMatch('altruism', 'alter').similarity, 0.8);
-assert.equal(fuzzyRootMatch('xlteration', 'alter'), null, 'fuzzy fragments must begin with the same letter as the root');
-assert.equal(fuzzyRootMatch('abxxefghi', 'abcdefghi'), null, 'distance within the raw allowance is rejected below 80% similarity');
-assert.equal(fuzzyRootMatch('abxxefghij', 'abcdefghij').similarity, 0.8, 'the 80% boundary remains inclusive');
-assert.equal(fuzzyRootMatch('ocular', 'ocul').type, 'exact');
+assert.equal(exactRootMatchAtBoundary('alteration', 'alter', 'en').type, 'exact');
+assert.equal(exactRootMatchAtBoundary('alternative', 'alter', 'en').type, 'exact');
+assert.equal(exactRootMatchAtBoundary('xlteration', 'alter', 'en'), null, 'one-letter substitutions are not accepted');
+assert.equal(exactRootMatchAtBoundary('inter', 'alter', 'en'), null, 'unrelated exact strings do not match');
+
+const alterFamily = resolveAssociativeFamily('alter');
+assert.equal(alterFamily.id, 'family:alter');
+assert.deepEqual(alterFamily.aliases, ['alter', 'altern', 'altru']);
+assert.equal(resolveAssociativeFamily('altru').id, 'family:alter');
+assert.equal(findRootMatch('altruism', 'alter', 'en').type, 'special');
+assert.equal(findRootMatch('alternative', 'alter', 'en').type, 'exact');
+assert.equal(findRootMatch('walter', 'alter', 'en'), null, 'family matching still requires a valid root boundary');
+
+assert.deepEqual(resolveAssociativeFamily('pede').aliases, ['pede', 'ped', 'pedi']);
+assert.equal(findRootMatch('pedicure', 'pede', 'en').type, 'special');
+assert.equal(findRootMatch('pedal', 'pede', 'en').type, 'special');
+assert.equal(findRootMatch('ocular', 'ocul', 'en').type, 'exact');
 assert.equal(specialRootMatch('de', 'okular', 'ocul'), true);
-assert.equal(fuzzyRootMatch('regulate', 'regul').type, 'exact');
-assert.equal(specialRootMatch('it', 'regolare', 'regul'), true);
-assert.equal(fuzzyRootMatch('cat', 'bat'), null);
-assert.equal(fuzzyRootMatch('inter', 'alter'), null);
-assert.equal(fuzzyRootMatch('xxter', 'alter'), null);
-assert.equal(fuzzyRootMatch('alter', 'alter').type, 'exact');
-assert.equal(fuzzyRootMatch('inter', 'alter'), null);
+assert.equal(findRootMatch('regolare', 'regul', 'it').type, 'special');
+assert.ok(specialRootVariants('any', 'regul').includes('regol'));
+
+const surface = resolveAssociativeFamily('xeno');
+assert.equal(surface.id, 'surface-family:xeno');
+assert.deepEqual(surface.aliases, ['xeno']);
+assert.equal(surface.verified, false);
 
 const ordered = sortRootCandidateMatches([
-  { word: 'zzfuzzy', match: { type: 'fuzzy', distance: 1, similarity: 0.8 } },
   { word: 'okular', match: { type: 'special', distance: 0, similarity: 1 } },
   { word: 'alteration', match: { type: 'exact', distance: 0, similarity: 1 } },
-  { word: 'aafuzzy', match: { type: 'fuzzy', distance: 1, similarity: 0.9 } }
-], word => ({ zzfuzzy: 1, aafuzzy: 99 }[word] ?? 50));
-assert.deepEqual(ordered.map(x => x.match.type), ['exact', 'special', 'fuzzy', 'fuzzy']);
-assert.equal(ordered[2].word, 'aafuzzy');
+  { word: 'altruism', match: { type: 'special', distance: 0, similarity: 1 } }
+], word => ({ altruism: 1, okular: 50, alteration: 50 }[word] ?? 50));
+assert.deepEqual(ordered.map(x => x.match.type), ['exact', 'special', 'special']);
+assert.equal(ordered[1].word, 'altruism');
