@@ -1,4 +1,4 @@
-import { allowedRootDistance, buildSearchForm, levenshtein, rootBoundarySegments } from './root-matcher.js';
+import { buildSearchForm, rootBoundarySegments } from './root-matcher.js';
 
 export const STATIC_MANIFEST_VERSION = '4';
 export const STATIC_INDEX_FORMAT = 'static-affix-anchored-ngram-v1';
@@ -41,46 +41,6 @@ export function exactAnchoredLookups(value) {
   return lookups;
 }
 
-export function fuzzySeedGrams(root) {
-  const text = buildSearchForm(root);
-  const distance = allowedRootDistance(text);
-  if (!text || distance <= 0) return [];
-  const partCount = Math.min(text.length, distance + 1);
-  const baseLength = Math.floor(text.length / partCount);
-  const remainder = text.length % partCount;
-  const seeds = [];
-  let offset = 0;
-  for (let index = 0; index < partCount; index += 1) {
-    const partLength = baseLength + (index < remainder ? 1 : 0);
-    const part = text.slice(offset, offset + partLength);
-    if (part) {
-      const gram = part.slice(0, Math.min(3, part.length));
-      seeds.push({ gram, length: gram.length, offset, maxOffsetShift: distance });
-    }
-    offset += partLength;
-  }
-  return [...new Map(seeds.map(seed => [`${seed.offset}:${seed.length}:${seed.gram}`, seed])).values()];
-}
-
-export function fuzzyAnchoredLookupGroups(root) {
-  return fuzzySeedGrams(root).map(seed => {
-    const keys = [];
-    const minimum = Math.max(0, seed.offset - seed.maxOffsetShift);
-    const maximum = seed.offset + seed.maxOffsetShift;
-    for (let offset = minimum; offset <= maximum; offset += 1) {
-      keys.push({ key: postingKey(offset, seed.gram), gram: seed.gram, length: seed.length, offset });
-    }
-    return { seed, lookups: keys };
-  });
-}
-
-export function acceptAffixBoundaryMatch(match, root) {
-  if (!match) return false;
-  if (!Number.isFinite(match.distance) || match.distance <= 0) return true;
-  const canonicalRoot = buildSearchForm(root);
-  const fragment = buildSearchForm(match.fragment);
-  if (!canonicalRoot || !fragment) return false;
-  if (fragment.length > canonicalRoot.length && levenshtein(fragment.slice(1), canonicalRoot) < match.distance) return false;
-  if (fragment.length < canonicalRoot.length && levenshtein(fragment, canonicalRoot.slice(1)) < match.distance) return false;
-  return true;
+export function acceptAffixBoundaryMatch(match) {
+  return Boolean(match && (!Number.isFinite(match.distance) || match.distance === 0));
 }

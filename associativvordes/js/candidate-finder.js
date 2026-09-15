@@ -11,37 +11,14 @@ function reject(diagnostics, reason) {
   diagnostics.rejectedByReason[reason] = (diagnostics.rejectedByReason[reason] || 0) + 1;
 }
 
-function isPlainObject(value) {
-  return value && typeof value === 'object' && !Array.isArray(value);
-}
-
-function normalizedLemma(entry) {
-  return normalizeText(entry.normalized || entry.word);
-}
-
-function entryLanguage(entry) {
-  return entry.language ?? entry.lang ?? entry.locale;
-}
-
-function sourceCategory(source) {
-  return source?.category ?? null;
-}
-
-function sourceIpm(source) {
-  return typeof source?.ipm === 'number' && Number.isFinite(source.ipm) ? source.ipm : 0;
-}
-
-function sourceFile(source) {
-  return typeof source?.file === 'string' && source.file.trim() ? source.file : null;
-}
-
-function validRank(value) {
-  return typeof value === 'number' && Number.isFinite(value) && Number.isInteger(value) && value > 0;
-}
-
-function totalIpm(entry) {
-  return Array.isArray(entry.sources) ? entry.sources.reduce((sum, source) => sum + sourceIpm(source), 0) : 0;
-}
+function isPlainObject(value) { return value && typeof value === 'object' && !Array.isArray(value); }
+function normalizedLemma(entry) { return normalizeText(entry.normalized || entry.word); }
+function entryLanguage(entry) { return entry.language ?? entry.lang ?? entry.locale; }
+function sourceCategory(source) { return source?.category ?? null; }
+function sourceIpm(source) { return typeof source?.ipm === 'number' && Number.isFinite(source.ipm) ? source.ipm : 0; }
+function sourceFile(source) { return typeof source?.file === 'string' && source.file.trim() ? source.file : null; }
+function validRank(value) { return typeof value === 'number' && Number.isFinite(value) && Number.isInteger(value) && value > 0; }
+function totalIpm(entry) { return Array.isArray(entry.sources) ? entry.sources.reduce((sum, source) => sum + sourceIpm(source), 0) : 0; }
 
 function completenessScore(entry) {
   return [entry.word, entry.normalized, entry.search_form].filter(value => typeof value === 'string' && value.trim()).length
@@ -84,24 +61,14 @@ function findMatch({ searchForm, root, language, specialRootMatcher }) {
       : { type: 'special', distance: 0, similarity: 1, fragment: root, index: 0 };
   }
   const match = findRootMatch(searchForm, root, language || 'en');
-  return acceptAffixBoundaryMatch(match, root) ? match : null;
+  return acceptAffixBoundaryMatch(match) ? match : null;
 }
 
-export function isReliableFuzzyMorphemeAnalysis(analysis) {
-  return Boolean(analysis
-    && analysis.fallback !== true
-    && analysis.analysis_confidence !== 'low'
-    && analysis.diagnostic_reason !== 'morpheme_parse_fallback'
-    && analysis.diagnostic_reason !== 'lexical_root_not_found'
-    && analysis.best_analysis
-    && analysis.best_analysis.morphotacticsValid !== false);
-}
+// Kept as a compatibility export for the page module; approximate matching no longer exists.
+export function isReliableFuzzyMorphemeAnalysis() { return false; }
 
 function withDuplicateWarning(entry) {
-  return {
-    ...entry,
-    warnings: [...new Set([...(Array.isArray(entry.warnings) ? entry.warnings : []), 'duplicate_runtime_entry'])]
-  };
+  return { ...entry, warnings: [...new Set([...(Array.isArray(entry.warnings) ? entry.warnings : []), 'duplicate_runtime_entry'])] };
 }
 
 export function findCandidatesForRoot({ entries, root, language = 'en', elementType = 'root', maxCandidates = Infinity, groupModels = true, specialRootMatcher } = {}) {
@@ -139,7 +106,11 @@ export function findCandidatesForRoot({ entries, root, language = 'en', elementT
       sources: entry.sources,
       warnings: runtimeWarningsForEntry(entry),
       total_ipm: totalIpm(entry),
-      match
+      match,
+      family_id: entry.family_id || null,
+      family_canonical: entry.family_canonical || null,
+      family_aliases: Array.isArray(entry.family_aliases) ? [...entry.family_aliases] : [],
+      family_verified: entry.family_verified === true
     };
     const model = lexicalModelDescriptor(candidate, root, language, elementType);
     candidate.model_family_key = model.key;
@@ -148,17 +119,12 @@ export function findCandidatesForRoot({ entries, root, language = 'en', elementT
     candidate.morpheme_analysis = model.analysis;
     candidate.parser_version = model.analysis?.parser_version || candidate.parser_version;
     if (model.analysis?.diagnostic_reason?.startsWith('morpheme_parse_fallback')) candidate.warnings = [...new Set([...(candidate.warnings || []), 'morpheme_parse_fallback'])];
-    if (match.type === 'fuzzy' && !isReliableFuzzyMorphemeAnalysis(model.analysis)) {
-      reject(diagnostics, 'fuzzy_morphology_unverified');
-      continue;
-    }
     matched.push(candidate);
   }
 
   const grouped = groupModels ? selectHighestFrequencyPerModel(matched, root, language, elementType) : { candidates: matched, dropped: [] };
   if (grouped.dropped.length) diagnostics.modelDuplicates = grouped.dropped.length;
   for (const item of grouped.dropped) diagnostics.warnings.push({ reason: 'lower_priority_model_variant', word: item.word, model: item.model_family_key });
-
   grouped.candidates.sort(compareRootMatchThenFrequency);
   diagnostics.matched = grouped.candidates.length;
   return { candidates: grouped.candidates.slice(0, maxCandidates), diagnostics };

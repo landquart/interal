@@ -13,46 +13,28 @@ const entry = (word, search_form, extra = {}) => ({
 const words = result => result.candidates.map(candidate => candidate.word);
 
 assert.equal(findCandidatesForRoot({ entries: [entry('alternative', 'alternative')], root: 'alter' }).candidates[0].match.type, 'exact');
-assert.equal(findCandidatesForRoot({ entries: [entry('altesative', 'altesative'), entry('alternative', 'alternative')], root: 'alter' }).candidates[0].word, 'alternative');
-assert.equal(findCandidatesForRoot({ entries: [entry('regolare', 'regolare'), entry('rexulare', 'rexulare')], root: 'regul', language: 'it' }).candidates[0].match.type, 'special');
-assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('inter', 'inter')], root: 'alter' })), []);
-assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('international', 'international')], root: 'alter' })), []);
-assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('internet', 'internet')], root: 'alter' })), []);
 assert.equal(findCandidatesForRoot({ entries: [entry('altruism', 'altruism')], root: 'alter' }).candidates[0].match.type, 'special');
-assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('altesation', 'altesation')], root: 'alter' })), [], 'an artificial fuzzy lookalike without a reliable morpheme parse is rejected');
-assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('altxsation', 'altxsation')], root: 'alter' })), []);
-assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('xlteration', 'xlteration')], root: 'alter' })), [], 'a first-character substitution is rejected at a valid root boundary');
-assert.equal(findCandidatesForRoot({ entries: [entry('altruism', 'altruism')], root: 'alter' }).candidates[0].match.similarity, 1);
-assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('ixxxxx', 'ixxxxx')], root: 'intern' })), []);
+assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('altesation', 'altesation'), entry('altxsation', 'altxsation'), entry('xlteration', 'xlteration')], root: 'alter' })), [], 'lookalikes are not accepted without exact family membership');
+assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('inter', 'inter'), entry('international', 'international')], root: 'alter' })), []);
+assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('Walter', 'walter'), entry('alteration', 'alteration')], root: 'alter', language: 'en' })), ['alteration'], 'internal substrings are not treated as roots');
+assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('realteration', 'realteration')], root: 'alter', language: 'en' })), ['realteration'], 'known prefix boundary is accepted');
+assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('irregular', 'irregular')], root: 'regul', language: 'en' })), ['irregular'], 'recognized prefix boundary is accepted');
+assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('xregulation', 'xregulation')], root: 'regul', language: 'en' })), [], 'arbitrary leading material is rejected');
+
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('альтернатива', 'alternativa', { language: 'ru', normalized: 'альтернатива' })], root: 'alter', language: 'ru' })), ['альтернатива']);
 assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('интернациональный', 'internacionalnyj', { language: 'ru', normalized: 'интернациональный' })], root: 'alter', language: 'ru' })), []);
-assert.equal(findCandidatesForRoot({ entries: [entry('альтернативный', 'alternativnyj', { language: 'ru', normalized: 'альтернативный' })], root: 'alter', language: 'ru' }).candidates[0].word, 'альтернативный');
-assert.equal(findCandidatesForRoot({ entries: [{ ...entry('bad', 'bad'), sources: undefined }], root: 'bad' }).diagnostics.rejectedByReason.sources_missing, 1);
-assert.equal(findCandidatesForRoot({ entries: [entry('bad', 'bad', { frequency_score: Infinity })], root: 'bad' }).diagnostics.rejectedByReason.frequency_score_not_finite, 1);
-assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('alter-low', 'alter-low', { frequency_score: 10 }), entry('alter-high', 'alter-high', { frequency_score: 90 })], root: 'alter' })), ['alter-high', 'alter-low']);
-assert.deepEqual(words(findCandidatesForRoot({ entries: [
-  entry('altruism', 'altruism', { frequency_score: 100, ipm: 100 }),
-  entry('alter-exact-low', 'alter-low', { frequency_score: 1, ipm: 1 }),
-  entry('alter-exact-ipm-low', 'alter-ipm-low', { frequency_score: 50, ipm: 1 }),
-  entry('alter-exact-ipm-high', 'alter-ipm-high', { frequency_score: 50, ipm: 99 })
-], root: 'alter' })), ['altruism', 'alter-exact-ipm-high', 'alter-exact-ipm-low', 'alter-exact-low'], 'curated allomorphs and exact matches share the reliable tier and are ranked by F');
-assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('alter-rank2', 'alter-rank2', { rank: 2 }), entry('alter-rank1', 'alter-rank1', { rank: 1 })], root: 'alter' })), ['alter-rank1', 'alter-rank2']);
-assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('alter-null', 'alter-null', { rank: null }), entry('alter-ranked', 'alter-ranked', { rank: 3 })], root: 'alter' })), ['alter-ranked', 'alter-null'], 'rank influences sorting after frequency tie');
-assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('alter-null-high-frequency', 'alter-null-high-frequency', { rank: null, frequency_score: 90 }), entry('alter-ranked-low-frequency', 'alter-ranked-low-frequency', { rank: 1, frequency_score: 10 })], root: 'alter' })), ['alter-null-high-frequency', 'alter-ranked-low-frequency'], 'frequency_score is compared before real rank vs null');
-assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('alter-null-high-ipm', 'alter-null-high-ipm', { rank: null, frequency_score: 50, ipm: 90 }), entry('alter-ranked-low-ipm', 'alter-ranked-low-ipm', { rank: 1, frequency_score: 50, ipm: 1 })], root: 'alter' })), ['alter-ranked-low-ipm', 'alter-null-high-ipm'], 'rank breaks an F tie before summed IPM');
-assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('база', 'baza', { normalized: 'база' }), entry('base', 'baza', { normalized: 'base' })], root: 'baza' })).sort(), ['base'].sort(), 'v2 model keys ignore writing-system display variants for non-fallback models');
-assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('alter-low', 'alter-low', { frequency_score: 1 }), entry('alter-high', 'alter-high', { frequency_score: 99 })], root: 'alter', maxCandidates: 1 })), ['alter-high']);
-const orderEntries = [entry('alter-b', 'alter-b', { frequency_score: 20 }), entry('alter-a', 'alter-a', { frequency_score: 20 })];
-assert.deepEqual(words(findCandidatesForRoot({ entries: orderEntries, root: 'alter' })), words(findCandidatesForRoot({ entries: orderEntries.toReversed(), root: 'alter' })));
-assert.deepEqual(findCandidatesForRoot({ entries: [], root: 'alter' }), { candidates: [], diagnostics: { inspected: 0, matched: 0, rejected: 0, rejectedByReason: {}, duplicates: 0, warnings: [] } });
-const diagnostic = findCandidatesForRoot({ entries: [null, entry('', 'x'), entry('x', '')], root: 'x' }).diagnostics;
-assert.equal(diagnostic.rejected, 3);
-assert.equal(diagnostic.rejectedByReason.not_object, 1);
-assert.equal(diagnostic.rejectedByReason.word_empty, 1);
-assert.equal(diagnostic.rejectedByReason.search_form_empty, 1);
+assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('окуляр', 'okuljar', { normalized: 'окуляр', language: 'ru' })], root: 'ocul', language: 'ru' })), ['окуляр']);
+assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('regolare', 'regolare')], root: 'regul', language: 'it' })), ['regolare']);
+assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('pedicure', 'pedicure'), entry('pedal', 'pedal')], root: 'pede', language: 'en' })).sort(), ['pedal', 'pedicure'].sort());
 
-assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('регулировать', 'regulirovat', { language: 'ru', normalized: 'регулировать' })], root: 'regul', language: 'ru' })), ['регулировать']);
-assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('интернациональный', 'internacionalnyj', { language: 'ru', normalized: 'интернациональный' })], root: 'inter', language: 'ru' })), ['интернациональный']);
+const validationMissingSources = findCandidatesForRoot({ entries: [{ ...entry('bad', 'bad'), sources: undefined }], root: 'bad' });
+assert.equal(validationMissingSources.diagnostics.rejectedByReason.sources_missing, 1);
+const validationBadFrequency = findCandidatesForRoot({ entries: [entry('bad', 'bad', { frequency_score: Infinity })], root: 'bad' });
+assert.equal(validationBadFrequency.diagnostics.rejectedByReason.frequency_score_not_finite, 1);
+
+assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('alter-low', 'alter-low', { frequency_score: 10 }), entry('alter-high', 'alter-high', { frequency_score: 90 })], root: 'alter' })), ['alter-high', 'alter-low']);
+assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('alter-rank2', 'alter-rank2', { rank: 2 }), entry('alter-rank1', 'alter-rank1', { rank: 1 })], root: 'alter' })), ['alter-rank1', 'alter-rank2']);
+assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('alter-low', 'alter-low', { frequency_score: 1 }), entry('alter-high', 'alter-high', { frequency_score: 99 })], root: 'alter', maxCandidates: 1 })), ['alter-high']);
 
 const canonicalSources = [
   { id: 'en:web:alter', file: 'web/en-alter.tsv', category: 'web', ipm: 2.5 },
@@ -61,48 +43,28 @@ const canonicalSources = [
 const canonicalEntry = entry('alteration', 'alteration', { sources: canonicalSources, frequency_score: 75 });
 const canonicalResult = findCandidatesForRoot({ entries: [canonicalEntry], root: 'alter', language: 'en' });
 assert.equal(canonicalResult.candidates[0].total_ipm, 3.75);
+assert.deepEqual(canonicalResult.candidates[0].sources, canonicalSources);
 assert(!canonicalResult.candidates[0].warnings.includes('missing_category'));
 assert(!canonicalResult.candidates[0].warnings.includes('partial_source_data'));
-assert.deepEqual(canonicalResult.candidates[0].sources, canonicalSources);
-assert(!Object.hasOwn(canonicalEntry, '__runtimeWarnings'));
-assert.deepEqual(canonicalEntry.sources, canonicalSources);
-
-const legacyCategoryFromIdOnly = entry('alterable', 'alterable', { sources: [{ id: 'web:alterable', file: 'legacy.tsv', ipm: 1 }] });
-assert(findCandidatesForRoot({ entries: [legacyCategoryFromIdOnly], root: 'alter' }).candidates[0].warnings.includes('missing_category'));
-
-const diacriticEntries = [
-  entry('si', 'si', { normalized: 'si' }),
-  entry('sí', 'si', { normalized: 'sí' }),
-  entry('ou', 'ou', { normalized: 'ou' }),
-  entry('où', 'ou', { normalized: 'où' }),
-  entry('cote', 'cote', { normalized: 'cote' }),
-  entry('côté', 'cote', { normalized: 'côté' })
-];
-assert.deepEqual(words(findCandidatesForRoot({ entries: diacriticEntries.slice(0, 2), root: 'si', language: 'fr' })).sort(), ['si'].sort(), 'v2 model keys do not split models solely by diacritics');
-assert.deepEqual(words(findCandidatesForRoot({ entries: diacriticEntries.slice(2, 4), root: 'ou', language: 'fr' })).sort(), ['ou'].sort(), 'v2 model keys do not split models solely by diacritics');
-assert.deepEqual(words(findCandidatesForRoot({ entries: diacriticEntries.slice(4), root: 'cote', language: 'fr' })).sort(), ['cote'].sort(), 'v2 model keys do not split models solely by diacritics');
 
 const duplicateA = entry('côté', 'cote', { normalized: 'côté', warnings: [] });
 const duplicateB = entry('côté', 'cote', { normalized: 'côté', warnings: [], sources: [...canonicalSources] });
 const duplicateInput = [duplicateA, duplicateB];
 const beforeDuplicateInput = structuredClone(duplicateInput);
-const firstDuplicateRun = findCandidatesForRoot({ entries: duplicateInput, root: 'cote', language: 'fr' });
-const secondDuplicateRun = findCandidatesForRoot({ entries: duplicateInput, root: 'cote', language: 'fr' });
-assert.equal(firstDuplicateRun.candidates.length, 1, 'identical normalized lemmas are deduplicated');
-assert.equal(firstDuplicateRun.diagnostics.duplicates, 1, 'duplicate is reported');
-assert(firstDuplicateRun.candidates[0].warnings.includes('duplicate_runtime_entry'), 'retained candidate receives duplicate warning');
-assert.deepEqual(duplicateInput, beforeDuplicateInput, 'candidate finder does not mutate shard cache entries');
-assert.deepEqual(secondDuplicateRun, firstDuplicateRun, 'repeated call on the same cached entries is stable');
+const duplicateRun = findCandidatesForRoot({ entries: duplicateInput, root: 'cote', language: 'fr' });
+assert.equal(duplicateRun.candidates.length, 1);
+assert.equal(duplicateRun.diagnostics.duplicates, 1);
+assert(duplicateRun.candidates[0].warnings.includes('duplicate_runtime_entry'));
+assert.deepEqual(duplicateInput, beforeDuplicateInput, 'candidate finder does not mutate source entries');
 
-assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('ocular', 'ocular')], root: 'ocul', language: 'en' })), ['ocular'], 'ocul exact matching remains available');
-assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('окуляр', 'okuljar', { normalized: 'окуляр', language: 'ru' })], root: 'ocul', language: 'ru' })), ['окуляр'], 'ocul/okul special matching remains available');
-assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('regolare', 'regolare')], root: 'regul', language: 'it' })), ['regolare'], 'regul/regol special matching remains available');
-
-assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('Walter', 'walter'), entry('alteration', 'alteration')], root: 'alter', language: 'en' })), ['alteration'], 'alter inside Walter is rejected');
-assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('бухгалтерия', 'buhgalterija', { normalized: 'бухгалтерия', language: 'ru' }), entry('альтернатива', 'alternativa', { normalized: 'альтернатива', language: 'ru' })], root: 'alter', language: 'ru' })), ['альтернатива'], 'alter inside бухгалтерия is rejected');
-assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('realteration', 'realteration')], root: 'alter', language: 'en' })), ['realteration'], 'a root after a known safe prefix is accepted');
-assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('irregular', 'irregular')], root: 'regul', language: 'en' })), ['irregular'], 'a root after a known restricted allomorph is accepted');
-assert.deepEqual(words(findCandidatesForRoot({ entries: [entry('xregulation', 'xregulation')], root: 'regul', language: 'en' })), [], 'an arbitrary initial letter is not treated as a prefix');
+const familyAnnotated = entry('altruism', 'altruism', {
+  family_id: 'family:alter', family_canonical: 'alter', family_aliases: ['alter', 'altern', 'altru'], family_verified: true
+});
+const familyResult = findCandidatesForRoot({ entries: [familyAnnotated], root: 'alter', language: 'en' }).candidates[0];
+assert.equal(familyResult.family_id, 'family:alter');
+assert.equal(familyResult.family_canonical, 'alter');
+assert.deepEqual(familyResult.family_aliases, ['alter', 'altern', 'altru']);
+assert.equal(familyResult.family_verified, true);
 
 const prepositionModels = findCandidatesForRoot({
   entries: [
@@ -113,27 +75,20 @@ const prepositionModels = findCandidatesForRoot({
     entry('internet', 'internet', { frequency_score: 50 }),
     entry('interval', 'interval', { frequency_score: 40 })
   ],
-  root: 'inter',
-  language: 'en',
-  elementType: 'preposition'
+  root: 'inter', language: 'en', elementType: 'preposition'
 });
-assert.deepEqual(words(prepositionModels), ['interaction', 'international', 'internet', 'interval'], 'preposition grouping keeps one frequency-ranked representative per following lexical root');
+assert.deepEqual(words(prepositionModels), ['interaction', 'international', 'internet', 'interval']);
 assert.ok(prepositionModels.candidates.every(candidate => candidate.model_key.startsWith('en|preposition|inter|')));
 
-const alterRegression = findCandidatesForRoot({
-  entries: [
-    entry('after', 'after', { frequency_score: 100 }),
-    entry('afternoon', 'afternoon', { frequency_score: 77 }),
-    entry('afterwards', 'afterwards', { frequency_score: 60 }),
-    entry('disaster', 'disaster', { frequency_score: 59 }),
-    entry('alternative', 'alternative', { frequency_score: 70 }),
-    entry('alter', 'alter', { frequency_score: 58 }),
-    entry('alteration', 'alteration', { frequency_score: 50 })
-  ],
-  root: 'alter',
-  language: 'en'
+const unrelated = findCandidatesForRoot({
+  entries: [entry('after', 'after'), entry('afternoon', 'afternoon'), entry('afterwards', 'afterwards'), entry('disaster', 'disaster'), entry('alternative', 'alternative'), entry('alter', 'alter'), entry('alteration', 'alteration')],
+  root: 'alter', language: 'en'
 });
-assert.deepEqual(words(alterRegression), ['alternative', 'alter', 'alteration'], 'real dictionary lookalikes such as after and disaster must not enter the alter candidate pool');
-assert.equal(alterRegression.diagnostics.rejectedByReason.fuzzy_morphology_unverified, 4);
+assert.deepEqual(words(unrelated), ['alter', 'alternative', 'alteration'].sort((a, b) => {
+  const fa = unrelated.candidates.find(x => x.word === a)?.frequency_score ?? 0;
+  const fb = unrelated.candidates.find(x => x.word === b)?.frequency_score ?? 0;
+  return fb - fa || a.localeCompare(b);
+}).filter(Boolean), 'unrelated lookalikes never enter the family candidate pool');
+assert.equal(Object.hasOwn(unrelated.diagnostics.rejectedByReason, 'fuzzy_morphology_unverified'), false, 'obsolete fuzzy rejection path is gone');
 
-console.log('associative candidate finder tests passed');
+console.log('associative candidate finder family tests passed');

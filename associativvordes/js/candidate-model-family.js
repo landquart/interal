@@ -1,17 +1,13 @@
 import { buildSearchForm } from './search-normalizer.js';
 import { parseMorphemeModel } from './morpheme-model-parser.js';
 
-const MATCH_TIER = Object.freeze({ exact: 0, special: 0, fuzzy: 1 });
-const BOUNDARY_PRIORITY = Object.freeze({ token: 0, safe: 1, combining: 2, restricted: 3 });
-const MORPHOLOGY_CONFIDENCE_PRIORITY = Object.freeze({ high: 0, medium: 1, low: 3 });
+const MATCH_TIER = Object.freeze({ family: 0, exact: 1, special: 1 });
 const RUSSIAN_QUALITY_SUFFIXES = Object.freeze(['ность', 'ный', 'ная', 'ное', 'ные']);
 
 function russianAdjectivalQualityFamily(word) {
   const normalized = String(word || '').trim().normalize('NFC').toLocaleLowerCase('ru');
   for (const suffix of RUSSIAN_QUALITY_SUFFIXES) {
-    if (normalized.length > suffix.length + 2 && normalized.endsWith(suffix)) {
-      return buildSearchForm(normalized.slice(0, -suffix.length));
-    }
+    if (normalized.length > suffix.length + 2 && normalized.endsWith(suffix)) return buildSearchForm(normalized.slice(0, -suffix.length));
   }
   return '';
 }
@@ -26,7 +22,8 @@ export function lexicalModelDescriptor(candidate, root, language = 'en', element
   const wordForm = buildSearchForm(candidate?.search_form || word);
   if (!wordForm) return { key: '', label: '', stem: '', prefix: '', fragment: '', analysis: null };
   const rootForm = buildSearchForm(root);
-  const fragment = buildSearchForm(candidate?.match?.type === 'fuzzy' ? rootForm : (candidate?.match?.fragment || rootForm));
+  const familyAnchor = candidate?.match?.type === 'family' ? buildSearchForm(candidate?.match?.fragment || '') : '';
+  const fragment = familyAnchor || buildSearchForm(candidate?.match?.fragment || rootForm);
   const explicitIndex = Number(candidate?.match?.index);
   const inferredIndex = fragment ? wordForm.indexOf(fragment) : (rootForm ? wordForm.indexOf(rootForm) : -1);
   const index = Number.isInteger(explicitIndex) && explicitIndex >= 0 ? explicitIndex : Math.max(0, inferredIndex);
@@ -42,12 +39,9 @@ export function lexicalModelDescriptor(candidate, root, language = 'en', element
   });
   const languageCode = String(language).toLowerCase();
   const qualityFamily = languageCode === 'ru' && index > 0 ? russianAdjectivalQualityFamily(word) : '';
-  if (qualityFamily) {
-    analysis.model_key = `ru|adjectival-quality|${qualityFamily}`;
-  }
+  if (qualityFamily) analysis.model_key = `ru|adjectival-quality|${qualityFamily}`;
   const stemRoot = languageCode === 'ru' ? buildSearchForm(analysis.matched_root_variant || analysis.canonical_root) : (analysis.matched_root_variant || analysis.canonical_root);
-  const stem = stemRoot;
-  return { key: analysis.model_key, label: analysis.model_label, stem, prefix: analysis.prefix_chain.join('+'), fragment: analysis.matched_root_variant, analysis };
+  return { key: analysis.model_key, label: analysis.model_label, stem: stemRoot, prefix: analysis.prefix_chain.join('+'), fragment: analysis.matched_root_variant, analysis };
 }
 
 export function lexicalModelFamilyKey(candidate, root, language = 'en') {
@@ -55,12 +49,7 @@ export function lexicalModelFamilyKey(candidate, root, language = 'en') {
 }
 
 export function candidateFrequencyScore(candidate) {
-  const values = [
-    candidate?.frequency_score,
-    candidate?.analysis?.frequency?.frequency_score,
-    candidate?.frequencyProfile?.frequency_score
-  ];
-  for (const value of values) {
+  for (const value of [candidate?.frequency_score, candidate?.analysis?.frequency?.frequency_score, candidate?.frequencyProfile?.frequency_score]) {
     const number = Number(value);
     if (value != null && value !== '' && Number.isFinite(number)) return number;
   }
@@ -80,34 +69,14 @@ export function compareFrequencyRepresentatives(left, right) {
     || String(left?.word || '').localeCompare(String(right?.word || ''));
 }
 
-function morphologyConfidencePriority(candidate) {
-  const analysis = candidate?.morpheme_analysis;
-  if (!analysis) return 2;
-  if (analysis.fallback === true || analysis.diagnostic_reason === 'morpheme_parse_fallback' || analysis.diagnostic_reason === 'lexical_root_not_found') return 3;
-  return MORPHOLOGY_CONFIDENCE_PRIORITY[analysis.analysis_confidence] ?? 2;
-}
-
-function finiteMatchNumber(value, fallback) {
-  const number = Number(value);
-  return Number.isFinite(number) ? number : fallback;
-}
-
 export function compareRootMatchQuality(left, right) {
-  const leftMatch = left?.match || {};
-  const rightMatch = right?.match || {};
-  const leftTier = MATCH_TIER[leftMatch.type] ?? 99;
-  const rightTier = MATCH_TIER[rightMatch.type] ?? 99;
-  const tierDifference = leftTier - rightTier;
-  if (tierDifference || leftTier !== MATCH_TIER.fuzzy) return tierDifference;
-  return morphologyConfidencePriority(left) - morphologyConfidencePriority(right)
-    || finiteMatchNumber(leftMatch.distance, Number.POSITIVE_INFINITY) - finiteMatchNumber(rightMatch.distance, Number.POSITIVE_INFINITY)
-    || finiteMatchNumber(rightMatch.similarity, Number.NEGATIVE_INFINITY) - finiteMatchNumber(leftMatch.similarity, Number.NEGATIVE_INFINITY)
-    || (BOUNDARY_PRIORITY[leftMatch.boundary?.kind] ?? 99) - (BOUNDARY_PRIORITY[rightMatch.boundary?.kind] ?? 99);
+  const leftTier = MATCH_TIER[left?.match?.type] ?? 99;
+  const rightTier = MATCH_TIER[right?.match?.type] ?? 99;
+  return leftTier - rightTier;
 }
 
 export function compareRootMatchThenFrequency(left, right) {
-  return compareRootMatchQuality(left, right)
-    || compareFrequencyRepresentatives(left, right);
+  return compareRootMatchQuality(left, right) || compareFrequencyRepresentatives(left, right);
 }
 
 export function selectHighestFrequencyPerModel(candidates, root, language = 'en', elementType = 'root') {
@@ -130,7 +99,9 @@ export function selectHighestFrequencyPerModel(candidates, root, language = 'en'
     groups.set(key, group);
   }
   const groupList = [...groups.values()];
-  const selected = groupList.map(group => group.representative);
-  const dropped = groupList.flatMap(group => group.members.filter(candidate => candidate !== group.representative));
-  return { candidates: selected, dropped, groups: groupList };
+  return {
+    candidates: groupList.map(group => group.representative),
+    dropped: groupList.flatMap(group => group.members.filter(candidate => candidate !== group.representative)),
+    groups: groupList
+  };
 }
