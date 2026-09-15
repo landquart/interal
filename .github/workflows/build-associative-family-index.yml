@@ -63,6 +63,8 @@ jobs:
           echo "ETYMWN=$ETYMWN" >> "$GITHUB_ENV"
 
       - name: Build associative etymological families
+        env:
+          NODE_OPTIONS: --max-old-space-size=6144
         run: |
           node scripts/build-associative-family-index.mjs \
             --candidate-root=.tmp/family-candidate-index \
