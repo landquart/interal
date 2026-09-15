@@ -97,6 +97,9 @@ export function includesRoot(word, root) {
   return Boolean(r) && w.includes(r);
 }
 
+// Compatibility for the page bundle: approximate matching has been removed and this can never match.
+export function fuzzyIncludesRoot() { return false; }
+
 function suffixMetadata(text, rootEnd, tokenEnd, language) {
   const tail = text.slice(rootEnd, tokenEnd);
   if (!tail) return { suffix: null, tail: '' };
