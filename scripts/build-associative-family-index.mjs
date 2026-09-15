@@ -1,384 +1,345 @@
 #!/usr/bin/env node
-import { createReadStream, createWriteStream } from 'node:fs';
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
-import { basename, join } from 'node:path';
-import { createInterface } from 'node:readline';
+import { createHash } from 'node:crypto';
+import { createWriteStream } from 'node:fs';
+import { mkdir, readFile, rm, writeFile, readdir } from 'node:fs/promises';
+import { join } from 'node:path';
 import { once } from 'node:events';
+import { rootBoundarySegments, buildSearchForm, exactRootMatchAtBoundary } from '../associativvordes/js/root-matcher.js';
+import { getAffixSearchConfig } from '../associativvordes/js/affix-search-config.js';
+import { SEARCH_NORMALIZER_VERSION } from '../associativvordes/js/search-normalizer.js';
 
-const ISO3 = { en: 'eng', de: 'deu', fr: 'fra', es: 'spa', it: 'ita', ru: 'rus' };
-const DEFAULT_LANGUAGES = Object.keys(ISO3);
-const SOURCE_PRIORITY = new Map([
-  ['lat', 0], ['grc', 0],
-  ['fro', 1], ['frm', 1], ['enm', 1], ['ang', 1], ['goh', 1], ['gmh', 1],
-  ['ita', 2], ['fra', 2], ['spa', 2], ['eng', 2], ['deu', 2], ['rus', 2]
+const LANGUAGES = ['en', 'de', 'fr', 'es', 'it', 'ru'];
+const LANGUAGE_BITS = Object.freeze(Object.fromEntries(LANGUAGES.map((language, index) => [language, 1 << index])));
+const FAMILY_INDEX_VERSION = '1';
+const MIN_ROOT_LENGTH = 3;
+const MIN_PREFIX_LENGTH = 2;
+const MAX_ROOT_LENGTH = 24;
+const MAX_SUFFIX_LAYERS = 2;
+const MIN_SURFACE_FAMILY_MEMBERS = 2;
+
+const CURATED_ROOT_FAMILIES = Object.freeze([
+  Object.freeze({ id: 'curated:alter', label: 'alter', aliases: ['alter', 'altern', 'altru'], confidence: 'A', note: 'Latin alter family; includes alternative/altruism branches.' }),
+  Object.freeze({ id: 'curated:pede', label: 'pede', aliases: ['pede', 'ped', 'pedi'], confidence: 'A', note: 'Ped-/pedi- foot family; includes pedal/pedicure branches.' }),
+  Object.freeze({ id: 'curated:ocul', label: 'ocul', aliases: ['ocul', 'okul'], confidence: 'A', note: 'Ocul-/okul- eye family.' }),
+  Object.freeze({ id: 'curated:regul', label: 'regul', aliases: ['regul', 'regol'], confidence: 'A', note: 'Regul-/regol- rule family.' })
 ]);
-const ACCEPTED_RELATIONS = new Set([
-  'rel:is_derived_from', 'rel:etymology',
-  'rel:has_derived_form', 'rel:etymological_origin_of'
+
+const CONTROL_FAMILIES = Object.freeze([
+  Object.freeze({ family: 'curated:alter', words: ['alternative', 'altruism'] }),
+  Object.freeze({ family: 'curated:pede', words: ['pedal', 'pedicure'] }),
+  Object.freeze({ family: 'curated:ocul', words: ['ocular', 'oculist'] }),
+  Object.freeze({ family: 'curated:regul', words: ['regular', 'regulation'] })
 ]);
-const INVERSE_RELATIONS = new Set(['rel:has_derived_form', 'rel:etymological_origin_of']);
-const BROAD_PROTO_RE = /(?:-pro|^ine-pro$|^gem-pro$|^itc-pro$|^sla-pro$)/;
-const CONTROL_PAIRS = [
-  ['alternative', 'altruism'],
-  ['pedal', 'pedicure'],
-  ['ocular', 'oculist'],
-  ['regular', 'regulation']
-];
 
 function parseArgs(argv) {
-  const out = { languages: DEFAULT_LANGUAGES, maxDepth: 7, maxFamiliesPerLemma: 8 };
+  const options = { candidateRoot: null, outputRoot: null, languages: LANGUAGES, minMembers: MIN_SURFACE_FAMILY_MEMBERS };
   for (const arg of argv) {
-    if (arg.startsWith('--candidate-root=')) out.candidateRoot = arg.slice(17);
-    else if (arg.startsWith('--etymwn=')) out.etymwn = arg.slice(9);
-    else if (arg.startsWith('--output-root=')) out.outputRoot = arg.slice(14);
-    else if (arg.startsWith('--languages=')) out.languages = arg.slice(12).split(',').map(v => v.trim()).filter(Boolean);
-    else if (arg.startsWith('--max-depth=')) out.maxDepth = Number(arg.slice(12));
-    else if (arg.startsWith('--max-families-per-lemma=')) out.maxFamiliesPerLemma = Number(arg.slice(25));
+    if (arg.startsWith('--candidate-root=')) options.candidateRoot = arg.slice('--candidate-root='.length);
+    else if (arg.startsWith('--output-root=')) options.outputRoot = arg.slice('--output-root='.length);
+    else if (arg.startsWith('--languages=')) options.languages = arg.slice('--languages='.length).split(',').map(v => v.trim()).filter(Boolean);
+    else if (arg.startsWith('--min-members=')) options.minMembers = Number(arg.slice('--min-members='.length));
     else throw new Error(`Unknown argument: ${arg}`);
   }
-  if (!out.candidateRoot || !out.etymwn || !out.outputRoot) {
-    throw new Error('--candidate-root, --etymwn and --output-root are required');
+  if (!options.candidateRoot || !options.outputRoot) throw new Error('--candidate-root and --output-root are required');
+  for (const language of options.languages) if (!LANGUAGES.includes(language)) throw new Error(`Unsupported language: ${language}`);
+  if (!Number.isInteger(options.minMembers) || options.minMembers < 2) throw new Error('--min-members must be an integer >= 2');
+  return options;
+}
+
+async function readJson(path) { return JSON.parse(await readFile(path, 'utf8')); }
+function normalizeAlias(value) { return buildSearchForm(value).replace(/[^a-z0-9]/g, ''); }
+
+const suffixCache = new Map();
+function normalizedSuffixes(language) {
+  if (suffixCache.has(language)) return suffixCache.get(language);
+  const values = [...new Set((getAffixSearchConfig(language).suffixes || []).map(normalizeAlias).filter(value => value.length >= 2).filter(value => value.length <= 10))]
+    .sort((a, b) => b.length - a.length || a.localeCompare(b));
+  suffixCache.set(language, values);
+  return values;
+}
+
+function rootCandidates(searchForm, language) {
+  const text = buildSearchForm(searchForm);
+  if (!text) return [];
+  const suffixes = normalizedSuffixes(language);
+  const out = new Set();
+  for (const boundary of rootBoundarySegments(text, language)) {
+    const token = text.slice(boundary.start, boundary.end).replace(/[^a-z0-9]/g, '');
+    if (token.length < MIN_ROOT_LENGTH || token.length > MAX_ROOT_LENGTH) continue;
+    out.add(token);
+    let frontier = new Set([token]);
+    for (let layer = 0; layer < MAX_SUFFIX_LAYERS; layer += 1) {
+      const next = new Set();
+      for (const form of frontier) {
+        for (const suffix of suffixes) {
+          if (!form.endsWith(suffix)) continue;
+          const stem = form.slice(0, -suffix.length);
+          if (stem.length < MIN_ROOT_LENGTH || stem.length > MAX_ROOT_LENGTH || !/[a-z]/.test(stem)) continue;
+          out.add(stem);
+          next.add(stem);
+        }
+      }
+      if (!next.size) break;
+      frontier = next;
+    }
   }
-  if (!Number.isInteger(out.maxDepth) || out.maxDepth < 1 || out.maxDepth > 12) throw new Error('Invalid --max-depth');
-  if (!Number.isInteger(out.maxFamiliesPerLemma) || out.maxFamiliesPerLemma < 1 || out.maxFamiliesPerLemma > 16) throw new Error('Invalid --max-families-per-lemma');
-  return out;
+  return [...out];
 }
 
-function normWord(value) {
-  return String(value ?? '').normalize('NFC').trim().toLocaleLowerCase('und');
+function prefixCandidates(searchForm, language) {
+  const text = buildSearchForm(searchForm);
+  const out = new Set();
+  for (const boundary of rootBoundarySegments(text, language)) {
+    for (const prefix of boundary.prefixes || []) {
+      const alias = normalizeAlias(prefix.value);
+      if (alias.length >= MIN_PREFIX_LENGTH) out.add(alias);
+    }
+  }
+  return [...out];
 }
 
-function nodeKey(lang, word) {
-  return `${lang}\t${normWord(word)}`;
+function statIncrement(map, alias, language) {
+  if (!alias) return;
+  const previous = map.get(alias) || 0;
+  const count = Math.floor(previous / 64);
+  const mask = previous % 64;
+  map.set(alias, (count + 1) * 64 + (mask | LANGUAGE_BITS[language]));
+}
+function statCount(value) { return Math.floor((value || 0) / 64); }
+function statLanguageCount(value) {
+  let mask = (value || 0) % 64;
+  let count = 0;
+  while (mask) { count += mask & 1; mask >>= 1; }
+  return count;
+}
+function familyShard(id) { return createHash('sha1').update(id).digest('hex').slice(0, 2); }
+function lookupShard(alias) { const first = normalizeAlias(alias)[0]; return first && /[a-z0-9]/.test(first) ? first : '_other'; }
+function surfaceFamilyId(alias) { return `surface:${alias}`; }
+function prefixFamilyId(alias) { return `prefix:${alias}`; }
+function chooseAutomaticRootAlias(candidates, validAliases) {
+  return candidates.filter(alias => validAliases.has(alias)).sort((a, b) => a.length - b.length || a.localeCompare(b))[0] || null;
 }
 
-function splitNode(raw) {
-  const match = /^([^:]+):\s*(.*)$/.exec(raw);
-  if (!match) return null;
-  const lang = match[1].trim();
-  const word = normWord(match[2]);
-  if (!lang || !word) return null;
-  return { lang, word, key: nodeKey(lang, word) };
+const curatedByAlias = new Map();
+for (const family of CURATED_ROOT_FAMILIES) for (const alias of family.aliases) curatedByAlias.set(normalizeAlias(alias), family);
+
+function curatedMatches(row, language) {
+  const matches = new Map();
+  for (const family of CURATED_ROOT_FAMILIES) {
+    let best = null;
+    for (const aliasRaw of family.aliases) {
+      const alias = normalizeAlias(aliasRaw);
+      const match = exactRootMatchAtBoundary(row.search_form || row.word, alias, language);
+      if (!match) continue;
+      if (!best || alias.length > best.alias.length) best = { family, alias, match };
+    }
+    if (best) matches.set(family.id, best);
+  }
+  return [...matches.values()];
 }
 
-function parseKey(key) {
-  const at = key.indexOf('\t');
-  return { lang: key.slice(0, at), word: key.slice(at + 1) };
-}
-
-async function readJson(path) {
-  return JSON.parse(await readFile(path, 'utf8'));
-}
-
-async function loadCandidateNodes(candidateRoot, languages) {
-  const manifest = await readJson(join(candidateRoot, 'manifest.json'));
-  const byNode = new Map();
-  let candidateCount = 0;
+async function candidateManifest(candidateRoot) { return readJson(join(candidateRoot, 'manifest.json')); }
+async function* candidateRows(candidateRoot, manifest, languages) {
   for (const language of languages) {
     const meta = manifest.languages?.[language];
     if (!meta) throw new Error(`Candidate index missing language ${language}`);
-    for (const shard of meta.shards) {
+    for (const shard of meta.shards || []) {
       const rows = await readJson(join(candidateRoot, shard.file));
-      for (const row of rows) {
-        const word = normWord(row.word || row.normalized);
-        if (!word) continue;
-        const node = nodeKey(ISO3[language], word);
-        const previous = byNode.get(node);
-        const current = {
-          language,
-          word,
-          display: row.word || row.normalized,
-          frequency_score: Number(row.frequency_score) || 0
-        };
-        if (!previous || current.frequency_score > previous.frequency_score) byNode.set(node, current);
-        candidateCount += 1;
+      if (!Array.isArray(rows)) throw new Error(`Candidate shard is not an array: ${shard.file}`);
+      for (const row of rows) yield { language, row };
+    }
+  }
+}
+
+async function firstPass(candidateRoot, manifest, languages) {
+  const rootStats = new Map();
+  const prefixStats = new Map();
+  let rows = 0;
+  for await (const { language, row } of candidateRows(candidateRoot, manifest, languages)) {
+    for (const alias of new Set(rootCandidates(row.search_form || row.word, language))) statIncrement(rootStats, alias, language);
+    for (const alias of new Set(prefixCandidates(row.search_form || row.word, language))) statIncrement(prefixStats, alias, language);
+    rows += 1;
+    if (rows % 250000 === 0) console.error(`[family-index] counted ${rows} lemmas`);
+  }
+  return { rootStats, prefixStats, rows };
+}
+
+function buildFamilies(rootStats, prefixStats, minMembers) {
+  const families = new Map();
+  const validRoots = new Set();
+  const validPrefixes = new Set();
+  for (const [alias, stat] of rootStats) {
+    if (statCount(stat) < minMembers || curatedByAlias.has(alias)) continue;
+    validRoots.add(alias);
+    const id = surfaceFamilyId(alias);
+    families.set(id, { id, element_type: 'root', label: alias, aliases: [alias], confidence: statLanguageCount(stat) >= 2 ? 'A' : 'B', support: { members: statCount(stat), languages: statLanguageCount(stat) }, source: 'exact_surface_morphology' });
+  }
+  for (const family of CURATED_ROOT_FAMILIES) {
+    families.set(family.id, { id: family.id, element_type: 'root', label: family.label, aliases: [...new Set(family.aliases.map(normalizeAlias).filter(Boolean))], confidence: family.confidence, support: { members: 0, languages: 0 }, source: 'verified_alias_registry', note: family.note });
+  }
+  for (const [alias, stat] of prefixStats) {
+    if (statCount(stat) < minMembers) continue;
+    validPrefixes.add(alias);
+    const id = prefixFamilyId(alias);
+    families.set(id, { id, element_type: 'preposition', label: alias, aliases: [alias], confidence: statLanguageCount(stat) >= 2 ? 'A' : 'B', support: { members: statCount(stat), languages: statLanguageCount(stat) }, source: 'exact_prefix_morphology' });
+  }
+  return { families, validRoots, validPrefixes };
+}
+
+async function ensureDir(path) { await mkdir(path, { recursive: true }); }
+async function writeJsonLine(stream, value) { if (!stream.write(`${JSON.stringify(value)}\n`)) await once(stream, 'drain'); }
+
+async function secondPass({ candidateRoot, manifest, languages, outputRoot, families, validRoots, validPrefixes }) {
+  const tempRoot = join(outputRoot, '.member-lines');
+  await rm(tempRoot, { recursive: true, force: true });
+  await ensureDir(tempRoot);
+  const streams = new Map();
+  const familyMembers = new Map();
+  const familyLanguageMask = new Map();
+  const controlPresence = Object.fromEntries(CONTROL_FAMILIES.flatMap(control => control.words).map(word => [word, []]));
+  function streamFor(language, shard) {
+    const key = `${language}:${shard}`;
+    if (streams.has(key)) return streams.get(key);
+    const stream = createWriteStream(join(tempRoot, `${language}-${shard}.jsonl`), { encoding: 'utf8' });
+    streams.set(key, stream);
+    return stream;
+  }
+  let rows = 0;
+  for await (const { language, row } of candidateRows(candidateRoot, manifest, languages)) {
+    const assignments = new Map();
+    for (const match of curatedMatches(row, language)) assignments.set(match.family.id, { id: match.family.id, anchor: match.alias, element_type: 'root' });
+    const automaticRoot = chooseAutomaticRootAlias(rootCandidates(row.search_form || row.word, language), validRoots);
+    if (automaticRoot && ![...assignments.values()].some(item => item.element_type === 'root')) assignments.set(surfaceFamilyId(automaticRoot), { id: surfaceFamilyId(automaticRoot), anchor: automaticRoot, element_type: 'root' });
+    const prefixes = prefixCandidates(row.search_form || row.word, language).filter(alias => validPrefixes.has(alias)).sort((a, b) => b.length - a.length || a.localeCompare(b));
+    for (const prefix of prefixes.slice(0, 2)) assignments.set(prefixFamilyId(prefix), { id: prefixFamilyId(prefix), anchor: prefix, element_type: 'preposition' });
+    for (const assignment of assignments.values()) {
+      const family = families.get(assignment.id);
+      if (!family) continue;
+      const shard = familyShard(assignment.id);
+      const member = { ...row, language, family_surface_anchor: assignment.anchor, family_id: assignment.id };
+      await writeJsonLine(streamFor(language, shard), { family_id: assignment.id, member });
+      familyMembers.set(assignment.id, (familyMembers.get(assignment.id) || 0) + 1);
+      familyLanguageMask.set(assignment.id, (familyLanguageMask.get(assignment.id) || 0) | LANGUAGE_BITS[language]);
+      const normalizedWord = String(row.normalized || row.word || '').normalize('NFC').toLocaleLowerCase('und');
+      if (controlPresence[normalizedWord]) controlPresence[normalizedWord].push(assignment.id);
+    }
+    rows += 1;
+    if (rows % 250000 === 0) console.error(`[family-index] assigned ${rows} lemmas`);
+  }
+  for (const stream of streams.values()) { stream.end(); await once(stream, 'finish'); }
+  for (const [id, family] of families) family.support = { members: familyMembers.get(id) || 0, languages: statLanguageCount(familyLanguageMask.get(id) || 0) };
+  return { tempRoot, familyMembers, familyLanguageMask, controlPresence, rows };
+}
+
+async function compileMemberShards({ tempRoot, outputRoot, languages, families }) {
+  const memberRoot = join(outputRoot, 'members');
+  await ensureDir(memberRoot);
+  const memberShards = Object.fromEntries(languages.map(language => [language, []]));
+  const files = await readdir(tempRoot);
+  for (const language of languages) {
+    await ensureDir(join(memberRoot, language));
+    const languageFiles = files.filter(name => name.startsWith(`${language}-`) && name.endsWith('.jsonl')).sort();
+    for (const name of languageFiles) {
+      const shard = name.slice(language.length + 1, -'.jsonl'.length);
+      const text = await readFile(join(tempRoot, name), 'utf8');
+      const buckets = {};
+      for (const line of text.split(/\r?\n/)) {
+        if (!line) continue;
+        const parsed = JSON.parse(line);
+        const family = families.get(parsed.family_id);
+        if (!family) continue;
+        const bucket = buckets[parsed.family_id] ||= { meta: { id: family.id, element_type: family.element_type, label: family.label, aliases: family.aliases, confidence: family.confidence, source: family.source }, members: [] };
+        bucket.members.push(parsed.member);
       }
+      for (const bucket of Object.values(buckets)) bucket.members.sort((a, b) => Number(b.frequency_score || 0) - Number(a.frequency_score || 0) || (Number.isInteger(a.rank) ? a.rank : Number.POSITIVE_INFINITY) - (Number.isInteger(b.rank) ? b.rank : Number.POSITIVE_INFINITY) || String(a.word || '').localeCompare(String(b.word || '')));
+      const file = `members/${language}/${shard}.json`;
+      await writeFile(join(outputRoot, file), `${JSON.stringify(buckets)}\n`);
+      memberShards[language].push({ shard, file, families: Object.keys(buckets).length, members: Object.values(buckets).reduce((sum, bucket) => sum + bucket.members.length, 0) });
     }
   }
-  return { byNode, candidateCount };
+  return memberShards;
 }
 
-function orientEdge(left, relation, right) {
-  if (!ACCEPTED_RELATIONS.has(relation)) return null;
-  const a = splitNode(left);
-  const b = splitNode(right);
-  if (!a || !b) return null;
-  return INVERSE_RELATIONS.has(relation)
-    ? { child: b, parent: a }
-    : { child: a, parent: b };
-}
-
-async function collectParentGraph(etymwnPath, targetNodes, maxDepth) {
-  const parents = new Map();
-  const seenAncestors = new Set();
-  let frontier = new Set(targetNodes);
-  const stats = [];
-
-  for (let depth = 1; depth <= maxDepth && frontier.size; depth += 1) {
-    const next = new Set();
-    let matched = 0;
-    const input = createReadStream(etymwnPath, { encoding: 'utf8' });
-    const rl = createInterface({ input, crlfDelay: Infinity });
-    for await (const line of rl) {
-      const first = line.indexOf('\t');
-      if (first < 0) continue;
-      const second = line.indexOf('\t', first + 1);
-      if (second < 0) continue;
-      const left = line.slice(0, first);
-      const relation = line.slice(first + 1, second);
-      if (!ACCEPTED_RELATIONS.has(relation)) continue;
-      const right = line.slice(second + 1);
-      const edge = orientEdge(left, relation, right);
-      if (!edge || !frontier.has(edge.child.key)) continue;
-      matched += 1;
-      const list = parents.get(edge.child.key) ?? [];
-      if (!list.includes(edge.parent.key)) {
-        list.push(edge.parent.key);
-        parents.set(edge.child.key, list);
-      }
-      if (!targetNodes.has(edge.parent.key) && !seenAncestors.has(edge.parent.key)) {
-        seenAncestors.add(edge.parent.key);
-        next.add(edge.parent.key);
-      }
-    }
-    stats.push({ depth, frontier: frontier.size, matched_edges: matched, new_ancestors: next.size });
-    console.error(`[family-index] graph depth ${depth}: frontier=${frontier.size} matched=${matched} new=${next.size}`);
-    frontier = next;
-  }
-  return { parents, stats };
-}
-
-function ancestorDistances(start, parents, maxDepth) {
-  const distances = new Map();
-  const queueKeys = [start];
-  const queueDepths = [0];
-  for (let i = 0; i < queueKeys.length; i += 1) {
-    const key = queueKeys[i];
-    const currentDepth = queueDepths[i];
-    if (currentDepth >= maxDepth) continue;
-    for (const parent of parents.get(key) ?? []) {
-      const depth = currentDepth + 1;
-      if ((distances.get(parent) ?? Infinity) <= depth) continue;
-      distances.set(parent, depth);
-      queueKeys.push(parent);
-      queueDepths.push(depth);
+async function buildLookup({ outputRoot, families }) {
+  const byShard = new Map();
+  for (const family of families.values()) {
+    if (!family.support?.members) continue;
+    const shard = familyShard(family.id);
+    for (const aliasRaw of family.aliases || []) {
+      const alias = normalizeAlias(aliasRaw);
+      if (!alias) continue;
+      const lookupName = lookupShard(alias);
+      const lookup = byShard.get(lookupName) || {};
+      const refs = lookup[alias] ||= [];
+      refs.push({ id: family.id, shard, element_type: family.element_type, label: family.label, confidence: family.confidence, members: family.support.members, languages: family.support.languages });
+      byShard.set(lookupName, lookup);
     }
   }
-  return distances;
-}
-
-function validFamilyAncestor(key) {
-  const { lang, word } = parseKey(key);
-  if (!word || word.length < 3 || word.startsWith('-') || word.endsWith('-')) return false;
-  if (BROAD_PROTO_RE.test(lang)) return false;
-  if (/^[\W_]+$/u.test(word)) return false;
-  return true;
-}
-
-function familyPriority(key) {
-  const { lang } = parseKey(key);
-  return SOURCE_PRIORITY.get(lang) ?? 4;
-}
-
-function selectFamilyAncestors(distances, limit) {
-  const eligible = [];
-  let bestPriority = Infinity;
-  for (const [ancestor, distance] of distances) {
-    if (!validFamilyAncestor(ancestor)) continue;
-    const priority = familyPriority(ancestor);
-    if (priority < bestPriority) bestPriority = priority;
-    eligible.push({ ancestor, distance, priority });
+  await ensureDir(join(outputRoot, 'lookup'));
+  const lookupShards = [];
+  for (const [shard, lookup] of [...byShard.entries()].sort(([a], [b]) => a.localeCompare(b))) {
+    for (const refs of Object.values(lookup)) refs.sort((a, b) => b.languages - a.languages || b.members - a.members || a.id.localeCompare(b.id));
+    const file = `lookup/${shard}.json`;
+    await writeFile(join(outputRoot, file), `${JSON.stringify(lookup)}\n`);
+    lookupShards.push({ shard, file, aliases: Object.keys(lookup).length });
   }
-  if (!eligible.length) return [];
-  const preferred = eligible
-    .filter(item => item.priority === bestPriority)
-    .sort((a, b) => b.distance - a.distance || a.ancestor.localeCompare(b.ancestor));
-
-  // Keeping a small number of deepest ancestors preserves multiple branches in compounds
-  // (e.g. pedicure) without materializing every intermediate ancestor of every lemma.
-  const selected = [];
-  const seenWords = new Set();
-  for (const item of preferred) {
-    const { word } = parseKey(item.ancestor);
-    if (seenWords.has(word)) continue;
-    selected.push(item);
-    seenWords.add(word);
-    if (selected.length >= limit) break;
-  }
-  return selected;
+  return lookupShards;
 }
 
-function inferObservedPrefix(memberNodes, byNode) {
-  const counts = new Map();
-  let total = 0;
-  for (const node of memberNodes) {
-    const member = byNode.get(node);
-    if (!member) continue;
-    total += 1;
-    const w = member.word.replace(/[^\p{L}\p{M}]/gu, '');
-    for (let len = 3; len <= Math.min(8, w.length); len += 1) {
-      const prefix = w.slice(0, len);
-      counts.set(prefix, (counts.get(prefix) ?? 0) + 1);
-    }
+function validateControls(controlPresence) {
+  const result = {};
+  for (const control of CONTROL_FAMILIES) {
+    const sets = control.words.map(word => new Set(controlPresence[word] || []));
+    const common = [...sets[0]].filter(id => sets.slice(1).every(set => set.has(id)));
+    result[control.family] = { ok: common.includes(control.family), expected_family: control.family, words: Object.fromEntries(control.words.map((word, index) => [word, [...sets[index]].sort()])), common_families: common.sort() };
   }
-  const threshold = Math.max(2, Math.ceil(total * 0.5));
-  return [...counts.entries()]
-    .filter(([, count]) => count >= threshold)
-    .sort((a, b) => b[0].length - a[0].length || b[1] - a[1] || a[0].localeCompare(b[0]))[0]?.[0] ?? null;
-}
-
-async function writeJsonlLine(stream, value) {
-  if (!stream.write(`${JSON.stringify(value)}\n`)) await once(stream, 'drain');
-}
-
-function newControlState() {
-  return Object.fromEntries(CONTROL_PAIRS.map(([a, b]) => [`${a}_${b}`, { ok: false }]));
-}
-
-function updateControlState(state, familyId, label, memberNodes, byNode) {
-  const words = new Set();
-  for (const node of memberNodes) {
-    const member = byNode.get(node);
-    if (member) words.add(member.word);
-  }
-  for (const [a, b] of CONTROL_PAIRS) {
-    const key = `${a}_${b}`;
-    if (!state[key].ok && words.has(a) && words.has(b)) state[key] = { ok: true, family_id: familyId, label };
-  }
+  return result;
 }
 
 async function main() {
   const options = parseArgs(process.argv.slice(2));
-  await mkdir(options.outputRoot, { recursive: true });
-
-  const { byNode, candidateCount } = await loadCandidateNodes(options.candidateRoot, options.languages);
-  console.error(`[family-index] loaded ${byNode.size} unique candidate lemmas from ${candidateCount} index entries`);
-
-  const targetNodes = new Set(byNode.keys());
-  const { parents, stats: graphStats } = await collectParentGraph(options.etymwn, targetNodes, options.maxDepth);
-  targetNodes.clear();
-  console.error(`[family-index] parent graph nodes=${parents.size}`);
-
-  const candidateMembers = new Map();
-  const distanceStats = new Map();
-  let processedNodes = 0;
-  for (const node of byNode.keys()) {
-    const distances = ancestorDistances(node, parents, options.maxDepth);
-    const selected = selectFamilyAncestors(distances, options.maxFamiliesPerLemma);
-    for (const { ancestor, distance } of selected) {
-      let members = candidateMembers.get(ancestor);
-      if (!members) {
-        members = new Set();
-        candidateMembers.set(ancestor, members);
-      }
-      members.add(node);
-      const stats = distanceStats.get(ancestor) ?? { sum: 0, count: 0 };
-      stats.sum += distance;
-      stats.count += 1;
-      distanceStats.set(ancestor, stats);
-    }
-    processedNodes += 1;
-    if (processedNodes % 250000 === 0) console.error(`[family-index] classified ${processedNodes}/${byNode.size}`);
-  }
-  parents.clear();
-  console.error(`[family-index] raw family roots=${candidateMembers.size}`);
-
-  const validFamilies = [...candidateMembers.entries()]
-    .filter(([, members]) => members.size >= 2)
-    .sort((a, b) => b[1].size - a[1].size || a[0].localeCompare(b[0]));
-
-  const familyIdsByNode = new Map();
-  const summaries = [];
-  const controlChecks = newControlState();
-  const familyStream = createWriteStream(join(options.outputRoot, 'family-members.jsonl'), { encoding: 'utf8' });
-
-  for (const [ancestor, memberNodes] of validFamilies) {
-    const { lang, word } = parseKey(ancestor);
-    const id = `${lang}:${word}`;
-    const distance = distanceStats.get(ancestor) ?? { sum: 0, count: 1 };
-    const avgDistance = distance.sum / Math.max(1, distance.count);
-    const observedPrefix = inferObservedPrefix(memberNodes, byNode);
-    const label = observedPrefix || word;
-    const languages = new Set();
-    const members = [];
-    for (const node of memberNodes) {
-      const member = byNode.get(node);
-      if (!member) continue;
-      languages.add(member.language);
-      members.push({ language: member.language, word: member.word, display: member.display, frequency_score: member.frequency_score });
-      const ids = familyIdsByNode.get(node) ?? [];
-      if (ids.length < options.maxFamiliesPerLemma) ids.push(id);
-      familyIdsByNode.set(node, ids);
-    }
-    members.sort((a, b) => b.frequency_score - a.frequency_score || a.language.localeCompare(b.language) || a.word.localeCompare(b.word));
-    const confidence = familyPriority(ancestor) <= 1 && avgDistance <= 5 ? 'A' : avgDistance <= 5 ? 'B' : 'C';
-    const summary = {
-      id,
-      label,
-      etymon: { language: lang, word },
-      member_count: members.length,
-      language_count: languages.size,
-      languages: [...languages].sort(),
-      average_etymological_distance: Number(avgDistance.toFixed(3)),
-      confidence,
-      sample: members.slice(0, 20)
-    };
-    summaries.push(summary);
-    updateControlState(controlChecks, id, label, memberNodes, byNode);
-    await writeJsonlLine(familyStream, { ...summary, members });
-  }
-  familyStream.end();
-  await once(familyStream, 'finish');
-  candidateMembers.clear();
-  distanceStats.clear();
-
-  await writeFile(join(options.outputRoot, 'families.json'), JSON.stringify(summaries, null, 2));
-
-  const membershipStreams = new Map();
-  for (const language of options.languages) {
-    membershipStreams.set(language, createWriteStream(join(options.outputRoot, `${language}.jsonl`), { encoding: 'utf8' }));
-  }
-  const membershipCounts = Object.fromEntries(options.languages.map(lang => [lang, 0]));
-  const controlPresence = Object.fromEntries(CONTROL_PAIRS.flat().map(word => [word, false]));
-  for (const [node, member] of byNode) {
-    const families = familyIdsByNode.get(node);
-    if (!families?.length) continue;
-    await writeJsonlLine(membershipStreams.get(member.language), {
-      word: member.word,
-      display: member.display,
-      families
-    });
-    membershipCounts[member.language] += 1;
-    if (Object.hasOwn(controlPresence, member.word)) controlPresence[member.word] = true;
-  }
-  for (const stream of membershipStreams.values()) stream.end();
-  await Promise.all([...membershipStreams.values()].map(stream => once(stream, 'finish')));
-
-  const report = {
-    version: 2,
-    source: basename(options.etymwn),
+  await rm(options.outputRoot, { recursive: true, force: true });
+  await ensureDir(options.outputRoot);
+  const manifest = await candidateManifest(options.candidateRoot);
+  console.error('[family-index] pass 1: counting exact surface roots and prefixes');
+  const first = await firstPass(options.candidateRoot, manifest, options.languages);
+  console.error(`[family-index] counted ${first.rows} lemmas; root aliases=${first.rootStats.size}; prefix aliases=${first.prefixStats.size}`);
+  const built = buildFamilies(first.rootStats, first.prefixStats, options.minMembers);
+  console.error(`[family-index] candidate families=${built.families.size}`);
+  console.error('[family-index] pass 2: assigning family memberships');
+  const second = await secondPass({ candidateRoot: options.candidateRoot, manifest, languages: options.languages, outputRoot: options.outputRoot, ...built });
+  const memberShards = await compileMemberShards({ tempRoot: second.tempRoot, outputRoot: options.outputRoot, languages: options.languages, families: built.families });
+  await rm(second.tempRoot, { recursive: true, force: true });
+  const lookupShards = await buildLookup({ outputRoot: options.outputRoot, families: built.families });
+  const families = [...built.families.values()].filter(family => family.support?.members).sort((a, b) => b.support.languages - a.support.languages || b.support.members - a.support.members || a.id.localeCompare(b.id));
+  await writeFile(join(options.outputRoot, 'families.json'), `${JSON.stringify(families, null, 2)}\n`);
+  const controls = validateControls(second.controlPresence);
+  for (const [name, check] of Object.entries(controls)) if (!check.ok) throw new Error(`Control associative family failed: ${name} ${JSON.stringify(check)}`);
+  const familyManifest = {
+    version: FAMILY_INDEX_VERSION,
+    normalizer_version: SEARCH_NORMALIZER_VERSION,
+    generated_at: new Date().toISOString(),
     languages: options.languages,
-    candidate_index_entries: candidateCount,
-    unique_candidate_lemmas: byNode.size,
-    nodes_with_parents: graphStats.length ? graphStats[0].frontier : 0,
-    families: summaries.length,
-    memberships: membershipCounts,
-    graph_passes: graphStats,
-    control_checks: { ...controlChecks, presence: controlPresence },
-    largest_families: summaries.slice(0, 30).map(f => ({
-      id: f.id,
-      label: f.label,
-      members: f.member_count,
-      languages: f.language_count,
-      confidence: f.confidence,
-      sample: f.sample.slice(0, 8).map(m => `${m.language}:${m.word}`)
-    }))
+    algorithm: { version: 'surface-family-v1', fuzzy_matching: false, edit_distance_matching: false, root_method: 'exact boundary segmentation plus deterministic derivational suffix stripping', prefix_method: 'exact configured prefix/combining-form boundaries', divergent_branches: 'verified alias registry' },
+    lookup_shards: lookupShards,
+    member_shards: memberShards,
+    families: families.length,
+    source_candidate_entries: first.rows
   };
-  await writeFile(join(options.outputRoot, 'report.json'), JSON.stringify(report, null, 2));
+  await writeFile(join(options.outputRoot, 'manifest.json'), `${JSON.stringify(familyManifest, null, 2)}\n`);
+  const report = {
+    version: 1,
+    source_candidate_entries: first.rows,
+    root_aliases_seen: first.rootStats.size,
+    prefix_aliases_seen: first.prefixStats.size,
+    families: families.length,
+    family_memberships: [...second.familyMembers.values()].reduce((sum, value) => sum + value, 0),
+    controls,
+    curated_families: families.filter(family => family.source === 'verified_alias_registry'),
+    largest_families: families.slice(0, 50).map(family => ({ id: family.id, element_type: family.element_type, label: family.label, aliases: family.aliases, members: family.support.members, languages: family.support.languages, confidence: family.confidence, source: family.source }))
+  };
+  await writeFile(join(options.outputRoot, 'report.json'), `${JSON.stringify(report, null, 2)}\n`);
   console.log(JSON.stringify(report, null, 2));
 }
 
-main().catch(error => {
-  console.error(error?.stack || error?.message || String(error));
-  process.exit(1);
-});
+main().catch(error => { console.error(error?.stack || error?.message || error); process.exitCode = 1; });
