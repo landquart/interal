@@ -62,6 +62,11 @@ export function getRegisteredLexicalRoots(language) {
   return [...bucket(language).values()];
 }
 
+export function getRegisteredLexicalRoot(language, form) {
+  const normalized = normalizeForMorphology(form, language).normalized;
+  return normalized ? bucket(language).get(normalized) || null : null;
+}
+
 export function getLexicalRootCandidates(language, remainder, { config = {}, manuallyVerified = [] } = {}) {
   registerVerifiedLexicalRoots(language, manuallyVerified);
   const normalized = normalizeForMorphology(remainder, language).normalized;
@@ -82,4 +87,9 @@ export function getLexicalRootCandidates(language, remainder, { config = {}, man
 
 export function clearLexicalRootIndexForTests() {
   ROOTS.clear();
+}
+
+export function clearLexicalRoots(language) {
+  if (language == null) ROOTS.clear();
+  else ROOTS.delete(String(language).toLowerCase());
 }

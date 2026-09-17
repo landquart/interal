@@ -16,7 +16,9 @@
     "build:associative-search-index": "node scripts/build-associative-static-search-index.mjs",
     "merge:associative-search-index": "node scripts/merge-associative-static-search-artifacts.mjs",
     "validate:associative-search-index": "node scripts/validate-associative-static-search-index.mjs",
-    "check:associative-search-index-deployment": "node scripts/check-associative-static-search-index-deployment.mjs"
+    "check:associative-search-index-deployment": "node scripts/check-associative-static-search-index-deployment.mjs",
+    "build:associative-families": "node scripts/build-associative-exhaustive-family-index.mjs",
+    "test:associative-families": "node --test tests/associative-family-production.test.mjs"
   },
   "devDependencies": {
     "playwright": "^1.62.0"

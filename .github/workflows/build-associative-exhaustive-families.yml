@@ -1,0 +1,131 @@
+name: Build exhaustive associative families
+
+on:
+  push:
+    branches:
+      - agent/associative-family-production-v3
+    paths:
+      - 'scripts/build-associative-exhaustive-family-index.mjs'
+      - '.github/workflows/build-associative-exhaustive-families.yml'
+      - 'associativvordes/js/affix-search-config.js'
+      - 'associativvordes/js/root-matcher.js'
+      - 'associativvordes/js/morphology/**'
+      - 'associativvordes/js/family-index-loader.js'
+      - 'scripts/lib/associative-family-graph.mjs'
+      - 'tests/associative-family-production.test.mjs'
+      - 'associativvordes/frequency lists/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      NODE_OPTIONS: --max-old-space-size=7168
+      GITHUB_ACTIONS: 'true'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Show disk space
+        run: df -h
+
+      - name: Build merged candidate index from every frequency list
+        run: |
+          rm -rf .tmp/family-candidate-parts .tmp/family-candidate-index .tmp/associative-exhaustive-families
+          mkdir -p .tmp/family-candidate-parts .tmp/family-candidate-index
+          for lang in en de fr es it ru; do
+            echo "=== building candidate index: $lang ==="
+            node scripts/build-associative-candidate-index.mjs \
+              --languages="$lang" \
+              --output-root=".tmp/family-candidate-parts/$lang"
+            cp -r ".tmp/family-candidate-parts/$lang/$lang" ".tmp/family-candidate-index/$lang"
+          done
+          node --input-type=module <<'NODE'
+          import { readFile, writeFile } from 'node:fs/promises';
+          const languages = ['en','de','fr','es','it','ru'];
+          const merged = { version: '1', normalizer_version: '2', generated_at: new Date().toISOString(), languages: {} };
+          for (const language of languages) {
+            const manifest = JSON.parse(await readFile(`.tmp/family-candidate-parts/${language}/manifest.json`, 'utf8'));
+            merged.global_config_hash ??= manifest.global_config_hash;
+            merged.languages[language] = manifest.languages[language];
+          }
+          await writeFile('.tmp/family-candidate-index/manifest.json', JSON.stringify(merged, null, 2));
+          NODE
+          rm -rf .tmp/family-candidate-parts
+
+      - name: Discover current Kaikki raw Wiktextract dump
+        id: kaikki
+        shell: bash
+        run: |
+          set -euo pipefail
+          URL=$(python3 - <<'PY'
+          import html, re, urllib.parse, urllib.request
+          page = 'https://kaikki.org/dictionary/rawdata.html'
+          text = urllib.request.urlopen(page, timeout=60).read().decode('utf-8', 'replace')
+          links = [html.unescape(x) for x in re.findall(r'href=["\']([^"\']+\.jsonl\.gz)["\']', text, re.I)]
+          links = [urllib.parse.urljoin(page, x) for x in links]
+          preferred = [x for x in links if 'extract' in x.lower() or 'wiktextract' in x.lower()]
+          chosen = (preferred or links)[0] if (preferred or links) else None
+          if not chosen:
+              raise SystemExit('No .jsonl.gz raw Wiktextract link found on Kaikki rawdata page')
+          print(chosen)
+          PY
+          )
+          echo "Kaikki dump: $URL"
+          echo "url=$URL" >> "$GITHUB_OUTPUT"
+
+      - name: Download current Wiktionary etymology dump
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 4 --retry-delay 5 --connect-timeout 30 \
+            --output .tmp/kaikki-wiktextract.jsonl.gz \
+            "${{ steps.kaikki.outputs.url }}"
+          ls -lh .tmp/kaikki-wiktextract.jsonl.gz
+          gzip -t .tmp/kaikki-wiktextract.jsonl.gz
+
+      - name: Scan every indexed lemma and build families
+        run: |
+          node scripts/build-associative-exhaustive-family-index.mjs \
+            --candidate-root=.tmp/family-candidate-index \
+            --output-root=.tmp/associative-exhaustive-families \
+            --etymology-gzip="$PWD/.tmp/kaikki-wiktextract.jsonl.gz" \
+            --languages=en,de,fr,es,it,ru
+
+      - name: Verify exhaustive assignment
+        run: |
+          node --input-type=module <<'NODE'
+          import { readFile } from 'node:fs/promises';
+          const report = JSON.parse(await readFile('.tmp/associative-exhaustive-families/report.json', 'utf8'));
+          for (const [lang, sourceCount] of Object.entries(report.source_entries)) {
+            const assigned = report.assignment_stats?.[lang]?.total;
+            if (assigned !== sourceCount) throw new Error(`${lang}: assigned ${assigned} of ${sourceCount} entries`);
+          }
+          if (!report.controls_ok) throw new Error('Methodology control families failed; inspect report.json');
+          if (!report.merged_families) throw new Error('No merged associative families were generated');
+          console.log(`Families: ${report.merged_families}; aliases: ${report.aliases_in_lookup}; proto review: ${report.proto_review_candidates}`);
+          NODE
+
+      - name: Show report
+        if: always()
+        run: |
+          test -f .tmp/associative-exhaustive-families/report.json && cat .tmp/associative-exhaustive-families/report.json || true
+
+      - name: Upload exhaustive family audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: associative-exhaustive-families
+          path: .tmp/associative-exhaustive-families
+          if-no-files-found: warn
+          retention-days: 14
