@@ -42,7 +42,7 @@ jobs:
 
       - name: Restore merged candidate checkpoint
         id: candidate-cache
-        uses: actions/cache@v4
+        uses: actions/cache/restore@v4
         with:
           path: .tmp/family-candidate-index
           key: ${{ runner.os }}-family-candidates-v3-${{ hashFiles('scripts/build-associative-candidate-index.mjs', 'associativvordes/frequency lists/**', 'associativvordes/js/affix-search-config.js', 'associativvordes/js/root-matcher.js', 'associativvordes/js/morphology/**') }}
@@ -75,6 +75,13 @@ jobs:
       - name: Verify merged candidate checkpoint
         run: test -s .tmp/family-candidate-index/manifest.json
 
+      - name: Save merged candidate checkpoint immediately
+        if: steps.candidate-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: .tmp/family-candidate-index
+          key: ${{ steps.candidate-cache.outputs.cache-primary-key }}
+
       - name: Discover current Kaikki raw Wiktextract dump
         id: kaikki
         shell: bash
@@ -99,7 +106,7 @@ jobs:
 
       - name: Restore Wiktionary dump checkpoint
         id: dump-cache
-        uses: actions/cache@v4
+        uses: actions/cache/restore@v4
         with:
           path: .tmp/kaikki-wiktextract.jsonl.gz
           key: ${{ runner.os }}-kaikki-${{ steps.kaikki.outputs.cache_key }}
@@ -116,6 +123,13 @@ jobs:
 
       - name: Verify Wiktionary dump checkpoint
         run: gzip -t .tmp/kaikki-wiktextract.jsonl.gz
+
+      - name: Save Wiktionary dump checkpoint immediately
+        if: steps.dump-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: .tmp/kaikki-wiktextract.jsonl.gz
+          key: ${{ steps.dump-cache.outputs.cache-primary-key }}
 
       - name: Scan every indexed lemma and build families
         run: |

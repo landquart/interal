@@ -320,7 +320,6 @@ function familyForSeedAlias(families, seedId) { return families.get(seedId) || n
 async function writeAssignments({ candidateRoot, manifest, languages, outputRoot, wordRoots, nodeToFamilies, families, controls }) {
   await mkdir(join(outputRoot, 'assignments'), { recursive: true });
   const stats = {};
-  const surfaceFamilies = new Map();
   let totalComponents = 0;
   let multiFamilyLemmas = 0;
   for (const language of languages) {
@@ -345,13 +344,6 @@ async function writeAssignments({ candidateRoot, manifest, languages, outputRoot
         const node = `${language}:${component.root}`;
         const ids = [...(nodeToFamilies.get(node) || [])].sort();
         const familyIds = ids.length ? ids : [`surface:${language}:${component.root}`];
-        if (!ids.length) {
-          const id = familyIds[0];
-          const current = surfaceFamilies.get(id) || { id, canonical: component.root, aliases: [component.root], verified: false, confidence: 'low', source: 'surface_singleton', etymon_keys: [], language_support: {}, support: 0, evidence: component.evidence };
-          current.language_support[language] = (current.language_support[language] || 0) + 1;
-          current.support += 1;
-          surfaceFamilies.set(id, current);
-        }
         totalComponents += 1;
         return { surface: component.surface, canonical_candidate: component.root, family_ids: familyIds, confidence: component.confidence, evidence: component.evidence };
       });
@@ -393,7 +385,7 @@ async function writeAssignments({ candidateRoot, manifest, languages, outputRoot
     await rm(memberTempRoot, { recursive: true, force: true });
     stats[language] = { total, merged_family_entries: merged, ambiguous_family_entries: ambiguous };
   }
-  return { stats, surfaceFamilies, totalComponents, multiFamilyLemmas };
+  return { stats, totalComponents, multiFamilyLemmas };
 }
 
 function compactFamily(family, rootSupport) {
@@ -445,24 +437,6 @@ async function main() {
     controls
   });
 
-  const familyList = [...built.families.values()]
-    .map(family => compactFamily(family, primary.rootSupport))
-    .concat([...assignments.surfaceFamilies.values()])
-    .sort((a, b) => Number(b.verified) - Number(a.verified) || b.support - a.support || a.id.localeCompare(b.id));
-  // A normalized lexical alias can legitimately be `constructor`, `prototype`,
-  // or another Object.prototype property.  A null-prototype dictionary keeps
-  // those words as ordinary keys instead of returning inherited JS values.
-  const lookup = nullDictionary();
-  for (const family of familyList) {
-    for (const alias of family.aliases) {
-      const key = rootNorm(alias);
-      if (!key) continue;
-      const values = lookup[key] ||= [];
-      values.push({ id: family.id, canonical: family.canonical, verified: family.verified, confidence: family.confidence, source: family.source, support: family.support });
-    }
-  }
-  for (const values of Object.values(lookup)) values.sort((a, b) => Number(b.verified) - Number(a.verified) || b.support - a.support || a.id.localeCompare(b.id));
-
   const controlSummary = {};
   let controlsOk = true;
   for (const [seedId, perLang] of Object.entries(CONTROL_WORDS)) {
@@ -481,7 +455,7 @@ async function main() {
     if (!ok) controlsOk = false;
   }
 
-  const auditedFamilies = familyList.filter(family => family.support > 0).map(family => {
+  const auditFamily = family => {
     let suspicionScore = 0;
     const reasons = [];
     const add = (points, reason) => { suspicionScore += points; reasons.push(reason); };
@@ -491,9 +465,101 @@ async function main() {
     if ((family.etymon_keys || []).length > 1) add(Math.min(35, (family.etymon_keys.length - 1) * 10), 'multiple_etymon_keys');
     if (!family.source) add(50, 'missing_family_evidence');
     return { ...family, suspicion_score: Math.min(100, suspicionScore), suspicion_reasons: reasons, review_status: suspicionScore >= 35 ? 'review_required' : (family.verified ? 'verified' : 'automatic') };
-  });
-  const review = auditedFamilies.filter(family => family.review_status === 'review_required').map(family => ({ family_id: family.id, reason: family.suspicion_reasons, suspicion_score: family.suspicion_score, representative_words: {}, branches: family.aliases, etymology_paths: family.etymon_keys, possible_actions: ['keep','split','merge with ...','manual check'] }));
-  review.push(...built.protoReview.map(item => ({ family_id: null, reason: ['proto_relation_only'], suspicion_score: 40, representative_words: {}, branches: item.aliases, etymology_paths: [item.etymon_key], possible_actions: ['keep separate','manual check'] })));
+  };
+
+  // Materialize millions of families as bucketed streams.  Never construct a
+  // global family array or alias dictionary: both exceeded the runner's heap.
+  await mkdir(join(options.outputRoot, 'review'), { recursive: true });
+  await mkdir(join(options.outputRoot, 'reports'), { recursive: true });
+  await mkdir(join(options.outputRoot, 'families'), { recursive: true });
+  await mkdir(join(options.outputRoot, 'aliases'), { recursive: true });
+  const tempRoot = join(options.outputRoot, '.materialize');
+  await mkdir(join(tempRoot, 'families'), { recursive: true });
+  await mkdir(join(tempRoot, 'aliases'), { recursive: true });
+  const familyStreams = new Map();
+  const aliasStreams = new Map();
+  const streamFor = (streams, type, bucket) => {
+    if (!streams.has(bucket)) streams.set(bucket, createWriteStream(join(tempRoot, type, `${bucket}.jsonl`)));
+    return streams.get(bucket);
+  };
+  const writeLine = async (stream, value) => { if (!stream.write(`${JSON.stringify(value)}\n`)) await once(stream, 'drain'); };
+  const reviewGzip = createGzip({ level: 9 });
+  const reviewOutput = createWriteStream(join(options.outputRoot, 'review', 'review-required.jsonl.gz'));
+  reviewGzip.pipe(reviewOutput);
+  let totalFamilies = 0;
+  let mergedFamilies = 0;
+  let singletonFamilies = 0;
+  let multiBranchFamilies = 0;
+  let generatedNonProtoFamilies = 0;
+  let verifiedSeedFamilies = 0;
+  let reviewRequiredFamilies = 0;
+  let unreviewedHighRiskFamilies = 0;
+  const largestFamilies = [];
+  const highestSuspicionFamilies = [];
+  const keepTop = (values, family, compare) => { values.push(family); values.sort(compare); if (values.length > 50) values.length = 50; };
+  const emitFamily = async rawFamily => {
+    if (rawFamily.support <= 0) return;
+    const family = auditFamily(rawFamily);
+    totalFamilies += 1;
+    if (family.source !== 'surface_singleton') mergedFamilies += 1;
+    if (family.support === 1) singletonFamilies += 1;
+    if (family.aliases.length > 1) multiBranchFamilies += 1;
+    if (family.source === 'wiktionary_non_proto_etymology') generatedNonProtoFamilies += 1;
+    if (family.verified) verifiedSeedFamilies += 1;
+    if (family.suspicion_score >= 35 && family.review_status !== 'review_required') unreviewedHighRiskFamilies += 1;
+    keepTop(largestFamilies, family, (a, b) => b.support - a.support || a.id.localeCompare(b.id));
+    keepTop(highestSuspicionFamilies, family, (a, b) => b.suspicion_score - a.suspicion_score || b.support - a.support || a.id.localeCompare(b.id));
+    if (family.review_status === 'review_required') {
+      reviewRequiredFamilies += 1;
+      await writeLine(reviewGzip, { family_id: family.id, reason: family.suspicion_reasons, suspicion_score: family.suspicion_score, representative_words: {}, branches: family.aliases, etymology_paths: family.etymon_keys, possible_actions: ['keep','split','merge with ...','manual check'] });
+    }
+    await writeLine(streamFor(familyStreams, 'families', familyBucket(family.id)), [family.id, family]);
+    const aliasKeys = new Set(family.aliases.map(rootNorm).filter(Boolean));
+    for (const alias of aliasKeys) await writeLine(streamFor(aliasStreams, 'aliases', familyBucket(alias)), [alias, family.id]);
+  };
+
+  for (const family of built.families.values()) await emitFamily(compactFamily(family, primary.rootSupport));
+  for (const [language, roots] of Object.entries(primary.rootSupport)) {
+    for (const [root, support] of roots) {
+      if (built.nodeToFamilies.has(`${language}:${root}`)) continue;
+      await emitFamily({ id: `surface:${language}:${root}`, canonical: root, aliases: [root], verified: false, confidence: 'low', source: 'surface_singleton', etymon_keys: [], language_support: { [language]: support }, support });
+    }
+  }
+  for (const item of built.protoReview) {
+    reviewRequiredFamilies += 1;
+    await writeLine(reviewGzip, { family_id: null, reason: ['proto_relation_only'], suspicion_score: 40, representative_words: {}, branches: item.aliases, etymology_paths: [item.etymon_key], possible_actions: ['keep separate','manual check'] });
+  }
+  reviewGzip.end();
+  await once(reviewOutput, 'finish');
+  for (const stream of [...familyStreams.values(), ...aliasStreams.values()]) stream.end();
+  await Promise.all([...familyStreams.values(), ...aliasStreams.values()].map(stream => once(stream, 'finish')));
+
+  const familyBuckets = [...familyStreams.keys()].sort();
+  for (const bucket of familyBuckets) {
+    const grouped = nullDictionary();
+    for (const line of (await readFile(join(tempRoot, 'families', `${bucket}.jsonl`), 'utf8')).split('\n')) {
+      if (!line) continue;
+      const [id, family] = JSON.parse(line);
+      grouped[id] = family;
+    }
+    await writeFile(join(options.outputRoot, 'families', `${bucket}.json`), `${JSON.stringify(grouped)}\n`);
+  }
+  let aliasesInLookup = 0;
+  const aliasBuckets = [...aliasStreams.keys()].sort();
+  for (const bucket of aliasBuckets) {
+    const grouped = nullDictionary();
+    for (const line of (await readFile(join(tempRoot, 'aliases', `${bucket}.jsonl`), 'utf8')).split('\n')) {
+      if (!line) continue;
+      const [alias, id] = JSON.parse(line);
+      const ids = grouped[alias] ||= [];
+      if (!ids.includes(id)) ids.push(id);
+    }
+    for (const ids of Object.values(grouped)) ids.sort();
+    aliasesInLookup += Object.keys(grouped).length;
+    await writeFile(join(options.outputRoot, 'aliases', `${bucket}.json`), `${JSON.stringify(grouped)}\n`);
+  }
+  await rm(tempRoot, { recursive: true, force: true });
+
   const sourceLemmaCount = Object.values(primary.countsByLanguage).reduce((sum, value) => sum + value, 0);
   const classifiedUniqueLemmas = Object.values(assignments.stats).reduce((sum, item) => sum + item.total, 0);
   const invariants = {
@@ -507,7 +573,7 @@ async function main() {
     levenshtein_memberships: 0,
     untyped_family_edges: 0,
     compound_edges_used_as_equivalence: 0,
-    unreviewed_high_risk_families: auditedFamilies.filter(family => family.suspicion_score >= 35 && family.review_status !== 'review_required').length
+    unreviewed_high_risk_families: unreviewedHighRiskFamilies
   };
   const report = {
     version: INDEX_VERSION,
@@ -516,41 +582,28 @@ async function main() {
     source_entries: primary.countsByLanguage,
     assignment_stats: assignments.stats,
     etymology_coverage: ety.coverage,
-    total_families: auditedFamilies.length,
-    merged_families: auditedFamilies.filter(item => item.source !== 'surface_singleton').length,
-    singleton_families: auditedFamilies.filter(item => item.support === 1).length,
-    multi_branch_families: auditedFamilies.filter(item => item.aliases.length > 1).length,
+    total_families: totalFamilies,
+    merged_families: mergedFamilies,
+    singleton_families: singletonFamilies,
+    multi_branch_families: multiBranchFamilies,
     multi_family_lemmas: assignments.multiFamilyLemmas,
     components_discovered: assignments.totalComponents,
     components_assigned: assignments.totalComponents,
-    review_required_families: review.length,
+    review_required_families: reviewRequiredFamilies,
     invariants,
-    generated_non_proto_families: familyList.filter(item => item.source === 'wiktionary_non_proto_etymology').length,
-    verified_seed_families: familyList.filter(item => item.verified).length,
-    aliases_in_lookup: Object.keys(lookup).length,
+    generated_non_proto_families: generatedNonProtoFamilies,
+    verified_seed_families: verifiedSeedFamilies,
+    aliases_in_lookup: aliasesInLookup,
     proto_review_candidates: built.protoReview.length,
     controls: controlSummary,
     controls_ok: controlsOk,
-    largest_families: auditedFamilies.slice().sort((a, b) => b.support - a.support).slice(0, 50),
-    highest_suspicion_families: auditedFamilies.slice().sort((a, b) => b.suspicion_score - a.suspicion_score || b.support - a.support).slice(0, 50)
+    largest_families: largestFamilies,
+    highest_suspicion_families: highestSuspicionFamilies
   };
 
-  await mkdir(join(options.outputRoot, 'review'), { recursive: true });
-  await mkdir(join(options.outputRoot, 'reports'), { recursive: true });
-  await mkdir(join(options.outputRoot, 'families'), { recursive: true });
-  await mkdir(join(options.outputRoot, 'aliases'), { recursive: true });
-  const familyShards = {};
-  for (const family of auditedFamilies) (familyShards[familyBucket(family.id)] ||= {})[family.id] = family;
-  for (const [bucket, values] of Object.entries(familyShards)) await writeFile(join(options.outputRoot, 'families', `${bucket}.json`), `${JSON.stringify(values)}\n`);
-  const aliasShards = {};
-  for (const [alias, values] of Object.entries(lookup)) (aliasShards[familyBucket(alias)] ||= {})[alias] = values.map(item => item.id);
-  for (const [bucket, values] of Object.entries(aliasShards)) await writeFile(join(options.outputRoot, 'aliases', `${bucket}.json`), `${JSON.stringify(values)}\n`);
-  await writeFile(join(options.outputRoot, 'families.json'), `${JSON.stringify(auditedFamilies)}\n`);
-  await writeFile(join(options.outputRoot, 'lookup.json'), `${JSON.stringify(lookup)}\n`);
   await writeFile(join(options.outputRoot, 'proto-review.json'), `${JSON.stringify(built.protoReview, null, 2)}\n`);
-  await writeFile(join(options.outputRoot, 'review/review-required.json'), `${JSON.stringify(review, null, 2)}\n`);
   await writeFile(join(options.outputRoot, 'reports/audit-summary.json'), `${JSON.stringify(report, null, 2)}\n`);
-  await writeFile(join(options.outputRoot, 'manifest.json'), `${JSON.stringify({ version: '3', generated_at: report.generated_at, languages: options.languages, counts: { families: auditedFamilies.length, aliases: Object.keys(lookup).length, lemmas: sourceLemmaCount, components: assignments.totalComponents }, sharding: { algorithm: 'fnv1a-modulo-256', alias_template: 'aliases/{bucket}.json', family_template: 'families/{bucket}.json', member_template: 'members/{language}/{bucket}.json' }, buckets: { families: Object.keys(familyShards).sort(), aliases: Object.keys(aliasShards).sort() } }, null, 2)}\n`);
+  await writeFile(join(options.outputRoot, 'manifest.json'), `${JSON.stringify({ version: '3', generated_at: report.generated_at, languages: options.languages, counts: { families: totalFamilies, aliases: aliasesInLookup, lemmas: sourceLemmaCount, components: assignments.totalComponents }, sharding: { algorithm: 'fnv1a-modulo-256', alias_template: 'aliases/{bucket}.json', family_template: 'families/{bucket}.json', member_template: 'members/{language}/{bucket}.json' }, buckets: { families: familyBuckets, aliases: aliasBuckets } }, null, 2)}\n`);
   await writeFile(join(options.outputRoot, 'report.json'), `${JSON.stringify(report, null, 2)}\n`);
   console.log(JSON.stringify(report, null, 2));
   if (!controlsOk || !Object.values(invariants).every(value => typeof value !== 'boolean' || value)) process.exitCode = 2;
