@@ -5,6 +5,7 @@ const MERGE_EVIDENCE = new Set(['allomorph', 'derivational_chain', 'historical_m
 export const stableId = (namespace, ...parts) => `${namespace}:${createHash('sha256').update(parts.map(value => String(value).normalize('NFC')).join('\0')).digest('hex').slice(0, 20)}`;
 export const stableLemmaId = (language, normalized) => stableId('lemma', String(language).toLowerCase(), String(normalized).toLocaleLowerCase('und'));
 export const surfaceBranchId = (language, surface) => stableId('surface', String(language).toLowerCase(), String(surface).toLocaleLowerCase('und'));
+export const nullDictionary = () => Object.create(null);
 
 export function assertEvidence(evidence) {
   if (!evidence?.type || !evidence?.source || !Array.isArray(evidence.path)) throw new Error('Evidence requires type, source and path');

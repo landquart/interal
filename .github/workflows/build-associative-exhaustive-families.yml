@@ -22,7 +22,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 180
+    timeout-minutes: 360
     env:
       NODE_OPTIONS: --max-old-space-size=7168
       GITHUB_ACTIONS: 'true'
@@ -40,7 +40,15 @@ jobs:
       - name: Show disk space
         run: df -h
 
+      - name: Restore merged candidate checkpoint
+        id: candidate-cache
+        uses: actions/cache@v4
+        with:
+          path: .tmp/family-candidate-index
+          key: ${{ runner.os }}-family-candidates-v3-${{ hashFiles('scripts/build-associative-candidate-index.mjs', 'associativvordes/frequency lists/**', 'associativvordes/js/affix-search-config.js', 'associativvordes/js/root-matcher.js', 'associativvordes/js/morphology/**') }}
+
       - name: Build merged candidate index from every frequency list
+        if: steps.candidate-cache.outputs.cache-hit != 'true'
         run: |
           rm -rf .tmp/family-candidate-parts .tmp/family-candidate-index .tmp/associative-exhaustive-families
           mkdir -p .tmp/family-candidate-parts .tmp/family-candidate-index
@@ -64,6 +72,9 @@ jobs:
           NODE
           rm -rf .tmp/family-candidate-parts
 
+      - name: Verify merged candidate checkpoint
+        run: test -s .tmp/family-candidate-index/manifest.json
+
       - name: Discover current Kaikki raw Wiktextract dump
         id: kaikki
         shell: bash
@@ -84,8 +95,17 @@ jobs:
           )
           echo "Kaikki dump: $URL"
           echo "url=$URL" >> "$GITHUB_OUTPUT"
+          echo "cache_key=$(printf '%s' "$URL" | sha256sum | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
+
+      - name: Restore Wiktionary dump checkpoint
+        id: dump-cache
+        uses: actions/cache@v4
+        with:
+          path: .tmp/kaikki-wiktextract.jsonl.gz
+          key: ${{ runner.os }}-kaikki-${{ steps.kaikki.outputs.cache_key }}
 
       - name: Download current Wiktionary etymology dump
+        if: steps.dump-cache.outputs.cache-hit != 'true'
         run: |
           set -euo pipefail
           curl --fail --location --retry 4 --retry-delay 5 --connect-timeout 30 \
@@ -93,6 +113,9 @@ jobs:
             "${{ steps.kaikki.outputs.url }}"
           ls -lh .tmp/kaikki-wiktextract.jsonl.gz
           gzip -t .tmp/kaikki-wiktextract.jsonl.gz
+
+      - name: Verify Wiktionary dump checkpoint
+        run: gzip -t .tmp/kaikki-wiktextract.jsonl.gz
 
       - name: Scan every indexed lemma and build families
         run: |
@@ -121,11 +144,32 @@ jobs:
         run: |
           test -f .tmp/associative-exhaustive-families/report.json && cat .tmp/associative-exhaustive-families/report.json || true
 
-      - name: Upload exhaustive family audit
+      - name: Upload family metadata and audit
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: associative-exhaustive-families
-          path: .tmp/associative-exhaustive-families
+          name: associative-family-metadata
+          path: |
+            .tmp/associative-exhaustive-families/*.json
+            .tmp/associative-exhaustive-families/families
+            .tmp/associative-exhaustive-families/aliases
           if-no-files-found: warn
-          retention-days: 14
+          retention-days: 30
+
+      - name: Upload assignments by language
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: associative-family-assignments
+          path: .tmp/associative-exhaustive-families/assignments
+          if-no-files-found: warn
+          retention-days: 30
+
+      - name: Upload member index by language
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: associative-family-members
+          path: .tmp/associative-exhaustive-families/members
+          if-no-files-found: warn
+          retention-days: 30

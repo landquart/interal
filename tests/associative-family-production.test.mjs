@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { discoverLexicalComponents } from '../associativvordes/js/morphology/analyzer.js';
 import { registerVerifiedLexicalRoots, clearLexicalRootIndexForTests } from '../associativvordes/js/morphology/lexical-root-index.js';
-import { FamilyGraph, FAMILY_EDGE, stableLemmaId } from '../scripts/lib/associative-family-graph.mjs';
+import { FamilyGraph, FAMILY_EDGE, nullDictionary, stableLemmaId } from '../scripts/lib/associative-family-graph.mjs';
 import { FamilyIndexLoader, familyBucket } from '../associativvordes/js/family-index-loader.js';
 const evidence = type => ({ type, source: 'test', path: ['a','b'], confidence: 1 });
 test('discovers every compound component', () => { clearLexicalRootIndexForTests(); registerVerifiedLexicalRoots('en',['pedi','cure']); assert.deepEqual(discoverLexicalComponents('pedicure','en').components.map(x=>x.canonical_candidate).sort(),['cure','pedi']); });
@@ -11,6 +11,7 @@ test('compound containment never merges families', () => { const g=new FamilyGra
 test('proto relation never merges families', () => { const g=new FamilyGraph(); g.addBranch({id:'a',form:'alpha'}); g.addBranch({id:'b',form:'beta'}); g.addEdge('a','b',FAMILY_EDGE.PROTO_RELATION,evidence('proto_relation')); assert.equal(g.materializeFamilies().length,2); });
 test('equivalence requires linguistic evidence', () => { const g=new FamilyGraph(); g.addBranch({id:'alter',form:'alter'}); g.addBranch({id:'altru',form:'altru'}); assert.throws(()=>g.addEdge('alter','altru',FAMILY_EDGE.EQUIVALENT_BRANCH,evidence('string_similarity'))); g.addEdge('alter','altru',FAMILY_EDGE.EQUIVALENT_BRANCH,evidence('derivational_chain')); assert.equal(g.materializeFamilies().length,1); });
 test('lemma IDs are stable and language scoped', () => { assert.equal(stableLemmaId('en','liberty'),stableLemmaId('en','liberty')); assert.notEqual(stableLemmaId('en','liberty'),stableLemmaId('fr','liberty')); });
+test('lexical aliases cannot collide with JavaScript object prototypes', () => { const lookup=nullDictionary(); for (const alias of ['constructor','prototype','toString']) (lookup[alias] ||= []).push(alias); assert.deepEqual(lookup.constructor,['constructor']); assert.deepEqual(lookup.prototype,['prototype']); assert.deepEqual(lookup.toString,['toString']); });
 test('runtime resolves alias to materialized family members', async () => {
   const aliasBucket=familyBucket('ocul'), id='family:ocul', idBucket=familyBucket(id);
   const data={ 'manifest.json':{version:'3',languages:['en'],sharding:{alias_template:'aliases/{bucket}.json',family_template:'families/{bucket}.json',member_template:'members/{language}/{bucket}.json'}}, [`aliases/${aliasBucket}.json`]:{ocul:[id]}, [`families/${idBucket}.json`]:{[id]:{id,canonical:'ocul'}}, [`members/en/${idBucket}.json`]:{[id]:[{lemma_id:'ocular'},{lemma_id:'monocle'}]} };

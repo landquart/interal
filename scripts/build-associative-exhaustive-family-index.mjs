@@ -10,7 +10,7 @@ import { buildSearchForm } from '../associativvordes/js/root-matcher.js';
 import { discoverLexicalComponents } from '../associativvordes/js/morphology/analyzer.js';
 import { clearLexicalRoots, registerLexicalRootsFromEntries } from '../associativvordes/js/morphology/lexical-root-index.js';
 import { getLanguageConfig } from '../associativvordes/js/morphology/languages/index.js';
-import { stableLemmaId } from './lib/associative-family-graph.mjs';
+import { nullDictionary, stableLemmaId } from './lib/associative-family-graph.mjs';
 
 const LANGUAGES = ['en', 'de', 'fr', 'es', 'it', 'ru'];
 const INDEX_VERSION = '2';
@@ -449,7 +449,10 @@ async function main() {
     .map(family => compactFamily(family, primary.rootSupport))
     .concat([...assignments.surfaceFamilies.values()])
     .sort((a, b) => Number(b.verified) - Number(a.verified) || b.support - a.support || a.id.localeCompare(b.id));
-  const lookup = {};
+  // A normalized lexical alias can legitimately be `constructor`, `prototype`,
+  // or another Object.prototype property.  A null-prototype dictionary keeps
+  // those words as ordinary keys instead of returning inherited JS values.
+  const lookup = nullDictionary();
   for (const family of familyList) {
     for (const alias of family.aliases) {
       const key = rootNorm(alias);
