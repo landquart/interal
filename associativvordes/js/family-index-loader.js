@@ -33,7 +33,11 @@ export class FamilyIndexLoader {
     const byLemma = new Map();
     for (const { family, members } of groups) {
       if (!family) continue;
-      for (const member of members) {
+      const manuallyVerified = String(family.source || '').includes('manual_override')
+        ? members.filter(member => member.components?.some(component => component.evidence?.some(evidence => evidence.type === 'manual_override')))
+        : [];
+      const eligibleMembers = manuallyVerified.length ? manuallyVerified : members;
+      for (const member of eligibleMembers) {
         if (!member || typeof member.lemma_id !== 'string' || typeof member.word !== 'string' || !member.word) continue;
         const candidate = { ...member, family_id: family.id, family_canonical: family.canonical, family_aliases: Array.isArray(family.aliases) ? [...family.aliases] : [], family_verified: family.verified === true, family_indexed: true };
         const previous = byLemma.get(member.lemma_id);
