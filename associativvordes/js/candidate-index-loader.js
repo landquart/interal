@@ -3,6 +3,7 @@ import { acceptAffixBoundaryMatch, STATIC_MANIFEST_VERSION } from './affix-bound
 import { loadStaticCandidateEntries, validateStaticManifest } from './candidate-static-search.js';
 import { SEARCH_NORMALIZER_VERSION } from './search-normalizer.js';
 import { resolveAssociativeFamily } from './associative-family-registry.js';
+import { FamilyIndexLoader } from './family-index-loader.js';
 import { QWEN_RUNTIME_CONFIG } from './qwen-client.js';
 
 // Candidate generation must not create words outside the selected exact family.
@@ -79,6 +80,8 @@ function createDiagnostics() {
     familyId: null,
     familyCanonical: null,
     familyAliases: [],
+    familyIndexStatus: 'not_tried',
+    familyIndexFamilies: 0,
     validationErrors: []
   };
 }
@@ -193,6 +196,11 @@ export function createCandidateIndexLoader(options = {}) {
   const fetchImpl = options.fetch ?? globalThis.fetch?.bind(globalThis);
   if (typeof fetchImpl !== 'function') throw new TypeError('createCandidateIndexLoader requires fetch support.');
   const maxCachedResources = Number.isInteger(options.maxCachedResources) && options.maxCachedResources >= 0 ? options.maxCachedResources : DEFAULT_MAX_CACHED_RESOURCES;
+  const familyIndexLoader = options.familyIndexLoader || new FamilyIndexLoader({ baseUrl: options.familyBaseUrl || './family-index', fetchJson: async (url, init) => {
+    const response = await fetchImpl(url, init);
+    if (!response?.ok) throw new Error(`Family index request failed: ${response?.status ?? 'network'}`);
+    return response.json();
+  } });
 
   const diagnostics = createDiagnostics();
   let manifestRecord;
@@ -298,6 +306,25 @@ export function createCandidateIndexLoader(options = {}) {
   }
 
   async function loadCandidateEntries(language, root, { signal, elementType = 'root' } = {}) {
+    if (elementType === 'root') {
+      try {
+        const familyEntries = await familyIndexLoader.candidateEntries(root, language, { signal });
+        diagnostics.familyIndexStatus = 'loaded';
+        diagnostics.familyIndexFamilies = new Set(familyEntries.map(entry => entry.family_id)).size;
+        if (familyEntries.length) {
+          diagnostics.familyId = diagnostics.familyIndexFamilies === 1 ? familyEntries[0].family_id : null;
+          diagnostics.familyCanonical = diagnostics.familyIndexFamilies === 1 ? familyEntries[0].family_canonical : null;
+          diagnostics.familyAliases = [...new Set(familyEntries.flatMap(entry => entry.family_aliases || []))];
+          diagnostics.candidateIds = familyEntries.length;
+          diagnostics.exactCandidateIds = familyEntries.length;
+          return familyEntries;
+        }
+      } catch (error) {
+        if (isAbortError(error)) throw error;
+        diagnostics.familyIndexStatus = 'unavailable';
+        diagnostics.validationErrors.push(`family_index: ${error?.message || error}`);
+      }
+    }
     const manifest = await loadManifest({ signal });
     getLanguageInfo(manifest, language);
     const family = resolveAssociativeFamily(root, { elementType });

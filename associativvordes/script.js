@@ -492,6 +492,11 @@ const TEXT_I18N = {
       if (!Array.isArray(item.sources) || item.sources.length === 0) return false;
       if (!Number.isFinite(Number(item.frequency_score))) return false;
       if (!item.match) return false;
+      if (item.match.type === 'family') {
+        if (!item.family_id || item.family_indexed !== true) return false;
+        seenWords.add(wordKey);
+        return true;
+      }
       const verifiedMatch = findRootMatch(item.search_form || item.word, root, langCode);
       if (!acceptAffixBoundaryMatch(verifiedMatch, root)) return false;
       if ((item.match.type === 'fuzzy' || verifiedMatch.type === 'fuzzy') && !isReliableFuzzyMorphemeAnalysis(item.morpheme_analysis)) return false;
@@ -613,6 +618,11 @@ const TEXT_I18N = {
         normalized: candidate.normalized,
         search_form: candidate.search_form,
         match: candidate.match,
+        family_id: candidate.family_id || null,
+        family_canonical: candidate.family_canonical || null,
+        family_aliases: Array.isArray(candidate.family_aliases) ? [...candidate.family_aliases] : [],
+        family_verified: candidate.family_verified === true,
+        family_indexed: candidate.family_indexed === true,
         rank: candidate.rank,
         frequency_score: candidate.frequency_score,
         category_breakdown: candidate.category_breakdown || {},
@@ -1551,7 +1561,7 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
     function compactStateMatch(match) {
       if (!match || typeof match !== 'object' || Array.isArray(match)) return null;
       const type = String(match.type || '').trim();
-      if (!['exact', 'special', 'fuzzy'].includes(type)) return null;
+      if (!['exact', 'special', 'family', 'fuzzy'].includes(type)) return null;
       const distance = finiteOrNull(match.distance);
       const similarity = finiteOrNull(match.similarity);
       const fragment = typeof match.fragment === 'string' ? match.fragment : '';

@@ -88,7 +88,7 @@ for await (const line of input) {
     if (!row.family_ids.includes(id)) continue;
     const components = row.components.filter(component => component.family_ids.includes(id)).map(component => ({ surface: component.surface, canonical_candidate: component.canonical_candidate, confidence: component.confidence, evidence: component.evidence }));
     if (!components.length) throw new Error(`${word}: ${id} has no matching component`);
-    seedMembers.get(id).push({ lemma_id: row.lemma_id, components });
+    seedMembers.get(id).push({ lemma_id: row.lemma_id, word: row.word, normalized: row.normalized, search_form: row.search_form, rank: row.rank, frequency_score: row.frequency_score, category_breakdown: row.category_breakdown, sources: row.sources, components });
   }
   if (!gzip.write(`${JSON.stringify(row)}\n`)) await once(gzip, 'drain');
   rows += 1;

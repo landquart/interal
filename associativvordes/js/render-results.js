@@ -9,7 +9,7 @@ export function escapeHtml(s) {
 }
 
 export function matchTypeLabel(type, lang = 'ru') {
-  const labels = lang === 'en' ? { exact: 'exact', special: 'family branch' } : { exact: 'точное', special: 'ветвь семейства' };
+  const labels = lang === 'en' ? { exact: 'exact', special: 'family branch', family: 'indexed family' } : { exact: 'точное', special: 'ветвь семейства', family: 'индексированное семейство' };
   return labels[type] || '—';
 }
 

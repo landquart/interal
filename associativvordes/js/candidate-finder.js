@@ -53,7 +53,11 @@ function runtimeWarningsForEntry(entry) {
   return [...warnings];
 }
 
-function findMatch({ searchForm, root, language, specialRootMatcher }) {
+function findMatch({ entry, searchForm, root, language, specialRootMatcher }) {
+  if (entry?.family_indexed === true && entry.family_id) {
+    const component = Array.isArray(entry.components) ? entry.components[0] : null;
+    return { type: 'family', distance: 0, similarity: 1, fragment: component?.canonical_candidate || entry.family_canonical || root, index: 0, family_id: entry.family_id };
+  }
   if (specialRootMatcher) {
     const customSpecial = specialRootMatcher(language, searchForm, root);
     if (customSpecial) return typeof customSpecial === 'object'
@@ -94,7 +98,7 @@ export function findCandidatesForRoot({ entries, root, language = 'en', elementT
 
   const matched = [];
   for (const entry of byLemma.values()) {
-    const match = findMatch({ searchForm: entry.search_form, root, language, specialRootMatcher });
+    const match = findMatch({ entry, searchForm: entry.search_form, root, language, specialRootMatcher });
     if (!match) continue;
     const candidate = {
       word: entry.word,
@@ -110,7 +114,8 @@ export function findCandidatesForRoot({ entries, root, language = 'en', elementT
       family_id: entry.family_id || null,
       family_canonical: entry.family_canonical || null,
       family_aliases: Array.isArray(entry.family_aliases) ? [...entry.family_aliases] : [],
-      family_verified: entry.family_verified === true
+      family_verified: entry.family_verified === true,
+      family_indexed: entry.family_indexed === true
     };
     const model = lexicalModelDescriptor(candidate, root, language, elementType);
     candidate.model_family_key = model.key;

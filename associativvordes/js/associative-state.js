@@ -131,7 +131,7 @@ function compactStateSources(sources) {
 function compactStateMatch(match) {
   if (!match || typeof match !== 'object' || Array.isArray(match)) return null;
   const type = String(match.type || '').trim();
-  if (!['exact', 'special', 'fuzzy'].includes(type)) return null;
+  if (!['exact', 'special', 'family', 'fuzzy'].includes(type)) return null;
   const distance = finiteOrNull(match.distance);
   const similarity = finiteOrNull(match.similarity);
   const fragment = typeof match.fragment === 'string' ? match.fragment : '';

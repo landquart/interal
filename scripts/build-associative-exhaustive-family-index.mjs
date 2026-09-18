@@ -355,7 +355,7 @@ async function writeAssignments({ candidateRoot, manifest, languages, outputRoot
       if (!gzip.write(`${JSON.stringify(payload)}\n`)) await once(gzip, 'drain');
       for (const id of familyIds) {
         const stream = memberStream(familyBucket(id));
-        const membership = [id, { lemma_id: payload.lemma_id, components: componentRows.filter(item => item.family_ids.includes(id)).map(item => ({ surface: item.surface, canonical_candidate: item.canonical_candidate, confidence: item.confidence, evidence: item.evidence })) }];
+        const membership = [id, { lemma_id: payload.lemma_id, word: payload.word, normalized: payload.normalized, search_form: payload.search_form, rank: payload.rank, frequency_score: payload.frequency_score, category_breakdown: payload.category_breakdown, sources: payload.sources, components: componentRows.filter(item => item.family_ids.includes(id)).map(item => ({ surface: item.surface, canonical_candidate: item.canonical_candidate, confidence: item.confidence, evidence: item.evidence })) }];
         if (!stream.write(`${JSON.stringify(membership)}\n`)) await once(stream, 'drain');
       }
       total += 1;
@@ -603,7 +603,7 @@ async function main() {
 
   await writeFile(join(options.outputRoot, 'proto-review.json'), `${JSON.stringify(built.protoReview, null, 2)}\n`);
   await writeFile(join(options.outputRoot, 'reports/audit-summary.json'), `${JSON.stringify(report, null, 2)}\n`);
-  await writeFile(join(options.outputRoot, 'manifest.json'), `${JSON.stringify({ version: '3', generated_at: report.generated_at, languages: options.languages, counts: { families: totalFamilies, aliases: aliasesInLookup, lemmas: sourceLemmaCount, components: assignments.totalComponents }, sharding: { algorithm: 'fnv1a-modulo-256', alias_template: 'aliases/{bucket}.json', family_template: 'families/{bucket}.json', member_template: 'members/{language}/{bucket}.json' }, buckets: { families: familyBuckets, aliases: aliasBuckets } }, null, 2)}\n`);
+  await writeFile(join(options.outputRoot, 'manifest.json'), `${JSON.stringify({ version: '4', generated_at: report.generated_at, languages: options.languages, counts: { families: totalFamilies, aliases: aliasesInLookup, lemmas: sourceLemmaCount, components: assignments.totalComponents }, sharding: { algorithm: 'fnv1a-modulo-256', alias_template: 'aliases/{bucket}.json', family_template: 'families/{bucket}.json', member_template: 'members/{language}/{bucket}.json' }, buckets: { families: familyBuckets, aliases: aliasBuckets } }, null, 2)}\n`);
   await writeFile(join(options.outputRoot, 'report.json'), `${JSON.stringify(report, null, 2)}\n`);
   console.log(JSON.stringify(report, null, 2));
   if (!controlsOk || !Object.values(invariants).every(value => typeof value !== 'boolean' || value)) process.exitCode = 2;
