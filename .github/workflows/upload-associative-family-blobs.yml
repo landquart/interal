@@ -32,6 +32,10 @@ jobs:
         run: |
           echo '84f631a918f0aa8ac3d3466bb3334e7cc9ed4149e43b032803539c1f1e005b69  associative-family-metadata-v4.zip' | sha256sum -c -
           echo '7957939cd16a4f48d7e0e89a677efa00ec9ac1546cba5c9032adeed1659e5529  associative-family-members-v4.zip' | sha256sum -c -
+      - name: Confirm Blob credential is available
+        env:
+          BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
+        run: test -n "$BLOB_READ_WRITE_TOKEN"
       - name: Upload existing index archives
         env:
           BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
