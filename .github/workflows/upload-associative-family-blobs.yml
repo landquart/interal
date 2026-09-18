@@ -26,12 +26,8 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh api repos/${{ github.repository }}/actions/artifacts/10550392530/zip > metadata-artifact.zip
-          gh api repos/${{ github.repository }}/actions/artifacts/10550807847/zip > members-artifact.zip
-          unzip -j metadata-artifact.zip '*.zip' -d .tmp/metadata
-          unzip -j members-artifact.zip '*.zip' -d .tmp/members
-          mv .tmp/metadata/*.zip associative-family-metadata-v4.zip
-          mv .tmp/members/*.zip associative-family-members-v4.zip
+          gh api repos/${{ github.repository }}/actions/artifacts/10550392530/zip > associative-family-metadata-v4.zip
+          gh api repos/${{ github.repository }}/actions/artifacts/10550807847/zip > associative-family-members-v4.zip
       - name: Verify immutable artifact checksums
         run: |
           echo '84f631a918f0aa8ac3d3466bb3334e7cc9ed4149e43b032803539c1f1e005b69  associative-family-metadata-v4.zip' | sha256sum -c -
