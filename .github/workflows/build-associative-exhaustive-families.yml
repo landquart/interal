@@ -6,11 +6,9 @@ on:
       - agent/associative-family-production-v3
     paths:
       - 'scripts/build-associative-exhaustive-family-index.mjs'
-      - '.github/workflows/build-associative-exhaustive-families.yml'
       - 'associativvordes/js/affix-search-config.js'
       - 'associativvordes/js/root-matcher.js'
       - 'associativvordes/js/morphology/**'
-      - 'associativvordes/js/family-index-loader.js'
       - 'scripts/lib/associative-family-graph.mjs'
       - 'tests/associative-family-production.test.mjs'
       - 'associativvordes/frequency lists/**'
