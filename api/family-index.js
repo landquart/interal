@@ -4,12 +4,18 @@ import { inflateRawSync } from 'node:zlib';
 const PREFIX = 'associative-family/v4/';
 const archives = new Map();
 
+function blobToken() {
+  return process.env.BLOB_READ_WRITE_TOKEN
+    || process.env.VERCEL_OIDC_TOKEN
+    || Object.entries(process.env).find(([key, value]) => key.endsWith('_READ_WRITE_TOKEN') && String(value).startsWith('vercel_blob_'))?.[1];
+}
+
 function archiveName(path) {
   return path.startsWith('members/') ? 'members.zip' : 'metadata.zip';
 }
 
 async function range(url, start, end) {
-  const token = process.env.BLOB_READ_WRITE_TOKEN || process.env.VERCEL_OIDC_TOKEN;
+  const token = blobToken();
   if (!token) throw Object.assign(new Error('Blob read credential unavailable'), { statusCode: 503 });
   const response = await fetch(url, { headers: { Range: `bytes=${start}-${end}`, Authorization: `Bearer ${token}` } });
   if (!(response.ok || response.status === 206)) throw new Error(`Blob range failed: ${response.status}`);
@@ -18,7 +24,9 @@ async function range(url, start, end) {
 
 async function locate(name) {
   const pathname = `${PREFIX}${name}`;
-  const result = await list({ prefix: pathname, limit: 10 });
+  const token = blobToken();
+  if (!token) throw Object.assign(new Error('Blob read credential unavailable'), { statusCode: 503 });
+  const result = await list({ prefix: pathname, limit: 10, token });
   const blob = result.blobs.find(value => value.pathname === pathname);
   if (!blob) throw Object.assign(new Error(`Archive unavailable: ${name}`), { statusCode: 503 });
   return blob;
