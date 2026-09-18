@@ -9,13 +9,14 @@ export function familyBucket(value) {
 const normalizeAlias = value => buildSearchForm(value).replace(/[^a-z0-9]/g, '');
 
 export class FamilyIndexLoader {
-  constructor({ baseUrl = './family-index', fetchJson = async (url, options) => { const response = await fetch(url, options); if (!response.ok) throw new Error(`Family index request failed: ${response.status}`); return response.json(); } } = {}) {
+  constructor({ baseUrl = '/api/family-index?path=', fetchJson = async (url, options) => { const response = await fetch(url, options); if (!response.ok) throw new Error(`Family index request failed: ${response.status}`); return response.json(); } } = {}) {
     this.baseUrl = baseUrl.replace(/\/$/, ''); this.fetchJson = fetchJson; this.cache = new Map();
   }
   load(path, { signal } = {}) {
     if (signal?.aborted) return Promise.reject(signal.reason || new DOMException('Aborted', 'AbortError'));
     if (!this.cache.has(path)) {
-      const request = Promise.resolve(this.fetchJson(`${this.baseUrl}/${path}`, signal ? { signal } : {}));
+      const separator = this.baseUrl.includes('?') ? '' : '/';
+      const request = Promise.resolve(this.fetchJson(`${this.baseUrl}${separator}${path}`, signal ? { signal } : {}));
       this.cache.set(path, request);
       request.catch(() => { if (this.cache.get(path) === request) this.cache.delete(path); });
     }
