@@ -30,8 +30,10 @@ export class FamilyIndexLoader {
   async candidateEntries(query, language, options) {
     const ids = await this.resolveAlias(query, options);
     const groups = await Promise.all(ids.map(async id => ({ family: await this.family(id, options), members: await this.members(id, language, options) })));
+    const manualGroups = groups.filter(({ family }) => String(family?.source || '').includes('manual_override'));
+    const eligibleGroups = manualGroups.length ? manualGroups : groups;
     const byLemma = new Map();
-    for (const { family, members } of groups) {
+    for (const { family, members } of eligibleGroups) {
       if (!family) continue;
       const manuallyVerified = String(family.source || '').includes('manual_override')
         ? members.filter(member => member.components?.some(component => component.evidence?.some(evidence => evidence.type === 'manual_override')))
