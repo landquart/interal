@@ -132,12 +132,20 @@ jobs:
           key: ${{ steps.dump-cache.outputs.cache-primary-key }}
 
       - name: Scan every indexed lemma and build families
+        id: build-families
+        continue-on-error: true
         run: |
           node scripts/build-associative-exhaustive-family-index.mjs \
             --candidate-root=.tmp/family-candidate-index \
             --output-root=.tmp/associative-exhaustive-families \
             --etymology-gzip="$PWD/.tmp/kaikki-wiktextract.jsonl.gz" \
             --languages=en,de,fr,es,it,ru
+
+      - name: Repair methodology control families
+        run: node scripts/repair-associative-family-controls.mjs .tmp/associative-exhaustive-families
+
+      - name: Cross-audit every assignment and membership
+        run: node scripts/audit-associative-family-output.mjs .tmp/associative-exhaustive-families
 
       - name: Verify exhaustive assignment
         run: |
