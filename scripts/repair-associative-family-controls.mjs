@@ -58,6 +58,7 @@ const gzip = createGzip({ level: 9 });
 const output = createWriteStream(assignmentTemp);
 gzip.pipe(output);
 const patched = new Map();
+const seedMembers = new Map(Object.keys(SEEDS).map(id => [id, []]));
 let rows = 0;
 let addedComponents = 0;
 for await (const line of input) {
@@ -83,6 +84,12 @@ for await (const line of input) {
     row.family_ids.sort();
     patched.set(word, { row, component, seedId });
   }
+  for (const id of Object.keys(SEEDS)) {
+    if (!row.family_ids.includes(id)) continue;
+    const components = row.components.filter(component => component.family_ids.includes(id)).map(component => ({ surface: component.surface, canonical_candidate: component.canonical_candidate, confidence: component.confidence, evidence: component.evidence }));
+    if (!components.length) throw new Error(`${word}: ${id} has no matching component`);
+    seedMembers.get(id).push({ lemma_id: row.lemma_id, components });
+  }
   if (!gzip.write(`${JSON.stringify(row)}\n`)) await once(gzip, 'drain');
   rows += 1;
 }
@@ -98,16 +105,13 @@ for (const [seedId, seed] of Object.entries(SEEDS)) {
   const familyPath = join(root, 'families', `${bucket(seedId)}.json`);
   const families = await json(familyPath);
   if (!Object.hasOwn(families, seedId)) newFamilies += 1;
-  const support = seed.words.length;
+  const support = seedMembers.get(seedId).length;
   families[seedId] = { id: seedId, canonical: seed.canonical, aliases: seed.aliases, verified: true, confidence: 'A', source: 'methodology_seed+manual_override', etymon_keys: [], language_support: { en: support }, support, suspicion_score: 0, suspicion_reasons: [], review_status: 'verified' };
   await writeJson(familyPath, families);
 
   const memberPath = join(root, 'members', 'en', `${bucket(seedId)}.json`);
   const members = await json(memberPath);
-  members[seedId] = seed.words.map(word => {
-    const item = patched.get(word);
-    return { lemma_id: item.row.lemma_id, components: [{ surface: item.component.surface, canonical_candidate: item.component.canonical_candidate, confidence: item.component.confidence, evidence: item.component.evidence }] };
-  });
+  members[seedId] = seedMembers.get(seedId);
   await writeJson(memberPath, members);
 
   for (const alias of seed.aliases) {
