@@ -9,7 +9,9 @@ function archiveName(path) {
 }
 
 async function range(url, start, end) {
-  const response = await fetch(url, { headers: { Range: `bytes=${start}-${end}` } });
+  const token = process.env.BLOB_READ_WRITE_TOKEN || process.env.VERCEL_OIDC_TOKEN;
+  if (!token) throw Object.assign(new Error('Blob read credential unavailable'), { statusCode: 503 });
+  const response = await fetch(url, { headers: { Range: `bytes=${start}-${end}`, Authorization: `Bearer ${token}` } });
   if (!(response.ok || response.status === 206)) throw new Error(`Blob range failed: ${response.status}`);
   return Buffer.from(await response.arrayBuffer());
 }

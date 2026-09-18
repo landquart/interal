@@ -13,7 +13,7 @@ for (const [file, pathname] of [
   const info = await stat(file);
   console.log(`Uploading ${pathname} (${info.size} bytes)`);
   const result = await put(pathname, createReadStream(file), {
-    access: 'public', addRandomSuffix: false, allowOverwrite: true, multipart: true, token
+    access: 'private', addRandomSuffix: false, allowOverwrite: true, multipart: true, token
   });
   console.log(`${pathname}: ${result.url}`);
 }
