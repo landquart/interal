@@ -1,0 +1,53 @@
+name: Sample corrective family v5 semantics
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_run_id:
+        description: Corrective build workflow run ID
+        required: true
+        default: '35461412225'
+        type: string
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  sample:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      SOURCE_RUN_ID: ${{ inputs.source_run_id }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Download immutable assignments and metadata
+        run: |
+          set -euo pipefail
+          root=.tmp/audit-family-v5
+          mkdir -p "$root/assignments"
+          gh run download "$SOURCE_RUN_ID" --repo "$GITHUB_REPOSITORY" --name associative-family-metadata --dir "$root"
+          gh run download "$SOURCE_RUN_ID" --repo "$GITHUB_REPOSITORY" --name associative-family-assignments --dir "$root/assignments"
+          test -s "$root/manifest.json"
+          for language in en de fr es it ru; do test -s "$root/assignments/$language.jsonl.gz"; done
+      - name: Generate deterministic stratified sample
+        run: |
+          set -euo pipefail
+          node scripts/sample-associative-family-memberships.mjs \
+            --root=.tmp/audit-family-v5 \
+            --output=.tmp/semantic-sample \
+            --seed=associative-family-v5-semantic-audit-2026-09-19 \
+            --per-language=1600
+          test "$(wc -l < .tmp/semantic-sample/gold-sample.jsonl)" -eq 9600
+          cp audit/associative-family-v5/semantic-acceptance-thresholds.json .tmp/semantic-sample/
+      - name: Upload unannotated semantic audit kit
+        uses: actions/upload-artifact@v4
+        with:
+          name: associative-family-v5-semantic-audit-kit
+          path: .tmp/semantic-sample
+          if-no-files-found: error
+          retention-days: 90
