@@ -36,3 +36,34 @@ test('candidate loader prefers the exhaustive family index over literal static s
   assert.equal(entries[0].word, 'monocle');
   assert.equal(loader.getCandidateIndexDiagnostics().familyIndexStatus, 'loaded');
 });
+test('family runtime fails closed before fetching an excessive alias fan-out', async () => {
+  const ids = Array.from({ length: 26 }, (_, index) => `family:${index}`);
+  const aliasBucket = familyBucket('act');
+  let familyFetches = 0;
+  const data = { 'manifest.json': { version: '4', languages: ['en'], sharding: { alias_template: 'aliases/{bucket}.json', family_template: 'families/{bucket}.json', member_template: 'members/{language}/{bucket}.json' } }, [`aliases/${aliasBucket}.json`]: { act: ids } };
+  const loader = new FamilyIndexLoader({ baseUrl: '/family-index', fetchJson: async url => { const path = url.replace('/family-index/', ''); if (path.startsWith('families/') || path.startsWith('members/')) familyFetches += 1; return data[path]; } });
+  await assert.rejects(loader.candidateEntries('act', 'en'), /fan-out 26 exceeds runtime limit 25/);
+  assert.equal(familyFetches, 0);
+});
+test('manual override is language-aware and never exposes stale non-manual members', async () => {
+  const aliasBucket = familyBucket('ocul'), manualId = 'family:ocul', automaticId = 'ety:ocul';
+  const ids = [manualId, automaticId].sort();
+  const member = (word, manual = false) => ({ lemma_id: word, word, normalized: word, search_form: word, frequency_score: 50, sources: [{ id: 'test' }], components: [{ evidence: manual ? [evidence('manual_override')] : [evidence('inheritance')] }] });
+  const familyShards = {}, memberShards = {};
+  for (const family of [{ id: manualId, source: 'methodology_seed+manual_override', review_status: 'verified' }, { id: automaticId, source: 'etymology', review_status: 'needs_review' }]) {
+    const bucket = familyBucket(family.id);
+    (familyShards[`families/${bucket}.json`] ||= {})[family.id] = { ...family, canonical: 'ocul', aliases: ['ocul'] };
+    (memberShards[`members/fr/${bucket}.json`] ||= {})[family.id] = family.id === manualId ? [member('oculaire', true), member('dutheillet')] : [member('oeil')];
+  }
+  const data = { 'manifest.json': { version: '4', languages: ['fr'], sharding: { alias_template: 'aliases/{bucket}.json', family_template: 'families/{bucket}.json', member_template: 'members/{language}/{bucket}.json' } }, [`aliases/${aliasBucket}.json`]: { ocul: ids }, ...familyShards, ...memberShards };
+  const loader = new FamilyIndexLoader({ baseUrl: '/family-index', fetchJson: async url => data[url.replace('/family-index/', '')] });
+  assert.deepEqual((await loader.candidateEntries('ocul', 'fr')).map(item => item.word), ['oculaire']);
+});
+test('blocked, rejected, and split-required families never reach runtime candidates', async () => {
+  for (const review_status of ['blocked_from_runtime', 'rejected', 'split_required']) {
+    const aliasBucket = familyBucket('alter'), id = `family:${review_status}`, idBucket = familyBucket(id);
+    const data = { 'manifest.json': { version: '4', languages: ['de'], sharding: { alias_template: 'aliases/{bucket}.json', family_template: 'families/{bucket}.json', member_template: 'members/{language}/{bucket}.json' } }, [`aliases/${aliasBucket}.json`]: { alter: [id] }, [`families/${idBucket}.json`]: { [id]: { id, canonical: 'alter', aliases: ['alter'], source: 'etymology', review_status } } };
+    const loader = new FamilyIndexLoader({ baseUrl: '/family-index', fetchJson: async url => data[url.replace('/family-index/', '')] });
+    assert.deepEqual(await loader.candidateEntries('alter', 'de'), []);
+  }
+});
