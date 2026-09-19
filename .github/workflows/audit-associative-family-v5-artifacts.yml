@@ -12,7 +12,7 @@ on:
       source_run_id:
         description: 'Corrective build workflow run ID'
         required: true
-        default: '35444016291'
+        default: '35448148478'
         type: string
 
 permissions:
@@ -24,14 +24,14 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 120
     env:
-      SOURCE_RUN_ID: ${{ inputs.source_run_id || '35444016291' }}
+      SOURCE_RUN_ID: ${{ inputs.source_run_id || '35448148478' }}
       GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Download complete failed-gate artifact set
+      - name: Download complete corrective artifact set
         run: |
           set -euo pipefail
           root=.tmp/audit-family-v5
@@ -46,7 +46,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          node scripts/audit-associative-family-output.mjs .tmp/audit-family-v5 --allow-failed-controls | tee .tmp/structural-audit.json
+          node scripts/audit-associative-family-output.mjs .tmp/audit-family-v5 | tee .tmp/structural-audit.json
       - name: Upload independent structural audit
         if: always()
         uses: actions/upload-artifact@v4
