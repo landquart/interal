@@ -1,9 +1,19 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { readFile } from 'node:fs/promises';
-import { applyExactControlOverride, buildFamilies, etymologyPairs, etymonKeyDistribution, isMergeEligibleComponent } from '../scripts/build-associative-exhaustive-family-index.mjs';
+import { applyExactControlOverride, buildFamilies, etymologyPairs, etymonKeyDistribution, isMergeEligibleComponent, parseArgs } from '../scripts/build-associative-exhaustive-family-index.mjs';
 import { RELATION_TYPE, parseStructuredExpansion, templateRelations } from '../scripts/lib/associative-etymology-policy.mjs';
 import { classifyCorpusLemma } from '../scripts/lib/associative-corpus-quality.mjs';
+
+test('corrective build accepts an immutable input-lock artifact', () => {
+  const parsed = parseArgs([
+    '--candidate-root=/tmp/candidates',
+    '--output-root=/tmp/output',
+    '--etymology-gzip=/tmp/kaikki.jsonl.gz',
+    '--input-lock=/tmp/input-lock.json'
+  ]);
+  assert.equal(parsed.inputLock, '/tmp/input-lock.json');
+});
 
 test('structured expansion never pairs lang and term from adjacent nodes', async () => {
   const fixture = JSON.parse(await readFile('audit/associative-family-v5/parser-fixtures/adjacent-nodes.json', 'utf8'));
