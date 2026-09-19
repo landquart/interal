@@ -73,14 +73,26 @@ jobs:
           set -euo pipefail
           candidate_sha=$(find .tmp/family-candidate-index -type f -print0 | sort -z | xargs -0 sha256sum | sha256sum | cut -d' ' -f1)
           kaikki_sha=$(sha256sum .tmp/kaikki-wiktextract.jsonl.gz | cut -d' ' -f1)
-          node --input-type=module - "$candidate_sha" "$kaikki_sha" <<'NODE'
+          candidate_bytes=$(du -sb .tmp/family-candidate-index | cut -f1)
+          kaikki_bytes=$(stat -c %s .tmp/kaikki-wiktextract.jsonl.gz)
+          candidate_manifest_sha=$(sha256sum .tmp/family-candidate-index/manifest.json | cut -d' ' -f1)
+          package_lock_sha=$(sha256sum package-lock.json | cut -d' ' -f1)
+          node --input-type=module - "$candidate_sha" "$kaikki_sha" "$candidate_bytes" "$kaikki_bytes" "$candidate_manifest_sha" "$package_lock_sha" <<'NODE'
           import { writeFile } from 'node:fs/promises';
-          const [, , candidateTreeSha256, kaikkiSha256] = process.argv;
+          const [, , candidateTreeSha256, kaikkiSha256, candidateBytes, kaikkiBytes, candidateManifestSha256, packageLockSha256] = process.argv;
           await writeFile('.tmp/input-lock-runtime.json', `${JSON.stringify({
+            source_commit: process.env.GITHUB_SHA,
+            workflow_run_id: process.env.GITHUB_RUN_ID,
+            workflow_run_attempt: process.env.GITHUB_RUN_ATTEMPT,
+            node_version: process.version,
+            package_lock_sha256: packageLockSha256,
             candidate_cache_key: 'Linux-family-candidates-v3-3024370275a832dc65b5d4c58055343f36da1d4d2169ceaa2743d2e152ce01c2',
             candidate_tree_sha256: candidateTreeSha256,
+            candidate_manifest_sha256: candidateManifestSha256,
+            candidate_bytes: Number(candidateBytes),
             kaikki_cache_key: 'Linux-kaikki-320b99476e1a55df57761bd1d38b1cc68965f77a747f95fb3cc93625b2027d1b',
             kaikki_sha256: kaikkiSha256,
+            kaikki_bytes: Number(kaikkiBytes),
             kaikki_url_at_audited_v4_build: 'https://kaikki.org/dictionary/raw-wiktextract-data.jsonl.gz'
           }, null, 2)}\n`);
           NODE
@@ -93,6 +105,7 @@ jobs:
             --candidate-root=.tmp/family-candidate-index \
             --output-root=.tmp/associative-exhaustive-families \
             --etymology-gzip="$PWD/.tmp/kaikki-wiktextract.jsonl.gz" \
+            --input-lock="$PWD/.tmp/input-lock-runtime.json" \
             --languages=en,de,fr,es,it,ru
 
       - name: Analyze etymon-key distribution without materializing families
