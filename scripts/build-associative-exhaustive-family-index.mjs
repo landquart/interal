@@ -42,18 +42,34 @@ const CONTROL_FORBIDDEN_FAMILY_IDS = new Set(['ety:0f6061e49232', 'ety:a9f83219c
 
 
 function parseArgs(argv) {
-  const out = { languages: LANGUAGES };
+  const out = { languages: LANGUAGES, analysisOnly: false };
   for (const arg of argv) {
     if (arg.startsWith('--candidate-root=')) out.candidateRoot = arg.slice(17);
     else if (arg.startsWith('--output-root=')) out.outputRoot = arg.slice(14);
     else if (arg.startsWith('--etymology-gzip=')) out.etymologyGzip = arg.slice(17);
     else if (arg.startsWith('--languages=')) out.languages = arg.slice(12).split(',').map(v => v.trim()).filter(Boolean);
+    else if (arg === '--analysis-only') out.analysisOnly = true;
+    else if (arg.startsWith('--analysis-report=')) out.analysisReport = arg.slice(18);
     else throw new Error(`Unknown argument: ${arg}`);
   }
   if (!out.candidateRoot || !out.outputRoot) throw new Error('--candidate-root and --output-root are required');
   if (!out.etymologyGzip) throw new Error('--etymology-gzip is required');
   for (const lang of out.languages) if (!LANGUAGES.includes(lang)) throw new Error(`Unsupported language: ${lang}`);
   return out;
+}
+
+export function etymonKeyDistribution(records) {
+  const sizes = [...records.values()].map(record => record.roots.size).sort((a, b) => a - b);
+  const bounds = [0, 1, 2, 5, 10, 25, 50, 100, 250, 500, 1000, 2500, 10000, 25000];
+  const histogram = Object.fromEntries(bounds.slice(1).map((upper, index) => [`${bounds[index] + 1}-${upper}`, 0]));
+  histogram['25001+'] = 0;
+  for (const size of sizes) {
+    const upperIndex = bounds.findIndex((upper, index) => index > 0 && size <= upper);
+    const key = upperIndex < 0 ? '25001+' : `${bounds[upperIndex - 1] + 1}-${bounds[upperIndex]}`;
+    histogram[key] += 1;
+  }
+  const percentile = value => sizes.length ? sizes[Math.min(sizes.length - 1, Math.floor((sizes.length - 1) * value))] : 0;
+  return { keys: sizes.length, minimum: sizes[0] || 0, maximum: sizes.at(-1) || 0, percentiles: { p50: percentile(0.5), p90: percentile(0.9), p95: percentile(0.95), p99: percentile(0.99), p999: percentile(0.999) }, histogram };
 }
 
 const nfcLower = value => String(value || '').normalize('NFC').toLocaleLowerCase('und').trim();
@@ -416,6 +432,25 @@ async function main() {
   console.error('[families] pass 3: streaming Wiktionary/Kaikki etymology for every indexed lemma');
   const ety = await scanEtymologies(options.etymologyGzip, primary.wordRoots, options.languages);
   console.error(`[families] non-proto etymon keys=${ety.nonProto.size}; proto review keys=${ety.proto.size}`);
+
+  if (options.analysisOnly) {
+    const analysis = {
+      generated_at: new Date().toISOString(),
+      mode: 'analysis_only_no_family_materialization',
+      languages: options.languages,
+      source_entries: primary.countsByLanguage,
+      etymology_coverage: ety.coverage,
+      relation_counts: ety.relationCounts,
+      uncertain_relation_count: ety.uncertainRelationCount,
+      non_proto_root_distribution: etymonKeyDistribution(ety.nonProto),
+      review_only_root_distribution: etymonKeyDistribution(ety.proto)
+    };
+    const reportPath = options.analysisReport || join(options.outputRoot, 'etymon-key-distribution.json');
+    await mkdir(reportPath.slice(0, Math.max(reportPath.lastIndexOf('/'), 0)) || '.', { recursive: true });
+    await writeFile(reportPath, `${JSON.stringify(analysis, null, 2)}\n`);
+    console.log(JSON.stringify(analysis, null, 2));
+    return;
+  }
 
   console.error('[families] pass 4: creating and merging associative families');
   const built = buildFamilies(ety.nonProto, ety.proto, primary.rootSupport);

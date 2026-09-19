@@ -22,6 +22,7 @@ on:
         type: choice
         options:
           - lock-inputs
+          - analyze-inputs
           - corrective-build
       confirm_corrective_build:
         description: 'For corrective-build only: type BUILD_CORRECTIVE_FAMILY_V5'
@@ -106,6 +107,17 @@ jobs:
             --etymology-gzip="$PWD/.tmp/kaikki-wiktextract.jsonl.gz" \
             --languages=en,de,fr,es,it,ru
 
+      - name: Analyze etymon-key distribution without materializing families
+        if: inputs.operation == 'analyze-inputs'
+        run: |
+          node scripts/build-associative-exhaustive-family-index.mjs \
+            --candidate-root=.tmp/family-candidate-index \
+            --output-root=.tmp/associative-family-analysis \
+            --analysis-only \
+            --analysis-report=.tmp/associative-family-analysis/etymon-key-distribution.json \
+            --etymology-gzip="$PWD/.tmp/kaikki-wiktextract.jsonl.gz" \
+            --languages=en,de,fr,es,it,ru
+
       - name: Attach immutable input lock
         if: inputs.operation == 'corrective-build'
         run: cp .tmp/input-lock-runtime.json .tmp/associative-exhaustive-families/reports/input-lock-runtime.json
@@ -172,5 +184,14 @@ jobs:
         with:
           name: associative-family-v5-input-lock
           path: .tmp/input-lock-runtime.json
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Upload etymon-key distribution
+        if: always() && inputs.operation == 'analyze-inputs'
+        uses: actions/upload-artifact@v4
+        with:
+          name: associative-family-v5-etymon-key-distribution
+          path: .tmp/associative-family-analysis/etymon-key-distribution.json
           if-no-files-found: error
           retention-days: 90

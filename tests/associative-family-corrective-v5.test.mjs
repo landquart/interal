@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { readFile } from 'node:fs/promises';
-import { buildFamilies, etymologyPairs } from '../scripts/build-associative-exhaustive-family-index.mjs';
+import { buildFamilies, etymologyPairs, etymonKeyDistribution } from '../scripts/build-associative-exhaustive-family-index.mjs';
 import { RELATION_TYPE, parseStructuredExpansion, templateRelations } from '../scripts/lib/associative-etymology-policy.mjs';
 import { classifyCorpusLemma } from '../scripts/lib/associative-corpus-quality.mjs';
 
@@ -64,4 +64,14 @@ test('known audit noise and generic markup are rejected deterministically', () =
   assert.deepEqual(classifyCorpusLemma('pediatricianand').status, 'rejected');
   assert.deepEqual(classifyCorpusLemma('https://noise.example').status, 'rejected');
   assert.deepEqual(classifyCorpusLemma('ocular').status, 'accepted');
+});
+
+test('etymon-key distribution is deterministic and exposes the long tail', () => {
+  const records = new Map([1, 2, 3, 26, 101, 25001].map((size, index) => [`key:${index}`, { roots: new Set(Array.from({ length: size }, (_, i) => `en:r${i}`)) }]));
+  const result = etymonKeyDistribution(records);
+  assert.equal(result.keys, 6);
+  assert.equal(result.maximum, 25001);
+  assert.equal(result.histogram['26-50'], 1);
+  assert.equal(result.histogram['101-250'], 1);
+  assert.equal(result.histogram['25001+'], 1);
 });

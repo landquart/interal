@@ -1,6 +1,6 @@
 # Associative family index v5 corrective audit
 
-Status: **preflight passed locally; corrective build blocked by an input-lock mismatch**.
+Status: **preflight and exact input recovery passed; analysis-only distribution scan pending**.
 
 Production remains on audited v4 and is not modified by this branch.
 
@@ -37,11 +37,15 @@ Production remains on audited v4 and is not modified by this branch.
 
 The index must not be called production-ready until these items are complete.
 
-## Fail-closed input-lock result
+## Input-lock recovery
 
 Lock-only workflow run `35427527134` failed to restore the audited candidate
 cache key `Linux-family-candidates-v3-3024370275a832dc65b5d4c58055343f36da1d4d2169ceaa2743d2e152ce01c2`.
-No family generation step ran. The Kaikki cache and content SHA comparison were
-not reached. Rebuilding candidate indexes or substituting a newer dump would mix
-input generations, so the corrective build remains unauthorized until the exact
-candidate artifact is recovered and its content SHA is independently locked.
+The cause was GitHub Actions cache scope isolation between sibling branches, not
+an absent source checkpoint. Lock-only run `35441277463` in the original cache
+scope restored both exact entries without rebuilding or downloading replacements.
+It recorded candidate tree SHA-256
+`2fa23e5690cbdcb80e27708f950a3c3935d87a566030221327c06eabbab0f2f6` and
+Kaikki SHA-256 `42e0bfe1669513cb89bd0a12f2e85d1a8f4ebedc70c65ec88c9509d0f5d392f9`.
+No family generation step ran. The original service branch was restored to its
+pre-recovery commit after the lock artifact was downloaded.
