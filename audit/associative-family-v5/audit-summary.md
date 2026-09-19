@@ -1,6 +1,6 @@
 # Associative family index v5 corrective audit
 
-Status: **preflight passed locally; full corrective build not yet executed**.
+Status: **preflight passed locally; corrective build blocked by an input-lock mismatch**.
 
 Production remains on audited v4 and is not modified by this branch.
 
@@ -36,3 +36,12 @@ Production remains on audited v4 and is not modified by this branch.
 - complete browser matrix.
 
 The index must not be called production-ready until these items are complete.
+
+## Fail-closed input-lock result
+
+Lock-only workflow run `35427527134` failed to restore the audited candidate
+cache key `Linux-family-candidates-v3-3024370275a832dc65b5d4c58055343f36da1d4d2169ceaa2743d2e152ce01c2`.
+No family generation step ran. The Kaikki cache and content SHA comparison were
+not reached. Rebuilding candidate indexes or substituting a newer dump would mix
+input generations, so the corrective build remains unauthorized until the exact
+candidate artifact is recovered and its content SHA is independently locked.
