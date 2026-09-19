@@ -3,8 +3,9 @@ name: Build exhaustive associative families
 on:
   push:
     branches:
-      - agent/associative-family-production-v3
+      - fix/associative-family-corrective-v5
     paths:
+      - '.github/workflows/build-associative-exhaustive-families.yml'
       - 'scripts/build-associative-exhaustive-family-index.mjs'
       - 'associativvordes/js/affix-search-config.js'
       - 'associativvordes/js/root-matcher.js'
