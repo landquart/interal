@@ -1,18 +1,6 @@
 name: Build exhaustive associative families
 
 on:
-  push:
-    branches:
-      - fix/associative-family-corrective-v5
-    paths:
-      - '.github/workflows/build-associative-exhaustive-families.yml'
-      - 'scripts/build-associative-exhaustive-family-index.mjs'
-      - 'associativvordes/js/affix-search-config.js'
-      - 'associativvordes/js/root-matcher.js'
-      - 'associativvordes/js/morphology/**'
-      - 'scripts/lib/associative-family-graph.mjs'
-      - 'tests/associative-family-production.test.mjs'
-      - 'associativvordes/frequency lists/**'
   workflow_dispatch:
     inputs:
       operation:
