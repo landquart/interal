@@ -42,6 +42,16 @@ const CONTROL_WORDS = Object.freeze({
 });
 const CONTROL_FORBIDDEN_FAMILY_IDS = new Set(['ety:0f6061e49232', 'ety:a9f83219c8f4', 'ety:eb0c0f2dde53', 'ety:e40fb0a23141', 'ety:2696567cd2f7']);
 
+export function exactControlFamilyId(language, normalizedWord) {
+  return Object.entries(CONTROL_WORDS).find(([, perLang]) => perLang[language]?.includes(normalizedWord))?.[0] || null;
+}
+
+export function applyExactControlOverride({ language, word, searchForm, componentRows, families }) {
+  const familyId = exactControlFamilyId(language, word);
+  if (!familyId) return { familyId: null, componentRows };
+  return { familyId, componentRows: [{ surface: searchForm || word, canonical_candidate: families.get(familyId)?.canonical || familyId.slice(7), family_ids: [familyId], confidence: 1, evidence: [{ type: 'manual_override', source: 'methodology_control_word', path: [language, word, familyId], confidence: 1 }] }] };
+}
+
 
 function parseArgs(argv) {
   const out = { languages: LANGUAGES, analysisOnly: false };
@@ -340,6 +350,7 @@ async function writeAssignments({ candidateRoot, manifest, languages, outputRoot
   let totalComponents = 0;
   let multiFamilyLemmas = 0;
   const corpusQualityCounts = { accepted: 0, suspicious: 0, rejected: 0, requires_manual_review: 0 };
+  const actualLanguageSupport = new Map();
   for (const language of languages) {
     const file = join(outputRoot, 'assignments', `${language}.jsonl.gz`);
     const gzip = createGzip({ level: 9 });
@@ -358,15 +369,17 @@ async function writeAssignments({ candidateRoot, manifest, languages, outputRoot
     for await (const row of candidateRows(candidateRoot, manifest, language)) {
       const wordKey = nfcLower(row.normalized || row.word);
       const analysis = wordRoots[language].get(wordKey) || { components: [{ root: rootNorm(row.search_form || row.word), surface: row.search_form || row.word, confidence: 0.5, evidence: [{ type: 'surface_identity', source: 'morphology_discovery', path: [row.word], confidence: 0.5 }] }], ambiguous: false };
-      const componentRows = analysis.components.map(component => {
+      const discoveredComponentRows = analysis.components.map(component => {
         const node = `${language}:${component.root}`;
         const ids = [...(nodeToFamilies.get(node) || [])].sort();
         const familyIds = ids.length ? ids : [`surface:${language}:${component.root}`];
-        const manualIds = familyIds.filter(id => String(families.get(id)?.source || '').includes('manual_override'));
-        const manualEvidence = manualIds.length ? [{ type: 'manual_override', source: 'methodology_control_seed', path: [language, component.root, ...manualIds], confidence: 1 }] : [];
+        const verifiedSeedIds = familyIds.filter(id => String(families.get(id)?.source || '').includes('manual_override'));
+        const seedEvidence = verifiedSeedIds.length ? [{ type: 'verified_seed_alias', source: 'methodology_control_seed', path: [language, component.root, ...verifiedSeedIds], confidence: 1 }] : [];
         totalComponents += 1;
-        return { surface: component.surface, canonical_candidate: component.root, family_ids: familyIds, confidence: component.confidence, evidence: [...component.evidence, ...manualEvidence] };
+        return { surface: component.surface, canonical_candidate: component.root, family_ids: familyIds, confidence: component.confidence, evidence: [...component.evidence, ...seedEvidence] };
       });
+      const { familyId: controlSeedId, componentRows } = applyExactControlOverride({ language, word: wordKey, searchForm: row.search_form || row.word, componentRows: discoveredComponentRows, families });
+      if (controlSeedId) totalComponents += 1 - discoveredComponentRows.length;
       const familyIds = [...new Set(componentRows.flatMap(item => item.family_ids))].sort();
       if (familyIds.length > 1) multiFamilyLemmas += 1;
       if (componentRows.some(item => !item.family_ids[0].startsWith('surface:'))) merged += 1;
@@ -376,6 +389,9 @@ async function writeAssignments({ candidateRoot, manifest, languages, outputRoot
       const payload = { lemma_id: stableLemmaId(language, row.normalized || row.word), language, word: row.word, normalized: row.normalized, search_form: row.search_form, rank: row.rank, frequency_score: row.frequency_score, category_breakdown: row.category_breakdown, sources: row.sources, components: componentRows, family_ids: familyIds, ambiguous_analysis: analysis.ambiguous, corpus_quality: corpusQuality };
       if (!gzip.write(`${JSON.stringify(payload)}\n`)) await once(gzip, 'drain');
       for (const id of familyIds) {
+        const support = actualLanguageSupport.get(id) || {};
+        support[language] = (support[language] || 0) + 1;
+        actualLanguageSupport.set(id, support);
         const stream = memberStream(familyBucket(id));
         const membership = [id, { lemma_id: payload.lemma_id, word: payload.word, normalized: payload.normalized, search_form: payload.search_form, rank: payload.rank, frequency_score: payload.frequency_score, category_breakdown: payload.category_breakdown, sources: payload.sources, corpus_quality: corpusQuality, components: componentRows.filter(item => item.family_ids.includes(id)).map(item => ({ surface: item.surface, canonical_candidate: item.canonical_candidate, confidence: item.confidence, evidence: item.evidence })) }];
         if (!stream.write(`${JSON.stringify(membership)}\n`)) await once(stream, 'drain');
@@ -409,18 +425,12 @@ async function writeAssignments({ candidateRoot, manifest, languages, outputRoot
     await rm(memberTempRoot, { recursive: true, force: true });
     stats[language] = { total, merged_family_entries: merged, ambiguous_family_entries: ambiguous };
   }
-  return { stats, totalComponents, multiFamilyLemmas, corpusQualityCounts };
+  return { stats, totalComponents, multiFamilyLemmas, corpusQualityCounts, actualLanguageSupport };
 }
 
-function compactFamily(family, rootSupport) {
-  const languages = {};
-  let support = 0;
-  for (const node of family.root_nodes || []) {
-    const lang = langOfNode(node);
-    const value = supportForNode(node, rootSupport);
-    languages[lang] = (languages[lang] || 0) + value;
-    support += value;
-  }
+function compactFamily(family, actualLanguageSupport) {
+  const languages = { ...(actualLanguageSupport.get(family.id) || {}) };
+  const support = Object.values(languages).reduce((sum, value) => sum + value, 0);
   return {
     id: family.id,
     canonical: family.canonical,
@@ -566,11 +576,13 @@ async function main() {
     for (const alias of aliasKeys) await writeLine(streamFor(aliasStreams, 'aliases', familyBucket(alias)), [alias, family.id]);
   };
 
-  for (const family of built.families.values()) await emitFamily(compactFamily(family, primary.rootSupport));
+  for (const family of built.families.values()) await emitFamily(compactFamily(family, assignments.actualLanguageSupport));
   for (const [language, roots] of Object.entries(primary.rootSupport)) {
     for (const [root, support] of roots) {
       if (built.nodeToFamilies.has(`${language}:${root}`)) continue;
-      await emitFamily({ id: `surface:${language}:${root}`, canonical: root, aliases: [root], verified: false, confidence: 'low', source: 'surface_singleton', etymon_keys: [], language_support: { [language]: support }, support });
+      const id = `surface:${language}:${root}`;
+      const languageSupport = assignments.actualLanguageSupport.get(id) || {};
+      await emitFamily({ id, canonical: root, aliases: [root], verified: false, confidence: 'low', source: 'surface_singleton', etymon_keys: [], language_support: languageSupport, support: Object.values(languageSupport).reduce((sum, value) => sum + value, 0) });
     }
   }
   for (const item of built.protoReview) {

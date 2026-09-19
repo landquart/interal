@@ -1,0 +1,54 @@
+name: Audit corrective family v5 artifacts
+
+on:
+  push:
+    branches:
+      - fix/associative-family-corrective-v5
+    paths:
+      - '.github/workflows/audit-associative-family-v5-artifacts.yml'
+      - 'scripts/audit-associative-family-output.mjs'
+  workflow_dispatch:
+    inputs:
+      source_run_id:
+        description: 'Corrective build workflow run ID'
+        required: true
+        default: '35444016291'
+        type: string
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      SOURCE_RUN_ID: ${{ inputs.source_run_id || '35444016291' }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Download complete failed-gate artifact set
+        run: |
+          set -euo pipefail
+          root=.tmp/audit-family-v5
+          mkdir -p "$root/assignments" "$root/members"
+          gh run download "$SOURCE_RUN_ID" --repo "$GITHUB_REPOSITORY" --name associative-family-metadata --dir "$root"
+          gh run download "$SOURCE_RUN_ID" --repo "$GITHUB_REPOSITORY" --name associative-family-assignments --dir "$root/assignments"
+          gh run download "$SOURCE_RUN_ID" --repo "$GITHUB_REPOSITORY" --name associative-family-members --dir "$root/members"
+          test -s "$root/manifest.json"
+          test -s "$root/assignments/en.jsonl.gz"
+          test -s "$root/members/en/00.json"
+      - name: Independently audit every assignment and member
+        run: node scripts/audit-associative-family-output.mjs .tmp/audit-family-v5 | tee .tmp/structural-audit.json
+      - name: Upload independent structural audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: associative-family-v5-independent-structural-audit
+          path: .tmp/structural-audit.json
+          if-no-files-found: warn
+          retention-days: 90
