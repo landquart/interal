@@ -1,0 +1,541 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-09-19T20:11:58.398Z",
+  "environment": {
+    "node": "v22.23.2",
+    "storage": "downloaded_immutable_github_artifacts",
+    "network_included": false
+  },
+  "cold": {
+    "samples": 42,
+    "p50_ms": 83.33449499999983,
+    "p95_ms": 132.8943330000002,
+    "p99_ms": 274.19301700000005,
+    "max_ms": 274.19301700000005
+  },
+  "warm": {
+    "samples": 42,
+    "p50_ms": 0.05880600000000413,
+    "p95_ms": 0.22811099999989892,
+    "p99_ms": 0.3119060000000218,
+    "max_ms": 0.3119060000000218
+  },
+  "cases": [
+    {
+      "alias": "manu",
+      "language": "en",
+      "entries": 2,
+      "cold_ms": 194.82458899999997,
+      "warm_ms": 0.19099399999998923,
+      "cold_reads": 4,
+      "cold_bytes": 14414795,
+      "additional_warm_reads": 0,
+      "additional_warm_bytes": 0
+    },
+    {
+      "alias": "manu",
+      "language": "de",
+      "entries": 0,
+      "cold_ms": 107.21556999999996,
+      "warm_ms": 0.0882569999999987,
+      "cold_reads": 4,
+      "cold_bytes": 10313312,
+      "additional_warm_reads": 0,
+      "additional_warm_bytes": 0
+    },
+    {
+      "alias": "manu",
+      "language": "fr",
+      "entries": 0,
+      "cold_ms": 62.60228000000001,
+      "warm_ms": 0.18352799999996705,
+      "cold_reads": 4,
+      "cold_bytes": 6530964,
+      "additional_warm_reads": 0,
+      "additional_warm_bytes": 0
+    },
+    {
+      "alias": "manu",
+      "language": "es",
+      "entries": 0,
+      "cold_ms": 91.30049000000002,
+      "warm_ms": 0.07564800000000105,
+      "cold_reads": 4,
+      "cold_bytes": 10467492,
+      "additional_warm_reads": 0,
+      "additional_warm_bytes": 0
+    },
+    {
+      "alias": "manu",
+      "language": "it",
+      "entries": 0,
+      "cold_ms": 274.19301700000005,
+      "warm_ms": 0.09258499999998548,
+      "cold_reads": 4,
+      "cold_bytes": 7750989,
+      "additional_warm_reads": 0,
+      "additional_warm_bytes": 0
+    },
+    {
+      "alias": "manu",
+      "language": "ru",
+      "entries": 0,
+      "cold_ms": 68.21662600000002,
+      "warm_ms": 0.06464400000004389,
+      "cold_reads": 4,
+      "cold_bytes": 6550851,
+      "additional_warm_reads": 0,
+      "additional_warm_bytes": 0
+    },
+    {
+      "alias": "pede",
+      "language": "en",
+      "entries": 2,
+      "cold_ms": 106.98593000000005,
+      "warm_ms": 0.3119060000000218,
+      "cold_reads": 4,
+      "cold_bytes": 12423933,
+      "additional_warm_reads": 0,
+      "additional_warm_bytes": 0
+    },
+    {
+      "alias": "pede",
+      "language": "de",
+      "entries": 0,
+      "cold_ms": 68.64527399999986,
+      "warm_ms": 0.07558599999993021,
+      "cold_reads": 4,
+      "cold_bytes": 9179462,
+      "additional_warm_reads": 0,
+      "additional_warm_bytes": 0
+    },
+    {
+      "alias": "pede",
+      "language": "fr",
+      "entries": 0,
+      "cold_ms": 46.17546399999992,
+      "warm_ms": 0.11541699999997945,
+      "cold_reads": 4,
+      "cold_bytes": 5934044,
+      "additional_warm_reads": 0,
+      "additional_warm_bytes": 0
+    },
+    {
+      "alias": "pede",
+      "language": "es",
+      "entries": 0,
+      "cold_ms": 67.59333100000003,
+      "warm_ms": 0.06155000000012478,
+      "cold_reads": 4,
+      "cold_bytes": 8614340,
+      "additional_warm_reads": 0,
+      "additional_warm_bytes": 0
+    },
+    {
+      "alias": "pede",
+      "language": "it",
+      "entries": 0,
+      "cold_ms": 52.59861500000011,
+      "warm_ms": 0.05522400000018024,
+      "cold_reads": 4,
+      "cold_bytes": 6629394,
+      "additional_warm_reads": 0,
+      "additional_warm_bytes": 0
+    },
+    {
+      "alias": "pede",
+      "language": "ru",
+      "entries": 0,
+      "cold_ms": 52.36142700000005,
+      "warm_ms": 0.05169599999999264,
+      "cold_reads": 4,
+      "cold_bytes": 6465362,
+      "additional_warm_reads": 0,
+      "additional_warm_bytes": 0
+    },
+    {
+      "alias": "ocul",
+      "language": "en",
+      "entries": 3,
+      "cold_ms": 87.52841899999999,
+      "warm_ms": 0.05184099999996761,
+      "cold_reads": 4,
+      "cold_bytes": 12509787,
+      "additional_warm_reads": 0,
+      "additional_warm_bytes": 0
+    },
+    {
+      "alias": "ocul",
+      "language": "de",
+      "entries": 0,
+      "cold_ms": 95.40260899999998,
+      "warm_ms": 0.05386499999985972,
+      "cold_reads": 4,
+      "cold_bytes": 10513513,
+      "additional_warm_reads": 0,
+      "additional_warm_bytes": 0
+    },
+    {
+      "alias": "ocul",
+      "language": "fr",
+      "entries": 0,
+      "cold_ms": 53.533194000000094,
+      "warm_ms": 0.04789600000003702,
+      "cold_reads": 4,
+      "cold_bytes": 6259541,
+      "additional_warm_reads": 0,
+      "additional_warm_bytes": 0
+    },
+    {
+      "alias": "ocul",
+      "language": "es",
+      "entries": 0,
+      "cold_ms": 86.99593400000003,
+      "warm_ms": 0.058457999999973254,
+      "cold_reads": 4,
+      "cold_bytes": 8742106,
+      "additional_warm_reads": 0,
+      "additional_warm_bytes": 0
+    },
+    {
+      "alias": "ocul",
+      "language": "it",
+      "entries": 0,
+      "cold_ms": 66.03683099999989,
+      "warm_ms": 0.05050600000004124,
+      "cold_reads": 4,
+      "cold_bytes": 7075791,
+      "additional_warm_reads": 0,
+      "additional_warm_bytes": 0
+    },
+    {
+      "alias": "ocul",
+      "language": "ru",
+      "entries": 0,
+      "cold_ms": 64.77853099999993,
+      "warm_ms": 0.0554149999998117,
+      "cold_reads": 4,
+      "cold_bytes": 6445492,
+      "additional_warm_reads": 0,
+      "additional_warm_bytes": 0
+    },
+    {
+      "alias": "alter",
+      "language": "en",
+      "entries": 2,
+      "cold_ms": 83.7922739999999,
+      "warm_ms": 0.07459799999992356,
+      "cold_reads": 4,
+      "cold_bytes": 10949131,
+      "additional_warm_reads": 0,
+      "additional_warm_bytes": 0
+    },
+    {
+      "alias": "alter",
+      "language": "de",
+      "entries": 0,
+      "cold_ms": 108.43622900000014,
+      "warm_ms": 0.23530299999993076,
+      "cold_reads": 4,
+      "cold_bytes": 11147941,
+      "additional_warm_reads": 0,
+      "additional_warm_bytes": 0
+    },
+    {
+      "alias": "alter",
+      "language": "fr",
+      "entries": 0,
+      "cold_ms": 50.91389600000002,
+      "warm_ms": 0.05404199999998127,
+      "cold_reads": 4,
+      "cold_bytes": 6761506,
+      "additional_warm_reads": 0,
+      "additional_warm_bytes": 0
+    },
+    {
+      "alias": "alter",
+      "language": "es",
+      "entries": 0,
+      "cold_ms": 83.33449499999983,
+      "warm_ms": 0.06218699999999444,
+      "cold_reads": 4,
+      "cold_bytes": 10169009,
+      "additional_warm_reads": 0,
+      "additional_warm_bytes": 0
+    },
+    {
+      "alias": "alter",
+      "language": "it",
+      "entries": 0,
+      "cold_ms": 132.8943330000002,
+      "warm_ms": 0.09616899999991801,
+      "cold_reads": 4,
+      "cold_bytes": 12332779,
+      "additional_warm_reads": 0,
+      "additional_warm_bytes": 0
+    },
+    {
+      "alias": "alter",
+      "language": "ru",
+      "entries": 0,
+      "cold_ms": 62.038016999999854,
+      "warm_ms": 0.05880600000000413,
+      "cold_reads": 4,
+      "cold_bytes": 7777903,
+      "additional_warm_reads": 0,
+      "additional_warm_bytes": 0
+    },
+    {
+      "alias": "regul",
+      "language": "en",
+      "entries": 2,
+      "cold_ms": 86.63096500000029,
+      "warm_ms": 0.05647399999998015,
+      "cold_reads": 4,
+      "cold_bytes": 12575615,
+      "additional_warm_reads": 0,
+      "additional_warm_bytes": 0
+    },
+    {
+      "alias": "regul",
+      "language": "de",
+      "entries": 0,
+      "cold_ms": 89.1410179999998,
+      "warm_ms": 0.06309599999985949,
+      "cold_reads": 4,
+      "cold_bytes": 9698198,
+      "additional_warm_reads": 0,
+      "additional_warm_bytes": 0
+    },
+    {
+      "alias": "regul",
+      "language": "fr",
+      "entries": 0,
+      "cold_ms": 49.95512000000008,
+      "warm_ms": 0.05320300000039424,
+      "cold_reads": 4,
+      "cold_bytes": 6412058,
+      "additional_warm_reads": 0,
+      "additional_warm_bytes": 0
+    },
+    {
+      "alias": "regul",
+      "language": "es",
+      "entries": 0,
+      "cold_ms": 86.70921599999974,
+      "warm_ms": 0.06109500000002299,
+      "cold_reads": 4,
+      "cold_bytes": 10284057,
+      "additional_warm_reads": 0,
+      "additional_warm_bytes": 0
+    },
+    {
+      "alias": "regul",
+      "language": "it",
+      "entries": 0,
+      "cold_ms": 69.53972599999997,
+      "warm_ms": 0.057560999999623164,
+      "cold_reads": 4,
+      "cold_bytes": 7733951,
+      "additional_warm_reads": 0,
+      "additional_warm_bytes": 0
+    },
+    {
+      "alias": "regul",
+      "language": "ru",
+      "entries": 0,
+      "cold_ms": 94.93804,
+      "warm_ms": 0.06359100000008766,
+      "cold_reads": 4,
+      "cold_bytes": 8588423,
+      "additional_warm_reads": 0,
+      "additional_warm_bytes": 0
+    },
+    {
+      "alias": "libert",
+      "language": "en",
+      "entries": 1,
+      "cold_ms": 91.41847800000005,
+      "warm_ms": 0.054958999999598745,
+      "cold_reads": 4,
+      "cold_bytes": 13142716,
+      "additional_warm_reads": 0,
+      "additional_warm_bytes": 0
+    },
+    {
+      "alias": "libert",
+      "language": "de",
+      "entries": 0,
+      "cold_ms": 92.68847700000015,
+      "warm_ms": 0.05447700000013356,
+      "cold_reads": 4,
+      "cold_bytes": 9994551,
+      "additional_warm_reads": 0,
+      "additional_warm_bytes": 0
+    },
+    {
+      "alias": "libert",
+      "language": "fr",
+      "entries": 0,
+      "cold_ms": 62.31191600000011,
+      "warm_ms": 0.05226199999970049,
+      "cold_reads": 4,
+      "cold_bytes": 6361237,
+      "additional_warm_reads": 0,
+      "additional_warm_bytes": 0
+    },
+    {
+      "alias": "libert",
+      "language": "es",
+      "entries": 0,
+      "cold_ms": 107.50490900000023,
+      "warm_ms": 0.06611700000030396,
+      "cold_reads": 4,
+      "cold_bytes": 11422971,
+      "additional_warm_reads": 0,
+      "additional_warm_bytes": 0
+    },
+    {
+      "alias": "libert",
+      "language": "it",
+      "entries": 0,
+      "cold_ms": 112.49340699999993,
+      "warm_ms": 0.06279300000005605,
+      "cold_reads": 4,
+      "cold_bytes": 12796878,
+      "additional_warm_reads": 0,
+      "additional_warm_bytes": 0
+    },
+    {
+      "alias": "libert",
+      "language": "ru",
+      "entries": 0,
+      "cold_ms": 62.147876,
+      "warm_ms": 0.045846999999866966,
+      "cold_reads": 4,
+      "cold_bytes": 6471871,
+      "additional_warm_reads": 0,
+      "additional_warm_bytes": 0
+    },
+    {
+      "alias": "inter",
+      "language": "en",
+      "entries": 0,
+      "cold_ms": 121.94613100000015,
+      "warm_ms": 0.22811099999989892,
+      "cold_reads": 4,
+      "cold_bytes": 16069193,
+      "additional_warm_reads": 0,
+      "additional_warm_bytes": 0
+    },
+    {
+      "alias": "inter",
+      "language": "de",
+      "entries": 0,
+      "cold_ms": 84.06801399999995,
+      "warm_ms": 0.06221300000015617,
+      "cold_reads": 4,
+      "cold_bytes": 9963416,
+      "additional_warm_reads": 0,
+      "additional_warm_bytes": 0
+    },
+    {
+      "alias": "inter",
+      "language": "fr",
+      "entries": 0,
+      "cold_ms": 70.42449799999986,
+      "warm_ms": 0.05762000000004264,
+      "cold_reads": 4,
+      "cold_bytes": 7260802,
+      "additional_warm_reads": 0,
+      "additional_warm_bytes": 0
+    },
+    {
+      "alias": "inter",
+      "language": "es",
+      "entries": 0,
+      "cold_ms": 83.17931099999987,
+      "warm_ms": 0.05739599999969869,
+      "cold_reads": 4,
+      "cold_bytes": 9377387,
+      "additional_warm_reads": 0,
+      "additional_warm_bytes": 0
+    },
+    {
+      "alias": "inter",
+      "language": "it",
+      "entries": 0,
+      "cold_ms": 61.6749020000002,
+      "warm_ms": 0.049117000000023836,
+      "cold_reads": 4,
+      "cold_bytes": 6477486,
+      "additional_warm_reads": 0,
+      "additional_warm_bytes": 0
+    },
+    {
+      "alias": "inter",
+      "language": "ru",
+      "entries": 0,
+      "cold_ms": 63.360413999999764,
+      "warm_ms": 0.057911999999760155,
+      "cold_reads": 4,
+      "cold_bytes": 6225175,
+      "additional_warm_reads": 0,
+      "additional_warm_bytes": 0
+    }
+  ],
+  "concurrency": {
+    "1": {
+      "elapsed_ms": 94.99440600000071,
+      "reads": 4,
+      "bytes": 14414795
+    },
+    "10": {
+      "elapsed_ms": 793.5575410000001,
+      "reads": 25,
+      "bytes": 85351801
+    },
+    "50": {
+      "elapsed_ms": 2381.339288,
+      "reads": 57,
+      "bytes": 271518949
+    },
+    "100": {
+      "elapsed_ms": 2552.372456000001,
+      "reads": 57,
+      "bytes": 271518949
+    }
+  },
+  "fanout_overflow": {
+    "alias": "net",
+    "fanout": 28,
+    "error": "Family alias fan-out 28 exceeds runtime limit 25",
+    "reads": 2,
+    "bytes": 325945,
+    "family_or_member_reads": 0
+  },
+  "slo": {
+    "maximum_object_reads": {
+      "target": 8,
+      "observed": 4,
+      "pass": true
+    },
+    "maximum_transferred_bytes": {
+      "target": 2000000,
+      "observed": 16069193,
+      "pass": false
+    },
+    "warm_p95_ms": {
+      "target": 1500,
+      "observed": 0.22811099999989892,
+      "pass": true
+    },
+    "warm_p99_ms": {
+      "target": 3000,
+      "observed": 0.3119060000000218,
+      "pass": true
+    },
+    "note": "Latency excludes Blob, Vercel Function and browser network time; production/staging network SLO remains separately required."
+  },
+  "slo_pass": false
+}
