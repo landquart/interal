@@ -75,3 +75,11 @@ test('etymon-key distribution is deterministic and exposes the long tail', () =>
   assert.equal(result.histogram['101-250'], 1);
   assert.equal(result.histogram['25001+'], 1);
 });
+
+test('wide etymon keys are review-only and never create automatic families', () => {
+  const roots = new Set(Array.from({ length: 11 }, (_, index) => `en:root${index}`));
+  const result = buildFamilies(new Map([['la:wide', { roots, relationTypes: new Set(['inherited_form']), evidence: [] }]]), new Map(), { en: new Map([...roots].map(node => [node.slice(3), 1])) });
+  assert.equal([...result.families.keys()].some(id => id.startsWith('ety:')), false);
+  assert.equal(result.wideReview.length, 1);
+  assert.equal(result.wideReview[0].review_status, 'needs_review');
+});

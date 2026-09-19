@@ -1,0 +1,25 @@
+{
+  "source_workflow_run": 35441536909,
+  "generated_at": "2026-09-19T12:47:29.757Z",
+  "mode": "analysis_only_no_family_materialization",
+  "non_proto_root_distribution": {
+    "keys": 143867,
+    "minimum": 0,
+    "maximum": 33,
+    "percentiles": { "p50": 1, "p90": 2, "p95": 3, "p99": 5, "p999": 11 },
+    "histogram": { "1-1": 122712, "2-2": 12061, "3-5": 7672, "6-10": 1248, "11-25": 172, "26-50": 2, "51-100": 0, "101-250": 0, "251-500": 0, "501-1000": 0, "1001-2500": 0, "2501-10000": 0, "10001-25000": 0, "25001+": 0 }
+  },
+  "review_only_root_distribution": {
+    "keys": 88575,
+    "minimum": 0,
+    "maximum": 552,
+    "percentiles": { "p50": 0, "p90": 2, "p95": 3, "p99": 11, "p999": 41 },
+    "histogram": { "1-1": 77362, "2-2": 5695, "3-5": 3436, "6-10": 1164, "11-25": 670, "26-50": 193, "51-100": 43, "101-250": 8, "251-500": 2, "501-1000": 2, "1001-2500": 0, "2501-10000": 0, "10001-25000": 0, "25001+": 0 }
+  },
+  "selected_policy": {
+    "automatic_max_roots": 10,
+    "needs_review_roots": "11-25",
+    "blocked_roots": ">25",
+    "rationale": "p99=5 and p99.9=11; only 174 of 143867 merge-eligible keys exceed 10 roots, so the conservative gate contains the long tail without materially reducing automatic coverage"
+  }
+}

@@ -19,6 +19,8 @@ const LANGUAGES = ['en', 'de', 'fr', 'es', 'it', 'ru'];
 const INDEX_VERSION = '5';
 const MIN_ROOT = 3;
 const MAX_ETYM_KEY_ROOTS = 25000;
+const MAX_AUTOMATIC_ETYM_KEY_ROOTS = 10;
+const MAX_REVIEWABLE_ETYM_KEY_ROOTS = 25;
 
 const VERIFIED_SEEDS = Object.freeze([
   { id: 'family:inter', canonical: 'inter', aliases: ['inter'], element_type: 'preposition' },
@@ -241,6 +243,7 @@ function queryForms(value) {
 
 export function buildFamilies(nonProto, proto, rootSupport) {
   const families = new Map();
+  const wideReview = [];
   let nodeToFamilies = new Map();
   const addNodeFamily = (node, id) => {
     let values = nodeToFamilies.get(node);
@@ -251,6 +254,19 @@ export function buildFamilies(nonProto, proto, rootSupport) {
   for (const [etyKey, record] of nonProto) {
     if (record.roots.size < 2 || record.roots.size > MAX_ETYM_KEY_ROOTS) continue;
     const nodes = [...record.roots].sort();
+    if (nodes.length > MAX_AUTOMATIC_ETYM_KEY_ROOTS) {
+      wideReview.push({
+        etymon_key: etyKey,
+        root_count: nodes.length,
+        aliases: [...new Set(nodes.map(rootOfNode))].sort(),
+        root_nodes: nodes,
+        relation_types: [...record.relationTypes].sort(),
+        evidence: record.evidence,
+        review_status: nodes.length > MAX_REVIEWABLE_ETYM_KEY_ROOTS ? 'blocked_from_runtime' : 'needs_review',
+        reason: 'wide_etymon_key_no_automatic_merge'
+      });
+      continue;
+    }
     const id = `ety:${sha12(etyKey)}`;
     const aliases = [...new Set(nodes.map(rootOfNode))].sort();
     const family = { id, canonical: '', aliases, etymon_keys: [etyKey], relation_types: [...record.relationTypes].sort(), relation_evidence: record.evidence, root_nodes: nodes, verified: false, confidence: 'A', source: 'wiktionary_non_proto_etymology' };
@@ -312,7 +328,8 @@ export function buildFamilies(nonProto, proto, rootSupport) {
     protoReview.push({ etymon_key: etyKey, aliases: [...distinctAliases].sort(), root_nodes: nodes.sort(), support, relation_types: [...record.relationTypes].sort(), evidence: record.evidence });
   }
   protoReview.sort((a, b) => b.support - a.support || b.aliases.length - a.aliases.length || a.etymon_key.localeCompare(b.etymon_key));
-  return { families, nodeToFamilies, protoReview };
+  wideReview.sort((a, b) => b.root_count - a.root_count || a.etymon_key.localeCompare(b.etymon_key));
+  return { families, nodeToFamilies, protoReview, wideReview };
 }
 
 function familyForSeedAlias(families, seedId) { return families.get(seedId) || null; }
@@ -560,6 +577,10 @@ async function main() {
     reviewRequiredFamilies += 1;
     await writeLine(reviewGzip, { family_id: null, reason: ['proto_relation_only'], suspicion_score: 40, representative_words: {}, branches: item.aliases, etymology_paths: [item.etymon_key], possible_actions: ['keep separate','manual check'] });
   }
+  for (const item of built.wideReview) {
+    reviewRequiredFamilies += 1;
+    await writeLine(reviewGzip, { family_id: null, reason: [item.reason], review_status: item.review_status, suspicion_score: item.review_status === 'blocked_from_runtime' ? 100 : 60, representative_words: {}, branches: item.aliases, etymology_paths: [item.etymon_key], relation_types: item.relation_types, evidence: item.evidence, possible_actions: ['keep separate', 'split homonyms', 'manual check'] });
+  }
   reviewGzip.end();
   await once(reviewOutput, 'finish');
   for (const stream of [...familyStreams.values(), ...aliasStreams.values()]) stream.end();
@@ -631,6 +652,8 @@ async function main() {
     verified_seed_families: verifiedSeedFamilies,
     aliases_in_lookup: aliasesInLookup,
     proto_review_candidates: built.protoReview.length,
+    wide_etymon_review_candidates: built.wideReview.length,
+    etymon_key_policy: { automatic_max_roots: MAX_AUTOMATIC_ETYM_KEY_ROOTS, review_max_roots: MAX_REVIEWABLE_ETYM_KEY_ROOTS, absolute_collection_ceiling: MAX_ETYM_KEY_ROOTS },
     controls: controlSummary,
     controls_ok: controlsOk,
     largest_families: largestFamilies,
