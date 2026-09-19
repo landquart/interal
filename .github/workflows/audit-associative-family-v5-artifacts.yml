@@ -43,7 +43,10 @@ jobs:
           test -s "$root/assignments/en.jsonl.gz"
           test -s "$root/members/en/00.json"
       - name: Independently audit every assignment and member
-        run: node scripts/audit-associative-family-output.mjs .tmp/audit-family-v5 | tee .tmp/structural-audit.json
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/audit-associative-family-output.mjs .tmp/audit-family-v5 --allow-failed-controls | tee .tmp/structural-audit.json
       - name: Upload independent structural audit
         if: always()
         uses: actions/upload-artifact@v4

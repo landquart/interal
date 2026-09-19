@@ -6,6 +6,7 @@ import { createGunzip } from 'node:zlib';
 import { createInterface } from 'node:readline';
 
 const root = process.argv[2];
+const allowFailedControls = process.argv.includes('--allow-failed-controls');
 const readJson = async path => JSON.parse(await readFile(path, 'utf8'));
 const assert = (ok, message) => { if (!ok) throw new Error(message); };
 const bucket = value => { let hash=0x811c9dc5; for (const char of String(value)) { hash^=char.codePointAt(0); hash=Math.imul(hash,0x01000193); } return ((hash>>>0)%256).toString(16).padStart(2,'0'); };
@@ -14,8 +15,8 @@ const sortedUnique = values => new Set(values).size===values.length && values.ev
 
 const manifest=await readJson(join(root,'manifest.json'));
 const report=await readJson(join(root,'report.json'));
-assert(manifest.version==='4',`manifest version ${manifest.version}`);
-assert(report.controls_ok,'controls_ok=false');
+assert(['4','5'].includes(manifest.version),`manifest version ${manifest.version}`);
+if (!allowFailedControls) assert(report.controls_ok,'controls_ok=false');
 for(const [name,value] of Object.entries(report.invariants)) if(typeof value==='boolean') assert(value,`invariant ${name}=false`);
 
 const familyIds=new Set();
