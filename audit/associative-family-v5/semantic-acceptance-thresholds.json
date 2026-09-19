@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "locked_before_annotation": true,
+  "membership_precision": { "overall_minimum": 0.97, "per_language_minimum": 0.95, "lower_95ci_minimum": 0.95 },
+  "false_negative_recall": { "overall_minimum": 0.92, "per_language_minimum": 0.88, "lower_95ci_minimum": 0.88 },
+  "high_risk_precision": { "needs_review_minimum": 0.90, "large_family_minimum": 0.94, "high_fanout_minimum": 0.94 },
+  "agreement": { "cohens_kappa_minimum": 0.80, "raw_agreement_minimum": 0.90 },
+  "hard_gates": {
+    "known_false_merge_true_positives": 0,
+    "known_corpus_noise_in_control_top5": 0,
+    "unadjudicated_disagreements": 0,
+    "single_evaluator_rows": 0
+  },
+  "labels": ["true_positive", "false_positive", "uncertain", "normalization_error", "morphology_error", "etymology_error", "homonymy", "distant_relation", "corpus_noise"]
+}
