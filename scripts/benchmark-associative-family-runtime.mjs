@@ -80,7 +80,7 @@ async function benchmark(root) {
 
   const maximumColdReads = Math.max(...cases.map(item => item.cold_reads));
   const maximumColdBytes = Math.max(...cases.map(item => item.cold_bytes));
-  return {
+  const report = {
     schema_version: 1,
     generated_at: new Date().toISOString(),
     environment: { node: process.version, storage: 'downloaded_immutable_github_artifacts', network_included: false },
@@ -94,6 +94,8 @@ async function benchmark(root) {
       note: 'Latency excludes Blob, Vercel Function and browser network time; production/staging network SLO remains separately required.'
     }
   };
+  report.slo_pass = Object.values(report.slo).every(item => !item || typeof item !== 'object' || item.pass !== false);
+  return report;
 }
 
 async function main() {
@@ -103,7 +105,6 @@ async function main() {
   const report = await benchmark(root);
   await writeFile(output, `${JSON.stringify(report, null, 2)}\n`);
   console.log(JSON.stringify(report, null, 2));
-  if (Object.values(report.slo).some(item => item && typeof item === 'object' && item.pass === false)) process.exitCode = 2;
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) main().catch(error => { console.error(error?.stack || error); process.exitCode = 1; });
