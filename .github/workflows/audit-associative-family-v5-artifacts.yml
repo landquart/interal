@@ -7,6 +7,7 @@ on:
     paths:
       - '.github/workflows/audit-associative-family-v5-artifacts.yml'
       - 'scripts/audit-associative-family-output.mjs'
+      - 'scripts/audit-associative-family-regressions.mjs'
   workflow_dispatch:
     inputs:
       source_run_id:
@@ -47,11 +48,18 @@ jobs:
         run: |
           set -euo pipefail
           node scripts/audit-associative-family-output.mjs .tmp/audit-family-v5 | tee .tmp/structural-audit.json
-      - name: Upload independent structural audit
+      - name: Audit known false merges and exact controls
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/audit-associative-family-regressions.mjs .tmp/audit-family-v5 .tmp/known-false-merges-regression.json
+      - name: Upload independent audit reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: associative-family-v5-independent-structural-audit
-          path: .tmp/structural-audit.json
+          name: associative-family-v5-independent-audits
+          path: |
+            .tmp/structural-audit.json
+            .tmp/known-false-merges-regression.json
           if-no-files-found: warn
           retention-days: 90
