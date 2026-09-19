@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { readFile } from 'node:fs/promises';
-import { applyExactControlOverride, buildFamilies, etymologyPairs, etymonKeyDistribution } from '../scripts/build-associative-exhaustive-family-index.mjs';
+import { applyExactControlOverride, buildFamilies, etymologyPairs, etymonKeyDistribution, isMergeEligibleComponent } from '../scripts/build-associative-exhaustive-family-index.mjs';
 import { RELATION_TYPE, parseStructuredExpansion, templateRelations } from '../scripts/lib/associative-etymology-policy.mjs';
 import { classifyCorpusLemma } from '../scripts/lib/associative-corpus-quality.mjs';
 
@@ -50,6 +50,12 @@ test('exact seed claims do not absorb an automatic family transitively', () => {
   assert.deepEqual([...built.nodeToFamilies.get('en:alter')], ['family:alter']);
   assert.equal(built.nodeToFamilies.has('de:wasser'), false);
   assert.deepEqual(built.families.get('family:alter').root_nodes, ['en:alter']);
+});
+
+test('short accidental prefix cannot anchor valkyrie and walkure equivalence', () => {
+  assert.equal(isMergeEligibleComponent('valkyrie', { root: 'val' }), false);
+  assert.equal(isMergeEligibleComponent('Walküre', { root: 'walkure' }), true);
+  assert.equal(isMergeEligibleComponent('pedal', { root: 'ped' }), true);
 });
 
 test('automatic canonical scoring rejects a two-letter accidental anchor', () => {
