@@ -1,0 +1,8 @@
+{
+  "description": "nested ancestry retains paths and depth but remains review-only",
+  "expansion": {"lang":"la","term":"oculus","children":[{"lang":"ine-pro","term":"h3ekw"}]},
+  "expected": [
+    {"relation_type":"distant_ancestor","depth":1,"merge_allowed":false},
+    {"relation_type":"proto_relation","depth":2,"merge_allowed":false}
+  ]
+}

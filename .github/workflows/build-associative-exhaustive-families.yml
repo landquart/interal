@@ -13,6 +13,19 @@ on:
       - 'tests/associative-family-production.test.mjs'
       - 'associativvordes/frequency lists/**'
   workflow_dispatch:
+    inputs:
+      operation:
+        description: 'Restore locked inputs only, or run the corrective build'
+        required: true
+        default: lock-inputs
+        type: choice
+        options:
+          - lock-inputs
+          - corrective-build
+      confirm_corrective_build:
+        description: 'For corrective-build only: type BUILD_CORRECTIVE_FAMILY_V5'
+        required: false
+        type: string
 
 permissions:
   contents: read
@@ -26,6 +39,10 @@ jobs:
       GITHUB_ACTIONS: 'true'
     steps:
       - uses: actions/checkout@v4
+
+      - name: Confirm corrective build authorization
+        if: inputs.operation == 'corrective-build'
+        run: test "${{ inputs.confirm_corrective_build }}" = BUILD_CORRECTIVE_FAMILY_V5
 
       - uses: actions/setup-node@v4
         with:
@@ -43,95 +60,44 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: .tmp/family-candidate-index
-          key: ${{ runner.os }}-family-candidates-v3-${{ hashFiles('scripts/build-associative-candidate-index.mjs', 'associativvordes/frequency lists/**', 'associativvordes/js/affix-search-config.js', 'associativvordes/js/root-matcher.js', 'associativvordes/js/morphology/**') }}
-
-      - name: Build merged candidate index from every frequency list
-        if: steps.candidate-cache.outputs.cache-hit != 'true'
-        run: |
-          rm -rf .tmp/family-candidate-parts .tmp/family-candidate-index .tmp/associative-exhaustive-families
-          mkdir -p .tmp/family-candidate-parts .tmp/family-candidate-index
-          for lang in en de fr es it ru; do
-            echo "=== building candidate index: $lang ==="
-            node scripts/build-associative-candidate-index.mjs \
-              --languages="$lang" \
-              --output-root=".tmp/family-candidate-parts/$lang"
-            cp -r ".tmp/family-candidate-parts/$lang/$lang" ".tmp/family-candidate-index/$lang"
-          done
-          node --input-type=module <<'NODE'
-          import { readFile, writeFile } from 'node:fs/promises';
-          const languages = ['en','de','fr','es','it','ru'];
-          const merged = { version: '1', normalizer_version: '2', generated_at: new Date().toISOString(), languages: {} };
-          for (const language of languages) {
-            const manifest = JSON.parse(await readFile(`.tmp/family-candidate-parts/${language}/manifest.json`, 'utf8'));
-            merged.global_config_hash ??= manifest.global_config_hash;
-            merged.languages[language] = manifest.languages[language];
-          }
-          await writeFile('.tmp/family-candidate-index/manifest.json', JSON.stringify(merged, null, 2));
-          NODE
-          rm -rf .tmp/family-candidate-parts
+          key: Linux-family-candidates-v3-3024370275a832dc65b5d4c58055343f36da1d4d2169ceaa2743d2e152ce01c2
+          fail-on-cache-miss: true
 
       - name: Verify merged candidate checkpoint
         run: test -s .tmp/family-candidate-index/manifest.json
-
-      - name: Save merged candidate checkpoint immediately
-        if: steps.candidate-cache.outputs.cache-hit != 'true'
-        uses: actions/cache/save@v4
-        with:
-          path: .tmp/family-candidate-index
-          key: ${{ steps.candidate-cache.outputs.cache-primary-key }}
-
-      - name: Discover current Kaikki raw Wiktextract dump
-        id: kaikki
-        shell: bash
-        run: |
-          set -euo pipefail
-          URL=$(python3 - <<'PY'
-          import html, re, urllib.parse, urllib.request
-          page = 'https://kaikki.org/dictionary/rawdata.html'
-          text = urllib.request.urlopen(page, timeout=60).read().decode('utf-8', 'replace')
-          links = [html.unescape(x) for x in re.findall(r'href=["\']([^"\']+\.jsonl\.gz)["\']', text, re.I)]
-          links = [urllib.parse.urljoin(page, x) for x in links]
-          preferred = [x for x in links if 'extract' in x.lower() or 'wiktextract' in x.lower()]
-          chosen = (preferred or links)[0] if (preferred or links) else None
-          if not chosen:
-              raise SystemExit('No .jsonl.gz raw Wiktextract link found on Kaikki rawdata page')
-          print(chosen)
-          PY
-          )
-          echo "Kaikki dump: $URL"
-          echo "url=$URL" >> "$GITHUB_OUTPUT"
-          echo "cache_key=$(printf '%s' "$URL" | sha256sum | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
 
       - name: Restore Wiktionary dump checkpoint
         id: dump-cache
         uses: actions/cache/restore@v4
         with:
           path: .tmp/kaikki-wiktextract.jsonl.gz
-          key: ${{ runner.os }}-kaikki-${{ steps.kaikki.outputs.cache_key }}
-
-      - name: Download current Wiktionary etymology dump
-        if: steps.dump-cache.outputs.cache-hit != 'true'
-        run: |
-          set -euo pipefail
-          curl --fail --location --retry 4 --retry-delay 5 --connect-timeout 30 \
-            --output .tmp/kaikki-wiktextract.jsonl.gz \
-            "${{ steps.kaikki.outputs.url }}"
-          ls -lh .tmp/kaikki-wiktextract.jsonl.gz
-          gzip -t .tmp/kaikki-wiktextract.jsonl.gz
+          key: Linux-kaikki-320b99476e1a55df57761bd1d38b1cc68965f77a747f95fb3cc93625b2027d1b
+          fail-on-cache-miss: true
 
       - name: Verify Wiktionary dump checkpoint
         run: gzip -t .tmp/kaikki-wiktextract.jsonl.gz
 
-      - name: Save Wiktionary dump checkpoint immediately
-        if: steps.dump-cache.outputs.cache-hit != 'true'
-        uses: actions/cache/save@v4
-        with:
-          path: .tmp/kaikki-wiktextract.jsonl.gz
-          key: ${{ steps.dump-cache.outputs.cache-primary-key }}
+      - name: Lock restored corrective-build inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          candidate_sha=$(find .tmp/family-candidate-index -type f -print0 | sort -z | xargs -0 sha256sum | sha256sum | cut -d' ' -f1)
+          kaikki_sha=$(sha256sum .tmp/kaikki-wiktextract.jsonl.gz | cut -d' ' -f1)
+          node --input-type=module - "$candidate_sha" "$kaikki_sha" <<'NODE'
+          import { writeFile } from 'node:fs/promises';
+          const [, , candidateTreeSha256, kaikkiSha256] = process.argv;
+          await writeFile('.tmp/input-lock-runtime.json', `${JSON.stringify({
+            candidate_cache_key: 'Linux-family-candidates-v3-3024370275a832dc65b5d4c58055343f36da1d4d2169ceaa2743d2e152ce01c2',
+            candidate_tree_sha256: candidateTreeSha256,
+            kaikki_cache_key: 'Linux-kaikki-320b99476e1a55df57761bd1d38b1cc68965f77a747f95fb3cc93625b2027d1b',
+            kaikki_sha256: kaikkiSha256,
+            kaikki_url_at_audited_v4_build: 'https://kaikki.org/dictionary/raw-wiktextract-data.jsonl.gz'
+          }, null, 2)}\n`);
+          NODE
 
       - name: Scan every indexed lemma and build families
+        if: inputs.operation == 'corrective-build'
         id: build-families
-        continue-on-error: true
         run: |
           node scripts/build-associative-exhaustive-family-index.mjs \
             --candidate-root=.tmp/family-candidate-index \
@@ -139,13 +105,16 @@ jobs:
             --etymology-gzip="$PWD/.tmp/kaikki-wiktextract.jsonl.gz" \
             --languages=en,de,fr,es,it,ru
 
-      - name: Repair methodology control families
-        run: node scripts/repair-associative-family-controls.mjs .tmp/associative-exhaustive-families
+      - name: Attach immutable input lock
+        if: inputs.operation == 'corrective-build'
+        run: cp .tmp/input-lock-runtime.json .tmp/associative-exhaustive-families/reports/input-lock-runtime.json
 
       - name: Cross-audit every assignment and membership
+        if: inputs.operation == 'corrective-build'
         run: node scripts/audit-associative-family-output.mjs .tmp/associative-exhaustive-families
 
       - name: Verify exhaustive assignment
+        if: inputs.operation == 'corrective-build'
         run: |
           node --input-type=module <<'NODE'
           import { readFile } from 'node:fs/promises';
@@ -160,12 +129,12 @@ jobs:
           NODE
 
       - name: Show report
-        if: always()
+        if: always() && inputs.operation == 'corrective-build'
         run: |
           test -f .tmp/associative-exhaustive-families/report.json && cat .tmp/associative-exhaustive-families/report.json || true
 
       - name: Upload family metadata and audit
-        if: always()
+        if: always() && inputs.operation == 'corrective-build'
         uses: actions/upload-artifact@v4
         with:
           name: associative-family-metadata
@@ -173,11 +142,13 @@ jobs:
             .tmp/associative-exhaustive-families/*.json
             .tmp/associative-exhaustive-families/families
             .tmp/associative-exhaustive-families/aliases
+            .tmp/associative-exhaustive-families/reports
+            .tmp/associative-exhaustive-families/review
           if-no-files-found: warn
           retention-days: 30
 
       - name: Upload assignments by language
-        if: always()
+        if: always() && inputs.operation == 'corrective-build'
         uses: actions/upload-artifact@v4
         with:
           name: associative-family-assignments
@@ -186,10 +157,19 @@ jobs:
           retention-days: 30
 
       - name: Upload member index by language
-        if: always()
+        if: always() && inputs.operation == 'corrective-build'
         uses: actions/upload-artifact@v4
         with:
           name: associative-family-members
           path: .tmp/associative-exhaustive-families/members
           if-no-files-found: warn
           retention-days: 30
+
+      - name: Upload restored-input content lock
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: associative-family-v5-input-lock
+          path: .tmp/input-lock-runtime.json
+          if-no-files-found: error
+          retention-days: 90
