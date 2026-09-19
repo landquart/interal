@@ -59,7 +59,6 @@ function parseArgs(argv) {
     if (arg.startsWith('--candidate-root=')) out.candidateRoot = arg.slice(17);
     else if (arg.startsWith('--output-root=')) out.outputRoot = arg.slice(14);
     else if (arg.startsWith('--etymology-gzip=')) out.etymologyGzip = arg.slice(17);
-    else if (arg.startsWith('--input-lock=')) out.inputLock = arg.slice(13);
     else if (arg.startsWith('--languages=')) out.languages = arg.slice(12).split(',').map(v => v.trim()).filter(Boolean);
     else if (arg === '--analysis-only') out.analysisOnly = true;
     else if (arg.startsWith('--analysis-report=')) out.analysisReport = arg.slice(18);
@@ -175,6 +174,18 @@ export function etymologyPairs(entry) {
   return { relations, uncertain };
 }
 
+// Short roots are useful for surface morphology, but they are unsafe anchors
+// for automatic etymological equivalence when they cover only a small prefix
+// of the attested word (for example val- misparsed from valkyrie).  Keep such
+// analyses available to the surface layer while excluding them from graph
+// topology unless the root covers at least half of the normalized word.
+export function isMergeEligibleComponent(word, component) {
+  const form = rootNorm(word);
+  const root = rootNorm(component?.root);
+  if (!form || !root || root.length < MIN_ROOT) return false;
+  return root.length >= 4 || root.length * 2 >= form.length;
+}
+
 async function scanEtymologies(gzipPath, wordRoots, languages) {
   const nonProto = new Map();
   const proto = new Map();
@@ -201,7 +212,9 @@ async function scanEtymologies(gzipPath, wordRoots, languages) {
     // A compound is component containment evidence, never evidence that all of
     // its lexical components are equivalent.  Direct ancestry is therefore
     // applied automatically only to an unambiguous single-component analysis.
-    const rootNodes = analysis.components.length === 1 ? [`${language}:${analysis.components[0].root}`] : [];
+    const rootNodes = analysis.components.length === 1 && isMergeEligibleComponent(entry.word, analysis.components[0])
+      ? [`${language}:${analysis.components[0].root}`]
+      : [];
     const seen = new Set();
     for (const relation of parsedPairs.relations) {
       const { sourceLang, term, relationType, mergeAllowed } = relation;
@@ -453,17 +466,6 @@ async function main() {
   await rm(options.outputRoot, { recursive: true, force: true });
   await mkdir(options.outputRoot, { recursive: true });
   const manifest = await readJson(join(options.candidateRoot, 'manifest.json'));
-  const inputLock = options.inputLock ? await readJson(options.inputLock) : null;
-  const provenance = {
-    source_commit: process.env.GITHUB_SHA || null,
-    workflow_run_id: process.env.GITHUB_RUN_ID || null,
-    workflow_run_attempt: process.env.GITHUB_RUN_ATTEMPT || null,
-    workflow_name: process.env.GITHUB_WORKFLOW || null,
-    node_version: process.version,
-    schema_version: INDEX_VERSION,
-    build_version: INDEX_VERSION,
-    input_lock: inputLock
-  };
 
   console.error('[families] pass 1/2: discovering every defensible lexical component for every lemma');
   const primary = await buildDiscoveredComponents(options.candidateRoot, manifest, options.languages);
@@ -655,7 +657,6 @@ async function main() {
   const report = {
     version: INDEX_VERSION,
     generated_at: new Date().toISOString(),
-    provenance,
     languages: options.languages,
     source_entries: primary.countsByLanguage,
     assignment_stats: assignments.stats,
@@ -688,7 +689,7 @@ async function main() {
   await writeFile(join(options.outputRoot, 'proto-review.json'), `${JSON.stringify(built.protoReview, null, 2)}\n`);
   await writeFile(join(options.outputRoot, 'reports/relation-review.json'), `${JSON.stringify(ety.reviewRelations, null, 2)}\n`);
   await writeFile(join(options.outputRoot, 'reports/audit-summary.json'), `${JSON.stringify(report, null, 2)}\n`);
-  await writeFile(join(options.outputRoot, 'manifest.json'), `${JSON.stringify({ version: INDEX_VERSION, generated_at: report.generated_at, provenance, manual_overrides_integrated: true, languages: options.languages, counts: { families: totalFamilies, aliases: aliasesInLookup, lemmas: sourceLemmaCount, components: assignments.totalComponents }, sharding: { algorithm: 'fnv1a-modulo-256', alias_template: 'aliases/{bucket}.json', family_template: 'families/{bucket}.json', member_template: 'members/{language}/{bucket}.json' }, buckets: { families: familyBuckets, aliases: aliasBuckets } }, null, 2)}\n`);
+  await writeFile(join(options.outputRoot, 'manifest.json'), `${JSON.stringify({ version: INDEX_VERSION, generated_at: report.generated_at, manual_overrides_integrated: true, languages: options.languages, counts: { families: totalFamilies, aliases: aliasesInLookup, lemmas: sourceLemmaCount, components: assignments.totalComponents }, sharding: { algorithm: 'fnv1a-modulo-256', alias_template: 'aliases/{bucket}.json', family_template: 'families/{bucket}.json', member_template: 'members/{language}/{bucket}.json' }, buckets: { families: familyBuckets, aliases: aliasBuckets } }, null, 2)}\n`);
   await writeFile(join(options.outputRoot, 'report.json'), `${JSON.stringify(report, null, 2)}\n`);
   console.log(JSON.stringify(report, null, 2));
   if (!controlsOk || !Object.values(invariants).every(value => typeof value !== 'boolean' || value)) process.exitCode = 2;
