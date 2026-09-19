@@ -10,9 +10,13 @@ import { buildSearchForm, findRootMatch, includesRoot, rootBoundarySegments, spe
 import { resolveAssociativeFamily } from '../associativvordes/js/associative-family-registry.js';
 import { SEARCH_NORMALIZER_VERSION } from '../associativvordes/js/search-normalizer.js';
 
-const sourceRoot = '.tmp/static-search-source';
-const outputRoot = '.tmp/static-search-output';
-const corruptRoot = '.tmp/static-search-corrupt';
+// Keep this fixture isolated from stale or concurrently inspected test output.
+// A fixed directory made the full-suite cleanup intermittently fail with ENOTEMPTY.
+const fixtureRun = `.tmp/static-search-${process.pid}`;
+const sourceRoot = join(fixtureRun, 'source');
+const outputRoot = join(fixtureRun, 'output');
+const corruptRoot = join(fixtureRun, 'corrupt');
+await rm(fixtureRun, { recursive: true, force: true });
 await rm(sourceRoot, { recursive: true, force: true });
 await rm(outputRoot, { recursive: true, force: true });
 await rm(corruptRoot, { recursive: true, force: true });

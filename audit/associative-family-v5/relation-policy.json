@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "automatic_merge_allowlist": ["direct_allomorph", "direct_descendant", "borrowed_form", "inherited_form"],
+  "review_only": ["compound_component", "affix_component", "distant_ancestor", "proto_relation", "homonym", "uncertain"],
+  "unknown_relation": {"relation_type":"uncertain","merge_allowed":false,"review_required":true},
+  "malformed_expansion": {"relation_type":"uncertain","merge_allowed":false,"review_required":true},
+  "etymon_expansion": {"relation_type":"distant_ancestor","merge_allowed":false,"review_required":true},
+  "seed_absorption": "exact_node_claim_only",
+  "canonical_policy": "quality_score_v1"
+}

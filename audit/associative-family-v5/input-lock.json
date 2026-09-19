@@ -1,0 +1,47 @@
+{
+  "baseline": {
+    "main_before_corrective_branch": "d9e4f3d3e67d18f3533600deebaffc687f127523",
+    "protective_pr": 621,
+    "protective_pr_head": "e215554520a54c047207ecfc62b71d97f56572b7",
+    "protective_pr_merge": "d9e4f3d3e67d18f3533600deebaffc687f127523",
+    "audited_build_run": 35346791625,
+    "audited_build_commit": "383bba507cfc0cfdc9f959fd3987ae9a9f21ae8f",
+    "production_application_commit_at_audit": "e49c3fcf5796feac5a9ea297f71b3262a8f8de87",
+    "manifest_generated_at": "2026-09-18T13:48:54.293Z"
+  },
+  "locked_checkpoints": {
+    "candidate_cache_key": "Linux-family-candidates-v3-3024370275a832dc65b5d4c58055343f36da1d4d2169ceaa2743d2e152ce01c2",
+    "kaikki_url_at_audited_build": "https://kaikki.org/dictionary/raw-wiktextract-data.jsonl.gz",
+    "kaikki_cache_key": "Linux-kaikki-320b99476e1a55df57761bd1d38b1cc68965f77a747f95fb3cc93625b2027d1b",
+    "candidate_tree_sha256": "2fa23e5690cbdcb80e27708f950a3c3935d87a566030221327c06eabbab0f2f6",
+    "kaikki_sha256": "42e0bfe1669513cb89bd0a12f2e85d1a8f4ebedc70c65ec88c9509d0f5d392f9",
+    "failed_sibling_scope_run": 35427527134,
+    "successful_source_scope_lock_run": 35441277463,
+    "lock_only_result": "exact_cache_entries_restored_and_hashed",
+    "generation_authorized": false,
+    "generation_authorization_reason": "awaiting analysis-only etymon-key distribution and threshold policy"
+  },
+  "v4_artifacts": {
+    "metadata": {
+      "artifact_id": 10550392530,
+      "bytes": 63026859,
+      "sha256": "84f631a918f0aa8ac3d3466bb3334e7cc9ed4149e43b032803539c1f1e005b69"
+    },
+    "assignments": {
+      "artifact_id": 10550262690,
+      "bytes": 479409099,
+      "sha256": "761dfbf78125bd48f124967c116d6b862221fcccc7e9af0d4742f1bdd74eddda"
+    },
+    "members": {
+      "artifact_id": 10550807847,
+      "bytes": 927342649,
+      "sha256": "7957939cd16a4f48d7e0e89a677efa00ec9ac1546cba5c9032adeed1659e5529"
+    }
+  },
+  "runtime": {
+    "local_node": "v24.19.0",
+    "workflow_node": "22",
+    "sharding": "fnv1a-modulo-256",
+    "languages": ["en", "de", "fr", "es", "it", "ru"]
+  }
+}
