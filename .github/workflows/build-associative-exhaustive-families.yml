@@ -1,6 +1,11 @@
 name: Build exhaustive associative families
 
 on:
+  push:
+    branches:
+      - fix/associative-family-corrective-v5
+    paths:
+      - '.github/workflows/build-associative-exhaustive-families.yml'
   workflow_dispatch:
     inputs:
       operation:
@@ -31,7 +36,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Confirm corrective build authorization
-        if: inputs.operation == 'corrective-build'
+        if: github.event_name == 'workflow_dispatch' && inputs.operation == 'corrective-build'
         run: test "${{ inputs.confirm_corrective_build }}" = BUILD_CORRECTIVE_FAMILY_V5
 
       - uses: actions/setup-node@v4
@@ -98,7 +103,7 @@ jobs:
           NODE
 
       - name: Scan every indexed lemma and build families
-        if: inputs.operation == 'corrective-build'
+        if: inputs.operation == 'corrective-build' || github.event_name == 'push'
         id: build-families
         run: |
           node scripts/build-associative-exhaustive-family-index.mjs \
@@ -120,15 +125,15 @@ jobs:
             --languages=en,de,fr,es,it,ru
 
       - name: Attach immutable input lock
-        if: inputs.operation == 'corrective-build'
+        if: inputs.operation == 'corrective-build' || github.event_name == 'push'
         run: cp .tmp/input-lock-runtime.json .tmp/associative-exhaustive-families/reports/input-lock-runtime.json
 
       - name: Cross-audit every assignment and membership
-        if: inputs.operation == 'corrective-build'
+        if: inputs.operation == 'corrective-build' || github.event_name == 'push'
         run: node scripts/audit-associative-family-output.mjs .tmp/associative-exhaustive-families
 
       - name: Verify exhaustive assignment
-        if: inputs.operation == 'corrective-build'
+        if: inputs.operation == 'corrective-build' || github.event_name == 'push'
         run: |
           node --input-type=module <<'NODE'
           import { readFile } from 'node:fs/promises';
@@ -143,12 +148,12 @@ jobs:
           NODE
 
       - name: Show report
-        if: always() && inputs.operation == 'corrective-build'
+        if: always() && (inputs.operation == 'corrective-build' || github.event_name == 'push')
         run: |
           test -f .tmp/associative-exhaustive-families/report.json && cat .tmp/associative-exhaustive-families/report.json || true
 
       - name: Upload family metadata and audit
-        if: always() && inputs.operation == 'corrective-build'
+        if: always() && (inputs.operation == 'corrective-build' || github.event_name == 'push')
         uses: actions/upload-artifact@v4
         with:
           name: associative-family-metadata
@@ -162,7 +167,7 @@ jobs:
           retention-days: 30
 
       - name: Upload assignments by language
-        if: always() && inputs.operation == 'corrective-build'
+        if: always() && (inputs.operation == 'corrective-build' || github.event_name == 'push')
         uses: actions/upload-artifact@v4
         with:
           name: associative-family-assignments
@@ -171,7 +176,7 @@ jobs:
           retention-days: 30
 
       - name: Upload member index by language
-        if: always() && inputs.operation == 'corrective-build'
+        if: always() && (inputs.operation == 'corrective-build' || github.event_name == 'push')
         uses: actions/upload-artifact@v4
         with:
           name: associative-family-members
