@@ -3,7 +3,7 @@ import { inflateRawSync } from 'node:zlib';
 
 const PRODUCTION_FAMILY_PREFIX = 'associative-family/v5-staging/run-35461412225-68b305f48e4b-576b08b2ba90/';
 
-export function familyIndexPrefix(value = process.env.ASSOCIATIVE_FAMILY_PREFIX || PRODUCTION_FAMILY_PREFIX) {
+export function familyIndexPrefix(value = process.env.ASSOCIATIVE_FAMILY_PREFIX || 'associative-family/v4/') {
   const prefix = String(value || '').replace(/^\/+/, '').replace(/\/+$/, '') + '/';
   if (prefix === 'associative-family/v4/' || prefix === PRODUCTION_FAMILY_PREFIX) return prefix;
   throw new Error('Invalid associative family prefix: ' + prefix);
