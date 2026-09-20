@@ -22,6 +22,8 @@ async function invoke(path) {
 }
 
 const requests = [];
+const artifactManifest = (await invoke('manifest.json')).json;
+const buildReport = (await invoke('report.json')).json;
 const loader = new FamilyIndexLoader({ baseUrl: '/staging?path=', fetchJson: async url => {
   const result = await invoke(url.slice(url.indexOf('path=') + 5));
   requests.push({ path: url.slice(url.indexOf('path=') + 5), elapsed_ms: result.elapsed_ms, response_bytes: result.response_bytes });
@@ -40,7 +42,7 @@ try { await new FamilyIndexLoader({ baseUrl: '/staging?path=', fetchJson: async 
 catch (error) { overflow_error = error.message; }
 const elapsed = cases.map(item => item.elapsed_ms).sort((a,b)=>a-b);
 const pct = p => elapsed[Math.min(elapsed.length - 1, Math.ceil(elapsed.length * p) - 1)];
-const report = { schema_version: 1, generated_at: new Date().toISOString(), prefix, network: 'private Vercel Blob Range through API handler', cases, requests, latency: { p50_ms: pct(.5), p95_ms: pct(.95), p99_ms: pct(.99), max_ms: elapsed.at(-1) }, overflow_error, verdict: overflow_error?.includes('fan-out 28 exceeds runtime limit 25') && pct(.95) <= 4000 ? 'pass' : 'fail', limitations: ['local Node runner invokes the serverless handler directly; Vercel edge routing overhead is not included'] };
+const report = { schema_version: 1, generated_at: new Date().toISOString(), prefix, network: 'private Vercel Blob Range through API handler', artifact_manifest: artifactManifest, build_summary: { version: buildReport.version, generated_at: buildReport.generated_at, provenance: buildReport.provenance, total_families: buildReport.total_families, aliases_in_lookup: buildReport.aliases_in_lookup, source_entries: buildReport.source_entries, assignment_stats: buildReport.assignment_stats, controls_ok: buildReport.controls_ok, invariants: buildReport.invariants }, cases, requests, latency: { p50_ms: pct(.5), p95_ms: pct(.95), p99_ms: pct(.99), max_ms: elapsed.at(-1) }, overflow_error, verdict: overflow_error?.includes('fan-out 28 exceeds runtime limit 25') && pct(.95) <= 4000 ? 'pass' : 'fail', limitations: ['local Node runner invokes the serverless handler directly; Vercel edge routing overhead is not included'] };
 await writeFile(output, `${JSON.stringify(report, null, 2)}\n`);
 console.log(JSON.stringify({ verdict: report.verdict, latency: report.latency, requests: requests.length, overflow_error }, null, 2));
 if (report.verdict !== 'pass') process.exitCode = 2;
