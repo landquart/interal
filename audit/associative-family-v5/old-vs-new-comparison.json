@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-09-20T10:05:00.000Z",
+  "baseline": {
+    "version": "4",
+    "manifest_generated_at": "2026-09-18T13:48:54.293Z",
+    "counts": {
+      "families": 2458225,
+      "aliases": 1934061,
+      "lemmas": 4924980,
+      "memberships": 14918457
+    },
+    "audited_defects": {
+      "metadata_member_mismatches": 1020,
+      "language_support_mismatches": 1096,
+      "suspicious_memberships": 163655,
+      "suspicious_top5_links": 37231
+    }
+  },
+  "corrective": {
+    "version": "5",
+    "manifest_generated_at": "2026-09-19T19:18:30.667Z",
+    "build_run_id": 35461412225,
+    "source_commit": "7a11f43b8115b94e15d4f8524350ed952162236e",
+    "counts": {
+      "families": 2456627,
+      "aliases": 1934061,
+      "lemmas": 4924980,
+      "membership_components": 9350026
+    },
+    "independently_audited": true,
+    "audit_run_id": 35464552349,
+    "structural_gates": {
+      "metadata_member_mismatches": 0,
+      "assignment_member_mismatches": 0,
+      "broken_alias_relations": 0,
+      "untyped_evidence": 0,
+      "illegal_equivalence_edges": 0,
+      "unexplained_automatic_memberships": 0,
+      "families_without_members": 0,
+      "members_without_families": 0
+    }
+  },
+  "delta": {
+    "families": -1598,
+    "aliases": 0,
+    "lemmas": 0,
+    "membership_components": -5568431
+  },
+  "interpretation": {
+    "safe_claim": "The same locked candidate corpus and Kaikki dump were reused; all exhaustive structural gates and known-regression checks passed.",
+    "prohibited_claim": "The count reduction alone does not establish linguistic precision or recall.",
+    "semantic_status": "blocked_pending_dual_independent_annotation_adjudication_and_false_negative_gold",
+    "production_ready": false,
+    "production_switch_authorized": false
+  }
+}
