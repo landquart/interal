@@ -1,6 +1,618 @@
 {
   "schema_version": 1,
-  "verdict": "error",
-  "exit_code": 1,
-  "error_log": "file:///home/runner/work/interal/interal/scripts/benchmark-associative-family-staging-network.mjs:20\n  if (statusCode !== 200) throw new Error(`Staging API ${path} returned ${statusCode}: ${body}`);\n                                ^\n\nError: Staging API manifest.json returned 404: {\"error\":\"Index entry missing: manifest.json\"}\n    at invoke (file:///home/runner/work/interal/interal/scripts/benchmark-associative-family-staging-network.mjs:20:33)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async FamilyIndexLoader.fetchJson (file:///home/runner/work/interal/interal/scripts/benchmark-associative-family-staging-network.mjs:26:18)\n\nNode.js v22.23.2\n"
-}\n
+  "generated_at": "2026-09-20T09:46:41.951Z",
+  "prefix": "associative-family/v5-staging/run-35461412225-68b305f48e4b-576b08b2ba90/",
+  "network": "private Vercel Blob Range through API handler",
+  "cases": [
+    {
+      "alias": "manu",
+      "language": "en",
+      "elapsed_ms": 2752.389052,
+      "entries": 2,
+      "top5": [
+        "manual",
+        "manufacture"
+      ]
+    },
+    {
+      "alias": "manu",
+      "language": "de",
+      "elapsed_ms": 458.17896199999996,
+      "entries": 0,
+      "top5": []
+    },
+    {
+      "alias": "manu",
+      "language": "fr",
+      "elapsed_ms": 351.25553000000036,
+      "entries": 0,
+      "top5": []
+    },
+    {
+      "alias": "manu",
+      "language": "es",
+      "elapsed_ms": 331.0769110000001,
+      "entries": 0,
+      "top5": []
+    },
+    {
+      "alias": "manu",
+      "language": "it",
+      "elapsed_ms": 283.54305600000043,
+      "entries": 0,
+      "top5": []
+    },
+    {
+      "alias": "manu",
+      "language": "ru",
+      "elapsed_ms": 258.0346360000003,
+      "entries": 0,
+      "top5": []
+    },
+    {
+      "alias": "pede",
+      "language": "en",
+      "elapsed_ms": 524.9196470000006,
+      "entries": 2,
+      "top5": [
+        "pedal",
+        "pedicure"
+      ]
+    },
+    {
+      "alias": "pede",
+      "language": "de",
+      "elapsed_ms": 255.91802199999984,
+      "entries": 0,
+      "top5": []
+    },
+    {
+      "alias": "pede",
+      "language": "fr",
+      "elapsed_ms": 300.37464399999953,
+      "entries": 0,
+      "top5": []
+    },
+    {
+      "alias": "pede",
+      "language": "es",
+      "elapsed_ms": 247.95888299999933,
+      "entries": 0,
+      "top5": []
+    },
+    {
+      "alias": "pede",
+      "language": "it",
+      "elapsed_ms": 306.1080410000004,
+      "entries": 0,
+      "top5": []
+    },
+    {
+      "alias": "pede",
+      "language": "ru",
+      "elapsed_ms": 244.46944299999996,
+      "entries": 0,
+      "top5": []
+    },
+    {
+      "alias": "ocul",
+      "language": "en",
+      "elapsed_ms": 426.5416930000001,
+      "entries": 3,
+      "top5": [
+        "monocle",
+        "monocular",
+        "ocular"
+      ]
+    },
+    {
+      "alias": "ocul",
+      "language": "de",
+      "elapsed_ms": 279.93739299999925,
+      "entries": 0,
+      "top5": []
+    },
+    {
+      "alias": "ocul",
+      "language": "fr",
+      "elapsed_ms": 170.24270100000012,
+      "entries": 0,
+      "top5": []
+    },
+    {
+      "alias": "ocul",
+      "language": "es",
+      "elapsed_ms": 173.8027119999997,
+      "entries": 0,
+      "top5": []
+    },
+    {
+      "alias": "ocul",
+      "language": "it",
+      "elapsed_ms": 159.2367089999998,
+      "entries": 0,
+      "top5": []
+    },
+    {
+      "alias": "ocul",
+      "language": "ru",
+      "elapsed_ms": 199.94293799999923,
+      "entries": 0,
+      "top5": []
+    },
+    {
+      "alias": "alter",
+      "language": "en",
+      "elapsed_ms": 490.57706399999915,
+      "entries": 2,
+      "top5": [
+        "alternative",
+        "altruism"
+      ]
+    },
+    {
+      "alias": "alter",
+      "language": "de",
+      "elapsed_ms": 297.50551300000006,
+      "entries": 0,
+      "top5": []
+    },
+    {
+      "alias": "alter",
+      "language": "fr",
+      "elapsed_ms": 220.11545800000022,
+      "entries": 0,
+      "top5": []
+    },
+    {
+      "alias": "alter",
+      "language": "es",
+      "elapsed_ms": 286.3358239999998,
+      "entries": 0,
+      "top5": []
+    },
+    {
+      "alias": "alter",
+      "language": "it",
+      "elapsed_ms": 317.4535820000001,
+      "entries": 0,
+      "top5": []
+    },
+    {
+      "alias": "alter",
+      "language": "ru",
+      "elapsed_ms": 284.1606069999998,
+      "entries": 0,
+      "top5": []
+    },
+    {
+      "alias": "regul",
+      "language": "en",
+      "elapsed_ms": 391.7699160000011,
+      "entries": 2,
+      "top5": [
+        "regular",
+        "regulation"
+      ]
+    },
+    {
+      "alias": "regul",
+      "language": "de",
+      "elapsed_ms": 250.56606699999975,
+      "entries": 0,
+      "top5": []
+    },
+    {
+      "alias": "regul",
+      "language": "fr",
+      "elapsed_ms": 226.24566400000003,
+      "entries": 0,
+      "top5": []
+    },
+    {
+      "alias": "regul",
+      "language": "es",
+      "elapsed_ms": 360.14789500000006,
+      "entries": 0,
+      "top5": []
+    },
+    {
+      "alias": "regul",
+      "language": "it",
+      "elapsed_ms": 212.4894519999998,
+      "entries": 0,
+      "top5": []
+    },
+    {
+      "alias": "regul",
+      "language": "ru",
+      "elapsed_ms": 248.7885640000004,
+      "entries": 0,
+      "top5": []
+    },
+    {
+      "alias": "libert",
+      "language": "en",
+      "elapsed_ms": 490.6677810000001,
+      "entries": 1,
+      "top5": [
+        "liberty"
+      ]
+    },
+    {
+      "alias": "libert",
+      "language": "de",
+      "elapsed_ms": 310.46160099999906,
+      "entries": 0,
+      "top5": []
+    },
+    {
+      "alias": "libert",
+      "language": "fr",
+      "elapsed_ms": 264.80413599999883,
+      "entries": 0,
+      "top5": []
+    },
+    {
+      "alias": "libert",
+      "language": "es",
+      "elapsed_ms": 326.97564599999896,
+      "entries": 0,
+      "top5": []
+    },
+    {
+      "alias": "libert",
+      "language": "it",
+      "elapsed_ms": 255.48256200000105,
+      "entries": 0,
+      "top5": []
+    },
+    {
+      "alias": "libert",
+      "language": "ru",
+      "elapsed_ms": 447.06843300000037,
+      "entries": 0,
+      "top5": []
+    },
+    {
+      "alias": "inter",
+      "language": "en",
+      "elapsed_ms": 468.9335390000015,
+      "entries": 0,
+      "top5": []
+    },
+    {
+      "alias": "inter",
+      "language": "de",
+      "elapsed_ms": 295.698022999999,
+      "entries": 0,
+      "top5": []
+    },
+    {
+      "alias": "inter",
+      "language": "fr",
+      "elapsed_ms": 243.94336099999964,
+      "entries": 0,
+      "top5": []
+    },
+    {
+      "alias": "inter",
+      "language": "es",
+      "elapsed_ms": 311.61937599999874,
+      "entries": 0,
+      "top5": []
+    },
+    {
+      "alias": "inter",
+      "language": "it",
+      "elapsed_ms": 309.760776000001,
+      "entries": 0,
+      "top5": []
+    },
+    {
+      "alias": "inter",
+      "language": "ru",
+      "elapsed_ms": 213.7479429999985,
+      "entries": 0,
+      "top5": []
+    }
+  ],
+  "requests": [
+    {
+      "path": "manifest.json",
+      "elapsed_ms": 1578.182251,
+      "response_bytes": 8028
+    },
+    {
+      "path": "aliases/ee.json",
+      "elapsed_ms": 106.11043200000017,
+      "response_bytes": 323845
+    },
+    {
+      "path": "families/4a.json",
+      "elapsed_ms": 146.27273999999989,
+      "response_bytes": 3033236
+    },
+    {
+      "path": "members/en/4a.json",
+      "elapsed_ms": 920.5185259999998,
+      "response_bytes": 11049686
+    },
+    {
+      "path": "members/de/4a.json",
+      "elapsed_ms": 457.81904799999984,
+      "response_bytes": 6948203
+    },
+    {
+      "path": "members/fr/4a.json",
+      "elapsed_ms": 350.99904800000013,
+      "response_bytes": 3165855
+    },
+    {
+      "path": "members/es/4a.json",
+      "elapsed_ms": 330.86861499999986,
+      "response_bytes": 7102383
+    },
+    {
+      "path": "members/it/4a.json",
+      "elapsed_ms": 283.3823510000002,
+      "response_bytes": 4385880
+    },
+    {
+      "path": "members/ru/4a.json",
+      "elapsed_ms": 257.8031119999996,
+      "response_bytes": 3185742
+    },
+    {
+      "path": "aliases/91.json",
+      "elapsed_ms": 71.87901200000033,
+      "response_bytes": 319933
+    },
+    {
+      "path": "families/2d.json",
+      "elapsed_ms": 86.33544500000062,
+      "response_bytes": 2910556
+    },
+    {
+      "path": "members/en/2d.json",
+      "elapsed_ms": 366.24837800000023,
+      "response_bytes": 9185416
+    },
+    {
+      "path": "members/de/2d.json",
+      "elapsed_ms": 255.72170800000004,
+      "response_bytes": 5940945
+    },
+    {
+      "path": "members/fr/2d.json",
+      "elapsed_ms": 300.04685599999993,
+      "response_bytes": 2695527
+    },
+    {
+      "path": "members/es/2d.json",
+      "elapsed_ms": 247.66099400000076,
+      "response_bytes": 5375823
+    },
+    {
+      "path": "members/it/2d.json",
+      "elapsed_ms": 305.932828,
+      "response_bytes": 3390877
+    },
+    {
+      "path": "members/ru/2d.json",
+      "elapsed_ms": 244.25061199999982,
+      "response_bytes": 3226845
+    },
+    {
+      "path": "aliases/2e.json",
+      "elapsed_ms": 95.38495299999977,
+      "response_bytes": 319336
+    },
+    {
+      "path": "families/2a.json",
+      "elapsed_ms": 85.88833599999998,
+      "response_bytes": 2956325
+    },
+    {
+      "path": "members/en/2a.json",
+      "elapsed_ms": 245.07957400000032,
+      "response_bytes": 9226098
+    },
+    {
+      "path": "members/de/2a.json",
+      "elapsed_ms": 279.82436300000063,
+      "response_bytes": 7229824
+    },
+    {
+      "path": "members/fr/2a.json",
+      "elapsed_ms": 170.16030200000023,
+      "response_bytes": 2975852
+    },
+    {
+      "path": "members/es/2a.json",
+      "elapsed_ms": 173.72336199999972,
+      "response_bytes": 5458417
+    },
+    {
+      "path": "members/it/2a.json",
+      "elapsed_ms": 159.13553500000035,
+      "response_bytes": 3792102
+    },
+    {
+      "path": "members/ru/2a.json",
+      "elapsed_ms": 199.8706140000004,
+      "response_bytes": 3161803
+    },
+    {
+      "path": "aliases/6b.json",
+      "elapsed_ms": 70.04218900000069,
+      "response_bytes": 325675
+    },
+    {
+      "path": "families/0f.json",
+      "elapsed_ms": 82.50214600000072,
+      "response_bytes": 2909869
+    },
+    {
+      "path": "members/en/0f.json",
+      "elapsed_ms": 337.8620750000009,
+      "response_bytes": 7705559
+    },
+    {
+      "path": "members/de/0f.json",
+      "elapsed_ms": 296.74444700000095,
+      "response_bytes": 7904369
+    },
+    {
+      "path": "members/fr/0f.json",
+      "elapsed_ms": 220.01436400000057,
+      "response_bytes": 3517934
+    },
+    {
+      "path": "members/es/0f.json",
+      "elapsed_ms": 286.24101299999893,
+      "response_bytes": 6925437
+    },
+    {
+      "path": "members/it/0f.json",
+      "elapsed_ms": 317.3515239999997,
+      "response_bytes": 9089207
+    },
+    {
+      "path": "members/ru/0f.json",
+      "elapsed_ms": 284.0569290000003,
+      "response_bytes": 4534331
+    },
+    {
+      "path": "aliases/24.json",
+      "elapsed_ms": 75.39558000000034,
+      "response_bytes": 315259
+    },
+    {
+      "path": "families/40.json",
+      "elapsed_ms": 85.90655199999856,
+      "response_bytes": 2975276
+    },
+    {
+      "path": "members/en/40.json",
+      "elapsed_ms": 230.29131199999938,
+      "response_bytes": 9277052
+    },
+    {
+      "path": "members/de/40.json",
+      "elapsed_ms": 250.45084399999905,
+      "response_bytes": 6399635
+    },
+    {
+      "path": "members/fr/40.json",
+      "elapsed_ms": 226.14153200000146,
+      "response_bytes": 3113495
+    },
+    {
+      "path": "members/es/40.json",
+      "elapsed_ms": 360.0279559999999,
+      "response_bytes": 6985494
+    },
+    {
+      "path": "members/it/40.json",
+      "elapsed_ms": 212.38018099999863,
+      "response_bytes": 4435388
+    },
+    {
+      "path": "members/ru/40.json",
+      "elapsed_ms": 248.6717039999985,
+      "response_bytes": 5289860
+    },
+    {
+      "path": "aliases/fd.json",
+      "elapsed_ms": 74.18409500000053,
+      "response_bytes": 324935
+    },
+    {
+      "path": "families/d9.json",
+      "elapsed_ms": 96.48017299999992,
+      "response_bytes": 2969020
+    },
+    {
+      "path": "members/en/d9.json",
+      "elapsed_ms": 319.7869690000007,
+      "response_bytes": 9840733
+    },
+    {
+      "path": "members/de/d9.json",
+      "elapsed_ms": 310.3327389999995,
+      "response_bytes": 6692568
+    },
+    {
+      "path": "members/fr/d9.json",
+      "elapsed_ms": 264.6894739999989,
+      "response_bytes": 3059254
+    },
+    {
+      "path": "members/es/d9.json",
+      "elapsed_ms": 326.8659829999997,
+      "response_bytes": 8120988
+    },
+    {
+      "path": "members/it/d9.json",
+      "elapsed_ms": 255.37761399999908,
+      "response_bytes": 9494895
+    },
+    {
+      "path": "members/ru/d9.json",
+      "elapsed_ms": 446.96040399999947,
+      "response_bytes": 3169888
+    },
+    {
+      "path": "aliases/69.json",
+      "elapsed_ms": 69.58942200000092,
+      "response_bytes": 323937
+    },
+    {
+      "path": "families/ad.json",
+      "elapsed_ms": 88.2518459999992,
+      "response_bytes": 2986263
+    },
+    {
+      "path": "members/en/ad.json",
+      "elapsed_ms": 310.708251,
+      "response_bytes": 12750965
+    },
+    {
+      "path": "members/de/ad.json",
+      "elapsed_ms": 295.59180899999956,
+      "response_bytes": 6645188
+    },
+    {
+      "path": "members/fr/ad.json",
+      "elapsed_ms": 243.84158699999898,
+      "response_bytes": 3942574
+    },
+    {
+      "path": "members/es/ad.json",
+      "elapsed_ms": 311.5147449999986,
+      "response_bytes": 6059159
+    },
+    {
+      "path": "members/it/ad.json",
+      "elapsed_ms": 309.65738000000056,
+      "response_bytes": 3159258
+    },
+    {
+      "path": "members/ru/ad.json",
+      "elapsed_ms": 213.64285200000086,
+      "response_bytes": 2906947
+    }
+  ],
+  "latency": {
+    "p50_ms": 286.3358239999998,
+    "p95_ms": 490.6677810000001,
+    "p99_ms": 2752.389052,
+    "max_ms": 2752.389052
+  },
+  "overflow_error": "Family alias fan-out 28 exceeds runtime limit 25",
+  "verdict": "pass",
+  "limitations": [
+    "local Node runner invokes the serverless handler directly; Vercel edge routing overhead is not included"
+  ]
+}
