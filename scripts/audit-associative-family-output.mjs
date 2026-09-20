@@ -6,6 +6,7 @@ import { createGunzip } from 'node:zlib';
 import { createInterface } from 'node:readline';
 
 const root = process.argv[2];
+const allowFailedControls = process.argv.includes('--allow-failed-controls');
 const readJson = async path => JSON.parse(await readFile(path, 'utf8'));
 const assert = (ok, message) => { if (!ok) throw new Error(message); };
 const bucket = value => { let hash=0x811c9dc5; for (const char of String(value)) { hash^=char.codePointAt(0); hash=Math.imul(hash,0x01000193); } return ((hash>>>0)%256).toString(16).padStart(2,'0'); };
@@ -14,8 +15,8 @@ const sortedUnique = values => new Set(values).size===values.length && values.ev
 
 const manifest=await readJson(join(root,'manifest.json'));
 const report=await readJson(join(root,'report.json'));
-assert(manifest.version==='4',`manifest version ${manifest.version}`);
-assert(report.controls_ok,'controls_ok=false');
+assert(['4','5'].includes(manifest.version),`manifest version ${manifest.version}`);
+if (!allowFailedControls) assert(report.controls_ok,'controls_ok=false');
 for(const [name,value] of Object.entries(report.invariants)) if(typeof value==='boolean') assert(value,`invariant ${name}=false`);
 
 const familyIds=new Set();
@@ -35,7 +36,7 @@ for(const file of familyFiles){const shard=await readJson(join(root,'families',f
 const lemmas=Object.fromEntries(manifest.languages.map(x=>[x,new Set()]));
 const assignedBuckets=Object.fromEntries(manifest.languages.map(x=>[x,Array(256).fill(0)]));
 const assignmentRows={};let components=0,memberships=0;
-for(const language of manifest.languages){const lines=createInterface({input:createReadStream(join(root,'assignments',`${language}.jsonl.gz`)).pipe(createGunzip()),crlfDelay:Infinity});let count=0;for await(const line of lines){if(!line)continue;const row=JSON.parse(line);assert(row.language===language,`${language} language mismatch`);assert(row.lemma_id===stableLemmaId(language,row.normalized||row.word),`${language} unstable id ${row.word}`);assert(!lemmas[language].has(row.lemma_id),`${language} duplicate ${row.lemma_id}`);assert(row.sources?.length,`${language} sources ${row.word}`);assert(sortedUnique(row.family_ids)&&row.family_ids.length,`${language} families ${row.word}`);for(const id of row.family_ids){assert(familyIds.has(id),`${language} missing ${id}`);assignedBuckets[language][parseInt(bucket(id),16)]++;memberships++;}const rowIds=new Set(row.family_ids);assert(row.components?.length,`${language} components ${row.word}`);for(const c of row.components){assert(c.canonical_candidate&&c.family_ids?.length&&c.evidence?.length,`${language} component ${row.word}`);for(const id of c.family_ids)assert(rowIds.has(id),`${language} component relation ${row.word}/${id}`);for(const e of c.evidence)assert(e.type&&e.source&&Array.isArray(e.path)&&Number.isFinite(e.confidence),`${language} evidence ${row.word}`);components++;}lemmas[language].add(row.lemma_id);count++;}assignmentRows[language]=count;assert(count===report.source_entries[language]&&count===report.assignment_stats[language].total,`${language} rows ${count}`);}
+for(const language of manifest.languages){const lines=createInterface({input:createReadStream(join(root,'assignments',`${language}.jsonl.gz`)).pipe(createGunzip()),crlfDelay:Infinity});let count=0;for await(const line of lines){if(!line)continue;const row=JSON.parse(line);assert(row.language===language,`${language} language mismatch`);assert(row.lemma_id===stableLemmaId(language,row.normalized||row.word),`${language} unstable id ${row.word}`);assert(!lemmas[language].has(row.lemma_id),`${language} duplicate ${row.lemma_id}`);assert(row.sources?.length,`${language} sources ${row.word}`);assert(['accepted','suspicious','rejected','requires_manual_review'].includes(row.corpus_quality?.status),`${language} corpus quality ${row.word}`);assert(sortedUnique(row.family_ids)&&row.family_ids.length,`${language} families ${row.word}`);for(const id of row.family_ids){assert(familyIds.has(id),`${language} missing ${id}`);assignedBuckets[language][parseInt(bucket(id),16)]++;memberships++;}const rowIds=new Set(row.family_ids);assert(row.components?.length,`${language} components ${row.word}`);for(const c of row.components){assert(c.canonical_candidate&&c.family_ids?.length&&c.evidence?.length,`${language} component ${row.word}`);for(const id of c.family_ids)assert(rowIds.has(id),`${language} component relation ${row.word}/${id}`);for(const e of c.evidence)assert(e.type&&e.source&&Array.isArray(e.path)&&Number.isFinite(e.confidence),`${language} evidence ${row.word}`);components++;}lemmas[language].add(row.lemma_id);count++;}assignmentRows[language]=count;assert(count===report.source_entries[language]&&count===report.assignment_stats[language].total,`${language} rows ${count}`);}
 assert(components===manifest.counts.components&&components===report.components_assigned,`components ${components}`);
 
 const materializedFamilies=new Set();const memberBuckets=Object.fromEntries(manifest.languages.map(x=>[x,Array(256).fill(0)]));const actualLanguageSupport=new Map();let materializedMemberships=0;

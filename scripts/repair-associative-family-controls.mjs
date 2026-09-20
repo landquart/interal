@@ -29,6 +29,8 @@ async function writeJson(path, value) { await writeFile(path, `${JSON.stringify(
 
 const reportPath = join(root, 'report.json');
 const existingReport = await json(reportPath);
+const existingManifest = await json(join(root, 'manifest.json'));
+if (existingManifest.manual_overrides_integrated === true) throw new Error('Refusing post-build repair: manual overrides are already integrated into this family index build');
 if (existingReport.repair?.type === 'methodology_control_manual_override') {
   const countShardKeys = async directory => {
     let count = 0;

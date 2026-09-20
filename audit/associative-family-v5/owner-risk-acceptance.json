@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-09-20T12:15:00Z",
+  "scope": "associative-family-index-v5-candidate",
+  "decision": "ACCEPT_WITHOUT_HUMAN_LINGUISTIC_VALIDATION",
+  "decision_source": "repository_owner_instruction",
+  "accepted_risks": [
+    "No completed human linguistic annotations for the 9600-row probability sample",
+    "No dual independent annotations or adjudication",
+    "Membership, evidence, corpus and runtime-eligibility precision are not estimated",
+    "Graph, runtime, retrieval and top-5 recall are not estimated from an independent gold frame",
+    "Systematic semantic false merges and false negatives may remain despite structural checks",
+    "Preview network load and complete real-preview browser/transport matrices remain incomplete"
+  ],
+  "evidence_not_changed": true,
+  "audit_verdict": "INSUFFICIENT_EVIDENCE",
+  "operational_disposition": "OWNER_ACCEPTED_AT_RISK",
+  "production_ready_claim_allowed": false,
+  "merge_authorized": true,
+  "production_switch_authorized": true,
+  "notes": "Owner explicitly authorized merging PR #622 and switching production to the locked immutable v5 prefix. This operational authorization does not convert missing linguistic measurements into validation evidence.",
+  "authorization_recorded_at": "2026-09-20T12:30:00Z",
+  "authorization_source": "explicit repository owner instruction"
+}

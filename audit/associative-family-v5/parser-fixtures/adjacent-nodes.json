@@ -1,0 +1,6 @@
+{
+  "description": "lang and term in adjacent nodes must never be paired",
+  "expansion": [{"lang":"la"},{"term":"removeo"}],
+  "expected_relations": [],
+  "expected_uncertain_reasons": ["lang_without_term","term_without_lang"]
+}

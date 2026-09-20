@@ -67,3 +67,12 @@ test('blocked, rejected, and split-required families never reach runtime candida
     assert.deepEqual(await loader.candidateEntries('alter', 'de'), []);
   }
 });
+test('v5 runtime excludes rejected corpus members while remaining v4-compatible', async () => {
+  for (const version of ['4', '5']) {
+    const aliasBucket = familyBucket('ocul'), id = 'family:ocul', idBucket = familyBucket(id);
+    const member = (word, status) => ({ lemma_id: word, word, normalized: word, search_form: word, frequency_score: 50, sources: [{ id: 'test' }], corpus_quality: { status, reasons: [] }, components: [{ evidence: [evidence('manual_override')] }] });
+    const data = { 'manifest.json': { version, languages: ['en'], sharding: { alias_template: 'aliases/{bucket}.json', family_template: 'families/{bucket}.json', member_template: 'members/{language}/{bucket}.json' } }, [`aliases/${aliasBucket}.json`]: { ocul: [id] }, [`families/${idBucket}.json`]: { [id]: { id, canonical: 'ocul', aliases: ['ocul'], source: 'methodology_seed+manual_override', review_status: 'manually_verified' } }, [`members/en/${idBucket}.json`]: { [id]: [member('ocular', 'accepted'), member('pediatricianand', 'rejected')] } };
+    const loader = new FamilyIndexLoader({ baseUrl: '/family-index', fetchJson: async url => data[url.replace('/family-index/', '')] });
+    assert.deepEqual((await loader.candidateEntries('ocul', 'en')).map(item => item.word), ['ocular']);
+  }
+});

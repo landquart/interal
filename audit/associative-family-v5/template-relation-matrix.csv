@@ -1,0 +1,29 @@
+template,relation_type,merge_allowed,review_required,confidence
+der,direct_descendant,true,false,0.95
+uder,direct_descendant,true,false,0.90
+derived,direct_descendant,true,false,0.95
+derived from,direct_descendant,true,false,0.95
+bor,borrowed_form,true,false,0.90
+bor+,borrowed_form,true,false,0.90
+lbor,borrowed_form,true,false,0.90
+slbor,borrowed_form,true,false,0.85
+borrowed,borrowed_form,true,false,0.90
+learned borrowing,borrowed_form,true,false,0.90
+semi-learned borrowing,borrowed_form,true,false,0.85
+inh,inherited_form,true,false,0.95
+inherited,inherited_form,true,false,0.95
+clipping of,direct_allomorph,true,false,0.95
+short for,direct_allomorph,true,false,0.95
+ellipsis of,direct_allomorph,true,false,0.90
+back-form,direct_descendant,true,false,0.90
+back-formation,direct_descendant,true,false,0.90
+compound,compound_component,false,false,1.00
+confix,compound_component,false,false,1.00
+blend,compound_component,false,true,0.80
+af,affix_component,false,false,1.00
+affix,affix_component,false,false,1.00
+prefix,affix_component,false,false,1.00
+suffix,affix_component,false,false,1.00
+etymon,distant_ancestor,false,true,0.60
+ety,distant_ancestor,false,true,0.60
+unknown,uncertain,false,true,0.00

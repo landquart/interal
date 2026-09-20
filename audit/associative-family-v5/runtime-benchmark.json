@@ -1,0 +1,590 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-09-19T20:14:54.525Z",
+  "environment": {
+    "node": "v22.23.2",
+    "storage": "downloaded_immutable_github_artifacts",
+    "network_included": false,
+    "transferred_bytes_method": "deflateRaw level-6 estimate per requested JSON object",
+    "decompressed_bytes_recorded_separately": true
+  },
+  "cold": {
+    "samples": 42,
+    "p50_ms": 149.33703900000023,
+    "p95_ms": 231.50989000000027,
+    "p99_ms": 376.55701600000003,
+    "max_ms": 376.55701600000003
+  },
+  "warm": {
+    "samples": 42,
+    "p50_ms": 0.06992100000024948,
+    "p95_ms": 0.2231470000006084,
+    "p99_ms": 0.3234260000001541,
+    "max_ms": 0.3234260000001541
+  },
+  "cases": [
+    {
+      "alias": "manu",
+      "language": "en",
+      "entries": 2,
+      "cold_ms": 376.55701600000003,
+      "warm_ms": 0.2665789999999788,
+      "cold_reads": 4,
+      "cold_transferred_bytes_estimate": 1002441,
+      "cold_decompressed_bytes": 14414795,
+      "additional_warm_reads": 0,
+      "additional_warm_transferred_bytes": 0
+    },
+    {
+      "alias": "manu",
+      "language": "de",
+      "entries": 0,
+      "cold_ms": 190.17116900000008,
+      "warm_ms": 0.10001799999997729,
+      "cold_reads": 4,
+      "cold_transferred_bytes_estimate": 785364,
+      "cold_decompressed_bytes": 10313312,
+      "additional_warm_reads": 0,
+      "additional_warm_transferred_bytes": 0
+    },
+    {
+      "alias": "manu",
+      "language": "fr",
+      "entries": 0,
+      "cold_ms": 117.32754699999998,
+      "warm_ms": 0.1870800000001509,
+      "cold_reads": 4,
+      "cold_transferred_bytes_estimate": 490298,
+      "cold_decompressed_bytes": 6530964,
+      "additional_warm_reads": 0,
+      "additional_warm_transferred_bytes": 0
+    },
+    {
+      "alias": "manu",
+      "language": "es",
+      "entries": 0,
+      "cold_ms": 353.7703469999999,
+      "warm_ms": 0.08453800000006595,
+      "cold_reads": 4,
+      "cold_transferred_bytes_estimate": 723949,
+      "cold_decompressed_bytes": 10467492,
+      "additional_warm_reads": 0,
+      "additional_warm_transferred_bytes": 0
+    },
+    {
+      "alias": "manu",
+      "language": "it",
+      "entries": 0,
+      "cold_ms": 131.70046000000002,
+      "warm_ms": 0.09054000000014639,
+      "cold_reads": 4,
+      "cold_transferred_bytes_estimate": 568103,
+      "cold_decompressed_bytes": 7750989,
+      "additional_warm_reads": 0,
+      "additional_warm_transferred_bytes": 0
+    },
+    {
+      "alias": "manu",
+      "language": "ru",
+      "entries": 0,
+      "cold_ms": 117.24452700000006,
+      "warm_ms": 0.07996000000002823,
+      "cold_reads": 4,
+      "cold_transferred_bytes_estimate": 529994,
+      "cold_decompressed_bytes": 6550851,
+      "additional_warm_reads": 0,
+      "additional_warm_transferred_bytes": 0
+    },
+    {
+      "alias": "pede",
+      "language": "en",
+      "entries": 2,
+      "cold_ms": 188.79368099999988,
+      "warm_ms": 0.3234260000001541,
+      "cold_reads": 4,
+      "cold_transferred_bytes_estimate": 871470,
+      "cold_decompressed_bytes": 12423933,
+      "additional_warm_reads": 0,
+      "additional_warm_transferred_bytes": 0
+    },
+    {
+      "alias": "pede",
+      "language": "de",
+      "entries": 0,
+      "cold_ms": 149.33703900000023,
+      "warm_ms": 0.08122200000025259,
+      "cold_reads": 4,
+      "cold_transferred_bytes_estimate": 696202,
+      "cold_decompressed_bytes": 9179462,
+      "additional_warm_reads": 0,
+      "additional_warm_transferred_bytes": 0
+    },
+    {
+      "alias": "pede",
+      "language": "fr",
+      "entries": 0,
+      "cold_ms": 108.77439000000004,
+      "warm_ms": 0.1236109999999826,
+      "cold_reads": 4,
+      "cold_transferred_bytes_estimate": 448383,
+      "cold_decompressed_bytes": 5934044,
+      "additional_warm_reads": 0,
+      "additional_warm_transferred_bytes": 0
+    },
+    {
+      "alias": "pede",
+      "language": "es",
+      "entries": 0,
+      "cold_ms": 194.47521599999982,
+      "warm_ms": 0.08442900000000009,
+      "cold_reads": 4,
+      "cold_transferred_bytes_estimate": 603583,
+      "cold_decompressed_bytes": 8614340,
+      "additional_warm_reads": 0,
+      "additional_warm_transferred_bytes": 0
+    },
+    {
+      "alias": "pede",
+      "language": "it",
+      "entries": 0,
+      "cold_ms": 117.59492299999965,
+      "warm_ms": 0.06340899999986505,
+      "cold_reads": 4,
+      "cold_transferred_bytes_estimate": 493763,
+      "cold_decompressed_bytes": 6629394,
+      "additional_warm_reads": 0,
+      "additional_warm_transferred_bytes": 0
+    },
+    {
+      "alias": "pede",
+      "language": "ru",
+      "entries": 0,
+      "cold_ms": 120.75896700000021,
+      "warm_ms": 0.07199499999978798,
+      "cold_reads": 4,
+      "cold_transferred_bytes_estimate": 519541,
+      "cold_decompressed_bytes": 6465362,
+      "additional_warm_reads": 0,
+      "additional_warm_transferred_bytes": 0
+    },
+    {
+      "alias": "ocul",
+      "language": "en",
+      "entries": 3,
+      "cold_ms": 192.9514939999999,
+      "warm_ms": 0.05430100000012317,
+      "cold_reads": 4,
+      "cold_transferred_bytes_estimate": 885937,
+      "cold_decompressed_bytes": 12509787,
+      "additional_warm_reads": 0,
+      "additional_warm_transferred_bytes": 0
+    },
+    {
+      "alias": "ocul",
+      "language": "de",
+      "entries": 0,
+      "cold_ms": 180.90226800000028,
+      "warm_ms": 0.06010299999979907,
+      "cold_reads": 4,
+      "cold_transferred_bytes_estimate": 796150,
+      "cold_decompressed_bytes": 10513513,
+      "additional_warm_reads": 0,
+      "additional_warm_transferred_bytes": 0
+    },
+    {
+      "alias": "ocul",
+      "language": "fr",
+      "entries": 0,
+      "cold_ms": 98.18644900000027,
+      "warm_ms": 0.04123699999991004,
+      "cold_reads": 4,
+      "cold_transferred_bytes_estimate": 473980,
+      "cold_decompressed_bytes": 6259541,
+      "additional_warm_reads": 0,
+      "additional_warm_transferred_bytes": 0
+    },
+    {
+      "alias": "ocul",
+      "language": "es",
+      "entries": 0,
+      "cold_ms": 129.09353899999996,
+      "warm_ms": 0.04595599999993283,
+      "cold_reads": 4,
+      "cold_transferred_bytes_estimate": 618564,
+      "cold_decompressed_bytes": 8742106,
+      "additional_warm_reads": 0,
+      "additional_warm_transferred_bytes": 0
+    },
+    {
+      "alias": "ocul",
+      "language": "it",
+      "entries": 0,
+      "cold_ms": 107.1855959999998,
+      "warm_ms": 0.03907299999991665,
+      "cold_reads": 4,
+      "cold_transferred_bytes_estimate": 527574,
+      "cold_decompressed_bytes": 7075791,
+      "additional_warm_reads": 0,
+      "additional_warm_transferred_bytes": 0
+    },
+    {
+      "alias": "ocul",
+      "language": "ru",
+      "entries": 0,
+      "cold_ms": 102.73790999999983,
+      "warm_ms": 0.039764000000104716,
+      "cold_reads": 4,
+      "cold_transferred_bytes_estimate": 518531,
+      "cold_decompressed_bytes": 6445492,
+      "additional_warm_reads": 0,
+      "additional_warm_transferred_bytes": 0
+    },
+    {
+      "alias": "alter",
+      "language": "en",
+      "entries": 2,
+      "cold_ms": 154.38188999999966,
+      "warm_ms": 0.06980099999964295,
+      "cold_reads": 4,
+      "cold_transferred_bytes_estimate": 783304,
+      "cold_decompressed_bytes": 10949131,
+      "additional_warm_reads": 0,
+      "additional_warm_transferred_bytes": 0
+    },
+    {
+      "alias": "alter",
+      "language": "de",
+      "entries": 0,
+      "cold_ms": 189.08570700000018,
+      "warm_ms": 0.21565400000008594,
+      "cold_reads": 4,
+      "cold_transferred_bytes_estimate": 826843,
+      "cold_decompressed_bytes": 11147941,
+      "additional_warm_reads": 0,
+      "additional_warm_transferred_bytes": 0
+    },
+    {
+      "alias": "alter",
+      "language": "fr",
+      "entries": 0,
+      "cold_ms": 110.7875799999997,
+      "warm_ms": 0.07017099999984566,
+      "cold_reads": 4,
+      "cold_transferred_bytes_estimate": 504279,
+      "cold_decompressed_bytes": 6761506,
+      "additional_warm_reads": 0,
+      "additional_warm_transferred_bytes": 0
+    },
+    {
+      "alias": "alter",
+      "language": "es",
+      "entries": 0,
+      "cold_ms": 159.69500700000026,
+      "warm_ms": 0.07309600000007777,
+      "cold_reads": 4,
+      "cold_transferred_bytes_estimate": 700193,
+      "cold_decompressed_bytes": 10169009,
+      "additional_warm_reads": 0,
+      "additional_warm_transferred_bytes": 0
+    },
+    {
+      "alias": "alter",
+      "language": "it",
+      "entries": 0,
+      "cold_ms": 192.2018710000002,
+      "warm_ms": 0.06992100000024948,
+      "cold_reads": 4,
+      "cold_transferred_bytes_estimate": 877152,
+      "cold_decompressed_bytes": 12332779,
+      "additional_warm_reads": 0,
+      "additional_warm_transferred_bytes": 0
+    },
+    {
+      "alias": "alter",
+      "language": "ru",
+      "entries": 0,
+      "cold_ms": 137.12085100000058,
+      "warm_ms": 0.07412899999962974,
+      "cold_reads": 4,
+      "cold_transferred_bytes_estimate": 625147,
+      "cold_decompressed_bytes": 7777903,
+      "additional_warm_reads": 0,
+      "additional_warm_transferred_bytes": 0
+    },
+    {
+      "alias": "regul",
+      "language": "en",
+      "entries": 2,
+      "cold_ms": 197.02067700000043,
+      "warm_ms": 0.06937000000016269,
+      "cold_reads": 4,
+      "cold_transferred_bytes_estimate": 885355,
+      "cold_decompressed_bytes": 12575615,
+      "additional_warm_reads": 0,
+      "additional_warm_transferred_bytes": 0
+    },
+    {
+      "alias": "regul",
+      "language": "de",
+      "entries": 0,
+      "cold_ms": 163.6853659999997,
+      "warm_ms": 0.07447899999988294,
+      "cold_reads": 4,
+      "cold_transferred_bytes_estimate": 734229,
+      "cold_decompressed_bytes": 9698198,
+      "additional_warm_reads": 0,
+      "additional_warm_transferred_bytes": 0
+    },
+    {
+      "alias": "regul",
+      "language": "fr",
+      "entries": 0,
+      "cold_ms": 105.50907199999983,
+      "warm_ms": 0.05792899999960355,
+      "cold_reads": 4,
+      "cold_transferred_bytes_estimate": 481681,
+      "cold_decompressed_bytes": 6412058,
+      "additional_warm_reads": 0,
+      "additional_warm_transferred_bytes": 0
+    },
+    {
+      "alias": "regul",
+      "language": "es",
+      "entries": 0,
+      "cold_ms": 168.91883999999936,
+      "warm_ms": 0.07497999999941385,
+      "cold_reads": 4,
+      "cold_transferred_bytes_estimate": 714562,
+      "cold_decompressed_bytes": 10284057,
+      "additional_warm_reads": 0,
+      "additional_warm_transferred_bytes": 0
+    },
+    {
+      "alias": "regul",
+      "language": "it",
+      "entries": 0,
+      "cold_ms": 127.2188500000002,
+      "warm_ms": 0.062396999999691616,
+      "cold_reads": 4,
+      "cold_transferred_bytes_estimate": 565863,
+      "cold_decompressed_bytes": 7733951,
+      "additional_warm_reads": 0,
+      "additional_warm_transferred_bytes": 0
+    },
+    {
+      "alias": "regul",
+      "language": "ru",
+      "entries": 0,
+      "cold_ms": 152.91247900000053,
+      "warm_ms": 0.06742699999995239,
+      "cold_reads": 4,
+      "cold_transferred_bytes_estimate": 697714,
+      "cold_decompressed_bytes": 8588423,
+      "additional_warm_reads": 0,
+      "additional_warm_transferred_bytes": 0
+    },
+    {
+      "alias": "libert",
+      "language": "en",
+      "entries": 1,
+      "cold_ms": 193.8978559999996,
+      "warm_ms": 0.061415000000124564,
+      "cold_reads": 4,
+      "cold_transferred_bytes_estimate": 916300,
+      "cold_decompressed_bytes": 13142716,
+      "additional_warm_reads": 0,
+      "additional_warm_transferred_bytes": 0
+    },
+    {
+      "alias": "libert",
+      "language": "de",
+      "entries": 0,
+      "cold_ms": 172.84692799999993,
+      "warm_ms": 0.06629400000019814,
+      "cold_reads": 4,
+      "cold_transferred_bytes_estimate": 757960,
+      "cold_decompressed_bytes": 9994551,
+      "additional_warm_reads": 0,
+      "additional_warm_transferred_bytes": 0
+    },
+    {
+      "alias": "libert",
+      "language": "fr",
+      "entries": 0,
+      "cold_ms": 105.6486789999999,
+      "warm_ms": 0.06590299999970739,
+      "cold_reads": 4,
+      "cold_transferred_bytes_estimate": 481594,
+      "cold_decompressed_bytes": 6361237,
+      "additional_warm_reads": 0,
+      "additional_warm_transferred_bytes": 0
+    },
+    {
+      "alias": "libert",
+      "language": "es",
+      "entries": 0,
+      "cold_ms": 184.4346399999995,
+      "warm_ms": 0.07901800000036019,
+      "cold_reads": 4,
+      "cold_transferred_bytes_estimate": 777248,
+      "cold_decompressed_bytes": 11422971,
+      "additional_warm_reads": 0,
+      "additional_warm_transferred_bytes": 0
+    },
+    {
+      "alias": "libert",
+      "language": "it",
+      "entries": 0,
+      "cold_ms": 217.93494199999986,
+      "warm_ms": 0.0811119999998482,
+      "cold_reads": 4,
+      "cold_transferred_bytes_estimate": 928523,
+      "cold_decompressed_bytes": 12796878,
+      "additional_warm_reads": 0,
+      "additional_warm_transferred_bytes": 0
+    },
+    {
+      "alias": "libert",
+      "language": "ru",
+      "entries": 0,
+      "cold_ms": 104.37441299999955,
+      "warm_ms": 0.04917199999999866,
+      "cold_reads": 4,
+      "cold_transferred_bytes_estimate": 524897,
+      "cold_decompressed_bytes": 6471871,
+      "additional_warm_reads": 0,
+      "additional_warm_transferred_bytes": 0
+    },
+    {
+      "alias": "inter",
+      "language": "en",
+      "entries": 0,
+      "cold_ms": 231.50989000000027,
+      "warm_ms": 0.2231470000006084,
+      "cold_reads": 4,
+      "cold_transferred_bytes_estimate": 1099724,
+      "cold_decompressed_bytes": 16069193,
+      "additional_warm_reads": 0,
+      "additional_warm_transferred_bytes": 0
+    },
+    {
+      "alias": "inter",
+      "language": "de",
+      "entries": 0,
+      "cold_ms": 164.29974700000002,
+      "warm_ms": 0.06795700000020588,
+      "cold_reads": 4,
+      "cold_transferred_bytes_estimate": 759772,
+      "cold_decompressed_bytes": 9963416,
+      "additional_warm_reads": 0,
+      "additional_warm_transferred_bytes": 0
+    },
+    {
+      "alias": "inter",
+      "language": "fr",
+      "entries": 0,
+      "cold_ms": 139.40679499999987,
+      "warm_ms": 0.08444800000052055,
+      "cold_reads": 4,
+      "cold_transferred_bytes_estimate": 542750,
+      "cold_decompressed_bytes": 7260802,
+      "additional_warm_reads": 0,
+      "additional_warm_transferred_bytes": 0
+    },
+    {
+      "alias": "inter",
+      "language": "es",
+      "entries": 0,
+      "cold_ms": 149.17135999999937,
+      "warm_ms": 0.06535299999995914,
+      "cold_reads": 4,
+      "cold_transferred_bytes_estimate": 648715,
+      "cold_decompressed_bytes": 9377387,
+      "additional_warm_reads": 0,
+      "additional_warm_transferred_bytes": 0
+    },
+    {
+      "alias": "inter",
+      "language": "it",
+      "entries": 0,
+      "cold_ms": 106.95048600000064,
+      "warm_ms": 0.06912999999985914,
+      "cold_reads": 4,
+      "cold_transferred_bytes_estimate": 485696,
+      "cold_decompressed_bytes": 6477486,
+      "additional_warm_reads": 0,
+      "additional_warm_transferred_bytes": 0
+    },
+    {
+      "alias": "inter",
+      "language": "ru",
+      "entries": 0,
+      "cold_ms": 111.53929900000003,
+      "warm_ms": 0.06479200000012497,
+      "cold_reads": 4,
+      "cold_transferred_bytes_estimate": 501792,
+      "cold_decompressed_bytes": 6225175,
+      "additional_warm_reads": 0,
+      "additional_warm_transferred_bytes": 0
+    }
+  ],
+  "concurrency": {
+    "1": {
+      "elapsed_ms": 232.05038200000035,
+      "reads": 4,
+      "transferred_bytes_estimate": 1002441,
+      "decompressed_bytes": 14414795
+    },
+    "10": {
+      "elapsed_ms": 1414.3669179999997,
+      "reads": 25,
+      "transferred_bytes_estimate": 6171353,
+      "decompressed_bytes": 85351801
+    },
+    "50": {
+      "elapsed_ms": 4443.646251,
+      "reads": 57,
+      "transferred_bytes_estimate": 19782307,
+      "decompressed_bytes": 271518949
+    },
+    "100": {
+      "elapsed_ms": 4381.789782999998,
+      "reads": 57,
+      "transferred_bytes_estimate": 19782307,
+      "decompressed_bytes": 271518949
+    }
+  },
+  "fanout_overflow": {
+    "alias": "net",
+    "fanout": 28,
+    "error": "Family alias fan-out 28 exceeds runtime limit 25",
+    "reads": 2,
+    "transferred_bytes_estimate": 71678,
+    "decompressed_bytes": 325945,
+    "family_or_member_reads": 0
+  },
+  "slo": {
+    "maximum_object_reads": {
+      "target": 8,
+      "observed": 4,
+      "pass": true
+    },
+    "maximum_transferred_bytes_estimate": {
+      "target": 2000000,
+      "observed": 1099724,
+      "pass": true
+    },
+    "warm_p95_ms": {
+      "target": 1500,
+      "observed": 0.2231470000006084,
+      "pass": true
+    },
+    "warm_p99_ms": {
+      "target": 3000,
+      "observed": 0.3234260000001541,
+      "pass": true
+    },
+    "note": "Latency excludes Blob, Vercel Function and browser network time; production/staging network SLO remains separately required."
+  },
+  "slo_pass": true
+}

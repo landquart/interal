@@ -6,16 +6,21 @@ import { join } from 'node:path';
 import { createGunzip, createGzip } from 'node:zlib';
 import { createInterface } from 'node:readline';
 import { once } from 'node:events';
+import { pathToFileURL } from 'node:url';
 import { buildSearchForm } from '../associativvordes/js/root-matcher.js';
 import { discoverLexicalComponents } from '../associativvordes/js/morphology/analyzer.js';
 import { clearLexicalRoots, registerLexicalRootsFromEntries } from '../associativvordes/js/morphology/lexical-root-index.js';
 import { getLanguageConfig } from '../associativvordes/js/morphology/languages/index.js';
 import { nullDictionary, stableLemmaId } from './lib/associative-family-graph.mjs';
+import { RELATION_TYPE, templateRelations } from './lib/associative-etymology-policy.mjs';
+import { classifyCorpusLemma } from './lib/associative-corpus-quality.mjs';
 
 const LANGUAGES = ['en', 'de', 'fr', 'es', 'it', 'ru'];
-const INDEX_VERSION = '2';
+const INDEX_VERSION = '5';
 const MIN_ROOT = 3;
 const MAX_ETYM_KEY_ROOTS = 25000;
+const MAX_AUTOMATIC_ETYM_KEY_ROOTS = 10;
+const MAX_REVIEWABLE_ETYM_KEY_ROOTS = 25;
 
 const VERIFIED_SEEDS = Object.freeze([
   { id: 'family:inter', canonical: 'inter', aliases: ['inter'], element_type: 'preposition' },
@@ -35,30 +40,49 @@ const CONTROL_WORDS = Object.freeze({
   'family:manu': { en: ['manual', 'manufacture'] },
   'family:libert': { en: ['liberty'] }
 });
+const CONTROL_FORBIDDEN_FAMILY_IDS = new Set(['ety:0f6061e49232', 'ety:a9f83219c8f4', 'ety:eb0c0f2dde53', 'ety:e40fb0a23141', 'ety:2696567cd2f7']);
 
-const RELATION_NAMES = new Set([
-  'der', 'uder', 'bor', 'bor+', 'inh', 'lbor', 'slbor', 'learned borrowing',
-  'semi-learned borrowing', 'derived', 'derived from', 'inherited', 'borrowed',
-  'etymon', 'ety', 'af', 'affix', 'compound', 'confix', 'blend', 'prefix', 'suffix',
-  'clipping of', 'back-form', 'back-formation', 'short for', 'ellipsis of'
-]);
-const DIRECT_RELATIONS = new Set(['der', 'uder', 'bor', 'bor+', 'inh', 'lbor', 'slbor', 'learned borrowing', 'semi-learned borrowing', 'derived', 'derived from', 'inherited', 'borrowed']);
-const COMPONENT_RELATIONS = new Set(['af', 'affix', 'compound', 'confix', 'blend', 'prefix', 'suffix']);
-const SAME_LANGUAGE_RELATIONS = new Set(['clipping of', 'back-form', 'back-formation', 'short for', 'ellipsis of']);
+export function exactControlFamilyId(language, normalizedWord) {
+  return Object.entries(CONTROL_WORDS).find(([, perLang]) => perLang[language]?.includes(normalizedWord))?.[0] || null;
+}
 
-function parseArgs(argv) {
-  const out = { languages: LANGUAGES };
+export function applyExactControlOverride({ language, word, searchForm, componentRows, families }) {
+  const familyId = exactControlFamilyId(language, word);
+  if (!familyId) return { familyId: null, componentRows };
+  return { familyId, componentRows: [{ surface: searchForm || word, canonical_candidate: families.get(familyId)?.canonical || familyId.slice(7), family_ids: [familyId], confidence: 1, evidence: [{ type: 'manual_override', source: 'methodology_control_word', path: [language, word, familyId], confidence: 1 }] }] };
+}
+
+
+export function parseArgs(argv) {
+  const out = { languages: LANGUAGES, analysisOnly: false };
   for (const arg of argv) {
     if (arg.startsWith('--candidate-root=')) out.candidateRoot = arg.slice(17);
     else if (arg.startsWith('--output-root=')) out.outputRoot = arg.slice(14);
     else if (arg.startsWith('--etymology-gzip=')) out.etymologyGzip = arg.slice(17);
     else if (arg.startsWith('--languages=')) out.languages = arg.slice(12).split(',').map(v => v.trim()).filter(Boolean);
+    else if (arg === '--analysis-only') out.analysisOnly = true;
+    else if (arg.startsWith('--analysis-report=')) out.analysisReport = arg.slice(18);
+    else if (arg.startsWith('--input-lock=')) out.inputLock = arg.slice(13);
     else throw new Error(`Unknown argument: ${arg}`);
   }
   if (!out.candidateRoot || !out.outputRoot) throw new Error('--candidate-root and --output-root are required');
   if (!out.etymologyGzip) throw new Error('--etymology-gzip is required');
   for (const lang of out.languages) if (!LANGUAGES.includes(lang)) throw new Error(`Unsupported language: ${lang}`);
   return out;
+}
+
+export function etymonKeyDistribution(records) {
+  const sizes = [...records.values()].map(record => record.roots.size).sort((a, b) => a - b);
+  const bounds = [0, 1, 2, 5, 10, 25, 50, 100, 250, 500, 1000, 2500, 10000, 25000];
+  const histogram = Object.fromEntries(bounds.slice(1).map((upper, index) => [`${bounds[index] + 1}-${upper}`, 0]));
+  histogram['25001+'] = 0;
+  for (const size of sizes) {
+    const upperIndex = bounds.findIndex((upper, index) => index > 0 && size <= upper);
+    const key = upperIndex < 0 ? '25001+' : `${bounds[upperIndex - 1] + 1}-${bounds[upperIndex]}`;
+    histogram[key] += 1;
+  }
+  const percentile = value => sizes.length ? sizes[Math.min(sizes.length - 1, Math.floor((sizes.length - 1) * value))] : 0;
+  return { keys: sizes.length, minimum: sizes[0] || 0, maximum: sizes.at(-1) || 0, percentiles: { p50: percentile(0.5), p90: percentile(0.9), p95: percentile(0.95), p99: percentile(0.99), p999: percentile(0.999) }, histogram };
 }
 
 const nfcLower = value => String(value || '').normalize('NFC').toLocaleLowerCase('und').trim();
@@ -141,51 +165,34 @@ function etymonKeys(language, term) {
   return [...keys];
 }
 
-function numericArgs(args, start = 1) {
-  return Object.entries(args || {})
-    .filter(([key]) => /^\d+$/.test(key) && Number(key) >= start)
-    .sort(([a], [b]) => Number(a) - Number(b))
-    .map(([, value]) => String(value || ''));
-}
-
-function pairsFromExpansion(expansion, relation = 'etymology_tree') {
-  const text = String(expansion || '');
-  const out = [];
-  const patterns = [
-    /"lang"\s*:\s*"([^"]+)"[\s\S]{0,220}?"term"\s*:\s*"([^"]+)"/g,
-    /"term"\s*:\s*"([^"]+)"[\s\S]{0,220}?"lang"\s*:\s*"([^"]+)"/g
-  ];
-  let match;
-  while ((match = patterns[0].exec(text))) out.push({ sourceLang: match[1], term: match[2], edgeType: 'EQUIVALENT_BRANCH', relation });
-  while ((match = patterns[1].exec(text))) out.push({ sourceLang: match[2], term: match[1], edgeType: 'EQUIVALENT_BRANCH', relation });
-  return out;
-}
-
-function etymologyPairs(entry) {
-  const out = [];
+export function etymologyPairs(entry) {
+  const relations = [], uncertain = [];
   for (const template of entry.etymology_templates || []) {
-    const name = String(template?.name || '').trim().toLocaleLowerCase('und');
-    const args = template?.args || {};
-    if (DIRECT_RELATIONS.has(name)) {
-      const values = numericArgs(args);
-      if (values.length >= 3) out.push({ sourceLang: values[1], term: values[2], edgeType: 'EQUIVALENT_BRANCH', relation: name });
-    } else if (COMPONENT_RELATIONS.has(name)) {
-      const values = numericArgs(args);
-      if (values.length >= 2) for (const term of values.slice(1)) out.push({ sourceLang: values[0], term, edgeType: 'CONTAINS_COMPONENT', relation: name });
-    } else if (SAME_LANGUAGE_RELATIONS.has(name)) {
-      const values = numericArgs(args);
-      if (values.length >= 2) out.push({ sourceLang: values[0], term: values[1], edgeType: 'EQUIVALENT_BRANCH', relation: name });
-    } else if (name === 'etymon' || name === 'ety') {
-      // New Wiktionary etymology-tree templates carry the full ancestry in their expansion.
-    }
-    if (name === 'etymon' || name === 'ety') out.push(...pairsFromExpansion(template.expansion, name));
+    const parsed = templateRelations(template);
+    relations.push(...parsed.relations);
+    uncertain.push(...parsed.uncertain);
   }
-  return out;
+  return { relations, uncertain };
+}
+
+// Short roots are useful for surface morphology, but they are unsafe anchors
+// for automatic etymological equivalence when they cover only a small prefix
+// of the attested word (for example val- misparsed from valkyrie).  Keep such
+// analyses available to the surface layer while excluding them from graph
+// topology unless the root covers at least half of the normalized word.
+export function isMergeEligibleComponent(word, component) {
+  const form = rootNorm(word);
+  const root = rootNorm(component?.root);
+  if (!form || !root || root.length < MIN_ROOT) return false;
+  return root.length >= 4 || root.length * 2 >= form.length;
 }
 
 async function scanEtymologies(gzipPath, wordRoots, languages) {
   const nonProto = new Map();
   const proto = new Map();
+  const reviewRelations = [];
+  let uncertainRelationCount = 0;
+  const relationCounts = {};
   const coverage = Object.fromEntries(languages.map(lang => [lang, { matched_entries: 0, with_etymology: 0, unique_lemmas: new Set() }]));
   const input = createReadStream(gzipPath).pipe(createGunzip());
   const lines = createInterface({ input, crlfDelay: Infinity });
@@ -201,30 +208,45 @@ async function scanEtymologies(gzipPath, wordRoots, languages) {
     if (!analysis?.components?.length) continue;
     coverage[language].matched_entries += 1;
     coverage[language].unique_lemmas.add(key);
-    const pairs = etymologyPairs(entry);
-    if (pairs.length) coverage[language].with_etymology += 1;
+    const parsedPairs = etymologyPairs(entry);
+    if (parsedPairs.relations.length) coverage[language].with_etymology += 1;
     // A compound is component containment evidence, never evidence that all of
     // its lexical components are equivalent.  Direct ancestry is therefore
     // applied automatically only to an unambiguous single-component analysis.
-    const rootNodes = analysis.components.length === 1 ? [`${language}:${analysis.components[0].root}`] : [];
+    const rootNodes = analysis.components.length === 1 && isMergeEligibleComponent(entry.word, analysis.components[0])
+      ? [`${language}:${analysis.components[0].root}`]
+      : [];
     const seen = new Set();
-    for (const { sourceLang, term, edgeType } of pairs) {
-      if (edgeType !== 'EQUIVALENT_BRANCH') continue;
+    for (const relation of parsedPairs.relations) {
+      const { sourceLang, term, relationType, mergeAllowed } = relation;
+      relationCounts[relationType] = (relationCounts[relationType] || 0) + 1;
       for (const etyKey of etymonKeys(sourceLang, term)) {
         if (seen.has(etyKey)) continue;
         seen.add(etyKey);
-        const target = isProtoLanguage(sourceLang) ? proto : nonProto;
-        let roots = target.get(etyKey);
-        if (!roots) { roots = new Set(); target.set(etyKey, roots); }
-        for (const rootNode of rootNodes) if (roots.size <= MAX_ETYM_KEY_ROOTS) roots.add(rootNode);
+        if (!mergeAllowed || isProtoLanguage(sourceLang)) {
+          const target = proto;
+          let record = target.get(etyKey);
+          if (!record) { record = { roots: new Set(), relationTypes: new Set(), evidence: [] }; target.set(etyKey, record); }
+          for (const rootNode of rootNodes) if (record.roots.size <= MAX_ETYM_KEY_ROOTS) record.roots.add(rootNode);
+          record.relationTypes.add(isProtoLanguage(sourceLang) ? RELATION_TYPE.PROTO_RELATION : relationType);
+          if (record.evidence.length < 20) record.evidence.push({ language, word: entry.word, ...relation });
+          continue;
+        }
+        let record = nonProto.get(etyKey);
+        if (!record) { record = { roots: new Set(), relationTypes: new Set(), evidence: [] }; nonProto.set(etyKey, record); }
+        for (const rootNode of rootNodes) if (record.roots.size <= MAX_ETYM_KEY_ROOTS) record.roots.add(rootNode);
+        record.relationTypes.add(relationType);
+        if (record.evidence.length < 20) record.evidence.push({ language, word: entry.word, ...relation });
       }
     }
+    uncertainRelationCount += parsedPairs.uncertain.length;
+    for (const item of parsedPairs.uncertain) if (reviewRelations.length < 100000) reviewRelations.push({ language, word: entry.word, ...item });
     parsed += 1;
     if (parsed % 100000 === 0) console.error(`[families] Wiktionary matched ${parsed} entries`);
   }
   const serialCoverage = {};
   for (const [lang, value] of Object.entries(coverage)) serialCoverage[lang] = { matched_entries: value.matched_entries, with_etymology: value.with_etymology, unique_lemmas: value.unique_lemmas.size };
-  return { nonProto, proto, coverage: serialCoverage };
+  return { nonProto, proto, coverage: serialCoverage, relationCounts, reviewRelations, uncertainRelationCount };
 }
 
 function supportForNode(node, rootSupport) {
@@ -244,60 +266,79 @@ function queryForms(value) {
   return [...out].filter(x => x.length >= MIN_ROOT);
 }
 
-function buildFamilies(nonProto, proto, rootSupport) {
+export function buildFamilies(nonProto, proto, rootSupport) {
   const families = new Map();
-  const nodeToFamilies = new Map();
+  const wideReview = [];
+  let nodeToFamilies = new Map();
   const addNodeFamily = (node, id) => {
     let values = nodeToFamilies.get(node);
     if (!values) { values = new Set(); nodeToFamilies.set(node, values); }
     values.add(id);
   };
 
-  for (const [etyKey, roots] of nonProto) {
-    if (roots.size < 2 || roots.size > MAX_ETYM_KEY_ROOTS) continue;
-    const nodes = [...roots].sort();
+  for (const [etyKey, record] of nonProto) {
+    if (record.roots.size < 2 || record.roots.size > MAX_ETYM_KEY_ROOTS) continue;
+    const nodes = [...record.roots].sort();
+    if (nodes.length > MAX_AUTOMATIC_ETYM_KEY_ROOTS) {
+      wideReview.push({
+        etymon_key: etyKey,
+        root_count: nodes.length,
+        aliases: [...new Set(nodes.map(rootOfNode))].sort(),
+        root_nodes: nodes,
+        relation_types: [...record.relationTypes].sort(),
+        evidence: record.evidence,
+        review_status: nodes.length > MAX_REVIEWABLE_ETYM_KEY_ROOTS ? 'blocked_from_runtime' : 'needs_review',
+        reason: 'wide_etymon_key_no_automatic_merge'
+      });
+      continue;
+    }
     const id = `ety:${sha12(etyKey)}`;
     const aliases = [...new Set(nodes.map(rootOfNode))].sort();
-    const family = { id, canonical: '', aliases, etymon_keys: [etyKey], root_nodes: nodes, verified: false, confidence: 'A', source: 'wiktionary_non_proto_etymology' };
+    const family = { id, canonical: '', aliases, etymon_keys: [etyKey], relation_types: [...record.relationTypes].sort(), relation_evidence: record.evidence, root_nodes: nodes, verified: false, confidence: 'A', source: 'wiktionary_non_proto_etymology' };
     families.set(id, family);
     for (const node of nodes) addNodeFamily(node, id);
   }
 
-  // Seed families from the methodology and manually verified historical allomorphs.
+  // Exact seed claims replace coincidental alias-based transitive absorption.
+  const claimedBySeed = new Map();
   for (const seed of VERIFIED_SEEDS) {
-    if (seed.element_type === 'preposition') {
-      families.set(seed.id, { ...seed, verified: true, confidence: 'A', source: 'methodology_seed', root_nodes: [], etymon_keys: [] });
-      continue;
-    }
     const wanted = new Set(seed.aliases.flatMap(queryForms));
-    const absorbed = new Set();
-    for (const [id, family] of families) {
-      if (id === seed.id) continue;
-      if (family.aliases.some(alias => wanted.has(alias))) {
-        for (const node of family.root_nodes) absorbed.add(node);
-      }
-    }
+    const claimed = new Set();
     for (const [lang, counts] of Object.entries(rootSupport)) {
-      for (const alias of wanted) if (counts.has(alias)) absorbed.add(`${lang}:${alias}`);
+      for (const alias of wanted) if (counts.has(alias)) claimed.add(`${lang}:${alias}`);
     }
-    const aliases = [...new Set([...seed.aliases.flatMap(queryForms), ...[...absorbed].map(rootOfNode)])].sort();
-    const etymonKeys = [];
-    for (const family of families.values()) if (family.id !== seed.id && family.root_nodes?.some(node => absorbed.has(node))) etymonKeys.push(...family.etymon_keys);
-    const seeded = { ...seed, aliases, root_nodes: [...absorbed].sort(), etymon_keys: [...new Set(etymonKeys)].sort(), verified: true, confidence: 'A', source: 'methodology_seed+wiktionary' };
+    claimedBySeed.set(seed.id, claimed);
+  }
+
+  const allClaimed = new Set([...claimedBySeed.values()].flatMap(values => [...values]));
+  for (const [id, family] of [...families]) {
+    const remaining = family.root_nodes.filter(node => !allClaimed.has(node));
+    if (remaining.length < 2) { families.delete(id); continue; }
+    family.root_nodes = remaining;
+    family.aliases = [...new Set(remaining.map(rootOfNode))].sort();
+  }
+  nodeToFamilies = new Map();
+  for (const family of families.values()) for (const node of family.root_nodes) addNodeFamily(node, family.id);
+  for (const seed of VERIFIED_SEEDS) {
+    const nodes = [...(claimedBySeed.get(seed.id) || [])].sort();
+    if (!nodes.length) continue;
+    const seeded = { ...seed, aliases: [...new Set(seed.aliases.flatMap(queryForms))].sort(), root_nodes: nodes, etymon_keys: [], relation_types: [RELATION_TYPE.DIRECT_ALLOMORPH], relation_evidence: [], verified: true, confidence: 'A', source: 'methodology_seed+manual_override' };
     families.set(seed.id, seeded);
-    for (const node of absorbed) addNodeFamily(node, seed.id);
+    for (const node of nodes) addNodeFamily(node, seed.id);
   }
 
   // Choose a stable canonical alias for automatically generated families.
   for (const family of families.values()) {
     if (family.canonical) continue;
-    family.canonical = family.aliases.slice().sort((a, b) => a.length - b.length || a.localeCompare(b))[0] || '';
+    const score = alias => (alias.length <= 2 ? 1000 : 0) + (alias.length === 3 ? 100 : 0) + (/\d/.test(alias) ? 500 : 0) + Math.abs(alias.length - 6);
+    family.canonical = family.aliases.slice().sort((a, b) => score(a) - score(b) || a.localeCompare(b))[0] || '';
+    family.canonical_selection = { method: 'quality_score_v1', score: score(family.canonical) };
   }
 
   const protoReview = [];
-  for (const [etyKey, roots] of proto) {
-    if (roots.size < 2 || roots.size > 2000) continue;
-    const nodes = [...roots];
+  for (const [etyKey, record] of proto) {
+    if (record.roots.size < 2 || record.roots.size > 2000) continue;
+    const nodes = [...record.roots];
     const distinctAliases = new Set(nodes.map(rootOfNode));
     if (distinctAliases.size < 2) continue;
     let alreadyConnected = false;
@@ -309,10 +350,11 @@ function buildFamilies(nonProto, proto, rootSupport) {
     }
     if (alreadyConnected) continue;
     const support = nodes.reduce((sum, node) => sum + supportForNode(node, rootSupport), 0);
-    protoReview.push({ etymon_key: etyKey, aliases: [...distinctAliases].sort(), root_nodes: nodes.sort(), support });
+    protoReview.push({ etymon_key: etyKey, aliases: [...distinctAliases].sort(), root_nodes: nodes.sort(), support, relation_types: [...record.relationTypes].sort(), evidence: record.evidence });
   }
   protoReview.sort((a, b) => b.support - a.support || b.aliases.length - a.aliases.length || a.etymon_key.localeCompare(b.etymon_key));
-  return { families, nodeToFamilies, protoReview };
+  wideReview.sort((a, b) => b.root_count - a.root_count || a.etymon_key.localeCompare(b.etymon_key));
+  return { families, nodeToFamilies, protoReview, wideReview };
 }
 
 function familyForSeedAlias(families, seedId) { return families.get(seedId) || null; }
@@ -322,6 +364,8 @@ async function writeAssignments({ candidateRoot, manifest, languages, outputRoot
   const stats = {};
   let totalComponents = 0;
   let multiFamilyLemmas = 0;
+  const corpusQualityCounts = { accepted: 0, suspicious: 0, rejected: 0, requires_manual_review: 0 };
+  const actualLanguageSupport = new Map();
   for (const language of languages) {
     const file = join(outputRoot, 'assignments', `${language}.jsonl.gz`);
     const gzip = createGzip({ level: 9 });
@@ -340,22 +384,31 @@ async function writeAssignments({ candidateRoot, manifest, languages, outputRoot
     for await (const row of candidateRows(candidateRoot, manifest, language)) {
       const wordKey = nfcLower(row.normalized || row.word);
       const analysis = wordRoots[language].get(wordKey) || { components: [{ root: rootNorm(row.search_form || row.word), surface: row.search_form || row.word, confidence: 0.5, evidence: [{ type: 'surface_identity', source: 'morphology_discovery', path: [row.word], confidence: 0.5 }] }], ambiguous: false };
-      const componentRows = analysis.components.map(component => {
+      const discoveredComponentRows = analysis.components.map(component => {
         const node = `${language}:${component.root}`;
         const ids = [...(nodeToFamilies.get(node) || [])].sort();
         const familyIds = ids.length ? ids : [`surface:${language}:${component.root}`];
+        const verifiedSeedIds = familyIds.filter(id => String(families.get(id)?.source || '').includes('manual_override'));
+        const seedEvidence = verifiedSeedIds.length ? [{ type: 'verified_seed_alias', source: 'methodology_control_seed', path: [language, component.root, ...verifiedSeedIds], confidence: 1 }] : [];
         totalComponents += 1;
-        return { surface: component.surface, canonical_candidate: component.root, family_ids: familyIds, confidence: component.confidence, evidence: component.evidence };
+        return { surface: component.surface, canonical_candidate: component.root, family_ids: familyIds, confidence: component.confidence, evidence: [...component.evidence, ...seedEvidence] };
       });
+      const { familyId: controlSeedId, componentRows } = applyExactControlOverride({ language, word: wordKey, searchForm: row.search_form || row.word, componentRows: discoveredComponentRows, families });
+      if (controlSeedId) totalComponents += 1 - discoveredComponentRows.length;
       const familyIds = [...new Set(componentRows.flatMap(item => item.family_ids))].sort();
       if (familyIds.length > 1) multiFamilyLemmas += 1;
       if (componentRows.some(item => !item.family_ids[0].startsWith('surface:'))) merged += 1;
       if (familyIds.length > 1) ambiguous += 1;
-      const payload = { lemma_id: stableLemmaId(language, row.normalized || row.word), language, word: row.word, normalized: row.normalized, search_form: row.search_form, rank: row.rank, frequency_score: row.frequency_score, category_breakdown: row.category_breakdown, sources: row.sources, components: componentRows, family_ids: familyIds, ambiguous_analysis: analysis.ambiguous };
+      const corpusQuality = classifyCorpusLemma(row.normalized || row.word);
+      corpusQualityCounts[corpusQuality.status] = (corpusQualityCounts[corpusQuality.status] || 0) + 1;
+      const payload = { lemma_id: stableLemmaId(language, row.normalized || row.word), language, word: row.word, normalized: row.normalized, search_form: row.search_form, rank: row.rank, frequency_score: row.frequency_score, category_breakdown: row.category_breakdown, sources: row.sources, components: componentRows, family_ids: familyIds, ambiguous_analysis: analysis.ambiguous, corpus_quality: corpusQuality };
       if (!gzip.write(`${JSON.stringify(payload)}\n`)) await once(gzip, 'drain');
       for (const id of familyIds) {
+        const support = actualLanguageSupport.get(id) || {};
+        support[language] = (support[language] || 0) + 1;
+        actualLanguageSupport.set(id, support);
         const stream = memberStream(familyBucket(id));
-        const membership = [id, { lemma_id: payload.lemma_id, word: payload.word, normalized: payload.normalized, search_form: payload.search_form, rank: payload.rank, frequency_score: payload.frequency_score, category_breakdown: payload.category_breakdown, sources: payload.sources, components: componentRows.filter(item => item.family_ids.includes(id)).map(item => ({ surface: item.surface, canonical_candidate: item.canonical_candidate, confidence: item.confidence, evidence: item.evidence })) }];
+        const membership = [id, { lemma_id: payload.lemma_id, word: payload.word, normalized: payload.normalized, search_form: payload.search_form, rank: payload.rank, frequency_score: payload.frequency_score, category_breakdown: payload.category_breakdown, sources: payload.sources, corpus_quality: corpusQuality, components: componentRows.filter(item => item.family_ids.includes(id)).map(item => ({ surface: item.surface, canonical_candidate: item.canonical_candidate, confidence: item.confidence, evidence: item.evidence })) }];
         if (!stream.write(`${JSON.stringify(membership)}\n`)) await once(stream, 'drain');
       }
       total += 1;
@@ -364,7 +417,9 @@ async function writeAssignments({ candidateRoot, manifest, languages, outputRoot
         if (!expected?.includes(wordKey)) continue;
         controls[seedId] ||= {};
         controls[seedId][language] ||= {};
-        controls[seedId][language][wordKey] = { family_ids: familyIds, ok: familyIds.includes(seedId) };
+        const forbidden = familyIds.filter(id => CONTROL_FORBIDDEN_FAMILY_IDS.has(id));
+        const extras = familyIds.filter(id => id !== seedId);
+        controls[seedId][language][wordKey] = { family_ids: familyIds, required_family: seedId, forbidden_family_ids: forbidden, extra_family_ids: extras, ok: familyIds.includes(seedId) && forbidden.length === 0 && extras.length === 0 };
       }
     }
     gzip.end();
@@ -385,18 +440,12 @@ async function writeAssignments({ candidateRoot, manifest, languages, outputRoot
     await rm(memberTempRoot, { recursive: true, force: true });
     stats[language] = { total, merged_family_entries: merged, ambiguous_family_entries: ambiguous };
   }
-  return { stats, totalComponents, multiFamilyLemmas };
+  return { stats, totalComponents, multiFamilyLemmas, corpusQualityCounts, actualLanguageSupport };
 }
 
-function compactFamily(family, rootSupport) {
-  const languages = {};
-  let support = 0;
-  for (const node of family.root_nodes || []) {
-    const lang = langOfNode(node);
-    const value = supportForNode(node, rootSupport);
-    languages[lang] = (languages[lang] || 0) + value;
-    support += value;
-  }
+function compactFamily(family, actualLanguageSupport) {
+  const languages = { ...(actualLanguageSupport.get(family.id) || {}) };
+  const support = Object.values(languages).reduce((sum, value) => sum + value, 0);
   return {
     id: family.id,
     canonical: family.canonical,
@@ -405,6 +454,9 @@ function compactFamily(family, rootSupport) {
     confidence: family.confidence,
     source: family.source,
     etymon_keys: family.etymon_keys || [],
+    relation_types: family.relation_types || [],
+    relation_evidence: family.relation_evidence || [],
+    canonical_selection: family.canonical_selection || { method: family.verified ? 'verified_seed' : 'unspecified' },
     language_support: languages,
     support
   };
@@ -415,6 +467,17 @@ async function main() {
   await rm(options.outputRoot, { recursive: true, force: true });
   await mkdir(options.outputRoot, { recursive: true });
   const manifest = await readJson(join(options.candidateRoot, 'manifest.json'));
+  const inputLock = options.inputLock ? await readJson(options.inputLock) : null;
+  const provenance = {
+    source_commit: process.env.GITHUB_SHA || null,
+    workflow_run_id: process.env.GITHUB_RUN_ID || null,
+    workflow_run_attempt: process.env.GITHUB_RUN_ATTEMPT || null,
+    workflow_name: process.env.GITHUB_WORKFLOW || null,
+    node_version: process.version,
+    schema_version: INDEX_VERSION,
+    build_version: INDEX_VERSION,
+    input_lock: inputLock
+  };
 
   console.error('[families] pass 1/2: discovering every defensible lexical component for every lemma');
   const primary = await buildDiscoveredComponents(options.candidateRoot, manifest, options.languages);
@@ -422,6 +485,25 @@ async function main() {
   console.error('[families] pass 3: streaming Wiktionary/Kaikki etymology for every indexed lemma');
   const ety = await scanEtymologies(options.etymologyGzip, primary.wordRoots, options.languages);
   console.error(`[families] non-proto etymon keys=${ety.nonProto.size}; proto review keys=${ety.proto.size}`);
+
+  if (options.analysisOnly) {
+    const analysis = {
+      generated_at: new Date().toISOString(),
+      mode: 'analysis_only_no_family_materialization',
+      languages: options.languages,
+      source_entries: primary.countsByLanguage,
+      etymology_coverage: ety.coverage,
+      relation_counts: ety.relationCounts,
+      uncertain_relation_count: ety.uncertainRelationCount,
+      non_proto_root_distribution: etymonKeyDistribution(ety.nonProto),
+      review_only_root_distribution: etymonKeyDistribution(ety.proto)
+    };
+    const reportPath = options.analysisReport || join(options.outputRoot, 'etymon-key-distribution.json');
+    await mkdir(reportPath.slice(0, Math.max(reportPath.lastIndexOf('/'), 0)) || '.', { recursive: true });
+    await writeFile(reportPath, `${JSON.stringify(analysis, null, 2)}\n`);
+    console.log(JSON.stringify(analysis, null, 2));
+    return;
+  }
 
   console.error('[families] pass 4: creating and merging associative families');
   const built = buildFamilies(ety.nonProto, ety.proto, primary.rootSupport);
@@ -463,8 +545,10 @@ async function main() {
     if (shortest <= 2) add(40, 'very_short_root'); else if (shortest === 3) add(20, 'short_root');
     if (family.support > 10000) add(35, 'anomalously_large_family'); else if (family.support > 2500) add(20, 'large_family');
     if ((family.etymon_keys || []).length > 1) add(Math.min(35, (family.etymon_keys.length - 1) * 10), 'multiple_etymon_keys');
+    if ((family.relation_types || []).some(type => [RELATION_TYPE.DISTANT_ANCESTOR, RELATION_TYPE.PROTO_RELATION, RELATION_TYPE.HOMONYM, RELATION_TYPE.UNCERTAIN].includes(type))) add(50, 'non_mergeable_relation');
     if (!family.source) add(50, 'missing_family_evidence');
-    return { ...family, suspicion_score: Math.min(100, suspicionScore), suspicion_reasons: reasons, review_status: suspicionScore >= 35 ? 'review_required' : (family.verified ? 'verified' : 'automatic') };
+    const reviewStatus = family.verified ? 'manually_verified' : (suspicionScore >= 70 ? 'blocked_from_runtime' : (suspicionScore >= 35 ? 'needs_review' : 'safe_automatic'));
+    return { ...family, suspicion_score: Math.min(100, suspicionScore), suspicion_reasons: reasons, review_status: reviewStatus };
   };
 
   // Materialize millions of families as bucketed streams.  Never construct a
@@ -506,10 +590,10 @@ async function main() {
     if (family.aliases.length > 1) multiBranchFamilies += 1;
     if (family.source === 'wiktionary_non_proto_etymology') generatedNonProtoFamilies += 1;
     if (family.verified) verifiedSeedFamilies += 1;
-    if (family.suspicion_score >= 35 && family.review_status !== 'review_required') unreviewedHighRiskFamilies += 1;
+    if (family.suspicion_score >= 35 && !['needs_review', 'blocked_from_runtime', 'rejected', 'split_required'].includes(family.review_status)) unreviewedHighRiskFamilies += 1;
     keepTop(largestFamilies, family, (a, b) => b.support - a.support || a.id.localeCompare(b.id));
     keepTop(highestSuspicionFamilies, family, (a, b) => b.suspicion_score - a.suspicion_score || b.support - a.support || a.id.localeCompare(b.id));
-    if (family.review_status === 'review_required') {
+    if (['needs_review', 'blocked_from_runtime', 'rejected', 'split_required'].includes(family.review_status)) {
       reviewRequiredFamilies += 1;
       await writeLine(reviewGzip, { family_id: family.id, reason: family.suspicion_reasons, suspicion_score: family.suspicion_score, representative_words: {}, branches: family.aliases, etymology_paths: family.etymon_keys, possible_actions: ['keep','split','merge with ...','manual check'] });
     }
@@ -518,16 +602,22 @@ async function main() {
     for (const alias of aliasKeys) await writeLine(streamFor(aliasStreams, 'aliases', familyBucket(alias)), [alias, family.id]);
   };
 
-  for (const family of built.families.values()) await emitFamily(compactFamily(family, primary.rootSupport));
+  for (const family of built.families.values()) await emitFamily(compactFamily(family, assignments.actualLanguageSupport));
   for (const [language, roots] of Object.entries(primary.rootSupport)) {
     for (const [root, support] of roots) {
       if (built.nodeToFamilies.has(`${language}:${root}`)) continue;
-      await emitFamily({ id: `surface:${language}:${root}`, canonical: root, aliases: [root], verified: false, confidence: 'low', source: 'surface_singleton', etymon_keys: [], language_support: { [language]: support }, support });
+      const id = `surface:${language}:${root}`;
+      const languageSupport = assignments.actualLanguageSupport.get(id) || {};
+      await emitFamily({ id, canonical: root, aliases: [root], verified: false, confidence: 'low', source: 'surface_singleton', etymon_keys: [], language_support: languageSupport, support: Object.values(languageSupport).reduce((sum, value) => sum + value, 0) });
     }
   }
   for (const item of built.protoReview) {
     reviewRequiredFamilies += 1;
     await writeLine(reviewGzip, { family_id: null, reason: ['proto_relation_only'], suspicion_score: 40, representative_words: {}, branches: item.aliases, etymology_paths: [item.etymon_key], possible_actions: ['keep separate','manual check'] });
+  }
+  for (const item of built.wideReview) {
+    reviewRequiredFamilies += 1;
+    await writeLine(reviewGzip, { family_id: null, reason: [item.reason], review_status: item.review_status, suspicion_score: item.review_status === 'blocked_from_runtime' ? 100 : 60, representative_words: {}, branches: item.aliases, etymology_paths: [item.etymon_key], relation_types: item.relation_types, evidence: item.evidence, possible_actions: ['keep separate', 'split homonyms', 'manual check'] });
   }
   reviewGzip.end();
   await once(reviewOutput, 'finish');
@@ -572,16 +662,21 @@ async function main() {
     fuzzy_memberships: 0,
     levenshtein_memberships: 0,
     untyped_family_edges: 0,
+    untyped_or_illegal_equivalence_edges: [...built.families.values()].filter(family => (family.relation_types || []).some(type => ![RELATION_TYPE.DIRECT_ALLOMORPH, RELATION_TYPE.DIRECT_DESCENDANT, RELATION_TYPE.BORROWED_FORM, RELATION_TYPE.INHERITED_FORM].includes(type))).length,
     compound_edges_used_as_equivalence: 0,
     unreviewed_high_risk_families: unreviewedHighRiskFamilies
   };
   const report = {
     version: INDEX_VERSION,
     generated_at: new Date().toISOString(),
+    provenance,
     languages: options.languages,
     source_entries: primary.countsByLanguage,
     assignment_stats: assignments.stats,
     etymology_coverage: ety.coverage,
+    etymology_relation_counts: ety.relationCounts,
+    uncertain_relation_count: ety.uncertainRelationCount,
+    uncertain_relation_sample_size: ety.reviewRelations.length,
     total_families: totalFamilies,
     merged_families: mergedFamilies,
     singleton_families: singletonFamilies,
@@ -589,12 +684,15 @@ async function main() {
     multi_family_lemmas: assignments.multiFamilyLemmas,
     components_discovered: assignments.totalComponents,
     components_assigned: assignments.totalComponents,
+    corpus_quality_counts: assignments.corpusQualityCounts,
     review_required_families: reviewRequiredFamilies,
     invariants,
     generated_non_proto_families: generatedNonProtoFamilies,
     verified_seed_families: verifiedSeedFamilies,
     aliases_in_lookup: aliasesInLookup,
     proto_review_candidates: built.protoReview.length,
+    wide_etymon_review_candidates: built.wideReview.length,
+    etymon_key_policy: { automatic_max_roots: MAX_AUTOMATIC_ETYM_KEY_ROOTS, review_max_roots: MAX_REVIEWABLE_ETYM_KEY_ROOTS, absolute_collection_ceiling: MAX_ETYM_KEY_ROOTS },
     controls: controlSummary,
     controls_ok: controlsOk,
     largest_families: largestFamilies,
@@ -602,11 +700,14 @@ async function main() {
   };
 
   await writeFile(join(options.outputRoot, 'proto-review.json'), `${JSON.stringify(built.protoReview, null, 2)}\n`);
+  await writeFile(join(options.outputRoot, 'reports/relation-review.json'), `${JSON.stringify(ety.reviewRelations, null, 2)}\n`);
   await writeFile(join(options.outputRoot, 'reports/audit-summary.json'), `${JSON.stringify(report, null, 2)}\n`);
-  await writeFile(join(options.outputRoot, 'manifest.json'), `${JSON.stringify({ version: '4', generated_at: report.generated_at, languages: options.languages, counts: { families: totalFamilies, aliases: aliasesInLookup, lemmas: sourceLemmaCount, components: assignments.totalComponents }, sharding: { algorithm: 'fnv1a-modulo-256', alias_template: 'aliases/{bucket}.json', family_template: 'families/{bucket}.json', member_template: 'members/{language}/{bucket}.json' }, buckets: { families: familyBuckets, aliases: aliasBuckets } }, null, 2)}\n`);
+  await writeFile(join(options.outputRoot, 'manifest.json'), `${JSON.stringify({ version: INDEX_VERSION, generated_at: report.generated_at, provenance, manual_overrides_integrated: true, languages: options.languages, counts: { families: totalFamilies, aliases: aliasesInLookup, lemmas: sourceLemmaCount, components: assignments.totalComponents }, sharding: { algorithm: 'fnv1a-modulo-256', alias_template: 'aliases/{bucket}.json', family_template: 'families/{bucket}.json', member_template: 'members/{language}/{bucket}.json' }, buckets: { families: familyBuckets, aliases: aliasBuckets } }, null, 2)}\n`);
   await writeFile(join(options.outputRoot, 'report.json'), `${JSON.stringify(report, null, 2)}\n`);
   console.log(JSON.stringify(report, null, 2));
   if (!controlsOk || !Object.values(invariants).every(value => typeof value !== 'boolean' || value)) process.exitCode = 2;
 }
 
-main().catch(error => { console.error(error?.stack || error?.message || error); process.exitCode = 1; });
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main().catch(error => { console.error(error?.stack || error?.message || error); process.exitCode = 1; });
+}

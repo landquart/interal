@@ -1,0 +1,65 @@
+name: Upload corrective family v5 staging blobs
+
+on:
+  push:
+    branches:
+      - fix/associative-family-corrective-v5
+    paths:
+      - '.github/workflows/upload-associative-family-v5-staging.yml'
+      - 'scripts/upload-associative-family-staging-blobs.mjs'
+  workflow_dispatch:
+    inputs:
+      source_run_id:
+        description: Corrective build workflow run ID
+        required: true
+        default: '35461412225'
+        type: string
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  upload-staging:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      SOURCE_RUN_ID: ${{ inputs.source_run_id || '35461412225' }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Resolve and download immutable build archives
+        run: |
+          set -euo pipefail
+          artifacts=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$SOURCE_RUN_ID/artifacts")
+          metadata_id=$(jq -r '.artifacts[] | select(.name == "associative-family-metadata") | .id' <<<"$artifacts")
+          members_id=$(jq -r '.artifacts[] | select(.name == "associative-family-members") | .id' <<<"$artifacts")
+          metadata_digest=$(jq -r '.artifacts[] | select(.name == "associative-family-metadata") | .digest | sub("^sha256:"; "")' <<<"$artifacts")
+          members_digest=$(jq -r '.artifacts[] | select(.name == "associative-family-members") | .digest | sub("^sha256:"; "")' <<<"$artifacts")
+          test -n "$metadata_id" && test -n "$members_id"
+          gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$metadata_id/zip" > metadata.zip
+          gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$members_id/zip" > members.zip
+          echo "$metadata_digest  metadata.zip" | sha256sum -c -
+          echo "$members_digest  members.zip" | sha256sum -c -
+          prefix="associative-family/v5-staging/run-${SOURCE_RUN_ID}-${metadata_digest:0:12}-${members_digest:0:12}/"
+          echo "STAGING_PREFIX=$prefix" >> "$GITHUB_ENV"
+      - name: Confirm private Blob credential
+        env:
+          BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
+        run: test -n "$BLOB_READ_WRITE_TOKEN"
+      - name: Upload immutable staging namespace and smoke-test Range
+        env:
+          BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
+        run: node scripts/upload-associative-family-staging-blobs.mjs metadata.zip members.zip "$STAGING_PREFIX" staging-blob-manifest.json
+      - name: Upload staging provenance
+        uses: actions/upload-artifact@v4
+        with:
+          name: associative-family-v5-staging-blob-manifest
+          path: staging-blob-manifest.json
+          if-no-files-found: error
+          retention-days: 90

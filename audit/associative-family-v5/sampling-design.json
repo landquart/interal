@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "status": "probability_sample_v2_generated_awaiting_source_packet_completion_and_pilot",
+  "published_sample": {
+    "rows": 9600,
+    "per_language": 1600,
+    "unique_memberships": "pending_full_members_cross_check",
+    "seed": "associative-family-v5-semantic-audit-2026-09-19",
+    "sampling_frame": "locked v5 memberships reconstructed from assignment family_ids",
+    "selection": "Retain the 24000 lowest seeded hashes per language, enrich them, group by a compound realized stratum, sort strata by size/name, then take one row from each stratum in rounds until 1600.",
+    "known_defect": "The second-stage allocation is deterministic and depends on realized candidate-stratum sizes. stratum_population, stratum_sample_size, inclusion_probability, and sampling_weight were not emitted. Therefore unweighted precision cannot be generalized to the full index.",
+    "use": "challenge and pipeline regression only; not population precision"
+  },
+  "replacement_design": {
+    "status": "generated_before_labels_were_seen",
+    "seed": "associative-family-v5-probability-sample-2026-09-20",
+    "sample_sha256": "5ef0a53f257878acc6c65c04ff943dc9a3699f9499e4f7a59b3ebeab5037ede8",
+    "annotation_packets_sha256": "ae56a0cee4c6ab75d03ea0f5d969338ac19d2c7a1196fc773799c4f853193d9d",
+    "primary_strata": ["language"],
+    "coverage_constraints": ["alias_fanout", "canonical_length", "frequency", "evidence_type", "relation_type", "word_structure", "corpus_quality_status"],
+    "unit": ["language", "lemma_id", "family_id"],
+    "allocation": "Exactly 1600 memberships per language selected by the lowest SHA-256 values of fixed-seed membership keys. Under the prespecified uniform hash design, each membership in a language has inclusion probability n_h/N_h. Risk dimensions are measured as coverage variables; rare challenge cases stay outside the estimator.",
+    "required_row_fields": ["sampling_stratum", "stratum_population", "stratum_sample_size", "inclusion_probability", "sampling_weight"],
+    "challenge_set": "Separate non-probability file excluded from overall precision.",
+    "analysis": "Horvitz-Thompson/design-weighted point estimates with stratified family-cluster bootstrap confidence intervals."
+  }
+}
