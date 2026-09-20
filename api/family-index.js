@@ -1,4 +1,4 @@
-import { list } from '@vercel/blob';
+import { get, list } from '@vercel/blob';
 import { inflateRawSync } from 'node:zlib';
 
 const PRODUCTION_FAMILY_PREFIX = 'associative-family/v5-staging/run-35461412225-68b305f48e4b-576b08b2ba90/';
@@ -11,29 +11,42 @@ export function familyIndexPrefix(value = process.env.ASSOCIATIVE_FAMILY_PREFIX 
 const PREFIX = familyIndexPrefix();
 const archives = new Map();
 
-function blobToken() {
-  return process.env.BLOB_READ_WRITE_TOKEN
-    || process.env.VERCEL_OIDC_TOKEN
-    || Object.entries(process.env).find(([key, value]) => key.endsWith('_READ_WRITE_TOKEN') && String(value).startsWith('vercel_blob_'))?.[1];
+export function blobAuthOptions(env = process.env) {
+  const token = env.BLOB_READ_WRITE_TOKEN
+    || Object.entries(env).find(([key, value]) => key.endsWith('_READ_WRITE_TOKEN') && String(value).startsWith('vercel_blob_'))?.[1];
+  if (token) return { token };
+  if (env.VERCEL_OIDC_TOKEN) {
+    return {
+      oidcToken: env.VERCEL_OIDC_TOKEN,
+      ...(env.BLOB_STORE_ID ? { storeId: env.BLOB_STORE_ID } : {}),
+    };
+  }
+  return null;
 }
 
 function archiveName(path) {
   return path.startsWith('members/') ? 'members.zip' : 'metadata.zip';
 }
 
-async function range(url, start, end) {
-  const token = blobToken();
-  if (!token) throw Object.assign(new Error('Blob read credential unavailable'), { statusCode: 503 });
-  const response = await fetch(url, { headers: { Range: `bytes=${start}-${end}`, Authorization: `Bearer ${token}` } });
-  if (!(response.ok || response.status === 206)) throw new Error(`Blob range failed: ${response.status}`);
-  return Buffer.from(await response.arrayBuffer());
+export async function readBlobRange(url, start, end, getBlob = get, env = process.env) {
+  const auth = blobAuthOptions(env);
+  if (!auth) throw Object.assign(new Error('Blob read credential unavailable'), { statusCode: 503 });
+  const result = await getBlob(url, {
+    access: 'private',
+    headers: { Range: `bytes=${start}-${end}` },
+    ...auth,
+  });
+  if (!result || result.statusCode !== 206) {
+    throw new Error(`Blob range failed: ${result?.statusCode ?? 404}`);
+  }
+  return Buffer.from(await new Response(result.stream).arrayBuffer());
 }
 
 async function locate(name) {
   const pathname = `${PREFIX}${name}`;
-  const token = blobToken();
-  if (!token) throw Object.assign(new Error('Blob read credential unavailable'), { statusCode: 503 });
-  const result = await list({ prefix: pathname, limit: 10, token });
+  const auth = blobAuthOptions();
+  if (!auth) throw Object.assign(new Error('Blob read credential unavailable'), { statusCode: 503 });
+  const result = await list({ prefix: pathname, limit: 10, ...auth });
   const blob = result.blobs.find(value => value.pathname === pathname);
   if (!blob) throw Object.assign(new Error(`Archive unavailable: ${name}`), { statusCode: 503 });
   return blob;
@@ -46,7 +59,7 @@ async function indexArchive(name) {
     const blob = await locate(name);
     const size = Number(blob.size);
     const tailStart = Math.max(0, size - 65557);
-    const tail = await range(blob.url, tailStart, size - 1);
+    const tail = await readBlobRange(blob.url, tailStart, size - 1);
     let eocd = -1;
     for (let offset = tail.length - 22; offset >= 0; offset--) {
       if (tail.readUInt32LE(offset) === 0x06054b50) { eocd = offset; break; }
@@ -54,7 +67,7 @@ async function indexArchive(name) {
     if (eocd < 0) throw new Error(`ZIP directory missing: ${name}`);
     const directorySize = tail.readUInt32LE(eocd + 12);
     const directoryOffset = tail.readUInt32LE(eocd + 16);
-    const directory = await range(blob.url, directoryOffset, directoryOffset + directorySize - 1);
+    const directory = await readBlobRange(blob.url, directoryOffset, directoryOffset + directorySize - 1);
     const entries = new Map();
     for (let offset = 0; offset < directory.length;) {
       if (directory.readUInt32LE(offset) !== 0x02014b50) throw new Error(`Invalid ZIP directory: ${name}`);
@@ -86,10 +99,10 @@ async function readEntry(path) {
   }
   const entry = archive.entries.get(storedPath);
   if (!entry) throw Object.assign(new Error(`Index entry missing or ambiguous: ${path}`), { statusCode: 404 });
-  const header = await range(archive.url, entry.localOffset, entry.localOffset + 29);
+  const header = await readBlobRange(archive.url, entry.localOffset, entry.localOffset + 29);
   if (header.readUInt32LE(0) !== 0x04034b50) throw new Error('Invalid ZIP local header');
   const dataOffset = entry.localOffset + 30 + header.readUInt16LE(26) + header.readUInt16LE(28);
-  const compressed = await range(archive.url, dataOffset, dataOffset + entry.compressedSize - 1);
+  const compressed = await readBlobRange(archive.url, dataOffset, dataOffset + entry.compressedSize - 1);
   const data = entry.method === 0 ? compressed : entry.method === 8 ? inflateRawSync(compressed) : null;
   if (!data || data.length !== entry.uncompressedSize) throw new Error(`Unsupported or corrupt ZIP entry: ${path}`);
   return data;
