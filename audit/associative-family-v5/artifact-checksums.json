@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "verified_at": "2026-09-20T12:00:00Z",
+  "artifacts": [
+    { "run_id": 35461412225, "name": "metadata", "bytes": 64413870, "sha256": "68b305f48e4be768849494fa728c42e9edafa2823ee29316d825bc207fa88044", "verification": "downloaded_and_rehashed" },
+    { "run_id": 35461412225, "name": "assignments", "bytes": 455342477, "sha256": "2a8fd4f708fb99e5660d4793ab211e3d3feb5acf53a5c2ad2aa3af21f5080e82", "verification": "downloaded_and_rehashed" },
+    { "run_id": 35461412225, "name": "input-lock", "bytes": 690, "sha256": "36d9e42130924e90791840f14864a3edd58d0aa45f0330251ea8dcd50afff537", "verification": "downloaded_and_rehashed" },
+    { "run_id": 35461412225, "name": "members", "bytes": 667274991, "sha256": "576b08b2ba90902f64414510504fb7769d690f3835a782b5ee2c5434b904ea3e", "verification": "downloaded_and_rehashed_by_run_35508194155" },
+    { "run_id": 35464552349, "name": "independent-audits", "bytes": 2543, "sha256": "8648f1dfdef2d29041413e194c8cc15e7872af5a39485cc46d97296303268822", "verification": "downloaded_and_rehashed" },
+    { "run_id": 35465285032, "name": "semantic-audit-kit", "bytes": 3262125, "sha256": "92397839645a9fd2b5f7c467d97cbbb00f8f8639ae8e9e8e6e9e5b526b52135f", "verification": "downloaded_and_rehashed" },
+    { "run_id": 35466726037, "name": "runtime-benchmark", "bytes": 2576, "sha256": "3cc669cea706cc90f4e9bd70d1c98cc21dd990eb6d8d5a5c5ed71f4b9e0c5e11", "verification": "downloaded_and_rehashed" },
+    { "run_id": 35502652097, "name": "browser-regression", "bytes": 85964, "sha256": "db1505ee11e31fc127e44c7adaa823cdc385b34b58a580c38ee004a09da02930", "verification": "downloaded_and_rehashed" },
+    { "run_id": 35502881404, "name": "staging-blob-manifest", "bytes": 617, "sha256": "665abead59c8d860cd3b63b2a5115a0403add0bb4590e0f7c61b13228a18cad4", "verification": "downloaded_and_rehashed" }
+  ],
+  "members_audit_copies": {
+    "run_id": 35508194155,
+    "source_artifact_id": 10590513436,
+    "source_verified_before_split": true,
+    "languages": {
+      "en": { "artifact_id": 10604298273, "bytes": 169322230, "sha256": "ca073a2bced481a6ec8ce922b33bf752d8bc75b7b7d04fc35f1c8e05b6c26138" },
+      "de": { "artifact_id": 10604278324, "bytes": 142462211, "sha256": "a96cef940170568f5e4eef0b4ff2ce30f79556362fbcc8661e128b164ea9bfec" },
+      "fr": { "artifact_id": 10603923196, "bytes": 68451871, "sha256": "1d02ced26bbdee37350c3d16bc937b9253693ab7556571111a2df1a725f73a3f" },
+      "es": { "artifact_id": 10604517835, "bytes": 116743773, "sha256": "76550ed0bd971813cf3799fc300bd5f5f2c0391b4ea64418739381c157d5f34f" },
+      "it": { "artifact_id": 10604717544, "bytes": 83909651, "sha256": "fe88b2259458f03c60d3543b597b94c76f271c7868f388c1a1d4d7629973a767" },
+      "ru": { "artifact_id": 10604757606, "bytes": 86376149, "sha256": "ab011725657eafb72cb4b4b33ade662270c51bf7437324aed27dfdf445826743" }
+    }
+  }
+}

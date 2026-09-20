@@ -26,7 +26,11 @@
       "families": 2456627,
       "aliases": 1934061,
       "lemmas": 4924980,
-      "membership_components": 9350026
+      "component_records": 9350026,
+      "memberships": 10426189,
+      "members": 10426189,
+      "memberships_with_repeated_component_evidence": 5097,
+      "excess_component_evidence_links": 6282
     },
     "independently_audited": true,
     "audit_run_id": 35464552349,
@@ -45,7 +49,15 @@
     "families": -1598,
     "aliases": 0,
     "lemmas": 0,
-    "membership_components": -5568431
+    "memberships": -4492268
+  },
+  "metric_correction": {
+    "status": "corrected_after_independent_recount",
+    "error": "The previous report subtracted v5 manifest.counts.components from v4 memberships. Those fields count different units.",
+    "components_definition": "One component evidence record emitted by the generator, not one unique (language, lemma_id, family_id) membership.",
+    "membership_definition": "One unique (language, lemma_id, family_id) tuple, materialized once in members.",
+    "recount_method": "Stream all six locked assignment JSONL.GZ files; count lemma rows and component records, deduplicate family_ids per lemma, and aggregate component-to-family evidence multiplicity.",
+    "component_to_membership_comparison_prohibited": true
   },
   "interpretation": {
     "safe_claim": "The same locked candidate corpus and Kaikki dump were reused; all exhaustive structural gates and known-regression checks passed.",

@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "status": "awaiting_human_recruitment",
+  "privacy": "Use pseudonymous IDs; do not commit personal data.",
+  "requirements": {
+    "reviews_per_membership": 2,
+    "minimum_human_reviews_per_membership": 1,
+    "independent_before_adjudication": true,
+    "language_coverage": ["en", "de", "fr", "es", "it", "ru"]
+  },
+  "annotators": []
+}

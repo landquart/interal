@@ -11,5 +11,17 @@
     "unadjudicated_disagreements": 0,
     "single_evaluator_rows": 0
   },
-  "labels": ["true_positive", "false_positive", "uncertain", "normalization_error", "morphology_error", "etymology_error", "homonymy", "distant_relation", "corpus_noise"]
+  "membership_verdicts": ["true_positive", "false_positive", "uncertain"],
+  "error_categories": ["normalization_error", "morphology_error", "etymology_error", "homonymy", "distant_relation", "corpus_noise", "wrong_language", "wrong_sense", "unsupported_evidence", "policy_error", "other"],
+  "precision_definitions": {
+    "resolved": "TP / (TP + FP)",
+    "conservative": "TP / (TP + FP + U)",
+    "optimistic": "(TP + U) / (TP + FP + U)"
+  },
+  "confidence_interval": {
+    "method": "stratified_family_cluster_bootstrap",
+    "repetitions": 2000,
+    "seed": "associative-family-v5-bootstrap-2026-09-20",
+    "minimum_reportable_subgroup_n": 30
+  }
 }

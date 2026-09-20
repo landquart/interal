@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "status": "replacement_required_before_main_annotation",
+  "published_sample": {
+    "rows": 9600,
+    "per_language": 1600,
+    "unique_memberships": "pending_full_members_cross_check",
+    "seed": "associative-family-v5-semantic-audit-2026-09-19",
+    "sampling_frame": "locked v5 memberships reconstructed from assignment family_ids",
+    "selection": "Retain the 24000 lowest seeded hashes per language, enrich them, group by a compound realized stratum, sort strata by size/name, then take one row from each stratum in rounds until 1600.",
+    "known_defect": "The second-stage allocation is deterministic and depends on realized candidate-stratum sizes. stratum_population, stratum_sample_size, inclusion_probability, and sampling_weight were not emitted. Therefore unweighted precision cannot be generalized to the full index.",
+    "use": "challenge and pipeline regression only; not population precision"
+  },
+  "replacement_design": {
+    "status": "must_be_generated_before_labels_are_seen",
+    "primary_strata": ["language", "family_source", "family_size", "review_status"],
+    "coverage_constraints": ["alias_fanout", "canonical_length", "frequency", "evidence_type", "relation_type", "word_structure", "corpus_quality_status"],
+    "unit": ["language", "lemma_id", "family_id"],
+    "allocation": "Prespecified stratified probability sample with known positive inclusion probability for every in-frame membership; rare-risk oversamples remain in the probability sample only when their inclusion probability is computable.",
+    "required_row_fields": ["sampling_stratum", "stratum_population", "stratum_sample_size", "inclusion_probability", "sampling_weight"],
+    "challenge_set": "Separate non-probability file excluded from overall precision.",
+    "analysis": "Horvitz-Thompson/design-weighted point estimates with stratified family-cluster bootstrap confidence intervals."
+  }
+}
