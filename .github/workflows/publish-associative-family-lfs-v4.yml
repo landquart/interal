@@ -18,9 +18,9 @@ jobs:
     timeout-minutes: 120
     env:
       DATA_BRANCH: associative-family-data-v4
-      OUTPUT_DIR: ${{ runner.temp }}/family-v4/output
-      METADATA_ARCHIVE: ${{ runner.temp }}/family-v4/associative-family-metadata-v4.zip
-      MEMBERS_ARCHIVE: ${{ runner.temp }}/family-v4/associative-family-members-v4.zip
+      OUTPUT_DIR: /tmp/interal-family-v4/output
+      METADATA_ARCHIVE: /tmp/interal-family-v4/associative-family-metadata-v4.zip
+      MEMBERS_ARCHIVE: /tmp/interal-family-v4/associative-family-members-v4.zip
     steps:
       - name: Check out uploader branch
         uses: actions/checkout@v4
@@ -68,8 +68,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          metadata_dir="$RUNNER_TEMP/family-v4/metadata"
-          members_dir="$RUNNER_TEMP/family-v4/members"
+          metadata_dir="/tmp/interal-family-v4/metadata"
+          members_dir="/tmp/interal-family-v4/members"
           mkdir -p "$metadata_dir" "$members_dir"
           unzip -q "$METADATA_ARCHIVE" -d "$metadata_dir"
           unzip -q "$MEMBERS_ARCHIVE" -d "$members_dir"
@@ -95,7 +95,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          members_dir="$RUNNER_TEMP/family-v4/members"
+          members_dir="/tmp/interal-family-v4/members"
           mkdir -p "$OUTPUT_DIR"
           cp "$METADATA_ARCHIVE" "$OUTPUT_DIR/metadata.zip"
           for language in en de fr es it ru; do
