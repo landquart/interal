@@ -141,10 +141,10 @@ jobs:
           git lfs install --local
           git lfs track 'associative-family/v4/*.zip'
           git add .gitattributes README.md associative-family/v4
+          git commit -m 'data: publish validated associative family v4 archives via LFS'
           lfs_count=$(git lfs ls-files -n | wc -l | tr -d ' ')
           test "$lfs_count" -eq 7 || { echo "Expected 7 LFS files, found $lfs_count"; exit 1; }
           git lfs fsck
-          git commit -m 'data: publish validated associative family v4 archives via LFS'
           git push origin "$DATA_BRANCH"
 
       - name: Summary
