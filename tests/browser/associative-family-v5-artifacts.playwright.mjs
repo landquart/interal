@@ -8,7 +8,7 @@ import { chromium } from 'playwright';
 const artifactRoot = resolve(process.argv[2] || '.tmp/runtime-family-v5');
 const outputPath = resolve(process.argv[3] || '.tmp/browser-regression.json');
 const repositoryRoot = resolve(import.meta.dirname, '../..');
-const contentTypes = { '.css': 'text/css', '.html': 'text/html', '.js': 'text/javascript', '.json': 'application/json', '.svg': 'image/svg+xml' };
+const contentTypes = { '.css': 'text/css', '.html': 'text/html', '.js': 'text/javascript', '.mjs': 'text/javascript', '.json': 'application/json', '.svg': 'image/svg+xml' };
 const requestLog = [];
 
 const server = createServer(async (request, response) => {
