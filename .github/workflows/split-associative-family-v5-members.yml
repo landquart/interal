@@ -1,0 +1,69 @@
+name: Split immutable family v5 members for audit
+
+on:
+  push:
+    branches: [fix/associative-family-corrective-v5]
+    paths:
+      - '.github/workflows/split-associative-family-v5-members.yml'
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  split:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download and verify immutable members artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p .tmp/members
+          gh api repos/${{ github.repository }}/actions/artifacts/10590513436/zip > .tmp/members.zip
+          echo '576b08b2ba90902f64414510504fb7769d690f3835a782b5ee2c5434b904ea3e  .tmp/members.zip' | sha256sum -c -
+          unzip -tq .tmp/members.zip
+          unzip -q .tmp/members.zip -d .tmp/members
+          for language in en de fr es it ru; do
+            test -d ".tmp/members/$language"
+            test "$(find ".tmp/members/$language" -maxdepth 1 -type f -name '*.json' | wc -l)" -eq 256
+          done
+      - uses: actions/upload-artifact@v4
+        with:
+          name: associative-family-v5-members-en-audit-copy
+          path: .tmp/members/en
+          compression-level: 6
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: associative-family-v5-members-de-audit-copy
+          path: .tmp/members/de
+          compression-level: 6
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: associative-family-v5-members-fr-audit-copy
+          path: .tmp/members/fr
+          compression-level: 6
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: associative-family-v5-members-es-audit-copy
+          path: .tmp/members/es
+          compression-level: 6
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: associative-family-v5-members-it-audit-copy
+          path: .tmp/members/it
+          compression-level: 6
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: associative-family-v5-members-ru-audit-copy
+          path: .tmp/members/ru
+          compression-level: 6
+          retention-days: 30
