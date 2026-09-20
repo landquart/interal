@@ -16,7 +16,9 @@
   "audit_verdict": "INSUFFICIENT_EVIDENCE",
   "operational_disposition": "OWNER_ACCEPTED_AT_RISK",
   "production_ready_claim_allowed": false,
-  "merge_authorized": false,
-  "production_switch_authorized": false,
-  "notes": "This record changes the owner's disposition, not the observed evidence. It must not be cited as measured linguistic validation or as satisfying the original human-involved acceptance thresholds. Merge and production promotion still require separate explicit authorization."
+  "merge_authorized": true,
+  "production_switch_authorized": true,
+  "notes": "Owner explicitly authorized merging PR #622 and switching production to the locked immutable v5 prefix. This operational authorization does not convert missing linguistic measurements into validation evidence.",
+  "authorization_recorded_at": "2026-09-20T12:30:00Z",
+  "authorization_source": "explicit repository owner instruction"
 }
