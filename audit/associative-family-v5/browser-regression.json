@@ -1,0 +1,1594 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-09-20T09:32:39.763Z",
+  "artifact_root": "/home/runner/work/interal/interal/.tmp/browser-family-v5",
+  "scenarios": [
+    {
+      "viewport": "desktop",
+      "width": 1440,
+      "height": 1000,
+      "controls": [
+        {
+          "alias": "manu",
+          "language": "en",
+          "family_ids": [
+            "family:manu"
+          ],
+          "top5": [
+            "manufacture",
+            "manual"
+          ],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "manu",
+          "language": "de",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "manu",
+          "language": "fr",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "manu",
+          "language": "es",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "manu",
+          "language": "it",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "manu",
+          "language": "ru",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "pede",
+          "language": "en",
+          "family_ids": [
+            "family:pede"
+          ],
+          "top5": [
+            "pedal",
+            "pedicure"
+          ],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "pede",
+          "language": "de",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "pede",
+          "language": "fr",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "pede",
+          "language": "es",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "pede",
+          "language": "it",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "pede",
+          "language": "ru",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "ocul",
+          "language": "en",
+          "family_ids": [
+            "family:ocul"
+          ],
+          "top5": [
+            "ocular",
+            "monocle",
+            "monocular"
+          ],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "ocul",
+          "language": "de",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "ocul",
+          "language": "fr",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "ocul",
+          "language": "es",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "ocul",
+          "language": "it",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "ocul",
+          "language": "ru",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "alter",
+          "language": "en",
+          "family_ids": [
+            "family:alter"
+          ],
+          "top5": [
+            "alternative",
+            "altruism"
+          ],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "alter",
+          "language": "de",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "alter",
+          "language": "fr",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "alter",
+          "language": "es",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "alter",
+          "language": "it",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "alter",
+          "language": "ru",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "regul",
+          "language": "en",
+          "family_ids": [
+            "family:regul"
+          ],
+          "top5": [
+            "regular",
+            "regulation"
+          ],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "regul",
+          "language": "de",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "regul",
+          "language": "fr",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "regul",
+          "language": "es",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "regul",
+          "language": "it",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "regul",
+          "language": "ru",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "libert",
+          "language": "en",
+          "family_ids": [
+            "family:libert"
+          ],
+          "top5": [
+            "liberty"
+          ],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "libert",
+          "language": "de",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "libert",
+          "language": "fr",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "libert",
+          "language": "es",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "libert",
+          "language": "it",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "libert",
+          "language": "ru",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "inter",
+          "language": "en",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "inter",
+          "language": "de",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "inter",
+          "language": "fr",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "inter",
+          "language": "es",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "inter",
+          "language": "it",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "inter",
+          "language": "ru",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        }
+      ],
+      "repeat_added_resources": 0,
+      "abort_error": "AbortError",
+      "overflow_error": "Family alias fan-out 28 exceeds runtime limit 25",
+      "race_family_ids": [
+        [
+          "family:alter"
+        ],
+        [
+          "family:ocul"
+        ]
+      ]
+    },
+    {
+      "viewport": "mobile",
+      "width": 390,
+      "height": 844,
+      "controls": [
+        {
+          "alias": "manu",
+          "language": "en",
+          "family_ids": [
+            "family:manu"
+          ],
+          "top5": [
+            "manufacture",
+            "manual"
+          ],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "manu",
+          "language": "de",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "manu",
+          "language": "fr",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "manu",
+          "language": "es",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "manu",
+          "language": "it",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "manu",
+          "language": "ru",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "pede",
+          "language": "en",
+          "family_ids": [
+            "family:pede"
+          ],
+          "top5": [
+            "pedal",
+            "pedicure"
+          ],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "pede",
+          "language": "de",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "pede",
+          "language": "fr",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "pede",
+          "language": "es",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "pede",
+          "language": "it",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "pede",
+          "language": "ru",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "ocul",
+          "language": "en",
+          "family_ids": [
+            "family:ocul"
+          ],
+          "top5": [
+            "ocular",
+            "monocle",
+            "monocular"
+          ],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "ocul",
+          "language": "de",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "ocul",
+          "language": "fr",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "ocul",
+          "language": "es",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "ocul",
+          "language": "it",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "ocul",
+          "language": "ru",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "alter",
+          "language": "en",
+          "family_ids": [
+            "family:alter"
+          ],
+          "top5": [
+            "alternative",
+            "altruism"
+          ],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "alter",
+          "language": "de",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "alter",
+          "language": "fr",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "alter",
+          "language": "es",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "alter",
+          "language": "it",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "alter",
+          "language": "ru",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "regul",
+          "language": "en",
+          "family_ids": [
+            "family:regul"
+          ],
+          "top5": [
+            "regular",
+            "regulation"
+          ],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "regul",
+          "language": "de",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "regul",
+          "language": "fr",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "regul",
+          "language": "es",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "regul",
+          "language": "it",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "regul",
+          "language": "ru",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "libert",
+          "language": "en",
+          "family_ids": [
+            "family:libert"
+          ],
+          "top5": [
+            "liberty"
+          ],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "libert",
+          "language": "de",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "libert",
+          "language": "fr",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "libert",
+          "language": "es",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "libert",
+          "language": "it",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "libert",
+          "language": "ru",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "inter",
+          "language": "en",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "inter",
+          "language": "de",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "inter",
+          "language": "fr",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "inter",
+          "language": "es",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "inter",
+          "language": "it",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        },
+        {
+          "alias": "inter",
+          "language": "ru",
+          "family_ids": [],
+          "top5": [],
+          "fuzzyCandidateIds": 0,
+          "approximateCandidateIds": 0,
+          "validationErrors": []
+        }
+      ],
+      "repeat_added_resources": 0,
+      "abort_error": "AbortError",
+      "overflow_error": "Family alias fan-out 28 exceeds runtime limit 25",
+      "race_family_ids": [
+        [
+          "family:alter"
+        ],
+        [
+          "family:ocul"
+        ]
+      ]
+    }
+  ],
+  "console_errors": [
+    {
+      "viewport": "desktop",
+      "text": "Failed to load module script: Expected a JavaScript-or-Wasm module script but the server responded with a MIME type of \"application/octet-stream\". Strict MIME type checking is enforced for module scripts per HTML spec."
+    },
+    {
+      "viewport": "desktop",
+      "text": "Failed to load module script: Expected a JavaScript-or-Wasm module script but the server responded with a MIME type of \"application/octet-stream\". Strict MIME type checking is enforced for module scripts per HTML spec."
+    },
+    {
+      "viewport": "mobile",
+      "text": "Failed to load module script: Expected a JavaScript-or-Wasm module script but the server responded with a MIME type of \"application/octet-stream\". Strict MIME type checking is enforced for module scripts per HTML spec."
+    },
+    {
+      "viewport": "mobile",
+      "text": "Failed to load module script: Expected a JavaScript-or-Wasm module script but the server responded with a MIME type of \"application/octet-stream\". Strict MIME type checking is enforced for module scripts per HTML spec."
+    },
+    {
+      "viewport": "mobile",
+      "text": "Failed to load module script: Expected a JavaScript-or-Wasm module script but the server responded with a MIME type of \"application/octet-stream\". Strict MIME type checking is enforced for module scripts per HTML spec."
+    }
+  ],
+  "page_errors": [],
+  "requests": [
+    {
+      "path": "manifest.json",
+      "status": 200,
+      "bytes": 8028,
+      "elapsed_ms": 1.0129360000000815
+    },
+    {
+      "path": "aliases/ee.json",
+      "status": 200,
+      "bytes": 323845,
+      "elapsed_ms": 3.374272999999903
+    },
+    {
+      "path": "families/4a.json",
+      "status": 200,
+      "bytes": 3033236,
+      "elapsed_ms": 1.5249579999999696
+    },
+    {
+      "path": "members/en/4a.json",
+      "status": 200,
+      "bytes": 11049686,
+      "elapsed_ms": 6.751981999999771
+    },
+    {
+      "path": "members/de/4a.json",
+      "status": 200,
+      "bytes": 6948203,
+      "elapsed_ms": 6.045231999999942
+    },
+    {
+      "path": "members/fr/4a.json",
+      "status": 200,
+      "bytes": 3165855,
+      "elapsed_ms": 3.9765699999998105
+    },
+    {
+      "path": "members/es/4a.json",
+      "status": 200,
+      "bytes": 7102383,
+      "elapsed_ms": 2.1673249999998916
+    },
+    {
+      "path": "members/it/4a.json",
+      "status": 200,
+      "bytes": 4385880,
+      "elapsed_ms": 1.8868829999996706
+    },
+    {
+      "path": "members/ru/4a.json",
+      "status": 200,
+      "bytes": 3185742,
+      "elapsed_ms": 1.1213689999999588
+    },
+    {
+      "path": "aliases/91.json",
+      "status": 200,
+      "bytes": 319933,
+      "elapsed_ms": 0.4677240000000893
+    },
+    {
+      "path": "families/2d.json",
+      "status": 200,
+      "bytes": 2910556,
+      "elapsed_ms": 1.7897060000000238
+    },
+    {
+      "path": "members/en/2d.json",
+      "status": 200,
+      "bytes": 9185416,
+      "elapsed_ms": 2.164792000000034
+    },
+    {
+      "path": "members/de/2d.json",
+      "status": 200,
+      "bytes": 5940945,
+      "elapsed_ms": 8.939076999999997
+    },
+    {
+      "path": "members/fr/2d.json",
+      "status": 200,
+      "bytes": 2695527,
+      "elapsed_ms": 3.2604919999998856
+    },
+    {
+      "path": "members/es/2d.json",
+      "status": 200,
+      "bytes": 5375823,
+      "elapsed_ms": 1.046465999999782
+    },
+    {
+      "path": "members/it/2d.json",
+      "status": 200,
+      "bytes": 3390877,
+      "elapsed_ms": 0.8129050000006828
+    },
+    {
+      "path": "members/ru/2d.json",
+      "status": 200,
+      "bytes": 3226845,
+      "elapsed_ms": 0.778903999999784
+    },
+    {
+      "path": "aliases/2e.json",
+      "status": 200,
+      "bytes": 319336,
+      "elapsed_ms": 0.3641990000005535
+    },
+    {
+      "path": "families/2a.json",
+      "status": 200,
+      "bytes": 2956325,
+      "elapsed_ms": 0.7099389999993946
+    },
+    {
+      "path": "members/en/2a.json",
+      "status": 200,
+      "bytes": 9226098,
+      "elapsed_ms": 1.4686929999998029
+    },
+    {
+      "path": "members/de/2a.json",
+      "status": 200,
+      "bytes": 7229824,
+      "elapsed_ms": 4.250508000000082
+    },
+    {
+      "path": "members/fr/2a.json",
+      "status": 200,
+      "bytes": 2975852,
+      "elapsed_ms": 0.866425000000163
+    },
+    {
+      "path": "members/es/2a.json",
+      "status": 200,
+      "bytes": 5458417,
+      "elapsed_ms": 1.0647939999998925
+    },
+    {
+      "path": "members/it/2a.json",
+      "status": 200,
+      "bytes": 3792102,
+      "elapsed_ms": 0.874456999999893
+    },
+    {
+      "path": "members/ru/2a.json",
+      "status": 200,
+      "bytes": 3161803,
+      "elapsed_ms": 0.8352780000004714
+    },
+    {
+      "path": "aliases/6b.json",
+      "status": 200,
+      "bytes": 325675,
+      "elapsed_ms": 0.4005429999997432
+    },
+    {
+      "path": "families/0f.json",
+      "status": 200,
+      "bytes": 2909869,
+      "elapsed_ms": 0.7248019999997268
+    },
+    {
+      "path": "members/en/0f.json",
+      "status": 200,
+      "bytes": 7705559,
+      "elapsed_ms": 7.944609000000128
+    },
+    {
+      "path": "members/de/0f.json",
+      "status": 200,
+      "bytes": 7904369,
+      "elapsed_ms": 1.5207820000005086
+    },
+    {
+      "path": "members/fr/0f.json",
+      "status": 200,
+      "bytes": 3517934,
+      "elapsed_ms": 0.8496600000007675
+    },
+    {
+      "path": "members/es/0f.json",
+      "status": 200,
+      "bytes": 6925437,
+      "elapsed_ms": 1.212006000000656
+    },
+    {
+      "path": "members/it/0f.json",
+      "status": 200,
+      "bytes": 9089207,
+      "elapsed_ms": 13.647208999999748
+    },
+    {
+      "path": "members/ru/0f.json",
+      "status": 200,
+      "bytes": 4534331,
+      "elapsed_ms": 0.9019779999998718
+    },
+    {
+      "path": "aliases/24.json",
+      "status": 200,
+      "bytes": 315259,
+      "elapsed_ms": 0.417899000000034
+    },
+    {
+      "path": "families/40.json",
+      "status": 200,
+      "bytes": 2975276,
+      "elapsed_ms": 0.7087380000002668
+    },
+    {
+      "path": "members/en/40.json",
+      "status": 200,
+      "bytes": 9277052,
+      "elapsed_ms": 1.469083999999384
+    },
+    {
+      "path": "members/de/40.json",
+      "status": 200,
+      "bytes": 6399635,
+      "elapsed_ms": 15.024789999999484
+    },
+    {
+      "path": "members/fr/40.json",
+      "status": 200,
+      "bytes": 3113495,
+      "elapsed_ms": 5.361127000000124
+    },
+    {
+      "path": "members/es/40.json",
+      "status": 200,
+      "bytes": 6985494,
+      "elapsed_ms": 1.5763050000005023
+    },
+    {
+      "path": "members/it/40.json",
+      "status": 200,
+      "bytes": 4435388,
+      "elapsed_ms": 1.9532529999996768
+    },
+    {
+      "path": "members/ru/40.json",
+      "status": 200,
+      "bytes": 5289860,
+      "elapsed_ms": 2.384121999999479
+    },
+    {
+      "path": "aliases/fd.json",
+      "status": 200,
+      "bytes": 324935,
+      "elapsed_ms": 0.36146499999995285
+    },
+    {
+      "path": "families/d9.json",
+      "status": 200,
+      "bytes": 2969020,
+      "elapsed_ms": 0.7102100000001883
+    },
+    {
+      "path": "members/en/d9.json",
+      "status": 200,
+      "bytes": 9840733,
+      "elapsed_ms": 2.4660949999997683
+    },
+    {
+      "path": "members/de/d9.json",
+      "status": 200,
+      "bytes": 6692568,
+      "elapsed_ms": 14.684131999999408
+    },
+    {
+      "path": "members/fr/d9.json",
+      "status": 200,
+      "bytes": 3059254,
+      "elapsed_ms": 1.1513249999998152
+    },
+    {
+      "path": "members/es/d9.json",
+      "status": 200,
+      "bytes": 8120988,
+      "elapsed_ms": 1.4240559999998368
+    },
+    {
+      "path": "members/it/d9.json",
+      "status": 200,
+      "bytes": 9494895,
+      "elapsed_ms": 6.833654999999453
+    },
+    {
+      "path": "members/ru/d9.json",
+      "status": 200,
+      "bytes": 3169888,
+      "elapsed_ms": 7.3595869999999195
+    },
+    {
+      "path": "aliases/69.json",
+      "status": 200,
+      "bytes": 323937,
+      "elapsed_ms": 0.35100899999997637
+    },
+    {
+      "path": "families/ad.json",
+      "status": 200,
+      "bytes": 2986263,
+      "elapsed_ms": 0.8278769999997166
+    },
+    {
+      "path": "members/en/ad.json",
+      "status": 200,
+      "bytes": 12750965,
+      "elapsed_ms": 3.3176180000000386
+    },
+    {
+      "path": "members/de/ad.json",
+      "status": 200,
+      "bytes": 6645188,
+      "elapsed_ms": 33.798327999999856
+    },
+    {
+      "path": "members/fr/ad.json",
+      "status": 200,
+      "bytes": 3942574,
+      "elapsed_ms": 1.5394590000005337
+    },
+    {
+      "path": "members/es/ad.json",
+      "status": 200,
+      "bytes": 6059159,
+      "elapsed_ms": 1.9454699999996592
+    },
+    {
+      "path": "members/it/ad.json",
+      "status": 200,
+      "bytes": 3159258,
+      "elapsed_ms": 0.8161700000000565
+    },
+    {
+      "path": "members/ru/ad.json",
+      "status": 200,
+      "bytes": 2906947,
+      "elapsed_ms": 0.8427000000001499
+    },
+    {
+      "path": "manifest.json",
+      "status": 200,
+      "bytes": 8028,
+      "elapsed_ms": 0.28623199999947246
+    },
+    {
+      "path": "aliases/58.json",
+      "status": 200,
+      "bytes": 317917,
+      "elapsed_ms": 0.4598630000000412
+    },
+    {
+      "path": "manifest.json",
+      "status": 200,
+      "bytes": 8028,
+      "elapsed_ms": 0.3404129999998986
+    },
+    {
+      "path": "aliases/ee.json",
+      "status": 200,
+      "bytes": 323845,
+      "elapsed_ms": 0.2651690000002418
+    },
+    {
+      "path": "families/4a.json",
+      "status": 200,
+      "bytes": 3033236,
+      "elapsed_ms": 1.4477260000003298
+    },
+    {
+      "path": "members/en/4a.json",
+      "status": 200,
+      "bytes": 11049686,
+      "elapsed_ms": 3.525732000000062
+    },
+    {
+      "path": "members/de/4a.json",
+      "status": 200,
+      "bytes": 6948203,
+      "elapsed_ms": 1.8697970000002897
+    },
+    {
+      "path": "members/fr/4a.json",
+      "status": 200,
+      "bytes": 3165855,
+      "elapsed_ms": 0.983752000000095
+    },
+    {
+      "path": "members/es/4a.json",
+      "status": 200,
+      "bytes": 7102383,
+      "elapsed_ms": 10.544700999999804
+    },
+    {
+      "path": "members/it/4a.json",
+      "status": 200,
+      "bytes": 4385880,
+      "elapsed_ms": 13.921203000000787
+    },
+    {
+      "path": "members/ru/4a.json",
+      "status": 200,
+      "bytes": 3185742,
+      "elapsed_ms": 0.8022779999992053
+    },
+    {
+      "path": "aliases/91.json",
+      "status": 200,
+      "bytes": 319933,
+      "elapsed_ms": 0.3491059999996651
+    },
+    {
+      "path": "families/2d.json",
+      "status": 200,
+      "bytes": 2910556,
+      "elapsed_ms": 0.6959390000001804
+    },
+    {
+      "path": "members/en/2d.json",
+      "status": 200,
+      "bytes": 9185416,
+      "elapsed_ms": 1.4673400000001493
+    },
+    {
+      "path": "members/de/2d.json",
+      "status": 200,
+      "bytes": 5940945,
+      "elapsed_ms": 3.055097000000387
+    },
+    {
+      "path": "members/fr/2d.json",
+      "status": 200,
+      "bytes": 2695527,
+      "elapsed_ms": 0.9522950000000492
+    },
+    {
+      "path": "members/es/2d.json",
+      "status": 200,
+      "bytes": 5375823,
+      "elapsed_ms": 13.53994800000055
+    },
+    {
+      "path": "members/it/2d.json",
+      "status": 200,
+      "bytes": 3390877,
+      "elapsed_ms": 0.7639110000000073
+    },
+    {
+      "path": "members/ru/2d.json",
+      "status": 200,
+      "bytes": 3226845,
+      "elapsed_ms": 0.8515330000000176
+    },
+    {
+      "path": "aliases/2e.json",
+      "status": 200,
+      "bytes": 319336,
+      "elapsed_ms": 0.3367969999999332
+    },
+    {
+      "path": "families/2a.json",
+      "status": 200,
+      "bytes": 2956325,
+      "elapsed_ms": 0.799724000000424
+    },
+    {
+      "path": "members/en/2a.json",
+      "status": 200,
+      "bytes": 9226098,
+      "elapsed_ms": 1.5039510000005976
+    },
+    {
+      "path": "members/de/2a.json",
+      "status": 200,
+      "bytes": 7229824,
+      "elapsed_ms": 2.9608610000004774
+    },
+    {
+      "path": "members/fr/2a.json",
+      "status": 200,
+      "bytes": 2975852,
+      "elapsed_ms": 3.1863800000000992
+    },
+    {
+      "path": "members/es/2a.json",
+      "status": 200,
+      "bytes": 5458417,
+      "elapsed_ms": 1.475242999999864
+    },
+    {
+      "path": "members/it/2a.json",
+      "status": 200,
+      "bytes": 3792102,
+      "elapsed_ms": 0.9767119999996794
+    },
+    {
+      "path": "members/ru/2a.json",
+      "status": 200,
+      "bytes": 3161803,
+      "elapsed_ms": 2.004530000000159
+    },
+    {
+      "path": "aliases/6b.json",
+      "status": 200,
+      "bytes": 325675,
+      "elapsed_ms": 0.37665800000013405
+    },
+    {
+      "path": "families/0f.json",
+      "status": 200,
+      "bytes": 2909869,
+      "elapsed_ms": 13.247207000000344
+    },
+    {
+      "path": "members/en/0f.json",
+      "status": 200,
+      "bytes": 7705559,
+      "elapsed_ms": 2.9003700000002937
+    },
+    {
+      "path": "members/de/0f.json",
+      "status": 200,
+      "bytes": 7904369,
+      "elapsed_ms": 2.1467940000002272
+    },
+    {
+      "path": "members/fr/0f.json",
+      "status": 200,
+      "bytes": 3517934,
+      "elapsed_ms": 0.7618679999995948
+    },
+    {
+      "path": "members/es/0f.json",
+      "status": 200,
+      "bytes": 6925437,
+      "elapsed_ms": 1.5740710000000036
+    },
+    {
+      "path": "members/it/0f.json",
+      "status": 200,
+      "bytes": 9089207,
+      "elapsed_ms": 30.493257999999514
+    },
+    {
+      "path": "members/ru/0f.json",
+      "status": 200,
+      "bytes": 4534331,
+      "elapsed_ms": 0.9103510000004462
+    },
+    {
+      "path": "aliases/24.json",
+      "status": 200,
+      "bytes": 315259,
+      "elapsed_ms": 0.3534929999996166
+    },
+    {
+      "path": "families/40.json",
+      "status": 200,
+      "bytes": 2975276,
+      "elapsed_ms": 0.716668999999456
+    },
+    {
+      "path": "members/en/40.json",
+      "status": 200,
+      "bytes": 9277052,
+      "elapsed_ms": 1.5531199999995806
+    },
+    {
+      "path": "members/de/40.json",
+      "status": 200,
+      "bytes": 6399635,
+      "elapsed_ms": 6.366179999999986
+    },
+    {
+      "path": "members/fr/40.json",
+      "status": 200,
+      "bytes": 3113495,
+      "elapsed_ms": 0.7492889999994077
+    },
+    {
+      "path": "members/es/40.json",
+      "status": 200,
+      "bytes": 6985494,
+      "elapsed_ms": 10.056540000000496
+    },
+    {
+      "path": "members/it/40.json",
+      "status": 200,
+      "bytes": 4435388,
+      "elapsed_ms": 1.002329999999347
+    },
+    {
+      "path": "members/ru/40.json",
+      "status": 200,
+      "bytes": 5289860,
+      "elapsed_ms": 0.9673670000011043
+    },
+    {
+      "path": "aliases/fd.json",
+      "status": 200,
+      "bytes": 324935,
+      "elapsed_ms": 0.34658200000012584
+    },
+    {
+      "path": "families/d9.json",
+      "status": 200,
+      "bytes": 2969020,
+      "elapsed_ms": 0.7458939999996801
+    },
+    {
+      "path": "members/en/d9.json",
+      "status": 200,
+      "bytes": 9840733,
+      "elapsed_ms": 1.6566859999984445
+    },
+    {
+      "path": "members/de/d9.json",
+      "status": 200,
+      "bytes": 6692568,
+      "elapsed_ms": 1.1388939999997092
+    },
+    {
+      "path": "members/fr/d9.json",
+      "status": 200,
+      "bytes": 3059254,
+      "elapsed_ms": 0.802492999999231
+    },
+    {
+      "path": "members/es/d9.json",
+      "status": 200,
+      "bytes": 8120988,
+      "elapsed_ms": 10.945437000000311
+    },
+    {
+      "path": "members/it/d9.json",
+      "status": 200,
+      "bytes": 9494895,
+      "elapsed_ms": 2.6085320000001957
+    },
+    {
+      "path": "members/ru/d9.json",
+      "status": 200,
+      "bytes": 3169888,
+      "elapsed_ms": 7.938680999999633
+    },
+    {
+      "path": "aliases/69.json",
+      "status": 200,
+      "bytes": 323937,
+      "elapsed_ms": 0.554044000000431
+    },
+    {
+      "path": "families/ad.json",
+      "status": 200,
+      "bytes": 2986263,
+      "elapsed_ms": 0.6876250000004802
+    },
+    {
+      "path": "members/en/ad.json",
+      "status": 200,
+      "bytes": 12750965,
+      "elapsed_ms": 3.3252809999994497
+    },
+    {
+      "path": "members/de/ad.json",
+      "status": 200,
+      "bytes": 6645188,
+      "elapsed_ms": 12.475406999999905
+    },
+    {
+      "path": "members/fr/ad.json",
+      "status": 200,
+      "bytes": 3942574,
+      "elapsed_ms": 2.237067999998544
+    },
+    {
+      "path": "members/es/ad.json",
+      "status": 200,
+      "bytes": 6059159,
+      "elapsed_ms": 1.9318180000009306
+    },
+    {
+      "path": "members/it/ad.json",
+      "status": 200,
+      "bytes": 3159258,
+      "elapsed_ms": 8.005412000000433
+    },
+    {
+      "path": "members/ru/ad.json",
+      "status": 200,
+      "bytes": 2906947,
+      "elapsed_ms": 0.7821069999990868
+    },
+    {
+      "path": "manifest.json",
+      "status": 200,
+      "bytes": 8028,
+      "elapsed_ms": 0.2837869999984832
+    },
+    {
+      "path": "aliases/58.json",
+      "status": 200,
+      "bytes": 317917,
+      "elapsed_ms": 0.2669719999994413
+    }
+  ],
+  "verdict": "fail",
+  "failure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ [\n+   {\n+     text: 'Failed to load module script: Expected a JavaScript-or-Wasm module script but the server responded with a MIME type of \"application/octet-stream\". Strict MIME type checking is enforced for module scripts per HTML spec.',\n+     viewport: 'desktop'\n+   },\n+   {\n+     text: 'Failed to load module script: Expected a JavaScript-or-Wasm module script but the server responded with a MIME type of \"application/octet-stream\". Strict MIME type checking is enforced for module scripts per HTML spec.',\n+     viewport: 'desktop'\n+   },\n+   {\n+     text: 'Failed to load module script: Expected a JavaScript-or-Wasm module script but the server responded with a MIME type of \"application/octet-stream\". Strict MIME type checking is enforced for module scripts per HTML spec.',\n+     viewport: 'mobile'\n+   },\n+   {\n+     text: 'Failed to load module script: Expected a JavaScript-or-Wasm module script but the server responded with a MIME type of \"application/octet-stream\". Strict MIME type checking is enforced for module scripts per HTML spec.',\n+     viewport: 'mobile'\n+   },\n+   {\n+     text: 'Failed to load module script: Expected a JavaScript-or-Wasm module script but the server responded with a MIME type of \"application/octet-stream\". Strict MIME type checking is enforced for module scripts per HTML spec.',\n+     viewport: 'mobile'\n+   }\n+ ]\n- []\n\n    at file:///home/runner/work/interal/interal/tests/browser/associative-family-v5-artifacts.playwright.mjs:92:10"
+}
