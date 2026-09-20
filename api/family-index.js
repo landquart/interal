@@ -2,9 +2,9 @@ import { list } from '@vercel/blob';
 import { inflateRawSync } from 'node:zlib';
 
 export function familyIndexPrefix(value = process.env.ASSOCIATIVE_FAMILY_PREFIX || 'associative-family/v4/') {
-  const prefix = String(value || '').replace(/^\\/+/, '').replace(/\\/+$/, '') + '/';
-  if (prefix === 'associative-family/v4/' || /^associative-family\\/v5-staging\\/[a-z0-9._-]+\\/$/.test(prefix)) return prefix;
-  throw new Error(`Invalid associative family prefix: ${prefix}`);
+  const prefix = String(value || '').replace(/^\/+/, '').replace(/\/+$/, '') + '/';
+  if (prefix === 'associative-family/v4/' || /^associative-family\/v5-staging\/[a-z0-9._-]+\/$/.test(prefix)) return prefix;
+  throw new Error(\`Invalid associative family prefix: \${prefix}\`);
 }
 const PREFIX = familyIndexPrefix();
 const archives = new Map();
