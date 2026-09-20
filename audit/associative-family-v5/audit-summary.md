@@ -10,6 +10,7 @@ The corrective graph passes the available exhaustive structural checks, but this
 - Corrective build: run `35461412225`, source commit `7a11f43b8115b94e15d4f8524350ed952162236e`.
 - Structural/regression audit: `35464552349`; semantic sample: `35465285032`; artifact runtime: `35466726037`; browser workflow: `35502652097`; staging upload: `35502881404`.
 - Full downloaded semantic ZIP SHA-256: `92397839645a9fd2b5f7c467d97cbbb00f8f8639ae8e9e8e6e9e5b526b52135f` (3,262,125 bytes).
+- Probability kit v2: run `35509462238`, artifact `10603949468`, ZIP SHA-256 `0e19c9d40961da7be037a63156576db0d8a5093c2e61134b6c10bb3c7dc593f8` (2,808,130 bytes).
 - Metadata/assignments/input-lock/structural/runtime/browser/staging ZIP hashes were independently recomputed and match GitHub artifact digests; see `artifact-checksums.json`.
 - The original 667,274,991-byte members ZIP was downloaded and verified as `576b08b2ba90902f64414510504fb7769d690f3835a782b5ee2c5434b904ea3e` by audit-copy run `35508194155`, then split into six 256-shard language artifacts without rebuilding or replacing v5.
 - Build environment: Node `v22.23.2`, schema/build `5`; candidate tree `2fa23e5690cbdcb80e27708f950a3c3935d87a566030221327c06eabbab0f2f6`; candidate manifest `380c6ac273c418b95f9e4cf3713b094ef4ae9538abec0868e1245cb36fd91658`; Kaikki `42e0bfe1669513cb89bd0a12f2e85d1a8f4ebedc70c65ec88c9509d0f5d392f9`.
