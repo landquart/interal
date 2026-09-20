@@ -76,9 +76,14 @@ async function indexArchive(name) {
 
 async function readEntry(path) {
   const archive = await indexArchive(archiveName(path));
-  const storedPath = path.startsWith('members/') && !archive.entries.has(path) ? path.slice('members/'.length) : path;
+  let storedPath = path;
+  if (!archive.entries.has(storedPath) && path.startsWith('members/') && archive.entries.has(path.slice('members/'.length))) storedPath = path.slice('members/'.length);
+  if (!archive.entries.has(storedPath)) {
+    const suffixMatches = [...archive.entries.keys()].filter(name => name.endsWith(`/${path}`));
+    if (suffixMatches.length === 1) storedPath = suffixMatches[0];
+  }
   const entry = archive.entries.get(storedPath);
-  if (!entry) throw Object.assign(new Error(`Index entry missing: ${path}`), { statusCode: 404 });
+  if (!entry) throw Object.assign(new Error(`Index entry missing or ambiguous: ${path}`), { statusCode: 404 });
   const header = await range(archive.url, entry.localOffset, entry.localOffset + 29);
   if (header.readUInt32LE(0) !== 0x04034b50) throw new Error('Invalid ZIP local header');
   const dataOffset = entry.localOffset + 30 + header.readUInt16LE(26) + header.readUInt16LE(28);
