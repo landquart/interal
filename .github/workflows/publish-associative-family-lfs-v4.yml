@@ -1,0 +1,161 @@
+name: Publish associative family v4 to Git LFS
+
+on:
+  push:
+    branches:
+      - agent/publish-associative-family-lfs-v4
+    paths:
+      - .github/workflows/publish-associative-family-lfs-v4.yml
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  publish:
+    if: github.repository == 'landquart/interal'
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      DATA_BRANCH: associative-family-data-v4
+      OUTPUT_DIR: ${{ runner.temp }}/family-v4/output
+      METADATA_ARCHIVE: ${{ runner.temp }}/family-v4/associative-family-metadata-v4.zip
+      MEMBERS_ARCHIVE: ${{ runner.temp }}/family-v4/associative-family-members-v4.zip
+    steps:
+      - name: Check out uploader branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          lfs: false
+          persist-credentials: true
+
+      - name: Stop if immutable data branch already exists
+        id: existing
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git ls-remote --exit-code --heads origin "refs/heads/$DATA_BRANCH" >/dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+            echo "Data branch $DATA_BRANCH already exists; refusing to overwrite immutable v4 data."
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Download validated v4 artifacts
+        if: steps.existing.outputs.exists != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$(dirname "$METADATA_ARCHIVE")"
+          gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/10550392530/zip" > "$METADATA_ARCHIVE"
+          gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/10550807847/zip" > "$MEMBERS_ARCHIVE"
+          ls -lh "$METADATA_ARCHIVE" "$MEMBERS_ARCHIVE"
+
+      - name: Verify immutable source checksums
+        if: steps.existing.outputs.exists != 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "84f631a918f0aa8ac3d3466bb3334e7cc9ed4149e43b032803539c1f1e005b69  $METADATA_ARCHIVE" | sha256sum -c -
+          echo "7957939cd16a4f48d7e0e89a677efa00ec9ac1546cba5c9032adeed1659e5529  $MEMBERS_ARCHIVE" | sha256sum -c -
+          unzip -tq "$METADATA_ARCHIVE"
+          unzip -tq "$MEMBERS_ARCHIVE"
+
+      - name: Extract and validate v4 structure
+        if: steps.existing.outputs.exists != 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          metadata_dir="$RUNNER_TEMP/family-v4/metadata"
+          members_dir="$RUNNER_TEMP/family-v4/members"
+          mkdir -p "$metadata_dir" "$members_dir"
+          unzip -q "$METADATA_ARCHIVE" -d "$metadata_dir"
+          unzip -q "$MEMBERS_ARCHIVE" -d "$members_dir"
+          test -s "$metadata_dir/manifest.json"
+          test -s "$metadata_dir/report.json"
+          node - "$metadata_dir/manifest.json" <<'NODE'
+          const fs = require('node:fs');
+          const manifest = JSON.parse(fs.readFileSync(process.argv[2], 'utf8'));
+          const expected = ['en', 'de', 'fr', 'es', 'it', 'ru'];
+          if (String(manifest.version) !== '4') throw new Error(`Unexpected index version: ${manifest.version}`);
+          if (JSON.stringify(manifest.languages) !== JSON.stringify(expected)) {
+            throw new Error(`Unexpected languages: ${JSON.stringify(manifest.languages)}`);
+          }
+          NODE
+          for language in en de fr es it ru; do
+            test -d "$members_dir/$language"
+            count=$(find "$members_dir/$language" -maxdepth 1 -type f -name '*.json' | wc -l | tr -d ' ')
+            test "$count" -eq 256 || { echo "$language has $count member buckets, expected 256"; exit 1; }
+          done
+
+      - name: Repack members into six language archives
+        if: steps.existing.outputs.exists != 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          members_dir="$RUNNER_TEMP/family-v4/members"
+          mkdir -p "$OUTPUT_DIR"
+          cp "$METADATA_ARCHIVE" "$OUTPUT_DIR/metadata.zip"
+          for language in en de fr es it ru; do
+            (cd "$members_dir" && zip -X -q -9 -r "$OUTPUT_DIR/members-$language.zip" "$language")
+          done
+          (cd "$OUTPUT_DIR" && sha256sum metadata.zip members-en.zip members-de.zip members-fr.zip members-es.zip members-it.zip members-ru.zip > SHA256SUMS)
+          OUTPUT_DIR="$OUTPUT_DIR" node <<'NODE'
+          const fs = require('node:fs');
+          const path = require('node:path');
+          const output = process.env.OUTPUT_DIR;
+          const record = {
+            version: '4',
+            source_repository: process.env.GITHUB_REPOSITORY,
+            source_commit: process.env.GITHUB_SHA,
+            source_artifacts: {
+              metadata: { id: 10550392530, sha256: '84f631a918f0aa8ac3d3466bb3334e7cc9ed4149e43b032803539c1f1e005b69' },
+              members: { id: 10550807847, sha256: '7957939cd16a4f48d7e0e89a677efa00ec9ac1546cba5c9032adeed1659e5529' }
+            },
+            languages: ['en', 'de', 'fr', 'es', 'it', 'ru'],
+            files: Object.fromEntries(fs.readdirSync(output).filter(name => name.endsWith('.zip')).sort().map(name => [name, fs.statSync(path.join(output, name)).size]))
+          };
+          fs.writeFileSync(path.join(output, 'source.json'), `${JSON.stringify(record, null, 2)}\n`);
+          NODE
+          cat "$OUTPUT_DIR/SHA256SUMS"
+          du -h "$OUTPUT_DIR"/*
+
+      - name: Publish immutable data branch through Git LFS
+        if: steps.existing.outputs.exists != 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git switch --orphan "$DATA_BRANCH"
+          mkdir -p associative-family/v4
+          cp "$OUTPUT_DIR"/* associative-family/v4/
+          printf '%s\n' \
+            '# Associative family index v4' \
+            '' \
+            'Immutable, validated v4 production archives. ZIP files are stored with Git LFS.' \
+            'See `associative-family/v4/source.json` and `SHA256SUMS` for provenance and integrity.' \
+            > README.md
+          git lfs install --local
+          git lfs track 'associative-family/v4/*.zip'
+          git add .gitattributes README.md associative-family/v4
+          lfs_count=$(git lfs ls-files -n | wc -l | tr -d ' ')
+          test "$lfs_count" -eq 7 || { echo "Expected 7 LFS files, found $lfs_count"; exit 1; }
+          git lfs fsck
+          git commit -m 'data: publish validated associative family v4 archives via LFS'
+          git push origin "$DATA_BRANCH"
+
+      - name: Summary
+        if: always()
+        shell: bash
+        run: |
+          if [ "${{ steps.existing.outputs.exists }}" = 'true' ]; then
+            echo '### Git LFS publication skipped' >> "$GITHUB_STEP_SUMMARY"
+            echo "Branch \`$DATA_BRANCH\` already exists and was not overwritten." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo '### Git LFS publication attempted' >> "$GITHUB_STEP_SUMMARY"
+            echo "Target branch: \`$DATA_BRANCH\`" >> "$GITHUB_STEP_SUMMARY"
+            echo 'Validated source artifact IDs: `10550392530`, `10550807847`.' >> "$GITHUB_STEP_SUMMARY"
+          fi
