@@ -10,21 +10,20 @@ import { createInterface } from 'node:readline';
 const LANGUAGES = ['en', 'de', 'fr', 'es', 'it', 'ru'];
 const DEFAULT_SEED = 'associative-family-v5-semantic-audit-2026-09-19';
 const PER_LANGUAGE = 1600;
-const PRE_SAMPLE = 24000;
 
 export function parseArgs(argv) {
-  const options = { seed: DEFAULT_SEED, perLanguage: PER_LANGUAGE, preSample: PRE_SAMPLE };
+  const options = { seed: DEFAULT_SEED, perLanguage: PER_LANGUAGE };
   for (const arg of argv) {
     if (arg.startsWith('--root=')) options.root = arg.slice(7);
     else if (arg.startsWith('--output=')) options.output = arg.slice(9);
     else if (arg.startsWith('--seed=')) options.seed = arg.slice(7);
     else if (arg.startsWith('--per-language=')) options.perLanguage = Number(arg.slice(15));
-    else if (arg.startsWith('--pre-sample=')) options.preSample = Number(arg.slice(13));
+    else if (arg.startsWith('--pre-sample=')) options.legacyPreSample = Number(arg.slice(13));
     else throw new Error(`Unknown argument: ${arg}`);
   }
   if (!options.root || !options.output) throw new Error('--root and --output are required');
   if (!Number.isInteger(options.perLanguage) || options.perLanguage < 1) throw new Error('--per-language must be a positive integer');
-  if (!Number.isInteger(options.preSample) || options.preSample < options.perLanguage) throw new Error('--pre-sample must be >= --per-language');
+  if (options.legacyPreSample !== undefined && (!Number.isInteger(options.legacyPreSample) || options.legacyPreSample < options.perLanguage)) throw new Error('--pre-sample must be >= --per-language');
   return options;
 }
 
@@ -45,6 +44,7 @@ function retainLowest(values, item, limit) {
 
 async function preliminarySample(options) {
   const byLanguage = Object.fromEntries(LANGUAGES.map(language => [language, []]));
+  const populations = Object.fromEntries(LANGUAGES.map(language => [language, 0]));
   for (const language of LANGUAGES) {
     const path = join(options.root, 'assignments', `${language}.jsonl.gz`);
     const lines = createInterface({ input: createReadStream(path).pipe(createGunzip()), crlfDelay: Infinity });
@@ -52,6 +52,7 @@ async function preliminarySample(options) {
       if (!line) continue;
       const row = JSON.parse(line);
       for (const familyId of row.family_ids || []) {
+        populations[language] += 1;
         const selectionHash = hash(`${options.seed}\0${language}\0${row.lemma_id}\0${familyId}`);
         retainLowest(byLanguage[language], {
           sample_id: selectionHash.slice(0, 20),
@@ -65,15 +66,18 @@ async function preliminarySample(options) {
           frequency_score: row.frequency_score,
           family_id: familyId,
           corpus_quality: row.corpus_quality || { status: 'unclassified', reasons: [] },
+          corpus_sources: row.sources || [],
           component_count: Array.isArray(row.components) ? row.components.length : 0,
-          evidence_types: [...new Set((row.components || []).filter(component => component.family_ids?.includes(familyId)).flatMap(component => (component.evidence || []).map(evidence => evidence.type)).filter(Boolean))].sort()
-        }, options.preSample);
+          relevant_components: (row.components || []).filter(component => component.family_ids?.includes(familyId)),
+          evidence_types: [...new Set((row.components || []).filter(component => component.family_ids?.includes(familyId)).flatMap(component => (component.evidence || []).map(evidence => evidence.type)).filter(Boolean))].sort(),
+          assignment_shard: `assignments/${language}.jsonl.gz`
+        }, options.perLanguage);
       }
     }
     byLanguage[language].sort((a, b) => a.selection_hash.localeCompare(b.selection_hash));
-    byLanguage[language].length = Math.min(options.preSample, byLanguage[language].length);
+    byLanguage[language].length = Math.min(options.perLanguage, byLanguage[language].length);
   }
-  return byLanguage;
+  return { byLanguage, populations };
 }
 
 async function enrichFamilies(root, byLanguage) {
@@ -115,6 +119,7 @@ async function enrichFamilies(root, byLanguage) {
       if (!family) throw new Error(`Missing family metadata for ${item.family_id}`);
       Object.assign(item, {
         family_canonical: family.canonical,
+        relevant_aliases: family.aliases || [],
         family_source: family.source,
         family_support: family.support,
         family_alias_count: family.aliases?.length || 0,
@@ -124,6 +129,8 @@ async function enrichFamilies(root, byLanguage) {
         alias_fanout: aliasFanout.get(item.family_id) || 0,
         relation_types: family.relation_types || [],
         word_structure: item.component_count > 1 ? 'compound' : 'simple'
+        ,family_shard: `families/${bucket(item.family_id)}.json`
+        ,member_shard: `members/${item.language}/${bucket(item.family_id)}.json`
       });
     }
   }
@@ -161,16 +168,49 @@ export function stratifiedSelection(values, count) {
 async function main() {
   const options = parseArgs(process.argv.slice(2));
   await mkdir(options.output, { recursive: true });
-  const byLanguage = await preliminarySample(options);
+  const { byLanguage, populations } = await preliminarySample(options);
   await enrichFamilies(options.root, byLanguage);
-  const selected = LANGUAGES.flatMap(language => stratifiedSelection(byLanguage[language], options.perLanguage));
-  const annotation = selected.map(item => ({ ...item, label: null, error_category: null, confidence: null, notes: null, evidence_url: null, annotator: null }));
-  const lines = annotation.map(item => JSON.stringify(item)).join('\n') + '\n';
-  await writeFile(join(options.output, 'gold-sample.jsonl'), lines);
-  await writeFile(join(options.output, 'annotation-a.jsonl'), lines);
-  await writeFile(join(options.output, 'annotation-b.jsonl'), lines);
+  const selected = LANGUAGES.flatMap(language => byLanguage[language].map(item => ({
+    ...item,
+    sampling_stratum: `language:${language}`,
+    stratum_population: populations[language],
+    stratum_sample_size: options.perLanguage,
+    inclusion_probability: options.perLanguage / populations[language],
+    sampling_weight: populations[language] / options.perLanguage
+  })));
+  const sampleLines = selected.map(item => JSON.stringify(item)).join('\n') + '\n';
+  const annotation = selected.map(item => ({
+    sample_id: item.sample_id, language: item.language, family_id: item.family_id,
+    family_source: item.family_source, review_status: item.review_status,
+    sampling_stratum: item.sampling_stratum, stratum_population: item.stratum_population,
+    stratum_sample_size: item.stratum_sample_size, inclusion_probability: item.inclusion_probability,
+    sampling_weight: item.sampling_weight, annotator_id: null, annotator_kind: null,
+    protocol_version: null, membership_verdict: null, error_categories: [], evidence_verdict: null,
+    corpus_verdict: null, runtime_eligibility_verdict: null, confidence: null, reason: null,
+    sources: [], completed_at: null
+  }));
+  const annotationLines = annotation.map(item => JSON.stringify(item)).join('\n') + '\n';
+  const packets = selected.map(item => ({
+    sample_id: item.sample_id, language: item.language, lemma_id: item.lemma_id, lemma: item.word,
+    normalized_lemma: item.normalized, part_of_speech: null, sense_or_etymology_id: null,
+    family_id: item.family_id, family_canonical: item.family_canonical,
+    relevant_aliases: [], claimed_relation_type: item.relation_types[0] || null,
+    claimed_relation_direction: null,
+    relation_path: item.relevant_components.flatMap(component => component.evidence || []).map(evidence => evidence.path),
+    ancestry_depth: null, template_name: null, template_arguments: null,
+    source_record_id: null, source_dump_path: null, source_record_hash: null,
+    evidence_path: item.relevant_components, assignment_shard: item.assignment_shard,
+    member_shard: item.member_shard, family_shard: item.family_shard,
+    corpus_source: item.corpus_sources,
+    missing_source_fields: ['part_of_speech', 'sense_or_etymology_id', 'claimed_relation_direction', 'ancestry_depth', 'template_name', 'template_arguments', 'source_record_id', 'source_dump_path', 'source_record_hash']
+  }));
+  const packetLines = packets.map(item => JSON.stringify(item)).join('\n') + '\n';
+  await writeFile(join(options.output, 'gold-sample.jsonl'), sampleLines);
+  await writeFile(join(options.output, 'annotation-packets.jsonl'), packetLines);
+  await writeFile(join(options.output, 'annotation-a.jsonl'), annotationLines);
+  await writeFile(join(options.output, 'annotation-b.jsonl'), annotationLines);
   const report = {
-    schema_version: 1,
+    schema_version: 2,
     generated_at: new Date().toISOString(),
     source_root: basename(options.root),
     seed: options.seed,
@@ -178,7 +218,11 @@ async function main() {
     total: selected.length,
     by_language: Object.fromEntries(LANGUAGES.map(language => [language, selected.filter(item => item.language === language).length])),
     unique_families: new Set(selected.map(item => item.family_id)).size,
-    strata: new Set(selected.map(item => item.stratum)).size,
+    design: 'language_stratified_fixed_size_probability_sample_by_seeded_random_hash',
+    population_by_language: populations,
+    inclusion_probabilities_known: true,
+    strata: LANGUAGES.length,
+    legacy_pre_sample_ignored: options.legacyPreSample ?? null,
     annotation_state: 'unannotated_requires_two_independent_human_or_mixed_evaluators'
   };
   await writeFile(join(options.output, 'sampling-report.json'), `${JSON.stringify(report, null, 2)}\n`);

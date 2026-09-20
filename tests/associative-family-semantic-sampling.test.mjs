@@ -3,11 +3,12 @@ import { test } from 'node:test';
 import { parseArgs, stratifiedSelection } from '../scripts/sample-associative-family-memberships.mjs';
 
 test('semantic sample locks its input and requested size', () => {
-  const options = parseArgs(['--root=/input', '--output=/output', '--seed=fixed', '--per-language=1600']);
+  const options = parseArgs(['--root=/input', '--output=/output', '--seed=fixed', '--per-language=1600', '--pre-sample=24000']);
   assert.equal(options.root, '/input');
   assert.equal(options.output, '/output');
   assert.equal(options.seed, 'fixed');
   assert.equal(options.perLanguage, 1600);
+  assert.equal(options.legacyPreSample, 24000);
 });
 
 test('stratified selection is deterministic and visits distinct strata first', () => {

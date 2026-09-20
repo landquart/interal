@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "status": "provisional_not_ready_for_main_annotation",
+  "status": "probability_sample_v2_locked_awaiting_packet_completion_and_pilot",
   "locked_at": "2026-09-20T12:00:00Z",
-  "reason_not_final": "The published 9600-row sample lacks recoverable inclusion probabilities and required evidence-packet fields. Protocol v2 must complete pilot calibration before its hash can be finally locked.",
+  "reason_not_final": "Probability sample v2 has known design weights, but source-record evidence fields remain null and protocol v2 must complete pilot calibration before main annotation.",
   "generator_commit": "7a11f43b8115b94e15d4f8524350ed952162236e",
   "runtime_commit": "e1a5c6b0f3e4118e9c31b29ec13b61ea305df464",
   "schema_version_locked": "5",
@@ -26,19 +26,21 @@
     "families_sha256_manifest": "512e1de365ca01e24023facdaef24d93675e6143738ba303e48e01b1aec440df",
     "aliases_sha256_manifest": "33f22e4db716d13deeb14e7bda2bf03dc3cb703b7f4c892b7ead11b001437a38",
     "members_sha256_manifest": null,
-    "sample_sha256": "c259dc87ab724fbfd59992c31800a9c1a4070c471118508a106dc04944f686fa",
+    "legacy_challenge_sample_sha256": "c259dc87ab724fbfd59992c31800a9c1a4070c471118508a106dc04944f686fa",
+    "probability_sample_v2_sha256": "5ef0a53f257878acc6c65c04ff943dc9a3699f9499e4f7a59b3ebeab5037ede8",
+    "annotation_packets_v2_sha256": "ae56a0cee4c6ab75d03ea0f5d969338ac19d2c7a1196fc773799c4f853193d9d",
     "relation_policy_sha256": "d998f93b59ccde9ade11a9473c33f890a412e86bd116b0100dee93cdd70888be",
     "annotation_protocol_sha256": "540407f335be531b59d77c65635793fe551b313b0d5719dfd28d64e95e55e4aa",
     "acceptance_thresholds_sha256": "24b77c32a2e507525f78f8f8f164562a9b58eadcfd91eb7f78e9b7ae259986c2"
   },
   "sampling": {
-    "seed": "associative-family-v5-semantic-audit-2026-09-19",
-    "published_method": "lowest 24000 seeded hashes per language, enrichment, then deterministic round-robin across realized strata to 1600 per language",
-    "published_sample_status": "structurally_checkable_but_not_population_estimable",
-    "replacement_required": true
+    "seed": "associative-family-v5-probability-sample-2026-09-20",
+    "method": "fixed-size language-stratified probability sample: lowest 1600 SHA-256 membership keys per language; inclusion probability n_h/N_h",
+    "sample_status": "population_estimable_after_valid_annotation",
+    "legacy_sample_status": "challenge_only"
   },
   "script_versions": {
-    "sampler_sha256": "a0183b838f6249c49e8fac2b1ef16534444464eae5967369bfe30235667da0d8",
+    "sampler_sha256": "0f72e514a763480eb87b592a813908a7aab19b8c6c32cc65c8a60eec69af03f0",
     "scorer_sha256": "0aac4efca7bf5167676b87f4df1a0dc46e5cb6b0cabf55598759fffa21e88387",
     "stats_sha256": "d548b2c299020963f639d4b5f7e7600560425fa90465bf9dc9af66320083d83a"
   },

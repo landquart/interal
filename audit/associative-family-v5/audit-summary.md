@@ -14,7 +14,7 @@ The corrective graph passes the available exhaustive structural checks, but this
 - The original 667,274,991-byte members ZIP was downloaded and verified as `576b08b2ba90902f64414510504fb7769d690f3835a782b5ee2c5434b904ea3e` by audit-copy run `35508194155`, then split into six 256-shard language artifacts without rebuilding or replacing v5.
 - Build environment: Node `v22.23.2`, schema/build `5`; candidate tree `2fa23e5690cbdcb80e27708f950a3c3935d87a566030221327c06eabbab0f2f6`; candidate manifest `380c6ac273c418b95f9e4cf3713b094ef4ae9538abec0868e1245cb36fd91658`; Kaikki `42e0bfe1669513cb89bd0a12f2e85d1a8f4ebedc70c65ec88c9509d0f5d392f9`.
 
-`annotation-input-lock.json` is deliberately marked provisional: the old sample cannot be locked as a population-precision sample, and protocol v2 still requires pilot calibration.
+`annotation-input-lock.json` now locks probability sample v2 and its weights. It remains pre-annotation because source-record packet fields and protocol pilot calibration are incomplete.
 
 ## Corrected counts
 
@@ -37,9 +37,10 @@ An independent streaming recount of all six locked assignment files established 
 |---|---|---|
 | Structural consistency | `verified` | Full audit reports 2,456,627 families, 1,934,061 aliases, 10,426,189 memberships, zero assignment/member mismatches and zero listed structural violations. |
 | Known regression controls | `verified_for_listed_controls` | Listed false merges/noise controls pass; this does not establish global linguistic precision or recall. |
-| Published 9,600 rows | `partial` | Exactly 9,600 unique memberships, 1,600/language, all found in assignments. Full members cross-check remains dependent on retrieving the split audit copies locally. |
-| Sampling design | `not_verified` | No row has `stratum_population`, `stratum_sample_size`, `inclusion_probability`, or `sampling_weight`. The deterministic two-stage round-robin allocation does not support a population estimate as published. |
-| Evidence packets | `not_verified` | Rows omit sense/etymology ID, claimed direction/path, source record/hash/path, assignment/member/family shard, and locked source excerpt. |
+| Legacy 9,600 rows | `challenge_only` | Exactly 9,600 unique memberships, 1,600/language, all found in assignments, but no design probabilities. |
+| Probability sample v2 | `preflight_verified` | New fixed-size language-stratified sample: 9,600 unique assignment-backed memberships, 1,600/language; all rows contain `N_h`, `n_h`, `n_h/N_h`, and `N_h/n_h`. |
+| Sampling design | `verified_for_language_stratified_estimator` | Seed and membership frame are fixed before labels; rare-risk cases remain a separate challenge set. |
+| Evidence packets | `partial` | Assignment evidence paths and shard locators are present; unavailable sense/etymology, template direction and source-record hash/path fields are explicitly `null` and must be completed where required. |
 | Pilot/calibration | `not_started` | No independent 30–50-row-per-language pilot or finalized protocol hash. |
 | Dual annotation | `not_started` | A/B files contain null templates, not answers; 0/9,600 rows have two reviews or human participation. |
 | Agreement/adjudication | `not_started` | No valid annotations; kappa, confusion matrix and adjudication cannot be computed. |
@@ -51,9 +52,11 @@ An independent streaming recount of all six locked assignment files established 
 
 ## Published sample audit
 
-The old sample uses seed `associative-family-v5-semantic-audit-2026-09-19`: lowest 24,000 hashes per language are enriched, then realized strata are visited round-robin until 1,600 rows. Independent QA found 9,600 rows, 9,600 unique membership tuples, no duplicates, 1,600 per language, and all 9,600 in assignments. It found zero rows with the five required design fields. Therefore the sample may be retained as a challenge/regression set, but must not yield whole-index precision.
+The old sample uses seed `associative-family-v5-semantic-audit-2026-09-19`: lowest 24,000 hashes per language are enriched, then realized strata are visited round-robin until 1,600 rows. Independent QA found 9,600 unique assignment-backed tuples but zero rows with the five design fields. It is retained only as a challenge/regression set.
 
-Before main annotation, generate a probability sample with known inclusion probabilities and separate non-probability challenge cases. Build blinded evidence packets, conduct the pilot, then record final hashes. Do not transfer answers between graph/policy generations without a documented applicability decision.
+Probability sample v2 uses seed `associative-family-v5-probability-sample-2026-09-20`. For every language, the 1,600 lowest uniformly hashed membership keys are selected from the complete locked membership frame. Population sizes are `en 2,646,264`, `de 2,279,256`, `fr 1,155,666`, `es 1,892,812`, `it 1,215,120`, `ru 1,237,071`. Every row records stratum population/sample size, inclusion probability and inverse-probability weight. Its sample SHA-256 is `5ef0a53f257878acc6c65c04ff943dc9a3699f9499e4f7a59b3ebeab5037ede8`.
+
+Before main annotation, complete source-record evidence packets and conduct the pilot, then freeze the final protocol hash. Do not transfer answers between graph/policy generations without a documented applicability decision.
 
 ## Annotation and statistical pipeline
 

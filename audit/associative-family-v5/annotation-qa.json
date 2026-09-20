@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "status": "not_started",
-  "reason": "No valid dual independent main-sample annotations exist. Placeholder rows with null labels are not completed answers.",
+  "status": "probability_sample_preflight_passed_annotations_not_started",
+  "reason": "Probability sample v2 has 9600 unique assignment-backed memberships and complete design fields. Placeholder rows with null verdicts are not completed answers; source-record fields in evidence packets remain explicitly null.",
   "sample_rows_expected": 9600,
   "completed_annotation_a": 0,
   "completed_annotation_b": 0,
