@@ -2,7 +2,9 @@
 
 Final verdict: **INSUFFICIENT_EVIDENCE**.
 
-The corrective graph passes the available exhaustive structural checks, but this is not a linguistic acceptance decision. The probability sample, dual independent human-involved annotation, independent recall gold, adjudication, preview load matrix, and complete preview-browser matrix required for `ACCEPT` do not exist. Do not merge, promote, switch production, or describe v5 as production-ready.
+The corrective graph passes the available exhaustive structural checks, but this is not a linguistic acceptance decision. The probability sample, dual independent human-involved annotation, independent recall gold, adjudication, preview load matrix, and complete preview-browser matrix required for evidence-based `ACCEPT` do not exist. Do not merge, promote, switch production, or describe v5 as linguistically validated or production-ready.
+
+Owner disposition recorded 2026-09-20: **OWNER_ACCEPTED_AT_RISK WITHOUT HUMAN LINGUISTIC VALIDATION**. This explicit waiver is documented in `owner-risk-acceptance.json`. It changes the operational disposition, not the missing evidence, and does not authorize merge or production promotion.
 
 ## Object and provenance checked
 
@@ -93,5 +95,6 @@ git diff --check
 - Linguistic precision: **NOT ESTABLISHED**
 - False-negative recall: **NOT ESTABLISHED**
 - Preview load/browser release gates: **NOT ESTABLISHED**
-- Final verdict: **INSUFFICIENT_EVIDENCE**
+- Evidence-based audit verdict: **INSUFFICIENT_EVIDENCE**
+- Owner disposition: **OWNER_ACCEPTED_AT_RISK**
 - Merge/production authorization: **NO**
