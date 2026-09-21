@@ -29,7 +29,7 @@ const VERIFIED_SEEDS = Object.freeze([
   { id: 'family:alter', canonical: 'alter', aliases: ['alter', 'altern', 'altru'], element_type: 'root' },
   { id: 'family:pede', canonical: 'pede', aliases: ['pede', 'ped', 'pedi'], element_type: 'root' },
   { id: 'family:manu', canonical: 'manu', aliases: ['manu'], element_type: 'root' },
-  { id: 'family:libert', canonical: 'libert', aliases: ['libert', 'liberta', 'liber'], element_type: 'root' }
+  { id: 'family:liber', canonical: 'liber', aliases: ['liber'], element_type: 'root' }
 ]);
 
 const CONTROL_WORDS = Object.freeze({
@@ -58,7 +58,7 @@ const CONTROL_WORDS = Object.freeze({
     fr: ['manuel', 'manufacture'], es: ['manual', 'manufactura'],
     it: ['manuale', 'manifattura'], ru: ['мануальный', 'мануфактура']
   },
-  'family:libert': {
+  'family:liber': {
     en: ['liberty', 'libertarian'], de: ['libertär', 'liberal'],
     fr: ['liberté', 'libéral'], es: ['libertad', 'liberal'],
     it: ['libertà', 'liberale'], ru: ['либертарианский', 'либеральный']
