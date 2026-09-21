@@ -44,7 +44,7 @@ const CONTROL_WORDS = Object.freeze({
     it: ['pedale', 'pedicure'], ru: ['педаль', 'педикюр']
   },
   'family:ocul': {
-    en: ['ocular', 'monocle', 'monocular'], de: ['okulär', 'monokel'],
+    en: ['ocular', 'monocle', 'monocular'], de: ['monokel'],
     fr: ['oculaire', 'monocle'], es: ['ocular', 'monóculo'],
     it: ['oculare', 'monocolo'], ru: ['окулярный', 'монокль']
   },
