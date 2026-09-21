@@ -68,6 +68,23 @@ jobs:
           for language in en de fr es it ru; do
             test "$(find "$TARGET/members/$language" -type f -name '*.json' | wc -l)" -eq 256
           done
+          node --input-type=module <<'NODE'
+          import { readFile, writeFile } from 'node:fs/promises';
+          const path = 'associativvordes/family-index-v5/manifest.json';
+          const manifest = JSON.parse(await readFile(path, 'utf8'));
+          for (const key of ['alias_template', 'family_template', 'member_template']) {
+            if (!manifest.sharding[key].endsWith('.json')) throw new Error(`Unexpected ${key}: ${manifest.sharding[key]}`);
+            manifest.sharding[key] += '.gz';
+          }
+          manifest.repository_storage = { encoding: 'gzip', immutable_source_run_id: 35461412225 };
+          await writeFile(path, JSON.stringify(manifest, null, 2) + '\n');
+          NODE
+          find "$TARGET/aliases" "$TARGET/families" "$TARGET/members" -type f -name '*.json' -print0 | xargs -0 -n1 -P4 gzip -6
+          test "$(find "$TARGET/aliases" -type f -name '*.json.gz' | wc -l)" -eq 256
+          test "$(find "$TARGET/families" -type f -name '*.json.gz' | wc -l)" -eq 256
+          for language in en de fr es it ru; do
+            test "$(find "$TARGET/members/$language" -type f -name '*.json.gz' | wc -l)" -eq 256
+          done
           oversized=$(find "$TARGET" -type f -size +95M -print -quit)
           test -z "$oversized"
           du -sh "$TARGET"
@@ -79,21 +96,23 @@ jobs:
           set -euo pipefail
           node --input-type=module <<'NODE'
           import { readFile, writeFile } from 'node:fs/promises';
-          const replacements = [
-            ['associativvordes/js/family-index-loader.js', "'/api/family-index?path='", "'/associativvordes/family-index-v5'"],
-            ['associativvordes/js/candidate-index-loader.js', "'/api/family-index?path='", "'/associativvordes/family-index-v5'"],
-          ];
-          for (const [path, from, to] of replacements) {
-            const source = await readFile(path, 'utf8');
-            if (!source.includes(from)) throw new Error(`Expected Blob API default missing in ${path}`);
-            await writeFile(path, source.replaceAll(from, to));
-          }
+          const familyPath = 'associativvordes/js/family-index-loader.js';
+          let familySource = await readFile(familyPath, 'utf8');
+          const oldConstructor = "constructor({ baseUrl = '/api/family-index?path=', fetchJson = async (url, options) => { const response = await fetch(url, options); if (!response.ok) throw new Error(\`Family index request failed: \${response.status}\`); return response.json(); } } = {})";
+          const newConstructor = "constructor({ baseUrl = '/associativvordes/family-index-v5', fetchJson = async (url, options) => { const response = await fetch(url, options); if (!response.ok) throw new Error(\`Family index request failed: \${response.status}\`); if (!url.endsWith('.gz')) return response.json(); if (typeof DecompressionStream !== 'function') throw new Error('Gzip decompression is unavailable'); const stream = response.body.pipeThrough(new DecompressionStream('gzip')); return JSON.parse(await new Response(stream).text()); } } = {})";
+          if (!familySource.includes(oldConstructor)) throw new Error('Expected Blob API loader constructor missing');
+          familySource = familySource.replace(oldConstructor, newConstructor);
+          await writeFile(familyPath, familySource);
+          const candidatePath = 'associativvordes/js/candidate-index-loader.js';
+          const candidateSource = await readFile(candidatePath, 'utf8');
+          if (!candidateSource.includes("'/api/family-index?path='")) throw new Error('Expected candidate Blob API default missing');
+          await writeFile(candidatePath, candidateSource.replaceAll("'/api/family-index?path='", "'/associativvordes/family-index-v5'"));
           const pkgPath = 'package.json';
           const pkg = JSON.parse(await readFile(pkgPath, 'utf8'));
           delete pkg.dependencies?.['@vercel/blob'];
           await writeFile(pkgPath, JSON.stringify(pkg, null, 2) + '\n');
           NODE
-          git rm -f             api/family-index.js             tests/associative-family-api-blob.test.mjs             .github/workflows/upload-associative-family-v5-staging.yml             .github/workflows/benchmark-associative-family-v5-staging-network.yml             scripts/upload-associative-family-staging-blobs.mjs             scripts/benchmark-associative-family-staging-network.mjs
+          git rm -f             api/family-index.js             tests/associative-family-api-blob.test.mjs             tests/associative-family-api-prefix.test.mjs             .github/workflows/upload-associative-family-v5-staging.yml             .github/workflows/benchmark-associative-family-v5-staging-network.yml             scripts/upload-associative-family-staging-blobs.mjs             scripts/benchmark-associative-family-staging-network.mjs
           npm install --package-lock-only --ignore-scripts
           npm ci --ignore-scripts
           npm test
@@ -104,12 +123,17 @@ jobs:
           set -euo pipefail
           node --input-type=module <<'NODE'
           import { readFile } from 'node:fs/promises';
+          import { gunzipSync } from 'node:zlib';
           import { join } from 'node:path';
           import { FamilyIndexLoader } from './associativvordes/js/family-index-loader.js';
           const root = 'associativvordes/family-index-v5';
           const loader = new FamilyIndexLoader({
             baseUrl: '/associativvordes/family-index-v5',
-            fetchJson: async url => JSON.parse(await readFile(join(root, url.replace('/associativvordes/family-index-v5/', '')), 'utf8')),
+            fetchJson: async url => {
+              const path = join(root, url.replace('/associativvordes/family-index-v5/', ''));
+              const data = await readFile(path);
+              return JSON.parse(url.endsWith('.gz') ? gunzipSync(data).toString('utf8') : data.toString('utf8'));
+            },
           });
           const manifest = await loader.manifest();
           if (manifest.version !== '5') throw new Error(`Expected v5 manifest, got ${manifest.version}`);
