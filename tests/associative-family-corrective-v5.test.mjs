@@ -113,7 +113,7 @@ test('exact language-aware controls replace stale automatic memberships before m
 test('verified control families cover every runtime language', () => {
   const controls = {
     en: [['alternative', 'family:alter'], ['pedal', 'family:pede'], ['ocular', 'family:ocul'], ['regular', 'family:regul'], ['manual', 'family:manu'], ['liberty', 'family:libert'], ['international', 'family:inter']],
-    de: [['alternative', 'family:alter'], ['pedal', 'family:pede'], ['okulär', 'family:ocul'], ['regulär', 'family:regul'], ['manuell', 'family:manu'], ['libertär', 'family:libert'], ['interdisziplinär', 'family:inter']],
+    de: [['alternative', 'family:alter'], ['pedal', 'family:pede'], ['monokel', 'family:ocul'], ['regulär', 'family:regul'], ['manuell', 'family:manu'], ['libertär', 'family:libert'], ['interdisziplinär', 'family:inter']],
     fr: [['altruisme', 'family:alter'], ['pédicure', 'family:pede'], ['oculaire', 'family:ocul'], ['régulation', 'family:regul'], ['manuel', 'family:manu'], ['liberté', 'family:libert'], ['interdisciplinaire', 'family:inter']],
     es: [['alternativa', 'family:alter'], ['pedicura', 'family:pede'], ['monóculo', 'family:ocul'], ['regulación', 'family:regul'], ['manufactura', 'family:manu'], ['libertad', 'family:libert'], ['internacional', 'family:inter']],
     it: [['altruismo', 'family:alter'], ['pedicure', 'family:pede'], ['oculare', 'family:ocul'], ['regolazione', 'family:regul'], ['manifattura', 'family:manu'], ['libertà', 'family:libert'], ['internazionale', 'family:inter']],
