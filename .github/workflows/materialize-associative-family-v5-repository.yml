@@ -3,7 +3,7 @@ name: Materialize family v5 in repository
 on:
   push:
     branches:
-      - fix/associative-family-v5-repository-storage
+      - fix/materialize-family-v5-liber
     paths:
       - '.github/workflows/materialize-associative-family-v5-repository.yml'
   workflow_dispatch:
@@ -22,10 +22,10 @@ jobs:
     timeout-minutes: 180
     env:
       SOURCE_RUN_ID: '35647932153'
-      METADATA_ARTIFACT_ID: 'PENDING'
-      MEMBERS_ARTIFACT_ID: 'PENDING'
-      METADATA_SHA256: 'PENDING'
-      MEMBERS_SHA256: 'PENDING'
+      METADATA_ARTIFACT_ID: '10665305365'
+      MEMBERS_ARTIFACT_ID: '10665150741'
+      METADATA_SHA256: 'b82ffcb2e10a5cadf2b99581800db8070b2f8b727444b49a2b78ffa20209a80b'
+      MEMBERS_SHA256: '4e58676f25a92af0402df0f05a7f0e32e6239133b6b4da6a94fc6ddcca4be9fb'
       TARGET: associativvordes/family-index-v5
       GH_TOKEN: ${{ github.token }}
     steps:
@@ -213,8 +213,8 @@ jobs:
             schema_version: 1,
             source_run_id: 35647932153,
             source_artifacts: {
-              metadata: { id: 'PENDING', sha256: 'PENDING' },
-              members: { id: 'PENDING', sha256: 'PENDING' },
+              metadata: { id: 10665305365, sha256: 'b82ffcb2e10a5cadf2b99581800db8070b2f8b727444b49a2b78ffa20209a80b' },
+              members: { id: 10665150741, sha256: '4e58676f25a92af0402df0f05a7f0e32e6239133b6b4da6a94fc6ddcca4be9fb' },
             },
             storage: 'git_repository_static_files',
             file_count_before_provenance: paths.length,
