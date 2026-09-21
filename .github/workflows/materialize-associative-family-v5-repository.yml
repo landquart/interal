@@ -21,11 +21,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 180
     env:
-      SOURCE_RUN_ID: '35461412225'
-      METADATA_ARTIFACT_ID: '10590911931'
-      MEMBERS_ARTIFACT_ID: '10590513436'
-      METADATA_SHA256: '68b305f48e4be768849494fa728c42e9edafa2823ee29316d825bc207fa88044'
-      MEMBERS_SHA256: '576b08b2ba90902f64414510504fb7769d690f3835a782b5ee2c5434b904ea3e'
+      SOURCE_RUN_ID: '35647932153'
+      METADATA_ARTIFACT_ID: 'PENDING'
+      MEMBERS_ARTIFACT_ID: 'PENDING'
+      METADATA_SHA256: 'PENDING'
+      MEMBERS_SHA256: 'PENDING'
       TARGET: associativvordes/family-index-v5
       GH_TOKEN: ${{ github.token }}
     steps:
@@ -88,7 +88,7 @@ jobs:
             if (!manifest.sharding[key].endsWith('.json')) throw new Error(`Unexpected ${key}: ${manifest.sharding[key]}`);
             manifest.sharding[key] += '.gz';
           }
-          manifest.repository_storage = { encoding: 'gzip', immutable_source_run_id: 35461412225 };
+          manifest.repository_storage = { encoding: 'gzip', immutable_source_run_id: 35647932153 };
           await writeFile(path, JSON.stringify(manifest, null, 2) + '\n');
           NODE
           find "$TARGET/aliases" "$TARGET/families" "$TARGET/members" -type f -name '*.json' -print0 | xargs -0 -n1 -P4 gzip -6
@@ -149,7 +149,7 @@ jobs:
           });
           const manifest = await loader.manifest();
           if (manifest.version !== '5') throw new Error(`Expected v5 manifest, got ${manifest.version}`);
-          for (const alias of ['manu', 'pede', 'ocul', 'alter', 'regul', 'libert', 'inter']) {
+          for (const alias of ['manu', 'pede', 'ocul', 'alter', 'regul', 'liber', 'inter']) {
             for (const language of manifest.languages) await loader.candidateEntries(alias, language);
           }
           console.log(JSON.stringify({ version: manifest.version, languages: manifest.languages, storage: 'repository-static' }, null, 2));
@@ -211,10 +211,10 @@ jobs:
           }
           await writeFile(join(root, 'repository-provenance.json'), JSON.stringify({
             schema_version: 1,
-            source_run_id: 35461412225,
+            source_run_id: 35647932153,
             source_artifacts: {
-              metadata: { id: 10590911931, sha256: '68b305f48e4be768849494fa728c42e9edafa2823ee29316d825bc207fa88044' },
-              members: { id: 10590513436, sha256: '576b08b2ba90902f64414510504fb7769d690f3835a782b5ee2c5434b904ea3e' },
+              metadata: { id: 'PENDING', sha256: 'PENDING' },
+              members: { id: 'PENDING', sha256: 'PENDING' },
             },
             storage: 'git_repository_static_files',
             file_count_before_provenance: paths.length,
