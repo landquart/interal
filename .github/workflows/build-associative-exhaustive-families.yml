@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - fix/associative-family-corrective-v5
+      - fix/multilingual-family-controls-v5
     paths:
       - '.github/workflows/build-associative-exhaustive-families.yml'
   workflow_dispatch:

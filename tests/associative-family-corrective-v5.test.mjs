@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { readFile } from 'node:fs/promises';
-import { applyExactControlOverride, buildFamilies, etymologyPairs, etymonKeyDistribution, isMergeEligibleComponent, parseArgs } from '../scripts/build-associative-exhaustive-family-index.mjs';
+import { applyExactControlOverride, exactControlFamilyId, buildFamilies, etymologyPairs, etymonKeyDistribution, isMergeEligibleComponent, parseArgs } from '../scripts/build-associative-exhaustive-family-index.mjs';
 import { RELATION_TYPE, parseStructuredExpansion, templateRelations } from '../scripts/lib/associative-etymology-policy.mjs';
 import { classifyCorpusLemma } from '../scripts/lib/associative-corpus-quality.mjs';
 
@@ -108,4 +108,18 @@ test('exact language-aware controls replace stale automatic memberships before m
   assert.deepEqual(result.componentRows[0].family_ids, ['family:manu']);
   assert.equal(result.componentRows[0].evidence[0].type, 'manual_override');
   assert.equal(applyExactControlOverride({ language: 'de', word: 'manufacture', searchForm: 'manufacture', componentRows: stale, families }).familyId, null);
+});
+
+test('verified control families cover every runtime language', () => {
+  const controls = {
+    en: [['alternative', 'family:alter'], ['pedal', 'family:pede'], ['ocular', 'family:ocul'], ['regular', 'family:regul'], ['manual', 'family:manu'], ['liberty', 'family:libert'], ['international', 'family:inter']],
+    de: [['alternative', 'family:alter'], ['pedal', 'family:pede'], ['okulär', 'family:ocul'], ['regulär', 'family:regul'], ['manuell', 'family:manu'], ['libertär', 'family:libert'], ['interdisziplinär', 'family:inter']],
+    fr: [['altruisme', 'family:alter'], ['pédicure', 'family:pede'], ['oculaire', 'family:ocul'], ['régulation', 'family:regul'], ['manuel', 'family:manu'], ['liberté', 'family:libert'], ['interdisciplinaire', 'family:inter']],
+    es: [['alternativa', 'family:alter'], ['pedicura', 'family:pede'], ['monóculo', 'family:ocul'], ['regulación', 'family:regul'], ['manufactura', 'family:manu'], ['libertad', 'family:libert'], ['internacional', 'family:inter']],
+    it: [['altruismo', 'family:alter'], ['pedicure', 'family:pede'], ['oculare', 'family:ocul'], ['regolazione', 'family:regul'], ['manifattura', 'family:manu'], ['libertà', 'family:libert'], ['internazionale', 'family:inter']],
+    ru: [['альтруизм', 'family:alter'], ['педикюр', 'family:pede'], ['монокль', 'family:ocul'], ['регулирование', 'family:regul'], ['мануфактура', 'family:manu'], ['либеральный', 'family:libert'], ['интернациональный', 'family:inter']]
+  };
+  for (const [language, entries] of Object.entries(controls)) {
+    for (const [word, familyId] of entries) assert.equal(exactControlFamilyId(language, word), familyId, `${language}:${word}`);
+  }
 });
