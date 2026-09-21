@@ -33,12 +33,41 @@ const VERIFIED_SEEDS = Object.freeze([
 ]);
 
 const CONTROL_WORDS = Object.freeze({
-  'family:alter': { en: ['alternative', 'altruism'] },
-  'family:pede': { en: ['pedal', 'pedicure'] },
-  'family:ocul': { en: ['ocular', 'monocle', 'monocular'] },
-  'family:regul': { en: ['regular', 'regulation'] },
-  'family:manu': { en: ['manual', 'manufacture'] },
-  'family:libert': { en: ['liberty'] }
+  'family:alter': {
+    en: ['alternative', 'altruism'], de: ['alternative', 'altruismus'],
+    fr: ['alternative', 'altruisme'], es: ['alternativa', 'altruismo'],
+    it: ['alternativa', 'altruismo'], ru: ['альтернатива', 'альтруизм']
+  },
+  'family:pede': {
+    en: ['pedal', 'pedicure'], de: ['pedal', 'pediküre'],
+    fr: ['pédale', 'pédicure'], es: ['pedal', 'pedicura'],
+    it: ['pedale', 'pedicure'], ru: ['педаль', 'педикюр']
+  },
+  'family:ocul': {
+    en: ['ocular', 'monocle', 'monocular'], de: ['okulär', 'monokel'],
+    fr: ['oculaire', 'monocle'], es: ['ocular', 'monóculo'],
+    it: ['oculare', 'monocolo'], ru: ['окулярный', 'монокль']
+  },
+  'family:regul': {
+    en: ['regular', 'regulation'], de: ['regulär', 'regulierung'],
+    fr: ['régulier', 'régulation'], es: ['regular', 'regulación'],
+    it: ['regolare', 'regolazione'], ru: ['регулярный', 'регулирование']
+  },
+  'family:manu': {
+    en: ['manual', 'manufacture'], de: ['manuell', 'manufaktur'],
+    fr: ['manuel', 'manufacture'], es: ['manual', 'manufactura'],
+    it: ['manuale', 'manifattura'], ru: ['мануальный', 'мануфактура']
+  },
+  'family:libert': {
+    en: ['liberty', 'libertarian'], de: ['libertär', 'liberal'],
+    fr: ['liberté', 'libéral'], es: ['libertad', 'liberal'],
+    it: ['libertà', 'liberale'], ru: ['либертарианский', 'либеральный']
+  },
+  'family:inter': {
+    en: ['international', 'interdisciplinary'], de: ['international', 'interdisziplinär'],
+    fr: ['international', 'interdisciplinaire'], es: ['internacional', 'interdisciplinario'],
+    it: ['internazionale', 'interdisciplinare'], ru: ['интернациональный', 'интердисциплинарный']
+  }
 });
 const CONTROL_FORBIDDEN_FAMILY_IDS = new Set(['ety:0f6061e49232', 'ety:a9f83219c8f4', 'ety:eb0c0f2dde53', 'ety:e40fb0a23141', 'ety:2696567cd2f7']);
 
