@@ -42,8 +42,20 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$METADATA_ARTIFACT_ID/zip" > metadata.zip
-          gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$MEMBERS_ARTIFACT_ID/zip" > members.zip
+          download_artifact() {
+            local id="$1" output="$2"
+            for attempt in 1 2 3 4 5; do
+              if gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$id/zip" > "$output.tmp"; then
+                mv "$output.tmp" "$output"
+                return 0
+              fi
+              echo "Artifact $id download attempt $attempt failed" >&2
+              sleep $((attempt * 10))
+            done
+            return 1
+          }
+          download_artifact "$METADATA_ARTIFACT_ID" metadata.zip
+          download_artifact "$MEMBERS_ARTIFACT_ID" members.zip
           echo "$METADATA_SHA256  metadata.zip" | sha256sum -c -
           echo "$MEMBERS_SHA256  members.zip" | sha256sum -c -
 
