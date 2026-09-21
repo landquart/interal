@@ -38,12 +38,10 @@ export class FamilyIndexLoader {
     const families = await Promise.all(ids.map(id => this.family(id, options)));
     const eligibleFamilies = families.filter(family => family && !BLOCKED_RUNTIME_STATUSES.has(family.review_status));
     const groups = await Promise.all(eligibleFamilies.map(async family => ({ family, members: await this.members(family.id, language, options) })));
-    const eligibleGroups = groups
-      .map(({ family, members }) => ({
-        family,
-        members: String(family.source || '').includes('manual_override') ? members.filter(hasManualEvidence) : members
-      }))
-      .filter(({ members }) => members.length);
+    const manualGroups = groups
+      .filter(({ family }) => String(family.source || '').includes('manual_override'))
+      .map(({ family, members }) => ({ family, members: members.filter(hasManualEvidence) }));
+    const eligibleGroups = manualGroups.length ? manualGroups : groups;
     const byLemma = new Map();
     for (const { family, members } of eligibleGroups) {
       if (!family) continue;
