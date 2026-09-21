@@ -6,6 +6,7 @@ on:
   push:
     branches:
       - main
+      - agent/associative-family-production-v3
       - fix/associative-family-corrective-v5
       - fix/multilingual-family-controls-v5
       - fix/multilingual-family-controls-v5-rebuild
