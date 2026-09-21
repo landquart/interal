@@ -1,0 +1,191 @@
+name: Materialize family v5 in repository
+
+on:
+  push:
+    branches:
+      - fix/associative-family-v5-repository-storage
+    paths:
+      - '.github/workflows/materialize-associative-family-v5-repository.yml'
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: write
+
+concurrency:
+  group: materialize-associative-family-v5-repository
+  cancel-in-progress: false
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      SOURCE_RUN_ID: '35461412225'
+      METADATA_ARTIFACT_ID: '10590911931'
+      MEMBERS_ARTIFACT_ID: '10590513436'
+      METADATA_SHA256: '68b305f48e4be768849494fa728c42e9edafa2823ee29316d825bc207fa88044'
+      MEMBERS_SHA256: '576b08b2ba90902f64414510504fb7769d690f3835a782b5ee2c5434b904ea3e'
+      TARGET: associativvordes/family-index-v5
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Download and verify immutable v5 artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$METADATA_ARTIFACT_ID/zip" > metadata.zip
+          gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$MEMBERS_ARTIFACT_ID/zip" > members.zip
+          echo "$METADATA_SHA256  metadata.zip" | sha256sum -c -
+          echo "$MEMBERS_SHA256  members.zip" | sha256sum -c -
+
+      - name: Materialize sharded runtime index
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$TARGET" = "associativvordes/family-index-v5"
+          mkdir -p "$TARGET" .tmp/family-v5-members
+          unzip -q metadata.zip -d "$TARGET"
+          unzip -q members.zip -d .tmp/family-v5-members
+          mkdir -p "$TARGET/members"
+          if [ -d .tmp/family-v5-members/members ]; then
+            cp -a .tmp/family-v5-members/members/. "$TARGET/members/"
+          else
+            cp -a .tmp/family-v5-members/. "$TARGET/members/"
+          fi
+          test -s "$TARGET/manifest.json"
+          test -s "$TARGET/report.json"
+          test "$(find "$TARGET/aliases" -type f -name '*.json' | wc -l)" -eq 256
+          test "$(find "$TARGET/families" -type f -name '*.json' | wc -l)" -eq 256
+          for language in en de fr es it ru; do
+            test "$(find "$TARGET/members/$language" -type f -name '*.json' | wc -l)" -eq 256
+          done
+          oversized=$(find "$TARGET" -type f -size +95M -print -quit)
+          test -z "$oversized"
+          du -sh "$TARGET"
+          find "$TARGET" -type f | wc -l
+
+      - name: Remove Blob runtime and switch clients to repository files
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --input-type=module <<'NODE'
+          import { readFile, writeFile } from 'node:fs/promises';
+          const replacements = [
+            ['associativvordes/js/family-index-loader.js', "'/api/family-index?path='", "'/associativvordes/family-index-v5'"],
+            ['associativvordes/js/candidate-index-loader.js', "'/api/family-index?path='", "'/associativvordes/family-index-v5'"],
+          ];
+          for (const [path, from, to] of replacements) {
+            const source = await readFile(path, 'utf8');
+            if (!source.includes(from)) throw new Error(`Expected Blob API default missing in ${path}`);
+            await writeFile(path, source.replaceAll(from, to));
+          }
+          const pkgPath = 'package.json';
+          const pkg = JSON.parse(await readFile(pkgPath, 'utf8'));
+          delete pkg.dependencies?.['@vercel/blob'];
+          await writeFile(pkgPath, JSON.stringify(pkg, null, 2) + '\n');
+          NODE
+          git rm -f             api/family-index.js             tests/associative-family-api-blob.test.mjs             .github/workflows/upload-associative-family-v5-staging.yml             .github/workflows/benchmark-associative-family-v5-staging-network.yml             scripts/upload-associative-family-staging-blobs.mjs             scripts/benchmark-associative-family-staging-network.mjs
+          npm install --package-lock-only --ignore-scripts
+          npm ci --ignore-scripts
+          npm test
+
+      - name: Verify repository-backed loader against full artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --input-type=module <<'NODE'
+          import { readFile } from 'node:fs/promises';
+          import { join } from 'node:path';
+          import { FamilyIndexLoader } from './associativvordes/js/family-index-loader.js';
+          const root = 'associativvordes/family-index-v5';
+          const loader = new FamilyIndexLoader({
+            baseUrl: '/associativvordes/family-index-v5',
+            fetchJson: async url => JSON.parse(await readFile(join(root, url.replace('/associativvordes/family-index-v5/', '')), 'utf8')),
+          });
+          const manifest = await loader.manifest();
+          if (manifest.version !== '5') throw new Error(`Expected v5 manifest, got ${manifest.version}`);
+          for (const alias of ['manu', 'pede', 'ocul', 'alter', 'regul', 'libert', 'inter']) {
+            for (const language of manifest.languages) await loader.candidateEntries(alias, language);
+          }
+          console.log(JSON.stringify({ version: manifest.version, languages: manifest.languages, storage: 'repository-static' }, null, 2));
+          NODE
+
+      - name: Commit runtime migration
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git config http.postBuffer 1073741824
+          git add package.json package-lock.json associativvordes/js/family-index-loader.js associativvordes/js/candidate-index-loader.js
+          git commit -m "refactor: serve associative families from repository"
+          git push origin "HEAD:$GITHUB_REF_NAME"
+
+      - name: Commit metadata shards
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -f "$TARGET/manifest.json" "$TARGET/report.json" "$TARGET/aliases" "$TARGET/families"
+          git commit -m "data: store v5 family metadata in repository"
+          git push origin "HEAD:$GITHUB_REF_NAME"
+
+      - name: Commit member shards in bounded batches
+        shell: bash
+        run: |
+          set -euo pipefail
+          for language in en de fr es it ru; do
+            git add -f "$TARGET/members/$language"
+            git commit -m "data: store v5 $language family members in repository"
+            git push origin "HEAD:$GITHUB_REF_NAME"
+          done
+
+      - name: Record repository storage provenance
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --input-type=module <<'NODE'
+          import { createHash } from 'node:crypto';
+          import { readdir, readFile, writeFile } from 'node:fs/promises';
+          import { join } from 'node:path';
+          async function files(root) {
+            const out = [];
+            for (const entry of await readdir(root, { withFileTypes: true })) {
+              const path = join(root, entry.name);
+              if (entry.isDirectory()) out.push(...await files(path)); else out.push(path);
+            }
+            return out;
+          }
+          const root = 'associativvordes/family-index-v5';
+          const paths = (await files(root)).sort();
+          const hash = createHash('sha256');
+          let bytes = 0;
+          for (const path of paths) {
+            const data = await readFile(path);
+            bytes += data.length;
+            hash.update(path.slice(root.length + 1)).update('\0').update(data);
+          }
+          await writeFile(join(root, 'repository-provenance.json'), JSON.stringify({
+            schema_version: 1,
+            source_run_id: 35461412225,
+            source_artifacts: {
+              metadata: { id: 10590911931, sha256: '68b305f48e4be768849494fa728c42e9edafa2823ee29316d825bc207fa88044' },
+              members: { id: 10590513436, sha256: '576b08b2ba90902f64414510504fb7769d690f3835a782b5ee2c5434b904ea3e' },
+            },
+            storage: 'git_repository_static_files',
+            file_count_before_provenance: paths.length,
+            total_bytes_before_provenance: bytes,
+            tree_content_sha256: hash.digest('hex'),
+          }, null, 2) + '\n');
+          NODE
+          git add -f "$TARGET/repository-provenance.json"
+          git commit -m "audit: record repository family-index provenance"
+          git push origin "HEAD:$GITHUB_REF_NAME"
