@@ -112,7 +112,7 @@ jobs:
           delete pkg.dependencies?.['@vercel/blob'];
           await writeFile(pkgPath, JSON.stringify(pkg, null, 2) + '\n');
           NODE
-          git rm -f             api/family-index.js             tests/associative-family-api-blob.test.mjs             tests/associative-family-api-prefix.test.mjs             .github/workflows/upload-associative-family-v5-staging.yml             .github/workflows/benchmark-associative-family-v5-staging-network.yml             scripts/upload-associative-family-staging-blobs.mjs             scripts/benchmark-associative-family-staging-network.mjs
+          git rm -f             api/family-index.js             tests/associative-family-api-blob.test.mjs             tests/associative-family-api-prefix.test.mjs             tests/associative-family-staging-upload.test.mjs             .github/workflows/upload-associative-family-v5-staging.yml             .github/workflows/benchmark-associative-family-v5-staging-network.yml             scripts/upload-associative-family-staging-blobs.mjs             scripts/benchmark-associative-family-staging-network.mjs
           npm install --package-lock-only --ignore-scripts
           npm ci --ignore-scripts
           npm test
