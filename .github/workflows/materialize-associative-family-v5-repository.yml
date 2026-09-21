@@ -64,6 +64,7 @@ jobs:
         run: |
           set -euo pipefail
           test "$TARGET" = "associativvordes/family-index-v5"
+          rm -rf "$TARGET" .tmp/family-v5-members
           mkdir -p "$TARGET" .tmp/family-v5-members
           unzip -q metadata.zip -d "$TARGET"
           unzip -q members.zip -d .tmp/family-v5-members
