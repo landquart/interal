@@ -112,12 +112,12 @@ test('exact language-aware controls replace stale automatic memberships before m
 
 test('verified control families cover every runtime language', () => {
   const controls = {
-    en: [['alternative', 'family:alter'], ['pedal', 'family:pede'], ['ocular', 'family:ocul'], ['regular', 'family:regul'], ['manual', 'family:manu'], ['liberty', 'family:libert'], ['international', 'family:inter']],
-    de: [['alternative', 'family:alter'], ['pedal', 'family:pede'], ['monokel', 'family:ocul'], ['regulär', 'family:regul'], ['manuell', 'family:manu'], ['libertär', 'family:libert'], ['interdisziplinär', 'family:inter']],
-    fr: [['altruisme', 'family:alter'], ['pédicure', 'family:pede'], ['oculaire', 'family:ocul'], ['régulation', 'family:regul'], ['manuel', 'family:manu'], ['liberté', 'family:libert'], ['interdisciplinaire', 'family:inter']],
-    es: [['alternativa', 'family:alter'], ['pedicura', 'family:pede'], ['monóculo', 'family:ocul'], ['regulación', 'family:regul'], ['manufactura', 'family:manu'], ['libertad', 'family:libert'], ['internacional', 'family:inter']],
-    it: [['altruismo', 'family:alter'], ['pedicure', 'family:pede'], ['oculare', 'family:ocul'], ['regolazione', 'family:regul'], ['manifattura', 'family:manu'], ['libertà', 'family:libert'], ['internazionale', 'family:inter']],
-    ru: [['альтруизм', 'family:alter'], ['педикюр', 'family:pede'], ['монокль', 'family:ocul'], ['регулирование', 'family:regul'], ['мануфактура', 'family:manu'], ['либеральный', 'family:libert'], ['интернациональный', 'family:inter']]
+    en: [['alternative', 'family:alter'], ['pedal', 'family:pede'], ['ocular', 'family:ocul'], ['regular', 'family:regul'], ['manual', 'family:manu'], ['liberty', 'family:liber'], ['international', 'family:inter']],
+    de: [['alternative', 'family:alter'], ['pedal', 'family:pede'], ['monokel', 'family:ocul'], ['regulär', 'family:regul'], ['manuell', 'family:manu'], ['libertär', 'family:liber'], ['interdisziplinär', 'family:inter']],
+    fr: [['altruisme', 'family:alter'], ['pédicure', 'family:pede'], ['oculaire', 'family:ocul'], ['régulation', 'family:regul'], ['manuel', 'family:manu'], ['liberté', 'family:liber'], ['interdisciplinaire', 'family:inter']],
+    es: [['alternativa', 'family:alter'], ['pedicura', 'family:pede'], ['monóculo', 'family:ocul'], ['regulación', 'family:regul'], ['manufactura', 'family:manu'], ['libertad', 'family:liber'], ['internacional', 'family:inter']],
+    it: [['altruismo', 'family:alter'], ['pedicure', 'family:pede'], ['oculare', 'family:ocul'], ['regolazione', 'family:regul'], ['manifattura', 'family:manu'], ['libertà', 'family:liber'], ['internazionale', 'family:inter']],
+    ru: [['альтруизм', 'family:alter'], ['педикюр', 'family:pede'], ['монокль', 'family:ocul'], ['регулирование', 'family:regul'], ['мануфактура', 'family:manu'], ['либеральный', 'family:liber'], ['интернациональный', 'family:inter']]
   };
   for (const [language, entries] of Object.entries(controls)) {
     for (const [word, familyId] of entries) assert.equal(exactControlFamilyId(language, word), familyId, `${language}:${word}`);
