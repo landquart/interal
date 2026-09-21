@@ -1,8 +1,11 @@
 name: Build exhaustive associative families
 
+# Trigger: multilingual family controls v5 rebuild.
+
 on:
   push:
     branches:
+      - main
       - fix/associative-family-corrective-v5
       - fix/multilingual-family-controls-v5
       - fix/multilingual-family-controls-v5-rebuild
