@@ -14,7 +14,7 @@ const hasManualEvidence = member => member?.components?.some(component => compon
 const isRuntimeCorpusMember = member => member?.corpus_quality?.status !== 'rejected';
 
 export class FamilyIndexLoader {
-  constructor({ baseUrl = '/api/family-index?path=', fetchJson = async (url, options) => { const response = await fetch(url, options); if (!response.ok) throw new Error(`Family index request failed: ${response.status}`); return response.json(); } } = {}) {
+  constructor({ baseUrl = '/associativvordes/family-index-v5', fetchJson = async (url, options) => { const response = await fetch(url, options); if (!response.ok) throw new Error(`Family index request failed: ${response.status}`); if (!url.endsWith('.gz')) return response.json(); if (typeof DecompressionStream !== 'function') throw new Error('Gzip decompression is unavailable'); const stream = response.body.pipeThrough(new DecompressionStream('gzip')); return JSON.parse(await new Response(stream).text()); } } = {}) {
     this.baseUrl = baseUrl.replace(/\/$/, ''); this.fetchJson = fetchJson; this.cache = new Map();
   }
   load(path, { signal } = {}) {
