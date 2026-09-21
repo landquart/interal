@@ -76,3 +76,26 @@ test('v5 runtime excludes rejected corpus members while remaining v4-compatible'
     assert.deepEqual((await loader.candidateEntries('ocul', 'en')).map(item => item.word), ['ocular']);
   }
 });
+
+test('manual family with no language-specific overrides fails closed', async () => {
+  const aliasBucket = familyBucket('manu'), id = 'family:manu', idBucket = familyBucket(id);
+  const stale = { lemma_id: 'flagmanu', word: 'флагману', normalized: 'флагману', search_form: 'flagmanu', frequency_score: 50, sources: [{ id: 'test' }], components: [{ evidence: [evidence('compound_morphology')] }] };
+  const data = { 'manifest.json': { version: '5', languages: ['ru'], sharding: { alias_template: 'aliases/{bucket}.json', family_template: 'families/{bucket}.json', member_template: 'members/{language}/{bucket}.json' } }, [`aliases/${aliasBucket}.json`]: { manu: [id] }, [`families/${idBucket}.json`]: { [id]: { id, canonical: 'manu', aliases: ['manu'], source: 'methodology_seed+manual_override', review_status: 'manually_verified' } }, [`members/ru/${idBucket}.json`]: { [id]: [stale] } };
+  const loader = new FamilyIndexLoader({ baseUrl: '/family-index', fetchJson: async url => data[url.replace('/family-index/', '')] });
+  assert.deepEqual(await loader.candidateEntries('manu', 'ru'), []);
+});
+
+test('authoritative empty family result never falls back to the static index', async () => {
+  let staticFetches = 0;
+  const loader = createCandidateIndexLoader({
+    fetch: async () => { staticFetches += 1; throw new Error('static index must not be fetched'); },
+    familyIndexLoader: {
+      candidateEntries: async () => [],
+      resolveAlias: async () => ['family:manu']
+    }
+  });
+  assert.deepEqual(await loader.loadCandidateEntries('ru', 'manu'), []);
+  assert.equal(staticFetches, 0);
+  assert.equal(loader.getCandidateIndexDiagnostics().familyIndexStatus, 'loaded');
+  assert.equal(loader.getCandidateIndexDiagnostics().familyIndexFamilies, 1);
+});
