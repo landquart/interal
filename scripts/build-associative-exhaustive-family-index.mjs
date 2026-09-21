@@ -66,7 +66,7 @@ const CONTROL_WORDS = Object.freeze({
   'family:inter': {
     en: ['international', 'interdisciplinary'], de: ['international', 'interdisziplinär'],
     fr: ['international', 'interdisciplinaire'], es: ['internacional', 'interdisciplinario'],
-    it: ['internazionale', 'interdisciplinare'], ru: ['интернациональный', 'интердисциплинарный']
+    it: ['internazionale', 'interdisciplinare'], ru: ['интернациональный']
   }
 });
 const CONTROL_FORBIDDEN_FAMILY_IDS = new Set(['ety:0f6061e49232', 'ety:a9f83219c8f4', 'ety:eb0c0f2dde53', 'ety:e40fb0a23141', 'ety:2696567cd2f7']);
