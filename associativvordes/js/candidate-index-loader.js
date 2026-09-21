@@ -196,7 +196,7 @@ export function createCandidateIndexLoader(options = {}) {
   const fetchImpl = options.fetch ?? globalThis.fetch?.bind(globalThis);
   if (typeof fetchImpl !== 'function') throw new TypeError('createCandidateIndexLoader requires fetch support.');
   const maxCachedResources = Number.isInteger(options.maxCachedResources) && options.maxCachedResources >= 0 ? options.maxCachedResources : DEFAULT_MAX_CACHED_RESOURCES;
-  const familyIndexLoader = options.familyIndexLoader || new FamilyIndexLoader({ baseUrl: options.familyBaseUrl || '/api/family-index?path=', fetchJson: async (url, init) => {
+  const familyIndexLoader = options.familyIndexLoader || new FamilyIndexLoader({ baseUrl: options.familyBaseUrl || '/associativvordes/family-index-v5', fetchJson: async (url, init) => {
     const response = await fetchImpl(url, init);
     if (!response?.ok) throw new Error(`Family index request failed: ${response?.status ?? 'network'}`);
     return response.json();
