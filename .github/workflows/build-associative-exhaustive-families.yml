@@ -1,5 +1,7 @@
 name: Build exhaustive associative families
 
+# Trigger note: rebuild v5 after multilingual control expansion.
+
 on:
   push:
     branches:
