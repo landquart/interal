@@ -319,6 +319,13 @@ export function createCandidateIndexLoader(options = {}) {
           diagnostics.exactCandidateIds = familyEntries.length;
           return familyEntries;
         }
+        const resolvedFamilyIds = await familyIndexLoader.resolveAlias(root, { signal });
+        if (resolvedFamilyIds.length) {
+          diagnostics.familyIndexFamilies = resolvedFamilyIds.length;
+          diagnostics.candidateIds = 0;
+          diagnostics.exactCandidateIds = 0;
+          return [];
+        }
       } catch (error) {
         if (isAbortError(error)) throw error;
         diagnostics.familyIndexStatus = 'unavailable';
