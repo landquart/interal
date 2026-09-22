@@ -12,7 +12,7 @@ const readJson = async path => {
   return JSON.parse(path.endsWith('.gz') ? gunzipSync(data).toString('utf8') : data.toString('utf8'));
 };
 const writeJson = async (path, value) => {
-  const text = JSON.stringify(value, null, 2) + '\n';
+  const text = path.endsWith('.gz') ? JSON.stringify(value) : JSON.stringify(value, null, 2) + '\n';
   await writeFile(path, path.endsWith('.gz') ? gzipSync(text, { level: 6 }) : text);
 };
 const shardNames = async path => (await readdir(path)).filter(name => name.endsWith('.json.gz')).sort();
@@ -42,8 +42,14 @@ for (const language of languages) {
   }
 }
 
+if (removedRows.length === 0) {
+  console.log(JSON.stringify({ no_op: true, reason: 'known rejected corpus noise already absent' }, null, 2));
+  process.exit(0);
+}
+
 const deletedFamilies = new Set();
 let familyCount = 0;
+let singletonFamilies = 0;
 for (const file of await shardNames(join(root, 'families'))) {
   const path = join(root, 'families', file);
   const shard = await readJson(path);
@@ -67,6 +73,7 @@ for (const file of await shardNames(join(root, 'families'))) {
     } else {
       if (!family.aliases.length) throw new Error(`nonempty family lost every alias ${familyId}`);
       familyCount += 1;
+      if (family.support === 1) singletonFamilies += 1;
     }
   }
   if (changed) await writeJson(path, shard);
@@ -101,6 +108,7 @@ manifest.counts.families = familyCount;
 manifest.counts.aliases = aliasCount;
 report.total_families = familyCount;
 report.aliases_in_lookup = aliasCount;
+report.singleton_families = singletonFamilies;
 report.repository_materialization = {
   source_run_id: 35647932153,
   rejected_corpus_noise_removed_from_runtime: removedRows.length,
