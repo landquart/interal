@@ -11,7 +11,6 @@ on:
       - 'associativvordes/js/candidate-index-loader.js'
       - 'scripts/audit-repository-associative-family-v5.mjs'
       - 'scripts/repair-repository-associative-family-v5-noise.mjs'
-      - 'scripts/repair-repository-associative-family-v5-noise.mjs'
       - '.github/workflows/audit-repository-associative-family-v5.yml'
   pull_request:
     paths:
@@ -19,6 +18,7 @@ on:
       - 'associativvordes/js/family-index-loader.js'
       - 'associativvordes/js/candidate-index-loader.js'
       - 'scripts/audit-repository-associative-family-v5.mjs'
+      - 'scripts/repair-repository-associative-family-v5-noise.mjs'
       - '.github/workflows/audit-repository-associative-family-v5.yml'
   workflow_dispatch:
 
