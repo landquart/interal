@@ -1,0 +1,51 @@
+name: Audit production associative family v5
+
+on:
+  push:
+    branches:
+      - audit/family-v5-production-runtime
+    paths:
+      - '.github/workflows/audit-production-associative-family-v5.yml'
+      - 'tests/browser/associative-family-v5-production.playwright.mjs'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  production-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Run browser, runtime and transport regression against production
+        run: node tests/browser/associative-family-v5-production.playwright.mjs https://interal.vercel.app .tmp/family-v5-production-regression.json
+      - name: Preserve production audit report
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          path=audit/associative-family-v5/production-regression.json
+          encoded=$(base64 -w0 .tmp/family-v5-production-regression.json)
+          current=$(gh api "repos/$GITHUB_REPOSITORY/contents/$path?ref=$GITHUB_REF_NAME" --jq .sha 2>/dev/null || true)
+          payload=$(node -e 'const [message,content,branch,sha]=process.argv.slice(1); process.stdout.write(JSON.stringify({message,content,branch,...(sha?{sha}:{})}))' \
+            'audit: preserve family v5 production regression' "$encoded" "$GITHUB_REF_NAME" "$current")
+          gh api --method PUT "repos/$GITHUB_REPOSITORY/contents/$path" --input - <<<"$payload"
+      - name: Upload production evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: associative-family-v5-production-regression
+          path: |
+            .tmp/family-v5-production-regression.json
+            .tmp/family-v5-production-desktop.png
+            .tmp/family-v5-production-mobile.png
+          if-no-files-found: error
+          retention-days: 90
