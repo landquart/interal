@@ -170,8 +170,10 @@ jobs:
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git config http.postBuffer 1073741824
           git add package.json package-lock.json associativvordes/js/family-index-loader.js associativvordes/js/candidate-index-loader.js
-          git commit -m "refactor: serve associative families from repository"
-          git push origin "HEAD:$GITHUB_REF_NAME"
+          if ! git diff --cached --quiet; then
+            git commit -m "refactor: serve associative families from repository"
+            git push origin "HEAD:$GITHUB_REF_NAME"
+          fi
 
       - name: Commit metadata shards
         shell: bash
