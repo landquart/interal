@@ -115,9 +115,9 @@
   },
   "uncertain_relation_count": 431390,
   "uncertain_relation_sample_size": 100000,
-  "total_families": 2456622,
+  "total_families": 2456621,
   "merged_families": 20775,
-  "singleton_families": 1735272,
+  "singleton_families": 1735271,
   "multi_branch_families": 17703,
   "multi_family_lemmas": 3627982,
   "components_discovered": 9349982,
@@ -145,7 +145,7 @@
   },
   "generated_non_proto_families": 20768,
   "verified_seed_families": 7,
-  "aliases_in_lookup": 1934052,
+  "aliases_in_lookup": 1934051,
   "proto_review_candidates": 10209,
   "wide_etymon_review_candidates": 171,
   "etymon_key_policy": {
@@ -10942,5 +10942,10 @@
       ],
       "review_status": "needs_review"
     }
-  ]
+  ],
+  "repository_materialization": {
+    "source_run_id": 35647932153,
+    "rejected_corpus_noise_removed_from_runtime": 30,
+    "deleted_empty_families": 1
+  }
 }

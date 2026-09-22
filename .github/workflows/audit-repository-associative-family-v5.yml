@@ -1,0 +1,58 @@
+name: Audit repository associative family v5
+
+on:
+  push:
+    branches:
+      - main
+      - audit/family-v5-repository-integrity
+    paths:
+      - 'associativvordes/family-index-v5/**'
+      - 'associativvordes/js/family-index-loader.js'
+      - 'associativvordes/js/candidate-index-loader.js'
+      - 'scripts/audit-repository-associative-family-v5.mjs'
+      - 'scripts/repair-repository-associative-family-v5-noise.mjs'
+      - '.github/workflows/audit-repository-associative-family-v5.yml'
+  pull_request:
+    paths:
+      - 'associativvordes/family-index-v5/**'
+      - 'associativvordes/js/family-index-loader.js'
+      - 'associativvordes/js/candidate-index-loader.js'
+      - 'scripts/audit-repository-associative-family-v5.mjs'
+      - 'scripts/repair-repository-associative-family-v5-noise.mjs'
+      - '.github/workflows/audit-repository-associative-family-v5.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: audit-repository-associative-family-v5-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  repository-integrity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exhaustively audit static gzip shards
+        run: |
+          mkdir -p .tmp
+          node --max-old-space-size=6144 scripts/audit-repository-associative-family-v5.mjs \
+            associativvordes/family-index-v5 \
+            .tmp/repository-static-integrity.json
+      - name: Verify committed integrity evidence is current
+        run: |
+          cmp audit/associative-family-v5/repository-static-integrity.json \
+            .tmp/repository-static-integrity.json
+      - name: Upload integrity evidence
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: associative-family-v5-repository-integrity
+          path: .tmp/repository-static-integrity.json
+          if-no-files-found: error
+          retention-days: 90

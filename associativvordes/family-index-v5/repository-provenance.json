@@ -12,7 +12,16 @@
     }
   },
   "storage": "git_repository_static_files",
-  "file_count_before_provenance": 2055,
-  "total_bytes_before_provenance": 789508744,
-  "tree_content_sha256": "e1332bf36163d733274b6edeef9e307d614d47a0777a320be4d2b7741d1031f6"
+  "file_count_before_provenance": 2050,
+  "total_bytes_before_provenance": 743500407,
+  "tree_content_sha256": "ecfbad7bcd25e18139729ae76bbfd18e924a07a1b7aa80b0f7f6a4508179dce8",
+  "repository_repairs": [
+    {
+      "repair": "exclude_known_rejected_corpus_noise_from_runtime",
+      "removed_memberships": 30,
+      "removed_lemmas": 9,
+      "deleted_empty_families": 1,
+      "source_run_id": 35647932153
+    }
+  ]
 }

@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "verdict": "pass",
+  "source_run_id": 35647932153,
+  "storage": "git_repository_static_files",
+  "encoding": "gzip",
+  "counts": {
+    "families": 2456621,
+    "aliases": 1934051,
+    "lemmas": 4924980,
+    "components": 9349982,
+    "memberships": 10426047,
+    "memberships_by_language": {
+      "en": 2646220,
+      "de": 2279250,
+      "fr": 1155626,
+      "es": 1892803,
+      "it": 1215092,
+      "ru": 1237056
+    },
+    "materialized_families": 2456621
+  },
+  "invariants": {
+    "manifest_report_counts_match": true,
+    "every_family_has_members": true,
+    "support_matches_members": true,
+    "language_support_matches_members": true,
+    "aliases_reference_existing_families": true,
+    "family_aliases_have_reverse_lookup": true,
+    "no_family_libert": true,
+    "family_liber_all_languages": true,
+    "rejected_corpus_noise_absent": true,
+    "provenance_locked": true
+  },
+  "rejected_corpus_noise": [],
+  "provenance": {
+    "schema_version": 1,
+    "source_run_id": 35647932153,
+    "source_artifacts": {
+      "metadata": {
+        "id": 10665305365,
+        "sha256": "b82ffcb2e10a5cadf2b99581800db8070b2f8b727444b49a2b78ffa20209a80b"
+      },
+      "members": {
+        "id": 10665150741,
+        "sha256": "4e58676f25a92af0402df0f05a7f0e32e6239133b6b4da6a94fc6ddcca4be9fb"
+      }
+    },
+    "storage": "git_repository_static_files",
+    "file_count_before_provenance": 2050,
+    "total_bytes_before_provenance": 743500407,
+    "tree_content_sha256": "ecfbad7bcd25e18139729ae76bbfd18e924a07a1b7aa80b0f7f6a4508179dce8",
+    "repository_repairs": [
+      {
+        "repair": "exclude_known_rejected_corpus_noise_from_runtime",
+        "removed_memberships": 30,
+        "removed_lemmas": 9,
+        "deleted_empty_families": 1,
+        "source_run_id": 35647932153
+      }
+    ]
+  }
+}
