@@ -38,22 +38,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Apply bounded rejected-noise repair on integration branch
-        if: github.event_name == 'push' && github.ref_name == 'audit/family-v5-repository-integrity'
-        run: node scripts/repair-repository-associative-family-v5-noise.mjs
       - name: Exhaustively audit static gzip shards
         run: node --max-old-space-size=6144 scripts/audit-repository-associative-family-v5.mjs
-      - name: Preserve current audit on integration branch
-        if: github.event_name == 'push' && github.ref_name == 'audit/family-v5-repository-integrity'
-        run: |
-          set -euo pipefail
-          git config user.name github-actions[bot]
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add -f associativvordes/family-index-v5 audit/associative-family-v5/repository-static-integrity.json
-          if ! git diff --cached --quiet; then
-            git commit -m "audit: preserve repository family v5 integrity"
-            git push origin "HEAD:$GITHUB_REF_NAME"
-          fi
       - name: Upload integrity evidence
         if: always()
         uses: actions/upload-artifact@v4
