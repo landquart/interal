@@ -6,6 +6,8 @@ The corrective graph passes the available exhaustive structural checks, but this
 
 Owner disposition recorded 2026-09-20: **OWNER_ACCEPTED_AT_RISK WITHOUT HUMAN LINGUISTIC VALIDATION**. This explicit waiver is documented in `owner-risk-acceptance.json`. It changes the operational disposition, not the missing evidence. The owner subsequently gave separate explicit authorization to merge PR #622 and switch production to the exact immutable v5 prefix.
 
+Operational follow-up on 2026-09-22 materialized the immutable artifacts from source run `35647932153` as repository-backed static gzip files and removed the legacy Blob upload/runtime path. PRs `#629`, `#630`, and `#631` completed that migration and added a repeatable production regression. Production audit run `35720424792`, main Tests run `35721002453`, and deployment run `35721001710` passed. The preserved `production-regression.json` verifies `family:liber` for all six languages, rejects a working `family:libert`, checks the complete returned sets for listed corpus noise, and exercises cache reuse, shared-loader races, in-flight AbortSignal cancellation, offline, timeout, corrupt-response, and 404 recovery. This closes the automatable runtime/browser/storage follow-up; it does not supply human linguistic judgments.
+
 ## Object and provenance checked
 
 - PR: `#622`, branch `fix/associative-family-corrective-v5`; base `main` remains unchanged.
@@ -49,9 +51,9 @@ An independent streaming recount of all six locked assignment files established 
 | Agreement/adjudication | `not_started` | No valid annotations; kappa, confusion matrix and adjudication cannot be computed. |
 | Recall | `not_verified` | The seven `seed_only` rows are challenge controls, not an independently sampled recall gold frame. |
 | Local artifact runtime | `verified_for_local_handler` | 42 cases; local Node handler only. Transfer is a `deflateRaw` estimate, not network bytes. |
-| Staging Blob handler | `partial` | Private Blob/Range data was read through a locally invoked API handler; Vercel edge/browser end-to-end latency, CPU, memory and cost are absent. |
-| Concurrency 1/10/50/100 | `not_verified` | Existing artifact concurrency measures local work and estimated bytes, not approved preview network load. |
-| Browser regression | `partial` | Chromium desktop/mobile controls ran against a local fixture server. Required real-preview, all-language positive, offline/timeout/corrupt transport, trace/waterfall and full ZIP matrix are not demonstrated. |
+| Repository storage | `verified` | Production serves the immutable v5 dataset as static Git-backed gzip files. Provenance locks source run `35647932153`; legacy associative-family Blob workflow and uploader were removed in PR `#630`. |
+| Runtime concurrency and cache | `verified_for_production_controls` | The production regression verifies shared-loader concurrent requests, exact race results, family-index-only cache reuse, and bounded alias fan-out. This is functional regression evidence, not a full capacity benchmark. |
+| Browser and transport regression | `verified_for_automated_matrix` | Production Chromium desktop/mobile checks cover six-language positive controls, `liber`/`libert`, in-flight cancellation, offline, timeout, corrupt JSON and 404 cache eviction. The preserved report records latency and network resources. |
 
 ## Published sample audit
 
@@ -75,7 +77,7 @@ No values are reported for TP/FP/U, precision, confidence intervals, recall, agr
 4. Adjudicate every disagreement/uncertain/policy error plus the prespecified agreement audit.
 5. Independently sample, dual-review and adjudicate an external recall frame before comparing it with v5.
 
-Only after those tasks pass the locked thresholds should an approved non-production preview receive the prespecified network load and complete browser/transport matrix. Any graph or policy correction requires a new immutable generation and fresh acceptance evidence/holdout.
+The automated production browser/transport matrix is now complete for the accepted-at-risk repository-backed release. The human precision/recall work above remains deferred and must not be represented as completed. Any graph or policy correction requires a new immutable generation and fresh acceptance evidence/holdout.
 
 ## Reproduction
 
@@ -94,7 +96,7 @@ git diff --check
 - Structural integrity: **PASS within the recorded structural requirements**
 - Linguistic precision: **NOT ESTABLISHED**
 - False-negative recall: **NOT ESTABLISHED**
-- Preview load/browser release gates: **NOT ESTABLISHED**
+- Production runtime/browser/storage gates: **PASS for the automated regression matrix**
 - Evidence-based audit verdict: **INSUFFICIENT_EVIDENCE**
 - Owner disposition: **OWNER_ACCEPTED_AT_RISK**
 - Merge/production authorization: **YES — explicit owner risk acceptance; exact immutable v5 prefix only**
