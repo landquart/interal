@@ -51,6 +51,8 @@ for (const path of provenanceFiles) {
 assert(provenanceFiles.length === provenance.file_count_before_provenance, 'provenance file count mismatch');
 assert(provenanceBytes === provenance.total_bytes_before_provenance, 'provenance byte count mismatch');
 assert(provenanceHash.digest('hex') === provenance.tree_content_sha256, 'provenance tree hash mismatch');
+const repair = provenance.repository_repairs?.find(item => item.repair === 'exclude_known_rejected_corpus_noise_from_runtime');
+assert(repair?.removed_memberships === 30 && repair?.removed_lemmas === 9 && repair?.deleted_empty_families === 1, 'repository repair provenance mismatch');
 assert(report.controls_ok === true, 'controls_ok=false');
 for (const [name, value] of Object.entries(report.invariants || {})) {
   if (typeof value === 'boolean') assert(value, `invariant ${name}=false`);
@@ -58,8 +60,13 @@ for (const [name, value] of Object.entries(report.invariants || {})) {
 for (const name of ['lemmas_with_zero_family','families_with_zero_members','members_without_evidence','fuzzy_memberships','levenshtein_memberships','untyped_family_edges','untyped_or_illegal_equivalence_edges','compound_edges_used_as_equivalence','unreviewed_high_risk_families']) {
   assert(report.invariants?.[name] === 0, `invariant ${name}=${report.invariants?.[name]}`);
 }
+assert(manifest.counts.lemmas === report.invariants.source_lemmas, 'manifest/report source lemma mismatch');
+assert(manifest.counts.lemmas === report.invariants.classified_unique_lemmas, 'manifest/report classified lemma mismatch');
 assert(manifest.counts.components === report.components_discovered, 'manifest/report discovered component mismatch');
 assert(report.components_discovered === report.components_assigned, 'discovered/assigned component mismatch');
+assert(manifest.sharding?.alias_template === 'aliases/{bucket}.json.gz', 'invalid alias runtime template');
+assert(manifest.sharding?.family_template === 'families/{bucket}.json.gz', 'invalid family runtime template');
+assert(manifest.sharding?.member_template === 'members/{language}/{bucket}.json.gz', 'invalid member runtime template');
 
 const familyFiles = await shardNames(join(root, 'families'));
 const aliasFiles = await shardNames(join(root, 'aliases'));
@@ -160,8 +167,7 @@ assert(aliasCount === manifest.counts.aliases && aliasCount === report.aliases_i
 
 const result = {
   schema_version: 1,
-  generated_at: new Date().toISOString(),
-  verdict: 'pass',
+  verdict: noiseFindings.length === 0 ? 'pass' : 'fail',
   source_run_id: expectedRunId,
   storage: provenance.storage,
   encoding: manifest.repository_storage.encoding,
