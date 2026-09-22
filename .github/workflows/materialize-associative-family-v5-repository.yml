@@ -3,7 +3,7 @@ name: Materialize family v5 in repository
 on:
   push:
     branches:
-      - fix/associative-family-v5-repository-storage
+      - fix/materialize-family-v5-liber
     paths:
       - '.github/workflows/materialize-associative-family-v5-repository.yml'
   workflow_dispatch:
@@ -21,11 +21,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 180
     env:
-      SOURCE_RUN_ID: '35461412225'
-      METADATA_ARTIFACT_ID: '10590911931'
-      MEMBERS_ARTIFACT_ID: '10590513436'
-      METADATA_SHA256: '68b305f48e4be768849494fa728c42e9edafa2823ee29316d825bc207fa88044'
-      MEMBERS_SHA256: '576b08b2ba90902f64414510504fb7769d690f3835a782b5ee2c5434b904ea3e'
+      SOURCE_RUN_ID: '35647932153'
+      METADATA_ARTIFACT_ID: '10665305365'
+      MEMBERS_ARTIFACT_ID: '10665150741'
+      METADATA_SHA256: 'b82ffcb2e10a5cadf2b99581800db8070b2f8b727444b49a2b78ffa20209a80b'
+      MEMBERS_SHA256: '4e58676f25a92af0402df0f05a7f0e32e6239133b6b4da6a94fc6ddcca4be9fb'
       TARGET: associativvordes/family-index-v5
       GH_TOKEN: ${{ github.token }}
     steps:
@@ -64,6 +64,7 @@ jobs:
         run: |
           set -euo pipefail
           test "$TARGET" = "associativvordes/family-index-v5"
+          rm -rf "$TARGET" .tmp/family-v5-members
           mkdir -p "$TARGET" .tmp/family-v5-members
           unzip -q metadata.zip -d "$TARGET"
           unzip -q members.zip -d .tmp/family-v5-members
@@ -88,7 +89,7 @@ jobs:
             if (!manifest.sharding[key].endsWith('.json')) throw new Error(`Unexpected ${key}: ${manifest.sharding[key]}`);
             manifest.sharding[key] += '.gz';
           }
-          manifest.repository_storage = { encoding: 'gzip', immutable_source_run_id: 35461412225 };
+          manifest.repository_storage = { encoding: 'gzip', immutable_source_run_id: 35647932153 };
           await writeFile(path, JSON.stringify(manifest, null, 2) + '\n');
           NODE
           find "$TARGET/aliases" "$TARGET/families" "$TARGET/members" -type f -name '*.json' -print0 | xargs -0 -n1 -P4 gzip -6
@@ -112,19 +113,25 @@ jobs:
           let familySource = await readFile(familyPath, 'utf8');
           const oldConstructor = "constructor({ baseUrl = '/api/family-index?path=', fetchJson = async (url, options) => { const response = await fetch(url, options); if (!response.ok) throw new Error(\`Family index request failed: \${response.status}\`); return response.json(); } } = {})";
           const newConstructor = "constructor({ baseUrl = '/associativvordes/family-index-v5', fetchJson = async (url, options) => { const response = await fetch(url, options); if (!response.ok) throw new Error(\`Family index request failed: \${response.status}\`); if (!url.endsWith('.gz')) return response.json(); if (typeof DecompressionStream !== 'function') throw new Error('Gzip decompression is unavailable'); const stream = response.body.pipeThrough(new DecompressionStream('gzip')); return JSON.parse(await new Response(stream).text()); } } = {})";
-          if (!familySource.includes(oldConstructor)) throw new Error('Expected Blob API loader constructor missing');
-          familySource = familySource.replace(oldConstructor, newConstructor);
-          await writeFile(familyPath, familySource);
+          if (familySource.includes(oldConstructor)) {
+            familySource = familySource.replace(oldConstructor, newConstructor);
+            await writeFile(familyPath, familySource);
+          } else if (!familySource.includes(newConstructor)) {
+            throw new Error('Neither Blob nor repository family loader constructor found');
+          }
           const candidatePath = 'associativvordes/js/candidate-index-loader.js';
           const candidateSource = await readFile(candidatePath, 'utf8');
-          if (!candidateSource.includes("'/api/family-index?path='")) throw new Error('Expected candidate Blob API default missing');
-          await writeFile(candidatePath, candidateSource.replaceAll("'/api/family-index?path='", "'/associativvordes/family-index-v5'"));
+          if (candidateSource.includes("'/api/family-index?path='")) {
+            await writeFile(candidatePath, candidateSource.replaceAll("'/api/family-index?path='", "'/associativvordes/family-index-v5'"));
+          } else if (!candidateSource.includes("'/associativvordes/family-index-v5'")) {
+            throw new Error('Neither Blob nor repository candidate loader default found');
+          }
           const pkgPath = 'package.json';
           const pkg = JSON.parse(await readFile(pkgPath, 'utf8'));
           delete pkg.dependencies?.['@vercel/blob'];
           await writeFile(pkgPath, JSON.stringify(pkg, null, 2) + '\n');
           NODE
-          git rm -f             api/family-index.js             tests/associative-family-api-blob.test.mjs             tests/associative-family-api-prefix.test.mjs             tests/associative-family-staging-upload.test.mjs             .github/workflows/upload-associative-family-v5-staging.yml             .github/workflows/benchmark-associative-family-v5-staging-network.yml             scripts/upload-associative-family-staging-blobs.mjs             scripts/benchmark-associative-family-staging-network.mjs
+          git rm -f --ignore-unmatch             api/family-index.js             tests/associative-family-api-blob.test.mjs             tests/associative-family-api-prefix.test.mjs             tests/associative-family-staging-upload.test.mjs             .github/workflows/upload-associative-family-v5-staging.yml             .github/workflows/benchmark-associative-family-v5-staging-network.yml             scripts/upload-associative-family-staging-blobs.mjs             scripts/benchmark-associative-family-staging-network.mjs
           npm install --package-lock-only --ignore-scripts
           npm ci --ignore-scripts
           npm test
@@ -149,7 +156,7 @@ jobs:
           });
           const manifest = await loader.manifest();
           if (manifest.version !== '5') throw new Error(`Expected v5 manifest, got ${manifest.version}`);
-          for (const alias of ['manu', 'pede', 'ocul', 'alter', 'regul', 'libert', 'inter']) {
+          for (const alias of ['manu', 'pede', 'ocul', 'alter', 'regul', 'liber', 'inter']) {
             for (const language of manifest.languages) await loader.candidateEntries(alias, language);
           }
           console.log(JSON.stringify({ version: manifest.version, languages: manifest.languages, storage: 'repository-static' }, null, 2));
@@ -163,8 +170,10 @@ jobs:
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git config http.postBuffer 1073741824
           git add package.json package-lock.json associativvordes/js/family-index-loader.js associativvordes/js/candidate-index-loader.js
-          git commit -m "refactor: serve associative families from repository"
-          git push origin "HEAD:$GITHUB_REF_NAME"
+          if ! git diff --cached --quiet; then
+            git commit -m "refactor: serve associative families from repository"
+            git push origin "HEAD:$GITHUB_REF_NAME"
+          fi
 
       - name: Commit metadata shards
         shell: bash
@@ -211,10 +220,10 @@ jobs:
           }
           await writeFile(join(root, 'repository-provenance.json'), JSON.stringify({
             schema_version: 1,
-            source_run_id: 35461412225,
+            source_run_id: 35647932153,
             source_artifacts: {
-              metadata: { id: 10590911931, sha256: '68b305f48e4be768849494fa728c42e9edafa2823ee29316d825bc207fa88044' },
-              members: { id: 10590513436, sha256: '576b08b2ba90902f64414510504fb7769d690f3835a782b5ee2c5434b904ea3e' },
+              metadata: { id: 10665305365, sha256: 'b82ffcb2e10a5cadf2b99581800db8070b2f8b727444b49a2b78ffa20209a80b' },
+              members: { id: 10665150741, sha256: '4e58676f25a92af0402df0f05a7f0e32e6239133b6b4da6a94fc6ddcca4be9fb' },
             },
             storage: 'git_repository_static_files',
             file_count_before_provenance: paths.length,
