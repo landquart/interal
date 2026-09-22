@@ -23,7 +23,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: audit-repository-associative-family-v5-${{ github.ref }}
@@ -38,31 +38,21 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Rebuild bounded repair from main with compact gzip
-        if: github.event_name == 'push' && github.ref_name == 'audit/family-v5-repository-integrity'
-        run: |
-          set -euo pipefail
-          git fetch origin main --depth=1
-          git checkout origin/main -- associativvordes/family-index-v5
-          node scripts/repair-repository-associative-family-v5-noise.mjs
       - name: Exhaustively audit static gzip shards
-        run: node --max-old-space-size=6144 scripts/audit-repository-associative-family-v5.mjs
-      - name: Commit compact repaired data and deterministic evidence
-        if: github.event_name == 'push' && github.ref_name == 'audit/family-v5-repository-integrity'
         run: |
-          set -euo pipefail
-          git config user.name github-actions[bot]
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add -f associativvordes/family-index-v5 audit/associative-family-v5/repository-static-integrity.json
-          if ! git diff --cached --quiet; then
-            git commit -m "data: compact final family v5 runtime repair"
-            git push origin "HEAD:$GITHUB_REF_NAME"
-          fi
+          mkdir -p .tmp
+          node --max-old-space-size=6144 scripts/audit-repository-associative-family-v5.mjs \
+            associativvordes/family-index-v5 \
+            .tmp/repository-static-integrity.json
+      - name: Verify committed integrity evidence is current
+        run: |
+          cmp audit/associative-family-v5/repository-static-integrity.json \
+            .tmp/repository-static-integrity.json
       - name: Upload integrity evidence
-        if: always()
+        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: associative-family-v5-repository-integrity
-          path: audit/associative-family-v5/repository-static-integrity.json
+          path: .tmp/repository-static-integrity.json
           if-no-files-found: error
           retention-days: 90
