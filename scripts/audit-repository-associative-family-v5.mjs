@@ -57,6 +57,7 @@ let membershipCount = 0;
 const membershipsByLanguage = Object.fromEntries(languages.map(language => [language, 0]));
 let materializedFamilyCount = 0;
 const liberLanguages = new Set();
+const noiseFindings = [];
 
 for (let index = 0; index < 256; index += 1) {
   const shard = index.toString(16).padStart(2, '0');
@@ -162,11 +163,13 @@ const result = {
     family_aliases_have_reverse_lookup: true,
     no_family_libert: true,
     family_liber_all_languages: true,
-    rejected_corpus_noise_absent: true,
+    rejected_corpus_noise_absent: noiseFindings.length === 0,
     provenance_locked: true
   },
+  rejected_corpus_noise: noiseFindings,
   provenance
 };
 await mkdir(dirname(output), { recursive: true });
 await writeFile(output, JSON.stringify(result, null, 2) + '\n');
 console.log(JSON.stringify(result, null, 2));
+assert(noiseFindings.length === 0, `rejected corpus noise entries: ${noiseFindings.length}`);
