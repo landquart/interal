@@ -1,0 +1,2135 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-09-22T10:13:57.265Z",
+  "production_url": "https://interal.vercel.app",
+  "expected_source_run_id": 35647932153,
+  "scenarios": [
+    {
+      "viewport": "desktop",
+      "width": 1440,
+      "height": 1000,
+      "manifest": {
+        "version": "5",
+        "source_run_id": 35647932153,
+        "encoding": "gzip"
+      },
+      "build_report": {
+        "source_run_id": "35647932153",
+        "controls_ok": true,
+        "liber_ok": true,
+        "has_libert": false,
+        "invariants": {
+          "processed_lemmas_equals_source": true,
+          "source_lemmas": 4924980,
+          "classified_unique_lemmas": 4924980,
+          "lemmas_with_zero_family": 0,
+          "families_with_zero_members": 0,
+          "members_without_evidence": 0,
+          "fuzzy_memberships": 0,
+          "levenshtein_memberships": 0,
+          "untyped_family_edges": 0,
+          "untyped_or_illegal_equivalence_edges": 0,
+          "compound_edges_used_as_equivalence": 0,
+          "unreviewed_high_risk_families": 0
+        }
+      },
+      "provenance": {
+        "schema_version": 1,
+        "source_run_id": 35647932153,
+        "source_artifacts": {
+          "metadata": {
+            "id": 10665305365,
+            "sha256": "b82ffcb2e10a5cadf2b99581800db8070b2f8b727444b49a2b78ffa20209a80b"
+          },
+          "members": {
+            "id": 10665150741,
+            "sha256": "4e58676f25a92af0402df0f05a7f0e32e6239133b6b4da6a94fc6ddcca4be9fb"
+          }
+        },
+        "storage": "git_repository_static_files",
+        "file_count_before_provenance": 2055,
+        "total_bytes_before_provenance": 789508744,
+        "tree_content_sha256": "e1332bf36163d733274b6edeef9e307d614d47a0777a320be4d2b7741d1031f6"
+      },
+      "controls": [
+        {
+          "alias": "manu",
+          "language": "en",
+          "family_ids": [
+            "family:manu"
+          ],
+          "top5": [
+            "manufacture",
+            "manual"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "manu",
+          "language": "de",
+          "family_ids": [
+            "family:manu"
+          ],
+          "top5": [
+            "manuell",
+            "manufaktur"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "manu",
+          "language": "fr",
+          "family_ids": [
+            "family:manu"
+          ],
+          "top5": [
+            "manuel",
+            "manufacture"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "manu",
+          "language": "es",
+          "family_ids": [
+            "family:manu"
+          ],
+          "top5": [
+            "manual",
+            "manufactura"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "manu",
+          "language": "it",
+          "family_ids": [
+            "family:manu"
+          ],
+          "top5": [
+            "manuale",
+            "manifattura"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "manu",
+          "language": "ru",
+          "family_ids": [
+            "family:manu"
+          ],
+          "top5": [
+            "мануфактура",
+            "мануальный"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "pede",
+          "language": "en",
+          "family_ids": [
+            "family:pede"
+          ],
+          "top5": [
+            "pedal",
+            "pedicure"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "pede",
+          "language": "de",
+          "family_ids": [
+            "family:pede"
+          ],
+          "top5": [
+            "pedal",
+            "pediküre"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "pede",
+          "language": "fr",
+          "family_ids": [
+            "family:pede"
+          ],
+          "top5": [
+            "pédale",
+            "pédicure"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "pede",
+          "language": "es",
+          "family_ids": [
+            "family:pede"
+          ],
+          "top5": [
+            "pedal",
+            "pedicura"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "pede",
+          "language": "it",
+          "family_ids": [
+            "family:pede"
+          ],
+          "top5": [
+            "pedale",
+            "pedicure"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "pede",
+          "language": "ru",
+          "family_ids": [
+            "family:pede"
+          ],
+          "top5": [
+            "педаль",
+            "педикюр"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "ocul",
+          "language": "en",
+          "family_ids": [
+            "family:ocul"
+          ],
+          "top5": [
+            "ocular",
+            "monocle",
+            "monocular"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "ocul",
+          "language": "de",
+          "family_ids": [
+            "family:ocul"
+          ],
+          "top5": [
+            "monokel"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "ocul",
+          "language": "fr",
+          "family_ids": [
+            "family:ocul"
+          ],
+          "top5": [
+            "oculaire",
+            "monocle"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "ocul",
+          "language": "es",
+          "family_ids": [
+            "family:ocul"
+          ],
+          "top5": [
+            "ocular",
+            "monóculo"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "ocul",
+          "language": "it",
+          "family_ids": [
+            "family:ocul"
+          ],
+          "top5": [
+            "oculare",
+            "monocolo"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "ocul",
+          "language": "ru",
+          "family_ids": [
+            "family:ocul"
+          ],
+          "top5": [
+            "монокль",
+            "окулярный"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "alter",
+          "language": "en",
+          "family_ids": [
+            "family:alter"
+          ],
+          "top5": [
+            "alternative",
+            "altruism"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "alter",
+          "language": "de",
+          "family_ids": [
+            "family:alter"
+          ],
+          "top5": [
+            "alternative",
+            "altruismus"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "alter",
+          "language": "fr",
+          "family_ids": [
+            "family:alter"
+          ],
+          "top5": [
+            "alternative",
+            "altruisme"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "alter",
+          "language": "es",
+          "family_ids": [
+            "family:alter"
+          ],
+          "top5": [
+            "alternativa",
+            "altruismo"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "alter",
+          "language": "it",
+          "family_ids": [
+            "family:alter"
+          ],
+          "top5": [
+            "alternativa",
+            "altruismo"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "alter",
+          "language": "ru",
+          "family_ids": [
+            "family:alter"
+          ],
+          "top5": [
+            "альтернатива",
+            "альтруизм"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "regul",
+          "language": "en",
+          "family_ids": [
+            "family:regul"
+          ],
+          "top5": [
+            "regular",
+            "regulation"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "regul",
+          "language": "de",
+          "family_ids": [
+            "family:regul"
+          ],
+          "top5": [
+            "regulär",
+            "regulierung"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "regul",
+          "language": "fr",
+          "family_ids": [
+            "family:regul"
+          ],
+          "top5": [
+            "régulier",
+            "régulation"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "regul",
+          "language": "es",
+          "family_ids": [
+            "family:regul"
+          ],
+          "top5": [
+            "regular",
+            "regulación"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "regul",
+          "language": "it",
+          "family_ids": [
+            "family:regul"
+          ],
+          "top5": [
+            "regolare",
+            "regolazione"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "regul",
+          "language": "ru",
+          "family_ids": [
+            "family:regul"
+          ],
+          "top5": [
+            "регулирование",
+            "регулярный"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "liber",
+          "language": "en",
+          "family_ids": [
+            "family:liber"
+          ],
+          "top5": [
+            "liberty",
+            "libertarian"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "liber",
+          "language": "de",
+          "family_ids": [
+            "family:liber"
+          ],
+          "top5": [
+            "liberal",
+            "libertär"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "liber",
+          "language": "fr",
+          "family_ids": [
+            "family:liber"
+          ],
+          "top5": [
+            "liberté",
+            "libéral"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "liber",
+          "language": "es",
+          "family_ids": [
+            "family:liber"
+          ],
+          "top5": [
+            "liberal",
+            "libertad"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "liber",
+          "language": "it",
+          "family_ids": [
+            "family:liber"
+          ],
+          "top5": [
+            "libertà",
+            "liberale"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "liber",
+          "language": "ru",
+          "family_ids": [
+            "family:liber"
+          ],
+          "top5": [
+            "либеральный",
+            "либертарианский"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "inter",
+          "language": "en",
+          "family_ids": [
+            "family:inter"
+          ],
+          "top5": [
+            "international",
+            "interdisciplinary"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "inter",
+          "language": "de",
+          "family_ids": [
+            "family:inter"
+          ],
+          "top5": [
+            "international",
+            "interdisziplinär"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "inter",
+          "language": "fr",
+          "family_ids": [
+            "family:inter"
+          ],
+          "top5": [
+            "international",
+            "interdisciplinaire"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "inter",
+          "language": "es",
+          "family_ids": [
+            "family:inter"
+          ],
+          "top5": [
+            "internacional",
+            "interdisciplinario"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "inter",
+          "language": "it",
+          "family_ids": [
+            "family:inter"
+          ],
+          "top5": [
+            "internazionale",
+            "interdisciplinare"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "inter",
+          "language": "ru",
+          "family_ids": [
+            "family:inter"
+          ],
+          "top5": [
+            "интернациональный"
+          ],
+          "validationErrors": []
+        }
+      ],
+      "durations": [
+        1285.3999999999942,
+        307.6000000000058,
+        228.89999999999418,
+        280.3999999999942,
+        255.79999999998836,
+        223.60000000000582,
+        724.7000000000116,
+        286.3999999999942,
+        283.6000000000058,
+        256.79999999998836,
+        281.5,
+        263.30000000001746,
+        783.5,
+        332.30000000001746,
+        317.79999999998836,
+        233,
+        231.30000000001746,
+        224.59999999997672,
+        673.3000000000175,
+        256.29999999998836,
+        230.30000000001746,
+        279.69999999998254,
+        332.5,
+        235.5,
+        732,
+        276.3999999999942,
+        275,
+        320,
+        214.60000000000582,
+        280.6000000000058,
+        866,
+        295.3999999999942,
+        257,
+        282.3999999999942,
+        188.10000000000582,
+        300.70000000001164,
+        736.1000000000058,
+        223.29999999998836,
+        267.70000000001164,
+        313.3999999999942,
+        302.69999999998254,
+        252.39999999999418
+      ],
+      "repeat_added_resources": 0,
+      "abort_error": "AbortError",
+      "overflow_error": "Family alias fan-out 28 exceeds runtime limit 25",
+      "race_family_ids": [
+        [
+          "family:alter"
+        ],
+        [
+          "family:ocul"
+        ]
+      ],
+      "resources": [
+        {
+          "name": "/associativvordes/family-index-v5/manifest.json",
+          "duration_ms": 123.10000000000582,
+          "encoded_bytes": 1229,
+          "decoded_bytes": 8135
+        },
+        {
+          "name": "/associativvordes/family-index-v5/report.json",
+          "duration_ms": 273,
+          "encoded_bytes": 8326,
+          "decoded_bytes": 257837
+        },
+        {
+          "name": "/associativvordes/family-index-v5/repository-provenance.json",
+          "duration_ms": 129.19999999998254,
+          "encoded_bytes": 574,
+          "decoded_bytes": 574
+        },
+        {
+          "name": "/associativvordes/family-index-v5/manifest.json",
+          "duration_ms": 28.79999999998836,
+          "encoded_bytes": 1229,
+          "decoded_bytes": 8135
+        },
+        {
+          "name": "/associativvordes/family-index-v5/aliases/ee.json.gz",
+          "duration_ms": 209.5,
+          "encoded_bytes": 71941,
+          "decoded_bytes": 71941
+        },
+        {
+          "name": "/associativvordes/family-index-v5/families/4a.json.gz",
+          "duration_ms": 343.79999999998836,
+          "encoded_bytes": 178986,
+          "decoded_bytes": 178986
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/en/4a.json.gz",
+          "duration_ms": 620.7999999999884,
+          "encoded_bytes": 767374,
+          "decoded_bytes": 767374
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/de/4a.json.gz",
+          "duration_ms": 271.69999999998254,
+          "encoded_bytes": 545380,
+          "decoded_bytes": 545380
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/fr/4a.json.gz",
+          "duration_ms": 198.20000000001164,
+          "encoded_bytes": 245401,
+          "decoded_bytes": 245401
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/es/4a.json.gz",
+          "duration_ms": 242.79999999998836,
+          "encoded_bytes": 483651,
+          "decoded_bytes": 483651
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/it/4a.json.gz",
+          "duration_ms": 228.5,
+          "encoded_bytes": 324732,
+          "decoded_bytes": 324732
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/ru/4a.json.gz",
+          "duration_ms": 196.29999999998836,
+          "encoded_bytes": 285790,
+          "decoded_bytes": 285790
+        },
+        {
+          "name": "/associativvordes/family-index-v5/aliases/91.json.gz",
+          "duration_ms": 170.39999999999418,
+          "encoded_bytes": 70755,
+          "decoded_bytes": 70755
+        },
+        {
+          "name": "/associativvordes/family-index-v5/families/2d.json.gz",
+          "duration_ms": 241.70000000001164,
+          "encoded_bytes": 170536,
+          "decoded_bytes": 170536
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/en/2d.json.gz",
+          "duration_ms": 247,
+          "encoded_bytes": 643052,
+          "decoded_bytes": 643052
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/de/2d.json.gz",
+          "duration_ms": 265,
+          "encoded_bytes": 464118,
+          "decoded_bytes": 464118
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/fr/2d.json.gz",
+          "duration_ms": 265.0999999999767,
+          "encoded_bytes": 211983,
+          "decoded_bytes": 211983
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/es/2d.json.gz",
+          "duration_ms": 232,
+          "encoded_bytes": 370571,
+          "decoded_bytes": 370571
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/it/2d.json.gz",
+          "duration_ms": 259,
+          "encoded_bytes": 258120,
+          "decoded_bytes": 258120
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/ru/2d.json.gz",
+          "duration_ms": 242.29999999998836,
+          "encoded_bytes": 284697,
+          "decoded_bytes": 284697
+        },
+        {
+          "name": "/associativvordes/family-index-v5/aliases/2e.json.gz",
+          "duration_ms": 239.80000000001746,
+          "encoded_bytes": 70945,
+          "decoded_bytes": 70945
+        },
+        {
+          "name": "/associativvordes/family-index-v5/families/2a.json.gz",
+          "duration_ms": 211.29999999998836,
+          "encoded_bytes": 174368,
+          "decoded_bytes": 174368
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/en/2a.json.gz",
+          "duration_ms": 275.5999999999767,
+          "encoded_bytes": 653959,
+          "decoded_bytes": 653959
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/de/2a.json.gz",
+          "duration_ms": 306.29999999998836,
+          "encoded_bytes": 562092,
+          "decoded_bytes": 562092
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/fr/2a.json.gz",
+          "duration_ms": 294.6000000000058,
+          "encoded_bytes": 234426,
+          "decoded_bytes": 234426
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/es/2a.json.gz",
+          "duration_ms": 201.39999999999418,
+          "encoded_bytes": 381835,
+          "decoded_bytes": 381835
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/it/2a.json.gz",
+          "duration_ms": 209.5,
+          "encoded_bytes": 289402,
+          "decoded_bytes": 289402
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/ru/2a.json.gz",
+          "duration_ms": 198.5,
+          "encoded_bytes": 279822,
+          "decoded_bytes": 279822
+        },
+        {
+          "name": "/associativvordes/family-index-v5/aliases/6b.json.gz",
+          "duration_ms": 188.5,
+          "encoded_bytes": 72132,
+          "decoded_bytes": 72132
+        },
+        {
+          "name": "/associativvordes/family-index-v5/families/0f.json.gz",
+          "duration_ms": 198,
+          "encoded_bytes": 172255,
+          "decoded_bytes": 172255
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/en/0f.json.gz",
+          "duration_ms": 229.70000000001164,
+          "encoded_bytes": 551019,
+          "decoded_bytes": 551019
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/de/0f.json.gz",
+          "duration_ms": 227.10000000000582,
+          "encoded_bytes": 594878,
+          "decoded_bytes": 594878
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/fr/0f.json.gz",
+          "duration_ms": 201.60000000000582,
+          "encoded_bytes": 266875,
+          "decoded_bytes": 266875
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/es/0f.json.gz",
+          "duration_ms": 255.80000000001746,
+          "encoded_bytes": 466323,
+          "decoded_bytes": 466323
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/it/0f.json.gz",
+          "duration_ms": 299.29999999998836,
+          "encoded_bytes": 648883,
+          "decoded_bytes": 648883
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/ru/0f.json.gz",
+          "duration_ms": 201,
+          "encoded_bytes": 390197,
+          "decoded_bytes": 390197
+        },
+        {
+          "name": "/associativvordes/family-index-v5/aliases/24.json.gz",
+          "duration_ms": 161.29999999998836,
+          "encoded_bytes": 70200,
+          "decoded_bytes": 70200
+        },
+        {
+          "name": "/associativvordes/family-index-v5/families/40.json.gz",
+          "duration_ms": 199.19999999998254,
+          "encoded_bytes": 176459,
+          "decoded_bytes": 176459
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/en/40.json.gz",
+          "duration_ms": 291.19999999998254,
+          "encoded_bytes": 652728,
+          "decoded_bytes": 652728
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/de/40.json.gz",
+          "duration_ms": 243.89999999999418,
+          "encoded_bytes": 497904,
+          "decoded_bytes": 497904
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/fr/40.json.gz",
+          "duration_ms": 255.29999999998836,
+          "encoded_bytes": 241321,
+          "decoded_bytes": 241321
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/es/40.json.gz",
+          "duration_ms": 292.79999999998836,
+          "encoded_bytes": 478958,
+          "decoded_bytes": 478958
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/it/40.json.gz",
+          "duration_ms": 189.19999999998254,
+          "encoded_bytes": 327094,
+          "decoded_bytes": 327094
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/ru/40.json.gz",
+          "duration_ms": 253.59999999997672,
+          "encoded_bytes": 462486,
+          "decoded_bytes": 462486
+        },
+        {
+          "name": "/associativvordes/family-index-v5/aliases/5b.json.gz",
+          "duration_ms": 211.30000000001746,
+          "encoded_bytes": 72449,
+          "decoded_bytes": 72449
+        },
+        {
+          "name": "/associativvordes/family-index-v5/families/17.json.gz",
+          "duration_ms": 276.30000000001746,
+          "encoded_bytes": 173659,
+          "decoded_bytes": 173659
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/en/17.json.gz",
+          "duration_ms": 323.19999999998254,
+          "encoded_bytes": 618884,
+          "decoded_bytes": 618884
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/de/17.json.gz",
+          "duration_ms": 255,
+          "encoded_bytes": 765611,
+          "decoded_bytes": 765611
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/fr/17.json.gz",
+          "duration_ms": 232.29999999998836,
+          "encoded_bytes": 255435,
+          "decoded_bytes": 255435
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/es/17.json.gz",
+          "duration_ms": 259.19999999998254,
+          "encoded_bytes": 399908,
+          "decoded_bytes": 399908
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/it/17.json.gz",
+          "duration_ms": 169,
+          "encoded_bytes": 242430,
+          "decoded_bytes": 242430
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/ru/17.json.gz",
+          "duration_ms": 273.5999999999767,
+          "encoded_bytes": 309131,
+          "decoded_bytes": 309131
+        },
+        {
+          "name": "/associativvordes/family-index-v5/aliases/69.json.gz",
+          "duration_ms": 181,
+          "encoded_bytes": 71683,
+          "decoded_bytes": 71683
+        },
+        {
+          "name": "/associativvordes/family-index-v5/families/ad.json.gz",
+          "duration_ms": 169.79999999998836,
+          "encoded_bytes": 176684,
+          "decoded_bytes": 176684
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/en/ad.json.gz",
+          "duration_ms": 264.20000000001164,
+          "encoded_bytes": 870169,
+          "decoded_bytes": 870169
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/de/ad.json.gz",
+          "duration_ms": 188.30000000001746,
+          "encoded_bytes": 522446,
+          "decoded_bytes": 522446
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/fr/ad.json.gz",
+          "duration_ms": 239.60000000000582,
+          "encoded_bytes": 301949,
+          "decoded_bytes": 301949
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/es/ad.json.gz",
+          "duration_ms": 291.70000000001164,
+          "encoded_bytes": 410135,
+          "decoded_bytes": 410135
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/it/ad.json.gz",
+          "duration_ms": 283.8999999999942,
+          "encoded_bytes": 243627,
+          "decoded_bytes": 243627
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/ru/ad.json.gz",
+          "duration_ms": 228.29999999998836,
+          "encoded_bytes": 260003,
+          "decoded_bytes": 260003
+        },
+        {
+          "name": "/associativvordes/family-index-v5/manifest.json",
+          "duration_ms": 28.10000000000582,
+          "encoded_bytes": 1229,
+          "decoded_bytes": 8135
+        },
+        {
+          "name": "/associativvordes/family-index-v5/aliases/58.json.gz",
+          "duration_ms": 171.80000000001746,
+          "encoded_bytes": 70605,
+          "decoded_bytes": 70605
+        },
+        {
+          "name": "/associativvordes/family-index-v5/manifest.json",
+          "duration_ms": 29.5,
+          "encoded_bytes": 1229,
+          "decoded_bytes": 8135
+        },
+        {
+          "name": "/associativvordes/family-index-v5/manifest.json",
+          "duration_ms": 59.19999999998254,
+          "encoded_bytes": 1229,
+          "decoded_bytes": 8135
+        },
+        {
+          "name": "/associativvordes/family-index-v5/aliases/6b.json.gz",
+          "duration_ms": 30.199999999982538,
+          "encoded_bytes": 72132,
+          "decoded_bytes": 72132
+        },
+        {
+          "name": "/associativvordes/family-index-v5/aliases/2e.json.gz",
+          "duration_ms": 28.699999999982538,
+          "encoded_bytes": 70945,
+          "decoded_bytes": 70945
+        },
+        {
+          "name": "/associativvordes/family-index-v5/families/0f.json.gz",
+          "duration_ms": 27.5,
+          "encoded_bytes": 172255,
+          "decoded_bytes": 172255
+        },
+        {
+          "name": "/associativvordes/family-index-v5/families/2a.json.gz",
+          "duration_ms": 28.79999999998836,
+          "encoded_bytes": 174368,
+          "decoded_bytes": 174368
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/en/0f.json.gz",
+          "duration_ms": 30.599999999976717,
+          "encoded_bytes": 551019,
+          "decoded_bytes": 551019
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/en/2a.json.gz",
+          "duration_ms": 27.70000000001164,
+          "encoded_bytes": 653959,
+          "decoded_bytes": 653959
+        }
+      ],
+      "latency": {
+        "samples": 42,
+        "p50_ms": 280.3999999999942,
+        "p95_ms": 783.5,
+        "p99_ms": 1285.3999999999942,
+        "max_ms": 1285.3999999999942
+      }
+    },
+    {
+      "viewport": "mobile",
+      "width": 390,
+      "height": 844,
+      "manifest": {
+        "version": "5",
+        "source_run_id": 35647932153,
+        "encoding": "gzip"
+      },
+      "build_report": {
+        "source_run_id": "35647932153",
+        "controls_ok": true,
+        "liber_ok": true,
+        "has_libert": false,
+        "invariants": {
+          "processed_lemmas_equals_source": true,
+          "source_lemmas": 4924980,
+          "classified_unique_lemmas": 4924980,
+          "lemmas_with_zero_family": 0,
+          "families_with_zero_members": 0,
+          "members_without_evidence": 0,
+          "fuzzy_memberships": 0,
+          "levenshtein_memberships": 0,
+          "untyped_family_edges": 0,
+          "untyped_or_illegal_equivalence_edges": 0,
+          "compound_edges_used_as_equivalence": 0,
+          "unreviewed_high_risk_families": 0
+        }
+      },
+      "provenance": {
+        "schema_version": 1,
+        "source_run_id": 35647932153,
+        "source_artifacts": {
+          "metadata": {
+            "id": 10665305365,
+            "sha256": "b82ffcb2e10a5cadf2b99581800db8070b2f8b727444b49a2b78ffa20209a80b"
+          },
+          "members": {
+            "id": 10665150741,
+            "sha256": "4e58676f25a92af0402df0f05a7f0e32e6239133b6b4da6a94fc6ddcca4be9fb"
+          }
+        },
+        "storage": "git_repository_static_files",
+        "file_count_before_provenance": 2055,
+        "total_bytes_before_provenance": 789508744,
+        "tree_content_sha256": "e1332bf36163d733274b6edeef9e307d614d47a0777a320be4d2b7741d1031f6"
+      },
+      "controls": [
+        {
+          "alias": "manu",
+          "language": "en",
+          "family_ids": [
+            "family:manu"
+          ],
+          "top5": [
+            "manufacture",
+            "manual"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "manu",
+          "language": "de",
+          "family_ids": [
+            "family:manu"
+          ],
+          "top5": [
+            "manuell",
+            "manufaktur"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "manu",
+          "language": "fr",
+          "family_ids": [
+            "family:manu"
+          ],
+          "top5": [
+            "manuel",
+            "manufacture"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "manu",
+          "language": "es",
+          "family_ids": [
+            "family:manu"
+          ],
+          "top5": [
+            "manual",
+            "manufactura"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "manu",
+          "language": "it",
+          "family_ids": [
+            "family:manu"
+          ],
+          "top5": [
+            "manuale",
+            "manifattura"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "manu",
+          "language": "ru",
+          "family_ids": [
+            "family:manu"
+          ],
+          "top5": [
+            "мануфактура",
+            "мануальный"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "pede",
+          "language": "en",
+          "family_ids": [
+            "family:pede"
+          ],
+          "top5": [
+            "pedal",
+            "pedicure"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "pede",
+          "language": "de",
+          "family_ids": [
+            "family:pede"
+          ],
+          "top5": [
+            "pedal",
+            "pediküre"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "pede",
+          "language": "fr",
+          "family_ids": [
+            "family:pede"
+          ],
+          "top5": [
+            "pédale",
+            "pédicure"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "pede",
+          "language": "es",
+          "family_ids": [
+            "family:pede"
+          ],
+          "top5": [
+            "pedal",
+            "pedicura"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "pede",
+          "language": "it",
+          "family_ids": [
+            "family:pede"
+          ],
+          "top5": [
+            "pedale",
+            "pedicure"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "pede",
+          "language": "ru",
+          "family_ids": [
+            "family:pede"
+          ],
+          "top5": [
+            "педаль",
+            "педикюр"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "ocul",
+          "language": "en",
+          "family_ids": [
+            "family:ocul"
+          ],
+          "top5": [
+            "ocular",
+            "monocle",
+            "monocular"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "ocul",
+          "language": "de",
+          "family_ids": [
+            "family:ocul"
+          ],
+          "top5": [
+            "monokel"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "ocul",
+          "language": "fr",
+          "family_ids": [
+            "family:ocul"
+          ],
+          "top5": [
+            "oculaire",
+            "monocle"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "ocul",
+          "language": "es",
+          "family_ids": [
+            "family:ocul"
+          ],
+          "top5": [
+            "ocular",
+            "monóculo"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "ocul",
+          "language": "it",
+          "family_ids": [
+            "family:ocul"
+          ],
+          "top5": [
+            "oculare",
+            "monocolo"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "ocul",
+          "language": "ru",
+          "family_ids": [
+            "family:ocul"
+          ],
+          "top5": [
+            "монокль",
+            "окулярный"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "alter",
+          "language": "en",
+          "family_ids": [
+            "family:alter"
+          ],
+          "top5": [
+            "alternative",
+            "altruism"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "alter",
+          "language": "de",
+          "family_ids": [
+            "family:alter"
+          ],
+          "top5": [
+            "alternative",
+            "altruismus"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "alter",
+          "language": "fr",
+          "family_ids": [
+            "family:alter"
+          ],
+          "top5": [
+            "alternative",
+            "altruisme"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "alter",
+          "language": "es",
+          "family_ids": [
+            "family:alter"
+          ],
+          "top5": [
+            "alternativa",
+            "altruismo"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "alter",
+          "language": "it",
+          "family_ids": [
+            "family:alter"
+          ],
+          "top5": [
+            "alternativa",
+            "altruismo"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "alter",
+          "language": "ru",
+          "family_ids": [
+            "family:alter"
+          ],
+          "top5": [
+            "альтернатива",
+            "альтруизм"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "regul",
+          "language": "en",
+          "family_ids": [
+            "family:regul"
+          ],
+          "top5": [
+            "regular",
+            "regulation"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "regul",
+          "language": "de",
+          "family_ids": [
+            "family:regul"
+          ],
+          "top5": [
+            "regulär",
+            "regulierung"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "regul",
+          "language": "fr",
+          "family_ids": [
+            "family:regul"
+          ],
+          "top5": [
+            "régulier",
+            "régulation"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "regul",
+          "language": "es",
+          "family_ids": [
+            "family:regul"
+          ],
+          "top5": [
+            "regular",
+            "regulación"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "regul",
+          "language": "it",
+          "family_ids": [
+            "family:regul"
+          ],
+          "top5": [
+            "regolare",
+            "regolazione"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "regul",
+          "language": "ru",
+          "family_ids": [
+            "family:regul"
+          ],
+          "top5": [
+            "регулирование",
+            "регулярный"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "liber",
+          "language": "en",
+          "family_ids": [
+            "family:liber"
+          ],
+          "top5": [
+            "liberty",
+            "libertarian"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "liber",
+          "language": "de",
+          "family_ids": [
+            "family:liber"
+          ],
+          "top5": [
+            "liberal",
+            "libertär"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "liber",
+          "language": "fr",
+          "family_ids": [
+            "family:liber"
+          ],
+          "top5": [
+            "liberté",
+            "libéral"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "liber",
+          "language": "es",
+          "family_ids": [
+            "family:liber"
+          ],
+          "top5": [
+            "liberal",
+            "libertad"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "liber",
+          "language": "it",
+          "family_ids": [
+            "family:liber"
+          ],
+          "top5": [
+            "libertà",
+            "liberale"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "liber",
+          "language": "ru",
+          "family_ids": [
+            "family:liber"
+          ],
+          "top5": [
+            "либеральный",
+            "либертарианский"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "inter",
+          "language": "en",
+          "family_ids": [
+            "family:inter"
+          ],
+          "top5": [
+            "international",
+            "interdisciplinary"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "inter",
+          "language": "de",
+          "family_ids": [
+            "family:inter"
+          ],
+          "top5": [
+            "international",
+            "interdisziplinär"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "inter",
+          "language": "fr",
+          "family_ids": [
+            "family:inter"
+          ],
+          "top5": [
+            "international",
+            "interdisciplinaire"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "inter",
+          "language": "es",
+          "family_ids": [
+            "family:inter"
+          ],
+          "top5": [
+            "internacional",
+            "interdisciplinario"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "inter",
+          "language": "it",
+          "family_ids": [
+            "family:inter"
+          ],
+          "top5": [
+            "internazionale",
+            "interdisciplinare"
+          ],
+          "validationErrors": []
+        },
+        {
+          "alias": "inter",
+          "language": "ru",
+          "family_ids": [
+            "family:inter"
+          ],
+          "top5": [
+            "интернациональный"
+          ],
+          "validationErrors": []
+        }
+      ],
+      "durations": [
+        271.29999999998836,
+        79.20000000001164,
+        56.69999999998254,
+        94.20000000001164,
+        56.60000000000582,
+        55.19999999998254,
+        195.90000000002328,
+        67.30000000001746,
+        64.89999999999418,
+        58.5,
+        87,
+        57.20000000001164,
+        188.69999999998254,
+        90.5,
+        107.30000000001746,
+        59.69999999998254,
+        56.39999999999418,
+        54.90000000002328,
+        158.19999999998254,
+        93.30000000001746,
+        55.89999999999418,
+        65.89999999999418,
+        77.20000000001164,
+        65.39999999999418,
+        170.60000000000582,
+        63.5,
+        49.09999999997672,
+        65.90000000002328,
+        54.69999999998254,
+        68.20000000001164,
+        213.69999999998254,
+        102,
+        55.5,
+        61.60000000000582,
+        50.29999999998836,
+        57.60000000000582,
+        185,
+        67.60000000000582,
+        60.79999999998836,
+        80.30000000001746,
+        51.5,
+        53.19999999998254
+      ],
+      "repeat_added_resources": 0,
+      "abort_error": "AbortError",
+      "overflow_error": "Family alias fan-out 28 exceeds runtime limit 25",
+      "race_family_ids": [
+        [
+          "family:alter"
+        ],
+        [
+          "family:ocul"
+        ]
+      ],
+      "resources": [
+        {
+          "name": "/associativvordes/family-index-v5/manifest.json",
+          "duration_ms": 29.599999999976717,
+          "encoded_bytes": 1229,
+          "decoded_bytes": 8135
+        },
+        {
+          "name": "/associativvordes/family-index-v5/report.json",
+          "duration_ms": 31.79999999998836,
+          "encoded_bytes": 8326,
+          "decoded_bytes": 257837
+        },
+        {
+          "name": "/associativvordes/family-index-v5/repository-provenance.json",
+          "duration_ms": 32.70000000001164,
+          "encoded_bytes": 574,
+          "decoded_bytes": 574
+        },
+        {
+          "name": "/associativvordes/family-index-v5/manifest.json",
+          "duration_ms": 28.60000000000582,
+          "encoded_bytes": 1229,
+          "decoded_bytes": 8135
+        },
+        {
+          "name": "/associativvordes/family-index-v5/aliases/ee.json.gz",
+          "duration_ms": 28.800000000017462,
+          "encoded_bytes": 71941,
+          "decoded_bytes": 71941
+        },
+        {
+          "name": "/associativvordes/family-index-v5/families/4a.json.gz",
+          "duration_ms": 51.40000000002328,
+          "encoded_bytes": 178986,
+          "decoded_bytes": 178986
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/en/4a.json.gz",
+          "duration_ms": 75.5,
+          "encoded_bytes": 767374,
+          "decoded_bytes": 767374
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/de/4a.json.gz",
+          "duration_ms": 52.89999999999418,
+          "encoded_bytes": 545380,
+          "decoded_bytes": 545380
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/fr/4a.json.gz",
+          "duration_ms": 30.10000000000582,
+          "encoded_bytes": 245401,
+          "decoded_bytes": 245401
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/es/4a.json.gz",
+          "duration_ms": 46.5,
+          "encoded_bytes": 483651,
+          "decoded_bytes": 483651
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/it/4a.json.gz",
+          "duration_ms": 32.80000000001746,
+          "encoded_bytes": 324732,
+          "decoded_bytes": 324732
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/ru/4a.json.gz",
+          "duration_ms": 30,
+          "encoded_bytes": 285790,
+          "decoded_bytes": 285790
+        },
+        {
+          "name": "/associativvordes/family-index-v5/aliases/91.json.gz",
+          "duration_ms": 29.5,
+          "encoded_bytes": 70755,
+          "decoded_bytes": 70755
+        },
+        {
+          "name": "/associativvordes/family-index-v5/families/2d.json.gz",
+          "duration_ms": 55.60000000000582,
+          "encoded_bytes": 170536,
+          "decoded_bytes": 170536
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/en/2d.json.gz",
+          "duration_ms": 31.5,
+          "encoded_bytes": 643052,
+          "decoded_bytes": 643052
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/de/2d.json.gz",
+          "duration_ms": 31.5,
+          "encoded_bytes": 464118,
+          "decoded_bytes": 464118
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/fr/2d.json.gz",
+          "duration_ms": 47.5,
+          "encoded_bytes": 211983,
+          "decoded_bytes": 211983
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/es/2d.json.gz",
+          "duration_ms": 31.79999999998836,
+          "encoded_bytes": 370571,
+          "decoded_bytes": 370571
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/it/2d.json.gz",
+          "duration_ms": 67.09999999997672,
+          "encoded_bytes": 258120,
+          "decoded_bytes": 258120
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/ru/2d.json.gz",
+          "duration_ms": 31.60000000000582,
+          "encoded_bytes": 284697,
+          "decoded_bytes": 284697
+        },
+        {
+          "name": "/associativvordes/family-index-v5/aliases/2e.json.gz",
+          "duration_ms": 30.10000000000582,
+          "encoded_bytes": 70945,
+          "decoded_bytes": 70945
+        },
+        {
+          "name": "/associativvordes/family-index-v5/families/2a.json.gz",
+          "duration_ms": 31.89999999999418,
+          "encoded_bytes": 174368,
+          "decoded_bytes": 174368
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/en/2a.json.gz",
+          "duration_ms": 32.20000000001164,
+          "encoded_bytes": 653959,
+          "decoded_bytes": 653959
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/de/2a.json.gz",
+          "duration_ms": 55.10000000000582,
+          "encoded_bytes": 562092,
+          "decoded_bytes": 562092
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/fr/2a.json.gz",
+          "duration_ms": 53.29999999998836,
+          "encoded_bytes": 234426,
+          "decoded_bytes": 234426
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/es/2a.json.gz",
+          "duration_ms": 31.300000000017462,
+          "encoded_bytes": 381835,
+          "decoded_bytes": 381835
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/it/2a.json.gz",
+          "duration_ms": 33.79999999998836,
+          "encoded_bytes": 289402,
+          "decoded_bytes": 289402
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/ru/2a.json.gz",
+          "duration_ms": 29.5,
+          "encoded_bytes": 279822,
+          "decoded_bytes": 279822
+        },
+        {
+          "name": "/associativvordes/family-index-v5/aliases/6b.json.gz",
+          "duration_ms": 29,
+          "encoded_bytes": 72132,
+          "decoded_bytes": 72132
+        },
+        {
+          "name": "/associativvordes/family-index-v5/families/0f.json.gz",
+          "duration_ms": 32.90000000002328,
+          "encoded_bytes": 172255,
+          "decoded_bytes": 172255
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/en/0f.json.gz",
+          "duration_ms": 31.10000000000582,
+          "encoded_bytes": 551019,
+          "decoded_bytes": 551019
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/de/0f.json.gz",
+          "duration_ms": 32.20000000001164,
+          "encoded_bytes": 594878,
+          "decoded_bytes": 594878
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/fr/0f.json.gz",
+          "duration_ms": 30.800000000017462,
+          "encoded_bytes": 266875,
+          "decoded_bytes": 266875
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/es/0f.json.gz",
+          "duration_ms": 31.70000000001164,
+          "encoded_bytes": 466323,
+          "decoded_bytes": 466323
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/it/0f.json.gz",
+          "duration_ms": 33,
+          "encoded_bytes": 648883,
+          "decoded_bytes": 648883
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/ru/0f.json.gz",
+          "duration_ms": 31.79999999998836,
+          "encoded_bytes": 390197,
+          "decoded_bytes": 390197
+        },
+        {
+          "name": "/associativvordes/family-index-v5/aliases/24.json.gz",
+          "duration_ms": 32.39999999999418,
+          "encoded_bytes": 70200,
+          "decoded_bytes": 70200
+        },
+        {
+          "name": "/associativvordes/family-index-v5/families/40.json.gz",
+          "duration_ms": 30.20000000001164,
+          "encoded_bytes": 176459,
+          "decoded_bytes": 176459
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/en/40.json.gz",
+          "duration_ms": 33,
+          "encoded_bytes": 652728,
+          "decoded_bytes": 652728
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/de/40.json.gz",
+          "duration_ms": 31.10000000000582,
+          "encoded_bytes": 497904,
+          "decoded_bytes": 497904
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/fr/40.json.gz",
+          "duration_ms": 29.89999999999418,
+          "encoded_bytes": 241321,
+          "decoded_bytes": 241321
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/es/40.json.gz",
+          "duration_ms": 31.5,
+          "encoded_bytes": 478958,
+          "decoded_bytes": 478958
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/it/40.json.gz",
+          "duration_ms": 30.300000000017462,
+          "encoded_bytes": 327094,
+          "decoded_bytes": 327094
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/ru/40.json.gz",
+          "duration_ms": 29.699999999982538,
+          "encoded_bytes": 462486,
+          "decoded_bytes": 462486
+        },
+        {
+          "name": "/associativvordes/family-index-v5/aliases/5b.json.gz",
+          "duration_ms": 30.39999999999418,
+          "encoded_bytes": 72449,
+          "decoded_bytes": 72449
+        },
+        {
+          "name": "/associativvordes/family-index-v5/families/17.json.gz",
+          "duration_ms": 29.10000000000582,
+          "encoded_bytes": 173659,
+          "decoded_bytes": 173659
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/en/17.json.gz",
+          "duration_ms": 39.20000000001164,
+          "encoded_bytes": 618884,
+          "decoded_bytes": 618884
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/de/17.json.gz",
+          "duration_ms": 36.60000000000582,
+          "encoded_bytes": 765611,
+          "decoded_bytes": 765611
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/fr/17.json.gz",
+          "duration_ms": 31.89999999999418,
+          "encoded_bytes": 255435,
+          "decoded_bytes": 255435
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/es/17.json.gz",
+          "duration_ms": 30.79999999998836,
+          "encoded_bytes": 399908,
+          "decoded_bytes": 399908
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/it/17.json.gz",
+          "duration_ms": 31.79999999998836,
+          "encoded_bytes": 242430,
+          "decoded_bytes": 242430
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/ru/17.json.gz",
+          "duration_ms": 31.29999999998836,
+          "encoded_bytes": 309131,
+          "decoded_bytes": 309131
+        },
+        {
+          "name": "/associativvordes/family-index-v5/aliases/69.json.gz",
+          "duration_ms": 29.39999999999418,
+          "encoded_bytes": 71683,
+          "decoded_bytes": 71683
+        },
+        {
+          "name": "/associativvordes/family-index-v5/families/ad.json.gz",
+          "duration_ms": 29.5,
+          "encoded_bytes": 176684,
+          "decoded_bytes": 176684
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/en/ad.json.gz",
+          "duration_ms": 39.5,
+          "encoded_bytes": 870169,
+          "decoded_bytes": 870169
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/de/ad.json.gz",
+          "duration_ms": 33,
+          "encoded_bytes": 522446,
+          "decoded_bytes": 522446
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/fr/ad.json.gz",
+          "duration_ms": 33.30000000001746,
+          "encoded_bytes": 301949,
+          "decoded_bytes": 301949
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/es/ad.json.gz",
+          "duration_ms": 33.5,
+          "encoded_bytes": 410135,
+          "decoded_bytes": 410135
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/it/ad.json.gz",
+          "duration_ms": 33.20000000001164,
+          "encoded_bytes": 243627,
+          "decoded_bytes": 243627
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/ru/ad.json.gz",
+          "duration_ms": 30,
+          "encoded_bytes": 260003,
+          "decoded_bytes": 260003
+        },
+        {
+          "name": "/associativvordes/family-index-v5/manifest.json",
+          "duration_ms": 28.89999999999418,
+          "encoded_bytes": 1229,
+          "decoded_bytes": 8135
+        },
+        {
+          "name": "/associativvordes/family-index-v5/aliases/58.json.gz",
+          "duration_ms": 30.5,
+          "encoded_bytes": 70605,
+          "decoded_bytes": 70605
+        },
+        {
+          "name": "/associativvordes/family-index-v5/manifest.json",
+          "duration_ms": 27.800000000017462,
+          "encoded_bytes": 1229,
+          "decoded_bytes": 8135
+        },
+        {
+          "name": "/associativvordes/family-index-v5/manifest.json",
+          "duration_ms": 54.30000000001746,
+          "encoded_bytes": 1229,
+          "decoded_bytes": 8135
+        },
+        {
+          "name": "/associativvordes/family-index-v5/aliases/6b.json.gz",
+          "duration_ms": 30.699999999982538,
+          "encoded_bytes": 72132,
+          "decoded_bytes": 72132
+        },
+        {
+          "name": "/associativvordes/family-index-v5/aliases/2e.json.gz",
+          "duration_ms": 31.20000000001164,
+          "encoded_bytes": 70945,
+          "decoded_bytes": 70945
+        },
+        {
+          "name": "/associativvordes/family-index-v5/families/0f.json.gz",
+          "duration_ms": 27.70000000001164,
+          "encoded_bytes": 172255,
+          "decoded_bytes": 172255
+        },
+        {
+          "name": "/associativvordes/family-index-v5/families/2a.json.gz",
+          "duration_ms": 27.800000000017462,
+          "encoded_bytes": 174368,
+          "decoded_bytes": 174368
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/en/0f.json.gz",
+          "duration_ms": 28.89999999999418,
+          "encoded_bytes": 551019,
+          "decoded_bytes": 551019
+        },
+        {
+          "name": "/associativvordes/family-index-v5/members/en/2a.json.gz",
+          "duration_ms": 38,
+          "encoded_bytes": 653959,
+          "decoded_bytes": 653959
+        }
+      ],
+      "latency": {
+        "samples": 42,
+        "p50_ms": 65.39999999999418,
+        "p95_ms": 195.90000000002328,
+        "p99_ms": 271.29999999998836,
+        "max_ms": 271.29999999998836
+      }
+    }
+  ],
+  "transport": {
+    "offline": {
+      "first": {
+        "name": "TypeError",
+        "message": "Failed to fetch"
+      },
+      "second": {
+        "name": "TypeError",
+        "message": "Failed to fetch"
+      },
+      "calls": 2,
+      "cache_evicted": true
+    },
+    "timeout": {
+      "first": {
+        "name": "TimeoutError",
+        "message": "Timed out"
+      },
+      "second": {
+        "name": "TimeoutError",
+        "message": "Timed out"
+      },
+      "calls": 2,
+      "cache_evicted": true
+    },
+    "corrupt": {
+      "first": {
+        "name": "SyntaxError",
+        "message": "Unexpected token"
+      },
+      "second": {
+        "name": "SyntaxError",
+        "message": "Unexpected token"
+      },
+      "calls": 2,
+      "cache_evicted": true
+    },
+    "not_found": {
+      "first": {
+        "name": "Error",
+        "message": "Family index request failed: 404"
+      },
+      "second": {
+        "name": "Error",
+        "message": "Family index request failed: 404"
+      },
+      "calls": 2,
+      "cache_evicted": true
+    }
+  },
+  "console_errors": [],
+  "page_errors": [],
+  "verdict": "pass"
+}
