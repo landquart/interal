@@ -94,7 +94,7 @@ for (let index = 0; index < 256; index += 1) {
         assert(Array.isArray(value.sources) && value.sources.length, `${language} missing sources ${id}`);
         assert(Array.isArray(value.components) && value.components.length, `${language} missing components ${id}`);
         for (const component of value.components) assert(component.canonical_candidate && component.evidence?.length, `${language} missing component evidence ${id}`);
-        assert(!noise.has(String(value.word).toLowerCase()), `${language} rejected corpus noise ${value.word}`);
+        if (noise.has(String(value.word).toLowerCase())) noiseFindings.push({ language, family_id: id, lemma_id: value.lemma_id, word: value.word });
         seen.add(value.lemma_id);
       }
       actual.get(id)[language] = values.length;
