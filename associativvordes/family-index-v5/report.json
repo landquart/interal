@@ -1,20 +1,20 @@
 {
   "version": "5",
-  "generated_at": "2026-09-19T19:18:30.667Z",
+  "generated_at": "2026-09-21T21:10:00.884Z",
   "provenance": {
-    "source_commit": "7a11f43b8115b94e15d4f8524350ed952162236e",
-    "workflow_run_id": "35461412225",
+    "source_commit": "3d71828f9bfa7ce6ea5f1814442a6604cb180c96",
+    "workflow_run_id": "35647932153",
     "workflow_run_attempt": "1",
     "workflow_name": "Build exhaustive associative families",
     "node_version": "v22.23.2",
     "schema_version": "5",
     "build_version": "5",
     "input_lock": {
-      "source_commit": "7a11f43b8115b94e15d4f8524350ed952162236e",
-      "workflow_run_id": "35461412225",
+      "source_commit": "3d71828f9bfa7ce6ea5f1814442a6604cb180c96",
+      "workflow_run_id": "35647932153",
       "workflow_run_attempt": "1",
       "node_version": "v22.23.2",
-      "package_lock_sha256": "ecd617b274080f723b9124eb029c1a8185cf74b2a2db86dd93fd804727867520",
+      "package_lock_sha256": "40d8fdd1180ce87517b32569921f1283e7b12ad9724af8a79d299864f3cbcd04",
       "candidate_cache_key": "Linux-family-candidates-v3-3024370275a832dc65b5d4c58055343f36da1d4d2169ceaa2743d2e152ce01c2",
       "candidate_tree_sha256": "2fa23e5690cbdcb80e27708f950a3c3935d87a566030221327c06eabbab0f2f6",
       "candidate_manifest_sha256": "380c6ac273c418b95f9e4cf3713b094ef4ae9538abec0868e1245cb36fd91658",
@@ -44,33 +44,33 @@
   "assignment_stats": {
     "en": {
       "total": 1131099,
-      "merged_family_entries": 323492,
-      "ambiguous_family_entries": 841948
+      "merged_family_entries": 323482,
+      "ambiguous_family_entries": 841946
     },
     "de": {
       "total": 1113521,
-      "merged_family_entries": 191031,
-      "ambiguous_family_entries": 824979
+      "merged_family_entries": 191027,
+      "ambiguous_family_entries": 824974
     },
     "fr": {
       "total": 558932,
-      "merged_family_entries": 127948,
-      "ambiguous_family_entries": 367313
+      "merged_family_entries": 127943,
+      "ambiguous_family_entries": 367304
     },
     "es": {
       "total": 941863,
-      "merged_family_entries": 175950,
-      "ambiguous_family_entries": 669091
+      "merged_family_entries": 175929,
+      "ambiguous_family_entries": 669084
     },
     "it": {
       "total": 610111,
-      "merged_family_entries": 108980,
-      "ambiguous_family_entries": 430993
+      "merged_family_entries": 108983,
+      "ambiguous_family_entries": 430984
     },
     "ru": {
       "total": 569454,
-      "merged_family_entries": 40433,
-      "ambiguous_family_entries": 493702
+      "merged_family_entries": 40436,
+      "ambiguous_family_entries": 493690
     }
   },
   "etymology_coverage": {
@@ -115,13 +115,13 @@
   },
   "uncertain_relation_count": 431390,
   "uncertain_relation_sample_size": 100000,
-  "total_families": 2456627,
+  "total_families": 2456622,
   "merged_families": 20775,
-  "singleton_families": 1735277,
-  "multi_branch_families": 17704,
-  "multi_family_lemmas": 3628026,
-  "components_discovered": 9350026,
-  "components_assigned": 9350026,
+  "singleton_families": 1735272,
+  "multi_branch_families": 17703,
+  "multi_family_lemmas": 3627982,
+  "components_discovered": 9349982,
+  "components_assigned": 9349982,
   "corpus_quality_counts": {
     "accepted": 4923653,
     "suspicious": 1318,
@@ -145,7 +145,7 @@
   },
   "generated_non_proto_families": 20768,
   "verified_seed_families": 7,
-  "aliases_in_lookup": 1934061,
+  "aliases_in_lookup": 1934052,
   "proto_review_candidates": 10209,
   "wide_etymon_review_candidates": 171,
   "etymon_key_policy": {
@@ -174,6 +174,96 @@
           "family_ids": [
             "family:alter"
           ]
+        },
+        {
+          "language": "de",
+          "word": "alternative",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:alter"
+          ]
+        },
+        {
+          "language": "de",
+          "word": "altruismus",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:alter"
+          ]
+        },
+        {
+          "language": "fr",
+          "word": "alternative",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:alter"
+          ]
+        },
+        {
+          "language": "fr",
+          "word": "altruisme",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:alter"
+          ]
+        },
+        {
+          "language": "es",
+          "word": "alternativa",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:alter"
+          ]
+        },
+        {
+          "language": "es",
+          "word": "altruismo",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:alter"
+          ]
+        },
+        {
+          "language": "it",
+          "word": "alternativa",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:alter"
+          ]
+        },
+        {
+          "language": "it",
+          "word": "altruismo",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:alter"
+          ]
+        },
+        {
+          "language": "ru",
+          "word": "альтернатива",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:alter"
+          ]
+        },
+        {
+          "language": "ru",
+          "word": "альтруизм",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:alter"
+          ]
         }
       ]
     },
@@ -192,6 +282,96 @@
         {
           "language": "en",
           "word": "pedicure",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:pede"
+          ]
+        },
+        {
+          "language": "de",
+          "word": "pedal",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:pede"
+          ]
+        },
+        {
+          "language": "de",
+          "word": "pediküre",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:pede"
+          ]
+        },
+        {
+          "language": "fr",
+          "word": "pédale",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:pede"
+          ]
+        },
+        {
+          "language": "fr",
+          "word": "pédicure",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:pede"
+          ]
+        },
+        {
+          "language": "es",
+          "word": "pedal",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:pede"
+          ]
+        },
+        {
+          "language": "es",
+          "word": "pedicura",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:pede"
+          ]
+        },
+        {
+          "language": "it",
+          "word": "pedale",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:pede"
+          ]
+        },
+        {
+          "language": "it",
+          "word": "pedicure",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:pede"
+          ]
+        },
+        {
+          "language": "ru",
+          "word": "педаль",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:pede"
+          ]
+        },
+        {
+          "language": "ru",
+          "word": "педикюр",
           "present": true,
           "ok": true,
           "family_ids": [
@@ -229,6 +409,87 @@
           "family_ids": [
             "family:ocul"
           ]
+        },
+        {
+          "language": "de",
+          "word": "monokel",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:ocul"
+          ]
+        },
+        {
+          "language": "fr",
+          "word": "oculaire",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:ocul"
+          ]
+        },
+        {
+          "language": "fr",
+          "word": "monocle",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:ocul"
+          ]
+        },
+        {
+          "language": "es",
+          "word": "ocular",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:ocul"
+          ]
+        },
+        {
+          "language": "es",
+          "word": "monóculo",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:ocul"
+          ]
+        },
+        {
+          "language": "it",
+          "word": "oculare",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:ocul"
+          ]
+        },
+        {
+          "language": "it",
+          "word": "monocolo",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:ocul"
+          ]
+        },
+        {
+          "language": "ru",
+          "word": "окулярный",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:ocul"
+          ]
+        },
+        {
+          "language": "ru",
+          "word": "монокль",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:ocul"
+          ]
         }
       ]
     },
@@ -247,6 +508,96 @@
         {
           "language": "en",
           "word": "regulation",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:regul"
+          ]
+        },
+        {
+          "language": "de",
+          "word": "regulär",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:regul"
+          ]
+        },
+        {
+          "language": "de",
+          "word": "regulierung",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:regul"
+          ]
+        },
+        {
+          "language": "fr",
+          "word": "régulier",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:regul"
+          ]
+        },
+        {
+          "language": "fr",
+          "word": "régulation",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:regul"
+          ]
+        },
+        {
+          "language": "es",
+          "word": "regular",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:regul"
+          ]
+        },
+        {
+          "language": "es",
+          "word": "regulación",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:regul"
+          ]
+        },
+        {
+          "language": "it",
+          "word": "regolare",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:regul"
+          ]
+        },
+        {
+          "language": "it",
+          "word": "regolazione",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:regul"
+          ]
+        },
+        {
+          "language": "ru",
+          "word": "регулярный",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:regul"
+          ]
+        },
+        {
+          "language": "ru",
+          "word": "регулирование",
           "present": true,
           "ok": true,
           "family_ids": [
@@ -275,10 +626,100 @@
           "family_ids": [
             "family:manu"
           ]
+        },
+        {
+          "language": "de",
+          "word": "manuell",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:manu"
+          ]
+        },
+        {
+          "language": "de",
+          "word": "manufaktur",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:manu"
+          ]
+        },
+        {
+          "language": "fr",
+          "word": "manuel",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:manu"
+          ]
+        },
+        {
+          "language": "fr",
+          "word": "manufacture",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:manu"
+          ]
+        },
+        {
+          "language": "es",
+          "word": "manual",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:manu"
+          ]
+        },
+        {
+          "language": "es",
+          "word": "manufactura",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:manu"
+          ]
+        },
+        {
+          "language": "it",
+          "word": "manuale",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:manu"
+          ]
+        },
+        {
+          "language": "it",
+          "word": "manifattura",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:manu"
+          ]
+        },
+        {
+          "language": "ru",
+          "word": "мануальный",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:manu"
+          ]
+        },
+        {
+          "language": "ru",
+          "word": "мануфактура",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:manu"
+          ]
         }
       ]
     },
-    "family:libert": {
+    "family:liber": {
       "ok": true,
       "checks": [
         {
@@ -287,7 +728,210 @@
           "present": true,
           "ok": true,
           "family_ids": [
-            "family:libert"
+            "family:liber"
+          ]
+        },
+        {
+          "language": "en",
+          "word": "libertarian",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:liber"
+          ]
+        },
+        {
+          "language": "de",
+          "word": "libertär",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:liber"
+          ]
+        },
+        {
+          "language": "de",
+          "word": "liberal",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:liber"
+          ]
+        },
+        {
+          "language": "fr",
+          "word": "liberté",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:liber"
+          ]
+        },
+        {
+          "language": "fr",
+          "word": "libéral",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:liber"
+          ]
+        },
+        {
+          "language": "es",
+          "word": "libertad",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:liber"
+          ]
+        },
+        {
+          "language": "es",
+          "word": "liberal",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:liber"
+          ]
+        },
+        {
+          "language": "it",
+          "word": "libertà",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:liber"
+          ]
+        },
+        {
+          "language": "it",
+          "word": "liberale",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:liber"
+          ]
+        },
+        {
+          "language": "ru",
+          "word": "либертарианский",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:liber"
+          ]
+        },
+        {
+          "language": "ru",
+          "word": "либеральный",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:liber"
+          ]
+        }
+      ]
+    },
+    "family:inter": {
+      "ok": true,
+      "checks": [
+        {
+          "language": "en",
+          "word": "international",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:inter"
+          ]
+        },
+        {
+          "language": "en",
+          "word": "interdisciplinary",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:inter"
+          ]
+        },
+        {
+          "language": "de",
+          "word": "international",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:inter"
+          ]
+        },
+        {
+          "language": "de",
+          "word": "interdisziplinär",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:inter"
+          ]
+        },
+        {
+          "language": "fr",
+          "word": "international",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:inter"
+          ]
+        },
+        {
+          "language": "fr",
+          "word": "interdisciplinaire",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:inter"
+          ]
+        },
+        {
+          "language": "es",
+          "word": "internacional",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:inter"
+          ]
+        },
+        {
+          "language": "es",
+          "word": "interdisciplinario",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:inter"
+          ]
+        },
+        {
+          "language": "it",
+          "word": "internazionale",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:inter"
+          ]
+        },
+        {
+          "language": "it",
+          "word": "interdisciplinare",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:inter"
+          ]
+        },
+        {
+          "language": "ru",
+          "word": "интернациональный",
+          "present": true,
+          "ok": true,
+          "family_ids": [
+            "family:inter"
           ]
         }
       ]
@@ -306,9 +950,9 @@
       "source": "surface_singleton",
       "etymon_keys": [],
       "language_support": {
-        "ru": 29622
+        "ru": 29617
       },
-      "support": 29622,
+      "support": 29617,
       "suspicion_score": 75,
       "suspicion_reasons": [
         "very_short_root",
@@ -606,11 +1250,11 @@
       "language_support": {
         "en": 2102,
         "de": 5558,
-        "fr": 1037,
-        "es": 1925,
-        "it": 4458
+        "fr": 1036,
+        "es": 1924,
+        "it": 4457
       },
-      "support": 15080,
+      "support": 15077,
       "suspicion_score": 55,
       "suspicion_reasons": [
         "short_root",
@@ -1014,11 +1658,11 @@
       "language_support": {
         "en": 2097,
         "de": 5601,
-        "fr": 1037,
+        "fr": 1036,
         "es": 263,
-        "it": 3402
+        "it": 3401
       },
-      "support": 12400,
+      "support": 12398,
       "suspicion_score": 55,
       "suspicion_reasons": [
         "short_root",
@@ -1266,11 +1910,11 @@
       "language_support": {
         "en": 2097,
         "de": 5601,
-        "fr": 1037,
+        "fr": 1036,
         "es": 263,
-        "it": 3368
+        "it": 3367
       },
-      "support": 12366,
+      "support": 12364,
       "suspicion_score": 55,
       "suspicion_reasons": [
         "short_root",
@@ -1289,9 +1933,9 @@
       "source": "surface_singleton",
       "etymon_keys": [],
       "language_support": {
-        "ru": 11872
+        "ru": 11871
       },
-      "support": 11872,
+      "support": 11871,
       "suspicion_score": 35,
       "suspicion_reasons": [
         "anomalously_large_family"
@@ -1406,11 +2050,11 @@
       "language_support": {
         "en": 41,
         "de": 5558,
-        "fr": 1037,
-        "it": 4458,
+        "fr": 1036,
+        "it": 4457,
         "ru": 20
       },
-      "support": 11114,
+      "support": 11112,
       "suspicion_score": 55,
       "suspicion_reasons": [
         "short_root",
@@ -1508,9 +2152,9 @@
       "language_support": {
         "en": 2097,
         "de": 5558,
-        "es": 1717
+        "es": 1716
       },
-      "support": 9372,
+      "support": 9371,
       "suspicion_score": 40,
       "suspicion_reasons": [
         "short_root",
@@ -1529,9 +2173,9 @@
       "source": "surface_singleton",
       "etymon_keys": [],
       "language_support": {
-        "ru": 8342
+        "ru": 8341
       },
-      "support": 8342,
+      "support": 8341,
       "suspicion_score": 40,
       "suspicion_reasons": [
         "short_root",
@@ -1971,9 +2615,9 @@
       "source": "surface_singleton",
       "etymon_keys": [],
       "language_support": {
-        "it": 6821
+        "it": 6820
       },
-      "support": 6821,
+      "support": 6820,
       "suspicion_score": 40,
       "suspicion_reasons": [
         "short_root",
@@ -3235,10 +3879,10 @@
       },
       "language_support": {
         "en": 2097,
-        "fr": 1037,
-        "es": 1717
+        "fr": 1036,
+        "es": 1716
       },
-      "support": 4851,
+      "support": 4849,
       "suspicion_score": 40,
       "suspicion_reasons": [
         "short_root",
@@ -3444,9 +4088,9 @@
         "en": 36,
         "fr": 9,
         "es": 134,
-        "it": 4458
+        "it": 4457
       },
-      "support": 4637,
+      "support": 4636,
       "suspicion_score": 40,
       "suspicion_reasons": [
         "short_root",
@@ -3563,9 +4207,9 @@
         "de": 69,
         "fr": 9,
         "es": 26,
-        "it": 4458
+        "it": 4457
       },
-      "support": 4604,
+      "support": 4603,
       "suspicion_score": 40,
       "suspicion_reasons": [
         "short_root",
@@ -3682,9 +4326,9 @@
         "de": 69,
         "fr": 9,
         "es": 26,
-        "it": 4458
+        "it": 4457
       },
-      "support": 4604,
+      "support": 4603,
       "suspicion_score": 40,
       "suspicion_reasons": [
         "short_root",
@@ -3748,9 +4392,9 @@
       },
       "language_support": {
         "en": 1,
-        "it": 4458
+        "it": 4457
       },
-      "support": 4459,
+      "support": 4458,
       "suspicion_score": 40,
       "suspicion_reasons": [
         "short_root",
@@ -4630,9 +5274,9 @@
         "de": 159,
         "fr": 5,
         "es": 23,
-        "it": 3367
+        "it": 3366
       },
-      "support": 3599,
+      "support": 3598,
       "suspicion_score": 20,
       "suspicion_reasons": [
         "large_family"
@@ -4764,9 +5408,9 @@
         "de": 159,
         "fr": 5,
         "es": 23,
-        "it": 3367
+        "it": 3366
       },
-      "support": 3599,
+      "support": 3598,
       "suspicion_score": 20,
       "suspicion_reasons": [
         "large_family"
@@ -5302,9 +5946,9 @@
       "source": "surface_singleton",
       "etymon_keys": [],
       "language_support": {
-        "ru": 29622
+        "ru": 29617
       },
-      "support": 29622,
+      "support": 29617,
       "suspicion_score": 75,
       "suspicion_reasons": [
         "very_short_root",
@@ -5623,11 +6267,11 @@
       "language_support": {
         "en": 2102,
         "de": 5558,
-        "fr": 1037,
-        "es": 1925,
-        "it": 4458
+        "fr": 1036,
+        "es": 1924,
+        "it": 4457
       },
-      "support": 15080,
+      "support": 15077,
       "suspicion_score": 55,
       "suspicion_reasons": [
         "short_root",
@@ -6031,11 +6675,11 @@
       "language_support": {
         "en": 2097,
         "de": 5601,
-        "fr": 1037,
+        "fr": 1036,
         "es": 263,
-        "it": 3402
+        "it": 3401
       },
-      "support": 12400,
+      "support": 12398,
       "suspicion_score": 55,
       "suspicion_reasons": [
         "short_root",
@@ -6283,11 +6927,11 @@
       "language_support": {
         "en": 2097,
         "de": 5601,
-        "fr": 1037,
+        "fr": 1036,
         "es": 263,
-        "it": 3368
+        "it": 3367
       },
-      "support": 12366,
+      "support": 12364,
       "suspicion_score": 55,
       "suspicion_reasons": [
         "short_root",
@@ -6403,11 +7047,11 @@
       "language_support": {
         "en": 41,
         "de": 5558,
-        "fr": 1037,
-        "it": 4458,
+        "fr": 1036,
+        "it": 4457,
         "ru": 20
       },
-      "support": 11114,
+      "support": 11112,
       "suspicion_score": 55,
       "suspicion_reasons": [
         "short_root",
@@ -6505,9 +7149,9 @@
       "language_support": {
         "en": 2097,
         "de": 5558,
-        "es": 1717
+        "es": 1716
       },
-      "support": 9372,
+      "support": 9371,
       "suspicion_score": 40,
       "suspicion_reasons": [
         "short_root",
@@ -6526,9 +7170,9 @@
       "source": "surface_singleton",
       "etymon_keys": [],
       "language_support": {
-        "ru": 8342
+        "ru": 8341
       },
-      "support": 8342,
+      "support": 8341,
       "suspicion_score": 40,
       "suspicion_reasons": [
         "short_root",
@@ -6968,9 +7612,9 @@
       "source": "surface_singleton",
       "etymon_keys": [],
       "language_support": {
-        "it": 6821
+        "it": 6820
       },
-      "support": 6821,
+      "support": 6820,
       "suspicion_score": 40,
       "suspicion_reasons": [
         "short_root",
@@ -8211,10 +8855,10 @@
       },
       "language_support": {
         "en": 2097,
-        "fr": 1037,
-        "es": 1717
+        "fr": 1036,
+        "es": 1716
       },
-      "support": 4851,
+      "support": 4849,
       "suspicion_score": 40,
       "suspicion_reasons": [
         "short_root",
@@ -8400,9 +9044,9 @@
         "en": 36,
         "fr": 9,
         "es": 134,
-        "it": 4458
+        "it": 4457
       },
-      "support": 4637,
+      "support": 4636,
       "suspicion_score": 40,
       "suspicion_reasons": [
         "short_root",
@@ -8519,9 +9163,9 @@
         "de": 69,
         "fr": 9,
         "es": 26,
-        "it": 4458
+        "it": 4457
       },
-      "support": 4604,
+      "support": 4603,
       "suspicion_score": 40,
       "suspicion_reasons": [
         "short_root",
@@ -8638,9 +9282,9 @@
         "de": 69,
         "fr": 9,
         "es": 26,
-        "it": 4458
+        "it": 4457
       },
-      "support": 4604,
+      "support": 4603,
       "suspicion_score": 40,
       "suspicion_reasons": [
         "short_root",
@@ -8704,9 +9348,9 @@
       },
       "language_support": {
         "en": 1,
-        "it": 4458
+        "it": 4457
       },
-      "support": 4459,
+      "support": 4458,
       "suspicion_score": 40,
       "suspicion_reasons": [
         "short_root",
