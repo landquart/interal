@@ -1,0 +1,39 @@
+name: Audit production associative family v5
+
+on:
+  push:
+    branches:
+      - audit/family-v5-production-runtime
+    paths:
+      - '.github/workflows/audit-production-associative-family-v5.yml'
+      - 'tests/browser/associative-family-v5-production.playwright.mjs'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  production-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Run browser, runtime and transport regression against production
+        run: node tests/browser/associative-family-v5-production.playwright.mjs https://interal.vercel.app .tmp/family-v5-production-regression.json
+      - name: Upload production evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: associative-family-v5-production-regression
+          path: |
+            .tmp/family-v5-production-regression.json
+            .tmp/family-v5-production-desktop.png
+            .tmp/family-v5-production-mobile.png
+          if-no-files-found: error
+          retention-days: 90
