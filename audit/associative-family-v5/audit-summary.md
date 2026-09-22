@@ -6,7 +6,7 @@ The corrective graph passes the available exhaustive structural checks, but this
 
 Owner disposition recorded 2026-09-20: **OWNER_ACCEPTED_AT_RISK WITHOUT HUMAN LINGUISTIC VALIDATION**. This explicit waiver is documented in `owner-risk-acceptance.json`. It changes the operational disposition, not the missing evidence. The owner subsequently gave separate explicit authorization to merge PR #622 and switch production to the exact immutable v5 prefix.
 
-Operational follow-up on 2026-09-22 materialized the immutable artifacts from source run `35647932153` as repository-backed static gzip files and removed the legacy Blob upload/runtime path. PRs `#629`, `#630`, and `#631` completed that migration and added a repeatable production regression. Production audit run `35720424792`, main Tests run `35721002453`, and deployment run `35721001710` passed. The preserved `production-regression.json` verifies `family:liber` for all six languages, rejects a working `family:libert`, checks the complete returned sets for listed corpus noise, and exercises cache reuse, shared-loader races, in-flight AbortSignal cancellation, offline, timeout, corrupt-response, and 404 recovery. This closes the automatable runtime/browser/storage follow-up; it does not supply human linguistic judgments.
+Operational follow-up on 2026-09-22 materialized the immutable artifacts from source run `35647932153` as repository-backed static gzip files and removed the legacy Blob upload/runtime path. PRs `#629`, `#630`, and `#631` completed that migration and added a repeatable production regression. Production audit run `35720424792`, main Tests run `35721002453`, and deployment run `35721001710` passed. A subsequent exhaustive repository-shard audit found 30 runtime memberships for nine already rejected corpus-noise lemmas; the bounded repository repair removed them, deleted one newly empty family, and recalculated all affected support, language_support, aliases, manifest counts and repository provenance. The final static runtime has 2,456,621 families, 1,934,051 aliases and 10,426,047 memberships. The preserved `production-regression.json` verifies `family:liber` for all six languages, rejects a working `family:libert`, checks the complete returned sets for listed corpus noise, and exercises cache reuse, shared-loader races, in-flight AbortSignal cancellation, offline, timeout, corrupt-response, and 404 recovery. This closes the automatable runtime/browser/storage follow-up; it does not supply human linguistic judgments.
 
 ## Object and provenance checked
 
@@ -28,13 +28,13 @@ An independent streaming recount of all six locked assignment files established 
 | Metric | v5 count |
 |---|---:|
 | Lemma records | 4,924,980 |
-| Component evidence records | 9,350,026 |
-| Unique `(language, lemma_id, family_id)` memberships | 10,426,189 |
-| Expected materialized members | 10,426,189 |
+| Component evidence records | 9,349,982 |
+| Repository runtime memberships | 10,426,047 |
+| Materialized member records | 10,426,047 |
 | Memberships with repeated component evidence | 5,097 |
 | Excess repeated component→membership links | 6,282 |
 
-`manifest.counts.components` is incremented once per component evidence record. It is not a membership count. The previous v4→v5 report compared v4 memberships (`14,918,457`) with v5 components (`9,350,026`), so its `-5,568,431` delta was invalid. The corrected membership delta is `10,426,189 - 14,918,457 = -4,492,268`; this reduction still proves neither precision nor recall.
+`manifest.counts.components` is incremented once per component evidence record. It is not a membership count. The previous v4→v5 report compared v4 memberships (`14,918,457`) with v5 components (`9,350,026`), so its `-5,568,431` delta was invalid. The final repository-runtime membership delta is `10,426,047 - 14,918,457 = -4,492,410`; this reduction still proves neither precision nor recall. The repository count is 30 below the immutable source artifact because the materialization repair excludes 30 memberships belonging to nine explicitly rejected corpus-noise lemmas.
 
 ## Evidence status by gate
 
