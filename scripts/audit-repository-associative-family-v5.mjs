@@ -21,6 +21,14 @@ const readJson = async path => {
 };
 const shardNames = async path => (await readdir(path)).filter(name => name.endsWith('.json.gz')).sort();
 
+async function files(directory) {
+  const out = [];
+  for (const entry of await readdir(directory, { withFileTypes: true })) {
+    const path = join(directory, entry.name);
+    if (entry.isDirectory()) out.push(...await files(path)); else out.push(path);
+  }
+  return out;
+}
 const manifest = await readJson(join(root, 'manifest.json'));
 const report = await readJson(join(root, 'report.json'));
 const provenance = await readJson(join(root, 'repository-provenance.json'));
@@ -31,6 +39,18 @@ assert(manifest.repository_storage?.encoding === 'gzip', 'manifest encoding is n
 assert(Number(report.provenance?.workflow_run_id) === expectedRunId, 'report source run mismatch');
 assert(Number(provenance.source_run_id) === expectedRunId, 'repository provenance source run mismatch');
 assert(provenance.storage === 'git_repository_static_files', 'repository provenance storage mismatch');
+const provenancePath = join(root, 'repository-provenance.json');
+const provenanceFiles = (await files(root)).filter(path => path !== provenancePath).sort();
+const provenanceHash = createHash('sha256');
+let provenanceBytes = 0;
+for (const path of provenanceFiles) {
+  const data = await readFile(path);
+  provenanceBytes += data.length;
+  provenanceHash.update(path.slice(root.length + 1)).update('\0').update(data);
+}
+assert(provenanceFiles.length === provenance.file_count_before_provenance, 'provenance file count mismatch');
+assert(provenanceBytes === provenance.total_bytes_before_provenance, 'provenance byte count mismatch');
+assert(provenanceHash.digest('hex') === provenance.tree_content_sha256, 'provenance tree hash mismatch');
 assert(report.controls_ok === true, 'controls_ok=false');
 for (const [name, value] of Object.entries(report.invariants || {})) {
   if (typeof value === 'boolean') assert(value, `invariant ${name}=false`);
