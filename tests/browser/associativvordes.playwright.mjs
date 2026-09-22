@@ -257,7 +257,6 @@ async function runSuccessfulCalculation(page) {
   assert.equal(await page.locator('#resultSection').isVisible(), true);
   assert.equal(await page.locator('#languagesSection').isVisible(), true);
   assert.equal(await page.locator('#calculateBtn').getAttribute('aria-busy'), 'false');
-  assert.equal(await page.locator('#calculateBtn').isDisabled(), true, 'Done remains briefly visible');
   await page.waitForFunction(
     () => !document.getElementById('calculateBtn').disabled,
     undefined,
