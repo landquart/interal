@@ -41,7 +41,7 @@ async function runViewport(name, viewport) {
     const [manifest, buildReport, provenance] = await Promise.all([manifestResponse.json(), reportResponse.json(), provenanceResponse.json()]);
 
     const controls = [];
-    const aliases = ['manu', 'pede', 'ocul', 'alter', 'regul', 'liber', 'inter'];
+    const aliases = ['manu', 'pede', 'ocul', 'alter', 'regul', 'liber', 'libert', 'inter'];
     const languages = ['en', 'de', 'fr', 'es', 'it', 'ru'];
     const durations = [];
     for (const alias of aliases) for (const language of languages) {
@@ -52,19 +52,38 @@ async function runViewport(name, viewport) {
         alias,
         language,
         family_ids: [...new Set(entries.map(item => item.family_id))].sort(),
+        all_words: entries.map(item => item.word),
         top5: entries.slice().sort((a, b) => (b.frequency_score || 0) - (a.frequency_score || 0)).slice(0, 5).map(item => item.word),
         validationErrors: []
       });
     }
 
-    const beforeRepeat = performance.getEntriesByType('resource').length;
+    const familyResourceCount = () => performance.getEntriesByType('resource')
+      .filter(item => item.name.includes('/family-index-v5/')).length;
+    const beforeRepeat = familyResourceCount();
     await loader.candidateEntries('liber', 'en');
-    const afterRepeat = performance.getEntriesByType('resource').length;
+    const afterRepeat = familyResourceCount();
 
     const abort = new AbortController();
-    abort.abort();
+    const abortLoader = new FamilyIndexLoader({
+      baseUrl,
+      fetchJson: async (url, { signal } = {}) => {
+        await new Promise((resolve, reject) => {
+          const timer = setTimeout(resolve, 250);
+          signal?.addEventListener('abort', () => {
+            clearTimeout(timer);
+            reject(signal.reason || new DOMException('Aborted', 'AbortError'));
+          }, { once: true });
+        });
+        const response = await fetch(url, { signal });
+        if (!response.ok) throw new Error(`Family index request failed: ${response.status}`);
+        return response.json();
+      }
+    });
     let abortError = null;
-    try { await new FamilyIndexLoader({ baseUrl }).candidateEntries('liber', 'en', { signal: abort.signal }); }
+    const pendingAbort = abortLoader.candidateEntries('liber', 'en', { signal: abort.signal });
+    setTimeout(() => abort.abort(), 25);
+    try { await pendingAbort; }
     catch (error) { abortError = error.name || error.message; }
 
     let overflowError = null;
@@ -72,8 +91,8 @@ async function runViewport(name, viewport) {
     catch (error) { overflowError = error.message; }
 
     const raced = await Promise.all([
-      new FamilyIndexLoader({ baseUrl }).candidateEntries('alter', 'en'),
-      new FamilyIndexLoader({ baseUrl }).candidateEntries('ocul', 'en')
+      loader.candidateEntries('alter', 'en'),
+      loader.candidateEntries('ocul', 'en')
     ]);
 
     const resources = performance.getEntriesByType('resource')
@@ -96,7 +115,7 @@ async function runViewport(name, viewport) {
 
   for (const control of result.controls) {
     assert.equal(control.family_ids.includes('family:libert'), false, `stale family:libert in ${control.alias}/${control.language}`);
-    assert.equal(control.top5.some(word => ['brokethemouldaftertheymadepeter','pediatricianand','pediatricianwho','helpedallof','eroticizedit','dutheillet','madrillet','ennuyeux'].includes(String(word).toLowerCase())), false, `corpus noise in ${control.alias}/${control.language}`);
+    assert.equal(control.all_words.some(word => ['brokethemouldaftertheymadepeter','pediatricianand','pediatricianwho','helpedallof','eroticizedit','dutheillet','madrillet','ennuyeux'].includes(String(word).toLowerCase())), false, `corpus noise in ${control.alias}/${control.language}`);
   }
   assert.equal(result.manifest.version, '5');
   assert.equal(Number(result.manifest.source_run_id), 35647932153);
@@ -105,11 +124,20 @@ async function runViewport(name, viewport) {
   assert.equal(result.build_report.controls_ok, true);
   assert.equal(result.build_report.liber_ok, true);
   assert.equal(result.build_report.has_libert, false);
+  for (const [key, value] of Object.entries(result.build_report.invariants || {})) {
+    if (typeof value === 'boolean') assert.equal(value, true, `structural invariant ${key} failed`);
+  }
+  assert.equal(result.build_report.invariants.source_lemmas, result.build_report.invariants.classified_unique_lemmas);
+  for (const key of ['lemmas_with_zero_family', 'families_with_zero_members', 'members_without_evidence', 'fuzzy_memberships', 'levenshtein_memberships', 'untyped_family_edges', 'untyped_or_illegal_equivalence_edges', 'compound_edges_used_as_equivalence', 'unreviewed_high_risk_families']) assert.equal(result.build_report.invariants[key], 0, `structural invariant ${key} failed`);
   assert.equal(result.provenance.source_run_id, 35647932153);
   assert.equal(result.provenance.storage, 'git_repository_static_files');
   assert.equal(result.repeat_added_resources, 0);
   assert.ok(String(result.abort_error).includes('Abort'));
   assert.ok(String(result.overflow_error).includes('fan-out 28 exceeds runtime limit 25'));
+  assert.deepEqual(result.race_family_ids, [['family:alter'], ['family:ocul']]);
+  const libert = result.controls.filter(item => item.alias === 'libert');
+  assert.equal(libert.length, 6);
+  for (const control of libert) assert.equal(control.family_ids.includes('family:libert'), false, `libert resolved to removed family for ${control.language}`);
   const liber = result.controls.filter(item => item.alias === 'liber');
   assert.equal(liber.length, 6);
   for (const control of liber) assert.deepEqual(control.family_ids, ['family:liber'], `liber failed for ${control.language}`);
