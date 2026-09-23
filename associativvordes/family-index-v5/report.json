@@ -971,9 +971,9 @@
       "source": "surface_singleton",
       "etymon_keys": [],
       "language_support": {
-        "de": 17621
+        "de": 17618
       },
-      "support": 17621,
+      "support": 17618,
       "suspicion_score": 55,
       "suspicion_reasons": [
         "short_root",
@@ -1248,13 +1248,13 @@
         "score": 2
       },
       "language_support": {
-        "en": 2102,
+        "en": 2101,
         "de": 5558,
         "fr": 1036,
         "es": 1924,
         "it": 4457
       },
-      "support": 15077,
+      "support": 15076,
       "suspicion_score": 55,
       "suspicion_reasons": [
         "short_root",
@@ -1352,11 +1352,11 @@
       },
       "language_support": {
         "en": 109,
-        "de": 14657,
+        "de": 14654,
         "es": 121,
         "it": 52
       },
-      "support": 14939,
+      "support": 14936,
       "suspicion_score": 55,
       "suspicion_reasons": [
         "short_root",
@@ -3447,13 +3447,13 @@
         "score": 1
       },
       "language_support": {
-        "en": 1890,
+        "en": 1887,
         "de": 53,
         "fr": 1486,
         "es": 1518,
         "it": 23
       },
-      "support": 4970,
+      "support": 4967,
       "suspicion_score": 40,
       "suspicion_reasons": [
         "short_root",
@@ -3729,13 +3729,13 @@
         "score": 1
       },
       "language_support": {
-        "en": 1890,
+        "en": 1887,
         "de": 53,
         "fr": 1486,
         "es": 1518,
         "it": 23
       },
-      "support": 4970,
+      "support": 4967,
       "suspicion_score": 40,
       "suspicion_reasons": [
         "short_root",
@@ -5921,11 +5921,11 @@
         "score": 2
       },
       "language_support": {
-        "en": 1936,
+        "en": 1933,
         "de": 53,
         "fr": 1486
       },
-      "support": 3475,
+      "support": 3472,
       "suspicion_score": 40,
       "suspicion_reasons": [
         "short_root",
@@ -5988,9 +5988,9 @@
       "source": "surface_singleton",
       "etymon_keys": [],
       "language_support": {
-        "de": 17621
+        "de": 17618
       },
-      "support": 17621,
+      "support": 17618,
       "suspicion_score": 55,
       "suspicion_reasons": [
         "short_root",
@@ -6265,13 +6265,13 @@
         "score": 2
       },
       "language_support": {
-        "en": 2102,
+        "en": 2101,
         "de": 5558,
         "fr": 1036,
         "es": 1924,
         "it": 4457
       },
-      "support": 15077,
+      "support": 15076,
       "suspicion_score": 55,
       "suspicion_reasons": [
         "short_root",
@@ -6369,11 +6369,11 @@
       },
       "language_support": {
         "en": 109,
-        "de": 14657,
+        "de": 14654,
         "es": 121,
         "it": 52
       },
-      "support": 14939,
+      "support": 14936,
       "suspicion_score": 55,
       "suspicion_reasons": [
         "short_root",
@@ -8423,13 +8423,13 @@
         "score": 1
       },
       "language_support": {
-        "en": 1890,
+        "en": 1887,
         "de": 53,
         "fr": 1486,
         "es": 1518,
         "it": 23
       },
-      "support": 4970,
+      "support": 4967,
       "suspicion_score": 40,
       "suspicion_reasons": [
         "short_root",
@@ -8705,13 +8705,13 @@
         "score": 1
       },
       "language_support": {
-        "en": 1890,
+        "en": 1887,
         "de": 53,
         "fr": 1486,
         "es": 1518,
         "it": 23
       },
-      "support": 4970,
+      "support": 4967,
       "suspicion_score": 40,
       "suspicion_reasons": [
         "short_root",
@@ -10589,11 +10589,11 @@
         "score": 2
       },
       "language_support": {
-        "en": 1936,
+        "en": 1933,
         "de": 53,
         "fr": 1486
       },
-      "support": 3475,
+      "support": 3472,
       "suspicion_score": 40,
       "suspicion_reasons": [
         "short_root",
@@ -10946,6 +10946,9 @@
   "repository_materialization": {
     "source_run_id": 35647932153,
     "rejected_corpus_noise_removed_from_runtime": 30,
-    "deleted_empty_families": 1
+    "deleted_empty_families": 1,
+    "individually_reviewed_false_memberships_removed": 22,
+    "manual_case_ledger_sha256": "0b1dac6949f2dfdc89ee20b2907dd4724297a9b66603e04e1b860ded94f8cbc1",
+    "manually_quarantined_sense_ambiguous_families": 1
   }
 }

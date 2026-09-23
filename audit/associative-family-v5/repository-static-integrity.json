@@ -9,12 +9,12 @@
     "aliases": 1934051,
     "lemmas": 4924980,
     "components": 9349982,
-    "memberships": 10426047,
+    "memberships": 10426025,
     "memberships_by_language": {
-      "en": 2646220,
-      "de": 2279250,
-      "fr": 1155626,
-      "es": 1892803,
+      "en": 2646208,
+      "de": 2279243,
+      "fr": 1155625,
+      "es": 1892801,
       "it": 1215092,
       "ru": 1237056
     },
@@ -30,6 +30,9 @@
     "no_family_libert": true,
     "family_liber_all_languages": true,
     "rejected_corpus_noise_absent": true,
+    "manually_rejected_memberships_absent": true,
+    "preserved_positive_controls_present": true,
+    "sense_ambiguous_family_quarantined": true,
     "provenance_locked": true
   },
   "rejected_corpus_noise": [],
@@ -48,8 +51,8 @@
     },
     "storage": "git_repository_static_files",
     "file_count_before_provenance": 2050,
-    "total_bytes_before_provenance": 743500407,
-    "tree_content_sha256": "ecfbad7bcd25e18139729ae76bbfd18e924a07a1b7aa80b0f7f6a4508179dce8",
+    "total_bytes_before_provenance": 743331941,
+    "tree_content_sha256": "671eafd79f376cb23722b50d0ca8644ea685a5df12c0a44c438ae63d5c85ec86",
     "repository_repairs": [
       {
         "repair": "exclude_known_rejected_corpus_noise_from_runtime",
@@ -57,6 +60,17 @@
         "removed_lemmas": 9,
         "deleted_empty_families": 1,
         "source_run_id": 35647932153
+      },
+      {
+        "repair": "remove_individually_reviewed_false_memberships",
+        "removed_memberships": 22,
+        "affected_families": 7,
+        "source_run_id": 35647932153,
+        "decision_ledger_sha256": "0b1dac6949f2dfdc89ee20b2907dd4724297a9b66603e04e1b860ded94f8cbc1",
+        "not_human_statistical_annotation": true,
+        "quarantined_families": [
+          "ety:111ecf2b9102"
+        ]
       }
     ]
   }
