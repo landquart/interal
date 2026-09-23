@@ -53,6 +53,27 @@ assert(provenanceBytes === provenance.total_bytes_before_provenance, 'provenance
 assert(provenanceHash.digest('hex') === provenance.tree_content_sha256, 'provenance tree hash mismatch');
 const repair = provenance.repository_repairs?.find(item => item.repair === 'exclude_known_rejected_corpus_noise_from_runtime');
 assert(repair?.removed_memberships === 30 && repair?.removed_lemmas === 9 && repair?.deleted_empty_families === 1, 'repository repair provenance mismatch');
+const manualLedgerBytes = await readFile('audit/associative-family-v5/manual-case-decisions.json');
+const manualLedger = JSON.parse(manualLedgerBytes);
+const manualLedgerSha = createHash('sha256').update(manualLedgerBytes).digest('hex');
+const manualRepair = provenance.repository_repairs?.find(item => item.repair === 'remove_individually_reviewed_false_memberships');
+assert(manualLedger.source_run_id === expectedRunId && manualLedger.rejected_memberships.length === 22, 'manual case ledger mismatch');
+assert(manualRepair?.removed_memberships === 22 && manualRepair?.decision_ledger_sha256 === manualLedgerSha, 'manual case repair provenance mismatch');
+assert(JSON.stringify(manualRepair.quarantined_families) === JSON.stringify(manualLedger.quarantined_families.map(item => item.family_id)), 'quarantined family provenance mismatch');
+assert(report.repository_materialization?.manual_case_ledger_sha256 === manualLedgerSha, 'report manual case ledger mismatch');
+assert(report.repository_materialization?.manually_quarantined_sense_ambiguous_families === 1, 'report quarantine count mismatch');
+const rejectedManualKeys = new Set(manualLedger.rejected_memberships.map(item => `${item.language}\0${item.family_id}\0${item.lemma_id}`));
+const preservedManualKeys = new Set(manualLedger.preserved_positive_controls.map(item => `${item.language}\0${item.family_id}\0${item.word}`));
+assert(rejectedManualKeys.size === 22, 'duplicate rejected manual memberships');
+const quarantinedManualFamilies = new Map(manualLedger.quarantined_families.map(item => [item.family_id, item.new_status]));
+const reportFamilySummaries = new Map();
+for (const section of ['largest_families', 'highest_suspicion_families']) {
+  for (const item of report[section] || []) {
+    const summaries = reportFamilySummaries.get(item.id) || [];
+    summaries.push({ section, item });
+    reportFamilySummaries.set(item.id, summaries);
+  }
+}
 assert(report.controls_ok === true, 'controls_ok=false');
 for (const [name, value] of Object.entries(report.invariants || {})) {
   if (typeof value === 'boolean') assert(value, `invariant ${name}=false`);
@@ -97,6 +118,14 @@ for (let index = 0; index < 256; index += 1) {
     assert(id !== 'family:libert', 'removed family:libert is present');
     assert(!ids.has(id), `duplicate family ${id}`);
     assert(family.support > 0 && family.canonical && Array.isArray(family.aliases) && family.aliases.length, `invalid family ${id}`);
+    if (quarantinedManualFamilies.has(id)) {
+      assert(family.review_status === quarantinedManualFamilies.get(id), `manual quarantine status mismatch ${id}`);
+      quarantinedManualFamilies.delete(id);
+    }
+    for (const { section, item } of reportFamilySummaries.get(id) || []) {
+      assert(item.support === family.support, `${section} support mismatch ${id}`);
+      assert(JSON.stringify(item.language_support) === JSON.stringify(family.language_support), `${section} language support mismatch ${id}`);
+    }
     ids.add(id);
     actual.set(id, Object.fromEntries(languages.map(language => [language, 0])));
     for (const alias of new Set(family.aliases)) {
@@ -122,6 +151,8 @@ for (let index = 0; index < 256; index += 1) {
         assert(Array.isArray(value.components) && value.components.length, `${language} missing components ${id}`);
         for (const component of value.components) assert(component.canonical_candidate && component.evidence?.length, `${language} missing component evidence ${id}`);
         if (noise.has(String(value.word).toLowerCase())) noiseFindings.push({ language, family_id: id, lemma_id: value.lemma_id, word: value.word });
+        assert(!rejectedManualKeys.has(`${language}\0${id}\0${value.lemma_id}`), `rejected manual membership still present ${language}/${id}/${value.word}`);
+        preservedManualKeys.delete(`${language}\0${id}\0${value.word}`);
         seen.add(value.lemma_id);
       }
       actual.get(id)[language] = values.length;
@@ -141,6 +172,9 @@ for (let index = 0; index < 256; index += 1) {
 }
 assert(familyIdsByBucket[parseInt(bucket('family:liber'), 16)].has('family:liber'), 'family:liber missing');
 assert(liberLanguages.size === languages.length, `family:liber missing languages: ${languages.filter(x => !liberLanguages.has(x)).join(',')}`);
+assert(quarantinedManualFamilies.size === 0, 'quarantined family missing from metadata');
+assert(preservedManualKeys.size === 0, `preserved positive controls missing: ${[...preservedManualKeys].join(', ')}`);
+assert(membershipCount === 10426047 - manualLedger.rejected_memberships.length, 'unexpected repository membership count');
 assert(familyCount === manifest.counts.families && familyCount === report.total_families, `family count ${familyCount}`);
 assert(materializedFamilyCount === familyCount, 'not every family was materialized');
 
@@ -190,6 +224,9 @@ const result = {
     no_family_libert: true,
     family_liber_all_languages: true,
     rejected_corpus_noise_absent: noiseFindings.length === 0,
+    manually_rejected_memberships_absent: true,
+    preserved_positive_controls_present: true,
+    sense_ambiguous_family_quarantined: true,
     provenance_locked: true
   },
   rejected_corpus_noise: noiseFindings,

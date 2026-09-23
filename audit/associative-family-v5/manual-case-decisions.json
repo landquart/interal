@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "source_run_id": 35647932153,
+  "scope": "Explicit, individually examined false memberships in the repository materialization; not a statistical sample, human annotation, or blanket decision on any family.",
+  "policy": "A substring, common inflectional ending, or compound component by itself is not a whole-lemma etymological relationship.",
+  "rejected_memberships": [
+    {"family_id":"surface:de:ten","language":"de","lemma_id":"lemma:1e84ba5d68ff57635cee","word":"gelten","reason":"German -ten ending, not a shared root; attested as Old High German geltan.","reference":"https://de.wiktionary.org/wiki/gelten"},
+    {"family_id":"surface:de:ten","language":"de","lemma_id":"lemma:9aba3357e03f39ff194d","word":"retten","reason":"Only the frequent German -ten ending was matched; no relation to the other words in this surface family.","reference":"https://de.wiktionary.org/wiki/retten"},
+    {"family_id":"surface:de:ten","language":"de","lemma_id":"lemma:7570e6f966fa1203880e","word":"erwarten","reason":"Only the frequent German -ten ending was matched; no relation to the other words in this surface family.","reference":"https://de.wiktionary.org/wiki/erwarten"},
+    {"family_id":"ety:cf2897b18b16","language":"de","lemma_id":"lemma:149ebd32db1b986c8992","word":"liegen","reason":"The final letters gen in the verb do not derive the whole lemma from Greek genea.","reference":"https://de.wiktionary.org/wiki/liegen"},
+    {"family_id":"ety:cf2897b18b16","language":"de","lemma_id":"lemma:9690805fc848cd26d350","word":"fragen","reason":"The final letters gen in the verb do not derive the whole lemma from Greek genea.","reference":"https://de.wiktionary.org/wiki/fragen"},
+    {"family_id":"ety:cf2897b18b16","language":"de","lemma_id":"lemma:5052c592f3a76b522930","word":"abänderungen","reason":"The -ungen ending is not the Greek genea root of the whole word.","reference":"https://de.wiktionary.org/wiki/Änderung"},
+    {"family_id":"ety:5bed7c192e10","language":"en","lemma_id":"lemma:0314a9224d3a719f6b06","word":"contact","reason":"Latin contactus derives from contingere/tangere, not the actus branch; matched only substring act.","reference":"https://en.wiktionary.org/wiki/contact"},
+    {"family_id":"ety:03193cddd861","language":"en","lemma_id":"lemma:92b44913be1e26f9c7f7","word":"network","reason":"The net here means netting, not the net/neat from Latin nitidus.","reference":"https://en.wiktionary.org/wiki/network"},
+    {"family_id":"ety:03193cddd861","language":"en","lemma_id":"lemma:0e0282ab64ec88330204","word":"internet","reason":"The network element is unrelated to the net/neat from Latin nitidus.","reference":"https://en.wiktionary.org/wiki/Internet"},
+    {"family_id":"ety:03193cddd861","language":"en","lemma_id":"lemma:f2708e958ac74f2234dd","word":"planet","reason":"The final letters net do not derive the whole word from Latin nitidus.","reference":"https://en.wiktionary.org/wiki/planet"},
+    {"family_id":"ety:de121cd2e13a","language":"en","lemma_id":"lemma:92b44913be1e26f9c7f7","word":"network","reason":"The net here means netting, not the Old French net meaning neat/clean.","reference":"https://en.wiktionary.org/wiki/network"},
+    {"family_id":"ety:de121cd2e13a","language":"en","lemma_id":"lemma:0e0282ab64ec88330204","word":"internet","reason":"The network element is unrelated to Old French net meaning neat/clean.","reference":"https://en.wiktionary.org/wiki/Internet"},
+    {"family_id":"ety:de121cd2e13a","language":"en","lemma_id":"lemma:f2708e958ac74f2234dd","word":"planet","reason":"The final letters net do not derive the whole word from Old French net meaning neat/clean.","reference":"https://en.wiktionary.org/wiki/planet"},
+    {"family_id":"ety:94c776d13c76","language":"en","lemma_id":"lemma:92b44913be1e26f9c7f7","word":"network","reason":"The net here means netting, not the net/neat from Latin nitidus.","reference":"https://en.wiktionary.org/wiki/network"},
+    {"family_id":"ety:94c776d13c76","language":"en","lemma_id":"lemma:0e0282ab64ec88330204","word":"internet","reason":"The network element is unrelated to the net/neat from Latin nitidus.","reference":"https://en.wiktionary.org/wiki/Internet"},
+    {"family_id":"ety:94c776d13c76","language":"en","lemma_id":"lemma:f2708e958ac74f2234dd","word":"planet","reason":"The final letters net do not derive the whole word from Latin nitidus.","reference":"https://en.wiktionary.org/wiki/planet"},
+    {"family_id":"family:liber","language":"en","lemma_id":"lemma:9b12c880e3b0608f211a","word":"liber","reason":"The English noun means inner bark/book, from Latin liber (bark/book), not Latin liber (free).","reference":"https://en.wiktionary.org/wiki/liber"},
+    {"family_id":"family:liber","language":"en","lemma_id":"lemma:e0b2372063a241522a16","word":"calliber","reason":"Only an internal liber substring is documented; no etymological path for the whole word.","reference":"https://github.com/landquart/interal/blob/main/audit/associative-family-v5/relation-policy.json"},
+    {"family_id":"family:liber","language":"de","lemma_id":"lemma:72a22d567d59cc346d3b","word":"liberhaupt","reason":"Only an internal liber substring is documented; no etymological path for the whole word.","reference":"https://github.com/landquart/interal/blob/main/audit/associative-family-v5/relation-policy.json"},
+    {"family_id":"family:liber","language":"fr","lemma_id":"lemma:be24d00987d4dd687ea8","word":"liber","reason":"The French noun means inner bark/book, from the Latin homonym liber (bark/book), not liber (free).","reference":"https://en.wiktionary.org/wiki/liber"},
+    {"family_id":"family:liber","language":"es","lemma_id":"lemma:f3ffed17aa83b16b68bf","word":"líber","reason":"The Spanish botanical noun is from Latin liber (inner bark), not liber (free).","reference":"https://dle.rae.es/líber"},
+    {"family_id":"family:liber","language":"es","lemma_id":"lemma:701e900bba943925f86c","word":"avenidalibertad","reason":"A compound/toponym containing libertad is not thereby an etymological member as a whole lemma.","reference":"https://github.com/landquart/interal/blob/main/audit/associative-family-v5/relation-policy.json"}
+  ],
+  "quarantined_families": [
+    {"family_id":"ety:111ecf2b9102","previous_status":"safe_automatic","new_status":"split_required","reason":"Unqualified Middle English enm:net conflates the Germanic net (netting) and Anglo-Norman net (neat/clean) senses; retain its member data for sense-level review but do not expose the mixed family at runtime.","reference":"https://en.wiktionary.org/wiki/net"}
+  ],
+  "preserved_positive_controls": [
+    {"family_id":"family:liber","language":"en","word":"liberty"},
+    {"family_id":"family:liber","language":"fr","word":"liberté"},
+    {"family_id":"family:liber","language":"es","word":"libertad"},
+    {"family_id":"ety:03193cddd861","language":"en","word":"neat"},
+    {"family_id":"ety:5bed7c192e10","language":"en","word":"act"}
+  ]
+}
