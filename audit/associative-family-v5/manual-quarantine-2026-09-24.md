@@ -1,6 +1,6 @@
-# Manual runtime quarantine of nineteen mixed v5 families
+# Manual runtime quarantine of twenty-two mixed v5 families
 
-The repository-backed v5 member shards are retained byte-for-byte. The runtime loader excludes these nineteen family IDs before loading member shards. This is a bounded safety decision based on individual record inspection, not a complete annotation of each family or an estimate of precision.
+The repository-backed v5 member shards are retained byte-for-byte. The runtime loader excludes these twenty-two family IDs before loading member shards. This is a bounded safety decision based on individual record inspection, not a complete annotation of each family or an estimate of precision.
 
 | Family ID | Materialized support | Inspected records and defect | Disposition |
 |---|---:|---|---|
@@ -23,6 +23,9 @@ The repository-backed v5 member shards are retained byte-for-byte. The runtime l
 | `ety:ca11c4d91dcb` (`la:illis`) | 6,957 | Italian `abbaiargli`, `abbassargli`, `accendergli` share the attached clitic `gli` across unrelated verbs. | Quarantine pending pronoun/clitic split. |
 | `ety:1e7afcab5044` (`la:sonus`) | 6,670 | Italian `sonetto` and `suono` coexist with malformed or unrelated forms such as `suonamu`, `suoneck` on a `suon` component. | Quarantine pending reviewed sound/sonnet branches and corpus cleanup. |
 | `ety:579f4e520ecd` (`la:ago`) | 5,582 | French `agir` coexists with concatenations `agirainsi`, `agiravec`, `agirnen` admitted by the `agir` sequence. | Quarantine pending corpus cleanup and a reviewed verb family. |
+| `ety:00ff06cbe8c8` (`la:actor`) | 11,112 | German `abbe-refraktometers`, `abenteuer-charakter`, `abfangkontakt` are grouped by internal `akt`, though they are unrelated to *actor*. | Quarantine pending a genuine actor branch. |
+| `ety:3b5769fa0463` (`la:acta`) | 9,371 | English `abfraction`, `abstract`, `abstractedly` enter on internal `act` without whole-word descent from *acta*. | Quarantine pending acta/root split. |
+| `ety:fb8a2c387e83` (`fr:acteur`) | 5,578 | The same German `abbe-refraktometers`, `abenteuer-charakter`, `abfangkontakt` are grouped by internal `akt`, unrelated to French *acteur*. | Quarantine pending a genuine actor branch. |
 
 The support figures are the current `report.json` family counts, not a count of false memberships. Some words in these families may have valid relationships that require a split. The runtime change neither deletes those records nor changes the immutable source run (`35647932153`), static shard hashes, report counts, or provenance. The family metadata still says `needs_review`; the effective runtime quarantine is defined in `associativvordes/js/family-index-loader.js`.
 
