@@ -1,6 +1,6 @@
-# Manual runtime quarantine of twenty-two mixed v5 families
+# Manual runtime quarantine of twenty-five mixed v5 families
 
-The repository-backed v5 member shards are retained byte-for-byte. The runtime loader excludes these twenty-two family IDs before loading member shards. This is a bounded safety decision based on individual record inspection, not a complete annotation of each family or an estimate of precision.
+The repository-backed v5 member shards are retained byte-for-byte. The runtime loader excludes these twenty-five family IDs before loading member shards. This is a bounded safety decision based on individual record inspection, not a complete annotation of each family or an estimate of precision.
 
 | Family ID | Materialized support | Inspected records and defect | Disposition |
 |---|---:|---|---|
@@ -26,6 +26,9 @@ The repository-backed v5 member shards are retained byte-for-byte. The runtime l
 | `ety:00ff06cbe8c8` (`la:actor`) | 11,112 | German `abbe-refraktometers`, `abenteuer-charakter`, `abfangkontakt` are grouped by internal `akt`, though they are unrelated to *actor*. | Quarantine pending a genuine actor branch. |
 | `ety:3b5769fa0463` (`la:acta`) | 9,371 | English `abfraction`, `abstract`, `abstractedly` enter on internal `act` without whole-word descent from *acta*. | Quarantine pending acta/root split. |
 | `ety:fb8a2c387e83` (`fr:acteur`) | 5,578 | The same German `abbe-refraktometers`, `abenteuer-charakter`, `abfangkontakt` are grouped by internal `akt`, unrelated to French *acteur*. | Quarantine pending a genuine actor branch. |
+| `ety:81da90c51822` (`act`) | 4,849 | The top English records include `contact`, `contract`, `impact`, `character`, although their internal `act` is not a whole-word act root. The narrower `la:actus` branch remains available with a short reviewed list. | Quarantine pending a root/sense split. |
+| `surface:it:ato` | 4,377 | Italian `privato`, `fortunato`, `sposato`, `preoccupato` share the participial ending `-ato` across distinct stems. | Quarantine pending a lexical-root treatment. |
+| `surface:en:ted` | 4,069 | English `integrated`, `selected`, `printed`, `updated` share final `ted` across unrelated verbs. | Quarantine pending a lexical-root treatment. |
 
 The support figures are the current `report.json` family counts, not a count of false memberships. Some words in these families may have valid relationships that require a split. The runtime change neither deletes those records nor changes the immutable source run (`35647932153`), static shard hashes, report counts, or provenance. The family metadata still says `needs_review`; the effective runtime quarantine is defined in `associativvordes/js/family-index-loader.js`.
 
@@ -44,8 +47,11 @@ I inspected the most frequent entries of three particularly noisy branches and c
 | `ety:5bed7c192e10` (`la:actus`) | English | `contract` (from *contrahere*), `impact` (from *impingere*), `character` (Greek *kharaktēr*), `manufacturer` (*manus* + *facere*), `abstract` (*abstrahere*), `attract` (*attrahere*); `active`/`activist` descend through *activus* and are left for a separate branch decision. | 13 words |
 | `ety:9a86a987fafc` (`la:acti`) | German | `Kontakt`, `Charakter`, `abstrakt`, and `abbe-refraktometers` share only an internal `akt` sequence; `aktuell` follows *actualis* and `Akt` follows *actus*, whereas `Aktie` follows *actio*. | 4 words |
 | `ety:751cdacbf4a9` (`la:actio`) | German | The same contaminated German `akt` postings appear in this near-duplicate family; compounds such as `Aktienmarkt` need a separate whole-word decision. | 4 words |
+| `ety:03193cddd861`, `ety:94c776d13c76` (`nitid`) | English | Their most frequent records still include `cabinet`, `networking`, `netherlands`, `magnet`, `intranet`, and `ethernet` alongside `neat`. The standalone `net` is sense-ambiguous and is excluded. | `neat`, `neatly`, `neater` |
 
 These shortlists are recorded as exact words in the runtime loader. They are conservative retrieval selections, not a completed independent etymological annotation. For the other language slices and the remaining millions of families, a top-20 ranking only limits output size. It cannot establish that every selected word is appropriate, and it does not reduce the number of stored memberships. A claim that **every** family contains no more than 20 truly appropriate words would require case review of every selected record and a separate definition of whether inflected forms and compounds count as distinct words.
+
+The other five language slices of the two `nitid` families have an explicit empty shortlist pending review. This preserves the English `neat` positive control without exposing similarly mixed unexamined slices. The already quarantined Middle English `enm:net` family remains excluded by its materialized `split_required` status.
 
 Lexical cross-checks for the narrowed lists: [English *actuate*](https://en.wiktionary.org/wiki/actuate), [English *actuary*](https://en.wiktionary.org/wiki/actuary), [English *action*](https://en.wiktionary.org/wiki/action), [German *Aktie*](https://de.wiktionary.org/wiki/Aktie), [German *Aktionär*](https://de.wiktionary.org/wiki/Aktion%C3%A4r), and [German *aktuell*](https://de.wiktionary.org/wiki/aktuell). They support the stated branches, but are not independent adjudication of every retained form.
 
