@@ -80,8 +80,17 @@ assert(surfaceLedger2.source_run_id === expectedRunId && surfaceLedger2.decision
 assert(surfaceRepair2?.removed_memberships === surfaceRemoved2 && surfaceRepair2?.decision_ledger_sha256 === surfaceLedger2Sha, 'surface second repair provenance mismatch');
 assert(JSON.stringify(surfaceRepair2.deleted_families) === JSON.stringify(surfaceLedger2.decisions.map(item => item.family_id)), 'surface second deleted families mismatch');
 assert(report.repository_materialization?.surface_case_ledger_2_sha256 === surfaceLedger2Sha, 'report second surface ledger mismatch');
-assert(report.repository_materialization?.reviewed_surface_memberships_removed === surfaceRemoved + surfaceRemoved2, 'report surface removal count mismatch');
-const deletedSurfaceFamilies = new Set([...surfaceLedger.decisions, ...surfaceLedger2.decisions].map(item => item.family_id));
+const surfaceLedger3Bytes = await readFile('audit/associative-family-v5/manual-surface-family-decisions-3.json');
+const surfaceLedger3 = JSON.parse(surfaceLedger3Bytes);
+const surfaceLedger3Sha = createHash('sha256').update(surfaceLedger3Bytes).digest('hex');
+const surfaceRepair3 = provenance.repository_repairs?.find(item => item.repair === 'remove_reviewed_surface_families_batch_3');
+const surfaceRemoved3 = surfaceLedger3.decisions.reduce((sum, item) => sum + item.reviewed_words.length, 0);
+assert(surfaceLedger3.source_run_id === expectedRunId && surfaceLedger3.decisions.length === 3, 'surface family third ledger mismatch');
+assert(surfaceRepair3?.removed_memberships === surfaceRemoved3 && surfaceRepair3?.decision_ledger_sha256 === surfaceLedger3Sha, 'surface third repair provenance mismatch');
+assert(JSON.stringify(surfaceRepair3.deleted_families) === JSON.stringify(surfaceLedger3.decisions.map(item => item.family_id)), 'surface third deleted families mismatch');
+assert(report.repository_materialization?.surface_case_ledger_3_sha256 === surfaceLedger3Sha, 'report third surface ledger mismatch');
+assert(report.repository_materialization?.reviewed_surface_memberships_removed === surfaceRemoved + surfaceRemoved2 + surfaceRemoved3, 'report surface removal count mismatch');
+const deletedSurfaceFamilies = new Set([...surfaceLedger.decisions, ...surfaceLedger2.decisions, ...surfaceLedger3.decisions].map(item => item.family_id));
 const rejectedManualKeys = new Set(manualLedger.rejected_memberships.map(item => `${item.language}\0${item.family_id}\0${item.lemma_id}`));
 const preservedManualKeys = new Set(manualLedger.preserved_positive_controls.map(item => `${item.language}\0${item.family_id}\0${item.word}`));
 assert(rejectedManualKeys.size === 22, 'duplicate rejected manual memberships');
@@ -195,7 +204,7 @@ assert(familyIdsByBucket[parseInt(bucket('family:liber'), 16)].has('family:liber
 assert(liberLanguages.size === languages.length, `family:liber missing languages: ${languages.filter(x => !liberLanguages.has(x)).join(',')}`);
 assert(quarantinedManualFamilies.size === 0, 'quarantined family missing from metadata');
 assert(preservedManualKeys.size === 0, `preserved positive controls missing: ${[...preservedManualKeys].join(', ')}`);
-assert(membershipCount === 10426047 - manualLedger.rejected_memberships.length - surfaceRemoved - surfaceRemoved2, 'unexpected repository membership count');
+assert(membershipCount === 10426047 - manualLedger.rejected_memberships.length - surfaceRemoved - surfaceRemoved2 - surfaceRemoved3, 'unexpected repository membership count');
 assert(familyCount === manifest.counts.families && familyCount === report.total_families, `family count ${familyCount}`);
 assert(materializedFamilyCount === familyCount, 'not every family was materialized');
 

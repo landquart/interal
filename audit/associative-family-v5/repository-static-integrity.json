@@ -5,20 +5,20 @@
   "storage": "git_repository_static_files",
   "encoding": "gzip",
   "counts": {
-    "families": 2456615,
+    "families": 2456612,
     "aliases": 1934051,
     "lemmas": 4924980,
     "components": 9349982,
-    "memberships": 10425825,
+    "memberships": 10425726,
     "memberships_by_language": {
       "en": 2646008,
       "de": 2279243,
       "fr": 1155625,
-      "es": 1892801,
-      "it": 1215092,
-      "ru": 1237056
+      "es": 1892752,
+      "it": 1215065,
+      "ru": 1237033
     },
-    "materialized_families": 2456615
+    "materialized_families": 2456612
   },
   "invariants": {
     "manifest_report_counts_match": true,
@@ -52,8 +52,8 @@
     },
     "storage": "git_repository_static_files",
     "file_count_before_provenance": 2050,
-    "total_bytes_before_provenance": 743303939,
-    "tree_content_sha256": "5375df9fe05918fb27dcebb10c57bb5cb55f4712ad929ea4559412ef8c04b4db",
+    "total_bytes_before_provenance": 743279064,
+    "tree_content_sha256": "7884a53c32abf91541e272f2e5a1c80223e8521bdba543d570bd27ecb206d6d5",
     "repository_repairs": [
       {
         "repair": "exclude_known_rejected_corpus_noise_from_runtime",
@@ -97,6 +97,19 @@
         "deleted_aliases": 0,
         "source_run_id": 35647932153,
         "decision_ledger_sha256": "0a24a7ce3d56171bacc1a448c1578720e965f06ef5b5053c751707dfebc9c7d3",
+        "not_human_statistical_annotation": true
+      },
+      {
+        "repair": "remove_reviewed_surface_families_batch_3",
+        "removed_memberships": 99,
+        "deleted_families": [
+          "surface:es:nnn",
+          "surface:it:dib",
+          "surface:ru:abr"
+        ],
+        "deleted_aliases": 0,
+        "source_run_id": 35647932153,
+        "decision_ledger_sha256": "4931913bb5bea97b7e46422f93e5fbd0c2412764735036e1d283f57e32a6314f",
         "not_human_statistical_annotation": true
       }
     ]

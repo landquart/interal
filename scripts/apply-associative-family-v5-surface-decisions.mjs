@@ -27,19 +27,21 @@ assert(ledger.source_run_id === 35647932153 && ledger.decisions.length === 3, 'u
 assert(Number(manifest.repository_storage.immutable_source_run_id) === ledger.source_run_id && provenance.source_run_id === ledger.source_run_id, 'source mismatch');
 assert(!provenance.repository_repairs.some(item => item.repair === repairName), 'already applied');
 const familiesPath = shardPath('families', ledger.decisions[0].family_id);
-const membersPath = shardPath('members', ledger.decisions[0].family_id, 'en');
 const families = await readJson(familiesPath);
-const members = await readJson(membersPath);
+const memberShards = new Map();
 const aliasShards = new Map();
 let count = 0;
 let deletedAliases = 0;
 // Validate the complete current member sets and lookup entries before the first write.
 for (const item of ledger.decisions) {
-  assert(item.action === 'delete_family' && item.language === 'en', `invalid action ${item.family_id}`);
-  assert(shardPath('families', item.family_id) === familiesPath && shardPath('members', item.family_id, item.language) === membersPath, 'unexpected family bucket');
+  assert(item.action === 'delete_family' && manifest.languages.includes(item.language), `invalid action ${item.family_id}`);
+  assert(shardPath('families', item.family_id) === familiesPath, 'unexpected family bucket');
+  const memberPath = shardPath('members', item.family_id, item.language);
+  if (!memberShards.has(memberPath)) memberShards.set(memberPath, await readJson(memberPath));
+  const members = memberShards.get(memberPath);
   const family = families[item.family_id];
   const values = members[item.family_id];
-  assert(family?.source === 'surface_singleton' && family?.support === values?.length && family?.language_support?.en === values.length, `support mismatch ${item.family_id}`);
+  assert(family?.source === 'surface_singleton' && family?.support === values?.length && family?.language_support?.[item.language] === values.length, `support mismatch ${item.family_id}`);
   assert(Object.keys(family.language_support).length === 1 && family.aliases.length === 1 && family.aliases[0] === family.canonical, `unexpected family shape ${item.family_id}`);
   const found = values.map(value => value.word).sort();
   const reviewed = [...item.reviewed_words].sort();
@@ -57,7 +59,7 @@ for (const item of ledger.decisions) {
   aliases[alias] = aliases[alias].filter(id => id !== item.family_id);
   if (aliases[alias].length === 0) { delete aliases[alias]; deletedAliases += 1; }
   delete families[item.family_id];
-  delete members[item.family_id];
+  delete memberShards.get(shardPath('members', item.family_id, item.language))[item.family_id];
 }
 manifest.counts.families -= ledger.decisions.length;
 manifest.counts.aliases -= deletedAliases;
@@ -69,10 +71,11 @@ for (const field of ['largest_families', 'highest_suspicion_families']) {
 const ledgerSha = createHash('sha256').update(ledgerBytes).digest('hex');
 report.repository_materialization.reviewed_surface_memberships_removed = (report.repository_materialization.reviewed_surface_memberships_removed || 0) + count;
 report.repository_materialization.reviewed_surface_families_removed = (report.repository_materialization.reviewed_surface_families_removed || 0) + ledger.decisions.length;
-report.repository_materialization[repairName === 'remove_reviewed_surface_families' ? 'surface_case_ledger_sha256' : 'surface_case_ledger_2_sha256'] = ledgerSha;
+const ledgerField = repairName === 'remove_reviewed_surface_families' ? 'surface_case_ledger_sha256' : repairName === 'remove_reviewed_surface_families_batch_2' ? 'surface_case_ledger_2_sha256' : 'surface_case_ledger_3_sha256';
+report.repository_materialization[ledgerField] = ledgerSha;
 provenance.repository_repairs.push({ repair: repairName, removed_memberships: count, deleted_families: ledger.decisions.map(item => item.family_id), deleted_aliases: deletedAliases, source_run_id: ledger.source_run_id, decision_ledger_sha256: ledgerSha, not_human_statistical_annotation: true });
 await writeJson(familiesPath, families);
-await writeJson(membersPath, members);
+for (const [path, shard] of memberShards) await writeJson(path, shard);
 for (const [path, shard] of aliasShards) await writeJson(path, shard);
 await writeJson(manifestPath, manifest);
 await writeJson(reportPath, report);
