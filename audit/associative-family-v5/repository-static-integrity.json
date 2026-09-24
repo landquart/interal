@@ -5,20 +5,20 @@
   "storage": "git_repository_static_files",
   "encoding": "gzip",
   "counts": {
-    "families": 2456612,
+    "families": 2456603,
     "aliases": 1934051,
     "lemmas": 4924980,
     "components": 9349982,
-    "memberships": 10425726,
+    "memberships": 10337236,
     "memberships_by_language": {
       "en": 2646008,
-      "de": 2279243,
-      "fr": 1155625,
+      "de": 2253714,
+      "fr": 1155604,
       "es": 1892752,
       "it": 1215065,
-      "ru": 1237033
+      "ru": 1174093
     },
-    "materialized_families": 2456612
+    "materialized_families": 2456603
   },
   "invariants": {
     "manifest_report_counts_match": true,
@@ -52,8 +52,8 @@
     },
     "storage": "git_repository_static_files",
     "file_count_before_provenance": 2050,
-    "total_bytes_before_provenance": 743279064,
-    "tree_content_sha256": "7884a53c32abf91541e272f2e5a1c80223e8521bdba543d570bd27ecb206d6d5",
+    "total_bytes_before_provenance": 737302850,
+    "tree_content_sha256": "5eafdee06f7d79e49bfcd504b1a0e7441cfae1dac59ce94bc4be0d05ca606597",
     "repository_repairs": [
       {
         "repair": "exclude_known_rejected_corpus_noise_from_runtime",
@@ -111,6 +111,45 @@
         "source_run_id": 35647932153,
         "decision_ledger_sha256": "4931913bb5bea97b7e46422f93e5fbd0c2412764735036e1d283f57e32a6314f",
         "not_human_statistical_annotation": true
+      },
+      {
+        "repair": "remove_reviewed_surface_families_batch_4",
+        "removed_memberships": 65,
+        "deleted_families": [
+          "surface:fr:nni",
+          "surface:de:cil",
+          "surface:ru:esb"
+        ],
+        "deleted_aliases": 0,
+        "source_run_id": 35647932153,
+        "decision_ledger_sha256": "ab915eaec481654d2dc145148f717868f555c2ac1672d6020bc263bc6b9b1c24",
+        "not_human_statistical_annotation": true
+      },
+      {
+        "repair": "remove_incoherent_surface_de_ten",
+        "removed_memberships": 17618,
+        "deleted_families": [
+          "surface:de:ten"
+        ],
+        "deleted_aliases": 0,
+        "decision_ledger_sha256": "fe227a1066d41ee0543341d62253bce834ea67b975a39bc266381c3d40621d80",
+        "source_run_id": 35647932153,
+        "not_individual_lexical_annotation": true
+      },
+      {
+        "repair": "remove_incoherent_inflection_surface_families",
+        "removed_memberships": 70807,
+        "deleted_families": [
+          "surface:ru:yj",
+          "surface:ru:sja",
+          "surface:ru:skij",
+          "surface:ru:nie",
+          "surface:de:nen"
+        ],
+        "deleted_aliases": 0,
+        "decision_ledger_sha256": "f1d30083107253de92d8832ede7a6b091e44655b0c4eb67f5125e246913d2c4b",
+        "source_run_id": 35647932153,
+        "not_individual_lexical_annotation": true
       }
     ]
   }

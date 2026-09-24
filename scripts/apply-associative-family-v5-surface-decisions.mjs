@@ -71,7 +71,9 @@ for (const field of ['largest_families', 'highest_suspicion_families']) {
 const ledgerSha = createHash('sha256').update(ledgerBytes).digest('hex');
 report.repository_materialization.reviewed_surface_memberships_removed = (report.repository_materialization.reviewed_surface_memberships_removed || 0) + count;
 report.repository_materialization.reviewed_surface_families_removed = (report.repository_materialization.reviewed_surface_families_removed || 0) + ledger.decisions.length;
-const ledgerField = repairName === 'remove_reviewed_surface_families' ? 'surface_case_ledger_sha256' : repairName === 'remove_reviewed_surface_families_batch_2' ? 'surface_case_ledger_2_sha256' : 'surface_case_ledger_3_sha256';
+const batch = /^remove_reviewed_surface_families_batch_(\d+)$/.exec(repairName);
+assert(repairName === 'remove_reviewed_surface_families' || (batch && Number(batch[1]) >= 2), 'invalid repair name');
+const ledgerField = batch ? `surface_case_ledger_${batch[1]}_sha256` : 'surface_case_ledger_sha256';
 report.repository_materialization[ledgerField] = ledgerSha;
 provenance.repository_repairs.push({ repair: repairName, removed_memberships: count, deleted_families: ledger.decisions.map(item => item.family_id), deleted_aliases: deletedAliases, source_run_id: ledger.source_run_id, decision_ledger_sha256: ledgerSha, not_human_statistical_annotation: true });
 await writeJson(familiesPath, families);
