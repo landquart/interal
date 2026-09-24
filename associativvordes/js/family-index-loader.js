@@ -32,7 +32,10 @@ const MANUALLY_QUARANTINED_FAMILIES = new Set([
   'ety:315724e202e2',
   'ety:ca11c4d91dcb',
   'ety:1e7afcab5044',
-  'ety:579f4e520ecd'
+  'ety:579f4e520ecd',
+  'ety:00ff06cbe8c8',
+  'ety:3b5769fa0463',
+  'ety:fb8a2c387e83'
 ]);
 // These prefixes were checked against the most frequent members of the named
 // language branches. In particular, English auto- and German kontakt do not
