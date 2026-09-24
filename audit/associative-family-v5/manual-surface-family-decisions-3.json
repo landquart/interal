@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "source_commit": "f1f6b51294a5b4e91b3dc6a3096093cd6b9cb90d",
+  "source_run_id": 35647932153,
+  "scope": "Complete case review of three short surface families in Spanish, Italian, and Russian; not independent human or statistical annotation.",
+  "decisions": [
+    {
+      "family_id": "surface:es:nnn",
+      "language": "es",
+      "action": "delete_family",
+      "reason": "Repeated nnn is a transcription elongation or coincidental spelling in unrelated names and phrases; it is not an etymological stem of the whole entries.",
+      "reviewed_words": ["atenciónnn", "bennnn", "bieeeennn", "bieeennn", "biennn", "buennn", "cariñññ", "carolynnn", "cristiennamunnn", "davignnonnn", "dawsooonnn", "discreciónnn", "djinnn", "dobermannn", "fannnn", "flannnery", "flynnn", "glennnister", "grannn", "hermannn", "infiernnn", "johnnn", "jooohhnnn", "lonnnn", "maaaannn", "mamonnn", "mueeevannnssseee", "nnn", "nññ", "nnña", "nnnancy", "nnnathan", "nnnhhh", "nnnngh", "nnnnie", "nnnope", "nnnós", "ppaannn", "quiénnn", "religiooónnn", "rennconnntrais", "rinnnn", "salgannn", "sonnnn", "tannnn", "tennnn", "uggnnnhhh", "uhhhhnnn", "weizmannn"]
+    },
+    {
+      "family_id": "surface:it:dib",
+      "language": "it",
+      "action": "delete_family",
+      "reason": "The sequence dib occurs in unrelated personal names, foreign words, text glued together and playful spellings; the list shares no whole-word etymology.",
+      "reviewed_words": ["bibidibobidibù", "dib", "diba", "dibadeaux", "dibban", "dibber", "dibbity", "dibbuk", "dibe", "dibelius", "dibillyjacoby", "dibinsky", "dibley", "dibnah", "dibney", "dibo", "diboridium", "fliminubahdibferer", "fliminubahdibterer", "goldibucks", "handibook", "pensieridibojack", "quelcattivonedibrad", "ridibundus", "stevedibeverlyhills", "studib", "windibank"]
+    },
+    {
+      "family_id": "surface:ru:abr",
+      "language": "ru",
+      "action": "delete_family",
+      "reason": "The three-letter transliterated sequence abr collects unrelated Russian fragments, surnames and words including чабрец and взабрать; it does not identify a whole-word etymological family.",
+      "reviewed_words": ["абр", "абрать", "абрео", "абрэть", "абрил", "абриль", "абрис", "абрить", "абромович", "абронат", "абронзиус", "аброуз", "абруццо", "абрутить", "абруззь", "чабрец", "ьерабрас", "ихабрулить", "лябрь", "силиабриз", "тябрь", "усабрь", "взабрать"]
+    }
+  ]
+}

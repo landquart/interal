@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "source_commit": "b84569b307afff87140f74c12ce0d0f31e843178",
+  "source_run_id": 35647932153,
+  "scope": "Second complete word-by-word assistant review of three English surface families; not an independent statistical annotation.",
+  "decisions": [
+    {
+      "family_id": "surface:en:gup",
+      "language": "en",
+      "action": "delete_family",
+      "reason": "The sequence gup is mainly the boundary between an English verb ending in g and the separate particle up (bringing up, going up), mixed with unrelated names and concatenated text. No shared whole-lemma etymology connects the list.",
+      "reviewed_words": ["backingup", "bangup", "breakingup", "bringup", "catchingup", "comingup", "doingup", "donangup", "gangup", "givingup", "goingup", "gup", "gupal", "gupaviyat", "gupe", "gupellet", "gupinath", "gupreet", "gups", "guptar", "guptha", "guptta", "hangingup", "holdingup", "hungup", "liningup", "managup", "openingup", "pacingup", "payingup", "runningup", "sanggup", "sleepingup", "somethingup", "stopmakingupliesaboutmymom", "tosagupaeng", "tyingup", "yallingup"]
+    },
+    {
+      "family_id": "surface:en:rrt",
+      "language": "en",
+      "action": "delete_family",
+      "reason": "The repeated letters rrt occur in unrelated misspellings and onomatopoeia (chart, heart, court, start, and others); they are not an etymological stem.",
+      "reviewed_words": ["alerrt", "aparrrrt", "aparrtment", "biirrthhhday", "blackberrt", "ccuuurrttaaainn", "charrt", "courrt", "courrtyard", "escorrt", "faaarrrt", "ffrrrt", "foorrtthheeeu", "grrrrt", "hearrt", "imporrtant", "imprrtant", "ofarrt", "pfffrrrrt", "pffrrrt", "pffrrt", "pfrrrt", "phhfffrrt", "phhrrtttt", "phlbrrrt", "phrrrrt", "phrrrt", "ppphrrt", "rocquencourrt", "rrt", "rrts", "rrturn", "skerrt", "skirrt", "smarrtfellow", "sperrt", "squirrrt", "starrrt", "twarrt", "zwarrt"]
+    },
+    {
+      "family_id": "surface:en:mef",
+      "language": "en",
+      "action": "delete_family",
+      "reason": "The sequence mef crosses unrelated concatenated words (came from, me feel, me for), names, and spelling errors; it is not a common whole-word root.",
+      "reviewed_words": ["aboutmeforthat", "firsbflmef", "hanimefendi", "hascomefrom", "hecamefrom", "heshnermefffizin", "interruptingmefrom", "makesmefeel", "mef", "mefall", "mefalsim", "mefeei", "mefeel", "mefesto", "meffert", "mefind", "mefkufsunuz", "meflat", "mefodich", "mefody", "mefodyevich", "meforaweek", "meforget", "mefortransport", "mefour", "mefrom", "mefs", "meftahutdin", "meftai", "mefternich", "meftsu", "mefulu", "mefunim", "shamefast", "shamefuiiy", "shamefull", "slimefish", "stromeferry", "summef", "swimmef", "youcamefrom"]
+    }
+  ]
+}

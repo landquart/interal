@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "source_commit": "343bcd20fd9e55573402f7e4a80d80577754e804",
+  "source_run_id": 35647932153,
+  "scope": "Three complete English surface families reviewed word by word. This is a case review, not a statistical annotation or a blanket rule for other families.",
+  "decisions": [
+    {
+      "family_id": "surface:en:ofn",
+      "language": "en",
+      "action": "delete_family",
+      "reason": "The short sequence ofn is an abbreviation or a coincidental sequence crossing unrelated words and concatenated corpus fragments; the list has no common whole-word etymology.",
+      "reviewed_words": ["offofnikki", "ofn", "ofnana", "ofnavy", "ofnbsp", "ofneighbour", "ofnenana", "ofner", "ofnergy", "ofnetu", "ofnevermind", "ofnext", "ofniet", "ofniko", "ofninja", "ofnirvana", "ofnorthern", "ofnostalgia", "ofnour", "ofnozinan", "ofns", "ofnseven", "ofnuclear"]
+    },
+    {
+      "family_id": "surface:en:lpo",
+      "language": "en",
+      "action": "delete_family",
+      "reason": "The sequence lpo crosses unrelated components in point, polish, poetry, politics and proper names; the token lpo is not evidence of their shared etymology.",
+      "reviewed_words": ["actualpoetic", "ballpoint", "boolporiya", "chemulpo", "chimalpopoca", "disculpo", "eumolpo", "fallpoint", "filllpo", "goalpostn", "jemulpo", "kibulpo", "lpo", "lpoint", "lpos", "mallpo", "millpoint", "nailpolish", "neutralpo", "opolpo", "pencilpoint", "physicalpoetry", "schnellpolka", "smallpo", "sozialpolitik", "stillpoint", "unlpo", "wellpoint"]
+    },
+    {
+      "family_id": "surface:en:ilv",
+      "language": "en",
+      "action": "delete_family",
+      "reason": "The apparent ilv component joins unrelated names, spelling errors and words such as happily/heavily; it is not a shared lexical root of the whole entries.",
+      "reviewed_words": ["ambilvalent", "familv", "happilv", "heavilv", "heismayilvaganam", "ifmayilvaganam", "ilv", "ilved", "ilver", "ilvian", "ilving", "ilvlng", "ilvvell", "ismayilvaganam", "macgilvray", "macilvaney", "mavilvaganam", "mayilvaganam", "mayilvaganamgang", "mayilvaganamtoandhra", "mayilvahanam", "mayilvahanan", "mcgilvery", "mcgilvray", "mcgilvrey", "necessarilv", "sunilv", "temporarilv", "tiruvilvamala", "wantmayilvaganamtobeherein"]
+    }
+  ]
+}
