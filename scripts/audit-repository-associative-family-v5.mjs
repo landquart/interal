@@ -89,8 +89,35 @@ assert(surfaceLedger3.source_run_id === expectedRunId && surfaceLedger3.decision
 assert(surfaceRepair3?.removed_memberships === surfaceRemoved3 && surfaceRepair3?.decision_ledger_sha256 === surfaceLedger3Sha, 'surface third repair provenance mismatch');
 assert(JSON.stringify(surfaceRepair3.deleted_families) === JSON.stringify(surfaceLedger3.decisions.map(item => item.family_id)), 'surface third deleted families mismatch');
 assert(report.repository_materialization?.surface_case_ledger_3_sha256 === surfaceLedger3Sha, 'report third surface ledger mismatch');
-assert(report.repository_materialization?.reviewed_surface_memberships_removed === surfaceRemoved + surfaceRemoved2 + surfaceRemoved3, 'report surface removal count mismatch');
-const deletedSurfaceFamilies = new Set([...surfaceLedger.decisions, ...surfaceLedger2.decisions, ...surfaceLedger3.decisions].map(item => item.family_id));
+const surfaceLedger4Bytes = await readFile('audit/associative-family-v5/manual-surface-family-decisions-4.json');
+const surfaceLedger4 = JSON.parse(surfaceLedger4Bytes);
+const surfaceLedger4Sha = createHash('sha256').update(surfaceLedger4Bytes).digest('hex');
+const surfaceRepair4 = provenance.repository_repairs?.find(item => item.repair === 'remove_reviewed_surface_families_batch_4');
+const surfaceRemoved4 = surfaceLedger4.decisions.reduce((sum, item) => sum + item.reviewed_words.length, 0);
+assert(surfaceLedger4.source_run_id === expectedRunId && surfaceLedger4.decisions.length === 3, 'surface family fourth ledger mismatch');
+assert(surfaceRepair4?.removed_memberships === surfaceRemoved4 && surfaceRepair4?.decision_ledger_sha256 === surfaceLedger4Sha, 'surface fourth repair provenance mismatch');
+assert(JSON.stringify(surfaceRepair4.deleted_families) === JSON.stringify(surfaceLedger4.decisions.map(item => item.family_id)), 'surface fourth deleted families mismatch');
+assert(report.repository_materialization?.surface_case_ledger_4_sha256 === surfaceLedger4Sha, 'report fourth surface ledger mismatch');
+assert(report.repository_materialization?.reviewed_surface_memberships_removed === surfaceRemoved + surfaceRemoved2 + surfaceRemoved3 + surfaceRemoved4, 'report surface removal count mismatch');
+const tenLedgerBytes = await readFile('audit/associative-family-v5/surface-ten-decision.json');
+const tenLedger = JSON.parse(tenLedgerBytes);
+const tenLedgerSha = createHash('sha256').update(tenLedgerBytes).digest('hex');
+const tenRepair = provenance.repository_repairs?.find(item => item.repair === 'remove_incoherent_surface_de_ten');
+assert(tenLedger.source_run_id === expectedRunId && tenLedger.family_id === 'surface:de:ten' && tenLedger.expected_members === 17618, 'surface ten ledger mismatch');
+assert(tenRepair?.removed_memberships === tenLedger.expected_members && tenRepair?.decision_ledger_sha256 === tenLedgerSha, 'surface ten provenance mismatch');
+assert(report.repository_materialization?.surface_ten_ledger_sha256 === tenLedgerSha, 'report ten ledger mismatch');
+const inflectionLedgerBytes = await readFile('audit/associative-family-v5/surface-inflection-decisions.json');
+const inflectionLedger = JSON.parse(inflectionLedgerBytes);
+const inflectionLedgerSha = createHash('sha256').update(inflectionLedgerBytes).digest('hex');
+const inflectionRepair = provenance.repository_repairs?.find(item => item.repair === 'remove_incoherent_inflection_surface_families');
+const inflectionRemoved = inflectionLedger.decisions.reduce((sum, item) => sum + item.expected_members, 0);
+assert(inflectionLedger.source_run_id === expectedRunId && inflectionLedger.decisions.length === 5, 'inflection family ledger mismatch');
+assert(inflectionRepair?.removed_memberships === inflectionRemoved && inflectionRepair?.decision_ledger_sha256 === inflectionLedgerSha, 'inflection provenance mismatch');
+assert(JSON.stringify(inflectionRepair.deleted_families) === JSON.stringify(inflectionLedger.decisions.map(item => item.family_id)), 'inflection deleted families mismatch');
+assert(report.repository_materialization?.inflection_family_ledger_sha256 === inflectionLedgerSha, 'report inflection ledger mismatch');
+const deletedSurfaceFamilies = new Set([...surfaceLedger.decisions, ...surfaceLedger2.decisions, ...surfaceLedger3.decisions, ...surfaceLedger4.decisions].map(item => item.family_id));
+deletedSurfaceFamilies.add(tenLedger.family_id);
+for (const item of inflectionLedger.decisions) deletedSurfaceFamilies.add(item.family_id);
 const rejectedManualKeys = new Set(manualLedger.rejected_memberships.map(item => `${item.language}\0${item.family_id}\0${item.lemma_id}`));
 const preservedManualKeys = new Set(manualLedger.preserved_positive_controls.map(item => `${item.language}\0${item.family_id}\0${item.word}`));
 assert(rejectedManualKeys.size === 22, 'duplicate rejected manual memberships');
@@ -129,6 +156,11 @@ for (const language of languages) {
 
 const familyIdsByBucket = Array.from({ length: 256 }, () => new Set());
 const requiredAliasPairs = new Map();
+const reportCounts = { merged: 0, singleton: 0, multiBranch: 0, nonProto: 0, verifiedSeed: 0, reviewRequired: 0, unreviewedHighRisk: 0 };
+const reportStatuses = new Set(['needs_review', 'blocked_from_runtime', 'rejected', 'split_required']);
+const topLargest = [];
+const topSuspicious = [];
+const keepTop = (array, family, compare) => { array.push({ id: family.id, support: family.support, suspicion_score: family.suspicion_score }); array.sort(compare); if (array.length > 50) array.length = 50; };
 let familyCount = 0;
 let membershipCount = 0;
 const membershipsByLanguage = Object.fromEntries(languages.map(language => [language, 0]));
@@ -163,6 +195,15 @@ for (let index = 0; index < 256; index += 1) {
       if (!targets) requiredAliasPairs.set(alias, targets = new Set());
       targets.add(id);
     }
+    if (family.source !== 'surface_singleton') reportCounts.merged += 1;
+    if (family.support === 1) reportCounts.singleton += 1;
+    if (family.aliases.length > 1) reportCounts.multiBranch += 1;
+    if (family.source === 'wiktionary_non_proto_etymology') reportCounts.nonProto += 1;
+    if (family.verified) reportCounts.verifiedSeed += 1;
+    if (reportStatuses.has(family.review_status)) reportCounts.reviewRequired += 1;
+    if (family.suspicion_score >= 35 && !reportStatuses.has(family.review_status)) reportCounts.unreviewedHighRisk += 1;
+    keepTop(topLargest, family, (a, b) => b.support - a.support || a.id.localeCompare(b.id));
+    keepTop(topSuspicious, family, (a, b) => b.suspicion_score - a.suspicion_score || b.support - a.support || a.id.localeCompare(b.id));
     familyCount += 1;
   }
   for (const language of languages) {
@@ -204,9 +245,21 @@ assert(familyIdsByBucket[parseInt(bucket('family:liber'), 16)].has('family:liber
 assert(liberLanguages.size === languages.length, `family:liber missing languages: ${languages.filter(x => !liberLanguages.has(x)).join(',')}`);
 assert(quarantinedManualFamilies.size === 0, 'quarantined family missing from metadata');
 assert(preservedManualKeys.size === 0, `preserved positive controls missing: ${[...preservedManualKeys].join(', ')}`);
-assert(membershipCount === 10426047 - manualLedger.rejected_memberships.length - surfaceRemoved - surfaceRemoved2 - surfaceRemoved3, 'unexpected repository membership count');
+assert(membershipCount === 10426047 - manualLedger.rejected_memberships.length - surfaceRemoved - surfaceRemoved2 - surfaceRemoved3 - surfaceRemoved4 - tenLedger.expected_members - inflectionRemoved, 'unexpected repository membership count');
 assert(familyCount === manifest.counts.families && familyCount === report.total_families, `family count ${familyCount}`);
 assert(materializedFamilyCount === familyCount, 'not every family was materialized');
+for (const [field, counted] of [
+  ['merged_families', reportCounts.merged],
+  ['singleton_families', reportCounts.singleton],
+  ['multi_branch_families', reportCounts.multiBranch],
+  ['generated_non_proto_families', reportCounts.nonProto],
+  ['verified_seed_families', reportCounts.verifiedSeed],
+  ['review_required_families', reportCounts.reviewRequired]
+]) assert(report[field] === counted, `report ${field} mismatch`);
+assert(report.invariants.unreviewed_high_risk_families === reportCounts.unreviewedHighRisk, 'report high risk count mismatch');
+for (const [field, expected] of [['largest_families', topLargest], ['highest_suspicion_families', topSuspicious]]) {
+  assert(JSON.stringify(report[field].map(item => ({ id: item.id, support: item.support, suspicion_score: item.suspicion_score }))) === JSON.stringify(expected), `report ${field} mismatch`);
+}
 
 let aliasCount = 0;
 for (let index = 0; index < 256; index += 1) {

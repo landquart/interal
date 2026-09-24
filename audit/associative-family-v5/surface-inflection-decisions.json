@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "source_run_id": 35647932153,
+  "scope": "Five complete family-level decisions about inflectional or derivational endings, not individual etymological annotation of all members.",
+  "decisions": [
+    {
+      "family_id": "surface:ru:yj",
+      "language": "ru",
+      "expected_status": "blocked_from_runtime",
+      "expected_members": 29617,
+      "member_list_sha256": "b46d450c5d213cf77b98033012ba0e4dd88a8cd3f1ee9a6216ff93635472f8dd",
+      "expected_evidence": {"compound_morphology:candidate_index": 29617, "morphological_parse:candidate_index": 1},
+      "reason": "The transliterated -yj is the recurring Russian adjective ending -ый/-ий, visible in unrelated adjectives such as должный, самый, нужный and главный; it is not a shared lexical etymon."
+    },
+    {
+      "family_id": "surface:ru:sja",
+      "language": "ru",
+      "expected_status": "needs_review",
+      "expected_members": 13090,
+      "member_list_sha256": "6036e6560ba6f4d845370d63f4149efec1fdbbf49f72334868316aab9b8c9b82",
+      "expected_evidence": {"compound_morphology:candidate_index": 13087, "morphological_parse:candidate_index": 3},
+      "reason": "The transliterated -sja is the Russian reflexive suffix -ся/-сь shared by unrelated verbs including являться, собираться and нравиться; it is not their common whole-word root."
+    },
+    {
+      "family_id": "surface:ru:skij",
+      "language": "ru",
+      "expected_status": "needs_review",
+      "expected_members": 11871,
+      "member_list_sha256": "a621073cfbb3a323d511a0681b63443512825e43023aa1f173b5084793842086",
+      "expected_evidence": {"compound_morphology:candidate_index": 11870, "morphological_parse:candidate_index": 1},
+      "reason": "The transliterated -skij is the Russian adjectival ending -ский in unrelated words such as российский, женский and японский; a common suffix is not a common lexical family."
+    },
+    {
+      "family_id": "surface:ru:nie",
+      "language": "ru",
+      "expected_status": "needs_review",
+      "expected_members": 8341,
+      "member_list_sha256": "4b9af0abd1bc596d09c29375141a869acda546cf1a1d56c7228c659b299163dd",
+      "expected_evidence": {"compound_morphology:candidate_index": 8339, "morphological_parse:candidate_index": 2},
+      "reason": "The transliterated -nie frequently reflects the Russian noun ending -ние in unrelated words such as отношение, решение and внимание; it is not one shared stem."
+    },
+    {
+      "family_id": "surface:de:nen",
+      "language": "de",
+      "expected_status": "needs_review",
+      "expected_members": 7888,
+      "member_list_sha256": "af800c994d1c3481bcdfa6cfca77c42f0a43c6114b5cba17a91e98cbd6b5317c",
+      "expected_evidence": {"compound_morphology:candidate_index": 7884, "morphological_parse:candidate_index": 4},
+      "reason": "German -nen often crosses verb endings and unrelated stems, as in warnen, begegnen and regnen, and does not justify grouping the full words by origin."
+    }
+  ]
+}

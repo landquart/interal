@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "source_commit": "5cfad7192626717fff04afa71cf8f644d0a5cdff",
+  "source_run_id": 35647932153,
+  "family_id": "surface:de:ten",
+  "language": "de",
+  "action": "delete_incoherent_surface_family",
+  "expected_members": 17618,
+  "member_list_sha256": "b5bce108b003b33028b0f3fdc2fd3e2739c2ab045e94e2d5d8078b44d9d8309f",
+  "expected_evidence": {
+    "compound_morphology:candidate_index": 17611,
+    "morphological_parse:candidate_index": 8
+  },
+  "reason": "German -ten is a frequent inflectional or stem-final sequence in unrelated words. The leading frequency words include berichten, kosten, richten, fürchten, antworten and verraten. All 17,618 materialized members have only candidate-index morphological evidence for this three-letter surface sequence; none has a documented direct etymological relation or manual override to the proposed whole-word family. Delete this incoherent association family while preserving the lemmas and their other family memberships.",
+  "review_scope": "Family-level structural and linguistic decision. The complete member set and its evidence classes are locked by digest and checked before mutation; this is not an individual etymological judgment on all 17,618 words."
+}
