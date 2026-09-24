@@ -6,7 +6,8 @@ import { join } from 'node:path';
 import { gunzipSync, gzipSync } from 'node:zlib';
 
 const root = process.argv[2] || 'associativvordes/family-index-v5';
-const ledgerPath = 'audit/associative-family-v5/manual-surface-family-decisions.json';
+const ledgerPath = process.argv[3] || 'audit/associative-family-v5/manual-surface-family-decisions.json';
+const repairName = process.argv[4] || 'remove_reviewed_surface_families';
 const ledgerBytes = await readFile(ledgerPath);
 const ledger = JSON.parse(ledgerBytes);
 const assert = (value, message) => { if (!value) throw new Error(message); };
@@ -24,7 +25,7 @@ const provenancePath = join(root, 'repository-provenance.json');
 const [manifest, report, provenance] = await Promise.all([readJson(manifestPath), readJson(reportPath), readJson(provenancePath)]);
 assert(ledger.source_run_id === 35647932153 && ledger.decisions.length === 3, 'unexpected ledger or source');
 assert(Number(manifest.repository_storage.immutable_source_run_id) === ledger.source_run_id && provenance.source_run_id === ledger.source_run_id, 'source mismatch');
-assert(!provenance.repository_repairs.some(item => item.repair === 'remove_reviewed_surface_families'), 'already applied');
+assert(!provenance.repository_repairs.some(item => item.repair === repairName), 'already applied');
 const familiesPath = shardPath('families', ledger.decisions[0].family_id);
 const membersPath = shardPath('members', ledger.decisions[0].family_id, 'en');
 const families = await readJson(familiesPath);
@@ -66,10 +67,10 @@ for (const field of ['largest_families', 'highest_suspicion_families']) {
   assert(!(report[field] || []).some(item => ledger.decisions.some(decision => decision.family_id === item.id)), `report contains deleted family in ${field}`);
 }
 const ledgerSha = createHash('sha256').update(ledgerBytes).digest('hex');
-report.repository_materialization.reviewed_surface_memberships_removed = count;
-report.repository_materialization.reviewed_surface_families_removed = ledger.decisions.length;
-report.repository_materialization.surface_case_ledger_sha256 = ledgerSha;
-provenance.repository_repairs.push({ repair: 'remove_reviewed_surface_families', removed_memberships: count, deleted_families: ledger.decisions.map(item => item.family_id), deleted_aliases: deletedAliases, source_run_id: ledger.source_run_id, decision_ledger_sha256: ledgerSha, not_human_statistical_annotation: true });
+report.repository_materialization.reviewed_surface_memberships_removed = (report.repository_materialization.reviewed_surface_memberships_removed || 0) + count;
+report.repository_materialization.reviewed_surface_families_removed = (report.repository_materialization.reviewed_surface_families_removed || 0) + ledger.decisions.length;
+report.repository_materialization[repairName === 'remove_reviewed_surface_families' ? 'surface_case_ledger_sha256' : 'surface_case_ledger_2_sha256'] = ledgerSha;
+provenance.repository_repairs.push({ repair: repairName, removed_memberships: count, deleted_families: ledger.decisions.map(item => item.family_id), deleted_aliases: deletedAliases, source_run_id: ledger.source_run_id, decision_ledger_sha256: ledgerSha, not_human_statistical_annotation: true });
 await writeJson(familiesPath, families);
 await writeJson(membersPath, members);
 for (const [path, shard] of aliasShards) await writeJson(path, shard);
