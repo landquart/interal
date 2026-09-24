@@ -1,6 +1,6 @@
-# Manual runtime quarantine of fifteen mixed v5 families
+# Manual runtime quarantine of nineteen mixed v5 families
 
-The repository-backed v5 member shards are retained byte-for-byte. The runtime loader excludes these fifteen family IDs before loading member shards. This is a bounded safety decision based on individual record inspection, not a complete annotation of each family or an estimate of precision.
+The repository-backed v5 member shards are retained byte-for-byte. The runtime loader excludes these nineteen family IDs before loading member shards. This is a bounded safety decision based on individual record inspection, not a complete annotation of each family or an estimate of precision.
 
 | Family ID | Materialized support | Inspected records and defect | Disposition |
 |---|---:|---|---|
@@ -19,6 +19,10 @@ The repository-backed v5 member shards are retained byte-for-byte. The runtime l
 | `surface:es:ria` | 5,000 | `aalmería`, `abandonaria`, `abarrotería`: unrelated words share only `ria` at the end. | Quarantine pending a lexical-root treatment. |
 | `ety:1e9cc0c12192` (`la:illas`) | 7,738 | Spanish `abandónalas`, `abandonarlas`, `abastécelas` enter by the clitic `las`, not by descent of each complete word from Latin *illas*. Genuine pronouns may exist in the same family. | Quarantine pending pronoun/verb-clitic split. |
 | `ety:d4e12af70156` (`la:ens`) | 7,200 | Spanish `aaparentemente`, `aasionadamente`, `abducente` enter by `ente` inside adverbs/adjectives, not by whole-word descent from Latin *ens*. Genuine forms may exist in the same family. | Quarantine pending root/suffix split. |
+| `ety:315724e202e2` (`la:illos`) | 7,179 | Spanish `abalearlos`, `abandonarlos`, `abastecerlos` enter by the attached clitic `los`; the complete verbs do not descend from Latin *illos*. | Quarantine pending pronoun/clitic split. |
+| `ety:ca11c4d91dcb` (`la:illis`) | 6,957 | Italian `abbaiargli`, `abbassargli`, `accendergli` share the attached clitic `gli` across unrelated verbs. | Quarantine pending pronoun/clitic split. |
+| `ety:1e7afcab5044` (`la:sonus`) | 6,670 | Italian `sonetto` and `suono` coexist with malformed or unrelated forms such as `suonamu`, `suoneck` on a `suon` component. | Quarantine pending reviewed sound/sonnet branches and corpus cleanup. |
+| `ety:579f4e520ecd` (`la:ago`) | 5,582 | French `agir` coexists with concatenations `agirainsi`, `agiravec`, `agirnen` admitted by the `agir` sequence. | Quarantine pending corpus cleanup and a reviewed verb family. |
 
 The support figures are the current `report.json` family counts, not a count of false memberships. Some words in these families may have valid relationships that require a split. The runtime change neither deletes those records nor changes the immutable source run (`35647932153`), static shard hashes, report counts, or provenance. The family metadata still says `needs_review`; the effective runtime quarantine is defined in `associativvordes/js/family-index-loader.js`.
 
