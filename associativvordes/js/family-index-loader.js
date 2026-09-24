@@ -35,7 +35,10 @@ const MANUALLY_QUARANTINED_FAMILIES = new Set([
   'ety:579f4e520ecd',
   'ety:00ff06cbe8c8',
   'ety:3b5769fa0463',
-  'ety:fb8a2c387e83'
+  'ety:fb8a2c387e83',
+  'ety:81da90c51822',
+  'surface:it:ato',
+  'surface:en:ted'
 ]);
 // These prefixes were checked against the most frequent members of the named
 // language branches. In particular, English auto- and German kontakt do not
@@ -56,6 +59,12 @@ const REVIEWED_CANDIDATES = Object.freeze({
   },
   'ety:751cdacbf4a9': {
     de: new Set(['aktie', 'aktion', 'aktionär', 'action'])
+  },
+  'ety:03193cddd861': {
+    en: new Set(['neat', 'neatly', 'neater']), de: new Set(), fr: new Set(), es: new Set(), it: new Set(), ru: new Set()
+  },
+  'ety:94c776d13c76': {
+    en: new Set(['neat', 'neatly', 'neater']), de: new Set(), fr: new Set(), es: new Set(), it: new Set(), ru: new Set()
   }
 });
 const hasManualEvidence = member => member?.components?.some(component => component.evidence?.some(evidence => evidence.type === 'manual_override'));
