@@ -22,7 +22,13 @@ const MANUALLY_QUARANTINED_FAMILIES = new Set([
   'surface:ru:nie',
   'surface:de:nen',
   'surface:es:ado',
-  'surface:it:are'
+  'surface:it:are',
+  'surface:ru:vat',
+  'surface:es:nos',
+  'surface:ru:ija',
+  'surface:es:ria',
+  'ety:1e9cc0c12192',
+  'ety:d4e12af70156'
 ]);
 // These prefixes were checked against the most frequent members of the named
 // language branches. In particular, English auto- and German kontakt do not
