@@ -42,13 +42,13 @@ const REVIEWED_PREFIXES = Object.freeze({
 // Other languages still use the bounded evidence/frequency ranking below.
 const REVIEWED_CANDIDATES = Object.freeze({
   'ety:5bed7c192e10': {
-    en: new Set(['act', 'actually', 'activity', 'action', 'active', 'actual', 'actress', 'actively', 'activate', 'activist', 'acting', 'activation', 'activator', 'actuarial', 'actuary', 'activism', 'actuality', 'actus'])
+    en: new Set(['act', 'acting', 'acts', 'actual', 'actually', 'actuality', 'actuary', 'actuarial', 'actus', 'actuate', 'actuation', 'actuator', 'action'])
   },
   'ety:9a86a987fafc': {
-    de: new Set(['aktuell', 'aktie', 'aktion', 'aktivität', 'aktualisieren', 'akte', 'akt', 'aktivieren', 'aktionär', 'aktualität', 'aktualisierung', 'aktivist', 'aktivierung'])
+    de: new Set(['aktie', 'aktion', 'aktionär', 'action'])
   },
   'ety:751cdacbf4a9': {
-    de: new Set(['aktuell', 'aktie', 'aktion', 'aktivität', 'aktualisieren', 'akte', 'akt', 'aktivieren', 'aktionär', 'aktualität', 'aktualisierung', 'aktivist', 'aktivierung'])
+    de: new Set(['aktie', 'aktion', 'aktionär', 'action'])
   }
 });
 const hasManualEvidence = member => member?.components?.some(component => component.evidence?.some(evidence => evidence.type === 'manual_override'));
