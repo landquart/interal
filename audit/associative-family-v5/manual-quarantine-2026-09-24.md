@@ -34,10 +34,12 @@ I inspected the most frequent entries of three particularly noisy branches and c
 
 | Branch | Language | Examples rejected from the frequent results | Selected shortlist |
 |---|---|---|---:|
-| `ety:5bed7c192e10` (`la:actus`) | English | `contract` (from *contrahere*), `impact` (from *impingere*), `character` (Greek *kharaktēr*), `manufacturer` (*manus* + *facere*), `abstract` (*abstrahere*), `attract` (*attrahere*) | 18 words |
-| `ety:9a86a987fafc` (`la:acti`) | German | `Kontakt`, `Charakter`, `abstrakt`, and `abbe-refraktometers` share only an internal `akt` sequence; `Aktienmarkt` contains a related component but the whole compound needs a separate policy decision. | 13 words |
-| `ety:751cdacbf4a9` (`la:actio`) | German | The same contaminated German `akt` postings appear in this near-duplicate family. | 13 words |
+| `ety:5bed7c192e10` (`la:actus`) | English | `contract` (from *contrahere*), `impact` (from *impingere*), `character` (Greek *kharaktēr*), `manufacturer` (*manus* + *facere*), `abstract` (*abstrahere*), `attract` (*attrahere*); `active`/`activist` descend through *activus* and are left for a separate branch decision. | 13 words |
+| `ety:9a86a987fafc` (`la:acti`) | German | `Kontakt`, `Charakter`, `abstrakt`, and `abbe-refraktometers` share only an internal `akt` sequence; `aktuell` follows *actualis* and `Akt` follows *actus*, whereas `Aktie` follows *actio*. | 4 words |
+| `ety:751cdacbf4a9` (`la:actio`) | German | The same contaminated German `akt` postings appear in this near-duplicate family; compounds such as `Aktienmarkt` need a separate whole-word decision. | 4 words |
 
 These shortlists are recorded as exact words in the runtime loader. They are conservative retrieval selections, not a completed independent etymological annotation. For the other language slices and the remaining millions of families, a top-20 ranking only limits output size. It cannot establish that every selected word is appropriate, and it does not reduce the number of stored memberships. A claim that **every** family contains no more than 20 truly appropriate words would require case review of every selected record and a separate definition of whether inflected forms and compounds count as distinct words.
+
+Lexical cross-checks for the narrowed lists: [English *actuate*](https://en.wiktionary.org/wiki/actuate), [English *actuary*](https://en.wiktionary.org/wiki/actuary), [English *action*](https://en.wiktionary.org/wiki/action), [German *Aktie*](https://de.wiktionary.org/wiki/Aktie), [German *Aktionär*](https://de.wiktionary.org/wiki/Aktion%C3%A4r), and [German *aktuell*](https://de.wiktionary.org/wiki/aktuell). They support the stated branches, but are not independent adjudication of every retained form.
 
 As a targeted preservation check, the seven verified seed families in English have respectively 2, 3, 2, 2, 2, 2 and 2 members carrying `manual_override` evidence (`alter`, `ocul`, `pede`, `manu`, `regul`, `inter`, `liber`). These remain ahead of automatically inferred entries under the 20-result rule. This inspection was read-only and did not run the test suite.
