@@ -10,6 +10,14 @@ export function familyBucket(value) {
 const normalizeAlias = value => buildSearchForm(value).replace(/[^a-z0-9]/g, '');
 export const MAX_FAMILY_ALIAS_FANOUT = 25;
 const BLOCKED_RUNTIME_STATUSES = new Set(['blocked_from_runtime', 'rejected', 'split_required']);
+// Individually inspected suffix families in the immutable v5 materialization.
+// Keep their member shards intact for a future sense/root-level split.
+const MANUALLY_QUARANTINED_FAMILIES = new Set([
+  'surface:de:ten',
+  'ety:cf2897b18b16',
+  'surface:ru:sja',
+  'surface:ru:ka'
+]);
 const hasManualEvidence = member => member?.components?.some(component => component.evidence?.some(evidence => evidence.type === 'manual_override'));
 const isRuntimeCorpusMember = member => member?.corpus_quality?.status !== 'rejected';
 
@@ -36,7 +44,7 @@ export class FamilyIndexLoader {
     const ids = await this.resolveAlias(query, options);
     if (ids.length > MAX_FAMILY_ALIAS_FANOUT) throw new Error(`Family alias fan-out ${ids.length} exceeds runtime limit ${MAX_FAMILY_ALIAS_FANOUT}`);
     const families = await Promise.all(ids.map(id => this.family(id, options)));
-    const eligibleFamilies = families.filter(family => family && !BLOCKED_RUNTIME_STATUSES.has(family.review_status));
+    const eligibleFamilies = families.filter(family => family && !BLOCKED_RUNTIME_STATUSES.has(family.review_status) && !MANUALLY_QUARANTINED_FAMILIES.has(family.id));
     const groups = await Promise.all(eligibleFamilies.map(async family => ({ family, members: await this.members(family.id, language, options) })));
     const manualGroups = groups
       .filter(({ family }) => String(family.source || '').includes('manual_override'))
