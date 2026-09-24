@@ -8,6 +8,8 @@ Owner disposition recorded 2026-09-20: **OWNER_ACCEPTED_AT_RISK WITHOUT HUMAN LI
 
 Operational follow-up on 2026-09-22 materialized the immutable artifacts from source run `35647932153` as repository-backed static gzip files and removed the legacy Blob upload/runtime path. PRs `#629`, `#630`, and `#631` completed that migration and added a repeatable production regression. Production audit run `35720424792`, main Tests run `35721002453`, and deployment run `35721001710` passed. A subsequent exhaustive repository-shard audit found 30 runtime memberships for nine already rejected corpus-noise lemmas; the bounded repository repair removed them, deleted one newly empty family, and recalculated all affected support, language_support, aliases, manifest counts and repository provenance. A later *case-by-case assistant review*, documented in `manual-case-decisions.json`, removed 22 additional false memberships from seven families and quarantined the sense-ambiguous `enm:net` family as `split_required`, without deleting families or changing the source run. The resulting static repository has 2,456,621 families, 1,934,051 aliases and 10,426,025 memberships. The preserved `production-regression.json` verifies `family:liber` for all six languages, rejects a working `family:libert`, checks the complete returned sets for listed corpus noise, and exercises cache reuse, shared-loader races, in-flight AbortSignal cancellation, offline, timeout, corrupt-response, and 404 recovery. The new case review does not constitute independent human annotation, a statistical quality estimate, or proof that all other members of these families are correct. The production regression cited here predates this case-by-case change and must be rerun after deployment.
 
+A further word-by-word review of the three English surface families `ofn`, `lpo`, and `ilv` is recorded in `manual-surface-family-decisions.json`. The repository materialization removes their 81 false memberships and three now-empty families, while retaining the corpus lemmas themselves. Current repository totals are 2,456,618 families, 1,934,051 aliases, and 10,425,944 memberships. The earlier production regression does not cover this change; it requires a post-deployment rerun. This assistant review does not establish global linguistic precision.
+
 ## Object and provenance checked
 
 - PR: `#622`, branch `fix/associative-family-corrective-v5`; base `main` remains unchanged.
@@ -29,12 +31,12 @@ An independent streaming recount of all six locked assignment files established 
 |---|---:|
 | Lemma records | 4,924,980 |
 | Component evidence records | 9,349,982 |
-| Repository runtime memberships | 10,426,025 |
-| Materialized member records | 10,426,025 |
+| Repository runtime memberships | 10,425,944 |
+| Materialized member records | 10,425,944 |
 | Memberships with repeated component evidence | 5,097 |
 | Excess repeated component→membership links | 6,282 |
 
-`manifest.counts.components` is incremented once per component evidence record. It is not a membership count. The previous v4→v5 report compared v4 memberships (`14,918,457`) with v5 components (`9,350,026`), so its `-5,568,431` delta was invalid. The current repository-runtime membership delta is `10,426,025 - 14,918,457 = -4,492,432`; this reduction still proves neither precision nor recall. The repository count is 52 below the immutable source artifact: the materialization repair excluded 30 memberships belonging to nine rejected corpus-noise lemmas, followed by 22 individually examined false memberships. Source-artifact/assignment counts elsewhere in this audit remain historical and must not be reinterpreted as repository-runtime counts.
+`manifest.counts.components` is incremented once per component evidence record. It is not a membership count. The previous v4→v5 report compared v4 memberships (`14,918,457`) with v5 components (`9,350,026`), so its `-5,568,431` delta was invalid. The current repository-runtime membership delta is `10,425,944 - 14,918,457 = -4,492,513`; this reduction still proves neither precision nor recall. The repository count is 133 below the immutable source artifact: 30 memberships of rejected corpus-noise lemmas, 22 earlier case-reviewed memberships, and 81 memberships in the three deleted surface families. Source-artifact/assignment counts elsewhere in this audit remain historical and must not be reinterpreted as repository-runtime counts.
 
 ## Evidence status by gate
 

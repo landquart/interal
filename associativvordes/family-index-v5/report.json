@@ -115,7 +115,7 @@
   },
   "uncertain_relation_count": 431390,
   "uncertain_relation_sample_size": 100000,
-  "total_families": 2456621,
+  "total_families": 2456618,
   "merged_families": 20775,
   "singleton_families": 1735271,
   "multi_branch_families": 17703,
@@ -10949,6 +10949,9 @@
     "deleted_empty_families": 1,
     "individually_reviewed_false_memberships_removed": 22,
     "manual_case_ledger_sha256": "0b1dac6949f2dfdc89ee20b2907dd4724297a9b66603e04e1b860ded94f8cbc1",
-    "manually_quarantined_sense_ambiguous_families": 1
+    "manually_quarantined_sense_ambiguous_families": 1,
+    "reviewed_surface_memberships_removed": 81,
+    "reviewed_surface_families_removed": 3,
+    "surface_case_ledger_sha256": "143973a4ca187a5155282884413d80e4dd8395b945b7f3b3f89655ca6a5e79ba"
   }
 }

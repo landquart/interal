@@ -13,8 +13,8 @@
   },
   "storage": "git_repository_static_files",
   "file_count_before_provenance": 2050,
-  "total_bytes_before_provenance": 743331941,
-  "tree_content_sha256": "671eafd79f376cb23722b50d0ca8644ea685a5df12c0a44c438ae63d5c85ec86",
+  "total_bytes_before_provenance": 743311354,
+  "tree_content_sha256": "4ef8738ac460d97bb086b3466ed5324ba217ce67fedcc1969d9ab1fddd0c2f43",
   "repository_repairs": [
     {
       "repair": "exclude_known_rejected_corpus_noise_from_runtime",
@@ -33,6 +33,19 @@
       "quarantined_families": [
         "ety:111ecf2b9102"
       ]
+    },
+    {
+      "repair": "remove_reviewed_surface_families",
+      "removed_memberships": 81,
+      "deleted_families": [
+        "surface:en:ofn",
+        "surface:en:lpo",
+        "surface:en:ilv"
+      ],
+      "deleted_aliases": 0,
+      "source_run_id": 35647932153,
+      "decision_ledger_sha256": "143973a4ca187a5155282884413d80e4dd8395b945b7f3b3f89655ca6a5e79ba",
+      "not_human_statistical_annotation": true
     }
   ]
 }
