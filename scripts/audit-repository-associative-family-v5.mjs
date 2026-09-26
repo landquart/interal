@@ -143,6 +143,15 @@ assert(geneaOtherLedger.source_run_id === expectedRunId && geneaOtherLedger.fami
 assert(geneaOtherRepair?.removed_memberships === geneaOtherRemoved && geneaOtherRepair?.decision_ledger_sha256 === geneaOtherLedgerSha, 'genea other repair mismatch');
 assert(report.repository_materialization?.genea_other_ledger_sha256 === geneaOtherLedgerSha, 'report genea other ledger mismatch');
 const geneaOtherKept = new Map(geneaOtherLedger.decisions.map(item => [item.language, new Map(item.keep.map(value => [value.lemma_id, value.word]))]));
+const sonusLedgerBytes = await readFile('audit/associative-family-v5/sonus-language-decisions.json');
+const sonusLedger = JSON.parse(sonusLedgerBytes);
+const sonusLedgerSha = createHash('sha256').update(sonusLedgerBytes).digest('hex');
+const sonusRepair = provenance.repository_repairs?.find(item => item.repair === 'prune_sonus_false_memberships');
+const sonusRemoved = sonusLedger.decisions.reduce((sum, item) => sum + item.expected_members - item.keep.length, 0);
+assert(sonusLedger.source_run_id === expectedRunId && sonusLedger.family_id === 'ety:1e7afcab5044', 'sonus ledger mismatch');
+assert(sonusRepair?.removed_memberships === sonusRemoved && sonusRepair?.retained_memberships === 9 && sonusRepair?.decision_ledger_sha256 === sonusLedgerSha, 'sonus repair mismatch');
+assert(report.repository_materialization?.sonus_ledger_sha256 === sonusLedgerSha, 'report sonus ledger mismatch');
+const sonusKept = new Map(sonusLedger.decisions.map(item => [item.language, new Map(item.keep.map(value => [value.lemma_id, value.word]))]));
 const deletedSurfaceFamilies = new Set([...surfaceLedger.decisions, ...surfaceLedger2.decisions, ...surfaceLedger3.decisions, ...surfaceLedger4.decisions].map(item => item.family_id));
 deletedSurfaceFamilies.add(tenLedger.family_id);
 for (const item of inflectionLedger.decisions) deletedSurfaceFamilies.add(item.family_id);
@@ -248,6 +257,10 @@ for (let index = 0; index < 256; index += 1) {
         const kept = geneaOtherKept.get(language);
         assert(values.length === kept.size && values.every(value => kept.get(value.lemma_id) === value.word), `genea ${language} members mismatch`);
       }
+      if (sonusKept.has(language) && id === sonusLedger.family_id) {
+        const kept = sonusKept.get(language);
+        assert(values.length === kept.size && values.every(value => kept.get(value.lemma_id) === value.word), `sonus ${language} members mismatch`);
+      }
       const seen = new Set();
       for (const value of values) {
         assert(value.lemma_id && !seen.has(value.lemma_id), `${language} duplicate/invalid member ${id}`);
@@ -281,7 +294,7 @@ assert(familyIdsByBucket[parseInt(bucket('family:liber'), 16)].has('family:liber
 assert(liberLanguages.size === languages.length, `family:liber missing languages: ${languages.filter(x => !liberLanguages.has(x)).join(',')}`);
 assert(quarantinedManualFamilies.size === 0, 'quarantined family missing from metadata');
 assert(preservedManualKeys.size === 0, `preserved positive controls missing: ${[...preservedManualKeys].join(', ')}`);
-assert(membershipCount === 10426047 - manualLedger.rejected_memberships.length - surfaceRemoved - surfaceRemoved2 - surfaceRemoved3 - surfaceRemoved4 - tenLedger.expected_members - inflectionRemoved - endingRemoved - geneaRemoved - geneaOtherRemoved, 'unexpected repository membership count');
+assert(membershipCount === 10426047 - manualLedger.rejected_memberships.length - surfaceRemoved - surfaceRemoved2 - surfaceRemoved3 - surfaceRemoved4 - tenLedger.expected_members - inflectionRemoved - endingRemoved - geneaRemoved - geneaOtherRemoved - sonusRemoved, 'unexpected repository membership count');
 assert(familyCount === manifest.counts.families && familyCount === report.total_families, `family count ${familyCount}`);
 assert(materializedFamilyCount === familyCount, 'not every family was materialized');
 for (const [field, counted] of [
