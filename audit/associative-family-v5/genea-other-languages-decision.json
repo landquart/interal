@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "source_run_id": 35647932153,
+  "family_id": "ety:cf2897b18b16",
+  "scope": "Review of the remaining English, Spanish and Italian members of the Greek genea family after the German decision. Each source member list and evidence distribution is locked before pruning.",
+  "decisions": [
+    {
+      "language": "en", "expected_members": 109,
+      "member_list_sha256": "175f549c3fd7f7f10a4a9254725540faf5b4e3dacb8d740346fa26db5c22c327",
+      "expected_evidence": {"compound_morphology:candidate_index": 107, "morphological_parse:candidate_index": 2},
+      "keep": [{"word": "gene", "lemma_id": "lemma:9ad4921d1836705ab94d", "reason": "Coined via German Gen from Greek genea."}],
+      "reason": "The remaining strings include personal names and brands (Imogene, Genevan, Genetix), unrelated -gene compounds, malformed tokens and compound-only links such as genepool."
+    },
+    {
+      "language": "es", "expected_members": 121,
+      "member_list_sha256": "03a314be70aee3184849d28af219e4119f9d576923461158a30d28f63b9141d7",
+      "expected_evidence": {"compound_morphology:candidate_index": 118, "morphological_parse:candidate_index": 3},
+      "keep": [],
+      "reason": "Spanish génesis and its compounds derive from Greek genesis, not genea; gene and other residual strings are foreign tokens, names, brands or unsupported substring matches. The Spanish word gen is not present among this family's members."
+    },
+    {
+      "language": "it", "expected_members": 52,
+      "member_list_sha256": "97ca05ba50ee7f13a057a945b60c98aa031270d025da6777eec2448c4b8de520",
+      "expected_evidence": {"compound_morphology:candidate_index": 47, "morphological_parse:candidate_index": 5},
+      "keep": [],
+      "reason": "Italian genio/genia derive from Latin genius, -geni formations have other immediate etymons, and the rest are names, fragments or accidental strings. No direct genea member is demonstrated in this list."
+    }
+  ],
+  "review_scope": "Explicit family-level and list-level judgments. The exclusions are not independent human annotations or proof that every potential true derivative has been found; source lemmas retain other memberships."
+}
