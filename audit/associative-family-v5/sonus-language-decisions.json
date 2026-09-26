@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "source_run_id": 35647932153,
+  "family_id": "ety:1e7afcab5044",
+  "scope": "Four language lists in the Latin sonus family, locked by their original member digests and evidence counts. Retain a small explicit set with an attested sound/sonnet relationship; remove the other associations without deleting source lemmas.",
+  "decisions": [
+    {
+      "language": "en", "expected_members": 3650,
+      "member_list_sha256": "007cc4f3ab0b1a870d36349aac9bec424d8266234ff071c9b0663923bc5aab2a",
+      "expected_evidence": {"compound_morphology:manually_verified": 1864, "compound_morphology:candidate_index": 1770, "morphological_parse:manually_verified": 6, "morphological_parse:candidate_index": 11},
+      "keep": [
+        {"word": "sound", "lemma_id": "lemma:4f6effacfb715c097582"},
+        {"word": "sonnet", "lemma_id": "lemma:a63c3d7e06f6fd5307e5"},
+        {"word": "sonnets", "lemma_id": "lemma:bb33ae661cb2201eb0b7"},
+        {"word": "sonneteer", "lemma_id": "lemma:07408b223a07325c9413"}
+      ],
+      "reason": "English sound (auditory sense) descends through Old French son from sonus; sonnet and its plural/derivative descend through Occitan sonet. Son 'child', net/network, planet, surnames and unrelated internal strings do not belong to the same family. The source label manually_verified on a morphological candidate is not an individual etymological review."
+    },
+    {
+      "language": "fr", "expected_members": 1400,
+      "member_list_sha256": "9654c39d901e41fd16b26af7416540c8eca585264010397a406becfe521d599d",
+      "expected_evidence": {"compound_morphology:candidate_index": 1395, "morphological_parse:candidate_index": 8},
+      "keep": [{"word": "sonnet", "lemma_id": "lemma:f8984706707ff782deea"}],
+      "reason": "French sonnet has the sound/song etymology. Unqualified son and sons are sense-ambiguous with possessive and other homonyms in this sense-free corpus, while the other entries mostly match surnames or incidental son strings."
+    },
+    {
+      "language": "es", "expected_members": 1614,
+      "member_list_sha256": "496764de99655272b8c8cd0a1c03f35d2d663140f0611b837fb267900ac762f9",
+      "expected_evidence": {"compound_morphology:candidate_index": 1598, "morphological_parse:candidate_index": 18},
+      "keep": [{"word": "sónico", "lemma_id": "lemma:6c55e8c4da37bd218eb6"}],
+      "reason": "Spanish sónico is the sound-related adjective. Bare son is ambiguous with the verb ser, and the list is dominated by -son surnames, names, foreign strings and unsupported matches."
+    },
+    {
+      "language": "it", "expected_members": 6,
+      "member_list_sha256": "5021a3e8b85b5fc43a3e4221f7bdb2da44ff623e8139d5b7eb3a350bd7aaf0c6",
+      "expected_evidence": {"morphological_parse:candidate_index": 4, "compound_morphology:candidate_index": 2},
+      "keep": [
+        {"word": "suono", "lemma_id": "lemma:27b0b70284c0ef39f3d6"},
+        {"word": "sonetto", "lemma_id": "lemma:8f4345a51f7e9ddce32c"},
+        {"word": "suon", "lemma_id": "lemma:90ea70a3572c70515f1b"}
+      ],
+      "reason": "Italian suono and its clipped form suon descend from sonus; sonetto follows Old Occitan sonet. The other three are unsupported surface strings."
+    }
+  ],
+  "references": [
+    "https://en.wiktionary.org/wiki/sound",
+    "https://en.wiktionary.org/wiki/sonetto",
+    "https://en.wiktionary.org/wiki/sonneteer",
+    "https://fr.wiktionary.org/wiki/son",
+    "https://www.treccani.it/vocabolario/suono/"
+  ],
+  "review_scope": "Family-level selection with explicit retained records, not independent human annotation of all 6,661 exclusions. Some excluded corpus forms may have a legitimate sound-related sense or be valid compounds; restoring any of them requires separate source-level and sense review."
+}

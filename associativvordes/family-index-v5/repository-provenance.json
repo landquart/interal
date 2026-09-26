@@ -13,8 +13,8 @@
   },
   "storage": "git_repository_static_files",
   "file_count_before_provenance": 2050,
-  "total_bytes_before_provenance": 734256508,
-  "tree_content_sha256": "b835cafea64c76ba8a40ff0552e06f9edd59b904801f73ee08b1afb493793de3",
+  "total_bytes_before_provenance": 733812266,
+  "tree_content_sha256": "70823244796a3fd2e01cdb3991692853c83f1ed145128051311976a2fc9db8de",
   "repository_repairs": [
     {
       "repair": "exclude_known_rejected_corpus_noise_from_runtime",
@@ -144,6 +144,15 @@
       "removed_memberships": 281,
       "retained_memberships": 1,
       "decision_ledger_sha256": "f09c751e25be9d5e42c07dab4c58ba7fe491f918492fb030698b1f567f2cbc75",
+      "source_run_id": 35647932153,
+      "not_individual_lexical_annotation": true
+    },
+    {
+      "repair": "prune_sonus_false_memberships",
+      "family_id": "ety:1e7afcab5044",
+      "removed_memberships": 6661,
+      "retained_memberships": 9,
+      "decision_ledger_sha256": "53ce7b8028e24903bb9d9ee45a7add7268e38640985c60868f372f4500bba605",
       "source_run_id": 35647932153,
       "not_individual_lexical_annotation": true
     }

@@ -18,6 +18,8 @@ A further family-level review rejected Spanish `rla`, `ado`, `nos`, `ria`, Itali
 
 The subsequent review of `ety:cf2897b18b16` (`grc:γενεα`) pruned its four language lists: 14,651 German, 108 English, 121 Spanish and 52 Italian false or insufficiently supported memberships were removed. The surviving materialized members are German `gen`, `gens`, `genealogen` and English `gene` (four total). `genea-german-decision.json` and `genea-other-languages-decision.json` lock each original language list and its evidence classes. The family, the corpus lemmas and all their other memberships remain; its alias strings still target other families. This list-level review does not establish global linguistic precision or the requested 20-member condition for other families. Current repository totals are 2,456,597 families, 1,934,051 aliases and 10,288,294 memberships.
 
+A second etymological family, `ety:1e7afcab5044` (`la:sonus`), was reduced from 6,670 to nine explicitly retained members across English, French, Spanish and Italian. The other 6,661 links included `net`/network/planet, surnames on `-son`, ambiguous homographs and noisy fragments. `sonus-language-decisions.json` locks the original lists and evidence classes. It retains sound and sonnet forms while preserving all lemmas and other family memberships. This is a bounded family decision; words excluded solely to keep the family concise may warrant separate sense-level restoration. Current repository totals are 2,456,597 families, 1,934,051 aliases and 10,281,633 memberships.
+
 ## Object and provenance checked
 
 - PR: `#622`, branch `fix/associative-family-corrective-v5`; base `main` remains unchanged.
@@ -39,12 +41,12 @@ An independent streaming recount of all six locked assignment files established 
 |---|---:|
 | Lemma records | 4,924,980 |
 | Component evidence records | 9,349,982 |
-| Repository runtime memberships | 10,288,294 |
-| Materialized member records | 10,288,294 |
+| Repository runtime memberships | 10,281,633 |
+| Materialized member records | 10,281,633 |
 | Memberships with repeated component evidence | 5,097 |
 | Excess repeated component→membership links | 6,282 |
 
-`manifest.counts.components` is incremented once per component evidence record. It is not a membership count. The previous v4→v5 report compared v4 memberships (`14,918,457`) with v5 components (`9,350,026`), so its `-5,568,431` delta was invalid. The current repository-runtime membership delta is `10,288,294 - 14,918,457 = -4,630,163`; this reduction still proves neither precision nor recall. The repository count is 137,783 below the immutable source artifact: 30 memberships of rejected corpus-noise lemmas, 22 earlier case-reviewed memberships, 364 individually reviewed memberships in twelve deleted short surface families, 122,435 members in twelve ending-based families rejected at the family level, and 14,932 memberships pruned from the Greek `genea` family. Source-artifact/assignment counts elsewhere in this audit remain historical and must not be reinterpreted as repository-runtime counts.
+`manifest.counts.components` is incremented once per component evidence record. It is not a membership count. The previous v4→v5 report compared v4 memberships (`14,918,457`) with v5 components (`9,350,026`), so its `-5,568,431` delta was invalid. The current repository-runtime membership delta is `10,281,633 - 14,918,457 = -4,636,824`; this reduction still proves neither precision nor recall. The repository count is 144,444 below the immutable source artifact: 30 memberships of rejected corpus-noise lemmas, 22 earlier case-reviewed memberships, 364 individually reviewed memberships in twelve deleted short surface families, 122,435 members in twelve ending-based families rejected at the family level, 14,932 memberships pruned from the Greek `genea` family and 6,661 from the Latin `sonus` family. Source-artifact/assignment counts elsewhere in this audit remain historical and must not be reinterpreted as repository-runtime counts.
 
 ## Evidence status by gate
 
