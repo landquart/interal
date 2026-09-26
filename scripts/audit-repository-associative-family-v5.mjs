@@ -124,6 +124,25 @@ assert(endingLedger.source_run_id === expectedRunId && endingLedger.decisions.le
 assert(endingRepair?.removed_memberships === endingRemoved && endingRepair?.decision_ledger_sha256 === endingLedgerSha, 'ending provenance mismatch');
 assert(JSON.stringify(endingRepair.deleted_families) === JSON.stringify(endingLedger.decisions.map(item => item.family_id)), 'ending deleted families mismatch');
 assert(report.repository_materialization?.ending_family_ledger_sha256 === endingLedgerSha, 'report ending ledger mismatch');
+const geneaLedgerBytes = await readFile('audit/associative-family-v5/genea-german-decision.json');
+const geneaLedger = JSON.parse(geneaLedgerBytes);
+const geneaLedgerSha = createHash('sha256').update(geneaLedgerBytes).digest('hex');
+const geneaRepair = provenance.repository_repairs?.find(item => item.repair === 'prune_genea_german_false_memberships');
+const geneaRemoved = geneaLedger.expected_members - geneaLedger.keep.length;
+assert(geneaLedger.source_run_id === expectedRunId && geneaLedger.family_id === 'ety:cf2897b18b16' && geneaLedger.language === 'de', 'genea ledger mismatch');
+assert(geneaRepair?.removed_memberships === geneaRemoved && geneaRepair?.retained_memberships === geneaLedger.keep.length && geneaRepair?.decision_ledger_sha256 === geneaLedgerSha, 'genea repair provenance mismatch');
+assert(report.repository_materialization?.genea_german_ledger_sha256 === geneaLedgerSha, 'report genea ledger mismatch');
+const geneaRetained = new Map(geneaLedger.keep.map(item => [item.lemma_id, item.word]));
+assert(geneaRetained.size === geneaLedger.keep.length, 'duplicate genea retention');
+const geneaOtherLedgerBytes = await readFile('audit/associative-family-v5/genea-other-languages-decision.json');
+const geneaOtherLedger = JSON.parse(geneaOtherLedgerBytes);
+const geneaOtherLedgerSha = createHash('sha256').update(geneaOtherLedgerBytes).digest('hex');
+const geneaOtherRepair = provenance.repository_repairs?.find(item => item.repair === 'prune_genea_other_language_false_memberships');
+const geneaOtherRemoved = geneaOtherLedger.decisions.reduce((sum, item) => sum + item.expected_members - item.keep.length, 0);
+assert(geneaOtherLedger.source_run_id === expectedRunId && geneaOtherLedger.family_id === geneaLedger.family_id, 'genea other ledger mismatch');
+assert(geneaOtherRepair?.removed_memberships === geneaOtherRemoved && geneaOtherRepair?.decision_ledger_sha256 === geneaOtherLedgerSha, 'genea other repair mismatch');
+assert(report.repository_materialization?.genea_other_ledger_sha256 === geneaOtherLedgerSha, 'report genea other ledger mismatch');
+const geneaOtherKept = new Map(geneaOtherLedger.decisions.map(item => [item.language, new Map(item.keep.map(value => [value.lemma_id, value.word]))]));
 const deletedSurfaceFamilies = new Set([...surfaceLedger.decisions, ...surfaceLedger2.decisions, ...surfaceLedger3.decisions, ...surfaceLedger4.decisions].map(item => item.family_id));
 deletedSurfaceFamilies.add(tenLedger.family_id);
 for (const item of inflectionLedger.decisions) deletedSurfaceFamilies.add(item.family_id);
@@ -222,6 +241,13 @@ for (let index = 0; index < 256; index += 1) {
       assert(bucket(id) === shard, `${language} member bucket mismatch ${id}`);
       assert(ids.has(id), `${language} members reference missing family ${id}`);
       assert(Array.isArray(values) && values.length, `${language} empty member list ${id}`);
+      if (language === geneaLedger.language && id === geneaLedger.family_id) {
+        assert(values.length === geneaRetained.size && values.every(value => geneaRetained.get(value.lemma_id) === value.word), 'genea German members mismatch');
+      }
+      if (geneaOtherKept.has(language) && id === geneaLedger.family_id) {
+        const kept = geneaOtherKept.get(language);
+        assert(values.length === kept.size && values.every(value => kept.get(value.lemma_id) === value.word), `genea ${language} members mismatch`);
+      }
       const seen = new Set();
       for (const value of values) {
         assert(value.lemma_id && !seen.has(value.lemma_id), `${language} duplicate/invalid member ${id}`);
@@ -255,7 +281,7 @@ assert(familyIdsByBucket[parseInt(bucket('family:liber'), 16)].has('family:liber
 assert(liberLanguages.size === languages.length, `family:liber missing languages: ${languages.filter(x => !liberLanguages.has(x)).join(',')}`);
 assert(quarantinedManualFamilies.size === 0, 'quarantined family missing from metadata');
 assert(preservedManualKeys.size === 0, `preserved positive controls missing: ${[...preservedManualKeys].join(', ')}`);
-assert(membershipCount === 10426047 - manualLedger.rejected_memberships.length - surfaceRemoved - surfaceRemoved2 - surfaceRemoved3 - surfaceRemoved4 - tenLedger.expected_members - inflectionRemoved - endingRemoved, 'unexpected repository membership count');
+assert(membershipCount === 10426047 - manualLedger.rejected_memberships.length - surfaceRemoved - surfaceRemoved2 - surfaceRemoved3 - surfaceRemoved4 - tenLedger.expected_members - inflectionRemoved - endingRemoved - geneaRemoved - geneaOtherRemoved, 'unexpected repository membership count');
 assert(familyCount === manifest.counts.families && familyCount === report.total_families, `family count ${familyCount}`);
 assert(materializedFamilyCount === familyCount, 'not every family was materialized');
 for (const [field, counted] of [

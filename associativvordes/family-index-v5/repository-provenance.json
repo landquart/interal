@@ -13,8 +13,8 @@
   },
   "storage": "git_repository_static_files",
   "file_count_before_provenance": 2050,
-  "total_bytes_before_provenance": 735053603,
-  "tree_content_sha256": "c871463545774c60592e08dac38de1d4d734be26eef16ec0b8bf1cb7e1aea8cf",
+  "total_bytes_before_provenance": 734256508,
+  "tree_content_sha256": "b835cafea64c76ba8a40ff0552e06f9edd59b904801f73ee08b1afb493793de3",
   "repository_repairs": [
     {
       "repair": "exclude_known_rejected_corpus_noise_from_runtime",
@@ -125,6 +125,25 @@
       ],
       "deleted_aliases": 0,
       "decision_ledger_sha256": "32d98d7bb5fffc5bdbb967aa75bae9a90d10d46a75190eb4b163450c706bdd10",
+      "source_run_id": 35647932153,
+      "not_individual_lexical_annotation": true
+    },
+    {
+      "repair": "prune_genea_german_false_memberships",
+      "family_id": "ety:cf2897b18b16",
+      "language": "de",
+      "removed_memberships": 14651,
+      "retained_memberships": 3,
+      "decision_ledger_sha256": "e1db2d57ff8660a1c87850af43ab18ac11210c68b727a8f8449ea973dab41eb2",
+      "source_run_id": 35647932153,
+      "not_individual_lexical_annotation": true
+    },
+    {
+      "repair": "prune_genea_other_language_false_memberships",
+      "family_id": "ety:cf2897b18b16",
+      "removed_memberships": 281,
+      "retained_memberships": 1,
+      "decision_ledger_sha256": "f09c751e25be9d5e42c07dab4c58ba7fe491f918492fb030698b1f567f2cbc75",
       "source_run_id": 35647932153,
       "not_individual_lexical_annotation": true
     }

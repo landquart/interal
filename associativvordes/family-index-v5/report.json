@@ -1221,108 +1221,6 @@
       "review_status": "needs_review"
     },
     {
-      "id": "ety:cf2897b18b16",
-      "canonical": "gene",
-      "aliases": [
-        "gen",
-        "gene",
-        "geni"
-      ],
-      "verified": false,
-      "confidence": "A",
-      "source": "wiktionary_non_proto_etymology",
-      "etymon_keys": [
-        "grc:γενεα"
-      ],
-      "relation_types": [
-        "borrowed_form",
-        "direct_descendant"
-      ],
-      "relation_evidence": [
-        {
-          "language": "en",
-          "word": "gene",
-          "sourceLang": "grc",
-          "term": "γενεά",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "es",
-          "word": "gene",
-          "sourceLang": "grc",
-          "term": "γενεά",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "de",
-          "word": "Gen",
-          "sourceLang": "grc",
-          "term": "γενεά",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "it",
-          "word": "genia",
-          "sourceLang": "grc",
-          "term": "γενεᾱ́",
-          "relationType": "borrowed_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.9,
-          "depth": 1,
-          "template": "bor",
-          "path": [
-            "args",
-            2
-          ]
-        }
-      ],
-      "canonical_selection": {
-        "method": "quality_score_v1",
-        "score": 2
-      },
-      "language_support": {
-        "en": 109,
-        "de": 14654,
-        "es": 121,
-        "it": 52
-      },
-      "support": 14936,
-      "suspicion_score": 55,
-      "suspicion_reasons": [
-        "short_root",
-        "anomalously_large_family"
-      ],
-      "review_status": "needs_review"
-    },
-    {
       "id": "ety:9a86a987fafc",
       "canonical": "accion",
       "aliases": [
@@ -6694,6 +6592,89 @@
         "large_family"
       ],
       "review_status": "safe_automatic"
+    },
+    {
+      "id": "ety:c80365cdd174",
+      "canonical": "azion",
+      "aliases": [
+        "azion",
+        "observation"
+      ],
+      "verified": false,
+      "confidence": "A",
+      "source": "wiktionary_non_proto_etymology",
+      "etymon_keys": [
+        "la:observati"
+      ],
+      "relation_types": [
+        "borrowed_form",
+        "direct_descendant"
+      ],
+      "relation_evidence": [
+        {
+          "language": "en",
+          "word": "observation",
+          "sourceLang": "la",
+          "term": "observatio",
+          "relationType": "borrowed_form",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.9,
+          "depth": 1,
+          "template": "learned borrowing",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "fr",
+          "word": "observation",
+          "sourceLang": "la",
+          "term": "observātiō",
+          "relationType": "borrowed_form",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.9,
+          "depth": 1,
+          "template": "bor+",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "it",
+          "word": "osservazione",
+          "sourceLang": "la",
+          "term": "observātiō",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        }
+      ],
+      "canonical_selection": {
+        "method": "quality_score_v1",
+        "score": 1
+      },
+      "language_support": {
+        "en": 6,
+        "fr": 4,
+        "it": 3366
+      },
+      "support": 3376,
+      "suspicion_score": 20,
+      "suspicion_reasons": [
+        "large_family"
+      ],
+      "review_status": "safe_automatic"
     }
   ],
   "highest_suspicion_families": [
@@ -6992,108 +6973,6 @@
         "it": 4457
       },
       "support": 15076,
-      "suspicion_score": 55,
-      "suspicion_reasons": [
-        "short_root",
-        "anomalously_large_family"
-      ],
-      "review_status": "needs_review"
-    },
-    {
-      "id": "ety:cf2897b18b16",
-      "canonical": "gene",
-      "aliases": [
-        "gen",
-        "gene",
-        "geni"
-      ],
-      "verified": false,
-      "confidence": "A",
-      "source": "wiktionary_non_proto_etymology",
-      "etymon_keys": [
-        "grc:γενεα"
-      ],
-      "relation_types": [
-        "borrowed_form",
-        "direct_descendant"
-      ],
-      "relation_evidence": [
-        {
-          "language": "en",
-          "word": "gene",
-          "sourceLang": "grc",
-          "term": "γενεά",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "es",
-          "word": "gene",
-          "sourceLang": "grc",
-          "term": "γενεά",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "de",
-          "word": "Gen",
-          "sourceLang": "grc",
-          "term": "γενεά",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "it",
-          "word": "genia",
-          "sourceLang": "grc",
-          "term": "γενεᾱ́",
-          "relationType": "borrowed_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.9,
-          "depth": 1,
-          "template": "bor",
-          "path": [
-            "args",
-            2
-          ]
-        }
-      ],
-      "canonical_selection": {
-        "method": "quality_score_v1",
-        "score": 2
-      },
-      "language_support": {
-        "en": 109,
-        "de": 14654,
-        "es": 121,
-        "it": 52
-      },
-      "support": 14936,
       "suspicion_score": 55,
       "suspicion_reasons": [
         "short_root",
@@ -7751,6 +7630,106 @@
         "ru": 20
       },
       "support": 11112,
+      "suspicion_score": 55,
+      "suspicion_reasons": [
+        "short_root",
+        "anomalously_large_family"
+      ],
+      "review_status": "needs_review"
+    },
+    {
+      "id": "ety:cf2897b18b16",
+      "canonical": "gene",
+      "aliases": [
+        "gen",
+        "gene",
+        "geni"
+      ],
+      "verified": false,
+      "confidence": "A",
+      "source": "wiktionary_non_proto_etymology",
+      "etymon_keys": [
+        "grc:γενεα"
+      ],
+      "relation_types": [
+        "borrowed_form",
+        "direct_descendant"
+      ],
+      "relation_evidence": [
+        {
+          "language": "en",
+          "word": "gene",
+          "sourceLang": "grc",
+          "term": "γενεά",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "es",
+          "word": "gene",
+          "sourceLang": "grc",
+          "term": "γενεά",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "de",
+          "word": "Gen",
+          "sourceLang": "grc",
+          "term": "γενεά",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "it",
+          "word": "genia",
+          "sourceLang": "grc",
+          "term": "γενεᾱ́",
+          "relationType": "borrowed_form",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.9,
+          "depth": 1,
+          "template": "bor",
+          "path": [
+            "args",
+            2
+          ]
+        }
+      ],
+      "canonical_selection": {
+        "method": "quality_score_v1",
+        "score": 2
+      },
+      "language_support": {
+        "en": 1,
+        "de": 3
+      },
+      "support": 4,
       "suspicion_score": 55,
       "suspicion_reasons": [
         "short_root",
@@ -12525,6 +12504,10 @@
     "incoherent_inflection_memberships_removed": 70807,
     "inflection_family_ledger_sha256": "f1d30083107253de92d8832ede7a6b091e44655b0c4eb67f5125e246913d2c4b",
     "incoherent_ending_memberships_removed": 34010,
-    "ending_family_ledger_sha256": "32d98d7bb5fffc5bdbb967aa75bae9a90d10d46a75190eb4b163450c706bdd10"
+    "ending_family_ledger_sha256": "32d98d7bb5fffc5bdbb967aa75bae9a90d10d46a75190eb4b163450c706bdd10",
+    "genea_german_memberships_removed": 14651,
+    "genea_german_ledger_sha256": "e1db2d57ff8660a1c87850af43ab18ac11210c68b727a8f8449ea973dab41eb2",
+    "genea_other_memberships_removed": 281,
+    "genea_other_ledger_sha256": "f09c751e25be9d5e42c07dab4c58ba7fe491f918492fb030698b1f567f2cbc75"
   }
 }

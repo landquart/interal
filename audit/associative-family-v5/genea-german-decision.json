@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "source_run_id": 35647932153,
+  "family_id": "ety:cf2897b18b16",
+  "language": "de",
+  "expected_members": 14654,
+  "member_list_sha256": "375763dbbd4953690c817dc8c42fe206d6d96bb58458c04c81a4bd0b70007831",
+  "expected_evidence": {"compound_morphology:candidate_index": 14651, "morphological_parse:candidate_index": 3},
+  "keep": [
+    {"word": "gen", "lemma_id": "lemma:1f79e88c02d79b425766", "reason": "German Gen is coined from Greek genea (descent)."},
+    {"word": "gens", "lemma_id": "lemma:8c786ca9cc722e2bf2c2", "reason": "Gens is the genitive of German Gen."},
+    {"word": "genealogen", "lemma_id": "lemma:1c2ab24cfde3604a0d62", "reason": "German Genealogen derives through Greek genealogos with genea as its first component."}
+  ],
+  "reason": "The other 14,651 German members were assigned solely through a candidate-index match of the short sequence gen. Common unrelated endings in erfolgen, sorgen, bestätigen, entscheidungen and thousands more do not establish descent from Greek genea. Preserve the three specified members; keep other languages' members untouched.",
+  "review_scope": "A family-language evidence-class decision, not individual etymological annotation of all rejected members. Any further true derived words omitted by the candidate matcher require separately documented restoration."
+}
