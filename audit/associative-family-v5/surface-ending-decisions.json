@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "source_run_id": 35647932153,
+  "scope": "Six family-level decisions after inspecting member words and all evidence classes. These are not individual annotations of every word.",
+  "decisions": [
+    {
+      "family_id": "surface:es:rla", "language": "es", "expected_status": "needs_review", "expected_members": 3281,
+      "member_list_sha256": "5fea7a4476888e8ecdde08080dcde2026aa10a94a65c8e2b88f04f79156f293f",
+      "expected_evidence": {"compound_morphology:candidate_index": 3280, "morphological_parse:candidate_index": 1},
+      "reason": "-rla spans unrelated Spanish verbs followed by the clitic la, including abandonarla, abrirla and visitarla; matching this ending is not a shared lexical origin."
+    },
+    {
+      "family_id": "surface:es:ado", "language": "es", "expected_status": "needs_review", "expected_members": 6830,
+      "member_list_sha256": "7343381b188fc73e57a23253ed7362b07979b1d4f80156d6df55918128b82df1",
+      "expected_evidence": {"compound_morphology:candidate_index": 6828, "morphological_parse:candidate_index": 2},
+      "reason": "-ado is a common Spanish participial/adjectival ending, present in unrelated words such as abandonado, figurado and financiado; it is not their shared root."
+    },
+    {
+      "family_id": "surface:it:are", "language": "it", "expected_status": "needs_review", "expected_members": 6820,
+      "member_list_sha256": "d21841c0b6d3cf395f7d5dded27ca2bb73ae064a16c43624af132713eee03d3e",
+      "expected_evidence": {"compound_morphology:candidate_index": 6815, "morphological_parse:candidate_index": 5},
+      "reason": "-are is the Italian infinitive ending shared by unrelated verbs such as abbandonare, macellare and zufolare, not a common whole-word etymon."
+    },
+    {
+      "family_id": "surface:es:nos", "language": "es", "expected_status": "needs_review", "expected_members": 5551,
+      "member_list_sha256": "ad044f4b4027d6dd945bd660935721049346f98b80415929ded82d39a8611ead",
+      "expected_evidence": {"compound_morphology:candidate_index": 5541, "morphological_parse:candidate_index": 10},
+      "reason": "-nos frequently represents an attached Spanish pronoun on unrelated verbs, such as abandonarnos, abatirnos and garantícenos; other words coincidentally end in the same letters."
+    },
+    {
+      "family_id": "surface:es:ria", "language": "es", "expected_status": "needs_review", "expected_members": 5000,
+      "member_list_sha256": "3840809d2a5f0fc508ec1c9272e6a50f83b35486ba185d3dca183d72b7e4020a",
+      "expected_evidence": {"compound_morphology:candidate_index": 4993, "morphological_parse:candidate_index": 7},
+      "reason": "-ría often marks the Spanish conditional or noun formation; unrelated words such as abandonaría, imprimiría and zapatería do not form one lexical family."
+    },
+    {
+      "family_id": "surface:ru:vat", "language": "ru", "expected_status": "needs_review", "expected_members": 6528,
+      "member_list_sha256": "ea5aa65a9fc48141b98e166d7ac42adbc02a11e3065a69c0568c4836a744aad1",
+      "expected_evidence": {"compound_morphology:candidate_index": 6529, "morphological_parse:candidate_index": 2},
+      "reason": "Transliterated -vat matches the final part of -вать/-овать/-ировать in unrelated Russian verbs, including адаптировать, подогревать and подлизывать; this ending does not establish a common stem."
+    }
+  ]
+}

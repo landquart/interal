@@ -14,6 +14,8 @@ A subsequent follow-up removed three additional short surface families (`surface
 
 The same family-level test was applied to five more incoherent ending-based surface families: Russian `yj`, `sja`, `skij`, `nie` and German `nen`. Their 70,807 members had only candidate-index morphological evidence, with exact member digests and evidence counts locked in `surface-inflection-decisions.json`. The families and their alias targets were removed; their lemmas remain. These are family-level rejections, not 70,807 individual word annotations. Current repository totals are 2,456,603 families, 1,934,051 aliases, and 10,337,236 memberships.
 
+A further family-level review rejected Spanish `rla`, `ado`, `nos`, `ria`, Italian `are`, and Russian `vat`: the sampled words have unrelated stems, while all 34,010 recorded links have only candidate-index morphological evidence. `surface-ending-decisions.json` locks each complete member list by digest and its evidence counts. The six families were removed from the repository materialization, preserving each lemma and any other family membership. Their alias strings still resolve to other families, so this does not certify those remaining results. Current repository totals are 2,456,597 families, 1,934,051 aliases, and 10,303,226 memberships. This is a family-level decision, not 34,010 individual lexical reviews or evidence that every remaining family has at most 20 correct members.
+
 ## Object and provenance checked
 
 - PR: `#622`, branch `fix/associative-family-corrective-v5`; base `main` remains unchanged.
@@ -35,12 +37,12 @@ An independent streaming recount of all six locked assignment files established 
 |---|---:|
 | Lemma records | 4,924,980 |
 | Component evidence records | 9,349,982 |
-| Repository runtime memberships | 10,337,236 |
-| Materialized member records | 10,337,236 |
+| Repository runtime memberships | 10,303,226 |
+| Materialized member records | 10,303,226 |
 | Memberships with repeated component evidence | 5,097 |
 | Excess repeated component→membership links | 6,282 |
 
-`manifest.counts.components` is incremented once per component evidence record. It is not a membership count. The previous v4→v5 report compared v4 memberships (`14,918,457`) with v5 components (`9,350,026`), so its `-5,568,431` delta was invalid. The current repository-runtime membership delta is `10,337,236 - 14,918,457 = -4,581,221`; this reduction still proves neither precision nor recall. The repository count is 88,841 below the immutable source artifact: 30 memberships of rejected corpus-noise lemmas, 22 earlier case-reviewed memberships, 364 individually reviewed memberships in twelve deleted short surface families, and 88,425 members in six ending-based families rejected at the family level. Source-artifact/assignment counts elsewhere in this audit remain historical and must not be reinterpreted as repository-runtime counts.
+`manifest.counts.components` is incremented once per component evidence record. It is not a membership count. The previous v4→v5 report compared v4 memberships (`14,918,457`) with v5 components (`9,350,026`), so its `-5,568,431` delta was invalid. The current repository-runtime membership delta is `10,303,226 - 14,918,457 = -4,615,231`; this reduction still proves neither precision nor recall. The repository count is 122,851 below the immutable source artifact: 30 memberships of rejected corpus-noise lemmas, 22 earlier case-reviewed memberships, 364 individually reviewed memberships in twelve deleted short surface families, and 122,435 members in twelve ending-based families rejected at the family level. Source-artifact/assignment counts elsewhere in this audit remain historical and must not be reinterpreted as repository-runtime counts.
 
 ## Evidence status by gate
 

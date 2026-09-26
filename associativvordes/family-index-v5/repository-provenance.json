@@ -13,8 +13,8 @@
   },
   "storage": "git_repository_static_files",
   "file_count_before_provenance": 2050,
-  "total_bytes_before_provenance": 737302850,
-  "tree_content_sha256": "5eafdee06f7d79e49bfcd504b1a0e7441cfae1dac59ce94bc4be0d05ca606597",
+  "total_bytes_before_provenance": 735053603,
+  "tree_content_sha256": "c871463545774c60592e08dac38de1d4d734be26eef16ec0b8bf1cb7e1aea8cf",
   "repository_repairs": [
     {
       "repair": "exclude_known_rejected_corpus_noise_from_runtime",
@@ -109,6 +109,22 @@
       ],
       "deleted_aliases": 0,
       "decision_ledger_sha256": "f1d30083107253de92d8832ede7a6b091e44655b0c4eb67f5125e246913d2c4b",
+      "source_run_id": 35647932153,
+      "not_individual_lexical_annotation": true
+    },
+    {
+      "repair": "remove_incoherent_ending_surface_families",
+      "removed_memberships": 34010,
+      "deleted_families": [
+        "surface:es:rla",
+        "surface:es:ado",
+        "surface:it:are",
+        "surface:es:nos",
+        "surface:es:ria",
+        "surface:ru:vat"
+      ],
+      "deleted_aliases": 0,
+      "decision_ledger_sha256": "32d98d7bb5fffc5bdbb967aa75bae9a90d10d46a75190eb4b163450c706bdd10",
       "source_run_id": 35647932153,
       "not_individual_lexical_annotation": true
     }
