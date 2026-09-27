@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "source_run_id": 35647932153,
+  "scope": "Three family-level decisions after inspecting language-spaced examples and all stored evidence classes. The complete member lists are locked by digest. This is not individual annotation of each word.",
+  "decisions": [
+    {
+      "family_id": "surface:ru:ija",
+      "language": "ru",
+      "expected_status": "needs_review",
+      "expected_members": 5132,
+      "member_list_sha256": "5f5bf532a35d9b703fc38fa7343a9cad83fb4a65a690c271f633f6bdd7dc0d82",
+      "expected_evidence": {"compound_morphology:candidate_index": 5130, "morphological_parse:candidate_index": 2},
+      "reason": "Transliterated -ija matches the Russian final sequence -ия across unrelated stems: аббревиация, абдукция, астропроекция, нация and оториноларингология do not share a whole-lemma root."
+    },
+    {
+      "family_id": "surface:es:elo",
+      "language": "es",
+      "expected_status": "needs_review",
+      "expected_members": 4840,
+      "member_list_sha256": "e72b6c81cabe50dc5cdeb14217e5ffd52e358b682d72e0f2ed0629d1ac96b059",
+      "expected_evidence": {"compound_morphology:candidate_index": 4833, "morphological_parse:candidate_index": 7},
+      "reason": "Spanish final -elo includes attached pronouns on unrelated verbs (abandónelo, recógelo, comiéndoselo) alongside unrelated nouns such as abuelo and riachuelo; the shared ending is not a lexical family."
+    },
+    {
+      "family_id": "surface:it:ato",
+      "language": "it",
+      "expected_status": "needs_review",
+      "expected_members": 4377,
+      "member_list_sha256": "5c7ba1ab45f77c4ab11aa50befa4c864b2ff5844b2c33d8241402934f775010c",
+      "expected_evidence": {"compound_morphology:candidate_index": 4373, "morphological_parse:candidate_index": 4},
+      "reason": "Italian -ato marks past participles and adjectives on unrelated stems: abbandonato, generalato, aranciato and telomerizzato do not derive from one lexical root."
+    }
+  ],
+  "review_scope": "Remove these incoherent surface groupings while retaining source lemmas and any other memberships. Some words share a grammatical suffix or clitic; this does not imply a shared whole-word etymology."
+}

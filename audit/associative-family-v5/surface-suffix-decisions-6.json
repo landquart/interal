@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "source_run_id": 35647932153,
+  "scope": "Three family-level decisions after examining spaced samples and every stored evidence class; original member lists locked by digest. No claim of individual lexical annotation.",
+  "decisions": [
+    {
+      "family_id": "surface:de:chen", "language": "de", "expected_status": "safe_automatic", "expected_members": 4641,
+      "member_list_sha256": "e8a6dab03ef0cfa01d42d430e6b16ac3ef06ef6727b9890d463ef46d489af4e8",
+      "expected_evidence": {"compound_morphology:candidate_index": 4636, "morphological_parse:candidate_index": 5},
+      "reason": "The German -chen string is a diminutive suffix across unrelated nouns (Eulchen, Körperchen, Kügelchen), and also occurs in unrelated verb endings (coachen, schlichen) and compound/place names. A suffix match does not establish whole-lemma ancestry. The safe_automatic status was not supported by any checked etymology in these memberships."
+    },
+    {
+      "family_id": "surface:en:ted", "language": "en", "expected_status": "needs_review", "expected_members": 4069,
+      "member_list_sha256": "8d1bfb39bd638dfd9bbdd7fd19151cebe309099c12dda8803d76348516442630",
+      "expected_evidence": {"compound_morphology:candidate_index": 4063, "morphological_parse:candidate_index": 6},
+      "reason": "The English final -ted includes unrelated participles such as dominated, protonated and exploited and hyphenated phrases such as media-related, along with corpus noise. It is not a common lexical root."
+    },
+    {
+      "family_id": "surface:es:ela", "language": "es", "expected_status": "needs_review", "expected_members": 4034,
+      "member_list_sha256": "b5f1953bcbd10e3dc865313b88480dc053d6671c0f45a2ade0828a68c85ede98",
+      "expected_evidence": {"compound_morphology:candidate_index": 4031, "morphological_parse:candidate_index": 3},
+      "reason": "Spanish -ela joins pronouns to otherwise unrelated verbs (colocársela, mandándosela, recógertela) and also matches incidental final letters. It is not a shared whole-lemma etymon."
+    }
+  ],
+  "review_scope": "Remove incoherent surface groups without deleting the source words or their other memberships. The linguistic status of the remaining homographic aliases is outside this decision."
+}
