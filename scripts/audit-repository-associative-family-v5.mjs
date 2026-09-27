@@ -187,11 +187,21 @@ const suffixRemoved7 = suffixLedger7.decisions.reduce((sum, item) => sum + item.
 assert(suffixRepair7?.removed_memberships === suffixRemoved7 && suffixRepair7?.decision_ledger_sha256 === suffixLedger7Sha, 'suffix batch 7 repair mismatch');
 assert(JSON.stringify(suffixRepair7.deleted_families) === JSON.stringify(suffixLedger7.decisions.map(item => item.family_id)), 'suffix batch 7 family list mismatch');
 assert(report.repository_materialization?.suffix_batch_7_ledger_sha256 === suffixLedger7Sha, 'report suffix batch 7 ledger mismatch');
+const suffixLedger8Bytes = await readFile('audit/associative-family-v5/surface-suffix-decisions-8.json');
+const suffixLedger8 = JSON.parse(suffixLedger8Bytes);
+const suffixLedger8Sha = createHash('sha256').update(suffixLedger8Bytes).digest('hex');
+const suffixRepair8 = provenance.repository_repairs?.find(item => item.repair === 'remove_incoherent_suffix_surface_families_batch_8');
+assert(suffixLedger8.source_run_id === expectedRunId && JSON.stringify(suffixLedger8.decisions.map(item => item.family_id)) === JSON.stringify(['surface:fr:ons', 'surface:it:mente', 'surface:de:tes', 'surface:es:ose', 'surface:es:ando', 'surface:en:ers', 'surface:ru:vatsja']), 'suffix batch 8 ledger mismatch');
+const suffixRemoved8 = suffixLedger8.decisions.reduce((sum, item) => sum + item.expected_members, 0);
+assert(suffixRepair8?.removed_memberships === suffixRemoved8 && suffixRepair8?.deleted_aliases === 1 && suffixRepair8?.decision_ledger_sha256 === suffixLedger8Sha, 'suffix batch 8 repair mismatch');
+assert(JSON.stringify(suffixRepair8.deleted_families) === JSON.stringify(suffixLedger8.decisions.map(item => item.family_id)), 'suffix batch 8 family list mismatch');
+assert(report.repository_materialization?.suffix_batch_8_ledger_sha256 === suffixLedger8Sha, 'report suffix batch 8 ledger mismatch');
 const deletedSurfaceFamilies = new Set([...surfaceLedger.decisions, ...surfaceLedger2.decisions, ...surfaceLedger3.decisions, ...surfaceLedger4.decisions].map(item => item.family_id));
 deletedSurfaceFamilies.add(kaLedger.decisions[0].family_id);
 for (const item of suffixLedger.decisions) deletedSurfaceFamilies.add(item.family_id);
 for (const item of suffixLedger6.decisions) deletedSurfaceFamilies.add(item.family_id);
 for (const item of suffixLedger7.decisions) deletedSurfaceFamilies.add(item.family_id);
+for (const item of suffixLedger8.decisions) deletedSurfaceFamilies.add(item.family_id);
 deletedSurfaceFamilies.add(tenLedger.family_id);
 for (const item of inflectionLedger.decisions) deletedSurfaceFamilies.add(item.family_id);
 for (const item of endingLedger.decisions) deletedSurfaceFamilies.add(item.family_id);
@@ -333,7 +343,7 @@ assert(familyIdsByBucket[parseInt(bucket('family:liber'), 16)].has('family:liber
 assert(liberLanguages.size === languages.length, `family:liber missing languages: ${languages.filter(x => !liberLanguages.has(x)).join(',')}`);
 assert(quarantinedManualFamilies.size === 0, 'quarantined family missing from metadata');
 assert(preservedManualKeys.size === 0, `preserved positive controls missing: ${[...preservedManualKeys].join(', ')}`);
-assert(membershipCount === 10426047 - manualLedger.rejected_memberships.length - surfaceRemoved - surfaceRemoved2 - surfaceRemoved3 - surfaceRemoved4 - tenLedger.expected_members - inflectionRemoved - endingRemoved - geneaRemoved - geneaOtherRemoved - sonusRemoved - kaRemoved - suffixRemoved - suffixRemoved6 - suffixRemoved7, 'unexpected repository membership count');
+assert(membershipCount === 10426047 - manualLedger.rejected_memberships.length - surfaceRemoved - surfaceRemoved2 - surfaceRemoved3 - surfaceRemoved4 - tenLedger.expected_members - inflectionRemoved - endingRemoved - geneaRemoved - geneaOtherRemoved - sonusRemoved - kaRemoved - suffixRemoved - suffixRemoved6 - suffixRemoved7 - suffixRemoved8, 'unexpected repository membership count');
 assert(familyCount === manifest.counts.families && familyCount === report.total_families, `family count ${familyCount}`);
 assert(materializedFamilyCount === familyCount, 'not every family was materialized');
 for (const [field, counted] of [

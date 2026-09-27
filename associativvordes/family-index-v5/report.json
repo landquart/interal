@@ -115,7 +115,7 @@
   },
   "uncertain_relation_count": 431390,
   "uncertain_relation_sample_size": 100000,
-  "total_families": 2456586,
+  "total_families": 2456579,
   "merged_families": 20775,
   "singleton_families": 1735271,
   "multi_branch_families": 17703,
@@ -128,7 +128,7 @@
     "rejected": 9,
     "requires_manual_review": 0
   },
-  "review_required_families": 4048,
+  "review_required_families": 4044,
   "invariants": {
     "processed_lemmas_equals_source": true,
     "source_lemmas": 4924980,
@@ -145,7 +145,7 @@
   },
   "generated_non_proto_families": 20768,
   "verified_seed_families": 7,
-  "aliases_in_lookup": 1934051,
+  "aliases_in_lookup": 1934050,
   "proto_review_candidates": 10209,
   "wide_etymon_review_candidates": 171,
   "etymon_key_policy": {
@@ -4591,27 +4591,6 @@
       "review_status": "safe_automatic"
     },
     {
-      "id": "surface:fr:ons",
-      "canonical": "ons",
-      "aliases": [
-        "ons"
-      ],
-      "verified": false,
-      "confidence": "low",
-      "source": "surface_singleton",
-      "etymon_keys": [],
-      "language_support": {
-        "fr": 3596
-      },
-      "support": 3596,
-      "suspicion_score": 40,
-      "suspicion_reasons": [
-        "short_root",
-        "large_family"
-      ],
-      "review_status": "needs_review"
-    },
-    {
       "id": "ety:88d0d6fc2226",
       "canonical": "valer",
       "aliases": [
@@ -5105,26 +5084,6 @@
         "large_family"
       ],
       "review_status": "needs_review"
-    },
-    {
-      "id": "surface:it:mente",
-      "canonical": "mente",
-      "aliases": [
-        "mente"
-      ],
-      "verified": false,
-      "confidence": "low",
-      "source": "surface_singleton",
-      "etymon_keys": [],
-      "language_support": {
-        "it": 3462
-      },
-      "support": 3462,
-      "suspicion_score": 20,
-      "suspicion_reasons": [
-        "large_family"
-      ],
-      "review_status": "safe_automatic"
     },
     {
       "id": "ety:474b418e1004",
@@ -5995,27 +5954,6 @@
       "review_status": "safe_automatic"
     },
     {
-      "id": "surface:de:tes",
-      "canonical": "tes",
-      "aliases": [
-        "tes"
-      ],
-      "verified": false,
-      "confidence": "low",
-      "source": "surface_singleton",
-      "etymon_keys": [],
-      "language_support": {
-        "de": 3379
-      },
-      "support": 3379,
-      "suspicion_score": 40,
-      "suspicion_reasons": [
-        "short_root",
-        "large_family"
-      ],
-      "review_status": "needs_review"
-    },
-    {
       "id": "ety:c28863eb7595",
       "canonical": "azion",
       "aliases": [
@@ -6180,27 +6118,6 @@
         "large_family"
       ],
       "review_status": "safe_automatic"
-    },
-    {
-      "id": "surface:es:ose",
-      "canonical": "ose",
-      "aliases": [
-        "ose"
-      ],
-      "verified": false,
-      "confidence": "low",
-      "source": "surface_singleton",
-      "etymon_keys": [],
-      "language_support": {
-        "es": 3373
-      },
-      "support": 3373,
-      "suspicion_score": 40,
-      "suspicion_reasons": [
-        "short_root",
-        "large_family"
-      ],
-      "review_status": "needs_review"
     },
     {
       "id": "ety:75eed4d759a7",
@@ -6799,47 +6716,6 @@
       "review_status": "needs_review"
     },
     {
-      "id": "surface:es:ando",
-      "canonical": "ando",
-      "aliases": [
-        "ando"
-      ],
-      "verified": false,
-      "confidence": "low",
-      "source": "surface_singleton",
-      "etymon_keys": [],
-      "language_support": {
-        "es": 3287
-      },
-      "support": 3287,
-      "suspicion_score": 20,
-      "suspicion_reasons": [
-        "large_family"
-      ],
-      "review_status": "safe_automatic"
-    },
-    {
-      "id": "surface:en:ers",
-      "canonical": "ers",
-      "aliases": [
-        "ers"
-      ],
-      "verified": false,
-      "confidence": "low",
-      "source": "surface_singleton",
-      "etymon_keys": [],
-      "language_support": {
-        "en": 3246
-      },
-      "support": 3246,
-      "suspicion_score": 40,
-      "suspicion_reasons": [
-        "short_root",
-        "large_family"
-      ],
-      "review_status": "needs_review"
-    },
-    {
       "id": "ety:5f31d2bda397",
       "canonical": "anus",
       "aliases": [
@@ -6975,24 +6851,779 @@
       "review_status": "needs_review"
     },
     {
-      "id": "surface:ru:vatsja",
-      "canonical": "vatsja",
+      "id": "surface:es:arte",
+      "canonical": "arte",
       "aliases": [
-        "vatsja"
+        "arte"
       ],
       "verified": false,
       "confidence": "low",
       "source": "surface_singleton",
       "etymon_keys": [],
       "language_support": {
-        "ru": 3215
+        "es": 3180
       },
-      "support": 3215,
+      "support": 3180,
       "suspicion_score": 20,
       "suspicion_reasons": [
         "large_family"
       ],
       "review_status": "safe_automatic"
+    },
+    {
+      "id": "ety:0c55e36e580b",
+      "canonical": "aktiv",
+      "aliases": [
+        "act",
+        "aktiv"
+      ],
+      "verified": false,
+      "confidence": "A",
+      "source": "wiktionary_non_proto_etymology",
+      "etymon_keys": [
+        "la:activ"
+      ],
+      "relation_types": [
+        "borrowed_form",
+        "direct_descendant"
+      ],
+      "relation_evidence": [
+        {
+          "language": "en",
+          "word": "active",
+          "sourceLang": "la",
+          "term": "activus",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "en",
+          "word": "active",
+          "sourceLang": "la",
+          "term": "activus",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "de",
+          "word": "active",
+          "sourceLang": "la",
+          "term": "āctīvē",
+          "relationType": "borrowed_form",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.9,
+          "depth": 1,
+          "template": "bor+",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "de",
+          "word": "aktiv",
+          "sourceLang": "la",
+          "term": "āctīvus",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "de",
+          "word": "Aktiv",
+          "sourceLang": "la",
+          "term": "āctīvus",
+          "relationType": "borrowed_form",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.9,
+          "depth": 1,
+          "template": "bor+",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "es",
+          "word": "activar",
+          "sourceLang": "la",
+          "term": "actīvus",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "it",
+          "word": "attivo",
+          "sourceLang": "la",
+          "term": "āctīvus",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "it",
+          "word": "attivo",
+          "sourceLang": "la",
+          "term": "āctīvus",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "fr",
+          "word": "actif",
+          "sourceLang": "la",
+          "term": "āctīvus",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "fr",
+          "word": "actif",
+          "sourceLang": "la",
+          "term": "āctīvus",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "de",
+          "word": "Aktivität",
+          "sourceLang": "la",
+          "term": "āctīvus",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "fr",
+          "word": "activer",
+          "sourceLang": "la",
+          "term": "activus",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        }
+      ],
+      "canonical_selection": {
+        "method": "quality_score_v1",
+        "score": 1
+      },
+      "language_support": {
+        "en": 2097,
+        "de": 28,
+        "fr": 1036
+      },
+      "support": 3161,
+      "suspicion_score": 40,
+      "suspicion_reasons": [
+        "short_root",
+        "large_family"
+      ],
+      "review_status": "needs_review"
+    },
+    {
+      "id": "ety:f66f0a228497",
+      "canonical": "aktiv",
+      "aliases": [
+        "act",
+        "aktiv"
+      ],
+      "verified": false,
+      "confidence": "A",
+      "source": "wiktionary_non_proto_etymology",
+      "etymon_keys": [
+        "la:activus"
+      ],
+      "relation_types": [
+        "borrowed_form",
+        "direct_descendant"
+      ],
+      "relation_evidence": [
+        {
+          "language": "en",
+          "word": "active",
+          "sourceLang": "la",
+          "term": "activus",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "en",
+          "word": "active",
+          "sourceLang": "la",
+          "term": "activus",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "de",
+          "word": "aktiv",
+          "sourceLang": "la",
+          "term": "āctīvus",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "de",
+          "word": "Aktiv",
+          "sourceLang": "la",
+          "term": "āctīvus",
+          "relationType": "borrowed_form",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.9,
+          "depth": 1,
+          "template": "bor+",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "es",
+          "word": "activar",
+          "sourceLang": "la",
+          "term": "actīvus",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "it",
+          "word": "attivo",
+          "sourceLang": "la",
+          "term": "āctīvus",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "it",
+          "word": "attivo",
+          "sourceLang": "la",
+          "term": "āctīvus",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "fr",
+          "word": "actif",
+          "sourceLang": "la",
+          "term": "āctīvus",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "fr",
+          "word": "actif",
+          "sourceLang": "la",
+          "term": "āctīvus",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "de",
+          "word": "Aktivität",
+          "sourceLang": "la",
+          "term": "āctīvus",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "fr",
+          "word": "activer",
+          "sourceLang": "la",
+          "term": "activus",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        }
+      ],
+      "canonical_selection": {
+        "method": "quality_score_v1",
+        "score": 1
+      },
+      "language_support": {
+        "en": 2097,
+        "de": 28,
+        "fr": 1036
+      },
+      "support": 3161,
+      "suspicion_score": 40,
+      "suspicion_reasons": [
+        "short_root",
+        "large_family"
+      ],
+      "review_status": "needs_review"
+    },
+    {
+      "id": "surface:es:ias",
+      "canonical": "ias",
+      "aliases": [
+        "ias"
+      ],
+      "verified": false,
+      "confidence": "low",
+      "source": "surface_singleton",
+      "etymon_keys": [],
+      "language_support": {
+        "es": 3139
+      },
+      "support": 3139,
+      "suspicion_score": 40,
+      "suspicion_reasons": [
+        "short_root",
+        "large_family"
+      ],
+      "review_status": "needs_review"
+    },
+    {
+      "id": "ety:4b3973e85707",
+      "canonical": "act",
+      "aliases": [
+        "act"
+      ],
+      "verified": false,
+      "confidence": "A",
+      "source": "wiktionary_non_proto_etymology",
+      "etymon_keys": [
+        "la:intactus"
+      ],
+      "relation_types": [
+        "borrowed_form",
+        "direct_descendant"
+      ],
+      "relation_evidence": [
+        {
+          "language": "en",
+          "word": "intact",
+          "sourceLang": "la",
+          "term": "intactus",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "fr",
+          "word": "intact",
+          "sourceLang": "la",
+          "term": "intāctus",
+          "relationType": "borrowed_form",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.9,
+          "depth": 1,
+          "template": "bor+",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "it",
+          "word": "intatto",
+          "sourceLang": "la",
+          "term": "intactus",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.9,
+          "depth": 1,
+          "template": "uder",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "es",
+          "word": "intacto",
+          "sourceLang": "la",
+          "term": "intāctus",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        }
+      ],
+      "canonical_selection": {
+        "method": "quality_score_v1",
+        "score": 103
+      },
+      "language_support": {
+        "en": 2097,
+        "fr": 1036
+      },
+      "support": 3133,
+      "suspicion_score": 40,
+      "suspicion_reasons": [
+        "short_root",
+        "large_family"
+      ],
+      "review_status": "needs_review"
+    },
+    {
+      "id": "ety:aede8d1d6185",
+      "canonical": "act",
+      "aliases": [
+        "act"
+      ],
+      "verified": false,
+      "confidence": "A",
+      "source": "wiktionary_non_proto_etymology",
+      "etymon_keys": [
+        "la:intact"
+      ],
+      "relation_types": [
+        "borrowed_form",
+        "direct_descendant"
+      ],
+      "relation_evidence": [
+        {
+          "language": "en",
+          "word": "intact",
+          "sourceLang": "la",
+          "term": "intactus",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "fr",
+          "word": "intact",
+          "sourceLang": "la",
+          "term": "intāctus",
+          "relationType": "borrowed_form",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.9,
+          "depth": 1,
+          "template": "bor+",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "it",
+          "word": "intatto",
+          "sourceLang": "la",
+          "term": "intactus",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.9,
+          "depth": 1,
+          "template": "uder",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "es",
+          "word": "intacto",
+          "sourceLang": "la",
+          "term": "intāctus",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        }
+      ],
+      "canonical_selection": {
+        "method": "quality_score_v1",
+        "score": 103
+      },
+      "language_support": {
+        "en": 2097,
+        "fr": 1036
+      },
+      "support": 3133,
+      "suspicion_score": 40,
+      "suspicion_reasons": [
+        "short_root",
+        "large_family"
+      ],
+      "review_status": "needs_review"
+    },
+    {
+      "id": "ety:ef562a6f4a42",
+      "canonical": "act",
+      "aliases": [
+        "act"
+      ],
+      "verified": false,
+      "confidence": "A",
+      "source": "wiktionary_non_proto_etymology",
+      "etymon_keys": [
+        "fro:actif"
+      ],
+      "relation_types": [
+        "direct_descendant",
+        "inherited_form"
+      ],
+      "relation_evidence": [
+        {
+          "language": "en",
+          "word": "active",
+          "sourceLang": "fro",
+          "term": "actif",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "en",
+          "word": "active",
+          "sourceLang": "fro",
+          "term": "actif",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "fr",
+          "word": "actif",
+          "sourceLang": "fro",
+          "term": "actif",
+          "relationType": "inherited_form",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "inh",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "fr",
+          "word": "actif",
+          "sourceLang": "fro",
+          "term": "actif",
+          "relationType": "inherited_form",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "inh",
+          "path": [
+            "args",
+            2
+          ]
+        }
+      ],
+      "canonical_selection": {
+        "method": "quality_score_v1",
+        "score": 103
+      },
+      "language_support": {
+        "en": 2097,
+        "fr": 1036
+      },
+      "support": 3133,
+      "suspicion_score": 40,
+      "suspicion_reasons": [
+        "short_root",
+        "large_family"
+      ],
+      "review_status": "needs_review"
     }
   ],
   "highest_suspicion_families": [
@@ -10480,27 +11111,6 @@
       "review_status": "needs_review"
     },
     {
-      "id": "surface:fr:ons",
-      "canonical": "ons",
-      "aliases": [
-        "ons"
-      ],
-      "verified": false,
-      "confidence": "low",
-      "source": "surface_singleton",
-      "etymon_keys": [],
-      "language_support": {
-        "fr": 3596
-      },
-      "support": 3596,
-      "suspicion_score": 40,
-      "suspicion_reasons": [
-        "short_root",
-        "large_family"
-      ],
-      "review_status": "needs_review"
-    },
-    {
       "id": "ety:88d0d6fc2226",
       "canonical": "valer",
       "aliases": [
@@ -10988,48 +11598,6 @@
         "fr": 1486
       },
       "support": 3472,
-      "suspicion_score": 40,
-      "suspicion_reasons": [
-        "short_root",
-        "large_family"
-      ],
-      "review_status": "needs_review"
-    },
-    {
-      "id": "surface:de:tes",
-      "canonical": "tes",
-      "aliases": [
-        "tes"
-      ],
-      "verified": false,
-      "confidence": "low",
-      "source": "surface_singleton",
-      "etymon_keys": [],
-      "language_support": {
-        "de": 3379
-      },
-      "support": 3379,
-      "suspicion_score": 40,
-      "suspicion_reasons": [
-        "short_root",
-        "large_family"
-      ],
-      "review_status": "needs_review"
-    },
-    {
-      "id": "surface:es:ose",
-      "canonical": "ose",
-      "aliases": [
-        "ose"
-      ],
-      "verified": false,
-      "confidence": "low",
-      "source": "surface_singleton",
-      "etymon_keys": [],
-      "language_support": {
-        "es": 3373
-      },
-      "support": 3373,
       "suspicion_score": 40,
       "suspicion_reasons": [
         "short_root",
@@ -11626,27 +12194,6 @@
         "it": 2568
       },
       "support": 3301,
-      "suspicion_score": 40,
-      "suspicion_reasons": [
-        "short_root",
-        "large_family"
-      ],
-      "review_status": "needs_review"
-    },
-    {
-      "id": "surface:en:ers",
-      "canonical": "ers",
-      "aliases": [
-        "ers"
-      ],
-      "verified": false,
-      "confidence": "low",
-      "source": "surface_singleton",
-      "etymon_keys": [],
-      "language_support": {
-        "en": 3246
-      },
-      "support": 3246,
       "suspicion_score": 40,
       "suspicion_reasons": [
         "short_root",
@@ -12936,6 +13483,298 @@
         "large_family"
       ],
       "review_status": "needs_review"
+    },
+    {
+      "id": "surface:de:sen",
+      "canonical": "sen",
+      "aliases": [
+        "sen"
+      ],
+      "verified": false,
+      "confidence": "low",
+      "source": "surface_singleton",
+      "etymon_keys": [],
+      "language_support": {
+        "de": 2804
+      },
+      "support": 2804,
+      "suspicion_score": 40,
+      "suspicion_reasons": [
+        "short_root",
+        "large_family"
+      ],
+      "review_status": "needs_review"
+    },
+    {
+      "id": "surface:es:ita",
+      "canonical": "ita",
+      "aliases": [
+        "ita"
+      ],
+      "verified": false,
+      "confidence": "low",
+      "source": "surface_singleton",
+      "etymon_keys": [],
+      "language_support": {
+        "es": 2804
+      },
+      "support": 2804,
+      "suspicion_score": 40,
+      "suspicion_reasons": [
+        "short_root",
+        "large_family"
+      ],
+      "review_status": "needs_review"
+    },
+    {
+      "id": "surface:ru:tyj",
+      "canonical": "tyj",
+      "aliases": [
+        "tyj"
+      ],
+      "verified": false,
+      "confidence": "low",
+      "source": "surface_singleton",
+      "etymon_keys": [],
+      "language_support": {
+        "ru": 2804
+      },
+      "support": 2804,
+      "suspicion_score": 40,
+      "suspicion_reasons": [
+        "short_root",
+        "large_family"
+      ],
+      "review_status": "needs_review"
+    },
+    {
+      "id": "ety:cd540a613995",
+      "canonical": "ateist",
+      "aliases": [
+        "ate",
+        "ateist",
+        "athe"
+      ],
+      "verified": false,
+      "confidence": "A",
+      "source": "wiktionary_non_proto_etymology",
+      "etymon_keys": [
+        "grc:αθεος"
+      ],
+      "relation_types": [
+        "direct_descendant"
+      ],
+      "relation_evidence": [
+        {
+          "language": "en",
+          "word": "atheism",
+          "sourceLang": "grc",
+          "term": "ἄθεος",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "en",
+          "word": "atheist",
+          "sourceLang": "grc",
+          "term": "ἄθεος",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "en",
+          "word": "atheist",
+          "sourceLang": "grc",
+          "term": "ἄθεος",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "en",
+          "word": "atheist",
+          "sourceLang": "grc",
+          "term": "ἄθεος",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "fr",
+          "word": "athée",
+          "sourceLang": "grc",
+          "term": "ἄθεος",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "fr",
+          "word": "athée",
+          "sourceLang": "grc",
+          "term": "ἄθεος",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "ru",
+          "word": "атеист",
+          "sourceLang": "grc",
+          "term": "ἄθεος",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "it",
+          "word": "ateo",
+          "sourceLang": "grc",
+          "term": "ἄθεος",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "it",
+          "word": "ateo",
+          "sourceLang": "grc",
+          "term": "ἄθεος",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "es",
+          "word": "ateo",
+          "sourceLang": "grc",
+          "term": "ἄθεος",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "es",
+          "word": "ateo",
+          "sourceLang": "grc",
+          "term": "ἄθεος",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "ru",
+          "word": "безбожный",
+          "sourceLang": "grc",
+          "term": "ᾰ̓́θεος",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        }
+      ],
+      "canonical_selection": {
+        "method": "quality_score_v1",
+        "score": 0
+      },
+      "language_support": {
+        "fr": 50,
+        "es": 1447,
+        "it": 1294,
+        "ru": 2
+      },
+      "support": 2793,
+      "suspicion_score": 40,
+      "suspicion_reasons": [
+        "short_root",
+        "large_family"
+      ],
+      "review_status": "needs_review"
     }
   ],
   "repository_materialization": {
@@ -12970,6 +13809,8 @@
     "suffix_batch_6_memberships_removed": 12744,
     "suffix_batch_6_ledger_sha256": "a682ad50539629d45fe088d25e5822922baf93d2531d9e33a8fab5e68baeff09",
     "suffix_batch_7_memberships_removed": 15721,
-    "suffix_batch_7_ledger_sha256": "0e2751936b67e5fc2ca41bbc4c3fb4e5489badab46460691fa1252f06d2d13c3"
+    "suffix_batch_7_ledger_sha256": "0e2751936b67e5fc2ca41bbc4c3fb4e5489badab46460691fa1252f06d2d13c3",
+    "suffix_batch_8_memberships_removed": 23558,
+    "suffix_batch_8_ledger_sha256": "c005b44ff1902de1a38417e8781157f818c428c9faf41478d5032300d0dc2cdc"
   }
 }

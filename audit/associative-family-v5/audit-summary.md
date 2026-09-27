@@ -28,6 +28,8 @@ A further family-level review removed German `surface:de:chen` (4,641 links), En
 
 The next family-level review removed `surface:de:schen`, `surface:de:ers`, `surface:de:ons` and `surface:it:elo`, deleting 15,721 candidate-only links. German `schen` was another `safe_automatic` surface group that mixed unrelated adjective and verb endings; `ers` and `ons` joined inflections and internal strings, while Italian `elo` commonly joined an object pronoun to unrelated verbs. The locked member sets, evidence classes and reasons are in `surface-suffix-decisions-7.json`. Source lemmas and their other memberships remain. This review does not amount to individual annotation of those 15,721 links. Current repository totals are 2,456,586 families, 1,934,051 aliases and 10,232,870 memberships.
 
+Seven more large surface groups (`surface:fr:ons`, `surface:it:mente`, `surface:de:tes`, `surface:es:ose`, `surface:es:ando`, `surface:en:ers`, `surface:ru:vatsja`) were rejected as incoherent morphological-ending or clitic associations. All 23,558 links were candidate-index-only; three families had nevertheless been marked `safe_automatic`. `surface-suffix-decisions-8.json` locks their original member lists and evidence classes. One alias became empty and was removed. The words and other family memberships remain, and this batch is not individual annotation. Current repository totals are 2,456,579 families, 1,934,050 aliases and 10,209,312 memberships.
+
 ## Object and provenance checked
 
 - PR: `#622`, branch `fix/associative-family-corrective-v5`; base `main` remains unchanged.

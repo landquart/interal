@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "source_run_id": 35647932153,
+  "scope": "Seven family-level decisions using contrasting examples and all evidence classes. Exact original memberships locked by digest, without claiming individual word annotation.",
+  "decisions": [
+    {
+      "family_id": "surface:fr:ons", "language": "fr", "expected_status": "needs_review", "expected_members": 3596,
+      "member_list_sha256": "8a50a6c6d7f0c6f443912804fa2fa7da6feff76f8dc266b94cff9f8dad816cb0",
+      "expected_evidence": {"compound_morphology:candidate_index": 3593, "morphological_parse:candidate_index": 3},
+      "reason": "French final -ons spans unrelated first-person plural verbs (œuvrerons, ramènerons, restons) and nouns in -ions (suspensions, confessions). It is not a shared root."
+    },
+    {
+      "family_id": "surface:it:mente", "language": "it", "expected_status": "safe_automatic", "expected_members": 3462,
+      "member_list_sha256": "4349cd24a97ca0c956fd196229990a891351b094b628307c6d4a69c91a9005bc",
+      "expected_evidence": {"compound_morphology:candidate_index": 3458, "morphological_parse:candidate_index": 4},
+      "reason": "Italian -mente is a productive adverbial suffix on unrelated adjective stems (avanzatamente, intrinsecamente, zoologicamente), not a shared whole-lemma etymon. The safe_automatic status did not represent individually verified origins."
+    },
+    {
+      "family_id": "surface:de:tes", "language": "de", "expected_status": "needs_review", "expected_members": 3379,
+      "member_list_sha256": "54544fd3a95eab73d6bae0bf6fc0aa259bebb9e4f2a34c892a010b66bc2acd83",
+      "expected_evidence": {"compound_morphology:candidate_index": 3377, "morphological_parse:candidate_index": 2},
+      "reason": "German final -tes occurs in genitives and inflected adjectives from different stems (Baukonzeptes, degeneriertes, Stadtsenates, unausgereiftes)."
+    },
+    {
+      "family_id": "surface:es:ose", "language": "es", "expected_status": "needs_review", "expected_members": 3373,
+      "member_list_sha256": "5f24967d33d283a9b9a0fc5fd882856988d35e00c91199716965981371db6099",
+      "expected_evidence": {"compound_morphology:candidate_index": 3370, "morphological_parse:candidate_index": 3},
+      "reason": "Spanish -ose joins reflexive se to unrelated gerunds (beneficiándose, contradiciéndose, pinchándose) or matches incidental endings; it does not identify one lexical family."
+    },
+    {
+      "family_id": "surface:es:ando", "language": "es", "expected_status": "safe_automatic", "expected_members": 3287,
+      "member_list_sha256": "9180a7477f843aebd9f87ac48dbb481187754bdd5474ce1696784663861d3258",
+      "expected_evidence": {"compound_morphology:candidate_index": 3283, "morphological_parse:candidate_index": 4},
+      "reason": "Spanish -ando is a productive gerund ending on unrelated verbs (provisionando, revoleteando, examinando); it is not their common stem even where tagged safe_automatic."
+    },
+    {
+      "family_id": "surface:en:ers", "language": "en", "expected_status": "needs_review", "expected_members": 3246,
+      "member_list_sha256": "5cbf21d485a5e1f7ac3fd19766637cf42b81e6b3c50261d14bd8c0fb0e70947b",
+      "expected_evidence": {"compound_morphology:candidate_index": 3244, "morphological_parse:candidate_index": 2},
+      "reason": "English -ers joins unrelated plural agents, surnames and other words (homeschoolers, land-owners, petersburgers, twizzlers); it is not a shared lexical source."
+    },
+    {
+      "family_id": "surface:ru:vatsja", "language": "ru", "expected_status": "safe_automatic", "expected_members": 3215,
+      "member_list_sha256": "fd285590ba524600532c6f9612874e630ade7dfce531c2ad0dfe8726209efbdf",
+      "expected_evidence": {"compound_morphology:candidate_index": 3214, "morphological_parse:candidate_index": 1},
+      "reason": "Transliterated -vatsja matches the reflexive infinitive ending -ваться across unrelated verbs (эмитироваться, обёртываться, познаваться, совершенствоваться). It is not a common root despite safe_automatic status."
+    }
+  ],
+  "review_scope": "Reject these seven incoherent surface groups, retaining source lemmas and their other family memberships. Some corpus forms may be malformed; the decision is on the grouping, not the independent validity of each lemma."
+}
