@@ -36,7 +36,9 @@ An individual etymological review removed ten false links from `ety:5bed7c192e10
 
 A full-list structural review of `ety:1e9cc0c12192` (`la:illas`) found that all 7,738 member records carried only candidate-index morphology. The source etymology identifies Spanish `las` and French `elles` as descendants of Latin `illās`; French `lesquelles` and `desquelles` retain the related article `les`. The 7,734 other records matched a clitic or a coincidental substring (for example `abandónalas`, `abrebotellas`, `actuelles`). The exact original lists and evidence distribution are locked in `illas-family-decision.json`. This family-level exclusion does not claim individual etymological review of every excluded word.
 
-The same complete-list review of `la:illos` and `la:illis` retained Spanish `ellos`, `los`, `les`, French `eux`, `les`, and Italian `gli`, `glie`. It removed 14,129 candidate-only links from verb forms with attached clitics or incidental substrings. The ordered original lists, evidence counts, source etymologies and preserved lemma IDs are recorded in `illos-illis-family-decisions.json`. This remains family-level evidence, not 14,129 separate human etymological judgments. Current repository totals are 2,456,567 families, 1,934,050 aliases and 10,152,185 memberships.
+The same complete-list review of `la:illos` and `la:illis` retained Spanish `ellos`, `los`, `les`, French `eux`, `les`, and Italian `gli`, `glie`. It removed 14,129 candidate-only links from verb forms with attached clitics or incidental substrings. The ordered original lists, evidence counts, source etymologies and preserved lemma IDs are recorded in `illos-illis-family-decisions.json`. This remains family-level evidence, not 14,129 separate human etymological judgments.
+
+Ten more incoherent `surface:*` groups were rejected after contrasting examples and scans of all original members and evidence classes: Spanish `ote`, `ento`, `amos`, `ras`; Russian `nut`, `nost`, `cheskij`; French `tes`; German `eln`, `eren`. The complete source-list digests and counts in `surface-suffix-decisions-10.json` lock 26,757 removed links. Some had been labelled `safe_automatic` despite joining unrelated stems by a suffix or inflection. These are family-level decisions; they do not certify each excluded word individually. Current repository totals are 2,456,557 families, 1,934,049 aliases and 10,125,428 memberships.
 
 ## Object and provenance checked
 
@@ -59,12 +61,12 @@ An independent streaming recount of all six locked assignment files established 
 |---|---:|
 | Lemma records | 4,924,980 |
 | Component evidence records | 9,349,982 |
-| Repository runtime memberships | 10,152,185 |
-| Materialized member records | 10,152,185 |
+| Repository runtime memberships | 10,125,428 |
+| Materialized member records | 10,125,428 |
 | Memberships with repeated component evidence | 5,097 |
 | Excess repeated component→membership links | 6,282 |
 
-`manifest.counts.components` is incremented once per component evidence record. It is not a membership count. The previous v4→v5 report compared v4 memberships (`14,918,457`) with v5 components (`9,350,026`), so its `-5,568,431` delta was invalid. The current repository-runtime membership delta is `10,152,185 - 14,918,457 = -4,766,272`; this reduction still proves neither precision nor recall. The repository count is 273,892 below the immutable source artifact: 30 memberships of rejected corpus-noise lemmas, 22 earlier case-reviewed memberships, 364 individually reviewed memberships in twelve deleted short surface families, 122,435 members in twelve ending-based families rejected at the family level, 14,932 memberships pruned from the Greek `genea` family, 6,661 from the Latin `sonus` family, 107,575 from thirty subsequently reviewed surface families, ten individually reviewed links in Latin `actus`, 7,734 candidate-only links in Latin `illas`, and 14,129 candidate-only links in Latin `illos`/`illis`. Source-artifact/assignment counts elsewhere in this audit remain historical and must not be reinterpreted as repository-runtime counts.
+`manifest.counts.components` is incremented once per component evidence record. It is not a membership count. The previous v4→v5 report compared v4 memberships (`14,918,457`) with v5 components (`9,350,026`), so its `-5,568,431` delta was invalid. The current repository-runtime membership delta is `10,125,428 - 14,918,457 = -4,793,029`; this reduction still proves neither precision nor recall. The repository count is 300,649 below the immutable source artifact: 30 memberships of rejected corpus-noise lemmas, 22 earlier case-reviewed memberships, 364 individually reviewed memberships in twelve deleted short surface families, 122,435 members in twelve ending-based families rejected at the family level, 14,932 memberships pruned from the Greek `genea` family, 6,661 from the Latin `sonus` family, 134,332 from forty subsequently reviewed surface families, ten individually reviewed links in Latin `actus`, 7,734 candidate-only links in Latin `illas`, and 14,129 candidate-only links in Latin `illos`/`illis`. Source-artifact/assignment counts elsewhere in this audit remain historical and must not be reinterpreted as repository-runtime counts.
 
 ## Evidence status by gate
 
