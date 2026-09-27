@@ -2044,204 +2044,6 @@
       "review_status": "needs_review"
     },
     {
-      "id": "ety:315724e202e2",
-      "canonical": "ellos",
-      "aliases": [
-        "ellos",
-        "eux",
-        "les",
-        "los"
-      ],
-      "verified": false,
-      "confidence": "A",
-      "source": "wiktionary_non_proto_etymology",
-      "etymon_keys": [
-        "la:illos"
-      ],
-      "relation_types": [
-        "inherited_form"
-      ],
-      "relation_evidence": [
-        {
-          "language": "es",
-          "word": "los",
-          "sourceLang": "la",
-          "term": "illōs",
-          "relationType": "inherited_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "inh",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "es",
-          "word": "los",
-          "sourceLang": "la",
-          "term": "illōs",
-          "relationType": "inherited_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "inh",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "fr",
-          "word": "les",
-          "sourceLang": "la",
-          "term": "illōs",
-          "relationType": "inherited_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "inh",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "fr",
-          "word": "les",
-          "sourceLang": "la",
-          "term": "illōs",
-          "relationType": "inherited_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "inh",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "fr",
-          "word": "eux",
-          "sourceLang": "la",
-          "term": "illōs",
-          "relationType": "inherited_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "inh",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "es",
-          "word": "ellos",
-          "sourceLang": "la",
-          "term": "illos",
-          "relationType": "inherited_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "inh",
-          "path": [
-            "args",
-            2
-          ]
-        }
-      ],
-      "canonical_selection": {
-        "method": "quality_score_v1",
-        "score": 1
-      },
-      "language_support": {
-        "fr": 1440,
-        "es": 5739
-      },
-      "support": 7179,
-      "suspicion_score": 40,
-      "suspicion_reasons": [
-        "short_root",
-        "large_family"
-      ],
-      "review_status": "needs_review"
-    },
-    {
-      "id": "ety:ca11c4d91dcb",
-      "canonical": "gli",
-      "aliases": [
-        "gli",
-        "les"
-      ],
-      "verified": false,
-      "confidence": "A",
-      "source": "wiktionary_non_proto_etymology",
-      "etymon_keys": [
-        "la:illis"
-      ],
-      "relation_types": [
-        "inherited_form"
-      ],
-      "relation_evidence": [
-        {
-          "language": "it",
-          "word": "gli",
-          "sourceLang": "la",
-          "term": "illīs",
-          "relationType": "inherited_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "inh",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "es",
-          "word": "les",
-          "sourceLang": "la",
-          "term": "illīs",
-          "relationType": "inherited_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "inh",
-          "path": [
-            "args",
-            2
-          ]
-        }
-      ],
-      "canonical_selection": {
-        "method": "quality_score_v1",
-        "score": 103
-      },
-      "language_support": {
-        "es": 5884,
-        "it": 1073
-      },
-      "support": 6957,
-      "suspicion_score": 40,
-      "suspicion_reasons": [
-        "short_root",
-        "large_family"
-      ],
-      "review_status": "needs_review"
-    },
-    {
       "id": "ety:579f4e520ecd",
       "canonical": "agir",
       "aliases": [
@@ -8123,6 +7925,207 @@
         "large_family"
       ],
       "review_status": "needs_review"
+    },
+    {
+      "id": "ety:e08f42561734",
+      "canonical": "athe",
+      "aliases": [
+        "ate",
+        "athe"
+      ],
+      "verified": false,
+      "confidence": "A",
+      "source": "wiktionary_non_proto_etymology",
+      "etymon_keys": [
+        "la:atheos"
+      ],
+      "relation_types": [
+        "borrowed_form",
+        "direct_descendant"
+      ],
+      "relation_evidence": [
+        {
+          "language": "en",
+          "word": "atheist",
+          "sourceLang": "la",
+          "term": "atheos",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "en",
+          "word": "atheist",
+          "sourceLang": "la",
+          "term": "atheos",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "en",
+          "word": "atheist",
+          "sourceLang": "la",
+          "term": "atheos",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "fr",
+          "word": "athée",
+          "sourceLang": "la",
+          "term": "atheos",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "fr",
+          "word": "athée",
+          "sourceLang": "la",
+          "term": "atheos",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "it",
+          "word": "ateo",
+          "sourceLang": "la",
+          "term": "atheos",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "it",
+          "word": "ateo",
+          "sourceLang": "la",
+          "term": "atheos",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "es",
+          "word": "ateo",
+          "sourceLang": "la",
+          "term": "atheos",
+          "relationType": "borrowed_form",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.9,
+          "depth": 1,
+          "template": "bor+",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "es",
+          "word": "ateo",
+          "sourceLang": "la",
+          "term": "atheos",
+          "relationType": "borrowed_form",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.9,
+          "depth": 1,
+          "template": "bor+",
+          "path": [
+            "args",
+            2
+          ]
+        }
+      ],
+      "canonical_selection": {
+        "method": "quality_score_v1",
+        "score": 2
+      },
+      "language_support": {
+        "fr": 50,
+        "es": 1447,
+        "it": 1294
+      },
+      "support": 2791,
+      "suspicion_score": 40,
+      "suspicion_reasons": [
+        "short_root",
+        "large_family"
+      ],
+      "review_status": "needs_review"
+    },
+    {
+      "id": "surface:es:ote",
+      "canonical": "ote",
+      "aliases": [
+        "ote"
+      ],
+      "verified": false,
+      "confidence": "low",
+      "source": "surface_singleton",
+      "etymon_keys": [],
+      "language_support": {
+        "es": 2785
+      },
+      "support": 2785,
+      "suspicion_score": 40,
+      "suspicion_reasons": [
+        "short_root",
+        "large_family"
+      ],
+      "review_status": "needs_review"
     }
   ],
   "highest_suspicion_families": [
@@ -9323,204 +9326,6 @@
         "it": 89
       },
       "support": 7200,
-      "suspicion_score": 40,
-      "suspicion_reasons": [
-        "short_root",
-        "large_family"
-      ],
-      "review_status": "needs_review"
-    },
-    {
-      "id": "ety:315724e202e2",
-      "canonical": "ellos",
-      "aliases": [
-        "ellos",
-        "eux",
-        "les",
-        "los"
-      ],
-      "verified": false,
-      "confidence": "A",
-      "source": "wiktionary_non_proto_etymology",
-      "etymon_keys": [
-        "la:illos"
-      ],
-      "relation_types": [
-        "inherited_form"
-      ],
-      "relation_evidence": [
-        {
-          "language": "es",
-          "word": "los",
-          "sourceLang": "la",
-          "term": "illōs",
-          "relationType": "inherited_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "inh",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "es",
-          "word": "los",
-          "sourceLang": "la",
-          "term": "illōs",
-          "relationType": "inherited_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "inh",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "fr",
-          "word": "les",
-          "sourceLang": "la",
-          "term": "illōs",
-          "relationType": "inherited_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "inh",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "fr",
-          "word": "les",
-          "sourceLang": "la",
-          "term": "illōs",
-          "relationType": "inherited_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "inh",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "fr",
-          "word": "eux",
-          "sourceLang": "la",
-          "term": "illōs",
-          "relationType": "inherited_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "inh",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "es",
-          "word": "ellos",
-          "sourceLang": "la",
-          "term": "illos",
-          "relationType": "inherited_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "inh",
-          "path": [
-            "args",
-            2
-          ]
-        }
-      ],
-      "canonical_selection": {
-        "method": "quality_score_v1",
-        "score": 1
-      },
-      "language_support": {
-        "fr": 1440,
-        "es": 5739
-      },
-      "support": 7179,
-      "suspicion_score": 40,
-      "suspicion_reasons": [
-        "short_root",
-        "large_family"
-      ],
-      "review_status": "needs_review"
-    },
-    {
-      "id": "ety:ca11c4d91dcb",
-      "canonical": "gli",
-      "aliases": [
-        "gli",
-        "les"
-      ],
-      "verified": false,
-      "confidence": "A",
-      "source": "wiktionary_non_proto_etymology",
-      "etymon_keys": [
-        "la:illis"
-      ],
-      "relation_types": [
-        "inherited_form"
-      ],
-      "relation_evidence": [
-        {
-          "language": "it",
-          "word": "gli",
-          "sourceLang": "la",
-          "term": "illīs",
-          "relationType": "inherited_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "inh",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "es",
-          "word": "les",
-          "sourceLang": "la",
-          "term": "illīs",
-          "relationType": "inherited_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "inh",
-          "path": [
-            "args",
-            2
-          ]
-        }
-      ],
-      "canonical_selection": {
-        "method": "quality_score_v1",
-        "score": 103
-      },
-      "language_support": {
-        "es": 5884,
-        "it": 1073
-      },
-      "support": 6957,
       "suspicion_score": 40,
       "suspicion_reasons": [
         "short_root",
@@ -14851,6 +14656,47 @@
         "large_family"
       ],
       "review_status": "needs_review"
+    },
+    {
+      "id": "surface:es:ido",
+      "canonical": "ido",
+      "aliases": [
+        "ido"
+      ],
+      "verified": false,
+      "confidence": "low",
+      "source": "surface_singleton",
+      "etymon_keys": [],
+      "language_support": {
+        "es": 2510
+      },
+      "support": 2510,
+      "suspicion_score": 40,
+      "suspicion_reasons": [
+        "short_root",
+        "large_family"
+      ],
+      "review_status": "needs_review"
+    },
+    {
+      "id": "surface:ru:no",
+      "canonical": "no",
+      "aliases": [
+        "no"
+      ],
+      "verified": false,
+      "confidence": "low",
+      "source": "surface_singleton",
+      "etymon_keys": [],
+      "language_support": {
+        "ru": 1892
+      },
+      "support": 1892,
+      "suspicion_score": 40,
+      "suspicion_reasons": [
+        "very_short_root"
+      ],
+      "review_status": "needs_review"
     }
   ],
   "repository_materialization": {
@@ -14893,6 +14739,8 @@
     "actus_verified_false_memberships_removed": 10,
     "actus_case_ledger_sha256": "c0d11e3deb9370063f7d36de1ccccbd87dba85da3bd73a0458a11ef49e502d72",
     "illas_candidate_only_memberships_removed": 7734,
-    "illas_family_decision_sha256": "2df09de7b4bec645b56a6404fdeb87fedb738a4981bd3674adfcb57f3dd01c30"
+    "illas_family_decision_sha256": "2df09de7b4bec645b56a6404fdeb87fedb738a4981bd3674adfcb57f3dd01c30",
+    "illos_illis_candidate_only_memberships_removed": 14129,
+    "illos_illis_family_decisions_sha256": "2fc48f87d69f8ca53560245048b2b00d1adc07112ea69c5d5f39145346fb0598"
   }
 }

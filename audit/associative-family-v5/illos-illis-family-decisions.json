@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "source_run_id": 35647932153,
+  "review_method": "Complete-list evidence and ordered membership checks for both families, with linguistic review of preserved pronouns and contrasting examples. A family-level exclusion does not constitute separate human etymological annotation of each removed member.",
+  "decisions": [
+    {
+      "family_id": "ety:315724e202e2",
+      "etymon_key": "la:illos",
+      "original_members": {
+        "es": {"count": 5739, "ordered_id_word_sha256": "35126ceb7d1d92c743cfda111d9fc2f55ffdd6a9e8a4bfc0ef75b734832eb56e", "compound_morphology": 5731, "morphological_parse": 8},
+        "fr": {"count": 1440, "ordered_id_word_sha256": "cb546066d2bfc8dd884f4153c9a1bd0aa7b90680b115ae3568d2b21cea5a909d", "compound_morphology": 1432, "morphological_parse": 8}
+      },
+      "retained": [
+        {"language": "es", "word": "ellos", "lemma_id": "lemma:f7d3f5f3376faf7d2069", "reference": "https://en.wiktionary.org/wiki/illos"},
+        {"language": "es", "word": "los", "lemma_id": "lemma:ac3f85e3e028aa1ff4c1", "reference": "https://en.wiktionary.org/wiki/los#Spanish"},
+        {"language": "fr", "word": "eux", "lemma_id": "lemma:4c1f0b360e3c2f28802b", "reference": "https://en.wiktionary.org/wiki/eux#French"},
+        {"language": "fr", "word": "les", "lemma_id": "lemma:6ac35b07f9c193960562", "reference": "https://en.wiktionary.org/wiki/les#French"}
+      ],
+      "contrasting_examples": {"es": ["aaquellos", "cogedlos", "embriagarlos", "kickopopolos", "recíbanlos", "zurrarlos"], "fr": ["abeles", "controlés", "goulés", "miércoles", "ruples", "zymboles"]},
+      "expected_removed_memberships": 7175,
+      "expected_final_support": 4
+    },
+    {
+      "family_id": "ety:ca11c4d91dcb",
+      "etymon_key": "la:illis",
+      "original_members": {
+        "es": {"count": 5884, "ordered_id_word_sha256": "cda3b76e793cc5ee12c8b53ee731d8fec4e6c8ae35cdb63a4110dea1a5a7cb92", "compound_morphology": 5880, "morphological_parse": 4},
+        "it": {"count": 1073, "ordered_id_word_sha256": "6dd642efa3e89b36f288d57c26447bc0a87e5274ecdf7c6ff2cdf08bed6ac164", "compound_morphology": 1067, "morphological_parse": 6}
+      },
+      "retained": [
+        {"language": "es", "word": "les", "lemma_id": "lemma:efbea69d3496496fc149", "reference": "https://en.wiktionary.org/wiki/les#Spanish"},
+        {"language": "it", "word": "gli", "lemma_id": "lemma:7ca86053f195e1b12d38", "reference": "https://en.wiktionary.org/wiki/illis"},
+        {"language": "it", "word": "glie", "lemma_id": "lemma:b0490cb0f5247130aa04", "reference": "https://en.wiktionary.org/wiki/glie#Italian"}
+      ],
+      "contrasting_examples": {"es": ["áaroles", "compensadles", "expropiarles", "marales", "recomiendales", "zurrarles"], "it": ["abbaiargli", "corrispondergli", "indorargli", "provateafargli", "seegli", "zwingli"]},
+      "expected_removed_memberships": 6954,
+      "expected_final_support": 3
+    }
+  ],
+  "evidence_invariant": "Every original membership has one component with one candidate_index record. The evidence type is compound_morphology or morphological_parse; its path ends in an alias repeated twice. There is no member-level dictionary etymology or manual override to erase.",
+  "expected_total_removed_memberships": 14129
+}

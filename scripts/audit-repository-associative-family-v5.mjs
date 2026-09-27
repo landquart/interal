@@ -220,6 +220,15 @@ assert(illasLedger.source_run_id === expectedRunId && illasLedger.family_id === 
 assert(illasRepair?.removed_memberships === illasLedger.expected_removed_memberships && illasRepair?.decision_ledger_sha256 === illasLedgerSha, 'illas repair mismatch');
 assert(report.repository_materialization?.illas_family_decision_sha256 === illasLedgerSha, 'report illas ledger mismatch');
 const retainedIllasKeys = new Set(illasLedger.retained.map(item => `${item.language}\0${illasLedger.family_id}\0${item.lemma_id}`));
+const pronounLedgerBytes = await readFile('audit/associative-family-v5/illos-illis-family-decisions.json');
+const pronounLedger = JSON.parse(pronounLedgerBytes);
+const pronounLedgerSha = createHash('sha256').update(pronounLedgerBytes).digest('hex');
+const pronounRepair = provenance.repository_repairs?.find(item => item.repair === 'prune_candidate_only_illos_illis_memberships');
+assert(pronounLedger.source_run_id === expectedRunId && pronounLedger.decisions.length === 2 && pronounLedger.expected_total_removed_memberships === 14129, 'pronoun ledger mismatch');
+assert(pronounRepair?.removed_memberships === pronounLedger.expected_total_removed_memberships && pronounRepair?.decision_ledger_sha256 === pronounLedgerSha, 'pronoun repair mismatch');
+assert(report.repository_materialization?.illos_illis_family_decisions_sha256 === pronounLedgerSha, 'report pronoun ledger mismatch');
+const retainedPronounKeys = new Set(pronounLedger.decisions.flatMap(item => item.retained.map(control => `${control.language}\0${item.family_id}\0${control.lemma_id}`)));
+const reviewedPronounIds = new Set(pronounLedger.decisions.map(item => item.family_id));
 const rejectedActusKeys = new Set(actusLedger.rejected_memberships.map(item => `${item.language}\0${actusLedger.family_id}\0${item.lemma_id}`));
 const preservedActusKeys = new Set(actusLedger.preserved_positive_controls.map(item => `${item.language}\0${actusLedger.family_id}\0${item.word}`));
 assert(rejectedActusKeys.size === 10, 'duplicate actus rejection');
@@ -351,6 +360,7 @@ for (let index = 0; index < 256; index += 1) {
         assert(!rejectedManualKeys.has(`${language}\0${id}\0${value.lemma_id}`), `rejected manual membership still present ${language}/${id}/${value.word}`);
         assert(!rejectedActusKeys.has(`${language}\0${id}\0${value.lemma_id}`), `rejected actus membership still present ${language}/${id}/${value.word}`);
         if (id === illasLedger.family_id) assert(retainedIllasKeys.delete(`${language}\0${id}\0${value.lemma_id}`), `unreviewed illas membership ${language}/${value.word}`);
+        if (reviewedPronounIds.has(id)) assert(retainedPronounKeys.delete(`${language}\0${id}\0${value.lemma_id}`), `unreviewed pronoun membership ${language}/${id}/${value.word}`);
         preservedManualKeys.delete(`${language}\0${id}\0${value.word}`);
         preservedActusKeys.delete(`${language}\0${id}\0${value.word}`);
         seen.add(value.lemma_id);
@@ -376,7 +386,8 @@ assert(quarantinedManualFamilies.size === 0, 'quarantined family missing from me
 assert(preservedManualKeys.size === 0, `preserved positive controls missing: ${[...preservedManualKeys].join(', ')}`);
 assert(preservedActusKeys.size === 0, `preserved actus controls missing: ${[...preservedActusKeys].join(', ')}`);
 assert(retainedIllasKeys.size === 0, 'retained illas headwords missing');
-assert(membershipCount === 10426047 - manualLedger.rejected_memberships.length - surfaceRemoved - surfaceRemoved2 - surfaceRemoved3 - surfaceRemoved4 - tenLedger.expected_members - inflectionRemoved - endingRemoved - geneaRemoved - geneaOtherRemoved - sonusRemoved - kaRemoved - suffixRemoved - suffixRemoved6 - suffixRemoved7 - suffixRemoved8 - suffixRemoved9 - actusLedger.rejected_memberships.length - illasLedger.expected_removed_memberships, 'unexpected repository membership count');
+assert(retainedPronounKeys.size === 0, 'retained illos/illis headwords missing');
+assert(membershipCount === 10426047 - manualLedger.rejected_memberships.length - surfaceRemoved - surfaceRemoved2 - surfaceRemoved3 - surfaceRemoved4 - tenLedger.expected_members - inflectionRemoved - endingRemoved - geneaRemoved - geneaOtherRemoved - sonusRemoved - kaRemoved - suffixRemoved - suffixRemoved6 - suffixRemoved7 - suffixRemoved8 - suffixRemoved9 - actusLedger.rejected_memberships.length - illasLedger.expected_removed_memberships - pronounLedger.expected_total_removed_memberships, 'unexpected repository membership count');
 assert(familyCount === manifest.counts.families && familyCount === report.total_families, `family count ${familyCount}`);
 assert(materializedFamilyCount === familyCount, 'not every family was materialized');
 for (const [field, counted] of [
