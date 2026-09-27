@@ -115,7 +115,7 @@
   },
   "uncertain_relation_count": 431390,
   "uncertain_relation_sample_size": 100000,
-  "total_families": 2456567,
+  "total_families": 2456557,
   "merged_families": 20775,
   "singleton_families": 1735271,
   "multi_branch_families": 17703,
@@ -128,7 +128,7 @@
     "rejected": 9,
     "requires_manual_review": 0
   },
-  "review_required_families": 4033,
+  "review_required_families": 4028,
   "invariants": {
     "processed_lemmas_equals_source": true,
     "source_lemmas": 4924980,
@@ -145,7 +145,7 @@
   },
   "generated_non_proto_families": 20768,
   "verified_seed_families": 7,
-  "aliases_in_lookup": 1934050,
+  "aliases_in_lookup": 1934049,
   "proto_review_candidates": 10209,
   "wide_etymon_review_candidates": 171,
   "etymon_key_policy": {
@@ -8107,19 +8107,79 @@
       "review_status": "needs_review"
     },
     {
-      "id": "surface:es:ote",
-      "canonical": "ote",
+      "id": "ety:23e6300c94dc",
+      "canonical": "act",
       "aliases": [
-        "ote"
+        "act"
       ],
       "verified": false,
-      "confidence": "low",
-      "source": "surface_singleton",
-      "etymon_keys": [],
-      "language_support": {
-        "es": 2785
+      "confidence": "A",
+      "source": "wiktionary_non_proto_etymology",
+      "etymon_keys": [
+        "la:actualis"
+      ],
+      "relation_types": [
+        "borrowed_form"
+      ],
+      "relation_evidence": [
+        {
+          "language": "es",
+          "word": "actual",
+          "sourceLang": "la",
+          "term": "actuālis",
+          "relationType": "borrowed_form",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.9,
+          "depth": 1,
+          "template": "bor+",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "es",
+          "word": "actual",
+          "sourceLang": "la",
+          "term": "actuālis",
+          "relationType": "borrowed_form",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.9,
+          "depth": 1,
+          "template": "bor+",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "fr",
+          "word": "actuel",
+          "sourceLang": "la",
+          "term": "actuālis",
+          "relationType": "borrowed_form",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.9,
+          "depth": 1,
+          "template": "bor+",
+          "path": [
+            "args",
+            2
+          ]
+        }
+      ],
+      "canonical_selection": {
+        "method": "quality_score_v1",
+        "score": 103
       },
-      "support": 2785,
+      "language_support": {
+        "fr": 1036,
+        "es": 1716
+      },
+      "support": 2752,
       "suspicion_score": 40,
       "suspicion_reasons": [
         "short_root",
@@ -14095,69 +14155,6 @@
       "review_status": "needs_review"
     },
     {
-      "id": "surface:es:ote",
-      "canonical": "ote",
-      "aliases": [
-        "ote"
-      ],
-      "verified": false,
-      "confidence": "low",
-      "source": "surface_singleton",
-      "etymon_keys": [],
-      "language_support": {
-        "es": 2785
-      },
-      "support": 2785,
-      "suspicion_score": 40,
-      "suspicion_reasons": [
-        "short_root",
-        "large_family"
-      ],
-      "review_status": "needs_review"
-    },
-    {
-      "id": "surface:ru:nut",
-      "canonical": "nut",
-      "aliases": [
-        "nut"
-      ],
-      "verified": false,
-      "confidence": "low",
-      "source": "surface_singleton",
-      "etymon_keys": [],
-      "language_support": {
-        "ru": 2775
-      },
-      "support": 2775,
-      "suspicion_score": 40,
-      "suspicion_reasons": [
-        "short_root",
-        "large_family"
-      ],
-      "review_status": "needs_review"
-    },
-    {
-      "id": "surface:fr:tes",
-      "canonical": "tes",
-      "aliases": [
-        "tes"
-      ],
-      "verified": false,
-      "confidence": "low",
-      "source": "surface_singleton",
-      "etymon_keys": [],
-      "language_support": {
-        "fr": 2757
-      },
-      "support": 2757,
-      "suspicion_score": 40,
-      "suspicion_reasons": [
-        "short_root",
-        "large_family"
-      ],
-      "review_status": "needs_review"
-    },
-    {
       "id": "ety:23e6300c94dc",
       "canonical": "act",
       "aliases": [
@@ -14298,27 +14295,6 @@
         "es": 2666
       },
       "support": 2730,
-      "suspicion_score": 40,
-      "suspicion_reasons": [
-        "short_root",
-        "large_family"
-      ],
-      "review_status": "needs_review"
-    },
-    {
-      "id": "surface:de:eln",
-      "canonical": "eln",
-      "aliases": [
-        "eln"
-      ],
-      "verified": false,
-      "confidence": "low",
-      "source": "surface_singleton",
-      "etymon_keys": [],
-      "language_support": {
-        "de": 2721
-      },
-      "support": 2721,
       "suspicion_score": 40,
       "suspicion_reasons": [
         "short_root",
@@ -14637,27 +14613,6 @@
       "review_status": "needs_review"
     },
     {
-      "id": "surface:es:ras",
-      "canonical": "ras",
-      "aliases": [
-        "ras"
-      ],
-      "verified": false,
-      "confidence": "low",
-      "source": "surface_singleton",
-      "etymon_keys": [],
-      "language_support": {
-        "es": 2544
-      },
-      "support": 2544,
-      "suspicion_score": 40,
-      "suspicion_reasons": [
-        "short_root",
-        "large_family"
-      ],
-      "review_status": "needs_review"
-    },
-    {
       "id": "surface:es:ido",
       "canonical": "ido",
       "aliases": [
@@ -14692,6 +14647,106 @@
         "ru": 1892
       },
       "support": 1892,
+      "suspicion_score": 40,
+      "suspicion_reasons": [
+        "very_short_root"
+      ],
+      "review_status": "needs_review"
+    },
+    {
+      "id": "surface:ru:ja",
+      "canonical": "ja",
+      "aliases": [
+        "ja"
+      ],
+      "verified": false,
+      "confidence": "low",
+      "source": "surface_singleton",
+      "etymon_keys": [],
+      "language_support": {
+        "ru": 1707
+      },
+      "support": 1707,
+      "suspicion_score": 40,
+      "suspicion_reasons": [
+        "very_short_root"
+      ],
+      "review_status": "needs_review"
+    },
+    {
+      "id": "surface:ru:ti",
+      "canonical": "ti",
+      "aliases": [
+        "ti"
+      ],
+      "verified": false,
+      "confidence": "low",
+      "source": "surface_singleton",
+      "etymon_keys": [],
+      "language_support": {
+        "ru": 1181
+      },
+      "support": 1181,
+      "suspicion_score": 40,
+      "suspicion_reasons": [
+        "very_short_root"
+      ],
+      "review_status": "needs_review"
+    },
+    {
+      "id": "surface:ru:ko",
+      "canonical": "ko",
+      "aliases": [
+        "ko"
+      ],
+      "verified": false,
+      "confidence": "low",
+      "source": "surface_singleton",
+      "etymon_keys": [],
+      "language_support": {
+        "ru": 930
+      },
+      "support": 930,
+      "suspicion_score": 40,
+      "suspicion_reasons": [
+        "very_short_root"
+      ],
+      "review_status": "needs_review"
+    },
+    {
+      "id": "surface:ru:ha",
+      "canonical": "ha",
+      "aliases": [
+        "ha"
+      ],
+      "verified": false,
+      "confidence": "low",
+      "source": "surface_singleton",
+      "etymon_keys": [],
+      "language_support": {
+        "ru": 896
+      },
+      "support": 896,
+      "suspicion_score": 40,
+      "suspicion_reasons": [
+        "very_short_root"
+      ],
+      "review_status": "needs_review"
+    },
+    {
+      "id": "surface:ru:gs",
+      "canonical": "gs",
+      "aliases": [
+        "gs"
+      ],
+      "verified": false,
+      "confidence": "low",
+      "source": "surface_singleton",
+      "etymon_keys": [],
+      "language_support": {
+        "ru": 887
+      },
+      "support": 887,
       "suspicion_score": 40,
       "suspicion_reasons": [
         "very_short_root"
@@ -14741,6 +14796,8 @@
     "illas_candidate_only_memberships_removed": 7734,
     "illas_family_decision_sha256": "2df09de7b4bec645b56a6404fdeb87fedb738a4981bd3674adfcb57f3dd01c30",
     "illos_illis_candidate_only_memberships_removed": 14129,
-    "illos_illis_family_decisions_sha256": "2fc48f87d69f8ca53560245048b2b00d1adc07112ea69c5d5f39145346fb0598"
+    "illos_illis_family_decisions_sha256": "2fc48f87d69f8ca53560245048b2b00d1adc07112ea69c5d5f39145346fb0598",
+    "suffix_batch_10_memberships_removed": 26757,
+    "suffix_batch_10_ledger_sha256": "4d0ccfacf38eaedaeedad9c1d685f0244b44877433969b4dc6b791bd1fa5d274"
   }
 }

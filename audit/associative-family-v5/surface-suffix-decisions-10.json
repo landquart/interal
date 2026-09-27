@@ -1,0 +1,238 @@
+{
+  "schema_version": 1,
+  "source_run_id": 35647932153,
+  "scope": "Ten family-level decisions after contrasting samples and complete member/evidence scans. Full-list digests lock the exact excluded memberships; this does not claim separate human etymological annotation for each word.",
+  "decisions": [
+    {
+      "family_id": "surface:es:ote",
+      "language": "es",
+      "expected_status": "needs_review",
+      "expected_members": 2785,
+      "member_list_sha256": "64e07d70615074ced9d86e15606a62798f328f14e086df1a938aa4af4e686cc7",
+      "expected_evidence": {
+        "compound_morphology:candidate_index": 2783,
+        "morphological_parse:candidate_index": 2
+      },
+      "contrasting_examples": [
+        "abalanzándote",
+        "atribuyéndote",
+        "conteniéndote",
+        "embargándote",
+        "ganándote",
+        "malinterpretándote",
+        "poniendote",
+        "sacertote",
+        "zurrándote"
+      ],
+      "reason": "Spanish -ote / -ándote groups unrelated verb forms with attached te, e.g. abalanzándote and zurrándote; no shared lexical root."
+    },
+    {
+      "family_id": "surface:ru:nut",
+      "language": "ru",
+      "expected_status": "needs_review",
+      "expected_members": 2775,
+      "member_list_sha256": "2d310408ad1297e6083840ab6059f65eecdef1354bda385859e6f41b339d37e3",
+      "expected_evidence": {
+        "compound_morphology:candidate_index": 2773,
+        "morphological_parse:candidate_index": 2
+      },
+      "contrasting_examples": [
+        "ъебнуть",
+        "девятникнуть",
+        "хортонуть",
+        "лососнуть",
+        "отчеркнуть",
+        "прибухнуть",
+        "сиксёрзнуть",
+        "успользнуть",
+        "зззамолкнуть"
+      ],
+      "reason": "Russian -нуть is a productive infinitive ending on unrelated verbs, including хортонуть, отчеркнуть and прибухнуть."
+    },
+    {
+      "family_id": "surface:fr:tes",
+      "language": "fr",
+      "expected_status": "needs_review",
+      "expected_members": 2757,
+      "member_list_sha256": "e84a0558d3a35cf339a47a549f4bbc33b7088bbce499df3be3cd8e669538153f",
+      "expected_evidence": {
+        "compound_morphology:candidate_index": 2750,
+        "morphological_parse:candidate_index": 7
+      },
+      "contrasting_examples": [
+        "abates",
+        "bruuuutes",
+        "décolorantes",
+        "excellententes",
+        "importantes",
+        "minuttes",
+        "procaryotes",
+        "submergeantes",
+        "zuchettes"
+      ],
+      "reason": "French -tes matches unrelated plural or inflected words such as abates, importantes, procaryotes and zuchettes."
+    },
+    {
+      "family_id": "surface:de:eln",
+      "language": "de",
+      "expected_status": "needs_review",
+      "expected_members": 2721,
+      "member_list_sha256": "638b1b51c41658382b71f84942a24b064b74d9f1f040521c3acb22d64d3d4771",
+      "expected_evidence": {
+        "compound_morphology:candidate_index": 2719,
+        "morphological_parse:candidate_index": 2
+      },
+      "contrasting_examples": [
+        "abbetteln",
+        "bomberstaffeln",
+        "filterregeln",
+        "hobeln",
+        "leuchfkugeln",
+        "pumpenaustrittskabeln",
+        "schwuchteln",
+        "urwaldregeln",
+        "zyankalikapseln"
+      ],
+      "reason": "German -eln matches unrelated verbs and nominal plurals, including abbetteln, filterregeln, hobeln and urwaldregeln."
+    },
+    {
+      "family_id": "surface:ru:nost",
+      "language": "ru",
+      "expected_status": "safe_automatic",
+      "expected_members": 2702,
+      "member_list_sha256": "85914935258a4af0bc57e6caf01f92541f3065915851e75c63c9abdbe0a087c1",
+      "expected_evidence": {
+        "compound_morphology:candidate_index": 2699,
+        "morphological_parse:candidate_index": 3
+      },
+      "contrasting_examples": [
+        "ъцэпэтильность",
+        "диалектичность",
+        "изнурённость",
+        "небрежность",
+        "нудность",
+        "пораженность",
+        "самооотверженность",
+        "тривиальность",
+        "зысканность"
+      ],
+      "reason": "Russian -ность forms abstract nouns from unrelated bases, such as диалектичность, небрежность and тривиальность."
+    },
+    {
+      "family_id": "surface:de:eren",
+      "language": "de",
+      "expected_status": "safe_automatic",
+      "expected_members": 2663,
+      "member_list_sha256": "8da915de1b1485b857cb774af647cd1625502b7f16aafb552ff5130cab8a8883",
+      "expected_evidence": {
+        "compound_morphology:candidate_index": 2659,
+        "morphological_parse:candidate_index": 4
+      },
+      "contrasting_examples": [
+        "aanderen",
+        "conergy-papieren",
+        "explizieren",
+        "identifizeren",
+        "kusieren",
+        "pervertieren",
+        "rückdatieren",
+        "transkribieren",
+        "zystennieren"
+      ],
+      "reason": "German -eren/-ieren is a verb ending and string overlap among unrelated stems, such as explizieren, pervertieren and transkribieren."
+    },
+    {
+      "family_id": "surface:es:ento",
+      "language": "es",
+      "expected_status": "safe_automatic",
+      "expected_members": 2649,
+      "member_list_sha256": "b4ecee3f26951d8d9688507971deece027221f40306bba00424dce0970f05d5a",
+      "expected_evidence": {
+        "compound_morphology:candidate_index": 2646,
+        "morphological_parse:candidate_index": 3
+      },
+      "contrasting_examples": [
+        "aartamento",
+        "aplanamiento",
+        "conciento",
+        "desvalijamiento",
+        "entrtenimiento",
+        "invadiento",
+        "porfusilamiento",
+        "revolcamiento",
+        "zsiento"
+      ],
+      "reason": "Spanish -ento/-miento matches unrelated nouns, verbs and noisy strings such as aplanamiento, entrtenimiento and revolcamiento."
+    },
+    {
+      "family_id": "surface:ru:cheskij",
+      "language": "ru",
+      "expected_status": "safe_automatic",
+      "expected_members": 2598,
+      "member_list_sha256": "850a05b4a9a0c969a837a48245209bb310e2412c5dbd8e6461676205e8dd8f8f",
+      "expected_evidence": {
+        "compound_morphology:candidate_index": 2596,
+        "morphological_parse:candidate_index": 2
+      },
+      "contrasting_examples": [
+        "абиотический",
+        "цефалопельвический",
+        "фармокологический",
+        "игротехнический",
+        "метаболический",
+        "океанологический",
+        "прокариотический",
+        "статистический",
+        "зыческий"
+      ],
+      "reason": "Russian -ческий forms adjectives from distinct stems, e.g. абиотический, метаболический and статистический."
+    },
+    {
+      "family_id": "surface:es:amos",
+      "language": "es",
+      "expected_status": "safe_automatic",
+      "expected_members": 2563,
+      "member_list_sha256": "148ea6c460f6046bb46fedfecfccb69cdd0a669bf495f410d564bafbb73322e5",
+      "expected_evidence": {
+        "compound_morphology:candidate_index": 2557,
+        "morphological_parse:candidate_index": 6
+      },
+      "contrasting_examples": [
+        "abadonamos",
+        "buscariamos",
+        "debreiamos",
+        "escaneabamos",
+        "ignorabamos",
+        "nalgueamos",
+        "quedeberiamos",
+        "sociabilizamos",
+        "zimbamos"
+      ],
+      "reason": "Spanish -amos is a first-person plural verb ending shared by unrelated verbs such as ignorabamos, nalgueamos and sociabilizamos."
+    },
+    {
+      "family_id": "surface:es:ras",
+      "language": "es",
+      "expected_status": "needs_review",
+      "expected_members": 2544,
+      "member_list_sha256": "62319d30d1a54d42c387dec799f0901ed1dabb65c32886a03f995df2b6720248",
+      "expected_evidence": {
+        "compound_morphology:candidate_index": 2540,
+        "morphological_parse:candidate_index": 4
+      },
+      "contrasting_examples": [
+        "abadonarás",
+        "captoras",
+        "destruiras",
+        "fraturas",
+        "lepidópteras",
+        "owarasetai",
+        "rasmilladuras",
+        "supondras",
+        "zurtijeras"
+      ],
+      "reason": "Spanish -ras/-rás is an inflectional/string ending shared by unrelated forms such as abadonarás, captoras and supondras."
+    }
+  ],
+  "review_scope": "Remove the incoherent candidate-only surface groups; keep source lemmas and their other memberships. This is a family-level structural decision."
+}
