@@ -1978,121 +1978,6 @@
       "review_status": "needs_review"
     },
     {
-      "id": "ety:1e9cc0c12192",
-      "canonical": "elles",
-      "aliases": [
-        "elles",
-        "las"
-      ],
-      "verified": false,
-      "confidence": "A",
-      "source": "wiktionary_non_proto_etymology",
-      "etymon_keys": [
-        "la:illas"
-      ],
-      "relation_types": [
-        "direct_descendant",
-        "inherited_form"
-      ],
-      "relation_evidence": [
-        {
-          "language": "es",
-          "word": "las",
-          "sourceLang": "la",
-          "term": "illās",
-          "relationType": "inherited_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "inh",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "it",
-          "word": "le",
-          "sourceLang": "la",
-          "term": "illas",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "it",
-          "word": "le",
-          "sourceLang": "la",
-          "term": "illas",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "fr",
-          "word": "elles",
-          "sourceLang": "la",
-          "term": "illās",
-          "relationType": "inherited_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "inh",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "fr",
-          "word": "elles",
-          "sourceLang": "la",
-          "term": "illās",
-          "relationType": "inherited_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "inh",
-          "path": [
-            "args",
-            2
-          ]
-        }
-      ],
-      "canonical_selection": {
-        "method": "quality_score_v1",
-        "score": 1
-      },
-      "language_support": {
-        "fr": 389,
-        "es": 7349
-      },
-      "support": 7738,
-      "suspicion_score": 40,
-      "suspicion_reasons": [
-        "short_root",
-        "large_family"
-      ],
-      "review_status": "needs_review"
-    },
-    {
       "id": "ety:d4e12af70156",
       "canonical": "ente",
       "aliases": [
@@ -8058,6 +7943,186 @@
         "large_family"
       ],
       "review_status": "needs_review"
+    },
+    {
+      "id": "ety:d8cd280f7e98",
+      "canonical": "athe",
+      "aliases": [
+        "ate",
+        "athe"
+      ],
+      "verified": false,
+      "confidence": "A",
+      "source": "wiktionary_non_proto_etymology",
+      "etymon_keys": [
+        "la:athe"
+      ],
+      "relation_types": [
+        "borrowed_form",
+        "direct_descendant"
+      ],
+      "relation_evidence": [
+        {
+          "language": "en",
+          "word": "atheist",
+          "sourceLang": "la",
+          "term": "atheos",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "en",
+          "word": "atheist",
+          "sourceLang": "la",
+          "term": "atheos",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "en",
+          "word": "atheist",
+          "sourceLang": "la",
+          "term": "atheos",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "fr",
+          "word": "athée",
+          "sourceLang": "la",
+          "term": "atheos",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "fr",
+          "word": "athée",
+          "sourceLang": "la",
+          "term": "atheos",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "it",
+          "word": "ateo",
+          "sourceLang": "la",
+          "term": "atheos",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "it",
+          "word": "ateo",
+          "sourceLang": "la",
+          "term": "atheos",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "es",
+          "word": "ateo",
+          "sourceLang": "la",
+          "term": "atheos",
+          "relationType": "borrowed_form",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.9,
+          "depth": 1,
+          "template": "bor+",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "es",
+          "word": "ateo",
+          "sourceLang": "la",
+          "term": "atheos",
+          "relationType": "borrowed_form",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.9,
+          "depth": 1,
+          "template": "bor+",
+          "path": [
+            "args",
+            2
+          ]
+        }
+      ],
+      "canonical_selection": {
+        "method": "quality_score_v1",
+        "score": 2
+      },
+      "language_support": {
+        "fr": 50,
+        "es": 1447,
+        "it": 1294
+      },
+      "support": 2791,
+      "suspicion_score": 40,
+      "suspicion_reasons": [
+        "short_root",
+        "large_family"
+      ],
+      "review_status": "needs_review"
     }
   ],
   "highest_suspicion_families": [
@@ -9192,121 +9257,6 @@
         "es": 1716
       },
       "support": 9371,
-      "suspicion_score": 40,
-      "suspicion_reasons": [
-        "short_root",
-        "large_family"
-      ],
-      "review_status": "needs_review"
-    },
-    {
-      "id": "ety:1e9cc0c12192",
-      "canonical": "elles",
-      "aliases": [
-        "elles",
-        "las"
-      ],
-      "verified": false,
-      "confidence": "A",
-      "source": "wiktionary_non_proto_etymology",
-      "etymon_keys": [
-        "la:illas"
-      ],
-      "relation_types": [
-        "direct_descendant",
-        "inherited_form"
-      ],
-      "relation_evidence": [
-        {
-          "language": "es",
-          "word": "las",
-          "sourceLang": "la",
-          "term": "illās",
-          "relationType": "inherited_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "inh",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "it",
-          "word": "le",
-          "sourceLang": "la",
-          "term": "illas",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "it",
-          "word": "le",
-          "sourceLang": "la",
-          "term": "illas",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "fr",
-          "word": "elles",
-          "sourceLang": "la",
-          "term": "illās",
-          "relationType": "inherited_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "inh",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "fr",
-          "word": "elles",
-          "sourceLang": "la",
-          "term": "illās",
-          "relationType": "inherited_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "inh",
-          "path": [
-            "args",
-            2
-          ]
-        }
-      ],
-      "canonical_selection": {
-        "method": "quality_score_v1",
-        "score": 1
-      },
-      "language_support": {
-        "fr": 389,
-        "es": 7349
-      },
-      "support": 7738,
       "suspicion_score": 40,
       "suspicion_reasons": [
         "short_root",
@@ -14880,6 +14830,27 @@
         "large_family"
       ],
       "review_status": "needs_review"
+    },
+    {
+      "id": "surface:es:ras",
+      "canonical": "ras",
+      "aliases": [
+        "ras"
+      ],
+      "verified": false,
+      "confidence": "low",
+      "source": "surface_singleton",
+      "etymon_keys": [],
+      "language_support": {
+        "es": 2544
+      },
+      "support": 2544,
+      "suspicion_score": 40,
+      "suspicion_reasons": [
+        "short_root",
+        "large_family"
+      ],
+      "review_status": "needs_review"
     }
   ],
   "repository_materialization": {
@@ -14920,6 +14891,8 @@
     "suffix_batch_9_memberships_removed": 35254,
     "suffix_batch_9_ledger_sha256": "33cd2fa4d6fa15370b038a746f0e71babec0c55bbbb8e37352e06b342037bfad",
     "actus_verified_false_memberships_removed": 10,
-    "actus_case_ledger_sha256": "c0d11e3deb9370063f7d36de1ccccbd87dba85da3bd73a0458a11ef49e502d72"
+    "actus_case_ledger_sha256": "c0d11e3deb9370063f7d36de1ccccbd87dba85da3bd73a0458a11ef49e502d72",
+    "illas_candidate_only_memberships_removed": 7736,
+    "illas_family_decision_sha256": "66900075e67f4aab7dca37b4f8f4ab9df08cdaa3a5cc9dd40849d2774ec92b18"
   }
 }

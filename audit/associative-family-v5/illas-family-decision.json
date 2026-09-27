@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "source_run_id": 35647932153,
+  "family_id": "ety:1e9cc0c12192",
+  "etymon_key": "la:illas",
+  "decision": "Retain the Spanish las and French elles headwords; remove the 7,736 other candidate-index-only memberships. An attached pronoun in a verb form, or a coincidental character sequence inside another word, is not a lexical descendant of the Latin pronoun.",
+  "review_method": "Full-list structural review of both language member arrays and their evidence, with contrasting lexical examples. This is a family-level decision; excluded words were not each independently etymologically annotated.",
+  "original_members": {
+    "es": {"count": 7349, "ordered_id_word_sha256": "e665a7425735f14e9ce798d6d59ecaf78c6e63ae4dcc5900523d16a9e57360c2", "compound_morphology": 7344, "morphological_parse": 5},
+    "fr": {"count": 389, "ordered_id_word_sha256": "a6a5e804efb1bb112472cf5198ce7a2fcfaf8cd5741884fd35dace68590b43b0", "compound_morphology": 385, "morphological_parse": 4}
+  },
+  "retained": [
+    {"language": "es", "word": "las", "lemma_id": "lemma:0cfc086f38dad43b66f4", "reference": "https://en.wiktionary.org/wiki/las#Spanish"},
+    {"language": "fr", "word": "elles", "lemma_id": "lemma:4cd3e957c0b4e22261b7", "reference": "https://en.wiktionary.org/wiki/elles#French"}
+  ],
+  "contrasting_examples": {
+    "es": ["abandónalas", "abichuelas", "abrelas", "abrebotellas", "colocárnoslas", "descomplicarlas", "habláseis", "paratirártelas", "reconvertirlas", "zurlas"],
+    "fr": ["actuelles", "brunelleschi", "courcelles", "hyperdimensionnelles", "lesqelles", "pluripotentielles", "reelles", "zooxanthelles"]
+  },
+  "evidence_invariant": "Each original membership has exactly one component. Every evidence record is from candidate_index, has a path ending in the appropriate headword twice, and is compound_morphology or morphological_parse. No direct etymological record is being discarded from this member array.",
+  "expected_removed_memberships": 7736,
+  "expected_final_support": 2
+}
