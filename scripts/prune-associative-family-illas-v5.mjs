@@ -19,7 +19,7 @@ function bucket(value) {
   return ((hash >>> 0) % 256).toString(16).padStart(2, '0');
 }
 assert(ledger.source_run_id === 35647932153 && ledger.family_id === id && ledger.etymon_key === 'la:illas', 'wrong source or family');
-assert(ledger.expected_removed_memberships === 7736 && ledger.expected_final_support === 2, 'unexpected decision scope');
+assert(ledger.expected_removed_memberships === 7734 && ledger.expected_final_support === 4, 'unexpected decision scope');
 const manifest = await readJson(join(root, 'manifest.json'));
 const report = await readJson(join(root, 'report.json'));
 const provenancePath = join(root, 'repository-provenance.json');
@@ -31,8 +31,8 @@ const familyPath = join(root, 'families', `${bucket(id)}.json.gz`);
 const families = await readJson(familyPath);
 const family = families[id];
 assert(family?.support === 7738 && family.review_status === 'needs_review', 'family metadata changed');
-const retained = new Map(ledger.retained.map(x => [x.language, x]));
-assert(retained.size === 2 && retained.has('es') && retained.has('fr'), 'invalid controls');
+const retained = new Map(['es', 'fr'].map(language => [language, ledger.retained.filter(x => x.language === language)]));
+assert(retained.get('es').length === 1 && retained.get('fr').length === 3, 'invalid controls');
 const memberFiles = [];
 for (const language of ['es', 'fr']) {
   const path = join(root, 'members', language, `${bucket(id)}.json.gz`);
@@ -47,20 +47,20 @@ for (const language of ['es', 'fr']) {
     const evidence = member.components[0].evidence;
     assert(evidence?.length === 1, `${language} multiple evidence records: ${member.word}`);
     const entry = evidence[0];
-    assert(entry.source === 'candidate_index' && entry.path?.slice(-2).join('\0') === [retained.get(language).word, retained.get(language).word].join('\0'), `${language} unsupported evidence: ${member.word}`);
+    assert(entry.source === 'candidate_index' && entry.path?.slice(-2).every(x => x === (language === 'es' ? 'las' : 'elles')), `${language} unsupported evidence: ${member.word}`);
     assert(Object.hasOwn(counts, entry.type), `${language} unexpected evidence type: ${member.word}`);
     counts[entry.type] += 1;
   }
   assert(Object.entries(counts).every(([type, count]) => count === lock[type]), `${language} evidence distribution changed`);
-  const control = retained.get(language);
-  const anchors = members.filter(x => x.lemma_id === control.lemma_id && x.word === control.word);
-  assert(anchors.length === 1, `${language} missing lexical control`);
+  const controls = retained.get(language);
+  const anchors = members.filter(x => controls.some(control => x.lemma_id === control.lemma_id && x.word === control.word));
+  assert(anchors.length === controls.length && controls.every(control => anchors.some(x => x.lemma_id === control.lemma_id && x.word === control.word)), `${language} missing lexical control`);
   assert(family.language_support[language] === members.length, `${language} family support mismatch`);
   shard[id] = anchors;
-  family.language_support[language] = 1;
+  family.language_support[language] = anchors.length;
   memberFiles.push([path, shard]);
 }
-family.support = 2;
+family.support = 4;
 family.review_status = 'needs_review';
 const top = report.largest_families.find(x => x.id === id);
 assert(top && top.support === 7738, 'report family summary missing');
@@ -122,4 +122,4 @@ provenance.file_count_before_provenance = paths.length;
 provenance.total_bytes_before_provenance = bytes;
 provenance.tree_content_sha256 = hash.digest('hex');
 await writeJson(provenancePath, provenance);
-console.log('Removed 7,736 candidate-only la:illas memberships; retained es:las and fr:elles.');
+console.log('Removed 7,734 candidate-only la:illas memberships; retained four lexical forms.');

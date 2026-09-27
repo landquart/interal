@@ -216,7 +216,7 @@ const illasLedgerBytes = await readFile('audit/associative-family-v5/illas-famil
 const illasLedger = JSON.parse(illasLedgerBytes);
 const illasLedgerSha = createHash('sha256').update(illasLedgerBytes).digest('hex');
 const illasRepair = provenance.repository_repairs?.find(item => item.repair === 'prune_candidate_only_illas_memberships');
-assert(illasLedger.source_run_id === expectedRunId && illasLedger.family_id === 'ety:1e9cc0c12192' && illasLedger.expected_removed_memberships === 7736, 'illas ledger mismatch');
+assert(illasLedger.source_run_id === expectedRunId && illasLedger.family_id === 'ety:1e9cc0c12192' && illasLedger.expected_removed_memberships === 7734, 'illas ledger mismatch');
 assert(illasRepair?.removed_memberships === illasLedger.expected_removed_memberships && illasRepair?.decision_ledger_sha256 === illasLedgerSha, 'illas repair mismatch');
 assert(report.repository_materialization?.illas_family_decision_sha256 === illasLedgerSha, 'report illas ledger mismatch');
 const retainedIllasKeys = new Set(illasLedger.retained.map(item => `${item.language}\0${illasLedger.family_id}\0${item.lemma_id}`));

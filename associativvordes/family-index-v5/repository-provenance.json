@@ -13,8 +13,8 @@
   },
   "storage": "git_repository_static_files",
   "file_count_before_provenance": 2050,
-  "total_bytes_before_provenance": 726661022,
-  "tree_content_sha256": "7c2b5b27dcafb6893a3a46d2a5d7d09118e174d3c79b06f77666f583b8307421",
+  "total_bytes_before_provenance": 726661172,
+  "tree_content_sha256": "73ab0106815ac0a4a14325534eb7410b8ecc7116571ee4a2f8247ee789ea442c",
   "repository_repairs": [
     {
       "repair": "exclude_known_rejected_corpus_noise_from_runtime",
@@ -256,10 +256,10 @@
     },
     {
       "repair": "prune_candidate_only_illas_memberships",
-      "removed_memberships": 7736,
+      "removed_memberships": 7734,
       "affected_families": 1,
       "source_run_id": 35647932153,
-      "decision_ledger_sha256": "66900075e67f4aab7dca37b4f8f4ab9df08cdaa3a5cc9dd40849d2774ec92b18",
+      "decision_ledger_sha256": "2df09de7b4bec645b56a6404fdeb87fedb738a4981bd3674adfcb57f3dd01c30",
       "not_human_statistical_annotation": true
     }
   ]
