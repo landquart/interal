@@ -51,12 +51,12 @@ An independent streaming recount of all six locked assignment files established 
 |---|---:|
 | Lemma records | 4,924,980 |
 | Component evidence records | 9,349,982 |
-| Repository runtime memberships | 10,281,633 |
-| Materialized member records | 10,281,633 |
+| Repository runtime memberships | 10,209,312 |
+| Materialized member records | 10,209,312 |
 | Memberships with repeated component evidence | 5,097 |
 | Excess repeated component→membership links | 6,282 |
 
-`manifest.counts.components` is incremented once per component evidence record. It is not a membership count. The previous v4→v5 report compared v4 memberships (`14,918,457`) with v5 components (`9,350,026`), so its `-5,568,431` delta was invalid. The current repository-runtime membership delta is `10,281,633 - 14,918,457 = -4,636,824`; this reduction still proves neither precision nor recall. The repository count is 144,444 below the immutable source artifact: 30 memberships of rejected corpus-noise lemmas, 22 earlier case-reviewed memberships, 364 individually reviewed memberships in twelve deleted short surface families, 122,435 members in twelve ending-based families rejected at the family level, 14,932 memberships pruned from the Greek `genea` family and 6,661 from the Latin `sonus` family. Source-artifact/assignment counts elsewhere in this audit remain historical and must not be reinterpreted as repository-runtime counts.
+`manifest.counts.components` is incremented once per component evidence record. It is not a membership count. The previous v4→v5 report compared v4 memberships (`14,918,457`) with v5 components (`9,350,026`), so its `-5,568,431` delta was invalid. The current repository-runtime membership delta is `10,209,312 - 14,918,457 = -4,709,145`; this reduction still proves neither precision nor recall. The repository count is 216,765 below the immutable source artifact: 30 memberships of rejected corpus-noise lemmas, 22 earlier case-reviewed memberships, 364 individually reviewed memberships in twelve deleted short surface families, 122,435 members in twelve ending-based families rejected at the family level, 14,932 memberships pruned from the Greek `genea` family, 6,661 from the Latin `sonus` family, and 72,321 from eighteen subsequently reviewed surface families. Source-artifact/assignment counts elsewhere in this audit remain historical and must not be reinterpreted as repository-runtime counts.
 
 ## Evidence status by gate
 
