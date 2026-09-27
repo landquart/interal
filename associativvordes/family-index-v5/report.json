@@ -115,7 +115,7 @@
   },
   "uncertain_relation_count": 431390,
   "uncertain_relation_sample_size": 100000,
-  "total_families": 2456590,
+  "total_families": 2456586,
   "merged_families": 20775,
   "singleton_families": 1735271,
   "multi_branch_families": 17703,
@@ -128,7 +128,7 @@
     "rejected": 9,
     "requires_manual_review": 0
   },
-  "review_required_families": 4051,
+  "review_required_families": 4048,
   "invariants": {
     "processed_lemmas_equals_source": true,
     "source_lemmas": 4924980,
@@ -3722,26 +3722,6 @@
       "review_status": "needs_review"
     },
     {
-      "id": "surface:de:schen",
-      "canonical": "schen",
-      "aliases": [
-        "schen"
-      ],
-      "verified": false,
-      "confidence": "low",
-      "source": "surface_singleton",
-      "etymon_keys": [],
-      "language_support": {
-        "de": 4317
-      },
-      "support": 4317,
-      "suspicion_score": 20,
-      "suspicion_reasons": [
-        "large_family"
-      ],
-      "review_status": "safe_automatic"
-    },
-    {
       "id": "ety:5c06ec6f575c",
       "canonical": "ched",
       "aliases": [
@@ -3999,69 +3979,6 @@
         "it": 1750
       },
       "support": 3953,
-      "suspicion_score": 40,
-      "suspicion_reasons": [
-        "short_root",
-        "large_family"
-      ],
-      "review_status": "needs_review"
-    },
-    {
-      "id": "surface:de:ers",
-      "canonical": "ers",
-      "aliases": [
-        "ers"
-      ],
-      "verified": false,
-      "confidence": "low",
-      "source": "surface_singleton",
-      "etymon_keys": [],
-      "language_support": {
-        "de": 3834
-      },
-      "support": 3834,
-      "suspicion_score": 40,
-      "suspicion_reasons": [
-        "short_root",
-        "large_family"
-      ],
-      "review_status": "needs_review"
-    },
-    {
-      "id": "surface:it:elo",
-      "canonical": "elo",
-      "aliases": [
-        "elo"
-      ],
-      "verified": false,
-      "confidence": "low",
-      "source": "surface_singleton",
-      "etymon_keys": [],
-      "language_support": {
-        "it": 3788
-      },
-      "support": 3788,
-      "suspicion_score": 40,
-      "suspicion_reasons": [
-        "short_root",
-        "large_family"
-      ],
-      "review_status": "needs_review"
-    },
-    {
-      "id": "surface:de:ons",
-      "canonical": "ons",
-      "aliases": [
-        "ons"
-      ],
-      "verified": false,
-      "confidence": "low",
-      "source": "surface_singleton",
-      "etymon_keys": [],
-      "language_support": {
-        "de": 3782
-      },
-      "support": 3782,
       "suspicion_score": 40,
       "suspicion_reasons": [
         "short_root",
@@ -6880,6 +6797,202 @@
         "large_family"
       ],
       "review_status": "needs_review"
+    },
+    {
+      "id": "surface:es:ando",
+      "canonical": "ando",
+      "aliases": [
+        "ando"
+      ],
+      "verified": false,
+      "confidence": "low",
+      "source": "surface_singleton",
+      "etymon_keys": [],
+      "language_support": {
+        "es": 3287
+      },
+      "support": 3287,
+      "suspicion_score": 20,
+      "suspicion_reasons": [
+        "large_family"
+      ],
+      "review_status": "safe_automatic"
+    },
+    {
+      "id": "surface:en:ers",
+      "canonical": "ers",
+      "aliases": [
+        "ers"
+      ],
+      "verified": false,
+      "confidence": "low",
+      "source": "surface_singleton",
+      "etymon_keys": [],
+      "language_support": {
+        "en": 3246
+      },
+      "support": 3246,
+      "suspicion_score": 40,
+      "suspicion_reasons": [
+        "short_root",
+        "large_family"
+      ],
+      "review_status": "needs_review"
+    },
+    {
+      "id": "ety:5f31d2bda397",
+      "canonical": "anus",
+      "aliases": [
+        "ano",
+        "anu",
+        "anus"
+      ],
+      "verified": false,
+      "confidence": "A",
+      "source": "wiktionary_non_proto_etymology",
+      "etymon_keys": [
+        "la:anus"
+      ],
+      "relation_types": [
+        "borrowed_form",
+        "direct_descendant"
+      ],
+      "relation_evidence": [
+        {
+          "language": "it",
+          "word": "ano",
+          "sourceLang": "la",
+          "term": "anus",
+          "relationType": "borrowed_form",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.9,
+          "depth": 1,
+          "template": "bor+",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "en",
+          "word": "anus",
+          "sourceLang": "la",
+          "term": "ānus",
+          "relationType": "borrowed_form",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.9,
+          "depth": 1,
+          "template": "bor",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "fr",
+          "word": "anus",
+          "sourceLang": "la",
+          "term": "ānus",
+          "relationType": "borrowed_form",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.9,
+          "depth": 1,
+          "template": "bor+",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "de",
+          "word": "Anus",
+          "sourceLang": "la",
+          "term": "ānus",
+          "relationType": "borrowed_form",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.9,
+          "depth": 1,
+          "template": "bor+",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "ru",
+          "word": "анус",
+          "sourceLang": "la",
+          "term": "ānus",
+          "relationType": "borrowed_form",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.9,
+          "depth": 1,
+          "template": "bor+",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "fr",
+          "word": "anulingus",
+          "sourceLang": "la",
+          "term": "anus",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        }
+      ],
+      "canonical_selection": {
+        "method": "quality_score_v1",
+        "score": 2
+      },
+      "language_support": {
+        "en": 169,
+        "de": 51,
+        "fr": 81,
+        "it": 2892,
+        "ru": 45
+      },
+      "support": 3238,
+      "suspicion_score": 40,
+      "suspicion_reasons": [
+        "short_root",
+        "large_family"
+      ],
+      "review_status": "needs_review"
+    },
+    {
+      "id": "surface:ru:vatsja",
+      "canonical": "vatsja",
+      "aliases": [
+        "vatsja"
+      ],
+      "verified": false,
+      "confidence": "low",
+      "source": "surface_singleton",
+      "etymon_keys": [],
+      "language_support": {
+        "ru": 3215
+      },
+      "support": 3215,
+      "suspicion_score": 20,
+      "suspicion_reasons": [
+        "large_family"
+      ],
+      "review_status": "safe_automatic"
     }
   ],
   "highest_suspicion_families": [
@@ -10031,69 +10144,6 @@
       "review_status": "needs_review"
     },
     {
-      "id": "surface:de:ers",
-      "canonical": "ers",
-      "aliases": [
-        "ers"
-      ],
-      "verified": false,
-      "confidence": "low",
-      "source": "surface_singleton",
-      "etymon_keys": [],
-      "language_support": {
-        "de": 3834
-      },
-      "support": 3834,
-      "suspicion_score": 40,
-      "suspicion_reasons": [
-        "short_root",
-        "large_family"
-      ],
-      "review_status": "needs_review"
-    },
-    {
-      "id": "surface:it:elo",
-      "canonical": "elo",
-      "aliases": [
-        "elo"
-      ],
-      "verified": false,
-      "confidence": "low",
-      "source": "surface_singleton",
-      "etymon_keys": [],
-      "language_support": {
-        "it": 3788
-      },
-      "support": 3788,
-      "suspicion_score": 40,
-      "suspicion_reasons": [
-        "short_root",
-        "large_family"
-      ],
-      "review_status": "needs_review"
-    },
-    {
-      "id": "surface:de:ons",
-      "canonical": "ons",
-      "aliases": [
-        "ons"
-      ],
-      "verified": false,
-      "confidence": "low",
-      "source": "surface_singleton",
-      "etymon_keys": [],
-      "language_support": {
-        "de": 3782
-      },
-      "support": 3782,
-      "suspicion_score": 40,
-      "suspicion_reasons": [
-        "short_root",
-        "large_family"
-      ],
-      "review_status": "needs_review"
-    },
-    {
       "id": "ety:f089e9ab2fd2",
       "canonical": "annuel",
       "aliases": [
@@ -12598,6 +12648,294 @@
         "large_family"
       ],
       "review_status": "needs_review"
+    },
+    {
+      "id": "surface:es:ito",
+      "canonical": "ito",
+      "aliases": [
+        "ito"
+      ],
+      "verified": false,
+      "confidence": "low",
+      "source": "surface_singleton",
+      "etymon_keys": [],
+      "language_support": {
+        "es": 2898
+      },
+      "support": 2898,
+      "suspicion_score": 40,
+      "suspicion_reasons": [
+        "short_root",
+        "large_family"
+      ],
+      "review_status": "needs_review"
+    },
+    {
+      "id": "ety:9578dac9edf7",
+      "canonical": "tone",
+      "aliases": [
+        "ton",
+        "tone",
+        "tune",
+        "tuon"
+      ],
+      "verified": false,
+      "confidence": "A",
+      "source": "wiktionary_non_proto_etymology",
+      "etymon_keys": [
+        "grc:τονος"
+      ],
+      "relation_types": [
+        "direct_descendant"
+      ],
+      "relation_evidence": [
+        {
+          "language": "en",
+          "word": "tone",
+          "sourceLang": "grc",
+          "term": "τόνος",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "en",
+          "word": "tone",
+          "sourceLang": "grc",
+          "term": "τόνος",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "en",
+          "word": "tune",
+          "sourceLang": "grc",
+          "term": "τόνος",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "en",
+          "word": "tune",
+          "sourceLang": "grc",
+          "term": "τόνος",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "en",
+          "word": "tune",
+          "sourceLang": "grc",
+          "term": "τόνος",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "en",
+          "word": "Tonian",
+          "sourceLang": "grc",
+          "term": "τόνος",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "en",
+          "word": "Tonian",
+          "sourceLang": "grc",
+          "term": "τόνος",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "de",
+          "word": "Ton",
+          "sourceLang": "grc",
+          "term": "τόνος",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "it",
+          "word": "tono",
+          "sourceLang": "grc",
+          "term": "τόνος",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "ru",
+          "word": "тон",
+          "sourceLang": "grc",
+          "term": "τόνος",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "en",
+          "word": "hypotonia",
+          "sourceLang": "grc",
+          "term": "τόνος",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "it",
+          "word": "tuono",
+          "sourceLang": "grc",
+          "term": "τόνος",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "ru",
+          "word": "тонус",
+          "sourceLang": "grc",
+          "term": "τόνος",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        }
+      ],
+      "canonical_selection": {
+        "method": "quality_score_v1",
+        "score": 2
+      },
+      "language_support": {
+        "en": 263,
+        "de": 697,
+        "it": 1041,
+        "ru": 865
+      },
+      "support": 2866,
+      "suspicion_score": 40,
+      "suspicion_reasons": [
+        "short_root",
+        "large_family"
+      ],
+      "review_status": "needs_review"
+    },
+    {
+      "id": "surface:de:zen",
+      "canonical": "zen",
+      "aliases": [
+        "zen"
+      ],
+      "verified": false,
+      "confidence": "low",
+      "source": "surface_singleton",
+      "etymon_keys": [],
+      "language_support": {
+        "de": 2835
+      },
+      "support": 2835,
+      "suspicion_score": 40,
+      "suspicion_reasons": [
+        "short_root",
+        "large_family"
+      ],
+      "review_status": "needs_review"
     }
   ],
   "repository_materialization": {
@@ -12630,6 +12968,8 @@
     "suffix_batch_5_memberships_removed": 14349,
     "suffix_batch_5_ledger_sha256": "524a426e3321a6712751de276646b9704ae7e1adb484b538db31aa110c9fd69a",
     "suffix_batch_6_memberships_removed": 12744,
-    "suffix_batch_6_ledger_sha256": "a682ad50539629d45fe088d25e5822922baf93d2531d9e33a8fab5e68baeff09"
+    "suffix_batch_6_ledger_sha256": "a682ad50539629d45fe088d25e5822922baf93d2531d9e33a8fab5e68baeff09",
+    "suffix_batch_7_memberships_removed": 15721,
+    "suffix_batch_7_ledger_sha256": "0e2751936b67e5fc2ca41bbc4c3fb4e5489badab46460691fa1252f06d2d13c3"
   }
 }

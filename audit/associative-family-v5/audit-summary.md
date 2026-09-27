@@ -26,6 +26,8 @@ The following family-level review removed `surface:ru:ija`, `surface:es:elo` and
 
 A further family-level review removed German `surface:de:chen` (4,641 links), English `surface:en:ted` (4,069) and Spanish `surface:es:ela` (4,034). The German family was marked `safe_automatic` despite grouping diminutives, unrelated verbs and names by the same letters; the other two grouped participial endings and attached Spanish pronouns. All their evidence came only from candidate-index morphology. The complete original member sets and evidence counts are locked in `surface-suffix-decisions-6.json`. The 12,744 links were removed without deleting corpus lemmas or their other associations. These are family-level decisions, not word-by-word annotations. Current repository totals are 2,456,590 families, 1,934,051 aliases and 10,248,591 memberships.
 
+The next family-level review removed `surface:de:schen`, `surface:de:ers`, `surface:de:ons` and `surface:it:elo`, deleting 15,721 candidate-only links. German `schen` was another `safe_automatic` surface group that mixed unrelated adjective and verb endings; `ers` and `ons` joined inflections and internal strings, while Italian `elo` commonly joined an object pronoun to unrelated verbs. The locked member sets, evidence classes and reasons are in `surface-suffix-decisions-7.json`. Source lemmas and their other memberships remain. This review does not amount to individual annotation of those 15,721 links. Current repository totals are 2,456,586 families, 1,934,051 aliases and 10,232,870 memberships.
+
 ## Object and provenance checked
 
 - PR: `#622`, branch `fix/associative-family-corrective-v5`; base `main` remains unchanged.
