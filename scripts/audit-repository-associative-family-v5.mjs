@@ -152,7 +152,16 @@ assert(sonusLedger.source_run_id === expectedRunId && sonusLedger.family_id === 
 assert(sonusRepair?.removed_memberships === sonusRemoved && sonusRepair?.retained_memberships === 9 && sonusRepair?.decision_ledger_sha256 === sonusLedgerSha, 'sonus repair mismatch');
 assert(report.repository_materialization?.sonus_ledger_sha256 === sonusLedgerSha, 'report sonus ledger mismatch');
 const sonusKept = new Map(sonusLedger.decisions.map(item => [item.language, new Map(item.keep.map(value => [value.lemma_id, value.word]))]));
+const kaLedgerBytes = await readFile('audit/associative-family-v5/surface-ru-ka-decision.json');
+const kaLedger = JSON.parse(kaLedgerBytes);
+const kaLedgerSha = createHash('sha256').update(kaLedgerBytes).digest('hex');
+const kaRepair = provenance.repository_repairs?.find(item => item.repair === 'remove_incoherent_surface_ru_ka');
+assert(kaLedger.source_run_id === expectedRunId && kaLedger.decisions.length === 1 && kaLedger.decisions[0].family_id === 'surface:ru:ka', 'ka ledger mismatch');
+const kaRemoved = kaLedger.decisions[0].expected_members;
+assert(kaRepair?.removed_memberships === kaRemoved && kaRepair?.decision_ledger_sha256 === kaLedgerSha, 'ka repair mismatch');
+assert(report.repository_materialization?.surface_ru_ka_ledger_sha256 === kaLedgerSha, 'report ka ledger mismatch');
 const deletedSurfaceFamilies = new Set([...surfaceLedger.decisions, ...surfaceLedger2.decisions, ...surfaceLedger3.decisions, ...surfaceLedger4.decisions].map(item => item.family_id));
+deletedSurfaceFamilies.add(kaLedger.decisions[0].family_id);
 deletedSurfaceFamilies.add(tenLedger.family_id);
 for (const item of inflectionLedger.decisions) deletedSurfaceFamilies.add(item.family_id);
 for (const item of endingLedger.decisions) deletedSurfaceFamilies.add(item.family_id);
@@ -294,7 +303,7 @@ assert(familyIdsByBucket[parseInt(bucket('family:liber'), 16)].has('family:liber
 assert(liberLanguages.size === languages.length, `family:liber missing languages: ${languages.filter(x => !liberLanguages.has(x)).join(',')}`);
 assert(quarantinedManualFamilies.size === 0, 'quarantined family missing from metadata');
 assert(preservedManualKeys.size === 0, `preserved positive controls missing: ${[...preservedManualKeys].join(', ')}`);
-assert(membershipCount === 10426047 - manualLedger.rejected_memberships.length - surfaceRemoved - surfaceRemoved2 - surfaceRemoved3 - surfaceRemoved4 - tenLedger.expected_members - inflectionRemoved - endingRemoved - geneaRemoved - geneaOtherRemoved - sonusRemoved, 'unexpected repository membership count');
+assert(membershipCount === 10426047 - manualLedger.rejected_memberships.length - surfaceRemoved - surfaceRemoved2 - surfaceRemoved3 - surfaceRemoved4 - tenLedger.expected_members - inflectionRemoved - endingRemoved - geneaRemoved - geneaOtherRemoved - sonusRemoved - kaRemoved, 'unexpected repository membership count');
 assert(familyCount === manifest.counts.families && familyCount === report.total_families, `family count ${familyCount}`);
 assert(materializedFamilyCount === familyCount, 'not every family was materialized');
 for (const [field, counted] of [

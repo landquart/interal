@@ -20,6 +20,8 @@ The subsequent review of `ety:cf2897b18b16` (`grc:γενεα`) pruned its four l
 
 A second etymological family, `ety:1e7afcab5044` (`la:sonus`), was reduced from 6,670 to nine explicitly retained members across English, French, Spanish and Italian. The other 6,661 links included `net`/network/planet, surnames on `-son`, ambiguous homographs and noisy fragments. `sonus-language-decisions.json` locks the original lists and evidence classes. It retains sound and sonnet forms while preserving all lemmas and other family memberships. This is a bounded family decision; words excluded solely to keep the family concise may warrant separate sense-level restoration. Current repository totals are 2,456,597 families, 1,934,051 aliases and 10,281,633 memberships.
 
+The next family-level review removed `surface:ru:ka`, whose 5,949 Russian links group unrelated stems by the final sound sequence `-ка` (including `абиссинийка`, `аэрофотосъёмка`, `адвокатишка` and `актрисочка`). All links have candidate-index evidence only. `surface-ru-ka-decision.json` locks the complete member list and evidence counts before deletion. The alias `ka` remains because it also refers to other language-specific families; the source lemmas and their other memberships remain. This is not 5,949 individual lexical annotations, and the remaining `ka` families have not been reviewed here. Current repository totals are 2,456,596 families, 1,934,051 aliases and 10,275,684 memberships.
+
 ## Object and provenance checked
 
 - PR: `#622`, branch `fix/associative-family-corrective-v5`; base `main` remains unchanged.

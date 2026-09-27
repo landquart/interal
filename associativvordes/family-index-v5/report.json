@@ -115,7 +115,7 @@
   },
   "uncertain_relation_count": 431390,
   "uncertain_relation_sample_size": 100000,
-  "total_families": 2456597,
+  "total_families": 2456596,
   "merged_families": 20775,
   "singleton_families": 1735271,
   "multi_branch_families": 17703,
@@ -128,7 +128,7 @@
     "rejected": 9,
     "requires_manual_review": 0
   },
-  "review_required_families": 4057,
+  "review_required_families": 4056,
   "invariants": {
     "processed_lemmas_equals_source": true,
     "source_lemmas": 4924980,
@@ -2352,27 +2352,6 @@
       "suspicion_score": 40,
       "suspicion_reasons": [
         "short_root",
-        "large_family"
-      ],
-      "review_status": "needs_review"
-    },
-    {
-      "id": "surface:ru:ka",
-      "canonical": "ka",
-      "aliases": [
-        "ka"
-      ],
-      "verified": false,
-      "confidence": "low",
-      "source": "surface_singleton",
-      "etymon_keys": [],
-      "language_support": {
-        "ru": 5949
-      },
-      "support": 5949,
-      "suspicion_score": 60,
-      "suspicion_reasons": [
-        "very_short_root",
         "large_family"
       ],
       "review_status": "needs_review"
@@ -6430,30 +6409,109 @@
         "large_family"
       ],
       "review_status": "needs_review"
-    }
-  ],
-  "highest_suspicion_families": [
+    },
     {
-      "id": "surface:ru:ka",
-      "canonical": "ka",
+      "id": "ety:75eed4d759a7",
+      "canonical": "bonet",
       "aliases": [
-        "ka"
+        "bonet",
+        "net"
       ],
       "verified": false,
-      "confidence": "low",
-      "source": "surface_singleton",
-      "etymon_keys": [],
-      "language_support": {
-        "ru": 5949
+      "confidence": "A",
+      "source": "wiktionary_non_proto_etymology",
+      "etymon_keys": [
+        "fro:bonet"
+      ],
+      "relation_types": [
+        "direct_descendant",
+        "inherited_form"
+      ],
+      "relation_evidence": [
+        {
+          "language": "en",
+          "word": "bonnet",
+          "sourceLang": "fro",
+          "term": "bonet",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "en",
+          "word": "bonnet",
+          "sourceLang": "fro",
+          "term": "bonet",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "fr",
+          "word": "bonnet",
+          "sourceLang": "fro",
+          "term": "bonet",
+          "relationType": "inherited_form",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "inh",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "it",
+          "word": "bonet",
+          "sourceLang": "fro",
+          "term": "bonet",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        }
+      ],
+      "canonical_selection": {
+        "method": "quality_score_v1",
+        "score": 1
       },
-      "support": 5949,
-      "suspicion_score": 60,
+      "language_support": {
+        "en": 1870,
+        "fr": 1486,
+        "it": 2
+      },
+      "support": 3358,
+      "suspicion_score": 40,
       "suspicion_reasons": [
-        "very_short_root",
+        "short_root",
         "large_family"
       ],
       "review_status": "needs_review"
-    },
+    }
+  ],
+  "highest_suspicion_families": [
     {
       "id": "ety:5bed7c192e10",
       "canonical": "actu",
@@ -12071,6 +12129,104 @@
         "large_family"
       ],
       "review_status": "needs_review"
+    },
+    {
+      "id": "ety:ef562a6f4a42",
+      "canonical": "act",
+      "aliases": [
+        "act"
+      ],
+      "verified": false,
+      "confidence": "A",
+      "source": "wiktionary_non_proto_etymology",
+      "etymon_keys": [
+        "fro:actif"
+      ],
+      "relation_types": [
+        "direct_descendant",
+        "inherited_form"
+      ],
+      "relation_evidence": [
+        {
+          "language": "en",
+          "word": "active",
+          "sourceLang": "fro",
+          "term": "actif",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "en",
+          "word": "active",
+          "sourceLang": "fro",
+          "term": "actif",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "fr",
+          "word": "actif",
+          "sourceLang": "fro",
+          "term": "actif",
+          "relationType": "inherited_form",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "inh",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "fr",
+          "word": "actif",
+          "sourceLang": "fro",
+          "term": "actif",
+          "relationType": "inherited_form",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "inh",
+          "path": [
+            "args",
+            2
+          ]
+        }
+      ],
+      "canonical_selection": {
+        "method": "quality_score_v1",
+        "score": 103
+      },
+      "language_support": {
+        "en": 2097,
+        "fr": 1036
+      },
+      "support": 3133,
+      "suspicion_score": 40,
+      "suspicion_reasons": [
+        "short_root",
+        "large_family"
+      ],
+      "review_status": "needs_review"
     }
   ],
   "repository_materialization": {
@@ -12097,6 +12253,8 @@
     "genea_other_memberships_removed": 281,
     "genea_other_ledger_sha256": "f09c751e25be9d5e42c07dab4c58ba7fe491f918492fb030698b1f567f2cbc75",
     "sonus_memberships_removed": 6661,
-    "sonus_ledger_sha256": "53ce7b8028e24903bb9d9ee45a7add7268e38640985c60868f372f4500bba605"
+    "sonus_ledger_sha256": "53ce7b8028e24903bb9d9ee45a7add7268e38640985c60868f372f4500bba605",
+    "surface_ru_ka_memberships_removed": 5949,
+    "surface_ru_ka_ledger_sha256": "b6e5d800d8e1a9d0f4a5f25a0c6356ee60e57293085173e283c3fff2ae3da5cf"
   }
 }
