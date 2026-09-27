@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "source_run_id": 35647932153,
+  "scope": "Four family-level decisions based on contrasting language-spaced examples and all stored evidence classes, with complete original member lists locked by digest. This is not an individual annotation of every link.",
+  "decisions": [
+    {
+      "family_id": "surface:de:schen", "language": "de", "expected_status": "safe_automatic", "expected_members": 4317,
+      "member_list_sha256": "c63b73b9a6916dd8f512278a15fe6ea0bf81d3be2aa4d8c6fb054844c47f2329",
+      "expected_evidence": {"compound_morphology:candidate_index": 4313, "morphological_parse:candidate_index": 4},
+      "reason": "German -schen spans unrelated adjectives in -ischen (aquaristischen, enzymatischen, pyrokinetischen), diminutives and verbs (verramschen). It is not a common word root despite the safe_automatic status."
+    },
+    {
+      "family_id": "surface:de:ers", "language": "de", "expected_status": "needs_review", "expected_members": 3834,
+      "member_list_sha256": "4244c4df6e0398a812976a797084a0b0ed45560e8b867cf8421caa5f0c204ac5",
+      "expected_evidence": {"compound_morphology:candidate_index": 3832, "morphological_parse:candidate_index": 3},
+      "reason": "German -ers is a genitive or internal string in unrelated words such as Sprechers, Ferienlagers, Rinderserum and Trinkwassers; it is not a shared whole-word etymon."
+    },
+    {
+      "family_id": "surface:de:ons", "language": "de", "expected_status": "needs_review", "expected_members": 3782,
+      "member_list_sha256": "1a6c3202065534b5cef1e78b0b6a5f368ccc6f69ca6447e3ebf227811ed97198",
+      "expected_evidence": {"compound_morphology:candidate_index": 3782, "morphological_parse:candidate_index": 1},
+      "reason": "German -ons and internal matching join unrelated surnames, borrowings and compounds such as Aarons, Informationsnachmittag, Polarisationsgerät and Zyklotrons. The final/internal letters do not imply one root."
+    },
+    {
+      "family_id": "surface:it:elo", "language": "it", "expected_status": "needs_review", "expected_members": 3788,
+      "member_list_sha256": "a640b0451bcf6e990b4c2ad5ab6bb494b61cd1e7ca066eea0c14b54552986ed5",
+      "expected_evidence": {"compound_morphology:candidate_index": 3785, "morphological_parse:candidate_index": 3},
+      "reason": "Italian -elo commonly includes an attached object pronoun on unrelated verbs such as annotatelo, comunicatelo, puliscitelo and toglierglielo, while other words match incidentally. A clitic does not create one whole-lemma etymological family."
+    }
+  ],
+  "review_scope": "Remove the four incoherent surface families while preserving the corpus lemmas and their other memberships. The original source artifact remains immutable."
+}

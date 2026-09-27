@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "source_run_id": 35647932153,
+  "family_id": "ety:5bed7c192e10",
+  "etymon_key": "la:actus",
+  "scope": "Ten individually checked false memberships, with positive controls. No conclusion about the other members of this large family.",
+  "rejected_memberships": [
+    {"language":"en","word":"abstract","lemma_id":"lemma:08653be9f82d0f95c77e","reason":"Latin abstractus < abstrahere < trahere, not actus.","reference":"https://www.etymonline.com/word/abstract"},
+    {"language":"en","word":"intact","lemma_id":"lemma:4066f09849a05fb72ca9","reason":"Latin intactus contains tactus from tangere 'touch', not actus 'act'.","reference":"https://www.etymonline.com/word/intact"},
+    {"language":"en","word":"impractical","lemma_id":"lemma:fbdf319ebcbf5d932855","reason":"The practical stem ultimately follows Greek praktikos, not Latin actus.","reference":"https://www.etymonline.com/word/practical"},
+    {"language":"de","word":"kontakt","lemma_id":"lemma:4e6b425703e15ba00c65","reason":"Kontakt follows Latin contactus/contingere and tangere, not actus.","reference":"https://www.cnrtl.fr/etymologie/contact"},
+    {"language":"de","word":"charakter","lemma_id":"lemma:3df2728f0c2061ca99e0","reason":"Charakter follows Greek charaktēr through Latin character, not actus.","reference":"https://www.duden.de/rechtschreibung/Charakter"},
+    {"language":"fr","word":"contact","lemma_id":"lemma:2983ad8ca2dab3a69848","reason":"Contact is from Latin contactus, from tangere through contingere, not actus.","reference":"https://www.cnrtl.fr/etymologie/contact"},
+    {"language":"fr","word":"caractère","lemma_id":"lemma:43c6138cb33752d8ef3f","reason":"Caractère follows Greek charaktēr through Latin character, not actus.","reference":"https://www.cnrtl.fr/etymologie/caract%C3%A8re"},
+    {"language":"es","word":"contacto","lemma_id":"lemma:73cc403b3f1be3efb34a","reason":"Contacto follows Latin contactus from contingere/tangere, not actus.","reference":"https://www.treccani.it/vocabolario/contatto1/"},
+    {"language":"it","word":"contatto","lemma_id":"lemma:5fd1acc56718e402108d","reason":"Contatto follows Latin contactus from contingere/tangere, not actus.","reference":"https://www.treccani.it/vocabolario/contatto1/"},
+    {"language":"it","word":"carattere","lemma_id":"lemma:a41f82255d252c4cbff7","reason":"Carattere follows Greek charaktēr through Latin character, not actus.","reference":"https://www.treccani.it/vocabolario/carattere/"}
+  ],
+  "preserved_positive_controls": [
+    {"language":"en","word":"act"},
+    {"language":"de","word":"akt"},
+    {"language":"fr","word":"acte"},
+    {"language":"es","word":"acto"},
+    {"language":"it","word":"atto"}
+  ],
+  "quarantined_families": [],
+  "review_scope": "The source label manually_verified on a compound_morphology record does not mean this membership was independently checked; all ten rejected records carried that label. The remaining family still has many unreviewed links and may contain other false positives."
+}

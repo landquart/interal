@@ -13,8 +13,8 @@
   },
   "storage": "git_repository_static_files",
   "file_count_before_provenance": 2050,
-  "total_bytes_before_provenance": 733812266,
-  "tree_content_sha256": "70823244796a3fd2e01cdb3991692853c83f1ed145128051311976a2fc9db8de",
+  "total_bytes_before_provenance": 727090529,
+  "tree_content_sha256": "3cd4d2ef428e2d85775ad4ab3af1898103a9da63afd3f27250d7595c7678d9cf",
   "repository_repairs": [
     {
       "repair": "exclude_known_rejected_corpus_noise_from_runtime",
@@ -155,6 +155,104 @@
       "decision_ledger_sha256": "53ce7b8028e24903bb9d9ee45a7add7268e38640985c60868f372f4500bba605",
       "source_run_id": 35647932153,
       "not_individual_lexical_annotation": true
+    },
+    {
+      "repair": "remove_incoherent_surface_ru_ka",
+      "removed_memberships": 5949,
+      "deleted_families": [
+        "surface:ru:ka"
+      ],
+      "deleted_aliases": 0,
+      "decision_ledger_sha256": "b6e5d800d8e1a9d0f4a5f25a0c6356ee60e57293085173e283c3fff2ae3da5cf",
+      "source_run_id": 35647932153,
+      "not_individual_lexical_annotation": true
+    },
+    {
+      "repair": "remove_incoherent_suffix_surface_families_batch_5",
+      "removed_memberships": 14349,
+      "deleted_families": [
+        "surface:ru:ija",
+        "surface:es:elo",
+        "surface:it:ato"
+      ],
+      "deleted_aliases": 0,
+      "decision_ledger_sha256": "524a426e3321a6712751de276646b9704ae7e1adb484b538db31aa110c9fd69a",
+      "source_run_id": 35647932153,
+      "not_individual_lexical_annotation": true
+    },
+    {
+      "repair": "remove_incoherent_suffix_surface_families_batch_6",
+      "removed_memberships": 12744,
+      "deleted_families": [
+        "surface:de:chen",
+        "surface:en:ted",
+        "surface:es:ela"
+      ],
+      "deleted_aliases": 0,
+      "decision_ledger_sha256": "a682ad50539629d45fe088d25e5822922baf93d2531d9e33a8fab5e68baeff09",
+      "source_run_id": 35647932153,
+      "not_individual_lexical_annotation": true
+    },
+    {
+      "repair": "remove_incoherent_suffix_surface_families_batch_7",
+      "removed_memberships": 15721,
+      "deleted_families": [
+        "surface:de:schen",
+        "surface:de:ers",
+        "surface:de:ons",
+        "surface:it:elo"
+      ],
+      "deleted_aliases": 0,
+      "decision_ledger_sha256": "0e2751936b67e5fc2ca41bbc4c3fb4e5489badab46460691fa1252f06d2d13c3",
+      "source_run_id": 35647932153,
+      "not_individual_lexical_annotation": true
+    },
+    {
+      "repair": "remove_incoherent_suffix_surface_families_batch_8",
+      "removed_memberships": 23558,
+      "deleted_families": [
+        "surface:fr:ons",
+        "surface:it:mente",
+        "surface:de:tes",
+        "surface:es:ose",
+        "surface:es:ando",
+        "surface:en:ers",
+        "surface:ru:vatsja"
+      ],
+      "deleted_aliases": 1,
+      "decision_ledger_sha256": "c005b44ff1902de1a38417e8781157f818c428c9faf41478d5032300d0dc2cdc",
+      "source_run_id": 35647932153,
+      "not_individual_lexical_annotation": true
+    },
+    {
+      "repair": "remove_incoherent_suffix_surface_families_batch_9",
+      "removed_memberships": 35254,
+      "deleted_families": [
+        "surface:es:arte",
+        "surface:es:ias",
+        "surface:es:ome",
+        "surface:it:ico",
+        "surface:de:ken",
+        "surface:es:rio",
+        "surface:es:nes",
+        "surface:es:ito",
+        "surface:de:zen",
+        "surface:ru:tyj",
+        "surface:es:ita",
+        "surface:de:sen"
+      ],
+      "deleted_aliases": 0,
+      "decision_ledger_sha256": "33cd2fa4d6fa15370b038a746f0e71babec0c55bbbb8e37352e06b342037bfad",
+      "source_run_id": 35647932153,
+      "not_individual_lexical_annotation": true
+    },
+    {
+      "repair": "remove_verified_actus_false_memberships",
+      "removed_memberships": 10,
+      "affected_families": 1,
+      "source_run_id": 35647932153,
+      "decision_ledger_sha256": "c0d11e3deb9370063f7d36de1ccccbd87dba85da3bd73a0458a11ef49e502d72",
+      "not_human_statistical_annotation": true
     }
   ]
 }

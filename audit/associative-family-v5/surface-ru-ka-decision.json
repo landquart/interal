@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "source_run_id": 35647932153,
+  "scope": "Family-level rejection of the Russian surface:ru:ka grouping. The complete stored member set and all its evidence classes are locked below; the words were not individually annotated.",
+  "decisions": [
+    {
+      "family_id": "surface:ru:ka",
+      "language": "ru",
+      "expected_status": "needs_review",
+      "expected_members": 5949,
+      "member_list_sha256": "0e2dee87debcdbcde6a8c6c86b3121fb15530a1f5a1c06d9c13d0e245204be67",
+      "expected_evidence": {
+        "compound_morphology:candidate_index": 5948,
+        "morphological_parse:candidate_index": 1
+      },
+      "reason": "The transliterated surface sequence ka groups unrelated Russian stems and endings. Examples include абиссинийка (nationality), аэрофотосъёмка (recording), адвокатишка (diminutive/pejorative) and актрисочка (diminutive). The final letters -ка or -очка do not establish a shared whole-lemma etymon. Every stored link is candidate-index evidence rather than a checked lexical derivation."
+    }
+  ],
+  "review_scope": "Reject the incoherent surface family as a unit while preserving corpus lemmas and any other family memberships. This does not assert that every word lacks a valid separate derivational relationship."
+}
