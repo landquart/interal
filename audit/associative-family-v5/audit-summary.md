@@ -32,6 +32,8 @@ Seven more large surface groups (`surface:fr:ons`, `surface:it:mente`, `surface:
 
 Twelve further candidate-only surface groups (`surface:es:arte`, `ias`, `ome`, `rio`, `nes`, `ito`, `ita`; `surface:it:ico`; `surface:de:ken`, `zen`, `sen`; `surface:ru:tyj`) combined unrelated stems through clitics, diminutive endings, inflection or internal letter sequences. `surface-suffix-decisions-9.json` locks the original sets and evidence classes. The family-level decision removed 35,254 links without deleting the underlying words or their other memberships. It is not individual annotation. Current repository totals are 2,456,567 families, 1,934,050 aliases and 10,174,058 memberships.
 
+An individual etymological review removed ten false links from `ety:5bed7c192e10` (`la:actus`): English `abstract`, `intact`, `impractical`; German `kontakt`, `charakter`; French `contact`, `caractère`; Spanish `contacto`; Italian `contatto`, `carattere`. Dictionary etymologies and retained positive controls are recorded in `actus-false-memberships.json`. Each rejected link had compound morphology labelled `manually_verified`, but its actual origin was a different root; the label is not proof of individual review. This case review does not certify the remaining 15,066 members of the family or reduce them to the requested 20. Current repository totals are 2,456,567 families, 1,934,050 aliases and 10,174,048 memberships.
+
 ## Object and provenance checked
 
 - PR: `#622`, branch `fix/associative-family-corrective-v5`; base `main` remains unchanged.
@@ -53,12 +55,12 @@ An independent streaming recount of all six locked assignment files established 
 |---|---:|
 | Lemma records | 4,924,980 |
 | Component evidence records | 9,349,982 |
-| Repository runtime memberships | 10,174,058 |
-| Materialized member records | 10,174,058 |
+| Repository runtime memberships | 10,174,048 |
+| Materialized member records | 10,174,048 |
 | Memberships with repeated component evidence | 5,097 |
 | Excess repeated component→membership links | 6,282 |
 
-`manifest.counts.components` is incremented once per component evidence record. It is not a membership count. The previous v4→v5 report compared v4 memberships (`14,918,457`) with v5 components (`9,350,026`), so its `-5,568,431` delta was invalid. The current repository-runtime membership delta is `10,174,058 - 14,918,457 = -4,744,399`; this reduction still proves neither precision nor recall. The repository count is 252,019 below the immutable source artifact: 30 memberships of rejected corpus-noise lemmas, 22 earlier case-reviewed memberships, 364 individually reviewed memberships in twelve deleted short surface families, 122,435 members in twelve ending-based families rejected at the family level, 14,932 memberships pruned from the Greek `genea` family, 6,661 from the Latin `sonus` family, and 107,575 from thirty subsequently reviewed surface families. Source-artifact/assignment counts elsewhere in this audit remain historical and must not be reinterpreted as repository-runtime counts.
+`manifest.counts.components` is incremented once per component evidence record. It is not a membership count. The previous v4→v5 report compared v4 memberships (`14,918,457`) with v5 components (`9,350,026`), so its `-5,568,431` delta was invalid. The current repository-runtime membership delta is `10,174,048 - 14,918,457 = -4,744,409`; this reduction still proves neither precision nor recall. The repository count is 252,029 below the immutable source artifact: 30 memberships of rejected corpus-noise lemmas, 22 earlier case-reviewed memberships, 364 individually reviewed memberships in twelve deleted short surface families, 122,435 members in twelve ending-based families rejected at the family level, 14,932 memberships pruned from the Greek `genea` family, 6,661 from the Latin `sonus` family, 107,575 from thirty subsequently reviewed surface families, and ten individually reviewed links in Latin `actus`. Source-artifact/assignment counts elsewhere in this audit remain historical and must not be reinterpreted as repository-runtime counts.
 
 ## Evidence status by gate
 
