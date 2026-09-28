@@ -13,8 +13,8 @@
   },
   "storage": "git_repository_static_files",
   "file_count_before_provenance": 2050,
-  "total_bytes_before_provenance": 723076514,
-  "tree_content_sha256": "d763848d5f517891635e8cd9486faef7f9bb083ae1ade41f3646d27e53760b05",
+  "total_bytes_before_provenance": 722329496,
+  "tree_content_sha256": "50cc2ea26a804a276e6dee55bc4b6644f94b1e7920dd5a2ce0bd1d510fbfc9ea",
   "repository_repairs": [
     {
       "repair": "exclude_known_rejected_corpus_noise_from_runtime",
@@ -317,6 +317,23 @@
       "materialized_unique_lemmas": 4924383,
       "lemmas_without_materialized_family": 597,
       "decision_ledger_sha256": "0089c0b61e5627d45b0ae6d237f8b494a1940e37b86788e29bce0bc929cc7568",
+      "source_run_id": 35647932153,
+      "not_individual_lexical_annotation": true
+    },
+    {
+      "repair": "remove_incoherent_suffix_surface_families_batch_12",
+      "removed_memberships": 11782,
+      "deleted_families": [
+        "surface:it:ina",
+        "surface:es:cia",
+        "surface:en:tes",
+        "surface:en:ngs"
+      ],
+      "retained_sky_members": 8,
+      "materialized_unique_lemmas": 4924331,
+      "lemmas_without_materialized_family": 649,
+      "deleted_aliases": 0,
+      "decision_ledger_sha256": "d89af63b906e829b2c97f2723e52b92f2944a8c4cc4c83e54a0be105f30e6099",
       "source_run_id": 35647932153,
       "not_individual_lexical_annotation": true
     }

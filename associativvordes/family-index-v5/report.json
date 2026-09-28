@@ -115,7 +115,7 @@
   },
   "uncertain_relation_count": 431390,
   "uncertain_relation_sample_size": 100000,
-  "total_families": 2456551,
+  "total_families": 2456547,
   "merged_families": 20775,
   "singleton_families": 1735271,
   "multi_branch_families": 17703,
@@ -128,12 +128,12 @@
     "rejected": 9,
     "requires_manual_review": 0
   },
-  "review_required_families": 4027,
+  "review_required_families": 4028,
   "invariants": {
     "processed_lemmas_equals_source": true,
     "source_lemmas": 4924980,
-    "classified_unique_lemmas": 4924383,
-    "lemmas_with_zero_family": 597,
+    "classified_unique_lemmas": 4924331,
+    "lemmas_with_zero_family": 649,
     "families_with_zero_members": 0,
     "members_without_evidence": 0,
     "fuzzy_memberships": 0,
@@ -14798,9 +14798,11 @@
     "illos_illis_family_decisions_sha256": "2fc48f87d69f8ca53560245048b2b00d1adc07112ea69c5d5f39145346fb0598",
     "suffix_batch_10_memberships_removed": 26757,
     "suffix_batch_10_ledger_sha256": "4d0ccfacf38eaedaeedad9c1d685f0244b44877433969b4dc6b791bd1fa5d274",
-    "materialized_unique_lemmas": 4924383,
-    "lemmas_without_materialized_family": 597,
+    "materialized_unique_lemmas": 4924331,
+    "lemmas_without_materialized_family": 649,
     "suffix_batch_11_memberships_removed": 14711,
-    "suffix_batch_11_ledger_sha256": "0089c0b61e5627d45b0ae6d237f8b494a1940e37b86788e29bce0bc929cc7568"
+    "suffix_batch_11_ledger_sha256": "0089c0b61e5627d45b0ae6d237f8b494a1940e37b86788e29bce0bc929cc7568",
+    "suffix_batch_12_memberships_removed": 11782,
+    "suffix_batch_12_ledger_sha256": "d89af63b906e829b2c97f2723e52b92f2944a8c4cc4c83e54a0be105f30e6099"
   }
 }
