@@ -10,6 +10,16 @@
     "lemmas": 4924980,
     "components": 9349982,
     "memberships": 10125428,
+    "materialized_unique_lemmas": 4924403,
+    "lemmas_without_materialized_family": 577,
+    "unique_lemmas_by_language": {
+      "en": 1130997,
+      "de": 1113447,
+      "fr": 558904,
+      "es": 941534,
+      "it": 610093,
+      "ru": 569428
+    },
     "memberships_by_language": {
       "en": 2634936,
       "de": 2205142,
@@ -52,8 +62,8 @@
     },
     "storage": "git_repository_static_files",
     "file_count_before_provenance": 2050,
-    "total_bytes_before_provenance": 724101632,
-    "tree_content_sha256": "93ae65f61c0864a07b8e401a41e733951d7bdca178f77766ce5d8c9bbcada4f7",
+    "total_bytes_before_provenance": 724101774,
+    "tree_content_sha256": "10867d6edf61ac7135d1bcb7b5658049db3e6997dcecec9a783462d3266f85d7",
     "repository_repairs": [
       {
         "repair": "exclude_known_rejected_corpus_noise_from_runtime",
@@ -328,6 +338,18 @@
         "decision_ledger_sha256": "4d0ccfacf38eaedaeedad9c1d685f0244b44877433969b4dc6b791bd1fa5d274",
         "source_run_id": 35647932153,
         "not_individual_lexical_annotation": true
+      },
+      {
+        "repair": "reconcile_pronoun_review_and_materialized_lemmas",
+        "affected_families": [
+          "ety:1e9cc0c12192",
+          "ety:315724e202e2",
+          "ety:ca11c4d91dcb"
+        ],
+        "materialized_unique_lemmas": 4924403,
+        "lemmas_without_materialized_family": 577,
+        "source_run_id": 35647932153,
+        "note": "No memberships added; malformed áquellos remains excluded. The original build-time zero-family claim was stale after repository pruning."
       }
     ]
   }

@@ -268,11 +268,11 @@ assert(report.controls_ok === true, 'controls_ok=false');
 for (const [name, value] of Object.entries(report.invariants || {})) {
   if (typeof value === 'boolean') assert(value, `invariant ${name}=false`);
 }
-for (const name of ['lemmas_with_zero_family','families_with_zero_members','members_without_evidence','fuzzy_memberships','levenshtein_memberships','untyped_family_edges','untyped_or_illegal_equivalence_edges','compound_edges_used_as_equivalence','unreviewed_high_risk_families']) {
+for (const name of ['families_with_zero_members','members_without_evidence','fuzzy_memberships','levenshtein_memberships','untyped_family_edges','untyped_or_illegal_equivalence_edges','compound_edges_used_as_equivalence','unreviewed_high_risk_families']) {
   assert(report.invariants?.[name] === 0, `invariant ${name}=${report.invariants?.[name]}`);
 }
 assert(manifest.counts.lemmas === report.invariants.source_lemmas, 'manifest/report source lemma mismatch');
-assert(manifest.counts.lemmas === report.invariants.classified_unique_lemmas, 'manifest/report classified lemma mismatch');
+assert(manifest.counts.lemmas === report.invariants.classified_unique_lemmas + report.invariants.lemmas_with_zero_family, 'manifest/report materialized lemma mismatch');
 assert(manifest.counts.components === report.components_discovered, 'manifest/report discovered component mismatch');
 assert(report.components_discovered === report.components_assigned, 'discovered/assigned component mismatch');
 assert(manifest.sharding?.alias_template === 'aliases/{bucket}.json.gz', 'invalid alias runtime template');
@@ -397,6 +397,23 @@ assert(preservedManualKeys.size === 0, `preserved positive controls missing: ${[
 assert(preservedActusKeys.size === 0, `preserved actus controls missing: ${[...preservedActusKeys].join(', ')}`);
 assert(retainedIllasKeys.size === 0, 'retained illas headwords missing');
 assert(retainedPronounKeys.size === 0, 'retained illos/illis headwords missing');
+// Recount distinct materialized lemmas. The source-build report cannot prove
+// that later family pruning preserved every lemma's last membership.
+let materializedUniqueLemmas = 0;
+const uniqueLemmasByLanguage = {};
+for (const language of languages) {
+  const unique = new Set();
+  for (let index = 0; index < 256; index += 1) {
+    const shard = index.toString(16).padStart(2, '0');
+    const members = await readJson(join(root, 'members', language, `${shard}.json.gz`));
+    for (const values of Object.values(members)) for (const value of values) unique.add(value.lemma_id);
+  }
+  uniqueLemmasByLanguage[language] = unique.size;
+  materializedUniqueLemmas += unique.size;
+}
+assert(materializedUniqueLemmas === report.invariants.classified_unique_lemmas, 'report classified unique lemmas mismatch');
+assert(manifest.counts.lemmas - materializedUniqueLemmas === report.invariants.lemmas_with_zero_family, 'report unassigned lemmas mismatch');
+assert(materializedUniqueLemmas === report.repository_materialization.materialized_unique_lemmas, 'repository materialized lemma count mismatch');
 assert(membershipCount === 10426047 - manualLedger.rejected_memberships.length - surfaceRemoved - surfaceRemoved2 - surfaceRemoved3 - surfaceRemoved4 - tenLedger.expected_members - inflectionRemoved - endingRemoved - geneaRemoved - geneaOtherRemoved - sonusRemoved - kaRemoved - suffixRemoved - suffixRemoved6 - suffixRemoved7 - suffixRemoved8 - suffixRemoved9 - suffixRemoved10 - actusLedger.rejected_memberships.length - illasLedger.expected_removed_memberships - pronounLedger.expected_total_removed_memberships, 'unexpected repository membership count');
 assert(familyCount === manifest.counts.families && familyCount === report.total_families, `family count ${familyCount}`);
 assert(materializedFamilyCount === familyCount, 'not every family was materialized');
@@ -446,6 +463,9 @@ const result = {
     lemmas: manifest.counts.lemmas,
     components: manifest.counts.components,
     memberships: membershipCount,
+    materialized_unique_lemmas: materializedUniqueLemmas,
+    lemmas_without_materialized_family: manifest.counts.lemmas - materializedUniqueLemmas,
+    unique_lemmas_by_language: uniqueLemmasByLanguage,
     memberships_by_language: membershipsByLanguage,
     materialized_families: materializedFamilyCount
   },
