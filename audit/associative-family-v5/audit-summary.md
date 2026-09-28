@@ -132,3 +132,9 @@ git diff --check
 - Evidence-based audit verdict: **INSUFFICIENT_EVIDENCE**
 - Owner disposition: **OWNER_ACCEPTED_AT_RISK**
 - Merge/production authorization: **YES — explicit owner risk acceptance; exact immutable v5 prefix only**
+
+## Repository review batch 12 (2026-09-28)
+
+From the open PR #644, the five families not handled by merged PR #646 were reviewed against their full stored member lists and candidate-index evidence. The four ending-based families `surface:it:ina`, `surface:es:cia`, `surface:en:tes`, and `surface:en:ngs` were removed. The English `surface:en:sky` family was pruned from 2,458 members to eight explicitly listed sky-base forms; surname endings on `-sky` were excluded. The exact original member lists, evidence distribution, and retained lemma IDs are locked in `surface-suffix-decisions-12.json`.
+
+This bounded decision removed 11,782 memberships and four families while preserving source lemmas and all other family memberships. The materialized unique-lemma count is 4,924,331 of 4,924,980, leaving 649 source lemmas with no stored family. The family-level exclusion is not an independent etymological annotation of every removed corpus item. Other sky compounds and the remaining large families need their own review; the global 20-member condition and linguistic precision/recall are not established. Source run 35647932153 was not regenerated.

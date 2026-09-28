@@ -1,0 +1,157 @@
+{
+  "schema_version": 1,
+  "source_run_id": 35647932153,
+  "review_method": "Complete source member lists and candidate-index evidence checked by digest. Four incoherent suffix families are removed; the English sky family retains eight explicit transparent sky-base forms. This is a bounded family review, not independent dictionary annotation of every excluded word.",
+  "decisions": [
+    {
+      "family_id": "surface:en:sky",
+      "language": "en",
+      "expected_status": "safe_automatic",
+      "expected_members": 2458,
+      "member_list_sha256": "58f77586660fc1f14bea02934d72e7c8db5cc998e7567cd515cb79537ffdedaf",
+      "expected_evidence": {
+        "compound_morphology:candidate_index": 2453,
+        "morphological_parse:candidate_index": 5
+      },
+      "contrasting_examples": [
+        "abetsky",
+        "clausky",
+        "jaminsky",
+        "kulbitskyjevog",
+        "nesvitsky",
+        "ramsky",
+        "skyden",
+        "tukhachevsky",
+        "zyuganovsky"
+      ],
+      "reason": "English-index -sky is a productive surname ending on unrelated people and places, e.g. dubrowsky, kopytovsky and zyuganovsky. Retain eight explicitly selected sky-base words; reject surname suffix and incidental strings.",
+      "retained": [
+        {
+          "word": "sky",
+          "lemma_id": "lemma:fe5c619b74e0636d53ea"
+        },
+        {
+          "word": "all-sky",
+          "lemma_id": "lemma:2247047f9d6b23f11af8"
+        },
+        {
+          "word": "skybound",
+          "lemma_id": "lemma:247436ea114317681d25"
+        },
+        {
+          "word": "skyclad",
+          "lemma_id": "lemma:b90460a9ce8354cec2eb"
+        },
+        {
+          "word": "skyed",
+          "lemma_id": "lemma:eaf14975a28d3c1cd6cd"
+        },
+        {
+          "word": "skyful",
+          "lemma_id": "lemma:b35b87f7b303732b914a"
+        },
+        {
+          "word": "skyhigh",
+          "lemma_id": "lemma:3535adaddad056cddede"
+        },
+        {
+          "word": "skyish",
+          "lemma_id": "lemma:ca43cc695ad8a6e8ec11"
+        }
+      ]
+    },
+    {
+      "family_id": "surface:it:ina",
+      "language": "it",
+      "expected_status": "safe_automatic",
+      "expected_members": 2406,
+      "member_list_sha256": "76e8015af6a23527112c321dad273d2a65278bc5da3be3cb53aa2202ea5d3e47",
+      "expected_evidence": {
+        "compound_morphology:candidate_index": 2400,
+        "morphological_parse:candidate_index": 6
+      },
+      "contrasting_examples": [
+        "aballerina",
+        "cacchiolina",
+        "cucìna",
+        "gavina",
+        "lipofedrina",
+        "noticina",
+        "pupattolina",
+        "sultanina",
+        "zylina"
+      ],
+      "reason": "Italian -ina is a feminine/diminutive suffix or final sequence joining unrelated roots, including ballerina, felpina and panzina."
+    },
+    {
+      "family_id": "surface:es:cia",
+      "language": "es",
+      "expected_status": "safe_automatic",
+      "expected_members": 2358,
+      "member_list_sha256": "5b1e3ba2bb1395cc25ba3803dfec86a00eab3615df18f7131af8b221323309f3",
+      "expected_evidence": {
+        "compound_morphology:candidate_index": 2352,
+        "morphological_parse:candidate_index": 6
+      },
+      "contrasting_examples": [
+        "abagacia",
+        "bertuccia",
+        "cortecia",
+        "escanciadme",
+        "impermanencia",
+        "liscia",
+        "pertecía",
+        "sciscia",
+        "zsbarcia"
+      ],
+      "reason": "Spanish -cia is a final nominal sequence across unrelated stems such as ciencia, impermanencia and reflectancia."
+    },
+    {
+      "family_id": "surface:en:tes",
+      "language": "en",
+      "expected_status": "safe_automatic",
+      "expected_members": 2333,
+      "member_list_sha256": "ffa4135dc4081c1f001c7e550f0a6cc31e5aa02276eeb0af85709836cda03ded",
+      "expected_evidence": {
+        "compound_morphology:candidate_index": 2329,
+        "morphological_parse:candidate_index": 4
+      },
+      "contrasting_examples": [
+        "aassociates",
+        "camdenites",
+        "delhites",
+        "georgettes",
+        "lawsuites",
+        "noobettes",
+        "rosettes",
+        "tesisa",
+        "zombettes"
+      ],
+      "reason": "English -tes matches unrelated plural and inflected strings such as associates, payrates and zombettes."
+    },
+    {
+      "family_id": "surface:en:ngs",
+      "language": "en",
+      "expected_status": "safe_automatic",
+      "expected_members": 2235,
+      "member_list_sha256": "db5a43eb5dd4d6acc68c5f44f7e7aa6ea6380a5c7d7e719f580ca2a8a485648a",
+      "expected_evidence": {
+        "compound_morphology:candidate_index": 2234,
+        "morphological_parse:candidate_index": 2
+      },
+      "contrasting_examples": [
+        "aameetings",
+        "chitlings",
+        "fannings",
+        "hazings",
+        "longkongs",
+        "poontangs",
+        "shoppings",
+        "thrustings",
+        "zhuangshui"
+      ],
+      "reason": "English -ngs matches plural -ings and names from unrelated bases, including meetings, grapplings and reddings."
+    }
+  ],
+  "expected_total_removed_memberships": 11782
+}
