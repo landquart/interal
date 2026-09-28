@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "source_run_id": 35647932153,
+  "review_method": "Whole-family structural decision. Every stored member ID and word is locked by digest and every evidence class is counted; the shared string is a suffix, inflection or clitic rather than a common lexical root. This does not constitute individual dictionary annotation for each excluded corpus word.",
+  "decisions": [
+    {
+      "family_id": "surface:ru:tnyj",
+      "language": "ru",
+      "reason": "Adjectives from unrelated Russian stems share -тный; the exact corpus word тный is not a lexical root.",
+      "expected_status": "safe_automatic",
+      "expected_members": 2522,
+      "member_list_sha256": "ffdadab98045ca22856eba27d9453b38a2841a7466b3c88f4d86071dc4fae4ce",
+      "expected_evidence": {
+        "compound_morphology:candidate_index": 2521,
+        "morphological_parse:candidate_index": 1
+      },
+      "contrasting_examples": [
+        "аакуратный",
+        "гермафродитный",
+        "неконфликтный",
+        "рестный",
+        "ззапретный"
+      ]
+    },
+    {
+      "family_id": "surface:es:ido",
+      "language": "es",
+      "reason": "Spanish participles of unrelated verbs share -ido; idó and ído are spelling noise, not a common stem.",
+      "expected_status": "needs_review",
+      "expected_members": 2510,
+      "member_list_sha256": "a167a8c98de58843416e8e90c22f5d215997d537a73d1333529b7f99390abb3e",
+      "expected_evidence": {
+        "compound_morphology:candidate_index": 2505,
+        "morphological_parse:candidate_index": 5
+      },
+      "contrasting_examples": [
+        "aadido",
+        "descreído",
+        "hungido",
+        "queriido",
+        "zurzido"
+      ]
+    },
+    {
+      "family_id": "surface:en:ons",
+      "language": "en",
+      "reason": "Unrelated plurals, names and concatenations end in ons; the isolated ons does not establish shared etymology.",
+      "expected_status": "safe_automatic",
+      "expected_members": 2484,
+      "member_list_sha256": "7bf42848956a5ead1ad4c36fecc26638843d339118e94ba69f8626d537779445",
+      "expected_evidence": {
+        "compound_morphology:candidate_index": 2481,
+        "morphological_parse:candidate_index": 3
+      },
+      "contrasting_examples": [
+        "aarons",
+        "delisions",
+        "layons",
+        "pwisons",
+        "zygons"
+      ]
+    },
+    {
+      "family_id": "surface:ru:stvo",
+      "language": "ru",
+      "reason": "Nouns from unrelated stems share the productive -ство ending; standalone ство/ьство is suffix material.",
+      "expected_status": "safe_automatic",
+      "expected_members": 2440,
+      "member_list_sha256": "027605fe2af07fb86f1b27eeb551c36452d80b2f1f0c2656d996589b1395c756",
+      "expected_evidence": {
+        "compound_morphology:candidate_index": 2439,
+        "morphological_parse:candidate_index": 2
+      },
+      "contrasting_examples": [
+        "абатство",
+        "хулианство",
+        "осущество",
+        "сходствовать",
+        "ззздравствовать"
+      ]
+    },
+    {
+      "family_id": "surface:it:armi",
+      "language": "it",
+      "reason": "Unrelated infinitives plus first-person clitic -mi produce -armi; no single lexical root armi connects them.",
+      "expected_status": "safe_automatic",
+      "expected_members": 2352,
+      "member_list_sha256": "32ac1b1c81131a348e03280cadf0d0d7520222b744c1aa8a3dca22797fe9af39",
+      "expected_evidence": {
+        "compound_morphology:candidate_index": 2349,
+        "morphological_parse:candidate_index": 3
+      },
+      "contrasting_examples": [
+        "abbagliarmi",
+        "daiutarmi",
+        "limitarmi",
+        "rovinarmi",
+        "zuckerbergizzarmi"
+      ]
+    },
+    {
+      "family_id": "surface:en:ans",
+      "language": "en",
+      "reason": "Unrelated plurals and nationality names end in ans; standalone ans is not evidence for a common family.",
+      "expected_status": "safe_automatic",
+      "expected_members": 2403,
+      "member_list_sha256": "696ccd1d242af3b0991ec4363282f0b456c6e1c32b90009429e28f78256803df",
+      "expected_evidence": {
+        "compound_morphology:candidate_index": 2400,
+        "morphological_parse:candidate_index": 3
+      },
+      "contrasting_examples": [
+        "aaganskim",
+        "cyrenians",
+        "lissepians",
+        "rebelians",
+        "zykarians"
+      ]
+    }
+  ],
+  "expected_total_removed_memberships": 14711
+}
