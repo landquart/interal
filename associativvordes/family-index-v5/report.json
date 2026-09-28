@@ -132,8 +132,8 @@
   "invariants": {
     "processed_lemmas_equals_source": true,
     "source_lemmas": 4924980,
-    "classified_unique_lemmas": 4924980,
-    "lemmas_with_zero_family": 0,
+    "classified_unique_lemmas": 4924403,
+    "lemmas_with_zero_family": 577,
     "families_with_zero_members": 0,
     "members_without_evidence": 0,
     "fuzzy_memberships": 0,
@@ -14798,6 +14798,8 @@
     "illos_illis_candidate_only_memberships_removed": 14129,
     "illos_illis_family_decisions_sha256": "2fc48f87d69f8ca53560245048b2b00d1adc07112ea69c5d5f39145346fb0598",
     "suffix_batch_10_memberships_removed": 26757,
-    "suffix_batch_10_ledger_sha256": "4d0ccfacf38eaedaeedad9c1d685f0244b44877433969b4dc6b791bd1fa5d274"
+    "suffix_batch_10_ledger_sha256": "4d0ccfacf38eaedaeedad9c1d685f0244b44877433969b4dc6b791bd1fa5d274",
+    "materialized_unique_lemmas": 4924403,
+    "lemmas_without_materialized_family": 577
   }
 }
