@@ -5,20 +5,20 @@
   "storage": "git_repository_static_files",
   "encoding": "gzip",
   "counts": {
-    "families": 2456557,
-    "aliases": 1934049,
+    "families": 2456547,
+    "aliases": 1934048,
     "lemmas": 4924980,
     "components": 9349982,
-    "memberships": 10125428,
+    "memberships": 10101279,
     "memberships_by_language": {
-      "en": 2634936,
+      "en": 2623023,
       "de": 2205142,
       "fr": 1146026,
-      "es": 1804424,
-      "it": 1192510,
-      "ru": 1142390
+      "es": 1799556,
+      "it": 1190104,
+      "ru": 1137428
     },
-    "materialized_families": 2456557
+    "materialized_families": 2456547
   },
   "invariants": {
     "manifest_report_counts_match": true,
@@ -52,8 +52,8 @@
     },
     "storage": "git_repository_static_files",
     "file_count_before_provenance": 2050,
-    "total_bytes_before_provenance": 724101632,
-    "tree_content_sha256": "93ae65f61c0864a07b8e401a41e733951d7bdca178f77766ce5d8c9bbcada4f7",
+    "total_bytes_before_provenance": 722491508,
+    "tree_content_sha256": "36c7f94114b9730c2407bfbc5d9c01e516fb3bfa818e8e88b4ed0a4a80cc684f",
     "repository_repairs": [
       {
         "repair": "exclude_known_rejected_corpus_noise_from_runtime",
@@ -326,6 +326,26 @@
         ],
         "deleted_aliases": 1,
         "decision_ledger_sha256": "4d0ccfacf38eaedaeedad9c1d685f0244b44877433969b4dc6b791bd1fa5d274",
+        "source_run_id": 35647932153,
+        "not_individual_lexical_annotation": true
+      },
+      {
+        "repair": "remove_incoherent_suffix_surface_families_batch_11",
+        "removed_memberships": 24149,
+        "deleted_families": [
+          "surface:ru:tnyj",
+          "surface:es:ido",
+          "surface:en:ons",
+          "surface:en:sky",
+          "surface:ru:stvo",
+          "surface:it:ina",
+          "surface:en:ans",
+          "surface:es:cia",
+          "surface:en:tes",
+          "surface:en:ngs"
+        ],
+        "deleted_aliases": 1,
+        "decision_ledger_sha256": "378c78574e1a62c19a6676f4f13c7de7f6a8649af675fc5960d3d912a4db8c45",
         "source_run_id": 35647932153,
         "not_individual_lexical_annotation": true
       }
