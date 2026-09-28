@@ -5,30 +5,30 @@
   "storage": "git_repository_static_files",
   "encoding": "gzip",
   "counts": {
-    "families": 2456557,
-    "aliases": 1934049,
+    "families": 2456551,
+    "aliases": 1934048,
     "lemmas": 4924980,
     "components": 9349982,
-    "memberships": 10125428,
-    "materialized_unique_lemmas": 4924403,
-    "lemmas_without_materialized_family": 577,
+    "memberships": 10110717,
+    "materialized_unique_lemmas": 4924383,
+    "lemmas_without_materialized_family": 597,
     "unique_lemmas_by_language": {
-      "en": 1130997,
+      "en": 1130989,
       "de": 1113447,
       "fr": 558904,
-      "es": 941534,
-      "it": 610093,
-      "ru": 569428
+      "es": 941528,
+      "it": 610090,
+      "ru": 569425
     },
     "memberships_by_language": {
-      "en": 2634936,
+      "en": 2630049,
       "de": 2205142,
       "fr": 1146026,
-      "es": 1804424,
-      "it": 1192510,
-      "ru": 1142390
+      "es": 1801914,
+      "it": 1190158,
+      "ru": 1137428
     },
-    "materialized_families": 2456557
+    "materialized_families": 2456551
   },
   "invariants": {
     "manifest_report_counts_match": true,
@@ -62,8 +62,8 @@
     },
     "storage": "git_repository_static_files",
     "file_count_before_provenance": 2050,
-    "total_bytes_before_provenance": 724101774,
-    "tree_content_sha256": "10867d6edf61ac7135d1bcb7b5658049db3e6997dcecec9a783462d3266f85d7",
+    "total_bytes_before_provenance": 723076514,
+    "tree_content_sha256": "d763848d5f517891635e8cd9486faef7f9bb083ae1ade41f3646d27e53760b05",
     "repository_repairs": [
       {
         "repair": "exclude_known_rejected_corpus_noise_from_runtime",
@@ -350,6 +350,24 @@
         "lemmas_without_materialized_family": 577,
         "source_run_id": 35647932153,
         "note": "No memberships added; malformed áquellos remains excluded. The original build-time zero-family claim was stale after repository pruning."
+      },
+      {
+        "repair": "remove_incoherent_suffix_surface_families_batch_11",
+        "removed_memberships": 14711,
+        "deleted_families": [
+          "surface:ru:tnyj",
+          "surface:es:ido",
+          "surface:en:ons",
+          "surface:ru:stvo",
+          "surface:it:armi",
+          "surface:en:ans"
+        ],
+        "deleted_aliases": 1,
+        "materialized_unique_lemmas": 4924383,
+        "lemmas_without_materialized_family": 597,
+        "decision_ledger_sha256": "0089c0b61e5627d45b0ae6d237f8b494a1940e37b86788e29bce0bc929cc7568",
+        "source_run_id": 35647932153,
+        "not_individual_lexical_annotation": true
       }
     ]
   }

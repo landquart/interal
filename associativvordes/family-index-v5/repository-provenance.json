@@ -13,8 +13,8 @@
   },
   "storage": "git_repository_static_files",
   "file_count_before_provenance": 2050,
-  "total_bytes_before_provenance": 724101774,
-  "tree_content_sha256": "10867d6edf61ac7135d1bcb7b5658049db3e6997dcecec9a783462d3266f85d7",
+  "total_bytes_before_provenance": 723076514,
+  "tree_content_sha256": "d763848d5f517891635e8cd9486faef7f9bb083ae1ade41f3646d27e53760b05",
   "repository_repairs": [
     {
       "repair": "exclude_known_rejected_corpus_noise_from_runtime",
@@ -301,6 +301,24 @@
       "lemmas_without_materialized_family": 577,
       "source_run_id": 35647932153,
       "note": "No memberships added; malformed áquellos remains excluded. The original build-time zero-family claim was stale after repository pruning."
+    },
+    {
+      "repair": "remove_incoherent_suffix_surface_families_batch_11",
+      "removed_memberships": 14711,
+      "deleted_families": [
+        "surface:ru:tnyj",
+        "surface:es:ido",
+        "surface:en:ons",
+        "surface:ru:stvo",
+        "surface:it:armi",
+        "surface:en:ans"
+      ],
+      "deleted_aliases": 1,
+      "materialized_unique_lemmas": 4924383,
+      "lemmas_without_materialized_family": 597,
+      "decision_ledger_sha256": "0089c0b61e5627d45b0ae6d237f8b494a1940e37b86788e29bce0bc929cc7568",
+      "source_run_id": 35647932153,
+      "not_individual_lexical_annotation": true
     }
   ]
 }

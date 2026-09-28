@@ -115,7 +115,7 @@
   },
   "uncertain_relation_count": 431390,
   "uncertain_relation_sample_size": 100000,
-  "total_families": 2456557,
+  "total_families": 2456551,
   "merged_families": 20775,
   "singleton_families": 1735271,
   "multi_branch_families": 17703,
@@ -128,12 +128,12 @@
     "rejected": 9,
     "requires_manual_review": 0
   },
-  "review_required_families": 4028,
+  "review_required_families": 4027,
   "invariants": {
     "processed_lemmas_equals_source": true,
     "source_lemmas": 4924980,
-    "classified_unique_lemmas": 4924403,
-    "lemmas_with_zero_family": 577,
+    "classified_unique_lemmas": 4924383,
+    "lemmas_with_zero_family": 597,
     "families_with_zero_members": 0,
     "members_without_evidence": 0,
     "fuzzy_memberships": 0,
@@ -145,7 +145,7 @@
   },
   "generated_non_proto_families": 20768,
   "verified_seed_families": 7,
-  "aliases_in_lookup": 1934049,
+  "aliases_in_lookup": 1934048,
   "proto_review_candidates": 10209,
   "wide_etymon_review_candidates": 171,
   "etymon_key_policy": {
@@ -14613,27 +14613,6 @@
       "review_status": "needs_review"
     },
     {
-      "id": "surface:es:ido",
-      "canonical": "ido",
-      "aliases": [
-        "ido"
-      ],
-      "verified": false,
-      "confidence": "low",
-      "source": "surface_singleton",
-      "etymon_keys": [],
-      "language_support": {
-        "es": 2510
-      },
-      "support": 2510,
-      "suspicion_score": 40,
-      "suspicion_reasons": [
-        "short_root",
-        "large_family"
-      ],
-      "review_status": "needs_review"
-    },
-    {
       "id": "surface:ru:no",
       "canonical": "no",
       "aliases": [
@@ -14752,6 +14731,26 @@
         "very_short_root"
       ],
       "review_status": "needs_review"
+    },
+    {
+      "id": "surface:ru:za",
+      "canonical": "za",
+      "aliases": [
+        "za"
+      ],
+      "verified": false,
+      "confidence": "low",
+      "source": "surface_singleton",
+      "etymon_keys": [],
+      "language_support": {
+        "ru": 650
+      },
+      "support": 650,
+      "suspicion_score": 40,
+      "suspicion_reasons": [
+        "very_short_root"
+      ],
+      "review_status": "needs_review"
     }
   ],
   "repository_materialization": {
@@ -14799,7 +14798,9 @@
     "illos_illis_family_decisions_sha256": "2fc48f87d69f8ca53560245048b2b00d1adc07112ea69c5d5f39145346fb0598",
     "suffix_batch_10_memberships_removed": 26757,
     "suffix_batch_10_ledger_sha256": "4d0ccfacf38eaedaeedad9c1d685f0244b44877433969b4dc6b791bd1fa5d274",
-    "materialized_unique_lemmas": 4924403,
-    "lemmas_without_materialized_family": 577
+    "materialized_unique_lemmas": 4924383,
+    "lemmas_without_materialized_family": 597,
+    "suffix_batch_11_memberships_removed": 14711,
+    "suffix_batch_11_ledger_sha256": "0089c0b61e5627d45b0ae6d237f8b494a1940e37b86788e29bce0bc929cc7568"
   }
 }

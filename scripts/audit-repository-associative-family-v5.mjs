@@ -214,6 +214,15 @@ const suffixRemoved10 = suffixLedger10.decisions.reduce((sum, item) => sum + ite
 assert(suffixRepair10?.removed_memberships === suffixRemoved10 && suffixRepair10?.decision_ledger_sha256 === suffixLedger10Sha, 'suffix batch 10 repair mismatch');
 assert(JSON.stringify(suffixRepair10.deleted_families) === JSON.stringify(suffixLedger10.decisions.map(item => item.family_id)), 'suffix batch 10 family list mismatch');
 assert(report.repository_materialization?.suffix_batch_10_ledger_sha256 === suffixLedger10Sha, 'report suffix batch 10 ledger mismatch');
+const suffixLedger11Bytes = await readFile('audit/associative-family-v5/surface-suffix-decisions-11.json');
+const suffixLedger11 = JSON.parse(suffixLedger11Bytes);
+const suffixLedger11Sha = createHash('sha256').update(suffixLedger11Bytes).digest('hex');
+const suffixRepair11 = provenance.repository_repairs?.find(item => item.repair === 'remove_incoherent_suffix_surface_families_batch_11');
+assert(suffixLedger11.source_run_id === expectedRunId && JSON.stringify(suffixLedger11.decisions.map(item => item.family_id)) === JSON.stringify(['surface:ru:tnyj', 'surface:es:ido', 'surface:en:ons', 'surface:ru:stvo', 'surface:it:armi', 'surface:en:ans']), 'suffix batch 11 ledger mismatch');
+const suffixRemoved11 = suffixLedger11.decisions.reduce((sum, item) => sum + item.expected_members, 0);
+assert(suffixRemoved11 === 14711 && suffixRepair11?.removed_memberships === suffixRemoved11 && suffixRepair11?.decision_ledger_sha256 === suffixLedger11Sha, 'suffix batch 11 repair mismatch');
+assert(JSON.stringify(suffixRepair11.deleted_families) === JSON.stringify(suffixLedger11.decisions.map(item => item.family_id)), 'suffix batch 11 family list mismatch');
+assert(report.repository_materialization?.suffix_batch_11_ledger_sha256 === suffixLedger11Sha, 'report suffix batch 11 ledger mismatch');
 const actusLedgerBytes = await readFile('audit/associative-family-v5/actus-false-memberships.json');
 const actusLedger = JSON.parse(actusLedgerBytes);
 const actusLedgerSha = createHash('sha256').update(actusLedgerBytes).digest('hex');
@@ -249,6 +258,7 @@ for (const item of suffixLedger7.decisions) deletedSurfaceFamilies.add(item.fami
 for (const item of suffixLedger8.decisions) deletedSurfaceFamilies.add(item.family_id);
 for (const item of suffixLedger9.decisions) deletedSurfaceFamilies.add(item.family_id);
 for (const item of suffixLedger10.decisions) deletedSurfaceFamilies.add(item.family_id);
+for (const item of suffixLedger11.decisions) deletedSurfaceFamilies.add(item.family_id);
 deletedSurfaceFamilies.add(tenLedger.family_id);
 for (const item of inflectionLedger.decisions) deletedSurfaceFamilies.add(item.family_id);
 for (const item of endingLedger.decisions) deletedSurfaceFamilies.add(item.family_id);
@@ -414,7 +424,7 @@ for (const language of languages) {
 assert(materializedUniqueLemmas === report.invariants.classified_unique_lemmas, 'report classified unique lemmas mismatch');
 assert(manifest.counts.lemmas - materializedUniqueLemmas === report.invariants.lemmas_with_zero_family, 'report unassigned lemmas mismatch');
 assert(materializedUniqueLemmas === report.repository_materialization.materialized_unique_lemmas, 'repository materialized lemma count mismatch');
-assert(membershipCount === 10426047 - manualLedger.rejected_memberships.length - surfaceRemoved - surfaceRemoved2 - surfaceRemoved3 - surfaceRemoved4 - tenLedger.expected_members - inflectionRemoved - endingRemoved - geneaRemoved - geneaOtherRemoved - sonusRemoved - kaRemoved - suffixRemoved - suffixRemoved6 - suffixRemoved7 - suffixRemoved8 - suffixRemoved9 - suffixRemoved10 - actusLedger.rejected_memberships.length - illasLedger.expected_removed_memberships - pronounLedger.expected_total_removed_memberships, 'unexpected repository membership count');
+assert(membershipCount === 10426047 - manualLedger.rejected_memberships.length - surfaceRemoved - surfaceRemoved2 - surfaceRemoved3 - surfaceRemoved4 - tenLedger.expected_members - inflectionRemoved - endingRemoved - geneaRemoved - geneaOtherRemoved - sonusRemoved - kaRemoved - suffixRemoved - suffixRemoved6 - suffixRemoved7 - suffixRemoved8 - suffixRemoved9 - suffixRemoved10 - suffixRemoved11 - actusLedger.rejected_memberships.length - illasLedger.expected_removed_memberships - pronounLedger.expected_total_removed_memberships, 'unexpected repository membership count');
 assert(familyCount === manifest.counts.families && familyCount === report.total_families, `family count ${familyCount}`);
 assert(materializedFamilyCount === familyCount, 'not every family was materialized');
 for (const [field, counted] of [
