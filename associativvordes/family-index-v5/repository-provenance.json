@@ -13,8 +13,8 @@
   },
   "storage": "git_repository_static_files",
   "file_count_before_provenance": 2050,
-  "total_bytes_before_provenance": 723076514,
-  "tree_content_sha256": "d763848d5f517891635e8cd9486faef7f9bb083ae1ade41f3646d27e53760b05",
+  "total_bytes_before_provenance": 722417164,
+  "tree_content_sha256": "67c7b2c9807386ff41ed3331af30270ab2046cdc3349dc7c3a501c056abe0dbf",
   "repository_repairs": [
     {
       "repair": "exclude_known_rejected_corpus_noise_from_runtime",
@@ -318,6 +318,19 @@
       "lemmas_without_materialized_family": 597,
       "decision_ledger_sha256": "0089c0b61e5627d45b0ae6d237f8b494a1940e37b86788e29bce0bc929cc7568",
       "source_run_id": 35647932153,
+      "not_individual_lexical_annotation": true
+    },
+    {
+      "repair": "consolidate_and_prune_latin_nitidus",
+      "source_run_id": 35647932153,
+      "deleted_duplicate_family": "ety:03193cddd861",
+      "retained_family": "ety:94c776d13c76",
+      "removed_memberships": 9918,
+      "added_memberships": 2,
+      "deleted_aliases": 0,
+      "materialized_unique_lemmas": 4924382,
+      "lemmas_without_materialized_family": 598,
+      "decision_ledger_sha256": "4351c4da1aa276602e3e5b964a04d2603c249343c197f673e647f3a3279afc0a",
       "not_individual_lexical_annotation": true
     }
   ]

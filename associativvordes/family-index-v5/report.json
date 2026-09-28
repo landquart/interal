@@ -115,10 +115,10 @@
   },
   "uncertain_relation_count": 431390,
   "uncertain_relation_sample_size": 100000,
-  "total_families": 2456551,
-  "merged_families": 20775,
+  "total_families": 2456550,
+  "merged_families": 20774,
   "singleton_families": 1735271,
-  "multi_branch_families": 17703,
+  "multi_branch_families": 17702,
   "multi_family_lemmas": 3627982,
   "components_discovered": 9349982,
   "components_assigned": 9349982,
@@ -128,12 +128,12 @@
     "rejected": 9,
     "requires_manual_review": 0
   },
-  "review_required_families": 4027,
+  "review_required_families": 4026,
   "invariants": {
     "processed_lemmas_equals_source": true,
     "source_lemmas": 4924980,
-    "classified_unique_lemmas": 4924383,
-    "lemmas_with_zero_family": 597,
+    "classified_unique_lemmas": 4924382,
+    "lemmas_with_zero_family": 598,
     "families_with_zero_members": 0,
     "members_without_evidence": 0,
     "fuzzy_memberships": 0,
@@ -143,7 +143,7 @@
     "compound_edges_used_as_equivalence": 0,
     "unreviewed_high_risk_families": 0
   },
-  "generated_non_proto_families": 20768,
+  "generated_non_proto_families": 20767,
   "verified_seed_families": 7,
   "aliases_in_lookup": 1934048,
   "proto_review_candidates": 10209,
@@ -2203,586 +2203,6 @@
         "ru": 20
       },
       "support": 5578,
-      "suspicion_score": 40,
-      "suspicion_reasons": [
-        "short_root",
-        "large_family"
-      ],
-      "review_status": "needs_review"
-    },
-    {
-      "id": "ety:03193cddd861",
-      "canonical": "nitid",
-      "aliases": [
-        "neat",
-        "net",
-        "nett",
-        "nitid",
-        "nitty"
-      ],
-      "verified": false,
-      "confidence": "A",
-      "source": "wiktionary_non_proto_etymology",
-      "etymon_keys": [
-        "la:nitid"
-      ],
-      "relation_types": [
-        "borrowed_form",
-        "direct_descendant",
-        "inherited_form"
-      ],
-      "relation_evidence": [
-        {
-          "language": "en",
-          "word": "net",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "en",
-          "word": "net",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "en",
-          "word": "net",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "en",
-          "word": "net",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "fr",
-          "word": "net",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "inherited_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "inh",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "en",
-          "word": "nitty",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "en",
-          "word": "neat",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "en",
-          "word": "neat",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "en",
-          "word": "neat",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "it",
-          "word": "netto",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "inherited_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "inh",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "it",
-          "word": "netto",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "inherited_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "inh",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "it",
-          "word": "nitido",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "borrowed_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.9,
-          "depth": 1,
-          "template": "bor+",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "es",
-          "word": "nítido",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "borrowed_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.9,
-          "depth": 1,
-          "template": "bor+",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "it",
-          "word": "nettare",
-          "sourceLang": "la",
-          "term": "nitidō",
-          "relationType": "inherited_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "inh",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "es",
-          "word": "neto",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "de",
-          "word": "nett",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        }
-      ],
-      "canonical_selection": {
-        "method": "quality_score_v1",
-        "score": 1
-      },
-      "language_support": {
-        "en": 1887,
-        "de": 53,
-        "fr": 1486,
-        "es": 1518,
-        "it": 23
-      },
-      "support": 4967,
-      "suspicion_score": 40,
-      "suspicion_reasons": [
-        "short_root",
-        "large_family"
-      ],
-      "review_status": "needs_review"
-    },
-    {
-      "id": "ety:94c776d13c76",
-      "canonical": "nitid",
-      "aliases": [
-        "neat",
-        "net",
-        "nett",
-        "nitid",
-        "nitty"
-      ],
-      "verified": false,
-      "confidence": "A",
-      "source": "wiktionary_non_proto_etymology",
-      "etymon_keys": [
-        "la:nitidus"
-      ],
-      "relation_types": [
-        "borrowed_form",
-        "direct_descendant",
-        "inherited_form"
-      ],
-      "relation_evidence": [
-        {
-          "language": "en",
-          "word": "net",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "en",
-          "word": "net",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "en",
-          "word": "net",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "en",
-          "word": "net",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "fr",
-          "word": "net",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "inherited_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "inh",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "en",
-          "word": "nitty",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "en",
-          "word": "neat",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "en",
-          "word": "neat",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "en",
-          "word": "neat",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "it",
-          "word": "netto",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "inherited_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "inh",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "it",
-          "word": "netto",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "inherited_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "inh",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "it",
-          "word": "nitido",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "borrowed_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.9,
-          "depth": 1,
-          "template": "bor+",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "es",
-          "word": "nítido",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "borrowed_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.9,
-          "depth": 1,
-          "template": "bor+",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "es",
-          "word": "neto",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "de",
-          "word": "nett",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        }
-      ],
-      "canonical_selection": {
-        "method": "quality_score_v1",
-        "score": 1
-      },
-      "language_support": {
-        "en": 1887,
-        "de": 53,
-        "fr": 1486,
-        "es": 1518,
-        "it": 23
-      },
-      "support": 4967,
       "suspicion_score": 40,
       "suspicion_reasons": [
         "short_root",
@@ -8186,6 +7606,156 @@
         "large_family"
       ],
       "review_status": "needs_review"
+    },
+    {
+      "id": "ety:b9656515bdc2",
+      "canonical": "allo",
+      "aliases": [
+        "allo",
+        "alo"
+      ],
+      "verified": false,
+      "confidence": "A",
+      "source": "wiktionary_non_proto_etymology",
+      "etymon_keys": [
+        "en:hallo"
+      ],
+      "relation_types": [
+        "borrowed_form",
+        "direct_descendant"
+      ],
+      "relation_evidence": [
+        {
+          "language": "fr",
+          "word": "allô",
+          "sourceLang": "en",
+          "term": "hallo",
+          "relationType": "borrowed_form",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.9,
+          "depth": 1,
+          "template": "bor",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "es",
+          "word": "aló",
+          "sourceLang": "en",
+          "term": "hallo",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        }
+      ],
+      "canonical_selection": {
+        "method": "quality_score_v1",
+        "score": 2
+      },
+      "language_support": {
+        "fr": 64,
+        "es": 2666
+      },
+      "support": 2730,
+      "suspicion_score": 40,
+      "suspicion_reasons": [
+        "short_root",
+        "large_family"
+      ],
+      "review_status": "needs_review"
+    },
+    {
+      "id": "ety:e58812c3b1c5",
+      "canonical": "aljo",
+      "aliases": [
+        "aljo",
+        "allo",
+        "alo"
+      ],
+      "verified": false,
+      "confidence": "A",
+      "source": "wiktionary_non_proto_etymology",
+      "etymon_keys": [
+        "fr:allo"
+      ],
+      "relation_types": [
+        "borrowed_form"
+      ],
+      "relation_evidence": [
+        {
+          "language": "es",
+          "word": "aló",
+          "sourceLang": "fr",
+          "term": "allô",
+          "relationType": "borrowed_form",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.9,
+          "depth": 1,
+          "template": "bor+",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "ru",
+          "word": "алло",
+          "sourceLang": "fr",
+          "term": "allô",
+          "relationType": "borrowed_form",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.9,
+          "depth": 1,
+          "template": "bor+",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "ru",
+          "word": "алё",
+          "sourceLang": "fr",
+          "term": "allô",
+          "relationType": "borrowed_form",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.9,
+          "depth": 1,
+          "template": "bor+",
+          "path": [
+            "args",
+            2
+          ]
+        }
+      ],
+      "canonical_selection": {
+        "method": "quality_score_v1",
+        "score": 2
+      },
+      "language_support": {
+        "es": 2666,
+        "ru": 29
+      },
+      "support": 2695,
+      "suspicion_score": 40,
+      "suspicion_reasons": [
+        "short_root",
+        "large_family"
+      ],
+      "review_status": "needs_review"
     }
   ],
   "highest_suspicion_families": [
@@ -9553,586 +9123,6 @@
         "ru": 20
       },
       "support": 5578,
-      "suspicion_score": 40,
-      "suspicion_reasons": [
-        "short_root",
-        "large_family"
-      ],
-      "review_status": "needs_review"
-    },
-    {
-      "id": "ety:03193cddd861",
-      "canonical": "nitid",
-      "aliases": [
-        "neat",
-        "net",
-        "nett",
-        "nitid",
-        "nitty"
-      ],
-      "verified": false,
-      "confidence": "A",
-      "source": "wiktionary_non_proto_etymology",
-      "etymon_keys": [
-        "la:nitid"
-      ],
-      "relation_types": [
-        "borrowed_form",
-        "direct_descendant",
-        "inherited_form"
-      ],
-      "relation_evidence": [
-        {
-          "language": "en",
-          "word": "net",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "en",
-          "word": "net",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "en",
-          "word": "net",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "en",
-          "word": "net",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "fr",
-          "word": "net",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "inherited_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "inh",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "en",
-          "word": "nitty",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "en",
-          "word": "neat",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "en",
-          "word": "neat",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "en",
-          "word": "neat",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "it",
-          "word": "netto",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "inherited_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "inh",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "it",
-          "word": "netto",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "inherited_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "inh",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "it",
-          "word": "nitido",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "borrowed_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.9,
-          "depth": 1,
-          "template": "bor+",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "es",
-          "word": "nítido",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "borrowed_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.9,
-          "depth": 1,
-          "template": "bor+",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "it",
-          "word": "nettare",
-          "sourceLang": "la",
-          "term": "nitidō",
-          "relationType": "inherited_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "inh",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "es",
-          "word": "neto",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "de",
-          "word": "nett",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        }
-      ],
-      "canonical_selection": {
-        "method": "quality_score_v1",
-        "score": 1
-      },
-      "language_support": {
-        "en": 1887,
-        "de": 53,
-        "fr": 1486,
-        "es": 1518,
-        "it": 23
-      },
-      "support": 4967,
-      "suspicion_score": 40,
-      "suspicion_reasons": [
-        "short_root",
-        "large_family"
-      ],
-      "review_status": "needs_review"
-    },
-    {
-      "id": "ety:94c776d13c76",
-      "canonical": "nitid",
-      "aliases": [
-        "neat",
-        "net",
-        "nett",
-        "nitid",
-        "nitty"
-      ],
-      "verified": false,
-      "confidence": "A",
-      "source": "wiktionary_non_proto_etymology",
-      "etymon_keys": [
-        "la:nitidus"
-      ],
-      "relation_types": [
-        "borrowed_form",
-        "direct_descendant",
-        "inherited_form"
-      ],
-      "relation_evidence": [
-        {
-          "language": "en",
-          "word": "net",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "en",
-          "word": "net",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "en",
-          "word": "net",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "en",
-          "word": "net",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "fr",
-          "word": "net",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "inherited_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "inh",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "en",
-          "word": "nitty",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "en",
-          "word": "neat",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "en",
-          "word": "neat",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "en",
-          "word": "neat",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "it",
-          "word": "netto",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "inherited_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "inh",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "it",
-          "word": "netto",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "inherited_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "inh",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "it",
-          "word": "nitido",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "borrowed_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.9,
-          "depth": 1,
-          "template": "bor+",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "es",
-          "word": "nítido",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "borrowed_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.9,
-          "depth": 1,
-          "template": "bor+",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "es",
-          "word": "neto",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "de",
-          "word": "nett",
-          "sourceLang": "la",
-          "term": "nitidus",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        }
-      ],
-      "canonical_selection": {
-        "method": "quality_score_v1",
-        "score": 1
-      },
-      "language_support": {
-        "en": 1887,
-        "de": 53,
-        "fr": 1486,
-        "es": 1518,
-        "it": 23
-      },
-      "support": 4967,
       "suspicion_score": 40,
       "suspicion_reasons": [
         "short_root",
@@ -14751,6 +13741,46 @@
         "very_short_root"
       ],
       "review_status": "needs_review"
+    },
+    {
+      "id": "surface:ru:kh",
+      "canonical": "kh",
+      "aliases": [
+        "kh"
+      ],
+      "verified": false,
+      "confidence": "low",
+      "source": "surface_singleton",
+      "etymon_keys": [],
+      "language_support": {
+        "ru": 601
+      },
+      "support": 601,
+      "suspicion_score": 40,
+      "suspicion_reasons": [
+        "very_short_root"
+      ],
+      "review_status": "needs_review"
+    },
+    {
+      "id": "surface:ru:na",
+      "canonical": "na",
+      "aliases": [
+        "na"
+      ],
+      "verified": false,
+      "confidence": "low",
+      "source": "surface_singleton",
+      "etymon_keys": [],
+      "language_support": {
+        "ru": 594
+      },
+      "support": 594,
+      "suspicion_score": 40,
+      "suspicion_reasons": [
+        "very_short_root"
+      ],
+      "review_status": "needs_review"
     }
   ],
   "repository_materialization": {
@@ -14798,9 +13828,12 @@
     "illos_illis_family_decisions_sha256": "2fc48f87d69f8ca53560245048b2b00d1adc07112ea69c5d5f39145346fb0598",
     "suffix_batch_10_memberships_removed": 26757,
     "suffix_batch_10_ledger_sha256": "4d0ccfacf38eaedaeedad9c1d685f0244b44877433969b4dc6b791bd1fa5d274",
-    "materialized_unique_lemmas": 4924383,
-    "lemmas_without_materialized_family": 597,
+    "materialized_unique_lemmas": 4924382,
+    "lemmas_without_materialized_family": 598,
     "suffix_batch_11_memberships_removed": 14711,
-    "suffix_batch_11_ledger_sha256": "0089c0b61e5627d45b0ae6d237f8b494a1940e37b86788e29bce0bc929cc7568"
+    "suffix_batch_11_ledger_sha256": "0089c0b61e5627d45b0ae6d237f8b494a1940e37b86788e29bce0bc929cc7568",
+    "nitidus_net_memberships_removed": 9918,
+    "nitidus_net_memberships_added": 2,
+    "nitidus_ledger_sha256": "4351c4da1aa276602e3e5b964a04d2603c249343c197f673e647f3a3279afc0a"
   }
 }

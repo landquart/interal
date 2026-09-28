@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "source_run_id": 35647932153,
+  "canonical_family_id": "ety:94c776d13c76",
+  "deleted_duplicate_family_id": "ety:03193cddd861",
+  "review_method": "Both original family lists were compared in full and each ordered lemma/word tuple and evidence distribution is locked. Headwords and selected derivatives are independently reviewed against lexical sources. Exclusion of the other candidate-index substring matches is a family-level decision, not individual etymology annotation. Other genuine inflections or derivatives may require their own later review.",
+  "original_members": {
+    "ety:03193cddd861": {
+      "en": {
+        "count": 1887,
+        "ordered_id_word_sha256": "0eb2b8da5665178c68a08a8c0e0001c3295bad770edde44564a0e203b302d6c7",
+        "evidence": {
+          "compound_morphology:manually_verified": 1861,
+          "compound_morphology:candidate_index": 15,
+          "morphological_parse:manually_verified": 6,
+          "morphological_parse:candidate_index": 5
+        }
+      },
+      "de": {
+        "count": 53,
+        "ordered_id_word_sha256": "dd54bb6183413901492d73ea7c6585cc34e2c2dd8d7742611e0e1481f6153e82",
+        "evidence": {
+          "morphological_parse:candidate_index": 5,
+          "compound_morphology:candidate_index": 48
+        }
+      },
+      "fr": {
+        "count": 1486,
+        "ordered_id_word_sha256": "68dc67099431abc0464a008f2cb48b8ad60fa10aa67098d0da5c607e11711367",
+        "evidence": {
+          "compound_morphology:manually_verified": 1482,
+          "morphological_parse:manually_verified": 4
+        }
+      },
+      "es": {
+        "count": 1518,
+        "ordered_id_word_sha256": "434adc7785b44c518da35964b8ad699e1196be40a2d8a2840abc9a2e651c34a3",
+        "evidence": {
+          "compound_morphology:manually_verified": 1510,
+          "morphological_parse:manually_verified": 9
+        }
+      },
+      "it": {
+        "count": 23,
+        "ordered_id_word_sha256": "a133c69e67c1e72dba9d6278dd73fd7e85950e98cc54d7d3c9363d9b0067e8a1",
+        "evidence": {
+          "compound_morphology:candidate_index": 20,
+          "morphological_parse:candidate_index": 3
+        }
+      }
+    },
+    "ety:94c776d13c76": {
+      "en": {
+        "count": 1887,
+        "ordered_id_word_sha256": "0eb2b8da5665178c68a08a8c0e0001c3295bad770edde44564a0e203b302d6c7",
+        "evidence": {
+          "compound_morphology:manually_verified": 1861,
+          "compound_morphology:candidate_index": 15,
+          "morphological_parse:manually_verified": 6,
+          "morphological_parse:candidate_index": 5
+        }
+      },
+      "de": {
+        "count": 53,
+        "ordered_id_word_sha256": "dd54bb6183413901492d73ea7c6585cc34e2c2dd8d7742611e0e1481f6153e82",
+        "evidence": {
+          "morphological_parse:candidate_index": 5,
+          "compound_morphology:candidate_index": 48
+        }
+      },
+      "fr": {
+        "count": 1486,
+        "ordered_id_word_sha256": "68dc67099431abc0464a008f2cb48b8ad60fa10aa67098d0da5c607e11711367",
+        "evidence": {
+          "compound_morphology:manually_verified": 1482,
+          "morphological_parse:manually_verified": 4
+        }
+      },
+      "es": {
+        "count": 1518,
+        "ordered_id_word_sha256": "434adc7785b44c518da35964b8ad699e1196be40a2d8a2840abc9a2e651c34a3",
+        "evidence": {
+          "compound_morphology:manually_verified": 1510,
+          "morphological_parse:manually_verified": 9
+        }
+      },
+      "it": {
+        "count": 23,
+        "ordered_id_word_sha256": "a133c69e67c1e72dba9d6278dd73fd7e85950e98cc54d7d3c9363d9b0067e8a1",
+        "evidence": {
+          "compound_morphology:candidate_index": 20,
+          "morphological_parse:candidate_index": 3
+        }
+      }
+    }
+  },
+  "retained": [
+    {
+      "language": "en",
+      "word": "neat",
+      "lemma_id": "lemma:6105478752ed93555141"
+    },
+    {
+      "language": "en",
+      "word": "neate",
+      "lemma_id": "lemma:4cf8482aefd731a0702c"
+    },
+    {
+      "language": "en",
+      "word": "neater",
+      "lemma_id": "lemma:20ba3dd4a33d2dbaf171"
+    },
+    {
+      "language": "en",
+      "word": "neatly",
+      "lemma_id": "lemma:043eed92d2c6b9d7a9d2"
+    },
+    {
+      "language": "de",
+      "word": "nett",
+      "lemma_id": "lemma:37be843f6f8a3f005c7a"
+    },
+    {
+      "language": "de",
+      "word": "nette",
+      "lemma_id": "lemma:08a1fc102a6057a12b87"
+    },
+    {
+      "language": "fr",
+      "word": "net",
+      "lemma_id": "lemma:5276387252706f5baee4"
+    },
+    {
+      "language": "fr",
+      "word": "nettement",
+      "lemma_id": "lemma:a2ae56462a4cc592670d"
+    },
+    {
+      "language": "fr",
+      "word": "netteté",
+      "lemma_id": "lemma:9fffdbb6a81cea21ba8d"
+    },
+    {
+      "language": "fr",
+      "word": "nettoyer",
+      "lemma_id": "lemma:74cd3bd0fe32a6aa1cf0"
+    },
+    {
+      "language": "fr",
+      "word": "nettoyage",
+      "lemma_id": "lemma:dc076636661bd21b37cd"
+    },
+    {
+      "language": "fr",
+      "word": "nettoyeur",
+      "lemma_id": "lemma:dc68dc5e18ac9debea3b"
+    },
+    {
+      "language": "fr",
+      "word": "nettoyant",
+      "lemma_id": "lemma:cf975b12662561fb9f83"
+    },
+    {
+      "language": "es",
+      "word": "neto",
+      "lemma_id": "lemma:5663eb9e91573b80b23a"
+    },
+    {
+      "language": "it",
+      "word": "netto",
+      "lemma_id": "lemma:f9e51c4e7bf66af39c69"
+    },
+    {
+      "language": "it",
+      "word": "nitido",
+      "lemma_id": "lemma:1a454c8252d15291fc07"
+    }
+  ],
+  "added": [
+    {
+      "language": "es",
+      "word": "nítido",
+      "source_family_id": "surface:es:nitid",
+      "reference": "https://es.wiktionary.org/wiki/nítido",
+      "relation": "borrowed_from_Latin_nitidus",
+      "lemma_id": "lemma:7ef477e021dd0a5685ff",
+      "source_member_sha256": "5b9f157a89df3f576afce3edda77afde6ea6a1b8bf78bb8bcc3ad364a1857cee"
+    },
+    {
+      "language": "it",
+      "word": "nettare",
+      "source_family_id": "surface:it:net",
+      "reference": "https://en.wiktionary.org/wiki/nettare",
+      "relation": "derived_from_netto_or_Latin_nitidare",
+      "lemma_id": "lemma:f823335b08971827016a",
+      "source_member_sha256": "67d592c0912dbe01d87d034711ce0c73272635ac23f85dde2da5f8f7e3ceba12"
+    }
+  ],
+  "expected_final_support": 18,
+  "contrasting_false_examples": {
+    "en": [
+      "netting",
+      "netflix",
+      "planet"
+    ],
+    "de": [
+      "gannett",
+      "nettetal"
+    ],
+    "fr": [
+      "netflix",
+      "baionnettes"
+    ],
+    "es": [
+      "netflix",
+      "camionetas"
+    ],
+    "it": [
+      "gannett",
+      "nettles"
+    ]
+  },
+  "references": [
+    "https://fr.wiktionary.org/wiki/net",
+    "https://en.wiktionary.org/wiki/neat",
+    "https://en.wiktionary.org/wiki/net",
+    "https://en.wiktionary.org/wiki/nettare",
+    "https://es.wiktionary.org/wiki/nítido"
+  ]
+}

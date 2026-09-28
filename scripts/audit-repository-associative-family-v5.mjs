@@ -223,6 +223,14 @@ const suffixRemoved11 = suffixLedger11.decisions.reduce((sum, item) => sum + ite
 assert(suffixRemoved11 === 14711 && suffixRepair11?.removed_memberships === suffixRemoved11 && suffixRepair11?.decision_ledger_sha256 === suffixLedger11Sha, 'suffix batch 11 repair mismatch');
 assert(JSON.stringify(suffixRepair11.deleted_families) === JSON.stringify(suffixLedger11.decisions.map(item => item.family_id)), 'suffix batch 11 family list mismatch');
 assert(report.repository_materialization?.suffix_batch_11_ledger_sha256 === suffixLedger11Sha, 'report suffix batch 11 ledger mismatch');
+const nitidusLedgerBytes = await readFile('audit/associative-family-v5/nitidus-family-decisions.json');
+const nitidusLedger = JSON.parse(nitidusLedgerBytes);
+const nitidusLedgerSha = createHash('sha256').update(nitidusLedgerBytes).digest('hex');
+const nitidusRepair = provenance.repository_repairs?.find(item => item.repair === 'consolidate_and_prune_latin_nitidus');
+assert(nitidusLedger.source_run_id === expectedRunId && nitidusLedger.canonical_family_id === 'ety:94c776d13c76' && nitidusLedger.deleted_duplicate_family_id === 'ety:03193cddd861', 'nitidus ledger mismatch');
+assert(nitidusLedger.expected_final_support === 18 && nitidusRepair?.removed_memberships === 9918 && nitidusRepair?.added_memberships === 2 && nitidusRepair?.decision_ledger_sha256 === nitidusLedgerSha, 'nitidus repair mismatch');
+assert(report.repository_materialization?.nitidus_ledger_sha256 === nitidusLedgerSha, 'report nitidus ledger mismatch');
+const nitidusKept = new Set([...nitidusLedger.retained, ...nitidusLedger.added].map(item => `${item.language}\0${item.lemma_id}`));
 const actusLedgerBytes = await readFile('audit/associative-family-v5/actus-false-memberships.json');
 const actusLedger = JSON.parse(actusLedgerBytes);
 const actusLedgerSha = createHash('sha256').update(actusLedgerBytes).digest('hex');
@@ -262,9 +270,12 @@ for (const item of suffixLedger11.decisions) deletedSurfaceFamilies.add(item.fam
 deletedSurfaceFamilies.add(tenLedger.family_id);
 for (const item of inflectionLedger.decisions) deletedSurfaceFamilies.add(item.family_id);
 for (const item of endingLedger.decisions) deletedSurfaceFamilies.add(item.family_id);
-const rejectedManualKeys = new Set(manualLedger.rejected_memberships.map(item => `${item.language}\0${item.family_id}\0${item.lemma_id}`));
-const preservedManualKeys = new Set(manualLedger.preserved_positive_controls.map(item => `${item.language}\0${item.family_id}\0${item.word}`));
-assert(rejectedManualKeys.size === 22, 'duplicate rejected manual memberships');
+// The earlier nitid controls now target the retained, equivalent nitidus ID.
+const currentFamilyId = familyId => familyId === 'ety:03193cddd861' ? 'ety:94c776d13c76' : familyId;
+const originalRejectedKeys = new Set(manualLedger.rejected_memberships.map(item => `${item.language}\0${item.family_id}\0${item.lemma_id}`));
+const rejectedManualKeys = new Set(manualLedger.rejected_memberships.map(item => `${item.language}\0${currentFamilyId(item.family_id)}\0${item.lemma_id}`));
+const preservedManualKeys = new Set(manualLedger.preserved_positive_controls.map(item => `${item.language}\0${currentFamilyId(item.family_id)}\0${item.word}`));
+assert(originalRejectedKeys.size === 22, 'duplicate original rejected manual memberships');
 const quarantinedManualFamilies = new Map(manualLedger.quarantined_families.map(item => [item.family_id, item.new_status]));
 const reportFamilySummaries = new Map();
 for (const section of ['largest_families', 'highest_suspicion_families']) {
@@ -321,6 +332,8 @@ for (let index = 0; index < 256; index += 1) {
     assert(id === family.id, `family key mismatch ${id}`);
     assert(bucket(id) === shard, `family bucket mismatch ${id}`);
     assert(id !== 'family:libert', 'removed family:libert is present');
+    assert(id !== nitidusLedger.deleted_duplicate_family_id, 'duplicate Latin nitid family is present');
+    if (id === nitidusLedger.canonical_family_id) assert(family.support === 18 && !family.aliases.includes('nitty'), 'nitidus family metadata mismatch');
     assert(!deletedSurfaceFamilies.has(id), `reviewed surface family still present ${id}`);
     assert(!ids.has(id), `duplicate family ${id}`);
     assert(family.support > 0 && family.canonical && Array.isArray(family.aliases) && family.aliases.length, `invalid family ${id}`);
@@ -356,6 +369,7 @@ for (let index = 0; index < 256; index += 1) {
       assert(bucket(id) === shard, `${language} member bucket mismatch ${id}`);
       assert(ids.has(id), `${language} members reference missing family ${id}`);
       assert(Array.isArray(values) && values.length, `${language} empty member list ${id}`);
+      if (id === nitidusLedger.canonical_family_id) assert(values.every(value => nitidusKept.delete(`${language}\0${value.lemma_id}`)), `unexpected nitidus member ${language}`);
       if (language === geneaLedger.language && id === geneaLedger.family_id) {
         assert(values.length === geneaRetained.size && values.every(value => geneaRetained.get(value.lemma_id) === value.word), 'genea German members mismatch');
       }
@@ -407,6 +421,7 @@ assert(preservedManualKeys.size === 0, `preserved positive controls missing: ${[
 assert(preservedActusKeys.size === 0, `preserved actus controls missing: ${[...preservedActusKeys].join(', ')}`);
 assert(retainedIllasKeys.size === 0, 'retained illas headwords missing');
 assert(retainedPronounKeys.size === 0, 'retained illos/illis headwords missing');
+assert(nitidusKept.size === 0, 'reviewed nitidus members missing');
 // Recount distinct materialized lemmas. The source-build report cannot prove
 // that later family pruning preserved every lemma's last membership.
 let materializedUniqueLemmas = 0;
@@ -424,7 +439,7 @@ for (const language of languages) {
 assert(materializedUniqueLemmas === report.invariants.classified_unique_lemmas, 'report classified unique lemmas mismatch');
 assert(manifest.counts.lemmas - materializedUniqueLemmas === report.invariants.lemmas_with_zero_family, 'report unassigned lemmas mismatch');
 assert(materializedUniqueLemmas === report.repository_materialization.materialized_unique_lemmas, 'repository materialized lemma count mismatch');
-assert(membershipCount === 10426047 - manualLedger.rejected_memberships.length - surfaceRemoved - surfaceRemoved2 - surfaceRemoved3 - surfaceRemoved4 - tenLedger.expected_members - inflectionRemoved - endingRemoved - geneaRemoved - geneaOtherRemoved - sonusRemoved - kaRemoved - suffixRemoved - suffixRemoved6 - suffixRemoved7 - suffixRemoved8 - suffixRemoved9 - suffixRemoved10 - suffixRemoved11 - actusLedger.rejected_memberships.length - illasLedger.expected_removed_memberships - pronounLedger.expected_total_removed_memberships, 'unexpected repository membership count');
+assert(membershipCount === 10426047 - manualLedger.rejected_memberships.length - surfaceRemoved - surfaceRemoved2 - surfaceRemoved3 - surfaceRemoved4 - tenLedger.expected_members - inflectionRemoved - endingRemoved - geneaRemoved - geneaOtherRemoved - sonusRemoved - kaRemoved - suffixRemoved - suffixRemoved6 - suffixRemoved7 - suffixRemoved8 - suffixRemoved9 - suffixRemoved10 - suffixRemoved11 - actusLedger.rejected_memberships.length - illasLedger.expected_removed_memberships - pronounLedger.expected_total_removed_memberships - nitidusRepair.removed_memberships + nitidusRepair.added_memberships, 'unexpected repository membership count');
 assert(familyCount === manifest.counts.families && familyCount === report.total_families, `family count ${familyCount}`);
 assert(materializedFamilyCount === familyCount, 'not every family was materialized');
 for (const [field, counted] of [
