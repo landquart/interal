@@ -6,6 +6,8 @@ import { FamilyGraph, FAMILY_EDGE, nullDictionary, stableLemmaId } from '../scri
 import { FamilyIndexLoader, familyBucket } from '../associativvordes/js/family-index-loader.js';
 import { findCandidatesForRoot } from '../associativvordes/js/candidate-finder.js';
 import { createCandidateIndexLoader } from '../associativvordes/js/candidate-index-loader.js';
+import { readFile } from 'node:fs/promises';
+import { gunzipSync } from 'node:zlib';
 const evidence = type => ({ type, source: 'test', path: ['a','b'], confidence: 1 });
 test('discovers every compound component', () => { clearLexicalRootIndexForTests(); registerVerifiedLexicalRoots('en',['pedi','cure']); assert.deepEqual(discoverLexicalComponents('pedicure','en').components.map(x=>x.canonical_candidate).sort(),['cure','pedi']); });
 test('surface fallback preserves complete coverage', () => { clearLexicalRootIndexForTests(); assert.equal(discoverLexicalComponents('xyzzy','en').components[0].source,'surface_fallback'); });
@@ -98,4 +100,24 @@ test('authoritative empty family result never falls back to the static index', a
   assert.equal(staticFetches, 0);
   assert.equal(loader.getCandidateIndexDiagnostics().familyIndexStatus, 'loaded');
   assert.equal(loader.getCandidateIndexDiagnostics().familyIndexFamilies, 1);
+});
+
+test('curated nitidus aliases return only reviewed members and never use broad fallback', async () => {
+  const root = new URL('../associativvordes/family-index-v5/', import.meta.url);
+  const familyIndexLoader = new FamilyIndexLoader({ baseUrl: '/family-index', fetchJson: async url => {
+    const name = url.replace('/family-index/', '');
+    const bytes = await readFile(new URL(name, root));
+    return JSON.parse(name.endsWith('.gz') ? gunzipSync(bytes).toString() : bytes.toString());
+  } });
+  const expected = { en: ['neat','neate','neater','neatly'], de: ['nett','nette'], fr: ['net','nettement','netteté','nettoyer','nettoyage','nettoyant','nettoyeur'], es: ['neto','nítido'], it: ['netto','nitido','nettare'] };
+  assert.equal((await familyIndexLoader.resolveAlias('net')).length, 3);
+  for (const [language, words] of Object.entries(expected)) {
+    const actual = await familyIndexLoader.candidateEntries('net', language);
+    assert.deepEqual(actual.map(item => item.word).sort(), [...words].sort(), language);
+    assert(actual.every(item => item.family_id === 'ety:94c776d13c76'), language);
+  }
+  for (const [query, language] of [['nitid','es'],['nitidus','en'],['neat','en'],['nett','de'],['neto','es'],['nítido','es']]) assert.deepEqual((await familyIndexLoader.candidateEntries(query, language)).map(item => item.word).sort(), [...expected[language]].sort(), query);
+  const loader = createCandidateIndexLoader({ fetch: async () => { throw Error('broad fallback requested'); }, familyIndexLoader });
+  assert.deepEqual((await loader.loadCandidateEntries('es','nitid')).map(item => item.word).sort(), [...expected.es].sort());
+  assert.equal(loader.getCandidateIndexDiagnostics().familyIndexStatus, 'loaded');
 });

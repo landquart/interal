@@ -13,8 +13,8 @@
   },
   "storage": "git_repository_static_files",
   "file_count_before_provenance": 2050,
-  "total_bytes_before_provenance": 722329496,
-  "tree_content_sha256": "50cc2ea26a804a276e6dee55bc4b6644f94b1e7920dd5a2ce0bd1d510fbfc9ea",
+  "total_bytes_before_provenance": 721079077,
+  "tree_content_sha256": "a8b729d0dd87fc51075e1ad259098adfa94cfe1d31a3b0cc609f5c41b2810c61",
   "repository_repairs": [
     {
       "repair": "exclude_known_rejected_corpus_noise_from_runtime",
@@ -336,6 +336,78 @@
       "decision_ledger_sha256": "d89af63b906e829b2c97f2723e52b92f2944a8c4cc4c83e54a0be105f30e6099",
       "source_run_id": 35647932153,
       "not_individual_lexical_annotation": true
+    },
+    {
+      "repair": "consolidate_and_prune_latin_nitidus",
+      "source_run_id": 35647932153,
+      "deleted_duplicate_family": "ety:03193cddd861",
+      "deleted_surface_family": "surface:es:nitid",
+      "retained_family": "ety:94c776d13c76",
+      "removed_memberships": 9924,
+      "added_memberships": 2,
+      "removed_unrelated_net_alias_targets": [
+        "ety:10929f75019c",
+        "ety:3c9ed8371259",
+        "ety:c1b6e2919722"
+      ],
+      "added_lookup_aliases": [
+        "nitidus",
+        "neto",
+        "nitido"
+      ],
+      "deleted_aliases": 0,
+      "materialized_unique_lemmas": 4924329,
+      "lemmas_without_materialized_family": 651,
+      "multi_family_lemmas": 3339803,
+      "decision_ledger_sha256": "76cd3ddf53bb7a6e4bc6c43a6b5e0ba9efd074d1162ff736776a0e9b6bdcbffa",
+      "not_individual_lexical_annotation": true
+    },
+    {
+      "repair": "prune_russian_two_letter_surface_buckets",
+      "source_run_id": 35647932153,
+      "removed_memberships": 8138,
+      "deleted_families": [
+        "surface:ru:ti",
+        "surface:ru:gs"
+      ],
+      "retained_headwords": [
+        [
+          "surface:ru:no",
+          "но"
+        ],
+        [
+          "surface:ru:ja",
+          "я"
+        ],
+        [
+          "surface:ru:ko",
+          "ко"
+        ],
+        [
+          "surface:ru:ha",
+          "ха"
+        ],
+        [
+          "surface:ru:za",
+          "за"
+        ]
+      ],
+      "deleted_aliases": 0,
+      "corrected_genea_suspicion": true,
+      "decision_ledger_sha256": "4471cd4b5f88b0e11bbb60b9635b9e1982225d31242181af43041541fa818102",
+      "not_individual_lexical_annotation": true
+    },
+    {
+      "repair": "quarantine_uncurated_net_reverse_aliases",
+      "source_run_id": 35647932153,
+      "removed_reverse_targets": 21,
+      "retained_targets": [
+        "ety:94c776d13c76",
+        "surface:de:net",
+        "surface:it:net"
+      ],
+      "decision_ledger_sha256": "69b282895257dfd3f62addd0580a8e9c299d3f172f00f7fb43f2e54233eb76a3",
+      "memberships_removed": 0
     }
   ]
 }
