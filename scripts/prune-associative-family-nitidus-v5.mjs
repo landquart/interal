@@ -1,9 +1,11 @@
 #!/usr/bin/env node
 // Collapse duplicate Latin nitid/nitidus keys and retain reviewed sense-level anchors.
 import { createHash } from 'node:crypto';
-import { readFile, readdir, writeFile } from 'node:fs/promises';
+import { readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { gunzipSync, gzipSync } from 'node:zlib';
+
+import { recountMaterializedMembers, refreshFamilySummaries, repositoryTreeMetadata } from './lib/associative-repository-materialization.mjs';
 
 const root = process.argv[2] || 'associativvordes/family-index-v5';
 const ledgerBytes = await readFile('audit/associative-family-v5/nitidus-family-decisions.json');
@@ -153,38 +155,8 @@ report.generated_non_proto_families -= 1;
 report.multi_branch_families -= 1;
 report.review_required_families -= 1;
 
-let uniqueTotal = 0;
-let multiTotal = 0;
-for (const language of manifest.languages) {
-  const unique = new Map();
-  for (let index = 0; index < 256; index += 1) {
-    const path = join(root, 'members', language, `${index.toString(16).padStart(2, '0')}.json.gz`);
-    const shard = memberShards.get(path) || await readJson(path);
-    for (const values of Object.values(shard)) for (const member of values) unique.set(member.lemma_id, (unique.get(member.lemma_id) || 0) + 1);
-  }
-  uniqueTotal += unique.size;
-  for (const count of unique.values()) if (count > 1) multiTotal += 1;
-}
-const unassigned = manifest.counts.lemmas - uniqueTotal;
-report.invariants.classified_unique_lemmas = uniqueTotal;
-report.invariants.lemmas_with_zero_family = unassigned;
-report.repository_materialization.materialized_unique_lemmas = uniqueTotal;
-report.repository_materialization.lemmas_without_materialized_family = unassigned;
-report.multi_family_lemmas = multiTotal;
-
-const largest = [];
-const suspicious = [];
-const keepTop = (list, item, compare) => { list.push(item); list.sort(compare); if (list.length > 50) list.length = 50; };
-for (let index = 0; index < 256; index += 1) {
-  const path = join(root, 'families', `${index.toString(16).padStart(2, '0')}.json.gz`);
-  const shard = familyShards.get(path) || await readJson(path);
-  for (const item of Object.values(shard)) {
-    keepTop(largest, item, (a, b) => b.support - a.support || a.id.localeCompare(b.id));
-    keepTop(suspicious, item, (a, b) => b.suspicion_score - a.suspicion_score || b.support - a.support || a.id.localeCompare(b.id));
-  }
-}
-report.largest_families = largest;
-report.highest_suspicion_families = suspicious;
+const { uniqueTotal, multiTotal, unassigned } = await recountMaterializedMembers(root, manifest, report, memberShards);
+await refreshFamilySummaries(root, report, familyShards);
 const ledgerSha = sha256(ledgerBytes);
 report.repository_materialization.nitidus_net_memberships_removed = removed + surfaceMembers.length;
 report.repository_materialization.nitidus_net_memberships_added = ledger.added.length;
@@ -193,24 +165,6 @@ provenance.repository_repairs.push({ repair, source_run_id: ledger.source_run_id
 for (const [path, shard] of [...familyShards, ...memberShards, ...aliasShards]) await writeJson(path, shard);
 await writeJson(join(root, 'manifest.json'), manifest);
 await writeJson(join(root, 'report.json'), report);
-async function files(directory) {
-  const out = [];
-  for (const entry of await readdir(directory, { withFileTypes: true })) {
-    const path = join(directory, entry.name);
-    if (entry.isDirectory()) out.push(...await files(path)); else out.push(path);
-  }
-  return out;
-}
-const paths = (await files(root)).filter(path => path !== provenancePath).sort();
-const hash = createHash('sha256');
-let bytes = 0;
-for (const path of paths) {
-  const data = await readFile(path);
-  bytes += data.length;
-  hash.update(path.slice(root.length + 1)).update('\0').update(data);
-}
-provenance.file_count_before_provenance = paths.length;
-provenance.total_bytes_before_provenance = bytes;
-provenance.tree_content_sha256 = hash.digest('hex');
+Object.assign(provenance, await repositoryTreeMetadata(root));
 await writeJson(provenancePath, provenance);
 console.log(JSON.stringify({ removed: removed + surfaceMembers.length, added: ledger.added.length, retained: 18, aliasesRemoved, uniqueTotal, unassigned, multiTotal }));

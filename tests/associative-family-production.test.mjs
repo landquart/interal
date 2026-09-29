@@ -8,6 +8,8 @@ import { findCandidatesForRoot } from '../associativvordes/js/candidate-finder.j
 import { createCandidateIndexLoader } from '../associativvordes/js/candidate-index-loader.js';
 import { readFile } from 'node:fs/promises';
 import { gunzipSync } from 'node:zlib';
+import { pathToFileURL } from 'node:url';
+const materializationRoot = () => process.env.FAMILY_INDEX_TEST_ROOT ? pathToFileURL(process.env.FAMILY_INDEX_TEST_ROOT.replace(/\/$/, '') + '/') : new URL('../associativvordes/family-index-v5/', import.meta.url);
 const evidence = type => ({ type, source: 'test', path: ['a','b'], confidence: 1 });
 test('discovers every compound component', () => { clearLexicalRootIndexForTests(); registerVerifiedLexicalRoots('en',['pedi','cure']); assert.deepEqual(discoverLexicalComponents('pedicure','en').components.map(x=>x.canonical_candidate).sort(),['cure','pedi']); });
 test('surface fallback preserves complete coverage', () => { clearLexicalRootIndexForTests(); assert.equal(discoverLexicalComponents('xyzzy','en').components[0].source,'surface_fallback'); });
@@ -103,7 +105,7 @@ test('authoritative empty family result never falls back to the static index', a
 });
 
 test('curated nitidus aliases return only reviewed members and never use broad fallback', async () => {
-  const root = new URL('../associativvordes/family-index-v5/', import.meta.url);
+  const root = materializationRoot();
   const familyIndexLoader = new FamilyIndexLoader({ baseUrl: '/family-index', fetchJson: async url => {
     const name = url.replace('/family-index/', '');
     const bytes = await readFile(new URL(name, root));
@@ -120,4 +122,54 @@ test('curated nitidus aliases return only reviewed members and never use broad f
   const loader = createCandidateIndexLoader({ fetch: async () => { throw Error('broad fallback requested'); }, familyIndexLoader });
   assert.deepEqual((await loader.loadCandidateEntries('es','nitid')).map(item => item.word).sort(), [...expected.es].sort());
   assert.equal(loader.getCandidateIndexDiagnostics().familyIndexStatus, 'loaded');
+});
+
+test('Russian curated short aliases preserve complete ordinary results in other languages', async () => {
+  const root = materializationRoot();
+  const loader = new FamilyIndexLoader({ baseUrl: '/family-index', fetchJson: async url => {
+    const name = url.replace('/family-index/', '');
+    const bytes = await readFile(new URL(name, root));
+    return JSON.parse(name.endsWith('.gz') ? gunzipSync(bytes).toString() : bytes.toString());
+  } });
+  for (const [alias, word] of [['no','но'],['ja','я'],['ko','ко'],['ha','ха'],['za','за']]) {
+    assert.deepEqual((await loader.candidateEntries(word, 'ru')).map(item => item.word), [word], alias);
+    assert.deepEqual((await loader.candidateEntries(alias, 'ru')).map(item => item.word), [word], alias);
+    for (const language of ['en', 'de', 'fr', 'es', 'it']) {
+      loader.cache.clear();
+      const expected = new Map();
+      for (const id of await loader.resolveAlias(alias)) {
+        const family = await loader.family(id);
+        if (['blocked_from_runtime','rejected','split_required'].includes(family.review_status)) continue;
+        assert(!family.runtime_curated && !String(family.source).includes('manual_override') || (await loader.members(id, language)).length === 0, `${alias}/${language}: unexpected curated control`);
+        if (family.runtime_curated || String(family.source).includes('manual_override')) continue;
+        for (const member of await loader.members(id, language)) {
+          if (member.corpus_quality?.status !== 'rejected') expected.set(member.lemma_id, member.word);
+        }
+      }
+      const actual = await loader.candidateEntries(alias, language);
+      assert(expected.size > 0, `${alias}/${language}: missing ordinary fixture`);
+      assert.deepEqual(actual.map(item => [item.lemma_id, item.word]).sort(), [...expected].sort(), `${alias}/${language}`);
+    }
+  }
+  for (const language of ['en','de','fr','es','it','ru']) {
+    loader.cache.clear();
+    const entries = await loader.candidateEntries('liber', language);
+    assert(entries.length > 0, `liber/${language}`);
+    assert(entries.every(item => item.components.some(component => component.evidence.some(e => e.type === 'manual_override'))), `liber/${language}`);
+  }
+});
+
+test('empty, rejected or malformed curated members never suppress ordinary language results', async () => {
+  for (const source of ['manual_override', 'etymology']) {
+    for (const invalid of [[], [{lemma_id:'bad',word:'bad',corpus_quality:{status:'rejected'},components:[{evidence:[evidence('manual_override')]}]}], [{word:'missing-id',components:[{evidence:[evidence('manual_override')]}]}], [{lemma_id:'empty-word',word:'',components:[{evidence:[evidence('manual_override')]}]}]]) {
+      const manualId = 'manual:no', normalId = 'surface:en:no';
+      const data = { 'manifest.json': {version:'5',languages:['en'],sharding:{alias_template:'aliases/{bucket}.json',family_template:'families/{bucket}.json',member_template:'members/{language}/{bucket}.json'}}, [`aliases/${familyBucket('no')}.json`]: {no:[manualId,normalId]} };
+      for (const family of [{id:manualId,source,runtime_curated:source === 'etymology'}, {id:normalId,source:'surface_singleton'}]) {
+        (data[`families/${familyBucket(family.id)}.json`] ||= {})[family.id] = {...family,canonical:'no',aliases:['no']};
+        (data[`members/en/${familyBucket(family.id)}.json`] ||= {})[family.id] = family.id === manualId ? invalid : [{lemma_id:'en:no',word:'no',components:[]}];
+      }
+      const loader = new FamilyIndexLoader({baseUrl:'/family-index',fetchJson:async url => data[url.replace('/family-index/','')]});
+      assert.deepEqual((await loader.candidateEntries('no','en')).map(item => item.word), ['no']);
+    }
+  }
 });

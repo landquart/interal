@@ -1,0 +1,62 @@
+{
+  "base_commit": "7d09632761eb6c1c818d82833c139c5785e71099",
+  "original_head": "6b1062716d1a4ee3e4e1c34c107d0525e90b0806",
+  "source_run_id": 35647932153,
+  "files_compared": 2051,
+  "differences": [
+    {
+      "path": "report.json",
+      "original_sha256": "dcd21545c2ae2e6c582919d134bf50c5a67c506ce414ee76cd22064e8e44e2a9",
+      "reconstructed_sha256": "2063e0102a7cc902f4a5b918d06f8cac939c508496b4c29674d1cad11ca16971"
+    },
+    {
+      "path": "repository-provenance.json",
+      "original_sha256": "333875be81aa43c341f406200c50bec7d25a27640d6b3240adc5f50678473dd7",
+      "reconstructed_sha256": "da7fbebaaa4a092d7bc41576fb9af9d156617947d40954892358a3358517aca8"
+    }
+  ],
+  "shards_byte_identical": true,
+  "verdict": "pass",
+  "counts": {
+    "families": 2456543,
+    "aliases": 1934050,
+    "lemmas": 4924980,
+    "components": 9349982,
+    "memberships": 10080875,
+    "materialized_unique_lemmas": 4924295,
+    "multi_family_lemmas": 3334263,
+    "lemmas_without_materialized_family": 685,
+    "unique_lemmas_by_language": {
+      "en": 1130945,
+      "de": 1113447,
+      "fr": 558904,
+      "es": 941521,
+      "it": 610087,
+      "ru": 569391
+    },
+    "memberships_by_language": {
+      "en": 2619261,
+      "de": 2205038,
+      "fr": 1143061,
+      "es": 1796516,
+      "it": 1187709,
+      "ru": 1129290
+    },
+    "materialized_families": 2456543
+  },
+  "commands": [
+    "git archive 7d09632761eb6c1c818d82833c139c5785e71099 associativvordes/family-index-v5",
+    "node scripts/prune-associative-family-nitidus-v5.mjs <clean-root>",
+    "node scripts/prune-associative-family-ru-two-letter-v5.mjs <clean-root>",
+    "node scripts/quarantine-associative-family-net-alias-v5.mjs <clean-root>",
+    "shared refreshFamilySummaries + repositoryTreeMetadata finalization",
+    "node scripts/audit-repository-associative-family-v5.mjs <clean-root> <evidence>"
+  ],
+  "additional_finding": "The initial replay exposed a stale multi_branch_families count (17702 instead of 17686). Shared family recount now updates this and the other family counters within each repair; no hard-coded count correction.",
+  "scripts_sha256": {
+    "scripts/prune-associative-family-nitidus-v5.mjs": "999da7fa36d091bdae9a3cff6bccac47ddc1e3319e4a709f6eb82bc81a5e3d55",
+    "scripts/prune-associative-family-ru-two-letter-v5.mjs": "524eb0df071e4d80815899b4c70eb5fa748fce189a5139f11d9924afb9a4cb28",
+    "scripts/quarantine-associative-family-net-alias-v5.mjs": "b0f8e3a966e7ccb8bf2b859c18bb9cc9386b4d1cab883b4eaa05833f0d306c23",
+    "scripts/lib/associative-repository-materialization.mjs": "62c7e716361d460607afa3c99b15c0a6848a99221307a6cbd967561ec85ee185"
+  }
+}

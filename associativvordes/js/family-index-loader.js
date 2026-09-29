@@ -40,7 +40,8 @@ export class FamilyIndexLoader {
     const groups = await Promise.all(eligibleFamilies.map(async family => ({ family, members: await this.members(family.id, language, options) })));
     const manualGroups = groups
       .filter(({ family }) => family.runtime_curated === true || String(family.source || '').includes('manual_override'))
-      .map(({ family, members }) => ({ family, members: members.filter(hasManualEvidence) }));
+      .map(({ family, members }) => ({ family, members: members.filter(member => hasManualEvidence(member) && isRuntimeCorpusMember(member) && typeof member.lemma_id === 'string' && typeof member.word === 'string' && member.word) }))
+      .filter(({ members }) => members.length > 0);
     const eligibleGroups = manualGroups.length ? manualGroups : groups;
     const byLemma = new Map();
     for (const { family, members } of eligibleGroups) {
