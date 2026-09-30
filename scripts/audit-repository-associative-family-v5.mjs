@@ -40,6 +40,13 @@ const netLedgerBytes = await readFile('audit/associative-family-v5/net-alias-rou
 const netLedger = JSON.parse(netLedgerBytes);
 const netRepair = provenance.repository_repairs?.find(item => item.repair === 'quarantine_uncurated_net_reverse_aliases');
 assert(netLedger.source_run_id === expectedRunId && netRepair?.decision_ledger_sha256 === createHash('sha256').update(netLedgerBytes).digest('hex'), 'net alias routing provenance mismatch');
+const boundedLedgerBytes = await readFile('audit/associative-family-v5/val-and-ru-short-decisions-20260930.json');
+const boundedLedger = JSON.parse(boundedLedgerBytes);
+const boundedRepair = provenance.repository_repairs?.find(item => item.repair === 'bounded_val_routing_and_russian_short_batch_20260930');
+assert(boundedLedger.source_run_id === expectedRunId && boundedRepair?.decision_ledger_sha256 === createHash('sha256').update(boundedLedgerBytes).digest('hex'), 'bounded routing/short batch provenance mismatch');
+assert(boundedRepair.removed_memberships === boundedLedger.russian.expected_total_removed && boundedRepair.removed_reverse_alias_targets === 12, 'bounded repair deltas mismatch');
+assert(report.repository_materialization.bounded_20260930_ledger_sha256 === boundedRepair.decision_ledger_sha256, 'bounded report ledger mismatch');
+
 assert(manifest.version === '5', `manifest version ${manifest.version}`);
 assert(JSON.stringify(manifest.languages) === JSON.stringify(languages), 'unexpected language set/order');
 assert(Number(manifest.repository_storage?.immutable_source_run_id) === expectedRunId, 'manifest source run mismatch');
@@ -275,7 +282,7 @@ for (const item of inflectionLedger.decisions) deletedSurfaceFamilies.add(item.f
 for (const item of endingLedger.decisions) deletedSurfaceFamilies.add(item.family_id);
 const rejectedManualKeys = new Set(manualLedger.rejected_memberships.map(item => `${item.language}\0${item.family_id}\0${item.lemma_id}`));
 const nitidusPositive = new Set([...nitidusLedger.retained, ...nitidusLedger.added].map(item => `${item.language}\0${item.lemma_id}`));
-const ruShortPositive = new Set(ruShortLedger.decisions.flatMap(item => item.retained.map(kept => `ru\0${item.family_id}\0${kept.lemma_id}`)));
+const ruShortPositive = new Set([...ruShortLedger.decisions, ...boundedLedger.russian.decisions].flatMap(item => item.retained.map(kept => `ru\0${item.family_id}\0${kept.lemma_id}`)));
 const preservedManualKeys = new Set(manualLedger.preserved_positive_controls.map(item => `${item.language}\0${item.family_id === nitidusLedger.deleted_duplicate_family_id ? nitidusLedger.canonical_family_id : item.family_id}\0${item.word}`));
 assert(rejectedManualKeys.size === 22, 'duplicate rejected manual memberships');
 const quarantinedManualFamilies = new Map(manualLedger.quarantined_families.map(item => [item.family_id, item.new_status]));
@@ -384,7 +391,7 @@ for (let index = 0; index < 256; index += 1) {
       const seen = new Set();
       for (const value of values) {
         if (id === nitidusLedger.canonical_family_id) assert(nitidusPositive.delete(`${language}\0${value.lemma_id}`), `unreviewed nitidus member ${language}/${value.word}`);
-        if (id.startsWith('surface:ru:') && ruShortLedger.decisions.some(item => item.family_id === id)) assert(ruShortPositive.delete(`${language}\0${id}\0${value.lemma_id}`), `unreviewed Russian short-root member ${id}/${value.word}`);
+        if (id.startsWith('surface:ru:') && [...ruShortLedger.decisions, ...boundedLedger.russian.decisions].some(item => item.family_id === id)) assert(ruShortPositive.delete(`${language}\0${id}\0${value.lemma_id}`), `unreviewed Russian short-root member ${id}/${value.word}`);
         assert(value.lemma_id && !seen.has(value.lemma_id), `${language} duplicate/invalid member ${id}`);
         assert(typeof value.word === 'string' && value.word, `${language} missing member word ${id}`);
         assert(typeof value.search_form === 'string' && value.search_form, `${language} missing search form ${id}`);
@@ -450,7 +457,7 @@ assert(JSON.stringify(uniqueLemmasByLanguage) === JSON.stringify(report.reposito
 assert(JSON.stringify(membershipsByLanguage) === JSON.stringify(report.repository_materialization.memberships_by_language), 'report memberships by language mismatch');
 assert(membershipCount === report.repository_materialization.memberships, 'report materialized memberships mismatch');
 assert(manifest.counts.lemmas - materializedUniqueLemmas === report.repository_materialization.lemmas_without_materialized_family, 'repository unassigned lemma count mismatch');
-assert(membershipCount === 10426047 - manualLedger.rejected_memberships.length - surfaceRemoved - surfaceRemoved2 - surfaceRemoved3 - surfaceRemoved4 - tenLedger.expected_members - inflectionRemoved - endingRemoved - geneaRemoved - geneaOtherRemoved - sonusRemoved - kaRemoved - suffixRemoved - suffixRemoved6 - suffixRemoved7 - suffixRemoved8 - suffixRemoved9 - suffixRemoved10 - suffixRemoved11 - suffixRemoved12 - actusLedger.rejected_memberships.length - illasLedger.expected_removed_memberships - pronounLedger.expected_total_removed_memberships - nitidusRepair.removed_memberships + nitidusRepair.added_memberships - ruShortRepair.removed_memberships, 'unexpected repository membership count');
+assert(membershipCount === 10426047 - manualLedger.rejected_memberships.length - surfaceRemoved - surfaceRemoved2 - surfaceRemoved3 - surfaceRemoved4 - tenLedger.expected_members - inflectionRemoved - endingRemoved - geneaRemoved - geneaOtherRemoved - sonusRemoved - kaRemoved - suffixRemoved - suffixRemoved6 - suffixRemoved7 - suffixRemoved8 - suffixRemoved9 - suffixRemoved10 - suffixRemoved11 - suffixRemoved12 - actusLedger.rejected_memberships.length - illasLedger.expected_removed_memberships - pronounLedger.expected_total_removed_memberships - nitidusRepair.removed_memberships + nitidusRepair.added_memberships - ruShortRepair.removed_memberships - boundedRepair.removed_memberships, 'unexpected repository membership count');
 assert(familyCount === manifest.counts.families && familyCount === report.total_families, `family count ${familyCount}`);
 assert(materializedFamilyCount === familyCount, 'not every family was materialized');
 for (const [field, counted] of [
@@ -472,6 +479,7 @@ for (let index = 0; index < 256; index += 1) {
   const aliases = await readJson(join(root, 'aliases', `${shard}.json.gz`));
   for (const [alias, targets] of Object.entries(aliases)) {
     if (alias === 'net') assert(JSON.stringify(targets) === JSON.stringify(netLedger.retained_targets.slice().sort()), 'net reverse alias routing mismatch');
+    if (alias === 'val') assert(JSON.stringify(targets) === JSON.stringify(boundedLedger.val.retained_targets.slice().sort()) && targets.length <= 25, 'val reverse alias routing mismatch');
     assert(bucket(alias) === shard, `alias bucket mismatch ${alias}`);
     assert(Array.isArray(targets) && targets.length && new Set(targets).size === targets.length, `invalid alias targets ${alias}`);
     assert(targets.every((value, i) => i === 0 || targets[i - 1] < value), `unsorted alias targets ${alias}`);

@@ -9,17 +9,17 @@
     "aliases": 1934050,
     "lemmas": 4924980,
     "components": 9349982,
-    "memberships": 10080875,
-    "materialized_unique_lemmas": 4924295,
-    "multi_family_lemmas": 3334263,
-    "lemmas_without_materialized_family": 685,
+    "memberships": 10078319,
+    "materialized_unique_lemmas": 4924281,
+    "multi_family_lemmas": 3332240,
+    "lemmas_without_materialized_family": 699,
     "unique_lemmas_by_language": {
       "en": 1130945,
       "de": 1113447,
       "fr": 558904,
       "es": 941521,
       "it": 610087,
-      "ru": 569391
+      "ru": 569377
     },
     "memberships_by_language": {
       "en": 2619261,
@@ -27,7 +27,7 @@
       "fr": 1143061,
       "es": 1796516,
       "it": 1187709,
-      "ru": 1129290
+      "ru": 1126734
     },
     "materialized_families": 2456543
   },
@@ -64,8 +64,8 @@
     },
     "storage": "git_repository_static_files",
     "file_count_before_provenance": 2050,
-    "total_bytes_before_provenance": 721079434,
-    "tree_content_sha256": "8b2f16faaca5cf13272a8e5cbf5e33e781fbcabaa9444c840be4a49929b18e48",
+    "total_bytes_before_provenance": 720880701,
+    "tree_content_sha256": "b1b02de3b6e7b967a99c63380b8b0097214912efe402fef67a65f2d824eb4a83",
     "repository_repairs": [
       {
         "repair": "exclude_known_rejected_corpus_noise_from_runtime",
@@ -459,6 +459,32 @@
         ],
         "decision_ledger_sha256": "69b282895257dfd3f62addd0580a8e9c299d3f172f00f7fb43f2e54233eb76a3",
         "memberships_removed": 0
+      },
+      {
+        "repair": "bounded_val_routing_and_russian_short_batch_20260930",
+        "source_run_id": 35647932153,
+        "removed_memberships": 2556,
+        "removed_reverse_alias_targets": 12,
+        "retained_val_targets": [
+          "ety:082a0688243f",
+          "ety:74e7854bc739",
+          "ety:88d0d6fc2226",
+          "ety:90cc3df5865e",
+          "ety:961ca0038bb5",
+          "ety:acab8c629de8",
+          "ety:d8d34e574c18",
+          "ety:ddf6d676859e",
+          "ety:e12cdb45881f",
+          "ety:e8bac130ca91",
+          "ety:f00bcab16c95",
+          "ety:f6fe7a68b637",
+          "ety:f7c173d84c24",
+          "surface:it:val",
+          "surface:ru:val"
+        ],
+        "decision_ledger_sha256": "926891085b1b2c31da386a18e1bc75d5c7774eff736d1b13b5f12a87f08aa1ef",
+        "deleted_families": [],
+        "not_individual_lexical_annotation": true
       }
     ]
   }
