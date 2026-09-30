@@ -19200,21 +19200,155 @@
       },
       "relation": "borrowed_ancestry",
       "analysis": "lexical information headword with recorded Latin ancestry"
+    },
+    {
+      "language": "de",
+      "source_family_id": "surface:de:informatio",
+      "member": {
+        "lemma_id": "lemma:9b4bcaac1cde4e637718",
+        "word": "informationsbildschirm",
+        "normalized": "informationsbildschirm",
+        "search_form": "informationsbildschirm",
+        "rank": 561044,
+        "frequency_score": 0.11242766823252369,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.006437
+            ],
+            "category_ipm": 0.006437,
+            "category_score": 0.11242766823252369
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.006437
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "informatio",
+            "canonical_candidate": "informatio",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "informationsbildschirm",
+                  "informatio",
+                  "informatio"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      },
+      "relation": "compound_or_compound_adjective",
+      "analysis": "Information + s + bildschirm"
+    },
+    {
+      "language": "de",
+      "source_family_id": "surface:de:informatio",
+      "member": {
+        "lemma_id": "lemma:c2d39436f19ccdbbcad7",
+        "word": "informationsflut",
+        "normalized": "informationsflut",
+        "search_form": "informationsflut",
+        "rank": 38417,
+        "frequency_score": 7.032216999245975,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.006437
+            ],
+            "category_ipm": 0.006437,
+            "category_score": 0.11242766823252369
+          },
+          "normative": {
+            "ipm_values": [
+              0.621627
+            ],
+            "category_ipm": 0.621627,
+            "category_score": 8.470661049341313
+          },
+          "web": {
+            "ipm_values": [
+              1.042476
+            ],
+            "category_ipm": 1.042476,
+            "category_score": 12.513562280164084
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "category": "normative",
+            "ipm": 0.621627
+          },
+          {
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.006437
+          },
+          {
+            "id": "web/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 1.042476
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "informatio",
+            "canonical_candidate": "informatio",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "informationsflut",
+                  "informatio",
+                  "informatio"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      },
+      "relation": "compound_or_compound_adjective",
+      "analysis": "Information + s + flut"
     }
   ],
   "expected_removed_memberships": 7014,
-  "expected_added_memberships": 1,
+  "expected_added_memberships": 3,
   "review_method": "Complete arrays examined. Explicit retained lists and morphological analyses; excluded suffix peers are a bounded structural decision, not individual dictionary reviews. Original corpus records and every unrelated membership remain. Unverified spellings and named publication are recorded separately, not declared nonexistent words.",
   "size_exception": {
     "language": "de",
     "threshold": 20,
-    "retained": 152,
+    "retained": 154,
     "reason": "Productive transparent Information compounds; no arbitrary truncation to twenty."
   },
   "limitations": [
     "German compound analyses establish the Information component, not dictionary certification of every rare formation.",
     "English informations retained for its legal count sense; original token context is unresolved.",
-    "No expansion to absent derivatives. Russian headword is the only source-supported addition; the broader Russian surface family is untouched.",
+    "No expansion to absent derivatives. Russian headword and two genuine German compounds previously indexed under informatio are the three source-supported additions; their other source families are untouched.",
     "Other azion pairs and informati surface routes are separate review work."
   ],
   "sources": [
