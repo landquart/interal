@@ -51,7 +51,7 @@ if(mode==='plan'){
  for(const id of originalTargets){
   const f=(await get(path('families',id)))[id],members={},ids=new Set();
   for(const lang of languages){
-   const ms=(await get(path('members/'+lang,id)))[id]||[];
+   const ms=(await read(path('members/'+lang,id)))[id]||[];
    if(!ms.length)continue;
    const evidence={};
    for(const m of ms){ids.add(m.lemma_id);for(const c of m.components)for(const e of c.evidence){const k=e.type+':'+e.source;evidence[k]=(evidence[k]||0)+1}}
@@ -80,7 +80,7 @@ if(mode==='plan'){
  assert.equal(ledger.source_run_id,sourceRun);assert.equal(ledger.base_commit,base);assert.deepEqual(ledger.val.expected_original_targets,originalTargets);assert.deepEqual(ledger.val.retained_targets,originalTargets.filter(id=>!removedReasons[id]));assert.equal(ledger.russian.expected_total_removed,2556);
  for(const d of ledger.val.all_target_diagnostics){
   const f=(await get(path('families',d.family_id)))[d.family_id];assert.equal(digest(f),d.family_sha256);
-  for(const lang of languages){const ms=(await get(path('members/'+lang,d.family_id)))[d.family_id]||[],expected=d.members[lang];assert.equal(ms.length,expected?.count||0);if(expected)assert.equal(digest(ms),expected.ordered_member_sha256)}
+  for(const lang of languages){const ms=(await read(path('members/'+lang,d.family_id)))[d.family_id]||[],expected=d.members[lang];assert.equal(ms.length,expected?.count||0);if(expected)assert.equal(digest(ms),expected.ordered_member_sha256)}
   if(d.action==='remove_reverse_alias_only'){assert(removedReasons[d.family_id]&&d.alternate_alias&&f.aliases.length>1);assert((await get(path('aliases',d.alternate_alias)))[d.alternate_alias]?.includes(d.family_id))}
  }
  for(const d of ledger.russian.decisions){
