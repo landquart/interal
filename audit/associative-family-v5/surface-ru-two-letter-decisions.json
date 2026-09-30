@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "source_run_id": 35647932153,
+  "review_method": "Complete ordered member lists and evidence classes locked; family-level substring candidate rejection with explicit lexical headwords retained.",
+  "decisions": [
+    {
+      "family_id": "surface:ru:no",
+      "language": "ru",
+      "expected_members": 1892,
+      "ordered_id_word_sha256": "57733451a537a80f2c499836aaabcd197267dfcd48aa70eaabcdd2645afc8b77",
+      "evidence": {
+        "compound_morphology:candidate_index": 1892,
+        "morphological_parse:candidate_index": 2
+      },
+      "contrasting_examples": [
+        "абсалютно",
+        "абстрактно",
+        "адекватно",
+        "административно",
+        "адно",
+        "ноцебо",
+        "ноцент",
+        "ночьс",
+        "нодс",
+        "ноэс",
+        "зрительно",
+        "звестно",
+        "звучно",
+        "зычно",
+        "ззочно"
+      ],
+      "reason": "Conjunction но versus adverbial -но",
+      "retained": [
+        {
+          "lemma_id": "lemma:4a3337d580794b9094aa",
+          "word": "но"
+        }
+      ]
+    },
+    {
+      "family_id": "surface:ru:ja",
+      "language": "ru",
+      "expected_members": 1707,
+      "ordered_id_word_sha256": "c525582d404d51f21a38f916969cfb8641bc155dc8b40c1b846a0dfd1929d364",
+      "evidence": {
+        "compound_morphology:candidate_index": 1710,
+        "morphological_parse:candidate_index": 5
+      },
+      "contrasting_examples": [
+        "ъбхьэяъ",
+        "ъбкъчряъ",
+        "ъбкъеьэяъ",
+        "ъбкъеряъ",
+        "ъякъ",
+        "мюпшбюияъ",
+        "мюпшбюрэяъ",
+        "мюпсьючряъ",
+        "мюсвхкяъ",
+        "мюсвхрэяъ",
+        "жирафья",
+        "злиффя",
+        "зофья",
+        "зоя",
+        "зря"
+      ],
+      "reason": "Pronoun я versus unrelated я sequences",
+      "retained": [
+        {
+          "lemma_id": "lemma:559fddfabc6077be3f36",
+          "word": "я"
+        }
+      ]
+    },
+    {
+      "family_id": "surface:ru:ti",
+      "language": "ru",
+      "expected_members": 1181,
+      "ordered_id_word_sha256": "b84e07fc8c2832326b06e19f884307e88e761e8f9f623a2fe7b1d456fe74c73c",
+      "evidence": {
+        "compound_morphology:candidate_index": 1179,
+        "morphological_parse:candidate_index": 2
+      },
+      "contrasting_examples": [
+        "ъести",
+        "абернэйти",
+        "адалтизм",
+        "адвокатпойти",
+        "аджелотти",
+        "мирольти",
+        "митти",
+        "миттинг",
+        "моццетти",
+        "могуйти",
+        "зуглойтти",
+        "зукетти",
+        "зукотти",
+        "зувезти",
+        "звезти"
+      ],
+      "reason": "No coherent standalone Russian root across inflections and names",
+      "retained": []
+    },
+    {
+      "family_id": "surface:ru:ko",
+      "language": "ru",
+      "expected_members": 930,
+      "ordered_id_word_sha256": "edec8f809be4514d962aef63fc9b61ccacf8b595adf809a537191e85b36f8069",
+      "evidence": {
+        "compound_morphology:candidate_index": 928,
+        "morphological_parse:candidate_index": 2
+      },
+      "contrasting_examples": [
+        "абраменко",
+        "адаменко",
+        "аико",
+        "акапулько",
+        "акименко",
+        "мазуренко",
+        "медко",
+        "медведенко",
+        "мэнко",
+        "мережко",
+        "злангко",
+        "зоко",
+        "зубко",
+        "звонко",
+        "зыбко"
+      ],
+      "reason": "Preposition ко versus surname endings",
+      "retained": [
+        {
+          "lemma_id": "lemma:2db48e0c43e3b8b57d35",
+          "word": "ко"
+        }
+      ]
+    },
+    {
+      "family_id": "surface:ru:ha",
+      "language": "ru",
+      "expected_members": 896,
+      "ordered_id_word_sha256": "30c7b75eae48fdef5daaf91bba6d143b11851044a35ff77c700df20ee406540f",
+      "evidence": {
+        "compound_morphology:candidate_index": 895,
+        "morphological_parse:candidate_index": 1
+      },
+      "contrasting_examples": [
+        "ъбкемхълха",
+        "ъгшйюлха",
+        "ъижюлха",
+        "абха",
+        "аедпюлха",
+        "ксвьхлха",
+        "ктулха",
+        "лъцйнрекшлха",
+        "лчгхйкюлха",
+        "лцмнбемха",
+        "жекшлха",
+        "жшокърюлха",
+        "жсмюлха",
+        "зильха",
+        "знакомьха"
+      ],
+      "reason": "Interjection ха versus incidental strings",
+      "retained": [
+        {
+          "lemma_id": "lemma:7961970ee7dd2b26bea6",
+          "word": "ха"
+        }
+      ]
+    },
+    {
+      "family_id": "surface:ru:gs",
+      "language": "ru",
+      "expected_members": 887,
+      "ordered_id_word_sha256": "9ddd48a2c4c7ae5ed0b5506c277f678e416539ad1ed50bbf81a0287f2ad9d986",
+      "evidence": {
+        "compound_morphology:candidate_index": 896,
+        "morphological_parse:candidate_index": 5
+      },
+      "contrasting_examples": [
+        "ацапгс",
+        "ацапгсеис",
+        "ацапгсей",
+        "ацяотгс",
+        "ацмогс",
+        "юнгс",
+        "йыкоцйяоупиеягс",
+        "кабгс",
+        "камингс",
+        "каммаингс",
+        "жукангс",
+        "жукгс",
+        "жусгс",
+        "зингс",
+        "зингшпиль"
+      ],
+      "reason": "Ambiguous abbreviation ГС without shared lexical root",
+      "retained": []
+    },
+    {
+      "family_id": "surface:ru:za",
+      "language": "ru",
+      "expected_members": 650,
+      "ordered_id_word_sha256": "1c01a0a63cb7407699974578353dd6da74197c60eeac5b4c8625c2010bd8393b",
+      "evidence": {
+        "compound_morphology:candidate_index": 648,
+        "morphological_parse:candidate_index": 2
+      },
+      "contrasting_examples": [
+        "абрахамза",
+        "абзаец",
+        "аддамза",
+        "айтюнза",
+        "арльза",
+        "миззза",
+        "мяумяубинза",
+        "мьюнишионза",
+        "мюнза",
+        "мозза",
+        "зиза",
+        "зльза",
+        "ззхотэлза",
+        "ззхвзтилза",
+        "ззкончилза"
+      ],
+      "reason": "Preposition за versus unrelated suffixes",
+      "retained": [
+        {
+          "lemma_id": "lemma:2ad7fc7f6c83df962ae3",
+          "word": "за"
+        }
+      ]
+    }
+  ]
+}

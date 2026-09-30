@@ -39,13 +39,14 @@ export class FamilyIndexLoader {
     const eligibleFamilies = families.filter(family => family && !BLOCKED_RUNTIME_STATUSES.has(family.review_status));
     const groups = await Promise.all(eligibleFamilies.map(async family => ({ family, members: await this.members(family.id, language, options) })));
     const manualGroups = groups
-      .filter(({ family }) => String(family.source || '').includes('manual_override'))
-      .map(({ family, members }) => ({ family, members: members.filter(hasManualEvidence) }));
+      .filter(({ family }) => family.runtime_curated === true || String(family.source || '').includes('manual_override'))
+      .map(({ family, members }) => ({ family, members: members.filter(member => hasManualEvidence(member) && isRuntimeCorpusMember(member) && typeof member.lemma_id === 'string' && typeof member.word === 'string' && member.word) }))
+      .filter(({ members }) => members.length > 0);
     const eligibleGroups = manualGroups.length ? manualGroups : groups;
     const byLemma = new Map();
     for (const { family, members } of eligibleGroups) {
       if (!family) continue;
-      const eligibleMembers = (String(family.source || '').includes('manual_override') ? members.filter(hasManualEvidence) : members).filter(isRuntimeCorpusMember);
+      const eligibleMembers = (family.runtime_curated === true || String(family.source || '').includes('manual_override') ? members.filter(hasManualEvidence) : members).filter(isRuntimeCorpusMember);
       for (const member of eligibleMembers) {
         if (!member || typeof member.lemma_id !== 'string' || typeof member.word !== 'string' || !member.word) continue;
         const candidate = { ...member, family_id: family.id, family_canonical: family.canonical, family_aliases: Array.isArray(family.aliases) ? [...family.aliases] : [], family_verified: family.verified === true, family_indexed: true };

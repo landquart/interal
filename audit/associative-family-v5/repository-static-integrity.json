@@ -5,33 +5,35 @@
   "storage": "git_repository_static_files",
   "encoding": "gzip",
   "counts": {
-    "families": 2456547,
-    "aliases": 1934048,
+    "families": 2456543,
+    "aliases": 1934050,
     "lemmas": 4924980,
     "components": 9349982,
-    "memberships": 10098935,
-    "materialized_unique_lemmas": 4924331,
-    "lemmas_without_materialized_family": 649,
+    "memberships": 10078319,
+    "materialized_unique_lemmas": 4924281,
+    "multi_family_lemmas": 3332240,
+    "lemmas_without_materialized_family": 699,
     "unique_lemmas_by_language": {
-      "en": 1130946,
+      "en": 1130945,
       "de": 1113447,
       "fr": 558904,
-      "es": 941522,
+      "es": 941521,
       "it": 610087,
-      "ru": 569425
+      "ru": 569377
     },
     "memberships_by_language": {
-      "en": 2623031,
-      "de": 2205142,
-      "fr": 1146026,
-      "es": 1799556,
-      "it": 1187752,
-      "ru": 1137428
+      "en": 2619261,
+      "de": 2205038,
+      "fr": 1143061,
+      "es": 1796516,
+      "it": 1187709,
+      "ru": 1126734
     },
-    "materialized_families": 2456547
+    "materialized_families": 2456543
   },
   "invariants": {
     "manifest_report_counts_match": true,
+    "multi_family_lemmas_match": true,
     "every_family_has_members": true,
     "support_matches_members": true,
     "language_support_matches_members": true,
@@ -62,8 +64,8 @@
     },
     "storage": "git_repository_static_files",
     "file_count_before_provenance": 2050,
-    "total_bytes_before_provenance": 722329496,
-    "tree_content_sha256": "50cc2ea26a804a276e6dee55bc4b6644f94b1e7920dd5a2ce0bd1d510fbfc9ea",
+    "total_bytes_before_provenance": 720880701,
+    "tree_content_sha256": "b1b02de3b6e7b967a99c63380b8b0097214912efe402fef67a65f2d824eb4a83",
     "repository_repairs": [
       {
         "repair": "exclude_known_rejected_corpus_noise_from_runtime",
@@ -384,6 +386,104 @@
         "deleted_aliases": 0,
         "decision_ledger_sha256": "d89af63b906e829b2c97f2723e52b92f2944a8c4cc4c83e54a0be105f30e6099",
         "source_run_id": 35647932153,
+        "not_individual_lexical_annotation": true
+      },
+      {
+        "repair": "consolidate_and_prune_latin_nitidus",
+        "source_run_id": 35647932153,
+        "deleted_duplicate_family": "ety:03193cddd861",
+        "deleted_surface_family": "surface:es:nitid",
+        "retained_family": "ety:94c776d13c76",
+        "removed_memberships": 9924,
+        "added_memberships": 2,
+        "removed_unrelated_net_alias_targets": [
+          "ety:10929f75019c",
+          "ety:3c9ed8371259",
+          "ety:c1b6e2919722"
+        ],
+        "added_lookup_aliases": [
+          "nitidus",
+          "neto",
+          "nitido"
+        ],
+        "deleted_aliases": 0,
+        "materialized_unique_lemmas": 4924329,
+        "lemmas_without_materialized_family": 651,
+        "multi_family_lemmas": 3339803,
+        "decision_ledger_sha256": "76cd3ddf53bb7a6e4bc6c43a6b5e0ba9efd074d1162ff736776a0e9b6bdcbffa",
+        "not_individual_lexical_annotation": true
+      },
+      {
+        "repair": "prune_russian_two_letter_surface_buckets",
+        "source_run_id": 35647932153,
+        "removed_memberships": 8138,
+        "deleted_families": [
+          "surface:ru:ti",
+          "surface:ru:gs"
+        ],
+        "retained_headwords": [
+          [
+            "surface:ru:no",
+            "но"
+          ],
+          [
+            "surface:ru:ja",
+            "я"
+          ],
+          [
+            "surface:ru:ko",
+            "ко"
+          ],
+          [
+            "surface:ru:ha",
+            "ха"
+          ],
+          [
+            "surface:ru:za",
+            "за"
+          ]
+        ],
+        "deleted_aliases": 0,
+        "corrected_genea_suspicion": true,
+        "decision_ledger_sha256": "4471cd4b5f88b0e11bbb60b9635b9e1982225d31242181af43041541fa818102",
+        "not_individual_lexical_annotation": true
+      },
+      {
+        "repair": "quarantine_uncurated_net_reverse_aliases",
+        "source_run_id": 35647932153,
+        "removed_reverse_targets": 21,
+        "retained_targets": [
+          "ety:94c776d13c76",
+          "surface:de:net",
+          "surface:it:net"
+        ],
+        "decision_ledger_sha256": "69b282895257dfd3f62addd0580a8e9c299d3f172f00f7fb43f2e54233eb76a3",
+        "memberships_removed": 0
+      },
+      {
+        "repair": "bounded_val_routing_and_russian_short_batch_20260930",
+        "source_run_id": 35647932153,
+        "removed_memberships": 2556,
+        "removed_reverse_alias_targets": 12,
+        "retained_val_targets": [
+          "ety:082a0688243f",
+          "ety:74e7854bc739",
+          "ety:88d0d6fc2226",
+          "ety:90cc3df5865e",
+          "ety:961ca0038bb5",
+          "ety:acab8c629de8",
+          "ety:d8d34e574c18",
+          "ety:ddf6d676859e",
+          "ety:e12cdb45881f",
+          "ety:e8bac130ca91",
+          "ety:f00bcab16c95",
+          "ety:f6fe7a68b637",
+          "ety:f7c173d84c24",
+          "surface:it:val",
+          "surface:ru:val"
+        ],
+        "decision_ledger_sha256": "926891085b1b2c31da386a18e1bc75d5c7774eff736d1b13b5f12a87f08aa1ef",
+        "deleted_families": [],
         "not_individual_lexical_annotation": true
       }
     ]
