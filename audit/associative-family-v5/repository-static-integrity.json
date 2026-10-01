@@ -5,31 +5,31 @@
   "storage": "git_repository_static_files",
   "encoding": "gzip",
   "counts": {
-    "families": 2456542,
-    "aliases": 1934052,
+    "families": 2456540,
+    "aliases": 1934054,
     "lemmas": 4924980,
     "components": 9349982,
-    "memberships": 10065230,
-    "materialized_unique_lemmas": 4924155,
-    "multi_family_lemmas": 3334404,
-    "lemmas_without_materialized_family": 825,
+    "memberships": 10053692,
+    "materialized_unique_lemmas": 4924152,
+    "multi_family_lemmas": 3335133,
+    "lemmas_without_materialized_family": 828,
     "unique_lemmas_by_language": {
       "en": 1130858,
-      "de": 1113442,
-      "fr": 558897,
+      "de": 1113441,
+      "fr": 558895,
       "es": 941501,
       "it": 610082,
       "ru": 569375
     },
     "memberships_by_language": {
-      "en": 2618773,
-      "de": 2209074,
-      "fr": 1143833,
-      "es": 1797666,
-      "it": 1168627,
-      "ru": 1127257
+      "en": 2618957,
+      "de": 2210069,
+      "fr": 1143936,
+      "es": 1797951,
+      "it": 1155369,
+      "ru": 1127410
     },
-    "materialized_families": 2456542
+    "materialized_families": 2456540
   },
   "invariants": {
     "manifest_report_counts_match": true,
@@ -65,8 +65,8 @@
     },
     "storage": "git_repository_static_files",
     "file_count_before_provenance": 2050,
-    "total_bytes_before_provenance": 719336254,
-    "tree_content_sha256": "c60b9b75d6f547f27cd0ed8dc9949dfed4c4b46f58c49168e6c5205c5190a8bb",
+    "total_bytes_before_provenance": 718216174,
+    "tree_content_sha256": "324d33e8ca67d00f6864c1b89a4c0c8af6bb877be03e970ba9b5239ebf524a23",
     "repository_repairs": [
       {
         "repair": "exclude_known_rejected_corpus_noise_from_runtime",
@@ -560,6 +560,26 @@
         "net_family_delta": -1,
         "alias_delta": 0,
         "decision_ledger_sha256": "80532ab2bc22bcd8f35a930f904cb4ed7974fde0c5c30ec7e028021457d48a9a",
+        "full_family_certification": false
+      },
+      {
+        "repair": "materialize_reviewed_relation_associative_root_20261001",
+        "source_run_id": 35647932153,
+        "removed_memberships": 6836,
+        "added_memberships": 487,
+        "net_family_delta": -1,
+        "alias_delta": 0,
+        "decision_ledger_sha256": "ee4738605da1f06dc566132f8b8f162a9502767f9ac38ceaea241d0e8f5a6c36",
+        "full_family_certification": false
+      },
+      {
+        "repair": "materialize_reviewed_operation_associative_root_20261001",
+        "source_run_id": 35647932153,
+        "removed_memberships": 6784,
+        "added_memberships": 1595,
+        "net_family_delta": -1,
+        "alias_delta": 2,
+        "decision_ledger_sha256": "6202cfae56711bd21a7c0c1c3ebfb46a1ad7fa34feb7d0cd3d06deda0c147713",
         "full_family_certification": false
       }
     ]

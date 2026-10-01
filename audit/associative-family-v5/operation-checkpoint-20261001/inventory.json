@@ -1,0 +1,43 @@
+{
+  "retired_families": [
+    "ety:58143b06b35a",
+    "ety:8ef5f06ceb40"
+  ],
+  "artifacts": {
+    "candidates.json.gz": "f77cef67f31efd091f4abbe1ad69e237e423ea7d8a0df975e04b2794e2b9b768",
+    "original-families.json.gz": "0542694c740f04de2d3ec5da950aa83e6ebd0cb56f9672804bd8cc3026f61b9d"
+  },
+  "counts": {
+    "en": {
+      "accepted": 109,
+      "excluded": 135,
+      "uncertain": 528
+    },
+    "fr": {
+      "accepted": 113,
+      "excluded": 54,
+      "uncertain": 306
+    },
+    "es": {
+      "accepted": 158,
+      "excluded": 30,
+      "uncertain": 491
+    },
+    "it": {
+      "accepted": 153,
+      "excluded": 3448,
+      "uncertain": 367
+    },
+    "ru": {
+      "accepted": 138,
+      "excluded": 192,
+      "uncertain": 208
+    },
+    "de": {
+      "accepted": 924,
+      "excluded": 22,
+      "uncertain": 211
+    }
+  },
+  "runtime_applied": false
+}
