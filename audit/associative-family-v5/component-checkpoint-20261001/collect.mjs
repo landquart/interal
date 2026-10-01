@@ -1,0 +1,35 @@
+import {readFile,readdir,writeFile}from'node:fs/promises';import{gunzipSync}from'node:zlib';
+const root='/workspace/scratch/510f41b5cadf/interal/associativvordes/family-index-v5',out='/workspace/scratch/dab7b6b0d8c3/review';
+const read=async p=>JSON.parse(gunzipSync(await readFile(p)));
+const groups={nat:new Map(),loc:new Map(),inter:new Map()},metadata={};
+const nat=/^la:(?:natu(?:s|ra|ralis)|natio(?:n)?|nativus|natalis|nasci|nascor|innatus|cognatus|agnatus|connatus)$/;
+const loc=/^la:(?:locus|locare|locatio|localis|locomotivus|collocare|collocatio)$/;
+for(const f of(await readdir(root+'/families')).sort()){
+const shard=await read(root+'/families/'+f);
+for(const[id,m]of Object.entries(shard)){
+let group=id==='family:inter'?'inter':id.startsWith('surface:')&&id.endsWith(':nat')?'nat':id.startsWith('surface:')&&id.endsWith(':loc')?'loc':m.etymon_keys?.some(k=>nat.test(k))?'nat':m.etymon_keys?.some(k=>loc.test(k))?'loc':null;
+if(group){groups[group].set(id,m);metadata[id]=m;}
+}}
+await writeFile(out+'/branch-metadata.json',JSON.stringify(metadata,null,2));
+console.log(JSON.stringify(Object.fromEntries(Object.entries(groups).map(([g,ms])=>[g,[...ms.keys()]]))));
+const records={};
+for(const language of['en','de','fr','es','it','ru']){
+const byGroup={nat:new Map(),loc:new Map(),inter:new Map()};
+for(const f of(await readdir(root+'/members/'+language)).sort()){
+const shard=await read(root+'/members/'+language+'/'+f);
+for(const[group,ids]of Object.entries(groups))for(const id of ids.keys())if(shard[id])for(const m of shard[id]){
+const old=byGroup[group].get(m.lemma_id);if(old)old.family_ids.push(id);else byGroup[group].set(m.lemma_id,{...m,family_ids:[id]});
+}
+// Retrieval candidates only. No substring rule approves membership.
+for(const[id,ms]of Object.entries(shard))for(const m of ms){
+for(const group of ['nat','loc','inter']){
+ const patterns=language==='ru'?{nat:/нат|наци|наив|когнат|агнат/,loc:/лок|локац/,inter:/интер/}:{nat:/nat|naci|nazi|nasc|naiv|nasc|nait|naît/,loc:/loc|lok|luog|lugar/,inter:/inter|entre|inters/};
+ if(patterns[group].test(m.word.toLowerCase())&&!byGroup[group].has(m.lemma_id))byGroup[group].set(m.lemma_id,{...m,family_ids:[id],retrieval_only:true});
+}
+}}
+for(const[group,ms]of Object.entries(byGroup)){
+const values=[...ms.values()].sort((a,b)=>a.word.localeCompare(b.word));
+await writeFile(`${out}/${group}-${language}.json`,JSON.stringify(values));
+await writeFile(`${out}/${group}-${language}.txt`,values.map(m=>m.word+'\t'+m.frequency_score+'\t'+(m.retrieval_only?'retrieval':'branch')).join('\n'));
+console.log(group,language,values.length);
+}}
