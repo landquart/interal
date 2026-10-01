@@ -4,18 +4,20 @@ import {readFile} from 'node:fs/promises';
 import {gunzipSync} from 'node:zlib';
 import {createHash} from 'node:crypto';
 import {FamilyIndexLoader,familyBucket} from '../associativvordes/js/family-index-loader.js';
+import {matchesReviewedAssociativeForm} from '../associativvordes/js/associative-reflex-forms.js';
 import {buildSearchForm} from '../associativvordes/js/search-normalizer.js';
 import {createCandidateIndexLoader} from '../associativvordes/js/candidate-index-loader.js';
 const root='associativvordes/family-index-v5',checkpoint='audit/associative-family-v5/component-checkpoint-20261001';
 const read=async p=>JSON.parse((p.endsWith('.gz')?gunzipSync(await readFile(p)):await readFile(p)).toString());
 const loader=()=>new FamilyIndexLoader({baseUrl:root,fetchJson:read});
 test('all frozen source-supported decisions reach runtime without a twenty-word cap or etymology-only substitutions',async()=>{
+ const locNext=await read('audit/associative-family-v5/loc-reflex-materialization-20261001.json');
  const decisions=await read('audit/associative-family-v5/component-continuation-decisions-20261001.json'),sources=await read(checkpoint+'/candidate-records.json.gz'),l=loader();
  for(const key of ['nat','loc','inter'])for(const language of ['en','de','fr','es','it','ru']){
-  const expected=decisions.accepted[key][language],actual=await l.candidateEntries(key,language);
+  const expected=[...decisions.accepted[key][language],...(key==='loc'?(locNext.additions[language]||[]):[])],actual=await l.candidateEntries(key,language);
   assert.deepEqual(actual.map(m=>[m.lemma_id,m.word]),expected.map(m=>[m.lemma_id,m.word]),`${key}/${language}`);
   const originals=new Map(sources[key][language].map(m=>[m.lemma_id,m]));
-  for(const value of actual){assert(buildSearchForm(value.word).includes(key));const source=originals.get(value.lemma_id);
+  for(const value of actual){assert(matchesReviewedAssociativeForm(value,{canonical:key,...(key==='loc'?{surface_forms:locNext.surface_forms}:{})},language));const source=originals.get(value.lemma_id);
    for(const field of ['lemma_id','word','normalized','search_form','rank','frequency_score','sources','category_breakdown','corpus_quality'])assert.deepEqual(value[field],source[field],`source evidence changed ${value.word}/${field}`);
   }
  }
@@ -28,7 +30,8 @@ test('all frozen source-supported decisions reach runtime without a twenty-word 
  assert(!loc.some(m=>['lieutenant','locution','locust'].includes(m.word)));
  assert(!(await l.candidateEntries('loc','fr')).some(m=>['lieu','lieutenant'].includes(m.word)));
  assert(!inter.some(m=>['interment','interminable','midwinter','teleprinter','splinter'].includes(m.word)));
- assert.deepEqual(await l.candidateEntries('loc','ru'),[],'an empty reviewed language must not fall back to incidental legacy routes');
+ assert((await l.candidateEntries('loc','ru')).some(m=>m.word==='локальный'));
+ assert(!(await l.candidateEntries('loc','ru')).some(m=>['блок','локоть','молоко','яблоко'].includes(m.word)));
  const both=nat.find(m=>m.word==='international');assert(both&&inter.some(m=>m.lemma_id===both.lemma_id),'independent component memberships remain');
 });
 test('checkpoint artifacts and unrelated contents of changed shards are preserved',async()=>{
@@ -36,7 +39,8 @@ test('checkpoint artifacts and unrelated contents of changed shards are preserve
  for(const [file,sha]of Object.entries(decisions.artifacts))assert.equal(createHash('sha256').update(await readFile(checkpoint+'/'+file)).digest('hex'),sha);
  const ledger=await read('audit/associative-family-v5/exact-components-20261001.json');
  const reflex=await read('audit/associative-family-v5/reflex-families-20261001.json');
- for(const p of ledger.preservation){const shard=await read(`${root}/${p.part}/${p.bucket}.json.gz`);if(p.part==='aliases')for(const [alias,before]of Object.entries(reflex.alias_before))if(familyBucket(alias)===p.bucket){if(before.length)shard[alias]=before;else delete shard[alias];}const other=Object.fromEntries(Object.entries(shard).filter(([id])=>p.part==='aliases'?!['nat','loc','inter'].includes(id):!['family:nat','family:loc','family:inter'].includes(id)));assert.equal(createHash('sha256').update(JSON.stringify(other)).digest('hex'),p.unrelated_sha256);}
+ const locNext=await read('audit/associative-family-v5/loc-reflex-materialization-20261001.json');
+ for(const p of ledger.preservation){const shard=await read(`${root}/${p.part}/${p.bucket}.json.gz`);if(p.part==='aliases')for(const [alias,before]of Object.entries(locNext.alias_before))if(familyBucket(alias)===p.bucket){if(before.length)shard[alias]=before;else delete shard[alias];}if(p.part==='aliases')for(const [alias,before]of Object.entries(reflex.alias_before))if(familyBucket(alias)===p.bucket){if(before.length)shard[alias]=before;else delete shard[alias];}const other=Object.fromEntries(Object.entries(shard).filter(([id])=>p.part==='aliases'?!['nat','loc','inter'].includes(id):!['family:nat','family:loc','family:inter'].includes(id)));assert.equal(createHash('sha256').update(JSON.stringify(other)).digest('hex'),p.unrelated_sha256);}
 });
 test('exact runtime guard rejects a stale manually linked etymological allomorph',async()=>{
  for(const [key,word,valid]of [['nat','naive','natural'],['loc','lieutenant','local'],['loc','lieu','local']]){

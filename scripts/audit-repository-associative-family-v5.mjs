@@ -337,6 +337,14 @@ const exactComponentLedger = JSON.parse(exactComponentBytes);
 const exactComponentRepair = provenance.repository_repairs.find(r => r.repair === exactComponentLedger.repair);
 assert(exactComponentRepair?.decision_ledger_sha256 === createHash('sha256').update(exactComponentBytes).digest('hex'), 'exact component provenance mismatch');
 assert(exactComponentRepair.removed_memberships === exactComponentLedger.expected_removed_memberships && exactComponentRepair.added_memberships === exactComponentLedger.expected_added_memberships && exactComponentRepair.added_families === 2, 'exact component deltas mismatch');
+const locBytes = await readFile('audit/associative-family-v5/loc-reflex-materialization-20261001.json'), locLedger = JSON.parse(locBytes);
+const locRepair = provenance.repository_repairs.find(r=>r.repair===locLedger.repair);
+assert(locRepair?.decision_ledger_sha256 === createHash('sha256').update(locBytes).digest('hex') && locRepair.added_memberships===locLedger.expected_added_memberships && locRepair.removed_memberships===0, 'loc reflex provenance mismatch');
+assert(createHash('sha256').update(await readFile(locLedger.archive_path)).digest('hex')===locLedger.archive_sha256, 'loc original archive changed');
+const locOriginal = await readJson(locLedger.archive_path);
+assert(createHash('sha256').update(await readFile('audit/associative-family-v5/loc-reflex-decisions-20261001.json')).digest('hex')===locLedger.decision_sha256, 'loc decisions changed');
+for(const p of locLedger.preservation){const shard=await readJson(join(root,p.part,p.bucket+'.json.gz'));const other=Object.fromEntries(Object.entries(shard).filter(([id])=>p.part==='aliases'?!locLedger.aliases.includes(id):id!=='family:loc'));assert(createHash('sha256').update(JSON.stringify(other)).digest('hex')===p.unrelated_sha256, 'loc unrelated shard changed');}
+const locAdditionKeys = new Set(Object.entries(locLedger.additions).flatMap(([l,ms])=>ms.map(m=>`${l}\0family:loc\0${m.lemma_id}`)));
 const exactComponentPositive = new Map();
 const continuationBytes = await readFile('audit/associative-family-v5/component-continuation-decisions-20261001.json');
 const continuation = JSON.parse(continuationBytes);
@@ -358,8 +366,11 @@ for (const [key, byLanguage] of Object.entries(continuation.accepted)) for (cons
   for (const d of decisions) assert(d.status === (ids.has(d.lemma_id) ? 'accepted' : !buildSearchForm(d.word).includes(key) ? 'excluded_absent_exact_fragment' : 'pending_etymology_or_token_review'), `invalid candidate disposition ${d.word}`);
   for (const member of members) { assert(buildSearchForm(member.word).includes(key), `absent full component ${member.word}`); exactComponentPositive.set(`${language}\0family:${key}\0${member.lemma_id}`, member.word); }
 }
+assert(createHash('sha256').update(candidateBytes).digest('hex')===locLedger.source_sha256, 'loc source checkpoint mismatch');
+for(const [language,ms]of Object.entries(locLedger.additions))for(const m of ms)exactComponentPositive.set(`${language}\0family:loc\0${m.lemma_id}`,m.word);
 for (const item of exactComponentLedger.preservation) {
   const shard = await readJson(join(root, item.part, item.bucket + '.json.gz'));
+  if (item.part === 'aliases') for (const [alias,before] of Object.entries(locLedger.alias_before)) if (bucket(alias) === item.bucket) { if (before.length) shard[alias] = before; else delete shard[alias]; }
   if (item.part === 'aliases') for (const [alias,before] of Object.entries(reflexLedger.alias_before)) if (bucket(alias) === item.bucket) { if (before.length) shard[alias] = before; else delete shard[alias]; }
   const unrelated = Object.fromEntries(Object.entries(shard).filter(([id]) => item.part === 'aliases' ? !['nat','loc','inter'].includes(id) : !['family:nat','family:loc','family:inter'].includes(id)));
   assert(createHash('sha256').update(JSON.stringify(unrelated)).digest('hex') === item.unrelated_sha256, `unrelated component shard changed ${item.part}/${item.bucket}`);
@@ -440,8 +451,8 @@ for (let index = 0; index < 256; index += 1) {
     if (['family:nat','family:loc','family:inter'].includes(id)) {
       const key = id.slice(7), accepted = continuation.accepted[key];
       assert(family.exact_component === true && family.runtime_curated === true && !family.verified && family.review_status === 'needs_review', `exact component metadata mismatch ${id}`);
-      assert(JSON.stringify(family.aliases) === JSON.stringify([key]), `exact component aliases mismatch ${id}`);
-      for (const language of languages) assert(family.language_support[language] === accepted[language].length, `exact component support mismatch ${id}/${language}`);
+      assert(JSON.stringify(family.aliases) === JSON.stringify(key==='loc'?locLedger.aliases:[key]), `exact component aliases mismatch ${id}`);
+      for (const language of languages) assert(family.language_support[language] === accepted[language].length + (key==='loc'?(locLedger.additions[language]?.length||0):0), `exact component support mismatch ${id}/${language}`);
     }
     assert(id !== 'family:libert', 'removed family:libert is present');
     assert(!deletedSurfaceFamilies.has(id), `reviewed surface family still present ${id}`);
@@ -505,7 +516,13 @@ for (let index = 0; index < 256; index += 1) {
         if (['family:nat','family:loc','family:inter'].includes(id)) {
           const key = `${language}\0${id}\0${value.lemma_id}`;
           assert(exactComponentPositive.get(key) === value.word && exactComponentPositive.delete(key), `unreviewed exact component member ${id}/${language}/${value.word}`);
-          assert(value.components.every(c => c.canonical_candidate === id.slice(7) && c.evidence.every(e => e.type === 'manual_override' && e.exact_fragment === true && e.relation_type)), 'missing reviewed exact component evidence');
+          if(locAdditionKeys.has(key)){
+            assert(matchesReviewedAssociativeForm(value,{canonical:'loc',surface_forms:locLedger.surface_forms},language), 'loc reflex missing');
+            assert(value.components.every(c=>c.canonical_candidate==='loc'&&c.evidence.every(e=>e.type==='manual_override'&&e.language_reflex===true&&e.analysis&&e.relation_type)), 'loc review evidence missing');
+          }else{
+            assert(value.components.every(c => c.canonical_candidate === id.slice(7) && c.evidence.every(e => e.type === 'manual_override' && e.exact_fragment === true && e.relation_type)), 'missing reviewed exact component evidence');
+            if(id==='family:loc')assert(JSON.stringify(value)===JSON.stringify(locOriginal.members[language].find(m=>m.lemma_id===value.lemma_id)), 'original loc member changed');
+          }
         }
         if (id === nitidusLedger.canonical_family_id) assert(nitidusPositive.delete(`${language}\0${value.lemma_id}`), `unreviewed nitidus member ${language}/${value.word}`);
         if (id.startsWith('surface:ru:') && [...ruShortLedger.decisions, ...boundedLedger.russian.decisions].some(item => item.family_id === id)) assert(ruShortPositive.delete(`${language}\0${id}\0${value.lemma_id}`), `unreviewed Russian short-root member ${id}/${value.word}`);
@@ -578,7 +595,7 @@ assert(JSON.stringify(uniqueLemmasByLanguage) === JSON.stringify(report.reposito
 assert(JSON.stringify(membershipsByLanguage) === JSON.stringify(report.repository_materialization.memberships_by_language), 'report memberships by language mismatch');
 assert(membershipCount === report.repository_materialization.memberships, 'report materialized memberships mismatch');
 assert(manifest.counts.lemmas - materializedUniqueLemmas === report.repository_materialization.lemmas_without_materialized_family, 'repository unassigned lemma count mismatch');
-assert(membershipCount === 10426047 - manualLedger.rejected_memberships.length - surfaceRemoved - surfaceRemoved2 - surfaceRemoved3 - surfaceRemoved4 - tenLedger.expected_members - inflectionRemoved - endingRemoved - geneaRemoved - geneaOtherRemoved - sonusRemoved - kaRemoved - suffixRemoved - suffixRemoved6 - suffixRemoved7 - suffixRemoved8 - suffixRemoved9 - suffixRemoved10 - suffixRemoved11 - suffixRemoved12 - actusLedger.rejected_memberships.length - illasLedger.expected_removed_memberships - pronounLedger.expected_total_removed_memberships - nitidusRepair.removed_memberships + nitidusRepair.added_memberships - ruShortRepair.removed_memberships - boundedRepair.removed_memberships - informationRepair.removed_memberships + informationRepair.added_memberships - componentRepair.removed_memberships - exactComponentRepair.removed_memberships + exactComponentRepair.added_memberships + continuationRepair.added_memberships - reflexRepair.removed_memberships + reflexRepair.added_memberships, 'unexpected repository membership count');
+assert(membershipCount === 10426047 - manualLedger.rejected_memberships.length - surfaceRemoved - surfaceRemoved2 - surfaceRemoved3 - surfaceRemoved4 - tenLedger.expected_members - inflectionRemoved - endingRemoved - geneaRemoved - geneaOtherRemoved - sonusRemoved - kaRemoved - suffixRemoved - suffixRemoved6 - suffixRemoved7 - suffixRemoved8 - suffixRemoved9 - suffixRemoved10 - suffixRemoved11 - suffixRemoved12 - actusLedger.rejected_memberships.length - illasLedger.expected_removed_memberships - pronounLedger.expected_total_removed_memberships - nitidusRepair.removed_memberships + nitidusRepair.added_memberships - ruShortRepair.removed_memberships - boundedRepair.removed_memberships - informationRepair.removed_memberships + informationRepair.added_memberships - componentRepair.removed_memberships - exactComponentRepair.removed_memberships + exactComponentRepair.added_memberships + continuationRepair.added_memberships - reflexRepair.removed_memberships + reflexRepair.added_memberships + locRepair.added_memberships, 'unexpected repository membership count');
 assert(familyCount === manifest.counts.families && familyCount === report.total_families, `family count ${familyCount}`);
 assert(materializedFamilyCount === familyCount, 'not every family was materialized');
 for (const [field, counted] of [

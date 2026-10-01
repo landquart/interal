@@ -189,19 +189,26 @@ function isProtoLanguage(code) {
   return c.endsWith('-pro') || c === 'ine-pro' || c.includes('proto');
 }
 
-function etymonKeys(language, term) {
+export function etymonKeys(language, term) {
   const lang = String(language || '').toLowerCase();
   const normalized = normalizeEtymonTerm(term);
   if (!lang || !normalized || normalized.length < 3) return [];
-  const keys = new Set([`${lang}:${normalized}`]);
-  if (lang === 'la' || lang === 'la-lat' || lang === 'la-vul') {
-    for (const ending of ['ibus','arum','orum','ium','ae','am','em','is','os','as','um','us','i','o','a','e']) {
-      if (!normalized.endsWith(ending)) continue;
-      const stem = normalized.slice(0, -ending.length);
-      if (stem.length >= 4) keys.add(`la:${stem}`);
-    }
+  // An etymon key identifies the supplied lexeme. Removing Latin endings can
+  // collapse unrelated Actium and actio into acti and duplicate observatio.
+  return [`${lang}:${normalized}`];
+}
+
+export function latinStemProposals(language, term) {
+  const lang = String(language || '').toLowerCase();
+  const normalized = normalizeEtymonTerm(term);
+  if (!['la','la-lat','la-vul'].includes(lang) || !normalized) return [];
+  const proposals = new Set();
+  for (const ending of ['ibus','arum','orum','ium','ae','am','em','is','os','as','um','us','i','o','a','e']) {
+    if (!normalized.endsWith(ending)) continue;
+    const stem = normalized.slice(0, -ending.length);
+    if (stem.length >= 4) proposals.add(`la:${stem}`);
   }
-  return [...keys];
+  return [...proposals];
 }
 
 export function etymologyPairs(entry) {
@@ -262,6 +269,12 @@ export async function scanEtymologies(gzipPath, wordRoots, languages) {
       // Preserve every review-required relation independently of automatic
       // graph eligibility, normalization and etymon-key deduplication.
       if (relation.reviewRequired) reviewRelations.push({ language, word: entry.word, reason: 'relation_policy_requires_review', ...relation });
+      for (const proposedKey of latinStemProposals(sourceLang, term)) reviewRelations.push({
+        language, word: entry.word, ...relation,
+        reason: 'latin_ending_stem_proposal_requires_review',
+        proposed_etymon_key: proposedKey, source_etymon_keys: etymonKeys(sourceLang,term),
+        mergeAllowed: false, reviewRequired: true
+      });
       for (const etyKey of etymonKeys(sourceLang, term)) {
         if (seen.has(etyKey)) continue;
         seen.add(etyKey);

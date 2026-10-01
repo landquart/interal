@@ -1,0 +1,84 @@
+{
+  "source_run_id": 35647932153,
+  "source_tree_content_sha256": "19aca278073c6f4d11ef57990958e2f982ece787b13ff943577f688f22ade164",
+  "retrieval_forms": {
+    "relat": [
+      "relat",
+      "relaz",
+      "релат",
+      "релят",
+      "реляц"
+    ],
+    "oper": [
+      "oper",
+      "опер"
+    ],
+    "mut": [
+      "mut",
+      "мут"
+    ],
+    "creat": [
+      "creat",
+      "creaz",
+      "crea",
+      "kreat",
+      "krea",
+      "креат",
+      "креац",
+      "креа"
+    ]
+  },
+  "method": "All six-language materialized member shards scanned; every matching original record and independent source-family route retained. Broad retrieval is not linguistic acceptance. Candidate completeness is relative to these explicit retrieval forms and available corpus.",
+  "counts": {
+    "en": {
+      "relat": 344,
+      "oper": 772,
+      "mut": 1002,
+      "creat": 700
+    },
+    "de": {
+      "relat": 111,
+      "oper": 1157,
+      "mut": 2281,
+      "creat": 328
+    },
+    "fr": {
+      "relat": 77,
+      "oper": 473,
+      "mut": 378,
+      "creat": 267
+    },
+    "es": {
+      "relat": 111,
+      "oper": 679,
+      "mut": 591,
+      "creat": 462
+    },
+    "it": {
+      "relat": 93,
+      "oper": 618,
+      "mut": 524,
+      "creat": 335
+    },
+    "ru": {
+      "relat": 64,
+      "oper": 538,
+      "mut": 403,
+      "creat": 68
+    }
+  },
+  "artifacts": {
+    "en-candidates.json.gz": "fe268e5640be5cd1005c083c2238204db1944c16d5539a2636211b843fdfe408",
+    "de-candidates.json.gz": "6c2e5b967c1c8efaa2100062aa026f03b3839788bce0cbd574823c611c679ad1",
+    "fr-candidates.json.gz": "cd0eb223191631ddbe99c0dc484410a070b6114c3f61c436b5f73f7d54eeeb3f",
+    "es-candidates.json.gz": "2231f90e49606deee3f8317cac8ac33a95a5e0f25444b0bf0a704260db026ca5",
+    "it-candidates.json.gz": "38d84521628bc9151d1146e0d0bf8160b91d9eeb753841e932d506ee1c511983",
+    "ru-candidates.json.gz": "0ea968eed3eaf7100215410285884f6809d9bc7e2b0c96631f10a182205aca0d"
+  },
+  "review_status": "unadjudicated_source_candidates",
+  "limitations": [
+    "No inherited or reflex variant outside the declared retrieval frame is claimed covered.",
+    "No guessed frequency or synthetic corpus lemma is added.",
+    "creat is a retrieval group label; final associative canonical choice must cover the reviewed creation/create/crear/creare national forms."
+  ]
+}

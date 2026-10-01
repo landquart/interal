@@ -13,8 +13,8 @@
   },
   "storage": "git_repository_static_files",
   "file_count_before_provenance": 2050,
-  "total_bytes_before_provenance": 719926626,
-  "tree_content_sha256": "9228a5cf7f9973c99459b774671397b774075175501304bc09f27d79f37b0976",
+  "total_bytes_before_provenance": 719957530,
+  "tree_content_sha256": "19aca278073c6f4d11ef57990958e2f982ece787b13ff943577f688f22ade164",
   "repository_repairs": [
     {
       "repair": "exclude_known_rejected_corpus_noise_from_runtime",
@@ -489,6 +489,15 @@
       "net_family_delta": -1,
       "alias_delta": 1,
       "decision_ledger_sha256": "6ddfbe3f66b82e4d738ba89aeef505a934cee3bd9daf7fc18f64a650e2b3cf8a",
+      "full_family_certification": false
+    },
+    {
+      "repair": "add_reviewed_german_russian_loc_reflex_members_20261001",
+      "source_run_id": 35647932153,
+      "added_memberships": 505,
+      "removed_memberships": 0,
+      "alias_delta": 0,
+      "decision_ledger_sha256": "37e51a81e4b9836b7e6df51bb538d0039122851417da7d7ea8559f72019dc235",
       "full_family_certification": false
     }
   ]
