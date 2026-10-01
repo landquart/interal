@@ -32,7 +32,7 @@
   "seed_absorption": "exact_node_claim_only",
   "canonical_policy": "quality_score_v1",
   "associative_membership": {
-    "definition": "Recognizable historical-derivational lexical or prepositional element across modern branches, including justified compounds and derivatives.",
+    "definition": "The entire requested lexical or prepositional element must occur in the word under existing search normalization, and etymology must support that component. Historical relationship alone does not substitute a different spelling.",
     "component_membership": "review_explicitly",
     "whole_lemma_union_from_component": false,
     "positive_controls": {
@@ -52,6 +52,24 @@
         "internet"
       ]
     },
-    "substring_matching": "insufficient"
+    "substring_matching": "necessary_but_insufficient",
+    "exact_fragment_required": true,
+    "negative_controls": {
+      "nat": [
+        "naive",
+        "naïve",
+        "NATO"
+      ],
+      "loc": [
+        "lieutenant",
+        "locution"
+      ],
+      "inter": [
+        "interment",
+        "teleprinter",
+        "midwinter"
+      ]
+    },
+    "family_size_cap": null
   }
 }

@@ -12,8 +12,9 @@ const normalizeAlias = value => buildSearchForm(value).replace(/[^a-z0-9]/g, '')
 export const MAX_FAMILY_ALIAS_FANOUT = 25;
 const BLOCKED_RUNTIME_STATUSES = new Set(['blocked_from_runtime', 'rejected', 'split_required']);
 const hasManualEvidence = member => member?.components?.some(component => component.evidence?.some(evidence => evidence.type === 'manual_override'));
-const hasReviewedMembership = (member, family, language) => hasManualEvidence(member)
-  || isExplicitComponentControl(family.id, language, member?.word);
+const hasReviewedMembership = (member, family, language) => (hasManualEvidence(member)
+  || isExplicitComponentControl(family.id, language, member?.word))
+  && (family.exact_component !== true || buildSearchForm(member?.word).includes(buildSearchForm(family.canonical)));
 const isRuntimeCorpusMember = member => member?.corpus_quality?.status !== 'rejected';
 
 export class FamilyIndexLoader {
@@ -45,7 +46,10 @@ export class FamilyIndexLoader {
       .filter(({ family }) => family.runtime_curated === true || String(family.source || '').includes('manual_override'))
       .map(({ family, members }) => ({ family, members: members.filter(member => hasReviewedMembership(member, family, language) && isRuntimeCorpusMember(member) && typeof member.lemma_id === 'string' && typeof member.word === 'string' && member.word) }))
       .filter(({ members }) => members.length > 0);
-    const eligibleGroups = manualGroups.length ? manualGroups : groups;
+    // An empty exact-component family is an intentional reviewed result for a
+    // language, not permission to fall back to incidental legacy matches.
+    const exactGroups = groups.filter(({ family }) => family.exact_component === true && normalizeAlias(family.canonical) === normalizeAlias(query));
+    const eligibleGroups = exactGroups.length ? exactGroups : manualGroups.length ? manualGroups : groups;
     const byLemma = new Map();
     for (const { family, members } of eligibleGroups) {
       if (!family) continue;

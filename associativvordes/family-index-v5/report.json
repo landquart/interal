@@ -115,11 +115,11 @@
   },
   "uncertain_relation_count": 431390,
   "uncertain_relation_sample_size": 100000,
-  "total_families": 2456542,
-  "merged_families": 20773,
+  "total_families": 2456544,
+  "merged_families": 20775,
   "singleton_families": 1735280,
   "multi_branch_families": 17675,
-  "multi_family_lemmas": 3332183,
+  "multi_family_lemmas": 3333641,
   "components_discovered": 9349982,
   "components_assigned": 9349982,
   "corpus_quality_counts": {
@@ -128,12 +128,12 @@
     "rejected": 9,
     "requires_manual_review": 0
   },
-  "review_required_families": 4026,
+  "review_required_families": 4029,
   "invariants": {
     "processed_lemmas_equals_source": true,
     "source_lemmas": 4924980,
-    "classified_unique_lemmas": 4924272,
-    "lemmas_with_zero_family": 708,
+    "classified_unique_lemmas": 4924157,
+    "lemmas_with_zero_family": 823,
     "families_with_zero_members": 0,
     "members_without_evidence": 0,
     "fuzzy_memberships": 0,
@@ -144,7 +144,7 @@
     "unreviewed_high_risk_families": 0
   },
   "generated_non_proto_families": 20766,
-  "verified_seed_families": 7,
+  "verified_seed_families": 6,
   "aliases_in_lookup": 1934051,
   "proto_review_candidates": 10209,
   "wide_etymon_review_candidates": 171,
@@ -2826,6 +2826,47 @@
         "short_root",
         "large_family"
       ],
+      "review_status": "needs_review"
+    },
+    {
+      "id": "family:inter",
+      "canonical": "inter",
+      "aliases": [
+        "inter"
+      ],
+      "verified": false,
+      "confidence": "B",
+      "source": "etymological_component_review+manual_override",
+      "runtime_curated": true,
+      "exact_component": true,
+      "etymon_keys": [
+        "la:inter"
+      ],
+      "relation_types": [
+        "affix_component"
+      ],
+      "relation_evidence": [
+        {
+          "type": "manual_override",
+          "source": "audit/associative-family-v5/exact-components-20261001.json",
+          "relation_type": "affix_component",
+          "whole_lemma_union": false
+        }
+      ],
+      "canonical_selection": {
+        "method": "requested_exact_component"
+      },
+      "language_support": {
+        "en": 736,
+        "de": 1393,
+        "fr": 560,
+        "es": 638,
+        "it": 601,
+        "ru": 354
+      },
+      "support": 4282,
+      "suspicion_score": 0,
+      "suspicion_reasons": [],
       "review_status": "needs_review"
     },
     {
@@ -7608,103 +7649,6 @@
         "en": 2634
       },
       "support": 2634,
-      "suspicion_score": 40,
-      "suspicion_reasons": [
-        "short_root",
-        "large_family"
-      ],
-      "review_status": "needs_review"
-    },
-    {
-      "id": "ety:da5fcec7ee69",
-      "canonical": "monroe",
-      "aliases": [
-        "man",
-        "monroe"
-      ],
-      "verified": false,
-      "confidence": "A",
-      "source": "wiktionary_non_proto_etymology",
-      "etymon_keys": [
-        "ang:mann"
-      ],
-      "relation_types": [
-        "inherited_form"
-      ],
-      "relation_evidence": [
-        {
-          "language": "en",
-          "word": "man",
-          "sourceLang": "ang",
-          "term": "mann",
-          "relationType": "inherited_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "inh",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "en",
-          "word": "man",
-          "sourceLang": "ang",
-          "term": "mann",
-          "relationType": "inherited_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "inh",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "en",
-          "word": "man",
-          "sourceLang": "ang",
-          "term": "mann",
-          "relationType": "inherited_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "inh",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "en",
-          "word": "Monroe",
-          "sourceLang": "ang",
-          "term": "mann",
-          "relationType": "inherited_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "inh",
-          "path": [
-            "args",
-            2
-          ]
-        }
-      ],
-      "canonical_selection": {
-        "method": "quality_score_v1",
-        "score": 0
-      },
-      "language_support": {
-        "en": 2594
-      },
-      "support": 2594,
       "suspicion_score": 40,
       "suspicion_reasons": [
         "short_root",
@@ -13699,29 +13643,29 @@
     "illos_illis_family_decisions_sha256": "2fc48f87d69f8ca53560245048b2b00d1adc07112ea69c5d5f39145346fb0598",
     "suffix_batch_10_memberships_removed": 26757,
     "suffix_batch_10_ledger_sha256": "4d0ccfacf38eaedaeedad9c1d685f0244b44877433969b4dc6b791bd1fa5d274",
-    "materialized_unique_lemmas": 4924272,
-    "lemmas_without_materialized_family": 708,
+    "materialized_unique_lemmas": 4924157,
+    "lemmas_without_materialized_family": 823,
     "suffix_batch_11_memberships_removed": 14711,
     "suffix_batch_11_ledger_sha256": "0089c0b61e5627d45b0ae6d237f8b494a1940e37b86788e29bce0bc929cc7568",
     "suffix_batch_12_memberships_removed": 11782,
     "suffix_batch_12_ledger_sha256": "d89af63b906e829b2c97f2723e52b92f2944a8c4cc4c83e54a0be105f30e6099",
     "unique_lemmas_by_language": {
-      "en": 1130942,
-      "de": 1113446,
-      "fr": 558904,
-      "es": 941516,
-      "it": 610087,
-      "ru": 569377
+      "en": 1130858,
+      "de": 1113442,
+      "fr": 558898,
+      "es": 941502,
+      "it": 610082,
+      "ru": 569375
     },
     "memberships_by_language": {
-      "en": 2619166,
-      "de": 2204874,
-      "fr": 1143056,
-      "es": 1796477,
-      "it": 1180989,
-      "ru": 1126735
+      "en": 2618650,
+      "de": 2207526,
+      "fr": 1143715,
+      "es": 1797330,
+      "it": 1181822,
+      "ru": 1127094
     },
-    "memberships": 10071297,
+    "memberships": 10076137,
     "nitidus_net_memberships_removed": 9924,
     "nitidus_net_memberships_added": 2,
     "nitidus_ledger_sha256": "76cd3ddf53bb7a6e4bc6c43a6b5e0ba9efd074d1162ff736776a0e9b6bdcbffa",
@@ -13736,6 +13680,17 @@
     "information_memberships_removed": 7014,
     "information_memberships_added": 3,
     "component_review_ledger_sha256": "94b83c9c463c887ba28c491484ffa8820f76133d36593ea05b5cb6ae88f6c923",
-    "component_false_memberships_removed": 11
+    "component_false_memberships_removed": 11,
+    "exact_component_review": {
+      "repair": "materialize_reviewed_exact_component_memberships_20261001",
+      "source_run_id": 35647932153,
+      "removed_memberships": 2056,
+      "added_memberships": 6896,
+      "added_families": 2,
+      "decision_ledger_sha256": "0f32b1fcc5381a973922e7d739c02be2f1de1a5b938a2f4e800fd1e96fc8ff91",
+      "checkpoint_sha256": "1f1c3d04e6f6bc845856fd44cb5018a80f19978890df38b8b855ad01e634e9a3",
+      "full_family_certification": false,
+      "exact_fragment_required": true
+    }
   }
 }

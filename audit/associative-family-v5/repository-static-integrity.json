@@ -5,31 +5,31 @@
   "storage": "git_repository_static_files",
   "encoding": "gzip",
   "counts": {
-    "families": 2456542,
+    "families": 2456544,
     "aliases": 1934051,
     "lemmas": 4924980,
     "components": 9349982,
-    "memberships": 10071297,
-    "materialized_unique_lemmas": 4924272,
-    "multi_family_lemmas": 3332183,
-    "lemmas_without_materialized_family": 708,
+    "memberships": 10076137,
+    "materialized_unique_lemmas": 4924157,
+    "multi_family_lemmas": 3333641,
+    "lemmas_without_materialized_family": 823,
     "unique_lemmas_by_language": {
-      "en": 1130942,
-      "de": 1113446,
-      "fr": 558904,
-      "es": 941516,
-      "it": 610087,
-      "ru": 569377
+      "en": 1130858,
+      "de": 1113442,
+      "fr": 558898,
+      "es": 941502,
+      "it": 610082,
+      "ru": 569375
     },
     "memberships_by_language": {
-      "en": 2619166,
-      "de": 2204874,
-      "fr": 1143056,
-      "es": 1796477,
-      "it": 1180989,
-      "ru": 1126735
+      "en": 2618650,
+      "de": 2207526,
+      "fr": 1143715,
+      "es": 1797330,
+      "it": 1181822,
+      "ru": 1127094
     },
-    "materialized_families": 2456542
+    "materialized_families": 2456544
   },
   "invariants": {
     "manifest_report_counts_match": true,
@@ -65,8 +65,8 @@
     },
     "storage": "git_repository_static_files",
     "file_count_before_provenance": 2050,
-    "total_bytes_before_provenance": 720254654,
-    "tree_content_sha256": "6af38ed24a863bf5e7a4e764873999f74ce1fdb417cca63f743cf5ba8bce7dd4",
+    "total_bytes_before_provenance": 720486594,
+    "tree_content_sha256": "d5075450a1346b25125524dcd1c35830d4770434615ab04f4c11e13cbd1ffb6d",
     "repository_repairs": [
       {
         "repair": "exclude_known_rejected_corpus_noise_from_runtime",
@@ -513,6 +513,17 @@
         ],
         "decision_ledger_sha256": "94b83c9c463c887ba28c491484ffa8820f76133d36593ea05b5cb6ae88f6c923",
         "full_family_certification": false
+      },
+      {
+        "repair": "materialize_reviewed_exact_component_memberships_20261001",
+        "source_run_id": 35647932153,
+        "removed_memberships": 2056,
+        "added_memberships": 6896,
+        "added_families": 2,
+        "decision_ledger_sha256": "0f32b1fcc5381a973922e7d739c02be2f1de1a5b938a2f4e800fd1e96fc8ff91",
+        "checkpoint_sha256": "1f1c3d04e6f6bc845856fd44cb5018a80f19978890df38b8b855ad01e634e9a3",
+        "full_family_certification": false,
+        "exact_fragment_required": true
       }
     ]
   }
