@@ -100,13 +100,14 @@ test('wide etymon keys are review-only and never create automatic families', () 
   assert.equal(result.wideReview[0].review_status, 'needs_review');
 });
 
-test('exact language-aware controls replace stale automatic memberships before materialization', () => {
+test('exact language-aware controls add the reviewed seed without deleting independent rows', () => {
   const stale = [{ surface: 'manufacture', canonical_candidate: 'fact', family_ids: ['ety:stale-a', 'ety:stale-b'], confidence: 0.8, evidence: [] }];
   const families = new Map([['family:manu', { canonical: 'manu' }]]);
   const result = applyExactControlOverride({ language: 'en', word: 'manufacture', searchForm: 'manufacture', componentRows: stale, families });
   assert.equal(result.familyId, 'family:manu');
-  assert.deepEqual(result.componentRows[0].family_ids, ['family:manu']);
-  assert.equal(result.componentRows[0].evidence[0].type, 'manual_override');
+  assert.deepEqual(result.componentRows.find(row=>row.family_ids.includes('family:manu')).family_ids, ['family:manu']);
+  assert.equal(result.componentRows.find(row=>row.family_ids.includes('family:manu')).evidence[0].type, 'manual_override');
+  assert.deepEqual(result.componentRows.find(row=>row.family_ids.includes('ety:stale-a')), stale[0]);
   assert.equal(applyExactControlOverride({ language: 'de', word: 'manufacture', searchForm: 'manufacture', componentRows: stale, families }).familyId, null);
 });
 

@@ -1,5 +1,6 @@
 import { buildSearchForm } from './search-normalizer.js';
 import { isExplicitComponentControl } from './associative-component-controls.js';
+import { matchesReviewedAssociativeForm } from './associative-reflex-forms.js';
 
 export const FAMILY_INDEX_VERSION = '5';
 const SUPPORTED_FAMILY_INDEX_VERSIONS = new Set(['4', FAMILY_INDEX_VERSION]);
@@ -14,7 +15,7 @@ const BLOCKED_RUNTIME_STATUSES = new Set(['blocked_from_runtime', 'rejected', 's
 const hasManualEvidence = member => member?.components?.some(component => component.evidence?.some(evidence => evidence.type === 'manual_override'));
 const hasReviewedMembership = (member, family, language) => (hasManualEvidence(member)
   || isExplicitComponentControl(family.id, language, member?.word))
-  && (family.exact_component !== true || buildSearchForm(member?.word).includes(buildSearchForm(family.canonical)));
+  && (family.exact_component !== true || matchesReviewedAssociativeForm(member,family,language));
 const isRuntimeCorpusMember = member => member?.corpus_quality?.status !== 'rejected';
 
 export class FamilyIndexLoader {
@@ -60,7 +61,8 @@ export class FamilyIndexLoader {
       .filter(({ members }) => members.length > 0);
     // An empty exact-component family is an intentional reviewed result for a
     // language, not permission to fall back to incidental legacy matches.
-    const exactGroups = groups.filter(({ family }) => family.exact_component === true && normalizeAlias(family.canonical) === normalizeAlias(query));
+    const exactGroups = groups.filter(({ family }) => family.exact_component === true && (normalizeAlias(family.canonical) === normalizeAlias(query)
+      || (family.associative_component === true && family.aliases?.some(alias=>normalizeAlias(alias)===normalizeAlias(query)))));
     const eligibleGroups = exactGroups.length ? exactGroups : manualGroups.length ? manualGroups : groups;
     const byLemma = new Map();
     for (const { family, members } of eligibleGroups) {
