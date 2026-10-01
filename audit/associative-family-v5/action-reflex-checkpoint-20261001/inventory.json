@@ -1,0 +1,55 @@
+{
+  "source_run_id": 35647932153,
+  "source_tree_content_sha256": "26cb8568384b1756cc40c1a94c8d1d1fa8c7a3bb11563c4192b6774e6eb5afae",
+  "retrieval_forms": {
+    "act": [
+      "act",
+      "akt",
+      "accion",
+      "azion",
+      "att",
+      "акт",
+      "акц"
+    ]
+  },
+  "retired_source_families": [
+    "ety:751cdacbf4a9",
+    "ety:9a86a987fafc"
+  ],
+  "method": "Full frozen actio/acti containers plus all six-language materialized member shards scanned; every matching original record and independent source-family route retained. Broad retrieval is not linguistic acceptance. Candidate completeness is relative to these explicit retrieval forms and available corpus.",
+  "counts": {
+    "en": {
+      "act": 9733
+    },
+    "de": {
+      "act": 17321
+    },
+    "fr": {
+      "act": 4475
+    },
+    "es": {
+      "act": 5793
+    },
+    "it": {
+      "act": 12124
+    },
+    "ru": {
+      "act": 2831
+    }
+  },
+  "artifacts": {
+    "en-candidates.json.gz": "e0269c60b78f557097fbb01d41accfdc0ebaf70c7cc63433be9eb5e1d9e664af",
+    "de-candidates.json.gz": "498d3c6fceb649afe91627b908035a2c02736cca7234012ac3763e0f8c7eb809",
+    "fr-candidates.json.gz": "0b09197924b68bea813542ce1294344821fce1ab3336f35fe5392a83033ead98",
+    "es-candidates.json.gz": "1c40a9f8094d6e00e0c4d502fb419f5734428f196c2e24d6ba6b02d7b4fc8fa0",
+    "it-candidates.json.gz": "20e304abbd08821bddc73cb77c9c245de2170d5c9ae59747bab9ca69e90ec433",
+    "ru-candidates.json.gz": "e29d337f61f37a3797cbf2067d235e765969807d29e55cc7473f21c409362eae",
+    "original-families.json.gz": "45a0f98391e534d55c1cdf239c133534da02e92141d0c679f9d92d0f1d0c16f1"
+  },
+  "review_status": "unadjudicated_source_candidates",
+  "limitations": [
+    "No inherited or reflex variant outside the declared retrieval frame is claimed covered.",
+    "No guessed frequency or synthetic corpus lemma is added.",
+    "act is a retrieval label, not a decision to merge actio, Actium, Greek actin-, fact/pact/tact/tract, or all Italian -azione suffixes."
+  ]
+}

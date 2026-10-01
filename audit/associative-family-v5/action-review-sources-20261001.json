@@ -1,0 +1,57 @@
+{
+  "review_status": "source_evidence_checkpoint_only",
+  "runtime_applied": false,
+  "sources": [
+    {
+      "url": "https://www.merriam-webster.com/dictionary/act",
+      "supports": "act from actus/actum and agere; distinguish acronym and trademark senses."
+    },
+    {
+      "url": "https://www.duden.de/rechtschreibung/Aktion",
+      "supports": "Aktion from actio, national k reflex."
+    },
+    {
+      "url": "https://www.duden.de/rechtschreibung/Akt_Handlung",
+      "supports": "Akt from actus/agere."
+    },
+    {
+      "url": "https://www.treccani.it/vocabolario/azione1/",
+      "supports": "azione from actio/agere/actus; no membership for unrelated words merely carrying the action suffix."
+    },
+    {
+      "url": "https://www.dictionnaire-academie.fr/article/A9A0471",
+      "supports": "French action from actio/actum/agere."
+    },
+    {
+      "url": "https://dle.rae.es/acci%C3%B3n",
+      "supports": "Spanish accion from actio."
+    },
+    {
+      "url": "https://atlas.perseus.tufts.edu/dictionaries/entry/urn%3Acite2%3Ascaife-viewer%3Adictionary-entries.atlas_v1%3Alat.ls.perseus-eng2-n609/",
+      "supports": "Lewis and Short Actiacus relates to Actium, an independent proper-name branch."
+    },
+    {
+      "url": "https://www.merriam-webster.com/dictionary/actin",
+      "supports": "Greek actin- combining form differs from protein actin, whose act/activate derivation is only probable; do not apply one blanket actin rule."
+    },
+    {
+      "url": "https://www.merriam-webster.com/dictionary/fact",
+      "supports": "Latin factum/facere, independent of actus/agere."
+    },
+    {
+      "url": "https://www.merriam-webster.com/dictionary/pact",
+      "supports": "Latin pactum/pacisci, independent of actus/agere."
+    },
+    {
+      "url": "https://www.merriam-webster.com/dictionary/tact",
+      "supports": "Latin tactus/tangere, independent of actus/agere."
+    }
+  ],
+  "open_questions": [
+    "Full national act-/akt-/accion-/azion-/att-/акт-/акц- candidate frame and original two source containers must be saved before adjudication.",
+    "Modern Italian attore/atto/attivo versus unrelated attaccare/attendere etc require lexical distinctions.",
+    "Greek actin-, other Latin fact/pact/tact/tract/lact stems and place-name Actium remain distinct.",
+    "No automatic suffix removal, ancestor-wide merging, or guessed sense frequency.",
+    "Protein actin has probable act/activate ancestry but uncertain modern recognizability; distinguish it from Greek rays actin- and the verb acting."
+  ]
+}

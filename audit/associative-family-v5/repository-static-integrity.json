@@ -5,31 +5,31 @@
   "storage": "git_repository_static_files",
   "encoding": "gzip",
   "counts": {
-    "families": 2456540,
-    "aliases": 1934054,
+    "families": 2456539,
+    "aliases": 1934055,
     "lemmas": 4924980,
     "components": 9349982,
-    "memberships": 10053692,
-    "materialized_unique_lemmas": 4924152,
-    "multi_family_lemmas": 3335133,
-    "lemmas_without_materialized_family": 828,
+    "memberships": 10047469,
+    "materialized_unique_lemmas": 4924151,
+    "multi_family_lemmas": 3335306,
+    "lemmas_without_materialized_family": 829,
     "unique_lemmas_by_language": {
       "en": 1130858,
-      "de": 1113441,
+      "de": 1113440,
       "fr": 558895,
       "es": 941501,
       "it": 610082,
       "ru": 569375
     },
     "memberships_by_language": {
-      "en": 2618957,
-      "de": 2210069,
-      "fr": 1143936,
-      "es": 1797951,
-      "it": 1155369,
-      "ru": 1127410
+      "en": 2619019,
+      "de": 2210203,
+      "fr": 1144002,
+      "es": 1798037,
+      "it": 1148757,
+      "ru": 1127451
     },
-    "materialized_families": 2456540
+    "materialized_families": 2456539
   },
   "invariants": {
     "manifest_report_counts_match": true,
@@ -65,8 +65,8 @@
     },
     "storage": "git_repository_static_files",
     "file_count_before_provenance": 2050,
-    "total_bytes_before_provenance": 718216174,
-    "tree_content_sha256": "324d33e8ca67d00f6864c1b89a4c0c8af6bb877be03e970ba9b5239ebf524a23",
+    "total_bytes_before_provenance": 717611660,
+    "tree_content_sha256": "26cb8568384b1756cc40c1a94c8d1d1fa8c7a3bb11563c4192b6774e6eb5afae",
     "repository_repairs": [
       {
         "repair": "exclude_known_rejected_corpus_noise_from_runtime",
@@ -580,6 +580,16 @@
         "net_family_delta": -1,
         "alias_delta": 2,
         "decision_ledger_sha256": "6202cfae56711bd21a7c0c1c3ebfb46a1ad7fa34feb7d0cd3d06deda0c147713",
+        "full_family_certification": false
+      },
+      {
+        "repair": "materialize_reviewed_mutation_associative_root_20261001",
+        "source_run_id": 35647932153,
+        "removed_memberships": 6792,
+        "added_memberships": 569,
+        "net_family_delta": -1,
+        "alias_delta": 1,
+        "decision_ledger_sha256": "52b215e9c76d12f03f9a5a93ae7c59ee2deef8ab4d345afafe84b1245deb9c1c",
         "full_family_certification": false
       }
     ]

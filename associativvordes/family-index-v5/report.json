@@ -115,11 +115,11 @@
   },
   "uncertain_relation_count": 431390,
   "uncertain_relation_sample_size": 100000,
-  "total_families": 2456540,
-  "merged_families": 20771,
+  "total_families": 2456539,
+  "merged_families": 20770,
   "singleton_families": 1735280,
-  "multi_branch_families": 17672,
-  "multi_family_lemmas": 3335133,
+  "multi_branch_families": 17671,
+  "multi_family_lemmas": 3335306,
   "components_discovered": 9349982,
   "components_assigned": 9349982,
   "corpus_quality_counts": {
@@ -128,12 +128,12 @@
     "rejected": 9,
     "requires_manual_review": 0
   },
-  "review_required_families": 4033,
+  "review_required_families": 4034,
   "invariants": {
     "processed_lemmas_equals_source": true,
     "source_lemmas": 4924980,
-    "classified_unique_lemmas": 4924152,
-    "lemmas_with_zero_family": 828,
+    "classified_unique_lemmas": 4924151,
+    "lemmas_with_zero_family": 829,
     "families_with_zero_members": 0,
     "members_without_evidence": 0,
     "fuzzy_memberships": 0,
@@ -143,9 +143,9 @@
     "compound_edges_used_as_equivalence": 0,
     "unreviewed_high_risk_families": 0
   },
-  "generated_non_proto_families": 20757,
+  "generated_non_proto_families": 20755,
   "verified_seed_families": 6,
-  "aliases_in_lookup": 1934054,
+  "aliases_in_lookup": 1934055,
   "proto_review_candidates": 10209,
   "wide_etymon_review_candidates": 171,
   "etymon_key_policy": {
@@ -3965,238 +3965,6 @@
       "review_status": "needs_review"
     },
     {
-      "id": "ety:61108b488e06",
-      "canonical": "azion",
-      "aliases": [
-        "azion",
-        "mutation"
-      ],
-      "verified": false,
-      "confidence": "A",
-      "source": "wiktionary_non_proto_etymology",
-      "etymon_keys": [
-        "la:mutatio"
-      ],
-      "relation_types": [
-        "borrowed_form",
-        "direct_descendant"
-      ],
-      "relation_evidence": [
-        {
-          "language": "en",
-          "word": "mutation",
-          "sourceLang": "la",
-          "term": "mūtātiō",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "fr",
-          "word": "mutation",
-          "sourceLang": "la",
-          "term": "mutatio",
-          "relationType": "borrowed_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.9,
-          "depth": 1,
-          "template": "bor",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "it",
-          "word": "mutazione",
-          "sourceLang": "la",
-          "term": "mūtātiō",
-          "relationType": "borrowed_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.85,
-          "depth": 1,
-          "template": "slbor",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "de",
-          "word": "Mutation",
-          "sourceLang": "la",
-          "term": "mūtātiō",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "ru",
-          "word": "мутация",
-          "sourceLang": "la",
-          "term": "mūtātiō",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        }
-      ],
-      "canonical_selection": {
-        "method": "quality_score_v1",
-        "score": 1
-      },
-      "language_support": {
-        "en": 8,
-        "de": 16,
-        "fr": 6,
-        "it": 3366
-      },
-      "support": 3396,
-      "suspicion_score": 20,
-      "suspicion_reasons": [
-        "large_family"
-      ],
-      "review_status": "safe_automatic"
-    },
-    {
-      "id": "ety:727be1d24fa1",
-      "canonical": "azion",
-      "aliases": [
-        "azion",
-        "mutation"
-      ],
-      "verified": false,
-      "confidence": "A",
-      "source": "wiktionary_non_proto_etymology",
-      "etymon_keys": [
-        "la:mutati"
-      ],
-      "relation_types": [
-        "borrowed_form",
-        "direct_descendant"
-      ],
-      "relation_evidence": [
-        {
-          "language": "en",
-          "word": "mutation",
-          "sourceLang": "la",
-          "term": "mūtātiō",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "fr",
-          "word": "mutation",
-          "sourceLang": "la",
-          "term": "mutatio",
-          "relationType": "borrowed_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.9,
-          "depth": 1,
-          "template": "bor",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "it",
-          "word": "mutazione",
-          "sourceLang": "la",
-          "term": "mūtātiō",
-          "relationType": "borrowed_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.85,
-          "depth": 1,
-          "template": "slbor",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "de",
-          "word": "Mutation",
-          "sourceLang": "la",
-          "term": "mūtātiō",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "ru",
-          "word": "мутация",
-          "sourceLang": "la",
-          "term": "mūtātiō",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        }
-      ],
-      "canonical_selection": {
-        "method": "quality_score_v1",
-        "score": 1
-      },
-      "language_support": {
-        "en": 8,
-        "de": 16,
-        "fr": 6,
-        "it": 3366
-      },
-      "support": 3396,
-      "suspicion_score": 20,
-      "suspicion_reasons": [
-        "large_family"
-      ],
-      "review_status": "safe_automatic"
-    },
-    {
       "id": "ety:75eed4d759a7",
       "canonical": "bonet",
       "aliases": [
@@ -7279,6 +7047,134 @@
         "es": 2264
       },
       "support": 2264,
+      "suspicion_score": 20,
+      "suspicion_reasons": [
+        "short_root"
+      ],
+      "review_status": "safe_automatic"
+    },
+    {
+      "id": "ety:2026f61cfab5",
+      "canonical": "mann",
+      "aliases": [
+        "man",
+        "mann"
+      ],
+      "verified": false,
+      "confidence": "A",
+      "source": "wiktionary_non_proto_etymology",
+      "etymon_keys": [
+        "gmh:man"
+      ],
+      "relation_types": [
+        "inherited_form"
+      ],
+      "relation_evidence": [
+        {
+          "language": "de",
+          "word": "man",
+          "sourceLang": "gmh",
+          "term": "man",
+          "relationType": "inherited_form",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "inh",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "de",
+          "word": "Mann",
+          "sourceLang": "gmh",
+          "term": "man",
+          "relationType": "inherited_form",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "inh",
+          "path": [
+            "args",
+            2
+          ]
+        }
+      ],
+      "canonical_selection": {
+        "method": "quality_score_v1",
+        "score": 2
+      },
+      "language_support": {
+        "de": 2260
+      },
+      "support": 2260,
+      "suspicion_score": 20,
+      "suspicion_reasons": [
+        "short_root"
+      ],
+      "review_status": "safe_automatic"
+    },
+    {
+      "id": "ety:560fbf7901b6",
+      "canonical": "mann",
+      "aliases": [
+        "man",
+        "mann"
+      ],
+      "verified": false,
+      "confidence": "A",
+      "source": "wiktionary_non_proto_etymology",
+      "etymon_keys": [
+        "goh:man"
+      ],
+      "relation_types": [
+        "inherited_form"
+      ],
+      "relation_evidence": [
+        {
+          "language": "de",
+          "word": "man",
+          "sourceLang": "goh",
+          "term": "man",
+          "relationType": "inherited_form",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "inh",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "de",
+          "word": "Mann",
+          "sourceLang": "goh",
+          "term": "man",
+          "relationType": "inherited_form",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "inh",
+          "path": [
+            "args",
+            2
+          ]
+        }
+      ],
+      "canonical_selection": {
+        "method": "quality_score_v1",
+        "score": 2
+      },
+      "language_support": {
+        "de": 2260
+      },
+      "support": 2260,
       "suspicion_score": 20,
       "suspicion_reasons": [
         "short_root"
@@ -13272,29 +13168,29 @@
     "illos_illis_family_decisions_sha256": "2fc48f87d69f8ca53560245048b2b00d1adc07112ea69c5d5f39145346fb0598",
     "suffix_batch_10_memberships_removed": 26757,
     "suffix_batch_10_ledger_sha256": "4d0ccfacf38eaedaeedad9c1d685f0244b44877433969b4dc6b791bd1fa5d274",
-    "materialized_unique_lemmas": 4924152,
-    "lemmas_without_materialized_family": 828,
+    "materialized_unique_lemmas": 4924151,
+    "lemmas_without_materialized_family": 829,
     "suffix_batch_11_memberships_removed": 14711,
     "suffix_batch_11_ledger_sha256": "0089c0b61e5627d45b0ae6d237f8b494a1940e37b86788e29bce0bc929cc7568",
     "suffix_batch_12_memberships_removed": 11782,
     "suffix_batch_12_ledger_sha256": "d89af63b906e829b2c97f2723e52b92f2944a8c4cc4c83e54a0be105f30e6099",
     "unique_lemmas_by_language": {
       "en": 1130858,
-      "de": 1113441,
+      "de": 1113440,
       "fr": 558895,
       "es": 941501,
       "it": 610082,
       "ru": 569375
     },
     "memberships_by_language": {
-      "en": 2618957,
-      "de": 2210069,
-      "fr": 1143936,
-      "es": 1797951,
-      "it": 1155369,
-      "ru": 1127410
+      "en": 2619019,
+      "de": 2210203,
+      "fr": 1144002,
+      "es": 1798037,
+      "it": 1148757,
+      "ru": 1127451
     },
-    "memberships": 10053692,
+    "memberships": 10047469,
     "nitidus_net_memberships_removed": 9924,
     "nitidus_net_memberships_added": 2,
     "nitidus_ledger_sha256": "76cd3ddf53bb7a6e4bc6c43a6b5e0ba9efd074d1162ff736776a0e9b6bdcbffa",
@@ -13330,13 +13226,13 @@
       "full_family_certification": false
     },
     "associative_reflex_review": {
-      "repair": "materialize_reviewed_operation_associative_root_20261001",
+      "repair": "materialize_reviewed_mutation_associative_root_20261001",
       "source_run_id": 35647932153,
-      "removed_memberships": 6784,
-      "added_memberships": 1595,
+      "removed_memberships": 6792,
+      "added_memberships": 569,
       "net_family_delta": -1,
-      "alias_delta": 2,
-      "decision_ledger_sha256": "6202cfae56711bd21a7c0c1c3ebfb46a1ad7fa34feb7d0cd3d06deda0c147713",
+      "alias_delta": 1,
+      "decision_ledger_sha256": "52b215e9c76d12f03f9a5a93ae7c59ee2deef8ab4d345afafe84b1245deb9c1c",
       "full_family_certification": false
     },
     "loc_reflex_review": {
