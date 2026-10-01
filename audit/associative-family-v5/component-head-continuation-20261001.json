@@ -1,0 +1,478 @@
+{
+  "schema_version": 1,
+  "source_run_id": 35647932153,
+  "status": "corpus_records_located_memberships_not_added",
+  "records": [
+    {
+      "word": "nation",
+      "lemma_id": "lemma:3d2adb8cfcd5546ad4d9",
+      "existing_families": [
+        "ety:200d43721b25",
+        "ety:2c44a5059105",
+        "ety:375afc9a329f",
+        "ety:3a04f1a1d9cd",
+        "ety:41a0b9f8cb64",
+        "ety:43528410d9ca",
+        "ety:7a865c8a762d",
+        "ety:8556ca8f7592",
+        "ety:94847a65ea21",
+        "ety:a4d93c69065a",
+        "ety:ad061950e13e",
+        "ety:ae0922f543c8",
+        "ety:b026f4ac8299",
+        "ety:b84169a26116",
+        "ety:d3f3c3e2077b",
+        "ety:d52bbd0521f6",
+        "ety:d69c719032f7",
+        "ety:de2342b23ae2",
+        "ety:f8f5d8d0c8b7"
+      ],
+      "original_member": {
+        "lemma_id": "lemma:3d2adb8cfcd5546ad4d9",
+        "word": "nation",
+        "normalized": "nation",
+        "search_form": "nation",
+        "rank": 1249,
+        "frequency_score": 73.83879576857332,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              39.781081,
+              39.832295
+            ],
+            "category_ipm": 39.806688,
+            "category_score": 64.98640848860957
+          },
+          "normative": {
+            "ipm_values": [
+              91.99746
+            ],
+            "category_ipm": 91.99746,
+            "category_score": 79.41974082660846
+          },
+          "web": {
+            "ipm_values": [
+              80.513309
+            ],
+            "category_ipm": 80.513309,
+            "category_score": 77.1102379905019
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/bnc-clean2.lemmatized_spacy_ipm6.json",
+            "file": "bnc-clean2.lemmatized_spacy_ipm6.json",
+            "category": "normative",
+            "ipm": 91.99746
+          },
+          {
+            "id": "subtitles/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 39.781081
+          },
+          {
+            "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 39.832295
+          },
+          {
+            "id": "web/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 80.513309
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "nation",
+            "canonical_candidate": "nation",
+            "confidence": 1,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "manually_verified",
+                "path": [
+                  "nation",
+                  "nation",
+                  "nation"
+                ],
+                "confidence": 1
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "word": "natural",
+      "lemma_id": "lemma:99788532da39d99545b5",
+      "existing_families": [
+        "ety:5e09bf4ba1dd",
+        "ety:cdae39bc7290",
+        "ety:cee44628e371"
+      ],
+      "original_member": {
+        "lemma_id": "lemma:99788532da39d99545b5",
+        "word": "natural",
+        "normalized": "natural",
+        "search_form": "natural",
+        "rank": 797,
+        "frequency_score": 81.64492486770348,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              48.1027,
+              48.699355
+            ],
+            "category_ipm": 48.4010275,
+            "category_score": 68.33530530611391
+          },
+          "normative": {
+            "ipm_values": [
+              148.889115
+            ],
+            "category_ipm": 148.889115,
+            "category_score": 87.78340622468555
+          },
+          "web": {
+            "ipm_values": [
+              157.988306
+            ],
+            "category_ipm": 157.988306,
+            "category_score": 88.81606307231097
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/bnc-clean2.lemmatized_spacy_ipm6.json",
+            "file": "bnc-clean2.lemmatized_spacy_ipm6.json",
+            "category": "normative",
+            "ipm": 148.889115
+          },
+          {
+            "id": "subtitles/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 48.1027
+          },
+          {
+            "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 48.699355
+          },
+          {
+            "id": "web/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 157.988306
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "natural",
+            "canonical_candidate": "natural",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "natural",
+                  "natural",
+                  "natural"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "word": "location",
+      "lemma_id": "lemma:be63365c2b00a121b0fe",
+      "existing_families": [
+        "ety:4b193c876dff",
+        "ety:d1c392f39beb"
+      ],
+      "original_member": {
+        "lemma_id": "lemma:be63365c2b00a121b0fe",
+        "word": "location",
+        "normalized": "location",
+        "search_form": "location",
+        "rank": 605,
+        "frequency_score": 76.30079414952446,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              36.127048,
+              37.43098
+            ],
+            "category_ipm": 36.779014000000004,
+            "category_score": 63.63559831146528
+          },
+          "normative": {
+            "ipm_values": [
+              57.131748
+            ],
+            "category_ipm": 57.131748,
+            "category_score": 71.18684874352054
+          },
+          "web": {
+            "ipm_values": [
+              213.700847
+            ],
+            "category_ipm": 213.700847,
+            "category_score": 94.07993539358753
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/bnc-clean2.lemmatized_spacy_ipm6.json",
+            "file": "bnc-clean2.lemmatized_spacy_ipm6.json",
+            "category": "normative",
+            "ipm": 57.131748
+          },
+          {
+            "id": "subtitles/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 36.127048
+          },
+          {
+            "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 37.43098
+          },
+          {
+            "id": "web/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 213.700847
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "location",
+            "canonical_candidate": "location",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "location",
+                  "location",
+                  "location"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "word": "local",
+      "lemma_id": "lemma:7e807b3b6bdef5b66619",
+      "existing_families": [
+        "ety:2fce1c462c66",
+        "ety:7b74c528893a"
+      ],
+      "original_member": {
+        "lemma_id": "lemma:7e807b3b6bdef5b66619",
+        "word": "local",
+        "normalized": "local",
+        "search_form": "local",
+        "rank": 129,
+        "frequency_score": 90.55593880963468,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              57.86424,
+              59.634818
+            ],
+            "category_ipm": 58.749529,
+            "category_score": 71.66781642890402
+          },
+          "normative": {
+            "ipm_values": [
+              491.951016
+            ],
+            "category_ipm": 491.951016,
+            "category_score": 100
+          },
+          "web": {
+            "ipm_values": [
+              759.561786
+            ],
+            "category_ipm": 759.561786,
+            "category_score": 100
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/bnc-clean2.lemmatized_spacy_ipm6.json",
+            "file": "bnc-clean2.lemmatized_spacy_ipm6.json",
+            "category": "normative",
+            "ipm": 491.951016
+          },
+          {
+            "id": "subtitles/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 57.86424
+          },
+          {
+            "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 59.634818
+          },
+          {
+            "id": "web/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 759.561786
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "local",
+            "canonical_candidate": "local",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "local",
+                  "local",
+                  "local"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "word": "locomotive",
+      "lemma_id": "lemma:601c0444572fd335be71",
+      "existing_families": [
+        "ety:2ef8605eb549",
+        "ety:7f1af11e04ab",
+        "ety:f887f92e52b4"
+      ],
+      "original_member": {
+        "lemma_id": "lemma:601c0444572fd335be71",
+        "word": "locomotive",
+        "normalized": "locomotive",
+        "search_form": "locomotive",
+        "rank": 5191,
+        "frequency_score": 35.838620662181974,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              1.430571,
+              1.388102
+            ],
+            "category_ipm": 1.4093365,
+            "category_score": 15.407997350702157
+          },
+          "normative": {
+            "ipm_values": [
+              12.526603
+            ],
+            "category_ipm": 12.526603,
+            "category_score": 45.63882977791034
+          },
+          "web": {
+            "ipm_values": [
+              13.182929
+            ],
+            "category_ipm": 13.182929,
+            "category_score": 46.46903485793341
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/bnc-clean2.lemmatized_spacy_ipm6.json",
+            "file": "bnc-clean2.lemmatized_spacy_ipm6.json",
+            "category": "normative",
+            "ipm": 12.526603
+          },
+          {
+            "id": "subtitles/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 1.430571
+          },
+          {
+            "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 1.388102
+          },
+          {
+            "id": "web/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 13.182929
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "locomotive",
+            "canonical_candidate": "locomotive",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "locomotive",
+                  "locomotive",
+                  "locomotive"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "natalism_materialized_records": [],
+  "method": "Exact headword retrieval through known alias targets; natalism additionally searched across all 256 English materialized member shards.",
+  "next_steps": [
+    "Add explicitly reviewed nat/loc memberships using existing corpus IDs and provenance. Preserve original branches and multi-family membership.",
+    "Review all existing nat/loc arrays before introducing curated precedence, which could hide valid words.",
+    "If natalism is absent from materialized records, retrieve the locked source corpus; do not invent an ID or frequency evidence."
+  ]
+}

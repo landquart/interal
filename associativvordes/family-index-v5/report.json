@@ -118,7 +118,7 @@
   "total_families": 2456542,
   "merged_families": 20773,
   "singleton_families": 1735280,
-  "multi_branch_families": 17676,
+  "multi_branch_families": 17675,
   "multi_family_lemmas": 3332183,
   "components_discovered": 9349982,
   "components_assigned": 9349982,
@@ -132,8 +132,8 @@
   "invariants": {
     "processed_lemmas_equals_source": true,
     "source_lemmas": 4924980,
-    "classified_unique_lemmas": 4924275,
-    "lemmas_with_zero_family": 705,
+    "classified_unique_lemmas": 4924272,
+    "lemmas_with_zero_family": 708,
     "families_with_zero_members": 0,
     "members_without_evidence": 0,
     "fuzzy_memberships": 0,
@@ -13699,14 +13699,14 @@
     "illos_illis_family_decisions_sha256": "2fc48f87d69f8ca53560245048b2b00d1adc07112ea69c5d5f39145346fb0598",
     "suffix_batch_10_memberships_removed": 26757,
     "suffix_batch_10_ledger_sha256": "4d0ccfacf38eaedaeedad9c1d685f0244b44877433969b4dc6b791bd1fa5d274",
-    "materialized_unique_lemmas": 4924275,
-    "lemmas_without_materialized_family": 705,
+    "materialized_unique_lemmas": 4924272,
+    "lemmas_without_materialized_family": 708,
     "suffix_batch_11_memberships_removed": 14711,
     "suffix_batch_11_ledger_sha256": "0089c0b61e5627d45b0ae6d237f8b494a1940e37b86788e29bce0bc929cc7568",
     "suffix_batch_12_memberships_removed": 11782,
     "suffix_batch_12_ledger_sha256": "d89af63b906e829b2c97f2723e52b92f2944a8c4cc4c83e54a0be105f30e6099",
     "unique_lemmas_by_language": {
-      "en": 1130945,
+      "en": 1130942,
       "de": 1113446,
       "fr": 558904,
       "es": 941516,
@@ -13714,14 +13714,14 @@
       "ru": 569377
     },
     "memberships_by_language": {
-      "en": 2619177,
+      "en": 2619166,
       "de": 2204874,
       "fr": 1143056,
       "es": 1796477,
       "it": 1180989,
       "ru": 1126735
     },
-    "memberships": 10071308,
+    "memberships": 10071297,
     "nitidus_net_memberships_removed": 9924,
     "nitidus_net_memberships_added": 2,
     "nitidus_ledger_sha256": "76cd3ddf53bb7a6e4bc6c43a6b5e0ba9efd074d1162ff736776a0e9b6bdcbffa",
@@ -13734,6 +13734,8 @@
     "russian_short_batch_2_memberships_removed": 2556,
     "information_ledger_sha256": "ac2b972beaafe1e91a3313f8d517d442347c79ee00caef41de37d6f5ffade02f",
     "information_memberships_removed": 7014,
-    "information_memberships_added": 3
+    "information_memberships_added": 3,
+    "component_review_ledger_sha256": "94b83c9c463c887ba28c491484ffa8820f76133d36593ea05b5cb6ae88f6c923",
+    "component_false_memberships_removed": 11
   }
 }

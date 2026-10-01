@@ -277,6 +277,15 @@ assert(report.repository_materialization?.illos_illis_family_decisions_sha256 ==
 const retainedPronounKeys = new Set(pronounLedger.decisions.flatMap(item => item.retained.map(control => `${control.language}\0${item.family_id}\0${control.lemma_id}`)));
 const reviewedPronounIds = new Set(pronounLedger.decisions.map(item => item.family_id));
 const rejectedActusKeys = new Set(actusLedger.rejected_memberships.map(item => `${item.language}\0${actusLedger.family_id}\0${item.lemma_id}`));
+const componentBytes = await readFile('audit/associative-family-v5/component-review-20261001.json');
+const componentLedger = JSON.parse(componentBytes);
+const componentSha = createHash('sha256').update(componentBytes).digest('hex');
+const componentRepair = provenance.repository_repairs.find(r => r.repair === 'remove_reviewed_inter_false_memberships_and_nat_acronym_alias_20261001');
+assert(componentRepair?.decision_ledger_sha256 === componentSha && componentRepair.removed_memberships === 11, 'component repair provenance mismatch');
+assert(report.repository_materialization.component_review_ledger_sha256 === componentSha, 'component report ledger mismatch');
+const rejectedComponentKeys = new Set(componentLedger.decisions.filter(d => d.verdict === 'remove_membership').map(d => `${d.language}\0${d.family_id}\0${d.lemma_id}`));
+const positiveComponentKeys = new Set(componentLedger.decisions.filter(d => d.verdict === 'retain').map(d => `${d.language}\0${d.family_id}\0${d.lemma_id}`));
+assert(rejectedComponentKeys.size === 11 && positiveComponentKeys.size === 3, 'component decision count mismatch');
 const preservedActusKeys = new Set(actusLedger.preserved_positive_controls.map(item => `${item.language}\0${actusLedger.family_id}\0${item.word}`));
 assert(rejectedActusKeys.size === 10, 'duplicate actus rejection');
 const deletedSurfaceFamilies = new Set([...surfaceLedger.decisions, ...surfaceLedger2.decisions, ...surfaceLedger3.decisions, ...surfaceLedger4.decisions].map(item => item.family_id));
@@ -429,6 +438,8 @@ for (let index = 0; index < 256; index += 1) {
         assert(Array.isArray(value.components) && value.components.length, `${language} missing components ${id}`);
         for (const component of value.components) assert(component.canonical_candidate && component.evidence?.length, `${language} missing component evidence ${id}`);
         if (noise.has(String(value.word).toLowerCase())) noiseFindings.push({ language, family_id: id, lemma_id: value.lemma_id, word: value.word });
+        assert(!rejectedComponentKeys.has(`${language}\0${id}\0${value.lemma_id}`), `rejected component membership ${value.word}`);
+        positiveComponentKeys.delete(`${language}\0${id}\0${value.lemma_id}`);
         assert(!rejectedManualKeys.has(`${language}\0${id}\0${value.lemma_id}`), `rejected manual membership still present ${language}/${id}/${value.word}`);
         assert(!rejectedActusKeys.has(`${language}\0${id}\0${value.lemma_id}`), `rejected actus membership still present ${language}/${id}/${value.word}`);
         if (id === illasLedger.family_id) assert(retainedIllasKeys.delete(`${language}\0${id}\0${value.lemma_id}`), `unreviewed illas membership ${language}/${value.word}`);
@@ -487,7 +498,7 @@ assert(JSON.stringify(uniqueLemmasByLanguage) === JSON.stringify(report.reposito
 assert(JSON.stringify(membershipsByLanguage) === JSON.stringify(report.repository_materialization.memberships_by_language), 'report memberships by language mismatch');
 assert(membershipCount === report.repository_materialization.memberships, 'report materialized memberships mismatch');
 assert(manifest.counts.lemmas - materializedUniqueLemmas === report.repository_materialization.lemmas_without_materialized_family, 'repository unassigned lemma count mismatch');
-assert(membershipCount === 10426047 - manualLedger.rejected_memberships.length - surfaceRemoved - surfaceRemoved2 - surfaceRemoved3 - surfaceRemoved4 - tenLedger.expected_members - inflectionRemoved - endingRemoved - geneaRemoved - geneaOtherRemoved - sonusRemoved - kaRemoved - suffixRemoved - suffixRemoved6 - suffixRemoved7 - suffixRemoved8 - suffixRemoved9 - suffixRemoved10 - suffixRemoved11 - suffixRemoved12 - actusLedger.rejected_memberships.length - illasLedger.expected_removed_memberships - pronounLedger.expected_total_removed_memberships - nitidusRepair.removed_memberships + nitidusRepair.added_memberships - ruShortRepair.removed_memberships - boundedRepair.removed_memberships - informationRepair.removed_memberships + informationRepair.added_memberships, 'unexpected repository membership count');
+assert(membershipCount === 10426047 - manualLedger.rejected_memberships.length - surfaceRemoved - surfaceRemoved2 - surfaceRemoved3 - surfaceRemoved4 - tenLedger.expected_members - inflectionRemoved - endingRemoved - geneaRemoved - geneaOtherRemoved - sonusRemoved - kaRemoved - suffixRemoved - suffixRemoved6 - suffixRemoved7 - suffixRemoved8 - suffixRemoved9 - suffixRemoved10 - suffixRemoved11 - suffixRemoved12 - actusLedger.rejected_memberships.length - illasLedger.expected_removed_memberships - pronounLedger.expected_total_removed_memberships - nitidusRepair.removed_memberships + nitidusRepair.added_memberships - ruShortRepair.removed_memberships - boundedRepair.removed_memberships - informationRepair.removed_memberships + informationRepair.added_memberships - componentRepair.removed_memberships, 'unexpected repository membership count');
 assert(familyCount === manifest.counts.families && familyCount === report.total_families, `family count ${familyCount}`);
 assert(materializedFamilyCount === familyCount, 'not every family was materialized');
 for (const [field, counted] of [
@@ -526,6 +537,9 @@ for (let index = 0; index < 256; index += 1) {
     aliasCount += 1;
   }
 }
+assert(positiveComponentKeys.size === 0, 'missing retained inter controls');
+const natTargets = (await readJson(join(root, 'aliases', `${bucket('nat')}.json.gz`))).nat;
+assert(!natTargets.includes('ety:496b7cec5a43'), 'nat still routes to NATO');
 assert(requiredAliasPairs.size === 0, `missing aliases for ${requiredAliasPairs.size} keys`);
 assert(aliasCount === manifest.counts.aliases && aliasCount === report.aliases_in_lookup, `alias count ${aliasCount}`);
 
