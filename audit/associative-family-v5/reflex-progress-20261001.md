@@ -14,8 +14,16 @@ Every materialized membership shard was scanned for observ/osserv/inform and the
 
 The explicit review selects family:observ (295 members: en38/de69/fr21/es102/it59/ru6) and family:inform (1,445 members: en57/de1026/fr52/es154/it81/ru75). Italian osservare/osservazione/osservatore/osservabile/osservatorio share the reviewed observ reflex. Russian информационно and genuine informational derivatives are included. Productive German compounds are analyzed around Information/Informatik/Informant/informieren, with Stein+Formation, informal and named-product collisions kept separate.
 
-Plan: retire the two observatio/observati suffix-expanded containers and the bounded informatio container, use their original records as evidence, and route user queries to actual associative roots observ and inform. All 185 previously reviewed information records remain accepted. Old membership total is 6,937; new reviewed total is 1,740. Corpus records/frequencies and other component routes are preserved. Executable repair preflights hashes and every source record and refuses repeat application.
+Applied: retire the two observatio/observati suffix-expanded containers and the bounded informatio container, use their original records as evidence, and route user queries to actual associative roots observ and inform. All 185 previously reviewed information records remain accepted. Old membership total is 6,937; new reviewed total is 1,740. Corpus records/frequencies and other component routes are preserved. The executable repair preflights hashes and every source record and refuses repeat application.
 
 ## Remaining work
 
 762 uncertain observ/inform token decisions need further primary lexical or corpus-context evidence. Nat/loc/inter candidates must be reconsidered under root-specific reflexes, particularly German/Russian loc~lok/лок; the historical 38,087 pending and 10,688 literal-absence screens remain saved, not reclassified by mere renaming. Remaining relatio/operatio/mutatio/creatio and distinct actio/acti, Russian short roots and all 15 val branches are still open. Green technical checks do not close this backlog.
+
+## Applied-stage validation
+
+The repair applied successfully after changing source preflight to release each corpus bucket rather than retaining all large buckets in memory. The first attempt stopped before mutation. Runtime, historical subset, source-measurement, negative-route and preservation checks passed (13 targeted tests). Full repository test and exhaustive audit results are recorded after completion below.
+
+All repository tests passed via npm test. The exhaustive repository family-v5 audit passed and refreshed repository-static-integrity.json. Runtime arrays, 185 historical information positives, unrelated shard contents, retired-container archives and source corpus measurements were checked.
+
+A next independent checkpoint loc-reflex-decisions-20261001.json records 523 selected German/Russian candidates: 443 accepted linguistic decisions, 24 exclusions, 56 uncertain. It does not mutate runtime or rename the remaining backlog. German lokal/Lokation/Lokomotive and Russian localis/locare/locativus dictionary evidence supports the declared loc~lok/лок proposal. Incidental kilo+Kalorie, кресло+каталка, мало+компетентный and block-derived collisions are excluded. Complete loc review and executable preservation preflight remain open.

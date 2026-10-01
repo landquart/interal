@@ -6,6 +6,7 @@ import { gunzipSync } from 'node:zlib';
 
 import { repositoryTreeMetadata } from './lib/associative-repository-materialization.mjs';
 import { buildSearchForm } from '../associativvordes/js/search-normalizer.js';
+import { matchesReviewedAssociativeForm } from '../associativvordes/js/associative-reflex-forms.js';
 
 const root = process.argv[2] || 'associativvordes/family-index-v5';
 const output = process.argv[3] || 'audit/associative-family-v5/repository-static-integrity.json';
@@ -59,6 +60,35 @@ const informationPositive = new Map(informationLedger.decisions.flatMap(d => d.r
 for (const a of informationLedger.added) informationPositive.set(`${a.language}\0${a.member.lemma_id}`, a.member.word);
 const informationPreserved = new Map(informationLedger.preserved_families.map(d => [d.family_id,d]));
 const informationPreservedSeen = new Set();
+const reflexBytes = await readFile('audit/associative-family-v5/reflex-families-20261001.json'), reflexLedger = JSON.parse(reflexBytes);
+const reflexRepair = provenance.repository_repairs.find(r => r.repair === reflexLedger.repair);
+assert(reflexRepair?.decision_ledger_sha256 === createHash('sha256').update(reflexBytes).digest('hex'), 'reflex provenance mismatch');
+assert(reflexRepair.removed_memberships === reflexLedger.expected_removed_memberships && reflexRepair.added_memberships === reflexLedger.expected_added_memberships && reflexRepair.net_family_delta === -1, 'reflex delta mismatch');
+const reflexOriginal = await readJson('audit/associative-family-v5/reflex-checkpoint-20261001/original-families.json.gz');
+for (const id of reflexLedger.supersedes_information_preservation_for) {
+  const prior = informationPreserved.get(id);
+  assert(prior && createHash('sha256').update(JSON.stringify(reflexOriginal.families[id])).digest('hex') === prior.family_sha256, `archived information neighbour changed ${id}`);
+  for (const language of languages) assert(createHash('sha256').update(JSON.stringify(reflexOriginal.members[language][id] || [])).digest('hex') === prior.members[language].ordered_member_sha256, `archived information neighbour members changed ${id}/${language}`);
+  informationPreserved.delete(id);
+}
+for (const [file,hash] of Object.entries(reflexLedger.checkpoint_artifacts)) assert(createHash('sha256').update(await readFile('audit/associative-family-v5/reflex-checkpoint-20261001/'+file)).digest('hex') === hash, `reflex checkpoint changed ${file}`);
+const reflexDecisionBytes = await readFile('audit/associative-family-v5/reflex-checkpoint-20261001/linguistic-decisions.json');
+assert(createHash('sha256').update(reflexDecisionBytes).digest('hex') === reflexLedger.decision_sha256, 'reflex decisions changed');
+const reflexDecisions = JSON.parse(reflexDecisionBytes), reflexCandidates = await readJson('audit/associative-family-v5/reflex-checkpoint-20261001/candidates.json.gz');
+const reflexPositive = new Map();
+for (const [root,langs] of Object.entries(reflexLedger.accepted)) for (const [language,ms] of Object.entries(langs)) {
+  const ds = reflexDecisions.decisions[language][root];
+  assert(JSON.stringify(ds.map(d=>[d.lemma_id,d.word])) === JSON.stringify(reflexCandidates[language][root].map(m=>[m.lemma_id,m.word])), `incomplete reflex dispositions ${root}/${language}`);
+  assert(ds.every(d=>['accepted','excluded','uncertain'].includes(d.status) && d.reason), 'invalid reflex decision');
+  assert(JSON.stringify(ms) === JSON.stringify(ds.filter(d=>d.status==='accepted')), `reflex accepted decisions mismatch ${root}/${language}`);
+  for (const m of ms) reflexPositive.set(`${language}\0family:${root}\0${m.lemma_id}`,m.word);
+}
+for (const p of reflexLedger.preservation) {
+  const shard = await readJson(join(root,p.part,p.bucket+'.json.gz'));
+  const ignore = p.part === 'aliases' ? Object.keys(reflexLedger.alias_before) : [...reflexLedger.retired_families,...reflexLedger.new_families];
+  const other = Object.fromEntries(Object.entries(shard).filter(([id])=>!ignore.includes(id)));
+  assert(createHash('sha256').update(JSON.stringify(other)).digest('hex') === p.unrelated_sha256, `unrelated reflex shard changed ${p.part}/${p.bucket}`);
+}
 
 assert(manifest.version === '5', `manifest version ${manifest.version}`);
 assert(JSON.stringify(manifest.languages) === JSON.stringify(languages), 'unexpected language set/order');
@@ -330,6 +360,7 @@ for (const [key, byLanguage] of Object.entries(continuation.accepted)) for (cons
 }
 for (const item of exactComponentLedger.preservation) {
   const shard = await readJson(join(root, item.part, item.bucket + '.json.gz'));
+  if (item.part === 'aliases') for (const [alias,before] of Object.entries(reflexLedger.alias_before)) if (bucket(alias) === item.bucket) { if (before.length) shard[alias] = before; else delete shard[alias]; }
   const unrelated = Object.fromEntries(Object.entries(shard).filter(([id]) => item.part === 'aliases' ? !['nat','loc','inter'].includes(id) : !['family:nat','family:loc','family:inter'].includes(id)));
   assert(createHash('sha256').update(JSON.stringify(unrelated)).digest('hex') === item.unrelated_sha256, `unrelated component shard changed ${item.part}/${item.bucket}`);
 }
@@ -395,11 +426,12 @@ for (let index = 0; index < 256; index += 1) {
     assert(id === family.id, `family key mismatch ${id}`);
     assert(bucket(id) === shard, `family bucket mismatch ${id}`);
     assert(id !== informationLedger.deleted_duplicate_family_id, 'information duplicate family remains');
-    if (id === informationLedger.canonical_family_id) {
-      assert(family.canonical === 'informatio' && family.runtime_curated === true && !family.verified && family.review_status === 'needs_review', 'information metadata mismatch');
-      assert(JSON.stringify(family.aliases) === JSON.stringify(informationLedger.aliases), 'information aliases mismatch');
-      assert(family.support === 185 && family.language_support.de === 154 && family.language_support.ru === 1, 'information support or size exception mismatch');
-      assert(JSON.stringify(family.relation_evidence) === JSON.stringify(informationLedger.original_families[0].relation_evidence), 'information extraction evidence changed');
+    assert(!reflexLedger.retired_families.includes(id), 'retired etymon container remains');
+    if (reflexLedger.new_families.includes(id)) {
+      const key = id.slice(7);
+      assert(family.canonical === key && family.associative_component === true && family.exact_component === true && family.runtime_curated === true && !family.verified && family.review_status === 'needs_review', 'reflex family metadata mismatch');
+      assert(JSON.stringify(family.aliases) === JSON.stringify(reflexLedger.aliases[key]) && JSON.stringify(family.surface_forms) === JSON.stringify(reflexLedger.surface_forms[key]), 'reflex aliases/forms mismatch');
+      for (const language of languages) assert(family.language_support[language] === reflexLedger.accepted[key][language].length, 'reflex support mismatch');
     }
     if (informationPreserved.has(id)) {
       assert(createHash('sha256').update(JSON.stringify(family)).digest('hex') === informationPreserved.get(id).family_sha256, `information neighbour changed ${id}`);
@@ -462,10 +494,13 @@ for (let index = 0; index < 256; index += 1) {
       if (informationPreserved.has(id)) assert(createHash('sha256').update(JSON.stringify(values)).digest('hex') === informationPreserved.get(id).members[language].ordered_member_sha256, `information neighbour members changed ${id}/${language}`);
       const seen = new Set();
       for (const value of values) {
-        if (id === informationLedger.canonical_family_id) {
-          const key = `${language}\0${value.lemma_id}`;
-          assert(informationPositive.get(key) === value.word && informationPositive.delete(key), `unreviewed information member ${language}/${value.word}`);
-          assert(value.components.every(c => c.canonical_candidate === 'informatio' && c.evidence.every(e => e.type === 'manual_override' && e.relation_type)), 'information manual evidence mismatch');
+        if (reflexLedger.new_families.includes(id)) {
+          const key = `${language}\0${id}\0${value.lemma_id}`, rootKey = id.slice(7);
+          assert(reflexPositive.get(key) === value.word && reflexPositive.delete(key), `unreviewed reflex member ${id}/${language}/${value.word}`);
+          assert(matchesReviewedAssociativeForm(value,{canonical:rootKey,surface_forms:reflexLedger.surface_forms[rootKey]},language), 'missing reviewed reflex');
+          assert(value.components.every(c=>c.canonical_candidate===rootKey && c.evidence.every(e=>e.type==='manual_override' && e.language_reflex===true && e.relation_type && e.analysis)), 'missing reflex review evidence');
+          const old = `${language}\0${value.lemma_id}`;
+          if (id === 'family:inform' && informationPositive.has(old)) { assert(informationPositive.get(old) === value.word, 'prior information spelling changed'); informationPositive.delete(old); }
         }
         if (['family:nat','family:loc','family:inter'].includes(id)) {
           const key = `${language}\0${id}\0${value.lemma_id}`;
@@ -515,6 +550,7 @@ assert(preservedActusKeys.size === 0, `preserved actus controls missing: ${[...p
 assert(retainedIllasKeys.size === 0, 'retained illas headwords missing');
 assert(retainedPronounKeys.size === 0, 'retained illos/illis headwords missing');
 assert(informationPositive.size === 0 && informationPreservedSeen.size === informationPreserved.size, 'information positive or neighbour controls missing');
+assert(reflexPositive.size === 0, 'missing reflex positives');
 assert(nitidusPositive.size === 0 && ruShortPositive.size === 0, 'new retained positive controls missing');
 for (const id of [nitidusLedger.deleted_duplicate_family_id, 'surface:es:nitid', ...ruShortLedger.decisions.filter(item => !item.retained.length).map(item => item.family_id)]) assert(!familyIdsByBucket[parseInt(bucket(id), 16)].has(id), `deleted family still present ${id}`);
 assert(familyIdsByBucket[parseInt(bucket('surface:en:sky'),16)].has('surface:en:sky'), 'retained sky family missing');
@@ -542,7 +578,7 @@ assert(JSON.stringify(uniqueLemmasByLanguage) === JSON.stringify(report.reposito
 assert(JSON.stringify(membershipsByLanguage) === JSON.stringify(report.repository_materialization.memberships_by_language), 'report memberships by language mismatch');
 assert(membershipCount === report.repository_materialization.memberships, 'report materialized memberships mismatch');
 assert(manifest.counts.lemmas - materializedUniqueLemmas === report.repository_materialization.lemmas_without_materialized_family, 'repository unassigned lemma count mismatch');
-assert(membershipCount === 10426047 - manualLedger.rejected_memberships.length - surfaceRemoved - surfaceRemoved2 - surfaceRemoved3 - surfaceRemoved4 - tenLedger.expected_members - inflectionRemoved - endingRemoved - geneaRemoved - geneaOtherRemoved - sonusRemoved - kaRemoved - suffixRemoved - suffixRemoved6 - suffixRemoved7 - suffixRemoved8 - suffixRemoved9 - suffixRemoved10 - suffixRemoved11 - suffixRemoved12 - actusLedger.rejected_memberships.length - illasLedger.expected_removed_memberships - pronounLedger.expected_total_removed_memberships - nitidusRepair.removed_memberships + nitidusRepair.added_memberships - ruShortRepair.removed_memberships - boundedRepair.removed_memberships - informationRepair.removed_memberships + informationRepair.added_memberships - componentRepair.removed_memberships - exactComponentRepair.removed_memberships + exactComponentRepair.added_memberships + continuationRepair.added_memberships, 'unexpected repository membership count');
+assert(membershipCount === 10426047 - manualLedger.rejected_memberships.length - surfaceRemoved - surfaceRemoved2 - surfaceRemoved3 - surfaceRemoved4 - tenLedger.expected_members - inflectionRemoved - endingRemoved - geneaRemoved - geneaOtherRemoved - sonusRemoved - kaRemoved - suffixRemoved - suffixRemoved6 - suffixRemoved7 - suffixRemoved8 - suffixRemoved9 - suffixRemoved10 - suffixRemoved11 - suffixRemoved12 - actusLedger.rejected_memberships.length - illasLedger.expected_removed_memberships - pronounLedger.expected_total_removed_memberships - nitidusRepair.removed_memberships + nitidusRepair.added_memberships - ruShortRepair.removed_memberships - boundedRepair.removed_memberships - informationRepair.removed_memberships + informationRepair.added_memberships - componentRepair.removed_memberships - exactComponentRepair.removed_memberships + exactComponentRepair.added_memberships + continuationRepair.added_memberships - reflexRepair.removed_memberships + reflexRepair.added_memberships, 'unexpected repository membership count');
 assert(familyCount === manifest.counts.families && familyCount === report.total_families, `family count ${familyCount}`);
 assert(materializedFamilyCount === familyCount, 'not every family was materialized');
 for (const [field, counted] of [
@@ -565,7 +601,7 @@ for (let index = 0; index < 256; index += 1) {
   for (const [alias, targets] of Object.entries(aliases)) {
     assert(!targets.includes(informationLedger.deleted_duplicate_family_id), 'alias points to deleted information duplicate');
     if (alias === 'azion') assert(!targets.includes(informationLedger.canonical_family_id), 'suffix routes to lexical information family');
-    if (informationLedger.aliases.includes(alias)) assert(targets.includes(informationLedger.canonical_family_id), `information reverse alias missing ${alias}`);
+    if (informationLedger.aliases.includes(alias)) assert(targets.includes('family:inform'), `information reverse alias missing ${alias}`);
     if (alias === 'net') assert(JSON.stringify(targets) === JSON.stringify(netLedger.retained_targets.slice().sort()), 'net reverse alias routing mismatch');
     if (alias === 'val') assert(JSON.stringify(targets) === JSON.stringify(boundedLedger.val.retained_targets.slice().sort()) && targets.length <= 25, 'val reverse alias routing mismatch');
     assert(bucket(alias) === shard, `alias bucket mismatch ${alias}`);

@@ -40,8 +40,12 @@ Adjudication includes every disagreement, every `uncertain`, every possible poli
 Agreement is measured before adjudication with raw agreement, confusion matrix, Cohen's kappa, uncertain rates, and language/relation/error/corpus breakdowns. Precision uses design weights and reports resolved, conservative, and optimistic forms. Confidence intervals use a reproducible stratified family-cluster bootstrap; small groups are `insufficient_evidence`. Recall is reported only from a separately sampled, dual-reviewed external gold frame and is split into graph, runtime, retrieval, and top-5 measures.
 
 
-## Exact component correction — 2026-10-01
+## Historical exact component checkpoint — 2026-10-01
 
 The user requires the complete requested fragment and etymological support together. Historical descent alone cannot include naive in nat or lieutenant in loc. Use existing search normalization v4; do not substitute nat/nasc/naci, loc/lok or inter/entre. Full letter overlap alone is also insufficient: interment is in + terra; teleprinter and midwinter contain incidental inter letters. Preserve independent lexical branches and multi-component memberships without whole-family union. There is no arbitrary maximum family size. Frozen accepted arrays and all undecided source candidates are saved in component-checkpoint-20261001; missing corpus words must not receive invented frequency records.
 
 User refinement (2026-10-01): lieu is explicitly excluded from loc. Its Latin locus ancestry does not replace the missing literal component. Preserve historical source snapshots as evidence, with excluded dispositions; they are not accepted membership lists.
+
+## Superseding root-specific reflex instruction — 2026-10-01
+
+The saved user-reflex-instructions-20261001.md supersedes the universal literal-fragment requirement above. A declared and linguistically supported national reflex may represent the same associative element (observ in Italian osservare/osservazione). This is root- and language-specific, not a global spelling substitution or unrestricted ancestry union. Historical literal-absence dispositions remain immutable technical retrieval screens and require linguistic reconsideration. The explicit exclusions naive/naïve from nat and lieu/lieutenant from loc still apply. Acceptance requires a recognizable element, etymological continuity and a valid lexical/inflectional or compound analysis; incidental overlap is insufficient. All uncertain candidates remain withheld with reasons and full source records.

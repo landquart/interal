@@ -35,7 +35,8 @@ test('checkpoint artifacts and unrelated contents of changed shards are preserve
  const decisions=await read(checkpoint+'/decisions.json');
  for(const [file,sha]of Object.entries(decisions.artifacts))assert.equal(createHash('sha256').update(await readFile(checkpoint+'/'+file)).digest('hex'),sha);
  const ledger=await read('audit/associative-family-v5/exact-components-20261001.json');
- for(const p of ledger.preservation){const shard=await read(`${root}/${p.part}/${p.bucket}.json.gz`);const other=Object.fromEntries(Object.entries(shard).filter(([id])=>p.part==='aliases'?!['nat','loc','inter'].includes(id):!['family:nat','family:loc','family:inter'].includes(id)));assert.equal(createHash('sha256').update(JSON.stringify(other)).digest('hex'),p.unrelated_sha256);}
+ const reflex=await read('audit/associative-family-v5/reflex-families-20261001.json');
+ for(const p of ledger.preservation){const shard=await read(`${root}/${p.part}/${p.bucket}.json.gz`);if(p.part==='aliases')for(const [alias,before]of Object.entries(reflex.alias_before))if(familyBucket(alias)===p.bucket){if(before.length)shard[alias]=before;else delete shard[alias];}const other=Object.fromEntries(Object.entries(shard).filter(([id])=>p.part==='aliases'?!['nat','loc','inter'].includes(id):!['family:nat','family:loc','family:inter'].includes(id)));assert.equal(createHash('sha256').update(JSON.stringify(other)).digest('hex'),p.unrelated_sha256);}
 });
 test('exact runtime guard rejects a stale manually linked etymological allomorph',async()=>{
  for(const [key,word,valid]of [['nat','naive','natural'],['loc','lieutenant','local'],['loc','lieu','local']]){

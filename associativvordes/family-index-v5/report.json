@@ -115,11 +115,11 @@
   },
   "uncertain_relation_count": 431390,
   "uncertain_relation_sample_size": 100000,
-  "total_families": 2456544,
-  "merged_families": 20775,
+  "total_families": 2456543,
+  "merged_families": 20774,
   "singleton_families": 1735280,
-  "multi_branch_families": 17675,
-  "multi_family_lemmas": 3333647,
+  "multi_branch_families": 17674,
+  "multi_family_lemmas": 3334128,
   "components_discovered": 9349982,
   "components_assigned": 9349982,
   "corpus_quality_counts": {
@@ -128,7 +128,7 @@
     "rejected": 9,
     "requires_manual_review": 0
   },
-  "review_required_families": 4029,
+  "review_required_families": 4030,
   "invariants": {
     "processed_lemmas_equals_source": true,
     "source_lemmas": 4924980,
@@ -143,9 +143,9 @@
     "compound_edges_used_as_equivalence": 0,
     "unreviewed_high_risk_families": 0
   },
-  "generated_non_proto_families": 20766,
+  "generated_non_proto_families": 20763,
   "verified_seed_families": 6,
-  "aliases_in_lookup": 1934051,
+  "aliases_in_lookup": 1934052,
   "proto_review_candidates": 10209,
   "wide_etymon_review_candidates": 171,
   "etymon_key_policy": {
@@ -4833,172 +4833,6 @@
       "review_status": "safe_automatic"
     },
     {
-      "id": "ety:c28863eb7595",
-      "canonical": "azion",
-      "aliases": [
-        "azion",
-        "observation"
-      ],
-      "verified": false,
-      "confidence": "A",
-      "source": "wiktionary_non_proto_etymology",
-      "etymon_keys": [
-        "la:observatio"
-      ],
-      "relation_types": [
-        "borrowed_form",
-        "direct_descendant"
-      ],
-      "relation_evidence": [
-        {
-          "language": "en",
-          "word": "observation",
-          "sourceLang": "la",
-          "term": "observatio",
-          "relationType": "borrowed_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.9,
-          "depth": 1,
-          "template": "learned borrowing",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "fr",
-          "word": "observation",
-          "sourceLang": "la",
-          "term": "observātiō",
-          "relationType": "borrowed_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.9,
-          "depth": 1,
-          "template": "bor+",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "it",
-          "word": "osservazione",
-          "sourceLang": "la",
-          "term": "observātiō",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        }
-      ],
-      "canonical_selection": {
-        "method": "quality_score_v1",
-        "score": 1
-      },
-      "language_support": {
-        "en": 6,
-        "fr": 4,
-        "it": 3366
-      },
-      "support": 3376,
-      "suspicion_score": 20,
-      "suspicion_reasons": [
-        "large_family"
-      ],
-      "review_status": "safe_automatic"
-    },
-    {
-      "id": "ety:c80365cdd174",
-      "canonical": "azion",
-      "aliases": [
-        "azion",
-        "observation"
-      ],
-      "verified": false,
-      "confidence": "A",
-      "source": "wiktionary_non_proto_etymology",
-      "etymon_keys": [
-        "la:observati"
-      ],
-      "relation_types": [
-        "borrowed_form",
-        "direct_descendant"
-      ],
-      "relation_evidence": [
-        {
-          "language": "en",
-          "word": "observation",
-          "sourceLang": "la",
-          "term": "observatio",
-          "relationType": "borrowed_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.9,
-          "depth": 1,
-          "template": "learned borrowing",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "fr",
-          "word": "observation",
-          "sourceLang": "la",
-          "term": "observātiō",
-          "relationType": "borrowed_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.9,
-          "depth": 1,
-          "template": "bor+",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "it",
-          "word": "osservazione",
-          "sourceLang": "la",
-          "term": "observātiō",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        }
-      ],
-      "canonical_selection": {
-        "method": "quality_score_v1",
-        "score": 1
-      },
-      "language_support": {
-        "en": 6,
-        "fr": 4,
-        "it": 3366
-      },
-      "support": 3376,
-      "suspicion_score": 20,
-      "suspicion_reasons": [
-        "large_family"
-      ],
-      "review_status": "safe_automatic"
-    },
-    {
       "id": "ety:75eed4d759a7",
       "canonical": "bonet",
       "aliases": [
@@ -7655,6 +7489,135 @@
         "large_family"
       ],
       "review_status": "needs_review"
+    },
+    {
+      "id": "ety:da5fcec7ee69",
+      "canonical": "monroe",
+      "aliases": [
+        "man",
+        "monroe"
+      ],
+      "verified": false,
+      "confidence": "A",
+      "source": "wiktionary_non_proto_etymology",
+      "etymon_keys": [
+        "ang:mann"
+      ],
+      "relation_types": [
+        "inherited_form"
+      ],
+      "relation_evidence": [
+        {
+          "language": "en",
+          "word": "man",
+          "sourceLang": "ang",
+          "term": "mann",
+          "relationType": "inherited_form",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "inh",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "en",
+          "word": "man",
+          "sourceLang": "ang",
+          "term": "mann",
+          "relationType": "inherited_form",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "inh",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "en",
+          "word": "man",
+          "sourceLang": "ang",
+          "term": "mann",
+          "relationType": "inherited_form",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "inh",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "en",
+          "word": "Monroe",
+          "sourceLang": "ang",
+          "term": "mann",
+          "relationType": "inherited_form",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "inh",
+          "path": [
+            "args",
+            2
+          ]
+        }
+      ],
+      "canonical_selection": {
+        "method": "quality_score_v1",
+        "score": 0
+      },
+      "language_support": {
+        "en": 2594
+      },
+      "support": 2594,
+      "suspicion_score": 40,
+      "suspicion_reasons": [
+        "short_root",
+        "large_family"
+      ],
+      "review_status": "needs_review"
+    },
+    {
+      "id": "family:alter",
+      "canonical": "alter",
+      "aliases": [
+        "alter",
+        "altern",
+        "altru"
+      ],
+      "verified": true,
+      "confidence": "A",
+      "source": "methodology_seed+manual_override",
+      "etymon_keys": [],
+      "relation_types": [
+        "direct_allomorph"
+      ],
+      "relation_evidence": [],
+      "canonical_selection": {
+        "method": "verified_seed"
+      },
+      "language_support": {
+        "en": 164,
+        "de": 1850,
+        "fr": 96,
+        "es": 176,
+        "it": 120,
+        "ru": 79
+      },
+      "support": 2485,
+      "suspicion_score": 0,
+      "suspicion_reasons": [],
+      "review_status": "manually_verified"
     }
   ],
   "highest_suspicion_families": [
@@ -13658,14 +13621,14 @@
       "ru": 569375
     },
     "memberships_by_language": {
-      "en": 2618654,
-      "de": 2207526,
-      "fr": 1143719,
-      "es": 1797335,
-      "it": 1181824,
-      "ru": 1127094
+      "en": 2618731,
+      "de": 2208467,
+      "fr": 1143779,
+      "es": 1797584,
+      "it": 1175220,
+      "ru": 1127174
     },
-    "memberships": 10076152,
+    "memberships": 10070955,
     "nitidus_net_memberships_removed": 9924,
     "nitidus_net_memberships_added": 2,
     "nitidus_ledger_sha256": "76cd3ddf53bb7a6e4bc6c43a6b5e0ba9efd074d1162ff736776a0e9b6bdcbffa",
@@ -13698,6 +13661,16 @@
       "removed_memberships": 0,
       "added_memberships": 15,
       "decision_ledger_sha256": "2f3e10927391804c4fc62da94c837a27b314596b9f34027a3f633bd7cc5b9ab5",
+      "full_family_certification": false
+    },
+    "associative_reflex_review": {
+      "repair": "materialize_observ_and_inform_associative_reflex_families_20261001",
+      "source_run_id": 35647932153,
+      "removed_memberships": 6937,
+      "added_memberships": 1740,
+      "net_family_delta": -1,
+      "alias_delta": 1,
+      "decision_ledger_sha256": "6ddfbe3f66b82e4d738ba89aeef505a934cee3bd9daf7fc18f64a650e2b3cf8a",
       "full_family_certification": false
     }
   }

@@ -36,7 +36,13 @@ if(!apply){
  const ledgerBytes=await readFile(ledgerPath),l=JSON.parse(ledgerBytes);assert.equal(l.decision_sha256,sha(decisionBytes));assert.deepEqual(l.retired_families,retired);assert.deepEqual(l.aliases,aliases);assert.deepEqual(l.surface_forms,decisions.surface_forms);
  for(const p of l.preservation)assert.equal(digest(stripped(p.part,await get(`${root}/${p.part}/${p.bucket}.json.gz`))),p.unrelated_sha256);
  for(const [alias,before]of Object.entries(l.alias_before))assert.deepEqual((await get(path('aliases',alias)))[alias]||[],before);
- for(const key of keys)for(const language of languages){assert.deepEqual(l.accepted[key][language],accepted[key][language].map(({original_member,...d})=>d));for(const d of accepted[key][language]){const source=d.source_family_ids[0],s=await get(path('members/'+language,source));assert.deepEqual(s[source]?.find(m=>m.lemma_id===d.lemma_id),d.original_member,`source mismatch ${language}/${d.word}`);}}
+ for(const language of languages){
+  const groups=new Map();
+  for(const key of keys){assert.deepEqual(l.accepted[key][language],accepted[key][language].map(({original_member,...d})=>d));for(const d of accepted[key][language]){const p=path('members/'+language,d.source_family_ids[0]);if(!groups.has(p))groups.set(p,[]);groups.get(p).push(d);}}
+  // Source shards are read once per language/bucket and released immediately;
+  // retaining the full corpus in the mutation cache can exhaust the heap.
+  for(const [p,values]of groups){const shard=await read(p);for(const d of values)assert.deepEqual(shard[d.source_family_ids[0]]?.find(m=>m.lemma_id===d.lemma_id),d.original_member,`source mismatch ${language}/${d.word}`);}
+ }
  const oldInfo=await read(audit+'/information-decisions-20260930.json');for(const language of languages){const old=[...oldInfo.decisions.find(d=>d.language===language).retained,...oldInfo.added.filter(a=>a.language===language).map(a=>a.member)];assert(old.every(m=>accepted.inform[language].some(a=>a.lemma_id===m.lemma_id)),'Prior information member lost');}
  const changed=new Set();
  for(const id of retired){const fp=path('families',id);delete(await get(fp))[id];changed.add(fp);for(const language of languages){const mp=path('members/'+language,id),s=await get(mp);if(s[id]){delete s[id];changed.add(mp);}}}
