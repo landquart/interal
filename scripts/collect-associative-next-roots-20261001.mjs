@@ -2,9 +2,11 @@ import {readFile,writeFile,readdir,mkdir} from 'node:fs/promises';
 import {gunzipSync,gzipSync} from 'node:zlib';
 import {createHash} from 'node:crypto';
 import {buildSearchForm} from '../associativvordes/js/search-normalizer.js';
-const root='associativvordes/family-index-v5',out='audit/associative-family-v5/next-roots-checkpoint-20261001';
+const root='associativvordes/family-index-v5',out='audit/associative-family-v5/'+(process.argv.includes('--expanded-relation-reflexes')?'next-roots-relation-reflex-checkpoint-20261001':process.argv.includes('--expanded-creation-reflexes')?'next-roots-reflex-checkpoint-20261001':'next-roots-checkpoint-20261001');
 // These broad forms retrieve possible reflexes; they confer no membership.
 const forms={relat:['relat','relaz','релат','релят','реляц'],oper:['oper','опер'],mut:['mut','мут'],creat:['creat','creaz','crea','kreat','krea','креат','креац','креа']};
+if(process.argv.includes('--expanded-creation-reflexes'))forms.creat.push('kreier','cree','creon','crei','creo');
+if(process.argv.includes('--expanded-relation-reflexes')){forms.relat.push('relac','relacion','correlac');delete forms.oper;delete forms.mut;delete forms.creat;}
 const normalized=Object.fromEntries(Object.entries(forms).map(([k,fs])=>[k,[...new Set(fs.map(buildSearchForm))]]));
 await mkdir(out,{recursive:true});const counts={},artifacts={};
 for(const language of ['en','de','fr','es','it','ru']){

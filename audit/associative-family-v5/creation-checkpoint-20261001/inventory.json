@@ -1,0 +1,43 @@
+{
+  "source_run_id": 35647932153,
+  "artifacts": {
+    "candidates.json.gz": "ea3edf87ff1d605e8587a23a0ef689848aceda1fc2817ba52f04f4f7fe97a148",
+    "original-families.json.gz": "ac58518d0bb644c5f0976940a1a307490c5c4d13453c989f452e111d70fd5e1f"
+  },
+  "retired_families": [
+    "ety:a3b640366c27",
+    "ety:ab1eaa1c14b6"
+  ],
+  "counts": {
+    "en": {
+      "accepted": 68,
+      "excluded": 429,
+      "uncertain": 784
+    },
+    "de": {
+      "accepted": 174,
+      "excluded": 110,
+      "uncertain": 239
+    },
+    "fr": {
+      "accepted": 70,
+      "excluded": 106,
+      "uncertain": 313
+    },
+    "es": {
+      "accepted": 94,
+      "excluded": 309,
+      "uncertain": 781
+    },
+    "it": {
+      "accepted": 139,
+      "excluded": 3452,
+      "uncertain": 255
+    },
+    "ru": {
+      "accepted": 29,
+      "excluded": 23,
+      "uncertain": 17
+    }
+  }
+}

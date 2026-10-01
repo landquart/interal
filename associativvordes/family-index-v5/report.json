@@ -115,11 +115,11 @@
   },
   "uncertain_relation_count": 431390,
   "uncertain_relation_sample_size": 100000,
-  "total_families": 2456543,
-  "merged_families": 20774,
+  "total_families": 2456542,
+  "merged_families": 20773,
   "singleton_families": 1735280,
-  "multi_branch_families": 17675,
-  "multi_family_lemmas": 3334268,
+  "multi_branch_families": 17674,
+  "multi_family_lemmas": 3334404,
   "components_discovered": 9349982,
   "components_assigned": 9349982,
   "corpus_quality_counts": {
@@ -128,12 +128,12 @@
     "rejected": 9,
     "requires_manual_review": 0
   },
-  "review_required_families": 4030,
+  "review_required_families": 4031,
   "invariants": {
     "processed_lemmas_equals_source": true,
     "source_lemmas": 4924980,
-    "classified_unique_lemmas": 4924157,
-    "lemmas_with_zero_family": 823,
+    "classified_unique_lemmas": 4924155,
+    "lemmas_with_zero_family": 825,
     "families_with_zero_members": 0,
     "members_without_evidence": 0,
     "fuzzy_memberships": 0,
@@ -143,7 +143,7 @@
     "compound_edges_used_as_equivalence": 0,
     "unreviewed_high_risk_families": 0
   },
-  "generated_non_proto_families": 20763,
+  "generated_non_proto_families": 20761,
   "verified_seed_families": 6,
   "aliases_in_lookup": 1934052,
   "proto_review_candidates": 10209,
@@ -4165,244 +4165,6 @@
       "review_status": "safe_automatic"
     },
     {
-      "id": "ety:a3b640366c27",
-      "canonical": "azion",
-      "aliases": [
-        "azion",
-        "creacion",
-        "creation",
-        "kreation"
-      ],
-      "verified": false,
-      "confidence": "A",
-      "source": "wiktionary_non_proto_etymology",
-      "etymon_keys": [
-        "la:creatio"
-      ],
-      "relation_types": [
-        "borrowed_form",
-        "direct_descendant"
-      ],
-      "relation_evidence": [
-        {
-          "language": "en",
-          "word": "creation",
-          "sourceLang": "la",
-          "term": "creātiō",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "fr",
-          "word": "création",
-          "sourceLang": "la",
-          "term": "creātiō",
-          "relationType": "borrowed_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.9,
-          "depth": 1,
-          "template": "bor+",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "it",
-          "word": "creazione",
-          "sourceLang": "la",
-          "term": "creatio",
-          "relationType": "borrowed_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.9,
-          "depth": 1,
-          "template": "bor+",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "es",
-          "word": "creación",
-          "sourceLang": "la",
-          "term": "creatio",
-          "relationType": "borrowed_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.9,
-          "depth": 1,
-          "template": "bor+",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "de",
-          "word": "Kreation",
-          "sourceLang": "la",
-          "term": "creātiō",
-          "relationType": "borrowed_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.9,
-          "depth": 1,
-          "template": "bor",
-          "path": [
-            "args",
-            2
-          ]
-        }
-      ],
-      "canonical_selection": {
-        "method": "quality_score_v1",
-        "score": 1
-      },
-      "language_support": {
-        "en": 13,
-        "de": 9,
-        "fr": 8,
-        "es": 6,
-        "it": 3366
-      },
-      "support": 3402,
-      "suspicion_score": 20,
-      "suspicion_reasons": [
-        "large_family"
-      ],
-      "review_status": "safe_automatic"
-    },
-    {
-      "id": "ety:ab1eaa1c14b6",
-      "canonical": "azion",
-      "aliases": [
-        "azion",
-        "creacion",
-        "creation",
-        "kreation"
-      ],
-      "verified": false,
-      "confidence": "A",
-      "source": "wiktionary_non_proto_etymology",
-      "etymon_keys": [
-        "la:creati"
-      ],
-      "relation_types": [
-        "borrowed_form",
-        "direct_descendant"
-      ],
-      "relation_evidence": [
-        {
-          "language": "en",
-          "word": "creation",
-          "sourceLang": "la",
-          "term": "creātiō",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "fr",
-          "word": "création",
-          "sourceLang": "la",
-          "term": "creātiō",
-          "relationType": "borrowed_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.9,
-          "depth": 1,
-          "template": "bor+",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "it",
-          "word": "creazione",
-          "sourceLang": "la",
-          "term": "creatio",
-          "relationType": "borrowed_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.9,
-          "depth": 1,
-          "template": "bor+",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "es",
-          "word": "creación",
-          "sourceLang": "la",
-          "term": "creatio",
-          "relationType": "borrowed_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.9,
-          "depth": 1,
-          "template": "bor+",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "de",
-          "word": "Kreation",
-          "sourceLang": "la",
-          "term": "creātiō",
-          "relationType": "borrowed_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.9,
-          "depth": 1,
-          "template": "bor",
-          "path": [
-            "args",
-            2
-          ]
-        }
-      ],
-      "canonical_selection": {
-        "method": "quality_score_v1",
-        "score": 1
-      },
-      "language_support": {
-        "en": 13,
-        "de": 9,
-        "fr": 8,
-        "es": 6,
-        "it": 3366
-      },
-      "support": 3402,
-      "suspicion_score": 20,
-      "suspicion_reasons": [
-        "large_family"
-      ],
-      "review_status": "safe_automatic"
-    },
-    {
       "id": "ety:61108b488e06",
       "canonical": "azion",
       "aliases": [
@@ -7618,6 +7380,168 @@
       "suspicion_score": 0,
       "suspicion_reasons": [],
       "review_status": "manually_verified"
+    },
+    {
+      "id": "ety:930ddb8bc759",
+      "canonical": "alea",
+      "aliases": [
+        "ale",
+        "alea"
+      ],
+      "verified": false,
+      "confidence": "A",
+      "source": "wiktionary_non_proto_etymology",
+      "etymon_keys": [
+        "la:alea"
+      ],
+      "relation_types": [
+        "borrowed_form",
+        "direct_descendant"
+      ],
+      "relation_evidence": [
+        {
+          "language": "it",
+          "word": "alea",
+          "sourceLang": "la",
+          "term": "ālea",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.9,
+          "depth": 1,
+          "template": "uder",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "fr",
+          "word": "aléa",
+          "sourceLang": "la",
+          "term": "ālea",
+          "relationType": "borrowed_form",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.9,
+          "depth": 1,
+          "template": "bor+",
+          "path": [
+            "args",
+            2
+          ]
+        }
+      ],
+      "canonical_selection": {
+        "method": "quality_score_v1",
+        "score": 2
+      },
+      "language_support": {
+        "fr": 15,
+        "it": 2421
+      },
+      "support": 2436,
+      "suspicion_score": 20,
+      "suspicion_reasons": [
+        "short_root"
+      ],
+      "review_status": "safe_automatic"
+    },
+    {
+      "id": "ety:9855375233b2",
+      "canonical": "skid",
+      "aliases": [
+        "ski",
+        "skid"
+      ],
+      "verified": false,
+      "confidence": "A",
+      "source": "wiktionary_non_proto_etymology",
+      "etymon_keys": [
+        "non:skið"
+      ],
+      "relation_types": [
+        "direct_descendant"
+      ],
+      "relation_evidence": [
+        {
+          "language": "en",
+          "word": "skid",
+          "sourceLang": "non",
+          "term": "skíð",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "en",
+          "word": "skid",
+          "sourceLang": "non",
+          "term": "skíð",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "en",
+          "word": "ski",
+          "sourceLang": "non",
+          "term": "skíð",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "en",
+          "word": "ski",
+          "sourceLang": "non",
+          "term": "skíð",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        }
+      ],
+      "canonical_selection": {
+        "method": "quality_score_v1",
+        "score": 2
+      },
+      "language_support": {
+        "en": 2375
+      },
+      "support": 2375,
+      "suspicion_score": 20,
+      "suspicion_reasons": [
+        "short_root"
+      ],
+      "review_status": "safe_automatic"
     }
   ],
   "highest_suspicion_families": [
@@ -13606,8 +13530,8 @@
     "illos_illis_family_decisions_sha256": "2fc48f87d69f8ca53560245048b2b00d1adc07112ea69c5d5f39145346fb0598",
     "suffix_batch_10_memberships_removed": 26757,
     "suffix_batch_10_ledger_sha256": "4d0ccfacf38eaedaeedad9c1d685f0244b44877433969b4dc6b791bd1fa5d274",
-    "materialized_unique_lemmas": 4924157,
-    "lemmas_without_materialized_family": 823,
+    "materialized_unique_lemmas": 4924155,
+    "lemmas_without_materialized_family": 825,
     "suffix_batch_11_memberships_removed": 14711,
     "suffix_batch_11_ledger_sha256": "0089c0b61e5627d45b0ae6d237f8b494a1940e37b86788e29bce0bc929cc7568",
     "suffix_batch_12_memberships_removed": 11782,
@@ -13615,20 +13539,20 @@
     "unique_lemmas_by_language": {
       "en": 1130858,
       "de": 1113442,
-      "fr": 558898,
-      "es": 941502,
+      "fr": 558897,
+      "es": 941501,
       "it": 610082,
       "ru": 569375
     },
     "memberships_by_language": {
-      "en": 2618731,
-      "de": 2208918,
-      "fr": 1143779,
-      "es": 1797584,
-      "it": 1175220,
-      "ru": 1127228
+      "en": 2618773,
+      "de": 2209074,
+      "fr": 1143833,
+      "es": 1797666,
+      "it": 1168627,
+      "ru": 1127257
     },
-    "memberships": 10071460,
+    "memberships": 10065230,
     "nitidus_net_memberships_removed": 9924,
     "nitidus_net_memberships_added": 2,
     "nitidus_ledger_sha256": "76cd3ddf53bb7a6e4bc6c43a6b5e0ba9efd074d1162ff736776a0e9b6bdcbffa",
@@ -13664,13 +13588,13 @@
       "full_family_certification": false
     },
     "associative_reflex_review": {
-      "repair": "materialize_observ_and_inform_associative_reflex_families_20261001",
+      "repair": "materialize_reviewed_creation_associative_root_20261001",
       "source_run_id": 35647932153,
-      "removed_memberships": 6937,
-      "added_memberships": 1740,
+      "removed_memberships": 6804,
+      "added_memberships": 574,
       "net_family_delta": -1,
-      "alias_delta": 1,
-      "decision_ledger_sha256": "6ddfbe3f66b82e4d738ba89aeef505a934cee3bd9daf7fc18f64a650e2b3cf8a",
+      "alias_delta": 0,
+      "decision_ledger_sha256": "80532ab2bc22bcd8f35a930f904cb4ed7974fde0c5c30ec7e028021457d48a9a",
       "full_family_certification": false
     },
     "loc_reflex_review": {
