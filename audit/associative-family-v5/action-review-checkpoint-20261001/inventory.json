@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "source_run_id": 35647932153,
+  "source_artifacts": {
+    "en-candidates.json.gz": "e0269c60b78f557097fbb01d41accfdc0ebaf70c7cc63433be9eb5e1d9e664af",
+    "de-candidates.json.gz": "498d3c6fceb649afe91627b908035a2c02736cca7234012ac3763e0f8c7eb809",
+    "fr-candidates.json.gz": "0b09197924b68bea813542ce1294344821fce1ab3336f35fe5392a83033ead98",
+    "es-candidates.json.gz": "1c40a9f8094d6e00e0c4d502fb419f5734428f196c2e24d6ba6b02d7b4fc8fa0",
+    "it-candidates.json.gz": "20e304abbd08821bddc73cb77c9c245de2170d5c9ae59747bab9ca69e90ec433",
+    "ru-candidates.json.gz": "e29d337f61f37a3797cbf2067d235e765969807d29e55cc7473f21c409362eae",
+    "original-families.json.gz": "45a0f98391e534d55c1cdf239c133534da02e92141d0c679f9d92d0f1d0c16f1"
+  },
+  "decision_sha256": "74949b38bd7c2fb690bd464a6d1b7508570fc08868ea42111edd1c04a2a8e107",
+  "counts": {
+    "en": {
+      "accepted": 160,
+      "excluded": 7663,
+      "uncertain": 1910
+    },
+    "de": {
+      "accepted": 82,
+      "excluded": 11447,
+      "uncertain": 5792
+    },
+    "fr": {
+      "accepted": 144,
+      "excluded": 3533,
+      "uncertain": 798
+    },
+    "es": {
+      "accepted": 284,
+      "excluded": 3836,
+      "uncertain": 1673
+    },
+    "it": {
+      "accepted": 218,
+      "excluded": 849,
+      "uncertain": 11057
+    },
+    "ru": {
+      "accepted": 210,
+      "excluded": 2010,
+      "uncertain": 611
+    }
+  },
+  "coverage": {
+    "en": 9733,
+    "de": 17321,
+    "fr": 4475,
+    "es": 5793,
+    "it": 12124,
+    "ru": 2831
+  },
+  "runtime_applied": false
+}
