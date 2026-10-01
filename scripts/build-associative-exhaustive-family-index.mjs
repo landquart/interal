@@ -14,6 +14,7 @@ import { getLanguageConfig } from '../associativvordes/js/morphology/languages/i
 import { nullDictionary, stableLemmaId } from './lib/associative-family-graph.mjs';
 import { RELATION_TYPE, templateRelations } from './lib/associative-etymology-policy.mjs';
 import { classifyCorpusLemma } from './lib/associative-corpus-quality.mjs';
+import { INTER_COMPONENT_CONTROLS } from '../associativvordes/js/associative-component-controls.js';
 
 const LANGUAGES = ['en', 'de', 'fr', 'es', 'it', 'ru'];
 const INDEX_VERSION = '5';
@@ -64,7 +65,7 @@ const CONTROL_WORDS = Object.freeze({
     it: ['libertà', 'liberale'], ru: ['либертарианский', 'либеральный']
   },
   'family:inter': {
-    en: ['international', 'interdisciplinary'], de: ['international', 'interdisziplinär'],
+    en: ['international', 'interdisciplinary', ...INTER_COMPONENT_CONTROLS], de: ['international', 'interdisziplinär'],
     fr: ['international', 'interdisciplinaire'], es: ['internacional', 'interdisciplinario'],
     it: ['internazionale', 'interdisciplinare'], ru: ['интернациональный']
   }
