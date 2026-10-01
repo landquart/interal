@@ -306,9 +306,9 @@ export function createCandidateIndexLoader(options = {}) {
   }
 
   async function loadCandidateEntries(language, root, { signal, elementType = 'root' } = {}) {
-    if (elementType === 'root') {
+    if (elementType === 'root' || elementType === 'preposition') {
       try {
-        const familyEntries = await familyIndexLoader.candidateEntries(root, language, { signal });
+        const familyEntries = await familyIndexLoader.candidateEntries(root, language, { signal, elementType });
         diagnostics.familyIndexStatus = 'loaded';
         diagnostics.familyIndexFamilies = new Set(familyEntries.map(entry => entry.family_id)).size;
         if (familyEntries.length) {
@@ -319,7 +319,7 @@ export function createCandidateIndexLoader(options = {}) {
           diagnostics.exactCandidateIds = familyEntries.length;
           return familyEntries;
         }
-        const resolvedFamilyIds = await familyIndexLoader.resolveAlias(root, { signal });
+        const resolvedFamilyIds = await familyIndexLoader.resolveAlias(root, { signal, elementType });
         if (resolvedFamilyIds.length) {
           diagnostics.familyIndexFamilies = resolvedFamilyIds.length;
           diagnostics.candidateIds = 0;

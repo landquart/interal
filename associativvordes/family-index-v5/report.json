@@ -119,7 +119,7 @@
   "merged_families": 20775,
   "singleton_families": 1735280,
   "multi_branch_families": 17675,
-  "multi_family_lemmas": 3333641,
+  "multi_family_lemmas": 3333647,
   "components_discovered": 9349982,
   "components_assigned": 9349982,
   "corpus_quality_counts": {
@@ -2857,14 +2857,14 @@
         "method": "requested_exact_component"
       },
       "language_support": {
-        "en": 736,
+        "en": 737,
         "de": 1393,
         "fr": 560,
         "es": 638,
         "it": 601,
         "ru": 354
       },
-      "support": 4282,
+      "support": 4283,
       "suspicion_score": 0,
       "suspicion_reasons": [],
       "review_status": "needs_review"
@@ -13658,14 +13658,14 @@
       "ru": 569375
     },
     "memberships_by_language": {
-      "en": 2618650,
+      "en": 2618654,
       "de": 2207526,
-      "fr": 1143715,
-      "es": 1797330,
-      "it": 1181822,
+      "fr": 1143719,
+      "es": 1797335,
+      "it": 1181824,
       "ru": 1127094
     },
-    "memberships": 10076137,
+    "memberships": 10076152,
     "nitidus_net_memberships_removed": 9924,
     "nitidus_net_memberships_added": 2,
     "nitidus_ledger_sha256": "76cd3ddf53bb7a6e4bc6c43a6b5e0ba9efd074d1162ff736776a0e9b6bdcbffa",
@@ -13691,6 +13691,14 @@
       "checkpoint_sha256": "1f1c3d04e6f6bc845856fd44cb5018a80f19978890df38b8b855ad01e634e9a3",
       "full_family_certification": false,
       "exact_fragment_required": true
+    },
+    "exact_component_continuation": {
+      "repair": "continue_exact_component_recall_and_exclusions_20261001",
+      "source_run_id": 35647932153,
+      "removed_memberships": 0,
+      "added_memberships": 15,
+      "decision_ledger_sha256": "2f3e10927391804c4fc62da94c837a27b314596b9f34027a3f633bd7cc5b9ab5",
+      "full_family_certification": false
     }
   }
 }

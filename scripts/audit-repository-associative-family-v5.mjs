@@ -5,6 +5,7 @@ import { basename, dirname, join } from 'node:path';
 import { gunzipSync } from 'node:zlib';
 
 import { repositoryTreeMetadata } from './lib/associative-repository-materialization.mjs';
+import { buildSearchForm } from '../associativvordes/js/search-normalizer.js';
 
 const root = process.argv[2] || 'associativvordes/family-index-v5';
 const output = process.argv[3] || 'audit/associative-family-v5/repository-static-integrity.json';
@@ -307,7 +308,26 @@ const exactComponentRepair = provenance.repository_repairs.find(r => r.repair ==
 assert(exactComponentRepair?.decision_ledger_sha256 === createHash('sha256').update(exactComponentBytes).digest('hex'), 'exact component provenance mismatch');
 assert(exactComponentRepair.removed_memberships === exactComponentLedger.expected_removed_memberships && exactComponentRepair.added_memberships === exactComponentLedger.expected_added_memberships && exactComponentRepair.added_families === 2, 'exact component deltas mismatch');
 const exactComponentPositive = new Map();
-for (const [key, byLanguage] of Object.entries(exactComponentLedger.accepted)) for (const [language, members] of Object.entries(byLanguage)) for (const member of members) exactComponentPositive.set(`${language}\0family:${key}\0${member.lemma_id}`, member.word);
+const continuationBytes = await readFile('audit/associative-family-v5/component-continuation-decisions-20261001.json');
+const continuation = JSON.parse(continuationBytes);
+const continuationRepair = provenance.repository_repairs.find(r => r.repair === continuation.repair);
+assert(continuationRepair?.decision_ledger_sha256 === createHash('sha256').update(continuationBytes).digest('hex'), 'continuation provenance mismatch');
+assert(continuation.previous_ledger_sha256 === createHash('sha256').update(exactComponentBytes).digest('hex'), 'continuation changed historical decisions');
+assert(continuationRepair.added_memberships === continuation.additions.length && continuationRepair.added_memberships === continuation.expected_added_memberships && continuationRepair.removed_memberships === 0, 'continuation delta mismatch');
+assert(JSON.stringify(report.repository_materialization.exact_component_continuation) === JSON.stringify(continuationRepair), 'continuation report mismatch');
+const coverageBytes = await readFile(continuation.coverage_path), coverage = JSON.parse(gunzipSync(coverageBytes));
+assert(createHash('sha256').update(coverageBytes).digest('hex') === continuation.coverage_sha256, 'candidate disposition checkpoint changed');
+const candidateBytes = await readFile('audit/associative-family-v5/component-checkpoint-20261001/candidate-records.json.gz'), candidates = JSON.parse(gunzipSync(candidateBytes));
+assert(createHash('sha256').update(candidateBytes).digest('hex') === continuation.candidate_records_sha256, 'original candidate checkpoint changed');
+for (const [key, byLanguage] of Object.entries(continuation.accepted)) for (const [language, members] of Object.entries(byLanguage)) {
+  const prior = exactComponentLedger.accepted[key][language], added = continuation.additions.filter(a => a.key === key && a.language === language).map(a => ({lemma_id:a.lemma_id,word:a.word,source_family_ids:a.source_family_ids}));
+  assert(JSON.stringify(members) === JSON.stringify([...prior,...added]), `continuation changed prior array ${key}/${language}`);
+  const ids = new Set(members.map(m => m.lemma_id)), decisions = coverage.dispositions[key][language];
+  assert(ids.size === members.length, `duplicate continuation member ${key}/${language}`);
+  assert(JSON.stringify(decisions.map(d => [d.lemma_id,d.word])) === JSON.stringify(candidates[key][language].map(m => [m.lemma_id,m.word])), `incomplete candidate coverage ${key}/${language}`);
+  for (const d of decisions) assert(d.status === (ids.has(d.lemma_id) ? 'accepted' : !buildSearchForm(d.word).includes(key) ? 'excluded_absent_exact_fragment' : 'pending_etymology_or_token_review'), `invalid candidate disposition ${d.word}`);
+  for (const member of members) { assert(buildSearchForm(member.word).includes(key), `absent full component ${member.word}`); exactComponentPositive.set(`${language}\0family:${key}\0${member.lemma_id}`, member.word); }
+}
 for (const item of exactComponentLedger.preservation) {
   const shard = await readJson(join(root, item.part, item.bucket + '.json.gz'));
   const unrelated = Object.fromEntries(Object.entries(shard).filter(([id]) => item.part === 'aliases' ? !['nat','loc','inter'].includes(id) : !['family:nat','family:loc','family:inter'].includes(id)));
@@ -386,7 +406,7 @@ for (let index = 0; index < 256; index += 1) {
       informationPreservedSeen.add(id);
     }
     if (['family:nat','family:loc','family:inter'].includes(id)) {
-      const key = id.slice(7), accepted = exactComponentLedger.accepted[key];
+      const key = id.slice(7), accepted = continuation.accepted[key];
       assert(family.exact_component === true && family.runtime_curated === true && !family.verified && family.review_status === 'needs_review', `exact component metadata mismatch ${id}`);
       assert(JSON.stringify(family.aliases) === JSON.stringify([key]), `exact component aliases mismatch ${id}`);
       for (const language of languages) assert(family.language_support[language] === accepted[language].length, `exact component support mismatch ${id}/${language}`);
@@ -522,7 +542,7 @@ assert(JSON.stringify(uniqueLemmasByLanguage) === JSON.stringify(report.reposito
 assert(JSON.stringify(membershipsByLanguage) === JSON.stringify(report.repository_materialization.memberships_by_language), 'report memberships by language mismatch');
 assert(membershipCount === report.repository_materialization.memberships, 'report materialized memberships mismatch');
 assert(manifest.counts.lemmas - materializedUniqueLemmas === report.repository_materialization.lemmas_without_materialized_family, 'repository unassigned lemma count mismatch');
-assert(membershipCount === 10426047 - manualLedger.rejected_memberships.length - surfaceRemoved - surfaceRemoved2 - surfaceRemoved3 - surfaceRemoved4 - tenLedger.expected_members - inflectionRemoved - endingRemoved - geneaRemoved - geneaOtherRemoved - sonusRemoved - kaRemoved - suffixRemoved - suffixRemoved6 - suffixRemoved7 - suffixRemoved8 - suffixRemoved9 - suffixRemoved10 - suffixRemoved11 - suffixRemoved12 - actusLedger.rejected_memberships.length - illasLedger.expected_removed_memberships - pronounLedger.expected_total_removed_memberships - nitidusRepair.removed_memberships + nitidusRepair.added_memberships - ruShortRepair.removed_memberships - boundedRepair.removed_memberships - informationRepair.removed_memberships + informationRepair.added_memberships - componentRepair.removed_memberships - exactComponentRepair.removed_memberships + exactComponentRepair.added_memberships, 'unexpected repository membership count');
+assert(membershipCount === 10426047 - manualLedger.rejected_memberships.length - surfaceRemoved - surfaceRemoved2 - surfaceRemoved3 - surfaceRemoved4 - tenLedger.expected_members - inflectionRemoved - endingRemoved - geneaRemoved - geneaOtherRemoved - sonusRemoved - kaRemoved - suffixRemoved - suffixRemoved6 - suffixRemoved7 - suffixRemoved8 - suffixRemoved9 - suffixRemoved10 - suffixRemoved11 - suffixRemoved12 - actusLedger.rejected_memberships.length - illasLedger.expected_removed_memberships - pronounLedger.expected_total_removed_memberships - nitidusRepair.removed_memberships + nitidusRepair.added_memberships - ruShortRepair.removed_memberships - boundedRepair.removed_memberships - informationRepair.removed_memberships + informationRepair.added_memberships - componentRepair.removed_memberships - exactComponentRepair.removed_memberships + exactComponentRepair.added_memberships + continuationRepair.added_memberships, 'unexpected repository membership count');
 assert(familyCount === manifest.counts.families && familyCount === report.total_families, `family count ${familyCount}`);
 assert(materializedFamilyCount === familyCount, 'not every family was materialized');
 for (const [field, counted] of [

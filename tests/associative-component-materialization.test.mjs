@@ -9,7 +9,7 @@ const read=async p=>JSON.parse((p.endsWith('.gz')?gunzipSync(await readFile(p)):
 test('historical eleven-link removal remains reproducible after the full exact-component review',async()=>{
  const ledger=await read('audit/associative-family-v5/component-review-20261001.json');
  const id='family:inter',members=(await read(`${root}/members/en/${familyBucket(id)}.json.gz`))[id];
- const exact=await read('audit/associative-family-v5/exact-components-20261001.json');
+ const exact=await read('audit/associative-family-v5/component-continuation-decisions-20261001.json');
  const original=await read('audit/associative-family-v5/exact-components-original-inter-20261001.json.gz');
  const rejected=new Set(ledger.decisions.filter(d=>d.verdict==='remove_membership').map(d=>d.word));
  const inspected=ledger.inspected_arrays.find(a=>a.family_id===id);

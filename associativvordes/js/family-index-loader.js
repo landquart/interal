@@ -32,7 +32,19 @@ export class FamilyIndexLoader {
     return this.cache.get(path);
   }
   async manifest(options) { const value = await this.load('manifest.json', options); if (!SUPPORTED_FAMILY_INDEX_VERSIONS.has(value.version)) throw new Error(`Unsupported family index version: ${value.version}`); return value; }
-  async resolveAlias(query, options) { const manifest = await this.manifest(options); const alias = normalizeAlias(query); if (!alias) return []; const path = manifest.sharding.alias_template.replace('{bucket}', familyBucket(alias)); return (await this.load(path, options))[alias] || []; }
+  async resolveAlias(query, options) {
+    const manifest = await this.manifest(options), alias = normalizeAlias(query);
+    if (!alias) return [];
+    const path = manifest.sharding.alias_template.replace('{bucket}', familyBucket(alias));
+    const ids = (await this.load(path, options))[alias] || [];
+    if (options?.elementType !== 'preposition') return ids;
+    if (ids.length > MAX_FAMILY_ALIAS_FANOUT) throw new Error(`Family alias fan-out ${ids.length} exceeds runtime limit ${MAX_FAMILY_ALIAS_FANOUT}`);
+    const families = await Promise.all(ids.map(id => this.family(id, options)));
+    return families.filter(family => family?.exact_component === true
+      && normalizeAlias(family.canonical) === alias
+      && family.relation_types?.includes('affix_component')
+      && !BLOCKED_RUNTIME_STATUSES.has(family.review_status)).map(family => family.id);
+  }
   async family(id, options) { const manifest = await this.manifest(options); const path = manifest.sharding.family_template.replace('{bucket}', familyBucket(id)); return (await this.load(path, options))[id] || null; }
   async members(id, language, options) { const manifest = await this.manifest(options); if (!manifest.languages.includes(language)) throw new Error(`Unsupported family language: ${language}`); const path = manifest.sharding.member_template.replace('{language}', language).replace('{bucket}', familyBucket(id)); return (await this.load(path, options))[id] || []; }
 

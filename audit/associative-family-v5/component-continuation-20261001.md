@@ -29,3 +29,13 @@ Reproduction: materialize-associative-components-20261001.mjs prepares and appli
 ## Final validation
 
 All 85 test files pass with npm test. The exhaustive repository audit passes: 2,456,544 families, 10,076,137 memberships, 4,924,157 materialized unique lemmas; 823 source lemmas have no materialized membership. The 115 newly unassigned records lost unverified inter links, remain saved in the source corpus and checkpoint, and are not assigned a guessed replacement. Validation results and exact index byte hash are recorded in component-validation-20261001.json.
+
+## Continued recall and preposition routing
+
+Lieu is an explicit loc exclusion, with a runtime regression test. Historical snapshots retain the source word as evidence; they are not runtime membership lists. Fifteen additional corpus memberships are recorded in component-continuation-decisions-20261001.json with per-word derivational analysis and dictionary URLs. Prior frozen decisions remain unchanged. Current root totals: nat 1,915, loc 713, inter 4,283 (6,911 memberships).
+
+The preposition search path previously bypassed the reviewed family index. It now resolves exact reviewed affix-component families, so inter uses the same complete membership arrays in root and preposition modes. Other lexical roots are not promoted to prepositions. All six inter language results are tested through the actual candidate index loader, with broad fallback forbidden.
+
+Every record in all 18 retrieved arrays has a saved disposition in component-candidate-dispositions-20261001.json.gz: accepted, excluded because the exact normalized fragment is absent, or pending etymology/token review. Coverage is exhaustive over the saved candidates; pending entries are not dictionary-certified or silently accepted. The next reviewer can resume directly from the remaining candidates without repeating retrieval or losing excluded evidence.
+
+Continuation validation: all 85 test files pass after the preposition routing change; exhaustive audit passes at 10,076,152 memberships. Evidence is saved in component-continuation-validation-20261001.json.

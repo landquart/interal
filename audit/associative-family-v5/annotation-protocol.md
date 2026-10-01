@@ -43,3 +43,5 @@ Agreement is measured before adjudication with raw agreement, confusion matrix, 
 ## Exact component correction — 2026-10-01
 
 The user requires the complete requested fragment and etymological support together. Historical descent alone cannot include naive in nat or lieutenant in loc. Use existing search normalization v4; do not substitute nat/nasc/naci, loc/lok or inter/entre. Full letter overlap alone is also insufficient: interment is in + terra; teleprinter and midwinter contain incidental inter letters. Preserve independent lexical branches and multi-component memberships without whole-family union. There is no arbitrary maximum family size. Frozen accepted arrays and all undecided source candidates are saved in component-checkpoint-20261001; missing corpus words must not receive invented frequency records.
+
+User refinement (2026-10-01): lieu is explicitly excluded from loc. Its Latin locus ancestry does not replace the missing literal component. Preserve historical source snapshots as evidence, with excluded dispositions; they are not accepted membership lists.
