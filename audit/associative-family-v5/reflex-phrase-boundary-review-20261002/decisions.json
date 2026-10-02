@@ -1,0 +1,2791 @@
+{
+  "schema_version": 1,
+  "source_run_id": 35647932153,
+  "previous_pending_sha256": "6e7351530ab27394acfe9b2fd74c46e4cab788b7036a5d24aa66b03d92c57b25",
+  "source_candidate_sha256": "ce3cc11eb045a4fe9f77bf79239fc585a9a324231c8a6d5530606df1e5488cfb",
+  "decisions": [
+    {
+      "lemma_id": "lemma:263db9088ac4e633648b",
+      "word": "andobserve",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "ety:c035f4c585c4",
+        "ety:f3c02d82e642",
+        "ety:a3f730d2043b",
+        "ety:756983cbe7e0",
+        "ety:0c9fbf1deec1",
+        "surface:en:andobserv"
+      ],
+      "language": "en",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "and observe",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/observe"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:ce22801bc4a56955da78",
+      "word": "observationsas",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:sas",
+        "surface:en:observationsa"
+      ],
+      "language": "en",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "observations as",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/observe"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:14272e442c98f605e7b6",
+      "word": "observeand",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:erve",
+        "surface:en:veand",
+        "surface:en:observ"
+      ],
+      "language": "en",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "observe and",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/observe"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:d49c136f20197e765a3f",
+      "word": "observeandtell",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:erve",
+        "ety:786a67cc08d4",
+        "surface:en:veand",
+        "surface:en:observ"
+      ],
+      "language": "en",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "observe and tell",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/observe"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:59107c2752154ce73960",
+      "word": "observedthat",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:erve",
+        "surface:en:edt",
+        "surface:en:observ",
+        "surface:en:that",
+        "surface:en:ved"
+      ],
+      "language": "en",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "observed that",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/observe"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:d83e03b616d851b0d14b",
+      "word": "observethe",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:observeth",
+        "surface:en:the"
+      ],
+      "language": "en",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "observe the",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/observe"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:2629a0e3ada0b074ca5a",
+      "word": "observethecity",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "ety:803e61c87f91",
+        "ety:f920a9544844",
+        "surface:en:observethec",
+        "ety:150cdb545a96"
+      ],
+      "language": "en",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "observe the city",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/observe"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:d2658060cb3361bf9056",
+      "word": "observingthese",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:these",
+        "surface:en:observingthes"
+      ],
+      "language": "en",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "observing these",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/observe"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:7e31393734be394d5e5a",
+      "word": "observingus",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:observingu",
+        "surface:en:gus"
+      ],
+      "language": "en",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "observing us",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/observe"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:cc5ae838e8af6177a93c",
+      "word": "thatobservation",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:thatobservat",
+        "ety:c80365cdd174",
+        "ety:c28863eb7595"
+      ],
+      "language": "en",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "that observation",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/observe"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:dc97dab643a7771fb139",
+      "word": "underobservation",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "ety:c80365cdd174",
+        "ety:c28863eb7595",
+        "surface:en:underobservat"
+      ],
+      "language": "en",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "under observation",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/observe"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:dde23f0e28b8e99fc54b",
+      "word": "youwillobservetheir",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:lobs",
+        "surface:en:youw",
+        "surface:en:willo",
+        "surface:en:their",
+        "surface:en:observeth"
+      ],
+      "language": "en",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "you will observe their",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/observe"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:28665b03f5b2401bfd57",
+      "word": "allfalseinformation",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:allfalseinformat"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "all false information",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:59720010dd18686aa1c8",
+      "word": "anyinformation",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:anyinformat"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "any information",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:fadf17a35a0a1fe19c65",
+      "word": "authenticinformation",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:authenticinformat"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "authentic information",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:9ef2a3e6b21425a74dae",
+      "word": "betterinform",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "ety:15cd88c4813d",
+        "ety:3b6c34a40f7b",
+        "surface:en:better",
+        "surface:en:terin"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "better inform",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:5e8f8ca96595dd206ba4",
+      "word": "colonelinformed",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:colonelinform",
+        "surface:en:formed"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "colonel informed",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:4fbe11d8ab6bff76e95c",
+      "word": "delivereddisinformation",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:delivereddisinformat"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "delivered disinformation",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:148c994b87e402603d57",
+      "word": "exchanginginformation",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:exchanginginformat"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "exchanging information",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:3809b6c9f6d8505bf566",
+      "word": "falseinformation",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:falseinformat"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "false information",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:130cce326456c38c0cd8",
+      "word": "gatherinformation",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:gatherinformat"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "gather information",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:8fc12395f04b3501475b",
+      "word": "getanyinformation",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:getanyinformat"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "get any information",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:2604f68ee9ff18567f3f",
+      "word": "gotinformation",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:gotinformat"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "got information",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:066af4d7866808070815",
+      "word": "hasinformed",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:hasinform",
+        "surface:en:formed"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "has informed",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:d71fa65f54e3d4aaf59f",
+      "word": "herandinform",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "ety:15cd88c4813d",
+        "ety:3b6c34a40f7b",
+        "ety:5482af2a2c56",
+        "surface:en:andin"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "her and inform",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:2d89a055b4203efaa795",
+      "word": "iawaityourinformation",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:iawaityourinformat"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "i await your information",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:a7ac3ecc1276395081aa",
+      "word": "informagainst",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:informa",
+        "surface:en:maga",
+        "surface:en:against"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "inform against",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:614770f6c7b416c4cb5d",
+      "word": "informantfor",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:for",
+        "surface:en:informant"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "informant for",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:2042b6d213a5fa4f60bb",
+      "word": "informantputs",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:puts",
+        "surface:en:informantput"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "informant puts",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:7f0e19bd09ed0f15809e",
+      "word": "informantwho",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:who",
+        "surface:en:informant"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "informant who",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:a6b98cdcba7bdf6aa117",
+      "word": "informationabout",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:ionab",
+        "surface:en:about"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "information about",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:55690eaaffc9c1382fbf",
+      "word": "informationand",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:nand"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "information and",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:bf3c9b1ee7a94f3b5b47",
+      "word": "informationbe",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:informationb",
+        "surface:en:onbe"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "information be",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:521462f130ca73c68cb0",
+      "word": "informationenough",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:ione",
+        "surface:en:enough",
+        "surface:en:onen"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "information enough",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:5ae5bc882d81083aed68",
+      "word": "informationfor",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:for"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "information for",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:df0d68bbbad9f2c29c5e",
+      "word": "informationfrom",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:from",
+        "surface:en:onf"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "information from",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:8a6cf5f78f58f83b09b8",
+      "word": "informationhas",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:informationha",
+        "surface:en:has"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "information has",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:3962e3cd6e850c6d692f",
+      "word": "informationis",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:informationi",
+        "surface:en:ionis"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "information is",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:07310551d5547960a462",
+      "word": "informationon",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:informat",
+        "surface:en:matio",
+        "surface:en:onon",
+        "surface:en:formati"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "information on",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:9ba46cebca6fcd2441c5",
+      "word": "informationpresident",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:onp",
+        "ety:598fb4521eae",
+        "surface:en:npr"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "information president",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:69217b792544e4282dc2",
+      "word": "informationthat",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:iont",
+        "surface:en:that"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "information that",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:fa66623ba2c5c6de15f7",
+      "word": "informationthe",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:onthe",
+        "surface:en:informationth"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "information the",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:6307b62978da397f2da4",
+      "word": "informationto",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:informat",
+        "surface:en:matio",
+        "ety:9e12bf7b776f",
+        "surface:en:formati"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "information to",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:ad56f76d5b31fc217208",
+      "word": "informationwe",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:informationw"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "information we",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:071e4ceb37a4eff465ea",
+      "word": "informationwithout",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:informationw",
+        "surface:en:nwi",
+        "surface:en:without"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "information without",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:faa8fcfb9e2c7db80860",
+      "word": "informationwithyou",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:hyou",
+        "ety:b8b153b0f5a4",
+        "surface:en:informationw",
+        "ety:256060d2b1a2",
+        "surface:en:nwi"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "information with you",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:2cd9fa2feb58026c9b4b",
+      "word": "informationyou",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:nyou"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "information you",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:e44cdd41a97f64b42773",
+      "word": "informationyouunderstand",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:ony",
+        "surface:en:understand",
+        "surface:en:youund",
+        "surface:en:nyou"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "information you understand",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:ee9a33c6b770b596c16f",
+      "word": "informedby",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:informe"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "informed by",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:b0b5c7e71ee55f4da24c",
+      "word": "informedof",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:informe",
+        "surface:en:dof"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "informed of",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:60d0cc46830c9f86b400",
+      "word": "informedstatements",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:informedstatement",
+        "surface:en:ments"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "informed statements",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:d9483e4a6e451e3f26df",
+      "word": "informedthatthe",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:thatthe",
+        "surface:en:informedthatth"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "informed that the",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:ceb5ecc597766b3a33c7",
+      "word": "informedthe",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:informedth",
+        "surface:en:dthe"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "informed the",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:ba244bfcc2e60d7304fa",
+      "word": "informedto",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:informe",
+        "surface:en:dto"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "informed to",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:8a4c4bb61124f31fbcb0",
+      "word": "informertold",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:told",
+        "surface:en:informe",
+        "surface:en:mert",
+        "surface:en:former"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "informer told",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:0e5b8cd58b64292f3a41",
+      "word": "informthe",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:informth",
+        "surface:en:mthe"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "inform the",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:c0abfa60ec73d7259d15",
+      "word": "justinformed",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:justinform",
+        "surface:en:formed"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "just informed",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:861ec15758295ec0a7da",
+      "word": "justwantsomeinformation",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:justwantsomeinformat"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "just want some information",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:6ad622b68f1dad0ddba5",
+      "word": "meanyinformation",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:meanyinformat"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "me any information",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:45c0e28800995413d928",
+      "word": "misinformationabout",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:ionab",
+        "surface:en:about",
+        "surface:en:misinformat"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "misinformation about",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:c93269280425c74458b2",
+      "word": "newinformation",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:newinformat"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "new information",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:d234533d023379a9223d",
+      "word": "numberforinformation",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:numberforinformat"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "number for information",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:7ee8531eab2d76e4bee2",
+      "word": "offerinformation",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:offerinformat"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "offer information",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:adc3863d39076a7b79d1",
+      "word": "ofinformation",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:ofinformat",
+        "ety:dc73fe9a4a6b",
+        "ety:0bf0af7ec2ca",
+        "ety:82588d5b54bf"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "of information",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:89d3a7283b72c0447141",
+      "word": "otherinformation",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:otherinformat"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "other information",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:d1179506484b48c63329",
+      "word": "pertinentinformation",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:pertinentinformat"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "pertinent information",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:d7eed52b10fa44b43d67",
+      "word": "receivinginformation",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:receivinginformat"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "receiving information",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:4ba06941519103f67266",
+      "word": "secretinformation",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:secretinformat"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "secret information",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:0430000ed2f6e7cd612a",
+      "word": "somebodyinformedthepolice",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "ety:a313e13b091e",
+        "ety:42c72c064cc7",
+        "surface:en:somebodyinformedthepolic",
+        "ety:ea65bc84e41f"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "somebody informed the police",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:ce50633af47fc77cb718",
+      "word": "somedisinformation",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:somedisinformat"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "some disinformation",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:1fc7ab188edecf247749",
+      "word": "theinformation",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:theinformat"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "the information",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:01c1d283af87f1aefd3a",
+      "word": "togetherinformation",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:togetherinformat"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "together information",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:14534782a54834cd1f0c",
+      "word": "whateverinformation",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:whateverinformat"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "whatever information",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:2dfdcf23ababa3802ee0",
+      "word": "whatinformation",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:whatinformat"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "what information",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:4cfbc99741c10bd5e05f",
+      "word": "withholdingofinformation",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:withholdingofinformat"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "withholding of information",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:3f73b305278c0fa63831",
+      "word": "yourinformation",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:en:yourinformat"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "your information",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:7a948812f4dd60ca8676",
+      "word": "fürinformation",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:de:furinformatio"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "für information",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:48913cc50d2950446f43",
+      "word": "informationendie",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:de:die",
+        "surface:de:informationendi"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "informationen die",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:e2e02df6ba4778f260fc",
+      "word": "kontaktinformationendes",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "surface:de:des",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:kontaktinformationende"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "kontaktinformationen des",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:a793b5dfa58efce9d562",
+      "word": "weitereinformationen",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:de:weitereinformatione",
+        "surface:de:informationen"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "weitere informationen",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:28bff446bee9bad07d80",
+      "word": "lesinformationsdommageables",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:fr:bles",
+        "surface:fr:lesinformationsdommageable"
+      ],
+      "language": "fr",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "les informations dommageables",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9I1218"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:aefd008767745e67498d",
+      "word": "nousinformés",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:fr:rmes",
+        "surface:fr:nousinforme"
+      ],
+      "language": "fr",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "nous informés",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9I1218"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:8f96ed2534ca8d35a890",
+      "word": "réellesinformations",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:fr:informations",
+        "surface:fr:reellesinformation"
+      ],
+      "language": "fr",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "réelles informations",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9I1218"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:e7037a656875d089111c",
+      "word": "observaciónen",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:es:vaci",
+        "surface:es:nen",
+        "surface:es:observac"
+      ],
+      "language": "es",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "observación en",
+      "source_references": [
+        "https://dle.rae.es/observar"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:3b90ee8eef5d6f838c6d",
+      "word": "observandoa",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:es:observando"
+      ],
+      "language": "es",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "observando a",
+      "source_references": [
+        "https://dle.rae.es/observar"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:da9e4bb480350126a091",
+      "word": "observandoy",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:es:observan",
+        "surface:es:andoy"
+      ],
+      "language": "es",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "observando y",
+      "source_references": [
+        "https://dle.rae.es/observar"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:f8670ab40935d363edb9",
+      "word": "observarsu",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:es:observa"
+      ],
+      "language": "es",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "observar su",
+      "source_references": [
+        "https://dle.rae.es/observar"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:f8fe359f2da84220fa01",
+      "word": "soloobservándolo",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:es:soloobservandol"
+      ],
+      "language": "es",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "solo observándolo",
+      "source_references": [
+        "https://dle.rae.es/observar"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:e9f4c0372cb945ac0c6a",
+      "word": "yobserven",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "ety:53235a774cdf",
+        "surface:es:yob",
+        "ety:dd39579fe4f5",
+        "surface:es:rven"
+      ],
+      "language": "es",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "y observen",
+      "source_references": [
+        "https://dle.rae.es/observar"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:626d187702fb129ccd01",
+      "word": "yobservo",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:es:yobserv"
+      ],
+      "language": "es",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "y observo",
+      "source_references": [
+        "https://dle.rae.es/observar"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:834b3b1dc28ec92360dc",
+      "word": "alsonsacarinformación",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:es:alsonsacarinformac"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "al sonsacar información",
+      "source_references": [
+        "https://dle.rae.es/informar"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:b154c741d7a8374136b2",
+      "word": "coninformación",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:es:coninformac"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "con información",
+      "source_references": [
+        "https://dle.rae.es/informar"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:cce295406d737d5e7d75",
+      "word": "daráinformación",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:es:darainformac"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "dará información",
+      "source_references": [
+        "https://dle.rae.es/informar"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:ed13d2de0206119ae495",
+      "word": "elinforme",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:es:elin"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "el informe",
+      "source_references": [
+        "https://dle.rae.es/informar"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:4fcbb81523f74ff951c4",
+      "word": "esainformación",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:es:esainformac"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "esa información",
+      "source_references": [
+        "https://dle.rae.es/informar"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:e08056029e05f4bb98ee",
+      "word": "hayinformes",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:es:hayinform",
+        "surface:es:mes"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "hay informes",
+      "source_references": [
+        "https://dle.rae.es/informar"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:7eed94c5f5ff22fbcbb7",
+      "word": "informaciónde",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:es:informacio",
+        "surface:es:onde"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "información de",
+      "source_references": [
+        "https://dle.rae.es/informar"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:65c59724d09744f53561",
+      "word": "informaciónsegura",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:es:segura",
+        "surface:es:informacionsegur"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "información segura",
+      "source_references": [
+        "https://dle.rae.es/informar"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:1bc648ef2da85ef0c39e",
+      "word": "informaciónviene",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:es:onvi",
+        "surface:es:viene"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "información viene",
+      "source_references": [
+        "https://dle.rae.es/informar"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:58d05fbd1fbd3d8165de",
+      "word": "informadosde",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:es:mado",
+        "surface:es:informad"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "informados de",
+      "source_references": [
+        "https://dle.rae.es/informar"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:b6b4295bccaa7b6b7a21",
+      "word": "informaronque",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:es:informa",
+        "ety:5c06ec6f575c",
+        "surface:es:maron"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "informaron que",
+      "source_references": [
+        "https://dle.rae.es/informar"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:7634dc35d827567c25dd",
+      "word": "lainformación",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "ety:dc73fe9a4a6b",
+        "ety:82588d5b54bf",
+        "surface:es:lainformac"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "la información",
+      "source_references": [
+        "https://dle.rae.es/informar"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:b64be4c2726bccb5fdb2",
+      "word": "losinformes",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:es:losinform",
+        "surface:es:mes"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "los informes",
+      "source_references": [
+        "https://dle.rae.es/informar"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:267714f8e3dda170e540",
+      "word": "mayorinformacion",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:es:mayorinformac"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "mayor informacion",
+      "source_references": [
+        "https://dle.rae.es/informar"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:2010b767578e1e843f9d",
+      "word": "meinformarían",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:es:nformar",
+        "surface:es:mein",
+        "surface:es:marian"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "me informarían",
+      "source_references": [
+        "https://dle.rae.es/informar"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:903d1a4f2b3afdeb473b",
+      "word": "miinforme",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:es:miin"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "mi informe",
+      "source_references": [
+        "https://dle.rae.es/informar"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:eece85a3993e1995f6ca",
+      "word": "nosinformaron",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:es:informa",
+        "surface:es:maron"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "nos informaron",
+      "source_references": [
+        "https://dle.rae.es/informar"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:82bdb6439a9e58149d61",
+      "word": "obtenermásinformación",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:es:obtenermasinformac"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "obtener más información",
+      "source_references": [
+        "https://dle.rae.es/informar"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:d295415e10091cf081b4",
+      "word": "reunirinformación",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:es:reunirinformac"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "reunir información",
+      "source_references": [
+        "https://dle.rae.es/informar"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:a0d86ed0e68094e9c1e1",
+      "word": "sacarinformación",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:es:sacarinformac"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "sacar información",
+      "source_references": [
+        "https://dle.rae.es/informar"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:cb5b502feb0f1036800f",
+      "word": "tengoinformaciónsólida",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:es:solida",
+        "surface:es:tengoinformacionsolid"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "tengo información sólida",
+      "source_references": [
+        "https://dle.rae.es/informar"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:a5cd9318b3bfba81b4fb",
+      "word": "deviosservare",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:it:vare",
+        "surface:it:deviosservar"
+      ],
+      "language": "it",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "devi osservare",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/osservare/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:b70f87a0cde099e2e519",
+      "word": "hitlerosserva",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:it:hitlerosserv",
+        "surface:it:osserva"
+      ],
+      "language": "it",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "hitler osserva",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/osservare/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:4480baaa34e15c4622fe",
+      "word": "passerannoinosservate",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:it:passerannoinosservat",
+        "surface:it:osservate"
+      ],
+      "language": "it",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "passeranno inosservate",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/osservare/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:02c872d66ee1e8fbfc04",
+      "word": "perosservare",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:it:vare",
+        "surface:it:perosservar"
+      ],
+      "language": "it",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "per osservare",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/osservare/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:78022c6faa81b1d5d9b4",
+      "word": "unosservazione",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "ety:8ef5f06ceb40",
+        "ety:dd07667af787",
+        "surface:it:unosservazion",
+        "ety:474b418e1004",
+        "ety:c80365cdd174",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:c28863eb7595",
+        "ety:58143b06b35a",
+        "ety:a3b640366c27",
+        "ety:ab1eaa1c14b6",
+        "ety:727be1d24fa1",
+        "ety:61108b488e06"
+      ],
+      "language": "it",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "un osservazione",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/osservare/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:dcde300ff69bf3277d84",
+      "word": "ciainforma",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:it:informa",
+        "surface:it:ciainform"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "cia informa",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informare/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:056a6199b03efb32636a",
+      "word": "ciainformare",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:it:ciainformar",
+        "ety:0ac430ae5eee"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "cia informare",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informare/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:4f1e0d49aacd9bb19db4",
+      "word": "informartiprima",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:it:informartiprim",
+        "surface:it:prima"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "informarti prima",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informare/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:605cb597568ec9fa2e06",
+      "word": "maleinformato",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:it:mato",
+        "surface:it:maleinformat"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "male informato",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informare/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:5e83e1fe1b4689e08202",
+      "word": "perinformare",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:it:perinformar",
+        "ety:0ac430ae5eee"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "per informare",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informare/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:99255b47a44f5016c97e",
+      "word": "perinformarti",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:it:marti",
+        "surface:it:perinformart"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "per informarti",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informare/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:6126c148e5768decb8ab",
+      "word": "perinformazione",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "ety:8ef5f06ceb40",
+        "ety:dd07667af787",
+        "surface:it:informazione",
+        "ety:474b418e1004",
+        "ety:c80365cdd174",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:c28863eb7595",
+        "surface:it:perinformazion",
+        "ety:58143b06b35a",
+        "ety:a3b640366c27",
+        "ety:ab1eaa1c14b6",
+        "ety:727be1d24fa1",
+        "ety:61108b488e06"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "per informazione",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informare/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:b03ef31e26d7876c1c4b",
+      "word": "tuainformazione",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "ety:8ef5f06ceb40",
+        "ety:dd07667af787",
+        "surface:it:informazione",
+        "ety:474b418e1004",
+        "ety:c80365cdd174",
+        "ety:9a86a987fafc",
+        "surface:it:tuainformazion",
+        "ety:751cdacbf4a9",
+        "ety:c28863eb7595",
+        "ety:58143b06b35a",
+        "ety:a3b640366c27",
+        "ety:ab1eaa1c14b6",
+        "ety:727be1d24fa1",
+        "ety:61108b488e06"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "tua informazione",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informare/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:726241602ea7a260f13d",
+      "word": "информациюв",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:ru:juv",
+        "surface:ru:informacij"
+      ],
+      "language": "ru",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "информацию в",
+      "source_references": [
+        "https://gramota.ru/poisk?mode=slovari&query=информировать"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:3eed08e8ffc11d12d6be",
+      "word": "проинформироватьвас",
+      "status": "excluded",
+      "reason": "Exact saved token segments into the displayed syntactic phrase, not a lexical compound or an inflected word. Exclusion concerns this fused corpus token; the legitimate separate head remains valid. Segmentation is a reviewer inference, not a dictionary entry for the fused form.",
+      "source_family_ids": [
+        "surface:ru:atv",
+        "surface:ru:vas",
+        "surface:ru:proinformirova"
+      ],
+      "language": "ru",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "проинформировать вас",
+      "source_references": [
+        "https://gramota.ru/poisk?mode=slovari&query=информировать"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:7960e5f1132f510855ec",
+      "word": "reinform",
+      "status": "excluded",
+      "reason": "Independent German Reinform pure-form head. The apparent inform letters cross rein + Form; they do not realize the information element.",
+      "source_family_ids": [
+        "surface:de:inform",
+        "surface:de:rein"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "independent_head",
+      "segmentation_or_lexical_identity": "rein + Form",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Reinform"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:b85d3077c7ddc066356a",
+      "word": "steinform",
+      "status": "excluded",
+      "reason": "Transparent Stein + Form compound. The overlapping inform letters span the end of Stein and Form; no information constituent is present. Compound analysis is a finite reviewer inference.",
+      "source_family_ids": [
+        "surface:de:steinform"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "independent_head",
+      "segmentation_or_lexical_identity": "Stein + Form",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Stein",
+        "https://www.duden.de/rechtschreibung/Form"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:d240c4c0a5e0cdfc7366",
+      "word": "rainformonths",
+      "status": "excluded",
+      "reason": "Exact rain + for + months phrase fusion. The apparent inform sequence crosses word boundaries and contains no inform head.",
+      "source_family_ids": [
+        "surface:en:rainformonth",
+        "surface:en:ths"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "rain for months",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/rain"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:32a52d55539672c4a957",
+      "word": "observateur",
+      "status": "uncertain",
+      "reason": "Investigated French agent noun with a real observation head. In this en corpus record, a foreign quotation or publication/institution title remains possible. Archived source metadata has no original sentence or sense annotation. Target-language lexical status and the permitted language-specific realization cannot be established; retain contextual uncertainty, not pending review.",
+      "source_family_ids": [
+        "surface:en:observat",
+        "surface:en:eur"
+      ],
+      "language": "en",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "foreign_lexical_context",
+      "segmentation_or_lexical_identity": "French agent noun",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9O0079"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:3cab518787f82572d7c4",
+      "word": "observateur",
+      "status": "uncertain",
+      "reason": "Investigated French agent noun with a real observation head. In this de corpus record, a foreign quotation or publication/institution title remains possible. Archived source metadata has no original sentence or sense annotation. Target-language lexical status and the permitted language-specific realization cannot be established; retain contextual uncertainty, not pending review.",
+      "source_family_ids": [
+        "surface:de:observat",
+        "surface:de:teur"
+      ],
+      "language": "de",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "foreign_lexical_context",
+      "segmentation_or_lexical_identity": "French agent noun",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9O0079"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:371e7d09ef15bbc918ff",
+      "word": "observateur",
+      "status": "uncertain",
+      "reason": "Investigated French agent noun with a real observation head. In this es corpus record, a foreign quotation or publication/institution title remains possible. Archived source metadata has no original sentence or sense annotation. Target-language lexical status and the permitted language-specific realization cannot be established; retain contextual uncertainty, not pending review.",
+      "source_family_ids": [
+        "surface:es:observat",
+        "surface:es:teur"
+      ],
+      "language": "es",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "foreign_lexical_context",
+      "segmentation_or_lexical_identity": "French agent noun",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9O0079"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:d86ad074c28c2fc74943",
+      "word": "observateur",
+      "status": "uncertain",
+      "reason": "Investigated French agent noun with a real observation head. In this it corpus record, a foreign quotation or publication/institution title remains possible. Archived source metadata has no original sentence or sense annotation. Target-language lexical status and the permitted language-specific realization cannot be established; retain contextual uncertainty, not pending review.",
+      "source_family_ids": [
+        "ety:2876587f0ca2",
+        "surface:it:rva",
+        "surface:it:eur",
+        "surface:it:observ"
+      ],
+      "language": "it",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "foreign_lexical_context",
+      "segmentation_or_lexical_identity": "French agent noun",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9O0079"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:45cee7843626ad988396",
+      "word": "observatoire",
+      "status": "uncertain",
+      "reason": "Investigated French observatory noun with a real observation head. In this en corpus record, a foreign quotation or publication/institution title remains possible. Archived source metadata has no original sentence or sense annotation. Target-language lexical status and the permitted language-specific realization cannot be established; retain contextual uncertainty, not pending review.",
+      "source_family_ids": [
+        "surface:en:observatoir",
+        "ety:c928281e8f2d"
+      ],
+      "language": "en",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "foreign_lexical_context",
+      "segmentation_or_lexical_identity": "French observatory noun",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9O0081"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:67815d2f3e3ea7591a83",
+      "word": "observatoire",
+      "status": "uncertain",
+      "reason": "Investigated French observatory noun with a real observation head. In this de corpus record, a foreign quotation or publication/institution title remains possible. Archived source metadata has no original sentence or sense annotation. Target-language lexical status and the permitted language-specific realization cannot be established; retain contextual uncertainty, not pending review.",
+      "source_family_ids": [
+        "surface:de:observatoir",
+        "surface:de:ire"
+      ],
+      "language": "de",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "foreign_lexical_context",
+      "segmentation_or_lexical_identity": "French observatory noun",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9O0081"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:20ea0bca91cb6390abc4",
+      "word": "observatoire",
+      "status": "uncertain",
+      "reason": "Investigated French observatory noun with a real observation head. In this es corpus record, a foreign quotation or publication/institution title remains possible. Archived source metadata has no original sentence or sense annotation. Target-language lexical status and the permitted language-specific realization cannot be established; retain contextual uncertainty, not pending review.",
+      "source_family_ids": [
+        "surface:es:ire",
+        "surface:es:ato",
+        "surface:es:observat"
+      ],
+      "language": "es",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "foreign_lexical_context",
+      "segmentation_or_lexical_identity": "French observatory noun",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9O0081"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:d855652f2c91417d9062",
+      "word": "observatoire",
+      "status": "uncertain",
+      "reason": "Investigated French observatory noun with a real observation head. In this it corpus record, a foreign quotation or publication/institution title remains possible. Archived source metadata has no original sentence or sense annotation. Target-language lexical status and the permitted language-specific realization cannot be established; retain contextual uncertainty, not pending review.",
+      "source_family_ids": [
+        "surface:it:oire",
+        "surface:it:observatoir"
+      ],
+      "language": "it",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "foreign_lexical_context",
+      "segmentation_or_lexical_identity": "French observatory noun",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9O0081"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:31247d0db98963b8d1ea",
+      "word": "osservatore",
+      "status": "uncertain",
+      "reason": "Investigated Italian observation-agent noun with a real observation head. In this en corpus record, a foreign quotation or publication/institution title remains possible. Archived source metadata has no original sentence or sense annotation. Target-language lexical status and the permitted language-specific realization cannot be established; retain contextual uncertainty, not pending review.",
+      "source_family_ids": [
+        "surface:en:osservator",
+        "ety:033643bd8134"
+      ],
+      "language": "en",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "foreign_lexical_context",
+      "segmentation_or_lexical_identity": "Italian observation-agent noun",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/osservatore/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:3ded0da94a46e6abe4d9",
+      "word": "osservatore",
+      "status": "uncertain",
+      "reason": "Investigated Italian observation-agent noun with a real observation head. In this de corpus record, a foreign quotation or publication/institution title remains possible. Archived source metadata has no original sentence or sense annotation. Target-language lexical status and the permitted language-specific realization cannot be established; retain contextual uncertainty, not pending review.",
+      "source_family_ids": [
+        "surface:de:osservator",
+        "surface:de:tore"
+      ],
+      "language": "de",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "foreign_lexical_context",
+      "segmentation_or_lexical_identity": "Italian observation-agent noun",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/osservatore/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:db4cd2e2dea749ebee97",
+      "word": "osservatore",
+      "status": "uncertain",
+      "reason": "Investigated Italian observation-agent noun with a real observation head. In this fr corpus record, a foreign quotation or publication/institution title remains possible. Archived source metadata has no original sentence or sense annotation. Target-language lexical status and the permitted language-specific realization cannot be established; retain contextual uncertainty, not pending review.",
+      "source_family_ids": [
+        "surface:fr:osservator",
+        "ety:c57dfc357e77"
+      ],
+      "language": "fr",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "foreign_lexical_context",
+      "segmentation_or_lexical_identity": "Italian observation-agent noun",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/osservatore/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:b083e91bbfc21d270aa5",
+      "word": "osservatore",
+      "status": "uncertain",
+      "reason": "Investigated Italian observation-agent noun with a real observation head. In this es corpus record, a foreign quotation or publication/institution title remains possible. Archived source metadata has no original sentence or sense annotation. Target-language lexical status and the permitted language-specific realization cannot be established; retain contextual uncertainty, not pending review.",
+      "source_family_ids": [
+        "surface:es:erv",
+        "surface:es:vat",
+        "surface:es:tore",
+        "surface:es:osse"
+      ],
+      "language": "es",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "foreign_lexical_context",
+      "segmentation_or_lexical_identity": "Italian observation-agent noun",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/osservatore/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:5de7da605c3e94b56ed4",
+      "word": "observar",
+      "status": "uncertain",
+      "reason": "Investigated Spanish infinitive with a real observation head. In this en corpus record, a foreign quotation or publication/institution title remains possible. Archived source metadata has no original sentence or sense annotation. Target-language lexical status and the permitted language-specific realization cannot be established; retain contextual uncertainty, not pending review.",
+      "source_family_ids": [
+        "surface:en:obser",
+        "surface:en:var"
+      ],
+      "language": "en",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "foreign_lexical_context",
+      "segmentation_or_lexical_identity": "Spanish infinitive",
+      "source_references": [
+        "https://dle.rae.es/observar"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:efab22e8adb0dc18f178",
+      "word": "observar",
+      "status": "uncertain",
+      "reason": "Investigated Spanish infinitive with a real observation head. In this fr corpus record, a foreign quotation or publication/institution title remains possible. Archived source metadata has no original sentence or sense annotation. Target-language lexical status and the permitted language-specific realization cannot be established; retain contextual uncertainty, not pending review.",
+      "source_family_ids": [
+        "surface:fr:var",
+        "surface:fr:obse"
+      ],
+      "language": "fr",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "foreign_lexical_context",
+      "segmentation_or_lexical_identity": "Spanish infinitive",
+      "source_references": [
+        "https://dle.rae.es/observar"
+      ],
+      "runtime_applied": false
+    }
+  ],
+  "new_counts": {
+    "excluded": 129,
+    "uncertain": 14
+  },
+  "continuation_counts": {
+    "accepted": 6,
+    "excluded": 152,
+    "uncertain": 17,
+    "pending_review": 587
+  },
+  "runtime_changes": false,
+  "full_family_certification": false,
+  "limitations": [
+    "Only explicit whole forms are reviewed; no open prefix/substring classifier.",
+    "Foreign lexical identities have been investigated but aggregated corpus sources cannot resolve quotation/title context.",
+    "Remaining records retain pending_review. No spelling repairs or synthetic corpus records."
+  ]
+}

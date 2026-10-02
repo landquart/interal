@@ -65,3 +65,21 @@ Italian tests pass without skips. The exhaustive audit's total-delta equation
 also now includes the independently audited +6. This integration changes no
 runtime records or historical ledgers. Full checks were restarted after these
 changes; no success is claimed until final logs say pass.
+
+## Further observ/inform lexical review
+
+After applying the six reviewed positives, a separate finite review resolves
+143 of the 730 pending records. 129 are excluded phrase fusions or independent
+lexical boundaries (including rein + Form and Stein + Form). Every phrase has
+an explicit segmentation. Fourteen actually investigated foreign forms retain
+context uncertainty: the head is attested in another language, but the source
+record cannot distinguish a quotation/title from a genuine lexical use in the
+record's language. No spelling-only generalization is used.
+
+Latest composed continuation: 6 accepted/applied, 152 excluded, 17 genuine
+uncertain, 587 pending. Total remains 762. The pending queue and source proofs
+are `reflex-phrase-boundary-review-20261002`. Two source/conservation and
+byte-identical reconstruction tests passed without skips.
+Reproduce with `python scripts/review-associative-reflex-phrases-20261002.py`.
+Old 730-count notes above are historical. Current runtime supports remain
+observ 298 and inform 1,448. All other open queues are unchanged by this stage.
