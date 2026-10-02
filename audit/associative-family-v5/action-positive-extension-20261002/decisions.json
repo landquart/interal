@@ -1,0 +1,4072 @@
+{
+  "schema_version": 1,
+  "source_run_id": 35647932153,
+  "canonical_root": "act",
+  "base_commit": "52830263e6b62c7647a6724f19bbbc4ac0dd4688",
+  "previous_checkpoint": "audit/associative-family-v5/action-russian-heads-20261002",
+  "previous_decision_sha256": "0b12623ec5396a3d93ce9f82332b12bb14ebe88ae9c0e41756fdd68aae100dcc",
+  "initial_continuation_sha256": "cf94d0afadfdfa1e19b08e82301fea88cde2569221548365a70e8211ccec2a21",
+  "decisions": [
+    {
+      "language": "en",
+      "lemma_id": "lemma:395a3bdd736cf35b6795",
+      "word": "all-action",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "action",
+      "national_realization": "action",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/act",
+        "https://www.merriam-webster.com/dictionary/bolt-action",
+        "https://www.merriam-webster.com/dictionary/class%20action"
+      ],
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "surface:en:allact",
+        "ety:3b5769fa0463",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "surface:en:action",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "reason": "all-action: explicitly reviewed whole form with action lexical head. Its inflection, derivative or transparent compound preserves the action national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:223140c1635c0233bbaf",
+      "word": "bolt-action",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "action",
+      "national_realization": "action",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/act",
+        "https://www.merriam-webster.com/dictionary/bolt-action",
+        "https://www.merriam-webster.com/dictionary/class%20action"
+      ],
+      "source_family_ids": [
+        "surface:en:boltact",
+        "surface:en:tion"
+      ],
+      "reason": "bolt-action: explicitly reviewed whole form with action lexical head. Its inflection, derivative or transparent compound preserves the action national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:853db40194b29ad26462",
+      "word": "class-action",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "action",
+      "national_realization": "action",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/act",
+        "https://www.merriam-webster.com/dictionary/bolt-action",
+        "https://www.merriam-webster.com/dictionary/class%20action"
+      ],
+      "source_family_ids": [
+        "surface:en:classact",
+        "surface:en:ction"
+      ],
+      "reason": "class-action: explicitly reviewed whole form with action lexical head. Its inflection, derivative or transparent compound preserves the action national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:169893c113d8d67df8f2",
+      "word": "footballer-turned-actor",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "actor",
+      "national_realization": "actor",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/actor"
+      ],
+      "source_family_ids": [
+        "surface:en:footbal"
+      ],
+      "reason": "footballer-turned-actor: explicitly reviewed whole form with actor lexical head. Its inflection, derivative or transparent compound preserves the actor national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:51efe2c9dd35ac78bbbb",
+      "word": "research-active",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "active",
+      "national_realization": "activ",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/active",
+        "https://www.merriam-webster.com/dictionary/vasoactive"
+      ],
+      "source_family_ids": [
+        "surface:en:researchactiv",
+        "surface:en:ive"
+      ],
+      "reason": "research-active: explicitly reviewed whole form with active lexical head. Its inflection, derivative or transparent compound preserves the activ national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:e99ceed57a35d67cba93",
+      "word": "structure-activity",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "active",
+      "national_realization": "activ",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/active",
+        "https://www.merriam-webster.com/dictionary/vasoactive"
+      ],
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:f0df407f8682",
+        "ety:78d70a1e3eaf",
+        "ety:3b5769fa0463",
+        "ety:4fea5df26862",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:ff3077e4a20b",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fdb4fb63c102",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "surface:en:structureactiv",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42",
+        "ety:2bd62d3fe41d"
+      ],
+      "reason": "structure-activity: explicitly reviewed whole form with active lexical head. Its inflection, derivative or transparent compound preserves the activ national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:b620abbbecb542163552",
+      "word": "semiactive",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "active",
+      "national_realization": "activ",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/active",
+        "https://www.merriam-webster.com/dictionary/vasoactive"
+      ],
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "surface:en:semiactiv",
+        "ety:3b5769fa0463",
+        "surface:en:active",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "reason": "semiactive: explicitly reviewed whole form with active lexical head. Its inflection, derivative or transparent compound preserves the activ national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:c1a684f0603090f6ca69",
+      "word": "vasoactive",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "active",
+      "national_realization": "activ",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/active",
+        "https://www.merriam-webster.com/dictionary/vasoactive"
+      ],
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:3b5769fa0463",
+        "surface:en:active",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "surface:en:vasoactiv",
+        "ety:ef562a6f4a42"
+      ],
+      "reason": "vasoactive: explicitly reviewed whole form with active lexical head. Its inflection, derivative or transparent compound preserves the activ national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:7dee3885b81f272e361f",
+      "word": "self-acting",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "act",
+      "national_realization": "act",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/act"
+      ],
+      "source_family_ids": [
+        "ety:850ecd316aaf",
+        "surface:en:selfact"
+      ],
+      "reason": "self-acting: explicitly reviewed whole form with act lexical head. Its inflection, derivative or transparent compound preserves the act national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:0fd1c0d7fe1c04ecb606",
+      "word": "short-acting",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "act",
+      "national_realization": "act",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/act"
+      ],
+      "source_family_ids": [
+        "ety:850ecd316aaf",
+        "surface:en:shortact"
+      ],
+      "reason": "short-acting: explicitly reviewed whole form with act lexical head. Its inflection, derivative or transparent compound preserves the act national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:88868335b1daadae1fdf",
+      "word": "three-act",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "act",
+      "national_realization": "act",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/act"
+      ],
+      "source_family_ids": [
+        "surface:en:threeact"
+      ],
+      "reason": "three-act: explicitly reviewed whole form with act lexical head. Its inflection, derivative or transparent compound preserves the act national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:bbe088ee22f8f07298fb",
+      "word": "self-actualisation",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "actual",
+      "national_realization": "actual",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/self-actualization"
+      ],
+      "source_family_ids": [
+        "surface:en:selfactualisat",
+        "surface:en:sation"
+      ],
+      "reason": "self-actualisation: explicitly reviewed whole form with actual lexical head. Its inflection, derivative or transparent compound preserves the actual national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:8071a97c745bfa6b1235",
+      "word": "self-actualization",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "actual",
+      "national_realization": "actual",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/self-actualization"
+      ],
+      "source_family_ids": [
+        "surface:en:ation",
+        "surface:en:selfactualizat"
+      ],
+      "reason": "self-actualization: explicitly reviewed whole form with actual lexical head. Its inflection, derivative or transparent compound preserves the actual national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:194ed68dcc42360c5d70",
+      "word": "transact-sql",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "transact",
+      "national_realization": "act",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/transact"
+      ],
+      "source_family_ids": [
+        "surface:en:transac"
+      ],
+      "reason": "transact-sql: explicitly reviewed whole form with transact lexical head. Its inflection, derivative or transparent compound preserves the act national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:e5f63b3e1d0eaf0d34be",
+      "word": "voice-activated",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "activate",
+      "national_realization": "activ",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/activate"
+      ],
+      "source_family_ids": [
+        "surface:en:voiceactivat"
+      ],
+      "reason": "voice-activated: explicitly reviewed whole form with activate lexical head. Its inflection, derivative or transparent compound preserves the activ national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:d1247eb2a517f712d946",
+      "word": "abfangaktion",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktion"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "surface:de:abfangaktio",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:aktion"
+      ],
+      "reason": "abfangaktion: explicitly reviewed whole form with Aktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:92f355de9c34b17cfd1e",
+      "word": "abfrageaktion",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktion"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "surface:de:abfrageaktio",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:aktion"
+      ],
+      "reason": "abfrageaktion: explicitly reviewed whole form with Aktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:15150fe2598cab5bc373",
+      "word": "abholaktion",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktion"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "surface:de:abholaktio",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:aktion"
+      ],
+      "reason": "abholaktion: explicitly reviewed whole form with Aktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:432ac17cb2f7e22d5414",
+      "word": "abhöraktion",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktion"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83"
+      ],
+      "reason": "abhöraktion: explicitly reviewed whole form with Aktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:ce534abbb22b4cffb1c7",
+      "word": "abhöraktionen",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktion"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "surface:de:abhoraktione",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83"
+      ],
+      "reason": "abhöraktionen: explicitly reviewed whole form with Aktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:ff346cac04a705b5046b",
+      "word": "abhörungsaktion",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktion"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83"
+      ],
+      "reason": "abhörungsaktion: explicitly reviewed whole form with Aktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:aca629d8b13d58d92850",
+      "word": "abhörungsaktionen",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktion"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "surface:de:abhorungsaktione",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83"
+      ],
+      "reason": "abhörungsaktionen: explicitly reviewed whole form with Aktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:a3b6ffb64e06340b17a4",
+      "word": "ablenkungsaktion",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktion"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83"
+      ],
+      "reason": "ablenkungsaktion: explicitly reviewed whole form with Aktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:407d1a78886a8d091c3a",
+      "word": "ablenkungsaktionen",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktion"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:ablenkungsaktione"
+      ],
+      "reason": "ablenkungsaktionen: explicitly reviewed whole form with Aktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:279dbd081de0240792c5",
+      "word": "abo-karten-aktion",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktion"
+      ],
+      "source_family_ids": [
+        "ety:2ff6a6cec4b3",
+        "ety:4d4c6a785c49",
+        "surface:de:abokartenaktio"
+      ],
+      "reason": "abo-karten-aktion: explicitly reviewed whole form with Aktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:488fa92f625f33cfc0b3",
+      "word": "abschlachtungsaktion",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktion"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "surface:de:abschlachtungsaktio",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:aktion"
+      ],
+      "reason": "abschlachtungsaktion: explicitly reviewed whole form with Aktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:5f2c95df6cd671c16a06",
+      "word": "abschleppaktion",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktion"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "surface:de:abschleppaktio",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:aktion"
+      ],
+      "reason": "abschleppaktion: explicitly reviewed whole form with Aktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:e054fea6ab0c5b316c57",
+      "word": "abwehraktion",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktion"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "surface:de:abwehraktio",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:aktion"
+      ],
+      "reason": "abwehraktion: explicitly reviewed whole form with Aktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:47e90af4b8ca2169f87d",
+      "word": "abzugsaktion",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktion"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "surface:de:abzugsaktio",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:aktion"
+      ],
+      "reason": "abzugsaktion: explicitly reviewed whole form with Aktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:274cf32628abfeae47bf",
+      "word": "agit-prop-aktion",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktion"
+      ],
+      "source_family_ids": [
+        "ety:2ff6a6cec4b3",
+        "ety:4d4c6a785c49",
+        "surface:de:agitpropaktio"
+      ],
+      "reason": "agit-prop-aktion: explicitly reviewed whole form with Aktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:8cd3db6a9b422eed6269",
+      "word": "aktionismus-aktivitäten",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktion"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "surface:de:aktionismusaktivitate",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83"
+      ],
+      "reason": "aktionismus-aktivitäten: explicitly reviewed whole form with Aktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:24e6ac2f4dfb1be50734",
+      "word": "alibiaktion",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktion"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:alibiaktio",
+        "surface:de:aktion"
+      ],
+      "reason": "alibiaktion: explicitly reviewed whole form with Aktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:cc548c2233bc0be2bc3d",
+      "word": "alpschweineaktion",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktion"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:alpschweineaktio",
+        "surface:de:aktion"
+      ],
+      "reason": "alpschweineaktion: explicitly reviewed whole form with Aktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:15402d338763a96c72ae",
+      "word": "anfängeraktion",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktion"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "surface:de:anfangeraktio",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:aktion"
+      ],
+      "reason": "anfängeraktion: explicitly reviewed whole form with Aktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:8e8d67a89f98dd9a2046",
+      "word": "angriffsaktion",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktion"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "surface:de:angriffsaktio",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:aktion"
+      ],
+      "reason": "angriffsaktion: explicitly reviewed whole form with Aktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:b50d34fafe4b183b0eae",
+      "word": "anreiseaktion",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktion"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:anreiseaktio",
+        "surface:de:aktion"
+      ],
+      "reason": "anreiseaktion: explicitly reviewed whole form with Aktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:30d62fcfdbca8f8a3786",
+      "word": "anti-kriegs-aktionen",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktion"
+      ],
+      "source_family_ids": [
+        "surface:de:antikriegsaktione"
+      ],
+      "reason": "anti-kriegs-aktionen: explicitly reviewed whole form with Aktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:23fa7da9f598a5d2907b",
+      "word": "anti-rassismus-aktion",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktion"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "surface:de:antirassismusaktio",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:aktion"
+      ],
+      "reason": "anti-rassismus-aktion: explicitly reviewed whole form with Aktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:6fdfd3982b257ef7260e",
+      "word": "anwerbeaktion",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktion"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "surface:de:anwerbeaktio",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:aktion"
+      ],
+      "reason": "anwerbeaktion: explicitly reviewed whole form with Aktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:ec2fc51a5af2caa05ded",
+      "word": "ariva-adventsaktion",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktion"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "surface:de:arivaadventsaktio",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:aktion"
+      ],
+      "reason": "ariva-adventsaktion: explicitly reviewed whole form with Aktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:16ddf3bb5a2107c52ed7",
+      "word": "attrappen-aktion",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktion"
+      ],
+      "source_family_ids": [
+        "ety:2ff6a6cec4b3",
+        "ety:4d4c6a785c49",
+        "surface:de:attrappenaktio"
+      ],
+      "reason": "attrappen-aktion: explicitly reviewed whole form with Aktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:6ac56300db2e99dc3ce7",
+      "word": "aufklärungsaktion",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktion"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "surface:de:aufklarungsaktio",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:aktion"
+      ],
+      "reason": "aufklärungsaktion: explicitly reviewed whole form with Aktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:de865077f62584425294",
+      "word": "aufräumaktion",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktion"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:aufraumaktio",
+        "surface:de:aktion"
+      ],
+      "reason": "aufräumaktion: explicitly reviewed whole form with Aktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:7ab3e771cdd2ce8b5018",
+      "word": "auftaktaktionen",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktion"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:auftaktaktione"
+      ],
+      "reason": "auftaktaktionen: explicitly reviewed whole form with Aktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:ac316852a83a7b0c0d96",
+      "word": "ausreißaktionen",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktion"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:ausreissaktione"
+      ],
+      "reason": "ausreißaktionen: explicitly reviewed whole form with Aktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:d6f60e0bc43eea171749",
+      "word": "ausrottungsaktion",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktion"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "surface:de:ausrottungsaktio",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:aktion"
+      ],
+      "reason": "ausrottungsaktion: explicitly reviewed whole form with Aktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:80f7504b6bb3bb17a6da",
+      "word": "accor-aktionäre",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktionär",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktionaer"
+      ],
+      "source_family_ids": [
+        "surface:de:accoraktionar",
+        "surface:de:nare"
+      ],
+      "reason": "accor-aktionäre: explicitly reviewed whole form with Aktionär lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:11d66d520bc6b0814fb3",
+      "word": "airports-aktionäre",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktionär",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktionaer"
+      ],
+      "source_family_ids": [
+        "surface:de:airportsaktionar",
+        "surface:de:nare"
+      ],
+      "reason": "airports-aktionäre: explicitly reviewed whole form with Aktionär lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:d79742ee6dc9463e9c9f",
+      "word": "aktionären",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktionär",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktionaer"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "surface:de:aren",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "surface:de:aktionare",
+        "ety:fb8a2c387e83"
+      ],
+      "reason": "aktionären: explicitly reviewed whole form with Aktionär lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:bae33d214fd41dcd6b78",
+      "word": "aktionärs",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktionär",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktionaer"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "surface:de:nars",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:aktionar"
+      ],
+      "reason": "aktionärs: explicitly reviewed whole form with Aktionär lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:def635eaff8fe0e4dd9e",
+      "word": "aktionärsbasis",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktionär",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktionaer"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "surface:de:sis",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "surface:de:aktionarsbasi",
+        "ety:fb8a2c387e83"
+      ],
+      "reason": "aktionärsbasis: explicitly reviewed whole form with Aktionär lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:05d82ab6926aed1b8b36",
+      "word": "aktionärsberichte",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktionär",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktionaer"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "surface:de:aktionarsbericht",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:berichte"
+      ],
+      "reason": "aktionärsberichte: explicitly reviewed whole form with Aktionär lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:6de6a8a33509336c2508",
+      "word": "aktionärsbrief",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktionär",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktionaer"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "surface:de:nars",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:990b80581382",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:aktiona"
+      ],
+      "reason": "aktionärsbrief: explicitly reviewed whole form with Aktionär lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:fc333f0f22f604738506",
+      "word": "aktionärschützer",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktionär",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktionaer"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "surface:de:aktionarschutz",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:schutzer"
+      ],
+      "reason": "aktionärschützer: explicitly reviewed whole form with Aktionär lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:6575c3441477f48c2eef",
+      "word": "aktionärsdinner",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktionär",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktionaer"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:aktionarsdinn",
+        "surface:de:dinner"
+      ],
+      "reason": "aktionärsdinner: explicitly reviewed whole form with Aktionär lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:4c1371c5fcd6c1bc9aff",
+      "word": "aktionärsfreundlich",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktionär",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktionaer"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:aktionarsfreund",
+        "surface:de:freundlich"
+      ],
+      "reason": "aktionärsfreundlich: explicitly reviewed whole form with Aktionär lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:56e439c46797e361c141",
+      "word": "aktionärsgeldern",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktionär",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktionaer"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "surface:de:aktionarsgelder",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:dern"
+      ],
+      "reason": "aktionärsgeldern: explicitly reviewed whole form with Aktionär lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:fe3c86c93ec7011e0299",
+      "word": "aktionärsgesprächen",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktionär",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktionaer"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:aktionarsgesprache",
+        "ety:36934ce6510f"
+      ],
+      "reason": "aktionärsgesprächen: explicitly reviewed whole form with Aktionär lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:b0370e2109b145797a26",
+      "word": "aktionärshauptversammlung",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktionär",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktionaer"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "surface:de:aktionarshauptversamml",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:versammlung"
+      ],
+      "reason": "aktionärshauptversammlung: explicitly reviewed whole form with Aktionär lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:3b7890b5d782866cb765",
+      "word": "aktionärsinformationen",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktionär",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktionaer"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "surface:de:aktionarsinformatione",
+        "family:inform",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:informationen"
+      ],
+      "reason": "aktionärsinformationen: explicitly reviewed whole form with Aktionär lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:9d152f540bd6e29cd7a8",
+      "word": "aktionärskommission",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktionär",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktionaer"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:c10618e76bb2",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "ety:5d3e83b8aa3e",
+        "surface:de:aktionarskommissio"
+      ],
+      "reason": "aktionärskommission: explicitly reviewed whole form with Aktionär lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:2feefa91565e5b8605c9",
+      "word": "aktionärskreis",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktionär",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktionaer"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "surface:de:aktionarskrei",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:kreis"
+      ],
+      "reason": "aktionärskreis: explicitly reviewed whole form with Aktionär lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:02c268c405534bc6d425",
+      "word": "aktionärspakt",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktionär",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktionaer"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "surface:de:nars",
+        "ety:3b5769fa0463",
+        "ety:79dffd539b4a",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:aktionar",
+        "ety:e6ab21d7b6dd"
+      ],
+      "reason": "aktionärspakt: explicitly reviewed whole form with Aktionär lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:2669feaac1046484cd92",
+      "word": "aktionärsrechte",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktionär",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktionaer"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "surface:de:aktionarsrecht",
+        "surface:de:rechte",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83"
+      ],
+      "reason": "aktionärsrechte: explicitly reviewed whole form with Aktionär lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:b1c59f2143a5ba8e3e22",
+      "word": "aktionärsschützer",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktionär",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktionaer"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83"
+      ],
+      "reason": "aktionärsschützer: explicitly reviewed whole form with Aktionär lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:78dfc8e3770d5d95e277",
+      "word": "aktionärsschützern",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktionär",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktionaer"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "surface:de:aktionarsschutzer",
+        "surface:de:zern",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83"
+      ],
+      "reason": "aktionärsschützern: explicitly reviewed whole form with Aktionär lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:600046fe9c7557077bd5",
+      "word": "aktionärssitzung",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktionär",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktionaer"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "surface:de:aktionarssitz",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "surface:de:sitzung",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83"
+      ],
+      "reason": "aktionärssitzung: explicitly reviewed whole form with Aktionär lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:5604b334684b968a2ae2",
+      "word": "aktionärsstimmen",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktionär",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktionaer"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "surface:de:aktionarsstimme",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:timmen"
+      ],
+      "reason": "aktionärsstimmen: explicitly reviewed whole form with Aktionär lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:1169f5292d9bd87cfa84",
+      "word": "aktionärsstruktur",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktionär",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktionaer"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "surface:de:nars",
+        "ety:3d0ced4f204b",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "surface:de:rss",
+        "ety:fb8a2c387e83",
+        "surface:de:sst",
+        "surface:de:aktionar",
+        "ety:3b2822e5a882"
+      ],
+      "reason": "aktionärsstruktur: explicitly reviewed whole form with Aktionär lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:117f18ee12fd273ea8e5",
+      "word": "aktionärstreffen",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktionär",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktionaer"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "surface:de:aktionarstreffe",
+        "ety:3b5769fa0463",
+        "surface:de:treffen",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83"
+      ],
+      "reason": "aktionärstreffen: explicitly reviewed whole form with Aktionär lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:86f6d22fb77883266f07",
+      "word": "aktionärsversammlung",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktionär",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktionaer"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83"
+      ],
+      "reason": "aktionärsversammlung: explicitly reviewed whole form with Aktionär lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:1518906ebcff1ee74297",
+      "word": "aktionärsversammlungen",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktionär",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktionaer"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:aktionarsversammlunge"
+      ],
+      "reason": "aktionärsversammlungen: explicitly reviewed whole form with Aktionär lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:6781d822bc2506743d90",
+      "word": "aktionärsvertreter",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktionär",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktionaer"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "surface:de:aktionarsvertret",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:vertreter"
+      ],
+      "reason": "aktionärsvertreter: explicitly reviewed whole form with Aktionär lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:97d2cadd01fafdf10b61",
+      "word": "aktionärsvertretung",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktionär",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktionaer"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "surface:de:aktionarsvertret",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "surface:de:vertretung",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83"
+      ],
+      "reason": "aktionärsvertretung: explicitly reviewed whole form with Aktionär lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:43f5efe7e92d947050c1",
+      "word": "aktionärszahlen",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktionär",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktionaer"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "surface:de:aktionarszahle",
+        "ety:d1f0f796d14d",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83"
+      ],
+      "reason": "aktionärszahlen: explicitly reviewed whole form with Aktionär lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:a3e1ed2313c6dd460ace",
+      "word": "aktionärtreffen",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktionär",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktionaer"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "surface:de:treffen",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:aktionartreffe"
+      ],
+      "reason": "aktionärtreffen: explicitly reviewed whole form with Aktionär lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:8397fc28b043ebe4872a",
+      "word": "alleinaktionärin",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktionär",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktionaer"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "surface:de:rin",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:alleinaktionari"
+      ],
+      "reason": "alleinaktionärin: explicitly reviewed whole form with Aktionär lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:2a4da8ab69d38d52c1ed",
+      "word": "alt-aktionäre",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktionär",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktionaer"
+      ],
+      "source_family_ids": [
+        "surface:de:altaktionar",
+        "surface:de:nare"
+      ],
+      "reason": "alt-aktionäre: explicitly reviewed whole form with Aktionär lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:e16c09f17f9e83fd4b1e",
+      "word": "altaktionär",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktionär",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktionaer"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83"
+      ],
+      "reason": "altaktionär: explicitly reviewed whole form with Aktionär lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:2e7884f21e7d834b79f7",
+      "word": "altaktionäre",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktionär",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktionaer"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83"
+      ],
+      "reason": "altaktionäre: explicitly reviewed whole form with Aktionär lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:e99837f30c58a8836c1c",
+      "word": "altaktionären",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktionär",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktionaer"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "surface:de:altaktionare",
+        "ety:9a86a987fafc",
+        "surface:de:aren",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83"
+      ],
+      "reason": "altaktionären: explicitly reviewed whole form with Aktionär lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:c7c4e28c9ed019eb0930",
+      "word": "ameritrade-aktionären",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktionär",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktionaer"
+      ],
+      "source_family_ids": [
+        "surface:de:aren",
+        "surface:de:ameritradeaktionare"
+      ],
+      "reason": "ameritrade-aktionären: explicitly reviewed whole form with Aktionär lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:f40640fd05d720b03f70",
+      "word": "anglo-aktionäre",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktionär",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktionaer"
+      ],
+      "source_family_ids": [
+        "surface:de:angloaktionar",
+        "surface:de:nare"
+      ],
+      "reason": "anglo-aktionäre: explicitly reviewed whole form with Aktionär lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:3bc476bbfc737ee507a2",
+      "word": "arcandor-aktionäre",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktionär",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktionaer"
+      ],
+      "source_family_ids": [
+        "surface:de:arcandoraktionar",
+        "surface:de:nare"
+      ],
+      "reason": "arcandor-aktionäre: explicitly reviewed whole form with Aktionär lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:6c9767c879c8c0f90944",
+      "word": "arcelor-aktionäre",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktionär",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktionaer"
+      ],
+      "source_family_ids": [
+        "surface:de:arceloraktionar",
+        "surface:de:nare"
+      ],
+      "reason": "arcelor-aktionäre: explicitly reviewed whole form with Aktionär lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:4f6d43244a9423a5c7c3",
+      "word": "at-home-großaktionär",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktionär",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktionaer"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "surface:de:sakt",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:aktionar"
+      ],
+      "reason": "at-home-großaktionär: explicitly reviewed whole form with Aktionär lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:bb7e3d0662a14d4607e0",
+      "word": "abstoßreaktion",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Reaktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Reaktion"
+      ],
+      "source_family_ids": [
+        "surface:de:abstossreaktio",
+        "surface:de:reaktion"
+      ],
+      "reason": "abstoßreaktion: explicitly reviewed whole form with Reaktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:e372a997034b4e04b5f4",
+      "word": "abstoßungsreaktion",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Reaktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Reaktion"
+      ],
+      "source_family_ids": [
+        "surface:de:abstossungsreaktion"
+      ],
+      "reason": "abstoßungsreaktion: explicitly reviewed whole form with Reaktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:0f5eef155008defea790",
+      "word": "abstoßungsreaktionen",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Reaktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Reaktion"
+      ],
+      "source_family_ids": [
+        "surface:de:abstossungsreaktione"
+      ],
+      "reason": "abstoßungsreaktionen: explicitly reviewed whole form with Reaktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:232dc8f047f2d9055dd0",
+      "word": "abwehrreaktion",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Reaktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Reaktion"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83"
+      ],
+      "reason": "abwehrreaktion: explicitly reviewed whole form with Reaktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:1a40054a0200f9970909",
+      "word": "abwehrreaktionen",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Reaktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Reaktion"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:abwehrreaktione"
+      ],
+      "reason": "abwehrreaktionen: explicitly reviewed whole form with Reaktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:4e9015555d68eda5bb8f",
+      "word": "allgemeinreaktionen",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Reaktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Reaktion"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "surface:de:allgemeinreaktione",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83"
+      ],
+      "reason": "allgemeinreaktionen: explicitly reviewed whole form with Reaktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:a3012243461d3b916b28",
+      "word": "ameisen-pflanzen-interaktionen",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Reaktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Reaktion"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:ameisenpflanzeninteraktione"
+      ],
+      "reason": "ameisen-pflanzen-interaktionen: explicitly reviewed whole form with Reaktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:8be7e35a6bdde7325985",
+      "word": "analystenreaktion",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Reaktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Reaktion"
+      ],
+      "source_family_ids": [
+        "surface:de:reaktion",
+        "surface:de:analystenreaktio"
+      ],
+      "reason": "analystenreaktion: explicitly reviewed whole form with Reaktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:8ef8c87335c2ad6f692f",
+      "word": "anfangsreaktion",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Reaktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Reaktion"
+      ],
+      "source_family_ids": [
+        "surface:de:reaktion",
+        "surface:de:anfangsreaktio"
+      ],
+      "reason": "anfangsreaktion: explicitly reviewed whole form with Reaktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:7abc5117de55ec310bcc",
+      "word": "angstreaktion",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Reaktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Reaktion"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "surface:de:reaktion",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:angstreaktio"
+      ],
+      "reason": "angstreaktion: explicitly reviewed whole form with Reaktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:a4319c74a5404a3d93cd",
+      "word": "angstreaktionsstudie",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Reaktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Reaktion"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "surface:de:angstreaktionsstudi",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:studie"
+      ],
+      "reason": "angstreaktionsstudie: explicitly reviewed whole form with Reaktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:08dd5e557a8fba86696a",
+      "word": "anpassungsreaktion",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Reaktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Reaktion"
+      ],
+      "source_family_ids": [
+        "surface:de:reaktion",
+        "surface:de:anpassungsreaktio"
+      ],
+      "reason": "anpassungsreaktion: explicitly reviewed whole form with Reaktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:bbbf992c6d18c60575bb",
+      "word": "antigen-antikörperreaktion",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Reaktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Reaktion"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:korperreaktion",
+        "surface:de:antigenantikorperreaktio"
+      ],
+      "reason": "antigen-antikörperreaktion: explicitly reviewed whole form with Reaktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:26e90afe06919290b19f",
+      "word": "antimateriereaktion",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Reaktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Reaktion"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83"
+      ],
+      "reason": "antimateriereaktion: explicitly reviewed whole form with Reaktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:f92f44ebdebe1ee4e508",
+      "word": "antizeitreaktion",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Reaktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Reaktion"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "surface:de:antizeitreaktio",
+        "surface:de:reaktion",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83"
+      ],
+      "reason": "antizeitreaktion: explicitly reviewed whole form with Reaktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:3753034d64bb05a0a288",
+      "word": "arzneimittelreaktion",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Reaktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Reaktion"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "surface:de:reaktion",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "surface:de:arzneimittelreaktio",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83"
+      ],
+      "reason": "arzneimittelreaktion: explicitly reviewed whole form with Reaktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:a8b1e8a4e5b97492c9db",
+      "word": "atemwegsreaktion",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Reaktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Reaktion"
+      ],
+      "source_family_ids": [
+        "surface:de:reaktion",
+        "surface:de:atemwegsreaktio"
+      ],
+      "reason": "atemwegsreaktion: explicitly reviewed whole form with Reaktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:4fba6487e0ab9c8d337a",
+      "word": "atomreaktion",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Reaktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Reaktion"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "surface:de:reaktion",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "surface:de:atomreaktio",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83"
+      ],
+      "reason": "atomreaktion: explicitly reviewed whole form with Reaktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:1e777953cf2e11ad8cb5",
+      "word": "auflagerreaktionen",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Reaktion",
+      "national_realization": "aktion",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Reaktion"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "surface:de:auflagerreaktione",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83"
+      ],
+      "reason": "auflagerreaktionen: explicitly reviewed whole form with Reaktion lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:d74c0e2ff8ed43cebcc0",
+      "word": "abendaktivitäten",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:abendaktivitate"
+      ],
+      "reason": "abendaktivitäten: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:8886e47d4f39ff4f5324",
+      "word": "agenturaktivitäten",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:agenturaktivitate"
+      ],
+      "reason": "agenturaktivitäten: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:0fdcf299870152e22726",
+      "word": "aids-aktivistin",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "surface:de:stin",
+        "surface:de:aidsaktivisti"
+      ],
+      "reason": "aids-aktivistin: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:554fb15e81dcc9106382",
+      "word": "aktiviertem",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:73be55835f58",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "surface:de:aktiviert",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83"
+      ],
+      "reason": "aktiviertem: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:e21d0fdce6f326a41ed5",
+      "word": "aktivierter",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "surface:de:aktiviert",
+        "ety:9a86a987fafc",
+        "surface:de:ter",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83"
+      ],
+      "reason": "aktivierter: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:127a7283368ad6711357",
+      "word": "aktivistenführer",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "surface:de:aktivistenfuhr",
+        "ety:579f4e520ecd",
+        "surface:de:fuhrer",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83"
+      ],
+      "reason": "aktivistenführer: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:8414fd0ee3ec7713f339",
+      "word": "aktivistenführerin",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "surface:de:fuhrerin",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:aktivistenfuhreri"
+      ],
+      "reason": "aktivistenführerin: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:507d7a4bc36a961d20b6",
+      "word": "aktivistengruppe",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:9181348fbe20",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:cdc8c8d134f7",
+        "surface:de:aktivistengrupp",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "ety:510d060a1d62",
+        "ety:084a79003539"
+      ],
+      "reason": "aktivistengruppe: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:7e7fcf001c13335d3fa2",
+      "word": "aktivistenleben",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:leben",
+        "surface:de:aktivistenlebe"
+      ],
+      "reason": "aktivistenleben: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:bd2013d8d064af48e4ab",
+      "word": "aktivistenschläger",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "surface:de:aktivistenschlag",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:schlager"
+      ],
+      "reason": "aktivistenschläger: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:3f23f10cc13222b4ab42",
+      "word": "aktivistentage",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:tage",
+        "surface:de:aktivistentag"
+      ],
+      "reason": "aktivistentage: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:0397c1232cbec276ad8a",
+      "word": "aktivistinnenflugblätter",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "surface:de:flugblatter",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:aktivistinnenflugblatt"
+      ],
+      "reason": "aktivistinnenflugblätter: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:2e000876c57ec17d9a74",
+      "word": "aktivistischen",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:aktivistische"
+      ],
+      "reason": "aktivistischen: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:d799c00e794ecab00c99",
+      "word": "aktivitätenangebot",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "surface:de:aktivitate",
+        "surface:de:ena",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:nan",
+        "surface:de:angebot"
+      ],
+      "reason": "aktivitätenangebot: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:b38217a8e69f3812dab2",
+      "word": "aktivitätenbericht",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "surface:de:aktivitate",
+        "surface:de:bericht",
+        "ety:9a86a987fafc",
+        "surface:de:nbe",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83"
+      ],
+      "reason": "aktivitätenbericht: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:ec6aea293183889c25e9",
+      "word": "aktivitäts-planung",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "surface:de:aktivitatsplan",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:nung"
+      ],
+      "reason": "aktivitäts-planung: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:abfe0c2c30e07cb04ea7",
+      "word": "aktivitätsbereiche",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "surface:de:aktivitatsbereich",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:bereiche"
+      ],
+      "reason": "aktivitätsbereiche: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:2c8f01ae5d65135fa7a6",
+      "word": "aktivitätslevel",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "surface:de:level",
+        "ety:579f4e520ecd",
+        "surface:de:aktivitat",
+        "surface:de:sle",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83"
+      ],
+      "reason": "aktivitätslevel: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:27100b8f8bb6de05154f",
+      "word": "aktivitätsmuster",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "ety:be3ceff480f7",
+        "surface:de:aktivitatsmust",
+        "ety:ae34c86e1f6f",
+        "ety:e6b638669c0d"
+      ],
+      "reason": "aktivitätsmuster: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:9bbb6e72291dffd58665",
+      "word": "aktivitätsniveau",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "surface:de:aktivitat",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "ety:50437d60b22a"
+      ],
+      "reason": "aktivitätsniveau: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:1b31711899c3feb58538",
+      "word": "aktivitätsprognose",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:eca63de1ec67",
+        "ety:9a86a987fafc",
+        "surface:de:aktivitatsprognos",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83"
+      ],
+      "reason": "aktivitätsprognose: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:cfc1707e3f83906a024d",
+      "word": "aktivitätsprotokoll",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "surface:de:spro",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "surface:de:aktivitat",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "surface:de:protokoll",
+        "ety:fb8a2c387e83"
+      ],
+      "reason": "aktivitätsprotokoll: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:a04a27dbcee743ac0a25",
+      "word": "aktivitätspunkte",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "surface:de:aktivitatspunkt",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:punkte"
+      ],
+      "reason": "aktivitätspunkte: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:b7c33d1e35b113d09128",
+      "word": "aktivitätsrhythmus",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:fb35be4396fb",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:aktivitatsrhythmu"
+      ],
+      "reason": "aktivitätsrhythmus: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:1f1cc65fa16b92a37084",
+      "word": "aktivitätssektoren",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "surface:de:oren",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:aktivitatssektore"
+      ],
+      "reason": "aktivitätssektoren: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:f1754bb3137a75b565e6",
+      "word": "aktivitätsspektrum",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "surface:de:tss",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "surface:de:aktivitat",
+        "surface:de:ssp",
+        "ety:b435c6b2fe60",
+        "ety:e59943f8b83d",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83"
+      ],
+      "reason": "aktivitätsspektrum: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:18af27dbe6b8f0dc7976",
+      "word": "aktivitätssteigerung",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "surface:de:aktivitatssteiger",
+        "ety:3b5769fa0463",
+        "surface:de:steigerung",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83"
+      ],
+      "reason": "aktivitätssteigerung: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:64fae09b3fd9d4fb3695",
+      "word": "aktivitätsströme",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "surface:de:strome",
+        "ety:751cdacbf4a9",
+        "surface:de:aktivitatsstrom",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83"
+      ],
+      "reason": "aktivitätsströme: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:8f10ca229a23a88a542e",
+      "word": "aktivitätsstütze",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:stutze",
+        "surface:de:aktivitatsstutz"
+      ],
+      "reason": "aktivitätsstütze: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:90834742fd9d0d9e9206",
+      "word": "aktivitätsüberwachung",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "surface:de:aktivitatsuberwach",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:uberwachung"
+      ],
+      "reason": "aktivitätsüberwachung: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:2cc043316ab87c24e712",
+      "word": "aktivitätswoche",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "surface:de:woche",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:aktivitatswoch"
+      ],
+      "reason": "aktivitätswoche: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:5096c34ae3acacbca072",
+      "word": "aktivitätswochenparty",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "surface:de:wochen",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:aktivitatswoch",
+        "surface:de:enp",
+        "surface:de:party"
+      ],
+      "reason": "aktivitätswochenparty: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:71da70c9e5579b32a704",
+      "word": "aktivitätszeiten",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:aktivitatszeite"
+      ],
+      "reason": "aktivitätszeiten: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:4f4a360389784d9c51db",
+      "word": "aktivitätszunahme",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "surface:de:zunahme",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:aktivitatszunahm"
+      ],
+      "reason": "aktivitätszunahme: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:604015b1bbc5bc858fd3",
+      "word": "aktivste",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "surface:de:aktivst",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:ste"
+      ],
+      "reason": "aktivste: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:bf0de65016b6e8076372",
+      "word": "aktivurlaub",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83"
+      ],
+      "reason": "aktivurlaub: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:eaed4fad910139c2dcec",
+      "word": "aktivurlauber",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "surface:de:aktivurlaub",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:urlauber"
+      ],
+      "reason": "aktivurlauber: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:3d6f263f6a927c4ecfb0",
+      "word": "aktivzustand",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "surface:de:zustand",
+        "ety:0c55e36e580b",
+        "ety:f66f0a228497"
+      ],
+      "reason": "aktivzustand: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:be4e888bd07f0ee4d465",
+      "word": "alltagsaktivitäten",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:alltagsaktivitate"
+      ],
+      "reason": "alltagsaktivitäten: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:a7c2660cf9fec0d1a066",
+      "word": "angriffsaktivitäten",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:angriffsaktivitate"
+      ],
+      "reason": "angriffsaktivitäten: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:c517db0c49f25e271b3b",
+      "word": "anlegeraktivisten",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "surface:de:isten",
+        "surface:de:anlegeraktiviste",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83"
+      ],
+      "reason": "anlegeraktivisten: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:ccf44890d652e7e8b51f",
+      "word": "anti-atom-aktivisten",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "surface:de:isten",
+        "surface:de:antiatomaktiviste"
+      ],
+      "reason": "anti-atom-aktivisten: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:1a1f375ee8cea14d37f2",
+      "word": "anti-kriegs-aktivitäten",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "surface:de:antikriegsaktivitate"
+      ],
+      "reason": "anti-kriegs-aktivitäten: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:eacb8d95225526ccffb6",
+      "word": "antiatomaktivisten",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "surface:de:isten",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:antiatomaktiviste"
+      ],
+      "reason": "antiatomaktivisten: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:b4414e0899a589d9adfc",
+      "word": "antirassismus-aktivisten",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "surface:de:isten",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "surface:de:antirassismusaktiviste",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83"
+      ],
+      "reason": "antirassismus-aktivisten: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:934443a99123dcba6e0e",
+      "word": "anzeigenaktivitäten",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:anzeigenaktivitate"
+      ],
+      "reason": "anzeigenaktivitäten: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:bb5c7b51ebcc4c344181",
+      "word": "asien-aktivitäten",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "surface:de:asienaktivitate"
+      ],
+      "reason": "asien-aktivitäten: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:b88297a8e2d34b22361a",
+      "word": "atmungsaktiv",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "surface:de:atmungsaktiv"
+      ],
+      "reason": "atmungsaktiv: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:fda0aca06939f64ed589",
+      "word": "atmungsaktive",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83"
+      ],
+      "reason": "atmungsaktive: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:ddeef4a3fde839dafa8c",
+      "word": "atmungsaktivem",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "surface:de:vem",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:atmungsaktiv"
+      ],
+      "reason": "atmungsaktivem: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:fbd4eb1cd5257972b6e0",
+      "word": "atmungsaktiven",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "surface:de:atmungsaktive",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "surface:de:aktiven",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83"
+      ],
+      "reason": "atmungsaktiven: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:b33a553d1d07a1df90b3",
+      "word": "atmungsaktiver",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "surface:de:aktiver",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:atmungsaktiv"
+      ],
+      "reason": "atmungsaktiver: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:605e3cd5b2e9111f13bf",
+      "word": "atmungsaktivität",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "surface:de:aktivitat",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:atmungsaktiv"
+      ],
+      "reason": "atmungsaktivität: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:b261c6492db067cedbe5",
+      "word": "audioaktivität",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "surface:de:audio",
+        "surface:de:ioa",
+        "ety:3b5769fa0463",
+        "surface:de:oak",
+        "ety:579f4e520ecd",
+        "surface:de:aktivitat",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83"
+      ],
+      "reason": "audioaktivität: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:33cf3b694c3e6a40c9de",
+      "word": "augenaktivität",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "surface:de:aktivitat",
+        "surface:de:ena",
+        "ety:a80d53db9b27",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:nakt"
+      ],
+      "reason": "augenaktivität: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:cef234d48b7ea0c5a3b5",
+      "word": "ausbauaktivitäten",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:ausbauaktivitate"
+      ],
+      "reason": "ausbauaktivitäten: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:c56eb382dbd309f4ae73",
+      "word": "ausgleichsaktivitäten",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "surface:de:ausgleichsaktivitate",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83"
+      ],
+      "reason": "ausgleichsaktivitäten: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:fc6b5f42e9f801681897",
+      "word": "auslandsaktivität",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83"
+      ],
+      "reason": "auslandsaktivität: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:e85e74b37737b8a14c04",
+      "word": "auslandsaktivitäten",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:auslandsaktivitate"
+      ],
+      "reason": "auslandsaktivitäten: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:e040eb936bb3c5f8d0fd",
+      "word": "außenaktivierung",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "surface:de:erung",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:aussenaktivier"
+      ],
+      "reason": "außenaktivierung: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:02f5bb08152c3d186d27",
+      "word": "außenaktivitäten",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "surface:de:aussenaktivitate",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83"
+      ],
+      "reason": "außenaktivitäten: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:0c4e5549227569a1239f",
+      "word": "außenbordaktivität",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "aktiv",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83"
+      ],
+      "reason": "außenbordaktivität: explicitly reviewed whole form with aktiv lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:dcb6d8c334c45e1d35bc",
+      "word": "aktivkohle",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktivkohle",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktivkohle",
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "surface:de:aktivkohl",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "ety:e2cb857f52d6"
+      ],
+      "reason": "aktivkohle: explicitly reviewed whole form with Aktivkohle lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:652e0642ca6a6787be5d",
+      "word": "aktivkohle-filter",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktivkohle",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktivkohle",
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:filter",
+        "surface:de:aktivkohlefilt"
+      ],
+      "reason": "aktivkohle-filter: explicitly reviewed whole form with Aktivkohle lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:3d28b7f9a9a721d1f43a",
+      "word": "aktivkohlefilter",
+      "status": "accepted",
+      "previous_status": "pending_review",
+      "lexical_head": "Aktivkohle",
+      "national_realization": "aktiv",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Aktivkohle",
+        "https://www.duden.de/rechtschreibung/aktiv"
+      ],
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:3b5769fa0463",
+        "ety:579f4e520ecd",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:fb8a2c387e83",
+        "surface:de:filter",
+        "surface:de:aktivkohlefilt"
+      ],
+      "reason": "aktivkohlefilter: explicitly reviewed whole form with Aktivkohle lexical head. Its inflection, derivative or transparent compound preserves the aktiv national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+      "runtime_applied": false
+    }
+  ],
+  "counts": {
+    "en": {
+      "accepted": 257,
+      "excluded": 8037,
+      "uncertain": 4,
+      "pending_review": 1435
+    },
+    "de": {
+      "accepted": 963,
+      "excluded": 11934,
+      "uncertain": 134,
+      "pending_review": 4290
+    },
+    "fr": {
+      "accepted": 208,
+      "excluded": 3663,
+      "uncertain": 0,
+      "pending_review": 604
+    },
+    "es": {
+      "accepted": 372,
+      "excluded": 4170,
+      "uncertain": 2,
+      "pending_review": 1249
+    },
+    "it": {
+      "accepted": 223,
+      "excluded": 3245,
+      "uncertain": 2,
+      "pending_review": 8654
+    },
+    "ru": {
+      "accepted": 245,
+      "excluded": 2175,
+      "uncertain": 1,
+      "pending_review": 410
+    }
+  },
+  "runtime_changes": false,
+  "full_family_certification": false,
+  "limitations": [
+    "Only these finite whole forms are selected. Unlisted records stay pending.",
+    "Source rank/frequency/quality and original component arrays must be preserved during materialization."
+  ]
+}

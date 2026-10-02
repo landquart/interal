@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "source_candidate_count": 52277,
+  "accepted_added": 170,
+  "excluded_added": 0,
+  "runtime_changes": false,
+  "counts": {
+    "en": {
+      "accepted": 257,
+      "excluded": 8037,
+      "uncertain": 4,
+      "pending_review": 1435
+    },
+    "de": {
+      "accepted": 963,
+      "excluded": 11934,
+      "uncertain": 134,
+      "pending_review": 4290
+    },
+    "fr": {
+      "accepted": 208,
+      "excluded": 3663,
+      "uncertain": 0,
+      "pending_review": 604
+    },
+    "es": {
+      "accepted": 372,
+      "excluded": 4170,
+      "uncertain": 2,
+      "pending_review": 1249
+    },
+    "it": {
+      "accepted": 223,
+      "excluded": 3245,
+      "uncertain": 2,
+      "pending_review": 8654
+    },
+    "ru": {
+      "accepted": 245,
+      "excluded": 2175,
+      "uncertain": 1,
+      "pending_review": 410
+    }
+  },
+  "artifact_sha256": {
+    "decisions.json": "bf921cdeface9c335927042d66935b31fbac5489006caa5670d61a8b3966719f",
+    "source-records.json.gz": "6d7711d07e561fd18d8c7454d4dc35146a77b7f6351dde20ee9aa8db32e33987"
+  }
+}
