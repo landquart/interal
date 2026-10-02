@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "canonical_root": "act",
+  "base_commit": "da4007c56fa48aff54cbc5e8114013ba2388bd8f",
+  "source_run_id": 35647932153,
+  "previous_decision_sha256": "cf94d0afadfdfa1e19b08e82301fea88cde2569221548365a70e8211ccec2a21",
+  "source_proof_sha256": "f79f9ba834cf1a5e7ff9ec4bdbabd8fd027e4fe713d4767c73a36ce8b4c01e9a",
+  "decision_sha256": "dfdd26a028dcdcf8213537c6fbf555dcbcea4abc5fe40d6f2f30fd8e1fcf3096",
+  "source_candidate_count": 52277,
+  "adjudicated_in_this_stage": 1536,
+  "accepted_added": 0,
+  "excluded_added": 1536,
+  "membership_changes": 0,
+  "counts": {
+    "en": {
+      "accepted": 242,
+      "excluded": 7939,
+      "uncertain": 4,
+      "pending_review": 1548
+    },
+    "de": {
+      "accepted": 808,
+      "excluded": 11934,
+      "uncertain": 134,
+      "pending_review": 4445
+    },
+    "fr": {
+      "accepted": 208,
+      "excluded": 3633,
+      "uncertain": 0,
+      "pending_review": 634
+    },
+    "es": {
+      "accepted": 372,
+      "excluded": 4170,
+      "uncertain": 2,
+      "pending_review": 1249
+    },
+    "it": {
+      "accepted": 223,
+      "excluded": 3245,
+      "uncertain": 2,
+      "pending_review": 8654
+    },
+    "ru": {
+      "accepted": 245,
+      "excluded": 2135,
+      "uncertain": 1,
+      "pending_review": 450
+    }
+  },
+  "full_family_certification": false,
+  "runtime_changes": false
+}

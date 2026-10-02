@@ -37,6 +37,7 @@ test('untouched information neighbours and source memberships remain byte-equiva
  for(const [alias,before]of Object.entries(l.alias_before)){
   const prior=before.filter(id=>id!==l.canonical_family_id&&id!==l.deleted_duplicate_family_id);if(l.aliases.includes(alias))prior.push(l.canonical_family_id);
   const expected=prior.filter(id=>!n.retired_families.includes(id)&&!c.retired_families.includes(id)&&!r.retired_families.includes(id)&&!o.retired_families.includes(id)&&!mu.retired_families.includes(id));for(const [root,aliases]of Object.entries(n.aliases))if(aliases.includes(alias))expected.push('family:'+root);
+  const action=await read('audit/associative-family-v5/action-materialization-stage-20261002.json');if(action.aliases.includes(alias))expected.push('family:act');
   assert.deepEqual(await f.resolveAlias(alias),[...new Set(expected)].sort(),alias);
  }
  for(const d of l.added)assert.deepEqual((await f.members(d.source_family_id,d.language)).find(m=>m.lemma_id===d.member.lemma_id),d.member);
