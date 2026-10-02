@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "source_run_id": 35647932153,
+  "previous_stage": "audit/associative-family-v5/reflex-functional-boundaries-review-20261002-2245",
+  "inputs": {
+    "spec_path": "audit/associative-family-v5/reflex-native-compounds-review-20261002-2315/review-spec.json",
+    "spec_sha256": "4a581e35c17406f6e22b9ef192e958a3914d940e23194afe196e407998410c86",
+    "previous_pending_path": "audit/associative-family-v5/reflex-functional-boundaries-review-20261002-2245/pending-review.json",
+    "previous_pending_sha256": "fad3b41a71caec4c8c590f9bf8fb9ddd77d9a050de0a4692f00b58c152c9e4a1",
+    "previous_inventory_path": "audit/associative-family-v5/reflex-functional-boundaries-review-20261002-2245/inventory.json",
+    "previous_inventory_sha256": "839f623a5291a163c3e139e29cae29aad9117dc1bdf9e057db49e1e1b5255c95",
+    "source_candidate_path": "audit/associative-family-v5/reflex-checkpoint-20261001/candidates.json.gz",
+    "source_candidate_sha256": "ce3cc11eb045a4fe9f77bf79239fc585a9a324231c8a6d5530606df1e5488cfb"
+  },
+  "source_candidate_sha256": "ce3cc11eb045a4fe9f77bf79239fc585a9a324231c8a6d5530606df1e5488cfb",
+  "reviewed_count": 10,
+  "new_counts": {
+    "accepted": 7,
+    "excluded": 3
+  },
+  "continuation_counts": {
+    "accepted": 38,
+    "excluded": 357,
+    "uncertain": 154,
+    "pending_review": 213
+  },
+  "artifact_sha256": {
+    "decisions.json": "65460a3a789d176d8576d974c326108d7d23ca18dc2c60f4fe16106724de18e5",
+    "pending-review.json": "d24101c9de1c70e48a32c442b20c5e2990d68b0560ee7db803e69caefbf445d7",
+    "source-records.json.gz": "fccec6ee7fd055e785a65c32900534e8c4427c9abc1cbfb8c434a80604cdad02"
+  },
+  "runtime_changes": false,
+  "full_family_certification": false
+}

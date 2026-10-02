@@ -5,8 +5,8 @@ Current state: 31 reviewed continuation memberships applied (six earlier,
 observ 311 / inform 1,460. All 10 targeted application tests passed, no failures
 or skips. The full 117-file suite and exhaustive audit passed; the later
 multilingual review passed two additional tests. Latest immutable
-review queue: 223 pending, 154 investigated uncertain, 354 excluded;
-zero accepted awaiting application. Earlier sections below are dated history.
+review queue: 213 pending, 154 investigated uncertain, 357 excluded;
+seven accepted native names awaiting a separate guarded application. Earlier sections below are dated history.
 Latest relation overlay: `relation-phrase-boundaries-20261002` (325 pending).
 Resume from the stage-specific inventories,
 `continuation-validation-20261002/validation.json` and the complete
@@ -374,3 +374,16 @@ Twenty exact phrase/elision boundary records are excluded by
 pending. Two conservation/reproduction tests pass with zero skips.
 Current queue: 31 applied + 354 excluded + 154 investigated uncertain +
 223 pending = 762. Runtime remains observ 311 / inform 1,460.
+
+## Native compound adjudication — 2026-10-02 23:15 Moscow
+
+`reflex-native-compounds-review-20261002-2315` accepts seven exact native
+records: French observeur; Italian informalavoro, informahandicap, informanziani;
+Russian уралинформбюро, уралсвязьинформ, комиинформа. Primary native
+attestation and finite morphology are distinguished in each decision. Three
+independent negative formal heads are excluded. Two exact conservation and
+byte-reproduction tests pass, zero skips. Current counts: 31 applied + seven
+accepted awaiting application + 357 excluded + 154 investigated uncertain +
+213 pending = 762. Runtime remains observ 311 / inform 1,460. Next: freeze
+source routes and old prefixes, save preflight separately, apply once, then
+run the full suite and exhaustive audit. Earlier dated entries are history.
