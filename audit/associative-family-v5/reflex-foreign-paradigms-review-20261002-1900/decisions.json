@@ -1,0 +1,1178 @@
+{
+  "schema_version": 1,
+  "source_run_id": 35647932153,
+  "inputs": {
+    "spec_path": "audit/associative-family-v5/reflex-foreign-paradigms-review-20261002-1900/review-spec.json",
+    "spec_sha256": "8e3277438d8c9c9156c08b22805904d6bdecddb7fdd28b0e758310433f1fdcff",
+    "previous_pending_path": "audit/associative-family-v5/reflex-spelling-defects-review-20261002-1830/pending-review.json",
+    "previous_pending_sha256": "1af30065f286a8a6cb9d225f6603ea7a082be876832662b94d45133f7d214095",
+    "previous_inventory_path": "audit/associative-family-v5/reflex-spelling-defects-review-20261002-1830/inventory.json",
+    "previous_inventory_sha256": "1af3e3d045a3a660a87a11965d5b771f30bc26b758b0180211c02dff46a6a62f",
+    "source_candidate_path": "audit/associative-family-v5/reflex-checkpoint-20261001/candidates.json.gz",
+    "source_candidate_sha256": "ce3cc11eb045a4fe9f77bf79239fc585a9a324231c8a6d5530606df1e5488cfb"
+  },
+  "source_candidate_sha256": "ce3cc11eb045a4fe9f77bf79239fc585a9a324231c8a6d5530606df1e5488cfb",
+  "previous_pending_sha256": "1af30065f286a8a6cb9d225f6603ea7a082be876832662b94d45133f7d214095",
+  "decisions": [
+    {
+      "lemma_id": "lemma:799a9f8fad4332f99024",
+      "word": "informacion",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in en cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:en:informacion"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "Spanish información",
+      "segmentation_or_lexical_identity": "Spanish information noun; listed accentless renderings or regular plural; exact corpus spelling retained",
+      "source_references": [
+        "https://dle.rae.es/información"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:49814e56d3063e02cd1f",
+      "word": "informaciones",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in en cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:en:ones",
+        "surface:en:informacione"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "Spanish información",
+      "segmentation_or_lexical_identity": "Spanish information noun; listed accentless renderings or regular plural; exact corpus spelling retained",
+      "source_references": [
+        "https://dle.rae.es/información"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:c6270aaa9c30889cffa2",
+      "word": "informacion",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in de cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "ety:2ff6a6cec4b3",
+        "ety:4d4c6a785c49",
+        "surface:de:informacio"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "Spanish información",
+      "segmentation_or_lexical_identity": "Spanish information noun; listed accentless renderings or regular plural; exact corpus spelling retained",
+      "source_references": [
+        "https://dle.rae.es/información"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:5e749c80ee9ffc0c8578",
+      "word": "informacion",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in fr cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:fr:informacion"
+      ],
+      "language": "fr",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "Spanish información",
+      "segmentation_or_lexical_identity": "Spanish information noun; listed accentless renderings or regular plural; exact corpus spelling retained",
+      "source_references": [
+        "https://dle.rae.es/información"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:ecb4a3e9fb4b82a1ad01",
+      "word": "informaciones",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in fr cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:fr:nes",
+        "surface:fr:informacione"
+      ],
+      "language": "fr",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "Spanish información",
+      "segmentation_or_lexical_identity": "Spanish information noun; listed accentless renderings or regular plural; exact corpus spelling retained",
+      "source_references": [
+        "https://dle.rae.es/información"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:74a6803ad9e9a91f4f65",
+      "word": "informacion",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in it cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:it:cion",
+        "surface:it:informac"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "Spanish información",
+      "segmentation_or_lexical_identity": "Spanish information noun; listed accentless renderings or regular plural; exact corpus spelling retained",
+      "source_references": [
+        "https://dle.rae.es/información"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:d69a12b1c38e6458e1dd",
+      "word": "información",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in it cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:it:cion",
+        "surface:it:informac"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "Spanish información",
+      "segmentation_or_lexical_identity": "Spanish information noun; listed accentless renderings or regular plural; exact corpus spelling retained",
+      "source_references": [
+        "https://dle.rae.es/información"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:de8edfdab6f87dc5b115",
+      "word": "informa",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in en cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:en:informa"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "Spanish informar",
+      "segmentation_or_lexical_identity": "Spanish regular finite informar verb or participle; informes also has noun/adjective homographs",
+      "source_references": [
+        "https://dle.rae.es/informar",
+        "https://dle.rae.es/informe"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:0a2dc3118736cddc0568",
+      "word": "informes",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in en cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:en:formes",
+        "surface:en:informe"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "Spanish informar",
+      "segmentation_or_lexical_identity": "Spanish regular finite informar verb or participle; informes also has noun/adjective homographs",
+      "source_references": [
+        "https://dle.rae.es/informar",
+        "https://dle.rae.es/informe"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:79323afb48deecc30c48",
+      "word": "informes",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in de cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:de:informe",
+        "surface:de:mes"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "Spanish informar",
+      "segmentation_or_lexical_identity": "Spanish regular finite informar verb or participle; informes also has noun/adjective homographs",
+      "source_references": [
+        "https://dle.rae.es/informar",
+        "https://dle.rae.es/informe"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:c6146050db8fba3edf94",
+      "word": "informado",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in it cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:it:informad",
+        "surface:it:ado"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "Spanish informar",
+      "segmentation_or_lexical_identity": "Spanish regular finite informar verb or participle; informes also has noun/adjective homographs",
+      "source_references": [
+        "https://dle.rae.es/informar",
+        "https://dle.rae.es/informe"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:3ea985f160d068f0b65b",
+      "word": "informas",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in it cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:it:rmas",
+        "surface:it:infor"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "Spanish informar",
+      "segmentation_or_lexical_identity": "Spanish regular finite informar verb or participle; informes also has noun/adjective homographs",
+      "source_references": [
+        "https://dle.rae.es/informar",
+        "https://dle.rae.es/informe"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:8409b474fd9b4440c31a",
+      "word": "informe",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in en cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:en:informe"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "Spanish informe",
+      "segmentation_or_lexical_identity": "Spanish report noun/informar form versus shapeless adjective homograph; both are explicitly dictionary-attested",
+      "source_references": [
+        "https://dle.rae.es/informe",
+        "https://dle.rae.es/informar"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:8d6400f2159db5d8c504",
+      "word": "informe",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in fr cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "ety:15cd88c4813d",
+        "ety:3b6c34a40f7b"
+      ],
+      "language": "fr",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "Spanish informe",
+      "segmentation_or_lexical_identity": "Spanish report noun/informar form versus shapeless adjective homograph; both are explicitly dictionary-attested",
+      "source_references": [
+        "https://dle.rae.es/informe",
+        "https://dle.rae.es/informar"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:cd39da85c67711ba953a",
+      "word": "informe",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in it cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:it:orme",
+        "surface:it:inform"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "Spanish informe",
+      "segmentation_or_lexical_identity": "Spanish report noun/informar form versus shapeless adjective homograph; both are explicitly dictionary-attested",
+      "source_references": [
+        "https://dle.rae.es/informe",
+        "https://dle.rae.es/informar"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:32aae2ad05858cffdd2f",
+      "word": "informador",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in en cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:en:informa",
+        "surface:en:ador"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "Spanish informador",
+      "segmentation_or_lexical_identity": "Spanish information provider/journalist noun",
+      "source_references": [
+        "https://dle.rae.es/informador"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:1a14f529d0abb9f73b4c",
+      "word": "observador",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in en cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:en:ador",
+        "surface:en:observa"
+      ],
+      "language": "en",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "Spanish observador",
+      "segmentation_or_lexical_identity": "Spanish observer noun/adjective",
+      "source_references": [
+        "https://dle.rae.es/observador"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:c4e7445ac0a9e8512ff5",
+      "word": "observa",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in en cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:en:observa"
+      ],
+      "language": "en",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "Spanish observar",
+      "segmentation_or_lexical_identity": "Spanish regular observa imperative or indicative, also Latin imperative homograph",
+      "source_references": [
+        "https://dle.rae.es/observar"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:ec914708207773e82400",
+      "word": "informatizarlo",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in en cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:en:arlo",
+        "surface:en:informatiza"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "Spanish informatizar",
+      "segmentation_or_lexical_identity": "Spanish informatizar infinitive + lo; finite enclitic inference",
+      "source_references": [
+        "https://dle.rae.es/informatizar",
+        "https://www.rae.es/dpd/pronombres%20personales%20%C3%A1tonos"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:fb2e5f63c687f3036e92",
+      "word": "informati",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in en cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "ety:15cd88c4813d",
+        "ety:3b6c34a40f7b",
+        "surface:en:formati"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "Italian informare",
+      "segmentation_or_lexical_identity": "Italian regular information verb: finite present/subjunctive/imperative or participle; informami = informa + mi",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informare/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:0e9fbc3aff0e840e4159",
+      "word": "informato",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in en cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "ety:15cd88c4813d",
+        "ety:3b6c34a40f7b",
+        "surface:en:mato"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "Italian informare",
+      "segmentation_or_lexical_identity": "Italian regular information verb: finite present/subjunctive/imperative or participle; informami = informa + mi",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informare/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:7af96c5d1206be768a16",
+      "word": "informo",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in en cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:en:informo"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "Italian informare",
+      "segmentation_or_lexical_identity": "Italian regular information verb: finite present/subjunctive/imperative or participle; informami = informa + mi",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informare/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:bd24c18157f120c4292d",
+      "word": "informa",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in de cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:de:orma",
+        "surface:de:info"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "Italian informare",
+      "segmentation_or_lexical_identity": "Italian regular information verb: finite present/subjunctive/imperative or participle; informami = informa + mi",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informare/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:b060cfd5b6e20321e8d4",
+      "word": "informami",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in de cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:de:mami",
+        "surface:de:inform"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "Italian informare",
+      "segmentation_or_lexical_identity": "Italian regular information verb: finite present/subjunctive/imperative or participle; informami = informa + mi",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informare/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:a0dbe73ee9840bcf0312",
+      "word": "informi",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in de cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:de:informi"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "Italian informare",
+      "segmentation_or_lexical_identity": "Italian regular information verb: finite present/subjunctive/imperative or participle; informami = informa + mi",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informare/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:c85c038d02c4981ce58b",
+      "word": "informato",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in fr cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:fr:inform",
+        "surface:fr:mato"
+      ],
+      "language": "fr",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "Italian informare",
+      "segmentation_or_lexical_identity": "Italian regular information verb: finite present/subjunctive/imperative or participle; informami = informa + mi",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informare/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:0b1a32223098d912633f",
+      "word": "informami",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in es cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:es:mami",
+        "surface:es:inform"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "Italian informare",
+      "segmentation_or_lexical_identity": "Italian regular information verb: finite present/subjunctive/imperative or participle; informami = informa + mi",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informare/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:0cfd129ffb9d8e5bb08f",
+      "word": "informato",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in es cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "ety:4748fe7693e2",
+        "surface:es:informat",
+        "ety:95de7cdff932"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "Italian informare",
+      "segmentation_or_lexical_identity": "Italian regular information verb: finite present/subjunctive/imperative or participle; informami = informa + mi",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informare/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:e44881af5fa45d3223d1",
+      "word": "informatica",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in en cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:en:informat",
+        "surface:en:matica"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "Italian informatica",
+      "segmentation_or_lexical_identity": "Italian computing noun (also matches Latin/Spanish/Romanian words); source context missing",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informatica/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:229851fede634eac2ef6",
+      "word": "informatica",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in de cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:de:informat",
+        "surface:de:ica"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "Italian informatica",
+      "segmentation_or_lexical_identity": "Italian computing noun (also matches Latin/Spanish/Romanian words); source context missing",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informatica/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:838f58984faa4055110e",
+      "word": "informatica",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in fr cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:fr:informat"
+      ],
+      "language": "fr",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "Italian informatica",
+      "segmentation_or_lexical_identity": "Italian computing noun (also matches Latin/Spanish/Romanian words); source context missing",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informatica/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:aae2875d6db3afb32a7e",
+      "word": "informazione",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in en cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:en:ione",
+        "surface:en:informazion"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "Italian informazione",
+      "segmentation_or_lexical_identity": "Italian information noun",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informazione/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:e0853f236963313d2589",
+      "word": "informazione",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in es cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:es:one",
+        "surface:es:informa",
+        "surface:es:mazi"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "Italian informazione",
+      "segmentation_or_lexical_identity": "Italian information noun",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informazione/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:a52efdaf9d7d483cd988",
+      "word": "informazioni",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in fr cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:fr:ioni",
+        "surface:fr:informaz",
+        "surface:fr:mazi"
+      ],
+      "language": "fr",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "Italian informazione",
+      "segmentation_or_lexical_identity": "Italian regular plural informazioni",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informazione/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:196073eaaa5dc58b3487",
+      "word": "informanten",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in en cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:en:informan",
+        "surface:en:manten"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "German Informant",
+      "segmentation_or_lexical_identity": "German plural/oblique Informanten; noun is independently documented",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Informant"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:7704bf533bfa3b8397dd",
+      "word": "informatik",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in en cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:en:informa",
+        "surface:en:tik"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "German Informatik",
+      "segmentation_or_lexical_identity": "German computing noun",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Informatik"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:f9aa239680805fee3546",
+      "word": "informatik",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in fr cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:fr:informa",
+        "surface:fr:tik"
+      ],
+      "language": "fr",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "German Informatik",
+      "segmentation_or_lexical_identity": "German computing noun",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Informatik"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:622e672123ed6687efa1",
+      "word": "informationen",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in en cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:en:informat",
+        "surface:en:matio",
+        "surface:en:onen",
+        "surface:en:formati"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "German Information",
+      "segmentation_or_lexical_identity": "German regular plural Informationen",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:eee74e5d7a65343817ba",
+      "word": "informationen",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in fr cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:fr:informati",
+        "surface:fr:nen"
+      ],
+      "language": "fr",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "German Information",
+      "segmentation_or_lexical_identity": "German regular plural Informationen",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:da869fda4df2c26ca62a",
+      "word": "informatique",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in en cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:en:informatiqu",
+        "surface:en:ique"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "French informatique",
+      "segmentation_or_lexical_identity": "French computing noun/adjective",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9I1219"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:50a369ac88a24a4bb893",
+      "word": "informerai",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in en cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:en:informe",
+        "surface:en:merai"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "French informer",
+      "segmentation_or_lexical_identity": "French future first person singular; finite paradigm inference",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9I1225"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:236b6e888d2070b6c8d3",
+      "word": "disinformation",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in es cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:es:disinformat",
+        "surface:es:tion"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "English disinformation",
+      "segmentation_or_lexical_identity": "Attested English head; listed -s/-ed inflections are finite reviewer analyses. Informations is an attested legal plural, not automatically an erroneous count noun.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/disinformation"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:42ecab9a348947b3f2b0",
+      "word": "information",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in es cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:es:informat",
+        "surface:es:tion"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "English information",
+      "segmentation_or_lexical_identity": "Attested English head; listed -s/-ed inflections are finite reviewer analyses. Informations is an attested legal plural, not automatically an erroneous count noun.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:21b2e337255f9401969c",
+      "word": "informative",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in es cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:es:ive",
+        "surface:es:informat"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "English informative",
+      "segmentation_or_lexical_identity": "Attested English head; listed -s/-ed inflections are finite reviewer analyses. Informations is an attested legal plural, not automatically an erroneous count noun.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/informative"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:096b88142d3014590100",
+      "word": "informer",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in es cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:es:informer"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "English informer",
+      "segmentation_or_lexical_identity": "Attested English head; listed -s/-ed inflections are finite reviewer analyses. Informations is an attested legal plural, not automatically an erroneous count noun.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/informer"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:d35927a43af45b0f6cb7",
+      "word": "informers",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in es cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:es:mers",
+        "surface:es:inform"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "English informer",
+      "segmentation_or_lexical_identity": "Attested English head; listed -s/-ed inflections are finite reviewer analyses. Informations is an attested legal plural, not automatically an erroneous count noun.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/informer"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:a73c2c2caffa9d30a306",
+      "word": "misinformed",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in es cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:es:med",
+        "surface:es:infor",
+        "surface:es:misin"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "English misinform",
+      "segmentation_or_lexical_identity": "Attested English head; listed -s/-ed inflections are finite reviewer analyses. Informations is an attested legal plural, not automatically an erroneous count noun.",
+      "source_references": [
+        "https://dictionary.cambridge.org/dictionary/english/misinform"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:fa8cf54acb1726ca59e0",
+      "word": "informatics",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in it cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:it:ics",
+        "surface:it:informat"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "English informatics",
+      "segmentation_or_lexical_identity": "Attested English head; listed -s/-ed inflections are finite reviewer analyses. Informations is an attested legal plural, not automatically an erroneous count noun.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/informatics"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:46e68193870a54e09b73",
+      "word": "information",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in it cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:it:informat",
+        "surface:it:tion"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "English information",
+      "segmentation_or_lexical_identity": "Attested English head; listed -s/-ed inflections are finite reviewer analyses. Informations is an attested legal plural, not automatically an erroneous count noun.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:84014bd519f5739d16b0",
+      "word": "informations",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in it cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:it:informati",
+        "surface:it:ons"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "English information",
+      "segmentation_or_lexical_identity": "Attested English head; listed -s/-ed inflections are finite reviewer analyses. Informations is an attested legal plural, not automatically an erroneous count noun.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:1c75c9c991e33b8d8cbb",
+      "word": "informer",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in it cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:it:informer"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "English informer",
+      "segmentation_or_lexical_identity": "Attested English head; listed -s/-ed inflections are finite reviewer analyses. Informations is an attested legal plural, not automatically an erroneous count noun.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/informer"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:9e90993529a981988d92",
+      "word": "informers",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in it cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:it:mers",
+        "surface:it:inform"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "English informer",
+      "segmentation_or_lexical_identity": "Attested English head; listed -s/-ed inflections are finite reviewer analyses. Informations is an attested legal plural, not automatically an erroneous count noun.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/informer"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:40edd7a7b727b793ae42",
+      "word": "bioinformatics",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in fr cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:fr:bioinformatic"
+      ],
+      "language": "fr",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "English bioinformatics",
+      "segmentation_or_lexical_identity": "Attested English head; listed -s/-ed inflections are finite reviewer analyses. Informations is an attested legal plural, not automatically an erroneous count noun.",
+      "source_references": [
+        "https://www.genome.gov/genetics-glossary/Bioinformatics"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:a591b9f7a26f53e46970",
+      "word": "informatics",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in fr cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:fr:informatic"
+      ],
+      "language": "fr",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "English informatics",
+      "segmentation_or_lexical_identity": "Attested English head; listed -s/-ed inflections are finite reviewer analyses. Informations is an attested legal plural, not automatically an erroneous count noun.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/informatics"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:4f3470d4e300a97325f6",
+      "word": "informatics",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in de cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:de:informatic"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "English informatics",
+      "segmentation_or_lexical_identity": "Attested English head; listed -s/-ed inflections are finite reviewer analyses. Informations is an attested legal plural, not automatically an erroneous count noun.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/informatics"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:b6d8582582468a94562f",
+      "word": "bioinformatician",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in es cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "surface:es:tician",
+        "surface:es:bioinformatic"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "English bioinformatician",
+      "segmentation_or_lexical_identity": "English bioinformatics + -ian professional noun; transparent finite derivative",
+      "source_references": [
+        "https://www.genome.gov/genetics-glossary/Bioinformatics"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:0ad7b14e731c8266fb09",
+      "word": "bioinformatician",
+      "status": "uncertain",
+      "reason": "Investigated the explicit foreign-language lexical identity and regular morphology stated here. The sources establish the head; finite inflection/plural/attached-pronoun analyses are reviewer inferences. The corpus only supplies aggregate source measurements, so quotation/title, borrowing and native lexical use in it cannot be distinguished. A recognizable observation/information element in another language is not sufficient evidence of the required national realization. No default foreign-word exclusion or automatic acceptance.",
+      "source_family_ids": [
+        "ety:409447286774",
+        "surface:it:bioinformatic",
+        "ety:ac6718a384c0"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "lexical_head": "English bioinformatician",
+      "segmentation_or_lexical_identity": "English bioinformatics + -ian professional noun; transparent finite derivative",
+      "source_references": [
+        "https://www.genome.gov/genetics-glossary/Bioinformatics"
+      ],
+      "runtime_applied": false
+    }
+  ],
+  "new_counts": {
+    "uncertain": 57
+  },
+  "continuation_counts": {
+    "accepted": 24,
+    "excluded": 299,
+    "uncertain": 119,
+    "pending_review": 320
+  },
+  "accepted_applied": 24,
+  "accepted_unapplied": 0,
+  "runtime_changes": false,
+  "full_family_certification": false,
+  "review_scope": "Exact dictionary-investigated foreign paradigms. Rare attested native words, proper names and untouched noise are not moved to uncertainty by default."
+}

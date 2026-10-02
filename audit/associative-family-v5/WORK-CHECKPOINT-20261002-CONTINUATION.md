@@ -4,8 +4,8 @@ Current state: 24 reviewed continuation memberships applied (six earlier and
 18 in the latest extension). Latest support: observ 309 / inform 1,455.
 All 15 targeted application tests passed, no failures or skips. The full
 109-file suite and exhaustive audit passed; two later review test files each
-passed 2 tests, no skips. Latest continuation queue: 377 pending,
-62 investigated uncertain, 299 excluded. Earlier sections below are dated stage history.
+passed 2 tests, no skips. Latest continuation queue: 320 pending,
+119 investigated uncertain, 299 excluded. Earlier sections below are dated stage history.
 Latest relation overlay: `relation-phrase-boundaries-20261002` (325 pending).
 Resume from the stage-specific inventories,
 `continuation-validation-20261002/validation.json` and the complete
@@ -287,3 +287,15 @@ variants are outside this stage; no edit-distance classifier is introduced.
 Both source/conservation and byte-identical reproduction tests passed without
 skips. Current frame: 24 applied, 299 excluded, 62 genuine uncertain, 377 pending.
 Runtime remains observ 309 / inform 1,455. Continue from this pending file.
+
+## Foreign lexical paradigms investigated
+
+reflex-foreign-paradigms-review-20261002-1900 investigates 57 exact forms
+against documented Spanish, Italian, German, French and English heads, regular
+paradigms and explicit homographs. All retain genuine context uncertainty:
+the aggregate sources cannot establish quotation/title versus native lexical use.
+This is a finite researched group; no untouched form is relabelled by default.
+Rare native informate derivatives and informationals are deliberately outside
+this group pending their separate positive review. Both preservation and
+byte-identical reproduction tests passed, no skips. Runtime unchanged.
+Current frame: 24 applied, 299 excluded, 119 genuine uncertain, 320 pending.
