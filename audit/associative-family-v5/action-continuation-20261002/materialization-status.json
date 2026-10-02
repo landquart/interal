@@ -1,0 +1,56 @@
+{
+  "repair": "materialize_reviewed_action_subset_20261002",
+  "source_run_id": 35647932153,
+  "added_memberships": 2098,
+  "removed_memberships": 0,
+  "net_family_delta": 1,
+  "alias_delta": 0,
+  "decision_ledger_sha256": "30fd69ba65a417f58d5b0d953c4d9f8cee619a676ca0a3b5695c700d0a12de4f",
+  "full_family_certification": false,
+  "legacy_containers_preserved": [
+    "ety:751cdacbf4a9",
+    "ety:9a86a987fafc"
+  ],
+  "component_preservation": "Original component arrays kept intact; reviewed act component appended.",
+  "runtime_applied": true,
+  "counts": {
+    "en": {
+      "accepted": 242,
+      "excluded": 7939,
+      "uncertain": 4,
+      "pending_review": 1548
+    },
+    "de": {
+      "accepted": 808,
+      "excluded": 11934,
+      "uncertain": 134,
+      "pending_review": 4445
+    },
+    "fr": {
+      "accepted": 208,
+      "excluded": 3633,
+      "uncertain": 0,
+      "pending_review": 634
+    },
+    "es": {
+      "accepted": 372,
+      "excluded": 4170,
+      "uncertain": 2,
+      "pending_review": 1249
+    },
+    "it": {
+      "accepted": 223,
+      "excluded": 1709,
+      "uncertain": 2,
+      "pending_review": 10190
+    },
+    "ru": {
+      "accepted": 245,
+      "excluded": 2135,
+      "uncertain": 1,
+      "pending_review": 450
+    }
+  },
+  "ledger_path": "audit/associative-family-v5/action-materialization-stage-20261002.json",
+  "decision_sha256": "cf94d0afadfdfa1e19b08e82301fea88cde2569221548365a70e8211ccec2a21"
+}

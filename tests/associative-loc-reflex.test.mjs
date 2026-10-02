@@ -1,3 +1,4 @@
+import {preActionShard} from '../scripts/lib/associative-action-stage-audit.mjs';
 import assert from 'node:assert/strict';
 import {test} from 'node:test';
 import {readFile} from 'node:fs/promises';
@@ -28,5 +29,5 @@ test('loc and lok expose the complete reviewed place-root family with original m
 test('loc repair keeps unrelated shard contents and supplies a disposition for every saved lok spelling candidate',async()=>{
  const l=await read(base+'loc-reflex-materialization-20261001.json'),d=await read(base+'loc-reflex-decisions-20261001.json'),source=(await read(base+'component-checkpoint-20261001/candidate-records.json.gz')).loc;
  for(const [language,needle]of [['de','lok'],['ru','лок']]){const candidates=source[language].filter(m=>m.word.toLowerCase().includes(needle));const ds=d.decisions.filter(x=>x.language===language);assert.deepEqual(pairs(ds),pairs(candidates));for(const record of ds)assert(['accepted','excluded','uncertain'].includes(record.status)&&record.reason.length>20);}
- for(const p of l.preservation){const s=await read(`${root}/${p.part}/${p.bucket}.json.gz`),other=Object.fromEntries(Object.entries(s).filter(([id])=>p.part==='aliases'?!l.aliases.includes(id):id!=='family:loc'));assert.equal(digest(other),p.unrelated_sha256);}
+ for(const p of l.preservation){const s=await preActionShard(await read(`${root}/${p.part}/${p.bucket}.json.gz`),p.part,p.bucket),other=Object.fromEntries(Object.entries(s).filter(([id])=>p.part==='aliases'?!l.aliases.includes(id):id!=='family:loc'));assert.equal(digest(other),p.unrelated_sha256);}
 });

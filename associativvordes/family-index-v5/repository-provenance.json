@@ -13,8 +13,8 @@
   },
   "storage": "git_repository_static_files",
   "file_count_before_provenance": 2050,
-  "total_bytes_before_provenance": 717611660,
-  "tree_content_sha256": "26cb8568384b1756cc40c1a94c8d1d1fa8c7a3bb11563c4192b6774e6eb5afae",
+  "total_bytes_before_provenance": 717759736,
+  "tree_content_sha256": "91dc4573dd86463befb7a82d0f89d11814c1b488f824fa98421a841c2719d2f9",
   "repository_repairs": [
     {
       "repair": "exclude_known_rejected_corpus_noise_from_runtime",
@@ -539,6 +539,21 @@
       "alias_delta": 1,
       "decision_ledger_sha256": "52b215e9c76d12f03f9a5a93ae7c59ee2deef8ab4d345afafe84b1245deb9c1c",
       "full_family_certification": false
+    },
+    {
+      "repair": "materialize_reviewed_action_subset_20261002",
+      "source_run_id": 35647932153,
+      "added_memberships": 2098,
+      "removed_memberships": 0,
+      "net_family_delta": 1,
+      "alias_delta": 0,
+      "decision_ledger_sha256": "30fd69ba65a417f58d5b0d953c4d9f8cee619a676ca0a3b5695c700d0a12de4f",
+      "full_family_certification": false,
+      "legacy_containers_preserved": [
+        "ety:751cdacbf4a9",
+        "ety:9a86a987fafc"
+      ],
+      "component_preservation": "Original component arrays kept intact; reviewed act component appended."
     }
   ]
 }

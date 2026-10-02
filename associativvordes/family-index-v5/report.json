@@ -115,11 +115,11 @@
   },
   "uncertain_relation_count": 431390,
   "uncertain_relation_sample_size": 100000,
-  "total_families": 2456539,
-  "merged_families": 20770,
+  "total_families": 2456540,
+  "merged_families": 20771,
   "singleton_families": 1735280,
-  "multi_branch_families": 17671,
-  "multi_family_lemmas": 3335306,
+  "multi_branch_families": 17672,
+  "multi_family_lemmas": 3335517,
   "components_discovered": 9349982,
   "components_assigned": 9349982,
   "corpus_quality_counts": {
@@ -128,7 +128,7 @@
     "rejected": 9,
     "requires_manual_review": 0
   },
-  "review_required_families": 4034,
+  "review_required_families": 4035,
   "invariants": {
     "processed_lemmas_equals_source": true,
     "source_lemmas": 4924980,
@@ -13183,14 +13183,14 @@
       "ru": 569375
     },
     "memberships_by_language": {
-      "en": 2619019,
-      "de": 2210203,
-      "fr": 1144002,
-      "es": 1798037,
-      "it": 1148757,
-      "ru": 1127451
+      "en": 2619261,
+      "de": 2211011,
+      "fr": 1144210,
+      "es": 1798409,
+      "it": 1148980,
+      "ru": 1127696
     },
-    "memberships": 10047469,
+    "memberships": 10049567,
     "nitidus_net_memberships_removed": 9924,
     "nitidus_net_memberships_added": 2,
     "nitidus_ledger_sha256": "76cd3ddf53bb7a6e4bc6c43a6b5e0ba9efd074d1162ff736776a0e9b6bdcbffa",
@@ -13226,14 +13226,19 @@
       "full_family_certification": false
     },
     "associative_reflex_review": {
-      "repair": "materialize_reviewed_mutation_associative_root_20261001",
+      "repair": "materialize_reviewed_action_subset_20261002",
       "source_run_id": 35647932153,
-      "removed_memberships": 6792,
-      "added_memberships": 569,
-      "net_family_delta": -1,
-      "alias_delta": 1,
-      "decision_ledger_sha256": "52b215e9c76d12f03f9a5a93ae7c59ee2deef8ab4d345afafe84b1245deb9c1c",
-      "full_family_certification": false
+      "added_memberships": 2098,
+      "removed_memberships": 0,
+      "net_family_delta": 1,
+      "alias_delta": 0,
+      "decision_ledger_sha256": "30fd69ba65a417f58d5b0d953c4d9f8cee619a676ca0a3b5695c700d0a12de4f",
+      "full_family_certification": false,
+      "legacy_containers_preserved": [
+        "ety:751cdacbf4a9",
+        "ety:9a86a987fafc"
+      ],
+      "component_preservation": "Original component arrays kept intact; reviewed act component appended."
     },
     "loc_reflex_review": {
       "repair": "add_reviewed_german_russian_loc_reflex_members_20261001",
