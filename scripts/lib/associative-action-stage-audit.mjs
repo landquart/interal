@@ -3,6 +3,7 @@ import {readFile} from 'node:fs/promises';
 import {gunzipSync} from 'node:zlib';
 import {createHash} from 'node:crypto';
 import {familyBucket} from '../../associativvordes/js/family-index-loader.js';
+import {preReflexContinuationShard} from './associative-reflex-continuation-audit.mjs';
 import {auditActionExtension} from './associative-action-extension-audit.mjs';
 const base='audit/associative-family-v5/',ledgerPath=base+'action-materialization-stage-20261002.json';
 const read=async p=>JSON.parse((p.endsWith('.gz')?gunzipSync(await readFile(p)):await readFile(p)).toString()),sha=b=>createHash('sha256').update(b).digest('hex'),digest=v=>sha(JSON.stringify(v));
@@ -11,6 +12,7 @@ const ledger=()=>ledgerPromise||=read(ledgerPath);
 // Historical shard fingerprints describe the pre-action state. Reconstruct it
 // from the new, separately hashed ledger instead of rewriting old evidence.
 export async function preActionShard(shard,part,bucket){
+ shard=await preReflexContinuationShard(shard,part,bucket);
  const l=await ledger();
  if(part==='aliases'){for(const [alias,before]of Object.entries(l.alias_before))if(familyBucket(alias)===bucket){if(before.length)shard[alias]=structuredClone(before);else delete shard[alias];}}
  else delete shard['family:act'];
@@ -29,7 +31,7 @@ export async function auditActionStage(root){
   assert.deepEqual(ds.map(d=>[d.lemma_id,d.word]),source.act.map(m=>[m.lemma_id,m.word]));assert.deepEqual(ds.filter(d=>d.status==='accepted'),l.accepted[language]);assert.deepEqual(ms.map(m=>[m.lemma_id,m.word]),expected.map(d=>[d.lemma_id,d.word]));assert.equal(new Set(ms.map(m=>m.lemma_id)).size,ms.length);assert.equal(family.language_support[language],ms.length);
   for(const m of ms){const {source_family_ids,components,...original}=byId.get(m.lemma_id),{components:next,...measured}=m;assert.deepEqual(measured,original);assert.deepEqual(next.slice(0,-1),components||[]);assert.equal(next.at(-1).canonical_candidate,'act');assert.equal(next.at(-1).evidence[0].source,extraIds.has(m.lemma_id)?extension.ledger_path:ledgerPath);}
  }
- for(const p of l.preservation){const s=await read(`${root}/${p.part}/${p.bucket}.json.gz`),other=Object.fromEntries(Object.entries(s).filter(([k])=>p.part==='aliases'?!l.aliases.includes(k):k!=='family:act'));assert.equal(digest(other),p.unrelated_sha256);}
+ for(const p of l.preservation){const s=await preReflexContinuationShard(await read(`${root}/${p.part}/${p.bucket}.json.gz`),p.part,p.bucket,root),other=Object.fromEntries(Object.entries(s).filter(([k])=>p.part==='aliases'?!l.aliases.includes(k):k!=='family:act'));assert.equal(digest(other),p.unrelated_sha256);}
  for(const [alias,before]of Object.entries(l.alias_before)){const ids=(await read(root+'/aliases/'+familyBucket(alias)+'.json.gz'))[alias];assert.deepEqual(ids,[...new Set([...before,'family:act'])].sort());}
  const old=await read(base+'action-reflex-checkpoint-20261001/original-families.json.gz');for(const [id,f]of Object.entries(old.families)){assert.deepEqual((await read(root+'/families/'+familyBucket(id)+'.json.gz'))[id],f);for(const language of Object.keys(d.decisions))assert.deepEqual((await read(root+'/members/'+language+'/'+familyBucket(id)+'.json.gz'))[id]||[],old.members[language][id]||[]);}
  return {added_memberships:l.expected_added_memberships+(extension?.added_memberships||0),removed_memberships:0,full_family_certification:false,counts:extension?.counts||d.counts};

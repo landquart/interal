@@ -151,3 +151,8 @@ test log are in `multiple-roots-validation-20261002/validation.json`. Runtime
 files are unchanged from c48c37a9; the existing exhaustive runtime audit remains
 applicable. Read this section and the machine status when resuming; earlier
 application-time validation-pending notes are historical snapshots.
+
+## New continuation entry point
+
+Use `WORK-CHECKPOINT-20261002-CONTINUATION.md` and its referenced machine ledgers
+for stages after 970cf100. Earlier application-time pending notes are historical.

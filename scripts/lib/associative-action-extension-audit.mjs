@@ -3,6 +3,7 @@ import {readFile} from 'node:fs/promises';
 import {gunzipSync} from 'node:zlib';
 import {createHash} from 'node:crypto';
 import {familyBucket} from '../../associativvordes/js/family-index-loader.js';
+import {preReflexContinuationShard} from './associative-reflex-continuation-audit.mjs';
 const cp='audit/associative-family-v5/action-positive-extension-20261002',ledgerPath=cp+'/materialization-ledger.json';
 const read=async p=>JSON.parse((p.endsWith('.gz')?gunzipSync(await readFile(p)):await readFile(p)).toString()),sha=b=>createHash('sha256').update(b).digest('hex'),digest=v=>sha(JSON.stringify(v));
 export async function auditActionExtension(root){
@@ -19,7 +20,7 @@ export async function auditActionExtension(root){
   assert.deepEqual(ms.slice(l.before_members[language].count).map(m=>m.lemma_id),rows.map(m=>m.lemma_id));
  }
  assert.deepEqual(family,expected);assert.equal(status.runtime_support,family.support);
- for(const p of l.preservation){const s=await read(root+'/'+p.part+'/'+familyBucket('family:act')+'.json.gz');assert.equal(digest(Object.fromEntries(Object.entries(s).filter(([k])=>k!=='family:act'))),p.unrelated_sha256);}
+ for(const p of l.preservation){const s=await preReflexContinuationShard(await read(root+'/'+p.part+'/'+familyBucket('family:act')+'.json.gz'),p.part,familyBucket('family:act'),root);assert.equal(digest(Object.fromEntries(Object.entries(s).filter(([k])=>k!=='family:act'))),p.unrelated_sha256);}
  const proof=(await read(cp+'/source-records.json.gz')).records,groups=new Map();
  for(const {language,member}of proof){const path=root+'/members/'+language+'/'+familyBucket(member.source_family_ids[0])+'.json.gz';if(!groups.has(path))groups.set(path,[]);groups.get(path).push(member);}
  for(const [path,members]of groups){const s=await read(path);for(const member of members){const {source_family_ids,...original}=member;assert.deepEqual(s[source_family_ids[0]].find(m=>m.lemma_id===member.lemma_id),original);}}

@@ -1,0 +1,1172 @@
+Продолжай полную лингвистическую проверку и исправление exhaustive associative family index v5 в репозитории `landquart/interal`.
+
+Не ограничивайся одной локальной задачей. После завершения каждого самостоятельного этапа сохраняй его отдельным checkpoint/commit и сразу продолжай следующий известный этап. Работа должна быть возобновляемой исключительно из файлов репозитория и Git history без зависимости от памяти чата или временного рабочего процесса.
+
+## Актуальное исходное состояние
+
+Сначала обязательно перепроверь remote GitHub, потому что ветка могла измениться после создания этого задания.
+
+На момент составления задания:
+
+`main`:
+`78182754c4254b6c26aba42e556cb67158bb8c14`
+
+PR #650:
+`fix/associative-information-20260930`
+HEAD:
+`3da2717f7de702f68cf465c7434e15ff7abd2d50`
+
+PR #651:
+`fix/associative-component-membership-20261001`
+
+HEAD:
+`970cf1009d11242fe1c8a913a1bf0c74309c631e`
+
+#651 основан на #650.
+
+Не начинать новую параллельную ветку от `main`.
+
+Не повторять уже выполненную работу.
+
+Перед изменениями:
+
+1. получить актуальный remote HEAD #651;
+2. проверить, появились ли новые commits;
+3. проверить GitHub Actions текущего HEAD;
+4. прочитать `audit/associative-family-v5/WORK-CHECKPOINT-20261002.md`;
+5. использовать наиболее новые machine-readable inventories/ledgers вместо устаревших промежуточных текстовых описаний.
+
+На момент составления задания GitHub Actions именно для HEAD `970cf100...` ещё выполнялись:
+
+- `Tests` — `in_progress`;
+- `Audit repository associative family v5` — `pending`;
+- Vercel — success.
+
+Не утверждать, что этот HEAD полностью зелёный, пока workflows действительно не завершились успешно.
+
+При этом последний runtime-changing action commit уже имеет сохранённые успешные full-test и exhaustive-audit доказательства. Последующие commits до `970cf100...` являются review/checkpoint changes и runtime не меняют.
+
+Если текущие workflows ещё идут, можно продолжать чисто лингвистический review и подготовку checkpoints, но не считать baseline окончательно проверенным и не выполнять новый рискованный runtime materialization поверх обнаруженной CI-ошибки.
+
+## Главное определение ассоциативной семьи
+
+Ассоциативная семья — это группа слов вокруг узнаваемого международного лексического элемента и его прозрачных, конкретно доказанных национальных реализаций.
+
+Она НЕ равна:
+
+- простому substring;
+- полному латинскому этимону;
+- всей исторической этимологической семье;
+- общему суффиксу;
+- словам с далёким общим предком;
+- случайному совпадению букв.
+
+Например:
+
+`observ` является ассоциативным корнем.
+
+Italian `osserv-` — регулярная и прозрачная национальная реализация этого же элемента.
+
+Поэтому:
+
+`observe`
+`observation`
+`observer`
+`osservare`
+`osservazione`
+`osservatore`
+`osservatorio`
+
+могут входить в одну `family:observ`.
+
+Это НЕ означает глобального правила:
+
+`ob → os`
+
+или:
+
+любое исторически родственное слово → `observ`.
+
+Национальный reflex допускается только для конкретной семьи и языка, когда подтверждаются одновременно:
+
+- формальная узнаваемость;
+- этимологическая непрерывность;
+- правильная морфологическая граница;
+- принадлежность к нужной lexical branch;
+- достаточная современная ассоциативная прозрачность.
+
+Сохранять отрицательные контроли:
+
+`nat` ≠ `naive/naïve`;
+
+`loc` ≠ `lieu`;
+
+`loc` ≠ `lieutenant`;
+
+случайный `inter` в `winter`, `printer`, `splinter` ≠ associative `inter`;
+
+`Actium/Azio` ≠ lexical `act`.
+
+Не возвращаться к универсальному exact-substring критерию.
+
+Exact match — полезный retrieval mechanism, но не окончательное определение membership.
+
+## Уже выполненные архитектурные исправления — не делать заново
+
+Не повторять следующие исправления, если актуальный HEAD их по-прежнему содержит:
+
+- additive `applyExactControlOverride`, сохраняющий независимые components;
+- propagation всех `reviewRequired` relations в review artifact;
+- `family:observ` вместо пользовательской `observatio`;
+- Italian `osserv-` как reflex `observ`;
+- `family:inform`;
+- German/Russian `loc ~ lok/лок`;
+- `family:creat`;
+- `family:relat`;
+- `family:oper`;
+- `family:mut`;
+- initial `family:act`;
+- action positive extension;
+- separation of Actium/Azio evidence;
+- сохранённые immutable source archives;
+- removal/retirement уже исправленных suffix-expanded duplicate containers;
+- уже выполненные Russian `na/u/da/ma/ga` repairs.
+
+Исторические ledgers не переписывать задним числом.
+
+Если старый artifact говорит `ready_to_materialize`, но materialization уже была выполнена последующим commit, сохранять его как исторический snapshot. Текущее состояние отражать новым continuation artifact.
+
+## Текущее runtime-состояние
+
+По последнему сохранённому exhaustive runtime audit:
+
+families:
+`2,456,540`
+
+aliases:
+`1,934,055`
+
+memberships:
+`10,049,737`
+
+materialized unique lemmas:
+`4,924,151`
+
+multi-family lemmas:
+`3,335,527`
+
+lemmas without materialized family:
+`829`
+
+Все сохранённые repository-static-integrity invariants проходят.
+
+Не использовать эти цифры как доказательство лингвистической полноты.
+
+## ЭТАП 1. Завершить и проверить текущий `act`
+
+Полный frozen candidate frame:
+
+`52,277` records.
+
+После всех последующих action review stages текущее агрегированное состояние:
+
+accepted:
+`2,268`
+
+excluded:
+`33,224`
+
+investigated uncertain:
+`143`
+
+pending review:
+`16,642`
+
+Сумма должна оставаться ровно:
+
+`52,277`.
+
+`family:act` уже существует в runtime и содержит все 2 268 текущих accepted records.
+
+Не запускать заново initial action materializer и positive-extension materializer: их guards должны правильно отказываться от повторного применения.
+
+Использовать композицию, а не один старый inventory:
+
+1. `action-review-checkpoint-20261001`
+2. `action-continuation-20261002`
+3. `action-italian-stage-20261002`
+4. `action-independent-heads-20261002`
+5. `action-russian-heads-20261002`
+6. `action-positive-extension-20261002`
+
+Именно наложение этих решений даёт современное состояние.
+
+Не использовать per-language counts старого `action-continuation/inventory.json` как окончательные без overlay последующих stages.
+
+### Что осталось сделать в `act`
+
+Продолжить полную обработку 16 642 `pending_review`.
+
+Не превращать их автоматически в `uncertain`.
+
+`pending_review` означает:
+
+**ещё не рассмотрено.**
+
+`uncertain` означает:
+
+**рассмотрено, но имеющихся данных реально недостаточно для решения.**
+
+Это принципиально разные статусы.
+
+Разбирать pending систематическими lexical-head batches.
+
+Приоритетно группировать кандидатов по реальному предполагаемому head/root, а не просто по одинаковому substring.
+
+Различать:
+
+- act / action;
+- active / activation;
+- actor;
+- actual;
+- actuarial;
+- German akt / Aktion / aktiv / aktuell только там, где этимологическая связь действительно соответствует associative `act`;
+- Spanish act-/acción;
+- Italian atto/attore/attivo/attuale;
+- Italian azione и прозрачные action derivatives;
+- Russian акт-/акц-;
+- prefixes и compounds с этими heads;
+- Actium/Azio;
+- Greek actin-;
+- protein actin;
+- fact;
+- pact;
+- tact;
+- tract;
+- fract;
+- lact;
+- character-related sequences;
+- unrelated Italian att- words;
+- unrelated Russian акц-/акт- strings;
+- proper names;
+- fused corpus garbage.
+
+Не применять правила:
+
+`att* → act`
+
+или:
+
+`azion* → act`
+
+или:
+
+`akt* → act`
+
+без lexical-head проверки.
+
+Italian `ct > tt` и другие национальные преобразования применяются только внутри подтверждённой lexical branch.
+
+### Legacy `actio/acti`
+
+Старые containers:
+
+`ety:751cdacbf4a9`
+`ety:9a86a987fafc`
+
+пока сохранены намеренно.
+
+Не удалять их целиком, пока не закончена достаточная проверка frame и не доказано, что:
+
+- все настоящие lexical-action records представлены `family:act`;
+- Actium/Azio evidence отделена;
+- независимые memberships сохранены;
+- unresolved candidates не потеряются;
+- aliases не начнут вести в неправильную семью.
+
+После достаточного завершения review подготовить отдельный retirement plan с:
+
+- original metadata hashes;
+- ordered membership hashes;
+- mapping accepted records → `family:act`;
+- explicit non-act records;
+- unresolved records;
+- proof of preserved independent families;
+- alias migration;
+- reproducible repair;
+- tests.
+
+Не совмещать retirement с большим новым linguistic review в одном непрозрачном commit.
+
+## ЭТАП 2. Материализовать уже готовые 6 `observ/inform` positives
+
+Текущий continuation старого unresolved frame:
+
+source unresolved:
+`762`
+
+новые decisions:
+
+accepted:
+`6`
+
+excluded:
+`23`
+
+investigated uncertain:
+`3`
+
+pending:
+`730`
+
+Шесть уже проверенных positives:
+
+### `inform`
+
+German:
+`informator`
+
+German:
+`informatorisch`
+
+French:
+`mathématiques-informatique`
+
+### `observ`
+
+German:
+`johnson-ridge-observatorium`
+
+German:
+`yerkes-observatorium`
+
+Italian:
+`inaf-osservatorio`
+
+Они ещё не materialized.
+
+Подготовить отдельный additive preflight и preservation audit.
+
+Не переписывать старый `reflex-families-20261001.json`.
+
+Создать новый materialization ledger.
+
+Проверить:
+
+- существование exact lemma IDs;
+- неизменность corpus records;
+- неизменность frequency/source/category data;
+- отсутствие duplicate membership;
+- preservation других components;
+- support/language_support;
+- aliases;
+- manifest/report/provenance;
+- repeat-application refusal.
+
+После application запустить targeted tests.
+
+После группы runtime changes — полный `npm test` и exhaustive repository audit.
+
+Три German forms `informell*`, уже отмеченные как действительно sense-ambiguous, не принимать и не исключать без context evidence.
+
+## ЭТАП 3. Полностью продолжить оставшиеся 730 `observ/inform`
+
+Не собирать frame заново.
+
+Использовать:
+
+`reflex-continuation-20261002/pending-review.json`
+
+и frozen source records.
+
+Разбирать по lexical heads.
+
+Особенно искать массовые группы, которые можно корректно решить через проверенный head + прозрачную morphology.
+
+Например отдельно различать:
+
+- `inform`;
+- `information`;
+- `informatique/Informatik`;
+- `informant`;
+- `informieren`;
+- negative `in- + formal`;
+- Italian `informicolarsi` branch;
+- names;
+- malformed compounds;
+- `observ`;
+- Italian `osserv`;
+- observatory compounds;
+- named prefixes + valid lexical head;
+- unrelated apparent substrings.
+
+Не требовать отдельной словарной статьи для каждой прозрачной инфлексии одного уже доказанного head.
+
+Но решение по head не должно становиться открытым substring rule.
+
+Цель — свести `pending_review` к нулю либо почти к нулю, оставляя `uncertain` только там, где после реального анализа сохраняется sense/corpus ambiguity.
+
+## ЭТАП 4. Завершить четыре уже материализованных roots
+
+Не повторять исходную retrieval или materialization.
+
+Текущие accepted runtime families:
+
+`creat`:
+574
+
+`relat`:
+487
+
+`oper`:
+1,595
+
+`mut`:
+569
+
+После continuation 2 октября остаются:
+
+`creat`:
+2,356 pending
+
+`relat`:
+409 pending
+
+`oper`:
+2,082 pending
+
+`mut`:
+2,662 pending
+
+Всего:
+
+`7,509 pending`
+
+Полный исходный candidate frame этих четырёх roots:
+
+`27,861`.
+
+Все candidate IDs должны сохраняться.
+
+Уже рассмотренные новые exclusions:
+
+`creat`: 33
+
+`relat`: 2
+
+`oper`: 29
+
+`mut`: 171
+
+Всего:
+235.
+
+Не пересматривать их без новой конкретной причины.
+
+### `creat`
+
+Продолжить отделять настоящий create/creation root от:
+
+- creatine;
+- других Greek/medical branches;
+- creak;
+- crease;
+- creed;
+- creel;
+- acreage;
+- unrelated `creer/croire` branches;
+- proper names/noise.
+
+National reflexes уже могут включать конкретно проверенные:
+
+German `kreat-`, `kreier-`;
+
+French/Spanish/Italian creation forms;
+
+Russian `креат-/креац-`.
+
+Не превращать их в универсальные string rules.
+
+### `relat`
+
+Продолжить настоящий relation/relative/report-related root.
+
+Сохранять уже установленные различия с:
+
+- `frelater`;
+- prelate/praelatus;
+- Spanish lazo/entrelazar;
+- unrelated names/homonyms.
+
+### `oper`
+
+Продолжить operation/operate family.
+
+Не исключать German productive compounds из-за размера.
+
+Не принимать:
+
+- blooper/trooper-подобные совпадения;
+- Russian compound boundaries, где `o + пере...` лишь визуально создаёт `oper`;
+- другие самостоятельные lexical heads.
+
+### `mut`
+
+Продолжить mutation/change/exchange family.
+
+Сохранять различие с:
+
+- German `Mut`;
+- `Mütze`;
+- `Anmut`;
+- `Edelmut`;
+- Latin `mutus`;
+- mutilation;
+- Wismut;
+- azimuth;
+- unrelated names.
+
+Historical mutare ancestry сама по себе не означает современную associative membership, если recognizable element утратился.
+
+## ЭТАП 5. Завершить `loc`
+
+Текущий `family:loc` runtime support:
+
+`1,218`.
+
+Он включает:
+
+- прежние 713;
+- 505 проверенных German/Russian `lok/лок` additions.
+
+Отдельный loc reflex review всё ещё имеет:
+
+`842 uncertain`.
+
+Не путать эти 842 со всем старым 38k component backlog.
+
+Это конкретная сохранённая очередь `loc~lok/лок`.
+
+Продолжить её первой.
+
+Разбирать:
+
+- local/localization;
+- location;
+- locomotive/locomotion;
+- German lok-/lokal-/Lokation-/Lokomotiv-;
+- Russian лок-/локал-/локац-/локомотив-;
+- genuine compounds;
+- accidental `lok`;
+- block-derived strings;
+- names;
+- unrelated native roots.
+
+Сохранять:
+
+`lieu` = excluded;
+
+`lieutenant` = excluded.
+
+После завершения 842 обновить `full_family_certification` только если действительно проверен соответствующий retrieval frame.
+
+## ЭТАП 6. Вернуться к широкому `nat/loc/inter` component frame
+
+Исторический checkpoint содержит:
+
+accepted:
+`6,911`
+
+excluded because literal fragment absent:
+`10,688`
+
+pending etymology/token review:
+`38,087`
+
+Но эти статусы создавались до окончательной reflex methodology.
+
+Поэтому:
+
+`excluded_absent_exact_fragment`
+
+НЕ является окончательным лингвистическим отрицательным verdict.
+
+Это технический retrieval-screen status.
+
+Не переводить автоматически все 10 688 в accepted.
+
+Но пересмотреть потенциальные национальные reflexes.
+
+При этом учитывать все более новые loc decisions поверх исторического checkpoint.
+
+Не создавать второй конфликтующий loc ledger.
+
+### `nat`
+
+Сохранять positive conceptual controls:
+
+- nation;
+- national;
+- natural;
+- natalism.
+
+Если `natalism` отсутствует в locked corpus, оставить `corpus_gap`.
+
+Не придумывать lemma ID или frequency.
+
+Не принимать автоматически:
+
+`nasc`
+`naci`
+
+как national forms `nat`.
+
+Каждый такой вариант требует отдельной проверки associative recognizability.
+
+`naive/naïve` остаётся отрицательным control.
+
+### `inter`
+
+Сохранять:
+
+- international;
+- interval;
+- internet;
+
+и другие реальные inter- branches.
+
+Не принимать:
+
+- interment при другой морфологии;
+- winter;
+- printer;
+- splinter;
+- teleprinter;
+- midwinter;
+
+только из-за букв.
+
+Preposition-mode должен продолжать использовать reviewed `family:inter`, не broad incidental fallback.
+
+Не принимать автоматически `entre` как reflex `inter` без отдельного решения по конкретной ветви.
+
+## ЭТАП 7. Русские короткие families
+
+Уже обработаны и НЕ требуют повторения:
+
+`surface:ru:na`
+`surface:ru:u`
+`surface:ru:da`
+`surface:ru:ma`
+`surface:ru:ga`
+
+При предыдущем repair из них было удалено 2 556 ложных memberships при сохранении настоящих heads.
+
+Остаются:
+
+`surface:ru:kh`
+
+`surface:ru:nl`
+
+`surface:ru:lo`
+
+`surface:ru:ca`
+
+`surface:ru:um`
+
+Для каждого сначала определить, существует ли вообще реальный associative root, соответствующий bucket.
+
+Не использовать «оставить только exact token» как универсальную стратегию.
+
+Особенно для `um`.
+
+Если `ум` — lexical root, сохранять настоящие transparent derivatives, например формы типа `умно`, если corpus/морфология действительно подтверждают их принадлежность.
+
+Но не добавлять всё семантически связанное с cognition автоматически.
+
+Различать:
+
+- lexical root;
+- derivation;
+- inflection;
+- unrelated ending;
+- name fragment;
+- encoding noise;
+- accidental substring.
+
+## ЭТАП 8. Полностью разобрать `val`
+
+Это один из крупнейших оставшихся структурных рисков.
+
+Сейчас reverse alias `val` сохраняет 15 targets:
+
+`ety:082a0688243f`
+`ety:74e7854bc739`
+`ety:88d0d6fc2226`
+`ety:90cc3df5865e`
+`ety:961ca0038bb5`
+`ety:acab8c629de8`
+`ety:d8d34e574c18`
+`ety:ddf6d676859e`
+`ety:e12cdb45881f`
+`ety:e8bac130ca91`
+`ety:f00bcab16c95`
+`ety:f6fe7a68b637`
+`ety:f7c173d84c24`
+`surface:it:val`
+`surface:ru:val`
+
+Их retention означал только:
+
+**не удалять alias до дальнейшей проверки.**
+
+Он НЕ означает:
+
+**все эти 15 families правильно принадлежат associative `val`.**
+
+Провести полный audit всех 15 targets.
+
+Для каждого определить:
+
+- реальный etymon;
+- реальный associative element;
+- language branches;
+- members;
+- duplicate/near-duplicate relation к другим targets;
+- неправильные substring members;
+- proper names;
+- corpus noise;
+- whether it actually belongs under user-facing `val`.
+
+Особенно проверить saved high-overlap / identical-array clusters.
+
+В сохранённых diagnostics имеются крайне подозрительные совпадающие или почти совпадающие массивы, в том числе branches вокруг:
+
+- `valenz`;
+- `valeri`;
+- `val / vale / valor / vallee`;
+- `valid`;
+- valley/vallis branches.
+
+Не считать одинаковый member array доказательством одинаковой лингвистической семьи.
+
+Это скорее сигнал технического over-expansion.
+
+Нужно определить, какие именно associative roots реально существуют.
+
+В частности различать потенциально:
+
+- `val` / value / valor / valid / valence и связанные strength/value branches;
+- valley / vale / vallis;
+- личные имена типа Valerius, если современная association и происхождение не соответствуют lexical root;
+- Balboa и другие ложные technical unions;
+- Italian surface `val`;
+- Russian surface `val`.
+
+Если две technical etymon families имеют одинаковый массив, решить отдельно:
+
+1. являются ли они действительно duplicate containers одного associative root;
+2. или один/оба массива загрязнены общим surface expansion;
+3. какие records реально принадлежат root.
+
+После review создать нормальные user-facing associative families, а не просто оставить 15 исторических containers.
+
+Проверить `interval`: если у него действительно существует независимый component `val` по принятой модели, сохранить его независимо от `inter`.
+
+## ЭТАП 9. Найти следующие high-risk families
+
+После известного backlog не останавливаться.
+
+Провести новый системный risk scan repository-backed index.
+
+Искать:
+
+- short roots с огромным support;
+- families, где один язык даёт тысячи слов при единицах в других;
+- два etymon IDs с одинаковыми ordered membership arrays;
+- Jaccard почти 1 у supposedly different families;
+- aliases с большим fan-out;
+- surface buckets, похожие на endings/suffixes;
+- family canonical, являющийся целым Latin etymon вместо реального associative root;
+- national reflex, потерянный exact-match системой;
+- proper-name contamination;
+- concatenated/fused corpus strings;
+- одинаковый suffix, объединяющий разные lexical heads;
+- `safe_automatic` families с внутренне неоднородными members;
+- families, где review_status противоречит фактической heterogeneity.
+
+Risk score использовать только для порядка проверки.
+
+Не удалять family автоматически из-за статистической необычности.
+
+## Полнота
+
+Не использовать искусственный лимит family size.
+
+Не ограничивать:
+
+20;
+100;
+500;
+top frequency.
+
+Если German productive family реально имеет несколько тысяч корректных compounds, это допустимо.
+
+Большой размер — повод проверить, а не повод урезать.
+
+Family должна быть максимально полной относительно существующего corpus.
+
+## Работа с morphology
+
+Правильный compound может иметь несколько independent associative memberships.
+
+Например:
+
+`international`
+
+может иметь одновременно:
+
+`inter`
+
+и:
+
+`nat`.
+
+Это не объединяет семьи `inter` и `nat`.
+
+Никогда не заменять component arrays одним manual override.
+
+Новые manual decisions должны быть additive.
+
+## Работа с этимологией
+
+Этимология отвечает на вопрос:
+
+«Действительно ли этот visible/reflex element является реализацией данного associative root?»
+
+Она НЕ означает:
+
+«Все потомки одного древнего корня должны находиться в одной associative family».
+
+Не объединять по одному только distant ancestor.
+
+Не исключать только потому, что modern spelling слегка изменилась национально.
+
+Нужна одновременно историческая и современная associative связь.
+
+## Работа с corpus
+
+Никогда не придумывать:
+
+- lemma ID;
+- frequency;
+- category breakdown;
+- corpus source;
+- sense frequency;
+- provenance.
+
+Если нужного слова нет в locked corpus:
+
+фиксировать `corpus_gap`.
+
+Не создавать synthetic lemma.
+
+При переносе membership corpus record должен оставаться byte-identical по измеренным полям.
+
+## Review status semantics
+
+Строго различать:
+
+`accepted`
+— рассмотрено и подтверждено;
+
+`excluded`
+— рассмотрено и отвергнуто;
+
+`uncertain`
+— рассмотрено, но после проверки остаётся реальная неопределённость;
+
+`pending_review`
+— ещё не рассмотрено.
+
+Нельзя массово переводить `pending_review` → `uncertain`, чтобы формально закрыть queue.
+
+Не объявлять family complete при тысячах pending.
+
+## Batch strategy
+
+Для больших queues не проверять слова полностью в случайном порядке по одному.
+
+Сначала группировать по предполагаемому lexical head / morphology.
+
+Пример:
+
+если найден доказанный unrelated head, собрать все конкретные inflections/transparent derivatives этого head, сохранить finite list и source records, затем вынести решения всей группе.
+
+Но не создавать глобальное substring exclusion.
+
+Каждая запись всё равно должна присутствовать в decision frame с конкретным reason/provenance.
+
+## Сохранение каждого этапа
+
+Каждый существенный этап сохранять отдельно.
+
+Минимум:
+
+1. source checkpoint;
+2. decision ledger;
+3. pending queue;
+4. source-record archive;
+5. inventory/hashes;
+6. reproducible script;
+7. targeted test;
+8. отдельный commit.
+
+Runtime materialization — отдельный commit от linguistic review.
+
+Final validation — отдельный commit от runtime materialization.
+
+Это уже успешно используется в current #651, продолжать ту же модель.
+
+После push убедиться, что commit действительно существует remote.
+
+Обновлять:
+
+`audit/associative-family-v5/WORK-CHECKPOINT-20261002.md`
+
+или создать новый dated successor, если checkpoint становится слишком исторически неоднозначным.
+
+## Materialization preflight
+
+Перед любым runtime mutation проверять:
+
+- expected current HEAD/baseline;
+- source artifact hashes;
+- original family hashes;
+- every source lemma record;
+- current support;
+- current aliases;
+- preservation hashes unrelated records;
+- prior accepted prefixes;
+- no duplicate additions;
+- no unexpected missing IDs.
+
+Если baseline не соответствует ожидаемому:
+
+остановить конкретный materializer и сначала reconcile состояние.
+
+Не применять repair «примерно» к изменившейся ветке.
+
+## После runtime изменения
+
+Запустить targeted tests без skips.
+
+Затем:
+
+`npm test`
+
+и:
+
+`node scripts/audit-repository-associative-family-v5.mjs`
+
+Сохранить полные logs или hashes результатов.
+
+Проверить:
+
+- family count;
+- memberships count;
+- aliases count;
+- support;
+- language_support;
+- reverse aliases;
+- manifest/report synchronization;
+- repository provenance;
+- source corpus measurements;
+- independent components;
+- preservation of unrelated family contents;
+- negative controls;
+- expected positive controls;
+- repeat-application refusal.
+
+## Не путать software validation с linguistic validation
+
+Pass:
+
+`npm test`
+
+или:
+
+repository exhaustive audit
+
+доказывает structural/runtime consistency.
+
+Он НЕ доказывает, что membership лингвистически правильна.
+
+`full_family_certification` ставить только после завершённого review соответствующего candidate frame.
+
+## Git workflow
+
+Сохранять dependency:
+
+#650 → #651.
+
+Не merge #651 раньше #650.
+
+Не merge вообще без отдельного разрешения пользователя.
+
+Не создавать stale parallel work от `main`.
+
+Не force-push переписанную историю существующих checkpoints без необходимости.
+
+Продолжать текущую ветку.
+
+## Приоритет работы
+
+После проверки актуального HEAD работать непрерывно примерно так:
+
+1. дождаться/проверить результат текущих GitHub Actions, не прекращая review-only работу;
+2. materialize 6 уже готовых `observ/inform` positives;
+3. продолжить 730 `observ/inform` pending;
+4. продолжить 16 642 `act` pending и 143 genuine uncertain;
+5. подготовить safe retirement старых `actio/acti`, когда review это позволит;
+6. закончить `creat` 2 356 pending;
+7. закончить `relat` 409 pending;
+8. закончить `oper` 2 082 pending;
+9. закончить `mut` 2 662 pending;
+10. закончить `loc` 842 unresolved;
+11. reconcile широкий historical `nat/loc/inter` frame с новой reflex methodology;
+12. проверить `kh/nl/lo/ca/um`;
+13. полностью разобрать все 15 `val` routes;
+14. выполнить новый high-risk scan;
+15. продолжать следующую группу без остановки.
+
+Порядок между большими linguistic queues можно менять, если grouping показывает более эффективную dependency, но нельзя тихо бросать предыдущие незакрытые queues.
+
+## Текущий resumable backlog, который должен фигурировать в отчётах
+
+`act`:
+2 268 accepted runtime;
+33 224 excluded;
+143 investigated uncertain;
+16 642 pending;
+legacy actio/acti preserved.
+
+`observ/inform` continuation:
+6 accepted awaiting runtime;
+23 excluded;
+3 genuine uncertain;
+730 pending.
+
+`creat`:
+574 runtime accepted;
+2 356 pending.
+
+`relat`:
+487 runtime accepted;
+409 pending.
+
+`oper`:
+1 595 runtime accepted;
+2 082 pending.
+
+`mut`:
+569 runtime accepted;
+2 662 pending.
+
+Итого по `creat/relat/oper/mut`:
+7 509 pending.
+
+`loc`:
+1 218 runtime members;
+842 old unresolved reflex candidates.
+
+Historical `nat/loc/inter` checkpoint:
+6 911 historical accepted;
+10 688 literal-absence technical exclusions;
+38 087 historical pending;
+нужно overlay более новых decisions, а не считать эти числа современным независимым backlog.
+
+Russian short:
+`kh/nl/lo/ca/um`.
+
+`val`:
+15 retained reverse targets, membership не сертифицирован.
+
+## Что считать настоящим завершением
+
+Работа не закончена, если:
+
+- CI зелёный;
+- JSON валиден;
+- первые 20 слов правильные;
+- family materialized;
+- duplicate container удалён;
+- большая часть untouched records просто названа uncertain.
+
+Для конкретной family завершение означает:
+
+- определён правильный associative root;
+- определены допустимые language-specific realizations;
+- сохранён полный известный candidate frame;
+- pending сведён к нулю;
+- каждый unresolved case действительно исследован;
+- accepted materialized;
+- false memberships отсутствуют;
+- пропущенные реальные corpus records добавлены;
+- independent components сохранены;
+- aliases корректны;
+- legacy containers либо безопасно retired, либо явно обоснованно сохранены;
+- corpus provenance сохранён;
+- repair воспроизводим;
+- targeted tests проходят;
+- full repository validation после runtime change проходит.
+
+## Итоговый отчёт
+
+Не останавливай работу только ради отчёта после каждого мелкого batch.
+
+После значительного блока сохранить checkpoint и сообщить:
+
+- актуальный HEAD;
+- commits, созданные в этом продолжении;
+- какие families/roots обработаны;
+- counts до/после;
+- accepted;
+- excluded;
+- genuine uncertain;
+- pending;
+- added runtime memberships;
+- removed memberships;
+- retired families;
+- national reflexes, которые подтверждены;
+- national reflexes, которые отвергнуты;
+- unresolved lexical heads;
+- состояние `act`;
+- состояние `observ/inform`;
+- состояние `creat/relat/oper/mut`;
+- состояние `loc`;
+- состояние `nat/inter`;
+- состояние Russian short roots;
+- состояние 15 `val` targets;
+- найденные новые high-risk clusters;
+- targeted test result;
+- full `npm test`;
+- exhaustive audit;
+- GitHub Actions status;
+- remaining backlog.
+
+Главный принцип всей работы:
+
+**ассоциативный корень — это узнаваемый международный элемент вместе с его конкретно доказанными национальными реализациями. Он не сводится ни к одинаковым буквам, ни к полной этимологической родословной.**
+
+`observ ~ osserv` — положительный образец.
+
+`loc ~ lok/лок` — положительный образец.
+
+`nat ~ naive` — отрицательный образец.
+
+`loc ~ lieu` — отрицательный образец.
+
+`act ~ Actium` — отрицательный образец.
+
+Никакой automatic substring logic не должна заменять лингвистическое определение ассоциации.

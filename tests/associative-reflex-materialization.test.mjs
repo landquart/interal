@@ -4,6 +4,8 @@ import {readFile} from 'node:fs/promises';
 import {gunzipSync} from 'node:zlib';
 import {FamilyIndexLoader} from '../associativvordes/js/family-index-loader.js';
 import {createCandidateIndexLoader} from '../associativvordes/js/candidate-index-loader.js';
+import {auditContinuation} from '../scripts/lib/associative-reflex-continuation-audit.mjs';
+const continuation=await auditContinuation('associativvordes/family-index-v5');
 const read=async p=>JSON.parse((p.endsWith('.gz')?gunzipSync(await readFile(p)):await readFile(p)).toString());
 const base='audit/associative-family-v5/';
 const pairs=ms=>ms.map(m=>[m.lemma_id,m.word]).sort();
@@ -12,8 +14,9 @@ test('all reviewed observ and inform memberships reach canonical and compatibili
  const f=new FamilyIndexLoader({baseUrl:'associativvordes/family-index-v5',fetchJson:read});
  const loader=createCandidateIndexLoader({familyIndexLoader:f,fetch:async()=>{throw Error('Unexpected broad fallback')}});
  for(const [root,languages] of Object.entries(plan.accepted))for(const [lang,accepted] of Object.entries(languages)){
-  const ms=await f.members('family:'+root,lang);assert.deepEqual(pairs(ms),pairs(accepted),`${root}/${lang} stored`);
-  for(const alias of plan.aliases[root])assert.deepEqual(pairs(await loader.loadCandidateEntries(lang,alias)),pairs(accepted),`${alias}/${lang} route`);
+  const expected=[...accepted,...(continuation?.additions||[]).filter(m=>m.canonical_root===root&&m.language===lang)];
+  const ms=await f.members('family:'+root,lang);assert.deepEqual(pairs(ms),pairs(expected),`${root}/${lang} stored`);
+  for(const alias of plan.aliases[root])assert.deepEqual(pairs(await loader.loadCandidateEntries(lang,alias)),pairs(expected),`${alias}/${lang} route`);
  }
  const it=await loader.loadCandidateEntries('it','observ');assert(it.some(m=>m.word==='osservare'));assert(it.some(m=>m.word==='osservazione'));assert(!it.some(m=>m.word==='integrazione'));
  for(const id of plan.retired_families)assert.equal(await f.family(id),null);
@@ -28,7 +31,7 @@ test('each retrieved candidate has one accountable disposition and accepted reco
   const reviewed=decisions.decisions[lang][root];assert.deepEqual(pairs(reviewed),pairs(source));
   const stored=new Map((await f.members('family:'+root,lang)).map(m=>[m.lemma_id,m]));
   for(const decision of reviewed){assert(Object.hasOwn(counts,decision.status));counts[decision.status]++;assert(decision.reason.length>20);
-   if(decision.status!=='accepted'){assert(!stored.has(decision.lemma_id));continue;}
+   if(decision.status!=='accepted'){if(!(continuation?.additions||[]).some(m=>m.canonical_root===root&&m.language===lang&&m.lemma_id===decision.lemma_id))assert(!stored.has(decision.lemma_id));continue;}
    const original=source.find(m=>m.lemma_id===decision.lemma_id),current=stored.get(decision.lemma_id);assert(current);
    for(const field of ['word','normalized','search_form','rank','frequency_score','category_breakdown','sources','corpus_quality'])assert.deepEqual(current[field],original[field],`${root}/${lang}/${decision.word}/${field}`);
   }

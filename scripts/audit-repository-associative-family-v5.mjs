@@ -4,6 +4,7 @@ import { readFile, readdir, writeFile, mkdir } from 'node:fs/promises';
 import { basename, dirname, join } from 'node:path';
 import { gunzipSync } from 'node:zlib';
 
+import { auditContinuation } from './lib/associative-reflex-continuation-audit.mjs';
 import { preActionShard, auditActionStage } from './lib/associative-action-stage-audit.mjs';
 import { repositoryTreeMetadata } from './lib/associative-repository-materialization.mjs';
 import { buildSearchForm } from '../associativvordes/js/search-normalizer.js';
@@ -29,6 +30,8 @@ const shardNames = async path => (await readdir(path)).filter(name => name.endsW
 const manifest = await readJson(join(root, 'manifest.json'));
 const report = await readJson(join(root, 'report.json'));
 const provenance = await readJson(join(root, 'repository-provenance.json'));
+const continuationAudit = await auditContinuation(root);
+const continuationKeys = new Set((continuationAudit?.additions||[]).map(m=>`${m.language}\0family:${m.canonical_root}\0${m.lemma_id}`));
 const actionStageAudit = await auditActionStage(root);
 const nitidusLedgerBytes = await readFile('audit/associative-family-v5/nitidus-family-decisions.json');
 const nitidusLedger = JSON.parse(nitidusLedgerBytes);
@@ -85,6 +88,7 @@ for (const [root,langs] of Object.entries(reflexLedger.accepted)) for (const [la
   assert(JSON.stringify(ms) === JSON.stringify(ds.filter(d=>d.status==='accepted')), `reflex accepted decisions mismatch ${root}/${language}`);
   for (const m of ms) reflexPositive.set(`${language}\0family:${root}\0${m.lemma_id}`,m.word);
 }
+for(const m of continuationAudit?.additions||[]) reflexPositive.set(`${m.language}\0family:${m.canonical_root}\0${m.lemma_id}`,m.word);
 const mutationBytes=await readFile('audit/associative-family-v5/mutation-families-20261001.json'),mutationLedger=JSON.parse(mutationBytes);
 const mutationRepair=provenance.repository_repairs.find(r=>r.repair===mutationLedger.repair);
 assert(mutationRepair?.decision_ledger_sha256===createHash('sha256').update(mutationBytes).digest('hex')&&mutationRepair.removed_memberships===mutationLedger.expected_removed_memberships&&mutationRepair.added_memberships===mutationLedger.expected_added_memberships, 'mutation provenance/delta mismatch');
@@ -490,7 +494,7 @@ for (let index = 0; index < 256; index += 1) {
       const key = id.slice(7);
       assert(family.canonical === key && family.associative_component === true && family.exact_component === true && family.runtime_curated === true && !family.verified && family.review_status === 'needs_review', 'reflex family metadata mismatch');
       assert(JSON.stringify(family.aliases) === JSON.stringify(reflexLedger.aliases[key]) && JSON.stringify(family.surface_forms) === JSON.stringify(reflexLedger.surface_forms[key]), 'reflex aliases/forms mismatch');
-      for (const language of languages) assert(family.language_support[language] === reflexLedger.accepted[key][language].length, 'reflex support mismatch');
+      for (const language of languages) assert(family.language_support[language] === reflexLedger.accepted[key][language].length + (continuationAudit?.additions||[]).filter(m=>m.canonical_root===key&&m.language===language).length, 'reflex support mismatch');
     }
     assert(!mutationLedger.retired_families.includes(id),'retired mutation container remains');
     assert(!operationLedger.retired_families.includes(id),'retired operation container remains');
@@ -569,7 +573,7 @@ for (let index = 0; index < 256; index += 1) {
           const key = `${language}\0${id}\0${value.lemma_id}`, rootKey = id.slice(7);
           assert(reflexPositive.get(key) === value.word && reflexPositive.delete(key), `unreviewed reflex member ${id}/${language}/${value.word}`);
           assert(matchesReviewedAssociativeForm(value,{canonical:rootKey,surface_forms:reflexLedger.surface_forms[rootKey]},language), 'missing reviewed reflex');
-          assert(value.components.every(c=>c.canonical_candidate===rootKey && c.evidence.every(e=>e.type==='manual_override' && e.language_reflex===true && e.relation_type && e.analysis)), 'missing reflex review evidence');
+          assert(continuationKeys.has(key) || value.components.every(c=>c.canonical_candidate===rootKey && c.evidence.every(e=>e.type==='manual_override' && e.language_reflex===true && e.relation_type && e.analysis)), 'missing reflex review evidence');
           const old = `${language}\0${value.lemma_id}`;
           if (id === 'family:inform' && informationPositive.has(old)) { assert(informationPositive.get(old) === value.word, 'prior information spelling changed'); informationPositive.delete(old); }
         }
