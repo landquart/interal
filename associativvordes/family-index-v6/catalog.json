@@ -1,0 +1,3174 @@
+{
+  "schema_version": 6,
+  "production_enabled": false,
+  "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6",
+  "families": [
+    {
+      "id": "family:inter",
+      "canonical": "inter",
+      "legacy_ids": [
+        "family:inter"
+      ],
+      "promotion_status": "catalog_approved_existing_family",
+      "element_type": "preposition",
+      "aliases": [
+        "inter"
+      ],
+      "canonical_decision": {
+        "status": "accepted",
+        "possible_stems": [
+          "inter"
+        ],
+        "removed_segment": null,
+        "reason": "Retain the individually named international associative base in the user mandate and existing curated family. No ending-stripping inference or inherited etymon selection is used; membership remains finite and unreviewed branches stay unresolved.",
+        "evidence": [
+          "audit/associative-family-v6/task-20261003.txt",
+          "family:inter"
+        ],
+        "negative_over_stripping": [],
+        "negative_under_stripping": [],
+        "positive_examples": [],
+        "lexical_heads": [
+          "en:international",
+          "en:interval",
+          "en:internet"
+        ],
+        "membership_certification": "Existing individual membership proofs retained; root catalog approval does not certify unresolved lexical identity."
+      },
+      "realizations": {},
+      "reflexes": []
+    },
+    {
+      "id": "family:ocul",
+      "canonical": "ocul",
+      "legacy_ids": [
+        "family:ocul"
+      ],
+      "promotion_status": "catalog_approved_existing_family",
+      "element_type": "root",
+      "aliases": [
+        "ocul",
+        "ocule",
+        "okul"
+      ],
+      "canonical_decision": {
+        "status": "accepted",
+        "possible_stems": [
+          "ocul"
+        ],
+        "removed_segment": null,
+        "reason": "Retain the individually named international associative base in the user mandate and existing curated family. No ending-stripping inference or inherited etymon selection is used; membership remains finite and unreviewed branches stay unresolved.",
+        "evidence": [
+          "audit/associative-family-v6/task-20261003.txt",
+          "family:ocul"
+        ],
+        "negative_over_stripping": [],
+        "negative_under_stripping": [],
+        "positive_examples": [],
+        "lexical_heads": [],
+        "membership_certification": "Existing individual membership proofs retained; root catalog approval does not certify unresolved lexical identity."
+      },
+      "realizations": {},
+      "reflexes": []
+    },
+    {
+      "id": "family:regul",
+      "canonical": "regul",
+      "legacy_ids": [
+        "family:regul"
+      ],
+      "promotion_status": "catalog_approved_existing_family",
+      "element_type": "root",
+      "aliases": [
+        "regol",
+        "regul",
+        "regule"
+      ],
+      "canonical_decision": {
+        "status": "accepted",
+        "possible_stems": [
+          "regul"
+        ],
+        "removed_segment": null,
+        "reason": "Retain the individually named international associative base in the user mandate and existing curated family. No ending-stripping inference or inherited etymon selection is used; membership remains finite and unreviewed branches stay unresolved.",
+        "evidence": [
+          "audit/associative-family-v6/task-20261003.txt",
+          "family:regul"
+        ],
+        "negative_over_stripping": [],
+        "negative_under_stripping": [],
+        "positive_examples": [],
+        "lexical_heads": [],
+        "membership_certification": "Existing individual membership proofs retained; root catalog approval does not certify unresolved lexical identity."
+      },
+      "realizations": {},
+      "reflexes": []
+    },
+    {
+      "id": "family:alter",
+      "canonical": "alter",
+      "legacy_ids": [
+        "family:alter"
+      ],
+      "promotion_status": "catalog_approved_existing_family",
+      "element_type": "root",
+      "aliases": [
+        "alter",
+        "altern",
+        "altru"
+      ],
+      "canonical_decision": {
+        "status": "accepted",
+        "possible_stems": [
+          "alter"
+        ],
+        "removed_segment": null,
+        "reason": "Retain the individually named international associative base in the user mandate and existing curated family. No ending-stripping inference or inherited etymon selection is used; membership remains finite and unreviewed branches stay unresolved.",
+        "evidence": [
+          "audit/associative-family-v6/task-20261003.txt",
+          "family:alter"
+        ],
+        "negative_over_stripping": [],
+        "negative_under_stripping": [],
+        "positive_examples": [],
+        "lexical_heads": [],
+        "membership_certification": "Existing individual membership proofs retained; root catalog approval does not certify unresolved lexical identity."
+      },
+      "realizations": {},
+      "reflexes": []
+    },
+    {
+      "id": "family:ped",
+      "canonical": "ped",
+      "legacy_ids": [
+        "family:pede"
+      ],
+      "promotion_status": "catalog_approved_existing_family",
+      "element_type": "root",
+      "aliases": [
+        "ped",
+        "pede",
+        "pedi"
+      ],
+      "canonical_decision": {
+        "status": "accepted",
+        "possible_stems": [
+          "ped",
+          "pede",
+          "pedi"
+        ],
+        "removed_segment": "terminal e of old pede label",
+        "reason": "The international foot stem is ped-, attested in pedal and pedicure. The old canonical pede contains a terminal form segment; pedi- is a combining realization, not a different family. Do not conflate Greek child paed-/pediatrics.",
+        "evidence": [
+          "audit/associative-family-v6/task-20261003.txt",
+          "family:pede"
+        ],
+        "negative_over_stripping": [],
+        "negative_under_stripping": [
+          "pede"
+        ],
+        "positive_examples": [
+          "pedal",
+          "pedicure",
+          "pédale",
+          "pedicura",
+          "педаль"
+        ],
+        "source_references": [
+          "https://ahdictionary.com/word/search.html?q=pedicure"
+        ],
+        "etymological_boundary": "Latin pes, ped- is the foot stem; the v5 pede label is not the canonical international base.",
+        "lexical_heads": [
+          "en:pedal",
+          "en:pedicure",
+          "en:pedestrian"
+        ],
+        "membership_certification": "Existing individual membership proofs retained; root catalog approval does not certify unresolved lexical identity."
+      },
+      "realizations": {},
+      "reflexes": []
+    },
+    {
+      "id": "family:manu",
+      "canonical": "manu",
+      "legacy_ids": [
+        "family:manu"
+      ],
+      "promotion_status": "catalog_approved_existing_family",
+      "element_type": "root",
+      "aliases": [
+        "manu"
+      ],
+      "canonical_decision": {
+        "status": "accepted",
+        "possible_stems": [
+          "manu"
+        ],
+        "removed_segment": null,
+        "reason": "Retain the individually named international associative base in the user mandate and existing curated family. No ending-stripping inference or inherited etymon selection is used; membership remains finite and unreviewed branches stay unresolved.",
+        "evidence": [
+          "audit/associative-family-v6/task-20261003.txt",
+          "family:manu"
+        ],
+        "negative_over_stripping": [],
+        "negative_under_stripping": [],
+        "positive_examples": [],
+        "lexical_heads": [],
+        "membership_certification": "Existing individual membership proofs retained; root catalog approval does not certify unresolved lexical identity."
+      },
+      "realizations": {},
+      "reflexes": []
+    },
+    {
+      "id": "family:liber",
+      "canonical": "liber",
+      "legacy_ids": [
+        "family:liber"
+      ],
+      "promotion_status": "catalog_approved_existing_family",
+      "element_type": "root",
+      "aliases": [
+        "liber"
+      ],
+      "canonical_decision": {
+        "status": "accepted",
+        "possible_stems": [
+          "liber"
+        ],
+        "removed_segment": null,
+        "reason": "Retain the individually named international associative base in the user mandate and existing curated family. No ending-stripping inference or inherited etymon selection is used; membership remains finite and unreviewed branches stay unresolved.",
+        "evidence": [
+          "audit/associative-family-v6/task-20261003.txt",
+          "family:liber"
+        ],
+        "negative_over_stripping": [],
+        "negative_under_stripping": [],
+        "positive_examples": [],
+        "lexical_heads": [],
+        "membership_certification": "Existing individual membership proofs retained; root catalog approval does not certify unresolved lexical identity."
+      },
+      "realizations": {},
+      "reflexes": []
+    },
+    {
+      "id": "family:nat",
+      "canonical": "nat",
+      "legacy_ids": [
+        "family:nat"
+      ],
+      "promotion_status": "catalog_approved_existing_family",
+      "element_type": "root",
+      "aliases": [
+        "nat"
+      ],
+      "canonical_decision": {
+        "status": "accepted",
+        "possible_stems": [
+          "nat"
+        ],
+        "removed_segment": null,
+        "reason": "Retain the individually named international associative base in the user mandate and existing curated family. No ending-stripping inference or inherited etymon selection is used; membership remains finite and unreviewed branches stay unresolved.",
+        "evidence": [
+          "audit/associative-family-v6/task-20261003.txt",
+          "family:nat"
+        ],
+        "negative_over_stripping": [],
+        "negative_under_stripping": [],
+        "positive_examples": [],
+        "lexical_heads": [
+          "en:nation",
+          "en:natural"
+        ],
+        "membership_certification": "Existing individual membership proofs retained; root catalog approval does not certify unresolved lexical identity."
+      },
+      "realizations": {},
+      "reflexes": []
+    },
+    {
+      "id": "family:loc",
+      "canonical": "loc",
+      "legacy_ids": [
+        "family:loc"
+      ],
+      "promotion_status": "catalog_approved_existing_family",
+      "element_type": "root",
+      "aliases": [
+        "loc",
+        "lok"
+      ],
+      "canonical_decision": {
+        "status": "accepted",
+        "possible_stems": [
+          "loc"
+        ],
+        "removed_segment": null,
+        "reason": "Keep loc- location base; approved lok-/лок- realizations do not admit lieu or lieutenant.",
+        "evidence": [
+          "audit/associative-family-v6/task-20261003.txt",
+          "family:loc"
+        ],
+        "negative_over_stripping": [],
+        "negative_under_stripping": [],
+        "positive_examples": [],
+        "lexical_heads": [
+          "en:locate",
+          "en:location",
+          "en:local",
+          "en:locomotive",
+          "de:lokal",
+          "ru:локальный"
+        ],
+        "membership_certification": "Existing individual membership proofs retained; root catalog approval does not certify unresolved lexical identity."
+      },
+      "realizations": {
+        "en": [
+          "loc"
+        ],
+        "de": [
+          "loc",
+          "lok"
+        ],
+        "fr": [
+          "loc"
+        ],
+        "es": [
+          "loc"
+        ],
+        "it": [
+          "loc"
+        ],
+        "ru": [
+          "лок"
+        ]
+      },
+      "reflexes": [
+        {
+          "family_id": "family:loc",
+          "language": "en",
+          "realization": "loc",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [
+            "locate",
+            "location",
+            "local",
+            "locomotive"
+          ],
+          "positive_controls": [
+            "locate",
+            "located",
+            "locates",
+            "locating",
+            "location",
+            "locations",
+            "local",
+            "locals",
+            "locomotive",
+            "locomotives"
+          ],
+          "negative_controls": [
+            "lieu",
+            "lieutenant"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:loc",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:loc",
+          "language": "de",
+          "realization": "loc",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [
+            "lokal"
+          ],
+          "positive_controls": [
+            "lokal",
+            "lokale",
+            "lokalem",
+            "lokalen",
+            "lokaler",
+            "lokales"
+          ],
+          "negative_controls": [
+            "lieu",
+            "lieutenant"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:loc",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:loc",
+          "language": "de",
+          "realization": "lok",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [
+            "lokal"
+          ],
+          "positive_controls": [
+            "lokal",
+            "lokale",
+            "lokalem",
+            "lokalen",
+            "lokaler",
+            "lokales"
+          ],
+          "negative_controls": [
+            "lieu",
+            "lieutenant"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:loc",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:loc",
+          "language": "fr",
+          "realization": "loc",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [
+            "lieu",
+            "lieutenant"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:loc",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:loc",
+          "language": "es",
+          "realization": "loc",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [
+            "lieu",
+            "lieutenant"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:loc",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:loc",
+          "language": "it",
+          "realization": "loc",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [
+            "lieu",
+            "lieutenant"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:loc",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:loc",
+          "language": "ru",
+          "realization": "лок",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [
+            "локальный"
+          ],
+          "positive_controls": [
+            "локальная",
+            "локального",
+            "локальное",
+            "локальной",
+            "локальному",
+            "локальные",
+            "локальный",
+            "локальными",
+            "локальных"
+          ],
+          "negative_controls": [
+            "lieu",
+            "lieutenant"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:loc",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "family:observ",
+      "canonical": "observ",
+      "legacy_ids": [
+        "family:observ"
+      ],
+      "promotion_status": "catalog_approved_existing_family",
+      "element_type": "root",
+      "aliases": [
+        "observ",
+        "observati",
+        "observatio",
+        "observation",
+        "osserv",
+        "osservazione"
+      ],
+      "canonical_decision": {
+        "status": "accepted",
+        "possible_stems": [
+          "observ"
+        ],
+        "removed_segment": null,
+        "reason": "Keep observ- as canonical observation base, with evidenced Italian osserv- as a separate realization.",
+        "evidence": [
+          "audit/associative-family-v6/task-20261003.txt",
+          "family:observ"
+        ],
+        "negative_over_stripping": [],
+        "negative_under_stripping": [],
+        "positive_examples": [],
+        "lexical_heads": [
+          "en:observe",
+          "en:observation",
+          "en:observer",
+          "en:observatory",
+          "it:osservare",
+          "it:osservazione",
+          "it:osservatore",
+          "it:osservatorio"
+        ],
+        "membership_certification": "Existing individual membership proofs retained; root catalog approval does not certify unresolved lexical identity."
+      },
+      "realizations": {
+        "en": [
+          "observ"
+        ],
+        "de": [
+          "observ"
+        ],
+        "fr": [
+          "observ"
+        ],
+        "es": [
+          "observ"
+        ],
+        "it": [
+          "osserv"
+        ],
+        "ru": [
+          "обсерв"
+        ]
+      },
+      "reflexes": [
+        {
+          "family_id": "family:observ",
+          "language": "en",
+          "realization": "observ",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [
+            "observe",
+            "observation",
+            "observer",
+            "observatory"
+          ],
+          "positive_controls": [
+            "observe",
+            "observed",
+            "observes",
+            "observing",
+            "observation",
+            "observations",
+            "observer",
+            "observers",
+            "observatories",
+            "observatory"
+          ],
+          "negative_controls": [
+            "osservaggiare"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:observ",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:observ",
+          "language": "de",
+          "realization": "observ",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [
+            "osservaggiare"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:observ",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:observ",
+          "language": "fr",
+          "realization": "observ",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [
+            "osservaggiare"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:observ",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:observ",
+          "language": "es",
+          "realization": "observ",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [
+            "osservaggiare"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:observ",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:observ",
+          "language": "it",
+          "realization": "osserv",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [
+            "osservare",
+            "osservazione",
+            "osservatore",
+            "osservatorio"
+          ],
+          "positive_controls": [
+            "osserva",
+            "osservando",
+            "osservano",
+            "osservare",
+            "osservata",
+            "osservate",
+            "osservati",
+            "osservato",
+            "osservi",
+            "osserviamo",
+            "osservo",
+            "osservazione",
+            "osservazioni",
+            "osservatore",
+            "osservatori",
+            "osservatrice",
+            "osservatrici",
+            "osservatorio"
+          ],
+          "negative_controls": [
+            "osservaggiare"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:observ",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:observ",
+          "language": "ru",
+          "realization": "обсерв",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [
+            "osservaggiare"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:observ",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "family:inform",
+      "canonical": "inform",
+      "legacy_ids": [
+        "family:inform"
+      ],
+      "promotion_status": "catalog_approved_existing_family",
+      "element_type": "root",
+      "aliases": [
+        "inform",
+        "informacija",
+        "informacion",
+        "informatio",
+        "information",
+        "informazione"
+      ],
+      "canonical_decision": {
+        "status": "accepted",
+        "possible_stems": [
+          "inform"
+        ],
+        "removed_segment": null,
+        "reason": "Keep inform- information base distinct from negative in- plus formal and from shapeless homonyms.",
+        "evidence": [
+          "audit/associative-family-v6/task-20261003.txt",
+          "family:inform"
+        ],
+        "negative_over_stripping": [],
+        "negative_under_stripping": [],
+        "positive_examples": [],
+        "lexical_heads": [
+          "en:inform",
+          "en:information",
+          "en:informer",
+          "en:informative",
+          "de:Information"
+        ],
+        "membership_certification": "Existing individual membership proofs retained; root catalog approval does not certify unresolved lexical identity."
+      },
+      "realizations": {
+        "en": [
+          "inform"
+        ],
+        "de": [
+          "inform"
+        ],
+        "fr": [
+          "inform"
+        ],
+        "es": [
+          "inform"
+        ],
+        "it": [
+          "inform"
+        ],
+        "ru": [
+          "информ"
+        ]
+      },
+      "reflexes": [
+        {
+          "family_id": "family:inform",
+          "language": "en",
+          "realization": "inform",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [
+            "inform",
+            "information",
+            "informer",
+            "informative"
+          ],
+          "positive_controls": [
+            "inform",
+            "informed",
+            "informing",
+            "informs",
+            "information",
+            "informer",
+            "informers",
+            "informative"
+          ],
+          "negative_controls": [
+            "informal",
+            "informalita",
+            "informalizadas"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:inform",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:inform",
+          "language": "de",
+          "realization": "inform",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [
+            "Information"
+          ],
+          "positive_controls": [
+            "information",
+            "informationen"
+          ],
+          "negative_controls": [
+            "informal",
+            "informalita",
+            "informalizadas"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:inform",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:inform",
+          "language": "fr",
+          "realization": "inform",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [
+            "informal",
+            "informalita",
+            "informalizadas"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:inform",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:inform",
+          "language": "es",
+          "realization": "inform",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [
+            "informal",
+            "informalita",
+            "informalizadas"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:inform",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:inform",
+          "language": "it",
+          "realization": "inform",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [
+            "informal",
+            "informalita",
+            "informalizadas"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:inform",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:inform",
+          "language": "ru",
+          "realization": "информ",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [
+            "informal",
+            "informalita",
+            "informalizadas"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:inform",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "family:creat",
+      "canonical": "creat",
+      "legacy_ids": [
+        "family:creat"
+      ],
+      "promotion_status": "catalog_approved_existing_family",
+      "element_type": "root",
+      "aliases": [
+        "crea",
+        "creacion",
+        "creat",
+        "creati",
+        "creatio",
+        "creation",
+        "creazione",
+        "kreat",
+        "kreation"
+      ],
+      "canonical_decision": {
+        "status": "accepted",
+        "possible_stems": [
+          "creat",
+          "cre"
+        ],
+        "removed_segment": null,
+        "reason": "Preserve the complete recognizable creat- series. English infinitival -e or Romance -ar/-are may be formants; -at- is part of this associative base. Reject cre as an over-stripped proposal.",
+        "evidence": [
+          "audit/associative-family-v6/task-20261003.txt",
+          "family:creat"
+        ],
+        "negative_over_stripping": [
+          "cre"
+        ],
+        "negative_under_stripping": [],
+        "positive_examples": [
+          "create",
+          "creation",
+          "creative",
+          "crear",
+          "creare",
+          "création",
+          "kreativ",
+          "креативный"
+        ],
+        "lexical_heads": [
+          "en:create",
+          "en:creation",
+          "en:creative",
+          "en:creator",
+          "es:crear",
+          "it:creare",
+          "de:kreativ"
+        ],
+        "membership_certification": "Existing individual membership proofs retained; root catalog approval does not certify unresolved lexical identity."
+      },
+      "realizations": {
+        "en": [
+          "creat"
+        ],
+        "de": [
+          "kreat",
+          "kreier"
+        ],
+        "fr": [
+          "creat",
+          "crea",
+          "cree",
+          "creon",
+          "crei"
+        ],
+        "es": [
+          "crea",
+          "cree",
+          "crei",
+          "creo"
+        ],
+        "it": [
+          "crea",
+          "cree",
+          "crei",
+          "creo"
+        ],
+        "ru": [
+          "креат",
+          "креац"
+        ]
+      },
+      "reflexes": [
+        {
+          "family_id": "family:creat",
+          "language": "en",
+          "realization": "creat",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [
+            "create",
+            "creation",
+            "creative",
+            "creator"
+          ],
+          "positive_controls": [
+            "create",
+            "created",
+            "creates",
+            "creating",
+            "creation",
+            "creations",
+            "creative",
+            "creatives",
+            "creator",
+            "creators"
+          ],
+          "negative_controls": [
+            "creer",
+            "creatine",
+            "cre"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:creat",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:creat",
+          "language": "de",
+          "realization": "kreat",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [
+            "kreativ"
+          ],
+          "positive_controls": [
+            "kreativ",
+            "kreative",
+            "kreativem",
+            "kreativen",
+            "kreativer",
+            "kreatives"
+          ],
+          "negative_controls": [
+            "creer",
+            "creatine",
+            "cre"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:creat",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:creat",
+          "language": "de",
+          "realization": "kreier",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [
+            "kreativ"
+          ],
+          "positive_controls": [
+            "kreativ",
+            "kreative",
+            "kreativem",
+            "kreativen",
+            "kreativer",
+            "kreatives"
+          ],
+          "negative_controls": [
+            "creer",
+            "creatine",
+            "cre"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:creat",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:creat",
+          "language": "fr",
+          "realization": "creat",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [
+            "creer",
+            "creatine",
+            "cre"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:creat",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:creat",
+          "language": "fr",
+          "realization": "crea",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [
+            "creer",
+            "creatine",
+            "cre"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:creat",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:creat",
+          "language": "fr",
+          "realization": "cree",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [
+            "creer",
+            "creatine",
+            "cre"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:creat",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:creat",
+          "language": "fr",
+          "realization": "creon",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [
+            "creer",
+            "creatine",
+            "cre"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:creat",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:creat",
+          "language": "fr",
+          "realization": "crei",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [
+            "creer",
+            "creatine",
+            "cre"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:creat",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:creat",
+          "language": "es",
+          "realization": "crea",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [
+            "crear"
+          ],
+          "positive_controls": [
+            "crea",
+            "creada",
+            "creadas",
+            "creado",
+            "creados",
+            "creamos",
+            "crean",
+            "creando",
+            "crear",
+            "creas",
+            "creo",
+            "creáis"
+          ],
+          "negative_controls": [
+            "creer",
+            "creatine",
+            "cre"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:creat",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:creat",
+          "language": "es",
+          "realization": "cree",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [
+            "crear"
+          ],
+          "positive_controls": [
+            "crea",
+            "creada",
+            "creadas",
+            "creado",
+            "creados",
+            "creamos",
+            "crean",
+            "creando",
+            "crear",
+            "creas",
+            "creo",
+            "creáis"
+          ],
+          "negative_controls": [
+            "creer",
+            "creatine",
+            "cre"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:creat",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:creat",
+          "language": "es",
+          "realization": "crei",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [
+            "crear"
+          ],
+          "positive_controls": [
+            "crea",
+            "creada",
+            "creadas",
+            "creado",
+            "creados",
+            "creamos",
+            "crean",
+            "creando",
+            "crear",
+            "creas",
+            "creo",
+            "creáis"
+          ],
+          "negative_controls": [
+            "creer",
+            "creatine",
+            "cre"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:creat",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:creat",
+          "language": "es",
+          "realization": "creo",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [
+            "crear"
+          ],
+          "positive_controls": [
+            "crea",
+            "creada",
+            "creadas",
+            "creado",
+            "creados",
+            "creamos",
+            "crean",
+            "creando",
+            "crear",
+            "creas",
+            "creo",
+            "creáis"
+          ],
+          "negative_controls": [
+            "creer",
+            "creatine",
+            "cre"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:creat",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:creat",
+          "language": "it",
+          "realization": "crea",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [
+            "creare"
+          ],
+          "positive_controls": [
+            "crea",
+            "creando",
+            "creano",
+            "creare",
+            "creata",
+            "create",
+            "creati",
+            "creato",
+            "crei",
+            "creiamo",
+            "creo"
+          ],
+          "negative_controls": [
+            "creer",
+            "creatine",
+            "cre"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:creat",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:creat",
+          "language": "it",
+          "realization": "cree",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [
+            "creare"
+          ],
+          "positive_controls": [
+            "crea",
+            "creando",
+            "creano",
+            "creare",
+            "creata",
+            "create",
+            "creati",
+            "creato",
+            "crei",
+            "creiamo",
+            "creo"
+          ],
+          "negative_controls": [
+            "creer",
+            "creatine",
+            "cre"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:creat",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:creat",
+          "language": "it",
+          "realization": "crei",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [
+            "creare"
+          ],
+          "positive_controls": [
+            "crea",
+            "creando",
+            "creano",
+            "creare",
+            "creata",
+            "create",
+            "creati",
+            "creato",
+            "crei",
+            "creiamo",
+            "creo"
+          ],
+          "negative_controls": [
+            "creer",
+            "creatine",
+            "cre"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:creat",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:creat",
+          "language": "it",
+          "realization": "creo",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [
+            "creare"
+          ],
+          "positive_controls": [
+            "crea",
+            "creando",
+            "creano",
+            "creare",
+            "creata",
+            "create",
+            "creati",
+            "creato",
+            "crei",
+            "creiamo",
+            "creo"
+          ],
+          "negative_controls": [
+            "creer",
+            "creatine",
+            "cre"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:creat",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:creat",
+          "language": "ru",
+          "realization": "креат",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [
+            "creer",
+            "creatine",
+            "cre"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:creat",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:creat",
+          "language": "ru",
+          "realization": "креац",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [
+            "creer",
+            "creatine",
+            "cre"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:creat",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "family:relat",
+      "canonical": "relat",
+      "legacy_ids": [
+        "family:relat"
+      ],
+      "promotion_status": "catalog_approved_existing_family",
+      "element_type": "root",
+      "aliases": [
+        "relac",
+        "relacion",
+        "relat",
+        "relati",
+        "relatio",
+        "relation",
+        "relativ",
+        "relative",
+        "relaz",
+        "relazione"
+      ],
+      "canonical_decision": {
+        "status": "accepted",
+        "possible_stems": [
+          "relat"
+        ],
+        "removed_segment": null,
+        "reason": "Retain the individually named international associative base in the user mandate and existing curated family. No ending-stripping inference or inherited etymon selection is used; membership remains finite and unreviewed branches stay unresolved.",
+        "evidence": [
+          "audit/associative-family-v6/task-20261003.txt",
+          "family:relat"
+        ],
+        "negative_over_stripping": [],
+        "negative_under_stripping": [],
+        "positive_examples": [],
+        "lexical_heads": [],
+        "membership_certification": "Existing individual membership proofs retained; root catalog approval does not certify unresolved lexical identity."
+      },
+      "realizations": {
+        "en": [
+          "relat"
+        ],
+        "de": [
+          "relat"
+        ],
+        "fr": [
+          "relat"
+        ],
+        "es": [
+          "relat",
+          "relac"
+        ],
+        "it": [
+          "relat",
+          "relaz"
+        ],
+        "ru": [
+          "релят",
+          "реляц"
+        ]
+      },
+      "reflexes": [
+        {
+          "family_id": "family:relat",
+          "language": "en",
+          "realization": "relat",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:relat",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:relat",
+          "language": "de",
+          "realization": "relat",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:relat",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:relat",
+          "language": "fr",
+          "realization": "relat",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:relat",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:relat",
+          "language": "es",
+          "realization": "relat",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:relat",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:relat",
+          "language": "es",
+          "realization": "relac",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:relat",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:relat",
+          "language": "it",
+          "realization": "relat",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:relat",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:relat",
+          "language": "it",
+          "realization": "relaz",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:relat",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:relat",
+          "language": "ru",
+          "realization": "релят",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:relat",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:relat",
+          "language": "ru",
+          "realization": "реляц",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:relat",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "family:oper",
+      "canonical": "oper",
+      "legacy_ids": [
+        "family:oper"
+      ],
+      "promotion_status": "catalog_approved_existing_family",
+      "element_type": "root",
+      "aliases": [
+        "kooper",
+        "oper",
+        "opera",
+        "operacion",
+        "operate",
+        "operati",
+        "operatio",
+        "operation",
+        "operazione",
+        "опера",
+        "операция"
+      ],
+      "canonical_decision": {
+        "status": "accepted",
+        "possible_stems": [
+          "oper"
+        ],
+        "removed_segment": null,
+        "reason": "Retain the individually named international associative base in the user mandate and existing curated family. No ending-stripping inference or inherited etymon selection is used; membership remains finite and unreviewed branches stay unresolved.",
+        "evidence": [
+          "audit/associative-family-v6/task-20261003.txt",
+          "family:oper"
+        ],
+        "negative_over_stripping": [],
+        "negative_under_stripping": [],
+        "positive_examples": [],
+        "lexical_heads": [],
+        "membership_certification": "Existing individual membership proofs retained; root catalog approval does not certify unresolved lexical identity."
+      },
+      "realizations": {
+        "en": [
+          "oper"
+        ],
+        "fr": [
+          "oper"
+        ],
+        "es": [
+          "oper"
+        ],
+        "it": [
+          "oper"
+        ],
+        "ru": [
+          "опер"
+        ],
+        "de": [
+          "oper"
+        ]
+      },
+      "reflexes": [
+        {
+          "family_id": "family:oper",
+          "language": "en",
+          "realization": "oper",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:oper",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:oper",
+          "language": "fr",
+          "realization": "oper",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:oper",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:oper",
+          "language": "es",
+          "realization": "oper",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:oper",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:oper",
+          "language": "it",
+          "realization": "oper",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:oper",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:oper",
+          "language": "ru",
+          "realization": "опер",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:oper",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:oper",
+          "language": "de",
+          "realization": "oper",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:oper",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "family:mut",
+      "canonical": "mut",
+      "legacy_ids": [
+        "family:mut"
+      ],
+      "promotion_status": "catalog_approved_existing_family",
+      "element_type": "root",
+      "aliases": [
+        "mut",
+        "mutacion",
+        "mutate",
+        "mutati",
+        "mutatio",
+        "mutation",
+        "mutazione",
+        "mutual",
+        "permutation",
+        "мутация"
+      ],
+      "canonical_decision": {
+        "status": "accepted",
+        "possible_stems": [
+          "mut"
+        ],
+        "removed_segment": null,
+        "reason": "Retain the individually named international associative base in the user mandate and existing curated family. No ending-stripping inference or inherited etymon selection is used; membership remains finite and unreviewed branches stay unresolved.",
+        "evidence": [
+          "audit/associative-family-v6/task-20261003.txt",
+          "family:mut"
+        ],
+        "negative_over_stripping": [],
+        "negative_under_stripping": [],
+        "positive_examples": [],
+        "lexical_heads": [],
+        "membership_certification": "Existing individual membership proofs retained; root catalog approval does not certify unresolved lexical identity."
+      },
+      "realizations": {
+        "en": [
+          "mut"
+        ],
+        "fr": [
+          "mut"
+        ],
+        "es": [
+          "mut"
+        ],
+        "it": [
+          "mut"
+        ],
+        "ru": [
+          "мут"
+        ],
+        "de": [
+          "mut"
+        ]
+      },
+      "reflexes": [
+        {
+          "family_id": "family:mut",
+          "language": "en",
+          "realization": "mut",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:mut",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:mut",
+          "language": "fr",
+          "realization": "mut",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:mut",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:mut",
+          "language": "es",
+          "realization": "mut",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:mut",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:mut",
+          "language": "it",
+          "realization": "mut",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:mut",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:mut",
+          "language": "ru",
+          "realization": "мут",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:mut",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:mut",
+          "language": "de",
+          "realization": "mut",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:mut",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "family:act",
+      "canonical": "act",
+      "legacy_ids": [
+        "family:act"
+      ],
+      "promotion_status": "catalog_approved_existing_family",
+      "element_type": "root",
+      "aliases": [
+        "accion",
+        "act",
+        "action",
+        "akc",
+        "akt",
+        "att",
+        "attric",
+        "azion"
+      ],
+      "canonical_decision": {
+        "status": "accepted",
+        "possible_stems": [
+          "act"
+        ],
+        "removed_segment": null,
+        "reason": "Keep act- action base; do not derive this identity mechanically from actio or include Actium, actin, fact or tract.",
+        "evidence": [
+          "audit/associative-family-v6/task-20261003.txt",
+          "family:act"
+        ],
+        "negative_over_stripping": [],
+        "negative_under_stripping": [],
+        "positive_examples": [],
+        "lexical_heads": [
+          "en:act",
+          "en:action",
+          "en:actor",
+          "en:active",
+          "en:activity"
+        ],
+        "membership_certification": "Existing individual membership proofs retained; root catalog approval does not certify unresolved lexical identity."
+      },
+      "realizations": {
+        "en": [
+          "act"
+        ],
+        "de": [
+          "akt",
+          "act"
+        ],
+        "fr": [
+          "act"
+        ],
+        "es": [
+          "act",
+          "accion"
+        ],
+        "it": [
+          "act",
+          "att",
+          "attric",
+          "azion"
+        ],
+        "ru": [
+          "акт",
+          "акц"
+        ]
+      },
+      "reflexes": [
+        {
+          "family_id": "family:act",
+          "language": "en",
+          "realization": "act",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [
+            "act",
+            "action",
+            "actor",
+            "active",
+            "activity"
+          ],
+          "positive_controls": [
+            "act",
+            "acted",
+            "acting",
+            "acts",
+            "action",
+            "actions",
+            "actor",
+            "actors",
+            "active",
+            "activities",
+            "activity"
+          ],
+          "negative_controls": [
+            "actium",
+            "actin",
+            "fact",
+            "tract"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:act",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:act",
+          "language": "de",
+          "realization": "akt",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [
+            "actium",
+            "actin",
+            "fact",
+            "tract"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:act",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:act",
+          "language": "de",
+          "realization": "act",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [
+            "actium",
+            "actin",
+            "fact",
+            "tract"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:act",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:act",
+          "language": "fr",
+          "realization": "act",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [
+            "actium",
+            "actin",
+            "fact",
+            "tract"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:act",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:act",
+          "language": "es",
+          "realization": "act",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [
+            "actium",
+            "actin",
+            "fact",
+            "tract"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:act",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:act",
+          "language": "es",
+          "realization": "accion",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [
+            "actium",
+            "actin",
+            "fact",
+            "tract"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:act",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:act",
+          "language": "it",
+          "realization": "act",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [
+            "actium",
+            "actin",
+            "fact",
+            "tract"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:act",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:act",
+          "language": "it",
+          "realization": "att",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [
+            "actium",
+            "actin",
+            "fact",
+            "tract"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:act",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:act",
+          "language": "it",
+          "realization": "attric",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [
+            "actium",
+            "actin",
+            "fact",
+            "tract"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:act",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:act",
+          "language": "it",
+          "realization": "azion",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [
+            "actium",
+            "actin",
+            "fact",
+            "tract"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:act",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:act",
+          "language": "ru",
+          "realization": "акт",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [
+            "actium",
+            "actin",
+            "fact",
+            "tract"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:act",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        },
+        {
+          "family_id": "family:act",
+          "language": "ru",
+          "realization": "акц",
+          "morphology_boundary": "root-specific realization; retrieval alone never grants membership",
+          "supporting_heads": [],
+          "positive_controls": [],
+          "negative_controls": [
+            "actium",
+            "actin",
+            "fact",
+            "tract"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "family:act",
+              "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "head_policies": [
+    {
+      "family_id": "family:observ",
+      "language": "en",
+      "head": "observe",
+      "sense": "associative_observ",
+      "forms": [
+        "observe",
+        "observed",
+        "observes",
+        "observing"
+      ],
+      "status": "accepted",
+      "morphology_policy": "finite_explicit_forms_only",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/observe"
+      ],
+      "version": 1
+    },
+    {
+      "family_id": "family:observ",
+      "language": "en",
+      "head": "observation",
+      "sense": "associative_observ",
+      "forms": [
+        "observation",
+        "observations"
+      ],
+      "status": "accepted",
+      "morphology_policy": "finite_explicit_forms_only",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/observation"
+      ],
+      "version": 1
+    },
+    {
+      "family_id": "family:observ",
+      "language": "en",
+      "head": "observer",
+      "sense": "associative_observ",
+      "forms": [
+        "observer",
+        "observers"
+      ],
+      "status": "accepted",
+      "morphology_policy": "finite_explicit_forms_only",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/observer"
+      ],
+      "version": 1
+    },
+    {
+      "family_id": "family:observ",
+      "language": "en",
+      "head": "observatory",
+      "sense": "associative_observ",
+      "forms": [
+        "observatories",
+        "observatory"
+      ],
+      "status": "accepted",
+      "morphology_policy": "finite_explicit_forms_only",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/observatory"
+      ],
+      "version": 1
+    },
+    {
+      "family_id": "family:inform",
+      "language": "en",
+      "head": "inform",
+      "sense": "associative_inform",
+      "forms": [
+        "inform",
+        "informed",
+        "informing",
+        "informs"
+      ],
+      "status": "accepted",
+      "morphology_policy": "finite_explicit_forms_only",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/inform"
+      ],
+      "version": 1
+    },
+    {
+      "family_id": "family:inform",
+      "language": "en",
+      "head": "information",
+      "sense": "associative_inform",
+      "forms": [
+        "information"
+      ],
+      "status": "accepted",
+      "morphology_policy": "finite_explicit_forms_only",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "version": 1
+    },
+    {
+      "family_id": "family:inform",
+      "language": "en",
+      "head": "informer",
+      "sense": "associative_inform",
+      "forms": [
+        "informer",
+        "informers"
+      ],
+      "status": "accepted",
+      "morphology_policy": "finite_explicit_forms_only",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/informer"
+      ],
+      "version": 1
+    },
+    {
+      "family_id": "family:inform",
+      "language": "en",
+      "head": "informative",
+      "sense": "associative_inform",
+      "forms": [
+        "informative"
+      ],
+      "status": "accepted",
+      "morphology_policy": "finite_explicit_forms_only",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/informative"
+      ],
+      "version": 1
+    },
+    {
+      "family_id": "family:creat",
+      "language": "en",
+      "head": "create",
+      "sense": "associative_creat",
+      "forms": [
+        "create",
+        "created",
+        "creates",
+        "creating"
+      ],
+      "status": "accepted",
+      "morphology_policy": "finite_explicit_forms_only",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/create"
+      ],
+      "version": 1
+    },
+    {
+      "family_id": "family:creat",
+      "language": "en",
+      "head": "creation",
+      "sense": "associative_creat",
+      "forms": [
+        "creation",
+        "creations"
+      ],
+      "status": "accepted",
+      "morphology_policy": "finite_explicit_forms_only",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/creation"
+      ],
+      "version": 1
+    },
+    {
+      "family_id": "family:creat",
+      "language": "en",
+      "head": "creative",
+      "sense": "associative_creat",
+      "forms": [
+        "creative",
+        "creatives"
+      ],
+      "status": "accepted",
+      "morphology_policy": "finite_explicit_forms_only",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/creative"
+      ],
+      "version": 1
+    },
+    {
+      "family_id": "family:creat",
+      "language": "en",
+      "head": "creator",
+      "sense": "associative_creat",
+      "forms": [
+        "creator",
+        "creators"
+      ],
+      "status": "accepted",
+      "morphology_policy": "finite_explicit_forms_only",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/creator"
+      ],
+      "version": 1
+    },
+    {
+      "family_id": "family:act",
+      "language": "en",
+      "head": "act",
+      "sense": "associative_act",
+      "forms": [
+        "act",
+        "acted",
+        "acting",
+        "acts"
+      ],
+      "status": "accepted",
+      "morphology_policy": "finite_explicit_forms_only",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/act"
+      ],
+      "version": 1
+    },
+    {
+      "family_id": "family:act",
+      "language": "en",
+      "head": "action",
+      "sense": "associative_act",
+      "forms": [
+        "action",
+        "actions"
+      ],
+      "status": "accepted",
+      "morphology_policy": "finite_explicit_forms_only",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/action"
+      ],
+      "version": 1
+    },
+    {
+      "family_id": "family:act",
+      "language": "en",
+      "head": "actor",
+      "sense": "associative_act",
+      "forms": [
+        "actor",
+        "actors"
+      ],
+      "status": "accepted",
+      "morphology_policy": "finite_explicit_forms_only",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/actor"
+      ],
+      "version": 1
+    },
+    {
+      "family_id": "family:act",
+      "language": "en",
+      "head": "active",
+      "sense": "associative_act",
+      "forms": [
+        "active"
+      ],
+      "status": "accepted",
+      "morphology_policy": "finite_explicit_forms_only",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/active"
+      ],
+      "version": 1
+    },
+    {
+      "family_id": "family:act",
+      "language": "en",
+      "head": "activity",
+      "sense": "associative_act",
+      "forms": [
+        "activities",
+        "activity"
+      ],
+      "status": "accepted",
+      "morphology_policy": "finite_explicit_forms_only",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/activity"
+      ],
+      "version": 1
+    },
+    {
+      "family_id": "family:loc",
+      "language": "en",
+      "head": "locate",
+      "sense": "associative_loc",
+      "forms": [
+        "locate",
+        "located",
+        "locates",
+        "locating"
+      ],
+      "status": "accepted",
+      "morphology_policy": "finite_explicit_forms_only",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/locate"
+      ],
+      "version": 1
+    },
+    {
+      "family_id": "family:loc",
+      "language": "en",
+      "head": "location",
+      "sense": "associative_loc",
+      "forms": [
+        "location",
+        "locations"
+      ],
+      "status": "accepted",
+      "morphology_policy": "finite_explicit_forms_only",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/location"
+      ],
+      "version": 1
+    },
+    {
+      "family_id": "family:loc",
+      "language": "en",
+      "head": "local",
+      "sense": "associative_loc",
+      "forms": [
+        "local",
+        "locals"
+      ],
+      "status": "accepted",
+      "morphology_policy": "finite_explicit_forms_only",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/local"
+      ],
+      "version": 1
+    },
+    {
+      "family_id": "family:loc",
+      "language": "en",
+      "head": "locomotive",
+      "sense": "associative_loc",
+      "forms": [
+        "locomotive",
+        "locomotives"
+      ],
+      "status": "accepted",
+      "morphology_policy": "finite_explicit_forms_only",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/locomotive"
+      ],
+      "version": 1
+    },
+    {
+      "family_id": "family:ped",
+      "language": "en",
+      "head": "pedal",
+      "sense": "associative_ped",
+      "forms": [
+        "pedal",
+        "pedals"
+      ],
+      "status": "accepted",
+      "morphology_policy": "finite_explicit_forms_only",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/pedal"
+      ],
+      "version": 1
+    },
+    {
+      "family_id": "family:ped",
+      "language": "en",
+      "head": "pedicure",
+      "sense": "associative_ped",
+      "forms": [
+        "pedicure",
+        "pedicures"
+      ],
+      "status": "accepted",
+      "morphology_policy": "finite_explicit_forms_only",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/pedicure"
+      ],
+      "version": 1
+    },
+    {
+      "family_id": "family:ped",
+      "language": "en",
+      "head": "pedestrian",
+      "sense": "associative_ped",
+      "forms": [
+        "pedestrian",
+        "pedestrians"
+      ],
+      "status": "accepted",
+      "morphology_policy": "finite_explicit_forms_only",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/pedestrian"
+      ],
+      "version": 1
+    },
+    {
+      "family_id": "family:nat",
+      "language": "en",
+      "head": "nation",
+      "sense": "associative_nat",
+      "forms": [
+        "nation",
+        "nations"
+      ],
+      "status": "accepted",
+      "morphology_policy": "finite_explicit_forms_only",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/nation"
+      ],
+      "version": 1
+    },
+    {
+      "family_id": "family:nat",
+      "language": "en",
+      "head": "natural",
+      "sense": "associative_nat",
+      "forms": [
+        "natural",
+        "naturals"
+      ],
+      "status": "accepted",
+      "morphology_policy": "finite_explicit_forms_only",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/natural"
+      ],
+      "version": 1
+    },
+    {
+      "family_id": "family:inter",
+      "language": "en",
+      "head": "international",
+      "sense": "associative_inter",
+      "forms": [
+        "international",
+        "internationals"
+      ],
+      "status": "accepted",
+      "morphology_policy": "finite_explicit_forms_only",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/international"
+      ],
+      "version": 1
+    },
+    {
+      "family_id": "family:inter",
+      "language": "en",
+      "head": "interval",
+      "sense": "associative_inter",
+      "forms": [
+        "interval",
+        "intervals"
+      ],
+      "status": "accepted",
+      "morphology_policy": "finite_explicit_forms_only",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/interval"
+      ],
+      "version": 1
+    },
+    {
+      "family_id": "family:inter",
+      "language": "en",
+      "head": "internet",
+      "sense": "associative_inter",
+      "forms": [
+        "internet"
+      ],
+      "status": "accepted",
+      "morphology_policy": "finite_explicit_forms_only",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/internet"
+      ],
+      "version": 1
+    },
+    {
+      "family_id": "family:observ",
+      "language": "it",
+      "head": "osservare",
+      "sense": "associative_observ",
+      "forms": [
+        "osserva",
+        "osservando",
+        "osservano",
+        "osservare",
+        "osservata",
+        "osservate",
+        "osservati",
+        "osservato",
+        "osservi",
+        "osserviamo",
+        "osservo"
+      ],
+      "status": "accepted",
+      "morphology_policy": "finite_explicit_forms_only",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/osservare/"
+      ],
+      "version": 1
+    },
+    {
+      "family_id": "family:observ",
+      "language": "it",
+      "head": "osservazione",
+      "sense": "associative_observ",
+      "forms": [
+        "osservazione",
+        "osservazioni"
+      ],
+      "status": "accepted",
+      "morphology_policy": "finite_explicit_forms_only",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/osservazione/"
+      ],
+      "version": 1
+    },
+    {
+      "family_id": "family:observ",
+      "language": "it",
+      "head": "osservatore",
+      "sense": "associative_observ",
+      "forms": [
+        "osservatore",
+        "osservatori",
+        "osservatrice",
+        "osservatrici"
+      ],
+      "status": "accepted",
+      "morphology_policy": "finite_explicit_forms_only",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/osservatore/"
+      ],
+      "version": 1
+    },
+    {
+      "family_id": "family:observ",
+      "language": "it",
+      "head": "osservatorio",
+      "sense": "associative_observ",
+      "forms": [
+        "osservatorio"
+      ],
+      "status": "accepted",
+      "morphology_policy": "finite_explicit_forms_only",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/osservatorio/"
+      ],
+      "version": 1
+    },
+    {
+      "family_id": "family:inform",
+      "language": "de",
+      "head": "Information",
+      "sense": "associative_inform",
+      "forms": [
+        "information",
+        "informationen"
+      ],
+      "status": "accepted",
+      "morphology_policy": "finite_explicit_forms_only",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Information"
+      ],
+      "version": 1
+    },
+    {
+      "family_id": "family:creat",
+      "language": "es",
+      "head": "crear",
+      "sense": "associative_creat",
+      "forms": [
+        "crea",
+        "creada",
+        "creadas",
+        "creado",
+        "creados",
+        "creamos",
+        "crean",
+        "creando",
+        "crear",
+        "creas",
+        "creo",
+        "creáis"
+      ],
+      "status": "accepted",
+      "morphology_policy": "finite_explicit_forms_only",
+      "source_references": [
+        "https://dle.rae.es/crear"
+      ],
+      "version": 1
+    },
+    {
+      "family_id": "family:creat",
+      "language": "it",
+      "head": "creare",
+      "sense": "associative_creat",
+      "forms": [
+        "crea",
+        "creando",
+        "creano",
+        "creare",
+        "creata",
+        "create",
+        "creati",
+        "creato",
+        "crei",
+        "creiamo",
+        "creo"
+      ],
+      "status": "accepted",
+      "morphology_policy": "finite_explicit_forms_only",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/creare/"
+      ],
+      "version": 1
+    },
+    {
+      "family_id": "family:creat",
+      "language": "de",
+      "head": "kreativ",
+      "sense": "associative_creat",
+      "forms": [
+        "kreativ",
+        "kreative",
+        "kreativem",
+        "kreativen",
+        "kreativer",
+        "kreatives"
+      ],
+      "status": "accepted",
+      "morphology_policy": "finite_explicit_forms_only",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/kreativ"
+      ],
+      "version": 1
+    },
+    {
+      "family_id": "family:loc",
+      "language": "de",
+      "head": "lokal",
+      "sense": "associative_loc",
+      "forms": [
+        "lokal",
+        "lokale",
+        "lokalem",
+        "lokalen",
+        "lokaler",
+        "lokales"
+      ],
+      "status": "accepted",
+      "morphology_policy": "finite_explicit_forms_only",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/lokal"
+      ],
+      "version": 1
+    },
+    {
+      "family_id": "family:loc",
+      "language": "ru",
+      "head": "локальный",
+      "sense": "associative_loc",
+      "forms": [
+        "локальная",
+        "локального",
+        "локальное",
+        "локальной",
+        "локальному",
+        "локальные",
+        "локальный",
+        "локальными",
+        "локальных"
+      ],
+      "status": "accepted",
+      "morphology_policy": "finite_explicit_forms_only",
+      "source_references": [
+        "audit/associative-family-v5/loc-reflex-materialization-20261001.json"
+      ],
+      "version": 1
+    }
+  ],
+  "golden_controls": {
+    "ped": {
+      "positive": [
+        "pedal",
+        "pedicure"
+      ],
+      "negative": [
+        "pediatrician"
+      ]
+    },
+    "creat": {
+      "positive": [
+        "create",
+        "creation",
+        "creative",
+        "crear",
+        "creare"
+      ],
+      "negative": [
+        "creer",
+        "creatine",
+        "cre"
+      ]
+    },
+    "observ": {
+      "positive": [
+        "observe",
+        "observation",
+        "osservare",
+        "osservazione"
+      ],
+      "negative": [
+        "osservaggiare"
+      ]
+    },
+    "loc": {
+      "positive": [
+        "location",
+        "local",
+        "locomotive",
+        "lokal",
+        "локальный"
+      ],
+      "negative": [
+        "lieu",
+        "lieutenant"
+      ]
+    },
+    "nat": {
+      "positive": [
+        "nation",
+        "natural"
+      ],
+      "negative": [
+        "naive"
+      ]
+    },
+    "inter": {
+      "positive": [
+        "international",
+        "interval",
+        "internet"
+      ],
+      "negative": [
+        "winter",
+        "printer",
+        "midwinter"
+      ]
+    },
+    "act": {
+      "positive": [
+        "act",
+        "action"
+      ],
+      "negative": [
+        "actium",
+        "actin",
+        "fact",
+        "tract"
+      ]
+    },
+    "inform": {
+      "positive": [
+        "inform",
+        "information",
+        "informationen"
+      ],
+      "negative": [
+        "informal",
+        "informalita",
+        "informalizadas"
+      ]
+    }
+  },
+  "unrecognized_component_family_id": null,
+  "latin_stem_proposal_status": "proposal_requires_review"
+}
