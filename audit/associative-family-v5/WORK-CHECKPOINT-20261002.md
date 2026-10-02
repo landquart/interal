@@ -11,7 +11,8 @@ Source run: `35647932153`. No merge has been performed.
 | Action materialization | `da4007c56fa48aff54cbc5e8114013ba2388bd8f` | Additive `family:act` records; original metadata, components and legacy containers retained |
 | Italian action exclusions | `63ffcb701b89358ce00ed320159547db46a31620` | 1,536 additional exclusions backed by corpus verb records and bounded lexical analysis |
 | Reflex continuation | `7359b8e3c1190aeae15f18ff216f80036c3383c9` | 32 records reviewed: 6 positive selections, 23 exclusions, 3 investigated homonyms; 730 awaiting review |
-| Independent action heads | This commit | 128 English/French exclusions; original positive selections and source records retained |
+| Independent action heads | `faf105ccb0ff7c70ed2aad19206511953bcb1f46` | 128 English/French exclusions; original positive selections and source records retained |
+| Russian action heads | This commit | 40 independent Russian heads excluded; prior positive records and source metadata retained |
 
 The reflex continuation is linguistic evidence only: its six positives have not
 yet been added to runtime families. Historical checkpoints are immutable inputs.
@@ -34,8 +35,9 @@ certify linguistic completeness of any still-pending family.
 1. Check out this branch and inspect the latest commit before making changes.
 2. Read `action-italian-stage-20261002/inventory.json` and the keyed decisions.
    Combine those with `action-continuation-20261002/linguistic-decisions.json.gz`
-   and then `action-independent-heads-20261002/decisions.json`, in that order.
-   Action remainder: 16,852 pending and 143 genuinely uncertain; runtime applied
+   and then `action-independent-heads-20261002/decisions.json` and
+   `action-russian-heads-20261002/decisions.json`, in that order.
+   Action remainder: 16,812 pending and 143 genuinely uncertain; runtime applied
    positives: 2,098. Old action containers still require careful eventual retirement.
 3. For `observ/inform`, read `reflex-continuation-20261002/inventory.json`,
    `decisions.json` and `pending-review.json`. The immutable source candidate
@@ -57,6 +59,8 @@ python scripts/review-associative-action-italian-20261002.py
 node tests/associative-action-italian-stage.test.mjs
 python scripts/review-associative-action-independent-heads-20261002.py
 node tests/associative-action-independent-heads.test.mjs
+python scripts/review-associative-action-russian-heads-20261002.py
+node tests/associative-action-russian-heads.test.mjs
 ```
 
 Runtime verification commands (after a runtime change):

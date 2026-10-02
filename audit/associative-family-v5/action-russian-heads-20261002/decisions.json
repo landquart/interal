@@ -1,0 +1,822 @@
+{
+  "schema_version": 1,
+  "canonical_root": "act",
+  "source_run_id": 35647932153,
+  "base_commit": "faf105ccb0ff7c70ed2aad19206511953bcb1f46",
+  "previous_checkpoint": "audit/associative-family-v5/action-independent-heads-20261002",
+  "previous_decision_sha256": "130a57ddecb65a16282ce4a70200e66065a5c6ac4ca62528545aa55f4536637c",
+  "source_candidate_sha256": "e29d337f61f37a3797cbf2067d235e765969807d29e55cc7473f21c409362eae",
+  "counts": {
+    "en": {
+      "accepted": 242,
+      "excluded": 8037,
+      "uncertain": 4,
+      "pending_review": 1450
+    },
+    "de": {
+      "accepted": 808,
+      "excluded": 11934,
+      "uncertain": 134,
+      "pending_review": 4445
+    },
+    "fr": {
+      "accepted": 208,
+      "excluded": 3663,
+      "uncertain": 0,
+      "pending_review": 604
+    },
+    "es": {
+      "accepted": 372,
+      "excluded": 4170,
+      "uncertain": 2,
+      "pending_review": 1249
+    },
+    "it": {
+      "accepted": 223,
+      "excluded": 3245,
+      "uncertain": 2,
+      "pending_review": 8654
+    },
+    "ru": {
+      "accepted": 245,
+      "excluded": 2175,
+      "uncertain": 1,
+      "pending_review": 410
+    }
+  },
+  "decisions": [
+    {
+      "language": "ru",
+      "lemma_id": "lemma:6e6db6425eb18abd85da",
+      "word": "автодидакт",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "дидактика",
+      "branch": "independent_lexical_head",
+      "reason": "The didactic/teaching head is independent of акт; авто- and noun/adjective morphology do not change that.",
+      "source_references": [
+        "https://gramota.ru/meta/didaktika",
+        "https://gramota.ru/meta/avtodidakt",
+        "https://www.merriam-webster.com/dictionary/didactic"
+      ],
+      "source_family_ids": [
+        "surface:ru:avtod",
+        "surface:ru:todi",
+        "surface:ru:didakt"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "ru",
+      "lemma_id": "lemma:a5e73cadd6677644af4d",
+      "word": "дидакт",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "дидактика",
+      "branch": "independent_lexical_head",
+      "reason": "The didactic/teaching head is independent of акт; авто- and noun/adjective morphology do not change that.",
+      "source_references": [
+        "https://gramota.ru/meta/didaktika",
+        "https://gramota.ru/meta/avtodidakt",
+        "https://www.merriam-webster.com/dictionary/didactic"
+      ],
+      "source_family_ids": [
+        "surface:ru:didakt"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "ru",
+      "lemma_id": "lemma:eaa6ef70a409814f2e41",
+      "word": "дидактик",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "дидактика",
+      "branch": "independent_lexical_head",
+      "reason": "The didactic/teaching head is independent of акт; авто- and noun/adjective morphology do not change that.",
+      "source_references": [
+        "https://gramota.ru/meta/didaktika",
+        "https://gramota.ru/meta/avtodidakt",
+        "https://www.merriam-webster.com/dictionary/didactic"
+      ],
+      "source_family_ids": [
+        "surface:ru:didaktik"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "ru",
+      "lemma_id": "lemma:62997f1fa1b6d70ae607",
+      "word": "дидактика",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "дидактика",
+      "branch": "independent_lexical_head",
+      "reason": "The didactic/teaching head is independent of акт; авто- and noun/adjective morphology do not change that.",
+      "source_references": [
+        "https://gramota.ru/meta/didaktika",
+        "https://gramota.ru/meta/avtodidakt",
+        "https://www.merriam-webster.com/dictionary/didactic"
+      ],
+      "source_family_ids": [
+        "surface:ru:tika",
+        "surface:ru:didaktik"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "ru",
+      "lemma_id": "lemma:19d9a79f9f07e584f782",
+      "word": "дидактический",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "дидактика",
+      "branch": "independent_lexical_head",
+      "reason": "The didactic/teaching head is independent of акт; авто- and noun/adjective morphology do not change that.",
+      "source_references": [
+        "https://gramota.ru/meta/didaktika",
+        "https://gramota.ru/meta/avtodidakt",
+        "https://www.merriam-webster.com/dictionary/didactic"
+      ],
+      "source_family_ids": [
+        "surface:ru:didaktichesk"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "ru",
+      "lemma_id": "lemma:640460765cd18f64f483",
+      "word": "арахнодактилия",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "дактиль / Greek daktylos",
+      "branch": "independent_lexical_head",
+      "reason": "The Greek finger/dactyl element is a complete independent component, not a prefix plus акт. Selected technical compounds and derivatives are explicit morphological inferences.",
+      "source_references": [
+        "https://gramota.ru/meta/daktil",
+        "https://gramota.ru/meta/daktiloskopiya",
+        "https://gramota.ru/meta/polidaktiliya",
+        "https://www.merriam-webster.com/dictionary/dactyl"
+      ],
+      "source_family_ids": [
+        "ety:0066b281348c",
+        "surface:ru:arahnodaktilij"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "ru",
+      "lemma_id": "lemma:38940a665e82c05d7120",
+      "word": "брахидактилия",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "дактиль / Greek daktylos",
+      "branch": "independent_lexical_head",
+      "reason": "The Greek finger/dactyl element is a complete independent component, not a prefix plus акт. Selected technical compounds and derivatives are explicit morphological inferences.",
+      "source_references": [
+        "https://gramota.ru/meta/daktil",
+        "https://gramota.ru/meta/daktiloskopiya",
+        "https://gramota.ru/meta/polidaktiliya",
+        "https://www.merriam-webster.com/dictionary/dactyl"
+      ],
+      "source_family_ids": [
+        "ety:0066b281348c",
+        "surface:ru:brahidaktilij"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "ru",
+      "lemma_id": "lemma:c3653b216a33b0186157",
+      "word": "дактилический",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "дактиль / Greek daktylos",
+      "branch": "independent_lexical_head",
+      "reason": "The Greek finger/dactyl element is a complete independent component, not a prefix plus акт. Selected technical compounds and derivatives are explicit morphological inferences.",
+      "source_references": [
+        "https://gramota.ru/meta/daktil",
+        "https://gramota.ru/meta/daktiloskopiya",
+        "https://gramota.ru/meta/polidaktiliya",
+        "https://www.merriam-webster.com/dictionary/dactyl"
+      ],
+      "source_family_ids": [
+        "surface:ru:daktilichesk"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "ru",
+      "lemma_id": "lemma:2abf8c1504a0bef02ffd",
+      "word": "дактилоскопировать",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "дактиль / Greek daktylos",
+      "branch": "independent_lexical_head",
+      "reason": "The Greek finger/dactyl element is a complete independent component, not a prefix plus акт. Selected technical compounds and derivatives are explicit morphological inferences.",
+      "source_references": [
+        "https://gramota.ru/meta/daktil",
+        "https://gramota.ru/meta/daktiloskopiya",
+        "https://gramota.ru/meta/polidaktiliya",
+        "https://www.merriam-webster.com/dictionary/dactyl"
+      ],
+      "source_family_ids": [
+        "surface:ru:skopirov",
+        "surface:ru:daktiloskopi"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "ru",
+      "lemma_id": "lemma:9678fb1b25201313239f",
+      "word": "дактилоскопист",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "дактиль / Greek daktylos",
+      "branch": "independent_lexical_head",
+      "reason": "The Greek finger/dactyl element is a complete independent component, not a prefix plus акт. Selected technical compounds and derivatives are explicit morphological inferences.",
+      "source_references": [
+        "https://gramota.ru/meta/daktil",
+        "https://gramota.ru/meta/daktiloskopiya",
+        "https://gramota.ru/meta/polidaktiliya",
+        "https://www.merriam-webster.com/dictionary/dactyl"
+      ],
+      "source_family_ids": [
+        "surface:ru:daktiloskop",
+        "surface:ru:pist",
+        "surface:ru:daktiloskopi"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "ru",
+      "lemma_id": "lemma:db04c751c1a4e0bb6dca",
+      "word": "дактилоскопический",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "дактиль / Greek daktylos",
+      "branch": "independent_lexical_head",
+      "reason": "The Greek finger/dactyl element is a complete independent component, not a prefix plus акт. Selected technical compounds and derivatives are explicit morphological inferences.",
+      "source_references": [
+        "https://gramota.ru/meta/daktil",
+        "https://gramota.ru/meta/daktiloskopiya",
+        "https://gramota.ru/meta/polidaktiliya",
+        "https://www.merriam-webster.com/dictionary/dactyl"
+      ],
+      "source_family_ids": [
+        "surface:ru:daktiloskopichesk"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "ru",
+      "lemma_id": "lemma:6c184c1c21165004ed5d",
+      "word": "дактилоскопия",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "дактиль / Greek daktylos",
+      "branch": "independent_lexical_head",
+      "reason": "The Greek finger/dactyl element is a complete independent component, not a prefix plus акт. Selected technical compounds and derivatives are explicit morphological inferences.",
+      "source_references": [
+        "https://gramota.ru/meta/daktil",
+        "https://gramota.ru/meta/daktiloskopiya",
+        "https://gramota.ru/meta/polidaktiliya",
+        "https://www.merriam-webster.com/dictionary/dactyl"
+      ],
+      "source_family_ids": [
+        "surface:ru:daktiloskopij"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "ru",
+      "lemma_id": "lemma:0ac076e2820febb63fb4",
+      "word": "дактиль",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "дактиль / Greek daktylos",
+      "branch": "independent_lexical_head",
+      "reason": "The Greek finger/dactyl element is a complete independent component, not a prefix plus акт. Selected technical compounds and derivatives are explicit morphological inferences.",
+      "source_references": [
+        "https://gramota.ru/meta/daktil",
+        "https://gramota.ru/meta/daktiloskopiya",
+        "https://gramota.ru/meta/polidaktiliya",
+        "https://www.merriam-webster.com/dictionary/dactyl"
+      ],
+      "source_family_ids": [
+        "surface:ru:daktil"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "ru",
+      "lemma_id": "lemma:5b97ebc07cd63b441084",
+      "word": "полидактилизм",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "дактиль / Greek daktylos",
+      "branch": "independent_lexical_head",
+      "reason": "The Greek finger/dactyl element is a complete independent component, not a prefix plus акт. Selected technical compounds and derivatives are explicit morphological inferences.",
+      "source_references": [
+        "https://gramota.ru/meta/daktil",
+        "https://gramota.ru/meta/daktiloskopiya",
+        "https://gramota.ru/meta/polidaktiliya",
+        "https://www.merriam-webster.com/dictionary/dactyl"
+      ],
+      "source_family_ids": [
+        "surface:ru:izm",
+        "surface:ru:polidaktil",
+        "surface:ru:polidaktili"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "ru",
+      "lemma_id": "lemma:7e8c137fd11c7cf3dc9d",
+      "word": "полидактилия",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "дактиль / Greek daktylos",
+      "branch": "independent_lexical_head",
+      "reason": "The Greek finger/dactyl element is a complete independent component, not a prefix plus акт. Selected technical compounds and derivatives are explicit morphological inferences.",
+      "source_references": [
+        "https://gramota.ru/meta/daktil",
+        "https://gramota.ru/meta/daktiloskopiya",
+        "https://gramota.ru/meta/polidaktiliya",
+        "https://www.merriam-webster.com/dictionary/dactyl"
+      ],
+      "source_family_ids": [
+        "ety:0066b281348c",
+        "surface:ru:polidaktilij"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "ru",
+      "lemma_id": "lemma:3dc3837bd674ccbf8ed4",
+      "word": "синдактилия",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "дактиль / Greek daktylos",
+      "branch": "independent_lexical_head",
+      "reason": "The Greek finger/dactyl element is a complete independent component, not a prefix plus акт. Selected technical compounds and derivatives are explicit morphological inferences.",
+      "source_references": [
+        "https://gramota.ru/meta/daktil",
+        "https://gramota.ru/meta/daktiloskopiya",
+        "https://gramota.ru/meta/polidaktiliya",
+        "https://www.merriam-webster.com/dictionary/dactyl"
+      ],
+      "source_family_ids": [
+        "ety:0066b281348c",
+        "surface:ru:sindaktilij"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "ru",
+      "lemma_id": "lemma:9133b6737726758f9496",
+      "word": "синдактильный",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "дактиль / Greek daktylos",
+      "branch": "independent_lexical_head",
+      "reason": "The Greek finger/dactyl element is a complete independent component, not a prefix plus акт. Selected technical compounds and derivatives are explicit morphological inferences.",
+      "source_references": [
+        "https://gramota.ru/meta/daktil",
+        "https://gramota.ru/meta/daktiloskopiya",
+        "https://gramota.ru/meta/polidaktiliya",
+        "https://www.merriam-webster.com/dictionary/dactyl"
+      ],
+      "source_family_ids": [
+        "surface:ru:sindaktiln"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "ru",
+      "lemma_id": "lemma:7bf845ad2fc3f6184f91",
+      "word": "эктродактилия",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "дактиль / Greek daktylos",
+      "branch": "independent_lexical_head",
+      "reason": "The Greek finger/dactyl element is a complete independent component, not a prefix plus акт. Selected technical compounds and derivatives are explicit morphological inferences.",
+      "source_references": [
+        "https://gramota.ru/meta/daktil",
+        "https://gramota.ru/meta/daktiloskopiya",
+        "https://gramota.ru/meta/polidaktiliya",
+        "https://www.merriam-webster.com/dictionary/dactyl"
+      ],
+      "source_family_ids": [
+        "ety:0066b281348c",
+        "surface:ru:ektrodaktilij"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "ru",
+      "lemma_id": "lemma:b4820a1e28417701916a",
+      "word": "птеродактилевидный",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "птеродактиль",
+      "branch": "independent_lexical_head",
+      "reason": "Recognizable pterodactyl/finger head and selected Russian derivatives, not lexical action.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/pterodactyl"
+      ],
+      "source_family_ids": [
+        "surface:ru:pterodaktilevidn"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "ru",
+      "lemma_id": "lemma:8ab446801192635e8bef",
+      "word": "птеродактиль",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "птеродактиль",
+      "branch": "independent_lexical_head",
+      "reason": "Recognizable pterodactyl/finger head and selected Russian derivatives, not lexical action.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/pterodactyl"
+      ],
+      "source_family_ids": [
+        "surface:ru:pterodaktil"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "ru",
+      "lemma_id": "lemma:10b1109eb32b5244de12",
+      "word": "птеродактильный",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "птеродактиль",
+      "branch": "independent_lexical_head",
+      "reason": "Recognizable pterodactyl/finger head and selected Russian derivatives, not lexical action.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/pterodactyl"
+      ],
+      "source_family_ids": [
+        "surface:ru:pterodaktiln"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "ru",
+      "lemma_id": "lemma:a9688547a9e7a29b43b1",
+      "word": "птеродактильский",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "птеродактиль",
+      "branch": "independent_lexical_head",
+      "reason": "Recognizable pterodactyl/finger head and selected Russian derivatives, not lexical action.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/pterodactyl"
+      ],
+      "source_family_ids": [
+        "surface:ru:pterodaktilsk"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "ru",
+      "lemma_id": "lemma:92a0495371912aa1989d",
+      "word": "безфракционник",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "фракция",
+      "branch": "independent_lexical_head",
+      "reason": "The fraction/fract lexical branch remains independent under these prefixes and derivational endings.",
+      "source_references": [
+        "https://gramota.ru/meta/fraktsiya",
+        "https://www.merriam-webster.com/dictionary/fraction"
+      ],
+      "source_family_ids": [
+        "surface:ru:bezfrakcionni",
+        "ety:459e4d33cf40"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "ru",
+      "lemma_id": "lemma:653f1f8edac686f9e889",
+      "word": "бесфракционный",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "фракция",
+      "branch": "independent_lexical_head",
+      "reason": "The fraction/fract lexical branch remains independent under these prefixes and derivational endings.",
+      "source_references": [
+        "https://gramota.ru/meta/fraktsiya",
+        "https://www.merriam-webster.com/dictionary/fraction"
+      ],
+      "source_family_ids": [
+        "surface:ru:besfrakcionn"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "ru",
+      "lemma_id": "lemma:8b5ab8c4b8f26183e122",
+      "word": "межфракционный",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "фракция",
+      "branch": "independent_lexical_head",
+      "reason": "The fraction/fract lexical branch remains independent under these prefixes and derivational endings.",
+      "source_references": [
+        "https://gramota.ru/meta/fraktsiya",
+        "https://www.merriam-webster.com/dictionary/fraction"
+      ],
+      "source_family_ids": [
+        "surface:ru:mezhfrakcionn"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "ru",
+      "lemma_id": "lemma:9dbde942812294587e66",
+      "word": "мультифракционный",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "фракция",
+      "branch": "independent_lexical_head",
+      "reason": "The fraction/fract lexical branch remains independent under these prefixes and derivational endings.",
+      "source_references": [
+        "https://gramota.ru/meta/fraktsiya",
+        "https://www.merriam-webster.com/dictionary/fraction"
+      ],
+      "source_family_ids": [
+        "surface:ru:multifrakcionn"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "ru",
+      "lemma_id": "lemma:59dcb5b3ce57b5a1485c",
+      "word": "нефракционированный",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "фракция",
+      "branch": "independent_lexical_head",
+      "reason": "The fraction/fract lexical branch remains independent under these prefixes and derivational endings.",
+      "source_references": [
+        "https://gramota.ru/meta/fraktsiya",
+        "https://www.merriam-webster.com/dictionary/fraction"
+      ],
+      "source_family_ids": [
+        "surface:ru:nefrakcionirovann"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "ru",
+      "lemma_id": "lemma:9d6072e99898b5ae484c",
+      "word": "фракционер",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "фракция",
+      "branch": "independent_lexical_head",
+      "reason": "The fraction/fract lexical branch remains independent under these prefixes and derivational endings.",
+      "source_references": [
+        "https://gramota.ru/meta/fraktsiya",
+        "https://www.merriam-webster.com/dictionary/fraction"
+      ],
+      "source_family_ids": [
+        "surface:ru:akcioner",
+        "surface:ru:frakcion"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "ru",
+      "lemma_id": "lemma:bf6dabcb545804afcc0d",
+      "word": "фракционирование",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "фракция",
+      "branch": "independent_lexical_head",
+      "reason": "The fraction/fract lexical branch remains independent under these prefixes and derivational endings.",
+      "source_references": [
+        "https://gramota.ru/meta/fraktsiya",
+        "https://www.merriam-webster.com/dictionary/fraction"
+      ],
+      "source_family_ids": [
+        "surface:ru:frakcionirovani"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "ru",
+      "lemma_id": "lemma:b8fa231630bf24e34d0f",
+      "word": "фракционность",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "фракция",
+      "branch": "independent_lexical_head",
+      "reason": "The fraction/fract lexical branch remains independent under these prefixes and derivational endings.",
+      "source_references": [
+        "https://gramota.ru/meta/fraktsiya",
+        "https://www.merriam-webster.com/dictionary/fraction"
+      ],
+      "source_family_ids": [
+        "surface:ru:frakcionn"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "ru",
+      "lemma_id": "lemma:4abbed9f37c6a649fa05",
+      "word": "фракционный",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "фракция",
+      "branch": "independent_lexical_head",
+      "reason": "The fraction/fract lexical branch remains independent under these prefixes and derivational endings.",
+      "source_references": [
+        "https://gramota.ru/meta/fraktsiya",
+        "https://www.merriam-webster.com/dictionary/fraction"
+      ],
+      "source_family_ids": [
+        "surface:ru:frakcionn"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "ru",
+      "lemma_id": "lemma:cae3cab8ea595284fde0",
+      "word": "пролактин",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "пролактин",
+      "branch": "independent_lexical_head",
+      "reason": "Prolactin contains the lact/milk branch, not act or Greek ray actin. Hyperprolactinemia preserves that complete hormonal head.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/prolactin"
+      ],
+      "source_family_ids": [
+        "surface:ru:prolaktin"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "ru",
+      "lemma_id": "lemma:780ad165ff13ab215b7e",
+      "word": "гиперпролактинемия",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "пролактин",
+      "branch": "independent_lexical_head",
+      "reason": "Prolactin contains the lact/milk branch, not act or Greek ray actin. Hyperprolactinemia preserves that complete hormonal head.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/prolactin"
+      ],
+      "source_family_ids": [
+        "surface:ru:mija",
+        "surface:ru:giperprolaktinemij"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "ru",
+      "lemma_id": "lemma:34000ac6d74575ea7041",
+      "word": "тессеракт",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "тессеракт",
+      "branch": "independent_lexical_head",
+      "reason": "The geometric head contains Greek aktis/ray; the apparent final акт is not the Latin action element.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/tesseract"
+      ],
+      "source_family_ids": [
+        "surface:ru:tesserakt"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "ru",
+      "lemma_id": "lemma:c9ca01728f8eaf2a6985",
+      "word": "тессерактовый",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "тессеракт",
+      "branch": "independent_lexical_head",
+      "reason": "The geometric head contains Greek aktis/ray; the apparent final акт is not the Latin action element.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/tesseract"
+      ],
+      "source_family_ids": [
+        "surface:ru:ovyj",
+        "surface:ru:tesseraktov"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "ru",
+      "lemma_id": "lemma:dac51ed52208742c8d93",
+      "word": "тракция",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "tract/drawing",
+      "branch": "independent_lexical_head",
+      "reason": "These reviewed national tract/drawing realizations are independent of акт. This does not exclude a compound with a separate true актив component.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/traction",
+        "https://www.merriam-webster.com/dictionary/extraction",
+        "https://www.merriam-webster.com/dictionary/distraction"
+      ],
+      "source_family_ids": [
+        "surface:ru:trakcij"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "ru",
+      "lemma_id": "lemma:ce4f3f1135b5a7fcead6",
+      "word": "ретракционный",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "tract/drawing",
+      "branch": "independent_lexical_head",
+      "reason": "These reviewed national tract/drawing realizations are independent of акт. This does not exclude a compound with a separate true актив component.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/traction",
+        "https://www.merriam-webster.com/dictionary/extraction",
+        "https://www.merriam-webster.com/dictionary/distraction"
+      ],
+      "source_family_ids": [
+        "surface:ru:retrakcionn"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "ru",
+      "lemma_id": "lemma:ad00268465f6bd740540",
+      "word": "экстрактивный",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "tract/drawing",
+      "branch": "independent_lexical_head",
+      "reason": "These reviewed national tract/drawing realizations are independent of акт. This does not exclude a compound with a separate true актив component.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/traction",
+        "https://www.merriam-webster.com/dictionary/extraction",
+        "https://www.merriam-webster.com/dictionary/distraction"
+      ],
+      "source_family_ids": [
+        "surface:ru:ekstraktivn"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "ru",
+      "lemma_id": "lemma:0a85f8c90b0b2f38e038",
+      "word": "экстракционный",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "tract/drawing",
+      "branch": "independent_lexical_head",
+      "reason": "These reviewed national tract/drawing realizations are independent of акт. This does not exclude a compound with a separate true актив component.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/traction",
+        "https://www.merriam-webster.com/dictionary/extraction",
+        "https://www.merriam-webster.com/dictionary/distraction"
+      ],
+      "source_family_ids": [
+        "surface:ru:ekstrakcionn"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "ru",
+      "lemma_id": "lemma:6f42f2c7bb88d8a96f0d",
+      "word": "дистракция",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "tract/drawing",
+      "branch": "independent_lexical_head",
+      "reason": "These reviewed national tract/drawing realizations are independent of акт. This does not exclude a compound with a separate true актив component.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/traction",
+        "https://www.merriam-webster.com/dictionary/extraction",
+        "https://www.merriam-webster.com/dictionary/distraction"
+      ],
+      "source_family_ids": [
+        "surface:ru:distrakcij"
+      ],
+      "runtime_applied": false
+    }
+  ],
+  "runtime_changes": false,
+  "runtime_applied_record_count": 2098,
+  "full_family_certification": false,
+  "limitations": [
+    "Only the explicitly saved whole forms are adjudicated.",
+    "Other Russian names, OCR forms and ambiguous editor/redactor heads remain pending.",
+    "Dictionary head evidence and morphological inferences do not allocate aggregate corpus frequency to a sense."
+  ]
+}
