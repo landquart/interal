@@ -92,3 +92,18 @@ separately audited extension, and preserves the new records' independent
 components rather than demanding inform-only arrays. Both information repair
 tests pass without skips. Full npm tests are restarted with every new review
 and runtime test included. No further runtime mutation occurred.
+
+## Credit and silence heads
+
+A separate finite review excludes 21 Spanish creer/credit/credibility forms
+from creat and 10 Italian ammutolire/mutezza forms from mut. These are
+independent credere and mutus branches, not creation or mutation/change.
+No runtime or corpus spellings were changed. Full source records and exact
+pending partitions are saved in `credit-mute-heads-review-20261002`; both
+targeted conservation/reproduction tests pass without skips.
+
+Latest creat pending 2,335; relat 409; oper 2,082; mut 2,652.
+Combined four-root pending is 7,478. Runtime accepted remains 574/487/1,595/569.
+The successful full npm runtime test log is `/tmp/interal-reflex-full-tests-complete.log`
+(until its separate validation archive is saved); exhaustive audit succeeded
+and refreshed `repository-static-integrity.json` with 10,049,743 memberships.
