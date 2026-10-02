@@ -41,3 +41,15 @@ audit. Application tests must later pass with no skips.
 Continue immediately with additive application, targeted tests, then review
 of the saved 730-record observ/inform queue while complete runtime checks run.
 Preserve pending versus investigated uncertainty. Save every stage separately.
+
+## Six-record application
+
+Preflight is durable in 53102f85a5390234962458192db9014fe53ae1d1.
+The six records are now applied additively: observ 298, inform 1,448.
+Removed memberships 0, retired families 0, alias delta 0. All 11 targeted tests
+passed without skips, including compatibility routes, old action preservation,
+complete prior prefixes, original source routes, ambiguous/excluded controls
+and repeated-application refusal. The complete npm suite and exhaustive audit
+are running; their final results belong to the next separate validation stage.
+The 762-record continuation remains 6 accepted/applied, 23 excluded, 3 genuine
+uncertain and 730 pending until a later review overlay is saved.
