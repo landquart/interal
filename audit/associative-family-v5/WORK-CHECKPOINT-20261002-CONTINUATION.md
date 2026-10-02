@@ -4,8 +4,8 @@ Current state: 24 reviewed continuation memberships applied (six earlier and
 18 in the latest extension). Latest support: observ 309 / inform 1,455.
 All 15 targeted application tests passed, no failures or skips. The full
 109-file suite and exhaustive audit passed; two later review test files each
-passed 2 tests, no skips. Latest continuation queue: 320 pending,
-119 investigated uncertain, 299 excluded. Earlier sections below are dated stage history.
+passed 2 tests, no skips. Latest continuation queue: 309 pending,
+119 investigated uncertain, 303 excluded, 7 accepted awaiting application. Earlier sections below are dated stage history.
 Latest relation overlay: `relation-phrase-boundaries-20261002` (325 pending).
 Resume from the stage-specific inventories,
 `continuation-validation-20261002/validation.json` and the complete
@@ -299,3 +299,16 @@ Rare native informate derivatives and informationals are deliberately outside
 this group pending their separate positive review. Both preservation and
 byte-identical reproduction tests passed, no skips. Runtime unchanged.
 Current frame: 24 applied, 299 excluded, 119 genuine uncertain, 320 pending.
+
+## Rare native heads and independent lexical boundaries
+
+reflex-rare-native-heads-review-20261002-1915 accepts seven exact existing
+records: English informated/informating/informationals/informateur, German
+Informateur/Observator and Italian historical osservamenti. Sources establish
+lexical identity in the assigned language; finite inflections are explicit
+reviewer inferences. Three Italian informaggiare participle/verb records are
+excluded as the cheese branch; French informulé is an independent negative
+formulation adjective. Both tests pass without skips. No runtime change yet.
+Frame: 31 accepted (24 applied + 7 awaiting separate guarded application),
+303 excluded, 119 genuine uncertain, 309 pending. Runtime remains 309/1,455.
+Prepare/persist guarded preflight for these seven; never repeat older repairs.
