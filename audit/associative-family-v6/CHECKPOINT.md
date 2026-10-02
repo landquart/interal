@@ -13,3 +13,29 @@ The newer streaming frequency adapter exposed a separate reconciliation finding:
 Do not claim a tenfold reduction: reusable head grouping is deliberately conservative and most old record-level reviews still lack proved shared lexical identity. The new engine supports group decisions once evidenced finite links exist. Promotion candidates remain proposals, including short roots and proper names. Catalog approval does not certify every lexical edge.
 
 Next: finish current full checks and deterministic replay; publish their exact logs/hashes as a separate validation stage. Reconcile corpus IDs with original source aggregation, then resolve shared heads and all preserved queues. Loc/nat/inter historical frame reconciliation, Russian short roots and val promotion remain explicit open work. Production stays on v5.
+
+## Corpus and authoritative queue completion
+
+The production ranked-word-ipm-object parser resolves the diagnostic mismatch:
+all 4,924,980 source IDs are enumerated, every materialized ID is present,
+and all 829 zero-family source records retain their original raw IPM/source values.
+The legacy-json diagnostic is retained as history, not an unresolved corpus loss.
+
+A separate queue overlay applies all current action decisions, uses the newest
+creat/mut frame, excludes obsolete mut pending rows from the oper frame, and
+includes all 842 loc uncertainties. Current regrouped frame: 25,202 distinct
+pending/uncertain records; historical nat/loc/inter reconciliation and 155
+reflex uncertainties are referenced separately rather than falsely resolved.
+Manual head-review reduction on this strict active frame is currently 1.0;
+no unproved lexical grouping is invented to improve a metric.
+
+Shadow entry point: associativvordes/js/associative-family-v6-shadow.js, with
+normal accent/Russian query normalization and hydration of original corpus rows.
+Complete differential for fourteen representative queries is saved separately;
+demotion of a technical route is explicitly not a linguistic exclusion.
+All 20,755 evidence clusters have promotion/risk proposals; all 105 val pairs
+have Jaccard/MinHash/LSH diagnostics, with no automatic merge.
+
+Latest implementation/research stage: 6c4bf9b6aa85f62e52dee80e48eee65f1be0c2e5.
+Next: save the authoritative queue build, finish its fresh audit/replay and
+complete suite, then prepare explicit shared-head reviews through the common engine.
