@@ -13204,12 +13204,12 @@
     "memberships_by_language": {
       "en": 2619281,
       "de": 2211173,
-      "fr": 1144211,
+      "fr": 1144212,
       "es": 1798420,
-      "it": 1148983,
-      "ru": 1127700
+      "it": 1148986,
+      "ru": 1127703
     },
-    "memberships": 10049768,
+    "memberships": 10049775,
     "nitidus_net_memberships_removed": 9924,
     "nitidus_net_memberships_added": 2,
     "nitidus_ledger_sha256": "76cd3ddf53bb7a6e4bc6c43a6b5e0ba9efd074d1162ff736776a0e9b6bdcbffa",
@@ -13306,6 +13306,16 @@
       "alias_delta": 0,
       "net_family_delta": 0,
       "decision_ledger_sha256": "2551d3b3b9f12839e451645578d908ec0aad703c3977839e40d8f1f9cfd75edd",
+      "full_family_certification": false
+    },
+    "reflex_native_compounds_extension": {
+      "repair": "extend_reviewed_observ_inform_native_compounds_20261002",
+      "source_run_id": 35647932153,
+      "added_memberships": 7,
+      "removed_memberships": 0,
+      "alias_delta": 0,
+      "net_family_delta": 0,
+      "decision_ledger_sha256": "494bf69db6cc235cfc2b8098f45ffdb35fbabbf3b8853bc83f4775d1ac03b1c3",
       "full_family_certification": false
     }
   }

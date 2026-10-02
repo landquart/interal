@@ -13,8 +13,8 @@
   },
   "storage": "git_repository_static_files",
   "file_count_before_provenance": 2050,
-  "total_bytes_before_provenance": 717784142,
-  "tree_content_sha256": "9612fa3af3a869458354e1935e5fa94a28b9229082be5bb1dbfe79b5975b17cd",
+  "total_bytes_before_provenance": 717787178,
+  "tree_content_sha256": "8f2c8c16e07207de222b2c9fa8082d5a9eaabd2f67999d0174126b81704c0f00",
   "repository_repairs": [
     {
       "repair": "exclude_known_rejected_corpus_noise_from_runtime",
@@ -593,6 +593,16 @@
       "alias_delta": 0,
       "net_family_delta": 0,
       "decision_ledger_sha256": "2551d3b3b9f12839e451645578d908ec0aad703c3977839e40d8f1f9cfd75edd",
+      "full_family_certification": false
+    },
+    {
+      "repair": "extend_reviewed_observ_inform_native_compounds_20261002",
+      "source_run_id": 35647932153,
+      "added_memberships": 7,
+      "removed_memberships": 0,
+      "alias_delta": 0,
+      "net_family_delta": 0,
+      "decision_ledger_sha256": "494bf69db6cc235cfc2b8098f45ffdb35fbabbf3b8853bc83f4775d1ac03b1c3",
       "full_family_certification": false
     }
   ]

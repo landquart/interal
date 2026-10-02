@@ -1,12 +1,12 @@
 # Current continuation checkpoint
 
-Current state: 31 reviewed continuation memberships applied (six earlier,
-18 in the first extension and seven rare native heads). Latest support:
-observ 311 / inform 1,460. All 10 targeted application tests passed, no failures
-or skips. The full 117-file suite and exhaustive audit passed; the later
-multilingual review passed two additional tests. Latest immutable
-review queue: 213 pending, 154 investigated uncertain, 357 excluded;
-seven accepted native names awaiting a separate guarded application. Earlier sections below are dated history.
+Current state: 38 reviewed continuation memberships applied (six earlier,
+18 in the first extension, seven rare native heads and seven native compounds).
+Latest support: observ 312 / inform 1,466. All 12 targeted application tests
+pass with zero failures or skips; fresh full-suite and exhaustive validation
+is the next required stage. Latest immutable review queue: 213 pending,
+154 investigated uncertain, 357 excluded; zero accepted awaiting application.
+Earlier sections below are dated history.
 Latest relation overlay: `relation-phrase-boundaries-20261002` (325 pending).
 Resume from the stage-specific inventories,
 `continuation-validation-20261002/validation.json` and the complete
@@ -398,3 +398,13 @@ they retain each immutable earlier proof. Preflight tests: 14 total, 13 pass,
 one new application check intentionally pending, zero failures. Runtime is
 still unchanged. Apply only the fresh native-compound materializer, once,
 with the separately saved preflight commit as explicit expected HEAD.
+
+## Native compound application — 2026-10-02
+
+Applied only the seven guarded exact selections after durable preflight
+0510cb24282f96f2227c81438c3d0ac86aeb80e4. All 12 application tests pass
+with no skips, including historical source/prefix/untouched-byte proofs.
+Runtime: observ 312 / inform 1,466; total memberships 10,049,775. No aliases,
+containers or original corpus records changed. Pending 213, investigated
+uncertain 154, excluded 357, applied 38. This remains partial linguistic
+review. Full suite and exhaustive audit must now be saved as a fresh stage.
