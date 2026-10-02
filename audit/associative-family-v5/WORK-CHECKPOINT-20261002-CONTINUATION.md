@@ -434,3 +434,15 @@ logs, code hashes and current open queues. Productive review added during
 validation independently passes two tests, zero skips. Its ten positives
 remain unapplied and require a separate preflight/application. This technical
 pass does not certify the full linguistic families.
+
+## Productive variant preflight — 2026-10-02
+
+The fresh ten-record materializer is prepared with exact source hashes,
+original metadata, ordered prefixes and every still-existing source route.
+The first guard correctly refused informazion’s missing retired containers
+before writes. Ten exact retirements are independently frozen in
+`reflex-productive-variants-materialization-20261002/historical-route-retirement.json`
+and checked against already-applied oper/relat/creat/mut/reflex ledgers.
+Every unexpected missing route still fails; no retired container is restored.
+Preflight: 17 tests, 16 pass, one new application audit pending, zero failures.
+Save this preflight separately and apply only this fresh materializer once.

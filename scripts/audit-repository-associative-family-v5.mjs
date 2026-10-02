@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import {auditContinuation as auditProductiveExtension} from './lib/associative-reflex-productive-variants-extension-audit.mjs';
 import {auditContinuation as auditNativeExtension} from './lib/associative-reflex-native-compounds-extension-audit.mjs';
 import {auditContinuation as auditRareExtension} from './lib/associative-reflex-rare-heads-extension-audit.mjs';
 import {auditContinuation as auditHeadExtension} from './lib/associative-reflex-heads-extension-audit.mjs';
@@ -35,9 +36,10 @@ const report = await readJson(join(root, 'report.json'));
 const provenance = await readJson(join(root, 'repository-provenance.json'));
 const continuationAudit = await auditContinuation(root);
 const headExtensionAudit = await auditHeadExtension(root);
+const productiveExtensionAudit=await auditProductiveExtension(root);
 const nativeExtensionAudit=await auditNativeExtension(root);
 const rareExtensionAudit=await auditRareExtension(root);
-const reflexAdditions=[...(continuationAudit?.additions||[]),...(headExtensionAudit?.additions||[]),...(rareExtensionAudit?.additions||[]),...(nativeExtensionAudit?.additions||[])];
+const reflexAdditions=[...(continuationAudit?.additions||[]),...(headExtensionAudit?.additions||[]),...(rareExtensionAudit?.additions||[]),...(nativeExtensionAudit?.additions||[]),...(productiveExtensionAudit?.additions||[])];
 const continuationKeys = new Set((reflexAdditions).map(m=>`${m.language}\0family:${m.canonical_root}\0${m.lemma_id}`));
 const actionStageAudit = await auditActionStage(root);
 const nitidusLedgerBytes = await readFile('audit/associative-family-v5/nitidus-family-decisions.json');
@@ -670,7 +672,7 @@ assert(JSON.stringify(uniqueLemmasByLanguage) === JSON.stringify(report.reposito
 assert(JSON.stringify(membershipsByLanguage) === JSON.stringify(report.repository_materialization.memberships_by_language), 'report memberships by language mismatch');
 assert(membershipCount === report.repository_materialization.memberships, 'report materialized memberships mismatch');
 assert(manifest.counts.lemmas - materializedUniqueLemmas === report.repository_materialization.lemmas_without_materialized_family, 'repository unassigned lemma count mismatch');
-assert(membershipCount === 10426047 - manualLedger.rejected_memberships.length - surfaceRemoved - surfaceRemoved2 - surfaceRemoved3 - surfaceRemoved4 - tenLedger.expected_members - inflectionRemoved - endingRemoved - geneaRemoved - geneaOtherRemoved - sonusRemoved - kaRemoved - suffixRemoved - suffixRemoved6 - suffixRemoved7 - suffixRemoved8 - suffixRemoved9 - suffixRemoved10 - suffixRemoved11 - suffixRemoved12 - actusLedger.rejected_memberships.length - illasLedger.expected_removed_memberships - pronounLedger.expected_total_removed_memberships - nitidusRepair.removed_memberships + nitidusRepair.added_memberships - ruShortRepair.removed_memberships - boundedRepair.removed_memberships - informationRepair.removed_memberships + informationRepair.added_memberships - componentRepair.removed_memberships - exactComponentRepair.removed_memberships + exactComponentRepair.added_memberships + continuationRepair.added_memberships - reflexRepair.removed_memberships + reflexRepair.added_memberships + locRepair.added_memberships - creationRepair.removed_memberships + creationRepair.added_memberships - relationRepair.removed_memberships + relationRepair.added_memberships - operationRepair.removed_memberships + operationRepair.added_memberships - mutationRepair.removed_memberships + mutationRepair.added_memberships + actionStageAudit.added_memberships - actionStageAudit.removed_memberships + (continuationAudit?.expected_added_memberships||0) + (headExtensionAudit?.expected_added_memberships||0) + (rareExtensionAudit?.expected_added_memberships||0) + (nativeExtensionAudit?.expected_added_memberships||0), 'unexpected repository membership count');
+assert(membershipCount === 10426047 - manualLedger.rejected_memberships.length - surfaceRemoved - surfaceRemoved2 - surfaceRemoved3 - surfaceRemoved4 - tenLedger.expected_members - inflectionRemoved - endingRemoved - geneaRemoved - geneaOtherRemoved - sonusRemoved - kaRemoved - suffixRemoved - suffixRemoved6 - suffixRemoved7 - suffixRemoved8 - suffixRemoved9 - suffixRemoved10 - suffixRemoved11 - suffixRemoved12 - actusLedger.rejected_memberships.length - illasLedger.expected_removed_memberships - pronounLedger.expected_total_removed_memberships - nitidusRepair.removed_memberships + nitidusRepair.added_memberships - ruShortRepair.removed_memberships - boundedRepair.removed_memberships - informationRepair.removed_memberships + informationRepair.added_memberships - componentRepair.removed_memberships - exactComponentRepair.removed_memberships + exactComponentRepair.added_memberships + continuationRepair.added_memberships - reflexRepair.removed_memberships + reflexRepair.added_memberships + locRepair.added_memberships - creationRepair.removed_memberships + creationRepair.added_memberships - relationRepair.removed_memberships + relationRepair.added_memberships - operationRepair.removed_memberships + operationRepair.added_memberships - mutationRepair.removed_memberships + mutationRepair.added_memberships + actionStageAudit.added_memberships - actionStageAudit.removed_memberships + (continuationAudit?.expected_added_memberships||0) + (headExtensionAudit?.expected_added_memberships||0) + (rareExtensionAudit?.expected_added_memberships||0) + (nativeExtensionAudit?.expected_added_memberships||0) + (productiveExtensionAudit?.expected_added_memberships||0), 'unexpected repository membership count');
 assert(familyCount === manifest.counts.families && familyCount === report.total_families, `family count ${familyCount}`);
 assert(materializedFamilyCount === familyCount, 'not every family was materialized');
 for (const [field, counted] of [
@@ -756,6 +758,7 @@ const result = {
   rejected_corpus_noise: noiseFindings,
   action_stage: actionStageAudit,
   ...(headExtensionAudit ? {reflex_heads_extension:{added_memberships:headExtensionAudit.expected_added_memberships,removed_memberships:0,full_family_certification:false}} : {}),
+  ...(productiveExtensionAudit ? {reflex_productive_variants_extension:{added_memberships:productiveExtensionAudit.expected_added_memberships,removed_memberships:0,full_family_certification:false}} : {}),
   ...(nativeExtensionAudit ? {reflex_native_compounds_extension:{added_memberships:nativeExtensionAudit.expected_added_memberships,removed_memberships:0,full_family_certification:false}} : {}),
   ...(rareExtensionAudit ? {reflex_rare_heads_extension:{added_memberships:rareExtensionAudit.expected_added_memberships,removed_memberships:0,full_family_certification:false}} : {}),
   reflex_continuation: continuationAudit ? {added_memberships:continuationAudit.expected_added_memberships,removed_memberships:0,full_family_certification:false} : null,
