@@ -1,11 +1,11 @@
 # Current continuation checkpoint
 
-Current state: 24 reviewed continuation memberships applied (six earlier and
-18 in the latest extension). Latest support: observ 309 / inform 1,455.
-All 15 targeted application tests passed, no failures or skips. The full
-109-file suite and exhaustive audit passed; two later review test files each
-passed 2 tests, no skips. Latest continuation queue: 309 pending,
-119 investigated uncertain, 303 excluded, 7 accepted awaiting application. Earlier sections below are dated stage history.
+Current state: 31 reviewed continuation memberships applied (six earlier,
+18 in the first extension and seven rare native heads). Latest support:
+observ 311 / inform 1,460. All 10 targeted application tests passed, no failures
+or skips. Full validation of this runtime stage is next. Latest immutable
+review queue: 309 pending, 119 investigated uncertain, 303 excluded;
+zero accepted awaiting application. Earlier sections below are dated history.
 Latest relation overlay: `relation-phrase-boundaries-20261002` (325 pending).
 Resume from the stage-specific inventories,
 `continuation-validation-20261002/validation.json` and the complete
@@ -320,3 +320,11 @@ prefixes. Preflight tests: 11 passed, zero failures; the new application audit
 is the single intentional skip until application. Apply once with explicit
 current HEAD after this preflight is committed. All 309 remaining pending
 and 119 investigated uncertain records stay unresolved.
+
+## Seven rare native heads applied — 2026-10-02
+
+Guarded preflight commit: 0bfb6e589f1da5d7c36174af78aa5e850e10ce1f.
+All seven memberships were appended without removal, alias or family-container
+changes. The original six-record and 18-record audits verify their historical
+byte prefixes through the explicit finite seven-record overlay. Application
+tests pass 10/10, zero skips. Do not repeat materialization.

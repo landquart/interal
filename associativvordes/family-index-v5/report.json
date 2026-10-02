@@ -119,7 +119,7 @@
   "merged_families": 20771,
   "singleton_families": 1735280,
   "multi_branch_families": 17672,
-  "multi_family_lemmas": 3335533,
+  "multi_family_lemmas": 3335534,
   "components_discovered": 9349982,
   "components_assigned": 9349982,
   "corpus_quality_counts": {
@@ -13202,14 +13202,14 @@
       "ru": 569375
     },
     "memberships_by_language": {
-      "en": 2619277,
-      "de": 2211171,
+      "en": 2619281,
+      "de": 2211173,
       "fr": 1144211,
       "es": 1798420,
-      "it": 1148982,
+      "it": 1148983,
       "ru": 1127700
     },
-    "memberships": 10049761,
+    "memberships": 10049768,
     "nitidus_net_memberships_removed": 9924,
     "nitidus_net_memberships_added": 2,
     "nitidus_ledger_sha256": "76cd3ddf53bb7a6e4bc6c43a6b5e0ba9efd074d1162ff736776a0e9b6bdcbffa",
@@ -13296,6 +13296,16 @@
       "alias_delta": 0,
       "net_family_delta": 0,
       "decision_ledger_sha256": "5d4cc19677a7c9539d1a055f821e0cd4da402949f33cb839bd185ce574cfec76",
+      "full_family_certification": false
+    },
+    "reflex_rare_heads_extension": {
+      "repair": "extend_reviewed_observ_inform_rare_heads_20261002",
+      "source_run_id": 35647932153,
+      "added_memberships": 7,
+      "removed_memberships": 0,
+      "alias_delta": 0,
+      "net_family_delta": 0,
+      "decision_ledger_sha256": "2551d3b3b9f12839e451645578d908ec0aad703c3977839e40d8f1f9cfd75edd",
       "full_family_certification": false
     }
   }
