@@ -227,3 +227,16 @@ Remote preflight Tests passed, but audit 37028152256 failed before scanning:
 import was before the hashbang. Separate fix a1160fe0dbaf27a251df2096d11c6dad8dfeea0a
 restores the first-line hashbang. Full checks now run with the corrected script.
 Their final logs and refreshed report require a separate validation stage.
+
+## Growth and fold lexical heads
+
+Runtime application is durable in e4d1ed1c55ea2fbfdd68483c46b1ef6283312912.
+Separate growth-fold-heads-review-20261002 excludes 20 exact English records
+with increase/decrease or crease heads, including explicit phrase boundaries.
+The distant growth ancestry does not establish the modern creat/create element.
+The proposed crease/crest history remains qualified probable. Other lookalikes,
+names and unresolved forms remain pending. Source records, prior positives and
+all other-root pending records are conserved; both conservation/reproduction
+tests pass without skips. Runtime is unchanged by this review.
+Latest creat pending 2,315; relat 325; oper 2,082; mut 2,652, total 7,374.
+Resume creat/mut from this pending file and relat/oper from their own overlays.
