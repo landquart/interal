@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import {gunzipSync} from 'node:zlib';
 import {createHash} from 'node:crypto';
 import {searchV6,loadParallelV6} from '../associativvordes/js/associative-family-v6.js';
+import {loadV6ShadowRuntime} from '../associativvordes/js/associative-family-v6-shadow.js';
 const root='associativvordes/family-index-v6/generated';
 const read=p=>JSON.parse(p.endsWith('.gz')?gunzipSync(fs.readFileSync(p)):fs.readFileSync(p));
 test('full global inventory and generated artifacts retain exact manual counts and fingerprints',()=>{
@@ -16,4 +17,13 @@ test('parallel runtime distinguishes user families, exact corpus proofs and val 
  const v=await i.routeQuery('val');assert.equal(v.family_targets.length,0);assert.equal(v.evidence_targets.length,15);assert.equal(v.establishes_membership,false);
  for(const id of v.evidence_targets){if(id.startsWith('ety:'))assert.equal((await i.getEvidenceNode(id)).associative_family_id,null);else assert.equal((await i.getComponentCandidate(id)).associative_family_id,null);}
  const member=i.search('inform','en')[0],proof=member.source_proof[0];const corpus=await i.getCorpusRecord({...proof.source,lemma_id:member.lemma_id});assert.equal(corpus.word,member.word);assert(corpus.sources.length);assert(corpus.category_breakdown);
+});
+
+test('shadow routing retains normal accent/transliteration handling without granting substring membership',async()=>{
+ const i=await loadV6ShadowRuntime({readJson:async p=>read(p)});assert.deepEqual(i.search('информ'),i.search('inform'));assert.deepEqual(i.search('création'),i.search('creation'));assert.deepEqual(i.search('лок'),i.search('lok'));assert.equal(i.search('printer').length,0);
+ const rows=await i.searchCorpusRows('ped','en');assert(rows.some(r=>r.word==='pedicure'&&r.sources.length&&r.associative_family_id==='family:ped'));
+});
+
+test('production corpus enumeration retains every original ID including optional zero-family records',()=>{
+ const r=read('audit/associative-family-v6/corpus-enumeration.json');assert.equal(r.verdict,'pass');assert.equal(r.total_source_ids,4924980);assert.equal(r.zero_membership_source_records.length,829);assert.deepEqual(r.source_identity_mismatches,[]);for(const g of r.zero_membership_source_records){assert.deepEqual(g.associative_family_ids,[]);assert(g.frequency_source_records.length);}
 });

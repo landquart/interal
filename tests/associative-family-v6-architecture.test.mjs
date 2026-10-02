@@ -1,6 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import {gunzipSync} from 'node:zlib';
+import {regroupCurrentReviewQueues} from '../scripts/lib/associative-v6-review-queues.mjs';
 import {validateCatalog,resolveV6Alias,classifyV5Object,finiteHeadPolicies,generateV6Memberships,stemProposal,applyHeadReview,evidenceClusterSimilarity} from '../associativvordes/js/associative-family-v6.js';
 const catalog=JSON.parse(fs.readFileSync('associativvordes/family-index-v6/catalog.json'));
 function fixture(status='accepted'){
@@ -38,4 +40,8 @@ test('one versioned negative-head review deterministically resolves exact finite
 });
 test('duplicate metrics are review aids and never merge identities',()=>{
  const r=evidenceClusterSimilarity(['en:a','de:b'],['en:a','de:b']);assert.equal(r.jaccard,1);assert.equal(r.lsh_candidate,true);assert.equal(r.action,'review_only_no_merge');
+});
+
+test('current review frames conserve latest decisions and exclude duplicate historical pending rows',async()=>{
+ const read=async p=>JSON.parse(p.endsWith('.gz')?gunzipSync(fs.readFileSync(p)):fs.readFileSync(p));const r=await regroupCurrentReviewQueues({read,imported:[],headId:()=>''});assert.equal(r.backlog.length,25202);assert.equal(new Set(r.backlog.map(r=>r.language+'\0'+r.canonical_root+'\0'+r.lemma_id)).size,25202);assert.equal(r.frames.find(f=>f.name==='act').record_count,16785);assert.equal(r.frames.find(f=>f.name==='loc').record_count,842);assert.equal(r.backlog.filter(r=>r.canonical_root==='mut').length,2652);assert(r.unregrouped_frames.some(f=>f.count===155));
 });
