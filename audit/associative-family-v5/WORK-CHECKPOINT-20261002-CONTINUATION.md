@@ -2,9 +2,10 @@
 
 Current state: 24 reviewed continuation memberships applied (six earlier and
 18 in the latest extension). Latest support: observ 309 / inform 1,455.
-All 15 targeted application tests passed, no failures or skips. Full suite
-and exhaustive audit are running after fixing the entrypoint hashbang.
-Latest continuation queue: 514 pending, 62 investigated uncertain, 162 excluded. Earlier sections below are dated stage history.
+All 15 targeted application tests passed, no failures or skips. The full
+109-file suite and exhaustive audit passed; two later review test files each
+passed 2 tests, no skips. Latest continuation queue: 514 pending,
+62 investigated uncertain, 162 excluded. Earlier sections below are dated stage history.
 Latest relation overlay: `relation-phrase-boundaries-20261002` (325 pending).
 Resume from the stage-specific inventories,
 `continuation-validation-20261002/validation.json` and the complete
@@ -254,3 +255,15 @@ The complete 762-ID frame is now 24 applied, 162 excluded, 62 investigated
 uncertain and 514 pending. Runtime support remains observ 309 / inform 1,455.
 Full 109-file suite and exhaustive audit have now passed; their evidence is
 being saved in the following separate validation stage. No family is certified.
+
+## Complete heads-extension validation
+
+heads-extension-validation-20261002 saves full successful logs, exact tested
+code hashes and current queue pointers. Full suite: 109 files passed. Later
+growth/fold and Latin-context review files: 4 tests passed in total, no skips.
+Exhaustive audit: pass, 10,049,761 memberships, 2,456,540 families, 1,934,055
+aliases. Multi-family lemmas 3,335,533; unmaterialized lemmas remain 829.
+The committed repository-static-integrity.json is refreshed to the exact audit
+output. New HEAD CI remains a separate remote check; old runtime commits had
+a stale report until this validation stage. Structural success does not certify
+linguistic completeness. Continue from the latest queues above; never reapply.

@@ -9,9 +9,9 @@
     "aliases": 1934055,
     "lemmas": 4924980,
     "components": 9349982,
-    "memberships": 10049743,
+    "memberships": 10049761,
     "materialized_unique_lemmas": 4924151,
-    "multi_family_lemmas": 3335528,
+    "multi_family_lemmas": 3335533,
     "lemmas_without_materialized_family": 829,
     "unique_lemmas_by_language": {
       "en": 1130858,
@@ -22,12 +22,12 @@
       "ru": 569375
     },
     "memberships_by_language": {
-      "en": 2619276,
-      "de": 2211170,
+      "en": 2619277,
+      "de": 2211171,
       "fr": 1144211,
-      "es": 1798409,
-      "it": 1148981,
-      "ru": 1127696
+      "es": 1798420,
+      "it": 1148982,
+      "ru": 1127700
     },
     "materialized_families": 2456540
   },
@@ -93,6 +93,11 @@
       }
     }
   },
+  "reflex_heads_extension": {
+    "added_memberships": 18,
+    "removed_memberships": 0,
+    "full_family_certification": false
+  },
   "reflex_continuation": {
     "added_memberships": 6,
     "removed_memberships": 0,
@@ -113,8 +118,8 @@
     },
     "storage": "git_repository_static_files",
     "file_count_before_provenance": 2050,
-    "total_bytes_before_provenance": 717776398,
-    "tree_content_sha256": "24036dfdf72759d5f7f2f51f19819eca3bba653e80c34ca5df662074904ca491",
+    "total_bytes_before_provenance": 717781438,
+    "tree_content_sha256": "e7f0cd780354a4c9591353307984554cb3f796a673cdafb69e70e87dce797b30",
     "repository_repairs": [
       {
         "repair": "exclude_known_rejected_corpus_noise_from_runtime",
@@ -673,6 +678,16 @@
         "alias_delta": 0,
         "net_family_delta": 0,
         "decision_ledger_sha256": "42ca6903c83709830dae714f4401895747bb40fa521f4f9cf4a9ad35bd1f6f7b",
+        "full_family_certification": false
+      },
+      {
+        "repair": "extend_reviewed_observ_inform_heads_20261002",
+        "source_run_id": 35647932153,
+        "added_memberships": 18,
+        "removed_memberships": 0,
+        "alias_delta": 0,
+        "net_family_delta": 0,
+        "decision_ledger_sha256": "5d4cc19677a7c9539d1a055f821e0cd4da402949f33cb839bd185ce574cfec76",
         "full_family_certification": false
       }
     ]
