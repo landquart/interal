@@ -1,9 +1,10 @@
 import assert from 'node:assert/strict';
 import {test} from 'node:test';
 import {readFile} from 'node:fs/promises';
-import {gunzipSync} from 'node:zlib';
+import {gunzipSync,gzipSync} from 'node:zlib';
 import {createHash} from 'node:crypto';
 import {FamilyIndexLoader} from '../associativvordes/js/family-index-loader.js';
+import {preReflexContinuationShard} from '../scripts/lib/associative-reflex-continuation-audit.mjs';
 const b='audit/associative-family-v5/',stage=b+'action-italian-stage-20261002/',read=async p=>JSON.parse((p.endsWith('.gz')?gunzipSync(await readFile(p)):await readFile(p)).toString()),sha=x=>createHash('sha256').update(x).digest('hex');
 test('Italian action stage overlays only pending IDs and preserves the complete source frame and runtime selection',async()=>{
  const inv=await read(stage+'inventory.json'),d=await read(stage+'decisions.json'),prior=await read(b+'action-continuation-20261002/linguistic-decisions.json.gz'),proof=await read(stage+'verb-source-records.json.gz');assert.equal(sha(await readFile(stage+'decisions.json')),inv.decision_sha256);assert.equal(sha(await readFile(stage+'verb-source-records.json.gz')),inv.source_proof_sha256);
@@ -16,5 +17,5 @@ test('Italian action stage overlays only pending IDs and preserves the complete 
 test('Italian nominal bases are unchanged existing corpus records, not synthetic lemma IDs',async()=>{
  const d=await read(stage+'decisions.json'),proof=await read(stage+'verb-source-records.json.gz'),groups=new Map();
  for(const x of d.decisions.filter(x=>x.base_lemma_id)){const base=proof.heads[x.lexical_head];if(!groups.has(base.shard_path))groups.set(base.shard_path,new Map());groups.get(base.shard_path).set(x.lexical_head,base);}
- for(const [path,records]of groups){const bytes=await readFile(path);assert.equal(sha(bytes),proof.shard_hashes[path]);const shard=JSON.parse(gunzipSync(bytes));for(const record of records.values())assert.deepEqual(shard[record.family_id].find(m=>m.lemma_id===record.member.lemma_id),record.member);}
+ for(const [path,records]of groups){const bytes=await readFile(path);const current=JSON.parse(gunzipSync(bytes));let historical=bytes;if(sha(bytes)!==proof.shard_hashes[path]){const root='associativvordes/family-index-v5',relative=path.slice(root.length+1),part=relative.slice(0,relative.lastIndexOf('/')),bucket=relative.slice(relative.lastIndexOf('/')+1,-8);historical=gzipSync(JSON.stringify(await preReflexContinuationShard(structuredClone(current),part,bucket)),{level:6});}assert.equal(sha(historical),proof.shard_hashes[path]);const shard=current;for(const record of records.values())assert.deepEqual(shard[record.family_id].find(m=>m.lemma_id===record.member.lemma_id),record.member);}
 });

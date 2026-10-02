@@ -53,3 +53,15 @@ and repeated-application refusal. The complete npm suite and exhaustive audit
 are running; their final results belong to the next separate validation stage.
 The 762-record continuation remains 6 accepted/applied, 23 excluded, 3 genuine
 uncertain and 730 pending until a later review overlay is saved.
+
+## Runtime validation integration
+
+Six-record runtime stage is durable in 3295d6b3d064a3e6722f4d429921ee9e1030e9d0.
+The first broad tests exposed an old whole-shard checksum that necessarily
+changed when an unrelated observ record was appended. Historical Italian
+proof now reconstructs the exact old gzip shard and still demands the original
+checksum, while independently checking every current verb base record. Both
+Italian tests pass without skips. The exhaustive audit's total-delta equation
+also now includes the independently audited +6. This integration changes no
+runtime records or historical ledgers. Full checks were restarted after these
+changes; no success is claimed until final logs say pass.
