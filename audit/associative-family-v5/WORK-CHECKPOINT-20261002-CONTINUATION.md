@@ -387,3 +387,14 @@ accepted awaiting application + 357 excluded + 154 investigated uncertain +
 213 pending = 762. Runtime remains observ 311 / inform 1,460. Next: freeze
 source routes and old prefixes, save preflight separately, apply once, then
 run the full suite and exhaustive audit. Earlier dated entries are history.
+
+## Native compound preflight — 2026-10-02
+
+`reflex-native-compounds-materialization-20261002/materialization-ledger.json`
+freezes the seven selections, exact runtime tree, complete original prefixes,
+all independent source routes, untouched-file hashes and source decisions.
+The historical readers reconstruct stages in reverse order exactly once;
+they retain each immutable earlier proof. Preflight tests: 14 total, 13 pass,
+one new application check intentionally pending, zero failures. Runtime is
+still unchanged. Apply only the fresh native-compound materializer, once,
+with the separately saved preflight commit as explicit expected HEAD.

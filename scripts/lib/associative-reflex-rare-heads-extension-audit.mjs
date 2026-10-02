@@ -1,3 +1,4 @@
+import {readBeforeNativeExtensionFile,preNativeExtensionShard} from './associative-reflex-native-compounds-extension-audit.mjs';
 import assert from 'node:assert/strict';
 import { readFile, readdir } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
@@ -8,7 +9,7 @@ export const continuationRepair='extend_reviewed_observ_inform_rare_heads_202610
 export const continuationPath='audit/associative-family-v5/reflex-rare-heads-materialization-20261002';
 export const continuationLedger=continuationPath+'/materialization-ledger.json';
 export const reviewPaths=['audit/associative-family-v5/reflex-rare-native-heads-review-20261002-1915'];
-export const readJson=async p=>JSON.parse((p.endsWith('.gz')?gunzipSync(await readFile(p)):await readFile(p)).toString());
+export const readJson=async p=>{const match=p.match(/^(.*)\/(families\/[^/]+|members\/[^/]+\/[^/]+)$/);const raw=match?await readBeforeNativeExtensionFile(match[1],match[2]):await readFile(p);return JSON.parse((p.endsWith('.gz')?gunzipSync(raw):raw).toString());};
 export const sha=b=>createHash('sha256').update(b).digest('hex');
 export const digest=v=>sha(JSON.stringify(v));
 export const evidence=()=>({type:'manual_override',source:continuationLedger,whole_lemma_union:false,language_reflex:true,full_family_certification:false});
@@ -33,7 +34,7 @@ export async function untouchedFilesDigest(root,excluded){
   for(const e of (await readdir(root+'/'+dir,{withFileTypes:true})).sort((a,b)=>a.name.localeCompare(b.name,'en'))){
    const rel=(dir?dir+'/':'')+e.name;
    if(e.isDirectory()) await walk(rel);
-   else if(!excluded.includes(rel)) entries.push([rel,sha(await readFile(root+'/'+rel))]);
+   else if(!excluded.includes(rel)) entries.push([rel,sha(await readBeforeNativeExtensionFile(root,rel))]);
   }
  }
  await walk('');return digest(entries);
@@ -108,6 +109,9 @@ async function rareState(root){
  return appliedViews.get(root);
 }
 export async function preRareExtensionShard(shard,part,bucket,root='associativvordes/family-index-v5'){
+ return undoRareExtensionShard(await preNativeExtensionShard(shard,part,bucket,root),part,bucket,root);
+}
+async function undoRareExtensionShard(shard,part,bucket,root){
  const ledger=await rareState(root);if(!ledger)return shard;
  for(const [id,before]of Object.entries(ledger.before_families)){
   if(familyBucket(id)!==bucket)continue;
@@ -121,10 +125,10 @@ export async function preRareExtensionShard(shard,part,bucket,root='associativvo
  return shard;
 }
 export async function readBeforeRareExtensionFile(root,relative){
- const raw=await readFile(root+'/'+relative),ledger=await rareState(root);
+ const raw=await readBeforeNativeExtensionFile(root,relative),ledger=await rareState(root);
  if(!ledger||!relative.endsWith('.json.gz')||!ledger.expected_written_files.includes(relative))return raw;
  const part=relative.slice(0,relative.lastIndexOf('/')),bucket=relative.slice(relative.lastIndexOf('/')+1,-8);
- const shard=await preRareExtensionShard(JSON.parse(gunzipSync(raw)),part,bucket,root);
+ const shard=await undoRareExtensionShard(JSON.parse(gunzipSync(raw)),part,bucket,root);
  const prior=gzipSync(JSON.stringify(shard),{level:6});
  assert.equal(sha(prior),ledger.runtime_preflight_sha256[relative],'Exact historical shard reconstruction failed: '+relative);
  return prior;
