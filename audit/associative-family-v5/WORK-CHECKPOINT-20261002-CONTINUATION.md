@@ -1,11 +1,12 @@
 # Current continuation checkpoint
 
-Current state: 38 reviewed continuation memberships applied (six earlier,
-18 in the first extension, seven rare native heads and seven native compounds).
-Latest support: observ 312 / inform 1,466. All 12 targeted application tests
-pass with zero failures or skips; the full 120-file suite and exhaustive audit also pass. Latest immutable review queue: 201 pending,
-155 investigated uncertain, 358 excluded; ten accepted variants awaiting
-a separate guarded application.
+Current state: 48 reviewed continuation memberships applied (six earlier,
+18 first extension, seven rare heads, seven native compounds and ten productive variants).
+Latest support: observ 315 / inform 1,473. All 15 targeted application tests
+pass with zero failures or skips. Full-suite and exhaustive validation of this
+latest runtime are next; the previous seven-compound runtime passed 120 files and audit.
+Latest immutable review queue: 201 pending, 155 investigated uncertain,
+358 excluded; no accepted variants awaiting application.
 Earlier sections below are dated history.
 Latest relation overlay: `relation-phrase-boundaries-20261002` (325 pending).
 Resume from the stage-specific inventories,
@@ -446,3 +447,13 @@ and checked against already-applied oper/relat/creat/mut/reflex ledgers.
 Every unexpected missing route still fails; no retired container is restored.
 Preflight: 17 tests, 16 pass, one new application audit pending, zero failures.
 Save this preflight separately and apply only this fresh materializer once.
+
+## Ten productive variants applied
+
+Guarded preflight: 403aaa85483e516fee7907740c345e5418fcc885.
+Ten memberships added; none removed; no alias or container changes.
+The ten historically retired informazion routes remain absent, with exact
+retirement proofs; both extant routes and all measured fields remain intact.
+Application tests: 15 passed, zero failures or skips. Runtime support 315/1473.
+Next: fresh complete suite and exhaustive audit, then continue the 201 pending
+records. Do not repeat any applied materializer; do not merge.
