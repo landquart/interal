@@ -3,7 +3,8 @@
 Current state: 31 reviewed continuation memberships applied (six earlier,
 18 in the first extension and seven rare native heads). Latest support:
 observ 311 / inform 1,460. All 10 targeted application tests passed, no failures
-or skips. Full validation of this runtime stage is next. Latest immutable
+or skips. The full 117-file suite and exhaustive audit passed; the later
+multilingual review passed two additional tests. Latest immutable
 review queue: 243 pending, 154 investigated uncertain, 334 excluded;
 zero accepted awaiting application. Earlier sections below are dated history.
 Latest relation overlay: `relation-phrase-boundaries-20261002` (325 pending).
@@ -343,3 +344,14 @@ Norwegian, Romanian, Slovenian, Portuguese and other paradigms.
 `reflex-multilingual-heads-review-20261002-2010` records context uncertainty,
 including explicit diacritic/historical limitations, without native borrowing
 assumptions or automatic foreign exclusion. Two tests pass, zero skips.
+
+## Rare-head runtime full validation — 2026-10-02
+
+All 117 discovered test files passed. Exhaustive audit passes for
+10,049,768 memberships, 2,456,540 families, 1,934,055 aliases. Unique lemmas
+remain 4,924,151; multi-family lemmas are 3,335,534. The independently
+added multilingual test file passes two tests. Logs, tested-code hashes and
+current queues: `rare-heads-extension-validation-20261002/validation.json`.
+The default committed integrity report is byte-identical to this fresh audit.
+Next: confirm remote CI at the new saved HEAD and continue the 243 pending
+observ/inform records; preserve 154 investigated uncertainties. No merge.
