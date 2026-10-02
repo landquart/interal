@@ -13,8 +13,8 @@
   },
   "storage": "git_repository_static_files",
   "file_count_before_provenance": 2050,
-  "total_bytes_before_provenance": 717759736,
-  "tree_content_sha256": "91dc4573dd86463befb7a82d0f89d11814c1b488f824fa98421a841c2719d2f9",
+  "total_bytes_before_provenance": 717774152,
+  "tree_content_sha256": "fedd8f33f620051d35e867b88dd10527ec534cd131670684b868b42f4bdb4a3e",
   "repository_repairs": [
     {
       "repair": "exclude_known_rejected_corpus_noise_from_runtime",
@@ -554,6 +554,16 @@
         "ety:9a86a987fafc"
       ],
       "component_preservation": "Original component arrays kept intact; reviewed act component appended."
+    },
+    {
+      "repair": "extend_reviewed_action_memberships_20261002",
+      "source_run_id": 35647932153,
+      "added_memberships": 170,
+      "removed_memberships": 0,
+      "net_family_delta": 0,
+      "alias_delta": 0,
+      "decision_ledger_sha256": "84fb775197529d95238b5f03729c25e655b9bdab306f5b6938f44c4f7d30a7d0",
+      "full_family_certification": false
     }
   ]
 }

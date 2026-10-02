@@ -14,7 +14,9 @@ Source run: `35647932153`. No merge has been performed.
 | Independent action heads | `faf105ccb0ff7c70ed2aad19206511953bcb1f46` | 128 English/French exclusions; original positive selections and source records retained |
 | Russian action heads | `85169e0ef262d77aef4fd5720cfbbc82283ea691` | 40 independent Russian heads excluded; prior positive records and source metadata retained |
 | Final validation | `52830263e6b62c7647a6724f19bbbc4ac0dd4688` | Full sequential test suite including all new continuation tests passed; complete log, digests and remaining scope saved |
-| Positive action extension review | This commit | 170 additional English/German whole forms reviewed; awaiting additive materialization |
+| Positive action extension review | `78cb37158ef845f345414049aa7d6a7e4d0f7385` | 170 additional English/German whole forms reviewed |
+| Extension preflight | `3c3e30341faba95ca414254f3305e2b0498dcde2` | Reproducible additive materializer, metadata/source guards, preservation audits and conditional pre-application tests saved |
+| Extension runtime application | This commit | All 170 additions applied; support 2,268; six targeted tests passed with no skips |
 
 The reflex continuation is linguistic evidence only: its six positives have not
 yet been added to runtime families. Historical checkpoints are immutable inputs.
@@ -43,8 +45,8 @@ certify linguistic completeness of any still-pending family.
    `action-russian-heads-20261002/decisions.json` and then
    `action-positive-extension-20261002/decisions.json`, in that order.
    Action remainder: 16,642 pending and 143 genuinely uncertain; reviewed
-   positives: 2,268, of which 2,098 are currently applied. The additional 170
-   require the extension materializer. Old action containers still require careful
+   positives: 2,268, all currently applied. The separate extension status and
+   materialization ledger preserve proof of the additional 170. Old action containers still require careful
    eventual retirement.
 3. For `observ/inform`, read `reflex-continuation-20261002/inventory.json`,
    `decisions.json` and `pending-review.json`. The immutable source candidate
@@ -79,6 +81,12 @@ npm test
 node scripts/audit-repository-associative-family-v5.mjs
 ```
 
-Do not reapply the action materializer to the current corpus: its guard correctly
-rejects an already-applied stage. Use its saved application ledger for the source
-preservation proof instead.
+Do not reapply either action materializer to the current corpus: their guards
+correctly reject an already-applied stage. Use the saved application ledgers for
+the source preservation proof instead.
+
+The 170-record extension passed the six targeted runtime/source/conservation
+tests without skips. A fresh full `npm test` and exhaustive repository audit
+were started for the updated runtime; their completed results belong in the next
+separately committed validation checkpoint. The earlier passing audits describe
+the earlier unchanged runtime and should not be mistaken for this new run.
