@@ -1,0 +1,347 @@
+{
+  "schema_version": 6,
+  "verdict": "pass",
+  "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6",
+  "locked_source_files": 2452,
+  "classified_objects": 2456540,
+  "classification_counts": {
+    "etymological_evidence_cluster": 20755,
+    "surface_component_candidate": 2435769,
+    "verified_associative_family": 6,
+    "promoted_manual_associative_family": 10
+  },
+  "preserved_manual_memberships": 19967,
+  "unexpected_differences": 0,
+  "golden_controls": [
+    {
+      "root": "ped",
+      "word": "pedal",
+      "expected": "accepted",
+      "lemma_ids": [
+        "lemma:94b0d9c4949d66588f02",
+        "lemma:ff24e3c1fcada6770b48",
+        "lemma:b372e2f5b5265ebda647"
+      ]
+    },
+    {
+      "root": "ped",
+      "word": "pedicure",
+      "expected": "accepted",
+      "lemma_ids": [
+        "lemma:14460610c4eaec24a591",
+        "lemma:ee75ff59537ba798960d"
+      ]
+    },
+    {
+      "root": "ped",
+      "word": "pediatrician",
+      "expected": "excluded_from_accepted_memberships"
+    },
+    {
+      "root": "creat",
+      "word": "create",
+      "expected": "accepted",
+      "lemma_ids": [
+        "lemma:29cd1cedd06d6d74a0ee"
+      ]
+    },
+    {
+      "root": "creat",
+      "word": "creation",
+      "expected": "accepted",
+      "lemma_ids": [
+        "lemma:771635a56e16db27fd24",
+        "lemma:44f3119df288285da023"
+      ]
+    },
+    {
+      "root": "creat",
+      "word": "creative",
+      "expected": "accepted",
+      "lemma_ids": [
+        "lemma:94096558e839a721895f",
+        "lemma:584160b86a02996b474d"
+      ]
+    },
+    {
+      "root": "creat",
+      "word": "crear",
+      "expected": "accepted",
+      "lemma_ids": [
+        "lemma:db99ada17996ddc40f67"
+      ]
+    },
+    {
+      "root": "creat",
+      "word": "creare",
+      "expected": "accepted",
+      "lemma_ids": [
+        "lemma:0b53f422d8a465fc4867"
+      ]
+    },
+    {
+      "root": "creat",
+      "word": "creer",
+      "language": "es",
+      "expected": "excluded_from_accepted_memberships"
+    },
+    {
+      "root": "creat",
+      "word": "creatine",
+      "expected": "excluded_from_accepted_memberships"
+    },
+    {
+      "root": "creat",
+      "word": "cre",
+      "expected": "excluded_from_accepted_memberships"
+    },
+    {
+      "root": "observ",
+      "word": "observe",
+      "expected": "accepted",
+      "lemma_ids": [
+        "lemma:90d32f0b8259ba0925bc",
+        "lemma:6694af794dd10e8002cf"
+      ]
+    },
+    {
+      "root": "observ",
+      "word": "observation",
+      "expected": "accepted",
+      "lemma_ids": [
+        "lemma:0ff3fa7c8e927dde5c17",
+        "lemma:32a7130210c4862237dd",
+        "lemma:59062c4a51dac6a57409"
+      ]
+    },
+    {
+      "root": "observ",
+      "word": "osservare",
+      "expected": "accepted",
+      "lemma_ids": [
+        "lemma:64b2e8c779daef1cb67f"
+      ]
+    },
+    {
+      "root": "observ",
+      "word": "osservazione",
+      "expected": "accepted",
+      "lemma_ids": [
+        "lemma:8ae839630bb3272b450b"
+      ]
+    },
+    {
+      "root": "observ",
+      "word": "osservaggiare",
+      "expected": "excluded_from_accepted_memberships"
+    },
+    {
+      "root": "loc",
+      "word": "location",
+      "expected": "accepted",
+      "lemma_ids": [
+        "lemma:cb824fbacd50c27942f2",
+        "lemma:be63365c2b00a121b0fe",
+        "lemma:a766d0f208f4bc779e4b",
+        "lemma:28ced0c4a35e6255eda7"
+      ]
+    },
+    {
+      "root": "loc",
+      "word": "local",
+      "expected": "accepted",
+      "lemma_ids": [
+        "lemma:7e807b3b6bdef5b66619",
+        "lemma:4b101445a1d78980cbe4",
+        "lemma:beec8a46f7c8ade74f54"
+      ]
+    },
+    {
+      "root": "loc",
+      "word": "locomotive",
+      "expected": "accepted",
+      "lemma_ids": [
+        "lemma:601c0444572fd335be71",
+        "lemma:394198ef672cfc0db3c1"
+      ]
+    },
+    {
+      "root": "loc",
+      "word": "lokal",
+      "expected": "accepted",
+      "lemma_ids": [
+        "lemma:3ecf163516817cc2f5b8"
+      ]
+    },
+    {
+      "root": "loc",
+      "word": "локальный",
+      "expected": "accepted",
+      "lemma_ids": [
+        "lemma:84cdd4753d11ed021e78"
+      ]
+    },
+    {
+      "root": "loc",
+      "word": "lieu",
+      "expected": "excluded_from_accepted_memberships"
+    },
+    {
+      "root": "loc",
+      "word": "lieutenant",
+      "expected": "excluded_from_accepted_memberships"
+    },
+    {
+      "root": "nat",
+      "word": "nation",
+      "expected": "accepted",
+      "lemma_ids": [
+        "lemma:0b2d518cffbef7efe7c2",
+        "lemma:3d2adb8cfcd5546ad4d9",
+        "lemma:bdb28991bec5b7f5854c"
+      ]
+    },
+    {
+      "root": "nat",
+      "word": "natural",
+      "expected": "accepted",
+      "lemma_ids": [
+        "lemma:9fcb9e12676b6127ded6",
+        "lemma:99788532da39d99545b5",
+        "lemma:240bea857453c5c0409d"
+      ]
+    },
+    {
+      "root": "nat",
+      "word": "naive",
+      "expected": "excluded_from_accepted_memberships"
+    },
+    {
+      "root": "inter",
+      "word": "international",
+      "expected": "accepted",
+      "lemma_ids": [
+        "lemma:d5c68de76aaece8b4c6d",
+        "lemma:dda21111e5537eb601fd",
+        "lemma:9d77d09d2991c3d73d55"
+      ]
+    },
+    {
+      "root": "inter",
+      "word": "interval",
+      "expected": "accepted",
+      "lemma_ids": [
+        "lemma:501d3c10abf63df4683d"
+      ]
+    },
+    {
+      "root": "inter",
+      "word": "internet",
+      "expected": "accepted",
+      "lemma_ids": [
+        "lemma:ebd05a062aefd755b4d8",
+        "lemma:0e0282ab64ec88330204",
+        "lemma:40514cfaefda0aebc604",
+        "lemma:318431b5af9800d83429",
+        "lemma:2c4c46ba396dd58c9640"
+      ]
+    },
+    {
+      "root": "inter",
+      "word": "winter",
+      "expected": "excluded_from_accepted_memberships"
+    },
+    {
+      "root": "inter",
+      "word": "printer",
+      "expected": "excluded_from_accepted_memberships"
+    },
+    {
+      "root": "inter",
+      "word": "midwinter",
+      "expected": "excluded_from_accepted_memberships"
+    },
+    {
+      "root": "act",
+      "word": "act",
+      "expected": "accepted",
+      "lemma_ids": [
+        "lemma:9baa02425ea004defa96"
+      ]
+    },
+    {
+      "root": "act",
+      "word": "action",
+      "expected": "accepted",
+      "lemma_ids": [
+        "lemma:d92f804d7fd55f88a241",
+        "lemma:69500fffef7e812eec25"
+      ]
+    },
+    {
+      "root": "act",
+      "word": "actium",
+      "expected": "excluded_from_accepted_memberships"
+    },
+    {
+      "root": "act",
+      "word": "actin",
+      "expected": "excluded_from_accepted_memberships"
+    },
+    {
+      "root": "act",
+      "word": "fact",
+      "expected": "excluded_from_accepted_memberships"
+    },
+    {
+      "root": "act",
+      "word": "tract",
+      "expected": "excluded_from_accepted_memberships"
+    },
+    {
+      "root": "inform",
+      "word": "inform",
+      "expected": "accepted",
+      "lemma_ids": [
+        "lemma:cdc986597944d798a54d"
+      ]
+    },
+    {
+      "root": "inform",
+      "word": "information",
+      "expected": "accepted",
+      "lemma_ids": [
+        "lemma:0546a51514ba5e0354d1",
+        "lemma:6a7fee10414eef9fb47f",
+        "lemma:6237be504d63bfae5384"
+      ]
+    },
+    {
+      "root": "inform",
+      "word": "informationen",
+      "expected": "accepted",
+      "lemma_ids": [
+        "lemma:d1d9a5236259a71c3a43"
+      ]
+    },
+    {
+      "root": "inform",
+      "word": "informal",
+      "expected": "excluded_from_accepted_memberships"
+    },
+    {
+      "root": "inform",
+      "word": "informalita",
+      "expected": "excluded_from_accepted_memberships"
+    },
+    {
+      "root": "inform",
+      "word": "informalizadas",
+      "expected": "excluded_from_accepted_memberships"
+    }
+  ],
+  "val_retained_candidate_targets": 15,
+  "production_enabled": false,
+  "v5_bytes_unchanged": true,
+  "full_linguistic_certification": false
+}
