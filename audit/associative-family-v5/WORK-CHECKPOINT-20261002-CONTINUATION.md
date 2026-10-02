@@ -3,8 +3,8 @@
 Current state: 48 reviewed continuation memberships applied (six earlier,
 18 first extension, seven rare heads, seven native compounds and ten productive variants).
 Latest support: observ 315 / inform 1,473. All 15 targeted application tests
-pass with zero failures or skips. Full-suite and exhaustive validation of this
-latest runtime are next; the previous seven-compound runtime passed 120 files and audit.
+pass with zero failures or skips. The full 122-file suite and fresh exhaustive audit also pass.
+Latest totals: 10,049,785 memberships, 2,456,540 families and 1,934,055 aliases.
 Latest immutable review queue: 201 pending, 155 investigated uncertain,
 358 excluded; no accepted variants awaiting application.
 Earlier sections below are dated history.
@@ -457,3 +457,16 @@ retirement proofs; both extant routes and all measured fields remain intact.
 Application tests: 15 passed, zero failures or skips. Runtime support 315/1473.
 Next: fresh complete suite and exhaustive audit, then continue the 201 pending
 records. Do not repeat any applied materializer; do not merge.
+
+## Ten-variant complete validation
+
+Runtime application: 821554605cd3abdb8686120525bc38ddbda2e3fe.
+Full suite: all 122 discovered files pass. Targeted application: 15 pass,
+zero failures or skips. Fresh exhaustive audit passes; its stdout and the
+committed integrity report are byte-identical. Memberships 10,049,785;
+multi-family lemmas 3,335,536. Families, aliases and original source counts unchanged.
+Exact logs, tested-code hashes and full queues: productive-variants-extension-validation-20261002.
+Separate 13-record source research: reflex-information-bureau-research-20261002,
+saved at f8c9b3f61fee851437d49040ff426d575c3ed02b; all remain pending until exact
+adjudication. Resume the 201-record queue from those primary evidence findings.
+No complete linguistic certification; no merge.

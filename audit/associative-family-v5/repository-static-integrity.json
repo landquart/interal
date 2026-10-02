@@ -9,9 +9,9 @@
     "aliases": 1934055,
     "lemmas": 4924980,
     "components": 9349982,
-    "memberships": 10049775,
+    "memberships": 10049785,
     "materialized_unique_lemmas": 4924151,
-    "multi_family_lemmas": 3335534,
+    "multi_family_lemmas": 3335536,
     "lemmas_without_materialized_family": 829,
     "unique_lemmas_by_language": {
       "en": 1130858,
@@ -22,11 +22,11 @@
       "ru": 569375
     },
     "memberships_by_language": {
-      "en": 2619281,
+      "en": 2619284,
       "de": 2211173,
       "fr": 1144212,
-      "es": 1798420,
-      "it": 1148986,
+      "es": 1798422,
+      "it": 1148991,
       "ru": 1127703
     },
     "materialized_families": 2456540
@@ -98,6 +98,11 @@
     "removed_memberships": 0,
     "full_family_certification": false
   },
+  "reflex_productive_variants_extension": {
+    "added_memberships": 10,
+    "removed_memberships": 0,
+    "full_family_certification": false
+  },
   "reflex_native_compounds_extension": {
     "added_memberships": 7,
     "removed_memberships": 0,
@@ -128,8 +133,8 @@
     },
     "storage": "git_repository_static_files",
     "file_count_before_provenance": 2050,
-    "total_bytes_before_provenance": 717787178,
-    "tree_content_sha256": "8f2c8c16e07207de222b2c9fa8082d5a9eaabd2f67999d0174126b81704c0f00",
+    "total_bytes_before_provenance": 717790893,
+    "tree_content_sha256": "0ab4007cdea03a9048553e05a0c4ee961684e13d57225bcb7e66af055bc92f01",
     "repository_repairs": [
       {
         "repair": "exclude_known_rejected_corpus_noise_from_runtime",
@@ -718,6 +723,16 @@
         "alias_delta": 0,
         "net_family_delta": 0,
         "decision_ledger_sha256": "494bf69db6cc235cfc2b8098f45ffdb35fbabbf3b8853bc83f4775d1ac03b1c3",
+        "full_family_certification": false
+      },
+      {
+        "repair": "extend_reviewed_observ_inform_productive_variants_20261002",
+        "source_run_id": 35647932153,
+        "added_memberships": 10,
+        "removed_memberships": 0,
+        "alias_delta": 0,
+        "net_family_delta": 0,
+        "decision_ledger_sha256": "76ec157bc49380444ee8cade2516a102f39d4ca4f095f9b530cf5045deb73dd0",
         "full_family_certification": false
       }
     ]
