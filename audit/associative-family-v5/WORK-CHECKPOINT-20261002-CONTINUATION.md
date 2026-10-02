@@ -4,8 +4,9 @@ Current state: 38 reviewed continuation memberships applied (six earlier,
 18 in the first extension, seven rare native heads and seven native compounds).
 Latest support: observ 312 / inform 1,466. All 12 targeted application tests
 pass with zero failures or skips; fresh full-suite and exhaustive validation
-is the next required stage. Latest immutable review queue: 213 pending,
-154 investigated uncertain, 357 excluded; zero accepted awaiting application.
+is the next required stage. Latest immutable review queue: 201 pending,
+155 investigated uncertain, 358 excluded; ten accepted variants awaiting
+a separate guarded application.
 Earlier sections below are dated history.
 Latest relation overlay: `relation-phrase-boundaries-20261002` (325 pending).
 Resume from the stage-specific inventories,
@@ -408,3 +409,18 @@ Runtime: observ 312 / inform 1,466; total memberships 10,049,775. No aliases,
 containers or original corpus records changed. Pending 213, investigated
 uncertain 154, excluded 357, applied 38. This remains partial linguistic
 review. Full suite and exhaustive audit must now be saved as a fresh stage.
+
+## Productive and native variant review — 2026-10-02
+
+`reflex-productive-variants-review-20261002` accepts ten exact native/regional
+forms or transparent noun compounds. RAE voseo proof preserves informastes
+and informates; primary Romanesco/historical and Triestine evidence preserves
+osservazzione, innosservata, informazzione and informazion. Informacittà has
+municipal native attestation. English compounds explicitly use finite head
+morphology rather than claiming whole-token dictionary attestation.
+Geological sinformes is excluded from inform; the historically homographic
+French informité is genuinely uncertain after comparing Godefroy and TLFi.
+Two conservation/reproduction tests pass, zero skips. Counts: 38 applied +
+ten accepted unapplied + 358 excluded + 155 investigated uncertain + 201
+pending = 762. Runtime stays observ 312 / inform 1,466. Complete the running
+full validation of the seven-name stage, then prepare the ten new variants.
