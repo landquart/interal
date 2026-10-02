@@ -1,0 +1,109 @@
+{
+  "schema_version": 2,
+  "canonical_root": "act",
+  "base_commit": "8c03dc492666b25b79359e61b4a31f188b56346c",
+  "source_run_id": 35647932153,
+  "previous_checkpoint": "audit/associative-family-v5/action-review-checkpoint-20261001",
+  "previous_decision_sha256": "74949b38bd7c2fb690bd464a6d1b7508570fc08868ea42111edd1c04a2a8e107",
+  "source_artifacts": {
+    "en-candidates.json.gz": "e0269c60b78f557097fbb01d41accfdc0ebaf70c7cc63433be9eb5e1d9e664af",
+    "de-candidates.json.gz": "498d3c6fceb649afe91627b908035a2c02736cca7234012ac3763e0f8c7eb809",
+    "fr-candidates.json.gz": "0b09197924b68bea813542ce1294344821fce1ab3336f35fe5392a83033ead98",
+    "es-candidates.json.gz": "1c40a9f8094d6e00e0c4d502fb419f5734428f196c2e24d6ba6b02d7b4fc8fa0",
+    "it-candidates.json.gz": "20e304abbd08821bddc73cb77c9c245de2170d5c9ae59747bab9ca69e90ec433",
+    "ru-candidates.json.gz": "e29d337f61f37a3797cbf2067d235e765969807d29e55cc7473f21c409362eae",
+    "original-families.json.gz": "45a0f98391e534d55c1cdf239c133534da02e92141d0c679f9d92d0f1d0c16f1"
+  },
+  "counts": {
+    "en": {
+      "accepted": 242,
+      "excluded": 7939,
+      "uncertain": 4,
+      "pending_review": 1548
+    },
+    "de": {
+      "accepted": 808,
+      "excluded": 11934,
+      "uncertain": 134,
+      "pending_review": 4445
+    },
+    "fr": {
+      "accepted": 208,
+      "excluded": 3633,
+      "uncertain": 0,
+      "pending_review": 634
+    },
+    "es": {
+      "accepted": 372,
+      "excluded": 4170,
+      "uncertain": 2,
+      "pending_review": 1249
+    },
+    "it": {
+      "accepted": 223,
+      "excluded": 1709,
+      "uncertain": 2,
+      "pending_review": 10190
+    },
+    "ru": {
+      "accepted": 245,
+      "excluded": 2135,
+      "uncertain": 1,
+      "pending_review": 450
+    }
+  },
+  "transitions": {
+    "en": {
+      "accepted->accepted": 160,
+      "excluded->excluded": 7663,
+      "uncertain->accepted": 82,
+      "uncertain->excluded": 276,
+      "uncertain->uncertain": 4,
+      "uncertain->pending_review": 1548
+    },
+    "de": {
+      "accepted->accepted": 82,
+      "excluded->excluded": 11447,
+      "uncertain->accepted": 726,
+      "uncertain->excluded": 487,
+      "uncertain->uncertain": 134,
+      "uncertain->pending_review": 4445
+    },
+    "fr": {
+      "accepted->accepted": 144,
+      "excluded->excluded": 3533,
+      "uncertain->accepted": 64,
+      "uncertain->excluded": 100,
+      "uncertain->pending_review": 634
+    },
+    "es": {
+      "accepted->accepted": 284,
+      "excluded->excluded": 3836,
+      "uncertain->accepted": 88,
+      "uncertain->excluded": 334,
+      "uncertain->uncertain": 2,
+      "uncertain->pending_review": 1249
+    },
+    "it": {
+      "accepted->accepted": 218,
+      "excluded->excluded": 849,
+      "uncertain->accepted": 5,
+      "uncertain->excluded": 860,
+      "uncertain->uncertain": 2,
+      "uncertain->pending_review": 10190
+    },
+    "ru": {
+      "accepted->accepted": 210,
+      "excluded->excluded": 2010,
+      "uncertain->accepted": 35,
+      "uncertain->excluded": 125,
+      "uncertain->uncertain": 1,
+      "uncertain->pending_review": 450
+    }
+  },
+  "runtime_applied": false,
+  "full_family_certification": false,
+  "remaining_work": "pending_review is an explicit work queue, not a linguistic uncertainty verdict. Original actio/acti containers cannot yet be retired as a whole. No full corpus completeness is claimed outside the frozen retrieval frame.",
+  "decision_sha256": "cf94d0afadfdfa1e19b08e82301fea88cde2569221548365a70e8211ccec2a21",
+  "positive_selections_sha256": "b212a18307888460589fe4377930215bfdb168ae8132ea28344b05825a8ff169"
+}
