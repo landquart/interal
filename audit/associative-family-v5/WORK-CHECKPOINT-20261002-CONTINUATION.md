@@ -355,3 +355,12 @@ current queues: `rare-heads-extension-validation-20261002/validation.json`.
 The default committed integrity report is byte-identical to this fresh audit.
 Next: confirm remote CI at the new saved HEAD and continue the 243 pending
 observ/inform records; preserve 154 investigated uncertainties. No merge.
+
+## Russian-name primary-source research checkpoint — 2026-10-02
+
+`reflex-russian-names-research-20261002-2020/research-checkpoint.json`
+preserves exact pending/source records and primary native-language evidence
+for уралинформбюро, уралсвязьинформ and комиинформа. These three remain
+pending; no new decisions or memberships are claimed. Continue their finite
+head adjudication from this evidence. The queue stays 243 pending / 154
+investigated uncertain; 31 positive memberships are already applied.
