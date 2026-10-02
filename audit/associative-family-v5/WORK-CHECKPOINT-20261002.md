@@ -107,3 +107,34 @@ files and historical ledgers are unchanged. Remaining queues: creat 2,356;
 relat 409. Validation is pending in the next separate stage.
 
 Reproduce with `python scripts/review-associative-multiple-roots-20261002.py creation-relation`.
+
+## Overall review continuation: operation and mutation
+
+Creation/relation review is durable in commit df43c75392c170b3cfffda6ae4b635581d9613c8.
+The separate `operation-mutation-independent-heads-20261002` stage reviews
+200 additional old uncertain records: 29 oper exclusions (16 blooper/trooper
+occurrences across four languages and 13 Russian compounds with an о + пере-
+boundary); 171 mut exclusions (163 German Mütze forms plus six Anmut forms
+and two Edelmut forms). Dictionary heads and reviewer inferences are distinguished.
+
+The four-root continuation conserves every prior accepted record and all
+archived source metadata/components/routes. Runtime remains unchanged.
+Four targeted source/conservation/reproduction tests passed with no skips.
+Full sequential test suite is running and will be saved in a separate validation
+stage. Reproduce with `python scripts/review-associative-multiple-roots-20261002.py operation-mutation`;
+verify with `node --test tests/associative-multiple-roots-continuation.test.mjs`.
+
+Latest overall remaining queues after this continuation:
+- creat: 2,356 pending (33 reviewed exclusions).
+- relat: 409 pending (2 reviewed exclusions).
+- oper: 2,082 pending (29 reviewed exclusions).
+- mut: 2,662 pending (171 reviewed exclusions).
+- loc: 842 old uncertain, not reviewed in this continuation.
+- observ/inform: 730 pending; six reviewed positives awaiting materialization;
+  three investigated uncertain.
+- act: 16,642 pending and 143 investigated uncertain; 2,268 applied positives.
+
+Resume from the newest validation checkpoint, compose these deltas over the
+immutable old ledgers, and review remaining exact forms. The broader nat/loc/inter,
+Russian short-key and fifteen-val-route frames still require work. Do not treat
+this multi-root review as linguistic completion and do not reapply act materializers.
