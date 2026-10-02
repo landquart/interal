@@ -12,7 +12,8 @@ Source run: `35647932153`. No merge has been performed.
 | Italian action exclusions | `63ffcb701b89358ce00ed320159547db46a31620` | 1,536 additional exclusions backed by corpus verb records and bounded lexical analysis |
 | Reflex continuation | `7359b8e3c1190aeae15f18ff216f80036c3383c9` | 32 records reviewed: 6 positive selections, 23 exclusions, 3 investigated homonyms; 730 awaiting review |
 | Independent action heads | `faf105ccb0ff7c70ed2aad19206511953bcb1f46` | 128 English/French exclusions; original positive selections and source records retained |
-| Russian action heads | This commit | 40 independent Russian heads excluded; prior positive records and source metadata retained |
+| Russian action heads | `85169e0ef262d77aef4fd5720cfbbc82283ea691` | 40 independent Russian heads excluded; prior positive records and source metadata retained |
+| Final validation | This commit | Full sequential test suite including all new continuation tests passed; complete log, digests and remaining scope saved |
 
 The reflex continuation is linguistic evidence only: its six positives have not
 yet been added to runtime families. Historical checkpoints are immutable inputs.
@@ -21,9 +22,11 @@ queue, not a claim that the other records have been individually investigated.
 
 ## Verified state
 
-The full `npm test` run passed after `npm ci --ignore-scripts`. The separately
-saved log and its digest are under `validation-stage-20261002`. The new reflex
-continuation conservation/source proof test also passed separately.
+The full `npm test` run passed after `npm ci --ignore-scripts`. Its initial log
+and digest are under `validation-stage-20261002`. A second full run, including
+all three new continuation conservation/source proof tests, also passed for
+commit `85169e0ef262d77aef4fd5720cfbbc82283ea691`; its complete log and digests are
+under `validation-final-20261002`.
 
 The exhaustive repository audit passed for 2,456,540 families and 10,049,567
 memberships. Its durable result is `repository-static-integrity.json`.
