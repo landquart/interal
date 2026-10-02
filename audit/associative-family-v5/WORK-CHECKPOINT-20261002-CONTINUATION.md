@@ -312,3 +312,11 @@ formulation adjective. Both tests pass without skips. No runtime change yet.
 Frame: 31 accepted (24 applied + 7 awaiting separate guarded application),
 303 excluded, 119 genuine uncertain, 309 pending. Runtime remains 309/1,455.
 Prepare/persist guarded preflight for these seven; never repeat older repairs.
+
+## Rare native heads preflight — 2026-10-02
+
+Seven exact accepted records have frozen source routes and original runtime
+prefixes. Preflight tests: 11 passed, zero failures; the new application audit
+is the single intentional skip until application. Apply once with explicit
+current HEAD after this preflight is committed. All 309 remaining pending
+and 119 investigated uncertain records stay unresolved.

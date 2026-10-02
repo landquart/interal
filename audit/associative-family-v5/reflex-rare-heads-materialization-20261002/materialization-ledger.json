@@ -1,0 +1,1204 @@
+{
+  "schema_version": 1,
+  "repair": "extend_reviewed_observ_inform_rare_heads_20261002",
+  "source_run_id": 35647932153,
+  "baseline_commit": "42aa5f3d19e5cba8578c96b584205813ad9ce210",
+  "source_hashes": {
+    "audit/associative-family-v5/reflex-rare-native-heads-review-20261002-1915/decisions.json": "6f10310e25dcba0689b392cd37956b1421bc1516914c1fcd17ee4742860db569",
+    "audit/associative-family-v5/reflex-rare-native-heads-review-20261002-1915/pending-review.json": "d67fbf932c0147e40d1979a03ba18ef87e268d60d5896d23905626be54ec0913",
+    "audit/associative-family-v5/reflex-rare-native-heads-review-20261002-1915/source-records.json.gz": "b9c13c465a0c7cd009813b527111451ace9f70b23639a2442d2cbae0a7b27315",
+    "audit/associative-family-v5/reflex-checkpoint-20261001/candidates.json.gz": "ce3cc11eb045a4fe9f77bf79239fc585a9a324231c8a6d5530606df1e5488cfb",
+    "audit/associative-family-v5/reflex-foreign-paradigms-review-20261002-1900/pending-review.json": "264323cb74e0254a774000286fb281888bce91f46cd359950b7c1a0c5778f126",
+    "audit/associative-family-v5/reflex-rare-native-heads-review-20261002-1915/inventory.json": "1c3be18f940dd9c7fe10c86d8e7e3a28c93959180b5725cc71c04da56110cf54",
+    "audit/associative-family-v5/reflex-rare-native-heads-review-20261002-1915/review-spec.json": "a30aa9f94e566d2fc929a8b03f902eb0100c073f8e74522d2597aa80235e4ffa",
+    "scripts/lib/associative-reflex-finite-review.py": "082b62dd8ca0b0f6a9021deba3f49bd28ad3c70dda668f4d47e9c6deaab39010",
+    "scripts/review-associative-reflex-rare-native-heads-20261002.py": "3049ad671d4b20959be1b54fa20e2b117e102436e477149222ed83a93b0c5961"
+  },
+  "source_routes": [
+    {
+      "language": "en",
+      "family_id": "surface:en:informat",
+      "member": {
+        "lemma_id": "lemma:cb9b63992e1e0f6d2756",
+        "word": "informated",
+        "normalized": "informated",
+        "search_form": "informated",
+        "rank": 425541,
+        "frequency_score": 0.05065291230704117,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.002895
+            ],
+            "category_ipm": 0.002895,
+            "category_score": 0.05065291230704117
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.002895
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "informat",
+            "canonical_candidate": "informat",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "informated",
+                  "informat",
+                  "informat"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "en",
+      "family_id": "surface:en:informat",
+      "member": {
+        "lemma_id": "lemma:80bce0cb339c4011669c",
+        "word": "informating",
+        "normalized": "informating",
+        "search_form": "informating",
+        "rank": 615304,
+        "frequency_score": 0.032735546362605054,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.00187
+            ],
+            "category_ipm": 0.00187,
+            "category_score": 0.032735546362605054
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.00187
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "informat",
+            "canonical_candidate": "informat",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "informating",
+                  "informat",
+                  "informat"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "en",
+      "family_id": "surface:en:ting",
+      "member": {
+        "lemma_id": "lemma:80bce0cb339c4011669c",
+        "word": "informating",
+        "normalized": "informating",
+        "search_form": "informating",
+        "rank": 615304,
+        "frequency_score": 0.032735546362605054,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.00187
+            ],
+            "category_ipm": 0.00187,
+            "category_score": 0.032735546362605054
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.00187
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "ting",
+            "canonical_candidate": "ting",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "informating",
+                  "ting",
+                  "ting"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "en",
+      "family_id": "surface:en:informational",
+      "member": {
+        "lemma_id": "lemma:f10454d96fb3c5e3485c",
+        "word": "informationals",
+        "normalized": "informationals",
+        "search_form": "informationals",
+        "rank": 425542,
+        "frequency_score": 0.05065291230704117,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.002895
+            ],
+            "category_ipm": 0.002895,
+            "category_score": 0.05065291230704117
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.002895
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "informational",
+            "canonical_candidate": "informational",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "informationals",
+                  "informational",
+                  "informational"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "en",
+      "family_id": "ety:36643f1a14d9",
+      "member": {
+        "lemma_id": "lemma:f10454d96fb3c5e3485c",
+        "word": "informationals",
+        "normalized": "informationals",
+        "search_form": "informationals",
+        "rank": 425542,
+        "frequency_score": 0.05065291230704117,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.002895
+            ],
+            "category_ipm": 0.002895,
+            "category_score": 0.05065291230704117
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.002895
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "als",
+            "canonical_candidate": "als",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "informationals",
+                  "als",
+                  "als"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "en",
+      "family_id": "surface:en:informat",
+      "member": {
+        "lemma_id": "lemma:3ac7daefb6a4848fd15d",
+        "word": "informateur",
+        "normalized": "informateur",
+        "search_form": "informateur",
+        "rank": 703266,
+        "frequency_score": 0.025336011347990555,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.001447
+            ],
+            "category_ipm": 0.001447,
+            "category_score": 0.025336011347990555
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.001447
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "informat",
+            "canonical_candidate": "informat",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "informateur",
+                  "informat",
+                  "informat"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "en",
+      "family_id": "surface:en:eur",
+      "member": {
+        "lemma_id": "lemma:3ac7daefb6a4848fd15d",
+        "word": "informateur",
+        "normalized": "informateur",
+        "search_form": "informateur",
+        "rank": 703266,
+        "frequency_score": 0.025336011347990555,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.001447
+            ],
+            "category_ipm": 0.001447,
+            "category_score": 0.025336011347990555
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.001447
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "eur",
+            "canonical_candidate": "eur",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "informateur",
+                  "eur",
+                  "eur"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "de",
+      "family_id": "surface:de:informat",
+      "member": {
+        "lemma_id": "lemma:65c41d55ff2ad43dbee1",
+        "word": "informateur",
+        "normalized": "informateur",
+        "search_form": "informateur",
+        "rank": 561011,
+        "frequency_score": 0.11242766823252369,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.006437
+            ],
+            "category_ipm": 0.006437,
+            "category_score": 0.11242766823252369
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.006437
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "informat",
+            "canonical_candidate": "informat",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "informateur",
+                  "informat",
+                  "informat"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "de",
+      "family_id": "surface:de:teur",
+      "member": {
+        "lemma_id": "lemma:65c41d55ff2ad43dbee1",
+        "word": "informateur",
+        "normalized": "informateur",
+        "search_form": "informateur",
+        "rank": 561011,
+        "frequency_score": 0.11242766823252369,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.006437
+            ],
+            "category_ipm": 0.006437,
+            "category_score": 0.11242766823252369
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.006437
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "teur",
+            "canonical_candidate": "teur",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "informateur",
+                  "teur",
+                  "teur"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "de",
+      "family_id": "surface:de:erva",
+      "member": {
+        "lemma_id": "lemma:9bd279fd9fd08a359c18",
+        "word": "observator",
+        "normalized": "observator",
+        "search_form": "observator",
+        "rank": 262911,
+        "frequency_score": 2.531099911399868,
+        "category_breakdown": {
+          "normative": {
+            "ipm_values": [
+              0.155407
+            ],
+            "category_ipm": 0.155407,
+            "category_score": 2.531099911399868
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "category": "normative",
+            "ipm": 0.155407
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "erva",
+            "canonical_candidate": "erva",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "observator",
+                  "erva",
+                  "erva"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "de",
+      "family_id": "surface:de:tor",
+      "member": {
+        "lemma_id": "lemma:9bd279fd9fd08a359c18",
+        "word": "observator",
+        "normalized": "observator",
+        "search_form": "observator",
+        "rank": 262911,
+        "frequency_score": 2.531099911399868,
+        "category_breakdown": {
+          "normative": {
+            "ipm_values": [
+              0.155407
+            ],
+            "category_ipm": 0.155407,
+            "category_score": 2.531099911399868
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "category": "normative",
+            "ipm": 0.155407
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "tor",
+            "canonical_candidate": "tor",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "observator",
+                  "tor",
+                  "tor"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "de",
+      "family_id": "surface:de:observ",
+      "member": {
+        "lemma_id": "lemma:9bd279fd9fd08a359c18",
+        "word": "observator",
+        "normalized": "observator",
+        "search_form": "observator",
+        "rank": 262911,
+        "frequency_score": 2.531099911399868,
+        "category_breakdown": {
+          "normative": {
+            "ipm_values": [
+              0.155407
+            ],
+            "category_ipm": 0.155407,
+            "category_score": 2.531099911399868
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "category": "normative",
+            "ipm": 0.155407
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "observ",
+            "canonical_candidate": "observ",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "observator",
+                  "observ",
+                  "observ"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "it",
+      "family_id": "surface:it:osservament",
+      "member": {
+        "lemma_id": "lemma:3c24a5446a5dd11a2fb6",
+        "word": "osservamenti",
+        "normalized": "osservamenti",
+        "search_form": "osservamenti",
+        "rank": 392126,
+        "frequency_score": 0.09387627061505811,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.005372
+            ],
+            "category_ipm": 0.005372,
+            "category_score": 0.09387627061505811
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.005372
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "osservament",
+            "canonical_candidate": "osservament",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "osservamenti",
+                  "osservament",
+                  "osservament"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "it",
+      "family_id": "surface:it:menti",
+      "member": {
+        "lemma_id": "lemma:3c24a5446a5dd11a2fb6",
+        "word": "osservamenti",
+        "normalized": "osservamenti",
+        "search_form": "osservamenti",
+        "rank": 392126,
+        "frequency_score": 0.09387627061505811,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.005372
+            ],
+            "category_ipm": 0.005372,
+            "category_score": 0.09387627061505811
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.005372
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "menti",
+            "canonical_candidate": "menti",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "osservamenti",
+                  "menti",
+                  "menti"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "before_families": {
+    "family:observ": {
+      "id": "family:observ",
+      "canonical": "observ",
+      "aliases": [
+        "observ",
+        "osserv",
+        "observation",
+        "osservazione",
+        "observatio",
+        "observati"
+      ],
+      "surface_forms": {
+        "en": [
+          "observ"
+        ],
+        "de": [
+          "observ"
+        ],
+        "fr": [
+          "observ"
+        ],
+        "es": [
+          "observ"
+        ],
+        "it": [
+          "osserv"
+        ],
+        "ru": [
+          "обсерв"
+        ]
+      },
+      "associative_component": true,
+      "exact_component": true,
+      "runtime_curated": true,
+      "verified": false,
+      "confidence": "B",
+      "review_status": "needs_review",
+      "source": "associative_reflex_review+manual_override",
+      "etymon_keys": [
+        "la:observare",
+        "la:observatio"
+      ],
+      "relation_types": [
+        "compound_component"
+      ],
+      "relation_evidence": [
+        {
+          "type": "manual_override",
+          "source": "audit/associative-family-v5/reflex-families-20261001.json",
+          "whole_lemma_union": false,
+          "language_reflex": true
+        },
+        {
+          "type": "manual_override",
+          "source": "audit/associative-family-v5/reflex-continuation-materialization-20261002/materialization-ledger.json",
+          "whole_lemma_union": false,
+          "language_reflex": true,
+          "full_family_certification": false
+        },
+        {
+          "type": "manual_override",
+          "source": "audit/associative-family-v5/reflex-heads-materialization-20261002/materialization-ledger.json",
+          "whole_lemma_union": false,
+          "language_reflex": true,
+          "full_family_certification": false
+        }
+      ],
+      "support": 309,
+      "language_support": {
+        "en": 39,
+        "de": 71,
+        "fr": 21,
+        "es": 112,
+        "it": 60,
+        "ru": 6
+      },
+      "suspicion_score": 0,
+      "suspicion_reasons": []
+    },
+    "family:inform": {
+      "id": "family:inform",
+      "canonical": "inform",
+      "aliases": [
+        "inform",
+        "informatio",
+        "information",
+        "informacion",
+        "informacija",
+        "informazione"
+      ],
+      "surface_forms": {
+        "en": [
+          "inform"
+        ],
+        "de": [
+          "inform"
+        ],
+        "fr": [
+          "inform"
+        ],
+        "es": [
+          "inform"
+        ],
+        "it": [
+          "inform"
+        ],
+        "ru": [
+          "информ"
+        ]
+      },
+      "associative_component": true,
+      "exact_component": true,
+      "runtime_curated": true,
+      "verified": false,
+      "confidence": "B",
+      "review_status": "needs_review",
+      "source": "associative_reflex_review+manual_override",
+      "etymon_keys": [
+        "la:informare",
+        "la:informatio"
+      ],
+      "relation_types": [
+        "compound_component"
+      ],
+      "relation_evidence": [
+        {
+          "type": "manual_override",
+          "source": "audit/associative-family-v5/reflex-families-20261001.json",
+          "whole_lemma_union": false,
+          "language_reflex": true
+        },
+        {
+          "type": "manual_override",
+          "source": "audit/associative-family-v5/reflex-continuation-materialization-20261002/materialization-ledger.json",
+          "whole_lemma_union": false,
+          "language_reflex": true,
+          "full_family_certification": false
+        },
+        {
+          "type": "manual_override",
+          "source": "audit/associative-family-v5/reflex-heads-materialization-20261002/materialization-ledger.json",
+          "whole_lemma_union": false,
+          "language_reflex": true,
+          "full_family_certification": false
+        }
+      ],
+      "support": 1455,
+      "language_support": {
+        "en": 57,
+        "de": 1029,
+        "fr": 53,
+        "es": 155,
+        "it": 82,
+        "ru": 79
+      },
+      "suspicion_score": 0,
+      "suspicion_reasons": []
+    }
+  },
+  "before_members": {
+    "family:observ": {
+      "en": {
+        "existed": true,
+        "count": 39,
+        "ordered_sha256": "937605551b63dc8fa89d58cad4c4d71e2dbf8269ff78d17afed5cfef8cf0f0a8"
+      },
+      "de": {
+        "existed": true,
+        "count": 71,
+        "ordered_sha256": "a0b8334ce58cf872dc47b9bc074070f3eaad2eff0fa44b5fa0f0c7d92b770267"
+      },
+      "fr": {
+        "existed": true,
+        "count": 21,
+        "ordered_sha256": "b7364ecf46db04e0aebd1d2ebacc413d17b7746f2becb6fcd8c09c37f4db23b1"
+      },
+      "es": {
+        "existed": true,
+        "count": 112,
+        "ordered_sha256": "5d1454f91bc8db38d5c32332ad35126c117f1d9f5eecbd4d5ab61e2f3da2e6cb"
+      },
+      "it": {
+        "existed": true,
+        "count": 60,
+        "ordered_sha256": "0a777a832b9589b7760cb942b316ad873a8ffa20b33190ddb1ef5a88f3974152"
+      },
+      "ru": {
+        "existed": true,
+        "count": 6,
+        "ordered_sha256": "0d744ccb3268275bc20b49ea9109867f8d665074c9e866e2c64f3cbd62c7b858"
+      }
+    },
+    "family:inform": {
+      "en": {
+        "existed": true,
+        "count": 57,
+        "ordered_sha256": "d993895f488189bcde6e05a360650dc03ba05a5446fd80aff7c60c3e697d1bc5"
+      },
+      "de": {
+        "existed": true,
+        "count": 1029,
+        "ordered_sha256": "efe38325a21bf2cb87299bb392ccb0df5f367352ffe63be53b8407c5b7100185"
+      },
+      "fr": {
+        "existed": true,
+        "count": 53,
+        "ordered_sha256": "82c6370515d5b7b82ae6e109324b11498d070db89a9c78339ecaea87870d8275"
+      },
+      "es": {
+        "existed": true,
+        "count": 155,
+        "ordered_sha256": "c1bddda7604edc7a52dffab2fe9d7fbffe08fe57516a46702fc2b2cc64b3be8a"
+      },
+      "it": {
+        "existed": true,
+        "count": 82,
+        "ordered_sha256": "7929810a82b58ce106b57023f29906b6e98325553f4ea28b705d12abf1c43c8e"
+      },
+      "ru": {
+        "existed": true,
+        "count": 79,
+        "ordered_sha256": "d83dc513698b24924ba9c6927cb92939b886bf89416990ff52b93e2e4c251201"
+      }
+    }
+  },
+  "additions": [
+    {
+      "lemma_id": "lemma:cb9b63992e1e0f6d2756",
+      "word": "informated",
+      "status": "accepted",
+      "reason": "Zuboff herself contrasts automate and informate in the HBS interview and uses informating. This is a genuine English information-technology verb with a recognizable inform element, not an apparent spelling error. The exact -ed/-ing forms are regular finite morphological inferences from the attested verb; the interview directly attests informating. No invented corpus measurement or claim that HBS supplies a dictionary inflection table.",
+      "source_family_ids": [
+        "surface:en:informat"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "attested_native_head",
+      "lexical_head": "informate",
+      "segmentation_or_lexical_identity": "English informate + regular -ed/-ing",
+      "source_references": [
+        "https://www.library.hbs.edu/working-knowledge/the-widening-rift-between-corporations-and-society"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:80bce0cb339c4011669c",
+      "word": "informating",
+      "status": "accepted",
+      "reason": "Zuboff herself contrasts automate and informate in the HBS interview and uses informating. This is a genuine English information-technology verb with a recognizable inform element, not an apparent spelling error. The exact -ed/-ing forms are regular finite morphological inferences from the attested verb; the interview directly attests informating. No invented corpus measurement or claim that HBS supplies a dictionary inflection table.",
+      "source_family_ids": [
+        "surface:en:informat",
+        "surface:en:ting"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "attested_native_head",
+      "lexical_head": "informate",
+      "segmentation_or_lexical_identity": "English informate + regular -ed/-ing",
+      "source_references": [
+        "https://www.library.hbs.edu/working-knowledge/the-widening-rift-between-corporations-and-society"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:f10454d96fb3c5e3485c",
+      "word": "informationals",
+      "status": "accepted",
+      "reason": "The product publisher uses the exact plural informationals for informational records; the student organization independently uses it for informational meetings. These are transparent nominal uses of informational from information. Rare noun morphology is attested rather than rejected as an apparent adjective error.",
+      "source_family_ids": [
+        "surface:en:informational",
+        "ety:36643f1a14d9"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "attested_native_head",
+      "lexical_head": "informational",
+      "segmentation_or_lexical_identity": "English informational used as a count noun + plural -s",
+      "source_references": [
+        "https://support.alisonline.com/hc/en-us/articles/4419337530637-Guide-to-Informational-orders",
+        "https://www.aggietansa.com/apply.html",
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:3ac7daefb6a4848fd15d",
+      "word": "informateur",
+      "status": "accepted",
+      "reason": "The Dutch government defines and repeatedly uses informateur in its English explanation of government formation. This supplies target-language attestation of the borrowed lexical role, rather than an unexplained foreign quotation. The French information-provider head is separately dictionary-attested; the unchanged inform constituent remains recognizable. The source proves attested lexical usage, not every sense or corpus context.",
+      "source_family_ids": [
+        "surface:en:informat",
+        "surface:en:eur"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "attested_native_head",
+      "lexical_head": "informateur",
+      "segmentation_or_lexical_identity": "English borrowed political-role noun informateur",
+      "source_references": [
+        "https://www.government.nl/government/about-the-government/forming-a-new-government",
+        "https://www.dictionnaire-academie.fr/article/A9I1215"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:65c41d55ff2ad43dbee1",
+      "word": "informateur",
+      "status": "accepted",
+      "reason": "The Duden Luxembourg Standard German publisher preview explicitly lists Informateur as a vocabulary item in the national variety. French informateur is documented as an information-provider head. This is evidence of a German national-variety lexical borrowing, not an instruction to accept all French insertions. Preview retrieval was available in indexed text; direct PDF open returned 406, so no unseen full dictionary entry is claimed.",
+      "source_family_ids": [
+        "surface:de:informat",
+        "surface:de:teur"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "attested_native_head",
+      "lexical_head": "Informateur",
+      "segmentation_or_lexical_identity": "German national-variety Informateur",
+      "source_references": [
+        "https://shop.duden.de/media/19/df/09/1687426622/Leseprobe_9783411756803_Luxemburger_Standarddeutsch.pdf",
+        "https://www.dictionnaire-academie.fr/article/A9I1215"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:9bd279fd9fd08a359c18",
+      "word": "observator",
+      "status": "accepted",
+      "reason": "Duden directly defines the German noun as a person working in an observatory and gives Latin observator as origin. Exact national lexical identity and observation branch are documented; no prefix conversion rule.",
+      "source_family_ids": [
+        "surface:de:erva",
+        "surface:de:tor",
+        "surface:de:observ"
+      ],
+      "language": "de",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "attested_native_head",
+      "lexical_head": "Observator",
+      "segmentation_or_lexical_identity": "German Observator",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Observator"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:3c24a5446a5dd11a2fb6",
+      "word": "osservamenti",
+      "status": "accepted",
+      "reason": "The digitized historical Italian-English dictionary explicitly gives osservamento as observation beside osservazione and osservare. The exact plural -i is a finite regular noun-inflection inference. The historical head has the transparent Italian osserv realization of observ; this does not claim frequent modern usage or an open osserv* classifier.",
+      "source_family_ids": [
+        "surface:it:osservament",
+        "surface:it:menti"
+      ],
+      "language": "it",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "attested_native_head",
+      "lexical_head": "osservamento",
+      "segmentation_or_lexical_identity": "Italian historical noun osservamento + plural -i",
+      "source_references": [
+        "https://archive.org/stream/italianpocketdi00grag/italianpocketdi00grag_djvu.txt",
+        "https://www.treccani.it/vocabolario/osservare/"
+      ],
+      "runtime_applied": false
+    }
+  ],
+  "preservation": [
+    {
+      "part": "families",
+      "bucket": "5c",
+      "ignore": [
+        "family:inform"
+      ],
+      "unrelated_sha256": "4a30c2690a66356e3b6fdf8e64a112780a1bdc6b13f6a6d6c5b80fb242b4f4c1"
+    },
+    {
+      "part": "members/en",
+      "bucket": "5c",
+      "ignore": [
+        "family:inform"
+      ],
+      "unrelated_sha256": "2f959dc94e2e9cd5f25192d30604305e3c78edeee68547b6f690988ef4a892a8"
+    },
+    {
+      "part": "members/de",
+      "bucket": "5c",
+      "ignore": [
+        "family:inform"
+      ],
+      "unrelated_sha256": "49b03a4beaf6831a2da34a00a158b78dcf6d63ca2e8afd179898991663951c58"
+    },
+    {
+      "part": "families",
+      "bucket": "6c",
+      "ignore": [
+        "family:observ"
+      ],
+      "unrelated_sha256": "6ba53f49c956f65825fcd38cad9b949b14ab208b8ab8a61b2b6121964773880b"
+    },
+    {
+      "part": "members/de",
+      "bucket": "6c",
+      "ignore": [
+        "family:observ"
+      ],
+      "unrelated_sha256": "246cb7b12700ca627c360e135b881e864e0b7de85e233b871f176e5f551b245b"
+    },
+    {
+      "part": "members/it",
+      "bucket": "6c",
+      "ignore": [
+        "family:observ"
+      ],
+      "unrelated_sha256": "4cbc9c6554cd48cad7922a0a6c00b44b90856a9afcd65f5c5f3039297c25b718"
+    }
+  ],
+  "runtime_preflight_sha256": {
+    "manifest.json": "3c3b5d4e113b078fbd8b9f29bf1f2d751190d2bc5f7c2fee53acafb46636fc15",
+    "report.json": "606f3fdfc95470708fc3f940d1bdd15eb02dd7368c43f7c7ce17e9419b41f657",
+    "repository-provenance.json": "bdb59dd8b45d5ade7fdc8f7404035dd305f7e8758da113a60795bccb3bab30af",
+    "families/5c.json.gz": "8e4748469002082d45fc644f513e287b026798ceaefc2795dff27e1c80becd37",
+    "members/en/5c.json.gz": "2f2d52114ceae0ba0b473f2b20910276e34d193738fd582218a5cd172334cdbc",
+    "members/de/5c.json.gz": "d09988fa1554215edc6a6cab94b9e3c0fe0a2bfe0b558330078969864a55e888",
+    "families/6c.json.gz": "179cf63955f434028a7d47193aba3eeb0f5887c4c0690b1fbd33bee6ae848e49",
+    "members/de/6c.json.gz": "5050a96f778bbe1484640e82cdaa0006bb3b3540dd34720070dab909d292c5ef",
+    "members/it/6c.json.gz": "f56e9e21a8711ec5ec519affddc63cb0511a8759d81cf0f6e3a3774096da5317"
+  },
+  "expected_written_files": [
+    "families/5c.json.gz",
+    "families/6c.json.gz",
+    "manifest.json",
+    "members/de/5c.json.gz",
+    "members/de/6c.json.gz",
+    "members/en/5c.json.gz",
+    "members/it/6c.json.gz",
+    "report.json",
+    "repository-provenance.json"
+  ],
+  "untouched_files_sha256": "59c5340305ebe281b9d13e8fb471a6275b4ea9a9f80eec7a237d8edf61e62668",
+  "metadata_preflight": {
+    "manifest.json": "3c3b5d4e113b078fbd8b9f29bf1f2d751190d2bc5f7c2fee53acafb46636fc15",
+    "report.json": "606f3fdfc95470708fc3f940d1bdd15eb02dd7368c43f7c7ce17e9419b41f657",
+    "repository-provenance.json": "bdb59dd8b45d5ade7fdc8f7404035dd305f7e8758da113a60795bccb3bab30af"
+  },
+  "expected_added_memberships": 7,
+  "expected_removed_memberships": 0,
+  "alias_delta": 0,
+  "net_family_delta": 0,
+  "status": "ready_to_materialize",
+  "full_family_certification": false
+}

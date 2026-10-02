@@ -1,15 +1,14 @@
-import {readBeforeRareExtensionFile,preRareExtensionShard} from './associative-reflex-rare-heads-extension-audit.mjs';
 import assert from 'node:assert/strict';
 import { readFile, readdir } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { gunzipSync, gzipSync } from 'node:zlib';
 import { familyBucket } from '../../associativvordes/js/family-index-loader.js';
 
-export const continuationRepair='extend_reviewed_observ_inform_heads_20261002';
-export const continuationPath='audit/associative-family-v5/reflex-heads-materialization-20261002';
+export const continuationRepair='extend_reviewed_observ_inform_rare_heads_20261002';
+export const continuationPath='audit/associative-family-v5/reflex-rare-heads-materialization-20261002';
 export const continuationLedger=continuationPath+'/materialization-ledger.json';
-export const reviewPaths=['audit/associative-family-v5/reflex-attested-heads-review-20261002','audit/associative-family-v5/reflex-spanish-enclitics-review-20261002'];
-export const readJson=async p=>{const match=p.match(/^(.*)\/(families\/[^/]+|members\/[^/]+\/[^/]+)$/);const raw=match?await readBeforeRareExtensionFile(match[1],match[2]):await readFile(p);return JSON.parse((p.endsWith('.gz')?gunzipSync(raw):raw).toString());};
+export const reviewPaths=['audit/associative-family-v5/reflex-rare-native-heads-review-20261002-1915'];
+export const readJson=async p=>JSON.parse((p.endsWith('.gz')?gunzipSync(await readFile(p)):await readFile(p)).toString());
 export const sha=b=>createHash('sha256').update(b).digest('hex');
 export const digest=v=>sha(JSON.stringify(v));
 export const evidence=()=>({type:'manual_override',source:continuationLedger,whole_lemma_union:false,language_reflex:true,full_family_certification:false});
@@ -34,7 +33,7 @@ export async function untouchedFilesDigest(root,excluded){
   for(const e of (await readdir(root+'/'+dir,{withFileTypes:true})).sort((a,b)=>a.name.localeCompare(b.name,'en'))){
    const rel=(dir?dir+'/':'')+e.name;
    if(e.isDirectory()) await walk(rel);
-   else if(!excluded.includes(rel)) entries.push([rel,sha(await readBeforeRareExtensionFile(root,rel))]);
+   else if(!excluded.includes(rel)) entries.push([rel,sha(await readFile(root+'/'+rel))]);
   }
  }
  await walk('');return digest(entries);
@@ -62,7 +61,7 @@ export async function auditContinuation(root){
  if(!repair)return null;
  const bytes=await readFile(continuationLedger),ledger=JSON.parse(bytes);
  assert.equal(repair.decision_ledger_sha256,sha(bytes));
- assert.equal(repair.added_memberships,18);assert.equal(repair.removed_memberships,0);
+ assert.equal(repair.added_memberships,7);assert.equal(repair.removed_memberships,0);
  const status=await readJson(continuationPath+'/materialization-status.json');
  assert.equal(status.runtime_applied,true);assert.equal(status.full_family_certification,false);
  assert.deepEqual(status.repair_delta,repair);
@@ -101,16 +100,15 @@ export async function auditContinuation(root){
 }
 
 const appliedViews=new Map();
-async function headState(root){
+async function rareState(root){
  if(!appliedViews.has(root)){
   const provenance=await readJson(root+'/repository-provenance.json');
   appliedViews.set(root,provenance.repository_repairs.some(r=>r.repair===continuationRepair)?await readJson(continuationLedger):null);
  }
  return appliedViews.get(root);
 }
-export async function preHeadExtensionShard(shard,part,bucket,root='associativvordes/family-index-v5'){
- shard=await preRareExtensionShard(shard,part,bucket,root);
- const ledger=await headState(root);if(!ledger)return shard;
+export async function preRareExtensionShard(shard,part,bucket,root='associativvordes/family-index-v5'){
+ const ledger=await rareState(root);if(!ledger)return shard;
  for(const [id,before]of Object.entries(ledger.before_families)){
   if(familyBucket(id)!==bucket)continue;
   if(part==='families')shard[id]=structuredClone(before);
@@ -122,11 +120,11 @@ export async function preHeadExtensionShard(shard,part,bucket,root='associativvo
  }
  return shard;
 }
-export async function readBeforeHeadExtensionFile(root,relative){
- const raw=await readBeforeRareExtensionFile(root,relative),ledger=await headState(root);
+export async function readBeforeRareExtensionFile(root,relative){
+ const raw=await readFile(root+'/'+relative),ledger=await rareState(root);
  if(!ledger||!relative.endsWith('.json.gz')||!ledger.expected_written_files.includes(relative))return raw;
  const part=relative.slice(0,relative.lastIndexOf('/')),bucket=relative.slice(relative.lastIndexOf('/')+1,-8);
- const shard=await preHeadExtensionShard(JSON.parse(gunzipSync(raw)),part,bucket,root);
+ const shard=await preRareExtensionShard(JSON.parse(gunzipSync(raw)),part,bucket,root);
  const prior=gzipSync(JSON.stringify(shard),{level:6});
  assert.equal(sha(prior),ledger.runtime_preflight_sha256[relative],'Exact historical shard reconstruction failed: '+relative);
  return prior;

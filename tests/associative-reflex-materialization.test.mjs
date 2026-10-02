@@ -1,3 +1,4 @@
+import {auditContinuation as auditRareExtension} from '../scripts/lib/associative-reflex-rare-heads-extension-audit.mjs';
 import {auditContinuation as auditHeadExtension} from '../scripts/lib/associative-reflex-heads-extension-audit.mjs';
 import assert from 'node:assert/strict';
 import {test} from 'node:test';
@@ -7,8 +8,9 @@ import {FamilyIndexLoader} from '../associativvordes/js/family-index-loader.js';
 import {createCandidateIndexLoader} from '../associativvordes/js/candidate-index-loader.js';
 import {auditContinuation} from '../scripts/lib/associative-reflex-continuation-audit.mjs';
 const priorExtension=await auditContinuation('associativvordes/family-index-v5');
+const rareExtension=await auditRareExtension('associativvordes/family-index-v5');
 const headExtension=await auditHeadExtension('associativvordes/family-index-v5');
-const continuation={additions:[...(priorExtension?.additions||[]),...(headExtension?.additions||[])]};
+const continuation={additions:[...(priorExtension?.additions||[]),...(headExtension?.additions||[]),...(rareExtension?.additions||[])]};
 const read=async p=>JSON.parse((p.endsWith('.gz')?gunzipSync(await readFile(p)):await readFile(p)).toString());
 const base='audit/associative-family-v5/';
 const pairs=ms=>ms.map(m=>[m.lemma_id,m.word]).sort();
