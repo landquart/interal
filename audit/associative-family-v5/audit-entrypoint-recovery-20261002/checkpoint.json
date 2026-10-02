@@ -1,0 +1,19 @@
+{
+  "baseline_head": "5c2bd4b66d7d27e00a56d217cd96ce1c1cf74d1f",
+  "tests_workflow": {
+    "id": 37028152552,
+    "conclusion": "success"
+  },
+  "audit_workflow": {
+    "id": 37028152256,
+    "job_id": 110909382448,
+    "conclusion": "failure",
+    "failed_step": "Exhaustively audit static gzip shards",
+    "cause": "Import prepended before hashbang produced SyntaxError at line 2. Audit never ran; report comparison skipped."
+  },
+  "repair": "Move existing hashbang to line 1; preserve audit logic and evidence checks.",
+  "node_check_exit_code": 0,
+  "full_audit_status": "pending rerun",
+  "runtime_changed_by_this_stage": false,
+  "full_family_certification": false
+}
