@@ -3,8 +3,7 @@
 Current state: 38 reviewed continuation memberships applied (six earlier,
 18 in the first extension, seven rare native heads and seven native compounds).
 Latest support: observ 312 / inform 1,466. All 12 targeted application tests
-pass with zero failures or skips; fresh full-suite and exhaustive validation
-is the next required stage. Latest immutable review queue: 201 pending,
+pass with zero failures or skips; the full 120-file suite and exhaustive audit also pass. Latest immutable review queue: 201 pending,
 155 investigated uncertain, 358 excluded; ten accepted variants awaiting
 a separate guarded application.
 Earlier sections below are dated history.
@@ -424,3 +423,14 @@ Two conservation/reproduction tests pass, zero skips. Counts: 38 applied +
 ten accepted unapplied + 358 excluded + 155 investigated uncertain + 201
 pending = 762. Runtime stays observ 312 / inform 1,466. Complete the running
 full validation of the seven-name stage, then prepare the ten new variants.
+
+## Native compound full validation — 2026-10-02
+
+The complete 120-file npm suite and fresh exhaustive audit pass at runtime
+056df64f60201de0713214942c632f50a339e410. The default integrity report is
+byte-identical to the fresh audit log; memberships total 10,049,775.
+`native-compounds-extension-validation-20261002/validation.json` preserves
+logs, code hashes and current open queues. Productive review added during
+validation independently passes two tests, zero skips. Its ten positives
+remain unapplied and require a separate preflight/application. This technical
+pass does not certify the full linguistic families.
