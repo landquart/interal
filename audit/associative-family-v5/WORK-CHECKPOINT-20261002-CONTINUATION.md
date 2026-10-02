@@ -83,3 +83,12 @@ byte-identical reconstruction tests passed without skips.
 Reproduce with `python scripts/review-associative-reflex-phrases-20261002.py`.
 Old 730-count notes above are historical. Current runtime supports remain
 observ 298 and inform 1,448. All other open queues are unchanged by this stage.
+
+## Compatibility-test composition
+
+The older information repair test also compared compatibility queries against
+its immutable original selection. It now composes that selection with the
+separately audited extension, and preserves the new records' independent
+components rather than demanding inform-only arrays. Both information repair
+tests pass without skips. Full npm tests are restarted with every new review
+and runtime test included. No further runtime mutation occurred.

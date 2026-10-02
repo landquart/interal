@@ -5,6 +5,8 @@ import {readFile} from 'node:fs/promises';
 import {gunzipSync} from 'node:zlib';
 import {FamilyIndexLoader} from '../associativvordes/js/family-index-loader.js';
 import {createCandidateIndexLoader} from '../associativvordes/js/candidate-index-loader.js';
+import {auditContinuation} from '../scripts/lib/associative-reflex-continuation-audit.mjs';
+const extension=await auditContinuation('associativvordes/family-index-v5');
 const read=async p=>JSON.parse((p.endsWith('.gz')?gunzipSync(await readFile(p)):await readFile(p)).toString());
 const treeLoader=()=>new FamilyIndexLoader({baseUrl:'associativvordes/family-index-v5',fetchJson:read});
 const ledger=()=>read('audit/associative-family-v5/information-decisions-20260930.json');
@@ -21,8 +23,8 @@ test('broader inform root preserves the historical reviewed information subset a
   const historical=[...d.retained,...l.added.filter(a=>a.language===d.language).map(a=>a.member)];
   assert.deepEqual(pairs(a.members[d.language][l.canonical_family_id]||[]),pairs(historical));
   const ms=await f.members(family.id,d.language);assert(historical.every(m=>ms.some(x=>x.lemma_id===m.lemma_id&&x.word===m.word)));
-  for(const alias of ['inform',...l.aliases])assert.deepEqual(pairs(await loader.loadCandidateEntries(d.language,alias)),pairs(n.accepted.inform[d.language]),`${d.language}/${alias}`);
-  for(const m of ms)assert(m.components.every(c=>c.canonical_candidate==='inform'&&c.evidence.every(e=>e.type==='manual_override'&&e.analysis)));
+  for(const alias of ['inform',...l.aliases])assert.deepEqual(pairs(await loader.loadCandidateEntries(d.language,alias)),pairs([...n.accepted.inform[d.language],...(extension?.additions||[]).filter(m=>m.canonical_root==='inform'&&m.language===d.language)]),`${d.language}/${alias}`);
+  for(const m of ms)assert((extension?.additions||[]).some(r=>r.canonical_root==='inform'&&r.language===d.language&&r.lemma_id===m.lemma_id)||m.components.every(c=>c.canonical_candidate==='inform'&&c.evidence.every(e=>e.type==='manual_override'&&e.analysis)));
  }
  const ru=await loader.loadCandidateEntries('ru','информация');assert(ru.some(m=>m.word==='информация'));assert(ru.some(m=>m.word==='информационно'));
  assert(! (await f.candidateEntries('inform','en')).some(m=>m.word==='informal'));
