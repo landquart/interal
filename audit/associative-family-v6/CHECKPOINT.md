@@ -1,3 +1,17 @@
+# Current verified state
+
+Architecture PR #652 remains a draft above PR #651 at 22e6293f72a22e80e364079d83031a1f8f2a36d6. No merge or production switch. All stages are separate remote commits; source v5 remains unchanged.
+
+Final local validation passed: all 124 test files, 11 targeted tests, the independent v6 audit, byte-identical v5 preservation audit, and deterministic replay of all 269 generated artifacts. Exact source enumeration verifies all 4,924,980 IDs and preserves 829 zero-membership records. Logs, source hashes and replay hashes are in validation.json and accompanying compressed logs. Node runtime: v24.19.0. Remote Actions run separately; local validation is not a claim about their outcome.
+
+Durable stages: mandate/baseline 7a9696fe16a192531c78a6b431099adec9f5404d; core architecture 3440cef0fdd63d28711472020542cc6fbc007069; global migration e8f37f4d3d2540f34a4dd75d56d115e1c02b3104; shadow runtime/corpus/risk analysis 6c4bf9b6aa85f62e52dee80e48eee65f1be0c2e5; authoritative queues and CI 162b51de7ab3d8aa2165a5b2eba123092611b360. This final validation is saved as the following separate commit.
+
+The 16 catalog families preserve 19,967 accepted links. Technical objects are classified independently. Current queues have 25,202 distinct pending/uncertain records; 155 reflex uncertainties and historical reconciliation frames remain explicit separate work. Review reduction is currently 1.0: 19,717 legacy exact-record units still need evidenced lexical heads. Tenfold acceleration and full linguistic certification are not established.
+
+Resume with evidence-backed shared-head decisions through scripts/prepare-associative-v6-head-review.mjs, reconcile historical loc/nat/inter queues, and review canonical promotions, Russian short roots and val branches. The generic builder remaining-work note about zero-membership reconstruction predates the successful independent corpus enumeration; corpus-enumeration.json is authoritative for that completed check.
+
+## Earlier checkpoints (history)
+
 # V6 architecture checkpoint
 
 Parent: PR #651 at 22e6293f72a22e80e364079d83031a1f8f2a36d6. New architecture PR #652 remains a draft above it. No merge or production switch.
