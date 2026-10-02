@@ -4,8 +4,8 @@ Current state: 24 reviewed continuation memberships applied (six earlier and
 18 in the latest extension). Latest support: observ 309 / inform 1,455.
 All 15 targeted application tests passed, no failures or skips. The full
 109-file suite and exhaustive audit passed; two later review test files each
-passed 2 tests, no skips. Latest continuation queue: 514 pending,
-62 investigated uncertain, 162 excluded. Earlier sections below are dated stage history.
+passed 2 tests, no skips. Latest continuation queue: 377 pending,
+62 investigated uncertain, 299 excluded. Earlier sections below are dated stage history.
 Latest relation overlay: `relation-phrase-boundaries-20261002` (325 pending).
 Resume from the stage-specific inventories,
 `continuation-validation-20261002/validation.json` and the complete
@@ -275,3 +275,15 @@ Actual remote HEAD 7514aeda230e7e3e67b3b41bb2063f068f38a364 passed Tests
 37046182991 and Audit repository associative family v5 37046182981.
 Continue first with 514 reflex pending, then relation 325 and loc 842.
 The new brief supersedes the earlier task priority order. No merge.
+
+## Finite spelling-defect overlay
+
+reflex-spelling-defects-review-20261002-1830 excludes 137 explicitly reviewed
+malformed tokens across all six languages. Each keeps its exact source ID,
+source fields, comparison form, lexical evidence and specific diagnostic.
+Comparison forms are not repaired corpus records and are never materialized.
+Rare forms, foreign words, ambiguous historical spelling and clitic/accent
+variants are outside this stage; no edit-distance classifier is introduced.
+Both source/conservation and byte-identical reproduction tests passed without
+skips. Current frame: 24 applied, 299 excluded, 62 genuine uncertain, 377 pending.
+Runtime remains observ 309 / inform 1,455. Continue from this pending file.
