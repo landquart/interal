@@ -1,0 +1,724 @@
+{
+  "schema_version": 1,
+  "source_run_id": 35647932153,
+  "inputs": {
+    "spec_path": "audit/associative-family-v5/reflex-multilingual-heads-review-20261002-2010/review-spec.json",
+    "spec_sha256": "bf8682018023fe9b3ef5035b102e1c4b90b0239b9d6a1136f2701bcdb5fc9dea",
+    "previous_pending_path": "audit/associative-family-v5/reflex-accent-defects-review-20261002-1945/pending-review.json",
+    "previous_pending_sha256": "b85670e63021229b8a1420475d5c53636ad7f946f0138523746423202dac1eb0",
+    "previous_inventory_path": "audit/associative-family-v5/reflex-accent-defects-review-20261002-1945/inventory.json",
+    "previous_inventory_sha256": "6371c85aa0d1a7fa98c43ccd95b66c94bfc05cd43cf40827887011d464e9b0b9",
+    "source_candidate_path": "audit/associative-family-v5/reflex-checkpoint-20261001/candidates.json.gz",
+    "source_candidate_sha256": "ce3cc11eb045a4fe9f77bf79239fc585a9a324231c8a6d5530606df1e5488cfb"
+  },
+  "source_candidate_sha256": "ce3cc11eb045a4fe9f77bf79239fc585a9a324231c8a6d5530606df1e5488cfb",
+  "previous_pending_sha256": "b85670e63021229b8a1420475d5c53636ad7f946f0138523746423202dac1eb0",
+  "decisions": [
+    {
+      "lemma_id": "lemma:75cc7cdef6738755837b",
+      "word": "informeer",
+      "status": "uncertain",
+      "reason": "Investigated exact token informeer: Dutch informeren: first-person present / inversion form informeer. The cited dictionary establishes the recognizable lexical head/paradigm. This is a finite linguistic finding, not a blanket foreign-word rule. Aggregate source metadata supplies no sentence and cannot resolve native borrowing, foreign quotation/title or token-language mismatch in the assigned en corpus. Diacritic-losing Romanian comparisons, where specified, establish only a plausible lexical identity, not acceptance of a corrected token. Native realization remains unproved; no membership, spelling replacement, synthesized measurement or automatic exclusion.",
+      "source_family_ids": [
+        "surface:en:meer",
+        "surface:en:informe"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "segmentation_or_lexical_identity": "Dutch informeren: first-person present / inversion form informeer",
+      "source_references": [
+        "https://anw.ivdnt.org/article/informeren"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:2bd9125d42040d969499",
+      "word": "informeren",
+      "status": "uncertain",
+      "reason": "Investigated exact token informeren: Dutch infinitive and plural present informeren. The cited dictionary establishes the recognizable lexical head/paradigm. This is a finite linguistic finding, not a blanket foreign-word rule. Aggregate source metadata supplies no sentence and cannot resolve native borrowing, foreign quotation/title or token-language mismatch in the assigned de corpus. Diacritic-losing Romanian comparisons, where specified, establish only a plausible lexical identity, not acceptance of a corrected token. Native realization remains unproved; no membership, spelling replacement, synthesized measurement or automatic exclusion.",
+      "source_family_ids": [
+        "surface:de:informere"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "segmentation_or_lexical_identity": "Dutch infinitive and plural present informeren",
+      "source_references": [
+        "https://anw.ivdnt.org/article/informeren"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:7a5461f85602ffbb842b",
+      "word": "informatie",
+      "status": "uncertain",
+      "reason": "Investigated exact token informatie: Dutch noun informatie (information). The cited dictionary establishes the recognizable lexical head/paradigm. This is a finite linguistic finding, not a blanket foreign-word rule. Aggregate source metadata supplies no sentence and cannot resolve native borrowing, foreign quotation/title or token-language mismatch in the assigned it corpus. Diacritic-losing Romanian comparisons, where specified, establish only a plausible lexical identity, not acceptance of a corrected token. Native realization remains unproved; no membership, spelling replacement, synthesized measurement or automatic exclusion.",
+      "source_family_ids": [
+        "surface:it:informati",
+        "surface:it:tie"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "segmentation_or_lexical_identity": "Dutch noun informatie (information)",
+      "source_references": [
+        "https://anw.ivdnt.org/article/informatie"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:645e739f61f00b089747",
+      "word": "informera",
+      "status": "uncertain",
+      "reason": "Investigated exact token informera: Swedish informera; informerad is the attested passive participle/adjective. The cited dictionary establishes the recognizable lexical head/paradigm. This is a finite linguistic finding, not a blanket foreign-word rule. Aggregate source metadata supplies no sentence and cannot resolve native borrowing, foreign quotation/title or token-language mismatch in the assigned en corpus. Diacritic-losing Romanian comparisons, where specified, establish only a plausible lexical identity, not acceptance of a corrected token. Native realization remains unproved; no membership, spelling replacement, synthesized measurement or automatic exclusion.",
+      "source_family_ids": [
+        "ety:15cd88c4813d",
+        "ety:3b6c34a40f7b",
+        "surface:en:mera"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "segmentation_or_lexical_identity": "Swedish informera; informerad is the attested passive participle/adjective",
+      "source_references": [
+        "https://spraakbanken.gu.se/resurser/data/karp/so-2009-webbversion/informera.html"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:d0192d26580fa6909b68",
+      "word": "informerad",
+      "status": "uncertain",
+      "reason": "Investigated exact token informerad: Swedish informera; informerad is the attested passive participle/adjective. The cited dictionary establishes the recognizable lexical head/paradigm. This is a finite linguistic finding, not a blanket foreign-word rule. Aggregate source metadata supplies no sentence and cannot resolve native borrowing, foreign quotation/title or token-language mismatch in the assigned en corpus. Diacritic-losing Romanian comparisons, where specified, establish only a plausible lexical identity, not acceptance of a corrected token. Native realization remains unproved; no membership, spelling replacement, synthesized measurement or automatic exclusion.",
+      "source_family_ids": [
+        "surface:en:rad",
+        "surface:en:informe"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "segmentation_or_lexical_identity": "Swedish informera; informerad is the attested passive participle/adjective",
+      "source_references": [
+        "https://spraakbanken.gu.se/resurser/data/karp/so-2009-webbversion/informera.html"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:4e2f92fc8c7441112e3b",
+      "word": "informasjon",
+      "status": "uncertain",
+      "reason": "Investigated exact token informasjon: Norwegian Bokmål noun informasjon (information). The cited dictionary establishes the recognizable lexical head/paradigm. This is a finite linguistic finding, not a blanket foreign-word rule. Aggregate source metadata supplies no sentence and cannot resolve native borrowing, foreign quotation/title or token-language mismatch in the assigned en corpus. Diacritic-losing Romanian comparisons, where specified, establish only a plausible lexical identity, not acceptance of a corrected token. Native realization remains unproved; no membership, spelling replacement, synthesized measurement or automatic exclusion.",
+      "source_family_ids": [
+        "surface:en:asjon",
+        "surface:en:informa",
+        "ety:91ab5d33f794",
+        "ety:cf062b10d01c",
+        "ety:4892495b06d1"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "segmentation_or_lexical_identity": "Norwegian Bokmål noun informasjon (information)",
+      "source_references": [
+        "https://ordbokene.no/nob/bm/26161/informasjon"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:634cfa3f35c9a8b26827",
+      "word": "informasjon",
+      "status": "uncertain",
+      "reason": "Investigated exact token informasjon: Norwegian Bokmål noun informasjon (information). The cited dictionary establishes the recognizable lexical head/paradigm. This is a finite linguistic finding, not a blanket foreign-word rule. Aggregate source metadata supplies no sentence and cannot resolve native borrowing, foreign quotation/title or token-language mismatch in the assigned es corpus. Diacritic-losing Romanian comparisons, where specified, establish only a plausible lexical identity, not acceptance of a corrected token. Native realization remains unproved; no membership, spelling replacement, synthesized measurement or automatic exclusion.",
+      "source_family_ids": [
+        "surface:es:informas",
+        "surface:es:jon"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "segmentation_or_lexical_identity": "Norwegian Bokmål noun informasjon (information)",
+      "source_references": [
+        "https://ordbokene.no/nob/bm/26161/informasjon"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:4a16fd6699865d6cfea0",
+      "word": "observiere",
+      "status": "uncertain",
+      "reason": "Investigated exact token observiere: German weak verb observieren; regular present first-person / singular imperative observiere. The cited dictionary establishes the recognizable lexical head/paradigm. This is a finite linguistic finding, not a blanket foreign-word rule. Aggregate source metadata supplies no sentence and cannot resolve native borrowing, foreign quotation/title or token-language mismatch in the assigned en corpus. Diacritic-losing Romanian comparisons, where specified, establish only a plausible lexical identity, not acceptance of a corrected token. Native realization remains unproved; no membership, spelling replacement, synthesized measurement or automatic exclusion.",
+      "source_family_ids": [
+        "surface:en:observier",
+        "surface:en:iere"
+      ],
+      "language": "en",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "segmentation_or_lexical_identity": "German weak verb observieren; regular present first-person / singular imperative observiere",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/observieren"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:89eb4c7ee814acce87e1",
+      "word": "informativ",
+      "status": "uncertain",
+      "reason": "Investigated exact token informativ: German adjective informativ. The cited dictionary establishes the recognizable lexical head/paradigm. This is a finite linguistic finding, not a blanket foreign-word rule. Aggregate source metadata supplies no sentence and cannot resolve native borrowing, foreign quotation/title or token-language mismatch in the assigned es corpus. Diacritic-losing Romanian comparisons, where specified, establish only a plausible lexical identity, not acceptance of a corrected token. Native realization remains unproved; no membership, spelling replacement, synthesized measurement or automatic exclusion.",
+      "source_family_ids": [
+        "surface:es:informativ"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "segmentation_or_lexical_identity": "German adjective informativ",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/informativ"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:78d4e651c15396eced52",
+      "word": "observent",
+      "status": "uncertain",
+      "reason": "Investigated exact token observent: French observer: third-person plural present observent. The cited dictionary establishes the recognizable lexical head/paradigm. This is a finite linguistic finding, not a blanket foreign-word rule. Aggregate source metadata supplies no sentence and cannot resolve native borrowing, foreign quotation/title or token-language mismatch in the assigned en corpus. Diacritic-losing Romanian comparisons, where specified, establish only a plausible lexical identity, not acceptance of a corrected token. Native realization remains unproved; no membership, spelling replacement, synthesized measurement or automatic exclusion.",
+      "source_family_ids": [
+        "ety:ceb72bd51989",
+        "ety:74616815c9bd",
+        "ety:b0f4e97cad19",
+        "ety:a6b49932e2a5",
+        "ety:c37731e73b91",
+        "ety:012277c4f9c7",
+        "surface:en:observ",
+        "ety:f7e74d723d2e"
+      ],
+      "language": "en",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "segmentation_or_lexical_identity": "French observer: third-person plural present observent",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/conjuguer/A9O0082"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:d57abff406d12b2571e2",
+      "word": "informacija",
+      "status": "uncertain",
+      "reason": "Investigated exact token informacija: Slovenian informacija; recognizable information head, also a South Slavic homograph. The cited dictionary establishes the recognizable lexical head/paradigm. This is a finite linguistic finding, not a blanket foreign-word rule. Aggregate source metadata supplies no sentence and cannot resolve native borrowing, foreign quotation/title or token-language mismatch in the assigned en corpus. Diacritic-losing Romanian comparisons, where specified, establish only a plausible lexical identity, not acceptance of a corrected token. Native realization remains unproved; no membership, spelling replacement, synthesized measurement or automatic exclusion.",
+      "source_family_ids": [
+        "surface:en:informac",
+        "surface:en:ija"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "segmentation_or_lexical_identity": "Slovenian informacija; recognizable information head, also a South Slavic homograph",
+      "source_references": [
+        "https://fran.si/iskanje?View=1&Query=informacija"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:5d96d2a458c273f38e3b",
+      "word": "observatii",
+      "status": "uncertain",
+      "reason": "Investigated exact token observatii: Plausible Romanian observații / observațiile: plural and definite plural of observație; corpus loses Romanian ț. The cited dictionary establishes the recognizable lexical head/paradigm. This is a finite linguistic finding, not a blanket foreign-word rule. Aggregate source metadata supplies no sentence and cannot resolve native borrowing, foreign quotation/title or token-language mismatch in the assigned en corpus. Diacritic-losing Romanian comparisons, where specified, establish only a plausible lexical identity, not acceptance of a corrected token. Native realization remains unproved; no membership, spelling replacement, synthesized measurement or automatic exclusion.",
+      "source_family_ids": [
+        "surface:en:tii",
+        "surface:en:observa"
+      ],
+      "language": "en",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "segmentation_or_lexical_identity": "Plausible Romanian observații / observațiile: plural and definite plural of observație; corpus loses Romanian ț",
+      "source_references": [
+        "https://dexonline.ro/definitie/observa%C8%9Bie"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:55b343e2784239a76c71",
+      "word": "observatiile",
+      "status": "uncertain",
+      "reason": "Investigated exact token observatiile: Plausible Romanian observații / observațiile: plural and definite plural of observație; corpus loses Romanian ț. The cited dictionary establishes the recognizable lexical head/paradigm. This is a finite linguistic finding, not a blanket foreign-word rule. Aggregate source metadata supplies no sentence and cannot resolve native borrowing, foreign quotation/title or token-language mismatch in the assigned en corpus. Diacritic-losing Romanian comparisons, where specified, establish only a plausible lexical identity, not acceptance of a corrected token. Native realization remains unproved; no membership, spelling replacement, synthesized measurement or automatic exclusion.",
+      "source_family_ids": [
+        "surface:en:tiile",
+        "surface:en:observatiil"
+      ],
+      "language": "en",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "segmentation_or_lexical_identity": "Plausible Romanian observații / observațiile: plural and definite plural of observație; corpus loses Romanian ț",
+      "source_references": [
+        "https://dexonline.ro/definitie/observa%C8%9Bie"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:054b1b6a6c5a43977785",
+      "word": "observatorul",
+      "status": "uncertain",
+      "reason": "Investigated exact token observatorul: Romanian observator: masculine definite singular observatorul / plural observatori; observatori also matches an Italian plural. The cited dictionary establishes the recognizable lexical head/paradigm. This is a finite linguistic finding, not a blanket foreign-word rule. Aggregate source metadata supplies no sentence and cannot resolve native borrowing, foreign quotation/title or token-language mismatch in the assigned en corpus. Diacritic-losing Romanian comparisons, where specified, establish only a plausible lexical identity, not acceptance of a corrected token. Native realization remains unproved; no membership, spelling replacement, synthesized measurement or automatic exclusion.",
+      "source_family_ids": [
+        "surface:en:observato",
+        "surface:en:rul"
+      ],
+      "language": "en",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "segmentation_or_lexical_identity": "Romanian observator: masculine definite singular observatorul / plural observatori; observatori also matches an Italian plural",
+      "source_references": [
+        "https://dexonline.ro/definitie/observator",
+        "https://www.treccani.it/vocabolario/osservatore/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:a880fa1c9f38d02ae756",
+      "word": "observatori",
+      "status": "uncertain",
+      "reason": "Investigated exact token observatori: Romanian observator: masculine definite singular observatorul / plural observatori; observatori also matches an Italian plural. The cited dictionary establishes the recognizable lexical head/paradigm. This is a finite linguistic finding, not a blanket foreign-word rule. Aggregate source metadata supplies no sentence and cannot resolve native borrowing, foreign quotation/title or token-language mismatch in the assigned en corpus. Diacritic-losing Romanian comparisons, where specified, establish only a plausible lexical identity, not acceptance of a corrected token. Native realization remains unproved; no membership, spelling replacement, synthesized measurement or automatic exclusion.",
+      "source_family_ids": [
+        "surface:en:observatori"
+      ],
+      "language": "en",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "segmentation_or_lexical_identity": "Romanian observator: masculine definite singular observatorul / plural observatori; observatori also matches an Italian plural",
+      "source_references": [
+        "https://dexonline.ro/definitie/observator",
+        "https://www.treccani.it/vocabolario/osservatore/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:bd648c0a0da94df10ca3",
+      "word": "informatii",
+      "status": "uncertain",
+      "reason": "Investigated exact token informatii: Plausible Romanian informații / informația: plural / definite singular of informație; corpus loses Romanian ț. The cited dictionary establishes the recognizable lexical head/paradigm. This is a finite linguistic finding, not a blanket foreign-word rule. Aggregate source metadata supplies no sentence and cannot resolve native borrowing, foreign quotation/title or token-language mismatch in the assigned en corpus. Diacritic-losing Romanian comparisons, where specified, establish only a plausible lexical identity, not acceptance of a corrected token. Native realization remains unproved; no membership, spelling replacement, synthesized measurement or automatic exclusion.",
+      "source_family_ids": [
+        "surface:en:tii",
+        "surface:en:informa"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "segmentation_or_lexical_identity": "Plausible Romanian informații / informația: plural / definite singular of informație; corpus loses Romanian ț",
+      "source_references": [
+        "https://dexonline.ro/intrare/informa%C8%9Bie/27900"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:79843ed98ba53876a388",
+      "word": "informatia",
+      "status": "uncertain",
+      "reason": "Investigated exact token informatia: Plausible Romanian informații / informația: plural / definite singular of informație; corpus loses Romanian ț. The cited dictionary establishes the recognizable lexical head/paradigm. This is a finite linguistic finding, not a blanket foreign-word rule. Aggregate source metadata supplies no sentence and cannot resolve native borrowing, foreign quotation/title or token-language mismatch in the assigned en corpus. Diacritic-losing Romanian comparisons, where specified, establish only a plausible lexical identity, not acceptance of a corrected token. Native realization remains unproved; no membership, spelling replacement, synthesized measurement or automatic exclusion.",
+      "source_family_ids": [
+        "surface:en:matia",
+        "surface:en:informa"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "segmentation_or_lexical_identity": "Plausible Romanian informații / informația: plural / definite singular of informație; corpus loses Romanian ț",
+      "source_references": [
+        "https://dexonline.ro/intrare/informa%C8%9Bie/27900"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:2a19545e5044212e5a3f",
+      "word": "desinformation",
+      "status": "uncertain",
+      "reason": "Investigated exact token desinformation: German noun Desinformation; exact unaccented form also requires English historical/borrowing context before any acceptance. The cited dictionary establishes the recognizable lexical head/paradigm. This is a finite linguistic finding, not a blanket foreign-word rule. Aggregate source metadata supplies no sentence and cannot resolve native borrowing, foreign quotation/title or token-language mismatch in the assigned en corpus. Diacritic-losing Romanian comparisons, where specified, establish only a plausible lexical identity, not acceptance of a corrected token. Native realization remains unproved; no membership, spelling replacement, synthesized measurement or automatic exclusion.",
+      "source_family_ids": [
+        "surface:en:desinformat"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "segmentation_or_lexical_identity": "German noun Desinformation; exact unaccented form also requires English historical/borrowing context before any acceptance",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Desinformation"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:2e3c0630190af3d298b1",
+      "word": "informaria",
+      "status": "uncertain",
+      "reason": "Investigated exact token informaria: Portuguese informar: singular conditional informaria, explicitly recognized by Priberam. The cited dictionary establishes the recognizable lexical head/paradigm. This is a finite linguistic finding, not a blanket foreign-word rule. Aggregate source metadata supplies no sentence and cannot resolve native borrowing, foreign quotation/title or token-language mismatch in the assigned it corpus. Diacritic-losing Romanian comparisons, where specified, establish only a plausible lexical identity, not acceptance of a corrected token. Native realization remains unproved; no membership, spelling replacement, synthesized measurement or automatic exclusion.",
+      "source_family_ids": [
+        "ety:b6a16a1ad4ba",
+        "surface:it:informari",
+        "ety:985803b2566a"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "segmentation_or_lexical_identity": "Portuguese informar: singular conditional informaria, explicitly recognized by Priberam",
+      "source_references": [
+        "https://dicionario.priberam.org/informaria"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:2ce1d5dab7aae83ab9c9",
+      "word": "informam",
+      "status": "uncertain",
+      "reason": "Investigated exact token informam: Portuguese informar: third-person plural present indicative informam. The cited dictionary establishes the recognizable lexical head/paradigm. This is a finite linguistic finding, not a blanket foreign-word rule. Aggregate source metadata supplies no sentence and cannot resolve native borrowing, foreign quotation/title or token-language mismatch in the assigned es corpus. Diacritic-losing Romanian comparisons, where specified, establish only a plausible lexical identity, not acceptance of a corrected token. Native realization remains unproved; no membership, spelling replacement, synthesized measurement or automatic exclusion.",
+      "source_family_ids": [
+        "surface:es:mam",
+        "surface:es:infor"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "segmentation_or_lexical_identity": "Portuguese informar: third-person plural present indicative informam",
+      "source_references": [
+        "https://dicionario.priberam.org/informam"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:b364539d32ae1bc59261",
+      "word": "informem",
+      "status": "uncertain",
+      "reason": "Investigated exact token informem: Portuguese informar: third-person plural present subjunctive / imperative informem. The cited dictionary establishes the recognizable lexical head/paradigm. This is a finite linguistic finding, not a blanket foreign-word rule. Aggregate source metadata supplies no sentence and cannot resolve native borrowing, foreign quotation/title or token-language mismatch in the assigned es corpus. Diacritic-losing Romanian comparisons, where specified, establish only a plausible lexical identity, not acceptance of a corrected token. Native realization remains unproved; no membership, spelling replacement, synthesized measurement or automatic exclusion.",
+      "source_family_ids": [
+        "surface:es:mem",
+        "surface:es:infor"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "segmentation_or_lexical_identity": "Portuguese informar: third-person plural present subjunctive / imperative informem",
+      "source_references": [
+        "https://dicionario.priberam.org/informem"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:6f05ad87ccde03cc4d7f",
+      "word": "observational",
+      "status": "uncertain",
+      "reason": "Investigated exact token observational: English adjective observational, derived from observation. The cited dictionary establishes the recognizable lexical head/paradigm. This is a finite linguistic finding, not a blanket foreign-word rule. Aggregate source metadata supplies no sentence and cannot resolve native borrowing, foreign quotation/title or token-language mismatch in the assigned fr corpus. Diacritic-losing Romanian comparisons, where specified, establish only a plausible lexical identity, not acceptance of a corrected token. Native realization remains unproved; no membership, spelling replacement, synthesized measurement or automatic exclusion.",
+      "source_family_ids": [
+        "ety:c80365cdd174",
+        "ety:c28863eb7595",
+        "surface:fr:ational"
+      ],
+      "language": "fr",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "segmentation_or_lexical_identity": "English adjective observational, derived from observation",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/observational"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:8ddd30d6d353ca0fcf33",
+      "word": "observatorio",
+      "status": "uncertain",
+      "reason": "Investigated exact token observatorio: Spanish noun observatorio. The cited dictionary establishes the recognizable lexical head/paradigm. This is a finite linguistic finding, not a blanket foreign-word rule. Aggregate source metadata supplies no sentence and cannot resolve native borrowing, foreign quotation/title or token-language mismatch in the assigned fr corpus. Diacritic-losing Romanian comparisons, where specified, establish only a plausible lexical identity, not acceptance of a corrected token. Native realization remains unproved; no membership, spelling replacement, synthesized measurement or automatic exclusion.",
+      "source_family_ids": [
+        "surface:fr:rio",
+        "surface:fr:vato",
+        "surface:fr:observat"
+      ],
+      "language": "fr",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "segmentation_or_lexical_identity": "Spanish noun observatorio",
+      "source_references": [
+        "https://dle.rae.es/observatorio"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:b8d1af9b315b9002af66",
+      "word": "observable",
+      "status": "uncertain",
+      "reason": "Investigated exact token observable: English/French/Spanish observable: homographic adjective; source language and contextual borrowing unresolved. The cited dictionary establishes the recognizable lexical head/paradigm. This is a finite linguistic finding, not a blanket foreign-word rule. Aggregate source metadata supplies no sentence and cannot resolve native borrowing, foreign quotation/title or token-language mismatch in the assigned de corpus. Diacritic-losing Romanian comparisons, where specified, establish only a plausible lexical identity, not acceptance of a corrected token. Native realization remains unproved; no membership, spelling replacement, synthesized measurement or automatic exclusion.",
+      "source_family_ids": [
+        "surface:de:observable"
+      ],
+      "language": "de",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "segmentation_or_lexical_identity": "English/French/Spanish observable: homographic adjective; source language and contextual borrowing unresolved",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/observable",
+        "https://dle.rae.es/observable",
+        "https://www.dictionnaire-academie.fr/article/A9O0076"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:c870892ee5a8187d2aff",
+      "word": "observations",
+      "status": "uncertain",
+      "reason": "Investigated exact token observations: English or French plural observations. The cited dictionary establishes the recognizable lexical head/paradigm. This is a finite linguistic finding, not a blanket foreign-word rule. Aggregate source metadata supplies no sentence and cannot resolve native borrowing, foreign quotation/title or token-language mismatch in the assigned de corpus. Diacritic-losing Romanian comparisons, where specified, establish only a plausible lexical identity, not acceptance of a corrected token. Native realization remains unproved; no membership, spelling replacement, synthesized measurement or automatic exclusion.",
+      "source_family_ids": [
+        "surface:de:observation"
+      ],
+      "language": "de",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "segmentation_or_lexical_identity": "English or French plural observations",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/observation",
+        "https://www.dictionnaire-academie.fr/article/A9O0080"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:d929a78b67589e597a26",
+      "word": "observations",
+      "status": "uncertain",
+      "reason": "Investigated exact token observations: English or French plural observations. The cited dictionary establishes the recognizable lexical head/paradigm. This is a finite linguistic finding, not a blanket foreign-word rule. Aggregate source metadata supplies no sentence and cannot resolve native borrowing, foreign quotation/title or token-language mismatch in the assigned it corpus. Diacritic-losing Romanian comparisons, where specified, establish only a plausible lexical identity, not acceptance of a corrected token. Native realization remains unproved; no membership, spelling replacement, synthesized measurement or automatic exclusion.",
+      "source_family_ids": [
+        "ety:2876587f0ca2",
+        "surface:it:ons",
+        "surface:it:rva",
+        "surface:it:ati",
+        "surface:it:observ"
+      ],
+      "language": "it",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "segmentation_or_lexical_identity": "English or French plural observations",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/observation",
+        "https://www.dictionnaire-academie.fr/article/A9O0080"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:1ae7b062e966b4fe52c6",
+      "word": "observations",
+      "status": "uncertain",
+      "reason": "Investigated exact token observations: English or French plural observations. The cited dictionary establishes the recognizable lexical head/paradigm. This is a finite linguistic finding, not a blanket foreign-word rule. Aggregate source metadata supplies no sentence and cannot resolve native borrowing, foreign quotation/title or token-language mismatch in the assigned es corpus. Diacritic-losing Romanian comparisons, where specified, establish only a plausible lexical identity, not acceptance of a corrected token. Native realization remains unproved; no membership, spelling replacement, synthesized measurement or automatic exclusion.",
+      "source_family_ids": [
+        "surface:es:ons",
+        "surface:es:observat",
+        "surface:es:vati"
+      ],
+      "language": "es",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "segmentation_or_lexical_identity": "English or French plural observations",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/observation",
+        "https://www.dictionnaire-academie.fr/article/A9O0080"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:f152190bdeca4b097317",
+      "word": "observation",
+      "status": "uncertain",
+      "reason": "Investigated exact token observation: English or French noun observation. The cited dictionary establishes the recognizable lexical head/paradigm. This is a finite linguistic finding, not a blanket foreign-word rule. Aggregate source metadata supplies no sentence and cannot resolve native borrowing, foreign quotation/title or token-language mismatch in the assigned it corpus. Diacritic-losing Romanian comparisons, where specified, establish only a plausible lexical identity, not acceptance of a corrected token. Native realization remains unproved; no membership, spelling replacement, synthesized measurement or automatic exclusion.",
+      "source_family_ids": [
+        "ety:2876587f0ca2",
+        "surface:it:rva",
+        "surface:it:tion",
+        "surface:it:observ"
+      ],
+      "language": "it",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "segmentation_or_lexical_identity": "English or French noun observation",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/observation",
+        "https://www.dictionnaire-academie.fr/article/A9O0080"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:22c3b00a939a354a4944",
+      "word": "observation",
+      "status": "uncertain",
+      "reason": "Investigated exact token observation: English or French noun observation. The cited dictionary establishes the recognizable lexical head/paradigm. This is a finite linguistic finding, not a blanket foreign-word rule. Aggregate source metadata supplies no sentence and cannot resolve native borrowing, foreign quotation/title or token-language mismatch in the assigned es corpus. Diacritic-losing Romanian comparisons, where specified, establish only a plausible lexical identity, not acceptance of a corrected token. Native realization remains unproved; no membership, spelling replacement, synthesized measurement or automatic exclusion.",
+      "source_family_ids": [
+        "surface:es:observation"
+      ],
+      "language": "es",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "segmentation_or_lexical_identity": "English or French noun observation",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/observation",
+        "https://www.dictionnaire-academie.fr/article/A9O0080"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:2beef2b3e1a71dbe6039",
+      "word": "informer",
+      "status": "uncertain",
+      "reason": "Investigated exact token informer: English noun informer / French infinitive informer; context is needed to distinguish both. The cited dictionary establishes the recognizable lexical head/paradigm. This is a finite linguistic finding, not a blanket foreign-word rule. Aggregate source metadata supplies no sentence and cannot resolve native borrowing, foreign quotation/title or token-language mismatch in the assigned de corpus. Diacritic-losing Romanian comparisons, where specified, establish only a plausible lexical identity, not acceptance of a corrected token. Native realization remains unproved; no membership, spelling replacement, synthesized measurement or automatic exclusion.",
+      "source_family_ids": [
+        "surface:de:informer"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "segmentation_or_lexical_identity": "English noun informer / French infinitive informer; context is needed to distinguish both",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/informer",
+        "https://www.dictionnaire-academie.fr/article/A9I1225"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:99c936dbdd32b9f49eac",
+      "word": "informant",
+      "status": "uncertain",
+      "reason": "Investigated exact token informant: English information-provider noun informant / French present participle informant. The cited dictionary establishes the recognizable lexical head/paradigm. This is a finite linguistic finding, not a blanket foreign-word rule. Aggregate source metadata supplies no sentence and cannot resolve native borrowing, foreign quotation/title or token-language mismatch in the assigned it corpus. Diacritic-losing Romanian comparisons, where specified, establish only a plausible lexical identity, not acceptance of a corrected token. Native realization remains unproved; no membership, spelling replacement, synthesized measurement or automatic exclusion.",
+      "source_family_ids": [
+        "ety:057e22284169",
+        "ety:78f969d669d5",
+        "surface:it:inform",
+        "ety:7f0ff61edd29"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "segmentation_or_lexical_identity": "English information-provider noun informant / French present participle informant",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/informant",
+        "https://www.dictionnaire-academie.fr/conjuguer/A9I1225"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:a6803bcd6d3a6e0345ed",
+      "word": "informant",
+      "status": "uncertain",
+      "reason": "Investigated exact token informant: English information-provider noun informant / French present participle informant. The cited dictionary establishes the recognizable lexical head/paradigm. This is a finite linguistic finding, not a blanket foreign-word rule. Aggregate source metadata supplies no sentence and cannot resolve native borrowing, foreign quotation/title or token-language mismatch in the assigned es corpus. Diacritic-losing Romanian comparisons, where specified, establish only a plausible lexical identity, not acceptance of a corrected token. Native realization remains unproved; no membership, spelling replacement, synthesized measurement or automatic exclusion.",
+      "source_family_ids": [
+        "surface:es:mant",
+        "surface:es:inform"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "segmentation_or_lexical_identity": "English information-provider noun informant / French present participle informant",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/informant",
+        "https://www.dictionnaire-academie.fr/conjuguer/A9I1225"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:45ce6c1497a0d3298e6b",
+      "word": "observa",
+      "status": "uncertain",
+      "reason": "Investigated exact token observa: Spanish or Portuguese observar: third-person singular present / singular imperative observa. The cited dictionary establishes the recognizable lexical head/paradigm. This is a finite linguistic finding, not a blanket foreign-word rule. Aggregate source metadata supplies no sentence and cannot resolve native borrowing, foreign quotation/title or token-language mismatch in the assigned it corpus. Diacritic-losing Romanian comparisons, where specified, establish only a plausible lexical identity, not acceptance of a corrected token. Native realization remains unproved; no membership, spelling replacement, synthesized measurement or automatic exclusion.",
+      "source_family_ids": [
+        "surface:it:rva",
+        "surface:it:observ"
+      ],
+      "language": "it",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "segmentation_or_lexical_identity": "Spanish or Portuguese observar: third-person singular present / singular imperative observa",
+      "source_references": [
+        "https://dle.rae.es/observar",
+        "https://dicionario.priberam.org/observa"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:77ae63594d057aafd652",
+      "word": "observatore",
+      "status": "uncertain",
+      "reason": "Investigated exact token observatore: Italian osservatore (observer), regular masculine plural osservatori. The exact corpus observ- spellings also need historical/foreign identity investigation; the transparent osserv/observ head alone does not establish native Spanish use. Romanian observatori is an additional exact possibility. The cited dictionary establishes standard osservatore; exact observatore is a historical/Latinizing comparison under investigation, not a dictionary-attested modern Italian spelling. This is a finite linguistic finding, not a blanket foreign-word rule. Aggregate source metadata supplies no sentence and cannot resolve native borrowing, foreign quotation/title or token-language mismatch in the assigned es corpus. Diacritic-losing Romanian comparisons, where specified, establish only a plausible lexical identity, not acceptance of a corrected token. Native realization remains unproved; no membership, spelling replacement, synthesized measurement or automatic exclusion.",
+      "source_family_ids": [
+        "surface:es:observat",
+        "surface:es:tore"
+      ],
+      "language": "es",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "segmentation_or_lexical_identity": "Italian historical/Latinizing observatore compared with standard osservatore; legitimate observer head plausible, exact historical/native corpus use unresolved",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/osservatore/",
+        "https://dexonline.ro/definitie/observator"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:7b2921e6b04e0eb1327c",
+      "word": "observatori",
+      "status": "uncertain",
+      "reason": "Investigated exact token observatori: Italian osservatore (observer), regular masculine plural osservatori. The exact corpus observ- spellings also need historical/foreign identity investigation; the transparent osserv/observ head alone does not establish native Spanish use. Romanian observatori is an additional exact possibility. The cited dictionary establishes the recognizable lexical head/paradigm. This is a finite linguistic finding, not a blanket foreign-word rule. Aggregate source metadata supplies no sentence and cannot resolve native borrowing, foreign quotation/title or token-language mismatch in the assigned es corpus. Diacritic-losing Romanian comparisons, where specified, establish only a plausible lexical identity, not acceptance of a corrected token. Native realization remains unproved; no membership, spelling replacement, synthesized measurement or automatic exclusion.",
+      "source_family_ids": [
+        "surface:es:observatori"
+      ],
+      "language": "es",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "investigated_foreign_paradigm",
+      "segmentation_or_lexical_identity": "Italian osservatore (observer), regular masculine plural osservatori. The exact corpus observ- spellings also need historical/foreign identity investigation; the transparent osserv/observ head alone does not establish native Spanish use. Romanian observatori is an additional exact possibility",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/osservatore/",
+        "https://dexonline.ro/definitie/observator"
+      ],
+      "runtime_applied": false
+    }
+  ],
+  "new_counts": {
+    "uncertain": 35
+  },
+  "continuation_counts": {
+    "accepted": 31,
+    "excluded": 334,
+    "uncertain": 154,
+    "pending_review": 243
+  },
+  "accepted_applied": 31,
+  "accepted_unapplied": 0,
+  "runtime_changes": false,
+  "full_family_certification": false,
+  "review_scope": "35 finite investigated Dutch, Swedish, Norwegian, Romanian, Slovenian, Portuguese and English/French/German/Spanish lexical identities; original 762 IDs and all source metadata conserved. Explicit limits for diacritic loss/historical Latinizing spellings. No blanket foreign exclusion or native borrowing assumption."
+}

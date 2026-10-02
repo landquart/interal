@@ -1,0 +1,51 @@
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+import {readFile,writeFile} from 'node:fs/promises';
+import {join} from 'node:path';
+import {gunzipSync,gzipSync} from 'node:zlib';
+import {familyBucket} from '../associativvordes/js/family-index-loader.js';
+import {recountMaterializedMembers,refreshFamilySummaries,repositoryTreeMetadata} from './lib/associative-repository-materialization.mjs';
+const root=process.argv[2]||'associativvordes/family-index-v5';
+const ledgerPath='audit/associative-family-v5/component-review-20261001.json';
+const bytes=await readFile(ledgerPath),ledger=JSON.parse(bytes),sha=createHash('sha256').update(bytes).digest('hex');
+const repair='remove_reviewed_inter_false_memberships_and_nat_acronym_alias_20261001';
+const read=async p=>JSON.parse((p.endsWith('.gz')?gunzipSync(await readFile(p)):await readFile(p)).toString());
+const write=(p,v)=>writeFile(p,p.endsWith('.gz')?gzipSync(JSON.stringify(v),{level:6}):JSON.stringify(v,null,2)+'\n');
+const digest=v=>createHash('sha256').update(JSON.stringify(v)).digest('hex');
+const path=(part,key)=>join(root,part,familyBucket(key)+'.json.gz');
+const manifest=await read(join(root,'manifest.json')),report=await read(join(root,'report.json')),provenance=await read(join(root,'repository-provenance.json'));
+assert.equal(manifest.repository_storage.immutable_source_run_id,ledger.source_run_id);
+assert(!provenance.repository_repairs.some(r=>r.repair===repair),'Already applied');
+const id='family:inter',acronym='ety:496b7cec5a43';
+const mp=path('members/en',id),ms=await read(mp),members=ms[id];
+const locked=ledger.inspected_arrays.find(x=>x.family_id===id);
+assert.equal(digest(members),locked.ordered_member_sha256);
+const removed=ledger.decisions.filter(d=>d.verdict==='remove_membership');
+assert.equal(removed.length,11);
+for(const d of ledger.decisions){
+ assert.equal(d.language,'en');assert.equal(d.family_id,id);
+ assert.deepEqual(members.find(m=>m.lemma_id===d.lemma_id),d.original_member);
+}
+const fp=path('families',id),fs=await read(fp),family=fs[id];
+assert.deepEqual(family,ledger.family_metadata[id]);
+const ap=path('aliases','nat'),as=await read(ap);
+assert(as.nat.includes(acronym));
+const np=path('families',acronym),ns=await read(np),nato=ns[acronym];
+assert.deepEqual(nato,ledger.family_metadata[acronym]);
+assert.deepEqual(nato.etymon_keys,['en:nato']);assert(nato.aliases.includes('nat'));
+// Preflight completes before materialization. Keep every other member byte-for-byte.
+const ids=new Set(removed.map(d=>d.lemma_id));
+ms[id]=members.filter(m=>!ids.has(m.lemma_id));
+assert.equal(members.length-ms[id].length,11);
+family.support-=11;family.language_support.en-=11;
+assert.equal(family.support,Object.values(family.language_support).reduce((a,b)=>a+b,0));
+// Remove only the false reverse route, preserving NATO and all acronym memberships.
+as.nat=as.nat.filter(x=>x!==acronym);nato.aliases=nato.aliases.filter(x=>x!=='nat');
+await write(mp,ms);await write(fp,fs);await write(ap,as);await write(np,ns);
+await recountMaterializedMembers(root,manifest,report);
+await refreshFamilySummaries(root,report);
+Object.assign(report.repository_materialization,{component_review_ledger_sha256:sha,component_false_memberships_removed:11});
+provenance.repository_repairs.push({repair,source_run_id:ledger.source_run_id,removed_memberships:11,added_memberships:0,removed_alias_pairs:[['nat',acronym]],decision_ledger_sha256:sha,full_family_certification:false});
+await write(join(root,'report.json'),report);
+Object.assign(provenance,await repositoryTreeMetadata(root));await write(join(root,'repository-provenance.json'),provenance);
+console.log(JSON.stringify({removed:removed.map(d=>d.word),nat_acronym_route_removed:true,memberships:report.repository_materialization.memberships}));

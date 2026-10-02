@@ -1,0 +1,1029 @@
+{
+  "schema_version": 1,
+  "source_run_id": 35647932153,
+  "queue_path": "audit/associative-family-v5/reflex-productive-variants-review-20261002/pending-review.json",
+  "queue_sha256": "217911b0b3eb64da4fe37ba59a8a40a77e8a9e6b93d0866110a78263ed458381",
+  "source_path": "audit/associative-family-v5/reflex-checkpoint-20261001/candidates.json.gz",
+  "source_sha256": "ce3cc11eb045a4fe9f77bf79239fc585a9a324231c8a6d5530606df1e5488cfb",
+  "queue_counts_unchanged": {
+    "applied": 48,
+    "excluded": 358,
+    "investigated_uncertain": 155,
+    "pending": 201
+  },
+  "records": [
+    {
+      "pending_record": {
+        "lemma_id": "lemma:3367e9a9e59314716d13",
+        "word": "informadorxs",
+        "status": "pending_review",
+        "reason": "Not adjudicated in this continuation; prior decision remains immutable.",
+        "source_family_ids": [
+          "surface:es:informad"
+        ],
+        "language": "es",
+        "canonical_root": "inform",
+        "previous_status": "uncertain"
+      },
+      "source_member": {
+        "lemma_id": "lemma:3367e9a9e59314716d13",
+        "word": "informadorxs",
+        "normalized": "informadorxs",
+        "search_form": "informadorxs",
+        "rank": 579380,
+        "frequency_score": 0.04529710280721981,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.002806,
+              0.002371
+            ],
+            "category_ipm": 0.0025884999999999997,
+            "category_score": 0.04529710280721981
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.002806
+          },
+          {
+            "id": "subtitles/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.002371
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "informad",
+            "canonical_candidate": "informad",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "informadorxs",
+                  "informad",
+                  "informad"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ],
+        "source_family_ids": [
+          "surface:es:informad"
+        ]
+      },
+      "research_status": "pending_review",
+      "finding": "Direct Spanish native attestation established: EducaThyssen uses this exact plural for museum educators; RAE defines the informing-agent head. Inclusive x+s morphology is supported by this exact use, not generic edit distance. Ready for finite adjudication; no decision or runtime change made here.",
+      "source_references": [
+        "https://www.educathyssen.org/centro-estudios/educacion-museos/cuando-digo-mi-madre-que-soy-educador",
+        "https://dle.rae.es/informador",
+        "https://fad.uncuyo.edu.ar/categorias/index/convocatorias"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "pending_record": {
+        "lemma_id": "lemma:bd46c9a204308a160073",
+        "word": "kominform",
+        "status": "pending_review",
+        "reason": "Not adjudicated in this continuation; prior decision remains immutable.",
+        "source_family_ids": [
+          "surface:fr:inform",
+          "surface:fr:komin"
+        ],
+        "language": "fr",
+        "canonical_root": "inform",
+        "previous_status": "uncertain"
+      },
+      "source_member": {
+        "lemma_id": "lemma:bd46c9a204308a160073",
+        "word": "kominform",
+        "normalized": "kominform",
+        "search_form": "kominform",
+        "rank": 393521,
+        "frequency_score": 0.06031194627701871,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.003448
+            ],
+            "category_ipm": 0.003448,
+            "category_score": 0.06031194627701871
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.003448
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "inform",
+            "canonical_candidate": "inform",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "kominform",
+                  "inform",
+                  "inform"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ],
+        "source_family_ids": [
+          "surface:fr:inform",
+          "surface:fr:komin"
+        ]
+      },
+      "research_status": "pending_review",
+      "finding": "Larousse directly records the exact French proper name and explicitly expands it as the Russian abbreviation of the information bureau of communist/worker parties. A native dictionary head and information branch are established for finite adjudication.",
+      "source_references": [
+        "https://www.larousse.fr/dictionnaires/college/Kominform/22900"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "pending_record": {
+        "lemma_id": "lemma:0fcdc8d228ac9be89967",
+        "word": "informbüro",
+        "status": "pending_review",
+        "reason": "Not adjudicated in this continuation; prior decision remains immutable.",
+        "source_family_ids": [
+          "surface:de:inform",
+          "ety:e336db5a09d6"
+        ],
+        "language": "de",
+        "canonical_root": "inform",
+        "previous_status": "uncertain"
+      },
+      "source_member": {
+        "lemma_id": "lemma:0fcdc8d228ac9be89967",
+        "word": "informbüro",
+        "normalized": "informbüro",
+        "search_form": "informburo",
+        "rank": 326267,
+        "frequency_score": 0.22413855552463746,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.012874
+            ],
+            "category_ipm": 0.012874,
+            "category_score": 0.22413855552463746
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.012874
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "inform",
+            "canonical_candidate": "inform",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "informburo",
+                  "inform",
+                  "inform"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ],
+        "source_family_ids": [
+          "surface:de:inform",
+          "ety:e336db5a09d6"
+        ]
+      },
+      "research_status": "pending_review",
+      "finding": "Adibekow, Der Apparat des Kominform, JHK 1998 pp.219-253: German primary archival documentation pp.240-241 uses exact Informbüro beside Informationsbüro and informing duties. This proves the finite German shortened information-bureau head; no universal proper-name rule.",
+      "source_references": [
+        "https://www.kommunismusgeschichte.de/fileadmin/user_upload/JHK/1998/12_JHK1998_Adibekow_S._219_253.pdf"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "pending_record": {
+        "lemma_id": "lemma:9d2024d31a20a8db1f27",
+        "word": "informbiro",
+        "status": "pending_review",
+        "reason": "Not adjudicated in this continuation; prior decision remains immutable.",
+        "source_family_ids": [
+          "surface:it:informbir"
+        ],
+        "language": "it",
+        "canonical_root": "inform",
+        "previous_status": "uncertain"
+      },
+      "source_member": {
+        "lemma_id": "lemma:9d2024d31a20a8db1f27",
+        "word": "informbiro",
+        "normalized": "informbiro",
+        "search_form": "informbiro",
+        "rank": 102581,
+        "frequency_score": 0.7345466973450994,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.048349,
+              0.037276
+            ],
+            "category_ipm": 0.0428125,
+            "category_score": 0.7345466973450994
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.048349
+          },
+          {
+            "id": "subtitles/hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.037276
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "informbir",
+            "canonical_candidate": "informbir",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "informbiro",
+                  "informbir",
+                  "informbir"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ],
+        "source_family_ids": [
+          "surface:it:informbir"
+        ]
+      },
+      "research_status": "pending_review",
+      "finding": "Official Lopar tourism Italian text directly uses exact Informbiro repeatedly for the historical period. Native Italian use is established, but independently pin down the information-bureau expansion and distinguish period/name usage before final adjudication. No proof is transferred automatically to informbirò or informibiro.",
+      "source_references": [
+        "https://lopar.com/escursioni/?lang=it"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "pending_record": {
+        "lemma_id": "lemma:0ddb09e6f65beb8763f4",
+        "word": "informbirò",
+        "status": "pending_review",
+        "reason": "Not adjudicated in this continuation; prior decision remains immutable.",
+        "source_family_ids": [
+          "surface:it:informbir"
+        ],
+        "language": "it",
+        "canonical_root": "inform",
+        "previous_status": "uncertain"
+      },
+      "source_member": {
+        "lemma_id": "lemma:0ddb09e6f65beb8763f4",
+        "word": "informbirò",
+        "normalized": "informbirò",
+        "search_form": "informbiro",
+        "rank": 350113,
+        "frequency_score": 0.08315453898636421,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.005372,
+              0.004142
+            ],
+            "category_ipm": 0.004757,
+            "category_score": 0.08315453898636421
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.005372
+          },
+          {
+            "id": "subtitles/hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.004142
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "informbir",
+            "canonical_candidate": "informbir",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "informbiro",
+                  "informbir",
+                  "informbir"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ],
+        "source_family_ids": [
+          "surface:it:informbir"
+        ]
+      },
+      "research_status": "pending_review",
+      "finding": "The unaccented Informbiro is directly attested in native Italian official text; this does not establish this exact accented form. Seek independent native attestation and morphology.",
+      "source_references": [
+        "https://lopar.com/escursioni/?lang=it"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "pending_record": {
+        "lemma_id": "lemma:4b05e2a468564af204df",
+        "word": "informibiro",
+        "status": "pending_review",
+        "reason": "Not adjudicated in this continuation; prior decision remains immutable.",
+        "source_family_ids": [
+          "surface:it:informibir"
+        ],
+        "language": "it",
+        "canonical_root": "inform",
+        "previous_status": "uncertain"
+      },
+      "source_member": {
+        "lemma_id": "lemma:4b05e2a468564af204df",
+        "word": "informibiro",
+        "normalized": "informibiro",
+        "search_form": "informibiro",
+        "rank": 350117,
+        "frequency_score": 0.08315453898636421,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.005372,
+              0.004142
+            ],
+            "category_ipm": 0.004757,
+            "category_score": 0.08315453898636421
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.005372
+          },
+          {
+            "id": "subtitles/hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.004142
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "informibir",
+            "canonical_candidate": "informibir",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "informibiro",
+                  "informibir",
+                  "informibir"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ],
+        "source_family_ids": [
+          "surface:it:informibir"
+        ]
+      },
+      "research_status": "pending_review",
+      "finding": "The unaccented Informbiro is directly attested in native Italian official text; this does not establish the exact inserted-i spelling. Search generic word lists is insufficient lexical proof. Seek independent native source.",
+      "source_references": [
+        "https://lopar.com/escursioni/?lang=it"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "pending_record": {
+        "lemma_id": "lemma:113c77fe4be5700852be",
+        "word": "coninform",
+        "status": "pending_review",
+        "reason": "Not adjudicated in this continuation; prior decision remains immutable.",
+        "source_family_ids": [
+          "surface:en:conin",
+          "ety:15cd88c4813d",
+          "ety:3b6c34a40f7b"
+        ],
+        "language": "en",
+        "canonical_root": "inform",
+        "previous_status": "uncertain"
+      },
+      "source_member": {
+        "lemma_id": "lemma:113c77fe4be5700852be",
+        "word": "coninform",
+        "normalized": "coninform",
+        "search_form": "coninform",
+        "rank": 516467,
+        "frequency_score": 0.029036169457900194,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.00187,
+              0.001447
+            ],
+            "category_ipm": 0.0016584999999999998,
+            "category_score": 0.029036169457900194
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.00187
+          },
+          {
+            "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.001447
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "conin",
+            "canonical_candidate": "conin",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "coninform",
+                  "conin",
+                  "conin"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ],
+        "source_family_ids": [
+          "surface:en:conin",
+          "ety:15cd88c4813d",
+          "ety:3b6c34a40f7b"
+        ]
+      },
+      "research_status": "pending_review",
+      "finding": "ERIC primary educational report ED288576 (1985), PDF page56/index55, OCR gives CONINFORM with the expansion Communist Information Bureau. OCR alone cannot settle N versus M or establish a conventional native variant. Screenshot request returned no inspectable image in this session. The 1955 Masses & Mainstream scan search also gives Coninform but opening timed out. Inspect printed page before accepting or excluding.",
+      "source_references": [
+        "https://files.eric.ed.gov/fulltext/ED288576.pdf",
+        "https://www.marxists.org/history/usa/pubs/masses-mainstream/1955/v08n07-jul-1955-mm.pdf"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "pending_record": {
+        "lemma_id": "lemma:ab6ca7bfdfbb9d03b5a6",
+        "word": "coninform",
+        "status": "pending_review",
+        "reason": "Not adjudicated in this continuation; prior decision remains immutable.",
+        "source_family_ids": [
+          "surface:de:inform",
+          "surface:de:conin"
+        ],
+        "language": "de",
+        "canonical_root": "inform",
+        "previous_status": "uncertain"
+      },
+      "source_member": {
+        "lemma_id": "lemma:ab6ca7bfdfbb9d03b5a6",
+        "word": "coninform",
+        "normalized": "coninform",
+        "search_form": "coninform",
+        "rank": 452875,
+        "frequency_score": 0.11242766823252369,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.006437
+            ],
+            "category_ipm": 0.006437,
+            "category_score": 0.11242766823252369
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.006437
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "inform",
+            "canonical_candidate": "inform",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "coninform",
+                  "inform",
+                  "inform"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ],
+        "source_family_ids": [
+          "surface:de:inform",
+          "surface:de:conin"
+        ]
+      },
+      "research_status": "pending_review",
+      "finding": "Evidence for English OCR Coninform must not be transferred into German. Native exact form and information-bureau expansion remain to be established.",
+      "source_references": [
+        "https://files.eric.ed.gov/fulltext/ED288576.pdf"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "pending_record": {
+        "lemma_id": "lemma:a0184028dc51f6c80a52",
+        "word": "coninform",
+        "status": "pending_review",
+        "reason": "Not adjudicated in this continuation; prior decision remains immutable.",
+        "source_family_ids": [
+          "surface:es:coninform"
+        ],
+        "language": "es",
+        "canonical_root": "inform",
+        "previous_status": "uncertain"
+      },
+      "source_member": {
+        "lemma_id": "lemma:a0184028dc51f6c80a52",
+        "word": "coninform",
+        "normalized": "coninform",
+        "search_form": "coninform",
+        "rank": 522979,
+        "frequency_score": 0.041495494299664135,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.002371
+            ],
+            "category_ipm": 0.002371,
+            "category_score": 0.041495494299664135
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.002371
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "coninform",
+            "canonical_candidate": "coninform",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "coninform",
+                  "coninform",
+                  "coninform"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ],
+        "source_family_ids": [
+          "surface:es:coninform"
+        ]
+      },
+      "research_status": "pending_review",
+      "finding": "Evidence for English OCR Coninform must not be transferred into Spanish. Native exact form and information-bureau expansion remain to be established.",
+      "source_references": [
+        "https://files.eric.ed.gov/fulltext/ED288576.pdf"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "pending_record": {
+        "lemma_id": "lemma:bd9539060eb1aec45b35",
+        "word": "koninform",
+        "status": "pending_review",
+        "reason": "Not adjudicated in this continuation; prior decision remains immutable.",
+        "source_family_ids": [
+          "surface:de:koni",
+          "surface:de:inform"
+        ],
+        "language": "de",
+        "canonical_root": "inform",
+        "previous_status": "uncertain"
+      },
+      "source_member": {
+        "lemma_id": "lemma:bd9539060eb1aec45b35",
+        "word": "koninform",
+        "normalized": "koninform",
+        "search_form": "koninform",
+        "rank": 585575,
+        "frequency_score": 0.11242766823252369,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.006437
+            ],
+            "category_ipm": 0.006437,
+            "category_score": 0.11242766823252369
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.006437
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "koni",
+            "canonical_candidate": "koni",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "koninform",
+                  "koni",
+                  "koni"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ],
+        "source_family_ids": [
+          "surface:de:koni",
+          "surface:de:inform"
+        ]
+      },
+      "research_status": "pending_review",
+      "finding": "CEEOL German article index gives KONINFORM as a keyword; index metadata alone is insufficient to resolve a conventional variant versus typo. Obtain original German publication and explicit lexical identity.",
+      "source_references": [
+        "https://www.ceeol.com/search/article-detail?id=137884"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "pending_record": {
+        "lemma_id": "lemma:f009dc9fb328a4252910",
+        "word": "informaset",
+        "status": "pending_review",
+        "reason": "Not adjudicated in this continuation; prior decision remains immutable.",
+        "source_family_ids": [
+          "surface:es:informa",
+          "surface:es:maset"
+        ],
+        "language": "es",
+        "canonical_root": "inform",
+        "previous_status": "uncertain"
+      },
+      "source_member": {
+        "lemma_id": "lemma:f009dc9fb328a4252910",
+        "word": "informaset",
+        "normalized": "informaset",
+        "search_form": "informaset",
+        "rank": 631808,
+        "frequency_score": 0.041495494299664135,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.002371
+            ],
+            "category_ipm": 0.002371,
+            "category_score": 0.041495494299664135
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.002371
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "informa",
+            "canonical_candidate": "informa",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "informaset",
+                  "informa",
+                  "informa"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ],
+        "source_family_ids": [
+          "surface:es:informa",
+          "surface:es:maset"
+        ]
+      },
+      "research_status": "pending_review",
+      "finding": "Acting News publisher directly attests Italian Informaset as an audiovisual-production directory. This defeats automatic global spelling-defect classification, but does not establish borrowing in the Spanish aggregate corpus record. Search-index subtitle suggestion of a malformed informaste is not decisive. Original usage context remains absent.",
+      "source_references": [
+        "https://www.actingnews.it/informaset.cfm?c=15"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "pending_record": {
+        "lemma_id": "lemma:6aa3bc3984807bafb72a",
+        "word": "informburo",
+        "status": "pending_review",
+        "reason": "Not adjudicated in this continuation; prior decision remains immutable.",
+        "source_family_ids": [
+          "ety:15cd88c4813d",
+          "ety:3b6c34a40f7b",
+          "surface:en:buro"
+        ],
+        "language": "en",
+        "canonical_root": "inform",
+        "previous_status": "uncertain"
+      },
+      "source_member": {
+        "lemma_id": "lemma:6aa3bc3984807bafb72a",
+        "word": "informburo",
+        "normalized": "informburo",
+        "search_form": "informburo",
+        "rank": 216310,
+        "frequency_score": 0.14471943801699594,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.00935,
+              0.007237
+            ],
+            "category_ipm": 0.0082935,
+            "category_score": 0.14471943801699594
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.00935
+          },
+          {
+            "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.007237
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "inform",
+            "canonical_candidate": "inform",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "informburo",
+                  "inform",
+                  "inform"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ],
+        "source_family_ids": [
+          "ety:15cd88c4813d",
+          "ety:3b6c34a40f7b",
+          "surface:en:buro"
+        ]
+      },
+      "research_status": "pending_review",
+      "finding": "An English-facing company site attests brand INFORMBURO, but information/technology services do not alone prove the exact English corpus token lexical head or the information-bureau segmentation. Investigate actual expansion and native English use.",
+      "source_references": [
+        "https://www.informbyuro.com/en"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "pending_record": {
+        "lemma_id": "lemma:76fc0d5c980fe6d94ae9",
+        "word": "informbureau",
+        "status": "pending_review",
+        "reason": "Not adjudicated in this continuation; prior decision remains immutable.",
+        "source_family_ids": [
+          "ety:15cd88c4813d",
+          "ety:a8805bacc1a4",
+          "ety:3b6c34a40f7b",
+          "surface:en:mbu",
+          "ety:018cef4c651e",
+          "ety:195b1953f1c0"
+        ],
+        "language": "en",
+        "canonical_root": "inform",
+        "previous_status": "uncertain"
+      },
+      "source_member": {
+        "lemma_id": "lemma:76fc0d5c980fe6d94ae9",
+        "word": "informbureau",
+        "normalized": "informbureau",
+        "search_form": "informbureau",
+        "rank": 165848,
+        "frequency_score": 0.23098773609193998,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.01496,
+              0.01158
+            ],
+            "category_ipm": 0.01327,
+            "category_score": 0.23098773609193998
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.01496
+          },
+          {
+            "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.01158
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "inform",
+            "canonical_candidate": "inform",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "informbureau",
+                  "inform",
+                  "inform"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ],
+        "source_family_ids": [
+          "ety:15cd88c4813d",
+          "ety:a8805bacc1a4",
+          "ety:3b6c34a40f7b",
+          "surface:en:mbu",
+          "ety:018cef4c651e",
+          "ety:195b1953f1c0"
+        ]
+      },
+      "research_status": "pending_review",
+      "finding": "Transparent potential information+bureau compound still requires native heads and finite lexical identity review. No blanket acceptance of similar bureau names; preserve measured records and every existing route.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information",
+        "https://www.merriam-webster.com/dictionary/bureau"
+      ],
+      "runtime_applied": false
+    }
+  ],
+  "record_count": 13,
+  "runtime_changes": false,
+  "full_family_certification": false,
+  "resume": [
+    "Adjudicate exact ES informadorxs, FR kominform, DE informbüro with the established primary evidence.",
+    "Keep all other spellings separate; complete unresolved visual/native-use evidence.",
+    "Use separately saved review, guarded preflight, application and validation commits; never repeat applied materializers.",
+    "No merge."
+  ]
+}

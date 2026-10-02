@@ -1,0 +1,1817 @@
+{
+  "schema_version": 1,
+  "repair": "extend_reviewed_observ_inform_native_compounds_20261002",
+  "source_run_id": 35647932153,
+  "baseline_commit": "5aba82c6d5290d5f4c25cfc2baf965be496b2740",
+  "source_hashes": {
+    "audit/associative-family-v5/reflex-native-compounds-review-20261002-2315/decisions.json": "65460a3a789d176d8576d974c326108d7d23ca18dc2c60f4fe16106724de18e5",
+    "audit/associative-family-v5/reflex-native-compounds-review-20261002-2315/pending-review.json": "d24101c9de1c70e48a32c442b20c5e2990d68b0560ee7db803e69caefbf445d7",
+    "audit/associative-family-v5/reflex-native-compounds-review-20261002-2315/source-records.json.gz": "fccec6ee7fd055e785a65c32900534e8c4427c9abc1cbfb8c434a80604cdad02",
+    "audit/associative-family-v5/reflex-checkpoint-20261001/candidates.json.gz": "ce3cc11eb045a4fe9f77bf79239fc585a9a324231c8a6d5530606df1e5488cfb",
+    "audit/associative-family-v5/reflex-functional-boundaries-review-20261002-2245/pending-review.json": "fad3b41a71caec4c8c590f9bf8fb9ddd77d9a050de0a4692f00b58c152c9e4a1",
+    "audit/associative-family-v5/reflex-native-compounds-review-20261002-2315/inventory.json": "7caa916c162e8bd445d660049c90b355456d249711f95c9d9dfcbc9b8ec3870a",
+    "audit/associative-family-v5/reflex-native-compounds-review-20261002-2315/review-spec.json": "4a581e35c17406f6e22b9ef192e958a3914d940e23194afe196e407998410c86",
+    "scripts/lib/associative-reflex-finite-review.py": "082b62dd8ca0b0f6a9021deba3f49bd28ad3c70dda668f4d47e9c6deaab39010",
+    "scripts/review-associative-reflex-native-compounds-20261002.py": "7f3522e444c97d3d09b1b536dcf1b07d1d238eed664ae50fa934383c2f98143e"
+  },
+  "source_routes": [
+    {
+      "language": "fr",
+      "family_id": "surface:fr:observ",
+      "member": {
+        "lemma_id": "lemma:6e32d1ef0dd1a12ecece",
+        "word": "observeur",
+        "normalized": "observeur",
+        "search_form": "observeur",
+        "rank": 75974,
+        "frequency_score": 1.3513294086726764,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.003448
+            ],
+            "category_ipm": 0.003448,
+            "category_score": 0.06031194627701871
+          },
+          "web": {
+            "ipm_values": [
+              0.162766
+            ],
+            "category_ipm": 0.162766,
+            "category_score": 2.642346871068334
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.003448
+          },
+          {
+            "id": "web/sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.162766
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "observ",
+            "canonical_candidate": "observ",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "observeur",
+                  "observ",
+                  "observ"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "fr",
+      "family_id": "surface:fr:eur",
+      "member": {
+        "lemma_id": "lemma:6e32d1ef0dd1a12ecece",
+        "word": "observeur",
+        "normalized": "observeur",
+        "search_form": "observeur",
+        "rank": 75974,
+        "frequency_score": 1.3513294086726764,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.003448
+            ],
+            "category_ipm": 0.003448,
+            "category_score": 0.06031194627701871
+          },
+          "web": {
+            "ipm_values": [
+              0.162766
+            ],
+            "category_ipm": 0.162766,
+            "category_score": 2.642346871068334
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.003448
+          },
+          {
+            "id": "web/sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.162766
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "eur",
+            "canonical_candidate": "eur",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "observeur",
+                  "eur",
+                  "eur"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "it",
+      "family_id": "surface:it:informalavor",
+      "member": {
+        "lemma_id": "lemma:4a0ab3a90bc01550afe3",
+        "word": "informalavoro",
+        "normalized": "informalavoro",
+        "search_form": "informalavoro",
+        "rank": 65359,
+        "frequency_score": 2.8938175133257364,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.179574
+            ],
+            "category_ipm": 0.179574,
+            "category_score": 2.8938175133257364
+          }
+        },
+        "sources": [
+          {
+            "id": "web/sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.179574
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "informalavor",
+            "canonical_candidate": "informalavor",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "informalavoro",
+                  "informalavor",
+                  "informalavor"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "it",
+      "family_id": "ety:3a9bef69ed1b",
+      "member": {
+        "lemma_id": "lemma:4a0ab3a90bc01550afe3",
+        "word": "informalavoro",
+        "normalized": "informalavoro",
+        "search_form": "informalavoro",
+        "rank": 65359,
+        "frequency_score": 2.8938175133257364,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.179574
+            ],
+            "category_ipm": 0.179574,
+            "category_score": 2.8938175133257364
+          }
+        },
+        "sources": [
+          {
+            "id": "web/sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.179574
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "lavoro",
+            "canonical_candidate": "lavoro",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "informalavoro",
+                  "lavoro",
+                  "lavoro"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "it",
+      "family_id": "surface:it:cap",
+      "member": {
+        "lemma_id": "lemma:8c8578cfa8a1d1647b04",
+        "word": "informahandicap",
+        "normalized": "informahandicap",
+        "search_form": "informahandicap",
+        "rank": 57932,
+        "frequency_score": 3.5574746931015873,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.225108
+            ],
+            "category_ipm": 0.225108,
+            "category_score": 3.5574746931015873
+          }
+        },
+        "sources": [
+          {
+            "id": "web/sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.225108
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "cap",
+            "canonical_candidate": "cap",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "informahandicap",
+                  "cap",
+                  "cap"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "it",
+      "family_id": "surface:it:mahan",
+      "member": {
+        "lemma_id": "lemma:8c8578cfa8a1d1647b04",
+        "word": "informahandicap",
+        "normalized": "informahandicap",
+        "search_form": "informahandicap",
+        "rank": 57932,
+        "frequency_score": 3.5574746931015873,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.225108
+            ],
+            "category_ipm": 0.225108,
+            "category_score": 3.5574746931015873
+          }
+        },
+        "sources": [
+          {
+            "id": "web/sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.225108
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "mahan",
+            "canonical_candidate": "mahan",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "informahandicap",
+                  "mahan",
+                  "mahan"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "it",
+      "family_id": "surface:it:informa",
+      "member": {
+        "lemma_id": "lemma:8c8578cfa8a1d1647b04",
+        "word": "informahandicap",
+        "normalized": "informahandicap",
+        "search_form": "informahandicap",
+        "rank": 57932,
+        "frequency_score": 3.5574746931015873,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.225108
+            ],
+            "category_ipm": 0.225108,
+            "category_score": 3.5574746931015873
+          }
+        },
+        "sources": [
+          {
+            "id": "web/sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.225108
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "informa",
+            "canonical_candidate": "informa",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "informahandicap",
+                  "informa",
+                  "informa"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "it",
+      "family_id": "surface:it:handi",
+      "member": {
+        "lemma_id": "lemma:8c8578cfa8a1d1647b04",
+        "word": "informahandicap",
+        "normalized": "informahandicap",
+        "search_form": "informahandicap",
+        "rank": 57932,
+        "frequency_score": 3.5574746931015873,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.225108
+            ],
+            "category_ipm": 0.225108,
+            "category_score": 3.5574746931015873
+          }
+        },
+        "sources": [
+          {
+            "id": "web/sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.225108
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "handi",
+            "canonical_candidate": "handi",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "informahandicap",
+                  "handi",
+                  "handi"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "it",
+      "family_id": "surface:it:iani",
+      "member": {
+        "lemma_id": "lemma:7ced577326bf134bcb15",
+        "word": "informanziani",
+        "normalized": "informanziani",
+        "search_form": "informanziani",
+        "rank": 86334,
+        "frequency_score": 1.7929479184985126,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.107744
+            ],
+            "category_ipm": 0.107744,
+            "category_score": 1.7929479184985126
+          }
+        },
+        "sources": [
+          {
+            "id": "web/sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.107744
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "iani",
+            "canonical_candidate": "iani",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "informanziani",
+                  "iani",
+                  "iani"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "it",
+      "family_id": "surface:it:informanzian",
+      "member": {
+        "lemma_id": "lemma:7ced577326bf134bcb15",
+        "word": "informanziani",
+        "normalized": "informanziani",
+        "search_form": "informanziani",
+        "rank": 86334,
+        "frequency_score": 1.7929479184985126,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.107744
+            ],
+            "category_ipm": 0.107744,
+            "category_score": 1.7929479184985126
+          }
+        },
+        "sources": [
+          {
+            "id": "web/sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.107744
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "informanzian",
+            "canonical_candidate": "informanzian",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "informanziani",
+                  "informanzian",
+                  "informanzian"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "ru",
+      "family_id": "surface:ru:linf",
+      "member": {
+        "lemma_id": "lemma:fa5ccbdc7efe63f1f9e7",
+        "word": "уралинформбюро",
+        "normalized": "уралинформбюро",
+        "search_form": "uralinformbjuro",
+        "rank": 145608,
+        "frequency_score": 1.3907081955810194,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.082604
+            ],
+            "category_ipm": 0.082604,
+            "category_score": 1.3907081955810194
+          }
+        },
+        "sources": [
+          {
+            "id": "web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "file": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.082604
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "linf",
+            "canonical_candidate": "linf",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "uralinformbjuro",
+                  "linf",
+                  "linf"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "ru",
+      "family_id": "surface:ru:ural",
+      "member": {
+        "lemma_id": "lemma:fa5ccbdc7efe63f1f9e7",
+        "word": "уралинформбюро",
+        "normalized": "уралинформбюро",
+        "search_form": "uralinformbjuro",
+        "rank": 145608,
+        "frequency_score": 1.3907081955810194,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.082604
+            ],
+            "category_ipm": 0.082604,
+            "category_score": 1.3907081955810194
+          }
+        },
+        "sources": [
+          {
+            "id": "web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "file": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.082604
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "ural",
+            "canonical_candidate": "ural",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "uralinformbjuro",
+                  "ural",
+                  "ural"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "ru",
+      "family_id": "surface:ru:mb",
+      "member": {
+        "lemma_id": "lemma:fa5ccbdc7efe63f1f9e7",
+        "word": "уралинформбюро",
+        "normalized": "уралинформбюро",
+        "search_form": "uralinformbjuro",
+        "rank": 145608,
+        "frequency_score": 1.3907081955810194,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.082604
+            ],
+            "category_ipm": 0.082604,
+            "category_score": 1.3907081955810194
+          }
+        },
+        "sources": [
+          {
+            "id": "web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "file": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.082604
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "mb",
+            "canonical_candidate": "mb",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "uralinformbjuro",
+                  "mb",
+                  "mb"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "ru",
+      "family_id": "surface:ru:inform",
+      "member": {
+        "lemma_id": "lemma:fa5ccbdc7efe63f1f9e7",
+        "word": "уралинформбюро",
+        "normalized": "уралинформбюро",
+        "search_form": "uralinformbjuro",
+        "rank": 145608,
+        "frequency_score": 1.3907081955810194,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.082604
+            ],
+            "category_ipm": 0.082604,
+            "category_score": 1.3907081955810194
+          }
+        },
+        "sources": [
+          {
+            "id": "web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "file": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.082604
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "inform",
+            "canonical_candidate": "inform",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "uralinformbjuro",
+                  "inform",
+                  "inform"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "ru",
+      "family_id": "surface:ru:alin",
+      "member": {
+        "lemma_id": "lemma:fa5ccbdc7efe63f1f9e7",
+        "word": "уралинформбюро",
+        "normalized": "уралинформбюро",
+        "search_form": "uralinformbjuro",
+        "rank": 145608,
+        "frequency_score": 1.3907081955810194,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.082604
+            ],
+            "category_ipm": 0.082604,
+            "category_score": 1.3907081955810194
+          }
+        },
+        "sources": [
+          {
+            "id": "web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "file": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.082604
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "alin",
+            "canonical_candidate": "alin",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "uralinformbjuro",
+                  "alin",
+                  "alin"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "ru",
+      "family_id": "ety:e336db5a09d6",
+      "member": {
+        "lemma_id": "lemma:fa5ccbdc7efe63f1f9e7",
+        "word": "уралинформбюро",
+        "normalized": "уралинформбюро",
+        "search_form": "uralinformbjuro",
+        "rank": 145608,
+        "frequency_score": 1.3907081955810194,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.082604
+            ],
+            "category_ipm": 0.082604,
+            "category_score": 1.3907081955810194
+          }
+        },
+        "sources": [
+          {
+            "id": "web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "file": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.082604
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "bjuro",
+            "canonical_candidate": "bjuro",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "uralinformbjuro",
+                  "bjuro",
+                  "bjuro"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "ru",
+      "family_id": "surface:ru:urals",
+      "member": {
+        "lemma_id": "lemma:6693ccc8d7292fd68719",
+        "word": "уралсвязьинформ",
+        "normalized": "уралсвязьинформ",
+        "search_form": "uralsvjazinform",
+        "rank": 66028,
+        "frequency_score": 5.243487900388924,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.348849
+            ],
+            "category_ipm": 0.348849,
+            "category_score": 5.243487900388924
+          }
+        },
+        "sources": [
+          {
+            "id": "web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "file": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.348849
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "urals",
+            "canonical_candidate": "urals",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "uralsvjazinform",
+                  "urals",
+                  "urals"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "ru",
+      "family_id": "surface:ru:inform",
+      "member": {
+        "lemma_id": "lemma:6693ccc8d7292fd68719",
+        "word": "уралсвязьинформ",
+        "normalized": "уралсвязьинформ",
+        "search_form": "uralsvjazinform",
+        "rank": 66028,
+        "frequency_score": 5.243487900388924,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.348849
+            ],
+            "category_ipm": 0.348849,
+            "category_score": 5.243487900388924
+          }
+        },
+        "sources": [
+          {
+            "id": "web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "file": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.348849
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "inform",
+            "canonical_candidate": "inform",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "uralsvjazinform",
+                  "inform",
+                  "inform"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "ru",
+      "family_id": "surface:ru:zin",
+      "member": {
+        "lemma_id": "lemma:6693ccc8d7292fd68719",
+        "word": "уралсвязьинформ",
+        "normalized": "уралсвязьинформ",
+        "search_form": "uralsvjazinform",
+        "rank": 66028,
+        "frequency_score": 5.243487900388924,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.348849
+            ],
+            "category_ipm": 0.348849,
+            "category_score": 5.243487900388924
+          }
+        },
+        "sources": [
+          {
+            "id": "web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "file": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.348849
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "zin",
+            "canonical_candidate": "zin",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "uralsvjazinform",
+                  "zin",
+                  "zin"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "ru",
+      "family_id": "surface:ru:svjazi",
+      "member": {
+        "lemma_id": "lemma:6693ccc8d7292fd68719",
+        "word": "уралсвязьинформ",
+        "normalized": "уралсвязьинформ",
+        "search_form": "uralsvjazinform",
+        "rank": 66028,
+        "frequency_score": 5.243487900388924,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.348849
+            ],
+            "category_ipm": 0.348849,
+            "category_score": 5.243487900388924
+          }
+        },
+        "sources": [
+          {
+            "id": "web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "file": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.348849
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "svjazi",
+            "canonical_candidate": "svjazi",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "uralsvjazinform",
+                  "svjazi",
+                  "svjazi"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "ru",
+      "family_id": "surface:ru:lsvj",
+      "member": {
+        "lemma_id": "lemma:6693ccc8d7292fd68719",
+        "word": "уралсвязьинформ",
+        "normalized": "уралсвязьинформ",
+        "search_form": "uralsvjazinform",
+        "rank": 66028,
+        "frequency_score": 5.243487900388924,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.348849
+            ],
+            "category_ipm": 0.348849,
+            "category_score": 5.243487900388924
+          }
+        },
+        "sources": [
+          {
+            "id": "web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "file": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.348849
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "lsvj",
+            "canonical_candidate": "lsvj",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "uralsvjazinform",
+                  "lsvj",
+                  "lsvj"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "ru",
+      "family_id": "surface:ru:alsv",
+      "member": {
+        "lemma_id": "lemma:6693ccc8d7292fd68719",
+        "word": "уралсвязьинформ",
+        "normalized": "уралсвязьинформ",
+        "search_form": "uralsvjazinform",
+        "rank": 66028,
+        "frequency_score": 5.243487900388924,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.348849
+            ],
+            "category_ipm": 0.348849,
+            "category_score": 5.243487900388924
+          }
+        },
+        "sources": [
+          {
+            "id": "web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "file": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.348849
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "alsv",
+            "canonical_candidate": "alsv",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "uralsvjazinform",
+                  "alsv",
+                  "alsv"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "ru",
+      "family_id": "ety:e5810cb4d813",
+      "member": {
+        "lemma_id": "lemma:6721787c0db760cd72e7",
+        "word": "комиинформа",
+        "normalized": "комиинформа",
+        "search_form": "komiinforma",
+        "rank": 130711,
+        "frequency_score": 1.6647837478361442,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.099671
+            ],
+            "category_ipm": 0.099671,
+            "category_score": 1.6647837478361442
+          }
+        },
+        "sources": [
+          {
+            "id": "web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "file": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.099671
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "forma",
+            "canonical_candidate": "forma",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "komiinforma",
+                  "forma",
+                  "forma"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "ru",
+      "family_id": "surface:ru:komiinform",
+      "member": {
+        "lemma_id": "lemma:6721787c0db760cd72e7",
+        "word": "комиинформа",
+        "normalized": "комиинформа",
+        "search_form": "komiinforma",
+        "rank": 130711,
+        "frequency_score": 1.6647837478361442,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.099671
+            ],
+            "category_ipm": 0.099671,
+            "category_score": 1.6647837478361442
+          }
+        },
+        "sources": [
+          {
+            "id": "web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "file": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.099671
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "komiinform",
+            "canonical_candidate": "komiinform",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "komiinforma",
+                  "komiinform",
+                  "komiinform"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "ru",
+      "family_id": "ety:bfbc971f4397",
+      "member": {
+        "lemma_id": "lemma:6721787c0db760cd72e7",
+        "word": "комиинформа",
+        "normalized": "комиинформа",
+        "search_form": "komiinforma",
+        "rank": 130711,
+        "frequency_score": 1.6647837478361442,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.099671
+            ],
+            "category_ipm": 0.099671,
+            "category_score": 1.6647837478361442
+          }
+        },
+        "sources": [
+          {
+            "id": "web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "file": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.099671
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "forma",
+            "canonical_candidate": "forma",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "komiinforma",
+                  "forma",
+                  "forma"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "before_families": {
+    "family:observ": {
+      "id": "family:observ",
+      "canonical": "observ",
+      "aliases": [
+        "observ",
+        "osserv",
+        "observation",
+        "osservazione",
+        "observatio",
+        "observati"
+      ],
+      "surface_forms": {
+        "en": [
+          "observ"
+        ],
+        "de": [
+          "observ"
+        ],
+        "fr": [
+          "observ"
+        ],
+        "es": [
+          "observ"
+        ],
+        "it": [
+          "osserv"
+        ],
+        "ru": [
+          "обсерв"
+        ]
+      },
+      "associative_component": true,
+      "exact_component": true,
+      "runtime_curated": true,
+      "verified": false,
+      "confidence": "B",
+      "review_status": "needs_review",
+      "source": "associative_reflex_review+manual_override",
+      "etymon_keys": [
+        "la:observare",
+        "la:observatio"
+      ],
+      "relation_types": [
+        "compound_component"
+      ],
+      "relation_evidence": [
+        {
+          "type": "manual_override",
+          "source": "audit/associative-family-v5/reflex-families-20261001.json",
+          "whole_lemma_union": false,
+          "language_reflex": true
+        },
+        {
+          "type": "manual_override",
+          "source": "audit/associative-family-v5/reflex-continuation-materialization-20261002/materialization-ledger.json",
+          "whole_lemma_union": false,
+          "language_reflex": true,
+          "full_family_certification": false
+        },
+        {
+          "type": "manual_override",
+          "source": "audit/associative-family-v5/reflex-heads-materialization-20261002/materialization-ledger.json",
+          "whole_lemma_union": false,
+          "language_reflex": true,
+          "full_family_certification": false
+        },
+        {
+          "type": "manual_override",
+          "source": "audit/associative-family-v5/reflex-rare-heads-materialization-20261002/materialization-ledger.json",
+          "whole_lemma_union": false,
+          "language_reflex": true,
+          "full_family_certification": false
+        }
+      ],
+      "support": 311,
+      "language_support": {
+        "en": 39,
+        "de": 72,
+        "fr": 21,
+        "es": 112,
+        "it": 61,
+        "ru": 6
+      },
+      "suspicion_score": 0,
+      "suspicion_reasons": []
+    },
+    "family:inform": {
+      "id": "family:inform",
+      "canonical": "inform",
+      "aliases": [
+        "inform",
+        "informatio",
+        "information",
+        "informacion",
+        "informacija",
+        "informazione"
+      ],
+      "surface_forms": {
+        "en": [
+          "inform"
+        ],
+        "de": [
+          "inform"
+        ],
+        "fr": [
+          "inform"
+        ],
+        "es": [
+          "inform"
+        ],
+        "it": [
+          "inform"
+        ],
+        "ru": [
+          "информ"
+        ]
+      },
+      "associative_component": true,
+      "exact_component": true,
+      "runtime_curated": true,
+      "verified": false,
+      "confidence": "B",
+      "review_status": "needs_review",
+      "source": "associative_reflex_review+manual_override",
+      "etymon_keys": [
+        "la:informare",
+        "la:informatio"
+      ],
+      "relation_types": [
+        "compound_component"
+      ],
+      "relation_evidence": [
+        {
+          "type": "manual_override",
+          "source": "audit/associative-family-v5/reflex-families-20261001.json",
+          "whole_lemma_union": false,
+          "language_reflex": true
+        },
+        {
+          "type": "manual_override",
+          "source": "audit/associative-family-v5/reflex-continuation-materialization-20261002/materialization-ledger.json",
+          "whole_lemma_union": false,
+          "language_reflex": true,
+          "full_family_certification": false
+        },
+        {
+          "type": "manual_override",
+          "source": "audit/associative-family-v5/reflex-heads-materialization-20261002/materialization-ledger.json",
+          "whole_lemma_union": false,
+          "language_reflex": true,
+          "full_family_certification": false
+        },
+        {
+          "type": "manual_override",
+          "source": "audit/associative-family-v5/reflex-rare-heads-materialization-20261002/materialization-ledger.json",
+          "whole_lemma_union": false,
+          "language_reflex": true,
+          "full_family_certification": false
+        }
+      ],
+      "support": 1460,
+      "language_support": {
+        "en": 61,
+        "de": 1030,
+        "fr": 53,
+        "es": 155,
+        "it": 82,
+        "ru": 79
+      },
+      "suspicion_score": 0,
+      "suspicion_reasons": []
+    }
+  },
+  "before_members": {
+    "family:observ": {
+      "en": {
+        "existed": true,
+        "count": 39,
+        "ordered_sha256": "937605551b63dc8fa89d58cad4c4d71e2dbf8269ff78d17afed5cfef8cf0f0a8"
+      },
+      "de": {
+        "existed": true,
+        "count": 72,
+        "ordered_sha256": "fe8b39b1592f88a313f9bcc9a7b8552accde6affc00de453854e890673b920fd"
+      },
+      "fr": {
+        "existed": true,
+        "count": 21,
+        "ordered_sha256": "b7364ecf46db04e0aebd1d2ebacc413d17b7746f2becb6fcd8c09c37f4db23b1"
+      },
+      "es": {
+        "existed": true,
+        "count": 112,
+        "ordered_sha256": "5d1454f91bc8db38d5c32332ad35126c117f1d9f5eecbd4d5ab61e2f3da2e6cb"
+      },
+      "it": {
+        "existed": true,
+        "count": 61,
+        "ordered_sha256": "7f3f746adb879ca3088ded3f295e1c5276e33247017e7c25ab0a827b372432cc"
+      },
+      "ru": {
+        "existed": true,
+        "count": 6,
+        "ordered_sha256": "0d744ccb3268275bc20b49ea9109867f8d665074c9e866e2c64f3cbd62c7b858"
+      }
+    },
+    "family:inform": {
+      "en": {
+        "existed": true,
+        "count": 61,
+        "ordered_sha256": "2dd6f3b75e12295988d9e1df58fe4d91e37e74da54588b2818b64bdcb9695a67"
+      },
+      "de": {
+        "existed": true,
+        "count": 1030,
+        "ordered_sha256": "dcaf365325d8013b0cdebdb962272d4ae1e489e3f422084320d65b5825801cb7"
+      },
+      "fr": {
+        "existed": true,
+        "count": 53,
+        "ordered_sha256": "82c6370515d5b7b82ae6e109324b11498d070db89a9c78339ecaea87870d8275"
+      },
+      "es": {
+        "existed": true,
+        "count": 155,
+        "ordered_sha256": "c1bddda7604edc7a52dffab2fe9d7fbffe08fe57516a46702fc2b2cc64b3be8a"
+      },
+      "it": {
+        "existed": true,
+        "count": 82,
+        "ordered_sha256": "7929810a82b58ce106b57023f29906b6e98325553f4ea28b705d12abf1c43c8e"
+      },
+      "ru": {
+        "existed": true,
+        "count": 79,
+        "ordered_sha256": "d83dc513698b24924ba9c6927cb92939b886bf89416990ff52b93e2e4c251201"
+      }
+    }
+  },
+  "additions": [
+    {
+      "lemma_id": "lemma:6e32d1ef0dd1a12ecece",
+      "word": "observeur",
+      "status": "accepted",
+      "reason": "APCI, the award organizer, directly attests Observeur in French and its observational/prospective design role. The lexical base is observer with productive agent suffix -eur, a finite morphological inference corroborated by the exact native name, not a spelling correction to observateur. This is an exact finite decision for the existing corpus lemma; spelling, measured fields and all independent source routes are preserved. No generic substring/name rule, corrected lemma or whole-lemma union is introduced.",
+      "source_family_ids": [
+        "surface:fr:observ",
+        "surface:fr:eur"
+      ],
+      "language": "fr",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_native_compound",
+      "lexical_head": "observer",
+      "segmentation_or_lexical_identity": "observ(e)- + agent suffix -eur; native award name Observeur du design",
+      "source_references": [
+        "https://apci-design.fr/observeur-du-design/",
+        "https://www.dictionnaire-academie.fr/conjuguer/A9O0082"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:4a0ab3a90bc01550afe3",
+      "word": "informalavoro",
+      "status": "accepted",
+      "reason": "Comune di Cardano al Campo directly attests both InformaLavoro and Informalavoro and describes provision of job information. The transparent verb-noun compound retains informare in the informing branch; the boundary is informa+lavoro, not negative in+formale. This is an exact finite decision for the existing corpus lemma; spelling, measured fields and all independent source routes are preserved. No generic substring/name rule, corrected lemma or whole-lemma union is introduced.",
+      "source_family_ids": [
+        "surface:it:informalavor",
+        "ety:3a9bef69ed1b"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_native_compound",
+      "lexical_head": "informare",
+      "segmentation_or_lexical_identity": "informa + lavoro",
+      "source_references": [
+        "https://comune.cardanoalcampo.va.it/servizio/informalavoro-e-informagiovani/",
+        "https://www.treccani.it/vocabolario/informare/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:8c8578cfa8a1d1647b04",
+      "word": "informahandicap",
+      "status": "accepted",
+      "reason": "Unione delle Terre d’Argine directly names Informahandicap and describes information, advice and documentation for disability services. The finite verb-noun compound has recognizable informare, with no language transfer or edit-distance inference. This is an exact finite decision for the existing corpus lemma; spelling, measured fields and all independent source routes are preserved. No generic substring/name rule, corrected lemma or whole-lemma union is introduced.",
+      "source_family_ids": [
+        "surface:it:cap",
+        "surface:it:mahan",
+        "surface:it:informa",
+        "surface:it:handi"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_native_compound",
+      "lexical_head": "informare",
+      "segmentation_or_lexical_identity": "informa + handicap",
+      "source_references": [
+        "https://www.terredargine.it/assistenza-sociale/persone-con-disabilita/informahandicap/",
+        "https://www.treccani.it/vocabolario/informare/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:7ced577326bf134bcb15",
+      "word": "informanziani",
+      "status": "accepted",
+      "reason": "Regione Liguria directly names Informanziani and defines it as an information/orientation service for older people. Native lexical identity and service semantics establish the informing branch; informa+anziani with boundary vowel coalescence is the finite morphological analysis, not an assertion that every truncated inform token is valid. This is an exact finite decision for the existing corpus lemma; spelling, measured fields and all independent source routes are preserved. No generic substring/name rule, corrected lemma or whole-lemma union is introduced.",
+      "source_family_ids": [
+        "surface:it:iani",
+        "surface:it:informanzian"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_native_compound",
+      "lexical_head": "informare",
+      "segmentation_or_lexical_identity": "inform(a) + anziani; shared boundary vowel a",
+      "source_references": [
+        "https://www.regione.liguria.it/homepage-welfare/cosa-cerchi/welfare-territoriale/informanziani.html",
+        "https://www.treccani.it/vocabolario/informare/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:fa5ccbdc7efe63f1f9e7",
+      "word": "уралинформбюро",
+      "status": "accepted",
+      "reason": "The agency’s own about page attests the exact name Уралинформбюро and explicitly identifies it as an information agency. The recognizable shortened information head belongs to the informing branch in this native compound. This is an exact finite decision for the existing corpus lemma; spelling, measured fields and all independent source routes are preserved. No generic substring/name rule, corrected lemma or whole-lemma union is introduced.",
+      "source_family_ids": [
+        "surface:ru:linf",
+        "surface:ru:ural",
+        "surface:ru:mb",
+        "surface:ru:inform",
+        "surface:ru:alin",
+        "ety:e336db5a09d6"
+      ],
+      "language": "ru",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_native_compound",
+      "lexical_head": "информация / информатизация",
+      "segmentation_or_lexical_identity": "Урал + информ(ационное) + бюро",
+      "source_references": [
+        "https://www.uralinform.ru/about"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:6693ccc8d7292fd68719",
+      "word": "уралсвязьинформ",
+      "status": "accepted",
+      "reason": "The successor’s Russian-language official page directly attests Уралсвязьинформ. The state archive identifies its predecessor as a communications/informatics enterprise. Together these establish the finite native communications/informatization compound and its information head, without accepting unrelated names by substring. This is an exact finite decision for the existing corpus lemma; spelling, measured fields and all independent source routes are preserved. No generic substring/name rule, corrected lemma or whole-lemma union is introduced.",
+      "source_family_ids": [
+        "surface:ru:urals",
+        "surface:ru:inform",
+        "surface:ru:zin",
+        "surface:ru:svjazi",
+        "surface:ru:lsvj",
+        "surface:ru:alsv"
+      ],
+      "language": "ru",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_native_compound",
+      "lexical_head": "информация / информатизация",
+      "segmentation_or_lexical_identity": "Урал + связь + информ(атизация)",
+      "source_references": [
+        "https://www.company.rt.ru/regions/ural/about/info/",
+        "https://gaso-ural.ru/nsa/spravochnik2021/fondi-organov-gosvlasti/svyz1_/telekommunikacion-kompanii/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:6721787c0db760cd72e7",
+      "word": "комиинформа",
+      "status": "accepted",
+      "reason": "The agency’s own service page directly attests the genitive Комиинформа, its nominative Комиинформ and its information-agency function. The inflected native compound transparently retains the information head. This is an exact finite decision for the existing corpus lemma; spelling, measured fields and all independent source routes are preserved. No generic substring/name rule, corrected lemma or whole-lemma union is introduced.",
+      "source_family_ids": [
+        "ety:e5810cb4d813",
+        "surface:ru:komiinform",
+        "ety:bfbc971f4397"
+      ],
+      "language": "ru",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_native_compound",
+      "lexical_head": "информация / информатизация",
+      "segmentation_or_lexical_identity": "Коми + информ + genitive singular -а",
+      "source_references": [
+        "https://komiinform.ru/page/services.ki"
+      ],
+      "runtime_applied": false
+    }
+  ],
+  "preservation": [
+    {
+      "part": "families",
+      "bucket": "6c",
+      "ignore": [
+        "family:observ"
+      ],
+      "unrelated_sha256": "6ba53f49c956f65825fcd38cad9b949b14ab208b8ab8a61b2b6121964773880b"
+    },
+    {
+      "part": "members/fr",
+      "bucket": "6c",
+      "ignore": [
+        "family:observ"
+      ],
+      "unrelated_sha256": "e29ccb99b094ab5e25bb0483fe43450bdbe5c0101a545ed4d9f974242c31ced9"
+    },
+    {
+      "part": "families",
+      "bucket": "5c",
+      "ignore": [
+        "family:inform"
+      ],
+      "unrelated_sha256": "4a30c2690a66356e3b6fdf8e64a112780a1bdc6b13f6a6d6c5b80fb242b4f4c1"
+    },
+    {
+      "part": "members/it",
+      "bucket": "5c",
+      "ignore": [
+        "family:inform"
+      ],
+      "unrelated_sha256": "49fd9a1b69eabfa2ab6e5814740374248ce0865bef96a25a6084c749e557d743"
+    },
+    {
+      "part": "members/ru",
+      "bucket": "5c",
+      "ignore": [
+        "family:inform"
+      ],
+      "unrelated_sha256": "72584ad2566e521ad9ab6a2648f24ec3f5d60c72fa39f9e91e594590cc94c566"
+    }
+  ],
+  "runtime_preflight_sha256": {
+    "manifest.json": "3c3b5d4e113b078fbd8b9f29bf1f2d751190d2bc5f7c2fee53acafb46636fc15",
+    "report.json": "6fd3a52769f07736a09b8a89cd493ab4bcbc0013efad3888cd7c01738d50ea92",
+    "repository-provenance.json": "e12d863433901f9b6ba35b62ed06d2dd490d4542291ad966d4975280c1db3af6",
+    "families/6c.json.gz": "1824764b95a86003219b363d03d00cb0315208942d51ebd5a69782240d8fe51b",
+    "members/fr/6c.json.gz": "0caee1c742912666c32b9742262fdd8857c08e4c999a2b35fc2f2b6dde9a4cf9",
+    "families/5c.json.gz": "8db48a8866ef8c3186d014a5b121e0037616d6ff75ab53f28a7a44e5a3827419",
+    "members/it/5c.json.gz": "ee961b6046f54a5006316072b85ddc2c9c7ef354057b2b1293c99faf3183769b",
+    "members/ru/5c.json.gz": "239a0f6a3e7a5ae860729b031c4eee957bd759d91ab8d01d6f8a4fad7f6d2301"
+  },
+  "expected_written_files": [
+    "families/5c.json.gz",
+    "families/6c.json.gz",
+    "manifest.json",
+    "members/fr/6c.json.gz",
+    "members/it/5c.json.gz",
+    "members/ru/5c.json.gz",
+    "report.json",
+    "repository-provenance.json"
+  ],
+  "untouched_files_sha256": "0477219e4b16f1c713a9a55f5fe8d0a959291f6a2c56e5564f85fc24c15fd4c4",
+  "metadata_preflight": {
+    "manifest.json": "3c3b5d4e113b078fbd8b9f29bf1f2d751190d2bc5f7c2fee53acafb46636fc15",
+    "report.json": "6fd3a52769f07736a09b8a89cd493ab4bcbc0013efad3888cd7c01738d50ea92",
+    "repository-provenance.json": "e12d863433901f9b6ba35b62ed06d2dd490d4542291ad966d4975280c1db3af6"
+  },
+  "expected_added_memberships": 7,
+  "expected_removed_memberships": 0,
+  "alias_delta": 0,
+  "net_family_delta": 0,
+  "status": "ready_to_materialize",
+  "full_family_certification": false
+}

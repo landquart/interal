@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "source_run_id": 35647932153,
+  "previous_stage": "audit/associative-family-v5/reflex-native-compounds-review-20261002-2315",
+  "inputs": {
+    "spec_path": "audit/associative-family-v5/reflex-productive-variants-review-20261002/review-spec.json",
+    "spec_sha256": "5b5785160cd6c1eb6ab3f1f9a297aacf12d716aba5964320d3a857e970d584cf",
+    "previous_pending_path": "audit/associative-family-v5/reflex-native-compounds-review-20261002-2315/pending-review.json",
+    "previous_pending_sha256": "d24101c9de1c70e48a32c442b20c5e2990d68b0560ee7db803e69caefbf445d7",
+    "previous_inventory_path": "audit/associative-family-v5/reflex-native-compounds-review-20261002-2315/inventory.json",
+    "previous_inventory_sha256": "7caa916c162e8bd445d660049c90b355456d249711f95c9d9dfcbc9b8ec3870a",
+    "source_candidate_path": "audit/associative-family-v5/reflex-checkpoint-20261001/candidates.json.gz",
+    "source_candidate_sha256": "ce3cc11eb045a4fe9f77bf79239fc585a9a324231c8a6d5530606df1e5488cfb"
+  },
+  "source_candidate_sha256": "ce3cc11eb045a4fe9f77bf79239fc585a9a324231c8a6d5530606df1e5488cfb",
+  "reviewed_count": 12,
+  "new_counts": {
+    "accepted": 10,
+    "excluded": 1,
+    "uncertain": 1
+  },
+  "continuation_counts": {
+    "accepted": 48,
+    "excluded": 358,
+    "uncertain": 155,
+    "pending_review": 201
+  },
+  "artifact_sha256": {
+    "decisions.json": "b4407fcb56b6d3af1b441019b28f3ec12e3a71110fe77fcaeaacb6b2a3e54f44",
+    "pending-review.json": "217911b0b3eb64da4fe37ba59a8a40a77e8a9e6b93d0866110a78263ed458381",
+    "source-records.json.gz": "3eaada735c79bad789e273834272192d4910644c157ab814bd33b9ff830b9258"
+  },
+  "runtime_changes": false,
+  "full_family_certification": false
+}

@@ -32,13 +32,13 @@ export const TEMPLATE_RELATION_POLICY = Object.freeze({
   'back-formation': policy(RELATION_TYPE.DIRECT_DESCENDANT, true, false, 0.9),
   'short for': policy(RELATION_TYPE.DIRECT_ALLOMORPH, true, false, 0.95),
   'ellipsis of': policy(RELATION_TYPE.DIRECT_ALLOMORPH, true, false, 0.9),
-  compound: policy(RELATION_TYPE.COMPOUND_COMPONENT, false, false, 1),
-  confix: policy(RELATION_TYPE.COMPOUND_COMPONENT, false, false, 1),
+  compound: policy(RELATION_TYPE.COMPOUND_COMPONENT, false, true, 1),
+  confix: policy(RELATION_TYPE.COMPOUND_COMPONENT, false, true, 1),
   blend: policy(RELATION_TYPE.COMPOUND_COMPONENT, false, true, 0.8),
-  af: policy(RELATION_TYPE.AFFIX_COMPONENT, false, false, 1),
-  affix: policy(RELATION_TYPE.AFFIX_COMPONENT, false, false, 1),
-  prefix: policy(RELATION_TYPE.AFFIX_COMPONENT, false, false, 1),
-  suffix: policy(RELATION_TYPE.AFFIX_COMPONENT, false, false, 1),
+  af: policy(RELATION_TYPE.AFFIX_COMPONENT, false, true, 1),
+  affix: policy(RELATION_TYPE.AFFIX_COMPONENT, false, true, 1),
+  prefix: policy(RELATION_TYPE.AFFIX_COMPONENT, false, true, 1),
+  suffix: policy(RELATION_TYPE.AFFIX_COMPONENT, false, true, 1),
   etymon: policy(RELATION_TYPE.DISTANT_ANCESTOR, false, true, 0.6),
   ety: policy(RELATION_TYPE.DISTANT_ANCESTOR, false, true, 0.6)
 });
@@ -95,3 +95,4 @@ export function templateRelations(template) {
     uncertain: []
   };
 }
+

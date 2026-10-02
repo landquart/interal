@@ -1,0 +1,716 @@
+{
+  "source_run_id": 35647932153,
+  "inputs": {
+    "creat": {
+      "candidate_path": "audit/associative-family-v5/creation-checkpoint-20261001/candidates.json.gz",
+      "candidate_sha256": "ea3edf87ff1d605e8587a23a0ef689848aceda1fc2817ba52f04f4f7fe97a148",
+      "previous_pending_path": "audit/associative-family-v5/creation-relation-independent-heads-20261002/pending-review.json.gz",
+      "previous_pending_sha256": "e9d6ebdeaf06d10aff0514111a0f217e19ce14674e40733af6f74843ae74ed3b",
+      "inventory_path": "audit/associative-family-v5/creation-relation-independent-heads-20261002/inventory.json",
+      "inventory_sha256": "27e319d2f07b5d1e5feb96f06738abfd58db0ef1ccd94b7c56b43d987137fdc6"
+    },
+    "mut": {
+      "candidate_path": "audit/associative-family-v5/mutation-checkpoint-20261001/candidates.json.gz",
+      "candidate_sha256": "dfa2d87232d006c061d6b2829b53f72f38998f82cd43ef768dcb4ce79990087f",
+      "previous_pending_path": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+      "previous_pending_sha256": "1f8d22733c08d6cfd37a775c83cdcb9716ef0beb20543985a02939f05c3be7a3",
+      "inventory_path": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/inventory.json",
+      "inventory_sha256": "52f1364e14b767e5abc33fa1948880656ee03d6f5b8d024d43b1b2d8f84375d7"
+    }
+  },
+  "decisions": [
+    {
+      "root": "creat",
+      "language": "es",
+      "lemma_id": "lemma:cfd9dc7488ace4a18c64",
+      "word": "acreedor",
+      "status": "excluded",
+      "reason": "Independent creditor/deserving branch from acreer/credere, not creation.",
+      "source_family_ids": [
+        "ety:8682c7ee8786"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "acreedor",
+      "source_references": [
+        "https://dle.rae.es/acreedor"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "es",
+      "lemma_id": "lemma:e4a5bb851e47f7e1dd1f",
+      "word": "acreedora",
+      "status": "excluded",
+      "reason": "Independent creditor/deserving branch from acreer/credere, not creation.",
+      "source_family_ids": [
+        "surface:es:dora",
+        "ety:8682c7ee8786"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "acreedor",
+      "source_references": [
+        "https://dle.rae.es/acreedor"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "es",
+      "lemma_id": "lemma:31ce8ce94eb057394c91",
+      "word": "acreencia",
+      "status": "excluded",
+      "reason": "Independent credit/debt noun and its plural, not the creation head.",
+      "source_family_ids": [
+        "surface:es:acreenci"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "acreencia",
+      "source_references": [
+        "https://dle.rae.es/acreencia"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "es",
+      "lemma_id": "lemma:fe785c76363c83c14197",
+      "word": "acreencias",
+      "status": "excluded",
+      "reason": "Independent credit/debt noun and its plural, not the creation head.",
+      "source_family_ids": [
+        "surface:es:acreenci"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "acreencia",
+      "source_references": [
+        "https://dle.rae.es/acreencia"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "es",
+      "lemma_id": "lemma:f4e19a6ab2c4d6448e3e",
+      "word": "creedla",
+      "status": "excluded",
+      "reason": "Finite creer belief forms with attached pronouns, from credere. Several saved tokens omit required accents; no corpus spelling is repaired. The identifiable belief branch and any spelling defect do not provide a crear/creation constituent. Pronoun analyses are reviewer inferences.",
+      "source_family_ids": [
+        "surface:es:creedl"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "creer",
+      "source_references": [
+        "https://dle.rae.es/creer"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "es",
+      "lemma_id": "lemma:c200b9fbdd47d403dc7d",
+      "word": "creedlo",
+      "status": "excluded",
+      "reason": "Finite creer belief forms with attached pronouns, from credere. Several saved tokens omit required accents; no corpus spelling is repaired. The identifiable belief branch and any spelling defect do not provide a crear/creation constituent. Pronoun analyses are reviewer inferences.",
+      "source_family_ids": [
+        "surface:es:creedl"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "creer",
+      "source_references": [
+        "https://dle.rae.es/creer"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "es",
+      "lemma_id": "lemma:7fce260713fe772afa6b",
+      "word": "creedme",
+      "status": "excluded",
+      "reason": "Finite creer belief forms with attached pronouns, from credere. Several saved tokens omit required accents; no corpus spelling is repaired. The identifiable belief branch and any spelling defect do not provide a crear/creation constituent. Pronoun analyses are reviewer inferences.",
+      "source_family_ids": [
+        "surface:es:cree",
+        "surface:es:edme"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "creer",
+      "source_references": [
+        "https://dle.rae.es/creer"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "es",
+      "lemma_id": "lemma:55e96f224fa4316197c8",
+      "word": "creednos",
+      "status": "excluded",
+      "reason": "Finite creer belief forms with attached pronouns, from credere. Several saved tokens omit required accents; no corpus spelling is repaired. The identifiable belief branch and any spelling defect do not provide a crear/creation constituent. Pronoun analyses are reviewer inferences.",
+      "source_family_ids": [
+        "surface:es:creedn"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "creer",
+      "source_references": [
+        "https://dle.rae.es/creer"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "es",
+      "lemma_id": "lemma:df20fdff028191008d53",
+      "word": "creelo",
+      "status": "excluded",
+      "reason": "Finite creer belief forms with attached pronouns, from credere. Several saved tokens omit required accents; no corpus spelling is repaired. The identifiable belief branch and any spelling defect do not provide a crear/creation constituent. Pronoun analyses are reviewer inferences.",
+      "source_family_ids": [
+        "surface:es:creel"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "creer",
+      "source_references": [
+        "https://dle.rae.es/creer"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "es",
+      "lemma_id": "lemma:c0829a68fa2e5d724fed",
+      "word": "creeme",
+      "status": "excluded",
+      "reason": "Finite creer belief forms with attached pronouns, from credere. Several saved tokens omit required accents; no corpus spelling is repaired. The identifiable belief branch and any spelling defect do not provide a crear/creation constituent. Pronoun analyses are reviewer inferences.",
+      "source_family_ids": [
+        "surface:es:eme",
+        "surface:es:cre"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "creer",
+      "source_references": [
+        "https://dle.rae.es/creer"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "es",
+      "lemma_id": "lemma:ad2524e45388a53a916b",
+      "word": "creemelo",
+      "status": "excluded",
+      "reason": "Finite creer belief forms with attached pronouns, from credere. Several saved tokens omit required accents; no corpus spelling is repaired. The identifiable belief branch and any spelling defect do not provide a crear/creation constituent. Pronoun analyses are reviewer inferences.",
+      "source_family_ids": [
+        "surface:es:creemel",
+        "surface:es:melo"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "creer",
+      "source_references": [
+        "https://dle.rae.es/creer"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "es",
+      "lemma_id": "lemma:aa45e139152ebc76afe7",
+      "word": "creenme",
+      "status": "excluded",
+      "reason": "Finite creer belief forms with attached pronouns, from credere. Several saved tokens omit required accents; no corpus spelling is repaired. The identifiable belief branch and any spelling defect do not provide a crear/creation constituent. Pronoun analyses are reviewer inferences.",
+      "source_family_ids": [
+        "surface:es:cree"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "creer",
+      "source_references": [
+        "https://dle.rae.es/creer"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "es",
+      "lemma_id": "lemma:5c224e8e4288250597d9",
+      "word": "creenos",
+      "status": "excluded",
+      "reason": "Finite creer belief forms with attached pronouns, from credere. Several saved tokens omit required accents; no corpus spelling is repaired. The identifiable belief branch and any spelling defect do not provide a crear/creation constituent. Pronoun analyses are reviewer inferences.",
+      "source_family_ids": [
+        "surface:es:creen"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "creer",
+      "source_references": [
+        "https://dle.rae.es/creer"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "es",
+      "lemma_id": "lemma:f3d343c51eb0b5a14001",
+      "word": "creete",
+      "status": "excluded",
+      "reason": "Finite creer belief forms with attached pronouns, from credere. Several saved tokens omit required accents; no corpus spelling is repaired. The identifiable belief branch and any spelling defect do not provide a crear/creation constituent. Pronoun analyses are reviewer inferences.",
+      "source_family_ids": [
+        "surface:es:creete"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "creer",
+      "source_references": [
+        "https://dle.rae.es/creer"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "es",
+      "lemma_id": "lemma:863bca73fd9ef57bfed3",
+      "word": "creetelo",
+      "status": "excluded",
+      "reason": "Finite creer belief forms with attached pronouns, from credere. Several saved tokens omit required accents; no corpus spelling is repaired. The identifiable belief branch and any spelling defect do not provide a crear/creation constituent. Pronoun analyses are reviewer inferences.",
+      "source_family_ids": [
+        "surface:es:creetel"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "creer",
+      "source_references": [
+        "https://dle.rae.es/creer"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "es",
+      "lemma_id": "lemma:d5ab9c2ad54a8c774c4a",
+      "word": "increibilidad",
+      "status": "excluded",
+      "reason": "Independent credibility/belief branch. The finite accentless spellings and derivative/misspelling increibilidad are not creation reflexes; no corrected synthetic lemma is created.",
+      "source_family_ids": [
+        "surface:es:increibil",
+        "surface:es:bilidad"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "increíble",
+      "source_references": [
+        "https://dle.rae.es/increíble"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "es",
+      "lemma_id": "lemma:ed849991eb1475b70777",
+      "word": "increible",
+      "status": "excluded",
+      "reason": "Independent credibility/belief branch. The finite accentless spellings and derivative/misspelling increibilidad are not creation reflexes; no corrected synthetic lemma is created.",
+      "source_family_ids": [
+        "surface:es:increible"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "increíble",
+      "source_references": [
+        "https://dle.rae.es/increíble"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "es",
+      "lemma_id": "lemma:9e2058666316ac6c7a38",
+      "word": "increiblemente",
+      "status": "excluded",
+      "reason": "Independent credibility/belief branch. The finite accentless spellings and derivative/misspelling increibilidad are not creation reflexes; no corrected synthetic lemma is created.",
+      "source_family_ids": [
+        "surface:es:increible",
+        "ety:d4e12af70156",
+        "surface:es:increibleme"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "increíble",
+      "source_references": [
+        "https://dle.rae.es/increíble"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "es",
+      "lemma_id": "lemma:975b90edb85cd46b9a37",
+      "word": "increibles",
+      "status": "excluded",
+      "reason": "Independent credibility/belief branch. The finite accentless spellings and derivative/misspelling increibilidad are not creation reflexes; no corrected synthetic lemma is created.",
+      "source_family_ids": [
+        "surface:es:bles",
+        "surface:es:increibl"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "increíble",
+      "source_references": [
+        "https://dle.rae.es/increíble"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "es",
+      "lemma_id": "lemma:7460378216828b7f7850",
+      "word": "increíble",
+      "status": "excluded",
+      "reason": "Independent credibility/belief branch. The finite accentless spellings and derivative/misspelling increibilidad are not creation reflexes; no corrected synthetic lemma is created.",
+      "source_family_ids": [
+        "surface:es:increible"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "increíble",
+      "source_references": [
+        "https://dle.rae.es/increíble"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "es",
+      "lemma_id": "lemma:036ee46738afe1fc2887",
+      "word": "increíblemente",
+      "status": "excluded",
+      "reason": "Independent credibility/belief branch. The finite accentless spellings and derivative/misspelling increibilidad are not creation reflexes; no corrected synthetic lemma is created.",
+      "source_family_ids": [
+        "surface:es:increible",
+        "ety:d4e12af70156",
+        "surface:es:increibleme"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "increíble",
+      "source_references": [
+        "https://dle.rae.es/increíble"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "it",
+      "lemma_id": "lemma:cca49916f6a3f57912d3",
+      "word": "ammutolire",
+      "status": "excluded",
+      "reason": "Ammutolire silence branch from mutolo/muto (Latin mutus), independent of mutare change. Selected infinitive/imperative plus pronouns retain this head. Finite inflection analyses are reviewer inferences.",
+      "source_family_ids": [
+        "surface:it:ire",
+        "surface:it:ammutolir"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "ammutolire",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/ammutolire/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "it",
+      "lemma_id": "lemma:e029fcf8b1e32ac0317c",
+      "word": "ammutolirla",
+      "status": "excluded",
+      "reason": "Ammutolire silence branch from mutolo/muto (Latin mutus), independent of mutare change. Selected infinitive/imperative plus pronouns retain this head. Finite inflection analyses are reviewer inferences.",
+      "source_family_ids": [
+        "surface:it:ammutolirl"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "ammutolire",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/ammutolire/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "it",
+      "lemma_id": "lemma:1ca1d0be0d82c2f757ad",
+      "word": "ammutolirli",
+      "status": "excluded",
+      "reason": "Ammutolire silence branch from mutolo/muto (Latin mutus), independent of mutare change. Selected infinitive/imperative plus pronouns retain this head. Finite inflection analyses are reviewer inferences.",
+      "source_family_ids": [
+        "surface:it:ammutolirl"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "ammutolire",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/ammutolire/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "it",
+      "lemma_id": "lemma:40122bf1c503be1a4579",
+      "word": "ammutolirlo",
+      "status": "excluded",
+      "reason": "Ammutolire silence branch from mutolo/muto (Latin mutus), independent of mutare change. Selected infinitive/imperative plus pronouns retain this head. Finite inflection analyses are reviewer inferences.",
+      "source_family_ids": [
+        "surface:it:ammutolirl"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "ammutolire",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/ammutolire/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "it",
+      "lemma_id": "lemma:b0e8272823574f485166",
+      "word": "ammutolirmi",
+      "status": "excluded",
+      "reason": "Ammutolire silence branch from mutolo/muto (Latin mutus), independent of mutare change. Selected infinitive/imperative plus pronouns retain this head. Finite inflection analyses are reviewer inferences.",
+      "source_family_ids": [
+        "surface:it:ammutolirm",
+        "surface:it:irmi"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "ammutolire",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/ammutolire/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "it",
+      "lemma_id": "lemma:027aa5fee36065c088a7",
+      "word": "ammutolirsi",
+      "status": "excluded",
+      "reason": "Ammutolire silence branch from mutolo/muto (Latin mutus), independent of mutare change. Selected infinitive/imperative plus pronouns retain this head. Finite inflection analyses are reviewer inferences.",
+      "source_family_ids": [
+        "surface:it:ammutolirs",
+        "surface:it:rsi"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "ammutolire",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/ammutolire/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "it",
+      "lemma_id": "lemma:50dacc71981ec43a2522",
+      "word": "ammutolirti",
+      "status": "excluded",
+      "reason": "Ammutolire silence branch from mutolo/muto (Latin mutus), independent of mutare change. Selected infinitive/imperative plus pronouns retain this head. Finite inflection analyses are reviewer inferences.",
+      "source_family_ids": [
+        "surface:it:ammutolirt"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "ammutolire",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/ammutolire/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "it",
+      "lemma_id": "lemma:9ee75ac2820e4400de38",
+      "word": "ammutoliscili",
+      "status": "excluded",
+      "reason": "Ammutolire silence branch from mutolo/muto (Latin mutus), independent of mutare change. Selected infinitive/imperative plus pronouns retain this head. Finite inflection analyses are reviewer inferences.",
+      "source_family_ids": [
+        "surface:it:ammutoliscil",
+        "surface:it:cili"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "ammutolire",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/ammutolire/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "it",
+      "lemma_id": "lemma:0193481079a4a569f0e3",
+      "word": "ammutolitevi",
+      "status": "excluded",
+      "reason": "Ammutolire silence branch from mutolo/muto (Latin mutus), independent of mutare change. Selected infinitive/imperative plus pronouns retain this head. Finite inflection analyses are reviewer inferences.",
+      "source_family_ids": [
+        "surface:it:ammutolitev",
+        "surface:it:tevi"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "ammutolire",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/ammutolire/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "it",
+      "lemma_id": "lemma:dd7c821c9db73b294f8f",
+      "word": "mutezza",
+      "status": "excluded",
+      "reason": "Independent noun derived from muto, Latin mutus; identical mut letters do not establish the mutation/change element.",
+      "source_family_ids": [
+        "surface:it:mutezz"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "mutezza",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/mutezza/"
+      ],
+      "runtime_applied": false
+    }
+  ],
+  "counts": {
+    "creat": {
+      "en": {
+        "accepted": 68,
+        "excluded": 437,
+        "reviewed_exclusions": 8,
+        "reviewed_uncertain": 0,
+        "pending_review": 776,
+        "total": 1281,
+        "new_exclusions": 0
+      },
+      "de": {
+        "accepted": 174,
+        "excluded": 118,
+        "reviewed_exclusions": 8,
+        "reviewed_uncertain": 0,
+        "pending_review": 231,
+        "total": 523,
+        "new_exclusions": 0
+      },
+      "fr": {
+        "accepted": 70,
+        "excluded": 112,
+        "reviewed_exclusions": 6,
+        "reviewed_uncertain": 0,
+        "pending_review": 307,
+        "total": 489,
+        "new_exclusions": 0
+      },
+      "es": {
+        "accepted": 94,
+        "excluded": 336,
+        "reviewed_exclusions": 27,
+        "reviewed_uncertain": 0,
+        "pending_review": 754,
+        "total": 1184,
+        "new_exclusions": 21
+      },
+      "it": {
+        "accepted": 139,
+        "excluded": 3457,
+        "reviewed_exclusions": 5,
+        "reviewed_uncertain": 0,
+        "pending_review": 250,
+        "total": 3846,
+        "new_exclusions": 0
+      },
+      "ru": {
+        "accepted": 29,
+        "excluded": 23,
+        "reviewed_exclusions": 0,
+        "reviewed_uncertain": 0,
+        "pending_review": 17,
+        "total": 69,
+        "new_exclusions": 0
+      }
+    },
+    "mut": {
+      "en": {
+        "accepted": 78,
+        "excluded": 101,
+        "reviewed_exclusions": 0,
+        "reviewed_uncertain": 0,
+        "pending_review": 823,
+        "total": 1002,
+        "new_exclusions": 0
+      },
+      "fr": {
+        "accepted": 78,
+        "excluded": 56,
+        "reviewed_exclusions": 0,
+        "reviewed_uncertain": 0,
+        "pending_review": 244,
+        "total": 378,
+        "new_exclusions": 0
+      },
+      "es": {
+        "accepted": 86,
+        "excluded": 59,
+        "reviewed_exclusions": 0,
+        "reviewed_uncertain": 0,
+        "pending_review": 446,
+        "total": 591,
+        "new_exclusions": 0
+      },
+      "it": {
+        "accepted": 120,
+        "excluded": 3401,
+        "reviewed_exclusions": 10,
+        "reviewed_uncertain": 0,
+        "pending_review": 350,
+        "total": 3871,
+        "new_exclusions": 10
+      },
+      "ru": {
+        "accepted": 41,
+        "excluded": 108,
+        "reviewed_exclusions": 0,
+        "reviewed_uncertain": 0,
+        "pending_review": 254,
+        "total": 403,
+        "new_exclusions": 0
+      },
+      "de": {
+        "accepted": 166,
+        "excluded": 1580,
+        "reviewed_exclusions": 171,
+        "reviewed_uncertain": 0,
+        "pending_review": 535,
+        "total": 2281,
+        "new_exclusions": 0
+      }
+    }
+  },
+  "runtime_changes": false,
+  "full_family_certification": false,
+  "limitations": [
+    "Only the explicit 31 saved whole forms are newly adjudicated.",
+    "No source spelling, sense frequency, component or corpus measurement is changed."
+  ]
+}

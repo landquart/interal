@@ -1,0 +1,3197 @@
+{
+  "schema_version": 1,
+  "source_run_id": 35647932153,
+  "canonical_root": "act",
+  "base_commit": "7359b8e3c1190aeae15f18ff216f80036c3383c9",
+  "previous_checkpoint": "audit/associative-family-v5/action-italian-stage-20261002",
+  "previous_decision_sha256": "dfdd26a028dcdcf8213537c6fbf555dcbcea4abc5fe40d6f2f30fd8e1fcf3096",
+  "initial_continuation_sha256": "cf94d0afadfdfa1e19b08e82301fea88cde2569221548365a70e8211ccec2a21",
+  "runtime_changes": false,
+  "runtime_applied_record_count": 2098,
+  "full_family_certification": false,
+  "decisions": [
+    {
+      "language": "en",
+      "lemma_id": "lemma:4883172e79afd32fecda",
+      "word": "exact",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "exact",
+      "branch": "independent_lexical_head",
+      "reason": "Recognizable exact/exaction precision or demand branch. Its historical exigere/agere connection alone does not establish the modern act component. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:e4ff1ec4a58b",
+        "ety:19853b2d23da"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/exact"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:847363494eed41d0a316",
+      "word": "exacting",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "exact",
+      "branch": "independent_lexical_head",
+      "reason": "Recognizable exact/exaction precision or demand branch. Its historical exigere/agere connection alone does not establish the modern act component. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "surface:en:exacting"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/exact"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:21c8a0fd2285852ebd19",
+      "word": "exactingly",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "exact",
+      "branch": "independent_lexical_head",
+      "reason": "Recognizable exact/exaction precision or demand branch. Its historical exigere/agere connection alone does not establish the modern act component. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "surface:en:gly",
+        "surface:en:exacting"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/exact"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:44198280d53a9ea3c13c",
+      "word": "exaction",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "exact",
+      "branch": "independent_lexical_head",
+      "reason": "Recognizable exact/exaction precision or demand branch. Its historical exigere/agere connection alone does not establish the modern act component. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:e4ff1ec4a58b",
+        "surface:en:ction",
+        "ety:19853b2d23da"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/exact"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:e41f37b00a1f877b3861",
+      "word": "exactitude",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "exact",
+      "branch": "independent_lexical_head",
+      "reason": "Recognizable exact/exaction precision or demand branch. Its historical exigere/agere connection alone does not establish the modern act component. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:e4ff1ec4a58b",
+        "ety:19853b2d23da"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/exact"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:1fe2d264433acf7ddc1b",
+      "word": "exactness",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "exact",
+      "branch": "independent_lexical_head",
+      "reason": "Recognizable exact/exaction precision or demand branch. Its historical exigere/agere connection alone does not establish the modern act component. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "surface:en:tness",
+        "surface:en:exactnes"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/exact"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:ccd807b813c48d5c83e9",
+      "word": "exactor",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "exact",
+      "branch": "independent_lexical_head",
+      "reason": "Recognizable exact/exaction precision or demand branch. Its historical exigere/agere connection alone does not establish the modern act component. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "surface:en:ctor",
+        "surface:en:exac"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/exact"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:6bbc9ee2d4196c3e03fb",
+      "word": "exactly",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "exact",
+      "branch": "independent_lexical_head",
+      "reason": "Recognizable exact/exaction precision or demand branch. Its historical exigere/agere connection alone does not establish the modern act component. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "surface:en:exactly"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/exact"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:2cee30d900aa878a5e1e",
+      "word": "inexact",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "exact",
+      "branch": "independent_lexical_head",
+      "reason": "Recognizable exact/exaction precision or demand branch. Its historical exigere/agere connection alone does not establish the modern act component. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:3b5769fa0463",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/exact"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:f82a48a588002d28df5a",
+      "word": "inexactitude",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "exact",
+      "branch": "independent_lexical_head",
+      "reason": "Recognizable exact/exaction precision or demand branch. Its historical exigere/agere connection alone does not establish the modern act component. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:3b5769fa0463",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/exact"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:f5951dce9b2c53e71128",
+      "word": "inexactitudes",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "exact",
+      "branch": "independent_lexical_head",
+      "reason": "Recognizable exact/exaction precision or demand branch. Its historical exigere/agere connection alone does not establish the modern act component. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:3b5769fa0463",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "surface:en:des",
+        "ety:aede8d1d6185",
+        "surface:en:inexactitude",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/exact"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:160afb4b7322a42f46f2",
+      "word": "inexactly",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "exact",
+      "branch": "independent_lexical_head",
+      "reason": "Recognizable exact/exaction precision or demand branch. Its historical exigere/agere connection alone does not establish the modern act component. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:3b5769fa0463",
+        "surface:en:exactly",
+        "surface:en:inexact",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/exact"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:b5ccc635900cc821f4f7",
+      "word": "faction",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "faction",
+      "branch": "independent_lexical_head",
+      "reason": "Recognizable faction/group branch, not action with a detachable prefix. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:06d6e5a99188",
+        "ety:b434fbecc0f8"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/faction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:55cffdbd9f790506c24f",
+      "word": "factional",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "faction",
+      "branch": "independent_lexical_head",
+      "reason": "Recognizable faction/group branch, not action with a detachable prefix. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "surface:en:factional"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/faction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:734972662f127fcf590c",
+      "word": "factionalise",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "faction",
+      "branch": "independent_lexical_head",
+      "reason": "Recognizable faction/group branch, not action with a detachable prefix. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "surface:en:factionalis",
+        "surface:en:ise"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/faction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:2032ecb350cddf9bbdff",
+      "word": "factionalised",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "faction",
+      "branch": "independent_lexical_head",
+      "reason": "Recognizable faction/group branch, not action with a detachable prefix. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "surface:en:factionalis",
+        "surface:en:sed"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/faction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:6a422c1d8b0c6a887589",
+      "word": "factionalism",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "faction",
+      "branch": "independent_lexical_head",
+      "reason": "Recognizable faction/group branch, not action with a detachable prefix. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "surface:en:factional",
+        "surface:en:ism"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/faction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:e25c9f9765b1da9cbcc3",
+      "word": "factionalist",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "faction",
+      "branch": "independent_lexical_head",
+      "reason": "Recognizable faction/group branch, not action with a detachable prefix. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "surface:en:factional",
+        "surface:en:nalist"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/faction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:5f66d00c1b27dc75fe56",
+      "word": "factionalized",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "faction",
+      "branch": "independent_lexical_head",
+      "reason": "Recognizable faction/group branch, not action with a detachable prefix. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:8ad81d68c9a3",
+        "surface:en:factionaliz",
+        "ety:457f6aebed8f"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/faction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:5af406ac8d2ce295a811",
+      "word": "factionism",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "faction",
+      "branch": "independent_lexical_head",
+      "reason": "Recognizable faction/group branch, not action with a detachable prefix. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:06d6e5a99188",
+        "ety:b434fbecc0f8",
+        "surface:en:nism"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/faction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:1d3877a6018c1b0d88ef",
+      "word": "factionist",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "faction",
+      "branch": "independent_lexical_head",
+      "reason": "Recognizable faction/group branch, not action with a detachable prefix. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "surface:en:factionist"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/faction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:8a3209ba389773483736",
+      "word": "factionists",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "faction",
+      "branch": "independent_lexical_head",
+      "reason": "Recognizable faction/group branch, not action with a detachable prefix. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "surface:en:factionist",
+        "surface:en:sts"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/faction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:669e5d49e4b145046c0e",
+      "word": "factionless",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "faction",
+      "branch": "independent_lexical_head",
+      "reason": "Recognizable faction/group branch, not action with a detachable prefix. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:58d77e075bd3",
+        "ety:676e02c42b7c",
+        "surface:en:factionles"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/faction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:09f6ef9b2da73bb8075a",
+      "word": "factions",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "faction",
+      "branch": "independent_lexical_head",
+      "reason": "Recognizable faction/group branch, not action with a detachable prefix. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:06d6e5a99188",
+        "ety:b434fbecc0f8"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/faction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:a8474088a53190aaba10",
+      "word": "factual",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "factual",
+      "branch": "independent_lexical_head",
+      "reason": "The fact/factual head is independent of act; prefixes and the artifact compound preserve that distinction. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "surface:en:factual"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/factual"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:feab48dc63f8da28e9bc",
+      "word": "factualism",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "factual",
+      "branch": "independent_lexical_head",
+      "reason": "The fact/factual head is independent of act; prefixes and the artifact compound preserve that distinction. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "surface:en:ism",
+        "surface:en:factual"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/factual"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:eaef3f169d0a8c7b497c",
+      "word": "factuality",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "factual",
+      "branch": "independent_lexical_head",
+      "reason": "The fact/factual head is independent of act; prefixes and the artifact compound preserve that distinction. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "surface:en:factual",
+        "surface:en:lity"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/factual"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:62e82f617544f9c2453d",
+      "word": "factually",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "factual",
+      "branch": "independent_lexical_head",
+      "reason": "The fact/factual head is independent of act; prefixes and the artifact compound preserve that distinction. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:37f54992052b",
+        "ety:542edcce5508",
+        "surface:en:factual",
+        "ety:dbaa50a61f4f"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/factual"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:5bd7b3c8428c6663db98",
+      "word": "counterfactual",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "factual",
+      "branch": "independent_lexical_head",
+      "reason": "The fact/factual head is independent of act; prefixes and the artifact compound preserve that distinction. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:3b5769fa0463",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/factual"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:ac0cd5044f12c0c9f5d2",
+      "word": "counterfactually",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "factual",
+      "branch": "independent_lexical_head",
+      "reason": "The fact/factual head is independent of act; prefixes and the artifact compound preserve that distinction. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:3b5769fa0463",
+        "surface:en:actually",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "surface:en:counterfactual",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/factual"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:46a330ffb888991d5351",
+      "word": "counterfactuals",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "factual",
+      "branch": "independent_lexical_head",
+      "reason": "The fact/factual head is independent of act; prefixes and the artifact compound preserve that distinction. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:3b5769fa0463",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "surface:en:counterfactual",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:36643f1a14d9",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/factual"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:5c78e27a450dc85fce32",
+      "word": "unfactual",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "factual",
+      "branch": "independent_lexical_head",
+      "reason": "The fact/factual head is independent of act; prefixes and the artifact compound preserve that distinction. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:3b5769fa0463",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "surface:en:factual",
+        "surface:en:unfactu",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/factual"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:a82eadc32adcedeb6fa0",
+      "word": "artefactual",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "factual",
+      "branch": "independent_lexical_head",
+      "reason": "The fact/factual head is independent of act; prefixes and the artifact compound preserve that distinction. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "surface:en:artefactu",
+        "ety:81da90c51822",
+        "ety:3b5769fa0463",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "surface:en:factual",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/factual"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:16f376d861b2c615ffcb",
+      "word": "artifactual",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "factual",
+      "branch": "independent_lexical_head",
+      "reason": "The fact/factual head is independent of act; prefixes and the artifact compound preserve that distinction. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "surface:en:artifactu",
+        "ety:3b5769fa0463",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "surface:en:factual",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/factual"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:9dda927cf32ccc14e947",
+      "word": "fraction",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "fraction",
+      "branch": "independent_lexical_head",
+      "reason": "The fraction/breaking branch and its selected derivatives. Internal action letters are not the action head. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:92118e4b04fd",
+        "ety:c86224076e99"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/fraction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:764008edab134244eaed",
+      "word": "fractional",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "fraction",
+      "branch": "independent_lexical_head",
+      "reason": "The fraction/breaking branch and its selected derivatives. Internal action letters are not the action head. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "surface:en:fractional"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/fraction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:1946102bfe76f3435a60",
+      "word": "fractionalisation",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "fraction",
+      "branch": "independent_lexical_head",
+      "reason": "The fraction/breaking branch and its selected derivatives. Internal action letters are not the action head. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "surface:en:fractionalisat",
+        "surface:en:sation"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/fraction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:b957aa778ebfc4ed825d",
+      "word": "fractionally",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "fraction",
+      "branch": "independent_lexical_head",
+      "reason": "The fraction/breaking branch and its selected derivatives. Internal action letters are not the action head. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:37f54992052b",
+        "surface:en:fractional",
+        "ety:542edcce5508",
+        "ety:dbaa50a61f4f"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/fraction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:d11b99d5bdf56d19c1f1",
+      "word": "fractionals",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "fraction",
+      "branch": "independent_lexical_head",
+      "reason": "The fraction/breaking branch and its selected derivatives. Internal action letters are not the action head. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "surface:en:fractional",
+        "ety:36643f1a14d9"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/fraction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:c75b9390e7cd687c64eb",
+      "word": "fractionate",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "fraction",
+      "branch": "independent_lexical_head",
+      "reason": "The fraction/breaking branch and its selected derivatives. Internal action letters are not the action head. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "surface:en:nate",
+        "surface:en:fractionat"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/fraction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:cc527f822005b3f2e16d",
+      "word": "fractionation",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "fraction",
+      "branch": "independent_lexical_head",
+      "reason": "The fraction/breaking branch and its selected derivatives. Internal action letters are not the action head. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:ad061950e13e",
+        "ety:2c44a5059105",
+        "ety:a4d93c69065a",
+        "ety:f8f5d8d0c8b7",
+        "ety:ae0922f543c8",
+        "ety:375afc9a329f",
+        "ety:8556ca8f7592",
+        "ety:d69c719032f7",
+        "ety:b84169a26116",
+        "ety:43528410d9ca",
+        "ety:94847a65ea21",
+        "ety:b026f4ac8299",
+        "ety:d52bbd0521f6",
+        "ety:7a865c8a762d",
+        "ety:d3f3c3e2077b",
+        "ety:de2342b23ae2",
+        "ety:3a04f1a1d9cd",
+        "surface:en:fractionat",
+        "ety:41a0b9f8cb64",
+        "ety:200d43721b25"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/fraction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:22978d45377080d70838",
+      "word": "fractionator",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "fraction",
+      "branch": "independent_lexical_head",
+      "reason": "The fraction/breaking branch and its selected derivatives. Internal action letters are not the action head. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "surface:en:nator",
+        "surface:en:fractiona"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/fraction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:1d1bd661466b55d892f1",
+      "word": "fractioned",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "fraction",
+      "branch": "independent_lexical_head",
+      "reason": "The fraction/breaking branch and its selected derivatives. Internal action letters are not the action head. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:92118e4b04fd",
+        "surface:en:oned",
+        "ety:c86224076e99"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/fraction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:6f4654b35d35a043841d",
+      "word": "fractioning",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "fraction",
+      "branch": "independent_lexical_head",
+      "reason": "The fraction/breaking branch and its selected derivatives. Internal action letters are not the action head. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:92118e4b04fd",
+        "ety:c86224076e99",
+        "surface:en:ning"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/fraction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:e203d64fdabcf8e714a7",
+      "word": "fractionize",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "fraction",
+      "branch": "independent_lexical_head",
+      "reason": "The fraction/breaking branch and its selected derivatives. Internal action letters are not the action head. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "surface:en:fractioniz",
+        "surface:en:ize"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/fraction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:cf26a89cefdc1fdff4a6",
+      "word": "fractions",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "fraction",
+      "branch": "independent_lexical_head",
+      "reason": "The fraction/breaking branch and its selected derivatives. Internal action letters are not the action head. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:92118e4b04fd",
+        "ety:c86224076e99"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/fraction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:2e12fd6277e7b626eb51",
+      "word": "unfractionated",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "fraction",
+      "branch": "independent_lexical_head",
+      "reason": "The fraction/breaking branch and its selected derivatives. Internal action letters are not the action head. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:3b5769fa0463",
+        "surface:en:unfractionat",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/fraction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:5090f908a9dff0d228d1",
+      "word": "unfractioned",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "fraction",
+      "branch": "independent_lexical_head",
+      "reason": "The fraction/breaking branch and its selected derivatives. Internal action letters are not the action head. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "surface:en:unfraction",
+        "ety:3b5769fa0463",
+        "surface:en:oned",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/fraction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:b672a35681ad35042f38",
+      "word": "biofraction",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "fraction",
+      "branch": "independent_lexical_head",
+      "reason": "The fraction/breaking branch and its selected derivatives. Internal action letters are not the action head. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:3b5769fa0463",
+        "ety:92118e4b04fd",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:c86224076e99",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "surface:en:biofract",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/fraction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:1f612ffafdb868d34ae5",
+      "word": "traction",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "traction",
+      "branch": "independent_lexical_head",
+      "reason": "The tract/drawing lexical head, independent of act. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "surface:en:ction",
+        "surface:en:tract"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/traction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:af9ec2d16f2e38931ec9",
+      "word": "tractionless",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "traction",
+      "branch": "independent_lexical_head",
+      "reason": "The tract/drawing lexical head, independent of act. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "surface:en:tractionles",
+        "ety:58d77e075bd3",
+        "ety:676e02c42b7c"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/traction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:1a82207671247968de90",
+      "word": "tractive",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "traction",
+      "branch": "independent_lexical_head",
+      "reason": "The tract/drawing lexical head, independent of act. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "surface:en:tive",
+        "surface:en:tractiv"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/traction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:a2e555554d2fbc696dfb",
+      "word": "countertraction",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "traction",
+      "branch": "independent_lexical_head",
+      "reason": "The tract/drawing lexical head, independent of act. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:3b5769fa0463",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "surface:en:countertract",
+        "ety:f66f0a228497",
+        "surface:en:action",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/traction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:ddd095c4831de1824d1c",
+      "word": "abstraction",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "abstraction",
+      "branch": "independent_lexical_head",
+      "reason": "The abstract/tract branch; action-like nominal letters do not supply an independent action constituent. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:3b5769fa0463",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/abstraction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:91545c2878a060ed4c33",
+      "word": "abstractionism",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "abstraction",
+      "branch": "independent_lexical_head",
+      "reason": "The abstract/tract branch; action-like nominal letters do not supply an independent action constituent. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:3b5769fa0463",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "surface:en:abstraction",
+        "surface:en:nism",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/abstraction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:d47bc04c6c9454344c8d",
+      "word": "abstractionist",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "abstraction",
+      "branch": "independent_lexical_head",
+      "reason": "The abstract/tract branch; action-like nominal letters do not supply an independent action constituent. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:3b5769fa0463",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/abstraction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:7577923acea5d1545db1",
+      "word": "abstractionists",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "abstraction",
+      "branch": "independent_lexical_head",
+      "reason": "The abstract/tract branch; action-like nominal letters do not supply an independent action constituent. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:3b5769fa0463",
+        "surface:en:abstractionist",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "surface:en:sts",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/abstraction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:cfb18387a0a3d1e44136",
+      "word": "abstractivism",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "abstraction",
+      "branch": "independent_lexical_head",
+      "reason": "The abstract/tract branch; action-like nominal letters do not supply an independent action constituent. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:3b5769fa0463",
+        "surface:en:abstractiv",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "surface:en:ism",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/abstraction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:288a29a4506d411028b7",
+      "word": "attraction",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "attraction",
+      "branch": "independent_lexical_head",
+      "reason": "The attract/tract branch, including negative un- and selected derivatives. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:3b5769fa0463",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/attraction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:d3c81d8634d4af4ebf67",
+      "word": "attractions",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "attraction",
+      "branch": "independent_lexical_head",
+      "reason": "The attract/tract branch, including negative un- and selected derivatives. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:3b5769fa0463",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "surface:en:attraction",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/attraction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:a2a4bfc7d2c2e3a0d122",
+      "word": "attractive",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "attraction",
+      "branch": "independent_lexical_head",
+      "reason": "The attract/tract branch, including negative un- and selected derivatives. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:3b5769fa0463",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/attraction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:e991aa4cd46b9b587744",
+      "word": "attractively",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "attraction",
+      "branch": "independent_lexical_head",
+      "reason": "The attract/tract branch, including negative un- and selected derivatives. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:3b5769fa0463",
+        "surface:en:attractive",
+        "surface:en:ely",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/attraction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:eb9df81ef3712e195f61",
+      "word": "attractiveness",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "attraction",
+      "branch": "independent_lexical_head",
+      "reason": "The attract/tract branch, including negative un- and selected derivatives. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:3b5769fa0463",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:ea110be147c1",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "surface:en:attractivenes",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/attraction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:ca83022e48a903e973ee",
+      "word": "attractivity",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "attraction",
+      "branch": "independent_lexical_head",
+      "reason": "The attract/tract branch, including negative un- and selected derivatives. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:f0df407f8682",
+        "ety:78d70a1e3eaf",
+        "ety:3b5769fa0463",
+        "ety:4fea5df26862",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:ff3077e4a20b",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "surface:en:attractiv",
+        "ety:fdb4fb63c102",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42",
+        "ety:2bd62d3fe41d"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/attraction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:4a604443715d229ed4e5",
+      "word": "unattractive",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "attraction",
+      "branch": "independent_lexical_head",
+      "reason": "The attract/tract branch, including negative un- and selected derivatives. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:3b5769fa0463",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/attraction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:00edeab9b32f8fdfcd7b",
+      "word": "unattractively",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "attraction",
+      "branch": "independent_lexical_head",
+      "reason": "The attract/tract branch, including negative un- and selected derivatives. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:3b5769fa0463",
+        "surface:en:unattractive",
+        "surface:en:ely",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/attraction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:eda3788bf9306abaa8da",
+      "word": "unattractiveness",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "attraction",
+      "branch": "independent_lexical_head",
+      "reason": "The attract/tract branch, including negative un- and selected derivatives. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:3b5769fa0463",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:ea110be147c1",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "surface:en:unattractivenes",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/attraction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:6d80c8300ae4dd783395",
+      "word": "contraction",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "contract",
+      "branch": "independent_lexical_head",
+      "reason": "The contract/tract branch remains independent in these selected nouns, adjectives and compounds. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:3b5769fa0463",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/contract"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:d6cd2def539834c11a2c",
+      "word": "contractional",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "contract",
+      "branch": "independent_lexical_head",
+      "reason": "The contract/tract branch remains independent in these selected nouns, adjectives and compounds. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "surface:en:ional",
+        "ety:3b5769fa0463",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "surface:en:contraction",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/contract"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:d7d1429adbc0bad0ec76",
+      "word": "contractionary",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "contract",
+      "branch": "independent_lexical_head",
+      "reason": "The contract/tract branch remains independent in these selected nouns, adjectives and compounds. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:3b5769fa0463",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "surface:en:nary",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "surface:en:contraction",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/contract"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:d86b33deef05ae0b0343",
+      "word": "contractive",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "contract",
+      "branch": "independent_lexical_head",
+      "reason": "The contract/tract branch remains independent in these selected nouns, adjectives and compounds. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:3b5769fa0463",
+        "surface:en:active",
+        "surface:en:contractiv",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/contract"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:f32a5da16decfa000e03",
+      "word": "contractual",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "contract",
+      "branch": "independent_lexical_head",
+      "reason": "The contract/tract branch remains independent in these selected nouns, adjectives and compounds. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:3b5769fa0463",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/contract"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:85a97bdd37b456392a2c",
+      "word": "contractualism",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "contract",
+      "branch": "independent_lexical_head",
+      "reason": "The contract/tract branch remains independent in these selected nouns, adjectives and compounds. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:3b5769fa0463",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "surface:en:ism",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "surface:en:contractual",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/contract"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:2a47f317b1e5328513c6",
+      "word": "contractually",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "contract",
+      "branch": "independent_lexical_head",
+      "reason": "The contract/tract branch remains independent in these selected nouns, adjectives and compounds. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:3b5769fa0463",
+        "surface:en:actually",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "surface:en:contractual",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/contract"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:b9d6fef65e416047296e",
+      "word": "contractuals",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "contract",
+      "branch": "independent_lexical_head",
+      "reason": "The contract/tract branch remains independent in these selected nouns, adjectives and compounds. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:3b5769fa0463",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:36643f1a14d9",
+        "ety:f66f0a228497",
+        "surface:en:contractual",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/contract"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:a48e8ec70bd66784fb1f",
+      "word": "non-contractual",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "contract",
+      "branch": "independent_lexical_head",
+      "reason": "The contract/tract branch remains independent in these selected nouns, adjectives and compounds. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:3b5769fa0463",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "surface:en:noncontractu",
+        "ety:f66f0a228497",
+        "surface:en:contractual",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/contract"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:29fdb78b24d640128184",
+      "word": "extracontractual",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "contract",
+      "branch": "independent_lexical_head",
+      "reason": "The contract/tract branch remains independent in these selected nouns, adjectives and compounds. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:3b5769fa0463",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "surface:en:contractual",
+        "ety:be69e735d870",
+        "surface:en:extracontractu",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/contract"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:77a677cf92667706a179",
+      "word": "extraction",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "extraction",
+      "branch": "independent_lexical_head",
+      "reason": "The extract/tract branch, not lexical action. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:3b5769fa0463",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/extraction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:ea7325b87e35be06068e",
+      "word": "extractions",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "extraction",
+      "branch": "independent_lexical_head",
+      "reason": "The extract/tract branch, not lexical action. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "surface:en:extraction",
+        "ety:3b5769fa0463",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/extraction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:877264dd4c01f2ab2fa9",
+      "word": "extractive",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "extraction",
+      "branch": "independent_lexical_head",
+      "reason": "The extract/tract branch, not lexical action. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:3b5769fa0463",
+        "surface:en:active",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "surface:en:extractiv",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/extraction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:6e1411e44428871e8ae4",
+      "word": "distraction",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "distraction",
+      "branch": "independent_lexical_head",
+      "reason": "The distract/tract branch, not lexical action. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:3b5769fa0463",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/distraction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:b0f24c78d5f7c5bc2206",
+      "word": "distractionary",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "distraction",
+      "branch": "independent_lexical_head",
+      "reason": "The distract/tract branch, not lexical action. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:3b5769fa0463",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "surface:en:nary",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42",
+        "surface:en:distraction"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/distraction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:5d0c2fb30a7638116609",
+      "word": "distractions",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "distraction",
+      "branch": "independent_lexical_head",
+      "reason": "The distract/tract branch, not lexical action. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:3b5769fa0463",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42",
+        "surface:en:distraction"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/distraction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:b496bcddb9411aadb8b0",
+      "word": "distractive",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "distraction",
+      "branch": "independent_lexical_head",
+      "reason": "The distract/tract branch, not lexical action. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "surface:en:distractiv",
+        "ety:3b5769fa0463",
+        "surface:en:active",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/distraction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:7aa68e3345cbc6477bc1",
+      "word": "practitioner",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "practitioner",
+      "branch": "independent_lexical_head",
+      "reason": "The practice/practitioner branch; the compound preserves that head, not act. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "surface:en:practitioner"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/practitioner"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:7f39ec430d303346348d",
+      "word": "practitioner-led",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "practitioner",
+      "branch": "independent_lexical_head",
+      "reason": "The practice/practitioner branch; the compound preserves that head, not act. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "surface:en:practitionerl"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/practitioner"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:0b172f812c057fc3575e",
+      "word": "practitioners",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "practitioner",
+      "branch": "independent_lexical_head",
+      "reason": "The practice/practitioner branch; the compound preserves that head, not act. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "surface:en:ners",
+        "surface:en:practitioner"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/practitioner"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:2a9bf4c75caf4379bcc8",
+      "word": "generalpractitioner",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "practitioner",
+      "branch": "independent_lexical_head",
+      "reason": "The practice/practitioner branch; the compound preserves that head, not act. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "surface:en:generalpractition",
+        "ety:3b5769fa0463",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "surface:en:practitioner",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/practitioner"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:4f30e150be8cf16a697c",
+      "word": "liquefaction",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "liquefaction",
+      "branch": "independent_lexical_head",
+      "reason": "Independent liquefy/liquefaction lexical branch. Fact and nominal morphology do not create a lexical act constituent. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:3b5769fa0463",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/liquefaction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:c22808056ec090dcc6ab",
+      "word": "liquefactions",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "liquefaction",
+      "branch": "independent_lexical_head",
+      "reason": "Independent liquefy/liquefaction lexical branch. Fact and nominal morphology do not create a lexical act constituent. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:3b5769fa0463",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "surface:en:liquefaction",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/liquefaction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:29f99f993e599fc4a8e4",
+      "word": "liquefactive",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "liquefaction",
+      "branch": "independent_lexical_head",
+      "reason": "Independent liquefy/liquefaction lexical branch. Fact and nominal morphology do not create a lexical act constituent. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "surface:en:liquefactiv",
+        "ety:3b5769fa0463",
+        "surface:en:active",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/liquefaction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:69258712d67475db1467",
+      "word": "putrefaction",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "putrefaction",
+      "branch": "independent_lexical_head",
+      "reason": "Independent putrefy/putrefaction branch, not lexical action. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:06d6e5a99188",
+        "ety:3b5769fa0463",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "surface:en:putrefact",
+        "ety:b434fbecc0f8",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/putrefaction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:b7cf00d9f20868a2a80f",
+      "word": "putrefactive",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "putrefaction",
+      "branch": "independent_lexical_head",
+      "reason": "Independent putrefy/putrefaction branch, not lexical action. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:3b5769fa0463",
+        "surface:en:active",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "surface:en:putrefactiv",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/putrefaction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:dcaa781a69cca925f645",
+      "word": "satisfaction",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "satisfaction",
+      "branch": "independent_lexical_head",
+      "reason": "The satisfy/satisfaction head is independent; negative prefixes and self- do not turn its internal letters into lexical act. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:3b5769fa0463",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/satisfaction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:781ef06c3ca50fe57e0e",
+      "word": "dissatisfaction",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "satisfaction",
+      "branch": "independent_lexical_head",
+      "reason": "The satisfy/satisfaction head is independent; negative prefixes and self- do not turn its internal letters into lexical act. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:3b5769fa0463",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "surface:en:satisfaction",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42",
+        "surface:en:dissatisfact"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/satisfaction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:5a6870553bf37abfedf6",
+      "word": "insatisfaction",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "satisfaction",
+      "branch": "independent_lexical_head",
+      "reason": "The satisfy/satisfaction head is independent; negative prefixes and self- do not turn its internal letters into lexical act. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:3b5769fa0463",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "surface:en:insatisfact",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "surface:en:satisfaction",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/satisfaction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:751cc3f095533371d116",
+      "word": "unsatisfaction",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "satisfaction",
+      "branch": "independent_lexical_head",
+      "reason": "The satisfy/satisfaction head is independent; negative prefixes and self- do not turn its internal letters into lexical act. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:3b5769fa0463",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "surface:en:satisfaction",
+        "surface:en:unsatisfact",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/satisfaction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:1e6eb84090b844891ee9",
+      "word": "self-satisfaction",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "satisfaction",
+      "branch": "independent_lexical_head",
+      "reason": "The satisfy/satisfaction head is independent; negative prefixes and self- do not turn its internal letters into lexical act. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:06d6e5a99188",
+        "ety:3b5769fa0463",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:b434fbecc0f8",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "surface:en:selfsatisfact",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/satisfaction"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:43c6138cb33752d8ef3f",
+      "word": "caractère",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "caractère",
+      "branch": "independent_lexical_head",
+      "reason": "The character/mark lexical branch and its selected derivatives, independent of act. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:81da90c51822",
+        "ety:23e6300c94dc",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9C0722"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:faf675626c042c56ea2d",
+      "word": "caractères",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "caractère",
+      "branch": "independent_lexical_head",
+      "reason": "The character/mark lexical branch and its selected derivatives, independent of act. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:81da90c51822",
+        "ety:23e6300c94dc",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "surface:fr:teres",
+        "ety:f66f0a228497",
+        "surface:fr:caractere",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9C0722"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:bebc3b0e2cb1e37e51c6",
+      "word": "caractériel",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "caractère",
+      "branch": "independent_lexical_head",
+      "reason": "The character/mark lexical branch and its selected derivatives, independent of act. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:81da90c51822",
+        "ety:23e6300c94dc",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "surface:fr:caracter",
+        "ety:f66f0a228497",
+        "surface:fr:riel",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9C0722"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:5724bdb7f2b106282fd9",
+      "word": "caractérisation",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "caractère",
+      "branch": "independent_lexical_head",
+      "reason": "The character/mark lexical branch and its selected derivatives, independent of act. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:81da90c51822",
+        "ety:23e6300c94dc",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "surface:fr:caracterisat",
+        "ety:f66f0a228497",
+        "surface:fr:isation",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9C0722"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:1371385fc0f2a2c08d9d",
+      "word": "caractérisé",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "caractère",
+      "branch": "independent_lexical_head",
+      "reason": "The character/mark lexical branch and its selected derivatives, independent of act. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:81da90c51822",
+        "ety:23e6300c94dc",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "surface:fr:caracteris",
+        "ety:751cdacbf4a9",
+        "surface:fr:erise",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9C0722"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:435ad2b210ef7746b7e5",
+      "word": "caractériser",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "caractère",
+      "branch": "independent_lexical_head",
+      "reason": "The character/mark lexical branch and its selected derivatives, independent of act. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:81da90c51822",
+        "ety:23e6300c94dc",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "surface:fr:caracteri",
+        "ety:aede8d1d6185",
+        "surface:fr:riser",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9C0722"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:2366bd2346de73639d1a",
+      "word": "caractéristique",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "caractère",
+      "branch": "independent_lexical_head",
+      "reason": "The character/mark lexical branch and its selected derivatives, independent of act. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:81da90c51822",
+        "ety:23e6300c94dc",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9C0722"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:669cc025c65694caf6a4",
+      "word": "caractéristiques",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "caractère",
+      "branch": "independent_lexical_head",
+      "reason": "The character/mark lexical branch and its selected derivatives, independent of act. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:81da90c51822",
+        "ety:23e6300c94dc",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "surface:fr:caracteristique",
+        "surface:fr:ques",
+        "ety:f66f0a228497",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9C0722"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:98ae85533b9959408b05",
+      "word": "fraction",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "fraction",
+      "branch": "independent_lexical_head",
+      "reason": "The fract/breaking branch and selected nominal, adjectival and verbal derivatives. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:92118e4b04fd",
+        "ety:c86224076e99"
+      ],
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9F1478"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:3595857fd87ab4622e34",
+      "word": "fractionnable",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "fraction",
+      "branch": "independent_lexical_head",
+      "reason": "The fract/breaking branch and selected nominal, adjectival and verbal derivatives. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "surface:fr:nable",
+        "surface:fr:fractionnabl"
+      ],
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9F1478"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:cda6a4c78bb6b4b224c6",
+      "word": "fractionnaire",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "fraction",
+      "branch": "independent_lexical_head",
+      "reason": "The fract/breaking branch and selected nominal, adjectival and verbal derivatives. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "surface:fr:fractionnaire"
+      ],
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9F1478"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:0ebd285c8a15d8b2f598",
+      "word": "fractionnaires",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "fraction",
+      "branch": "independent_lexical_head",
+      "reason": "The fract/breaking branch and selected nominal, adjectival and verbal derivatives. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:2438d2afc8c7",
+        "surface:fr:fractionnaire"
+      ],
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9F1478"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:03232451e708e1b40928",
+      "word": "fractionnateur",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "fraction",
+      "branch": "independent_lexical_head",
+      "reason": "The fract/breaking branch and selected nominal, adjectival and verbal derivatives. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "surface:fr:fractionn",
+        "surface:fr:nateur",
+        "surface:fr:nna"
+      ],
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9F1478"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:54b2978d4c08fdb1548b",
+      "word": "fractionné",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "fraction",
+      "branch": "independent_lexical_head",
+      "reason": "The fract/breaking branch and selected nominal, adjectival and verbal derivatives. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "surface:fr:fractionne"
+      ],
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9F1478"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:b5779489a1b076a1eba9",
+      "word": "fractionnelle",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "fraction",
+      "branch": "independent_lexical_head",
+      "reason": "The fract/breaking branch and selected nominal, adjectival and verbal derivatives. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "surface:fr:fractionnell",
+        "surface:fr:onnelle"
+      ],
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9F1478"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:eda1d1a3f38354b854d1",
+      "word": "fractionnement",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "fraction",
+      "branch": "independent_lexical_head",
+      "reason": "The fract/breaking branch and selected nominal, adjectival and verbal derivatives. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "surface:fr:fractionnement"
+      ],
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9F1478"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:007bc48d9a31a7fe694d",
+      "word": "fractionnements",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "fraction",
+      "branch": "independent_lexical_head",
+      "reason": "The fract/breaking branch and selected nominal, adjectival and verbal derivatives. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "surface:fr:fractionnement",
+        "surface:fr:nts"
+      ],
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9F1478"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:8dadad3b342162290c90",
+      "word": "fractionner",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "fraction",
+      "branch": "independent_lexical_head",
+      "reason": "The fract/breaking branch and selected nominal, adjectival and verbal derivatives. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:92118e4b04fd",
+        "ety:c86224076e99",
+        "surface:fr:ner"
+      ],
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9F1478"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:63fc9fd5f438eb99506f",
+      "word": "fractions",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "fraction",
+      "branch": "independent_lexical_head",
+      "reason": "The fract/breaking branch and selected nominal, adjectival and verbal derivatives. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:92118e4b04fd",
+        "ety:c86224076e99"
+      ],
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9F1478"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:a73410ffcaaa7476115b",
+      "word": "exact",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "exact",
+      "branch": "independent_lexical_head",
+      "reason": "The exact/precision branch. An exigere/agere ancestry does not establish the present lexical acte head. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:e4ff1ec4a58b",
+        "ety:19853b2d23da"
+      ],
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9E3191"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:d9815f379f671f76651c",
+      "word": "exactement",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "exact",
+      "branch": "independent_lexical_head",
+      "reason": "The exact/precision branch. An exigere/agere ancestry does not establish the present lexical acte head. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "surface:fr:tement",
+        "surface:fr:exactem",
+        "surface:fr:exacte"
+      ],
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9E3191"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:66c50c468dddfa79802d",
+      "word": "exactitude",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "exact",
+      "branch": "independent_lexical_head",
+      "reason": "The exact/precision branch. An exigere/agere ancestry does not establish the present lexical acte head. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "surface:fr:exactitude"
+      ],
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9E3191"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:e0158a1b0af7687cee57",
+      "word": "inexact",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "exact",
+      "branch": "independent_lexical_head",
+      "reason": "The exact/precision branch. An exigere/agere ancestry does not establish the present lexical acte head. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:81da90c51822",
+        "ety:23e6300c94dc",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9E3191"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:2f6f833057f2bd762f43",
+      "word": "inexactement",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "exact",
+      "branch": "independent_lexical_head",
+      "reason": "The exact/precision branch. An exigere/agere ancestry does not establish the present lexical acte head. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:81da90c51822",
+        "ety:23e6300c94dc",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "surface:fr:tement",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "surface:fr:inexacte",
+        "ety:f66f0a228497",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9E3191"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:c56eb7864da6a36240d8",
+      "word": "inexactitude",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "exact",
+      "branch": "independent_lexical_head",
+      "reason": "The exact/precision branch. An exigere/agere ancestry does not establish the present lexical acte head. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:81da90c51822",
+        "surface:fr:inexactitud",
+        "ety:23e6300c94dc",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "surface:fr:tude",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9E3191"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:cd0ad6d09c0a92619061",
+      "word": "abstraction",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "abstraction",
+      "branch": "independent_lexical_head",
+      "reason": "The abstraire/tract branch; there is no independent action head inside abstraction. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:81da90c51822",
+        "surface:fr:action",
+        "ety:23e6300c94dc",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "surface:fr:abstract",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9A0185"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:92c09d9e9ec4781b5cbc",
+      "word": "abstractionnisme",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "abstraction",
+      "branch": "independent_lexical_head",
+      "reason": "The abstraire/tract branch; there is no independent action head inside abstraction. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:81da90c51822",
+        "ety:23e6300c94dc",
+        "surface:fr:isme",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "surface:fr:abstractionnism",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9A0185"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:f0e5810aeaf42960d9d5",
+      "word": "abstractionniste",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "abstraction",
+      "branch": "independent_lexical_head",
+      "reason": "The abstraire/tract branch; there is no independent action head inside abstraction. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:81da90c51822",
+        "surface:fr:abstractionnist",
+        "ety:23e6300c94dc",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "surface:fr:iste",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9A0185"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:735a434aea4e55540486",
+      "word": "distraction",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "distraction",
+      "branch": "independent_lexical_head",
+      "reason": "The distraire/tract branch, not lexical action. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:81da90c51822",
+        "surface:fr:action",
+        "ety:23e6300c94dc",
+        "surface:fr:distract",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9D2812"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:b52428cd79b289994921",
+      "word": "distractive",
+      "previous_status": "pending_review",
+      "status": "excluded",
+      "lexical_head": "distraction",
+      "branch": "independent_lexical_head",
+      "reason": "The distraire/tract branch, not lexical action. Decision applies only to this saved whole form; original components and routes are retained.",
+      "source_family_ids": [
+        "ety:00ff06cbe8c8",
+        "ety:81da90c51822",
+        "ety:23e6300c94dc",
+        "surface:fr:distractiv",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "surface:fr:active",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "ety:ef562a6f4a42"
+      ],
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9D2812"
+      ],
+      "runtime_applied": false
+    }
+  ],
+  "counts": {
+    "en": {
+      "accepted": 242,
+      "excluded": 8037,
+      "uncertain": 4,
+      "pending_review": 1450
+    },
+    "de": {
+      "accepted": 808,
+      "excluded": 11934,
+      "uncertain": 134,
+      "pending_review": 4445
+    },
+    "fr": {
+      "accepted": 208,
+      "excluded": 3663,
+      "uncertain": 0,
+      "pending_review": 604
+    },
+    "es": {
+      "accepted": 372,
+      "excluded": 4170,
+      "uncertain": 2,
+      "pending_review": 1249
+    },
+    "it": {
+      "accepted": 223,
+      "excluded": 3245,
+      "uncertain": 2,
+      "pending_review": 8654
+    },
+    "ru": {
+      "accepted": 245,
+      "excluded": 2135,
+      "uncertain": 1,
+      "pending_review": 450
+    }
+  },
+  "limitations": [
+    "Only finite whole-form selections are adjudicated.",
+    "OCR fragments, fused phrases, names and other unlisted records remain pending.",
+    "Dictionary head evidence plus explicitly stated morphology is not a corpus-sense frequency allocation."
+  ]
+}

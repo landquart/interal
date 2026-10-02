@@ -1,0 +1,16 @@
+{
+  "runtime_commit": "3295d6b3d064a3e6722f4d429921ee9e1030e9d0",
+  "runtime_changed_by_this_stage": false,
+  "fixes": [
+    "Historical Italian source proof reconstructs the exact pre-extension gzip bytes from the separate extension ledger, then compares the unchanged saved SHA. Current original base members are still compared directly.",
+    "Exhaustive membership delta equation includes the six separately audited continuation additions."
+  ],
+  "targeted_italian_tests": {
+    "passed": 2,
+    "failed": 0,
+    "skipped": 0,
+    "log_sha256": "675bdb6e84f86b57a38c439ea8d8894f646744d15e2d4f1ba4cc77ca7aefb84a"
+  },
+  "full_tests": "rerunning",
+  "exhaustive_audit": "rerunning"
+}

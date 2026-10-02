@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-01",
+  "source_run_id": 35647932153,
+  "tests": {
+    "command": "npm test",
+    "test_files": 85,
+    "exit_code": 0,
+    "result": "All tests passed."
+  },
+  "exhaustive_audit": {
+    "command": "node scripts/audit-repository-associative-family-v5.mjs",
+    "exit_code": 0,
+    "verdict": "pass",
+    "counts": {
+      "families": 2456544,
+      "aliases": 1934051,
+      "lemmas": 4924980,
+      "components": 9349982,
+      "memberships": 10076137,
+      "materialized_unique_lemmas": 4924157,
+      "multi_family_lemmas": 3333641,
+      "lemmas_without_materialized_family": 823,
+      "unique_lemmas_by_language": {
+        "en": 1130858,
+        "de": 1113442,
+        "fr": 558898,
+        "es": 941502,
+        "it": 610082,
+        "ru": 569375
+      },
+      "memberships_by_language": {
+        "en": 2618650,
+        "de": 2207526,
+        "fr": 1143715,
+        "es": 1797330,
+        "it": 1181822,
+        "ru": 1127094
+      },
+      "materialized_families": 2456544
+    },
+    "index_tree_content_sha256": "d5075450a1346b25125524dcd1c35830d4770434615ab04f4c11e13cbd1ffb6d"
+  },
+  "exact_component_memberships": {
+    "nat": 1912,
+    "loc": 702,
+    "inter": 4282
+  },
+  "decision_ledger_sha256": "0f32b1fcc5381a973922e7d739c02be2f1de1a5b938a2f4e800fd1e96fc8ff91",
+  "guards": [
+    "whole requested normalized fragment plus reviewed etymological component",
+    "naive excluded from nat; lieutenant excluded from loc",
+    "incidental interment/printer/winter overlap excluded",
+    "no twenty-record truncation in saved candidate state",
+    "all source frequency records unchanged",
+    "unrelated shard contents unchanged",
+    "independent multi-component memberships retained"
+  ],
+  "limitations": [
+    "Retrieved-but-undecided candidates are saved; global lexicographic certification is not claimed.",
+    "natalism has no record in the locked materialization or four English frequency input files."
+  ]
+}

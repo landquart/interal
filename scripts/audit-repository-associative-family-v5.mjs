@@ -1,10 +1,18 @@
 #!/usr/bin/env node
+import {auditContinuation as auditProductiveExtension} from './lib/associative-reflex-productive-variants-extension-audit.mjs';
+import {auditContinuation as auditNativeExtension} from './lib/associative-reflex-native-compounds-extension-audit.mjs';
+import {auditContinuation as auditRareExtension} from './lib/associative-reflex-rare-heads-extension-audit.mjs';
+import {auditContinuation as auditHeadExtension} from './lib/associative-reflex-heads-extension-audit.mjs';
 import { createHash } from 'node:crypto';
 import { readFile, readdir, writeFile, mkdir } from 'node:fs/promises';
 import { basename, dirname, join } from 'node:path';
 import { gunzipSync } from 'node:zlib';
 
+import { auditContinuation } from './lib/associative-reflex-continuation-audit.mjs';
+import { preActionShard, auditActionStage } from './lib/associative-action-stage-audit.mjs';
 import { repositoryTreeMetadata } from './lib/associative-repository-materialization.mjs';
+import { buildSearchForm } from '../associativvordes/js/search-normalizer.js';
+import { matchesReviewedAssociativeForm } from '../associativvordes/js/associative-reflex-forms.js';
 
 const root = process.argv[2] || 'associativvordes/family-index-v5';
 const output = process.argv[3] || 'audit/associative-family-v5/repository-static-integrity.json';
@@ -26,6 +34,14 @@ const shardNames = async path => (await readdir(path)).filter(name => name.endsW
 const manifest = await readJson(join(root, 'manifest.json'));
 const report = await readJson(join(root, 'report.json'));
 const provenance = await readJson(join(root, 'repository-provenance.json'));
+const continuationAudit = await auditContinuation(root);
+const headExtensionAudit = await auditHeadExtension(root);
+const productiveExtensionAudit=await auditProductiveExtension(root);
+const nativeExtensionAudit=await auditNativeExtension(root);
+const rareExtensionAudit=await auditRareExtension(root);
+const reflexAdditions=[...(continuationAudit?.additions||[]),...(headExtensionAudit?.additions||[]),...(rareExtensionAudit?.additions||[]),...(nativeExtensionAudit?.additions||[]),...(productiveExtensionAudit?.additions||[])];
+const continuationKeys = new Set((reflexAdditions).map(m=>`${m.language}\0family:${m.canonical_root}\0${m.lemma_id}`));
+const actionStageAudit = await auditActionStage(root);
 const nitidusLedgerBytes = await readFile('audit/associative-family-v5/nitidus-family-decisions.json');
 const nitidusLedger = JSON.parse(nitidusLedgerBytes);
 const nitidusRepair = provenance.repository_repairs?.find(item => item.repair === 'consolidate_and_prune_latin_nitidus');
@@ -58,6 +74,78 @@ const informationPositive = new Map(informationLedger.decisions.flatMap(d => d.r
 for (const a of informationLedger.added) informationPositive.set(`${a.language}\0${a.member.lemma_id}`, a.member.word);
 const informationPreserved = new Map(informationLedger.preserved_families.map(d => [d.family_id,d]));
 const informationPreservedSeen = new Set();
+const reflexBytes = await readFile('audit/associative-family-v5/reflex-families-20261001.json'), reflexLedger = JSON.parse(reflexBytes);
+const reflexRepair = provenance.repository_repairs.find(r => r.repair === reflexLedger.repair);
+assert(reflexRepair?.decision_ledger_sha256 === createHash('sha256').update(reflexBytes).digest('hex'), 'reflex provenance mismatch');
+assert(reflexRepair.removed_memberships === reflexLedger.expected_removed_memberships && reflexRepair.added_memberships === reflexLedger.expected_added_memberships && reflexRepair.net_family_delta === -1, 'reflex delta mismatch');
+const reflexOriginal = await readJson('audit/associative-family-v5/reflex-checkpoint-20261001/original-families.json.gz');
+for (const id of reflexLedger.supersedes_information_preservation_for) {
+  const prior = informationPreserved.get(id);
+  assert(prior && createHash('sha256').update(JSON.stringify(reflexOriginal.families[id])).digest('hex') === prior.family_sha256, `archived information neighbour changed ${id}`);
+  for (const language of languages) assert(createHash('sha256').update(JSON.stringify(reflexOriginal.members[language][id] || [])).digest('hex') === prior.members[language].ordered_member_sha256, `archived information neighbour members changed ${id}/${language}`);
+  informationPreserved.delete(id);
+}
+for (const [file,hash] of Object.entries(reflexLedger.checkpoint_artifacts)) assert(createHash('sha256').update(await readFile('audit/associative-family-v5/reflex-checkpoint-20261001/'+file)).digest('hex') === hash, `reflex checkpoint changed ${file}`);
+const reflexDecisionBytes = await readFile('audit/associative-family-v5/reflex-checkpoint-20261001/linguistic-decisions.json');
+assert(createHash('sha256').update(reflexDecisionBytes).digest('hex') === reflexLedger.decision_sha256, 'reflex decisions changed');
+const reflexDecisions = JSON.parse(reflexDecisionBytes), reflexCandidates = await readJson('audit/associative-family-v5/reflex-checkpoint-20261001/candidates.json.gz');
+const reflexPositive = new Map();
+for (const [root,langs] of Object.entries(reflexLedger.accepted)) for (const [language,ms] of Object.entries(langs)) {
+  const ds = reflexDecisions.decisions[language][root];
+  assert(JSON.stringify(ds.map(d=>[d.lemma_id,d.word])) === JSON.stringify(reflexCandidates[language][root].map(m=>[m.lemma_id,m.word])), `incomplete reflex dispositions ${root}/${language}`);
+  assert(ds.every(d=>['accepted','excluded','uncertain'].includes(d.status) && d.reason), 'invalid reflex decision');
+  assert(JSON.stringify(ms) === JSON.stringify(ds.filter(d=>d.status==='accepted')), `reflex accepted decisions mismatch ${root}/${language}`);
+  for (const m of ms) reflexPositive.set(`${language}\0family:${root}\0${m.lemma_id}`,m.word);
+}
+for(const m of reflexAdditions) reflexPositive.set(`${m.language}\0family:${m.canonical_root}\0${m.lemma_id}`,m.word);
+const mutationBytes=await readFile('audit/associative-family-v5/mutation-families-20261001.json'),mutationLedger=JSON.parse(mutationBytes);
+const mutationRepair=provenance.repository_repairs.find(r=>r.repair===mutationLedger.repair);
+assert(mutationRepair?.decision_ledger_sha256===createHash('sha256').update(mutationBytes).digest('hex')&&mutationRepair.removed_memberships===mutationLedger.expected_removed_memberships&&mutationRepair.added_memberships===mutationLedger.expected_added_memberships, 'mutation provenance/delta mismatch');
+const mutationOriginal=await readJson('audit/associative-family-v5/mutation-checkpoint-20261001/original-families.json.gz');
+for(const [file,hash]of Object.entries(mutationLedger.checkpoint_artifacts))assert(createHash('sha256').update(await readFile('audit/associative-family-v5/mutation-checkpoint-20261001/'+file)).digest('hex')===hash,'mutation checkpoint changed');
+const mutationDecisionBytes=await readFile('audit/associative-family-v5/mutation-checkpoint-20261001/linguistic-decisions.json');assert(createHash('sha256').update(mutationDecisionBytes).digest('hex')===mutationLedger.decision_sha256,'mutation decisions changed');
+const mutationDecisions=JSON.parse(mutationDecisionBytes),mutationCandidates=await readJson('audit/associative-family-v5/mutation-checkpoint-20261001/candidates.json.gz'),mutationPositive=new Map();
+for(const id of mutationLedger.supersedes_information_preservation_for){const before=informationPreserved.get(id);assert(before&&createHash('sha256').update(JSON.stringify(mutationOriginal.families[id])).digest('hex')===before.family_sha256,'mutation archived neighbour changed');for(const language of languages)assert(createHash('sha256').update(JSON.stringify(mutationOriginal.members[language][id]||[])).digest('hex')===before.members[language].ordered_member_sha256,'mutation archived neighbour members changed');informationPreserved.delete(id);}
+for(const language of languages){const ds=mutationDecisions.decisions[language].mut,cs=mutationCandidates[language].mut;assert(JSON.stringify(ds.map(m=>[m.lemma_id,m.word]))===JSON.stringify(cs.map(m=>[m.lemma_id,m.word])),'mutation disposition coverage mismatch');assert(ds.every(m=>['accepted','excluded','uncertain'].includes(m.status)&&m.reason),'mutation incomplete decisions');assert(JSON.stringify(ds.filter(m=>m.status==='accepted'))===JSON.stringify(mutationLedger.accepted.mut[language]),'mutation selection mismatch');for(const m of mutationLedger.accepted.mut[language])mutationPositive.set(`${language}\0family:mut\0${m.lemma_id}`,m.word);}
+for(const p of mutationLedger.preservation){const shard=await preActionShard(await readJson(join(root,p.part,p.bucket+'.json.gz')),p.part,p.bucket);const ignore=p.part==='aliases'?Object.keys(mutationLedger.alias_before):[...mutationLedger.retired_families,...mutationLedger.new_families];const other=Object.fromEntries(Object.entries(shard).filter(([id])=>!ignore.includes(id)));assert(createHash('sha256').update(JSON.stringify(other)).digest('hex')===p.unrelated_sha256,'mutation unrelated shard changed');}
+const operationBytes=await readFile('audit/associative-family-v5/operation-families-20261001.json'),operationLedger=JSON.parse(operationBytes);
+const operationRepair=provenance.repository_repairs.find(r=>r.repair===operationLedger.repair);
+assert(operationRepair?.decision_ledger_sha256===createHash('sha256').update(operationBytes).digest('hex')&&operationRepair.removed_memberships===operationLedger.expected_removed_memberships&&operationRepair.added_memberships===operationLedger.expected_added_memberships, 'operation provenance/delta mismatch');
+const operationOriginal=await readJson('audit/associative-family-v5/operation-checkpoint-20261001/original-families.json.gz');
+for(const [file,hash]of Object.entries(operationLedger.checkpoint_artifacts))assert(createHash('sha256').update(await readFile('audit/associative-family-v5/operation-checkpoint-20261001/'+file)).digest('hex')===hash,'operation checkpoint changed');
+const operationDecisionBytes=await readFile('audit/associative-family-v5/operation-checkpoint-20261001/linguistic-decisions.json');assert(createHash('sha256').update(operationDecisionBytes).digest('hex')===operationLedger.decision_sha256,'operation decisions changed');
+const operationDecisions=JSON.parse(operationDecisionBytes),operationCandidates=await readJson('audit/associative-family-v5/operation-checkpoint-20261001/candidates.json.gz'),operationPositive=new Map();
+for(const id of operationLedger.supersedes_information_preservation_for){const before=informationPreserved.get(id);assert(before&&createHash('sha256').update(JSON.stringify(operationOriginal.families[id])).digest('hex')===before.family_sha256,'operation archived neighbour changed');for(const language of languages)assert(createHash('sha256').update(JSON.stringify(operationOriginal.members[language][id]||[])).digest('hex')===before.members[language].ordered_member_sha256,'operation archived neighbour members changed');informationPreserved.delete(id);}
+for(const language of languages){const ds=operationDecisions.decisions[language].oper,cs=operationCandidates[language].oper;assert(JSON.stringify(ds.map(m=>[m.lemma_id,m.word]))===JSON.stringify(cs.map(m=>[m.lemma_id,m.word])),'operation disposition coverage mismatch');assert(ds.every(m=>['accepted','excluded','uncertain'].includes(m.status)&&m.reason),'operation incomplete decisions');assert(JSON.stringify(ds.filter(m=>m.status==='accepted'))===JSON.stringify(operationLedger.accepted.oper[language]),'operation selection mismatch');for(const m of operationLedger.accepted.oper[language])operationPositive.set(`${language}\0family:oper\0${m.lemma_id}`,m.word);}
+for(const p of operationLedger.preservation){const shard=await preActionShard(await readJson(join(root,p.part,p.bucket+'.json.gz')),p.part,p.bucket);if(p.part==='aliases')for(const [alias,before]of Object.entries(mutationLedger.alias_before))if(bucket(alias)===p.bucket){if(before.length)shard[alias]=before;else delete shard[alias];}const ignore=p.part==='aliases'?Object.keys(operationLedger.alias_before):[...operationLedger.retired_families,...operationLedger.new_families];const other=Object.fromEntries(Object.entries(shard).filter(([id])=>!ignore.includes(id)));assert(createHash('sha256').update(JSON.stringify(other)).digest('hex')===p.unrelated_sha256,'operation unrelated shard changed');}
+const relationBytes=await readFile('audit/associative-family-v5/relation-families-20261001.json'),relationLedger=JSON.parse(relationBytes);
+const relationRepair=provenance.repository_repairs.find(r=>r.repair===relationLedger.repair);
+assert(relationRepair?.decision_ledger_sha256===createHash('sha256').update(relationBytes).digest('hex')&&relationRepair.removed_memberships===relationLedger.expected_removed_memberships&&relationRepair.added_memberships===relationLedger.expected_added_memberships, 'relation provenance/delta mismatch');
+const relationOriginal=await readJson('audit/associative-family-v5/relation-checkpoint-20261001/original-families.json.gz');
+for(const [file,hash]of Object.entries(relationLedger.checkpoint_artifacts))assert(createHash('sha256').update(await readFile('audit/associative-family-v5/relation-checkpoint-20261001/'+file)).digest('hex')===hash,'relation checkpoint changed');
+const relationDecisionBytes=await readFile('audit/associative-family-v5/relation-checkpoint-20261001/linguistic-decisions.json');assert(createHash('sha256').update(relationDecisionBytes).digest('hex')===relationLedger.decision_sha256,'relation decisions changed');
+const relationDecisions=JSON.parse(relationDecisionBytes),relationCandidates=await readJson('audit/associative-family-v5/relation-checkpoint-20261001/candidates.json.gz'),relationPositive=new Map();
+for(const id of relationLedger.supersedes_information_preservation_for){const before=informationPreserved.get(id);assert(before&&createHash('sha256').update(JSON.stringify(relationOriginal.families[id])).digest('hex')===before.family_sha256,'relation archived neighbour changed');for(const language of languages)assert(createHash('sha256').update(JSON.stringify(relationOriginal.members[language][id]||[])).digest('hex')===before.members[language].ordered_member_sha256,'relation archived neighbour members changed');informationPreserved.delete(id);}
+for(const language of languages){const ds=relationDecisions.decisions[language].relat,cs=relationCandidates[language].relat;assert(JSON.stringify(ds.map(m=>[m.lemma_id,m.word]))===JSON.stringify(cs.map(m=>[m.lemma_id,m.word])),'relation disposition coverage mismatch');assert(ds.every(m=>['accepted','excluded','uncertain'].includes(m.status)&&m.reason),'relation incomplete decisions');assert(JSON.stringify(ds.filter(m=>m.status==='accepted'))===JSON.stringify(relationLedger.accepted.relat[language]),'relation selection mismatch');for(const m of relationLedger.accepted.relat[language])relationPositive.set(`${language}\0family:relat\0${m.lemma_id}`,m.word);}
+for(const p of relationLedger.preservation){const shard=await preActionShard(await readJson(join(root,p.part,p.bucket+'.json.gz')),p.part,p.bucket);if(p.part==='aliases')for(const [alias,before]of Object.entries(mutationLedger.alias_before))if(bucket(alias)===p.bucket){if(before.length)shard[alias]=before;else delete shard[alias];}if(p.part==='aliases')for(const [alias,before]of Object.entries(operationLedger.alias_before))if(bucket(alias)===p.bucket){if(before.length)shard[alias]=before;else delete shard[alias];}const ignore=p.part==='aliases'?Object.keys(relationLedger.alias_before):[...relationLedger.retired_families,...relationLedger.new_families];const other=Object.fromEntries(Object.entries(shard).filter(([id])=>!ignore.includes(id)));assert(createHash('sha256').update(JSON.stringify(other)).digest('hex')===p.unrelated_sha256,'relation unrelated shard changed');}
+const creationBytes=await readFile('audit/associative-family-v5/creation-families-20261001.json'),creationLedger=JSON.parse(creationBytes);
+const creationRepair=provenance.repository_repairs.find(r=>r.repair===creationLedger.repair);
+assert(creationRepair?.decision_ledger_sha256===createHash('sha256').update(creationBytes).digest('hex')&&creationRepair.removed_memberships===creationLedger.expected_removed_memberships&&creationRepair.added_memberships===creationLedger.expected_added_memberships, 'creation provenance/delta mismatch');
+const creationOriginal=await readJson('audit/associative-family-v5/creation-checkpoint-20261001/original-families.json.gz');
+for(const [file,hash]of Object.entries(creationLedger.checkpoint_artifacts))assert(createHash('sha256').update(await readFile('audit/associative-family-v5/creation-checkpoint-20261001/'+file)).digest('hex')===hash,'creation checkpoint changed');
+const creationDecisionBytes=await readFile('audit/associative-family-v5/creation-checkpoint-20261001/linguistic-decisions.json');assert(createHash('sha256').update(creationDecisionBytes).digest('hex')===creationLedger.decision_sha256,'creation decisions changed');
+const creationDecisions=JSON.parse(creationDecisionBytes),creationCandidates=await readJson('audit/associative-family-v5/creation-checkpoint-20261001/candidates.json.gz'),creationPositive=new Map();
+for(const id of creationLedger.supersedes_information_preservation_for){const before=informationPreserved.get(id);assert(before&&createHash('sha256').update(JSON.stringify(creationOriginal.families[id])).digest('hex')===before.family_sha256,'creation archived neighbour changed');for(const language of languages)assert(createHash('sha256').update(JSON.stringify(creationOriginal.members[language][id]||[])).digest('hex')===before.members[language].ordered_member_sha256,'creation archived neighbour members changed');informationPreserved.delete(id);}
+for(const language of languages){const ds=creationDecisions.decisions[language].creat,cs=creationCandidates[language].creat;assert(JSON.stringify(ds.map(m=>[m.lemma_id,m.word]))===JSON.stringify(cs.map(m=>[m.lemma_id,m.word])),'creation disposition coverage mismatch');assert(ds.every(m=>['accepted','excluded','uncertain'].includes(m.status)&&m.reason),'creation incomplete decisions');assert(JSON.stringify(ds.filter(m=>m.status==='accepted'))===JSON.stringify(creationLedger.accepted.creat[language]),'creation selection mismatch');for(const m of creationLedger.accepted.creat[language])creationPositive.set(`${language}\0family:creat\0${m.lemma_id}`,m.word);}
+for(const p of creationLedger.preservation){const shard=await preActionShard(await readJson(join(root,p.part,p.bucket+'.json.gz')),p.part,p.bucket);if(p.part==='aliases')for(const [alias,before]of Object.entries(mutationLedger.alias_before))if(bucket(alias)===p.bucket){if(before.length)shard[alias]=before;else delete shard[alias];}if(p.part==='aliases')for(const [alias,before]of Object.entries(operationLedger.alias_before))if(bucket(alias)===p.bucket){if(before.length)shard[alias]=before;else delete shard[alias];}if(p.part==='aliases')for(const [alias,before]of Object.entries(relationLedger.alias_before))if(bucket(alias)===p.bucket){if(before.length)shard[alias]=before;else delete shard[alias];}const ignore=p.part==='aliases'?Object.keys(creationLedger.alias_before):[...creationLedger.retired_families,...creationLedger.new_families];const other=Object.fromEntries(Object.entries(shard).filter(([id])=>!ignore.includes(id)));assert(createHash('sha256').update(JSON.stringify(other)).digest('hex')===p.unrelated_sha256,'creation unrelated shard changed');}
+for (const p of reflexLedger.preservation) {
+  const shard = await preActionShard(await readJson(join(root,p.part,p.bucket+'.json.gz')),p.part,p.bucket);
+  if(p.part==='aliases')for(const [alias,before]of Object.entries(mutationLedger.alias_before))if(bucket(alias)===p.bucket){if(before.length)shard[alias]=before;else delete shard[alias];}if(p.part==='aliases')for(const [alias,before]of Object.entries(operationLedger.alias_before))if(bucket(alias)===p.bucket){if(before.length)shard[alias]=before;else delete shard[alias];}if(p.part==='aliases')for(const [alias,before]of Object.entries(relationLedger.alias_before))if(bucket(alias)===p.bucket){if(before.length)shard[alias]=before;else delete shard[alias];}
+  if(p.part==='aliases')for(const [alias,before]of Object.entries(creationLedger.alias_before))if(bucket(alias)===p.bucket){if(before.length)shard[alias]=before;else delete shard[alias];}
+  const ignore = p.part === 'aliases' ? Object.keys(reflexLedger.alias_before) : [...reflexLedger.retired_families,...reflexLedger.new_families];
+  const other = Object.fromEntries(Object.entries(shard).filter(([id])=>!ignore.includes(id)));
+  assert(createHash('sha256').update(JSON.stringify(other)).digest('hex') === p.unrelated_sha256, `unrelated reflex shard changed ${p.part}/${p.bucket}`);
+}
 
 assert(manifest.version === '5', `manifest version ${manifest.version}`);
 assert(JSON.stringify(manifest.languages) === JSON.stringify(languages), 'unexpected language set/order');
@@ -277,6 +365,15 @@ assert(report.repository_materialization?.illos_illis_family_decisions_sha256 ==
 const retainedPronounKeys = new Set(pronounLedger.decisions.flatMap(item => item.retained.map(control => `${control.language}\0${item.family_id}\0${control.lemma_id}`)));
 const reviewedPronounIds = new Set(pronounLedger.decisions.map(item => item.family_id));
 const rejectedActusKeys = new Set(actusLedger.rejected_memberships.map(item => `${item.language}\0${actusLedger.family_id}\0${item.lemma_id}`));
+const componentBytes = await readFile('audit/associative-family-v5/component-review-20261001.json');
+const componentLedger = JSON.parse(componentBytes);
+const componentSha = createHash('sha256').update(componentBytes).digest('hex');
+const componentRepair = provenance.repository_repairs.find(r => r.repair === 'remove_reviewed_inter_false_memberships_and_nat_acronym_alias_20261001');
+assert(componentRepair?.decision_ledger_sha256 === componentSha && componentRepair.removed_memberships === 11, 'component repair provenance mismatch');
+assert(report.repository_materialization.component_review_ledger_sha256 === componentSha, 'component report ledger mismatch');
+const rejectedComponentKeys = new Set(componentLedger.decisions.filter(d => d.verdict === 'remove_membership').map(d => `${d.language}\0${d.family_id}\0${d.lemma_id}`));
+const positiveComponentKeys = new Set(componentLedger.decisions.filter(d => d.verdict === 'retain').map(d => `${d.language}\0${d.family_id}\0${d.lemma_id}`));
+assert(rejectedComponentKeys.size === 11 && positiveComponentKeys.size === 3, 'component decision count mismatch');
 const preservedActusKeys = new Set(actusLedger.preserved_positive_controls.map(item => `${item.language}\0${actusLedger.family_id}\0${item.word}`));
 assert(rejectedActusKeys.size === 10, 'duplicate actus rejection');
 const deletedSurfaceFamilies = new Set([...surfaceLedger.decisions, ...surfaceLedger2.decisions, ...surfaceLedger3.decisions, ...surfaceLedger4.decisions].map(item => item.family_id));
@@ -292,6 +389,54 @@ for (const item of suffixLedger12.decisions.filter(item => !item.retained?.lengt
 deletedSurfaceFamilies.add(tenLedger.family_id);
 for (const item of inflectionLedger.decisions) deletedSurfaceFamilies.add(item.family_id);
 for (const item of endingLedger.decisions) deletedSurfaceFamilies.add(item.family_id);
+const exactComponentBytes = await readFile('audit/associative-family-v5/exact-components-20261001.json');
+const exactComponentLedger = JSON.parse(exactComponentBytes);
+const exactComponentRepair = provenance.repository_repairs.find(r => r.repair === exactComponentLedger.repair);
+assert(exactComponentRepair?.decision_ledger_sha256 === createHash('sha256').update(exactComponentBytes).digest('hex'), 'exact component provenance mismatch');
+assert(exactComponentRepair.removed_memberships === exactComponentLedger.expected_removed_memberships && exactComponentRepair.added_memberships === exactComponentLedger.expected_added_memberships && exactComponentRepair.added_families === 2, 'exact component deltas mismatch');
+const locBytes = await readFile('audit/associative-family-v5/loc-reflex-materialization-20261001.json'), locLedger = JSON.parse(locBytes);
+const locRepair = provenance.repository_repairs.find(r=>r.repair===locLedger.repair);
+assert(locRepair?.decision_ledger_sha256 === createHash('sha256').update(locBytes).digest('hex') && locRepair.added_memberships===locLedger.expected_added_memberships && locRepair.removed_memberships===0, 'loc reflex provenance mismatch');
+assert(createHash('sha256').update(await readFile(locLedger.archive_path)).digest('hex')===locLedger.archive_sha256, 'loc original archive changed');
+const locOriginal = await readJson(locLedger.archive_path);
+assert(createHash('sha256').update(await readFile('audit/associative-family-v5/loc-reflex-decisions-20261001.json')).digest('hex')===locLedger.decision_sha256, 'loc decisions changed');
+for(const p of locLedger.preservation){const shard=await preActionShard(await readJson(join(root,p.part,p.bucket+'.json.gz')),p.part,p.bucket);const other=Object.fromEntries(Object.entries(shard).filter(([id])=>p.part==='aliases'?!locLedger.aliases.includes(id):id!=='family:loc'));assert(createHash('sha256').update(JSON.stringify(other)).digest('hex')===p.unrelated_sha256, 'loc unrelated shard changed');}
+const locAdditionKeys = new Set(Object.entries(locLedger.additions).flatMap(([l,ms])=>ms.map(m=>`${l}\0family:loc\0${m.lemma_id}`)));
+const exactComponentPositive = new Map();
+const continuationBytes = await readFile('audit/associative-family-v5/component-continuation-decisions-20261001.json');
+const continuation = JSON.parse(continuationBytes);
+const continuationRepair = provenance.repository_repairs.find(r => r.repair === continuation.repair);
+assert(continuationRepair?.decision_ledger_sha256 === createHash('sha256').update(continuationBytes).digest('hex'), 'continuation provenance mismatch');
+assert(continuation.previous_ledger_sha256 === createHash('sha256').update(exactComponentBytes).digest('hex'), 'continuation changed historical decisions');
+assert(continuationRepair.added_memberships === continuation.additions.length && continuationRepair.added_memberships === continuation.expected_added_memberships && continuationRepair.removed_memberships === 0, 'continuation delta mismatch');
+assert(JSON.stringify(report.repository_materialization.exact_component_continuation) === JSON.stringify(continuationRepair), 'continuation report mismatch');
+const coverageBytes = await readFile(continuation.coverage_path), coverage = JSON.parse(gunzipSync(coverageBytes));
+assert(createHash('sha256').update(coverageBytes).digest('hex') === continuation.coverage_sha256, 'candidate disposition checkpoint changed');
+const candidateBytes = await readFile('audit/associative-family-v5/component-checkpoint-20261001/candidate-records.json.gz'), candidates = JSON.parse(gunzipSync(candidateBytes));
+assert(createHash('sha256').update(candidateBytes).digest('hex') === continuation.candidate_records_sha256, 'original candidate checkpoint changed');
+for (const [key, byLanguage] of Object.entries(continuation.accepted)) for (const [language, members] of Object.entries(byLanguage)) {
+  const prior = exactComponentLedger.accepted[key][language], added = continuation.additions.filter(a => a.key === key && a.language === language).map(a => ({lemma_id:a.lemma_id,word:a.word,source_family_ids:a.source_family_ids}));
+  assert(JSON.stringify(members) === JSON.stringify([...prior,...added]), `continuation changed prior array ${key}/${language}`);
+  const ids = new Set(members.map(m => m.lemma_id)), decisions = coverage.dispositions[key][language];
+  assert(ids.size === members.length, `duplicate continuation member ${key}/${language}`);
+  assert(JSON.stringify(decisions.map(d => [d.lemma_id,d.word])) === JSON.stringify(candidates[key][language].map(m => [m.lemma_id,m.word])), `incomplete candidate coverage ${key}/${language}`);
+  for (const d of decisions) assert(d.status === (ids.has(d.lemma_id) ? 'accepted' : !buildSearchForm(d.word).includes(key) ? 'excluded_absent_exact_fragment' : 'pending_etymology_or_token_review'), `invalid candidate disposition ${d.word}`);
+  for (const member of members) { assert(buildSearchForm(member.word).includes(key), `absent full component ${member.word}`); exactComponentPositive.set(`${language}\0family:${key}\0${member.lemma_id}`, member.word); }
+}
+assert(createHash('sha256').update(candidateBytes).digest('hex')===locLedger.source_sha256, 'loc source checkpoint mismatch');
+for(const [language,ms]of Object.entries(locLedger.additions))for(const m of ms)exactComponentPositive.set(`${language}\0family:loc\0${m.lemma_id}`,m.word);
+for (const item of exactComponentLedger.preservation) {
+  const shard = await preActionShard(await readJson(join(root, item.part, item.bucket + '.json.gz')),item.part,item.bucket);
+  if (item.part === 'aliases') for (const [alias,before] of Object.entries(mutationLedger.alias_before)) if (bucket(alias) === item.bucket) { if (before.length) shard[alias] = before; else delete shard[alias]; }
+  if (item.part === 'aliases') for (const [alias,before] of Object.entries(operationLedger.alias_before)) if (bucket(alias) === item.bucket) { if (before.length) shard[alias] = before; else delete shard[alias]; }
+  if (item.part === 'aliases') for (const [alias,before] of Object.entries(relationLedger.alias_before)) if (bucket(alias) === item.bucket) { if (before.length) shard[alias] = before; else delete shard[alias]; }
+  if (item.part === 'aliases') for (const [alias,before] of Object.entries(creationLedger.alias_before)) if (bucket(alias) === item.bucket) { if (before.length) shard[alias] = before; else delete shard[alias]; }
+  if (item.part === 'aliases') for (const [alias,before] of Object.entries(locLedger.alias_before)) if (bucket(alias) === item.bucket) { if (before.length) shard[alias] = before; else delete shard[alias]; }
+  if (item.part === 'aliases') for (const [alias,before] of Object.entries(reflexLedger.alias_before)) if (bucket(alias) === item.bucket) { if (before.length) shard[alias] = before; else delete shard[alias]; }
+  const unrelated = Object.fromEntries(Object.entries(shard).filter(([id]) => item.part === 'aliases' ? !['nat','loc','inter'].includes(id) : !['family:nat','family:loc','family:inter'].includes(id)));
+  assert(createHash('sha256').update(JSON.stringify(unrelated)).digest('hex') === item.unrelated_sha256, `unrelated component shard changed ${item.part}/${item.bucket}`);
+}
+
 const rejectedManualKeys = new Set(manualLedger.rejected_memberships.map(item => `${item.language}\0${item.family_id}\0${item.lemma_id}`));
 const nitidusPositive = new Set([...nitidusLedger.retained, ...nitidusLedger.added].map(item => `${item.language}\0${item.lemma_id}`));
 const ruShortPositive = new Set([...ruShortLedger.decisions, ...boundedLedger.russian.decisions].flatMap(item => item.retained.map(kept => `ru\0${item.family_id}\0${kept.lemma_id}`)));
@@ -353,15 +498,30 @@ for (let index = 0; index < 256; index += 1) {
     assert(id === family.id, `family key mismatch ${id}`);
     assert(bucket(id) === shard, `family bucket mismatch ${id}`);
     assert(id !== informationLedger.deleted_duplicate_family_id, 'information duplicate family remains');
-    if (id === informationLedger.canonical_family_id) {
-      assert(family.canonical === 'informatio' && family.runtime_curated === true && !family.verified && family.review_status === 'needs_review', 'information metadata mismatch');
-      assert(JSON.stringify(family.aliases) === JSON.stringify(informationLedger.aliases), 'information aliases mismatch');
-      assert(family.support === 185 && family.language_support.de === 154 && family.language_support.ru === 1, 'information support or size exception mismatch');
-      assert(JSON.stringify(family.relation_evidence) === JSON.stringify(informationLedger.original_families[0].relation_evidence), 'information extraction evidence changed');
+    assert(!reflexLedger.retired_families.includes(id), 'retired etymon container remains');
+    if (reflexLedger.new_families.includes(id)) {
+      const key = id.slice(7);
+      assert(family.canonical === key && family.associative_component === true && family.exact_component === true && family.runtime_curated === true && !family.verified && family.review_status === 'needs_review', 'reflex family metadata mismatch');
+      assert(JSON.stringify(family.aliases) === JSON.stringify(reflexLedger.aliases[key]) && JSON.stringify(family.surface_forms) === JSON.stringify(reflexLedger.surface_forms[key]), 'reflex aliases/forms mismatch');
+      for (const language of languages) assert(family.language_support[language] === reflexLedger.accepted[key][language].length + (reflexAdditions).filter(m=>m.canonical_root===key&&m.language===language).length, 'reflex support mismatch');
     }
+    assert(!mutationLedger.retired_families.includes(id),'retired mutation container remains');
+    assert(!operationLedger.retired_families.includes(id),'retired operation container remains');
+    assert(!relationLedger.retired_families.includes(id),'retired relation container remains');
+    assert(!creationLedger.retired_families.includes(id),'retired creation container remains');
+    if(id==='family:mut'){assert(family.canonical==='mut'&&family.exact_component&&family.associative_component&&family.runtime_curated&&!family.verified&&family.review_status==='needs_review','mutation metadata mismatch');assert(JSON.stringify(family.surface_forms)===JSON.stringify(mutationLedger.surface_forms.mut)&&JSON.stringify(family.aliases)===JSON.stringify(mutationLedger.aliases.mut),'mutation forms/aliases mismatch');for(const language of languages)assert(family.language_support[language]===mutationLedger.accepted.mut[language].length,'mutation language support mismatch');}
+    if(id==='family:oper'){assert(family.canonical==='oper'&&family.exact_component&&family.associative_component&&family.runtime_curated&&!family.verified&&family.review_status==='needs_review','operation metadata mismatch');assert(JSON.stringify(family.surface_forms)===JSON.stringify(operationLedger.surface_forms.oper)&&JSON.stringify(family.aliases)===JSON.stringify(operationLedger.aliases.oper),'operation forms/aliases mismatch');for(const language of languages)assert(family.language_support[language]===operationLedger.accepted.oper[language].length,'operation language support mismatch');}
+    if(id==='family:relat'){assert(family.canonical==='relat'&&family.exact_component&&family.associative_component&&family.runtime_curated&&!family.verified&&family.review_status==='needs_review','relation metadata mismatch');assert(JSON.stringify(family.surface_forms)===JSON.stringify(relationLedger.surface_forms.relat)&&JSON.stringify(family.aliases)===JSON.stringify(relationLedger.aliases.relat),'relation forms/aliases mismatch');for(const language of languages)assert(family.language_support[language]===relationLedger.accepted.relat[language].length,'relation language support mismatch');}
+    if(id==='family:creat'){assert(family.canonical==='creat'&&family.exact_component&&family.associative_component&&family.runtime_curated&&!family.verified&&family.review_status==='needs_review','creation metadata mismatch');assert(JSON.stringify(family.surface_forms)===JSON.stringify(creationLedger.surface_forms.creat)&&JSON.stringify(family.aliases)===JSON.stringify(creationLedger.aliases.creat),'creation forms/aliases mismatch');for(const language of languages)assert(family.language_support[language]===creationLedger.accepted.creat[language].length,'creation language support mismatch');}
     if (informationPreserved.has(id)) {
       assert(createHash('sha256').update(JSON.stringify(family)).digest('hex') === informationPreserved.get(id).family_sha256, `information neighbour changed ${id}`);
       informationPreservedSeen.add(id);
+    }
+    if (['family:nat','family:loc','family:inter'].includes(id)) {
+      const key = id.slice(7), accepted = continuation.accepted[key];
+      assert(family.exact_component === true && family.runtime_curated === true && !family.verified && family.review_status === 'needs_review', `exact component metadata mismatch ${id}`);
+      assert(JSON.stringify(family.aliases) === JSON.stringify(key==='loc'?locLedger.aliases:[key]), `exact component aliases mismatch ${id}`);
+      for (const language of languages) assert(family.language_support[language] === accepted[language].length + (key==='loc'?(locLedger.additions[language]?.length||0):0), `exact component support mismatch ${id}/${language}`);
     }
     assert(id !== 'family:libert', 'removed family:libert is present');
     assert(!deletedSurfaceFamilies.has(id), `reviewed surface family still present ${id}`);
@@ -414,10 +574,28 @@ for (let index = 0; index < 256; index += 1) {
       if (informationPreserved.has(id)) assert(createHash('sha256').update(JSON.stringify(values)).digest('hex') === informationPreserved.get(id).members[language].ordered_member_sha256, `information neighbour members changed ${id}/${language}`);
       const seen = new Set();
       for (const value of values) {
-        if (id === informationLedger.canonical_family_id) {
-          const key = `${language}\0${value.lemma_id}`;
-          assert(informationPositive.get(key) === value.word && informationPositive.delete(key), `unreviewed information member ${language}/${value.word}`);
-          assert(value.components.every(c => c.canonical_candidate === 'informatio' && c.evidence.every(e => e.type === 'manual_override' && e.relation_type)), 'information manual evidence mismatch');
+        if(id==='family:mut'){const key=`${language}\0${id}\0${value.lemma_id}`;assert(mutationPositive.get(key)===value.word&&mutationPositive.delete(key),'unreviewed mutation member');assert(matchesReviewedAssociativeForm(value,{canonical:'mut',surface_forms:mutationLedger.surface_forms.mut},language),'mutation reviewed form missing');assert(value.components.every(c=>c.canonical_candidate==='mut'&&c.evidence.every(e=>e.type==='manual_override'&&e.language_reflex&&e.analysis)),'mutation review evidence missing');}
+        if(id==='family:oper'){const key=`${language}\0${id}\0${value.lemma_id}`;assert(operationPositive.get(key)===value.word&&operationPositive.delete(key),'unreviewed operation member');assert(matchesReviewedAssociativeForm(value,{canonical:'oper',surface_forms:operationLedger.surface_forms.oper},language),'operation reviewed form missing');assert(value.components.every(c=>c.canonical_candidate==='oper'&&c.evidence.every(e=>e.type==='manual_override'&&e.language_reflex&&e.analysis)),'operation review evidence missing');}
+        if(id==='family:relat'){const key=`${language}\0${id}\0${value.lemma_id}`;assert(relationPositive.get(key)===value.word&&relationPositive.delete(key),'unreviewed relation member');assert(matchesReviewedAssociativeForm(value,{canonical:'relat',surface_forms:relationLedger.surface_forms.relat},language),'relation reviewed form missing');assert(value.components.every(c=>c.canonical_candidate==='relat'&&c.evidence.every(e=>e.type==='manual_override'&&e.language_reflex&&e.analysis)),'relation review evidence missing');}
+        if(id==='family:creat'){const key=`${language}\0${id}\0${value.lemma_id}`;assert(creationPositive.get(key)===value.word&&creationPositive.delete(key),'unreviewed creation member');assert(matchesReviewedAssociativeForm(value,{canonical:'creat',surface_forms:creationLedger.surface_forms.creat},language),'creation reviewed form missing');assert(value.components.every(c=>c.canonical_candidate==='creat'&&c.evidence.every(e=>e.type==='manual_override'&&e.language_reflex&&e.analysis)),'creation review evidence missing');}
+        if (reflexLedger.new_families.includes(id)) {
+          const key = `${language}\0${id}\0${value.lemma_id}`, rootKey = id.slice(7);
+          assert(reflexPositive.get(key) === value.word && reflexPositive.delete(key), `unreviewed reflex member ${id}/${language}/${value.word}`);
+          assert(matchesReviewedAssociativeForm(value,{canonical:rootKey,surface_forms:reflexLedger.surface_forms[rootKey]},language), 'missing reviewed reflex');
+          assert(continuationKeys.has(key) || value.components.every(c=>c.canonical_candidate===rootKey && c.evidence.every(e=>e.type==='manual_override' && e.language_reflex===true && e.relation_type && e.analysis)), 'missing reflex review evidence');
+          const old = `${language}\0${value.lemma_id}`;
+          if (id === 'family:inform' && informationPositive.has(old)) { assert(informationPositive.get(old) === value.word, 'prior information spelling changed'); informationPositive.delete(old); }
+        }
+        if (['family:nat','family:loc','family:inter'].includes(id)) {
+          const key = `${language}\0${id}\0${value.lemma_id}`;
+          assert(exactComponentPositive.get(key) === value.word && exactComponentPositive.delete(key), `unreviewed exact component member ${id}/${language}/${value.word}`);
+          if(locAdditionKeys.has(key)){
+            assert(matchesReviewedAssociativeForm(value,{canonical:'loc',surface_forms:locLedger.surface_forms},language), 'loc reflex missing');
+            assert(value.components.every(c=>c.canonical_candidate==='loc'&&c.evidence.every(e=>e.type==='manual_override'&&e.language_reflex===true&&e.analysis&&e.relation_type)), 'loc review evidence missing');
+          }else{
+            assert(value.components.every(c => c.canonical_candidate === id.slice(7) && c.evidence.every(e => e.type === 'manual_override' && e.exact_fragment === true && e.relation_type)), 'missing reviewed exact component evidence');
+            if(id==='family:loc')assert(JSON.stringify(value)===JSON.stringify(locOriginal.members[language].find(m=>m.lemma_id===value.lemma_id)), 'original loc member changed');
+          }
         }
         if (id === nitidusLedger.canonical_family_id) assert(nitidusPositive.delete(`${language}\0${value.lemma_id}`), `unreviewed nitidus member ${language}/${value.word}`);
         if (id.startsWith('surface:ru:') && [...ruShortLedger.decisions, ...boundedLedger.russian.decisions].some(item => item.family_id === id)) assert(ruShortPositive.delete(`${language}\0${id}\0${value.lemma_id}`), `unreviewed Russian short-root member ${id}/${value.word}`);
@@ -429,6 +607,8 @@ for (let index = 0; index < 256; index += 1) {
         assert(Array.isArray(value.components) && value.components.length, `${language} missing components ${id}`);
         for (const component of value.components) assert(component.canonical_candidate && component.evidence?.length, `${language} missing component evidence ${id}`);
         if (noise.has(String(value.word).toLowerCase())) noiseFindings.push({ language, family_id: id, lemma_id: value.lemma_id, word: value.word });
+        assert(!rejectedComponentKeys.has(`${language}\0${id}\0${value.lemma_id}`), `rejected component membership ${value.word}`);
+        positiveComponentKeys.delete(`${language}\0${id}\0${value.lemma_id}`);
         assert(!rejectedManualKeys.has(`${language}\0${id}\0${value.lemma_id}`), `rejected manual membership still present ${language}/${id}/${value.word}`);
         assert(!rejectedActusKeys.has(`${language}\0${id}\0${value.lemma_id}`), `rejected actus membership still present ${language}/${id}/${value.word}`);
         if (id === illasLedger.family_id) assert(retainedIllasKeys.delete(`${language}\0${id}\0${value.lemma_id}`), `unreviewed illas membership ${language}/${value.word}`);
@@ -460,6 +640,11 @@ assert(preservedActusKeys.size === 0, `preserved actus controls missing: ${[...p
 assert(retainedIllasKeys.size === 0, 'retained illas headwords missing');
 assert(retainedPronounKeys.size === 0, 'retained illos/illis headwords missing');
 assert(informationPositive.size === 0 && informationPreservedSeen.size === informationPreserved.size, 'information positive or neighbour controls missing');
+assert(mutationPositive.size===0,'missing reviewed mutation positives');
+assert(operationPositive.size===0,'missing reviewed operation positives');
+assert(relationPositive.size===0,'missing reviewed relation positives');
+assert(creationPositive.size===0,'missing reviewed creation positives');
+assert(reflexPositive.size === 0, 'missing reflex positives');
 assert(nitidusPositive.size === 0 && ruShortPositive.size === 0, 'new retained positive controls missing');
 for (const id of [nitidusLedger.deleted_duplicate_family_id, 'surface:es:nitid', ...ruShortLedger.decisions.filter(item => !item.retained.length).map(item => item.family_id)]) assert(!familyIdsByBucket[parseInt(bucket(id), 16)].has(id), `deleted family still present ${id}`);
 assert(familyIdsByBucket[parseInt(bucket('surface:en:sky'),16)].has('surface:en:sky'), 'retained sky family missing');
@@ -487,7 +672,7 @@ assert(JSON.stringify(uniqueLemmasByLanguage) === JSON.stringify(report.reposito
 assert(JSON.stringify(membershipsByLanguage) === JSON.stringify(report.repository_materialization.memberships_by_language), 'report memberships by language mismatch');
 assert(membershipCount === report.repository_materialization.memberships, 'report materialized memberships mismatch');
 assert(manifest.counts.lemmas - materializedUniqueLemmas === report.repository_materialization.lemmas_without_materialized_family, 'repository unassigned lemma count mismatch');
-assert(membershipCount === 10426047 - manualLedger.rejected_memberships.length - surfaceRemoved - surfaceRemoved2 - surfaceRemoved3 - surfaceRemoved4 - tenLedger.expected_members - inflectionRemoved - endingRemoved - geneaRemoved - geneaOtherRemoved - sonusRemoved - kaRemoved - suffixRemoved - suffixRemoved6 - suffixRemoved7 - suffixRemoved8 - suffixRemoved9 - suffixRemoved10 - suffixRemoved11 - suffixRemoved12 - actusLedger.rejected_memberships.length - illasLedger.expected_removed_memberships - pronounLedger.expected_total_removed_memberships - nitidusRepair.removed_memberships + nitidusRepair.added_memberships - ruShortRepair.removed_memberships - boundedRepair.removed_memberships - informationRepair.removed_memberships + informationRepair.added_memberships, 'unexpected repository membership count');
+assert(membershipCount === 10426047 - manualLedger.rejected_memberships.length - surfaceRemoved - surfaceRemoved2 - surfaceRemoved3 - surfaceRemoved4 - tenLedger.expected_members - inflectionRemoved - endingRemoved - geneaRemoved - geneaOtherRemoved - sonusRemoved - kaRemoved - suffixRemoved - suffixRemoved6 - suffixRemoved7 - suffixRemoved8 - suffixRemoved9 - suffixRemoved10 - suffixRemoved11 - suffixRemoved12 - actusLedger.rejected_memberships.length - illasLedger.expected_removed_memberships - pronounLedger.expected_total_removed_memberships - nitidusRepair.removed_memberships + nitidusRepair.added_memberships - ruShortRepair.removed_memberships - boundedRepair.removed_memberships - informationRepair.removed_memberships + informationRepair.added_memberships - componentRepair.removed_memberships - exactComponentRepair.removed_memberships + exactComponentRepair.added_memberships + continuationRepair.added_memberships - reflexRepair.removed_memberships + reflexRepair.added_memberships + locRepair.added_memberships - creationRepair.removed_memberships + creationRepair.added_memberships - relationRepair.removed_memberships + relationRepair.added_memberships - operationRepair.removed_memberships + operationRepair.added_memberships - mutationRepair.removed_memberships + mutationRepair.added_memberships + actionStageAudit.added_memberships - actionStageAudit.removed_memberships + (continuationAudit?.expected_added_memberships||0) + (headExtensionAudit?.expected_added_memberships||0) + (rareExtensionAudit?.expected_added_memberships||0) + (nativeExtensionAudit?.expected_added_memberships||0) + (productiveExtensionAudit?.expected_added_memberships||0), 'unexpected repository membership count');
 assert(familyCount === manifest.counts.families && familyCount === report.total_families, `family count ${familyCount}`);
 assert(materializedFamilyCount === familyCount, 'not every family was materialized');
 for (const [field, counted] of [
@@ -510,7 +695,7 @@ for (let index = 0; index < 256; index += 1) {
   for (const [alias, targets] of Object.entries(aliases)) {
     assert(!targets.includes(informationLedger.deleted_duplicate_family_id), 'alias points to deleted information duplicate');
     if (alias === 'azion') assert(!targets.includes(informationLedger.canonical_family_id), 'suffix routes to lexical information family');
-    if (informationLedger.aliases.includes(alias)) assert(targets.includes(informationLedger.canonical_family_id), `information reverse alias missing ${alias}`);
+    if (informationLedger.aliases.includes(alias)) assert(targets.includes('family:inform'), `information reverse alias missing ${alias}`);
     if (alias === 'net') assert(JSON.stringify(targets) === JSON.stringify(netLedger.retained_targets.slice().sort()), 'net reverse alias routing mismatch');
     if (alias === 'val') assert(JSON.stringify(targets) === JSON.stringify(boundedLedger.val.retained_targets.slice().sort()) && targets.length <= 25, 'val reverse alias routing mismatch');
     assert(bucket(alias) === shard, `alias bucket mismatch ${alias}`);
@@ -526,6 +711,10 @@ for (let index = 0; index < 256; index += 1) {
     aliasCount += 1;
   }
 }
+assert(positiveComponentKeys.size === 0, 'missing retained inter controls');
+assert(exactComponentPositive.size === 0, 'missing exact component decisions');
+const natTargets = (await readJson(join(root, 'aliases', `${bucket('nat')}.json.gz`))).nat;
+assert(!natTargets.includes('ety:496b7cec5a43'), 'nat still routes to NATO');
 assert(requiredAliasPairs.size === 0, `missing aliases for ${requiredAliasPairs.size} keys`);
 assert(aliasCount === manifest.counts.aliases && aliasCount === report.aliases_in_lookup, `alias count ${aliasCount}`);
 
@@ -567,6 +756,12 @@ const result = {
     provenance_locked: true
   },
   rejected_corpus_noise: noiseFindings,
+  action_stage: actionStageAudit,
+  ...(headExtensionAudit ? {reflex_heads_extension:{added_memberships:headExtensionAudit.expected_added_memberships,removed_memberships:0,full_family_certification:false}} : {}),
+  ...(productiveExtensionAudit ? {reflex_productive_variants_extension:{added_memberships:productiveExtensionAudit.expected_added_memberships,removed_memberships:0,full_family_certification:false}} : {}),
+  ...(nativeExtensionAudit ? {reflex_native_compounds_extension:{added_memberships:nativeExtensionAudit.expected_added_memberships,removed_memberships:0,full_family_certification:false}} : {}),
+  ...(rareExtensionAudit ? {reflex_rare_heads_extension:{added_memberships:rareExtensionAudit.expected_added_memberships,removed_memberships:0,full_family_certification:false}} : {}),
+  reflex_continuation: continuationAudit ? {added_memberships:continuationAudit.expected_added_memberships,removed_memberships:0,full_family_certification:false} : null,
   provenance
 };
 await mkdir(dirname(output), { recursive: true });

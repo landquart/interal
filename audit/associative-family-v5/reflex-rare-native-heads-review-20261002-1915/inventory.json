@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "source_run_id": 35647932153,
+  "previous_stage": "audit/associative-family-v5/reflex-foreign-paradigms-review-20261002-1900",
+  "inputs": {
+    "spec_path": "audit/associative-family-v5/reflex-rare-native-heads-review-20261002-1915/review-spec.json",
+    "spec_sha256": "a30aa9f94e566d2fc929a8b03f902eb0100c073f8e74522d2597aa80235e4ffa",
+    "previous_pending_path": "audit/associative-family-v5/reflex-foreign-paradigms-review-20261002-1900/pending-review.json",
+    "previous_pending_sha256": "264323cb74e0254a774000286fb281888bce91f46cd359950b7c1a0c5778f126",
+    "previous_inventory_path": "audit/associative-family-v5/reflex-foreign-paradigms-review-20261002-1900/inventory.json",
+    "previous_inventory_sha256": "5110d28e2c0eea3636f47ee0dd17bd51919b0cca03974bb83420ec0baa09b08c",
+    "source_candidate_path": "audit/associative-family-v5/reflex-checkpoint-20261001/candidates.json.gz",
+    "source_candidate_sha256": "ce3cc11eb045a4fe9f77bf79239fc585a9a324231c8a6d5530606df1e5488cfb"
+  },
+  "source_candidate_sha256": "ce3cc11eb045a4fe9f77bf79239fc585a9a324231c8a6d5530606df1e5488cfb",
+  "reviewed_count": 11,
+  "new_counts": {
+    "accepted": 7,
+    "excluded": 4
+  },
+  "continuation_counts": {
+    "accepted": 31,
+    "excluded": 303,
+    "uncertain": 119,
+    "pending_review": 309
+  },
+  "artifact_sha256": {
+    "decisions.json": "6f10310e25dcba0689b392cd37956b1421bc1516914c1fcd17ee4742860db569",
+    "pending-review.json": "d67fbf932c0147e40d1979a03ba18ef87e268d60d5896d23905626be54ec0913",
+    "source-records.json.gz": "b9c13c465a0c7cd009813b527111451ace9f70b23639a2442d2cbae0a7b27315"
+  },
+  "runtime_changes": false,
+  "full_family_certification": false
+}

@@ -1,0 +1,26 @@
+{
+  "baseline_head": "7514aeda230e7e3e67b3b41bb2063f068f38a364",
+  "task_sha256": "0b9e9b5a88160ee87592ad8af9e403e084c24fc672a1866c5342d549c67dbb42",
+  "remote_workflows": [
+    {
+      "id": 37046182981,
+      "name": "Audit repository associative family v5",
+      "conclusion": "success"
+    },
+    {
+      "id": 37046182991,
+      "name": "Tests",
+      "conclusion": "success"
+    }
+  ],
+  "current_reflex_review": "reflex-latin-context-review-20261002",
+  "counts": {
+    "accepted_applied": 24,
+    "excluded": 162,
+    "uncertain": 62,
+    "pending_review": 514
+  },
+  "runtime_changes": false,
+  "full_family_certification": false,
+  "resume": "Continue exact lexical-head reviews from the 514-record pending file; then relation 325 and loc 842; no merges or repeated materialization."
+}

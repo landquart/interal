@@ -1,10 +1,79 @@
 {
   "schema_version": 1,
-  "automatic_merge_allowlist": ["direct_allomorph", "direct_descendant", "borrowed_form", "inherited_form"],
-  "review_only": ["compound_component", "affix_component", "distant_ancestor", "proto_relation", "homonym", "uncertain"],
-  "unknown_relation": {"relation_type":"uncertain","merge_allowed":false,"review_required":true},
-  "malformed_expansion": {"relation_type":"uncertain","merge_allowed":false,"review_required":true},
-  "etymon_expansion": {"relation_type":"distant_ancestor","merge_allowed":false,"review_required":true},
+  "automatic_merge_allowlist": [
+    "direct_allomorph",
+    "direct_descendant",
+    "borrowed_form",
+    "inherited_form"
+  ],
+  "review_only": [
+    "compound_component",
+    "affix_component",
+    "distant_ancestor",
+    "proto_relation",
+    "homonym",
+    "uncertain"
+  ],
+  "unknown_relation": {
+    "relation_type": "uncertain",
+    "merge_allowed": false,
+    "review_required": true
+  },
+  "malformed_expansion": {
+    "relation_type": "uncertain",
+    "merge_allowed": false,
+    "review_required": true
+  },
+  "etymon_expansion": {
+    "relation_type": "distant_ancestor",
+    "merge_allowed": false,
+    "review_required": true
+  },
   "seed_absorption": "exact_node_claim_only",
-  "canonical_policy": "quality_score_v1"
+  "canonical_policy": "quality_score_v1",
+  "associative_membership": {
+    "definition": "A recognizable international lexical element or a historically justified transparent language-specific reflex, with etymological, semantic and morphological component evidence. Neither literal substring nor historical ancestry alone is sufficient.",
+    "component_membership": "review_explicitly",
+    "whole_lemma_union_from_component": false,
+    "positive_controls": {
+      "nat": [
+        "nation",
+        "natural",
+        "natalism"
+      ],
+      "loc": [
+        "location",
+        "local",
+        "locomotive"
+      ],
+      "inter": [
+        "international",
+        "interval",
+        "internet"
+      ]
+    },
+    "substring_matching": "technical_candidate_retrieval_only",
+    "exact_fragment_required": false,
+    "negative_controls": {
+      "nat": [
+        "naive",
+        "naïve",
+        "NATO"
+      ],
+      "loc": [
+        "lieu",
+        "lieutenant",
+        "locution"
+      ],
+      "inter": [
+        "interment",
+        "teleprinter",
+        "midwinter"
+      ]
+    },
+    "family_size_cap": null,
+    "reviewed_surface_form_required": true,
+    "reflex_policy": "Explicit forms scoped to canonical root and language; never unrestricted global spelling substitutions",
+    "historical_absent_fragment_dispositions": "Technical screening checkpoint only; superseded as final linguistic verdict by the user reflex instructions of 2026-10-01"
+  }
 }

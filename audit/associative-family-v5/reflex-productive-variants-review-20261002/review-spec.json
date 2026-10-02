@@ -1,0 +1,184 @@
+{
+  "source_run_id": 35647932153,
+  "previous_stage": "reflex-native-compounds-review-20261002-2315",
+  "before_counts": {
+    "accepted": 38,
+    "excluded": 357,
+    "uncertain": 154,
+    "pending_review": 213
+  },
+  "accepted_applied": 38,
+  "accepted_unapplied": 0,
+  "decisions": [
+    {
+      "language": "es",
+      "canonical_root": "inform",
+      "word": "informastes",
+      "status": "accepted",
+      "analysis_type": "finite_productive_or_native_variant",
+      "lexical_head": "informar",
+      "segmentation_or_lexical_identity": "inform- + -astes, nondiphthongized voseo preterite",
+      "reason": "RAE documents nondiphthongized second-plural preterite endings for voseo, including colloquial -stes forms, although these are disfavored in the educated standard. Informar is the proven first-conjugation head; informastes is a finite regular application of the documented regional ending, not a typo inferred solely from similarity. Exact finite source-token review: no universal spelling replacement, substring rule, corrected lemma or fabricated corpus evidence. All measured source fields and independent routes are preserved.",
+      "source_references": [
+        "https://dle.rae.es/informar",
+        "https://www.rae.es/dpd/voseo"
+      ]
+    },
+    {
+      "language": "es",
+      "canonical_root": "inform",
+      "word": "informates",
+      "status": "accepted",
+      "analysis_type": "finite_productive_or_native_variant",
+      "lexical_head": "informar",
+      "segmentation_or_lexical_identity": "inform- + colloquial voseo preterite -ates",
+      "reason": "RAE explicitly documents Colombian/Andean Venezuelan conversational -ates variants with loss of the first s of -aste(s). Applying that finite ending to proven informar establishes informates; no generic rule for deleting s in unrelated words is introduced. Exact finite source-token review: no universal spelling replacement, substring rule, corrected lemma or fabricated corpus evidence. All measured source fields and independent routes are preserved.",
+      "source_references": [
+        "https://dle.rae.es/informar",
+        "https://www.rae.es/dpd/voseo"
+      ]
+    },
+    {
+      "language": "it",
+      "canonical_root": "inform",
+      "word": "informacittà",
+      "status": "accepted",
+      "analysis_type": "finite_productive_or_native_variant",
+      "lexical_head": "informare",
+      "segmentation_or_lexical_identity": "informa + città",
+      "reason": "Comune di Olbia directly attests Informacittà as a municipal information/orientation service. It is a transparent native verb-noun compound in the informing branch; acceptance concerns this exact recorded token. Exact finite source-token review: no universal spelling replacement, substring rule, corrected lemma or fabricated corpus evidence. All measured source fields and independent routes are preserved.",
+      "source_references": [
+        "https://www.comune.olbia.ot.it/it/vivere/informacitta-99",
+        "https://www.treccani.it/vocabolario/informare/"
+      ]
+    },
+    {
+      "language": "it",
+      "canonical_root": "observ",
+      "word": "innosservata",
+      "status": "accepted",
+      "analysis_type": "finite_productive_or_native_variant",
+      "lexical_head": "osservare",
+      "segmentation_or_lexical_identity": "historical negative in(n)- + osservata",
+      "reason": "Goldoni’s L’amante di sè medesimo, Act III scene III, directly attests innosservata in the sense of going unobserved. Historical gemination is source attestation, not correction to modern inosservata; the past-participial observation head remains recognizable. Exact finite source-token review: no universal spelling replacement, substring rule, corrected lemma or fabricated corpus evidence. All measured source fields and independent routes are preserved.",
+      "source_references": [
+        "https://it.wikisource.org/wiki/L%27amante_di_s%C3%A8_medesimo/Atto_III",
+        "https://www.treccani.it/vocabolario/osservare/"
+      ]
+    },
+    {
+      "language": "it",
+      "canonical_root": "observ",
+      "word": "osservazzione",
+      "status": "accepted",
+      "analysis_type": "finite_productive_or_native_variant",
+      "lexical_head": "osservazione",
+      "segmentation_or_lexical_identity": "Romanesco osserv- + -azzione",
+      "reason": "The native Romanesco periodical Rugantino (26 June 2012, page 2) directly attests osservazzione in prose about observations. The finite regional noun corresponds to osservazione; source attestation establishes the regional realization and avoids a generic z/zz spelling rule. Exact finite source-token review: no universal spelling replacement, substring rule, corrected lemma or fabricated corpus evidence. All measured source fields and independent routes are preserved.",
+      "source_references": [
+        "https://www.rugantino.it/wp-content/uploads/bsk-pdf-manager/rugantino12947_364.pdf",
+        "https://www.treccani.it/vocabolario/osservazione/"
+      ]
+    },
+    {
+      "language": "it",
+      "canonical_root": "inform",
+      "word": "informazzione",
+      "status": "accepted",
+      "analysis_type": "finite_productive_or_native_variant",
+      "lexical_head": "informazione",
+      "segmentation_or_lexical_identity": "Romanesco inform- + -azzione",
+      "reason": "Logos’ published multilingual lexical example explicitly labels the exact informazzione realization as Roman (Romanesco), corresponding to Italian informazione. This establishes a finite regional information noun; no claim is made that Treccani lists the whole regional spelling as standard Italian. Exact finite source-token review: no universal spelling replacement, substring rule, corrected lemma or fabricated corpus evidence. All measured source fields and independent routes are preserved.",
+      "source_references": [
+        "https://www.logosdictionary.org/index.php?code=6907752&from=IT",
+        "https://www.treccani.it/vocabolario/informazione/"
+      ]
+    },
+    {
+      "language": "it",
+      "canonical_root": "inform",
+      "word": "informazion",
+      "status": "accepted",
+      "analysis_type": "finite_productive_or_native_variant",
+      "lexical_head": "informazione",
+      "segmentation_or_lexical_identity": "Triestine informazion, regional apocope of information noun",
+      "reason": "Ernesto Kosovitz’s 1890 Dizionario-Vocabolario del dialetto triestino, section I, directly defines Informazion as informazione alongside Informar as informare. This is a proved exact native regional lexical head, not an arbitrary truncated stem. The historical dictionary is read through its Wikisource transcription. Exact finite source-token review: no universal spelling replacement, substring rule, corrected lemma or fabricated corpus evidence. All measured source fields and independent routes are preserved.",
+      "source_references": [
+        "https://it.wikisource.org/wiki/Dizionario_-_Vocabolario_del_dialetto_triestino/I",
+        "https://www.treccani.it/vocabolario/informazione/"
+      ]
+    },
+    {
+      "language": "en",
+      "canonical_root": "inform",
+      "word": "informationgetting",
+      "status": "accepted",
+      "analysis_type": "finite_productive_or_native_variant",
+      "lexical_head": "information",
+      "segmentation_or_lexical_identity": "information + getting (nominal compound)",
+      "reason": "Merriam-Webster establishes the information and getting heads; Sligo and colleagues’ original research abstract uses the nominal information-getting concept in information exchange. The closed orthography of this exact corpus token is a finite productive compound analysis, not a claim that the dictionary or spaced research wording directly attests the whole closed token. No article, pronoun or finite clause is fused here. Exact finite source-token review: no universal spelling replacement, substring rule, corrected lemma or fabricated corpus evidence. All measured source fields and independent routes are preserved.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information",
+        "https://www.merriam-webster.com/dictionary/getting",
+        "https://www.sciencedirect.com/science/article/abs/pii/S0743016706000416"
+      ]
+    },
+    {
+      "language": "en",
+      "canonical_root": "inform",
+      "word": "information-share",
+      "status": "accepted",
+      "analysis_type": "finite_productive_or_native_variant",
+      "lexical_head": "information",
+      "segmentation_or_lexical_identity": "information + share, hyphenated noun compound",
+      "reason": "Merriam-Webster establishes information and the nominal share head. Their transparent hyphenated compound denotes a share or sharing of information, preserving the information branch. Whole-compound interpretation is finite reviewer morphological inference from the proved heads; dictionary proof is limited to the heads, without invented attestation of the entire compound. Exact finite source-token review: no universal spelling replacement, substring rule, corrected lemma or fabricated corpus evidence. All measured source fields and independent routes are preserved.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information",
+        "https://www.merriam-webster.com/dictionary/share"
+      ]
+    },
+    {
+      "language": "en",
+      "canonical_root": "observ",
+      "word": "observationrange",
+      "status": "accepted",
+      "analysis_type": "finite_productive_or_native_variant",
+      "lexical_head": "observation",
+      "segmentation_or_lexical_identity": "observation + range, technical nominal compound",
+      "reason": "Merriam-Webster establishes the observation and nominal range heads. The exact closed noun compound transparently denotes the range of observation, retaining the observation branch. This is finite productive compound inference, not a claim of dictionary attestation of the whole closed token or proof of a particular software identifier. No finite-clause or grammatical-function boundary is being removed. Exact finite source-token review: no universal spelling replacement, substring rule, corrected lemma or fabricated corpus evidence. All measured source fields and independent routes are preserved.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/observation",
+        "https://www.merriam-webster.com/dictionary/range"
+      ]
+    },
+    {
+      "language": "es",
+      "canonical_root": "inform",
+      "word": "sinformes",
+      "status": "excluded",
+      "analysis_type": "independent_geological_head",
+      "lexical_head": "sinforme / synform",
+      "segmentation_or_lexical_identity": "sinforme + plural -s; geological fold head",
+      "reason": "IGME-CSIC’s own geological journal contents directly attests plural sinformes in a geological fold title, with its bilingual index equating the term to synforms. It has the syn-form geological head, not sin+informe or the information head. Original independent geological/form routes are preserved. Exact finite source-token review: no universal spelling replacement, substring rule, corrected lemma or fabricated corpus evidence. All measured source fields and independent routes are preserved.",
+      "source_references": [
+        "https://www.igme.es/boletin-geologico/volumen-133-numero-2-2/",
+        "https://web.igme.es/Boletin/2022/133_2/Indice.pdf"
+      ]
+    },
+    {
+      "language": "fr",
+      "canonical_root": "inform",
+      "word": "informité",
+      "status": "uncertain",
+      "analysis_type": "investigated_historical_homonym",
+      "lexical_head": "informité: negative informitas versus historical conformation",
+      "segmentation_or_lexical_identity": "homographic historical noun; lexical-branch ambiguity",
+      "reason": "CNRTL-TLFi derives informité from Latin informitas, absence of form; Godefroy’s Lexique de l’ancien français separately defines the same spelling as conformation next to information in the forming/instruction sense. The saved corpus aggregate lacks sentence-level sense evidence. These conflicting historical lexical branches were investigated, but neither branch can be assigned to the entire measured lemma record. Keep genuinely uncertain without claiming a sense-frequency split. Exact finite source-token review: no universal spelling replacement, substring rule, corrected lemma or fabricated corpus evidence. All measured source fields and independent routes are preserved.",
+      "source_references": [
+        "https://www.cnrtl.fr/definition/informit%C3%A9",
+        "https://fr.wikisource.org/wiki/Lexique_de_l%E2%80%99ancien_fran%C3%A7ais/21"
+      ]
+    }
+  ],
+  "review_scope": "Finite native regional/historical forms, voseo preterites and transparent nominal compounds; one unrelated geological head and one investigated historical homonym. Dictionaries establish heads, while finite productive inference is explicitly identified. No broad classifier."
+}

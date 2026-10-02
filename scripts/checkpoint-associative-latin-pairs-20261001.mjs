@@ -1,0 +1,13 @@
+import {readFile,writeFile,mkdir} from 'node:fs/promises';
+import {gunzipSync,gzipSync} from 'node:zlib';
+import {createHash} from 'node:crypto';
+import {familyBucket} from '../associativvordes/js/family-index-loader.js';
+const root='associativvordes/family-index-v5',out='audit/associative-family-v5/latin-pairs-checkpoint-20261001';
+const groups={relat:['ety:474b418e1004','ety:dd07667af787'],oper:['ety:58143b06b35a','ety:8ef5f06ceb40'],mut:['ety:61108b488e06','ety:727be1d24fa1'],creat:['ety:a3b640366c27','ety:ab1eaa1c14b6'],act:['ety:751cdacbf4a9','ety:9a86a987fafc']};
+const languages=['en','de','fr','es','it','ru'],read=async p=>JSON.parse(gunzipSync(await readFile(p))),digest=v=>createHash('sha256').update(JSON.stringify(v)).digest('hex');
+const families={},members={};
+for(const ids of Object.values(groups))for(const id of ids){const shard=await read(`${root}/families/${familyBucket(id)}.json.gz`);if(!shard[id])throw Error('Missing '+id);families[id]=shard[id];}
+for(const language of languages){members[language]={};for(const ids of Object.values(groups))for(const id of ids){const shard=await read(`${root}/members/${language}/${familyBucket(id)}.json.gz`);members[language][id]=shard[id]||[];}}
+await mkdir(out,{recursive:true});const bytes=gzipSync(JSON.stringify({families,members}),{level:6});await writeFile(out+'/original-families.json.gz',bytes);
+const summaries={};for(const [key,ids]of Object.entries(groups))summaries[key]={family_ids:ids,canonical_roots:ids.map(id=>families[id].canonical),etymon_keys:ids.map(id=>families[id].etymon_keys),support:ids.map(id=>families[id].support),languages:Object.fromEntries(languages.map(language=>[language,{counts:ids.map(id=>members[language][id].length),ordered_member_hashes:ids.map(id=>digest(members[language][id])),identical_member_arrays:JSON.stringify(members[language][ids[0]])===JSON.stringify(members[language][ids[1]])}]))};
+const inventory={source_run_id:35647932153,base_commit:'d1e9a1d8e17ef8188594af18a55912f29dad2698',artifact_sha256:createHash('sha256').update(bytes).digest('hex'),scope:'Full original metadata and ordered six-language arrays for remaining Latin candidate containers; no membership union or acceptance is inferred from similar etymon spellings.',groups:summaries,review_status:'awaiting_linguistic_review',act_warning:'actio and acti must retain distinct relation evidence and the Actium/Azio branch until reviewed; array equality alone is not proof of identical linguistic roots.'};await writeFile(out+'/inventory.json',JSON.stringify(inventory,null,2)+'\n');console.log(JSON.stringify(Object.fromEntries(Object.entries(summaries).map(([key,s])=>[key,{support:s.support,identical_languages:languages.filter(l=>s.languages[l].identical_member_arrays)}]))));

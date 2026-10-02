@@ -1,0 +1,127 @@
+{
+  "stage": "operation-mutation-independent-heads-20261002",
+  "artifacts": {
+    "decisions.json": "db0476dd18db161bef03050eda57631117cc253006dcd5f52a5581e03d79d183",
+    "source-records.json.gz": "543931c8c38d5cbdbfd724c83d5a711ef8ee3d4680de97287b5caeb4dbe5f21f",
+    "pending-review.json.gz": "1f8d22733c08d6cfd37a775c83cdcb9716ef0beb20543985a02939f05c3be7a3"
+  },
+  "historical_artifacts": {
+    "oper": {
+      "audit/associative-family-v5/operation-checkpoint-20261001/linguistic-decisions.json": "524865fab03f9f34f59b7e057623d9159450449135fee7d199da8d1aa53afc48",
+      "audit/associative-family-v5/operation-checkpoint-20261001/candidates.json.gz": "f77cef67f31efd091f4abbe1ad69e237e423ea7d8a0df975e04b2794e2b9b768",
+      "audit/associative-family-v5/operation-checkpoint-20261001/inventory.json": "d415d0290e15451f2beff0dd8402d2068bd5582929856f13a5c0452ce8fe9bd6",
+      "audit/associative-family-v5/operation-checkpoint-20261001/original-families.json.gz": "0542694c740f04de2d3ec5da950aa83e6ebd0cb56f9672804bd8cc3026f61b9d"
+    },
+    "mut": {
+      "audit/associative-family-v5/mutation-checkpoint-20261001/linguistic-decisions.json": "1b6cb03096252c0c69598730353f19e01d4c9c23519ea7eb133693852bf0dcbe",
+      "audit/associative-family-v5/mutation-checkpoint-20261001/candidates.json.gz": "dfa2d87232d006c061d6b2829b53f72f38998f82cd43ef768dcb4ce79990087f",
+      "audit/associative-family-v5/mutation-checkpoint-20261001/inventory.json": "ae1eddc586b6cfe584c2a307782c06c7cee6e2db9cc2cea464e88f9d995af815",
+      "audit/associative-family-v5/mutation-checkpoint-20261001/original-families.json.gz": "1036b636f18023ab8a568a65d814841a710459bb501f999ef501eed6c944caef"
+    }
+  },
+  "counts": {
+    "oper": {
+      "en": {
+        "accepted": 109,
+        "excluded": 139,
+        "reviewed_exclusions": 4,
+        "reviewed_uncertain": 0,
+        "pending_review": 524,
+        "total": 772
+      },
+      "fr": {
+        "accepted": 113,
+        "excluded": 58,
+        "reviewed_exclusions": 4,
+        "reviewed_uncertain": 0,
+        "pending_review": 302,
+        "total": 473
+      },
+      "es": {
+        "accepted": 158,
+        "excluded": 34,
+        "reviewed_exclusions": 4,
+        "reviewed_uncertain": 0,
+        "pending_review": 487,
+        "total": 679
+      },
+      "it": {
+        "accepted": 153,
+        "excluded": 3452,
+        "reviewed_exclusions": 4,
+        "reviewed_uncertain": 0,
+        "pending_review": 363,
+        "total": 3968
+      },
+      "ru": {
+        "accepted": 138,
+        "excluded": 205,
+        "reviewed_exclusions": 13,
+        "reviewed_uncertain": 0,
+        "pending_review": 195,
+        "total": 538
+      },
+      "de": {
+        "accepted": 924,
+        "excluded": 22,
+        "reviewed_exclusions": 0,
+        "reviewed_uncertain": 0,
+        "pending_review": 211,
+        "total": 1157
+      }
+    },
+    "mut": {
+      "en": {
+        "accepted": 78,
+        "excluded": 101,
+        "reviewed_exclusions": 0,
+        "reviewed_uncertain": 0,
+        "pending_review": 823,
+        "total": 1002
+      },
+      "fr": {
+        "accepted": 78,
+        "excluded": 56,
+        "reviewed_exclusions": 0,
+        "reviewed_uncertain": 0,
+        "pending_review": 244,
+        "total": 378
+      },
+      "es": {
+        "accepted": 86,
+        "excluded": 59,
+        "reviewed_exclusions": 0,
+        "reviewed_uncertain": 0,
+        "pending_review": 446,
+        "total": 591
+      },
+      "it": {
+        "accepted": 120,
+        "excluded": 3391,
+        "reviewed_exclusions": 0,
+        "reviewed_uncertain": 0,
+        "pending_review": 360,
+        "total": 3871
+      },
+      "ru": {
+        "accepted": 41,
+        "excluded": 108,
+        "reviewed_exclusions": 0,
+        "reviewed_uncertain": 0,
+        "pending_review": 254,
+        "total": 403
+      },
+      "de": {
+        "accepted": 166,
+        "excluded": 1580,
+        "reviewed_exclusions": 171,
+        "reviewed_uncertain": 0,
+        "pending_review": 535,
+        "total": 2281
+      }
+    }
+  },
+  "reviewed_exclusions": 200,
+  "pending_review": 4744,
+  "runtime_changed": false
+}

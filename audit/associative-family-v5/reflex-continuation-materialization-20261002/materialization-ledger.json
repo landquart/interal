@@ -1,0 +1,1325 @@
+{
+  "schema_version": 1,
+  "repair": "extend_reviewed_observ_inform_20261002",
+  "source_run_id": 35647932153,
+  "baseline_commit": "970cf1009d11242fe1c8a913a1bf0c74309c631e",
+  "source_hashes": {
+    "audit/associative-family-v5/reflex-continuation-20261002/decisions.json": "ea8f7afd5f84f2f3cd3dcdb779ec85a761e26245862e754b2199b72a23afe9fc",
+    "audit/associative-family-v5/reflex-continuation-20261002/pending-review.json": "6e7351530ab27394acfe9b2fd74c46e4cab788b7036a5d24aa66b03d92c57b25",
+    "audit/associative-family-v5/reflex-continuation-20261002/source-records.json.gz": "8686bc4c73f1a34d02652a55bb14d0c874325318e8a520008816254a3d8c596e",
+    "audit/associative-family-v5/reflex-checkpoint-20261001/linguistic-decisions.json": "28bbb1f80f1e67be2ad9b5f894a67e4f911fe777f88940db7b7b2c27e8e02bcc",
+    "audit/associative-family-v5/reflex-checkpoint-20261001/candidates.json.gz": "ce3cc11eb045a4fe9f77bf79239fc585a9a324231c8a6d5530606df1e5488cfb",
+    "audit/associative-family-v5/reflex-continuation-20261002/inventory.json": "5c447e2f918d63a1e74a6cd0e1be2ff73abcacba092b93f79dfb14f3f7a3e2fa"
+  },
+  "source_routes": [
+    {
+      "language": "de",
+      "family_id": "surface:de:orma",
+      "member": {
+        "lemma_id": "lemma:0a379fa25d476cf7c7d0",
+        "word": "informator",
+        "normalized": "informator",
+        "search_form": "informator",
+        "rank": 212805,
+        "frequency_score": 2.531099911399868,
+        "category_breakdown": {
+          "normative": {
+            "ipm_values": [
+              0.155407
+            ],
+            "category_ipm": 0.155407,
+            "category_score": 2.531099911399868
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "category": "normative",
+            "ipm": 0.155407
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "orma",
+            "canonical_candidate": "orma",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "informator",
+                  "orma",
+                  "orma"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "de",
+      "family_id": "surface:de:tor",
+      "member": {
+        "lemma_id": "lemma:0a379fa25d476cf7c7d0",
+        "word": "informator",
+        "normalized": "informator",
+        "search_form": "informator",
+        "rank": 212805,
+        "frequency_score": 2.531099911399868,
+        "category_breakdown": {
+          "normative": {
+            "ipm_values": [
+              0.155407
+            ],
+            "category_ipm": 0.155407,
+            "category_score": 2.531099911399868
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "category": "normative",
+            "ipm": 0.155407
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "tor",
+            "canonical_candidate": "tor",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "informator",
+                  "tor",
+                  "tor"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "de",
+      "family_id": "surface:de:inform",
+      "member": {
+        "lemma_id": "lemma:0a379fa25d476cf7c7d0",
+        "word": "informator",
+        "normalized": "informator",
+        "search_form": "informator",
+        "rank": 212805,
+        "frequency_score": 2.531099911399868,
+        "category_breakdown": {
+          "normative": {
+            "ipm_values": [
+              0.155407
+            ],
+            "category_ipm": 0.155407,
+            "category_score": 2.531099911399868
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "category": "normative",
+            "ipm": 0.155407
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "inform",
+            "canonical_candidate": "inform",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "informator",
+                  "inform",
+                  "inform"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "de",
+      "family_id": "surface:de:informato",
+      "member": {
+        "lemma_id": "lemma:a5e230fad99f3e7e5982",
+        "word": "informatorisch",
+        "normalized": "informatorisch",
+        "search_form": "informatorisch",
+        "rank": 79928,
+        "frequency_score": 3.9444012570015303,
+        "category_breakdown": {
+          "normative": {
+            "ipm_values": [
+              0.155407
+            ],
+            "category_ipm": 0.155407,
+            "category_score": 2.531099911399868
+          },
+          "web": {
+            "ipm_values": [
+              0.35767
+            ],
+            "category_ipm": 0.35767,
+            "category_score": 5.357702602603193
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "category": "normative",
+            "ipm": 0.155407
+          },
+          {
+            "id": "web/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.35767
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "informato",
+            "canonical_candidate": "informato",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "informatorisch",
+                  "informato",
+                  "informato"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "de",
+      "family_id": "surface:de:tori",
+      "member": {
+        "lemma_id": "lemma:a5e230fad99f3e7e5982",
+        "word": "informatorisch",
+        "normalized": "informatorisch",
+        "search_form": "informatorisch",
+        "rank": 79928,
+        "frequency_score": 3.9444012570015303,
+        "category_breakdown": {
+          "normative": {
+            "ipm_values": [
+              0.155407
+            ],
+            "category_ipm": 0.155407,
+            "category_score": 2.531099911399868
+          },
+          "web": {
+            "ipm_values": [
+              0.35767
+            ],
+            "category_ipm": 0.35767,
+            "category_score": 5.357702602603193
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "category": "normative",
+            "ipm": 0.155407
+          },
+          {
+            "id": "web/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.35767
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "tori",
+            "canonical_candidate": "tori",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "informatorisch",
+                  "tori",
+                  "tori"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "de",
+      "family_id": "surface:de:risch",
+      "member": {
+        "lemma_id": "lemma:a5e230fad99f3e7e5982",
+        "word": "informatorisch",
+        "normalized": "informatorisch",
+        "search_form": "informatorisch",
+        "rank": 79928,
+        "frequency_score": 3.9444012570015303,
+        "category_breakdown": {
+          "normative": {
+            "ipm_values": [
+              0.155407
+            ],
+            "category_ipm": 0.155407,
+            "category_score": 2.531099911399868
+          },
+          "web": {
+            "ipm_values": [
+              0.35767
+            ],
+            "category_ipm": 0.35767,
+            "category_score": 5.357702602603193
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "category": "normative",
+            "ipm": 0.155407
+          },
+          {
+            "id": "web/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.35767
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "risch",
+            "canonical_candidate": "risch",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "informatorisch",
+                  "risch",
+                  "risch"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "fr",
+      "family_id": "surface:fr:matique",
+      "member": {
+        "lemma_id": "lemma:339163eba26aa31023e9",
+        "word": "mathématiques-informatique",
+        "normalized": "mathématiques-informatique",
+        "search_form": "mathematiques-informatique",
+        "rank": 75952,
+        "frequency_score": 2.642346871068334,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.162766
+            ],
+            "category_ipm": 0.162766,
+            "category_score": 2.642346871068334
+          }
+        },
+        "sources": [
+          {
+            "id": "web/sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.162766
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "matique",
+            "canonical_candidate": "matique",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "mathematiques-informatique",
+                  "matique",
+                  "matique"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "fr",
+      "family_id": "surface:fr:mathematiquesinformatiqu",
+      "member": {
+        "lemma_id": "lemma:339163eba26aa31023e9",
+        "word": "mathématiques-informatique",
+        "normalized": "mathématiques-informatique",
+        "search_form": "mathematiques-informatique",
+        "rank": 75952,
+        "frequency_score": 2.642346871068334,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.162766
+            ],
+            "category_ipm": 0.162766,
+            "category_score": 2.642346871068334
+          }
+        },
+        "sources": [
+          {
+            "id": "web/sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.162766
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "mathematiques-informatiqu",
+            "canonical_candidate": "mathematiquesinformatiqu",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "mathematiques-informatique",
+                  "mathematiques-informatiqu",
+                  "mathematiques-informatiqu"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "de",
+      "family_id": "surface:de:eo",
+      "member": {
+        "lemma_id": "lemma:546d3fd4317ebc547caa",
+        "word": "johnson-ridge-observatorium",
+        "normalized": "johnson-ridge-observatorium",
+        "search_form": "johnson-ridge-observatorium",
+        "rank": 217253,
+        "frequency_score": 2.531099911399868,
+        "category_breakdown": {
+          "normative": {
+            "ipm_values": [
+              0.155407
+            ],
+            "category_ipm": 0.155407,
+            "category_score": 2.531099911399868
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "category": "normative",
+            "ipm": 0.155407
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "e-o",
+            "canonical_candidate": "eo",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "johnson-ridge-observatorium",
+                  "e-o",
+                  "e-o"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "de",
+      "family_id": "surface:de:erva",
+      "member": {
+        "lemma_id": "lemma:546d3fd4317ebc547caa",
+        "word": "johnson-ridge-observatorium",
+        "normalized": "johnson-ridge-observatorium",
+        "search_form": "johnson-ridge-observatorium",
+        "rank": 217253,
+        "frequency_score": 2.531099911399868,
+        "category_breakdown": {
+          "normative": {
+            "ipm_values": [
+              0.155407
+            ],
+            "category_ipm": 0.155407,
+            "category_score": 2.531099911399868
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "category": "normative",
+            "ipm": 0.155407
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "erva",
+            "canonical_candidate": "erva",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "johnson-ridge-observatorium",
+                  "erva",
+                  "erva"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "de",
+      "family_id": "surface:de:tor",
+      "member": {
+        "lemma_id": "lemma:546d3fd4317ebc547caa",
+        "word": "johnson-ridge-observatorium",
+        "normalized": "johnson-ridge-observatorium",
+        "search_form": "johnson-ridge-observatorium",
+        "rank": 217253,
+        "frequency_score": 2.531099911399868,
+        "category_breakdown": {
+          "normative": {
+            "ipm_values": [
+              0.155407
+            ],
+            "category_ipm": 0.155407,
+            "category_score": 2.531099911399868
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "category": "normative",
+            "ipm": 0.155407
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "tor",
+            "canonical_candidate": "tor",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "johnson-ridge-observatorium",
+                  "tor",
+                  "tor"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "de",
+      "family_id": "surface:de:vato",
+      "member": {
+        "lemma_id": "lemma:546d3fd4317ebc547caa",
+        "word": "johnson-ridge-observatorium",
+        "normalized": "johnson-ridge-observatorium",
+        "search_form": "johnson-ridge-observatorium",
+        "rank": 217253,
+        "frequency_score": 2.531099911399868,
+        "category_breakdown": {
+          "normative": {
+            "ipm_values": [
+              0.155407
+            ],
+            "category_ipm": 0.155407,
+            "category_score": 2.531099911399868
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "category": "normative",
+            "ipm": 0.155407
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "vato",
+            "canonical_candidate": "vato",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "johnson-ridge-observatorium",
+                  "vato",
+                  "vato"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "de",
+      "family_id": "surface:de:john",
+      "member": {
+        "lemma_id": "lemma:546d3fd4317ebc547caa",
+        "word": "johnson-ridge-observatorium",
+        "normalized": "johnson-ridge-observatorium",
+        "search_form": "johnson-ridge-observatorium",
+        "rank": 217253,
+        "frequency_score": 2.531099911399868,
+        "category_breakdown": {
+          "normative": {
+            "ipm_values": [
+              0.155407
+            ],
+            "category_ipm": 0.155407,
+            "category_score": 2.531099911399868
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "category": "normative",
+            "ipm": 0.155407
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "john",
+            "canonical_candidate": "john",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "johnson-ridge-observatorium",
+                  "john",
+                  "john"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "de",
+      "family_id": "surface:de:erva",
+      "member": {
+        "lemma_id": "lemma:eb7f8c71375682469789",
+        "word": "yerkes-observatorium",
+        "normalized": "yerkes-observatorium",
+        "search_form": "yerkes-observatorium",
+        "rank": 349817,
+        "frequency_score": 2.531099911399868,
+        "category_breakdown": {
+          "normative": {
+            "ipm_values": [
+              0.155407
+            ],
+            "category_ipm": 0.155407,
+            "category_score": 2.531099911399868
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "category": "normative",
+            "ipm": 0.155407
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "erva",
+            "canonical_candidate": "erva",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "yerkes-observatorium",
+                  "erva",
+                  "erva"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "de",
+      "family_id": "surface:de:tor",
+      "member": {
+        "lemma_id": "lemma:eb7f8c71375682469789",
+        "word": "yerkes-observatorium",
+        "normalized": "yerkes-observatorium",
+        "search_form": "yerkes-observatorium",
+        "rank": 349817,
+        "frequency_score": 2.531099911399868,
+        "category_breakdown": {
+          "normative": {
+            "ipm_values": [
+              0.155407
+            ],
+            "category_ipm": 0.155407,
+            "category_score": 2.531099911399868
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "category": "normative",
+            "ipm": 0.155407
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "tor",
+            "canonical_candidate": "tor",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "yerkes-observatorium",
+                  "tor",
+                  "tor"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "de",
+      "family_id": "surface:de:vato",
+      "member": {
+        "lemma_id": "lemma:eb7f8c71375682469789",
+        "word": "yerkes-observatorium",
+        "normalized": "yerkes-observatorium",
+        "search_form": "yerkes-observatorium",
+        "rank": 349817,
+        "frequency_score": 2.531099911399868,
+        "category_breakdown": {
+          "normative": {
+            "ipm_values": [
+              0.155407
+            ],
+            "category_ipm": 0.155407,
+            "category_score": 2.531099911399868
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "category": "normative",
+            "ipm": 0.155407
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "vato",
+            "canonical_candidate": "vato",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "yerkes-observatorium",
+                  "vato",
+                  "vato"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "it",
+      "family_id": "surface:it:inafosservatori",
+      "member": {
+        "lemma_id": "lemma:77d22d6dbd296fcd28fe",
+        "word": "inaf-osservatorio",
+        "normalized": "inaf-osservatorio",
+        "search_form": "inaf-osservatorio",
+        "rank": 105232,
+        "frequency_score": 1.2782341222979428,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.075677
+            ],
+            "category_ipm": 0.075677,
+            "category_score": 1.2782341222979428
+          }
+        },
+        "sources": [
+          {
+            "id": "web/sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.075677
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "inaf-osservatori",
+            "canonical_candidate": "inafosservatori",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "inaf-osservatorio",
+                  "inaf-osservatori",
+                  "inaf-osservatori"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "before_families": {
+    "family:observ": {
+      "id": "family:observ",
+      "canonical": "observ",
+      "aliases": [
+        "observ",
+        "osserv",
+        "observation",
+        "osservazione",
+        "observatio",
+        "observati"
+      ],
+      "surface_forms": {
+        "en": [
+          "observ"
+        ],
+        "de": [
+          "observ"
+        ],
+        "fr": [
+          "observ"
+        ],
+        "es": [
+          "observ"
+        ],
+        "it": [
+          "osserv"
+        ],
+        "ru": [
+          "обсерв"
+        ]
+      },
+      "associative_component": true,
+      "exact_component": true,
+      "runtime_curated": true,
+      "verified": false,
+      "confidence": "B",
+      "review_status": "needs_review",
+      "source": "associative_reflex_review+manual_override",
+      "etymon_keys": [
+        "la:observare",
+        "la:observatio"
+      ],
+      "relation_types": [
+        "compound_component"
+      ],
+      "relation_evidence": [
+        {
+          "type": "manual_override",
+          "source": "audit/associative-family-v5/reflex-families-20261001.json",
+          "whole_lemma_union": false,
+          "language_reflex": true
+        }
+      ],
+      "support": 295,
+      "language_support": {
+        "en": 38,
+        "de": 69,
+        "fr": 21,
+        "es": 102,
+        "it": 59,
+        "ru": 6
+      },
+      "suspicion_score": 0,
+      "suspicion_reasons": []
+    },
+    "family:inform": {
+      "id": "family:inform",
+      "canonical": "inform",
+      "aliases": [
+        "inform",
+        "informatio",
+        "information",
+        "informacion",
+        "informacija",
+        "informazione"
+      ],
+      "surface_forms": {
+        "en": [
+          "inform"
+        ],
+        "de": [
+          "inform"
+        ],
+        "fr": [
+          "inform"
+        ],
+        "es": [
+          "inform"
+        ],
+        "it": [
+          "inform"
+        ],
+        "ru": [
+          "информ"
+        ]
+      },
+      "associative_component": true,
+      "exact_component": true,
+      "runtime_curated": true,
+      "verified": false,
+      "confidence": "B",
+      "review_status": "needs_review",
+      "source": "associative_reflex_review+manual_override",
+      "etymon_keys": [
+        "la:informare",
+        "la:informatio"
+      ],
+      "relation_types": [
+        "compound_component"
+      ],
+      "relation_evidence": [
+        {
+          "type": "manual_override",
+          "source": "audit/associative-family-v5/reflex-families-20261001.json",
+          "whole_lemma_union": false,
+          "language_reflex": true
+        }
+      ],
+      "support": 1445,
+      "language_support": {
+        "en": 57,
+        "de": 1026,
+        "fr": 52,
+        "es": 154,
+        "it": 81,
+        "ru": 75
+      },
+      "suspicion_score": 0,
+      "suspicion_reasons": []
+    }
+  },
+  "before_members": {
+    "family:observ": {
+      "en": {
+        "existed": true,
+        "count": 38,
+        "ordered_sha256": "dac92276a66e22d02ab5101632e8d84efff4d056a327684346bb5ea9a359befa"
+      },
+      "de": {
+        "existed": true,
+        "count": 69,
+        "ordered_sha256": "5ab9d870ab8cffb02e86eac36b85af27f8850a2737b0564cc7a51aa077b9c5e0"
+      },
+      "fr": {
+        "existed": true,
+        "count": 21,
+        "ordered_sha256": "b7364ecf46db04e0aebd1d2ebacc413d17b7746f2becb6fcd8c09c37f4db23b1"
+      },
+      "es": {
+        "existed": true,
+        "count": 102,
+        "ordered_sha256": "c82d7e056883ef0be513a45143d2c6ee6229314f7156f87284b69b85b60735d5"
+      },
+      "it": {
+        "existed": true,
+        "count": 59,
+        "ordered_sha256": "260d1da390b786e3606109885aa5458256039e13d700d5e4f991351616b429fd"
+      },
+      "ru": {
+        "existed": true,
+        "count": 6,
+        "ordered_sha256": "0d744ccb3268275bc20b49ea9109867f8d665074c9e866e2c64f3cbd62c7b858"
+      }
+    },
+    "family:inform": {
+      "en": {
+        "existed": true,
+        "count": 57,
+        "ordered_sha256": "d993895f488189bcde6e05a360650dc03ba05a5446fd80aff7c60c3e697d1bc5"
+      },
+      "de": {
+        "existed": true,
+        "count": 1026,
+        "ordered_sha256": "b56ed80c265d2bbfb5391b46c346102448899fe2cb43ce80c785d6e33d01ec12"
+      },
+      "fr": {
+        "existed": true,
+        "count": 52,
+        "ordered_sha256": "59b17ecb618f454c7af12970a90d75b9e0d13c7026c5ccc16f90939728b9d20f"
+      },
+      "es": {
+        "existed": true,
+        "count": 154,
+        "ordered_sha256": "8e8a4bc34a305a955d21b0037d19749b492feed18bab09a79c058d39bec87df3"
+      },
+      "it": {
+        "existed": true,
+        "count": 81,
+        "ordered_sha256": "df60cf807b0c0cfd07029b5d1e0f944534634977672902274f9391c8142443c0"
+      },
+      "ru": {
+        "existed": true,
+        "count": 75,
+        "ordered_sha256": "7b948b5648071135c23b486a2dd84fb82fab4463b831bbb0e02af1bb2264cb22"
+      }
+    }
+  },
+  "additions": [
+    {
+      "lemma_id": "lemma:0a379fa25d476cf7c7d0",
+      "word": "informator",
+      "status": "accepted",
+      "reason": "German dictionary head meaning a person who supplies information.",
+      "source_family_ids": [
+        "surface:de:orma",
+        "surface:de:tor",
+        "surface:de:inform"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "uncertain",
+      "lexical_head": "Informator",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Informator"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:a5e230fad99f3e7e5982",
+      "word": "informatorisch",
+      "status": "accepted",
+      "reason": "German dictionary adjective for an informational purpose; recognizable inform component.",
+      "source_family_ids": [
+        "surface:de:informato",
+        "surface:de:tori",
+        "surface:de:risch"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "uncertain",
+      "lexical_head": "informatorisch",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/informatorisch"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:339163eba26aa31023e9",
+      "word": "mathématiques-informatique",
+      "status": "accepted",
+      "reason": "The hyphenated coordinate compound retains the independently attested informatique head. The exact compound analysis is an inference, not a dictionary compound citation.",
+      "source_family_ids": [
+        "surface:fr:matique",
+        "surface:fr:mathematiquesinformatiqu"
+      ],
+      "language": "fr",
+      "canonical_root": "inform",
+      "previous_status": "uncertain",
+      "lexical_head": "informatique",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9I1219"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:546d3fd4317ebc547caa",
+      "word": "johnson-ridge-observatorium",
+      "status": "accepted",
+      "reason": "A named prefix is joined by a hyphen to the complete German Observatorium head. Acceptance covers the observation component, not any proposed etymology of the name.",
+      "source_family_ids": [
+        "surface:de:eo",
+        "surface:de:erva",
+        "surface:de:tor",
+        "surface:de:vato",
+        "surface:de:john"
+      ],
+      "language": "de",
+      "canonical_root": "observ",
+      "previous_status": "uncertain",
+      "lexical_head": "Observatorium",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Observatorium"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:eb7f8c71375682469789",
+      "word": "yerkes-observatorium",
+      "status": "accepted",
+      "reason": "A named prefix is joined by a hyphen to the complete German Observatorium head. Acceptance covers the observation component, not any proposed etymology of the name.",
+      "source_family_ids": [
+        "surface:de:erva",
+        "surface:de:tor",
+        "surface:de:vato"
+      ],
+      "language": "de",
+      "canonical_root": "observ",
+      "previous_status": "uncertain",
+      "lexical_head": "Observatorium",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Observatorium"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:77d22d6dbd296fcd28fe",
+      "word": "inaf-osservatorio",
+      "status": "accepted",
+      "reason": "The acronym prefix is joined by a hyphen to the Italian osservatorio head, derived from osservare. National realization is osserv, not a literal observ substring.",
+      "source_family_ids": [
+        "surface:it:inafosservatori"
+      ],
+      "language": "it",
+      "canonical_root": "observ",
+      "previous_status": "uncertain",
+      "lexical_head": "osservatorio",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/osservatorio/"
+      ],
+      "runtime_applied": false
+    }
+  ],
+  "preservation": [
+    {
+      "part": "families",
+      "bucket": "5c",
+      "ignore": [
+        "family:inform"
+      ],
+      "unrelated_sha256": "4a30c2690a66356e3b6fdf8e64a112780a1bdc6b13f6a6d6c5b80fb242b4f4c1"
+    },
+    {
+      "part": "members/de",
+      "bucket": "5c",
+      "ignore": [
+        "family:inform"
+      ],
+      "unrelated_sha256": "49b03a4beaf6831a2da34a00a158b78dcf6d63ca2e8afd179898991663951c58"
+    },
+    {
+      "part": "members/fr",
+      "bucket": "5c",
+      "ignore": [
+        "family:inform"
+      ],
+      "unrelated_sha256": "6d0d1074e846d4269d4062ae3a659e03b89842039d0bfd4a5edcb77d282be405"
+    },
+    {
+      "part": "families",
+      "bucket": "6c",
+      "ignore": [
+        "family:observ"
+      ],
+      "unrelated_sha256": "6ba53f49c956f65825fcd38cad9b949b14ab208b8ab8a61b2b6121964773880b"
+    },
+    {
+      "part": "members/de",
+      "bucket": "6c",
+      "ignore": [
+        "family:observ"
+      ],
+      "unrelated_sha256": "246cb7b12700ca627c360e135b881e864e0b7de85e233b871f176e5f551b245b"
+    },
+    {
+      "part": "members/it",
+      "bucket": "6c",
+      "ignore": [
+        "family:observ"
+      ],
+      "unrelated_sha256": "4cbc9c6554cd48cad7922a0a6c00b44b90856a9afcd65f5c5f3039297c25b718"
+    }
+  ],
+  "expected_written_files": [
+    "families/5c.json.gz",
+    "families/6c.json.gz",
+    "manifest.json",
+    "members/de/5c.json.gz",
+    "members/de/6c.json.gz",
+    "members/fr/5c.json.gz",
+    "members/it/6c.json.gz",
+    "report.json",
+    "repository-provenance.json"
+  ],
+  "untouched_files_sha256": "9d6a112ae5b720e649c12fa06b0312cb8bcf30875f24d262513bf470c56fbb78",
+  "metadata_preflight": {
+    "manifest.json": "3c3b5d4e113b078fbd8b9f29bf1f2d751190d2bc5f7c2fee53acafb46636fc15",
+    "report.json": "693c63603bddbfe6f2c82a77eaeb1dc70e5f60d66f3269fb90bda2952c2bbbf5",
+    "repository-provenance.json": "4b0bf7ed49bc6e5892cebf0917806a1d33a2feb646d49505e0a142a39b6f4ef5"
+  },
+  "expected_added_memberships": 6,
+  "expected_removed_memberships": 0,
+  "alias_delta": 0,
+  "net_family_delta": 0,
+  "status": "ready_to_materialize",
+  "full_family_certification": false
+}

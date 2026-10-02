@@ -1,0 +1,3283 @@
+{
+  "schema_version": 1,
+  "repair": "extend_reviewed_observ_inform_heads_20261002",
+  "source_run_id": 35647932153,
+  "baseline_commit": "dc19ba3b18ed80d11dec94e608e3674f7fb322ea",
+  "source_hashes": {
+    "audit/associative-family-v5/reflex-attested-heads-review-20261002/decisions.json": "6d71b8f088e99165cd5a7a897845617bacf4e5d4f72979b3856fe720cbf39cfb",
+    "audit/associative-family-v5/reflex-attested-heads-review-20261002/pending-review.json": "9d57608333608a73c6b1218a3e7e1723c392c93fec11737ebf768d7f28cedcab",
+    "audit/associative-family-v5/reflex-attested-heads-review-20261002/source-records.json.gz": "6b8b02e8165d84b5eacd628cf1360807af1327cb9dab572d03686d24ea0211bc",
+    "audit/associative-family-v5/reflex-checkpoint-20261001/candidates.json.gz": "ce3cc11eb045a4fe9f77bf79239fc585a9a324231c8a6d5530606df1e5488cfb",
+    "audit/associative-family-v5/reflex-foreign-forms-review-20261002/pending-review.json": "6f4d60e7b86207211ea61a45d515504d33fcd1a9beeadafc113c6131d83ad2a8",
+    "audit/associative-family-v5/reflex-attested-heads-review-20261002/inventory.json": "99073ed9c37d71dd941349226ab967214a46fcb20c90111e671cb5f550cf9b96",
+    "audit/associative-family-v5/reflex-spanish-enclitics-review-20261002/decisions.json": "c4d55ecccc1a882345d5a7a92525a97636e9bac91441b0a3829f42701277464a",
+    "audit/associative-family-v5/reflex-spanish-enclitics-review-20261002/pending-review.json": "39e58059413236d23803f249c708f63a8fec52077d06bfca07d38b449606f081",
+    "audit/associative-family-v5/reflex-spanish-enclitics-review-20261002/source-records.json.gz": "6ba26da771f5ed5f10332e92befb7c98c919e9134c8cad8f823439bf49da9a28",
+    "audit/associative-family-v5/reflex-spanish-enclitics-review-20261002/inventory.json": "0d9b5edd4620f0f98cefdffaab368d5b7c3d4a4fa63cd3ec70a55a32776d209f"
+  },
+  "source_routes": [
+    {
+      "language": "en",
+      "family_id": "surface:en:observer",
+      "member": {
+        "lemma_id": "lemma:e1c46c1203016a7f7c97",
+        "word": "imageobserver",
+        "normalized": "imageobserver",
+        "search_form": "imageobserver",
+        "rank": 83747,
+        "frequency_score": 2.0128679575486514,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.121735
+            ],
+            "category_ipm": 0.121735,
+            "category_score": 2.0128679575486514
+          }
+        },
+        "sources": [
+          {
+            "id": "web/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.121735
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "observer",
+            "canonical_candidate": "observer",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "imageobserver",
+                  "observer",
+                  "observer"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "en",
+      "family_id": "surface:en:imageobserv",
+      "member": {
+        "lemma_id": "lemma:e1c46c1203016a7f7c97",
+        "word": "imageobserver",
+        "normalized": "imageobserver",
+        "search_form": "imageobserver",
+        "rank": 83747,
+        "frequency_score": 2.0128679575486514,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.121735
+            ],
+            "category_ipm": 0.121735,
+            "category_score": 2.0128679575486514
+          }
+        },
+        "sources": [
+          {
+            "id": "web/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.121735
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "imageobserv",
+            "canonical_candidate": "imageobserv",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "imageobserver",
+                  "imageobserv",
+                  "imageobserv"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "de",
+      "family_id": "surface:de:erung",
+      "member": {
+        "lemma_id": "lemma:60c13b80015b5c09b5e3",
+        "word": "informatisierung",
+        "normalized": "informatisierung",
+        "search_form": "informatisierung",
+        "rank": 85964,
+        "frequency_score": 4.8103091168812355,
+        "category_breakdown": {
+          "normative": {
+            "ipm_values": [
+              0.310813
+            ],
+            "category_ipm": 0.310813,
+            "category_score": 4.742287126860345
+          },
+          "web": {
+            "ipm_values": [
+              0.32103
+            ],
+            "category_ipm": 0.32103,
+            "category_score": 4.878331106902127
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "category": "normative",
+            "ipm": 0.310813
+          },
+          {
+            "id": "web/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.32103
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "erung",
+            "canonical_candidate": "erung",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "informatisierung",
+                  "erung",
+                  "erung"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "de",
+      "family_id": "surface:de:informatisier",
+      "member": {
+        "lemma_id": "lemma:60c13b80015b5c09b5e3",
+        "word": "informatisierung",
+        "normalized": "informatisierung",
+        "search_form": "informatisierung",
+        "rank": 85964,
+        "frequency_score": 4.8103091168812355,
+        "category_breakdown": {
+          "normative": {
+            "ipm_values": [
+              0.310813
+            ],
+            "category_ipm": 0.310813,
+            "category_score": 4.742287126860345
+          },
+          "web": {
+            "ipm_values": [
+              0.32103
+            ],
+            "category_ipm": 0.32103,
+            "category_score": 4.878331106902127
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "category": "normative",
+            "ipm": 0.310813
+          },
+          {
+            "id": "web/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.32103
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "informatisier",
+            "canonical_candidate": "informatisier",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "informatisierung",
+                  "informatisier",
+                  "informatisier"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "ru",
+      "family_id": "surface:ru:inform",
+      "member": {
+        "lemma_id": "lemma:5f69db222f03acdadb6d",
+        "word": "башинформ",
+        "normalized": "башинформ",
+        "search_form": "bashinform",
+        "rank": 99761,
+        "frequency_score": 2.638006391764385,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.162478
+            ],
+            "category_ipm": 0.162478,
+            "category_score": 2.638006391764385
+          }
+        },
+        "sources": [
+          {
+            "id": "web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "file": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.162478
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "inform",
+            "canonical_candidate": "inform",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "bashinform",
+                  "inform",
+                  "inform"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "ru",
+      "family_id": "surface:ru:shin",
+      "member": {
+        "lemma_id": "lemma:5f69db222f03acdadb6d",
+        "word": "башинформ",
+        "normalized": "башинформ",
+        "search_form": "bashinform",
+        "rank": 99761,
+        "frequency_score": 2.638006391764385,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.162478
+            ],
+            "category_ipm": 0.162478,
+            "category_score": 2.638006391764385
+          }
+        },
+        "sources": [
+          {
+            "id": "web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "file": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.162478
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "shin",
+            "canonical_candidate": "shin",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "bashinform",
+                  "shin",
+                  "shin"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "ru",
+      "family_id": "surface:ru:bash",
+      "member": {
+        "lemma_id": "lemma:5f69db222f03acdadb6d",
+        "word": "башинформ",
+        "normalized": "башинформ",
+        "search_form": "bashinform",
+        "rank": 99761,
+        "frequency_score": 2.638006391764385,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.162478
+            ],
+            "category_ipm": 0.162478,
+            "category_score": 2.638006391764385
+          }
+        },
+        "sources": [
+          {
+            "id": "web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "file": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.162478
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "bash",
+            "canonical_candidate": "bash",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "bashinform",
+                  "bash",
+                  "bash"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "ru",
+      "family_id": "surface:ru:informr",
+      "member": {
+        "lemma_id": "lemma:d782ecd1c386bccefffb",
+        "word": "информрегистр",
+        "normalized": "информрегистр",
+        "search_form": "informregistr",
+        "rank": 143221,
+        "frequency_score": 1.4238238696723682,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.084652
+            ],
+            "category_ipm": 0.084652,
+            "category_score": 1.4238238696723682
+          }
+        },
+        "sources": [
+          {
+            "id": "web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "file": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.084652
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "informr",
+            "canonical_candidate": "informr",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "informregistr",
+                  "informr",
+                  "informr"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "ru",
+      "family_id": "ety:bff810e2b190",
+      "member": {
+        "lemma_id": "lemma:d782ecd1c386bccefffb",
+        "word": "информрегистр",
+        "normalized": "информрегистр",
+        "search_form": "informregistr",
+        "rank": 143221,
+        "frequency_score": 1.4238238696723682,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.084652
+            ],
+            "category_ipm": 0.084652,
+            "category_score": 1.4238238696723682
+          }
+        },
+        "sources": [
+          {
+            "id": "web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "file": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.084652
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "registr",
+            "canonical_candidate": "registr",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "informregistr",
+                  "registr",
+                  "registr"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "ru",
+      "family_id": "surface:ru:mre",
+      "member": {
+        "lemma_id": "lemma:d782ecd1c386bccefffb",
+        "word": "информрегистр",
+        "normalized": "информрегистр",
+        "search_form": "informregistr",
+        "rank": 143221,
+        "frequency_score": 1.4238238696723682,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.084652
+            ],
+            "category_ipm": 0.084652,
+            "category_score": 1.4238238696723682
+          }
+        },
+        "sources": [
+          {
+            "id": "web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "file": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.084652
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "mre",
+            "canonical_candidate": "mre",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "informregistr",
+                  "mre",
+                  "mre"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "ru",
+      "family_id": "surface:ru:mb",
+      "member": {
+        "lemma_id": "lemma:01481b2a3627b92b1bbb",
+        "word": "совинформбюро",
+        "normalized": "совинформбюро",
+        "search_form": "sovinformbjuro",
+        "rank": 50337,
+        "frequency_score": 4.571024136366665,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.006538
+            ],
+            "category_ipm": 0.006538,
+            "category_score": 0.11418598341100496
+          },
+          "normative": {
+            "ipm_values": [
+              0.435856
+            ],
+            "category_ipm": 0.435856,
+            "category_score": 6.338780403118576
+          },
+          "web": {
+            "ipm_values": [
+              0.513375
+            ],
+            "category_ipm": 0.513375,
+            "category_score": 7.260106022570412
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+            "file": "rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+            "category": "normative",
+            "ipm": 0.435856
+          },
+          {
+            "id": "subtitles/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+            "file": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+            "category": "subtitles",
+            "ipm": 0.006538
+          },
+          {
+            "id": "web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "file": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.513375
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "mb",
+            "canonical_candidate": "mb",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "sovinformbjuro",
+                  "mb",
+                  "mb"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "ru",
+      "family_id": "surface:ru:inform",
+      "member": {
+        "lemma_id": "lemma:01481b2a3627b92b1bbb",
+        "word": "совинформбюро",
+        "normalized": "совинформбюро",
+        "search_form": "sovinformbjuro",
+        "rank": 50337,
+        "frequency_score": 4.571024136366665,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.006538
+            ],
+            "category_ipm": 0.006538,
+            "category_score": 0.11418598341100496
+          },
+          "normative": {
+            "ipm_values": [
+              0.435856
+            ],
+            "category_ipm": 0.435856,
+            "category_score": 6.338780403118576
+          },
+          "web": {
+            "ipm_values": [
+              0.513375
+            ],
+            "category_ipm": 0.513375,
+            "category_score": 7.260106022570412
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+            "file": "rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+            "category": "normative",
+            "ipm": 0.435856
+          },
+          {
+            "id": "subtitles/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+            "file": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+            "category": "subtitles",
+            "ipm": 0.006538
+          },
+          {
+            "id": "web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "file": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.513375
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "inform",
+            "canonical_candidate": "inform",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "sovinformbjuro",
+                  "inform",
+                  "inform"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "ru",
+      "family_id": "ety:e336db5a09d6",
+      "member": {
+        "lemma_id": "lemma:01481b2a3627b92b1bbb",
+        "word": "совинформбюро",
+        "normalized": "совинформбюро",
+        "search_form": "sovinformbjuro",
+        "rank": 50337,
+        "frequency_score": 4.571024136366665,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.006538
+            ],
+            "category_ipm": 0.006538,
+            "category_score": 0.11418598341100496
+          },
+          "normative": {
+            "ipm_values": [
+              0.435856
+            ],
+            "category_ipm": 0.435856,
+            "category_score": 6.338780403118576
+          },
+          "web": {
+            "ipm_values": [
+              0.513375
+            ],
+            "category_ipm": 0.513375,
+            "category_score": 7.260106022570412
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+            "file": "rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+            "category": "normative",
+            "ipm": 0.435856
+          },
+          {
+            "id": "subtitles/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+            "file": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+            "category": "subtitles",
+            "ipm": 0.006538
+          },
+          {
+            "id": "web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "file": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.513375
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "bjuro",
+            "canonical_candidate": "bjuro",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "sovinformbjuro",
+                  "bjuro",
+                  "bjuro"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "ru",
+      "family_id": "surface:ru:sovin",
+      "member": {
+        "lemma_id": "lemma:01481b2a3627b92b1bbb",
+        "word": "совинформбюро",
+        "normalized": "совинформбюро",
+        "search_form": "sovinformbjuro",
+        "rank": 50337,
+        "frequency_score": 4.571024136366665,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.006538
+            ],
+            "category_ipm": 0.006538,
+            "category_score": 0.11418598341100496
+          },
+          "normative": {
+            "ipm_values": [
+              0.435856
+            ],
+            "category_ipm": 0.435856,
+            "category_score": 6.338780403118576
+          },
+          "web": {
+            "ipm_values": [
+              0.513375
+            ],
+            "category_ipm": 0.513375,
+            "category_score": 7.260106022570412
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+            "file": "rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+            "category": "normative",
+            "ipm": 0.435856
+          },
+          {
+            "id": "subtitles/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+            "file": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+            "category": "subtitles",
+            "ipm": 0.006538
+          },
+          {
+            "id": "web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "file": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.513375
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "sovin",
+            "canonical_candidate": "sovin",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "sovinformbjuro",
+                  "sovin",
+                  "sovin"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "ru",
+      "family_id": "surface:ru:justici",
+      "member": {
+        "lemma_id": "lemma:ff7105d5730296384ca1",
+        "word": "юстицинформ",
+        "normalized": "юстицинформ",
+        "search_form": "justicinform",
+        "rank": 127248,
+        "frequency_score": 1.7515990594259483,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.105133
+            ],
+            "category_ipm": 0.105133,
+            "category_score": 1.7515990594259483
+          }
+        },
+        "sources": [
+          {
+            "id": "web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "file": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.105133
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "justici",
+            "canonical_candidate": "justici",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "justicinform",
+                  "justici",
+                  "justici"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "ru",
+      "family_id": "surface:ru:inform",
+      "member": {
+        "lemma_id": "lemma:ff7105d5730296384ca1",
+        "word": "юстицинформ",
+        "normalized": "юстицинформ",
+        "search_form": "justicinform",
+        "rank": 127248,
+        "frequency_score": 1.7515990594259483,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.105133
+            ],
+            "category_ipm": 0.105133,
+            "category_score": 1.7515990594259483
+          }
+        },
+        "sources": [
+          {
+            "id": "web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "file": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.105133
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "inform",
+            "canonical_candidate": "inform",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "justicinform",
+                  "inform",
+                  "inform"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "ru",
+      "family_id": "surface:ru:cin",
+      "member": {
+        "lemma_id": "lemma:ff7105d5730296384ca1",
+        "word": "юстицинформ",
+        "normalized": "юстицинформ",
+        "search_form": "justicinform",
+        "rank": 127248,
+        "frequency_score": 1.7515990594259483,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.105133
+            ],
+            "category_ipm": 0.105133,
+            "category_score": 1.7515990594259483
+          }
+        },
+        "sources": [
+          {
+            "id": "web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "file": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.105133
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "cin",
+            "canonical_candidate": "cin",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "justicinform",
+                  "cin",
+                  "cin"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "it",
+      "family_id": "surface:it:assin",
+      "member": {
+        "lemma_id": "lemma:86d2219986bcd7c40c36",
+        "word": "assinform",
+        "normalized": "assinform",
+        "search_form": "assinform",
+        "rank": 27226,
+        "frequency_score": 11.508824655993969,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.928652
+            ],
+            "category_ipm": 0.928652,
+            "category_score": 11.508824655993969
+          }
+        },
+        "sources": [
+          {
+            "id": "web/sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.928652
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "assin",
+            "canonical_candidate": "assin",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "assinform",
+                  "assin",
+                  "assin"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "it",
+      "family_id": "surface:it:inform",
+      "member": {
+        "lemma_id": "lemma:86d2219986bcd7c40c36",
+        "word": "assinform",
+        "normalized": "assinform",
+        "search_form": "assinform",
+        "rank": 27226,
+        "frequency_score": 11.508824655993969,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.928652
+            ],
+            "category_ipm": 0.928652,
+            "category_score": 11.508824655993969
+          }
+        },
+        "sources": [
+          {
+            "id": "web/sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.928652
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "inform",
+            "canonical_candidate": "inform",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "assinform",
+                  "inform",
+                  "inform"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "es",
+      "family_id": "ety:8492f70055ca",
+      "member": {
+        "lemma_id": "lemma:9b41b6466dc82c9c1834",
+        "word": "observala",
+        "normalized": "observala",
+        "search_form": "observala",
+        "rank": 231804,
+        "frequency_score": 0.1523553517697093,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.005612,
+              0.011854
+            ],
+            "category_ipm": 0.008733,
+            "category_score": 0.1523553517697093
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.005612
+          },
+          {
+            "id": "subtitles/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.011854
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "val",
+            "canonical_candidate": "val",
+            "confidence": 1,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "manually_verified",
+                "path": [
+                  "observala",
+                  "val",
+                  "val"
+                ],
+                "confidence": 1
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "es",
+      "family_id": "surface:es:ala",
+      "member": {
+        "lemma_id": "lemma:9b41b6466dc82c9c1834",
+        "word": "observala",
+        "normalized": "observala",
+        "search_form": "observala",
+        "rank": 231804,
+        "frequency_score": 0.1523553517697093,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.005612,
+              0.011854
+            ],
+            "category_ipm": 0.008733,
+            "category_score": 0.1523553517697093
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.005612
+          },
+          {
+            "id": "subtitles/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.011854
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "ala",
+            "canonical_candidate": "ala",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "observala",
+                  "ala",
+                  "ala"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "es",
+      "family_id": "ety:0bf5215b42f0",
+      "member": {
+        "lemma_id": "lemma:9b41b6466dc82c9c1834",
+        "word": "observala",
+        "normalized": "observala",
+        "search_form": "observala",
+        "rank": 231804,
+        "frequency_score": 0.1523553517697093,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.005612,
+              0.011854
+            ],
+            "category_ipm": 0.008733,
+            "category_score": 0.1523553517697093
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.005612
+          },
+          {
+            "id": "subtitles/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.011854
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "val",
+            "canonical_candidate": "val",
+            "confidence": 1,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "manually_verified",
+                "path": [
+                  "observala",
+                  "val",
+                  "val"
+                ],
+                "confidence": 1
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "es",
+      "family_id": "surface:es:observal",
+      "member": {
+        "lemma_id": "lemma:9b41b6466dc82c9c1834",
+        "word": "observala",
+        "normalized": "observala",
+        "search_form": "observala",
+        "rank": 231804,
+        "frequency_score": 0.1523553517697093,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.005612,
+              0.011854
+            ],
+            "category_ipm": 0.008733,
+            "category_score": 0.1523553517697093
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.005612
+          },
+          {
+            "id": "subtitles/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.011854
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "observal",
+            "canonical_candidate": "observal",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "observala",
+                  "observal",
+                  "observal"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "es",
+      "family_id": "surface:es:observ",
+      "member": {
+        "lemma_id": "lemma:41af9fd424d9b75521b5",
+        "word": "observale",
+        "normalized": "observale",
+        "search_form": "observale",
+        "rank": 648410,
+        "frequency_score": 0.04909788668913623,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.002806
+            ],
+            "category_ipm": 0.002806,
+            "category_score": 0.04909788668913623
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.002806
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "observ",
+            "canonical_candidate": "observ",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "observale",
+                  "observ",
+                  "observ"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "es",
+      "family_id": "surface:es:vale",
+      "member": {
+        "lemma_id": "lemma:41af9fd424d9b75521b5",
+        "word": "observale",
+        "normalized": "observale",
+        "search_form": "observale",
+        "rank": 648410,
+        "frequency_score": 0.04909788668913623,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.002806
+            ],
+            "category_ipm": 0.002806,
+            "category_score": 0.04909788668913623
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.002806
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "vale",
+            "canonical_candidate": "vale",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "observale",
+                  "vale",
+                  "vale"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "es",
+      "family_id": "ety:8492f70055ca",
+      "member": {
+        "lemma_id": "lemma:48ebe78d23dbd9660bbd",
+        "word": "observalo",
+        "normalized": "observalo",
+        "search_form": "observalo",
+        "rank": 142752,
+        "frequency_score": 0.4680142326502473,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.028062,
+              0.026078
+            ],
+            "category_ipm": 0.02707,
+            "category_score": 0.4680142326502473
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.028062
+          },
+          {
+            "id": "subtitles/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.026078
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "val",
+            "canonical_candidate": "val",
+            "confidence": 1,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "manually_verified",
+                "path": [
+                  "observalo",
+                  "val",
+                  "val"
+                ],
+                "confidence": 1
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "es",
+      "family_id": "ety:e58812c3b1c5",
+      "member": {
+        "lemma_id": "lemma:48ebe78d23dbd9660bbd",
+        "word": "observalo",
+        "normalized": "observalo",
+        "search_form": "observalo",
+        "rank": 142752,
+        "frequency_score": 0.4680142326502473,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.028062,
+              0.026078
+            ],
+            "category_ipm": 0.02707,
+            "category_score": 0.4680142326502473
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.028062
+          },
+          {
+            "id": "subtitles/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.026078
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "alo",
+            "canonical_candidate": "alo",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "observalo",
+                  "alo",
+                  "alo"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "es",
+      "family_id": "ety:b9656515bdc2",
+      "member": {
+        "lemma_id": "lemma:48ebe78d23dbd9660bbd",
+        "word": "observalo",
+        "normalized": "observalo",
+        "search_form": "observalo",
+        "rank": 142752,
+        "frequency_score": 0.4680142326502473,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.028062,
+              0.026078
+            ],
+            "category_ipm": 0.02707,
+            "category_score": 0.4680142326502473
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.028062
+          },
+          {
+            "id": "subtitles/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.026078
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "alo",
+            "canonical_candidate": "alo",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "observalo",
+                  "alo",
+                  "alo"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "es",
+      "family_id": "ety:0bf5215b42f0",
+      "member": {
+        "lemma_id": "lemma:48ebe78d23dbd9660bbd",
+        "word": "observalo",
+        "normalized": "observalo",
+        "search_form": "observalo",
+        "rank": 142752,
+        "frequency_score": 0.4680142326502473,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.028062,
+              0.026078
+            ],
+            "category_ipm": 0.02707,
+            "category_score": 0.4680142326502473
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.028062
+          },
+          {
+            "id": "subtitles/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.026078
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "val",
+            "canonical_candidate": "val",
+            "confidence": 1,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "manually_verified",
+                "path": [
+                  "observalo",
+                  "val",
+                  "val"
+                ],
+                "confidence": 1
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "es",
+      "family_id": "surface:es:observal",
+      "member": {
+        "lemma_id": "lemma:48ebe78d23dbd9660bbd",
+        "word": "observalo",
+        "normalized": "observalo",
+        "search_form": "observalo",
+        "rank": 142752,
+        "frequency_score": 0.4680142326502473,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.028062,
+              0.026078
+            ],
+            "category_ipm": 0.02707,
+            "category_score": 0.4680142326502473
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.028062
+          },
+          {
+            "id": "subtitles/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.026078
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "observal",
+            "canonical_candidate": "observal",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "observalo",
+                  "observal",
+                  "observal"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "es",
+      "family_id": "ety:8492f70055ca",
+      "member": {
+        "lemma_id": "lemma:402ab82ea9aa48fea06d",
+        "word": "observalos",
+        "normalized": "observalos",
+        "search_form": "observalos",
+        "rank": 312456,
+        "frequency_score": 0.11112187447585387,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.005612,
+              0.007112
+            ],
+            "category_ipm": 0.006362,
+            "category_score": 0.11112187447585387
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.005612
+          },
+          {
+            "id": "subtitles/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.007112
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "val",
+            "canonical_candidate": "val",
+            "confidence": 1,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "manually_verified",
+                "path": [
+                  "observalos",
+                  "val",
+                  "val"
+                ],
+                "confidence": 1
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "es",
+      "family_id": "surface:es:alos",
+      "member": {
+        "lemma_id": "lemma:402ab82ea9aa48fea06d",
+        "word": "observalos",
+        "normalized": "observalos",
+        "search_form": "observalos",
+        "rank": 312456,
+        "frequency_score": 0.11112187447585387,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.005612,
+              0.007112
+            ],
+            "category_ipm": 0.006362,
+            "category_score": 0.11112187447585387
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.005612
+          },
+          {
+            "id": "subtitles/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.007112
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "alos",
+            "canonical_candidate": "alos",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "observalos",
+                  "alos",
+                  "alos"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "es",
+      "family_id": "ety:0bf5215b42f0",
+      "member": {
+        "lemma_id": "lemma:402ab82ea9aa48fea06d",
+        "word": "observalos",
+        "normalized": "observalos",
+        "search_form": "observalos",
+        "rank": 312456,
+        "frequency_score": 0.11112187447585387,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.005612,
+              0.007112
+            ],
+            "category_ipm": 0.006362,
+            "category_score": 0.11112187447585387
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.005612
+          },
+          {
+            "id": "subtitles/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.007112
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "val",
+            "canonical_candidate": "val",
+            "confidence": 1,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "manually_verified",
+                "path": [
+                  "observalos",
+                  "val",
+                  "val"
+                ],
+                "confidence": 1
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "es",
+      "family_id": "surface:es:observal",
+      "member": {
+        "lemma_id": "lemma:402ab82ea9aa48fea06d",
+        "word": "observalos",
+        "normalized": "observalos",
+        "search_form": "observalos",
+        "rank": 312456,
+        "frequency_score": 0.11112187447585387,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.005612,
+              0.007112
+            ],
+            "category_ipm": 0.006362,
+            "category_score": 0.11112187447585387
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.005612
+          },
+          {
+            "id": "subtitles/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.007112
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "observal",
+            "canonical_candidate": "observal",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "observalos",
+                  "observal",
+                  "observal"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "es",
+      "family_id": "surface:es:observ",
+      "member": {
+        "lemma_id": "lemma:61543d2aba16f9e440e8",
+        "word": "observame",
+        "normalized": "observame",
+        "search_form": "observame",
+        "rank": 105056,
+        "frequency_score": 0.7435925832739734,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.039287,
+              0.047415
+            ],
+            "category_ipm": 0.043351,
+            "category_score": 0.7435925832739734
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.039287
+          },
+          {
+            "id": "subtitles/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.047415
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "observ",
+            "canonical_candidate": "observ",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "observame",
+                  "observ",
+                  "observ"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "es",
+      "family_id": "surface:es:observan",
+      "member": {
+        "lemma_id": "lemma:ef46c640a98e03996e2d",
+        "word": "observanos",
+        "normalized": "observanos",
+        "search_form": "observanos",
+        "rank": 285519,
+        "frequency_score": 0.13554151465136516,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.008419,
+              0.007112
+            ],
+            "category_ipm": 0.0077655,
+            "category_score": 0.13554151465136516
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.008419
+          },
+          {
+            "id": "subtitles/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.007112
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "observan",
+            "canonical_candidate": "observan",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "observanos",
+                  "observan",
+                  "observan"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "es",
+      "family_id": "surface:es:anos",
+      "member": {
+        "lemma_id": "lemma:ef46c640a98e03996e2d",
+        "word": "observanos",
+        "normalized": "observanos",
+        "search_form": "observanos",
+        "rank": 285519,
+        "frequency_score": 0.13554151465136516,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.008419,
+              0.007112
+            ],
+            "category_ipm": 0.0077655,
+            "category_score": 0.13554151465136516
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.008419
+          },
+          {
+            "id": "subtitles/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.007112
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "anos",
+            "canonical_candidate": "anos",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "observanos",
+                  "anos",
+                  "anos"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "es",
+      "family_id": "surface:es:observate",
+      "member": {
+        "lemma_id": "lemma:93aa6868ebc1576e0bc3",
+        "word": "observate",
+        "normalized": "observate",
+        "search_form": "observate",
+        "rank": 372071,
+        "frequency_score": 0.090477407431868,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.005612,
+              0.004742
+            ],
+            "category_ipm": 0.005176999999999999,
+            "category_score": 0.090477407431868
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.005612
+          },
+          {
+            "id": "subtitles/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.004742
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "observate",
+            "canonical_candidate": "observate",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "observate",
+                  "observate",
+                  "observate"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "es",
+      "family_id": "surface:es:observenl",
+      "member": {
+        "lemma_id": "lemma:8e7e524e8511f3482270",
+        "word": "obsérvenla",
+        "normalized": "obsérvenla",
+        "search_form": "observenla",
+        "rank": 128707,
+        "frequency_score": 0.5158283399889702,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.033675,
+              0.026078
+            ],
+            "category_ipm": 0.0298765,
+            "category_score": 0.5158283399889702
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.033675
+          },
+          {
+            "id": "subtitles/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.026078
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "observenl",
+            "canonical_candidate": "observenl",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "observenla",
+                  "observenl",
+                  "observenl"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "es",
+      "family_id": "ety:954e3bb19373",
+      "member": {
+        "lemma_id": "lemma:dda1e97ccae9d4713dbf",
+        "word": "obsérvenos",
+        "normalized": "obsérvenos",
+        "search_form": "observenos",
+        "rank": 372109,
+        "frequency_score": 0.090477407431868,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.005612,
+              0.004742
+            ],
+            "category_ipm": 0.005176999999999999,
+            "category_score": 0.090477407431868
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.005612
+          },
+          {
+            "id": "subtitles/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.004742
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "venos",
+            "canonical_candidate": "venos",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "observenos",
+                  "venos",
+                  "venos"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "es",
+      "family_id": "ety:426d3eebe2a0",
+      "member": {
+        "lemma_id": "lemma:dda1e97ccae9d4713dbf",
+        "word": "obsérvenos",
+        "normalized": "obsérvenos",
+        "search_form": "observenos",
+        "rank": 372109,
+        "frequency_score": 0.090477407431868,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.005612,
+              0.004742
+            ],
+            "category_ipm": 0.005176999999999999,
+            "category_score": 0.090477407431868
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.005612
+          },
+          {
+            "id": "subtitles/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.004742
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "venos",
+            "canonical_candidate": "venos",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "observenos",
+                  "venos",
+                  "venos"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "es",
+      "family_id": "surface:es:observen",
+      "member": {
+        "lemma_id": "lemma:dda1e97ccae9d4713dbf",
+        "word": "obsérvenos",
+        "normalized": "obsérvenos",
+        "search_form": "observenos",
+        "rank": 372109,
+        "frequency_score": 0.090477407431868,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.005612,
+              0.004742
+            ],
+            "category_ipm": 0.005176999999999999,
+            "category_score": 0.090477407431868
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.005612
+          },
+          {
+            "id": "subtitles/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.004742
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "observen",
+            "canonical_candidate": "observen",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "observenos",
+                  "observen",
+                  "observen"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "es",
+      "family_id": "surface:es:informenn",
+      "member": {
+        "lemma_id": "lemma:96ea11256ec1a60d0f78",
+        "word": "infórmennos",
+        "normalized": "infórmennos",
+        "search_form": "informennos",
+        "rank": 127950,
+        "frequency_score": 0.38487067113773743,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.011225,
+              0.033191
+            ],
+            "category_ipm": 0.022208,
+            "category_score": 0.38487067113773743
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.011225
+          },
+          {
+            "id": "subtitles/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.033191
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "informenn",
+            "canonical_candidate": "informenn",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "informennos",
+                  "informenn",
+                  "informenn"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "es",
+      "family_id": "surface:es:observad",
+      "member": {
+        "lemma_id": "lemma:a33138c2274cc945c17e",
+        "word": "observádote",
+        "normalized": "observádote",
+        "search_form": "observadote",
+        "rank": 707545,
+        "frequency_score": 0.041495494299664135,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.002371
+            ],
+            "category_ipm": 0.002371,
+            "category_score": 0.041495494299664135
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.002371
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "observad",
+            "canonical_candidate": "observad",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "observadote",
+                  "observad",
+                  "observad"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "before_families": {
+    "family:observ": {
+      "id": "family:observ",
+      "canonical": "observ",
+      "aliases": [
+        "observ",
+        "osserv",
+        "observation",
+        "osservazione",
+        "observatio",
+        "observati"
+      ],
+      "surface_forms": {
+        "en": [
+          "observ"
+        ],
+        "de": [
+          "observ"
+        ],
+        "fr": [
+          "observ"
+        ],
+        "es": [
+          "observ"
+        ],
+        "it": [
+          "osserv"
+        ],
+        "ru": [
+          "обсерв"
+        ]
+      },
+      "associative_component": true,
+      "exact_component": true,
+      "runtime_curated": true,
+      "verified": false,
+      "confidence": "B",
+      "review_status": "needs_review",
+      "source": "associative_reflex_review+manual_override",
+      "etymon_keys": [
+        "la:observare",
+        "la:observatio"
+      ],
+      "relation_types": [
+        "compound_component"
+      ],
+      "relation_evidence": [
+        {
+          "type": "manual_override",
+          "source": "audit/associative-family-v5/reflex-families-20261001.json",
+          "whole_lemma_union": false,
+          "language_reflex": true
+        },
+        {
+          "type": "manual_override",
+          "source": "audit/associative-family-v5/reflex-continuation-materialization-20261002/materialization-ledger.json",
+          "whole_lemma_union": false,
+          "language_reflex": true,
+          "full_family_certification": false
+        }
+      ],
+      "support": 298,
+      "language_support": {
+        "en": 38,
+        "de": 71,
+        "fr": 21,
+        "es": 102,
+        "it": 60,
+        "ru": 6
+      },
+      "suspicion_score": 0,
+      "suspicion_reasons": []
+    },
+    "family:inform": {
+      "id": "family:inform",
+      "canonical": "inform",
+      "aliases": [
+        "inform",
+        "informatio",
+        "information",
+        "informacion",
+        "informacija",
+        "informazione"
+      ],
+      "surface_forms": {
+        "en": [
+          "inform"
+        ],
+        "de": [
+          "inform"
+        ],
+        "fr": [
+          "inform"
+        ],
+        "es": [
+          "inform"
+        ],
+        "it": [
+          "inform"
+        ],
+        "ru": [
+          "информ"
+        ]
+      },
+      "associative_component": true,
+      "exact_component": true,
+      "runtime_curated": true,
+      "verified": false,
+      "confidence": "B",
+      "review_status": "needs_review",
+      "source": "associative_reflex_review+manual_override",
+      "etymon_keys": [
+        "la:informare",
+        "la:informatio"
+      ],
+      "relation_types": [
+        "compound_component"
+      ],
+      "relation_evidence": [
+        {
+          "type": "manual_override",
+          "source": "audit/associative-family-v5/reflex-families-20261001.json",
+          "whole_lemma_union": false,
+          "language_reflex": true
+        },
+        {
+          "type": "manual_override",
+          "source": "audit/associative-family-v5/reflex-continuation-materialization-20261002/materialization-ledger.json",
+          "whole_lemma_union": false,
+          "language_reflex": true,
+          "full_family_certification": false
+        }
+      ],
+      "support": 1448,
+      "language_support": {
+        "en": 57,
+        "de": 1028,
+        "fr": 53,
+        "es": 154,
+        "it": 81,
+        "ru": 75
+      },
+      "suspicion_score": 0,
+      "suspicion_reasons": []
+    }
+  },
+  "before_members": {
+    "family:observ": {
+      "en": {
+        "existed": true,
+        "count": 38,
+        "ordered_sha256": "dac92276a66e22d02ab5101632e8d84efff4d056a327684346bb5ea9a359befa"
+      },
+      "de": {
+        "existed": true,
+        "count": 71,
+        "ordered_sha256": "a0b8334ce58cf872dc47b9bc074070f3eaad2eff0fa44b5fa0f0c7d92b770267"
+      },
+      "fr": {
+        "existed": true,
+        "count": 21,
+        "ordered_sha256": "b7364ecf46db04e0aebd1d2ebacc413d17b7746f2becb6fcd8c09c37f4db23b1"
+      },
+      "es": {
+        "existed": true,
+        "count": 102,
+        "ordered_sha256": "c82d7e056883ef0be513a45143d2c6ee6229314f7156f87284b69b85b60735d5"
+      },
+      "it": {
+        "existed": true,
+        "count": 60,
+        "ordered_sha256": "0a777a832b9589b7760cb942b316ad873a8ffa20b33190ddb1ef5a88f3974152"
+      },
+      "ru": {
+        "existed": true,
+        "count": 6,
+        "ordered_sha256": "0d744ccb3268275bc20b49ea9109867f8d665074c9e866e2c64f3cbd62c7b858"
+      }
+    },
+    "family:inform": {
+      "en": {
+        "existed": true,
+        "count": 57,
+        "ordered_sha256": "d993895f488189bcde6e05a360650dc03ba05a5446fd80aff7c60c3e697d1bc5"
+      },
+      "de": {
+        "existed": true,
+        "count": 1028,
+        "ordered_sha256": "b3f135667b1aa2f0e119fc0d3ad549a5de516046e1816fcabde00abe6d1b528b"
+      },
+      "fr": {
+        "existed": true,
+        "count": 53,
+        "ordered_sha256": "82c6370515d5b7b82ae6e109324b11498d070db89a9c78339ecaea87870d8275"
+      },
+      "es": {
+        "existed": true,
+        "count": 154,
+        "ordered_sha256": "8e8a4bc34a305a955d21b0037d19749b492feed18bab09a79c058d39bec87df3"
+      },
+      "it": {
+        "existed": true,
+        "count": 81,
+        "ordered_sha256": "df60cf807b0c0cfd07029b5d1e0f944534634977672902274f9391c8142443c0"
+      },
+      "ru": {
+        "existed": true,
+        "count": 75,
+        "ordered_sha256": "7b948b5648071135c23b486a2dd84fb82fab4463b831bbb0e02af1bb2264cb22"
+      }
+    }
+  },
+  "additions": [
+    {
+      "lemma_id": "lemma:e1c46c1203016a7f7c97",
+      "word": "imageobserver",
+      "status": "accepted",
+      "reason": "Oracle documents ImageObserver as an interface receiving image updates. The exact technical identifier retains the English observer constituent, not an accidental substring. Image + observer is a finite morphological inference supported by its documented function. Existing corpus record only; no synthetic lemma.",
+      "source_family_ids": [
+        "surface:en:observer",
+        "surface:en:imageobserv"
+      ],
+      "language": "en",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "attested_technical_compound",
+      "segmentation_or_lexical_identity": "Image + observer",
+      "source_references": [
+        "https://docs.oracle.com/en/java/javase/24/docs/api/java.desktop/java/awt/image/ImageObserver.html"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:60c13b80015b5c09b5e3",
+      "word": "informatisierung",
+      "status": "accepted",
+      "reason": "Attested German head describes adoption of information systems and is used in a German informatics publication. This is the information/informatics branch, not negative in- + formal. Finite derivative analysis preserves the visible inform constituent.",
+      "source_family_ids": [
+        "surface:de:erung",
+        "surface:de:informatisier"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "attested_information_derivative",
+      "segmentation_or_lexical_identity": "Informatisierung information/computerization process",
+      "source_references": [
+        "https://hls-dhs-dss.ch/de/articles/013724/2019-07-12/",
+        "https://link.springer.com/chapter/10.1007/978-3-642-77808-7_31"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:5f69db222f03acdadb6d",
+      "word": "башинформ",
+      "status": "accepted",
+      "reason": "Attested Bashinform news agency. Official institutional evidence establishes an information-related referent; the saved name contains the Russian информ constituent. The displayed segmentation is a finite reviewer inference, not a claimed historical naming derivation. Native named compounds are permitted when the actual information constituent is evidenced; no frequency or original component is replaced.",
+      "source_family_ids": [
+        "surface:ru:inform",
+        "surface:ru:shin",
+        "surface:ru:bash"
+      ],
+      "language": "ru",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "attested_information_name",
+      "segmentation_or_lexical_identity": "Баш + информ",
+      "source_references": [
+        "https://www.bashinform.ru/pages/about"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:d782ecd1c386bccefffb",
+      "word": "информрегистр",
+      "status": "accepted",
+      "reason": "Attested Informregistr registration/information-resource institution. Official institutional evidence establishes an information-related referent; the saved name contains the Russian информ constituent. The displayed segmentation is a finite reviewer inference, not a claimed historical naming derivation. Native named compounds are permitted when the actual information constituent is evidenced; no frequency or original component is replaced.",
+      "source_family_ids": [
+        "surface:ru:informr",
+        "ety:bff810e2b190",
+        "surface:ru:mre"
+      ],
+      "language": "ru",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "attested_information_name",
+      "segmentation_or_lexical_identity": "информ + регистр",
+      "source_references": [
+        "https://www.inforeg.ru/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:01481b2a3627b92b1bbb",
+      "word": "совинформбюро",
+      "status": "accepted",
+      "reason": "Attested Soviet Information Bureau. Official institutional evidence establishes an information-related referent; the saved name contains the Russian информ constituent. The displayed segmentation is a finite reviewer inference, not a claimed historical naming derivation. Native named compounds are permitted when the actual information constituent is evidenced; no frequency or original component is replaced.",
+      "source_family_ids": [
+        "surface:ru:mb",
+        "surface:ru:inform",
+        "ety:e336db5a09d6",
+        "surface:ru:sovin"
+      ],
+      "language": "ru",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "attested_information_name",
+      "segmentation_or_lexical_identity": "Сов + информ + бюро",
+      "source_references": [
+        "https://guides.rusarchives.ru/funds/6/sovetskoe-informacionnoe-byuro-sovinformbyuro-pri-gosudarstvennom-komitete-po-kulturnym"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:ff7105d5730296384ca1",
+      "word": "юстицинформ",
+      "status": "accepted",
+      "reason": "Attested Justitsinform legal-information publisher/group. Official institutional evidence establishes an information-related referent; the saved name contains the Russian информ constituent. The displayed segmentation is a finite reviewer inference, not a claimed historical naming derivation. Native named compounds are permitted when the actual information constituent is evidenced; no frequency or original component is replaced.",
+      "source_family_ids": [
+        "surface:ru:justici",
+        "surface:ru:inform",
+        "surface:ru:cin"
+      ],
+      "language": "ru",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "attested_information_name",
+      "segmentation_or_lexical_identity": "юстици + информ",
+      "source_references": [
+        "https://jusinf.ru/about/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:86d2219986bcd7c40c36",
+      "word": "assinform",
+      "status": "accepted",
+      "reason": "Official association profile identifies Assinform within the Italian information/communication-technology association. The inform segment is the information/informatics constituent of this attested ICT name, a finite morphological inference. No inference that arbitrary names containing inform qualify.",
+      "source_family_ids": [
+        "surface:it:assin",
+        "surface:it:inform"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "attested_information_name",
+      "segmentation_or_lexical_identity": "Ass + inform (ICT association)",
+      "source_references": [
+        "https://www.anitec-assinform.it/scopri-di-piu/english/who-we-are/profilo/organisation-profile.kl"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:9b41b6466dc82c9c1834",
+      "word": "observala",
+      "status": "accepted",
+      "reason": "RAE attests the voseo imperative observá. Adding the displayed single enclitic shifts the orthographic word to a plain word ending in a vowel or s, so the exact saved unaccented spelling is valid. Finite regular-inflection inference from the documented paradigm and accent rule; this realizes Spanish observ directly, without a spelling repair.",
+      "source_family_ids": [
+        "ety:8492f70055ca",
+        "surface:es:ala",
+        "ety:0bf5215b42f0",
+        "surface:es:observal"
+      ],
+      "language": "es",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "regular_voseo_enclitic",
+      "segmentation_or_lexical_identity": "observá + la",
+      "source_references": [
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/dpd/tilde",
+        "https://www.rae.es/dpd/pronombres%20personales%20%C3%A1tonos"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:41af9fd424d9b75521b5",
+      "word": "observale",
+      "status": "accepted",
+      "reason": "RAE attests the voseo imperative observá. Adding the displayed single enclitic shifts the orthographic word to a plain word ending in a vowel or s, so the exact saved unaccented spelling is valid. Finite regular-inflection inference from the documented paradigm and accent rule; this realizes Spanish observ directly, without a spelling repair.",
+      "source_family_ids": [
+        "surface:es:observ",
+        "surface:es:vale"
+      ],
+      "language": "es",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "regular_voseo_enclitic",
+      "segmentation_or_lexical_identity": "observá + le",
+      "source_references": [
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/dpd/tilde",
+        "https://www.rae.es/dpd/pronombres%20personales%20%C3%A1tonos"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:48ebe78d23dbd9660bbd",
+      "word": "observalo",
+      "status": "accepted",
+      "reason": "RAE attests the voseo imperative observá. Adding the displayed single enclitic shifts the orthographic word to a plain word ending in a vowel or s, so the exact saved unaccented spelling is valid. Finite regular-inflection inference from the documented paradigm and accent rule; this realizes Spanish observ directly, without a spelling repair.",
+      "source_family_ids": [
+        "ety:8492f70055ca",
+        "ety:e58812c3b1c5",
+        "ety:b9656515bdc2",
+        "ety:0bf5215b42f0",
+        "surface:es:observal"
+      ],
+      "language": "es",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "regular_voseo_enclitic",
+      "segmentation_or_lexical_identity": "observá + lo",
+      "source_references": [
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/dpd/tilde",
+        "https://www.rae.es/dpd/pronombres%20personales%20%C3%A1tonos"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:402ab82ea9aa48fea06d",
+      "word": "observalos",
+      "status": "accepted",
+      "reason": "RAE attests the voseo imperative observá. Adding the displayed single enclitic shifts the orthographic word to a plain word ending in a vowel or s, so the exact saved unaccented spelling is valid. Finite regular-inflection inference from the documented paradigm and accent rule; this realizes Spanish observ directly, without a spelling repair.",
+      "source_family_ids": [
+        "ety:8492f70055ca",
+        "surface:es:alos",
+        "ety:0bf5215b42f0",
+        "surface:es:observal"
+      ],
+      "language": "es",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "regular_voseo_enclitic",
+      "segmentation_or_lexical_identity": "observá + los",
+      "source_references": [
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/dpd/tilde",
+        "https://www.rae.es/dpd/pronombres%20personales%20%C3%A1tonos"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:61543d2aba16f9e440e8",
+      "word": "observame",
+      "status": "accepted",
+      "reason": "RAE attests the voseo imperative observá. Adding the displayed single enclitic shifts the orthographic word to a plain word ending in a vowel or s, so the exact saved unaccented spelling is valid. Finite regular-inflection inference from the documented paradigm and accent rule; this realizes Spanish observ directly, without a spelling repair.",
+      "source_family_ids": [
+        "surface:es:observ"
+      ],
+      "language": "es",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "regular_voseo_enclitic",
+      "segmentation_or_lexical_identity": "observá + me",
+      "source_references": [
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/dpd/tilde",
+        "https://www.rae.es/dpd/pronombres%20personales%20%C3%A1tonos"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:ef46c640a98e03996e2d",
+      "word": "observanos",
+      "status": "accepted",
+      "reason": "RAE attests the voseo imperative observá. Adding the displayed single enclitic shifts the orthographic word to a plain word ending in a vowel or s, so the exact saved unaccented spelling is valid. Finite regular-inflection inference from the documented paradigm and accent rule; this realizes Spanish observ directly, without a spelling repair.",
+      "source_family_ids": [
+        "surface:es:observan",
+        "surface:es:anos"
+      ],
+      "language": "es",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "regular_voseo_enclitic",
+      "segmentation_or_lexical_identity": "observá + nos",
+      "source_references": [
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/dpd/tilde",
+        "https://www.rae.es/dpd/pronombres%20personales%20%C3%A1tonos"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:93aa6868ebc1576e0bc3",
+      "word": "observate",
+      "status": "accepted",
+      "reason": "RAE attests the voseo imperative observá. Adding the displayed single enclitic shifts the orthographic word to a plain word ending in a vowel or s, so the exact saved unaccented spelling is valid. Finite regular-inflection inference from the documented paradigm and accent rule; this realizes Spanish observ directly, without a spelling repair.",
+      "source_family_ids": [
+        "surface:es:observate"
+      ],
+      "language": "es",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "regular_voseo_enclitic",
+      "segmentation_or_lexical_identity": "observá + te",
+      "source_references": [
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/dpd/tilde",
+        "https://www.rae.es/dpd/pronombres%20personales%20%C3%A1tonos"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:8e7e524e8511f3482270",
+      "word": "obsérvenla",
+      "status": "accepted",
+      "reason": "Exact affirmative imperative with the displayed enclitic, inferred finitely from the documented regular paradigm. The resulting antepenultimate stress requires the saved written accent. In infórmennos the two n letters belong to informen + nos and are retained by the RAE rule. No accent normalization, spelling repair or component replacement.",
+      "source_family_ids": [
+        "surface:es:observenl"
+      ],
+      "language": "es",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "regular_imperative_enclitic",
+      "segmentation_or_lexical_identity": "observen + la",
+      "source_references": [
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/dpd/tilde",
+        "https://www.rae.es/dpd/pronombres%20personales%20%C3%A1tonos"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:dda1e97ccae9d4713dbf",
+      "word": "obsérvenos",
+      "status": "accepted",
+      "reason": "Exact affirmative imperative with the displayed enclitic, inferred finitely from the documented regular paradigm. The resulting antepenultimate stress requires the saved written accent. In infórmennos the two n letters belong to informen + nos and are retained by the RAE rule. No accent normalization, spelling repair or component replacement.",
+      "source_family_ids": [
+        "ety:954e3bb19373",
+        "ety:426d3eebe2a0",
+        "surface:es:observen"
+      ],
+      "language": "es",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "regular_imperative_enclitic",
+      "segmentation_or_lexical_identity": "observe + nos",
+      "source_references": [
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/dpd/tilde",
+        "https://www.rae.es/dpd/pronombres%20personales%20%C3%A1tonos"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:96ea11256ec1a60d0f78",
+      "word": "infórmennos",
+      "status": "accepted",
+      "reason": "Exact affirmative imperative with the displayed enclitic, inferred finitely from the documented regular paradigm. The resulting antepenultimate stress requires the saved written accent. In infórmennos the two n letters belong to informen + nos and are retained by the RAE rule. No accent normalization, spelling repair or component replacement.",
+      "source_family_ids": [
+        "surface:es:informenn"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "regular_imperative_enclitic",
+      "segmentation_or_lexical_identity": "informen + nos",
+      "source_references": [
+        "https://dle.rae.es/informar",
+        "https://www.rae.es/dpd/tilde",
+        "https://www.rae.es/dpd/pronombres%20personales%20%C3%A1tonos"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:a33138c2274cc945c17e",
+      "word": "observádote",
+      "status": "accepted",
+      "reason": "Finite historical participle plus enclitic analysis: observado + te has antepenultimate stress and is spelled observádote. RAE documents archaic attachment to participles in historical/coordinated compound verbal uses. This licenses a possible historical Spanish inflection of the same observation head, not a modern productive participle rule. Membership approval concerns the head; the corpus record is retained exactly and is not reinterpreted as a modern imperative.",
+      "source_family_ids": [
+        "surface:es:observad"
+      ],
+      "language": "es",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "historical_participle_enclitic",
+      "segmentation_or_lexical_identity": "observado + te",
+      "source_references": [
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/dpd/tilde",
+        "https://www.rae.es/dpd/pronombres%20personales%20%C3%A1tonos"
+      ],
+      "runtime_applied": false
+    }
+  ],
+  "preservation": [
+    {
+      "part": "families",
+      "bucket": "6c",
+      "ignore": [
+        "family:observ"
+      ],
+      "unrelated_sha256": "6ba53f49c956f65825fcd38cad9b949b14ab208b8ab8a61b2b6121964773880b"
+    },
+    {
+      "part": "members/en",
+      "bucket": "6c",
+      "ignore": [
+        "family:observ"
+      ],
+      "unrelated_sha256": "6a4f8c37a68f24a5227f7741ab49d4ef3d0bcf79e019854218f4c6663f30e218"
+    },
+    {
+      "part": "families",
+      "bucket": "5c",
+      "ignore": [
+        "family:inform"
+      ],
+      "unrelated_sha256": "4a30c2690a66356e3b6fdf8e64a112780a1bdc6b13f6a6d6c5b80fb242b4f4c1"
+    },
+    {
+      "part": "members/de",
+      "bucket": "5c",
+      "ignore": [
+        "family:inform"
+      ],
+      "unrelated_sha256": "49b03a4beaf6831a2da34a00a158b78dcf6d63ca2e8afd179898991663951c58"
+    },
+    {
+      "part": "members/ru",
+      "bucket": "5c",
+      "ignore": [
+        "family:inform"
+      ],
+      "unrelated_sha256": "72584ad2566e521ad9ab6a2648f24ec3f5d60c72fa39f9e91e594590cc94c566"
+    },
+    {
+      "part": "members/it",
+      "bucket": "5c",
+      "ignore": [
+        "family:inform"
+      ],
+      "unrelated_sha256": "49fd9a1b69eabfa2ab6e5814740374248ce0865bef96a25a6084c749e557d743"
+    },
+    {
+      "part": "members/es",
+      "bucket": "6c",
+      "ignore": [
+        "family:observ"
+      ],
+      "unrelated_sha256": "91609a77f82e24b0ce066ce084f1f384d6118f76d334c04eb94b06a48bceaed3"
+    },
+    {
+      "part": "members/es",
+      "bucket": "5c",
+      "ignore": [
+        "family:inform"
+      ],
+      "unrelated_sha256": "d8e58b0025b24cf03d1001cb99ac58c4663e661e297ac1bd1ccf71c24ba33dad"
+    }
+  ],
+  "runtime_preflight_sha256": {
+    "manifest.json": "3c3b5d4e113b078fbd8b9f29bf1f2d751190d2bc5f7c2fee53acafb46636fc15",
+    "report.json": "24b44db5a5bce2f2ebe9f11def9a06c416fc3026decc00533fc87d9d49392117",
+    "repository-provenance.json": "a1a15779939a56b002c55d7971140ea288da8c9553923cb981aa62e5ba5c62ae",
+    "families/6c.json.gz": "d8300e14f438b75acbaff1818120d86a801ee3c8cf32ea0427073b533640e448",
+    "members/en/6c.json.gz": "bf46ce05d45133b9b7ec4fc14452e1e4c474a5860774f4c12730aa8656b4dfc3",
+    "families/5c.json.gz": "abb489a843ef856b024b31e7eb6f036ba87772881a271e5ec9538517b7ca7bdc",
+    "members/de/5c.json.gz": "f34a44c1f9244b1981bf639a0003ac4ecce29621cdf6bb600c4304ace746fc7e",
+    "members/ru/5c.json.gz": "1e500e80d05ffc3f607d6d1ef05d363b971bb3ebd35513f8148578161575c191",
+    "members/it/5c.json.gz": "7825de8df841bbda2d3a9438507219e63283767d43a97daca6fe2d364b7b4a11",
+    "members/es/6c.json.gz": "b8d07600339942bf29d6879f64d418fbdeb2b6396758f2088a783f2c83737554",
+    "members/es/5c.json.gz": "67c367804bec6d97edb6e4c88e5afa44c2708d825805f460ca336b35769ce891"
+  },
+  "expected_written_files": [
+    "families/5c.json.gz",
+    "families/6c.json.gz",
+    "manifest.json",
+    "members/de/5c.json.gz",
+    "members/en/6c.json.gz",
+    "members/es/5c.json.gz",
+    "members/es/6c.json.gz",
+    "members/it/5c.json.gz",
+    "members/ru/5c.json.gz",
+    "report.json",
+    "repository-provenance.json"
+  ],
+  "untouched_files_sha256": "5ac7d3cb87c94a137d361b29029e822721550b62245450b54536e71b3619dcfc",
+  "metadata_preflight": {
+    "manifest.json": "3c3b5d4e113b078fbd8b9f29bf1f2d751190d2bc5f7c2fee53acafb46636fc15",
+    "report.json": "24b44db5a5bce2f2ebe9f11def9a06c416fc3026decc00533fc87d9d49392117",
+    "repository-provenance.json": "a1a15779939a56b002c55d7971140ea288da8c9553923cb981aa62e5ba5c62ae"
+  },
+  "expected_added_memberships": 18,
+  "expected_removed_memberships": 0,
+  "alias_delta": 0,
+  "net_family_delta": 0,
+  "status": "ready_to_materialize",
+  "full_family_certification": false
+}

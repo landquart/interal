@@ -1,0 +1,249 @@
+{
+  "schema_version": 1,
+  "source_run_id": 35647932153,
+  "queue_path": "audit/associative-family-v5/reflex-multilingual-heads-review-20261002-2010/pending-review.json",
+  "queue_sha256": "032e0cfe3c733fd9229fde575743e6fad04f97000de1c981925eb37e1771c3ca",
+  "source_path": "audit/associative-family-v5/reflex-checkpoint-20261001/candidates.json.gz",
+  "source_sha256": "ce3cc11eb045a4fe9f77bf79239fc585a9a324231c8a6d5530606df1e5488cfb",
+  "queue_counts_unchanged": {
+    "applied": 31,
+    "excluded": 334,
+    "investigated_uncertain": 154,
+    "pending": 243
+  },
+  "records": [
+    {
+      "pending_record": {
+        "lemma_id": "lemma:fa5ccbdc7efe63f1f9e7",
+        "word": "уралинформбюро",
+        "status": "pending_review",
+        "reason": "Not adjudicated in this continuation; prior decision remains immutable.",
+        "source_family_ids": [
+          "surface:ru:linf",
+          "surface:ru:ural",
+          "surface:ru:mb",
+          "surface:ru:inform",
+          "surface:ru:alin",
+          "ety:e336db5a09d6"
+        ],
+        "language": "ru",
+        "canonical_root": "inform",
+        "previous_status": "uncertain"
+      },
+      "source_member": {
+        "lemma_id": "lemma:fa5ccbdc7efe63f1f9e7",
+        "word": "уралинформбюро",
+        "normalized": "уралинформбюро",
+        "search_form": "uralinformbjuro",
+        "rank": 145608,
+        "frequency_score": 1.3907081955810194,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.082604
+            ],
+            "category_ipm": 0.082604,
+            "category_score": 1.3907081955810194
+          }
+        },
+        "sources": [
+          {
+            "id": "web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "file": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.082604
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "linf",
+            "canonical_candidate": "linf",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "uralinformbjuro",
+                  "linf",
+                  "linf"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ],
+        "source_family_ids": [
+          "surface:ru:linf",
+          "surface:ru:ural",
+          "surface:ru:mb",
+          "surface:ru:inform",
+          "surface:ru:alin",
+          "ety:e336db5a09d6"
+        ]
+      },
+      "primary_source": "https://www.uralinform.ru/about",
+      "finding": "Agency’s own Russian-language about page identifies its exact legal/media name as Уралинформбюро and its information/news function. Proposed finite segmentation Урал + информ + бюро; this note records evidence without accepting or materializing the corpus token.",
+      "decision_status": "pending_review",
+      "runtime_applied": false
+    },
+    {
+      "pending_record": {
+        "lemma_id": "lemma:6693ccc8d7292fd68719",
+        "word": "уралсвязьинформ",
+        "status": "pending_review",
+        "reason": "Not adjudicated in this continuation; prior decision remains immutable.",
+        "source_family_ids": [
+          "surface:ru:urals",
+          "surface:ru:inform",
+          "surface:ru:zin",
+          "surface:ru:svjazi",
+          "surface:ru:lsvj",
+          "surface:ru:alsv"
+        ],
+        "language": "ru",
+        "canonical_root": "inform",
+        "previous_status": "uncertain"
+      },
+      "source_member": {
+        "lemma_id": "lemma:6693ccc8d7292fd68719",
+        "word": "уралсвязьинформ",
+        "normalized": "уралсвязьинформ",
+        "search_form": "uralsvjazinform",
+        "rank": 66028,
+        "frequency_score": 5.243487900388924,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.348849
+            ],
+            "category_ipm": 0.348849,
+            "category_score": 5.243487900388924
+          }
+        },
+        "sources": [
+          {
+            "id": "web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "file": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.348849
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "urals",
+            "canonical_candidate": "urals",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "uralsvjazinform",
+                  "urals",
+                  "urals"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ],
+        "source_family_ids": [
+          "surface:ru:urals",
+          "surface:ru:inform",
+          "surface:ru:zin",
+          "surface:ru:svjazi",
+          "surface:ru:lsvj",
+          "surface:ru:alsv"
+        ]
+      },
+      "primary_source": "https://www.company.rt.ru/regions/ural/about/info/",
+      "finding": "Successor company’s Russian-language page explicitly identifies Уралсвязьинформ as the predecessor of the Ural region. Proposed finite segmentation Урал + связь + информ; source origin and all existing routes still need the application preflight.",
+      "decision_status": "pending_review",
+      "runtime_applied": false
+    },
+    {
+      "pending_record": {
+        "lemma_id": "lemma:6721787c0db760cd72e7",
+        "word": "комиинформа",
+        "status": "pending_review",
+        "reason": "Not adjudicated in this continuation; prior decision remains immutable.",
+        "source_family_ids": [
+          "ety:e5810cb4d813",
+          "surface:ru:komiinform",
+          "ety:bfbc971f4397"
+        ],
+        "language": "ru",
+        "canonical_root": "inform",
+        "previous_status": "uncertain"
+      },
+      "source_member": {
+        "lemma_id": "lemma:6721787c0db760cd72e7",
+        "word": "комиинформа",
+        "normalized": "комиинформа",
+        "search_form": "komiinforma",
+        "rank": 130711,
+        "frequency_score": 1.6647837478361442,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.099671
+            ],
+            "category_ipm": 0.099671,
+            "category_score": 1.6647837478361442
+          }
+        },
+        "sources": [
+          {
+            "id": "web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "file": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.099671
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "forma",
+            "canonical_candidate": "forma",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "komiinforma",
+                  "forma",
+                  "forma"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ],
+        "source_family_ids": [
+          "ety:e5810cb4d813",
+          "surface:ru:komiinform",
+          "ety:bfbc971f4397"
+        ]
+      },
+      "primary_source": "https://komiinform.ru/page/services.ki",
+      "finding": "Agency’s own page title directly attests the Russian genitive Комиинформа. Proposed finite segmentation Коми + информ + genitive -а; do not infer generic acceptance of every -информ name.",
+      "decision_status": "pending_review",
+      "runtime_applied": false
+    }
+  ],
+  "next_step": "Complete finite native-head adjudication and guard exact source/member metadata before accepting or adding any membership. Do not repeat any earlier materializer.",
+  "full_family_certification": false
+}

@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "source_commit": "3639db29ac03e25300d99e205b5431f5f14fa4de",
+  "npm_test": "pass",
+  "all_seventeen_root_and_preservation_tests": "pass in sequential npm test run",
+  "exhaustive_audit": {
+    "verdict": "pass",
+    "counts": {
+      "families": 2456539,
+      "aliases": 1934055,
+      "lemmas": 4924980,
+      "components": 9349982,
+      "memberships": 10047469,
+      "materialized_unique_lemmas": 4924151,
+      "multi_family_lemmas": 3335306,
+      "lemmas_without_materialized_family": 829,
+      "unique_lemmas_by_language": {
+        "en": 1130858,
+        "de": 1113440,
+        "fr": 558895,
+        "es": 941501,
+        "it": 610082,
+        "ru": 569375
+      },
+      "memberships_by_language": {
+        "en": 2619019,
+        "de": 2210203,
+        "fr": 1144002,
+        "es": 1798037,
+        "it": 1148757,
+        "ru": 1127451
+      },
+      "materialized_families": 2456539
+    },
+    "output_sha256": "415a08aad4993b12406d6f63a812addf3acbd11f3847b84ab9b750063cdd205a"
+  },
+  "applied_mutation": {
+    "accepted": 569,
+    "excluded": 5124,
+    "uncertain": 2833,
+    "removed_memberships": 6792
+  },
+  "action_checkpoint": "52,277 full candidate records saved, original actio/acti containers archived; unadjudicated and not applied",
+  "remaining_scope": [
+    "action review and modern recognizability",
+    "nat/loc/inter frozen candidates and national reflexes",
+    "short Russian keys",
+    "all fifteen val routes",
+    "subsequent high-risk clusters"
+  ],
+  "validation_note": "The initial concurrent targeted run had two child-process failures without assertion output. Both tests passed in the full sequential npm test run; exhaustive audit passed."
+}

@@ -1,0 +1,23 @@
+{
+  "preflight_commit": "5c2bd4b66d7d27e00a56d217cd96ce1c1cf74d1f",
+  "audit_entrypoint_fix_commit": "a1160fe0dbaf27a251df2096d11c6dad8dfeea0a",
+  "runtime_applied": true,
+  "added_memberships": 18,
+  "removed_memberships": 0,
+  "retired_families": 0,
+  "alias_delta": 0,
+  "runtime_support": {
+    "observ": 309,
+    "inform": 1455
+  },
+  "targeted_tests": {
+    "pass": 15,
+    "fail": 0,
+    "skipped": 0,
+    "log_sha256": "f18c935174a4ff38b59fd0fcb84ecd405ecd8d94d012c3b17450fa450bac74e3"
+  },
+  "full_tests": "running",
+  "exhaustive_audit": "running",
+  "full_family_certification": false,
+  "resume": "Never repeat application; await/save final full tests and exhaustive audit in a separate validation commit; continue 527 pending observ/inform and other open queues."
+}

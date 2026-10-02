@@ -1,0 +1,93 @@
+{
+  "review_commits": {
+    "creation-relation": {
+      "commit": "df43c75392c170b3cfffda6ae4b635581d9613c8",
+      "inventory": "audit/associative-family-v5/creation-relation-independent-heads-20261002/inventory.json",
+      "inventory_sha256": "27e319d2f07b5d1e5feb96f06738abfd58db0ef1ccd94b7c56b43d987137fdc6",
+      "reviewed_exclusions": 35
+    },
+    "operation-mutation": {
+      "commit": "e8645e8001e62af1198b7408860f8b5f9fe86cd2",
+      "inventory": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/inventory.json",
+      "inventory_sha256": "52f1364e14b767e5abc33fa1948880656ee03d6f5b8d024d43b1b2d8f84375d7",
+      "reviewed_exclusions": 200
+    }
+  },
+  "runtime_baseline_commit": "c48c37a9f861a4bcb94fa54b9ebca1a9b6551e88",
+  "runtime_changed": false,
+  "verification": {
+    "command": "npm test",
+    "exit_code": 0,
+    "result": "All tests passed.",
+    "test_files_run": 101,
+    "new_targeted_tests": 4,
+    "new_targeted_skips": 0,
+    "complete_candidate_frame_identity_check": true,
+    "byte_identical_reproduction": true,
+    "full_log_sha256": "b589b4e710f678bae251f17f66e31ee1506858bf369fc448b695d39575767e2a",
+    "compressed_log_sha256": "7caa28103a31bceb9f7f32edb4bcef35686d60746efe12b1b1a6d1c167ca5ed5"
+  },
+  "tested_code_sha256": {
+    "scripts/review-associative-multiple-roots-20261002.py": "ade07b4cb22e4f1bd3aa5a4613acc14f72d5de839cfa32e2fbfb38eaefbda722",
+    "tests/associative-multiple-roots-continuation.test.mjs": "d7b3000ad5fb2cb2297f880b7929fa8358db8c3b2108cfbd7358761ee68b3b20"
+  },
+  "counts": {
+    "creat": {
+      "total": 7392,
+      "accepted": 574,
+      "excluded": 4462,
+      "reviewed_exclusions": 33,
+      "reviewed_uncertain": 0,
+      "pending_review": 2356
+    },
+    "relat": {
+      "total": 4356,
+      "accepted": 487,
+      "excluded": 3460,
+      "reviewed_exclusions": 2,
+      "reviewed_uncertain": 0,
+      "pending_review": 409
+    },
+    "oper": {
+      "total": 7587,
+      "accepted": 1595,
+      "excluded": 3910,
+      "reviewed_exclusions": 29,
+      "reviewed_uncertain": 0,
+      "pending_review": 2082
+    },
+    "mut": {
+      "total": 8526,
+      "accepted": 569,
+      "excluded": 5295,
+      "reviewed_exclusions": 171,
+      "reviewed_uncertain": 0,
+      "pending_review": 2662
+    }
+  },
+  "total_source_records": 27861,
+  "new_reviewed_exclusions": 235,
+  "remaining_pending_four_roots": 7509,
+  "resume": {
+    "checkpoint": "audit/associative-family-v5/WORK-CHECKPOINT-20261002.md",
+    "queue_files": [
+      "audit/associative-family-v5/creation-relation-independent-heads-20261002/pending-review.json.gz",
+      "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz"
+    ],
+    "compose_rule": "Overlay each exact (root, language, lemma_id) decision on its hashed immutable historical ledger. Do not rerun original runtime materializers.",
+    "other_open_work": [
+      "loc queue",
+      "observ/inform: six positives await additive materialization, three reviewed uncertain, 730 pending",
+      "act: 16642 pending, 143 reviewed uncertain, legacy-container retirement",
+      "nat/loc/inter component frame",
+      "Russian short keys kh/nl/lo/ca/um",
+      "15 retained val routes: full membership and duplicate-key review"
+    ]
+  },
+  "limitations": [
+    "Only the 235 saved whole forms are newly adjudicated.",
+    "Primary dictionary heads support stated finite reviewer analyses, not open substring rules.",
+    "Runtime did not change; the prior exhaustive runtime audit is retained rather than presented as a new audit.",
+    "Full linguistic completion is not claimed."
+  ]
+}

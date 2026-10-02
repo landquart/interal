@@ -1,0 +1,29 @@
+{
+  "baseline_commit": "970cf1009d11242fe1c8a913a1bf0c74309c631e",
+  "baseline_github_actions": {
+    "Tests": {
+      "run_id": 37019725894,
+      "conclusion": "success"
+    },
+    "Audit repository associative family v5": {
+      "run_id": 37019726892,
+      "conclusion": "success"
+    }
+  },
+  "runtime_applied": false,
+  "expected_added_memberships": 6,
+  "expected_removed_memberships": 0,
+  "aliases_changed": 0,
+  "families_retired": 0,
+  "preflight_tests": {
+    "passed": 4,
+    "failed": 0,
+    "skipped": 1,
+    "skip_reason": "The application audit is conditional before the separate runtime application commit."
+  },
+  "hashes": {
+    "materialization-ledger.json": "42ca6903c83709830dae714f4401895747bb40fa521f4f9cf4a9ad35bd1f6f7b",
+    "preflight-tests.log.gz": "91070d6b79931a285169762a85e9323b3228df75c53d14ddc49f0245dbf5e5e7"
+  },
+  "source_routes_note": "Different source family routes may have distinct component arrays for the same lemma. Every route is snapshotted and preserved independently; measured corpus fields must agree."
+}
