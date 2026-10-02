@@ -1,0 +1,611 @@
+{
+  "schema_version": 1,
+  "source_run_id": 35647932153,
+  "base_commit": "63ffcb701b89358ce00ed320159547db46a31620",
+  "runtime_changes": false,
+  "full_family_certification": false,
+  "counts": {
+    "excluded": 23,
+    "accepted": 6,
+    "uncertain": 3,
+    "pending_review": 730
+  },
+  "decisions": [
+    {
+      "lemma_id": "lemma:cae546b91e620e98ef6f",
+      "word": "informal",
+      "status": "excluded",
+      "reason": "Negative in- + formal and its explicitly reviewed inflections/derivatives. The visible inform letters are not the information component.",
+      "source_family_ids": [
+        "surface:de:informal"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "uncertain",
+      "lexical_head": "informal",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/informal"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:5601648f477f57aee583",
+      "word": "informale",
+      "status": "excluded",
+      "reason": "Negative in- + formal and its explicitly reviewed inflections/derivatives. The visible inform letters are not the information component.",
+      "source_family_ids": [
+        "surface:de:informale"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "uncertain",
+      "lexical_head": "informal",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/informal"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:d6efd45d090e3084b5a6",
+      "word": "informalen",
+      "status": "excluded",
+      "reason": "Negative in- + formal and its explicitly reviewed inflections/derivatives. The visible inform letters are not the information component.",
+      "source_family_ids": [
+        "surface:de:malen",
+        "surface:de:informale"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "uncertain",
+      "lexical_head": "informal",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/informal"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:acfb44043cef7f2ca4de",
+      "word": "informaler",
+      "status": "excluded",
+      "reason": "Negative in- + formal and its explicitly reviewed inflections/derivatives. The visible inform letters are not the information component.",
+      "source_family_ids": [
+        "surface:de:maler",
+        "surface:de:informal"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "uncertain",
+      "lexical_head": "informal",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/informal"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:f49308c3b9f9a178fd43",
+      "word": "informalisierung",
+      "status": "excluded",
+      "reason": "Negative in- + formal and its explicitly reviewed inflections/derivatives. The visible inform letters are not the information component.",
+      "source_family_ids": [
+        "surface:de:erung",
+        "surface:de:informalisier"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "uncertain",
+      "lexical_head": "informal",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/informal"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:cf79140399cbfc91eb81",
+      "word": "informalität",
+      "status": "excluded",
+      "reason": "Negative in- + formal and its explicitly reviewed inflections/derivatives. The visible inform letters are not the information component.",
+      "source_family_ids": [
+        "surface:de:informali",
+        "surface:de:tat"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "uncertain",
+      "lexical_head": "informal",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/informal"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:c7cf35ece2a1dc7081ad",
+      "word": "informal",
+      "status": "excluded",
+      "reason": "The informal/formless lexical branch and explicitly reviewed derivatives; not informer or information. The derivative decisions are morphological inferences.",
+      "source_family_ids": [
+        "surface:fr:inform",
+        "surface:fr:ormal"
+      ],
+      "language": "fr",
+      "canonical_root": "inform",
+      "previous_status": "uncertain",
+      "lexical_head": "informel / informal",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9I1224",
+        "https://www.duden.de/rechtschreibung/informal"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:b4b58f472739c0a4f71f",
+      "word": "informalité",
+      "status": "excluded",
+      "reason": "The informal/formless lexical branch and explicitly reviewed derivatives; not informer or information. The derivative decisions are morphological inferences.",
+      "source_family_ids": [
+        "surface:fr:alite",
+        "surface:fr:informalit"
+      ],
+      "language": "fr",
+      "canonical_root": "inform",
+      "previous_status": "uncertain",
+      "lexical_head": "informel / informal",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9I1224",
+        "https://www.duden.de/rechtschreibung/informal"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:99544a23a84041938f4e",
+      "word": "informel",
+      "status": "excluded",
+      "reason": "The informal/formless lexical branch and explicitly reviewed derivatives; not informer or information. The derivative decisions are morphological inferences.",
+      "source_family_ids": [
+        "surface:fr:mel",
+        "surface:fr:infor"
+      ],
+      "language": "fr",
+      "canonical_root": "inform",
+      "previous_status": "uncertain",
+      "lexical_head": "informel / informal",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9I1224",
+        "https://www.duden.de/rechtschreibung/informal"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:24eb0a1a029ddc6c638c",
+      "word": "informellement",
+      "status": "excluded",
+      "reason": "The informal/formless lexical branch and explicitly reviewed derivatives; not informer or information. The derivative decisions are morphological inferences.",
+      "source_family_ids": [
+        "surface:fr:llem",
+        "surface:fr:informelle",
+        "surface:fr:lement"
+      ],
+      "language": "fr",
+      "canonical_root": "inform",
+      "previous_status": "uncertain",
+      "lexical_head": "informel / informal",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9I1224",
+        "https://www.duden.de/rechtschreibung/informal"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:a8dddc7b8a3653a483c5",
+      "word": "informal",
+      "status": "excluded",
+      "reason": "The nonformal adjective, its quality noun, adverb and super- compound. The last two analyses are transparent morphological inferences.",
+      "source_family_ids": [
+        "surface:es:informal"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "uncertain",
+      "lexical_head": "informal",
+      "source_references": [
+        "https://dle.rae.es/informal",
+        "https://dle.rae.es/informalidad"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:a0ce31a7dfe6c03d8f5a",
+      "word": "informalidad",
+      "status": "excluded",
+      "reason": "The nonformal adjective, its quality noun, adverb and super- compound. The last two analyses are transparent morphological inferences.",
+      "source_family_ids": [
+        "surface:es:mali",
+        "surface:es:informal",
+        "surface:es:alidad"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "uncertain",
+      "lexical_head": "informal",
+      "source_references": [
+        "https://dle.rae.es/informal",
+        "https://dle.rae.es/informalidad"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:0e95a560ef7806ec5ecd",
+      "word": "informalmente",
+      "status": "excluded",
+      "reason": "The nonformal adjective, its quality noun, adverb and super- compound. The last two analyses are transparent morphological inferences.",
+      "source_family_ids": [
+        "ety:3e247d8b42ea",
+        "surface:es:informal",
+        "surface:es:malm",
+        "ety:6c941c793480",
+        "ety:d4e12af70156"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "uncertain",
+      "lexical_head": "informal",
+      "source_references": [
+        "https://dle.rae.es/informal",
+        "https://dle.rae.es/informalidad"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:1e5b888c4999a86c7f53",
+      "word": "superinformal",
+      "status": "excluded",
+      "reason": "The nonformal adjective, its quality noun, adverb and super- compound. The last two analyses are transparent morphological inferences.",
+      "source_family_ids": [
+        "surface:es:informal",
+        "surface:es:superinform"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "uncertain",
+      "lexical_head": "informal",
+      "source_references": [
+        "https://dle.rae.es/informal",
+        "https://dle.rae.es/informalidad"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:c8bc2a924325cc0dec8c",
+      "word": "informale",
+      "status": "excluded",
+      "reason": "Negative in- + formale; the noun and adverb remain in that branch. This is not the informare component.",
+      "source_family_ids": [
+        "ety:96a83c7cfddb",
+        "surface:it:informal"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "uncertain",
+      "lexical_head": "informale",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informale/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:0b2fa32320acb4970986",
+      "word": "informalità",
+      "status": "excluded",
+      "reason": "Negative in- + formale; the noun and adverb remain in that branch. This is not the informare component.",
+      "source_family_ids": [
+        "surface:it:informalit",
+        "surface:it:ita"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "uncertain",
+      "lexical_head": "informale",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informale/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:3325b1f72a352d7b6bd0",
+      "word": "informalmente",
+      "status": "excluded",
+      "reason": "Negative in- + formale; the noun and adverb remain in that branch. This is not the informare component.",
+      "source_family_ids": [
+        "surface:it:informalment"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "uncertain",
+      "lexical_head": "informale",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informale/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:cc359990d5e90f7b1262",
+      "word": "informicolando",
+      "status": "excluded",
+      "reason": "Reviewed verb forms and participles of the formicola/tingling branch. Their information-like letters do not establish informare membership.",
+      "source_family_ids": [
+        "surface:it:informicoland"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "uncertain",
+      "lexical_head": "informicolarsi / informicolirsi",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informicolarsi/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:e685cb9e73b84737f566",
+      "word": "informicolati",
+      "status": "excluded",
+      "reason": "Reviewed verb forms and participles of the formicola/tingling branch. Their information-like letters do not establish informare membership.",
+      "source_family_ids": [
+        "surface:it:informicolat",
+        "surface:it:ati"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "uncertain",
+      "lexical_head": "informicolarsi / informicolirsi",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informicolarsi/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:f1fc97c247ba1ceb9698",
+      "word": "informicoliscono",
+      "status": "excluded",
+      "reason": "Reviewed verb forms and participles of the formicola/tingling branch. Their information-like letters do not establish informare membership.",
+      "source_family_ids": [
+        "surface:it:informicoliscon",
+        "surface:it:ono"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "uncertain",
+      "lexical_head": "informicolarsi / informicolirsi",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informicolarsi/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:e6782baee9a3f85ef477",
+      "word": "informicolita",
+      "status": "excluded",
+      "reason": "Reviewed verb forms and participles of the formicola/tingling branch. Their information-like letters do not establish informare membership.",
+      "source_family_ids": [
+        "surface:it:ita",
+        "surface:it:informicolit"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "uncertain",
+      "lexical_head": "informicolarsi / informicolirsi",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informicolarsi/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:9d754ae37e1993aa5102",
+      "word": "informicolite",
+      "status": "excluded",
+      "reason": "Reviewed verb forms and participles of the formicola/tingling branch. Their information-like letters do not establish informare membership.",
+      "source_family_ids": [
+        "surface:it:ite",
+        "surface:it:informicolit"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "uncertain",
+      "lexical_head": "informicolarsi / informicolirsi",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informicolarsi/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:f9342197c5f41cb92da6",
+      "word": "informicoliti",
+      "status": "excluded",
+      "reason": "Reviewed verb forms and participles of the formicola/tingling branch. Their information-like letters do not establish informare membership.",
+      "source_family_ids": [
+        "ety:d505544a9dc1",
+        "surface:it:informicolit",
+        "ety:8c45ca999d9a"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "uncertain",
+      "lexical_head": "informicolarsi / informicolirsi",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informicolarsi/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:0a379fa25d476cf7c7d0",
+      "word": "informator",
+      "status": "accepted",
+      "reason": "German dictionary head meaning a person who supplies information.",
+      "source_family_ids": [
+        "surface:de:orma",
+        "surface:de:tor",
+        "surface:de:inform"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "uncertain",
+      "lexical_head": "Informator",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Informator"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:a5e230fad99f3e7e5982",
+      "word": "informatorisch",
+      "status": "accepted",
+      "reason": "German dictionary adjective for an informational purpose; recognizable inform component.",
+      "source_family_ids": [
+        "surface:de:informato",
+        "surface:de:tori",
+        "surface:de:risch"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "uncertain",
+      "lexical_head": "informatorisch",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/informatorisch"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:339163eba26aa31023e9",
+      "word": "mathématiques-informatique",
+      "status": "accepted",
+      "reason": "The hyphenated coordinate compound retains the independently attested informatique head. The exact compound analysis is an inference, not a dictionary compound citation.",
+      "source_family_ids": [
+        "surface:fr:matique",
+        "surface:fr:mathematiquesinformatiqu"
+      ],
+      "language": "fr",
+      "canonical_root": "inform",
+      "previous_status": "uncertain",
+      "lexical_head": "informatique",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9I1219"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:546d3fd4317ebc547caa",
+      "word": "johnson-ridge-observatorium",
+      "status": "accepted",
+      "reason": "A named prefix is joined by a hyphen to the complete German Observatorium head. Acceptance covers the observation component, not any proposed etymology of the name.",
+      "source_family_ids": [
+        "surface:de:eo",
+        "surface:de:erva",
+        "surface:de:tor",
+        "surface:de:vato",
+        "surface:de:john"
+      ],
+      "language": "de",
+      "canonical_root": "observ",
+      "previous_status": "uncertain",
+      "lexical_head": "Observatorium",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Observatorium"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:eb7f8c71375682469789",
+      "word": "yerkes-observatorium",
+      "status": "accepted",
+      "reason": "A named prefix is joined by a hyphen to the complete German Observatorium head. Acceptance covers the observation component, not any proposed etymology of the name.",
+      "source_family_ids": [
+        "surface:de:erva",
+        "surface:de:tor",
+        "surface:de:vato"
+      ],
+      "language": "de",
+      "canonical_root": "observ",
+      "previous_status": "uncertain",
+      "lexical_head": "Observatorium",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Observatorium"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:77d22d6dbd296fcd28fe",
+      "word": "inaf-osservatorio",
+      "status": "accepted",
+      "reason": "The acronym prefix is joined by a hyphen to the Italian osservatorio head, derived from osservare. National realization is osserv, not a literal observ substring.",
+      "source_family_ids": [
+        "surface:it:inafosservatori"
+      ],
+      "language": "it",
+      "canonical_root": "observ",
+      "previous_status": "uncertain",
+      "lexical_head": "osservatorio",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/osservatorio/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:c51e4c7f2a5d00a320d3",
+      "word": "informell",
+      "status": "uncertain",
+      "reason": "Duden distinguishes the information adjective from the nonformal adjective. The aggregate corpus member lacks sense-disambiguating contexts. Keep uncertain rather than exclude all forms from the information family.",
+      "source_family_ids": [
+        "surface:de:informell"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "uncertain",
+      "lexical_head": "informell (two homonymous branches)",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/informell_formlos",
+        "https://www.duden.de/rechtschreibung/informell_informierend"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:19be2ef66258b623be1e",
+      "word": "informelle",
+      "status": "uncertain",
+      "reason": "Duden distinguishes the information adjective from the nonformal adjective. The aggregate corpus member lacks sense-disambiguating contexts. Keep uncertain rather than exclude all forms from the information family.",
+      "source_family_ids": [
+        "surface:de:melle",
+        "surface:de:informell"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "uncertain",
+      "lexical_head": "informell (two homonymous branches)",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/informell_formlos",
+        "https://www.duden.de/rechtschreibung/informell_informierend"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:65507c2d7974b7ce8311",
+      "word": "informelleren",
+      "status": "uncertain",
+      "reason": "Duden distinguishes the information adjective from the nonformal adjective. The aggregate corpus member lacks sense-disambiguating contexts. Keep uncertain rather than exclude all forms from the information family.",
+      "source_family_ids": [
+        "surface:de:informellere"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "uncertain",
+      "lexical_head": "informell (two homonymous branches)",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/informell_formlos",
+        "https://www.duden.de/rechtschreibung/informell_informierend"
+      ],
+      "runtime_applied": false
+    }
+  ],
+  "limitations": [
+    "Positive decisions are reviewed selections awaiting materialization.",
+    "No historic accepted or excluded decision is overwritten.",
+    "Pending records have not been adjudicated in this stage."
+  ]
+}

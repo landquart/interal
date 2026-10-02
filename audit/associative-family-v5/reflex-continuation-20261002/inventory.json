@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "source_run_id": 35647932153,
+  "source_checkpoint": "audit/associative-family-v5/reflex-checkpoint-20261001",
+  "source_decision_sha256": "28bbb1f80f1e67be2ad9b5f894a67e4f911fe777f88940db7b7b2c27e8e02bcc",
+  "source_candidate_sha256": "ce3cc11eb045a4fe9f77bf79239fc585a9a324231c8a6d5530606df1e5488cfb",
+  "counts": {
+    "excluded": 23,
+    "accepted": 6,
+    "uncertain": 3,
+    "pending_review": 730
+  },
+  "source_unresolved_count": 762,
+  "reviewed_record_count": 32,
+  "artifact_sha256": {
+    "decisions.json": "ea8f7afd5f84f2f3cd3dcdb779ec85a761e26245862e754b2199b72a23afe9fc",
+    "pending-review.json": "6e7351530ab27394acfe9b2fd74c46e4cab788b7036a5d24aa66b03d92c57b25",
+    "source-records.json.gz": "8686bc4c73f1a34d02652a55bb14d0c874325318e8a520008816254a3d8c596e"
+  },
+  "runtime_changes": false,
+  "full_family_certification": false
+}
