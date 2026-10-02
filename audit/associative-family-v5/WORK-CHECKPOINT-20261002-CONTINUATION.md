@@ -1,8 +1,8 @@
 # Current continuation checkpoint
 
 Current state: six reviewed memberships applied, full local test suite and
-exhaustive audit passed. Latest continuation queue: 553 pending, 48 investigated
-uncertain, 155 excluded, 6 applied. Earlier sections below are dated stage history.
+exhaustive audit passed. Latest continuation queue: 539 pending, 50 investigated
+uncertain, 160 excluded, 6 applied and 7 newly accepted awaiting application. Earlier sections below are dated stage history.
 Latest relation overlay: `relation-phrase-boundaries-20261002` (325 pending).
 Resume from the stage-specific inventories,
 `continuation-validation-20261002/validation.json` and the complete
@@ -154,3 +154,23 @@ pending is now 7,394 (2,335 / 325 / 2,082 / 2,652).
 This stage changes no runtime and does not invalidate the prior exhaustive audit.
 The preceding validation JSON is immutable evidence for its stated earlier
 queue counts; use this overlay for the latest relation state.
+
+## Attested heads and name boundaries
+
+Remote HEAD 39ee0895576053fdf04a539fb69e701b17eafb82 passed both workflows:
+Tests 37025974160 and Audit repository associative family v5 37025974188.
+The committed integrity report now matches the exhaustive audit.
+
+`reflex-attested-heads-review-20261002` investigates 14 exact source records:
+7 accepted (ImageObserver, Informatisierung, four Russian information names
+and Italian Assinform), 5 excluded (independent Forms/Serve and nonformal
+heads), 2 genuinely uncertain (Spanish informale and German informel).
+Spanish informale can be a correctly spelled voseo imperative with le; it
+also matches Italian nonformal informale. No automatic spelling repair or
+foreign-word exclusion resolves that sense ambiguity.
+
+Both source-conservation and byte-identical reproduction tests pass without
+skips. The 7 newly accepted records are NOT applied yet. Runtime support
+remains observ 298 / inform 1,448. Latest total continuation: 13 accepted
+(6 applied + 7 unapplied), 160 excluded, 50 genuine uncertain, 539 pending.
+Resume from this stage's pending-review.json and accepted decision ledger.

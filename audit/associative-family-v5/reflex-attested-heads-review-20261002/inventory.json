@@ -1,0 +1,25 @@
+{
+  "source_run_id": 35647932153,
+  "previous_stage": "audit/associative-family-v5/reflex-foreign-forms-review-20261002",
+  "previous_pending_sha256": "6f4d60e7b86207211ea61a45d515504d33fcd1a9beeadafc113c6131d83ad2a8",
+  "source_candidate_sha256": "ce3cc11eb045a4fe9f77bf79239fc585a9a324231c8a6d5530606df1e5488cfb",
+  "reviewed_count": 14,
+  "new_counts": {
+    "accepted": 7,
+    "excluded": 5,
+    "uncertain": 2
+  },
+  "continuation_counts": {
+    "accepted": 13,
+    "excluded": 160,
+    "uncertain": 50,
+    "pending_review": 539
+  },
+  "artifact_sha256": {
+    "decisions.json": "6d71b8f088e99165cd5a7a897845617bacf4e5d4f72979b3856fe720cbf39cfb",
+    "pending-review.json": "9d57608333608a73c6b1218a3e7e1723c392c93fec11737ebf768d7f28cedcab",
+    "source-records.json.gz": "6b8b02e8165d84b5eacd628cf1360807af1327cb9dab572d03686d24ea0211bc"
+  },
+  "runtime_changes": false,
+  "full_family_certification": false
+}
