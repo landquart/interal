@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "source_run_id": 35647932153,
+  "previous_stage": "audit/associative-family-v5/reflex-accent-defects-review-20261002-1945",
+  "inputs": {
+    "spec_path": "audit/associative-family-v5/reflex-multilingual-heads-review-20261002-2010/review-spec.json",
+    "spec_sha256": "bf8682018023fe9b3ef5035b102e1c4b90b0239b9d6a1136f2701bcdb5fc9dea",
+    "previous_pending_path": "audit/associative-family-v5/reflex-accent-defects-review-20261002-1945/pending-review.json",
+    "previous_pending_sha256": "b85670e63021229b8a1420475d5c53636ad7f946f0138523746423202dac1eb0",
+    "previous_inventory_path": "audit/associative-family-v5/reflex-accent-defects-review-20261002-1945/inventory.json",
+    "previous_inventory_sha256": "6371c85aa0d1a7fa98c43ccd95b66c94bfc05cd43cf40827887011d464e9b0b9",
+    "source_candidate_path": "audit/associative-family-v5/reflex-checkpoint-20261001/candidates.json.gz",
+    "source_candidate_sha256": "ce3cc11eb045a4fe9f77bf79239fc585a9a324231c8a6d5530606df1e5488cfb"
+  },
+  "source_candidate_sha256": "ce3cc11eb045a4fe9f77bf79239fc585a9a324231c8a6d5530606df1e5488cfb",
+  "reviewed_count": 35,
+  "new_counts": {
+    "uncertain": 35
+  },
+  "continuation_counts": {
+    "accepted": 31,
+    "excluded": 334,
+    "uncertain": 154,
+    "pending_review": 243
+  },
+  "artifact_sha256": {
+    "decisions.json": "f018f3084cd4ee074ea93d2abff881677a9f7898d28c2fc062e20eb37bab9f7b",
+    "pending-review.json": "032e0cfe3c733fd9229fde575743e6fad04f97000de1c981925eb37e1771c3ca",
+    "source-records.json.gz": "9967c5e2056602db52bb15091f12742a5ffd4a3c9ef88e9c74e04d92281d537f"
+  },
+  "runtime_changes": false,
+  "full_family_certification": false
+}

@@ -4,7 +4,7 @@ Current state: 31 reviewed continuation memberships applied (six earlier,
 18 in the first extension and seven rare native heads). Latest support:
 observ 311 / inform 1,460. All 10 targeted application tests passed, no failures
 or skips. Full validation of this runtime stage is next. Latest immutable
-review queue: 278 pending, 119 investigated uncertain, 334 excluded;
+review queue: 243 pending, 154 investigated uncertain, 334 excluded;
 zero accepted awaiting application. Earlier sections below are dated history.
 Latest relation overlay: `relation-phrase-boundaries-20261002` (325 pending).
 Resume from the stage-specific inventories,
@@ -335,3 +335,11 @@ tests pass 10/10, zero skips. Do not repeat materialization.
 `reflex-accent-defects-review-20261002-1945`. Original corpus bytes and routes
 are unchanged. Historical/apocopated/dialect controls remain pending. Two
 conservation and byte-reproduction tests pass with zero skips.
+
+## Multilingual lexical identities — 2026-10-02
+
+35 exact tokens have investigated dictionary heads across Dutch, Swedish,
+Norwegian, Romanian, Slovenian, Portuguese and other paradigms.
+`reflex-multilingual-heads-review-20261002-2010` records context uncertainty,
+including explicit diacritic/historical limitations, without native borrowing
+assumptions or automatic foreign exclusion. Two tests pass, zero skips.
