@@ -1,5 +1,12 @@
 # Current continuation checkpoint
 
+Current state: six reviewed memberships applied, full local test suite and
+exhaustive audit passed. Latest continuation queue: 553 pending, 48 investigated
+uncertain, 155 excluded, 6 applied. Earlier sections below are dated stage history.
+Resume from `continuation-validation-20261002/validation.json` and the complete
+`continuation-task-20261002.txt`. Never repeat applied materialization.
+
+
 Branch: fix/associative-component-membership-20261001; PR #651 depends on #650.
 No merge. Source run 35647932153.
 
@@ -104,8 +111,8 @@ targeted conservation/reproduction tests pass without skips.
 
 Latest creat pending 2,335; relat 409; oper 2,082; mut 2,652.
 Combined four-root pending is 7,478. Runtime accepted remains 574/487/1,595/569.
-The successful full npm runtime test log is `/tmp/interal-reflex-full-tests-complete.log`
-(until its separate validation archive is saved); exhaustive audit succeeded
+The successful full npm runtime test log is archived in
+`continuation-validation-20261002/full-tests.log.gz`; exhaustive audit succeeded
 and refreshed `repository-static-integrity.json` with 10,049,743 memberships.
 
 ## Additional foreign-form/context review
@@ -118,3 +125,15 @@ foreign words as native realizations and changes no runtime records.
 Both source-conservation and independent reproduction tests pass without skips.
 Latest continuation: 6 applied accepted, 155 excluded, 48 investigated uncertain,
 553 pending. The latest pending queue is this stage's `pending-review.json`.
+
+## Durable complete validation
+
+`continuation-validation-20261002` archives the successful full npm run of
+104 test files, the later foreign-form test (2 pass, 0 fail, 0 skips), and the
+exhaustive audit output. `validation.json` includes source/script/log hashes,
+exact index counts, all latest queue pointers, prior CI findings and resume steps.
+The integrity report is updated to 10,049,743 memberships, with 2,456,540
+families and 1,934,055 aliases unchanged. The prior remote audit itself passed;
+its report comparison failed because the committed report was still old.
+This separate validation stage saves that refreshed report. New HEAD CI must
+still be checked. Linguistic work is incomplete; no family-wide certification.
