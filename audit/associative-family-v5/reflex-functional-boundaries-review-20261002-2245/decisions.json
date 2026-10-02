@@ -1,0 +1,471 @@
+{
+  "schema_version": 1,
+  "source_run_id": 35647932153,
+  "inputs": {
+    "spec_path": "audit/associative-family-v5/reflex-functional-boundaries-review-20261002-2245/review-spec.json",
+    "spec_sha256": "9215467272c2b7abbd52d81597fec91475c35026fbde413d3d7d72856e862c7c",
+    "previous_pending_path": "audit/associative-family-v5/reflex-multilingual-heads-review-20261002-2010/pending-review.json",
+    "previous_pending_sha256": "032e0cfe3c733fd9229fde575743e6fad04f97000de1c981925eb37e1771c3ca",
+    "previous_inventory_path": "audit/associative-family-v5/reflex-multilingual-heads-review-20261002-2010/inventory.json",
+    "previous_inventory_sha256": "4cd2109a23268adc31c4d7a2ccb073fc2edb398d99aebc37f8f4a0ccdc0f786d",
+    "source_candidate_path": "audit/associative-family-v5/reflex-checkpoint-20261001/candidates.json.gz",
+    "source_candidate_sha256": "ce3cc11eb045a4fe9f77bf79239fc585a9a324231c8a6d5530606df1e5488cfb"
+  },
+  "source_candidate_sha256": "ce3cc11eb045a4fe9f77bf79239fc585a9a324231c8a6d5530606df1e5488cfb",
+  "previous_pending_sha256": "032e0cfe3c733fd9229fde575743e6fad04f97000de1c981925eb37e1771c3ca",
+  "decisions": [
+    {
+      "lemma_id": "lemma:c30c2b1078e86438a2e8",
+      "word": "d'information",
+      "status": "excluded",
+      "reason": "Exact finite boundary analysis: d' + information. Functional words, clause material or an agreeing adjective are outside the recognizable lexical head. The whole source token is not an information/observation lexeme or a transparent lexical compound. Dictionary references establish the heads and, for Italian, the elision mechanism; this segmentation is the reviewer inference, not a claim that the dictionary attests the malformed whole token. Apostrophized French snippets retain a grammatical word boundary even when written without a space. Corpus tokens and measurements are preserved; no corrected or split lemma is synthesized. Lexical compounds such as information-share and informationgetting are deliberately outside this finite decision.",
+      "source_family_ids": [
+        "surface:en:ation",
+        "surface:en:dinformat"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_functional_boundary",
+      "segmentation_or_lexical_identity": "d' + information",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9I1218",
+        "https://www.dictionnaire-academie.fr/conjuguer/A9O0082"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:9c55f12d5fcff1c31351",
+      "word": "l'information",
+      "status": "excluded",
+      "reason": "Exact finite boundary analysis: l' + information. Functional words, clause material or an agreeing adjective are outside the recognizable lexical head. The whole source token is not an information/observation lexeme or a transparent lexical compound. Dictionary references establish the heads and, for Italian, the elision mechanism; this segmentation is the reviewer inference, not a claim that the dictionary attests the malformed whole token. Apostrophized French snippets retain a grammatical word boundary even when written without a space. Corpus tokens and measurements are preserved; no corrected or split lemma is synthesized. Lexical compounds such as information-share and informationgetting are deliberately outside this finite decision.",
+      "source_family_ids": [
+        "surface:en:ation",
+        "surface:en:linformat"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_functional_boundary",
+      "segmentation_or_lexical_identity": "l' + information",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9I1218",
+        "https://www.dictionnaire-academie.fr/conjuguer/A9O0082"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:d8135749d6bcce986c01",
+      "word": "ihejustinformshefailed",
+      "status": "excluded",
+      "reason": "Exact finite boundary analysis: i + he + just + informs + he + failed. Functional words, clause material or an agreeing adjective are outside the recognizable lexical head. The whole source token is not an information/observation lexeme or a transparent lexical compound. Dictionary references establish the heads and, for Italian, the elision mechanism; this segmentation is the reviewer inference, not a claim that the dictionary attests the malformed whole token. Apostrophized French snippets retain a grammatical word boundary even when written without a space. Corpus tokens and measurements are preserved; no corrected or split lemma is synthesized. Lexical compounds such as information-share and informationgetting are deliberately outside this finite decision.",
+      "source_family_ids": [
+        "surface:en:ihejustinformshefail",
+        "surface:en:failed"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_functional_boundary",
+      "segmentation_or_lexical_identity": "i + he + just + informs + he + failed",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/inform"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:116db7df565bcf7b315f",
+      "word": "informationnbecause",
+      "status": "excluded",
+      "reason": "Exact finite boundary analysis: information + residual n + because. Functional words, clause material or an agreeing adjective are outside the recognizable lexical head. The whole source token is not an information/observation lexeme or a transparent lexical compound. Dictionary references establish the heads and, for Italian, the elision mechanism; this segmentation is the reviewer inference, not a claim that the dictionary attests the malformed whole token. Apostrophized French snippets retain a grammatical word boundary even when written without a space. Corpus tokens and measurements are preserved; no corrected or split lemma is synthesized. Lexical compounds such as information-share and informationgetting are deliberately outside this finite decision.",
+      "source_family_ids": [
+        "surface:en:because",
+        "surface:en:informationnbecaus"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_functional_boundary",
+      "segmentation_or_lexical_identity": "information + residual n + because",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:0b6c4535f5136155c6ff",
+      "word": "ofninformation",
+      "status": "excluded",
+      "reason": "Exact finite boundary analysis: of + residual n + information. Functional words, clause material or an agreeing adjective are outside the recognizable lexical head. The whole source token is not an information/observation lexeme or a transparent lexical compound. Dictionary references establish the heads and, for Italian, the elision mechanism; this segmentation is the reviewer inference, not a claim that the dictionary attests the malformed whole token. Apostrophized French snippets retain a grammatical word boundary even when written without a space. Corpus tokens and measurements are preserved; no corrected or split lemma is synthesized. Lexical compounds such as information-share and informationgetting are deliberately outside this finite decision.",
+      "source_family_ids": [
+        "surface:en:ofninformat"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_functional_boundary",
+      "segmentation_or_lexical_identity": "of + residual n + information",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:b3ed7a19a31b52804b8e",
+      "word": "dinformation",
+      "status": "excluded",
+      "reason": "Exact finite boundary analysis: d' + information (elision boundary lost). Functional words, clause material or an agreeing adjective are outside the recognizable lexical head. The whole source token is not an information/observation lexeme or a transparent lexical compound. Dictionary references establish the heads and, for Italian, the elision mechanism; this segmentation is the reviewer inference, not a claim that the dictionary attests the malformed whole token. Apostrophized French snippets retain a grammatical word boundary even when written without a space. Corpus tokens and measurements are preserved; no corrected or split lemma is synthesized. Lexical compounds such as information-share and informationgetting are deliberately outside this finite decision.",
+      "source_family_ids": [
+        "surface:fr:dinformation"
+      ],
+      "language": "fr",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_functional_boundary",
+      "segmentation_or_lexical_identity": "d' + information (elision boundary lost)",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9I1218",
+        "https://www.dictionnaire-academie.fr/conjuguer/A9O0082"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:b7a1384f71d540f3c277",
+      "word": "dinformations",
+      "status": "excluded",
+      "reason": "Exact finite boundary analysis: d' + informations (elision boundary lost). Functional words, clause material or an agreeing adjective are outside the recognizable lexical head. The whole source token is not an information/observation lexeme or a transparent lexical compound. Dictionary references establish the heads and, for Italian, the elision mechanism; this segmentation is the reviewer inference, not a claim that the dictionary attests the malformed whole token. Apostrophized French snippets retain a grammatical word boundary even when written without a space. Corpus tokens and measurements are preserved; no corrected or split lemma is synthesized. Lexical compounds such as information-share and informationgetting are deliberately outside this finite decision.",
+      "source_family_ids": [
+        "surface:fr:dinformation"
+      ],
+      "language": "fr",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_functional_boundary",
+      "segmentation_or_lexical_identity": "d' + informations (elision boundary lost)",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9I1218",
+        "https://www.dictionnaire-academie.fr/conjuguer/A9O0082"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:a743cc9196e3e810006f",
+      "word": "linformation",
+      "status": "excluded",
+      "reason": "Exact finite boundary analysis: l' + information (article boundary lost). Functional words, clause material or an agreeing adjective are outside the recognizable lexical head. The whole source token is not an information/observation lexeme or a transparent lexical compound. Dictionary references establish the heads and, for Italian, the elision mechanism; this segmentation is the reviewer inference, not a claim that the dictionary attests the malformed whole token. Apostrophized French snippets retain a grammatical word boundary even when written without a space. Corpus tokens and measurements are preserved; no corrected or split lemma is synthesized. Lexical compounds such as information-share and informationgetting are deliberately outside this finite decision.",
+      "source_family_ids": [
+        "surface:fr:linformat",
+        "ety:dc73fe9a4a6b",
+        "ety:0bf0af7ec2ca",
+        "ety:82588d5b54bf"
+      ],
+      "language": "fr",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_functional_boundary",
+      "segmentation_or_lexical_identity": "l' + information (article boundary lost)",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9I1218",
+        "https://www.dictionnaire-academie.fr/conjuguer/A9O0082"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:f8e80142d198de64be83",
+      "word": "tobserver",
+      "status": "excluded",
+      "reason": "Exact finite boundary analysis: t' + observer (object-pronoun boundary lost). Functional words, clause material or an agreeing adjective are outside the recognizable lexical head. The whole source token is not an information/observation lexeme or a transparent lexical compound. Dictionary references establish the heads and, for Italian, the elision mechanism; this segmentation is the reviewer inference, not a claim that the dictionary attests the malformed whole token. Apostrophized French snippets retain a grammatical word boundary even when written without a space. Corpus tokens and measurements are preserved; no corrected or split lemma is synthesized. Lexical compounds such as information-share and informationgetting are deliberately outside this finite decision.",
+      "source_family_ids": [
+        "surface:fr:tob",
+        "surface:fr:server"
+      ],
+      "language": "fr",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_functional_boundary",
+      "segmentation_or_lexical_identity": "t' + observer (object-pronoun boundary lost)",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9I1218",
+        "https://www.dictionnaire-academie.fr/conjuguer/A9O0082"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:ead4ea5c14682336216e",
+      "word": "informationsroutières",
+      "status": "excluded",
+      "reason": "Exact finite boundary analysis: informations + routières (noun plus agreeing adjective). Functional words, clause material or an agreeing adjective are outside the recognizable lexical head. The whole source token is not an information/observation lexeme or a transparent lexical compound. Dictionary references establish the heads and, for Italian, the elision mechanism; this segmentation is the reviewer inference, not a claim that the dictionary attests the malformed whole token. Apostrophized French snippets retain a grammatical word boundary even when written without a space. Corpus tokens and measurements are preserved; no corrected or split lemma is synthesized. Lexical compounds such as information-share and informationgetting are deliberately outside this finite decision.",
+      "source_family_ids": [
+        "surface:fr:eres",
+        "surface:fr:informationsroutiere"
+      ],
+      "language": "fr",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_functional_boundary",
+      "segmentation_or_lexical_identity": "informations + routières (noun plus agreeing adjective)",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9I1218",
+        "https://www.dictionnaire-academie.fr/conjuguer/A9O0082"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:0ab5b15a87eda2d71ab0",
+      "word": "dinformare",
+      "status": "excluded",
+      "reason": "Exact finite boundary analysis: d' + informare (preposition boundary lost). Functional words, clause material or an agreeing adjective are outside the recognizable lexical head. The whole source token is not an information/observation lexeme or a transparent lexical compound. Dictionary references establish the heads and, for Italian, the elision mechanism; this segmentation is the reviewer inference, not a claim that the dictionary attests the malformed whole token. Apostrophized French snippets retain a grammatical word boundary even when written without a space. Corpus tokens and measurements are preserved; no corrected or split lemma is synthesized. Lexical compounds such as information-share and informationgetting are deliberately outside this finite decision.",
+      "source_family_ids": [
+        "surface:it:dinformar",
+        "ety:0ac430ae5eee"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_functional_boundary",
+      "segmentation_or_lexical_identity": "d' + informare (preposition boundary lost)",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/elisione/",
+        "https://www.treccani.it/vocabolario/informare/",
+        "https://www.treccani.it/vocabolario/informazione/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:053716c66a5ff89228e7",
+      "word": "dinformarla",
+      "status": "excluded",
+      "reason": "Exact finite boundary analysis: d' + informar + la (elided preposition outside valid infinitive/clitic). Functional words, clause material or an agreeing adjective are outside the recognizable lexical head. The whole source token is not an information/observation lexeme or a transparent lexical compound. Dictionary references establish the heads and, for Italian, the elision mechanism; this segmentation is the reviewer inference, not a claim that the dictionary attests the malformed whole token. Apostrophized French snippets retain a grammatical word boundary even when written without a space. Corpus tokens and measurements are preserved; no corrected or split lemma is synthesized. Lexical compounds such as information-share and informationgetting are deliberately outside this finite decision.",
+      "source_family_ids": [
+        "surface:it:dinformarl"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_functional_boundary",
+      "segmentation_or_lexical_identity": "d' + informar + la (elided preposition outside valid infinitive/clitic)",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/elisione/",
+        "https://www.treccani.it/vocabolario/informare/",
+        "https://www.treccani.it/vocabolario/informazione/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:d3fbe7536911a6dbaf52",
+      "word": "dinformazione",
+      "status": "excluded",
+      "reason": "Exact finite boundary analysis: d' + informazione (preposition boundary lost). Functional words, clause material or an agreeing adjective are outside the recognizable lexical head. The whole source token is not an information/observation lexeme or a transparent lexical compound. Dictionary references establish the heads and, for Italian, the elision mechanism; this segmentation is the reviewer inference, not a claim that the dictionary attests the malformed whole token. Apostrophized French snippets retain a grammatical word boundary even when written without a space. Corpus tokens and measurements are preserved; no corrected or split lemma is synthesized. Lexical compounds such as information-share and informationgetting are deliberately outside this finite decision.",
+      "source_family_ids": [
+        "ety:8ef5f06ceb40",
+        "ety:dd07667af787",
+        "ety:474b418e1004",
+        "ety:c80365cdd174",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:c28863eb7595",
+        "surface:it:dinformazion",
+        "ety:58143b06b35a",
+        "ety:a3b640366c27",
+        "ety:ab1eaa1c14b6",
+        "ety:727be1d24fa1",
+        "ety:61108b488e06"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_functional_boundary",
+      "segmentation_or_lexical_identity": "d' + informazione (preposition boundary lost)",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/elisione/",
+        "https://www.treccani.it/vocabolario/informare/",
+        "https://www.treccani.it/vocabolario/informazione/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:81262774790479f11a8a",
+      "word": "dinformazioni",
+      "status": "excluded",
+      "reason": "Exact finite boundary analysis: d' + informazioni (preposition boundary lost). Functional words, clause material or an agreeing adjective are outside the recognizable lexical head. The whole source token is not an information/observation lexeme or a transparent lexical compound. Dictionary references establish the heads and, for Italian, the elision mechanism; this segmentation is the reviewer inference, not a claim that the dictionary attests the malformed whole token. Apostrophized French snippets retain a grammatical word boundary even when written without a space. Corpus tokens and measurements are preserved; no corrected or split lemma is synthesized. Lexical compounds such as information-share and informationgetting are deliberately outside this finite decision.",
+      "source_family_ids": [
+        "surface:it:ioni",
+        "ety:8ef5f06ceb40",
+        "ety:dd07667af787",
+        "ety:474b418e1004",
+        "ety:c80365cdd174",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:c28863eb7595",
+        "surface:it:dinformazion",
+        "ety:58143b06b35a",
+        "ety:a3b640366c27",
+        "ety:ab1eaa1c14b6",
+        "ety:727be1d24fa1",
+        "ety:61108b488e06"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_functional_boundary",
+      "segmentation_or_lexical_identity": "d' + informazioni (preposition boundary lost)",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/elisione/",
+        "https://www.treccani.it/vocabolario/informare/",
+        "https://www.treccani.it/vocabolario/informazione/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:4c12b4f3db1a28abe7d9",
+      "word": "linformatore",
+      "status": "excluded",
+      "reason": "Exact finite boundary analysis: l' + informatore (article boundary lost). Functional words, clause material or an agreeing adjective are outside the recognizable lexical head. The whole source token is not an information/observation lexeme or a transparent lexical compound. Dictionary references establish the heads and, for Italian, the elision mechanism; this segmentation is the reviewer inference, not a claim that the dictionary attests the malformed whole token. Apostrophized French snippets retain a grammatical word boundary even when written without a space. Corpus tokens and measurements are preserved; no corrected or split lemma is synthesized. Lexical compounds such as information-share and informationgetting are deliberately outside this finite decision.",
+      "source_family_ids": [
+        "ety:0cc1db2776a2",
+        "surface:it:linformator"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_functional_boundary",
+      "segmentation_or_lexical_identity": "l' + informatore (article boundary lost)",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/elisione/",
+        "https://www.treccani.it/vocabolario/informare/",
+        "https://www.treccani.it/vocabolario/informazione/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:b0853c957e7f9afee957",
+      "word": "questinformazione",
+      "status": "excluded",
+      "reason": "Exact finite boundary analysis: quest' + informazione (determiner boundary lost). Functional words, clause material or an agreeing adjective are outside the recognizable lexical head. The whole source token is not an information/observation lexeme or a transparent lexical compound. Dictionary references establish the heads and, for Italian, the elision mechanism; this segmentation is the reviewer inference, not a claim that the dictionary attests the malformed whole token. Apostrophized French snippets retain a grammatical word boundary even when written without a space. Corpus tokens and measurements are preserved; no corrected or split lemma is synthesized. Lexical compounds such as information-share and informationgetting are deliberately outside this finite decision.",
+      "source_family_ids": [
+        "ety:8ef5f06ceb40",
+        "ety:dd07667af787",
+        "surface:it:informazione",
+        "surface:it:questinformazion",
+        "ety:474b418e1004",
+        "ety:c80365cdd174",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:c28863eb7595",
+        "ety:58143b06b35a",
+        "ety:a3b640366c27",
+        "ety:ab1eaa1c14b6",
+        "ety:727be1d24fa1",
+        "ety:61108b488e06"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_functional_boundary",
+      "segmentation_or_lexical_identity": "quest' + informazione (determiner boundary lost)",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/elisione/",
+        "https://www.treccani.it/vocabolario/informare/",
+        "https://www.treccani.it/vocabolario/informazione/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:d168e86260dbbd3a8d4f",
+      "word": "informaciondel",
+      "status": "excluded",
+      "reason": "Exact finite boundary analysis: Spanish información + del; accent and lexical boundary lost. Functional words, clause material or an agreeing adjective are outside the recognizable lexical head. The whole source token is not an information/observation lexeme or a transparent lexical compound. Dictionary references establish the heads and, for Italian, the elision mechanism; this segmentation is the reviewer inference, not a claim that the dictionary attests the malformed whole token. Apostrophized French snippets retain a grammatical word boundary even when written without a space. Corpus tokens and measurements are preserved; no corrected or split lemma is synthesized. Lexical compounds such as information-share and informationgetting are deliberately outside this finite decision.",
+      "source_family_ids": [
+        "surface:it:ndel",
+        "surface:it:cion",
+        "surface:it:informac",
+        "surface:it:maci"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_functional_boundary",
+      "segmentation_or_lexical_identity": "Spanish información + del; accent and lexical boundary lost",
+      "source_references": [
+        "https://dle.rae.es/información"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:56c655b333bc0d1bcf74",
+      "word": "diinformarédetodo",
+      "status": "excluded",
+      "reason": "Exact finite boundary analysis: residual di + informaré + de + todo. Functional words, clause material or an agreeing adjective are outside the recognizable lexical head. The whole source token is not an information/observation lexeme or a transparent lexical compound. Dictionary references establish the heads and, for Italian, the elision mechanism; this segmentation is the reviewer inference, not a claim that the dictionary attests the malformed whole token. Apostrophized French snippets retain a grammatical word boundary even when written without a space. Corpus tokens and measurements are preserved; no corrected or split lemma is synthesized. Lexical compounds such as information-share and informationgetting are deliberately outside this finite decision.",
+      "source_family_ids": [
+        "surface:es:diinformaredetod",
+        "ety:f7e9723cd52e"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_functional_boundary",
+      "segmentation_or_lexical_identity": "residual di + informaré + de + todo",
+      "source_references": [
+        "https://dle.rae.es/informar",
+        "https://dle.rae.es/observar"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:27ea40d595ebfb8e72d0",
+      "word": "aobservamos",
+      "status": "excluded",
+      "reason": "Exact finite boundary analysis: a + observamos. Functional words, clause material or an agreeing adjective are outside the recognizable lexical head. The whole source token is not an information/observation lexeme or a transparent lexical compound. Dictionary references establish the heads and, for Italian, the elision mechanism; this segmentation is the reviewer inference, not a claim that the dictionary attests the malformed whole token. Apostrophized French snippets retain a grammatical word boundary even when written without a space. Corpus tokens and measurements are preserved; no corrected or split lemma is synthesized. Lexical compounds such as information-share and informationgetting are deliberately outside this finite decision.",
+      "source_family_ids": [
+        "surface:es:aobservam",
+        "surface:es:vamos"
+      ],
+      "language": "es",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_functional_boundary",
+      "segmentation_or_lexical_identity": "a + observamos",
+      "source_references": [
+        "https://dle.rae.es/informar",
+        "https://dle.rae.es/observar"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:52c2d854be1c651ad9e9",
+      "word": "linformar",
+      "status": "excluded",
+      "reason": "Exact finite boundary analysis: residual/elided l' + informar. Functional words, clause material or an agreeing adjective are outside the recognizable lexical head. The whole source token is not an information/observation lexeme or a transparent lexical compound. Dictionary references establish the heads and, for Italian, the elision mechanism; this segmentation is the reviewer inference, not a claim that the dictionary attests the malformed whole token. Apostrophized French snippets retain a grammatical word boundary even when written without a space. Corpus tokens and measurements are preserved; no corrected or split lemma is synthesized. Lexical compounds such as information-share and informationgetting are deliberately outside this finite decision.",
+      "source_family_ids": [
+        "ety:49be1b4d6da9",
+        "ety:341c4ecf4248",
+        "surface:es:formar",
+        "ety:1c1a161aada8"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_functional_boundary",
+      "segmentation_or_lexical_identity": "residual/elided l' + informar",
+      "source_references": [
+        "https://dle.rae.es/informar",
+        "https://dle.rae.es/observar"
+      ],
+      "runtime_applied": false
+    }
+  ],
+  "new_counts": {
+    "excluded": 20
+  },
+  "continuation_counts": {
+    "accepted": 31,
+    "excluded": 354,
+    "uncertain": 154,
+    "pending_review": 223
+  },
+  "accepted_applied": 31,
+  "accepted_unapplied": 0,
+  "runtime_changes": false,
+  "full_family_certification": false,
+  "review_scope": "20 exact functional/phrase boundaries, including elided prepositions/articles and whole clauses. No universal prefix-removal rule; lexical compounds remain pending. All original source fields and independent memberships preserved."
+}

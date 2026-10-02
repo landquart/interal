@@ -5,7 +5,7 @@ Current state: 31 reviewed continuation memberships applied (six earlier,
 observ 311 / inform 1,460. All 10 targeted application tests passed, no failures
 or skips. The full 117-file suite and exhaustive audit passed; the later
 multilingual review passed two additional tests. Latest immutable
-review queue: 243 pending, 154 investigated uncertain, 334 excluded;
+review queue: 223 pending, 154 investigated uncertain, 354 excluded;
 zero accepted awaiting application. Earlier sections below are dated history.
 Latest relation overlay: `relation-phrase-boundaries-20261002` (325 pending).
 Resume from the stage-specific inventories,
@@ -364,3 +364,13 @@ for уралинформбюро, уралсвязьинформ and комии�
 pending; no new decisions or memberships are claimed. Continue their finite
 head adjudication from this evidence. The queue stays 243 pending / 154
 investigated uncertain; 31 positive memberships are already applied.
+
+## Functional boundary continuation — 2026-10-02 22:45 Moscow
+
+Remote HEAD 29d4b8c8fe8234c40c0aa82d3a89f76961014c81 independently
+passed Tests 37051415929 and exhaustive Audit 37051415914.
+Twenty exact phrase/elision boundary records are excluded by
+`reflex-functional-boundaries-review-20261002-2245`; lexical compounds stay
+pending. Two conservation/reproduction tests pass with zero skips.
+Current queue: 31 applied + 354 excluded + 154 investigated uncertain +
+223 pending = 762. Runtime remains observ 311 / inform 1,460.
