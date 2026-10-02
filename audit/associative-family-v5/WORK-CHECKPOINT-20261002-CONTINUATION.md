@@ -4,7 +4,7 @@ Current state: 24 reviewed continuation memberships applied (six earlier and
 18 in the latest extension). Latest support: observ 309 / inform 1,455.
 All 15 targeted application tests passed, no failures or skips. Full suite
 and exhaustive audit are running after fixing the entrypoint hashbang.
-Latest continuation queue: 527 pending, 50 investigated uncertain, 161 excluded. Earlier sections below are dated stage history.
+Latest continuation queue: 514 pending, 62 investigated uncertain, 162 excluded. Earlier sections below are dated stage history.
 Latest relation overlay: `relation-phrase-boundaries-20261002` (325 pending).
 Resume from the stage-specific inventories,
 `continuation-validation-20261002/validation.json` and the complete
@@ -240,3 +240,17 @@ all other-root pending records are conserved; both conservation/reproduction
 tests pass without skips. Runtime is unchanged by this review.
 Latest creat pending 2,315; relat 325; oper 2,082; mut 2,652, total 7,374.
 Resume creat/mut from this pending file and relat/oper from their own overlays.
+
+## Latin observation forms and negative form head
+
+reflex-latin-context-review-20261002 investigates 13 exact source records:
+12 Latin observation verb/noun inflections remain genuinely uncertain because
+aggregate corpus sources cannot prove native use versus Latin quotation/title.
+Dictionary identity and morphology are documented; this is researched uncertainty,
+not a bulk reclassification of untouched pending. English informis is excluded
+as the independent Latin negative shape adjective (in- + forma).
+Both exact source/frame conservation and byte-identical reproduction tests pass.
+The complete 762-ID frame is now 24 applied, 162 excluded, 62 investigated
+uncertain and 514 pending. Runtime support remains observ 309 / inform 1,455.
+Full 109-file suite and exhaustive audit have now passed; their evidence is
+being saved in the following separate validation stage. No family is certified.
