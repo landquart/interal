@@ -267,3 +267,11 @@ The committed repository-static-integrity.json is refreshed to the exact audit
 output. New HEAD CI remains a separate remote check; old runtime commits had
 a stale report until this validation stage. Structural success does not certify
 linguistic completeness. Continue from the latest queues above; never reapply.
+
+## Updated full continuation brief and remote baseline
+
+continuation-brief-20261002-182438/task.md is the complete latest task.
+Actual remote HEAD 7514aeda230e7e3e67b3b41bb2063f068f38a364 passed Tests
+37046182991 and Audit repository associative family v5 37046182981.
+Continue first with 514 reflex pending, then relation 325 and loc 842.
+The new brief supersedes the earlier task priority order. No merge.
