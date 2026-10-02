@@ -1,8 +1,8 @@
 # Current continuation checkpoint
 
 Current state: six reviewed memberships applied, full local test suite and
-exhaustive audit passed. Latest continuation queue: 539 pending, 50 investigated
-uncertain, 160 excluded, 6 applied and 7 newly accepted awaiting application. Earlier sections below are dated stage history.
+exhaustive audit passed. Latest continuation queue: 527 pending, 50 investigated
+uncertain, 161 excluded, 6 applied and 18 newly accepted awaiting application. Earlier sections below are dated stage history.
 Latest relation overlay: `relation-phrase-boundaries-20261002` (325 pending).
 Resume from the stage-specific inventories,
 `continuation-validation-20261002/validation.json` and the complete
@@ -174,3 +174,20 @@ skips. The 7 newly accepted records are NOT applied yet. Runtime support
 remains observ 298 / inform 1,448. Latest total continuation: 13 accepted
 (6 applied + 7 unapplied), 160 excluded, 50 genuine uncertain, 539 pending.
 Resume from this stage's pending-review.json and accepted decision ledger.
+
+## Spanish enclitic morphology
+
+`reflex-spanish-enclitics-review-20261002` independently reviews 12 exact
+Spanish tokens: 11 accepted inflections and one fused phrase excluded.
+Seven unaccented observar imperatives are correctly spelled voseo forms
+with one enclitic. Three accented forms follow regular imperative stress
+and pronoun attachment (including preserved nn in infórmennos). One
+observádote record has an explicitly historical participle + te analysis
+documented as a possible archaic construction by RAE. No corrected lemma
+or open accent-removal rule is introduced. Both conservation/reproduction
+tests pass without skips.
+
+Latest continuation: 24 accepted (6 applied + 18 unapplied), 161 excluded,
+50 genuine uncertain, 527 pending. Runtime remains observ 298 / inform 1,448.
+Resume from this pending queue and combine the two new accepted ledgers
+for the next guarded additive application. Do not repeat the applied six.
