@@ -1,8 +1,10 @@
 # Current continuation checkpoint
 
-Current state: six reviewed memberships applied, full local test suite and
-exhaustive audit passed. Latest continuation queue: 527 pending, 50 investigated
-uncertain, 161 excluded, 6 applied and 18 newly accepted awaiting application. Earlier sections below are dated stage history.
+Current state: 24 reviewed continuation memberships applied (six earlier and
+18 in the latest extension). Latest support: observ 309 / inform 1,455.
+All 15 targeted application tests passed, no failures or skips. Full suite
+and exhaustive audit are running after fixing the entrypoint hashbang.
+Latest continuation queue: 527 pending, 50 investigated uncertain, 161 excluded. Earlier sections below are dated stage history.
 Latest relation overlay: `relation-phrase-boundaries-20261002` (325 pending).
 Resume from the stage-specific inventories,
 `continuation-validation-20261002/validation.json` and the complete
@@ -209,3 +211,19 @@ so prior preservation checks are composed instead of loosened.
 Nine preflight tests pass; only the not-yet-applied audit is skipped. After
 this preflight is committed, apply once with the new HEAD and then require
 all targeted application tests, the complete suite and exhaustive audit.
+
+## Eighteen-record application recovered and verified
+
+The transient workspace was reset before the prior local application was saved.
+It was reconstructed from durable HEAD 5c2bd4b66d7d27e00a56d217cd96ce1c1cf74d1f,
+then applied with all original guards; no historical ledger was rewritten.
+The same ledger checksum and 18/0 delta were reproduced. All 15 application
+tests pass without skips. Runtime support is observ 309 / inform 1,455;
+24 accepted continuation records are now applied, 161 excluded, 50 genuine
+uncertain and 527 pending. Families and aliases unchanged; source fields and
+independent routes preserved. Never rerun this application.
+
+Remote preflight Tests passed, but audit 37028152256 failed before scanning:
+import was before the hashbang. Separate fix a1160fe0dbaf27a251df2096d11c6dad8dfeea0a
+restores the first-line hashbang. Full checks now run with the corrected script.
+Their final logs and refreshed report require a separate validation stage.
