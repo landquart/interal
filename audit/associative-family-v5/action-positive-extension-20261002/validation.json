@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "validated_commit": "afbe740d1d370cf8a2a84cbea64115213dfa1c4e",
+  "source_run_id": 35647932153,
+  "full_tests": "pass",
+  "targeted_tests": {
+    "passed": 6,
+    "failed": 0,
+    "skipped": 0
+  },
+  "exhaustive_audit": "pass",
+  "runtime_support": 2268,
+  "added_memberships": 170,
+  "removed_memberships": 0,
+  "net_family_delta": 0,
+  "alias_delta": 0,
+  "action_counts": {
+    "accepted": 2268,
+    "excluded": 33224,
+    "uncertain": 143,
+    "pending_review": 16642
+  },
+  "audit_counts": {
+    "families": 2456540,
+    "aliases": 1934055,
+    "lemmas": 4924980,
+    "components": 9349982,
+    "memberships": 10049737,
+    "materialized_unique_lemmas": 4924151,
+    "multi_family_lemmas": 3335527,
+    "lemmas_without_materialized_family": 829,
+    "unique_lemmas_by_language": {
+      "en": 1130858,
+      "de": 1113440,
+      "fr": 558895,
+      "es": 941501,
+      "it": 610082,
+      "ru": 569375
+    },
+    "memberships_by_language": {
+      "en": 2619276,
+      "de": 2211166,
+      "fr": 1144210,
+      "es": 1798409,
+      "it": 1148980,
+      "ru": 1127696
+    },
+    "materialized_families": 2456540
+  },
+  "artifact_sha256": {
+    "full-tests.log.gz": "7a311edca57922875ea1ff95225c4d8a2ce2d12292a42b3d90f1099d5696f830",
+    "full-test-validation.json": "43d71025aedb5f5bca85b3afbfb618e23362a624e057e9849d07c89a1aeafadf",
+    "exhaustive-audit.log.gz": "4095a8a3893174e44a2d99795796ea228f22f5da9c6afe3c40eb2446fa7a8c4e",
+    "materialization-ledger.json": "84fb775197529d95238b5f03729c25e655b9bdab306f5b6938f44c4f7d30a7d0",
+    "materialization-status.json": "c4a61aa609c45c915198b36c5350720fc2a4f33c5e2550d047b7ff9775968b1d"
+  },
+  "repository_integrity_sha256": "e37fe660169ebe87d76d0bc70742e849dbcbcbf9f36fc25ad07bb57909bfab44",
+  "full_family_certification": false,
+  "limitations": [
+    "Remaining action records are explicitly withheld; the source frame has not been certified complete.",
+    "Six reviewed observ/inform continuation selections still await their own materialization.",
+    "Legacy actio/acti containers remain unchanged until full review supports retirement."
+  ]
+}

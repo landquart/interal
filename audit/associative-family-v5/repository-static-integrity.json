@@ -9,9 +9,9 @@
     "aliases": 1934055,
     "lemmas": 4924980,
     "components": 9349982,
-    "memberships": 10049567,
+    "memberships": 10049737,
     "materialized_unique_lemmas": 4924151,
-    "multi_family_lemmas": 3335517,
+    "multi_family_lemmas": 3335527,
     "lemmas_without_materialized_family": 829,
     "unique_lemmas_by_language": {
       "en": 1130858,
@@ -22,8 +22,8 @@
       "ru": 569375
     },
     "memberships_by_language": {
-      "en": 2619261,
-      "de": 2211011,
+      "en": 2619276,
+      "de": 2211166,
       "fr": 1144210,
       "es": 1798409,
       "it": 1148980,
@@ -51,27 +51,27 @@
   },
   "rejected_corpus_noise": [],
   "action_stage": {
-    "added_memberships": 2098,
+    "added_memberships": 2268,
     "removed_memberships": 0,
     "full_family_certification": false,
     "counts": {
       "en": {
-        "accepted": 242,
-        "excluded": 7939,
+        "accepted": 257,
+        "excluded": 8037,
         "uncertain": 4,
-        "pending_review": 1548
+        "pending_review": 1435
       },
       "de": {
-        "accepted": 808,
+        "accepted": 963,
         "excluded": 11934,
         "uncertain": 134,
-        "pending_review": 4445
+        "pending_review": 4290
       },
       "fr": {
         "accepted": 208,
-        "excluded": 3633,
+        "excluded": 3663,
         "uncertain": 0,
-        "pending_review": 634
+        "pending_review": 604
       },
       "es": {
         "accepted": 372,
@@ -81,15 +81,15 @@
       },
       "it": {
         "accepted": 223,
-        "excluded": 1709,
+        "excluded": 3245,
         "uncertain": 2,
-        "pending_review": 10190
+        "pending_review": 8654
       },
       "ru": {
         "accepted": 245,
-        "excluded": 2135,
+        "excluded": 2175,
         "uncertain": 1,
-        "pending_review": 450
+        "pending_review": 410
       }
     }
   },
@@ -108,8 +108,8 @@
     },
     "storage": "git_repository_static_files",
     "file_count_before_provenance": 2050,
-    "total_bytes_before_provenance": 717759736,
-    "tree_content_sha256": "91dc4573dd86463befb7a82d0f89d11814c1b488f824fa98421a841c2719d2f9",
+    "total_bytes_before_provenance": 717774152,
+    "tree_content_sha256": "fedd8f33f620051d35e867b88dd10527ec534cd131670684b868b42f4bdb4a3e",
     "repository_repairs": [
       {
         "repair": "exclude_known_rejected_corpus_noise_from_runtime",
@@ -649,6 +649,16 @@
           "ety:9a86a987fafc"
         ],
         "component_preservation": "Original component arrays kept intact; reviewed act component appended."
+      },
+      {
+        "repair": "extend_reviewed_action_memberships_20261002",
+        "source_run_id": 35647932153,
+        "added_memberships": 170,
+        "removed_memberships": 0,
+        "net_family_delta": 0,
+        "alias_delta": 0,
+        "decision_ledger_sha256": "84fb775197529d95238b5f03729c25e655b9bdab306f5b6938f44c4f7d30a7d0",
+        "full_family_certification": false
       }
     ]
   }

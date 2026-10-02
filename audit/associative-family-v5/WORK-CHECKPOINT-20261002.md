@@ -16,7 +16,8 @@ Source run: `35647932153`. No merge has been performed.
 | Final validation | `52830263e6b62c7647a6724f19bbbc4ac0dd4688` | Full sequential test suite including all new continuation tests passed; complete log, digests and remaining scope saved |
 | Positive action extension review | `78cb37158ef845f345414049aa7d6a7e4d0f7385` | 170 additional English/German whole forms reviewed |
 | Extension preflight | `3c3e30341faba95ca414254f3305e2b0498dcde2` | Reproducible additive materializer, metadata/source guards, preservation audits and conditional pre-application tests saved |
-| Extension runtime application | This commit | All 170 additions applied; support 2,268; six targeted tests passed with no skips |
+| Extension runtime application | `afbe740d1d370cf8a2a84cbea64115213dfa1c4e` | All 170 additions applied; support 2,268; six targeted tests passed with no skips |
+| Extension validation | This commit | Fresh full sequential npm test and exhaustive repository audit passed for the applied extension |
 
 The reflex continuation is linguistic evidence only: its six positives have not
 yet been added to runtime families. Historical checkpoints are immutable inputs.
@@ -31,8 +32,11 @@ all three new continuation conservation/source proof tests, also passed for
 commit `85169e0ef262d77aef4fd5720cfbbc82283ea691`; its complete log and digests are
 under `validation-final-20261002`.
 
-The exhaustive repository audit passed for 2,456,540 families and 10,049,567
-memberships. Its durable result is `repository-static-integrity.json`.
+The latest exhaustive repository audit passed for 2,456,540 families and 10,049,737
+memberships, including all 170 applied extension records. Its durable result is
+`repository-static-integrity.json`. The full sequential test suite also passed
+for `afbe740d1d370cf8a2a84cbea64115213dfa1c4e`; its complete log and validation
+digests are in `action-positive-extension-20261002`.
 These checks establish corpus preservation and software invariants; they do not
 certify linguistic completeness of any still-pending family.
 
@@ -86,7 +90,7 @@ correctly reject an already-applied stage. Use the saved application ledgers for
 the source preservation proof instead.
 
 The 170-record extension passed the six targeted runtime/source/conservation
-tests without skips. A fresh full `npm test` and exhaustive repository audit
-were started for the updated runtime; their completed results belong in the next
-separately committed validation checkpoint. The earlier passing audits describe
-the earlier unchanged runtime and should not be mistaken for this new run.
+tests without skips, then the fresh full `npm test` and exhaustive repository
+audit. The saved `application-checkpoint.json` is the historical application-time
+snapshot when those final checks were pending; current successful results are
+recorded separately in `full-test-validation.json` and `validation.json`.
