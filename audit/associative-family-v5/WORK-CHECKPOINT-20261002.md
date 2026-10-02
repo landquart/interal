@@ -94,3 +94,16 @@ tests without skips, then the fresh full `npm test` and exhaustive repository
 audit. The saved `application-checkpoint.json` is the historical application-time
 snapshot when those final checks were pending; current successful results are
 recorded separately in `full-test-validation.json` and `validation.json`.
+
+## Overall review continuation: creation and relation
+
+Saved as a separate review stage in `creation-relation-independent-heads-20261002`.
+35 historical uncertain records now have explicit exclusion decisions: 33 creat
+forms (independent creak/crease/creed/creel/acreage heads) and two relat forms
+(cancrelat and prelazione). Decisions are finite whole-form reviews supported by
+primary dictionary heads and stated morphological inferences. Complete original
+candidate records and historical decisions are archived with hashes. Runtime
+files and historical ledgers are unchanged. Remaining queues: creat 2,356;
+relat 409. Validation is pending in the next separate stage.
+
+Reproduce with `python scripts/review-associative-multiple-roots-20261002.py creation-relation`.

@@ -1,0 +1,792 @@
+{
+  "stage": "creation-relation-independent-heads-20261002",
+  "historical_artifacts": {
+    "creat": {
+      "audit/associative-family-v5/creation-checkpoint-20261001/linguistic-decisions.json": "a6a4b941f515d794a96c5a7571440699660cb3471b0e5bfe8c701d9aeca8b020",
+      "audit/associative-family-v5/creation-checkpoint-20261001/candidates.json.gz": "ea3edf87ff1d605e8587a23a0ef689848aceda1fc2817ba52f04f4f7fe97a148",
+      "audit/associative-family-v5/creation-checkpoint-20261001/inventory.json": "378016b823747c813fbe13b5b5cb82c934eb4e707e2717590ad42a7380f55fe8",
+      "audit/associative-family-v5/creation-checkpoint-20261001/original-families.json.gz": "ac58518d0bb644c5f0976940a1a307490c5c4d13453c989f452e111d70fd5e1f"
+    },
+    "relat": {
+      "audit/associative-family-v5/relation-checkpoint-20261001/linguistic-decisions.json": "bf83a3c87df6d18611862fed483d148dcffad017e4351e3fb9bd313085b252a2",
+      "audit/associative-family-v5/relation-checkpoint-20261001/candidates.json.gz": "aff8a70e005c632dccf786a07b7ff2fbfb73fe3addffbf4f34536bd7e9e1cc07",
+      "audit/associative-family-v5/relation-checkpoint-20261001/inventory.json": "0ffa924c7593b7d5a1f50d673219d4e2fb73ef0ab57327c275281fcac85a3c85",
+      "audit/associative-family-v5/relation-checkpoint-20261001/original-families.json.gz": "0eb3d2b81cf82cf646fd58622bbc40d7cb73dbedbdd21f293f44eb7aec094179"
+    }
+  },
+  "runtime_changed": false,
+  "decisions": [
+    {
+      "root": "creat",
+      "language": "en",
+      "lemma_id": "lemma:b9171cc9d79806df55e8",
+      "word": "creak",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "creak",
+      "reason": "Independent creak sound head; selected inflections and adverb retain that head. Foreign occurrence does not supply creat.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/creaky"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "ety:2e0d0d603b8e"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "en",
+      "lemma_id": "lemma:ed142fce652bd1c6e475",
+      "word": "creakily",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "creak",
+      "reason": "Independent creak sound head; selected inflections and adverb retain that head. Foreign occurrence does not supply creat.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/creaky"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:en:creaki",
+        "surface:en:ily"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "en",
+      "lemma_id": "lemma:d2f674153414a0a9f9ed",
+      "word": "creaky",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "creak",
+      "reason": "Independent creak sound head; selected inflections and adverb retain that head. Foreign occurrence does not supply creat.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/creaky"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "ety:3d51d2d8fba6",
+        "surface:en:aky"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "de",
+      "lemma_id": "lemma:8931fb80f4d380db08c3",
+      "word": "creak",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "creak",
+      "reason": "Independent creak sound head; selected inflections and adverb retain that head. Foreign occurrence does not supply creat.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/creaky"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:creak"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "de",
+      "lemma_id": "lemma:78381892ab5e3586d4e3",
+      "word": "creaked",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "creak",
+      "reason": "Independent creak sound head; selected inflections and adverb retain that head. Foreign occurrence does not supply creat.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/creaky"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:crea",
+        "surface:de:ked"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "de",
+      "lemma_id": "lemma:8f808fa76110661b5d49",
+      "word": "creaks",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "creak",
+      "reason": "Independent creak sound head; selected inflections and adverb retain that head. Foreign occurrence does not supply creat.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/creaky"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:creak"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "fr",
+      "lemma_id": "lemma:987c53e2e99bff94cd65",
+      "word": "creak",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "creak",
+      "reason": "Independent creak sound head; selected inflections and adverb retain that head. Foreign occurrence does not supply creat.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/creaky"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:fr:creak"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "fr",
+      "lemma_id": "lemma:88c271c581a70184c484",
+      "word": "creaks",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "creak",
+      "reason": "Independent creak sound head; selected inflections and adverb retain that head. Foreign occurrence does not supply creat.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/creaky"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:fr:creak",
+        "surface:fr:aks"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "es",
+      "lemma_id": "lemma:21488c3e2e13cebc7c81",
+      "word": "creak",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "creak",
+      "reason": "Independent creak sound head; selected inflections and adverb retain that head. Foreign occurrence does not supply creat.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/creaky"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:es:creak"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "es",
+      "lemma_id": "lemma:c987407da66aac64d27c",
+      "word": "creaks",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "creak",
+      "reason": "Independent creak sound head; selected inflections and adverb retain that head. Foreign occurrence does not supply creat.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/creaky"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:es:aks",
+        "surface:es:cre"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "es",
+      "lemma_id": "lemma:6c48818303d26bf5a7a6",
+      "word": "creaky",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "creak",
+      "reason": "Independent creak sound head; selected inflections and adverb retain that head. Foreign occurrence does not supply creat.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/creaky"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:es:aky",
+        "surface:es:cre"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "it",
+      "lemma_id": "lemma:09ba39e6a5a40a5a1ead",
+      "word": "creak",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "creak",
+      "reason": "Independent creak sound head; selected inflections and adverb retain that head. Foreign occurrence does not supply creat.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/creaky"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:it:creak"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "en",
+      "lemma_id": "lemma:716441382692fb57b4a4",
+      "word": "crease",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "crease",
+      "reason": "Independent fold/crease head, with no creation constituent.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/crease"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:en:ase",
+        "surface:en:creas"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "de",
+      "lemma_id": "lemma:76b7b5f4df05ef251f8d",
+      "word": "crease",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "crease",
+      "reason": "Independent fold/crease head, with no creation constituent.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/crease"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:ase",
+        "surface:de:creas"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "fr",
+      "lemma_id": "lemma:83d10902570c6ca7dba4",
+      "word": "crease",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "crease",
+      "reason": "Independent fold/crease head, with no creation constituent.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/crease"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:fr:ase",
+        "surface:fr:creas"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "it",
+      "lemma_id": "lemma:c724e0e1dfc9c4731311",
+      "word": "crease",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "crease",
+      "reason": "Independent fold/crease head, with no creation constituent.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/crease"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:it:ase",
+        "surface:it:creas"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "en",
+      "lemma_id": "lemma:998ee282ad118db434d3",
+      "word": "creed",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "creed",
+      "reason": "Independent belief/creed head; a possible proper-name reading is not evidence for creation either.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/creed"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "ety:37fc78608096",
+        "ety:2881ee4e4954"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "en",
+      "lemma_id": "lemma:ffd10338c9061dd7a842",
+      "word": "creeds",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "creed",
+      "reason": "Independent belief/creed head; a possible proper-name reading is not evidence for creation either.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/creed"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "ety:37fc78608096",
+        "ety:2881ee4e4954",
+        "surface:en:eds"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "de",
+      "lemma_id": "lemma:15c7a579ede11a92edd5",
+      "word": "creed",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "creed",
+      "reason": "Independent belief/creed head; a possible proper-name reading is not evidence for creation either.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/creed"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:creed"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "de",
+      "lemma_id": "lemma:39ecee21c110b1a93e65",
+      "word": "creeds",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "creed",
+      "reason": "Independent belief/creed head; a possible proper-name reading is not evidence for creation either.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/creed"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:creed"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "fr",
+      "lemma_id": "lemma:e068fb2d3dbaa35af937",
+      "word": "creed",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "creed",
+      "reason": "Independent belief/creed head; a possible proper-name reading is not evidence for creation either.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/creed"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:fr:creed"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "es",
+      "lemma_id": "lemma:93326ed83f0c12a12071",
+      "word": "creed",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "creed",
+      "reason": "Independent belief/creed head; a possible proper-name reading is not evidence for creation either.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/creed"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:es:creed"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "it",
+      "lemma_id": "lemma:41c100c7a4c04fcdf19f",
+      "word": "creed",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "creed",
+      "reason": "Independent belief/creed head; a possible proper-name reading is not evidence for creation either.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/creed"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:it:creed"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "it",
+      "lemma_id": "lemma:5683a0c6dfef08a6a0e0",
+      "word": "creeds",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "creed",
+      "reason": "Independent belief/creed head; a possible proper-name reading is not evidence for creation either.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/creed"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:it:cre"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "en",
+      "lemma_id": "lemma:0ffaef4fe8bc67e31001",
+      "word": "creel",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "creel",
+      "reason": "Independent basket/creel head; final l belongs to that head and is not a creation suffix.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/creel"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "ety:30bc32152b31",
+        "ety:38c7cb8c6dfb"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "de",
+      "lemma_id": "lemma:1b7866f94be68d901c3b",
+      "word": "creel",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "creel",
+      "reason": "Independent basket/creel head; final l belongs to that head and is not a creation suffix.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/creel"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:creel"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "de",
+      "lemma_id": "lemma:bb7f877fd12d31d27038",
+      "word": "creels",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "creel",
+      "reason": "Independent basket/creel head; final l belongs to that head and is not a creation suffix.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/creel"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:creel",
+        "surface:de:els"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "fr",
+      "lemma_id": "lemma:eb2fc739051cd5d176a8",
+      "word": "creel",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "creel",
+      "reason": "Independent basket/creel head; final l belongs to that head and is not a creation suffix.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/creel"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:fr:creel"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "es",
+      "lemma_id": "lemma:a7dda6ddd197c482c73c",
+      "word": "creel",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "creel",
+      "reason": "Independent basket/creel head; final l belongs to that head and is not a creation suffix.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/creel"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:es:creel"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "it",
+      "lemma_id": "lemma:6ec7d3759f49eb23a421",
+      "word": "creel",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "creel",
+      "reason": "Independent basket/creel head; final l belongs to that head and is not a creation suffix.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/creel"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:it:creel"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "en",
+      "lemma_id": "lemma:c387e5ab903a9849ae50",
+      "word": "acreage",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "acreage",
+      "reason": "Acre + acreage morphology; internal crea letters straddle the independent acre head and its suffix.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/acreage"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:en:acreag",
+        "ety:87714ac64e1d",
+        "ety:7e759a39cc61",
+        "ety:bf805b8884d6",
+        "ety:8db9e5439f56"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "fr",
+      "lemma_id": "lemma:449090fcbeba52770414",
+      "word": "acreage",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "acreage",
+      "reason": "Acre + acreage morphology; internal crea letters straddle the independent acre head and its suffix.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/acreage"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "ety:c3a97268f839",
+        "ety:87714ac64e1d",
+        "ety:7e759a39cc61",
+        "ety:bf805b8884d6",
+        "surface:fr:acreag",
+        "ety:8db9e5439f56"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "es",
+      "lemma_id": "lemma:23cb20aefb93aa5d0148",
+      "word": "acreage",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "acreage",
+      "reason": "Acre + acreage morphology; internal crea letters straddle the independent acre head and its suffix.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/acreage"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "ety:e69e3a0c5f0b",
+        "surface:es:acre"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "fr",
+      "lemma_id": "lemma:285f132f7d4bcfd0a144",
+      "word": "cancrelat",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "cancrelat",
+      "reason": "Independent cockroach word borrowed from Dutch kakkerlak; internal relat is not the relation head.",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9C0476"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:fr:relat",
+        "surface:fr:cre",
+        "surface:fr:cancr"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "it",
+      "lemma_id": "lemma:23cd471865049920397e",
+      "word": "prelazione",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "prelazione",
+      "reason": "Preference/pre-emption branch from praeferre/praelatus. The shared historical lation ending does not establish the modern relation component.",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/prelazione/"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "ety:8ef5f06ceb40",
+        "ety:dd07667af787",
+        "ety:474b418e1004",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "surface:it:prelazion",
+        "ety:58143b06b35a",
+        "ety:727be1d24fa1",
+        "ety:61108b488e06"
+      ],
+      "runtime_applied": false
+    }
+  ],
+  "counts": {
+    "creat": {
+      "en": {
+        "accepted": 68,
+        "excluded": 437,
+        "reviewed_exclusions": 8,
+        "reviewed_uncertain": 0,
+        "pending_review": 776,
+        "total": 1281
+      },
+      "de": {
+        "accepted": 174,
+        "excluded": 118,
+        "reviewed_exclusions": 8,
+        "reviewed_uncertain": 0,
+        "pending_review": 231,
+        "total": 523
+      },
+      "fr": {
+        "accepted": 70,
+        "excluded": 112,
+        "reviewed_exclusions": 6,
+        "reviewed_uncertain": 0,
+        "pending_review": 307,
+        "total": 489
+      },
+      "es": {
+        "accepted": 94,
+        "excluded": 315,
+        "reviewed_exclusions": 6,
+        "reviewed_uncertain": 0,
+        "pending_review": 775,
+        "total": 1184
+      },
+      "it": {
+        "accepted": 139,
+        "excluded": 3457,
+        "reviewed_exclusions": 5,
+        "reviewed_uncertain": 0,
+        "pending_review": 250,
+        "total": 3846
+      },
+      "ru": {
+        "accepted": 29,
+        "excluded": 23,
+        "reviewed_exclusions": 0,
+        "reviewed_uncertain": 0,
+        "pending_review": 17,
+        "total": 69
+      }
+    },
+    "relat": {
+      "en": {
+        "accepted": 169,
+        "excluded": 3,
+        "reviewed_exclusions": 0,
+        "reviewed_uncertain": 0,
+        "pending_review": 185,
+        "total": 357
+      },
+      "de": {
+        "accepted": 91,
+        "excluded": 0,
+        "reviewed_exclusions": 0,
+        "reviewed_uncertain": 0,
+        "pending_review": 20,
+        "total": 111
+      },
+      "fr": {
+        "accepted": 32,
+        "excluded": 52,
+        "reviewed_exclusions": 1,
+        "reviewed_uncertain": 0,
+        "pending_review": 49,
+        "total": 133
+      },
+      "es": {
+        "accepted": 127,
+        "excluded": 30,
+        "reviewed_exclusions": 0,
+        "reviewed_uncertain": 0,
+        "pending_review": 105,
+        "total": 262
+      },
+      "it": {
+        "accepted": 53,
+        "excluded": 3334,
+        "reviewed_exclusions": 1,
+        "reviewed_uncertain": 0,
+        "pending_review": 41,
+        "total": 3428
+      },
+      "ru": {
+        "accepted": 15,
+        "excluded": 41,
+        "reviewed_exclusions": 0,
+        "reviewed_uncertain": 0,
+        "pending_review": 9,
+        "total": 65
+      }
+    }
+  },
+  "limitations": [
+    "All decisions are confined to saved forms. No general substring or suffix rule.",
+    "Remaining historical uncertain rows are unreviewed, not investigated uncertainty.",
+    "Historical ledgers, source components, route ordering and runtime files are unchanged."
+  ]
+}
