@@ -107,3 +107,14 @@ Combined four-root pending is 7,478. Runtime accepted remains 574/487/1,595/569.
 The successful full npm runtime test log is `/tmp/interal-reflex-full-tests-complete.log`
 (until its separate validation archive is saved); exhaustive audit succeeded
 and refreshed `repository-static-integrity.json` with 10,049,743 memberships.
+
+## Additional foreign-form/context review
+
+The separate `reflex-foreign-forms-review-20261002` stage reviews 34 exact
+source records: three syntactic fusions excluded, and 31 dictionary-investigated
+foreign forms remain genuinely uncertain because only aggregate frequencies
+are available, without original sentences or sense labels. This does not certify
+foreign words as native realizations and changes no runtime records.
+Both source-conservation and independent reproduction tests pass without skips.
+Latest continuation: 6 applied accepted, 155 excluded, 48 investigated uncertain,
+553 pending. The latest pending queue is this stage's `pending-review.json`.

@@ -1,0 +1,24 @@
+{
+  "source_run_id": 35647932153,
+  "previous_stage": "audit/associative-family-v5/reflex-phrase-boundary-review-20261002",
+  "previous_pending_sha256": "9fc5af66e15ed98f58f78a1885894fc428752df62f57f6acdc40769c49d4d29f",
+  "source_candidate_sha256": "ce3cc11eb045a4fe9f77bf79239fc585a9a324231c8a6d5530606df1e5488cfb",
+  "reviewed_count": 34,
+  "new_counts": {
+    "uncertain": 31,
+    "excluded": 3
+  },
+  "continuation_counts": {
+    "accepted": 6,
+    "excluded": 155,
+    "uncertain": 48,
+    "pending_review": 553
+  },
+  "artifact_sha256": {
+    "decisions.json": "4714b73c865b527d35e5d3441aee5aceefb58d9c9183daa3423e38b6ac7aa337",
+    "pending-review.json": "6f4d60e7b86207211ea61a45d515504d33fcd1a9beeadafc113c6131d83ad2a8",
+    "source-records.json.gz": "35a601d620695d4566080efc8a0ed9603dd1be37ca568487e6c874a672f9e67b"
+  },
+  "runtime_changes": false,
+  "full_family_certification": false
+}
