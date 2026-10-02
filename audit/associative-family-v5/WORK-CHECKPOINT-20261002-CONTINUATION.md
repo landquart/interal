@@ -191,3 +191,21 @@ Latest continuation: 24 accepted (6 applied + 18 unapplied), 161 excluded,
 50 genuine uncertain, 527 pending. Runtime remains observ 298 / inform 1,448.
 Resume from this pending queue and combine the two new accepted ledgers
 for the next guarded additive application. Do not repeat the applied six.
+
+## Eighteen-record independent preflight
+
+`reflex-heads-materialization-20261002/materialization-ledger.json` freezes
+18 accepted records from the two latest reviews, current families, complete
+ordered member prefixes, every source route, source hashes, metadata hashes,
+all affected old shard checksums and the digest of every unaffected file.
+The expected additive result is observ 309 / inform 1,455. Alias/family delta
+and removed memberships are zero. Runtime is still unchanged in this stage.
+
+Prepare/apply script: materialize-associative-reflex-heads-20261002.mjs.
+It requires an explicit current HEAD and refuses repeat application.
+The new audit checks the latest extension independently. Older ledgers see
+their exact previous shard bytes reconstructed with the frozen old checksum,
+so prior preservation checks are composed instead of loosened.
+Nine preflight tests pass; only the not-yet-applied audit is skipped. After
+this preflight is committed, apply once with the new HEAD and then require
+all targeted application tests, the complete suite and exhaustive audit.

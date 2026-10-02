@@ -1,3 +1,4 @@
+import {auditContinuation as auditHeadExtension} from '../scripts/lib/associative-reflex-heads-extension-audit.mjs';
 import assert from 'node:assert/strict';
 import {test} from 'node:test';
 import {createHash} from 'node:crypto';
@@ -6,7 +7,9 @@ import {gunzipSync} from 'node:zlib';
 import {FamilyIndexLoader} from '../associativvordes/js/family-index-loader.js';
 import {createCandidateIndexLoader} from '../associativvordes/js/candidate-index-loader.js';
 import {auditContinuation} from '../scripts/lib/associative-reflex-continuation-audit.mjs';
-const extension=await auditContinuation('associativvordes/family-index-v5');
+const priorExtension=await auditContinuation('associativvordes/family-index-v5');
+const headExtension=await auditHeadExtension('associativvordes/family-index-v5');
+const extension={additions:[...(priorExtension?.additions||[]),...(headExtension?.additions||[])]};
 const read=async p=>JSON.parse((p.endsWith('.gz')?gunzipSync(await readFile(p)):await readFile(p)).toString());
 const treeLoader=()=>new FamilyIndexLoader({baseUrl:'associativvordes/family-index-v5',fetchJson:read});
 const ledger=()=>read('audit/associative-family-v5/information-decisions-20260930.json');

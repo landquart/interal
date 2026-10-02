@@ -1,29 +1,23 @@
-import {preHeadExtensionShard,readBeforeHeadExtensionFile} from './associative-reflex-heads-extension-audit.mjs';
 import assert from 'node:assert/strict';
 import { readFile, readdir } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
-import { gunzipSync } from 'node:zlib';
+import { gunzipSync, gzipSync } from 'node:zlib';
 import { familyBucket } from '../../associativvordes/js/family-index-loader.js';
 
-export const continuationRepair='extend_reviewed_observ_inform_20261002';
-export const continuationPath='audit/associative-family-v5/reflex-continuation-materialization-20261002';
+export const continuationRepair='extend_reviewed_observ_inform_heads_20261002';
+export const continuationPath='audit/associative-family-v5/reflex-heads-materialization-20261002';
 export const continuationLedger=continuationPath+'/materialization-ledger.json';
-export const reviewPath='audit/associative-family-v5/reflex-continuation-20261002';
-export const readJson=async p=>{
- const marker=p.includes('/families/')?'/families/':p.includes('/members/')?'/members/':null;
- const root=marker?p.slice(0,p.indexOf(marker)):null;
- const raw=root?await readBeforeHeadExtensionFile(root,p.slice(root.length+1)):await readFile(p);
- return JSON.parse((p.endsWith('.gz')?gunzipSync(raw):raw).toString());
-};
+export const reviewPaths=['audit/associative-family-v5/reflex-attested-heads-review-20261002','audit/associative-family-v5/reflex-spanish-enclitics-review-20261002'];
+export const readJson=async p=>JSON.parse((p.endsWith('.gz')?gunzipSync(await readFile(p)):await readFile(p)).toString());
 export const sha=b=>createHash('sha256').update(b).digest('hex');
 export const digest=v=>sha(JSON.stringify(v));
 export const evidence=()=>({type:'manual_override',source:continuationLedger,whole_lemma_union:false,language_reflex:true,full_family_certification:false});
 export function appendedMember(original,row){
  const {source_family_ids,...clean}=original;
  const member=structuredClone(clean);
- member.components=[...(member.components||[]),{surface:row.canonical_root==='observ'&&row.language==='it'?'osserv':row.canonical_root,
+ member.components=[...(member.components||[]),{surface:row.language==='ru'?(row.canonical_root==='observ'?'обсерв':'информ'):(row.canonical_root==='observ'&&row.language==='it'?'osserv':row.canonical_root),
    canonical_candidate:row.canonical_root,confidence:0.95,evidence:[{type:'manual_override',source:continuationLedger,
-   relation_type:'compound_component',language_reflex:true,lexical_head:row.lexical_head,analysis:row.reason,source_references:row.source_references}]}];
+   relation_type:'compound_component',language_reflex:true,lexical_head:row.lexical_head||row.segmentation_or_lexical_identity,analysis:row.reason,source_references:row.source_references}]}];
  return member;
 }
 export function resultingFamily(before,rows){
@@ -39,7 +33,7 @@ export async function untouchedFilesDigest(root,excluded){
   for(const e of (await readdir(root+'/'+dir,{withFileTypes:true})).sort((a,b)=>a.name.localeCompare(b.name,'en'))){
    const rel=(dir?dir+'/':'')+e.name;
    if(e.isDirectory()) await walk(rel);
-   else if(!excluded.includes(rel)) entries.push([rel,sha(await readBeforeHeadExtensionFile(root,rel))]);
+   else if(!excluded.includes(rel)) entries.push([rel,sha(await readFile(root+'/'+rel))]);
   }
  }
  await walk('');return digest(entries);
@@ -47,7 +41,6 @@ export async function untouchedFilesDigest(root,excluded){
 // Reconstruct the before-extension shard for historical preservation proofs.
 // Current extension integrity is independently checked by auditContinuation.
 export async function preReflexContinuationShard(shard,part,bucket,root='associativvordes/family-index-v5'){
- shard=await preHeadExtensionShard(shard,part,bucket,root);
  const provenance=await readJson(root+'/repository-provenance.json');
  if(!provenance.repository_repairs.some(r=>r.repair===continuationRepair))return shard;
  const ledger=await readJson(continuationLedger);
@@ -68,14 +61,14 @@ export async function auditContinuation(root){
  if(!repair)return null;
  const bytes=await readFile(continuationLedger),ledger=JSON.parse(bytes);
  assert.equal(repair.decision_ledger_sha256,sha(bytes));
- assert.equal(repair.added_memberships,6);assert.equal(repair.removed_memberships,0);
+ assert.equal(repair.added_memberships,18);assert.equal(repair.removed_memberships,0);
  const status=await readJson(continuationPath+'/materialization-status.json');
  assert.equal(status.runtime_applied,true);assert.equal(status.full_family_certification,false);
  assert.deepEqual(status.repair_delta,repair);
  for(const [p,hash]of Object.entries(ledger.source_hashes))assert.equal(sha(await readFile(p)),hash,p);
- const review=await readJson(reviewPath+'/decisions.json');
- assert.deepEqual(ledger.additions,review.decisions.filter(r=>r.status==='accepted'));
- const proof=(await readJson(reviewPath+'/source-records.json.gz')).records;
+ const reviews=await Promise.all(reviewPaths.map(p=>readJson(p+'/decisions.json')));
+ assert.deepEqual(ledger.additions,reviews.flatMap(r=>r.decisions.filter(d=>d.status==='accepted')));
+ const proof=(await Promise.all(reviewPaths.map(p=>readJson(p+'/source-records.json.gz')))).flatMap(p=>p.records);
  const source=new Map(proof.map(r=>[r.language+'\0'+r.member.lemma_id,r.member]));
  const languages=['en','de','fr','es','it','ru'];
  for(const [id,before]of Object.entries(ledger.before_families)){
@@ -104,4 +97,35 @@ export async function auditContinuation(root){
  }
  assert.equal(await untouchedFilesDigest(root,ledger.expected_written_files),ledger.untouched_files_sha256);
  return ledger;
+}
+
+const appliedViews=new Map();
+async function headState(root){
+ if(!appliedViews.has(root)){
+  const provenance=await readJson(root+'/repository-provenance.json');
+  appliedViews.set(root,provenance.repository_repairs.some(r=>r.repair===continuationRepair)?await readJson(continuationLedger):null);
+ }
+ return appliedViews.get(root);
+}
+export async function preHeadExtensionShard(shard,part,bucket,root='associativvordes/family-index-v5'){
+ const ledger=await headState(root);if(!ledger)return shard;
+ for(const [id,before]of Object.entries(ledger.before_families)){
+  if(familyBucket(id)!==bucket)continue;
+  if(part==='families')shard[id]=structuredClone(before);
+  else if(part.startsWith('members/')){
+   const language=part.slice(8),prefix=ledger.before_members[id][language];
+   assert.equal(digest((shard[id]||[]).slice(0,prefix.count)),prefix.ordered_sha256);
+   if(prefix.existed)shard[id]=shard[id].slice(0,prefix.count);else delete shard[id];
+  }
+ }
+ return shard;
+}
+export async function readBeforeHeadExtensionFile(root,relative){
+ const raw=await readFile(root+'/'+relative),ledger=await headState(root);
+ if(!ledger||!relative.endsWith('.json.gz')||!ledger.expected_written_files.includes(relative))return raw;
+ const part=relative.slice(0,relative.lastIndexOf('/')),bucket=relative.slice(relative.lastIndexOf('/')+1,-8);
+ const shard=await preHeadExtensionShard(JSON.parse(gunzipSync(raw)),part,bucket,root);
+ const prior=gzipSync(JSON.stringify(shard),{level:6});
+ assert.equal(sha(prior),ledger.runtime_preflight_sha256[relative],'Exact historical shard reconstruction failed: '+relative);
+ return prior;
 }
