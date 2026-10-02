@@ -138,3 +138,16 @@ Resume from the newest validation checkpoint, compose these deltas over the
 immutable old ledgers, and review remaining exact forms. The broader nat/loc/inter,
 Russian short-key and fifteen-val-route frames still require work. Do not treat
 this multi-root review as linguistic completion and do not reapply act materializers.
+
+## Final validation of this four-root continuation
+
+Both reviews are durable: df43c75392c170b3cfffda6ae4b635581d9613c8 and
+e8645e8001e62af1198b7408860f8b5f9fe86cd2. The full sequential `npm test`
+passed, including the four new complete-frame, exact source-record and
+byte-identical reproduction checks. All 27,861 original candidate IDs are
+conserved. The 235 new exclusions leave 7,509 pending across these four roots.
+The latest machine-readable status, tested-code hashes and compressed full
+test log are in `multiple-roots-validation-20261002/validation.json`. Runtime
+files are unchanged from c48c37a9; the existing exhaustive runtime audit remains
+applicable. Read this section and the machine status when resuming; earlier
+application-time validation-pending notes are historical snapshots.

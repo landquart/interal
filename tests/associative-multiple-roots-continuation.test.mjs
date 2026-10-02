@@ -38,6 +38,9 @@ for (const [stage, expected] of [['creation-relation',35],['operation-mutation',
       for(const [language,roots] of Object.entries(old.decisions)){
         const rows=roots[root];
         const members=new Map(source[language][root].map(r=>[r.lemma_id,r]));
+        assert.equal(members.size,source[language][root].length);
+        assert.equal(rows.length,members.size);
+        assert.deepEqual(new Set(rows.map(r=>r.lemma_id)),new Set(members.keys()));
         let n=0;
         for(const r of rows){
           const tagged={root,language,...r};
