@@ -4,7 +4,7 @@ Current state: 31 reviewed continuation memberships applied (six earlier,
 18 in the first extension and seven rare native heads). Latest support:
 observ 311 / inform 1,460. All 10 targeted application tests passed, no failures
 or skips. Full validation of this runtime stage is next. Latest immutable
-review queue: 309 pending, 119 investigated uncertain, 303 excluded;
+review queue: 278 pending, 119 investigated uncertain, 334 excluded;
 zero accepted awaiting application. Earlier sections below are dated history.
 Latest relation overlay: `relation-phrase-boundaries-20261002` (325 pending).
 Resume from the stage-specific inventories,
@@ -328,3 +328,10 @@ All seven memberships were appended without removal, alias or family-container
 changes. The original six-record and 18-record audits verify their historical
 byte prefixes through the explicit finite seven-record overlay. Application
 tests pass 10/10, zero skips. Do not repeat materialization.
+
+## Finite accent and orthographic contrasts — 2026-10-02
+
+31 exact Spanish, Italian and French malformed spellings are excluded in
+`reflex-accent-defects-review-20261002-1945`. Original corpus bytes and routes
+are unchanged. Historical/apocopated/dialect controls remain pending. Two
+conservation and byte-reproduction tests pass with zero skips.

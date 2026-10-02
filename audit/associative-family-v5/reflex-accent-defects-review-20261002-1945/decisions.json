@@ -1,0 +1,722 @@
+{
+  "schema_version": 1,
+  "source_run_id": 35647932153,
+  "inputs": {
+    "spec_path": "audit/associative-family-v5/reflex-accent-defects-review-20261002-1945/review-spec.json",
+    "spec_sha256": "0d46e7c0af3c1b401838ff4499a6f6bd3935544cd084be9a2d9e1c7d496dd165",
+    "previous_pending_path": "audit/associative-family-v5/reflex-rare-native-heads-review-20261002-1915/pending-review.json",
+    "previous_pending_sha256": "d67fbf932c0147e40d1979a03ba18ef87e268d60d5896d23905626be54ec0913",
+    "previous_inventory_path": "audit/associative-family-v5/reflex-rare-native-heads-review-20261002-1915/inventory.json",
+    "previous_inventory_sha256": "1c3be18f940dd9c7fe10c86d8e7e3a28c93959180b5725cc71c04da56110cf54",
+    "source_candidate_path": "audit/associative-family-v5/reflex-checkpoint-20261001/candidates.json.gz",
+    "source_candidate_sha256": "ce3cc11eb045a4fe9f77bf79239fc585a9a324231c8a6d5530606df1e5488cfb"
+  },
+  "source_candidate_sha256": "ce3cc11eb045a4fe9f77bf79239fc585a9a324231c8a6d5530606df1e5488cfb",
+  "previous_pending_sha256": "d67fbf932c0147e40d1979a03ba18ef87e268d60d5896d23905626be54ec0913",
+  "decisions": [
+    {
+      "lemma_id": "lemma:37a3603e1483d09c30ba",
+      "word": "obsérva",
+      "status": "excluded",
+      "reason": "The exact token obsérva places or omits the written accent incompatibly with the regular Spanish head and its stress. Diagnostic counterpart observa is a finite reviewer analysis, using the DLE paradigm and RAE whole-word accentuation for enclitic forms; it never replaces the source token. The noun/adjective and verbal homonyms of informe share unaccented spelling, so this spelling decision does not resolve or conflate their senses. Voseo forms, historical -stes and observed dialect spellings outside this exact list are untouched.",
+      "source_family_ids": [
+        "surface:es:observa"
+      ],
+      "language": "es",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "observa",
+      "segmentation_or_lexical_identity": "Exact orthographic contrast: obsérva / observa",
+      "source_references": [
+        "https://dle.rae.es/informar",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/espanol-al-dia/tilde-en-las-formas-verbales-con-pronombres-atonos-deme-estate-mirandolo-etc"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:f7c1b0df91c09ec88313",
+      "word": "observáble",
+      "status": "excluded",
+      "reason": "The exact token observáble places or omits the written accent incompatibly with the regular Spanish head and its stress. Diagnostic counterpart observable is a finite reviewer analysis, using the DLE paradigm and RAE whole-word accentuation for enclitic forms; it never replaces the source token. The noun/adjective and verbal homonyms of informe share unaccented spelling, so this spelling decision does not resolve or conflate their senses. Voseo forms, historical -stes and observed dialect spellings outside this exact list are untouched.",
+      "source_family_ids": [
+        "surface:es:observa",
+        "surface:es:ble"
+      ],
+      "language": "es",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "observable",
+      "segmentation_or_lexical_identity": "Exact orthographic contrast: observáble / observable",
+      "source_references": [
+        "https://dle.rae.es/informar",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/espanol-al-dia/tilde-en-las-formas-verbales-con-pronombres-atonos-deme-estate-mirandolo-etc",
+        "https://dle.rae.es/observable"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:482581b25ddd36847deb",
+      "word": "obsérvadme",
+      "status": "excluded",
+      "reason": "The exact token obsérvadme places or omits the written accent incompatibly with the regular Spanish head and its stress. Diagnostic counterpart observadme is a finite reviewer analysis, using the DLE paradigm and RAE whole-word accentuation for enclitic forms; it never replaces the source token. The noun/adjective and verbal homonyms of informe share unaccented spelling, so this spelling decision does not resolve or conflate their senses. Voseo forms, historical -stes and observed dialect spellings outside this exact list are untouched.",
+      "source_family_ids": [
+        "surface:es:observa",
+        "surface:es:adme"
+      ],
+      "language": "es",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "observadme",
+      "segmentation_or_lexical_identity": "Exact orthographic contrast: obsérvadme / observadme",
+      "source_references": [
+        "https://dle.rae.es/informar",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/espanol-al-dia/tilde-en-las-formas-verbales-con-pronombres-atonos-deme-estate-mirandolo-etc"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:d268c1d36d2a044826a6",
+      "word": "observándo",
+      "status": "excluded",
+      "reason": "The exact token observándo places or omits the written accent incompatibly with the regular Spanish head and its stress. Diagnostic counterpart observando is a finite reviewer analysis, using the DLE paradigm and RAE whole-word accentuation for enclitic forms; it never replaces the source token. The noun/adjective and verbal homonyms of informe share unaccented spelling, so this spelling decision does not resolve or conflate their senses. Voseo forms, historical -stes and observed dialect spellings outside this exact list are untouched.",
+      "source_family_ids": [
+        "surface:es:observando"
+      ],
+      "language": "es",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "observando",
+      "segmentation_or_lexical_identity": "Exact orthographic contrast: observándo / observando",
+      "source_references": [
+        "https://dle.rae.es/informar",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/espanol-al-dia/tilde-en-las-formas-verbales-con-pronombres-atonos-deme-estate-mirandolo-etc"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:cecf779c4855b52cc08f",
+      "word": "observarón",
+      "status": "excluded",
+      "reason": "The exact token observarón places or omits the written accent incompatibly with the regular Spanish head and its stress. Diagnostic counterpart observaron is a finite reviewer analysis, using the DLE paradigm and RAE whole-word accentuation for enclitic forms; it never replaces the source token. The noun/adjective and verbal homonyms of informe share unaccented spelling, so this spelling decision does not resolve or conflate their senses. Voseo forms, historical -stes and observed dialect spellings outside this exact list are untouched.",
+      "source_family_ids": [
+        "ety:2dc5f15bdd51",
+        "surface:es:observa",
+        "ety:180e2bdaffa5"
+      ],
+      "language": "es",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "observaron",
+      "segmentation_or_lexical_identity": "Exact orthographic contrast: observarón / observaron",
+      "source_references": [
+        "https://dle.rae.es/informar",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/espanol-al-dia/tilde-en-las-formas-verbales-con-pronombres-atonos-deme-estate-mirandolo-etc"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:791d2607336a0198fa30",
+      "word": "observénlos",
+      "status": "excluded",
+      "reason": "The exact token observénlos places or omits the written accent incompatibly with the regular Spanish head and its stress. Diagnostic counterpart obsérvenlos is a finite reviewer analysis, using the DLE paradigm and RAE whole-word accentuation for enclitic forms; it never replaces the source token. The noun/adjective and verbal homonyms of informe share unaccented spelling, so this spelling decision does not resolve or conflate their senses. Voseo forms, historical -stes and observed dialect spellings outside this exact list are untouched.",
+      "source_family_ids": [
+        "surface:es:observenl"
+      ],
+      "language": "es",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "obsérvenlos",
+      "segmentation_or_lexical_identity": "Exact orthographic contrast: observénlos / obsérvenlos",
+      "source_references": [
+        "https://dle.rae.es/informar",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/espanol-al-dia/tilde-en-las-formas-verbales-con-pronombres-atonos-deme-estate-mirandolo-etc"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:2716d1bd6a6718684746",
+      "word": "ínforma",
+      "status": "excluded",
+      "reason": "The exact token ínforma places or omits the written accent incompatibly with the regular Spanish head and its stress. Diagnostic counterpart informa is a finite reviewer analysis, using the DLE paradigm and RAE whole-word accentuation for enclitic forms; it never replaces the source token. The noun/adjective and verbal homonyms of informe share unaccented spelling, so this spelling decision does not resolve or conflate their senses. Voseo forms, historical -stes and observed dialect spellings outside this exact list are untouched.",
+      "source_family_ids": [
+        "surface:es:informa"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "informa",
+      "segmentation_or_lexical_identity": "Exact orthographic contrast: ínforma / informa",
+      "source_references": [
+        "https://dle.rae.es/informar",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/espanol-al-dia/tilde-en-las-formas-verbales-con-pronombres-atonos-deme-estate-mirandolo-etc"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:6b216b6e62e7ddf0721e",
+      "word": "informadó",
+      "status": "excluded",
+      "reason": "The exact token informadó places or omits the written accent incompatibly with the regular Spanish head and its stress. Diagnostic counterpart informado is a finite reviewer analysis, using the DLE paradigm and RAE whole-word accentuation for enclitic forms; it never replaces the source token. The noun/adjective and verbal homonyms of informe share unaccented spelling, so this spelling decision does not resolve or conflate their senses. Voseo forms, historical -stes and observed dialect spellings outside this exact list are untouched.",
+      "source_family_ids": [
+        "surface:es:mado",
+        "surface:es:informad"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "informado",
+      "segmentation_or_lexical_identity": "Exact orthographic contrast: informadó / informado",
+      "source_references": [
+        "https://dle.rae.es/informar",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/espanol-al-dia/tilde-en-las-formas-verbales-con-pronombres-atonos-deme-estate-mirandolo-etc"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:e6e2863d1ee4da573433",
+      "word": "ínformal",
+      "status": "excluded",
+      "reason": "The exact token ínformal places or omits the written accent incompatibly with the regular Spanish head and its stress. Diagnostic counterpart informal is a finite reviewer analysis, using the DLE paradigm and RAE whole-word accentuation for enclitic forms; it never replaces the source token. The noun/adjective and verbal homonyms of informe share unaccented spelling, so this spelling decision does not resolve or conflate their senses. Voseo forms, historical -stes and observed dialect spellings outside this exact list are untouched.",
+      "source_family_ids": [
+        "surface:es:informal"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "informal",
+      "segmentation_or_lexical_identity": "Exact orthographic contrast: ínformal / informal",
+      "source_references": [
+        "https://dle.rae.es/informar",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/espanol-al-dia/tilde-en-las-formas-verbales-con-pronombres-atonos-deme-estate-mirandolo-etc",
+        "https://dle.rae.es/informal"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:5a3ba1ae54ec371faa17",
+      "word": "informándo",
+      "status": "excluded",
+      "reason": "The exact token informándo places or omits the written accent incompatibly with the regular Spanish head and its stress. Diagnostic counterpart informando is a finite reviewer analysis, using the DLE paradigm and RAE whole-word accentuation for enclitic forms; it never replaces the source token. The noun/adjective and verbal homonyms of informe share unaccented spelling, so this spelling decision does not resolve or conflate their senses. Voseo forms, historical -stes and observed dialect spellings outside this exact list are untouched.",
+      "source_family_ids": [
+        "surface:es:informand",
+        "surface:es:mando"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "informando",
+      "segmentation_or_lexical_identity": "Exact orthographic contrast: informándo / informando",
+      "source_references": [
+        "https://dle.rae.es/informar",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/espanol-al-dia/tilde-en-las-formas-verbales-con-pronombres-atonos-deme-estate-mirandolo-etc"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:b7a51cc73c3c688d135f",
+      "word": "infórmandonos",
+      "status": "excluded",
+      "reason": "The exact token infórmandonos places or omits the written accent incompatibly with the regular Spanish head and its stress. Diagnostic counterpart informándonos is a finite reviewer analysis, using the DLE paradigm and RAE whole-word accentuation for enclitic forms; it never replaces the source token. The noun/adjective and verbal homonyms of informe share unaccented spelling, so this spelling decision does not resolve or conflate their senses. Voseo forms, historical -stes and observed dialect spellings outside this exact list are untouched.",
+      "source_family_ids": [
+        "surface:es:informandon",
+        "surface:es:donos"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "informándonos",
+      "segmentation_or_lexical_identity": "Exact orthographic contrast: infórmandonos / informándonos",
+      "source_references": [
+        "https://dle.rae.es/informar",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/espanol-al-dia/tilde-en-las-formas-verbales-con-pronombres-atonos-deme-estate-mirandolo-etc"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:b46ab67872179271b75c",
+      "word": "informandoselo",
+      "status": "excluded",
+      "reason": "The exact token informandoselo places or omits the written accent incompatibly with the regular Spanish head and its stress. Diagnostic counterpart informándoselo is a finite reviewer analysis, using the DLE paradigm and RAE whole-word accentuation for enclitic forms; it never replaces the source token. The noun/adjective and verbal homonyms of informe share unaccented spelling, so this spelling decision does not resolve or conflate their senses. Voseo forms, historical -stes and observed dialect spellings outside this exact list are untouched.",
+      "source_family_ids": [
+        "surface:es:informandosel"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "informándoselo",
+      "segmentation_or_lexical_identity": "Exact orthographic contrast: informandoselo / informándoselo",
+      "source_references": [
+        "https://dle.rae.es/informar",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/espanol-al-dia/tilde-en-las-formas-verbales-con-pronombres-atonos-deme-estate-mirandolo-etc"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:b3d18e109c538b2d0616",
+      "word": "infórmarle",
+      "status": "excluded",
+      "reason": "The exact token infórmarle places or omits the written accent incompatibly with the regular Spanish head and its stress. Diagnostic counterpart informarle is a finite reviewer analysis, using the DLE paradigm and RAE whole-word accentuation for enclitic forms; it never replaces the source token. The noun/adjective and verbal homonyms of informe share unaccented spelling, so this spelling decision does not resolve or conflate their senses. Voseo forms, historical -stes and observed dialect spellings outside this exact list are untouched.",
+      "source_family_ids": [
+        "surface:es:informa"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "informarle",
+      "segmentation_or_lexical_identity": "Exact orthographic contrast: infórmarle / informarle",
+      "source_references": [
+        "https://dle.rae.es/informar",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/espanol-al-dia/tilde-en-las-formas-verbales-con-pronombres-atonos-deme-estate-mirandolo-etc"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:a3c59d9cffef5aad002c",
+      "word": "ínformarle",
+      "status": "excluded",
+      "reason": "The exact token ínformarle places or omits the written accent incompatibly with the regular Spanish head and its stress. Diagnostic counterpart informarle is a finite reviewer analysis, using the DLE paradigm and RAE whole-word accentuation for enclitic forms; it never replaces the source token. The noun/adjective and verbal homonyms of informe share unaccented spelling, so this spelling decision does not resolve or conflate their senses. Voseo forms, historical -stes and observed dialect spellings outside this exact list are untouched.",
+      "source_family_ids": [
+        "surface:es:informa"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "informarle",
+      "segmentation_or_lexical_identity": "Exact orthographic contrast: ínformarle / informarle",
+      "source_references": [
+        "https://dle.rae.es/informar",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/espanol-al-dia/tilde-en-las-formas-verbales-con-pronombres-atonos-deme-estate-mirandolo-etc"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:2d944f46e08782f9ed15",
+      "word": "informáste",
+      "status": "excluded",
+      "reason": "The exact token informáste places or omits the written accent incompatibly with the regular Spanish head and its stress. Diagnostic counterpart informaste is a finite reviewer analysis, using the DLE paradigm and RAE whole-word accentuation for enclitic forms; it never replaces the source token. The noun/adjective and verbal homonyms of informe share unaccented spelling, so this spelling decision does not resolve or conflate their senses. Voseo forms, historical -stes and observed dialect spellings outside this exact list are untouched.",
+      "source_family_ids": [
+        "surface:es:ste",
+        "surface:es:informa"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "informaste",
+      "segmentation_or_lexical_identity": "Exact orthographic contrast: informáste / informaste",
+      "source_references": [
+        "https://dle.rae.es/informar",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/espanol-al-dia/tilde-en-las-formas-verbales-con-pronombres-atonos-deme-estate-mirandolo-etc"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:c85167a0b09af0064415",
+      "word": "informátivo",
+      "status": "excluded",
+      "reason": "The exact token informátivo places or omits the written accent incompatibly with the regular Spanish head and its stress. Diagnostic counterpart informativo is a finite reviewer analysis, using the DLE paradigm and RAE whole-word accentuation for enclitic forms; it never replaces the source token. The noun/adjective and verbal homonyms of informe share unaccented spelling, so this spelling decision does not resolve or conflate their senses. Voseo forms, historical -stes and observed dialect spellings outside this exact list are untouched.",
+      "source_family_ids": [
+        "surface:es:informativ"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "informativo",
+      "segmentation_or_lexical_identity": "Exact orthographic contrast: informátivo / informativo",
+      "source_references": [
+        "https://dle.rae.es/informar",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/espanol-al-dia/tilde-en-las-formas-verbales-con-pronombres-atonos-deme-estate-mirandolo-etc",
+        "https://dle.rae.es/informativo"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:2e99e6542e9e3e608e4b",
+      "word": "infórme",
+      "status": "excluded",
+      "reason": "The exact token infórme places or omits the written accent incompatibly with the regular Spanish head and its stress. Diagnostic counterpart informe is a finite reviewer analysis, using the DLE paradigm and RAE whole-word accentuation for enclitic forms; it never replaces the source token. The noun/adjective and verbal homonyms of informe share unaccented spelling, so this spelling decision does not resolve or conflate their senses. Voseo forms, historical -stes and observed dialect spellings outside this exact list are untouched.",
+      "source_family_ids": [
+        "surface:es:informe"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "informe",
+      "segmentation_or_lexical_identity": "Exact orthographic contrast: infórme / informe",
+      "source_references": [
+        "https://dle.rae.es/informar",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/espanol-al-dia/tilde-en-las-formas-verbales-con-pronombres-atonos-deme-estate-mirandolo-etc"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:51ec472a5c7286137a42",
+      "word": "ínforme",
+      "status": "excluded",
+      "reason": "The exact token ínforme places or omits the written accent incompatibly with the regular Spanish head and its stress. Diagnostic counterpart informe is a finite reviewer analysis, using the DLE paradigm and RAE whole-word accentuation for enclitic forms; it never replaces the source token. The noun/adjective and verbal homonyms of informe share unaccented spelling, so this spelling decision does not resolve or conflate their senses. Voseo forms, historical -stes and observed dialect spellings outside this exact list are untouched.",
+      "source_family_ids": [
+        "surface:es:informe"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "informe",
+      "segmentation_or_lexical_identity": "Exact orthographic contrast: ínforme / informe",
+      "source_references": [
+        "https://dle.rae.es/informar",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/espanol-al-dia/tilde-en-las-formas-verbales-con-pronombres-atonos-deme-estate-mirandolo-etc"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:4003d311b5477c83241a",
+      "word": "infórmen",
+      "status": "excluded",
+      "reason": "The exact token infórmen places or omits the written accent incompatibly with the regular Spanish head and its stress. Diagnostic counterpart informen is a finite reviewer analysis, using the DLE paradigm and RAE whole-word accentuation for enclitic forms; it never replaces the source token. The noun/adjective and verbal homonyms of informe share unaccented spelling, so this spelling decision does not resolve or conflate their senses. Voseo forms, historical -stes and observed dialect spellings outside this exact list are untouched.",
+      "source_family_ids": [
+        "surface:es:informen"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "informen",
+      "segmentation_or_lexical_identity": "Exact orthographic contrast: infórmen / informen",
+      "source_references": [
+        "https://dle.rae.es/informar",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/espanol-al-dia/tilde-en-las-formas-verbales-con-pronombres-atonos-deme-estate-mirandolo-etc"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:562988315f0b2e4e506c",
+      "word": "informénme",
+      "status": "excluded",
+      "reason": "The exact token informénme places or omits the written accent incompatibly with the regular Spanish head and its stress. Diagnostic counterpart infórmenme is a finite reviewer analysis, using the DLE paradigm and RAE whole-word accentuation for enclitic forms; it never replaces the source token. The noun/adjective and verbal homonyms of informe share unaccented spelling, so this spelling decision does not resolve or conflate their senses. Voseo forms, historical -stes and observed dialect spellings outside this exact list are untouched.",
+      "source_family_ids": [
+        "surface:es:informe"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "infórmenme",
+      "segmentation_or_lexical_identity": "Exact orthographic contrast: informénme / infórmenme",
+      "source_references": [
+        "https://dle.rae.es/informar",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/espanol-al-dia/tilde-en-las-formas-verbales-con-pronombres-atonos-deme-estate-mirandolo-etc"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:6812850b2eb519706f4c",
+      "word": "informenos",
+      "status": "excluded",
+      "reason": "The exact token informenos places or omits the written accent incompatibly with the regular Spanish head and its stress. Diagnostic counterpart infórmenos is a finite reviewer analysis, using the DLE paradigm and RAE whole-word accentuation for enclitic forms; it never replaces the source token. The noun/adjective and verbal homonyms of informe share unaccented spelling, so this spelling decision does not resolve or conflate their senses. Voseo forms, historical -stes and observed dialect spellings outside this exact list are untouched.",
+      "source_family_ids": [
+        "surface:es:informen"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "infórmenos",
+      "segmentation_or_lexical_identity": "Exact orthographic contrast: informenos / infórmenos",
+      "source_references": [
+        "https://dle.rae.es/informar",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/espanol-al-dia/tilde-en-las-formas-verbales-con-pronombres-atonos-deme-estate-mirandolo-etc"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:0121f4bbc9179dc16e8f",
+      "word": "informemé",
+      "status": "excluded",
+      "reason": "The exact token informemé places or omits the written accent incompatibly with the regular Spanish head and its stress. Diagnostic counterpart infórmeme is a finite reviewer analysis, using the DLE paradigm and RAE whole-word accentuation for enclitic forms; it never replaces the source token. The noun/adjective and verbal homonyms of informe share unaccented spelling, so this spelling decision does not resolve or conflate their senses. Voseo forms, historical -stes and observed dialect spellings outside this exact list are untouched.",
+      "source_family_ids": [
+        "surface:es:eme",
+        "surface:es:inform"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "infórmeme",
+      "segmentation_or_lexical_identity": "Exact orthographic contrast: informemé / infórmeme",
+      "source_references": [
+        "https://dle.rae.es/informar",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/espanol-al-dia/tilde-en-las-formas-verbales-con-pronombres-atonos-deme-estate-mirandolo-etc"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:82bf16325e4a4943b69d",
+      "word": "lnosservanza",
+      "status": "excluded",
+      "reason": "This exact token lnosservanza corrupts the recognizable Italian form inosservanza: letter omission/substitution or misplaced accent. Finite diagnostic comparison only, without rewriting the corpus. Historical osservazzione/informazzione and apocopated osservator/informazion are deliberately outside this decision; their lexical status cannot be settled by modern spelling distance.",
+      "source_family_ids": [
+        "surface:it:lnosservanz",
+        "surface:it:anza"
+      ],
+      "language": "it",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "inosservanza",
+      "segmentation_or_lexical_identity": "Exact malformed Italian token: lnosservanza; diagnostic head/form inosservanza",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/inosservanza/",
+        "https://www.treccani.it/vocabolario/osservazione/",
+        "https://www.treccani.it/vocabolario/informazione/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:a2aced5bccdab90248cc",
+      "word": "osservazìone",
+      "status": "excluded",
+      "reason": "This exact token osservazìone corrupts the recognizable Italian form osservazione: letter omission/substitution or misplaced accent. Finite diagnostic comparison only, without rewriting the corpus. Historical osservazzione/informazzione and apocopated osservator/informazion are deliberately outside this decision; their lexical status cannot be settled by modern spelling distance.",
+      "source_family_ids": [
+        "ety:8ef5f06ceb40",
+        "ety:dd07667af787",
+        "ety:474b418e1004",
+        "ety:c80365cdd174",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:c28863eb7595",
+        "ety:58143b06b35a",
+        "ety:a3b640366c27",
+        "ety:ab1eaa1c14b6",
+        "ety:727be1d24fa1",
+        "ety:61108b488e06"
+      ],
+      "language": "it",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "osservazione",
+      "segmentation_or_lexical_identity": "Exact malformed Italian token: osservazìone; diagnostic head/form osservazione",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/inosservanza/",
+        "https://www.treccani.it/vocabolario/osservazione/",
+        "https://www.treccani.it/vocabolario/informazione/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:f2204cf575477534832d",
+      "word": "informazini",
+      "status": "excluded",
+      "reason": "This exact token informazini corrupts the recognizable Italian form informazioni: letter omission/substitution or misplaced accent. Finite diagnostic comparison only, without rewriting the corpus. Historical osservazzione/informazzione and apocopated osservator/informazion are deliberately outside this decision; their lexical status cannot be settled by modern spelling distance.",
+      "source_family_ids": [
+        "surface:it:ini",
+        "surface:it:informazin"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "informazioni",
+      "segmentation_or_lexical_identity": "Exact malformed Italian token: informazini; diagnostic head/form informazioni",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/inosservanza/",
+        "https://www.treccani.it/vocabolario/osservazione/",
+        "https://www.treccani.it/vocabolario/informazione/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:f4c58a1f0c83054f6db1",
+      "word": "informazone",
+      "status": "excluded",
+      "reason": "This exact token informazone corrupts the recognizable Italian form informazione: letter omission/substitution or misplaced accent. Finite diagnostic comparison only, without rewriting the corpus. Historical osservazzione/informazzione and apocopated osservator/informazion are deliberately outside this decision; their lexical status cannot be settled by modern spelling distance.",
+      "source_family_ids": [
+        "surface:it:informazon"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "informazione",
+      "segmentation_or_lexical_identity": "Exact malformed Italian token: informazone; diagnostic head/form informazione",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/inosservanza/",
+        "https://www.treccani.it/vocabolario/osservazione/",
+        "https://www.treccani.it/vocabolario/informazione/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:36df93d3abd92b2e8173",
+      "word": "informazoni",
+      "status": "excluded",
+      "reason": "This exact token informazoni corrupts the recognizable Italian form informazioni: letter omission/substitution or misplaced accent. Finite diagnostic comparison only, without rewriting the corpus. Historical osservazzione/informazzione and apocopated osservator/informazion are deliberately outside this decision; their lexical status cannot be settled by modern spelling distance.",
+      "source_family_ids": [
+        "surface:it:mazoni",
+        "surface:it:informazon"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "informazioni",
+      "segmentation_or_lexical_identity": "Exact malformed Italian token: informazoni; diagnostic head/form informazioni",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/inosservanza/",
+        "https://www.treccani.it/vocabolario/osservazione/",
+        "https://www.treccani.it/vocabolario/informazione/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:8c417ba8b919f4339604",
+      "word": "informzazione",
+      "status": "excluded",
+      "reason": "This exact token informzazione corrupts the recognizable Italian form informazione: letter omission/substitution or misplaced accent. Finite diagnostic comparison only, without rewriting the corpus. Historical osservazzione/informazzione and apocopated osservator/informazion are deliberately outside this decision; their lexical status cannot be settled by modern spelling distance.",
+      "source_family_ids": [
+        "ety:8ef5f06ceb40",
+        "ety:dd07667af787",
+        "ety:474b418e1004",
+        "ety:c80365cdd174",
+        "ety:9a86a987fafc",
+        "surface:it:informzazion",
+        "ety:751cdacbf4a9",
+        "ety:c28863eb7595",
+        "ety:58143b06b35a",
+        "ety:a3b640366c27",
+        "ety:ab1eaa1c14b6",
+        "ety:727be1d24fa1",
+        "ety:61108b488e06"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "informazione",
+      "segmentation_or_lexical_identity": "Exact malformed Italian token: informzazione; diagnostic head/form informazione",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/inosservanza/",
+        "https://www.treccani.it/vocabolario/osservazione/",
+        "https://www.treccani.it/vocabolario/informazione/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:67142f26656dbcb38dbe",
+      "word": "obsèrve",
+      "status": "excluded",
+      "reason": "The exact form obsèrve has an incorrect or absent French accent against the observer/informer paradigm: observe. This finite spelling contrast neither corrects a runtime record nor promotes an uninvestigated foreign homograph. Latin observat and uncertain historical forms are untouched.",
+      "source_family_ids": [
+        "surface:fr:observe"
+      ],
+      "language": "fr",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "observe",
+      "segmentation_or_lexical_identity": "Exact French accent defect: obsèrve / observe",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/conjuguer/A9I1225",
+        "https://www.dictionnaire-academie.fr/conjuguer/A9O0082"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:8f9ebf6a68d331339d0c",
+      "word": "observee",
+      "status": "excluded",
+      "reason": "The exact form observee has an incorrect or absent French accent against the observer/informer paradigm: observée. This finite spelling contrast neither corrects a runtime record nor promotes an uninvestigated foreign homograph. Latin observat and uncertain historical forms are untouched.",
+      "source_family_ids": [
+        "surface:fr:vee",
+        "surface:fr:observe"
+      ],
+      "language": "fr",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "observée",
+      "segmentation_or_lexical_identity": "Exact French accent defect: observee / observée",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/conjuguer/A9I1225",
+        "https://www.dictionnaire-academie.fr/conjuguer/A9O0082"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:cc4b03e56f5bad723cd1",
+      "word": "informérent",
+      "status": "excluded",
+      "reason": "The exact form informérent has an incorrect or absent French accent against the observer/informer paradigm: informèrent. This finite spelling contrast neither corrects a runtime record nor promotes an uninvestigated foreign homograph. Latin observat and uncertain historical forms are untouched.",
+      "source_family_ids": [
+        "ety:15cd88c4813d",
+        "ety:3b6c34a40f7b",
+        "surface:fr:erent",
+        "ety:0ac430ae5eee"
+      ],
+      "language": "fr",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "informèrent",
+      "segmentation_or_lexical_identity": "Exact French accent defect: informérent / informèrent",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/conjuguer/A9I1225",
+        "https://www.dictionnaire-academie.fr/conjuguer/A9O0082"
+      ],
+      "runtime_applied": false
+    }
+  ],
+  "new_counts": {
+    "excluded": 31
+  },
+  "continuation_counts": {
+    "accepted": 31,
+    "excluded": 334,
+    "uncertain": 119,
+    "pending_review": 278
+  },
+  "accepted_applied": 31,
+  "accepted_unapplied": 0,
+  "runtime_changes": false,
+  "full_family_certification": false,
+  "review_scope": "31 exact manually contrasted accent/orthographic defects. No automatic normalization, edit-distance classifier or corpus rewriting. Applied count is established by reflex-rare-heads-materialization-20261002/materialization-status.json."
+}
