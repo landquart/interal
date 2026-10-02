@@ -3,7 +3,9 @@
 Current state: six reviewed memberships applied, full local test suite and
 exhaustive audit passed. Latest continuation queue: 553 pending, 48 investigated
 uncertain, 155 excluded, 6 applied. Earlier sections below are dated stage history.
-Resume from `continuation-validation-20261002/validation.json` and the complete
+Latest relation overlay: `relation-phrase-boundaries-20261002` (325 pending).
+Resume from the stage-specific inventories,
+`continuation-validation-20261002/validation.json` and the complete
 `continuation-task-20261002.txt`. Never repeat applied materialization.
 
 
@@ -137,3 +139,18 @@ families and 1,934,055 aliases unchanged. The prior remote audit itself passed;
 its report comparison failed because the committed report was still old.
 This separate validation stage saves that refreshed report. New HEAD CI must
 still be checked. Linguistic work is incomplete; no family-wide certification.
+
+## Relation phrase-boundary overlay
+
+A later independent review excludes 84 exact fused phrase records from relat:
+67 English, 2 German, 5 French and 10 Spanish. Explicit space segmentations
+are saved per token, including the independent `are late today` boundary.
+Lexical compounds such as entity-relationship/exchange-correlation and the
+reviewed relation head itself are not swept into this stage. Original accepted
+records and historical source measurements are unchanged. Both exact
+conservation/source-proof and byte-identical reproduction tests pass, no skips.
+Latest relat pending is 325 (487 applied unchanged); combined creat/relat/oper/mut
+pending is now 7,394 (2,335 / 325 / 2,082 / 2,652).
+This stage changes no runtime and does not invalidate the prior exhaustive audit.
+The preceding validation JSON is immutable evidence for its stated earlier
+queue counts; use this overlay for the latest relation state.
