@@ -1,5 +1,20 @@
 // Parallel v6 runtime: the caller supplies the single authoritative catalog.
 export const EDGE_STATUSES = Object.freeze(['accepted','excluded','uncertain','pending']);
+export const REALIZATION_TYPES = Object.freeze(['canonical_reflex','lexical_branch_realization','derivational_stem','inflectional_form','query_alias','historical_evidence_form']);
+export function validateRealizations(catalog) {
+  for (const f of catalog.families) for (const r of f.reflexes || []) {
+    if (!REALIZATION_TYPES.includes(r.realization_type) || r.family_id !== f.id || !r.language || !r.realization || !EDGE_STATUSES.includes(r.status) || !r.evidence?.length || !Array.isArray(r.supporting_heads) || !Array.isArray(r.head_scope) || r.establishes_membership !== false) throw Error('Invalid typed realization');
+    if (r.realization_type === 'canonical_reflex' && r.status === 'accepted' && (!r.supporting_heads.length || !r.head_scope.length || r.supporting_heads.some(h => !r.head_scope.some(s => s.language === r.language && s.normalized_head === normalizeHead(h) && s.evidence?.length)))) throw Error('General reflex requires evidenced supporting heads');
+    if (r.realization_type !== 'canonical_reflex' && r.general_family_realization !== false) throw Error('Branch, form and alias cannot become general reflex');
+    if (r.general_family_realization !== (r.realization_type === 'canonical_reflex' && r.status === 'accepted')) throw Error('Invalid productive realization status');
+    if (r.head_scope.some(h => h.language !== r.language || !h.normalized_head || !h.sense || !h.evidence?.length)) throw Error('Invalid realization head scope');
+  }
+  return catalog;
+}
+export function generalRealizations(catalog, familyId, language) {
+  validateRealizations(catalog);
+  return catalog.families.find(f => f.id === familyId)?.reflexes.filter(r => r.language === language && r.general_family_realization) || [];
+}
 export const normalizeHead = s => String(s).normalize('NFC').toLowerCase();
 export function validateCatalog(catalog) {
   if (catalog?.schema_version !== 6 || catalog.production_enabled !== false) throw Error('Invalid parallel v6 catalog');
@@ -10,6 +25,7 @@ export function validateCatalog(catalog) {
   }
   if (!ids.has('family:ped') || ids.has('family:pede') || !ids.has('family:creat') || ids.has('family:cre')) throw Error('Invalid canonical boundary');
   for (const p of catalog.head_policies) if (!ids.has(p.family_id) || !p.language || !p.head || !Array.isArray(p.forms) || !p.source_references?.length) throw Error('Invalid finite head policy');
+  if (catalog.realization_schema_version === 1) validateRealizations(catalog);
   return catalog;
 }
 export function resolveV6Alias(catalog, query) {

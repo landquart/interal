@@ -1,3 +1,7 @@
+## Acceleration continuation: typed realization schema
+
+Fresh remote baseline: #650 3da2717f, #651 22e6293f, #652 b4c95f73; all open/unmerged. Both Actions at #652 baseline passed. The typed schema distinguishes six realization kinds and guards productive reflexes with evidenced language/sense-bound heads. Catalog conversion and shared-head benchmarks are the next separately saved stages. No production change.
+
 # Current verified state
 
 Architecture PR #652 remains a draft above PR #651 at 22e6293f72a22e80e364079d83031a1f8f2a36d6. No merge or production switch. All stages are separate remote commits; source v5 remains unchanged.

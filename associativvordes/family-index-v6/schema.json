@@ -158,7 +158,11 @@
         "positive_controls",
         "negative_controls",
         "status",
-        "evidence"
+        "evidence",
+        "realization_type",
+        "head_scope",
+        "general_family_realization",
+        "establishes_membership"
       ],
       "properties": {
         "family_id": {
@@ -184,8 +188,98 @@
           "items": {
             "type": "object"
           }
+        },
+        "realization_type": {
+          "enum": [
+            "canonical_reflex",
+            "lexical_branch_realization",
+            "derivational_stem",
+            "inflectional_form",
+            "query_alias",
+            "historical_evidence_form"
+          ]
+        },
+        "supporting_heads": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "head_scope": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "language",
+              "normalized_head",
+              "sense",
+              "evidence"
+            ],
+            "properties": {
+              "language": {
+                "type": "string"
+              },
+              "normalized_head": {
+                "type": "string"
+              },
+              "sense": {
+                "type": "string"
+              },
+              "evidence": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "general_family_realization": {
+          "type": "boolean"
+        },
+        "establishes_membership": {
+          "const": false
         }
-      }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "realization_type": {
+                "const": "canonical_reflex"
+              },
+              "status": {
+                "const": "accepted"
+              }
+            },
+            "required": [
+              "realization_type",
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "supporting_heads": {
+                "minItems": 1
+              },
+              "head_scope": {
+                "minItems": 1
+              },
+              "general_family_realization": {
+                "const": true
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "general_family_realization": {
+                "const": false
+              }
+            }
+          }
+        }
+      ]
     },
     "evidence": {
       "type": "object",
