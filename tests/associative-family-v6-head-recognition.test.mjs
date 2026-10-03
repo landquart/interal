@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {recognizeFiniteHeadBindings,proposeMorphologicalHeads} from '../associativvordes/js/associative-family-v6-head-recognition.js';
 import {materializeLexicalReviews,reviewBenchmarks} from '../scripts/lib/associative-v6-lexical-review.mjs';
 import {readFileSync} from 'node:fs';
+import {execFileSync} from 'node:child_process';
 function fixture(){const evidence=[{id:'fact-proof',language:'en',head:'create',sense:'make',status:'accepted',sources:['dictionary']}],facts=[{id:'lexical-fact:create',language:'en',normalized_head:'create',sense:'make',forms:['create','created'],component_stems:['creat'],evidence_ids:['fact-proof']}],records=[{language:'en',family_id:'family:creat',lemma_id:'lemma:real',word:'created'}],bindings=[{...records[0],fact_id:facts[0].id,link_role:'inflection',identity_proof:[{source:'finite-paradigm'}]}];return {evidence,facts,records,bindings};}
 test('finite recognition validates language, whole source spelling and independent identity evidence',()=>{
  const f=fixture();assert.equal(recognizeFiniteHeadBindings(f).recognized.length,1);
@@ -35,4 +36,26 @@ test('pending review acceleration is separate from resolving investigated uncert
  const ledger=[{language:'en',family_id:'family:relat',head_id:'head:one',affected_lemma_ids:['lemma:pending'],status:'excluded',review_stage:'relat'},{language:'ru',family_id:'family:loc',head_id:'head:two',affected_lemma_ids:['lemma:uncertain-a','lemma:uncertain-b'],status:'excluded',review_stage:'loc'}];
  const m=reviewBenchmarks({backlog,frames:[],review:{doc:{finite_bindings:[],lexical_facts:[]},facts:new Map()},ledger,headId:()=>{throw Error('No lexical identity invented');}}).metrics;
  assert.equal(m.new_records_resolved,3);assert.equal(m.newly_pending_records_resolved,1);assert.equal(m.investigated_uncertainties_resolved,2);assert.equal(m.pending_review_reduction_factor,1);assert.equal(m.new_review_reduction_factor,1.5);
+});
+
+test('uncertain family review groups proven identities but preserves the entire active queue',()=>{
+ const catalog=JSON.parse(readFileSync(new URL('../associativvordes/family-index-v6/catalog.json',import.meta.url))),x=fixture();
+ x.facts[0].forms.push('creates');
+ const source=x.records.concat({...x.records[0],lemma_id:'lemma:second',word:'creates'}).map(r=>({...r,canonical_root:'creat',status:'pending_review',queue:'creat',review_unit:r.lemma_id,reason:'Not yet investigated'}));
+ const bindings=source.map(r=>({...r,fact_id:x.facts[0].id,expected_membership_status:'pending',decision_kind:'investigated_uncertainty',link_role:'inflection',identity_proof:[{source:'reviewed-finite-identity'}]}));
+ const doc={finite_bindings:bindings,lexical_facts:x.facts,evidence_cache:x.evidence,head_reviews:[{fact_id:x.facts[0].id,family_id:'family:creat',status:'uncertain',expected_version:0,lemma_ids:source.map(r=>r.lemma_id),reason:'Lexical identity established; family relation remains unresolved',evidence:[{source:'identity-only-review'}],review_stage:'uncertain-fixture',morphology_policy:'finite_explicit_lemma_ids'}]};
+ const review={doc,facts:new Map(x.facts.map(f=>[f.id,f]))},external=new Map(source.map(r=>[r.language+'\0'+r.lemma_id,{m:{lemma_id:r.lemma_id,word:r.word},proof:{source:'real-fixture-record'}}]));
+ const headId=()=> 'head:fixture';
+ const result=materializeLexicalReviews({index:{catalog,heads:[],edges:[],links:[],memberships:[],corpus:new Map()},review,external,headId,prior:[],sourceQueue:source});
+ assert.deepEqual(result.index.memberships,[]);assert.equal(result.ledger[0].decision_kind,'investigated_uncertainty');
+ const measured=reviewBenchmarks({backlog:source,frames:[{name:'creat',path:'fixture'}],review,ledger:result.ledger,headId});
+ assert.equal(measured.active.length,2);assert.equal(measured.ranked.length,1);assert(measured.active.every(r=>r.status==='uncertain'&&r.source_membership_status==='pending_review'));
+ assert.equal(measured.metrics.new_records_resolved,0);assert.equal(measured.metrics.records_reviewed,2);assert.equal(measured.metrics.unresolved_reviewed_records,2);assert.equal(measured.metrics.newly_pending_records_investigated_without_resolution,2);
+ assert.deepEqual(measured.metrics.current_status_counts,{pending:0,uncertain:2});assert.equal(measured.metrics.new_review_reduction_factor,0);assert.equal(measured.metrics.pending_review_reduction_factor,0);
+ assert.equal(measured.benchmarks[0].records_after,2);assert.equal(measured.benchmarks[0].records_resolved,0);assert.equal(measured.benchmarks[0].reviewed_records_retained_uncertain,2);
+});
+test('research-only withdrawn evidence cannot mutate finite review bindings',()=>{
+ const path=new URL('../associativvordes/family-index-v6/lexical-head-review.json.gz',import.meta.url),before=readFileSync(path);
+ assert.throws(()=>execFileSync(process.execPath,['scripts/integrate-associative-v6-reviewed-stage.mjs','audit/associative-family-v6/actin-protein-head-evidence-20261003.json'],{stdio:'pipe'}),/Finite identity binding not approved/);
+ assert.deepEqual(readFileSync(path),before);
 });

@@ -11,16 +11,17 @@ const read=async p=>{const b=await fs.readFile(p);return JSON.parse(p.endsWith('
 const stage=await read(stagePath),reviewPath='associativvordes/family-index-v6/lexical-head-review.json.gz',doc=await read(reviewPath);
 if(stage.schema_version!==6||stage.production_enabled!==false||!stage.groups.length)throw Error('Invalid research stage');
 if(sha(await fs.readFile(stage.source_queue))!==stage.source_queue_sha256)throw Error('Changed finite source queue');
+if(stage.binding_authorized===false)throw Error('Finite identity binding not approved for research-only stage');
 const stageHash=sha(await fs.readFile(stagePath)),records=[];
 for(const g of stage.groups){
- if(!['accepted','excluded'].includes(g.status)||!g.sources.length||!g.reason||!g.sense||!g.records.length)throw Error('Incomplete linguistic decision');
+ if(!['accepted','excluded','uncertain'].includes(g.status)||!g.sources.length||!g.reason||!g.sense||!g.records.length)throw Error('Incomplete linguistic decision');
  const key=sha(Buffer.from(g.language+'\0'+normalizeHead(g.normalized_head)+'\0'+g.sense)).slice(0,24),factId='lexical-fact:'+key,evidenceId='evidence:'+key;
  if(doc.lexical_facts.some(f=>f.id===factId))throw Error('Existing fact requires explicit versioned extension, not replacement');
  doc.evidence_cache.push({id:evidenceId,language:g.language,head:g.normalized_head,sense:g.sense,status:'accepted',evidence_kind:'lexical_identity',finding:g.reason,sources:g.sources,establishes_family_membership:false,decision_version:1});
  doc.lexical_facts.push({id:factId,language:g.language,normalized_head:normalizeHead(g.normalized_head),sense:g.sense,forms:g.forms,component_stems:g.component_stems||[],evidence_ids:[evidenceId],version:1});
  for(const r of g.records){
   if(r.language!==g.language||!['pending_review','pending','uncertain'].includes(r.status))throw Error('Stage record is not unresolved');
-  const b={language:r.language,lemma_id:r.lemma_id,word:r.word,family_id:'family:'+g.root,fact_id:factId,decision_kind:g.status==='accepted'?'accepted_membership_addition':'linguistic_exclusion',expected_membership_status:r.status==='uncertain'?'uncertain':'pending',link_role:r.component_segmentation?'reviewed_lexical_base_component':r.word===g.normalized_head?'whole_lexeme':'inflection',...(r.component_segmentation?{component_segmentation:r.component_segmentation,whole_compound_identity_established:false}:{}),identity_proof:[{path:stage.source_queue,sha256:stage.source_queue_sha256,lemma_id:r.lemma_id,word:r.word},{path:stagePath,sha256:stageHash,lemma_id:r.lemma_id,word:r.word}]};
+  const b={language:r.language,lemma_id:r.lemma_id,word:r.word,family_id:'family:'+g.root,fact_id:factId,decision_kind:g.status==='accepted'?'accepted_membership_addition':g.status==='excluded'?'linguistic_exclusion':'investigated_uncertainty',expected_membership_status:r.status==='uncertain'?'uncertain':'pending',link_role:r.component_segmentation?'reviewed_lexical_base_component':r.word===g.normalized_head?'whole_lexeme':'inflection',...(r.component_segmentation?{component_segmentation:r.component_segmentation,whole_compound_identity_established:false}:{}),identity_proof:[{path:stage.source_queue,sha256:stage.source_queue_sha256,lemma_id:r.lemma_id,word:r.word},{path:stagePath,sha256:stageHash,lemma_id:r.lemma_id,word:r.word}]};
   if(doc.finite_bindings.some(x=>x.language===b.language&&x.family_id===b.family_id&&x.lemma_id===b.lemma_id))throw Error('Already bound source record');
   doc.finite_bindings.push(b);records.push({...r,family_id:b.family_id});
  }
