@@ -1,0 +1,106 @@
+{
+  "verdict": "pass",
+  "source_head": "85f8e269fa707cdb4718021211a786d1a95f5623",
+  "targeted_tests": 20,
+  "v6_audit": "pass",
+  "deterministic_replay_artifacts": 272,
+  "accepted_memberships": 19978,
+  "oper_before": 2082,
+  "oper_after": 2077,
+  "new_pending_resolved": 5,
+  "head_decisions": 1,
+  "stage_factor": 5,
+  "global_metrics": {
+    "source_active_records": 25202,
+    "current_active_records": 25068,
+    "new_head_decisions": 18,
+    "new_records_resolved": 134,
+    "new_review_reduction_factor": 7.444444444444445,
+    "newly_pending_records_resolved": 119,
+    "investigated_uncertainties_resolved": 15,
+    "pending_head_decisions": 12,
+    "pending_review_reduction_factor": 9.916666666666666,
+    "current_status_counts": {
+      "pending": 24098,
+      "uncertain": 970
+    },
+    "stages": [
+      {
+        "stage": "prior_observ_inform",
+        "head_decisions": 3,
+        "records_resolved": 3,
+        "previously_pending": 3,
+        "previously_uncertain": 0,
+        "accepted": 3,
+        "excluded": 0,
+        "new_review_reduction_factor": 1
+      },
+      {
+        "stage": "relat-finite-lexical-evidence-20261003",
+        "head_decisions": 3,
+        "records_resolved": 8,
+        "previously_pending": 8,
+        "previously_uncertain": 0,
+        "accepted": 0,
+        "excluded": 8,
+        "new_review_reduction_factor": 2.6666666666666665
+      },
+      {
+        "stage": "loc-finite-lexical-evidence-20261003",
+        "head_decisions": 6,
+        "records_resolved": 15,
+        "previously_pending": 0,
+        "previously_uncertain": 15,
+        "accepted": 8,
+        "excluded": 7,
+        "new_review_reduction_factor": 2.5
+      },
+      {
+        "stage": "creat-mut-finite-head-benchmark-20261003",
+        "head_decisions": 5,
+        "records_resolved": 103,
+        "previously_pending": 103,
+        "previously_uncertain": 0,
+        "accepted": 0,
+        "excluded": 103,
+        "new_review_reduction_factor": 20.6
+      },
+      {
+        "stage": "oper-finite-military-head-20261003",
+        "head_decisions": 1,
+        "records_resolved": 5,
+        "previously_pending": 5,
+        "previously_uncertain": 0,
+        "accepted": 0,
+        "excluded": 5,
+        "new_review_reduction_factor": 5
+      }
+    ],
+    "strict_remaining_frame_reduction": 1,
+    "historical_component_bindings_represented": 872,
+    "historical_component_head_edges": 6,
+    "historical_representation_reuse_factor": 145.33333333333334,
+    "historical_boundary_reviews_are_not_newly_resolved_records": true
+  },
+  "shared_code_changed": false,
+  "full_tests_and_v5_preservation": "126 full test files and byte-identical preservation audit at 64cf0a28; shared code/v5 unchanged",
+  "production_enabled": false,
+  "logs": {
+    "build": {
+      "path": "audit/associative-family-v6/oper-validation-20261003/build.log.gz",
+      "sha256": "1c5e12b7ec4d491ddbe2340e9df64df162b8d56ca371ca19410cbad90ea80bee"
+    },
+    "targeted": {
+      "path": "audit/associative-family-v6/oper-validation-20261003/targeted.log.gz",
+      "sha256": "20bc7d5ad4cb9a65d87e996dccb21fc6a16055198290b7216f4b38942edfdc7f"
+    },
+    "audit": {
+      "path": "audit/associative-family-v6/oper-validation-20261003/audit.log.gz",
+      "sha256": "0671a55b9de6dab335d64f0b6b4ce55d8097bb3b85c30d72f4265bd9e3c88e6e"
+    },
+    "replay": {
+      "path": "audit/associative-family-v6/oper-validation-20261003/replay.log.gz",
+      "sha256": "b3fff23a83aae8a5daf504ddb77d1269b334ddc29b339429006a75fe798ec227"
+    }
+  }
+}

@@ -2,7 +2,7 @@
   "schema_version": 6,
   "verdict": "pass",
   "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6",
-  "locked_source_files": 2459,
+  "locked_source_files": 2460,
   "classified_objects": 2456540,
   "classification_counts": {
     "etymological_evidence_cluster": 20755,
@@ -15,16 +15,16 @@
   "generated_memberships": 19978,
   "lexical_head_review_metrics": {
     "source_active_records": 25202,
-    "current_active_records": 25073,
-    "new_head_decisions": 17,
-    "new_records_resolved": 129,
-    "new_review_reduction_factor": 7.588235294117647,
-    "newly_pending_records_resolved": 114,
+    "current_active_records": 25068,
+    "new_head_decisions": 18,
+    "new_records_resolved": 134,
+    "new_review_reduction_factor": 7.444444444444445,
+    "newly_pending_records_resolved": 119,
     "investigated_uncertainties_resolved": 15,
-    "pending_head_decisions": 11,
-    "pending_review_reduction_factor": 10.363636363636363,
+    "pending_head_decisions": 12,
+    "pending_review_reduction_factor": 9.916666666666666,
     "current_status_counts": {
-      "pending": 24103,
+      "pending": 24098,
       "uncertain": 970
     },
     "stages": [
@@ -67,6 +67,16 @@
         "accepted": 0,
         "excluded": 103,
         "new_review_reduction_factor": 20.6
+      },
+      {
+        "stage": "oper-finite-military-head-20261003",
+        "head_decisions": 1,
+        "records_resolved": 5,
+        "previously_pending": 5,
+        "previously_uncertain": 0,
+        "accepted": 0,
+        "excluded": 5,
+        "new_review_reduction_factor": 5
       }
     ],
     "strict_remaining_frame_reduction": 1,
