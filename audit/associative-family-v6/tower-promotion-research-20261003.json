@@ -1,0 +1,1504 @@
+{
+  "accepted_membership_authorized": false,
+  "additional_boundary_sources": [
+    "https://www.dictionnaire-academie.fr/article/A9T1597",
+    "https://www.dictionnaire-academie.fr/article/A9T1598",
+    "https://www.dictionnaire-academie.fr/article/A9T1645",
+    "https://www.merriam-webster.com/dictionary/tor"
+  ],
+  "binding_authorized": false,
+  "candidate_packet_id": "candidate-root:b1d1803a0d1c69bf965b3462",
+  "canonical_decision": {
+    "canonical": null,
+    "finding": "Latin turris and its mediated national tower rows are supported. Source canonical torres is an automatic alias choice and is rejected as authority. The competing tor/torr/tur/turr boundaries need an explicit canonical decision; shortest alias, translation and removal of arbitrary final letters cannot choose it.",
+    "status": "deferred_explicit_linguistic_boundary_decision"
+  },
+  "duplicate_identity_sets": true,
+  "independent_national_heads": [
+    {
+      "dictionary_identity_status": "supported_research_only",
+      "exact_source_record": {
+        "category_breakdown": {
+          "normative": {
+            "category_ipm": 51.985403,
+            "category_score": 69.56263811907914,
+            "ipm_values": [
+              51.985403
+            ]
+          },
+          "subtitles": {
+            "category_ipm": 32.3782085,
+            "category_score": 61.46548926167581,
+            "ipm_values": [
+              32.035429,
+              32.720988
+            ]
+          },
+          "web": {
+            "category_ipm": 56.403502,
+            "category_score": 70.96595516883067,
+            "ipm_values": [
+              56.403502
+            ]
+          }
+        },
+        "components": [
+          {
+            "canonical_candidate": "tower",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "confidence": 0.92,
+                "path": [
+                  "tower",
+                  "tower",
+                  "tower"
+                ],
+                "source": "candidate_index",
+                "type": "morphological_parse"
+              }
+            ],
+            "surface": "tower"
+          }
+        ],
+        "corpus_quality": {
+          "reasons": [],
+          "status": "accepted"
+        },
+        "frequency_score": 67.33136084986188,
+        "language": "en",
+        "lemma_id": "lemma:fbb12b86b76ffff488fe",
+        "normalized": "tower",
+        "rank": 1844,
+        "search_form": "tower",
+        "source_locator": {
+          "family_id": "ety:f12c43164882",
+          "path": "associativvordes/family-index-v5/members/en/01.json.gz"
+        },
+        "sources": [
+          {
+            "category": "normative",
+            "file": "bnc-clean2.lemmatized_spacy_ipm6.json",
+            "id": "normative/bnc-clean2.lemmatized_spacy_ipm6.json",
+            "ipm": 51.985403
+          },
+          {
+            "category": "subtitles",
+            "file": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "id": "subtitles/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "ipm": 32.035429
+          },
+          {
+            "category": "subtitles",
+            "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "ipm": 32.720988
+          },
+          {
+            "category": "web",
+            "file": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "id": "web/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "ipm": 56.403502
+          }
+        ],
+        "word": "tower"
+      },
+      "finding": "Middle English tour/tor through Old English torr and Anglo-French tur/tour continues Latin turris. Dictionary noun and denominal verb share this base. Proper-name tokens are not established by the lowercase aggregate.",
+      "finite_binding_authorized": false,
+      "general_national_realization_authorized": false,
+      "head": "tower",
+      "language": "en",
+      "sense": "tower_noun_and_denominal_verb",
+      "sources": [
+        "https://www.merriam-webster.com/dictionary/tower"
+      ]
+    },
+    {
+      "dictionary_identity_status": "supported_research_only",
+      "exact_source_record": {
+        "category_breakdown": {
+          "normative": {
+            "category_ipm": 38.540844,
+            "category_score": 64.43425818669387,
+            "ipm_values": [
+              38.540844
+            ]
+          },
+          "subtitles": {
+            "category_ipm": 11.380813,
+            "category_score": 44.08795027280141,
+            "ipm_values": [
+              11.380813
+            ]
+          },
+          "web": {
+            "category_ipm": 25.496605,
+            "category_score": 57.419893073007366,
+            "ipm_values": [
+              25.496605
+            ]
+          }
+        },
+        "components": [
+          {
+            "canonical_candidate": "turm",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "confidence": 0.92,
+                "path": [
+                  "turm",
+                  "turm",
+                  "turm"
+                ],
+                "source": "candidate_index",
+                "type": "morphological_parse"
+              }
+            ],
+            "surface": "turm"
+          }
+        ],
+        "corpus_quality": {
+          "reasons": [],
+          "status": "accepted"
+        },
+        "frequency_score": 55.314033844167554,
+        "language": "de",
+        "lemma_id": "lemma:e10d98a4cae30621277d",
+        "normalized": "turm",
+        "rank": 2403,
+        "search_form": "turm",
+        "source_locator": {
+          "family_id": "ety:f12c43164882",
+          "path": "associativvordes/family-index-v5/members/de/01.json.gz"
+        },
+        "sources": [
+          {
+            "category": "normative",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "ipm": 38.540844
+          },
+          {
+            "category": "subtitles",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "ipm": 11.380813
+          },
+          {
+            "category": "web",
+            "file": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "id": "web/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "ipm": 25.496605
+          }
+        ],
+        "word": "turm"
+      },
+      "finding": "Middle and Old High German tower forms continue Latin turris through Old French. Technical and chess uses are metonymies of this noun. Exact corpus case/POS is not supplied.",
+      "finite_binding_authorized": false,
+      "general_national_realization_authorized": false,
+      "head": "turm",
+      "language": "de",
+      "sense": "tower_common_noun",
+      "sources": [
+        "https://www.duden.de/rechtschreibung/Turm"
+      ]
+    },
+    {
+      "dictionary_identity_status": "supported_research_only",
+      "exact_source_record": {
+        "category_breakdown": {
+          "subtitles": {
+            "category_ipm": 188.066667,
+            "category_score": 91.85208354378129,
+            "ipm_values": [
+              188.066667
+            ]
+          },
+          "web": {
+            "category_ipm": 248.389171,
+            "category_score": 96.7041875147229,
+            "ipm_values": [
+              248.389171
+            ]
+          }
+        },
+        "components": [
+          {
+            "canonical_candidate": "tour",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "confidence": 0.92,
+                "path": [
+                  "tour",
+                  "tour",
+                  "tour"
+                ],
+                "source": "candidate_index",
+                "type": "morphological_parse"
+              }
+            ],
+            "surface": "tour"
+          }
+        ],
+        "corpus_quality": {
+          "reasons": [],
+          "status": "accepted"
+        },
+        "frequency_score": 94.2781355292521,
+        "language": "fr",
+        "lemma_id": "lemma:ea7fdcd66cda3892ded2",
+        "normalized": "tour",
+        "rank": 426,
+        "search_form": "tour",
+        "source_locator": {
+          "family_id": "ety:f12c43164882",
+          "path": "associativvordes/family-index-v5/members/fr/01.json.gz"
+        },
+        "sources": [
+          {
+            "category": "subtitles",
+            "file": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "id": "subtitles/hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "ipm": 188.066667
+          },
+          {
+            "category": "web",
+            "file": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "id": "web/sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "ipm": 248.389171
+          }
+        ],
+        "word": "tour"
+      },
+      "finding": "Feminine tower noun continues Latin turris. Masculine lathe tour instead continues tornus; masculine turn/trip tour is deverbal from tourner. Untagged tour cannot inherit a single common associative base.",
+      "finite_binding_authorized": false,
+      "general_national_realization_authorized": false,
+      "head": "tour",
+      "language": "fr",
+      "sense": "feminine_tower_noun_only",
+      "sources": [
+        "https://www.dictionnaire-academie.fr/article/A9T1596"
+      ]
+    },
+    {
+      "dictionary_identity_status": "supported_research_only",
+      "exact_source_record": {
+        "category_breakdown": {
+          "mixed": {
+            "category_ipm": 72.485124,
+            "category_score": 75.29349866811283,
+            "ipm_values": [
+              72.485124
+            ]
+          },
+          "subtitles": {
+            "category_ipm": 11.0798575,
+            "category_score": 43.65675938432405,
+            "ipm_values": [
+              11.168837,
+              10.990878
+            ]
+          }
+        },
+        "components": [
+          {
+            "canonical_candidate": "torre",
+            "confidence": 0.8,
+            "evidence": [
+              {
+                "confidence": 0.8,
+                "path": [
+                  "torre",
+                  "torre",
+                  "torre"
+                ],
+                "source": "candidate_index",
+                "type": "morphological_parse"
+              }
+            ],
+            "surface": "torre"
+          }
+        ],
+        "corpus_quality": {
+          "reasons": [],
+          "status": "accepted"
+        },
+        "frequency_score": 51.56594420527124,
+        "language": "es",
+        "lemma_id": "lemma:63adf237a08c24f59920",
+        "normalized": "torre",
+        "rank": 1537,
+        "search_form": "torre",
+        "source_locator": {
+          "family_id": "ety:f12c43164882",
+          "path": "associativvordes/family-index-v5/members/es/01.json.gz"
+        },
+        "sources": [
+          {
+            "category": "mixed",
+            "file": "es_wordlist.lemmatized_stanza_ipm6.json",
+            "id": "mixed/es_wordlist.lemmatized_stanza_ipm6.json",
+            "ipm": 72.485124
+          },
+          {
+            "category": "subtitles",
+            "file": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "id": "subtitles/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "ipm": 11.168837
+          },
+          {
+            "category": "subtitles",
+            "file": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "id": "subtitles/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "ipm": 10.990878
+          }
+        ],
+        "word": "torre"
+      },
+      "finding": "RAE derives the tower noun from Latin turris; chess and other metonymies preserve the base. A dictionary row does not resolve proper-name occurrences in the source aggregate.",
+      "finite_binding_authorized": false,
+      "general_national_realization_authorized": false,
+      "head": "torre",
+      "language": "es",
+      "sense": "tower_and_chess_rook_common_noun",
+      "sources": [
+        "https://dle.rae.es/torre"
+      ]
+    },
+    {
+      "dictionary_identity_status": "supported_research_only",
+      "exact_source_record": {
+        "category_breakdown": {
+          "subtitles": {
+            "category_ipm": 28.406591499999998,
+            "category_score": 59.245724947360415,
+            "ipm_values": [
+              28.61204,
+              28.201143
+            ]
+          },
+          "web": {
+            "category_ipm": 45.315404,
+            "category_score": 67.20519540746378,
+            "ipm_values": [
+              45.315404
+            ]
+          }
+        },
+        "components": [
+          {
+            "canonical_candidate": "torr",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "confidence": 0.92,
+                "path": [
+                  "torre",
+                  "torr",
+                  "torr"
+                ],
+                "source": "candidate_index",
+                "type": "morphological_parse"
+              }
+            ],
+            "surface": "torr"
+          }
+        ],
+        "corpus_quality": {
+          "reasons": [],
+          "status": "accepted"
+        },
+        "frequency_score": 63.225460177412096,
+        "language": "it",
+        "lemma_id": "lemma:0d23cbf326af4b0f1718",
+        "normalized": "torre",
+        "rank": 2251,
+        "search_form": "torre",
+        "source_locator": {
+          "family_id": "ety:f12c43164882",
+          "path": "associativvordes/family-index-v5/members/it/01.json.gz"
+        },
+        "sources": [
+          {
+            "category": "subtitles",
+            "file": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "id": "subtitles/hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "ipm": 28.61204
+          },
+          {
+            "category": "subtitles",
+            "file": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "id": "subtitles/hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "ipm": 28.201143
+          },
+          {
+            "category": "web",
+            "file": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "id": "web/sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "ipm": 45.315404
+          }
+        ],
+        "word": "torre"
+      },
+      "finding": "Treccani derives the tower noun from Latin turris and records its use in place names. Proper-name aggregation needs independent context, not lowercase spelling.",
+      "finite_binding_authorized": false,
+      "general_national_realization_authorized": false,
+      "head": "torre",
+      "language": "it",
+      "sense": "tower_common_noun",
+      "sources": [
+        "https://www.treccani.it/vocabolario/torre/"
+      ]
+    },
+    {
+      "dictionary_identity_status": "supported_research_only",
+      "exact_source_record": {
+        "category_breakdown": {
+          "normative": {
+            "category_ipm": 0.373591,
+            "category_score": 5.561982574868477,
+            "ipm_values": [
+              0.373591
+            ]
+          },
+          "subtitles": {
+            "category_ipm": 0.006538,
+            "category_score": 0.11418598341100496,
+            "ipm_values": [
+              0.006538
+            ]
+          },
+          "web": {
+            "category_ipm": 2.622172,
+            "category_score": 22.552111072034474,
+            "ipm_values": [
+              2.622172
+            ]
+          }
+        },
+        "components": [
+          {
+            "canonical_candidate": "tura",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "confidence": 0.92,
+                "path": [
+                  "tura",
+                  "tura",
+                  "tura"
+                ],
+                "source": "candidate_index",
+                "type": "morphological_parse"
+              }
+            ],
+            "surface": "tura"
+          }
+        ],
+        "corpus_quality": {
+          "reasons": [],
+          "status": "accepted"
+        },
+        "frequency_score": 9.409426543437986,
+        "language": "ru",
+        "lemma_id": "lemma:158283923dc337e93d69",
+        "normalized": "тура",
+        "rank": 20906,
+        "search_form": "tura",
+        "source_locator": {
+          "family_id": "ety:f12c43164882",
+          "path": "associativvordes/family-index-v5/members/ru/01.json.gz"
+        },
+        "sources": [
+          {
+            "category": "normative",
+            "file": "rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+            "id": "normative/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+            "ipm": 0.373591
+          },
+          {
+            "category": "subtitles",
+            "file": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+            "id": "subtitles/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+            "ipm": 0.006538
+          },
+          {
+            "category": "web",
+            "file": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "id": "web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "ipm": 2.622172
+          }
+        ],
+        "word": "тура"
+      },
+      "finding": "Vasmer separates the chess borrowing through French feminine tour and Latin turris from peat and sea-plant homonyms with different routes. Untagged source тура cannot receive the chess-family edge for all readings.",
+      "finite_binding_authorized": false,
+      "general_national_realization_authorized": false,
+      "head": "тура",
+      "language": "ru",
+      "sense": "chess_rook_borrowing_only",
+      "sources": [
+        "https://lexicography.online/etymology/vasmer/т/тура"
+      ]
+    },
+    {
+      "dictionary_identity_status": "supported_research_only",
+      "exact_source_record": {
+        "category_breakdown": {
+          "normative": {
+            "category_ipm": 2.390494,
+            "category_score": 21.39393803255044,
+            "ipm_values": [
+              2.390494
+            ]
+          },
+          "subtitles": {
+            "category_ipm": 0.9573510000000001,
+            "category_score": 11.767637163717595,
+            "ipm_values": [
+              0.972414,
+              0.942288
+            ]
+          },
+          "web": {
+            "category_ipm": 2.834857,
+            "category_score": 23.551886745393922,
+            "ipm_values": [
+              2.834857
+            ]
+          }
+        },
+        "components": [
+          {
+            "canonical_candidate": "turret",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "confidence": 0.92,
+                "path": [
+                  "turret",
+                  "turret",
+                  "turret"
+                ],
+                "source": "candidate_index",
+                "type": "morphological_parse"
+              }
+            ],
+            "surface": "turret"
+          }
+        ],
+        "corpus_quality": {
+          "reasons": [],
+          "status": "accepted"
+        },
+        "frequency_score": 18.904487313887323,
+        "language": "en",
+        "lemma_id": "lemma:222cc76e64e0b5805573",
+        "normalized": "turret",
+        "rank": 13471,
+        "search_form": "turret",
+        "source_locator": {
+          "family_id": "ety:f12c43164882",
+          "path": "associativvordes/family-index-v5/members/en/01.json.gz"
+        },
+        "sources": [
+          {
+            "category": "normative",
+            "file": "bnc-clean2.lemmatized_spacy_ipm6.json",
+            "id": "normative/bnc-clean2.lemmatized_spacy_ipm6.json",
+            "ipm": 2.390494
+          },
+          {
+            "category": "subtitles",
+            "file": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "id": "subtitles/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "ipm": 0.972414
+          },
+          {
+            "category": "subtitles",
+            "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "ipm": 0.942288
+          },
+          {
+            "category": "web",
+            "file": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "id": "web/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "ipm": 2.834857
+          }
+        ],
+        "word": "turret"
+      },
+      "finding": "Anglo-French turette/tourette is a diminutive of tur/tour. This is a separate national lexical head and derivational branch; the final derivational material is not the international canonical base.",
+      "finite_binding_authorized": false,
+      "general_national_realization_authorized": false,
+      "head": "turret",
+      "language": "en",
+      "sense": "small_tower_diminutive_branch",
+      "sources": [
+        "https://www.merriam-webster.com/dictionary/turret"
+      ]
+    }
+  ],
+  "input_sha256": {
+    "associativvordes/family-index-v5/families/01.json.gz": "f78f75350b11fbac44627f5e7789ac1ffc1183267018ecb53122891a84b1e034",
+    "associativvordes/family-index-v5/families/c5.json.gz": "a962a6e99239e02c668ec9a6315c913a10c49a229c9e70e858effa6fd476df51",
+    "associativvordes/family-index-v5/members/de/01.json.gz": "59001b4c333363b75134154ca0abeab09a37676027defaa620282195e1cb9a49",
+    "associativvordes/family-index-v5/members/de/c5.json.gz": "f61db5cb263029de5d2f9ba75e0e3837ccd13cd253a15bf3c94c93e81283cdbe",
+    "associativvordes/family-index-v5/members/en/01.json.gz": "faa004cb9083e7ce3021f811261fcba00488e10f59f68205772a86e7a0f24578",
+    "associativvordes/family-index-v5/members/en/c5.json.gz": "334ac1e41b60393f733add787f71f7f213372d0a204e2a9540d13625e2bfff24",
+    "associativvordes/family-index-v5/members/es/01.json.gz": "6c16a81bce39ad45e55b357d99d7795090bf4f68fd87027c0e45d0a7a1604c78",
+    "associativvordes/family-index-v5/members/es/c5.json.gz": "2a044ac83b34adedccc33b147fd407d20da1dfe3e147b7d1b02817aef8e0a276",
+    "associativvordes/family-index-v5/members/fr/01.json.gz": "f2533890749fec6cb5c2f466cb48121e989604cc6995d356c7a5e6ceb3f690a5",
+    "associativvordes/family-index-v5/members/fr/c5.json.gz": "9d6433d859f1ec533264bd6be7e4a23118b32018b0f9e3e5f907990487de3981",
+    "associativvordes/family-index-v5/members/it/01.json.gz": "1d09f56502e3e8f546f3da45d6a9e3fcc4c8ec0b04e64cbf104143b157a3a752",
+    "associativvordes/family-index-v5/members/it/c5.json.gz": "81bd6646ed3e2668a8ed784e37460ed3a710070a37036860b4867a5cf80d0f23",
+    "associativvordes/family-index-v5/members/ru/01.json.gz": "04dbefb4ef4c2dafb2d60320f1486651f2fcad5412e22c606643800e123af086",
+    "associativvordes/family-index-v5/members/ru/c5.json.gz": "13a8d1a706338adb72d76825ec25b5048f8557556ff671d660f65588f428beae",
+    "audit/associative-family-v6/candidate-root-clusters-20261003/clusters.json.gz": "ae4acc253c8c6fda0d79fd9047476213de8e16e52b2e8194450387869b27c832"
+  },
+  "negative_and_withheld_controls": [
+    {
+      "decision": "no_membership_authorization_from_packet",
+      "finding": "Modern rocky-hill noun has dictionary history to Old English torr, but the consulted tor entry does not settle its deeper continuity with Latin turris. Retain uncertainty; do not declare unrelated by intuition.",
+      "language": "en",
+      "linguistic_exclusion_asserted": false,
+      "source_record": {
+        "category_breakdown": {
+          "normative": {
+            "category_ipm": 2.515759,
+            "category_score": 22.029632780001076,
+            "ipm_values": [
+              2.515759
+            ]
+          },
+          "subtitles": {
+            "category_ipm": 2.12524,
+            "category_score": 19.966515931500698,
+            "ipm_values": [
+              2.174841,
+              2.075639
+            ]
+          },
+          "web": {
+            "category_ipm": 4.034739,
+            "category_score": 28.32189344002517,
+            "ipm_values": [
+              4.034739
+            ]
+          }
+        },
+        "components": [
+          {
+            "canonical_candidate": "tor",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "confidence": 0.92,
+                "path": [
+                  "tor",
+                  "tor",
+                  "tor"
+                ],
+                "source": "candidate_index",
+                "type": "morphological_parse"
+              }
+            ],
+            "surface": "tor"
+          }
+        ],
+        "corpus_quality": {
+          "reasons": [],
+          "status": "accepted"
+        },
+        "frequency_score": 23.439347383842318,
+        "language": "en",
+        "lemma_id": "lemma:651960ea689efcbc3c97",
+        "normalized": "tor",
+        "rank": 10592,
+        "search_form": "tor",
+        "source_locator": {
+          "family_id": "ety:f12c43164882",
+          "path": "associativvordes/family-index-v5/members/en/01.json.gz"
+        },
+        "sources": [
+          {
+            "category": "normative",
+            "file": "bnc-clean2.lemmatized_spacy_ipm6.json",
+            "id": "normative/bnc-clean2.lemmatized_spacy_ipm6.json",
+            "ipm": 2.515759
+          },
+          {
+            "category": "subtitles",
+            "file": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "id": "subtitles/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "ipm": 2.174841
+          },
+          {
+            "category": "subtitles",
+            "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "ipm": 2.075639
+          },
+          {
+            "category": "web",
+            "file": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "id": "web/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "ipm": 4.034739
+          }
+        ],
+        "word": "tor"
+      },
+      "word": "tor"
+    },
+    {
+      "decision": "no_membership_authorization_from_packet",
+      "finding": "Possible personal/place name; source declaration alone does not establish each aggregate token or a plural tower head.",
+      "language": "en",
+      "linguistic_exclusion_asserted": false,
+      "source_record": {
+        "category_breakdown": {
+          "subtitles": {
+            "category_ipm": 3.8221715,
+            "category_score": 27.566040821026018,
+            "ipm_values": [
+              3.934536,
+              3.709807
+            ]
+          },
+          "web": {
+            "category_ipm": 1.600031,
+            "category_score": 16.742682788788297,
+            "ipm_values": [
+              1.600031
+            ]
+          }
+        },
+        "components": [
+          {
+            "canonical_candidate": "torres",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "confidence": 0.92,
+                "path": [
+                  "torres",
+                  "torres",
+                  "torres"
+                ],
+                "source": "candidate_index",
+                "type": "morphological_parse"
+              }
+            ],
+            "surface": "torres"
+          }
+        ],
+        "corpus_quality": {
+          "reasons": [],
+          "status": "accepted"
+        },
+        "frequency_score": 22.154361804907158,
+        "language": "en",
+        "lemma_id": "lemma:1b26792ff85af5779c9c",
+        "normalized": "torres",
+        "rank": 7479,
+        "search_form": "torres",
+        "source_locator": {
+          "family_id": "ety:f12c43164882",
+          "path": "associativvordes/family-index-v5/members/en/01.json.gz"
+        },
+        "sources": [
+          {
+            "category": "subtitles",
+            "file": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "id": "subtitles/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "ipm": 3.934536
+          },
+          {
+            "category": "subtitles",
+            "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "ipm": 3.709807
+          },
+          {
+            "category": "web",
+            "file": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "id": "web/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "ipm": 1.600031
+          }
+        ],
+        "word": "torres"
+      },
+      "word": "torres"
+    },
+    {
+      "decision": "no_membership_authorization_from_packet",
+      "finding": "Plural tower, plural masculine turn/lathe and proper place-name readings require context.",
+      "language": "fr",
+      "linguistic_exclusion_asserted": false,
+      "source_record": {
+        "category_breakdown": {
+          "web": {
+            "category_ipm": 23.193355,
+            "category_score": 55.82646665089664,
+            "ipm_values": [
+              23.193355
+            ]
+          }
+        },
+        "components": [
+          {
+            "canonical_candidate": "tour",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "confidence": 0.92,
+                "path": [
+                  "tours",
+                  "tour",
+                  "tour"
+                ],
+                "source": "candidate_index",
+                "type": "morphological_parse"
+              }
+            ],
+            "surface": "tour"
+          }
+        ],
+        "corpus_quality": {
+          "reasons": [],
+          "status": "accepted"
+        },
+        "frequency_score": 55.82646665089664,
+        "language": "fr",
+        "lemma_id": "lemma:20fbd8bae8d1b9a8a366",
+        "normalized": "tours",
+        "rank": 3569,
+        "search_form": "tours",
+        "source_locator": {
+          "family_id": "ety:f12c43164882",
+          "path": "associativvordes/family-index-v5/members/fr/01.json.gz"
+        },
+        "sources": [
+          {
+            "category": "web",
+            "file": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "id": "web/sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "ipm": 23.193355
+          }
+        ],
+        "word": "tours"
+      },
+      "word": "tours"
+    },
+    {
+      "decision": "no_membership_authorization_from_packet",
+      "finding": "A turn-around lexical candidate cannot be admitted by tower substring overlap.",
+      "language": "fr",
+      "linguistic_exclusion_asserted": false,
+      "source_record": {
+        "category_breakdown": {
+          "web": {
+            "category_ipm": 1.826853,
+            "category_score": 18.208235526708066,
+            "ipm_values": [
+              1.826853
+            ]
+          }
+        },
+        "components": [
+          {
+            "canonical_candidate": "tour",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "confidence": 0.89,
+                "path": [
+                  "demi-tour",
+                  "tour",
+                  "tour"
+                ],
+                "source": "candidate_index",
+                "type": "compound_morphology"
+              }
+            ],
+            "surface": "tour"
+          }
+        ],
+        "corpus_quality": {
+          "reasons": [],
+          "status": "accepted"
+        },
+        "frequency_score": 18.208235526708066,
+        "language": "fr",
+        "lemma_id": "lemma:6ddb615021c7176fd993",
+        "normalized": "demi-tour",
+        "rank": 18185,
+        "search_form": "demi-tour",
+        "source_locator": {
+          "family_id": "ety:f12c43164882",
+          "path": "associativvordes/family-index-v5/members/fr/01.json.gz"
+        },
+        "sources": [
+          {
+            "category": "web",
+            "file": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "id": "web/sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "ipm": 1.826853
+          }
+        ],
+        "word": "demi-tour"
+      },
+      "word": "demi-tour"
+    },
+    {
+      "decision": "no_membership_authorization_from_packet",
+      "finding": "Shared terminal letters are retrieval evidence only; no reviewed tower head or edge.",
+      "language": "en",
+      "linguistic_exclusion_asserted": false,
+      "source_record": {
+        "category_breakdown": {
+          "normative": {
+            "category_ipm": 0.532381,
+            "category_score": 7.478789003821651,
+            "ipm_values": [
+              0.532381
+            ]
+          },
+          "subtitles": {
+            "category_ipm": 0.008595,
+            "category_score": 0.14995808534513644,
+            "ipm_values": [
+              0.00561,
+              0.01158
+            ]
+          },
+          "web": {
+            "category_ipm": 0.548373,
+            "category_score": 7.660701860188655,
+            "ipm_values": [
+              0.548373
+            ]
+          }
+        },
+        "components": [
+          {
+            "canonical_candidate": "tor",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "confidence": 0.89,
+                "path": [
+                  "acceptor",
+                  "tor",
+                  "tor"
+                ],
+                "source": "candidate_index",
+                "type": "compound_morphology"
+              }
+            ],
+            "surface": "tor"
+          }
+        ],
+        "corpus_quality": {
+          "reasons": [],
+          "status": "accepted"
+        },
+        "frequency_score": 5.096482983118481,
+        "language": "en",
+        "lemma_id": "lemma:fa216e83c0411a8404c5",
+        "normalized": "acceptor",
+        "rank": 30661,
+        "search_form": "acceptor",
+        "source_locator": {
+          "family_id": "ety:f12c43164882",
+          "path": "associativvordes/family-index-v5/members/en/01.json.gz"
+        },
+        "sources": [
+          {
+            "category": "normative",
+            "file": "bnc-clean2.lemmatized_spacy_ipm6.json",
+            "id": "normative/bnc-clean2.lemmatized_spacy_ipm6.json",
+            "ipm": 0.532381
+          },
+          {
+            "category": "subtitles",
+            "file": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "id": "subtitles/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "ipm": 0.00561
+          },
+          {
+            "category": "subtitles",
+            "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "ipm": 0.01158
+          },
+          {
+            "category": "web",
+            "file": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "id": "web/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "ipm": 0.548373
+          }
+        ],
+        "word": "acceptor"
+      },
+      "word": "acceptor"
+    },
+    {
+      "decision": "no_membership_authorization_from_packet",
+      "finding": "Shared terminal letters do not prove a tower component.",
+      "language": "en",
+      "linguistic_exclusion_asserted": false,
+      "source_record": {
+        "category_breakdown": {
+          "subtitles": {
+            "category_ipm": 0.00561,
+            "category_score": 0.09802373349721757,
+            "ipm_values": [
+              0.00561
+            ]
+          }
+        },
+        "components": [
+          {
+            "canonical_candidate": "tor",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "confidence": 0.89,
+                "path": [
+                  "agricultor",
+                  "tor",
+                  "tor"
+                ],
+                "source": "candidate_index",
+                "type": "compound_morphology"
+              }
+            ],
+            "surface": "tor"
+          }
+        ],
+        "corpus_quality": {
+          "reasons": [],
+          "status": "accepted"
+        },
+        "frequency_score": 0.09802373349721757,
+        "language": "en",
+        "lemma_id": "lemma:92cd169dcd1a3c24417a",
+        "normalized": "agricultor",
+        "rank": 267910,
+        "search_form": "agricultor",
+        "source_locator": {
+          "family_id": "ety:f12c43164882",
+          "path": "associativvordes/family-index-v5/members/en/01.json.gz"
+        },
+        "sources": [
+          {
+            "category": "subtitles",
+            "file": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "id": "subtitles/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "ipm": 0.00561
+          }
+        ],
+        "word": "agricultor"
+      },
+      "word": "agricultor"
+    },
+    {
+      "decision": "no_membership_authorization_from_packet",
+      "finding": "The final тура substring is not proof of the chess lexeme or tower continuity.",
+      "language": "ru",
+      "linguistic_exclusion_asserted": false,
+      "source_record": {
+        "category_breakdown": {
+          "normative": {
+            "category_ipm": 4.109503,
+            "category_score": 28.58017566764719,
+            "ipm_values": [
+              4.109503
+            ]
+          },
+          "subtitles": {
+            "category_ipm": 1.196513,
+            "category_score": 13.787557387548077,
+            "ipm_values": [
+              1.196513
+            ]
+          },
+          "web": {
+            "category_ipm": 4.986291,
+            "category_score": 31.355133135122504,
+            "ipm_values": [
+              4.986291
+            ]
+          }
+        },
+        "components": [
+          {
+            "canonical_candidate": "tura",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "confidence": 0.89,
+                "path": [
+                  "abbreviatura",
+                  "tura",
+                  "tura"
+                ],
+                "source": "candidate_index",
+                "type": "compound_morphology"
+              }
+            ],
+            "surface": "tura"
+          }
+        ],
+        "corpus_quality": {
+          "reasons": [],
+          "status": "accepted"
+        },
+        "frequency_score": 24.574288730105927,
+        "language": "ru",
+        "lemma_id": "lemma:4e0a11d643859cb9c79f",
+        "normalized": "аббревиатура",
+        "rank": 13863,
+        "search_form": "abbreviatura",
+        "source_locator": {
+          "family_id": "ety:f12c43164882",
+          "path": "associativvordes/family-index-v5/members/ru/01.json.gz"
+        },
+        "sources": [
+          {
+            "category": "normative",
+            "file": "rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+            "id": "normative/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+            "ipm": 4.109503
+          },
+          {
+            "category": "subtitles",
+            "file": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+            "id": "subtitles/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+            "ipm": 1.196513
+          },
+          {
+            "category": "web",
+            "file": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "id": "web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "ipm": 4.986291
+          }
+        ],
+        "word": "аббревиатура"
+      },
+      "word": "аббревиатура"
+    },
+    {
+      "decision": "no_membership_authorization_from_packet",
+      "finding": "The final тура substring is not proof of the chess lexeme or tower continuity.",
+      "language": "ru",
+      "linguistic_exclusion_asserted": false,
+      "source_record": {
+        "category_breakdown": {
+          "normative": {
+            "category_ipm": 2.786368,
+            "category_score": 23.328921056572334,
+            "ipm_values": [
+              2.786368
+            ]
+          },
+          "subtitles": {
+            "category_ipm": 0.660371,
+            "category_score": 8.884374891179858,
+            "ipm_values": [
+              0.660371
+            ]
+          },
+          "web": {
+            "category_ipm": 1.724448,
+            "category_score": 17.561704475533517,
+            "ipm_values": [
+              1.724448
+            ]
+          }
+        },
+        "components": [
+          {
+            "canonical_candidate": "tura",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "confidence": 0.89,
+                "path": [
+                  "advokatura",
+                  "tura",
+                  "tura"
+                ],
+                "source": "candidate_index",
+                "type": "compound_morphology"
+              }
+            ],
+            "surface": "tura"
+          }
+        ],
+        "corpus_quality": {
+          "reasons": [],
+          "status": "accepted"
+        },
+        "frequency_score": 16.591666807761904,
+        "language": "ru",
+        "lemma_id": "lemma:ec680eca255ea8f2a240",
+        "normalized": "адвокатура",
+        "rank": 21355,
+        "search_form": "advokatura",
+        "source_locator": {
+          "family_id": "ety:f12c43164882",
+          "path": "associativvordes/family-index-v5/members/ru/01.json.gz"
+        },
+        "sources": [
+          {
+            "category": "normative",
+            "file": "rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+            "id": "normative/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+            "ipm": 2.786368
+          },
+          {
+            "category": "subtitles",
+            "file": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+            "id": "subtitles/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+            "ipm": 0.660371
+          },
+          {
+            "category": "web",
+            "file": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "id": "web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "ipm": 1.724448
+          }
+        ],
+        "word": "адвокатура"
+      },
+      "word": "адвокатура"
+    },
+    {
+      "decision": "no_membership_authorization_from_packet",
+      "finding": "Geographic-name route needs independent lexical and token evidence.",
+      "language": "it",
+      "linguistic_exclusion_asserted": false,
+      "source_record": {
+        "category_breakdown": {
+          "subtitles": {
+            "category_ipm": 0.042197,
+            "category_score": 0.7242016194768288,
+            "ipm_values": [
+              0.042977,
+              0.041417
+            ]
+          },
+          "web": {
+            "category_ipm": 0.123136,
+            "category_score": 2.0347385493193046,
+            "ipm_values": [
+              0.123136
+            ]
+          }
+        },
+        "components": [
+          {
+            "canonical_candidate": "torr",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "confidence": 0.81,
+                "path": [
+                  "torremolinos",
+                  "torr",
+                  "torr"
+                ],
+                "source": "candidate_index",
+                "type": "compound_morphology"
+              }
+            ],
+            "surface": "torr"
+          }
+        ],
+        "corpus_quality": {
+          "reasons": [],
+          "status": "accepted"
+        },
+        "frequency_score": 1.3794700843980667,
+        "language": "it",
+        "lemma_id": "lemma:0e828e305c1d90c4326a",
+        "normalized": "torremolinos",
+        "rank": 80168,
+        "search_form": "torremolinos",
+        "source_locator": {
+          "family_id": "ety:f12c43164882",
+          "path": "associativvordes/family-index-v5/members/it/01.json.gz"
+        },
+        "sources": [
+          {
+            "category": "subtitles",
+            "file": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "id": "subtitles/hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "ipm": 0.042977
+          },
+          {
+            "category": "subtitles",
+            "file": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "id": "subtitles/hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "ipm": 0.041417
+          },
+          {
+            "category": "web",
+            "file": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "id": "web/sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "ipm": 0.123136
+          }
+        ],
+        "word": "torremolinos"
+      },
+      "word": "torremolinos"
+    },
+    {
+      "decision": "no_membership_authorization_from_packet",
+      "finding": "A possible finite tower component must be explicitly segmented and reviewed before any binding; no whole-container admission.",
+      "language": "de",
+      "linguistic_exclusion_asserted": false,
+      "source_record": {
+        "category_breakdown": {
+          "normative": {
+            "category_ipm": 0.155407,
+            "category_score": 2.531099911399868,
+            "ipm_values": [
+              0.155407
+            ]
+          },
+          "web": {
+            "category_ipm": 0.123876,
+            "category_score": 2.046279459894235,
+            "ipm_values": [
+              0.123876
+            ]
+          }
+        },
+        "components": [
+          {
+            "canonical_candidate": "turm",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "confidence": 0.89,
+                "path": [
+                  "bismarckturm",
+                  "turm",
+                  "turm"
+                ],
+                "source": "candidate_index",
+                "type": "compound_morphology"
+              }
+            ],
+            "surface": "turm"
+          }
+        ],
+        "corpus_quality": {
+          "reasons": [],
+          "status": "accepted"
+        },
+        "frequency_score": 2.2886896856470513,
+        "language": "de",
+        "lemma_id": "lemma:765d4a815e7f1e15f66c",
+        "normalized": "bismarckturm",
+        "rank": 142011,
+        "search_form": "bismarckturm",
+        "source_locator": {
+          "family_id": "ety:f12c43164882",
+          "path": "associativvordes/family-index-v5/members/de/01.json.gz"
+        },
+        "sources": [
+          {
+            "category": "normative",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "ipm": 0.155407
+          },
+          {
+            "category": "web",
+            "file": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "id": "web/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "ipm": 0.123876
+          }
+        ],
+        "word": "bismarckturm"
+      },
+      "word": "bismarckturm"
+    }
+  ],
+  "next_steps": [
+    "Decide the international canonical boundary independently of source aliases.",
+    "Freeze exact context or prove a shared lexical-base reading before binding aggregate core rows.",
+    "Review finite German tower compounds and the separate turret branch; leave other 1076 source identities unadjudicated."
+  ],
+  "production_enabled": false,
+  "promotion_status": "deferred_boundary_and_corpus_sense_adjudication",
+  "route_record_incidences": 2166,
+  "schema_version": 6,
+  "scope_limits": [
+    "No shared modern noun/verb POS is invented for aggregate corpus rows.",
+    "French tour and Russian тура sense alternatives remain separate; dictionary identity does not settle token senses.",
+    "No whole pool import, unlisted inflection, cross-language substring rule or new family is authorized.",
+    "Russian башня is a semantic translation, not evidence of formal continuity; no invented corpus ID.",
+    "Deeper pre-Latin tower history and Russian тюрьма are outside the proved frame; neither is asserted."
+  ],
+  "source_clusters": [
+    {
+      "declared_source_terms": [
+        "la:turris"
+      ],
+      "etymon_keys": [
+        "la:turris"
+      ],
+      "id": "ety:f12c43164882",
+      "identity_set_sha256": "d09ebbea48c942bd54e635361bf8bf185280653d0ab427e6fecf650554c956d3",
+      "language_counts": {
+        "de": 174,
+        "en": 590,
+        "es": 1,
+        "fr": 84,
+        "it": 19,
+        "ru": 215
+      },
+      "route_record_count": 1083,
+      "source_canonical": "torres",
+      "source_family_path": "associativvordes/family-index-v5/families/01.json.gz",
+      "whole_container_import_authorized": false
+    },
+    {
+      "declared_source_terms": [
+        "la:turrem",
+        "la:turris"
+      ],
+      "etymon_keys": [
+        "la:turr"
+      ],
+      "id": "ety:f6fc9545f482",
+      "identity_set_sha256": "d09ebbea48c942bd54e635361bf8bf185280653d0ab427e6fecf650554c956d3",
+      "language_counts": {
+        "de": 174,
+        "en": 590,
+        "es": 1,
+        "fr": 84,
+        "it": 19,
+        "ru": 215
+      },
+      "route_record_count": 1083,
+      "source_canonical": "torres",
+      "source_family_path": "associativvordes/family-index-v5/families/c5.json.gz",
+      "whole_container_import_authorized": false
+    }
+  ],
+  "source_frame": "audit/associative-family-v6/tower-promotion-source-frame-20261003.json.gz",
+  "source_frame_sha256": "b1332e3226291683e9457517bd74568ebd361fb513f8649969a4ecda9c44a4db",
+  "source_head": "b93a919750d1d8be7967255dde87c7a212e26e02",
+  "stage": "tower-promotion-research-20261003",
+  "unadjudicated_unique_pool_records": 1076,
+  "unique_source_identities": 1083
+}
