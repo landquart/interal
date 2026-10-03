@@ -2,7 +2,7 @@
   "schema_version": 6,
   "verdict": "pass",
   "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6",
-  "locked_source_files": 2464,
+  "locked_source_files": 2468,
   "classified_objects": 2456540,
   "classification_counts": {
     "etymological_evidence_cluster": 20755,
@@ -12,7 +12,14 @@
   },
   "preserved_manual_memberships": 19967,
   "reviewed_membership_additions": 1042,
-  "generated_memberships": 21009,
+  "family_promotion_metrics": {
+    "promoted_families": 1,
+    "head_decisions": 7,
+    "finite_memberships": 12,
+    "known_queue_resolutions": 0,
+    "full_linguistic_certification": false
+  },
+  "generated_memberships": 21021,
   "lexical_head_review_metrics": {
     "source_active_records": 25202,
     "current_active_records": 24037,
@@ -147,7 +154,7 @@
     "historical_representation_reuse_factor": 145.33333333333334,
     "historical_boundary_reviews_are_not_newly_resolved_records": true
   },
-  "typed_realizations": 70,
+  "typed_realizations": 71,
   "unexpected_differences": 0,
   "golden_controls": [
     {
@@ -474,6 +481,216 @@
     {
       "root": "inform",
       "word": "informalizadas",
+      "expected": "excluded_from_accepted_memberships"
+    },
+    {
+      "root": "system",
+      "word": "system",
+      "expected": "accepted",
+      "lemma_ids": [
+        "lemma:7ba15b6de9b10a155d63",
+        "lemma:dff0cfb88a2b04b1e528"
+      ]
+    },
+    {
+      "root": "system",
+      "word": "systems",
+      "expected": "accepted",
+      "lemma_ids": [
+        "lemma:d88dae85956546cdf8c1",
+        "lemma:199a094f069aa5bbaf21"
+      ]
+    },
+    {
+      "root": "system",
+      "word": "système",
+      "expected": "accepted",
+      "lemma_ids": [
+        "lemma:182eb47cd06a3f918e8e"
+      ]
+    },
+    {
+      "root": "system",
+      "word": "systèmes",
+      "expected": "accepted",
+      "lemma_ids": [
+        "lemma:f053cdac3dc565364bf1"
+      ]
+    },
+    {
+      "root": "system",
+      "word": "sistema",
+      "expected": "accepted",
+      "lemma_ids": [
+        "lemma:0334d76116cb3e9622ec",
+        "lemma:d4ba3823d8978737b19d"
+      ]
+    },
+    {
+      "root": "system",
+      "word": "система",
+      "expected": "accepted",
+      "lemma_ids": [
+        "lemma:f13af3cb2edc197e2860"
+      ]
+    },
+    {
+      "root": "system",
+      "word": "систем",
+      "expected": "accepted",
+      "lemma_ids": [
+        "lemma:d053aa613e6063994f8f"
+      ]
+    },
+    {
+      "root": "system",
+      "word": "системы",
+      "expected": "accepted",
+      "lemma_ids": [
+        "lemma:a2c6751527466bf1958f"
+      ]
+    },
+    {
+      "root": "system",
+      "word": "sistematizar",
+      "expected": "accepted",
+      "lemma_ids": [
+        "lemma:0c05cc8944d073deeeda"
+      ]
+    },
+    {
+      "root": "system",
+      "word": "автор-составитель",
+      "expected": "excluded_from_accepted_memberships"
+    },
+    {
+      "root": "system",
+      "word": "драмсостав",
+      "expected": "excluded_from_accepted_memberships"
+    },
+    {
+      "root": "system",
+      "word": "химсостав",
+      "expected": "excluded_from_accepted_memberships"
+    },
+    {
+      "root": "system",
+      "word": "иаснесоставить",
+      "expected": "excluded_from_accepted_memberships"
+    },
+    {
+      "root": "system",
+      "word": "картосоставитель",
+      "expected": "excluded_from_accepted_memberships"
+    },
+    {
+      "root": "system",
+      "word": "комсостав",
+      "expected": "excluded_from_accepted_memberships"
+    },
+    {
+      "root": "system",
+      "word": "медиасостав",
+      "expected": "excluded_from_accepted_memberships"
+    },
+    {
+      "root": "system",
+      "word": "начсостав",
+      "expected": "excluded_from_accepted_memberships"
+    },
+    {
+      "root": "system",
+      "word": "несоставить",
+      "expected": "excluded_from_accepted_memberships"
+    },
+    {
+      "root": "system",
+      "word": "плавсостав",
+      "expected": "excluded_from_accepted_memberships"
+    },
+    {
+      "root": "system",
+      "word": "политсостав",
+      "expected": "excluded_from_accepted_memberships"
+    },
+    {
+      "root": "system",
+      "word": "полсостав",
+      "expected": "excluded_from_accepted_memberships"
+    },
+    {
+      "root": "system",
+      "word": "редактор-составитель",
+      "expected": "excluded_from_accepted_memberships"
+    },
+    {
+      "root": "system",
+      "word": "состав",
+      "expected": "excluded_from_accepted_memberships"
+    },
+    {
+      "root": "system",
+      "word": "состава",
+      "expected": "excluded_from_accepted_memberships"
+    },
+    {
+      "root": "system",
+      "word": "составить",
+      "expected": "excluded_from_accepted_memberships"
+    },
+    {
+      "root": "system",
+      "word": "составитель",
+      "expected": "excluded_from_accepted_memberships"
+    },
+    {
+      "root": "system",
+      "word": "составиттеб",
+      "expected": "excluded_from_accepted_memberships"
+    },
+    {
+      "root": "system",
+      "word": "составиттруд",
+      "expected": "excluded_from_accepted_memberships"
+    },
+    {
+      "root": "system",
+      "word": "составялть",
+      "expected": "excluded_from_accepted_memberships"
+    },
+    {
+      "root": "system",
+      "word": "составять",
+      "expected": "excluded_from_accepted_memberships"
+    },
+    {
+      "root": "system",
+      "word": "составлть",
+      "expected": "excluded_from_accepted_memberships"
+    },
+    {
+      "root": "system",
+      "word": "составмет",
+      "expected": "excluded_from_accepted_memberships"
+    },
+    {
+      "root": "system",
+      "word": "спецсостав",
+      "expected": "excluded_from_accepted_memberships"
+    },
+    {
+      "root": "system",
+      "word": "система-галс",
+      "expected": "excluded_from_accepted_memberships"
+    },
+    {
+      "root": "system",
+      "word": "системболагет",
+      "expected": "excluded_from_accepted_memberships"
+    },
+    {
+      "root": "system",
+      "word": "системикс",
       "expected": "excluded_from_accepted_memberships"
     }
   ],
