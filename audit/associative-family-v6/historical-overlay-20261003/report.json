@@ -1,0 +1,49 @@
+{
+  "schema_version": 6,
+  "verdict": "pass",
+  "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6",
+  "script_sha256": "4ae269ef7a74427926ff4bd67bab26a95aff41d7abc22409731a8562662e224c",
+  "unresolved_historical_records": 46390,
+  "scope": "saved_nat_loc_inter_candidate_frame",
+  "input_sha256": {
+    "associativvordes/family-index-v6/catalog.json": "6053e43278b39b495085513bc865fcf3be6c5c252159e796223e1406e7ce7536",
+    "audit/associative-family-v5/component-checkpoint-20261001/decisions.json": "1f1c3d04e6f6bc845856fd44cb5018a80f19978890df38b8b855ad01e634e9a3",
+    "audit/associative-family-v5/component-checkpoint-20261001/candidate-records.json.gz": "27f8a6bd79ea15a8671c922b5209f63ddafc16cc48c1c54ee897b047fc900e1e",
+    "audit/associative-family-v5/loc-reflex-decisions-20261001.json": "330d2f5c0a8cc35eb88b966e14ec10961bac59dcaa72c6a36580dee2db3a3d65",
+    "associativvordes/family-index-v6/generated/memberships.json.gz": "37b6d203096fb13f831b18cde721c8fa0776428095e9157a4ce7d284362ed210",
+    "associativvordes/family-index-v6/generated/head-review-ledger.json": "97193f58321d1adaa9440ed5c3ed0ccd7cc5a73c2477146c6d4a413a933cbd28",
+    "associativvordes/family-index-v6/generated/review-backlog.json.gz": "df8112d8aa00a8665904aea1e43c0deacd6518b15467dd4b09a67606229dc60e"
+  },
+  "source_records": 55686,
+  "counts": {
+    "nat": {
+      "unresolved_historical_without_current_decision": 25780,
+      "accepted_preserved_or_reviewed": 1915,
+      "excluded_saved_historical_decision": 302
+    },
+    "loc": {
+      "unresolved_historical_without_current_decision": 9928,
+      "accepted_preserved_or_reviewed": 1226,
+      "excluded_saved_historical_decision": 26,
+      "investigated_uncertain_current_overlay": 827,
+      "excluded_current_loc_overlay": 527,
+      "excluded_current_finite_head_review": 7
+    },
+    "inter": {
+      "unresolved_historical_without_current_decision": 10682,
+      "accepted_preserved_or_reviewed": 4283,
+      "excluded_saved_historical_decision": 183
+    }
+  },
+  "historical_accepted_preserved": 6819,
+  "historical_exclusions_superseded_by_evidenced_loc_overlay": 498,
+  "new_linguistic_decisions": 0,
+  "new_pending_records_resolved": 0,
+  "new_memberships": 0,
+  "production_enabled": false,
+  "limitations": [
+    "Reconciliation preserves saved decisions and measurements; it performs no linguistic classification.",
+    "Unresolved historical records remain a separate frame, not silently merged into the six active queues.",
+    "Accepted current rows use preserved v5 or finite reviewed v6 membership proof; this does not certify every lexical head."
+  ]
+}

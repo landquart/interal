@@ -1,0 +1,1271 @@
+Проведи фундаментальное исправление архитектуры associative family index в репозитории `landquart/interal`.
+
+Это не очередная локальная чистка отдельных `observ`, `act`, `val` или `surface:*` families. Цель — изменить саму модель данных так, чтобы дальнейшая полная лингвистическая проверка всего индекса стала на порядок быстрее без снижения качества.
+
+Работа должна сохранить все уже собранные corpus records, frequency/source metadata, etymological evidence, component discovery и результаты ручных аудитов, но перестать считать миллионы технических `surface:*` и `ety:*` объектов равноправными пользовательскими ассоциативными семьями.
+
+## 1. Сначала проверить актуальное состояние
+
+Перед изменениями заново получить:
+
+- HEAD PR #650;
+- HEAD PR #651;
+- base dependency;
+- status GitHub Actions;
+- состояние `main`;
+- последние continuation checkpoints.
+
+На момент составления задания рабочая цепочка:
+
+`main`
+→ PR #650 `fix/associative-information-20260930`
+→ PR #651 `fix/associative-component-membership-20261001`
+
+Последний проверенный HEAD #651:
+
+`22e6293f72a22e80e364079d83031a1f8f2a36d6`
+
+На нём GitHub `Tests` и `Audit repository associative family v5` завершились успешно.
+
+Не предполагать, что это всё ещё актуальный HEAD: сначала перепроверить remote.
+
+Не merge #650/#651 без отдельного разрешения пользователя.
+
+Не начинать новую архитектурную работу от старого `main`, если это потеряет уже сделанные corrections.
+
+Сохранить существующую branch dependency или создать поверх актуального #651 отдельную архитектурную branch/PR, если изменение достаточно большое и это безопаснее.
+
+## 2. Главное определение associative root
+
+Ассоциативная семья строится вокруг **ассоциативной основы**, а не вокруг полного словарного слова или латинской словоформы.
+
+Canonical root должен по возможности представлять основу **без окончания**, но это НЕ означает механического отбрасывания последних букв.
+
+Правильные примеры:
+
+`pede` → `ped`
+
+но:
+
+`creat` → `creat`
+
+НЕ:
+
+`creat` → `cre`.
+
+Аналогично canonical root должен отражать реально узнаваемый международный компонент, а не минимально возможный этимологический остаток.
+
+Правило:
+
+**убирать окончание можно только тогда, когда отделяемая часть действительно является окончанием/формантом, а оставшаяся часть сама соответствует устойчивой ассоциативной основе.**
+
+Запрещено применять универсальный алгоритм типа:
+
+- удалить финальное `e`;
+- удалить финальное `a`;
+- удалить финальное `o`;
+- удалить `-us`;
+- удалить `-io`;
+- взять кратчайший возможный stem.
+
+Такая процедура уже приводила к опасным объединениям вроде `actio` / `Actium`.
+
+Canonical associative root определяется лингвистически.
+
+Примеры принципа:
+
+`pede` → `ped`
+
+потому что международно узнаваемая основа представлена в:
+
+`pedal`
+`pedicure`
+`pedestrian` — только если конкретная ветвь действительно соответствует выбранной семье;
+и национальных cognate/reflex forms.
+
+Но:
+
+`creat` остаётся `creat`, потому что именно `creat-` является устойчивой международно узнаваемой основой:
+
+`create`
+`creation`
+`creative`
+`crear`
+`creare`
+`création`
+`kreativ`
+`креатив-`
+
+Форма `cre` не является нужной associative base и создала бы огромное количество ложных совпадений.
+
+То же правило применять ко всем новым canonical roots.
+
+## 3. Не путать canonical root и surface realization
+
+Canonical root не обязан буквально встречаться во всех языках.
+
+Например:
+
+canonical:
+`observ`
+
+Italian realization:
+`osserv-`.
+
+Canonical:
+`loc`
+
+German/Russian realization:
+`lok-/лок-`.
+
+При этом canonical root сам должен быть правильно выбранной основой, а не полной словоформой.
+
+То есть две независимые операции:
+
+1. определить правильную canonical associative base;
+2. определить её language-specific realizations.
+
+Не смешивать их.
+
+## 4. Главная проблема нынешней архитектуры
+
+Нынешний v5 смешивает несколько разных сущностей:
+
+1. corpus lemma;
+2. surface-discovered component;
+3. lexical head;
+4. etymological node;
+5. query alias;
+6. national reflex;
+7. настоящую associative family.
+
+Из-за этого технический `surface:<language>:<root>` часто становится полноценной family, хотя он должен быть лишь обнаруженным кандидатом-компонентом.
+
+А etymon вида:
+
+`la:observatio`
+`la:actio`
+`la:relatio`
+`la:pede`
+
+может становиться основанием отдельной technical family, хотя пользовательская associative family должна строиться вокруг правильной основы:
+
+`observ`
+`act`
+`relat`
+`ped`
+
+и т. п.
+
+Это порождает огромный объём последующей ручной очистки.
+
+## 5. Новая фундаментальная модель
+
+Создать новую архитектуру, условно `associative-family-v6`, где существуют отдельно:
+
+### A. Corpus lemma
+
+Неизменяемая запись реального corpus word:
+
+- `lemma_id`;
+- language;
+- word;
+- normalized/search form;
+- frequency;
+- category breakdown;
+- sources;
+- corpus quality.
+
+Corpus data нельзя синтезировать или исправлять ради family model.
+
+### B. Component candidate
+
+Результат morphology/component discovery.
+
+Сам факт обнаружения component candidate НЕ создаёт associative family.
+
+Компонент может иметь:
+
+`associative_family_id = null`.
+
+Это нормальное состояние.
+
+### C. Lexical head
+
+Новый обязательный промежуточный слой между lemma и associative family.
+
+Примеры:
+
+`de:Mütze`
+`es:creer`
+`it:osservare`
+`de:Information`
+`en:actin`
+`la:Actium`
+
+Lexical head объединяет конкретные формы/инфлексии/прозрачные производные, для которых этимологическое решение можно сделать один раз.
+
+Именно lexical head должен стать основной единицей дорогой ручной лингвистической проверки.
+
+### D. Associative family
+
+Настоящий пользовательский международный элемент:
+
+`nat`
+`loc`
+`inter`
+`observ`
+`inform`
+`creat`
+`relat`
+`oper`
+`mut`
+`act`
+`ped`
+
+и т. п.
+
+Family должна существовать только тогда, когда есть основания считать этот элемент реальным ассоциативным компонентом.
+
+### E. Etymological evidence node
+
+Wiktionary/Kaikki etymons, borrowing/inheritance relations, Latin lexemes и другие historical nodes.
+
+Они подтверждают или опровергают связь lexical head → associative family.
+
+Они НЕ являются автоматически associative families.
+
+### F. Query alias
+
+Отдельный routing layer.
+
+Alias отвечает только на вопрос:
+
+«По какому запросу найти эту family?»
+
+Alias НЕ доказывает membership.
+
+### G. National realization / reflex
+
+Отдельная root-specific и language-specific связь.
+
+Например:
+
+`family:observ`
+→ language `it`
+→ realization `osserv-`.
+
+National reflex НЕ является глобальной заменой букв.
+
+## 6. Canonical-root selection должен быть отдельным этапом
+
+Не наследовать canonical автоматически из:
+
+- полного etymon;
+- самого частого alias;
+- shortest alias;
+- quality-score по длине;
+- первого найденного surface root.
+
+Для настоящих associative families нужен отдельный canonical-root decision.
+
+Для каждого promoted root сохранять:
+
+- исходные lexical heads;
+- возможные stems;
+- какой segment является окончанием;
+- почему выбран именно canonical root;
+- positive cross-language examples;
+- negative over-stripping examples.
+
+Например:
+
+### `ped`
+
+Исходные evidence forms могут включать `pede`, `pedal`, `pedi-` и т. п.
+
+Canonical:
+
+`ped`
+
+Потому что `-e` в исходной форме не является частью нужной международной основы.
+
+### `creat`
+
+Исходные формы:
+
+`create`
+`creation`
+`creative`
+`creare`
+`création`
+`kreativ`
+и др.
+
+Canonical:
+
+`creat`
+
+Не:
+
+`cre`.
+
+Потому что `-at-` принадлежит узнаваемой основе этой международной серии, а не является простым окончанием, которое можно механически удалить.
+
+## 7. Запретить generic stem stripping
+
+Существующий механизм `latinStemProposals()` может оставаться только retrieval/review aid.
+
+Он НЕ должен определять canonical associative roots автоматически.
+
+Особенно запрещено считать, что:
+
+`латинское слово - стандартное окончание = associative root`
+
+без независимой проверки.
+
+Stem proposal должен иметь status:
+
+`proposal_requires_review`.
+
+Он может помочь найти возможный root, но не создавать family.
+
+## 8. Новый основной граф
+
+Архитектура должна мыслиться примерно так:
+
+`corpus lemma`
+→ `lexical head`
+→ `associative family`
+
+Отдельно:
+
+`lexical head`
+→ `etymological evidence`
+
+И:
+
+`associative family`
+→ `language-specific realizations`
+
+И:
+
+`query alias`
+→ `associative family`
+
+Не строить основную модель как:
+
+`etymon`
+→ `family`
+→ `lemma`.
+
+## 9. Главное новое правило: membership optional
+
+Убрать фундаментальное предположение, что каждый discovered component или каждая lemma обязана попасть хотя бы в одну associative family.
+
+Правильные invariants:
+
+- каждая corpus lemma сохранена;
+- каждый обнаруженный component сохранён;
+- evidence не теряется;
+- component может не иметь associative family;
+- lemma может не иметь associative family;
+- отсутствие family membership НЕ означает потерю corpus record.
+
+Не поддерживать invariant типа:
+
+`lemmas_with_zero_family = 0`
+
+как желаемый критерий.
+
+## 10. `surface:*` перестают быть настоящими families
+
+Не удалять существующие surface data.
+
+Переклассифицировать их.
+
+`surface:de:xyz`
+
+должно означать:
+
+`German surface component candidate xyz`
+
+а не:
+
+`associative family xyz`.
+
+Сохранить:
+
+- component;
+- source lemmas;
+- counts;
+- evidence;
+- morphology;
+- historical hashes.
+
+Но исключить такие objects из пользовательского family namespace, если они не были отдельно promoted в настоящую associative family.
+
+## 11. `ety:*` перестают автоматически быть associative families
+
+Перевести:
+
+`ety:<hash>`
+
+в evidence/etymological cluster layer.
+
+Он может связывать разные lexical heads.
+
+Но он не должен автоматически быть пользовательской family.
+
+Например:
+
+`la:observatio`
+
+и:
+
+`la:observare`
+
+могут быть разными etymological nodes, подтверждающими одну:
+
+`family:observ`.
+
+А исходная форма `pede` может служить evidence для:
+
+`family:ped`
+
+не заставляя canonical оставаться `pede`.
+
+## 12. Canonical family catalog
+
+Создать единый declarative catalog настоящих associative families.
+
+Не хранить verified roots частично в:
+
+- `associative-family-registry.js`;
+- builder seed constants;
+- control words;
+- runtime-patched families;
+- reflex files;
+- audit ledgers.
+
+Один authoritative family catalog должен использоваться:
+
+- builder;
+- runtime;
+- search;
+- audit;
+- review tools.
+
+## 13. Исправить существующие seed roots
+
+При переносе существующих seed families отдельно проверить canonical forms.
+
+В частности текущий:
+
+`family:pede`
+
+не должен автоматически сохраняться как canonical `pede`.
+
+Для ассоциативной семьи использовать:
+
+`family:ped`
+
+canonical:
+`ped`
+
+если полный migration audit подтверждает, что это соответствует пользовательскому принципу.
+
+При этом не делать массовое переименование других seeds по аналогии.
+
+Каждый root проверяется отдельно.
+
+Например:
+
+`creat` остаётся `creat`.
+
+Не превращать:
+
+`creat → cre`
+
+по аналогии с:
+
+`pede → ped`.
+
+## 14. Использовать проверенные roots как gold seeds
+
+Использовать уже исследованные families как эталоны:
+
+- `inter`
+- `ocul`
+- `regul`
+- `alter`
+- `ped` — после исправления `pede`;
+- `manu`
+- `liber`
+- `nat`
+- `loc`
+- `observ`
+- `inform`
+- `creat`
+- `relat`
+- `oper`
+- `mut`
+- `act`
+
+Но каждый canonical root должен отдельно пройти проверку на правильную границу основы.
+
+Не считать старые canonical strings автоматически правильными только потому, что family уже существует.
+
+## 15. Lexical-head registry
+
+Создать reusable registry для проверенных lexical heads.
+
+Например:
+
+`de:Mütze`
+→ `mut`: excluded
+
+`es:creer`
+→ `creat`: excluded
+
+`it:osservare`
+→ `observ`: accepted
+
+`de:Information`
+→ `inform`: accepted
+
+`en:actin`
+→ `act`: excluded
+
+Для head сохранять:
+
+- language;
+- normalized head;
+- candidate family;
+- status;
+- evidence;
+- reason;
+- source URLs;
+- morphology policy;
+- derivational propagation;
+- version.
+
+## 16. Membership становится edge-level object
+
+Основная проверяемая связь:
+
+`lexical_head → family`.
+
+Статусы:
+
+- accepted;
+- excluded;
+- uncertain;
+- pending.
+
+Отдельная generated связь:
+
+`lemma → lexical_head`.
+
+Например:
+
+`family:inform` сама является нормальной family,
+
+а:
+
+`de:informell → family:inform`
+
+может оставаться uncertain.
+
+## 17. National reflex registry
+
+Создать структурированный registry.
+
+Для каждого reflex:
+
+- family ID;
+- language;
+- realization;
+- morphology/boundary;
+- supporting lexical heads;
+- evidence;
+- positive controls;
+- negative controls;
+- status.
+
+Пример:
+
+family:
+`observ`
+
+language:
+`it`
+
+realization:
+`osserv`
+
+heads:
+`osservare`
+`osservazione`
+`osservatore`
+`osservatorio`.
+
+Не превращать это в глобальное правило `ob→os`.
+
+## 18. Canonical root и reflex не должны требовать одинаковой длины
+
+Допускается, что canonical:
+
+`ped`
+
+а конкретная lexical realization содержит:
+
+`pedi-`, `pede-` или другую доказанную форму.
+
+Так же:
+
+canonical:
+`observ`
+
+Italian:
+`osserv`.
+
+Главное — association identity, а не буквальная длина строки.
+
+## 19. Не использовать substring как membership engine
+
+Pipeline:
+
+1. candidate retrieval;
+2. lexical-head recognition;
+3. canonical/root-boundary analysis;
+4. national realization check;
+5. etymological check;
+6. family-edge decision.
+
+Наличие string внутри word — только сигнал для retrieval.
+
+## 20. Generated membership вместо ручного списка каждого слова
+
+Family catalog хранит:
+
+- canonical root;
+- language realizations;
+- accepted lexical heads;
+- exclusions;
+- ambiguities;
+- derivational policies.
+
+Полный member array генерируется.
+
+Но output должен по-прежнему содержать каждый конкретный real lemma ID для audit/runtime.
+
+## 21. Ограниченная morphology propagation
+
+После accepted head разрешать propagation для:
+
+- inflection;
+- прозрачной derivation;
+- прозрачного compound containment;
+- проверенных language-specific models.
+
+Propagation должна быть:
+
+- head-bound;
+- root-bound;
+- language-bound;
+- finite;
+- deterministic.
+
+Не:
+
+`contains(root) → member`.
+
+## 22. Negative-head propagation
+
+Если:
+
+`de:Mütze`
+≠ `family:mut`,
+
+конечный список форм этого head можно исключить группой.
+
+Но это не создаёт unrestricted string rule.
+
+Каждый affected lemma ID сохраняется в generated decision ledger.
+
+## 23. Alias routing полностью отделить от family identity
+
+Alias отвечает за lookup, не за лингвистическое объединение.
+
+Alias fan-out допустим.
+
+Alias `val` может вести к нескольким candidate families.
+
+Это НЕ означает их merge.
+
+## 24. `val` использовать как migration test
+
+Перенести 15 retained v5 targets в evidence/candidate layer.
+
+После этого независимо определить настоящие associative roots.
+
+Проверить:
+
+- value/valor;
+- valid;
+- valence;
+- vale/valley/vallis;
+- Valerius/personal names;
+- unrelated branches;
+- Italian surface;
+- Russian surface.
+
+Canonical roots определять по правилу реальной ассоциативной основы, а не простой обрезкой полного etymon.
+
+## 25. V5 оставить immutable evidence base
+
+Не уничтожать текущий v5.
+
+Считать его:
+
+`candidate + evidence index`.
+
+Сохранить:
+
+- corpus lemmas;
+- discovered components;
+- etymology;
+- source metadata;
+- aliases;
+- audit ledgers;
+- manual corrections;
+- old IDs/hashes.
+
+V6 строится поверх него.
+
+## 26. Migration inventory
+
+Каждый v5 family object классифицировать как:
+
+- verified_associative_family;
+- promoted_manual_associative_family;
+- surface_component_candidate;
+- etymological_evidence_cluster;
+- legacy_duplicate;
+- retired;
+- blocked;
+- unknown_requires_review.
+
+Автоматически переклассифицировать структурно очевидные объекты.
+
+Не проверять миллионы `surface:*` по одному.
+
+## 27. Promotion criterion
+
+Новая associative family создаётся только если существует:
+
+- identifiable canonical associative base;
+- правильно определённая граница основы;
+- international/cross-linguistic relevance либо иной достаточный критерий системы;
+- coherent morphology;
+- etymological evidence;
+- отсутствие очевидного homonym merge;
+- documented national realizations.
+
+Не требовать шесть языков обязательно.
+
+## 28. Promotion candidate generation
+
+Автоматически ранжировать потенциальные associative roots по:
+
+- cross-language recurrence;
+- borrowing/inheritance evidence;
+- compatible national realizations;
+- support;
+- distribution;
+- similarity международных lexical heads.
+
+Но score только предлагает root на review.
+
+Он не определяет canonical root автоматически.
+
+## 29. Canonical-root review должен избегать двух противоположных ошибок
+
+### Ошибка A: root слишком длинный
+
+Например:
+
+`pede`
+
+когда настоящая associative base:
+
+`ped`.
+
+### Ошибка B: root слишком короткий
+
+Например:
+
+`cre`
+
+вместо:
+
+`creat`.
+
+Обе ошибки опасны.
+
+Слишком длинный root снижает recall и дробит одну семью.
+
+Слишком короткий root резко увеличивает false positives.
+
+Поэтому canonical selection должна оптимизировать не минимальную длину, а:
+
+**максимально короткую форму, которая всё ещё соответствует целостному узнаваемому международному компоненту и не отсекает часть самой основы.**
+
+Это не алгоритмическое правило длины, а лингвистический критерий.
+
+## 30. Duplicate detection
+
+Для evidence clusters считать:
+
+- exact member-set hashes;
+- ordered hashes;
+- Jaccard;
+- MinHash/LSH;
+- etymon overlap;
+- alias fan-out.
+
+Но identical arrays не означают автоматический merge.
+
+## 31. Risk model перенести на heads/edges
+
+Risk score нужен для:
+
+- lexical head;
+- head→family edge;
+- reflex;
+- canonical-root proposal;
+- alias;
+- evidence cluster.
+
+Особенно high risk:
+
+- canonical length 1–3;
+- suspected over-stripping;
+- suffix-like proposed root;
+- homonymy;
+- multiple etymologies;
+- proper name;
+- phrase fusion;
+- foreign form;
+- cross-family collision.
+
+## 32. Active review ordering
+
+Приоритет проверки:
+
+`сколько конкретных pending lemma memberships разрешит решение по этому head/root`.
+
+Проверять сначала решения с максимальным downstream effect.
+
+## 33. Evidence cache
+
+Однажды установленный факт reusable.
+
+Например:
+
+`Spanish creer ≠ creat`
+
+не исследуется заново.
+
+То же для canonical-root decisions:
+
+`pede → ped`
+
+после окончательной валидации не должен каждый раз заново выводиться локальными скриптами.
+
+## 34. Не переписывать corpus IDs
+
+V6 memberships используют существующие corpus records.
+
+Никаких invented:
+
+- lemma IDs;
+- frequencies;
+- sources;
+- category data.
+
+Отсутствующее слово:
+
+`corpus_gap`.
+
+## 35. Golden migration tests
+
+Минимум:
+
+### `ped`
+
+Canonical:
+
+`ped`
+
+не:
+
+`pede`.
+
+Проверить, что нужные international forms маршрутизируются к `family:ped`.
+
+Проверить, что переход не создаёт uncontrolled matches для любого `ped` substring.
+
+### `creat`
+
+Canonical:
+
+`creat`
+
+не:
+
+`cre`.
+
+Проверить:
+
+`create`
+`creation`
+`creative`
+`crear`
+`creare`
+и проверенные national realizations.
+
+Проверить, что `cre*` unrelated words не принимаются.
+
+### `observ`
+
+Canonical:
+`observ`.
+
+Italian:
+`osserv`.
+
+### `loc`
+
+Canonical:
+`loc`.
+
+German/Russian approved:
+`lok/лок`.
+
+`lieu`, `lieutenant` excluded.
+
+### `nat`
+
+Canonical:
+`nat`.
+
+`nation`, `natural` accepted.
+
+`naive` excluded.
+
+### `inter`
+
+`international`, `interval`, `internet` accepted.
+
+`winter`, `printer`, `midwinter` excluded.
+
+### `act`
+
+Action heads accepted.
+
+Actium, actin, fact, tract etc. не принимаются автоматически.
+
+### `inform`
+
+Information heads accepted.
+
+Nonformal `informal` branches excluded.
+
+Sense/context ambiguity допускает uncertain.
+
+### `val`
+
+Alias не объединяет автоматически legacy targets.
+
+## 36. Проверка полноты migration
+
+Доказать:
+
+- corpus lemmas не потеряны;
+- component candidates не потеряны;
+- evidence не потеряно;
+- existing manually accepted memberships сохранены либо имеют documented migration;
+- negative controls остаются negative;
+- positive controls проходят;
+- v5 воспроизводим.
+
+## 37. Runtime migration
+
+V6 сначала работает параллельно.
+
+Для одинаковых запросов сравнивать:
+
+v5 result
+vs
+v6 result.
+
+Сохранять:
+
+- additions;
+- removals;
+- reason;
+- expected/unexpected.
+
+Production не переключать без отдельного решения.
+
+## 38. Не проверять миллионы surface candidates как families
+
+После migration:
+
+`surface candidate`
+≠
+`unresolved associative family`.
+
+Manual backlog должен содержать только:
+
+- family promotion candidates;
+- canonical-root disputes;
+- lexical-head edges;
+- national reflexes;
+- alias ambiguity;
+- high-risk evidence clusters.
+
+## 39. Текущие v5 queues сохранить, но regroup
+
+Не выбрасывать:
+
+- observ/inform;
+- relat;
+- loc;
+- creat;
+- oper;
+- mut;
+- act;
+- nat/loc/inter;
+- Russian short roots;
+- val.
+
+После появления v6 regroup их по:
+
+canonical root
+→ national realization
+→ lexical head
+→ lemma forms.
+
+Не продолжать lemma-by-lemma review там, где head decision решает группу.
+
+## 40. Общий review engine
+
+Input:
+
+- associative family;
+- canonical root;
+- possible national realizations;
+- candidate lexical heads;
+- previous decisions;
+- evidence registry;
+- corpus.
+
+Output:
+
+- accepted heads;
+- excluded heads;
+- uncertain heads;
+- pending heads;
+- generated lemma memberships;
+- source proofs;
+- canonical-root evidence;
+- hashes.
+
+Root-specific scripts делать thin configuration wrappers.
+
+## 41. Determinism
+
+LLM verdict не должен существовать только в момент build.
+
+Все принятые решения materialized как explicit ledger.
+
+При одинаковых inputs v6 даёт одинаковый output.
+
+## 42. Versioning
+
+Не переписывать смысл v5.
+
+Создать отдельный v6/schema.
+
+Документировать:
+
+- ontology;
+- canonical-root policy;
+- migration;
+- compatibility;
+- production switch.
+
+## 43. Порядок реализации
+
+### Phase A — architecture spec
+
+Зафиксировать сущности и canonical-root policy.
+
+Особенно формально описать:
+
+`ped`, не `pede`;
+
+`creat`, не `cre`.
+
+Добавить тесты против mechanical over-stripping.
+
+### Phase B — schema
+
+Создать types/schemas:
+
+lemma;
+component;
+head;
+family;
+reflex;
+evidence;
+alias;
+edge.
+
+### Phase C — unified family catalog
+
+Собрать существующие verified/promoted roots.
+
+Исправить `pede → ped`.
+
+Другие canonical roots не менять без индивидуального анализа.
+
+### Phase D — lexical-head/reflex registries
+
+Мигрировать существующие решения.
+
+### Phase E — reinterpret v5
+
+`surface:*`
+→ component candidates.
+
+`ety:*`
+→ evidence clusters.
+
+### Phase F — v6 builder
+
+Генерировать memberships через:
+
+lemma
+→ head
+→ family.
+
+### Phase G — vertical slice
+
+Первыми проверить:
+
+`ped`
+`creat`
+`observ`
+`inform`
+`loc`
+`act`.
+
+Это специально проверяет:
+
+- удаление окончания;
+- запрет excessive stripping;
+- national reflexes;
+- sense ambiguity;
+- cross-script reflex;
+- large head separation.
+
+### Phase H — differential audit
+
+Сравнить v5/v6.
+
+### Phase I — global migration/risk scan
+
+Только после доказательства vertical slice.
+
+## 44. Главные метрики
+
+Сохранять:
+
+- corpus lemmas;
+- component candidates;
+- evidence clusters;
+- true associative families;
+- lexical heads;
+- head→family edges;
+- accepted/excluded/uncertain/pending;
+- generated lemma memberships;
+- average lemmas resolved per head review;
+- canonical-root proposals rejected for over-stripping;
+- canonical-root proposals rejected for under-stripping;
+- manual review reduction factor.
+
+## 45. Что нельзя делать
+
+Для ускорения запрещено:
+
+- выбирать самый короткий stem;
+- автоматически удалять финальные гласные;
+- автоматически удалять Latin endings и принимать остаток;
+- объединять по distant ancestry;
+- substring membership;
+- unrestricted reflex substitution;
+- semantic/embedding merge;
+- arbitrary family-size caps;
+- удаление редких форм ради удобства.
+
+## 46. Что считать успехом
+
+Архитектурное исправление успешно, если:
+
+- `surface:*` больше не является автоматически family;
+- `ety:*` больше не является автоматически family;
+- существует отдельный lexical-head layer;
+- canonical roots являются реальными основами, а не полными словоформами и не чрезмерно обрезанными strings;
+- `ped`, а не `pede`;
+- `creat`, а не `cre`;
+- national reflexes typed/root-specific;
+- aliases не задают identity;
+- lemma membership выводится из проверенных heads;
+- v5 evidence полностью сохранено;
+- число дорогих ручных решений резко уменьшается.
+
+Главный принцип canonical-root selection:
+
+**нужно убрать настоящее окончание, но нельзя отрезать часть самой ассоциативной основы.**
+
+Поэтому:
+
+`pede → ped`
+
+но:
+
+`creat → creat`
+
+а не:
+
+`cre`.
+
+Главный принцип всей v6:
+
+**surface component ≠ associative family**
+
+**etymon ≠ associative family**
+
+**alias ≠ family identity**
+
+**lexical head — основная единица проверки**
+
+**canonical root — реальная ассоциативная основа без окончания, но без механического чрезмерного усечения**
+
+**national reflex — конкретная доказанная реализация этой основы в данном языке**
+
+**corpus evidence никогда не теряется**.

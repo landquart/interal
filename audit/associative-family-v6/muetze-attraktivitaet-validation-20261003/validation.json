@@ -1,0 +1,246 @@
+{
+  "stage": "muetze-attraktivitaet-validation-20261003",
+  "validated_remote_application_head": "3d1aa530a350f0e35145755a15078b9460b61042",
+  "verdict": "pass",
+  "targeted_tests": 27,
+  "deterministic_replay_artifacts": 273,
+  "v5_preservation": {
+    "associativvordes/family-index-v5": {
+      "source_git_tree": "b6f8ff3fb46388932217dbd98a2208239e01f70d",
+      "current_git_tree": "b6f8ff3fb46388932217dbd98a2208239e01f70d",
+      "byte_identical": true
+    },
+    "associativvordes/frequency lists": {
+      "source_git_tree": "b9c6725761ce1f8acdd21e0fdb216cf1fb5464c7",
+      "current_git_tree": "b9c6725761ce1f8acdd21e0fdb216cf1fb5464c7",
+      "byte_identical": true
+    },
+    "audit/associative-family-v5": {
+      "source_git_tree": "c1bc9ceab39d1e10fcc3b19bf3fc9ae56af2b82c",
+      "current_git_tree": "c1bc9ceab39d1e10fcc3b19bf3fc9ae56af2b82c",
+      "byte_identical": true
+    }
+  },
+  "logs_sha256": {
+    "audit/associative-family-v6/muetze-attraktivitaet-validation-20261003/build.log.gz": "883baf2b149a68a4e9e9e9d10d0e0dc64cc23a4107f27ff0248348efbddfdf5f",
+    "audit/associative-family-v6/muetze-attraktivitaet-validation-20261003/targeted.log.gz": "05cc154511799680c88cb6e55756cfb1aaa6b1c2caa92eecea4bbb2b062405fd",
+    "audit/associative-family-v6/muetze-attraktivitaet-validation-20261003/audit.log.gz": "3b7140d83e453bf3e180154dfe988f6d9871dd301ca3dee5611352b1970c9e0c",
+    "audit/associative-family-v6/muetze-attraktivitaet-validation-20261003/replay.log.gz": "7fe33af8bcb13c4cc72d0f8ac63f20a0f29ff932e28d891cee565f387250ffa0"
+  },
+  "code_sha256": {
+    "scripts/build-associative-family-v6.mjs": "c6e472d372a6e91f77b177a04226d7d95cbe3f6964070af0f1d5a3afb38b7708",
+    "scripts/audit-associative-family-v6.mjs": "5533235b516b5fe0b328a2ca0d6a630d9b405b4a43d4d04c99c28d1473b05f7c",
+    "scripts/integrate-associative-v6-reviewed-stage.mjs": "20094336f11207100e83d96da0547d1ed601058b236b641d96115fe1346d0d12",
+    "tests/associative-family-v6-promotions.test.mjs": "67dc7c3bda2e48acd7bfcb455df1ee2a0711457e1f4761f8e78c0f3d5622a880"
+  },
+  "catalog_families": 17,
+  "accepted_memberships": 21375,
+  "lexical_heads": 208,
+  "legacy_exact_units": 18857,
+  "head_review_metrics": {
+    "source_active_records": 25202,
+    "current_active_records": 23423,
+    "new_head_decisions": 34,
+    "records_reviewed": 1782,
+    "new_records_resolved": 1779,
+    "unresolved_reviewed_records": 3,
+    "new_review_reduction_factor": 52.3235294117647,
+    "newly_pending_records_resolved": 1764,
+    "investigated_uncertainties_resolved": 15,
+    "investigated_uncertainties_retained": 3,
+    "newly_pending_records_investigated_without_resolution": 0,
+    "pending_head_decisions": 27,
+    "pending_review_reduction_factor": 65.33333333333333,
+    "current_status_counts": {
+      "pending": 22453,
+      "uncertain": 970
+    },
+    "stages": [
+      {
+        "stage": "prior_observ_inform",
+        "head_decisions": 3,
+        "records_reviewed": 3,
+        "records_resolved": 3,
+        "previously_pending": 3,
+        "previously_uncertain": 0,
+        "accepted": 3,
+        "excluded": 0,
+        "reviewed_records_retained_uncertain": 0,
+        "new_review_reduction_factor": 1
+      },
+      {
+        "stage": "relat-finite-lexical-evidence-20261003",
+        "head_decisions": 3,
+        "records_reviewed": 8,
+        "records_resolved": 8,
+        "previously_pending": 8,
+        "previously_uncertain": 0,
+        "accepted": 0,
+        "excluded": 8,
+        "reviewed_records_retained_uncertain": 0,
+        "new_review_reduction_factor": 2.6666666666666665
+      },
+      {
+        "stage": "loc-finite-lexical-evidence-20261003",
+        "head_decisions": 6,
+        "records_reviewed": 15,
+        "records_resolved": 15,
+        "previously_pending": 0,
+        "previously_uncertain": 15,
+        "accepted": 8,
+        "excluded": 7,
+        "reviewed_records_retained_uncertain": 0,
+        "new_review_reduction_factor": 2.5
+      },
+      {
+        "stage": "creat-mut-finite-head-benchmark-20261003",
+        "head_decisions": 5,
+        "records_reviewed": 103,
+        "records_resolved": 103,
+        "previously_pending": 103,
+        "previously_uncertain": 0,
+        "accepted": 0,
+        "excluded": 103,
+        "reviewed_records_retained_uncertain": 0,
+        "new_review_reduction_factor": 20.6
+      },
+      {
+        "stage": "oper-finite-military-head-20261003",
+        "head_decisions": 1,
+        "records_reviewed": 5,
+        "records_resolved": 5,
+        "previously_pending": 5,
+        "previously_uncertain": 0,
+        "accepted": 0,
+        "excluded": 5,
+        "reviewed_records_retained_uncertain": 0,
+        "new_review_reduction_factor": 5
+      },
+      {
+        "stage": "act-financial-aktie-finite-component-20261003",
+        "head_decisions": 1,
+        "records_reviewed": 340,
+        "records_resolved": 340,
+        "previously_pending": 340,
+        "previously_uncertain": 0,
+        "accepted": 340,
+        "excluded": 0,
+        "reviewed_records_retained_uncertain": 0,
+        "new_review_reduction_factor": 340
+      },
+      {
+        "stage": "actin-identity-proven-family-edge-uncertain-20261003",
+        "head_decisions": 1,
+        "records_reviewed": 3,
+        "records_resolved": 0,
+        "previously_pending": 0,
+        "previously_uncertain": 0,
+        "accepted": 0,
+        "excluded": 0,
+        "reviewed_records_retained_uncertain": 3,
+        "new_review_reduction_factor": 0
+      },
+      {
+        "stage": "act-documentary-akte-finite-component-20261003",
+        "head_decisions": 1,
+        "records_reviewed": 165,
+        "records_resolved": 165,
+        "previously_pending": 165,
+        "previously_uncertain": 0,
+        "accepted": 165,
+        "excluded": 0,
+        "reviewed_records_retained_uncertain": 0,
+        "new_review_reduction_factor": 165
+      },
+      {
+        "stage": "act-deliberate-aktion-finite-component-20261003",
+        "head_decisions": 1,
+        "records_reviewed": 526,
+        "records_resolved": 526,
+        "previously_pending": 526,
+        "previously_uncertain": 0,
+        "accepted": 526,
+        "excluded": 0,
+        "reviewed_records_retained_uncertain": 0,
+        "new_review_reduction_factor": 526
+      },
+      {
+        "stage": "act-fraktion-parliamentary-component-20261003",
+        "head_decisions": 1,
+        "records_reviewed": 213,
+        "records_resolved": 213,
+        "previously_pending": 213,
+        "previously_uncertain": 0,
+        "accepted": 0,
+        "excluded": 213,
+        "reviewed_records_retained_uncertain": 0,
+        "new_review_reduction_factor": 213
+      },
+      {
+        "stage": "act-fraktion-remaining-lexical-branches-20261003",
+        "head_decisions": 8,
+        "records_reviewed": 26,
+        "records_resolved": 26,
+        "previously_pending": 26,
+        "previously_uncertain": 0,
+        "accepted": 0,
+        "excluded": 26,
+        "reviewed_records_retained_uncertain": 0,
+        "new_review_reduction_factor": 3.25
+      },
+      {
+        "stage": "act-aktivitaet-finite-compound-head-20261003",
+        "head_decisions": 1,
+        "records_reviewed": 354,
+        "records_resolved": 354,
+        "previously_pending": 354,
+        "previously_uncertain": 0,
+        "accepted": 354,
+        "excluded": 0,
+        "reviewed_records_retained_uncertain": 0,
+        "new_review_reduction_factor": 354
+      },
+      {
+        "stage": "mut-muetze-finite-compound-head-20261003",
+        "head_decisions": 1,
+        "records_reviewed": 13,
+        "records_resolved": 13,
+        "previously_pending": 13,
+        "previously_uncertain": 0,
+        "accepted": 0,
+        "excluded": 13,
+        "reviewed_records_retained_uncertain": 0,
+        "new_review_reduction_factor": 13
+      },
+      {
+        "stage": "act-attraktivitaet-finite-negative-head-20261003",
+        "head_decisions": 1,
+        "records_reviewed": 8,
+        "records_resolved": 8,
+        "previously_pending": 8,
+        "previously_uncertain": 0,
+        "accepted": 0,
+        "excluded": 8,
+        "reviewed_records_retained_uncertain": 0,
+        "new_review_reduction_factor": 8
+      }
+    ],
+    "strict_remaining_frame_reduction": 1.0000853934503224,
+    "historical_component_bindings_represented": 872,
+    "historical_component_head_edges": 6,
+    "historical_representation_reuse_factor": 145.33333333333334,
+    "historical_boundary_reviews_are_not_newly_resolved_records": true
+  },
+  "earlier_remote_ci": {
+    "167daeb465d82f56074b254105437f2f3e780b4e": {
+      "Tests": {
+        "id": 37138071539,
+        "conclusion": "success"
+      },
+      "Audit parallel associative family v6": {
+        "id": 37138071537,
+        "conclusion": "success"
+      }
+    }
+  }
+}

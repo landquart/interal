@@ -1,0 +1,206 @@
+{
+  "schema_version": 6,
+  "verdict": "pass",
+  "scope": "five_saved_russian_short_component_promotion_candidates",
+  "script_sha256": "426bce56cdf9ea36202773b567d45ff47d284abe3230ba64a125bfa56002aeb2",
+  "input_sha256": {
+    "associativvordes/family-index-v5/families/0c.json.gz": "3264d250f997922921b81b47668ce3906488df83ca5f27cbcf9f3dc34d833c26",
+    "associativvordes/family-index-v5/members/ru/0c.json.gz": "06edc871ed99c116cd1f29658ce37b7004b8f3c25bf708f8179a154eaa16785e",
+    "associativvordes/family-index-v5/families/cd.json.gz": "a220da6262a4a61c7318bae73906c382bcac94b45b6d26429cd6d92d62c26a4c",
+    "associativvordes/family-index-v5/members/ru/cd.json.gz": "68232de03c369032812454561c42bd290a94d1caae810e62b0470ccdfdef691b",
+    "associativvordes/family-index-v5/families/42.json.gz": "46eb7628b0ad682f611d9556d9118e31cc45e07568317a6a8da81448bd716ad0",
+    "associativvordes/family-index-v5/members/ru/42.json.gz": "4a1b7857a0165ac23e42512b9d43e8d66dd7701a358379438f9ce16c53ac099f",
+    "associativvordes/family-index-v5/families/bf.json.gz": "167759f319583efd3ac12252466850803c8b973c389fccf79c544bbb18f4dc07",
+    "associativvordes/family-index-v5/members/ru/bf.json.gz": "f17c069fce196078839b4beeab768941ad7256ccb476ead60ce74bfa1826201d",
+    "associativvordes/family-index-v5/families/99.json.gz": "5a9acf454e3a9b9c846771dd5711097616ec6de2cd4afa160fe4220d1ad51eec",
+    "associativvordes/family-index-v5/members/ru/99.json.gz": "a826c418f3971e83bc5d0473796c2f6177dfd1c0ae42db57e700fafa1255583a"
+  },
+  "source_records_preserved": 2637,
+  "candidate_reviews": [
+    {
+      "candidate_id": "surface:ru:kh",
+      "source_records": 601,
+      "promotion_status": "not_promoted",
+      "lexical_partition_status": "pending_finer_lexical_identity_review",
+      "canonical_decision": null,
+      "associative_family_id": null,
+      "finding": "The container joins encoding-like strings and unrelated named tokens such as балкхед, банкхед and анкх. No coherent international lexical identity is established for kh; do not promote this spelling pool.",
+      "examples": [
+        {
+          "lemma_id": "lemma:33d4fe2ab75f315f9e92",
+          "word": "анкх"
+        },
+        {
+          "lemma_id": "lemma:eadf339764eb8ec516ef",
+          "word": "балкхед"
+        },
+        {
+          "lemma_id": "lemma:8c76019f3eb77a49d66b",
+          "word": "банкхед"
+        }
+      ],
+      "limitations": [
+        "Container rejection does not adjudicate every source record or erase lexical evidence.",
+        "No automatic linguistic exclusion or corpus deletion; remaining lexical research stays pending."
+      ]
+    },
+    {
+      "candidate_id": "surface:ru:nl",
+      "source_records": 553,
+      "promotion_status": "not_promoted",
+      "lexical_partition_status": "pending_finer_lexical_identity_review",
+      "canonical_decision": null,
+      "associative_family_id": null,
+      "finding": "The source is a one-language surface pool with no etymon keys. Examples are encoding-like strings, not independently evidenced lexical heads. Leave lexical partition and identity research pending; do not promote nl.",
+      "examples": [
+        {
+          "lemma_id": "lemma:b981765dbc94848df0cd",
+          "word": "ъгшйнл"
+        },
+        {
+          "lemma_id": "lemma:94e3529ecee3ea8812e4",
+          "word": "ачярнл"
+        },
+        {
+          "lemma_id": "lemma:999bcd17e404a460c1c2",
+          "word": "асккхрнл"
+        }
+      ],
+      "limitations": [
+        "Container rejection does not adjudicate every source record or erase lexical evidence.",
+        "No automatic linguistic exclusion or corpus deletion; remaining lexical research stays pending."
+      ]
+    },
+    {
+      "candidate_id": "surface:ru:lo",
+      "source_records": 506,
+      "promotion_status": "not_promoted",
+      "lexical_partition_status": "pending_finer_lexical_identity_review",
+      "canonical_decision": null,
+      "associative_family_id": null,
+      "finding": "The pool mixes unrelated lexical material, names and damaged forms. авиакрыло/антикрыло have a wing component, whereas аплоад and апостло do not establish the same lexical base. No lo family promotion.",
+      "examples": [
+        {
+          "lemma_id": "lemma:305be3e6755baf153ffb",
+          "word": "авиакрыло"
+        },
+        {
+          "lemma_id": "lemma:5d9295d5d36ecbf089d7",
+          "word": "антикрыло"
+        },
+        {
+          "lemma_id": "lemma:38cd6db497f366400672",
+          "word": "аплоад"
+        },
+        {
+          "lemma_id": "lemma:e50dc6bcfcade13e9461",
+          "word": "апостло"
+        }
+      ],
+      "limitations": [
+        "Container rejection does not adjudicate every source record or erase lexical evidence.",
+        "No automatic linguistic exclusion or corpus deletion; remaining lexical research stays pending."
+      ]
+    },
+    {
+      "candidate_id": "surface:ru:ca",
+      "source_records": 497,
+      "promotion_status": "not_promoted",
+      "lexical_partition_status": "pending_finer_lexical_identity_review",
+      "canonical_decision": null,
+      "associative_family_id": null,
+      "finding": "The pool joins inflected person nouns, names and unrelated borrowing-like spellings. альфа-самца, американца, близнеца and бармицца do not establish one ca associative element. Inflectional endings cannot be promoted as roots.",
+      "examples": [
+        {
+          "lemma_id": "lemma:1e89c41b54a9ae45d161",
+          "word": "альфа-самца"
+        },
+        {
+          "lemma_id": "lemma:d9a13eb3e7cd62945de1",
+          "word": "американца"
+        },
+        {
+          "lemma_id": "lemma:217941abd31eaaeb0c8e",
+          "word": "близнеца"
+        },
+        {
+          "lemma_id": "lemma:e90df9aa914f8473b3a3",
+          "word": "бармицца"
+        }
+      ],
+      "limitations": [
+        "Container rejection does not adjudicate every source record or erase lexical evidence.",
+        "No automatic linguistic exclusion or corpus deletion; remaining lexical research stays pending."
+      ]
+    },
+    {
+      "candidate_id": "surface:ru:um",
+      "source_records": 480,
+      "promotion_status": "not_promoted",
+      "lexical_partition_status": "mental_row_identified_international_relation_investigated_uncertain",
+      "canonical_decision": null,
+      "associative_family_id": null,
+      "finding": "Inspect beyond exact ум: умно belongs to the mental lexical row supported by dictionary умный. However this Russian row has no established international associative-base continuity here. Latin-looking -иум nouns, хоум loans, умлаут and умыть are separate lexical research targets. Preserve all records; do not promote the entire um spelling pool.",
+      "examples": [
+        {
+          "lemma_id": "lemma:913decaf7dba9d6abe4b",
+          "word": "ум"
+        },
+        {
+          "lemma_id": "lemma:366a90dde12472a8b841",
+          "word": "умно"
+        },
+        {
+          "lemma_id": "lemma:02acae5767276267e900",
+          "word": "атриум"
+        },
+        {
+          "lemma_id": "lemma:5bd58202023975b8f575",
+          "word": "хоум"
+        },
+        {
+          "lemma_id": "lemma:7b5ff1a116ffd6c2171a",
+          "word": "умлаут"
+        },
+        {
+          "lemma_id": "lemma:c45f6b436f2a3b9f7f27",
+          "word": "умыть"
+        }
+      ],
+      "dictionary_row": [
+        "ум",
+        "умный",
+        "умно"
+      ],
+      "finite_present_mental_row": [
+        {
+          "lemma_id": "lemma:913decaf7dba9d6abe4b",
+          "word": "ум"
+        },
+        {
+          "lemma_id": "lemma:366a90dde12472a8b841",
+          "word": "умно"
+        }
+      ],
+      "candidate_route_gap": [
+        "умный"
+      ],
+      "candidate_route_gap_is_not_a_global_corpus_gap": true,
+      "reference_sources": [
+        "https://gramota.ru/meta/umnyy",
+        "https://gramota.ru/poisk?mode=all&query=%D1%83%D0%BC&simple=0"
+      ],
+      "dictionary_access": "Indexed official dictionary text available; direct metadata pages returned 403.",
+      "limitations": [
+        "Container rejection does not adjudicate every source record or erase lexical evidence.",
+        "No automatic linguistic exclusion or corpus deletion; remaining lexical research stays pending."
+      ]
+    }
+  ],
+  "canonical_decisions_created": 0,
+  "catalog_promotions": 0,
+  "new_memberships": 0,
+  "new_current_queue_records_resolved": 0,
+  "production_enabled": false,
+  "full_linguistic_certification": false
+}

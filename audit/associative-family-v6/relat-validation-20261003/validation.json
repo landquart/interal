@@ -1,0 +1,45 @@
+{
+  "verdict": "pass",
+  "source_head": "d5ad2bb8e5173ad94c7aef5f1880b98e89c67b77",
+  "targeted_tests": 18,
+  "v6_audit": "pass",
+  "deterministic_replay_artifacts": 272,
+  "accepted_memberships": 19970,
+  "relat_before": 325,
+  "relat_after": 317,
+  "new_records_resolved": 8,
+  "new_head_decisions": 3,
+  "stage_new_review_reduction_factor": 2.6666666666666665,
+  "global_metrics": {
+    "source_active_records": 25202,
+    "current_active_records": 25191,
+    "new_head_decisions": 6,
+    "new_records_resolved": 11,
+    "new_review_reduction_factor": 1.8333333333333333,
+    "strict_remaining_frame_reduction": 1,
+    "historical_component_bindings_represented": 872,
+    "historical_component_head_edges": 6,
+    "historical_representation_reuse_factor": 145.33333333333334,
+    "historical_boundary_reviews_are_not_newly_resolved_records": true
+  },
+  "v5_bytes_unchanged": true,
+  "production_enabled": false,
+  "logs": {
+    "build": {
+      "path": "audit/associative-family-v6/relat-validation-20261003/build.log.gz",
+      "sha256": "cab1aa77afc10f1f6dc01c128b3ff3cb473a7236b772ac44d588aa1e9790e522"
+    },
+    "targeted": {
+      "path": "audit/associative-family-v6/relat-validation-20261003/targeted.log.gz",
+      "sha256": "0680ba2db46a048ad851198eb8cd12d0d011ff208c916dfd2680aadcf0a481c9"
+    },
+    "audit": {
+      "path": "audit/associative-family-v6/relat-validation-20261003/audit.log.gz",
+      "sha256": "3e5079000528777bb9462978b3465ad68177256ee039761b29759c1b1baeebc9"
+    },
+    "replay": {
+      "path": "audit/associative-family-v6/relat-validation-20261003/replay.log.gz",
+      "sha256": "e5c87c8eff1e730b81c712084b76c408fedb33c418349f4cd83a2621a9ee1fa5"
+    }
+  }
+}
