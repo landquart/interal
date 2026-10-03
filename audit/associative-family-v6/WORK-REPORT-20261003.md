@@ -1,3 +1,13 @@
+## Mütze and Attraktivität applied and validated, 2026-10-03 continuation
+
+Remote application `3d1aa530a350f0e35145755a15078b9460b61042`: one hat/cap head excludes 13 exact mut components; one attractiveness noun head excludes eight act records. No whole-compound POS claim or substring propagation. The deeper origin of Mütze remains unsettled; its documented lexical route is independent of mutare. Attraktivität continues attraction/attrahere, not activity/agere.
+
+Active 23,423 = pending 22,453 + uncertain 970; reviewed 1,782; resolved 1,779 / 34 decisions = 52.3235. Pending resolved 1,764 / 27 = 65.3333. Accepted remains 21,375; catalog 17; lexical heads 208; exact legacy 18,857. Queues: observ/inform 198; relat 317; creat/mut 4,851; oper 2,077; act 15,153; loc 827. Historical 872/6 reuse remains separate.
+
+27 targeted tests, independent audit and byte-identical replay of 273 artifacts pass; v5, frequency data and v5 audit trees preserved. Earlier Fraktion/Aktivität remote Tests 37138071539 and Audit 37138071537 both succeeded. Current-head remote CI remains independent.
+
+Tower research `7fdd1f50` independently saves seven national/derivational lexical rows and ten withheld controls. The two routes repeat 1,083 unique IDs (2,166 incidences); no new family, canonical decision or binding. French tour and Russian тура contain incompatible lexical histories and remain deferred. Next research is already durable: Redaktion `33b9cc35`, 173 exact positive act records; German courage Mut `3dacecf7`, ten negative mut compounds. Apply and validate these next without extending their finite scopes. Anis core sense bindings remain deferred. Known queues and 46,390 historical unadjudicated records remain open. No merge; production remains v5.
+
 ## Finite Fraktion branches and Aktivitaet applied, 2026-10-03 continuation
 
 Remote application `167daeb465d82f56074b254105437f2f3e780b4e` applies eight independent Fraktion-related heads (26 exclusions) and one Aktivität activity/effectiveness component head (354 accepted exact IDs). Remaining Fraktion 38 and Aktivität 27 records retain pending status. Research was published independently at ec063d96 and 76d3b6ec. No new catalog family or general national realization.
