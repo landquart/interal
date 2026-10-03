@@ -1,3 +1,7 @@
+## Typed catalog realization migration
+
+70 source entries individually classified: 47 canonical-reflex candidates (10 accepted with supporting heads, 37 pending), 5 query aliases, 2 lexical branches, 9 derivational stems and 7 inflectional forms. Spanish crea/creo preserve crear/creer ambiguity; cree is a creer form; Italian att/attric/azion are branch-bound. All 19,967 memberships remain byte-identical. Targeted tests (14), v6 audit and deterministic replay passed. Next: apply evidence-backed head recognition to all current queues; retain separate counts for unresolved cases and historical component-head reuse.
+
 ## Acceleration continuation: typed realization schema
 
 Fresh remote baseline: #650 3da2717f, #651 22e6293f, #652 b4c95f73; all open/unmerged. Both Actions at #652 baseline passed. The typed schema distinguishes six realization kinds and guards productive reflexes with evidenced language/sense-bound heads. Catalog conversion and shared-head benchmarks are the next separately saved stages. No production change.
