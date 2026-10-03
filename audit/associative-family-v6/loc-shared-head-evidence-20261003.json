@@ -1,0 +1,312 @@
+{
+  "schema_version": 6,
+  "source_head": "5a986fc9bed17de344d5df8127727f4ca7b6dd04",
+  "production_enabled": false,
+  "stage": "loc-finite-lexical-evidence-20261003",
+  "source_queue": "audit/associative-family-v5/loc-reflex-decisions-20261001.json",
+  "source_queue_sha256": "330d2f5c0a8cc35eb88b966e14ec10961bac59dcaa72c6a36580dee2db3a3d65",
+  "groups": [
+    {
+      "language": "de",
+      "normalized_head": "lokal",
+      "sense": "local_place_compound_base",
+      "root": "loc",
+      "status": "accepted",
+      "forms": [
+        "aiesec-lokalkomitees",
+        "gea-lokaltermine",
+        "lokalfernsehstars",
+        "südkurier-lokalredaktion",
+        "sz-lokalausgabe",
+        "us-lokalmatadorin"
+      ],
+      "component_stems": [
+        "lokal"
+      ],
+      "reason": "Duden derives lokal from localis/locus. Each finite token has an explicitly inspected local-place adjective component attached to committee, dates, television stars, newsroom, newspaper edition or a local notable. Publisher/organisation prefixes do not supply the identity. No whole-compound identity or spelling repair is asserted.",
+      "sources": [
+        "https://www.duden.de/rechtschreibung/lokal",
+        "https://www.duden.de/rechtschreibung/Lokalredaktion"
+      ],
+      "records": [
+        {
+          "language": "de",
+          "lemma_id": "lemma:c34c26ece3d9177d629c",
+          "word": "aiesec-lokalkomitees",
+          "status": "uncertain",
+          "reason": "Needs lexical/corpus-context confirmation; withheld from membership.",
+          "component_segmentation": {
+            "before": "aiesec-",
+            "component": "lokal",
+            "after": "komitees",
+            "head": "lokal",
+            "boundary_proof": "audit/associative-family-v6/loc-shared-head-evidence-20261003.json#lemma:c34c26ece3d9177d629c"
+          }
+        },
+        {
+          "language": "de",
+          "lemma_id": "lemma:a23863ae1cf461e52322",
+          "word": "gea-lokaltermine",
+          "status": "uncertain",
+          "reason": "Needs lexical/corpus-context confirmation; withheld from membership.",
+          "component_segmentation": {
+            "before": "gea-",
+            "component": "lokal",
+            "after": "termine",
+            "head": "lokal",
+            "boundary_proof": "audit/associative-family-v6/loc-shared-head-evidence-20261003.json#lemma:a23863ae1cf461e52322"
+          }
+        },
+        {
+          "language": "de",
+          "lemma_id": "lemma:fd87e1c419f3e8b33d34",
+          "word": "lokalfernsehstars",
+          "status": "uncertain",
+          "reason": "Needs lexical/corpus-context confirmation; withheld from membership.",
+          "component_segmentation": {
+            "before": "",
+            "component": "lokal",
+            "after": "fernsehstars",
+            "head": "lokal",
+            "boundary_proof": "audit/associative-family-v6/loc-shared-head-evidence-20261003.json#lemma:fd87e1c419f3e8b33d34"
+          }
+        },
+        {
+          "language": "de",
+          "lemma_id": "lemma:c642b26f56356618d4a2",
+          "word": "südkurier-lokalredaktion",
+          "status": "uncertain",
+          "reason": "Needs lexical/corpus-context confirmation; withheld from membership.",
+          "component_segmentation": {
+            "before": "südkurier-",
+            "component": "lokal",
+            "after": "redaktion",
+            "head": "lokal",
+            "boundary_proof": "audit/associative-family-v6/loc-shared-head-evidence-20261003.json#lemma:c642b26f56356618d4a2"
+          }
+        },
+        {
+          "language": "de",
+          "lemma_id": "lemma:1a7f516f2cfabfd16eec",
+          "word": "sz-lokalausgabe",
+          "status": "uncertain",
+          "reason": "Needs lexical/corpus-context confirmation; withheld from membership.",
+          "component_segmentation": {
+            "before": "sz-",
+            "component": "lokal",
+            "after": "ausgabe",
+            "head": "lokal",
+            "boundary_proof": "audit/associative-family-v6/loc-shared-head-evidence-20261003.json#lemma:1a7f516f2cfabfd16eec"
+          }
+        },
+        {
+          "language": "de",
+          "lemma_id": "lemma:3f9f060d3a1378a9ad2f",
+          "word": "us-lokalmatadorin",
+          "status": "uncertain",
+          "reason": "Needs lexical/corpus-context confirmation; withheld from membership.",
+          "component_segmentation": {
+            "before": "us-",
+            "component": "lokal",
+            "after": "matadorin",
+            "head": "lokal",
+            "boundary_proof": "audit/associative-family-v6/loc-shared-head-evidence-20261003.json#lemma:3f9f060d3a1378a9ad2f"
+          }
+        }
+      ]
+    },
+    {
+      "language": "de",
+      "normalized_head": "lokomotive",
+      "sense": "railway_engine_compound_base",
+      "root": "loc",
+      "status": "accepted",
+      "forms": [
+        "mountain-lokomotiven",
+        "lokomotivpersonals"
+      ],
+      "component_stems": [
+        "lokomotiv"
+      ],
+      "reason": "Duden explicitly derives Lokomotive from locus and motum and lists its plural. Finite compounds contain the railway-engine base: Mountain type locomotives; locomotive personnel in the genitive. The bound stem lokomotiv is branch-specific and is not a general loc reflex.",
+      "sources": [
+        "https://www.duden.de/rechtschreibung/Lokomotive"
+      ],
+      "records": [
+        {
+          "language": "de",
+          "lemma_id": "lemma:7cbdf4cfd15d365f3a18",
+          "word": "mountain-lokomotiven",
+          "status": "uncertain",
+          "reason": "Needs lexical/corpus-context confirmation; withheld from membership.",
+          "component_segmentation": {
+            "before": "mountain-",
+            "component": "lokomotiv",
+            "after": "en",
+            "head": "lokomotive",
+            "boundary_proof": "audit/associative-family-v6/loc-shared-head-evidence-20261003.json#lemma:7cbdf4cfd15d365f3a18"
+          }
+        },
+        {
+          "language": "de",
+          "lemma_id": "lemma:a10e139954c8933360e8",
+          "word": "lokomotivpersonals",
+          "status": "uncertain",
+          "reason": "Needs lexical/corpus-context confirmation; withheld from membership.",
+          "component_segmentation": {
+            "before": "",
+            "component": "lokomotiv",
+            "after": "personals",
+            "head": "lokomotive",
+            "boundary_proof": "audit/associative-family-v6/loc-shared-head-evidence-20261003.json#lemma:a10e139954c8933360e8"
+          }
+        }
+      ]
+    },
+    {
+      "language": "ru",
+      "normalized_head": "посёлок",
+      "sense": "slavic_settlement",
+      "root": "loc",
+      "status": "excluded",
+      "forms": [
+        "поселок",
+        "посёлок"
+      ],
+      "component_stems": [],
+      "reason": "Orthographic e/yo variants of the same Slavic settlement noun, derived from сел-/селить. Semantic locality does not make its final letters лок a loc realization.",
+      "sources": [
+        "https://gramota.ru/meta/poselok"
+      ],
+      "records": [
+        {
+          "language": "ru",
+          "lemma_id": "lemma:4dae2b7da6f04e705b35",
+          "word": "поселок",
+          "status": "uncertain",
+          "reason": "Needs lexical/corpus-context confirmation; withheld from membership."
+        },
+        {
+          "language": "ru",
+          "lemma_id": "lemma:ad43bf045c1d7db502e9",
+          "word": "посёлок",
+          "status": "uncertain",
+          "reason": "Needs lexical/corpus-context confirmation; withheld from membership."
+        }
+      ]
+    },
+    {
+      "language": "ru",
+      "normalized_head": "шерлок",
+      "sense": "old_english_personal_name",
+      "root": "loc",
+      "status": "excluded",
+      "forms": [
+        "шерлок",
+        "шерлока"
+      ],
+      "component_stems": [],
+      "reason": "Superanskaya derives Sherlock from Old English bright + hair-lock, not Latin locus. Finite Russian nominative/genitive name forms only; corrupted spellings and fused names remain unresolved.",
+      "sources": [
+        "https://lexicography.online/onomastics/superanskaya/ш/шерлок"
+      ],
+      "records": [
+        {
+          "language": "ru",
+          "lemma_id": "lemma:ad147bf5b8a2ff8713fb",
+          "word": "шерлок",
+          "status": "uncertain",
+          "reason": "Needs lexical/corpus-context confirmation; withheld from membership."
+        },
+        {
+          "language": "ru",
+          "lemma_id": "lemma:110853aa9817ad7538e3",
+          "word": "шерлока",
+          "status": "uncertain",
+          "reason": "Needs lexical/corpus-context confirmation; withheld from membership."
+        }
+      ]
+    },
+    {
+      "language": "ru",
+      "normalized_head": "локон",
+      "sense": "hair_curl",
+      "root": "loc",
+      "status": "excluded",
+      "forms": [
+        "локон"
+      ],
+      "component_stems": [],
+      "reason": "The hair-curl lexeme is not the Latin locus branch; shared letters лок do not establish family identity.",
+      "sources": [
+        "https://gramota.ru/meta/lokon",
+        "https://lexicography.online/etymology/vasmer/л/локон"
+      ],
+      "records": [
+        {
+          "language": "ru",
+          "lemma_id": "lemma:5a0fe607cce85d5c268e",
+          "word": "локон",
+          "status": "uncertain",
+          "reason": "Needs lexical/corpus-context confirmation; withheld from membership."
+        }
+      ]
+    },
+    {
+      "language": "ru",
+      "normalized_head": "стрелок",
+      "sense": "shooter_compound_base",
+      "root": "loc",
+      "status": "excluded",
+      "forms": [
+        "мотострелок",
+        "стрелок-радист"
+      ],
+      "component_stems": [
+        "стрелок"
+      ],
+      "reason": "The shooter component in motorised-rifleman and shooter-radio-operator belongs to стрел-/стрелять. It is not loc. Standalone стрелок is left unresolved because it can also be the plural genitive of стрелка.",
+      "sources": [
+        "https://gramota.ru/poisk?mode=slovari&query=стрелок"
+      ],
+      "records": [
+        {
+          "language": "ru",
+          "lemma_id": "lemma:135c618f1da07490ca41",
+          "word": "мотострелок",
+          "status": "uncertain",
+          "reason": "Needs lexical/corpus-context confirmation; withheld from membership.",
+          "component_segmentation": {
+            "before": "мото",
+            "component": "стрелок",
+            "after": "",
+            "head": "стрелок",
+            "boundary_proof": "audit/associative-family-v6/loc-shared-head-evidence-20261003.json#lemma:135c618f1da07490ca41"
+          }
+        },
+        {
+          "language": "ru",
+          "lemma_id": "lemma:677cddf5b541b5455ca1",
+          "word": "стрелок-радист",
+          "status": "uncertain",
+          "reason": "Needs lexical/corpus-context confirmation; withheld from membership.",
+          "component_segmentation": {
+            "before": "",
+            "component": "стрелок",
+            "after": "-радист",
+            "head": "стрелок",
+            "boundary_proof": "audit/associative-family-v6/loc-shared-head-evidence-20261003.json#lemma:677cddf5b541b5455ca1"
+          }
+        }
+      ]
+    }
+  ],
+  "records_resolved": 15,
+  "expensive_head_decisions": 6,
+  "resolved_previous_status": "uncertain",
+  "limitations": [
+    "These are investigated uncertainties, not newly investigated pending rows.",
+    "No repairs to corrupted corpus spellings; all source IDs remain unchanged.",
+    "loc/lok/лок stay scoped; no new general reflex or catalog promotion."
+  ]
+}
