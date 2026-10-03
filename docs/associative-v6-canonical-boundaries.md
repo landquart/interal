@@ -22,3 +22,7 @@ These decisions select associative bases independently of membership. They use t
 | act | ac, actio | Keep the action base act; Actium, actin, fact and tract cannot acquire membership by ending removal or overlap. |
 
 The executable authoritative catalog is `associativvordes/family-index-v6/catalog.json`. This table explains its boundary choices; it does not create another runtime registry. The old IDs, evidence and membership bytes remain unchanged.
+
+## First finite non-seed promotion: system
+
+Accept system as the complete modern international base; systema is a longer source noun and syst/sys over-strip. This individual decision grants no generic ending removal. Six national lexical rows have twelve finite corpus links through seven heads. Italian sistema binds the common noun-derived lexical-base component shared with sistemare, retaining aggregate noun/verb ambiguity. Spanish sistematizar proves the finite sistemat- derivational branch; English systemat- remains historical evidence. Neither stem replaces system. The Russian состав translation pool and opaque names remain outside this family. See audit/associative-family-v6/system-finite-promotion-20261003.json.

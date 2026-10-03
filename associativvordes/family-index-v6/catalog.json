@@ -3772,6 +3772,96 @@
           "classification_reason": "Separate noun branches require supporting-head review."
         }
       ]
+    },
+    {
+      "id": "family:system",
+      "canonical": "system",
+      "legacy_ids": [],
+      "promotion_status": "accepted_finite_promotion",
+      "element_type": "root",
+      "aliases": [
+        "system",
+        "systeme",
+        "système",
+        "sistema",
+        "система",
+        "sistem",
+        "систем"
+      ],
+      "canonical_decision": {
+        "status": "accepted",
+        "reason": "Accept the compact complete modern international system base, supported by six independent national lexical rows and Greek/Latin continuity. systema is a longer whole historical noun; syst/sys cut the recognizable base. This is an individual decision, not generic -a stripping. systemat- stays a separate finite derivational stem.",
+        "evidence": [
+          "https://dle.rae.es/sistema",
+          "https://dle.rae.es/sistematizar",
+          "https://lexicography.online/etymology/vasmer/с/система",
+          "https://lexicography.online/explanatory/ozhegov/с/система",
+          "https://www.dictionnaire-academie.fr/article/A9S3967",
+          "https://www.duden.de/rechtschreibung/System",
+          "https://www.merriam-webster.com/dictionary/system",
+          "https://www.treccani.it/vocabolario/sistema/",
+          "https://www.treccani.it/vocabolario/sistemare/"
+        ],
+        "negative_under_stripping": [
+          "systema"
+        ],
+        "negative_over_stripping": [
+          "syst",
+          "sys"
+        ],
+        "possible_stems": [
+          "system",
+          "systema",
+          "syst",
+          "sys"
+        ],
+        "membership_certification": "Only explicitly enumerated source records; no source-container certification."
+      },
+      "realizations": {},
+      "reflexes": [
+        {
+          "family_id": "family:system",
+          "language": "es",
+          "realization": "sistemat",
+          "realization_type": "derivational_stem",
+          "morphology_boundary": "Latin oblique systemat- in RAE sistematizar; finite branch only.",
+          "supporting_heads": [
+            "sistematizar"
+          ],
+          "positive_controls": [
+            "sistematizar"
+          ],
+          "negative_controls": [
+            "состав"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "https://dle.rae.es/sistematizar"
+            }
+          ],
+          "head_scope": [
+            {
+              "language": "es",
+              "normalized_head": "sistematizar",
+              "sense": "organize_according_to_system",
+              "evidence": [
+                {
+                  "source": "https://dle.rae.es/sistematizar"
+                }
+              ]
+            }
+          ],
+          "general_family_realization": false,
+          "establishes_membership": false
+        }
+      ],
+      "source_evidence_clusters": [
+        "ety:e5b5bac756da",
+        "ety:82f27619decc",
+        "ety:d23b06bd3000",
+        "ety:fe15b78c8368"
+      ]
     }
   ],
   "head_policies": [
@@ -4543,6 +4633,48 @@
         "informal",
         "informalita",
         "informalizadas"
+      ]
+    },
+    "system": {
+      "positive": [
+        "system",
+        "systems",
+        "système",
+        "systèmes",
+        "sistema",
+        "система",
+        "систем",
+        "системы",
+        "sistematizar"
+      ],
+      "negative": [
+        "автор-составитель",
+        "драмсостав",
+        "химсостав",
+        "иаснесоставить",
+        "картосоставитель",
+        "комсостав",
+        "медиасостав",
+        "начсостав",
+        "несоставить",
+        "плавсостав",
+        "политсостав",
+        "полсостав",
+        "редактор-составитель",
+        "состав",
+        "состава",
+        "составить",
+        "составитель",
+        "составиттеб",
+        "составиттруд",
+        "составялть",
+        "составять",
+        "составлть",
+        "составмет",
+        "спецсостав",
+        "система-галс",
+        "системболагет",
+        "системикс"
       ]
     }
   },
