@@ -2,7 +2,7 @@
   "schema_version": 6,
   "verdict": "pass",
   "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6",
-  "locked_source_files": 2478,
+  "locked_source_files": 2482,
   "classified_objects": 2456540,
   "classification_counts": {
     "etymological_evidence_cluster": 20755,
@@ -11,7 +11,7 @@
     "promoted_manual_associative_family": 10
   },
   "preserved_manual_memberships": 19967,
-  "reviewed_membership_additions": 1396,
+  "reviewed_membership_additions": 1569,
   "family_promotion_metrics": {
     "promoted_families": 1,
     "head_decisions": 7,
@@ -19,23 +19,23 @@
     "known_queue_resolutions": 0,
     "full_linguistic_certification": false
   },
-  "generated_memberships": 21375,
+  "generated_memberships": 21548,
   "lexical_head_review_metrics": {
     "source_active_records": 25202,
-    "current_active_records": 23423,
-    "new_head_decisions": 34,
-    "records_reviewed": 1782,
-    "new_records_resolved": 1779,
+    "current_active_records": 23240,
+    "new_head_decisions": 36,
+    "records_reviewed": 1965,
+    "new_records_resolved": 1962,
     "unresolved_reviewed_records": 3,
-    "new_review_reduction_factor": 52.3235294117647,
-    "newly_pending_records_resolved": 1764,
+    "new_review_reduction_factor": 54.5,
+    "newly_pending_records_resolved": 1947,
     "investigated_uncertainties_resolved": 15,
     "investigated_uncertainties_retained": 3,
     "newly_pending_records_investigated_without_resolution": 0,
-    "pending_head_decisions": 27,
-    "pending_review_reduction_factor": 65.33333333333333,
+    "pending_head_decisions": 29,
+    "pending_review_reduction_factor": 67.13793103448276,
     "current_status_counts": {
-      "pending": 22453,
+      "pending": 22270,
       "uncertain": 970
     },
     "stages": [
@@ -206,9 +206,33 @@
         "excluded": 8,
         "reviewed_records_retained_uncertain": 0,
         "new_review_reduction_factor": 8
+      },
+      {
+        "stage": "act-redaktion-finite-editorial-head-20261003",
+        "head_decisions": 1,
+        "records_reviewed": 173,
+        "records_resolved": 173,
+        "previously_pending": 173,
+        "previously_uncertain": 0,
+        "accepted": 173,
+        "excluded": 0,
+        "reviewed_records_retained_uncertain": 0,
+        "new_review_reduction_factor": 173
+      },
+      {
+        "stage": "mut-courage-finite-compound-head-20261003",
+        "head_decisions": 1,
+        "records_reviewed": 10,
+        "records_resolved": 10,
+        "previously_pending": 10,
+        "previously_uncertain": 0,
+        "accepted": 0,
+        "excluded": 10,
+        "reviewed_records_retained_uncertain": 0,
+        "new_review_reduction_factor": 10
       }
     ],
-    "strict_remaining_frame_reduction": 1.0000853934503224,
+    "strict_remaining_frame_reduction": 1.0000860659264996,
     "historical_component_bindings_represented": 872,
     "historical_component_head_edges": 6,
     "historical_representation_reuse_factor": 145.33333333333334,

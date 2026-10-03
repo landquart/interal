@@ -1,3 +1,13 @@
+## Editorial Redaktion and German courage Mut applied, 2026-10-03 continuation
+
+Remote application `ba5277a3136b51080efad584c4ad7c00e53eb1e7` admits 173 exact Redaktion/Redaktionen editorial components to act and excludes ten independently evidenced German Mut courage/temperament compounds from mutare. One head per evidenced base, exact IDs and boundaries; no whole-compound POS claim. Redaktion continues rédaction/redactum/redigere ← re- + agere; the prefixed red- is not absorbed into canonical act. Remaining Redaktion ten and courage frame 58 stay pending.
+
+Accepted 21,548; catalog 17; lexical heads 210; legacy exact 18,857. Active 23,240 = pending 22,270 + uncertain 970. Reviewed 1,965; resolved 1,962 / 36 decisions = 54.5. Pending 1,947 / 29 = 67.1379. Historical reuse 872 / 6 = 145.33 separately. Queues: observ/inform 198; relat 317; creat/mut 4,841; oper 2,077; act 14,980; loc 827. This continuation from 597794f resolves 584 records through 13 decisions: 527 accepted additions and 57 exclusions. The 19,967 baseline memberships and 12 system promotion additions remain intact; reviewed additions total 1,569; no unexpected differences.
+
+Targeted 27 tests, independent audit and deterministic replay of 273 artifacts pass. V5, frequency lists and v5 audit trees are identical. Both remote workflows also succeeded on previous Mütze/Attraktivität application (Tests 37138659108, Audit 37138659200); current application CI must be checked independently. Shared runtime remains unchanged.
+
+Tower canonical boundary turr was independently adjudicated at `26d02c2a`, using the exact sourced Latin turris/turrim/turrem/turri/turre/turres paradigm. This is an associative-boundary decision, not a universal truncation rule or catalog promotion. Seven national/derivational heads remain independent; the 1,083-ID pool and French/Russian homonyms are not admitted. Anis and tower core bindings remain deferred. Known queues, 46,390 historical unadjudicated records and remaining global packets are not complete. Next: finite oper musical/soap-opera heads, finer relat evidence and another candidate dossier. No merge; draft PR; production v5.
+
 ## Mütze and Attraktivität applied and validated, 2026-10-03 continuation
 
 Remote application `3d1aa530a350f0e35145755a15078b9460b61042`: one hat/cap head excludes 13 exact mut components; one attractiveness noun head excludes eight act records. No whole-compound POS claim or substring propagation. The deeper origin of Mütze remains unsettled; its documented lexical route is independent of mutare. Attraktivität continues attraction/attrahere, not activity/agere.
