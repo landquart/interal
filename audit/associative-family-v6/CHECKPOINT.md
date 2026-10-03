@@ -1,3 +1,7 @@
+## Relat shared-head integration, 2026-10-03
+
+Eight current pending records resolve through three independently evidenced native heads: English relace, French relacer, Italian querelare. All eight are exclusions from relat, not corpus deletions. Relat active: 325 → 317; global active: 25,199 → 25,191. Stage review factor 8/3 = 2.67; cumulative 11/6 = 1.83, distinct from historical 872/6 reuse. All 19,970 accepted memberships survive. Targeted 18 tests, v6 audit and byte-identical replay of 272 artifacts pass. Evidence saved first at d5ad2bb8. Loc finite evidence and larger creat/mut compound scopes are prepared as next separately saved stages; neither is integrated by this checkpoint. Production stays v5; no merge.
+
 ## Observ/inform finite head integration
 
 Common applyHeadReview engine now binds exact existing IDs using lexical facts, source hashes, sense-bound identities and finite morphology. Six evidenced German component heads represent 872 already reviewed links without asserting whole-compound identity. Legacy exact units: 19,717 → 18,857. Three separately documented positive inform additions yield 19,970 memberships; all 19,967 baseline links survive. Active observ/inform: 201 → 198. New decision reduction: 1.0; historical reuse 145.33 is a different metric. All six queues remain fully represented. Targeted 18 tests, independent audit and replay of 272 artifacts pass. Next: evidenced relat and loc finite exclusions; broader queues and promotion work remain open. Production stays v5.
