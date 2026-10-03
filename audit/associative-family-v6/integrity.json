@@ -2,7 +2,7 @@
   "schema_version": 6,
   "verdict": "pass",
   "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6",
-  "locked_source_files": 2463,
+  "locked_source_files": 2464,
   "classified_objects": 2456540,
   "classification_counts": {
     "etymological_evidence_cluster": 20755,
@@ -11,24 +11,24 @@
     "promoted_manual_associative_family": 10
   },
   "preserved_manual_memberships": 19967,
-  "reviewed_membership_additions": 516,
-  "generated_memberships": 20483,
+  "reviewed_membership_additions": 1042,
+  "generated_memberships": 21009,
   "lexical_head_review_metrics": {
     "source_active_records": 25202,
-    "current_active_records": 24563,
-    "new_head_decisions": 21,
-    "records_reviewed": 642,
-    "new_records_resolved": 639,
+    "current_active_records": 24037,
+    "new_head_decisions": 22,
+    "records_reviewed": 1168,
+    "new_records_resolved": 1165,
     "unresolved_reviewed_records": 3,
-    "new_review_reduction_factor": 30.428571428571427,
-    "newly_pending_records_resolved": 624,
+    "new_review_reduction_factor": 52.95454545454545,
+    "newly_pending_records_resolved": 1150,
     "investigated_uncertainties_resolved": 15,
     "investigated_uncertainties_retained": 3,
     "newly_pending_records_investigated_without_resolution": 0,
-    "pending_head_decisions": 14,
-    "pending_review_reduction_factor": 44.57142857142857,
+    "pending_head_decisions": 15,
+    "pending_review_reduction_factor": 76.66666666666667,
     "current_status_counts": {
-      "pending": 23593,
+      "pending": 23067,
       "uncertain": 970
     },
     "stages": [
@@ -127,9 +127,21 @@
         "excluded": 0,
         "reviewed_records_retained_uncertain": 0,
         "new_review_reduction_factor": 165
+      },
+      {
+        "stage": "act-deliberate-aktion-finite-component-20261003",
+        "head_decisions": 1,
+        "records_reviewed": 526,
+        "records_resolved": 526,
+        "previously_pending": 526,
+        "previously_uncertain": 0,
+        "accepted": 526,
+        "excluded": 0,
+        "reviewed_records_retained_uncertain": 0,
+        "new_review_reduction_factor": 526
       }
     ],
-    "strict_remaining_frame_reduction": 1.0000814299092056,
+    "strict_remaining_frame_reduction": 1.0000832119825256,
     "historical_component_bindings_represented": 872,
     "historical_component_head_edges": 6,
     "historical_representation_reuse_factor": 145.33333333333334,
