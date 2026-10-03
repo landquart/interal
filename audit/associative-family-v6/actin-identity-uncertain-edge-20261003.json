@@ -1,0 +1,125 @@
+{
+  "schema_version": 6,
+  "stage": "actin-identity-proven-family-edge-uncertain-20261003",
+  "source_head": "507605e7c9e061d030c31e454ccd5b122b262114",
+  "production_enabled": false,
+  "binding_authorized": true,
+  "binding_authorization_scope": "finite lexical identity only; family edge uncertain",
+  "accepted_membership_authorized": false,
+  "source_queue": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+  "source_queue_sha256": "cf94d0afadfdfa1e19b08e82301fea88cde2569221548365a70e8211ccec2a21",
+  "groups": [
+    {
+      "language": "en",
+      "normalized_head": "actin",
+      "sense": "cellular_protein_microfilament",
+      "root": "act",
+      "status": "uncertain",
+      "forms": [
+        "actin"
+      ],
+      "component_stems": [
+        "actin"
+      ],
+      "records": [
+        {
+          "lemma_id": "lemma:1df637f5e6969ea06aa8",
+          "word": "actin",
+          "status": "uncertain",
+          "branch": "protein_actin",
+          "reason": "Protein actin has only probable activate ancestry; modern recognizability as the act lexical element is not established. Not equivalent to Greek ray actin-. Context/sense evidence is insufficient for admission.",
+          "source_family_ids": [
+            "surface:en:actin"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "sense_and_recognizability_review",
+          "source_references": [
+            "https://www.merriam-webster.com/dictionary/actin"
+          ],
+          "language": "en",
+          "root": "act"
+        },
+        {
+          "lemma_id": "lemma:ab9d38d956c5bcc053d3",
+          "word": "actin-binding",
+          "status": "uncertain",
+          "branch": "protein_actin",
+          "reason": "Protein actin has only probable activate ancestry; modern recognizability as the act lexical element is not established. Not equivalent to Greek ray actin-. Context/sense evidence is insufficient for admission.",
+          "source_family_ids": [
+            "ety:7001a3c8202d",
+            "ety:81da90c51822",
+            "ety:3b5769fa0463",
+            "surface:en:binding",
+            "ety:0c55e36e580b",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "surface:en:actinbind",
+            "ety:aede8d1d6185",
+            "ety:4b3973e85707",
+            "ety:f66f0a228497",
+            "ety:be69e735d870",
+            "ety:ef562a6f4a42"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "sense_and_recognizability_review",
+          "source_references": [
+            "https://www.merriam-webster.com/dictionary/actin"
+          ],
+          "language": "en",
+          "root": "act",
+          "component_segmentation": {
+            "before": "",
+            "component": "actin",
+            "after": "-binding",
+            "head": "actin",
+            "boundary_proof": "audit/associative-family-v6/actin-identity-uncertain-edge-20261003.json#lemma:ab9d38d956c5bcc053d3"
+          }
+        },
+        {
+          "lemma_id": "lemma:98bb155708ed34c74401",
+          "word": "f-actin",
+          "status": "uncertain",
+          "branch": "protein_actin",
+          "reason": "Protein actin has only probable activate ancestry; modern recognizability as the act lexical element is not established. Not equivalent to Greek ray actin-. Context/sense evidence is insufficient for admission.",
+          "source_family_ids": [
+            "surface:en:factin"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "sense_and_recognizability_review",
+          "source_references": [
+            "https://www.merriam-webster.com/dictionary/actin"
+          ],
+          "language": "en",
+          "root": "act",
+          "component_segmentation": {
+            "before": "f-",
+            "component": "actin",
+            "after": "",
+            "head": "actin",
+            "boundary_proof": "audit/associative-family-v6/actin-identity-uncertain-edge-20261003.json#lemma:98bb155708ed34c74401"
+          }
+        }
+      ],
+      "reason": "The saved source already identifies the protein_actin branch for these three exact records; dictionaries and biological research independently support that protein identity and the F-actin/actin-binding components. The family:act relation remains uncertain: ancestry is tentative or disputed, and modern act-element recognizability is unestablished. Preserve all three active uncertain records, group their proven protein identity for further head review, and grant no accepted membership. Greek-ray actin-/actino- and unknown actina remain distinct.",
+      "sources": [
+        "https://www.merriam-webster.com/dictionary/actin",
+        "https://www.merriam-webster.com/medical/F-actin",
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC7109165/",
+        "https://dicciomed.usal.es/palabra/actina"
+      ]
+    }
+  ],
+  "records_reviewed": 3,
+  "records_resolved": 0,
+  "expensive_head_decisions": 1,
+  "new_memberships": 0,
+  "retained_uncertain_records": 3,
+  "limitations": [
+    "Independent identity proof and family-membership proof are different requirements.",
+    "All three records remain in the active queue; the non-resolving head decision contributes to the cost denominator.",
+    "The negative accepted-membership control for actin remains unchanged.",
+    "Withdrawn provisional acceptance at 1e613555 is not revived; only identity and an uncertain edge are reviewed.",
+    "No general actin or Greek-ray reflex, canonical promotion or corpus/context reconstruction."
+  ]
+}
