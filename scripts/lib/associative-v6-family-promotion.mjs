@@ -15,6 +15,7 @@ export function validatePromotionDecision(doc) {
   for(const r of g.records){
    const key=r.language+'\0'+r.lemma_id;
    if(seen.has(key)||r.language!==g.language||!r.lemma_id||!r.word||r.formal_continuity_status!=='accepted'||r.relation_kind!=='lexical_continuity'||!r.source_record||r.source_record.lemma_id!==r.lemma_id||r.source_record.word!==r.word||!r.source_locator?.record_sha256||!doc.input_sha256[r.source_locator.path])throw Error('Duplicate, translated or unproved finite source identity');
+   if(!new RegExp('^associativvordes/family-index-v5/members/'+g.language+'/[0-9a-f]{2}\\.json\\.gz$').test(r.source_locator.path)||!r.source_locator.family_id)throw Error('Promotion requires immutable v5 corpus source paths');
    seen.add(key);
    if(doc.negative_controls.some(n=>n.language===r.language&&(n.lemma_id===r.lemma_id||n.word===r.word)))throw Error('Negative promotion control admitted');
   }

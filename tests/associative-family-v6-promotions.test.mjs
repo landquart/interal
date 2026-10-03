@@ -27,7 +27,7 @@ test('research-only, unapproved heads and container imports fail before material
  }
 });
 test('translation, invented IDs, duplicate IDs and accidental boundaries cannot acquire memberships',()=>{
- for(const change of [d=>d.groups[0].records[0].relation_kind='semantic_translation',d=>d.groups[0].records[0].formal_continuity_status='pending',d=>d.groups[0].records[0].lemma_id='lemma:invented',d=>d.groups[0].records.push(d.groups[0].records[0]),d=>d.negative_controls.push({language:'en',word:'system'}),d=>d.positive_controls.pop()]){
+ for(const change of [d=>d.groups[0].records[0].relation_kind='semantic_translation',d=>d.groups[0].records[0].formal_continuity_status='pending',d=>d.groups[0].records[0].lemma_id='lemma:invented',d=>d.groups[0].records.push(d.groups[0].records[0]),d=>d.negative_controls.push({language:'en',word:'system'}),d=>d.positive_controls.pop(),d=>d.groups[0].records[0].source_locator.path='audit/fabricated-corpus.json']){
   const d=structuredClone(doc);change(d);assert.throws(()=>validatePromotionDecision(d));
  }
  const d=structuredClone(doc);d.groups.find(g=>g.language==='it').records[0].component_segmentation.after='wrong';
@@ -41,5 +41,5 @@ test('changed source evidence and corpus snapshots are rejected',async()=>{
 test('all pre-promotion memberships and known resolution statistics remain unchanged',async()=>{
  const root='associativvordes/family-index-v6/generated',m=await read(root+'/memberships.json.gz'),d=await read(root+'/differential.json.gz'),metrics=await read(root+'/head-review-metrics.json');
  assert.equal(m.length,21021);assert.equal(d.manual_memberships.length,19967);assert.equal(d.accepted_membership_additions.length,1042);assert.equal(d.family_promotion_additions.length,12);
- assert.equal(metrics.current_active_records,24037);assert.equal(metrics.new_records_resolved,1165);assert.equal(metrics.new_head_decisions,22);
+ assert.equal(metrics.current_active_records,23824);assert.equal(metrics.new_records_resolved,1378);assert.equal(metrics.new_head_decisions,23);
 });
