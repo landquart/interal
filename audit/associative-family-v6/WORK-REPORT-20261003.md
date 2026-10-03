@@ -2,7 +2,7 @@
 
 The parallel v6 now preserves investigated uncertainty without losing active records, resolves finite compound scopes through shared lexical heads, and separates historical provenance, promotion candidates and actual new linguistic resolutions. PR #652 remains draft in the dependency chain main → #650 → #651 → #652. No merge or production switch; production remains v5.
 
-This report compares the original task HEAD `5a986fc9bed17de344d5df8127727f4ca7b6dd04` with the validated Aktion integration `97d0652816f3087904694e3c682bf1bc3da7f508`. Russian and val provenance stages were subsequently published at `e22ec0ad580372553a36294befa3666d83f78bf7` and `9e5959cf75a6d6990af47d104ad931b67607c505`. The commit containing this report publishes the global candidate packets. Its exact SHA is available from this file's Git history.
+This report compares the original task HEAD `5a986fc9bed17de344d5df8127727f4ca7b6dd04` with the validated Aktion integration `97d0652816f3087904694e3c682bf1bc3da7f508`. Russian and val provenance stages were subsequently published at `e22ec0ad580372553a36294befa3666d83f78bf7` and `9e5959cf75a6d6990af47d104ad931b67607c505`. Global candidate packets were published at `7a40c30e9d95f8c64d9e0cd40d2d560bbc6808e0`. The later commit containing the system research dossier and this updated report is available from this file's Git history.
 
 ## Measured outcomes
 
@@ -64,7 +64,8 @@ Global candidate grouping: all 20,755 etymological evidence clusters covered exa
 | 97d06528 | 526-record Aktion integration and validation |
 | e22ec0ad | Five Russian short-candidate reviews |
 | 9e5959cf | Fifteen val routes and contamination diagnosis |
-| This report's commit | Global candidate packets and complete checkpoint |
+| 7a40c30e | Global candidate packets and complete checkpoint |
+| This report's latest commit | First non-seed system promotion research dossier |
 
 Earlier separately saved relat, loc, creat/mut, oper, Aktie and actin research/integration commits remain in branch history and CHECKPOINT.md.
 
@@ -72,9 +73,15 @@ Earlier separately saved relat, loc, creat/mut, oper, Aktie and actin research/i
 
 Shared-engine stage eedae6ca: 22 targeted tests, all 126 test files, independent v6 audit, byte-identical v5 exhaustive preservation audit and byte-identical replay of all 272 generated artifacts passed. Remote Tests and Audit parallel associative family v6 succeeded.
 
-Akte and Aktion integrations: 22 targeted tests, independent v6 audits and byte-identical replay of all 272 artifacts passed. Their shared runtime is unchanged from eedae6ca. Remote Tests and v6 audit also succeeded for Akte integration 388deb7a and Aktion evidence 17b0acba. At report preparation, the latest Aktion integration workflows were still running; their final status must be read from GitHub, not inferred from local success.
+Akte and Aktion integrations: 22 targeted tests, independent v6 audits and byte-identical replay of all 272 artifacts passed. Their shared runtime is unchanged from eedae6ca. Remote Tests and v6 audit also succeeded for Akte integration 388deb7a and Aktion evidence 17b0acba. Remote Tests and v6 audit subsequently succeeded at Aktion integration 97d06528 and global candidate checkpoint 7a40c30e. The subsequent research-only commit has no runtime changes; its fresh workflow state must still be read from GitHub.
 
 Historical, Russian and val standalone audits passed their identity/provenance invariants and each repeated run produced two byte-identical artifacts. Global clustering passed full coverage/non-promotion invariants and its repeated run produced three byte-identical artifacts. Scripts, source SHA-256 maps, generated results and integration logs are committed separately.
+
+## First non-seed promotion research
+
+The system international row is independently supported by Merriam-Webster, Duden, Académie française, RAE, Treccani and Gramota. Six source IDs are frozen, one per language; no IDs or frequencies were fabricated. Greek/Latin mediation connects two candidate packets covering four etymological containers as research evidence. The proposed modern compact base system remains an explicit linguistic recommendation, with canonical approval still null. systemat- is a branch stem; no generic ending stripping or general national reflex is approved.
+
+The old Greek container incorrectly carries a 24-record Russian translation pool under sostav/состав. Semantic translation is not borrowed lexical continuity. The actual система record is independently sourced from surface:ru:sistem. Corpus noun/verb ambiguity, finite morphology, the new-family review frame and catalog integration remain to be handled. Binding authorization is false; this is a six-language promotion dossier, not a seventeenth family. Repeated preparation is byte-identical.
 
 ## Remaining work
 
