@@ -1,0 +1,835 @@
+{
+  "schema_version": 6,
+  "verdict": "pass",
+  "scope": "all_15_retained_val_routes_independently_preserved",
+  "script_sha256": "a0713cba6f90e0f7af325c3740b5b580a2d5bd7a823662630eacf3fa92b38446",
+  "input_sha256": {
+    "associativvordes/family-index-v6/generated/val-candidates.json": "516b2432a043d3ef23a7a57c1f08db9cba00095d6affbd20bc9039b1e9f3e2f0",
+    "associativvordes/family-index-v5/families/1e.json.gz": "5842641c0a7791fe0e6660357d0312f26975619cfb9159409c90546c239bf46d",
+    "associativvordes/family-index-v5/members/en/1e.json.gz": "3a4e8b2737bd08b0540f9947ce5fe538b5b77aa5bd0a0054d6dc9e10fbf07fe7",
+    "associativvordes/family-index-v5/members/de/1e.json.gz": "d4b0eef0291a547f844c71dffad93b4f6c3715cd10584feff5d86ceb251e56c8",
+    "associativvordes/family-index-v5/members/fr/1e.json.gz": "dac3df89aca45f36429734b2f40ef62dae168463d1a34dcbc6aa4888e9d5829d",
+    "associativvordes/family-index-v5/members/es/1e.json.gz": "257553d22f28181b1a25663034abac0dfb0f8af7e12018c338ed164a73c2eb8b",
+    "associativvordes/family-index-v5/members/it/1e.json.gz": "185aacfd05a48705819dddee09fe6a935bb6441a1d765a3ab8c098e73c71e215",
+    "associativvordes/family-index-v5/members/ru/1e.json.gz": "a91d233597a7fefde7c47dbc9998ecfaba3bb7f18e50d338037bf398ac3381d1",
+    "associativvordes/family-index-v5/families/26.json.gz": "dc7a3bb6c155031b2f2697e9b31c0492cc1e3aa81ecd7b071742ad61c1fbc766",
+    "associativvordes/family-index-v5/members/en/26.json.gz": "c68580535ef8d1184886d0c26d973dee507d009a9953cb80e31f6fd9fe289b83",
+    "associativvordes/family-index-v5/members/de/26.json.gz": "5ea68c98b6eedfaac81cdea5850ef30ac4454ccf43089a91104a802df65644f0",
+    "associativvordes/family-index-v5/members/fr/26.json.gz": "2e5c2ef302f8f580381f76993cc7777f0912287b8e987945fd3f9e3ea9a6f4c9",
+    "associativvordes/family-index-v5/members/es/26.json.gz": "83a451e33f6141af8cb733da4d1cd99eb1d68fe2f5187f7c62d92e2fec7bd228",
+    "associativvordes/family-index-v5/members/it/26.json.gz": "c8b9133541b1251809161c830f569bcab5df2cd1722a6119239c125f1703f6b7",
+    "associativvordes/family-index-v5/members/ru/26.json.gz": "e23e08ce7483208e9f06cf6f02f2ea950b79567a9418c1d16582b9afd2de950f",
+    "associativvordes/family-index-v5/families/29.json.gz": "a63abb53c405b9b2859d4c177d2b0dff656ff27f8c9546d871981057e01c7619",
+    "associativvordes/family-index-v5/members/en/29.json.gz": "2bfbf77d0cc62103da8843c7dca17578eaac5863cae61112bbe37735329a9aca",
+    "associativvordes/family-index-v5/members/de/29.json.gz": "6e79962a8daa2872091d52bc81377bce6bc1e3cf8e7eb6186a82f68a027287ab",
+    "associativvordes/family-index-v5/members/fr/29.json.gz": "5f660113e207f84484f03559970a644144c1ce1558646e96881803885620409c",
+    "associativvordes/family-index-v5/members/es/29.json.gz": "2e040e7fd527e64fc130e4e2ab7357df1a3907d284dbb612bbce0c665afb3179",
+    "associativvordes/family-index-v5/members/it/29.json.gz": "9e439e80a6e2b0855596775b412ec55b1c8f6bb88b0756457f860dd95a6620e5",
+    "associativvordes/family-index-v5/members/ru/29.json.gz": "bf9e219014ea0e07d0a4e1d143182bc8ad8566253dd8e430da6a944fb1933b21",
+    "associativvordes/family-index-v5/families/3b.json.gz": "6455afbf1171ec08e5b4dba15e63aa6d1aacfa6a6efbca085878c5a772dc5ba2",
+    "associativvordes/family-index-v5/members/en/3b.json.gz": "d4f6fffc7cfa15d850812965e8c80d95890442f840bac47b7a0c51b56f3ae295",
+    "associativvordes/family-index-v5/members/de/3b.json.gz": "91d15fbed00aa064a985061eed8a97a08cd514b9d57eed914f103e26880cbf4b",
+    "associativvordes/family-index-v5/members/fr/3b.json.gz": "ef3fe4c50e85f45087aa42a89d006d863ee64b224f28032e9bc7e0860e66ca15",
+    "associativvordes/family-index-v5/members/es/3b.json.gz": "ae1e8522754b8f37a9ea196e9f2a0f16e28cff069596fbcf594ed16c4ec59253",
+    "associativvordes/family-index-v5/members/it/3b.json.gz": "1ac57728b91a59c9747c4471863f51cb30ec657d10c4151abbddb1422ea310c6",
+    "associativvordes/family-index-v5/members/ru/3b.json.gz": "ccbe0a62809dca33361de765abb4baef95b28b8b71656cbc3495cfb126d9d891",
+    "associativvordes/family-index-v5/families/4f.json.gz": "45fdfd5726b543652a37823769949fb0d4bd406b94f2d7370f9bcf7f51afb062",
+    "associativvordes/family-index-v5/members/en/4f.json.gz": "b77d4d44cfd6fd8e588e2abfe259e205a547ae5c6d65c3edc35c06fddb85fd15",
+    "associativvordes/family-index-v5/members/de/4f.json.gz": "f5726af22f6336af62968683f5e0c53b4a0c8e62e8af4a03956f64990b928ad7",
+    "associativvordes/family-index-v5/members/fr/4f.json.gz": "4dcc39a79cab68c0dbb21b3a8b4bb15e495630bdaf398eaa00ffb3abae796bea",
+    "associativvordes/family-index-v5/members/es/4f.json.gz": "141b0ca9e5fea923d1c29ceb81904f13b03ba72b485146f37e0d917c34efc133",
+    "associativvordes/family-index-v5/members/it/4f.json.gz": "5d6e15242fe0cbb6dbae0313c319bc5059373119e2f0c06adbf481f3edc4dbf5",
+    "associativvordes/family-index-v5/members/ru/4f.json.gz": "1002c26585e839c2c7733f44b2e0b4adc8b9603fd6ae7f2abb60b0b268928b2d",
+    "associativvordes/family-index-v5/families/5e.json.gz": "729bca125f05217d7d900b9413388edb6159e267e340cbe1f4d67e9637ca2aa1",
+    "associativvordes/family-index-v5/members/en/5e.json.gz": "902820c8e926bd6384832674087b2c5a8f9ac085166bb8edea630796d83d45e7",
+    "associativvordes/family-index-v5/members/de/5e.json.gz": "bc6e7f91621a4746b87c5d49678bfdab2c87f01b023471c7a5ea0473fde44dcb",
+    "associativvordes/family-index-v5/members/fr/5e.json.gz": "946702d012335e21e3963e0c6581c309a0cf7ba83764ba24ae7a1b4ed8287681",
+    "associativvordes/family-index-v5/members/es/5e.json.gz": "3307d59f00be712f9aad49f04a1d490fa740fd83750af11f6dc5313c1af78796",
+    "associativvordes/family-index-v5/members/it/5e.json.gz": "f96da953692d8ee4be3970ebd203334ae283e869ada869b83895e896ecfabdbf",
+    "associativvordes/family-index-v5/members/ru/5e.json.gz": "00530f4403bdcdd2497d966cfa524722d8c0cacd7acc01146df1d85ba2ff9eb2",
+    "associativvordes/family-index-v5/families/66.json.gz": "16705198e7cd2cefa95580bd58c386ee9d580f6b60c07bebce5f57e3234e348b",
+    "associativvordes/family-index-v5/members/en/66.json.gz": "0d108c114cec657cdb2e9ab2eaef38d9085ebd8630e16003cc9cd41a27fedda5",
+    "associativvordes/family-index-v5/members/de/66.json.gz": "0f6f1d9d4f37a22847d534b0948093a3c6532706427b834ce9ac7bef8252d5e1",
+    "associativvordes/family-index-v5/members/fr/66.json.gz": "e90669a56d0f0a01027c5cab436d50de75fb1572737f974078254f5a57b52de9",
+    "associativvordes/family-index-v5/members/es/66.json.gz": "84df29e4bb55d4a627339c5a73c0a9b39464b4b9c824c5c6a1b2275fc9e09e22",
+    "associativvordes/family-index-v5/members/it/66.json.gz": "4ac8759f76e771e8f5efca4df0bf96cc72028a06241954e7ceeccfdb6749e9fb",
+    "associativvordes/family-index-v5/members/ru/66.json.gz": "50de5440fdf4ba1b471e407b8cc7756ee277e628890a908cde14dfa063d68cd0",
+    "associativvordes/family-index-v5/families/7d.json.gz": "aa1809fdb4c910ba47d753c64f7b6bd8163141e434fdbb3b500f22b7ad584fa4",
+    "associativvordes/family-index-v5/members/en/7d.json.gz": "2e4355dba5d93f09c7deea36ae1b7d9a6042887f4208881125dcab4ed72e2b76",
+    "associativvordes/family-index-v5/members/de/7d.json.gz": "cc834cafb2371ba9e10453b54dd0ce80ae78da0a465c903c6285098deadb0f03",
+    "associativvordes/family-index-v5/members/fr/7d.json.gz": "7ae0e55c0a5068457bce8e8a8bc3af2be09c68526f9ebb6674ac5405f32d9d12",
+    "associativvordes/family-index-v5/members/es/7d.json.gz": "4eacfc6ba27ba73e806c5960b3a4998a26a23c2a1ff1368b7c3d7ea60c8c574f",
+    "associativvordes/family-index-v5/members/it/7d.json.gz": "e0694b86d333afa63491f6b742090dce5109c2d0a278a4a072f3f8de4f811cc0",
+    "associativvordes/family-index-v5/members/ru/7d.json.gz": "b47086eeb26ab8fa3a86428e2689504c6500983fbecfd8c4492f590e9f79612c",
+    "associativvordes/family-index-v5/families/7f.json.gz": "25dfb8c167176a83f8824045620d735a26dbb2d5e378fd6f215eb4e573a04c62",
+    "associativvordes/family-index-v5/members/en/7f.json.gz": "125b423e463d90e1d5aa921a728748c2666cd5ac6f6ed863ad52f063ad227a74",
+    "associativvordes/family-index-v5/members/de/7f.json.gz": "ec77dd532878aa138a799bf3d09ec1a456e8c46bbfd599fa27ea6cc6577e36b1",
+    "associativvordes/family-index-v5/members/fr/7f.json.gz": "ee4381755cb1c0cac6247fc9ff6dd96a247d453237e692e6a20d24b2f997930b",
+    "associativvordes/family-index-v5/members/es/7f.json.gz": "dcb25b5b9821dd8aa8cbc076f8a56df84d4f99968e99a35da209ed401b2230c3",
+    "associativvordes/family-index-v5/members/it/7f.json.gz": "962c722693f36653f7eece7b5655809af1026a0038251b27f4ac9c45ce8ccd38",
+    "associativvordes/family-index-v5/members/ru/7f.json.gz": "ee1cce89de2c0bb8e780f9a81bf2cb6e566ee3f53c6bc2e72417e634abd1df96",
+    "associativvordes/family-index-v5/families/81.json.gz": "92efb1e32805336302b56563142b56235ed6940c1a03b7373a1b859b23aa6c19",
+    "associativvordes/family-index-v5/members/en/81.json.gz": "bc2a6af10447c67dbe1f11e6a52bb6de67081d9192df08a6f9b653ea0ec9b1f3",
+    "associativvordes/family-index-v5/members/de/81.json.gz": "a926f4d273b72c5437221ac973dd82fd95af5a38b57054369c914decd187b5c4",
+    "associativvordes/family-index-v5/members/fr/81.json.gz": "37971b1e1f78e5245eab59bcc05ee9b927f96812b47d92bbd6ba9667eea7ff16",
+    "associativvordes/family-index-v5/members/es/81.json.gz": "6560b7c1c1d0cfe2fed1a5dbd07bd63be526d4077b1db98208f0ef001f0967d6",
+    "associativvordes/family-index-v5/members/it/81.json.gz": "1680f0fc9cb54c15b56128475cd3013ad6494e65dfa4130a04f228fd053a9891",
+    "associativvordes/family-index-v5/members/ru/81.json.gz": "29a31f2b2922cae821fece8ca1f854810b1a397a7766411417288c3c139bc1fc",
+    "associativvordes/family-index-v5/families/b5.json.gz": "3a0eba074aaedb1d2f8a0b9483f26770bed158569066ff222b8594dc11fb7d66",
+    "associativvordes/family-index-v5/members/en/b5.json.gz": "9d2d658242ddbd9c9fef3276219911d119092a2e6172f684604b665d93154a81",
+    "associativvordes/family-index-v5/members/de/b5.json.gz": "9c58e75e4933ebc287a4bf9056fd8c8991db84daff1b220a1ca98d9897b3d821",
+    "associativvordes/family-index-v5/members/fr/b5.json.gz": "e3e94688bcbbd27e7d44494312ad63dd9426b0e3b2d58ad668cf3f8ecd17f7d7",
+    "associativvordes/family-index-v5/members/es/b5.json.gz": "4b8e106096fef42994ca4cbb8e57148417bf89b3ab9e2edcf0d5cd02ce1b53e4",
+    "associativvordes/family-index-v5/members/it/b5.json.gz": "6c41689e1f525cb14d9008d4236c7d509dca38647ebb0916ca1e5a2ca593a5f2",
+    "associativvordes/family-index-v5/members/ru/b5.json.gz": "6fb066f2f8a82fb3b38a9510aafc8efe53a1146ed6385892be825ac6023389d1",
+    "associativvordes/family-index-v5/families/c8.json.gz": "8f4573ee84b82250d0a1d9ae82c1630795f9b0c6916cb6f75fc2e061be4c2893",
+    "associativvordes/family-index-v5/members/en/c8.json.gz": "75570150c3c2e9b3093cfb0139d7e6749b2e88195eead46e104b7d7d437808b8",
+    "associativvordes/family-index-v5/members/de/c8.json.gz": "ec234c6d8fa7f5dc902252fb6770c96d6f722ae4054953d124c2a672f21469b8",
+    "associativvordes/family-index-v5/members/fr/c8.json.gz": "ece617be2635ff80ca837e64c2a698e7fc10a8c04e88ccc3ef9678c5fff817e2",
+    "associativvordes/family-index-v5/members/es/c8.json.gz": "ca07107dbafbf4f7b816dd3bd3e6df8ec64d1248313ed429c93f799acc9719e6",
+    "associativvordes/family-index-v5/members/it/c8.json.gz": "f6681dab7c4f36629a9d6307660baaca5c3eb0421a1e063585091d15a3e147a4",
+    "associativvordes/family-index-v5/members/ru/c8.json.gz": "b7f1d01b6a376a42962182e60664e354482ad0f11cf63fa7c6a4c4ffffcd7a0f",
+    "associativvordes/family-index-v5/families/cf.json.gz": "f4fae6ffec7b4fe495c2ae0fe4c7421b987943e35dbe210e5e3cdb3989635877",
+    "associativvordes/family-index-v5/members/en/cf.json.gz": "d9399ceeeedf35b6881d1c4049fa01dd1e23202f7e8de1dbda7f19c13922186a",
+    "associativvordes/family-index-v5/members/de/cf.json.gz": "32365a4204efb32789969b038fad3679a460b270fc682d20e9e484dcb54c5f2a",
+    "associativvordes/family-index-v5/members/fr/cf.json.gz": "b09e31555616c2bb0c292b4e844970287311a52ae580c21c0b412af802e5eb4f",
+    "associativvordes/family-index-v5/members/es/cf.json.gz": "aa99ac1f53298d583fdf4da3003b06aa22f786e24d589736789ca61df8dbc2dc",
+    "associativvordes/family-index-v5/members/it/cf.json.gz": "ca2cca9612b5654cac6fd38bf22619db2b8ef533bc22d2ac7cb3631dafe90e1d",
+    "associativvordes/family-index-v5/members/ru/cf.json.gz": "046ba2b4d99ab96d951a165f59e419f76399014feb200276147c8b451f1680c7",
+    "associativvordes/family-index-v5/families/e6.json.gz": "407e5aff399f5d8f1640cd6c9a7326127853e9603ce10cdbdf5fa4ab3e7c83b0",
+    "associativvordes/family-index-v5/members/en/e6.json.gz": "683e384531051d6c32a6b71a390870de6e630bb71ac81f472a1144fab5e5dd7c",
+    "associativvordes/family-index-v5/members/de/e6.json.gz": "e3ac943da4f7b2525391845f2882445ab1faee6a87d7d2d3f682f112f37db0c2",
+    "associativvordes/family-index-v5/members/fr/e6.json.gz": "2cfdfc02a3527ab5a98859ffdc35733f8573ba90f5e4a82ba9bfc609f7c67445",
+    "associativvordes/family-index-v5/members/es/e6.json.gz": "b3651442315a5cc975c61f75ae364401e93ae6224df9ae353cd1b316508e1bb4",
+    "associativvordes/family-index-v5/members/it/e6.json.gz": "525a3469106e6603b7d5029c8af77736aa9c2be0d382a2a976294a921cbed7ff",
+    "associativvordes/family-index-v5/members/ru/e6.json.gz": "ee7b9a48a8602aa8c0fc7851dee27ccf2463f052869a401a186933d48d251c23",
+    "associativvordes/family-index-v5/families/ea.json.gz": "1c847426e17146dd155948165339de0ec73ce48576e211b11d6b29f9a4ea9175",
+    "associativvordes/family-index-v5/members/en/ea.json.gz": "a23f31508e1ab45394218e5d06330eb1cc03cf2bb2e5402926f9502cd27ea958",
+    "associativvordes/family-index-v5/members/de/ea.json.gz": "81a84a09b53e5fba6eefdf9b441b379ca7dd2af4299265b01c69b90e16efb89b",
+    "associativvordes/family-index-v5/members/fr/ea.json.gz": "dceb66172db17f139a0444bdac487561e2965deba01120dc911250a1027dcb9d",
+    "associativvordes/family-index-v5/members/es/ea.json.gz": "a63bfa884f705c806573d827c5957a378cbd053afa54f527a81c944dde244b7e",
+    "associativvordes/family-index-v5/members/it/ea.json.gz": "f98e044a990a0268d99271dad2ec897ce16d662a09360d3b3cd15bc932976140",
+    "associativvordes/family-index-v5/members/ru/ea.json.gz": "689de953106ec2bd81483fea96e5d91f6536f78a3fed13d742ed5386911df653"
+  },
+  "route_count": 15,
+  "source_route_record_incidences": 24896,
+  "unique_corpus_identities": 5516,
+  "routes": [
+    {
+      "route_id": "ety:88d0d6fc2226",
+      "route_kind": "etymological_evidence_cluster",
+      "source_metadata": "associativvordes/family-index-v5/families/1e.json.gz",
+      "etymon_keys": [
+        "la:vale"
+      ],
+      "source_term_evidence": [
+        "la:valeo",
+        "la:valeō",
+        "la:valē"
+      ],
+      "source_aliases": [
+        "vail",
+        "val",
+        "vale",
+        "valer",
+        "valor",
+        "value"
+      ],
+      "source_canonical_proposal": "valer",
+      "source_canonical_is_not_approved": true,
+      "language_record_counts": {
+        "en": 2225,
+        "de": 0,
+        "fr": 1126,
+        "es": 33,
+        "it": 113,
+        "ru": 0
+      },
+      "language_identity_set_sha256": {
+        "en": "a5a525ea01572d51c73ce37aeb65c1d7e4841e878f2dc2b3282026c9f6f679ea",
+        "de": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fr": "8c038dce4275eaf817fc1f40b24d384aa210c689c0116dae75b6383021d3e2cd",
+        "es": "efaa2a3b593fb273bb27111ec863272926cf0e2069ba933fad5a9a78d104527d",
+        "it": "97ef36c5a68d3ee16e67958f9ab6e4d98c36f075ee982039b9f62ad5f90fabe9",
+        "ru": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "source_records": 3497,
+      "review_status": "investigated_alias_pool_contamination_requires_lexical_partition",
+      "family_id": null,
+      "canonical_decision": null,
+      "merge_authorized": false
+    },
+    {
+      "route_id": "ety:e8bac130ca91",
+      "route_kind": "etymological_evidence_cluster",
+      "source_metadata": "associativvordes/family-index-v5/families/26.json.gz",
+      "etymon_keys": [
+        "la:vall"
+      ],
+      "source_term_evidence": [
+        "la:valla",
+        "la:vallis",
+        "la:vallum",
+        "la:vallus",
+        "la:vallō"
+      ],
+      "source_aliases": [
+        "balboa",
+        "vagli",
+        "val",
+        "vall",
+        "valle",
+        "wall",
+        "wallis"
+      ],
+      "source_canonical_proposal": "balboa",
+      "source_canonical_is_not_approved": true,
+      "language_record_counts": {
+        "en": 179,
+        "de": 96,
+        "fr": 1126,
+        "es": 96,
+        "it": 221,
+        "ru": 0
+      },
+      "language_identity_set_sha256": {
+        "en": "716193093389213116c2a36a17dc85a278e32ee65de9d8a2396475276335b830",
+        "de": "c955e13004f402f78eb9d6863c637e16d45f5cb7171d7c71d163c72177f139ec",
+        "fr": "8c038dce4275eaf817fc1f40b24d384aa210c689c0116dae75b6383021d3e2cd",
+        "es": "d48d3e16edbf22da685a69cf63f3b17cee744a3921ef30cf87e7803387d6ac61",
+        "it": "9f26b3181de20a1d79d00de7ac60166f294657d42f6a08d7deab651e4e034b2c",
+        "ru": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "source_records": 1718,
+      "review_status": "investigated_alias_pool_contamination_requires_lexical_partition",
+      "family_id": null,
+      "canonical_decision": null,
+      "merge_authorized": false
+    },
+    {
+      "route_id": "ety:d8d34e574c18",
+      "route_kind": "etymological_evidence_cluster",
+      "source_metadata": "associativvordes/family-index-v5/families/29.json.gz",
+      "etymon_keys": [
+        "la:vallis"
+      ],
+      "source_term_evidence": [
+        "la:vallis"
+      ],
+      "source_aliases": [
+        "balboa",
+        "val",
+        "vall",
+        "valle",
+        "wallis"
+      ],
+      "source_canonical_proposal": "balboa",
+      "source_canonical_is_not_approved": true,
+      "language_record_counts": {
+        "en": 2,
+        "de": 4,
+        "fr": 1126,
+        "es": 1,
+        "it": 210,
+        "ru": 0
+      },
+      "language_identity_set_sha256": {
+        "en": "dd53df4443f39aecc6681c6a137a94614ac91adc1b488261443c22de1bf875d3",
+        "de": "a785ff5389c095a17e0a7831a6d75ab80ffb8859cbf8e9377d0e5c54cc44be92",
+        "fr": "8c038dce4275eaf817fc1f40b24d384aa210c689c0116dae75b6383021d3e2cd",
+        "es": "dcf1b3ee83cd7c9544864f604b957dd966b76af047b4f1dd55804cf0853198b4",
+        "it": "42916b9467882a3c4039966e397e27088e61587ddcae325eb0b973280c430868",
+        "ru": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "source_records": 1343,
+      "review_status": "investigated_alias_pool_contamination_requires_lexical_partition",
+      "family_id": null,
+      "canonical_decision": null,
+      "merge_authorized": false
+    },
+    {
+      "route_id": "ety:082a0688243f",
+      "route_kind": "etymological_evidence_cluster",
+      "source_metadata": "associativvordes/family-index-v5/families/3b.json.gz",
+      "etymon_keys": [
+        "fro:val"
+      ],
+      "source_term_evidence": [
+        "fro:val"
+      ],
+      "source_aliases": [
+        "val",
+        "vaux"
+      ],
+      "source_canonical_proposal": "vaux",
+      "source_canonical_is_not_approved": true,
+      "language_record_counts": {
+        "en": 2190,
+        "de": 0,
+        "fr": 1126,
+        "es": 0,
+        "it": 0,
+        "ru": 0
+      },
+      "language_identity_set_sha256": {
+        "en": "3360e52dedcec8cf9e06627d4277e8848bebdf34fc3c07ac1d6f37c4fa0cc881",
+        "de": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fr": "8c038dce4275eaf817fc1f40b24d384aa210c689c0116dae75b6383021d3e2cd",
+        "es": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "it": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "ru": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "source_records": 3316,
+      "review_status": "investigated_alias_pool_contamination_requires_lexical_partition",
+      "family_id": null,
+      "canonical_decision": null,
+      "merge_authorized": false
+    },
+    {
+      "route_id": "ety:f00bcab16c95",
+      "route_kind": "etymological_evidence_cluster",
+      "source_metadata": "associativvordes/family-index-v5/families/4f.json.gz",
+      "etymon_keys": [
+        "la:valenti"
+      ],
+      "source_term_evidence": [
+        "la-lat:valentia",
+        "la:Valentia",
+        "la:Valentius",
+        "la:valentia"
+      ],
+      "source_aliases": [
+        "val",
+        "valenz"
+      ],
+      "source_canonical_proposal": "valenz",
+      "source_canonical_is_not_approved": true,
+      "language_record_counts": {
+        "en": 0,
+        "de": 1213,
+        "fr": 0,
+        "es": 0,
+        "it": 1,
+        "ru": 0
+      },
+      "language_identity_set_sha256": {
+        "en": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "de": "c72a9927259e24a14a8498484f68e06bb319eaa7a3466225a71f1e0359263500",
+        "fr": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "es": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "it": "25052e926ee7ca6ff106c2bb3ef63252ee7b884e682136f8161d54edb443293c",
+        "ru": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "source_records": 1214,
+      "review_status": "investigated_alias_pool_contamination_requires_lexical_partition",
+      "family_id": null,
+      "canonical_decision": null,
+      "merge_authorized": false
+    },
+    {
+      "route_id": "ety:f6fe7a68b637",
+      "route_kind": "etymological_evidence_cluster",
+      "source_metadata": "associativvordes/family-index-v5/families/5e.json.gz",
+      "etymon_keys": [
+        "fro:valee"
+      ],
+      "source_term_evidence": [
+        "fro:valee"
+      ],
+      "source_aliases": [
+        "val"
+      ],
+      "source_canonical_proposal": "val",
+      "source_canonical_is_not_approved": true,
+      "language_record_counts": {
+        "en": 2189,
+        "de": 0,
+        "fr": 1126,
+        "es": 0,
+        "it": 0,
+        "ru": 0
+      },
+      "language_identity_set_sha256": {
+        "en": "978d9b36b149a584b9966cd5032a9e2f8c2f93080d7a3406cd1e65d39f20a829",
+        "de": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fr": "8c038dce4275eaf817fc1f40b24d384aa210c689c0116dae75b6383021d3e2cd",
+        "es": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "it": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "ru": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "source_records": 3315,
+      "review_status": "investigated_alias_pool_contamination_requires_lexical_partition",
+      "family_id": null,
+      "canonical_decision": null,
+      "merge_authorized": false
+    },
+    {
+      "route_id": "surface:ru:val",
+      "route_kind": "surface_component_candidate",
+      "source_metadata": "associativvordes/family-index-v5/families/66.json.gz",
+      "etymon_keys": [],
+      "source_term_evidence": [],
+      "source_aliases": [
+        "val"
+      ],
+      "source_canonical_proposal": "val",
+      "source_canonical_is_not_approved": true,
+      "language_record_counts": {
+        "en": 0,
+        "de": 0,
+        "fr": 0,
+        "es": 0,
+        "it": 0,
+        "ru": 73
+      },
+      "language_identity_set_sha256": {
+        "en": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "de": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fr": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "es": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "it": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "ru": "b90125f87270ddf57101942ed7f02c94d13ee9c8fca7bad81b78772c1026cbce"
+      },
+      "source_records": 73,
+      "review_status": "investigated_alias_pool_contamination_requires_lexical_partition",
+      "family_id": null,
+      "canonical_decision": null,
+      "merge_authorized": false
+    },
+    {
+      "route_id": "ety:f7c173d84c24",
+      "route_kind": "etymological_evidence_cluster",
+      "source_metadata": "associativvordes/family-index-v5/families/7d.json.gz",
+      "etymon_keys": [
+        "la:valeri"
+      ],
+      "source_term_evidence": [
+        "la:Valeria",
+        "la:Valerius"
+      ],
+      "source_aliases": [
+        "val",
+        "valeri",
+        "valerij"
+      ],
+      "source_canonical_proposal": "valeri",
+      "source_canonical_is_not_approved": true,
+      "language_record_counts": {
+        "en": 0,
+        "de": 0,
+        "fr": 1126,
+        "es": 0,
+        "it": 11,
+        "ru": 3
+      },
+      "language_identity_set_sha256": {
+        "en": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "de": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fr": "8c038dce4275eaf817fc1f40b24d384aa210c689c0116dae75b6383021d3e2cd",
+        "es": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "it": "9f4465254148e17f5b920f38633d50751844713cf670c35a4f0313fbd321cf19",
+        "ru": "28351110a29e7d221e170e6b720cd4a3f1d1b59be1b9992833a30029a2c4b757"
+      },
+      "source_records": 1140,
+      "review_status": "investigated_alias_pool_contamination_requires_lexical_partition",
+      "family_id": null,
+      "canonical_decision": null,
+      "merge_authorized": false
+    },
+    {
+      "route_id": "ety:961ca0038bb5",
+      "route_kind": "etymological_evidence_cluster",
+      "source_metadata": "associativvordes/family-index-v5/families/7f.json.gz",
+      "etymon_keys": [
+        "la-lat:valentia"
+      ],
+      "source_term_evidence": [
+        "la-lat:valentia"
+      ],
+      "source_aliases": [
+        "val",
+        "valenz"
+      ],
+      "source_canonical_proposal": "valenz",
+      "source_canonical_is_not_approved": true,
+      "language_record_counts": {
+        "en": 0,
+        "de": 1213,
+        "fr": 0,
+        "es": 0,
+        "it": 1,
+        "ru": 0
+      },
+      "language_identity_set_sha256": {
+        "en": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "de": "c72a9927259e24a14a8498484f68e06bb319eaa7a3466225a71f1e0359263500",
+        "fr": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "es": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "it": "25052e926ee7ca6ff106c2bb3ef63252ee7b884e682136f8161d54edb443293c",
+        "ru": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "source_records": 1214,
+      "review_status": "investigated_alias_pool_contamination_requires_lexical_partition",
+      "family_id": null,
+      "canonical_decision": null,
+      "merge_authorized": false
+    },
+    {
+      "route_id": "ety:acab8c629de8",
+      "route_kind": "etymological_evidence_cluster",
+      "source_metadata": "associativvordes/family-index-v5/families/81.json.gz",
+      "etymon_keys": [
+        "la:valerius"
+      ],
+      "source_term_evidence": [
+        "la:Valerius"
+      ],
+      "source_aliases": [
+        "val",
+        "valeri",
+        "valerij"
+      ],
+      "source_canonical_proposal": "valeri",
+      "source_canonical_is_not_approved": true,
+      "language_record_counts": {
+        "en": 0,
+        "de": 0,
+        "fr": 1126,
+        "es": 0,
+        "it": 11,
+        "ru": 3
+      },
+      "language_identity_set_sha256": {
+        "en": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "de": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fr": "8c038dce4275eaf817fc1f40b24d384aa210c689c0116dae75b6383021d3e2cd",
+        "es": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "it": "9f4465254148e17f5b920f38633d50751844713cf670c35a4f0313fbd321cf19",
+        "ru": "28351110a29e7d221e170e6b720cd4a3f1d1b59be1b9992833a30029a2c4b757"
+      },
+      "source_records": 1140,
+      "review_status": "investigated_alias_pool_contamination_requires_lexical_partition",
+      "family_id": null,
+      "canonical_decision": null,
+      "merge_authorized": false
+    },
+    {
+      "route_id": "ety:ddf6d676859e",
+      "route_kind": "etymological_evidence_cluster",
+      "source_metadata": "associativvordes/family-index-v5/families/b5.json.gz",
+      "etymon_keys": [
+        "la:valor"
+      ],
+      "source_term_evidence": [
+        "la-lat:valōrem",
+        "la:valor"
+      ],
+      "source_aliases": [
+        "val"
+      ],
+      "source_canonical_proposal": "val",
+      "source_canonical_is_not_approved": true,
+      "language_record_counts": {
+        "en": 2189,
+        "de": 0,
+        "fr": 1126,
+        "es": 0,
+        "it": 0,
+        "ru": 0
+      },
+      "language_identity_set_sha256": {
+        "en": "978d9b36b149a584b9966cd5032a9e2f8c2f93080d7a3406cd1e65d39f20a829",
+        "de": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fr": "8c038dce4275eaf817fc1f40b24d384aa210c689c0116dae75b6383021d3e2cd",
+        "es": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "it": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "ru": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "source_records": 3315,
+      "review_status": "investigated_alias_pool_contamination_requires_lexical_partition",
+      "family_id": null,
+      "canonical_decision": null,
+      "merge_authorized": false
+    },
+    {
+      "route_id": "ety:e12cdb45881f",
+      "route_kind": "etymological_evidence_cluster",
+      "source_metadata": "associativvordes/family-index-v5/families/c8.json.gz",
+      "etymon_keys": [
+        "la:valeo"
+      ],
+      "source_term_evidence": [
+        "la:valeo",
+        "la:valeō"
+      ],
+      "source_aliases": [
+        "vail",
+        "val",
+        "valer",
+        "valor",
+        "value"
+      ],
+      "source_canonical_proposal": "valer",
+      "source_canonical_is_not_approved": true,
+      "language_record_counts": {
+        "en": 47,
+        "de": 0,
+        "fr": 1126,
+        "es": 33,
+        "it": 0,
+        "ru": 0
+      },
+      "language_identity_set_sha256": {
+        "en": "03b902a333e03729f83267d43cdfb68a6d2805283a49e1892b85a59eeb3b81b4",
+        "de": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fr": "8c038dce4275eaf817fc1f40b24d384aa210c689c0116dae75b6383021d3e2cd",
+        "es": "efaa2a3b593fb273bb27111ec863272926cf0e2069ba933fad5a9a78d104527d",
+        "it": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "ru": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "source_records": 1206,
+      "review_status": "investigated_alias_pool_contamination_requires_lexical_partition",
+      "family_id": null,
+      "canonical_decision": null,
+      "merge_authorized": false
+    },
+    {
+      "route_id": "ety:74e7854bc739",
+      "route_kind": "etymological_evidence_cluster",
+      "source_metadata": "associativvordes/family-index-v5/families/cf.json.gz",
+      "etymon_keys": [
+        "la:valid"
+      ],
+      "source_term_evidence": [
+        "la:valido",
+        "la:validus"
+      ],
+      "source_aliases": [
+        "val",
+        "valid"
+      ],
+      "source_canonical_proposal": "valid",
+      "source_canonical_is_not_approved": true,
+      "language_record_counts": {
+        "en": 11,
+        "de": 4,
+        "fr": 1126,
+        "es": 0,
+        "it": 4,
+        "ru": 0
+      },
+      "language_identity_set_sha256": {
+        "en": "e6a270995acbe94852e5df412caea98b7c917896ac9dcff883a88021cabe41cd",
+        "de": "a4af4180a1787460b9983af8748ab85d0769d55cc5bf81d31ff57f2ca8bce01a",
+        "fr": "8c038dce4275eaf817fc1f40b24d384aa210c689c0116dae75b6383021d3e2cd",
+        "es": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "it": "95b8666ccc11df5a07b28b33f7a66b0b493b1834429f3e08e426821b1bb9cdf3",
+        "ru": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "source_records": 1145,
+      "review_status": "investigated_alias_pool_contamination_requires_lexical_partition",
+      "family_id": null,
+      "canonical_decision": null,
+      "merge_authorized": false
+    },
+    {
+      "route_id": "surface:it:val",
+      "route_kind": "surface_component_candidate",
+      "source_metadata": "associativvordes/family-index-v5/families/e6.json.gz",
+      "etymon_keys": [],
+      "source_term_evidence": [],
+      "source_aliases": [
+        "val"
+      ],
+      "source_canonical_proposal": "val",
+      "source_canonical_is_not_approved": true,
+      "language_record_counts": {
+        "en": 0,
+        "de": 0,
+        "fr": 0,
+        "es": 0,
+        "it": 115,
+        "ru": 0
+      },
+      "language_identity_set_sha256": {
+        "en": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "de": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "fr": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "es": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "it": "5b1392675b3ef36ce61710caf189a2a9ebb14da1af3aaa6ab79ed4d022caef6a",
+        "ru": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "source_records": 115,
+      "review_status": "investigated_alias_pool_contamination_requires_lexical_partition",
+      "family_id": null,
+      "canonical_decision": null,
+      "merge_authorized": false
+    },
+    {
+      "route_id": "ety:90cc3df5865e",
+      "route_kind": "etymological_evidence_cluster",
+      "source_metadata": "associativvordes/family-index-v5/families/ea.json.gz",
+      "etymon_keys": [
+        "la:validus"
+      ],
+      "source_term_evidence": [
+        "la:validus"
+      ],
+      "source_aliases": [
+        "val",
+        "valid"
+      ],
+      "source_canonical_proposal": "valid",
+      "source_canonical_is_not_approved": true,
+      "language_record_counts": {
+        "en": 11,
+        "de": 4,
+        "fr": 1126,
+        "es": 0,
+        "it": 4,
+        "ru": 0
+      },
+      "language_identity_set_sha256": {
+        "en": "e6a270995acbe94852e5df412caea98b7c917896ac9dcff883a88021cabe41cd",
+        "de": "a4af4180a1787460b9983af8748ab85d0769d55cc5bf81d31ff57f2ca8bce01a",
+        "fr": "8c038dce4275eaf817fc1f40b24d384aa210c689c0116dae75b6383021d3e2cd",
+        "es": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "it": "95b8666ccc11df5a07b28b33f7a66b0b493b1834429f3e08e426821b1bb9cdf3",
+        "ru": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "source_records": 1145,
+      "review_status": "investigated_alias_pool_contamination_requires_lexical_partition",
+      "family_id": null,
+      "canonical_decision": null,
+      "merge_authorized": false
+    }
+  ],
+  "shared_french_pool": {
+    "routes": [
+      {
+        "route_id": "ety:88d0d6fc2226",
+        "records": 1126,
+        "identity_set_sha256": "8c038dce4275eaf817fc1f40b24d384aa210c689c0116dae75b6383021d3e2cd",
+        "contains_cheval": true,
+        "all_contain_val_component_proposal": true
+      },
+      {
+        "route_id": "ety:e8bac130ca91",
+        "records": 1126,
+        "identity_set_sha256": "8c038dce4275eaf817fc1f40b24d384aa210c689c0116dae75b6383021d3e2cd",
+        "contains_cheval": true,
+        "all_contain_val_component_proposal": true
+      },
+      {
+        "route_id": "ety:d8d34e574c18",
+        "records": 1126,
+        "identity_set_sha256": "8c038dce4275eaf817fc1f40b24d384aa210c689c0116dae75b6383021d3e2cd",
+        "contains_cheval": true,
+        "all_contain_val_component_proposal": true
+      },
+      {
+        "route_id": "ety:082a0688243f",
+        "records": 1126,
+        "identity_set_sha256": "8c038dce4275eaf817fc1f40b24d384aa210c689c0116dae75b6383021d3e2cd",
+        "contains_cheval": true,
+        "all_contain_val_component_proposal": true
+      },
+      {
+        "route_id": "ety:f6fe7a68b637",
+        "records": 1126,
+        "identity_set_sha256": "8c038dce4275eaf817fc1f40b24d384aa210c689c0116dae75b6383021d3e2cd",
+        "contains_cheval": true,
+        "all_contain_val_component_proposal": true
+      },
+      {
+        "route_id": "ety:f7c173d84c24",
+        "records": 1126,
+        "identity_set_sha256": "8c038dce4275eaf817fc1f40b24d384aa210c689c0116dae75b6383021d3e2cd",
+        "contains_cheval": true,
+        "all_contain_val_component_proposal": true
+      },
+      {
+        "route_id": "ety:acab8c629de8",
+        "records": 1126,
+        "identity_set_sha256": "8c038dce4275eaf817fc1f40b24d384aa210c689c0116dae75b6383021d3e2cd",
+        "contains_cheval": true,
+        "all_contain_val_component_proposal": true
+      },
+      {
+        "route_id": "ety:ddf6d676859e",
+        "records": 1126,
+        "identity_set_sha256": "8c038dce4275eaf817fc1f40b24d384aa210c689c0116dae75b6383021d3e2cd",
+        "contains_cheval": true,
+        "all_contain_val_component_proposal": true
+      },
+      {
+        "route_id": "ety:e12cdb45881f",
+        "records": 1126,
+        "identity_set_sha256": "8c038dce4275eaf817fc1f40b24d384aa210c689c0116dae75b6383021d3e2cd",
+        "contains_cheval": true,
+        "all_contain_val_component_proposal": true
+      },
+      {
+        "route_id": "ety:74e7854bc739",
+        "records": 1126,
+        "identity_set_sha256": "8c038dce4275eaf817fc1f40b24d384aa210c689c0116dae75b6383021d3e2cd",
+        "contains_cheval": true,
+        "all_contain_val_component_proposal": true
+      },
+      {
+        "route_id": "ety:90cc3df5865e",
+        "records": 1126,
+        "identity_set_sha256": "8c038dce4275eaf817fc1f40b24d384aa210c689c0116dae75b6383021d3e2cd",
+        "contains_cheval": true,
+        "all_contain_val_component_proposal": true
+      }
+    ],
+    "ety_routes_without_french_records": [
+      "ety:f00bcab16c95",
+      "ety:961ca0038bb5"
+    ],
+    "unique_records": 1126,
+    "route_record_incidences": 12386,
+    "can_establish_shared_lexical_identity": false,
+    "finding": "Eleven of 13 etymological routes repeat an identical French candidate identity set despite distinct source terms (validus, vallis, vallum, valor, Valerius and others). Treat overlap as an alias-pool contamination warning; neither duplicate similarity nor the source manually_verified component label authorizes family membership."
+  },
+  "independent_lexical_controls": [
+    {
+      "head": "fr:val",
+      "origin": "Latin vallis",
+      "source": "https://www.cnrtl.fr/definition/val"
+    },
+    {
+      "head": "fr:cheval",
+      "origin": "Latin caballus",
+      "source": "https://www.cnrtl.fr/lexicographie/chev%C3%A2l",
+      "finding": "A final val spelling fragment does not establish the valley, validity or value element."
+    },
+    {
+      "head": "fr:valeur",
+      "origin": "Latin valor / valorem",
+      "source": "https://www.cnrtl.fr/definition/academie9/ad%20valorem"
+    }
+  ],
+  "branch_review_targets": [
+    "valid/validus",
+    "value/valor/valere",
+    "chemical_or_linguistic_valence",
+    "val/vale/valley/vallis",
+    "fortification_vallum",
+    "Valerius_personal_names",
+    "Valentia_geographic_names",
+    "Italian_surface_candidates",
+    "Russian_surface_candidates"
+  ],
+  "catalog_promotions": 0,
+  "canonical_decisions_created": 0,
+  "new_memberships": 0,
+  "automatic_legacy_exclusions": 0,
+  "production_enabled": false,
+  "limitations": [
+    "This checks route provenance and independent lexical controls, not all lemma senses.",
+    "Alias val remains navigation only; all 15 routes require finite lexical partition before promotion.",
+    "Shared member arrays cannot prove a shared associative root, especially when the same retrieval pool is reused."
+  ]
+}
