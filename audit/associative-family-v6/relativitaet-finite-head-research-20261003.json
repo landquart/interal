@@ -1,0 +1,375 @@
+{
+  "schema_version": 6,
+  "stage": "relat-relativitaet-finite-physical-head-20261003",
+  "source_head": "4b6836926eea6513c996bd749cfe4f2b3714a019",
+  "production_enabled": false,
+  "binding_authorized": true,
+  "accepted_membership_authorized": true,
+  "source_queue": "audit/associative-family-v6/relativitaet-finite-source-frame-20261003.json.gz",
+  "source_queue_sha256": "66b6d005f830a5fba42206c599ea4f75d123236e59c200b1ad8115b30ff4d0c4",
+  "groups": [
+    {
+      "language": "de",
+      "root": "relat",
+      "normalized_head": "relativität",
+      "sense": "relativity_nominal_lexical_base",
+      "head_scope": "finite_compound_component",
+      "status": "accepted",
+      "forms": [
+        "relativität"
+      ],
+      "component_stems": [
+        "relativität"
+      ],
+      "sources": [
+        "https://www.duden.de/rechtschreibung/Relativitaet",
+        "https://www.duden.de/rechtschreibung/relativ"
+      ],
+      "reason": "Duden identifies Relativität as the nominal relativity base and independently traces relativ through French relatif and Late Latin relativus to Latin relatum, participle of referre. One complete nominal component continues family relat; -iv/-ität derivative material is not absorbed into the international canonical. The following historical label remains opaque and no invented aggregate POS is assigned. Missing-umlaut relativitatsgesetz, malformed übergansrelativität, foreign English quotations and other unproved rows remain pending; no normalization/substring rule.",
+      "records": [
+        {
+          "root": "relat",
+          "language": "de",
+          "lemma_id": "lemma:9548f77ea1cdb5786d98",
+          "word": "relativitätsjude",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for relativitätsjude: possible typo, phrase fusion, foreign quotation or proper name; withheld pending evidence rather than admitted by overlap.",
+          "source_family_ids": [
+            "ety:0b0ceb1e556e",
+            "ety:29e80c739eb2",
+            "surface:de:relativitatsjud"
+          ],
+          "historical_status": "uncertain",
+          "canonical_root": "relat",
+          "queue": "relat",
+          "source": "audit/associative-family-v5/relation-phrase-boundaries-20261002/pending-review.json.gz",
+          "review_unit": "unresolved:de:lemma:9548f77ea1cdb5786d98:relat",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "",
+            "component": "relativität",
+            "after": "sjude",
+            "head": "relativität",
+            "boundary_proof": "Complete, individually inspected Relativität nominal lexical base; linking s and the following label stay outside it. No whole-compound identity/POS is asserted."
+          }
+        }
+      ]
+    }
+  ],
+  "finite_record_count": 1,
+  "withheld_count": 17,
+  "unlisted_propagation_authorized": false,
+  "withheld_records": [
+    {
+      "root": "relat",
+      "language": "de",
+      "lemma_id": "lemma:160bc0ab16e00db4d92f",
+      "word": "related",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for related: possible typo, phrase fusion, foreign quotation or proper name; withheld pending evidence rather than admitted by overlap.",
+      "source_family_ids": [
+        "surface:de:ted",
+        "surface:de:rel"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "relat",
+      "queue": "relat",
+      "source": "audit/associative-family-v5/relation-phrase-boundaries-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:160bc0ab16e00db4d92f:relat",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "relat",
+      "language": "de",
+      "lemma_id": "lemma:21fc1a83d8bb85b7b415",
+      "word": "relationships",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for relationships: possible typo, phrase fusion, foreign quotation or proper name; withheld pending evidence rather than admitted by overlap.",
+      "source_family_ids": [
+        "surface:de:relationship"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "relat",
+      "queue": "relat",
+      "source": "audit/associative-family-v5/relation-phrase-boundaries-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:21fc1a83d8bb85b7b415:relat",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "relat",
+      "language": "de",
+      "lemma_id": "lemma:358dac641c0497c4de4b",
+      "word": "frelate",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for frelate: possible typo, phrase fusion, foreign quotation or proper name; withheld pending evidence rather than admitted by overlap.",
+      "source_family_ids": [
+        "surface:de:late",
+        "surface:de:frelat"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "relat",
+      "queue": "relat",
+      "source": "audit/associative-family-v5/relation-phrase-boundaries-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:358dac641c0497c4de4b:relat",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "relat",
+      "language": "de",
+      "lemma_id": "lemma:3e525b4249e4bea16676",
+      "word": "relativitatsgesetz",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for relativitatsgesetz: possible typo, phrase fusion, foreign quotation or proper name; withheld pending evidence rather than admitted by overlap.",
+      "source_family_ids": [
+        "surface:de:relativi",
+        "surface:de:sge",
+        "surface:de:gesetz",
+        "surface:de:tsg",
+        "surface:de:vitat"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "relat",
+      "queue": "relat",
+      "source": "audit/associative-family-v5/relation-phrase-boundaries-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:3e525b4249e4bea16676:relat",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "relat",
+      "language": "de",
+      "lemma_id": "lemma:440b6147ac15efbf9316",
+      "word": "relates",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for relates: possible typo, phrase fusion, foreign quotation or proper name; withheld pending evidence rather than admitted by overlap.",
+      "source_family_ids": [
+        "surface:de:relate"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "relat",
+      "queue": "relat",
+      "source": "audit/associative-family-v5/relation-phrase-boundaries-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:440b6147ac15efbf9316:relat",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "relat",
+      "language": "de",
+      "lemma_id": "lemma:4917d4ff576715181d04",
+      "word": "relatio",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for relatio: possible typo, phrase fusion, foreign quotation or proper name; withheld pending evidence rather than admitted by overlap.",
+      "source_family_ids": [
+        "surface:de:relatio"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "relat",
+      "queue": "relat",
+      "source": "audit/associative-family-v5/relation-phrase-boundaries-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:4917d4ff576715181d04:relat",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "relat",
+      "language": "de",
+      "lemma_id": "lemma:7a0ca282316207c9721b",
+      "word": "relationsdr",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for relationsdr: possible typo, phrase fusion, foreign quotation or proper name; withheld pending evidence rather than admitted by overlap.",
+      "source_family_ids": [
+        "ety:dd07667af787",
+        "ety:474b418e1004"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "relat",
+      "queue": "relat",
+      "source": "audit/associative-family-v5/relation-phrase-boundaries-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:7a0ca282316207c9721b:relat",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "relat",
+      "language": "de",
+      "lemma_id": "lemma:7b5b2440298856962565",
+      "word": "relativity",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for relativity: possible typo, phrase fusion, foreign quotation or proper name; withheld pending evidence rather than admitted by overlap.",
+      "source_family_ids": [
+        "ety:153787ddfcc6",
+        "ety:a3dbee317218"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "relat",
+      "queue": "relat",
+      "source": "audit/associative-family-v5/relation-phrase-boundaries-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:7b5b2440298856962565:relat",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "relat",
+      "language": "de",
+      "lemma_id": "lemma:9098ecc5581e44da75e3",
+      "word": "relationship",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for relationship: possible typo, phrase fusion, foreign quotation or proper name; withheld pending evidence rather than admitted by overlap.",
+      "source_family_ids": [
+        "surface:de:relationship"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "relat",
+      "queue": "relat",
+      "source": "audit/associative-family-v5/relation-phrase-boundaries-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:9098ecc5581e44da75e3:relat",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "relat",
+      "language": "de",
+      "lemma_id": "lemma:91bfd8ca14c749d1deff",
+      "word": "relati",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for relati: possible typo, phrase fusion, foreign quotation or proper name; withheld pending evidence rather than admitted by overlap.",
+      "source_family_ids": [
+        "surface:de:lati",
+        "surface:de:rel"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "relat",
+      "queue": "relat",
+      "source": "audit/associative-family-v5/relation-phrase-boundaries-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:91bfd8ca14c749d1deff:relat",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "relat",
+      "language": "de",
+      "lemma_id": "lemma:9f441233cb07c048eb07",
+      "word": "generalrelator",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for generalrelator: possible typo, phrase fusion, foreign quotation or proper name; withheld pending evidence rather than admitted by overlap.",
+      "source_family_ids": [
+        "surface:de:ela",
+        "ety:9a5008967c19",
+        "ety:bbccf66150d9",
+        "surface:de:lator",
+        "surface:de:lre",
+        "surface:de:rel"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "relat",
+      "queue": "relat",
+      "source": "audit/associative-family-v5/relation-phrase-boundaries-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:9f441233cb07c048eb07:relat",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "relat",
+      "language": "de",
+      "lemma_id": "lemma:9f88542aa5d24e4301e4",
+      "word": "relate",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for relate: possible typo, phrase fusion, foreign quotation or proper name; withheld pending evidence rather than admitted by overlap.",
+      "source_family_ids": [
+        "surface:de:relate"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "relat",
+      "queue": "relat",
+      "source": "audit/associative-family-v5/relation-phrase-boundaries-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:9f88542aa5d24e4301e4:relat",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "relat",
+      "language": "de",
+      "lemma_id": "lemma:b6b96dc1d7e61154e294",
+      "word": "pierrelatte",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for pierrelatte: possible typo, phrase fusion, foreign quotation or proper name; withheld pending evidence rather than admitted by overlap.",
+      "source_family_ids": [
+        "ety:55752da3b28d",
+        "surface:de:pierrelatt"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "relat",
+      "queue": "relat",
+      "source": "audit/associative-family-v5/relation-phrase-boundaries-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:b6b96dc1d7e61154e294:relat",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "relat",
+      "language": "de",
+      "lemma_id": "lemma:b9df101c1e3aed773e3b",
+      "word": "unrelated",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for unrelated: possible typo, phrase fusion, foreign quotation or proper name; withheld pending evidence rather than admitted by overlap.",
+      "source_family_ids": [
+        "surface:de:ela",
+        "surface:de:ted",
+        "surface:de:rel"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "relat",
+      "queue": "relat",
+      "source": "audit/associative-family-v5/relation-phrase-boundaries-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:b9df101c1e3aed773e3b:relat",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "relat",
+      "language": "de",
+      "lemma_id": "lemma:ce2de9b1a591c575cf0d",
+      "word": "übergansrelativität",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for übergansrelativität: possible typo, phrase fusion, foreign quotation or proper name; withheld pending evidence rather than admitted by overlap.",
+      "source_family_ids": [
+        "surface:de:relativi",
+        "surface:de:uberg",
+        "surface:de:vitat",
+        "surface:de:gans"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "relat",
+      "queue": "relat",
+      "source": "audit/associative-family-v5/relation-phrase-boundaries-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:ce2de9b1a591c575cf0d:relat",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "relat",
+      "language": "de",
+      "lemma_id": "lemma:e3c2aeb3b94a0a52d087",
+      "word": "relationes",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for relationes: possible typo, phrase fusion, foreign quotation or proper name; withheld pending evidence rather than admitted by overlap.",
+      "source_family_ids": [
+        "surface:de:relatione",
+        "surface:de:nes"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "relat",
+      "queue": "relat",
+      "source": "audit/associative-family-v5/relation-phrase-boundaries-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:e3c2aeb3b94a0a52d087:relat",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "relat",
+      "language": "de",
+      "lemma_id": "lemma:f57f57de61777703cca6",
+      "word": "relating",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for relating: possible typo, phrase fusion, foreign quotation or proper name; withheld pending evidence rather than admitted by overlap.",
+      "source_family_ids": [
+        "surface:de:relat",
+        "surface:de:ting"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "relat",
+      "queue": "relat",
+      "source": "audit/associative-family-v5/relation-phrase-boundaries-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:f57f57de61777703cca6:relat",
+      "head_recognition": "requires_lexical_head_recognition"
+    }
+  ]
+}
