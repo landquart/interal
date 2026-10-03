@@ -1,3 +1,7 @@
+## Observ/inform finite head integration
+
+Common applyHeadReview engine now binds exact existing IDs using lexical facts, source hashes, sense-bound identities and finite morphology. Six evidenced German component heads represent 872 already reviewed links without asserting whole-compound identity. Legacy exact units: 19,717 → 18,857. Three separately documented positive inform additions yield 19,970 memberships; all 19,967 baseline links survive. Active observ/inform: 201 → 198. New decision reduction: 1.0; historical reuse 145.33 is a different metric. All six queues remain fully represented. Targeted 18 tests, independent audit and replay of 272 artifacts pass. Next: evidenced relat and loc finite exclusions; broader queues and promotion work remain open. Production stays v5.
+
 ## Typed catalog realization migration
 
 70 source entries individually classified: 47 canonical-reflex candidates (10 accepted with supporting heads, 37 pending), 5 query aliases, 2 lexical branches, 9 derivational stems and 7 inflectional forms. Spanish crea/creo preserve crear/creer ambiguity; cree is a creer form; Italian att/attric/azion are branch-bound. All 19,967 memberships remain byte-identical. Targeted tests (14), v6 audit and deterministic replay passed. Next: apply evidence-backed head recognition to all current queues; retain separate counts for unresolved cases and historical component-head reuse.

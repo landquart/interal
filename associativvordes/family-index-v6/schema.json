@@ -411,8 +411,58 @@
           "items": {
             "type": "object"
           }
+        },
+        "link_role": {
+          "enum": [
+            "whole_lexeme",
+            "inflection",
+            "reviewed_lexical_base_component"
+          ]
+        },
+        "identity_fact_id": {
+          "type": "string"
+        },
+        "whole_compound_identity_established": {
+          "const": false
         }
-      }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "link_role": {
+                "const": "reviewed_lexical_base_component"
+              }
+            },
+            "required": [
+              "link_role"
+            ]
+          },
+          "then": {
+            "required": [
+              "component_segmentation",
+              "identity_proof",
+              "whole_compound_identity_established"
+            ],
+            "properties": {
+              "component_segmentation": {
+                "type": "object",
+                "required": [
+                  "before",
+                  "component",
+                  "after",
+                  "head",
+                  "boundary_proof"
+                ]
+              },
+              "identity_proof": {
+                "type": "array",
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ]
     }
   }
 }

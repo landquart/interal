@@ -35,7 +35,7 @@ export function proposeMorphologicalHeads(records, facts) {
  // Retrieval-only regular endings; never a canonical-root or membership rule.
  const endings={en:['s','es','ed','ing'],de:['e','em','en','er','es'],fr:['s','es','ent'],es:['s','es','o','a','os','as'],it:['i','e','o','a'],ru:['а','у','ом','ами','ы','и']};
  for(const r of records)for(const f of facts){if(r.language!==f.language)continue;const w=normalizeHead(r.word),h=f.normalized_head;
-  if(w===h||(endings[r.language]||[]).some(e=>w===h+e))proposals.push({language:r.language,lemma_id:r.lemma_id,word:r.word,fact_id:f.id,proposed_head:h,status:'proposal_requires_review',identity_established:false,family_membership_established:false});
+  if(w===h||f.forms?.includes(r.word)||(endings[r.language]||[]).some(e=>w===h+e))proposals.push({family_id:r.family_id,language:r.language,lemma_id:r.lemma_id,word:r.word,fact_id:f.id,proposed_head:h,status:'proposal_requires_review',identity_established:false,family_membership_established:false});
  }
  return proposals;
 }

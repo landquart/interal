@@ -8,4 +8,4 @@ export interface NationalReflex { realization_type: RealizationType; head_scope:
 export interface EvidenceNode { legacy_id: string; etymon_keys: string[]; relation_evidence: object[]; source_locator: object; associative_family_id: null; }
 export interface QueryAlias { query: string; family_targets: string[]; evidence_targets: string[]; establishes_membership: false; }
 export interface HeadFamilyEdge { head_id: string; family_id: string; status: EdgeStatus; scope: string; version: number; evidence: object[]; morphology_policy: string; lemma_ids: string[]; }
-export interface LemmaHeadLink { language: string; lemma_id: string; word: string; head_id: string; family_id: string; evidence: object[]; }
+export interface LemmaHeadLink { link_role?: 'whole_lexeme' | 'inflection' | 'reviewed_lexical_base_component'; identity_fact_id?: string; whole_compound_identity_established?: false; component_segmentation?: object; identity_proof?: object[]; language: string; lemma_id: string; word: string; head_id: string; family_id: string; evidence: object[]; }

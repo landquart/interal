@@ -2,7 +2,7 @@
   "schema_version": 6,
   "verdict": "pass",
   "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6",
-  "locked_source_files": 2453,
+  "locked_source_files": 2456,
   "classified_objects": 2456540,
   "classification_counts": {
     "etymological_evidence_cluster": 20755,
@@ -11,6 +11,21 @@
     "promoted_manual_associative_family": 10
   },
   "preserved_manual_memberships": 19967,
+  "reviewed_membership_additions": 3,
+  "generated_memberships": 19970,
+  "lexical_head_review_metrics": {
+    "source_active_records": 25202,
+    "current_active_records": 25199,
+    "new_head_decisions": 3,
+    "new_records_resolved": 3,
+    "new_review_reduction_factor": 1,
+    "strict_remaining_frame_reduction": 1,
+    "historical_component_bindings_represented": 872,
+    "historical_component_head_edges": 6,
+    "historical_representation_reuse_factor": 145.33333333333334,
+    "historical_boundary_reviews_are_not_newly_resolved_records": true
+  },
+  "typed_realizations": 70,
   "unexpected_differences": 0,
   "golden_controls": [
     {
