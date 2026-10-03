@@ -27,7 +27,7 @@ test('research-only, unapproved heads and container imports fail before material
  }
 });
 test('translation, invented IDs, duplicate IDs and accidental boundaries cannot acquire memberships',()=>{
- for(const change of [d=>d.groups[0].records[0].relation_kind='semantic_translation',d=>d.groups[0].records[0].formal_continuity_status='pending',d=>d.groups[0].records[0].lemma_id='lemma:invented',d=>d.groups[0].records.push(d.groups[0].records[0]),d=>d.negative_controls.push({language:'en',word:'system'}),d=>d.positive_controls.pop(),d=>d.groups[0].records[0].source_locator.path='audit/fabricated-corpus.json']){
+ for(const change of [d=>d.groups[0].records[0].relation_kind='semantic_translation',d=>d.groups[0].records[0].formal_continuity_status='pending',d=>d.groups[0].records[0].lemma_id='lemma:invented',d=>d.groups[0].records.push(d.groups[0].records[0]),d=>d.negative_controls.push({language:'en',word:'system'}),d=>d.positive_controls.pop(),d=>{const r=d.groups[0].records[0],p=r.source_locator.path;r.source_locator.path='audit/fabricated-corpus.json';d.input_sha256[r.source_locator.path]=d.input_sha256[p];}]){
   const d=structuredClone(doc);change(d);assert.throws(()=>validatePromotionDecision(d));
  }
  const d=structuredClone(doc);d.groups.find(g=>g.language==='it').records[0].component_segmentation.after='wrong';
