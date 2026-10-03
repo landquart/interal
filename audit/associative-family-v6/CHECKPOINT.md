@@ -1,3 +1,11 @@
+## Finite Fraktion branches and Aktivitaet applied, 2026-10-03 continuation
+
+Remote application `167daeb465d82f56074b254105437f2f3e780b4e` applies eight independent Fraktion-related heads (26 exclusions) and one Aktivität activity/effectiveness component head (354 accepted exact IDs). Remaining Fraktion 38 and Aktivität 27 records retain pending status. Research was published independently at ec063d96 and 76d3b6ec. No new catalog family or general national realization.
+
+Accepted 21,375; lexical heads 206; catalog 17; legacy exact 18,857. Active 23,444 = pending 22,474 + uncertain 970. Reviewed 1,761; resolved 1,758 / 32 decisions = 54.9375. Pending resolved 1,743 / 25 = 69.72. Historical reuse 872 / 6 = 145.33 separately. Queues: observ/inform 198; relat 317; creat/mut 4,864; oper 2,077; act 15,161; loc 827. All 19,967 baseline memberships preserved; reviewed additions 1,396; promotion additions 12; unexpected differential empty.
+
+Targeted 27 tests, independent audit and replay of all 273 artifacts pass. V5, its audit and frequency files have identical Git trees. Shared runtime unchanged; remote full CI must be checked independently. Anis canonical accepted research-only, but six core bindings remain deferred because all 18 frequency files supply aggregate entries without contexts/POS. Mütze 13 exact cap-component exclusions researched at b93a9197, not yet applied. Next: tower packet research and finite Mütze/Attraktivität decisions. No merge; production v5; known and historical queues remain incomplete.
+
 ## Fraktion applied and anis research saved, 2026-10-03 continuation
 
 Fraktion research was saved first at `48fb46140b65816f2d82dd8dfc3fcb280f49777f`; exact application is `1ffdf2bec09ec67bdb64762503853db3d162604e`. One evidenced parliamentary/group component head excludes 213 existing pending act records. The frozen source frame contains 277 candidates; 64 chemical, derivational, refraktion/diffraktion/infraktion, malformed or otherwise unproved records remain pending. Component boundaries and nominal linking -s are explicit; organizer labels remain opaque. No whole-compound identity, wildcard family propagation or corpus deletion.

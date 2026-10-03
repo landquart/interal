@@ -2,7 +2,7 @@
   "schema_version": 6,
   "verdict": "pass",
   "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6",
-  "locked_source_files": 2470,
+  "locked_source_files": 2474,
   "classified_objects": 2456540,
   "classification_counts": {
     "etymological_evidence_cluster": 20755,
@@ -11,7 +11,7 @@
     "promoted_manual_associative_family": 10
   },
   "preserved_manual_memberships": 19967,
-  "reviewed_membership_additions": 1042,
+  "reviewed_membership_additions": 1396,
   "family_promotion_metrics": {
     "promoted_families": 1,
     "head_decisions": 7,
@@ -19,23 +19,23 @@
     "known_queue_resolutions": 0,
     "full_linguistic_certification": false
   },
-  "generated_memberships": 21021,
+  "generated_memberships": 21375,
   "lexical_head_review_metrics": {
     "source_active_records": 25202,
-    "current_active_records": 23824,
-    "new_head_decisions": 23,
-    "records_reviewed": 1381,
-    "new_records_resolved": 1378,
+    "current_active_records": 23444,
+    "new_head_decisions": 32,
+    "records_reviewed": 1761,
+    "new_records_resolved": 1758,
     "unresolved_reviewed_records": 3,
-    "new_review_reduction_factor": 59.91304347826087,
-    "newly_pending_records_resolved": 1363,
+    "new_review_reduction_factor": 54.9375,
+    "newly_pending_records_resolved": 1743,
     "investigated_uncertainties_resolved": 15,
     "investigated_uncertainties_retained": 3,
     "newly_pending_records_investigated_without_resolution": 0,
-    "pending_head_decisions": 16,
-    "pending_review_reduction_factor": 85.1875,
+    "pending_head_decisions": 25,
+    "pending_review_reduction_factor": 69.72,
     "current_status_counts": {
-      "pending": 22854,
+      "pending": 22474,
       "uncertain": 970
     },
     "stages": [
@@ -158,9 +158,33 @@
         "excluded": 213,
         "reviewed_records_retained_uncertain": 0,
         "new_review_reduction_factor": 213
+      },
+      {
+        "stage": "act-fraktion-remaining-lexical-branches-20261003",
+        "head_decisions": 8,
+        "records_reviewed": 26,
+        "records_resolved": 26,
+        "previously_pending": 26,
+        "previously_uncertain": 0,
+        "accepted": 0,
+        "excluded": 26,
+        "reviewed_records_retained_uncertain": 0,
+        "new_review_reduction_factor": 3.25
+      },
+      {
+        "stage": "act-aktivitaet-finite-compound-head-20261003",
+        "head_decisions": 1,
+        "records_reviewed": 354,
+        "records_resolved": 354,
+        "previously_pending": 354,
+        "previously_uncertain": 0,
+        "accepted": 354,
+        "excluded": 0,
+        "reviewed_records_retained_uncertain": 0,
+        "new_review_reduction_factor": 354
       }
     ],
-    "strict_remaining_frame_reduction": 1.0000839560070522,
+    "strict_remaining_frame_reduction": 1.0000853169524784,
     "historical_component_bindings_represented": 872,
     "historical_component_head_edges": 6,
     "historical_representation_reuse_factor": 145.33333333333334,
