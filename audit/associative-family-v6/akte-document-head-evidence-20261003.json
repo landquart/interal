@@ -1,0 +1,4611 @@
+{
+  "schema_version": 6,
+  "source_head": "ea5fa7694053609aea55a355155c1cb813f8550e",
+  "stage": "act-documentary-akte-finite-component-20261003",
+  "production_enabled": false,
+  "source_queue": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+  "source_queue_sha256": "cf94d0afadfdfa1e19b08e82301fea88cde2569221548365a70e8211ccec2a21",
+  "groups": [
+    {
+      "language": "de",
+      "normalized_head": "akte",
+      "sense": "documentary_case_file",
+      "root": "act",
+      "status": "accepted",
+      "forms": [
+        "akte",
+        "akten"
+      ],
+      "component_stems": [
+        "akten"
+      ],
+      "records": [
+        {
+          "lemma_id": "lemma:2c6c594a58f8b66531f4",
+          "word": "adoptionsakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "adoptions",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:2c6c594a58f8b66531f4"
+          }
+        },
+        {
+          "lemma_id": "lemma:1a71202ffa39d6958ba5",
+          "word": "adoptionsakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:adoptionsakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "adoptions",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:1a71202ffa39d6958ba5"
+          }
+        },
+        {
+          "lemma_id": "lemma:2b9346213856b8e2791a",
+          "word": "afghanistan-geheimakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "surface:de:afghanistangeheimakte",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "afghanistan-geheim",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:2b9346213856b8e2791a"
+          }
+        },
+        {
+          "lemma_id": "lemma:bbb057e264b3fa6deb20",
+          "word": "ambulanzakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "surface:de:ambulanzakte",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "ambulanz",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:bbb057e264b3fa6deb20"
+          }
+        },
+        {
+          "lemma_id": "lemma:b2d172231d989ea03706",
+          "word": "angestelltenakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "angestellten",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:b2d172231d989ea03706"
+          }
+        },
+        {
+          "lemma_id": "lemma:d9750f32f5c016c8fe1d",
+          "word": "angestelltenakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:angestelltenakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "angestellten",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:d9750f32f5c016c8fe1d"
+          }
+        },
+        {
+          "lemma_id": "lemma:af5b6273be5ebeda5f3f",
+          "word": "arbeitsakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "arbeits",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:af5b6273be5ebeda5f3f"
+          }
+        },
+        {
+          "lemma_id": "lemma:18ea0c8d38d8dc8b7b45",
+          "word": "arbeitsakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "surface:de:arbeitsakte",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "arbeits",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:18ea0c8d38d8dc8b7b45"
+          }
+        },
+        {
+          "lemma_id": "lemma:9c6f2a79635697060861",
+          "word": "arbeitslosenakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "surface:de:arbeitslosenakt",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:nakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "arbeitslosen",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:9c6f2a79635697060861"
+          }
+        },
+        {
+          "lemma_id": "lemma:98f255aed0ff240aa1a9",
+          "word": "armeeakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "armee",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:98f255aed0ff240aa1a9"
+          }
+        },
+        {
+          "lemma_id": "lemma:18cc387736b134c53569",
+          "word": "armeeakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "surface:de:armeeakte",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "armee",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:18cc387736b134c53569"
+          }
+        },
+        {
+          "lemma_id": "lemma:af03da006e07855f99b6",
+          "word": "ausbildungsakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:sakte",
+            "surface:de:ausbildungsakt"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "ausbildungs",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:af03da006e07855f99b6"
+          }
+        },
+        {
+          "lemma_id": "lemma:486d4860ab2cecd19575",
+          "word": "beförderungsakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "surface:de:beforderungsakt",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:sakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "beförderungs",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:486d4860ab2cecd19575"
+          }
+        },
+        {
+          "lemma_id": "lemma:f8177508622a07c296e0",
+          "word": "behandlungsakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:behandlungsakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "behandlungs",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:f8177508622a07c296e0"
+          }
+        },
+        {
+          "lemma_id": "lemma:09dc284b9afc4d851dae",
+          "word": "behördenakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "behörden",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:09dc284b9afc4d851dae"
+          }
+        },
+        {
+          "lemma_id": "lemma:fd9f778c7e5823c3eb1d",
+          "word": "behördenakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "surface:de:behordenakte",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "behörden",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:fd9f778c7e5823c3eb1d"
+          }
+        },
+        {
+          "lemma_id": "lemma:6d7d3ff968af9502af89",
+          "word": "beschwerdeakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "beschwerde",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:6d7d3ff968af9502af89"
+          }
+        },
+        {
+          "lemma_id": "lemma:f8685e1fea81b7d6af33",
+          "word": "beschwerdeakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "surface:de:beschwerdeakte",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "beschwerde",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:f8685e1fea81b7d6af33"
+          }
+        },
+        {
+          "lemma_id": "lemma:eb62f0fcce448d33c7a9",
+          "word": "beschäftigungsakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "surface:de:beschaftigungsakt",
+            "ety:fb8a2c387e83",
+            "surface:de:sakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "beschäftigungs",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:eb62f0fcce448d33c7a9"
+          }
+        },
+        {
+          "lemma_id": "lemma:540da30b5401f2a5e893",
+          "word": "beweisakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "beweis",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:540da30b5401f2a5e893"
+          }
+        },
+        {
+          "lemma_id": "lemma:a215e12ce2c062e1c505",
+          "word": "beweisakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:beweisakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "beweis",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:a215e12ce2c062e1c505"
+          }
+        },
+        {
+          "lemma_id": "lemma:2f95acb596d78a974041",
+          "word": "bewährungsakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "bewährungs",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:2f95acb596d78a974041"
+          }
+        },
+        {
+          "lemma_id": "lemma:689f9f08345d4e0e9733",
+          "word": "bewährungsakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "surface:de:bewahrungsakte",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "bewährungs",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:689f9f08345d4e0e9733"
+          }
+        },
+        {
+          "lemma_id": "lemma:ff9f221be10f8a394b4d",
+          "word": "buchprüfungsakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "surface:de:buchprufungsakt",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:prufungsakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "buchprüfungs",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:ff9f221be10f8a394b4d"
+          }
+        },
+        {
+          "lemma_id": "lemma:1d5a262ee3311d1878e7",
+          "word": "computerakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "surface:de:computerakte",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "computer",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:1d5a262ee3311d1878e7"
+          }
+        },
+        {
+          "lemma_id": "lemma:aad154e2e17434d736b1",
+          "word": "darlehensakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:sakte",
+            "surface:de:darlehensakt"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "darlehens",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:aad154e2e17434d736b1"
+          }
+        },
+        {
+          "lemma_id": "lemma:93339811403ba1ead643",
+          "word": "disziplinarakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "surface:de:disziplinarakt",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:akte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "disziplinar",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:93339811403ba1ead643"
+          }
+        },
+        {
+          "lemma_id": "lemma:e94320e96de6f6ac1d3a",
+          "word": "drogenfahndungsakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "drogenfahndungs",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:e94320e96de6f6ac1d3a"
+          }
+        },
+        {
+          "lemma_id": "lemma:c9c18264a8d26ab04d99",
+          "word": "drogenfahndungsakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:drogenfahndungsakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "drogenfahndungs",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:c9c18264a8d26ab04d99"
+          }
+        },
+        {
+          "lemma_id": "lemma:89819f01645b22b5eb1d",
+          "word": "einbruchsakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:einbruchsakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "einbruchs",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:89819f01645b22b5eb1d"
+          }
+        },
+        {
+          "lemma_id": "lemma:1a168436843d783816f2",
+          "word": "einbürgerungsakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "surface:de:einburgerungsakt",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:sakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "einbürgerungs",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:1a168436843d783816f2"
+          }
+        },
+        {
+          "lemma_id": "lemma:b48d254e85ff14cf7da3",
+          "word": "einschulungsakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "surface:de:einschulungsakte",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "einschulungs",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:b48d254e85ff14cf7da3"
+          }
+        },
+        {
+          "lemma_id": "lemma:04ae4ca1cb46b5ce86cf",
+          "word": "einwanderungsakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "einwanderungs",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:04ae4ca1cb46b5ce86cf"
+          }
+        },
+        {
+          "lemma_id": "lemma:047a713379d71e742052",
+          "word": "einwanderungsakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:einwanderungsakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "einwanderungs",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:047a713379d71e742052"
+          }
+        },
+        {
+          "lemma_id": "lemma:559957bdc1f27d5d8256",
+          "word": "ermittlungsakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "ermittlungs",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:559957bdc1f27d5d8256"
+          }
+        },
+        {
+          "lemma_id": "lemma:51f35b324282c6f34507",
+          "word": "ermittlungsakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:ermittlungsakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "ermittlungs",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:51f35b324282c6f34507"
+          }
+        },
+        {
+          "lemma_id": "lemma:86345b22f596864eb57e",
+          "word": "erpresserakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:erpresserakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "erpresser",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:86345b22f596864eb57e"
+          }
+        },
+        {
+          "lemma_id": "lemma:886632d61c55e781f1a8",
+          "word": "erpressungsakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "erpressungs",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:886632d61c55e781f1a8"
+          }
+        },
+        {
+          "lemma_id": "lemma:448c591948d9355764df",
+          "word": "erpressungsakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:erpressungsakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "erpressungs",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:448c591948d9355764df"
+          }
+        },
+        {
+          "lemma_id": "lemma:bc0ca6945d6ae77044cb",
+          "word": "fahndungsakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "surface:de:fahndungsakt",
+            "ety:fb8a2c387e83",
+            "surface:de:sakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "fahndungs",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:bc0ca6945d6ae77044cb"
+          }
+        },
+        {
+          "lemma_id": "lemma:a8831975be13c7739b1e",
+          "word": "finanzakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "surface:de:finanzakte",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "finanz",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:a8831975be13c7739b1e"
+          }
+        },
+        {
+          "lemma_id": "lemma:f8a2faad878fab2c02f5",
+          "word": "firmenakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "surface:de:firmenakte",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "firmen",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:f8a2faad878fab2c02f5"
+          }
+        },
+        {
+          "lemma_id": "lemma:4a7fafa7dc4fbab9d55c",
+          "word": "fliegerakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "surface:de:fliegerakte",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "flieger",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:4a7fafa7dc4fbab9d55c"
+          }
+        },
+        {
+          "lemma_id": "lemma:0ee837deabb07fbd0588",
+          "word": "forschungsakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:forschungsakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "forschungs",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:0ee837deabb07fbd0588"
+          }
+        },
+        {
+          "lemma_id": "lemma:e4344e2fad2af73ecec9",
+          "word": "führerscheinakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "führerschein",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:e4344e2fad2af73ecec9"
+          }
+        },
+        {
+          "lemma_id": "lemma:60cbe3ba64402a0055d5",
+          "word": "führerscheinakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "surface:de:fuhrerscheinakte",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "führerschein",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:60cbe3ba64402a0055d5"
+          }
+        },
+        {
+          "lemma_id": "lemma:dfb576d6382984d49d3c",
+          "word": "gefangenenakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "gefangenen",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:dfb576d6382984d49d3c"
+          }
+        },
+        {
+          "lemma_id": "lemma:a3d3b2df4e261b11e902",
+          "word": "gefangenenakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "surface:de:gefangenenakte",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "gefangenen",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:a3d3b2df4e261b11e902"
+          }
+        },
+        {
+          "lemma_id": "lemma:d4e7aafb604fc11be3fe",
+          "word": "gefängnisakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "gefängnis",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:d4e7aafb604fc11be3fe"
+          }
+        },
+        {
+          "lemma_id": "lemma:ac0c1ada55da1409517d",
+          "word": "gefängnisakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "surface:de:gefangnisakte",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "gefängnis",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:ac0c1ada55da1409517d"
+          }
+        },
+        {
+          "lemma_id": "lemma:40e5a3339a7b56477cf3",
+          "word": "geheimakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "geheim",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:40e5a3339a7b56477cf3"
+          }
+        },
+        {
+          "lemma_id": "lemma:6a519dd2626162d52c3e",
+          "word": "geheimakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:geheimakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "geheim",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:6a519dd2626162d52c3e"
+          }
+        },
+        {
+          "lemma_id": "lemma:f499c66d595ff835f02a",
+          "word": "geheimdienstausschussakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "surface:de:geheimdienstausschussakt",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:sakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "geheimdienstausschuss",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:f499c66d595ff835f02a"
+          }
+        },
+        {
+          "lemma_id": "lemma:46df7f3265a666efbb3d",
+          "word": "geheimhaltungsakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:geheimhaltungsakt",
+            "surface:de:sakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "geheimhaltungs",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:46df7f3265a666efbb3d"
+          }
+        },
+        {
+          "lemma_id": "lemma:4b1715106a9a9a5f00b3",
+          "word": "gemeindeakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "surface:de:gemeindeakte",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "gemeinde",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:4b1715106a9a9a5f00b3"
+          }
+        },
+        {
+          "lemma_id": "lemma:cf044dcd50418d57a874",
+          "word": "gerichtsakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "gerichts",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:cf044dcd50418d57a874"
+          }
+        },
+        {
+          "lemma_id": "lemma:a5bc7e1a9fc380788e55",
+          "word": "gerichtsakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:gerichtsakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "gerichts",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:a5bc7e1a9fc380788e55"
+          }
+        },
+        {
+          "lemma_id": "lemma:4b972d999cebfeb39da5",
+          "word": "geschworenenakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:geschworenenakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "geschworenen",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:4b972d999cebfeb39da5"
+          }
+        },
+        {
+          "lemma_id": "lemma:c38773514378ea4644bd",
+          "word": "gesundheitsakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "gesundheits",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:c38773514378ea4644bd"
+          }
+        },
+        {
+          "lemma_id": "lemma:0ac77d7a80834e1e0b78",
+          "word": "gesundheitsakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "surface:de:gesundheitsakte",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "gesundheits",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:0ac77d7a80834e1e0b78"
+          }
+        },
+        {
+          "lemma_id": "lemma:a8cc098797125dae47fa",
+          "word": "grundakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "grund",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:a8cc098797125dae47fa"
+          }
+        },
+        {
+          "lemma_id": "lemma:c9603d60580cb3601312",
+          "word": "grundakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "surface:de:grundakte",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "grund",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:c9603d60580cb3601312"
+          }
+        },
+        {
+          "lemma_id": "lemma:814f36e894863a1dcf29",
+          "word": "grundstücksakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:sakte",
+            "surface:de:grundstucksakt"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "grundstücks",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:814f36e894863a1dcf29"
+          }
+        },
+        {
+          "lemma_id": "lemma:c2ce9a37cc13c29faff4",
+          "word": "gutsakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:gutsakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "guts",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:c2ce9a37cc13c29faff4"
+          }
+        },
+        {
+          "lemma_id": "lemma:d5838857ba37aaf3142c",
+          "word": "heimaufsichtsakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "surface:de:heimaufsichtsakte",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "heimaufsichts",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:d5838857ba37aaf3142c"
+          }
+        },
+        {
+          "lemma_id": "lemma:ce967303aa8334d1f878",
+          "word": "hilfsakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:hilfsakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "hilfs",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:ce967303aa8334d1f878"
+          }
+        },
+        {
+          "lemma_id": "lemma:1b530ec05b49f7f5909b",
+          "word": "honorarakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "surface:de:honorarakte",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "honorar",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:1b530ec05b49f7f5909b"
+          }
+        },
+        {
+          "lemma_id": "lemma:b0e39b71ae64abd341bb",
+          "word": "häftlingsakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "surface:de:haftlingsakt",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:sakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "häftlings",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:b0e39b71ae64abd341bb"
+          }
+        },
+        {
+          "lemma_id": "lemma:7573e15e80719be024ed",
+          "word": "informantenakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "family:inform",
+            "surface:de:informantenakte",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "informanten",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:7573e15e80719be024ed"
+          }
+        },
+        {
+          "lemma_id": "lemma:f106918de2191cb1c28a",
+          "word": "inventurakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:inventurakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "inventur",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:f106918de2191cb1c28a"
+          }
+        },
+        {
+          "lemma_id": "lemma:20e788c1b290a0aad3e4",
+          "word": "jugendakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "jugend",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:20e788c1b290a0aad3e4"
+          }
+        },
+        {
+          "lemma_id": "lemma:c5afcb31649741457363",
+          "word": "jugendakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:jugendakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "jugend",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:c5afcb31649741457363"
+          }
+        },
+        {
+          "lemma_id": "lemma:f42616cf6ee19994f49e",
+          "word": "jugendgerichtsakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "jugendgerichts",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:f42616cf6ee19994f49e"
+          }
+        },
+        {
+          "lemma_id": "lemma:ea2bbaa06d25da1b2c73",
+          "word": "jugendgerichtsakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "surface:de:jugendgerichtsakte",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "jugendgerichts",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:ea2bbaa06d25da1b2c73"
+          }
+        },
+        {
+          "lemma_id": "lemma:adb7c097ad8aaa55f79b",
+          "word": "jugendstrafenakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:jugendstrafenakt",
+            "surface:de:nakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "jugendstrafen",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:adb7c097ad8aaa55f79b"
+          }
+        },
+        {
+          "lemma_id": "lemma:89a7f3191aa98a925b25",
+          "word": "justizakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:justizakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "justiz",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:89a7f3191aa98a925b25"
+          }
+        },
+        {
+          "lemma_id": "lemma:108a786ba3c804e4167c",
+          "word": "kaderakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "surface:de:kaderakt",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:akte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "kader",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:108a786ba3c804e4167c"
+          }
+        },
+        {
+          "lemma_id": "lemma:b60ee7069e11d3fb16fb",
+          "word": "kandidatenakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:kandidatenakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "kandidaten",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:b60ee7069e11d3fb16fb"
+          }
+        },
+        {
+          "lemma_id": "lemma:b60529a05e92583a03fe",
+          "word": "kirchenakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:kirchenakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "kirchen",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:b60529a05e92583a03fe"
+          }
+        },
+        {
+          "lemma_id": "lemma:b2728dce4a999a23f3fb",
+          "word": "klientenakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "surface:de:klientenakte",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "klienten",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:b2728dce4a999a23f3fb"
+          }
+        },
+        {
+          "lemma_id": "lemma:b64384a442a9e38d4ae9",
+          "word": "kohl-akten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "surface:de:kohlakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "kohl-",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:b64384a442a9e38d4ae9"
+          }
+        },
+        {
+          "lemma_id": "lemma:56f800a4ef6cfd310377",
+          "word": "krankenakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "kranken",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:56f800a4ef6cfd310377"
+          }
+        },
+        {
+          "lemma_id": "lemma:fe59d7734cf266d308d2",
+          "word": "krankenakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "surface:de:krankenakte",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "kranken",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:fe59d7734cf266d308d2"
+          }
+        },
+        {
+          "lemma_id": "lemma:0be74b1c9cfcc3fbfefa",
+          "word": "krankenhausakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "krankenhaus",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:0be74b1c9cfcc3fbfefa"
+          }
+        },
+        {
+          "lemma_id": "lemma:294363c397d86f9d5aea",
+          "word": "krankenhausakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "surface:de:krankenhausakte",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "krankenhaus",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:294363c397d86f9d5aea"
+          }
+        },
+        {
+          "lemma_id": "lemma:d6e5cf7cd0e846e8d0a5",
+          "word": "kriegsministeriumsakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "surface:de:kriegsministeriumsakte",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "kriegsministeriums",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:d6e5cf7cd0e846e8d0a5"
+          }
+        },
+        {
+          "lemma_id": "lemma:4743340150ce1063f9b3",
+          "word": "kundenakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:kundenakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "kunden",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:4743340150ce1063f9b3"
+          }
+        },
+        {
+          "lemma_id": "lemma:8755491f896190f49fb2",
+          "word": "medienakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "surface:de:medienakt",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:nakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "medien",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:8755491f896190f49fb2"
+          }
+        },
+        {
+          "lemma_id": "lemma:70ec1f1d4199dc2a0677",
+          "word": "medizinakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "medizin",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:70ec1f1d4199dc2a0677"
+          }
+        },
+        {
+          "lemma_id": "lemma:7ba84d704ca7328c0203",
+          "word": "medizinakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:medizinakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "medizin",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:7ba84d704ca7328c0203"
+          }
+        },
+        {
+          "lemma_id": "lemma:075a4002b5f7e55d435d",
+          "word": "militärakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "militär",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:075a4002b5f7e55d435d"
+          }
+        },
+        {
+          "lemma_id": "lemma:d64286614b2c7f8a6c69",
+          "word": "militärakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:militarakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "militär",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:d64286614b2c7f8a6c69"
+          }
+        },
+        {
+          "lemma_id": "lemma:ff7c4ff0fcaf1aab1491",
+          "word": "mitarbeiterakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "mitarbeiter",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:ff7c4ff0fcaf1aab1491"
+          }
+        },
+        {
+          "lemma_id": "lemma:602b2861f3cab91eebb7",
+          "word": "mitarbeiterakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:mitarbeiterakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "mitarbeiter",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:602b2861f3cab91eebb7"
+          }
+        },
+        {
+          "lemma_id": "lemma:8a8b3253ed84dab3c02c",
+          "word": "mitgliederakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:mitgliederakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "mitglieder",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:8a8b3253ed84dab3c02c"
+          }
+        },
+        {
+          "lemma_id": "lemma:40ae3008136247843805",
+          "word": "mordakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "mord",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:40ae3008136247843805"
+          }
+        },
+        {
+          "lemma_id": "lemma:e6f74e18d705a710eac7",
+          "word": "mordakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:mordakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "mord",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:e6f74e18d705a710eac7"
+          }
+        },
+        {
+          "lemma_id": "lemma:82f6c52b67f5ded6ce01",
+          "word": "museumsakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:museumsakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "museums",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:82f6c52b67f5ded6ce01"
+          }
+        },
+        {
+          "lemma_id": "lemma:8a8b8a1cb39ace209f44",
+          "word": "nebenakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:nebenakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "neben",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:8a8b8a1cb39ace209f44"
+          }
+        },
+        {
+          "lemma_id": "lemma:cbd2b99bb5889929e116",
+          "word": "observierungsakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "family:observ",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:observierungsakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "observierungs",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:cbd2b99bb5889929e116"
+          }
+        },
+        {
+          "lemma_id": "lemma:4305322e35e6faf9e25a",
+          "word": "papierakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:papierakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "papier",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:4305322e35e6faf9e25a"
+          }
+        },
+        {
+          "lemma_id": "lemma:d64831a7d3f94cfe8692",
+          "word": "parteiakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "surface:de:parteiakte",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "partei",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:d64831a7d3f94cfe8692"
+          }
+        },
+        {
+          "lemma_id": "lemma:28da9b70b22474b5bde7",
+          "word": "patienten-akten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "surface:de:patientenakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "patienten-",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:28da9b70b22474b5bde7"
+          }
+        },
+        {
+          "lemma_id": "lemma:e4d27ba29fe659631f08",
+          "word": "patientenakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "patienten",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:e4d27ba29fe659631f08"
+          }
+        },
+        {
+          "lemma_id": "lemma:f7949043b2e6247ae203",
+          "word": "patientenakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "surface:de:patientenakte",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "patienten",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:f7949043b2e6247ae203"
+          }
+        },
+        {
+          "lemma_id": "lemma:7fd05ec2bdfed6b0ae66",
+          "word": "pds-akten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "surface:de:pdsakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "pds-",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:7fd05ec2bdfed6b0ae66"
+          }
+        },
+        {
+          "lemma_id": "lemma:b818572d6b878a7ac479",
+          "word": "pentagonakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "surface:de:pentagonakte",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "pentagon",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:b818572d6b878a7ac479"
+          }
+        },
+        {
+          "lemma_id": "lemma:9cb35c82444bf0da1a3f",
+          "word": "polizeiakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "polizei",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:9cb35c82444bf0da1a3f"
+          }
+        },
+        {
+          "lemma_id": "lemma:171f136fb14cf19a2aba",
+          "word": "polizeiakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:polizeiakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "polizei",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:171f136fb14cf19a2aba"
+          }
+        },
+        {
+          "lemma_id": "lemma:6ac10d813057659c7d8e",
+          "word": "prozessakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "prozess",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:6ac10d813057659c7d8e"
+          }
+        },
+        {
+          "lemma_id": "lemma:bf5a2b42b9894780ca57",
+          "word": "prozessakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "surface:de:prozessakte",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "prozess",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:bf5a2b42b9894780ca57"
+          }
+        },
+        {
+          "lemma_id": "lemma:57a8599fc8544db7191c",
+          "word": "prüfungsakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "prüfungs",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:57a8599fc8544db7191c"
+          }
+        },
+        {
+          "lemma_id": "lemma:6bd6d8898665087641c6",
+          "word": "prüfungsakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:prufungsakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "prüfungs",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:6bd6d8898665087641c6"
+          }
+        },
+        {
+          "lemma_id": "lemma:cb979623984339fdf54d",
+          "word": "psychiatrieakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:akte",
+            "surface:de:psychiatrieakt"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "psychiatrie",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:cb979623984339fdf54d"
+          }
+        },
+        {
+          "lemma_id": "lemma:1f80de80450557139f34",
+          "word": "rechtsmedizinakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "surface:de:rechtsmedizinakte",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "rechtsmedizin",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:1f80de80450557139f34"
+          }
+        },
+        {
+          "lemma_id": "lemma:98169ce05ce2d4d3bd12",
+          "word": "scheidungsakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:sakte",
+            "surface:de:scheidungsakt"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "scheidungs",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:98169ce05ce2d4d3bd12"
+          }
+        },
+        {
+          "lemma_id": "lemma:6ff136131a2ca1847959",
+          "word": "schülerakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "schüler",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:6ff136131a2ca1847959"
+          }
+        },
+        {
+          "lemma_id": "lemma:094e8853a5e91c216c18",
+          "word": "schülerakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:schulerakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "schüler",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:094e8853a5e91c216c18"
+          }
+        },
+        {
+          "lemma_id": "lemma:8e8be5103d70139b5963",
+          "word": "sicherheitsakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "surface:de:sicherheitsakt",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:sakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "sicherheits",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:8e8be5103d70139b5963"
+          }
+        },
+        {
+          "lemma_id": "lemma:70e30c70fedf695a4726",
+          "word": "sozialamtsakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "surface:de:sozialamtsakte",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "sozialamts",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:70e30c70fedf695a4726"
+          }
+        },
+        {
+          "lemma_id": "lemma:ec313da8a6c8c8b657cb",
+          "word": "sozialversicherungsakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "surface:de:sozialversicherungsakte",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "sozialversicherungs",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:ec313da8a6c8c8b657cb"
+          }
+        },
+        {
+          "lemma_id": "lemma:407a6a49e3f42ba827f6",
+          "word": "spenderakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:akte",
+            "surface:de:spenderakt"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "spender",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:407a6a49e3f42ba827f6"
+          }
+        },
+        {
+          "lemma_id": "lemma:5b3c3ec7991df1372bdd",
+          "word": "spionageakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "spionage",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:5b3c3ec7991df1372bdd"
+          }
+        },
+        {
+          "lemma_id": "lemma:bc7ee0f02fcd61892bb9",
+          "word": "spionageakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "surface:de:spionageakte",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "spionage",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:bc7ee0f02fcd61892bb9"
+          }
+        },
+        {
+          "lemma_id": "lemma:1903271d8e8bcefbd00d",
+          "word": "spurenakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:spurenakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "spuren",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:1903271d8e8bcefbd00d"
+          }
+        },
+        {
+          "lemma_id": "lemma:a2fc226cbd1d75a3de1d",
+          "word": "staatsanwaltsakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:sakte",
+            "surface:de:staatsanwaltsakt"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "staatsanwalts",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:a2fc226cbd1d75a3de1d"
+          }
+        },
+        {
+          "lemma_id": "lemma:257fc70e6f23d0cf534d",
+          "word": "stasi-akten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "surface:de:stasiakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "stasi-",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:257fc70e6f23d0cf534d"
+          }
+        },
+        {
+          "lemma_id": "lemma:001ee8fa9d06edbf72ec",
+          "word": "stasi-überwachungsakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "surface:de:stasiuberwachungsakt",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:sakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "stasi-überwachungs",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:001ee8fa9d06edbf72ec"
+          }
+        },
+        {
+          "lemma_id": "lemma:9a022b3a7a4a488d39bf",
+          "word": "stasiakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "stasi",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:9a022b3a7a4a488d39bf"
+          }
+        },
+        {
+          "lemma_id": "lemma:edf6375f4471ad1e5edd",
+          "word": "stasiakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:stasiakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "stasi",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:edf6375f4471ad1e5edd"
+          }
+        },
+        {
+          "lemma_id": "lemma:1b066f4c620a224b5329",
+          "word": "steuerakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:steuerakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "steuer",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:1b066f4c620a224b5329"
+          }
+        },
+        {
+          "lemma_id": "lemma:ad2c55f1b50fff26bea1",
+          "word": "strafverfolgungsakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:strafverfolgungsakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "strafverfolgungs",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:ad2c55f1b50fff26bea1"
+          }
+        },
+        {
+          "lemma_id": "lemma:3923292153fb08e27579",
+          "word": "studentenakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "surface:de:studentenakt",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:nakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "studenten",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:3923292153fb08e27579"
+          }
+        },
+        {
+          "lemma_id": "lemma:ee95a70b897fa89815f1",
+          "word": "telefonakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "surface:de:telefonakte",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "telefon",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:ee95a70b897fa89815f1"
+          }
+        },
+        {
+          "lemma_id": "lemma:817a4f4d742f4d5ed085",
+          "word": "terrorismusakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:terrorismusakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "terrorismus",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:817a4f4d742f4d5ed085"
+          }
+        },
+        {
+          "lemma_id": "lemma:f9fd1631e312dec43f63",
+          "word": "terroristenakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "surface:de:terroristenakt",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:nakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "terroristen",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:f9fd1631e312dec43f63"
+          }
+        },
+        {
+          "lemma_id": "lemma:8a4b7514611fbb3e8d6c",
+          "word": "täter-akte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "surface:de:taterakt"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "täter-",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:8a4b7514611fbb3e8d6c"
+          }
+        },
+        {
+          "lemma_id": "lemma:29a6929de901bc0251aa",
+          "word": "universitätsakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "surface:de:universitatsakte",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "universitäts",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:29a6929de901bc0251aa"
+          }
+        },
+        {
+          "lemma_id": "lemma:40ddfee4aecb210ff3e5",
+          "word": "untersuchungsakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "untersuchungs",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:40ddfee4aecb210ff3e5"
+          }
+        },
+        {
+          "lemma_id": "lemma:fc40d1ddb24d230955f2",
+          "word": "untersuchungsakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:untersuchungsakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "untersuchungs",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:fc40d1ddb24d230955f2"
+          }
+        },
+        {
+          "lemma_id": "lemma:0fba0f6cf255ff7fcbe6",
+          "word": "us-akten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "surface:de:usakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "us-",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:0fba0f6cf255ff7fcbe6"
+          }
+        },
+        {
+          "lemma_id": "lemma:85372cf3c37995912d1b",
+          "word": "verfahrensakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "verfahrens",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:85372cf3c37995912d1b"
+          }
+        },
+        {
+          "lemma_id": "lemma:326704c844d77c3c9680",
+          "word": "verfahrensakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:verfahrensakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "verfahrens",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:326704c844d77c3c9680"
+          }
+        },
+        {
+          "lemma_id": "lemma:afd0c6c4cc7913105829",
+          "word": "verfassungsschutzakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "surface:de:verfassungsschutzakte",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "verfassungsschutz",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:afd0c6c4cc7913105829"
+          }
+        },
+        {
+          "lemma_id": "lemma:277dbeac1b763f18faec",
+          "word": "vergabeakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "surface:de:vergabeakte",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "vergabe",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:277dbeac1b763f18faec"
+          }
+        },
+        {
+          "lemma_id": "lemma:18c25105b967c28b8187",
+          "word": "verhaftungsakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "verhaftungs",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:18c25105b967c28b8187"
+          }
+        },
+        {
+          "lemma_id": "lemma:1a725b8993d6948af5d7",
+          "word": "verhaftungsakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "surface:de:verhaftungsakte",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "verhaftungs",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:1a725b8993d6948af5d7"
+          }
+        },
+        {
+          "lemma_id": "lemma:c3d3520bc160544645d1",
+          "word": "vermisstenakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "vermissten",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:c3d3520bc160544645d1"
+          }
+        },
+        {
+          "lemma_id": "lemma:e8ee8bcb8d1b807550ba",
+          "word": "vermisstenakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "surface:de:vermisstenakte",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "vermissten",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:e8ee8bcb8d1b807550ba"
+          }
+        },
+        {
+          "lemma_id": "lemma:ec25216c054b54f27b84",
+          "word": "verschlussakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "verschluss",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:ec25216c054b54f27b84"
+          }
+        },
+        {
+          "lemma_id": "lemma:5159552c6a462b0aeaa6",
+          "word": "verschlussakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "surface:de:verschlussakte",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "verschluss",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:5159552c6a462b0aeaa6"
+          }
+        },
+        {
+          "lemma_id": "lemma:c56b74df59bff112e257",
+          "word": "versicherungsakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "versicherungs",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:c56b74df59bff112e257"
+          }
+        },
+        {
+          "lemma_id": "lemma:46a0ec9254052e943de2",
+          "word": "versicherungsakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "surface:de:versicherungsakte",
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "versicherungs",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:46a0ec9254052e943de2"
+          }
+        },
+        {
+          "lemma_id": "lemma:90fcd703d4f844a56d4b",
+          "word": "vertragsakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "surface:de:vertragsakte",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "vertrags",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:90fcd703d4f844a56d4b"
+          }
+        },
+        {
+          "lemma_id": "lemma:8d20de3c7952559ffc47",
+          "word": "verurteilungsakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:sakte",
+            "surface:de:verurteilungsakt"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "verurteilungs",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:8d20de3c7952559ffc47"
+          }
+        },
+        {
+          "lemma_id": "lemma:38e05da5342f87d8020b",
+          "word": "verwaltungsakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "surface:de:verwaltungsakte",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "verwaltungs",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:38e05da5342f87d8020b"
+          }
+        },
+        {
+          "lemma_id": "lemma:fe03c9a41da0243d90ee",
+          "word": "veterinärakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:veterinarakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "veterinär",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:fe03c9a41da0243d90ee"
+          }
+        },
+        {
+          "lemma_id": "lemma:78c85086c1fc7b77222e",
+          "word": "vorermittlungsakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "surface:de:vorermittlungsakt",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:ermittlungsakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "vorermittlungs",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:78c85086c1fc7b77222e"
+          }
+        },
+        {
+          "lemma_id": "lemma:d3b4fa03f7fd2cde6ddd",
+          "word": "vorstrafenakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:vorstrafenakt",
+            "surface:de:nakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "vorstrafen",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:d3b4fa03f7fd2cde6ddd"
+          }
+        },
+        {
+          "lemma_id": "lemma:a0e0b010d484e05b2cbf",
+          "word": "waisenhausakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "waisenhaus",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:a0e0b010d484e05b2cbf"
+          }
+        },
+        {
+          "lemma_id": "lemma:40a6f3276fae7ec365ac",
+          "word": "waisenhausakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:waisenhausakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "waisenhaus",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:40a6f3276fae7ec365ac"
+          }
+        },
+        {
+          "lemma_id": "lemma:5a7e1df9616a29eb9ec0",
+          "word": "zahnakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "surface:de:zahnakte",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "zahn",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:5a7e1df9616a29eb9ec0"
+          }
+        },
+        {
+          "lemma_id": "lemma:c8b516c2fc5eddbf032a",
+          "word": "zulassungsakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:zulassungsakte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "zulassungs",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:c8b516c2fc5eddbf032a"
+          }
+        },
+        {
+          "lemma_id": "lemma:35d7730c4056970e3eef",
+          "word": "zusatzakte",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:zusatzakt",
+            "surface:de:akte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "zusatz",
+            "component": "akte",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:35d7730c4056970e3eef"
+          }
+        },
+        {
+          "lemma_id": "lemma:c76175b9a913b24a252c",
+          "word": "überwachungsakten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "surface:de:uberwachungsakte",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "component_segmentation": {
+            "before": "überwachungs",
+            "component": "akten",
+            "after": "",
+            "head": "akte",
+            "boundary_proof": "audit/associative-family-v6/akte-document-head-evidence-20261003.json#lemma:c76175b9a913b24a252c"
+          }
+        }
+      ],
+      "reason": "Duden derives documentary Akte from plural Akten and Latin acta; Personalakte and Krankenakte independently establish the documentary compound sense. Each frozen existing source record denotes a case, personnel, medical, judicial, security or archival file, not a performed act or a substring match. Accept exactly these documentary Akte/Akten components; preserve the rest of each compound and grant no general akt/akte suffix rule. Ambiguous legal acts, artistic acts, malformed tokens, redakteur and akteur remain outside this decision.",
+      "sources": [
+        "https://www.duden.de/rechtschreibung/Akte",
+        "https://www.duden.de/rechtschreibung/Personalakte",
+        "https://www.duden.de/rechtschreibung/Krankenakte",
+        "https://www.duden.de/rechtschreibung/Akt_Handlung"
+      ]
+    }
+  ],
+  "records_resolved": 165,
+  "expensive_head_decisions": 1,
+  "status_counts": {
+    "pending_review": 165
+  },
+  "limitations": [
+    "Finite manually inspected lexical identities only; other suffix-like candidates remain unreviewed.",
+    "Does not promote a new family, canonical realization or whole-compound identity.",
+    "Legal acts, nude-art Akt, theatrical acts, geographic names and OCR damage require separate sense review."
+  ],
+  "binding_authorized": true
+}
