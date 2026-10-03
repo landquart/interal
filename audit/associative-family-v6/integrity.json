@@ -2,7 +2,7 @@
   "schema_version": 6,
   "verdict": "pass",
   "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6",
-  "locked_source_files": 2460,
+  "locked_source_files": 2461,
   "classified_objects": 2456540,
   "classification_counts": {
     "etymological_evidence_cluster": 20755,
@@ -11,20 +11,20 @@
     "promoted_manual_associative_family": 10
   },
   "preserved_manual_memberships": 19967,
-  "reviewed_membership_additions": 11,
-  "generated_memberships": 19978,
+  "reviewed_membership_additions": 351,
+  "generated_memberships": 20318,
   "lexical_head_review_metrics": {
     "source_active_records": 25202,
-    "current_active_records": 25068,
-    "new_head_decisions": 18,
-    "new_records_resolved": 134,
-    "new_review_reduction_factor": 7.444444444444445,
-    "newly_pending_records_resolved": 119,
+    "current_active_records": 24728,
+    "new_head_decisions": 19,
+    "new_records_resolved": 474,
+    "new_review_reduction_factor": 24.94736842105263,
+    "newly_pending_records_resolved": 459,
     "investigated_uncertainties_resolved": 15,
-    "pending_head_decisions": 12,
-    "pending_review_reduction_factor": 9.916666666666666,
+    "pending_head_decisions": 13,
+    "pending_review_reduction_factor": 35.30769230769231,
     "current_status_counts": {
-      "pending": 24098,
+      "pending": 23758,
       "uncertain": 970
     },
     "stages": [
@@ -77,6 +77,16 @@
         "accepted": 0,
         "excluded": 5,
         "new_review_reduction_factor": 5
+      },
+      {
+        "stage": "act-financial-aktie-finite-component-20261003",
+        "head_decisions": 1,
+        "records_resolved": 340,
+        "previously_pending": 340,
+        "previously_uncertain": 0,
+        "accepted": 340,
+        "excluded": 0,
+        "new_review_reduction_factor": 340
       }
     ],
     "strict_remaining_frame_reduction": 1,
