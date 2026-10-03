@@ -2,7 +2,7 @@
   "schema_version": 6,
   "verdict": "pass",
   "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6",
-  "locked_source_files": 2468,
+  "locked_source_files": 2470,
   "classified_objects": 2456540,
   "classification_counts": {
     "etymological_evidence_cluster": 20755,
@@ -22,20 +22,20 @@
   "generated_memberships": 21021,
   "lexical_head_review_metrics": {
     "source_active_records": 25202,
-    "current_active_records": 24037,
-    "new_head_decisions": 22,
-    "records_reviewed": 1168,
-    "new_records_resolved": 1165,
+    "current_active_records": 23824,
+    "new_head_decisions": 23,
+    "records_reviewed": 1381,
+    "new_records_resolved": 1378,
     "unresolved_reviewed_records": 3,
-    "new_review_reduction_factor": 52.95454545454545,
-    "newly_pending_records_resolved": 1150,
+    "new_review_reduction_factor": 59.91304347826087,
+    "newly_pending_records_resolved": 1363,
     "investigated_uncertainties_resolved": 15,
     "investigated_uncertainties_retained": 3,
     "newly_pending_records_investigated_without_resolution": 0,
-    "pending_head_decisions": 15,
-    "pending_review_reduction_factor": 76.66666666666667,
+    "pending_head_decisions": 16,
+    "pending_review_reduction_factor": 85.1875,
     "current_status_counts": {
-      "pending": 23067,
+      "pending": 22854,
       "uncertain": 970
     },
     "stages": [
@@ -146,9 +146,21 @@
         "excluded": 0,
         "reviewed_records_retained_uncertain": 0,
         "new_review_reduction_factor": 526
+      },
+      {
+        "stage": "act-fraktion-parliamentary-component-20261003",
+        "head_decisions": 1,
+        "records_reviewed": 213,
+        "records_resolved": 213,
+        "previously_pending": 213,
+        "previously_uncertain": 0,
+        "accepted": 0,
+        "excluded": 213,
+        "reviewed_records_retained_uncertain": 0,
+        "new_review_reduction_factor": 213
       }
     ],
-    "strict_remaining_frame_reduction": 1.0000832119825256,
+    "strict_remaining_frame_reduction": 1.0000839560070522,
     "historical_component_bindings_represented": 872,
     "historical_component_head_edges": 6,
     "historical_representation_reuse_factor": 145.33333333333334,

@@ -1,3 +1,32 @@
+## Fraktion applied and anis research saved, 2026-10-03 continuation
+
+Fraktion research was saved first at `48fb46140b65816f2d82dd8dfc3fcb280f49777f`; exact application is `1ffdf2bec09ec67bdb64762503853db3d162604e`. One evidenced parliamentary/group component head excludes 213 existing pending act records. The frozen source frame contains 277 candidates; 64 chemical, derivational, refraktion/diffraktion/infraktion, malformed or otherwise unproved records remain pending. Component boundaries and nominal linking -s are explicit; organizer labels remain opaque. No whole-compound identity, wildcard family propagation or corpus deletion.
+
+| Measure | Before this stage | Current validated v6 |
+|---|---:|---:|
+| Catalog families | 17 | 17 |
+| Accepted memberships | 21,021 | 21,021 |
+| Lexical heads | 196 | 197 |
+| Legacy exact units | 18,857 | 18,857 |
+| Active known-queue records | 24,037 | 23,824 |
+| Pending records | 23,067 | 22,854 |
+| Investigated uncertain records | 970 | 970 |
+| Cumulative reviewed records | 1,168 | 1,381 |
+| Cumulative newly resolved records | 1,165 | 1,378 |
+| New-resolution head decisions | 22 | 23 |
+| Resolved / decisions | 52.95 | 59.91 |
+| Pending resolved / pending decisions | 1,150 / 15 = 76.67 | 1,363 / 16 = 85.19 |
+
+Current active queues: observ/inform 198; relat 317; creat/mut 4,864; oper 2,077; act 15,541; loc 827. Historical representation reuse stays separate at 872/6 = 145.33. Known active, historical unadjudicated 46,390 and candidate packets 16,055 are distinct review universes. The remaining-frame factor is only 1.000083956, so the finite stage factors are not an index-wide acceleration claim. All 19,967 baseline memberships, 1,042 prior reviewed additions and twelve system promotion additions survive; unexpected differential zero. System stays the sole non-seed promotion (seven head decisions, twelve finite memberships), separate from known queue resolutions. Three actin records retain reviewed uncertainty.
+
+Promotion guards now require actual immutable v5 member-shard paths and a concrete source-family locator in addition to matching input and record hashes. Fabricated external corpus snapshots are rejected. This strengthens provenance without changing system memberships.
+
+Anis research is separately saved at `756b6a7cf26c39a3a7231b3a900d173e92e37e4a`: six independently supported national dictionary heads and six existing source IDs, ten exact negative controls, fourteen input hashes and sixteen source snapshots verified. Two source clusters repeat the same 801 identities; 1,602 is route incidence, not unique membership. Canonical anis is a recommendation requiring approval; ani overstrips, anic is an Italian stem candidate and anise an English lexical form. The scientific anis-/aniso- from Greek anisos (unequal) is a different history from the botanical noun. Aggregate senses/proper names and typed Italian realization remain explicit review work. Binding and membership authorization are false; no new family, no candidate pool imported. The other 795 pool identities have not received a blanket verdict.
+
+Validation: 27 targeted tests and all 127 test files passed; independent v6 audit passed; all 273 regenerated artifacts replay byte-identically; v5 members, frequency files and historical audit trees equal the source commit exactly. Proof logs and source/code hashes are saved in `fraktion-validation-20261003/validation.json`. Research-only anis is rejected by the promotion engine. Fresh remote workflows are checked separately; local success does not stand in for CI.
+
+Next: adjudicate anis aggregate corpus senses and approve finite canonical/national realizations only where proved; separately partition the remaining Fraktion branches and continue the larger known-head queues. PR #652 stays draft in main → #650 → #651 → #652; no merge; production remains v5. The linguistic work is unfinished.
+
 ## First finite system promotion validated, 2026-10-03 continuation
 
 Research/approved dossier: fc117623a4dd97b27ffcca6f2aa9f0bf83efa328. Application: 6a53dd6e0cbf7260ce739c526c283f64f32e9077. Catalog 16 → 17; accepted memberships 21,009 → 21,021; lexical heads 189 → 196; legacy exact units unchanged at 18,857. Seven accepted head decisions bind twelve real existing corpus IDs across six languages. Italian sistema retains noun/verb aggregate ambiguity through a proved common noun-derived lexical-base component; no whole-noun POS claim. Spanish sistematizar has an explicit finite sistemat- derivational stem. Canonical system is accepted; systema and syst/sys are rejected boundary alternatives. No general national reflex or whole source-container import. All 24 Russian composition/gloss records, including состав, remain outside the family.
