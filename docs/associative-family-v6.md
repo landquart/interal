@@ -29,3 +29,9 @@ Golden controls cover ped/creat boundaries, observ/osserv, loc/lok/лок, nat/n
 ## Typed realization review
 
 A realization has one explicit type: canonical_reflex, lexical_branch_realization, derivational_stem, inflectional_form, query_alias or historical_evidence_form. Only an accepted canonical_reflex with evidenced, language-bound supporting heads is a general realization. Branch stems and inflected forms have finite head scope; aliases and historical forms confer no membership. Head identity, family edge, realization and canonical decisions remain independent. Existing untyped entries are historical migration inputs until realization_schema_version is 1. No type or realization admits strings or modifies accepted membership.
+
+## Finite lexical recognition and link roles
+
+The recognition module keeps morphology proposals separate from approved finite lexical bindings. A global fact identifies language, lexical spelling and etymological/sense discriminator; evidence is addressable independently of the family queue. Duplicate bindings and incompatible senses are refused. Whole-lexeme/inflection links require an enumerated form. Reviewed lexical-base-component links also require an exact saved segmentation and prior boundary evidence. A component head inside a compound does not assert that the entire compound is the same lexeme. A common head–family edge may reuse these previously reviewed component links; the cost of their earlier boundary reviews is not counted as newly saved linguistic work.
+
+Benchmarks separately report new current-queue records resolved per new expensive head decision, historical representation reuse, remaining exact records and the strict active-frame unit ratio. No morphology proposal or general string rule grants acceptance.
