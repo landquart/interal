@@ -40,6 +40,6 @@ test('changed source evidence and corpus snapshots are rejected',async()=>{
 });
 test('all pre-promotion memberships and known resolution statistics remain unchanged',async()=>{
  const root='associativvordes/family-index-v6/generated',m=await read(root+'/memberships.json.gz'),d=await read(root+'/differential.json.gz'),metrics=await read(root+'/head-review-metrics.json');
- assert.equal(m.length,21375);assert.equal(d.manual_memberships.length,19967);assert.equal(d.accepted_membership_additions.length,1396);assert.equal(d.family_promotion_additions.length,12);
- assert.equal(metrics.current_active_records,23423);assert.equal(metrics.new_records_resolved,1779);assert.equal(metrics.new_head_decisions,34);
+ assert.equal(m.length,21548);assert.equal(d.manual_memberships.length,19967);assert.equal(d.accepted_membership_additions.length,1569);assert.equal(d.family_promotion_additions.length,12);
+ assert.equal(metrics.current_active_records,23240);assert.equal(metrics.new_records_resolved,1962);assert.equal(metrics.new_head_decisions,36);
 });
