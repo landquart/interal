@@ -1,0 +1,59 @@
+{
+  "schema_version": 6,
+  "production_enabled": false,
+  "binding_authorized": true,
+  "accepted_membership_authorized": true,
+  "stage": "osservator-prompt05-recovery-20261004",
+  "source_head": "26ed0861fad8768f70ed2a1831e4bc8e52dc0c78",
+  "source_backlog_sha256": "725881bcd9d1c4e1370021a67f9bcd4f6c86e1ac910008edeab9dd2034054013",
+  "groups": [
+    {
+      "language": "it",
+      "root": "observ",
+      "normalized_head": "osservator",
+      "sense": "historical_apocopated_observer_and_observant_agent",
+      "status": "accepted",
+      "forms": [
+        "osservator"
+      ],
+      "component_stems": [],
+      "sources": [
+        "https://new.lessicografia.it/Controller/?EdCrusca5=1&edizione=5&page=19&ricerca=lettura_voci&sezione=Dizionario&vol=11",
+        "https://www.treccani.it/vocabolario/osservatore/"
+      ],
+      "reason": "Exact historical Italian apocope of osservatore, supported by Crusca attestation and Treccani observator lineage. This real lexical row preserves observ/osserv continuity. Other spelling/fragments remain withheld; historical or regional usage is not rejected for absence from a contemporary headword list.",
+      "records": [
+        {
+          "lemma_id": "lemma:295666d43296930cc432",
+          "word": "osservator",
+          "status": "pending_review",
+          "reason": "Not adjudicated in this continuation; prior decision remains immutable.",
+          "source_family_ids": [
+            "surface:it:osservator"
+          ],
+          "language": "it",
+          "canonical_root": "observ",
+          "previous_status": "uncertain",
+          "queue": "observ_inform",
+          "source": "audit/associative-family-v5/reflex-productive-variants-review-20261002/pending-review.json",
+          "review_unit": "unresolved:it:lemma:295666d43296930cc432:observ",
+          "head_recognition": "requires_lexical_head_recognition"
+        }
+      ]
+    }
+  ],
+  "source_queue": "audit/associative-family-v6/prompt05-recovery-20261004/osservator-research.json.gz",
+  "source_queue_sha256": "2a934624f280095861b8a1b6d48c8690a463ec0a1dc1018b3dc7a088bde9bc3f",
+  "predecessor_review_version": 19,
+  "withheld_lemma_ids": [
+    "lemma:2dcc5d6e391ba0d1b1f4",
+    "lemma:588d0d34e3347614c6a4",
+    "lemma:633cdd786127a19f2cd6",
+    "lemma:69a29958f60e11a60b0e",
+    "lemma:73b59e12cd4551b904fd",
+    "lemma:a03e6264f0fe39b9ecb4",
+    "lemma:b35dd107dbd96caf0cd7",
+    "lemma:b7560a917fbdd3190b66",
+    "lemma:d8258aaa7104468253df"
+  ]
+}
