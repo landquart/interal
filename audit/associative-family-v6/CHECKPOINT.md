@@ -1,3 +1,11 @@
+## Промпт 04: организация очередей и shared cache — 2026-10-04
+
+Research **92281be5**, решение **21d31039**, application **317abb0d524d7cab4dd410422e72907dc795ac91** опубликованы отдельно поверх Prompt 03 final 63b8f445. Nonmutating cross-frame index сохраняет **100 670 corpus IDs, 102 314 membership questions, 133 054 occurrences** и **181 136 packet-route references**; cache содержит 216 существующих heads со scope, sources, independent edges и versions. 16 055 packets сохранены без reclustering. Exact bounded packet lookup для indexed IDs выполнен один раз и hash-locked; глобальное число packet-only corpus IDs не объявлено измеренным.
+
+**+0/−0 memberships; все 274 прежних v6 artifacts и protected v5/frequency/historical trees байт-в-байт сохранены.** Current 23 240 candidates / 23 223 corpus IDs / 23 238 units неизменны; новое доказанное сокращение **0**. Current ∩ historical unresolved = 544 IDs; current ∩ packets = 11 698; historical unresolved ∩ packets = 11 678. Exact sets и остальные overlaps адресуемы. Proposals не дают identity/membership или claimed reduction; несколько components и family questions одного ID сохраняются.
+
+**51 targeted tests, full npm test 130 files, independent v6 + planning audit, replay 274 migration + 16 planning artifacts pass.** Synthetic correction/independent-edge/promotion conservation fixtures отделены от real branches. Validation сохранена отдельно; CI точного final SHA проверяется в PR #652. См. WORK-REPORT-PROMPT04-20261004.md и queue-organization-20261004/validation/. No merge; production v5; main → #650 → #651 → #652. Следующий этап: independently proved finite oper/relat/act extensions через существующий lifecycle. Весь словарь не завершён.
+
 ## Промпт 03: финальное cross-block уточнение проверено — 2026-10-04
 
 Engine refinement опубликован **18604687cee72764a6301deedeccecf590ab64c1** (локальное идентичное дерево 1f05d6e). Reused uncertain head сохраняется в другой queue; initial fact и lifecycle extension остаются одним benchmark head. `extend_links` component fixture и запрещённые typed translation/remote-ancestor relations проверены отдельно. Новых memberships сверх +1 Systeme нет; generated membership bytes идентичны application ed71acc2.
