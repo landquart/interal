@@ -49,6 +49,7 @@ export function replayHeadLifecycle({index,docs,initialLedger=[]}){
   if(!Array.isArray(doc.evidence)||!doc.evidence.length||!doc.reason)fail('Missing lifecycle evidence');
   const decision=doc.decision;
   if(!decision||!['accepted','excluded','uncertain'].includes(decision.status)||!decision.reason||!decision.evidence?.length||decision.expected_version!==p.edge_version)fail('Missing independent edge decision');
+  if(decision.status==='accepted'&&decision.relation_kind&&decision.relation_kind!=='lexical_continuity')fail('Non-lexical relation cannot authorize lifecycle membership');
   if(decision.status==='accepted'&&doc.accepted_membership_authorized!==true)fail('Unauthorized accepted lifecycle scope');
   if(doc.operation==='new_family_edge'&&p.edge||doc.operation!=='new_family_edge'&&!p.edge)fail('Wrong lifecycle operation for existing edge');
   if(doc.operation==='revise_verdict'&&decision.status===p.edge.status)fail('Verdict revision must change verdict');
@@ -59,6 +60,7 @@ export function replayHeadLifecycle({index,docs,initialLedger=[]}){
   let appended=0;
   for(const r of records){
    if(r.language!==h.language||!r.lemma_id||keys.has(r.lemma_id)||r.source_record?.lemma_id!==r.lemma_id||r.source_record.word!==r.word||stateHash(r.source_record)!==r.source_locator?.record_sha256)fail('Invalid lifecycle real identity');keys.add(r.lemma_id);
+   if((r.relation_kind&&r.relation_kind!=='lexical_continuity')||(r.formal_continuity_status&&r.formal_continuity_status!=='accepted'))fail('Non-lexical or unproved formal lifecycle continuity');
    if(r.identity_decision?.status!=='accepted'||!r.identity_decision.reason||!r.identity_decision.evidence?.length||r.boundary_proof?.status!=='accepted'||!r.boundary_proof.reason||!r.boundary_proof.evidence?.length)fail('Unproved new link identity or boundary');
    const existing=old.find(l=>l.lemma_id===r.lemma_id);
    if(existing){if(existing.word!==r.word||!same(existing.evidence[0].source,r.source_locator))fail('Changed old source proof');continue;}

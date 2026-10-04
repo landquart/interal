@@ -3,7 +3,7 @@
 import json,gzip,hashlib,subprocess,sys
 from pathlib import Path
 baseline='6330df5c8d182f5418c18d5f87b454d4d36c3cfb' # published tree identical to local a1604e3
-base=Path('associativvordes/family-index-v6/generated');out=Path('audit/associative-family-v6/prompt03-validation-20261004');out.mkdir(exist_ok=True)
+base=Path('associativvordes/family-index-v6/generated');out=Path('audit/associative-family-v6/prompt03-final-validation-20261004');out.mkdir(exist_ok=True)
 def load(name,old=False):
  b=subprocess.check_output(['git','show',f'{baseline}:{base}/{name}']) if old else (base/name).read_bytes()
  return json.loads(gzip.decompress(b) if name.endswith('.gz') else b)

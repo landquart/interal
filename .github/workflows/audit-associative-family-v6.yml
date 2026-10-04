@@ -37,5 +37,7 @@ jobs:
           for p in source.rglob('*'):
               if p.is_file(): assert p.read_bytes() == (replay/p.relative_to(source)).read_bytes(), str(p)
           PY
+      - name: Verify exact Prompt 03 differential against published baseline
+        run: python scripts/validate-associative-v6-prompt03.py /tmp/v6-replay
       - run: node --max-old-space-size=4096 scripts/enumerate-associative-v6-source-corpus.mjs /tmp/v6-corpus.json
       - run: cmp /tmp/v6-corpus.json audit/associative-family-v6/corpus-enumeration.json

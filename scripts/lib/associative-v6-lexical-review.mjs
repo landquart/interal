@@ -59,11 +59,16 @@ export function reviewBenchmarks({backlog,frames,review,ledger,headId}) {
   }
  }
  const identity=new Map(review.doc.finite_bindings.map(b=>[b.language+'\0'+b.family_id+'\0'+b.lemma_id,b]));
+ // Lifecycle dossiers prove reused identities independently of the initial fact registry.
+ for(const d of ledger.filter(d=>d.lifecycle_id)){
+  const h=d.predecessor.head,f=[...review.facts.values()].find(f=>f.language===h.language&&f.normalized_head===h.normalized_head&&f.sense===h.sense);
+  for(const id of d.affected_lemma_ids){const k=decisionKey(d,id);if(!identity.has(k))identity.set(k,f?{fact_id:f.id}:{reviewed_head_id:d.head_id});}
+ }
  const active=[];
  for(const r of backlog){
   const k=key(r);if(resolved.has(k))continue;
   const binding=identity.get(k),f=binding&&review.facts.get(binding.fact_id),d=reviewed.get(k);
-  active.push({...r,...(f?{review_unit:headId(f.language,f.normalized_head,f.sense),head_recognition:'evidenced_finite_lexical_identity'}:{}),...(d?{source_membership_status:r.status,status:d.status,reason:d.reason||r.reason,source_reason:r.reason,head_family_relation_status:d.status}: {})});
+  active.push({...r,...(f?{review_unit:headId(f.language,f.normalized_head,f.sense),head_recognition:'evidenced_finite_lexical_identity'}:{}),...(binding?.reviewed_head_id?{review_unit:binding.reviewed_head_id,head_recognition:'evidenced_finite_lexical_identity'}:{}),...(d?{source_membership_status:r.status,status:d.status,reason:d.reason||r.reason,source_reason:r.reason,head_family_relation_status:d.status}: {})});
  }
  const benchmarks=[];
  for(const frame of frames){
@@ -72,7 +77,7 @@ export function reviewBenchmarks({backlog,frames,review,ledger,headId}) {
   const done=records.filter(r=>resolved.has(key(r))),touched=records.filter(r=>reviewed.has(key(r))),recognized=records.filter(r=>identity.has(key(r)));
   const remaining=active.filter(r=>r.queue===frame.name);
   const proposals=proposeMorphologicalHeads(records.map(r=>({...r,family_id:'family:'+r.canonical_root})),review.doc.lexical_facts);
-  benchmarks.push({frame:frame.name,source:frame.path,records_before:records.length,records_after:remaining.length,proposed_heads:[...new Set(proposals.map(p=>p.fact_id))].length,evidenced_heads:[...new Set(recognized.map(r=>identity.get(key(r)).fact_id))].length,expensive_head_decisions:ds.length,records_reviewed:touched.length,records_resolved:done.length,reviewed_records_retained_uncertain:touched.filter(r=>reviewed.get(key(r)).status==='uncertain').length,new_review_reduction_factor:ds.length?done.length/ds.length:null,unresolved_exact_records:records.filter(r=>!identity.has(key(r))).length,decisions:ds,proposals,rejected_proposals:proposals.filter(p=>!identity.has(p.language+'\0'+p.family_id+'\0'+p.lemma_id)),pending:remaining,false_grouping_quality_certified:false});
+  benchmarks.push({frame:frame.name,source:frame.path,records_before:records.length,records_after:remaining.length,proposed_heads:[...new Set(proposals.map(p=>p.fact_id))].length,evidenced_heads:[...new Set(recognized.map(r=>identity.get(key(r)).fact_id||identity.get(key(r)).reviewed_head_id))].length,expensive_head_decisions:ds.length,records_reviewed:touched.length,records_resolved:done.length,reviewed_records_retained_uncertain:touched.filter(r=>reviewed.get(key(r)).status==='uncertain').length,new_review_reduction_factor:ds.length?done.length/ds.length:null,unresolved_exact_records:records.filter(r=>!identity.has(key(r))).length,decisions:ds,proposals,rejected_proposals:proposals.filter(p=>!identity.has(p.language+'\0'+p.family_id+'\0'+p.lemma_id)),pending:remaining,false_grouping_quality_certified:false});
  }
  const newlyPending=backlog.filter(r=>r.status!=='uncertain'&&resolved.has(key(r)));
  const newlyUncertain=backlog.filter(r=>r.status==='uncertain'&&resolved.has(key(r)));
