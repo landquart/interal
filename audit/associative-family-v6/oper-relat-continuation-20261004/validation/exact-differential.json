@@ -1,0 +1,442 @@
+{
+  "schema_version": 6,
+  "verdict": "pass",
+  "baseline_sha": "2351a07722d88faa82dc05049144c567d43923c8",
+  "exact_differential": {
+    "additions": [
+      {
+        "language": "de",
+        "family_id": "family:oper",
+        "lemma_id": "lemma:29aa53e73d1ed76350cc",
+        "word": "kammeroper",
+        "head_id": "head:de:05a3d386f583b0c178afa198",
+        "edge_version": 1,
+        "source_proof": [
+          {
+            "source": {
+              "path": "associativvordes/family-index-v5/members/de/c7.json.gz",
+              "family_id": "surface:de:kammerop",
+              "record_sha256": "17d851419987a4bbd9364ad1e299cda16f6e2c6f88187f4adde81b9e9579a252"
+            },
+            "lemma_id": "lemma:29aa53e73d1ed76350cc"
+          }
+        ]
+      },
+      {
+        "language": "de",
+        "family_id": "family:oper",
+        "lemma_id": "lemma:439d55012f1ad7630192",
+        "word": "rockoper",
+        "head_id": "head:de:05a3d386f583b0c178afa198",
+        "edge_version": 1,
+        "source_proof": [
+          {
+            "source": {
+              "path": "associativvordes/family-index-v5/members/de/26.json.gz",
+              "family_id": "surface:de:koper",
+              "record_sha256": "304217833e3a15ec0b0c2a14c11828f47b882a85e7afba34b3f1b3d00af4eac4"
+            },
+            "lemma_id": "lemma:439d55012f1ad7630192"
+          }
+        ]
+      },
+      {
+        "language": "de",
+        "family_id": "family:oper",
+        "lemma_id": "lemma:6fb26f28a902715a27dd",
+        "word": "märchenoper",
+        "head_id": "head:de:05a3d386f583b0c178afa198",
+        "edge_version": 1,
+        "source_proof": [
+          {
+            "source": {
+              "path": "associativvordes/family-index-v5/members/de/84.json.gz",
+              "family_id": "surface:de:marchenop",
+              "record_sha256": "583c3528b5837eb6fdb14e45b9fa4dbfa72c700fa2ec55407ba7b448314adb26"
+            },
+            "lemma_id": "lemma:6fb26f28a902715a27dd"
+          }
+        ]
+      },
+      {
+        "language": "de",
+        "family_id": "family:oper",
+        "lemma_id": "lemma:71a591b91e247bfa6ef7",
+        "word": "kinderoper",
+        "head_id": "head:de:05a3d386f583b0c178afa198",
+        "edge_version": 1,
+        "source_proof": [
+          {
+            "source": {
+              "path": "associativvordes/family-index-v5/members/de/74.json.gz",
+              "family_id": "surface:de:kinderoper",
+              "record_sha256": "70699abffc53c36006c078a2f4b9a5ba321a9c93e603039d7c4998324a3b5ba3"
+            },
+            "lemma_id": "lemma:71a591b91e247bfa6ef7"
+          }
+        ]
+      },
+      {
+        "language": "de",
+        "family_id": "family:oper",
+        "lemma_id": "lemma:c1fbe90f618ede0faf30",
+        "word": "seifenoper",
+        "head_id": "head:de:4eb75ec628915d25a702371a",
+        "edge_version": 1,
+        "source_proof": [
+          {
+            "source": {
+              "path": "associativvordes/family-index-v5/members/de/e5.json.gz",
+              "family_id": "surface:de:seifenoper",
+              "record_sha256": "57ade8df926d2bcb0da3287762017956bfdc67e9e2915f1b324a03620eb4e450"
+            },
+            "lemma_id": "lemma:c1fbe90f618ede0faf30"
+          }
+        ]
+      },
+      {
+        "language": "de",
+        "family_id": "family:relat",
+        "lemma_id": "lemma:9548f77ea1cdb5786d98",
+        "word": "relativitätsjude",
+        "head_id": "head:de:fac406565bad6e37232207a6",
+        "edge_version": 1,
+        "source_proof": [
+          {
+            "source": {
+              "path": "associativvordes/family-index-v5/members/de/16.json.gz",
+              "family_id": "ety:0b0ceb1e556e",
+              "record_sha256": "76e1a7d38edb921483f3186951b8620f0427ccee94326869fe06d120a3cbbe68"
+            },
+            "lemma_id": "lemma:9548f77ea1cdb5786d98"
+          }
+        ]
+      }
+    ],
+    "removals": [],
+    "changed_memberships": []
+  },
+  "old_links_identical": 21951,
+  "old_heads_and_edges_identical": true,
+  "new_heads": 3,
+  "new_edges": 3,
+  "withheld_unchanged": 26,
+  "protected_trees": {
+    "associativvordes/family-index-v5": "b6f8ff3fb46388932217dbd98a2208239e01f70d",
+    "associativvordes/frequency lists": "b9c6725761ce1f8acdd21e0fdb216cf1fb5464c7",
+    "audit/associative-family-v5": "c1bc9ceab39d1e10fcc3b19bf3fc9ae56af2b82c",
+    "audit/associative-family-v6/queue-organization-20261004": "464a0f3d247830cac09b1cd9d0c5149962cf7faa"
+  },
+  "current_metrics": {
+    "source_active_records": 25202,
+    "current_active_records": 23234,
+    "new_head_decisions": 39,
+    "review_operations": 39,
+    "revisions": 0,
+    "unique_resolved_records": 1966,
+    "unique_corpus_records_reviewed": 1969,
+    "repeated_record_reviews": 0,
+    "records_reviewed": 1971,
+    "new_records_resolved": 1968,
+    "unresolved_reviewed_records": 3,
+    "new_review_reduction_factor": 50.46153846153846,
+    "newly_pending_records_resolved": 1953,
+    "investigated_uncertainties_resolved": 15,
+    "investigated_uncertainties_retained": 3,
+    "newly_pending_records_investigated_without_resolution": 0,
+    "pending_head_decisions": 32,
+    "pending_review_reduction_factor": 61.03125,
+    "current_status_counts": {
+      "pending": 22264,
+      "uncertain": 970
+    },
+    "stages": [
+      {
+        "stage": "prior_observ_inform",
+        "head_decisions": 3,
+        "records_reviewed": 3,
+        "records_resolved": 3,
+        "previously_pending": 3,
+        "previously_uncertain": 0,
+        "accepted": 3,
+        "excluded": 0,
+        "reviewed_records_retained_uncertain": 0,
+        "new_review_reduction_factor": 1
+      },
+      {
+        "stage": "relat-finite-lexical-evidence-20261003",
+        "head_decisions": 3,
+        "records_reviewed": 8,
+        "records_resolved": 8,
+        "previously_pending": 8,
+        "previously_uncertain": 0,
+        "accepted": 0,
+        "excluded": 8,
+        "reviewed_records_retained_uncertain": 0,
+        "new_review_reduction_factor": 2.6666666666666665
+      },
+      {
+        "stage": "loc-finite-lexical-evidence-20261003",
+        "head_decisions": 6,
+        "records_reviewed": 15,
+        "records_resolved": 15,
+        "previously_pending": 0,
+        "previously_uncertain": 15,
+        "accepted": 8,
+        "excluded": 7,
+        "reviewed_records_retained_uncertain": 0,
+        "new_review_reduction_factor": 2.5
+      },
+      {
+        "stage": "creat-mut-finite-head-benchmark-20261003",
+        "head_decisions": 5,
+        "records_reviewed": 103,
+        "records_resolved": 103,
+        "previously_pending": 103,
+        "previously_uncertain": 0,
+        "accepted": 0,
+        "excluded": 103,
+        "reviewed_records_retained_uncertain": 0,
+        "new_review_reduction_factor": 20.6
+      },
+      {
+        "stage": "oper-finite-military-head-20261003",
+        "head_decisions": 1,
+        "records_reviewed": 5,
+        "records_resolved": 5,
+        "previously_pending": 5,
+        "previously_uncertain": 0,
+        "accepted": 0,
+        "excluded": 5,
+        "reviewed_records_retained_uncertain": 0,
+        "new_review_reduction_factor": 5
+      },
+      {
+        "stage": "act-financial-aktie-finite-component-20261003",
+        "head_decisions": 1,
+        "records_reviewed": 340,
+        "records_resolved": 340,
+        "previously_pending": 340,
+        "previously_uncertain": 0,
+        "accepted": 340,
+        "excluded": 0,
+        "reviewed_records_retained_uncertain": 0,
+        "new_review_reduction_factor": 340
+      },
+      {
+        "stage": "actin-identity-proven-family-edge-uncertain-20261003",
+        "head_decisions": 1,
+        "records_reviewed": 3,
+        "records_resolved": 0,
+        "previously_pending": 0,
+        "previously_uncertain": 0,
+        "accepted": 0,
+        "excluded": 0,
+        "reviewed_records_retained_uncertain": 3,
+        "new_review_reduction_factor": 0
+      },
+      {
+        "stage": "act-documentary-akte-finite-component-20261003",
+        "head_decisions": 1,
+        "records_reviewed": 165,
+        "records_resolved": 165,
+        "previously_pending": 165,
+        "previously_uncertain": 0,
+        "accepted": 165,
+        "excluded": 0,
+        "reviewed_records_retained_uncertain": 0,
+        "new_review_reduction_factor": 165
+      },
+      {
+        "stage": "act-deliberate-aktion-finite-component-20261003",
+        "head_decisions": 1,
+        "records_reviewed": 526,
+        "records_resolved": 526,
+        "previously_pending": 526,
+        "previously_uncertain": 0,
+        "accepted": 526,
+        "excluded": 0,
+        "reviewed_records_retained_uncertain": 0,
+        "new_review_reduction_factor": 526
+      },
+      {
+        "stage": "act-fraktion-parliamentary-component-20261003",
+        "head_decisions": 1,
+        "records_reviewed": 213,
+        "records_resolved": 213,
+        "previously_pending": 213,
+        "previously_uncertain": 0,
+        "accepted": 0,
+        "excluded": 213,
+        "reviewed_records_retained_uncertain": 0,
+        "new_review_reduction_factor": 213
+      },
+      {
+        "stage": "act-fraktion-remaining-lexical-branches-20261003",
+        "head_decisions": 8,
+        "records_reviewed": 26,
+        "records_resolved": 26,
+        "previously_pending": 26,
+        "previously_uncertain": 0,
+        "accepted": 0,
+        "excluded": 26,
+        "reviewed_records_retained_uncertain": 0,
+        "new_review_reduction_factor": 3.25
+      },
+      {
+        "stage": "act-aktivitaet-finite-compound-head-20261003",
+        "head_decisions": 1,
+        "records_reviewed": 354,
+        "records_resolved": 354,
+        "previously_pending": 354,
+        "previously_uncertain": 0,
+        "accepted": 354,
+        "excluded": 0,
+        "reviewed_records_retained_uncertain": 0,
+        "new_review_reduction_factor": 354
+      },
+      {
+        "stage": "mut-muetze-finite-compound-head-20261003",
+        "head_decisions": 1,
+        "records_reviewed": 13,
+        "records_resolved": 13,
+        "previously_pending": 13,
+        "previously_uncertain": 0,
+        "accepted": 0,
+        "excluded": 13,
+        "reviewed_records_retained_uncertain": 0,
+        "new_review_reduction_factor": 13
+      },
+      {
+        "stage": "act-attraktivitaet-finite-negative-head-20261003",
+        "head_decisions": 1,
+        "records_reviewed": 8,
+        "records_resolved": 8,
+        "previously_pending": 8,
+        "previously_uncertain": 0,
+        "accepted": 0,
+        "excluded": 8,
+        "reviewed_records_retained_uncertain": 0,
+        "new_review_reduction_factor": 8
+      },
+      {
+        "stage": "act-redaktion-finite-editorial-head-20261003",
+        "head_decisions": 1,
+        "records_reviewed": 173,
+        "records_resolved": 173,
+        "previously_pending": 173,
+        "previously_uncertain": 0,
+        "accepted": 173,
+        "excluded": 0,
+        "reviewed_records_retained_uncertain": 0,
+        "new_review_reduction_factor": 173
+      },
+      {
+        "stage": "mut-courage-finite-compound-head-20261003",
+        "head_decisions": 1,
+        "records_reviewed": 10,
+        "records_resolved": 10,
+        "previously_pending": 10,
+        "previously_uncertain": 0,
+        "accepted": 0,
+        "excluded": 10,
+        "reviewed_records_retained_uncertain": 0,
+        "new_review_reduction_factor": 10
+      },
+      {
+        "stage": "oper-relat-independent-finite-continuation-20261004",
+        "head_decisions": 3,
+        "records_reviewed": 6,
+        "records_resolved": 6,
+        "previously_pending": 6,
+        "previously_uncertain": 0,
+        "accepted": 6,
+        "excluded": 0,
+        "reviewed_records_retained_uncertain": 0,
+        "new_review_reduction_factor": 2
+      }
+    ],
+    "strict_remaining_frame_reduction": 1.00008608815427,
+    "historical_component_bindings_represented": 872,
+    "historical_component_head_edges": 6,
+    "historical_representation_reuse_factor": 145.33333333333334,
+    "historical_boundary_reviews_are_not_newly_resolved_records": true
+  },
+  "production_enabled": false,
+  "full_dictionary_complete": false,
+  "migration_replay_artifacts": 274,
+  "planning": {
+    "corpus_ids_conserved": 100670,
+    "membership_questions_conserved": 102314,
+    "old_metrics": {
+      "corpus_ids": 100670,
+      "membership_candidates": 102314,
+      "route_incidences": 133054,
+      "packet_route_incidences": 181136,
+      "proven_groups": 92,
+      "disputed_groups": 124,
+      "proposal_groups": 98896,
+      "current_membership_candidates": 23240,
+      "current_proven_units": 23238,
+      "current_proven_reduction": 2,
+      "new_memberships": 0,
+      "new_verdicts": 0,
+      "packet_count": 16055,
+      "open_membership_questions": 78927
+    },
+    "new_metrics": {
+      "corpus_ids": 100670,
+      "membership_candidates": 102314,
+      "route_incidences": 133060,
+      "packet_route_incidences": 181136,
+      "proven_groups": 95,
+      "disputed_groups": 124,
+      "proposal_groups": 98890,
+      "current_membership_candidates": 23234,
+      "current_proven_units": 23232,
+      "current_proven_reduction": 2,
+      "new_memberships": 0,
+      "new_verdicts": 0,
+      "packet_count": 16055,
+      "open_membership_questions": 78921
+    },
+    "exact_current_question_removals": [
+      [
+        "de",
+        "family:oper",
+        "lemma:29aa53e73d1ed76350cc"
+      ],
+      [
+        "de",
+        "family:oper",
+        "lemma:439d55012f1ad7630192"
+      ],
+      [
+        "de",
+        "family:oper",
+        "lemma:6fb26f28a902715a27dd"
+      ],
+      [
+        "de",
+        "family:oper",
+        "lemma:71a591b91e247bfa6ef7"
+      ],
+      [
+        "de",
+        "family:oper",
+        "lemma:c1fbe90f618ede0faf30"
+      ],
+      [
+        "de",
+        "family:relat",
+        "lemma:9548f77ea1cdb5786d98"
+      ]
+    ],
+    "semantic_task_additions": 12,
+    "semantic_task_removals": 6,
+    "historical_outputs_unchanged": true,
+    "new_proven_grouping_reduction": 0,
+    "exact_occurrence_differential": "planning-occurrence-differential.json.gz",
+    "replay_artifacts": 16
+  }
+}
