@@ -10,9 +10,11 @@
 | Research | 41f5014396303708166f05fd100a5a0cc82dd794 | 8c86044 |
 | Решение | 30d137750ffc841f8bd13e3b5dce3904da9fdecc | b4b22f3 |
 | Применение | ed71acc2b5ce8e2f9aa41751339dfa43923aeb29 | e381cc8a20afa344de66a2b45795cd5e8b33a9f0 |
-| Validation | отдельный commit этого отчёта, validator и proof artifacts | см. git log |
+| Initial validation | 0bcd84da1ab5dd18ee55c79a00c2f4a18ef068b7 | 2ecc7ee |
+| Cross-block benchmark refinement | 18604687cee72764a6301deedeccecf590ab64c1 | 1f05d6e |
+| Final validation | отдельный commit актуального отчёта и final proof artifacts | см. git log |
 
-Shell push не имел credentials; публикация выполнена через подключённый GitHub API с fast-forward ref update. Для каждого опубликованного checkpoint SHA Git tree проверен на точное равенство локальному дереву; изменились commit metadata, не содержимое. Tests 37202185711 и v6 Audit 37202185705 исходного Prompt 02 завершились success. Research/decision workflows также success. CI применения и окончательного validation SHA проверяется отдельно; окончательная проверка точного опубликованного HEAD фиксируется в PR #652. Не использовать старые local SHA как отсутствующие remote commit URLs.
+Shell push не имел credentials; публикация выполнена через подключённый GitHub API с fast-forward ref update. Для каждого опубликованного checkpoint SHA Git tree проверен на точное равенство локальному дереву; изменились commit metadata, не содержимое. Tests 37202185711 и v6 Audit 37202185705 исходного Prompt 02 завершились success. Research/decision workflows также success. CI применения ed71acc2 и initial validation 0bcd84da завершился success (Tests 37203132945/37203410937; Audit 37203132946/37203410931). CI финального benchmark refinement и окончательного validation SHA проверяется отдельно; окончательная проверка точного опубликованного HEAD фиксируется в PR #652. Не использовать старые local SHA как отсутствующие remote commit URLs.
 
 ## Решения и реализация
 
@@ -47,9 +49,11 @@ Lifecycle stage: один extension/versioned review, new heads 0, new head–fa
 
 Known queues сохраняют прежние 1 965 reviewed relation records и 1 962 resolved relation records; после устранения смешения метрик явно показаны также **1 963 unique reviewed corpus IDs** и **1 960 unique resolved corpus IDs**. Это разные review universes, их нельзя складывать с corpus membership totals. Повторный review не увеличивает unique count; latest uncertain verdict вновь оставляет соответствующий queue record активным.
 
-Проверки: **41 targeted tests**, **129 файлов полного npm test**, independent v6 audit pass (**2 493 locked inputs, 2 456 540 classified objects**), byte-identical deterministic replay **274 artifacts**. Synthetic fixtures проверяют обе correction цели, stale/conflict/duplicate/unknown predecessor, недоказанные identity/boundary/scope, независимые edges, отсутствие автоматической propagation, sense clarification и latest-state benchmarks. Реальные locator/hash и synthetic registry rejection проверены отдельно. V5, frequency lists и historical v5 audit Git trees идентичны исходному снимку; общий production runtime не изменён.
+Проверки: **44 targeted tests**, **129 файлов полного npm test**, independent v6 audit pass (**2 493 locked inputs, 2 456 540 classified objects**), byte-identical deterministic replay **274 artifacts**. Synthetic fixtures проверяют обе correction цели, stale/conflict/duplicate/unknown predecessor, недоказанные identity/boundary/scope, независимые edges, отсутствие автоматической propagation, sense clarification и latest-state benchmarks. Реальные locator/hash и synthetic registry rejection проверены отдельно. V5, frequency lists и historical v5 audit Git trees идентичны исходному снимку; общий production runtime не изменён.
 
-Dry-run и разрешённое применение имеют идентичный exact differential. Их proofs повторно проверены final engine после уточнения metadata/unique metrics; registry scope сохранён. Logs, code/input SHA-256, integrity, exact differential и replay hashes сохранены в `prompt03-validation-20261004/validation.json` и соседних artifacts. Independent validator использует **опубликованный** baseline 6330df5c, поэтому воспроизводим после нового clone.
+Dry-run и разрешённое применение имеют идентичный exact differential. Их proofs повторно проверены final engine после уточнения metadata/unique metrics; registry scope сохранён. Logs, code/input SHA-256, integrity, exact differential и replay hashes сохранены в `prompt03-final-validation-20261004/validation.json` и соседних artifacts; initial validation сохранён отдельно в `prompt03-validation-20261004`. Final refinement сохраняет reused head как review unit и evidenced head при uncertain edge к другой queue; initial fact и lifecycle extension считаются одним benchmark head. Это отдельно доказано fixtures. `extend_links` с explicit component segmentation также проверен; whole-compound identity не утверждается. Typed semantic translation, remote ancestry и неподтверждённая formal continuity отвергаются. Exact differential дополнительно запускается в CI.
+
+Independent validator использует **опубликованный** baseline 6330df5c, поэтому воспроизводим после нового clone.
 
 ## Evidence blockers и следующий этап
 

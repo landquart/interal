@@ -1,3 +1,9 @@
+## Промпт 03: финальное cross-block уточнение проверено — 2026-10-04
+
+Engine refinement опубликован **18604687cee72764a6301deedeccecf590ab64c1** (локальное идентичное дерево 1f05d6e). Reused uncertain head сохраняется в другой queue; initial fact и lifecycle extension остаются одним benchmark head. `extend_links` component fixture и запрещённые typed translation/remote-ancestor relations проверены отдельно. Новых memberships сверх +1 Systeme нет; generated membership bytes идентичны application ed71acc2.
+
+**44 targeted tests, полный npm test 129 files, independent audit и byte replay 274 artifacts pass** на окончательном engine. Final proofs: prompt03-final-validation-20261004/validation.json. Initial proofs сохранены в прежнем отдельном каталоге и commits. Application ed71acc2 и initial validation 0bcd84da уже имеют success Tests/Audit. CI точного окончательного опубликованного HEAD проверяется отдельно и фиксируется в PR #652. No merge; production v5; main → #650 → #651 → #652 сохранена. Dictionary work остаётся unfinished.
+
 ## Промпт 03: reuse/extension/correction выполнен и локально полностью проверен — 2026-10-04
 
 Application опубликован: **ed71acc2b5ce8e2f9aa41751339dfa43923aeb29**, локальное идентичное дерево e381cc8. Research 41f50143, решение 30d13775; validation сохранён отдельным commit. Добавлен append-only lifecycle registry и atomic replay с полными predecessor hashes/versions, finite scope и fresh edge decisions. Initial guards сохранены; выдуманный новый sense отвергается.
