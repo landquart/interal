@@ -1,0 +1,1263 @@
+{
+  "schema_version": 6,
+  "stage": "anis-finite-lexical-row-promotion-20261004",
+  "source_head": "08a5ce1e6453c0d3a2ccad08b8dd5ee92b774c75",
+  "production_enabled": false,
+  "promotion_status": "accepted",
+  "binding_authorized": true,
+  "accepted_membership_authorized": true,
+  "decision_scope": "Only enumerated real immutable rows; lexical-row semantics, not token/sense frequencies.",
+  "senses_policy": "audit/associative-family-v6/SENSES-POLICY-20261004.md",
+  "candidate_packets": [
+    "candidate-root:13d983a02dd5164ee6e91ff5"
+  ],
+  "family": {
+    "id": "family:anis",
+    "canonical": "anis",
+    "legacy_ids": [],
+    "promotion_status": "accepted_finite_promotion",
+    "element_type": "root",
+    "aliases": [
+      "anis"
+    ],
+    "canonical_decision": {
+      "status": "accepted",
+      "reason": "Preserves the complete shared botanical nominal base; ani strips a lexical s, anic is an Italian stem and anise an English surface. No general substring or cross-language reflex is authorized.",
+      "evidence": [
+        "https://www.merriam-webster.com/dictionary/anise",
+        "https://www.duden.de/rechtschreibung/Anis",
+        "https://www.dictionnaire-academie.fr/article/A9A1808",
+        "https://dle.rae.es/an%C3%ADs",
+        "https://www.treccani.it/vocabolario/anice/",
+        "https://lexicography.online/etymology/vasmer/а/анис"
+      ]
+    },
+    "realizations": {},
+    "reflexes": [
+      {
+        "family_id": "family:anis",
+        "language": "en",
+        "realization": "anise",
+        "realization_type": "lexical_branch_realization",
+        "morphology_boundary": "Whole national form only; no productive stem, inflection or substitution rule granted.",
+        "supporting_heads": [
+          "anise"
+        ],
+        "positive_controls": [
+          "anise"
+        ],
+        "negative_controls": [
+          "americanise",
+          "balkanise",
+          "afghanis",
+          "afghanistan-abzug",
+          "anisotropy",
+          "mechanicsburg",
+          "americanis",
+          "anisotropy",
+          "humanic",
+          "mechanic"
+        ],
+        "status": "accepted",
+        "evidence": [
+          {
+            "source": "https://www.merriam-webster.com/dictionary/anise"
+          }
+        ],
+        "head_scope": [
+          {
+            "language": "en",
+            "normalized_head": "anise",
+            "sense": "botanical_aromatic_plant_and_lexical_metonymies",
+            "evidence": [
+              {
+                "source": "https://www.merriam-webster.com/dictionary/anise"
+              }
+            ]
+          }
+        ],
+        "general_family_realization": false,
+        "establishes_membership": false
+      },
+      {
+        "family_id": "family:anis",
+        "language": "de",
+        "realization": "anis",
+        "realization_type": "lexical_branch_realization",
+        "morphology_boundary": "Whole national form only; no productive stem, inflection or substitution rule granted.",
+        "supporting_heads": [
+          "anis"
+        ],
+        "positive_controls": [
+          "anis"
+        ],
+        "negative_controls": [
+          "americanise",
+          "balkanise",
+          "afghanis",
+          "afghanistan-abzug",
+          "anisotropy",
+          "mechanicsburg",
+          "americanis",
+          "anisotropy",
+          "humanic",
+          "mechanic"
+        ],
+        "status": "accepted",
+        "evidence": [
+          {
+            "source": "https://www.duden.de/rechtschreibung/Anis"
+          }
+        ],
+        "head_scope": [
+          {
+            "language": "de",
+            "normalized_head": "anis",
+            "sense": "botanical_aromatic_plant_and_lexical_metonymies",
+            "evidence": [
+              {
+                "source": "https://www.duden.de/rechtschreibung/Anis"
+              }
+            ]
+          }
+        ],
+        "general_family_realization": false,
+        "establishes_membership": false
+      },
+      {
+        "family_id": "family:anis",
+        "language": "fr",
+        "realization": "anis",
+        "realization_type": "lexical_branch_realization",
+        "morphology_boundary": "Whole national form only; no productive stem, inflection or substitution rule granted.",
+        "supporting_heads": [
+          "anis"
+        ],
+        "positive_controls": [
+          "anis"
+        ],
+        "negative_controls": [
+          "americanise",
+          "balkanise",
+          "afghanis",
+          "afghanistan-abzug",
+          "anisotropy",
+          "mechanicsburg",
+          "americanis",
+          "anisotropy",
+          "humanic",
+          "mechanic"
+        ],
+        "status": "accepted",
+        "evidence": [
+          {
+            "source": "https://www.dictionnaire-academie.fr/article/A9A1808"
+          }
+        ],
+        "head_scope": [
+          {
+            "language": "fr",
+            "normalized_head": "anis",
+            "sense": "botanical_aromatic_plant_and_lexical_metonymies",
+            "evidence": [
+              {
+                "source": "https://www.dictionnaire-academie.fr/article/A9A1808"
+              }
+            ]
+          }
+        ],
+        "general_family_realization": false,
+        "establishes_membership": false
+      },
+      {
+        "family_id": "family:anis",
+        "language": "es",
+        "realization": "anís",
+        "realization_type": "lexical_branch_realization",
+        "morphology_boundary": "Whole national form only; no productive stem, inflection or substitution rule granted.",
+        "supporting_heads": [
+          "anís"
+        ],
+        "positive_controls": [
+          "anís"
+        ],
+        "negative_controls": [
+          "americanise",
+          "balkanise",
+          "afghanis",
+          "afghanistan-abzug",
+          "anisotropy",
+          "mechanicsburg",
+          "americanis",
+          "anisotropy",
+          "humanic",
+          "mechanic"
+        ],
+        "status": "accepted",
+        "evidence": [
+          {
+            "source": "https://dle.rae.es/an%C3%ADs"
+          }
+        ],
+        "head_scope": [
+          {
+            "language": "es",
+            "normalized_head": "anís",
+            "sense": "botanical_aromatic_plant_and_lexical_metonymies",
+            "evidence": [
+              {
+                "source": "https://dle.rae.es/an%C3%ADs"
+              }
+            ]
+          }
+        ],
+        "general_family_realization": false,
+        "establishes_membership": false
+      },
+      {
+        "family_id": "family:anis",
+        "language": "it",
+        "realization": "anice",
+        "realization_type": "lexical_branch_realization",
+        "morphology_boundary": "Whole national form only; no productive stem, inflection or substitution rule granted.",
+        "supporting_heads": [
+          "anice"
+        ],
+        "positive_controls": [
+          "anice"
+        ],
+        "negative_controls": [
+          "americanise",
+          "balkanise",
+          "afghanis",
+          "afghanistan-abzug",
+          "anisotropy",
+          "mechanicsburg",
+          "americanis",
+          "anisotropy",
+          "humanic",
+          "mechanic"
+        ],
+        "status": "accepted",
+        "evidence": [
+          {
+            "source": "https://www.treccani.it/vocabolario/anice/"
+          }
+        ],
+        "head_scope": [
+          {
+            "language": "it",
+            "normalized_head": "anice",
+            "sense": "botanical_aromatic_plant_and_lexical_metonymies",
+            "evidence": [
+              {
+                "source": "https://www.treccani.it/vocabolario/anice/"
+              }
+            ]
+          }
+        ],
+        "general_family_realization": false,
+        "establishes_membership": false
+      },
+      {
+        "family_id": "family:anis",
+        "language": "ru",
+        "realization": "анис",
+        "realization_type": "lexical_branch_realization",
+        "morphology_boundary": "Whole national form only; no productive stem, inflection or substitution rule granted.",
+        "supporting_heads": [
+          "анис"
+        ],
+        "positive_controls": [
+          "анис"
+        ],
+        "negative_controls": [
+          "americanise",
+          "balkanise",
+          "afghanis",
+          "afghanistan-abzug",
+          "anisotropy",
+          "mechanicsburg",
+          "americanis",
+          "anisotropy",
+          "humanic",
+          "mechanic"
+        ],
+        "status": "accepted",
+        "evidence": [
+          {
+            "source": "https://lexicography.online/etymology/vasmer/а/анис"
+          },
+          {
+            "source": "https://www.elbrusoid.org/upload/iblock/660/66069051c794f59da733f323de12b3e7.pdf"
+          }
+        ],
+        "head_scope": [
+          {
+            "language": "ru",
+            "normalized_head": "анис",
+            "sense": "botanical_aromatic_plant_and_lexical_metonymies",
+            "evidence": [
+              {
+                "source": "https://lexicography.online/etymology/vasmer/а/анис"
+              },
+              {
+                "source": "https://www.elbrusoid.org/upload/iblock/660/66069051c794f59da733f323de12b3e7.pdf"
+              }
+            ]
+          }
+        ],
+        "general_family_realization": false,
+        "establishes_membership": false
+      }
+    ],
+    "source_evidence_clusters": [
+      "ety:87f837c8c242",
+      "ety:d3003eeecc3d"
+    ]
+  },
+  "groups": [
+    {
+      "language": "en",
+      "normalized_head": "anise",
+      "sense": "botanical_aromatic_plant_and_lexical_metonymies",
+      "head_scope": "whole_lexical_row_not_token_classification",
+      "identity_status": "accepted",
+      "family_edge_status": "accepted",
+      "forms": [
+        "anise"
+      ],
+      "component_stems": [],
+      "sources": [
+        "https://www.merriam-webster.com/dictionary/anise"
+      ],
+      "reason": "English anise is an aromatic herb/seed noun; Middle English anis through Anglo-French, Latin anisum and Greek anison/anneson. The supplied frequency scans establish an aggregate row; no unrelated lexical homonym is established in this reviewed botanical frame. Names in the aggregate are hypothetical, and aggregate frequency remains unpartitioned.",
+      "records": [
+        {
+          "language": "en",
+          "lemma_id": "lemma:ca97144c9bc0ac6a1986",
+          "word": "anise",
+          "source_locator": {
+            "path": "associativvordes/family-index-v5/members/en/1e.json.gz",
+            "family_id": "ety:87f837c8c242",
+            "record_sha256": "abec9d58225bece42839c9109baed43870440404e928110a31301febcdd98382"
+          },
+          "source_record": {
+            "lemma_id": "lemma:ca97144c9bc0ac6a1986",
+            "word": "anise",
+            "normalized": "anise",
+            "search_form": "anise",
+            "rank": 31134,
+            "frequency_score": 4.099012520566873,
+            "category_breakdown": {
+              "subtitles": {
+                "ipm_values": [
+                  0.302944,
+                  0.295279
+                ],
+                "category_ipm": 0.2991115,
+                "category_score": 4.585167573842779
+              },
+              "normative": {
+                "ipm_values": [
+                  0.156583
+                ],
+                "category_ipm": 0.156583,
+                "category_score": 2.5489251413098413
+              },
+              "web": {
+                "ipm_values": [
+                  0.342663
+                ],
+                "category_ipm": 0.342663,
+                "category_score": 5.162944846547999
+              }
+            },
+            "sources": [
+              {
+                "id": "normative/bnc-clean2.lemmatized_spacy_ipm6.json",
+                "file": "bnc-clean2.lemmatized_spacy_ipm6.json",
+                "category": "normative",
+                "ipm": 0.156583
+              },
+              {
+                "id": "subtitles/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+                "file": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+                "category": "subtitles",
+                "ipm": 0.302944
+              },
+              {
+                "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+                "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+                "category": "subtitles",
+                "ipm": 0.295279
+              },
+              {
+                "id": "web/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+                "file": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+                "category": "web",
+                "ipm": 0.342663
+              }
+            ],
+            "corpus_quality": {
+              "status": "accepted",
+              "reasons": []
+            },
+            "components": [
+              {
+                "surface": "anise",
+                "canonical_candidate": "anise",
+                "confidence": 0.92,
+                "evidence": [
+                  {
+                    "type": "morphological_parse",
+                    "source": "candidate_index",
+                    "path": [
+                      "anise",
+                      "anise",
+                      "anise"
+                    ],
+                    "confidence": 0.92
+                  }
+                ]
+              }
+            ]
+          },
+          "link_role": "whole_lexeme",
+          "formal_continuity_status": "accepted",
+          "relation_kind": "lexical_continuity",
+          "corpus_pos_status": "dictionary_lexical_row_not_token_pos",
+          "frequency_status": "aggregate_only_not_sense_frequency",
+          "senses_decision": {
+            "language": "en",
+            "word": "anise",
+            "lemma_id": "lemma:ca97144c9bc0ac6a1986",
+            "family_id": "family:anis",
+            "membership_object": "lexical_row_or_component",
+            "lexical_evidence": [
+              "https://www.merriam-webster.com/dictionary/anise"
+            ],
+            "analyses": [
+              {
+                "history": "botanical_anison_anisum",
+                "evidence": [
+                  "https://www.merriam-webster.com/dictionary/anise"
+                ],
+                "verdict": "accepted",
+                "proved_components": [],
+                "pos": "noun"
+              }
+            ],
+            "formal_continuity": "accepted",
+            "component": null,
+            "proper_name_risk": "hypothetical_in_source_aggregate_not_observed",
+            "proper_name_observed": false,
+            "source_pos_available": false,
+            "reason": "English anise is an aromatic herb/seed noun; Middle English anis through Anglo-French, Latin anisum and Greek anison/anneson. The supplied frequency scans establish an aggregate row; no unrelated lexical homonym is established in this reviewed botanical frame. Names in the aggregate are hypothetical, and aggregate frequency remains unpartitioned.",
+            "national_form_decision": {
+              "type": "whole_lexical_form",
+              "schema_type": "lexical_branch_realization",
+              "form": "anise",
+              "general_family_realization": false
+            },
+            "decision": "accepted",
+            "blocker": null,
+            "head_scope": "whole_lexical_row",
+            "frequency_status": "aggregate_only_not_sense_frequency",
+            "token_senses_established": false
+          }
+        }
+      ]
+    },
+    {
+      "language": "de",
+      "normalized_head": "anis",
+      "sense": "botanical_aromatic_plant_and_lexical_metonymies",
+      "head_scope": "whole_lexical_row_not_token_classification",
+      "identity_status": "accepted",
+      "family_edge_status": "accepted",
+      "forms": [
+        "anis"
+      ],
+      "component_stems": [],
+      "sources": [
+        "https://www.duden.de/rechtschreibung/Anis"
+      ],
+      "reason": "German noun Anis denotes plant, seed or flavoured spirit; Middle High German anis through Latin anisum and Greek. Genitive Anis/Anises and plural Anise are dictionary evidence, not imported corpus records. The supplied frequency scans establish an aggregate row; no unrelated lexical homonym is established in this reviewed botanical frame. Names in the aggregate are hypothetical, and aggregate frequency remains unpartitioned.",
+      "records": [
+        {
+          "language": "de",
+          "lemma_id": "lemma:206d965d8055251fd5fd",
+          "word": "anis",
+          "source_locator": {
+            "path": "associativvordes/family-index-v5/members/de/1e.json.gz",
+            "family_id": "ety:87f837c8c242",
+            "record_sha256": "217b29802f1cd1b8f3629dc58e3c669804f1c96bf921590e853d91401a7f95f4"
+          },
+          "source_record": {
+            "lemma_id": "lemma:206d965d8055251fd5fd",
+            "word": "anis",
+            "normalized": "anis",
+            "search_form": "anis",
+            "rank": 41198,
+            "frequency_score": 8.409795299298349,
+            "category_breakdown": {
+              "subtitles": {
+                "ipm_values": [
+                  0.341167
+                ],
+                "category_ipm": 0.341167,
+                "category_score": 5.143410883242411
+              },
+              "normative": {
+                "ipm_values": [
+                  0.621627
+                ],
+                "category_ipm": 0.621627,
+                "category_score": 8.470661049341313
+              },
+              "web": {
+                "ipm_values": [
+                  0.940409
+                ],
+                "category_ipm": 0.940409,
+                "category_score": 11.615313965311318
+              }
+            },
+            "sources": [
+              {
+                "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+                "file": "deu_lemma_rank_word_ipm_corrected.json",
+                "category": "normative",
+                "ipm": 0.621627
+              },
+              {
+                "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+                "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+                "category": "subtitles",
+                "ipm": 0.341167
+              },
+              {
+                "id": "web/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+                "file": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+                "category": "web",
+                "ipm": 0.940409
+              }
+            ],
+            "corpus_quality": {
+              "status": "accepted",
+              "reasons": []
+            },
+            "components": [
+              {
+                "surface": "anis",
+                "canonical_candidate": "anis",
+                "confidence": 0.92,
+                "evidence": [
+                  {
+                    "type": "morphological_parse",
+                    "source": "candidate_index",
+                    "path": [
+                      "anis",
+                      "anis",
+                      "anis"
+                    ],
+                    "confidence": 0.92
+                  }
+                ]
+              }
+            ]
+          },
+          "link_role": "whole_lexeme",
+          "formal_continuity_status": "accepted",
+          "relation_kind": "lexical_continuity",
+          "corpus_pos_status": "dictionary_lexical_row_not_token_pos",
+          "frequency_status": "aggregate_only_not_sense_frequency",
+          "senses_decision": {
+            "language": "de",
+            "word": "anis",
+            "lemma_id": "lemma:206d965d8055251fd5fd",
+            "family_id": "family:anis",
+            "membership_object": "lexical_row_or_component",
+            "lexical_evidence": [
+              "https://www.duden.de/rechtschreibung/Anis"
+            ],
+            "analyses": [
+              {
+                "history": "botanical_anison_anisum",
+                "evidence": [
+                  "https://www.duden.de/rechtschreibung/Anis"
+                ],
+                "verdict": "accepted",
+                "proved_components": [],
+                "pos": "noun"
+              }
+            ],
+            "formal_continuity": "accepted",
+            "component": null,
+            "proper_name_risk": "hypothetical_in_source_aggregate_not_observed",
+            "proper_name_observed": false,
+            "source_pos_available": false,
+            "reason": "German noun Anis denotes plant, seed or flavoured spirit; Middle High German anis through Latin anisum and Greek. Genitive Anis/Anises and plural Anise are dictionary evidence, not imported corpus records. The supplied frequency scans establish an aggregate row; no unrelated lexical homonym is established in this reviewed botanical frame. Names in the aggregate are hypothetical, and aggregate frequency remains unpartitioned.",
+            "national_form_decision": {
+              "type": "whole_lexical_form",
+              "schema_type": "lexical_branch_realization",
+              "form": "anis",
+              "general_family_realization": false
+            },
+            "decision": "accepted",
+            "blocker": null,
+            "head_scope": "whole_lexical_row",
+            "frequency_status": "aggregate_only_not_sense_frequency",
+            "token_senses_established": false
+          }
+        }
+      ]
+    },
+    {
+      "language": "fr",
+      "normalized_head": "anis",
+      "sense": "botanical_aromatic_plant_and_lexical_metonymies",
+      "head_scope": "whole_lexical_row_not_token_classification",
+      "identity_status": "accepted",
+      "family_edge_status": "accepted",
+      "forms": [
+        "anis"
+      ],
+      "component_stems": [],
+      "sources": [
+        "https://www.dictionnaire-academie.fr/article/A9A1808"
+      ],
+      "reason": "French masculine noun anis is borrowed from Latin anisum and Greek anison; plant, seed/essence, confection and liquor metonymies share this noun history. Dictionary meaning does not disambiguate every corpus occurrence. The supplied frequency scans establish an aggregate row; no unrelated lexical homonym is established in this reviewed botanical frame. Names in the aggregate are hypothetical, and aggregate frequency remains unpartitioned.",
+      "records": [
+        {
+          "language": "fr",
+          "lemma_id": "lemma:e3b7aad4289f896fbd19",
+          "word": "anis",
+          "source_locator": {
+            "path": "associativvordes/family-index-v5/members/fr/1e.json.gz",
+            "family_id": "ety:87f837c8c242",
+            "record_sha256": "a71b78cd93a5884adf6be4538460bfede675b5d31c179ac34d6ce39a47a1cf6f"
+          },
+          "source_record": {
+            "lemma_id": "lemma:e3b7aad4289f896fbd19",
+            "word": "anis",
+            "normalized": "anis",
+            "search_form": "anis",
+            "rank": 16899,
+            "frequency_score": 12.984738783859406,
+            "category_breakdown": {
+              "subtitles": {
+                "ipm_values": [
+                  0.444781
+                ],
+                "category_ipm": 0.444781,
+                "category_score": 6.447356646634264
+              },
+              "web": {
+                "ipm_values": [
+                  2.046974
+                ],
+                "category_ipm": 2.046974,
+                "category_score": 19.522120921084547
+              }
+            },
+            "sources": [
+              {
+                "id": "subtitles/hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+                "file": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+                "category": "subtitles",
+                "ipm": 0.444781
+              },
+              {
+                "id": "web/sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+                "file": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+                "category": "web",
+                "ipm": 2.046974
+              }
+            ],
+            "corpus_quality": {
+              "status": "accepted",
+              "reasons": []
+            },
+            "components": [
+              {
+                "surface": "ani",
+                "canonical_candidate": "ani",
+                "confidence": 0.92,
+                "evidence": [
+                  {
+                    "type": "morphological_parse",
+                    "source": "candidate_index",
+                    "path": [
+                      "anis",
+                      "ani",
+                      "ani"
+                    ],
+                    "confidence": 0.92
+                  }
+                ]
+              }
+            ]
+          },
+          "link_role": "whole_lexeme",
+          "formal_continuity_status": "accepted",
+          "relation_kind": "lexical_continuity",
+          "corpus_pos_status": "dictionary_lexical_row_not_token_pos",
+          "frequency_status": "aggregate_only_not_sense_frequency",
+          "senses_decision": {
+            "language": "fr",
+            "word": "anis",
+            "lemma_id": "lemma:e3b7aad4289f896fbd19",
+            "family_id": "family:anis",
+            "membership_object": "lexical_row_or_component",
+            "lexical_evidence": [
+              "https://www.dictionnaire-academie.fr/article/A9A1808"
+            ],
+            "analyses": [
+              {
+                "history": "botanical_anison_anisum",
+                "evidence": [
+                  "https://www.dictionnaire-academie.fr/article/A9A1808"
+                ],
+                "verdict": "accepted",
+                "proved_components": [],
+                "pos": "noun"
+              }
+            ],
+            "formal_continuity": "accepted",
+            "component": null,
+            "proper_name_risk": "hypothetical_in_source_aggregate_not_observed",
+            "proper_name_observed": false,
+            "source_pos_available": false,
+            "reason": "French masculine noun anis is borrowed from Latin anisum and Greek anison; plant, seed/essence, confection and liquor metonymies share this noun history. Dictionary meaning does not disambiguate every corpus occurrence. The supplied frequency scans establish an aggregate row; no unrelated lexical homonym is established in this reviewed botanical frame. Names in the aggregate are hypothetical, and aggregate frequency remains unpartitioned.",
+            "national_form_decision": {
+              "type": "whole_lexical_form",
+              "schema_type": "lexical_branch_realization",
+              "form": "anis",
+              "general_family_realization": false
+            },
+            "decision": "accepted",
+            "blocker": null,
+            "head_scope": "whole_lexical_row",
+            "frequency_status": "aggregate_only_not_sense_frequency",
+            "token_senses_established": false
+          }
+        }
+      ]
+    },
+    {
+      "language": "es",
+      "normalized_head": "anís",
+      "sense": "botanical_aromatic_plant_and_lexical_metonymies",
+      "head_scope": "whole_lexical_row_not_token_classification",
+      "identity_status": "accepted",
+      "family_edge_status": "accepted",
+      "forms": [
+        "anís"
+      ],
+      "component_stems": [],
+      "sources": [
+        "https://dle.rae.es/an%C3%ADs"
+      ],
+      "reason": "Spanish masculine anís is borrowed through French anis, Latin anisum and Greek anneson. Plant, seed, confection and liquor meanings are listed. Synonym matalahúva does not establish formal family continuity. The supplied frequency scans establish an aggregate row; no unrelated lexical homonym is established in this reviewed botanical frame. Names in the aggregate are hypothetical, and aggregate frequency remains unpartitioned.",
+      "records": [
+        {
+          "language": "es",
+          "lemma_id": "lemma:cc3ebbe90b986c2bf625",
+          "word": "anís",
+          "source_locator": {
+            "path": "associativvordes/family-index-v5/members/es/1e.json.gz",
+            "family_id": "ety:87f837c8c242",
+            "record_sha256": "dcfefd0791f1958cc01334591f56381921e9d5387acf811dab47e546fe23ccfc"
+          },
+          "source_record": {
+            "lemma_id": "lemma:cc3ebbe90b986c2bf625",
+            "word": "anís",
+            "normalized": "anís",
+            "search_form": "anis",
+            "rank": 22119,
+            "frequency_score": 9.604002348032424,
+            "category_breakdown": {
+              "subtitles": {
+                "ipm_values": [
+                  0.684723,
+                  0.775241
+                ],
+                "category_ipm": 0.7299819999999999,
+                "category_score": 9.604002348032424
+              }
+            },
+            "sources": [
+              {
+                "id": "subtitles/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+                "file": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+                "category": "subtitles",
+                "ipm": 0.684723
+              },
+              {
+                "id": "subtitles/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+                "file": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+                "category": "subtitles",
+                "ipm": 0.775241
+              }
+            ],
+            "corpus_quality": {
+              "status": "accepted",
+              "reasons": []
+            },
+            "components": [
+              {
+                "surface": "anis",
+                "canonical_candidate": "anis",
+                "confidence": 0.92,
+                "evidence": [
+                  {
+                    "type": "morphological_parse",
+                    "source": "candidate_index",
+                    "path": [
+                      "anis",
+                      "anis",
+                      "anis"
+                    ],
+                    "confidence": 0.92
+                  }
+                ]
+              }
+            ]
+          },
+          "link_role": "whole_lexeme",
+          "formal_continuity_status": "accepted",
+          "relation_kind": "lexical_continuity",
+          "corpus_pos_status": "dictionary_lexical_row_not_token_pos",
+          "frequency_status": "aggregate_only_not_sense_frequency",
+          "senses_decision": {
+            "language": "es",
+            "word": "anís",
+            "lemma_id": "lemma:cc3ebbe90b986c2bf625",
+            "family_id": "family:anis",
+            "membership_object": "lexical_row_or_component",
+            "lexical_evidence": [
+              "https://dle.rae.es/an%C3%ADs"
+            ],
+            "analyses": [
+              {
+                "history": "botanical_anison_anisum",
+                "evidence": [
+                  "https://dle.rae.es/an%C3%ADs"
+                ],
+                "verdict": "accepted",
+                "proved_components": [],
+                "pos": "noun"
+              }
+            ],
+            "formal_continuity": "accepted",
+            "component": null,
+            "proper_name_risk": "hypothetical_in_source_aggregate_not_observed",
+            "proper_name_observed": false,
+            "source_pos_available": false,
+            "reason": "Spanish masculine anís is borrowed through French anis, Latin anisum and Greek anneson. Plant, seed, confection and liquor meanings are listed. Synonym matalahúva does not establish formal family continuity. The supplied frequency scans establish an aggregate row; no unrelated lexical homonym is established in this reviewed botanical frame. Names in the aggregate are hypothetical, and aggregate frequency remains unpartitioned.",
+            "national_form_decision": {
+              "type": "whole_lexical_form",
+              "schema_type": "lexical_branch_realization",
+              "form": "anís",
+              "general_family_realization": false
+            },
+            "decision": "accepted",
+            "blocker": null,
+            "head_scope": "whole_lexical_row",
+            "frequency_status": "aggregate_only_not_sense_frequency",
+            "token_senses_established": false
+          }
+        }
+      ]
+    },
+    {
+      "language": "it",
+      "normalized_head": "anice",
+      "sense": "botanical_aromatic_plant_and_lexical_metonymies",
+      "head_scope": "whole_lexical_row_not_token_classification",
+      "identity_status": "accepted",
+      "family_edge_status": "accepted",
+      "forms": [
+        "anice"
+      ],
+      "component_stems": [],
+      "sources": [
+        "https://www.treccani.it/vocabolario/anice/"
+      ],
+      "reason": "Italian masculine anice cites Greek anison and Latin anisum; plant, aromatic fruits, liquor and named similar plants. Italian anic- is a specific candidate stem, not a general c/s correspondence. The supplied frequency scans establish an aggregate row; no unrelated lexical homonym is established in this reviewed botanical frame. Names in the aggregate are hypothetical, and aggregate frequency remains unpartitioned.",
+      "records": [
+        {
+          "language": "it",
+          "lemma_id": "lemma:a21752adeb1d87c8039c",
+          "word": "anice",
+          "source_locator": {
+            "path": "associativvordes/family-index-v5/members/it/1e.json.gz",
+            "family_id": "ety:87f837c8c242",
+            "record_sha256": "80eae5973c969fea65616d5dc8dc61ddb52eae905091f75b3bd87accbcf9e0c9"
+          },
+          "source_record": {
+            "lemma_id": "lemma:a21752adeb1d87c8039c",
+            "word": "anice",
+            "normalized": "anice",
+            "search_form": "anice",
+            "rank": 31600,
+            "frequency_score": 7.088122393994571,
+            "category_breakdown": {
+              "subtitles": {
+                "ipm_values": [
+                  0.456632,
+                  0.472159
+                ],
+                "category_ipm": 0.46439549999999996,
+                "category_score": 6.683636930661504
+              },
+              "web": {
+                "ipm_values": [
+                  0.53359
+                ],
+                "category_ipm": 0.53359,
+                "category_score": 7.492607857327636
+              }
+            },
+            "sources": [
+              {
+                "id": "subtitles/hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+                "file": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+                "category": "subtitles",
+                "ipm": 0.456632
+              },
+              {
+                "id": "subtitles/hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+                "file": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+                "category": "subtitles",
+                "ipm": 0.472159
+              },
+              {
+                "id": "web/sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+                "file": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+                "category": "web",
+                "ipm": 0.53359
+              }
+            ],
+            "corpus_quality": {
+              "status": "accepted",
+              "reasons": []
+            },
+            "components": [
+              {
+                "surface": "anic",
+                "canonical_candidate": "anic",
+                "confidence": 0.92,
+                "evidence": [
+                  {
+                    "type": "morphological_parse",
+                    "source": "candidate_index",
+                    "path": [
+                      "anice",
+                      "anic",
+                      "anic"
+                    ],
+                    "confidence": 0.92
+                  }
+                ]
+              }
+            ]
+          },
+          "link_role": "whole_lexeme",
+          "formal_continuity_status": "accepted",
+          "relation_kind": "lexical_continuity",
+          "corpus_pos_status": "dictionary_lexical_row_not_token_pos",
+          "frequency_status": "aggregate_only_not_sense_frequency",
+          "senses_decision": {
+            "language": "it",
+            "word": "anice",
+            "lemma_id": "lemma:a21752adeb1d87c8039c",
+            "family_id": "family:anis",
+            "membership_object": "lexical_row_or_component",
+            "lexical_evidence": [
+              "https://www.treccani.it/vocabolario/anice/"
+            ],
+            "analyses": [
+              {
+                "history": "botanical_anison_anisum",
+                "evidence": [
+                  "https://www.treccani.it/vocabolario/anice/"
+                ],
+                "verdict": "accepted",
+                "proved_components": [],
+                "pos": "noun"
+              }
+            ],
+            "formal_continuity": "accepted",
+            "component": null,
+            "proper_name_risk": "hypothetical_in_source_aggregate_not_observed",
+            "proper_name_observed": false,
+            "source_pos_available": false,
+            "reason": "Italian masculine anice cites Greek anison and Latin anisum; plant, aromatic fruits, liquor and named similar plants. Italian anic- is a specific candidate stem, not a general c/s correspondence. The supplied frequency scans establish an aggregate row; no unrelated lexical homonym is established in this reviewed botanical frame. Names in the aggregate are hypothetical, and aggregate frequency remains unpartitioned.",
+            "national_form_decision": {
+              "type": "whole_lexical_form",
+              "schema_type": "lexical_branch_realization",
+              "form": "anice",
+              "general_family_realization": false
+            },
+            "decision": "accepted",
+            "blocker": null,
+            "head_scope": "whole_lexical_row",
+            "frequency_status": "aggregate_only_not_sense_frequency",
+            "token_senses_established": false
+          }
+        }
+      ]
+    },
+    {
+      "language": "ru",
+      "normalized_head": "анис",
+      "sense": "botanical_aromatic_plant_and_lexical_metonymies",
+      "head_scope": "whole_lexical_row_not_token_classification",
+      "identity_status": "accepted",
+      "family_edge_status": "accepted",
+      "forms": [
+        "анис"
+      ],
+      "component_stems": [],
+      "sources": [
+        "https://lexicography.online/etymology/vasmer/а/анис",
+        "https://www.elbrusoid.org/upload/iblock/660/66069051c794f59da733f323de12b3e7.pdf"
+      ],
+      "reason": "Botanical loan via German/French/Latin; apple naming is a documented aroma-based extension (Khapaev/Khapaeva 2015, printed p.19). Speculative unequal etymology in that entry is rejected. The supplied frequency scans establish an aggregate row; no unrelated lexical homonym is established in this reviewed botanical frame. Names in the aggregate are hypothetical, and aggregate frequency remains unpartitioned.",
+      "records": [
+        {
+          "language": "ru",
+          "lemma_id": "lemma:4c62cdc8398fb78e160e",
+          "word": "анис",
+          "source_locator": {
+            "path": "associativvordes/family-index-v5/members/ru/1e.json.gz",
+            "family_id": "ety:87f837c8c242",
+            "record_sha256": "8fb33dbd0d6bb735677f091aba0d1b30c0b832304b65c37559bc2d17ed471925"
+          },
+          "source_record": {
+            "lemma_id": "lemma:4c62cdc8398fb78e160e",
+            "word": "анис",
+            "normalized": "анис",
+            "search_form": "anis",
+            "rank": 36153,
+            "frequency_score": 8.156499839493703,
+            "category_breakdown": {
+              "subtitles": {
+                "ipm_values": [
+                  0.457683
+                ],
+                "category_ipm": 0.457683,
+                "category_score": 6.603134885090936
+              },
+              "normative": {
+                "ipm_values": [
+                  0.607086
+                ],
+                "category_ipm": 0.607086,
+                "category_score": 8.312833976976004
+              },
+              "web": {
+                "ipm_values": [
+                  0.725006
+                ],
+                "category_ipm": 0.725006,
+                "category_score": 9.553530656414168
+              }
+            },
+            "sources": [
+              {
+                "id": "normative/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+                "file": "rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+                "category": "normative",
+                "ipm": 0.607086
+              },
+              {
+                "id": "subtitles/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+                "file": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+                "category": "subtitles",
+                "ipm": 0.457683
+              },
+              {
+                "id": "web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+                "file": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+                "category": "web",
+                "ipm": 0.725006
+              }
+            ],
+            "corpus_quality": {
+              "status": "accepted",
+              "reasons": []
+            },
+            "components": [
+              {
+                "surface": "anis",
+                "canonical_candidate": "anis",
+                "confidence": 0.92,
+                "evidence": [
+                  {
+                    "type": "morphological_parse",
+                    "source": "candidate_index",
+                    "path": [
+                      "anis",
+                      "anis",
+                      "anis"
+                    ],
+                    "confidence": 0.92
+                  }
+                ]
+              }
+            ]
+          },
+          "link_role": "whole_lexeme",
+          "formal_continuity_status": "accepted",
+          "relation_kind": "lexical_continuity",
+          "corpus_pos_status": "dictionary_lexical_row_not_token_pos",
+          "frequency_status": "aggregate_only_not_sense_frequency",
+          "senses_decision": {
+            "language": "ru",
+            "word": "анис",
+            "lemma_id": "lemma:4c62cdc8398fb78e160e",
+            "family_id": "family:anis",
+            "membership_object": "lexical_row_or_component",
+            "lexical_evidence": [
+              "https://lexicography.online/etymology/vasmer/а/анис",
+              "https://www.elbrusoid.org/upload/iblock/660/66069051c794f59da733f323de12b3e7.pdf"
+            ],
+            "analyses": [
+              {
+                "history": "botanical_anison_anisum",
+                "evidence": [
+                  "https://lexicography.online/etymology/vasmer/а/анис",
+                  "https://www.elbrusoid.org/upload/iblock/660/66069051c794f59da733f323de12b3e7.pdf"
+                ],
+                "verdict": "accepted",
+                "proved_components": [],
+                "pos": "noun"
+              }
+            ],
+            "formal_continuity": "accepted",
+            "component": null,
+            "proper_name_risk": "hypothetical_in_source_aggregate_not_observed",
+            "proper_name_observed": false,
+            "source_pos_available": false,
+            "reason": "Botanical loan via German/French/Latin; apple naming is a documented aroma-based extension (Khapaev/Khapaeva 2015, printed p.19). Speculative unequal etymology in that entry is rejected. The supplied frequency scans establish an aggregate row; no unrelated lexical homonym is established in this reviewed botanical frame. Names in the aggregate are hypothetical, and aggregate frequency remains unpartitioned.",
+            "national_form_decision": {
+              "type": "whole_lexical_form",
+              "schema_type": "lexical_branch_realization",
+              "form": "анис",
+              "general_family_realization": false
+            },
+            "decision": "accepted",
+            "blocker": null,
+            "head_scope": "whole_lexical_row",
+            "frequency_status": "aggregate_only_not_sense_frequency",
+            "token_senses_established": false
+          }
+        }
+      ]
+    }
+  ],
+  "input_sha256": {
+    "audit/associative-family-v6/prompt02-research-20261004.json": "94afc02210947bb39c33d57eb9415ce66d85d408748a6ae87d239a7e52096882",
+    "audit/associative-family-v6/prompt02-torre-homonym-research-20261004.json": "0ed0d6bdde08af8896978087ff0e859f8735273334a49711834bb0143637d361",
+    "audit/associative-family-v6/anis-promotion-research-20261003.json": "ff60347252b5e044ef2422fc8f46251d7a1a2e806ba92db0c256a18bec496e4f",
+    "audit/associative-family-v6/anis-core-corpus-adjudication-20261003.json": "883ddc35aa22d7a7ec9dd82ed28e1956deb5ff9ee85deefc8ff18e8c50f22dcf",
+    "audit/associative-family-v6/tower-canonical-boundary-adjudication-20261003.json": "ed4606b35c170ea748c9318dde3fb9b68bc515de8c2ccddb75b33468147bc226",
+    "audit/associative-family-v6/tower-promotion-research-20261003.json": "a2cd1825d0e5eaf3461a2e44e73f3d589801b41e8c69a13b72a15fbd93aa862a",
+    "associativvordes/family-index-v5/members/en/1e.json.gz": "3a4e8b2737bd08b0540f9947ce5fe538b5b77aa5bd0a0054d6dc9e10fbf07fe7",
+    "associativvordes/family-index-v5/members/de/1e.json.gz": "d4b0eef0291a547f844c71dffad93b4f6c3715cd10584feff5d86ceb251e56c8",
+    "associativvordes/family-index-v5/members/fr/1e.json.gz": "dac3df89aca45f36429734b2f40ef62dae168463d1a34dcbc6aa4888e9d5829d",
+    "associativvordes/family-index-v5/members/es/1e.json.gz": "257553d22f28181b1a25663034abac0dfb0f8af7e12018c338ed164a73c2eb8b",
+    "associativvordes/family-index-v5/members/it/1e.json.gz": "185aacfd05a48705819dddee09fe6a935bb6441a1d765a3ab8c098e73c71e215",
+    "associativvordes/family-index-v5/members/ru/1e.json.gz": "a91d233597a7fefde7c47dbc9998ecfaba3bb7f18e50d338037bf398ac3381d1"
+  },
+  "negative_controls": [
+    {
+      "language": "en",
+      "lemma_id": "lemma:2b0db961834dc9c6f249",
+      "word": "americanise"
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:7b0cc3ca7f7a6b530b74",
+      "word": "balkanise"
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:b29becff655ffdf4b8f0",
+      "word": "afghanis"
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:5cf84594ab9dd7c3db31",
+      "word": "afghanistan-abzug"
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:3a681a4141d4ffb5c04b",
+      "word": "anisotropy"
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:8e1321165fe11dd2c1d8",
+      "word": "mechanicsburg"
+    },
+    {
+      "language": "es",
+      "lemma_id": "lemma:aec1023e39f65ad150d4",
+      "word": "americanis"
+    },
+    {
+      "language": "es",
+      "lemma_id": "lemma:cc90848a96c17b480392",
+      "word": "anisotropy"
+    },
+    {
+      "language": "it",
+      "lemma_id": "lemma:212d61af03a578d3800f",
+      "word": "humanic"
+    },
+    {
+      "language": "it",
+      "lemma_id": "lemma:ff46d3782ab357d967f5",
+      "word": "mechanic"
+    }
+  ],
+  "positive_controls": [
+    {
+      "language": "en",
+      "lemma_id": "lemma:ca97144c9bc0ac6a1986",
+      "word": "anise"
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:206d965d8055251fd5fd",
+      "word": "anis"
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:e3b7aad4289f896fbd19",
+      "word": "anis"
+    },
+    {
+      "language": "es",
+      "lemma_id": "lemma:cc3ebbe90b986c2bf625",
+      "word": "anís"
+    },
+    {
+      "language": "it",
+      "lemma_id": "lemma:a21752adeb1d87c8039c",
+      "word": "anice"
+    },
+    {
+      "language": "ru",
+      "lemma_id": "lemma:4c62cdc8398fb78e160e",
+      "word": "анис"
+    }
+  ],
+  "frequency_limitation": "aggregate_only_not_sense_frequency",
+  "unreviewed_source_container_policy": "No blanket verdict; unlisted IDs remain unadjudicated."
+}

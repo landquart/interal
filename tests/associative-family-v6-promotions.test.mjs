@@ -7,7 +7,8 @@ import {loadFamilyPromotions,validatePromotionDecision,materializeFamilyPromotio
 import {searchV6,resolveV6Alias} from '../associativvordes/js/associative-family-v6.js';
 const read=async p=>{const b=await fs.readFile(p);return JSON.parse(p.endsWith('.gz')?gunzipSync(b):b);};
 const catalog=await read('associativvordes/family-index-v6/catalog.json'),inputs={};
-const promotions=await loadFamilyPromotions({read,readBytes:p=>fs.readFile(p),catalog,inputs});
+const allPromotions=await loadFamilyPromotions({read,readBytes:p=>fs.readFile(p),catalog,inputs});
+const promotions=allPromotions.filter(p=>p.doc.family.id==='family:system');
 const doc=promotions[0].doc;
 const headId=(l,h,s)=>'head:'+l+':'+createHash('sha256').update(l+'\0'+h.normalize('NFC').toLowerCase()+'\0'+s).digest('hex').slice(0,24);
 const fixture=()=>({catalog,heads:[],edges:[],links:[],corpus:new Map(),memberships:[]});
@@ -40,6 +41,26 @@ test('changed source evidence and corpus snapshots are rejected',async()=>{
 });
 test('all pre-promotion memberships and known resolution statistics remain unchanged',async()=>{
  const root='associativvordes/family-index-v6/generated',m=await read(root+'/memberships.json.gz'),d=await read(root+'/differential.json.gz'),metrics=await read(root+'/head-review-metrics.json');
- assert.equal(m.length,21548);assert.equal(d.manual_memberships.length,19967);assert.equal(d.accepted_membership_additions.length,1569);assert.equal(d.family_promotion_additions.length,12);
+ assert.equal(m.length,21554);assert.equal(d.manual_memberships.length,19967);assert.equal(d.accepted_membership_additions.length,1569);assert.equal(d.family_promotion_additions.length,18);
  assert.equal(metrics.current_active_records,23240);assert.equal(metrics.new_records_resolved,1962);assert.equal(metrics.new_head_decisions,36);
+});
+test('Prompt 02 admits six anis rows while all seven tower aggregates remain individually withheld',()=>{
+ const result=materializeFamilyPromotions({index:fixture(),promotions:allPromotions,headId});
+ assert.equal(result.additions.length,18);assert.equal(result.ledger.length,13);
+ assert.equal(result.index.memberships.filter(r=>r.family_id==='family:anis').length,6);
+ assert.deepEqual(result.index.memberships.filter(r=>r.family_id==='family:turr').map(r=>[r.language,r.word]).sort(),[]);
+ for(const word of ['tour','тура','tower','turm','turret','naive','anisotropy','aniso','americanise','состав'])assert.equal(result.index.memberships.filter(r=>r.word===word).length,0);
+ const anis=catalog.families.find(f=>f.canonical==='anis'),turr=catalog.families.find(f=>f.canonical==='turr');
+ assert.equal(turr,undefined);
+ for(const f of [anis]){assert.equal(f.legacy_ids.length,0);assert(f.reflexes.every(r=>r.realization_type==='lexical_branch_realization'&&r.general_family_realization===false&&r.establishes_membership===false));}
+ assert.equal(anis.reflexes.find(r=>r.language==='it').realization,'anice');assert.equal(anis.reflexes.some(r=>r.realization==='anic'),false);
+});
+test('finite senses policy rejects promotion of unresolved lexical histories and lost frequency limitations',()=>{
+ for(const change of [d=>delete d.groups[0].records[0].senses_decision,d=>d.groups[0].records[0].senses_decision.analyses.push({history:'unrelated',verdict:'excluded',evidence:['synthetic-adversarial-proof']}),d=>d.groups[0].records[0].frequency_status='botanical_token_frequency',d=>d.groups[0].records[0].senses_decision.lemma_id='lemma:invented']){
+  const d=structuredClone(allPromotions.find(p=>p.doc.family.id==='family:anis').doc);change(d);assert.throws(()=>validatePromotionDecision(d),/senses decision/);
+ }
+ const result=materializeFamilyPromotions({index:fixture(),promotions:allPromotions,headId});assert(result.index.links.filter(l=>['family:anis','family:turr'].includes(l.family_id)).every(l=>l.frequency_status==='aggregate_only_not_sense_frequency'&&l.membership_object==='lexical_row_or_component'&&l.token_senses_established===false));
+});
+test('documented torre homonyms require withholding regardless of rarity or unknown POS',()=>{
+ return read('audit/associative-family-v6/turr-finite-lexical-row-promotion-20261004.json').then(d=>{assert.equal(d.groups.length,0);assert.equal(d.binding_authorized,false);assert.throws(()=>validatePromotionDecision(d),/authorization/);});
 });

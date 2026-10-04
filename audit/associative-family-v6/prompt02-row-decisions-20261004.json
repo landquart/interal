@@ -1,0 +1,1105 @@
+{
+  "schema_version": 6,
+  "production_enabled": false,
+  "senses_policy": "audit/associative-family-v6/SENSES-POLICY-20261004.md",
+  "rows": [
+    {
+      "language": "en",
+      "word": "anise",
+      "lemma_id": "lemma:ca97144c9bc0ac6a1986",
+      "family_id": "family:anis",
+      "membership_object": "lexical_row_or_component",
+      "lexical_evidence": [
+        "https://www.merriam-webster.com/dictionary/anise"
+      ],
+      "analyses": [
+        {
+          "history": "botanical_anison_anisum",
+          "evidence": [
+            "https://www.merriam-webster.com/dictionary/anise"
+          ],
+          "verdict": "accepted",
+          "proved_components": [],
+          "pos": "noun"
+        }
+      ],
+      "formal_continuity": "accepted",
+      "component": null,
+      "proper_name_risk": "hypothetical_in_source_aggregate_not_observed",
+      "proper_name_observed": false,
+      "source_pos_available": false,
+      "reason": "English anise is an aromatic herb/seed noun; Middle English anis through Anglo-French, Latin anisum and Greek anison/anneson. The supplied frequency scans establish an aggregate row; no unrelated lexical homonym is established in this reviewed botanical frame. Names in the aggregate are hypothetical, and aggregate frequency remains unpartitioned.",
+      "national_form_decision": {
+        "type": "whole_lexical_form",
+        "schema_type": "lexical_branch_realization",
+        "form": "anise",
+        "general_family_realization": false
+      },
+      "decision": "accepted",
+      "blocker": null,
+      "head_scope": "whole_lexical_row",
+      "frequency_status": "aggregate_only_not_sense_frequency",
+      "token_senses_established": false
+    },
+    {
+      "language": "de",
+      "word": "anis",
+      "lemma_id": "lemma:206d965d8055251fd5fd",
+      "family_id": "family:anis",
+      "membership_object": "lexical_row_or_component",
+      "lexical_evidence": [
+        "https://www.duden.de/rechtschreibung/Anis"
+      ],
+      "analyses": [
+        {
+          "history": "botanical_anison_anisum",
+          "evidence": [
+            "https://www.duden.de/rechtschreibung/Anis"
+          ],
+          "verdict": "accepted",
+          "proved_components": [],
+          "pos": "noun"
+        }
+      ],
+      "formal_continuity": "accepted",
+      "component": null,
+      "proper_name_risk": "hypothetical_in_source_aggregate_not_observed",
+      "proper_name_observed": false,
+      "source_pos_available": false,
+      "reason": "German noun Anis denotes plant, seed or flavoured spirit; Middle High German anis through Latin anisum and Greek. Genitive Anis/Anises and plural Anise are dictionary evidence, not imported corpus records. The supplied frequency scans establish an aggregate row; no unrelated lexical homonym is established in this reviewed botanical frame. Names in the aggregate are hypothetical, and aggregate frequency remains unpartitioned.",
+      "national_form_decision": {
+        "type": "whole_lexical_form",
+        "schema_type": "lexical_branch_realization",
+        "form": "anis",
+        "general_family_realization": false
+      },
+      "decision": "accepted",
+      "blocker": null,
+      "head_scope": "whole_lexical_row",
+      "frequency_status": "aggregate_only_not_sense_frequency",
+      "token_senses_established": false
+    },
+    {
+      "language": "fr",
+      "word": "anis",
+      "lemma_id": "lemma:e3b7aad4289f896fbd19",
+      "family_id": "family:anis",
+      "membership_object": "lexical_row_or_component",
+      "lexical_evidence": [
+        "https://www.dictionnaire-academie.fr/article/A9A1808"
+      ],
+      "analyses": [
+        {
+          "history": "botanical_anison_anisum",
+          "evidence": [
+            "https://www.dictionnaire-academie.fr/article/A9A1808"
+          ],
+          "verdict": "accepted",
+          "proved_components": [],
+          "pos": "noun"
+        }
+      ],
+      "formal_continuity": "accepted",
+      "component": null,
+      "proper_name_risk": "hypothetical_in_source_aggregate_not_observed",
+      "proper_name_observed": false,
+      "source_pos_available": false,
+      "reason": "French masculine noun anis is borrowed from Latin anisum and Greek anison; plant, seed/essence, confection and liquor metonymies share this noun history. Dictionary meaning does not disambiguate every corpus occurrence. The supplied frequency scans establish an aggregate row; no unrelated lexical homonym is established in this reviewed botanical frame. Names in the aggregate are hypothetical, and aggregate frequency remains unpartitioned.",
+      "national_form_decision": {
+        "type": "whole_lexical_form",
+        "schema_type": "lexical_branch_realization",
+        "form": "anis",
+        "general_family_realization": false
+      },
+      "decision": "accepted",
+      "blocker": null,
+      "head_scope": "whole_lexical_row",
+      "frequency_status": "aggregate_only_not_sense_frequency",
+      "token_senses_established": false
+    },
+    {
+      "language": "es",
+      "word": "anís",
+      "lemma_id": "lemma:cc3ebbe90b986c2bf625",
+      "family_id": "family:anis",
+      "membership_object": "lexical_row_or_component",
+      "lexical_evidence": [
+        "https://dle.rae.es/an%C3%ADs"
+      ],
+      "analyses": [
+        {
+          "history": "botanical_anison_anisum",
+          "evidence": [
+            "https://dle.rae.es/an%C3%ADs"
+          ],
+          "verdict": "accepted",
+          "proved_components": [],
+          "pos": "noun"
+        }
+      ],
+      "formal_continuity": "accepted",
+      "component": null,
+      "proper_name_risk": "hypothetical_in_source_aggregate_not_observed",
+      "proper_name_observed": false,
+      "source_pos_available": false,
+      "reason": "Spanish masculine anís is borrowed through French anis, Latin anisum and Greek anneson. Plant, seed, confection and liquor meanings are listed. Synonym matalahúva does not establish formal family continuity. The supplied frequency scans establish an aggregate row; no unrelated lexical homonym is established in this reviewed botanical frame. Names in the aggregate are hypothetical, and aggregate frequency remains unpartitioned.",
+      "national_form_decision": {
+        "type": "whole_lexical_form",
+        "schema_type": "lexical_branch_realization",
+        "form": "anís",
+        "general_family_realization": false
+      },
+      "decision": "accepted",
+      "blocker": null,
+      "head_scope": "whole_lexical_row",
+      "frequency_status": "aggregate_only_not_sense_frequency",
+      "token_senses_established": false
+    },
+    {
+      "language": "it",
+      "word": "anice",
+      "lemma_id": "lemma:a21752adeb1d87c8039c",
+      "family_id": "family:anis",
+      "membership_object": "lexical_row_or_component",
+      "lexical_evidence": [
+        "https://www.treccani.it/vocabolario/anice/"
+      ],
+      "analyses": [
+        {
+          "history": "botanical_anison_anisum",
+          "evidence": [
+            "https://www.treccani.it/vocabolario/anice/"
+          ],
+          "verdict": "accepted",
+          "proved_components": [],
+          "pos": "noun"
+        }
+      ],
+      "formal_continuity": "accepted",
+      "component": null,
+      "proper_name_risk": "hypothetical_in_source_aggregate_not_observed",
+      "proper_name_observed": false,
+      "source_pos_available": false,
+      "reason": "Italian masculine anice cites Greek anison and Latin anisum; plant, aromatic fruits, liquor and named similar plants. Italian anic- is a specific candidate stem, not a general c/s correspondence. The supplied frequency scans establish an aggregate row; no unrelated lexical homonym is established in this reviewed botanical frame. Names in the aggregate are hypothetical, and aggregate frequency remains unpartitioned.",
+      "national_form_decision": {
+        "type": "whole_lexical_form",
+        "schema_type": "lexical_branch_realization",
+        "form": "anice",
+        "general_family_realization": false
+      },
+      "decision": "accepted",
+      "blocker": null,
+      "head_scope": "whole_lexical_row",
+      "frequency_status": "aggregate_only_not_sense_frequency",
+      "token_senses_established": false
+    },
+    {
+      "language": "ru",
+      "word": "анис",
+      "lemma_id": "lemma:4c62cdc8398fb78e160e",
+      "family_id": "family:anis",
+      "membership_object": "lexical_row_or_component",
+      "lexical_evidence": [
+        "https://lexicography.online/etymology/vasmer/а/анис",
+        "https://www.elbrusoid.org/upload/iblock/660/66069051c794f59da733f323de12b3e7.pdf"
+      ],
+      "analyses": [
+        {
+          "history": "botanical_anison_anisum",
+          "evidence": [
+            "https://lexicography.online/etymology/vasmer/а/анис",
+            "https://www.elbrusoid.org/upload/iblock/660/66069051c794f59da733f323de12b3e7.pdf"
+          ],
+          "verdict": "accepted",
+          "proved_components": [],
+          "pos": "noun"
+        }
+      ],
+      "formal_continuity": "accepted",
+      "component": null,
+      "proper_name_risk": "hypothetical_in_source_aggregate_not_observed",
+      "proper_name_observed": false,
+      "source_pos_available": false,
+      "reason": "Botanical loan via German/French/Latin; apple naming is a documented aroma-based extension (Khapaev/Khapaeva 2015, printed p.19). Speculative unequal etymology in that entry is rejected. The supplied frequency scans establish an aggregate row; no unrelated lexical homonym is established in this reviewed botanical frame. Names in the aggregate are hypothetical, and aggregate frequency remains unpartitioned.",
+      "national_form_decision": {
+        "type": "whole_lexical_form",
+        "schema_type": "lexical_branch_realization",
+        "form": "анис",
+        "general_family_realization": false
+      },
+      "decision": "accepted",
+      "blocker": null,
+      "head_scope": "whole_lexical_row",
+      "frequency_status": "aggregate_only_not_sense_frequency",
+      "token_senses_established": false
+    },
+    {
+      "language": "en",
+      "word": "tower",
+      "lemma_id": "lemma:fbb12b86b76ffff488fe",
+      "family_id": "family:turr",
+      "membership_object": "lexical_row_or_component",
+      "lexical_evidence": [
+        "https://www.merriam-webster.com/dictionary/tower"
+      ],
+      "analyses": [
+        {
+          "history": "latin_turris",
+          "evidence": [
+            "https://www.merriam-webster.com/dictionary/tower"
+          ],
+          "verdict": "accepted",
+          "proved_components": [],
+          "pos": "noun"
+        }
+      ],
+      "formal_continuity": "withheld",
+      "component": null,
+      "proper_name_risk": "hypothetical_in_source_aggregate_not_observed",
+      "proper_name_observed": false,
+      "source_pos_available": false,
+      "reason": "Middle English tour/tor through Old English torr and Anglo-French tur/tour continues Latin turris. Dictionary noun and denominal verb share this base. Proper-name tokens are not established by the lowercase aggregate. Concrete blocker: independent modern recognizable realization from turr to tower is not established by the saved ancestry alone; finite national correspondence and controls required. POS/name absence is not the blocker.",
+      "national_form_decision": {
+        "type": "whole_lexical_form",
+        "schema_type": "lexical_branch_realization",
+        "form": "tower",
+        "general_family_realization": false
+      },
+      "decision": "deferred",
+      "blocker": "national_formal_continuity_requires_independent_scoped_evidence",
+      "head_scope": "whole_lexical_row",
+      "frequency_status": "aggregate_only_not_sense_frequency",
+      "token_senses_established": false
+    },
+    {
+      "language": "de",
+      "word": "turm",
+      "lemma_id": "lemma:e10d98a4cae30621277d",
+      "family_id": "family:turr",
+      "membership_object": "lexical_row_or_component",
+      "lexical_evidence": [
+        "https://www.duden.de/rechtschreibung/Turm"
+      ],
+      "analyses": [
+        {
+          "history": "latin_turris",
+          "evidence": [
+            "https://www.duden.de/rechtschreibung/Turm"
+          ],
+          "verdict": "accepted",
+          "proved_components": [],
+          "pos": "noun"
+        }
+      ],
+      "formal_continuity": "withheld",
+      "component": null,
+      "proper_name_risk": "hypothetical_in_source_aggregate_not_observed",
+      "proper_name_observed": false,
+      "source_pos_available": false,
+      "reason": "Middle and Old High German tower forms continue Latin turris through Old French. Technical and chess uses are metonymies of this noun. Exact corpus case/POS is not supplied. Concrete blocker: independent modern recognizable realization from turr to turm is not established by the saved ancestry alone; finite national correspondence and controls required. POS/name absence is not the blocker.",
+      "national_form_decision": {
+        "type": "whole_lexical_form",
+        "schema_type": "lexical_branch_realization",
+        "form": "turm",
+        "general_family_realization": false
+      },
+      "decision": "deferred",
+      "blocker": "national_formal_continuity_requires_independent_scoped_evidence",
+      "head_scope": "whole_lexical_row",
+      "frequency_status": "aggregate_only_not_sense_frequency",
+      "token_senses_established": false
+    },
+    {
+      "language": "fr",
+      "word": "tour",
+      "lemma_id": "lemma:ea7fdcd66cda3892ded2",
+      "family_id": "family:turr",
+      "membership_object": "lexical_row_or_component",
+      "lexical_evidence": [
+        "https://www.dictionnaire-academie.fr/article/A9T1596"
+      ],
+      "analyses": [
+        {
+          "history": "latin_turris",
+          "evidence": [
+            "https://www.dictionnaire-academie.fr/article/A9T1596"
+          ],
+          "verdict": "accepted",
+          "proved_components": [],
+          "pos": "noun"
+        },
+        {
+          "history": "latin_tornus_turn_or_lathe",
+          "evidence": [
+            "https://www.dictionnaire-academie.fr/article/A9T1597",
+            "https://www.dictionnaire-academie.fr/article/A9T1598",
+            "https://www.dictionnaire-academie.fr/article/A9T1645"
+          ],
+          "verdict": "excluded",
+          "proved_components": [],
+          "pos": "noun"
+        }
+      ],
+      "formal_continuity": "accepted",
+      "component": null,
+      "proper_name_risk": "hypothetical_in_source_aggregate_not_observed",
+      "proper_name_observed": false,
+      "source_pos_available": false,
+      "reason": "Feminine tower noun continues Latin turris. Masculine lathe tour instead continues tornus; masculine turn/trip tour is deverbal from tourner. Untagged tour cannot inherit a single common associative base.",
+      "national_form_decision": {
+        "type": "whole_lexical_form",
+        "schema_type": "lexical_branch_realization",
+        "form": "tour",
+        "general_family_realization": false
+      },
+      "decision": "deferred",
+      "blocker": "incompatible_or_unproved_lexical_histories_require_provenanced_partition_or_common_component",
+      "head_scope": "whole_lexical_row",
+      "frequency_status": "aggregate_only_not_sense_frequency",
+      "token_senses_established": false
+    },
+    {
+      "language": "es",
+      "word": "torre",
+      "lemma_id": "lemma:63adf237a08c24f59920",
+      "family_id": "family:turr",
+      "membership_object": "lexical_row_or_component",
+      "lexical_evidence": [
+        "https://dle.rae.es/torre",
+        "https://dle.rae.es/torrar"
+      ],
+      "analyses": [
+        {
+          "history": "latin_turris",
+          "evidence": [
+            "https://dle.rae.es/torre"
+          ],
+          "verdict": "accepted",
+          "proved_components": [],
+          "pos": "noun"
+        },
+        {
+          "history": "latin_torrere_toast",
+          "evidence": [
+            "https://dle.rae.es/torrar"
+          ],
+          "verdict": "excluded",
+          "proved_components": [],
+          "pos": "torrar_subjunctive_or_usted_imperative"
+        }
+      ],
+      "formal_continuity": "accepted",
+      "component": null,
+      "proper_name_risk": "hypothetical_in_source_aggregate_not_observed",
+      "proper_name_observed": false,
+      "source_pos_available": false,
+      "reason": "RAE derives the tower noun from Latin turris; chess and other metonymies preserve the base. A dictionary row does not resolve proper-name occurrences in the source aggregate. RAE independently records torre as a form of torrar < torrere. Distinct noun/verb histories block the unsplit aggregate; common spelling torr is not a common proved tower base.",
+      "national_form_decision": {
+        "type": "whole_lexical_form",
+        "schema_type": "lexical_branch_realization",
+        "form": "torre",
+        "general_family_realization": false
+      },
+      "decision": "deferred",
+      "blocker": "incompatible_or_unproved_lexical_histories_require_provenanced_partition_or_common_component",
+      "head_scope": "whole_lexical_row",
+      "frequency_status": "aggregate_only_not_sense_frequency",
+      "token_senses_established": false
+    },
+    {
+      "language": "it",
+      "word": "torre",
+      "lemma_id": "lemma:0d23cbf326af4b0f1718",
+      "family_id": "family:turr",
+      "membership_object": "lexical_row_or_component",
+      "lexical_evidence": [
+        "https://www.treccani.it/vocabolario/torre/",
+        "https://www.treccani.it/vocabolario/torre_res-3eee76ef-0037-11de-9d89-0016357eee51/",
+        "https://www.treccani.it/vocabolario/togliere/"
+      ],
+      "analyses": [
+        {
+          "history": "latin_turris",
+          "evidence": [
+            "https://www.treccani.it/vocabolario/torre/"
+          ],
+          "verdict": "accepted",
+          "proved_components": [],
+          "pos": "noun"
+        },
+        {
+          "history": "latin_tollere_remove",
+          "evidence": [
+            "https://www.treccani.it/vocabolario/torre_res-3eee76ef-0037-11de-9d89-0016357eee51/",
+            "https://www.treccani.it/vocabolario/togliere/"
+          ],
+          "verdict": "excluded",
+          "proved_components": [],
+          "pos": "contracted_infinitive_togliere"
+        }
+      ],
+      "formal_continuity": "accepted",
+      "component": null,
+      "proper_name_risk": "hypothetical_in_source_aggregate_not_observed",
+      "proper_name_observed": false,
+      "source_pos_available": false,
+      "reason": "Treccani derives the tower noun from Latin turris and records its use in place names. Proper-name aggregation needs independent context, not lowercase spelling. Treccani independently records torre as a contracted togliere < tollere infinitive. Literary/popular register does not remove this documented different history. The unsplit aggregate requires a provenanced sense/POS partition.",
+      "national_form_decision": {
+        "type": "whole_lexical_form",
+        "schema_type": "lexical_branch_realization",
+        "form": "torre",
+        "general_family_realization": false
+      },
+      "decision": "deferred",
+      "blocker": "incompatible_or_unproved_lexical_histories_require_provenanced_partition_or_common_component",
+      "head_scope": "whole_lexical_row",
+      "frequency_status": "aggregate_only_not_sense_frequency",
+      "token_senses_established": false
+    },
+    {
+      "language": "ru",
+      "word": "тура",
+      "lemma_id": "lemma:158283923dc337e93d69",
+      "family_id": "family:turr",
+      "membership_object": "lexical_row_or_component",
+      "lexical_evidence": [
+        "https://lexicography.online/etymology/vasmer/т/тура"
+      ],
+      "analyses": [
+        {
+          "history": "latin_turris",
+          "evidence": [
+            "https://lexicography.online/etymology/vasmer/т/тура"
+          ],
+          "verdict": "accepted",
+          "proved_components": [],
+          "pos": "noun"
+        },
+        {
+          "history": "independent_peat_or_sea_plant_routes",
+          "evidence": [
+            "https://lexicography.online/etymology/vasmer/т/тура"
+          ],
+          "verdict": "excluded",
+          "proved_components": [],
+          "pos": "noun"
+        }
+      ],
+      "formal_continuity": "accepted",
+      "component": null,
+      "proper_name_risk": "hypothetical_in_source_aggregate_not_observed",
+      "proper_name_observed": false,
+      "source_pos_available": false,
+      "reason": "Vasmer separates the chess borrowing through French feminine tour and Latin turris from peat and sea-plant homonyms with different routes. Untagged source тура cannot receive the chess-family edge for all readings.",
+      "national_form_decision": {
+        "type": "whole_lexical_form",
+        "schema_type": "lexical_branch_realization",
+        "form": "тура",
+        "general_family_realization": false
+      },
+      "decision": "deferred",
+      "blocker": "incompatible_or_unproved_lexical_histories_require_provenanced_partition_or_common_component",
+      "head_scope": "whole_lexical_row",
+      "frequency_status": "aggregate_only_not_sense_frequency",
+      "token_senses_established": false
+    },
+    {
+      "language": "en",
+      "word": "turret",
+      "lemma_id": "lemma:222cc76e64e0b5805573",
+      "family_id": "family:turr",
+      "membership_object": "lexical_row_or_component",
+      "lexical_evidence": [
+        "https://www.merriam-webster.com/dictionary/turret"
+      ],
+      "analyses": [
+        {
+          "history": "latin_turris",
+          "evidence": [
+            "https://www.merriam-webster.com/dictionary/turret"
+          ],
+          "verdict": "accepted",
+          "proved_components": [],
+          "pos": "noun"
+        }
+      ],
+      "formal_continuity": "withheld",
+      "component": null,
+      "proper_name_risk": "hypothetical_in_source_aggregate_not_observed",
+      "proper_name_observed": false,
+      "source_pos_available": false,
+      "reason": "Anglo-French turette/tourette is a diminutive of tur/tour. This is a separate national lexical head and derivational branch; the final derivational material is not the international canonical base. Concrete blocker: independent modern recognizable realization from turr to turret is not established by the saved ancestry alone; finite national correspondence and controls required. POS/name absence is not the blocker.",
+      "national_form_decision": {
+        "type": "whole_lexical_form",
+        "schema_type": "lexical_branch_realization",
+        "form": "turret",
+        "general_family_realization": false
+      },
+      "decision": "deferred",
+      "blocker": "national_formal_continuity_requires_independent_scoped_evidence",
+      "head_scope": "whole_lexical_row",
+      "frequency_status": "aggregate_only_not_sense_frequency",
+      "token_senses_established": false
+    },
+    {
+      "language": "en",
+      "word": "system",
+      "lemma_id": "lemma:dff0cfb88a2b04b1e528",
+      "family_id": "family:system",
+      "membership_object": "lexical_row_or_component",
+      "lexical_evidence": [
+        "https://www.merriam-webster.com/dictionary/system"
+      ],
+      "analyses": [
+        {
+          "history": "greek_systema_noun",
+          "evidence": [
+            "https://www.merriam-webster.com/dictionary/system"
+          ],
+          "verdict": "accepted",
+          "proved_components": [],
+          "pos": "noun"
+        }
+      ],
+      "formal_continuity": "accepted",
+      "component": null,
+      "proper_name_risk": "hypothetical_in_source_aggregate_not_observed",
+      "proper_name_observed": false,
+      "source_pos_available": false,
+      "reason": "Merriam-Webster supports the noun and its Greek/Latin origin. systems is its regular plural; neither record proves a brand identity. Existing finite promotion preserved; POS variants keep the independently proved common base. All aggregate frequencies remain aggregate-only.",
+      "national_form_decision": null,
+      "decision": "accepted",
+      "blocker": null,
+      "head_scope": "whole_lexical_row",
+      "frequency_status": "aggregate_only_not_sense_frequency",
+      "token_senses_established": false
+    },
+    {
+      "language": "en",
+      "word": "systems",
+      "lemma_id": "lemma:199a094f069aa5bbaf21",
+      "family_id": "family:system",
+      "membership_object": "lexical_row_or_component",
+      "lexical_evidence": [
+        "https://www.merriam-webster.com/dictionary/system"
+      ],
+      "analyses": [
+        {
+          "history": "greek_systema_noun",
+          "evidence": [
+            "https://www.merriam-webster.com/dictionary/system"
+          ],
+          "verdict": "accepted",
+          "proved_components": [],
+          "pos": "noun"
+        }
+      ],
+      "formal_continuity": "accepted",
+      "component": null,
+      "proper_name_risk": "hypothetical_in_source_aggregate_not_observed",
+      "proper_name_observed": false,
+      "source_pos_available": false,
+      "reason": "Merriam-Webster supports the noun and its Greek/Latin origin. systems is its regular plural; neither record proves a brand identity. Existing finite promotion preserved; POS variants keep the independently proved common base. All aggregate frequencies remain aggregate-only.",
+      "national_form_decision": null,
+      "decision": "accepted",
+      "blocker": null,
+      "head_scope": "whole_lexical_row",
+      "frequency_status": "aggregate_only_not_sense_frequency",
+      "token_senses_established": false
+    },
+    {
+      "language": "de",
+      "word": "system",
+      "lemma_id": "lemma:7ba15b6de9b10a155d63",
+      "family_id": "family:system",
+      "membership_object": "lexical_row_or_component",
+      "lexical_evidence": [
+        "https://www.duden.de/rechtschreibung/System"
+      ],
+      "analyses": [
+        {
+          "history": "greek_systema_noun",
+          "evidence": [
+            "https://www.duden.de/rechtschreibung/System"
+          ],
+          "verdict": "accepted",
+          "proved_components": [],
+          "pos": "noun"
+        }
+      ],
+      "formal_continuity": "accepted",
+      "component": null,
+      "proper_name_risk": "hypothetical_in_source_aggregate_not_observed",
+      "proper_name_observed": false,
+      "source_pos_available": false,
+      "reason": "Duden supports System, genitive Systems and plural Systeme. Only real records system and systems are in this finite frame; Systeme remains a corpus gap in this selected route. Existing finite promotion preserved; POS variants keep the independently proved common base. All aggregate frequencies remain aggregate-only.",
+      "national_form_decision": null,
+      "decision": "accepted",
+      "blocker": null,
+      "head_scope": "whole_lexical_row",
+      "frequency_status": "aggregate_only_not_sense_frequency",
+      "token_senses_established": false
+    },
+    {
+      "language": "de",
+      "word": "systems",
+      "lemma_id": "lemma:d88dae85956546cdf8c1",
+      "family_id": "family:system",
+      "membership_object": "lexical_row_or_component",
+      "lexical_evidence": [
+        "https://www.duden.de/rechtschreibung/System"
+      ],
+      "analyses": [
+        {
+          "history": "greek_systema_noun",
+          "evidence": [
+            "https://www.duden.de/rechtschreibung/System"
+          ],
+          "verdict": "accepted",
+          "proved_components": [],
+          "pos": "noun"
+        }
+      ],
+      "formal_continuity": "accepted",
+      "component": null,
+      "proper_name_risk": "hypothetical_in_source_aggregate_not_observed",
+      "proper_name_observed": false,
+      "source_pos_available": false,
+      "reason": "Duden supports System, genitive Systems and plural Systeme. Only real records system and systems are in this finite frame; Systeme remains a corpus gap in this selected route. Existing finite promotion preserved; POS variants keep the independently proved common base. All aggregate frequencies remain aggregate-only.",
+      "national_form_decision": null,
+      "decision": "accepted",
+      "blocker": null,
+      "head_scope": "whole_lexical_row",
+      "frequency_status": "aggregate_only_not_sense_frequency",
+      "token_senses_established": false
+    },
+    {
+      "language": "fr",
+      "word": "système",
+      "lemma_id": "lemma:182eb47cd06a3f918e8e",
+      "family_id": "family:system",
+      "membership_object": "lexical_row_or_component",
+      "lexical_evidence": [
+        "https://www.dictionnaire-academie.fr/article/A9S3967"
+      ],
+      "analyses": [
+        {
+          "history": "greek_systema_noun",
+          "evidence": [
+            "https://www.dictionnaire-academie.fr/article/A9S3967"
+          ],
+          "verdict": "accepted",
+          "proved_components": [],
+          "pos": "noun"
+        }
+      ],
+      "formal_continuity": "accepted",
+      "component": null,
+      "proper_name_risk": "hypothetical_in_source_aggregate_not_observed",
+      "proper_name_observed": false,
+      "source_pos_available": false,
+      "reason": "Académie supports système and regular plural systèmes. Its Greek borrowing belongs to the same international lexical row; malformed accent variants are withheld. Existing finite promotion preserved; POS variants keep the independently proved common base. All aggregate frequencies remain aggregate-only.",
+      "national_form_decision": null,
+      "decision": "accepted",
+      "blocker": null,
+      "head_scope": "whole_lexical_row",
+      "frequency_status": "aggregate_only_not_sense_frequency",
+      "token_senses_established": false
+    },
+    {
+      "language": "fr",
+      "word": "systèmes",
+      "lemma_id": "lemma:f053cdac3dc565364bf1",
+      "family_id": "family:system",
+      "membership_object": "lexical_row_or_component",
+      "lexical_evidence": [
+        "https://www.dictionnaire-academie.fr/article/A9S3967"
+      ],
+      "analyses": [
+        {
+          "history": "greek_systema_noun",
+          "evidence": [
+            "https://www.dictionnaire-academie.fr/article/A9S3967"
+          ],
+          "verdict": "accepted",
+          "proved_components": [],
+          "pos": "noun"
+        }
+      ],
+      "formal_continuity": "accepted",
+      "component": null,
+      "proper_name_risk": "hypothetical_in_source_aggregate_not_observed",
+      "proper_name_observed": false,
+      "source_pos_available": false,
+      "reason": "Académie supports système and regular plural systèmes. Its Greek borrowing belongs to the same international lexical row; malformed accent variants are withheld. Existing finite promotion preserved; POS variants keep the independently proved common base. All aggregate frequencies remain aggregate-only.",
+      "national_form_decision": null,
+      "decision": "accepted",
+      "blocker": null,
+      "head_scope": "whole_lexical_row",
+      "frequency_status": "aggregate_only_not_sense_frequency",
+      "token_senses_established": false
+    },
+    {
+      "language": "es",
+      "word": "sistema",
+      "lemma_id": "lemma:0334d76116cb3e9622ec",
+      "family_id": "family:system",
+      "membership_object": "lexical_row_or_component",
+      "lexical_evidence": [
+        "https://dle.rae.es/sistema"
+      ],
+      "analyses": [
+        {
+          "history": "greek_systema_noun",
+          "evidence": [
+            "https://dle.rae.es/sistema"
+          ],
+          "verdict": "accepted",
+          "proved_components": [],
+          "pos": "noun"
+        }
+      ],
+      "formal_continuity": "accepted",
+      "component": null,
+      "proper_name_risk": "hypothetical_in_source_aggregate_not_observed",
+      "proper_name_observed": false,
+      "source_pos_available": false,
+      "reason": "RAE supports masculine noun sistema from late Latin and Greek. No noun/verb ambiguity is asserted for this Spanish record. Existing finite promotion preserved; POS variants keep the independently proved common base. All aggregate frequencies remain aggregate-only.",
+      "national_form_decision": null,
+      "decision": "accepted",
+      "blocker": null,
+      "head_scope": "whole_lexical_row",
+      "frequency_status": "aggregate_only_not_sense_frequency",
+      "token_senses_established": false
+    },
+    {
+      "language": "it",
+      "word": "sistema",
+      "lemma_id": "lemma:d4ba3823d8978737b19d",
+      "family_id": "family:system",
+      "membership_object": "lexical_row_or_component",
+      "lexical_evidence": [
+        "https://www.treccani.it/vocabolario/sistema/",
+        "https://www.treccani.it/vocabolario/sistemare/"
+      ],
+      "analyses": [
+        {
+          "history": "greek_systema_noun",
+          "evidence": [
+            "https://www.treccani.it/vocabolario/sistema/",
+            "https://www.treccani.it/vocabolario/sistemare/"
+          ],
+          "verdict": "accepted",
+          "proved_components": [
+            "sistem"
+          ],
+          "pos": "noun"
+        },
+        {
+          "history": "greek_systema_noun",
+          "evidence": [
+            "https://www.treccani.it/vocabolario/sistema/",
+            "https://www.treccani.it/vocabolario/sistemare/"
+          ],
+          "verdict": "accepted",
+          "proved_components": [
+            "sistem"
+          ],
+          "pos": "sistemare_finite_verb"
+        }
+      ],
+      "formal_continuity": "accepted",
+      "component": "sistem",
+      "proper_name_risk": "hypothetical_in_source_aggregate_not_observed",
+      "proper_name_observed": false,
+      "source_pos_available": false,
+      "reason": "Treccani independently supports noun sistema and sistemare derived from that noun. The aggregate sistema can be a noun or a finite verb form. Bind only the common sistem lexical-base component present in either reading; do not claim whole-noun identity or corpus POS disambiguation. Existing finite promotion preserved; POS variants keep the independently proved common base. All aggregate frequencies remain aggregate-only.",
+      "national_form_decision": null,
+      "decision": "accepted",
+      "blocker": null,
+      "head_scope": "lexical_base_component",
+      "frequency_status": "aggregate_only_not_sense_frequency",
+      "token_senses_established": false
+    },
+    {
+      "language": "ru",
+      "word": "система",
+      "lemma_id": "lemma:f13af3cb2edc197e2860",
+      "family_id": "family:system",
+      "membership_object": "lexical_row_or_component",
+      "lexical_evidence": [
+        "https://lexicography.online/explanatory/ozhegov/с/система",
+        "https://lexicography.online/etymology/vasmer/с/система"
+      ],
+      "analyses": [
+        {
+          "history": "greek_systema_noun",
+          "evidence": [
+            "https://lexicography.online/explanatory/ozhegov/с/система",
+            "https://lexicography.online/etymology/vasmer/с/система"
+          ],
+          "verdict": "accepted",
+          "proved_components": [],
+          "pos": "noun"
+        }
+      ],
+      "formal_continuity": "accepted",
+      "component": null,
+      "proper_name_risk": "hypothetical_in_source_aggregate_not_observed",
+      "proper_name_observed": false,
+      "source_pos_available": false,
+      "reason": "Ozhegov supports the noun and -ы inflection; систем is regular genitive plural. Vasmer supports French/Latin/Greek mediation. No proper-name row is imported. Existing finite promotion preserved; POS variants keep the independently proved common base. All aggregate frequencies remain aggregate-only.",
+      "national_form_decision": null,
+      "decision": "accepted",
+      "blocker": null,
+      "head_scope": "whole_lexical_row",
+      "frequency_status": "aggregate_only_not_sense_frequency",
+      "token_senses_established": false
+    },
+    {
+      "language": "ru",
+      "word": "систем",
+      "lemma_id": "lemma:d053aa613e6063994f8f",
+      "family_id": "family:system",
+      "membership_object": "lexical_row_or_component",
+      "lexical_evidence": [
+        "https://lexicography.online/explanatory/ozhegov/с/система",
+        "https://lexicography.online/etymology/vasmer/с/система"
+      ],
+      "analyses": [
+        {
+          "history": "greek_systema_noun",
+          "evidence": [
+            "https://lexicography.online/explanatory/ozhegov/с/система",
+            "https://lexicography.online/etymology/vasmer/с/система"
+          ],
+          "verdict": "accepted",
+          "proved_components": [],
+          "pos": "noun"
+        }
+      ],
+      "formal_continuity": "accepted",
+      "component": null,
+      "proper_name_risk": "hypothetical_in_source_aggregate_not_observed",
+      "proper_name_observed": false,
+      "source_pos_available": false,
+      "reason": "Ozhegov supports the noun and -ы inflection; систем is regular genitive plural. Vasmer supports French/Latin/Greek mediation. No proper-name row is imported. Existing finite promotion preserved; POS variants keep the independently proved common base. All aggregate frequencies remain aggregate-only.",
+      "national_form_decision": null,
+      "decision": "accepted",
+      "blocker": null,
+      "head_scope": "whole_lexical_row",
+      "frequency_status": "aggregate_only_not_sense_frequency",
+      "token_senses_established": false
+    },
+    {
+      "language": "ru",
+      "word": "системы",
+      "lemma_id": "lemma:a2c6751527466bf1958f",
+      "family_id": "family:system",
+      "membership_object": "lexical_row_or_component",
+      "lexical_evidence": [
+        "https://lexicography.online/explanatory/ozhegov/с/система",
+        "https://lexicography.online/etymology/vasmer/с/система"
+      ],
+      "analyses": [
+        {
+          "history": "greek_systema_noun",
+          "evidence": [
+            "https://lexicography.online/explanatory/ozhegov/с/система",
+            "https://lexicography.online/etymology/vasmer/с/система"
+          ],
+          "verdict": "accepted",
+          "proved_components": [],
+          "pos": "noun"
+        }
+      ],
+      "formal_continuity": "accepted",
+      "component": null,
+      "proper_name_risk": "hypothetical_in_source_aggregate_not_observed",
+      "proper_name_observed": false,
+      "source_pos_available": false,
+      "reason": "Ozhegov supports the noun and -ы inflection; систем is regular genitive plural. Vasmer supports French/Latin/Greek mediation. No proper-name row is imported. Existing finite promotion preserved; POS variants keep the independently proved common base. All aggregate frequencies remain aggregate-only.",
+      "national_form_decision": null,
+      "decision": "accepted",
+      "blocker": null,
+      "head_scope": "whole_lexical_row",
+      "frequency_status": "aggregate_only_not_sense_frequency",
+      "token_senses_established": false
+    },
+    {
+      "language": "es",
+      "word": "sistematizar",
+      "lemma_id": "lemma:0c05cc8944d073deeeda",
+      "family_id": "family:system",
+      "membership_object": "lexical_row_or_component",
+      "lexical_evidence": [
+        "https://dle.rae.es/sistematizar"
+      ],
+      "analyses": [
+        {
+          "history": "greek_systema_noun",
+          "evidence": [
+            "https://dle.rae.es/sistematizar"
+          ],
+          "verdict": "accepted",
+          "proved_components": [],
+          "pos": "noun"
+        }
+      ],
+      "formal_continuity": "accepted",
+      "component": null,
+      "proper_name_risk": "hypothetical_in_source_aggregate_not_observed",
+      "proper_name_observed": false,
+      "source_pos_available": false,
+      "reason": "RAE explicitly derives sistematizar from late Latin systema, -atis plus -izar. sistemat- is a derivational stem in this finite branch, not a second canonical root. Existing finite promotion preserved; POS variants keep the independently proved common base. All aggregate frequencies remain aggregate-only.",
+      "national_form_decision": null,
+      "decision": "accepted",
+      "blocker": null,
+      "head_scope": "whole_lexical_row",
+      "frequency_status": "aggregate_only_not_sense_frequency",
+      "token_senses_established": false
+    }
+  ],
+  "seed_audit": [
+    {
+      "family_id": "family:inter",
+      "canonical": "inter",
+      "canonical_status": "accepted",
+      "typed_realizations": 0,
+      "types_grant_membership": false
+    },
+    {
+      "family_id": "family:ocul",
+      "canonical": "ocul",
+      "canonical_status": "accepted",
+      "typed_realizations": 0,
+      "types_grant_membership": false
+    },
+    {
+      "family_id": "family:regul",
+      "canonical": "regul",
+      "canonical_status": "accepted",
+      "typed_realizations": 0,
+      "types_grant_membership": false
+    },
+    {
+      "family_id": "family:alter",
+      "canonical": "alter",
+      "canonical_status": "accepted",
+      "typed_realizations": 0,
+      "types_grant_membership": false
+    },
+    {
+      "family_id": "family:ped",
+      "canonical": "ped",
+      "canonical_status": "accepted",
+      "typed_realizations": 0,
+      "types_grant_membership": false
+    },
+    {
+      "family_id": "family:manu",
+      "canonical": "manu",
+      "canonical_status": "accepted",
+      "typed_realizations": 0,
+      "types_grant_membership": false
+    },
+    {
+      "family_id": "family:liber",
+      "canonical": "liber",
+      "canonical_status": "accepted",
+      "typed_realizations": 0,
+      "types_grant_membership": false
+    },
+    {
+      "family_id": "family:nat",
+      "canonical": "nat",
+      "canonical_status": "accepted",
+      "typed_realizations": 0,
+      "types_grant_membership": false
+    },
+    {
+      "family_id": "family:loc",
+      "canonical": "loc",
+      "canonical_status": "accepted",
+      "typed_realizations": 7,
+      "types_grant_membership": false
+    },
+    {
+      "family_id": "family:observ",
+      "canonical": "observ",
+      "canonical_status": "accepted",
+      "typed_realizations": 6,
+      "types_grant_membership": false
+    },
+    {
+      "family_id": "family:inform",
+      "canonical": "inform",
+      "canonical_status": "accepted",
+      "typed_realizations": 6,
+      "types_grant_membership": false
+    },
+    {
+      "family_id": "family:creat",
+      "canonical": "creat",
+      "canonical_status": "accepted",
+      "typed_realizations": 18,
+      "types_grant_membership": false
+    },
+    {
+      "family_id": "family:relat",
+      "canonical": "relat",
+      "canonical_status": "accepted",
+      "typed_realizations": 9,
+      "types_grant_membership": false
+    },
+    {
+      "family_id": "family:oper",
+      "canonical": "oper",
+      "canonical_status": "accepted",
+      "typed_realizations": 6,
+      "types_grant_membership": false
+    },
+    {
+      "family_id": "family:mut",
+      "canonical": "mut",
+      "canonical_status": "accepted",
+      "typed_realizations": 6,
+      "types_grant_membership": false
+    },
+    {
+      "family_id": "family:act",
+      "canonical": "act",
+      "canonical_status": "accepted",
+      "typed_realizations": 12,
+      "types_grant_membership": false
+    },
+    {
+      "family_id": "family:system",
+      "canonical": "system",
+      "canonical_status": "accepted",
+      "typed_realizations": 1,
+      "types_grant_membership": false
+    }
+  ],
+  "italian_anis_branch": {
+    "whole_form": "anice",
+    "whole_form_type": "lexical_branch_realization",
+    "branch_stem": "anic",
+    "branch_type": "derivational_stem",
+    "branch_status": "accepted_dictionary_derivational_boundary_research_only",
+    "supporting_head": "anicino",
+    "evidence": [
+      "https://www.treccani.it/vocabolario/ricerca/anice/"
+    ],
+    "membership_authorized": false,
+    "universal_s_c_rule_authorized": false
+  },
+  "scope": {
+    "anis_unique_pool": 801,
+    "anis_finite_approved": 6,
+    "tower_unique_pool": 1083,
+    "tower_finite_approved": 0,
+    "blanket_pool_verdict": false,
+    "family_size_cap": null
+  }
+}

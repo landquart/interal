@@ -1,0 +1,99 @@
+{
+  "schema_version": 6,
+  "stage": "prompt02-final-validation-20261004",
+  "baseline_sha": "08a5ce1e6453c0d3a2ccad08b8dd5ee92b774c75",
+  "application_sha": "e4f515202d585bd87c131875145e492b137b5d50",
+  "production_enabled": false,
+  "local_completion_status": "complete",
+  "targeted_tests": {
+    "pass": 35,
+    "fail": 0,
+    "skip": 0
+  },
+  "full_npm_test": {
+    "verdict": "pass",
+    "discovered_files": 128,
+    "run_files": 128,
+    "dependency_installation": "npm ci --ignore-scripts; lockfile unchanged"
+  },
+  "independent_audit": "pass",
+  "deterministic_replay": {
+    "verdict": "pass",
+    "byte_identical_artifacts": 273
+  },
+  "decision_reproduction": "byte_identical",
+  "current_counts": {
+    "catalog_families": 18,
+    "accepted_memberships": 21554,
+    "lexical_heads": 216,
+    "legacy_exact_units": 18857,
+    "known_active_queue_records": 23240
+  },
+  "exact_stage_differential": {
+    "accepted_additions": 6,
+    "accepted_removals": 0,
+    "unexpected_differences": 0,
+    "new_anis_heads": 6,
+    "new_turr_heads": 0,
+    "existing_system_memberships_preserved": 12
+  },
+  "tower_core_individual_blockers": 7,
+  "turr_boundary": "accepted_research_only_not_promoted",
+  "whole_pool_verdicts": false,
+  "synthetic_fixtures": "in tests only; no synthetic corpus IDs in decisions",
+  "code_and_dossier_sha256": {
+    ".github/workflows/audit-associative-family-v6.yml": "21aee790413b1b5ca65470e4f619fd327573cad64b56f04a4bc6bcfd17c578b2",
+    "associativvordes/family-index-v6/catalog.json": "f58b1a3b28351aae612114ba8300c5995bb5cc7d4f2afd77fccf68d885c15dea",
+    "associativvordes/family-index-v6/family-promotions.json": "6a9111c6c57fbe13b56e2247e9e7021f7ca0e68bd9b1129f1602dc73537cd220",
+    "associativvordes/family-index-v6/schema.json": "bd329b36c4b9872ff00e1db62cf9c72b24818d08195a34757df4c442d280c8bc",
+    "audit/associative-family-v6/PROMPT02-ROW-TABLE-20261004.md": "589d99db72cfbd01ea163721628283cc797d4135bcde96046d1a118b6d1f3663",
+    "audit/associative-family-v6/SENSES-POLICY-20261004.md": "6b7d496c23232b17ce6d58eb24ea12c52c753ce27d78dc0e1812f2423c130411",
+    "audit/associative-family-v6/anis-finite-lexical-row-promotion-20261004.json": "8be3d63522241470acf18b0fcc9607b5ba32bcfa7d74601f262bd7cf1b5c83d7",
+    "audit/associative-family-v6/prompt02-research-20261004.json": "94afc02210947bb39c33d57eb9415ce66d85d408748a6ae87d239a7e52096882",
+    "audit/associative-family-v6/prompt02-row-decisions-20261004.json": "0f1edb5021ebe2c730960d316588740542a9362b67f1aa87d8cb65068d173619",
+    "audit/associative-family-v6/prompt02-torre-homonym-research-20261004.json": "0ed0d6bdde08af8896978087ff0e859f8735273334a49711834bb0143637d361",
+    "audit/associative-family-v6/turr-finite-lexical-row-promotion-20261004.json": "8103f158143b9783169f453563607a79f3375c7842fba6afebd7db33715fbd0d",
+    "package-lock.json": "40d8fdd1180ce87517b32569921f1283e7b12ad9724af8a79d299864f3cbcd04",
+    "package.json": "bc9c3bf63635a094aa5aed0da2748213bb8aa8e553e910acc10264cb8ca1e4f5",
+    "scripts/audit-associative-family-v6.mjs": "5533235b516b5fe0b328a2ca0d6a630d9b405b4a43d4d04c99c28d1473b05f7c",
+    "scripts/build-associative-family-v6.mjs": "c6e472d372a6e91f77b177a04226d7d95cbe3f6964070af0f1d5a3afb38b7708",
+    "scripts/lib/associative-v6-family-promotion.mjs": "f0b9d7d13f0cfccb48a441f7965e12af79dbf337d8775bf654371851f20dc8f5",
+    "scripts/lib/associative-v6-senses-policy.mjs": "35c0a00698452835cfb9af2b7c98acb36a01421b28d62589f85caef9ceba0203",
+    "scripts/prepare-associative-v6-prompt02.py": "22db7c0a5635327b314cf535b86e92af85bb7db08b02abb3d744bdba07eb1c06",
+    "scripts/validate-associative-v6-prompt02.py": "2a9a8f9aa0d8b084d22aaeef39ca7118f6c5fa79b4af4aa8693792c10f5bbd71",
+    "tests/associative-family-v6-architecture.test.mjs": "218cab54cad923c861aebc26c96d885453add83972456c7a4fa146a49712e07c",
+    "tests/associative-family-v6-head-recognition.test.mjs": "3fbe96a03e02debbfe2a3f4bf42faeccc4fdf81576a5a12e453093d6f426d55e",
+    "tests/associative-family-v6-migration.test.mjs": "cdd6d0a725ad1600745774971b1169be4d730983c19c19e92fa22582d0869d77",
+    "tests/associative-family-v6-promotions.test.mjs": "b9001ba1fb21f7f28dee559cdfeb86bb363efed0ab69585876201f38bbd004b3",
+    "tests/associative-family-v6-realizations.test.mjs": "b0b6efe80410f3f6c1e56b4b93688b9f952370685b6ace30729106803abd0793",
+    "tests/associative-family-v6-senses-policy.test.mjs": "6ba6e9d66a0786b8eaa4b37c66c3602e3426a1f0333db2b42bde44d58290abb1"
+  },
+  "log_and_artifact_sha256": {
+    "audit.log.gz": "0706ea618d6e0dc082a62ffda0dcf67f645612d43b49acf6c605d7fb0ac3024c",
+    "full-tests.log.gz": "430ce2d697d06fa8e688c215fc47cfc8b6e31f2e7218c29212887404bd4dc9ce",
+    "targeted.log.gz": "4b0543b9abcfce7dbd3e806328ae90b99515a3baf207edfc6387d264d363b582",
+    "replay.log.gz": "719d6c42af424efe9690e6d60ff82f40e3979a8898c31b5283f47f76efd9c62a",
+    "replay-comparison.json": "59029e2758764b4f94c5916ad297d7c277f1964bec93fb21dd6eb667631c6770",
+    "build.log.gz": "0e71ce102ef70e338def6423a06640430c33c7797aa70fa67b4dbf9bb9c9f181",
+    "exact-differential.json": "049e4f2913351ba4b9f52607603d93dc9a4210b558a44caf8f554a192173e04c",
+    "integrity.json": "3bc79e316c548f7264b039bcbe74d88138b606c6e08bb92826985710c286d21d"
+  },
+  "source_lock_sha256": "fceb87001335387d4af2541a7395b929ef9c77e48e0bccbd758e9d0d7e676465",
+  "remote": {
+    "publication": "blocked_by_automatic_approval_review",
+    "push_rejections": 2,
+    "last_observed_remote_sha": "08a5ce1e6453c0d3a2ccad08b8dd5ee92b774c75",
+    "new_sha_ci": "not_run_unpublished",
+    "reason": "Automatic approval review requires explicit user permission for external publication of newly created audit, decision and code files. Public repository/push permission and source/credential checks did not resolve the rejection.",
+    "pr": 652,
+    "dependency_chain": [
+      "main",
+      650,
+      651,
+      652
+    ],
+    "merge_performed": false,
+    "production_switched": false
+  },
+  "next_step": "User permission to publish existing branch, then CI on exact pushed SHA; separately continue finite corpus review beyond this completed local block."
+}

@@ -1,3 +1,13 @@
+## Промпт 02: локально завершён, публикация заблокирована — 2026-10-04
+
+Итоговое применение `e4f515202d585bd87c131875145e492b137b5d50`: **+6 anis, −0 относительно 08a5ce1e**; catalog 18, accepted 21 554, lexical heads 216, legacy exact 18 857. Все прежние membership objects, source IDs, v5/frequency/historical evidence сохранены. Known active 23 240 неизменны. Membership = lexical row/proved component, frequency остаётся aggregate-only.
+
+Все 25 core IDs имеют individual senses decisions: anis шесть приняты; tower/turr семь с evidence blockers; system 12 сохранены. Обе torre withheld: es torrar < torrere; it togliere/torre < tollere. Частота/редкость не устраняет разные histories. Turr canonical — research-only, не catalog promotion. Anice whole form и anic derivational research boundary разделены; universal s↔c отсутствует.
+
+Research/decision/application/validation commits разделены. **Не повторять provisional 221eafb**: его два torre допуска withdrawn до публикации. Итоговое применение — `e4f515202d585bd87c131875145e492b137b5d50`. 35 targeted tests, full npm test (128 files), independent audit и replay 273 artifacts pass. См. `WORK-REPORT-20261004.md`, `SENSES-POLICY-20261004.md`, `PROMPT02-ROW-TABLE-20261004.md`, `prompt02-validation-20261004/validation.json`.
+
+Два push отклонены automatic approval review; remote #652 на последнем наблюдении остаётся 08a5ce1e, новый SHA CI не запускался. Нужны явное разрешение публикации, push и CI точного SHA. No merge, production v5, цепочка main → #650 → #651 → #652. Весь словарь не завершён; следующие evidence fronts перечислены в новом отчёте. Более ранние записи ниже исторические и superseded только в явно указанном finite scope.
+
 ## Editorial Redaktion and German courage Mut applied, 2026-10-03 continuation
 
 Remote application `ba5277a3136b51080efad584c4ad7c00e53eb1e7` admits 173 exact Redaktion/Redaktionen editorial components to act and excludes ten independently evidenced German Mut courage/temperament compounds from mutare. One head per evidenced base, exact IDs and boundaries; no whole-compound POS claim. Redaktion continues rédaction/redactum/redigere ← re- + agere; the prefixed red- is not absorbed into canonical act. Remaining Redaktion ten and courage frame 58 stay pending.

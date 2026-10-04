@@ -3862,6 +3862,311 @@
         "ety:d23b06bd3000",
         "ety:fe15b78c8368"
       ]
+    },
+    {
+      "id": "family:anis",
+      "canonical": "anis",
+      "legacy_ids": [],
+      "promotion_status": "accepted_finite_promotion",
+      "element_type": "root",
+      "aliases": [
+        "anis"
+      ],
+      "canonical_decision": {
+        "status": "accepted",
+        "reason": "Preserves the complete shared botanical nominal base; ani strips a lexical s, anic is an Italian stem and anise an English surface. No general substring or cross-language reflex is authorized.",
+        "evidence": [
+          "https://www.merriam-webster.com/dictionary/anise",
+          "https://www.duden.de/rechtschreibung/Anis",
+          "https://www.dictionnaire-academie.fr/article/A9A1808",
+          "https://dle.rae.es/an%C3%ADs",
+          "https://www.treccani.it/vocabolario/anice/",
+          "https://lexicography.online/etymology/vasmer/а/анис"
+        ]
+      },
+      "realizations": {},
+      "reflexes": [
+        {
+          "family_id": "family:anis",
+          "language": "en",
+          "realization": "anise",
+          "realization_type": "lexical_branch_realization",
+          "morphology_boundary": "Whole national form only; no productive stem, inflection or substitution rule granted.",
+          "supporting_heads": [
+            "anise"
+          ],
+          "positive_controls": [
+            "anise"
+          ],
+          "negative_controls": [
+            "americanise",
+            "balkanise",
+            "afghanis",
+            "afghanistan-abzug",
+            "anisotropy",
+            "mechanicsburg",
+            "americanis",
+            "anisotropy",
+            "humanic",
+            "mechanic"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "https://www.merriam-webster.com/dictionary/anise"
+            }
+          ],
+          "head_scope": [
+            {
+              "language": "en",
+              "normalized_head": "anise",
+              "sense": "botanical_aromatic_plant_and_lexical_metonymies",
+              "evidence": [
+                {
+                  "source": "https://www.merriam-webster.com/dictionary/anise"
+                }
+              ]
+            }
+          ],
+          "general_family_realization": false,
+          "establishes_membership": false
+        },
+        {
+          "family_id": "family:anis",
+          "language": "de",
+          "realization": "anis",
+          "realization_type": "lexical_branch_realization",
+          "morphology_boundary": "Whole national form only; no productive stem, inflection or substitution rule granted.",
+          "supporting_heads": [
+            "anis"
+          ],
+          "positive_controls": [
+            "anis"
+          ],
+          "negative_controls": [
+            "americanise",
+            "balkanise",
+            "afghanis",
+            "afghanistan-abzug",
+            "anisotropy",
+            "mechanicsburg",
+            "americanis",
+            "anisotropy",
+            "humanic",
+            "mechanic"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "https://www.duden.de/rechtschreibung/Anis"
+            }
+          ],
+          "head_scope": [
+            {
+              "language": "de",
+              "normalized_head": "anis",
+              "sense": "botanical_aromatic_plant_and_lexical_metonymies",
+              "evidence": [
+                {
+                  "source": "https://www.duden.de/rechtschreibung/Anis"
+                }
+              ]
+            }
+          ],
+          "general_family_realization": false,
+          "establishes_membership": false
+        },
+        {
+          "family_id": "family:anis",
+          "language": "fr",
+          "realization": "anis",
+          "realization_type": "lexical_branch_realization",
+          "morphology_boundary": "Whole national form only; no productive stem, inflection or substitution rule granted.",
+          "supporting_heads": [
+            "anis"
+          ],
+          "positive_controls": [
+            "anis"
+          ],
+          "negative_controls": [
+            "americanise",
+            "balkanise",
+            "afghanis",
+            "afghanistan-abzug",
+            "anisotropy",
+            "mechanicsburg",
+            "americanis",
+            "anisotropy",
+            "humanic",
+            "mechanic"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "https://www.dictionnaire-academie.fr/article/A9A1808"
+            }
+          ],
+          "head_scope": [
+            {
+              "language": "fr",
+              "normalized_head": "anis",
+              "sense": "botanical_aromatic_plant_and_lexical_metonymies",
+              "evidence": [
+                {
+                  "source": "https://www.dictionnaire-academie.fr/article/A9A1808"
+                }
+              ]
+            }
+          ],
+          "general_family_realization": false,
+          "establishes_membership": false
+        },
+        {
+          "family_id": "family:anis",
+          "language": "es",
+          "realization": "anís",
+          "realization_type": "lexical_branch_realization",
+          "morphology_boundary": "Whole national form only; no productive stem, inflection or substitution rule granted.",
+          "supporting_heads": [
+            "anís"
+          ],
+          "positive_controls": [
+            "anís"
+          ],
+          "negative_controls": [
+            "americanise",
+            "balkanise",
+            "afghanis",
+            "afghanistan-abzug",
+            "anisotropy",
+            "mechanicsburg",
+            "americanis",
+            "anisotropy",
+            "humanic",
+            "mechanic"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "https://dle.rae.es/an%C3%ADs"
+            }
+          ],
+          "head_scope": [
+            {
+              "language": "es",
+              "normalized_head": "anís",
+              "sense": "botanical_aromatic_plant_and_lexical_metonymies",
+              "evidence": [
+                {
+                  "source": "https://dle.rae.es/an%C3%ADs"
+                }
+              ]
+            }
+          ],
+          "general_family_realization": false,
+          "establishes_membership": false
+        },
+        {
+          "family_id": "family:anis",
+          "language": "it",
+          "realization": "anice",
+          "realization_type": "lexical_branch_realization",
+          "morphology_boundary": "Whole national form only; no productive stem, inflection or substitution rule granted.",
+          "supporting_heads": [
+            "anice"
+          ],
+          "positive_controls": [
+            "anice"
+          ],
+          "negative_controls": [
+            "americanise",
+            "balkanise",
+            "afghanis",
+            "afghanistan-abzug",
+            "anisotropy",
+            "mechanicsburg",
+            "americanis",
+            "anisotropy",
+            "humanic",
+            "mechanic"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "https://www.treccani.it/vocabolario/anice/"
+            }
+          ],
+          "head_scope": [
+            {
+              "language": "it",
+              "normalized_head": "anice",
+              "sense": "botanical_aromatic_plant_and_lexical_metonymies",
+              "evidence": [
+                {
+                  "source": "https://www.treccani.it/vocabolario/anice/"
+                }
+              ]
+            }
+          ],
+          "general_family_realization": false,
+          "establishes_membership": false
+        },
+        {
+          "family_id": "family:anis",
+          "language": "ru",
+          "realization": "анис",
+          "realization_type": "lexical_branch_realization",
+          "morphology_boundary": "Whole national form only; no productive stem, inflection or substitution rule granted.",
+          "supporting_heads": [
+            "анис"
+          ],
+          "positive_controls": [
+            "анис"
+          ],
+          "negative_controls": [
+            "americanise",
+            "balkanise",
+            "afghanis",
+            "afghanistan-abzug",
+            "anisotropy",
+            "mechanicsburg",
+            "americanis",
+            "anisotropy",
+            "humanic",
+            "mechanic"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "https://lexicography.online/etymology/vasmer/а/анис"
+            },
+            {
+              "source": "https://www.elbrusoid.org/upload/iblock/660/66069051c794f59da733f323de12b3e7.pdf"
+            }
+          ],
+          "head_scope": [
+            {
+              "language": "ru",
+              "normalized_head": "анис",
+              "sense": "botanical_aromatic_plant_and_lexical_metonymies",
+              "evidence": [
+                {
+                  "source": "https://lexicography.online/etymology/vasmer/а/анис"
+                },
+                {
+                  "source": "https://www.elbrusoid.org/upload/iblock/660/66069051c794f59da733f323de12b3e7.pdf"
+                }
+              ]
+            }
+          ],
+          "general_family_realization": false,
+          "establishes_membership": false
+        }
+      ],
+      "source_evidence_clusters": [
+        "ety:87f837c8c242",
+        "ety:d3003eeecc3d"
+      ]
     }
   ],
   "head_policies": [
@@ -4675,6 +4980,26 @@
         "система-галс",
         "системболагет",
         "системикс"
+      ]
+    },
+    "anis": {
+      "positive": [
+        "anise",
+        "anis",
+        "anís",
+        "anice",
+        "анис"
+      ],
+      "negative": [
+        "americanise",
+        "balkanise",
+        "afghanis",
+        "afghanistan-abzug",
+        "anisotropy",
+        "mechanicsburg",
+        "americanis",
+        "humanic",
+        "mechanic"
       ]
     }
   },

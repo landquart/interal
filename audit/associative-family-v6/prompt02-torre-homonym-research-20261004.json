@@ -1,0 +1,32 @@
+{
+  "schema_version": 6,
+  "stage": "prompt02-torre-homonym-research-20261004",
+  "production_enabled": false,
+  "binding_authorized": false,
+  "accepted_membership_authorized": false,
+  "supersedes_local_application": "221eafb",
+  "publication_occurred": false,
+  "sources": [
+    {
+      "language": "es",
+      "url": "https://dle.rae.es/torrar",
+      "finding": "RAE derives torrar from Latin torrere, to toast; its present subjunctive and usted imperative include exactly torre. This is a conventional verb reading with a different lexical history from noun torre < turris. No shared tower component or relative sense frequency is proved."
+    },
+    {
+      "language": "it",
+      "url": "https://www.treccani.it/vocabolario/torre_res-3eee76ef-0037-11de-9d89-0016357eee51/",
+      "finding": "Treccani records torre as a popular/poetic contracted infinitive of togliere."
+    },
+    {
+      "language": "it",
+      "url": "https://www.treccani.it/vocabolario/togliere/",
+      "finding": "Treccani derives togliere/tollere/torre from Latin tollere, distinct from tower turris. Rarity or literary register cannot remove a documented homonym."
+    },
+    {
+      "language": "it",
+      "url": "https://www.treccani.it/vocabolario/ricerca/anice/",
+      "finding": "Treccani independently lists anicino as derived from anice: an anise-seed biscuit. This supports the finite anic- derivational boundary in anicino, not a universal s/c correspondence or an unlisted corpus membership."
+    }
+  ],
+  "decisions": "Withdraw both unsplit torre admissions before any remote publication. Preserve anis six IDs. Turr canonical stays research-only; all seven tower core IDs have individual blockers. Save anic as a separately typed research-only finite derivational branch without inventing a corpus ID."
+}

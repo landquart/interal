@@ -1,3 +1,4 @@
+import {decideLexicalRow} from './associative-v6-senses-policy.mjs';
 import {createHash} from 'node:crypto';
 import {validateCatalog,normalizeHead,applyHeadReview,generateV6Memberships} from '../../associativvordes/js/associative-family-v6.js';
 import {recognizeFiniteHeadBindings} from '../../associativvordes/js/associative-family-v6-head-recognition.js';
@@ -14,6 +15,7 @@ export function validatePromotionDecision(doc) {
   const identity=g.language+'\0'+normalizeHead(g.normalized_head)+'\0'+g.sense;if(identities.has(identity))throw Error('Duplicate promotion head');identities.add(identity);
   for(const r of g.records){
    const key=r.language+'\0'+r.lemma_id;
+   if(doc.senses_policy){const v=r.senses_decision;if(!v||v.language!==r.language||v.lemma_id!==r.lemma_id||v.word!==r.word||v.family_id!==f.id||decideLexicalRow(v).decision!=='accepted'||r.frequency_status!=='aggregate_only_not_sense_frequency')throw Error('Promotion requires an accepted finite lexical-row senses decision and aggregate frequency limitation');}
    if(seen.has(key)||r.language!==g.language||!r.lemma_id||!r.word||r.formal_continuity_status!=='accepted'||r.relation_kind!=='lexical_continuity'||!r.source_record||r.source_record.lemma_id!==r.lemma_id||r.source_record.word!==r.word||!r.source_locator?.record_sha256||!doc.input_sha256[r.source_locator.path])throw Error('Duplicate, translated or unproved finite source identity');
    if(!new RegExp('^associativvordes/family-index-v5/members/'+g.language+'/[0-9a-f]{2}\\.json\\.gz$').test(r.source_locator.path)||!r.source_locator.family_id)throw Error('Promotion requires immutable v5 corpus source paths');
    seen.add(key);
@@ -55,7 +57,7 @@ export function materializeFamilyPromotions({index,promotions,headId}) {
     const identity_proof=[{path:stage.path,sha256:stage.sha256,lemma_id:r.lemma_id,word:r.word}],binding={language:r.language,family_id:familyId,lemma_id:r.lemma_id,word:r.word,fact_id:factId,link_role:r.link_role,identity_proof,...(r.component_segmentation?{component_segmentation:r.component_segmentation}: {})};
     bindings.push(binding);records.push({language:r.language,family_id:familyId,lemma_id:r.lemma_id,word:r.word});
     const key=r.language+'\0'+r.lemma_id,old=index.corpus.get(key);if(old&&JSON.stringify(old)!==JSON.stringify(r.source_record))throw Error('Promotion source conflicts with existing corpus identity');index.corpus.set(key,r.source_record);
-    index.links.push({...binding,head_id:id,recognition:'reviewed_family_promotion',evidence:[{source:r.source_locator,lemma_id:r.lemma_id}],source_references:g.sources,...(r.component_segmentation?{whole_compound_identity_established:false}:{}),...(r.corpus_pos_status?{corpus_pos_status:r.corpus_pos_status}:{})});
+    index.links.push({...binding,head_id:id,recognition:'reviewed_family_promotion',...(r.frequency_status?{frequency_status:r.frequency_status}:{}),...(r.senses_decision?{membership_object:r.senses_decision.membership_object,token_senses_established:false}:{}),evidence:[{source:r.source_locator,lemma_id:r.lemma_id}],source_references:g.sources,...(r.component_segmentation?{whole_compound_identity_established:false}:{}),...(r.corpus_pos_status?{corpus_pos_status:r.corpus_pos_status}:{})});
    }
   }
   const recognition=recognizeFiniteHeadBindings({records,facts,evidence,bindings});if(recognition.recognized.length!==records.length)throw Error('Ambiguous or unproved promotion identity');
