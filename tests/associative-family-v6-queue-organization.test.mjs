@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {gunzipSync} from 'node:zlib';
-import {organize,identityGrade,corpusKey} from '../scripts/lib/associative-v6-queue-organization.mjs';
+import {organize,identityGrade,corpusKey,routeOccurrenceId} from '../scripts/lib/associative-v6-queue-organization.mjs';
 // Explicitly synthetic: none of these IDs may enter real registries.
 const occurrence=(id,root,status='pending',frame='current')=>({occurrence_id:id+root+frame,language:'xx',lemma_id:'synthetic:'+id,word:id,root,status,frame,locator:'synthetic-fixture/'+id+'/'+root+'/'+frame,head_ids:[],routes:['synthetic:route']});
 const fact=(id,roots)=>({head_id:'synthetic:head:'+id,language:'xx',sense:'synthetic',version:1,finite_scope:roots.map(root=>({language:'xx',lemma_id:'synthetic:word',word:'word',family_id:'family:'+root,identity_grade:'proven_identity',proof_locator:'synthetic-proof'})),family_decisions:roots.map((root,i)=>({family_id:'family:'+root,status:['accepted','excluded','uncertain'][i%3],version:1}))});
@@ -40,4 +40,18 @@ test('real saved cache covers multilingual positive, negative and uncertain fini
  const actin=ranked.find(g=>g.identity_grade==='proven_identity'&&g.root==='act'&&g.open_candidate_ids.length===3);assert(actin);assert.equal(actin.edge_decisions[0].status,'uncertain');
  const system=cache.find(f=>f.language==='de'&&f.normalized_head==='system');assert.deepEqual(system.versions.map(v=>v.version),[1,2]);assert.equal(system.finite_scope.length,3);
  assert(records.every(r=>r.corpus_id===corpusKey(r)&&!r.lemma_id.startsWith('synthetic:')));
+});
+
+test('synthetic: regroup and finite additions preserve task identity across movable positions',()=>{
+ const task={language:'xx',lemma_id:'synthetic:word',root:'a',head_ids:['synthetic:head'],source:'synthetic-source'};
+ for(const frame of ['current','materialized','historical_identity','completed_review']){const a=routeOccurrenceId({...task,frame,locator:'snapshot#/1',version:1});assert.equal(a,routeOccurrenceId({...task,frame,locator:'snapshot#/20',version:1}));assert.notEqual(a,routeOccurrenceId({...task,frame,locator:'snapshot#/1',root:'b',version:1}));}
+ assert.notEqual(routeOccurrenceId({...task,frame:'revision',version:1}),routeOccurrenceId({...task,frame:'revision',version:2}));
+});
+test('current planning cache tracks finite decisions independently of the frozen historical cache',()=>{
+ const config=JSON.parse(fs.readFileSync('associativvordes/family-index-v6/queue-planning.json')),p=config.output+'/',read=n=>JSON.parse(gunzipSync(fs.readFileSync(p+n)));
+ const cache=read('lexical-fact-cache.json.gz'),heads=JSON.parse(gunzipSync(fs.readFileSync('associativvordes/family-index-v6/generated/heads.json.gz'))).filter(h=>h.identity_kind!=='legacy_exact_record');
+ assert.deepEqual(cache.map(f=>f.head_id).sort(),heads.map(h=>h.id).sort());
+ const stage=JSON.parse(fs.readFileSync('audit/associative-family-v6/oper-relat-continuation-20261004/decision.json'));
+ for(const g of stage.groups){const f=cache.find(f=>f.language===g.language&&f.normalized_head===g.normalized_head&&f.sense===g.sense);assert(f);assert.equal(f.family_membership_propagates,false);assert.equal(f.family_decisions.find(e=>e.family_id==='family:'+g.root).status,'accepted');assert.deepEqual(f.finite_scope.map(r=>r.lemma_id).sort(),g.records.map(r=>r.lemma_id).sort());}
+ const historical=JSON.parse(gunzipSync(fs.readFileSync('audit/associative-family-v6/queue-organization-20261004/generated/lexical-fact-cache.json.gz')));assert.equal(historical.length,216);
 });

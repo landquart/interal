@@ -37,8 +37,11 @@ jobs:
           for p in source.rglob('*'):
               if p.is_file(): assert p.read_bytes() == (replay/p.relative_to(source)).read_bytes(), str(p)
           PY
-      - name: Verify exact Prompt 03 differential against published baseline
-        run: python scripts/validate-associative-v6-prompt03.py /tmp/v6-replay
+      - name: Verify frozen Prompt 03 and 04 published snapshots
+        run: python scripts/validate-associative-v6-frozen-stages.py
+      - run: node scripts/dry-run-associative-v6-oper-relat-20261004.mjs
+      - name: Verify exact finite oper and relat differential
+        run: python scripts/validate-associative-v6-oper-relat-20261004.py /tmp/v6-replay
       - run: node --max-old-space-size=4096 scripts/enumerate-associative-v6-source-corpus.mjs /tmp/v6-corpus.json
       - run: cmp /tmp/v6-corpus.json audit/associative-family-v6/corpus-enumeration.json
       - name: Audit finite cross-frame planning and shared cache
@@ -46,6 +49,6 @@ jobs:
       - name: Replay planning from saved frames without corpus reclustering
         run: |
           node --max-old-space-size=6144 scripts/build-associative-v6-queue-organization.mjs /tmp/v6-planning-replay
-          diff -r audit/associative-family-v6/queue-organization-20261004/generated /tmp/v6-planning-replay
-      - name: Verify exact Prompt 04 nonmutation differential
-        run: python scripts/validate-associative-v6-prompt04.py
+          diff -r audit/associative-family-v6/oper-relat-continuation-20261004/planning /tmp/v6-planning-replay
+      - name: Verify exact cross-stage ID conservation
+        run: python scripts/validate-associative-v6-oper-relat-20261004.py /tmp/v6-replay /tmp/v6-planning-replay

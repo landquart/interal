@@ -4,13 +4,14 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import assert from 'node:assert/strict';
 import {gzipSync,gunzipSync} from 'node:zlib';
-import {digest,corpusKey,identityGrade,organize} from './lib/associative-v6-queue-organization.mjs';
+import {digest,corpusKey,identityGrade,organize,routeOccurrenceId} from './lib/associative-v6-queue-organization.mjs';
 const root='audit/associative-family-v6/',gen='associativvordes/family-index-v6/generated/';
-const out=process.argv.slice(2).find(a=>!a.startsWith('--'))||root+'queue-organization-20261004/generated',measure=process.argv.includes('--measure-packet-links');
+const planningPath='associativvordes/family-index-v6/queue-planning.json',planningBytes=await fs.readFile(planningPath),planning=JSON.parse(planningBytes);assert.equal(planning.schema_version,6);assert.equal(planning.production_enabled,false);
+const out=process.argv.slice(2).find(a=>!a.startsWith('--'))||planning.output,measure=process.argv.includes('--measure-packet-links');
 assert(!path.resolve(out).startsWith(path.resolve('associativvordes/family-index-v5')),'Immutable v5 output');
 const writeAtomic=async(p,b)=>{await fs.writeFile(p+'.tmp',b);await fs.rename(p+'.tmp',p);};
-const inputs={},read=async p=>{const b=await fs.readFile(p);inputs[p]=digest(b);return JSON.parse(p.endsWith('.gz')?gunzipSync(b):b);};
-const occurrences=[],add=(frame,locator,r,root,status,head_ids=[],routes=[])=>occurrences.push({occurrence_id:digest([frame,locator]).slice(0,32),frame,locator,language:r.language,lemma_id:r.lemma_id,word:r.word,root:root||null,status:status||'proposal_requires_review',head_ids,routes});
+const inputs={[planningPath]:digest(planningBytes)},read=async p=>{const b=await fs.readFile(p);inputs[p]=digest(b);return JSON.parse(p.endsWith('.gz')?gunzipSync(b):b);};
+const occurrences=[],add=(frame,locator,r,root,status,head_ids=[],routes=[],version=null)=>occurrences.push({occurrence_id:routeOccurrenceId({frame,locator,language:r.language,lemma_id:r.lemma_id,root,head_ids,source:r.source,version}),frame,locator,language:r.language,lemma_id:r.lemma_id,word:r.word,root:root||null,status:status||'proposal_requires_review',head_ids,routes});
 const backlog=await read(gen+'review-backlog.json.gz'),frames=await read(gen+'review-queue-frames.json'),benchmarks=await read(gen+'head-recognition-benchmarks.json.gz');
 for(const[u,unit]of backlog.entries())for(const[i,r]of unit.source_records.entries())add('current',gen+'review-backlog.json.gz#/'+u+'/source_records/'+i,r,r.canonical_root||r.root,r.status,r.review_unit?.startsWith('head:')?[r.review_unit]:[],r.source_family_ids||r.family_ids||[]);
 const historicalPath=root+'historical-overlay-20261003/records.json.gz',historical=await read(historicalPath);
@@ -44,7 +45,7 @@ for(const[eidx,e]of edges.entries()){
 const ledgers=[];for(const p of ['head-review-ledger.json','family-promotion-ledger.json','head-lifecycle-ledger.json']){const doc=await read(gen+p),ds=Array.isArray(doc)?doc:doc.decisions;for(const[i,d]of ds.entries()){
  ledgers.push({...d,proof_locator:gen+p+'#/'+(Array.isArray(doc)?'':'decisions/')+i});
  const f=cacheMap.get(d.head_id);assert(f);if(d.predecessor?.head&&!f.versions.some(v=>v.version===d.predecessor.head.version))f.versions.push({version:d.predecessor.head.version,state_sha256:digest(d.predecessor.head),snapshot:d.predecessor.head});
- for(const[j,id]of d.affected_lemma_ids.entries()){const rec=f.finite_scope.find(l=>l.lemma_id===id);assert(rec);add(p.includes('promotion')?'promotion':p.includes('lifecycle')?'revision':'completed_review',gen+p+'#/'+i+'/affected_lemma_ids/'+j,rec,d.family_id.replace(/^family:/,''),d.status,[d.head_id]);}
+ for(const[j,id]of d.affected_lemma_ids.entries()){const rec=f.finite_scope.find(l=>l.lemma_id===id);assert(rec);add(p.includes('promotion')?'promotion':p.includes('lifecycle')?'revision':'completed_review',gen+p+'#/'+i+'/affected_lemma_ids/'+j,rec,d.family_id.replace(/^family:/,''),d.status,[d.head_id],[],d.version);}
 }}
 for(const f of cache){f.versions.sort((a,b)=>a.version-b.version);f.identity_facts=review.lexical_facts.filter(x=>x.language===f.language&&x.normalized_head===f.normalized_head&&x.sense===f.sense).map(x=>({...x,evidence:review.evidence_cache.filter(e=>x.evidence_ids.includes(e.id))}));f.decision_history=ledgers.filter(d=>d.head_id===f.head_id);}
 // Source pools already researched for promotion remain routes, not accepted groups.

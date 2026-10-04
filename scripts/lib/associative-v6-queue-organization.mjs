@@ -57,3 +57,10 @@ export function organize({occurrences,cache,packetRoutes=[],packets=[]}) {
  const metrics={corpus_ids:records.size,membership_candidates:questions.size,route_incidences:occurrences.length,packet_route_incidences:packetRoutes.length,proven_groups:ranked.filter(g=>g.identity_grade==='proven_identity').length,disputed_groups:ranked.filter(g=>g.identity_grade==='disputed_identity').length,proposal_groups:ranked.filter(g=>g.identity_grade==='morphology_proposal').length,current_membership_candidates:currentKeys.length,current_proven_units:units,current_proven_reduction:currentKeys.length-units,new_memberships:0,new_verdicts:0,packet_count:packets.length,open_membership_questions:questions.size?[...questions.values()].filter(q=>q.open_frames.length).length:0};
  return {records:[...records.values()].sort((a,b)=>a.corpus_id.localeCompare(b.corpus_id,'en')),questions:[...questions.values()].sort((a,b)=>a.candidate_id.localeCompare(b.candidate_id,'en')),ranked,overlaps,metrics,conservation:{before,after,added:[],removed:[],verdict:'pass'}};
 }
+
+// Movable frame positions are locators, not task identities.
+export function routeOccurrenceId({frame,locator,language,lemma_id,root,head_ids=[],source,version=null}) {
+ const identity=frame==='current'?[frame,source,language,root,lemma_id]:
+ ['materialized','historical_identity','completed_review','promotion','revision'].includes(frame)?[frame,language,root,lemma_id,head_ids,version]:[frame,locator];
+ return digest(identity).slice(0,32);
+}

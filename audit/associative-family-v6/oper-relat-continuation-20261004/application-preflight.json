@@ -1,0 +1,57 @@
+{
+  "schema_version": 6,
+  "verdict": "pass",
+  "mode": "finite_dry_run_against_frozen_predecessor",
+  "source_head": "2351a07722d88faa82dc05049144c567d43923c8",
+  "predecessor_review_version": 16,
+  "predecessor_review_sha256": "2bad86c05923845d1dbd9f77c1a23c0f5cb1d5981d036b3d0b713e6b67273cb4",
+  "decision_sha256": "5aae14f954f8635ab635a88fe3c3e83662d74c0a53e494bbc571242f7939a94f",
+  "exact_new_links": [
+    {
+      "language": "de",
+      "family_id": "family:oper",
+      "lemma_id": "lemma:29aa53e73d1ed76350cc",
+      "word": "kammeroper",
+      "status": "pending_to_accepted"
+    },
+    {
+      "language": "de",
+      "family_id": "family:oper",
+      "lemma_id": "lemma:439d55012f1ad7630192",
+      "word": "rockoper",
+      "status": "pending_to_accepted"
+    },
+    {
+      "language": "de",
+      "family_id": "family:oper",
+      "lemma_id": "lemma:6fb26f28a902715a27dd",
+      "word": "märchenoper",
+      "status": "pending_to_accepted"
+    },
+    {
+      "language": "de",
+      "family_id": "family:oper",
+      "lemma_id": "lemma:71a591b91e247bfa6ef7",
+      "word": "kinderoper",
+      "status": "pending_to_accepted"
+    },
+    {
+      "language": "de",
+      "family_id": "family:oper",
+      "lemma_id": "lemma:c1fbe90f618ede0faf30",
+      "word": "seifenoper",
+      "status": "pending_to_accepted"
+    },
+    {
+      "language": "de",
+      "family_id": "family:relat",
+      "lemma_id": "lemma:9548f77ea1cdb5786d98",
+      "word": "relativitätsjude",
+      "status": "pending_to_accepted"
+    }
+  ],
+  "new_heads": 3,
+  "new_family_edge_decisions": 3,
+  "withheld_records": 26,
+  "production_enabled": false
+}
