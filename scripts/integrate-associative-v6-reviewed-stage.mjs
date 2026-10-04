@@ -11,7 +11,11 @@ const read=async p=>{const b=await fs.readFile(p);return JSON.parse(p.endsWith('
 const stage=await read(stagePath),reviewPath='associativvordes/family-index-v6/lexical-head-review.json.gz',doc=await read(reviewPath);
 if(stage.schema_version!==6||stage.production_enabled!==false||!stage.groups.length)throw Error('Invalid research stage');
 if(sha(await fs.readFile(stage.source_queue))!==stage.source_queue_sha256)throw Error('Changed finite source queue');
-if(stage.binding_authorized===false)throw Error('Finite identity binding not approved for research-only stage');
+if(stage.binding_authorized!==true)throw Error('Finite identity binding not approved for research-only stage');
+if(stage.groups.some(g=>g.status==='accepted')&&stage.accepted_membership_authorized!==true)throw Error('Accepted finite membership not explicitly approved');
+if(stage.synthetic_fixture===true)throw Error('Synthetic fixture cannot enter real registry');
+if(stage.predecessor_review_version!==undefined&&stage.predecessor_review_version!==doc.version)throw Error('Stale finite review predecessor version');
+if(stage.predecessor_review_sha256!==undefined&&stage.predecessor_review_sha256!==sha(await fs.readFile(reviewPath)))throw Error('Stale finite review predecessor hash');
 const stageHash=sha(await fs.readFile(stagePath)),records=[];
 for(const g of stage.groups){
  if(!['accepted','excluded','uncertain'].includes(g.status)||!g.sources.length||!g.reason||!g.sense||!g.records.length)throw Error('Incomplete linguistic decision');
