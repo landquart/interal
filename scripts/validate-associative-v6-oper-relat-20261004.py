@@ -46,6 +46,9 @@ protected={}
 for p in ['associativvordes/family-index-v5','associativvordes/frequency lists','audit/associative-family-v5','audit/associative-family-v6/queue-organization-20261004']:
  assert not git('diff','--name-only',BASE,'--',p).strip(),p
  protected[p]=git('rev-parse',BASE+':'+p).decode().strip()
+oldlock,newlock=read(G/'source-lock.json',True),read(G/'source-lock.json')
+for prefix in ['associativvordes/family-index-v5/','associativvordes/frequency lists/','audit/associative-family-v5/']:
+ assert {p:h for p,h in oldlock.items() if p.startswith(prefix)}=={p:h for p,h in newlock.items() if p.startswith(prefix)}, 'Changed immutable input set'
 metrics=read(G/'head-review-metrics.json');assert (metrics['current_active_records'],metrics['records_reviewed'],metrics['new_records_resolved'],metrics['new_head_decisions'])==(23234,1971,1968,39)
 assert len(read(G/'review-backlog.json.gz'))==23232
 result={'schema_version':6,'verdict':'pass','baseline_sha':BASE,'exact_differential':{'additions':[after[k] for k in sorted(expected)],'removals':[],'changed_memberships':[]},'old_links_identical':len(oldlinks),'old_heads_and_edges_identical':True,'new_heads':3,'new_edges':3,'withheld_unchanged':26,'protected_trees':protected,'current_metrics':metrics,'production_enabled':False,'full_dictionary_complete':False}

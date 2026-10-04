@@ -20,7 +20,7 @@ const promotions=await loadFamilyPromotions({read,readBytes:p=>fs.readFile(p),ca
 const review=await loadLexicalReview({read,readBytes:p=>fs.readFile(p),catalog,inputs}),external=new Map(),wanted=new Set(review.doc.finite_bindings.filter(b=>b.decision_kind!=='representation_change').map(b=>b.language+'\0'+b.lemma_id));
 const manifest=await read(source+'/manifest.json'), legacy=new Map(catalog.families.flatMap(f=>f.legacy_ids.map(id=>[id,f])));
 async function write(p,x){const b=Buffer.from(JSON.stringify(x)+'\n'),v=p.endsWith('.gz')?gzipSync(b,{level:9,mtime:0}):b;await fs.mkdir(path.dirname(out+'/'+p),{recursive:true});await fs.writeFile(out+'/'+p,v);artifacts[p]=sha(v);}
-async function files(root){const result=[];for(const e of (await fs.readdir(root,{withFileTypes:true})).sort((a,b)=>a.name.localeCompare(b.name,'en'))){const p=root+'/'+e.name;if(e.isDirectory())result.push(...await files(p));else result.push(p);}return result;}
+async function files(root){const result=[];for(const e of (await fs.readdir(root,{withFileTypes:true})).sort((a,b)=>a.name.localeCompare(b.name,'en'))){if(e.name.startsWith('.'))continue;const p=root+'/'+e.name;if(e.isDirectory())result.push(...await files(p));else result.push(p);}return result;}
 function headId(language,head,sense=''){return 'head:'+language+':'+sha(Buffer.from(language+'\0'+normalizeHead(head)+'\0'+sense)).slice(0,24);}
 function bind(m,language,family,p,proof){
  const rb=review.representation.get(language+'\0'+family.id+'\0'+m.lemma_id);
