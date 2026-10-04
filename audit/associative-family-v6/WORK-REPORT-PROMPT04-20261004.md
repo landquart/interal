@@ -1,6 +1,6 @@
 # Промпт 04 — очереди и общие доказательства
 
-Блок выполнен поверх опубликованного baseline **63b8f44539f752cad6e4fc875bba85be39035bb9**. Research: **92281be5ea672b46a5173f37332b8fcad4d82620**; решение: **21d31039f0876da1b520c80aba908c7b0b0c7ed3**; application: **317abb0d524d7cab4dd410422e72907dc795ac91**. Validation публикуется отдельным commit; его точный SHA и CI закреплены в PR #652. Remote trees проверяются на равенство локальным checkpoint trees.
+Блок выполнен поверх опубликованного baseline **63b8f44539f752cad6e4fc875bba85be39035bb9**. Research: **92281be5ea672b46a5173f37332b8fcad4d82620**; решение: **21d31039f0876da1b520c80aba908c7b0b0c7ed3**; application: **317abb0d524d7cab4dd410422e72907dc795ac91**. Initial validation: **09663df51ae7c8dc5ccb0daac055bf6d35ee987c**. Уточнение ranking всего open scope: **8b190c1aa2ea02a9485cfc20f625d86f0d1c5881**. Final validation публикуется отдельным commit; его точный SHA и CI закреплены в PR #652. Remote trees проверяются на равенство локальным checkpoint trees.
 
 Сохранена main → #650 → #651 → #652; PR draft, merge не выполнен, production v5. Промпт 03 уже завершён и не повторялся. Новый слой занимается организацией и reuse исследования: он не создаёт lexical identities, family verdicts или memberships.
 
@@ -38,6 +38,8 @@ Cache содержит 216 существующих heads: de 55, en 64, es 27, 
 
 В объединённом planning view: 92 proven groups, 124 disputed historical identity groups, 98 896 proposal groups. Это не новое ускорение current остатка. Current queue содержит один proven actin head на три uncertain records и 23 237 singleton proposals, итого прежние 23 238 units. **Новое доказанное сокращение = 0**; текущий ratio 23 240 / 23 238 = 1.0000860659. Stage factor 1 962 / 36 = 54.5 и historical representation 872 / 6 остаются отдельно уже проведённой работой.
 
+Ranking явно учитывает open scope всех saved frames: **78 927 unique membership questions**, включая historical unresolved, val/Russian и promotion pools. Current open scope 23 240 учитывается отдельно; это не сумма независимых decisions. Completed/revision occurrences сохраняют историю. Отдельный regression test и независимый audit проверяют, что все 46 390 historical unresolved records и все candidate-pool questions остаются open и адресуемыми.
+
 Ranking использует finite fanout, количество open questions, evidence confidence и явную стоимость boundary review: proved finite identity — один review на head-edge, unproved scope — один review на record. Morphology proposal имеет нулевую доказательную confidence. Огромный prefix pool не получает proved reduction. Семейного top-N ограничения нет; все реальные saved branches и все packets адресуемы. 53 существующих morphology proposal references сохранены отдельно от bindings.
 
 ## Измеренные пересечения
@@ -61,9 +63,9 @@ Packet intersection точен для каждого ID в indexed frames. **О�
 
 ## Проверки и evidence blockers
 
-51 targeted tests и полный npm test **130 files** проходят. Отдельно проверены synthetic accepted/excluded/uncertain edges к разным families, несколько components одного ID, correction/revision и promotion occurrences без потери источников, отсутствие propagation, конфликтующие corpus words, дубли occurrences и неизвестный/out-of-scope packet route. Синтетические IDs отделены от real corpus artifacts. Реальная проверка охватывает все шесть языков и existing positive/negative/uncertain branches; actin остаётся uncertain, system history адресуем, все finite scopes ссылаются на original proofs.
+52 targeted tests и полный npm test **130 files** проходят. Отдельно проверены synthetic accepted/excluded/uncertain edges к разным families, несколько components одного ID, correction/revision и promotion occurrences без потери источников, отсутствие propagation, конфликтующие corpus words, дубли occurrences и неизвестный/out-of-scope packet route. Синтетические IDs отделены от real corpus artifacts. Реальная проверка охватывает все шесть языков и existing positive/negative/uncertain branches; actin остаётся uncertain, system history адресуем, все finite scopes ссылаются на original proofs.
 
-Независимые v6 audit и planning audit проходят; byte replay **274 migration artifacts + 16 planning artifacts** совпадает. Exact Prompt 03 differential по-прежнему +1 Systeme / −0 против его собственного baseline, две version changes; exact Prompt 04 differential — полностью нулевой. Protected v5/frequency/historical trees идентичны. Durable logs, hashes, integrity и exact differential: queue-organization-20261004/validation/.
+Независимые v6 audit и planning audit проходят; byte replay **274 migration artifacts + 16 planning artifacts** совпадает. Exact Prompt 03 differential по-прежнему +1 Systeme / −0 против его собственного baseline, две version changes; exact Prompt 04 differential — полностью нулевой. Protected v5/frequency/historical trees идентичны. Final durable logs, hashes, integrity и exact differential: queue-organization-20261004/final-validation/. Initial 51-test proofs остаются адресуемыми в validation/ и commit 09663df5.
 
 У большинства current records отсутствуют independently proved identity/boundary bindings. Historical labels без отдельной современной finite boundary validation помечены disputed, а не silently promoted. Homonym/sense и национальные continuity blockers anis/turr и других предыдущих stages сохранены. Подстрока, перевод, равенство массивов и distant ancestor не становятся membership proof.
 
