@@ -1,3 +1,13 @@
+## Промпт 03: reuse/extension/correction выполнен и локально полностью проверен — 2026-10-04
+
+Application опубликован: **ed71acc2b5ce8e2f9aa41751339dfa43923aeb29**, локальное идентичное дерево e381cc8. Research 41f50143, решение 30d13775; validation сохранён отдельным commit. Добавлен append-only lifecycle registry и atomic replay с полными predecessor hashes/versions, finite scope и fresh edge decisions. Initial guards сохранены; выдуманный новый sense отвергается.
+
+Реально переиспользован German system head: **+1 Systeme ID lemma:e0e390279d7daf67fbc3, −0**; system family 12 → 13. У двух прежних memberships изменился только edge_version; остальные 21 552 прежних objects и все 21 950 прежних links идентичны. Catalog 18, accepted 21 555, lexical heads 216, legacy exact 18 857. V5/frequency/historical trees неизменны. Unique resolved corpus IDs в review universe включая promotions 1 978 → 1 979; repeated review не увеличивает unique count.
+
+**41 targeted tests, full npm test 129 files, independent audit и 274-artifact byte replay pass.** Synthetic correction/stale/independent-edge fixtures отделены от реальных records и запрещены в registry. Существующие head identities и source proofs сохранены. Подробности: WORK-REPORT-PROMPT03-20261004.md и prompt03-validation-20261004/validation.json. Финальная проверка CI точного опубликованного HEAD фиксируется в PR #652; локальные проверки не подменяют CI.
+
+Prompt 02 уже опубликован как 6330df5c (tree идентичен локальному a1604e3); Tests 37202185711 и Audit 37202185705 success. Его прежняя запись «публикация заблокирована» ниже — историческая. GitHub API использован после отказа shell push из-за credentials; fast-forward, no merge. Цепочка main → #650 → #651 → #652, production v5. Known active 23 240, historical 46 390 и global packets 16 055 остаются unfinished. Следующий этап — конечные доказанные oper/relat extensions, без вымышленных memberships.
+
 ## Промпт 02: локально завершён, публикация заблокирована — 2026-10-04
 
 Итоговое применение `e4f515202d585bd87c131875145e492b137b5d50`: **+6 anis, −0 относительно 08a5ce1e**; catalog 18, accepted 21 554, lexical heads 216, legacy exact 18 857. Все прежние membership objects, source IDs, v5/frequency/historical evidence сохранены. Known active 23 240 неизменны. Membership = lexical row/proved component, frequency остаётся aggregate-only.
