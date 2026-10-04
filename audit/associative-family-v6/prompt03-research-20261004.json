@@ -1,0 +1,167 @@
+{
+  "schema_version": 6,
+  "production_enabled": false,
+  "binding_authorized": false,
+  "source_head": "a1604e37e258d7dc7f73b34140285feedc286abd",
+  "head_id": "head:de:52f724257cf25dfc1948d43b",
+  "identity": {
+    "language": "de",
+    "normalized_head": "system",
+    "sense": "structured_assembly_or_scheme_noun"
+  },
+  "predecessor": {
+    "head": {
+      "id": "head:de:52f724257cf25dfc1948d43b",
+      "language": "de",
+      "normalized_head": "system",
+      "identity_kind": "lexical_head",
+      "sense": "structured_assembly_or_scheme_noun",
+      "head_scope": "whole_lexeme_and_inflections",
+      "version": 1,
+      "evidence": [
+        {
+          "id": "evidence:de:52f724257cf25dfc1948d43b",
+          "language": "de",
+          "head": "system",
+          "sense": "structured_assembly_or_scheme_noun",
+          "status": "accepted",
+          "sources": [
+            "https://www.duden.de/rechtschreibung/System"
+          ],
+          "finding": "Duden supports System, genitive Systems and plural Systeme. Only real records system and systems are in this finite frame; Systeme remains a corpus gap in this selected route."
+        },
+        {
+          "source": "audit/associative-family-v6/system-finite-promotion-20261003.json",
+          "sha256": "bdd8dcace8261dd65a635181afe0fda121441f9f66ee39c28520dd136e4f5668"
+        }
+      ]
+    },
+    "head_version": 1,
+    "head_sha256": "bae360bd075551c46458cd61843b76d56ed5309a7e95b7194b4dc2ab02bb8671",
+    "edge": {
+      "head_id": "head:de:52f724257cf25dfc1948d43b",
+      "family_id": "family:system",
+      "status": "accepted",
+      "expected_version": 0,
+      "lemma_ids": [
+        "lemma:7ba15b6de9b10a155d63",
+        "lemma:d88dae85956546cdf8c1"
+      ],
+      "morphology_policy": "finite_explicit_lemma_ids",
+      "reason": "Duden supports System, genitive Systems and plural Systeme. Only real records system and systems are in this finite frame; Systeme remains a corpus gap in this selected route.",
+      "evidence": [
+        {
+          "source": "audit/associative-family-v6/system-finite-promotion-20261003.json",
+          "sha256": "bdd8dcace8261dd65a635181afe0fda121441f9f66ee39c28520dd136e4f5668"
+        },
+        {
+          "source": "https://www.duden.de/rechtschreibung/System"
+        }
+      ],
+      "review_stage": "system-finite-promotion-20261003",
+      "version": 1,
+      "scope": "finite_evidenced_links"
+    },
+    "edge_version": 1,
+    "edge_sha256": "0b9fca67a64db02ad66a270fb70a6f5c9793980aa0f7c83e64cf608ab92a527b",
+    "scope_sha256": "00e522f7e70af0d25908e8effb0012c8f44ee5bcf2fafb67237c2412bda8a3b6"
+  },
+  "new_record": {
+    "language": "de",
+    "lemma_id": "lemma:e0e390279d7daf67fbc3",
+    "word": "systeme",
+    "source_record": {
+      "lemma_id": "lemma:e0e390279d7daf67fbc3",
+      "word": "systeme",
+      "normalized": "systeme",
+      "search_form": "systeme",
+      "rank": 5130,
+      "frequency_score": 39.99107295212916,
+      "category_breakdown": {
+        "subtitles": {
+          "ipm_values": [
+            8.799532
+          ],
+          "category_ipm": 8.799532,
+          "category_score": 39.99107295212916
+        }
+      },
+      "sources": [
+        {
+          "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+          "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+          "category": "subtitles",
+          "ipm": 8.799532
+        }
+      ],
+      "corpus_quality": {
+        "status": "accepted",
+        "reasons": []
+      },
+      "components": [
+        {
+          "surface": "systeme",
+          "canonical_candidate": "systeme",
+          "confidence": 0.92,
+          "evidence": [
+            {
+              "type": "morphological_parse",
+              "source": "candidate_index",
+              "path": [
+                "systeme",
+                "systeme",
+                "systeme"
+              ],
+              "confidence": 0.92
+            }
+          ]
+        }
+      ]
+    },
+    "source_locator": {
+      "path": "associativvordes/family-index-v5/members/de/f3.json.gz",
+      "family_id": "surface:de:systeme",
+      "record_sha256": "672f3441c2b3fba20927a94ac795cf062556771775af796166019fe253efa6d0"
+    },
+    "link_role": "inflection"
+  },
+  "evidence": [
+    {
+      "source": "https://www.duden.de/rechtschreibung/System",
+      "accessed": "2026-10-04",
+      "finding": "Duden independently identifies Systeme as the plural of System; Late Latin systema from Greek systēma. Finite System + e inflection, no general suffix propagation."
+    }
+  ],
+  "corpus_scan": {
+    "languages": [
+      "de",
+      "es",
+      "it",
+      "ru",
+      "en"
+    ],
+    "exact_requested_forms": [
+      "systeme",
+      "sistemas",
+      "sistemi",
+      "системе",
+      "систему",
+      "anises"
+    ],
+    "found_new_ids": [
+      "lemma:e0e390279d7daf67fbc3"
+    ],
+    "scope": "exact forms across all immutable member shards; no substring search membership"
+  },
+  "entry_points": {
+    "initial_integrator": "Existing fact requires explicit versioned extension, not replacement",
+    "promotion": "Existing head requires explicit versioned reuse",
+    "low_level": "applyHeadReview expected_version already guards edges",
+    "benchmark": "Duplicate or non-source review ledger identity must become explicitly sequenced history"
+  },
+  "blockers": [
+    "No additional requested plural IDs found for Spanish/Italian/Russian/English anis in materialized v5 members.",
+    "No real second-family positive decision is asserted. Synthetic independent edge decisions remain fixtures.",
+    "Different identity sense requires a separately adjudicated migration, never a reuse alias."
+  ]
+}
