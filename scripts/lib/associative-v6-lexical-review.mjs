@@ -44,14 +44,18 @@ export function materializeLexicalReviews({index,review,external,headId,prior,so
 export function reviewBenchmarks({backlog,frames,review,ledger,headId}) {
  const key=r=>r.language+'\0family:'+r.canonical_root+'\0'+r.lemma_id;
  const decisionKey=(d,id)=>d.language+'\0'+d.family_id+'\0'+id;
- const sourceKeys=new Set(backlog.map(key)),reviewed=new Map(),resolved=new Map();
+ const sourceKeys=new Set(backlog.map(key)),reviewed=new Map(),resolved=new Map(),versions=new Map();
  for(const d of ledger){
   if(!['accepted','excluded','uncertain','pending'].includes(d.status))throw Error('Invalid reviewed edge status');
+  const edgeKey=d.head_id+'\0'+d.family_id,previous=versions.get(edgeKey);
+  if(previous&&(!d.lifecycle_id||d.predecessor?.edge_version!==previous.version||d.version!==previous.version+1))throw Error('Duplicate or stale review ledger version');
+  if(!previous&&d.lifecycle_id&&d.predecessor?.edge_version)throw Error('Unknown review ledger predecessor');
+  versions.set(edgeKey,d);
   for(const id of d.affected_lemma_ids){
    const k=decisionKey(d,id);
-   if(reviewed.has(k)||!sourceKeys.has(k))throw Error('Duplicate or non-source review ledger identity');
+   if((reviewed.has(k)&&(!previous||reviewed.get(k).head_id!==d.head_id))||!sourceKeys.has(k))throw Error('Duplicate or non-source review ledger identity');
    reviewed.set(k,d);
-   if(['accepted','excluded'].includes(d.status))resolved.set(k,d);
+   if(['accepted','excluded'].includes(d.status))resolved.set(k,d);else resolved.delete(k);
   }
  }
  const identity=new Map(review.doc.finite_bindings.map(b=>[b.language+'\0'+b.family_id+'\0'+b.lemma_id,b]));
@@ -85,5 +89,5 @@ export function reviewBenchmarks({backlog,frames,review,ledger,headId}) {
  for(const r of active){const k=r.review_unit+'\0'+r.canonical_root,u=units.get(k)||{review_unit:r.review_unit,root:r.canonical_root,language:r.language,recognition:r.head_recognition,lemma_ids:[],source_records:[]};u.lemma_ids.push(r.lemma_id);u.source_records.push(r);units.set(k,u);}
  const ranked=[...units.values()].sort((a,b)=>b.lemma_ids.length-a.lemma_ids.length||a.review_unit.localeCompare(b.review_unit,'en'));
  const represented=review.doc.finite_bindings.filter(b=>b.decision_kind==='representation_change'),heads=new Set(represented.map(b=>b.fact_id));
- return {active,ranked,benchmarks,metrics:{source_active_records:backlog.length,current_active_records:active.length,new_head_decisions:ledger.length,records_reviewed:reviewed.size,new_records_resolved:resolved.size,unresolved_reviewed_records:reviewed.size-resolved.size,new_review_reduction_factor:ledger.length?resolved.size/ledger.length:null,newly_pending_records_resolved:newlyPending.length,investigated_uncertainties_resolved:newlyUncertain.length,investigated_uncertainties_retained:backlog.filter(r=>r.status==='uncertain'&&reviewed.get(key(r))?.status==='uncertain').length,newly_pending_records_investigated_without_resolution:backlog.filter(r=>r.status!=='uncertain'&&reviewed.get(key(r))?.status==='uncertain').length,pending_head_decisions:pendingDecisionKeys.size,pending_review_reduction_factor:pendingDecisionKeys.size?newlyPending.length/pendingDecisionKeys.size:null,current_status_counts:statusCounts,stages,strict_remaining_frame_reduction:active.length/(ranked.length||1),historical_component_bindings_represented:represented.length,historical_component_head_edges:heads.size,historical_representation_reuse_factor:represented.length/(heads.size||1),historical_boundary_reviews_are_not_newly_resolved_records:true}};
+ return {active,ranked,benchmarks,metrics:{source_active_records:backlog.length,current_active_records:active.length,new_head_decisions:versions.size,review_operations:ledger.length,revisions:ledger.length-versions.size,unique_resolved_records:new Set([...resolved.keys()].map(k=>{const [language,,id]=k.split('\0');return language+'\0'+id;})).size,unique_corpus_records_reviewed:new Set([...reviewed.keys()].map(k=>{const [language,,id]=k.split('\0');return language+'\0'+id;})).size,repeated_record_reviews:ledger.reduce((n,d)=>n+d.affected_lemma_ids.length,0)-reviewed.size,records_reviewed:reviewed.size,new_records_resolved:resolved.size,unresolved_reviewed_records:reviewed.size-resolved.size,new_review_reduction_factor:ledger.length?resolved.size/ledger.length:null,newly_pending_records_resolved:newlyPending.length,investigated_uncertainties_resolved:newlyUncertain.length,investigated_uncertainties_retained:backlog.filter(r=>r.status==='uncertain'&&reviewed.get(key(r))?.status==='uncertain').length,newly_pending_records_investigated_without_resolution:backlog.filter(r=>r.status!=='uncertain'&&reviewed.get(key(r))?.status==='uncertain').length,pending_head_decisions:pendingDecisionKeys.size,pending_review_reduction_factor:pendingDecisionKeys.size?newlyPending.length/pendingDecisionKeys.size:null,current_status_counts:statusCounts,stages,strict_remaining_frame_reduction:active.length/(ranked.length||1),historical_component_bindings_represented:represented.length,historical_component_head_edges:heads.size,historical_representation_reuse_factor:represented.length/(heads.size||1),historical_boundary_reviews_are_not_newly_resolved_records:true}};
 }

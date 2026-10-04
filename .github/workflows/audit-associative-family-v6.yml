@@ -25,7 +25,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: node --test tests/associative-family-v6-architecture.test.mjs tests/associative-family-v6-migration.test.mjs tests/associative-family-v6-realizations.test.mjs tests/associative-family-v6-head-recognition.test.mjs tests/associative-family-v6-promotions.test.mjs tests/associative-family-v6-senses-policy.test.mjs
+      - run: node --test tests/associative-family-v6-architecture.test.mjs tests/associative-family-v6-migration.test.mjs tests/associative-family-v6-realizations.test.mjs tests/associative-family-v6-head-recognition.test.mjs tests/associative-family-v6-promotions.test.mjs tests/associative-family-v6-senses-policy.test.mjs tests/associative-family-v6-head-lifecycle.test.mjs
       - run: node --max-old-space-size=6144 scripts/audit-associative-family-v6.mjs associativvordes/family-index-v6/generated /tmp/v6-integrity.json
       - run: node --max-old-space-size=6144 scripts/build-associative-family-v6.mjs /tmp/v6-replay
       - name: Compare deterministic replay
