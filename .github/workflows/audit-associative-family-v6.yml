@@ -25,7 +25,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: node --test tests/associative-family-v6-architecture.test.mjs tests/associative-family-v6-migration.test.mjs tests/associative-family-v6-realizations.test.mjs tests/associative-family-v6-head-recognition.test.mjs tests/associative-family-v6-promotions.test.mjs tests/associative-family-v6-senses-policy.test.mjs tests/associative-family-v6-head-lifecycle.test.mjs
+      - run: node --test tests/associative-family-v6-architecture.test.mjs tests/associative-family-v6-migration.test.mjs tests/associative-family-v6-realizations.test.mjs tests/associative-family-v6-head-recognition.test.mjs tests/associative-family-v6-promotions.test.mjs tests/associative-family-v6-senses-policy.test.mjs tests/associative-family-v6-head-lifecycle.test.mjs tests/associative-family-v6-queue-organization.test.mjs
       - run: node --max-old-space-size=6144 scripts/audit-associative-family-v6.mjs associativvordes/family-index-v6/generated /tmp/v6-integrity.json
       - run: node --max-old-space-size=6144 scripts/build-associative-family-v6.mjs /tmp/v6-replay
       - name: Compare deterministic replay
@@ -41,3 +41,11 @@ jobs:
         run: python scripts/validate-associative-v6-prompt03.py /tmp/v6-replay
       - run: node --max-old-space-size=4096 scripts/enumerate-associative-v6-source-corpus.mjs /tmp/v6-corpus.json
       - run: cmp /tmp/v6-corpus.json audit/associative-family-v6/corpus-enumeration.json
+      - name: Audit finite cross-frame planning and shared cache
+        run: node --max-old-space-size=6144 scripts/audit-associative-v6-queue-organization.mjs
+      - name: Replay planning from saved frames without corpus reclustering
+        run: |
+          node --max-old-space-size=6144 scripts/build-associative-v6-queue-organization.mjs /tmp/v6-planning-replay
+          diff -r audit/associative-family-v6/queue-organization-20261004/generated /tmp/v6-planning-replay
+      - name: Verify exact Prompt 04 nonmutation differential
+        run: python scripts/validate-associative-v6-prompt04.py
