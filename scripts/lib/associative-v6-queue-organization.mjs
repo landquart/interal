@@ -11,7 +11,7 @@ export function identityGrade(head,link) {
  if(link?.recognition==='explicit_finite_policy'||link?.identity_proof?.length||link?.recognition==='reviewed_component_head')return 'proven_identity';
  return 'morphology_proposal';
 }
-export function organize({occurrences,cache,packetRoutes=[],packets=[]}) {
+export function organize({occurrences,cache,packetRoutes=[],packets=[],questionVerdicts=[]}) {
  const facts=new Map(cache.map(f=>[f.head_id,f]));assert.equal(facts.size,cache.length,'Duplicate cache identity');
  const records=new Map(),questions=new Map(),ids=new Set();
  for(const o of occurrences){
@@ -22,6 +22,10 @@ export function organize({occurrences,cache,packetRoutes=[],packets=[]}) {
   if(o.root){const qk=candidateKey(o),q=questions.get(qk)||{candidate_id:qk,corpus_id:k,root:o.root,occurrence_ids:[],head_ids:[],current_statuses:[],open_frames:[]};q.occurrence_ids.push(o.occurrence_id);q.head_ids.push(...(o.head_ids||[]));if(o.frame==='current')q.current_statuses.push(o.status);
    const open=(o.frame==='current'&&['pending','pending_review','uncertain'].includes(o.status))||(o.frame==='historical'&&['unresolved_historical_without_current_decision','investigated_uncertain_current_overlay'].includes(o.status))||['val','russian','promotion_pool'].includes(o.frame)||(o.frame==='historical_identity'&&o.status==='uncertain');
    if(open)q.open_frames.push(o.frame);questions.set(qk,q);r.family_questions.push(qk);}
+ }
+ const overrides=new Map();
+ for(const v of questionVerdicts){const k=candidateKey(v);assert(questions.has(k),'Unknown current question verdict');assert(!overrides.has(k),'Duplicate current question verdict');assert(['accepted','excluded','uncertain'].includes(v.status)&&v.proof_locator,'Unproved current question verdict');overrides.set(k,v);
+  const q=questions.get(k);q.effective_verdict=v;q.historical_occurrences_preserved=true;q.open_frames=v.status==='uncertain'?['current_verdict_uncertain']:[];
  }
  const packetIndex=new Map(packets.flatMap(p=>p.evidence_cluster_ids.map(id=>[id,p.candidate_cluster_id])));
  for(const p of packetRoutes){const r=records.get(corpusKey(p));assert(r,'Out-of-scope packet ID');if(p.word)assert.equal(p.word,r.word,'Packet corpus word conflict');assert(packetIndex.has(p.route_id),'Unknown packet predecessor');(r.packet_routes??=[]).push({...p,packet_id:packetIndex.get(p.route_id)});}
@@ -40,6 +44,7 @@ export function organize({occurrences,cache,packetRoutes=[],packets=[]}) {
   }
  }
  const ranked=[...groups.values()].map(g=>{g.candidate_ids=sorted(g.candidate_ids);g.corpus_ids=sorted(g.corpus_ids);g.open_candidate_ids=sorted(g.open_candidate_ids);g.current_open_candidate_ids=sorted(g.current_open_candidate_ids);g.open_frames=sorted(g.open_frames);const f=facts.get(g.head_id);g.edge_decisions=f?.family_decisions.filter(e=>e.family_id==='family:'+g.root)||[];
+  g.effective_question_decisions=g.candidate_ids.filter(k=>overrides.has(k)).map(k=>({...overrides.get(k),candidate_id:k}));
   g.finite_fanout=g.candidate_ids.length;g.evidence_confidence=g.identity_grade==='proven_identity'?1:g.identity_grade==='disputed_identity'?0.25:0;
   g.boundary_review_cost=g.identity_grade==='proven_identity'?1:g.finite_fanout;g.priority=g.open_candidate_ids.length*g.evidence_confidence/g.boundary_review_cost;
   g.research_reuse_references=f?{head_id:f.head_id,version:f.version,independent_family_questions:sorted((bindings.get(g.corpus_ids[0])||[]).map(b=>b.root))}:null;return g;

@@ -5,6 +5,7 @@ import {createHash} from 'node:crypto';
 import {gunzipSync} from 'node:zlib';
 import {execFileSync} from 'node:child_process';
 import {loadLexicalReview,materializeLexicalReviews,reviewBenchmarks} from './lib/associative-v6-lexical-review.mjs';
+import {loadBaselineCorrections,replayBaselineCorrections,assertAuthorizedMemberships} from './lib/associative-v6-baseline-corrections.mjs';
 import {loadHeadLifecycle,replayHeadLifecycle,restoreLifecycleBase} from './lib/associative-v6-head-lifecycle.mjs';
 import {loadFamilyPromotions,materializeFamilyPromotions} from './lib/associative-v6-family-promotion.mjs';
 import {regroupCurrentReviewQueues} from './lib/associative-v6-review-queues.mjs';
@@ -26,7 +27,8 @@ for(const b of Array.from({length:256},(_,i)=>i.toString(16).padStart(2,'0'))){
 assert(ids.size===2456540,'incomplete global inventory');for(const k of new Set([...Object.keys(classification),...Object.keys(report.classification_counts)]))assert(classification[k]===report.classification_counts[k],'classification mismatch '+k);
 let heads=await read(base+'/heads.json.gz'),edges=await read(base+'/edges.json.gz'),links=await read(base+'/lemma-head-links.json.gz'),memberships=await read(base+'/memberships.json.gz'),corpus=new Map(),cache=new Map();
 for(const l of links){const p=l.evidence[0].source;let shard=cache.get(p.path);if(!shard){shard=await read(p.path);cache.set(p.path,shard);}const m=shard[p.family_id]?.find(m=>m.lemma_id===l.lemma_id);assert(m&&m.word===l.word&&sha(Buffer.from(JSON.stringify(m)))===p.record_sha256,'lost/modified original measured record');corpus.set(l.language+'\0'+l.lemma_id,m);}
-const generated=generateV6Memberships({catalog,heads,edges,links,corpus});assert(JSON.stringify(generated)===JSON.stringify(memberships),'nonreproducible head-to-family output');
+const corrections=await loadBaselineCorrections({read,readBytes:p=>fs.readFile(p),inputs:{}}),correctionVerdicts=await read(base+'/correction-verdicts.json.gz');
+const generated=generateV6Memberships({catalog,heads,edges,links,corpus,correction_verdicts:correctionVerdicts});assert(JSON.stringify(generated)===JSON.stringify(memberships),'nonreproducible head-to-family output');
 const finalState={heads,edges,links};
 const lifecycle=await loadHeadLifecycle({read,readBytes:p=>fs.readFile(p),inputs:{}}),lifecycleLedger=await read(base+'/head-lifecycle-ledger.json');
 ({heads,edges,links}=restoreLifecycleBase({heads,edges,links,docs:lifecycle}));
@@ -50,7 +52,17 @@ const sortedHeads=x=>[...x].sort((a,b)=>a.id.localeCompare(b.id,'en'));
 const sortedEdges=x=>[...x].sort((a,b)=>(a.head_id+a.family_id).localeCompare(b.head_id+b.family_id,'en'));
 assert(JSON.stringify(sortedHeads(evolved.index.heads))===JSON.stringify(sortedHeads(finalState.heads)),'nonreproducible lifecycle heads');
 assert(JSON.stringify(sortedEdges(evolved.index.edges))===JSON.stringify(sortedEdges(finalState.edges)),'nonreproducible lifecycle edges');
-assert(JSON.stringify(evolved.index.memberships)===JSON.stringify(memberships),'nonreproducible reviewed-head/promotion verdicts');
+const historicalBaseline=await read(base+'/baseline-memberships.json.gz');
+assert(JSON.stringify(baselineRows)===JSON.stringify(historicalBaseline),'changed immutable historical baseline');
+assert(JSON.stringify(historicalBaseline.map(m=>m.language+'\0'+m.family_id+'\0'+m.lemma_id).sort())===JSON.stringify(expected.sort()),'incomplete historical baseline');
+const corrected=replayBaselineCorrections({index:evolved.index,docs:corrections,baseline:historicalBaseline});
+assert(JSON.stringify({decisions:corrected.ledger,metrics:corrected.metrics,differential:corrected.differential})===JSON.stringify(await read(base+'/baseline-correction-ledger.json')),'nonreproducible correction ledger');
+assert(JSON.stringify(corrected.index.correction_verdicts)===JSON.stringify(correctionVerdicts),'unapproved current correction verdict');
+assertAuthorizedMemberships({historical:evolved.index.memberships,current:memberships,verdicts:corrected.index.correction_verdicts});
+assert(JSON.stringify(corrected.index.memberships)===JSON.stringify(memberships),'nonreproducible corrected-head/promotion verdicts');
+assert(JSON.stringify(corrected.metrics)===JSON.stringify(report.baseline_correction_metrics),'changed correction metrics');
+const correctionDifferential=await read(base+'/differential.json.gz');
+assert(JSON.stringify(correctionDifferential.correction_differential)===JSON.stringify(corrected.differential),'changed correction differential');
 assert(JSON.stringify({decisions:promotedReplay.ledger,metrics:promotedReplay.metrics})===JSON.stringify(promotionLedger),'nonreproducible promotion ledger');
 assert(JSON.stringify(replay.ledger)===JSON.stringify(ledger),'changed exact head-review ledger');
 const allowed=ledger.filter(d=>d.status==='accepted').flatMap(d=>d.affected_lemma_ids.map(id=>d.language+'\0'+d.family_id+'\0'+id));
@@ -68,4 +80,4 @@ const controls=[];for(const[root,c]of Object.entries(catalog.golden_controls)){
  for(const word of c.negative){const language=word==='creer'?'es':undefined;const matches=searchV6({catalog,memberships},root,language).filter(m=>m.word.toLowerCase()===word);assert(!matches.length,'golden negative admitted '+root+'/'+word);controls.push({root,word,language,expected:'excluded_from_accepted_memberships'});}
 }
 const parallel=await loadParallelV6({readJson:read}),val=await parallel.routeQuery('val');assert(val.family_targets.length===0&&val.evidence_targets.length===15&&!val.establishes_membership,'val alias merged targets');
-const result={schema_version:6,verdict:'pass',source_head:catalog.source_head,locked_source_files:Object.keys(lock).length,classified_objects:ids.size,classification_counts:classification,preserved_manual_memberships:expected.length,reviewed_membership_additions:allowed.length,head_lifecycle_metrics:evolved.metrics,family_promotion_metrics:promotedReplay.metrics,generated_memberships:memberships.length,lexical_head_review_metrics:benchmarks.metrics,typed_realizations:catalog.families.reduce((n,f)=>n+f.reflexes.length,0),unexpected_differences:0,golden_controls:controls,val_retained_candidate_targets:15,production_enabled:false,v5_bytes_unchanged:true,full_linguistic_certification:false};await fs.mkdir(out.slice(0,out.lastIndexOf('/')),{recursive:true});await fs.writeFile(out,JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result,null,2));
+const result={schema_version:6,verdict:'pass',source_head:catalog.source_head,locked_source_files:Object.keys(lock).length,classified_objects:ids.size,classification_counts:classification,preserved_manual_memberships:expected.length,historical_baseline_memberships:historicalBaseline.length,current_baseline_memberships:historicalBaseline.length-corrected.metrics.baseline_corrections,baseline_correction_metrics:corrected.metrics,reviewed_membership_additions:allowed.length,head_lifecycle_metrics:evolved.metrics,family_promotion_metrics:promotedReplay.metrics,generated_memberships:memberships.length,lexical_head_review_metrics:benchmarks.metrics,typed_realizations:catalog.families.reduce((n,f)=>n+f.reflexes.length,0),unexpected_differences:0,golden_controls:controls,val_retained_candidate_targets:15,production_enabled:false,v5_bytes_unchanged:true,full_linguistic_certification:false};await fs.mkdir(out.slice(0,out.lastIndexOf('/')),{recursive:true});await fs.writeFile(out,JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result,null,2));

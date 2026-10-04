@@ -55,3 +55,10 @@ test('current planning cache tracks finite decisions independently of the frozen
  for(const g of stage.groups){const f=cache.find(f=>f.language===g.language&&f.normalized_head===g.normalized_head&&f.sense===g.sense);assert(f);assert.equal(f.family_membership_propagates,false);assert.equal(f.family_decisions.find(e=>e.family_id==='family:'+g.root).status,'accepted');assert.deepEqual(f.finite_scope.map(r=>r.lemma_id).sort(),g.records.map(r=>r.lemma_id).sort());}
  const historical=JSON.parse(gunzipSync(fs.readFileSync('audit/associative-family-v6/queue-organization-20261004/generated/lexical-fact-cache.json.gz')));assert.equal(historical.length,216);
 });
+
+test('synthetic per-question correction preserves historical occurrence and sibling family verdict',()=>{
+ const occurrences=[occurrence('word','a','unresolved_historical_without_current_decision','historical'),occurrence('word','b','unresolved_historical_without_current_decision','historical')],cache=[fact('word',['a','b'])];
+ const initial=organize({occurrences,cache});
+ for(const status of ['excluded','uncertain']){const revised=organize({occurrences,cache,questionVerdicts:[{language:'xx',lemma_id:'synthetic:word',root:'a',status,proof_locator:'synthetic-dossier'}]});assert.deepEqual(revised.conservation,initial.conservation);assert.equal(revised.questions.find(q=>q.root==='a').effective_verdict.status,status);assert(!revised.questions.find(q=>q.root==='b').effective_verdict);assert.deepEqual(revised.records[0].occurrences,initial.records[0].occurrences);assert.equal(revised.ranked.find(g=>g.root==='b').open_candidate_ids.length,1);assert.equal(revised.ranked.find(g=>g.root==='a').open_candidate_ids.length,status==='excluded'?0:1);}
+ assert.throws(()=>organize({occurrences,cache,questionVerdicts:[{language:'xx',lemma_id:'synthetic:unknown',root:'a',status:'excluded',proof_locator:'synthetic'}]}),/Unknown/);
+});

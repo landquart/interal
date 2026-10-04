@@ -43,7 +43,7 @@ export function finiteHeadPolicies(catalog, language, familyId, word) {
   const w = normalizeHead(word);
   return catalog.head_policies.filter(p => p.language === language && p.family_id === familyId && p.forms.some(f => normalizeHead(f) === w));
 }
-export function generateV6Memberships({catalog,heads,edges,links,corpus}) {
+export function generateV6Memberships({catalog,heads,edges,links,corpus,correction_verdicts=[]}) {
   const familyIds=new Set(validateCatalog(catalog).families.map(f=>f.id));
   const headMap = new Map(heads.map(h => [h.id,h])), edgeMap = new Map();
   for (const e of edges) {
@@ -63,7 +63,12 @@ export function generateV6Memberships({catalog,heads,edges,links,corpus}) {
     if (seen.has(k)) throw Error('Duplicate generated membership');
     seen.add(k); out.push({language:link.language,family_id:link.family_id,lemma_id:link.lemma_id,word:link.word,head_id:head.id,edge_version:edge.version,source_proof:link.evidence});
   }
-  return out.sort((a,b) => JSON.stringify(a).localeCompare(JSON.stringify(b),'en'));
+  const corrections=new Set();
+  for(const v of correction_verdicts){const k=v.language+'\0'+v.family_id+'\0'+v.lemma_id;
+    if(!['excluded','uncertain'].includes(v.status)||!v.dossier_id||!Number.isInteger(v.version)||v.version<1||!seen.has(k)||corrections.has(k))throw Error('Invalid current correction verdict');
+    corrections.add(k);
+  }
+  return out.filter(r=>!corrections.has(r.language+'\0'+r.family_id+'\0'+r.lemma_id)).sort((a,b) => JSON.stringify(a).localeCompare(JSON.stringify(b),'en'));
 }
 export function searchV6(index, query, language) {
   const ids = new Set(resolveV6Alias(index.catalog,query));

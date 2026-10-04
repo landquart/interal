@@ -2,7 +2,7 @@
 """Run the unchanged historical validators at exact published snapshots."""
 import subprocess,tempfile,json
 from pathlib import Path
-stages=[('prompt03','63b8f44539f752cad6e4fc875bba85be39035bb9'),('prompt04','2351a07722d88faa82dc05049144c567d43923c8')]
+stages=[('prompt03','63b8f44539f752cad6e4fc875bba85be39035bb9'),('prompt04','2351a07722d88faa82dc05049144c567d43923c8'),('oper-relat-20261004','a29a3184336b981f2ca1c5cea019ad43e4b42729')]
 results=[]
 for stage,sha in stages:
  with tempfile.TemporaryDirectory(prefix='v6-frozen-'+stage+'-') as temp:

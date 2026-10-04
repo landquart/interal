@@ -1,8 +1,10 @@
 {
   "schema_version": 6,
   "production_enabled": false,
-  "output": "audit/associative-family-v6/oper-relat-continuation-20261004/planning",
+  "output": "audit/associative-family-v6/prompt06-history-20261005/planning",
   "historical_outputs": [
-    "audit/associative-family-v6/queue-organization-20261004/generated"
-  ]
+    "audit/associative-family-v6/queue-organization-20261004/generated",
+    "audit/associative-family-v6/oper-relat-continuation-20261004/planning"
+  ],
+  "current_history_overlay": "audit/associative-family-v6/prompt06-history-20261005/representative-decisions.json"
 }
