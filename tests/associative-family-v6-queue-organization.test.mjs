@@ -26,6 +26,12 @@ test('synthetic: stale/unknown packet scope, duplicates and conflicting corpus i
 test('historical labels and legacy exact membership do not establish new identity',()=>{
  assert.equal(identityGrade({identity_kind:'historically_reviewed_lexical_head'},{}),'disputed_identity');assert.equal(identityGrade({identity_kind:'legacy_exact_record'},{identity_proof:['synthetic']}),'morphology_proposal');
 });
+test('synthetic: historical and candidate pools remain open independently of current metrics',()=>{
+ const occurrences=[occurrence('word','a','unresolved_historical_without_current_decision','historical'),occurrence('word','b','proposal_requires_review','val'),occurrence('word','c','accepted','completed_review')];
+ const result=organize({occurrences,cache:[fact('word',['a','b','c'])]});
+ assert.equal(result.metrics.current_membership_candidates,0);assert.equal(result.metrics.current_proven_units,0);assert.equal(result.metrics.open_membership_questions,2);
+ assert.deepEqual(result.ranked.find(g=>g.root==='a').open_frames,['historical']);assert.deepEqual(result.ranked.find(g=>g.root==='b').open_frames,['val']);assert.equal(result.ranked.find(g=>g.root==='c').open_candidate_ids.length,0);assert(result.ranked.find(g=>g.root==='a').priority>0);
+});
 test('real saved cache covers multilingual positive, negative and uncertain finite branches',()=>{
  const p='audit/associative-family-v6/queue-organization-20261004/generated/',read=n=>JSON.parse(gunzipSync(fs.readFileSync(p+n)));
  const cache=read('lexical-fact-cache.json.gz'),records=Object.values(read('cross-frame-reference-index.json.gz').shards).flatMap(s=>read(s.path)),ranked=read('ranked-candidate-head-queue.json.gz');
