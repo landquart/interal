@@ -51,3 +51,10 @@ jobs:
         run: |
           node --max-old-space-size=4096 scripts/build-associative-v6-history-certification.mjs /tmp/v6-certification-replay
           python scripts/audit-associative-v6-history-certification.py /tmp/v6-certification-replay /tmp/v6-planning-replay
+
+      - name: Audit nonmutating contamination partitions and replay
+        run: |
+          node --test tests/associative-family-v6-contamination.test.mjs
+          node scripts/audit-associative-v6-contamination.mjs
+          node scripts/build-associative-v6-contamination.mjs /tmp/v6-contamination-replay
+          diff -r audit/associative-family-v6/prompt07-contamination-20261005/generated /tmp/v6-contamination-replay
