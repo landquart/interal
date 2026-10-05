@@ -1,3 +1,7 @@
+## Prompt 08 — research checkpoint, 2026-10-05
+
+Baseline 39703c50459d4accfd032af8c3fb1f16cffb3e9a. Frozen packets and source evidence reused; anis already promoted and system already extended, so those stages are not repeated. Routing coverage finds **3,999,388 surface-only corpus IDs**, with six exact-set fingerprints, **600 bounded rank-sample IDs**, all **829 zero-v5 records**, exact proved-bindings coverage and independent packet/transitivity/duplicate-route measurements. True linguistic recall has no gold head inventory and is not claimed. Atom research saves three packet snapshots, seven exact records, independent English/German/Russian dictionary heads, the surface-only Atombombe component, deferred attimo/national/derivational branches and prospective zero-v5 splinter/tennis-profi evidence. Canonical is standalone research only; binding and accepted-membership authorization are false. Research and application remain separate; no merge, production v5. See prompt08-coverage-20261005/research.json and research-coverage/.
+
 ## Prompt 07 — contamination and finite branch partitions, 2026-10-05
 
 Research **10f2efdba674bcb4b521c699156698ebb5790e9a**, decision **48202f44aab6a2bc62731bc1207233857c2ad796**, application **2485f79ef7cf8fe6a5ccf3982e5cdf9dee4124fa**, source language/route guard **9b139be26c01d34ca72de1653c2ebd9585af4ec6** are separate published checkpoints with trees identical to local commits. Reuses frozen val/Russian/tower dossiers without repeating their route audits. No merge; production v5; main → #650 → #651 → #652.
