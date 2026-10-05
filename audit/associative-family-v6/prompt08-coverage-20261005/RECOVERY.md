@@ -1,0 +1,7 @@
+# Durable application recovery
+
+The first local application 26ed8d48 and successful validation logs were lost when the execution workspace was replaced during a large-blob publication attempt. That application was never moved onto the remote branch. Its local test results are not certification of this recovered application.
+
+Published research/decisions through ef785e67ef75c3d4bd9c69adbd9868b30df5321b survived. The repository was cloned again from that exact branch head. The approved finite dossiers and all source IDs were reused. Code was reconstructed and published independently as 7f82044a31f0b34b206f18393ef60294908e3ae9 (local63971e89); exact tree37c40f80d6007bb5999ca5357ea9edf9196f8dfa. Catalog and registries were published as c9dd3f170eab46e04056f83c842c7f02f18fdc07 (localed356058), exact treea833b1606bbb79c6ad203dde8426299b09326e3f.
+
+The recovered initial materialization has four atom bindings and three heads. The existing English head/edge version1 snapshots in the saved extension dossier match the recovered predecessor exactly; extend_forms adds atoms (+1/−0, one revision, zero new heads). No new research verdict, ID or frequency is invented during recovery. The packet workflow also rejects duplicate packet scopes explicitly. Large generated artifacts and final validation are published in subsequent separate checkpoints. All required checks must be repeated for the recovered code. No merge; production v5; PR652 remains draft on PR651.
