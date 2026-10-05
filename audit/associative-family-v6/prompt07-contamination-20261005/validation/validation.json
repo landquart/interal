@@ -1,0 +1,202 @@
+{
+  "baseline_sha": "1a96aa4512be66319d085704640921fb3cda6f32",
+  "research_published_sha": "10f2efdba674bcb4b521c699156698ebb5790e9a",
+  "research_local_sha": "13c4dce3",
+  "decision_published_sha": "48202f44aab6a2bc62731bc1207233857c2ad796",
+  "decision_local_sha": "2f2011fd",
+  "application_published_sha": "2485f79ef7cf8fe6a5ccf3982e5cdf9dee4124fa",
+  "application_local_sha": "12d21a50e69cb7cecd1d53d5658a30a49d558e7c",
+  "identical_application_tree": "2b8578a61f33a9ba159c94761c332ff3225585e0",
+  "exact_differential": {
+    "membership_additions": 0,
+    "membership_removals": 0,
+    "changed_membership_objects": 0,
+    "catalog_promotions": 0,
+    "current_queue_resolutions": 0
+  },
+  "protected_trees": {
+    "associativvordes/family-index-v5": "b6f8ff3fb46388932217dbd98a2208239e01f70d",
+    "associativvordes/frequency lists": "b9c6725761ce1f8acdd21e0fdb216cf1fb5464c7",
+    "audit/associative-family-v5": "c1bc9ceab39d1e10fcc3b19bf3fc9ae56af2b82c",
+    "associativvordes/family-index-v6/generated": "8487394d3f9e13f6c8c7970d0fa6a52ec645f46a",
+    "audit/associative-family-v6/val-route-review-20261003": "d6ecbead7cca6e74db1bea903036f2ea2765166a",
+    "audit/associative-family-v6/russian-short-review-20261003": "be3819f67b5c010624a802cf08c38222bfaaf7ef",
+    "audit/associative-family-v6/tower-promotion-source-frame-20261003.json.gz": "42f249f87bcb2dbabc1cf63f14be7b27879e5ec0"
+  },
+  "source_binding_refinement_published_sha": "9b139be26c01d34ca72de1653c2ebd9585af4ec6",
+  "source_binding_refinement_local_sha": "8221102e2b0b1c668a7b41dc0c1e27c824418945",
+  "identical_source_binding_refinement_tree": "4cf5bd11567098ef403f02d9fd4a0ad648b79dc3",
+  "schema_version": 6,
+  "production_enabled": false,
+  "verdict": "pass",
+  "targeted_tests": 17,
+  "full_npm_test_files": 133,
+  "full_npm_test_repeated_after_source_guard": true,
+  "independent_v6_audit": "pass",
+  "independent_partition_source_audit": "pass",
+  "independent_planning_audit": "pass",
+  "independent_history_certification_audit": "pass",
+  "migration_byte_replay_artifacts": 277,
+  "contamination_byte_replay_artifacts": 40,
+  "certification_byte_replay_artifacts": 5,
+  "planning_byte_replay_claimed_locally": false,
+  "planning_replay_in_application_ci": true,
+  "metrics": {
+    "incidences": 29701,
+    "unique_corpus_ids": 9232,
+    "frame_questions": 9234,
+    "finite_branches": 43,
+    "unresolved_partitions": 56,
+    "branch_annotated_questions": 75,
+    "unassigned_questions": 9159,
+    "overlapping_branch_questions": 5,
+    "flag_counts": {
+      "semantic_translation_gloss": 1,
+      "alias_pool_reuse": 16,
+      "unrelated_homonym": 13,
+      "suffix_ending": 2,
+      "accidental_fragment": 8,
+      "proper_name_identity": 4,
+      "damaged_spelling": 2,
+      "duplicate_routing": 5926
+    },
+    "frames": {
+      "controls": {
+        "incidences": 2,
+        "unique_ids": 2,
+        "unassigned_questions": 0
+      },
+      "russian": {
+        "incidences": 2637,
+        "unique_ids": 2633,
+        "unassigned_questions": 2604
+      },
+      "tower": {
+        "incidences": 2166,
+        "unique_ids": 1083,
+        "unassigned_questions": 1066
+      },
+      "val": {
+        "incidences": 24896,
+        "unique_ids": 5516,
+        "unassigned_questions": 5489
+      }
+    },
+    "catalog_promotions": 0,
+    "accepted_additions": 0,
+    "accepted_removals": 0,
+    "linguistic_exclusions_created": 0,
+    "current_queue_resolutions": 0
+  },
+  "full_dictionary_complete": false,
+  "application_ci": {
+    "sha": "2485f79ef7cf8fe6a5ccf3982e5cdf9dee4124fa",
+    "Tests": {
+      "run_id": 37309134451,
+      "conclusion": "success"
+    },
+    "Audit parallel associative family v6": {
+      "run_id": 37309134425,
+      "conclusion": "success"
+    }
+  },
+  "remote_ci": "Verify exact final validation SHA separately; application-SHA success is not substituted for final-SHA proof.",
+  "code_sha256": {
+    "scripts/build-associative-v6-contamination.mjs": "953ac272fe25e60517ccdd133814768e04422d9dfab432d83bb9e123bf12e925",
+    "scripts/audit-associative-v6-contamination.mjs": "cbe6f2a5c367308dcdce977dfe5b656e492c6e85ebb788b777dbc2537949e593",
+    "scripts/lib/associative-v6-contamination.mjs": "11efe931dd11c25d2d6fee0dc6e2c758dfe9830fd7b91defcc03c3bc0c424ac0",
+    "scripts/lib/associative-v6-contamination-io.mjs": "e1d3c6cfd8aa88abd4f37966baa65ab836aefb4280b95a48f2f2bc2d4bdefc5e",
+    "tests/associative-family-v6-contamination.test.mjs": "ae5b0f0872bf3efbcea60f1c538b2d19b0315582ee5c79f138f503b01e47e748"
+  },
+  "artifacts": {
+    "alias-branch-index.json": "aeae7a55ef5828f4b0453cc74cc28bb4ae67556c65eaf227ea2074625e243fff",
+    "build-manifest.json": "bdb90468c61a95d9b45a8613f6c7b6ae0f64374e3fbda46f308da6da3de16c25",
+    "controls.json": "d15cb2f307b071411bf24db5e4f02c7fee0c0b6f75c5a99ea5c805750e449430",
+    "flags-000.json.gz": "46e6ae828c60b2e5c749888579c80012a8a2961d899ebea49ed6c6e92f3730d9",
+    "flags-001.json.gz": "86949d01e5b88cf73cb16ba4809f4d6ad9e29f651e9860029c98b1e1a66c7820",
+    "flags-002.json.gz": "32fa7cbd5b43c72adfb3658107911c37f40b2fea4c2f5172ae579369b891c4ee",
+    "flags-003.json.gz": "62ad6dd74f45a57353f1f3dfe9e2c46eace090b506283cc23bcadfdedbca8702",
+    "flags-004.json.gz": "98e72f7e33ee4bc3b11098f31de7784c62212c7ffc8c018f1ab6351e6ed57c86",
+    "flags-005.json.gz": "175790b6560aa9571845a028243e28560988cb5d4cb36f0cd4c73cf7fd780625",
+    "flags-006.json.gz": "28016c49895c0a74fdbab104eb61bbd05f93e4f367733d39449ed5474824bdd7",
+    "flags-007.json.gz": "ea7ae3d238e915a56866075dda13afff71d2303c9d55e7286f754bf49793bb68",
+    "flags-008.json.gz": "3c3bc4634dbf71844248bcc40851e86bc21d38983e3edf7f854fd8603840e9e2",
+    "flags-009.json.gz": "b37f3964ac3c42ae9eadd29a3ae1eea9b4230fce9ff307662c3935044239557d",
+    "flags-010.json.gz": "f20f8704406cbf6adade32023f5f3e722820501ca8eabc1f049d54fbb00b63d9",
+    "flags-011.json.gz": "c74e8f2f10516a81867855202a7df0e307c5f7abeb94c075b22bc4adc2e25a71",
+    "incidences-000.json.gz": "4cc6669f5b8b6d718d619732278f13366d9051dbf407914dd5177454bd4726a5",
+    "incidences-001.json.gz": "bc7f22eb1e3537b71d7ab189d1d7f33fac53c7b2fb5e63a2d53a75b4df855c79",
+    "incidences-002.json.gz": "a18433482aa255fcc65c19c492dfb181228fc6144e5f551831f08de392698d8a",
+    "incidences-003.json.gz": "40c476ddbf0e0e6e86feb9681c93c0d0983faac56093498a95bf15122d65cd5e",
+    "incidences-004.json.gz": "1f2e19829afde2bcc4bec8a0be52c2fef3a8f83ef428a1c131c03f404a909c18",
+    "incidences-005.json.gz": "ee409da594cdac5c7b5b566c2841c8e36cc9c2f13e4e28a8f128de04eefdbc6f",
+    "incidences-006.json.gz": "ccac578a15052e1327612e3369ef0fb32355ed6e4acbc4e0937df88568536345",
+    "incidences-007.json.gz": "fd334299610a0b521818147a3b69a9181235dc2864ddd15ad9f0cffe5a139452",
+    "incidences-008.json.gz": "8356bfdc25c23bbecb0b32a5dc60ec06ef9b9a53789de82df18cebb4f0f01660",
+    "incidences-009.json.gz": "3da4cc348fb1c839b30d8b3d9071893cd7b9ced3d665416a53b33ef687c2141a",
+    "incidences-010.json.gz": "3cbd155e875ea49922b3708e3e2b458277620b72137d2a223a69c9b2d760d9ff",
+    "incidences-011.json.gz": "05ba2cef067d5f1a8226edafcedacbcc5f4142420c0d5f47197bdbb8e57af52b",
+    "incidences-012.json.gz": "bedd7ea2fb3c37fce9f5d907b6f0212b6a25b156cf111c304872090e8c935f27",
+    "incidences-013.json.gz": "d4c17b6dea5f36b5c8f28686ca3d81f62795c2d2e32cc459a1bd744fc5d97760",
+    "incidences-014.json.gz": "548a10f58b3530188f17e86f90e0db0fd2b73b8ef47cd238ab2f63c44f5ca654",
+    "incidences-015.json.gz": "9b2a0105fa0a2f806594834a184ecb3584dedcd9f1de86a73a4bd0e38e9b327d",
+    "incidences-016.json.gz": "9eba9864715672daf22ce3cba1c3425ebbc6fca2690d1b8af3161b12c6ff1510",
+    "incidences-017.json.gz": "33d6d4f522e90a41ba99346dfb86a8931b47ba1c78883d2fbbbb596b52ff011b",
+    "incidences-018.json.gz": "f83cdfcfb93a34f742af002c8308a0f3ff8c90a3be5f285a3be46dfe5bc90c0d",
+    "incidences-019.json.gz": "e5bbafc26ada770915a538df4c73ebc42a835a6e7eec615c590498e4c4e35850",
+    "input-lock.json": "be287948a7c167af3fb581deb1d68cbb50adda100bb93e509f643ff8e901a8d3",
+    "metrics.json": "06d63eea56b89c53dd35b889b8a672fc3706339590681644cf5869d7daffd87c",
+    "partition-dossier.json.gz": "67253bf2d0e7f239598205654d7090e437b3e62eb6f06d7b646c2333411aaf5d",
+    "unresolved-partitions.csv": "445cb75aedee35c2a7b15ca53ba7f9b0688cf21cf7784c22cbf973c6be0819e9",
+    "unresolved-partitions.json.gz": "748b746b1411877830f293f83761f4735aea38d672168bdc81700dad279bdbd5"
+  },
+  "logs": {
+    "targeted.log.gz": {
+      "sha256": "80670bd4259c86c22abe68cac2bd77083d377a33e46b1d85bc8c327132cb8241",
+      "original_bytes": 1840
+    },
+    "build.log.gz": {
+      "sha256": "e12a53750bb2e9afad2630fe491150dea68c8c0ceebcc36435f3f1a9e6454819",
+      "original_bytes": 866
+    },
+    "partition-audit.log.gz": {
+      "sha256": "e478c761e62403340d4ce18df8d2d70f7224edca2f7413f806a818fc26f3868f",
+      "original_bytes": 204
+    },
+    "partition-replay.log.gz": {
+      "sha256": "e12a53750bb2e9afad2630fe491150dea68c8c0ceebcc36435f3f1a9e6454819",
+      "original_bytes": 866
+    },
+    "v6-build.log.gz": {
+      "sha256": "6858746602d7c843ef904964ba39bdcf6f8063c11fe29cfeec261a4dd65d45d2",
+      "original_bytes": 433
+    },
+    "v6-replay.log.gz": {
+      "sha256": "aaef7de7572e962f7f49dcb8f579ccb353591847349a97056ec3ca1232af4b3b",
+      "original_bytes": 47
+    },
+    "planning-audit.log.gz": {
+      "sha256": "b6bb8b4eb16a43c1f2f85380aae91193cfa6e286f443f674b85f6a41bf230537",
+      "original_bytes": 546
+    },
+    "certification-replay.log.gz": {
+      "sha256": "e6b6ce548322b755633738da1a2c43907640d224e9bb7479c7aa9011688c81fa",
+      "original_bytes": 1429
+    },
+    "history-audit.log.gz": {
+      "sha256": "3476a9acaa54b2f03fc4347edf4546bd7a69687c7f5316551bb10aa44d8d5c4f",
+      "original_bytes": 1260
+    },
+    "full-tests.log.gz": {
+      "sha256": "0f8d9db4793d7972a89f2ad903a582144a64ecdeda4cec7a9bc1586d9fd69e56",
+      "original_bytes": 49745
+    },
+    "final-full-tests.log.gz": {
+      "sha256": "e56a701f663f3c3182cb1f6ba22545f724f56c1c38a0f4bf4444191662489315",
+      "original_bytes": 49860
+    }
+  },
+  "development_attempts": [
+    "An initial real test attempt failed and is not counted as a pass. Canonical input ordering/maps and structural reconstruction were validated in subsequent successful runs."
+  ]
+}
