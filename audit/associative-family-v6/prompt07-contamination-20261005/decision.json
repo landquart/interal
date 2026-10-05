@@ -1,0 +1,51 @@
+{
+  "schema_version": 6,
+  "version": 1,
+  "production_enabled": false,
+  "stage": "prompt07_decision",
+  "research_sha256": "317721745c17d02f3ebd47c51e55b4f206049c62d088541c87e1889b232bb49e",
+  "research_commit": "13c4dce3",
+  "binding_authorized": false,
+  "accepted_membership_authorized": false,
+  "merge_authorized": false,
+  "flag_policy": {
+    "semantic_translation_gloss": "independent_formal_history_required",
+    "alias_pool_reuse": "independent_branch_evidence_required",
+    "unrelated_homonym": "sense_bound_head_review_required",
+    "suffix_ending": "full_stem_boundary_review_required",
+    "accidental_fragment": "lexical_component_proof_required",
+    "proper_name_identity": "entity_and_national_form_review_required",
+    "damaged_spelling": "source_encoding_or_spelling_review_required",
+    "duplicate_routing": "preserve_all_route_evidence_and_count_unique_ids_separately"
+  },
+  "partition_policy": {
+    "unit": "finite_language_lemma_question",
+    "overlap": "explicit_multiple_branch_questions_are_allowed_not_multiple_memberships",
+    "residual": "every_unassigned_identity_remains_in_frame_and_route_scoped_unresolved_partition",
+    "source_records": "immutable_payload_and_locator_per_route_occurrence",
+    "national_only_heads": "research_overlay_only_not_international_catalog",
+    "flags": "triage_state_and_priority_only_no_exclusion_membership_or_deletion",
+    "proof": "source_file_and_payload_hashes_required_no_alias_or_duplicate_identity_inference"
+  },
+  "differential": {
+    "catalog_promotions": 0,
+    "accepted_membership_additions": 0,
+    "accepted_membership_removals": 0,
+    "current_queue_resolutions": 0
+  },
+  "source_counts": {
+    "val": {
+      "incidences": 24896,
+      "unique_ids": 5516
+    },
+    "russian": {
+      "incidences": 2637,
+      "unique_ids": 2633
+    },
+    "tower": {
+      "incidences": 2166,
+      "unique_ids": 1083
+    }
+  },
+  "next_stage": "Individually adjudicate finite heads and national realizations, then use existing approved edge/promote/correction procedures."
+}
