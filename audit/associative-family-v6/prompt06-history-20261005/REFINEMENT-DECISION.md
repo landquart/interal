@@ -1,0 +1,7 @@
+# Baseline conservation before the overlay
+
+The initial local validation was published at 0bf4fc46 with unchanged real memberships. A final path review found that a future lifecycle accepted→excluded revision could remove an original baseline question upstream of the new correction overlay. Comparing the overlay only against that already revised raw state would miss this particular pre-overlay loss.
+
+Add an independent exact-identity assertion inside replayBaselineCorrections: every original baseline (language, family, lemma ID) must still exist in the reconstructed historical accepted reference before any overlay is applied. Lifecycle may change versions or add records but may not bypass the baseline correction dossier. Explicit excluded/uncertain corrections remain applied only afterward. The same guard runs in builder and independent audit replay; changing counts with unrelated additions cannot conceal a missing key.
+
+One separate synthetic regression covers an upstream lifecycle exclusion, a count-preserving wrong-ID replacement, and a legitimate edge-version update. Real registry remains empty; exact real membership differential remains zero. This engine refinement needs a new generated input lock, 75 targeted tests, full npm test, independent audit and fresh deterministic replay. Earlier validation and published snapshots stay in history rather than being rewritten as if this guard had already existed.
