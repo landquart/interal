@@ -1,0 +1,2102 @@
+{
+  "schema_version": 6,
+  "stage": "prompt07_research",
+  "source_sha": "1a96aa4512be66319d085704640921fb3cda6f32",
+  "production_enabled": false,
+  "source_sha256": {
+    "audit/associative-family-v6/val-route-review-20261003/records.json.gz": "56cd533a50a59a430178aecd8ce0225fc9c3e9244805fac32efc71050d2bbeae",
+    "audit/associative-family-v6/val-route-review-20261003/report.json": "b1180b1b05b55d97b30e06e16cea64d6dfbdac6c561612276ca5713de9be6a35",
+    "audit/associative-family-v6/russian-short-review-20261003/records.json.gz": "adde7dcba897b5904dd33eb80f5ba4d07f6ff257d27e88bad901c72a89bc3ed8",
+    "audit/associative-family-v6/russian-short-review-20261003/report.json": "a35cec5d34939cc588be764b16fae0d9fbc5f032b34f5b3bfa93fa457259ad36",
+    "audit/associative-family-v6/tower-promotion-source-frame-20261003.json.gz": "b1332e3226291683e9457517bd74568ebd361fb513f8649969a4ecda9c44a4db",
+    "audit/associative-family-v6/tower-promotion-research-20261003.json": "a2cd1825d0e5eaf3461a2e44e73f3d589801b41e8c69a13b72a15fbd93aa862a",
+    "audit/associative-family-v6/tower-canonical-boundary-adjudication-20261003.json": "ed4606b35c170ea748c9318dde3fb9b68bc515de8c2ccddb75b33468147bc226",
+    "audit/associative-family-v6/system-promotion-research-20261003.json": "897270a11045072d6bb93eb43fdfb8e820b9c6a80b223a8f0959408dbb67a82e",
+    "audit/associative-family-v6/anis-promotion-research-20261003.json": "ff60347252b5e044ef2422fc8f46251d7a1a2e806ba92db0c256a18bec496e4f"
+  },
+  "sources": [
+    {
+      "id": "valid",
+      "url": "https://www.merriam-webster.com/dictionary/valid",
+      "summary": "Valid continues Latin validus, directly derived from the base of valere. Health, strength and legal/logical efficacy are related senses.",
+      "access": "retrieved_dictionary_or_publisher_text",
+      "retrieved_date": "2026-10-05",
+      "retrieval_ref": "turn5view0"
+    },
+    {
+      "id": "value",
+      "url": "https://www.merriam-webster.com/dictionary/value",
+      "summary": "English value comes through Anglo-French value/valu and valer from Latin valere. Its noun and denominal verb share this history.",
+      "access": "retrieved_dictionary_or_publisher_text",
+      "retrieved_date": "2026-10-05",
+      "retrieval_ref": "turn6view0"
+    },
+    {
+      "id": "valeur",
+      "url": "https://dictionnaire-academie.fr/article/A9V0094",
+      "summary": "French valeur continues late Latin valor, itself derived from valere.",
+      "access": "retrieved_dictionary_or_publisher_text",
+      "retrieved_date": "2026-10-05",
+      "retrieval_ref": "turn3search30"
+    },
+    {
+      "id": "valido",
+      "url": "https://www.treccani.it/vocabolario/valido/",
+      "summary": "Italian valido continues Latin validus, derived from valere.",
+      "access": "retrieved_dictionary_or_publisher_text",
+      "retrieved_date": "2026-10-05",
+      "retrieval_ref": "turn0search3"
+    },
+    {
+      "id": "valere",
+      "url": "https://www.treccani.it/vocabolario/valere/",
+      "summary": "Italian valere includes worth, efficacy, validity and sufficiency; vale is a finite form, not the English valley noun.",
+      "access": "retrieved_dictionary_or_publisher_text",
+      "retrieved_date": "2026-10-05",
+      "retrieval_ref": "turn0search0"
+    },
+    {
+      "id": "valence",
+      "url": "https://www.cnrtl.fr/etymologie/valence//1",
+      "summary": "Technical valence develops through German Valenz/valentigkeit and Latin valentia. Chemical use precedes analogical linguistic use; the latter is documented in Tesniere in 1953.",
+      "access": "retrieved_dictionary_or_publisher_text",
+      "retrieved_date": "2026-10-05",
+      "retrieval_ref": "turn4view1"
+    },
+    {
+      "id": "valenza",
+      "url": "https://www.treccani.it/vocabolario/valenza/",
+      "summary": "Valenza continues late Latin valentia derived from valere. Chemical combining capacity and linguistic complement capacity are related technical senses.",
+      "access": "retrieved_dictionary_or_publisher_text",
+      "retrieved_date": "2026-10-05",
+      "retrieval_ref": "turn2view2"
+    },
+    {
+      "id": "val",
+      "url": "https://www.cnrtl.fr/definition/val",
+      "summary": "French val continues Latin vallis. This valley noun is distinct from the valere worth/strength row.",
+      "access": "retrieved_dictionary_or_publisher_text",
+      "retrieved_date": "2026-10-05",
+      "retrieval_ref": "turn0search11"
+    },
+    {
+      "id": "vale",
+      "url": "https://www.merriam-webster.com/dictionary/vale",
+      "summary": "English vale continues Anglo-French val from Latin valles/vallis; deeper origin is uncertain.",
+      "access": "retrieved_dictionary_or_publisher_text",
+      "retrieved_date": "2026-10-05",
+      "retrieval_ref": "turn6view1"
+    },
+    {
+      "id": "valley",
+      "url": "https://www.merriam-webster.com/dictionary/valley",
+      "summary": "Valley continues Anglo-French valee/Old French valede, formed from val with a noun suffix. It belongs to the same valley lexical history.",
+      "access": "retrieved_dictionary_or_publisher_text",
+      "retrieved_date": "2026-10-05",
+      "retrieval_ref": "turn2view3"
+    },
+    {
+      "id": "vallo1",
+      "url": "https://www.treccani.it/vocabolario/vallo1/",
+      "summary": "Vallo1 continues Latin vallum, a palisade or fortification; transferred ditch/groove senses remain in that entry.",
+      "access": "retrieved_dictionary_or_publisher_text",
+      "retrieved_date": "2026-10-05",
+      "retrieval_ref": "turn4view2"
+    },
+    {
+      "id": "vallo2",
+      "url": "https://www.treccani.it/vocabolario/vallo2/",
+      "summary": "Vallo2 is a masculine variant of valle, influenced by apocopated val in place names; it also denotes an administrative district.",
+      "access": "retrieved_dictionary_or_publisher_text",
+      "retrieved_date": "2026-10-05",
+      "retrieval_ref": "turn7view0"
+    },
+    {
+      "id": "valerius",
+      "url": "https://www.behindthename.com/name/valerius",
+      "summary": "The editorial name entry records Valerius as a Roman family name related to valeo and lists national counterparts including Valeriy/Valerio. Its cited Lewis-Short source could not be directly retrieved; primary-source confirmation remains a blocker.",
+      "access": "secondary_editorial_name_dictionary_primary_link_unavailable",
+      "retrieved_date": "2026-10-05",
+      "retrieval_ref": "turn6view2"
+    },
+    {
+      "id": "valentia",
+      "url": "https://www.valencia.es/es/cas/la-ciudad/historia",
+      "summary": "The municipal history independently documents Roman Valentia as the city preceding Valencia. This does not resolve every lowercased corpus occurrence or every place named Valentia.",
+      "access": "retrieved_dictionary_or_publisher_text",
+      "retrieved_date": "2026-10-05",
+      "retrieval_ref": "turn3search3"
+    },
+    {
+      "id": "cheval",
+      "url": "https://www.cnrtl.fr/lexicographie/chev%C3%A2l",
+      "summary": "Previously saved independent lexical control: cheval continues Latin caballus, not vallis or valere. Reuse the frozen route dossier evidence; no new route audit.",
+      "access": "inherited_saved_dictionary_control",
+      "retrieved_date": "2026-10-05",
+      "retrieval_ref": null
+    },
+    {
+      "id": "stivale",
+      "url": "https://www.treccani.it/vocabolario/stivale_%28Sinonimi-e-Contrari%29/",
+      "summary": "Italian stivale is a boot noun from Old French estival; its final val spelling does not establish valere or vallis.",
+      "access": "retrieved_dictionary_or_publisher_text",
+      "retrieved_date": "2026-10-05",
+      "retrieval_ref": "turn7search1"
+    },
+    {
+      "id": "um",
+      "url": "https://gramota.ru/poisk?mode=slovari&query=%D0%A3%D0%BC",
+      "summary": "The dictionary provides a native mental row with um, umnyj and derivatives. Local morphological coherence does not establish international formal continuity.",
+      "access": "retrieved_dictionary_or_publisher_text",
+      "retrieved_date": "2026-10-05",
+      "retrieval_ref": "turn0search15"
+    },
+    {
+      "id": "krylo",
+      "url": "https://gramota.ru/poisk?dicts%5B0%5D=48&mode=slovari&query=%D0%BA%D1%80%D1%8B%D0%BB%D0%BE&simple=0",
+      "summary": "The dictionary separates kryl-o and lists animal and aircraft senses and derivatives. A wing component has a full kryl base, not lo.",
+      "access": "retrieved_dictionary_or_publisher_text",
+      "retrieved_date": "2026-10-05",
+      "retrieval_ref": "turn6search1"
+    },
+    {
+      "id": "antikrylo",
+      "url": "https://gramota.ru/storage/public/normdicts/orfograficheskij_slovar.pdf",
+      "summary": "The official orthographic dictionary lists antikrylo and plural antikrylja. The finite wing component analysis is a research inference alongside the krylo dictionary.",
+      "access": "retrieved_dictionary_or_publisher_text",
+      "retrieved_date": "2026-10-05",
+      "retrieval_ref": "turn7search48"
+    },
+    {
+      "id": "americanec",
+      "url": "https://gramota.ru/poisk?mode=slovari&query=%D0%B0%D0%BC%D0%B5%D1%80%D0%B8%D0%BA%D0%B0%D0%BD%D1%86%D1%8B",
+      "summary": "The dictionary gives singular amerikanec and genitive amerikanca. -ca contains stem alternation and case ending; it is not an associative root.",
+      "access": "retrieved_dictionary_or_publisher_text",
+      "retrieved_date": "2026-10-05",
+      "retrieval_ref": "turn5search0"
+    },
+    {
+      "id": "pizza",
+      "url": "https://gramota.ru/poisk?mode=slovari&query=%D0%BF%D0%B8%D1%86%D1%86%D0%B0",
+      "summary": "Pizza is an Italian loan noun. Cyrillic final ca transliteration does not relate it to the person-noun inflection pool.",
+      "access": "retrieved_dictionary_or_publisher_text",
+      "retrieved_date": "2026-10-05",
+      "retrieval_ref": "turn4search0"
+    },
+    {
+      "id": "umlaut",
+      "url": "https://old.bigenc.ru/linguistics/text/4699089",
+      "summary": "The Russian encyclopedia identifies umlaut as the German term Umlaut for vowel alternation. Its initial um is distinct from Russian mental um.",
+      "access": "retrieved_dictionary_or_publisher_text",
+      "retrieved_date": "2026-10-05",
+      "retrieval_ref": "turn6search2"
+    },
+    {
+      "id": "umyvat",
+      "url": "https://gramota.ru/poisk?dicts%5B0%5D=49&mode=slovari&query=%D1%83%D0%BC%D1%8B%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+      "summary": "Umyvat is the washing verb paired with umyt. The u + my lexical segmentation is a finite research analysis; initial um does not establish the mental row.",
+      "access": "retrieved_dictionary_or_publisher_text",
+      "retrieved_date": "2026-10-05",
+      "retrieval_ref": "turn6search0"
+    },
+    {
+      "id": "atrium",
+      "url": "https://www.pravenc.ru/text/%D0%B0%D1%82%D1%80%D0%B8%D0%B9.html",
+      "summary": "The publisher entry identifies atrium/atrij and Latin atrium as the architectural hall/court. The final Latin noun spelling is not Russian mental um.",
+      "access": "retrieved_dictionary_or_publisher_text",
+      "retrieved_date": "2026-10-05",
+      "retrieval_ref": "turn7search22"
+    },
+    {
+      "id": "ruval",
+      "url": "https://gramota.ru/poisk?mode=slovari&query=%D0%92%D0%9A%D0%9B.&simple=0",
+      "summary": "Indexed dictionary text lists Russian val for an embankment, wave or shaft. Its spelling alone does not identify the international worth or valley row.",
+      "access": "retrieved_dictionary_or_publisher_text",
+      "retrieved_date": "2026-10-05",
+      "retrieval_ref": "turn7search3"
+    },
+    {
+      "id": "tower.saved",
+      "url": "audit/associative-family-v6/tower-promotion-research-20261003.json",
+      "summary": "Frozen seven national heads and ten negative/withheld controls are reused with their independent sources and exact records; no repeated route audit.",
+      "access": "inherited_hash_locked_dictionary_dossier",
+      "retrieved_date": "2026-10-05",
+      "retrieval_ref": null
+    }
+  ],
+  "branches": [
+    {
+      "id": "val.valid",
+      "frame": "val",
+      "kind": "lexical",
+      "head_scope": "international_candidate",
+      "dictionary_supported_heads": [
+        "en:valid",
+        "fr:valide",
+        "it:valido"
+      ],
+      "candidate_canonical": "valid",
+      "canonical_approval": false,
+      "formal_history": "validus directly derives from valere; valid is the complete adjective branch base. The shared val relationship is researched separately.",
+      "senses": "Related health/efficacy/legal and logical validity.",
+      "national_forms": [
+        {
+          "language": "en",
+          "form": "valid",
+          "general_realization_authorized": false
+        },
+        {
+          "language": "fr",
+          "form": "valide",
+          "general_realization_authorized": false
+        },
+        {
+          "language": "it",
+          "form": "valido",
+          "general_realization_authorized": false
+        }
+      ],
+      "evidence_ids": [
+        "valid",
+        "valido"
+      ],
+      "exact_records": [
+        {
+          "frame": "val",
+          "language": "en",
+          "lemma_id": "lemma:0f10d47dbe22e2b5b35b",
+          "word": "valid"
+        },
+        {
+          "frame": "val",
+          "language": "en",
+          "lemma_id": "lemma:f1e72e28c157ee794dd5",
+          "word": "validity"
+        },
+        {
+          "frame": "val",
+          "language": "fr",
+          "lemma_id": "lemma:70a9f7cf8c6930129a94",
+          "word": "valide"
+        },
+        {
+          "frame": "val",
+          "language": "it",
+          "lemma_id": "lemma:b70beac851b5696ce2df",
+          "word": "valido"
+        }
+      ],
+      "evidence_gaps": [
+        "Finite corpus identity and independent edge review required; no binding or promotion authorized."
+      ],
+      "flags": [],
+      "review_state": "researched_partition_requires_finite_head_edge_review",
+      "family_id": null,
+      "membership_authorized": false
+    },
+    {
+      "id": "val.value",
+      "frame": "val",
+      "kind": "lexical",
+      "head_scope": "international_candidate",
+      "dictionary_supported_heads": [
+        "en:value",
+        "fr:valeur",
+        "es:valor"
+      ],
+      "candidate_canonical": "val",
+      "canonical_approval": false,
+      "formal_history": "value via Anglo-French valu/valer; valeur/valor via Latin valor, all directly continuing valere.",
+      "senses": "Related worth, value and strength/courage; senses do not split by default.",
+      "national_forms": [
+        {
+          "language": "en",
+          "form": "value",
+          "general_realization_authorized": false
+        },
+        {
+          "language": "fr",
+          "form": "valeur",
+          "general_realization_authorized": false
+        },
+        {
+          "language": "es",
+          "form": "valor",
+          "general_realization_authorized": false
+        }
+      ],
+      "evidence_ids": [
+        "value",
+        "valeur"
+      ],
+      "exact_records": [
+        {
+          "frame": "val",
+          "language": "en",
+          "lemma_id": "lemma:d4ef085fc292cb1384ef",
+          "word": "value"
+        },
+        {
+          "frame": "val",
+          "language": "fr",
+          "lemma_id": "lemma:9345b0a7c6776dbeda93",
+          "word": "valeur"
+        },
+        {
+          "frame": "val",
+          "language": "es",
+          "lemma_id": "lemma:a0141fb6e478aaf34a84",
+          "word": "valor"
+        }
+      ],
+      "evidence_gaps": [
+        "Finite corpus identity and independent edge review required; no binding or promotion authorized."
+      ],
+      "flags": [],
+      "review_state": "researched_partition_requires_finite_head_edge_review",
+      "family_id": null,
+      "membership_authorized": false
+    },
+    {
+      "id": "val.valence.chemical",
+      "frame": "val",
+      "kind": "lexical",
+      "head_scope": "international_candidate",
+      "dictionary_supported_heads": [
+        "en:valence",
+        "en:valency",
+        "fr:valence",
+        "it:valenza"
+      ],
+      "candidate_canonical": "valent",
+      "canonical_approval": false,
+      "formal_history": "Technical valentia/-valent row from valere through national scientific formations.",
+      "senses": "Chemical combining capacity.",
+      "national_forms": [
+        {
+          "language": "en",
+          "form": "valence",
+          "general_realization_authorized": false
+        },
+        {
+          "language": "en",
+          "form": "valency",
+          "general_realization_authorized": false
+        },
+        {
+          "language": "fr",
+          "form": "valence",
+          "general_realization_authorized": false
+        },
+        {
+          "language": "it",
+          "form": "valenza",
+          "general_realization_authorized": false
+        }
+      ],
+      "evidence_ids": [
+        "valence",
+        "valenza"
+      ],
+      "exact_records": [
+        {
+          "frame": "val",
+          "language": "en",
+          "lemma_id": "lemma:a49a5780cec8c768ed3b",
+          "word": "valency"
+        },
+        {
+          "frame": "val",
+          "language": "en",
+          "lemma_id": "lemma:eec22bfad613003b4486",
+          "word": "valence"
+        },
+        {
+          "frame": "val",
+          "language": "fr",
+          "lemma_id": "lemma:2219f8be0629e7737f7a",
+          "word": "valence"
+        },
+        {
+          "frame": "val",
+          "language": "it",
+          "lemma_id": "lemma:c9d56e95cd45ff724f69",
+          "word": "valenza"
+        }
+      ],
+      "evidence_gaps": [
+        "Same aggregate IDs also carry linguistic and possibly name-derived readings; do not choose tokens or partition frequency."
+      ],
+      "flags": [],
+      "review_state": "researched_partition_requires_finite_head_edge_review",
+      "family_id": null,
+      "membership_authorized": false
+    },
+    {
+      "id": "val.valence.linguistic",
+      "frame": "val",
+      "kind": "lexical",
+      "head_scope": "international_candidate",
+      "dictionary_supported_heads": [
+        "en:valence",
+        "en:valency",
+        "fr:valence",
+        "it:valenza"
+      ],
+      "candidate_canonical": "valent",
+      "canonical_approval": false,
+      "formal_history": "Analogical extension of technical valence; independently documented in native dictionary.",
+      "senses": "Linguistic complement/actant capacity, related to chemical sense by analogy.",
+      "national_forms": [
+        {
+          "language": "en",
+          "form": "valence",
+          "general_realization_authorized": false
+        },
+        {
+          "language": "en",
+          "form": "valency",
+          "general_realization_authorized": false
+        },
+        {
+          "language": "fr",
+          "form": "valence",
+          "general_realization_authorized": false
+        },
+        {
+          "language": "it",
+          "form": "valenza",
+          "general_realization_authorized": false
+        }
+      ],
+      "evidence_ids": [
+        "valence",
+        "valenza"
+      ],
+      "exact_records": [
+        {
+          "frame": "val",
+          "language": "en",
+          "lemma_id": "lemma:a49a5780cec8c768ed3b",
+          "word": "valency"
+        },
+        {
+          "frame": "val",
+          "language": "en",
+          "lemma_id": "lemma:eec22bfad613003b4486",
+          "word": "valence"
+        },
+        {
+          "frame": "val",
+          "language": "fr",
+          "lemma_id": "lemma:2219f8be0629e7737f7a",
+          "word": "valence"
+        },
+        {
+          "frame": "val",
+          "language": "it",
+          "lemma_id": "lemma:c9d56e95cd45ff724f69",
+          "word": "valenza"
+        }
+      ],
+      "evidence_gaps": [
+        "Shared aggregate IDs are deliberate overlapping research questions; not two accepted memberships."
+      ],
+      "flags": [],
+      "review_state": "researched_partition_requires_finite_head_edge_review",
+      "family_id": null,
+      "membership_authorized": false
+    },
+    {
+      "id": "val.valley",
+      "frame": "val",
+      "kind": "lexical",
+      "head_scope": "international_candidate",
+      "dictionary_supported_heads": [
+        "en:vale",
+        "en:valley",
+        "fr:val",
+        "fr:vallée"
+      ],
+      "candidate_canonical": "vall",
+      "canonical_approval": false,
+      "formal_history": "Latin vallis/valles; Anglo-French val and suffixed valee. The full Latin stem is vall; French val is a separately supported national form.",
+      "senses": "Valley noun and related metaphor; independent of valere and fortification vallum.",
+      "national_forms": [
+        {
+          "language": "en",
+          "form": "vale",
+          "general_realization_authorized": false
+        },
+        {
+          "language": "en",
+          "form": "valley",
+          "general_realization_authorized": false
+        },
+        {
+          "language": "fr",
+          "form": "val",
+          "general_realization_authorized": false
+        },
+        {
+          "language": "fr",
+          "form": "vallée",
+          "general_realization_authorized": false
+        }
+      ],
+      "evidence_ids": [
+        "val",
+        "vale",
+        "valley"
+      ],
+      "exact_records": [
+        {
+          "frame": "val",
+          "language": "en",
+          "lemma_id": "lemma:0c99ae6517765f39b779",
+          "word": "valley"
+        },
+        {
+          "frame": "val",
+          "language": "en",
+          "lemma_id": "lemma:e703049fe76b3a1f749a",
+          "word": "vale"
+        },
+        {
+          "frame": "val",
+          "language": "fr",
+          "lemma_id": "lemma:4abbd11f29acd4a5c1a5",
+          "word": "val"
+        },
+        {
+          "frame": "val",
+          "language": "fr",
+          "lemma_id": "lemma:96de8c7fe5a3368fac3c",
+          "word": "vallée"
+        },
+        {
+          "frame": "val",
+          "language": "it",
+          "lemma_id": "lemma:1a22d970a5eb905d547b",
+          "word": "vallo"
+        }
+      ],
+      "evidence_gaps": [
+        "Italian vallo1/vallo2 are incompatible histories in one spelling; preserve both questions without aggregate acceptance."
+      ],
+      "flags": [
+        "unrelated_homonym"
+      ],
+      "review_state": "researched_partition_requires_finite_head_edge_review",
+      "family_id": null,
+      "membership_authorized": false
+    },
+    {
+      "id": "val.vallum",
+      "frame": "val",
+      "kind": "lexical",
+      "head_scope": "international_candidate",
+      "dictionary_supported_heads": [
+        "it:vallo"
+      ],
+      "candidate_canonical": "vall",
+      "canonical_approval": false,
+      "formal_history": "Latin vallum fortification stem vall. Same candidate spelling as valley branch does not merge histories.",
+      "senses": "Fortification; ditch/groove extensions within vallo1; vallo2 is a different valley history.",
+      "national_forms": [
+        {
+          "language": "it",
+          "form": "vallo",
+          "general_realization_authorized": false
+        }
+      ],
+      "evidence_ids": [
+        "vallo1",
+        "vallo2"
+      ],
+      "exact_records": [
+        {
+          "frame": "val",
+          "language": "it",
+          "lemma_id": "lemma:1a22d970a5eb905d547b",
+          "word": "vallo"
+        },
+        {
+          "frame": "val",
+          "language": "en",
+          "lemma_id": "lemma:e9b38d4a8176997829df",
+          "word": "vallum"
+        }
+      ],
+      "evidence_gaps": [
+        "English vallum lacks a newly retrieved English head entry; Italian aggregate homonym blocks whole-row binding."
+      ],
+      "flags": [
+        "unrelated_homonym"
+      ],
+      "review_state": "researched_partition_requires_finite_head_edge_review",
+      "family_id": null,
+      "membership_authorized": false
+    },
+    {
+      "id": "val.valerius",
+      "frame": "val",
+      "kind": "proper_name",
+      "head_scope": "onomastic_research",
+      "dictionary_supported_heads": [
+        "la:Valerius",
+        "ru:Валерий"
+      ],
+      "candidate_canonical": "valeri",
+      "canonical_approval": false,
+      "formal_history": "Onomastic Valerius/Valeria; editorial relation to valeo does not certify the recognizable base in all national names.",
+      "senses": "Personal/family names, not the common worth noun.",
+      "national_forms": [
+        {
+          "language": "la",
+          "form": "Valerius",
+          "general_realization_authorized": false
+        },
+        {
+          "language": "ru",
+          "form": "Валерий",
+          "general_realization_authorized": false
+        }
+      ],
+      "evidence_ids": [
+        "valerius"
+      ],
+      "exact_records": [
+        {
+          "frame": "val",
+          "language": "en",
+          "lemma_id": "lemma:92a217cb39190699f98d",
+          "word": "valerius"
+        },
+        {
+          "frame": "val",
+          "language": "ru",
+          "lemma_id": "lemma:5a6cc1f352af2092be19",
+          "word": "валерия"
+        },
+        {
+          "frame": "val",
+          "language": "ru",
+          "lemma_id": "lemma:a92cb3f11b328173cd3a",
+          "word": "валерий"
+        }
+      ],
+      "evidence_gaps": [
+        "Direct Latin dictionary access failed; national-name derivation and lowercased aggregate uses need review."
+      ],
+      "flags": [
+        "proper_name_identity"
+      ],
+      "review_state": "researched_partition_requires_finite_head_edge_review",
+      "family_id": null,
+      "membership_authorized": false
+    },
+    {
+      "id": "val.valentia",
+      "frame": "val",
+      "kind": "proper_name",
+      "head_scope": "onomastic_research",
+      "dictionary_supported_heads": [
+        "la:Valentia",
+        "es:Valencia"
+      ],
+      "candidate_canonical": "valent",
+      "canonical_approval": false,
+      "formal_history": "Municipal history supports Roman Valentia -> Valencia. It is distinct from common valentia strength as a research question.",
+      "senses": "Place name; every namesake is an independent identity question.",
+      "national_forms": [
+        {
+          "language": "la",
+          "form": "Valentia",
+          "general_realization_authorized": false
+        },
+        {
+          "language": "es",
+          "form": "Valencia",
+          "general_realization_authorized": false
+        }
+      ],
+      "evidence_ids": [
+        "valentia"
+      ],
+      "exact_records": [
+        {
+          "frame": "val",
+          "language": "en",
+          "lemma_id": "lemma:6edbdebf72a81a1c19ee",
+          "word": "valencia"
+        },
+        {
+          "frame": "val",
+          "language": "en",
+          "lemma_id": "lemma:dc012526d8e79bf9769b",
+          "word": "valentia"
+        }
+      ],
+      "evidence_gaps": [
+        "Historical naming is supported; exact morphological boundary and other namesakes remain unapproved."
+      ],
+      "flags": [
+        "proper_name_identity"
+      ],
+      "review_state": "researched_partition_requires_finite_head_edge_review",
+      "family_id": null,
+      "membership_authorized": false
+    },
+    {
+      "id": "val.it.valere",
+      "frame": "val",
+      "kind": "lexical",
+      "head_scope": "international_candidate",
+      "dictionary_supported_heads": [
+        "it:valere"
+      ],
+      "candidate_canonical": "val",
+      "canonical_approval": false,
+      "formal_history": "Italian vale is a finite valere form; do not assign English vale semantics from spelling.",
+      "senses": "Worth/efficacy/validity.",
+      "national_forms": [
+        {
+          "language": "it",
+          "form": "valere",
+          "general_realization_authorized": false
+        }
+      ],
+      "evidence_ids": [
+        "valere"
+      ],
+      "exact_records": [
+        {
+          "frame": "val",
+          "language": "it",
+          "lemma_id": "lemma:6435ee6927c24e88ff46",
+          "word": "vale"
+        }
+      ],
+      "evidence_gaps": [
+        "Finite-form analysis is supported; aggregate foreign-name readings are unpartitioned."
+      ],
+      "flags": [],
+      "review_state": "researched_partition_requires_finite_head_edge_review",
+      "family_id": null,
+      "membership_authorized": false
+    },
+    {
+      "id": "val.it.stivale",
+      "frame": "val",
+      "kind": "lexical",
+      "head_scope": "international_candidate",
+      "dictionary_supported_heads": [
+        "it:stivale"
+      ],
+      "candidate_canonical": "stival",
+      "canonical_approval": false,
+      "formal_history": "Italian stivale via Old French estival, boot noun; no valid/value/valley identity.",
+      "senses": "Boot; transferred Italy name keeps history but no token claim.",
+      "national_forms": [
+        {
+          "language": "it",
+          "form": "stivale",
+          "general_realization_authorized": false
+        }
+      ],
+      "evidence_ids": [
+        "stivale"
+      ],
+      "exact_records": [
+        {
+          "frame": "val",
+          "language": "it",
+          "lemma_id": "lemma:c72b9901a6181929328d",
+          "word": "stivale"
+        }
+      ],
+      "evidence_gaps": [
+        "Finite corpus identity and independent edge review required; no binding or promotion authorized."
+      ],
+      "flags": [
+        "accidental_fragment"
+      ],
+      "review_state": "researched_partition_requires_finite_head_edge_review",
+      "family_id": null,
+      "membership_authorized": false
+    },
+    {
+      "id": "val.ru.val",
+      "frame": "val",
+      "kind": "lexical",
+      "head_scope": "national_only_research",
+      "dictionary_supported_heads": [
+        "ru:вал"
+      ],
+      "candidate_canonical": "вал",
+      "canonical_approval": false,
+      "formal_history": "Russian val shaft/embankment/wave row requires its own sense/history research. No automatic Latin vallum link.",
+      "senses": "Aggregate technical/terrain senses; relation unresolved.",
+      "national_forms": [
+        {
+          "language": "ru",
+          "form": "вал",
+          "general_realization_authorized": false
+        }
+      ],
+      "evidence_ids": [
+        "ruval"
+      ],
+      "exact_records": [
+        {
+          "frame": "val",
+          "language": "ru",
+          "lemma_id": "lemma:0b915fc46691bf6da0b0",
+          "word": "вал"
+        },
+        {
+          "frame": "val",
+          "language": "ru",
+          "lemma_id": "lemma:ea7681ef625645e5368d",
+          "word": "коленвал"
+        }
+      ],
+      "evidence_gaps": [
+        "Dictionary establishes val senses, not every compound identity or international continuity."
+      ],
+      "flags": [
+        "unrelated_homonym"
+      ],
+      "review_state": "researched_partition_requires_finite_head_edge_review",
+      "family_id": null,
+      "membership_authorized": false
+    },
+    {
+      "id": "val.cheval",
+      "frame": "val",
+      "kind": "lexical",
+      "head_scope": "negative_control_research",
+      "dictionary_supported_heads": [
+        "fr:cheval"
+      ],
+      "candidate_canonical": "cheval",
+      "canonical_approval": false,
+      "formal_history": "Latin caballus, independent of valere/vallis; final fragment is accidental.",
+      "senses": "Horse noun.",
+      "national_forms": [
+        {
+          "language": "fr",
+          "form": "cheval",
+          "general_realization_authorized": false
+        }
+      ],
+      "evidence_ids": [
+        "cheval"
+      ],
+      "exact_records": [
+        {
+          "frame": "val",
+          "language": "fr",
+          "lemma_id": "lemma:15a73af097713932b344",
+          "word": "cheval"
+        }
+      ],
+      "evidence_gaps": [
+        "Finite corpus identity and independent edge review required; no binding or promotion authorized."
+      ],
+      "flags": [
+        "accidental_fragment"
+      ],
+      "review_state": "researched_partition_requires_finite_head_edge_review",
+      "family_id": null,
+      "membership_authorized": false
+    },
+    {
+      "id": "ru.um.mental",
+      "frame": "russian",
+      "kind": "lexical",
+      "head_scope": "national_only_research",
+      "dictionary_supported_heads": [
+        "ru:ум",
+        "ru:умный",
+        "ru:умно"
+      ],
+      "candidate_canonical": "ум",
+      "canonical_approval": false,
+      "formal_history": "Coherent native Russian mental row; no international formal continuity established in this scope.",
+      "senses": "Mental faculty and derived intelligent manner.",
+      "national_forms": [
+        {
+          "language": "ru",
+          "form": "ум",
+          "general_realization_authorized": false
+        },
+        {
+          "language": "ru",
+          "form": "умный",
+          "general_realization_authorized": false
+        },
+        {
+          "language": "ru",
+          "form": "умно",
+          "general_realization_authorized": false
+        }
+      ],
+      "evidence_ids": [
+        "um"
+      ],
+      "exact_records": [
+        {
+          "frame": "russian",
+          "language": "ru",
+          "lemma_id": "lemma:366a90dde12472a8b841",
+          "word": "умно"
+        },
+        {
+          "frame": "russian",
+          "language": "ru",
+          "lemma_id": "lemma:913decaf7dba9d6abe4b",
+          "word": "ум"
+        }
+      ],
+      "evidence_gaps": [
+        "Умный absent only from selected pool; not a global absence. National-only fact does not enter international catalog."
+      ],
+      "flags": [],
+      "review_state": "researched_partition_requires_finite_head_edge_review",
+      "family_id": null,
+      "membership_authorized": false
+    },
+    {
+      "id": "ru.kryl",
+      "frame": "russian",
+      "kind": "real_component",
+      "head_scope": "national_only_research",
+      "dictionary_supported_heads": [
+        "ru:крыло",
+        "ru:антикрыло"
+      ],
+      "candidate_canonical": "крыл",
+      "canonical_approval": false,
+      "formal_history": "Native kryl-o; animal/aircraft senses and independently attested antikrylo. Aviakrylo is a finite component proposal.",
+      "senses": "Wing and aerodynamic component; not lo root.",
+      "national_forms": [
+        {
+          "language": "ru",
+          "form": "крыло",
+          "general_realization_authorized": false
+        },
+        {
+          "language": "ru",
+          "form": "антикрыло",
+          "general_realization_authorized": false
+        }
+      ],
+      "evidence_ids": [
+        "krylo",
+        "antikrylo"
+      ],
+      "exact_records": [
+        {
+          "frame": "russian",
+          "language": "ru",
+          "lemma_id": "lemma:305be3e6755baf153ffb",
+          "word": "авиакрыло"
+        },
+        {
+          "frame": "russian",
+          "language": "ru",
+          "lemma_id": "lemma:5d9295d5d36ecbf089d7",
+          "word": "антикрыло"
+        },
+        {
+          "frame": "russian",
+          "language": "ru",
+          "lemma_id": "lemma:d94640f8c944e77470f7",
+          "word": "крыло"
+        }
+      ],
+      "evidence_gaps": [
+        "Aviakrylo full-compound dictionary identity not independently retrieved; retain component proposal."
+      ],
+      "flags": [
+        "accidental_fragment"
+      ],
+      "review_state": "researched_partition_requires_finite_head_edge_review",
+      "family_id": null,
+      "membership_authorized": false
+    },
+    {
+      "id": "ru.americanec",
+      "frame": "russian",
+      "kind": "inflection",
+      "head_scope": "national_only_research",
+      "dictionary_supported_heads": [
+        "ru:американец"
+      ],
+      "candidate_canonical": "американ",
+      "canonical_approval": false,
+      "formal_history": "Genitive amerikanca of amerikanec; -ca comprises local stem alternation and case ending.",
+      "senses": "Person noun inflection.",
+      "national_forms": [
+        {
+          "language": "ru",
+          "form": "американец",
+          "general_realization_authorized": false
+        }
+      ],
+      "evidence_ids": [
+        "americanec"
+      ],
+      "exact_records": [
+        {
+          "frame": "russian",
+          "language": "ru",
+          "lemma_id": "lemma:d9a13eb3e7cd62945de1",
+          "word": "американца"
+        }
+      ],
+      "evidence_gaps": [
+        "Finite corpus identity and independent edge review required; no binding or promotion authorized."
+      ],
+      "flags": [
+        "suffix_ending"
+      ],
+      "review_state": "researched_partition_requires_finite_head_edge_review",
+      "family_id": null,
+      "membership_authorized": false
+    },
+    {
+      "id": "ru.pizza",
+      "frame": "russian",
+      "kind": "borrowing",
+      "head_scope": "international_candidate",
+      "dictionary_supported_heads": [
+        "ru:пицца"
+      ],
+      "candidate_canonical": "pizz",
+      "canonical_approval": false,
+      "formal_history": "Italian pizza borrowed into Russian; unrelated to person-noun -ca pool.",
+      "senses": "Food noun.",
+      "national_forms": [
+        {
+          "language": "ru",
+          "form": "пицца",
+          "general_realization_authorized": false
+        }
+      ],
+      "evidence_ids": [
+        "pizza"
+      ],
+      "exact_records": [
+        {
+          "frame": "russian",
+          "language": "ru",
+          "lemma_id": "lemma:b77b4df52f737e6183e1",
+          "word": "пицца"
+        }
+      ],
+      "evidence_gaps": [
+        "Finite corpus identity and independent edge review required; no binding or promotion authorized."
+      ],
+      "flags": [
+        "accidental_fragment"
+      ],
+      "review_state": "researched_partition_requires_finite_head_edge_review",
+      "family_id": null,
+      "membership_authorized": false
+    },
+    {
+      "id": "ru.umlaut",
+      "frame": "russian",
+      "kind": "borrowing",
+      "head_scope": "international_candidate",
+      "dictionary_supported_heads": [
+        "ru:умлаут"
+      ],
+      "candidate_canonical": "umlaut",
+      "canonical_approval": false,
+      "formal_history": "German Umlaut -> Russian term; its initial um is not the mental root.",
+      "senses": "Vowel alternation.",
+      "national_forms": [
+        {
+          "language": "ru",
+          "form": "умлаут",
+          "general_realization_authorized": false
+        }
+      ],
+      "evidence_ids": [
+        "umlaut"
+      ],
+      "exact_records": [
+        {
+          "frame": "russian",
+          "language": "ru",
+          "lemma_id": "lemma:7b5ff1a116ffd6c2171a",
+          "word": "умлаут"
+        }
+      ],
+      "evidence_gaps": [
+        "Finite corpus identity and independent edge review required; no binding or promotion authorized."
+      ],
+      "flags": [
+        "accidental_fragment"
+      ],
+      "review_state": "researched_partition_requires_finite_head_edge_review",
+      "family_id": null,
+      "membership_authorized": false
+    },
+    {
+      "id": "ru.atrium",
+      "frame": "russian",
+      "kind": "borrowing",
+      "head_scope": "international_candidate",
+      "dictionary_supported_heads": [
+        "ru:атриум"
+      ],
+      "candidate_canonical": "atri",
+      "canonical_approval": false,
+      "formal_history": "Latin atrium -> Russian architectural word; final -um is not Russian mind. Candidate atri boundary remains research-only.",
+      "senses": "Architectural hall/court.",
+      "national_forms": [
+        {
+          "language": "ru",
+          "form": "атриум",
+          "general_realization_authorized": false
+        }
+      ],
+      "evidence_ids": [
+        "atrium"
+      ],
+      "exact_records": [
+        {
+          "frame": "russian",
+          "language": "ru",
+          "lemma_id": "lemma:02acae5767276267e900",
+          "word": "атриум"
+        }
+      ],
+      "evidence_gaps": [
+        "Typed national atri/atrium boundary needs Latin inflection review; no automatic suffix stripping."
+      ],
+      "flags": [
+        "suffix_ending"
+      ],
+      "review_state": "researched_partition_requires_finite_head_edge_review",
+      "family_id": null,
+      "membership_authorized": false
+    },
+    {
+      "id": "ru.umyt",
+      "frame": "russian",
+      "kind": "lexical",
+      "head_scope": "national_only_research",
+      "dictionary_supported_heads": [
+        "ru:умывать",
+        "ru:умыть"
+      ],
+      "candidate_canonical": "мы",
+      "canonical_approval": false,
+      "formal_history": "Native washing verb; u + my is not the mental um row.",
+      "senses": "Washing action.",
+      "national_forms": [
+        {
+          "language": "ru",
+          "form": "умывать",
+          "general_realization_authorized": false
+        },
+        {
+          "language": "ru",
+          "form": "умыть",
+          "general_realization_authorized": false
+        }
+      ],
+      "evidence_ids": [
+        "umyvat"
+      ],
+      "exact_records": [
+        {
+          "frame": "russian",
+          "language": "ru",
+          "lemma_id": "lemma:c45f6b436f2a3b9f7f27",
+          "word": "умыть"
+        }
+      ],
+      "evidence_gaps": [
+        "Finite corpus identity and independent edge review required; no binding or promotion authorized."
+      ],
+      "flags": [
+        "accidental_fragment"
+      ],
+      "review_state": "researched_partition_requires_finite_head_edge_review",
+      "family_id": null,
+      "membership_authorized": false
+    },
+    {
+      "id": "ru.noise",
+      "frame": "russian",
+      "kind": "encoding_ocr_noise",
+      "head_scope": "triage_only",
+      "dictionary_supported_heads": [],
+      "candidate_canonical": null,
+      "canonical_approval": false,
+      "formal_history": "Provisional lexical partition research target.",
+      "senses": "encoding_ocr_noise",
+      "national_forms": [],
+      "evidence_ids": [],
+      "exact_records": [
+        {
+          "frame": "russian",
+          "language": "ru",
+          "lemma_id": "lemma:4a2b837700a23f918b4c",
+          "word": "ъбхкх"
+        },
+        {
+          "frame": "russian",
+          "language": "ru",
+          "lemma_id": "lemma:94e3529ecee3ea8812e4",
+          "word": "ачярнл"
+        },
+        {
+          "frame": "russian",
+          "language": "ru",
+          "lemma_id": "lemma:999bcd17e404a460c1c2",
+          "word": "асккхрнл"
+        },
+        {
+          "frame": "russian",
+          "language": "ru",
+          "lemma_id": "lemma:b981765dbc94848df0cd",
+          "word": "ъгшйнл"
+        }
+      ],
+      "evidence_gaps": [
+        "Encoding/OCR cause and original intended spelling unknown; no decoded lemma or exclusion invented."
+      ],
+      "flags": [
+        "damaged_spelling"
+      ],
+      "review_state": "researched_partition_requires_finite_head_edge_review",
+      "family_id": null,
+      "membership_authorized": false
+    },
+    {
+      "id": "ru.names",
+      "frame": "russian",
+      "kind": "names",
+      "head_scope": "triage_only",
+      "dictionary_supported_heads": [],
+      "candidate_canonical": null,
+      "canonical_approval": false,
+      "formal_history": "Provisional lexical partition research target.",
+      "senses": "names",
+      "national_forms": [],
+      "evidence_ids": [],
+      "exact_records": [
+        {
+          "frame": "russian",
+          "language": "ru",
+          "lemma_id": "lemma:3aea40bc3c8bf61ddb20",
+          "word": "лоис"
+        },
+        {
+          "frame": "russian",
+          "language": "ru",
+          "lemma_id": "lemma:7ab3eac8ef1e0d9dde6e",
+          "word": "ницца"
+        },
+        {
+          "frame": "russian",
+          "language": "ru",
+          "lemma_id": "lemma:8c76019f3eb77a49d66b",
+          "word": "банкхед"
+        },
+        {
+          "frame": "russian",
+          "language": "ru",
+          "lemma_id": "lemma:eadf339764eb8ec516ef",
+          "word": "балкхед"
+        }
+      ],
+      "evidence_gaps": [
+        "Named-entity looking forms; entity identity and national spelling require individual primary evidence."
+      ],
+      "flags": [
+        "proper_name_identity"
+      ],
+      "review_state": "researched_partition_requires_finite_head_edge_review",
+      "family_id": null,
+      "membership_authorized": false
+    },
+    {
+      "id": "ru.damage",
+      "frame": "russian",
+      "kind": "damaged_spelling",
+      "head_scope": "triage_only",
+      "dictionary_supported_heads": [],
+      "candidate_canonical": null,
+      "canonical_approval": false,
+      "formal_history": "Provisional lexical partition research target.",
+      "senses": "damaged_spelling",
+      "national_forms": [],
+      "evidence_ids": [],
+      "exact_records": [
+        {
+          "frame": "russian",
+          "language": "ru",
+          "lemma_id": "lemma:0f93701d17fc7710cca1",
+          "word": "ленолиум"
+        },
+        {
+          "frame": "russian",
+          "language": "ru",
+          "lemma_id": "lemma:e50dc6bcfcade13e9461",
+          "word": "апостло"
+        }
+      ],
+      "evidence_gaps": [
+        "Possible malformed apostol/linoleum spelling; no automatic normalization or linguistic identity."
+      ],
+      "flags": [
+        "damaged_spelling"
+      ],
+      "review_state": "researched_partition_requires_finite_head_edge_review",
+      "family_id": null,
+      "membership_authorized": false
+    },
+    {
+      "id": "ru.borrowing.proposal",
+      "frame": "russian",
+      "kind": "borrowing_proposal",
+      "head_scope": "triage_only",
+      "dictionary_supported_heads": [],
+      "candidate_canonical": null,
+      "canonical_approval": false,
+      "formal_history": "Provisional lexical partition research target.",
+      "senses": "borrowing_proposal",
+      "national_forms": [],
+      "evidence_ids": [],
+      "exact_records": [
+        {
+          "frame": "russian",
+          "language": "ru",
+          "lemma_id": "lemma:1aa5f92ba85e67071350",
+          "word": "интернешнл"
+        },
+        {
+          "frame": "russian",
+          "language": "ru",
+          "lemma_id": "lemma:33d4fe2ab75f315f9e92",
+          "word": "анкх"
+        },
+        {
+          "frame": "russian",
+          "language": "ru",
+          "lemma_id": "lemma:38cd6db497f366400672",
+          "word": "аплоад"
+        },
+        {
+          "frame": "russian",
+          "language": "ru",
+          "lemma_id": "lemma:5bd58202023975b8f575",
+          "word": "хоум"
+        },
+        {
+          "frame": "russian",
+          "language": "ru",
+          "lemma_id": "lemma:dd43766cee8479ba500f",
+          "word": "интернэшнл"
+        }
+      ],
+      "evidence_gaps": [
+        "Borrowing/transliteration-looking forms; dictionary and contexts needed before exact head certification."
+      ],
+      "flags": [
+        "accidental_fragment"
+      ],
+      "review_state": "researched_partition_requires_finite_head_edge_review",
+      "family_id": null,
+      "membership_authorized": false
+    },
+    {
+      "id": "ru.native.other",
+      "frame": "russian",
+      "kind": "genuine_native_word_proposal",
+      "head_scope": "triage_only",
+      "dictionary_supported_heads": [],
+      "candidate_canonical": null,
+      "canonical_approval": false,
+      "formal_history": "Provisional lexical partition research target.",
+      "senses": "genuine_native_word_proposal",
+      "national_forms": [],
+      "evidence_ids": [],
+      "exact_records": [
+        {
+          "frame": "russian",
+          "language": "ru",
+          "lemma_id": "lemma:008271065b9958482905",
+          "word": "мыло"
+        },
+        {
+          "frame": "russian",
+          "language": "ru",
+          "lemma_id": "lemma:382ca2df322a0f927acd",
+          "word": "горло"
+        },
+        {
+          "frame": "russian",
+          "language": "ru",
+          "lemma_id": "lemma:d26c48ec96d967c9ac5c",
+          "word": "светло"
+        },
+        {
+          "frame": "russian",
+          "language": "ru",
+          "lemma_id": "lemma:d29e93969290316cd605",
+          "word": "седло"
+        }
+      ],
+      "evidence_gaps": [
+        "Different native-looking full lexical bases; dictionary identity not newly adjudicated here."
+      ],
+      "flags": [
+        "accidental_fragment"
+      ],
+      "review_state": "researched_partition_requires_finite_head_edge_review",
+      "family_id": null,
+      "membership_authorized": false
+    },
+    {
+      "id": "tower.en.tower",
+      "frame": "tower",
+      "kind": "lexical",
+      "head_scope": "international_candidate",
+      "dictionary_supported_heads": [
+        "en:tower"
+      ],
+      "candidate_canonical": "turr",
+      "canonical_approval": false,
+      "formal_history": "Middle English tour/tor through Old English torr and Anglo-French tur/tour continues Latin turris. Dictionary noun and denominal verb share this base. Proper-name tokens are not established by the lowercase aggregate.",
+      "senses": "tower_noun_and_denominal_verb",
+      "national_forms": [
+        {
+          "language": "en",
+          "form": "tower",
+          "general_realization_authorized": false
+        }
+      ],
+      "evidence_ids": [
+        "tower.saved"
+      ],
+      "exact_records": [
+        {
+          "frame": "tower",
+          "language": "en",
+          "lemma_id": "lemma:fbb12b86b76ffff488fe",
+          "word": "tower"
+        }
+      ],
+      "evidence_gaps": [
+        "Frozen dictionary-supported head; aggregate homonyms and exact national boundaries retain prior blockers."
+      ],
+      "flags": [],
+      "review_state": "researched_partition_requires_finite_head_edge_review",
+      "family_id": null,
+      "membership_authorized": false
+    },
+    {
+      "id": "tower.de.turm",
+      "frame": "tower",
+      "kind": "lexical",
+      "head_scope": "international_candidate",
+      "dictionary_supported_heads": [
+        "de:turm"
+      ],
+      "candidate_canonical": "turr",
+      "canonical_approval": false,
+      "formal_history": "Middle and Old High German tower forms continue Latin turris through Old French. Technical and chess uses are metonymies of this noun. Exact corpus case/POS is not supplied.",
+      "senses": "tower_common_noun",
+      "national_forms": [
+        {
+          "language": "de",
+          "form": "turm",
+          "general_realization_authorized": false
+        }
+      ],
+      "evidence_ids": [
+        "tower.saved"
+      ],
+      "exact_records": [
+        {
+          "frame": "tower",
+          "language": "de",
+          "lemma_id": "lemma:e10d98a4cae30621277d",
+          "word": "turm"
+        }
+      ],
+      "evidence_gaps": [
+        "Frozen dictionary-supported head; aggregate homonyms and exact national boundaries retain prior blockers."
+      ],
+      "flags": [],
+      "review_state": "researched_partition_requires_finite_head_edge_review",
+      "family_id": null,
+      "membership_authorized": false
+    },
+    {
+      "id": "tower.fr.tour",
+      "frame": "tower",
+      "kind": "lexical",
+      "head_scope": "international_candidate",
+      "dictionary_supported_heads": [
+        "fr:tour"
+      ],
+      "candidate_canonical": "turr",
+      "canonical_approval": false,
+      "formal_history": "Feminine tower noun continues Latin turris. Masculine lathe tour instead continues tornus; masculine turn/trip tour is deverbal from tourner. Untagged tour cannot inherit a single common associative base.",
+      "senses": "feminine_tower_noun_only",
+      "national_forms": [
+        {
+          "language": "fr",
+          "form": "tour",
+          "general_realization_authorized": false
+        }
+      ],
+      "evidence_ids": [
+        "tower.saved"
+      ],
+      "exact_records": [
+        {
+          "frame": "tower",
+          "language": "fr",
+          "lemma_id": "lemma:ea7fdcd66cda3892ded2",
+          "word": "tour"
+        }
+      ],
+      "evidence_gaps": [
+        "Frozen dictionary-supported head; aggregate homonyms and exact national boundaries retain prior blockers."
+      ],
+      "flags": [],
+      "review_state": "researched_partition_requires_finite_head_edge_review",
+      "family_id": null,
+      "membership_authorized": false
+    },
+    {
+      "id": "tower.es.torre",
+      "frame": "tower",
+      "kind": "lexical",
+      "head_scope": "international_candidate",
+      "dictionary_supported_heads": [
+        "es:torre"
+      ],
+      "candidate_canonical": "turr",
+      "canonical_approval": false,
+      "formal_history": "RAE derives the tower noun from Latin turris; chess and other metonymies preserve the base. A dictionary row does not resolve proper-name occurrences in the source aggregate.",
+      "senses": "tower_and_chess_rook_common_noun",
+      "national_forms": [
+        {
+          "language": "es",
+          "form": "torre",
+          "general_realization_authorized": false
+        }
+      ],
+      "evidence_ids": [
+        "tower.saved"
+      ],
+      "exact_records": [
+        {
+          "frame": "tower",
+          "language": "es",
+          "lemma_id": "lemma:63adf237a08c24f59920",
+          "word": "torre"
+        }
+      ],
+      "evidence_gaps": [
+        "Frozen dictionary-supported head; aggregate homonyms and exact national boundaries retain prior blockers."
+      ],
+      "flags": [],
+      "review_state": "researched_partition_requires_finite_head_edge_review",
+      "family_id": null,
+      "membership_authorized": false
+    },
+    {
+      "id": "tower.it.torre",
+      "frame": "tower",
+      "kind": "lexical",
+      "head_scope": "international_candidate",
+      "dictionary_supported_heads": [
+        "it:torre"
+      ],
+      "candidate_canonical": "turr",
+      "canonical_approval": false,
+      "formal_history": "Treccani derives the tower noun from Latin turris and records its use in place names. Proper-name aggregation needs independent context, not lowercase spelling.",
+      "senses": "tower_common_noun",
+      "national_forms": [
+        {
+          "language": "it",
+          "form": "torre",
+          "general_realization_authorized": false
+        }
+      ],
+      "evidence_ids": [
+        "tower.saved"
+      ],
+      "exact_records": [
+        {
+          "frame": "tower",
+          "language": "it",
+          "lemma_id": "lemma:0d23cbf326af4b0f1718",
+          "word": "torre"
+        }
+      ],
+      "evidence_gaps": [
+        "Frozen dictionary-supported head; aggregate homonyms and exact national boundaries retain prior blockers."
+      ],
+      "flags": [],
+      "review_state": "researched_partition_requires_finite_head_edge_review",
+      "family_id": null,
+      "membership_authorized": false
+    },
+    {
+      "id": "tower.ru.тура",
+      "frame": "tower",
+      "kind": "lexical",
+      "head_scope": "international_candidate",
+      "dictionary_supported_heads": [
+        "ru:тура"
+      ],
+      "candidate_canonical": "turr",
+      "canonical_approval": false,
+      "formal_history": "Vasmer separates the chess borrowing through French feminine tour and Latin turris from peat and sea-plant homonyms with different routes. Untagged source тура cannot receive the chess-family edge for all readings.",
+      "senses": "chess_rook_borrowing_only",
+      "national_forms": [
+        {
+          "language": "ru",
+          "form": "тура",
+          "general_realization_authorized": false
+        }
+      ],
+      "evidence_ids": [
+        "tower.saved"
+      ],
+      "exact_records": [
+        {
+          "frame": "tower",
+          "language": "ru",
+          "lemma_id": "lemma:158283923dc337e93d69",
+          "word": "тура"
+        }
+      ],
+      "evidence_gaps": [
+        "Frozen dictionary-supported head; aggregate homonyms and exact national boundaries retain prior blockers."
+      ],
+      "flags": [],
+      "review_state": "researched_partition_requires_finite_head_edge_review",
+      "family_id": null,
+      "membership_authorized": false
+    },
+    {
+      "id": "tower.en.turret",
+      "frame": "tower",
+      "kind": "lexical",
+      "head_scope": "international_candidate",
+      "dictionary_supported_heads": [
+        "en:turret"
+      ],
+      "candidate_canonical": "turr",
+      "canonical_approval": false,
+      "formal_history": "Anglo-French turette/tourette is a diminutive of tur/tour. This is a separate national lexical head and derivational branch; the final derivational material is not the international canonical base.",
+      "senses": "small_tower_diminutive_branch",
+      "national_forms": [
+        {
+          "language": "en",
+          "form": "turret",
+          "general_realization_authorized": false
+        }
+      ],
+      "evidence_ids": [
+        "tower.saved"
+      ],
+      "exact_records": [
+        {
+          "frame": "tower",
+          "language": "en",
+          "lemma_id": "lemma:222cc76e64e0b5805573",
+          "word": "turret"
+        }
+      ],
+      "evidence_gaps": [
+        "Frozen dictionary-supported head; aggregate homonyms and exact national boundaries retain prior blockers."
+      ],
+      "flags": [],
+      "review_state": "researched_partition_requires_finite_head_edge_review",
+      "family_id": null,
+      "membership_authorized": false
+    },
+    {
+      "id": "tower.control.en.tor",
+      "frame": "tower",
+      "kind": "lexical",
+      "head_scope": "negative_or_uncertain_control",
+      "dictionary_supported_heads": [],
+      "candidate_canonical": null,
+      "canonical_approval": false,
+      "formal_history": "Modern rocky-hill noun has dictionary history to Old English torr, but the consulted tor entry does not settle its deeper continuity with Latin turris. Retain uncertainty; do not declare unrelated by intuition.",
+      "senses": "Retain previous finite control; no new blanket verdict.",
+      "national_forms": [],
+      "evidence_ids": [
+        "tower.saved"
+      ],
+      "exact_records": [
+        {
+          "frame": "tower",
+          "language": "en",
+          "lemma_id": "lemma:651960ea689efcbc3c97",
+          "word": "tor"
+        }
+      ],
+      "evidence_gaps": [
+        "Inherited control is not a new corpus certification."
+      ],
+      "flags": [
+        "unrelated_homonym"
+      ],
+      "review_state": "researched_partition_requires_finite_head_edge_review",
+      "family_id": null,
+      "membership_authorized": false
+    },
+    {
+      "id": "tower.control.en.torres",
+      "frame": "tower",
+      "kind": "lexical",
+      "head_scope": "negative_or_uncertain_control",
+      "dictionary_supported_heads": [],
+      "candidate_canonical": null,
+      "canonical_approval": false,
+      "formal_history": "Possible personal/place name; source declaration alone does not establish each aggregate token or a plural tower head.",
+      "senses": "Retain previous finite control; no new blanket verdict.",
+      "national_forms": [],
+      "evidence_ids": [
+        "tower.saved"
+      ],
+      "exact_records": [
+        {
+          "frame": "tower",
+          "language": "en",
+          "lemma_id": "lemma:1b26792ff85af5779c9c",
+          "word": "torres"
+        }
+      ],
+      "evidence_gaps": [
+        "Inherited control is not a new corpus certification."
+      ],
+      "flags": [
+        "proper_name_identity"
+      ],
+      "review_state": "researched_partition_requires_finite_head_edge_review",
+      "family_id": null,
+      "membership_authorized": false
+    },
+    {
+      "id": "tower.control.fr.tours",
+      "frame": "tower",
+      "kind": "lexical",
+      "head_scope": "negative_or_uncertain_control",
+      "dictionary_supported_heads": [],
+      "candidate_canonical": null,
+      "canonical_approval": false,
+      "formal_history": "Plural tower, plural masculine turn/lathe and proper place-name readings require context.",
+      "senses": "Retain previous finite control; no new blanket verdict.",
+      "national_forms": [],
+      "evidence_ids": [
+        "tower.saved"
+      ],
+      "exact_records": [
+        {
+          "frame": "tower",
+          "language": "fr",
+          "lemma_id": "lemma:20fbd8bae8d1b9a8a366",
+          "word": "tours"
+        }
+      ],
+      "evidence_gaps": [
+        "Inherited control is not a new corpus certification."
+      ],
+      "flags": [
+        "unrelated_homonym"
+      ],
+      "review_state": "researched_partition_requires_finite_head_edge_review",
+      "family_id": null,
+      "membership_authorized": false
+    },
+    {
+      "id": "tower.control.fr.demi-tour",
+      "frame": "tower",
+      "kind": "lexical",
+      "head_scope": "negative_or_uncertain_control",
+      "dictionary_supported_heads": [],
+      "candidate_canonical": null,
+      "canonical_approval": false,
+      "formal_history": "A turn-around lexical candidate cannot be admitted by tower substring overlap.",
+      "senses": "Retain previous finite control; no new blanket verdict.",
+      "national_forms": [],
+      "evidence_ids": [
+        "tower.saved"
+      ],
+      "exact_records": [
+        {
+          "frame": "tower",
+          "language": "fr",
+          "lemma_id": "lemma:6ddb615021c7176fd993",
+          "word": "demi-tour"
+        }
+      ],
+      "evidence_gaps": [
+        "Inherited control is not a new corpus certification."
+      ],
+      "flags": [
+        "unrelated_homonym"
+      ],
+      "review_state": "researched_partition_requires_finite_head_edge_review",
+      "family_id": null,
+      "membership_authorized": false
+    },
+    {
+      "id": "tower.control.en.acceptor",
+      "frame": "tower",
+      "kind": "lexical",
+      "head_scope": "negative_or_uncertain_control",
+      "dictionary_supported_heads": [],
+      "candidate_canonical": null,
+      "canonical_approval": false,
+      "formal_history": "Shared terminal letters are retrieval evidence only; no reviewed tower head or edge.",
+      "senses": "Retain previous finite control; no new blanket verdict.",
+      "national_forms": [],
+      "evidence_ids": [
+        "tower.saved"
+      ],
+      "exact_records": [
+        {
+          "frame": "tower",
+          "language": "en",
+          "lemma_id": "lemma:fa216e83c0411a8404c5",
+          "word": "acceptor"
+        }
+      ],
+      "evidence_gaps": [
+        "Inherited control is not a new corpus certification."
+      ],
+      "flags": [
+        "unrelated_homonym"
+      ],
+      "review_state": "researched_partition_requires_finite_head_edge_review",
+      "family_id": null,
+      "membership_authorized": false
+    },
+    {
+      "id": "tower.control.en.agricultor",
+      "frame": "tower",
+      "kind": "lexical",
+      "head_scope": "negative_or_uncertain_control",
+      "dictionary_supported_heads": [],
+      "candidate_canonical": null,
+      "canonical_approval": false,
+      "formal_history": "Shared terminal letters do not prove a tower component.",
+      "senses": "Retain previous finite control; no new blanket verdict.",
+      "national_forms": [],
+      "evidence_ids": [
+        "tower.saved"
+      ],
+      "exact_records": [
+        {
+          "frame": "tower",
+          "language": "en",
+          "lemma_id": "lemma:92cd169dcd1a3c24417a",
+          "word": "agricultor"
+        }
+      ],
+      "evidence_gaps": [
+        "Inherited control is not a new corpus certification."
+      ],
+      "flags": [
+        "unrelated_homonym"
+      ],
+      "review_state": "researched_partition_requires_finite_head_edge_review",
+      "family_id": null,
+      "membership_authorized": false
+    },
+    {
+      "id": "tower.control.ru.аббревиатура",
+      "frame": "tower",
+      "kind": "lexical",
+      "head_scope": "negative_or_uncertain_control",
+      "dictionary_supported_heads": [],
+      "candidate_canonical": null,
+      "canonical_approval": false,
+      "formal_history": "The final тура substring is not proof of the chess lexeme or tower continuity.",
+      "senses": "Retain previous finite control; no new blanket verdict.",
+      "national_forms": [],
+      "evidence_ids": [
+        "tower.saved"
+      ],
+      "exact_records": [
+        {
+          "frame": "tower",
+          "language": "ru",
+          "lemma_id": "lemma:4e0a11d643859cb9c79f",
+          "word": "аббревиатура"
+        }
+      ],
+      "evidence_gaps": [
+        "Inherited control is not a new corpus certification."
+      ],
+      "flags": [
+        "unrelated_homonym"
+      ],
+      "review_state": "researched_partition_requires_finite_head_edge_review",
+      "family_id": null,
+      "membership_authorized": false
+    },
+    {
+      "id": "tower.control.ru.адвокатура",
+      "frame": "tower",
+      "kind": "lexical",
+      "head_scope": "negative_or_uncertain_control",
+      "dictionary_supported_heads": [],
+      "candidate_canonical": null,
+      "canonical_approval": false,
+      "formal_history": "The final тура substring is not proof of the chess lexeme or tower continuity.",
+      "senses": "Retain previous finite control; no new blanket verdict.",
+      "national_forms": [],
+      "evidence_ids": [
+        "tower.saved"
+      ],
+      "exact_records": [
+        {
+          "frame": "tower",
+          "language": "ru",
+          "lemma_id": "lemma:ec680eca255ea8f2a240",
+          "word": "адвокатура"
+        }
+      ],
+      "evidence_gaps": [
+        "Inherited control is not a new corpus certification."
+      ],
+      "flags": [
+        "unrelated_homonym"
+      ],
+      "review_state": "researched_partition_requires_finite_head_edge_review",
+      "family_id": null,
+      "membership_authorized": false
+    },
+    {
+      "id": "tower.control.it.torremolinos",
+      "frame": "tower",
+      "kind": "lexical",
+      "head_scope": "negative_or_uncertain_control",
+      "dictionary_supported_heads": [],
+      "candidate_canonical": null,
+      "canonical_approval": false,
+      "formal_history": "Geographic-name route needs independent lexical and token evidence.",
+      "senses": "Retain previous finite control; no new blanket verdict.",
+      "national_forms": [],
+      "evidence_ids": [
+        "tower.saved"
+      ],
+      "exact_records": [
+        {
+          "frame": "tower",
+          "language": "it",
+          "lemma_id": "lemma:0e828e305c1d90c4326a",
+          "word": "torremolinos"
+        }
+      ],
+      "evidence_gaps": [
+        "Inherited control is not a new corpus certification."
+      ],
+      "flags": [
+        "unrelated_homonym"
+      ],
+      "review_state": "researched_partition_requires_finite_head_edge_review",
+      "family_id": null,
+      "membership_authorized": false
+    },
+    {
+      "id": "tower.control.de.bismarckturm",
+      "frame": "tower",
+      "kind": "lexical",
+      "head_scope": "negative_or_uncertain_control",
+      "dictionary_supported_heads": [],
+      "candidate_canonical": null,
+      "canonical_approval": false,
+      "formal_history": "A possible finite tower component must be explicitly segmented and reviewed before any binding; no whole-container admission.",
+      "senses": "Retain previous finite control; no new blanket verdict.",
+      "national_forms": [],
+      "evidence_ids": [
+        "tower.saved"
+      ],
+      "exact_records": [
+        {
+          "frame": "tower",
+          "language": "de",
+          "lemma_id": "lemma:765d4a815e7f1e15f66c",
+          "word": "bismarckturm"
+        }
+      ],
+      "evidence_gaps": [
+        "Inherited control is not a new corpus certification."
+      ],
+      "flags": [
+        "unrelated_homonym"
+      ],
+      "review_state": "researched_partition_requires_finite_head_edge_review",
+      "family_id": null,
+      "membership_authorized": false
+    }
+  ],
+  "shared_base_decisions": [
+    {
+      "branches": [
+        "val.valid",
+        "val.value",
+        "val.valence.chemical",
+        "val.valence.linguistic",
+        "val.it.valere"
+      ],
+      "candidate_shared_base": "val",
+      "status": "supported_research_relationship_not_catalog_approval",
+      "reason": "Direct valere/validus/valor/valentia development plus continuing recognizable val material; distinct head stems valid/valor/valent remain typed branch objects. No source route or residual ID inherits this decision."
+    },
+    {
+      "branches": [
+        "val.valence.chemical",
+        "val.valence.linguistic"
+      ],
+      "status": "related_senses_same_lexical_history",
+      "reason": "Documented analogy permits related senses; two research questions need not become two families."
+    },
+    {
+      "branches": [
+        "val.valley",
+        "val.vallum"
+      ],
+      "status": "separate_historical_branches_same_candidate_spelling",
+      "reason": "vallis and vallum with distinct modern histories; vall equality and common terrain meaning do not merge."
+    },
+    {
+      "branches": [
+        "val.valerius",
+        "val.valentia"
+      ],
+      "status": "independent_onomastic_questions",
+      "reason": "Direct/claimed valere relationship does not itself certify national onomastic formal continuity."
+    }
+  ],
+  "scope_limits": [
+    "All records conserved; only enumerated finite IDs receive research branch annotations.",
+    "Unknown residual IDs remain unresolved; no route-wide linguistic verdict.",
+    "2,637 Russian route occurrences represent 2,633 unique IDs; cross-pool duplicates preserved.",
+    "National-only heads live in research overlay, independently of international catalog.",
+    "Canonical candidates are not accepted catalog entries; no family merge, membership or frequency partition."
+  ]
+}
