@@ -26,17 +26,15 @@
   },
   "supported_groups": [
     "Germanic",
-    "Romance",
     "Slavic",
-    "Hellenic",
     "Indo-Aryan",
     "Iranian"
   ],
   "created_at_source": "mini_app",
   "accepted_at": "2026-09-07T08:49:37.876Z",
   "calculation": {
-    "pi_percent": 68.0697563745778,
-    "weighted_sum": 2384823.9145833333,
+    "pi_percent": 55.92045571143785,
+    "weighted_sum": 1959173.1658502254,
     "total_speakers_thousands": 3503500
   },
   "language_results": [
@@ -77,17 +75,17 @@
       "name": "German",
       "group": "Germanic",
       "speakers_thousands": 133000,
-      "word": "Tanne",
-      "normalized_graphic": "tanne",
-      "ipa": "ˈtanə",
+      "word": "Baum",
+      "normalized_graphic": "baum",
+      "ipa": "baʊm",
       "graphic": {
-        "score": 0.30000000000000004,
-        "distance_d": 3.5,
-        "max_length_l": 5
+        "score": 0,
+        "distance_d": 4,
+        "max_length_l": 4
       },
       "phonetic": {
-        "score": 0.768275,
-        "raw_score": 2.1462000000000003,
+        "score": 0.3968538851351351,
+        "raw_score": 2.4125844594594597,
         "max_length": 4,
         "tokens_interal": [
           "d",
@@ -95,113 +93,116 @@
           "e"
         ],
         "tokens_language": [
-          "t",
+          "b",
           "a",
-          "n",
-          "ə"
+          "ʊ",
+          "m"
         ]
       },
-      "final_similarity_s": 0.5341375,
-      "speaker_contribution": 71040.2875,
-      "supports_group": true
+      "final_similarity_s": 0.19842694256756754,
+      "speaker_contribution": 26390.783361486483,
+      "supports_group": false
     },
     {
       "code": "fr",
       "name": "French",
       "group": "Romance",
       "speakers_thousands": 334000,
-      "word": "dru",
-      "normalized_graphic": "dru",
-      "ipa": "dʁy",
+      "word": "arbre",
+      "normalized_graphic": "arbre",
+      "ipa": "aʁbʁ",
       "graphic": {
-        "score": 0.6666666666666667,
-        "distance_d": 1,
-        "max_length_l": 3
+        "score": 0.4,
+        "distance_d": 3,
+        "max_length_l": 5
       },
       "phonetic": {
-        "score": 0.9060333333333332,
-        "raw_score": 2.4362,
-        "max_length": 3,
+        "score": 0.3547265625,
+        "raw_score": 2.58109375,
+        "max_length": 4,
         "tokens_interal": [
           "d",
           "r",
           "e"
         ],
         "tokens_language": [
-          "d",
+          "a",
           "ʁ",
-          "y"
+          "b",
+          "ʁ"
         ]
       },
-      "final_similarity_s": 0.78635,
-      "speaker_contribution": 262640.9,
-      "supports_group": true
+      "final_similarity_s": 0.37736328125,
+      "speaker_contribution": 126039.3359375,
+      "supports_group": false
     },
     {
       "code": "es",
       "name": "Spanish",
       "group": "Romance",
       "speakers_thousands": 561000,
-      "word": "duro",
-      "normalized_graphic": "duro",
-      "ipa": "ˈduɾo",
+      "word": "árbol",
+      "normalized_graphic": "árbol",
+      "ipa": "ˈaɾβol",
       "graphic": {
-        "score": 0.625,
-        "distance_d": 1.5,
-        "max_length_l": 4
+        "score": 0.19999999999999996,
+        "distance_d": 4,
+        "max_length_l": 5
       },
       "phonetic": {
-        "score": 0.77625,
-        "raw_score": 2.21,
-        "max_length": 4,
+        "score": 0.420510135135135,
+        "raw_score": 2.8974493243243247,
+        "max_length": 5,
         "tokens_interal": [
           "d",
           "r",
           "e"
         ],
         "tokens_language": [
-          "d",
-          "u",
+          "a",
           "ɾ",
-          "o"
+          "β",
+          "o",
+          "l"
         ]
       },
-      "final_similarity_s": 0.700625,
-      "speaker_contribution": 393050.62500000006,
-      "supports_group": true
+      "final_similarity_s": 0.3102550675675675,
+      "speaker_contribution": 174053.09290540536,
+      "supports_group": false
     },
     {
       "code": "it",
       "name": "Italian",
       "group": "Romance",
       "speakers_thousands": 66000,
-      "word": "duro",
-      "normalized_graphic": "duro",
-      "ipa": "ˈduro",
+      "word": "albero",
+      "normalized_graphic": "alber",
+      "ipa": "ˈalbero",
       "graphic": {
-        "score": 0.625,
-        "distance_d": 1.5,
-        "max_length_l": 4
+        "score": 0.30000000000000004,
+        "distance_d": 3.5,
+        "max_length_l": 5
       },
       "phonetic": {
-        "score": 0.77625,
-        "raw_score": 2.21,
-        "max_length": 4,
+        "score": 0.472375,
+        "raw_score": 2.638125,
+        "max_length": 5,
         "tokens_interal": [
           "d",
           "r",
           "e"
         ],
         "tokens_language": [
-          "d",
-          "u",
-          "r",
-          "o"
+          "a",
+          "l",
+          "b",
+          "e",
+          "r"
         ]
       },
-      "final_similarity_s": 0.700625,
-      "speaker_contribution": 46241.25,
-      "supports_group": true
+      "final_similarity_s": 0.3861875,
+      "speaker_contribution": 25488.375,
+      "supports_group": false
     },
     {
       "code": "ru",
@@ -243,18 +244,18 @@
       "name": "Greek",
       "group": "Hellenic",
       "speakers_thousands": 13500,
-      "word": "δρυς",
-      "normalized_graphic": "drys",
-      "ipa": "ðris",
+      "word": "δέντρο",
+      "normalized_graphic": "dedr",
+      "ipa": "ˈðendro",
       "graphic": {
-        "score": 0.5,
-        "distance_d": 2,
+        "score": 0.25,
+        "distance_d": 3,
         "max_length_l": 4
       },
       "phonetic": {
-        "score": 0.789125,
-        "raw_score": 2.3129999999999997,
-        "max_length": 4,
+        "score": 0.35034375000000006,
+        "raw_score": 3.24828125,
+        "max_length": 5,
         "tokens_interal": [
           "d",
           "r",
@@ -262,14 +263,15 @@
         ],
         "tokens_language": [
           "ð",
-          "r",
-          "i",
-          "s"
+          "e",
+          "n",
+          "d",
+          "r"
         ]
       },
-      "final_similarity_s": 0.6445624999999999,
-      "speaker_contribution": 8701.593749999998,
-      "supports_group": true
+      "final_similarity_s": 0.30017187500000003,
+      "speaker_contribution": 4052.3203125000005,
+      "supports_group": false
     },
     {
       "code": "hi",
@@ -343,5 +345,7 @@
       "supports_group": true
     }
   ],
-  "semantic_correspondence_confirmed": true
+  "semantic_correspondence_confirmed": true,
+  "methodology_version": "2026-09-09",
+  "recalculation_note": "Recomputed after replacing historical/shifted forms with modern direct equivalents in pie_vordes."
 }
