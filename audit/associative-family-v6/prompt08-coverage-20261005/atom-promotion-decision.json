@@ -1,0 +1,913 @@
+{
+  "schema_version": 6,
+  "synthetic_fixture": false,
+  "production_enabled": false,
+  "stage": "atom-finite-promotion-20261005",
+  "source_head": "39703c50459d4accfd032af8c3fb1f16cffb3e9a",
+  "promotion_status": "accepted",
+  "binding_authorized": true,
+  "accepted_membership_authorized": true,
+  "senses_policy": "lexical_row_or_proved_component_not_token_sense",
+  "decision_scope": "initial_finite_frame_not_entire_packet",
+  "candidate_packets": [
+    "candidate-root:94c75d82c99af8f1e16f2166",
+    "candidate-root:974767da7b9be9ed2f585f70",
+    "candidate-root:8a7606273202a05481a007ad"
+  ],
+  "family": {
+    "id": "family:atom",
+    "canonical": "atom",
+    "legacy_ids": [],
+    "promotion_status": "accepted_finite_promotion",
+    "element_type": "root",
+    "aliases": [
+      "atom",
+      "атом"
+    ],
+    "canonical_decision": {
+      "status": "accepted",
+      "possible_stems": [
+        "atom",
+        "atomus",
+        "ato",
+        "tom"
+      ],
+      "removed_segment": null,
+      "reason": "Approve the complete recognizable modern atom base attested independently in three national borrowed rows. This is an individual modern-base decision; atomus retains the source noun ending, while ato/tom destroy the full modern row. Shared cutting ancestry and attimo development cannot license this boundary.",
+      "evidence": [
+        "https://www.merriam-webster.com/dictionary/atom",
+        "https://www.duden.de/rechtschreibung/Atom",
+        "https://www.duden.de/rechtschreibung/Atombombe",
+        "https://gramota.ru/poisk?dicts%5B%5D=42&mode=slovari&query=%D0%B0%D1%82%D0%BE%D0%BC"
+      ],
+      "negative_under_stripping": [
+        "atomus"
+      ],
+      "negative_over_stripping": [
+        "ato",
+        "tom"
+      ],
+      "membership_certification": "Only four initial enumerated real IDs; corpus aggregate/token senses, residual routes and additional national branches remain uncertified."
+    },
+    "realizations": {},
+    "reflexes": [
+      {
+        "family_id": "family:atom",
+        "language": "en",
+        "realization": "atom",
+        "realization_type": "lexical_branch_realization",
+        "morphology_boundary": "Complete independently evidenced national atom lexical row, finite scope only.",
+        "supporting_heads": [
+          "atom"
+        ],
+        "positive_controls": [
+          "atom"
+        ],
+        "negative_controls": [
+          "attimo",
+          "частица",
+          "anatomy"
+        ],
+        "status": "accepted",
+        "evidence": [
+          {
+            "source": "https://www.merriam-webster.com/dictionary/atom"
+          }
+        ],
+        "head_scope": [
+          {
+            "language": "en",
+            "normalized_head": "atom",
+            "sense": "atomic_particle_lexical_row",
+            "evidence": [
+              {
+                "source": "https://www.merriam-webster.com/dictionary/atom"
+              }
+            ]
+          }
+        ],
+        "general_family_realization": false,
+        "establishes_membership": false
+      },
+      {
+        "family_id": "family:atom",
+        "language": "de",
+        "realization": "atom",
+        "realization_type": "lexical_branch_realization",
+        "morphology_boundary": "Complete independently evidenced national atom lexical row, finite scope only.",
+        "supporting_heads": [
+          "atom"
+        ],
+        "positive_controls": [
+          "atom",
+          "atombombe"
+        ],
+        "negative_controls": [
+          "attimo",
+          "частица",
+          "anatomy"
+        ],
+        "status": "accepted",
+        "evidence": [
+          {
+            "source": "https://www.duden.de/rechtschreibung/Atom"
+          },
+          {
+            "source": "https://www.duden.de/rechtschreibung/Atombombe"
+          }
+        ],
+        "head_scope": [
+          {
+            "language": "de",
+            "normalized_head": "atom",
+            "sense": "atomic_particle_lexical_row",
+            "evidence": [
+              {
+                "source": "https://www.duden.de/rechtschreibung/Atom"
+              },
+              {
+                "source": "https://www.duden.de/rechtschreibung/Atombombe"
+              }
+            ]
+          }
+        ],
+        "general_family_realization": false,
+        "establishes_membership": false
+      },
+      {
+        "family_id": "family:atom",
+        "language": "ru",
+        "realization": "атом",
+        "realization_type": "lexical_branch_realization",
+        "morphology_boundary": "Complete independently evidenced national atom lexical row, finite scope only.",
+        "supporting_heads": [
+          "атом"
+        ],
+        "positive_controls": [
+          "атом"
+        ],
+        "negative_controls": [
+          "attimo",
+          "частица",
+          "anatomy"
+        ],
+        "status": "accepted",
+        "evidence": [
+          {
+            "source": "https://gramota.ru/poisk?dicts%5B%5D=42&mode=slovari&query=%D0%B0%D1%82%D0%BE%D0%BC"
+          }
+        ],
+        "head_scope": [
+          {
+            "language": "ru",
+            "normalized_head": "атом",
+            "sense": "atomic_particle_lexical_row",
+            "evidence": [
+              {
+                "source": "https://gramota.ru/poisk?dicts%5B%5D=42&mode=slovari&query=%D0%B0%D1%82%D0%BE%D0%BC"
+              }
+            ]
+          }
+        ],
+        "general_family_realization": false,
+        "establishes_membership": false
+      }
+    ]
+  },
+  "groups": [
+    {
+      "language": "en",
+      "normalized_head": "atom",
+      "sense": "atomic_particle_lexical_row",
+      "head_scope": "whole_lexical_row",
+      "forms": [
+        "atom"
+      ],
+      "component_stems": [],
+      "identity_status": "accepted",
+      "family_edge_status": "accepted",
+      "reason": "Independent dictionary-backed en atom lexical row, with chemical/figurative senses of the same documented borrowing. Only enumerated words/components; no token sense or unrestricted suffix rule.",
+      "sources": [
+        "https://www.merriam-webster.com/dictionary/atom"
+      ],
+      "records": [
+        {
+          "language": "en",
+          "word": "atom",
+          "lemma_id": "lemma:5218ba84f65daad15b89",
+          "source_record": {
+            "lemma_id": "lemma:5218ba84f65daad15b89",
+            "word": "atom",
+            "normalized": "atom",
+            "search_form": "atom",
+            "rank": 3724,
+            "frequency_score": 47.661040333407136,
+            "category_breakdown": {
+              "subtitles": {
+                "ipm_values": [
+                  7.738171,
+                  7.564358
+                ],
+                "category_ipm": 7.6512645,
+                "category_score": 37.807320958181066
+              },
+              "normative": {
+                "ipm_values": [
+                  16.723015
+                ],
+                "category_ipm": 16.723015,
+                "category_score": 50.37337538732458
+              },
+              "web": {
+                "ipm_values": [
+                  21.819942
+                ],
+                "category_ipm": 21.819942,
+                "category_score": 54.80242465471574
+              }
+            },
+            "sources": [
+              {
+                "id": "normative/bnc-clean2.lemmatized_spacy_ipm6.json",
+                "file": "bnc-clean2.lemmatized_spacy_ipm6.json",
+                "category": "normative",
+                "ipm": 16.723015
+              },
+              {
+                "id": "subtitles/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+                "file": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+                "category": "subtitles",
+                "ipm": 7.738171
+              },
+              {
+                "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+                "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+                "category": "subtitles",
+                "ipm": 7.564358
+              },
+              {
+                "id": "web/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+                "file": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+                "category": "web",
+                "ipm": 21.819942
+              }
+            ],
+            "corpus_quality": {
+              "status": "accepted",
+              "reasons": []
+            },
+            "components": [
+              {
+                "surface": "atom",
+                "canonical_candidate": "atom",
+                "confidence": 0.92,
+                "evidence": [
+                  {
+                    "type": "morphological_parse",
+                    "source": "candidate_index",
+                    "path": [
+                      "atom",
+                      "atom",
+                      "atom"
+                    ],
+                    "confidence": 0.92
+                  }
+                ]
+              }
+            ]
+          },
+          "source_locator": {
+            "path": "associativvordes/family-index-v5/members/en/8b.json.gz",
+            "family_id": "ety:609aedb538e2",
+            "record_sha256": "3edaa9bcd555331f4747ce9873da447c0127464c01c2206c96dd084ca8aab2fc"
+          },
+          "link_role": "whole_lexeme",
+          "corpus_pos_status": "dictionary_lexical_row_not_token_pos",
+          "formal_continuity_status": "accepted",
+          "relation_kind": "lexical_continuity",
+          "documented_relation": "borrowed_lexical_row",
+          "intermediate_history": "Latin atomus from Greek atomos; national dictionary documents the direct lexical route.",
+          "frequency_status": "aggregate_only_not_sense_frequency",
+          "senses_decision": {
+            "language": "en",
+            "lemma_id": "lemma:5218ba84f65daad15b89",
+            "word": "atom",
+            "family_id": "family:atom",
+            "membership_object": "lexical_row_or_component",
+            "component": "atom",
+            "formal_continuity": "accepted",
+            "proper_name_observed": false,
+            "token_names_not_established": true,
+            "analyses": [
+              {
+                "history": "borrowed_atom_row_with_documented_sense_extensions",
+                "verdict": "accepted",
+                "proved_components": [
+                  "atom"
+                ],
+                "evidence": [
+                  "https://www.merriam-webster.com/dictionary/atom"
+                ]
+              }
+            ],
+            "reason": "Independent dictionary-backed en atom lexical row, with chemical/figurative senses of the same documented borrowing. Only enumerated words/components; no token sense or unrestricted suffix rule."
+          }
+        }
+      ]
+    },
+    {
+      "language": "de",
+      "normalized_head": "atom",
+      "sense": "atomic_particle_lexical_row",
+      "head_scope": "whole_lexeme_and_finite_components",
+      "forms": [
+        "atom"
+      ],
+      "component_stems": [
+        "atom"
+      ],
+      "identity_status": "accepted",
+      "family_edge_status": "accepted",
+      "reason": "Independent dictionary-backed de atom lexical row, with chemical/figurative senses of the same documented borrowing. Only enumerated words/components; no token sense or unrestricted suffix rule.",
+      "sources": [
+        "https://www.duden.de/rechtschreibung/Atom",
+        "https://www.duden.de/rechtschreibung/Atombombe"
+      ],
+      "records": [
+        {
+          "language": "de",
+          "word": "atom",
+          "lemma_id": "lemma:5f7009e449a8e2d3dea4",
+          "source_record": {
+            "lemma_id": "lemma:5f7009e449a8e2d3dea4",
+            "word": "atom",
+            "normalized": "atom",
+            "search_form": "atom",
+            "rank": 6829,
+            "frequency_score": 27.925877603322466,
+            "category_breakdown": {
+              "subtitles": {
+                "ipm_values": [
+                  1.377542
+                ],
+                "category_ipm": 1.377542,
+                "category_score": 15.175231259258382
+              },
+              "normative": {
+                "ipm_values": [
+                  3.108133
+                ],
+                "category_ipm": 3.108133,
+                "category_score": 24.75804044161735
+              },
+              "web": {
+                "ipm_values": [
+                  11.209887
+                ],
+                "category_ipm": 11.209887,
+                "category_score": 43.84436110909165
+              }
+            },
+            "sources": [
+              {
+                "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+                "file": "deu_lemma_rank_word_ipm_corrected.json",
+                "category": "normative",
+                "ipm": 3.108133
+              },
+              {
+                "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+                "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+                "category": "subtitles",
+                "ipm": 1.377542
+              },
+              {
+                "id": "web/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+                "file": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+                "category": "web",
+                "ipm": 11.209887
+              }
+            ],
+            "corpus_quality": {
+              "status": "accepted",
+              "reasons": []
+            },
+            "components": [
+              {
+                "surface": "atom",
+                "canonical_candidate": "atom",
+                "confidence": 0.92,
+                "evidence": [
+                  {
+                    "type": "morphological_parse",
+                    "source": "candidate_index",
+                    "path": [
+                      "atom",
+                      "atom",
+                      "atom"
+                    ],
+                    "confidence": 0.92
+                  }
+                ]
+              }
+            ]
+          },
+          "source_locator": {
+            "path": "associativvordes/family-index-v5/members/de/8b.json.gz",
+            "family_id": "ety:609aedb538e2",
+            "record_sha256": "daf5612aa1e6b337de69c09dd67da45460b6be223ef3dbbf11e3a6e51045c9e2"
+          },
+          "link_role": "whole_lexeme",
+          "corpus_pos_status": "dictionary_lexical_row_not_token_pos",
+          "formal_continuity_status": "accepted",
+          "relation_kind": "lexical_continuity",
+          "documented_relation": "borrowed_lexical_row",
+          "intermediate_history": "Latin atomus from Greek atomos; national dictionary documents the direct lexical route.",
+          "frequency_status": "aggregate_only_not_sense_frequency",
+          "senses_decision": {
+            "language": "de",
+            "lemma_id": "lemma:5f7009e449a8e2d3dea4",
+            "word": "atom",
+            "family_id": "family:atom",
+            "membership_object": "lexical_row_or_component",
+            "component": "atom",
+            "formal_continuity": "accepted",
+            "proper_name_observed": false,
+            "token_names_not_established": true,
+            "analyses": [
+              {
+                "history": "borrowed_atom_row_with_documented_sense_extensions",
+                "verdict": "accepted",
+                "proved_components": [
+                  "atom"
+                ],
+                "evidence": [
+                  "https://www.duden.de/rechtschreibung/Atom",
+                  "https://www.duden.de/rechtschreibung/Atombombe"
+                ]
+              }
+            ],
+            "reason": "Independent dictionary-backed de atom lexical row, with chemical/figurative senses of the same documented borrowing. Only enumerated words/components; no token sense or unrestricted suffix rule."
+          }
+        },
+        {
+          "language": "de",
+          "word": "atombombe",
+          "lemma_id": "lemma:29fc012011aa0ae2ff53",
+          "source_record": {
+            "lemma_id": "lemma:29fc012011aa0ae2ff53",
+            "word": "atombombe",
+            "normalized": "atombombe",
+            "search_form": "atombombe",
+            "rank": 9037,
+            "frequency_score": 28.642967837895156,
+            "category_breakdown": {
+              "subtitles": {
+                "ipm_values": [
+                  3.984572
+                ],
+                "category_ipm": 3.984572,
+                "category_score": 28.146425557554807
+              },
+              "normative": {
+                "ipm_values": [
+                  2.641913
+                ],
+                "category_ipm": 2.641913,
+                "category_score": 22.647347485642563
+              },
+              "web": {
+                "ipm_values": [
+                  6.427584
+                ],
+                "category_ipm": 6.427584,
+                "category_score": 35.13513047048809
+              }
+            },
+            "sources": [
+              {
+                "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+                "file": "deu_lemma_rank_word_ipm_corrected.json",
+                "category": "normative",
+                "ipm": 2.641913
+              },
+              {
+                "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+                "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+                "category": "subtitles",
+                "ipm": 3.984572
+              },
+              {
+                "id": "web/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+                "file": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+                "category": "web",
+                "ipm": 6.427584
+              }
+            ],
+            "corpus_quality": {
+              "status": "accepted",
+              "reasons": []
+            },
+            "components": [
+              {
+                "surface": "atombombe",
+                "canonical_candidate": "atombombe",
+                "confidence": 0.92,
+                "evidence": [
+                  {
+                    "type": "morphological_parse",
+                    "source": "candidate_index",
+                    "path": [
+                      "atombombe",
+                      "atombombe",
+                      "atombombe"
+                    ],
+                    "confidence": 0.92
+                  }
+                ]
+              }
+            ]
+          },
+          "source_locator": {
+            "path": "associativvordes/family-index-v5/members/de/4f.json.gz",
+            "family_id": "surface:de:atombombe",
+            "record_sha256": "201ce8b9167c9f11336d596df2972d7f055c9bca0df774bd11f013873c78ac1e"
+          },
+          "link_role": "reviewed_lexical_base_component",
+          "component_segmentation": {
+            "before": "",
+            "component": "atom",
+            "after": "bombe"
+          },
+          "corpus_pos_status": "compound_component_only",
+          "formal_continuity_status": "accepted",
+          "relation_kind": "lexical_continuity",
+          "documented_relation": "compound_of_borrowed_atom_noun",
+          "intermediate_history": "Latin atomus from Greek atomos; national dictionary documents the direct lexical route.",
+          "frequency_status": "aggregate_only_not_sense_frequency",
+          "senses_decision": {
+            "language": "de",
+            "lemma_id": "lemma:29fc012011aa0ae2ff53",
+            "word": "atombombe",
+            "family_id": "family:atom",
+            "membership_object": "lexical_row_or_component",
+            "component": "atom",
+            "formal_continuity": "accepted",
+            "proper_name_observed": false,
+            "token_names_not_established": true,
+            "analyses": [
+              {
+                "history": "compound_using_borrowed_atom_row",
+                "verdict": "accepted",
+                "proved_components": [
+                  "atom"
+                ],
+                "evidence": [
+                  "https://www.duden.de/rechtschreibung/Atom",
+                  "https://www.duden.de/rechtschreibung/Atombombe"
+                ]
+              }
+            ],
+            "reason": "Independent dictionary-backed de atom lexical row, with chemical/figurative senses of the same documented borrowing. Only enumerated words/components; no token sense or unrestricted suffix rule."
+          }
+        }
+      ]
+    },
+    {
+      "language": "ru",
+      "normalized_head": "атом",
+      "sense": "atomic_particle_lexical_row",
+      "head_scope": "whole_lexical_row",
+      "forms": [
+        "атом"
+      ],
+      "component_stems": [],
+      "identity_status": "accepted",
+      "family_edge_status": "accepted",
+      "reason": "Independent dictionary-backed ru atom lexical row, with chemical/figurative senses of the same documented borrowing. Only enumerated words/components; no token sense or unrestricted suffix rule.",
+      "sources": [
+        "https://gramota.ru/poisk?dicts%5B%5D=42&mode=slovari&query=%D0%B0%D1%82%D0%BE%D0%BC"
+      ],
+      "records": [
+        {
+          "language": "ru",
+          "word": "атом",
+          "lemma_id": "lemma:00daa383c16b08e70475",
+          "source_record": {
+            "lemma_id": "lemma:00daa383c16b08e70475",
+            "word": "атом",
+            "normalized": "атом",
+            "search_form": "atom",
+            "rank": 2830,
+            "frequency_score": 52.69351095634788,
+            "category_breakdown": {
+              "subtitles": {
+                "ipm_values": [
+                  7.793681
+                ],
+                "category_ipm": 7.793681,
+                "category_score": 38.093418464266584
+              },
+              "normative": {
+                "ipm_values": [
+                  43.476678
+                ],
+                "category_ipm": 43.476678,
+                "category_score": 66.4953853326055
+              },
+              "web": {
+                "ipm_values": [
+                  20.175227
+                ],
+                "category_ipm": 20.175227,
+                "category_score": 53.49172907217152
+              }
+            },
+            "sources": [
+              {
+                "id": "normative/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+                "file": "rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+                "category": "normative",
+                "ipm": 43.476678
+              },
+              {
+                "id": "subtitles/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+                "file": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+                "category": "subtitles",
+                "ipm": 7.793681
+              },
+              {
+                "id": "web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+                "file": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+                "category": "web",
+                "ipm": 20.175227
+              }
+            ],
+            "corpus_quality": {
+              "status": "accepted",
+              "reasons": []
+            },
+            "components": [
+              {
+                "surface": "atom",
+                "canonical_candidate": "atom",
+                "confidence": 0.92,
+                "evidence": [
+                  {
+                    "type": "morphological_parse",
+                    "source": "candidate_index",
+                    "path": [
+                      "atom",
+                      "atom",
+                      "atom"
+                    ],
+                    "confidence": 0.92
+                  }
+                ]
+              }
+            ]
+          },
+          "source_locator": {
+            "path": "associativvordes/family-index-v5/members/ru/31.json.gz",
+            "family_id": "ety:aa2c1142de7a",
+            "record_sha256": "82cfea6001617a3cbe31cbda8eb69484e090fef69cf8b947ef1de70fc304a371"
+          },
+          "link_role": "whole_lexeme",
+          "corpus_pos_status": "dictionary_lexical_row_not_token_pos",
+          "formal_continuity_status": "accepted",
+          "relation_kind": "lexical_continuity",
+          "documented_relation": "borrowed_lexical_row",
+          "intermediate_history": "Greek source explicit; intermediate borrowing language remains unspecified.",
+          "frequency_status": "aggregate_only_not_sense_frequency",
+          "senses_decision": {
+            "language": "ru",
+            "lemma_id": "lemma:00daa383c16b08e70475",
+            "word": "атом",
+            "family_id": "family:atom",
+            "membership_object": "lexical_row_or_component",
+            "component": "атом",
+            "formal_continuity": "accepted",
+            "proper_name_observed": false,
+            "token_names_not_established": true,
+            "analyses": [
+              {
+                "history": "borrowed_atom_row_with_documented_sense_extensions",
+                "verdict": "accepted",
+                "proved_components": [
+                  "атом"
+                ],
+                "evidence": [
+                  "https://gramota.ru/poisk?dicts%5B%5D=42&mode=slovari&query=%D0%B0%D1%82%D0%BE%D0%BC"
+                ]
+              }
+            ],
+            "reason": "Independent dictionary-backed ru atom lexical row, with chemical/figurative senses of the same documented borrowing. Only enumerated words/components; no token sense or unrestricted suffix rule."
+          }
+        }
+      ]
+    }
+  ],
+  "positive_controls": [
+    {
+      "language": "en",
+      "lemma_id": "lemma:5218ba84f65daad15b89",
+      "word": "atom"
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:5f7009e449a8e2d3dea4",
+      "word": "atom"
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:29fc012011aa0ae2ff53",
+      "word": "atombombe"
+    },
+    {
+      "language": "ru",
+      "lemma_id": "lemma:00daa383c16b08e70475",
+      "word": "атом"
+    }
+  ],
+  "negative_controls": [
+    {
+      "language": "it",
+      "word": "attimo",
+      "lemma_id": "lemma:b6a55365044117f93b84",
+      "source_record": {
+        "lemma_id": "lemma:b6a55365044117f93b84",
+        "word": "attimo",
+        "normalized": "attimo",
+        "search_form": "attimo",
+        "rank": 422,
+        "frequency_score": 78.35081183908036,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              223.191099,
+              222.378583
+            ],
+            "category_ipm": 222.784841,
+            "category_score": 94.8060368207616
+          },
+          "web": {
+            "ipm_values": [
+              33.207653
+            ],
+            "category_ipm": 33.207653,
+            "category_score": 61.89558685739911
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 223.191099
+          },
+          {
+            "id": "subtitles/hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 222.378583
+          },
+          {
+            "id": "web/sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 33.207653
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "att",
+            "canonical_candidate": "att",
+            "confidence": 0.97,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "manually_verified",
+                "path": [
+                  "attimo",
+                  "att",
+                  "att"
+                ],
+                "confidence": 0.97
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/it/8b.json.gz",
+        "family_id": "ety:609aedb538e2",
+        "record_sha256": "5213a868f156cac629509901f0fb8af5911bc470e186919701aac71938c2f778"
+      },
+      "reason": "Documented related source history, but modern attimo has no approved recognizable atom boundary; this scoped negative control does not reject its etymology."
+    },
+    {
+      "language": "ru",
+      "word": "частица",
+      "lemma_id": "lemma:a8757c2826cdef2a296a",
+      "source_record": {
+        "lemma_id": "lemma:a8757c2826cdef2a296a",
+        "word": "частица",
+        "normalized": "частица",
+        "search_form": "chastica",
+        "rank": 2152,
+        "frequency_score": 60.93712125266855,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              14.613151
+            ],
+            "category_ipm": 14.613151,
+            "category_score": 48.152452720504684
+          },
+          "normative": {
+            "ipm_values": [
+              59.556666
+            ],
+            "category_ipm": 59.556666,
+            "category_score": 71.90293098278062
+          },
+          "web": {
+            "ipm_values": [
+              34.929295
+            ],
+            "category_ipm": 34.929295,
+            "category_score": 62.75598005472032
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+            "file": "rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+            "category": "normative",
+            "ipm": 59.556666
+          },
+          {
+            "id": "subtitles/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+            "file": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+            "category": "subtitles",
+            "ipm": 14.613151
+          },
+          {
+            "id": "web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "file": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 34.929295
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "chastic",
+            "canonical_candidate": "chastic",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "chastica",
+                  "chastic",
+                  "chastic"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/ru/a8.json.gz",
+        "family_id": "surface:ru:chastic",
+        "record_sha256": "445c3f8bff209516a9c0ba70371bc6eab868780b5589f9e82d12f1ef9a982dd8"
+      },
+      "reason": "A semantic particle gloss with no atom formal continuity; translation cannot grant membership."
+    }
+  ],
+  "input_sha256": {
+    "associativvordes/family-index-v5/members/en/8b.json.gz": "0aaf53179ac359c09ccfe23a8e52a94d9db04bd626199358092d33b2083fbaff",
+    "associativvordes/family-index-v5/members/de/8b.json.gz": "a467218fec03a125dbbdafe73d1d8d8ddb2b9bb5e1409bd48604a7c3caa2efa4",
+    "associativvordes/family-index-v5/members/ru/31.json.gz": "f2a3c3a7c97ff9325c704dacda11480119988c8e1da18378fb85625d491dc757",
+    "associativvordes/family-index-v5/members/de/4f.json.gz": "f5726af22f6336af62968683f5e0c53b4a0c8e62e8af4a03956f64990b928ad7",
+    "associativvordes/family-index-v5/members/it/8b.json.gz": "847a39b2adcf77ca3e4957d29458d93adc158a25b4298db89485cd9c6e49a982",
+    "associativvordes/family-index-v5/members/ru/a8.json.gz": "8c60ae8d4e1a2905d846e08572f798a254a0fc51aab886570dbabc54a701a9ae",
+    "audit/associative-family-v6/candidate-root-clusters-20261003/clusters.json.gz": "ae4acc253c8c6fda0d79fd9047476213de8e16e52b2e8194450387869b27c832",
+    "associativvordes/family-index-v5/families/8b.json.gz": "729e896cc446f33d1ce54f3e2567cba81bcd85f3afc9f3fc4f087554bacd36cd",
+    "associativvordes/family-index-v5/families/a9.json.gz": "c62a9d55831ddf000edf0c313f34ac375b8b4db0df2cc56097baa6061262b0f2",
+    "associativvordes/family-index-v5/families/31.json.gz": "33fc48467f3021deb5b3213232ab004428d5df6a5d446281b717c9b81bc7af6e",
+    "associativvordes/family-index-v5/families/72.json.gz": "6c8ead06000fcfe5b02a4fadffb4d31c4199c00a2973083c9ab0f63be6411502",
+    "audit/associative-family-v6/corpus-enumeration.json": "306bcb019fcd0acc3a81e283f90197ba4023f34941da2660ca8217e6826512a8",
+    "audit/associative-family-v6/prompt08-coverage-20261005/research.json": "26e220fc71539a9c1afa2c940e66d826454ff6fe09f72fdc0f59e91c2c531085"
+  }
+}
