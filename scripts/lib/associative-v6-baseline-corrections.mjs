@@ -37,6 +37,7 @@ export async function loadBaselineCorrections({read,readBytes,inputs}){
 // Atomic per-question overlay: head/edge/link/corpus history is never modified.
 export function replayBaselineCorrections({index,docs,baseline=[]}){
  const raw=generateV6Memberships({...index,correction_verdicts:[]});
+ assertBaselineReference({baseline,historical:raw});
  index={...index,correction_verdicts:structuredClone(index.correction_verdicts||[])};
  const ledger=[],seen=new Set();let version=0;
  for(const d of docs){
@@ -66,5 +67,13 @@ export function assertAuthorizedMemberships({historical,current,verdicts=[]}){
  const removed=new Set();for(const v of verdicts){const k=correctionKey(v);if(removed.has(k)||!before.has(k)||!['excluded','uncertain'].includes(v.status))fail('Unknown or duplicate authorized correction');removed.add(k);}
  if(actual.size!==before.size-removed.size)fail('Unauthorized baseline loss or unexpected addition');
  for(const[k,r]of before){if(removed.has(k)){if(actual.has(k))fail('Corrected verdict leaked into current search');}else if(!same(actual.get(k),r))fail('Unauthorized baseline loss/change '+k);}
+ return true;
+}
+
+// A lifecycle operation cannot bypass the independent baseline correction ledger.
+export function assertBaselineReference({baseline,historical}){
+ const keys=new Set(historical.map(correctionKey)),original=new Set(baseline.map(correctionKey));
+ if(keys.size!==historical.length||original.size!==baseline.length)fail('Duplicate baseline/reference identity');
+ for(const k of original)if(!keys.has(k))fail('Unauthorized baseline loss before correction overlay '+k);
  return true;
 }

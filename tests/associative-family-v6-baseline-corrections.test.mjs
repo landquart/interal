@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {generateV6Memberships,searchV6} from '../associativvordes/js/associative-family-v6.js';
-import {correctionHash,correctionKey,correctionPredecessor,replayBaselineCorrections,assertAuthorizedMemberships,loadBaselineCorrections} from '../scripts/lib/associative-v6-baseline-corrections.mjs';
+import {correctionHash,correctionKey,correctionPredecessor,replayBaselineCorrections,assertAuthorizedMemberships,assertBaselineReference,loadBaselineCorrections} from '../scripts/lib/associative-v6-baseline-corrections.mjs';
 const catalog=JSON.parse(fs.readFileSync('associativvordes/family-index-v6/catalog.json'));
 function fixture(){
  const records=['alpha','beta'].map((word,i)=>({lemma_id:'synthetic:'+i,word,frequency_score:17+i,components:['unchanged']})),head={id:'synthetic:head',language:'en',normalized_head:'synthetic',sense:'fixture',version:1,evidence:[{source:'synthetic-proof'}]},corpus=new Map(records.map(r=>['en\0'+r.lemma_id,r]));
@@ -41,3 +41,12 @@ test('synthetic versioned uncertain revision preserves previous excluded verdict
 test('synthetic baseline loss without ledger, unexpected addition, and correction search leak reject',()=>{const i=fixture(),r=replayBaselineCorrections({index:i,docs:[dossier(i)]});assert.throws(()=>assertAuthorizedMemberships({historical:i.memberships,current:i.memberships.slice(1)}),/Unauthorized/);assert.throws(()=>assertAuthorizedMemberships({historical:i.memberships,current:[...i.memberships,i.memberships[0]]}),/Duplicate/);assert.throws(()=>assertAuthorizedMemberships({historical:i.memberships,current:i.memberships,verdicts:r.index.correction_verdicts}),/Unauthorized|leaked/);});
 test('synthetic fixtures never enter the real registry',async()=>{const d=dossier(fixture()),b=Buffer.from(JSON.stringify(d)),registry={schema_version:6,correction_schema_version:1,production_enabled:false,decisions:[{path:'synthetic-dossier',sha256:(await import('node:crypto')).createHash('sha256').update(b).digest('hex')}]};await assert.rejects(loadBaselineCorrections({read:async p=>p.endsWith('baseline-corrections.json')?registry:d,readBytes:async p=>p.endsWith('baseline-corrections.json')?Buffer.from(JSON.stringify(registry)):b,inputs:{}}),/Synthetic/);});
 test('real registry deliberately contains no invented corrections',()=>{const r=JSON.parse(fs.readFileSync('associativvordes/family-index-v6/baseline-corrections.json'));assert.deepEqual(r.decisions,[]);assert.equal(r.production_enabled,false);});
+
+test('synthetic lifecycle cannot hide baseline loss upstream of the correction registry',()=>{
+ const original=fixture(),changed=fixture();changed.edges[0]={...changed.edges[0],status:'excluded',version:2};changed.memberships=generateV6Memberships(changed);
+ assert.throws(()=>replayBaselineCorrections({index:changed,docs:[],baseline:original.memberships}),/baseline loss before correction overlay/);
+ assert.throws(()=>assertBaselineReference({baseline:original.memberships,historical:changed.memberships}),/baseline loss/);
+ const unrelated={...original.memberships[0],lemma_id:'synthetic:unrelated'};
+ assert.throws(()=>assertBaselineReference({baseline:original.memberships,historical:[...original.memberships.slice(1),unrelated]}),/baseline loss/);
+ const versioned=original.memberships.map(r=>({...r,edge_version:2}));assertBaselineReference({baseline:original.memberships,historical:versioned});
+});
