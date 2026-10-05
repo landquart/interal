@@ -58,4 +58,4 @@ if len(sys.argv)>2:
  t=Path(sys.argv[2]);assert {p.name for p in P.iterdir()}=={p.name for p in t.iterdir()}
  for p in P.iterdir():assert p.read_bytes()==(t/p.name).read_bytes(),p.name
  result['planning_replay_artifacts']=len(list(P.iterdir()))
-(R/'validation').mkdir(exist_ok=True);(R/'validation/exact-differential.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n');print(json.dumps(result))
+(R/'final-validation').mkdir(exist_ok=True);(R/'final-validation/exact-differential.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n');print(json.dumps(result))
