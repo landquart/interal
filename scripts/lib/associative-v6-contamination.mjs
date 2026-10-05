@@ -18,6 +18,8 @@ export function partitionReview({incidences,branches,syntheticFixture=false}){
   assert.equal(row.source_record_sha256,digest(row.source_record),'Stale source record');
   const rec=row.source_record.source_record||row.source_record;
   assert.equal(rec.lemma_id,row.lemma_id,'Wrong source ID');assert.equal(rec.word,row.word,'Wrong source word');
+  for(const source of [row.source_record,rec])if(source.language)assert.equal(source.language,row.language,'Wrong source language');
+  const savedRoute=row.source_record.route_id||row.source_record.candidate_id;if(savedRoute)assert.equal(savedRoute,row.route_id,'Wrong source route');
   assert.equal(row.incidence_id,'incidence:'+digest([row.frame,row.route_id,row.language,row.lemma_id,row.locator,row.source_sha256]),'Stale incidence ID');
   byId.set(row.incidence_id,row);
   const k=corpusKey(row),prior=byCorpus.get(k)||[];
