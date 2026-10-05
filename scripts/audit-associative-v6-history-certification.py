@@ -34,6 +34,10 @@ for word in ['nacer','nacimiento','nascere','entre']:assert next(r for r in rp.v
 sets=read(C/'root-bound-overlap-sets.json.gz');h={key(r) for r in historical if r['current_disposition']=='unresolved_historical_without_current_decision'};a={key(r) for u in read(G/'review-backlog.json.gz') for r in u['source_records']}
 convert=lambda k:'\0'.join(k)
 assert sets['root_bound_overlap']==sorted(map(convert,h&a));assert sets['root_bound_union']==sorted(map(convert,h|a));assert len(h)==46390 and len(a)==23234
+all_h={key(r) for r in historical};eligible={key(r) for r in mapped if r['current_linguistic_status'] in ['unreviewed','uncertain']}
+assert sets['all_historical_root_bound']==sorted(map(convert,all_h));assert sets['all_historical_current_overlap']==sorted(map(convert,all_h&a))
+assert sets['effective_review_eligible_historical']==sorted(map(convert,eligible));assert sets['effective_review_eligible_current_overlap']==sorted(map(convert,eligible&a));assert sets['effective_review_eligible_union']==sorted(map(convert,eligible|a))
+assert len(all_h&a)==827 and len(eligible)==47723 and len(eligible&a)==827 and len(eligible|a)==70130
 for f in cert:
  assert f['full_linguistic_certification'] is False;assert f['inherited_proofs']['new_linguistic_review'] is False;assert f['inherited_proofs']['memberships']==sum(r['family_id']==f['family_id'] for r in baseline)
  if f['canonical'] in ['alter','ocul','ped','manu','regul','liber']:assert f['open_queue_coverage']['current_questions']==0 and f['open_queue_coverage']['coverage']=='no_current_active_queue_full_coverage_not_established'
@@ -45,7 +49,7 @@ for name in ['corpus_ids','membership_candidates','route_occurrences','source_ro
 questions=read(P/'membership-questions.json.gz');q={r['candidate_id']:r for r in questions}
 for k,r in rp.items():
  rkey=r['language']+'\0'+r['lemma_id']+'\0'+r['root'];assert q[rkey]['effective_verdict']['status']==r['new_review_status'];assert bool(q[rkey]['open_frames'])==(r['new_review_status']=='uncertain')
-result={'schema_version':6,'verdict':'pass','baseline_sha':BASE,'current_memberships':len(current),'historical_baseline_memberships':len(baseline),'exact_differential':{'additions':[],'removals':[old[k] for k in sorted(vk)],'changed_memberships':[]},'protected_trees':protected,'certified_scope_families':len(cert),'full_dictionary_complete':False,'representative_rechecks':len(rp),'root_bound_overlap':len(h&a),'root_bound_union':len(h|a),'planning_source_sets_conserved':True}
+result={'schema_version':6,'verdict':'pass','baseline_sha':BASE,'current_memberships':len(current),'historical_baseline_memberships':len(baseline),'exact_differential':{'additions':[],'removals':[old[k] for k in sorted(vk)],'changed_memberships':[]},'protected_trees':protected,'certified_scope_families':len(cert),'full_dictionary_complete':False,'representative_rechecks':len(rp),'root_bound_overlap':len(h&a),'root_bound_union':len(h|a),'all_historical_current_overlap':len(all_h&a),'effective_review_eligible_historical':len(eligible),'effective_historical_current_overlap':len(eligible&a),'effective_review_eligible_union':len(eligible|a),'planning_source_sets_conserved':True}
 if len(sys.argv)>1:
  target=Path(sys.argv[1]);assert {p.name for p in C.iterdir()}=={p.name for p in target.iterdir()}
  for p in C.iterdir():assert p.read_bytes()==(target/p.name).read_bytes(),p.name
