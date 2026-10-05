@@ -1,0 +1,107 @@
+{
+  "schema_version": 6,
+  "verdict": "pass",
+  "baseline_sha": "39703c50459d4accfd032af8c3fb1f16cffb3e9a",
+  "memberships_before": 21561,
+  "memberships_after": 21566,
+  "additions": [
+    {
+      "language": "de",
+      "family_id": "family:atom",
+      "lemma_id": "lemma:29fc012011aa0ae2ff53",
+      "word": "atombombe",
+      "head_id": "head:de:9cdb04410aa26c9a3bd5e220",
+      "edge_version": 1,
+      "source_proof": [
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/de/4f.json.gz",
+            "family_id": "surface:de:atombombe",
+            "record_sha256": "201ce8b9167c9f11336d596df2972d7f055c9bca0df774bd11f013873c78ac1e"
+          },
+          "lemma_id": "lemma:29fc012011aa0ae2ff53"
+        }
+      ]
+    },
+    {
+      "language": "de",
+      "family_id": "family:atom",
+      "lemma_id": "lemma:5f7009e449a8e2d3dea4",
+      "word": "atom",
+      "head_id": "head:de:9cdb04410aa26c9a3bd5e220",
+      "edge_version": 1,
+      "source_proof": [
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/de/8b.json.gz",
+            "family_id": "ety:609aedb538e2",
+            "record_sha256": "daf5612aa1e6b337de69c09dd67da45460b6be223ef3dbbf11e3a6e51045c9e2"
+          },
+          "lemma_id": "lemma:5f7009e449a8e2d3dea4"
+        }
+      ]
+    },
+    {
+      "language": "en",
+      "family_id": "family:atom",
+      "lemma_id": "lemma:5218ba84f65daad15b89",
+      "word": "atom",
+      "head_id": "head:en:9496cbd019de1f93cbe56136",
+      "edge_version": 2,
+      "source_proof": [
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/en/8b.json.gz",
+            "family_id": "ety:609aedb538e2",
+            "record_sha256": "3edaa9bcd555331f4747ce9873da447c0127464c01c2206c96dd084ca8aab2fc"
+          },
+          "lemma_id": "lemma:5218ba84f65daad15b89"
+        }
+      ]
+    },
+    {
+      "language": "en",
+      "family_id": "family:atom",
+      "lemma_id": "lemma:bc82dd53d41aa09fb0f2",
+      "word": "atoms",
+      "head_id": "head:en:9496cbd019de1f93cbe56136",
+      "edge_version": 2,
+      "source_proof": [
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/en/8b.json.gz",
+            "family_id": "ety:609aedb538e2",
+            "record_sha256": "82855472b2bfd4933b7ac4f61da174ecef5e9628986cad2d209129a67674d8fc"
+          },
+          "lemma_id": "lemma:bc82dd53d41aa09fb0f2"
+        }
+      ]
+    },
+    {
+      "language": "ru",
+      "family_id": "family:atom",
+      "lemma_id": "lemma:00daa383c16b08e70475",
+      "word": "атом",
+      "head_id": "head:ru:e6db792767c0b6e6b1e2f3d8",
+      "edge_version": 1,
+      "source_proof": [
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/ru/31.json.gz",
+            "family_id": "ety:aa2c1142de7a",
+            "record_sha256": "82cfea6001617a3cbe31cbda8eb69484e090fef69cf8b947ef1de70fc304a371"
+          },
+          "lemma_id": "lemma:00daa383c16b08e70475"
+        }
+      ]
+    }
+  ],
+  "removed": [],
+  "changed_existing": [],
+  "new_heads": 3,
+  "surface_only_unique_ids": 3999388,
+  "linguistic_recall_measured": false,
+  "surface_sample": 600,
+  "zero_v5_preserved": 829,
+  "full_dictionary_complete": false
+}

@@ -1,0 +1,688 @@
+TAP version 13
+# Subtest: canonical decisions choose ped and preserve creat; no mechanical stripping
+ok 1 - canonical decisions choose ped and preserve creat; no mechanical stripping
+  ---
+  duration_ms: 3.263946
+  type: 'test'
+  ...
+# Subtest: surface, etymon and alias do not grant identity or membership
+ok 2 - surface, etymon and alias do not grant identity or membership
+  ---
+  duration_ms: 1.494527
+  type: 'test'
+  ...
+# Subtest: finite morphology is family and language bound, including cross-script reflexes
+ok 3 - finite morphology is family and language bound, including cross-script reflexes
+  ---
+  duration_ms: 0.408554
+  type: 'test'
+  ...
+# Subtest: invented corpus IDs, words, languages, conflicts and unlisted propagation are rejected
+ok 4 - invented corpus IDs, words, languages, conflicts and unlisted propagation are rejected
+  ---
+  duration_ms: 0.382995
+  type: 'test'
+  ...
+# Subtest: one versioned negative-head review deterministically resolves exact finite links
+ok 5 - one versioned negative-head review deterministically resolves exact finite links
+  ---
+  duration_ms: 0.369115
+  type: 'test'
+  ...
+# Subtest: duplicate metrics are review aids and never merge identities
+ok 6 - duplicate metrics are review aids and never merge identities
+  ---
+  duration_ms: 0.189315
+  type: 'test'
+  ...
+# Subtest: current review frames conserve latest decisions and exclude duplicate historical pending rows
+ok 7 - current review frames conserve latest decisions and exclude duplicate historical pending rows
+  ---
+  duration_ms: 557.451931
+  type: 'test'
+  ...
+# Subtest: synthetic accepted to excluded retains measured rows, sibling scope, other family and historical acceptance
+ok 8 - synthetic accepted to excluded retains measured rows, sibling scope, other family and historical acceptance
+  ---
+  duration_ms: 16.996418
+  type: 'test'
+  ...
+# Subtest: synthetic accepted to uncertain retains measured rows, sibling scope, other family and historical acceptance
+ok 9 - synthetic accepted to uncertain retains measured rows, sibling scope, other family and historical acceptance
+  ---
+  duration_ms: 6.353382
+  type: 'test'
+  ...
+# Subtest: synthetic rejects unknown correction atomically
+ok 10 - synthetic rejects unknown correction atomically
+  ---
+  duration_ms: 2.743794
+  type: 'test'
+  ...
+# Subtest: synthetic rejects stale previous hash atomically
+ok 11 - synthetic rejects stale previous hash atomically
+  ---
+  duration_ms: 2.430374
+  type: 'test'
+  ...
+# Subtest: synthetic rejects stale edge hash atomically
+ok 12 - synthetic rejects stale edge hash atomically
+  ---
+  duration_ms: 2.247328
+  type: 'test'
+  ...
+# Subtest: synthetic rejects partial wrong-ID scope atomically
+ok 13 - synthetic rejects partial wrong-ID scope atomically
+  ---
+  duration_ms: 3.280872
+  type: 'test'
+  ...
+# Subtest: synthetic rejects omitted dossier ID atomically
+ok 14 - synthetic rejects omitted dossier ID atomically
+  ---
+  duration_ms: 1.908819
+  type: 'test'
+  ...
+# Subtest: synthetic rejects changed measured row atomically
+ok 15 - synthetic rejects changed measured row atomically
+  ---
+  duration_ms: 2.359637
+  type: 'test'
+  ...
+# Subtest: synthetic rejects missing authorization atomically
+ok 16 - synthetic rejects missing authorization atomically
+  ---
+  duration_ms: 5.152014
+  type: 'test'
+  ...
+# Subtest: synthetic rejects string authorization atomically
+ok 17 - synthetic rejects string authorization atomically
+  ---
+  duration_ms: 2.191394
+  type: 'test'
+  ...
+# Subtest: synthetic rejects missing individual evidence atomically
+ok 18 - synthetic rejects missing individual evidence atomically
+  ---
+  duration_ms: 2.109702
+  type: 'test'
+  ...
+# Subtest: synthetic rejects invented acceptance atomically
+ok 19 - synthetic rejects invented acceptance atomically
+  ---
+  duration_ms: 2.274248
+  type: 'test'
+  ...
+# Subtest: synthetic rejects wrong previous verdict atomically
+ok 20 - synthetic rejects wrong previous verdict atomically
+  ---
+  duration_ms: 1.764572
+  type: 'test'
+  ...
+# Subtest: synthetic rejects stale version atomically
+ok 21 - synthetic rejects stale version atomically
+  ---
+  duration_ms: 1.573135
+  type: 'test'
+  ...
+# Subtest: synthetic multi-ID dossier rejects partially edited scope
+ok 22 - synthetic multi-ID dossier rejects partially edited scope
+  ---
+  duration_ms: 0.560473
+  type: 'test'
+  ...
+# Subtest: synthetic versioned uncertain revision preserves previous excluded verdict and hash
+ok 23 - synthetic versioned uncertain revision preserves previous excluded verdict and hash
+  ---
+  duration_ms: 1.22407
+  type: 'test'
+  ...
+# Subtest: synthetic baseline loss without ledger, unexpected addition, and correction search leak reject
+ok 24 - synthetic baseline loss without ledger, unexpected addition, and correction search leak reject
+  ---
+  duration_ms: 0.358429
+  type: 'test'
+  ...
+# Subtest: synthetic fixtures never enter the real registry
+ok 25 - synthetic fixtures never enter the real registry
+  ---
+  duration_ms: 0.668494
+  type: 'test'
+  ...
+# Subtest: real registry deliberately contains no invented corrections
+ok 26 - real registry deliberately contains no invented corrections
+  ---
+  duration_ms: 0.141382
+  type: 'test'
+  ...
+# Subtest: synthetic lifecycle cannot hide baseline loss upstream of the correction registry
+ok 27 - synthetic lifecycle cannot hide baseline loss upstream of the correction registry
+  ---
+  duration_ms: 0.260602
+  type: 'test'
+  ...
+# Subtest: synthetic: reused arrays conserve independent routes, measured payloads and sibling links
+ok 28 - synthetic: reused arrays conserve independent routes, measured payloads and sibling links
+  ---
+  duration_ms: 4.27734
+  type: 'test'
+  ...
+# Subtest: synthetic: homonymous canonical and multiple senses stay separate overlapping questions
+ok 29 - synthetic: homonymous canonical and multiple senses stay separate overlapping questions
+  ---
+  duration_ms: 0.367963
+  type: 'test'
+  ...
+# Subtest: synthetic: every unassigned occurrence has a separate unresolved route partition
+ok 30 - synthetic: every unassigned occurrence has a separate unresolved route partition
+  ---
+  duration_ms: 0.340562
+  type: 'test'
+  ...
+# Subtest: synthetic: semantic_translation_gloss changes triage but creates no linguistic verdict
+ok 31 - synthetic: semantic_translation_gloss changes triage but creates no linguistic verdict
+  ---
+  duration_ms: 1.388557
+  type: 'test'
+  ...
+# Subtest: synthetic: alias_pool_reuse changes triage but creates no linguistic verdict
+ok 32 - synthetic: alias_pool_reuse changes triage but creates no linguistic verdict
+  ---
+  duration_ms: 0.257036
+  type: 'test'
+  ...
+# Subtest: synthetic: unrelated_homonym changes triage but creates no linguistic verdict
+ok 33 - synthetic: unrelated_homonym changes triage but creates no linguistic verdict
+  ---
+  duration_ms: 0.209154
+  type: 'test'
+  ...
+# Subtest: synthetic: suffix_ending changes triage but creates no linguistic verdict
+ok 34 - synthetic: suffix_ending changes triage but creates no linguistic verdict
+  ---
+  duration_ms: 0.222935
+  type: 'test'
+  ...
+# Subtest: synthetic: accidental_fragment changes triage but creates no linguistic verdict
+ok 35 - synthetic: accidental_fragment changes triage but creates no linguistic verdict
+  ---
+  duration_ms: 0.167081
+  type: 'test'
+  ...
+# Subtest: synthetic: proper_name_identity changes triage but creates no linguistic verdict
+ok 36 - synthetic: proper_name_identity changes triage but creates no linguistic verdict
+  ---
+  duration_ms: 0.310858
+  type: 'test'
+  ...
+# Subtest: synthetic: damaged_spelling changes triage but creates no linguistic verdict
+ok 37 - synthetic: damaged_spelling changes triage but creates no linguistic verdict
+  ---
+  duration_ms: 0.668474
+  type: 'test'
+  ...
+# Subtest: synthetic: duplicate_routing changes triage but creates no linguistic verdict
+ok 38 - synthetic: duplicate_routing changes triage but creates no linguistic verdict
+  ---
+  duration_ms: 0.189464
+  type: 'test'
+  ...
+# Subtest: synthetic: unknown or wrong-ID scopes, stale payload and repeated occurrence reject atomically
+ok 39 - synthetic: unknown or wrong-ID scopes, stale payload and repeated occurrence reject atomically
+  ---
+  duration_ms: 1.486956
+  type: 'test'
+  ...
+# Subtest: synthetic: authority leaks, unknown flags and undocumented dictionary heads reject
+ok 40 - synthetic: authority leaks, unknown flags and undocumented dictionary heads reject
+  ---
+  duration_ms: 0.814625
+  type: 'test'
+  ...
+# Subtest: synthetic: deterministic replay and input permutation conserve exact evidence
+ok 41 - synthetic: deterministic replay and input permutation conserve exact evidence
+  ---
+  duration_ms: 1.280805
+  type: 'test'
+  ...
+# Subtest: real: val Russian and independent tower conservation; permanent negatives remain separate
+ok 42 - real: val Russian and independent tower conservation; permanent negatives remain separate
+  ---
+  duration_ms: 1125.282657
+  type: 'test'
+  ...
+# Subtest: real: system→состав and botanical anis→scientific aniso never enter current accepted search
+ok 43 - real: system→состав and botanical anis→scientific aniso never enter current accepted search
+  ---
+  duration_ms: 58.953003
+  type: 'test'
+  ...
+# Subtest: synthetic: language and source-route swaps cannot preserve only ID/count while moving proof
+ok 44 - synthetic: language and source-route swaps cannot preserve only ID/count while moving proof
+  ---
+  duration_ms: 0.746652
+  type: 'test'
+  ...
+# Subtest: synthetic correction preserves source and immutable input, rejects repeated/stale/conflicting predecessor
+ok 45 - synthetic correction preserves source and immutable input, rejects repeated/stale/conflicting predecessor
+  ---
+  duration_ms: 8.93523
+  type: 'test'
+  ...
+# Subtest: synthetic head supports independent accepted, excluded and uncertain family edges
+ok 46 - synthetic head supports independent accepted, excluded and uncertain family edges
+  ---
+  duration_ms: 11.495969
+  type: 'test'
+  ...
+# Subtest: synthetic finite additions require identity, boundary and a fresh full scope; no inherited verdict
+ok 47 - synthetic finite additions require identity, boundary and a fresh full scope; no inherited verdict
+  ---
+  duration_ms: 3.328984
+  type: 'test'
+  ...
+# Subtest: synthetic clarification keeps identity and old proofs addressable
+ok 48 - synthetic clarification keeps identity and old proofs addressable
+  ---
+  duration_ms: 3.234672
+  type: 'test'
+  ...
+# Subtest: synthetic queue history determines latest state without unique-count inflation
+ok 49 - synthetic queue history determines latest state without unique-count inflation
+  ---
+  duration_ms: 3.453771
+  type: 'test'
+  ...
+# Subtest: real registry proof is exactly one immutable Systeme ID and cannot contain synthetic fixtures
+ok 50 - real registry proof is exactly one immutable Systeme ID and cannot contain synthetic fixtures
+  ---
+  duration_ms: 1048.811689
+  type: 'test'
+  ...
+# Subtest: synthetic independent uncertain edge keeps a reused head in the other queue benchmark
+ok 51 - synthetic independent uncertain edge keeps a reused head in the other queue benchmark
+  ---
+  duration_ms: 2.40826
+  type: 'test'
+  ...
+# Subtest: synthetic extension retains one benchmark head across initial and lifecycle identity proofs
+ok 52 - synthetic extension retains one benchmark head across initial and lifecycle identity proofs
+  ---
+  duration_ms: 2.195751
+  type: 'test'
+  ...
+# Subtest: synthetic extend_links adds only the explicitly segmented component without whole-compound identity
+ok 53 - synthetic extend_links adds only the explicitly segmented component without whole-compound identity
+  ---
+  duration_ms: 1.773766
+  type: 'test'
+  ...
+# Subtest: finite recognition validates language, whole source spelling and independent identity evidence
+ok 54 - finite recognition validates language, whole source spelling and independent identity evidence
+  ---
+  duration_ms: 1.36378
+  type: 'test'
+  ...
+# Subtest: same spelling with incompatible senses remains unmerged
+ok 55 - same spelling with incompatible senses remains unmerged
+  ---
+  duration_ms: 0.171307
+  type: 'test'
+  ...
+# Subtest: morphology retrieval cannot resolve a record, and finite scopes never match future strings
+ok 56 - morphology retrieval cannot resolve a record, and finite scopes never match future strings
+  ---
+  duration_ms: 0.321433
+  type: 'test'
+  ...
+# Subtest: shared component head does not assert identity of the whole compound
+ok 57 - shared component head does not assert identity of the whole compound
+  ---
+  duration_ms: 0.150586
+  type: 'test'
+  ...
+# Subtest: new compound reviews retain exact component proof in materialized links
+ok 58 - new compound reviews retain exact component proof in materialized links
+  ---
+  duration_ms: 3.257777
+  type: 'test'
+  ...
+# Subtest: pending review acceleration is separate from resolving investigated uncertainties
+ok 59 - pending review acceleration is separate from resolving investigated uncertainties
+  ---
+  duration_ms: 0.801706
+  type: 'test'
+  ...
+# Subtest: uncertain family review groups proven identities but preserves the entire active queue
+ok 60 - uncertain family review groups proven identities but preserves the entire active queue
+  ---
+  duration_ms: 2.033677
+  type: 'test'
+  ...
+# Subtest: research-only withdrawn evidence cannot mutate finite review bindings
+ok 61 - research-only withdrawn evidence cannot mutate finite review bindings
+  ---
+  duration_ms: 58.748815
+  type: 'test'
+  ...
+# Subtest: full global inventory and generated artifacts retain exact manual counts and fingerprints
+ok 62 - full global inventory and generated artifacts retain exact manual counts and fingerprints
+  ---
+  duration_ms: 320.354798
+  type: 'test'
+  ...
+# Subtest: parallel runtime distinguishes user families, exact corpus proofs and val evidence targets
+ok 63 - parallel runtime distinguishes user families, exact corpus proofs and val evidence targets
+  ---
+  duration_ms: 406.412153
+  type: 'test'
+  ...
+# Subtest: shadow routing retains normal accent/transliteration handling without granting substring membership
+ok 64 - shadow routing retains normal accent/transliteration handling without granting substring membership
+  ---
+  duration_ms: 126.475216
+  type: 'test'
+  ...
+# Subtest: production corpus enumeration retains every original ID including optional zero-family records
+ok 65 - production corpus enumeration retains every original ID including optional zero-family records
+  ---
+  duration_ms: 4.440525
+  type: 'test'
+  ...
+# Subtest: synthetic fixtures require explicit mode and expose seven review states
+ok 66 - synthetic fixtures require explicit mode and expose seven review states
+  ---
+  duration_ms: 1.326544
+  type: 'test'
+  ...
+# Subtest: synthetic partial promotion retains residual IDs and routes
+ok 67 - synthetic partial promotion retains residual IDs and routes
+  ---
+  duration_ms: 0.696778
+  type: 'test'
+  ...
+# Subtest: synthetic split and deferred subset need a blocker
+ok 68 - synthetic split and deferred subset need a blocker
+  ---
+  duration_ms: 7.958423
+  type: 'test'
+  ...
+# Subtest: synthetic scoped rejection does not delete sources or authorize exclusion
+ok 69 - synthetic scoped rejection does not delete sources or authorize exclusion
+  ---
+  duration_ms: 0.337047
+  type: 'test'
+  ...
+# Subtest: synthetic canonical-only, missing identity/edge and fake dossier cannot promote
+ok 70 - synthetic canonical-only, missing identity/edge and fake dossier cannot promote
+  ---
+  duration_ms: 0.323867
+  type: 'test'
+  ...
+# Subtest: synthetic wrong families, translations, unmaterialized bindings and authority leaks fail
+ok 71 - synthetic wrong families, translations, unmaterialized bindings and authority leaks fail
+  ---
+  duration_ms: 0.282645
+  type: 'test'
+  ...
+# Subtest: synthetic wrong IDs/routes, duplicate events, stale versions and dropped evidence fail
+ok 72 - synthetic wrong IDs/routes, duplicate events, stale versions and dropped evidence fail
+  ---
+  duration_ms: 0.247682
+  type: 'test'
+  ...
+# Subtest: synthetic all-reviewed rejection residuals never become fully promoted
+ok 73 - synthetic all-reviewed rejection residuals never become fully promoted
+  ---
+  duration_ms: 0.188824
+  type: 'test'
+  ...
+# Subtest: real sample and zero-v5 triage preserve exact IDs and remain review-only
+ok 74 - real sample and zero-v5 triage preserve exact IDs and remain review-only
+  ---
+  duration_ms: 28.410106
+  type: 'test'
+  ...
+# Subtest: real promotion and extension reuse three heads and one atom identity
+ok 75 - real promotion and extension reuse three heads and one atom identity
+  ---
+  duration_ms: 181.281927
+  type: 'test'
+  ...
+# Subtest: real partial packet state preserves unreviewed source frame and scoped negatives
+ok 76 - real partial packet state preserves unreviewed source frame and scoped negatives
+  ---
+  duration_ms: 38.471216
+  type: 'test'
+  ...
+# Subtest: real fake hashes, source paths, translation relation and synthetic registry entries fail
+ok 77 - real fake hashes, source paths, translation relation and synthetic registry entries fail
+  ---
+  duration_ms: 1561.58462
+  type: 'test'
+  ...
+# Subtest: real preflight needs component boundary and refuses repeated initial promotion
+ok 78 - real preflight needs component boundary and refuses repeated initial promotion
+  ---
+  duration_ms: 5.340338
+  type: 'test'
+  ...
+# Subtest: promotion has twelve real IDs, six national rows and a separate derivational head
+ok 79 - promotion has twelve real IDs, six national rows and a separate derivational head
+  ---
+  duration_ms: 12.378348
+  type: 'test'
+  ...
+# Subtest: research-only, unapproved heads and container imports fail before materialization
+ok 80 - research-only, unapproved heads and container imports fail before materialization
+  ---
+  duration_ms: 1.906787
+  type: 'test'
+  ...
+# Subtest: translation, invented IDs, duplicate IDs and accidental boundaries cannot acquire memberships
+ok 81 - translation, invented IDs, duplicate IDs and accidental boundaries cannot acquire memberships
+  ---
+  duration_ms: 2.390754
+  type: 'test'
+  ...
+# Subtest: changed source evidence and corpus snapshots are rejected
+ok 82 - changed source evidence and corpus snapshots are rejected
+  ---
+  duration_ms: 348.225075
+  type: 'test'
+  ...
+# Subtest: all pre-promotion memberships and known resolution statistics remain unchanged
+ok 83 - all pre-promotion memberships and known resolution statistics remain unchanged
+  ---
+  duration_ms: 372.386597
+  type: 'test'
+  ...
+# Subtest: Prompt 02 admits six anis rows while all seven tower aggregates remain individually withheld
+ok 84 - Prompt 02 admits six anis rows while all seven tower aggregates remain individually withheld
+  ---
+  duration_ms: 2.54788
+  type: 'test'
+  ...
+# Subtest: finite senses policy rejects promotion of unresolved lexical histories and lost frequency limitations
+ok 85 - finite senses policy rejects promotion of unresolved lexical histories and lost frequency limitations
+  ---
+  duration_ms: 3.528224
+  type: 'test'
+  ...
+# Subtest: documented torre homonyms require withholding regardless of rarity or unknown POS
+ok 86 - documented torre homonyms require withholding regardless of rarity or unknown POS
+  ---
+  duration_ms: 1.11052
+  type: 'test'
+  ...
+# Subtest: synthetic: one corpus ID retains accepted, negative and uncertain independent questions
+ok 87 - synthetic: one corpus ID retains accepted, negative and uncertain independent questions
+  ---
+  duration_ms: 14.832465
+  type: 'test'
+  ...
+# Subtest: synthetic: two components remain independent identities for one word
+ok 88 - synthetic: two components remain independent identities for one word
+  ---
+  duration_ms: 0.362254
+  type: 'test'
+  ...
+# Subtest: synthetic: correction and uncertain retention conserve exact source IDs and routes
+ok 89 - synthetic: correction and uncertain retention conserve exact source IDs and routes
+  ---
+  duration_ms: 1.527656
+  type: 'test'
+  ...
+# Subtest: synthetic: morphology retrieval cannot create proved reduction or membership
+ok 90 - synthetic: morphology retrieval cannot create proved reduction or membership
+  ---
+  duration_ms: 0.297197
+  type: 'test'
+  ...
+# Subtest: synthetic: stale/unknown packet scope, duplicates and conflicting corpus identity reject
+ok 91 - synthetic: stale/unknown packet scope, duplicates and conflicting corpus identity reject
+  ---
+  duration_ms: 1.03787
+  type: 'test'
+  ...
+# Subtest: historical labels and legacy exact membership do not establish new identity
+ok 92 - historical labels and legacy exact membership do not establish new identity
+  ---
+  duration_ms: 0.086731
+  type: 'test'
+  ...
+# Subtest: synthetic: historical and candidate pools remain open independently of current metrics
+ok 93 - synthetic: historical and candidate pools remain open independently of current metrics
+  ---
+  duration_ms: 0.284558
+  type: 'test'
+  ...
+# Subtest: real saved cache covers multilingual positive, negative and uncertain finite branches
+ok 94 - real saved cache covers multilingual positive, negative and uncertain finite branches
+  ---
+  duration_ms: 1743.296407
+  type: 'test'
+  ...
+# Subtest: synthetic: regroup and finite additions preserve task identity across movable positions
+ok 95 - synthetic: regroup and finite additions preserve task identity across movable positions
+  ---
+  duration_ms: 0.818761
+  type: 'test'
+  ...
+# Subtest: current planning cache tracks finite decisions independently of the frozen historical cache
+ok 96 - current planning cache tracks finite decisions independently of the frozen historical cache
+  ---
+  duration_ms: 113.57741
+  type: 'test'
+  ...
+# Subtest: synthetic per-question correction preserves historical occurrence and sibling family verdict
+ok 97 - synthetic per-question correction preserves historical occurrence and sibling family verdict
+  ---
+  duration_ms: 1.213234
+  type: 'test'
+  ...
+# Subtest: productive realization requires independently scoped head evidence
+ok 98 - productive realization requires independently scoped head evidence
+  ---
+  duration_ms: 1.017068
+  type: 'test'
+  ...
+# Subtest: inflections, branch stems and aliases cannot grant a general reflex
+ok 99 - inflections, branch stems and aliases cannot grant a general reflex
+  ---
+  duration_ms: 0.759131
+  type: 'test'
+  ...
+# Subtest: reviewed catalog separates syncretic creation forms and Italian action branches
+ok 100 - reviewed catalog separates syncretic creation forms and Italian action branches
+  ---
+  duration_ms: 2.343383
+  type: 'test'
+  ...
+# Subtest: common base survives POS ambiguity without token or frequency claims
+ok 101 - common base survives POS ambiguity without token or frequency claims
+  ---
+  duration_ms: 0.741034
+  type: 'test'
+  ...
+# Subtest: different lexical histories cannot be selected by dominant frequency
+ok 102 - different lexical histories cannot be selected by dominant frequency
+  ---
+  duration_ms: 0.138759
+  type: 'test'
+  ...
+# Subtest: hypothetical name does not become observed pollution or a veto
+ok 103 - hypothetical name does not become observed pollution or a veto
+  ---
+  duration_ms: 0.088984
+  type: 'test'
+  ...
+# Subtest: unproved morphology and missing lexical evidence remain blockers
+ok 104 - unproved morphology and missing lexical evidence remain blockers
+  ---
+  duration_ms: 1.045121
+  type: 'test'
+  ...
+# Subtest: real 25-row adjudication preserves individual blockers and shared sistema base
+ok 105 - real 25-row adjudication preserves individual blockers and shared sistema base
+  ---
+  duration_ms: 1.112283
+  type: 'test'
+  ...
+# Subtest: finite stage rejects missing binding before registry mutation
+ok 106 - finite stage rejects missing binding before registry mutation
+  ---
+  duration_ms: 44.274219
+  type: 'test'
+  ...
+# Subtest: finite stage rejects false binding before registry mutation
+ok 107 - finite stage rejects false binding before registry mutation
+  ---
+  duration_ms: 70.188803
+  type: 'test'
+  ...
+# Subtest: finite stage rejects string binding before registry mutation
+ok 108 - finite stage rejects string binding before registry mutation
+  ---
+  duration_ms: 64.369476
+  type: 'test'
+  ...
+# Subtest: finite stage rejects missing acceptance before registry mutation
+ok 109 - finite stage rejects missing acceptance before registry mutation
+  ---
+  duration_ms: 34.192872
+  type: 'test'
+  ...
+# Subtest: finite stage rejects false acceptance before registry mutation
+ok 110 - finite stage rejects false acceptance before registry mutation
+  ---
+  duration_ms: 32.484254
+  type: 'test'
+  ...
+# Subtest: finite stage rejects synthetic registry before registry mutation
+ok 111 - finite stage rejects synthetic registry before registry mutation
+  ---
+  duration_ms: 39.803436
+  type: 'test'
+  ...
+# Subtest: finite stage rejects stale version before registry mutation
+ok 112 - finite stage rejects stale version before registry mutation
+  ---
+  duration_ms: 41.433587
+  type: 'test'
+  ...
+# Subtest: finite stage rejects stale hash before registry mutation
+ok 113 - finite stage rejects stale hash before registry mutation
+  ---
+  duration_ms: 34.757531
+  type: 'test'
+  ...
+1..113
+# tests 113
+# suites 0
+# pass 113
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3720.652381
