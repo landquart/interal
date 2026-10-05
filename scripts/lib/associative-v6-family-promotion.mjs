@@ -33,6 +33,7 @@ export async function loadFamilyPromotions({read,readBytes,catalog,inputs}) {
  inputs[registryPath]=sha(await readBytes(registryPath));const results=[],familyIds=new Set();
  for(const path of registry.decisions){
   const bytes=await readBytes(path),doc=validatePromotionDecision(await read(path)),f=catalog.families.find(f=>f.id===doc.family.id);
+  if(doc.synthetic_fixture===true)throw Error('Synthetic promotion cannot enter real registry');
   if(familyIds.has(doc.family.id)||!f||JSON.stringify(f)!==JSON.stringify(doc.family))throw Error('Promotion catalog decision mismatch');familyIds.add(f.id);inputs[path]=sha(bytes);
   const cache=new Map();
   for(const[p,h]of Object.entries(doc.input_sha256)){const b=await readBytes(p);if(sha(b)!==h)throw Error('Changed promotion evidence '+p);inputs[p]=h;cache.set(p,await read(p));}

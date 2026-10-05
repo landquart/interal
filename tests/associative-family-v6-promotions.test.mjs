@@ -41,11 +41,11 @@ test('changed source evidence and corpus snapshots are rejected',async()=>{
 });
 test('all pre-promotion memberships and known resolution statistics remain unchanged',async()=>{
  const root='associativvordes/family-index-v6/generated',m=await read(root+'/memberships.json.gz'),d=await read(root+'/differential.json.gz'),metrics=await read(root+'/head-review-metrics.json');
- assert.equal(m.length,21561);assert.equal(d.manual_memberships.length,19967);assert.equal(d.accepted_membership_additions.length,1575);assert.equal(d.family_promotion_additions.length,18);
+ assert.equal(m.length,21566);assert.equal(d.manual_memberships.length,19967);assert.equal(d.accepted_membership_additions.length,1575);assert.equal(d.family_promotion_additions.length,22);
  assert.equal(metrics.current_active_records,23234);assert.equal(metrics.new_records_resolved,1968);assert.equal(metrics.new_head_decisions,39);
 });
 test('Prompt 02 admits six anis rows while all seven tower aggregates remain individually withheld',()=>{
- const result=materializeFamilyPromotions({index:fixture(),promotions:allPromotions,headId});
+ const result=materializeFamilyPromotions({index:fixture(),promotions:allPromotions.filter(p=>['family:system','family:anis'].includes(p.doc.family.id)),headId});
  assert.equal(result.additions.length,18);assert.equal(result.ledger.length,13);
  assert.equal(result.index.memberships.filter(r=>r.family_id==='family:anis').length,6);
  assert.deepEqual(result.index.memberships.filter(r=>r.family_id==='family:turr').map(r=>[r.language,r.word]).sort(),[]);
@@ -59,7 +59,7 @@ test('finite senses policy rejects promotion of unresolved lexical histories and
  for(const change of [d=>delete d.groups[0].records[0].senses_decision,d=>d.groups[0].records[0].senses_decision.analyses.push({history:'unrelated',verdict:'excluded',evidence:['synthetic-adversarial-proof']}),d=>d.groups[0].records[0].frequency_status='botanical_token_frequency',d=>d.groups[0].records[0].senses_decision.lemma_id='lemma:invented']){
   const d=structuredClone(allPromotions.find(p=>p.doc.family.id==='family:anis').doc);change(d);assert.throws(()=>validatePromotionDecision(d),/senses decision/);
  }
- const result=materializeFamilyPromotions({index:fixture(),promotions:allPromotions,headId});assert(result.index.links.filter(l=>['family:anis','family:turr'].includes(l.family_id)).every(l=>l.frequency_status==='aggregate_only_not_sense_frequency'&&l.membership_object==='lexical_row_or_component'&&l.token_senses_established===false));
+ const result=materializeFamilyPromotions({index:fixture(),promotions:allPromotions.filter(p=>['family:system','family:anis'].includes(p.doc.family.id)),headId});assert(result.index.links.filter(l=>['family:anis','family:turr'].includes(l.family_id)).every(l=>l.frequency_status==='aggregate_only_not_sense_frequency'&&l.membership_object==='lexical_row_or_component'&&l.token_senses_established===false));
 });
 test('documented torre homonyms require withholding regardless of rarity or unknown POS',()=>{
  return read('audit/associative-family-v6/turr-finite-lexical-row-promotion-20261004.json').then(d=>{assert.equal(d.groups.length,0);assert.equal(d.binding_authorized,false);assert.throws(()=>validatePromotionDecision(d),/authorization/);});

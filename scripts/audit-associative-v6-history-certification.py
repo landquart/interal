@@ -10,15 +10,21 @@ def frozen(p):
  b=subprocess.check_output(['git','show',BASE+':'+str(p)]);return json.loads(gzip.decompress(b) if str(p).endswith('.gz') else b)
 key=lambda r:(r['language'],r.get('family_id','family:'+r.get('root',r.get('canonical_root',''))),r['lemma_id'])
 index=lambda rs:{key(r):r for r in rs}
-C=R/'generated';m=read(C/'manifest.json')
+config=read('associativvordes/family-index-v6/queue-planning.json');C=Path(config.get('certification_output',str(R/'generated')));m=read(C/'manifest.json')
 for p,h in m['input_sha256'].items():assert sha(Path(p).read_bytes())==h,'changed certification input '+p
 for p,h in m['artifacts'].items():assert sha((C/p).read_bytes())==h,'changed certification artifact '+p
-catalog=read('associativvordes/family-index-v6/catalog.json');cert=read(C/'family-certification.json');assert {f['family_id'] for f in cert}=={f['id'] for f in catalog['families']};assert len(cert)==18
+catalog=read('associativvordes/family-index-v6/catalog.json');cert=read(C/'family-certification.json');assert {f['family_id'] for f in cert}=={f['id'] for f in catalog['families']};assert len(cert)==len(catalog['families'])
 old,current=index(frozen(G/'memberships.json.gz')),index(read(G/'memberships.json.gz'));v=read(G/'correction-verdicts.json.gz');vk={key(r) for r in v}
-assert set(old)-set(current)==vk,'unapproved baseline loss';assert not set(current)-set(old),'unexpected new membership in Prompt06';assert all(current[k]==old[k] for k in current),'unexpected changed membership'
+assert set(old)-set(current)==vk,'unapproved baseline loss';added=set(current)-set(old);assert len(added)==5 and all(current[k]['family_id']=='family:atom' for k in added),'unexpected new membership';assert all(current[k]==r for k,r in old.items() if k in current),'unexpected changed membership'
 baseline=read(G/'baseline-memberships.json.gz');assert len(baseline)==19967 and len(index(baseline))==19967
 for name in ['heads.json.gz','edges.json.gz','lemma-head-links.json.gz','head-review-ledger.json','family-promotion-ledger.json','head-lifecycle-ledger.json','review-backlog.json.gz','head-review-metrics.json']:
- assert read(G/name)==frozen(G/name),'unexpected mutation '+name
+ before,after=frozen(G/name),read(G/name)
+ if name in ['heads.json.gz','edges.json.gz','lemma-head-links.json.gz']:
+  ident=lambda r:r['id'] if name.startswith('heads') else (r['head_id'],r['family_id']) if name.startswith('edges') else (r['head_id'],key(r))
+  lookup={ident(r):r for r in after};assert all(lookup.get(ident(r))==r for r in before),'unexpected old proof mutation '+name
+ elif name in ['family-promotion-ledger.json','head-lifecycle-ledger.json']:
+  assert after['decisions'][:len(before['decisions'])]==before['decisions']
+ else:assert before==after,'unexpected mutation '+name
 historical=read('audit/associative-family-v6/historical-overlay-20261003/records.json.gz');mapped=read(C/'historical-reconciliation.json.gz');assert len(mapped)==len(historical)==55686
 representatives=read(R/'representative-decisions.json');rp=index(representatives['rows']);assert len(rp)==19
 source=read('audit/associative-family-v5/component-checkpoint-20261001/candidate-records.json.gz')
@@ -45,11 +51,12 @@ protected={}
 for p in ['associativvordes/family-index-v5','associativvordes/frequency lists','audit/associative-family-v5','audit/associative-family-v6/historical-overlay-20261003','audit/associative-family-v6/queue-organization-20261004','audit/associative-family-v6/oper-relat-continuation-20261004']:
  assert not subprocess.check_output(['git','diff','--name-only',BASE,'--',p]).strip(),p;protected[p]=subprocess.check_output(['git','rev-parse',BASE+':'+p]).decode().strip()
 P=Path(read('associativvordes/family-index-v6/queue-planning.json')['output']);previous=Path('audit/associative-family-v6/oper-relat-continuation-20261004/planning');
-for name in ['corpus_ids','membership_candidates','route_occurrences','source_route_references','packet_route_occurrences']:assert read(P/'conservation.json.gz')['before'][name]==read(previous/'conservation.json.gz')['before'][name]
+assert read(P/'conservation.json.gz')['before']==read(P/'conservation.json.gz')['after']
+assert {q['candidate_id'] for q in read(previous/'membership-questions.json.gz')} <= {q['candidate_id'] for q in read(P/'membership-questions.json.gz')}
 questions=read(P/'membership-questions.json.gz');q={r['candidate_id']:r for r in questions}
 for k,r in rp.items():
  rkey=r['language']+'\0'+r['lemma_id']+'\0'+r['root'];assert q[rkey]['effective_verdict']['status']==r['new_review_status'];assert bool(q[rkey]['open_frames'])==(r['new_review_status']=='uncertain')
-result={'schema_version':6,'verdict':'pass','baseline_sha':BASE,'current_memberships':len(current),'historical_baseline_memberships':len(baseline),'exact_differential':{'additions':[],'removals':[old[k] for k in sorted(vk)],'changed_memberships':[]},'protected_trees':protected,'certified_scope_families':len(cert),'full_dictionary_complete':False,'representative_rechecks':len(rp),'root_bound_overlap':len(h&a),'root_bound_union':len(h|a),'all_historical_current_overlap':len(all_h&a),'effective_review_eligible_historical':len(eligible),'effective_historical_current_overlap':len(eligible&a),'effective_review_eligible_union':len(eligible|a),'planning_source_sets_conserved':True}
+result={'schema_version':6,'verdict':'pass','baseline_sha':BASE,'current_memberships':len(current),'historical_baseline_memberships':len(baseline),'exact_differential':{'additions':[current[k] for k in sorted(added)],'removals':[old[k] for k in sorted(vk)],'changed_memberships':[]},'protected_trees':protected,'certified_scope_families':len(cert),'full_dictionary_complete':False,'representative_rechecks':len(rp),'root_bound_overlap':len(h&a),'root_bound_union':len(h|a),'all_historical_current_overlap':len(all_h&a),'effective_review_eligible_historical':len(eligible),'effective_historical_current_overlap':len(eligible&a),'effective_review_eligible_union':len(eligible|a),'planning_source_sets_conserved':True}
 if len(sys.argv)>1:
  target=Path(sys.argv[1]);assert {p.name for p in C.iterdir()}=={p.name for p in target.iterdir()}
  for p in C.iterdir():assert p.read_bytes()==(target/p.name).read_bytes(),p.name
@@ -58,4 +65,4 @@ if len(sys.argv)>2:
  t=Path(sys.argv[2]);assert {p.name for p in P.iterdir()}=={p.name for p in t.iterdir()}
  for p in P.iterdir():assert p.read_bytes()==(t/p.name).read_bytes(),p.name
  result['planning_replay_artifacts']=len(list(P.iterdir()))
-(R/'final-validation').mkdir(exist_ok=True);(R/'final-validation/exact-differential.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n');print(json.dumps(result))
+V=Path(config['validation_output']);V.mkdir(exist_ok=True);(V/'history-exact-differential.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n');print(json.dumps(result))

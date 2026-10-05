@@ -46,7 +46,7 @@ jobs:
       - name: Replay planning from saved frames without corpus reclustering
         run: |
           node --max-old-space-size=6144 scripts/build-associative-v6-queue-organization.mjs /tmp/v6-planning-replay
-          diff -r audit/associative-family-v6/prompt06-history-20261005/planning /tmp/v6-planning-replay
+          diff -r audit/associative-family-v6/prompt08-coverage-20261005/planning /tmp/v6-planning-replay
       - name: Replay certification and verify exact history/corrections/overlap
         run: |
           node --max-old-space-size=4096 scripts/build-associative-v6-history-certification.mjs /tmp/v6-certification-replay
@@ -58,3 +58,12 @@ jobs:
           node scripts/audit-associative-v6-contamination.mjs
           node scripts/build-associative-v6-contamination.mjs /tmp/v6-contamination-replay
           diff -r audit/associative-family-v6/prompt07-contamination-20261005/generated /tmp/v6-contamination-replay
+
+      - name: Audit finite coverage and packet lifecycle
+        run: |
+          node --test tests/associative-family-v6-packet-lifecycle.test.mjs
+          python scripts/audit-associative-v6-candidate-coverage.py
+          node scripts/build-associative-v6-packet-lifecycle.mjs /tmp/v6-packet-lifecycle-replay
+          diff -r audit/associative-family-v6/prompt08-coverage-20261005/packet-lifecycle /tmp/v6-packet-lifecycle-replay
+          python scripts/measure-associative-v6-candidate-coverage.py /tmp/v6-coverage-replay
+          diff -r audit/associative-family-v6/prompt08-coverage-20261005/research-coverage /tmp/v6-coverage-replay

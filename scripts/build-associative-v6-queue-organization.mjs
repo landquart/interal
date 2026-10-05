@@ -52,15 +52,16 @@ for(const f of cache){f.versions.sort((a,b)=>a.version-b.version);f.identity_fac
 const towerPath=root+'tower-promotion-source-frame-20261003.json.gz',tower=await read(towerPath);
 for(const[i,group]of tower.entries())for(const[j,r]of group.records.entries())add('promotion_pool',towerPath+'#/'+i+'/records/'+j,r,'turr','proposal_requires_review',[],[r.source_locator.family_id]);
 const wanted=[...new Set(occurrences.map(corpusKey))].sort(),scopeHash=digest(wanted),packetIds=new Set(packets.flatMap(p=>p.evidence_cluster_ids));
-const lookupPath=root+'queue-organization-20261004/packet-finite-routes.json.gz';let lookup;
+const lookupPath=planning.packet_lookup||root+'queue-organization-20261004/packet-finite-routes.json.gz';let lookup;
 if(measure){
+ await fs.mkdir(path.dirname(lookupPath),{recursive:true});
  const wantedSet=new Set(wanted),rows=[],sourceHashes={};
  const bucketIds=new Map();for(const p of packets)for(const c of p.evidence_clusters){const b=c.source.split('/').at(-1).replace('.json.gz',''),s=bucketIds.get(b)||new Set();s.add(c.id);bucketIds.set(b,s);}
  for(const[b,ids]of [...bucketIds].sort())for(const language of ['en','de','fr','es','it','ru']){
   const p='associativvordes/family-index-v5/members/'+language+'/'+b+'.json.gz',bytes=await fs.readFile(p);sourceHashes[p]=digest(bytes);const doc=JSON.parse(gunzipSync(bytes));
   for(const id of ids)for(const[i,r]of (doc[id]||[]).entries())if(wantedSet.has(corpusKey({...r,language})))rows.push({language,lemma_id:r.lemma_id,word:r.word,route_id:id,locator:p+'#/'+id+'/'+i,record_sha256:digest(r)});
  }
- const shards={};for(const language of ['en','de','fr','es','it','ru']){const p=root+'queue-organization-20261004/packet-finite-routes-'+language+'.json.gz',b=gzipSync(Buffer.from(JSON.stringify(rows.filter(r=>r.language===language))+'\n'),{level:9,mtime:0});await writeAtomic(p,b);shards[language]={path:p,sha256:digest(b)};}
+ const shards={};for(const language of ['en','de','fr','es','it','ru']){const p=path.dirname(lookupPath)+'/packet-finite-routes-'+language+'.json.gz',b=gzipSync(Buffer.from(JSON.stringify(rows.filter(r=>r.language===language))+'\n'),{level:9,mtime:0});await writeAtomic(p,b);shards[language]={path:p,sha256:digest(b)};}
  lookup={schema_version:6,scope_sha256:scopeHash,corpus_ids:wanted,input_sha256:sourceHashes,packet_index_sha256:inputs[root+'candidate-root-clusters-20261003/clusters.json.gz'],shards};await writeAtomic(lookupPath,gzipSync(Buffer.from(JSON.stringify(lookup)+'\n'),{level:9,mtime:0}));
 }
 lookup=await read(lookupPath);lookup.rows=[];for(const shard of Object.values(lookup.shards)){const rows=await read(shard.path);assert.equal(inputs[shard.path],shard.sha256,'Changed packet lookup shard');lookup.rows.push(...rows);}assert.equal(lookup.scope_sha256,scopeHash,'Stale packet scope');assert.deepEqual(lookup.corpus_ids,wanted);assert.equal(lookup.packet_index_sha256,inputs[root+'candidate-root-clusters-20261003/clusters.json.gz']);
