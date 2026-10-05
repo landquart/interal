@@ -1,0 +1,340 @@
+{
+  "schema_version": 6,
+  "production_enabled": false,
+  "synthetic_fixture": false,
+  "id": "atom-en-plural-extension-20261005",
+  "operation": "extend_forms",
+  "head_id": "head:en:9496cbd019de1f93cbe56136",
+  "family_id": "family:atom",
+  "identity": {
+    "language": "en",
+    "normalized_head": "atom",
+    "sense": "atomic_particle_lexical_row"
+  },
+  "predecessor": {
+    "head": {
+      "id": "head:en:9496cbd019de1f93cbe56136",
+      "language": "en",
+      "normalized_head": "atom",
+      "identity_kind": "lexical_head",
+      "sense": "atomic_particle_lexical_row",
+      "head_scope": "whole_lexical_row",
+      "version": 1,
+      "evidence": [
+        {
+          "id": "evidence:en:9496cbd019de1f93cbe56136",
+          "language": "en",
+          "head": "atom",
+          "sense": "atomic_particle_lexical_row",
+          "status": "accepted",
+          "sources": [
+            "https://www.merriam-webster.com/dictionary/atom"
+          ],
+          "finding": "Independent dictionary-backed en atom lexical row, with chemical/figurative senses of the same documented borrowing. Only enumerated words/components; no token sense or unrestricted suffix rule."
+        },
+        {
+          "source": "audit/associative-family-v6/prompt08-coverage-20261005/atom-promotion-decision.json",
+          "sha256": "3e6fa7e6d2eca5a3dce04e9fabd6caa07094912324da46fb048b2694fa8a9cc3"
+        }
+      ]
+    },
+    "head_version": 1,
+    "head_sha256": "407fe30b7fe9029d9eae36a68b08d1edd7ea6c4b81089bd0473546af80434d88",
+    "edge": {
+      "head_id": "head:en:9496cbd019de1f93cbe56136",
+      "family_id": "family:atom",
+      "status": "accepted",
+      "expected_version": 0,
+      "lemma_ids": [
+        "lemma:5218ba84f65daad15b89"
+      ],
+      "morphology_policy": "finite_explicit_lemma_ids",
+      "reason": "Independent dictionary-backed en atom lexical row, with chemical/figurative senses of the same documented borrowing. Only enumerated words/components; no token sense or unrestricted suffix rule.",
+      "evidence": [
+        {
+          "source": "audit/associative-family-v6/prompt08-coverage-20261005/atom-promotion-decision.json",
+          "sha256": "3e6fa7e6d2eca5a3dce04e9fabd6caa07094912324da46fb048b2694fa8a9cc3"
+        },
+        {
+          "source": "https://www.merriam-webster.com/dictionary/atom"
+        }
+      ],
+      "review_stage": "atom-finite-promotion-20261005",
+      "version": 1,
+      "scope": "finite_evidenced_links"
+    },
+    "edge_version": 1,
+    "edge_sha256": "dd58ade83c4e7d9cb4f9880c63a7826ef2ffb6679d4f38fe008452d6bc86dcb9",
+    "scope_sha256": "3f8d054d1becdf2828212b1a58a0a8e94c594d87084a2c08496396c7de775091"
+  },
+  "binding_authorized": true,
+  "review_authorized": true,
+  "accepted_membership_authorized": true,
+  "reason": "Reuse the initial English atom head with exact plural atoms; independent revised finite edge, no second family or initial promotion.",
+  "sources": [
+    "https://www.merriam-webster.com/dictionary/atom"
+  ],
+  "evidence": [
+    {
+      "source": "https://www.merriam-webster.com/dictionary/atom",
+      "accessed": "2026-10-05",
+      "finding": "The dictionary noun entry attests plural atoms and documents the unchanged atom row; explicit atom + s inflection. Aggregate frequencies remain uninterpreted."
+    }
+  ],
+  "finite_forms": [
+    "atom",
+    "atoms"
+  ],
+  "records": [
+    {
+      "language": "en",
+      "word": "atom",
+      "lemma_id": "lemma:5218ba84f65daad15b89",
+      "source_record": {
+        "lemma_id": "lemma:5218ba84f65daad15b89",
+        "word": "atom",
+        "normalized": "atom",
+        "search_form": "atom",
+        "rank": 3724,
+        "frequency_score": 47.661040333407136,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              7.738171,
+              7.564358
+            ],
+            "category_ipm": 7.6512645,
+            "category_score": 37.807320958181066
+          },
+          "normative": {
+            "ipm_values": [
+              16.723015
+            ],
+            "category_ipm": 16.723015,
+            "category_score": 50.37337538732458
+          },
+          "web": {
+            "ipm_values": [
+              21.819942
+            ],
+            "category_ipm": 21.819942,
+            "category_score": 54.80242465471574
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/bnc-clean2.lemmatized_spacy_ipm6.json",
+            "file": "bnc-clean2.lemmatized_spacy_ipm6.json",
+            "category": "normative",
+            "ipm": 16.723015
+          },
+          {
+            "id": "subtitles/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 7.738171
+          },
+          {
+            "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 7.564358
+          },
+          {
+            "id": "web/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 21.819942
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "atom",
+            "canonical_candidate": "atom",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "atom",
+                  "atom",
+                  "atom"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/en/8b.json.gz",
+        "family_id": "ety:609aedb538e2",
+        "record_sha256": "3edaa9bcd555331f4747ce9873da447c0127464c01c2206c96dd084ca8aab2fc"
+      },
+      "link_role": "whole_lexeme",
+      "corpus_pos_status": "dictionary_lexical_row_not_token_pos",
+      "formal_continuity_status": "accepted",
+      "relation_kind": "lexical_continuity",
+      "documented_relation": "borrowed_lexical_row",
+      "intermediate_history": "Latin atomus from Greek atomos; national dictionary documents the direct lexical route.",
+      "frequency_status": "aggregate_only_not_sense_frequency",
+      "senses_decision": {
+        "language": "en",
+        "lemma_id": "lemma:5218ba84f65daad15b89",
+        "word": "atom",
+        "family_id": "family:atom",
+        "membership_object": "lexical_row_or_component",
+        "component": "atom",
+        "formal_continuity": "accepted",
+        "proper_name_observed": false,
+        "token_names_not_established": true,
+        "analyses": [
+          {
+            "history": "borrowed_atom_row_with_documented_sense_extensions",
+            "verdict": "accepted",
+            "proved_components": [
+              "atom"
+            ],
+            "evidence": [
+              "https://www.merriam-webster.com/dictionary/atom"
+            ]
+          }
+        ],
+        "reason": "Independent dictionary-backed en atom lexical row, with chemical/figurative senses of the same documented borrowing. Only enumerated words/components; no token sense or unrestricted suffix rule."
+      },
+      "identity_decision": {
+        "status": "accepted",
+        "reason": "Independent dictionary-backed noun or its explicitly evidenced plural.",
+        "evidence": [
+          {
+            "source": "https://www.merriam-webster.com/dictionary/atom",
+            "accessed": "2026-10-05",
+            "finding": "The dictionary noun entry attests plural atoms and documents the unchanged atom row; explicit atom + s inflection. Aggregate frequencies remain uninterpreted."
+          }
+        ]
+      },
+      "boundary_proof": {
+        "status": "accepted",
+        "reason": "Whole complete atom lexical row.",
+        "evidence": [
+          {
+            "source": "https://www.merriam-webster.com/dictionary/atom",
+            "accessed": "2026-10-05",
+            "finding": "The dictionary noun entry attests plural atoms and documents the unchanged atom row; explicit atom + s inflection. Aggregate frequencies remain uninterpreted."
+          }
+        ]
+      }
+    },
+    {
+      "language": "en",
+      "word": "atoms",
+      "lemma_id": "lemma:bc82dd53d41aa09fb0f2",
+      "source_record": {
+        "lemma_id": "lemma:bc82dd53d41aa09fb0f2",
+        "word": "atoms",
+        "normalized": "atoms",
+        "search_form": "atoms",
+        "rank": 33731,
+        "frequency_score": 8.268675887658498,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.603041
+            ],
+            "category_ipm": 0.603041,
+            "category_score": 8.268675887658498
+          }
+        },
+        "sources": [
+          {
+            "id": "web/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.603041
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "atom",
+            "canonical_candidate": "atom",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "atoms",
+                  "atom",
+                  "atom"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/en/8b.json.gz",
+        "family_id": "ety:609aedb538e2",
+        "record_sha256": "82855472b2bfd4933b7ac4f61da174ecef5e9628986cad2d209129a67674d8fc"
+      },
+      "link_role": "inflection",
+      "formal_continuity_status": "accepted",
+      "relation_kind": "lexical_continuity",
+      "documented_relation": "inflection_of_borrowed_atom_noun",
+      "identity_decision": {
+        "status": "accepted",
+        "reason": "Independent dictionary-backed noun or its explicitly evidenced plural.",
+        "evidence": [
+          {
+            "source": "https://www.merriam-webster.com/dictionary/atom",
+            "accessed": "2026-10-05",
+            "finding": "The dictionary noun entry attests plural atoms and documents the unchanged atom row; explicit atom + s inflection. Aggregate frequencies remain uninterpreted."
+          }
+        ]
+      },
+      "boundary_proof": {
+        "status": "accepted",
+        "reason": "atom + s plural, only this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.merriam-webster.com/dictionary/atom",
+            "accessed": "2026-10-05",
+            "finding": "The dictionary noun entry attests plural atoms and documents the unchanged atom row; explicit atom + s inflection. Aggregate frequencies remain uninterpreted."
+          }
+        ]
+      }
+    }
+  ],
+  "decision": {
+    "expected_version": 1,
+    "status": "accepted",
+    "relation_kind": "lexical_continuity",
+    "reason": "All two enumerated records retain the complete atom base; independent plural evidence extends this edge only.",
+    "evidence": [
+      {
+        "source": "https://www.merriam-webster.com/dictionary/atom",
+        "accessed": "2026-10-05",
+        "finding": "The dictionary noun entry attests plural atoms and documents the unchanged atom row; explicit atom + s inflection. Aggregate frequencies remain uninterpreted."
+      }
+    ],
+    "lemma_ids": [
+      "lemma:5218ba84f65daad15b89",
+      "lemma:bc82dd53d41aa09fb0f2"
+    ]
+  },
+  "input_sha256": {
+    "audit/associative-family-v6/prompt08-coverage-20261005/research.json": "26e220fc71539a9c1afa2c940e66d826454ff6fe09f72fdc0f59e91c2c531085",
+    "audit/associative-family-v6/prompt08-coverage-20261005/atom-promotion-decision.json": "3e6fa7e6d2eca5a3dce04e9fabd6caa07094912324da46fb048b2694fa8a9cc3",
+    "associativvordes/family-index-v5/members/en/8b.json.gz": "0aaf53179ac359c09ccfe23a8e52a94d9db04bd626199358092d33b2083fbaff"
+  }
+}
