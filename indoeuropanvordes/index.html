@@ -753,10 +753,10 @@ body.dark-theme .internationalita-page .json-card-icon-btn.is-copied {
 </div>
 
 
-<script src="./aline.js?v=phonetic-20261006-v2"></script>
+<script src="./aline.js?v=phonetic-20261006-v3"></script>
 
 <script>
-const METHODOLOGY_VERSION = '2026-10-06-phonetic-v2';
+const METHODOLOGY_VERSION = '2026-10-06-phonetic-v3';
 function graphemes(s) { return String(s ?? '').trim().toLowerCase().normalize('NFC').match(/\P{M}\p{M}*|\p{M}+/gu) || []; }
 const base = s => s.normalize('NFD').replace(/\p{M}/gu, '');
 function graphicDistance(a,b) {
@@ -1394,15 +1394,16 @@ function makePhoneticBlock(row) {
       phonetic.raw_score = row.aline.score;
     }
 
-    // max_length is retained for backwards compatibility only.
-    // PH v2 is normalized by the optimal alignment length.
+    // max_length remains the fixed normalization denominator in PH v3.
     phonetic.max_length = Math.max(tokensA.length, tokensB.length);
     if (Number.isFinite(row.aline.alignmentLength)) {
       phonetic.alignment_length = row.aline.alignmentLength;
-      phonetic.normalization_length = row.aline.alignmentLength;
     }
+    phonetic.normalization_length = Number.isFinite(row.aline.normalizationLength)
+      ? row.aline.normalizationLength
+      : phonetic.max_length;
     phonetic.methodology_version =
-      row.aline.methodologyVersion || window.ALINE?.methodologyVersion || "2026-10-06-phonetic-v2";
+      row.aline.methodologyVersion || window.ALINE?.methodologyVersion || "2026-10-06-phonetic-v3";
     phonetic.tokens_interal = tokensA;
     phonetic.tokens_language = tokensB;
   }
