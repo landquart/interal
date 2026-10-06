@@ -7,9 +7,11 @@
   "created_at": "2026-05-30T21:42:49.842Z",
   "created_at_source": "server",
   "interal": {
-    "word": "matre",
-    "ipa": "matre",
-    "part_of_speech": "noun"
+    "word": "mater",
+    "ipa": "mater",
+    "part_of_speech": "noun",
+    "root": "mater",
+    "root_ipa": "mater"
   },
   "translation": {
     "language": "en",
@@ -29,12 +31,11 @@
     "Romance",
     "Slavic",
     "Hellenic",
-    "Indo-Aryan",
     "Iranian"
   ],
   "calculation": {
-    "pi_percent": 68.0855533514105,
-    "weighted_sum": 2385377.361666667,
+    "pi_percent": 53.96686986482905,
+    "weighted_sum": 1890729.2857142857,
     "total_speakers_thousands": 3503500
   },
   "language_results": [
@@ -47,20 +48,23 @@
       "normalized_graphic": "mother",
       "ipa": "ˈmʌðə",
       "graphic": {
-        "score": 0.5833333333333333,
-        "distance_d": 2.5,
+        "score": 0.6666666666666667,
+        "distance_d": 2,
         "max_length_l": 6
       },
       "phonetic": {
-        "score": 0.8246600000000001,
-        "raw_score": 3.2466,
+        "score": 0.540952380952381,
+        "raw_score": 2.295238095238095,
         "max_length": 5,
+        "alignment_length": 5,
+        "normalization_length": 5,
+        "methodology_version": "2026-10-06-phonetic-v2",
         "tokens_interal": [
           "m",
           "a",
           "t",
-          "r",
-          "e"
+          "e",
+          "r"
         ],
         "tokens_language": [
           "m",
@@ -69,9 +73,11 @@
           "ə"
         ]
       },
-      "final_similarity_s": 0.7039966666666666,
-      "speaker_contribution": 1051067.0233333332,
-      "supports_group": true
+      "final_similarity_s": 0.6038095238095238,
+      "speaker_contribution": 901487.619047619,
+      "supports_group": true,
+      "root": "mother",
+      "root_ipa": "ˈmʌðə"
     },
     {
       "code": "de",
@@ -82,20 +88,23 @@
       "normalized_graphic": "mutter",
       "ipa": "ˈmʊtɐ",
       "graphic": {
-        "score": 0.6666666666666667,
-        "distance_d": 2,
+        "score": 0.75,
+        "distance_d": 1.5,
         "max_length_l": 6
       },
       "phonetic": {
-        "score": 0.8043600000000002,
-        "raw_score": 3.0436000000000005,
+        "score": 0.5333333333333334,
+        "raw_score": 2.333333333333333,
         "max_length": 5,
+        "alignment_length": 5,
+        "normalization_length": 5,
+        "methodology_version": "2026-10-06-phonetic-v2",
         "tokens_interal": [
           "m",
           "a",
           "t",
-          "r",
-          "e"
+          "e",
+          "r"
         ],
         "tokens_language": [
           "m",
@@ -104,9 +113,11 @@
           "ɐ"
         ]
       },
-      "final_similarity_s": 0.7355133333333335,
-      "speaker_contribution": 97823.27333333335,
-      "supports_group": true
+      "final_similarity_s": 0.6416666666666667,
+      "speaker_contribution": 85341.66666666667,
+      "supports_group": true,
+      "root": "Mutter",
+      "root_ipa": "ˈmʊtɐ"
     },
     {
       "code": "fr",
@@ -117,20 +128,23 @@
       "normalized_graphic": "mère",
       "ipa": "mɛʁ",
       "graphic": {
-        "score": 0.7,
-        "distance_d": 1.5,
+        "score": 0.5,
+        "distance_d": 2.5,
         "max_length_l": 5
       },
       "phonetic": {
-        "score": 0.68046,
-        "raw_score": 1.8046,
+        "score": 0.49142857142857144,
+        "raw_score": 2.5428571428571427,
         "max_length": 5,
+        "alignment_length": 5,
+        "normalization_length": 5,
+        "methodology_version": "2026-10-06-phonetic-v2",
         "tokens_interal": [
           "m",
           "a",
           "t",
-          "r",
-          "e"
+          "e",
+          "r"
         ],
         "tokens_language": [
           "m",
@@ -138,9 +152,11 @@
           "ʁ"
         ]
       },
-      "final_similarity_s": 0.6902299999999999,
-      "speaker_contribution": 230536.81999999998,
-      "supports_group": true
+      "final_similarity_s": 0.4957142857142857,
+      "speaker_contribution": 165568.57142857142,
+      "supports_group": true,
+      "root": "mère",
+      "root_ipa": "mɛʁ"
     },
     {
       "code": "es",
@@ -148,35 +164,39 @@
       "group": "Romance",
       "speakers_thousands": 561000,
       "word": "madre",
-      "normalized_graphic": "madre",
+      "normalized_graphic": "madr",
       "ipa": "ˈmaðɾe",
       "graphic": {
-        "score": 0.8,
-        "distance_d": 1,
+        "score": 0.6,
+        "distance_d": 2,
         "max_length_l": 5
       },
       "phonetic": {
-        "score": 0.9799,
-        "raw_score": 4.7989999999999995,
+        "score": 0.66,
+        "raw_score": 1.7,
         "max_length": 5,
+        "alignment_length": 5,
+        "normalization_length": 5,
+        "methodology_version": "2026-10-06-phonetic-v2",
         "tokens_interal": [
           "m",
           "a",
           "t",
-          "r",
-          "e"
+          "e",
+          "r"
         ],
         "tokens_language": [
           "m",
           "a",
           "ð",
-          "ɾ",
-          "e"
+          "ɾ"
         ]
       },
-      "final_similarity_s": 0.88995,
-      "speaker_contribution": 499261.95,
-      "supports_group": true
+      "final_similarity_s": 0.63,
+      "speaker_contribution": 353430,
+      "supports_group": true,
+      "root": "madr",
+      "root_ipa": "maðɾ"
     },
     {
       "code": "it",
@@ -184,35 +204,39 @@
       "group": "Romance",
       "speakers_thousands": 66000,
       "word": "madre",
-      "normalized_graphic": "madre",
+      "normalized_graphic": "madr",
       "ipa": "ˈmadre",
       "graphic": {
-        "score": 0.8,
-        "distance_d": 1,
+        "score": 0.6,
+        "distance_d": 2,
         "max_length_l": 5
       },
       "phonetic": {
-        "score": 0.9879999999999999,
-        "raw_score": 4.88,
+        "score": 0.7428571428571429,
+        "raw_score": 1.2857142857142856,
         "max_length": 5,
+        "alignment_length": 5,
+        "normalization_length": 5,
+        "methodology_version": "2026-10-06-phonetic-v2",
         "tokens_interal": [
           "m",
           "a",
           "t",
-          "r",
-          "e"
+          "e",
+          "r"
         ],
         "tokens_language": [
           "m",
           "a",
           "d",
-          "r",
-          "e"
+          "r"
         ]
       },
-      "final_similarity_s": 0.8939999999999999,
-      "speaker_contribution": 59003.99999999999,
-      "supports_group": true
+      "final_similarity_s": 0.6714285714285715,
+      "speaker_contribution": 44314.28571428572,
+      "supports_group": true,
+      "root": "madr",
+      "root_ipa": "madr"
     },
     {
       "code": "ru",
@@ -220,7 +244,7 @@
       "group": "Slavic",
       "speakers_thousands": 210000,
       "word": "мать",
-      "normalized_graphic": "mat'",
+      "normalized_graphic": "mat",
       "ipa": "matʲ",
       "graphic": {
         "score": 0.6,
@@ -228,25 +252,30 @@
         "max_length_l": 5
       },
       "phonetic": {
-        "score": 0.7087600000000001,
-        "raw_score": 2.0876,
+        "score": 0.6,
+        "raw_score": 2,
         "max_length": 5,
+        "alignment_length": 5,
+        "normalization_length": 5,
+        "methodology_version": "2026-10-06-phonetic-v2",
         "tokens_interal": [
           "m",
           "a",
           "t",
-          "r",
-          "e"
+          "e",
+          "r"
         ],
         "tokens_language": [
           "m",
           "a",
-          "tʲ"
+          "t"
         ]
       },
-      "final_similarity_s": 0.65438,
-      "speaker_contribution": 137419.8,
-      "supports_group": true
+      "final_similarity_s": 0.6,
+      "speaker_contribution": 126000,
+      "supports_group": true,
+      "root": "мат",
+      "root_ipa": "mat"
     },
     {
       "code": "el",
@@ -254,36 +283,40 @@
       "group": "Hellenic",
       "speakers_thousands": 13500,
       "word": "μητέρα",
-      "normalized_graphic": "mitera",
+      "normalized_graphic": "miter",
       "ipa": "miˈtera",
       "graphic": {
-        "score": 0.5833333333333333,
-        "distance_d": 2.5,
-        "max_length_l": 6
+        "score": 0.8,
+        "distance_d": 1,
+        "max_length_l": 5
       },
       "phonetic": {
-        "score": 0.8421666666666666,
-        "raw_score": 4.106,
-        "max_length": 6,
+        "score": 0.9333333333333333,
+        "raw_score": 0.3333333333333333,
+        "max_length": 5,
+        "alignment_length": 5,
+        "normalization_length": 5,
+        "methodology_version": "2026-10-06-phonetic-v2",
         "tokens_interal": [
           "m",
           "a",
           "t",
-          "r",
-          "e"
+          "e",
+          "r"
         ],
         "tokens_language": [
           "m",
           "i",
           "t",
           "e",
-          "r",
-          "a"
+          "r"
         ]
       },
-      "final_similarity_s": 0.71275,
-      "speaker_contribution": 9622.125,
-      "supports_group": true
+      "final_similarity_s": 0.8666666666666667,
+      "speaker_contribution": 11700,
+      "supports_group": true,
+      "root": "μητερ",
+      "root_ipa": "miter"
     },
     {
       "code": "hi",
@@ -301,24 +334,30 @@
         "max_length_l": 5
       },
       "phonetic": {
-        "score": 0.5246999999999999,
-        "raw_score": 0.2469999999999999,
+        "score": 0.19999999999999996,
+        "raw_score": 4,
         "max_length": 5,
+        "alignment_length": 5,
+        "normalization_length": 5,
+        "methodology_version": "2026-10-06-phonetic-v2",
         "tokens_interal": [
           "m",
           "a",
           "t",
-          "r",
-          "e"
+          "e",
+          "r"
         ],
         "tokens_language": [
           "m",
           "ɑ̃ː"
         ]
       },
-      "final_similarity_s": 0.41235,
-      "speaker_contribution": 251945.85,
-      "supports_group": true
+      "final_similarity_s": 0.25,
+      "speaker_contribution": 152750,
+      "supports_group": false,
+      "root": "माँ",
+      "root_romanization": "mā̃",
+      "root_ipa": "mɑ̃ː"
     },
     {
       "code": "fa",
@@ -331,20 +370,23 @@
       "ipa": "mɒːˈd̪æɹ",
       "pronunciation_standard": "Iranian Persian, formal",
       "graphic": {
-        "score": 0.4,
-        "distance_d": 3,
+        "score": 0.5,
+        "distance_d": 2.5,
         "max_length_l": 5
       },
       "phonetic": {
-        "score": 0.78772,
-        "raw_score": 2.8771999999999993,
+        "score": 0.7228571428571429,
+        "raw_score": 1.3857142857142857,
         "max_length": 5,
+        "alignment_length": 5,
+        "normalization_length": 5,
+        "methodology_version": "2026-10-06-phonetic-v2",
         "tokens_interal": [
           "m",
           "a",
           "t",
-          "r",
-          "e"
+          "e",
+          "r"
         ],
         "tokens_language": [
           "m",
@@ -354,11 +396,16 @@
           "ɹ"
         ]
       },
-      "final_similarity_s": 0.59386,
-      "speaker_contribution": 48696.520000000004,
-      "supports_group": true
+      "final_similarity_s": 0.6114285714285714,
+      "speaker_contribution": 50137.142857142855,
+      "supports_group": true,
+      "root": "مادر",
+      "root_romanization": "mâdar",
+      "root_ipa": "mɒːˈd̪æɹ"
     }
   ],
   "accepted_at": "2026-09-07T08:49:37.876Z",
-  "semantic_correspondence_confirmed": true
+  "semantic_correspondence_confirmed": true,
+  "methodology_version": "2026-10-06-phonetic-v2",
+  "recalculation_note": "Recomputed for Interal mater with PH v2 and the existing root-comparison logic."
 }
