@@ -67,13 +67,16 @@
    * proportional rescaling of Kondrak's original ALINE saliences.
    */
   const CONSONANT_FEATURE_WEIGHTS = Object.freeze({
-    manner: 23,
-    place: 25,
-    nasal: 17,
-    voice: 18,
+    manner: 12,
+    place: 24,
+    nasal: 11,
+    voice: 13,
     lateral: 8,
-    aspirated: 5,
-    retroflex: 4
+    aspirated: 9,
+    retroflex: 4,
+    rhotic: 7,
+    long: 7,
+    round: 5
   });
 
   const VOWEL_FEATURE_WEIGHTS = Object.freeze({
@@ -81,7 +84,7 @@
     back: 29,
     nasal: 12,
     round: 14,
-    retroflex: 7,
+    rhotic: 7,
     long: 6
   });
 
@@ -100,6 +103,7 @@
     voice: 1,
     nasal: 1,
     lateral: 1,
+    rhotic: 1,
     retroflex: 1,
     aspirated: 1,
     long: 1,
@@ -558,8 +562,8 @@
 
 const clip=x=>Math.max(0,Math.min(1,x));
 const featureKeys = Object.keys(BASE_FEATURES).sort((a,b)=>b.length-a.length);
-const CONSONANT_FEATURES = ['place','manner','voice','nasal','lateral','retroflex','aspirated'];
-const VOWEL_FEATURES = ['height','back','round','nasal','retroflex','long'];
+const CONSONANT_FEATURES = ['place','manner','voice','nasal','lateral','aspirated','retroflex','rhotic','long','round'];
+const VOWEL_FEATURES = ['height','back','round','nasal','rhotic','long'];
 const GLIDE_TARGETS = new Map([
   ['j', { base: 'i', back: 0, round: 0 }],
   ['w', { base: 'u', back: 1, round: 1 }],
@@ -572,9 +576,7 @@ const EPSILON = 1e-12;
 if (BASE_FEATURES['ɾ']) BASE_FEATURES['ɾ'].manner = 0.65;
 if (BASE_FEATURES['ɽ']) BASE_FEATURES['ɽ'].manner = 0.65;
 
-// R-coloured vowels use the ALINE Retroflex dimension rather than a custom rhotic weight.
-if (BASE_FEATURES['ɚ']) BASE_FEATURES['ɚ'].retroflex = 1;
-if (BASE_FEATURES['ɝ']) BASE_FEATURES['ɝ'].retroflex = 1;
+// Rhoticity is modelled explicitly for both consonants and vowels.
 
 function features(input){
   let t=normalizeIPA(input).normalize('NFC');
@@ -604,7 +606,7 @@ function features(input){
       case 'ʰ': f.aspirated=1; break;
       case 'ʱ': f.aspirated=1; f.voice=1; break;
       case '̃': f.nasal=1; break;
-      case '˞': f.retroflex=1; break;
+      case '˞': f.rhotic=1; break;
       case '̥': f.voice=0; break;
       case '̬': f.voice=1; break;
       case '̪': if(cls==='C') f.place=.90; break;
@@ -725,7 +727,7 @@ function explain(a,b) {
   if(!x.length||!y.length) {
     return {
       tokensA:x,tokensB:y,score:null,distance:null,normalized:null,
-      alignmentLength:null,normalizationLength:null,pairs:[],methodologyVersion:'2026-10-06-phonetic-v3'
+      alignmentLength:null,normalizationLength:null,pairs:[],methodologyVersion:'2026-10-06-phonetic-v4'
     };
   }
 
@@ -818,7 +820,7 @@ function explain(a,b) {
     tokensA:x,tokensB:y,
     score:distance,distance,normalized,similarity:normalized,
     alignmentLength,normalizationLength,pairs,
-    methodologyVersion:'2026-10-06-phonetic-v3'
+    methodologyVersion:'2026-10-06-phonetic-v4'
   };
 }
 
@@ -862,7 +864,7 @@ const api={
   vowelSubstitutionScale:100,
   glideVowelBaseDistance:GLIDE_VOWEL_BASE_DISTANCE,
   defaultOptions:DEFAULT_OPTIONS,
-  methodologyVersion:'2026-10-06-phonetic-v3'
+  methodologyVersion:'2026-10-06-phonetic-v4'
 };
 
 if(typeof module!=='undefined'&&module.exports)module.exports=api;else global.ALINE=api;
