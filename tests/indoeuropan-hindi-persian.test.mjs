@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
+import vm from 'node:vm';
 
 const dictionary = JSON.parse(await readFile('indoeuropanvordes/pie_vordes', 'utf8'));
 assert.deepEqual(dictionary.languages, ['en', 'de', 'fr', 'es', 'it', 'ru', 'el', 'hi', 'fa']);
@@ -67,6 +68,24 @@ assert.equal(byId(52).el.root, 'οιν');
 
 const ui = await readFile('indoeuropanvordes/index.html', 'utf8');
 const aline = await readFile('indoeuropanvordes/aline.js', 'utf8');
+const alineContext = {};
+vm.runInNewContext(aline, alineContext);
+for (const item of dictionary.items) {
+  for (const code of dictionary.languages) {
+    const entry = item[code];
+    if (!entry || typeof entry !== 'object') continue;
+    for (const field of ['ipa', 'root_ipa']) {
+      const value = String(entry[field] || '').trim();
+      if (!value) continue;
+      const unknown = alineContext.ALINE.unknownSegments(value);
+      assert.equal(
+        unknown.length,
+        0,
+        `${item.id}: ${code} ${field} contains unsupported IPA segment(s): ${unknown.join(', ')}`
+      );
+    }
+  }
+}
 assert.match(ui, /code: "hi"[\s\S]*speakers: 611000/);
 assert.match(ui, /code: "fa"[\s\S]*speakers: 82000/);
 assert.match(ui, /Final PI requires all 9 control languages/);
