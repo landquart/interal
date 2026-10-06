@@ -65,6 +65,10 @@ assert.equal(byId(165).fa.root_ipa, 'diːd');
 assert.equal(byId(52).es.root, 'vin');
 assert.equal(byId(52).ru.root, 'вин');
 assert.equal(byId(52).el.root, 'οιν');
+assert.equal(byId(18).ru.word, 'матерь');
+assert.equal(byId(18).ru.root, 'матер');
+assert.equal(byId(18).ru.ipa, 'ˈmatʲɪrʲ');
+assert.equal(byId(18).ru.root_ipa, 'matʲɪrʲ');
 
 const ui = await readFile('indoeuropanvordes/index.html', 'utf8');
 const aline = await readFile('indoeuropanvordes/aline.js', 'utf8');
@@ -103,6 +107,13 @@ assert.match(ui, /rootIpa: String\(cell\.root_ipa \|\| ""\)/);
 assert.match(ui, /const interalRoot = getInteralComparisonRoot/);
 assert.match(ui, /normalizeGraphicInput\(root, lang\.code, rootRomanization\)/);
 assert.match(ui, /calcAlineSimilarity\(interalIPAComparable, rootIpa\)/);
+assert.match(ui, /const root = pieCell\?\.roots\[0\] \|\| "";/);
+assert.match(ui, /const rootRomanization = pieCell\?\.rootRomanization \|\| "";/);
+assert.match(ui, /const rootIpa = pieCell\?\.rootIpa \|\| "";/);
+assert.doesNotMatch(ui, /const root = pieCell\?\.roots\[0\] \|\| word;/);
+assert.doesNotMatch(ui, /const rootIpa = pieCell\?\.rootIpa \|\| ipa;/);
+assert.doesNotMatch(ui, /root: row\.root \|\| row\.word/);
+assert.doesNotMatch(ui, /root_ipa: row\.rootIpa \|\| row\.ipa/);
 
 assert.match(ui, /id="semanticOk"/);
 assert.match(ui, /const semanticOk = semanticOkInput\.checked === true/);
