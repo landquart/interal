@@ -838,6 +838,10 @@ const api={
   features:BASE_FEATURES,
   featureWeights:FEATURE_WEIGHTS,
   featureRanges:FEATURE_RANGES,
+  relevantFeatures:{
+    consonant:[...CONSONANT_FEATURES],
+    vowel:[...VOWEL_FEATURES]
+  },
   consonantSubstitutionScale:CONSONANT_SUBSTITUTION_SCALE,
   vowelSubstitutionScale:VOWEL_SUBSTITUTION_SCALE,
   defaultOptions:DEFAULT_OPTIONS,
