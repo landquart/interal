@@ -1452,11 +1452,11 @@ function makeIndoeuropanCard(payload, timeMeta, author = null) {
       return {
         language: row.code || "",
         word: row.word || "",
-        root: row.root || row.word || "",
+        root: row.root || "",
         romanization: row.romanization || "",
-        root_romanization: row.rootRomanization || row.romanization || "",
+        root_romanization: row.rootRomanization || "",
         ipa: row.ipa || "",
-        root_ipa: row.rootIpa || row.ipa || "",
+        root_ipa: row.rootIpa || "",
         G: finiteOrNull(row.graphic),
         PH: finiteOrNull(row.phonetic),
         S: finiteOrNull(row.general),
@@ -2259,9 +2259,9 @@ async function calculateInternationality() {
       }
 
       const pieCell = matchedPieItem ? getPieCell(matchedPieItem, lang.code) : null;
-      const root = pieCell?.roots[0] || word;
-      const rootRomanization = pieCell?.rootRomanization || romanization;
-      const rootIpa = pieCell?.rootIpa || ipa;
+      const root = pieCell?.roots[0] || "";
+      const rootRomanization = pieCell?.rootRomanization || "";
+      const rootIpa = pieCell?.rootIpa || "";
       const nationalGraphic = normalizeGraphicInput(root, lang.code, rootRomanization);
       const graphicDetails = word ? graphicSimilarityDetails(interalGraphic, nationalGraphic) : null;
       const graphic = graphicDetails ? graphicDetails.score : null;
