@@ -547,7 +547,7 @@
 
 const clip=x=>Math.max(0,Math.min(1,x));
 const featureKeys = Object.keys(BASE_FEATURES).sort((a,b)=>b.length-a.length);
-const CONSONANT_FEATURES = ['place','manner','voice','nasal','lateral','retroflex','aspirated','long','round'];
+const CONSONANT_FEATURES = ['place','manner','voice','nasal','lateral','retroflex','aspirated'];
 const VOWEL_FEATURES = ['height','back','round','nasal','retroflex','long'];
 const GLIDE_TARGETS = new Map([
   ['j', { back: 0, round: 0 }],
