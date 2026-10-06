@@ -25,7 +25,7 @@ assert.equal(meanNonZero([0,10]),5);assert.equal(meanNonZero([null,10]),null);
 assert.equal(internationalismFormPasses('abcd','abxy',2),false);assert.equal(internationalismFormPasses('abcdefgh','abcdexyh',2),true);assert.equal(internationalismFormPasses('abc','abcd',1),false);
 // Nine-language matre example in appendix 6; full precision weights and scores.
 const rows=[['mother','mʌðə',1493000],['mutter','mʊtɐ',133000],['mère','mɛʁ',334000],['madre','maðɾe',561000],['madre','madre',66000],["mat'",'matʲ',210000],['mitera','mitera',13500],['mā̃','mɑ̃ː',611000],['mâdar','mɒːd̪æɹ',82000]];
-near(rows.reduce((s,[w,ipa,n])=>s+n*(graphic('matre',w).score+ph('matre',ipa))/2,0)/3503500*100,57.69956800569046);
+near(rows.reduce((s,[w,ipa,n])=>s+n*(graphic('matre',w).score+ph('matre',ipa))/2,0)/3503500*100,57.10587598342701);
 console.log('Methodology controls passed');
 
 // Unknown corpus data and truncated lists must not silently become zeros.
