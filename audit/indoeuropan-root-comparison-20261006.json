@@ -1,0 +1,102 @@
+{
+  "schema_version": "1.0",
+  "generated_on": "2026-10-06",
+  "scope": "pie_vordes root-only comparison coverage",
+  "dictionary_items": 167,
+  "languages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "it",
+    "ru",
+    "el",
+    "hi",
+    "fa"
+  ],
+  "total_language_cells": 1503,
+  "nonempty_forms": 1502,
+  "empty_cells": 1,
+  "empty_cell_details": [
+    {
+      "id": 58,
+      "pie": "*móri",
+      "language": "el"
+    }
+  ],
+  "nonempty_missing_root": 0,
+  "nonempty_missing_root_ipa": 0,
+  "comparison_policy": {
+    "graphic": "explicit root only",
+    "phonetic": "explicit root_ipa only",
+    "fallback_to_full_word": false,
+    "fallback_to_full_ipa": false,
+    "explicit_ending_field": false,
+    "explanation": "Inflectional separation is encoded directly by word vs root and ipa vs root_ipa; a separate ending field is not required for calculation."
+  },
+  "by_language": {
+    "en": {
+      "nonempty": 167,
+      "root_present": 167,
+      "root_ipa_present": 167,
+      "root_equals_word": 165,
+      "root_differs_from_word": 2
+    },
+    "de": {
+      "nonempty": 167,
+      "root_present": 167,
+      "root_ipa_present": 167,
+      "root_equals_word": 126,
+      "root_differs_from_word": 41
+    },
+    "fr": {
+      "nonempty": 167,
+      "root_present": 167,
+      "root_ipa_present": 167,
+      "root_equals_word": 141,
+      "root_differs_from_word": 26
+    },
+    "es": {
+      "nonempty": 167,
+      "root_present": 167,
+      "root_ipa_present": 167,
+      "root_equals_word": 48,
+      "root_differs_from_word": 119
+    },
+    "it": {
+      "nonempty": 167,
+      "root_present": 167,
+      "root_ipa_present": 167,
+      "root_equals_word": 26,
+      "root_differs_from_word": 141
+    },
+    "ru": {
+      "nonempty": 167,
+      "root_present": 167,
+      "root_ipa_present": 167,
+      "root_equals_word": 53,
+      "root_differs_from_word": 114
+    },
+    "el": {
+      "nonempty": 166,
+      "root_present": 166,
+      "root_ipa_present": 166,
+      "root_equals_word": 23,
+      "root_differs_from_word": 143
+    },
+    "hi": {
+      "nonempty": 167,
+      "root_present": 167,
+      "root_ipa_present": 167,
+      "root_equals_word": 112,
+      "root_differs_from_word": 55
+    },
+    "fa": {
+      "nonempty": 167,
+      "root_present": 167,
+      "root_ipa_present": 167,
+      "root_equals_word": 139,
+      "root_differs_from_word": 28
+    }
+  }
+}
