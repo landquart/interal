@@ -1392,7 +1392,15 @@ function makePhoneticBlock(row) {
       phonetic.raw_score = row.aline.score;
     }
 
+    // max_length is retained for backwards compatibility only.
+    // PH v2 is normalized by the optimal alignment length.
     phonetic.max_length = Math.max(tokensA.length, tokensB.length);
+    if (Number.isFinite(row.aline.alignmentLength)) {
+      phonetic.alignment_length = row.aline.alignmentLength;
+      phonetic.normalization_length = row.aline.alignmentLength;
+    }
+    phonetic.methodology_version =
+      row.aline.methodologyVersion || window.ALINE?.methodologyVersion || "2026-10-06-phonetic-v2";
     phonetic.tokens_interal = tokensA;
     phonetic.tokens_language = tokensB;
   }
