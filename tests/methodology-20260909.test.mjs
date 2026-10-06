@@ -10,6 +10,13 @@ for(const [a,b,g] of [['abc','xabc',.75],['abc','abcx',.75],['abc','aabc',.875],
 assert.equal(graphic('','a'),null);
 const c={};vm.runInNewContext(fs.readFileSync('indoeuropanvordes/aline.js','utf8'),c);const ph=c.ALINE.normalizedSimilarity;
 near(Object.values(c.ALINE.featureWeights).reduce((sum,value)=>sum+value,0),100);
+const ws=100/156;
+near(c.ALINE.featureWeights.manner,50*ws);near(c.ALINE.featureWeights.place,40*ws);
+for(const key of ['voice','nasal','lateral','retroflex']) near(c.ALINE.featureWeights[key],10*ws);
+for(const key of ['syllabic','aspirated','height','back','round']) near(c.ALINE.featureWeights[key],5*ws);
+near(c.ALINE.featureWeights.long,1*ws);
+assert.equal(c.ALINE.relevantFeatures.consonant.join(','),'place,manner,voice,nasal,lateral,retroflex,aspirated');
+assert.equal(c.ALINE.relevantFeatures.vowel.join(','),'height,back,round,nasal,retroflex,long');
 near(ph('matre','mʌðə'),.6266666666666666);
 near(ph('p','k'),.5428571428571427);near(ph('t','s'),.7142857142857144);near(ph('t','d'),.7142857142857142);
 near(ph('i','u'),.33333333333333326);near(ph('a','aː'),.9333333333333333);near(ph('a','ã'),.33333333333333326);
