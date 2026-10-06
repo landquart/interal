@@ -2103,30 +2103,10 @@ function getPieIPA(item, langCode) {
   return "";
 }
 
-const INDOEUROPAN_ROOT_FORM_EXCEPTIONS = new Set([
-  // These accepted type-1 forms are already lexical roots; final -e is not an ending.
-  "dre"
-]);
-
 function getInteralComparisonRoot(word, partOfSpeech) {
-  const value = String(word || "").trim();
-  if (!value) return "";
-
-  if (INDOEUROPAN_ROOT_FORM_EXCEPTIONS.has(value.toLowerCase())) return value;
-
-  if (partOfSpeech === "verb") {
-    return value.replace(/(?:ar|er|ir|an)$/i, "") || value;
-  }
-
-  if (partOfSpeech === "adjective") {
-    return value.replace(/i$/i, "") || value;
-  }
-
-  if (partOfSpeech === "noun") {
-    return value.replace(/[aeo]$/i, "") || value;
-  }
-
-  return value;
+  // PI compares exactly the Interal form supplied by the user.
+  // Do not infer or strip noun, adjective, or verb endings here.
+  return String(word || "").trim();
 }
 
 function findPieRowByNationalWord(data, nationalWord, selectedLang) {
