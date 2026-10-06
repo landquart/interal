@@ -549,7 +549,12 @@ const clip=x=>Math.max(0,Math.min(1,x));
 const featureKeys = Object.keys(BASE_FEATURES).sort((a,b)=>b.length-a.length);
 const CONSONANT_FEATURES = ['place','manner','voice','nasal','lateral','retroflex','aspirated','long','round'];
 const VOWEL_FEATURES = ['height','back','round','nasal','retroflex','long'];
-const GLIDES = new Set(['j','w','ɥ','ɰ']);
+const GLIDE_TARGETS = new Map([
+  ['j', { back: 0, round: 0 }],
+  ['w', { back: 1, round: 1 }],
+  ['ɥ', { back: 0, round: 1 }],
+  ['ɰ', { back: 1, round: 0 }]
+]);
 const EPSILON = 1e-12;
 
 // ALINE distinguishes trills from taps/flaps. The legacy inventory used one code.
@@ -657,7 +662,16 @@ function glideVowelDistance(x,y){
   }
 
   if(glide._type!=='C' || vowel._type!=='V') return Infinity;
-  if(!GLIDES.has(glide._base) || !isHighVowel(vowel)) return Infinity;
+
+  const target=GLIDE_TARGETS.get(glide._base);
+  if(!target || !isHighVowel(vowel)) return Infinity;
+
+  // Only the articulatorily corresponding high-vowel pair is an allowed
+  // cross-class substitution: j↔i, w↔u, ɥ↔y, ɰ↔ɯ.
+  if(
+    Math.abs((vowel.back??0)-target.back)>EPSILON ||
+    Math.abs((vowel.round??0)-target.round)>EPSILON
+  ) return Infinity;
 
   const delta =
     FEATURE_WEIGHTS.syllabic +
