@@ -84,12 +84,13 @@
     "i~u": 0.33333333333333337,
     "dre~tree /triː/": 0.826984126984127,
     "dre~Tanne /tanə/": 0.5297619047619049,
-    "mater~mother /mʌðə/": 0.540952380952381
+    "mater~mother /mʌðə/": 0.540952380952381,
+    "mater~матерь root /matʲɪrʲ/": 0.9426666666666667
   },
   "accepted_iv_cards": {
     "mater": {
       "card_id": "iv_3e1e5e67755f4b9aabe2758a1fe414e2",
-      "pi_percent": 53.96686986482905,
+      "pi_percent": 56.192644090603274,
       "supported_groups": [
         "Germanic",
         "Romance",
@@ -114,6 +115,12 @@
       "language": "hi",
       "field": "root_ipa",
       "correction": "non-IPA ŏ corrected to IPA ɔ"
+    },
+    {
+      "pie_row_id": 18,
+      "language": "ru",
+      "field": "word/root/root_ipa",
+      "correction": "мать → матерь; comparison root матер; root IPA matʲɪrʲ"
     }
   ]
 }
