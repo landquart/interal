@@ -31,8 +31,8 @@ near(f([{word:'a',ipm:3}]),f(Array.from({length:5},(_,i)=>({word:String(i),ipm:.
 assert.equal(meanNonZero([0,10]),5);assert.equal(meanNonZero([null,10]),null);
 assert.equal(internationalismFormPasses('abcd','abxy',2),false);assert.equal(internationalismFormPasses('abcdefgh','abcdexyh',2),true);assert.equal(internationalismFormPasses('abc','abcd',1),false);
 // Nine-language mater root-comparison example; full precision weights and scores.
-const rows=[['mother','mʌðə',1493000],['mutter','mʊtɐ',133000],['mère','mɛʁ',334000],['madr','maðɾ',561000],['madr','madr',66000],['mat','mat',210000],['miter','miter',13500],['mā̃','mɑ̃ː',611000],['mâdar','mɒːd̪æɹ',82000]];
-near(rows.reduce((s,[w,ipa,n])=>s+n*(graphic('mater',w).score+ph('mater',ipa))/2,0)/3503500*100,53.96686986482905);
+const rows=[['mother','mʌðə',1493000],['mutter','mʊtɐ',133000],['mère','mɛʁ',334000],['madr','maðɾ',561000],['madr','madr',66000],['mater','matʲɪrʲ',210000],['miter','miter',13500],['mā̃','mɑ̃ː',611000],['mâdar','mɒːd̪æɹ',82000]];
+near(rows.reduce((s,[w,ipa,n])=>s+n*(graphic('mater',w).score+ph('mater',ipa))/2,0)/3503500*100,56.192644090603274);
 console.log('Methodology controls passed');
 
 // Unknown corpus data and truncated lists must not silently become zeros.
