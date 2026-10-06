@@ -60,27 +60,29 @@
    *   1 back
    */
 
+  const ALINE_WEIGHT_SCALE = 100 / 156;
+
   const FEATURE_WEIGHTS = {
-    // ALINE salience weights (Kondrak), rescaled proportionally so the total is 100.
+    // Original ALINE salience ratios, rescaled proportionally to a total of 100.
     // Internal key "height" corresponds to ALINE High.
-    syllabic: 3.2051282051282053,
-    place: 25.641025641025642,
-    manner: 32.05128205128205,
-    voice: 6.410256410256411,
-    nasal: 6.410256410256411,
-    lateral: 6.410256410256411,
-    retroflex: 6.410256410256411,
-    aspirated: 3.2051282051282053,
-    height: 3.2051282051282053,
-    back: 3.2051282051282053,
-    round: 3.2051282051282053,
-    long: 0.641025641025641
+    syllabic: 5 * ALINE_WEIGHT_SCALE,
+    place: 40 * ALINE_WEIGHT_SCALE,
+    manner: 50 * ALINE_WEIGHT_SCALE,
+    voice: 10 * ALINE_WEIGHT_SCALE,
+    nasal: 10 * ALINE_WEIGHT_SCALE,
+    lateral: 10 * ALINE_WEIGHT_SCALE,
+    retroflex: 10 * ALINE_WEIGHT_SCALE,
+    aspirated: 5 * ALINE_WEIGHT_SCALE,
+    height: 5 * ALINE_WEIGHT_SCALE,
+    back: 5 * ALINE_WEIGHT_SCALE,
+    round: 5 * ALINE_WEIGHT_SCALE,
+    long: 1 * ALINE_WEIGHT_SCALE
   };
 
   // ALINE Csub=35 and effective vowel substitution range=15,
-  // rescaled by the same factor 100/156 as FEATURE_WEIGHTS.
-  const CONSONANT_SUBSTITUTION_SCALE = 22.435897435897434;
-  const VOWEL_SUBSTITUTION_SCALE = 9.615384615384615;
+  // rescaled by exactly the same factor as the feature weights.
+  const CONSONANT_SUBSTITUTION_SCALE = 35 * ALINE_WEIGHT_SCALE;
+  const VOWEL_SUBSTITUTION_SCALE = 15 * ALINE_WEIGHT_SCALE;
 
   const FEATURE_RANGES = {
     syllabic: 1,
