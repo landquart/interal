@@ -550,10 +550,10 @@ const featureKeys = Object.keys(BASE_FEATURES).sort((a,b)=>b.length-a.length);
 const CONSONANT_FEATURES = ['place','manner','voice','nasal','lateral','retroflex','aspirated'];
 const VOWEL_FEATURES = ['height','back','round','nasal','retroflex','long'];
 const GLIDE_TARGETS = new Map([
-  ['j', { back: 0, round: 0 }],
-  ['w', { back: 1, round: 1 }],
-  ['ɥ', { back: 0, round: 1 }],
-  ['ɰ', { back: 1, round: 0 }]
+  ['j', { base: 'i', back: 0, round: 0 }],
+  ['w', { base: 'u', back: 1, round: 1 }],
+  ['ɥ', { base: 'y', back: 0, round: 1 }],
+  ['ɰ', { base: 'ɯ', back: 1, round: 0 }]
 ]);
 const EPSILON = 1e-12;
 
@@ -669,6 +669,7 @@ function glideVowelDistance(x,y){
   // Only the articulatorily corresponding high-vowel pair is an allowed
   // cross-class substitution: j↔i, w↔u, ɥ↔y, ɰ↔ɯ.
   if(
+    vowel._base!==target.base ||
     Math.abs((vowel.back??0)-target.back)>EPSILON ||
     Math.abs((vowel.round??0)-target.round)>EPSILON
   ) return Infinity;
