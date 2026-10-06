@@ -35,9 +35,9 @@ for (const id of removedDreCardIds) {
   assert.equal(registryIds.has(id), false, `${id} must not be present in the registry`);
 }
 assert.equal(registry.cards.filter((card) => card.word === 'dre').length, 1, 'registry must contain exactly one dre card');
-assert.equal(registry.cards.filter((card) => card.word === 'matre').length, 1, 'registry must contain exactly one matre card');
+assert.equal(registry.cards.filter((card) => card.word === 'mater').length, 1, 'registry must contain exactly one mater card');
 assert.equal(registryIds.has('iv_1KjajlU3SH8Z'), true, 'one dre card must remain in the registry');
-assert.equal(registryIds.has('iv_3e1e5e67755f4b9aabe2758a1fe414e2'), true, 'matre card must remain in the registry');
+assert.equal(registryIds.has('iv_3e1e5e67755f4b9aabe2758a1fe414e2'), true, 'mater card must remain in the registry');
 
 const repoFiles = (await readdir('.', { recursive: true })).filter((file) => typeof file === 'string' && !file.startsWith('node_modules/') && !file.startsWith('.git/'));
 const forbidden = [
