@@ -657,7 +657,7 @@ function weightedDelta(x,y,keys,weights){
   return keys.reduce((sum,key)=>{
     const weight=weights[key] || 0;
     const range=FEATURE_RANGES[key] || 1;
-    const difference=Math.abs((x[key]??0)-(y[key]??0))/range;
+    const difference=clip(Math.abs((x[key]??0)-(y[key]??0))/range);
     return sum + weight*difference;
   },0);
 }
