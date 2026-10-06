@@ -885,7 +885,7 @@ const TEXT_I18N = {
     explanation: {
       title: "Пояснение расчёта",
       mainFormula: "Основная формула",
-      formulaBody: "G — graphic similaritá, графическая похожесть;\nD — distantia, стоимость редактирования;\nL — longituda, максимальная длина сравниваемых форм;\nPH — phonetic similaritá, фонетическая похожесть;\nS — similaritá, итоговая похожесть для языка;\nN — numer, число говорящих;\nPI — procent of internationalitá, процент международности.",
+      formulaBody: "G — graphic similaritá, графическая похожесть;\nD — distantia, стоимость редактирования;\nL — longituda, максимальная графическая длина;\nDₚ — суммарная фонетическая стоимость;\nLₚ — длина оптимального фонетического выравнивания;\nPH — phonetic similaritá, фонетическая похожесть;\nS — similaritá, итоговая похожесть для языка;\nN — numer, число говорящих;\nPI — procent of internationalitá, процент международности.",
       hypothesis: "Гипотеза",
       graphicForm: "graphic form",
       ipaForAline: "IPA for ALINE",
@@ -928,6 +928,7 @@ const TEXT_I18N = {
       ipaLanguage: "МФА языка",
       rawCalculation: "необработанный балл raw",
       maxLength: "максимальная длина maxLen",
+      alignmentLength: "длина выравнивания Lₚ",
       alignment: "Выравнивание",
       interal: "Интераль",
       language: "Язык",
@@ -996,7 +997,7 @@ const TEXT_I18N = {
     explanation: {
       title: "Calculation explanation",
       mainFormula: "Main formula",
-      formulaBody: "G — graphic similarity;\nD — edit distance/cost;\nL — maximum length of the compared forms;\nPH — phonetic similarity;\nS — final similarity for one language;\nN — number of speakers;\nPI — internationality percentage.",
+      formulaBody: "G — graphic similarity;\nD — edit distance/cost;\nL — maximum graphic length;\nDₚ — total phonetic alignment cost;\nLₚ — optimal phonetic alignment length;\nPH — phonetic similarity;\nS — final similarity for one language;\nN — number of speakers;\nPI — internationality percentage.",
       hypothesis: "Hypothesis",
       graphicForm: "graphic form",
       ipaForAline: "IPA for ALINE",
@@ -1039,6 +1040,7 @@ const TEXT_I18N = {
       ipaLanguage: "IPA language",
       rawCalculation: "raw score",
       maxLength: "Max length",
+      alignmentLength: "Alignment length Lₚ",
       alignment: "Alignment",
       interal: "Interal",
       language: "Language",
@@ -2790,6 +2792,9 @@ function renderPhoneticDetails(row) {
   const tokensB = Array.isArray(row.aline.tokensB) ? row.aline.tokensB : [];
   const raw = Number.isFinite(row.aline.score) ? row.aline.score : null;
   const maxLen = Math.max(tokensA.length, tokensB.length);
+  const alignmentLen = Number.isFinite(row.aline.alignmentLength)
+    ? row.aline.alignmentLength
+    : maxLen;
   const ph = row.phonetic;
   const t = getCalcDetailText;
 
@@ -2800,11 +2805,11 @@ function renderPhoneticDetails(row) {
         <div><strong>${escapeHTML(t("ipaInteral"))}:</strong> /${escapeHTML(tokensA.join(" · "))}/</div>
         <div><strong>${escapeHTML(t("ipaLanguage"))}:</strong> /${escapeHTML(tokensB.join(" · "))}/</div>
         <div><strong>${escapeHTML(t("rawCalculation"))}:</strong> ${Number.isFinite(raw) ? formatNumber(raw) : "—"}</div>
-        <div><strong>${escapeHTML(t("maxLength"))}:</strong> ${formatInteger(maxLen)}</div>
+        <div><strong>${escapeHTML(t("alignmentLength"))}:</strong> ${formatInteger(alignmentLen)}</div>
         <div><strong>${escapeHTML(t("formula"))}:</strong> PH = 1 − Dₚ/Lₚ</div>
         <div><strong>${escapeHTML(t("calculation"))}:</strong> ${
-          Number.isFinite(raw) && maxLen > 0
-            ? `PH = 1 − ${formatNumber(raw)}/${formatInteger(maxLen)} = ${formatScore(ph)}`
+          Number.isFinite(raw) && alignmentLen > 0
+            ? `PH = 1 − ${formatNumber(raw)}/${formatInteger(alignmentLen)} = ${formatScore(ph)}`
             : "—"
         }</div>
         ${renderAlineAlignment(row)}
