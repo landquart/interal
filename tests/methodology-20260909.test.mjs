@@ -13,7 +13,7 @@ near(Object.values(c.ALINE.featureWeights).reduce((sum,value)=>sum+value,0),100)
 near(ph('matre','mʌðə'),.6266666666666666);
 near(ph('p','k'),.5428571428571427);near(ph('t','s'),.7142857142857144);near(ph('t','d'),.7142857142857142);
 near(ph('i','u'),.33333333333333326);near(ph('a','aː'),.9333333333333333);near(ph('a','ã'),.33333333333333326);
-near(ph('dre','tanə'),.5297619047619047);near(ph('j','i'),2/3);near(ph('w','u'),2/3);assert.equal(ph('j','u'),0);assert.equal(ph('w','i'),0);assert.equal(ph('r','a'),0);
+near(ph('dre','tanə'),.5297619047619047);near(ph('j','i'),2/3);near(ph('w','u'),2/3);assert.equal(ph('j','u'),0);assert.equal(ph('w','i'),0);assert.equal(ph('r','a'),0);near(ph('pa','ia'),1/3);near(ph('pat','a'),1/3);
 assert.equal(c.ALINE.methodologyVersion,'2026-10-06-phonetic-v2');
 assert.equal(ph('', 'a'),null);assert.throws(()=>ph('a','☃'));assert.throws(()=>ph('a','a̰'));assert.equal(c.ALINE.tokenize('ts').length,2);assert.equal(c.ALINE.tokenize('t͡s').length,1);assert.equal(c.ALINE.tokenize('eɪ').length,2);
 assert.equal(A({directness:0,field_relatedness:100,domain_shift:0}),0);
