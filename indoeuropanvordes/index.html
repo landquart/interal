@@ -753,10 +753,10 @@ body.dark-theme .internationalita-page .json-card-icon-btn.is-copied {
 </div>
 
 
-<script src="./aline.js?v=phonetic-20261006-v3"></script>
+<script src="./aline.js?v=phonetic-20261006-v4"></script>
 
 <script>
-const METHODOLOGY_VERSION = '2026-10-06-phonetic-v3';
+const METHODOLOGY_VERSION = '2026-10-06-phonetic-v4';
 function graphemes(s) { return String(s ?? '').trim().toLowerCase().normalize('NFC').match(/\P{M}\p{M}*|\p{M}+/gu) || []; }
 const base = s => s.normalize('NFD').replace(/\p{M}/gu, '');
 function graphicDistance(a,b) {
@@ -1403,7 +1403,7 @@ function makePhoneticBlock(row) {
       ? row.aline.normalizationLength
       : phonetic.max_length;
     phonetic.methodology_version =
-      row.aline.methodologyVersion || window.ALINE?.methodologyVersion || "2026-10-06-phonetic-v3";
+      row.aline.methodologyVersion || window.ALINE?.methodologyVersion || "2026-10-06-phonetic-v4";
     phonetic.tokens_interal = tokensA;
     phonetic.tokens_language = tokensB;
   }

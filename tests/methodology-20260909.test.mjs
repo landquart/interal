@@ -13,23 +13,25 @@ near(Object.values(c.ALINE.featureWeights.consonant).reduce((sum,value)=>sum+val
 near(Object.values(c.ALINE.featureWeights.vowel).reduce((sum,value)=>sum+value,0),100);
 assert.deepEqual(
   JSON.parse(JSON.stringify(c.ALINE.featureWeights.consonant)),
-  {manner:23,place:25,nasal:17,voice:18,lateral:8,aspirated:5,retroflex:4}
+  {manner:12,place:24,nasal:11,voice:13,lateral:8,aspirated:9,retroflex:4,rhotic:7,long:7,round:5}
 );
 assert.deepEqual(
   JSON.parse(JSON.stringify(c.ALINE.featureWeights.vowel)),
-  {height:32,back:29,nasal:12,round:14,retroflex:7,long:6}
+  {height:32,back:29,nasal:12,round:14,rhotic:7,long:6}
 );
 near(c.ALINE.featureRanges.place,.9);near(c.ALINE.featureRanges.manner,.4);
 near(c.ALINE.consonantSubstitutionScale,100);near(c.ALINE.vowelSubstitutionScale,100);
-assert.equal(c.ALINE.relevantFeatures.consonant.join(','),'place,manner,voice,nasal,lateral,retroflex,aspirated');
-assert.equal(c.ALINE.relevantFeatures.vowel.join(','),'height,back,round,nasal,retroflex,long');
-near(ph('mater','mʌðə'),.6083422222222222);
-near(ph('p','k'),.8888888888888888);near(ph('t','s'),.885);near(ph('t','d'),.82);
+assert.equal(c.ALINE.relevantFeatures.consonant.join(','),'place,manner,voice,nasal,lateral,aspirated,retroflex,rhotic,long,round');
+assert.equal(c.ALINE.relevantFeatures.vowel.join(','),'height,back,round,nasal,rhotic,long');
+near(ph('mater','mʌðə'),.6294533333333333);
+near(ph('p','k'),.8933333333333333);near(ph('t','s'),.94);near(ph('t','d'),.87);
 near(ph('i','u'),.57);near(ph('a','aː'),.94);near(ph('a','ã'),.88);
 near(ph('e','ɛ'),.9232);near(ph('o','ɔ'),.9232);
-near(ph('dre','tanə'),.594275);near(ph('j','i'),2/3);near(ph('w','u'),2/3);assert.equal(ph('j','u'),0);assert.equal(ph('w','i'),0);assert.equal(ph('r','a'),0);assert.equal(ph('pa','ia'),0);near(ph('pat','a'),1/3);
+near(ph('dre','tanə'),.61115);near(ph('j','i'),2/3);near(ph('w','u'),2/3);assert.equal(ph('j','u'),0);assert.equal(ph('w','i'),0);assert.equal(ph('r','a'),0);assert.equal(ph('pa','ia'),0);near(ph('pat','a'),1/3);
 const paIa=c.ALINE.explain('pa','ia');assert.equal(paIa.alignmentLength,3);assert.equal(paIa.normalizationLength,2);assert.equal(paIa.normalized,0);
-assert.equal(c.ALINE.methodologyVersion,'2026-10-06-phonetic-v3');
+near(ph('k','kʷ'),.95);near(ph('k','kː'),.93);near(ph('r','ɹ'),.97);near(ph('ə','ɚ'),.93);
+assert.equal(c.ALINE.getFeatures('ɚ').rhotic,1);assert.equal(c.ALINE.getFeatures('ɚ').retroflex,0);
+assert.equal(c.ALINE.methodologyVersion,'2026-10-06-phonetic-v4');
 assert.equal(ph('', 'a'),null);assert.throws(()=>ph('a','☃'));assert.throws(()=>ph('a','a̰'));assert.equal(c.ALINE.tokenize('ts').length,2);assert.equal(c.ALINE.tokenize('t͡s').length,1);assert.equal(c.ALINE.tokenize('eɪ').length,2);
 assert.equal(A({directness:0,field_relatedness:100,domain_shift:0}),0);
 assert.equal(P({association_score:100,frequency_score:0}),0);near(P({association_score:100,frequency_score:8.7856024301}),42.68939906000369);
@@ -40,7 +42,7 @@ assert.equal(meanNonZero([0,10]),5);assert.equal(meanNonZero([null,10]),null);
 assert.equal(internationalismFormPasses('abcd','abxy',2),false);assert.equal(internationalismFormPasses('abcdefgh','abcdexyh',2),true);assert.equal(internationalismFormPasses('abc','abcd',1),false);
 // Nine-language mater root-comparison example; full precision weights and scores.
 const rows=[['mother','mʌðə',1493000],['mutter','mʊtɐ',133000],['mère','mɛʁ',334000],['madr','maðɾ',561000],['madr','madr',66000],['mater','matʲɪrʲ',210000],['miter','miter',13500],['mā̃','mɑ̃ː',611000],['mâdar','mɒːd̪æɹ',82000]];
-near(rows.reduce((s,[w,ipa,n])=>s+n*(graphic('mater',w).score+ph('mater',ipa))/2,0)/3503500*100,59.34011025482454);
+near(rows.reduce((s,[w,ipa,n])=>s+n*(graphic('mater',w).score+ph('mater',ipa))/2,0)/3503500*100,60.03928052899482);
 console.log('Methodology controls passed');
 
 // Unknown corpus data and truncated lists must not silently become zeros.
