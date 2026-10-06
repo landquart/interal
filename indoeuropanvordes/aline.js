@@ -60,34 +60,43 @@
    *   1 back
    */
 
-  const ALINE_WEIGHT_SCALE = 100 / 156;
+  /*
+   * Empirically calibrated feature weights.
+   *
+   * Each segment class is normalized independently to 100. These are not a
+   * proportional rescaling of Kondrak's original ALINE saliences.
+   */
+  const CONSONANT_FEATURE_WEIGHTS = Object.freeze({
+    manner: 23,
+    place: 25,
+    nasal: 17,
+    voice: 18,
+    lateral: 8,
+    aspirated: 5,
+    retroflex: 4
+  });
 
-  const FEATURE_WEIGHTS = {
-    // Original ALINE salience ratios, rescaled proportionally to a total of 100.
-    // Internal key "height" corresponds to ALINE High.
-    syllabic: 5 * ALINE_WEIGHT_SCALE,
-    place: 40 * ALINE_WEIGHT_SCALE,
-    manner: 50 * ALINE_WEIGHT_SCALE,
-    voice: 10 * ALINE_WEIGHT_SCALE,
-    nasal: 10 * ALINE_WEIGHT_SCALE,
-    lateral: 10 * ALINE_WEIGHT_SCALE,
-    retroflex: 10 * ALINE_WEIGHT_SCALE,
-    aspirated: 5 * ALINE_WEIGHT_SCALE,
-    height: 5 * ALINE_WEIGHT_SCALE,
-    back: 5 * ALINE_WEIGHT_SCALE,
-    round: 5 * ALINE_WEIGHT_SCALE,
-    long: 1 * ALINE_WEIGHT_SCALE
-  };
+  const VOWEL_FEATURE_WEIGHTS = Object.freeze({
+    height: 32,
+    back: 29,
+    nasal: 12,
+    round: 14,
+    retroflex: 7,
+    long: 6
+  });
 
-  // ALINE Csub=35 and effective vowel substitution range=15,
-  // rescaled by exactly the same factor as the feature weights.
-  const CONSONANT_SUBSTITUTION_SCALE = 35 * ALINE_WEIGHT_SCALE;
-  const VOWEL_SUBSTITUTION_SCALE = 15 * ALINE_WEIGHT_SCALE;
+  const FEATURE_WEIGHTS = Object.freeze({
+    consonant: CONSONANT_FEATURE_WEIGHTS,
+    vowel: VOWEL_FEATURE_WEIGHTS
+  });
 
-  const FEATURE_RANGES = {
-    syllabic: 1,
-    place: 1,
-    manner: 1,
+  /*
+   * Feature ranges used to turn each raw feature difference into a
+   * dimensionless difference before weighting.
+   */
+  const FEATURE_RANGES = Object.freeze({
+    place: 0.9,
+    manner: 0.4,
     voice: 1,
     nasal: 1,
     lateral: 1,
@@ -97,7 +106,9 @@
     height: 1,
     back: 1,
     round: 1
-  };
+  });
+
+  const GLIDE_VOWEL_BASE_DISTANCE = 1 / 3;
 
   const PLACE_SCALE = new Map([
     [10, 1.00], // bilabial
@@ -579,8 +590,9 @@ function features(input){
   const f={...BASE_FEATURES[base]};
   const cls=f.syllabic ? 'V' : 'C';
 
-  // ALINE High is a three-level high/mid/low dimension.
-  if(cls==='V') f.height=f.height>=.8 ? 1 : (f.height<=.25 ? 0 : .5);
+  // Keep the continuous vowel-height values from the inventory. Collapsing
+  // them to ALINE's three-level High feature would make contrasts such as
+  // /e/~/ɛ/ and /o/~/ɔ/ spuriously identical.
 
   const rest=t.slice(base.length);
   const move=(key,target,k)=>{f[key]+=k*(target-f[key]);};
@@ -641,11 +653,12 @@ function features(input){
   return f;
 }
 
-function weightedDelta(x,y,keys){
+function weightedDelta(x,y,keys,weights){
   return keys.reduce((sum,key)=>{
-    const weight=FEATURE_WEIGHTS[key] || 0;
+    const weight=weights[key] || 0;
     const range=FEATURE_RANGES[key] || 1;
-    return sum + weight*Math.abs((x[key]??0)-(y[key]??0))/range;
+    const difference=Math.abs((x[key]??0)-(y[key]??0))/range;
+    return sum + weight*difference;
   },0);
 }
 
@@ -674,24 +687,25 @@ function glideVowelDistance(x,y){
     Math.abs((vowel.round??0)-target.round)>EPSILON
   ) return Infinity;
 
-  const delta =
-    FEATURE_WEIGHTS.syllabic +
-    FEATURE_WEIGHTS.height*Math.abs((glide.height??0)-(vowel.height??0)) +
-    FEATURE_WEIGHTS.back*Math.abs((glide.back??0)-(vowel.back??0)) +
-    FEATURE_WEIGHTS.round*Math.abs((glide.round??0)-(vowel.round??0)) +
-    FEATURE_WEIGHTS.nasal*Math.abs((glide.nasal??0)-(vowel.nasal??0)) +
-    FEATURE_WEIGHTS.long*Math.abs((glide.long??0)-(vowel.long??0));
+  const articulatoryDelta =
+    weightedDelta(glide,vowel,VOWEL_FEATURES,VOWEL_FEATURE_WEIGHTS) / 100;
 
-  return clip(delta/VOWEL_SUBSTITUTION_SCALE);
+  // Preserve the established glide↔corresponding-high-vowel exception while
+  // keeping it separate from the within-class feature weights.
+  return clip(
+    GLIDE_VOWEL_BASE_DISTANCE +
+    (1 - GLIDE_VOWEL_BASE_DISTANCE) * articulatoryDelta
+  );
 }
 
 function featureDistance(x,y){
   if(x._type!==y._type) return glideVowelDistance(x,y);
 
-  const keys=x._type==='V' ? VOWEL_FEATURES : CONSONANT_FEATURES;
-  const scale=x._type==='V' ? VOWEL_SUBSTITUTION_SCALE : CONSONANT_SUBSTITUTION_SCALE;
+  const isVowel=x._type==='V';
+  const keys=isVowel ? VOWEL_FEATURES : CONSONANT_FEATURES;
+  const weights=isVowel ? VOWEL_FEATURE_WEIGHTS : CONSONANT_FEATURE_WEIGHTS;
 
-  return clip(weightedDelta(x,y,keys)/scale);
+  return clip(weightedDelta(x,y,keys,weights)/100);
 }
 
 function sub(a,b){
@@ -711,7 +725,7 @@ function explain(a,b) {
   if(!x.length||!y.length) {
     return {
       tokensA:x,tokensB:y,score:null,distance:null,normalized:null,
-      alignmentLength:null,pairs:[],methodologyVersion:'2026-10-06-phonetic-v2'
+      alignmentLength:null,normalizationLength:null,pairs:[],methodologyVersion:'2026-10-06-phonetic-v3'
     };
   }
 
@@ -797,13 +811,14 @@ function explain(a,b) {
 
   const distance=dp[x.length][y.length].cost;
   const alignmentLength=dp[x.length][y.length].length;
-  const normalized=alignmentLength ? clip(1-distance/alignmentLength) : null;
+  const normalizationLength=Math.max(x.length,y.length);
+  const normalized=normalizationLength ? clip(1-distance/normalizationLength) : null;
 
   return {
     tokensA:x,tokensB:y,
     score:distance,distance,normalized,similarity:normalized,
-    alignmentLength,pairs,
-    methodologyVersion:'2026-10-06-phonetic-v2'
+    alignmentLength,normalizationLength,pairs,
+    methodologyVersion:'2026-10-06-phonetic-v3'
   };
 }
 
@@ -843,10 +858,11 @@ const api={
     consonant:[...CONSONANT_FEATURES],
     vowel:[...VOWEL_FEATURES]
   },
-  consonantSubstitutionScale:CONSONANT_SUBSTITUTION_SCALE,
-  vowelSubstitutionScale:VOWEL_SUBSTITUTION_SCALE,
+  consonantSubstitutionScale:100,
+  vowelSubstitutionScale:100,
+  glideVowelBaseDistance:GLIDE_VOWEL_BASE_DISTANCE,
   defaultOptions:DEFAULT_OPTIONS,
-  methodologyVersion:'2026-10-06-phonetic-v2'
+  methodologyVersion:'2026-10-06-phonetic-v3'
 };
 
 if(typeof module!=='undefined'&&module.exports)module.exports=api;else global.ALINE=api;
