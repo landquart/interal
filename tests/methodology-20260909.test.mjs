@@ -9,7 +9,12 @@ const near=(a,b)=>assert.ok(Math.abs(a-b)<1e-8,`${a} != ${b}`);
 for(const [a,b,g] of [['abc','xabc',.75],['abc','abcx',.75],['abc','aabc',.875],['abc','abcc',.875],['mā̃','ma',.75],['mā̃'.normalize('NFD'),'ma',.75]]) {near(graphic(a,b).score,g);near(graphic(b,a).score,g);}
 assert.equal(graphic('','a'),null);
 const c={};vm.runInNewContext(fs.readFileSync('indoeuropanvordes/aline.js','utf8'),c);const ph=c.ALINE.normalizedSimilarity;
-near(ph('matre','mʌðə'),.6648099662162161);near(ph('p','k'),.840625);near(ph('i','u'),.6756756756756757);near(ph('a','aː'),.972972972972973);near(ph('a','ã'),.8648648648648649);
+near(Object.values(c.ALINE.featureWeights).reduce((sum,value)=>sum+value,0),100);
+near(ph('matre','mʌðə'),.6266666666666666);
+near(ph('p','k'),.5428571428571427);near(ph('t','s'),.7142857142857144);near(ph('t','d'),.7142857142857142);
+near(ph('i','u'),.33333333333333326);near(ph('a','aː'),.9333333333333333);near(ph('a','ã'),.33333333333333326);
+near(ph('dre','tanə'),.5297619047619047);near(ph('j','i'),.6666666666666666);assert.equal(ph('r','a'),0);
+assert.equal(c.ALINE.methodologyVersion,'2026-10-06-phonetic-v2');
 assert.equal(ph('', 'a'),null);assert.throws(()=>ph('a','☃'));assert.throws(()=>ph('a','a̰'));assert.equal(c.ALINE.tokenize('ts').length,2);assert.equal(c.ALINE.tokenize('t͡s').length,1);assert.equal(c.ALINE.tokenize('eɪ').length,2);
 assert.equal(A({directness:0,field_relatedness:100,domain_shift:0}),0);
 assert.equal(P({association_score:100,frequency_score:0}),0);near(P({association_score:100,frequency_score:8.7856024301}),42.68939906000369);
@@ -20,7 +25,7 @@ assert.equal(meanNonZero([0,10]),5);assert.equal(meanNonZero([null,10]),null);
 assert.equal(internationalismFormPasses('abcd','abxy',2),false);assert.equal(internationalismFormPasses('abcdefgh','abcdexyh',2),true);assert.equal(internationalismFormPasses('abc','abcd',1),false);
 // Nine-language matre example in appendix 6; full precision weights and scores.
 const rows=[['mother','mʌðə',1493000],['mutter','mʊtɐ',133000],['mère','mɛʁ',334000],['madre','maðɾe',561000],['madre','madre',66000],["mat'",'matʲ',210000],['mitera','mitera',13500],['mā̃','mɑ̃ː',611000],['mâdar','mɒːd̪æɹ',82000]];
-near(rows.reduce((s,[w,ipa,n])=>s+n*(graphic('matre',w).score+ph('matre',ipa))/2,0)/3503500*100,60.419444903150264);
+near(rows.reduce((s,[w,ipa,n])=>s+n*(graphic('matre',w).score+ph('matre',ipa))/2,0)/3503500*100,57.69956800569046);
 console.log('Methodology controls passed');
 
 // Unknown corpus data and truncated lists must not silently become zeros.
