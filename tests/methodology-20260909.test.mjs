@@ -17,7 +17,7 @@ for(const key of ['syllabic','aspirated','height','back','round']) near(c.ALINE.
 near(c.ALINE.featureWeights.long,1*ws);
 assert.equal(c.ALINE.relevantFeatures.consonant.join(','),'place,manner,voice,nasal,lateral,retroflex,aspirated');
 assert.equal(c.ALINE.relevantFeatures.vowel.join(','),'height,back,round,nasal,retroflex,long');
-near(ph('matre','mʌðə'),.6266666666666666);
+near(ph('mater','mʌðə'),.540952380952381);
 near(ph('p','k'),.5428571428571427);near(ph('t','s'),.7142857142857144);near(ph('t','d'),.7142857142857142);
 near(ph('i','u'),.33333333333333326);near(ph('a','aː'),.9333333333333333);near(ph('a','ã'),.33333333333333326);
 near(ph('dre','tanə'),.5297619047619047);near(ph('j','i'),2/3);near(ph('w','u'),2/3);assert.equal(ph('j','u'),0);assert.equal(ph('w','i'),0);assert.equal(ph('r','a'),0);near(ph('pa','ia'),1/3);near(ph('pat','a'),1/3);
@@ -30,9 +30,9 @@ const f=words=>calculateAssociativeAffix({en:words}).FAa;
 near(f([{word:'a',ipm:3}]),f(Array.from({length:5},(_,i)=>({word:String(i),ipm:.6}))));near(f([{word:'a',ipm:3},{word:'a',ipm:3}]),f([{word:'a',ipm:3}]));
 assert.equal(meanNonZero([0,10]),5);assert.equal(meanNonZero([null,10]),null);
 assert.equal(internationalismFormPasses('abcd','abxy',2),false);assert.equal(internationalismFormPasses('abcdefgh','abcdexyh',2),true);assert.equal(internationalismFormPasses('abc','abcd',1),false);
-// Nine-language matre example in appendix 6; full precision weights and scores.
-const rows=[['mother','mʌðə',1493000],['mutter','mʊtɐ',133000],['mère','mɛʁ',334000],['madre','maðɾe',561000],['madre','madre',66000],["mat'",'matʲ',210000],['mitera','mitera',13500],['mā̃','mɑ̃ː',611000],['mâdar','mɒːd̪æɹ',82000]];
-near(rows.reduce((s,[w,ipa,n])=>s+n*(graphic('matre',w).score+ph('matre',ipa))/2,0)/3503500*100,57.10587598342701);
+// Nine-language mater root-comparison example; full precision weights and scores.
+const rows=[['mother','mʌðə',1493000],['mutter','mʊtɐ',133000],['mère','mɛʁ',334000],['madr','maðɾ',561000],['madr','madr',66000],['mat','mat',210000],['miter','miter',13500],['mā̃','mɑ̃ː',611000],['mâdar','mɒːd̪æɹ',82000]];
+near(rows.reduce((s,[w,ipa,n])=>s+n*(graphic('mater',w).score+ph('mater',ipa))/2,0)/3503500*100,53.96686986482905);
 console.log('Methodology controls passed');
 
 // Unknown corpus data and truncated lists must not silently become zeros.
