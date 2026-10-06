@@ -2103,9 +2103,16 @@ function getPieIPA(item, langCode) {
   return "";
 }
 
+const INDOEUROPAN_ROOT_FORM_EXCEPTIONS = new Set([
+  // These accepted type-1 forms are already lexical roots; final -e is not an ending.
+  "dre"
+]);
+
 function getInteralComparisonRoot(word, partOfSpeech) {
   const value = String(word || "").trim();
   if (!value) return "";
+
+  if (INDOEUROPAN_ROOT_FORM_EXCEPTIONS.has(value.toLowerCase())) return value;
 
   if (partOfSpeech === "verb") {
     return value.replace(/(?:ar|er|ir|an)$/i, "") || value;
