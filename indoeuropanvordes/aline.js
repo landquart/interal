@@ -61,31 +61,34 @@
    */
 
   const FEATURE_WEIGHTS = {
-    // Syllabicity selects the vowel/consonant class; it adds no distance weight.
-    sonorant: 5,
-    place: 17,
-    manner: 16,
-    voice: 6,
-    nasal: 5,
-    lateral: 3,
-    rhotic: 3,
-    retroflex: 2,
-    aspirated: 2,
-    long: 1,
-    height: 10,
-    back: 8,
-    round: 4
+    // ALINE salience weights (Kondrak), rescaled proportionally so the total is 100.
+    // Internal key "height" corresponds to ALINE High.
+    syllabic: 3.2051282051282053,
+    place: 25.641025641025642,
+    manner: 32.05128205128205,
+    voice: 6.410256410256411,
+    nasal: 6.410256410256411,
+    lateral: 6.410256410256411,
+    retroflex: 6.410256410256411,
+    aspirated: 3.2051282051282053,
+    height: 3.2051282051282053,
+    back: 3.2051282051282053,
+    round: 3.2051282051282053,
+    long: 0.641025641025641
   };
+
+  // ALINE Csub=35 and effective vowel substitution range=15,
+  // rescaled by the same factor 100/156 as FEATURE_WEIGHTS.
+  const CONSONANT_SUBSTITUTION_SCALE = 22.435897435897434;
+  const VOWEL_SUBSTITUTION_SCALE = 9.615384615384615;
 
   const FEATURE_RANGES = {
     syllabic: 1,
-    sonorant: 1,
-    place: 100,
-    manner: 5,
+    place: 1,
+    manner: 1,
     voice: 1,
     nasal: 1,
     lateral: 1,
-    rhotic: 1,
     retroflex: 1,
     aspirated: 1,
     long: 1,
@@ -94,7 +97,29 @@
     round: 1
   };
 
-  const FEATURE_NAMES = Object.keys(FEATURE_WEIGHTS);
+  const PLACE_SCALE = new Map([
+    [10, 1.00], // bilabial
+    [15, 0.95], // labiodental
+    [25, 0.90], // dental
+    [30, 0.85], // alveolar
+    [38, 0.80], // retroflex
+    [45, 0.75], // postalveolar
+    [55, 0.70], // palatal
+    [70, 0.60], // velar
+    [85, 0.50], // uvular
+    [95, 0.30], // pharyngeal
+    [100, 0.10] // glottal
+  ]);
+
+  const MANNER_SCALE = new Map([
+    [1, 1.00],   // stop
+    [1.5, 0.90], // affricate
+    [2, 0.80],   // fricative
+    [3, 0.60],   // nasal: approximant-like manner + Nasal
+    [4, 0.60],   // approximant
+    [4.2, 0.70], // trill/rhotic (taps overridden below)
+    [4.5, 0.60]  // lateral: approximant-like manner + Lateral
+  ]);
 
   function C(place, manner, voice, extra = {}) {
     const sonorant =
@@ -102,11 +127,14 @@
         ? 1
         : 0;
 
+    const mappedPlace = PLACE_SCALE.has(place) ? PLACE_SCALE.get(place) : place;
+    const mappedManner = MANNER_SCALE.has(manner) ? MANNER_SCALE.get(manner) : manner;
+
     return {
       syllabic: 0,
       sonorant,
-      place,
-      manner,
+      place: mappedPlace,
+      manner: mappedManner,
       voice,
       nasal: manner === 3 ? 1 : 0,
       lateral: manner === 4.5 ? 1 : 0,
@@ -515,57 +543,290 @@
     return tokens;
   }
 
-const sets={V:['height','back','round','nasal','long','voice','rhotic'],C:['sonorant','place','manner','voice','nasal','lateral','rhotic','retroflex','aspirated','long','round']};
 const clip=x=>Math.max(0,Math.min(1,x));
 const featureKeys = Object.keys(BASE_FEATURES).sort((a,b)=>b.length-a.length);
+const CONSONANT_FEATURES = ['place','manner','voice','nasal','lateral','retroflex','aspirated','long','round'];
+const VOWEL_FEATURES = ['height','back','round','nasal','retroflex','long'];
+const GLIDES = new Set(['j','w','ɥ','ɰ']);
+const EPSILON = 1e-12;
+
+// ALINE distinguishes trills from taps/flaps. The legacy inventory used one code.
+if (BASE_FEATURES['ɾ']) BASE_FEATURES['ɾ'].manner = 0.65;
+if (BASE_FEATURES['ɽ']) BASE_FEATURES['ɽ'].manner = 0.65;
+
+// R-coloured vowels use the ALINE Retroflex dimension rather than a custom rhotic weight.
+if (BASE_FEATURES['ɚ']) BASE_FEATURES['ɚ'].retroflex = 1;
+if (BASE_FEATURES['ɝ']) BASE_FEATURES['ɝ'].retroflex = 1;
+
 function features(input){
- let t=normalizeIPA(input);const keys=featureKeys;let base,rest;
- if(t.includes('͡')){const raw=t.replace('͡','');base=keys.find(k=>k.length===2&&raw.startsWith(k));if(base)rest=raw.slice(base.length);}
- if(!base){base=BASE_FEATURES[t[0]]?t[0]:null;rest=t.slice(1);}
- if(!base){t=t.normalize('NFD');base=BASE_FEATURES[t[0]]?t[0]:null;rest=t.slice(1);}
- if(!base)throw Error('unknown '+input);
- const f={...BASE_FEATURES[base]},cls=f.syllabic?'V':'C';
- if(['ɛ','œ','ʌ','ɔ','ɜ','ɞ','ɝ'].includes(base))f.height=.5;
- if(base==='ɐ')f.height=.25;if(['ᵻ','ᵿ'].includes(base))f.height=.85;
- const move=(key,target,k)=>f[key]+=k*(target-f[key]);
- for(const m of rest){switch(m){
- case 'ː':f.long=1;break;case 'ˑ':f.long=Math.max(f.long,.5);break;
- case 'ʰ':f.aspirated=1;break;case 'ʱ':f.aspirated=1;f.voice=1;break;
- case '̃':f.nasal=1;break;case '˞':f.rhotic=1;break;case '̥':f.voice=0;break;case '̬':f.voice=1;break;case '̪':f.place=25;break;
- case 'ʲ':if(cls==='C')move('place',55,.35);else{move('back',0,.35);f.height=clip(f.height+.1);}break;
- case 'ʷ':f.round=1;if(cls==='V')f.back=Math.max(f.back,.6);break;
- case 'ˠ':if(cls==='C')move('place',70,.3);else move('back',1,.3);break;
- case 'ˤ':if(cls==='C')move('place',95,.3);else move('back',1,.3);break;
- case '̺':case '̻':if(cls==='C')move('place',30,.25);break;
- case '̝':case '̞':if(cls==='V')f.height=clip(f.height+(m==='̝'?.1:-.1));else f.manner=Math.max(1,Math.min(4.5,f.manner+(m==='̝'?-.15:.15)));break;
- case '̟':case '̠':if(cls==='C')move('place',m==='̟'?0:100,.08);break;
- case '̈':if(cls==='V')move('back',.5,.5);break;
- case '̹':case '̜':f.round=clip(f.round+(m==='̹'?.3:-.3));break;
- case '̚':f.manner=1;break;case '̩':case '̯':break;
- default:throw Error('unknown modifier '+m+' in '+input);
- }}
- f._type=cls;return f;
+  let t=normalizeIPA(input).normalize('NFC');
+  let base=featureKeys.find(k=>t.startsWith(k));
+
+  if(!base){
+    t=t.normalize('NFD');
+    base=featureKeys.find(k=>t.startsWith(k));
+  }
+
+  if(!base) throw Error('unknown '+input);
+
+  const f={...BASE_FEATURES[base]};
+  const cls=f.syllabic ? 'V' : 'C';
+
+  // ALINE High is a three-level high/mid/low dimension.
+  if(cls==='V') f.height=f.height>=.8 ? 1 : (f.height<=.25 ? 0 : .5);
+
+  const rest=t.slice(base.length);
+  const move=(key,target,k)=>{f[key]+=k*(target-f[key]);};
+
+  for(const m of rest){
+    switch(m){
+      case 'ː': f.long=1; break;
+      case 'ˑ': f.long=Math.max(f.long,.5); break;
+      case 'ʰ': f.aspirated=1; break;
+      case 'ʱ': f.aspirated=1; f.voice=1; break;
+      case '̃': f.nasal=1; break;
+      case '˞': f.retroflex=1; break;
+      case '̥': f.voice=0; break;
+      case '̬': f.voice=1; break;
+      case '̪': if(cls==='C') f.place=.90; break;
+      case 'ʲ':
+        if(cls==='C') move('place',.70,.35);
+        else { move('back',0,.35); f.height=clip(f.height+.1); }
+        break;
+      case 'ʷ':
+        f.round=1;
+        if(cls==='V') f.back=Math.max(f.back,.6);
+        break;
+      case 'ˠ':
+        if(cls==='C') move('place',.60,.3);
+        else move('back',1,.3);
+        break;
+      case 'ˤ':
+        if(cls==='C') move('place',.30,.3);
+        else move('back',1,.3);
+        break;
+      case '̺':
+      case '̻': if(cls==='C') move('place',.85,.25); break;
+      case '̝':
+        if(cls==='V') f.height=clip(f.height+.1);
+        else f.manner=clip(f.manner+.05);
+        break;
+      case '̞':
+        if(cls==='V') f.height=clip(f.height-.1);
+        else f.manner=clip(f.manner-.05);
+        break;
+      case '̟': if(cls==='C') move('place',1,.08); break;
+      case '̠': if(cls==='C') move('place',.10,.08); break;
+      case '̈': if(cls==='V') move('back',.5,.5); break;
+      case '̹': f.round=clip(f.round+.3); break;
+      case '̜': f.round=clip(f.round-.3); break;
+      case '̚': f.manner=1; break;
+      // Syllabic consonants stay in the consonant class; non-syllabic
+      // vowel marks likewise do not move a segment into the other class.
+      case '̩':
+      case '̯': break;
+      default: throw Error('unknown modifier '+m+' in '+input);
+    }
+  }
+
+  f._type=cls;
+  f._base=base;
+  return f;
 }
-function sub(a,b){return featureDistance(features(a),features(b));}
-function featureDistance(x,y){if(x._type!==y._type)return 1;const ks=sets[x._type];return clip(ks.reduce((s,k)=>s+FEATURE_WEIGHTS[k]*Math.abs(x[k]-y[k])/FEATURE_RANGES[k],0)/ks.reduce((s,k)=>s+FEATURE_WEIGHTS[k],0));}
+
+function weightedDelta(x,y,keys){
+  return keys.reduce((sum,key)=>{
+    const weight=FEATURE_WEIGHTS[key] || 0;
+    const range=FEATURE_RANGES[key] || 1;
+    return sum + weight*Math.abs((x[key]??0)-(y[key]??0))/range;
+  },0);
+}
+
+function isHighVowel(f){
+  return f._type==='V' && f.height>=.85;
+}
+
+function glideVowelDistance(x,y){
+  let glide=x, vowel=y;
+
+  if(glide._type==='V'){
+    glide=y;
+    vowel=x;
+  }
+
+  if(glide._type!=='C' || vowel._type!=='V') return Infinity;
+  if(!GLIDES.has(glide._base) || !isHighVowel(vowel)) return Infinity;
+
+  const delta =
+    FEATURE_WEIGHTS.syllabic +
+    FEATURE_WEIGHTS.height*Math.abs((glide.height??0)-(vowel.height??0)) +
+    FEATURE_WEIGHTS.back*Math.abs((glide.back??0)-(vowel.back??0)) +
+    FEATURE_WEIGHTS.round*Math.abs((glide.round??0)-(vowel.round??0)) +
+    FEATURE_WEIGHTS.nasal*Math.abs((glide.nasal??0)-(vowel.nasal??0)) +
+    FEATURE_WEIGHTS.long*Math.abs((glide.long??0)-(vowel.long??0));
+
+  return clip(delta/VOWEL_SUBSTITUTION_SCALE);
+}
+
+function featureDistance(x,y){
+  if(x._type!==y._type) return glideVowelDistance(x,y);
+
+  const keys=x._type==='V' ? VOWEL_FEATURES : CONSONANT_FEATURES;
+  const scale=x._type==='V' ? VOWEL_SUBSTITUTION_SCALE : CONSONANT_SUBSTITUTION_SCALE;
+
+  return clip(weightedDelta(x,y,keys)/scale);
+}
+
+function sub(a,b){
+  return featureDistance(features(a),features(b));
+}
+
+function betterCandidate(candidate,best){
+  if(!best) return true;
+  if(candidate.cost < best.cost-EPSILON) return true;
+  if(Math.abs(candidate.cost-best.cost)<=EPSILON && candidate.length>best.length) return true;
+  return false;
+}
 
 function explain(a,b) {
- const x=tokenize(a),y=tokenize(b);
- if(!x.length||!y.length) return {tokensA:x,tokensB:y,score:null,distance:null,normalized:null,pairs:[],methodologyVersion:'2026-09-09'};
- const fx=x.map(features),fy=y.map(features);
- const dp=Array.from({length:x.length+1},(_,i)=>[i,...Array(y.length).fill(0)]);
- const path=Array.from({length:x.length+1},()=>Array(y.length+1));
- for(let j=0;j<=y.length;j++)dp[0][j]=j;
- for(let i=1;i<=x.length;i++)for(let j=1;j<=y.length;j++){
-  const values=[dp[i-1][j-1]+featureDistance(fx[i-1],fy[j-1]),dp[i-1][j]+1,dp[i][j-1]+1];
-  dp[i][j]=Math.min(...values);path[i][j]=values.indexOf(dp[i][j]);
- }
- const pairs=[];let i=x.length,j=y.length;
- while(i||j){const k=!i?2:!j?1:path[i][j];const aa=k===2?'':x[--i],bb=k===1?'':y[--j];const cost=aa&&bb?sub(aa,bb):1;pairs.push({a:aa||'—',b:bb||'—',distance:cost,similarity:1-cost,note:aa&&bb?'':'gap'});}
- pairs.reverse();const distance=dp[x.length][y.length],normalized=1-distance/Math.max(x.length,y.length);
- return {tokensA:x,tokensB:y,score:distance,distance,normalized,similarity:normalized,pairs,methodologyVersion:'2026-09-09'};
+  const x=tokenize(a), y=tokenize(b);
+
+  if(!x.length||!y.length) {
+    return {
+      tokensA:x,tokensB:y,score:null,distance:null,normalized:null,
+      alignmentLength:null,pairs:[],methodologyVersion:'2026-10-06-phonetic-v2'
+    };
+  }
+
+  const fx=x.map(features), fy=y.map(features);
+  const dp=Array.from({length:x.length+1},()=>Array(y.length+1).fill(null));
+  const path=Array.from({length:x.length+1},()=>Array(y.length+1).fill(null));
+
+  dp[0][0]={cost:0,length:0};
+
+  for(let i=1;i<=x.length;i++){
+    dp[i][0]={cost:i,length:i};
+    path[i][0]=1;
+  }
+
+  for(let j=1;j<=y.length;j++){
+    dp[0][j]={cost:j,length:j};
+    path[0][j]=2;
+  }
+
+  for(let i=1;i<=x.length;i++){
+    for(let j=1;j<=y.length;j++){
+      let best=null, bestPath=null;
+      const sd=featureDistance(fx[i-1],fy[j-1]);
+
+      // Ordinary vowel-consonant substitutions are forbidden (Infinity).
+      // High-vowel/glide correspondences are the only cross-class exception.
+      if(Number.isFinite(sd)){
+        const candidate={
+          cost:dp[i-1][j-1].cost+sd,
+          length:dp[i-1][j-1].length+1
+        };
+        if(betterCandidate(candidate,best)){
+          best=candidate;
+          bestPath=0;
+        }
+      }
+
+      const deletion={
+        cost:dp[i-1][j].cost+1,
+        length:dp[i-1][j].length+1
+      };
+      if(betterCandidate(deletion,best)){
+        best=deletion;
+        bestPath=1;
+      }
+
+      const insertion={
+        cost:dp[i][j-1].cost+1,
+        length:dp[i][j-1].length+1
+      };
+      if(betterCandidate(insertion,best)){
+        best=insertion;
+        bestPath=2;
+      }
+
+      dp[i][j]=best;
+      path[i][j]=bestPath;
+    }
+  }
+
+  const pairs=[];
+  let i=x.length,j=y.length;
+
+  while(i||j){
+    const k=!i ? 2 : !j ? 1 : path[i][j];
+
+    if(k===0){
+      const aa=x[i-1], bb=y[j-1];
+      const distance=featureDistance(fx[i-1],fy[j-1]);
+      pairs.push({a:aa,b:bb,distance,similarity:1-distance,note:''});
+      i--;
+      j--;
+    } else if(k===1){
+      pairs.push({a:x[i-1],b:'—',distance:1,similarity:0,note:'gap'});
+      i--;
+    } else {
+      pairs.push({a:'—',b:y[j-1],distance:1,similarity:0,note:'gap'});
+      j--;
+    }
+  }
+
+  pairs.reverse();
+
+  const distance=dp[x.length][y.length].cost;
+  const alignmentLength=dp[x.length][y.length].length;
+  const normalized=alignmentLength ? clip(1-distance/alignmentLength) : null;
+
+  return {
+    tokensA:x,tokensB:y,
+    score:distance,distance,normalized,similarity:normalized,
+    alignmentLength,pairs,
+    methodologyVersion:'2026-10-06-phonetic-v2'
+  };
 }
-function unknownSegments(input){return tokenize(input).filter(s=>{try{features(s);return false;}catch{return true;}});}
-const api={normalizeIPA,tokenize,unknownSegments,getFeatures:features,segmentDistance:sub,segmentSimilarity:(a,b)=>1-sub(a,b),explain,align:explain,rawScore:(a,b)=>explain(a,b).distance,normalizedSimilarity:(a,b)=>explain(a,b).normalized,distance:(a,b)=>explain(a,b).distance,features:BASE_FEATURES,featureWeights:FEATURE_WEIGHTS,featureRanges:FEATURE_RANGES,defaultOptions:DEFAULT_OPTIONS,methodologyVersion:'2026-09-09'};
+
+function unknownSegments(input){
+  return tokenize(input).filter(seg=>{
+    try{
+      features(seg);
+      return false;
+    }catch{
+      return true;
+    }
+  });
+}
+
+const api={
+  normalizeIPA,
+  tokenize,
+  unknownSegments,
+  getFeatures:features,
+  segmentDistance:sub,
+  segmentSimilarity:(a,b)=>{
+    const d=sub(a,b);
+    return Number.isFinite(d) ? 1-d : 0;
+  },
+  explain,
+  align:explain,
+  rawScore:(a,b)=>explain(a,b).distance,
+  normalizedSimilarity:(a,b)=>explain(a,b).normalized,
+  distance:(a,b)=>{
+    const n=explain(a,b).normalized;
+    return n==null ? null : 1-n;
+  },
+  features:BASE_FEATURES,
+  featureWeights:FEATURE_WEIGHTS,
+  featureRanges:FEATURE_RANGES,
+  consonantSubstitutionScale:CONSONANT_SUBSTITUTION_SCALE,
+  vowelSubstitutionScale:VOWEL_SUBSTITUTION_SCALE,
+  defaultOptions:DEFAULT_OPTIONS,
+  methodologyVersion:'2026-10-06-phonetic-v2'
+};
+
 if(typeof module!=='undefined'&&module.exports)module.exports=api;else global.ALINE=api;
 })(typeof window!=='undefined'?window:globalThis);
