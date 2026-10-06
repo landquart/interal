@@ -40,8 +40,16 @@ assert.equal(registryIds.has('iv_1KjajlU3SH8Z'), true, 'one dre card must remain
 assert.equal(registryIds.has('iv_3e1e5e67755f4b9aabe2758a1fe414e2'), true, 'mater card must remain in the registry');
 
 const indoEuropeanPage = await readFile('indoeuropanvordes/index.html', 'utf8');
-assert.match(indoEuropeanPage, /INDOEUROPAN_ROOT_FORM_EXCEPTIONS[\s\S]*"dre"/, 'dre must be preserved as a complete Indo-European root');
-assert.match(indoEuropeanPage, /if \(INDOEUROPAN_ROOT_FORM_EXCEPTIONS\.has\(value\.toLowerCase\(\)\)\) return value;/, 'root-form exception must bypass noun ending stripping');
+assert.match(
+  indoEuropeanPage,
+  /function getInteralComparisonRoot\(word, partOfSpeech\) \{[\s\S]*?return String\(word \|\| ""\)\.trim\(\);[\s\S]*?\}/,
+  'PI calculator must use the supplied Interal form without stripping endings'
+);
+assert.doesNotMatch(
+  indoEuropeanPage,
+  /getInteralComparisonRoot[\s\S]{0,700}replace\(\/(?:\\\(\?:ar\|er\|ir\|an\\\)|\\\[aeo\\\]|i)/,
+  'PI calculator must not strip noun, adjective, or verb endings'
+);
 
 const repoFiles = (await readdir('.', { recursive: true })).filter((file) => typeof file === 'string' && !file.startsWith('node_modules/') && !file.startsWith('.git/'));
 const forbidden = [
