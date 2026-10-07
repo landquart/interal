@@ -46,7 +46,7 @@ jobs:
       - name: Replay planning from saved frames without corpus reclustering
         run: |
           node --max-old-space-size=6144 scripts/build-associative-v6-queue-organization.mjs /tmp/v6-planning-replay
-          diff -r audit/associative-family-v6/prompt08-coverage-20261005/planning /tmp/v6-planning-replay
+          diff -r audit/associative-family-v6/prompt09-shadow-20261007/planning /tmp/v6-planning-replay
       - name: Replay certification and verify exact history/corrections/overlap
         run: |
           node --max-old-space-size=4096 scripts/build-associative-v6-history-certification.mjs /tmp/v6-certification-replay
