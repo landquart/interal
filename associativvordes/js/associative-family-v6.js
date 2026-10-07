@@ -1,3 +1,4 @@
+import {buildSearchForm} from './search-normalizer.js';
 // Parallel v6 runtime: the caller supplies the single authoritative catalog.
 export const EDGE_STATUSES = Object.freeze(['accepted','excluded','uncertain','pending']);
 export const REALIZATION_TYPES = Object.freeze(['canonical_reflex','lexical_branch_realization','derivational_stem','inflectional_form','query_alias','historical_evidence_form']);
@@ -16,6 +17,13 @@ export function generalRealizations(catalog, familyId, language) {
   return catalog.families.find(f => f.id === familyId)?.reflexes.filter(r => r.language === language && r.general_family_realization) || [];
 }
 export const normalizeHead = s => String(s).normalize('NFC').toLowerCase();
+// Search equivalence is retrieval only. Never use this key for head IDs or edges.
+export const v6QueryKey = buildSearchForm;
+export const v5EvidenceQueryKey = s => buildSearchForm(s).replace(/[^a-z0-9]/g, '');
+export const V6_LANGUAGES = Object.freeze(['en','de','fr','es','it','ru']);
+function validateQueryLanguage(language) {
+  if (language != null && !V6_LANGUAGES.includes(language)) throw Error('Unsupported v6 query language');
+}
 export function validateCatalog(catalog) {
   if (catalog?.schema_version !== 6 || catalog.production_enabled !== false) throw Error('Invalid parallel v6 catalog');
   const ids = new Set();
@@ -29,8 +37,9 @@ export function validateCatalog(catalog) {
   return catalog;
 }
 export function resolveV6Alias(catalog, query) {
-  const q = normalizeHead(query);
-  return catalog.families.filter(f => [f.canonical,...f.aliases].some(a => normalizeHead(a) === q)).map(f => f.id);
+  const q = v6QueryKey(query);
+  if (!q) return [];
+  return catalog.families.filter(f => [f.canonical,...f.aliases].some(a => v6QueryKey(a) === q)).map(f => f.id);
 }
 export function classifyV5Object(family, catalog) {
   const promoted = catalog.families.find(f => f.legacy_ids.includes(family.id));
@@ -71,8 +80,9 @@ export function generateV6Memberships({catalog,heads,edges,links,corpus,correcti
   return out.filter(r=>!corrections.has(r.language+'\0'+r.family_id+'\0'+r.lemma_id)).sort((a,b) => JSON.stringify(a).localeCompare(JSON.stringify(b),'en'));
 }
 export function searchV6(index, query, language) {
+  validateQueryLanguage(language);
   const ids = new Set(resolveV6Alias(index.catalog,query));
-  return index.memberships.filter(m => ids.has(m.family_id) && (!language || m.language === language));
+  return index.memberships.filter(m => ids.has(m.family_id) && (language == null || m.language === language));
 }
 export function stemProposal(value, proposedRoot) {
   return {evidence_form:value,proposed_root:proposedRoot,status:'proposal_requires_review',family_id:null};
@@ -103,7 +113,27 @@ export async function loadParallelV6({readJson,base='associativvordes/family-ind
   const bucket=value=>{let hash=0x811c9dc5;for(const c of value){hash^=c.codePointAt(0);hash=Math.imul(hash,0x01000193);}return ((hash>>>0)%256).toString(16).padStart(2,'0');};
   const old='associativvordes/family-index-v5';
   return {catalog,memberships,search:(q,l)=>searchV6({catalog,memberships},q,l),
-    async routeQuery(query){const q=normalizeHead(query),aliases=await readJson(old+'/aliases/'+bucket(q)+'.json.gz');return {query:q,family_targets:resolveV6Alias(catalog,q),evidence_targets:(aliases[q]||[]).filter(id=>!catalog.families.some(f=>f.legacy_ids.includes(id))),establishes_membership:false};},
+    async routeQuery(query,language){
+      validateQueryLanguage(language);
+      const q=v6QueryKey(query),sourceKey=v5EvidenceQueryKey(query);
+      const aliasPath=old+'/aliases/'+bucket(sourceKey)+'.json.gz';
+      const aliases=sourceKey?await readJson(aliasPath):{};
+      const evidenceTargets=[];
+      for(const id of [...new Set(aliases[sourceKey]||[])]) {
+        if(catalog.families.some(f=>f.legacy_ids.includes(id)))continue;
+        // Scope by actual source rows, not declared language_support or another route.
+        if(language != null){
+          if(id.startsWith('surface:') && id.split(':')[1]!==language)continue;
+          const rows=await readJson(old+'/members/'+language+'/'+bucket(id)+'.json.gz');
+          if(!rows[id]?.length)continue;
+        }
+        evidenceTargets.push(id);
+      }
+      const familyTargets=resolveV6Alias(catalog,query);
+      return {query:q,original_query:String(query??''),query_key:q,source_evidence_key:sourceKey,language_scope:language??null,
+        family_targets:familyTargets,family_routes:familyTargets.map(id=>({family_id:id,language_scope:language??null,accepted_membership_count:memberships.filter(m=>m.family_id===id&&(language==null||m.language===language)).length})),
+        evidence_targets:evidenceTargets,evidence_routes:evidenceTargets.map(id=>({id,kind:id.startsWith('surface:')?'surface_component_candidate':'etymological_evidence_cluster',language_scope:language??null,source_alias_locator:{path:aliasPath,key:sourceKey,id},establishes_membership:false})),establishes_membership:false};
+    },
     async getEvidenceNode(id){if(!id.startsWith('ety:'))throw Error('Not an etymological node');const rows=await readJson(old+'/families/'+bucket(id)+'.json.gz');if(!rows[id])return null;return {legacy_id:id,etymon_keys:rows[id].etymon_keys||[],relation_evidence:rows[id].relation_evidence||[],source_locator:{path:old+'/families/'+bucket(id)+'.json.gz',id},associative_family_id:null};},
     async getComponentCandidate(id){if(!id.startsWith('surface:'))throw Error('Not a component candidate');const rows=await readJson(old+'/families/'+bucket(id)+'.json.gz');if(!rows[id])return null;return {id,language:id.split(':')[1],surface:rows[id].canonical,associative_family_id:null,evidence:rows[id].relation_evidence||[],source_locator:{path:old+'/families/'+bucket(id)+'.json.gz',id}};},
     async getCorpusRecord(locator){const rows=await readJson(locator.path);return rows[locator.family_id]?.find(m=>m.lemma_id===locator.lemma_id)||null;}

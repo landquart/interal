@@ -67,3 +67,9 @@ jobs:
           diff -r audit/associative-family-v6/prompt08-coverage-20261005/packet-lifecycle /tmp/v6-packet-lifecycle-replay
           python scripts/measure-associative-v6-candidate-coverage.py /tmp/v6-coverage-replay
           diff -r audit/associative-family-v6/prompt08-coverage-20261005/research-coverage /tmp/v6-coverage-replay
+
+      - name: Audit shadow aliases, language routes and original measured rows
+        run: |
+          node --test tests/associative-family-v6-shadow.test.mjs
+          node --max-old-space-size=4096 scripts/audit-associative-v6-shadow.mjs /tmp/v6-shadow-replay
+          diff -r audit/associative-family-v6/prompt09-shadow-20261007/generated /tmp/v6-shadow-replay
