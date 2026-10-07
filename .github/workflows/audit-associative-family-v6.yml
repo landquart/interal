@@ -73,3 +73,6 @@ jobs:
           node --test tests/associative-family-v6-shadow.test.mjs
           node --max-old-space-size=4096 scripts/audit-associative-v6-shadow.mjs /tmp/v6-shadow-replay
           diff -r audit/associative-family-v6/prompt09-shadow-20261007/generated /tmp/v6-shadow-replay
+
+      - name: Independent foundation closure gate (not linguistic certification)
+        run: node --max-old-space-size=4096 scripts/audit-associative-v6-independent.mjs --strict /tmp/v6-independent-readiness.json
