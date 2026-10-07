@@ -156,6 +156,8 @@ function romanceNominalStem(word, language, partOfSpeech) {
 function rootFor(item, language, cell) {
   const word = String(cell.word || '');
   if (!word) return '';
+  const curatedRoot = String(cell.root || '').trim();
+  if (curatedRoot) return curatedRoot;
   if (explicit[language]?.[word] !== undefined) return explicit[language][word];
 
   if (item.part_of_speech === 'verb' && ['de', 'fr', 'es', 'it'].includes(language)) {
@@ -182,6 +184,8 @@ function rootFor(item, language, cell) {
 function romanizedRootFor(item, language, cell, root) {
   const romanization = String(cell.romanization || '');
   if (!romanization) return '';
+  const curatedRootRomanization = String(cell.root_romanization || '').trim();
+  if (curatedRootRomanization) return curatedRootRomanization;
 
   if (language === 'hi') {
     if (cell.word === 'ज़िंदा') return romanization;
@@ -303,6 +307,8 @@ function greekRootToIpa(root) {
 function deriveRootIpa(item, language, cell, root, rootRomanization) {
   const ipa = String(cell.ipa || '');
   if (!ipa) return '';
+  const curatedRootIpa = String(cell.root_ipa || '').trim();
+  if (curatedRootIpa) return curatedRootIpa;
   if (root === cell.word) return ipa;
   if (explicitRootIpa[language]?.[root]) return explicitRootIpa[language][root];
 
