@@ -348,14 +348,15 @@
         "needs_verification": true
       },
       "fa": {
-        "word": "که",
-        "root": "که",
-        "romanization": "kah",
-        "root_romanization": "kah",
-        "ipa": "kæh",
-        "root_ipa": "kæh",
-        "pronunciation": "Iranian Persian, formal",
-        "transcription_source": "open-dict-data/ipa-dict"
+        "word": "کی",
+        "root": "کی",
+        "romanization": "ki",
+        "root_romanization": "ki",
+        "ipa": "kiː",
+        "root_ipa": "kiː",
+        "pronunciation": "Iranian Persian, common",
+        "transcription_source": "manual broad transcription",
+        "needs_verification": true
       }
     },
     {
@@ -1978,19 +1979,19 @@
         "root_ipa": "ɔkkj"
       },
       "ru": {
-        "word": "око",
-        "root": "ок",
-        "ipa": "ˈoko",
-        "root_ipa": "ok"
+        "word": "глаз",
+        "root": "глаз",
+        "ipa": "ɡlas",
+        "root_ipa": "ɡlas"
       },
       "el": {
-        "word": "όμμα",
-        "root": "ομματ",
-        "ipa": "ˈoma",
-        "root_ipa": "ommat"
+        "word": "μάτι",
+        "root": "ματ",
+        "ipa": "ˈmati",
+        "root_ipa": "mat"
       },
       "status": "weak",
-      "note": "Русское око и греческое όμμα/οφθαλμός книжнее обычных глаз/μάτι.",
+      "note": "Для PI используются обычные современные эквиваленты; исторические око и όμμα не подставляются вместо глаз/μάτι.",
       "hi": {
         "word": "आँख",
         "root": "आँख",
@@ -2054,10 +2055,10 @@
         "root_ipa": "noɡt"
       },
       "el": {
-        "word": "όνυχας",
-        "root": "ονυχ",
-        "ipa": "ˈonixas",
-        "root_ipa": "onix"
+        "word": "νύχι",
+        "root": "νυχ",
+        "ipa": "ˈniçi",
+        "root_ipa": "niç"
       },
       "status": "moderate",
       "hi": {
@@ -2187,10 +2188,10 @@
         "root_ipa": "d͡ʒɔɡ"
       },
       "ru": {
-        "word": "иго",
-        "root": "иг",
-        "ipa": "ˈiɡə",
-        "root_ipa": "iɡ"
+        "word": "ярмо",
+        "root": "ярм",
+        "ipa": "jɪrˈmo",
+        "root_ipa": "jɪrm"
       },
       "el": {
         "word": "ζυγό",
@@ -2294,7 +2295,7 @@
     {
       "id": 34,
       "pie": "*médʰyos",
-      "part_of_speech": "adjective",
+      "part_of_speech": "noun",
       "en": {
         "word": "middle",
         "root": "middle",
@@ -2320,21 +2321,21 @@
         "root_ipa": "meðj"
       },
       "it": {
-        "word": "medio",
-        "root": "medi",
-        "ipa": "ˈmɛdjo",
-        "root_ipa": "mɛdj"
+        "word": "mezzo",
+        "root": "mezz",
+        "ipa": "ˈmɛddzo",
+        "root_ipa": "mɛddz"
       },
       "ru": {
-        "word": "между",
-        "root": "между",
-        "ipa": "ˈmʲeʐdu",
-        "root_ipa": "ˈmʲeʐdu"
+        "word": "середина",
+        "root": "середин",
+        "ipa": "sʲɪrʲɪˈdʲinə",
+        "root_ipa": "sʲerʲedʲin"
       },
       "el": {
-        "word": "μέσος",
+        "word": "μέση",
         "root": "μεσ",
-        "ipa": "ˈmesos",
+        "ipa": "ˈmesi",
         "root_ipa": "mes"
       },
       "status": "moderate",
@@ -2358,7 +2359,8 @@
         "root_ipa": "miːjɒːn",
         "pronunciation": "Iranian Persian, formal",
         "transcription_source": "open-dict-data/ipa-dict"
-      }
+      },
+      "note": "Строка нормализована к существительному «середина / middle», чтобы не смешивать его с русским предлогом между."
     },
     {
       "id": 35,
@@ -2516,22 +2518,22 @@
         "root_ipa": "liːɡ"
       },
       "fr": {
-        "word": "lit",
-        "root": "lit",
-        "ipa": "li",
-        "root_ipa": "li"
+        "word": "s'allonger",
+        "root": "allong",
+        "ipa": "salɔ̃ʒe",
+        "root_ipa": "alɔ̃ʒ"
       },
       "es": {
-        "word": "lecho",
-        "root": "lech",
-        "ipa": "ˈlet͡ʃo",
-        "root_ipa": "let͡ʃ"
+        "word": "acostarse",
+        "root": "acost",
+        "ipa": "akosˈtaɾse",
+        "root_ipa": "akost"
       },
       "it": {
-        "word": "letto",
-        "root": "lett",
-        "ipa": "ˈletto",
-        "root_ipa": "lett"
+        "word": "sdraiarsi",
+        "root": "sdrai",
+        "ipa": "zdraˈjarsi",
+        "root_ipa": "zdraj"
       },
       "ru": {
         "word": "лежать",
@@ -2540,13 +2542,13 @@
         "root_ipa": "lʲeʐ"
       },
       "el": {
-        "word": "λέχος",
-        "root": "λεχ",
-        "ipa": "ˈlexos",
-        "root_ipa": "lex"
+        "word": "ξαπλώνω",
+        "root": "ξαπλων",
+        "ipa": "ksaˈplono",
+        "root_ipa": "ksaplon"
       },
       "status": "weak",
-      "note": "Во французском/испанском/итальянском и греческом лучше сохранились существительные типа 'ложе/кровать', а не обычный глагол.",
+      "note": "Для PI используются современные глагольные эквиваленты «лежать/лечь», а не исторические существительные «ложе/кровать».",
       "hi": {
         "word": "लेटना",
         "root": "लेट",
@@ -2749,13 +2751,13 @@
         "root_ipa": "snʲek"
       },
       "el": {
-        "word": "νιφάδα",
-        "root": "νιφαδ",
-        "ipa": "niˈfaða",
-        "root_ipa": "nifað"
+        "word": "χιόνι",
+        "root": "χιον",
+        "ipa": "ˈçoni",
+        "root_ipa": "çon"
       },
       "status": "weak",
-      "note": "Греческое χιόνι обычно не из этого ряда; νιφάδα 'снежинка/хлопья' ближе, но семантически уже.",
+      "note": "Греческий эквивалент исправлен с νιφάδα «снежинка» на χιόνι «снег».",
       "hi": {
         "word": "बर्फ़",
         "root": "बर्फ़",
@@ -2795,37 +2797,37 @@
         "root_ipa": "fʊrt"
       },
       "fr": {
-        "word": "port",
-        "root": "port",
-        "ipa": "pɔʁ",
-        "root_ipa": "pɔʁ"
+        "word": "gué",
+        "root": "gué",
+        "ipa": "ɡe",
+        "root_ipa": "ɡe"
       },
       "es": {
-        "word": "puerto",
-        "root": "puert",
-        "ipa": "ˈpweɾto",
-        "root_ipa": "pweɾt"
+        "word": "vado",
+        "root": "vad",
+        "ipa": "ˈbaðo",
+        "root_ipa": "bað"
       },
       "it": {
-        "word": "porto",
-        "root": "port",
-        "ipa": "ˈpɔrto",
-        "root_ipa": "pɔrt"
+        "word": "guado",
+        "root": "guad",
+        "ipa": "ˈɡwado",
+        "root_ipa": "ɡwad"
       },
       "ru": {
-        "word": "порог",
-        "root": "порог",
-        "ipa": "pɐˈrok",
-        "root_ipa": "pɐˈrok"
+        "word": "брод",
+        "root": "брод",
+        "ipa": "brot",
+        "root_ipa": "brot"
       },
       "el": {
-        "word": "πόρος",
-        "root": "πορ",
-        "ipa": "ˈporos",
-        "root_ipa": "por"
+        "word": "πέρασμα",
+        "root": "περασμ",
+        "ipa": "ˈperazma",
+        "root_ipa": "perazm"
       },
       "status": "weak",
-      "note": "Корень широко представлен, но современные значения и формы неоднородны.",
+      "note": "Для PI используются прямые современные эквиваленты «брод / ford», а не этимологически близкие port/puerto/порог/πόρος с другими значениями.",
       "hi": {
         "word": "घाट",
         "root": "घाट",
@@ -2859,52 +2861,52 @@
         "root_ipa": "kɪn"
       },
       "de": {
-        "word": "Kind",
-        "root": "Kind",
-        "ipa": "kɪnt",
-        "root_ipa": "kɪnt"
+        "word": "Verwandte",
+        "root": "Verwandt",
+        "ipa": "fɛɐˈvantə",
+        "root_ipa": "fɛɐvant"
       },
       "fr": {
-        "word": "genre",
-        "root": "genre",
-        "ipa": "ʒɑ̃ʁ",
-        "root_ipa": "ʒɑ̃ʁ"
+        "word": "parenté",
+        "root": "parenté",
+        "ipa": "paʁɑ̃te",
+        "root_ipa": "paʁɑ̃te"
       },
       "es": {
-        "word": "gente",
-        "root": "gent",
-        "ipa": "ˈxente",
-        "root_ipa": "xent"
+        "word": "parientes",
+        "root": "parient",
+        "ipa": "paˈɾjentes",
+        "root_ipa": "paɾjent"
       },
       "it": {
-        "word": "gente",
-        "root": "gent",
-        "ipa": "ˈd͡ʒɛnte",
-        "root_ipa": "d͡ʒɛnt"
+        "word": "parenti",
+        "root": "parent",
+        "ipa": "paˈrɛnti",
+        "root_ipa": "parɛnt"
       },
       "ru": {
-        "word": "род",
-        "root": "род",
-        "ipa": "rot",
-        "root_ipa": "rot"
+        "word": "родня",
+        "root": "родн",
+        "ipa": "rɐdˈnʲa",
+        "root_ipa": "rodnʲ"
       },
       "el": {
-        "word": "γένος",
-        "root": "γεν",
-        "ipa": "ˈʝenos",
-        "root_ipa": "ʝen"
+        "word": "συγγενείς",
+        "root": "συγγεν",
+        "ipa": "siŋʝeˈnis",
+        "root_ipa": "siŋʝen"
       },
       "status": "weak",
-      "note": "В романских языках часть форм книжная или полукнижная; это не поздний научный интернационализм, но пласт осложнён латинской традицией.",
+      "note": "Значение выровнено как «родня / родственники (kin)»; Kind, genre и gente были когнатами, но не переводами этого значения.",
       "hi": {
-        "word": "कुल",
-        "root": "कुल",
-        "romanization": "kul",
-        "root_romanization": "kul",
-        "ipa": "kʊl",
-        "root_ipa": "kʊl",
-        "pronunciation": "Standard Hindi, rule-based G2P",
-        "transcription_source": "Interal Devanagari transliteration rules",
+        "word": "रिश्तेदार",
+        "root": "रिश्तेदार",
+        "romanization": "riśtedār",
+        "root_romanization": "riśtedār",
+        "ipa": "ɾɪʃteːd̪ɑːɾ",
+        "root_ipa": "ɾɪʃteːd̪ɑːɾ",
+        "pronunciation": "Standard Hindi, broad transcription",
+        "transcription_source": "manual broad transcription",
         "needs_verification": true
       },
       "fa": {
@@ -2959,13 +2961,13 @@
         "root_ipa": "sʲemʲen"
       },
       "el": {
-        "word": "ἵημι",
-        "root": "ἵη",
-        "ipa": "hiːɛːmi",
-        "root_ipa": "ii"
+        "word": "σπόρος",
+        "root": "σπορ",
+        "ipa": "ˈsporos",
+        "root_ipa": "spor"
       },
       "status": "weak",
-      "note": "Греческий современный обычный эквивалент слабый; для 7-языковой системы это пограничный кандидат.",
+      "note": "Греческий ἵημι был историческим материалом, но не современным переводом «семя»; для PI используется σπόρος.",
       "hi": {
         "word": "बीज",
         "root": "बीज",
@@ -3005,22 +3007,22 @@
         "root_ipa": "ɛs"
       },
       "fr": {
-        "word": "édible",
-        "root": "édibl",
-        "ipa": "edibl",
-        "root_ipa": "edibl"
+        "word": "manger",
+        "root": "mang",
+        "ipa": "mɑ̃ʒe",
+        "root_ipa": "mɑ̃ʒ"
       },
       "es": {
-        "word": "yantar",
-        "root": "yant",
-        "ipa": "ʝanˈtaɾ",
-        "root_ipa": "ʝant"
+        "word": "comer",
+        "root": "com",
+        "ipa": "koˈmeɾ",
+        "root_ipa": "kom"
       },
       "it": {
-        "word": "edule",
-        "root": "edul",
-        "ipa": "ˈɛdule",
-        "root_ipa": "ɛdul"
+        "word": "mangiare",
+        "root": "mangi",
+        "ipa": "manˈdʒare",
+        "root_ipa": "mandʒ"
       },
       "ru": {
         "word": "есть",
@@ -3029,13 +3031,13 @@
         "root_ipa": "jed"
       },
       "el": {
-        "word": "έδεσμα",
-        "root": "εδεσμ",
-        "ipa": "ˈeðezma",
-        "root_ipa": "eðesm"
+        "word": "τρώω",
+        "root": "τρω",
+        "ipa": "ˈtroo",
+        "root_ipa": "tro"
       },
       "status": "weak",
-      "note": "В английском, немецком и русском глагол обычный; в романских и греческом чаще сохранились производные/книжные формы, а не обычный глагол.",
+      "note": "Книжные/производные cognate-формы édible, yantar, edule, έδεσμα заменены обычными современными глаголами «есть».",
       "hi": {
         "word": "खाना",
         "root": "खा",
@@ -3075,15 +3077,15 @@
         "root_ipa": "zɪt͡s"
       },
       "fr": {
-        "word": "siège",
-        "root": "sièg",
-        "ipa": "sjɛʒ",
-        "root_ipa": "sjɛʒ"
+        "word": "s'asseoir",
+        "root": "assoi",
+        "ipa": "saswaʁ",
+        "root_ipa": "aswa"
       },
       "es": {
-        "word": "sentar",
+        "word": "sentarse",
         "root": "sent",
-        "ipa": "senˈtaɾ",
+        "ipa": "senˈtaɾse",
         "root_ipa": "sent"
       },
       "it": {
@@ -3099,13 +3101,13 @@
         "root_ipa": "sʲid"
       },
       "el": {
-        "word": "έδρα",
-        "root": "εδρ",
-        "ipa": "ˈeðra",
-        "root_ipa": "eðr"
+        "word": "κάθομαι",
+        "root": "καθ",
+        "ipa": "ˈkaθome",
+        "root_ipa": "kaθ"
       },
       "status": "weak",
-      "note": "Обычные формы частично разошлись; в греческом лучше сохранились производные типа έδρα.",
+      "note": "Для PI используются современные глаголы «сидеть/садиться», а не существительные siège/έδρα.",
       "hi": {
         "word": "बैठना",
         "root": "बैठ",
@@ -3309,13 +3311,13 @@
         "root_ipa": "ux"
       },
       "el": {
-        "word": "ους",
-        "root": "ωτ",
-        "ipa": "us",
-        "root_ipa": "ot"
+        "word": "αυτί",
+        "root": "αυτ",
+        "ipa": "aˈfti",
+        "root_ipa": "aft"
       },
       "status": "weak",
-      "note": "Греческое αυτί обычное, ους книжное; русское ухо этимологически сопоставимо, но форма ушла.",
+      "note": "Для современного греческого используется αυτί; книжное ους не участвует в PI.",
       "hi": {
         "word": "कान",
         "root": "कान",
@@ -3379,13 +3381,13 @@
         "root_ipa": "dvʲer"
       },
       "el": {
-        "word": "θύρα",
-        "root": "θυρ",
-        "ipa": "ˈθira",
-        "root_ipa": "θir"
+        "word": "πόρτα",
+        "root": "πορτ",
+        "ipa": "ˈporta",
+        "root_ipa": "port"
       },
       "status": "weak",
-      "note": "Романские porte/puerta/porta из другого латинского ряда; поэтому это не строгий общий 7-языковой когнат, но германо-славяно-греческий ряд полезен.",
+      "note": "Для PI используется обычное современное греческое πόρτα; θύρα остаётся историческим/формальным материалом, но не подменяет прямой перевод.",
       "hi": {
         "word": "दरवाज़ा",
         "root": "दरवाज़",
@@ -3501,31 +3503,31 @@
         "root_ipa": "idʁɔmɛl"
       },
       "es": {
-        "word": "miel",
-        "root": "miel",
-        "ipa": "mjel",
-        "root_ipa": "mjel"
+        "word": "hidromiel",
+        "root": "hidromiel",
+        "ipa": "iðɾoˈmjel",
+        "root_ipa": "iðɾoˈmjel"
       },
       "it": {
-        "word": "miele",
-        "root": "miel",
-        "ipa": "ˈmjɛle",
-        "root_ipa": "mjɛl"
+        "word": "idromele",
+        "root": "idromel",
+        "ipa": "idroˈmɛle",
+        "root_ipa": "idromɛl"
       },
       "ru": {
-        "word": "мёд",
-        "root": "мёд",
-        "ipa": "mʲot",
-        "root_ipa": "mʲot"
+        "word": "медовуха",
+        "root": "медовух",
+        "ipa": "mʲɪdɐˈvuxə",
+        "root_ipa": "mʲedovux"
       },
       "el": {
-        "word": "μέθυ",
-        "root": "μεθυ",
-        "ipa": "ˈmeθi",
-        "root_ipa": "meθi"
+        "word": "υδρόμελι",
+        "root": "υδρομελ",
+        "ipa": "iˈðromeli",
+        "root_ipa": "iðromel"
       },
       "status": "weak",
-      "note": "Часть форм означает 'мёд', часть — 'медовый напиток'; английское honey и немецкое Honig не из этого ряда.",
+      "note": "Значение выровнено как напиток mead: формы «мёд/honey» больше не используются как прямые переводы.",
       "hi": {
         "word": "मधुमद्य",
         "root": "मधुमद्य",
@@ -3589,22 +3591,22 @@
         "root_ipa": "vʲin"
       },
       "el": {
-        "word": "οίνος",
-        "root": "οιν",
-        "ipa": "ˈinos",
-        "root_ipa": "in"
+        "word": "κρασί",
+        "root": "κρασ",
+        "ipa": "kraˈsi",
+        "root_ipa": "kras"
       },
       "status": "weak",
-      "note": "Очень древнее общеевропейское слово, но его статус как строгого PIE-наследства спорен; возможно старое культурное заимствование.",
+      "note": "PI использует современные прямые эквиваленты wine; греческое οίνος сохраняет этимологическую ценность, но обычное слово — κρασί.",
       "hi": {
-        "word": "शराब",
-        "root": "शराब",
-        "romanization": "śarāb",
-        "root_romanization": "śarāb",
-        "ipa": "ʃərɑːb",
-        "root_ipa": "ʃərɑːb",
-        "pronunciation": "Standard Hindi, rule-based G2P",
-        "transcription_source": "Interal Devanagari transliteration rules",
+        "word": "वाइन",
+        "root": "वाइन",
+        "romanization": "vāin",
+        "root_romanization": "vāin",
+        "ipa": "ʋaːɪn",
+        "root_ipa": "ʋaːɪn",
+        "pronunciation": "Standard Hindi, common loan",
+        "transcription_source": "manual broad transcription",
         "needs_verification": true
       },
       "fa": {
@@ -3711,10 +3713,10 @@
         "root_ipa": "suʁi"
       },
       "es": {
-        "word": "musaraña",
-        "root": "musarañ",
-        "ipa": "musaˈɾaɲa",
-        "root_ipa": "musaɾaɲ"
+        "word": "ratón",
+        "root": "ratón",
+        "ipa": "raˈton",
+        "root_ipa": "raˈton"
       },
       "it": {
         "word": "topo",
@@ -3729,13 +3731,13 @@
         "root_ipa": "mɨʂ"
       },
       "el": {
-        "word": "μυς",
-        "root": "μυ",
-        "ipa": "mis",
-        "root_ipa": "mi"
+        "word": "ποντίκι",
+        "root": "ποντικ",
+        "ipa": "ponˈdici",
+        "root_ipa": "pondic"
       },
       "status": "weak",
-      "note": "Корень силён в германском, славянском и греческом, но обычные романские названия часто заменены.",
+      "note": "Испанское musaraña «землеройка» и греческое μυς в современном языке не являются обычными переводами mouse; заменены на ratón/ποντίκι.",
       "hi": {
         "word": "चूहा",
         "root": "चूह",
@@ -3939,13 +3941,13 @@
         "root_ipa": "xolm"
       },
       "el": {
-        "word": "κολωνός",
-        "root": "κολων",
-        "ipa": "koloˈnos",
-        "root_ipa": "kolon"
+        "word": "λόφος",
+        "root": "λοφ",
+        "ipa": "ˈlofos",
+        "root_ipa": "lof"
       },
       "status": "weak",
-      "note": "Пограничное гнездо; лучше использовать только как дополнительный кандидат.",
+      "note": "Для PI используется обычное современное λόφος «холм», а не книжное/топонимическое κολωνός.",
       "hi": {
         "word": "पहाड़ी",
         "root": "पहाड़ी",
@@ -3973,10 +3975,10 @@
       "pie": "*móri",
       "part_of_speech": "noun",
       "en": {
-        "word": "mere",
-        "root": "mere",
-        "ipa": "mɪr",
-        "root_ipa": "mɪr"
+        "word": "sea",
+        "root": "sea",
+        "ipa": "siː",
+        "root_ipa": "siː"
       },
       "de": {
         "word": "Meer",
@@ -4009,33 +4011,34 @@
         "root_ipa": "mor"
       },
       "el": {
-        "word": "",
-        "root": "",
-        "ipa": "",
-        "root_ipa": ""
+        "word": "θάλασσα",
+        "root": "θαλασσ",
+        "ipa": "ˈθalasa",
+        "root_ipa": "θalas"
       },
       "status": "weak",
-      "note": "Сильный ряд для 6 языков; современного обычного греческого когната нет. Не строгий 7-языковой кандидат.",
+      "note": "Значение выровнено как современное «море / sea»: obsolete English mere и lake-эквиваленты Hindi/Persian больше не используются для PI.",
       "hi": {
-        "word": "झील",
-        "root": "झील",
-        "romanization": "jhīl",
-        "root_romanization": "jhīl",
-        "ipa": "dʒʱiːl",
-        "root_ipa": "dʒʱiːl",
-        "pronunciation": "Standard Hindi, rule-based G2P",
-        "transcription_source": "Interal Devanagari transliteration rules",
-        "needs_verification": true
+        "word": "समुद्र",
+        "root": "समुद्र",
+        "romanization": "samudra",
+        "root_romanization": "samudra",
+        "ipa": "səmʊd̪ɾə",
+        "root_ipa": "səmʊd̪ɾə",
+        "pronunciation": "Standard Hindi",
+        "transcription_source": "Wiktionary broad IPA",
+        "needs_verification": false
       },
       "fa": {
-        "word": "دریاچه",
-        "root": "دریاچه",
-        "romanization": "daryâče",
-        "root_romanization": "daryâče",
-        "ipa": "dæɾjɒːt͡ʃe",
-        "root_ipa": "dæɾjɒːt͡ʃe",
+        "word": "دریا",
+        "root": "دریا",
+        "romanization": "daryâ",
+        "root_romanization": "daryâ",
+        "ipa": "dæɾjɒː",
+        "root_ipa": "dæɾjɒː",
         "pronunciation": "Iranian Persian, formal",
-        "transcription_source": "open-dict-data/ipa-dict"
+        "transcription_source": "manual broad transcription",
+        "needs_verification": true
       }
     },
     {
@@ -4143,19 +4146,19 @@
         "root_ipa": "fwɔk"
       },
       "ru": {
-        "word": "пир",
-        "root": "пир",
-        "ipa": "pir",
-        "root_ipa": "pir"
+        "word": "огонь",
+        "root": "огон",
+        "ipa": "ɐˈɡonʲ",
+        "root_ipa": "oɡonʲ"
       },
       "el": {
-        "word": "πυρ",
-        "root": "πυρ",
-        "ipa": "pir",
-        "root_ipa": "pir"
+        "word": "φωτιά",
+        "root": "φωτι",
+        "ipa": "foˈtça",
+        "root_ipa": "foti"
       },
       "status": "weak",
-      "note": "Греческое πυρ и германские формы хорошо связаны; романские feu/fuego/fuoco из focus, поэтому это не строгий общий ряд.",
+      "note": "Для PI используются современные огонь/φωτιά; пир и πυρ были этимологическим материалом, а не обычными переводами «огонь».",
       "hi": {
         "word": "आग",
         "root": "आग",
@@ -4219,13 +4222,13 @@
         "root_ipa": "vod"
       },
       "el": {
-        "word": "ύδωρ",
-        "root": "υδατ",
-        "ipa": "ˈiðor",
-        "root_ipa": "iðat"
+        "word": "νερό",
+        "root": "νερ",
+        "ipa": "neˈro",
+        "root_ipa": "ner"
       },
       "status": "weak",
-      "note": "Здесь смешаны два древних PIE-корня воды; не один строгий когнатный ряд.",
+      "note": "Для современного греческого PI используется νερό; ύδωρ — книжное/историческое.",
       "hi": {
         "word": "पानी",
         "root": "पानी",
@@ -5387,10 +5390,10 @@
         "root_ipa": "dʒovan"
       },
       "ru": {
-        "word": "юный",
-        "root": "юн",
-        "ipa": "ˈjunɨj",
-        "root_ipa": "jun"
+        "word": "молодой",
+        "root": "молод",
+        "ipa": "məɫɐˈdoj",
+        "root_ipa": "molod"
       },
       "el": {
         "word": "νέος",
@@ -5419,7 +5422,8 @@
         "root_ipa": "d͡ʒævɒːn",
         "pronunciation": "Iranian Persian, formal",
         "transcription_source": "open-dict-data/ipa-dict"
-      }
+      },
+      "note": "Для PI используется нейтральное современное молодой; юный допустимо, но стилистически уже и не должно искусственно усиливать cognate-кандидат."
     },
     {
       "id": 79,
@@ -6422,10 +6426,10 @@
         "root_ipa": "nud"
       },
       "ru": {
-        "word": "нагой",
-        "root": "наг",
-        "ipa": "nɐˈɡoj",
-        "root_ipa": "naɡ"
+        "word": "голый",
+        "root": "гол",
+        "ipa": "ˈɡolɨj",
+        "root_ipa": "ɡol"
       },
       "el": {
         "word": "γυμνός",
@@ -6881,40 +6885,40 @@
         "root_ipa": "wiːv"
       },
       "de": {
-        "word": "flechten",
-        "root": "flecht",
-        "ipa": "ˈflɛçtn̩",
-        "root_ipa": "flɛçt"
+        "word": "weben",
+        "root": "web",
+        "ipa": "ˈveːbən",
+        "root_ipa": "veːb"
       },
       "fr": {
-        "word": "tresser",
-        "root": "tress",
-        "ipa": "tʁese",
-        "root_ipa": "tʁɛs"
+        "word": "tisser",
+        "root": "tiss",
+        "ipa": "tise",
+        "root_ipa": "tis"
       },
       "es": {
-        "word": "trenzar",
-        "root": "trenz",
-        "ipa": "tɾenˈθaɾ",
-        "root_ipa": "tɾenθ"
+        "word": "tejer",
+        "root": "tej",
+        "ipa": "teˈxeɾ",
+        "root_ipa": "tex"
       },
       "it": {
-        "word": "intrecciare",
-        "root": "intrecci",
-        "ipa": "intretˈtʃare",
-        "root_ipa": "intrettʃ"
+        "word": "tessere",
+        "root": "tess",
+        "ipa": "ˈtɛssere",
+        "root_ipa": "tɛss"
       },
       "ru": {
-        "word": "плести",
-        "root": "плет",
-        "ipa": "plʲɪˈsʲtʲi",
-        "root_ipa": "plʲet"
+        "word": "ткать",
+        "root": "тк",
+        "ipa": "tkatʲ",
+        "root_ipa": "tk"
       },
       "el": {
-        "word": "πλέκω",
-        "root": "πλεκ",
-        "ipa": "ˈpleko",
-        "root_ipa": "plek"
+        "word": "υφαίνω",
+        "root": "υφαιν",
+        "ipa": "iˈfeno",
+        "root_ipa": "ifen"
       },
       "status": "moderate",
       "hi": {
@@ -6937,7 +6941,8 @@
         "root_ipa": "bɒːft",
         "pronunciation": "Iranian Persian, formal",
         "transcription_source": "open-dict-data/ipa-dict"
-      }
+      },
+      "note": "Значение выровнено как «ткать / weave»; прежние flechten/tresser/trenzar/плести в основном означали плести/заплетать и завышали cognate-сходство."
     },
     {
       "id": 101,
@@ -7157,10 +7162,10 @@
         "root_ipa": "streɪt"
       },
       "de": {
-        "word": "recht",
-        "root": "recht",
-        "ipa": "ʁɛçt",
-        "root_ipa": "ʁɛçt"
+        "word": "gerade",
+        "root": "gerad",
+        "ipa": "ɡəˈʁaːdə",
+        "root_ipa": "ɡəʁaːd"
       },
       "fr": {
         "word": "droit",
@@ -7175,10 +7180,10 @@
         "root_ipa": "rekt"
       },
       "it": {
-        "word": "retto",
-        "root": "rett",
-        "ipa": "ˈrɛtto",
-        "root_ipa": "rɛtt"
+        "word": "dritto",
+        "root": "dritt",
+        "ipa": "ˈdritto",
+        "root_ipa": "dritt"
       },
       "ru": {
         "word": "прямой",
@@ -7187,10 +7192,10 @@
         "root_ipa": "prʲam"
       },
       "el": {
-        "word": "ορθός",
-        "root": "ορθ",
-        "ipa": "orˈθos",
-        "root_ipa": "orθ"
+        "word": "ίσιος",
+        "root": "ισι",
+        "ipa": "ˈisios",
+        "root_ipa": "isi"
       },
       "status": "moderate",
       "hi": {
@@ -7213,7 +7218,8 @@
         "root_ipa": "ɾɒːst",
         "pronunciation": "Iranian Persian, formal",
         "transcription_source": "open-dict-data/ipa-dict"
-      }
+      },
+      "note": "Для PI выбраны обычные современные пространственные эквиваленты «прямой/straight», а не преимущественно формальные/полисемичные recht/retto/ορθός."
     },
     {
       "id": 105,
@@ -7871,10 +7877,10 @@
         "root_ipa": "tjɛpid"
       },
       "ru": {
-        "word": "тёплый",
-        "root": "тёпл",
-        "ipa": "ˈtʲɵplɨj",
-        "root_ipa": "tʲopl"
+        "word": "тепловатый",
+        "root": "тепловат",
+        "ipa": "tʲɪplɐˈvatɨj",
+        "root_ipa": "tʲeplovat"
       },
       "el": {
         "word": "χλιαρός",
@@ -7903,7 +7909,8 @@
         "root_ipa": "velæɾm",
         "pronunciation": "Iranian Persian, formal",
         "transcription_source": "kiasar/Persian_phonetics"
-      }
+      },
+      "note": "Русское тёплый означало просто warm; для lukewarm используется тепловатый."
     },
     {
       "id": 115,
@@ -8888,22 +8895,22 @@
         "root_ipa": "ˈboːnə"
       },
       "fr": {
-        "word": "fève",
-        "root": "fève",
-        "ipa": "fɛv",
-        "root_ipa": "fɛv"
+        "word": "haricot",
+        "root": "haricot",
+        "ipa": "aʁiko",
+        "root_ipa": "aʁiko"
       },
       "es": {
-        "word": "haba",
-        "root": "hab",
-        "ipa": "ˈaβa",
-        "root_ipa": "aβ"
+        "word": "frijol",
+        "root": "frijol",
+        "ipa": "fɾiˈxol",
+        "root_ipa": "fɾiˈxol"
       },
       "it": {
-        "word": "fava",
-        "root": "fav",
-        "ipa": "ˈfava",
-        "root_ipa": "fav"
+        "word": "fagiolo",
+        "root": "fagiol",
+        "ipa": "faˈdʒɔlo",
+        "root_ipa": "fadʒɔl"
       },
       "ru": {
         "word": "боб",
@@ -8930,15 +8937,17 @@
         "needs_verification": true
       },
       "fa": {
-        "word": "باقلا",
-        "root": "باقلا",
-        "romanization": "bâġelâ",
-        "root_romanization": "bâġelâ",
-        "ipa": "bɒːɣelɒː",
-        "root_ipa": "bɒːɣelɒː",
-        "pronunciation": "Iranian Persian, formal",
-        "transcription_source": "kiasar/Persian_phonetics"
-      }
+        "word": "لوبیا",
+        "root": "لوبیا",
+        "romanization": "lubiyâ",
+        "root_romanization": "lubiyâ",
+        "ipa": "luːbijɒː",
+        "root_ipa": "luːbijɒː",
+        "pronunciation": "Iranian Persian, common",
+        "transcription_source": "manual broad transcription",
+        "needs_verification": true
+      },
+      "note": "Строка нормализована к общему значению bean; fève/haba/fava/bâġelâ были более узкими «боб/fava bean» и не должны подменять общий перевод."
     },
     {
       "id": 130,
@@ -9527,10 +9536,10 @@
         "root_ipa": "tʃiŋɡjal"
       },
       "ru": {
-        "word": "вепрь",
-        "root": "вепр",
-        "ipa": "vʲeprʲ",
-        "root_ipa": "vʲepr"
+        "word": "кабан",
+        "root": "кабан",
+        "ipa": "kɐˈban",
+        "root_ipa": "kaban"
       },
       "el": {
         "word": "αγριόχοιρος",
@@ -9540,14 +9549,14 @@
       },
       "status": "weak",
       "hi": {
-        "word": "सूअर",
-        "root": "सूअर",
-        "romanization": "sūar",
-        "root_romanization": "sūar",
-        "ipa": "suːər",
-        "root_ipa": "suːər",
-        "pronunciation": "Standard Hindi, rule-based G2P",
-        "transcription_source": "Interal Devanagari transliteration rules",
+        "word": "जंगली सूअर",
+        "root": "जंगली सूअर",
+        "romanization": "jaṅgalī sūar",
+        "root_romanization": "jaṅgalī sūar",
+        "ipa": "dʒəŋɡəliː suːəɾ",
+        "root_ipa": "dʒəŋɡəliː suːəɾ",
+        "pronunciation": "Standard Hindi, broad transcription",
+        "transcription_source": "manual broad transcription",
         "needs_verification": true
       },
       "fa": {
@@ -9559,7 +9568,8 @@
         "root_ipa": "ɡeɾɒːz",
         "pronunciation": "Iranian Persian, formal",
         "transcription_source": "open-dict-data/ipa-dict"
-      }
+      },
+      "note": "Для boar используются современные кабан / जंगली सूअर; вепрь стилистически ограничен, а सूअर без уточнения означает pig."
     },
     {
       "id": 139,
@@ -9635,10 +9645,10 @@
       "pie": "*eln- / *elk-",
       "part_of_speech": "noun",
       "en": {
-        "word": "elk",
-        "root": "elk",
-        "ipa": "ɛlk",
-        "root_ipa": "ɛlk"
+        "word": "moose",
+        "root": "moose",
+        "ipa": "muːs",
+        "root_ipa": "muːs"
       },
       "de": {
         "word": "Elch",
@@ -9697,7 +9707,8 @@
         "root_ipa": "moʊs",
         "pronunciation": "Iranian Persian, formal",
         "transcription_source": "open-dict-data/ipa-dict"
-      }
+      },
+      "note": "Строка выровнена по фактическому современному значению остальных языков (moose: Elch/élan/alce/лось); English elk обозначает иной таксон в современном американском употреблении."
     },
     {
       "id": 141,
@@ -9827,15 +9838,17 @@
         "needs_verification": true
       },
       "fa": {
-        "word": "زر",
-        "root": "زر",
-        "romanization": "zar",
-        "root_romanization": "zar",
-        "ipa": "zæɾ",
-        "root_ipa": "zæɾ",
+        "word": "طلا",
+        "root": "طلا",
+        "romanization": "talâ",
+        "root_romanization": "talâ",
+        "ipa": "t̪ʰælɒː",
+        "root_ipa": "t̪ʰælɒː",
         "pronunciation": "Iranian Persian, formal",
-        "transcription_source": "open-dict-data/ipa-dict"
-      }
+        "transcription_source": "Wiktionary",
+        "needs_verification": false
+      },
+      "note": "Для Iranian Persian используется обычное طلا; زر сохраняется как исторический/архаизирующий синоним, но не как основной PI-перевод."
     },
     {
       "id": 143,
@@ -9848,10 +9861,10 @@
         "root_ipa": "wiːt"
       },
       "de": {
-        "word": "Korn",
-        "root": "Korn",
-        "ipa": "kɔʁn",
-        "root_ipa": "kɔʁn"
+        "word": "Weizen",
+        "root": "Weiz",
+        "ipa": "ˈvaɪtsn̩",
+        "root_ipa": "vaɪts"
       },
       "fr": {
         "word": "blé",
@@ -9904,7 +9917,8 @@
         "root_ipa": "ɡændom",
         "pronunciation": "Iranian Persian, formal",
         "transcription_source": "open-dict-data/ipa-dict"
-      }
+      },
+      "note": "Немецкое Korn означает grain в целом; для wheat используется Weizen."
     },
     {
       "id": 144,
@@ -11196,15 +11210,15 @@
       },
       "status": "weak",
       "hi": {
-        "word": "गाड़ी",
-        "root": "गाड़ी",
-        "romanization": "gāṛī",
-        "root_romanization": "gāṛī",
-        "ipa": "gɑːɽiː",
-        "root_ipa": "gɑːɽiː",
-        "pronunciation": "Standard Hindi, rule-based G2P",
-        "transcription_source": "Interal Devanagari transliteration rules",
-        "needs_verification": true
+        "word": "वैगन",
+        "root": "वैगन",
+        "romanization": "vaigan",
+        "root_romanization": "vaigan",
+        "ipa": "ʋɛːɡən",
+        "root_ipa": "ʋɛːɡən",
+        "pronunciation": "Standard Hindi",
+        "transcription_source": "Wiktionary",
+        "needs_verification": false
       },
       "fa": {
         "word": "واگن",
@@ -11215,7 +11229,8 @@
         "root_ipa": "vɒːɡon",
         "pronunciation": "Iranian Persian, formal",
         "transcription_source": "open-dict-data/ipa-dict"
-      }
+      },
+      "note": "Hindi गाड़ी — общее «транспорт/машина»; для wagon используется современное заимствование वैगन."
     },
     {
       "id": 163,
@@ -12925,10 +12940,10 @@
         "root_ipa": "o"
       },
       "it": {
-        "word": "udire",
-        "root": "ud",
-        "ipa": "uˈdire",
-        "root_ipa": "ud"
+        "word": "sentire",
+        "root": "sent",
+        "ipa": "senˈtire",
+        "root_ipa": "sent"
       },
       "ru": {
         "word": "слышать",
@@ -12964,7 +12979,8 @@
         "transcription_source": "manual broad transcription",
         "needs_verification": true
       },
-      "status": "weak"
+      "status": "weak",
+      "note": "Для современного разговорного Italian используется sentire; udire допустимо, но заметно формальнее/литературнее и не должно быть основным PI-эквивалентом."
     },
     {
       "id": 188,
