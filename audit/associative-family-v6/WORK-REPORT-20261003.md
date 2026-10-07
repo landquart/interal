@@ -1,5 +1,7 @@
 ## Current continuation — Prompt 09, 2026-10-07
 
+Downstream input rebind **7302973c22e31685595fca537580a051da8d831a** preserves all Prompt08 outputs and creates current planning/certification copies. Initial CI caught a stale planning source-lock hash; original and indexed conservation audits now agree exactly. Planning/history/contamination/coverage/packet audits and16+5+40+6 byte replays pass,with15 more targeted tests. Only new planning manifest hashes change; linguistic data stays identical. See validation/downstream-validation.json. Final-SHA CI is independently checked after publication.
+
 Shadow alias/measurement block completed: see WORK-REPORT-PROMPT09-20261007.md and CHECKPOINT.md. Application **438f0aba97b818c48ee9d7a75cf3896eb175733e** fixes операция/мутация routes through one catalog query key while preserving lexical normalization.88 catalog forms,106 actual queries/636 language checks,all21,566 accepted memberships and829 zero-v5 records are checked.21,371 unique hydrated IDs retain original measurements and all accepted component proofs; source-order-only equality finding is documented. **+0/−0/changed0 memberships**. Eight new tests,full npm135 files,shadow/v6/frozen audits,277 migration +7 shadow byte replay pass locally. Validation is separately saved; exact final-SHA CI is checked after publication. No merge; production v5; stack unchanged. Dictionary remains unfinished.
 
 ## Current continuation — Prompt 08, 2026-10-05
