@@ -224,10 +224,10 @@
       "pie": "*te- / *tu-",
       "part_of_speech": "pronoun",
       "en": {
-        "word": "thee",
-        "root": "thee",
-        "ipa": "ðiː",
-        "root_ipa": "ðiː"
+        "word": "you",
+        "root": "you",
+        "ipa": "juː",
+        "root_ipa": "juː"
       },
       "de": {
         "word": "dich",
@@ -266,7 +266,7 @@
         "root_ipa": "se"
       },
       "status": "moderate",
-      "note": "Английская форма архаична.",
+      "note": "Современный английский не различает nominative/oblique 2sg: прямой эквивалент — you. Архаическое thee не используется для PI; строка сохраняется отдельно из-за различий падежных форм в других языках.",
       "hi": {
         "word": "तुझे",
         "root": "तुझे",
@@ -2454,15 +2454,15 @@
         "root_ipa": "ɛtʁ dəbu"
       },
       "es": {
-        "word": "estar",
+        "word": "estar de pie",
         "root": "est",
-        "ipa": "esˈtaɾ",
+        "ipa": "esˈtaɾ ðe pje",
         "root_ipa": "est"
       },
       "it": {
-        "word": "stare",
+        "word": "stare in piedi",
         "root": "sta",
-        "ipa": "ˈstare",
+        "ipa": "ˈstare im pjɛdi",
         "root_ipa": "sta"
       },
       "ru": {
@@ -2478,7 +2478,7 @@
         "root_ipa": "stek"
       },
       "status": "moderate",
-      "note": "Для PI используется современный прямой французский эквивалент être debout. Исторически родственное être само по себе означает ‘быть’ и не должно повышать узнаваемость значения ‘стоять’.",
+      "note": "Для PI используются прямые современные эквиваленты физического «стоять»: être debout, estar de pie, stare in piedi и т. п.; простые être/estar/stare со значением «быть/находиться» не подменяют перевод.",
       "hi": {
         "word": "खड़ा होना",
         "root": "खड़ा हो",
@@ -4889,21 +4889,21 @@
         "root_ipa": "ʁɛçts"
       },
       "fr": {
-        "word": "droite",
+        "word": "droit",
         "root": "droit",
-        "ipa": "dʁwat",
-        "root_ipa": "dʁwat"
+        "ipa": "dʁwa",
+        "root_ipa": "dʁwa"
       },
       "es": {
-        "word": "derecha",
+        "word": "derecho",
         "root": "derech",
-        "ipa": "deˈɾetʃa",
+        "ipa": "deˈɾetʃo",
         "root_ipa": "deɾetʃ"
       },
       "it": {
-        "word": "destra",
+        "word": "destro",
         "root": "destr",
-        "ipa": "ˈdɛstra",
+        "ipa": "ˈdɛstro",
         "root_ipa": "dɛstr"
       },
       "ru": {
@@ -4913,9 +4913,9 @@
         "root_ipa": "prav"
       },
       "el": {
-        "word": "δεξιά",
+        "word": "δεξιός",
         "root": "δεξι",
-        "ipa": "ðekˈsça",
+        "ipa": "ðeksiˈos",
         "root_ipa": "ðeksi"
       },
       "status": "moderate",
@@ -4939,7 +4939,8 @@
         "root_ipa": "ɾɒːst",
         "pronunciation": "Iranian Persian, formal",
         "transcription_source": "open-dict-data/ipa-dict"
-      }
+      },
+      "note": "Строка выровнена как прилагательное «правый (не левый)»: используются словарные формы droit/derecho/destro/δεξιός, а не преимущественно женские/субстантивированные droite/derecha/destra/δεξιά."
     },
     {
       "id": 72,
@@ -7487,15 +7488,17 @@
         "needs_verification": true
       },
       "fa": {
-        "word": "عصاره",
-        "root": "عصاره",
-        "romanization": "'osâre",
-        "root_romanization": "'osâre",
-        "ipa": "'osɒːɾe",
-        "root_ipa": "'osɒːɾe",
-        "pronunciation": "Iranian Persian, formal",
-        "transcription_source": "kiasar/Persian_phonetics"
-      }
+        "word": "آب‌میوه",
+        "root": "آب‌میوه",
+        "romanization": "âb-mive",
+        "root_romanization": "âb-mive",
+        "ipa": "ɒːbmiːve",
+        "root_ipa": "ɒːbmiːve",
+        "pronunciation": "Iranian Persian, common",
+        "transcription_source": "manual broad transcription",
+        "needs_verification": true
+      },
+      "note": "Persian عصاره means extract/essence rather than ordinary juice; PI now uses آب‌میوه."
     },
     {
       "id": 109,
@@ -8850,10 +8853,10 @@
         "root_ipa": "osʲin"
       },
       "el": {
-        "word": "λεύκη",
-        "root": "λευκ",
-        "ipa": "ˈlefci",
-        "root_ipa": "lefk"
+        "word": "αγριόλευκα",
+        "root": "αγριολευκ",
+        "ipa": "aɣriˈolefka",
+        "root_ipa": "aɣriolefk"
       },
       "status": "weak",
       "hi": {
@@ -8876,7 +8879,8 @@
         "root_ipa": "senowbæɾ læɾzɒːn",
         "pronunciation": "Iranian Persian, formal",
         "transcription_source": "kiasar/Persian_phonetics"
-      }
+      },
+      "note": "Greek λεύκη alone is a broader poplar name; for Populus tremula/aspen PI uses the attested common name αγριόλευκα."
     },
     {
       "id": 129,
@@ -9135,15 +9139,15 @@
       },
       "status": "weak",
       "hi": {
-        "word": "भोज",
-        "root": "भोज",
-        "romanization": "bhoj",
-        "root_romanization": "bhoj",
-        "ipa": "bʱoːdʒ",
-        "root_ipa": "bʱoːdʒ",
-        "pronunciation": "Standard Hindi, rule-based G2P",
-        "transcription_source": "Interal Devanagari transliteration rules",
-        "needs_verification": true
+        "word": "भूर्ज",
+        "root": "भूर्ज",
+        "romanization": "bhūrj",
+        "root_romanization": "bhūrj",
+        "ipa": "bʱuːrdʒ",
+        "root_ipa": "bʱuːrdʒ",
+        "pronunciation": "Standard Hindi, dictionary form",
+        "transcription_source": "Collins Hindi-English Dictionary",
+        "needs_verification": false
       },
       "fa": {
         "word": "توس",
@@ -9154,7 +9158,8 @@
         "root_ipa": "tuːs",
         "pronunciation": "Iranian Persian, formal",
         "transcription_source": "kiasar/Persian_phonetics"
-      }
+      },
+      "note": "Hindi भोज specifically denotes Himalayan birch (Betula utilis); generic birch is represented by भूर्ज."
     },
     {
       "id": 133,
@@ -13547,10 +13552,10 @@
       "pie": "*méǵh₂s",
       "part_of_speech": "adjective",
       "en": {
-        "word": "great",
-        "root": "great",
-        "ipa": "ɡreɪt",
-        "root_ipa": "ɡreɪt"
+        "word": "big",
+        "root": "big",
+        "ipa": "bɪɡ",
+        "root_ipa": "bɪɡ"
       },
       "de": {
         "word": "groß",
@@ -13610,7 +13615,8 @@
         "transcription_source": "manual broad transcription",
         "needs_verification": true
       },
-      "status": "weak"
+      "status": "weak",
+      "note": "The row is normalized to the size sense «big/large» represented by groß/grand/grande/большой/μεγάλος etc.; English great was broader and could be read as evaluative «excellent/important»."
     },
     {
       "id": 197,
