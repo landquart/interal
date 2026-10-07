@@ -19,7 +19,7 @@ Historical cognates may be recorded in `pie`, `note`, or separate etymological e
 
 ## Corrected rows
 
-The audit corrected 40 rows: 4, 5, 29, 30, 32, 34, 36, 37, 40, 41, 42, 43, 44, 45, 48, 49, 51, 52, 54, 57, 58, 60, 61, 71, 78, 93, 100, 104, 108, 114, 128, 129, 132, 138, 140, 142, 143, 162, 187, 196.
+The audit corrected 39 rows: 4, 5, 29, 30, 32, 34, 36, 37, 40, 41, 42, 43, 44, 45, 48, 49, 51, 52, 54, 57, 58, 60, 61, 71, 93, 100, 104, 108, 114, 128, 129, 132, 138, 140, 142, 143, 162, 187, 196.
 
 Representative fixes include:
 
@@ -27,7 +27,6 @@ Representative fixes include:
 - Russian `пир` → `огонь`.
 - Greek `ύδωρ` → `νερό`.
 - Greek `νιφάδα` “snowflake” → `χιόνι` “snow”.
-- Russian `юный` → neutral `молодой`.
 - Russian `иго` → literal `ярмо`.
 - French/Spanish/Italian bed nouns in the “lie” row → current verbs.
 - `port / puerto / порог / πόρος` in the “ford” row → direct modern “ford” equivalents.
@@ -44,6 +43,7 @@ Representative fixes include:
 ## Deliberate exceptions and sense limits
 
 - Row 18 keeps Russian `матерь` because that comparison form was explicitly selected for the Interal procedure; it is not an accidental cognate substitution.
+- Row 78 keeps Russian `юный` (`юн-`) because that comparison form was explicitly selected for the Interal procedure; do not replace it automatically with `молодой`.
 - Some meanings do not have one perfectly scope-neutral equivalent in every language (for example “old”, “nephew”, “beast”). A valid direct modern translation is retained rather than fabricating a one-word equivalent that the language does not have.
 - Synonyms that are genuinely current and semantically direct are not rejected merely because another synonym is more frequent.
 
