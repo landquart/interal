@@ -1,3 +1,7 @@
+## Current continuation — Prompt 09, 2026-10-07
+
+Shadow alias/measurement block completed: see WORK-REPORT-PROMPT09-20261007.md and CHECKPOINT.md. Application **438f0aba97b818c48ee9d7a75cf3896eb175733e** fixes операция/мутация routes through one catalog query key while preserving lexical normalization.88 catalog forms,106 actual queries/636 language checks,all21,566 accepted memberships and829 zero-v5 records are checked.21,371 unique hydrated IDs retain original measurements and all accepted component proofs; source-order-only equality finding is documented. **+0/−0/changed0 memberships**. Eight new tests,full npm135 files,shadow/v6/frozen audits,277 migration +7 shadow byte replay pass locally. Validation is separately saved; exact final-SHA CI is checked after publication. No merge; production v5; stack unchanged. Dictionary remains unfinished.
+
 ## Current continuation — Prompt 08, 2026-10-05
 
 Completed finite candidate coverage/promotion/extension: see WORK-REPORT-PROMPT08-20261005.md and CHECKPOINT.md. Separate published validation **4da79f9717f6780528fda422ba561f8ea8a24289** records113 targeted tests,npm134 files,independent audits and five byte replay comparisons. +5 exact atom memberships,+3 heads,+1 family,one reused English plural revision; no changed old memberships or source loss. Coverage preserves3,999,388 surface-only IDs,600 sampled original IDs and all829 zero-v5 records. The packet lifecycle remains review-only. Actual anis/system stages were not repeated. No merge; production v5; stack unchanged. Full dictionary remains unfinished.
