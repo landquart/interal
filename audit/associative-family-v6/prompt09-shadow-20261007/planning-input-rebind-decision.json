@@ -1,0 +1,11 @@
+{
+  "schema_version": 6,
+  "application_sha": "438f0aba97b818c48ee9d7a75cf3896eb175733e",
+  "finding": "Application CI v6 audit passes integrity, migration replay, frozen stages and corpus enumeration, then rejects the old current planning manifest's source-lock hash.",
+  "ci_run": 37621279292,
+  "production_enabled": false,
+  "membership_authorization": false,
+  "decision": "Rebuild current planning/certification into separate Prompt 09 directories using the existing builders and saved packet lookup. Preserve all Prompt 08 and earlier artifact bytes; do not weaken input hashes or reinterpret a runtime change as a linguistic decision.",
+  "expected_differential": "Zero change to memberships, heads, questions, route sets, ranking, prior planning/certification payloads. Only new manifests bind current input hashes/paths.",
+  "validation": "Run planning/history/source/coverage/contamination audits locally before publishing. Compare new planning/certification semantic artifacts with Prompt 08 and replay both new output directories."
+}
