@@ -1,0 +1,17 @@
+{
+  "schema_version": 6,
+  "baseline_sha": "a881152a940986e142fb0577f7a064491499e6de",
+  "production_enabled": false,
+  "membership_authorization": false,
+  "decisions": [
+    "Use buildSearchForm on both catalog aliases and queries; retain normalizeHead unchanged for lexical identity.",
+    "Preserve every colliding family target; query keys never establish or merge identity.",
+    "Use the existing v5 persisted alias key (search form with non-alphanumerics removed) only for immutable source-route lookup, explicitly separate from the v6 catalog key.",
+    "Language selects accepted family rows and actual source-route member availability, independently; never use one route to suppress another.",
+    "Hydrate only current generated accepted memberships. Deduplicate by language and original lemma ID; retain all accepted head/family links and source locators without frequency recomputation or sense apportionment.",
+    "Keep raw zero-v5 source measurements addressable both by original ID and an evidence-only normalized word lookup.",
+    "Compare raw v5 alias arrays and production candidateEntries separately. Classify exact membership questions against approved additions/corrections and catalog alias-only changes; throw on an unexplained loss of an accepted route.",
+    "Do not change catalog, lexical heads, edges, memberships, v5 data, frequencies or historical outputs. Only source-lock and manifest hashes may change during migration replay."
+  ],
+  "synthetic_tests": "Separate in tests/associative-family-v6-shadow.test.mjs; never add synthetic records to corpus registries."
+}
