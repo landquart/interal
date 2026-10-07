@@ -1,0 +1,43 @@
+{
+  "verdict": "pass",
+  "baseline_sha": "ec43ff50383e6b632a95a5f6b9a4b8d7b0d44003",
+  "membership_differential": {
+    "added": 0,
+    "removed": 0,
+    "changed": 0
+  },
+  "protected_git_objects": {
+    "associativvordes/family-index-v5": {
+      "before_git_tree": "b6f8ff3fb46388932217dbd98a2208239e01f70d",
+      "after_git_tree": "b6f8ff3fb46388932217dbd98a2208239e01f70d"
+    },
+    "associativvordes/frequency lists": {
+      "before_git_tree": "b9c6725761ce1f8acdd21e0fdb216cf1fb5464c7",
+      "after_git_tree": "b9c6725761ce1f8acdd21e0fdb216cf1fb5464c7"
+    },
+    "audit/associative-family-v5": {
+      "before_git_tree": "c1bc9ceab39d1e10fcc3b19bf3fc9ae56af2b82c",
+      "after_git_tree": "c1bc9ceab39d1e10fcc3b19bf3fc9ae56af2b82c"
+    },
+    "associativvordes/family-index-v6/generated": {
+      "before_git_tree": "5d5f4c42e00b1894bc8629f7bf8b4f9e8194c844",
+      "after_git_tree": "5d5f4c42e00b1894bc8629f7bf8b4f9e8194c844"
+    },
+    "audit/associative-family-v6/prompt09-shadow-20261007": {
+      "before_git_tree": "981c7750ac8415e3e31f2279a801c318d2c2b41c",
+      "after_git_tree": "981c7750ac8415e3e31f2279a801c318d2c2b41c"
+    },
+    "audit/associative-family-v6/prompt08-coverage-20261005": {
+      "before_git_tree": "9617a22bff8ca79b06bb9b3b3a0dc9d26bb809c2",
+      "after_git_tree": "9617a22bff8ca79b06bb9b3b3a0dc9d26bb809c2"
+    },
+    "audit/associative-family-v6/prompt07-contamination-20261005": {
+      "before_git_tree": "56bdc0af750b845efb325334f9cf80e4c9dd5d76",
+      "after_git_tree": "56bdc0af750b845efb325334f9cf80e4c9dd5d76"
+    },
+    "audit/associative-family-v6/prompt06-history-20261005": {
+      "before_git_tree": "92975b35ac46c53a96a80d8e3e3daf0bd4c34a98",
+      "after_git_tree": "92975b35ac46c53a96a80d8e3e3daf0bd4c34a98"
+    }
+  }
+}
