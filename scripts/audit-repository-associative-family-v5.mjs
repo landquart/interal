@@ -47,6 +47,18 @@ assert(boundedLedger.source_run_id === expectedRunId && boundedRepair?.decision_
 assert(boundedRepair.removed_memberships === boundedLedger.russian.expected_total_removed && boundedRepair.removed_reverse_alias_targets === 12, 'bounded repair deltas mismatch');
 assert(report.repository_materialization.bounded_20260930_ledger_sha256 === boundedRepair.decision_ledger_sha256, 'bounded report ledger mismatch');
 
+const informationLedgerBytes = await readFile('audit/associative-family-v5/information-decisions-20260930.json');
+const informationLedger = JSON.parse(informationLedgerBytes);
+const informationRepair = provenance.repository_repairs?.find(item => item.repair === 'consolidate_and_prune_latin_informatio_20260930');
+const informationSha = createHash('sha256').update(informationLedgerBytes).digest('hex');
+assert(informationLedger.source_run_id === expectedRunId && informationRepair?.decision_ledger_sha256 === informationSha, 'information provenance mismatch');
+assert(informationRepair.removed_memberships === 7014 && informationRepair.added_memberships === 3 && informationRepair.removed_memberships === informationLedger.expected_removed_memberships, 'information membership delta mismatch');
+assert(report.repository_materialization.information_ledger_sha256 === informationSha, 'information report ledger mismatch');
+const informationPositive = new Map(informationLedger.decisions.flatMap(d => d.retained.map(m => [`${d.language}\0${m.lemma_id}`, m.word])));
+for (const a of informationLedger.added) informationPositive.set(`${a.language}\0${a.member.lemma_id}`, a.member.word);
+const informationPreserved = new Map(informationLedger.preserved_families.map(d => [d.family_id,d]));
+const informationPreservedSeen = new Set();
+
 assert(manifest.version === '5', `manifest version ${manifest.version}`);
 assert(JSON.stringify(manifest.languages) === JSON.stringify(languages), 'unexpected language set/order');
 assert(Number(manifest.repository_storage?.immutable_source_run_id) === expectedRunId, 'manifest source run mismatch');
@@ -340,6 +352,17 @@ for (let index = 0; index < 256; index += 1) {
   for (const [id, family] of Object.entries(families)) {
     assert(id === family.id, `family key mismatch ${id}`);
     assert(bucket(id) === shard, `family bucket mismatch ${id}`);
+    assert(id !== informationLedger.deleted_duplicate_family_id, 'information duplicate family remains');
+    if (id === informationLedger.canonical_family_id) {
+      assert(family.canonical === 'informatio' && family.runtime_curated === true && !family.verified && family.review_status === 'needs_review', 'information metadata mismatch');
+      assert(JSON.stringify(family.aliases) === JSON.stringify(informationLedger.aliases), 'information aliases mismatch');
+      assert(family.support === 185 && family.language_support.de === 154 && family.language_support.ru === 1, 'information support or size exception mismatch');
+      assert(JSON.stringify(family.relation_evidence) === JSON.stringify(informationLedger.original_families[0].relation_evidence), 'information extraction evidence changed');
+    }
+    if (informationPreserved.has(id)) {
+      assert(createHash('sha256').update(JSON.stringify(family)).digest('hex') === informationPreserved.get(id).family_sha256, `information neighbour changed ${id}`);
+      informationPreservedSeen.add(id);
+    }
     assert(id !== 'family:libert', 'removed family:libert is present');
     assert(!deletedSurfaceFamilies.has(id), `reviewed surface family still present ${id}`);
     assert(!ids.has(id), `duplicate family ${id}`);
@@ -388,8 +411,14 @@ for (let index = 0; index < 256; index += 1) {
         assert(values.length === kept.size && values.every(value => kept.get(value.lemma_id) === value.word), `sonus ${language} members mismatch`);
       }
       if (id === 'surface:en:sky') assert(language === 'en' && values.length === retainedSky.size && values.every(value => retainedSky.get(value.lemma_id) === value.word), 'sky retained list mismatch');
+      if (informationPreserved.has(id)) assert(createHash('sha256').update(JSON.stringify(values)).digest('hex') === informationPreserved.get(id).members[language].ordered_member_sha256, `information neighbour members changed ${id}/${language}`);
       const seen = new Set();
       for (const value of values) {
+        if (id === informationLedger.canonical_family_id) {
+          const key = `${language}\0${value.lemma_id}`;
+          assert(informationPositive.get(key) === value.word && informationPositive.delete(key), `unreviewed information member ${language}/${value.word}`);
+          assert(value.components.every(c => c.canonical_candidate === 'informatio' && c.evidence.every(e => e.type === 'manual_override' && e.relation_type)), 'information manual evidence mismatch');
+        }
         if (id === nitidusLedger.canonical_family_id) assert(nitidusPositive.delete(`${language}\0${value.lemma_id}`), `unreviewed nitidus member ${language}/${value.word}`);
         if (id.startsWith('surface:ru:') && [...ruShortLedger.decisions, ...boundedLedger.russian.decisions].some(item => item.family_id === id)) assert(ruShortPositive.delete(`${language}\0${id}\0${value.lemma_id}`), `unreviewed Russian short-root member ${id}/${value.word}`);
         assert(value.lemma_id && !seen.has(value.lemma_id), `${language} duplicate/invalid member ${id}`);
@@ -430,6 +459,7 @@ assert(preservedManualKeys.size === 0, `preserved positive controls missing: ${[
 assert(preservedActusKeys.size === 0, `preserved actus controls missing: ${[...preservedActusKeys].join(', ')}`);
 assert(retainedIllasKeys.size === 0, 'retained illas headwords missing');
 assert(retainedPronounKeys.size === 0, 'retained illos/illis headwords missing');
+assert(informationPositive.size === 0 && informationPreservedSeen.size === informationPreserved.size, 'information positive or neighbour controls missing');
 assert(nitidusPositive.size === 0 && ruShortPositive.size === 0, 'new retained positive controls missing');
 for (const id of [nitidusLedger.deleted_duplicate_family_id, 'surface:es:nitid', ...ruShortLedger.decisions.filter(item => !item.retained.length).map(item => item.family_id)]) assert(!familyIdsByBucket[parseInt(bucket(id), 16)].has(id), `deleted family still present ${id}`);
 assert(familyIdsByBucket[parseInt(bucket('surface:en:sky'),16)].has('surface:en:sky'), 'retained sky family missing');
@@ -457,7 +487,7 @@ assert(JSON.stringify(uniqueLemmasByLanguage) === JSON.stringify(report.reposito
 assert(JSON.stringify(membershipsByLanguage) === JSON.stringify(report.repository_materialization.memberships_by_language), 'report memberships by language mismatch');
 assert(membershipCount === report.repository_materialization.memberships, 'report materialized memberships mismatch');
 assert(manifest.counts.lemmas - materializedUniqueLemmas === report.repository_materialization.lemmas_without_materialized_family, 'repository unassigned lemma count mismatch');
-assert(membershipCount === 10426047 - manualLedger.rejected_memberships.length - surfaceRemoved - surfaceRemoved2 - surfaceRemoved3 - surfaceRemoved4 - tenLedger.expected_members - inflectionRemoved - endingRemoved - geneaRemoved - geneaOtherRemoved - sonusRemoved - kaRemoved - suffixRemoved - suffixRemoved6 - suffixRemoved7 - suffixRemoved8 - suffixRemoved9 - suffixRemoved10 - suffixRemoved11 - suffixRemoved12 - actusLedger.rejected_memberships.length - illasLedger.expected_removed_memberships - pronounLedger.expected_total_removed_memberships - nitidusRepair.removed_memberships + nitidusRepair.added_memberships - ruShortRepair.removed_memberships - boundedRepair.removed_memberships, 'unexpected repository membership count');
+assert(membershipCount === 10426047 - manualLedger.rejected_memberships.length - surfaceRemoved - surfaceRemoved2 - surfaceRemoved3 - surfaceRemoved4 - tenLedger.expected_members - inflectionRemoved - endingRemoved - geneaRemoved - geneaOtherRemoved - sonusRemoved - kaRemoved - suffixRemoved - suffixRemoved6 - suffixRemoved7 - suffixRemoved8 - suffixRemoved9 - suffixRemoved10 - suffixRemoved11 - suffixRemoved12 - actusLedger.rejected_memberships.length - illasLedger.expected_removed_memberships - pronounLedger.expected_total_removed_memberships - nitidusRepair.removed_memberships + nitidusRepair.added_memberships - ruShortRepair.removed_memberships - boundedRepair.removed_memberships - informationRepair.removed_memberships + informationRepair.added_memberships, 'unexpected repository membership count');
 assert(familyCount === manifest.counts.families && familyCount === report.total_families, `family count ${familyCount}`);
 assert(materializedFamilyCount === familyCount, 'not every family was materialized');
 for (const [field, counted] of [
@@ -478,6 +508,9 @@ for (let index = 0; index < 256; index += 1) {
   const shard = index.toString(16).padStart(2, '0');
   const aliases = await readJson(join(root, 'aliases', `${shard}.json.gz`));
   for (const [alias, targets] of Object.entries(aliases)) {
+    assert(!targets.includes(informationLedger.deleted_duplicate_family_id), 'alias points to deleted information duplicate');
+    if (alias === 'azion') assert(!targets.includes(informationLedger.canonical_family_id), 'suffix routes to lexical information family');
+    if (informationLedger.aliases.includes(alias)) assert(targets.includes(informationLedger.canonical_family_id), `information reverse alias missing ${alias}`);
     if (alias === 'net') assert(JSON.stringify(targets) === JSON.stringify(netLedger.retained_targets.slice().sort()), 'net reverse alias routing mismatch');
     if (alias === 'val') assert(JSON.stringify(targets) === JSON.stringify(boundedLedger.val.retained_targets.slice().sort()) && targets.length <= 25, 'val reverse alias routing mismatch');
     assert(bucket(alias) === shard, `alias bucket mismatch ${alias}`);
@@ -530,6 +563,7 @@ const result = {
     reviewed_surface_families_absent: true,
     preserved_positive_controls_present: true,
     sense_ambiguous_family_quarantined: true,
+    information_exact_reviewed_members_and_neighbours_preserved: true,
     provenance_locked: true
   },
   rejected_corpus_noise: noiseFindings,

@@ -5,31 +5,31 @@
   "storage": "git_repository_static_files",
   "encoding": "gzip",
   "counts": {
-    "families": 2456543,
-    "aliases": 1934050,
+    "families": 2456542,
+    "aliases": 1934051,
     "lemmas": 4924980,
     "components": 9349982,
-    "memberships": 10078319,
-    "materialized_unique_lemmas": 4924281,
-    "multi_family_lemmas": 3332240,
-    "lemmas_without_materialized_family": 699,
+    "memberships": 10071308,
+    "materialized_unique_lemmas": 4924275,
+    "multi_family_lemmas": 3332183,
+    "lemmas_without_materialized_family": 705,
     "unique_lemmas_by_language": {
       "en": 1130945,
-      "de": 1113447,
+      "de": 1113446,
       "fr": 558904,
-      "es": 941521,
+      "es": 941516,
       "it": 610087,
       "ru": 569377
     },
     "memberships_by_language": {
-      "en": 2619261,
-      "de": 2205038,
-      "fr": 1143061,
-      "es": 1796516,
-      "it": 1187709,
-      "ru": 1126734
+      "en": 2619177,
+      "de": 2204874,
+      "fr": 1143056,
+      "es": 1796477,
+      "it": 1180989,
+      "ru": 1126735
     },
-    "materialized_families": 2456543
+    "materialized_families": 2456542
   },
   "invariants": {
     "manifest_report_counts_match": true,
@@ -46,6 +46,7 @@
     "reviewed_surface_families_absent": true,
     "preserved_positive_controls_present": true,
     "sense_ambiguous_family_quarantined": true,
+    "information_exact_reviewed_members_and_neighbours_preserved": true,
     "provenance_locked": true
   },
   "rejected_corpus_noise": [],
@@ -64,8 +65,8 @@
     },
     "storage": "git_repository_static_files",
     "file_count_before_provenance": 2050,
-    "total_bytes_before_provenance": 720880701,
-    "tree_content_sha256": "b1b02de3b6e7b967a99c63380b8b0097214912efe402fef67a65f2d824eb4a83",
+    "total_bytes_before_provenance": 720273492,
+    "tree_content_sha256": "74afd4e9258d1bf0264b51fa515f3e737ac9be73fd76e0df6ee0b03d894e89cf",
     "repository_repairs": [
       {
         "repair": "exclude_known_rejected_corpus_noise_from_runtime",
@@ -484,6 +485,19 @@
         ],
         "decision_ledger_sha256": "926891085b1b2c31da386a18e1bc75d5c7774eff736d1b13b5f12a87f08aa1ef",
         "deleted_families": [],
+        "not_individual_lexical_annotation": true
+      },
+      {
+        "repair": "consolidate_and_prune_latin_informatio_20260930",
+        "source_run_id": 35647932153,
+        "removed_memberships": 7014,
+        "added_memberships": 3,
+        "deleted_families": [
+          "ety:b34a3a0ff582"
+        ],
+        "retained_family": "ety:497564008159",
+        "added_aliases": 1,
+        "decision_ledger_sha256": "ac2b972beaafe1e91a3313f8d517d442347c79ee00caef41de37d6f5ffade02f",
         "not_individual_lexical_annotation": true
       }
     ]
