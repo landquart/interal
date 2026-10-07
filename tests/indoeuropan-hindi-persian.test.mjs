@@ -4,7 +4,7 @@ import vm from 'node:vm';
 
 const dictionary = JSON.parse(await readFile('indoeuropanvordes/pie_vordes', 'utf8'));
 assert.deepEqual(dictionary.languages, ['en', 'de', 'fr', 'es', 'it', 'ru', 'el', 'hi', 'fa']);
-assert.equal(dictionary.items.length, 167);
+assert.ok(dictionary.items.length >= 198, `expected expanded PIE dictionary, got ${dictionary.items.length}`);
 
 for (const item of dictionary.items) {
   for (const code of ['hi', 'fa']) {
