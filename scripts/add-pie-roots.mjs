@@ -10,6 +10,7 @@ const explicit = {
   },
   de: {
     Name: 'Nam', Mitte: 'Mitt', Auge: 'Aug', Achse: 'Achs', Nase: 'Nas',
+    Verwandte: 'Verwandt', Weizen: 'Weiz', gerade: 'gerad',
     Witwe: 'Witw', Tanne: 'Tann', Fliege: 'Flieg', Ameise: 'Ameis',
     Buche: 'Buch', Wespe: 'Wesp', Wolle: 'Woll', andere: 'ander',
     erste: 'erst', dritte: 'dritt'
@@ -17,14 +18,17 @@ const explicit = {
   fr: {
     être: 'êt', connaître: 'connaiss', voir: 'voi', cuire: 'cuis',
     moudre: 'moul', mourir: 'mour', vouloir: 'voul', droite: 'droit',
-    édible: 'édibl', siège: 'sièg'
+    édible: 'édibl', siège: 'sièg',
+    "s'allonger": 'allong', "s'asseoir": 'assoi'
   },
   es: {
     ver: 've', dar: 'da', peer: 'pe', roer: 'ro',
-    'silla de montar': 'sill', lecho: 'lech'
+    'silla de montar': 'sill', lecho: 'lech',
+    acostarse: 'acost', sentarse: 'sent'
   },
   it: {
-    dare: 'da', stare: 'sta', letto: 'lett', edule: 'edul'
+    dare: 'da', stare: 'sta', letto: 'lett', edule: 'edul',
+    sdraiarsi: 'sdrai'
   },
   ru: {
     'матерь': 'матер', 'имя': 'имен', 'ночь': 'ноч', 'соль': 'сол',
@@ -56,7 +60,10 @@ const explicit = {
     'сосать': 'сос', 'потеть': 'пот', 'тянуть': 'тян', 'дрожать': 'дрож',
     'жить': 'жи', 'ломать': 'лом', 'кашлять': 'кашл', 'грызть': 'грыз',
     'рыгать': 'рыг', 'свистеть': 'свист', 'скользить': 'скольз',
-    'плевать': 'плев', 'видеть': 'вид', 'хотеть': 'хот'
+    'плевать': 'плев', 'видеть': 'вид', 'хотеть': 'хот',
+    'глаз': 'глаз', 'ярмо': 'ярм', 'середина': 'середин', 'брод': 'брод',
+    'родня': 'родн', 'огонь': 'огон', 'молодой': 'молод', 'голый': 'гол',
+    'ткать': 'тк', 'тепловатый': 'тепловат', 'кабан': 'кабан'
   },
   el: {
     'μητέρα': 'μητερ', 'όνομα': 'ονοματ', 'νύχτα': 'νυχτ', 'αλάτι': 'αλατ',
@@ -99,7 +106,13 @@ const explicit = {
     'ιδρώνω': 'ιδρων', 'τεντώνω': 'τεντων', 'τρέμω': 'τρεμ', 'ζω': 'ζ',
     'σπάω': 'σπ', 'βήχω': 'βηχ', 'ροκανίζω': 'ροκανιζ', 'ρεύομαι': 'ρευ',
     'σφυρίζω': 'σφυριζ', 'γλιστράω': 'γλιστρ', 'φτύνω': 'φτυν',
-    'βλέπω': 'βλεπ', 'θέλω': 'θελ'
+    'βλέπω': 'βλεπ', 'θέλω': 'θελ',
+    'μάτι': 'ματ', 'νύχι': 'νυχ', 'μέση': 'μεσ', 'ξαπλώνω': 'ξαπλων',
+    'χιόνι': 'χιον', 'πέρασμα': 'περασμ', 'συγγενείς': 'συγγεν',
+    'σπόρος': 'σπορ', 'τρώω': 'τρω', 'κάθομαι': 'καθ', 'αυτί': 'αυτ',
+    'πόρτα': 'πορτ', 'υδρόμελι': 'υδρομελ', 'κρασί': 'κρασ',
+    'ποντίκι': 'ποντικ', 'λόφος': 'λοφ', 'θάλασσα': 'θαλασσ',
+    'φωτιά': 'φωτι', 'νερό': 'νερ', 'υφαίνω': 'υφαιν', 'ίσιος': 'ισι'
   },
   hi: {
     'जुआ': 'जु', 'ज़िंदा': 'ज़िंदा'
@@ -187,7 +200,10 @@ function romanizedRootFor(item, language, cell, root) {
 
 const explicitRootIpa = {
   ru: {
-    матер: 'matʲɪrʲ'
+    матер: 'matʲɪrʲ',
+    глаз: 'ɡlas', ярм: 'jɪrm', середин: 'sʲerʲedʲin', брод: 'brot',
+    родн: 'rodnʲ', огон: 'oɡonʲ', молод: 'molod', гол: 'ɡol',
+    тк: 'tk', тепловат: 'tʲeplovat', кабан: 'kaban'
   },
   en: {
     oat: 'oʊt', sate: 'seɪt'
@@ -198,13 +214,18 @@ const explicitRootIpa = {
     tress: 'tʁɛs', suc: 'sys', su: 'sɥ', tend: 'tɑ̃d', trembl: 'tʁɑ̃bl',
     viv: 'viv', bris: 'bʁiz', touss: 'tus', rong: 'ʁɔ̃ʒ', rot: 'ʁɔt',
     siffl: 'sifl', gliss: 'ɡlis', crach: 'kʁaʃ', voi: 'vwa', voul: 'vul',
-    édibl: 'edibl', sièg: 'sjɛʒ'
+    édibl: 'edibl', sièg: 'sjɛʒ',
+    allong: 'alɔ̃ʒ', assoi: 'aswa'
   },
   es: {
-    ve: 'be', da: 'da', pe: 'pe', ro: 'ro', sill: 'siʎ'
+    ve: 'be', da: 'da', pe: 'pe', ro: 'ro', sill: 'siʎ',
+    acost: 'akost', sent: 'sent'
   },
   it: {
-    da: 'da', sta: 'sta'
+    da: 'da', sta: 'sta', sdrai: 'zdraj'
+  },
+  el: {
+    νυχ: 'niç', ποντικ: 'pondic', θαλασσ: 'θalas'
   },
   hi: {
     जु: 'dʒʊ'
