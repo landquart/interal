@@ -78,7 +78,7 @@ for(const[name,mutate,deny,twice]of scenarios){
 // Real saved dossiers are the test inputs, not synthetic corpus claims.
 {
  const registryPath='associativvordes/family-index-v6/family-promotions.json',registry=read(registryPath),atomPath=registry.decisions.find(p=>p.includes('atom')),atom=read(atomPath);
- for(const[name,mutate]of [['denied promotion',d=>d.binding_authorized=false],['forged promotion locator',d=>d.groups[0].records[0].source_locator.path='forged.json'],['nonexistent promotion ID',d=>d.groups[0].records[0].lemma_id='synthetic:missing'],['stale promotion evidence',d=>d.input_sha256[Object.keys(d.input_sha256)[0]]='0'.repeat(64)]]){
+ for(const[name,mutate]of [['denied promotion',d=>d.binding_authorized=false],['forged promotion locator',d=>d.groups[0].records[0].source_locator.path='forged.json'],['nonexistent promotion ID',d=>d.groups[0].records[0].lemma_id='synthetic:missing'],['stale promotion evidence',d=>d.input_sha256[Object.keys(d.input_sha256)[0]]='0'.repeat(64)],['competing senses with policy',d=>d.groups[0].records[0].senses_decision.analyses.push({history:'unrelated',verdict:'excluded',evidence:['independent-negative-fixture']})],['competing senses with omitted policy',d=>{delete d.senses_policy;d.groups[0].records[0].senses_decision.analyses.push({history:'unrelated',verdict:'excluded',evidence:['independent-negative-fixture']});}]]){
   const bad=structuredClone(atom);mutate(bad);let rejected=false,error;
   try{await loadFamilyPromotions({catalog,inputs:{},read:async p=>p===atomPath?bad:read(p),readBytes:async p=>fs.readFileSync(p)});}catch(e){rejected=true;error=e.message;}
   results.push({name:'real promotion loader: '+name,status:rejected?'pass':'fail',registry_write:false,diagnostic:error});
