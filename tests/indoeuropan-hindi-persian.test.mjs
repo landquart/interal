@@ -104,6 +104,18 @@ assert.notEqual(byId(58).en.word, 'mere');
 assert.notEqual(byId(60).ru.word, 'пир');
 assert.notEqual(byId(61).el.word, 'ύδωρ');
 assert.notEqual(byId(78).ru.word, 'юный');
+assert.equal(byId(4).en.word, 'you');
+assert.notEqual(byId(4).en.word, 'thee');
+assert.equal(byId(36).es.word, 'estar de pie');
+assert.equal(byId(36).it.word, 'stare in piedi');
+assert.equal(byId(71).fr.word, 'droit');
+assert.equal(byId(71).es.word, 'derecho');
+assert.equal(byId(71).it.word, 'destro');
+assert.equal(byId(71).el.word, 'δεξιός');
+assert.equal(byId(108).fa.word, 'آب‌میوه');
+assert.equal(byId(128).el.word, 'αγριόλευκα');
+assert.equal(byId(132).hi.word, 'भूर्ज');
+assert.equal(byId(196).en.word, 'big');
 
 const ui = await readFile('indoeuropanvordes/index.html', 'utf8');
 const aline = await readFile('indoeuropanvordes/aline.js', 'utf8');
