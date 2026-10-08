@@ -26,7 +26,7 @@ for(const b of Array.from({length:256},(_,i)=>i.toString(16).padStart(2,'0'))){
 }
 assert(ids.size===2456540,'incomplete global inventory');for(const k of new Set([...Object.keys(classification),...Object.keys(report.classification_counts)]))assert(classification[k]===report.classification_counts[k],'classification mismatch '+k);
 let heads=await read(base+'/heads.json.gz'),edges=await read(base+'/edges.json.gz'),links=await read(base+'/lemma-head-links.json.gz'),memberships=await read(base+'/memberships.json.gz'),corpus=new Map(),cache=new Map();
-for(const l of links){const p=l.evidence[0].source;let shard=cache.get(p.path);if(!shard){shard=await read(p.path);cache.set(p.path,shard);}const m=shard[p.family_id]?.find(m=>m.lemma_id===l.lemma_id);assert(m&&m.word===l.word&&sha(Buffer.from(JSON.stringify(m)))===p.record_sha256,'lost/modified original measured record');corpus.set(l.language+'\0'+l.lemma_id,m);}
+for(const l of links){const p=l.evidence[0].source;let shard=cache.get(p.path);if(!shard){shard=await read(p.path);cache.set(p.path,shard);if(cache.size>8)cache.delete(cache.keys().next().value);}const m=shard[p.family_id]?.find(m=>m.lemma_id===l.lemma_id);assert(m&&m.word===l.word&&sha(Buffer.from(JSON.stringify(m)))===p.record_sha256,'lost/modified original measured record');corpus.set(l.language+'\0'+l.lemma_id,m);}
 const corrections=await loadBaselineCorrections({read,readBytes:p=>fs.readFile(p),inputs:{}}),correctionVerdicts=await read(base+'/correction-verdicts.json.gz');
 const generated=generateV6Memberships({catalog,heads,edges,links,corpus,correction_verdicts:correctionVerdicts});assert(JSON.stringify(generated)===JSON.stringify(memberships),'nonreproducible head-to-family output');
 const finalState={heads,edges,links};

@@ -90,19 +90,1590 @@
           "regul"
         ],
         "removed_segment": null,
-        "reason": "Retain the individually named international associative base in the user mandate and existing curated family. No ending-stripping inference or inherited etymon selection is used; membership remains finite and unreviewed branches stay unresolved.",
+        "reason": "Retain complete associative base regul. Independently scoped Latin regula/regularis/regulare line; regulus from rex, Greek regolith/regolite and cross-boundary гулять are distinct. Finite heads and review overlay, never aliases, authorize membership.",
         "evidence": [
           "audit/associative-family-v6/task-20261003.txt",
-          "family:regul"
+          "family:regul",
+          "audit/associative-family-v6/regul-20261008/research/evidence.json",
+          "audit/associative-family-v6/regul-20261008/decisions/review.json"
         ],
         "negative_over_stripping": [],
         "negative_under_stripping": [],
         "positive_examples": [],
-        "lexical_heads": [],
-        "membership_certification": "Existing individual membership proofs retained; root catalog approval does not certify unresolved lexical identity."
+        "lexical_heads": [
+          "de:regularie",
+          "de:regularität",
+          "de:regulation",
+          "de:regulator",
+          "de:regulieren",
+          "de:regulär",
+          "en:regular",
+          "en:regulate",
+          "es:regular",
+          "es:regularizar",
+          "fr:régulariser",
+          "fr:régularité",
+          "fr:régulation",
+          "fr:réguler",
+          "fr:régulier",
+          "it:regola",
+          "it:regolamentare",
+          "it:regolare",
+          "it:regolarizzare",
+          "ru:регулировать"
+        ],
+        "membership_certification": "Finite reviewed scope; unresolved corpus homonym, spelling, language and contracted-form questions are withheld. Full linguistic certification false."
       },
       "realizations": {},
-      "reflexes": []
+      "reflexes": [
+        {
+          "family_id": "family:regul",
+          "language": "en",
+          "realization": "regul",
+          "realization_type": "canonical_reflex",
+          "morphology_boundary": "Complete retained base; exact positions and before/component/after saved for each finite ID. No universal letter replacement.",
+          "supporting_heads": [
+            "regular",
+            "regulate"
+          ],
+          "head_scope": [
+            {
+              "language": "en",
+              "normalized_head": "regular",
+              "sense": "regula_line_bounded_component",
+              "evidence": [
+                {
+                  "source": "https://www.ahdictionary.com/word/search.html?q=regular",
+                  "finding": "Regular continues Late Latin regularis from regula; adjective and noun interpretations share that base. Regularity and regularly are listed derivatives.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.ahdictionary.com/word/search.html?q=regularize",
+                  "finding": "The verb makes something regular; regularization and regularizer are listed derivatives.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.ahdictionary.com/word/search.html?q=regular",
+                  "finding": "Regular continues Late Latin regularis from regula; adjective and noun interpretations share that base. Regularity and regularly are listed derivatives.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.ahdictionary.com/word/search.html?q=irregular",
+                  "finding": "Adjective and irregular-soldier noun retain negative regular interpretation; irregularly is listed.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.ahdictionary.com/word/search.html?q=regular",
+                  "finding": "Regular continues Late Latin regularis from regula; adjective and noun interpretations share that base. Regularity and regularly are listed derivatives.",
+                  "access_status": "article_read"
+                }
+              ]
+            },
+            {
+              "language": "en",
+              "normalized_head": "regulate",
+              "sense": "regula_line_bounded_component",
+              "evidence": [
+                {
+                  "source": "https://www.ahdictionary.com/word/search.html?q=regulate",
+                  "finding": "Regulate continues Late Latin regulare/regulat- from regula; finite regulated/regulating/regulates and regulative/regulatory are documented.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.ahdictionary.com/word/search.html?q=regulate",
+                  "finding": "Regulate continues Late Latin regulare/regulat- from regula; finite regulated/regulating/regulates and regulative/regulatory are documented.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.ahdictionary.com/word/search.html?q=regulate",
+                  "finding": "Regulate continues Late Latin regulare/regulat- from regula; finite regulated/regulating/regulates and regulative/regulatory are documented.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.ahdictionary.com/word/search.html?q=regulate",
+                  "finding": "Regulate continues Late Latin regulare/regulat- from regula; finite regulated/regulating/regulates and regulative/regulatory are documented.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.ahdictionary.com/word/search.html?q=regulate",
+                  "finding": "Regulate continues Late Latin regulare/regulat- from regula; finite regulated/regulating/regulates and regulative/regulatory are documented.",
+                  "access_status": "article_read"
+                }
+              ]
+            }
+          ],
+          "positive_controls": [
+            "regularisation",
+            "unregulated",
+            "deregulation",
+            "disregulated"
+          ],
+          "negative_controls": [
+            "regolith",
+            "regolite",
+            "régulo",
+            "régule",
+            "перегулять"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "audit/associative-family-v6/regul-20261008/research/evidence.json"
+            }
+          ],
+          "general_family_realization": true,
+          "establishes_membership": false,
+          "finite_scope_lemma_ids": [
+            "lemma:035dff1dbaf25c406184",
+            "lemma:07be5029c83636c278df",
+            "lemma:0d3558a3b1255fe8de2e",
+            "lemma:0dfe7dedb40741cbe552",
+            "lemma:10fbebba1b141411cdc2",
+            "lemma:10fdc4017384616d25df",
+            "lemma:229adaee0404c29b3175",
+            "lemma:23f87c6b51912c1db34c",
+            "lemma:283515b63b8782669484",
+            "lemma:2b608ead411354362bcb",
+            "lemma:2dc75f61cd2bedbf1318",
+            "lemma:2e67173e8dc9b7b49144",
+            "lemma:303f7d474c0c71805dab",
+            "lemma:39e3856978033351d63e",
+            "lemma:3f723945f838a2b7d952",
+            "lemma:40174d193a38f3dfa0c4",
+            "lemma:441775de620a5475b0e1",
+            "lemma:4704f1204a1b81b467c8",
+            "lemma:48a82186dd1ee904c08a",
+            "lemma:4c8ed7205b14f58ffa95",
+            "lemma:4ed2d1391e60a4ce89cf",
+            "lemma:54029180b87f425faf34",
+            "lemma:5686b57cc943c5b74deb",
+            "lemma:5bfac79df365de7c3f16",
+            "lemma:5e80e80cd2e404278082",
+            "lemma:5eafc5b4dd421ead970c",
+            "lemma:607420c2ac5b11ef4a09",
+            "lemma:622018d1ee63ee50f6a2",
+            "lemma:6787b205f1bcda01076e",
+            "lemma:680dc1bb1bb69535cb22",
+            "lemma:6889736cd519438a3e88",
+            "lemma:6f41e8eaa2362644a651",
+            "lemma:7090b2435f0bfb0a4ad7",
+            "lemma:73c50867fe5d0dd6e8a4",
+            "lemma:74b345f9ca4b61824d2f",
+            "lemma:760076539b2c52d02d45",
+            "lemma:78bafba2c5c8b59f4c1f",
+            "lemma:84e16516bb89ba3af7fd",
+            "lemma:857c491d0aa4faa5de69",
+            "lemma:8b20e79e4be1193499fe",
+            "lemma:912f5b7c18bf65eaa65f",
+            "lemma:95be9aa0ebecd68d10a7",
+            "lemma:a704e4e1daee6bea1dbd",
+            "lemma:aee83e996466adb21daf",
+            "lemma:b4593d86cd3afd264467",
+            "lemma:b5ea03998d9a641296a6",
+            "lemma:b92b2e88d5ed8210c5db",
+            "lemma:c3d1af9c48e10ed1b383",
+            "lemma:c69d7eb703f16113d467",
+            "lemma:c72ac959a176af7f4b3d",
+            "lemma:d58e6e30009eee290e48",
+            "lemma:d8cae547d96e7630c516",
+            "lemma:dd2ba7a0432b48c30558",
+            "lemma:def62109d3431809a259",
+            "lemma:e0563858014790749a2c",
+            "lemma:e620bf4c94aa13c08f59",
+            "lemma:ecbe6e74d596f902d36c",
+            "lemma:eceb29c5b171ce37679b",
+            "lemma:ed064909dd620042ccf3",
+            "lemma:ed307ddb10294af0416a",
+            "lemma:edaba13d8eb312ec1b40",
+            "lemma:ee79a0a8788fc9cee252",
+            "lemma:f9a65ad8e82d73e42ead",
+            "lemma:fa299e82755b238bef8c"
+          ]
+        },
+        {
+          "family_id": "family:regul",
+          "language": "de",
+          "realization": "regul",
+          "realization_type": "canonical_reflex",
+          "morphology_boundary": "Complete retained base; exact positions and before/component/after saved for each finite ID. No universal letter replacement.",
+          "supporting_heads": [
+            "regularie",
+            "regularität",
+            "regulation",
+            "regulator",
+            "regulieren",
+            "regulär"
+          ],
+          "head_scope": [
+            {
+              "language": "de",
+              "normalized_head": "regularie",
+              "sense": "regula_line_bounded_component",
+              "evidence": [
+                {
+                  "source": "https://www.duden.de/rechtschreibung/Regularie",
+                  "finding": "Regularie derives from Latin regularis; plural Regularien refers to regularly conducted agenda matters.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.duden.de/rechtschreibung/Regularie",
+                  "finding": "Regularie derives from Latin regularis; plural Regularien refers to regularly conducted agenda matters.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.duden.de/rechtschreibung/Regularie",
+                  "finding": "Regularie derives from Latin regularis; plural Regularien refers to regularly conducted agenda matters.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.duden.de/rechtschreibung/Regularie",
+                  "finding": "Regularie derives from Latin regularis; plural Regularien refers to regularly conducted agenda matters.",
+                  "access_status": "article_read"
+                }
+              ]
+            },
+            {
+              "language": "de",
+              "normalized_head": "regularität",
+              "sense": "regula_line_bounded_component",
+              "evidence": [
+                {
+                  "source": "https://www.duden.de/rechtschreibung/Regularitaet",
+                  "finding": "Regularität is borrowed from French régularité; plural Regularitäten is explicitly listed.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.duden.de/rechtschreibung/Regularitaet",
+                  "finding": "Regularität is borrowed from French régularité; plural Regularitäten is explicitly listed.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.duden.de/rechtschreibung/Regularitaet",
+                  "finding": "Regularität is borrowed from French régularité; plural Regularitäten is explicitly listed.",
+                  "access_status": "article_read"
+                }
+              ]
+            },
+            {
+              "language": "de",
+              "normalized_head": "regulation",
+              "sense": "regula_line_bounded_component",
+              "evidence": [
+                {
+                  "source": "https://www.duden.de/rechtschreibung/Regulation",
+                  "finding": "Dictionary supports regulation noun and its regulation-related lexical component.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.duden.de/rechtschreibung/Regulation",
+                  "finding": "Dictionary supports regulation noun and its regulation-related lexical component.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.duden.de/rechtschreibung/Regulation",
+                  "finding": "Dictionary supports regulation noun and its regulation-related lexical component.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.duden.de/rechtschreibung/Regulation",
+                  "finding": "Dictionary supports regulation noun and its regulation-related lexical component.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.duden.de/rechtschreibung/Regulation",
+                  "finding": "Dictionary supports regulation noun and its regulation-related lexical component.",
+                  "access_status": "article_read"
+                }
+              ]
+            },
+            {
+              "language": "de",
+              "normalized_head": "regulator",
+              "sense": "regula_line_bounded_component",
+              "evidence": [
+                {
+                  "source": "https://www.duden.de/rechtschreibung/Regulator",
+                  "finding": "Technical regulator head; dictionary entry supports the device lexeme and finite compounds with that complete component.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.duden.de/rechtschreibung/Regulator",
+                  "finding": "Technical regulator head; dictionary entry supports the device lexeme and finite compounds with that complete component.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.duden.de/rechtschreibung/Regulator",
+                  "finding": "Technical regulator head; dictionary entry supports the device lexeme and finite compounds with that complete component.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.duden.de/rechtschreibung/Regulator",
+                  "finding": "Technical regulator head; dictionary entry supports the device lexeme and finite compounds with that complete component.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.duden.de/rechtschreibung/Regulator",
+                  "finding": "Technical regulator head; dictionary entry supports the device lexeme and finite compounds with that complete component.",
+                  "access_status": "article_read"
+                }
+              ]
+            },
+            {
+              "language": "de",
+              "normalized_head": "regulieren",
+              "sense": "regula_line_bounded_component",
+              "evidence": [
+                {
+                  "source": "https://www.duden.de/rechtschreibung/regulieren",
+                  "finding": "Weak verb descends from Late Latin regulare, related to regula; regulates mechanisms, flows and organized processes.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.duden.de/rechtschreibung/regulieren",
+                  "finding": "Weak verb descends from Late Latin regulare, related to regula; regulates mechanisms, flows and organized processes.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.duden.de/rechtschreibung/regulieren",
+                  "finding": "Weak verb descends from Late Latin regulare, related to regula; regulates mechanisms, flows and organized processes.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.duden.de/rechtschreibung/regulieren",
+                  "finding": "Weak verb descends from Late Latin regulare, related to regula; regulates mechanisms, flows and organized processes.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.duden.de/rechtschreibung/regulieren",
+                  "finding": "Weak verb descends from Late Latin regulare, related to regula; regulates mechanisms, flows and organized processes.",
+                  "access_status": "article_read"
+                }
+              ]
+            },
+            {
+              "language": "de",
+              "normalized_head": "regulär",
+              "sense": "regula_line_bounded_component",
+              "evidence": [
+                {
+                  "source": "https://www.duden.de/rechtschreibung/regulaer",
+                  "finding": "Adjective continues regularis from regula; ordinary inflection retains regulär-.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.duden.de/rechtschreibung/regulaer",
+                  "finding": "Adjective continues regularis from regula; ordinary inflection retains regulär-.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.duden.de/rechtschreibung/regulaer",
+                  "finding": "Adjective continues regularis from regula; ordinary inflection retains regulär-.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.duden.de/rechtschreibung/regulaer",
+                  "finding": "Adjective continues regularis from regula; ordinary inflection retains regulär-.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.duden.de/rechtschreibung/regulaer",
+                  "finding": "Adjective continues regularis from regula; ordinary inflection retains regulär-.",
+                  "access_status": "article_read"
+                }
+              ]
+            }
+          ],
+          "positive_controls": [
+            "lipidregulatoren",
+            "regulierbarkeit",
+            "regulierungssystem",
+            "schadensregulierung"
+          ],
+          "negative_controls": [
+            "regolith",
+            "regolite",
+            "régulo",
+            "régule",
+            "перегулять"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "audit/associative-family-v6/regul-20261008/research/evidence.json"
+            }
+          ],
+          "general_family_realization": true,
+          "establishes_membership": false,
+          "finite_scope_lemma_ids": [
+            "lemma:005636b556e2f70da7a1",
+            "lemma:0068b35274f0d262327d",
+            "lemma:021997e08148ec015d1c",
+            "lemma:027dc4b465b22a2c15ef",
+            "lemma:02b88f40a7aeaaffe1b1",
+            "lemma:03ab13d15b16c312a784",
+            "lemma:03c61a8109da8b028646",
+            "lemma:0462f1a00b018a9800e1",
+            "lemma:06ba062afe1436949786",
+            "lemma:089c1a6953acb5e3481f",
+            "lemma:0aa20de33473257d9ea7",
+            "lemma:0aefce06e9f59bc8de5a",
+            "lemma:0d1f20401cc1f9342ae7",
+            "lemma:0efabef0fcea6ca092c4",
+            "lemma:0f26325d8f90619f7646",
+            "lemma:0f294c1cce9615713a4d",
+            "lemma:11d78f4a6827d65d47bc",
+            "lemma:1261216a0999c528ff36",
+            "lemma:1397e482aa7903d3f108",
+            "lemma:14d79387a663d6bdcf33",
+            "lemma:15764bf458ab06ea318a",
+            "lemma:167b059340b647c28838",
+            "lemma:177e5de8d56148f8c671",
+            "lemma:19c73f4b82fe3e455bf8",
+            "lemma:1ba29a55fb1c758ababd",
+            "lemma:1beda0a75182af7b7f2c",
+            "lemma:1e2483a8dad6fe54d4d2",
+            "lemma:1e2e9d9d1d8fab44e5de",
+            "lemma:1f7cc55e01c644ac96c1",
+            "lemma:201496777400b432f0a1",
+            "lemma:2157c03bd87304b8fdff",
+            "lemma:235871cb1ba4abd5015f",
+            "lemma:236087ef450b82232315",
+            "lemma:24a49b5609e3094adf64",
+            "lemma:257b6d079c84a69d4f9c",
+            "lemma:265d7ef54a1617ef010d",
+            "lemma:27c9158f7b89116546a6",
+            "lemma:29056b2fb286896fdae6",
+            "lemma:2a840d0ce40a31c0dff7",
+            "lemma:2b836652815da2d6a8b4",
+            "lemma:2c75b1c0fd6fb4b95f98",
+            "lemma:2ccc2e5664382a24a9eb",
+            "lemma:2e7a5a1e1a52ea63a5c0",
+            "lemma:2f1b62d72a5e0029d6d5",
+            "lemma:305dbbfa2dc61b26fca0",
+            "lemma:308d6d0ddbd06c5d81b2",
+            "lemma:3178162bfba159dc7768",
+            "lemma:3352fb9c5f0248660eb2",
+            "lemma:3365d239df26e5171554",
+            "lemma:35322ca3fc3c38697235",
+            "lemma:369caaac9aa826372466",
+            "lemma:36b35525ba3a30432ec2",
+            "lemma:36c6663abe963a85950f",
+            "lemma:3a9bcbfae61377c571ca",
+            "lemma:3b2c4cf10a4a6604be45",
+            "lemma:3c0738c9d15957b090fa",
+            "lemma:3d03d4c6c5ce58a4e0f1",
+            "lemma:3d4eb5dd37250e815e65",
+            "lemma:3ff8655123aa10dd9b61",
+            "lemma:4039f1c9baf9a1ae15ed",
+            "lemma:40faf4b25d734fd71789",
+            "lemma:4177d5ef5c060c224f85",
+            "lemma:434cac93c02bd84eeda5",
+            "lemma:435ffa57dd641c58a78d",
+            "lemma:43eebd5d9a7d17438f8d",
+            "lemma:4446f4272ac58bd38f11",
+            "lemma:4513f0605d2fdda94d64",
+            "lemma:4715191d7945e11ff59b",
+            "lemma:4874bc7978745f736475",
+            "lemma:48ab17f6012acdfb321c",
+            "lemma:48b3708a91305cbd1ee0",
+            "lemma:492d2288d8211cf89c45",
+            "lemma:496955e4493ead1c2e8a",
+            "lemma:4a5fb785c78efc0a78d4",
+            "lemma:4b07ef0675efe522d338",
+            "lemma:4d7faf3f222143db559f",
+            "lemma:4ee457a3cbdf5576ddee",
+            "lemma:50a0230263e285b65444",
+            "lemma:524cf77aab3228d9295f",
+            "lemma:5736b7ac3d9ebf5b270e",
+            "lemma:5950967ec8249d09cd0f",
+            "lemma:59cd17b782f4010d7456",
+            "lemma:5b573007c075be8cf272",
+            "lemma:5c69c2db1d67d32a698a",
+            "lemma:5ce156bc444e29e83e91",
+            "lemma:5db2444bdd6095b3911e",
+            "lemma:5dcecee404b3543e3f00",
+            "lemma:5e6b9d267d6973369fff",
+            "lemma:5f6206fe9efc8e7caa1e",
+            "lemma:5fcba484cadfced54a40",
+            "lemma:61f6a3d4b2e573f893e1",
+            "lemma:62fb4869216178b91533",
+            "lemma:65dd143614c1f782dbe1",
+            "lemma:6843bd811b55c448bebf",
+            "lemma:68a4617f6fa4ce3f5de0",
+            "lemma:6da13fa8741f4cdded46",
+            "lemma:6e7a6c4eda3214eeea44",
+            "lemma:71bd684d4e3282d3c4f2",
+            "lemma:763c384ddc4fac8760a7",
+            "lemma:76e7a48f5d2dbe54063c",
+            "lemma:780c4b8418561714fca4",
+            "lemma:796923ebc93b1d8165d4",
+            "lemma:79b2358ca828b81f6823",
+            "lemma:7b34836905262f765b52",
+            "lemma:7cf233042231793dd4fa",
+            "lemma:7df06f669e402ec1ca3f",
+            "lemma:8183157fa9ac3a8f034f",
+            "lemma:81b8f718f1e716831fe1",
+            "lemma:844947dd5c43ece2d032",
+            "lemma:85686640243349767682",
+            "lemma:86065e3ad31b8f08f1fd",
+            "lemma:864dce5f054e04a74fdc",
+            "lemma:88c407c09db43d81bb88",
+            "lemma:8aabe28e7878ccafec8a",
+            "lemma:8d00d872ef55e8d9564d",
+            "lemma:8d0758bc3f882d6a0a67",
+            "lemma:8d5454da8986306e99ad",
+            "lemma:8e29009c029445b64886",
+            "lemma:8e58e86e10a6f11831e0",
+            "lemma:8e64b1c621943e11f1a5",
+            "lemma:8edeba7608dd44a32560",
+            "lemma:9079f454f5e9f4a69cbb",
+            "lemma:91c5ca02b80904220f45",
+            "lemma:93eb8b23f98bf1fb6cea",
+            "lemma:96376700477a2d3a586c",
+            "lemma:96dba22e5e66dc391dbd",
+            "lemma:97df6d7cb565af110d87",
+            "lemma:9b1abcab63facf09fac9",
+            "lemma:9b52b81cbccc3d18b42b",
+            "lemma:9b69c1eb5d93f14b6452",
+            "lemma:9c612e0889e86ac845c3",
+            "lemma:9d184461ebaeb5eb290c",
+            "lemma:9eeae62d18fd9616adb2",
+            "lemma:9f1be19f9163c49f8e70",
+            "lemma:9f4b50c718416558af66",
+            "lemma:9f685071e0aa54185c1a",
+            "lemma:9f7c35626a954eda83ea",
+            "lemma:9fda165c6fbf4caa2867",
+            "lemma:a1975b7329ef884077ff",
+            "lemma:a5573ec87f50cddbafb1",
+            "lemma:a589ac998a946312b008",
+            "lemma:a6d8f60eb2788247eab5",
+            "lemma:a79380cc5f235c87253a",
+            "lemma:a7cc5aec9fcfb2785080",
+            "lemma:a7d417b32a41fa268825",
+            "lemma:a90523998c3188c8d490",
+            "lemma:a92ede5f36ae0d4177f3",
+            "lemma:ab02bcf42f50ecd00cf3",
+            "lemma:ab076ccf796c474a60e5",
+            "lemma:ab07cd157746b8c576fc",
+            "lemma:abc0b3d28e62e5fc8c56",
+            "lemma:ac9841f9eab680c1fc68",
+            "lemma:ad56f7388e7133c73ac7",
+            "lemma:af03cc964e397d3a3dd7",
+            "lemma:af1c90ad13e1b06313f5",
+            "lemma:af9f54f318cbebb85ae8",
+            "lemma:b164bab6e36abb6556e3",
+            "lemma:b25aee4a6a0880aff11e",
+            "lemma:b26d1d771d10fa1d2962",
+            "lemma:b62460a1bebf2659be23",
+            "lemma:b89f42b66e6f0469f75d",
+            "lemma:b8ac71c9ecf0c62cf57f",
+            "lemma:b979bfc33f3dfcf7a6ad",
+            "lemma:bdcdf0160312feac3722",
+            "lemma:be4709b3112eec2000fc",
+            "lemma:c00a05948d3d41e73859",
+            "lemma:c106d8f29d228f2ad27d",
+            "lemma:c2fe899f59b87804e5f5",
+            "lemma:c3fcd3bc52230175d069",
+            "lemma:c4392ec697b436714b0d",
+            "lemma:c44596695e411cb18f12",
+            "lemma:c4d51083c4ba5e8abf26",
+            "lemma:c56abb4826833ba96e23",
+            "lemma:c56ed2324e14fd8b9867",
+            "lemma:c749611158c3d9fee55c",
+            "lemma:c7702569165cd5727c7f",
+            "lemma:c7f2b7eae036b68eeff6",
+            "lemma:c80dbb2ca414292b10a9",
+            "lemma:c8d18df6413a7c8fc557",
+            "lemma:cb2c393b7cdbc63e1530",
+            "lemma:cbbc214931c9558797b4",
+            "lemma:ce4302ee0be0ef83c361",
+            "lemma:ce51b604887bd692f246",
+            "lemma:cec31aafad7d411e1b3c",
+            "lemma:ced963b2a8ff834e4954",
+            "lemma:cee31fecc5b972b35466",
+            "lemma:cff229aa663ed9dea0b8",
+            "lemma:d239244048ca248bb505",
+            "lemma:d3558cdb6ec6a4796a0c",
+            "lemma:d4bb2ef2e533cfbfe305",
+            "lemma:d4bba3199860a9e33525",
+            "lemma:d50b5a1cab480dfaffe3",
+            "lemma:d5ee09343cb8d2f19647",
+            "lemma:d6d906b27ace26e925bc",
+            "lemma:d71b134083906c145fe6",
+            "lemma:d72cbdc148e6eae61e33",
+            "lemma:d763cd280be843d0d94b",
+            "lemma:d7787fed77b213b1ea3a",
+            "lemma:d7deca9582f23b7d4e8a",
+            "lemma:da85f8527593a9abdd73",
+            "lemma:db4ade518a5cffa5ce02",
+            "lemma:df1a1838f5c4cb54d9db",
+            "lemma:e0b2c270146c43f130ca",
+            "lemma:e2b8a9ec7bbd0b175068",
+            "lemma:e2ec3f95be581fb1177f",
+            "lemma:e2f47f71fea4bd2b5546",
+            "lemma:e3eae15d8a6e44ce7ccf",
+            "lemma:e521219a7fa61fea0a06",
+            "lemma:e62866cc8f95923be3e6",
+            "lemma:e6e23442d739fc0eb938",
+            "lemma:e8626f852f3a3f47041e",
+            "lemma:e868c685a5e242feb0c8",
+            "lemma:e8dc8b9a0538d32da249",
+            "lemma:e92c5ab1cc4d3504753b",
+            "lemma:e9a9b87b79ac13e26179",
+            "lemma:ea71420446d276e4afcf",
+            "lemma:ec74eeea3aa262788cde",
+            "lemma:ed207952e279307ad5d2",
+            "lemma:ee1193a466a4b3cdface",
+            "lemma:eed4539ea5b7fb9e7b1a",
+            "lemma:eef22bccd00d1adc554b",
+            "lemma:ef13c3f2cf73a011bcb5",
+            "lemma:f17b8085c0587ca48027",
+            "lemma:f31cb2c97747dddf3e2e",
+            "lemma:f31e18e6b05570889d0c",
+            "lemma:f55a7e3a6ea6961002d2",
+            "lemma:f568faf8f66797e6f6d1",
+            "lemma:f6048b0e4852b3fdc4d4",
+            "lemma:f6e6b8849349abf20b7c",
+            "lemma:fa5611945831bdf8ef88",
+            "lemma:fbdf5b29d84708a11fd0",
+            "lemma:fc3540f208323f197507",
+            "lemma:fcd000963f16d3cd982d"
+          ]
+        },
+        {
+          "family_id": "family:regul",
+          "language": "fr",
+          "realization": "régul",
+          "realization_type": "canonical_reflex",
+          "morphology_boundary": "Complete retained base; exact positions and before/component/after saved for each finite ID. No universal letter replacement.",
+          "supporting_heads": [
+            "régulariser",
+            "régularité",
+            "régulation",
+            "réguler",
+            "régulier"
+          ],
+          "head_scope": [
+            {
+              "language": "fr",
+              "normalized_head": "régulariser",
+              "sense": "regula_line_bounded_component",
+              "evidence": [
+                {
+                  "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulariser/67707",
+                  "finding": "Régulariser makes something regular or lawful and is tied to regularis; it does not derive from the alloy noun.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulariser/67707",
+                  "finding": "Régulariser makes something regular or lawful and is tied to regularis; it does not derive from the alloy noun.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulariser/67707",
+                  "finding": "Régulariser makes something regular or lawful and is tied to regularis; it does not derive from the alloy noun.",
+                  "access_status": "article_read"
+                }
+              ]
+            },
+            {
+              "language": "fr",
+              "normalized_head": "régularité",
+              "sense": "regula_line_bounded_component",
+              "evidence": [
+                {
+                  "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulariser/67707",
+                  "finding": "Régulariser makes something regular or lawful and is tied to regularis; it does not derive from the alloy noun.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulariser/67707",
+                  "finding": "Régulariser makes something regular or lawful and is tied to regularis; it does not derive from the alloy noun.",
+                  "access_status": "article_read"
+                }
+              ]
+            },
+            {
+              "language": "fr",
+              "normalized_head": "régulation",
+              "sense": "regula_line_bounded_component",
+              "evidence": [
+                {
+                  "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711",
+                  "finding": "Régulation continues regulating réguler/regulare and covers related technical, biological and social uses.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711",
+                  "finding": "Régulation continues regulating réguler/regulare and covers related technical, biological and social uses.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711",
+                  "finding": "Régulation continues regulating réguler/regulare and covers related technical, biological and social uses.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711",
+                  "finding": "Régulation continues regulating réguler/regulare and covers related technical, biological and social uses.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711",
+                  "finding": "Régulation continues regulating réguler/regulare and covers related technical, biological and social uses.",
+                  "access_status": "article_read"
+                }
+              ]
+            },
+            {
+              "language": "fr",
+              "normalized_head": "réguler",
+              "sense": "regula_line_bounded_component",
+              "evidence": [
+                {
+                  "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711",
+                  "finding": "Régulation continues regulating réguler/regulare and covers related technical, biological and social uses.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711",
+                  "finding": "Régulation continues regulating réguler/regulare and covers related technical, biological and social uses.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711",
+                  "finding": "Régulation continues regulating réguler/regulare and covers related technical, biological and social uses.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711",
+                  "finding": "Régulation continues regulating réguler/regulare and covers related technical, biological and social uses.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711",
+                  "finding": "Régulation continues regulating réguler/regulare and covers related technical, biological and social uses.",
+                  "access_status": "article_read"
+                }
+              ]
+            },
+            {
+              "language": "fr",
+              "normalized_head": "régulier",
+              "sense": "regula_line_bounded_component",
+              "evidence": [
+                {
+                  "source": "https://www.cnrtl.fr/etymologie/r%C3%A9gulier",
+                  "finding": "Régulier continues regularis from regula; changes to -ier are scoped to this lexical branch, not a universal transformation.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.cnrtl.fr/etymologie/r%C3%A9gulier",
+                  "finding": "Régulier continues regularis from regula; changes to -ier are scoped to this lexical branch, not a universal transformation.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.cnrtl.fr/etymologie/r%C3%A9gulier",
+                  "finding": "Régulier continues regularis from regula; changes to -ier are scoped to this lexical branch, not a universal transformation.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.cnrtl.fr/etymologie/r%C3%A9gulier",
+                  "finding": "Régulier continues regularis from regula; changes to -ier are scoped to this lexical branch, not a universal transformation.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.cnrtl.fr/etymologie/r%C3%A9gulier",
+                  "finding": "Régulier continues regularis from regula; changes to -ier are scoped to this lexical branch, not a universal transformation.",
+                  "access_status": "article_read"
+                }
+              ]
+            }
+          ],
+          "positive_controls": [
+            "thermorégulateur",
+            "thermorégulation",
+            "régulation",
+            "auto-régulation"
+          ],
+          "negative_controls": [
+            "regolith",
+            "regolite",
+            "régulo",
+            "régule",
+            "перегулять"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "audit/associative-family-v6/regul-20261008/research/evidence.json"
+            }
+          ],
+          "general_family_realization": true,
+          "establishes_membership": false,
+          "finite_scope_lemma_ids": [
+            "lemma:07362c52e00da9423353",
+            "lemma:30f120b72413ff51f9dd",
+            "lemma:36b113dd5a19c834592d",
+            "lemma:39c1dec86d24b907b3fa",
+            "lemma:4eafaf3a6bdc48158997",
+            "lemma:5a43e881c659b7318a63",
+            "lemma:61ca334fcd7e3c1d4da1",
+            "lemma:61f7c48c3e3b197fdfbd",
+            "lemma:705c58c03fab1fb1f6a2",
+            "lemma:73136f108357f520e4f0",
+            "lemma:78f43f425119ecb0fa88",
+            "lemma:7f5cb08e76802ecdce3a",
+            "lemma:88168f5d9ec7c72b0fb3",
+            "lemma:8fc76978856a42889766",
+            "lemma:910b647c5e2cffa1a4fb",
+            "lemma:984e268ecedb682a5847",
+            "lemma:9ebcfb848a4277939f63",
+            "lemma:a24492789c0da16978f7",
+            "lemma:a3ba24e9e917462ad4d2",
+            "lemma:a680db96c44cfe8eeb91",
+            "lemma:b2f56ab290b79ddb87b5",
+            "lemma:b5c9a8ef3d8c75c57e55",
+            "lemma:b70a8f30cbe96aa55f59",
+            "lemma:bacb06b369a4ea24ff92",
+            "lemma:bdabe37210293cb2b749",
+            "lemma:c55605b837d3cab10a8a",
+            "lemma:c8d358461e538d46315e",
+            "lemma:cbc6bc9e9c8742be68aa",
+            "lemma:ce5da2698b427a42a029",
+            "lemma:d71631a9231edbb496ba",
+            "lemma:debd820aba583932f007",
+            "lemma:ea97906ce1effd0e680f",
+            "lemma:ebb88e077fcb50177d5c",
+            "lemma:f5e5f0620a5c09730879",
+            "lemma:fafbf960d64e711d8ea2",
+            "lemma:fb905ff1624fe584f2d5"
+          ]
+        },
+        {
+          "family_id": "family:regul",
+          "language": "es",
+          "realization": "regul",
+          "realization_type": "canonical_reflex",
+          "morphology_boundary": "Complete retained base; exact positions and before/component/after saved for each finite ID. No universal letter replacement.",
+          "supporting_heads": [
+            "regular",
+            "regularizar"
+          ],
+          "head_scope": [
+            {
+              "language": "es",
+              "normalized_head": "regular",
+              "sense": "regula_line_bounded_component",
+              "evidence": [
+                {
+                  "source": "https://dle.rae.es/regular",
+                  "finding": "Adjective and adjusting verb belong to regula/regularis regulation line; shared component permits POS uncertainty without inventing sense frequencies.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://dle.rae.es/regular",
+                  "finding": "Adjective and adjusting verb belong to regula/regularis regulation line; shared component permits POS uncertainty without inventing sense frequencies.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://dle.rae.es/regular",
+                  "finding": "Adjective and adjusting verb belong to regula/regularis regulation line; shared component permits POS uncertainty without inventing sense frequencies.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://dle.rae.es/regular",
+                  "finding": "Adjective and adjusting verb belong to regula/regularis regulation line; shared component permits POS uncertainty without inventing sense frequencies.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://dle.rae.es/regular",
+                  "finding": "Adjective and adjusting verb belong to regula/regularis regulation line; shared component permits POS uncertainty without inventing sense frequencies.",
+                  "access_status": "article_read"
+                }
+              ]
+            },
+            {
+              "language": "es",
+              "normalized_head": "regularizar",
+              "sense": "regula_line_bounded_component",
+              "evidence": [
+                {
+                  "source": "https://dle.rae.es/regularizar",
+                  "finding": "Derivative of regular plus -izar; conjugation demonstrates c before front vowel in regularicé and z in regularizado.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://dle.rae.es/regularizar",
+                  "finding": "Derivative of regular plus -izar; conjugation demonstrates c before front vowel in regularicé and z in regularizado.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://dle.rae.es/regularizar",
+                  "finding": "Derivative of regular plus -izar; conjugation demonstrates c before front vowel in regularicé and z in regularizado.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://dle.rae.es/regularizar",
+                  "finding": "Derivative of regular plus -izar; conjugation demonstrates c before front vowel in regularicé and z in regularizado.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://dle.rae.es/regularizar",
+                  "finding": "Derivative of regular plus -izar; conjugation demonstrates c before front vowel in regularicé and z in regularizado.",
+                  "access_status": "article_read"
+                }
+              ]
+            }
+          ],
+          "positive_controls": [
+            "regularnos",
+            "regularlo",
+            "neuroregulador",
+            "desregularizaciones"
+          ],
+          "negative_controls": [
+            "regolith",
+            "regolite",
+            "régulo",
+            "régule",
+            "перегулять"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "audit/associative-family-v6/regul-20261008/research/evidence.json"
+            }
+          ],
+          "general_family_realization": true,
+          "establishes_membership": false,
+          "finite_scope_lemma_ids": [
+            "lemma:0159b475fab6f658de96",
+            "lemma:02b8f1e86eeab156b570",
+            "lemma:03f97aff314457e2fd80",
+            "lemma:05f34c7a691ad16b1e7e",
+            "lemma:0cf5ab65c48188dd393c",
+            "lemma:0cfea91b73f9dffbf38c",
+            "lemma:0ddcac9a2d4eba024557",
+            "lemma:128360904d8a856dbe3f",
+            "lemma:15bec38d5773f30a0fac",
+            "lemma:1dcc5ac5c8698315ed01",
+            "lemma:2026c6ab14f837e9653d",
+            "lemma:2262d51362fe6f3275e5",
+            "lemma:25833dd0a69deb6fe24c",
+            "lemma:267f0f807cfd96116e4d",
+            "lemma:2d105565ac505218ab68",
+            "lemma:2d2b7401ebcf672a67a2",
+            "lemma:3b9576244cd1dd0c5fd8",
+            "lemma:409e353ad3d7b71d0110",
+            "lemma:437411bca8479c202cb4",
+            "lemma:45e97228f197b8714885",
+            "lemma:4c6779b2d0ec12eea82c",
+            "lemma:4db6a9dfbc95f55ab6b0",
+            "lemma:51e802c50beb70afc78e",
+            "lemma:57d0ced49e6cf76c81ab",
+            "lemma:62404925893f087acf87",
+            "lemma:673cd6286d883e4f6d39",
+            "lemma:6c1a47008335eb0d3a02",
+            "lemma:7098f1b858ec87aa581c",
+            "lemma:711b8bf199687af31609",
+            "lemma:78ccf5dd61f80d448cbe",
+            "lemma:7c3fed7477104b660298",
+            "lemma:7e3783c4d4a7925f47cc",
+            "lemma:924713eae2fb2e4dae68",
+            "lemma:93aa97add52571dbb117",
+            "lemma:9621f4309393a3004d17",
+            "lemma:963079a0d9c1f1831f97",
+            "lemma:96eb3f343f011993166a",
+            "lemma:9707bf692afb5e5ee07f",
+            "lemma:972124bcd76cd4497238",
+            "lemma:998cee659f8eef069bb9",
+            "lemma:9e8943404ef664e43993",
+            "lemma:a1907439a231843967ba",
+            "lemma:a5b8068505a7dbe90c02",
+            "lemma:a6ba3683a7fa9e0e5f61",
+            "lemma:aa5594b8320ddea32ac1",
+            "lemma:ac14e3f90cab5f1f074f",
+            "lemma:ad9134e07e8f36e0dfd8",
+            "lemma:b109905bd80c060b1b17",
+            "lemma:b48dca293c63c82dd850",
+            "lemma:b55150a45c5e4f3c7ccc",
+            "lemma:ba6a0321c023e1100d7b",
+            "lemma:bc05eb86dbb852854c7d",
+            "lemma:be2b8305b471d295c453",
+            "lemma:c10b06b076cca583b501",
+            "lemma:c7a48c3958bdad168f26",
+            "lemma:cc3898dcc2894d3700e1",
+            "lemma:ccb9affc5f1e1c7d8972",
+            "lemma:dab40f4dca0606f9bd8f",
+            "lemma:dbc6dd42e1a05d326015",
+            "lemma:e69df751eede289e031a",
+            "lemma:e7db30ccaca068efaff9",
+            "lemma:e9d9268f485e353dfcb2",
+            "lemma:efca638e7baf6b6478eb",
+            "lemma:f305bf78e7da946a6b68",
+            "lemma:f561f8f35202aa88dac4",
+            "lemma:ff1aeb0101b1f79bd894",
+            "lemma:ffbf326405b48cc793da"
+          ]
+        },
+        {
+          "family_id": "family:regul",
+          "language": "es",
+          "realization": "regúl",
+          "realization_type": "lexical_branch_realization",
+          "morphology_boundary": "Complete retained base; exact positions and before/component/after saved for each finite ID. No universal letter replacement.",
+          "supporting_heads": [
+            "regular"
+          ],
+          "head_scope": [
+            {
+              "language": "es",
+              "normalized_head": "regular",
+              "sense": "regula_line_bounded_component",
+              "evidence": [
+                {
+                  "source": "https://dle.rae.es/regular",
+                  "finding": "Adjective and adjusting verb belong to regula/regularis regulation line; shared component permits POS uncertainty without inventing sense frequencies.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://dle.rae.es/regular",
+                  "finding": "Adjective and adjusting verb belong to regula/regularis regulation line; shared component permits POS uncertainty without inventing sense frequencies.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://dle.rae.es/regular",
+                  "finding": "Adjective and adjusting verb belong to regula/regularis regulation line; shared component permits POS uncertainty without inventing sense frequencies.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://dle.rae.es/regular",
+                  "finding": "Adjective and adjusting verb belong to regula/regularis regulation line; shared component permits POS uncertainty without inventing sense frequencies.",
+                  "access_status": "article_read"
+                }
+              ]
+            }
+          ],
+          "positive_controls": [
+            "regúlese",
+            "regúlalo",
+            "regúlenos",
+            "regúlenlo"
+          ],
+          "negative_controls": [
+            "regolith",
+            "regolite",
+            "régulo",
+            "régule",
+            "перегулять"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "audit/associative-family-v6/regul-20261008/research/evidence.json"
+            }
+          ],
+          "general_family_realization": false,
+          "establishes_membership": false,
+          "finite_scope_lemma_ids": [
+            "lemma:52d7513d1e6df6c4ad23",
+            "lemma:70c02617a1260cbfc94b",
+            "lemma:864ffcf4c5d4b7eaddac",
+            "lemma:f66fdd281298d837e5af"
+          ]
+        },
+        {
+          "family_id": "family:regul",
+          "language": "it",
+          "realization": "regol",
+          "realization_type": "canonical_reflex",
+          "morphology_boundary": "Complete retained base; exact positions and before/component/after saved for each finite ID. No universal letter replacement.",
+          "supporting_heads": [
+            "regola",
+            "regolamentare",
+            "regolare",
+            "regolarizzare"
+          ],
+          "head_scope": [
+            {
+              "language": "it",
+              "normalized_head": "regola",
+              "sense": "regula_line_bounded_component",
+              "evidence": [
+                {
+                  "source": "https://www.treccani.it/vocabolario/regola/",
+                  "finding": "Regola derives from regula; norms, measuring rod and periodic metaphor are connected. Regoletta and regolina are named derivatives.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.treccani.it/vocabolario/regola/",
+                  "finding": "Regola derives from regula; norms, measuring rod and periodic metaphor are connected. Regoletta and regolina are named derivatives.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.treccani.it/vocabolario/regola/",
+                  "finding": "Regola derives from regula; norms, measuring rod and periodic metaphor are connected. Regoletta and regolina are named derivatives.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.treccani.it/vocabolario/regola/",
+                  "finding": "Regola derives from regula; norms, measuring rod and periodic metaphor are connected. Regoletta and regolina are named derivatives.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.treccani.it/vocabolario/regola/",
+                  "finding": "Regola derives from regula; norms, measuring rod and periodic metaphor are connected. Regoletta and regolina are named derivatives.",
+                  "access_status": "article_read"
+                }
+              ]
+            },
+            {
+              "language": "it",
+              "normalized_head": "regolamentare",
+              "sense": "regula_line_bounded_component",
+              "evidence": [
+                {
+                  "source": "https://www.treccani.it/vocabolario/regolamentare1/",
+                  "finding": "Adjective derives from regolamento; regulation-conforming meaning shares the component with the homographic verb.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.treccani.it/vocabolario/regolamentare2/",
+                  "finding": "Verb derives from regolamento; adjective/verb ambiguity has a proved common Italian base.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.treccani.it/vocabolario/regolamento/",
+                  "finding": "Noun is a derivative of regolare2 and forms the base of regolament-.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.treccani.it/vocabolario/regolamentare1/",
+                  "finding": "Adjective derives from regolamento; regulation-conforming meaning shares the component with the homographic verb.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.treccani.it/vocabolario/regolamentare2/",
+                  "finding": "Verb derives from regolamento; adjective/verb ambiguity has a proved common Italian base.",
+                  "access_status": "article_read"
+                }
+              ]
+            },
+            {
+              "language": "it",
+              "normalized_head": "regolare",
+              "sense": "regula_line_bounded_component",
+              "evidence": [
+                {
+                  "source": "https://www.treccani.it/vocabolario/regolare1/",
+                  "finding": "Adjective continues regularis and retains Italian regol- within regolar-.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.treccani.it/vocabolario/regolare2/",
+                  "finding": "Verb continues regulare from regula; reflexive and clitic forms are productive but must be finite enumerated records.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.treccani.it/vocabolario/regolare1/",
+                  "finding": "Adjective continues regularis and retains Italian regol- within regolar-.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.treccani.it/vocabolario/regolare2/",
+                  "finding": "Verb continues regulare from regula; reflexive and clitic forms are productive but must be finite enumerated records.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.treccani.it/vocabolario/regolare1/",
+                  "finding": "Adjective continues regularis and retains Italian regol- within regolar-.",
+                  "access_status": "article_read"
+                }
+              ]
+            },
+            {
+              "language": "it",
+              "normalized_head": "regolarizzare",
+              "sense": "regula_line_bounded_component",
+              "evidence": [
+                {
+                  "source": "https://www.treccani.it/vocabolario/regolarizzare/",
+                  "finding": "Verb derives from regolare1 and makes an arrangement regular; reflexive use is documented.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.treccani.it/vocabolario/regolarizzare/",
+                  "finding": "Verb derives from regolare1 and makes an arrangement regular; reflexive use is documented.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.treccani.it/vocabolario/regolarizzare/",
+                  "finding": "Verb derives from regolare1 and makes an arrangement regular; reflexive use is documented.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.treccani.it/vocabolario/regolarizzare/",
+                  "finding": "Verb derives from regolare1 and makes an arrangement regular; reflexive use is documented.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://www.treccani.it/vocabolario/regolarizzare/",
+                  "finding": "Verb derives from regolare1 and makes an arrangement regular; reflexive use is documented.",
+                  "access_status": "article_read"
+                }
+              ]
+            }
+          ],
+          "positive_controls": [
+            "regolandolo",
+            "regolarizzabile",
+            "microregolatore",
+            "regolarizzarsi"
+          ],
+          "negative_controls": [
+            "regolith",
+            "regolite",
+            "régulo",
+            "régule",
+            "перегулять"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "audit/associative-family-v6/regul-20261008/research/evidence.json"
+            }
+          ],
+          "general_family_realization": true,
+          "establishes_membership": false,
+          "finite_scope_lemma_ids": [
+            "lemma:011ec7edea24abc4cdc2",
+            "lemma:02f9c147153626cec551",
+            "lemma:07eed4c691b5f6db898c",
+            "lemma:0c4ff4cd4ee3d2b641c7",
+            "lemma:0edb16090428f48648d4",
+            "lemma:10b9662833209be6e8ff",
+            "lemma:136db65f73a02ec3c4d8",
+            "lemma:141fc6423a400c8021d3",
+            "lemma:17240bc33f356549a1d9",
+            "lemma:181f9010db8fb0d3a959",
+            "lemma:19b917d0e2d68948fd23",
+            "lemma:1c5a7e3f6129d36c99fa",
+            "lemma:1fc7c864fb794054503a",
+            "lemma:27fc7762c8138a245bea",
+            "lemma:2c6eec9095b20473a60b",
+            "lemma:2e835aa4308a1b8ad62b",
+            "lemma:37024d9661346f8e4ec0",
+            "lemma:3c8a12e64645d983377b",
+            "lemma:3d80f0f7506c281950cf",
+            "lemma:42aad2a0c96b765e6270",
+            "lemma:43a1533b7e043ff5256c",
+            "lemma:489b3ec4d00953439bf7",
+            "lemma:4954949dfdc26f946e4f",
+            "lemma:49a1b3468372e3442cf9",
+            "lemma:4a37edb1cea4cab37a4a",
+            "lemma:4bb0ea8369608c3ffa03",
+            "lemma:4d234ec11203ced30818",
+            "lemma:4fa1669c3d7f58ade0ec",
+            "lemma:578ba01c0f2cee843f00",
+            "lemma:5d50b5889485f45f4ce7",
+            "lemma:5dd30f62b58a3820b02f",
+            "lemma:5dda4b6a19976ffda9d5",
+            "lemma:5e74437007b6c3e2ecf9",
+            "lemma:5f4161b774dcc4721a78",
+            "lemma:65b32fa1ca8b392f2688",
+            "lemma:6693db3b3ff6e0fb1250",
+            "lemma:6a6e491cd0124e24a6d4",
+            "lemma:70cbeddd95707b937ebb",
+            "lemma:72ddcbf8c234c7aea82f",
+            "lemma:77630a61cb6dd10d7ac3",
+            "lemma:7998b625d58e14606157",
+            "lemma:81508be3dda92542bfd0",
+            "lemma:83ea7bfbdec2763e1ff3",
+            "lemma:85a67dab82d0735c5e5f",
+            "lemma:85beda8db1307cd38d2b",
+            "lemma:8669577d953ef0cbb8b6",
+            "lemma:8cb2b69c04abb2c7ccaa",
+            "lemma:8db432b87f86549d51e2",
+            "lemma:90316c6e5bbda49e4197",
+            "lemma:9350f9cc445cd1325585",
+            "lemma:9909af35a081b6a6d79b",
+            "lemma:9994332b7db40b972b22",
+            "lemma:99b95c62420146f1ca6c",
+            "lemma:9b4f07a686ebd0c6b7b6",
+            "lemma:9d9309fc16d9625e762d",
+            "lemma:9d944ed1a8f306c47f51",
+            "lemma:9e33f8a83f5791acf19b",
+            "lemma:a2fc48a16f270cd1c524",
+            "lemma:a43c4be389e2844cd00b",
+            "lemma:a4ff91ed1493d81da022",
+            "lemma:a51f741f7c1716f58fa4",
+            "lemma:a6e686de60f30affe33f",
+            "lemma:a7929c4979c12bc17e85",
+            "lemma:a8bc522da42df4bff076",
+            "lemma:aceb9428d739cdb18922",
+            "lemma:b5458a75fe8313d1a4ed",
+            "lemma:b704ddf6a46968203d80",
+            "lemma:b91ae8064ef983809ca1",
+            "lemma:bc8fc04cac359ac85081",
+            "lemma:bcf360ffcddf8b5c265d",
+            "lemma:c25b1a89f01584e049bc",
+            "lemma:c2949924c62ea4225256",
+            "lemma:c463e936dc06fd3286a9",
+            "lemma:c5908f88e322f1c0eccb",
+            "lemma:caf650b14c491dbd9cad",
+            "lemma:cfa657731e7cf376d2c2",
+            "lemma:cfb5e5cf76b689ceab81",
+            "lemma:d18c7fcee8160289f35d",
+            "lemma:d4d550705c8c237f6a31",
+            "lemma:dabcd8031297888c5d2f",
+            "lemma:dca3c38318af9df0e68e",
+            "lemma:dee287593b57c8dbae7f",
+            "lemma:e6ca5558ac4b6e2df152",
+            "lemma:e972363b0631504abb13",
+            "lemma:e9cc4e11ec2f7e8214bb",
+            "lemma:ed92e95ad1f2741ab8a2",
+            "lemma:edb3f4e783dc7b28de74",
+            "lemma:effcd064a8b9a44f58fb",
+            "lemma:f1a5a51404da1e1bf097",
+            "lemma:f1f484ed8e300f7b4cdb",
+            "lemma:f86d1bcddcda664d1ccf",
+            "lemma:f89a0e72ede81347d0c3",
+            "lemma:f90bbbd7b472b76e2ead",
+            "lemma:fa70a300bb65b6759cb0",
+            "lemma:fb18e63dd6c89ba92d0c",
+            "lemma:fd4c0e3e92315e2d0675"
+          ]
+        },
+        {
+          "family_id": "family:regul",
+          "language": "ru",
+          "realization": "регул",
+          "realization_type": "canonical_reflex",
+          "morphology_boundary": "Complete retained base; exact positions and before/component/after saved for each finite ID. No universal letter replacement.",
+          "supporting_heads": [
+            "регулировать"
+          ],
+          "head_scope": [
+            {
+              "language": "ru",
+              "normalized_head": "регулировать",
+              "sense": "regula_line_bounded_component",
+              "evidence": [
+                {
+                  "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+                  "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+                  "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+                  "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+                  "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+                  "access_status": "article_read"
+                },
+                {
+                  "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+                  "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+                  "access_status": "article_read"
+                }
+              ]
+            }
+          ],
+          "positive_controls": [
+            "урегулировка",
+            "регулирующий",
+            "росалкогольрегулирование",
+            "урегулироваться"
+          ],
+          "negative_controls": [
+            "regolith",
+            "regolite",
+            "régulo",
+            "régule",
+            "перегулять"
+          ],
+          "status": "accepted",
+          "evidence": [
+            {
+              "source": "audit/associative-family-v6/regul-20261008/research/evidence.json"
+            }
+          ],
+          "general_family_realization": true,
+          "establishes_membership": false,
+          "finite_scope_lemma_ids": [
+            "lemma:0116e3a9ed0087661281",
+            "lemma:022062b2797ac6710a1a",
+            "lemma:035e90b14402677d5231",
+            "lemma:08b8219c0410795768a4",
+            "lemma:09cc0d3b3467d97f7387",
+            "lemma:130e898258f787860ab0",
+            "lemma:1651ee21ebdf9aa8af45",
+            "lemma:209c0c6fcfc4d510a280",
+            "lemma:2487550fcb3da0247d85",
+            "lemma:32063fa6921c61fccfe4",
+            "lemma:32103b22d1302c59521a",
+            "lemma:3bbf7c1286e2abd8efb4",
+            "lemma:41d837b933ffa8263d9c",
+            "lemma:45e25ce554797f54514f",
+            "lemma:48cfea69c291374c2b39",
+            "lemma:4dc1c99c58ea8e4da2c4",
+            "lemma:4eafdb5478a7cc210b5c",
+            "lemma:4f173b284cb71bc40530",
+            "lemma:4f9afb6963394f211247",
+            "lemma:4fed1d01c8dd66f38ed2",
+            "lemma:54c410ea88d2cba39b6c",
+            "lemma:5c97b41eefc901ca41bd",
+            "lemma:729776840e8dd77f921e",
+            "lemma:7598404646ea30a64d90",
+            "lemma:79b286ab0c8183ffa9a8",
+            "lemma:7c483b813154c841565b",
+            "lemma:7e922bde6a364067bdb3",
+            "lemma:827fe3734cdde1769230",
+            "lemma:84894c296cb1679e12ae",
+            "lemma:899a089effeb9522f371",
+            "lemma:8f6ce57ad8505b18eafe",
+            "lemma:91b8ed36916dd2a6b78e",
+            "lemma:92878ebe384524bfb035",
+            "lemma:9783bf98f587f0bd2127",
+            "lemma:9ed9a70df631d50fd25c",
+            "lemma:a42971daf82a7c5b63d6",
+            "lemma:af7e90f9342bf4c9f691",
+            "lemma:af91964a3d9a3065c8ab",
+            "lemma:b30f4f8826d1ce6adff9",
+            "lemma:b5615806b87df49f55e3",
+            "lemma:b61609533a301d6b2bb0",
+            "lemma:b62dd04f56ecc3a799b0",
+            "lemma:b6e5fc2192eeaa9425e4",
+            "lemma:bc648d20e85b34fe2de4",
+            "lemma:c3e82629181f0b08da2c",
+            "lemma:cc028fe99edba57d7373",
+            "lemma:ce2c2aad2072af54c944",
+            "lemma:dd193da4eb8ca3966579",
+            "lemma:df3c4b97872a0e042c3c",
+            "lemma:e34bf0f0f63ef1d8e758",
+            "lemma:e5b7821977bf5138227e",
+            "lemma:e7a67f1cc36b41cb9e04",
+            "lemma:eaa5f3f4c692b4687a1d",
+            "lemma:ec09f8fcb3db2adab268",
+            "lemma:f40292ff1fe4f2b114bb",
+            "lemma:f889bdd85dcd9913c7c4",
+            "lemma:fe6ba94fc19371d0f631"
+          ]
+        },
+        {
+          "family_id": "family:regul",
+          "language": "en",
+          "realization": "rule",
+          "realization_type": "lexical_branch_realization",
+          "morphology_boundary": "Contracted direct descendant investigated, no accepted whole regul continuity granted.",
+          "supporting_heads": [],
+          "head_scope": [],
+          "positive_controls": [
+            "rule"
+          ],
+          "negative_controls": [
+            "lieu",
+            "lieutenant"
+          ],
+          "status": "uncertain",
+          "evidence": [
+            {
+              "source": "audit/associative-family-v6/regul-20261008/research/evidence.json"
+            }
+          ],
+          "general_family_realization": false,
+          "establishes_membership": false
+        },
+        {
+          "family_id": "family:regul",
+          "language": "de",
+          "realization": "regel",
+          "realization_type": "lexical_branch_realization",
+          "morphology_boundary": "Contracted direct descendant investigated, no accepted whole regul continuity granted.",
+          "supporting_heads": [],
+          "head_scope": [],
+          "positive_controls": [
+            "regel"
+          ],
+          "negative_controls": [
+            "lieu",
+            "lieutenant"
+          ],
+          "status": "uncertain",
+          "evidence": [
+            {
+              "source": "audit/associative-family-v6/regul-20261008/research/evidence.json"
+            }
+          ],
+          "general_family_realization": false,
+          "establishes_membership": false
+        },
+        {
+          "family_id": "family:regul",
+          "language": "fr",
+          "realization": "règle",
+          "realization_type": "lexical_branch_realization",
+          "morphology_boundary": "Contracted direct descendant investigated, no accepted whole regul continuity granted.",
+          "supporting_heads": [],
+          "head_scope": [],
+          "positive_controls": [
+            "règle"
+          ],
+          "negative_controls": [
+            "lieu",
+            "lieutenant"
+          ],
+          "status": "uncertain",
+          "evidence": [
+            {
+              "source": "audit/associative-family-v6/regul-20261008/research/evidence.json"
+            }
+          ],
+          "general_family_realization": false,
+          "establishes_membership": false
+        },
+        {
+          "family_id": "family:regul",
+          "language": "es",
+          "realization": "regla",
+          "realization_type": "lexical_branch_realization",
+          "morphology_boundary": "Contracted direct descendant investigated, no accepted whole regul continuity granted.",
+          "supporting_heads": [],
+          "head_scope": [],
+          "positive_controls": [
+            "regla"
+          ],
+          "negative_controls": [
+            "lieu",
+            "lieutenant"
+          ],
+          "status": "uncertain",
+          "evidence": [
+            {
+              "source": "audit/associative-family-v6/regul-20261008/research/evidence.json"
+            }
+          ],
+          "general_family_realization": false,
+          "establishes_membership": false
+        }
+      ],
+      "negative_constraints": [
+        "regulus/rex line is not regula",
+        "regolith/regolite Greek line excluded",
+        "search accent stripping does not merge régulo with regulo",
+        "transliterated substring across пере- + гулять excluded",
+        "foreign word or malformed token requires an independent exact lexical proof",
+        "réguler metallurgy homonym requires an evidenced partition, not frequency dominance"
+      ]
     },
     {
       "id": "family:alter",

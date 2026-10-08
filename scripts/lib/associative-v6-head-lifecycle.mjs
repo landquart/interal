@@ -1,5 +1,6 @@
 import {createHash} from 'node:crypto';
 import {applyHeadReview,generateV6Memberships,normalizeHead} from '../../associativvordes/js/associative-family-v6.js';
+import {decideLexicalRow} from './associative-v6-senses-policy.mjs';
 export const stateHash=x=>createHash('sha256').update(JSON.stringify(x)).digest('hex');
 export const recordKey=r=>r.language+'\0'+r.family_id+'\0'+r.lemma_id;
 const edgeKey=e=>e.head_id+'\0'+e.family_id;
@@ -62,12 +63,15 @@ export function replayHeadLifecycle({index,docs,initialLedger=[]}){
    if(r.language!==h.language||!r.lemma_id||keys.has(r.lemma_id)||r.source_record?.lemma_id!==r.lemma_id||r.source_record.word!==r.word||stateHash(r.source_record)!==r.source_locator?.record_sha256)fail('Invalid lifecycle real identity');keys.add(r.lemma_id);
    if((r.relation_kind&&r.relation_kind!=='lexical_continuity')||(r.formal_continuity_status&&r.formal_continuity_status!=='accepted'))fail('Non-lexical or unproved formal lifecycle continuity');
    if(r.identity_decision?.status!=='accepted'||!r.identity_decision.reason||!r.identity_decision.evidence?.length||r.boundary_proof?.status!=='accepted'||!r.boundary_proof.reason||!r.boundary_proof.evidence?.length)fail('Unproved new link identity or boundary');
+   if(doc.family_id==='family:regul'&&(!r.senses_decision||r.senses_decision.language!==r.language||r.senses_decision.lemma_id!==r.lemma_id||r.senses_decision.word!==r.word||r.senses_decision.family_id!==doc.family_id||decideLexicalRow(r.senses_decision).decision!=='accepted'))fail('Missing accepted finite regul senses policy');
    const existing=old.find(l=>l.lemma_id===r.lemma_id);
    if(existing){if(existing.word!==r.word||!same(existing.evidence[0].source,r.source_locator))fail('Changed old source proof');continue;}
    if(!['extend_links','extend_forms','new_family_edge'].includes(doc.operation))fail('Revision/clarification cannot add links');
    if(index.links.some(l=>recordKey(l)===recordKey({...r,family_id:doc.family_id})))fail('Duplicate lifecycle membership identity');
    if(r.link_role==='reviewed_lexical_base_component'){
-    const s=r.component_segmentation;if(!s||s.before+s.component+s.after!==r.word||normalizeHead(s.component)!==h.normalized_head)fail('Unproved component segmentation');
+    const s=r.component_segmentation,exact=s&&normalizeHead(s.component)===h.normalized_head;
+    const stem=s&&s.head===h.normalized_head&&h.finite_component_stems?.includes(s.component)&&doc.component_stems?.includes(s.component);
+    if(!s||s.before+s.component+s.after!==r.word||(!exact&&!stem))fail('Unproved component segmentation');
    }else if(!['whole_lexeme','inflection'].includes(r.link_role)||!doc.finite_forms?.includes(r.word))fail('Unproved finite form');
    index.links.push({language:r.language,lemma_id:r.lemma_id,word:r.word,family_id:doc.family_id,head_id:h.id,recognition:'versioned_finite_identity',link_role:r.link_role,...(r.component_segmentation?{component_segmentation:r.component_segmentation,whole_compound_identity_established:false}:{}),identity_proof:r.identity_decision.evidence,boundary_proof:r.boundary_proof,evidence:[{source:r.source_locator,lemma_id:r.lemma_id}],source_references:doc.sources||[],membership_object:'lexical_row_or_component',token_senses_established:false,frequency_status:'aggregate_only_not_sense_frequency',lifecycle_origin:doc.id});
    index.corpus.set(r.language+'\0'+r.lemma_id,r.source_record);appended++;

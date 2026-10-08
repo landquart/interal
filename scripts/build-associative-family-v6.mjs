@@ -29,6 +29,7 @@ function bind(m,language,family,p,proof){
  if(rb){if(rb.word!==m.word)throw Error('Representation word mismatch');p={head:rb.fact.normalized_head,sense:rb.fact.sense,morphology_policy:'finite_reviewed_component_links',source_references:review.doc.evidence_cache.filter(e=>rb.fact.evidence_ids.includes(e.id)).flatMap(e=>e.sources)};}
  const lexical=Boolean(p),id=lexical?headId(language,p.head,p.sense):'head:legacy:'+language+':'+m.lemma_id.slice(6);
  const h=heads.get(id)||{id,language,normalized_head:lexical?normalizeHead(p.head):normalizeHead(m.word),identity_kind:lexical?'lexical_head':'legacy_exact_record',sense:lexical?p.sense:'unresolved_lexical_identity',version:1,evidence:rb?[...review.doc.evidence_cache.filter(e=>rb.fact.evidence_ids.includes(e.id)),...rb.identity_proof]:[]};
+ if(rb?.fact.finite_component_stems)h.finite_component_stems=rb.fact.finite_component_stems;
  const ev={source:proof,lemma_id:m.lemma_id};h.evidence.push(ev);heads.set(id,h);
  const k=id+'\0'+family.id,e=edges.get(k)||{head_id:id,family_id:family.id,status:'accepted',scope:lexical?'finite_evidenced_links':'exact_lemma_only',morphology_policy:lexical?p.morphology_policy:'no_propagation',version:1,evidence:[],lemma_ids:[]};
  e.evidence.push(ev);e.lemma_ids.push(m.lemma_id);edges.set(k,e);

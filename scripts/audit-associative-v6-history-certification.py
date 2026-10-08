@@ -2,7 +2,7 @@
 """Independent exact-set verification of current history and certification."""
 import gzip,json,hashlib,subprocess,sys
 from pathlib import Path
-R=Path('audit/associative-family-v6/prompt06-history-20261005');G=Path('associativvordes/family-index-v6/generated');BASE='a29a3184336b981f2ca1c5cea019ad43e4b42729'
+R=Path('audit/associative-family-v6/prompt06-history-20261005');G=Path('associativvordes/family-index-v6/generated');BASE='f70c217d08329f7f93fd56945cb7366562e579e9'
 sha=lambda b:hashlib.sha256(b).hexdigest()
 def read(p):
  b=Path(p).read_bytes();return json.loads(gzip.decompress(b) if str(p).endswith('.gz') else b)
@@ -15,13 +15,20 @@ for p,h in m['input_sha256'].items():assert sha(Path(p).read_bytes())==h,'change
 for p,h in m['artifacts'].items():assert sha((C/p).read_bytes())==h,'changed certification artifact '+p
 catalog=read('associativvordes/family-index-v6/catalog.json');cert=read(C/'family-certification.json');assert {f['family_id'] for f in cert}=={f['id'] for f in catalog['families']};assert len(cert)==len(catalog['families'])
 old,current=index(frozen(G/'memberships.json.gz')),index(read(G/'memberships.json.gz'));v=read(G/'correction-verdicts.json.gz');vk={key(r) for r in v}
-assert set(old)-set(current)==vk,'unapproved baseline loss';added=set(current)-set(old);assert len(added)==5 and all(current[k]['family_id']=='family:atom' for k in added),'unexpected new membership';assert all(current[k]==r for k,r in old.items() if k in current),'unexpected changed membership'
+regul_review=read('audit/associative-family-v6/regul-20261008/decisions/review.json');reviewed=index(regul_review)
+assert set(old)-set(current)==vk,'unapproved baseline loss'
+assert vk=={key(r) for r in regul_review if r['prior_state']=='legacy_accepted' and r['decision']!='accepted'}
+added=set(current)-set(old);expected_added={key(r) for r in regul_review if r['prior_state']!='legacy_accepted' and r['decision']=='accepted'}
+assert added==expected_added and len(added)==59,'unexpected new membership'
+changed={k for k,r in old.items() if k in current and current[k]!=r};assert changed=={key(r) for r in regul_review if r['prior_state']=='legacy_accepted' and r['decision']=='accepted'} and len(changed)==498
+assert all(current[k]==r for k,r in old.items() if k in current and k[1]!='family:regul'),'other membership changed'
+regul_old_heads={r['head_id'] for r in old.values() if r['family_id']=='family:regul'}
 baseline=read(G/'baseline-memberships.json.gz');assert len(baseline)==19967 and len(index(baseline))==19967
 for name in ['heads.json.gz','edges.json.gz','lemma-head-links.json.gz','head-review-ledger.json','family-promotion-ledger.json','head-lifecycle-ledger.json','review-backlog.json.gz','head-review-metrics.json']:
  before,after=frozen(G/name),read(G/name)
  if name in ['heads.json.gz','edges.json.gz','lemma-head-links.json.gz']:
   ident=lambda r:r['id'] if name.startswith('heads') else (r['head_id'],r['family_id']) if name.startswith('edges') else (r['head_id'],key(r))
-  lookup={ident(r):r for r in after};assert all(lookup.get(ident(r))==r for r in before),'unexpected old proof mutation '+name
+  lookup={ident(r):r for r in after};protected=[r for r in before if (r['id'] not in regul_old_heads if name.startswith('heads') else r['family_id']!='family:regul')];assert all(lookup.get(ident(r))==r for r in protected),'unexpected old proof mutation '+name
  elif name in ['family-promotion-ledger.json','head-lifecycle-ledger.json']:
   assert after['decisions'][:len(before['decisions'])]==before['decisions']
  else:assert before==after,'unexpected mutation '+name
@@ -43,7 +50,7 @@ assert sets['root_bound_overlap']==sorted(map(convert,h&a));assert sets['root_bo
 all_h={key(r) for r in historical};eligible={key(r) for r in mapped if r['current_linguistic_status'] in ['unreviewed','uncertain']}
 assert sets['all_historical_root_bound']==sorted(map(convert,all_h));assert sets['all_historical_current_overlap']==sorted(map(convert,all_h&a))
 assert sets['effective_review_eligible_historical']==sorted(map(convert,eligible));assert sets['effective_review_eligible_current_overlap']==sorted(map(convert,eligible&a));assert sets['effective_review_eligible_union']==sorted(map(convert,eligible|a))
-assert len(all_h&a)==827 and len(eligible)==47723 and len(eligible&a)==827 and len(eligible|a)==70130
+previous_mapped=read('audit/associative-family-v6/prompt09-shadow-20261007/certification/historical-reconciliation.json.gz');assert [r for r in mapped if r['root']!='regul']==[r for r in previous_mapped if r['root']!='regul'],'other historical review changed'
 for f in cert:
  assert f['full_linguistic_certification'] is False;assert f['inherited_proofs']['new_linguistic_review'] is False;assert f['inherited_proofs']['memberships']==sum(r['family_id']==f['family_id'] for r in baseline)
  if f['canonical'] in ['alter','ocul','ped','manu','regul','liber']:assert f['open_queue_coverage']['current_questions']==0 and f['open_queue_coverage']['coverage']=='no_current_active_queue_full_coverage_not_established'
@@ -56,7 +63,7 @@ assert {q['candidate_id'] for q in read(previous/'membership-questions.json.gz')
 questions=read(P/'membership-questions.json.gz');q={r['candidate_id']:r for r in questions}
 for k,r in rp.items():
  rkey=r['language']+'\0'+r['lemma_id']+'\0'+r['root'];assert q[rkey]['effective_verdict']['status']==r['new_review_status'];assert bool(q[rkey]['open_frames'])==(r['new_review_status']=='uncertain')
-result={'schema_version':6,'verdict':'pass','baseline_sha':BASE,'current_memberships':len(current),'historical_baseline_memberships':len(baseline),'exact_differential':{'additions':[current[k] for k in sorted(added)],'removals':[old[k] for k in sorted(vk)],'changed_memberships':[]},'protected_trees':protected,'certified_scope_families':len(cert),'full_dictionary_complete':False,'representative_rechecks':len(rp),'root_bound_overlap':len(h&a),'root_bound_union':len(h|a),'all_historical_current_overlap':len(all_h&a),'effective_review_eligible_historical':len(eligible),'effective_historical_current_overlap':len(eligible&a),'effective_review_eligible_union':len(eligible|a),'planning_source_sets_conserved':True}
+result={'schema_version':6,'verdict':'pass','baseline_sha':BASE,'current_memberships':len(current),'historical_baseline_memberships':len(baseline),'exact_differential':{'additions':[current[k] for k in sorted(added)],'removals':[old[k] for k in sorted(vk)],'changed_memberships':[{'before':old[k],'after':current[k]} for k in sorted(changed)]},'protected_trees':protected,'certified_scope_families':len(cert),'full_dictionary_complete':False,'representative_rechecks':len(rp),'root_bound_overlap':len(h&a),'root_bound_union':len(h|a),'all_historical_current_overlap':len(all_h&a),'effective_review_eligible_historical':len(eligible),'effective_historical_current_overlap':len(eligible&a),'effective_review_eligible_union':len(eligible|a),'planning_source_sets_conserved':True}
 if len(sys.argv)>1:
  target=Path(sys.argv[1]);assert {p.name for p in C.iterdir()}=={p.name for p in target.iterdir()}
  for p in C.iterdir():assert p.read_bytes()==(target/p.name).read_bytes(),p.name

@@ -1,0 +1,2533 @@
+{
+  "schema_version": 6,
+  "production_enabled": false,
+  "synthetic_fixture": false,
+  "id": "regul-finite-fr-10",
+  "operation": "extend_links",
+  "family_id": "family:regul",
+  "head_id": "head:fr:d68f1491fcf05cee029f4373",
+  "identity": {
+    "language": "fr",
+    "normalized_head": "réguler",
+    "sense": "regula_line_bounded_component"
+  },
+  "binding_authorized": true,
+  "review_authorized": true,
+  "accepted_membership_authorized": true,
+  "review_contract": "regul-20261008",
+  "component_stems": [
+    "régul"
+  ],
+  "predecessor": {
+    "head": {
+      "id": "head:fr:d68f1491fcf05cee029f4373",
+      "language": "fr",
+      "normalized_head": "réguler",
+      "identity_kind": "lexical_head",
+      "sense": "regula_line_bounded_component",
+      "version": 1,
+      "evidence": [
+        {
+          "id": "evidence:d68f1491fcf05cee029f4373",
+          "language": "fr",
+          "head": "réguler",
+          "sense": "regula_line_bounded_component",
+          "status": "accepted",
+          "evidence_kind": "lexical_identity",
+          "sources": [
+            "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711"
+          ],
+          "finding": "Independent head and finite component analyses in audit/associative-family-v6/regul-20261008/decisions/review.json; no wildcard acceptance.",
+          "establishes_family_membership": false
+        },
+        {
+          "path": "audit/associative-family-v6/regul-20261008/research/prior.json",
+          "sha256": "e44cff673ca4a4c95f957bf51f3f8fb81a967a579935c35db0b7f9c827f80664",
+          "lemma_id": "lemma:a680db96c44cfe8eeb91",
+          "word": "autorégulateur"
+        },
+        {
+          "path": "audit/associative-family-v6/regul-20261008/decisions/review.json",
+          "sha256": "bc9b421c24f0764819d4aaf7760522c9556b1df64802b1a4b14e4fbcbc2069a6",
+          "lemma_id": "lemma:a680db96c44cfe8eeb91",
+          "word": "autorégulateur"
+        },
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "7de21d4eb2dd26805e4c691519763af8274f584ebe5720de642dc3cb14e01c09"
+          },
+          "lemma_id": "lemma:a680db96c44cfe8eeb91"
+        },
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "2551539539973c041a09578f1382eb1200dd040a0ad6800ff82904fc4f4a56cc"
+          },
+          "lemma_id": "lemma:b70a8f30cbe96aa55f59"
+        },
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "20254c17752dfc9928a420baaa132b146ff76ab2d965e8d333b0cc65e567f1f5"
+          },
+          "lemma_id": "lemma:b2f56ab290b79ddb87b5"
+        },
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "346a722244cccb525d70fc0d5dfabeaae535b6eb95e7ed0de4c7f70b5ed09ae6"
+          },
+          "lemma_id": "lemma:bacb06b369a4ea24ff92"
+        },
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "be2a3215c566c9b6919f030c37cc90c1dbc0825b137f9ed7b264605431ad006f"
+          },
+          "lemma_id": "lemma:705c58c03fab1fb1f6a2"
+        },
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "92472efaffa56704bbd4bb30ee91023418140d1666043fd94f38543c6a92040c"
+          },
+          "lemma_id": "lemma:8fc76978856a42889766"
+        },
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "c71d083e46d6c83bebb65c2adef8ffcd0e6b1bad1c9551d78b5bdcaca7891b83"
+          },
+          "lemma_id": "lemma:61f7c48c3e3b197fdfbd"
+        },
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "aca4cd64fa982bc6a20bd2f39811653afe47ee637f74c32c0b224216242863ce"
+          },
+          "lemma_id": "lemma:bdabe37210293cb2b749"
+        },
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "5b7625af68313ea87a203f0d235aa03f977c19069d65099f4c226d1e34884205"
+          },
+          "lemma_id": "lemma:9ebcfb848a4277939f63"
+        },
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "dd6a3e9f2d15a892608d33c8abe7116509af0f00aae5719ff14e41608368442b"
+          },
+          "lemma_id": "lemma:debd820aba583932f007"
+        },
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "f923e749692b3a3db6a6adfb7507f0ce4aa9a0c3a870a70656626cd6a30b610b"
+          },
+          "lemma_id": "lemma:b5c9a8ef3d8c75c57e55"
+        },
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "8f18762fc43411e86a45b5ee71bd141478771adbb62a25f641bb418f30d19a57"
+          },
+          "lemma_id": "lemma:ebb88e077fcb50177d5c"
+        },
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "36054a9b8daf9f5e3f375d798726652a4575f0affcd3f350ecd5e32b6bee97c2"
+          },
+          "lemma_id": "lemma:f5e5f0620a5c09730879"
+        },
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "7d3ed1882563a01553817c5e63023a585c5b9388c9b44a8dc117e25865257061"
+          },
+          "lemma_id": "lemma:07362c52e00da9423353"
+        },
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "9122a6d0b02600ea9594ef6ad7054bb427c156509b6456cd6586e2180fb98c93"
+          },
+          "lemma_id": "lemma:984e268ecedb682a5847"
+        },
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "e49a09104787a90388bf70ccc550dd14cdbde7cb1e49366edd81f7a7cb95ddb9"
+          },
+          "lemma_id": "lemma:d71631a9231edbb496ba"
+        }
+      ],
+      "finite_component_stems": [
+        "régul"
+      ]
+    },
+    "head_version": 1,
+    "head_sha256": "59094d0559f2dab32e17f2fa559896f98a42cc9aba8fc7cd2718658ec7e7edbf",
+    "edge": {
+      "head_id": "head:fr:d68f1491fcf05cee029f4373",
+      "family_id": "family:regul",
+      "status": "accepted",
+      "scope": "finite_evidenced_links",
+      "morphology_policy": "finite_reviewed_component_links",
+      "version": 1,
+      "evidence": [
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "7de21d4eb2dd26805e4c691519763af8274f584ebe5720de642dc3cb14e01c09"
+          },
+          "lemma_id": "lemma:a680db96c44cfe8eeb91"
+        },
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "2551539539973c041a09578f1382eb1200dd040a0ad6800ff82904fc4f4a56cc"
+          },
+          "lemma_id": "lemma:b70a8f30cbe96aa55f59"
+        },
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "20254c17752dfc9928a420baaa132b146ff76ab2d965e8d333b0cc65e567f1f5"
+          },
+          "lemma_id": "lemma:b2f56ab290b79ddb87b5"
+        },
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "346a722244cccb525d70fc0d5dfabeaae535b6eb95e7ed0de4c7f70b5ed09ae6"
+          },
+          "lemma_id": "lemma:bacb06b369a4ea24ff92"
+        },
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "be2a3215c566c9b6919f030c37cc90c1dbc0825b137f9ed7b264605431ad006f"
+          },
+          "lemma_id": "lemma:705c58c03fab1fb1f6a2"
+        },
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "92472efaffa56704bbd4bb30ee91023418140d1666043fd94f38543c6a92040c"
+          },
+          "lemma_id": "lemma:8fc76978856a42889766"
+        },
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "c71d083e46d6c83bebb65c2adef8ffcd0e6b1bad1c9551d78b5bdcaca7891b83"
+          },
+          "lemma_id": "lemma:61f7c48c3e3b197fdfbd"
+        },
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "aca4cd64fa982bc6a20bd2f39811653afe47ee637f74c32c0b224216242863ce"
+          },
+          "lemma_id": "lemma:bdabe37210293cb2b749"
+        },
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "5b7625af68313ea87a203f0d235aa03f977c19069d65099f4c226d1e34884205"
+          },
+          "lemma_id": "lemma:9ebcfb848a4277939f63"
+        },
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "dd6a3e9f2d15a892608d33c8abe7116509af0f00aae5719ff14e41608368442b"
+          },
+          "lemma_id": "lemma:debd820aba583932f007"
+        },
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "f923e749692b3a3db6a6adfb7507f0ce4aa9a0c3a870a70656626cd6a30b610b"
+          },
+          "lemma_id": "lemma:b5c9a8ef3d8c75c57e55"
+        },
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "8f18762fc43411e86a45b5ee71bd141478771adbb62a25f641bb418f30d19a57"
+          },
+          "lemma_id": "lemma:ebb88e077fcb50177d5c"
+        },
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "36054a9b8daf9f5e3f375d798726652a4575f0affcd3f350ecd5e32b6bee97c2"
+          },
+          "lemma_id": "lemma:f5e5f0620a5c09730879"
+        },
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "7d3ed1882563a01553817c5e63023a585c5b9388c9b44a8dc117e25865257061"
+          },
+          "lemma_id": "lemma:07362c52e00da9423353"
+        },
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "9122a6d0b02600ea9594ef6ad7054bb427c156509b6456cd6586e2180fb98c93"
+          },
+          "lemma_id": "lemma:984e268ecedb682a5847"
+        },
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "e49a09104787a90388bf70ccc550dd14cdbde7cb1e49366edd81f7a7cb95ddb9"
+          },
+          "lemma_id": "lemma:d71631a9231edbb496ba"
+        }
+      ],
+      "lemma_ids": [
+        "lemma:a680db96c44cfe8eeb91",
+        "lemma:b70a8f30cbe96aa55f59",
+        "lemma:b2f56ab290b79ddb87b5",
+        "lemma:bacb06b369a4ea24ff92",
+        "lemma:705c58c03fab1fb1f6a2",
+        "lemma:8fc76978856a42889766",
+        "lemma:61f7c48c3e3b197fdfbd",
+        "lemma:bdabe37210293cb2b749",
+        "lemma:9ebcfb848a4277939f63",
+        "lemma:debd820aba583932f007",
+        "lemma:b5c9a8ef3d8c75c57e55",
+        "lemma:ebb88e077fcb50177d5c",
+        "lemma:f5e5f0620a5c09730879",
+        "lemma:07362c52e00da9423353",
+        "lemma:984e268ecedb682a5847",
+        "lemma:d71631a9231edbb496ba"
+      ]
+    },
+    "edge_version": 1,
+    "edge_sha256": "a97625f59aa7b0476c201643b406ca2b7de41aa9073b733abaf586be64b43863",
+    "scope_sha256": "f95c2839de22fd107841cf850961f92e986bbb88f0769b5a2d35d22364f83988"
+  },
+  "input_sha256": {
+    "audit/associative-family-v6/regul-20261008/decisions/review.json": "bc9b421c24f0764819d4aaf7760522c9556b1df64802b1a4b14e4fbcbc2069a6",
+    "audit/associative-family-v6/regul-20261008/research/evidence.json": "8c67441987a1dd99c277c90e5f5ee68449bdbf924666eba454346cd07c707110",
+    "associativvordes/family-index-v5/members/fr/40.json.gz": "eb3e591a81adb2b186652e6a4946c146e4afe6e32d727ba460eef820e1d7dc84",
+    "associativvordes/family-index-v5/members/fr/8a.json.gz": "9fdbe341ef5b98a8d5b54941f5e71ea31c89b7fd41e399b98e8ef02717a63215"
+  },
+  "records": [
+    {
+      "language": "fr",
+      "lemma_id": "lemma:a680db96c44cfe8eeb91",
+      "word": "autorégulateur",
+      "family_id": "family:regul",
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "7de21d4eb2dd26805e4c691519763af8274f584ebe5720de642dc3cb14e01c09"
+      },
+      "source_record": {
+        "lemma_id": "lemma:a680db96c44cfe8eeb91",
+        "word": "autorégulateur",
+        "normalized": "autorégulateur",
+        "search_form": "autoregulateur",
+        "rank": 79345,
+        "frequency_score": 1.2933435679309055,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.006896
+            ],
+            "category_ipm": 0.006896,
+            "category_score": 0.12041700656906522
+          },
+          "web": {
+            "ipm_values": [
+              0.15114
+            ],
+            "category_ipm": 0.15114,
+            "category_score": 2.466270129292746
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.006896
+          },
+          {
+            "id": "web/sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.15114
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "regul",
+            "canonical_candidate": "regul",
+            "confidence": 0.97,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "manually_verified",
+                "path": [
+                  "autoregulateur",
+                  "regul",
+                  "regul"
+                ],
+                "confidence": 0.97
+              },
+              {
+                "type": "verified_seed_alias",
+                "source": "methodology_control_seed",
+                "path": [
+                  "fr",
+                  "regul",
+                  "family:regul"
+                ],
+                "confidence": 1
+              }
+            ]
+          }
+        ]
+      },
+      "relation_kind": "lexical_continuity",
+      "formal_continuity_status": "accepted",
+      "identity_decision": {
+        "status": "accepted",
+        "reason": "Finite analysis of fr:autorégulateur: retained lexical base in réguler; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711",
+            "finding": "Régulation continues regulating réguler/regulare and covers related technical, biological and social uses.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "boundary_proof": {
+        "status": "accepted",
+        "reason": "Finite analysis of fr:autorégulateur: retained lexical base in réguler; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711",
+            "finding": "Régulation continues regulating réguler/regulare and covers related technical, biological and social uses.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "link_role": "reviewed_lexical_base_component",
+      "component_segmentation": {
+        "before": "auto",
+        "component": "régul",
+        "after": "ateur",
+        "head": "réguler"
+      },
+      "senses_decision": {
+        "language": "fr",
+        "family_id": "family:regul",
+        "lemma_id": "lemma:a680db96c44cfe8eeb91",
+        "word": "autorégulateur",
+        "membership_object": "lexical_row_or_component",
+        "formal_continuity": "accepted",
+        "component": "régul",
+        "analyses": [
+          {
+            "history": "regula_regularis_regulare",
+            "verdict": "accepted",
+            "evidence": [
+              "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711"
+            ],
+            "proved_components": [
+              "régul"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:b70a8f30cbe96aa55f59",
+      "word": "autorégulé",
+      "family_id": "family:regul",
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "2551539539973c041a09578f1382eb1200dd040a0ad6800ff82904fc4f4a56cc"
+      },
+      "source_record": {
+        "lemma_id": "lemma:b70a8f30cbe96aa55f59",
+        "word": "autorégulé",
+        "normalized": "autorégulé",
+        "search_form": "autoregule",
+        "rank": 96047,
+        "frequency_score": 1.8295593378345905,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.110061
+            ],
+            "category_ipm": 0.110061,
+            "category_score": 1.8295593378345905
+          }
+        },
+        "sources": [
+          {
+            "id": "web/sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.110061
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "regul",
+            "canonical_candidate": "regul",
+            "confidence": 1,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "manually_verified",
+                "path": [
+                  "autoregule",
+                  "regul",
+                  "regul"
+                ],
+                "confidence": 1
+              },
+              {
+                "type": "verified_seed_alias",
+                "source": "methodology_control_seed",
+                "path": [
+                  "fr",
+                  "regul",
+                  "family:regul"
+                ],
+                "confidence": 1
+              }
+            ]
+          }
+        ]
+      },
+      "relation_kind": "lexical_continuity",
+      "formal_continuity_status": "accepted",
+      "identity_decision": {
+        "status": "accepted",
+        "reason": "Finite analysis of fr:autorégulé: retained lexical base in réguler; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711",
+            "finding": "Régulation continues regulating réguler/regulare and covers related technical, biological and social uses.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "boundary_proof": {
+        "status": "accepted",
+        "reason": "Finite analysis of fr:autorégulé: retained lexical base in réguler; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711",
+            "finding": "Régulation continues regulating réguler/regulare and covers related technical, biological and social uses.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "link_role": "reviewed_lexical_base_component",
+      "component_segmentation": {
+        "before": "auto",
+        "component": "régul",
+        "after": "é",
+        "head": "réguler"
+      },
+      "senses_decision": {
+        "language": "fr",
+        "family_id": "family:regul",
+        "lemma_id": "lemma:b70a8f30cbe96aa55f59",
+        "word": "autorégulé",
+        "membership_object": "lexical_row_or_component",
+        "formal_continuity": "accepted",
+        "component": "régul",
+        "analyses": [
+          {
+            "history": "regula_regularis_regulare",
+            "verdict": "accepted",
+            "evidence": [
+              "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711"
+            ],
+            "proved_components": [
+              "régul"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:b2f56ab290b79ddb87b5",
+      "word": "autorégulée",
+      "family_id": "family:regul",
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "20254c17752dfc9928a420baaa132b146ff76ab2d965e8d333b0cc65e567f1f5"
+      },
+      "source_record": {
+        "lemma_id": "lemma:b2f56ab290b79ddb87b5",
+        "word": "autorégulée",
+        "normalized": "autorégulée",
+        "search_form": "autoregulee",
+        "rank": 216180,
+        "frequency_score": 0.12041700656906522,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.006896
+            ],
+            "category_ipm": 0.006896,
+            "category_score": 0.12041700656906522
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.006896
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "regul",
+            "canonical_candidate": "regul",
+            "confidence": 1,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "manually_verified",
+                "path": [
+                  "autoregulee",
+                  "regul",
+                  "regul"
+                ],
+                "confidence": 1
+              },
+              {
+                "type": "verified_seed_alias",
+                "source": "methodology_control_seed",
+                "path": [
+                  "fr",
+                  "regul",
+                  "family:regul"
+                ],
+                "confidence": 1
+              }
+            ]
+          }
+        ]
+      },
+      "relation_kind": "lexical_continuity",
+      "formal_continuity_status": "accepted",
+      "identity_decision": {
+        "status": "accepted",
+        "reason": "Finite analysis of fr:autorégulée: retained lexical base in réguler; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711",
+            "finding": "Régulation continues regulating réguler/regulare and covers related technical, biological and social uses.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "boundary_proof": {
+        "status": "accepted",
+        "reason": "Finite analysis of fr:autorégulée: retained lexical base in réguler; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711",
+            "finding": "Régulation continues regulating réguler/regulare and covers related technical, biological and social uses.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "link_role": "reviewed_lexical_base_component",
+      "component_segmentation": {
+        "before": "auto",
+        "component": "régul",
+        "after": "ée",
+        "head": "réguler"
+      },
+      "senses_decision": {
+        "language": "fr",
+        "family_id": "family:regul",
+        "lemma_id": "lemma:b2f56ab290b79ddb87b5",
+        "word": "autorégulée",
+        "membership_object": "lexical_row_or_component",
+        "formal_continuity": "accepted",
+        "component": "régul",
+        "analyses": [
+          {
+            "history": "regula_regularis_regulare",
+            "verdict": "accepted",
+            "evidence": [
+              "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711"
+            ],
+            "proved_components": [
+              "régul"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:bacb06b369a4ea24ff92",
+      "word": "dérégulant",
+      "family_id": "family:regul",
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "346a722244cccb525d70fc0d5dfabeaae535b6eb95e7ed0de4c7f70b5ed09ae6"
+      },
+      "source_record": {
+        "lemma_id": "lemma:bacb06b369a4ea24ff92",
+        "word": "dérégulant",
+        "normalized": "dérégulant",
+        "search_form": "deregulant",
+        "rank": 342199,
+        "frequency_score": 0.06031194627701871,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.003448
+            ],
+            "category_ipm": 0.003448,
+            "category_score": 0.06031194627701871
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.003448
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "regul",
+            "canonical_candidate": "regul",
+            "confidence": 0.97,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "manually_verified",
+                "path": [
+                  "deregulant",
+                  "regul",
+                  "regul"
+                ],
+                "confidence": 0.97
+              },
+              {
+                "type": "verified_seed_alias",
+                "source": "methodology_control_seed",
+                "path": [
+                  "fr",
+                  "regul",
+                  "family:regul"
+                ],
+                "confidence": 1
+              }
+            ]
+          }
+        ]
+      },
+      "relation_kind": "lexical_continuity",
+      "formal_continuity_status": "accepted",
+      "identity_decision": {
+        "status": "accepted",
+        "reason": "Finite analysis of fr:dérégulant: retained lexical base in réguler; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711",
+            "finding": "Régulation continues regulating réguler/regulare and covers related technical, biological and social uses.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "boundary_proof": {
+        "status": "accepted",
+        "reason": "Finite analysis of fr:dérégulant: retained lexical base in réguler; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711",
+            "finding": "Régulation continues regulating réguler/regulare and covers related technical, biological and social uses.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "link_role": "reviewed_lexical_base_component",
+      "component_segmentation": {
+        "before": "dé",
+        "component": "régul",
+        "after": "ant",
+        "head": "réguler"
+      },
+      "senses_decision": {
+        "language": "fr",
+        "family_id": "family:regul",
+        "lemma_id": "lemma:bacb06b369a4ea24ff92",
+        "word": "dérégulant",
+        "membership_object": "lexical_row_or_component",
+        "formal_continuity": "accepted",
+        "component": "régul",
+        "analyses": [
+          {
+            "history": "regula_regularis_regulare",
+            "verdict": "accepted",
+            "evidence": [
+              "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711"
+            ],
+            "proved_components": [
+              "régul"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:705c58c03fab1fb1f6a2",
+      "word": "dérégulateur",
+      "family_id": "family:regul",
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "be2a3215c566c9b6919f030c37cc90c1dbc0825b137f9ed7b264605431ad006f"
+      },
+      "source_record": {
+        "lemma_id": "lemma:705c58c03fab1fb1f6a2",
+        "word": "dérégulateur",
+        "normalized": "dérégulateur",
+        "search_form": "deregulateur",
+        "rank": 91713,
+        "frequency_score": 0.7103762400273185,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.041375
+            ],
+            "category_ipm": 0.041375,
+            "category_score": 0.7103762400273185
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.041375
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "regul",
+            "canonical_candidate": "regul",
+            "confidence": 0.97,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "manually_verified",
+                "path": [
+                  "deregulateur",
+                  "regul",
+                  "regul"
+                ],
+                "confidence": 0.97
+              },
+              {
+                "type": "verified_seed_alias",
+                "source": "methodology_control_seed",
+                "path": [
+                  "fr",
+                  "regul",
+                  "family:regul"
+                ],
+                "confidence": 1
+              }
+            ]
+          }
+        ]
+      },
+      "relation_kind": "lexical_continuity",
+      "formal_continuity_status": "accepted",
+      "identity_decision": {
+        "status": "accepted",
+        "reason": "Finite analysis of fr:dérégulateur: retained lexical base in réguler; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711",
+            "finding": "Régulation continues regulating réguler/regulare and covers related technical, biological and social uses.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "boundary_proof": {
+        "status": "accepted",
+        "reason": "Finite analysis of fr:dérégulateur: retained lexical base in réguler; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711",
+            "finding": "Régulation continues regulating réguler/regulare and covers related technical, biological and social uses.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "link_role": "reviewed_lexical_base_component",
+      "component_segmentation": {
+        "before": "dé",
+        "component": "régul",
+        "after": "ateur",
+        "head": "réguler"
+      },
+      "senses_decision": {
+        "language": "fr",
+        "family_id": "family:regul",
+        "lemma_id": "lemma:705c58c03fab1fb1f6a2",
+        "word": "dérégulateur",
+        "membership_object": "lexical_row_or_component",
+        "formal_continuity": "accepted",
+        "component": "régul",
+        "analyses": [
+          {
+            "history": "regula_regularis_regulare",
+            "verdict": "accepted",
+            "evidence": [
+              "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711"
+            ],
+            "proved_components": [
+              "régul"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:8fc76978856a42889766",
+      "word": "dérégule",
+      "family_id": "family:regul",
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "92472efaffa56704bbd4bb30ee91023418140d1666043fd94f38543c6a92040c"
+      },
+      "source_record": {
+        "lemma_id": "lemma:8fc76978856a42889766",
+        "word": "dérégule",
+        "normalized": "dérégule",
+        "search_form": "deregule",
+        "rank": 229848,
+        "frequency_score": 0.12041700656906522,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.006896
+            ],
+            "category_ipm": 0.006896,
+            "category_score": 0.12041700656906522
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.006896
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "regul",
+            "canonical_candidate": "regul",
+            "confidence": 1,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "manually_verified",
+                "path": [
+                  "deregule",
+                  "regul",
+                  "regul"
+                ],
+                "confidence": 1
+              },
+              {
+                "type": "verified_seed_alias",
+                "source": "methodology_control_seed",
+                "path": [
+                  "fr",
+                  "regul",
+                  "family:regul"
+                ],
+                "confidence": 1
+              }
+            ]
+          }
+        ]
+      },
+      "relation_kind": "lexical_continuity",
+      "formal_continuity_status": "accepted",
+      "identity_decision": {
+        "status": "accepted",
+        "reason": "Finite analysis of fr:dérégule: retained lexical base in réguler; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711",
+            "finding": "Régulation continues regulating réguler/regulare and covers related technical, biological and social uses.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "boundary_proof": {
+        "status": "accepted",
+        "reason": "Finite analysis of fr:dérégule: retained lexical base in réguler; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711",
+            "finding": "Régulation continues regulating réguler/regulare and covers related technical, biological and social uses.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "link_role": "reviewed_lexical_base_component",
+      "component_segmentation": {
+        "before": "dé",
+        "component": "régul",
+        "after": "e",
+        "head": "réguler"
+      },
+      "senses_decision": {
+        "language": "fr",
+        "family_id": "family:regul",
+        "lemma_id": "lemma:8fc76978856a42889766",
+        "word": "dérégule",
+        "membership_object": "lexical_row_or_component",
+        "formal_continuity": "accepted",
+        "component": "régul",
+        "analyses": [
+          {
+            "history": "regula_regularis_regulare",
+            "verdict": "accepted",
+            "evidence": [
+              "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711"
+            ],
+            "proved_components": [
+              "régul"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:61f7c48c3e3b197fdfbd",
+      "word": "dérégulé",
+      "family_id": "family:regul",
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "c71d083e46d6c83bebb65c2adef8ffcd0e6b1bad1c9551d78b5bdcaca7891b83"
+      },
+      "source_record": {
+        "lemma_id": "lemma:61f7c48c3e3b197fdfbd",
+        "word": "dérégulé",
+        "normalized": "dérégulé",
+        "search_form": "deregule",
+        "rank": 67219,
+        "frequency_score": 1.8116922729923999,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.024135
+            ],
+            "category_ipm": 0.024135,
+            "category_score": 0.4178709146821075
+          },
+          "web": {
+            "ipm_values": [
+              0.200745
+            ],
+            "category_ipm": 0.200745,
+            "category_score": 3.205513631302692
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.024135
+          },
+          {
+            "id": "web/sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.200745
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "regul",
+            "canonical_candidate": "regul",
+            "confidence": 1,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "manually_verified",
+                "path": [
+                  "deregule",
+                  "regul",
+                  "regul"
+                ],
+                "confidence": 1
+              },
+              {
+                "type": "verified_seed_alias",
+                "source": "methodology_control_seed",
+                "path": [
+                  "fr",
+                  "regul",
+                  "family:regul"
+                ],
+                "confidence": 1
+              }
+            ]
+          }
+        ]
+      },
+      "relation_kind": "lexical_continuity",
+      "formal_continuity_status": "accepted",
+      "identity_decision": {
+        "status": "accepted",
+        "reason": "Finite analysis of fr:dérégulé: retained lexical base in réguler; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711",
+            "finding": "Régulation continues regulating réguler/regulare and covers related technical, biological and social uses.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "boundary_proof": {
+        "status": "accepted",
+        "reason": "Finite analysis of fr:dérégulé: retained lexical base in réguler; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711",
+            "finding": "Régulation continues regulating réguler/regulare and covers related technical, biological and social uses.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "link_role": "reviewed_lexical_base_component",
+      "component_segmentation": {
+        "before": "dé",
+        "component": "régul",
+        "after": "é",
+        "head": "réguler"
+      },
+      "senses_decision": {
+        "language": "fr",
+        "family_id": "family:regul",
+        "lemma_id": "lemma:61f7c48c3e3b197fdfbd",
+        "word": "dérégulé",
+        "membership_object": "lexical_row_or_component",
+        "formal_continuity": "accepted",
+        "component": "régul",
+        "analyses": [
+          {
+            "history": "regula_regularis_regulare",
+            "verdict": "accepted",
+            "evidence": [
+              "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711"
+            ],
+            "proved_components": [
+              "régul"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:bdabe37210293cb2b749",
+      "word": "dérégulée",
+      "family_id": "family:regul",
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "aca4cd64fa982bc6a20bd2f39811653afe47ee637f74c32c0b224216242863ce"
+      },
+      "source_record": {
+        "lemma_id": "lemma:bdabe37210293cb2b749",
+        "word": "dérégulée",
+        "normalized": "dérégulée",
+        "search_form": "deregulee",
+        "rank": 342201,
+        "frequency_score": 0.06031194627701871,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.003448
+            ],
+            "category_ipm": 0.003448,
+            "category_score": 0.06031194627701871
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.003448
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "regul",
+            "canonical_candidate": "regul",
+            "confidence": 1,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "manually_verified",
+                "path": [
+                  "deregulee",
+                  "regul",
+                  "regul"
+                ],
+                "confidence": 1
+              },
+              {
+                "type": "verified_seed_alias",
+                "source": "methodology_control_seed",
+                "path": [
+                  "fr",
+                  "regul",
+                  "family:regul"
+                ],
+                "confidence": 1
+              }
+            ]
+          }
+        ]
+      },
+      "relation_kind": "lexical_continuity",
+      "formal_continuity_status": "accepted",
+      "identity_decision": {
+        "status": "accepted",
+        "reason": "Finite analysis of fr:dérégulée: retained lexical base in réguler; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711",
+            "finding": "Régulation continues regulating réguler/regulare and covers related technical, biological and social uses.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "boundary_proof": {
+        "status": "accepted",
+        "reason": "Finite analysis of fr:dérégulée: retained lexical base in réguler; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711",
+            "finding": "Régulation continues regulating réguler/regulare and covers related technical, biological and social uses.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "link_role": "reviewed_lexical_base_component",
+      "component_segmentation": {
+        "before": "dé",
+        "component": "régul",
+        "after": "ée",
+        "head": "réguler"
+      },
+      "senses_decision": {
+        "language": "fr",
+        "family_id": "family:regul",
+        "lemma_id": "lemma:bdabe37210293cb2b749",
+        "word": "dérégulée",
+        "membership_object": "lexical_row_or_component",
+        "formal_continuity": "accepted",
+        "component": "régul",
+        "analyses": [
+          {
+            "history": "regula_regularis_regulare",
+            "verdict": "accepted",
+            "evidence": [
+              "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711"
+            ],
+            "proved_components": [
+              "régul"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:9ebcfb848a4277939f63",
+      "word": "osmorégulateur",
+      "family_id": "family:regul",
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "5b7625af68313ea87a203f0d235aa03f977c19069d65099f4c226d1e34884205"
+      },
+      "source_record": {
+        "lemma_id": "lemma:9ebcfb848a4277939f63",
+        "word": "osmorégulateur",
+        "normalized": "osmorégulateur",
+        "search_form": "osmoregulateur",
+        "rank": 430606,
+        "frequency_score": 0.06031194627701871,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.003448
+            ],
+            "category_ipm": 0.003448,
+            "category_score": 0.06031194627701871
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.003448
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "regul",
+            "canonical_candidate": "regul",
+            "confidence": 0.97,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "manually_verified",
+                "path": [
+                  "osmoregulateur",
+                  "regul",
+                  "regul"
+                ],
+                "confidence": 0.97
+              },
+              {
+                "type": "verified_seed_alias",
+                "source": "methodology_control_seed",
+                "path": [
+                  "fr",
+                  "regul",
+                  "family:regul"
+                ],
+                "confidence": 1
+              }
+            ]
+          }
+        ]
+      },
+      "relation_kind": "lexical_continuity",
+      "formal_continuity_status": "accepted",
+      "identity_decision": {
+        "status": "accepted",
+        "reason": "Finite analysis of fr:osmorégulateur: retained lexical base in réguler; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711",
+            "finding": "Régulation continues regulating réguler/regulare and covers related technical, biological and social uses.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "boundary_proof": {
+        "status": "accepted",
+        "reason": "Finite analysis of fr:osmorégulateur: retained lexical base in réguler; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711",
+            "finding": "Régulation continues regulating réguler/regulare and covers related technical, biological and social uses.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "link_role": "reviewed_lexical_base_component",
+      "component_segmentation": {
+        "before": "osmo",
+        "component": "régul",
+        "after": "ateur",
+        "head": "réguler"
+      },
+      "senses_decision": {
+        "language": "fr",
+        "family_id": "family:regul",
+        "lemma_id": "lemma:9ebcfb848a4277939f63",
+        "word": "osmorégulateur",
+        "membership_object": "lexical_row_or_component",
+        "formal_continuity": "accepted",
+        "component": "régul",
+        "analyses": [
+          {
+            "history": "regula_regularis_regulare",
+            "verdict": "accepted",
+            "evidence": [
+              "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711"
+            ],
+            "proved_components": [
+              "régul"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:debd820aba583932f007",
+      "word": "psychorégulateur",
+      "family_id": "family:regul",
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "dd6a3e9f2d15a892608d33c8abe7116509af0f00aae5719ff14e41608368442b"
+      },
+      "source_record": {
+        "lemma_id": "lemma:debd820aba583932f007",
+        "word": "psychorégulateur",
+        "normalized": "psychorégulateur",
+        "search_form": "psychoregulateur",
+        "rank": 447662,
+        "frequency_score": 0.06031194627701871,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.003448
+            ],
+            "category_ipm": 0.003448,
+            "category_score": 0.06031194627701871
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.003448
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "regul",
+            "canonical_candidate": "regul",
+            "confidence": 0.97,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "manually_verified",
+                "path": [
+                  "psychoregulateur",
+                  "regul",
+                  "regul"
+                ],
+                "confidence": 0.97
+              },
+              {
+                "type": "verified_seed_alias",
+                "source": "methodology_control_seed",
+                "path": [
+                  "fr",
+                  "regul",
+                  "family:regul"
+                ],
+                "confidence": 1
+              }
+            ]
+          }
+        ]
+      },
+      "relation_kind": "lexical_continuity",
+      "formal_continuity_status": "accepted",
+      "identity_decision": {
+        "status": "accepted",
+        "reason": "Finite analysis of fr:psychorégulateur: retained lexical base in réguler; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711",
+            "finding": "Régulation continues regulating réguler/regulare and covers related technical, biological and social uses.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "boundary_proof": {
+        "status": "accepted",
+        "reason": "Finite analysis of fr:psychorégulateur: retained lexical base in réguler; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711",
+            "finding": "Régulation continues regulating réguler/regulare and covers related technical, biological and social uses.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "link_role": "reviewed_lexical_base_component",
+      "component_segmentation": {
+        "before": "psycho",
+        "component": "régul",
+        "after": "ateur",
+        "head": "réguler"
+      },
+      "senses_decision": {
+        "language": "fr",
+        "family_id": "family:regul",
+        "lemma_id": "lemma:debd820aba583932f007",
+        "word": "psychorégulateur",
+        "membership_object": "lexical_row_or_component",
+        "formal_continuity": "accepted",
+        "component": "régul",
+        "analyses": [
+          {
+            "history": "regula_regularis_regulare",
+            "verdict": "accepted",
+            "evidence": [
+              "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711"
+            ],
+            "proved_components": [
+              "régul"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:b5c9a8ef3d8c75c57e55",
+      "word": "psychorégulateurs",
+      "family_id": "family:regul",
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "f923e749692b3a3db6a6adfb7507f0ce4aa9a0c3a870a70656626cd6a30b610b"
+      },
+      "source_record": {
+        "lemma_id": "lemma:b5c9a8ef3d8c75c57e55",
+        "word": "psychorégulateurs",
+        "normalized": "psychorégulateurs",
+        "search_form": "psychoregulateurs",
+        "rank": 202305,
+        "frequency_score": 0.18031659537310277,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.010344
+            ],
+            "category_ipm": 0.010344,
+            "category_score": 0.18031659537310277
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.010344
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "regul",
+            "canonical_candidate": "regul",
+            "confidence": 0.97,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "manually_verified",
+                "path": [
+                  "psychoregulateurs",
+                  "regul",
+                  "regul"
+                ],
+                "confidence": 0.97
+              },
+              {
+                "type": "verified_seed_alias",
+                "source": "methodology_control_seed",
+                "path": [
+                  "fr",
+                  "regul",
+                  "family:regul"
+                ],
+                "confidence": 1
+              }
+            ]
+          }
+        ]
+      },
+      "relation_kind": "lexical_continuity",
+      "formal_continuity_status": "accepted",
+      "identity_decision": {
+        "status": "accepted",
+        "reason": "Finite analysis of fr:psychorégulateurs: retained lexical base in réguler; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711",
+            "finding": "Régulation continues regulating réguler/regulare and covers related technical, biological and social uses.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "boundary_proof": {
+        "status": "accepted",
+        "reason": "Finite analysis of fr:psychorégulateurs: retained lexical base in réguler; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711",
+            "finding": "Régulation continues regulating réguler/regulare and covers related technical, biological and social uses.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "link_role": "reviewed_lexical_base_component",
+      "component_segmentation": {
+        "before": "psycho",
+        "component": "régul",
+        "after": "ateurs",
+        "head": "réguler"
+      },
+      "senses_decision": {
+        "language": "fr",
+        "family_id": "family:regul",
+        "lemma_id": "lemma:b5c9a8ef3d8c75c57e55",
+        "word": "psychorégulateurs",
+        "membership_object": "lexical_row_or_component",
+        "formal_continuity": "accepted",
+        "component": "régul",
+        "analyses": [
+          {
+            "history": "regula_regularis_regulare",
+            "verdict": "accepted",
+            "evidence": [
+              "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711"
+            ],
+            "proved_components": [
+              "régul"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:ebb88e077fcb50177d5c",
+      "word": "régulateur",
+      "family_id": "family:regul",
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "8f18762fc43411e86a45b5ee71bd141478771adbb62a25f641bb418f30d19a57"
+      },
+      "source_record": {
+        "lemma_id": "lemma:ebb88e077fcb50177d5c",
+        "word": "régulateur",
+        "normalized": "régulateur",
+        "search_form": "regulateur",
+        "rank": 6770,
+        "frequency_score": 28.82167622210018,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              1.741198
+            ],
+            "category_ipm": 1.741198,
+            "category_score": 17.669100549017788
+          },
+          "web": {
+            "ipm_values": [
+              8.790129
+            ],
+            "category_ipm": 8.790129,
+            "category_score": 39.97425189518257
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 1.741198
+          },
+          {
+            "id": "web/sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 8.790129
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "regul",
+            "canonical_candidate": "regul",
+            "confidence": 0.97,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "manually_verified",
+                "path": [
+                  "regulateur",
+                  "regul",
+                  "regul"
+                ],
+                "confidence": 0.97
+              },
+              {
+                "type": "verified_seed_alias",
+                "source": "methodology_control_seed",
+                "path": [
+                  "fr",
+                  "regul",
+                  "family:regul"
+                ],
+                "confidence": 1
+              }
+            ]
+          }
+        ]
+      },
+      "relation_kind": "lexical_continuity",
+      "formal_continuity_status": "accepted",
+      "identity_decision": {
+        "status": "accepted",
+        "reason": "Finite analysis of fr:régulateur: retained lexical base in réguler; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711",
+            "finding": "Régulation continues regulating réguler/regulare and covers related technical, biological and social uses.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "boundary_proof": {
+        "status": "accepted",
+        "reason": "Finite analysis of fr:régulateur: retained lexical base in réguler; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711",
+            "finding": "Régulation continues regulating réguler/regulare and covers related technical, biological and social uses.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "link_role": "reviewed_lexical_base_component",
+      "component_segmentation": {
+        "before": "",
+        "component": "régul",
+        "after": "ateur",
+        "head": "réguler"
+      },
+      "senses_decision": {
+        "language": "fr",
+        "family_id": "family:regul",
+        "lemma_id": "lemma:ebb88e077fcb50177d5c",
+        "word": "régulateur",
+        "membership_object": "lexical_row_or_component",
+        "formal_continuity": "accepted",
+        "component": "régul",
+        "analyses": [
+          {
+            "history": "regula_regularis_regulare",
+            "verdict": "accepted",
+            "evidence": [
+              "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711"
+            ],
+            "proved_components": [
+              "régul"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:f5e5f0620a5c09730879",
+      "word": "régulatrice",
+      "family_id": "family:regul",
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "36054a9b8daf9f5e3f375d798726652a4575f0affcd3f350ecd5e32b6bee97c2"
+      },
+      "source_record": {
+        "lemma_id": "lemma:f5e5f0620a5c09730879",
+        "word": "régulatrice",
+        "normalized": "régulatrice",
+        "search_form": "regulatrice",
+        "rank": 152503,
+        "frequency_score": 0.29950494441567443,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.01724
+            ],
+            "category_ipm": 0.01724,
+            "category_score": 0.29950494441567443
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.01724
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "regul",
+            "canonical_candidate": "regul",
+            "confidence": 0.97,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "manually_verified",
+                "path": [
+                  "regulatrice",
+                  "regul",
+                  "regul"
+                ],
+                "confidence": 0.97
+              },
+              {
+                "type": "verified_seed_alias",
+                "source": "methodology_control_seed",
+                "path": [
+                  "fr",
+                  "regul",
+                  "family:regul"
+                ],
+                "confidence": 1
+              }
+            ]
+          }
+        ]
+      },
+      "relation_kind": "lexical_continuity",
+      "formal_continuity_status": "accepted",
+      "identity_decision": {
+        "status": "accepted",
+        "reason": "Finite analysis of fr:régulatrice: retained lexical base in réguler; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711",
+            "finding": "Régulation continues regulating réguler/regulare and covers related technical, biological and social uses.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "boundary_proof": {
+        "status": "accepted",
+        "reason": "Finite analysis of fr:régulatrice: retained lexical base in réguler; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711",
+            "finding": "Régulation continues regulating réguler/regulare and covers related technical, biological and social uses.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "link_role": "reviewed_lexical_base_component",
+      "component_segmentation": {
+        "before": "",
+        "component": "régul",
+        "after": "atrice",
+        "head": "réguler"
+      },
+      "senses_decision": {
+        "language": "fr",
+        "family_id": "family:regul",
+        "lemma_id": "lemma:f5e5f0620a5c09730879",
+        "word": "régulatrice",
+        "membership_object": "lexical_row_or_component",
+        "formal_continuity": "accepted",
+        "component": "régul",
+        "analyses": [
+          {
+            "history": "regula_regularis_regulare",
+            "verdict": "accepted",
+            "evidence": [
+              "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711"
+            ],
+            "proved_components": [
+              "régul"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:07362c52e00da9423353",
+      "word": "thermorégulateur",
+      "family_id": "family:regul",
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "7d3ed1882563a01553817c5e63023a585c5b9388c9b44a8dc117e25865257061"
+      },
+      "source_record": {
+        "lemma_id": "lemma:07362c52e00da9423353",
+        "word": "thermorégulateur",
+        "normalized": "thermorégulateur",
+        "search_form": "thermoregulateur",
+        "rank": 488588,
+        "frequency_score": 0.06031194627701871,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.003448
+            ],
+            "category_ipm": 0.003448,
+            "category_score": 0.06031194627701871
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.003448
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "regul",
+            "canonical_candidate": "regul",
+            "confidence": 0.97,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "manually_verified",
+                "path": [
+                  "thermoregulateur",
+                  "regul",
+                  "regul"
+                ],
+                "confidence": 0.97
+              },
+              {
+                "type": "verified_seed_alias",
+                "source": "methodology_control_seed",
+                "path": [
+                  "fr",
+                  "regul",
+                  "family:regul"
+                ],
+                "confidence": 1
+              }
+            ]
+          }
+        ]
+      },
+      "relation_kind": "lexical_continuity",
+      "formal_continuity_status": "accepted",
+      "identity_decision": {
+        "status": "accepted",
+        "reason": "Finite analysis of fr:thermorégulateur: retained lexical base in réguler; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711",
+            "finding": "Régulation continues regulating réguler/regulare and covers related technical, biological and social uses.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "boundary_proof": {
+        "status": "accepted",
+        "reason": "Finite analysis of fr:thermorégulateur: retained lexical base in réguler; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711",
+            "finding": "Régulation continues regulating réguler/regulare and covers related technical, biological and social uses.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "link_role": "reviewed_lexical_base_component",
+      "component_segmentation": {
+        "before": "thermo",
+        "component": "régul",
+        "after": "ateur",
+        "head": "réguler"
+      },
+      "senses_decision": {
+        "language": "fr",
+        "family_id": "family:regul",
+        "lemma_id": "lemma:07362c52e00da9423353",
+        "word": "thermorégulateur",
+        "membership_object": "lexical_row_or_component",
+        "formal_continuity": "accepted",
+        "component": "régul",
+        "analyses": [
+          {
+            "history": "regula_regularis_regulare",
+            "verdict": "accepted",
+            "evidence": [
+              "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711"
+            ],
+            "proved_components": [
+              "régul"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:984e268ecedb682a5847",
+      "word": "thermorégulé",
+      "family_id": "family:regul",
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "9122a6d0b02600ea9594ef6ad7054bb427c156509b6456cd6586e2180fb98c93"
+      },
+      "source_record": {
+        "lemma_id": "lemma:984e268ecedb682a5847",
+        "word": "thermorégulé",
+        "normalized": "thermorégulé",
+        "search_form": "thermoregule",
+        "rank": 488589,
+        "frequency_score": 0.06031194627701871,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.003448
+            ],
+            "category_ipm": 0.003448,
+            "category_score": 0.06031194627701871
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.003448
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "regul",
+            "canonical_candidate": "regul",
+            "confidence": 1,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "manually_verified",
+                "path": [
+                  "thermoregule",
+                  "regul",
+                  "regul"
+                ],
+                "confidence": 1
+              },
+              {
+                "type": "verified_seed_alias",
+                "source": "methodology_control_seed",
+                "path": [
+                  "fr",
+                  "regul",
+                  "family:regul"
+                ],
+                "confidence": 1
+              }
+            ]
+          }
+        ]
+      },
+      "relation_kind": "lexical_continuity",
+      "formal_continuity_status": "accepted",
+      "identity_decision": {
+        "status": "accepted",
+        "reason": "Finite analysis of fr:thermorégulé: retained lexical base in réguler; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711",
+            "finding": "Régulation continues regulating réguler/regulare and covers related technical, biological and social uses.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "boundary_proof": {
+        "status": "accepted",
+        "reason": "Finite analysis of fr:thermorégulé: retained lexical base in réguler; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711",
+            "finding": "Régulation continues regulating réguler/regulare and covers related technical, biological and social uses.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "link_role": "reviewed_lexical_base_component",
+      "component_segmentation": {
+        "before": "thermo",
+        "component": "régul",
+        "after": "é",
+        "head": "réguler"
+      },
+      "senses_decision": {
+        "language": "fr",
+        "family_id": "family:regul",
+        "lemma_id": "lemma:984e268ecedb682a5847",
+        "word": "thermorégulé",
+        "membership_object": "lexical_row_or_component",
+        "formal_continuity": "accepted",
+        "component": "régul",
+        "analyses": [
+          {
+            "history": "regula_regularis_regulare",
+            "verdict": "accepted",
+            "evidence": [
+              "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711"
+            ],
+            "proved_components": [
+              "régul"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:d71631a9231edbb496ba",
+      "word": "thymorégulateurs",
+      "family_id": "family:regul",
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "e49a09104787a90388bf70ccc550dd14cdbde7cb1e49366edd81f7a7cb95ddb9"
+      },
+      "source_record": {
+        "lemma_id": "lemma:d71631a9231edbb496ba",
+        "word": "thymorégulateurs",
+        "normalized": "thymorégulateurs",
+        "search_form": "thymoregulateurs",
+        "rank": 489077,
+        "frequency_score": 0.06031194627701871,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.003448
+            ],
+            "category_ipm": 0.003448,
+            "category_score": 0.06031194627701871
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.003448
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "regul",
+            "canonical_candidate": "regul",
+            "confidence": 0.97,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "manually_verified",
+                "path": [
+                  "thymoregulateurs",
+                  "regul",
+                  "regul"
+                ],
+                "confidence": 0.97
+              },
+              {
+                "type": "verified_seed_alias",
+                "source": "methodology_control_seed",
+                "path": [
+                  "fr",
+                  "regul",
+                  "family:regul"
+                ],
+                "confidence": 1
+              }
+            ]
+          }
+        ]
+      },
+      "relation_kind": "lexical_continuity",
+      "formal_continuity_status": "accepted",
+      "identity_decision": {
+        "status": "accepted",
+        "reason": "Finite analysis of fr:thymorégulateurs: retained lexical base in réguler; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711",
+            "finding": "Régulation continues regulating réguler/regulare and covers related technical, biological and social uses.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "boundary_proof": {
+        "status": "accepted",
+        "reason": "Finite analysis of fr:thymorégulateurs: retained lexical base in réguler; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711",
+            "finding": "Régulation continues regulating réguler/regulare and covers related technical, biological and social uses.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "link_role": "reviewed_lexical_base_component",
+      "component_segmentation": {
+        "before": "thymo",
+        "component": "régul",
+        "after": "ateurs",
+        "head": "réguler"
+      },
+      "senses_decision": {
+        "language": "fr",
+        "family_id": "family:regul",
+        "lemma_id": "lemma:d71631a9231edbb496ba",
+        "word": "thymorégulateurs",
+        "membership_object": "lexical_row_or_component",
+        "formal_continuity": "accepted",
+        "component": "régul",
+        "analyses": [
+          {
+            "history": "regula_regularis_regulare",
+            "verdict": "accepted",
+            "evidence": [
+              "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711"
+            ],
+            "proved_components": [
+              "régul"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:ce5da2698b427a42a029",
+      "word": "déréguler",
+      "family_id": "family:regul",
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/fr/8a.json.gz",
+        "family_id": "surface:fr:dere",
+        "record_sha256": "4e5609647a74b7fae671e4259ad4f04bfd7175936e3e5f45f08a641ec82ac81d"
+      },
+      "source_record": {
+        "lemma_id": "lemma:ce5da2698b427a42a029",
+        "word": "déréguler",
+        "normalized": "déréguler",
+        "search_form": "dereguler",
+        "rank": 113543,
+        "frequency_score": 0.9426656552934782,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.027583
+            ],
+            "category_ipm": 0.027583,
+            "category_score": 0.4767639217120168
+          },
+          "web": {
+            "ipm_values": [
+              0.083708
+            ],
+            "category_ipm": 0.083708,
+            "category_score": 1.4085673888749397
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.027583
+          },
+          {
+            "id": "web/sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.083708
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "dere",
+            "canonical_candidate": "dere",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "dereguler",
+                  "dere",
+                  "dere"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      },
+      "relation_kind": "lexical_continuity",
+      "formal_continuity_status": "accepted",
+      "identity_decision": {
+        "status": "accepted",
+        "reason": "Finite analysis of fr:déréguler: retained lexical base in réguler; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711",
+            "finding": "Régulation continues regulating réguler/regulare and covers related technical, biological and social uses.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "boundary_proof": {
+        "status": "accepted",
+        "reason": "Finite analysis of fr:déréguler: retained lexical base in réguler; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711",
+            "finding": "Régulation continues regulating réguler/regulare and covers related technical, biological and social uses.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "link_role": "reviewed_lexical_base_component",
+      "component_segmentation": {
+        "before": "dé",
+        "component": "régul",
+        "after": "er",
+        "head": "réguler"
+      },
+      "senses_decision": {
+        "language": "fr",
+        "family_id": "family:regul",
+        "lemma_id": "lemma:ce5da2698b427a42a029",
+        "word": "déréguler",
+        "membership_object": "lexical_row_or_component",
+        "formal_continuity": "accepted",
+        "component": "régul",
+        "analyses": [
+          {
+            "history": "regula_regularis_regulare",
+            "verdict": "accepted",
+            "evidence": [
+              "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulation/67711"
+            ],
+            "proved_components": [
+              "régul"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "path": "audit/associative-family-v6/regul-20261008/decisions/review.json",
+      "sha256": "bc9b421c24f0764819d4aaf7760522c9556b1df64802b1a4b14e4fbcbc2069a6",
+      "finite_reviewed_ids": [
+        "lemma:a680db96c44cfe8eeb91",
+        "lemma:b70a8f30cbe96aa55f59",
+        "lemma:b2f56ab290b79ddb87b5",
+        "lemma:bacb06b369a4ea24ff92",
+        "lemma:705c58c03fab1fb1f6a2",
+        "lemma:8fc76978856a42889766",
+        "lemma:61f7c48c3e3b197fdfbd",
+        "lemma:bdabe37210293cb2b749",
+        "lemma:9ebcfb848a4277939f63",
+        "lemma:debd820aba583932f007",
+        "lemma:b5c9a8ef3d8c75c57e55",
+        "lemma:ebb88e077fcb50177d5c",
+        "lemma:f5e5f0620a5c09730879",
+        "lemma:07362c52e00da9423353",
+        "lemma:984e268ecedb682a5847",
+        "lemma:d71631a9231edbb496ba",
+        "lemma:ce5da2698b427a42a029"
+      ]
+    }
+  ],
+  "reason": "Exact finite accepted regula-line lexical/component scope; aggregate source measurements preserved.",
+  "decision": {
+    "status": "accepted",
+    "expected_version": 1,
+    "relation_kind": "lexical_continuity",
+    "lemma_ids": [
+      "lemma:a680db96c44cfe8eeb91",
+      "lemma:b70a8f30cbe96aa55f59",
+      "lemma:b2f56ab290b79ddb87b5",
+      "lemma:bacb06b369a4ea24ff92",
+      "lemma:705c58c03fab1fb1f6a2",
+      "lemma:8fc76978856a42889766",
+      "lemma:61f7c48c3e3b197fdfbd",
+      "lemma:bdabe37210293cb2b749",
+      "lemma:9ebcfb848a4277939f63",
+      "lemma:debd820aba583932f007",
+      "lemma:b5c9a8ef3d8c75c57e55",
+      "lemma:ebb88e077fcb50177d5c",
+      "lemma:f5e5f0620a5c09730879",
+      "lemma:07362c52e00da9423353",
+      "lemma:984e268ecedb682a5847",
+      "lemma:d71631a9231edbb496ba",
+      "lemma:ce5da2698b427a42a029"
+    ],
+    "reason": "Exact finite accepted regula-line lexical/component scope; aggregate source measurements preserved.",
+    "evidence": [
+      {
+        "path": "audit/associative-family-v6/regul-20261008/decisions/review.json",
+        "sha256": "bc9b421c24f0764819d4aaf7760522c9556b1df64802b1a4b14e4fbcbc2069a6",
+        "finite_reviewed_ids": [
+          "lemma:a680db96c44cfe8eeb91",
+          "lemma:b70a8f30cbe96aa55f59",
+          "lemma:b2f56ab290b79ddb87b5",
+          "lemma:bacb06b369a4ea24ff92",
+          "lemma:705c58c03fab1fb1f6a2",
+          "lemma:8fc76978856a42889766",
+          "lemma:61f7c48c3e3b197fdfbd",
+          "lemma:bdabe37210293cb2b749",
+          "lemma:9ebcfb848a4277939f63",
+          "lemma:debd820aba583932f007",
+          "lemma:b5c9a8ef3d8c75c57e55",
+          "lemma:ebb88e077fcb50177d5c",
+          "lemma:f5e5f0620a5c09730879",
+          "lemma:07362c52e00da9423353",
+          "lemma:984e268ecedb682a5847",
+          "lemma:d71631a9231edbb496ba",
+          "lemma:ce5da2698b427a42a029"
+        ]
+      }
+    ]
+  }
+}

@@ -66,3 +66,14 @@ test('synthetic extend_links adds only the explicitly segmented component withou
  const r=replayHeadLifecycle({index,docs:[d]});assert.equal(r.index.memberships.length,2);assert.equal(r.index.links[1].whole_compound_identity_established,false);assert.equal(r.index.heads.length,1);
  const bad=structuredClone(d);bad.records[1].component_segmentation.after='wrong';assert.throws(()=>replayHeadLifecycle({index,docs:[bad]}),/segmentation/);
 });
+
+test('regul requires senses even when the optional contract marker is omitted, and stems require both finite grants',()=>{
+ const index=fixture();index.links[0].family_id='family:regul';index.edges[0].family_id='family:regul';index.memberships=generateV6Memberships(index);index.heads[0].finite_component_stems=['alph'];
+ const d=doc(index,'extend_links','family:regul','accepted');d.component_stems=['alph'];const r={lemma_id:'lemma:fixture-stem',word:'prealphation'};
+ d.records.push({...d.records[0],lemma_id:r.lemma_id,word:r.word,source_record:r,source_locator:{...d.records[0].source_locator,record_sha256:stateHash(r)},link_role:'reviewed_lexical_base_component',component_segmentation:{before:'pre',component:'alph',after:'ation',head:'alpha'}});d.decision.lemma_ids.push(r.lemma_id);
+ for(const row of d.records)row.senses_decision={language:row.language,family_id:'family:regul',lemma_id:row.lemma_id,word:row.word,membership_object:'lexical_row_or_component',formal_continuity:'accepted',component:'alph',analyses:[{history:'synthetic_fixture',verdict:'accepted',evidence:['synthetic'],proved_components:['alph']}]};
+ assert.equal(replayHeadLifecycle({index,docs:[d]}).metrics.new_finite_links,1);
+ const missing=structuredClone(d);delete missing.records[1].senses_decision;assert.throws(()=>replayHeadLifecycle({index,docs:[missing]}),/senses/);
+ const denied=structuredClone(d);denied.component_stems=[];assert.throws(()=>replayHeadLifecycle({index,docs:[denied]}),/segmentation/);
+ const widening=structuredClone(d);widening.records[1].component_segmentation={before:'pre',component:'al',after:'phation',head:'alpha'};assert.throws(()=>replayHeadLifecycle({index,docs:[widening]}),/segmentation/);
+});

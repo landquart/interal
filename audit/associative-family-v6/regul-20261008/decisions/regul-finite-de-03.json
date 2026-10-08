@@ -1,0 +1,494 @@
+{
+  "schema_version": 6,
+  "production_enabled": false,
+  "synthetic_fixture": false,
+  "id": "regul-finite-de-03",
+  "operation": "extend_links",
+  "family_id": "family:regul",
+  "head_id": "head:de:49d6ba89dc8d9785d46b04cb",
+  "identity": {
+    "language": "de",
+    "normalized_head": "regularität",
+    "sense": "regula_line_bounded_component"
+  },
+  "binding_authorized": true,
+  "review_authorized": true,
+  "accepted_membership_authorized": true,
+  "review_contract": "regul-20261008",
+  "component_stems": [
+    "regul"
+  ],
+  "predecessor": {
+    "head": {
+      "id": "head:de:49d6ba89dc8d9785d46b04cb",
+      "language": "de",
+      "normalized_head": "regularität",
+      "identity_kind": "lexical_head",
+      "sense": "regula_line_bounded_component",
+      "version": 1,
+      "evidence": [
+        {
+          "id": "evidence:49d6ba89dc8d9785d46b04cb",
+          "language": "de",
+          "head": "regularität",
+          "sense": "regula_line_bounded_component",
+          "status": "accepted",
+          "evidence_kind": "lexical_identity",
+          "sources": [
+            "https://www.duden.de/rechtschreibung/Regularitaet"
+          ],
+          "finding": "Independent head and finite component analyses in audit/associative-family-v6/regul-20261008/decisions/review.json; no wildcard acceptance.",
+          "establishes_family_membership": false
+        },
+        {
+          "path": "audit/associative-family-v6/regul-20261008/research/prior.json",
+          "sha256": "e44cff673ca4a4c95f957bf51f3f8fb81a967a579935c35db0b7f9c827f80664",
+          "lemma_id": "lemma:36b35525ba3a30432ec2",
+          "word": "regularitäten"
+        },
+        {
+          "path": "audit/associative-family-v6/regul-20261008/decisions/review.json",
+          "sha256": "bc9b421c24f0764819d4aaf7760522c9556b1df64802b1a4b14e4fbcbc2069a6",
+          "lemma_id": "lemma:36b35525ba3a30432ec2",
+          "word": "regularitäten"
+        },
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/de/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "ee4d483b9b51aa99357fef528343a6cec920322db145e5ecda6d4869d49fa7fa"
+          },
+          "lemma_id": "lemma:36b35525ba3a30432ec2"
+        }
+      ],
+      "finite_component_stems": [
+        "regul"
+      ]
+    },
+    "head_version": 1,
+    "head_sha256": "488ab845e1c59ab4ed3207e706d29f0099549094180b234dce6cfad2b08296ce",
+    "edge": {
+      "head_id": "head:de:49d6ba89dc8d9785d46b04cb",
+      "family_id": "family:regul",
+      "status": "accepted",
+      "scope": "finite_evidenced_links",
+      "morphology_policy": "finite_reviewed_component_links",
+      "version": 1,
+      "evidence": [
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/de/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "ee4d483b9b51aa99357fef528343a6cec920322db145e5ecda6d4869d49fa7fa"
+          },
+          "lemma_id": "lemma:36b35525ba3a30432ec2"
+        }
+      ],
+      "lemma_ids": [
+        "lemma:36b35525ba3a30432ec2"
+      ]
+    },
+    "edge_version": 1,
+    "edge_sha256": "ad24ae5aa03cd4b92f6c1b8666081266daf1f0c01aef2779eeddb84a4dcea367",
+    "scope_sha256": "ab79de50877b8d71182882473b527cea66ccdd4c7bb901ce4ffc2c817c9e8bab"
+  },
+  "input_sha256": {
+    "audit/associative-family-v6/regul-20261008/decisions/review.json": "bc9b421c24f0764819d4aaf7760522c9556b1df64802b1a4b14e4fbcbc2069a6",
+    "audit/associative-family-v6/regul-20261008/research/evidence.json": "8c67441987a1dd99c277c90e5f5ee68449bdbf924666eba454346cd07c707110",
+    "associativvordes/family-index-v5/members/de/40.json.gz": "c29620abfc6db5cd878dcc71525c911db1da91d3c3137143a2dc00edbe91f0b4",
+    "associativvordes/family-index-v5/members/de/a9.json.gz": "83ce2c35ae261781b6079d9b31616f18b9516dc4a38af70046910c51aa117a59",
+    "associativvordes/family-index-v5/members/de/36.json.gz": "1c9ca52dcce57ae25da6fa6a0c24fbf41c3af0e32ff0496c3dc3bf4bb4a1d540"
+  },
+  "records": [
+    {
+      "language": "de",
+      "lemma_id": "lemma:36b35525ba3a30432ec2",
+      "word": "regularitäten",
+      "family_id": "family:regul",
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "ee4d483b9b51aa99357fef528343a6cec920322db145e5ecda6d4869d49fa7fa"
+      },
+      "source_record": {
+        "lemma_id": "lemma:36b35525ba3a30432ec2",
+        "word": "regularitäten",
+        "normalized": "regularitäten",
+        "search_form": "regularitaten",
+        "rank": 198928,
+        "frequency_score": 2.047381487004669,
+        "category_breakdown": {
+          "normative": {
+            "ipm_values": [
+              0.155407
+            ],
+            "category_ipm": 0.155407,
+            "category_score": 2.531099911399868
+          },
+          "web": {
+            "ipm_values": [
+              0.093343
+            ],
+            "category_ipm": 0.093343,
+            "category_score": 1.563663062609471
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "category": "normative",
+            "ipm": 0.155407
+          },
+          {
+            "id": "web/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.093343
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "regul",
+            "canonical_candidate": "regul",
+            "confidence": 0.97,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "manually_verified",
+                "path": [
+                  "regularitaten",
+                  "regul",
+                  "regul"
+                ],
+                "confidence": 0.97
+              },
+              {
+                "type": "verified_seed_alias",
+                "source": "methodology_control_seed",
+                "path": [
+                  "de",
+                  "regul",
+                  "family:regul"
+                ],
+                "confidence": 1
+              }
+            ]
+          }
+        ]
+      },
+      "relation_kind": "lexical_continuity",
+      "formal_continuity_status": "accepted",
+      "identity_decision": {
+        "status": "accepted",
+        "reason": "Finite analysis of de:regularitäten: retained lexical base in regularität; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.duden.de/rechtschreibung/Regularitaet",
+            "finding": "Regularität is borrowed from French régularité; plural Regularitäten is explicitly listed.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "boundary_proof": {
+        "status": "accepted",
+        "reason": "Finite analysis of de:regularitäten: retained lexical base in regularität; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.duden.de/rechtschreibung/Regularitaet",
+            "finding": "Regularität is borrowed from French régularité; plural Regularitäten is explicitly listed.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "link_role": "reviewed_lexical_base_component",
+      "component_segmentation": {
+        "before": "",
+        "component": "regul",
+        "after": "aritäten",
+        "head": "regularität"
+      },
+      "senses_decision": {
+        "language": "de",
+        "family_id": "family:regul",
+        "lemma_id": "lemma:36b35525ba3a30432ec2",
+        "word": "regularitäten",
+        "membership_object": "lexical_row_or_component",
+        "formal_continuity": "accepted",
+        "component": "regul",
+        "analyses": [
+          {
+            "history": "regula_regularis_regulare",
+            "verdict": "accepted",
+            "evidence": [
+              "https://www.duden.de/rechtschreibung/Regularitaet"
+            ],
+            "proved_components": [
+              "regul"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:9f685071e0aa54185c1a",
+      "word": "irregularitäten",
+      "family_id": "family:regul",
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/a9.json.gz",
+        "family_id": "surface:de:irregularitate",
+        "record_sha256": "58c025a52ce5f26eac33a40dccbd424e26032aa35bfd06c8751473d0bfc649fd"
+      },
+      "source_record": {
+        "lemma_id": "lemma:9f685071e0aa54185c1a",
+        "word": "irregularitäten",
+        "normalized": "irregularitäten",
+        "search_form": "irregularitaten",
+        "rank": 166130,
+        "frequency_score": 0.6640102542333355,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.038623
+            ],
+            "category_ipm": 0.038623,
+            "category_score": 0.6640102542333355
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.038623
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "irregularitate",
+            "canonical_candidate": "irregularitate",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "irregularitaten",
+                  "irregularitate",
+                  "irregularitate"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      },
+      "relation_kind": "lexical_continuity",
+      "formal_continuity_status": "accepted",
+      "identity_decision": {
+        "status": "accepted",
+        "reason": "Finite analysis of de:irregularitäten: retained lexical base in regularität; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.duden.de/rechtschreibung/Regularitaet",
+            "finding": "Regularität is borrowed from French régularité; plural Regularitäten is explicitly listed.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "boundary_proof": {
+        "status": "accepted",
+        "reason": "Finite analysis of de:irregularitäten: retained lexical base in regularität; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.duden.de/rechtschreibung/Regularitaet",
+            "finding": "Regularität is borrowed from French régularité; plural Regularitäten is explicitly listed.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "link_role": "reviewed_lexical_base_component",
+      "component_segmentation": {
+        "before": "ir",
+        "component": "regul",
+        "after": "aritäten",
+        "head": "regularität"
+      },
+      "senses_decision": {
+        "language": "de",
+        "family_id": "family:regul",
+        "lemma_id": "lemma:9f685071e0aa54185c1a",
+        "word": "irregularitäten",
+        "membership_object": "lexical_row_or_component",
+        "formal_continuity": "accepted",
+        "component": "regul",
+        "analyses": [
+          {
+            "history": "regula_regularis_regulare",
+            "verdict": "accepted",
+            "evidence": [
+              "https://www.duden.de/rechtschreibung/Regularitaet"
+            ],
+            "proved_components": [
+              "regul"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:cb2c393b7cdbc63e1530",
+      "word": "irregularität",
+      "family_id": "family:regul",
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/36.json.gz",
+        "family_id": "surface:de:irregularitat",
+        "record_sha256": "e5aa8ce958a04ace99104785dd8d957214b9688cb44d64bc3cecedf10129eb23"
+      },
+      "source_record": {
+        "lemma_id": "lemma:cb2c393b7cdbc63e1530",
+        "word": "irregularität",
+        "normalized": "irregularität",
+        "search_form": "irregularitat",
+        "rank": 251616,
+        "frequency_score": 0.33514174365876337,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.019311
+            ],
+            "category_ipm": 0.019311,
+            "category_score": 0.33514174365876337
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.019311
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "irregularitat",
+            "canonical_candidate": "irregularitat",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "irregularitat",
+                  "irregularitat",
+                  "irregularitat"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      },
+      "relation_kind": "lexical_continuity",
+      "formal_continuity_status": "accepted",
+      "identity_decision": {
+        "status": "accepted",
+        "reason": "Finite analysis of de:irregularität: retained lexical base in regularität; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.duden.de/rechtschreibung/Regularitaet",
+            "finding": "Regularität is borrowed from French régularité; plural Regularitäten is explicitly listed.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "boundary_proof": {
+        "status": "accepted",
+        "reason": "Finite analysis of de:irregularität: retained lexical base in regularität; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.duden.de/rechtschreibung/Regularitaet",
+            "finding": "Regularität is borrowed from French régularité; plural Regularitäten is explicitly listed.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "link_role": "reviewed_lexical_base_component",
+      "component_segmentation": {
+        "before": "ir",
+        "component": "regul",
+        "after": "arität",
+        "head": "regularität"
+      },
+      "senses_decision": {
+        "language": "de",
+        "family_id": "family:regul",
+        "lemma_id": "lemma:cb2c393b7cdbc63e1530",
+        "word": "irregularität",
+        "membership_object": "lexical_row_or_component",
+        "formal_continuity": "accepted",
+        "component": "regul",
+        "analyses": [
+          {
+            "history": "regula_regularis_regulare",
+            "verdict": "accepted",
+            "evidence": [
+              "https://www.duden.de/rechtschreibung/Regularitaet"
+            ],
+            "proved_components": [
+              "regul"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "path": "audit/associative-family-v6/regul-20261008/decisions/review.json",
+      "sha256": "bc9b421c24f0764819d4aaf7760522c9556b1df64802b1a4b14e4fbcbc2069a6",
+      "finite_reviewed_ids": [
+        "lemma:36b35525ba3a30432ec2",
+        "lemma:9f685071e0aa54185c1a",
+        "lemma:cb2c393b7cdbc63e1530"
+      ]
+    }
+  ],
+  "reason": "Exact finite accepted regula-line lexical/component scope; aggregate source measurements preserved.",
+  "decision": {
+    "status": "accepted",
+    "expected_version": 1,
+    "relation_kind": "lexical_continuity",
+    "lemma_ids": [
+      "lemma:36b35525ba3a30432ec2",
+      "lemma:9f685071e0aa54185c1a",
+      "lemma:cb2c393b7cdbc63e1530"
+    ],
+    "reason": "Exact finite accepted regula-line lexical/component scope; aggregate source measurements preserved.",
+    "evidence": [
+      {
+        "path": "audit/associative-family-v6/regul-20261008/decisions/review.json",
+        "sha256": "bc9b421c24f0764819d4aaf7760522c9556b1df64802b1a4b14e4fbcbc2069a6",
+        "finite_reviewed_ids": [
+          "lemma:36b35525ba3a30432ec2",
+          "lemma:9f685071e0aa54185c1a",
+          "lemma:cb2c393b7cdbc63e1530"
+        ]
+      }
+    ]
+  }
+}
